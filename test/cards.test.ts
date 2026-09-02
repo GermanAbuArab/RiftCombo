@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { CardIndex, baseOf, normalizeName } from "../src/cards.js";
+import { baseOf, normalizeName } from "../src/cards.js";
+import { loadCardIndex } from "../src/load.js";
 
-const cards = CardIndex.load();
+const cards = loadCardIndex();
 
 describe("card index", () => {
   it("loads every printing and prefers base printings for base lookups", () => {

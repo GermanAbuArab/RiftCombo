@@ -1,11 +1,11 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { CardIndex } from "../src/cards.js";
-import { generateVariants, loadCombos, validateCombos } from "../src/combos.js";
+import { loadCardIndex, loadCombos } from "../src/load.js";
+import { generateVariants, validateCombos } from "../src/combos.js";
 import { loadDeck } from "../src/deck.js";
 import { matchDeck } from "../src/matcher.js";
 
-const cards = CardIndex.load();
+const cards = loadCardIndex();
 const { combos, features } = loadCombos();
 const variants = generateVariants(combos, cards);
 const fixture = (n: string) => readFileSync(new URL(`./fixtures/${n}`, import.meta.url), "utf8");

@@ -8,7 +8,10 @@
     "build:data": "node scripts/build-cards.mjs && node scripts/build-corpus.mjs",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "find": "tsx src/cli.ts"
+    "find": "tsx src/cli.ts",
+    "build:web": "node scripts/build-web.mjs",
+    "dev": "node scripts/build-web.mjs && wrangler dev",
+    "deploy": "node scripts/build-web.mjs && wrangler deploy"
   },
   "license": "MIT",
   "dependencies": {
@@ -16,8 +19,10 @@
   },
   "devDependencies": {
     "@types/node": "^26.4.1",
+    "esbuild": "^0.28.2",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2",
-    "vitest": "^4.1.11"
+    "vitest": "^4.1.11",
+    "wrangler": "^4.128.0"
   }
 }

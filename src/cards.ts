@@ -1,9 +1,4 @@
-import { readFileSync } from "node:fs";
-import { join, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
 import type { Card, Domain, Format, LegalityEntry } from "./types.js";
-
-const DATA = join(dirname(fileURLToPath(import.meta.url)), "..", "data");
 
 export const normalizeName = (s: string): string =>
   s
@@ -48,12 +43,6 @@ export class CardIndex {
       if (!this.banned.has(e.format)) this.banned.set(e.format, new Map());
       for (const b of e.bases) this.banned.get(e.format)!.set(b, e);
     }
-  }
-
-  static load(): CardIndex {
-    const cards = JSON.parse(readFileSync(join(DATA, "cards.json"), "utf8")) as { cards: Card[] };
-    const legality = JSON.parse(readFileSync(join(DATA, "legality.json"), "utf8")) as { entries: LegalityEntry[] };
-    return new CardIndex(cards.cards, legality.entries);
   }
 
   get(code: string): Card | undefined {

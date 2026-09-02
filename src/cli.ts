@@ -1,9 +1,9 @@
 #!/usr/bin/env tsx
 // Usage: npm run find -- <deck code | path to decklist.txt> [--format constructed|2v2] [--max-missing N]
 import { readFileSync, existsSync } from "node:fs";
-import { CardIndex } from "./cards.js";
 import { loadDeck } from "./deck.js";
-import { generateVariants, loadCombos, validateCombos } from "./combos.js";
+import { generateVariants, validateCombos } from "./combos.js";
+import { loadCardIndex, loadCombos } from "./load.js";
 import { matchDeck, type Hit, type MatchResult } from "./matcher.js";
 import type { Format } from "./types.js";
 
@@ -15,7 +15,7 @@ if (!target) { console.error("usage: find <deck code | decklist file> [--format 
 const format = (flag("--format") ?? "constructed") as Format;
 const maxMissing = Number(flag("--max-missing") ?? 2);
 
-const cards = CardIndex.load();
+const cards = loadCardIndex();
 const { combos, features } = loadCombos();
 const errors = validateCombos(combos, features, cards);
 if (errors.length) { console.error("combos.json invalid:\n  " + errors.join("\n  ")); process.exit(1); }

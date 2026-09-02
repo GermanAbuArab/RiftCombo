@@ -1,16 +1,5 @@
-import { readFileSync } from "node:fs";
-import { join, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
 import type { CardIndex } from "./cards.js";
 import type { Combo, ComboClass, ComboStatus, Domain, Feature, Variant } from "./types.js";
-
-const DATA = join(dirname(fileURLToPath(import.meta.url)), "..", "data");
-
-export function loadCombos(): { combos: Combo[]; features: Feature[] } {
-  const combos = JSON.parse(readFileSync(join(DATA, "combos.json"), "utf8")) as { combos: Combo[] };
-  const features = JSON.parse(readFileSync(join(DATA, "features.json"), "utf8")) as { features: Feature[] };
-  return { combos: combos.combos, features: features.features };
-}
 
 /** Sanity checks an authored combo file must pass before anything is generated from it. */
 export function validateCombos(combos: Combo[], features: Feature[], cards: CardIndex): string[] {

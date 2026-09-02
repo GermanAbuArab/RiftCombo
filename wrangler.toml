@@ -1,0 +1,12 @@
+name = "riftcombo"
+main = "web/worker.ts"
+compatibility_date = "2026-06-01"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+# Route every request through the Worker so the security headers reach static files too.
+run_worker_first = true
+
+[observability]
+enabled = true

@@ -1,10 +1,10 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { getCodeFromDeck } from "@piltoverarchive/riftbound-deck-codes";
-import { CardIndex } from "../src/cards.js";
+import { loadCardIndex } from "../src/load.js";
 import { decodeDeckCode, isDeckCode, loadDeck, normalizeDeck, parseDeckText } from "../src/deck.js";
 
-const cards = CardIndex.load();
+const cards = loadCardIndex();
 const fixture = (n: string) => readFileSync(new URL(`./fixtures/${n}`, import.meta.url), "utf8");
 
 describe("plaintext decklists", () => {

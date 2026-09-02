@@ -184,6 +184,14 @@ was exactly such a claim, and it was wrong.
 
 Single Cloudflare Worker: static assets + `/api/*`. Matches LOOPLINE's proven shape (`cf-cache-status: HIT` on assets, `no-store` on API).
 
+**Decision 2026-09-02 — the matcher runs in the browser.** The whole database is ~1k cards and
+under 100 combos: a slimmed `cards.json` + `combos.json` + `legality.json` bundle is a few hundred
+KB, the deck codec is a dependency-free library, and `src/matcher.ts` is pure TypeScript. Shipping
+them as static assets removes the 10 ms CPU concern, the API rate-limit surface and any server
+state for v1. The only server endpoint is `/api/deck-url`, a proxy for Piltover Archive deck pages
+(browser CORS forbids fetching them directly), with an allowlist and an honest User-Agent. D1
+enters only with the review queue.
+
 ### Data model — adapted from Commander Spellbook
 
 The one idea worth copying above all others: **separate an authored `Combo` from a generated `Variant`.**

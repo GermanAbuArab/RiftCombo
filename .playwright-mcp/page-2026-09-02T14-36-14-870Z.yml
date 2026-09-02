@@ -1,0 +1,53 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "RiftCombo" [ref=e3] [cursor=pointer]:
+      - /url: /
+    - paragraph [ref=e4]: Known combos in a Riftbound deck, as a graph.
+    - navigation [ref=e5]:
+      - link "About" [ref=e6] [cursor=pointer]:
+        - /url: "#about"
+      - link "Source" [ref=e7] [cursor=pointer]:
+        - /url: https://github.com/GermanAbuArab/RiftCombo
+  - generic [ref=e8]:
+    - complementary [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: Decklist, deck code, or Piltover Archive link
+        - textbox "Decklist, deck code, or Piltover Archive link" [ref=e12]:
+          - /placeholder: "3 Forge of the Future\n3 Ekko, Recurrent\n3 Shadow's Call\n3 Sacrifice\n…\n\nor CMAAAAAAAAAACAQAABM5MAIA…\nor https://piltoverarchive.com/decks/view/…"
+        - generic [ref=e13]:
+          - group "Format" [ref=e14]:
+            - generic [ref=e15]:
+              - radio "Constructed" [checked] [ref=e16] [cursor=pointer]
+              - generic [ref=e17]: Constructed
+            - generic [ref=e18]:
+              - radio "2v2" [ref=e19] [cursor=pointer]
+              - generic [ref=e20]: 2v2
+          - generic [ref=e21]:
+            - text: Within
+            - combobox "Near-miss distance" [ref=e22]:
+              - option "0"
+              - option "1"
+              - option "2" [selected]
+              - option "3"
+            - text: cards
+          - button "Find combos" [ref=e23] [cursor=pointer]
+        - paragraph [ref=e24]:
+          - button "Load the Lux tournament list" [ref=e25] [cursor=pointer]
+          - status
+    - main [ref=e27]:
+      - generic [ref=e28]:
+        - generic [aria-hidden] [ref=e29]:
+          - generic [ref=e30]: Cards in deck
+          - generic [ref=e31]: Combos
+          - generic [ref=e32]: Outcomes
+        - button "Fit" [ref=e34] [cursor=pointer]
+      - generic [ref=e36]:
+        - paragraph [ref=e37]: Paste a deck. See what it can do.
+        - paragraph [ref=e38]: "RiftCombo cross-references your list against a hand-verified database of Riftbound combos: unbounded loops, one-turn point bursts, and alternate wins. Each result names the cards you have, the cards you are missing, and whether the line is legal in your format."
+  - contentinfo [ref=e39]:
+    - paragraph [ref=e40]: RiftCombo was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.
+    - paragraph [ref=e41]:
+      - text: Card text from Riot's card gallery, with Riot's published errata applied. Legality from the official Rules Hub. Combos are hand-verified against the Core Rules; entries marked
+      - emphasis [ref=e42]: candidate
+      - text: are proposed and not yet reviewed. Card data as of 2026-09-02; 1189 printings, 8 combos (4 verified).
+    - paragraph [ref=e43]: No advertising, no donations, no play-rate or win-rate data. RiftCombo describes combos; it never plays them for you.
