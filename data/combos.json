@@ -1,0 +1,233 @@
+{
+ "notes": [
+  "AUTHORED combos. Every entry was either walked by hand against card text and the Core Rules (status 'verified') or proposed by the Phase 0 hunt and not yet human-reviewed (status 'candidate'). Nothing here is inferred by code.",
+  "Cards are base codes (no alt-art suffix). quantity is a multiset requirement. needs/produces link combos into a DAG that src/combos.ts flattens into Variants.",
+  "rulesVersion is the Core Rules 'Last Updated' date the walk was done against."
+ ],
+ "combos": [
+  {
+   "id": "lux-infinite-energy",
+   "name": "Forge / Ekko recycle loop — infinite Energy",
+   "class": "INFINITE",
+   "status": "verified",
+   "uses": [
+    {"card": "OGN-212", "quantity": 1, "role": "engine", "zone": "BOARD", "note": "Kill this: Recycle up to 4 cards from trashes. Its play trigger makes a Recruit each pass."},
+    {"card": "OGN-110", "quantity": 1, "role": "engine", "zone": "HAND", "note": "[Deathknell] — Recycle me to ready your runes."},
+    {"card": "UNL-165", "quantity": 2, "role": "enabler", "note": "Draw 2. One in hand, one in the trash at loop start."},
+    {"card": "UNL-173", "quantity": 2, "role": "enabler", "note": "Reaction; kills Ekko as its cost, draws 2, channels the recycled rune back. One in hand, one in the trash at loop start."}
+   ],
+   "needs": [],
+   "produces": ["infinite-energy", "infinite-recruits", "infinite-recycle"],
+   "prerequisites": {
+    "easy": ["Legend domains cover Mind and Order (Lady of Luminosity, Herald of the Arcane, Chem-Baroness, Deceiver)."],
+    "notable": [
+     "Main Deck EMPTY — the deck draws itself out first; every card not in the loop must be in hand or trash.",
+     "12 runes in play (the deck's whole Rune Deck channeled); at least one Mind rune.",
+     "Forge of the Future in play; one Shadow's Call and one Sacrifice already in the trash."
+    ]
+   },
+   "steps": [
+    "Activate Forge of the Future (Kill this): recycle Forge itself, a Shadow's Call and a Sacrifice from the trash. Deck: 3 cards.",
+    "Play Ekko, Recurrent for 5 Energy + 1 Mind Power. Pay the Power by recycling an EXHAUSTED Mind rune (rule 164.2.b has no exhaust in its cost).",
+    "Play Shadow's Call (2 Energy) on any friendly unit. In response play Sacrifice (1 Energy, Reaction) killing Ekko as its cost. Exhaust every still-ready rune for floating Energy first.",
+    "Ekko's Deathknell resolves: recycle Ekko (deck: 4 cards) and ready all 11 runes on the board.",
+    "Sacrifice resolves: draw 2, channel the recycled rune back exhausted (12 runes again). Shadow's Call resolves: draw 2. Hand now holds Forge, Shadow's Call, Sacrifice, Ekko.",
+    "Play Forge (2 Energy) — its play trigger makes a 1 Might Recruit at your base. Repeat from step 1."
+   ],
+   "netPerIteration": "-10 Energy -1 Power spent; 11 runes readied and 1 channeled back; +1 floating Energy and +1 Recruit token per pass. Unbounded.",
+   "terminatesIn": "infinite energy (engine); infinite Recruits at base",
+   "sources": [
+    {"title": "Analyzing Infinite Combo Lux — Riftbound's Hottest New Deck (Scott Mines, TCGplayer Infinite)", "kind": "tournament-report", "url": "https://infinite.tcgplayer.com/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/", "date": "2026-06-10"},
+    {"title": "riftbound.gg Lux legend guide (Tianjin 19th/640, Hartford top 8)", "kind": "article", "date": "2026-07"},
+    {"title": "Hand walk against Core Rules 2026-07-16 (docs/phase0-findings.md Result 5)", "kind": "manual-walk", "date": "2026-09-02"}
+   ],
+   "rulesVersion": "2026-07-16"
+  },
+  {
+   "id": "lux-infinite-power",
+   "name": "Retreat / Lecturing Yordle — infinite Power",
+   "class": "INFINITE",
+   "status": "verified",
+   "uses": [
+    {"card": "OGN-212", "quantity": 1, "role": "engine", "note": "Recycles Forge + Retreat each pass."},
+    {"card": "OGN-104", "quantity": 1, "role": "enabler", "note": "Return a friendly unit to hand; its owner channels 1 rune exhausted — brings back the rune recycled for Power."},
+    {"card": "OGN-087", "quantity": 1, "role": "enabler", "note": "When you play me, draw 1. Drawn and replayed twice per pass."}
+   ],
+   "needs": ["infinite-energy"],
+   "produces": ["infinite-power"],
+   "prerequisites": {
+    "easy": ["Legend domains cover Mind and Order."],
+    "notable": ["Main Deck empty.", "Infinite Energy already established (this loop spends 9 Energy per Power)."]
+   },
+   "steps": [
+    "Recycle a rune to float 1 Power of its domain (legal at any priority, rule 429.3 / 164.2.b).",
+    "Kill Forge of the Future to recycle Forge and Retreat. Deck: 2 cards.",
+    "Play Lecturing Yordle (3 Energy): draw 1.",
+    "Play Retreat (1 Energy) on Lecturing Yordle: it returns to hand and you channel the recycled rune back exhausted.",
+    "Replay Lecturing Yordle (3 Energy): draw the remaining card. Replay Forge (2 Energy). Repeat.",
+    "Weave any other trash card into Forge's recycle to rebuild a perfect hand."
+   ],
+   "netPerIteration": "-9 Energy, +1 floating Power of any rune domain you control. Unbounded given infinite Energy.",
+   "terminatesIn": "infinite power (engine)",
+   "sources": [
+    {"title": "Analyzing Infinite Combo Lux (TCGplayer Infinite)", "kind": "tournament-report", "url": "https://infinite.tcgplayer.com/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/", "date": "2026-06-10"}
+   ],
+   "rulesVersion": "2026-07-16"
+  },
+  {
+   "id": "renata-mastermind-points",
+   "name": "Renata Glasc, Mastermind bounce — score to 8",
+   "class": "INFINITE",
+   "status": "verified",
+   "uses": [
+    {"card": "SFD-088", "quantity": 1, "role": "payoff", "note": "4 Energy + 4 Mind Power, exhaust: Score 1 point. Only while at a battlefield."},
+    {"card": "OGN-104", "quantity": 1, "role": "enabler", "note": "Returns Renata to hand so she can be replayed and re-readied."},
+    {"card": "SFD-180", "quantity": 1, "role": "ready", "note": "When a unit you control becomes Mighty, pay 1 Order Power to ready it. Renata enters exhausted (143.4)."},
+    {"card": "SFD-166", "quantity": 1, "role": "enabler", "note": "Buffs each unit played this turn so Renata (4 Might) enters at 5 and becomes Mighty."}
+   ],
+   "needs": ["infinite-energy", "infinite-power"],
+   "produces": ["ability-points", "win-the-game"],
+   "prerequisites": {
+    "easy": ["Legend domains cover Mind and Order.", "You control a battlefield to play Renata to."],
+    "notable": ["Infinite Energy and Power established.", "Rally the Troops resolved this turn.", "Fiora, Worthy in play."]
+   },
+   "steps": [
+    "Play Renata Glasc, Mastermind to a battlefield you control. Rally the Troops buffs her to 5 Might: she becomes Mighty.",
+    "Fiora, Worthy triggers: pay 1 Order Power to ready Renata.",
+    "Pay 4 Energy + 4 Mind Power and exhaust Renata: score 1 point (ability-granted, not capped by rule 470).",
+    "Play Retreat on Renata: she returns to hand (a new object — rule 124 — so she becomes Mighty again on re-entry).",
+    "Repeat until you pass the Victory Score."
+   ],
+   "netPerIteration": "1 point per ~10 Energy + 5 Power. Bounded only by the infinite engines feeding it.",
+   "terminatesIn": "win the game (ability points)",
+   "sources": [
+    {"title": "Analyzing Infinite Combo Lux (TCGplayer Infinite), Stage 4.3", "kind": "tournament-report", "url": "https://infinite.tcgplayer.com/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/", "date": "2026-06-10"}
+   ],
+   "rulesVersion": "2026-07-16",
+   "notes": "Any other repeatable ready would replace Fiora + Rally the Troops; this is the line the tournament deck used."
+  },
+  {
+   "id": "pursuer-herald-recruits",
+   "name": "Stealthy Pursuer / Eye of the Herald — infinite ready Recruits",
+   "class": "INFINITE",
+   "status": "verified",
+   "uses": [
+    {"card": "OGN-177", "quantity": 1, "role": "engine", "note": "When a friendly unit moves from my location, I may be moved with it. BANNED in Constructed since 2026-07-24."},
+    {"card": "SFD-153", "quantity": 1, "role": "engine", "note": "Equipment. Effect granted to the equipped unit: When I move, play a 1 Might Recruit unit token here."},
+    {"card": "SFD-171", "quantity": 1, "role": "ready", "note": "Your tokens enter ready."}
+   ],
+   "needs": [],
+   "produces": ["infinite-recruits", "infinite-ready-recruits"],
+   "prerequisites": {
+    "easy": ["Legend domains cover Chaos and Order (Heart of the Tempest).", "A battlefield you control, so moves never open a combat."],
+    "notable": ["Eye of the Herald attached to Stealthy Pursuer (1 Order Power).", "One ready unit at Stealthy Pursuer's location to start."]
+   },
+   "steps": [
+    "A ready friendly unit Standard-Moves from Stealthy Pursuer's location to your battlefield (or back to base), exhausting itself (rule 144.2).",
+    "Stealthy Pursuer's trigger moves him along. This is not a Standard Move, so he does not exhaust.",
+    "Eye of the Herald's granted effect fires on Pursuer: play a 1 Might Recruit here. Renata Glasc, Industrialist makes it enter ready.",
+    "That Recruit Standard-Moves back the other way; Pursuer follows; another ready Recruit appears. Repeat."
+   ],
+   "netPerIteration": "+1 ready Recruit per move; no resources spent.",
+   "terminatesIn": "infinite ready Recruits (engine); wins through Conquer, Hold, or The Grand Plaza",
+   "sources": [
+    {"title": "Riot Games — July Ban List Updates: \"the potential to create infinite Recruits as early as turn three\"", "kind": "riot", "url": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/", "date": "2026-07-24"},
+    {"title": "Piltover Archive — Vendetta rules update coverage", "kind": "article", "url": "https://piltoverarchive.com/news/vendetta-rules-update", "date": "2026-07-17"}
+   ],
+   "rulesVersion": "2026-07-16",
+   "notes": "Kept although banned: legality is a dated, format-scoped fact the matcher reports, not a reason to delete the combo."
+  },
+  {
+   "id": "ahri-blue-sentinel-hold",
+   "name": "Ahri, Alluring × Blue Sentinel — multiplied Hold points",
+   "class": "BURST",
+   "status": "candidate",
+   "uses": [
+    {"card": "OGN-066", "quantity": 2, "role": "payoff", "zone": "BATTLEFIELD", "note": "When I hold, you score 1 point."},
+    {"card": "UNL-087", "quantity": 2, "role": "engine", "zone": "BATTLEFIELD", "note": "Your hold effects for holding here trigger an additional time."}
+   ],
+   "needs": [],
+   "produces": ["burst-points"],
+   "prerequisites": {
+    "easy": ["Legend domains cover Calm and Mind (Nine-Tailed Fox)."],
+    "notable": ["Hold one battlefield through your Beginning Phase with N Ahri and K Blue Sentinel there.", "Points per Hold: 1 + N × (1 + K). N=2, K=2 gives 7."]
+   },
+   "steps": [
+    "Establish and keep control of a battlefield with N copies of Ahri, Alluring and K copies of Blue Sentinel present.",
+    "At your Beginning Phase you Hold: score 1 (rule 470 cap) and each Ahri's hold trigger fires 1 + K times."
+   ],
+   "terminatesIn": "burst of ability points in one Hold",
+   "sources": [{"title": "Phase 0 hunt, entry A-01 (docs/phase0/hunt.md)", "kind": "agent", "date": "2026-09-02"}],
+   "rulesVersion": "2026-07-16",
+   "notes": "Load-bearing reading: card text (Golden Rule 002) lets Blue Sentinel add trigger instances despite 471.2.c. Pending human review."
+  },
+  {
+   "id": "tryndamere-brambleback-conquer",
+   "name": "Tryndamere, Barbarian × Red Brambleback — multiplied Conquer points",
+   "class": "BURST",
+   "status": "candidate",
+   "uses": [
+    {"card": "OGN-034", "quantity": 1, "role": "payoff", "note": "When I conquer after an attack, if you assigned 5 or more excess damage to enemy units, you score 1 point."},
+    {"card": "UNL-029", "quantity": 2, "role": "engine", "note": "Your conquer effects for conquering here trigger an additional time."}
+   ],
+   "needs": [],
+   "produces": ["burst-points"],
+   "prerequisites": {
+    "easy": ["Mono-Fury: any Fury legend."],
+    "notable": ["Move Tryndamere and the Bramblebacks (not play them) onto an enemy battlefield with a thin garrison so the excess-damage clause is met."]
+   },
+   "steps": [
+    "Standard-Move Tryndamere and K Red Bramblebacks from base to an enemy-held battlefield; win the combat with 5+ excess damage.",
+    "Conquer: score 1 (rule 470) and Tryndamere's conquer trigger fires 1 + K times."
+   ],
+   "terminatesIn": "burst of ability points in one Conquer",
+   "sources": [{"title": "Phase 0 hunt, entry A-02 (docs/phase0/hunt.md)", "kind": "agent", "date": "2026-09-02"}],
+   "rulesVersion": "2026-07-16"
+  },
+  {
+   "id": "grand-plaza-recruit-vanguard",
+   "name": "The Grand Plaza + Recruit the Vanguard — seven units, win",
+   "class": "ALT_WIN",
+   "status": "candidate",
+   "uses": [
+    {"card": "OGN-293", "quantity": 1, "role": "battlefield", "note": "When you hold here, if you have 7+ units here, you win the game."},
+    {"card": "OGS-015", "quantity": 2, "role": "enabler", "note": "Play four 1 Might Recruit unit tokens (to your base or battlefields you control)."}
+   ],
+   "needs": [],
+   "produces": ["win-the-game"],
+   "prerequisites": {
+    "easy": ["Mono-Order: any Order legend. The Grand Plaza is domainless."],
+    "notable": ["The Grand Plaza must be the battlefield in play — random in Duel (1 of 3), chosen in Match.", "Survive one opponent turn with 7+ units on it."]
+   },
+   "steps": [
+    "Control The Grand Plaza. Resolve Recruit the Vanguard placing the Recruits there (twice, or with other token makers) until 7+ units are present.",
+    "Hold at your Beginning Phase: you win the game (rule 195)."
+   ],
+   "terminatesIn": "win the game",
+   "sources": [{"title": "Phase 0 hunt, entry A-03 (docs/phase0/hunt.md)", "kind": "agent", "date": "2026-09-02"}],
+   "rulesVersion": "2026-07-16"
+  },
+  {
+   "id": "gutter-palace",
+   "name": "Gutter Palace — exactly 4 and 4",
+   "class": "ALT_WIN",
+   "status": "candidate",
+   "uses": [
+    {"card": "UNL-088", "quantity": 1, "role": "payoff", "note": "At the start of your Beginning Phase, if you have exactly 4 cards in hand and exactly 4 units at battlefields, you win the game. Discard 1, exhaust: play a 1 Might Bird token."}
+   ],
+   "needs": [],
+   "produces": ["win-the-game"],
+   "prerequisites": {
+    "easy": ["Mono-Mind: any Mind legend."],
+    "notable": ["End your turn at exactly 4 cards in hand and exactly 4 units at battlefields; its own ability tunes both counts at once."]
+   },
+   "steps": [
+    "Play Gutter Palace (gear enters ready). Adjust with its discard/exhaust ability: hand −1, units at battlefields +1.",
+    "Pass at 4/4. At the start of your next Beginning Phase the check fires: you win."
+   ],
+   "terminatesIn": "win the game",
+   "sources": [{"title": "Phase 0 hunt, entry A-04 (docs/phase0/hunt.md)", "kind": "agent", "date": "2026-09-02"}],
+   "rulesVersion": "2026-07-16"
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "riftcombo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Combo finder and visualizer for Riftbound TCG",
+  "type": "module",
+  "scripts": {
+    "build:data": "node scripts/build-cards.mjs && node scripts/build-corpus.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "find": "tsx src/cli.ts"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@piltoverarchive/riftbound-deck-codes": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  }
+}

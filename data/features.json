@@ -1,0 +1,20 @@
+{
+ "notes": [
+  "Controlled outcome vocabulary. STANDALONE features are shown to users; HELPER features are graph plumbing between combos; HIDDEN are generator internals.",
+  "Keep this list under ~20 entries. Commander Spellbook's 1,310 features forced LOOPLINE to build a second taxonomy on top."
+ ],
+ "features": [
+  {"id": "infinite-energy", "name": "Infinite Energy", "status": "STANDALONE", "uncountable": true, "description": "Unbounded Energy within one turn (the Rune Pool empties at end of turn)."},
+  {"id": "infinite-power", "name": "Infinite Power", "status": "STANDALONE", "uncountable": true, "description": "Unbounded Power of the deck's domains within one turn."},
+  {"id": "infinite-recruits", "name": "Infinite Recruits", "status": "STANDALONE", "uncountable": true, "description": "Unbounded 1 Might Recruit tokens."},
+  {"id": "infinite-ready-recruits", "name": "Infinite ready Recruits", "status": "STANDALONE", "uncountable": true, "description": "Unbounded Recruit tokens that enter ready and can move or attack the turn they appear."},
+  {"id": "infinite-recycle", "name": "Infinite recycle / redraw", "status": "HELPER", "uncountable": true, "description": "Any card in the trash can be recycled and redrawn at will (requires an empty Main Deck)."},
+  {"id": "infinite-ready", "name": "Infinite Ready", "status": "STANDALONE", "uncountable": true},
+  {"id": "infinite-draw", "name": "Infinite draw (liability)", "status": "HELPER", "uncountable": true, "description": "Drawing past an empty deck is Burn Out and gives an opponent a point."},
+  {"id": "ability-points", "name": "Score arbitrary points", "status": "STANDALONE", "uncountable": true, "description": "Ability-granted points, which rule 470's once-per-battlefield cap does not touch."},
+  {"id": "burst-points", "name": "Burst of points in one scoring event", "status": "STANDALONE", "uncountable": false, "description": "Bounded multiplicative points that can clear the 8-point Victory Score in one Hold or Conquer."},
+  {"id": "win-the-game", "name": "Win the game", "status": "STANDALONE", "uncountable": false, "description": "An effect that says you win (rule 195), or enough points to pass the Victory Score."},
+  {"id": "strip-opponent-hand", "name": "Banish the opponent's hand", "status": "STANDALONE", "uncountable": true},
+  {"id": "repeatable-removal", "name": "Repeatable removal", "status": "STANDALONE", "uncountable": true}
+ ]
+}

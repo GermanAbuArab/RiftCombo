@@ -91,7 +91,9 @@ function normalize(item) {
     collectorNumber: item.collectorNumber,
     type: item.cardType.type.map((t) => t.id),
     rarity: val(item.rarity),
-    domains: (item.domain?.values ?? []).map((d) => d.id),
+    // Riot lists domainless cards (battlefields, tokens) as "colorless"; we model that as no domain,
+    // which is what Domain Identity's subset rule needs.
+    domains: (item.domain?.values ?? []).map((d) => d.id).filter((d) => d !== "colorless"),
     energy: num(item.energy),
     power: num(item.power),
     might: num(item.might),
