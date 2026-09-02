@@ -23,6 +23,7 @@
 ## 3. Re-hunt with corrected corpus (parallel agents, background)
 - [x] Update REFUTE_SPEC with the two verified infinites as worked examples (empty-deck, equipment-effect, exhausted-rune-recycle)
 - [x] Dispatch N hunt agents by lens (state-precondition loops; equipment/move/token; point multipliers; alt-wins; recursion)
+- [ ] RE-RUN L1, L2, L3, L5, L6 after 15:30 (session rate limit killed them 2026-09-02 ~11:45); L4 finished → hunt2/L4-points-altwins.md
 - [ ] Refute pass on union of candidates → survivors file
 - [ ] verify: Lux loop and Recruits loop are rediscovered by at least one agent
 
@@ -40,3 +41,10 @@
 - [ ] Cloudflare Worker: static assets + /api/deck-url proxy (Piltover Archive RSC), honest UA, allowlist
 - [ ] Riot disclaimer verbatim; CSP/COOP headers
 - [ ] verify: renders the Lux fixture legibly at 375px and 1280px
+
+## 6. Redesign (user rejected first visual pass 2026-09-02)
+- [x] Research: TCG deck tools (done), graph UIs (done); Riftbound identity researcher died on rate limit → re-run after 15:30
+- [ ] Study LOOPLINE directly (user: "fíjate bien la página de referencia") — screenshots at 1440, deck loaded
+- [ ] Rename the near-miss control so it explains itself ("Within 2 cards" confused the user)
+- [ ] Restyle to match the reference's structure: cool navy dark, card-image nodes with name plates, layered columns, dim-others selection, combo tray, right detail drawer; no glow/noise/emoji per house rules
+- [ ] Save research reports to docs/design/

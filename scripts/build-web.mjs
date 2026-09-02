@@ -23,7 +23,7 @@ const slim = {
   cards: full.cards.map((c) => ({
     code: c.code, base: c.base, variant: c.variant, name: c.name, set: c.set, collectorNumber: c.collectorNumber,
     type: c.type, domains: c.domains, energy: c.energy, power: c.power, might: c.might, mightBonus: c.mightBonus,
-    text: c.text, effect: c.effect,
+    text: c.text, effect: c.effect, image: c.image, orientation: c.orientation,
   })),
 };
 writeFileSync(join(OUT, "data", "cards.json"), JSON.stringify(slim));

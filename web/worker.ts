@@ -12,7 +12,7 @@ const SECURITY_HEADERS: Record<string, string> = {
     "script-src 'self'",
     "style-src 'self' https://fonts.googleapis.com",
     "font-src https://fonts.gstatic.com",
-    "img-src 'self' data:",
+    "img-src 'self' data: https://cmsassets.rgpub.io",
     "connect-src 'self'",
     "frame-ancestors 'none'",
     "base-uri 'self'",
