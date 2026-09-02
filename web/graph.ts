@@ -97,8 +97,8 @@ export interface GraphView { fit: () => void; select: (comboId: string | null) =
 export function renderGraph(host: HTMLElement, hits: Hit[], ctx: GraphContext): GraphView {
   host.querySelector("svg")?.remove();
   const { nodes, edges, width, height } = buildGraph(hits, ctx);
-  const vertical = host.clientWidth < 700;
-  const T = (x: number, y: number) => (vertical ? { x: y, y: x } : { x, y }); // transpose on narrow screens
+  // One layout at every width: on phones the graph fits small and is pinch-zoomed / dragged;
+  // rotating labels to "transpose" the lanes made long combo names unreadable.
 
   const svg = el("svg", { xmlns: ns, role: "img", "aria-label": "Combo graph" });
   const gEdges = el("g", { class: "edges" });
@@ -106,18 +106,12 @@ export function renderGraph(host: HTMLElement, hits: Hit[], ctx: GraphContext): 
   svg.append(gEdges, gNodes);
 
   const byId = new Map(nodes.map((n) => [n.id, n]));
-  const anchor = (n: Node, side: "out" | "in") => {
-    const x = side === "out" ? n.x + n.w : n.x;
-    return T(x, n.y + n.h / 2);
-  };
   const edgeEls: { e: Edge; path: SVGPathElement }[] = [];
   for (const e of edges) {
     const a = byId.get(e.from), b = byId.get(e.to);
     if (!a || !b) continue;
-    const p = anchor(a, "out"), q = anchor(b, "in");
-    const d = vertical
-      ? `M${p.x},${p.y} C${p.x},${(p.y + q.y) / 2} ${q.x},${(p.y + q.y) / 2} ${q.x},${q.y}`
-      : `M${p.x},${p.y} C${(p.x + q.x) / 2},${p.y} ${(p.x + q.x) / 2},${q.y} ${q.x},${q.y}`;
+    const p = { x: a.x + a.w, y: a.y + a.h / 2 }, q = { x: b.x, y: b.y + b.h / 2 };
+    const d = `M${p.x},${p.y} C${(p.x + q.x) / 2},${p.y} ${(p.x + q.x) / 2},${q.y} ${q.x},${q.y}`;
     const path = el("path", { d, class: ["edge", ...e.classes].filter(Boolean).join(" "), "data-from": e.from, "data-to": e.to });
     gEdges.append(path);
     edgeEls.push({ e, path });
@@ -125,15 +119,11 @@ export function renderGraph(host: HTMLElement, hits: Hit[], ctx: GraphContext): 
 
   const nodeEls = new Map<string, SVGGElement>();
   for (const n of nodes) {
-    const pos = T(n.x, n.y);
-    const w = vertical ? n.h : n.w, h = vertical ? n.w : n.h;
-    const g = el("g", { class: ["node", n.kind, ...n.classes].filter(Boolean).join(" "), "data-id": n.id, transform: `translate(${pos.x},${pos.y})`, tabindex: n.kind === "combo" ? 0 : -1 });
-    g.append(el("rect", { width: w, height: h }));
-    const inner = vertical ? el("g", { transform: `translate(${w},0) rotate(90)` }) : el("g");
-    inner.append(el("text", { x: 10, y: 17, class: "name" }, n.label));
-    inner.append(el("text", { x: 10, y: 32, class: "sub" }, n.sub));
-    if (n.qty) inner.append(el("text", { x: n.w - 10, y: 17, class: "qty", "text-anchor": "end" }, n.qty));
-    g.append(inner);
+    const g = el("g", { class: ["node", n.kind, ...n.classes].filter(Boolean).join(" "), "data-id": n.id, transform: `translate(${n.x},${n.y})`, tabindex: n.kind === "combo" ? 0 : -1 });
+    g.append(el("rect", { width: n.w, height: n.h }));
+    g.append(el("text", { x: 10, y: 17, class: "name" }, n.label));
+    g.append(el("text", { x: 10, y: 32, class: "sub" }, n.sub));
+    if (n.qty) g.append(el("text", { x: n.w - 10, y: 17, class: "qty", "text-anchor": "end" }, n.qty));
     g.append(el("title", {}, n.kind === "card" ? `${ctx.cardName(n.id)} (${n.id})` : n.label));
     gNodes.append(g);
     nodeEls.set(n.id, g);
@@ -182,7 +172,7 @@ export function renderGraph(host: HTMLElement, hits: Hit[], ctx: GraphContext): 
 
   // Pan / zoom by viewBox.
   const pad = 32;
-  const content = vertical ? { w: height, h: width } : { w: width, h: height };
+  const content = { w: width, h: height };
   let vb = { x: -pad, y: -pad, w: content.w + 2 * pad, h: content.h + 2 * pad };
   const apply = () => svg.setAttribute("viewBox", `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
   const fit = () => {
