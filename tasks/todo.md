@@ -44,7 +44,10 @@
 
 ## 6. Redesign (user rejected first visual pass 2026-09-02)
 - [x] Research: TCG deck tools (done), graph UIs (done); Riftbound identity researcher died on rate limit → re-run after 15:30
-- [ ] Study LOOPLINE directly (user: "fíjate bien la página de referencia") — screenshots at 1440, deck loaded
-- [ ] Rename the near-miss control so it explains itself ("Within 2 cards" confused the user)
-- [ ] Restyle to match the reference's structure: cool navy dark, card-image nodes with name plates, layered columns, dim-others selection, combo tray, right detail drawer; no glow/noise/emoji per house rules
-- [ ] Save research reports to docs/design/
+- [x] Study LOOPLINE directly (user: "fíjate bien la página de referencia") — screenshots at 1440, deck loaded
+- [x] Rename the near-miss control so it explains itself ("Within 2 cards" confused the user)
+- [x] Restyle to match the reference's structure: cool navy dark, card-image nodes with name plates, layered columns, dim-others selection, combo tray, right detail drawer; no glow/noise/emoji per house rules
+- [x] Save research reports to docs/design/
+- [ ] Polish: card name plates overlap the next card's qty badge in the zigzag; combo names truncated in route boxes; verify Circular view + drawer + Near misses view in the browser; mobile pass at 375px
+- [ ] Decide D1/D2 (card images now hotlink Riot's cmsassets CDN via the gallery API) before deploy
+- [ ] Deploy: `npm run deploy` needs `wrangler login`; then set the GitHub remote (user decision)
