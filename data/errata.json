@@ -1,0 +1,64 @@
+{
+ "notes": [
+  "Riot announces errata as prose; printed cards and the gallery API keep the old text. scripts/build-cards.mjs applies these as exact-substring replacements (in the gallery's :rb_*: icon dialect) and fails if a find-string does not match exactly once per printing.",
+  "Source for all 2026-07-23 entries: https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates (fetched 2026-09-02). Riot's [C]/[1]/[M] shorthand was translated to the icon tokens the gallery uses."
+ ],
+ "entries": [
+  {
+   "name": "Draven, Vanquisher",
+   "effective": "2026-07-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates",
+   "find": "When I attack or defend, you may pay :rb_rune_fury:. If you do, give me +2 :rb_might: this turn.",
+   "replace": "When I attack or defend, you may pay :rb_rune_fury: to give me +2 :rb_might: this turn."
+  },
+  {
+   "name": "Emperor's Dais",
+   "effective": "2026-07-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates",
+   "find": "you may pay :rb_energy_1: and return a unit you control here to its owner's hand. If you do, play a 2 :rb_might: Sand Soldier unit token here.",
+   "replace": "you may pay :rb_energy_1: and return a unit you control here to its owner's hand to play a 2 :rb_might: Sand Soldier unit token here."
+  },
+  {
+   "name": "Fizz, Trickster",
+   "effective": "2026-07-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates",
+   "find": "Recycle that spell after you play it.",
+   "replace": "Then recycle it."
+  },
+  {
+   "name": "Diana, Lunari",
+   "effective": "2026-07-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates",
+   "find": "you may pay :rb_energy_1:. If you do, [Predict], then reveal",
+   "replace": "you may pay :rb_energy_1: to [Predict], then reveal"
+  },
+  {
+   "name": "Stalking Wolf",
+   "effective": "2026-07-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates",
+   "find": "You may play me to its battlefield (even if you don't have other units there).",
+   "replace": "You may [Ambush] me to its battlefield, even if you don't have other units there."
+  },
+  {
+   "name": "Astral Heron",
+   "effective": "2026-07-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates",
+   "find": "your next card costs :rb_energy_2::rb_rune_rainbow::rb_rune_rainbow: less",
+   "replace": "the next card you play this turn costs :rb_energy_2::rb_rune_rainbow::rb_rune_rainbow: less"
+  },
+  {
+   "name": "Gangplank, Naval",
+   "effective": "2026-07-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates",
+   "find": "give me +3 :rb_might: instead",
+   "replace": "give me +3 :rb_might: this turn instead"
+  },
+  {
+   "name": "Resonating Strike",
+   "effective": "2026-07-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates",
+   "find": "[Reaction] (Play on your turn or in showdowns.)",
+   "replace": "[Reaction] (Play any time, even before spells and abilities resolve.)"
+  }
+ ]
+}

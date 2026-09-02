@@ -1,0 +1,48 @@
+{
+ "source": "https://playriftbound.com/en-us/rules-hub/",
+ "retrieved": "2026-09-02",
+ "notes": [
+  "Hand-transcribed from the Rules Hub 'Constructed Format Legality' and '2v2 Constructed Legality' tables (page says 'Last updated: July 16, 2026'; the Stealthy Pursuer / Arena's Greatest / Aspirant's Climb bans took effect 2026-07-24 per the July ban-list announcement).",
+  "Names only — scripts/build-cards.mjs resolves each name+entity to card codes and fails loudly if a name does not resolve.",
+  "The Rules Hub lists Master Yi, Wuju Bladesman under a 'Legends' column for 2v2; the July announcement calls it a restriction, so status is 'restricted' there."
+ ],
+ "formats": [
+  {
+   "id": "constructed",
+   "label": "Standard Constructed (1v1)",
+   "lastUpdated": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/",
+   "banned": [
+    {"entity": "unit", "name": "Stealthy Pursuer", "since": "2026-07-24", "source": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/", "reason": "Infinite Recruits with Eye of the Herald and Renata Glasc, Industrialist as early as turn three (Riot's wording)."},
+    {"entity": "spell", "name": "Called Shot"},
+    {"entity": "unit", "name": "Draven, Vanquisher"},
+    {"entity": "spell", "name": "Fight or Flight"},
+    {"entity": "gear", "name": "Scrapheap"},
+    {"entity": "battlefield", "name": "The Arena's Greatest", "since": "2026-07-24", "source": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/"},
+    {"entity": "battlefield", "name": "Aspirant's Climb", "since": "2026-07-24", "source": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/"},
+    {"entity": "battlefield", "name": "The Dreaming Tree", "aka": "Dreaming Tree (Rules Hub wording)"},
+    {"entity": "battlefield", "name": "Obelisk of Power"},
+    {"entity": "battlefield", "name": "Reaver's Row"}
+   ]
+  },
+  {
+   "id": "2v2",
+   "label": "2v2 Constructed",
+   "lastUpdated": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/",
+   "banned": [
+    {"entity": "legend", "name": "Wuju Bladesman - Starter", "aka": "Master Yi, Wuju Bladesman (Riot's wording; Proving Grounds legend OGS-019)", "status": "restricted", "since": "2026-07-24", "source": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/"},
+    {"entity": "unit", "name": "Stealthy Pursuer", "since": "2026-07-24", "source": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/"},
+    {"entity": "spell", "name": "Called Shot"},
+    {"entity": "unit", "name": "Draven, Vanquisher"},
+    {"entity": "spell", "name": "Fight or Flight"},
+    {"entity": "gear", "name": "Scrapheap"},
+    {"entity": "battlefield", "name": "The Arena's Greatest", "since": "2026-07-24"},
+    {"entity": "battlefield", "name": "Aspirant's Climb", "since": "2026-07-24"},
+    {"entity": "battlefield", "name": "The Dreaming Tree", "aka": "Dreaming Tree (Rules Hub wording)"},
+    {"entity": "battlefield", "name": "Obelisk of Power"},
+    {"entity": "battlefield", "name": "Reaver's Row"}
+   ]
+  }
+ ]
+}

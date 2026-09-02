@@ -1,0 +1,302 @@
+{
+ "source": "https://playriftbound.com/en-us/rules-hub/",
+ "retrieved": "2026-09-02",
+ "entries": [
+  {
+   "format": "constructed",
+   "entity": "unit",
+   "name": "Stealthy Pursuer",
+   "codes": [
+    "OGN-177"
+   ],
+   "bases": [
+    "OGN-177"
+   ],
+   "status": "banned",
+   "since": "2026-07-24",
+   "source": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/"
+  },
+  {
+   "format": "constructed",
+   "entity": "spell",
+   "name": "Called Shot",
+   "codes": [
+    "SFD-122"
+   ],
+   "bases": [
+    "SFD-122"
+   ],
+   "status": "banned",
+   "since": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "constructed",
+   "entity": "unit",
+   "name": "Draven, Vanquisher",
+   "codes": [
+    "SFD-020",
+    "SFD-020a"
+   ],
+   "bases": [
+    "SFD-020"
+   ],
+   "status": "banned",
+   "since": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "constructed",
+   "entity": "spell",
+   "name": "Fight or Flight",
+   "codes": [
+    "OGN-168"
+   ],
+   "bases": [
+    "OGN-168"
+   ],
+   "status": "banned",
+   "since": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "constructed",
+   "entity": "gear",
+   "name": "Scrapheap",
+   "codes": [
+    "OGN-182"
+   ],
+   "bases": [
+    "OGN-182"
+   ],
+   "status": "banned",
+   "since": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "constructed",
+   "entity": "battlefield",
+   "name": "The Arena's Greatest",
+   "codes": [
+    "OGN-290"
+   ],
+   "bases": [
+    "OGN-290"
+   ],
+   "status": "banned",
+   "since": "2026-07-24",
+   "source": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/"
+  },
+  {
+   "format": "constructed",
+   "entity": "battlefield",
+   "name": "Aspirant's Climb",
+   "codes": [
+    "OGN-276"
+   ],
+   "bases": [
+    "OGN-276"
+   ],
+   "status": "banned",
+   "since": "2026-07-24",
+   "source": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/"
+  },
+  {
+   "format": "constructed",
+   "entity": "battlefield",
+   "name": "The Dreaming Tree",
+   "codes": [
+    "OGN-292"
+   ],
+   "bases": [
+    "OGN-292"
+   ],
+   "status": "banned",
+   "since": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "constructed",
+   "entity": "battlefield",
+   "name": "Obelisk of Power",
+   "codes": [
+    "OGN-284"
+   ],
+   "bases": [
+    "OGN-284"
+   ],
+   "status": "banned",
+   "since": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "constructed",
+   "entity": "battlefield",
+   "name": "Reaver's Row",
+   "codes": [
+    "OGN-285"
+   ],
+   "bases": [
+    "OGN-285"
+   ],
+   "status": "banned",
+   "since": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "2v2",
+   "entity": "legend",
+   "name": "Wuju Bladesman - Starter",
+   "codes": [
+    "OGS-019"
+   ],
+   "bases": [
+    "OGS-019"
+   ],
+   "status": "restricted",
+   "since": "2026-07-24",
+   "source": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/"
+  },
+  {
+   "format": "2v2",
+   "entity": "unit",
+   "name": "Stealthy Pursuer",
+   "codes": [
+    "OGN-177"
+   ],
+   "bases": [
+    "OGN-177"
+   ],
+   "status": "banned",
+   "since": "2026-07-24",
+   "source": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/"
+  },
+  {
+   "format": "2v2",
+   "entity": "spell",
+   "name": "Called Shot",
+   "codes": [
+    "SFD-122"
+   ],
+   "bases": [
+    "SFD-122"
+   ],
+   "status": "banned",
+   "since": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "2v2",
+   "entity": "unit",
+   "name": "Draven, Vanquisher",
+   "codes": [
+    "SFD-020",
+    "SFD-020a"
+   ],
+   "bases": [
+    "SFD-020"
+   ],
+   "status": "banned",
+   "since": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "2v2",
+   "entity": "spell",
+   "name": "Fight or Flight",
+   "codes": [
+    "OGN-168"
+   ],
+   "bases": [
+    "OGN-168"
+   ],
+   "status": "banned",
+   "since": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "2v2",
+   "entity": "gear",
+   "name": "Scrapheap",
+   "codes": [
+    "OGN-182"
+   ],
+   "bases": [
+    "OGN-182"
+   ],
+   "status": "banned",
+   "since": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "2v2",
+   "entity": "battlefield",
+   "name": "The Arena's Greatest",
+   "codes": [
+    "OGN-290"
+   ],
+   "bases": [
+    "OGN-290"
+   ],
+   "status": "banned",
+   "since": "2026-07-24",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "2v2",
+   "entity": "battlefield",
+   "name": "Aspirant's Climb",
+   "codes": [
+    "OGN-276"
+   ],
+   "bases": [
+    "OGN-276"
+   ],
+   "status": "banned",
+   "since": "2026-07-24",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "2v2",
+   "entity": "battlefield",
+   "name": "The Dreaming Tree",
+   "codes": [
+    "OGN-292"
+   ],
+   "bases": [
+    "OGN-292"
+   ],
+   "status": "banned",
+   "since": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "2v2",
+   "entity": "battlefield",
+   "name": "Obelisk of Power",
+   "codes": [
+    "OGN-284"
+   ],
+   "bases": [
+    "OGN-284"
+   ],
+   "status": "banned",
+   "since": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "2v2",
+   "entity": "battlefield",
+   "name": "Reaver's Row",
+   "codes": [
+    "OGN-285"
+   ],
+   "bases": [
+    "OGN-285"
+   ],
+   "status": "banned",
+   "since": "2026-07-16",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  }
+ ]
+}
