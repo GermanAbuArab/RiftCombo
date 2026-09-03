@@ -684,6 +684,256 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "Fury/Calm had no line at all before this. Legend verified by hand against data/corpus_flat.txt: VEN-139 is the only Fury/Calm legend in the pool. Rule 470 caps Scoring (Conquer or Hold, 469); Ahri's points arrive as triggered abilities under 471.2, and 471.1.a.1 exempts non-Conquer sources from the Final Point restriction, so only the base conquer point is at risk of converting to a draw. UNRESOLVED, and it is why this is a candidate: adding SFD-059 Svellsongur would raise the count, but only if Svellsongur copies a unit's CURRENT rules text including appended Effect Text (434.1.c) rather than its printed text. The arithmetic above deliberately assumes the conservative printed-text reading and does not use Svellsongur."
+    },
+    {
+      "id": "svellsongur-ornn-hold",
+      "name": "Svellsongur on Ornn, Blacksmith — gear tutor twice per Hold",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-058",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "When you play me or when I hold, look at the top 4 cards of your Main Deck. You may reveal a gear from among them and draw it. Then recycle the rest."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "As this is attached to a unit, copy that unit's text to this Equipment's effect text. On Ornn, that is a second copy of the hold trigger."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "hold-card-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm (Svellsongur and Ornn, Blacksmith are both Calm) — any Calm legend, e.g. Fire Below the Mountain SFD-189, Nine-Tailed Fox OGN-255."
+        ],
+        "notable": [
+          "Hold a battlefield through your Beginning Phase with Ornn wearing Svellsongur.",
+          "Each Hold fires the look-at-4 twice: 8 cards seen, up to 2 gear drawn. Add Blue Sentinel (UNL-087, Mind) at the same battlefield and each copy fires twice more: 16 seen, up to 4 gear."
+        ]
+      },
+      "steps": [
+        "Play Ornn, Blacksmith (his play trigger already looks at 4).",
+        "Play Svellsongur and Equip it to Ornn (1 Energy + 1 Calm Power). Its effect text is now Ornn's own trigger.",
+        "Hold the battlefield at your Beginning Phase: Ornn's printed trigger and the Svellsongur copy each resolve — two separate look-at-4s."
+      ],
+      "terminatesIn": "engine only — repeatable gear selection, no points",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L6, entry C3 (docs/phase0/hunt2/L6-equipment-legends.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Two cards, both Calm, so it fits gear/Ornn decks that otherwise contain no combo at all. Svellsongur copies the equipped unit's PRINTED text into its own effect text (SFD-059). That is the conservative reading and the only one this entry needs; the open question about copying appended Effect Text does not apply here. Confidence high on the mechanism per the lens; still a candidate because no human has walked 718.2 vs 725.1 for Svellsongur."
+    },
+    {
+      "id": "guardian-passage-svellsongur",
+      "name": "Svellsongur on Guardian of the Passage — two returns from trash per Hold",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-035",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "When I hold, you may return a unit or gear from your trash to your hand."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Copies the Guardian's hold trigger into its effect text."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "hold-card-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm."
+        ],
+        "notable": [
+          "Hold with the Guardian wearing Svellsongur: two returns per Hold. With Blue Sentinel present as well: four."
+        ]
+      },
+      "steps": [
+        "Equip Svellsongur to Guardian of the Passage.",
+        "Hold at your Beginning Phase: the printed trigger and the copy each return a unit or gear from trash."
+      ],
+      "terminatesIn": "engine only — trash recursion, no points",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L6, entry C3 (docs/phase0/hunt2/L6-equipment-legends.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Svellsongur copies the equipped unit's PRINTED text into its own effect text (SFD-059). That is the conservative reading and the only one this entry needs; the open question about copying appended Effect Text does not apply here."
+    },
+    {
+      "id": "world-atlas-sentinel-gold",
+      "name": "World Atlas × Blue Sentinel — Gold engine",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-086",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "[Effect] When I hold, play two Gold gear tokens exhausted. One per body."
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Your hold effects for holding here trigger an additional time."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "gold-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind (all three cards are Mind)."
+        ],
+        "notable": [
+          "Two units each wearing a World Atlas, Blue Sentinel at the same battlefield, Hold: 2 Atlases × 2 triggers × 2 Gold = 8 Gold per Hold. Three Atlases: 12.",
+          "Gold enters exhausted, so it is next-turn Power. Gold is domainless (187.5)."
+        ]
+      },
+      "steps": [
+        "Equip World Atlas to two units at the battlefield you hold (1 Mind Power each).",
+        "Keep Blue Sentinel there.",
+        "Hold: each Atlas's granted trigger fires twice, making 4 Gold per Atlas."
+      ],
+      "terminatesIn": "engine only — converts through Power Nexus (SFD-214: pay four runes on Hold to score 1) or through any Power sink",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L6, entry C3 (docs/phase0/hunt2/L6-equipment-legends.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "No Svellsongur involved — World Atlas is Equipment, so its trigger is already the unit's own. Rests only on the Blue Sentinel reading shared with the other Hold lines (471.2.c)."
+    },
+    {
+      "id": "gauntlets-enforcer-conquer",
+      "name": "Hextech Gauntlets under Piltover Enforcer — draw and ready on Conquer",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-187",
+          "quantity": 1,
+          "role": "engine",
+          "note": "Legend. When you conquer, if you assigned 3 or more excess damage, you may exhaust me to ready a unit."
+        },
+        {
+          "card": "UNL-188",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "[Effect] When I conquer, if you assigned 3 or more excess damage, draw 1. Its Equip cost drops by the bearer's Might, so on a 3+ Might unit it is free."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend is Piltover Enforcer (UNL-187, Fury/Order) — the trigger condition is the same wording on both cards."
+        ],
+        "notable": [
+          "Conquer while assigning 3 or more excess damage: the Gauntlets draw 1 and the legend readies a unit. Once per Conquer."
+        ]
+      },
+      "steps": [
+        "Equip Hextech Gauntlets to a 3+ Might unit (free).",
+        "Attack and conquer with 3+ excess damage.",
+        "Draw 1 from the Gauntlets; exhaust the legend to ready a unit."
+      ],
+      "terminatesIn": "engine only",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L6, entry C7 (docs/phase0/hunt2/L6-equipment-legends.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Fury/Order had no entry at all. Modest but real, and the only line found so far for that pair."
+    },
+    {
+      "id": "azir-aphelios-attach",
+      "name": "Emperor of the Sands × Aphelios, Exalted — rune value on every attach",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-247",
+          "quantity": 1,
+          "role": "engine",
+          "note": "Legend. Sand Soldiers you play have [Weaponmaster]; 1 Energy, exhaust: play a 2 Might Sand Soldier token if you played an Equipment this turn."
+        },
+        {
+          "card": "SFD-049",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "When you attach an Equipment to me, choose one that hasn't been chosen this turn — Ready 2 runes / Channel 1 rune exhausted / Buff a friendly unit."
+        },
+        {
+          "card": "SFD-153",
+          "quantity": 1,
+          "role": "enabler",
+          "note": "Any Equipment works; Eye of the Herald is Order and legal here. Weaponmaster re-attaches it for one rune less."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "attach-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend is Emperor of the Sands (SFD-247, Calm/Order)."
+        ],
+        "notable": [
+          "Hard cap: 'that hasn't been chosen this turn' allows at most three triggers per turn — 2 readied runes + 1 channeled + 1 buff. Not a loop; the Rune Deck is 12 (161.2.a)."
+        ]
+      },
+      "steps": [
+        "Attach an Equipment to Aphelios: pick Ready 2 runes.",
+        "Play a Sand Soldier with the legend; Weaponmaster moves the Equipment onto it for a rune less.",
+        "Re-attach to Aphelios: pick Channel 1. Third attach: Buff."
+      ],
+      "terminatesIn": "engine only, capped at three modes per turn",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L6, entry C8 (docs/phase0/hunt2/L6-equipment-legends.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Calm/Order had no entry. Listed at the lens's own cap; the refute spec (§27) is what limits it."
     }
   ]
 }
