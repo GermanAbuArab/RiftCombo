@@ -31,7 +31,9 @@
 
 ## UI — visual identity
 - Palette (from playriftbound.com, not from LOOPLINE): bg `#0f1a1e`, panel `#1E3043`, panel-alt `#293a4c`, rule `#336073`, text `#f9eedc`, muted `#8fa7b3`, accent `#EF7D00`.
-- Headings in Cinzel 600 (the free analog of Riot's "Beaufort for LOL"); body in Inter / system stack. Display face for headings only, as Riot does.
+- One type family: Inter. Hierarchy comes from size and weight, never from a display face. Cinzel (the Trajan analog) was tried on 2026-09-03 and rejected by the user as poster-like and illegible at diagram sizes — do not reintroduce a serif or display face.
+- Corners are rounded: containers 10px, controls 6px, diagram nodes 9–10px. Sharp 2–3px corners were tried and rejected as "too square". The diamond motif lives on the brand mark only; status dots and swatches are circles.
+- Battlefields are printed landscape (`orientation: "landscape"` in cards.json, 66 printings). Any card rendering must honour that or the art gets cropped and the text stands on end.
 - Domain colours are reserved and must not be reused for anything else: Fury `#ce212d`, Calm `#15ac72`, Mind `#22799c`, Body `#e4720c`, Chaos `#6c4993`, Order `#d0ab01`.
 - One accent. Outcome classes read through text and weight, not through a categorical rainbow.
 - No emoji, no blue/purple gradients, no decorative shadows, no glassmorphism.

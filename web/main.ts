@@ -264,8 +264,8 @@ function showDetail(id: string | null) {
     const card = cards.get(u.card)!;
     const have = own(u.card);
     const src = thumb(card.image, 120);
-    return `<div class="card-row${have < u.quantity ? " missing" : ""}">
-      ${src ? `<img src="${esc(src)}" alt="" loading="lazy">` : `<span></span>`}
+    return `<div class="card-row${have < u.quantity ? " missing" : ""}" data-base="${esc(u.card)}">
+      ${src ? `<img src="${esc(src)}" alt="" loading="lazy" title="Click to read the card">` : `<span></span>`}
       <div><div class="cname">${esc(card.name)}</div><div class="csub">${esc(card.code)} · ${esc(u.role)}${card.domains.length ? " · " + esc(card.domains.join("/")) : ""}</div></div>
       <span class="have${have < u.quantity ? " short" : ""}">${Math.min(have, u.quantity)}/${u.quantity}</span>
     </div>`;
@@ -292,6 +292,74 @@ function showDetail(id: string | null) {
   for (const pill of detail.querySelectorAll<HTMLElement>(".pills .pill")) { const col = colors.get(pill.dataset.feature!) ?? "#8b93a4"; pill.style.color = col; pill.style.borderColor = col; }
   detail.querySelector("#close-detail")!.addEventListener("click", () => { selected = null; view?.select(null); showDetail(null); markChips(); });
 }
+
+// --- card preview ---------------------------------------------------------------------
+// The drawer thumbnails are 34px wide, which is enough to recognise a card and not enough to
+// read it. The preview shows the art large AND the rules text from the data, so the answer to
+// "what does this card do" never depends on the image resolution.
+const preview = $<HTMLElement>("#card-preview");
+const previewBox = $<HTMLElement>("#card-preview-box");
+let previewReturnFocus: HTMLElement | null = null;
+
+/** Riot's card text carries icon tokens like `:rb_might:`; spell them out rather than show them raw. */
+const readable = (s: string) =>
+  s.replace(/:rb_([a-z0-9_]+):/g, (_, tok: string) => {
+    const energy = /^energy_(\d+)$/.exec(tok);
+    if (energy) return `${energy[1]} Energy`;
+    const rune = /^rune_(\w+)$/.exec(tok);
+    if (rune) return rune[1] === "rainbow" ? "any Rune" : `${rune[1]![0]!.toUpperCase()}${rune[1]!.slice(1)} Rune`;
+    if (tok === "might") return "Might";
+    if (tok === "exhaust") return "Exhaust";
+    return tok.replace(/_/g, " ");
+  });
+
+function showCard(base: string) {
+  const card = cards.get(base);
+  if (!card) return;
+  const land = card.orientation === "landscape";
+  const src = thumb(card.image, land ? 940 : 660);
+  const stats = [
+    card.energy !== null ? `${card.energy} energy` : "",
+    card.power ? `${card.power} power` : "",
+    card.might !== null ? `${card.might} might` : "",
+    card.mightBonus ? `+${card.mightBonus} might` : "",
+  ].filter(Boolean).join(" · ");
+  const meta = [card.code, card.type.join(" / "), card.domains.join(" / "), stats].filter(Boolean).join(" · ");
+  previewReturnFocus = document.activeElement as HTMLElement | null;
+  previewBox.innerHTML = `
+    <button type="button" class="icon-btn cp-close" aria-label="Close card">×</button>
+    ${src ? `<img src="${esc(src)}" alt="${esc(card.name)}"${land ? ' class="landscape"' : ""}>` : ""}
+    <div>
+      <h2 class="cp-name">${esc(card.name)}</h2>
+      <p class="cp-meta">${esc(meta)}</p>
+      <div class="cp-text">${esc(readable(card.text ?? ""))}</div>
+      ${card.effect ? `<div class="cp-effect"><span class="cp-label">Granted to the equipped unit</span>${esc(readable(card.effect))}</div>` : ""}
+      <p class="cp-hint">Esc or click outside to close.</p>
+    </div>`;
+  preview.hidden = false;
+  previewBox.querySelector<HTMLButtonElement>(".cp-close")!.focus();
+}
+function hideCard() {
+  if (preview.hidden) return;
+  preview.hidden = true;
+  previewReturnFocus?.focus();
+  previewReturnFocus = null;
+}
+preview.addEventListener("click", (ev) => {
+  const t = ev.target as Element;
+  if (t === preview || t.closest(".cp-close")) hideCard();
+});
+document.addEventListener("keydown", (ev) => { if (ev.key === "Escape") hideCard(); });
+detail.addEventListener("click", (ev) => {
+  const t = ev.target as Element;
+  const row = t.closest<HTMLElement>(".card-row");
+  if (row?.dataset.base && t.closest("img")) showCard(row.dataset.base);
+});
+// Single click on a node selects it (that is the map's own gesture); double click reads it.
+graphHost.addEventListener("dblclick", (ev) => {
+  const node = (ev.target as Element).closest<SVGGElement>(".node.card");
+  if (node?.dataset.id) { ev.preventDefault(); showCard(node.dataset.id); }
+});
 
 // --- wiring ---------------------------------------------------------------------------
 form.addEventListener("submit", (ev) => { ev.preventDefault(); void run("text"); });
