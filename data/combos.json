@@ -1939,6 +1939,531 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "Third route to the same kill as the verified Rally the Troops / Fiora line and the Bubble Bot line; this one needs no Mighty crossing and no Mech typing, all Mind. Independent corroboration: lens L1 also re-derived the Bottled Constellation, Power Nexus and Swain lines ingested from L4. REFUTE 2026-09-03: SURVIVES, undercounted upward — two readies per Jayce cycle halve the cost per point. Loop draw budget (REFUTE R7): the verified Lux engine recycles 4 and draws exactly 4 per pass — Forge's spare slot is a recycle slot, not a draw. Every extra card that must come back through the deck needs one extra draw per pass, which Renata Mastermind's verified '1 Energy + Mind: Draw 1' supplies at about +1E +1P per point; or hold three copies in hand.."
+    },
+    {
+      "id": "jhin-relentless-pursuit-wallop",
+      "name": "Jhin, Murderous Artist on Relentless Pursuit — Energy and Power on every move",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-022",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "[Ganking]. When I move, [Add] 1 Energy + 1 rainbow. A Standard Move exhausts him (144.2); moves by spells and abilities leave him ready."
+        },
+        {
+          "card": "SFD-184",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "2E+1P: move a friendly unit, may attach an Equipment to it; this turn it has 'When I conquer, you may move me to my base.' Two moves per copy plus a free attach."
+        },
+        {
+          "card": "SFD-108",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "[Effect] When I conquer, buff me. Attached free by Pursuit; the conquer buff is the currency Wallop spends."
+        },
+        {
+          "card": "OGN-146",
+          "quantity": 1,
+          "role": "ready",
+          "zone": "HAND",
+          "note": "Spend a buff as an additional cost and ignore the 2E: Ready a unit. Frees Jhin for another Standard Move."
+        },
+        {
+          "card": "VEN-020",
+          "quantity": 1,
+          "role": "ready",
+          "zone": "BOARD",
+          "note": "When I attack, ready another friendly unit. One more Jhin move per Reveler attack."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Body (Purifier SFD-183 or Butcher of the Sands VEN-141)."
+        ],
+        "notable": [
+          "Jhin ready at base with Warmog's on the board, Pursuit and Wallop in hand; the opponent controls both battlefields, so each move is a conquer (466.5: an empty enemy battlefield is conquered without a fight).",
+          "Jhin must survive each contested combat (4 Might, Deflect)."
+        ]
+      },
+      "steps": [
+        "Relentless Pursuit (2E+1P): move Jhin to enemy battlefield 1 (+1E +1P), attach Warmog's free. Conquer: Warmog's buffs Jhin; the Pursuit clause moves him back to base (+1E +1P). Jhin is still ready.",
+        "Standard Move to enemy battlefield 2 (+1E +1P); conquer; Pursuit clause back to base (+1E +1P). Jhin is now exhausted.",
+        "Wallop, spending the Warmog's buff (free): ready Jhin. Standard Move to battlefield 1 (+1E +1P).",
+        "Twilight Reveler attacks: ready Jhin; move again (+1E +1P)."
+      ],
+      "terminatesIn": "engine only — about +6 Energy and +6 Power in a turn for 2E+1P and two cards, plus two conquers",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L3, entry L3-01 (docs/phase0/hunt2/L3-ready-resource.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "First Fury/Body entry. Bounded by cards (Pursuit x3, one Wallop per buff, Reveler attacks) and by the two enemy battlefields of a Duel; it never closes because no repeatable free ready exists in Fury/Body — Dominus's '2 rainbow: Ready me' is a net-zero converter (L3-03), as are Upstage Comedy and Perfect Execution. Miss Fortune, Captain (OGN-162) adds one ready on her first move each turn. Card text verified against the corpus."
+    },
+    {
+      "id": "jhin-emperors-divide-hidden",
+      "name": "Three Jhins and a hidden Emperor's Divide — a ten-resource turn",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-022",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Each Jhin is +1E +1P per move, in or out. Three of them at one battlefield make one Divide worth +3E +3P."
+        },
+        {
+          "card": "SFD-043",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "state": "hidden",
+          "note": "[Hidden] for 1 rainbow on an earlier turn; played later ignoring its base cost (811.1.b). Move any number of friendly units at a battlefield to their base."
+        },
+        {
+          "card": "VEN-020",
+          "quantity": 2,
+          "role": "ready",
+          "zone": "BOARD",
+          "note": "When I attack, ready another friendly unit: readies the Jhins that exhausted themselves moving in."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Calm (Rogue Assassin VEN-139 is the natural pick)."
+        ],
+        "notable": [
+          "You control battlefield X with a Divide hidden there (one hidden card per battlefield, so a second Divide needs a second controlled battlefield); three Jhins ready at base; the opponent controls a battlefield for the Revelers to attack.",
+          "Divide's targets must be at the battlefield it was hidden at (811.1.d.2)."
+        ]
+      },
+      "steps": [
+        "Jhins A, B, C Standard Move to X: +3E +3P (all three exhausted at X).",
+        "Reveler 1 attacks the enemy battlefield: ready A. Reveler 2 attacks: ready B.",
+        "Play the hidden Divide (cost ignored): A, B, C to base: +3E +3P.",
+        "A and B Standard Move back to X: +2E +2P. A second hidden Divide on a second controlled battlefield repeats step 3 for +2E +2P more."
+      ],
+      "terminatesIn": "engine only — +6 to +10 Energy and Power in one turn, for Power paid on earlier turns",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L3, entry L3-02 (docs/phase0/hunt2/L3-ready-resource.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "First Fury/Calm entry. Bounded by Divides (3), Jhins (3), Reveler attacks and hidden slots; nothing in Fury/Calm recurs a Divide. Rogue Assassin Empowered adds one free move-and-ready per turn on a unit in a showdown (+2E +2P). No in-domain kill: it hands the deck a 10/10 turn for its big spells. Card text verified against the corpus."
+    },
+    {
+      "id": "platewyrm-egg-defender-gate",
+      "name": "Platewyrm Eggs readied by Defender of Tomorrow and Acceleration Gate",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "VEN-075",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "state": "empowered",
+          "note": "Enters exhausted. [Empower] — 1E, exhaust. Reaction, exhaust: Add 1E; if Empowered, Add 2E instead. Three Empowered Eggs are +6E every Awaken; every extra ready is +2E."
+        },
+        {
+          "card": "VEN-149",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Legend, Mind/Body. 1E, exhaust: Ready a gear; Empowered: 1E, exhaust: Ready 2 gear. Once per turn, net +3E."
+        },
+        {
+          "card": "VEN-150",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "3E+1P: Ready up to 4 units, gear, and/or runes. Three Eggs and a rune: +7E for 3E+1P."
+        },
+        {
+          "card": "SFD-078",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "1 rainbow, exhaust: the next spell you play this turn gets [Repeat] equal to its cost. Gate twice: eight readies for 6E+3P."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend is Defender of Tomorrow (VEN-149, Mind/Body) — the legend is one of the engine pieces."
+        ],
+        "notable": [
+          "Three Eggs Empowered on earlier turns (1E each). Hall of Legends (SFD-210) readies the legend for 1E on a conquer there, for a second Defender activation."
+        ]
+      },
+      "steps": [
+        "Awaken: the three Empowered Eggs ready. Exhaust them: +6E.",
+        "Defender (Empowered): 1E, ready two Eggs; exhaust them: +4E. Net +3E.",
+        "Temporal Portal (1 rainbow), then Acceleration Gate (3E+1P) with Repeat (3E+1P more): ready three Eggs twice and two runes. +12E +2E for 6E+3P: net +8E −3P.",
+        "Hextech Anomaly (SFD-083) and Ancient Henge (SFD-117) convert between Energy and Power once per copy per turn."
+      ],
+      "terminatesIn": "engine only — about +8 Energy per Gate–Portal pair on top of +6 per Awaken; nothing here scores",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L3, entry L3-04 (docs/phase0/hunt2/L3-ready-resource.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Bounded by Gates (3), Portals (3) and the once-per-turn legend exhaust; never closes. Mind/Body also holds Renata Glasc, Mastermind (SFD-088): a Gate that readies Renata and three Eggs is one point plus +6E — that is the point-loop lens (renata-bubble-bot-ready, jayce-mesmerize-renata). The Garbage Grabber re-draw variant is refuted (L3-05): recycled cards go to the bottom in random order (416.5) and the deck grows by 2 per pass. Card text verified against the corpus."
+    },
+    {
+      "id": "sprite-fountain-malzahar-jayce",
+      "name": "Sprite Fountain fed to Malzahar, Fanatic — Power and two ready Sprites per Fountain",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-078",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "2E+1P, [Temporary]. When you play this, play a ready 3 Might Sprite token with [Temporary] to your base. [Deathknell] — Repeat this gear's play effect."
+        },
+        {
+          "card": "OGN-113",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Kill a friendly unit or gear, exhaust: Add 2 rainbow (Action). Killing the Fountain refunds 2 Power and fires the Deathknell for a second Sprite."
+        },
+        {
+          "card": "VEN-068",
+          "quantity": 1,
+          "role": "ready",
+          "zone": "BOARD",
+          "note": "The first time you play a non-token gear each turn, ready something besides me: the Fountain is that gear, Malzahar is the target."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Mind (Fire Below the Mountain SFD-189 adds 1 rainbow per turn for gear; Seals of Insight OGN-120 add Mind Power)."
+        ],
+        "notable": [
+          "Each Malzahar acts once per Awaken; Jayce's gear trigger readies one of them for a second kill. Sprites are Temporary: they die at the start of your next Beginning Phase (816.1.b), so they attack or hold this turn and defend on the opponent's."
+        ]
+      },
+      "steps": [
+        "Play Sprite Fountain (2E+1P): a ready 3 Might Sprite. Jayce's first-gear trigger readies Malzahar if he was exhausted.",
+        "Malzahar: kill the Fountain, exhaust: +2 rainbow. Deathknell: a second ready Sprite.",
+        "Net per Fountain: −2E +1P and two ready 3 Might bodies. Repeat with each Fountain and each ready Malzahar."
+      ],
+      "terminatesIn": "engine only — up to six ready 3 Might bodies a turn; Power-positive, Energy-negative",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L3, entry L3-06 (docs/phase0/hunt2/L3-ready-resource.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Target (b) of lens L3: the repeatable core of an Ornn Calm/Mind gear deck. Sinks: The Grand Plaza (7 units on a Hold — see leblanc-temporary-plaza) or Bottled Constellation (3 kills per point; each Fountain is 3 fodder over two turns). Shurelya's Requiem (SFD-192) readies every unit once per play and Legion Quartermaster (SFD-044) returns it to hand for a replay at 7E+2P — a bounded second ready of all Malzahars, not an engine of its own (L3-07). Card text verified against the corpus."
+    },
+    {
+      "id": "sona-viktor-opponent-turn",
+      "name": "Sona, Harmonious readies runes at end of turn — Viktor makes Recruits on the opponent's turn",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "VEN-SP2",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "At the end of your turn, if I'm at a battlefield, ready up to 4 friendly runes. The Rune Pool empties (167) but the runes stay ready through the opponent's turn."
+        },
+        {
+          "card": "OGN-117",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "When you play a card on an opponent's turn, play a 1 Might Recruit unit token in your base."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Mind."
+        ],
+        "notable": [
+          "Sona must be at a battlefield when your turn ends; the four runes fund Reactions (Premonition, Consult the Past, Counter Strike) during the opponent's turn."
+        ]
+      },
+      "steps": [
+        "End of your turn with Sona at a battlefield: ready up to 4 runes.",
+        "On the opponent's turn, spend them on Reactions: each card played is a Recruit from Viktor; each spell also lets Chemtech Cask (SFD-063) exhaust for a Gold."
+      ],
+      "terminatesIn": "engine only — up to four Energy of Reactions and as many Recruits per opponent turn",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L3, entry L3-10 (docs/phase0/hunt2/L3-ready-resource.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Bounded per turn by four runes and by the Reactions in hand. Alternate rune readiers: Dark Child (OGS-017, Fury/Chaos legend) readies 2 at end of turn; Targon's Peak (OGN-289) readies 2 at end of turn after a conquer there. Card text verified against the corpus."
+    },
+    {
+      "id": "reksai-undertitan-reveal",
+      "name": "Rek'Sai, Swarm Queen reveals Undertitans — Energy on every attack",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-170",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "When I attack, reveal the top 2 cards of your Main Deck; you may play one; recycle the rest."
+        },
+        {
+          "card": "SFD-175",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "DECK",
+          "note": "As I'm revealed from your deck, Add 2 Energy. Left unplayed, both recycle to the bottom and are revealed again once the deck is down to them."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Order."
+        ],
+        "notable": [
+          "Pays out only while Undertitans sit in the top two; with nothing else left in the deck every attack is +4E and the cards come straight back. The Draw Phase eats one per turn, and drawing past them is Burn Out (431.2)."
+        ]
+      },
+      "steps": [
+        "Rek'Sai attacks: reveal two Undertitans (+2E each), play neither, recycle both.",
+        "Ready Rek'Sai for another attack (Piltover Enforcer UNL-187 on 3+ excess damage; Twilight Reveler VEN-020). She is already Mighty, so Fiora, Worthy does not fire for her."
+      ],
+      "terminatesIn": "engine only — +4 Energy per attack while the deck is Undertitans; two or three attacks a turn",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L3, entry L3-11 (docs/phase0/hunt2/L3-ready-resource.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Order had no resource entry. Fragile: a normal deck reveals an Undertitan by chance. Ivern, Nurturer and Double Trouble reveals also pay +2E but draw him. Card text verified against the corpus."
+    },
+    {
+      "id": "treasure-hunter-industrialist-gold",
+      "name": "Treasure Hunter with Renata Glasc, Industrialist — a ready Gold on every move",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-130",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "When I move, play a Gold gear token exhausted."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Your tokens enter ready: the Gold is 1 rainbow the moment it appears (Kill this, exhaust: Add rainbow)."
+        },
+        {
+          "card": "OGN-173",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "2E+1P: move a friendly unit and ready it. The Hunter moves twice (the spell's move, then his Standard Move): two Gold."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "gold-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Chaos and Order."
+        ],
+        "notable": [
+          "The Hunter has no Ganking: after one Standard Move to a battlefield he needs a bounce to move again — Flash (OGS-011) returns two units to base for 2E, The Syren (OGN-184) does it for 1E and an exhaust."
+        ]
+      },
+      "steps": [
+        "Treasure Hunter Standard Move to a battlefield: a Gold enters ready (+1 rainbow on demand).",
+        "Ride the Wind: move him back and ready him (+1 Gold); Standard Move again (+1 Gold).",
+        "With Eye of the Herald (SFD-153) attached, each move also drops a ready 1 Might Recruit."
+      ],
+      "terminatesIn": "engine only — one ready Gold (and a ready Recruit) per move; two to four moves a turn",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L3, entry L3-12 (docs/phase0/hunt2/L3-ready-resource.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "The unbounded version was Stealthy Pursuer (OGN-177), banned; no other 'moves with it' text exists in the pool on the L2 and L3 reads. Fae Porter (SFD-125) pays Chaos Power to bring the Hunter along for net zero and a Recruit. Card text verified against the corpus."
+    },
+    {
+      "id": "fiora-vault-breaker-jhin",
+      "name": "Fiora, Worthy re-readies Jhin each time Assault makes him Mighty",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-180",
+          "quantity": 1,
+          "role": "ready",
+          "zone": "BOARD",
+          "note": "When a unit you control becomes [Mighty], you may pay Order Power to ready it."
+        },
+        {
+          "card": "UNL-022",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "4 Might, [Ganking]; +1E +1 rainbow per move."
+        },
+        {
+          "card": "UNL-010",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "1E+1P: give a unit [Assault 2] and [Ganking] this turn. Jhin is 6 Might while an attacker and 4 again after combat — a fresh crossing into Mighty on every attack (709)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Order (Hand of Noxus OGN-253, Piltover Enforcer UNL-187)."
+        ],
+        "notable": [
+          "Only a move to an enemy-controlled battlefield is an attack, so two attacks per turn in Duel.",
+          "RULES READING: the Assault bonus counts as 'becoming Mighty' each time Jhin becomes an attacker, and Fiora's trigger fires on each crossing."
+        ]
+      },
+      "steps": [
+        "Vault Breaker on Jhin (1E+1P). Standard Move to an enemy battlefield: +1E +1P; he becomes an attacker, 6 Might, Mighty.",
+        "Fiora: pay 1 Order Power, ready Jhin. Conquer.",
+        "Move to the other enemy battlefield: +1E +1P, Mighty again, ready again. Net +1E per attack."
+      ],
+      "terminatesIn": "engine only — Jhin attacks twice or more in a turn and pays for it",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L3, entry L3-13 (docs/phase0/hunt2/L3-ready-resource.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Bounded by enemy-controlled battlefields. Card text verified against the corpus."
+    },
+    {
+      "id": "fae-dragon-wallop-industrialist",
+      "name": "Fae Dragon buffs, Wallop spends them — a ready Gold and Lux Energy per buff",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-101",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "When you play me, buff up to four friendly units. When you spend a buff, play a Gold gear token exhausted."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Your tokens enter ready: the Gold is 1 rainbow immediately."
+        },
+        {
+          "card": "OGN-146",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Spend a buff, ignore the cost: Ready a unit."
+        },
+        {
+          "card": "OGS-014",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Exhaust: Add 2 Energy, spells only. The unit Wallop readies."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "gold-engine",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Body and Order."
+        ],
+        "notable": [
+          "Fae Dragon is 7E+1P; the payout is one buff per Wallop, four buffs per Dragon play. Overt Operation (OGN-153, 5E+2P) spends every buff to ready every unit and re-buffs them all."
+        ]
+      },
+      "steps": [
+        "Fae Dragon enters: buff Lux and three others.",
+        "Wallop, spending Lux's buff (free): ready Lux. Fae Dragon: a Gold enters ready (+1 rainbow). Lux: +2E for spells.",
+        "Overt Operation with three Lux on board: spend the buffs, ready all three (+6E), re-buff everyone, one Gold per buff spent."
+      ],
+      "terminatesIn": "engine only — +2 Energy and +1 Power per buff spent; bounded by buffs and Wallops",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L3, entry L3-15 (docs/phase0/hunt2/L3-ready-resource.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Body/Order had no entry. Card text verified against the corpus."
     }
   ]
 }

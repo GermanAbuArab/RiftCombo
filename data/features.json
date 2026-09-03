@@ -126,6 +126,20 @@
       "status": "STANDALONE",
       "uncountable": false,
       "description": "Makes the opponent put cards from the top of their Main Deck into their trash, repeatedly. Pressure, not a kill: Burn Out recycles their trash before awarding a point (431.2)."
+    },
+    {
+      "id": "resource-engine",
+      "name": "Repeatable Energy or Power",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "Bounded Energy or Power returned by moves, readies or reveals within a turn, or held ready through the opponent's. An engine, not a loop: the Rune Pool still empties at end of turn (167)."
+    },
+    {
+      "id": "token-body-engine",
+      "name": "Repeatable ready bodies",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "Several ready unit tokens per turn, bounded by cards in hand. Feeds a Hold, The Grand Plaza or a kill-fodder payoff; not a kill by itself."
     }
   ]
 }
