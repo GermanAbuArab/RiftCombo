@@ -2464,6 +2464,110 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "Body/Order had no entry. Card text verified against the corpus."
+    },
+    {
+      "id": "aphelios-jax-quickdraw-attach",
+      "name": "Aphelios, Exalted with Jax's Quick-Draw — rune value per Equipment played",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-049",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "When you attach an Equipment to me, choose one that hasn't been chosen this turn — Ready 2 runes / Channel 1 rune exhausted / Buff a friendly unit."
+        },
+        {
+          "card": "SFD-054",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Each Equipment in your hand has [Quick-Draw]: it gains [Reaction] and attaches to a unit you control as you play it — no Equip Power paid."
+        },
+        {
+          "card": "SFD-033",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "1 Energy Equipment. Any 1E Equipment works: Soul Sword (UNL-039) in Calm, Cloth Armor (SFD-064) in Mind."
+        },
+        {
+          "card": "SFD-193",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Legend, Calm/Body. Exhaust: attach an attached Equipment you control to a unit you control — one free re-attach per turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "attach-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend is Grandmaster at Arms (SFD-193, Calm/Body); without it the second domain is free but the free re-attach is gone."
+        ],
+        "notable": [
+          "Hard cap: 'that hasn't been chosen this turn' allows three triggers per Aphelios per turn. The legend's re-attach must move an Equipment that is already sitting on another unit onto Aphelios; moving one off him triggers nothing."
+        ]
+      },
+      "steps": [
+        "Play Doran's Shield (1E) with Quick-Draw: attach it to Aphelios — Ready 2 runes. Net +1 Energy.",
+        "Grandmaster at Arms (exhaust): move an Equipment attached to another unit onto Aphelios — Channel 1 rune exhausted.",
+        "A second Quick-Draw Equipment (1E) onto Aphelios — Buff a friendly unit."
+      ],
+      "terminatesIn": "engine only — about +1 Energy and one channelled rune per Aphelios per turn; a third attach buys a buff for 1E",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L3, entry L3-09 (docs/phase0/hunt2/L3-ready-resource.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Calm/Body sibling of azir-aphelios-attach (Calm/Order, Emperor of the Sands). Tiny by the lens's own arithmetic and bounded by the three-mode cap and the 12-rune deck (161.2.a); bounce resets (a new Aphelios object) cost more than they return. Listed for completeness. Card text verified against the corpus."
+    },
+    {
+      "id": "virtuoso-banish-channel",
+      "name": "Virtuoso — four banished big spells channel four runes and draw",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-181",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Legend, Fury/Mind. When you play a spell, if you spent 4+ Energy, you may banish it. Then, if four spells are banished with me, put each in its trash, channel 4 runes, and draw 1."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend is Virtuoso (UNL-181, Fury/Mind)."
+        ],
+        "notable": [
+          "Only spells on which you actually spent 4+ Energy count (cost reductions can drop a 4-cost spell below the line). Channelled runes enter ready (430.2.a) and are usable the same turn; the fourth spell's own banish is what completes the set."
+        ]
+      },
+      "steps": [
+        "Play a spell spending 4+ Energy; banish it with Virtuoso. Repeat for three more.",
+        "On the fourth: all four go to the trash, channel 4 runes (ready) and draw 1 — about +4 Energy and a card, then the count restarts."
+      ],
+      "terminatesIn": "engine only — +4 ready runes and a card per four spells of 4+ Energy; capped by the 12-rune deck (161.2.a) and worthless once all 12 are out",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L3, entry L3-16 (docs/phase0/hunt2/L3-ready-resource.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Legend-only engine, no second card required; listed so a Fury/Mind big-spell deck sees the payoff and its ceiling. The four spells return to the trash, so anything that recycles or replays from trash (Fizz, Heedless Resurrection lines) can loop them, but nothing in Fury/Mind refunds the Energy. Card text verified against the corpus."
     }
   ]
 }
