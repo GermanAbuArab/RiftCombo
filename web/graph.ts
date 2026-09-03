@@ -438,7 +438,9 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
   };
   const zoomAt = (k: number, mx: number, my: number) => { vb = { x: mx - (mx - vb.x) * k, y: my - (my - vb.y) * k, w: vb.w * k, h: vb.h * k }; apply(); };
   svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
-  actualSize();
+  // Desktop opens at 1:1 like the reference. A phone-width stage at 1:1 shows one third of one
+  // lane with no overview, so there the whole diagram comes first and pinch-zoom does the rest.
+  if (host.clientWidth < 640) fit(); else actualSize();
   svg.addEventListener("wheel", (ev) => {
     ev.preventDefault();
     const r = svg.getBoundingClientRect();
