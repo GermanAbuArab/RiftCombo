@@ -112,6 +112,13 @@
       "status": "STANDALONE",
       "uncountable": false,
       "description": "Attaching Equipment produces rune value, capped per turn."
+    },
+    {
+      "id": "force-opponent-deck",
+      "name": "Force the opponent to play their deck",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "Repeatedly makes the opponent play cards off the top of their Main Deck, ignoring Energy costs."
     }
   ]
 }

@@ -934,6 +934,216 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "Calm/Order had no entry. Listed at the lens's own cap; the refute spec (§27) is what limits it."
+    },
+    {
+      "id": "ashe-retreat-hand-strip",
+      "name": "Ashe, Focused looped with Retreat — banish the opponent's hand",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-169",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "When you play me, choose an opponent. They reveal their hand. Choose a card revealed this way and banish it. When they hold, return it to their hand."
+        },
+        {
+          "card": "OGN-104",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "[Reaction] Return a friendly unit to its owner's hand. Its owner channels 1 rune exhausted."
+        }
+      ],
+      "needs": [
+        "infinite-energy"
+      ],
+      "produces": [
+        "strip-opponent-hand"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order (Ashe is Order, Retreat is Mind)."
+        ],
+        "notable": [
+          "Infinite Energy already running. Each pass: play Ashe (5 Energy + 1 Power), banish one card from their hand, Retreat her, repeat until their hand is empty.",
+          "The banished cards come back when they Hold — so this is a lock until their next Hold, not permanent removal."
+        ]
+      },
+      "steps": [
+        "Play Ashe, Focused: they reveal their hand, you banish one card.",
+        "Play Retreat on Ashe; she returns to hand (they channel 1 rune exhausted — irrelevant).",
+        "Repeat. Their hand is empty before you go for the kill."
+      ],
+      "terminatesIn": "engine — strips the opponent's answers before the scoring loop",
+      "sources": [
+        {
+          "title": "TCGplayer — Analyzing Infinite Combo Lux, Riftbound's Hottest New Deck (Scott Mines)",
+          "url": "https://www.tcgplayer.com/content/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
+          "kind": "article",
+          "date": "2026-06-10"
+        },
+        {
+          "title": "Hunt v2 lens L5, entry L5-02 (docs/phase0/hunt2/L5-recursion-bounce.md)",
+          "kind": "agent",
+          "date": "2026-09-02"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Quote: 'Ashe - Focused is here to save the day. Ashe will banish any problem card from the opposing hand'. Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches)."
+    },
+    {
+      "id": "promising-future-force-deck",
+      "name": "Promising Future in the loop — make the opponent play their deck",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "OGN-115",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Each player looks at the top 5 cards of their Main Deck, chooses one, then recycles the rest. Starting with the next player, each player plays those cards, ignoring Energy costs."
+        },
+        {
+          "card": "OGN-104",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Retreat keeps the loop's own units cycling; Forge of the Future recycles Promising Future back into the deck."
+        }
+      ],
+      "needs": [
+        "infinite-energy"
+      ],
+      "produces": [
+        "force-opponent-deck"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order."
+        ],
+        "notable": [
+          "Infinite Energy running and Promising Future recurring through the Forge recycle. Every cast forces the opponent to put one card from their top 5 into play; with the deck-clearing pieces (The Ruination) you then wipe what they were forced to play."
+        ]
+      },
+      "steps": [
+        "Cast Promising Future (5 Energy + 1 Power): both players pick one of their top 5 and play it, ignoring Energy.",
+        "Recycle it with Forge of the Future; redraw it through the loop.",
+        "Repeat until the opponent's deck is on the board, then clear the board."
+      ],
+      "terminatesIn": "engine — deck-out pressure and board control; not a kill on its own",
+      "sources": [
+        {
+          "title": "TCGplayer — Analyzing Infinite Combo Lux, Riftbound's Hottest New Deck (Scott Mines)",
+          "url": "https://www.tcgplayer.com/content/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
+          "kind": "article",
+          "date": "2026-06-10"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Quote: 'create a loop based on the above including Promising Future, which will allow you to force every card [in the opponent's deck into play]'. Symmetric: you play one too — the article treats that as free because the loop deck's own picks are recycled. Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches)."
+    },
+    {
+      "id": "ruination-sprite-burst-clear",
+      "name": "The Ruination or looped Sprite Burst — clear every battlefield",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-180",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Kill all units. 9 Energy + 3 Power — trivial under infinite Energy; the Power comes from the recycled-rune trick."
+        },
+        {
+          "card": "UNL-069",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Alternative: two ready 3-Might Sprite tokens with [Temporary], looped until you out-Might every defender."
+        }
+      ],
+      "needs": [
+        "infinite-energy"
+      ],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order (Ruination is Order, Sprite Burst is Mind)."
+        ],
+        "notable": [
+          "Infinite Energy running. Either wipe the board with The Ruination or loop Sprite Burst for enough Sprites to win every showdown."
+        ]
+      },
+      "steps": [
+        "With the loop up, cast The Ruination: every unit dies, including yours — the loop's own units are replayed from hand.",
+        "Or: loop Sprite Burst until you hold more ready Might than every defender, then take the battlefields."
+      ],
+      "terminatesIn": "engine — hands the loop deck every battlefield for the scoring finish",
+      "sources": [
+        {
+          "title": "TCGplayer — Analyzing Infinite Combo Lux, Riftbound's Hottest New Deck (Scott Mines)",
+          "url": "https://www.tcgplayer.com/content/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
+          "kind": "article",
+          "date": "2026-06-10"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Quote: 'Simply send everything into the abyss with a copy of The Ruination or by looping back Sprite Burst until you have enough might to challenge everything.' Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches)."
+    },
+    {
+      "id": "bloodharbor-bewitching-discard",
+      "name": "Bloodharbor Ripper × Bewitching Spirit — a discard every turn",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-185",
+          "quantity": 1,
+          "role": "engine",
+          "note": "Legend (Pyke, Fury/Chaos). 1 Energy, exhaust: Return a friendly unit at a battlefield to its owner's hand. Play a Gold gear token exhausted."
+        },
+        {
+          "card": "UNL-121",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "When you play me, choose a player. They discard 1. Two copies so the bounce always has a Spirit at a battlefield to pick up."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "strip-opponent-hand"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend is Bloodharbor Ripper (UNL-185, Fury/Chaos); Bewitching Spirit is Chaos."
+        ],
+        "notable": [
+          "Each turn: bounce a Spirit with the legend (1 Energy, exhaust — so once per turn), replay it (3 Energy): the opponent discards 1 and you bank a Gold. Bounded by the legend's exhaust; an engine, not a loop."
+        ]
+      },
+      "steps": [
+        "Play Bewitching Spirit to a battlefield: opponent discards 1.",
+        "Next turn, exhaust the legend to return the Spirit to hand and make a Gold token.",
+        "Replay the Spirit: discard again. Repeat every turn."
+      ],
+      "terminatesIn": "engine — one discard and one Gold per turn, no points",
+      "sources": [
+        {
+          "title": "TCGplayer — The Best Decks from Riftbound Regional Hartford (HowlingMines)",
+          "url": "https://www.tcgplayer.com/content/article/The-Best-Decks-from-Riftbound-Regional-Hartford/715aa271-6096-4dd1-8279-cd47ed33fa13/",
+          "kind": "article",
+          "date": "2026-06-25"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Quote, verified by hand through a reader proxy on 2026-09-03: 'Pyke - Bloodharbor Ripper control shell out there that cripples legends not named Master Yi with a never-ending stream of Bewitching Spirits.' Card text verified against the corpus: the legend's ability costs an exhaust, so the stream is one per turn — the source's 'never-ending' is tempo, not infinity. First Fury/Chaos entry in the catalogue."
     }
   ]
 }
