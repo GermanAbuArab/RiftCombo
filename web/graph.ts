@@ -1,7 +1,15 @@
-// Hand-rolled SVG combo graph, modelled on LOOPLINE's route map: card-art nodes with name
-// plates, route boxes coloured by outcome, and a selection model that dims everything
-// unrelated. Two layouts: "layered" (Cards used → Combo routes → Results) and "circular"
-// (legend hub, cards on a ring, results on an outer ring). No library, closed-form geometry.
+// Hand-rolled SVG combo diagram. Two shapes: "layered" (Pieces -> Combos -> Payoff, in columns)
+// and "circular" (legend hub, pieces on a ring, payoffs on an outer ring). No library, closed-form
+// geometry.
+//
+// Layout notes that are load-bearing:
+//  - The pieces lane is a real grid, not a stagger. Rows are spaced by more than a card's height,
+//    so a name plate can never reach the card below it.
+//  - The number of grid columns is chosen from the stage's aspect ratio, so the diagram comes out
+//    roughly the shape of the space it has to live in. Without this the content is near-square,
+//    the stage is wide, and fitting it wastes half the width.
+//  - The initial view is 1:1 and centred. Fitting everything into view is what the fit button is
+//    for; it never magnifies past 100%.
 import type { Hit } from "../src/matcher.js";
 import type { Card, Combo, Feature } from "../src/types.js";
 
@@ -27,11 +35,21 @@ export interface GraphView {
   destroy: () => void;
 }
 
-export const OUTCOME_PALETTE = ["#ff4f8b", "#ffb65c", "#ad7cff", "#5ec9ff", "#ff786f", "#60e4bd"];
+/** One accent, plus neutrals. Outcome identity is carried by the label, not by a colour code. */
+export const ACCENT = "#ef7d00";
+export const OUTCOME_PALETTE = [ACCENT];
 
-const CARD_W = 76, CARD_H = 106, IMG_W = 68, IMG_H = 95;
-const ROUTE_W = 118, ROUTE_H = 82;
-const RESULT_W = 128, RESULT_H = 64;
+// Battlefields are printed landscape (66 of the 1,189 printings); everything else is portrait.
+// Forcing a landscape card into a portrait frame crops its art to a sliver and stands its text on
+// end, so the two get different node shapes and share one square grid cell.
+const CARD_W = 96, CARD_H = 134, IMG_W = 86, IMG_H = 118;
+const LAND_W = 134, LAND_H = 94, LAND_IMG_W = 124, LAND_IMG_H = 78;
+const CELL_W = LAND_W, CELL_H = CARD_H;
+const CARD_GAP_X = 26, CARD_GAP_Y = 34;   // gap_y > 0 guarantees plates never reach the next row
+const ROUTE_W = 168, ROUTE_MIN_H = 96;
+const RESULT_W = 168, RESULT_H = 82;
+const LANE_GAP = 128;                      // horizontal air between lanes
+const LANE_LABEL_H = 40;
 
 const ns = "http://www.w3.org/2000/svg";
 const el = <K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, string | number> = {}, text?: string) => {
@@ -56,11 +74,12 @@ interface Model {
   combos: Combo[];
   cards: string[];
   outcomes: Feature[];
-  color: Map<string, string>;          // outcome id -> colour
-  routeColor: Map<string, string>;     // combo id -> colour
-  missing: Set<string>;                // card bases the deck lacks (for any shown combo)
+  missing: Set<string>;
   need: Map<string, number>;
+  lines: Map<string, string[]>;  // combo id -> wrapped label lines
+  land: Set<string>;             // card bases printed landscape
 }
+const boxOf = (m: Model, base: string) => (m.land.has(base) ? { w: LAND_W, h: LAND_H } : { w: CARD_W, h: CARD_H });
 
 function model(hits: Hit[], ctx: GraphContext): Model {
   const comboIds = [...new Set(hits.flatMap((h) => h.variant.comboIds))].filter((id) => ctx.combos.has(id));
@@ -69,123 +88,188 @@ function model(hits: Hit[], ctx: GraphContext): Model {
   combos.sort((a, b) => Number(b.status === "verified") - Number(a.status === "verified") || order[a.class]! - order[b.class]! || a.name.localeCompare(b.name));
   const outcomeIds = [...new Set(combos.flatMap((c) => c.produces))].filter((f) => ctx.features.get(f)?.status === "STANDALONE");
   const outcomes = outcomeIds.map((f) => ctx.features.get(f)!);
-  const color = new Map(outcomes.map((f, i) => [f.id, OUTCOME_PALETTE[i % OUTCOME_PALETTE.length]!]));
-  const routeColor = new Map(combos.map((c) => [c.id, color.get(c.produces.find((p) => color.has(p)) ?? "") ?? "#8b93a4"]));
   const need = new Map<string, number>();
   for (const c of combos) for (const u of c.uses) need.set(u.card, Math.max(need.get(u.card) ?? 0, u.quantity));
   const cards = [...need.keys()];
   const missing = new Set(cards.filter((b) => ctx.owned(b) < need.get(b)!));
-  return { combos, cards, outcomes, color, routeColor, missing, need };
+  // Combo names get four lines at 24 characters before anything is cut, so a full name fits.
+  const lines = new Map(combos.map((c) => [c.id, wrap(c.name.replace(/\s[—–-]\s.*$/, ""), 24, 4)]));
+  const land = new Set(cards.filter((b) => ctx.card(b)?.orientation === "landscape"));
+  return { combos, cards, outcomes, missing, need, lines, land };
 }
 
 interface Placed { id: string; x: number; y: number; w: number; h: number }
-interface Edge { from: string; to: string; color: string; dashed: boolean; comboId: string; kind: "card" | "result" | "needs" }
+interface Edge { from: string; to: string; dashed: boolean; comboId: string; kind: "card" | "result" | "needs" }
 
 const meanY = (ids: string[], pos: Map<string, Placed>) => {
   const ys = ids.map((i) => pos.get(i)?.y).filter((y): y is number => y !== undefined);
   return ys.length ? ys.reduce((a, b) => a + b, 0) / ys.length : 1e9;
 };
 
-/** Layered: three columns. Cards zigzag over up to three sub-columns so a 12-card deck stays compact. */
-function layoutLayered(m: Model) {
+// 62 = first label baseline, +17 per extra line, +20 clear space, +12 for the class line's own
+// baseline offset from the bottom. Undersizing this makes the name collide with "INFINITE".
+const routeH = (m: Model, id: string) => Math.max(ROUTE_MIN_H, 94 + (m.lines.get(id)!.length - 1) * 17);
+
+/**
+ * Layered: three columns. The pieces lane is a grid whose column count is chosen so the whole
+ * diagram comes out about as wide-to-tall as the stage it has to sit in.
+ */
+function layoutLayered(m: Model, aspect: number) {
   const pos = new Map<string, Placed>();
   const edges: Edge[] = [];
+
+  const routesH = m.combos.reduce((s, c) => s + routeH(m, c.id) + 26, 0) - 26;
+  const resultsH = m.outcomes.length * (RESULT_H + 30) - 30;
+  const n = Math.max(1, m.cards.length);
+
+  const shape = (k: number) => {
+    const rows = Math.ceil(n / k);
+    const cardsW = k * (CELL_W + CARD_GAP_X) - CARD_GAP_X;
+    const cardsH = rows * (CELL_H + CARD_GAP_Y) - CARD_GAP_Y;
+    const W = cardsW + LANE_GAP + ROUTE_W + LANE_GAP + RESULT_W;
+    const H = Math.max(cardsH, routesH, resultsH);
+    return { k, rows, cardsW, cardsH, W, H };
+  };
+  // Closest aspect ratio to the stage wins; log-distance so "twice as wide" and "half as wide" cost the same.
+  let best = shape(1);
+  for (let k = 2; k <= Math.min(4, n); k++) {
+    const s = shape(k);
+    if (Math.abs(Math.log(s.W / s.H / aspect)) < Math.abs(Math.log(best.W / best.H / aspect))) best = s;
+  }
+
   const combosY = new Map<string, number>();
-  m.combos.forEach((c, i) => combosY.set(c.id, i * (ROUTE_H + 22)));
+  let y = 0;
+  for (const c of m.combos) { combosY.set(c.id, y); y += routeH(m, c.id) + 26; }
   const byCombo = (base: string) => m.combos.filter((c) => c.uses.some((u) => u.card === base)).map((c) => c.id);
   const cards = [...m.cards].sort((a, b) => {
     const ya = byCombo(a).map((id) => combosY.get(id)!), yb = byCombo(b).map((id) => combosY.get(id)!);
     return (ya.reduce((s, v) => s + v, 0) / (ya.length || 1)) - (yb.reduce((s, v) => s + v, 0) / (yb.length || 1));
   });
-  const k = Math.min(3, Math.max(1, Math.ceil(cards.length / 5)));
-  const step = (CARD_H + 44) / k;
-  cards.forEach((base, i) => pos.set(base, { id: base, x: (i % k) * (CARD_W + 28), y: i * step, w: CARD_W, h: CARD_H }));
-  const cardsW = k * (CARD_W + 28) - 28;
-  const routeX = cardsW + 170;
-  m.combos.forEach((c) => pos.set(c.id, { id: c.id, x: routeX, y: combosY.get(c.id)!, w: ROUTE_W, h: ROUTE_H }));
-  const resultX = routeX + ROUTE_W + 210;
-  const outcomes = [...m.outcomes].sort((a, b) => meanY(m.combos.filter((c) => c.produces.includes(a.id)).map((c) => c.id), pos) - meanY(m.combos.filter((c) => c.produces.includes(b.id)).map((c) => c.id), pos));
-  outcomes.forEach((f, i) => pos.set(f.id, { id: f.id, x: resultX, y: i * (RESULT_H + 26), w: RESULT_W, h: RESULT_H }));
+  // Column-major: reading down a column follows the combo order, and the rightmost column sits
+  // nearest the combo lane it feeds.
+  cards.forEach((base, i) => {
+    const col = Math.floor(i / best.rows), row = i % best.rows;
+    const b = boxOf(m, base);
+    pos.set(base, {
+      id: base,
+      x: col * (CELL_W + CARD_GAP_X) + (CELL_W - b.w) / 2,
+      y: row * (CELL_H + CARD_GAP_Y) + (CELL_H - b.h) / 2,
+      w: b.w, h: b.h,
+    });
+  });
 
-  // Vertically centre the three lanes against each other.
-  const laneH = (ids: string[]) => ids.length ? Math.max(...ids.map((i) => pos.get(i)!.y + pos.get(i)!.h)) : 0;
+  const routeX = best.cardsW + LANE_GAP;
+  for (const c of m.combos) pos.set(c.id, { id: c.id, x: routeX, y: combosY.get(c.id)!, w: ROUTE_W, h: routeH(m, c.id) });
+  const resultX = routeX + ROUTE_W + LANE_GAP;
+  const outcomes = [...m.outcomes].sort((a, b) => meanY(m.combos.filter((c) => c.produces.includes(a.id)).map((c) => c.id), pos) - meanY(m.combos.filter((c) => c.produces.includes(b.id)).map((c) => c.id), pos));
+  outcomes.forEach((f, i) => pos.set(f.id, { id: f.id, x: resultX, y: i * (RESULT_H + 30), w: RESULT_W, h: RESULT_H }));
+
+  // Centre the three lanes against each other vertically.
+  const laneH = (ids: string[]) => (ids.length ? Math.max(...ids.map((i) => pos.get(i)!.y + pos.get(i)!.h)) : 0);
   const H = Math.max(laneH(cards), laneH(m.combos.map((c) => c.id)), laneH(outcomes.map((o) => o.id)));
   for (const ids of [cards, m.combos.map((c) => c.id), outcomes.map((o) => o.id)]) {
     const off = (H - laneH(ids)) / 2;
     for (const id of ids) pos.get(id)!.y += off;
   }
+
   for (const c of m.combos) {
-    const color = m.routeColor.get(c.id)!;
-    for (const u of c.uses) edges.push({ from: u.card, to: c.id, color, dashed: m.missing.has(u.card), comboId: c.id, kind: "card" });
-    for (const f of c.produces) if (m.color.has(f)) edges.push({ from: c.id, to: f, color, dashed: false, comboId: c.id, kind: "result" });
-    for (const need of c.needs) for (const p of m.combos) if (p.id !== c.id && p.produces.includes(need)) edges.push({ from: p.id, to: c.id, color: "#8b93a4", dashed: true, comboId: c.id, kind: "needs" });
+    for (const u of c.uses) edges.push({ from: u.card, to: c.id, dashed: m.missing.has(u.card), comboId: c.id, kind: "card" });
+    for (const f of c.produces) if (m.outcomes.some((o) => o.id === f)) edges.push({ from: c.id, to: f, dashed: false, comboId: c.id, kind: "result" });
+    // Dashed means one thing only: a card the deck is missing. A combo depending on another
+    // combo is a different relationship and gets its own quiet, side-routed line.
+    for (const need of c.needs) for (const p of m.combos) if (p.id !== c.id && p.produces.includes(need)) edges.push({ from: p.id, to: c.id, dashed: false, comboId: c.id, kind: "needs" });
   }
   const labels = [
-    { x: 0, text: "Cards used" }, { x: routeX, text: "Combo routes" }, { x: resultX, text: "Results" },
+    { x: 0, w: best.cardsW, text: "Pieces" },
+    { x: routeX, w: ROUTE_W, text: "Combos" },
+    { x: resultX, w: RESULT_W, text: "Payoff" },
   ];
   return { pos, edges, width: resultX + RESULT_W, height: H, labels, hub: null as null | { x: number; y: number } };
 }
 
-/** Circular: legend hub in the middle, cards on a ring, results on an outer ring, edges card → result. */
+/** Circular: legend hub in the middle, pieces on a ring, payoffs on an outer ring. */
 function layoutCircular(m: Model) {
   const pos = new Map<string, Placed>();
   const edges: Edge[] = [];
   const n = Math.max(1, m.cards.length);
-  const r1 = Math.max(230, (n * (CARD_W + 34)) / (2 * Math.PI));
-  const r2 = r1 + 200;
+  const r1 = Math.max(260, (n * (CELL_W + 40)) / (2 * Math.PI));
+  const r2 = r1 + 230;
   const size = 2 * (r2 + RESULT_W);
   const cx = size / 2, cy = size / 2;
   const angle = new Map<string, number>();
   m.cards.forEach((base, i) => {
     const a = -Math.PI / 2 + (i * 2 * Math.PI) / n;
     angle.set(base, a);
-    pos.set(base, { id: base, x: cx + r1 * Math.cos(a) - CARD_W / 2, y: cy + r1 * Math.sin(a) - CARD_H / 2, w: CARD_W, h: CARD_H });
+    const b = boxOf(m, base);
+    pos.set(base, { id: base, x: cx + r1 * Math.cos(a) - b.w / 2, y: cy + r1 * Math.sin(a) - b.h / 2, w: b.w, h: b.h });
   });
   const outcomeAngle = m.outcomes.map((f) => {
     const cards = m.combos.filter((c) => c.produces.includes(f.id)).flatMap((c) => c.uses.map((u) => u.card));
     const sx = cards.reduce((s, b) => s + Math.cos(angle.get(b) ?? 0), 0), sy = cards.reduce((s, b) => s + Math.sin(angle.get(b) ?? 0), 0);
     return { f, a: cards.length ? Math.atan2(sy, sx) : 0 };
   }).sort((p, q) => p.a - q.a);
-  // Enforce a minimum angular gap so result boxes never overlap.
-  const minGap = (RESULT_H + 30) / r2;
+  const minGap = (RESULT_H + 34) / r2;
   for (let i = 1; i < outcomeAngle.length; i++) if (outcomeAngle[i]!.a - outcomeAngle[i - 1]!.a < minGap) outcomeAngle[i]!.a = outcomeAngle[i - 1]!.a + minGap;
   for (const { f, a } of outcomeAngle) pos.set(f.id, { id: f.id, x: cx + r2 * Math.cos(a) - RESULT_W / 2, y: cy + r2 * Math.sin(a) - RESULT_H / 2, w: RESULT_W, h: RESULT_H });
   for (const c of m.combos) {
-    const color = m.routeColor.get(c.id)!;
-    for (const f of c.produces) if (m.color.has(f)) for (const u of c.uses) edges.push({ from: u.card, to: f, color, dashed: m.missing.has(u.card), comboId: c.id, kind: "card" });
+    for (const f of c.produces) if (m.outcomes.some((o) => o.id === f)) for (const u of c.uses) edges.push({ from: u.card, to: f, dashed: m.missing.has(u.card), comboId: c.id, kind: "card" });
   }
-  return { pos, edges, width: size, height: size, labels: [] as { x: number; text: string }[], hub: { x: cx, y: cy } };
+  return { pos, edges, width: size, height: size, labels: [] as { x: number; w: number; text: string }[], hub: { x: cx, y: cy } };
 }
+
+/** Orthogonal connector with rounded corners: leaves right, steps at the midpoint, arrives left. */
+const stepPath = (p: { x: number; y: number }, q: { x: number; y: number }) => {
+  if (Math.abs(p.y - q.y) < 1.5) return `M${p.x},${p.y} L${q.x},${q.y}`;
+  const midX = (p.x + q.x) / 2;
+  const dir = q.y > p.y ? 1 : -1;
+  const r = Math.min(14, Math.abs(q.y - p.y) / 2, Math.abs(q.x - p.x) / 2);
+  return `M${p.x},${p.y} H${midX - r} Q${midX},${p.y} ${midX},${p.y + dir * r} V${q.y - dir * r} Q${midX},${q.y} ${midX + r},${q.y} H${q.x}`;
+};
+
+/**
+ * Connector between two boxes in the SAME column (a combo that needs another combo). Routing it
+ * like a normal edge puts the vertical run straight through the boxes, because both endpoints
+ * share an x. This one leaves the left face, runs down a gutter beside the lane, and comes back.
+ */
+const sidePath = (a: Placed, b: Placed, gutter: number) => {
+  const p = { x: a.x, y: a.y + a.h / 2 }, q = { x: b.x, y: b.y + b.h / 2 };
+  const x = a.x - gutter;
+  const r = Math.min(12, Math.abs(q.y - p.y) / 2, gutter / 2);
+  const dir = q.y > p.y ? 1 : -1;
+  return `M${p.x},${p.y} H${x + r} Q${x},${p.y} ${x},${p.y + dir * r} V${q.y - dir * r} Q${x},${q.y} ${x + r},${q.y} H${q.x}`;
+};
 
 export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx: GraphContext, initialDim = true): GraphView {
   host.querySelector("svg")?.remove();
   const m = model(hits, ctx);
-  const L = layout === "layered" ? layoutLayered(m) : layoutCircular(m);
+  const aspect = Math.max(0.4, host.clientWidth / Math.max(1, host.clientHeight));
+  const L = layout === "layered" ? layoutLayered(m, aspect) : layoutCircular(m);
 
-  const svg = el("svg", { xmlns: ns, role: "img", "aria-label": "Combo route map" });
+  const svg = el("svg", { xmlns: ns, role: "img", "aria-label": "Combo diagram" });
   const defs = el("defs");
-  const clip = el("clipPath", { id: "cardClip", clipPathUnits: "userSpaceOnUse" });
-  clip.append(el("rect", { x: 4, y: 4, width: IMG_W, height: IMG_H, rx: 5 }));
-  defs.append(clip);
+  const clipP = el("clipPath", { id: "clipPortrait", clipPathUnits: "userSpaceOnUse" });
+  clipP.append(el("rect", { x: 5, y: 5, width: IMG_W, height: IMG_H, rx: 6 }));
+  const clipL = el("clipPath", { id: "clipLandscape", clipPathUnits: "userSpaceOnUse" });
+  clipL.append(el("rect", { x: 5, y: 5, width: LAND_IMG_W, height: LAND_IMG_H, rx: 6 }));
+  defs.append(clipP, clipL);
   const gEdges = el("g", { class: "edges" }), gNodes = el("g", { class: "nodes" }), gLabels = el("g", { class: "labels" });
   svg.append(defs, gLabels, gEdges, gNodes);
   svg.classList.toggle("dim-unrelated", initialDim);
 
-  // Column labels + faint guides (layered only).
+  // Lane headings sit above each column with a rule under them.
   for (const lab of L.labels) {
-    gLabels.append(el("text", { x: lab.x, y: -22, class: "layer-column-label" }, lab.text.toUpperCase()));
-    gLabels.append(el("line", { x1: lab.x - 24, y1: -8, x2: lab.x - 24, y2: L.height + 8, class: "layer-guide" }));
+    gLabels.append(el("text", { x: lab.x, y: -18, class: "lane-label" }, lab.text));
+    gLabels.append(el("line", { x1: lab.x, y1: -8, x2: lab.x + lab.w, y2: -8, class: "lane-rule" }));
   }
 
-  // Hub (circular only).
   if (L.hub) {
     const legend = ctx.legend ? ctx.card(ctx.legend) : undefined;
     const g = el("g", { class: "hub", transform: `translate(${L.hub.x},${L.hub.y})` });
-    g.append(el("circle", { r: 84, class: "hub-ring" }));
-    g.append(el("circle", { r: 68, class: "hub-disc" }));
-    g.append(el("text", { y: -22, class: "hub-eyebrow", "text-anchor": "middle" }, legend ? short(legend.name.replace(/ - Starter$/, ""), 20).toUpperCase() : "LEGEND"));
-    g.append(el("text", { y: 16, class: "hub-count", "text-anchor": "middle" }, String(m.combos.length)));
-    g.append(el("text", { y: 36, class: "hub-sub", "text-anchor": "middle" }, m.combos.length === 1 ? "route" : "routes"));
+    g.append(el("circle", { r: 88, class: "hub-ring" }));
+    g.append(el("circle", { r: 66, class: "hub-disc" }));
+    g.append(el("text", { y: -20, class: "hub-eyebrow", "text-anchor": "middle" }, legend ? short(legend.name.replace(/ - Starter$/, ""), 20) : "Legend"));
+    g.append(el("text", { y: 18, class: "hub-count", "text-anchor": "middle" }, String(m.combos.length)));
+    g.append(el("text", { y: 38, class: "hub-sub", "text-anchor": "middle" }, m.combos.length === 1 ? "combo" : "combos"));
     gNodes.append(g);
   }
 
@@ -195,15 +279,12 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
   for (const e of L.edges) {
     const a = L.pos.get(e.from), b = L.pos.get(e.to);
     if (!a || !b) continue;
-    let d: string;
-    if (layout === "layered") {
-      const p = anchor(a, "out"), q = anchor(b, "in");
-      d = `M${p.x},${p.y} C${(p.x + q.x) / 2},${p.y} ${(p.x + q.x) / 2},${q.y} ${q.x},${q.y}`;
-    } else {
-      const p = anchor(a, "center"), q = anchor(b, "center");
-      d = `M${p.x},${p.y} L${q.x},${q.y}`;
-    }
-    const path = el("path", { d, class: `edge ${e.kind}${e.dashed ? " missing" : ""}`, stroke: e.color, "data-from": e.from, "data-to": e.to, "data-combo": e.comboId });
+    const d = layout !== "layered"
+      ? (() => { const p = anchor(a, "center"), q = anchor(b, "center"); return `M${p.x},${p.y} L${q.x},${q.y}`; })()
+      : e.kind === "needs"
+        ? sidePath(a, b, 40)
+        : stepPath(anchor(a, "out"), anchor(b, "in"));
+    const path = el("path", { d, class: `edge ${e.kind}${e.dashed ? " missing" : ""}`, stroke: e.dashed ? ACCENT : "#4d6d7c", "data-combo": e.comboId });
     gEdges.append(path);
     edgeEls.push({ e, path });
   }
@@ -220,41 +301,46 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
   for (const base of m.cards) {
     const card = ctx.card(base);
     const missing = m.missing.has(base);
-    addNode(base, `card${missing ? " missing" : ""}${ctx.illegal(base) ? " illegal" : ""}`, (g) => {
-      g.append(el("rect", { class: "frame", width: CARD_W, height: CARD_H, rx: 8 }));
-      const src = thumb(card?.image, 160);
-      if (src) g.append(el("image", { href: src, x: 4, y: 4, width: IMG_W, height: IMG_H, "clip-path": "url(#cardClip)", preserveAspectRatio: "xMidYMid slice" }));
-      else g.append(el("rect", { x: 4, y: 4, width: IMG_W, height: IMG_H, rx: 5, class: "no-art" }));
-      const name = short(card?.name ?? base, 17);
-      const plateW = Math.min(CARD_W + 22, Math.max(60, name.length * 6.2 + 16));
-      g.append(el("rect", { class: "name-bg", x: (CARD_W - plateW) / 2, y: CARD_H - 13, width: plateW, height: 18, rx: 9 }));
-      g.append(el("text", { class: "name", x: CARD_W / 2, y: CARD_H, "text-anchor": "middle" }, name));
+    const land = m.land.has(base);
+    const W = land ? LAND_W : CARD_W, H = land ? LAND_H : CARD_H;
+    const iw = land ? LAND_IMG_W : IMG_W, ih = land ? LAND_IMG_H : IMG_H;
+    addNode(base, `card${land ? " landscape" : ""}${missing ? " missing" : ""}${ctx.illegal(base) ? " illegal" : ""}`, (g) => {
+      g.append(el("rect", { class: "frame", width: W, height: H, rx: 9 }));
+      const src = thumb(card?.image, land ? 280 : 200);
+      if (src) g.append(el("image", { href: src, x: 5, y: 5, width: iw, height: ih, "clip-path": `url(#${land ? "clipLandscape" : "clipPortrait"})`, preserveAspectRatio: "xMidYMid slice" }));
+      else g.append(el("rect", { x: 5, y: 5, width: iw, height: ih, rx: 6, class: "no-art" }));
+      // Plate sits inside the card's own width, so it can never reach a neighbour.
+      const name = short(card?.name ?? base, land ? 22 : 16);
+      g.append(el("rect", { class: "name-bg", x: 5, y: H - 27, width: iw, height: 22, rx: 5 }));
+      g.append(el("text", { class: "name", x: W / 2, y: H - 11, "text-anchor": "middle" }, name));
       const have = Math.min(ctx.owned(base), m.need.get(base)!), need = m.need.get(base)!;
       if (need > 1 || missing) {
-        g.append(el("rect", { class: "qty-bg", x: CARD_W - 30, y: -6, width: 30, height: 14, rx: 7 }));
-        g.append(el("text", { class: "qty", x: CARD_W - 15, y: 5, "text-anchor": "middle" }, `${have}/${need}`));
+        g.append(el("rect", { class: "qty-bg", x: W - 40, y: 5, width: 35, height: 18, rx: 5 }));
+        g.append(el("text", { class: "qty", x: W - 22.5, y: 18, "text-anchor": "middle" }, `${have}/${need}`));
       }
-      g.append(el("title", {}, `${card?.name ?? base} (${base})${missing ? " — missing" : ""}`));
+      g.append(el("title", {}, `${card?.name ?? base} (${base})${land ? " — battlefield" : ""}${missing ? " — missing" : ""}`));
     });
   }
 
   if (layout === "layered") {
     for (const c of m.combos) {
+      const h = routeH(m, c.id);
       addNode(c.id, `route ${c.status}`, (g) => {
-        g.append(el("rect", { class: "route-shell", width: ROUTE_W, height: ROUTE_H, rx: 10, stroke: m.routeColor.get(c.id)! }));
-        const thumbs = c.uses.slice(0, 3);
-        const tw = 20, th = 28, gap = 4, total = thumbs.length * tw + (thumbs.length - 1) * gap;
+        g.append(el("rect", { class: "route-shell", width: ROUTE_W, height: h, rx: 10, stroke: "#3d6070" }));
+        g.append(el("line", { class: "route-accent", x1: 1.5, y1: 12, x2: 1.5, y2: h - 12, stroke: ACCENT }));
+        const thumbs = c.uses.slice(0, 4);
+        const tw = 22, th = 30, gap = 5, total = thumbs.length * tw + (thumbs.length - 1) * gap;
         thumbs.forEach((u, i) => {
           const src = thumb(ctx.card(u.card)?.image, 80);
           const x = (ROUTE_W - total) / 2 + i * (tw + gap);
-          g.append(el("rect", { x, y: 8, width: tw, height: th, rx: 2, class: "mini-frame" }));
-          if (src) g.append(el("image", { href: src, x: x + 1, y: 9, width: tw - 2, height: th - 2, preserveAspectRatio: "xMidYMid slice" }));
+          g.append(el("rect", { x, y: 12, width: tw, height: th, rx: 3, class: "mini-frame" }));
+          if (src) g.append(el("image", { href: src, x: x + 1, y: 13, width: tw - 2, height: th - 2, preserveAspectRatio: "xMidYMid slice" }));
         });
-        const lines = wrap(c.name.replace(/\s[—–-]\s.*$/, ""), 18, 2);
-        const t = el("text", { class: "route-label", x: ROUTE_W / 2, y: 50, "text-anchor": "middle" });
-        lines.forEach((ln, i) => t.append(el("tspan", { x: ROUTE_W / 2, dy: i === 0 ? 0 : 12 }, ln)));
+        const lines = m.lines.get(c.id)!;
+        const t = el("text", { class: "route-label", x: ROUTE_W / 2, y: 62, "text-anchor": "middle" });
+        lines.forEach((ln, i) => t.append(el("tspan", { x: ROUTE_W / 2, dy: i === 0 ? 0 : 17 }, ln)));
         g.append(t);
-        g.append(el("text", { class: "route-index", x: ROUTE_W / 2, y: ROUTE_H - 8, "text-anchor": "middle", fill: m.routeColor.get(c.id)! }, `${c.class.replace("_", " ")}${c.status === "verified" ? "" : " · " + c.status.toUpperCase()}`));
+        g.append(el("text", { class: "route-class", x: ROUTE_W / 2, y: h - 12, "text-anchor": "middle" }, `${c.class.replace("_", " ")}${c.status === "verified" ? "" : " · " + c.status.toUpperCase()}`));
         g.append(el("title", {}, c.name));
       });
     }
@@ -263,12 +349,12 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
   for (const f of m.outcomes) {
     const routes = m.combos.filter((c) => c.produces.includes(f.id)).length;
     addNode(f.id, "result", (g) => {
-      g.append(el("rect", { class: "result-shell", width: RESULT_W, height: RESULT_H, rx: 10, stroke: m.color.get(f.id)! }));
-      const lines = wrap(f.name, 18, 2);
-      const t = el("text", { class: "result-label", x: RESULT_W / 2, y: lines.length > 1 ? 24 : 30, "text-anchor": "middle" });
-      lines.forEach((ln, i) => t.append(el("tspan", { x: RESULT_W / 2, dy: i === 0 ? 0 : 13 }, ln)));
+      g.append(el("rect", { class: "result-shell", width: RESULT_W, height: RESULT_H, rx: 10, stroke: "#3d6070" }));
+      const lines = wrap(f.name, 20, 2);
+      const t = el("text", { class: "result-label", x: RESULT_W / 2, y: lines.length > 1 ? 30 : 38, "text-anchor": "middle" });
+      lines.forEach((ln, i) => t.append(el("tspan", { x: RESULT_W / 2, dy: i === 0 ? 0 : 18 }, ln)));
       g.append(t);
-      g.append(el("text", { class: "result-sub", x: RESULT_W / 2, y: RESULT_H - 12, "text-anchor": "middle" }, `${routes} ${routes === 1 ? "route" : "routes"}`));
+      g.append(el("text", { class: "result-sub", x: RESULT_W / 2, y: RESULT_H - 14, "text-anchor": "middle" }, `${routes} ${routes === 1 ? "combo" : "combos"}`));
     });
   }
 
@@ -278,7 +364,7 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
   for (const e of L.edges) { link(e.from, e.to); link(e.to, e.from); }
   const routeNodes = (comboId: string) => {
     const c = ctx.combos.get(comboId)!;
-    return new Set([comboId, ...c.uses.map((u) => u.card), ...c.produces.filter((f) => m.color.has(f))]);
+    return new Set([comboId, ...c.uses.map((u) => u.card), ...c.produces.filter((f) => m.outcomes.some((o) => o.id === f))]);
   };
   let pinned: string | null = null;
   const clear = () => {
@@ -314,7 +400,6 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
       pinned ? focusRoute(pinned) : clear();
       ctx.onSelect(pinned);
     } else {
-      // A card or result pins itself; the first route through it opens in the drawer.
       const viaCombo = m.combos.find((c) => c.uses.some((u) => u.card === id) || c.produces.includes(id));
       pinned = pinned === id ? null : id;
       pinned ? focusNode(pinned) : clear();
@@ -329,23 +414,31 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
   svg.addEventListener("click", (ev) => { if (!(ev.target as Element).closest(".node") && pinned) { pinned = null; clear(); ctx.onSelect(null); } });
 
   // --- pan / zoom by viewBox ------------------------------------------------------------
-  const pad = 56;
-  const content = { x: -pad, y: -pad - (L.labels.length ? 20 : 0), w: L.width + 2 * pad, h: L.height + 2 * pad + (L.labels.length ? 20 : 0) };
+  const pad = 64;
+  const topPad = pad + (L.labels.length ? LANE_LABEL_H : 0);
+  const content = { x: -pad, y: -topPad, w: L.width + 2 * pad, h: L.height + pad + topPad };
   let vb = { ...content };
   const apply = () => {
     svg.setAttribute("viewBox", `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
     ctx.onZoom(Math.round((host.clientWidth / vb.w) * 100));
   };
+  /** Show everything, but never magnify past 1:1 — a two-node diagram blown up looks broken. */
   const fit = () => {
-    const ar = host.clientWidth / Math.max(1, host.clientHeight);
-    let w = content.w, h = content.h;
-    if (w / h < ar) w = h * ar; else h = w / ar;
+    const cw = host.clientWidth, ch = Math.max(1, host.clientHeight);
+    const scale = Math.min(1, cw / content.w, ch / content.h);
+    const w = cw / scale, h = ch / scale;
+    vb = { x: content.x + (content.w - w) / 2, y: content.y + (content.h - h) / 2, w, h };
+    apply();
+  };
+  /** 1:1, centred on the content. Clipping is fine — the fit button is right there. */
+  const actualSize = () => {
+    const w = host.clientWidth, h = Math.max(1, host.clientHeight);
     vb = { x: content.x + (content.w - w) / 2, y: content.y + (content.h - h) / 2, w, h };
     apply();
   };
   const zoomAt = (k: number, mx: number, my: number) => { vb = { x: mx - (mx - vb.x) * k, y: my - (my - vb.y) * k, w: vb.w * k, h: vb.h * k }; apply(); };
   svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
-  fit();
+  actualSize();
   svg.addEventListener("wheel", (ev) => {
     ev.preventDefault();
     const r = svg.getBoundingClientRect();

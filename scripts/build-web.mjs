@@ -27,7 +27,7 @@ const slim = {
   })),
 };
 writeFileSync(join(OUT, "data", "cards.json"), JSON.stringify(slim));
-for (const f of ["index.html", "styles.css"]) copyFileSync(join(ROOT, "web", f), join(OUT, f));
+for (const f of ["index.html", "styles.css", "favicon.svg"]) copyFileSync(join(ROOT, "web", f), join(OUT, f));
 
 const options = {
   entryPoints: [join(ROOT, "web", "main.ts")],

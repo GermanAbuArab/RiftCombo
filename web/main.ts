@@ -123,8 +123,8 @@ async function run(source: "text" | "url" = "text") {
     deck = source === "url" ? await fromUrl(url) : /^https?:\/\//i.test(text) ? await fromUrl(text) : loadDeck(text, cards);
     result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() });
     selected = null;
-    shell.classList.add("collapsed");
-    $<HTMLButtonElement>("#enter-deck").hidden = false;
+    // The deck panel stays open after analysing. Collapsing it here used to hide the list the
+    // user just pasted, and it widened the stage enough to make the diagram fit at ~54%.
     render();
     if (source === "text") location.hash = isDeckCode(text) ? `deck=${encodeURIComponent(text)}` : "";
     const included = result.included.length;
@@ -151,15 +151,58 @@ const shownHits = (): Hit[] => {
   ];
 };
 
+/**
+ * How many known combos are even legal under this deck's legend. Domain Identity (103.1.b) means
+ * every card in a combo must sit inside the legend's two domains, so this is the honest ceiling on
+ * what the deck could ever match.
+ */
+const playableUnderLegend = (): number | null => {
+  if (!deck?.legend) return null;
+  const dom = new Set(cards.domainsOf(deck.legend));
+  return combos.filter((c) => c.uses.every((u) => cards.domainsOf(u.card).every((d) => dom.has(d)))).length;
+};
+
+/**
+ * An empty result is almost always thin coverage, not a verdict on the deck — say so. Blaming the
+ * list ("no combos in this list") reads as "your deck is bad" when the truth is "we have not
+ * catalogued your archetype yet".
+ */
+function showEmptyState() {
+  const title = $<HTMLElement>("#empty .empty-title");
+  const body = $<HTMLElement>("#empty .empty-body");
+  const note = $<HTMLElement>("#empty-note");
+  const legend = deck?.legend ? name(deck.legend).replace(/ - Starter$/, "") : null;
+  const legalHere = playableUnderLegend();
+  const verified = combos.filter((c) => c.status === "verified").length;
+
+  if (mode() !== "network") {
+    title.textContent = "Nothing within reach";
+    body.textContent = `No known combo is within ${maxMissing()} card${maxMissing() === 1 ? "" : "s"} of this list. Raising that distance in the panel will widen the search.`;
+  } else if (legalHere === 0 && legend) {
+    title.textContent = "No catalogued combos for this legend yet";
+    body.innerHTML = `Not one of the ${combos.length} combos RiftCombo knows is even legal under <strong>${esc(legend)}</strong>'s two domains, so there is nothing here to match against. This is a gap in our catalogue, not a judgement on your deck.`;
+  } else {
+    title.textContent = "No complete combo in this list";
+    body.innerHTML = legend
+      ? `RiftCombo knows ${combos.length} combos (${verified} walked by hand), of which <strong>${legalHere}</strong> are legal under ${esc(legend)}'s domains — and this list has all the pieces for none of them. Try <strong>Near misses</strong> to see what it is short of.`
+      : `RiftCombo knows ${combos.length} combos and this list has all the pieces for none of them. Try <strong>Near misses</strong> to see what it is short of.`;
+  }
+  note.hidden = false;
+  note.textContent = "The catalogue is hand-built and still small, so an empty result usually means the archetype has not been swept yet rather than that no combo exists.";
+}
+
 function render() {
   if (!deck || !result) return;
   const hits = shownHits();
   routeCount.textContent = String(hits.length);
   empty.hidden = hits.length > 0;
+  const legalHere = playableUnderLegend();
+  $<HTMLElement>("#ws-sub").textContent = legalHere === null
+    ? `${combos.length} combos catalogued`
+    : `${legalHere} of ${combos.length} catalogued combos are legal in this legend's domains`;
   if (hits.length === 0) {
     view?.destroy(); view = null;
-    $<HTMLElement>("#empty .empty-title").textContent = mode() === "network" ? "No complete combos in this list" : "No near misses within reach";
-    $<HTMLElement>("#empty .empty-body").textContent = mode() === "network" ? "Try the Near misses view to see what a few cards would unlock." : "Raise the near-miss distance in the deck panel, or switch to Included.";
+    showEmptyState();
   } else {
     view = renderGraph(graphHost, hits, layout(), {
       combos: combosById, features: featuresById,
@@ -258,8 +301,15 @@ input.addEventListener("input", () => {
   const n = parseDeckText(input.value).reduce((a, e) => a + e.count, 0);
   $<HTMLElement>("#card-count").textContent = `${n} card${n === 1 ? "" : "s"}`;
 });
-$<HTMLButtonElement>("#close-panel").addEventListener("click", () => { shell.classList.add("collapsed"); $<HTMLButtonElement>("#enter-deck").hidden = false; });
-$<HTMLButtonElement>("#enter-deck").addEventListener("click", () => { shell.classList.remove("collapsed"); $<HTMLButtonElement>("#enter-deck").hidden = true; });
+// Collapsing changes the stage's aspect ratio, and the layered layout picks its column count from
+// that — so re-render rather than just refit.
+const setPanel = (open: boolean) => {
+  shell.classList.toggle("collapsed", !open);
+  $<HTMLButtonElement>("#enter-deck").hidden = open;
+  if (result) render(); else view?.fit();
+};
+$<HTMLButtonElement>("#close-panel").addEventListener("click", () => setPanel(false));
+$<HTMLButtonElement>("#enter-deck").addEventListener("click", () => setPanel(true));
 document.querySelectorAll("input[name=view], input[name=layout]").forEach((r) => r.addEventListener("change", () => { selected = null; render(); }));
 document.querySelectorAll("input[name=format]").forEach((r) => r.addEventListener("change", () => { if (deck) { result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() }); render(); } }));
 $<HTMLSelectElement>("#max-missing").addEventListener("change", () => { if (deck) { result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() }); render(); } });
