@@ -456,7 +456,8 @@
           "date": "2026-09-02"
         }
       ],
-      "rulesVersion": "2026-07-16"
+      "rulesVersion": "2026-07-16",
+      "notes": "With Time Warp (OGN-122) the check comes at your very next Beginning Phase with no opponent turn between; adjust the hand count for Time Warp leaving the hand. Temporary units die before the check (816.1.b) and do not count. (L4-13)"
     },
     {
       "id": "blue-sentinel-trinity-force-hold",
@@ -1144,6 +1145,463 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "Quote, verified by hand through a reader proxy on 2026-09-03: 'Pyke - Bloodharbor Ripper control shell out there that cripples legends not named Master Yi with a never-ending stream of Bewitching Spirits.' Card text verified against the corpus: the legend's ability costs an exhaust, so the stream is one per turn — the source's 'never-ending' is tempo, not infinity. First Fury/Chaos entry in the catalogue."
+    },
+    {
+      "id": "time-warp-hold-burst",
+      "name": "Time Warp ×3 — three extra turns of Hold points",
+      "class": "BURST",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "OGN-122",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Take a turn after this one. Banish this. Three copies = three extra Beginning Phases."
+        },
+        {
+          "card": "UNL-180",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Kill all units — clears both battlefields first."
+        },
+        {
+          "card": "UNL-069",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Two ready 3-Might Sprites to take both battlefields the same turn."
+        },
+        {
+          "card": "OGN-216",
+          "quantity": 2,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Cheap bodies to hold with (the source also names Ekko, Recurrent and Lux, Crownguard)."
+        }
+      ],
+      "needs": [
+        "infinite-energy"
+      ],
+      "produces": [
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order."
+        ],
+        "notable": [
+          "Loop running. Clear the board, take both Duel battlefields, leave bodies on them, then cast Time Warp: each extra turn's Beginning Phase Holds both for 2 points (470). Three Time Warps = 6, with no opponent turn in between.",
+          "Keep the Main Deck non-empty at each end of turn or the extra turn's draw Burns Out and hands the opponent a point (431.2)."
+        ]
+      },
+      "steps": [
+        "Cast The Ruination.",
+        "Cast Sprite Burst; move the Sprites to both battlefields and Establish Control.",
+        "Play bodies (Soaring Scout / Ekko / Lux, Crownguard) to the battlefields you control.",
+        "Cast Time Warp. Extra turn: Hold both, +2. Repeat twice more: +6 total."
+      ],
+      "terminatesIn": "6 points across three uninterrupted turns; from 2 this wins",
+      "sources": [
+        {
+          "title": "TCGplayer — The Best Decks from Riftbound Regional Hartford (HowlingMines)",
+          "url": "https://www.tcgplayer.com/content/article/The-Best-Decks-from-Riftbound-Regional-Hartford/715aa271-6096-4dd1-8279-cd47ed33fa13/",
+          "kind": "article",
+          "date": "2026-06-25"
+        },
+        {
+          "title": "Hunt v2 lens L4, entry General note (docs/phase0/hunt2/L4-points-altwins.md)",
+          "kind": "agent",
+          "date": "2026-09-02"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Quote, verified by hand via reader proxy 2026-09-03: '…then firing off three copies of Time Warp to score the remaining six points needed in one fell swoop.' Capped at three by deck limit + banish (427). riftbound.gg claims an unbounded version; lens L1 is checking whether anything returns cards from Banishment."
+    },
+    {
+      "id": "renata-bubble-bot-ready",
+      "name": "Renata, Mastermind readied by Bubble Bot — alternative point loop",
+      "class": "INFINITE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-088",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "4 Energy + 4 Mind Power, exhaust: Score 1 point. Only while at a battlefield."
+        },
+        {
+          "card": "SFD-073",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "[Effect] I am a Mech — makes Renata a legal target for Bubble Bot."
+        },
+        {
+          "card": "SFD-062",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "When you play me, ready another friendly Mech."
+        },
+        {
+          "card": "OGN-104",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Bounce Bubble Bot so it can be replayed; each replay is a new object (124) and fires again."
+        }
+      ],
+      "needs": [
+        "infinite-energy",
+        "infinite-power"
+      ],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order."
+        ],
+        "notable": [
+          "Loop running with Renata at a controlled battlefield wearing Experimental Hexplate.",
+          "Per point: exhaust Renata (4E+4P), Retreat Bubble Bot (1E), replay it (3E) → ready Renata. Power is the binding resource — each Power costs a rune recycle plus a channel-back, several loop passes per point."
+        ]
+      },
+      "steps": [
+        "Renata: pay 4 Energy + 4 Mind Power and exhaust — score 1.",
+        "Retreat on Bubble Bot; replay it: its play trigger readies Renata (a Mech via Hexplate, 718.3).",
+        "Repeat. Forge's recycle has one spare slot per pass to bring Retreat back through the empty deck."
+      ],
+      "terminatesIn": "8 points",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L4, entry L4-01 (docs/phase0/hunt2/L4-points-altwins.md)",
+          "kind": "agent",
+          "date": "2026-09-02"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Same payoff as the verified Rally the Troops / Fiora line, different ready engine. Unbounded pass count; realistic pass count is a scale question. UNRESOLVED per the lens: whether Heimerdinger copying Renata's ability keeps her 'only while at a battlefield' clause."
+    },
+    {
+      "id": "swain-double-conquer",
+      "name": "Swain, Visionary ×3 — conquer both battlefields in one turn",
+      "class": "BURST",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "VEN-065",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "When I conquer, if you've played a non-token unit, a non-token gear, and a spell this turn, you score 1 point."
+        },
+        {
+          "card": "OGN-104",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "After the first Conquer the Swains are exhausted; Retreat and replay them to base, then Standard-Move to the second battlefield."
+        }
+      ],
+      "needs": [
+        "infinite-energy"
+      ],
+      "produces": [
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind (Swain) — with the loop, Mind+Order."
+        ],
+        "notable": [
+          "Three Swains deployed the previous turn so they are ready (units enter exhausted, 143.4). Neither battlefield scored yet this turn.",
+          "The loop satisfies Swain's clause every pass (Forge = gear, Ekko = unit, Shadow's Call = spell).",
+          "Points: 2 × (N + 1) for N Swains. N=3: 8 from zero."
+        ]
+      },
+      "steps": [
+        "Standard-Move the Swains to battlefield A; win; Establish Control → Conquer: +1, then +1 per Swain.",
+        "Retreat each Swain, replay to base (free under the loop), Standard-Move to battlefield B.",
+        "Conquer B: +1, +3. Total 8."
+      ],
+      "terminatesIn": "8 points in one turn",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L4, entry L4-02 (docs/phase0/hunt2/L4-points-altwins.md)",
+          "kind": "agent",
+          "date": "2026-09-02"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "The lens's Bard, Mercurial route (move to an 'open' battlefield) is UNRESOLVED on what 'open' means; this entry uses the Retreat/replay route, which has no such dependency. Second Conquer's own point is safe at 7 because both battlefields were scored this turn (471.1.b.1)."
+    },
+    {
+      "id": "bottled-constellation-time-warp",
+      "name": "Bottled Constellation ×3 + Time Warp ×3 — fodder from the loop",
+      "class": "BURST",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "VEN-067",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "At the start of your Main Phase, you may kill 3 other friendly units and/or gear to score 1 point."
+        },
+        {
+          "card": "OGN-122",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Each Time Warp is another Main Phase start; the loop's Recruits and Gold are the fodder."
+        }
+      ],
+      "needs": [
+        "infinite-energy"
+      ],
+      "produces": [
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order."
+        ],
+        "notable": [
+          "Three Constellations in play before the Main Phase that should fire them; nine or more fodder permanents at each Main Phase start.",
+          "Leave the Main Deck non-empty at each end of turn — the extra turn's draw would otherwise Burn Out (431.2.c)."
+        ]
+      },
+      "steps": [
+        "Turn N: loop; play three Constellations (30E+6P); Time Warp.",
+        "Extra turn: Main Phase start → three Constellations, kill 9 fodder → +3. Loop again; Time Warp.",
+        "Repeat: +3, +3. Nine points across three extra turns."
+      ],
+      "terminatesIn": "9 points, opponent never acts",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L4, entry L4-03 (docs/phase0/hunt2/L4-points-altwins.md)",
+          "kind": "agent",
+          "date": "2026-09-02"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Capped at three by Time Warp's deck limit and banish (427). The Draw Phase Burn Out trap is what actually goes wrong at the table."
+    },
+    {
+      "id": "power-nexus-sentinel",
+      "name": "Power Nexus × Blue Sentinel — pay Power for points every Hold",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-214",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Battlefield: When you hold here, you may pay four runes to score 1 point."
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Your hold effects for holding here trigger an additional time — the Nexus's trigger is yours while you control it (190.6)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend that can play Blue Sentinel (Mind) — Power Nexus is colorless."
+        ],
+        "notable": [
+          "Hold the Nexus with K Sentinels there: the trigger fires 1+K times, each may pay 4 Power for a point, plus the Hold's own point (470). K=2: 4 points per Beginning Phase for 12 Power. Hold-gated: once per turn.",
+          "The Power must exist in the Beginning Phase — rune recycles are Reaction-speed Adds (429.3), so it is legal to make it then."
+        ]
+      },
+      "steps": [
+        "Control Power Nexus through your Beginning Phase with two Blue Sentinels on it.",
+        "Hold: score 1; the Nexus trigger resolves three times; pay 4 Power each for +3."
+      ],
+      "terminatesIn": "engine — 1+K points per turn; with Time Warp it becomes a burst",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L4, entry L4-04 (docs/phase0/hunt2/L4-points-altwins.md)",
+          "kind": "agent",
+          "date": "2026-09-02"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Battlefield-dependent (yours is 1 of 3 in Duel, chosen in Match). Rests on the Blue Sentinel reading shared with every Hold line: 471.2.c limits score effects to a Score event, and Sentinel adds trigger instances of that one event rather than a second Score. Arguable, hence candidate."
+    },
+    {
+      "id": "ivern-sentinel-hold",
+      "name": "Ivern, Friend to All × Blue Sentinel — multiplied Hold points",
+      "class": "BURST",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-177",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "When I conquer or hold, score 1 point if your units have Bird, Cat, Dog and Poro among them."
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Your hold effects for holding here trigger an additional time."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order."
+        ],
+        "notable": [
+          "All four tags among your units. Ivern supplies one on play; the lens lists cheap taggers in Mind+Order (Ultrasoft Poro + its Bird token, Fallen Feline, Hungry Wolf).",
+          "Points per Hold: 1 + N × (1 + K). N=2, K=2 gives 7; N=3, K=3 gives 13."
+        ]
+      },
+      "steps": [
+        "Assemble the four tags.",
+        "Hold a battlefield with the Iverns and Sentinels present: each Ivern trigger fires 1 + K times."
+      ],
+      "terminatesIn": "burst of ability points in one Hold",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L4, entry L4-05 (docs/phase0/hunt2/L4-points-altwins.md)",
+          "kind": "agent",
+          "date": "2026-09-02"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "The Reckoner's Arena double-dip in the lens (its hold ability re-activates conquer effects) is left out: whether Sentinel multiplies the Arena's own trigger is UNRESOLVED. Tag requirement is the real deckbuilding cost. Rests on the Blue Sentinel reading shared with every Hold line: 471.2.c limits score effects to a Score event, and Sentinel adds trigger instances of that one event rather than a second Score. Arguable, hence candidate."
+    },
+    {
+      "id": "kharox-sanction-burn",
+      "name": "Kharox re-Empowered by Sanction — Burn 3 on repeat",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "VEN-114",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "When I become [Empowered], choose an opponent. They [Burn 3]. Then you may play a unit from their trash, ignoring its cost."
+        },
+        {
+          "card": "VEN-035",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "[Reaction] Choose one — Empower a unit, Disempower it at end of turn / Disempower an Empowered unit, Empower it at end of turn. Mode two on an Empowered Kharox re-fires him at end of turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "opponent-burn-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Chaos (Unforgiven OGN-259, Blade Dancer SFD-195, Gloomist UNL-193)."
+        ],
+        "notable": [
+          "Kharox Empowered (6E + 2 Chaos). Each Sanction (3E+1P) in mode two: he becomes Empowered again at end of turn → Burn 3 and a free unit from their trash. Three Sanctions a turn: 9 cards."
+        ]
+      },
+      "steps": [
+        "Empower Kharox: they Burn 3.",
+        "Sanction, mode two: Disempower now, Empower at end of turn → 'When I become Empowered' fires again (828.1.d).",
+        "Repeat with each Sanction."
+      ],
+      "terminatesIn": "engine — deck pressure and free units; not a kill (Burn Out recycles their trash before the point, 431.2.c)",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L4, entry L4-14 (docs/phase0/hunt2/L4-points-altwins.md)",
+          "kind": "agent",
+          "date": "2026-09-02"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "First Calm/Chaos entry. Hunt B-11 called Kharox one-shot; the crossing trigger on re-Empowerment is what it missed."
+    },
+    {
+      "id": "grand-plaza-loop-time-warp",
+      "name": "The Grand Plaza under the loop — seven ready Recruits, then Time Warp",
+      "class": "ALT_WIN",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "When you hold here, if you have 7+ units here, you win the game."
+        },
+        {
+          "card": "OGN-212",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "One Recruit per loop pass."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Your tokens enter ready — the Recruits can Standard-Move the turn they are made."
+        },
+        {
+          "card": "OGN-122",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Take a turn after this one — the Hold happens before the opponent ever acts."
+        }
+      ],
+      "needs": [
+        "infinite-energy"
+      ],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order."
+        ],
+        "notable": [
+          "The Grand Plaza in play (random 1 of 3 in Duel, chosen in Match). Loop until 7+ ready Recruits exist."
+        ]
+      },
+      "steps": [
+        "Loop until seven or more Recruits exist; with Industrialist they are ready.",
+        "Standard-Move them to the Grand Plaza; win the showdown by numbers; Establish Control.",
+        "Cast Time Warp. Your extra turn's Beginning Phase: Hold with 7+ units → win (195)."
+      ],
+      "terminatesIn": "win the game",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L4, entry L4-12 (docs/phase0/hunt2/L4-points-altwins.md)",
+          "kind": "agent",
+          "date": "2026-09-02"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Same payoff as the two-turn Recruit the Vanguard line, but the loop supplies the bodies and Time Warp removes the opponent's window. High on rules, format-dependent."
     }
   ]
 }

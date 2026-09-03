@@ -119,6 +119,13 @@
       "status": "STANDALONE",
       "uncountable": false,
       "description": "Repeatedly makes the opponent play cards off the top of their Main Deck, ignoring Energy costs."
+    },
+    {
+      "id": "opponent-burn-engine",
+      "name": "Repeatable opponent Burn",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "Makes the opponent put cards from the top of their Main Deck into their trash, repeatedly. Pressure, not a kill: Burn Out recycles their trash before awarding a point (431.2)."
     }
   ]
 }
