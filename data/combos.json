@@ -624,6 +624,66 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "WEAKEST of the three and needs a human ruling before it moves off candidate. It rests on 725.1 (a passive that applies 'as it Attaches' is processed) rescuing Svellsongur from 718.2 (an attached card's own rules text is Inactive). If 718.2 wins, nothing here works. Rules check done by hand, not taken from the agent: 471.2.c says score effects 'cannot be triggered more than once per turn for a player'. Brambleback/Sentinel do not create a second Score — they make the effects of the single Score trigger extra times, so on this reading there is no conflict with 471.2.c and the Golden Rule (002) does not need to be invoked. That reading is arguable and is why this stays a candidate."
+    },
+    {
+      "id": "skyfall-ahri-conquer",
+      "name": "Skyfall Ahri — Hold points paid out on Conquer",
+      "class": "BURST",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "OGN-066",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "When I hold, you score 1 point."
+        },
+        {
+          "card": "SFD-030",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "[Effect] My hold effects are also conquer effects, and vice versa. One on each Ahri; this is the pool's only hold<->conquer bridge."
+        },
+        {
+          "card": "UNL-029",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Your conquer effects for conquering here trigger an additional time."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Calm — VEN-139 Rogue Assassin (Akali) is the ONLY legend in the pool that covers this pair."
+        ],
+        "notable": [
+          "Each Ahri wears a Skyfall of Areion (two Equipment on one body is legal, 434.1.b.1).",
+          "The Bramblebacks are present at the battlefield being conquered, which you have not scored this turn.",
+          "Points from one Conquer: 1 + A x (1 + K), A = Ahri wearing Skyfall, K = Bramblebacks. A=3, K=2 gives 10 from zero. A=1, K=1 gives 3."
+        ]
+      },
+      "steps": [
+        "Equip a Skyfall of Areion to each Ahri (1 Energy + 1 Fury Power each). Ahri's rules text becomes her hold-point plus Skyfall's bridge clause (718.3, 434.1.c).",
+        "Bring the Ahris and the Bramblebacks to a battlefield you have not scored this turn.",
+        "Win the showdown and Establish Control (466.5) — that is a Conquer (469.1), scoring the base 1 (470).",
+        "471.2.a triggers conquer abilities. Skyfall makes each Ahri's hold-point a conquer effect too, so each fires, and each Brambleback makes it fire an additional time.",
+        "At your next Beginning Phase you also Hold it: base 1 plus each Ahri's native hold trigger once (Brambleback multiplies conquer effects only)."
+      ],
+      "terminatesIn": "burst of ability points in one Conquer",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L6, entry C1 (docs/phase0/hunt2/L6-equipment-legends.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Fury/Calm had no line at all before this. Legend verified by hand against data/corpus_flat.txt: VEN-139 is the only Fury/Calm legend in the pool. Rule 470 caps Scoring (Conquer or Hold, 469); Ahri's points arrive as triggered abilities under 471.2, and 471.1.a.1 exempts non-Conquer sources from the Final Point restriction, so only the base conquer point is at risk of converting to a draw. UNRESOLVED, and it is why this is a candidate: adding SFD-059 Svellsongur would raise the count, but only if Svellsongur copies a unit's CURRENT rules text including appended Effect Text (434.1.c) rather than its printed text. The arithmetic above deliberately assumes the conservative printed-text reading and does not use Svellsongur."
     }
   ]
 }
