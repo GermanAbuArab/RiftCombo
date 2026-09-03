@@ -1078,7 +1078,7 @@
           "quantity": 1,
           "role": "payoff",
           "zone": "HAND",
-          "note": "Each player looks at the top 5 cards of their Main Deck, chooses one, then recycles the rest. Starting with the next player, each player plays those cards, ignoring Energy costs."
+          "note": "Each player looks at the top 5 cards of their Main Deck, banishes one of them, then recycles the rest (errata 2025-10-28). Starting with the next player, each player plays those cards, ignoring Energy costs."
         },
         {
           "card": "OGN-104",
@@ -1831,7 +1831,7 @@
           "quantity": 3,
           "role": "enabler",
           "zone": "BATTLEFIELD",
-          "note": "[Hidden] [Temporary] When you play me, play two Reflection unit tokens here; they become copies of me. Three units for 2 Energy (0 from Hidden)."
+          "note": "[Hidden] [Temporary] When you play me, play two Reflection unit tokens here. Then do this: They become copies of me (errata 2026-04-03). Three units for 2 Energy (0 from Hidden)."
         },
         {
           "card": "OGN-293",
@@ -1958,7 +1958,7 @@
           "quantity": 1,
           "role": "enabler",
           "zone": "HAND",
-          "note": "2E+1P: move a friendly unit, may attach an Equipment to it; this turn it has 'When I conquer, you may move me to my base.' Two moves per copy plus a free attach."
+          "note": "2E+1P: move a friendly unit, may attach up to one Equipment to it (errata 2026-04-03); this turn it has 'When I conquer, you may move me to my base.' Two moves per copy plus a free attach."
         },
         {
           "card": "SFD-108",
@@ -2251,7 +2251,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BOARD",
-          "note": "When I attack, reveal the top 2 cards of your Main Deck; you may play one; recycle the rest."
+          "note": "When I attack, you may reveal the top 2 cards of your Main Deck; you may banish one, then play it; recycle the rest (errata 2026-01-14)."
         },
         {
           "card": "SFD-175",
@@ -2274,7 +2274,7 @@
         ]
       },
       "steps": [
-        "Rek'Sai attacks: reveal two Undertitans (+2E each), play neither, recycle both.",
+        "Rek'Sai attacks: reveal two Undertitans (+2E each), banish neither, recycle both.",
         "Ready Rek'Sai for another attack (Piltover Enforcer UNL-187 on 3+ excess damage; Twilight Reveler VEN-020). She is already Mighty, so Fiora, Worthy does not fire for her."
       ],
       "terminatesIn": "engine only — +4 Energy per attack while the deck is Undertitans; two or three attacks a turn",
@@ -2483,7 +2483,7 @@
           "quantity": 1,
           "role": "enabler",
           "zone": "BOARD",
-          "note": "Each Equipment in your hand has [Quick-Draw]: it gains [Reaction] and attaches to a unit you control as you play it — no Equip Power paid."
+          "note": "Your Equipment everywhere have [Quick-Draw] (errata 2026-01-14): each gains [Reaction] and attaches to a unit you control as you play it — no Equip Power paid."
         },
         {
           "card": "SFD-033",

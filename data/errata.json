@@ -59,6 +59,314 @@
    "source": "https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates",
    "find": "[Reaction] (Play on your turn or in showdowns.)",
    "replace": "[Reaction] (Play any time, even before spells and abilities resolve.)"
+  },
+  {
+   "name": "Ava Achiever",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "from your hand here, ignoring its cost.",
+   "replace": "from your hand, ignoring its cost. If it's a unit, play it here."
+  },
+  {
+   "name": "Clockwork Keeper",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "As you play me, you may pay :rb_rune_calm: as an additional cost. If you do, draw 1.",
+   "replace": "You may pay :rb_rune_calm: as an additional cost to play me.\nWhen you play me, if you paid the additional cost, draw 1."
+  },
+  {
+   "name": "Dark Child - Starter",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "ready 2 runes.",
+   "replace": "ready up to 2 runes."
+  },
+  {
+   "name": "Dazzling Aurora",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "until you reveal a unit. Play it,",
+   "replace": "until you reveal a unit and banish it. Play it,"
+  },
+  {
+   "name": "Disintegrate",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "If this kills it, draw 1.",
+   "replace": "If this kills it, do this: draw 1."
+  },
+  {
+   "name": "Dragon's Rage",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "Then choose another enemy unit at its destination.",
+   "replace": "Then do this: Choose another enemy unit at its destination."
+  },
+  {
+   "name": "Highlander",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "The next time it dies this turn, recall it exhausted instead.",
+   "replace": "The next time it would die this turn, heal it, exhaust it, and recall it instead."
+  },
+  {
+   "name": "Karma, Channeler",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "When you recycle one or more cards, buff",
+   "replace": "When you recycle one or more cards to your Main Deck, buff"
+  },
+  {
+   "name": "Nocturne, Horrifying",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "When you look at cards from the top of your deck (and don't draw them) and see me, you may play me for :rb_rune_rainbow:.",
+   "replace": "As you look at or reveal me from the top of your deck, you may banish me. If you do, you may play me for :rb_rune_rainbow:."
+  },
+  {
+   "name": "Pack of Wonders",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "gear, unit, or [Hidden] card",
+   "replace": "gear, unit, or facedown card"
+  },
+  {
+   "name": "Portal Rescue",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "then play it to base, ignoring its cost.",
+   "replace": "then its owner plays it to their base, ignoring its cost."
+  },
+  {
+   "name": "Promising Future",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "chooses one, then recycles the rest.",
+   "replace": "banishes one of them, then recycles the rest."
+  },
+  {
+   "name": "Salvage",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "You may kill a gear.",
+   "replace": "You may kill up to one gear."
+  },
+  {
+   "name": "Sigil of the Storm",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "When you conquer here, recycle one of your runes.",
+   "replace": "When you conquer here, you must recycle one of your runes. (This doesn't choose anything.)"
+  },
+  {
+   "name": "Sona, Harmonious",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "While I'm at a battlefield, ready 4 friendly runes at the end of your turn.",
+   "replace": "At the end of your turn, if I'm at a battlefield, ready up to 4 friendly runes."
+  },
+  {
+   "name": "Targon's Peak",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "ready 2 runes at the end of this turn.",
+   "replace": "ready up to 2 runes at the end of this turn."
+  },
+  {
+   "name": "Teemo, Strategist",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "When I defend or I'm played from [Hidden], reveal the top 5 cards of your Main Deck. Deal 1 to an enemy unit here for each card with [Hidden], then recycle them.",
+   "replace": "When I defend, choose an enemy unit here and reveal the top 5 cards of your Main Deck. Deal 1 to that unit for each card with [Hidden] revealed this way, then recycle the revealed cards."
+  },
+  {
+   "name": "The Boss",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "When a buffed unit you control would die, you may pay :rb_rune_rainbow: and exhaust me to spend its buff and recall it exhausted instead.",
+   "replace": "If a buffed unit you control would die, you may pay :rb_rune_rainbow:, exhaust me, and spend its buff to heal it, exhaust it, and recall it instead."
+  },
+  {
+   "name": "The Syren",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "to your base.",
+   "replace": "to its base."
+  },
+  {
+   "name": "Tideturner",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "you may choose a friendly unit. Move me",
+   "replace": "you may choose a unit you control at another location. Move me"
+  },
+  {
+   "name": "Unlicensed Armory",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "The next time it dies this turn, you may pay :rb_rune_fury: to recall it exhausted instead.",
+   "replace": "The next time it would die this turn, you may pay :rb_rune_fury: to heal it, exhaust it, and recall it instead."
+  },
+  {
+   "name": "Void Gate",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "Spells and abilities affecting units here each deal 1 Bonus Damage. (Each instance of damage the spell deals is increased by 1.)",
+   "replace": "Spells and abilities deal 1 Bonus Damage to units here. (Each instance of damage the spell deals to a unit here is increased by 1.)"
+  },
+  {
+   "name": "Zhonya's Hourglass",
+   "effective": "2025-10-28",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
+   "find": "The next time a friendly unit would die, kill this instead. Recall that unit exhausted.",
+   "replace": "If a friendly unit would die, kill this instead. Heal that unit, exhaust it, and recall it."
+  },
+  {
+   "name": "Arise!",
+   "effective": "2026-01-14",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
+   "find": "Then ready two of them.",
+   "replace": "Then do this: Ready up to two of them."
+  },
+  {
+   "name": "Blood Rush",
+   "effective": "2026-01-14",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
+   "find": "Give a unit [Assault 2]. (+2",
+   "replace": "Give a unit [Assault 2] this turn. (+2"
+  },
+  {
+   "name": "Deathgrip",
+   "effective": "2026-01-14",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
+   "find": "Kill a friendly unit to give +:rb_might: equal to its Might to another friendly unit this turn. Draw 1.",
+   "replace": "Kill a friendly unit. If you do, give +:rb_might: equal to its Might to another friendly unit this turn.\nDraw 1."
+  },
+  {
+   "name": "Edge of Night",
+   "effective": "2026-01-14",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
+   "find": "attach it to a unit you control here.",
+   "replace": "attach it to a unit you control (here)."
+  },
+  {
+   "name": "Janna, Savior",
+   "effective": "2026-01-14",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
+   "find": "then move an enemy unit from here to its base.",
+   "replace": "then move up to one enemy unit from here to its base."
+  },
+  {
+   "name": "Jax, Unmatched",
+   "effective": "2026-01-14",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
+   "find": "Each Equipment in your hand has [Quick-Draw]. (It gains [Reaction].",
+   "replace": "Your Equipment everywhere have [Quick-Draw]. (Each gains [Reaction]."
+  },
+  {
+   "name": "Kato the Arm",
+   "effective": "2026-01-14",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
+   "find": "give a friendly unit my keywords",
+   "replace": "give another friendly unit my keywords"
+  },
+  {
+   "name": "Rek'Sai, Swarm Queen",
+   "effective": "2026-01-14",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
+   "find": "You may play one. Then recycle the rest. If the played card is a unit, you may play it here.",
+   "replace": "You may banish one, then play it. If it is a unit, you may play it here. Recycle the rest."
+  },
+  {
+   "name": "Rell, Magnetic",
+   "effective": "2026-01-14",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
+   "find": "ignoring its cost, and attach it to me.",
+   "replace": "ignoring its cost. If you do, then do this: Attach it to me."
+  },
+  {
+   "name": "Tianna Crownguard",
+   "effective": "2026-01-14",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
+   "find": "opponents can't score points.",
+   "replace": "opponents can't gain points."
+  },
+  {
+   "name": "Void Burrower",
+   "effective": "2026-01-14",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
+   "find": "You may play one. Then recycle the rest.",
+   "replace": "You may banish one, then play it. Recycle the rest."
+  },
+  {
+   "name": "Void Rush",
+   "effective": "2026-01-14",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
+   "find": "You may play one of them, reducing its cost by :rb_energy_2:. Draw any you did not play this way.",
+   "replace": "You may banish one, then play it, reducing its cost by :rb_energy_2:. Draw any you didn't banish."
+  },
+  {
+   "name": "Yone, Blademaster",
+   "effective": "2026-01-14",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
+   "find": "When I conquer an open battlefield,",
+   "replace": "When I conquer a battlefield that was uncontrolled,"
+  },
+  {
+   "name": "Bone Skewer",
+   "effective": "2026-04-03",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/unleashed-errata-updates",
+   "find": "When they do, [Stun] it.",
+   "replace": "If they do, then do this: [Stun] it."
+  },
+  {
+   "name": "Death from Below",
+   "effective": "2026-04-03",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/unleashed-errata-updates",
+   "find": "or less, you may play this from your trash for :rb_rune_rainbow:.",
+   "replace": "or less, do this: You may play this from your trash for :rb_rune_rainbow:."
+  },
+  {
+   "name": "Deceiver",
+   "effective": "2026-04-03",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/unleashed-errata-updates",
+   "find": "Reflection unit token there. It becomes a copy of another unit there.",
+   "replace": "Reflection unit token there. Then do this: It becomes a copy of another unit there."
+  },
+  {
+   "name": "Guards!",
+   "effective": "2026-04-03",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/unleashed-errata-updates",
+   "find": "Sand Soldier unit token. You may pay :rb_rune_order: to ready it.",
+   "replace": "Sand Soldier unit token. Then do this: You may pay :rb_rune_order: to ready it."
+  },
+  {
+   "name": "Keeper of Masks",
+   "effective": "2026-04-03",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/unleashed-errata-updates",
+   "find": "play two Reflection unit tokens here. They become copies of me.",
+   "replace": "play two Reflection unit tokens here. Then do this: They become copies of me."
+  },
+  {
+   "name": "Mirror Image",
+   "effective": "2026-04-03",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/unleashed-errata-updates",
+   "find": "to your base. It becomes a copy of that unit.",
+   "replace": "to your base. Then do this: It becomes a copy of that unit."
+  },
+  {
+   "name": "Relentless Pursuit",
+   "effective": "2026-04-03",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/unleashed-errata-updates",
+   "find": "You may attach an Equipment with the same controller to it.",
+   "replace": "You may attach up to one Equipment with the same controller to it."
+  },
+  {
+   "name": "Rengar, Trophy Hunter",
+   "effective": "2026-04-03",
+   "source": "https://playriftbound.com/en-us/news/rules-and-releases/unleashed-errata-updates",
+   "find": "I can be played to a battlefield where there are enemy units",
+   "replace": "I can [Ambush] to a battlefield where there are enemy units"
   }
  ]
 }

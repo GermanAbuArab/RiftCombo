@@ -121,6 +121,8 @@ function applyErrata(cards, errata) {
     for (const c of targets) {
       const field = e.field ?? "text";
       const cur = c[field] ?? "";
+      // A reprint may already carry the errata'd text (Sona VEN-SP2, Void Burrower SFD-243): skip it.
+      if (!cur.includes(e.find) && cur.includes(e.replace)) continue;
       const n = cur.split(e.find).length - 1;
       if (n !== 1) {
         throw new Error(

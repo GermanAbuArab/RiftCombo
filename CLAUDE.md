@@ -14,7 +14,7 @@
 
 ## Data
 - Card text comes ONLY from Riot's gallery content API via `scripts/build-cards.mjs`; never from RiftScribe or other mirrors (they drop Equipment `effect` text and have no ban data).
-- Errata is a dated overlay in `data/errata.json`; the build must fail if a find-string stops matching exactly once.
+- Errata is a dated overlay in `data/errata.json`; the build must fail if a find-string stops matching exactly once per printing. The one tolerated exception is a reprint that already carries the new text (Sona VEN-SP2, Void Burrower SFD-243): the build skips it. Riot's gallery API lags its errata pages by months, so after each Riot errata post, transcribe it into the overlay (audit of all four pages done 2026-09-03, #17).
 - Legality is hand-transcribed from Riot's Rules Hub into `data/legality.src.json` (names) and resolved to codes at build time; it is format-scoped and entity-typed, never a boolean on the card.
 - Match cards on base codes (`OGN-212`), never on names. Names are only for parsing pasted decklists.
 

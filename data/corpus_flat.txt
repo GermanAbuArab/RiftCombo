@@ -1,4 +1,4 @@
-# Riftbound card corpus — 935 distinct cards (1189 printings incl. alt-art), Riot gallery API data as of 2026-09-02T14:07:42.584743424Z, errata applied.
+# Riftbound card corpus — 935 distinct cards (1189 printings incl. alt-art), Riot gallery API data as of 2026-09-03T21:16:05.097292204Z, errata applied.
 # Columns: code | name | type | domains | cost | text   (cost: E=Energy, P=Power, M=Might, M+=Equipment Might bonus)
 # Icons: :rb_energy_N: = N Energy; :rb_rune_<domain>: = 1 Power of that domain; :rb_rune_rainbow: = 1 Power of any domain; :rb_exhaust: = exhaust; :rb_might: = Might.
 # Equipment: the [Effect] clause is the text granted to the unit it is attached to ("I" = that unit).
@@ -8,7 +8,7 @@ OGN-001 | Blazing Scorcher | Unit | Fury | E5 M5 | [Accelerate] (You may pay :rb
 OGN-002 | Brazen Buccaneer | Unit | Fury | E6 M5 | As you play me, you may discard 1 as an additional cost. If you do, reduce my cost by :rb_energy_2:. [Tags: Pirate, Bilgewater]
 OGN-003 | Chemtech Enforcer | Unit | Fury | E2 M2 | [Assault 2] (+2 :rb_might: while I'm an attacker.) When you play me, discard 1. [Tags: Zaun]
 OGN-004 | Cleave | Spell | Fury | E1 | [Action] (Play on your turn or in showdowns.) Give a unit [Assault 3] this turn. (+3 :rb_might: while it's an attacker.)
-OGN-005 | Disintegrate | Spell | Fury | E4 | [Action] (Play on your turn or in showdowns.) Deal 3 to a unit at a battlefield. If this kills it, draw 1.
+OGN-005 | Disintegrate | Spell | Fury | E4 | [Action] (Play on your turn or in showdowns.) Deal 3 to a unit at a battlefield. If this kills it, do this: draw 1.
 OGN-006 | Flame Chompers | Unit | Fury | E3 M3 | When you discard me, you may pay :rb_rune_fury: to play me. [Tags: Zaun]
 OGN-008 | Get Excited! | Spell | Fury | E2 P1 | [Action] (Play on your turn or in showdowns.) Discard 1. Deal its Energy cost as damage to a unit at a battlefield. (Ignore its Power cost.)
 OGN-009 | Hextech Ray | Spell | Fury | E1 P1 | [Action] (Play on your turn or in showdowns.) Deal 3 to a unit at a battlefield.
@@ -25,7 +25,7 @@ OGN-019 | Raging Soul | Unit | Fury | E4 M4 | If you've discarded a card this tu
 OGN-020 | Scrapyard Champion | Unit | Fury | E5 P1 M5 | [Legion] — When you play me, discard 2, then draw 2. (Get the effect if you've played another card this turn.) [Tags: Mech, Bandle City]
 OGN-021 | Sun Disc | Gear | Fury | E2 P1 | :rb_exhaust:: [Legion] — The next unit you play this turn enters ready. (Get the effect if you've played another card this turn.)
 OGN-022 | Thermo Beam | Spell | Fury | E5 P2 | [Action] (Play on your turn or in showdowns.) Kill all gear.
-OGN-023 | Unlicensed Armory | Gear | Fury | E2 | Discard 1, :rb_exhaust:: Choose a friendly unit. The next time it dies this turn, you may pay :rb_rune_fury: to recall it exhausted instead. (Send it to base. This isn't a move.)
+OGN-023 | Unlicensed Armory | Gear | Fury | E2 | Discard 1, :rb_exhaust:: Choose a friendly unit. The next time it would die this turn, you may pay :rb_rune_fury: to heal it, exhaust it, and recall it instead. (Send it to base. This isn't a move.)
 OGN-024 | Void Seeker | Spell | Fury | E3 P1 | [Action] (Play on your turn or in showdowns.) Deal 4 to a unit at a battlefield. Draw 1.
 OGN-025 | Blind Fury | Spell | Fury | E4 P2 | [Action] (Play on your turn or in showdowns.) Each opponent reveals the top card of their Main Deck. Choose one and banish it, then play it, ignoring its cost. Then recycle the rest.
 OGN-026 | Brynhir Thundersong | Unit | Fury | E6 M5 | When you play me, opponents can't play cards this turn. [Tags: Freljord]
@@ -45,7 +45,7 @@ OGN-039 | Kai'Sa, Survivor | Unit | Fury | E4 M4 | [Accelerate] (You may pay :rb
 OGN-040 | Seal of Rage | Gear | Fury | E0 P1 | :rb_exhaust:: [Reaction] — [Add] :rb_rune_fury:. (Abilities that add resources can't be reacted to.)
 OGN-041 | Volibear, Furious | Unit | Fury | E10 P2 M9 | [Deflect 2] (Opponents must pay :rb_rune_rainbow::rb_rune_rainbow: to choose me with a spell or ability.) When I attack, deal 5 damage split among any number of enemy units here. [Tags: Volibear, Freljord]
 OGN-043 | Charm | Spell | Calm | E1 P1 | Move an enemy unit.
-OGN-044 | Clockwork Keeper | Unit | Calm | E2 M2 | As you play me, you may pay :rb_rune_calm: as an additional cost. If you do, draw 1. [Tags: Shurima]
+OGN-044 | Clockwork Keeper | Unit | Calm | E2 M2 | You may pay :rb_rune_calm: as an additional cost to play me. When you play me, if you paid the additional cost, draw 1. [Tags: Shurima]
 OGN-045 | Defy | Spell | Calm | E1 P1 | [Reaction] (Play any time, even before spells and abilities resolve.) Counter a spell that costs no more than :rb_energy_4: and no more than :rb_rune_rainbow:.
 OGN-046 | En Garde | Spell | Calm | E1 | [Reaction] (Play any time, even before spells and abilities resolve.) Give a friendly unit +1 :rb_might: this turn, then an additional +1 :rb_might: this turn if it is the only unit you control there.
 OGN-047 | Find Your Center | Spell | Calm | E3 | [Action] (Play on your turn or in showdowns.) If an opponent's score is within 3 points of the Victory Score, this costs :rb_energy_2: less. Draw 1 and channel 1 rune exhausted.
@@ -74,10 +74,11 @@ OGN-069 | Last Stand | Spell | Calm | E3 P1 | [Action] (Play on your turn or in 
 OGN-070 | Mageseeker Warden | Unit | Calm | E6 P1 M5 | While I'm at a battlefield, opponents can only play units to their base. While I'm at a battlefield, spells and abilities can't ready enemy units and gear. [Tags: Demacia]
 OGN-071 | Party Favors | Spell | Calm | E3 | Each other player chooses Cards or Runes. For each player that chooses Cards, you and that player each draw 1. For each player that chooses Runes, you and that player each channel 1 rune exhausted.
 OGN-072 | Solari Shrine | Gear | Calm | E3 | When you kill a stunned enemy unit, you may exhaust this to draw 1.
+OGN-073 | Sona, Harmonious | Unit | Calm | E4 P1 M4 | At the end of your turn, if I'm at a battlefield, ready up to 4 friendly runes. [Tags: Sona, Demacia]
 OGN-074 | Taric, Protector | Unit | Calm | E4 P1 M4 | [Shield] (+1 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.) Other friendly units here have [Shield]. [Tags: Taric, Mount Targon]
 OGN-075 | Tasty Faefolk | Unit | Calm | E7 M6 | [Accelerate] (You may pay :rb_energy_1::rb_rune_calm: as an additional cost to have me enter ready.) [Deathknell] — Channel 2 runes exhausted and draw 1. (When I die, get the effect.) [Tags: Fae, Bandle City]
 OGN-076 | Yasuo, Remorseful | Unit | Calm | E6 P2 M6 | When I attack, deal damage equal to my Might to an enemy unit here. [Tags: Yasuo, Ionia]
-OGN-077 | Zhonya's Hourglass | Gear | Calm | E2 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) The next time a friendly unit would die, kill this instead. Recall that unit exhausted. (Send it to base. This isn't a move.)
+OGN-077 | Zhonya's Hourglass | Gear | Calm | E2 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) If a friendly unit would die, kill this instead. Heal that unit, exhaust it, and recall it. (Send it to base. This isn't a move.)
 OGN-078 | Lee Sin, Ascetic | Unit | Calm | E5 P1 M5 | [Shield] (+1 :rb_might: while I'm a defender.) :rb_exhaust:: Buff me. (I get a +1 :rb_might: buff.) I can have any number of buffs. [Tags: Lee Sin, Ionia]
 OGN-079 | Leona, Zealot | Unit | Calm | E6 P1 M6 | If an opponent's score is within 3 points of the Victory Score, I enter ready. Stunned enemy units here have -8 :rb_might:, to a minimum of 1 :rb_might:. [Tags: Leona, Mount Targon]
 OGN-080 | Mystic Reversal | Spell | Calm | E4 P3 | [Reaction] (Play any time, even before spells and abilities resolve.) Gain control of a spell. You may make new choices for it.
@@ -101,12 +102,12 @@ OGN-098 | Energy Conduit | Gear | Mind | E3 | :rb_exhaust:: [Reaction] — [Add]
 OGN-099 | Garbage Grabber | Gear | Mind | E2 | Recycle 3 from your trash, :rb_energy_1:, :rb_exhaust:: Draw 1.
 OGN-100 | Gemcraft Seer | Unit | Mind | E3 P1 M3 | [Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.) Other friendly units have [Vision]. [Tags: Mount Targon]
 OGN-101 | Mushroom Pouch | Gear | Mind | E2 | At the start of your Beginning Phase, if you control a facedown card at a battlefield, draw 1.
-OGN-102 | Portal Rescue | Spell | Mind | E3 P1 | [Action] (Play on your turn or in showdowns.) Banish a friendly unit, then play it to base, ignoring its cost.
+OGN-102 | Portal Rescue | Spell | Mind | E3 P1 | [Action] (Play on your turn or in showdowns.) Banish a friendly unit, then its owner plays it to their base, ignoring its cost.
 OGN-103 | Ravenbloom Student | Unit | Mind | E2 M2 | When you play a spell, give me +1 :rb_might: this turn. [Tags: Noxus]
 OGN-104 | Retreat | Spell | Mind | E1 | [Reaction] (Play any time, even before spells and abilities resolve.) Return a friendly unit to its owner's hand. Its owner channels 1 rune exhausted.
 OGN-105 | Singularity | Spell | Mind | E6 P2 | Deal 6 to each of up to two units.
 OGN-106 | Sprite Mother | Unit | Mind | E4 P1 M3 | When you play me, play a ready 3 :rb_might: Sprite unit token with [Temporary] here. (Kill it at the start of its controller's Beginning Phase, before scoring.) [Tags: Fae]
-OGN-107 | Ava Achiever | Unit | Mind | E5 M4 | When I attack, you may pay :rb_rune_mind: to play a card with [Hidden] from your hand here, ignoring its cost. [Tags: Yordle]
+OGN-107 | Ava Achiever | Unit | Mind | E5 M4 | When I attack, you may pay :rb_rune_mind: to play a card with [Hidden] from your hand, ignoring its cost. If it's a unit, play it here. [Tags: Yordle]
 OGN-108 | Convergent Mutation | Spell | Mind | E2 P1 | [Reaction] (Play any time, even before spells and abilities resolve.) Choose a friendly unit. This turn, increase its Might to the Might of another friendly unit.
 OGN-109 | Dr. Mundo, Expert | Unit | Mind | E8 P2 M6 | My Might is increased by the number of cards in your trash. At the start of your Beginning Phase, recycle 3 from your trash. [Tags: Dr. Mundo, Zaun]
 OGN-110 | Ekko, Recurrent | Unit | Mind | E5 P1 M5 | [Accelerate] (You may pay :rb_energy_1::rb_rune_mind: as an additional cost to have me enter ready.) [Deathknell] — Recycle me to ready your runes. (When I die, get the effect.) [Tags: Ekko, Zaun]
@@ -114,13 +115,13 @@ OGN-111 | Heimerdinger, Inventor | Unit | Mind | E3 P1 M3 | I have all :rb_exhau
 OGN-112 | Kai'Sa, Evolutionary | Unit | Mind | E6 P1 M6 | [Ganking] (I can move from battlefield to battlefield.) When I conquer, you may play a spell from your trash with Energy cost less than your points without paying its Energy cost. Then recycle it. (You must still pay its Power cost.) [Tags: Kai'Sa, The Void]
 OGN-113 | Malzahar, Fanatic | Unit | Mind | E4 M3 | Kill a friendly unit or gear, :rb_exhaust:: [Action] — [Add] :rb_rune_rainbow::rb_rune_rainbow:. (Use on your turn or in showdowns. Abilities that add resources can't be reacted to.) [Tags: Malzahar, The Void]
 OGN-114 | Progress Day | Spell | Mind | E6 P1 | Draw 4.
-OGN-115 | Promising Future | Spell | Mind | E5 P1 | Each player looks at the top 5 cards of their Main Deck, chooses one, then recycles the rest. Starting with the next player, each player plays those cards, ignoring Energy costs. (They must still pay Power costs.)
+OGN-115 | Promising Future | Spell | Mind | E5 P1 | Each player looks at the top 5 cards of their Main Deck, banishes one of them, then recycles the rest. Starting with the next player, each player plays those cards, ignoring Energy costs. (They must still pay Power costs.)
 OGN-116 | Thousand-Tailed Watcher | Unit | Mind | E7 P1 M7 | [Accelerate] (You may pay :rb_energy_1::rb_rune_mind: as an additional cost to have me enter ready.) When you play me, give enemy units -3 :rb_might: this turn, to a minimum of 1 :rb_might:. [Tags: Ionia]
 OGN-117 | Viktor, Innovator | Unit | Mind | E4 P1 M3 | When you play a card on an opponent's turn, play a 1 :rb_might: Recruit unit token in your base. [Tags: Viktor, Zaun]
 OGN-118 | Wraith of Echoes | Unit | Mind | E6 P1 M5 | The first time a friendly unit dies each turn, draw 1. [Tags: Spirit, Shadow Isles]
 OGN-119 | Ahri, Inquisitive | Unit | Mind | E3 P1 M3 | When I attack or defend, give an enemy unit here -2 :rb_might: this turn, to a minimum of 1 :rb_might:. [Tags: Ahri, Ionia]
 OGN-120 | Seal of Insight | Gear | Mind | E0 P1 | :rb_exhaust:: [Reaction] — [Add] :rb_rune_mind:. (Abilities that add resources can't be reacted to.)
-OGN-121 | Teemo, Strategist | Unit | Mind | E2 P1 M2 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) When I defend or I'm played from [Hidden], reveal the top 5 cards of your Main Deck. Deal 1 to an enemy unit here for each card with [Hidden], then recycle them. [Tags: Yordle, Teemo, Bandle City]
+OGN-121 | Teemo, Strategist | Unit | Mind | E2 P1 M2 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) When I defend, choose an enemy unit here and reveal the top 5 cards of your Main Deck. Deal 1 to that unit for each card with [Hidden] revealed this way, then recycle the revealed cards. [Tags: Yordle, Teemo, Bandle City]
 OGN-122 | Time Warp | Spell | Mind | E10 P4 | Take a turn after this one. Banish this.
 OGN-123 | Unchecked Power | Spell | Mind | E7 P2 | Exhaust all friendly units, then deal 12 to ALL units at battlefields.
 OGN-124 | Arena Bar | Gear | Body | E3 | :rb_exhaust:: Buff an exhausted friendly unit. (If it doesn't have a buff, it gets a +1 :rb_might: buff.)
@@ -158,7 +159,7 @@ OGN-156 | Sabotage | Spell | Body | E1 P1 | Choose an opponent. They reveal thei
 OGN-157 | Udyr, Wildman | Unit | Body | E6 P1 M6 | Spend my buff: Choose one you've not chosen this turn —Deal 2 to a unit at a battlefield.Stun a unit at a battlefield.Ready me.Give me [Ganking] this turn. [Tags: Udyr, Freljord]
 OGN-158 | Volibear, Imposing | Unit | Body | E12 P2 M10 | [Shield 3] (+3 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.) When an opponent moves to a battlefield other than mine, draw 1. (Bases are not battlefield.) [Tags: Volibear, Freljord]
 OGN-159 | Warwick, Hunter | Unit | Body | E6 P1 M5 | I enter ready. When I attack, kill all damaged enemy units here. [Tags: Dog, Warwick, Zaun]
-OGN-160 | Dazzling Aurora | Gear | Body | E9 P2 | At the end of your turn, reveal cards from the top of your Main Deck until you reveal a unit. Play it, ignoring its cost, and recycle the rest.
+OGN-160 | Dazzling Aurora | Gear | Body | E9 P2 | At the end of your turn, reveal cards from the top of your Main Deck until you reveal a unit and banish it. Play it, ignoring its cost, and recycle the rest.
 OGN-161 | Deadbloom Predator | Unit | Body | E8 P2 M8 | [Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) You may play me to an occupied enemy battlefield. [Tags: Shadow Isles]
 OGN-162 | Miss Fortune, Captain | Unit | Body | E5 P1 M5 | [Accelerate] (You may pay :rb_energy_1::rb_rune_body: as an additional cost to have me enter ready.) [Ganking] (I can move from battlefield to battlefield.) The first time I move each turn, you may ready something else that's exhausted. [Tags: Pirate, Miss Fortune, Bilgewater]
 OGN-163 | Seal of Strength | Gear | Body | E0 P1 | :rb_exhaust:: [Reaction] — [Add] :rb_rune_body:. (Abilities that add resources can't be reacted to.)
@@ -178,10 +179,10 @@ OGN-177 | Stealthy Pursuer | Unit | Chaos | E4 P1 M4 | [BANNED constructed:banne
 OGN-178 | Undercover Agent | Unit | Chaos | E5 P1 M5 | [Deathknell] — Discard 2, then draw 2. (When I die, get the effect.)
 OGN-179 | Acceptable Losses | Spell | Chaos | E1 | [Action] (Play on your turn or in showdowns.) Each player kills one of their gear.
 OGN-180 | Fading Memories | Spell | Chaos | E4 P1 | Give a unit at a battlefield or a gear [Temporary]. (Kill it at the start of its controller's Beginning Phase, before scoring.)
-OGN-181 | Pack of Wonders | Gear | Chaos | E2 | :rb_exhaust:: Return another friendly gear, unit, or [Hidden] card to its owner's hand.
+OGN-181 | Pack of Wonders | Gear | Chaos | E2 | :rb_exhaust:: Return another friendly gear, unit, or facedown card to its owner's hand.
 OGN-182 | Scrapheap | Gear | Chaos | E2 | [BANNED constructed:banned, 2v2:banned] When this is played, discarded, or killed, draw 1.
 OGN-183 | Stacked Deck | Spell | Chaos | E1 | [Action] (Play on your turn or in showdowns.) Look at the top 3 cards of your Main Deck. Put 1 into your hand and recycle the rest.
-OGN-184 | The Syren | Gear | Chaos | E2 | :rb_energy_1:, :rb_exhaust:: Move a friendly unit at a battlefield to your base.
+OGN-184 | The Syren | Gear | Chaos | E2 | :rb_energy_1:, :rb_exhaust:: Move a friendly unit at a battlefield to its base.
 OGN-185 | Traveling Merchant | Unit | Chaos | E2 M2 | When I move, discard 1, then draw 1. [Tags: Bilgewater]
 OGN-186 | Treasure Trove | Gear | Chaos | E2 | When this leaves the board, draw 1 and channel 1 rune exhausted. :rb_rune_chaos:, :rb_exhaust:: Kill this.
 OGN-187 | Whirlwind | Spell | Chaos | E3 P1 | Starting with the next player, each player may return a unit to its owner's hand.
@@ -191,12 +192,12 @@ OGN-190 | Kog'Maw, Caustic | Unit | Chaos | E3 P1 M1 | [Deathknell] — Deal 4 t
 OGN-191 | Maddened Marauder | Unit | Chaos | E5 M4 | [Tank] (I must be assigned combat damage first.) When you play me, move a unit from a battlefield to its base. [Tags: Pirate, Bilgewater]
 OGN-192 | Mindsplitter | Unit | Chaos | E7 P2 M7 | When you play me, choose an opponent. They reveal their hand. Choose a card from it, and they discard that card. [Tags: Dragon, Mount Targon]
 OGN-193 | Miss Fortune, Buccaneer | Unit | Chaos | E4 P1 M4 | You may play me to an open battlefield. Friendly units may be played to open battlefields. [Tags: Pirate, Miss Fortune, Bilgewater]
-OGN-194 | Nocturne, Horrifying | Unit | Chaos | E4 P1 M4 | [Ganking] (I can move from battlefield to battlefield.) When you look at cards from the top of your deck (and don't draw them) and see me, you may play me for :rb_rune_rainbow:. [Tags: Nocturne]
+OGN-194 | Nocturne, Horrifying | Unit | Chaos | E4 P1 M4 | [Ganking] (I can move from battlefield to battlefield.) As you look at or reveal me from the top of your deck, you may banish me. If you do, you may play me for :rb_rune_rainbow:. [Tags: Nocturne]
 OGN-195 | Rhasa the Sunderer | Unit | Chaos | E10 P1 M6 | I cost :rb_energy_1: less for each card in your trash. [Tags: Spirit, Shadow Isles]
 OGN-196 | Soulgorger | Unit | Chaos | E8 P2 M5 | When you play me, you may play a unit from your trash, ignoring its Energy cost. (You must still pay its Power cost.) [Tags: Spirit, Shadow Isles]
 OGN-197 | Teemo, Scout | Unit | Chaos | E2 M1 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) When you play me, give me +3 :rb_might: this turn. [Tags: Yordle, Teemo, Bandle City]
 OGN-198 | The Harrowing | Spell | Chaos | E6 P2 | Play a unit from your trash, ignoring its Energy cost. (You must still pay its Power cost.)
-OGN-199 | Tideturner | Unit | Chaos | E2 M2 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) When you play me, you may choose a friendly unit. Move me to its location and it to my original location. [Tags: Bilgewater]
+OGN-199 | Tideturner | Unit | Chaos | E2 M2 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) When you play me, you may choose a unit you control at another location. Move me to its location and it to my original location. [Tags: Bilgewater]
 OGN-200 | Twisted Fate, Gambler | Unit | Chaos | E4 M4 | When I attack, reveal the top rune of your rune deck, then recycle it. Do one of the following based on its domain::rb_rune_fury: — Deal 2 to an enemy unit here and 1 to all other enemy units here.:rb_rune_mind: — Draw 1.:rb_rune_order: — Stun an enemy unit. [Tags: Twisted Fate, Bilgewater]
 OGN-201 | Invert Timelines | Spell | Chaos | E3 P1 | Each player discards their hand, then draws 4.
 OGN-202 | Jinx, Rebel | Unit | Chaos | E5 P1 M5 | When you discard one or more cards, ready me and give me +1 :rb_might: this turn. [Tags: Jinx, Zaun]
@@ -220,7 +221,7 @@ OGN-220 | Facebreaker | Spell | Order | E2 | [Hidden] (Hide now for :rb_rune_rai
 OGN-221 | Imperial Decree | Spell | Order | E5 P2 | [Action] (Play on your turn or in showdowns.) When any unit takes damage this turn, kill it.
 OGN-222 | Noxian Drummer | Unit | Order | E3 M3 | When I move to a battlefield, play a 1 :rb_might: Recruit unit token here. (It is also at the battlefield.) [Tags: Trifarian, Noxus]
 OGN-223 | Peak Guardian | Unit | Order | E6 P1 M5 | When you play me, buff me. Then, if I am at a battlefield, buff all other friendly units there. (To buff a unit, give it a +1 :rb_might: buff if it doesn't already have one.) [Tags: Mount Targon]
-OGN-224 | Salvage | Spell | Order | E2 P1 | [Action] (Play on your turn or in showdowns.) You may kill a gear. Draw 1.
+OGN-224 | Salvage | Spell | Order | E2 P1 | [Action] (Play on your turn or in showdowns.) You may kill up to one gear. Draw 1.
 OGN-225 | Solari Chief | Unit | Order | E5 P1 M4 | When you play me, choose an enemy unit. If it is stunned, kill it. Otherwise, stun it. (It doesn't deal combat damage this turn.) [Tags: Mount Targon]
 OGN-226 | Spectral Matron | Unit | Order | E4 P2 M4 | When you play me, you may play a unit costing no more than :rb_energy_3: and no more than :rb_rune_rainbow: from your trash, ignoring its cost. [Tags: Spirit, Shadow Isles]
 OGN-227 | Symbol of the Solari | Gear | Order | E1 | If a combat where you are the attacker ends in a tie, recall ALL units instead. (Send them to base. This isn't a move. Ties are calculated after combat damage is dealt.)
@@ -231,7 +232,7 @@ OGN-231 | Commander Ledros | Unit | Order | E6 P4 M8 | As you play me, you may k
 OGN-232 | Fiora, Victorious | Unit | Order | E4 M4 | While I'm [Mighty], I have [Deflect], [Ganking], and [Shield]. (I'm Mighty while I have 5+ :rb_might:.) [Tags: Fiora, Demacia]
 OGN-233 | Grand Strategem | Spell | Order | E6 P3 | [Action] (Play on your turn or in showdowns.) Give friendly units +5 :rb_might: this turn.
 OGN-234 | Harnessed Dragon | Unit | Order | E8 P2 M6 | When you play me, kill an enemy unit. [Tags: Dragon, Demacia]
-OGN-235 | Karma, Channeler | Unit | Order | E6 P1 M6 | [Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.) When you recycle one or more cards, buff a friendly unit. (If it doesn't have a buff, it gets a +1 :rb_might: buff. Runes aren't cards.) [Tags: Vi, Ionia]
+OGN-235 | Karma, Channeler | Unit | Order | E6 P1 M6 | [Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.) When you recycle one or more cards to your Main Deck, buff a friendly unit. (If it doesn't have a buff, it gets a +1 :rb_might: buff. Runes aren't cards.) [Tags: Vi, Ionia]
 OGN-236 | Karthus, Eternal | Unit | Order | E3 P1 M3 | Your [Deathknell] effects trigger an additional time. [Tags: Spirit, Karthus, Shadow Isles]
 OGN-237 | King's Edict | Spell | Order | E6 P2 | Starting with the next player, each other player chooses a unit you don't control that hasn't been chosen for this spell. Kill those units.
 OGN-238 | Leona, Determined | Unit | Order | E4 P1 M4 | [Shield] (+1 :rb_might: while I'm a defender.) When I attack, stun an enemy unit here. (It doesn't deal combat damage this turn.) [Tags: Leona, Mount Targon]
@@ -254,7 +255,7 @@ OGN-254 | Noxian Guillotine | Spell | Fury/Order | E4 P1 | [Action] (Play on you
 OGN-255 | Nine-Tailed Fox | Legend | Calm/Mind | - | When an enemy unit attacks a battlefield you control, give it -1 :rb_might: this turn, to a minimum of 1 :rb_might:. [Tags: Ahri]
 OGN-256 | Fox-Fire | Spell | Calm/Mind | E3 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) [Action] (Play on your turn or in showdowns.) Kill any number of units at a battlefield with total Might 4 or less. [Tags: Ahri]
 OGN-257 | Blind Monk | Legend | Calm/Body | - | :rb_energy_1:, :rb_exhaust:: Buff a friendly unit. (If it doesn't have a buff, it gets a +1 :rb_might: buff.) [Tags: Lee Sin]
-OGN-258 | Dragon's Rage | Spell | Calm/Body | E4 P1 | Move an enemy unit. Then choose another enemy unit at its destination. They deal damage equal to their Mights to each other. [Tags: Lee Sin]
+OGN-258 | Dragon's Rage | Spell | Calm/Body | E4 P1 | Move an enemy unit. Then do this: Choose another enemy unit at its destination. They deal damage equal to their Mights to each other. [Tags: Lee Sin]
 OGN-259 | Unforgiven | Legend | Calm/Chaos | - | :rb_energy_2:, :rb_exhaust:: Move a friendly unit to or from its base. [Tags: Yasuo]
 OGN-260 | Last Breath | Spell | Calm/Chaos | E3 P2 | [Action] (Play on your turn or in showdowns.) Ready a friendly unit. It deals damage equal to its Might to an enemy unit at a battlefield. [Tags: Yasuo]
 OGN-261 | Radiant Dawn | Legend | Calm/Order | - | When you stun one or more enemy units, buff a friendly unit. (If it doesn't have a buff, it gets a +1 :rb_might: buff.) [Tags: Leona]
@@ -265,7 +266,7 @@ OGN-265 | Herald of the Arcane | Legend | Mind/Order | - | :rb_energy_1:, :rb_ex
 OGN-266 | Siphon Power | Spell | Mind/Order | E2 P1 | [Reaction] (Play any time, even before spells and abilities resolve.) Choose a battlefield. Give friendly units there +1 :rb_might: this turn and enemy units there -1 :rb_might: this turn, to a minimum of 1 :rb_might:. [Tags: Viktor]
 OGN-267 | Bounty Hunter | Legend | Body/Chaos | - | :rb_exhaust:: Give a unit [Ganking] this turn. (It can move from battlefield to battlefield.) [Tags: Miss Fortune]
 OGN-268 | Bullet Time | Spell | Body/Chaos | E1 | [Action] (Play on your turn or in showdowns.) Pay any amount of :rb_rune_rainbow: to deal that much damage to all enemy units at a battlefield. [Tags: Miss Fortune]
-OGN-269 | The Boss | Legend | Body/Order | - | When a buffed unit you control would die, you may pay :rb_rune_rainbow: and exhaust me to spend its buff and recall it exhausted instead. (Send it to base. This isn't a move.) When you conquer, ready me. [Tags: Sett]
+OGN-269 | The Boss | Legend | Body/Order | - | If a buffed unit you control would die, you may pay :rb_rune_rainbow:, exhaust me, and spend its buff to heal it, exhaust it, and recall it instead. (Send it to base. This isn't a move.) When you conquer, ready me. [Tags: Sett]
 OGN-270 | Showstopper | Spell | Body/Order | E1 P1 | Buff a friendly unit in your base, then move it to a battlefield. (If it doesn't have a buff, it gets a +1 :rb_might: buff.) [Tags: Sett]
 OGN-271 | Recruit (DE) | Unit | Colorless | M1 | (no text) [Tags: Recruit]
 OGN-272 | Recruit (NX) | Unit | Colorless | M1 | (no text) [Tags: Recruit]
@@ -283,16 +284,16 @@ OGN-283 | Navori Fighting Pit | Battlefield | Colorless | - | When you hold here
 OGN-284 | Obelisk of Power | Battlefield | Colorless | - | [BANNED constructed:banned, 2v2:banned] At the start of each player's first Beginning Phase, that player channels 1 rune.
 OGN-285 | Reaver's Row | Battlefield | Colorless | - | [BANNED constructed:banned, 2v2:banned] When you defend here, you may move a friendly unit here to base.
 OGN-286 | Reckoner's Arena | Battlefield | Colorless | - | When you hold here, activate the conquer effects of units here.
-OGN-287 | Sigil of the Storm | Battlefield | Colorless | - | When you conquer here, recycle one of your runes.
+OGN-287 | Sigil of the Storm | Battlefield | Colorless | - | When you conquer here, you must recycle one of your runes. (This doesn't choose anything.)
 OGN-288 | Startipped Peak | Battlefield | Colorless | - | When you hold here, you may channel 1 rune exhausted.
-OGN-289 | Targon's Peak | Battlefield | Colorless | - | When you conquer here, ready 2 runes at the end of this turn.
+OGN-289 | Targon's Peak | Battlefield | Colorless | - | When you conquer here, ready up to 2 runes at the end of this turn.
 OGN-290 | The Arena's Greatest | Battlefield | Colorless | - | [BANNED constructed:banned, 2v2:banned] At the start of each player's first Beginning Phase, that player gains 1 point.
 OGN-291 | The Candlelit Sanctum | Battlefield | Colorless | - | When you conquer here, look at the top two cards of your Main Deck. You may recycle one or both of them. Put those you don't back in any order.
 OGN-292 | The Dreaming Tree | Battlefield | Colorless | - | [BANNED constructed:banned, 2v2:banned] When a player chooses a friendly unit here with a spell for the first time each turn, they draw 1.
 OGN-293 | The Grand Plaza | Battlefield | Colorless | - | When you hold here, if you have 7+ units here, you win the game.
 OGN-294 | Trifarian War Camp | Battlefield | Colorless | - | Units here have +1 :rb_might:. (This includes attackers.)
 OGN-295 | Vilemaw's Lair | Battlefield | Colorless | - | Units can't move from here to base.
-OGN-296 | Void Gate | Battlefield | Colorless | - | Spells and abilities affecting units here each deal 1 Bonus Damage. (Each instance of damage the spell deals is increased by 1.)
+OGN-296 | Void Gate | Battlefield | Colorless | - | Spells and abilities deal 1 Bonus Damage to units here. (Each instance of damage the spell deals to a unit here is increased by 1.)
 OGN-297 | Windswept Hillock | Battlefield | Colorless | - | Units here have [Ganking]. (They can move from battlefield to battlefield.)
 OGN-298 | Zaun Warrens | Battlefield | Colorless | - | When you conquer here, discard 1, then draw 1.
 OGS-001 | Annie, Fiery | Unit | Fury | E5 P1 M4 | Your spells and abilities deal 1 Bonus Damage. (Each instance of damage the spell deals is increased by 1.) [Tags: Annie, Noxus]
@@ -311,17 +312,17 @@ OGS-013 | Garen, Commander | Unit | Order | E6 P1 M5 | Other friendly units have
 OGS-014 | Lux, Crownguard | Unit | Order | E4 M2 | :rb_exhaust:: [Reaction] — [Add] :rb_energy_2:. Use only to play spells. (Abilities that add resources can't be reacted to.) [Tags: Lux, Demacia]
 OGS-015 | Recruit the Vanguard | Spell | Order | E6 | [Action] (Play on your turn or in showdowns.) Play four 1 :rb_might: Recruit unit tokens. (They can be played to your base or to battlefields you control.)
 OGS-016 | Vanguard Attendant | Unit | Order | E6 P1 M5 | I enter ready. [Tags: Elite, Demacia]
-OGS-017 | Dark Child - Starter | Legend | Fury/Chaos | - | At the end of your turn, ready 2 runes. [Tags: Annie]
+OGS-017 | Dark Child - Starter | Legend | Fury/Chaos | - | At the end of your turn, ready up to 2 runes. [Tags: Annie]
 OGS-018 | Tibbers | Unit | Fury/Chaos | E8 P2 M7 | When you play me, deal 3 to all units at battlefields. [Tags: Annie]
 OGS-019 | Wuju Bladesman - Starter | Legend | Calm/Body | - | [BANNED 2v2:restricted] While a friendly unit defends alone, it gets +2 :rb_might:. [Tags: Master Yi]
-OGS-020 | Highlander | Spell | Calm/Body | E4 | [Reaction] (Play any time, even before spells and abilities resolve.) Choose a friendly unit. The next time it dies this turn, recall it exhausted instead. (Send it to base. This isn't a move.) [Tags: Master Yi]
+OGS-020 | Highlander | Spell | Calm/Body | E4 | [Reaction] (Play any time, even before spells and abilities resolve.) Choose a friendly unit. The next time it would die this turn, heal it, exhaust it, and recall it instead. (Send it to base. This isn't a move.) [Tags: Master Yi]
 OGS-021 | Lady of Luminosity - Starter | Legend | Mind/Order | - | When you play a spell that costs :rb_energy_5: or more, draw 1. [Tags: Lux]
 OGS-022 | Final Spark | Spell | Mind/Order | E8 | [Action] (Play on your turn or in showdowns.) Deal 8 to a unit. [Tags: Lux]
 OGS-023 | Might of Demacia - Starter | Legend | Body/Order | - | When you conquer, if you have 4+ units at that battlefield, draw 2. [Tags: Garen]
 OGS-024 | Decisive Strike | Spell | Body/Order | E5 P1 | [Action] (Play on your turn or in showdowns.) Give friendly units +2 :rb_might: this turn. [Tags: Garen]
 SFD-001 | Against the Odds | Spell | Fury | E2 | [Reaction] (Play any time, even before spells and abilities resolve.) Give a friendly unit at a battlefield +2 :rb_might: this turn for each enemy unit there.
 SFD-002 | Armed Assailant | Unit | Fury | E6 P1 M6 | [Accelerate] (You may pay :rb_energy_1::rb_rune_fury: as an additional cost to have me enter ready.) [Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for :rb_rune_rainbow: less, even if it's already attached.) [Tags: Noxus]
-SFD-003 | Blood Rush | Spell | Fury | E1 | [Action] (Play on your turn or in showdowns.) [Repeat] :rb_energy_1: (You may pay the additional cost to repeat this spell's effect.) Give a unit [Assault 2]. (+2 :rb_might: while it's an attacker.)
+SFD-003 | Blood Rush | Spell | Fury | E1 | [Action] (Play on your turn or in showdowns.) [Repeat] :rb_energy_1: (You may pay the additional cost to repeat this spell's effect.) Give a unit [Assault 2] this turn. (+2 :rb_might: while it's an attacker.)
 SFD-004 | Bushwhack | Spell | Fury | E2 P1 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) Friendly units enter ready this turn. Play a Gold gear token exhausted.
 SFD-005 | Detonate | Spell | Fury | E1 P1 | Kill a gear. Its controller draws 2.
 SFD-006 | Eager Drakehound | Unit | Fury | E3 P1 M3 | I enter ready. [Tags: Dog, Dragon, Noxus]
@@ -342,7 +343,7 @@ SFD-020 | Draven, Vanquisher | Unit | Fury | E4 M4 | [BANNED constructed:banned,
 SFD-021 | Ferrous Forerunner | Unit | Fury | E6 P1 M6 | [Deathknell] — Play two 3 :rb_might: Mech unit tokens to your base. (When I die, get the effect.) [Tags: Mech, Yordle, Bandle City]
 SFD-022 | Long Sword | Gear | Fury | E2 P1 M+2 | [Quick-Draw] (This has [Reaction]. When you play it, attach it to a unit you control.) [Equip] :rb_rune_fury: (:rb_rune_fury:: Attach this to a unit you control.) [Tags: Equipment]
 SFD-023 | Piercing Light | Spell | Fury | E2 P1 | [Repeat] :rb_energy_2::rb_rune_fury: (You may pay the additional cost to repeat this spell's effect.) Deal 2 to a unit at a battlefield, then deal 2 to up to one other unit.
-SFD-024 | Rell, Magnetic | Unit | Fury | E4 M4 | [Tank] (I must be assigned combat damage first.) When I attack, you may play an Equipment with Energy cost no more than :rb_energy_2:, ignoring its cost, and attach it to me. [Tags: Rell, Noxus]
+SFD-024 | Rell, Magnetic | Unit | Fury | E4 M4 | [Tank] (I must be assigned combat damage first.) When I attack, you may play an Equipment with Energy cost no more than :rb_energy_2:, ignoring its cost. If you do, then do this: Attach it to me. [Tags: Rell, Noxus]
 SFD-025 | Rengar, Pouncing | Unit | Fury | E3 P1 M3 | [Reaction] (Play any time, even before spells and abilities resolve, including to a battlefield you control.) [Assault 2] (+2 :rb_might: while I'm an attacker.) I can be played to a battlefield you're attacking. [Tags: Cat, Rengar, Ixtal]
 SFD-026 | Rumble, Hotheaded | Unit | Fury | E4 M4 | Your Mechs each have [Assault]. (+1 :rb_might: while we're attackers.) When I conquer, you may recycle another friendly unit to play a Mech from your trash. Reduce its Energy cost by the Might of the unit you recycled. [Tags: Mech, Yordle, Rumble, Bandle City]
 SFD-027 | Dunebreaker | Unit | Fury | E7 P1 M7 | If you have two or fewer cards in your hand, I enter ready. When I hold, draw 2. [Tags: The Void]
@@ -371,14 +372,14 @@ SFD-049 | Aphelios, Exalted | Unit | Calm | E4 P1 M4 | When you attach an Equipm
 SFD-050 | Azir, Ascendant | Unit | Calm | E6 P1 M6 | :rb_rune_calm:: [Action] — Choose a unit you control. Move me to its location and it to my original location. If it's equipped, you may attach one of its Equipment to me. Use only once per turn. [Tags: Bird, Azir, Shurima]
 SFD-051 | Guardian Angel | Gear | Calm | E2 M+1 | [Equip] :rb_rune_calm: (:rb_rune_calm:: Attach this to a unit you control.) [Effect] If I would die, kill Guardian Angel instead. Heal me, exhaust me, and recall me. [Tags: Equipment]
 SFD-052 | Heart of Dark Ice | Gear | Calm | E3 P1 | :rb_exhaust:: Give a unit +3 :rb_might: this turn.
-SFD-053 | Janna, Savior | Unit | Calm | E3 P1 M3 | [Reaction] (Play any time, even before spells and abilities resolve, including to a battlefield you control.) When you play me, heal your units here, then move an enemy unit from here to its base. [Tags: Janna, Zaun]
-SFD-054 | Jax, Unmatched | Unit | Calm | E5 P1 M5 | [Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) Each Equipment in your hand has [Quick-Draw]. (It gains [Reaction]. When you play it, attach it to a unit you control.) [Tags: Jax, Icathia]
+SFD-053 | Janna, Savior | Unit | Calm | E3 P1 M3 | [Reaction] (Play any time, even before spells and abilities resolve, including to a battlefield you control.) When you play me, heal your units here, then move up to one enemy unit from here to its base. [Tags: Janna, Zaun]
+SFD-054 | Jax, Unmatched | Unit | Calm | E5 P1 M5 | [Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) Your Equipment everywhere have [Quick-Draw]. (Each gains [Reaction]. When you play it, attach it to a unit you control.) [Tags: Jax, Icathia]
 SFD-055 | Needlessly Large Yordle | Unit | Calm | E10 P3 M5 | [Shield 5] (+5 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.) I cost :rb_energy_2::rb_rune_calm: less for each point you scored from holding this turn. [Tags: Yordle, Bandle City]
 SFD-056 | Sterak's Gage | Gear | Calm | E3 P2 M+3 | [Quick-Draw] (This has [Reaction]. When you play it, attach it to a unit you control.) [Equip] :rb_rune_calm: (:rb_rune_calm:: Attach this to a unit you control.) [Tags: Equipment]
 SFD-057 | Irelia, Fervent | Unit | Calm | E5 M4 | [Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) When you choose or ready me, give me +1 :rb_might: this turn. [Tags: Irelia, Ionia]
 SFD-058 | Ornn, Blacksmith | Unit | Calm | E5 P1 M5 | When you play me or when I hold, look at the top 4 cards of your Main Deck. You may reveal a gear from among them and draw it. Then recycle the rest. [Tags: Ornn, Freljord]
 SFD-059 | Svellsongur | Gear | Calm | E3 P1 M+0 | [Equip] :rb_energy_1::rb_rune_calm: (:rb_energy_1::rb_rune_calm:: Attach this to a unit you control.) As this is attached to a unit, copy that unit's text to this Equipment's effect text for as long as this is attached to it. [Tags: Equipment]
-SFD-060 | Tianna Crownguard | Unit | Calm | E7 P2 M4 | [Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) While I'm at a battlefield, opponents can't score points. [Tags: Elite, Demacia]
+SFD-060 | Tianna Crownguard | Unit | Calm | E7 P2 M4 | [Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) While I'm at a battlefield, opponents can't gain points. [Tags: Elite, Demacia]
 SFD-061 | Aspiring Engineer | Unit | Mind | E3 P1 M3 | When you play me, return a gear from your trash to your hand. [Tags: Piltover]
 SFD-062 | Bubble Bot | Unit | Mind | E3 M3 | When you play me, ready another friendly Mech. [Tags: Mech, Yordle, Bandle City]
 SFD-063 | Chemtech Cask | Gear | Mind | E1 | When you play a spell on an opponent's turn, you may exhaust me to play a Gold gear token exhausted.
@@ -430,11 +431,11 @@ SFD-108 | Warmog's Armor | Gear | Body | E1 M+1 | [Equip] :rb_rune_body: (:rb_ru
 SFD-109 | Akshan, Mischievous | Unit | Body | E4 M4 | [Weaponmaster] You may pay :rb_rune_body::rb_rune_body: as an additional cost to play me. When you play me, if you paid the additional cost, move an enemy gear to your base. You control it until I leave the board. If it's an Equipment, attach it to me. [Tags: Akshan, Shurima, Sentinel]
 SFD-110 | Fiora, Peerless | Unit | Body | E3 P1 M3 | When I attack or defend one on one, double my Might this combat. [Tags: Fiora, Demacia]
 SFD-111 | Here to Help | Spell | Body | E2 P1 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) [Action] (Play on your turn or in showdowns.) You may play a unit from hand to a battlefield you control, reducing its cost by :rb_energy_3:.
-SFD-112 | Kato the Arm | Unit | Body | E4 P1 M3 | [Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) When I move to a battlefield, give a friendly unit my keywords and +:rb_might: equal to my Might this turn. [Tags: Noxus]
+SFD-112 | Kato the Arm | Unit | Body | E4 P1 M3 | [Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) When I move to a battlefield, give another friendly unit my keywords and +:rb_might: equal to my Might this turn. [Tags: Noxus]
 SFD-113 | Lucian, Merciless | Unit | Body | E3 M3 | [Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for :rb_rune_rainbow: less, even if it's already attached.) The first time I conquer each turn, ready me. [Tags: Lucian, Demacia, Sentinel]
 SFD-114 | Marching Orders | Spell | Body | E3 | [Action] (Play on your turn or in showdowns.) [Repeat] :rb_energy_3: (You may pay the additional cost to repeat this spell's effect.) Choose a friendly unit anywhere and an enemy unit at a battlefield. They deal damage equal to their Mights to each other.
 SFD-115 | Trinity Force | Gear | Body | E4 M+2 | [Equip] :rb_rune_body: (:rb_rune_body:: Attach this to a unit you control.) [Effect] When I hold, score 1 point. [Tags: Equipment]
-SFD-116 | Yone, Blademaster | Unit | Body | E5 P1 M5 | [Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for :rb_rune_rainbow: less, even if it's already attached.) When I conquer an open battlefield, deal damage equal to my Might to an enemy unit in a base. [Tags: Yone, Ionia, Demon]
+SFD-116 | Yone, Blademaster | Unit | Body | E5 P1 M5 | [Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for :rb_rune_rainbow: less, even if it's already attached.) When I conquer a battlefield that was uncontrolled, deal damage equal to my Might to an enemy unit in a base. [Tags: Yone, Ionia, Demon]
 SFD-117 | Ancient Henge | Gear | Body | E2 P1 | :rb_exhaust:: [Reaction] — Pay any amount of Energy to [Add] that much :rb_rune_rainbow:. (Abilities that add resources can't be reacted to.)
 SFD-118 | Boneshiver | Gear | Body | E3 M+2 | [Equip] :rb_energy_1::rb_rune_body: (:rb_energy_1::rb_rune_body:: Attach this to a unit you control.) [Effect] When I conquer, channel 1 rune exhausted. [Tags: Equipment]
 SFD-119 | Jax, Unrelenting | Unit | Body | E4 P1 M3 | [Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for :rb_rune_rainbow: less, even if it's already attached.) When you attach an Equipment to me, you may pay :rb_energy_1: to draw 1. [Tags: Jax, Icathia]
@@ -457,7 +458,7 @@ SFD-135 | Factory Recall | Spell | Chaos | E1 | [Action] (Play on your turn or i
 SFD-136 | Hard Bargain | Spell | Chaos | E2 | [Reaction] (Play any time, even before spells and abilities resolve.) [Repeat] :rb_energy_2: (You may pay the additional cost to repeat this spell's effect.) Counter a spell unless its controller pays :rb_energy_2:.
 SFD-137 | Harpoon Squad | Unit | Chaos | E4 M4 | When I move from a battlefield, give me +2 :rb_might: this turn. [Tags: Pirate, Bilgewater]
 SFD-138 | Windsinger | Unit | Chaos | E2 M1 | Hidden (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) When you play me, you may return another unit at a battlefield with 3 :rb_might: or less to its owner's hand. [Tags: Ionia]
-SFD-139 | Edge of Night | Gear | Chaos | E3 M+2 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) When you play this from face down, attach it to a unit you control here. [Equip] :rb_rune_chaos: (:rb_rune_chaos:: Attach this to a unit you control.) [Tags: Equipment]
+SFD-139 | Edge of Night | Gear | Chaos | E3 M+2 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) When you play this from face down, attach it to a unit you control (here). [Equip] :rb_rune_chaos: (:rb_rune_chaos:: Attach this to a unit you control.) [Tags: Equipment]
 SFD-140 | Fizz, Trickster | Unit | Chaos | E3 P1 M3 | When you play me, you may play a spell from your trash with Energy cost no more than :rb_energy_3:, ignoring its Energy cost. Then recycle it. (You must still pay its Power cost.) [Tags: Yordle, Fizz, Bilgewater]
 SFD-141 | Irelia, Graceful | Unit | Chaos | E4 P1 M4 | Your spells that choose me cost :rb_energy_1: or :rb_rune_rainbow: less. [Tags: Irelia, Ionia]
 SFD-142 | Jae Medarda | Unit | Chaos | E5 P2 M5 | When you choose me with a spell, draw 1. [Tags: Noxus]
@@ -472,7 +473,7 @@ SFD-150 | Last Rites | Gear | Chaos | E3 M+2 | [Equip] — :rb_rune_chaos:, Recy
 SFD-151 | Bonds of Strength | Spell | Order | E2 | [Reaction] (Play any time, even before spells and abilities resolve.) [Repeat] :rb_energy_2: (You may pay the additional cost to repeat this spell's effect.) Give two friendly units each +1 :rb_might: this turn.
 SFD-152 | Eminent Benefactor | Unit | Order | E6 M5 | When I hold, play two Gold gear tokens exhausted. [Tags: Piltover]
 SFD-153 | Eye of the Herald | Gear | Order | E1 M+0 | [Equip] :rb_rune_order: (:rb_rune_order:: Attach this to a unit you control.) [Effect] When I move, play a 1 :rb_might: Recruit unit token here. [Tags: Equipment]
-SFD-154 | Guards! | Spell | Order | E3 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) Play a 2 :rb_might: Sand Soldier unit token. You may pay :rb_rune_order: to ready it.
+SFD-154 | Guards! | Spell | Order | E3 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) Play a 2 :rb_might: Sand Soldier unit token. Then do this: You may pay :rb_rune_order: to ready it.
 SFD-155 | Honest Broker | Unit | Order | E2 M2 | [Deathknell] — Play a Gold gear token exhausted. (When I die, get the effect.) [Tags: Ionia]
 SFD-156 | Laurent Duelist | Unit | Order | E4 M3 | [Assault 2] (+2 :rb_might: while I'm an attacker.) [Tags: Demacia]
 SFD-157 | Royal Guard | Unit | Order | E4 M2 | When you play me, play a 2 :rb_might: Sand Soldier unit token here. [Tags: Shurima]
@@ -481,14 +482,14 @@ SFD-159 | Trusty Ramhound | Unit | Order | E2 M2 | While you have another unit h
 SFD-160 | Zaun Punk | Unit | Order | E3 M3 | You may kill a friendly gear as an additional cost to play me. When you play me, if you paid the additional cost, kill a gear. [Tags: Zaun]
 SFD-161 | B.F. Sword | Gear | Order | E4 M+3 | [Equip] :rb_rune_order: (:rb_rune_order:: Attach this to a unit you control.) [Tags: Equipment]
 SFD-162 | Blood Money | Spell | Order | E2 | [Action] (Play on your turn or in showdowns.) Kill a unit at a battlefield with 2 :rb_might: or less. If it was an enemy unit, play a Gold gear token exhausted. If it was a friendly unit, play two Gold gear tokens exhausted.
-SFD-163 | Deathgrip | Spell | Order | E2 | [Reaction] (Play any time, even before spells and abilities resolve.) Kill a friendly unit to give +:rb_might: equal to its Might to another friendly unit this turn. Draw 1.
+SFD-163 | Deathgrip | Spell | Order | E2 | [Reaction] (Play any time, even before spells and abilities resolve.) Kill a friendly unit. If you do, give +:rb_might: equal to its Might to another friendly unit this turn. Draw 1.
 SFD-164 | Drag Under | Spell | Order | E5 P1 | [Action] (Play on your turn or in showdowns.) I cost :rb_energy_2: less to play from anywhere other than your hand. Kill a unit at a battlefield.
 SFD-165 | Glasc Mixologist | Unit | Order | E5 P1 M5 | [Deathknell] — You may play a unit with cost no more than :rb_energy_3: and no more than :rb_rune_rainbow: from your trash, ignoring its cost. (When I die, get the effect.) [Tags: Zaun]
 SFD-166 | Rally the Troops | Spell | Order | E2 | [Action] (Play on your turn or in showdowns.) When a friendly unit is played this turn, buff it. (If it doesn't have a buff, it gets a +1 :rb_might: buff.) Draw 1.
 SFD-167 | Unsung Hero | Unit | Order | E2 M2 | [Deathknell] — If I was [Mighty], draw 2. (When I die, get the effect. I'm Mighty while I have 5+ :rb_might:.) [Tags: Elite, Demacia]
 SFD-168 | Vanguard Armory | Gear | Order | E7 P1 | :rb_exhaust:: Play three 1 :rb_might: Recruit unit tokens. (You may play them to different locations.)
 SFD-169 | Altar of Memories | Gear | Order | E2 | When a friendly unit dies, you may exhaust me to draw 1, then put a card from your hand on the top or bottom of your Main Deck.
-SFD-170 | Rek'Sai, Swarm Queen | Unit | Order | E5 P1 M5 | When I attack, you may reveal the top 2 cards of your Main Deck. You may play one. Then recycle the rest. If the played card is a unit, you may play it here. [Tags: Rek'Sai, The Void]
+SFD-170 | Rek'Sai, Swarm Queen | Unit | Order | E5 P1 M5 | When I attack, you may reveal the top 2 cards of your Main Deck. You may banish one, then play it. If it is a unit, you may play it here. Recycle the rest. [Tags: Rek'Sai, The Void]
 SFD-171 | Renata Glasc, Industrialist | Unit | Order | E4 P1 M4 | Your tokens enter ready. [Tags: Renata Glasc, Zaun]
 SFD-172 | Sacred Shears | Gear | Order | E2 P1 M+1 | [Equip] :rb_rune_order: (:rb_rune_order:: Attach this to a unit you control.) [Effect] [Deathknell] — Draw 1. (When I die, get the effect.) [Tags: Equipment]
 SFD-173 | Soraka, Wanderer | Unit | Order | E4 P1 M4 | I must be assigned combat damage last. If another unit you control here would die, if it has less Might than me, instead heal it, exhaust it, and recall it. (Send it to base. This isn't a move.) [Tags: Soraka, Mount Targon]
@@ -502,10 +503,11 @@ SFD-180 | Fiora, Worthy | Unit | Order | E3 M3 | When a unit you control becomes
 SFD-181 | Mechanized Menace | Legend | Fury/Mind | - | Your Mechs have [Shield]. (+1 :rb_might: while they're defenders.) [Tags: Rumble]
 SFD-182 | Danger Zone | Spell | Fury/Mind | E1 P1 | [Reaction] (Play any time, even before spells and abilities resolve.) [Repeat] :rb_energy_1::rb_rune_rainbow: (You may pay the additional cost to repeat this spell's effect.) Give your Mechs +1 :rb_might: this turn. [Tags: Rumble]
 SFD-183 | Purifier | Legend | Fury/Body | - | Your Equipment each give [Assault]. (+1 :rb_might: while equipped unit is an attacker.) [Tags: Lucian]
-SFD-184 | Relentless Pursuit | Spell | Fury/Body | E2 P1 | [Action] (Play on your turn or in showdowns.) Move a friendly unit. You may attach an Equipment with the same controller to it. This turn, that unit has &quot;When I conquer, you may move me to my base.&quot; [Tags: Lucian]
+SFD-184 | Relentless Pursuit | Spell | Fury/Body | E2 P1 | [Action] (Play on your turn or in showdowns.) Move a friendly unit. You may attach up to one Equipment with the same controller to it. This turn, that unit has &quot;When I conquer, you may move me to my base.&quot; [Tags: Lucian]
 SFD-185 | Glorious Executioner | Legend | Fury/Chaos | - | When you win a combat, draw 1. (You win if only your units remain after combat.) [Tags: Draven]
 SFD-186 | Spinning Axe | Gear | Fury/Chaos | E2 P1 M+3 | [Quick-Draw] (This has [Reaction]. When you play it, attach it to a unit you control.) [Equip] :rb_rune_rainbow: (:rb_rune_rainbow:: Attach this to a unit you control.) [Temporary] (If this is unattached, kill it at the start of its controller's Beginning Phase, before scoring.) [Tags: Draven, Equipment]
-SFD-188 | Void Rush | Spell | Fury/Order | E2 P1 | Reveal the top 2 cards of your Main Deck. You may play one of them, reducing its cost by :rb_energy_2:. Draw any you did not play this way. [Tags: Rek'Sai]
+SFD-187 | Void Burrower | Legend | Fury/Order | - | When you conquer, you may exhaust me to reveal the top 2 cards of your Main Deck. You may banish one, then play it. Recycle the rest. [Tags: Rek'Sai]
+SFD-188 | Void Rush | Spell | Fury/Order | E2 P1 | Reveal the top 2 cards of your Main Deck. You may banish one, then play it, reducing its cost by :rb_energy_2:. Draw any you didn't banish. [Tags: Rek'Sai]
 SFD-189 | Fire Below the Mountain | Legend | Calm/Mind | - | :rb_exhaust:: [Reaction] — [Add] :rb_rune_rainbow:. Use only to play gear or use gear abilities. (Abilities that add resources can't be reacted to.) [Tags: Ornn]
 SFD-190 | Forgefire Cape | Gear | Calm/Mind | E4 P2 M+3 | [Unique] (Your deck can have only 1 card with this name.) [Equip] :rb_rune_rainbow: (:rb_rune_rainbow:: Attach this to a unit you control.) [Effect] When I attack or defend, deal 2 to all enemy units here. [Tags: Ornn, Equipment]
 SFD-191 | Rabadon's Deathcrown | Gear | Calm/Mind | E4 P2 M+3 | [Unique] (Your deck can have only 1 card with this name.) [Equip] :rb_rune_rainbow: (:rb_rune_rainbow:: Attach this to a unit you control.) [Effect] Your spells and abilities deal 3 Bonus Damage (while this is attached). [Tags: Ornn, Equipment]
@@ -514,7 +516,7 @@ SFD-193 | Grandmaster at Arms | Legend | Calm/Body | - | :rb_energy_1:, :rb_exha
 SFD-194 | Counter Strike | Spell | Calm/Body | E2 P1 | [Reaction] (Play any time, even before spells and abilities resolve.) Choose a unit. The next time that unit would be dealt damage this turn, prevent it. Draw 1. [Tags: Jax]
 SFD-195 | Blade Dancer | Legend | Calm/Chaos | - | When you choose a friendly unit, you may exhaust me and pay :rb_rune_rainbow: to ready it. When you conquer, you may pay :rb_energy_1: to ready me. [Tags: Irelia]
 SFD-196 | Defiant Dance | Spell | Calm/Chaos | E1 P1 | [Reaction] (Play any time, even before spells and abilities resolve.) Give a unit +2 :rb_might: this turn and another unit -2 :rb_might: this turn. [Tags: Irelia]
-SFD-198 | Arise! | Spell | Calm/Order | E6 P1 | Play a 2 :rb_might: Sand Soldier unit token for each Equipment you control. Then ready two of them. [Tags: Azir]
+SFD-198 | Arise! | Spell | Calm/Order | E6 P1 | Play a 2 :rb_might: Sand Soldier unit token for each Equipment you control. Then do this: Ready up to two of them. [Tags: Azir]
 SFD-199 | Prodigal Explorer | Legend | Mind/Chaos | - | :rb_exhaust:: [Reaction] — Draw 1. Use only if you've chosen enemy units and/or gear twice this turn with spells or unit abilities. [Tags: Ezreal]
 SFD-200 | Arcane Shift | Spell | Mind/Chaos | E3 P1 | [Action] (Play on your turn or in showdowns.) Banish a friendly unit, then its owner plays it, ignoring its cost. Deal 3 to an enemy unit at a battlefield. Banish this. [Tags: Ezreal]
 SFD-201 | Chem-Baroness | Legend | Mind/Order | - | When you or an ally hold, you may exhaust me to play a Gold gear token exhausted. While your score is within 3 points of the Victory Score, your Gold [Add] an additional :rb_energy_1:. [Tags: Renata Glasc]
@@ -538,7 +540,6 @@ SFD-218 | Sunken Temple | Battlefield | Colorless | - | When you conquer here wi
 SFD-219 | The Papertree | Battlefield | Colorless | - | When you hold here, each player channels 1 rune exhausted.
 SFD-220 | Treasure Hoard | Battlefield | Colorless | - | When you conquer here, you may pay :rb_energy_1: to play a Gold gear token exhausted.
 SFD-221 | Veiled Temple | Battlefield | Colorless | - | When you conquer here, you may ready a friendly gear. If it's an Equipment, you may detach it.
-SFD-243 | Void Burrower | Legend | Fury/Order | - | When you conquer, you may exhaust me to reveal the top 2 cards of your Main Deck. You may banish one, then play it. Recycle the rest. [Tags: Rek'Sai]
 SFD-247 | Emperor of the Sands | Legend | Calm/Order | - | Sand Soldiers you play have [Weaponmaster]. (When they're played, you may [Equip] one of your Equipment to them for :rb_rune_rainbow: less.) :rb_energy_1:, :rb_exhaust:: Play a 2 :rb_might: Sand Soldier unit token to your base. Use only if you've played an Equipment this turn. [Tags: Azir]
 UNL-001 | Arena Kingpin | Unit | Fury | E5 M3 | I enter ready. :rb_exhaust:: Give a unit +3 :rb_might: this turn. [Tags: Yordle, Noxus]
 UNL-002 | Inferna | Unit | Fury | E2 M1 | [Ambush] (You may play me as a [Reaction] to a battlefield where you have units.) [Assault 2] (+2 :rb_might: while I'm an attacker.) [Tags: Bilgewater]
@@ -620,7 +621,7 @@ UNL-077 | Soul Shepherd | Unit | Mind | E5 M3 | Your token units have +1 :rb_mig
 UNL-078 | Sprite Fountain | Gear | Mind | E2 P1 | [Temporary] (Kill this at the start of its controller's Beginning Phase, before scoring.) When you play this, play a ready 3 :rb_might: Sprite unit token with [Temporary] to your base. [Deathknell][>] Repeat this gear's play effect. (When this dies, get the effect.)
 UNL-079 | Diana, Lunari | Unit | Mind | E3 M3 | When a showdown begins here, you may pay :rb_energy_1: to [Predict], then reveal the top card of your Main Deck. If it's a spell, draw it. (To Predict, look at the top card of your Main Deck. You may recycle it.) [Tags: Diana, Mount Targon]
 UNL-080 | Hwei, Brooding Painter | Unit | Mind | E5 P1 M5 | When I move, draw 1, then discard 1. Then, do the following based on the discarded card's type:Spell — Draw 1.Gear — Ready up to 2 runes.Unit — Give me +3 :rb_might: this turn. [Tags: Ionia, Hwei]
-UNL-081 | Keeper of Masks | Unit | Mind | E2 M1 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) [Temporary] (Kill me at the start of my controller's Beginning Phase, before scoring.) When you play me, play two Reflection unit tokens here. They become copies of me. [Tags: Ionia]
+UNL-081 | Keeper of Masks | Unit | Mind | E2 M1 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) [Temporary] (Kill me at the start of my controller's Beginning Phase, before scoring.) When you play me, play two Reflection unit tokens here. Then do this: They become copies of me. [Tags: Ionia]
 UNL-082 | Lillia, Fae Fawn | Unit | Mind | E3 M3 | [Accelerate] (You may pay :rb_energy_1::rb_rune_mind: as an additional cost to have me enter ready.) When I move from a location, play a 3 :rb_might: Sprite unit token with [Temporary] there. (Kill it at the start of its controller's Beginning Phase, before scoring.) [Tags: Fae, Lillia, Ionia]
 UNL-083 | Smoke and Mirrors | Spell | Mind | E2 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) [Action] (Play on your turn or in showdowns.) Choose a unit you control and another unit you control at a different location. If at least one of them has [Temporary], move each to the other's location. Draw 1.
 UNL-084 | Sprite Queen | Unit | Mind | E7 P1 M6 | When you play me or at the start of your Beginning Phase, play a ready 3 :rb_might: Sprite unit token with [Temporary] to your base. (Kill them at the start of their controller's next Beginning Phase, before scoring.) [Tags: Fae, Ionia]
@@ -659,7 +660,7 @@ UNL-116 | Poppy, Paragon | Unit | Body | E5 M5 | [Deflect] (Opponents must pay :
 UNL-117 | Arachnoid Horror | Unit | Body | E6 P1 M6 | [Hunt 2] (When I conquer or hold, gain 2 XP.) I can be played to an occupied battlefield if an enemy unit is alone there. Friendly units can be played to an occupied battlefield if an enemy unit is alone there. [Tags: Shadow Isles, Spider]
 UNL-118 | Elder Dragon | Unit | Body | E12 P4 M10 | Any amount of your damage is enough to kill enemy units. When you play me, choose up to one enemy unit at each location. Deal 1 to them. [Tags: Dragon, Demacia]
 UNL-119 | Kha'Zix, Evolving Hunter | Unit | Body | E5 P1 M5 | [Hunt] (When I conquer or hold, gain 1 XP.) When I attack, you may spend 3 XP to deal damage equal to my Might to an enemy unit here. [Tags: Kha'Zix, The Void]
-UNL-120 | Rengar, Trophy Hunter | Unit | Body | E5 P1 M6 | [Ambush] (You may play me as a [Reaction] to a battlefield where you have units.) I can be played to a battlefield where there are enemy units (even if you don't have units there). [Tags: Cat, Rengar, Ixtal]
+UNL-120 | Rengar, Trophy Hunter | Unit | Body | E5 P1 M6 | [Ambush] (You may play me as a [Reaction] to a battlefield where you have units.) I can [Ambush] to a battlefield where there are enemy units (even if you don't have units there). [Tags: Cat, Rengar, Ixtal]
 UNL-121 | Bewitching Spirit | Unit | Chaos | E3 M2 | When you play me, choose a player. They discard 1. [Tags: Spirit, Shadow Isles]
 UNL-122 | Crescent Guardian | Unit | Chaos | E4 M4 | If you've played a spell this turn, you may pay :rb_rune_chaos: as an additional cost to play me. If you do, I enter ready. [Tags: Mount Targon]
 UNL-123 | Evershade Stalker | Unit | Chaos | E3 M3 | When you play me, discard 1, then draw 1. [Tags: Shadow Isles]
@@ -678,7 +679,7 @@ UNL-135 | Insightful Investigator | Unit | Chaos | E3 M3 | When you play me, cho
 UNL-136 | Scryer's Bloom | Gear | Chaos | E1 | This enters exhausted. Kill this, :rb_energy_1:, :rb_exhaust:: [Predict 2], then draw 1. Gain 1 XP.  (To Predict 2, look at the top two cards of your Main Deck. Recycle any of them and put the rest back in any order.)
 UNL-137 | Sinister Poro | Unit | Chaos | E2 P1 M1 | When I attack, you may pay :rb_energy_1: to move an enemy unit here to its base. [Tags: Poro, Shadow Isles]
 UNL-138 | The List | Gear | Chaos | E1 | As you play this, name a tag. (For example, Miss Fortune, Demacia, and Poro are tags.) :rb_exhaust:: Give a unit with the named tag -2 :rb_might: this turn.
-UNL-139 | Bone Skewer | Spell | Chaos | E2 P1 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) Choose a battlefield. An opponent reveals their hand. You may choose a unit from it. They play that unit to that battlefield, ignoring any and all costs. When they do, [Stun] it. (It doesn't deal combat damage this turn.)
+UNL-139 | Bone Skewer | Spell | Chaos | E2 P1 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) Choose a battlefield. An opponent reveals their hand. You may choose a unit from it. They play that unit to that battlefield, ignoring any and all costs. If they do, then do this: [Stun] it. (It doesn't deal combat damage this turn.)
 UNL-140 | Conscription | Spell | Chaos | E5 P2 | You may spend 5 XP as an additional cost to play this. Choose an enemy unit at a battlefield with 3 :rb_might: or less. If you paid the additional cost, choose any enemy unit at a battlefield instead. Take control of it, exhaust it, and recall it.
 UNL-141 | Evelynn, Entrancing | Unit | Chaos | E2 M2 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) [Backline] (I must be assigned combat damage last.) When you play me from face down on your turn, you may move an enemy unit at a different location to my battlefield. [Tags: Evelynn, Demon]
 UNL-142 | Heedless Resurrection | Spell | Chaos | E2 P1 | [Reaction] (Play any time, even before spells and abilities resolve.) As an additional cost to play this, kill a friendly unit. Play a unit from your trash that costs no more Energy and no more Power than the killed unit, ignoring its cost.
@@ -725,7 +726,7 @@ UNL-182 | Curtain Call | Spell | Fury/Mind | E4 | [Repeat] — :rb_energy_1: / :
 UNL-183 | Pridestalker | Legend | Fury/Body | - | When you play a unit, give a unit +1 :rb_might: this turn. [Tags: Rengar]
 UNL-184 | Thrill of the Hunt | Spell | Fury/Body | E2 P1 | [Reaction] (Play any time, even before spells and abilities resolve.) Banish a friendly unit, then its owner plays it to any battlefield, ignoring its cost. [Tags: Rengar]
 UNL-185 | Bloodharbor Ripper | Legend | Fury/Chaos | - | :rb_energy_1:, :rb_exhaust:: Return a friendly unit at a battlefield to its owner's hand. Play a Gold gear token exhausted. (It has &quot;[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:.&quot;) [Tags: Pyke]
-UNL-186 | Death from Below | Spell | Fury/Chaos | E4 P1 | Kill a unit at a battlefield. Then, if it had 3 :rb_might: or less, you may play this from your trash for :rb_rune_rainbow:. [Tags: Pyke]
+UNL-186 | Death from Below | Spell | Fury/Chaos | E4 P1 | Kill a unit at a battlefield. Then, if it had 3 :rb_might: or less, do this: You may play this from your trash for :rb_rune_rainbow:. [Tags: Pyke]
 UNL-187 | Piltover Enforcer | Legend | Fury/Order | - | When you conquer, if you assigned 3 or more excess damage, you may exhaust me to ready a unit. [Tags: Vi]
 UNL-188 | Hextech Gauntlets | Gear | Fury/Order | E3 M+3 | [Equip] :rb_energy_3::rb_rune_rainbow:. This ability's Energy cost is reduced by the Might of the unit you choose. (Pay the cost: Attach this to a unit you control.) [Effect] When I conquer, if you assigned 3 or more excess damage, draw 1. [Tags: Vi, Equipment]
 UNL-189 | Bashful Bloom | Legend | Calm/Mind | - | :rb_energy_4:, :rb_exhaust:: Play a ready 3 :rb_might: Sprite unit token with [Temporary]. This ability costs :rb_energy_1: less for each friendly unit with [Temporary]. [Tags: Lillia]
@@ -738,8 +739,8 @@ UNL-195 | Green Father | Legend | Calm/Order | - | When you conquer or hold, you
 UNL-196 | Daisy! | Unit | Calm/Order | E9 P2 M8 | I enter ready. Reduce my cost by :rb_energy_1: for each of the following tags among your units — Bird, Cat, Dog, and Poro. When I attack while your units have all 4 tags, [Stun] an enemy unit here. (It doesn't deal combat damage this turn.) [Tags: Ivern, Ionia]
 UNL-197 | Scorn of the Moon | Legend | Mind/Chaos | - | [Reaction][>] :rb_exhaust:: [Add] :rb_energy_1:. Spend this Energy only during showdowns. (Abilities that add resources can't be reacted to.) [Tags: Diana]
 UNL-198 | Moonfall | Spell | Mind/Chaos | E3 P1 | [Action] (Play on your turn or in showdowns.) Choose a battlefield where you have units. You may move up to one enemy unit to that battlefield. Then give enemy units there -2 :rb_might: this turn. [Tags: Diana]
-UNL-199 | Deceiver | Legend | Mind/Order | - | When you conquer or hold, you may discard 1 and exhaust me to play a ready Reflection unit token there. It becomes a copy of another unit there. Give it [Temporary]. [Tags: LeBlanc]
-UNL-200 | Mirror Image | Spell | Mind/Order | E3 P2 | Choose a unit. Play a ready Reflection unit token to your base. It becomes a copy of that unit. Give it [Temporary]. (Kill it at the start of its controller's Beginning Phase, before scoring.) [Tags: LeBlanc]
+UNL-199 | Deceiver | Legend | Mind/Order | - | When you conquer or hold, you may discard 1 and exhaust me to play a ready Reflection unit token there. Then do this: It becomes a copy of another unit there. Give it [Temporary]. [Tags: LeBlanc]
+UNL-200 | Mirror Image | Spell | Mind/Order | E3 P2 | Choose a unit. Play a ready Reflection unit token to your base. Then do this: It becomes a copy of that unit. Give it [Temporary]. (Kill it at the start of its controller's Beginning Phase, before scoring.) [Tags: LeBlanc]
 UNL-201 | Voidreaver | Legend | Body/Chaos | - | When you win a combat, gain 1 XP. Spend 1 XP, :rb_exhaust:: [Buff] a unit. Spend 2 XP, :rb_exhaust:: Move an exhausted friendly unit from a battlefield to its base. [Tags: Kha'Zix]
 UNL-202 | Void Assault | Spell | Body/Chaos | E2 P1 | Move a friendly unit, then move an enemy unit. (If they both move to a battlefield you don't control, you're the attacker.) [Tags: Kha'Zix]
 UNL-203 | Keeper of the Hammer | Legend | Body/Order | - | When you hold, gain 1 XP. Spend 3 XP, :rb_exhaust:: Draw 1. [Tags: Poppy]
@@ -938,4 +939,3 @@ VEN-R03 | Mind Rune | Rune | Mind | - | [NO TEXT]
 VEN-R04 | Body Rune | Rune | Body | - | [NO TEXT]
 VEN-R05 | Chaos Rune | Rune | Chaos | - | [NO TEXT]
 VEN-R06 | Order Rune | Rune | Order | - | [NO TEXT]
-VEN-SP2 | Sona, Harmonious | Unit | Calm | E4 P1 M4 | At the end of your turn, if I'm at a battlefield, ready up to 4 friendly runes. [Tags: Sona]
