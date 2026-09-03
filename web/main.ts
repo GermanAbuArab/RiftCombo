@@ -279,12 +279,12 @@ function showDetail(id: string | null) {
       <button type="button" class="icon-btn" id="close-detail" aria-label="Close">×</button>
     </div>
     <p class="meta">${esc(c.name)} · ${esc(legendDomains.join(" + ") || "any legend")} · ${esc(c.class.replace("_", " "))}${c.status === "verified" ? "" : " · " + esc(c.status)}</p>
-    <h3>Cards used</h3><div class="card-list">${rows}</div>
+    <h3>Pieces</h3><div class="card-list">${rows}</div>
     ${c.prerequisites.notable.length ? `<h3>Prerequisites</h3><ul>${c.prerequisites.notable.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
     ${c.needs.length ? `<h3>Needs first</h3><p>${c.needs.map((n) => esc(featuresById.get(n)?.name ?? n)).join(", ")}</p>` : ""}
     <h3>Steps</h3><ol>${c.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
     ${c.netPerIteration ? `<h3>Per iteration</h3><p class="net">${esc(c.netPerIteration)}</p>` : ""}
-    <h3>Results</h3><div class="pills">${c.produces.map((f) => featuresById.get(f)).filter((f): f is Feature => !!f && f.status === "STANDALONE").map((f) => `<span class="pill" data-feature="${esc(f.id)}">${esc(f.name)}</span>`).join("")}</div>
+    <h3>Payoff</h3><div class="pills">${c.produces.map((f) => featuresById.get(f)).filter((f): f is Feature => !!f && f.status === "STANDALONE").map((f) => `<span class="pill" data-feature="${esc(f.id)}">${esc(f.name)}</span>`).join("")}</div>
     ${c.prerequisites.easy.length ? `<h3>Deck</h3><ul>${c.prerequisites.easy.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
     <h3>Sources</h3><ul class="sources">${c.sources.map((s) => `<li>${s.url ? `<a href="${esc(s.url)}" rel="noopener" target="_blank">${esc(s.title)}</a>` : esc(s.title)}${s.date ? ` <span class="csub">${esc(s.date)}</span>` : ""}</li>`).join("")}</ul>
     ${c.notes ? `<h3>Notes</h3><p>${esc(c.notes)}</p>` : ""}
