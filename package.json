@@ -16,10 +16,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@piltoverarchive/riftbound-deck-codes": "^1.4.0"
+    "@piltoverarchive/riftbound-deck-codes": "^1.4.0",
+    "@types/node": "^26.4.1"
   },
   "devDependencies": {
-    "@types/node": "^26.4.1",
     "esbuild": "^0.28.2",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2",
