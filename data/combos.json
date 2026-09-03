@@ -323,10 +323,15 @@
           "title": "Phase 0 hunt, entry A-01 (docs/phase0/hunt.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Load-bearing reading: card text (Golden Rule 002) lets Blue Sentinel add trigger instances despite 471.2.c. Pending human review."
+      "notes": "Load-bearing reading: card text (Golden Rule 002) lets Blue Sentinel add trigger instances despite 471.2.c. Pending human review. REFUTE 2026-09-03: SURVIVES."
     },
     {
       "id": "tryndamere-brambleback-conquer",
@@ -369,9 +374,15 @@
           "title": "Phase 0 hunt, entry A-02 (docs/phase0/hunt.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
-      "rulesVersion": "2026-07-16"
+      "rulesVersion": "2026-07-16",
+      "notes": "REFUTE 2026-09-03: WOUNDED — with one Tryndamere and two Bramblebacks the Conquer is 1 + 1×(1+2) = 4 points, a strong Conquer, not a burst to 8; it reaches 8 only with two Tryndameres (T=2, K=3 = 9). The trigger reads 'When I conquer after an attack, if you assigned 5 or more excess damage', so defenders must be present — an uncontested walk-in is a Conquer but not an attack."
     },
     {
       "id": "grand-plaza-recruit-vanguard",
@@ -415,9 +426,15 @@
           "title": "Phase 0 hunt, entry A-03 (docs/phase0/hunt.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
-      "rulesVersion": "2026-07-16"
+      "rulesVersion": "2026-07-16",
+      "notes": "REFUTE 2026-09-03: SURVIVES. REFUTE 2026-09-03: the Plaza must already be yours (Vanguard plays 'to your base or to battlefields you control'); two Vanguards in one turn is 12 Energy, the whole Rune Deck; a lone 6-Might attacker on their turn leaves two Recruits."
     },
     {
       "id": "gutter-palace",
@@ -454,10 +471,15 @@
           "title": "Phase 0 hunt, entry A-04 (docs/phase0/hunt.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "With Time Warp (OGN-122) the check comes at your very next Beginning Phase with no opponent turn between; adjust the hand count for Time Warp leaving the hand. Temporary units die before the check (816.1.b) and do not count. (L4-13)"
+      "notes": "With Time Warp (OGN-122) the check comes at your very next Beginning Phase with no opponent turn between; adjust the hand count for Time Warp leaving the hand. Temporary units die before the check (816.1.b) and do not count. (L4-13) REFUTE 2026-09-03: SURVIVES."
     },
     {
       "id": "blue-sentinel-trinity-force-hold",
@@ -504,10 +526,15 @@
           "title": "Hunt v2 lens L4, entry L4-07 (docs/phase0/hunt2/L4-points-altwins.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Beats the Ahri line on body count: the multipliers are also the point sources, so two units do the work of five. Blue Sentinel defends at 4 +2 (Shield 2) +2 (Trinity Force Might bonus) = 8. Rules check done by hand, not taken from the agent: 471.2.c says score effects 'cannot be triggered more than once per turn for a player'. Brambleback/Sentinel do not create a second Score — they make the effects of the single Score trigger extra times, so on this reading there is no conflict with 471.2.c and the Golden Rule (002) does not need to be invoked. That reading is arguable and is why this stays a candidate."
+      "notes": "Beats the Ahri line on body count: the multipliers are also the point sources, so two units do the work of five. Blue Sentinel defends at 4 +2 (Shield 2) +2 (Trinity Force Might bonus) = 8. Rules check done by hand, not taken from the agent: 471.2.c says score effects 'cannot be triggered more than once per turn for a player'. Brambleback/Sentinel do not create a second Score — they make the effects of the single Score trigger extra times, so on this reading there is no conflict with 471.2.c and the Golden Rule (002) does not need to be invoked. That reading is arguable and is why this stays a candidate. REFUTE 2026-09-03: SURVIVES."
     },
     {
       "id": "brambleback-trinity-skyfall-conquer",
@@ -564,10 +591,15 @@
           "title": "Hunt v2 lens L4, entry L4-08 (docs/phase0/hunt2/L4-points-altwins.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Dominates the Tryndamere line: no excess-damage clause and fewer bodies. Open question the hunt flagged: whether Skyfall's 'my hold effects' covers effects GRANTED by other Equipment — they are appended to the unit's rules text (718.3) and worded 'When I hold', so yes on the plain reading. Rules check done by hand, not taken from the agent: 471.2.c says score effects 'cannot be triggered more than once per turn for a player'. Brambleback/Sentinel do not create a second Score — they make the effects of the single Score trigger extra times, so on this reading there is no conflict with 471.2.c and the Golden Rule (002) does not need to be invoked. That reading is arguable and is why this stays a candidate."
+      "notes": "Dominates the Tryndamere line: no excess-damage clause and fewer bodies. Open question the hunt flagged: whether Skyfall's 'my hold effects' covers effects GRANTED by other Equipment — they are appended to the unit's rules text (718.3) and worded 'When I hold', so yes on the plain reading. Rules check done by hand, not taken from the agent: 471.2.c says score effects 'cannot be triggered more than once per turn for a player'. Brambleback/Sentinel do not create a second Score — they make the effects of the single Score trigger extra times, so on this reading there is no conflict with 471.2.c and the Golden Rule (002) does not need to be invoked. That reading is arguable and is why this stays a candidate. REFUTE 2026-09-03: SURVIVES."
     },
     {
       "id": "svellsongur-copy-hold",
@@ -621,10 +653,15 @@
           "title": "Hunt v2 lens L4, entry L4-09 (docs/phase0/hunt2/L4-points-altwins.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "WEAKEST of the three and needs a human ruling before it moves off candidate. It rests on 725.1 (a passive that applies 'as it Attaches' is processed) rescuing Svellsongur from 718.2 (an attached card's own rules text is Inactive). If 718.2 wins, nothing here works. Rules check done by hand, not taken from the agent: 471.2.c says score effects 'cannot be triggered more than once per turn for a player'. Brambleback/Sentinel do not create a second Score — they make the effects of the single Score trigger extra times, so on this reading there is no conflict with 471.2.c and the Golden Rule (002) does not need to be invoked. That reading is arguable and is why this stays a candidate."
+      "notes": "WEAKEST of the three and needs a human ruling before it moves off candidate. It rests on 725.1 (a passive that applies 'as it Attaches' is processed) rescuing Svellsongur from 718.2 (an attached card's own rules text is Inactive). If 718.2 wins, nothing here works. Rules check done by hand, not taken from the agent: 471.2.c says score effects 'cannot be triggered more than once per turn for a player'. Brambleback/Sentinel do not create a second Score — they make the effects of the single Score trigger extra times, so on this reading there is no conflict with 471.2.c and the Golden Rule (002) does not need to be invoked. That reading is arguable and is why this stays a candidate. REFUTE 2026-09-03: SURVIVES — 9 under the printed-text reading of Svellsongur (R6); 11 under the current-text reading, because the second Svellsongur on the Sentinel also copies the first copy (K=4). 9 is the floor."
     },
     {
       "id": "skyfall-ahri-conquer",
@@ -681,10 +718,15 @@
           "title": "Hunt v2 lens L6, entry C1 (docs/phase0/hunt2/L6-equipment-legends.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Fury/Calm had no line at all before this. Legend verified by hand against data/corpus_flat.txt: VEN-139 is the only Fury/Calm legend in the pool. Rule 470 caps Scoring (Conquer or Hold, 469); Ahri's points arrive as triggered abilities under 471.2, and 471.1.a.1 exempts non-Conquer sources from the Final Point restriction, so only the base conquer point is at risk of converting to a draw. UNRESOLVED, and it is why this is a candidate: adding SFD-059 Svellsongur would raise the count, but only if Svellsongur copies a unit's CURRENT rules text including appended Effect Text (434.1.c) rather than its printed text. The arithmetic above deliberately assumes the conservative printed-text reading and does not use Svellsongur."
+      "notes": "Fury/Calm had no line at all before this. Legend verified by hand against data/corpus_flat.txt: VEN-139 is the only Fury/Calm legend in the pool. Rule 470 caps Scoring (Conquer or Hold, 469); Ahri's points arrive as triggered abilities under 471.2, and 471.1.a.1 exempts non-Conquer sources from the Final Point restriction, so only the base conquer point is at risk of converting to a draw. UNRESOLVED, and it is why this is a candidate: adding SFD-059 Svellsongur would raise the count, but only if Svellsongur copies a unit's CURRENT rules text including appended Effect Text (434.1.c) rather than its printed text. The arithmetic above deliberately assumes the conservative printed-text reading and does not use Svellsongur. REFUTE 2026-09-03: SURVIVES."
     },
     {
       "id": "svellsongur-ornn-hold",
@@ -731,10 +773,15 @@
           "title": "Hunt v2 lens L6, entry C3 (docs/phase0/hunt2/L6-equipment-legends.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Two cards, both Calm, so it fits gear/Ornn decks that otherwise contain no combo at all. Svellsongur copies the equipped unit's PRINTED text into its own effect text (SFD-059). That is the conservative reading and the only one this entry needs; the open question about copying appended Effect Text does not apply here. Confidence high on the mechanism per the lens; still a candidate because no human has walked 718.2 vs 725.1 for Svellsongur."
+      "notes": "Two cards, both Calm, so it fits gear/Ornn decks that otherwise contain no combo at all. Svellsongur copies the equipped unit's PRINTED text into its own effect text (SFD-059). That is the conservative reading and the only one this entry needs; the open question about copying appended Effect Text does not apply here. Confidence high on the mechanism per the lens; still a candidate because no human has walked 718.2 vs 725.1 for Svellsongur. REFUTE 2026-09-03: SURVIVES. REFUTE 2026-09-03: looking never Burns Out (431.1.c); you need at least 8 cards in the deck to see 8 distinct."
     },
     {
       "id": "guardian-passage-svellsongur",
@@ -779,10 +826,15 @@
           "title": "Hunt v2 lens L6, entry C3 (docs/phase0/hunt2/L6-equipment-legends.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Svellsongur copies the equipped unit's PRINTED text into its own effect text (SFD-059). That is the conservative reading and the only one this entry needs; the open question about copying appended Effect Text does not apply here."
+      "notes": "Svellsongur copies the equipped unit's PRINTED text into its own effect text (SFD-059). That is the conservative reading and the only one this entry needs; the open question about copying appended Effect Text does not apply here. REFUTE 2026-09-03: SURVIVES."
     },
     {
       "id": "world-atlas-sentinel-gold",
@@ -829,10 +881,15 @@
           "title": "Hunt v2 lens L6, entry C3 (docs/phase0/hunt2/L6-equipment-legends.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "No Svellsongur involved — World Atlas is Equipment, so its trigger is already the unit's own. Rests only on the Blue Sentinel reading shared with the other Hold lines (471.2.c)."
+      "notes": "No Svellsongur involved — World Atlas is Equipment, so its trigger is already the unit's own. Rests only on the Blue Sentinel reading shared with the other Hold lines (471.2.c). REFUTE 2026-09-03: SURVIVES."
     },
     {
       "id": "gauntlets-enforcer-conquer",
@@ -851,7 +908,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BATTLEFIELD",
-          "note": "[Effect] When I conquer, if you assigned 3 or more excess damage, draw 1. Its Equip cost drops by the bearer's Might, so on a 3+ Might unit it is free."
+          "note": "[Effect] When I conquer, if you assigned 3 or more excess damage, draw 1. Equip cost is 3 Energy + a rainbow rune; the Might of the bearer reduces the Energy only — the rune is always paid."
         }
       ],
       "needs": [],
@@ -877,10 +934,15 @@
           "title": "Hunt v2 lens L6, entry C7 (docs/phase0/hunt2/L6-equipment-legends.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Fury/Order had no entry at all. Modest but real, and the only line found so far for that pair."
+      "notes": "Fury/Order had no entry at all. Modest but real, and the only line found so far for that pair. REFUTE 2026-09-03: WOUNDED — the earlier note called the Equip free; only the Energy is reduced by Might, the rainbow Power stays. Both triggers share one condition and each fires once per Conquer: additive, not multiplicative. Kept as the only Fury/Order line."
     },
     {
       "id": "azir-aphelios-attach",
@@ -931,10 +993,15 @@
           "title": "Hunt v2 lens L6, entry C8 (docs/phase0/hunt2/L6-equipment-legends.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Calm/Order had no entry. Listed at the lens's own cap; the refute spec (§27) is what limits it."
+      "notes": "Calm/Order had no entry. Listed at the lens's own cap; the refute spec (§27) is what limits it. REFUTE 2026-09-03: WOUNDED — per turn roughly −1 Energy, −2 Order Power recycled, +2 runes readied, +1 channelled: about even. The legend's exhaust makes one Sand Soldier per turn, so the third mode needs a second Equipment played from hand."
     },
     {
       "id": "ashe-retreat-hand-strip",
@@ -958,7 +1025,8 @@
         }
       ],
       "needs": [
-        "infinite-energy"
+        "infinite-energy",
+        "infinite-power"
       ],
       "produces": [
         "strip-opponent-hand"
@@ -989,10 +1057,15 @@
           "title": "Hunt v2 lens L5, entry L5-02 (docs/phase0/hunt2/L5-recursion-bounce.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Quote: 'Ashe - Focused is here to save the day. Ashe will banish any problem card from the opposing hand'. Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches)."
+      "notes": "Quote: 'Ashe - Focused is here to save the day. Ashe will banish any problem card from the opposing hand'. Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches). REFUTE 2026-09-03: WOUNDED — Ashe costs 5 Energy + 1 Order Power per cast, so this also needs the verified infinite-Power line. If you hold both battlefields the opponent never Holds and the banished cards never return. Loop draw budget (REFUTE R7): the verified Lux engine recycles 4 and draws exactly 4 per pass — Forge's spare slot is a recycle slot, not a draw. Every extra card that must come back through the deck needs one extra draw per pass, which Renata Mastermind's verified '1 Energy + Mind: Draw 1' supplies at about +1E +1P per point; or hold three copies in hand.."
     },
     {
       "id": "promising-future-force-deck",
@@ -1034,17 +1107,22 @@
         "Recycle it with Forge of the Future; redraw it through the loop.",
         "Repeat until the opponent's deck is on the board, then clear the board."
       ],
-      "terminatesIn": "engine — deck-out pressure and board control; not a kill on its own",
+      "terminatesIn": "engine at best — the opponent chooses which of their top five to play, and 431.2.b refills their deck from trash before any Burn Out point, so it cannot deck them",
       "sources": [
         {
           "title": "TCGplayer — Analyzing Infinite Combo Lux, Riftbound's Hottest New Deck (Scott Mines)",
           "url": "https://www.tcgplayer.com/content/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
           "kind": "article",
           "date": "2026-06-10"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Quote: 'create a loop based on the above including Promising Future, which will allow you to force every card [in the opponent's deck into play]'. Symmetric: you play one too — the article treats that as free because the loop deck's own picks are recycled. Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches)."
+      "notes": "Quote: 'create a loop based on the above including Promising Future, which will allow you to force every card [in the opponent's deck into play]'. Symmetric: you play one too — the article treats that as free because the loop deck's own picks are recycled. Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches). REFUTE 2026-09-03: WOUNDED — as a repeated engine it is net negative: each cast hands the opponent a free permanent or spell of their choice; their deck shrinks by one per cast and Burn Out recycles their trash first. The article's use is as a one-off. Loop draw budget (REFUTE R7): the verified Lux engine recycles 4 and draws exactly 4 per pass — Forge's spare slot is a recycle slot, not a draw. Every extra card that must come back through the deck needs one extra draw per pass, which Renata Mastermind's verified '1 Energy + Mind: Draw 1' supplies at about +1E +1P per point; or hold three copies in hand.."
     },
     {
       "id": "ruination-sprite-burst-clear",
@@ -1092,10 +1170,15 @@
           "url": "https://www.tcgplayer.com/content/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
           "kind": "article",
           "date": "2026-06-10"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Quote: 'Simply send everything into the abyss with a copy of The Ruination or by looping back Sprite Burst until you have enough might to challenge everything.' Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches)."
+      "notes": "Quote: 'Simply send everything into the abyss with a copy of The Ruination or by looping back Sprite Burst until you have enough might to challenge everything.' Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches). REFUTE 2026-09-03: SURVIVES — the two ready Sprites can Standard-Move and Establish Control uncontested after The Ruination: +2 Conquer points the same turn (470); they die before any Hold (816.1.b), so put non-Temporary bodies there for the Holds. The Ruination kills your own Renata too — replay her under the loop. R7 applies only if Sprite Burst is looped rather than held in triplicate."
     },
     {
       "id": "bloodharbor-bewitching-discard",
@@ -1141,10 +1224,15 @@
           "url": "https://www.tcgplayer.com/content/article/The-Best-Decks-from-Riftbound-Regional-Hartford/715aa271-6096-4dd1-8279-cd47ed33fa13/",
           "kind": "article",
           "date": "2026-06-25"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Quote, verified by hand through a reader proxy on 2026-09-03: 'Pyke - Bloodharbor Ripper control shell out there that cripples legends not named Master Yi with a never-ending stream of Bewitching Spirits.' Card text verified against the corpus: the legend's ability costs an exhaust, so the stream is one per turn — the source's 'never-ending' is tempo, not infinity. First Fury/Chaos entry in the catalogue."
+      "notes": "Quote, verified by hand through a reader proxy on 2026-09-03: 'Pyke - Bloodharbor Ripper control shell out there that cripples legends not named Master Yi with a never-ending stream of Bewitching Spirits.' Card text verified against the corpus: the legend's ability costs an exhaust, so the stream is one per turn — the source's 'never-ending' is tempo, not infinity. First Fury/Chaos entry in the catalogue. REFUTE 2026-09-03: SURVIVES — the legend bounces 'a friendly unit at a battlefield', so the Spirit must be at a battlefield you control (play it there, or move it the next turn). 4 Energy per turn for one discard and one exhausted Gold."
     },
     {
       "id": "time-warp-hold-burst",
@@ -1182,7 +1270,8 @@
         }
       ],
       "needs": [
-        "infinite-energy"
+        "infinite-energy",
+        "infinite-power"
       ],
       "produces": [
         "burst-points"
@@ -1192,7 +1281,7 @@
           "Legend domains cover Mind and Order."
         ],
         "notable": [
-          "Loop running. Clear the board, take both Duel battlefields, leave bodies on them, then cast Time Warp: each extra turn's Beginning Phase Holds both for 2 points (470). Three Time Warps = 6, with no opponent turn in between.",
+          "Loop running. Clear the board, take both Duel battlefields with the ready Sprites (+2 Conquer points, 470), leave non-Temporary bodies on them, then cast Time Warp: each extra turn's Beginning Phase Holds both for 2. Three Time Warps = 6 more, no opponent turn in between: 8 from zero.",
           "Keep the Main Deck non-empty at each end of turn or the extra turn's draw Burns Out and hands the opponent a point (431.2)."
         ]
       },
@@ -1202,7 +1291,7 @@
         "Play bodies (Soaring Scout / Ekko / Lux, Crownguard) to the battlefields you control.",
         "Cast Time Warp. Extra turn: Hold both, +2. Repeat twice more: +6 total."
       ],
-      "terminatesIn": "6 points across three uninterrupted turns; from 2 this wins",
+      "terminatesIn": "8 points from zero across the casting turn and three uninterrupted extra turns",
       "sources": [
         {
           "title": "TCGplayer — The Best Decks from Riftbound Regional Hartford (HowlingMines)",
@@ -1214,10 +1303,15 @@
           "title": "Hunt v2 lens L4, entry General note (docs/phase0/hunt2/L4-points-altwins.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Quote, verified by hand via reader proxy 2026-09-03: '…then firing off three copies of Time Warp to score the remaining six points needed in one fell swoop.' Capped at three by deck limit + banish (427). riftbound.gg claims an unbounded version; lens L1 is checking whether anything returns cards from Banishment."
+      "notes": "Quote, verified by hand via reader proxy 2026-09-03: '…then firing off three copies of Time Warp to score the remaining six points needed in one fell swoop.' Capped at three by deck limit + banish (427). riftbound.gg claims an unbounded version; lens L1 is checking whether anything returns cards from Banishment. REFUTE 2026-09-03: undercounted upward — the Sprite conquers on the casting turn are +2, so 8 from zero. Time Warp banishes itself (427) and can never be recycled: all three copies must already be in hand (Renata's Draw 1 can draw the whole deck first). 12 Mind Power total, so the infinite-Power line is needed too. Leave one card in the deck via Forge's spare recycle slot before each extra Draw Phase (431.2.c). Hold points are not Conquer points, so 471.1.b never applies."
     },
     {
       "id": "renata-bubble-bot-ready",
@@ -1281,10 +1375,15 @@
           "title": "Hunt v2 lens L4, entry L4-01 (docs/phase0/hunt2/L4-points-altwins.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Same payoff as the verified Rally the Troops / Fiora line, different ready engine. Unbounded pass count; realistic pass count is a scale question. UNRESOLVED per the lens: whether Heimerdinger copying Renata's ability keeps her 'only while at a battlefield' clause."
+      "notes": "Same payoff as the verified Rally the Troops / Fiora line, different ready engine. Unbounded pass count; realistic pass count is a scale question. UNRESOLVED per the lens: whether Heimerdinger copying Renata's ability keeps her 'only while at a battlefield' clause. REFUTE 2026-09-03: WOUNDED — per point 8E+4P plus one extra draw for the bounce spell: 9 Energy + 5 Mind Power per point via Renata's own Draw 1, or three bounce spells in hand. Loop draw budget (REFUTE R7): the verified Lux engine recycles 4 and draws exactly 4 per pass — Forge's spare slot is a recycle slot, not a draw. Every extra card that must come back through the deck needs one extra draw per pass, which Renata Mastermind's verified '1 Energy + Mind: Draw 1' supplies at about +1E +1P per point; or hold three copies in hand.."
     },
     {
       "id": "swain-double-conquer",
@@ -1300,11 +1399,18 @@
           "note": "When I conquer, if you've played a non-token unit, a non-token gear, and a spell this turn, you score 1 point."
         },
         {
+          "card": "VEN-068",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "When you play me or the first time you play a non-token gear each turn, you may ready something besides me that's exhausted. Each replay is a new object, so both clauses re-arm."
+        },
+        {
           "card": "OGN-104",
           "quantity": 1,
           "role": "engine",
           "zone": "HAND",
-          "note": "After the first Conquer the Swains are exhausted; Retreat and replay them to base, then Standard-Move to the second battlefield."
+          "note": "[Reaction] Return a friendly unit to its owner's hand — cycles Jayce (and, if needed, the Swains)."
         }
       ],
       "needs": [
@@ -1318,14 +1424,15 @@
           "Legend domains cover Mind (Swain) — with the loop, Mind+Order."
         ],
         "notable": [
-          "Three Swains deployed the previous turn so they are ready (units enter exhausted, 143.4). Neither battlefield scored yet this turn.",
+          "Three Swains ready at base at the start of the turn (played the previous turn — units enter exhausted, 143.4). Neither battlefield scored yet this turn.",
           "The loop satisfies Swain's clause every pass (Forge = gear, Ekko = unit, Shadow's Call = spell).",
           "Points: 2 × (N + 1) for N Swains. N=3: 8 from zero."
         ]
       },
       "steps": [
-        "Standard-Move the Swains to battlefield A; win; Establish Control → Conquer: +1, then +1 per Swain.",
-        "Retreat each Swain, replay to base (free under the loop), Standard-Move to battlefield B.",
+        "Standard-Move the three ready Swains to battlefield A; win; Establish Control → Conquer: +1, then +1 per Swain (4).",
+        "The Swains are now exhausted at A. Play Jayce: ready one Swain. The loop's next Forge play is Jayce's 'first non-token gear this turn': ready a second Swain.",
+        "Retreat Jayce and replay him (new object, 124): ready the third Swain. Standard-Move all three A → base is not needed — an exhausting move is only required for base → battlefield, so Retreat each Swain to hand and replay it at base only if A → B is not a legal single move; otherwise move them ready from A to B.",
         "Conquer B: +1, +3. Total 8."
       ],
       "terminatesIn": "8 points in one turn",
@@ -1334,10 +1441,15 @@
           "title": "Hunt v2 lens L4, entry L4-02 (docs/phase0/hunt2/L4-points-altwins.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "The lens's Bard, Mercurial route (move to an 'open' battlefield) is UNRESOLVED on what 'open' means; this entry uses the Retreat/replay route, which has no such dependency. Second Conquer's own point is safe at 7 because both battlefields were scored this turn (471.1.b.1)."
+      "notes": "DEAD as first written (REFUTE 2026-09-03): the entry replayed the Swains and Standard-Moved them, but units enter exhausted (143.4) and a Standard Move needs a ready unit. Re-authored with the Jayce ready engine — the same engine as jayce-mesmerize-renata. Still a candidate: whether Swains can move battlefield → battlefield directly or must return to base first (144.4) is a rules point a human must settle; the entry's step 3 covers both routes. The lens's Bard, Mercurial route (move to an 'open' battlefield) is left out because 'open' is undefined in the primer. Second Conquer's own point is safe at 7 because both battlefields were scored this turn (471.1.b.1)."
     },
     {
       "id": "bottled-constellation-time-warp",
@@ -1361,7 +1473,8 @@
         }
       ],
       "needs": [
-        "infinite-energy"
+        "infinite-energy",
+        "infinite-power"
       ],
       "produces": [
         "burst-points"
@@ -1386,10 +1499,15 @@
           "title": "Hunt v2 lens L4, entry L4-03 (docs/phase0/hunt2/L4-points-altwins.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Capped at three by Time Warp's deck limit and banish (427). The Draw Phase Burn Out trap is what actually goes wrong at the table."
+      "notes": "Capped at three by Time Warp's deck limit and banish (427). The Draw Phase Burn Out trap is what actually goes wrong at the table. REFUTE 2026-09-03: SURVIVES — 9 confirmed. Constellations played this turn fire only from the next Main Phase start. Time Warps cannot ride the loop (banished): three in hand. Needs infinite Power (4 per Time Warp, 2 per Constellation)."
     },
     {
       "id": "power-nexus-sentinel",
@@ -1435,10 +1553,15 @@
           "title": "Hunt v2 lens L4, entry L4-04 (docs/phase0/hunt2/L4-points-altwins.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Battlefield-dependent (yours is 1 of 3 in Duel, chosen in Match). Rests on the Blue Sentinel reading shared with every Hold line: 471.2.c limits score effects to a Score event, and Sentinel adds trigger instances of that one event rather than a second Score. Arguable, hence candidate."
+      "notes": "Battlefield-dependent (yours is 1 of 3 in Duel, chosen in Match). Rests on the Blue Sentinel reading shared with every Hold line: 471.2.c limits score effects to a Score event, and Sentinel adds trigger instances of that one event rather than a second Score. Arguable, hence candidate. REFUTE 2026-09-03: WOUNDED — the Power is paid in the Beginning Phase with the Rune Pool empty (167), i.e. by recycling 12 runes, and rune income is about 2 per turn; sustainably that is one extra point a turn. World Atlas Gold (world-atlas-sentinel-gold) is the fix: exhausted Gold readies for the next Beginning Phase, 8 Gold = two Nexus payments."
     },
     {
       "id": "ivern-sentinel-hold",
@@ -1484,10 +1607,15 @@
           "title": "Hunt v2 lens L4, entry L4-05 (docs/phase0/hunt2/L4-points-altwins.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "The Reckoner's Arena double-dip in the lens (its hold ability re-activates conquer effects) is left out: whether Sentinel multiplies the Arena's own trigger is UNRESOLVED. Tag requirement is the real deckbuilding cost. Rests on the Blue Sentinel reading shared with every Hold line: 471.2.c limits score effects to a Score event, and Sentinel adds trigger instances of that one event rather than a second Score. Arguable, hence candidate."
+      "notes": "The Reckoner's Arena double-dip in the lens (its hold ability re-activates conquer effects) is left out: whether Sentinel multiplies the Arena's own trigger is UNRESOLVED. Tag requirement is the real deckbuilding cost. Rests on the Blue Sentinel reading shared with every Hold line: 471.2.c limits score effects to a Score event, and Sentinel adds trigger instances of that one event rather than a second Score. Arguable, hence candidate. REFUTE 2026-09-03: SURVIVES."
     },
     {
       "id": "kharox-sanction-burn",
@@ -1524,8 +1652,9 @@
       },
       "steps": [
         "Empower Kharox: they Burn 3.",
-        "Sanction, mode two: Disempower now, Empower at end of turn → 'When I become Empowered' fires again (828.1.d).",
-        "Repeat with each Sanction."
+        "Sanction, mode two (Disempower an Empowered unit, Empower it at end of turn): he re-Empowers at end of turn → 'When I become Empowered' fires again (828.1.d).",
+        "He is now Disempowered until end of turn, so the next Sanction must use mode one (Empower now): another trigger. Alternate modes; order the end-of-turn delayed effects for one more.",
+        "Kharox's own Empower ability ('Use only if not Empowered') is usable again each time he is Disempowered, for 6 Energy + 2 Chaos."
       ],
       "terminatesIn": "engine — deck pressure and free units; not a kill (Burn Out recycles their trash before the point, 431.2.c)",
       "sources": [
@@ -1533,10 +1662,15 @@
           "title": "Hunt v2 lens L4, entry L4-14 (docs/phase0/hunt2/L4-points-altwins.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "First Calm/Chaos entry. Hunt B-11 called Kharox one-shot; the crossing trigger on re-Empowerment is what it missed."
+      "notes": "First Calm/Chaos entry. Hunt B-11 called Kharox one-shot; the crossing trigger on re-Empowerment is what it missed. REFUTE 2026-09-03: SURVIVES with a step fix — mode two requires an Empowered target, so two mode-two Sanctions in a row are illegal; modes alternate. Three to four triggers a turn = Burn 9–12, plus his own re-usable Empower. The per-turn cap is Energy, not Sanction copies."
     },
     {
       "id": "grand-plaza-loop-time-warp",
@@ -1574,7 +1708,8 @@
         }
       ],
       "needs": [
-        "infinite-energy"
+        "infinite-energy",
+        "infinite-power"
       ],
       "produces": [
         "win-the-game"
@@ -1598,10 +1733,15 @@
           "title": "Hunt v2 lens L4, entry L4-12 (docs/phase0/hunt2/L4-points-altwins.md)",
           "kind": "agent",
           "date": "2026-09-02"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Same payoff as the two-turn Recruit the Vanguard line, but the loop supplies the bodies and Time Warp removes the opponent's window. High on rules, format-dependent."
+      "notes": "Same payoff as the two-turn Recruit the Vanguard line, but the loop supplies the bodies and Time Warp removes the opponent's window. High on rules, format-dependent. REFUTE 2026-09-03: SURVIVES — Time Warp's 4 Power needs the infinite-Power line; leave a card in the deck for the extra Draw Phase (Forge's spare slot); Industrialist overrides 143.4 by card text."
     },
     {
       "id": "zed-clone-eye-recruits",
@@ -1648,7 +1788,7 @@
         ],
         "notable": [
           "Zed at The Grand Plaza after conquering it (so his Clone exists at base); an Eye on each; Renata on board; 12 runes with at least 6 Chaos in the Rune Deck.",
-          "Per activation: −1 Energy (exhaust a rune), −1 Chaos Power (recycle a rune, no exhaust needed), +2 ready Recruits — one at the Plaza, one at base. Six activations from 12 runes: Zed + 12 Recruits = 13 units at the Plaza after the base ones walk over. Seven is enough."
+          "Per activation: −1 Energy and −1 Chaos Power. The Power rune can be the very rune just exhausted for the Energy (recycling needs no exhaust), so N Chaos runes give N swaps and 2N ready Recruits — twelve Chaos runes is 24 bodies, and seven is enough for the Plaza."
         ]
       },
       "steps": [
@@ -1663,10 +1803,15 @@
           "title": "Hunt v2 lens L2, entry L2-01 (docs/phase0/hunt2/L2-move-token-equip.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "This is the piece the 2026-07-24 ban removed: Stealthy Pursuer was the pool's only 'moved with' effect; Zed's swap is now the only repeatable exhaust-free bidirectional effect move (grep of the corpus). Card text verified by hand. ENGINE rather than INFINITE because the swap costs a rune each time — it is bounded by the 12-rune deck per turn, not by cards. One-turn exposure before the Hold, like every Plaza line. Load-bearing readings: a 'When I move' Effect fires on effect moves (420.1 — the same reading Riot's ban statement used); 'here' is the bearer's location after the move."
+      "notes": "This is the piece the 2026-07-24 ban removed: Stealthy Pursuer was the pool's only 'moved with' effect; Zed's swap is now the only repeatable exhaust-free bidirectional effect move (grep of the corpus). Card text verified by hand. ENGINE rather than INFINITE because the swap costs a rune each time — it is bounded by the 12-rune deck per turn, not by cards. One-turn exposure before the Hold, like every Plaza line. Load-bearing readings: a 'When I move' Effect fires on effect moves (420.1 — the same reading Riot's ban statement used); 'here' is the bearer's location after the move. REFUTE 2026-09-03: undercounted upward — N Chaos runes → N swaps → 2N Recruits, not six swaps from twelve runes. Either reading of 'here' still yields one Recruit at each end. Zed must have conquered once to own a Clone; the Eye on the Clone costs 1 Order Power."
     },
     {
       "id": "leblanc-temporary-plaza",
@@ -1721,10 +1866,15 @@
           "title": "Hunt v2 lens L1, entry C2 (docs/phase0/hunt2/L1-state-loops.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "What is new versus the Recruit the Vanguard line: the cheapest bodies in Mind are Temporary and normally never survive to a Hold. Sprite Burst / Sprite Call (3-Might Temporary Sprites) are fatter optional bodies; Zilean at the Plaza adds one token per play. Card text verified by hand."
+      "notes": "What is new versus the Recruit the Vanguard line: the cheapest bodies in Mind are Temporary and normally never survive to a Hold. Sprite Burst / Sprite Call (3-Might Temporary Sprites) are fatter optional bodies; Zilean at the Plaza adds one token per play. Card text verified by hand. REFUTE 2026-09-03: SURVIVES. REFUTE 2026-09-03: Temporary is a triggered-ability keyword (816.1), so LeBlanc's text suppresses the kill on the plain reading (R10). Keeper plays its copies 'here', so the Plaza must be yours first. One 7-Might attacker or one kill on LeBlanc breaks it; Time Warp closes the window."
     },
     {
       "id": "jayce-mesmerize-renata",
@@ -1766,7 +1916,7 @@
           "Legend domains cover Mind and Order (the loop)."
         ],
         "notable": [
-          "Loop running with Renata at a controlled battlefield. Per point: score (4E+4P), Mesmerize Jayce (1E+1P), replay Jayce (6E+1P) → ready Renata. 11 Energy + 6 Mind Power per point; Mesmerize rides Forge's spare recycle slot."
+          "Loop running with Renata at a controlled battlefield. Each Jayce replay is a new object, so he readies Renata twice per cycle: once on play and once on the loop's next Forge play ('first non-token gear this turn'). About 7.5 Energy + 5 Mind Power per point; Retreat (1 Energy, no Power) does Mesmerize's job."
         ]
       },
       "steps": [
@@ -1780,10 +1930,15 @@
           "title": "Hunt v2 lens L1, entry C4 (docs/phase0/hunt2/L1-state-loops.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Third route to the same kill as the verified Rally the Troops / Fiora line and the Bubble Bot line; this one needs no Mighty crossing and no Mech typing, all Mind. Independent corroboration: lens L1 also re-derived the Bottled Constellation, Power Nexus and Swain lines ingested from L4."
+      "notes": "Third route to the same kill as the verified Rally the Troops / Fiora line and the Bubble Bot line; this one needs no Mighty crossing and no Mech typing, all Mind. Independent corroboration: lens L1 also re-derived the Bottled Constellation, Power Nexus and Swain lines ingested from L4. REFUTE 2026-09-03: SURVIVES, undercounted upward — two readies per Jayce cycle halve the cost per point. Loop draw budget (REFUTE R7): the verified Lux engine recycles 4 and draws exactly 4 per pass — Forge's spare slot is a recycle slot, not a draw. Every extra card that must come back through the deck needs one extra draw per pass, which Renata Mastermind's verified '1 Energy + Mind: Draw 1' supplies at about +1E +1P per point; or hold three copies in hand.."
     }
   ]
 }
