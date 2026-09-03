@@ -58,3 +58,5 @@ confidence honestly, and attach raw evidence. An independent REFUTE pass runs af
 - Do not browse the web. Local files only.
 - Write your full report to the output path given in your task (markdown). Then reply with a
   10-line summary: number of candidates by class, your top 3 with one line each, and anomalies.
+
+<!-- 2026-09-02: brief rescatado del scratchpad de la sesión anterior y versionado aquí. Ver issue #11. -->

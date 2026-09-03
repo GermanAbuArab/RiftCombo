@@ -9,3 +9,5 @@ dist/
 coverage/
 public/
 .playwright-mcp/
+.vercel/
+.vercel

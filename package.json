@@ -10,8 +10,9 @@
     "typecheck": "tsc --noEmit",
     "find": "tsx src/cli.ts",
     "build:web": "node scripts/build-web.mjs",
-    "dev": "node scripts/build-web.mjs && wrangler dev",
-    "deploy": "node scripts/build-web.mjs && wrangler deploy"
+    "dev": "node scripts/build-web.mjs && vercel dev",
+    "deploy": "vercel deploy --prod",
+    "deploy:preview": "vercel deploy"
   },
   "license": "MIT",
   "dependencies": {
@@ -22,7 +23,6 @@
     "esbuild": "^0.28.2",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2",
-    "vitest": "^4.1.11",
-    "wrangler": "^4.128.0"
+    "vitest": "^4.1.11"
   }
 }
