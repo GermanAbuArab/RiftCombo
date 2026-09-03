@@ -23,6 +23,7 @@
 - Every combo carries a class: INFINITE (walked, unbounded), BURST (one scoring event reaches 8), ALT_WIN, or ENGINE. Never label INFINITE without a "repeat" step.
 - Do not accept structural verdicts from agents ("no X exists in the pool") without walking the validation set first; the first hunt's "no infinite combos" was wrong.
 - Riftbound is not MTG: no life total, win at 8 points, infinite draw is a liability (Burn Out), units enter exhausted, Rune Pool empties each turn, Domain Identity is subset-of-legend and every Legend has exactly two domains.
+- Rules readings the catalogue stands on are numbered R1–R13 on issue #11 and ruled there by the user. Ruled 2026-09-03: R1 = A with stacking (Blue Sentinel / Red Brambleback add one trigger instance each on the single Score; N copies → N+1 instances). R2 (card-text "Score 1 point" is a Gain, not a 469 Score) is UNRULED and out for consultation: do not promote or re-author anything that depends on it (all BURST entries and the ability-points lines).
 
 ## Legal posture
 - No ads, no donations, no meta stats (play/win rates), no combo *execution*, exact Riot disclaimer text from `docs/plan.md` §1.
