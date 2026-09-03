@@ -1602,6 +1602,188 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "Same payoff as the two-turn Recruit the Vanguard line, but the loop supplies the bodies and Time Warp removes the opponent's window. High on rules, format-dependent."
+    },
+    {
+      "id": "zed-clone-eye-recruits",
+      "name": "Zed × Shadow Clone × Eye of the Herald — two ready Recruits per swap",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "VEN-112",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "When I conquer, play a 0 Might Shadow Clone token to your base. [Action] 1 Energy + 1 Chaos: Move me and a Shadow Clone you control to each other's locations. No exhaust in the cost, no once-per-turn."
+        },
+        {
+          "card": "SFD-153",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "[Effect] When I move, play a 1 Might Recruit unit token here. One on Zed, one on the Clone (tokens are units, 187.11)."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Your tokens enter ready — the base-side Recruits can walk to the battlefield the same turn."
+        },
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "When you hold here, if you have 7+ units here, you win the game."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend is Heart of the Tempest (VEN-155) — the only Order/Chaos legend in the pool."
+        ],
+        "notable": [
+          "Zed at The Grand Plaza after conquering it (so his Clone exists at base); an Eye on each; Renata on board; 12 runes with at least 6 Chaos in the Rune Deck.",
+          "Per activation: −1 Energy (exhaust a rune), −1 Chaos Power (recycle a rune, no exhaust needed), +2 ready Recruits — one at the Plaza, one at base. Six activations from 12 runes: Zed + 12 Recruits = 13 units at the Plaza after the base ones walk over. Seven is enough."
+        ]
+      },
+      "steps": [
+        "Activate Zed: he and the Clone swap places. Both Eyes trigger: a Recruit at the Plaza, a Recruit at base — both ready.",
+        "Activate again: they swap back; two more Recruits. Repeat while runes last (an even count leaves Zed at the Plaza).",
+        "Standard-Move the base Recruits to the Plaza.",
+        "Next Beginning Phase, Hold the Plaza with 7+ units: win (195)."
+      ],
+      "terminatesIn": "win the game at the next Hold; ~12 ready bodies a turn even without the Plaza",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L2, entry L2-01 (docs/phase0/hunt2/L2-move-token-equip.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "This is the piece the 2026-07-24 ban removed: Stealthy Pursuer was the pool's only 'moved with' effect; Zed's swap is now the only repeatable exhaust-free bidirectional effect move (grep of the corpus). Card text verified by hand. ENGINE rather than INFINITE because the swap costs a rune each time — it is bounded by the 12-rune deck per turn, not by cards. One-turn exposure before the Hold, like every Plaza line. Load-bearing readings: a 'When I move' Effect fires on effect moves (420.1 — the same reading Riot's ban statement used); 'here' is the bearer's location after the move."
+    },
+    {
+      "id": "leblanc-temporary-plaza",
+      "name": "LeBlanc keeps Temporary bodies alive — The Grand Plaza with Keeper of Masks",
+      "class": "ALT_WIN",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-090",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Your [Temporary] effects at my battlefield don't trigger — the start-of-Beginning-Phase kill (816.1.b) never fires here."
+        },
+        {
+          "card": "UNL-081",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "[Hidden] [Temporary] When you play me, play two Reflection unit tokens here; they become copies of me. Three units for 2 Energy (0 from Hidden)."
+        },
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "When you hold here, if you have 7+ units here, you win the game."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind (LeBlanc and Keeper are both Mind)."
+        ],
+        "notable": [
+          "You control The Grand Plaza (random 1 of 3 in Duel, chosen in Match) with LeBlanc on it.",
+          "Three Keepers played to the Plaza = 9 Temporary units + LeBlanc = 10. Survive one opponent turn: any 1 damage kills a 1-Might copy, and removing LeBlanc lets every Temporary die at your Beginning Phase."
+        ]
+      },
+      "steps": [
+        "Conquer the Plaza; play LeBlanc there.",
+        "Play Keeper of Masks to the Plaza three times: each brings two Reflection copies. Ten units.",
+        "Opponent's turn passes.",
+        "Your Beginning Phase: the Temporary kill does not trigger at LeBlanc's battlefield; you Hold with 7+ units → win (195)."
+      ],
+      "terminatesIn": "win the game",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L1, entry C2 (docs/phase0/hunt2/L1-state-loops.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "What is new versus the Recruit the Vanguard line: the cheapest bodies in Mind are Temporary and normally never survive to a Hold. Sprite Burst / Sprite Call (3-Might Temporary Sprites) are fatter optional bodies; Zilean at the Plaza adds one token per play. Card text verified by hand."
+    },
+    {
+      "id": "jayce-mesmerize-renata",
+      "name": "Renata, Mastermind readied by Jayce — all-Mind point loop",
+      "class": "INFINITE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-088",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "4 Energy + 4 Mind Power, exhaust: Score 1 point. Only while at a battlefield."
+        },
+        {
+          "card": "VEN-068",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "When you play me or the first time you play a non-token gear each turn, you may ready something besides me that's exhausted."
+        },
+        {
+          "card": "VEN-052",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "[Reaction] Choose one — Return a friendly unit to its owner's hand / Give an enemy unit −2 Might. Bounces Jayce so his play trigger fires again (new object, 124)."
+        }
+      ],
+      "needs": [
+        "infinite-energy",
+        "infinite-power"
+      ],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order (the loop)."
+        ],
+        "notable": [
+          "Loop running with Renata at a controlled battlefield. Per point: score (4E+4P), Mesmerize Jayce (1E+1P), replay Jayce (6E+1P) → ready Renata. 11 Energy + 6 Mind Power per point; Mesmerize rides Forge's spare recycle slot."
+        ]
+      },
+      "steps": [
+        "Renata: pay 4E + 4 Mind Power, exhaust — score 1.",
+        "Mesmerize Jayce to hand; replay him: 'When you play me… ready something besides me' → Renata.",
+        "Repeat."
+      ],
+      "terminatesIn": "8 points",
+      "sources": [
+        {
+          "title": "Hunt v2 lens L1, entry C4 (docs/phase0/hunt2/L1-state-loops.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Third route to the same kill as the verified Rally the Troops / Fiora line and the Bubble Bot line; this one needs no Mighty crossing and no Mech typing, all Mind. Independent corroboration: lens L1 also re-derived the Bottled Constellation, Power Nexus and Swain lines ingested from L4."
     }
   ]
 }
