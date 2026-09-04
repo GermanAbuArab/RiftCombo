@@ -398,7 +398,7 @@
       "id": "grand-plaza-recruit-vanguard",
       "name": "The Grand Plaza + Recruit the Vanguard — seven units, win",
       "class": "ALT_WIN",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "OGN-293",
@@ -423,7 +423,10 @@
         ],
         "notable": [
           "The Grand Plaza must be the battlefield in play — random in Duel (1 of 3), chosen in Match.",
-          "Survive one opponent turn with 7+ units on it."
+          "Survive one opponent turn with 7+ units on it.",
+          "Eight Recruits from two Vanguards, and the spell's own reminder text permits a battlefield you control as the destination, so all eight can land on the Plaza. Seven is the bar, so one may die.",
+          "The Recruits carry no Temporary, so 816.1.b never touches them and they are still there for the Scoring Step (315.2.b), where the Hold and rule 195 do the rest.",
+          "The Plaza is symmetric: \"When YOU hold here\" reads for whoever holds it, so an opponent parking seven units on it wins the same way. A Plaza you cannot hold is a liability, not a dead card."
         ]
       },
       "steps": [
@@ -441,16 +444,21 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk, 2026-09-04 — full pass against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-04-three-alt-win-and-burst.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "REFUTE 2026-09-03: SURVIVES. REFUTE 2026-09-03: the Plaza must already be yours (Vanguard plays 'to your base or to battlefields you control'); two Vanguards in one turn is 12 Energy, the whole Rune Deck; a lone 6-Might attacker on their turn leaves two Recruits."
+      "notes": "REFUTE 2026-09-03: SURVIVES. REFUTE 2026-09-03: the Plaza must already be yours (Vanguard plays 'to your base or to battlefields you control'); two Vanguards in one turn is 12 Energy, the whole Rune Deck; a lone 6-Might attacker on their turn leaves two Recruits. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-three-alt-win-and-burst.md), promoted to verified. Depends on no unruled reading: OGN-293 instructs the win and 195 grants it, OGS-015 explicitly permits battlefields you control, and the Recruits are not Temporary."
     },
     {
       "id": "gutter-palace",
       "name": "Gutter Palace — exactly 4 and 4",
       "class": "ALT_WIN",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-088",
@@ -468,7 +476,11 @@
           "Mono-Mind: any Mind legend."
         ],
         "notable": [
-          "End your turn at exactly 4 cards in hand and exactly 4 units at battlefields; its own ability tunes both counts at once."
+          "End your turn at exactly 4 cards in hand and exactly 4 units at battlefields; its own ability tunes both counts at once, in the direction the check needs (hand -1, units +1).",
+          "The Bird reaches a battlefield: 355.2 has you choose the location a played Unit enters, and 355.2.a makes the controller's Base or a Battlefield they control valid by default. The instruction names no location, so the ordinary choice applies.",
+          "Timing is why this works with a normal hand: the check is the Beginning Step (315.2.a), while the draw is two phases later in the Draw Phase (315.4). The count is taken against the hand you passed the turn with.",
+          "Gear enters ready (143.4 makes only Units enter exhausted), so the ability is live the turn Gutter Palace lands, but it exhausts: one adjustment per turn.",
+          "Exposed for a full opponent turn. Killing one unit at a battlefield breaks the count; [Deflect] on the Bird is the only protection in the card. Time Warp (OGN-122) removes the exposure by giving you the next Beginning Phase with no opponent turn between - count Time Warp itself leaving the hand."
         ]
       },
       "steps": [
@@ -486,16 +498,21 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk, 2026-09-04 — full pass against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-04-three-alt-win-and-burst.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "With Time Warp (OGN-122) the check comes at your very next Beginning Phase with no opponent turn between; adjust the hand count for Time Warp leaving the hand. Temporary units die before the check (816.1.b) and do not count. (L4-13) REFUTE 2026-09-03: SURVIVES."
+      "notes": "With Time Warp (OGN-122) the check comes at your very next Beginning Phase with no opponent turn between; adjust the hand count for Time Warp leaving the hand. Temporary units are NOT settled either way, contrary to what this entry first said. 816.1.b is \"at the start of ... Beginning Phase, before scoring, kill this\" - before the Scoring Step (315.2.b), whereas the win check is the Beginning Step (315.2.a). Both trigger at the same instant and both are yours, so 383.3.d puts the order in your hands (\"the player that controls the Abilities selects the order to place them on the Chain\"). Whether a Temporary body can be counted is open, and it favours the player. (L4-13) REFUTE 2026-09-03: SURVIVES. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-three-alt-win-and-burst.md), promoted to verified. 195 grants the win; the load-bearing checks were the Bird’s legal destination (355.2/355.2.a) and the Beginning-Step-before-Draw-Phase ordering (315.2.a vs 315.4)."
     },
     {
       "id": "blue-sentinel-trinity-force-hold",
       "name": "Blue Sentinel × Trinity Force — multiplied Hold points",
       "class": "BURST",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-087",
@@ -506,7 +523,7 @@
         },
         {
           "card": "SFD-115",
-          "quantity": 2,
+          "quantity": 3,
           "role": "payoff",
           "zone": "BATTLEFIELD",
           "note": "[Equip] Body. [Effect] When I hold, score 1 point. Attach one to each Sentinel."
@@ -521,14 +538,17 @@
           "Legend domains cover Mind and Body (Defender of Tomorrow, VEN-149 — the only Mind/Body legend in the pool)."
         ],
         "notable": [
-          "Hold one battlefield through your Beginning Phase with the Sentinels present, each carrying a Trinity Force.",
-          "Points per Hold: 1 + T × (1 + K), where T is Trinity Forces and K is Blue Sentinels. T=2, K=2 gives 7; T=3, K=3 gives 13."
+          "Hold one battlefield through your Beginning Phase with the Sentinels present, carrying the Trinity Forces between them.",
+          "Why the gear's line becomes the unit's line, and why it needs no unruled reading: 136.2.b keeps Effect Text active while attached, 136.2.c and 718.3 append it to the Rules Text of the card it is attached to, and 136.2.d makes \"I\"/\"me\" in Effect Text mean the Top-Most Card (the rules' own examples are Guardian Angel and Brutalizer). So the Sentinel carries \"When I hold, score 1 point\" as a Hold Ability of a Unit under 383.4.d.2.a. R2 = A takes it outside 470's cap; R1 = A adds an instance per Sentinel.",
+          "Points per Hold: 1 + T x (1 + K), T = Trinity Forces on units present, K = Blue Sentinels. Trinity Force is not [Unique] (compare Forgefire Cape, which prints the keyword) and 434.1.b.1 contemplates more than one card attached to a Top-Most card, so T is not tied to the body count: three Trinity Forces stack across two Sentinels. T=3, K=2 gives 10 for 20 Energy; T=2, K=3 gives 9 for the same 20; T=2, K=2 gives only 7.",
+          "Cheaper and smaller than the Ahri line, which needs 23 Energy and five bodies for the same 10 points. Each Sentinel defends at 4 +2 (Shield 2) +2 per Trinity Force attached. Same single point of failure though: lose one Sentinel and K drops to 1, taking the total to 7."
         ]
       },
       "steps": [
-        "Turn A: play Blue Sentinel #1 to a battlefield you control, then play Trinity Force and Equip it for 1 Body Power.",
-        "Turn B: repeat with Sentinel #2 and Trinity Force #2.",
-        "Beginning Phase of turn C: you Hold. Score 1 (rule 470 cap), then each Trinity Force's granted 'When I hold, score 1 point' fires 1 + K times."
+        "Turn A: play Blue Sentinel #1 to a battlefield you control, then play a Trinity Force and Equip it for 1 Body Power.",
+        "Turn B: play Blue Sentinel #2 and the remaining two Trinity Forces, stacking the third on either Sentinel - Trinity Force is not [Unique], so both may carry more than one.",
+        "Beginning Phase of turn C, Scoring Step (315.2.b): you Hold. Score 1, which 470 caps at one per battlefield per turn.",
+        "Each of the 3 Trinity Forces gives its bearer \"When I hold, score 1 point\", and the 2 Sentinels make every hold effect fire 1 + K = 3 times: 9 ability-granted points on top of the Score. Total 10."
       ],
       "terminatesIn": "burst of ability points in one Hold",
       "sources": [
@@ -541,10 +561,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk, 2026-09-04 — full pass against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-04-three-alt-win-and-burst.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Beats the Ahri line on body count: the multipliers are also the point sources, so two units do the work of five. Blue Sentinel defends at 4 +2 (Shield 2) +2 (Trinity Force Might bonus) = 8. Rules check done by hand, not taken from the agent: 471.2.c says score effects 'cannot be triggered more than once per turn for a player'. Brambleback/Sentinel do not create a second Score — they make the effects of the single Score trigger extra times, so on this reading there is no conflict with 471.2.c and the Golden Rule (002) does not need to be invoked. That reading is arguable and is why this stays a candidate. REFUTE 2026-09-03: SURVIVES."
+      "notes": "Beats the Ahri line on body count: the multipliers are also the point sources, so two units do the work of five. Blue Sentinel defends at 4 +2 (Shield 2) +2 (Trinity Force Might bonus) = 8. The 471.2.c question that kept this a candidate was ruled by the user on 2026-09-03 as R1 = A: Sentinel does not create a second Score, it adds instances to the single Score's effects. REFUTE 2026-09-03: SURVIVES. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-three-alt-win-and-burst.md), promoted to verified WITH A CORRECTION of the same kind as ahri-blue-sentinel-hold: the entry asked for 2 Trinity Force and 2 Blue Sentinel, which its own printed formula gives as 7 points, one short of the 8 its BURST class claims. Trinity Force raised to 3 for 10 points at 20 Energy."
     },
     {
       "id": "brambleback-trinity-skyfall-conquer",
