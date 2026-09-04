@@ -1656,7 +1656,7 @@
       "id": "power-nexus-sentinel",
       "name": "Power Nexus × Blue Sentinel — pay Power for points every Hold",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "SFD-214",
@@ -1701,10 +1701,21 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-power-nexus-r8.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
+        },
+        {
+          "title": "RiftJudge Q10155 — Blue Sentinel multiplies its own hold trigger (fan judge database, not official)",
+          "kind": "article",
+          "url": "https://app.riftjudge.com/questions/10155",
+          "date": "2026-05-08"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Battlefield-dependent (yours is 1 of 3 in Duel, chosen in Match). CORRECTED 2026-09-04 (docs/phase0/walks/2026-09-04-zed-zilean-and-r27.md): its notes blamed the Blue Sentinel reading, which is R1 and was ruled A on 2026-09-03, and R2 = A covers the Nexus's 'score 1 point' as an ability Gain. The real and only blocker is R8 - Power Nexus is a BATTLEFIELD, and Blue Sentinel multiplies 'YOUR hold effects', so this needs a battlefield's own Hold trigger to count as one of yours. 190.6.a is suggestive (its Controller controls its Abilities, adds them to the Chain and makes their choices) and 383.4.d.2.b puts a 'references the player Holding' ability on the Chain for the player who Held, but no verified entry stands on that scoping today: world-atlas-sentinel-gold multiplies a GEAR's Effect Text, which 136.2.c/718.3 make the unit's own. REFUTE 2026-09-03: WOUNDED — the Power is paid in the Beginning Phase with the Rune Pool empty (167), i.e. by recycling 12 runes, and rune income is about 2 per turn; sustainably that is one extra point a turn. World Atlas Gold (world-atlas-sentinel-gold) is the fix: exhausted Gold readies for the next Beginning Phase, 8 Gold = two Nexus payments."
+      "notes": "Battlefield-dependent (yours is 1 of 3 in Duel, chosen in Match). CORRECTED 2026-09-04 (docs/phase0/walks/2026-09-04-zed-zilean-and-r27.md): its notes blamed the Blue Sentinel reading, which is R1 and was ruled A on 2026-09-03, and R2 = A covers the Nexus's 'score 1 point' as an ability Gain. The real and only blocker is R8 - Power Nexus is a BATTLEFIELD, and Blue Sentinel multiplies 'YOUR hold effects', so this needs a battlefield's own Hold trigger to count as one of yours. 190.6.a is suggestive (its Controller controls its Abilities, adds them to the Chain and makes their choices) and 383.4.d.2.b puts a 'references the player Holding' ability on the Chain for the player who Held, but no verified entry stands on that scoping today: world-atlas-sentinel-gold multiplies a GEAR's Effect Text, which 136.2.c/718.3 make the unit's own. REFUTE 2026-09-03: WOUNDED — the Power is paid in the Beginning Phase with the Rune Pool empty (167), i.e. by recycling 12 runes, and rune income is about 2 per turn; sustainably that is one extra point a turn. World Atlas Gold (world-atlas-sentinel-gold) is the fix: exhausted Gold readies for the next Beginning Phase, 8 Gold = two Nexus payments. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-power-nexus-r8.md) once R8 was ruled A. No official Riot ruling exists - all four set FAQs are silent, including Spiritforged where Power Nexus was printed and Unleashed where Blue Sentinel was - but 190.6.d is the rule nobody had cited: \"You in a battlefield abilities refers to the battlefield Controller\", so for its controller Power Nexus literally reads \"when I hold here, I may pay 4 to score 1 point\". With 190.6.a (the controller controls its abilities), 190.6.c (control follows the battlefield unless the ability names another player, and this one names none) and 383.4.d.2 (Hold Effects include abilities referencing the player who Held), all four referents land on the same player. The ownership objection does not reach this entry either: 127.1 makes the owner whoever brought the card as one of their Battlefields and 485.4.a gives each player their own in a Duel, so controlling the Nexus normally means owning it."
     },
     {
       "id": "ivern-sentinel-hold",
