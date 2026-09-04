@@ -191,7 +191,9 @@
         "notable": [
           "Infinite Energy and Power established.",
           "Rally the Troops resolved this turn.",
-          "Fiora, Worthy in play."
+          "Fiora, Worthy in play.",
+          "Where the Retreat comes back from, which this entry never said and which is the whole reason it is unbounded: each pass spends one Retreat, and Retreat is capped at 3 copies by 103.2.b, so without recursion the loop would stop at four points. It does not, because Recycle (416.1) puts cards on the BOTTOM OF THE DECK and the lux-infinite-energy engine this entry `needs` brings Forge of the Future with it. Counted on that engine's own steps: Forge recycles 3 of its 4 slots (itself, a Shadow's Call, a Sacrifice), Ekko's Deathknell recycles Ekko, and step 5's 4 draws are exactly spent — leaving ONE spare Forge recycle slot per pass. That slot cycles the Retreat, and the extra draw to lift it back to hand comes from Renata's own '1 Energy + Mind: Draw 1' at about +1E +1P per point.",
+          "That spare slot is a single resource, so this line, renata-bubble-bot-ready and jayce-mesmerize-renata are alternative routes to the same kill, not stackable payoffs on one engine."
         ]
       },
       "steps": [
@@ -879,7 +881,7 @@
       "id": "world-atlas-sentinel-gold",
       "name": "World Atlas × Blue Sentinel — Gold engine",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "SFD-086",
@@ -906,7 +908,10 @@
         ],
         "notable": [
           "Two units each wearing a World Atlas, Blue Sentinel at the same battlefield, Hold: 2 Atlases × 2 triggers × 2 Gold = 8 Gold per Hold. Three Atlases: 12.",
-          "Gold enters exhausted, so it is next-turn Power. Gold is domainless (187.5)."
+          "Gold enters exhausted, so it is next-turn Power. Gold is domainless (187.5).",
+          "The Effect Text reaches the unit natively, no Svellsongur question involved: 136.2.b keeps Effect Text active while attached, 136.2.c and 718.3 append it to the Top-Most Card, and 136.2.d makes \"I\" the unit. Arithmetic as declared: with K=1 Sentinel each hold effect fires 1 + K = 2 times and each firing makes 2 Gold, so 4 Gold per Atlas and 8 across the two. Depends only on R1, ruled A on 2026-09-03.",
+          "TIMING the entry did not state: the Gold arrives exhausted, and a Gold's own ability is \"Kill this, exhaust: Add a rainbow\". An exhausted permanent cannot pay an exhaust cost, so the eight Gold are next turn's Power, not this turn's. Renata Glasc, Industrialist would override this under R25 = A, but she is not in this line.",
+          "Power Nexus (SFD-214) is itself a Hold effect, so the Sentinel multiplies it too: two firings, 8 rainbow, 2 points. Its \"score 1 point\" is an ability Gain under R2 = A, so 470 does not cap it."
         ]
       },
       "steps": [
@@ -925,10 +930,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk, 2026-09-04 — full pass against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-04-four-engines.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "No Svellsongur involved — World Atlas is Equipment, so its trigger is already the unit's own. Rests only on the Blue Sentinel reading shared with the other Hold lines (471.2.c). REFUTE 2026-09-03: SURVIVES."
+      "notes": "No Svellsongur involved — World Atlas is Equipment, so its trigger is already the unit's own. Rests only on the Blue Sentinel reading shared with the other Hold lines (471.2.c). REFUTE 2026-09-03: SURVIVES. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-four-engines.md), promoted to verified. The Blue Sentinel reading it rested on is R1, ruled A."
     },
     {
       "id": "gauntlets-enforcer-conquer",
@@ -1223,7 +1233,7 @@
       "id": "bloodharbor-bewitching-discard",
       "name": "Bloodharbor Ripper × Bewitching Spirit — a discard every turn",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-185",
@@ -1248,7 +1258,9 @@
           "Legend is Bloodharbor Ripper (UNL-185, Fury/Chaos); Bewitching Spirit is Chaos."
         ],
         "notable": [
-          "Each turn: bounce a Spirit with the legend (1 Energy, exhaust — so once per turn), replay it (3 Energy): the opponent discards 1 and you bank a Gold. Bounded by the legend's exhaust; an engine, not a loop."
+          "Each turn: bounce a Spirit with the legend (1 Energy, exhaust — so once per turn), replay it (3 Energy): the opponent discards 1 and you bank a Gold. Bounded by the legend's exhaust; an engine, not a loop.",
+          "The legend's ability costs an exhaust, so it runs once per turn - which is why the entry refuses the source's \"never-ending stream\" framing and calls it tempo. That is the right call and it is why this is ENGINE.",
+          "The Spirit must be AT A BATTLEFIELD for the legend to return it, so play it there rather than to base; 355.2.a makes a battlefield you control a valid destination for a played Unit. Cost is 4 Energy per discard (3 for the Spirit, 1 for the legend), plus a Gold that arrives exhausted and is therefore next turn's Power."
         ]
       },
       "steps": [
@@ -1268,10 +1280,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk, 2026-09-04 — full pass against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-04-four-engines.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Quote, verified by hand through a reader proxy on 2026-09-03: 'Pyke - Bloodharbor Ripper control shell out there that cripples legends not named Master Yi with a never-ending stream of Bewitching Spirits.' Card text verified against the corpus: the legend's ability costs an exhaust, so the stream is one per turn — the source's 'never-ending' is tempo, not infinity. First Fury/Chaos entry in the catalogue. REFUTE 2026-09-03: SURVIVES — the legend bounces 'a friendly unit at a battlefield', so the Spirit must be at a battlefield you control (play it there, or move it the next turn). 4 Energy per turn for one discard and one exhausted Gold."
+      "notes": "Quote, verified by hand through a reader proxy on 2026-09-03: 'Pyke - Bloodharbor Ripper control shell out there that cripples legends not named Master Yi with a never-ending stream of Bewitching Spirits.' Card text verified against the corpus: the legend's ability costs an exhaust, so the stream is one per turn — the source's 'never-ending' is tempo, not infinity. First Fury/Chaos entry in the catalogue. REFUTE 2026-09-03: SURVIVES — the legend bounces 'a friendly unit at a battlefield', so the Spirit must be at a battlefield you control (play it there, or move it the next turn). 4 Energy per turn for one discard and one exhausted Gold. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-four-engines.md), promoted to verified. Simple by design: card texts verified and the entry already corrected its own source downward."
     },
     {
       "id": "time-warp-hold-burst",
@@ -1666,7 +1683,7 @@
       "id": "kharox-sanction-burn",
       "name": "Kharox re-Empowered by Sanction — Burn 3 on repeat",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "VEN-114",
@@ -1692,7 +1709,10 @@
           "Legend domains cover Calm and Chaos (Unforgiven OGN-259, Blade Dancer SFD-195, Gloomist UNL-193)."
         ],
         "notable": [
-          "Kharox Empowered (6E + 2 Chaos). Each Sanction (3E+1P) in mode two: he becomes Empowered again at end of turn → Burn 3 and a free unit from their trash. Three Sanctions a turn: 9 cards."
+          "Kharox Empowered (6E + 2 Chaos). Each Sanction (3E+1P) in mode two: he becomes Empowered again at end of turn → Burn 3 and a free unit from their trash. Three Sanctions a turn: 9 cards.",
+          "828.1.d is exact and is the whole line: \"If the Dependent Ability is a Triggered Ability whose condition is 'When I become Empowered,' or a permutation thereof, it will be active and trigger when its source becomes Empowered.\" Every crossing re-fires the Burn.",
+          "CITATION CORRECTED: the entry credited 431.2.c for \"Burn Out recycles their trash before the point\". 431.2.c is the point step; the recycle is 431.2.b, and the sequence is a (perform the action), b (recycle trash into the Main Deck), c (an opponent gains 1 point), d (finish the action). The substance stands - milling is not a kill - but the line number was wrong.",
+          "Domains are Calm (Sanction) and Chaos (Kharox); three Calm/Chaos legends exist to carry it: OGN-259 Unforgiven, SFD-195 Blade Dancer, UNL-193 Gloomist."
         ]
       },
       "steps": [
@@ -1712,10 +1732,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk, 2026-09-04 — full pass against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-04-four-engines.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "First Calm/Chaos entry. Hunt B-11 called Kharox one-shot; the crossing trigger on re-Empowerment is what it missed. REFUTE 2026-09-03: SURVIVES with a step fix — mode two requires an Empowered target, so two mode-two Sanctions in a row are illegal; modes alternate. Three to four triggers a turn = Burn 9–12, plus his own re-usable Empower. The per-turn cap is Energy, not Sanction copies."
+      "notes": "First Calm/Chaos entry. Hunt B-11 called Kharox one-shot; the crossing trigger on re-Empowerment is what it missed. REFUTE 2026-09-03: SURVIVES with a step fix — mode two requires an Empowered target, so two mode-two Sanctions in a row are illegal; modes alternate. Three to four triggers a turn = Burn 9–12, plus his own re-usable Empower. The per-turn cap is Energy, not Sanction copies. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-four-engines.md), promoted to verified. The alternating-modes step fix from REFUTE is correct and 828.1.d checks out verbatim."
     },
     {
       "id": "grand-plaza-loop-time-warp",
@@ -2263,7 +2288,7 @@
       "id": "sona-viktor-opponent-turn",
       "name": "Sona, Harmonious readies runes at end of turn — Viktor makes Recruits on the opponent's turn",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "OGN-073",
@@ -2290,7 +2315,9 @@
         ],
         "notable": [
           "Sona must be at a battlefield when your turn ends; the four runes fund Reactions (Premonition, Consult the Past, Counter Strike) during the opponent's turn.",
-          "Sona has to survive on a battlefield at 4 Might for the readies to happen at all. Chemtech Cask's Gold enters exhausted and cannot be spent until your next Awaken."
+          "Sona has to survive on a battlefield at 4 Might for the readies to happen at all. Chemtech Cask's Gold enters exhausted and cannot be spent until your next Awaken.",
+          "Every rule this entry cites was checked verbatim on 2026-09-04 and holds: 164.2.a (\"[E]: [Reaction] - Add [1]\") and 164.2.b give rune abilities Reaction, 813.1.c.2 lets Reaction activated abilities fire \"during Closed States on any player's turn\", 143.4 makes the Recruits enter exhausted, and 811.6 grants Reaction to a card played from facedown.",
+          "CONSTRAINT 811.1.b hands over that the entry omitted: the rule reads \"...you may pay [A] to hide this facedown... BEGINNING ON THE NEXT TURN, this gains [Reaction] and you may play this, ignoring its base cost.\" So the free flips are free only if the hiding happened on an earlier turn, and note it is the BASE cost that is ignored, not additional costs."
         ]
       },
       "steps": [
@@ -2309,10 +2336,15 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk, 2026-09-04 — full pass against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-04-four-engines.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Bounded per turn by four runes and by the Reactions in hand. Targon's Peak (OGN-289) stacks: it readies up to 2 more at the end of a turn in which you conquered there, for up to six. Dark Child (OGS-017) is not an alternative here — it is a Fury/Chaos legend and cannot legally run Sona (Calm) or Viktor (Mind). Card text verified against the corpus. REFUTE 2 (2026-09-03): SURVIVES with corrections — the off-turn rune spend is legal; the entry cited the VEN-SP2 reprint instead of the base code OGN-073, the Dark Child alternative was domain-illegal and the Cask's Gold is exhausted on arrival."
+      "notes": "Bounded per turn by four runes and by the Reactions in hand. Targon's Peak (OGN-289) stacks: it readies up to 2 more at the end of a turn in which you conquered there, for up to six. Dark Child (OGS-017) is not an alternative here — it is a Fury/Chaos legend and cannot legally run Sona (Calm) or Viktor (Mind). Card text verified against the corpus. REFUTE 2 (2026-09-03): SURVIVES with corrections — the off-turn rune spend is legal; the entry cited the VEN-SP2 reprint instead of the base code OGN-073, the Dark Child alternative was domain-illegal and the Cask's Gold is exhausted on arrival. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-four-engines.md), promoted to verified. Depends on no unruled reading."
     },
     {
       "id": "reksai-undertitan-reveal",
