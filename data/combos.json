@@ -1038,7 +1038,7 @@
       "id": "azir-aphelios-attach",
       "name": "Emperor of the Sands × Aphelios, Exalted — rune value on every attach",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "SFD-247",
@@ -1088,10 +1088,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-virtuoso-and-two-attach.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Calm/Order had no entry. Listed at the lens's own cap; the refute spec (§27) is what limits it. REFUTE 2026-09-03: WOUNDED — per turn roughly −1 Energy, −2 Order Power recycled, +2 runes readied, +1 channelled: about even. The legend's exhaust makes one Sand Soldier per turn, so the third mode needs a second Equipment played from hand."
+      "notes": "Calm/Order had no entry. Listed at the lens's own cap; the refute spec (§27) is what limits it. REFUTE 2026-09-03: WOUNDED — per turn roughly −1 Energy, −2 Order Power recycled, +2 runes readied, +1 channelled: about even. The legend's exhaust makes one Sand Soldier per turn, so the third mode needs a second Equipment played from hand. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-virtuoso-and-two-attach.md). 434.1.g/h is the rule the line turns on: attaching a card to its current Top-Most Card does nothing, so the Equipment has to hop onto the Sand Soldier and back for a second Aphelios trigger, and Weaponmaster's 1 rainbow less makes that hop free. The three-mode cap plus the legend's exhaust (one Sand Soldier a turn) is what forces a second Equipment from hand for the third mode. Depends on no unruled reading."
     },
     {
       "id": "ashe-retreat-hand-strip",
@@ -2676,7 +2681,7 @@
       "id": "aphelios-jax-quickdraw-attach",
       "name": "Aphelios, Exalted with Jax's Quick-Draw — rune value per Equipment played",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "SFD-049",
@@ -2735,16 +2740,21 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-virtuoso-and-two-attach.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Calm/Body sibling of azir-aphelios-attach (Calm/Order, Emperor of the Sands). Tiny by the lens's own arithmetic and bounded by the three-mode cap and the 12-rune deck (161.2.a); bounce resets (a new Aphelios object) cost more than they return. Listed for completeness. Card text verified against the corpus. Jax is a 5E+1P prerequisite for the Quick-Draw static, and Cloth Armor (SFD-064) is Mind, so it only serves the Calm/Mind variant, which has no Grandmaster at Arms and so no free re-attach. REFUTE 2 (2026-09-03): WOUNDED — the mechanics hold (819.1.d makes Quick-Draw a real attach; 434.1.g/h forbids re-attaching to the same unit) but the entry's own three steps net 0 resources, not +1 Energy."
+      "notes": "Calm/Body sibling of azir-aphelios-attach (Calm/Order, Emperor of the Sands). Tiny by the lens's own arithmetic and bounded by the three-mode cap and the 12-rune deck (161.2.a); bounce resets (a new Aphelios object) cost more than they return. Listed for completeness. Card text verified against the corpus. Jax is a 5E+1P prerequisite for the Quick-Draw static, and Cloth Armor (SFD-064) is Mind, so it only serves the Calm/Mind variant, which has no Grandmaster at Arms and so no free re-attach. REFUTE 2 (2026-09-03): WOUNDED — the mechanics hold (819.1.d makes Quick-Draw a real attach; 434.1.g/h forbids re-attaching to the same unit) but the entry's own three steps net 0 resources, not +1 Energy. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-virtuoso-and-two-attach.md). 819.1.d makes Quick-Draw literally '[Reaction]' plus 'When you play this, attach it to a Unit you control', so the attach rides the play with no Equip Power paid. Both of Grandmaster at Arms's abilities exhaust her, so one free re-attach a turn, and 434.1.g/h forces it to move an Equipment off ANOTHER unit onto Aphelios. Net zero on a full three-attach turn, as the entry already says. Depends on no unruled reading."
     },
     {
       "id": "virtuoso-banish-channel",
       "name": "Virtuoso — four banished big spells channel four runes and draw",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-181",
@@ -2782,10 +2792,15 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-virtuoso-and-two-attach.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Legend-only engine, no second card required; listed so a Fury/Mind big-spell deck sees the payoff and its ceiling. The four spells return to the trash, so anything that recycles or replays from trash (Fizz, Heedless Resurrection lines) can loop them, but nothing in Fury/Mind refunds the Energy. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the payoff is permanent ramp toward 12, not +4 Energy per cycle, and the legend works as written now that R26 is ruled B (2026-09-04)."
+      "notes": "Legend-only engine, no second card required; listed so a Fury/Mind big-spell deck sees the payoff and its ceiling. The four spells return to the trash, so anything that recycles or replays from trash (Fizz, Heedless Resurrection lines) can loop them, but nothing in Fury/Mind refunds the Energy. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the payoff is permanent ramp toward 12, not +4 Energy per cycle, and the legend works as written now that R26 is ruled B (2026-09-04). HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-virtuoso-and-two-attach.md). Stands on R26 = B, ruled the same day. Confirmed besides: 430.2.a channels runes READY by default, so the four are usable that turn (430.2 shows a card wanting otherwise has to say 'exhausted'); 161.2.a caps the Rune Deck at exactly 12, which is why the payoff is permanent ramp and not +4 Energy per cycle; and the fourth spell's own banish completes the set inside one resolution."
     },
     {
       "id": "renata-time-warp-ekko-refresh",
