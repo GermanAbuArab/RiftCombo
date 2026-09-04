@@ -1965,21 +1965,14 @@
           "quantity": 1,
           "role": "enabler",
           "zone": "BOARD",
-          "note": "[Effect] When I conquer, buff me. Attached free by Pursuit; the conquer buff is the currency Wallop spends."
+          "note": "[Effect] When I conquer, buff me. Attached free by Pursuit; the conquer buff is the currency Wallop spends. Only one buff can sit on a unit at a time (702.3), so the second conquer only re-buffs if the first buff was already spent."
         },
         {
           "card": "OGN-146",
-          "quantity": 1,
+          "quantity": 2,
           "role": "ready",
           "zone": "HAND",
-          "note": "Spend a buff as an additional cost and ignore the 2E: Ready a unit. Frees Jhin for another Standard Move."
-        },
-        {
-          "card": "VEN-020",
-          "quantity": 1,
-          "role": "ready",
-          "zone": "BOARD",
-          "note": "When I attack, ready another friendly unit. One more Jhin move per Reveler attack."
+          "note": "Spend a buff as an additional cost and ignore the 2E: Ready a unit. Two of them: one after the Standard Move, one inside the second showdown, each eating a Warmog's buff."
         }
       ],
       "needs": [],
@@ -1991,26 +1984,33 @@
           "Legend domains cover Fury and Body (Purifier SFD-183 or Butcher of the Sands VEN-141)."
         ],
         "notable": [
-          "Jhin ready at base with Warmog's on the board, Pursuit and Wallop in hand; the opponent controls both battlefields, so each move is a conquer (466.5: an empty enemy battlefield is conquered without a fight).",
-          "Jhin must survive each contested combat (4 Might, Deflect)."
+          "Jhin ready at base with Warmog's on the board, one Relentless Pursuit and two Wallops in hand; the opponent controls both battlefields and has no units on them, so each first entry conquers without a fight.",
+          "Walking in unopposed is not an instant conquer: it applies Contested and opens a non-combat showdown (344.2), and control — hence the Conquer — lands only when that showdown closes (190.4; unruled sequencing, R20). Standard Moves are illegal while it is open (144.1.c), so the moves are strictly serialised; Wallop is [Action] and is legal inside it, which is what lets the second buff exist.",
+          "Only the first entry to each battlefield conquers (470). Later entries give control but no Warmog's buff and no Pursuit bounce.",
+          "Jhin must survive each contested combat (4 Might, Deflect) if the opponent does garrison a battlefield."
         ]
       },
       "steps": [
-        "Relentless Pursuit (2E+1P): move Jhin to enemy battlefield 1 (+1E +1P), attach Warmog's free. Conquer: Warmog's buffs Jhin; the Pursuit clause moves him back to base (+1E +1P). Jhin is still ready.",
-        "Standard Move to enemy battlefield 2 (+1E +1P); conquer; Pursuit clause back to base (+1E +1P). Jhin is now exhausted.",
-        "Wallop, spending the Warmog's buff (free): ready Jhin. Standard Move to battlefield 1 (+1E +1P).",
-        "Twilight Reveler attacks: ready Jhin; move again (+1E +1P)."
+        "Relentless Pursuit (2E+1P): move Jhin to enemy battlefield 1 (+1E +1P) and attach Warmog's free. The unopposed entry applies Contested and opens a non-combat showdown (344.2); when it closes, Jhin conquers (+1 point), Warmog's buffs him and the granted clause moves him back to base (+1E +1P). Both moves are effect moves, so he is still ready.",
+        "Standard Move to enemy battlefield 2 (+1E +1P); this exhausts him (144.2) and opens the second showdown.",
+        "Inside that showdown play Wallop, spending the Warmog's buff so the cost is ignored: ready Jhin. The showdown closes, Jhin conquers battlefield 2 (+1 point), Warmog's gives him a fresh buff because the first was spent (702.3 allows only one at a time), and the clause returns him to base (+1E +1P), ready.",
+        "Standard Move back to battlefield 1 (+1E +1P). It was already scored, so there is no second conquer (470) and no bounce. The second Wallop in that showdown spends the second buff and readies him; Standard Move to base (+1E +1P) is the sixth and last move."
       ],
-      "terminatesIn": "engine only — about +6 Energy and +6 Power in a turn for 2E+1P and two cards, plus two conquers",
+      "terminatesIn": "engine — six moves in a turn: +6 Energy and +6 Power gross, net +4E +5P after Relentless Pursuit, plus the 2 points from the two conquers",
       "sources": [
         {
           "title": "Hunt v2 lens L3, entry L3-01 (docs/phase0/hunt2/L3-ready-resource.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "First Fury/Body entry. Bounded by cards (Pursuit x3, one Wallop per buff, Reveler attacks) and by the two enemy battlefields of a Duel; it never closes because no repeatable free ready exists in Fury/Body — Dominus's '2 rainbow: Ready me' is a net-zero converter (L3-03), as are Upstage Comedy and Perfect Execution. Miss Fortune, Captain (OGN-162) adds one ready on her first move each turn. Card text verified against the corpus."
+      "notes": "First Fury/Body entry. Bounded by cards (Pursuit x3, one Wallop per buff, Reveler attacks) and by the two enemy battlefields of a Duel; it never closes because no repeatable free ready exists in Fury/Body — Dominus's '2 rainbow: Ready me' is a net-zero converter (L3-03), as are Upstage Comedy and Perfect Execution. The Twilight Reveler line in the first write-up does not work: the same empty battlefields that make the conquers free make a Combat impossible, so the Reveler never gains the Attacker designation (383.4.e, 461). The repaired six-move line casts a second Wallop inside the second showdown instead. Miss Fortune, Captain (OGN-162) still adds one ready on her first move each turn. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — step 4 was illegal (an Attack Trigger needs a Combat, and the empty battlefields that make the conquers free rule one out); re-authored with a second Wallop: +4E +5P net and 2 points for three cards. The unopposed-entry showdown window is R20."
     },
     {
       "id": "jhin-emperors-divide-hidden",
@@ -2038,7 +2038,7 @@
           "quantity": 2,
           "role": "ready",
           "zone": "BOARD",
-          "note": "When I attack, ready another friendly unit: readies the Jhins that exhausted themselves moving in."
+          "note": "When I attack, ready another friendly unit: readies the Jhins that exhausted themselves moving in. Needs enemy units present: an Attack Trigger requires the Attacker designation, which only exists inside a Combat (383.4.e, 464.2.c, 461). One trigger per Reveler per combat, and each readies another unit, never itself."
         }
       ],
       "needs": [],
@@ -2050,26 +2050,33 @@
           "Legend domains cover Fury and Calm (Rogue Assassin VEN-139 is the natural pick)."
         ],
         "notable": [
-          "You control battlefield X with a Divide hidden there (one hidden card per battlefield, so a second Divide needs a second controlled battlefield); three Jhins ready at base; the opponent controls a battlefield for the Revelers to attack.",
-          "Divide's targets must be at the battlefield it was hidden at (811.1.d.2)."
+          "You control battlefield X with a Divide hidden there; three Jhins ready at base; the opponent has units on a battlefield for the Revelers to attack. Attack triggers need a Combat, and a Combat needs units from two opposing players at the battlefield (461, 383.4.e) — an empty enemy battlefield gives a showdown and no triggers.",
+          "Only one facedown card per battlefield (811.1.b), so a second Divide needs a second controlled battlefield. Duel has exactly two battlefields (485.4), so a second Divide and an attackable enemy battlefield cannot coexist there: the two-Divide version needs a three-battlefield mode.",
+          "Divide's targets must be at the battlefield it was hidden at (811.1.d.2). Moving into a battlefield you already control applies no Contested status (190.3.a.1), so the three Jhins walk in without opening a showdown; emptying X on the Divide costs you control of X at the next cleanup and would trash any second hidden card there (323.6, 323.7)."
         ]
       },
       "steps": [
         "Jhins A, B, C Standard Move to X: +3E +3P (all three exhausted at X).",
         "Reveler 1 attacks the enemy battlefield: ready A. Reveler 2 attacks: ready B.",
         "Play the hidden Divide (cost ignored): A, B, C to base: +3E +3P.",
-        "A and B Standard Move back to X: +2E +2P. A second hidden Divide on a second controlled battlefield repeats step 3 for +2E +2P more."
+        "A and B Standard Move back to X: +2E +2P. X is uncontrolled now, so this opens a showdown; re-establishing control scores nothing because you already Held X this Beginning Phase (470).",
+        "That showdown is the opening for an Empowered Rogue Assassin: move A to base and ready it (+1E +1P), then walk it back in after the showdown closes (+1E +1P). Ten moves, +10E +10P."
       ],
-      "terminatesIn": "engine only — +6 to +10 Energy and Power in one turn, for Power paid on earlier turns",
+      "terminatesIn": "engine only — eight moves for +8 Energy and +8 Power in a turn, ten and +10/+10 with an Empowered Rogue Assassin, all for 1 rainbow paid on an earlier turn",
       "sources": [
         {
           "title": "Hunt v2 lens L3, entry L3-02 (docs/phase0/hunt2/L3-ready-resource.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "First Fury/Calm entry. Bounded by Divides (3), Jhins (3), Reveler attacks and hidden slots; nothing in Fury/Calm recurs a Divide. Rogue Assassin Empowered adds one free move-and-ready per turn on a unit in a showdown (+2E +2P). No in-domain kill: it hands the deck a 10/10 turn for its big spells. Card text verified against the corpus."
+      "notes": "First Fury/Calm entry. Bounded by Divides (3), Jhins (3), Reveler attacks and hidden slots; nothing in Fury/Calm recurs a Divide. Rogue Assassin Empowered adds +2E +2P once per turn, but only on a unit that is in a showdown — in this line that is the showdown the re-entry to X opens after the Divide emptied it. No in-domain kill: it hands the deck a 10/10 turn for its big spells. Card text verified against the corpus. REFUTE 2 (2026-09-03): SURVIVES with corrected numbers — +8E +8P in Duel (the second Divide needs a third battlefield), +10/+10 with an Empowered Rogue Assassin through the re-entry showdown."
     },
     {
       "id": "platewyrm-egg-defender-gate",
@@ -2083,7 +2090,7 @@
           "role": "engine",
           "zone": "BOARD",
           "state": "empowered",
-          "note": "Enters exhausted. [Empower] — 1E, exhaust. Reaction, exhaust: Add 1E; if Empowered, Add 2E instead. Three Empowered Eggs are +6E every Awaken; every extra ready is +2E."
+          "note": "3 Energy and enters exhausted; [Empower] costs 1E and exhausts it, so each Egg is 4 Energy and two turns of setup before it pays. [Reaction] exhaust: Add 1E, or 2E if Empowered. Three Empowered Eggs are +6E once per turn, spent in the Main Phase — Energy added during Awaken or the Beginning Phase is lost when the Rune Pool empties (167)."
         },
         {
           "card": "VEN-149",
@@ -2097,14 +2104,14 @@
           "quantity": 1,
           "role": "enabler",
           "zone": "HAND",
-          "note": "3E+1P: Ready up to 4 units, gear, and/or runes. Three Eggs and a rune: +7E for 3E+1P."
+          "note": "3E+1P: Ready up to 4 units, gear, and/or runes. Three Eggs and an exhausted rune is +7E for 3E+1P."
         },
         {
           "card": "SFD-078",
           "quantity": 1,
           "role": "enabler",
           "zone": "BOARD",
-          "note": "1 rainbow, exhaust: the next spell you play this turn gets [Repeat] equal to its cost. Gate twice: eight readies for 6E+3P."
+          "note": "1 rainbow, exhaust: the next spell you play this turn gets [Repeat] equal to its cost, one extra execution (820.1.c.3). It does not double the Eggs: the two executions happen inside one resolution and there is no cost-payment window between them to re-exhaust the Eggs (429.3; R21)."
         }
       ],
       "needs": [],
@@ -2116,25 +2123,34 @@
           "Legend is Defender of Tomorrow (VEN-149, Mind/Body) — the legend is one of the engine pieces."
         ],
         "notable": [
-          "Three Eggs Empowered on earlier turns (1E each). Hall of Legends (SFD-210) readies the legend for 1E on a conquer there, for a second Defender activation."
+          "Three Eggs played and Empowered on earlier turns — 3E to play plus 1E to Empower each, and an Egg cannot be Empowered on the turn it enters because it enters exhausted and Empower costs an exhaust.",
+          "Exhausted runes on the board for the Gate's spare readies. Runes give Energy by exhausting (164.2.a) but Power only by recycling (164.2.b), and a recycled rune leaves the board, so it cannot be readied back.",
+          "Hall of Legends (SFD-210) readies the legend for 1E on a conquer there, for a second Defender activation. It is one of your three battlefields and Duel picks one of the three at random (485.5)."
         ]
       },
       "steps": [
-        "Awaken: the three Empowered Eggs ready. Exhaust them: +6E.",
-        "Defender (Empowered): 1E, ready two Eggs; exhaust them: +4E. Net +3E.",
-        "Temporal Portal (1 rainbow), then Acceleration Gate (3E+1P) with Repeat (3E+1P more): ready three Eggs twice and two runes. +12E +2E for 6E+3P: net +8E −3P.",
-        "Hextech Anomaly (SFD-083) and Ancient Henge (SFD-117) convert between Energy and Power once per copy per turn."
+        "Awaken readies the three Empowered Eggs, the legend and the Portal. Do not spend anything yet: the Rune Pool empties at the start of the Main Phase (167), so Energy added before then is lost.",
+        "Main Phase: exhaust the three Eggs, +6E.",
+        "Defender of Tomorrow (Empowered): 1E and exhaust the legend to ready two Eggs; exhaust them again for +4E. Net +3E, once per turn unless Hall of Legends readies the legend on a conquer there.",
+        "Acceleration Gate (3E+1P): ready the three Eggs and one exhausted rune, then exhaust all four. +7E for 3E+1P, net +4E −1P.",
+        "Temporal Portal's Repeat is a trap here (unruled, R21): it costs 1 rainbow plus a second 3E+1P, and the second execution finds the Eggs already ready — 429.3 gives no window to exhaust them mid-resolution — so it only readies four more runes: +4E for 3E+1P and a rune off the board. Take the bare Gate instead.",
+        "Hextech Anomaly (SFD-083) and Ancient Henge (SFD-117) convert between Energy and Power once per copy per turn, at 1:1."
       ],
-      "terminatesIn": "engine only — about +8 Energy per Gate–Portal pair on top of +6 per Awaken; nothing here scores",
+      "terminatesIn": "engine only — +6E per turn from the three Eggs, +3E from the legend, and +4E −1P per Acceleration Gate; nothing here scores",
       "sources": [
         {
           "title": "Hunt v2 lens L3, entry L3-04 (docs/phase0/hunt2/L3-ready-resource.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Bounded by Gates (3), Portals (3) and the once-per-turn legend exhaust; never closes. Mind/Body also holds Renata Glasc, Mastermind (SFD-088): a Gate that readies Renata and three Eggs is one point plus +6E — that is the point-loop lens (renata-bubble-bot-ready, jayce-mesmerize-renata). The Garbage Grabber re-draw variant is refuted (L3-05): recycled cards go to the bottom in random order (416.5) and the deck grows by 2 per pass. Card text verified against the corpus."
+      "notes": "Bounded by Gates (3), Portals (3) and the once-per-turn legend exhaust; never closes. Mind/Body also holds Renata Glasc, Mastermind (SFD-088): a Gate that readies Renata and three Eggs is one point plus +6E — that is the point-loop lens (renata-bubble-bot-ready, jayce-mesmerize-renata). The Garbage Grabber re-draw variant is refuted (L3-05): recycled cards go to the bottom in random order (416.5) and the deck grows by 2 per pass. Card text verified against the corpus. Two numbers in the first write-up were wrong: the Awaken exhausts lose their Energy to 167, and the Repeated Gate cannot ready the same Eggs twice. The bare Gate (+4E −1P) beats the Portal-plus-Repeat version (+5E −3P) once you price Power as a rune leaving the board. REFUTE 2 (2026-09-03): WOUNDED — Awaken Energy evaporates at the Main Phase start (167) and Repeat cannot double the Eggs (R21); corrected to +6E +3E per turn and +4E −1P per bare Gate."
     },
     {
       "id": "sprite-fountain-malzahar-jayce",
@@ -2173,24 +2189,30 @@
           "Legend domains cover Calm and Mind (Fire Below the Mountain SFD-189 adds 1 rainbow per turn for gear; Seals of Insight OGN-120 add Mind Power)."
         ],
         "notable": [
-          "Each Malzahar acts once per Awaken; Jayce's gear trigger readies one of them for a second kill. Sprites are Temporary: they die at the start of your next Beginning Phase (816.1.b), so they attack or hold this turn and defend on the opponent's."
+          "Each Malzahar acts once per Awaken. Jayce's trigger is on the first non-token gear of the turn only, and it readies anything exhausted — a rune is usually the only live target, since the Malzahars have not been spent yet.",
+          "Sprites are Temporary: they die at the start of your next Beginning Phase, before the Scoring Step (816.1.b, 315.2.b). They can conquer on the turn they are made and defend on the opponent's turn, but they can never Hold and they are never alive at the start of a Main Phase."
         ]
       },
       "steps": [
-        "Play Sprite Fountain (2E+1P): a ready 3 Might Sprite. Jayce's first-gear trigger readies Malzahar if he was exhausted.",
-        "Malzahar: kill the Fountain, exhaust: +2 rainbow. Deathknell: a second ready Sprite.",
-        "Net per Fountain: −2E +1P and two ready 3 Might bodies. Repeat with each Fountain and each ready Malzahar."
+        "Play Sprite Fountain (2E+1P): a ready 3 Might Sprite token at your base. Jayce's trigger fires here, on the first non-token gear of the turn — every Malzahar is still ready from Awaken at this point, so the useful target is an exhausted rune (+1E), not a Malzahar.",
+        "Malzahar: kill the Fountain as the ability's cost and exhaust him for +2 rainbow. Killing as a cost still fires the Deathknell (428.1.a.1.b), which repeats the play effect for a second ready Temporary Sprite.",
+        "Net per Fountain: −2E +1P and two ready 3 Might bodies. Three Fountains and three Malzahars is six Sprites for a net −6E +3P."
       ],
-      "terminatesIn": "engine only — up to six ready 3 Might bodies a turn; Power-positive, Energy-negative",
+      "terminatesIn": "engine only — up to six ready 3 Might Temporary bodies a turn for a net −6E +3P; they can conquer the turn they are made but cannot hold",
       "sources": [
         {
           "title": "Hunt v2 lens L3, entry L3-06 (docs/phase0/hunt2/L3-ready-resource.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Target (b) of lens L3: the repeatable core of an Ornn Calm/Mind gear deck. Sinks: The Grand Plaza (7 units on a Hold — see leblanc-temporary-plaza) or Bottled Constellation (3 kills per point; each Fountain is 3 fodder over two turns). Shurelya's Requiem (SFD-192) readies every unit once per play and Legion Quartermaster (SFD-044) returns it to hand for a replay at 7E+2P — a bounded second ready of all Malzahars, not an engine of its own (L3-07). Card text verified against the corpus."
+      "notes": "Target (b) of lens L3: the repeatable core of an Ornn Calm/Mind gear deck. Sinks are the weak point. The Grand Plaza's win condition is a Hold trigger and Temporary kills before scoring, so it needs LeBlanc suppressing the Temporary trigger (see leblanc-temporary-plaza); Bottled Constellation triggers at the start of your Main Phase, always after the Beginning Phase that killed the Sprites, so it can never eat them. What the engine buys is 18 Might of ready bodies for two conquers and a defensive turn. Shurelya's Requiem (SFD-192) readies every unit once per play and Legion Quartermaster (SFD-044) returns it to hand for a replay at 7E+2P — a bounded second ready of all Malzahars, not an engine of its own (L3-07). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the per-Fountain numbers hold but both named sinks were dead: Temporary Sprites never see a Hold or a Main Phase start."
     },
     {
       "id": "sona-viktor-opponent-turn",
@@ -2199,7 +2221,7 @@
       "status": "candidate",
       "uses": [
         {
-          "card": "VEN-SP2",
+          "card": "OGN-073",
           "quantity": 1,
           "role": "engine",
           "zone": "BATTLEFIELD",
@@ -2222,23 +2244,30 @@
           "Legend domains cover Calm and Mind."
         ],
         "notable": [
-          "Sona must be at a battlefield when your turn ends; the four runes fund Reactions (Premonition, Consult the Past, Counter Strike) during the opponent's turn."
+          "Sona must be at a battlefield when your turn ends; the four runes fund Reactions (Premonition, Consult the Past, Counter Strike) during the opponent's turn.",
+          "Sona has to survive on a battlefield at 4 Might for the readies to happen at all. Chemtech Cask's Gold enters exhausted and cannot be spent until your next Awaken."
         ]
       },
       "steps": [
         "End of your turn with Sona at a battlefield: ready up to 4 runes.",
-        "On the opponent's turn, spend them on Reactions: each card played is a Recruit from Viktor; each spell also lets Chemtech Cask (SFD-063) exhaust for a Gold."
+        "On the opponent's turn, spend them on Reactions: rune abilities carry [Reaction] (164.2.a/b) and Reaction activated abilities work on any player's turn (813.1.c.2). Each card you play is a Recruit from Viktor — the Recruits enter exhausted (143.4), so they are bodies for your next turn.",
+        "Cards played from Hidden are free (811.1.b) and Reaction-speed (811.6), so each hidden card you flip on the opponent's turn is a Viktor trigger that costs no runes at all."
       ],
-      "terminatesIn": "engine only — up to four Energy of Reactions and as many Recruits per opponent turn",
+      "terminatesIn": "engine only — four Energy of Reactions per opponent turn, so at most four Recruits and realistically one or two; the Recruits arrive exhausted",
       "sources": [
         {
           "title": "Hunt v2 lens L3, entry L3-10 (docs/phase0/hunt2/L3-ready-resource.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Bounded per turn by four runes and by the Reactions in hand. Alternate rune readiers: Dark Child (OGS-017, Fury/Chaos legend) readies 2 at end of turn; Targon's Peak (OGN-289) readies 2 at end of turn after a conquer there. Card text verified against the corpus."
+      "notes": "Bounded per turn by four runes and by the Reactions in hand. Targon's Peak (OGN-289) stacks: it readies up to 2 more at the end of a turn in which you conquered there, for up to six. Dark Child (OGS-017) is not an alternative here — it is a Fury/Chaos legend and cannot legally run Sona (Calm) or Viktor (Mind). Card text verified against the corpus. REFUTE 2 (2026-09-03): SURVIVES with corrections — the off-turn rune spend is legal; the entry cited the VEN-SP2 reprint instead of the base code OGN-073, the Dark Child alternative was domain-illegal and the Cask's Gold is exhausted on arrival."
     },
     {
       "id": "reksai-undertitan-reveal",
@@ -2251,14 +2280,14 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BOARD",
-          "note": "When I attack, you may reveal the top 2 cards of your Main Deck; you may banish one, then play it; recycle the rest (errata 2026-01-14)."
+          "note": "When I attack, you may reveal the top 2 cards of your Main Deck. You may banish one, then play it. If it is a unit, you may play it here. Recycle the rest (errata 2026-01-14). Declining the banish is the engine line, because 'banish one, then play it' is one package and playing an Undertitan costs 6E+1P. No [Ganking]: a second attack needs two Standard Moves."
         },
         {
           "card": "SFD-175",
-          "quantity": 2,
+          "quantity": 3,
           "role": "payoff",
           "zone": "DECK",
-          "note": "As I'm revealed from your deck, Add 2 Energy. Left unplayed, both recycle to the bottom and are revealed again once the deck is down to them."
+          "note": "As I'm revealed from your deck, Add 2 Energy — a zone-active trigger that fires on every reveal and resolves immediately. Left unplayed, the revealed copies recycle to the bottom (416.1) and are the same top two on the next attack, but only while the deck holds at least two."
         }
       ],
       "needs": [],
@@ -2267,26 +2296,33 @@
       ],
       "prerequisites": {
         "easy": [
-          "Legend domains cover Order."
+          "Legend domains cover Order for the core; the named readiers are Fury, so the real pair is Fury/Order (Piltover Enforcer UNL-187 or Hand of Noxus OGN-253)."
         ],
         "notable": [
-          "Pays out only while Undertitans sit in the top two; with nothing else left in the deck every attack is +4E and the cards come straight back. The Draw Phase eats one per turn, and drawing past them is Burn Out (431.2)."
+          "Needs three Undertitans and an otherwise empty Main Deck. The Draw Phase strips one card per turn, so three copies buys exactly one clean turn at +4E per reveal; the next turn the deck holds one card and each reveal is +2E, then zero, and the turn after that the Draw Phase itself is a Burn Out (431.1.a, 431.2).",
+          "Revealing more cards than the deck holds is explicitly NOT a Burn Out (431.1.c) — you reveal as many as possible and carry on. Only drawing past the end costs a point.",
+          "One reveal per combat and Rek'Sai has no Ganking, so in Duel's two battlefields the reliable number is two reveals a turn, +8E. Whether 'Recycle the rest' still recycles when nothing was banished is R22; the other reading leaves both Undertitans on top and makes the engine stronger."
         ]
       },
       "steps": [
-        "Rek'Sai attacks: reveal two Undertitans (+2E each), banish neither, recycle both.",
-        "Ready Rek'Sai for another attack (Piltover Enforcer UNL-187 on 3+ excess damage; Twilight Reveler VEN-020). She is already Mighty, so Fiora, Worthy does not fire for her."
+        "Rek'Sai attacks: reveal the top two Undertitans, +2E each. Decline the banish — 'banish one, then play it' is a single package and the play costs 6E+1P — so both recycle to the bottom of a two-card deck and are the same top two next attack.",
+        "Ready Rek'Sai for a second attack. Twilight Reveler (VEN-020) readies her inside the combat; Piltover Enforcer (UNL-187) needs a conquer with 3+ excess damage, which is the case where she is not recalled and has to walk home first. She is already Mighty at 5, so Fiora, Worthy never triggers for her (709)."
       ],
-      "terminatesIn": "engine only — +4 Energy per attack while the deck is Undertitans; two or three attacks a turn",
+      "terminatesIn": "engine only — +4 Energy per reveal on the one turn the deck still holds two Undertitans, about +8E across two attacks, decaying to +2E and then nothing on following turns",
       "sources": [
         {
           "title": "Hunt v2 lens L3, entry L3-11 (docs/phase0/hunt2/L3-ready-resource.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Order had no resource entry. Fragile: a normal deck reveals an Undertitan by chance. Ivern, Nurturer and Double Trouble reveals also pay +2E but draw him. Card text verified against the corpus."
+      "notes": "Order had no resource entry. Fragile: a normal deck reveals an Undertitan by chance. Ivern, Nurturer and Double Trouble reveals also pay +2E but draw him. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — two Undertitans in a deck that draws one a turn is one reveal at +4E; three copies buy exactly one clean turn. Upward correction: revealing past the deck does not Burn Out (431.1.c)."
     },
     {
       "id": "treasure-hunter-industrialist-gold",
@@ -2306,7 +2342,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BOARD",
-          "note": "Your tokens enter ready: the Gold is 1 rainbow the moment it appears (Kill this, exhaust: Add rainbow)."
+          "note": "Your tokens enter ready. If that beats Treasure Hunter's \"play a Gold gear token exhausted\" (unruled, R25), the Gold is 1 rainbow Power the moment it appears; if not, it is Power next turn. The Eye's Recruits are not in doubt: units default to exhausted (143.4) and Renata overrides the default."
         },
         {
           "card": "OGN-173",
@@ -2322,10 +2358,11 @@
       ],
       "prerequisites": {
         "easy": [
-          "Legend domains cover Chaos and Order."
+          "Legend is Heart of the Tempest (VEN-155) — the only Order/Chaos legend in the pool."
         ],
         "notable": [
-          "The Hunter has no Ganking: after one Standard Move to a battlefield he needs a bounce to move again — Flash (OGS-011) returns two units to base for 2E, The Syren (OGN-184) does it for 1E and an exhaust."
+          "The Hunter has no Ganking, so a Standard Move only ever runs base to battlefield or back (144.4.a/b): one free move per turn. A second move in the same turn needs a bounce: Ride the Wind (OGN-173) moves and readies him for 2E+1P, The Syren (OGN-184) sends him to base for 1E and its own exhaust, Flash (OGS-011) returns two units to base for 2E. He enters exhausted (143.4), so the turn he lands he produces nothing.",
+          "Both the token-maker's \"play a Gold gear token exhausted\" and Renata's \"Your tokens enter ready\" apply to the same event and the rules do not say which wins (unruled, R25: rule 375's own example makes the exhausted rider inherit through a replacement, 369.3/370.1.c let Renata rewrite how a token enters). Under the adverse reading each Gold is Power next turn, not this turn. The Eye of the Herald Recruits are not in doubt: units default to exhausted (143.4) and Renata overrides the default."
         ]
       },
       "steps": [
@@ -2333,16 +2370,21 @@
         "Ride the Wind: move him back and ready him (+1 Gold); Standard Move again (+1 Gold).",
         "With Eye of the Herald (SFD-153) attached, each move also drops a ready 1 Might Recruit."
       ],
-      "terminatesIn": "engine only — one ready Gold (and a ready Recruit) per move; two to four moves a turn",
+      "terminatesIn": "engine only — one Gold (and, with the Eye attached, one ready Recruit) per move: one move a turn for free, three with Ride the Wind, four with The Syren on top, for 3E + 1 Chaos Power",
       "sources": [
         {
           "title": "Hunt v2 lens L3, entry L3-12 (docs/phase0/hunt2/L3-ready-resource.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "The unbounded version was Stealthy Pursuer (OGN-177), banned; no other 'moves with it' text exists in the pool on the L2 and L3 reads. Fae Porter (SFD-125) pays Chaos Power to bring the Hunter along for net zero and a Recruit. Card text verified against the corpus."
+      "notes": "The unbounded version was Stealthy Pursuer (OGN-177), banned; no other 'moves with it' text exists in the pool on the L2 and L3 reads. Fae Porter (SFD-125) pays Chaos Power to bring the Hunter along for net zero and a Recruit. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — steady state is 4 Gold and 4 Recruits a turn for 3E + 1 Chaos Power with Ride the Wind and The Syren; the turn he lands it is zero; and whether the Gold is spendable this turn hangs on R25."
     },
     {
       "id": "fiora-vault-breaker-jhin",
@@ -2369,7 +2411,7 @@
           "quantity": 1,
           "role": "enabler",
           "zone": "HAND",
-          "note": "1E+1P: give a unit [Assault 2] and [Ganking] this turn. Jhin is 6 Might while an attacker and 4 again after combat — a fresh crossing into Mighty on every attack (709)."
+          "note": "1E+1P: give a unit [Assault 2] and [Ganking] this turn. Jhin is 6 Might only while he holds the Attacker designation and 4 again the instant combat ends (466.7.a), which is what makes each new combat a fresh crossing into Mighty (709)."
         }
       ],
       "needs": [],
@@ -2381,25 +2423,31 @@
           "Legend domains cover Fury and Order (Hand of Noxus OGN-253, Piltover Enforcer UNL-187)."
         ],
         "notable": [
-          "Only a move to an enemy-controlled battlefield is an attack, so two attacks per turn in Duel.",
-          "RULES READING: the Assault bonus counts as 'becoming Mighty' each time Jhin becomes an attacker, and Fiora's trigger fires on each crossing."
+          "Both enemy battlefields must be garrisoned. Assault only applies while the unit holds the Attacker designation (807.1.d), which exists only inside a Combat (464.2.c), and a Combat needs units from two opposing players (461) — walking into an empty enemy battlefield opens a showdown and nothing triggers.",
+          "RULES READING (R13): the Attacker designation is removed at the end of every combat (466.7.a), so Assault's +2 falls off and Jhin crosses from 4 to 6 again on the next attack. Each crossing is a fresh 'becomes Mighty' (709) and a fresh Fiora trigger.",
+          "Two combats per turn in Duel, one per garrisoned battlefield. Re-entering a battlefield you already conquered stages a showdown, not a combat (R14), so it adds nothing. Jhin at 6 Might either kills the whole garrison and conquers or takes lethal damage himself, so he cannot farm the same battlefield twice."
         ]
       },
       "steps": [
-        "Vault Breaker on Jhin (1E+1P). Standard Move to an enemy battlefield: +1E +1P; he becomes an attacker, 6 Might, Mighty.",
-        "Fiora: pay 1 Order Power, ready Jhin. Conquer.",
-        "Move to the other enemy battlefield: +1E +1P, Mighty again, ready again. Net +1E per attack."
+        "Vault Breaker on Jhin (1E+1P). Standard Move to a garrisoned enemy battlefield: +1E +1 rainbow. Combat opens, Jhin gains the Attacker designation, Assault takes him to 6 Might and he becomes Mighty.",
+        "Fiora: pay 1 Order Power to ready him. He cannot move while the combat is open (144.1.c); the combat resolves, he kills the garrison and conquers for a point.",
+        "Standard Move to the other garrisoned battlefield using Ganking (+1E +1 rainbow), become Mighty again, ready again for a second Order Power, conquer for a second point. He is left ready, so a Standard Move home is a free third trigger (+1E +1 rainbow)."
       ],
-      "terminatesIn": "engine only — Jhin attacks twice or more in a turn and pays for it",
+      "terminatesIn": "engine — three moves and two conquers: +3E +3 rainbow gross, net +2E and no Power after Vault Breaker and two Order Power, plus 2 points",
       "sources": [
         {
           "title": "Hunt v2 lens L3, entry L3-13 (docs/phase0/hunt2/L3-ready-resource.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Bounded by enemy-controlled battlefields. Card text verified against the corpus."
+      "notes": "Bounded by garrisoned enemy battlefields — two in Duel — and by Jhin surviving each combat at 6 Might. The Fiora readies are close to break-even in resources (+2E, no net Power, one card and two Order Power); the real payout is the two conquers. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — Assault needs a Combat, so both battlefields must be garrisoned; the tally is +2E and no net Power for two attacks, plus the 2 conquer points the first write-up left out. R13 is near-textual: 466.7.a removes the Attacker designation after every combat."
     },
     {
       "id": "fae-dragon-wallop-industrialist",
@@ -2446,7 +2494,8 @@
           "Legend domains cover Body and Order."
         ],
         "notable": [
-          "Fae Dragon is 7E+1P; the payout is one buff per Wallop, four buffs per Dragon play. Overt Operation (OGN-153, 5E+2P) spends every buff to ready every unit and re-buffs them all."
+          "Fae Dragon is 7E+1P and buffs up to four units; each Wallop spends one buff, so one Dragon fuels four Wallops but a deck holds only three. Lux, Crownguard's Energy is spell-locked (\"Use only to play spells\"), so the loop pays for more spells, not for units. Overt Operation (OGN-153, 5E+2P) spends every buff at once and re-buffs all friendly units with no cap — a refuel, and a net loss as a Gold converter.",
+          "Both the token-maker's \"play a Gold gear token exhausted\" and Renata's \"Your tokens enter ready\" apply to the same event and the rules do not say which wins (unruled, R25: rule 375's own example makes the exhausted rider inherit through a replacement, 369.3/370.1.c let Renata rewrite how a token enters). Under the adverse reading each Gold is Power next turn, not this turn. The Eye of the Herald Recruits are not in doubt: units default to exhausted (143.4) and Renata overrides the default."
         ]
       },
       "steps": [
@@ -2454,16 +2503,21 @@
         "Wallop, spending Lux's buff (free): ready Lux. Fae Dragon: a Gold enters ready (+1 rainbow). Lux: +2E for spells.",
         "Overt Operation with three Lux on board: spend the buffs, ready all three (+6E), re-buff everyone, one Gold per buff spent."
       ],
-      "terminatesIn": "engine only — +2 Energy and +1 Power per buff spent; bounded by buffs and Wallops",
+      "terminatesIn": "engine only — per Wallop (free): +2 Energy that can only be spent on spells, plus one Gold; bounded by three Wallops a deck, four buffs per Fae Dragon play and one buff per unit (702.3)",
       "sources": [
         {
           "title": "Hunt v2 lens L3, entry L3-15 (docs/phase0/hunt2/L3-ready-resource.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Body/Order had no entry. Card text verified against the corpus."
+      "notes": "Body/Order had no entry. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the Energy is Lux's and spell-only, and it appears only when the buff readies a Lux you had already exhausted; per Wallop +2 spell Energy and one Gold (R25 for its timing). Overt Operation at 5E+2P is worse than the free Wallop."
     },
     {
       "id": "aphelios-jax-quickdraw-attach",
@@ -2497,7 +2551,7 @@
           "quantity": 1,
           "role": "legend",
           "zone": "LEGEND",
-          "note": "Legend, Calm/Body. Exhaust: attach an attached Equipment you control to a unit you control — one free re-attach per turn."
+          "note": "Legend, Calm/Body. 1 Energy, exhaust: attach a detached Equipment you control to a unit you control; and exhaust: attach an attached Equipment you control to a unit you control. Both exhaust her, so one re-attach per turn, and 434.1.g/h means it must move an Equipment off another unit onto Aphelios to trigger anything."
         }
       ],
       "needs": [],
@@ -2517,16 +2571,21 @@
         "Grandmaster at Arms (exhaust): move an Equipment attached to another unit onto Aphelios — Channel 1 rune exhausted.",
         "A second Quick-Draw Equipment (1E) onto Aphelios — Buff a friendly unit."
       ],
-      "terminatesIn": "engine only — about +1 Energy and one channelled rune per Aphelios per turn; a third attach buys a buff for 1E",
+      "terminatesIn": "engine only — net 0 resources on a full three-attach turn (two 1E Equipment out, two runes readied back), plus one exhausted rune channelled and one buff; the channel mode needs a fresh Equipment on another unit each turn",
       "sources": [
         {
           "title": "Hunt v2 lens L3, entry L3-09 (docs/phase0/hunt2/L3-ready-resource.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Calm/Body sibling of azir-aphelios-attach (Calm/Order, Emperor of the Sands). Tiny by the lens's own arithmetic and bounded by the three-mode cap and the 12-rune deck (161.2.a); bounce resets (a new Aphelios object) cost more than they return. Listed for completeness. Card text verified against the corpus."
+      "notes": "Calm/Body sibling of azir-aphelios-attach (Calm/Order, Emperor of the Sands). Tiny by the lens's own arithmetic and bounded by the three-mode cap and the 12-rune deck (161.2.a); bounce resets (a new Aphelios object) cost more than they return. Listed for completeness. Card text verified against the corpus. Jax is a 5E+1P prerequisite for the Quick-Draw static, and Cloth Armor (SFD-064) is Mind, so it only serves the Calm/Mind variant, which has no Grandmaster at Arms and so no free re-attach. REFUTE 2 (2026-09-03): WOUNDED — the mechanics hold (819.1.d makes Quick-Draw a real attach; 434.1.g/h forbids re-attaching to the same unit) but the entry's own three steps net 0 resources, not +1 Energy."
     },
     {
       "id": "virtuoso-banish-channel",
@@ -2551,23 +2610,29 @@
           "Legend is Virtuoso (UNL-181, Fury/Mind)."
         ],
         "notable": [
-          "Only spells on which you actually spent 4+ Energy count (cost reductions can drop a 4-cost spell below the line). Channelled runes enter ready (430.2.a) and are usable the same turn; the fourth spell's own banish is what completes the set."
+          "Only spells on which you actually spent 4+ Energy count (cost reductions can drop a 4-cost spell below the line). Channelled runes enter ready (430.2.a) and are usable the same turn; the fourth spell's own banish is what completes the set.",
+          "Unruled (R26): the Chain resolves newest-first (340.1) and a \"when you play a spell\" trigger is appended after the spell, so a literal read has Virtuoso's trigger resolve while the spell is still an unresolved Chain Item — banishing it there would counter your own spell (359.3.d only sends a spell to the trash after its effect executes). The entry assumes the trigger waits until the spell has resolved, which is how the community plays it."
         ]
       },
       "steps": [
         "Play a spell spending 4+ Energy; banish it with Virtuoso. Repeat for three more.",
         "On the fourth: all four go to the trash, channel 4 runes (ready) and draw 1 — about +4 Energy and a card, then the count restarts."
       ],
-      "terminatesIn": "engine only — +4 ready runes and a card per four spells of 4+ Energy; capped by the 12-rune deck (161.2.a) and worthless once all 12 are out",
+      "terminatesIn": "engine only — four spells of 4+ Energy convert into 4 ready runes and a card, but the runes are permanent ramp against a 12-rune ceiling (161.2.a): the lifetime output is at most the runes you had not already channelled, plus one card per 16+ Energy of spells",
       "sources": [
         {
           "title": "Hunt v2 lens L3, entry L3-16 (docs/phase0/hunt2/L3-ready-resource.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Legend-only engine, no second card required; listed so a Fury/Mind big-spell deck sees the payoff and its ceiling. The four spells return to the trash, so anything that recycles or replays from trash (Fizz, Heedless Resurrection lines) can loop them, but nothing in Fury/Mind refunds the Energy. Card text verified against the corpus."
+      "notes": "Legend-only engine, no second card required; listed so a Fury/Mind big-spell deck sees the payoff and its ceiling. The four spells return to the trash, so anything that recycles or replays from trash (Fizz, Heedless Resurrection lines) can loop them, but nothing in Fury/Mind refunds the Energy. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the payoff is permanent ramp toward 12, not +4 Energy per cycle, and the whole legend stands on R26."
     },
     {
       "id": "renata-time-warp-ekko-refresh",
@@ -2580,7 +2645,7 @@
           "quantity": 2,
           "role": "engine",
           "zone": "HAND",
-          "note": "10 Energy + 4 Mind Power: Take a turn after this one. Banish this. One per turn, so two copies for two extra turns in a row."
+          "note": "10 Energy + 4 Mind Power: Take a turn after this one. Banish this. There is no once-per-turn clause on the card and none in the errata — two copies can be cast in the same turn if the resources are there, which they are on the Ekko turn at the price of that turn's Renata point. Two copies is what buys two extra turns."
         },
         {
           "card": "SFD-088",
@@ -2621,15 +2686,15 @@
           "Legend is Chem-Baroness (SFD-201, Mind/Order) — the Gold doubling from 5 points up is what closes the resource count."
         ],
         "notable": [
-          "The deck-tech requirements, quoted: 12 runes, at least 1 Gold token in base, an Ekko, Recurrent in play, a Hidden Blade or Deathgrip in hand; add 2 Gold and Renata at a battlefield to also score with Renata that turn; 4 Gold to score on the following turn too, halved once you have 5+ points.",
-          "RULES POINT to walk: Power paid by recycling runes returns those runes to the Rune Deck (161.2.b), so Ekko readies only the runes exhausted for Energy; the Mind Power for Renata has to come from Gold, Seals of Insight or runes kept back."
+          "Corrected requirement for the Time Warp turn: 12 runes on the board of which at least 8 produce Mind Power, Ekko, Recurrent on the board (at a battlefield if you are killing him with Hidden Blade), Renata Glasc, Mastermind ready at a battlefield, and either a Hidden Blade hidden on an earlier turn for 1 rainbow or a Deathgrip in hand. No Gold is needed for that turn: exhausting every rune, readying them all through Ekko and recycling eight Mind runes makes 20 Energy and 8 Mind Power against 14 Energy and 8 Power spent, ending the turn with 4 runes on the board. Gold matters on the turn after: each is Kill this, exhaust: Add 1 rainbow, plus 1 Energy while your score is 5 or higher, it enters exhausted so it is usable only from the following turn, and Chem-Baroness makes at most one per turn. The deck-tech's own requirement line (12 runes, at least 1 Gold, Ekko, Hidden Blade or Deathgrip) is quoted for the record.",
+          "RULES the count stands on: Power paid by recycling runes returns those runes to the Rune Deck (161.2.b), so Ekko readies only the runes still on the board — pay Time Warp's Power from Gold instead of rune recycles and the board stays at 12 through his Deathknell, ending the turn with 8 runes rather than 4. On the extra turn, Awaken readies everything (315.1.b), the Beginning Phase holds every battlefield you control (capped at one Score per battlefield per turn by 470, two battlefields in Duel, 485.4), the Channel Phase adds 2 runes and the Draw Phase 1. Ekko is in the Main Deck by then, so there is no second rune-ready: six runes pay for either a second Renata point or a second Time Warp, not both."
         ]
       },
       "steps": [
         "Main Phase with 12 runes and Gold in base: Time Warp (10 Energy + 4 Mind Power).",
         "Hidden Blade from hidden (0) or Deathgrip (2 Energy) kills Ekko: his Deathknell recycles him and readies your runes.",
         "Renata, Mastermind: 4 Energy + 4 Mind Power, exhaust — score 1.",
-        "Extra turn: Awaken readies everything; hold your battlefields, cast the second Time Warp, score with Renata again. Two extra turns of holds plus two or three Renata points from a mid-game score is the finish."
+        "Extra turn: Awaken readies everything and the Beginning Phase holds every battlefield you control (up to two in a Duel). Ekko is now in the Main Deck, so there is no second rune-ready — the six runes you have (four left over plus two from the Channel Phase) pay for either a second Renata point or, with four Gold banked from earlier turns, a second Time Warp. Not both."
       ],
       "terminatesIn": "burst of points across two consecutive extra turns — holds plus a Renata point per turn",
       "rulesVersion": "2026-07-16",
@@ -2639,13 +2704,18 @@
           "kind": "article",
           "url": "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-tech-renata-combo",
           "date": "2026-03-12"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
-      "notes": "Community-documented deck, not a loop: it needs no infinite engine, which separates it from time-warp-hold-burst and bottled-constellation-time-warp (both ride the Lux loop). The article states the requirements but not the action-by-action sequence; the steps above are the reconstruction from card text and are the part a human must walk, especially the Power count after Ekko's ready (161.2.b). Card text verified against the corpus."
+      "notes": "Community-documented deck, not a loop: it needs no infinite engine, which separates it from time-warp-hold-burst and bottled-constellation-time-warp (both ride the Lux loop). The article states the requirements but not the action-by-action sequence; the steps above are the reconstruction from card text and are the part a human must walk, especially the Power count after Ekko's ready (161.2.b). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the Time Warp turn is payable with zero Gold if eight of the twelve runes make Mind, the Gold's job is the turn after and it arrives exhausted, the extra turn buys a Renata point or a second Time Warp but not both, and the 'one Time Warp per turn' clause the first write-up assumed does not exist."
     },
     {
       "id": "dazzling-aurora-elder-dragon",
-      "name": "Dazzling Aurora flips Elder Dragon — a free board wipe at end of turn",
+      "name": "Dazzling Aurora flips Elder Dragon — a free 10-Might body and one kill per location",
       "class": "ENGINE",
       "status": "candidate",
       "uses": [
@@ -2674,15 +2744,16 @@
         ],
         "notable": [
           "Aurora fires every end of turn while it survives: a free unit each turn, and whenever the revealed unit is Elder Dragon, one enemy unit dies at every location. Deck-building lever: the fewer non-Dragon units in the deck, the more often the flip is a Dragon.",
-          "Elder Dragon's trigger is on play, so it repeats only if he returns to the deck; the engine's steady output is the free unit, the wipe is the jackpot."
+          "Elder Dragon's trigger is on play, so it repeats only if he returns to the deck; the engine's steady output is the free unit, the wipe is the jackpot.",
+          "Elder Dragon chooses his targets, so Deflect costs a rainbow Power to get through — payable, because Aurora fires in the Ending Step (317.1) before the Rune Pool empties (317.2.d), but only if a rune was left ready. The reveal can Burn Out (431.1.c) if the deck runs out of units, handing an opponent a point (431.2.c): that is the price of thinning the deck to raise the Dragon hit rate."
         ]
       },
       "steps": [
         "Resolve Aurora at the end of your turn: reveal until a unit, banish it, play it for free, recycle the rest.",
-        "If it is Elder Dragon: deal 1 to up to one enemy unit at each location — all of them die.",
+        "If it is Elder Dragon: deal 1 to up to one enemy unit at each location and, because any amount of his damage kills, each chosen unit dies — at most three in a 1v1 (two battlefields plus the enemy base, 198.1 / 485.4), one per location, not a sweep.",
         "Next turn, Aurora fires again: Direwing (enters ready with another Dragon) or Gentle Gemdragon (readies 2 runes per Dragon played) keep the pressure up."
       ],
-      "terminatesIn": "engine only — a free unit every end of turn; a one-per-location board wipe when it hits Elder Dragon",
+      "terminatesIn": "engine only — a free unit every end of turn; when it hits Elder Dragon, one enemy unit dies at each location, up to three in a 1v1",
       "rulesVersion": "2026-07-16",
       "sources": [
         {
@@ -2690,9 +2761,14 @@
           "kind": "article",
           "url": "https://news.qq.com/rain/a/20260518A00O1S00",
           "date": "2026-05-18"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
-      "notes": "First entry sourced from the Chinese meta, where the game launched in 2025-08. The article's complaint is about play pattern, not legality: \"players feel facing this deck isn't fun and lacks interactivity\"; it also names Aurora Volibear and Aurora Miss Fortune as the archetype's shells (Volibear's legend Relentless Storm is Fury/Body; Miss Fortune, Captain readies something on her first move). Card text verified against the corpus."
+      "notes": "First entry sourced from the Chinese meta, where the game launched in 2025-08. The article's complaint is about play pattern, not legality: \"players feel facing this deck isn't fun and lacks interactivity\"; it also names Aurora Volibear and Aurora Miss Fortune as the archetype's shells (Volibear's legend Relentless Storm is Fury/Body; Miss Fortune, Captain readies something on her first move). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — \"board wipe\" was wrong: one kill per location, three at most in a 1v1. The free 12E+4P body every end of turn is the real engine."
     },
     {
       "id": "jhin-fiora-facebreaker-recall",
@@ -2746,8 +2822,8 @@
           "Legend domains cover Fury and Order."
         ],
         "notable": [
-          "An enemy unit of 2+ Might sits at a battlefield and the opponent has no reaction to the loop. Jhin ready in base with the Assault source; Fiora in base.",
-          "RULES the loop stands on: the combat cleanup heals all units (466.1.a.1) and recalls the attackers when defenders remain (466.1.a.2), the combat is then No Result (466.3.d); a recall is not a move and does not change the unit's state, so Jhin comes home ready and still stunned (458, 458.1). R13: Assault Might counts as becoming Mighty on each attack."
+          "An enemy unit of 2+ Might defends a battlefield the opponent already controls, and the total Might of enemy units there that Facebreaker does not stun is less than Jhin's attacking Might. The first matters because after the recall the defender is the only player with units at the battlefield, and 466.5.d turns Establishing Control into a Conquer — one free point for the opponent if the battlefield was not already theirs. The second matters because Facebreaker stuns exactly one enemy unit and damage kills before the cleanup heals in 3c. Jhin ready in base with the Assault source; Fiora in base.",
+          "RULES the loop stands on: the combat cleanup heals all units (466.1.a.1) and recalls the attackers when defenders remain (466.1.a.2), leaving No Result (466.3.d) with no re-staged combat because only one player has units left (466.3.d.1). A recall is explicitly not a move — \"Recalls are not Moves… They do not cause Triggered Abilities to trigger that are triggered by Move actions\" (456, 456.1) — so Jhin does not re-trigger on the way home, and 458.1 keeps him ready and stunned. The stun lasts the whole turn: it is cleared only in the end-of-turn cleanup (423.1.a.2). The defender cannot escape: a Standard Move happens only in its controller's own Main Phase (144.1.a) and never during a Showdown or Combat (144.1.c). R13 is near-literal here: 709 defines \"becomes Mighty\" as the moment Might crosses from below 5 to 5+, and Assault switches on with the Attacker designation (464.2.c) and off at the end of combat (466.7.a), so the crossing is fresh every pass."
         ]
       },
       "steps": [
@@ -2776,9 +2852,14 @@
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1tlk9n3/",
           "date": "2026-05-23"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
-      "notes": "The infinite cousin of fiora-vault-breaker-jhin: the stun turns every attack into a No Result recall instead of a conquer, so Jhin never leaves the loop. Three-card floor: Jhin + Fiora + Facebreaker at Trifarian War Camp is infinite Energy with no Equipment. Community corrections already folded in: the recall is not a move, so it is not infinite Power (+1 −1 per pass); and the No Result combat is not a combat win, so a Draven opponent does not draw and cannot be decked this way (Unleashed rules clarification quoted in the 2026-05-23 thread). Card text verified against the corpus; rules quoted from Core Rules 2026-07-16."
+      "notes": "The infinite cousin of fiora-vault-breaker-jhin: the stun turns every attack into a No Result recall instead of a conquer, so Jhin never leaves the loop. Three-card floor: Jhin + Fiora + Facebreaker at Trifarian War Camp is infinite Energy with no Equipment — but only in Match, where you pick which of your three battlefields is used (486.5); in Duel it is random (485.5). In that build Fiora's trigger and Jhin's Add come off the same move, so put them on the chain in the order that resolves the Add first. Community corrections already folded in: the recall is not a move, so it is not infinite Power (+1 −1 per pass); and the No Result combat is not a combat win, so a Draven opponent does not draw and cannot be decked this way (Unleashed rules clarification quoted in the 2026-05-23 thread). Card text verified against the corpus; rules quoted from Core Rules 2026-07-16. REFUTE 2 (2026-09-03): SURVIVES — +1 Energy, ±0 Power, +1 Recruit per pass, unbounded. Two preconditions added: the battlefield must already be the opponent's (466.5.d) and no un-stunned defender may out-damage Jhin before the heal."
     },
     {
       "id": "garen-fiora-malzahar-facebreaker-recruits",
@@ -2813,7 +2894,7 @@
           "role": "engine",
           "zone": "BASE",
           "state": "buffed",
-          "note": "3 Might plus a buff = 4; Garen's aura in base makes him 5 and Mighty. Kill a friendly unit or gear, exhaust: Add 2 rainbow — eats one Recruit per pass and pays both Fiora readies."
+          "note": "3 Might plus a +1 buff = 4; Garen's aura in base makes him 5 and Mighty. Kill a friendly unit or gear, exhaust: Add 2 rainbow — eats one Recruit per pass and pays both Fiora readies. The buff must come from a Mind or Order card that hits a unit already on the board: Bonds of Strength (SFD-151, 2 Energy Reaction). Rally the Troops only buffs units played after it resolves, which would force Malzahar to be replayed and enter exhausted (143.4)."
         },
         {
           "card": "OGN-095",
@@ -2839,7 +2920,7 @@
           "Legend domains cover Mind and Order."
         ],
         "notable": [
-          "The opponent defends Trifarian War Camp (OGN-294, +1 Might to units there) with a 4+ Might unit. Malzahar enters the loop already buffed (Rally the Troops or any buff). Darius, Executioner in base (+1 Might to other friendly units here) replaces the War Camp: then Garen crosses on the way home instead.",
+          "The opponent defends Trifarian War Camp (OGN-294, +1 Might to units there) with a unit of 2+ Might on a battlefield they already control, and no second un-stunned unit there — after the recall the defender Establishes Control, a Conquer worth a point if the battlefield was not already theirs (466.5.d), and any un-stunned defender damage kills Garen or the Recruit before the cleanup heals. Malzahar enters the loop buffed by Bonds of Strength; the loop must be primed with 1 Power, because Fiora's ready on the way in is paid before Malzahar's Add that pass. Darius, Executioner (OGN-243, Order, +1 Might to other friendly units here) can replace the War Camp — but then drop the Malzahar buff, or he sits at 5 with Garen away and never re-crosses. In the Darius build both Garen and Malzahar cross on the way home, Malzahar's +2 lands first, and no priming is needed.",
           "RULES: recall does not change the unit's state (458); combat cleanup heals and recalls attackers when defenders remain (466.1.a); Malzahar's ability is an Action usable in showdowns. R13: a unit crossing 5 Might through an aura or a battlefield bonus 'becomes Mighty' each time."
         ]
       },
@@ -2849,7 +2930,7 @@
         "First pass only: Facebreaker on Garen and the defender.",
         "In the showdown, Malzahar kills one Recruit: +2 rainbow.",
         "Cleanup: Garen and the surviving Recruit are recalled to base. Garen's aura lifts the buffed Malzahar to 5 — Fiora, 1 Power, ready him.",
-        "Repeat from the attack: Power in equals Power out, and one Recruit stays behind in base every pass."
+        "Repeat from the attack: 2 Power in, 2 Power out, and one Recruit stays behind in base every pass. The War Camp build needs 1 Power of priming, because the first Fiora payment happens before Malzahar's Add."
       ],
       "terminatesIn": "unbounded Recruits in base for zero net resources; the finish is a wide board, Azir's token moves or a Grand Plaza hold",
       "rulesVersion": "2026-07-16",
@@ -2859,9 +2940,14 @@
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1r7wh0p/",
           "date": "2026-02-18"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
-      "notes": "Posted as a joke, defended seriously: the two objections raised (recall exhausts; Garen's aura is temporary) were answered with rule 458 and with the point that the aura toggling is exactly what produces a crossing per pass. The catalogue's other Recruit loop (pursuer-herald-recruits) is dead with Stealthy Pursuer banned; this one uses no banned card. Nothing here is Energy-positive, so the loop is bodies only. Card text verified against the corpus."
+      "notes": "Posted as a joke, defended seriously: the two objections raised (recall exhausts; Garen's aura is temporary) were answered with rule 458 and with the point that the aura toggling is exactly what produces a crossing per pass. The catalogue's other Recruit loop (pursuer-herald-recruits) is dead with Stealthy Pursuer banned; this one uses no banned card. Nothing here is Energy-positive, so the loop is bodies only. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the loop closes at +1 Recruit per pass, but the buff has to be Bonds of Strength (Rally the Troops would re-enter Malzahar exhausted, R11), the War Camp build needs 1 Power of priming, and Darius and the buff are mutually exclusive."
     },
     {
       "id": "jhin-virtuoso-ekko-malzahar-vi",
@@ -2938,13 +3024,15 @@
         ],
         "notable": [
           "Same skeleton as the verified Lux loop: the Main Deck is empty, so a recycled card is the next draw; Ekko's death readies all twelve runes. What replaces Forge of the Future is Vi's free, unlimited recycle. Vi grows a point of Might per recycle and takes a battlefield for Renata; Brynhir Thundersong (OGN-026, 'opponents can't play cards this turn') protects the turn.",
-          "Primer's own cost lines: the Draw-2 cycle costs 11 Energy + 1 Power (Ekko 5E1P, Comedy 2E, the 4E spell) and gives back 12 readied runes plus Malzahar's 2 rainbow; the Progress Day cycle costs 13 Energy + 2 Power. Every fourth banish channels 4 more runes and draws 1."
+          "Cost lines per pass: the Draw-2 cycle spends 11 Energy + 1 Power (Ekko 5E+1P, Upstage Comedy 2E, the 4-Energy draw spell) and takes back one full readying of every rune on the board plus Malzahar's 2 rainbow. Rainbow is universal Power (163.2.b) and pays Ekko's Mind cost, so no rune is recycled after the first pass and the board stays full. Net: (runes on board − 11) Energy and +1 Power per pass — break-even at 11 runes, +1 Energy at 12, so twelve runes on the board is a hard precondition. The Progress Day cycle spends 13 Energy + 2 Power for 12 Energy + 2 Power: −1 Energy, a draw pump for the passes that need spare draws, not an engine.",
+          "Draw budget (R7). Two cards return through the deck each pass (Ekko via his Deathknell, Upstage Comedy via Vi) and the 4-Energy spell draws exactly two, so the deck holds exactly two at the draw and never burns out. The debt arrives on the fourth pass, when Virtuoso puts all four banished spells in the trash at once: Vi recycles them for free but they need four draws, of which Virtuoso supplies one — the rest come from Renata's 1 Energy + 1 Mind Power: Draw 1. Recycle order is deterministic because Vi recycles one card at a time; 416.5 randomises only simultaneous recycles."
         ]
       },
       "steps": [
         "Play Ekko (5 Energy + 1 Power). Upstage Comedy (2 Energy) readies Malzahar. Malzahar kills Ekko: +2 rainbow; Ekko's Deathknell recycles him and readies your runes.",
         "Vi: recycle Upstage Comedy from the trash (free, +1 Might). Play Consult the Past or Downstage Dramatics for 4 Energy: draw 2 — Ekko and Comedy come back off the bottom of the empty deck. Banish the spell under Virtuoso.",
         "Alternate with the Progress Day cycle (draw 4) so the spells rotate; the fourth banish returns them to the trash, channels 4 runes and draws 1. Repeat.",
+        "Once per four passes, recycle four already-exhausted runes for 4 Power just before the fourth banish resolves — a rune's Recycle this: Add Power has no exhaust in its cost — then let Virtuoso channel them straight back ready. That is +4 Energy and +4 Power for nothing, and it is the only thing that makes channel 4 runes do anything once all twelve runes are on the board (430.3). Supercycle net: +4 Energy, +4 Power per four passes after paying for the redraws.",
         "With Vi at a battlefield and Renata there: Renata scores 1; Comedy readies her; Vi recycles Comedy; Renata's Draw 1 gets it back. Repeat to 8."
       ],
       "terminatesIn": "8 points",
@@ -2967,14 +3055,19 @@
           "kind": "article",
           "url": "https://riftbound.gg/decks/the-jhinpendium-infinite-ekko-combo-primer/",
           "date": "2026-07-13"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
-      "notes": "Community-documented as a pre-existing video combo refined into a written primer; the primer author says the video tutorial had mistakes, so walk the primer's lines, not the video. Lens L3 refuted every second-domain Ekko loop it tallied (L3-08) on Power deficit; none of those had Vi's free recycle or Virtuoso's channel, which is exactly what this route adds — the walk should re-tally with them. Aspirant's Climb, which the deck used to run, is banned and is not part of the loop. Card text verified against the corpus."
+      "notes": "Community-documented as a pre-existing video combo refined into a written primer; the primer author says the video tutorial had mistakes, so walk the primer's lines, not the video. Lens L3 refuted every second-domain Ekko loop it tallied (L3-08) on Power deficit; none of those had Vi's free recycle or Virtuoso's channel, which is exactly what this route adds — the walk should re-tally with them. Aspirant's Climb, which the deck used to run, is banned and is not part of the loop. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED but unbounded — the Draw-2 pass nets (runes − 11) Energy and +1 Power, Progress Day is −1 Energy, the R7 debt lands every fourth pass, and the rune-churn against Virtuoso's channel (missing from the primer) is the real gain: about +4E +4P per four passes."
     },
     {
       "id": "gemdragon-henge-vi-blind-fury",
-      "name": "Gentle Gemdragons, Ancient Henge and Vi — the Dragon loop that decks the opponent with Blind Fury",
-      "class": "INFINITE",
+      "name": "Gentle Gemdragons with Heralds of Scales — every Dragon played readies six runes",
+      "class": "ENGINE",
       "status": "candidate",
       "uses": [
         {
@@ -2989,59 +3082,35 @@
           "quantity": 2,
           "role": "enabler",
           "zone": "BOARD",
-          "note": "Your Dragons' Energy costs are reduced by 2, to a minimum of 1. Two Heralds: a Gemdragon costs 4, a Drakehound 1."
+          "note": "Your Dragons' Energy costs are reduced by 2, to a minimum of 1. Two Heralds: a Gentle Gemdragon costs 4 Energy, an Eager Drakehound 1 Energy — but the Drakehound still costs its 1 Power, because the Herald reduces Energy costs only."
         },
         {
           "card": "SFD-117",
           "quantity": 1,
           "role": "enabler",
           "zone": "BOARD",
-          "note": "2 Energy + 1 Power gear. Exhaust: pay any amount of Energy to Add that much rainbow — the Energy-to-Power conversion the loop 'detonates' once it is flush."
-        },
-        {
-          "card": "OGN-036",
-          "quantity": 1,
-          "role": "engine",
-          "zone": "BOARD",
-          "note": "Recycle 1 from your trash: +1 Might this turn — free and unlimited. Puts the killed Dragons and the spent spells back into the deck."
-        },
-        {
-          "card": "UNL-020",
-          "quantity": 1,
-          "role": "enabler",
-          "zone": "HAND",
-          "note": "2 Energy + 1 Power: Deal 2 to a unit; its controller may play this again for 1 rainbow with growing Bonus Damage. Kills your own Dragons so Vi can recycle and you can replay them."
-        },
-        {
-          "card": "OGN-025",
-          "quantity": 1,
-          "role": "payoff",
-          "zone": "HAND",
-          "note": "4 Energy + 2 Power: each opponent reveals the top card of their Main Deck; banish it, then play it ignoring its cost. Every cast banishes one of their cards for good; with infinite resources and Vi recycling the spell, their deck runs out and each failed draw is a Burn Out point for you."
+          "note": "2 Energy + 1 Power gear. Exhaust: pay any amount of Energy to Add that much rainbow — one Energy-to-Power conversion per turn, one for one."
         }
       ],
       "needs": [],
       "produces": [
-        "infinite-energy",
-        "infinite-power",
-        "opponent-burn-engine"
+        "resource-engine"
       ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Fury and Body (Rengar, Pridestalker UNL-183 in the 12th-place list; Relentless Storm OGN-249 is the other Fury/Body legend)."
         ],
         "notable": [
-          "Board state before it starts: three Gemdragons and the cost reducers in play, the deck mostly drawn. Community verdict, quoted: 'It's unironically like a 10-15 card combo and isn't deterministic so you have to manually walk through the different phases of the loop over and over' — the redraw depends on what the deck gives back, so it is a grind, not a shortcut.",
-          "The draw engine that redraws the recycled Dragons is not named in any text source (Kadregrin the Infernal draws per Mighty unit; Eclipse Dragon draws on move with 4 or fewer runes): the walk must pick one and count it."
+          "Board state: three Gemdragons and the two Heralds in play. A Volibear player's own caveat, quoted: with that board 'you win in 100% of scenarios just by playing normally'.",
+          "The community calls a Vi Destructive / Dancing Grenade / Blind Fury extension of this board an infinite (played on the RQ Sydney R1 stream, 12th at a regional). Walked adversarially it does not close — see notes."
         ]
       },
       "steps": [
-        "Play a Dragon for its reduced cost: the three Gemdragons ready up to 6 runes. Net Energy positive per Dragon.",
-        "Dancing Grenade a Dragon of yours (replay it for 1 rainbow as the damage grows); Vi recycles the dead Dragon and the Grenade from the trash for free.",
-        "Ancient Henge, once ready: pour the surplus Energy into rainbow Power.",
-        "Redraw, replay, repeat. Then Blind Fury the opponent every pass: their deck is banished a card at a time until every draw Burns Out and hands you a point."
+        "Play a Dragon for its reduced cost: the three Gemdragons ready up to 6 runes. Every Dragon in hand is Energy-positive.",
+        "Ancient Henge, once ready: pour the surplus Energy into rainbow Power, one for one.",
+        "There is no recursion that pays for itself in Fury/Body: killing a Dragon and redrawing it costs Power that nothing channels back (see notes). The engine is bounded by the Dragons in hand."
       ],
-      "terminatesIn": "infinite Energy, Power and Might on a non-deterministic grind; the kill is eight Burn Out points through Blind Fury",
+      "terminatesIn": "engine only — each Dragon played is worth up to 6 readied runes with three Gemdragons out; bounded by the Dragons in hand, no loop closes",
       "rulesVersion": "2026-07-16",
       "sources": [
         {
@@ -3061,9 +3130,14 @@
           "kind": "article",
           "url": "https://youtu.be/X-ZZ0KzShFA",
           "date": "2026-07-02"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
-      "notes": "The 'Dragonstorm' infinite that content creators list next to the Lux loop; played on stream and taken to 12th place. Reconstructed from the community's description, not from a written step list — the video is the only full walkthrough and YouTube's bot wall kept it out of reach this session. A Volibear player's own caveat, quoted: with three Gemdragons and the Heralds down 'you win in 100% of scenarios just by playing normally'. Card text verified against the corpus."
+      "notes": "The 'Dragonstorm' infinite that content creators list next to the Lux loop, played on stream and taken to 12th place; the only full walkthrough is a video YouTube's bot wall kept out of reach, so the recursion was reconstructed from the community's description and then walked. A Volibear player's own caveat, quoted: with three Gemdragons and the Heralds down 'you win in 100% of scenarios just by playing normally'. Card text verified against the corpus. Reclassified INFINITE → ENGINE on 2026-09-03. The play side is real: with two Heralds a Gemdragon costs 4 Energy and an Eager Drakehound 1 Energy + 1 Power, and three Gemdragons ready six runes per Dragon played. The recursion side does not close: killing the Dragon and redrawing it costs Power the loop cannot make — with Dancing Grenade as the kill and Show of Strength as the draw a pass is +1 Energy and −4 Power, every Power costs a rune off the board (161.2.b) that nothing channels back, and the board falls under six runes by the second pass; Ancient Henge converts one for one and cannot cover a deficit. The Blind Fury finish was mis-stated too: the spell banishes the opponent's top card and then plays it, which returns it to their trash, and Burn Out recycles their whole trash into their deck for a single point (431.2), so it is not a deck-out. And the source deck's own Endless Riches (VEN-022) banishes anything that would reach your trash from off the Main Deck, which forbids the Vi recursion outright. Dancing Grenade's escalating counter across recasts is itself an open reading (R15). REFUTE 2 (2026-09-03): DEAD as INFINITE, kept as ENGINE — no closed pass can be written in Fury/Body; the Gemdragon ramp is real, the loop and the Blind Fury deck-out are not."
     },
     {
       "id": "leblanc-zilean-reflection-doubling",
@@ -3116,13 +3190,14 @@
           "Legend is Deceiver (UNL-199, Mind/Order)."
         ],
         "notable": [
-          "Zilean and LeBlanc, Everywhere at Once at the scored battlefield; one discard per score. With N Zileans there, one Reflection becomes N+1, each a Zilean: the pilot's recursion is 'each time we score, the number of Zileans doubles, then adds 1'.",
-          "Bounded by turns, discards and the once-per-turn on each Zilean, and every clone dies with LeBlanc if she leaves — an exponential engine, not a loop."
+          "Zilean and LeBlanc, Everywhere at Once at the scored battlefield; one discard per score. With N Zileans there, one Reflection becomes N+1, each a Zilean: the pilot's recursion is 'each time we score, the number of Zileans doubles, then adds 1'. Deceiver exhausts to make the Reflection and only readies in your Awaken, so this fires once per turn whatever you score. From one hard-cast Zilean the ceiling is 3, 7, 15, 31, 63, 127 — the reported 71 is five to six consecutive uncontested scoring turns with a discard each.",
+          "Bounded by turns, discards and the once-per-turn on each Zilean, and every clone dies with LeBlanc if she leaves — an exponential engine, not a loop.",
+          "Unruled (R27): Might is not among the copyable traits in 477.1.b.1.a, so the clones may all be 0 Might carrying Zilean's rules text. The engine survives either way — the doubling only needs the text — but the board that comes out of it does not."
         ]
       },
       "steps": [
         "Score with Zilean and LeBlanc at the battlefield: Deceiver makes a Reflection there; Zilean's replacement makes it two; both become Zilean copies.",
-        "Next score: every Zilean doubles the token again. Mirror Image between scores adds another doubled batch.",
+        "Next score: every Zilean at that battlefield doubles the token again. Mirror Image adds another batch, but it plays to your base — those Reflections enter ready, so Standard-Move each of them to LeBlanc's battlefield the same turn or they die at your Beginning Phase (816.1.b), and until they arrive they do not count toward the next multiplier.",
         "On the closing turn copy Darius, Executioner instead: each Darius gives every other clone +1 Might for the hold or the Grand Plaza count."
       ],
       "terminatesIn": "engine — the clone count roughly doubles every score; a real game reached 71 Zileans",
@@ -3133,9 +3208,20 @@
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1sv3yjk/",
           "date": "2026-04-25"
+        },
+        {
+          "title": "Riot, Unleashed Rules FAQ and Clarifications — \"If I conquer a battlefield with Zilean, Time Mage, can I copy him with my Deceiver legend? Will I make infinite Zileans?\": \"Yes, you can copy Zilean, but you will not make an infinite number.\"",
+          "kind": "riot",
+          "url": "https://playriftbound.com/en-us/news/rules-and-releases/unleashed-rules-faq-and-clarifications",
+          "date": "2026-04-29"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
-      "notes": "Third LeBlanc entry: leblanc-temporary-plaza uses Keeper of Masks for the Plaza count; this one multiplies Zilean instead and needs no Plaza. The Rift Herald variant (one Herald into five) is the same engine with a different copy target. Card text verified against the corpus."
+      "notes": "Third LeBlanc entry: leblanc-temporary-plaza uses Keeper of Masks for the Plaza count; this one multiplies Zilean instead and needs no Plaza. The Rift Herald variant (one Herald into five) is the same engine with a different copy target. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — N Zileans give N+1 tokens per play (371.1 caps each once-each-turn replacement at one event), so the 2N+1 recursion is right, but only once per turn (the legend exhausts), Mirror Image's batch lands in base unprotected, and R27 may leave every clone at 0 Might. Riot's Unleashed FAQ confirms the bound: copyable, not infinite."
     },
     {
       "id": "pack-of-wonders-bewitching-discard",
@@ -3167,15 +3253,15 @@
           "Legend domains cover Chaos."
         ],
         "notable": [
-          "3 Energy per discard after the first; each Pack is one bounce per turn, and Bloodharbor Ripper's legend bounce (bloodharbor-bewitching-discard) stacks on top for a second discard."
+          "Every discard costs 3 Energy — it is a fresh play of the Spirit each time — plus 2 Energy once per Pack. Each Pack readies only in your Awaken, so it is one bounce per Pack per turn: three Packs cycle the same Spirit three times for 9E. Bloodharbor Ripper's legend bounce (bloodharbor-bewitching-discard) stacks on top."
         ]
       },
       "steps": [
         "Play Bewitching Spirit: the opponent discards 1.",
         "Pack of Wonders, exhaust: return the Spirit to hand.",
-        "Next turn (or with a second Pack), replay it. Repeat until the opponent's hand is empty."
+        "Next turn (or immediately, with a second and third Pack), replay it. One Pack only breaks even — the opponent draws 1 each turn (315.4.b) — so two or more are needed before the hand actually shrinks."
       ],
-      "terminatesIn": "engine — one discard per Pack per turn, no points",
+      "terminatesIn": "engine — one discard per Pack per turn at 3E each, net zero with a single Pack and −2 cards a turn with three; no points",
       "rulesVersion": "2026-07-16",
       "sources": [
         {
@@ -3183,9 +3269,14 @@
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1uj028b/",
           "date": "2026-06-29"
+        },
+        {
+          "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
+          "kind": "agent",
+          "date": "2026-09-03"
         }
       ],
-      "notes": "Second route for Bewitching Spirit, independent of the Bloodharbor Ripper legend and so open to any Chaos legend (the thread's pilot ran Ezreal). Card text verified against the corpus."
+      "notes": "Second route for Bewitching Spirit, independent of the Bloodharbor Ripper legend and so open to any Chaos legend (the thread's pilot ran Ezreal). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — one Pack is a treadmill against the Draw Phase; the hand shrinks only from two Packs up, at 3E per discard."
     }
   ]
 }
