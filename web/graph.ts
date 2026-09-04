@@ -84,7 +84,7 @@ const boxOf = (m: Model, base: string) => (m.land.has(base) ? { w: LAND_W, h: LA
 function model(hits: Hit[], ctx: GraphContext): Model {
   const comboIds = [...new Set(hits.flatMap((h) => h.variant.comboIds))].filter((id) => ctx.combos.has(id));
   const combos = comboIds.map((id) => ctx.combos.get(id)!);
-  const order: Record<string, number> = { INFINITE: 0, BURST: 1, ALT_WIN: 2, ENGINE: 3 };
+  const order: Record<string, number> = { INFINITE: 0, BURST: 1, CHAIN: 2, ALT_WIN: 3, ENGINE: 4 };
   combos.sort((a, b) => Number(b.status === "verified") - Number(a.status === "verified") || order[a.class]! - order[b.class]! || a.name.localeCompare(b.name));
   const outcomeIds = [...new Set(combos.flatMap((c) => c.produces))].filter((f) => ctx.features.get(f)?.status === "STANDALONE");
   const outcomes = outcomeIds.map((f) => ctx.features.get(f)!);

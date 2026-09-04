@@ -256,7 +256,7 @@ function render() {
 
 const outcomeColors = (hits: Hit[]) => {
   const ids = [...new Set(hits.flatMap((h) => h.variant.comboIds).flatMap((id) => combosById.get(id)?.produces ?? []))].filter((f) => featuresById.get(f)?.status === "STANDALONE");
-  const order: Record<string, number> = { INFINITE: 0, BURST: 1, ALT_WIN: 2, ENGINE: 3 };
+  const order: Record<string, number> = { INFINITE: 0, BURST: 1, CHAIN: 2, ALT_WIN: 3, ENGINE: 4 };
   const sortedCombos = [...new Set(hits.flatMap((h) => h.variant.comboIds))].map((id) => combosById.get(id)!).filter(Boolean)
     .sort((a, b) => Number(b.status === "verified") - Number(a.status === "verified") || order[a.class]! - order[b.class]! || a.name.localeCompare(b.name));
   const inOrder = [...new Set(sortedCombos.flatMap((c) => c.produces))].filter((f) => ids.includes(f));

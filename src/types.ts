@@ -42,7 +42,7 @@ export interface LegalityEntry {
   source: string;
 }
 
-export type ComboClass = "INFINITE" | "BURST" | "ALT_WIN" | "ENGINE";
+export type ComboClass = "INFINITE" | "BURST" | "CHAIN" | "ALT_WIN" | "ENGINE";
 export type ComboStatus = "verified" | "candidate" | "refuted";
 export type IngredientRole = "engine" | "enabler" | "payoff" | "resource" | "ready" | "battlefield" | "legend";
 export type Zone = "BOARD" | "BATTLEFIELD" | "BASE" | "HAND" | "TRASH" | "DECK" | "LEGEND" | "CHAMPION";

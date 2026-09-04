@@ -1359,8 +1359,8 @@
     {
       "id": "time-warp-hold-burst",
       "name": "Time Warp ×3 — three extra turns of Hold points",
-      "class": "BURST",
-      "status": "candidate",
+      "class": "CHAIN",
+      "status": "verified",
       "uses": [
         {
           "card": "OGN-122",
@@ -1430,10 +1430,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-the-three-chain-finishers.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Quote, verified by hand via reader proxy 2026-09-03: '…then firing off three copies of Time Warp to score the remaining six points needed in one fell swoop.' Capped at three by deck limit + banish (427). riftbound.gg claims an unbounded version; lens L1 is checking whether anything returns cards from Banishment. REFUTE 2026-09-03: undercounted upward — the Sprite conquers on the casting turn are +2, so 8 from zero. Time Warp banishes itself (427) and can never be recycled: all three copies must already be in hand (Renata's Draw 1 can draw the whole deck first). 12 Mind Power total, so the infinite-Power line is needed too. Leave one card in the deck via Forge's spare recycle slot before each extra Draw Phase (431.2.c). Hold points are not Conquer points, so 471.1.b never applies."
+      "notes": "Quote, verified by hand via reader proxy 2026-09-03: '…then firing off three copies of Time Warp to score the remaining six points needed in one fell swoop.' Capped at three by deck limit + banish (427). riftbound.gg claims an unbounded version; lens L1 is checking whether anything returns cards from Banishment. REFUTE 2026-09-03: undercounted upward — the Sprite conquers on the casting turn are +2, so 8 from zero. Time Warp banishes itself (427) and can never be recycled: all three copies must already be in hand (Renata's Draw 1 can draw the whole deck first). 12 Mind Power total, so the infinite-Power line is needed too. Leave one card in the deck via Forge's spare recycle slot before each extra Draw Phase (431.2.c). Hold points are not Conquer points, so 471.1.b never applies. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-the-three-chain-finishers.md), and reclassed BURST -> CHAIN under issue #20. 355.2.a is what lets the Soaring Scouts be played STRAIGHT to the battlefields you control, and they are the whole point of the entry: 816.1.b kills the [Temporary] Sprites before the first extra turn's Scoring Step, and 190.4.a keeps control only while you have some unit there. 427.1/427.2 confirm Time Warp can never be recycled, so all three copies must already be in hand. The Burn Out caveat is real for extra turns 1 and 2 but not the last one, because the win lands at the Cleanup after the final Hold (472)."
     },
     {
       "id": "renata-bubble-bot-ready",
@@ -1515,8 +1520,8 @@
     {
       "id": "swain-double-conquer",
       "name": "Swain, Visionary ×3 — conquer both battlefields in one turn",
-      "class": "BURST",
-      "status": "candidate",
+      "class": "CHAIN",
+      "status": "verified",
       "uses": [
         {
           "card": "VEN-065",
@@ -1541,7 +1546,8 @@
         }
       ],
       "needs": [
-        "infinite-energy"
+        "infinite-energy",
+        "infinite-power"
       ],
       "produces": [
         "burst-points"
@@ -1557,10 +1563,10 @@
         ]
       },
       "steps": [
-        "Standard-Move the three ready Swains to battlefield A; win; Establish Control → Conquer: +1, then +1 per Swain (4).",
-        "The Swains are now exhausted at A. Play Jayce: ready one Swain. The loop's next Forge play is Jayce's 'first non-token gear this turn': ready a second Swain.",
-        "Retreat Jayce and replay him (new object, 124): ready the third Swain. Standard-Move all three A → base is not needed — an exhausting move is only required for base → battlefield, so Retreat each Swain to hand and replay it at base only if A → B is not a legal single move; otherwise move them ready from A to B.",
-        "Conquer B: +1, +3. Total 8."
+        "Standard-Move the three ready Swains base -> battlefield A as one action (144.3); win and Establish Control. Conquer A: the Score's own point, then 1 per Swain (R2 = A makes those ability Gains) = 4. All three are now exhausted at A.",
+        "Swain, Visionary has NO [Ganking], so 144.4.c rules out A -> B as a single Standard Move: each Swain goes A -> base -> B, two moves and therefore TWO readies each, six in all. Retreating a Swain and replaying it does not help - 143.4 makes it enter exhausted, which is what killed the first version of this entry.",
+        "Jayce supplies the readies: 'when you play me' fires on every play, while 'the first time you play a non-token gear each turn' fires once in the turn however many Jayce objects appear, because the loop plays Forge every pass. Readies = Jayce plays + 1, so five Jayce plays, each 6E + 1P plus a Retreat (1E) and the Retreat's redraw (1E + 1 Mind): about 40 Energy and 10 Power.",
+        "Conquer B the same way: 1 + 3 = 4. Total 8 in one turn, across two scoring events, with no opponent turn in between - which is what the CHAIN class means."
       ],
       "terminatesIn": "8 points in one turn",
       "sources": [
@@ -1573,16 +1579,21 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-the-three-chain-finishers.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "DEAD as first written (REFUTE 2026-09-03): the entry replayed the Swains and Standard-Moved them, but units enter exhausted (143.4) and a Standard Move needs a ready unit. Re-authored with the Jayce ready engine — the same engine as jayce-mesmerize-renata. Still a candidate: whether Swains can move battlefield → battlefield directly or must return to base first (144.4) is a rules point a human must settle; the entry's step 3 covers both routes. The lens's Bard, Mercurial route (move to an 'open' battlefield) is left out because 'open' is undefined in the primer. Second Conquer's own point is safe at 7 because both battlefields were scored this turn (471.1.b.1)."
+      "notes": "DEAD as first written (REFUTE 2026-09-03): the entry replayed the Swains and Standard-Moved them, but units enter exhausted (143.4) and a Standard Move needs a ready unit. Re-authored with the Jayce ready engine — the same engine as jayce-mesmerize-renata. Still a candidate: whether Swains can move battlefield → battlefield directly or must return to base first (144.4) is a rules point a human must settle; the entry's step 3 covers both routes. The lens's Bard, Mercurial route (move to an 'open' battlefield) is left out because 'open' is undefined in the primer. Second Conquer's own point is safe at 7 because both battlefields were scored this turn (471.1.b.1). HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-the-three-chain-finishers.md), and reclassed BURST -> CHAIN under issue #20. The rules point the entry left to a human is settled AGAINST the old step 3: 144.4 lists the Standard Move's destinations as base to battlefield, battlefield to base, and battlefield to battlefield ONLY with [Ganking] (144.4.c), and Swain, Visionary has none. So the trip is A -> base -> B, six readies rather than three, and needs gains infinite-power for the five Jayce cycles that pay for them. 471.1.a.1 keeps the Final Point restriction off the Swain points, since 471.1.b reaches only Conquer Gains."
     },
     {
       "id": "bottled-constellation-time-warp",
       "name": "Bottled Constellation ×3 + Time Warp ×3 — fodder from the loop",
-      "class": "BURST",
-      "status": "candidate",
+      "class": "CHAIN",
+      "status": "verified",
       "uses": [
         {
           "card": "VEN-067",
@@ -1631,10 +1642,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-the-three-chain-finishers.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Capped at three by Time Warp's deck limit and banish (427). The Draw Phase Burn Out trap is what actually goes wrong at the table. REFUTE 2026-09-03: SURVIVES — 9 confirmed. Constellations played this turn fire only from the next Main Phase start. Time Warps cannot ride the loop (banished): three in hand. Needs infinite Power (4 per Time Warp, 2 per Constellation)."
+      "notes": "Capped at three by Time Warp's deck limit and banish (427). The Draw Phase Burn Out trap is what actually goes wrong at the table. REFUTE 2026-09-03: SURVIVES — 9 confirmed. Constellations played this turn fire only from the next Main Phase start. Time Warps cannot ride the loop (banished): three in hand. Needs infinite Power (4 per Time Warp, 2 per Constellation). HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-the-three-chain-finishers.md), and reclassed BURST -> CHAIN under issue #20. The fodder only exists because of the same day's Shadow's Call fix to lux-infinite-energy: the Constellations fire at the START of the Main Phase, so the bodies must have been made the previous turn and survived that turn's Beginning Phase, and under the old reading every pass marked one [Temporary] for 816.1.b to kill before scoring. Pointing Shadow's Call at Ekko leaves the Recruits clean. The Burn Out caveat bites every extra turn here, because the trigger is at the Main Phase start, well after the Draw Phase (315.4); 431.2.c is the right citation for the point it hands away."
     },
     {
       "id": "power-nexus-sentinel",
