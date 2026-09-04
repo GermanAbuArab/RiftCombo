@@ -1658,7 +1658,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Battlefield-dependent (yours is 1 of 3 in Duel, chosen in Match). Rests on the Blue Sentinel reading shared with every Hold line: 471.2.c limits score effects to a Score event, and Sentinel adds trigger instances of that one event rather than a second Score. Arguable, hence candidate. REFUTE 2026-09-03: WOUNDED — the Power is paid in the Beginning Phase with the Rune Pool empty (167), i.e. by recycling 12 runes, and rune income is about 2 per turn; sustainably that is one extra point a turn. World Atlas Gold (world-atlas-sentinel-gold) is the fix: exhausted Gold readies for the next Beginning Phase, 8 Gold = two Nexus payments."
+      "notes": "Battlefield-dependent (yours is 1 of 3 in Duel, chosen in Match). CORRECTED 2026-09-04 (docs/phase0/walks/2026-09-04-zed-zilean-and-r27.md): its notes blamed the Blue Sentinel reading, which is R1 and was ruled A on 2026-09-03, and R2 = A covers the Nexus's 'score 1 point' as an ability Gain. The real and only blocker is R8 - Power Nexus is a BATTLEFIELD, and Blue Sentinel multiplies 'YOUR hold effects', so this needs a battlefield's own Hold trigger to count as one of yours. 190.6.a is suggestive (its Controller controls its Abilities, adds them to the Chain and makes their choices) and 383.4.d.2.b puts a 'references the player Holding' ability on the Chain for the player who Held, but no verified entry stands on that scoping today: world-atlas-sentinel-gold multiplies a GEAR's Effect Text, which 136.2.c/718.3 make the unit's own. REFUTE 2026-09-03: WOUNDED — the Power is paid in the Beginning Phase with the Rune Pool empty (167), i.e. by recycling 12 runes, and rune income is about 2 per turn; sustainably that is one extra point a turn. World Atlas Gold (world-atlas-sentinel-gold) is the fix: exhausted Gold readies for the next Beginning Phase, 8 Gold = two Nexus payments."
     },
     {
       "id": "ivern-sentinel-hold",
@@ -1862,7 +1862,7 @@
       "id": "zed-clone-eye-recruits",
       "name": "Zed × Shadow Clone × Eye of the Herald — two ready Recruits per swap",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "VEN-112",
@@ -1923,10 +1923,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-zed-zilean-and-r27.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "This is the piece the 2026-07-24 ban removed: Stealthy Pursuer was the pool's only 'moved with' effect; Zed's swap is now the only repeatable exhaust-free bidirectional effect move (grep of the corpus). Card text verified by hand. ENGINE rather than INFINITE because the swap costs a rune each time — it is bounded by the 12-rune deck per turn, not by cards. One-turn exposure before the Hold, like every Plaza line. Load-bearing readings: a 'When I move' Effect fires on effect moves (420.1 — the same reading Riot's ban statement used); 'here' is the bearer's location after the move. REFUTE 2026-09-03: undercounted upward — N Chaos runes → N swaps → 2N Recruits, not six swaps from twelve runes. Either reading of 'here' still yields one Recruit at each end. Zed must have conquered once to own a Clone; the Eye on the Clone costs 1 Order Power."
+      "notes": "This is the piece the 2026-07-24 ban removed: Stealthy Pursuer was the pool's only 'moved with' effect; Zed's swap is now the only repeatable exhaust-free bidirectional effect move (grep of the corpus). Card text verified by hand. ENGINE rather than INFINITE because the swap costs a rune each time — it is bounded by the 12-rune deck per turn, not by cards. One-turn exposure before the Hold, like every Plaza line. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-zed-zilean-and-r27.md). Its two load-bearing readings were R9, RETIRED the same day as settled by rules text: 420.1/420.2.a make an effect move the primary kind of Move (456.1 carves out recalls precisely because ordinary effect moves DO trigger move abilities), and 359.3.f.1/f.2 read 'here' at execution, so each end of the swap gets its Recruit. Verified besides: the swap's printed cost carries no exhaust and no once-per-turn; 187.11 makes the Shadow Clone a UNIT token so it can carry the second Eye; one Chaos rune pays the whole activation (exhaust it for the Energy, then recycle that same exhausted rune for the Power); and the swap never lapses control, because it moves Zed out and the Clone in as one effect (190.4.a) and entering a battlefield you already control applies no Contested (190.3.a.1). REFUTE 2026-09-03: undercounted upward — N Chaos runes → N swaps → 2N Recruits, not six swaps from twelve runes. Either reading of 'here' still yields one Recruit at each end. Zed must have conquered once to own a Clone; the Eye on the Clone costs 1 Order Power."
     },
     {
       "id": "leblanc-temporary-plaza",
@@ -3297,7 +3302,7 @@
       "id": "leblanc-zilean-reflection-doubling",
       "name": "LeBlanc's Reflections copy Zilean — the clone count doubles on every score",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-199",
@@ -3346,7 +3351,7 @@
         "notable": [
           "Zilean and LeBlanc, Everywhere at Once at the scored battlefield; one discard per score. With N Zileans there, one Reflection becomes N+1, each a Zilean: the pilot's recursion is 'each time we score, the number of Zileans doubles, then adds 1'. Deceiver exhausts to make the Reflection and only readies in your Awaken, so this fires once per turn whatever you score. From one hard-cast Zilean the ceiling is 3, 7, 15, 31, 63, 127 — the reported 71 is five to six consecutive uncontested scoring turns with a discard each.",
           "Bounded by turns, discards and the once-per-turn on each Zilean, and every clone dies with LeBlanc if she leaves — an exponential engine, not a loop.",
-          "Unruled (R27): Might is not among the copyable traits in 477.1.b.1.a, so the clones may all be 0 Might carrying Zilean's rules text. The engine survives either way — the doubling only needs the text — but the board that comes out of it does not."
+          "R27 RETIRED 2026-09-04 as settled by rules text: the clones are all 0 Might carrying Zilean's Rules Text. 477.1.a lists the inherent traits with no Might and handles Might assignment separately at 477.1.a.1; 477.1.b.1.a lists the copyable traits with no Might; and 185.3.a.2's worked example is this exact card, saying the copy appends 'all copyable traits, including the cost' - cost, not Might. The engine does not care, since the doubling only needs the text, and the closing turn answers it by copying Darius instead."
         ]
       },
       "steps": [
@@ -3373,9 +3378,14 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-zed-zilean-and-r27.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
-      "notes": "Third LeBlanc entry: leblanc-temporary-plaza uses Keeper of Masks for the Plaza count; this one multiplies Zilean instead and needs no Plaza. The Rift Herald variant (one Herald into five) is the same engine with a different copy target. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — N Zileans give N+1 tokens per play (371.1 caps each once-each-turn replacement at one event), so the 2N+1 recursion is right, but only once per turn (the legend exhausts), Mirror Image's batch lands in base unprotected, and R27 may leave every clone at 0 Might. Riot's Unleashed FAQ confirms the bound: copyable, not infinite."
+      "notes": "Third LeBlanc entry: leblanc-temporary-plaza uses Keeper of Masks for the Plaza count; this one multiplies Zilean instead and needs no Plaza. The Rift Herald variant (one Herald into five) is the same engine with a different copy target. Card text verified against the corpus. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-zed-zilean-and-r27.md). Stands on R10 = A (LeBlanc switches off the [Temporary] kill at her battlefield, which is the only thing keeping the board alive) and on R27, retired the same day. Deceiver EXHAUSTS to make the Reflection and readies only in your Awaken (315.1.b), so the engine fires once per turn whatever you score. REFUTE 2 (2026-09-03): WOUNDED — N Zileans give N+1 tokens per play (371.1 caps each once-each-turn replacement at one event), so the 2N+1 recursion is right, but only once per turn (the legend exhausts), Mirror Image's batch lands in base unprotected, and R27 may leave every clone at 0 Might. Riot's Unleashed FAQ confirms the bound: copyable, not infinite."
     },
     {
       "id": "pack-of-wonders-bewitching-discard",
