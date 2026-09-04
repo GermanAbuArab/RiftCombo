@@ -70,8 +70,10 @@
         {
           "title": "Analyzing Infinite Combo Lux — Riftbound's Hottest New Deck (Scott Mines, TCGplayer Infinite)",
           "kind": "tournament-report",
-          "url": "https://infinite.tcgplayer.com/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
-          "date": "2026-06-10"
+          "url": "https://www.tcgplayer.com/content/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
+          "date": "2026-06-10",
+          "quote": "Once your deck is empty, kill an in-play copy of Forge of the Future to recycle a Forge of the Future, a Shadow's Call and a Sacrifice … Repeat ad infinitum … it only costs eleven total energy and one power to loop.",
+          "accessed": "2026-09-04"
         },
         {
           "title": "riftbound.gg Lux legend guide (Tianjin 19th/640, Hartford top 8)",
@@ -85,7 +87,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Shadow's Call must Choose a friendly unit WITHOUT [Temporary], and 816.1.b kills whatever it marks at the start of your next Beginning Phase, BEFORE scoring. Point it at Ekko and resolve it before playing Sacrifice: Sacrifice's additional cost then kills Ekko and the mark goes with him, so the Recruits stay clean and accumulate across turns. The stacked ordering (Sacrifice in response) would leave Shadow's Call resolving with a dead target and make the loop depend on a mistarget reading; it also has to mark a live Recruit instead, which caps the surviving body count. Sequencing found by the user 2026-09-04 while reviewing R29, which is now moot for the catalogue."
+      "notes": "Shadow's Call must Choose a friendly unit WITHOUT [Temporary], and 816.1.b kills whatever it marks at the start of your next Beginning Phase, BEFORE scoring. Point it at Ekko and resolve it before playing Sacrifice: Sacrifice's additional cost then kills Ekko and the mark goes with him, so the Recruits stay clean and accumulate across turns. The stacked ordering (Sacrifice in response) is what the TCGplayer article actually prints — 'Play a copy of Shadow's Call. Respond to your copy of Shadow's Call with a copy of Sacrifice' — so this entry is deliberately more correct than its source; that ordering would leave Shadow's Call resolving with a dead target and make the loop depend on a mistarget reading; it also has to mark a live Recruit instead, which caps the surviving body count. Sequencing found by the user 2026-09-04 while reviewing R29, which is now moot for the catalogue. SOURCE READ IN FULL 2026-09-04: the whole TCGplayer article was opened through a reader proxy and the quote above confirmed verbatim (docs/phase0/walks/2026-09-04-source-verification-tcgplayer.md)."
     },
     {
       "id": "lux-infinite-power",
@@ -141,11 +143,14 @@
         {
           "title": "Analyzing Infinite Combo Lux (TCGplayer Infinite)",
           "kind": "tournament-report",
-          "url": "https://infinite.tcgplayer.com/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
-          "date": "2026-06-10"
+          "url": "https://www.tcgplayer.com/content/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
+          "date": "2026-06-10",
+          "quote": "Recycle a rune to float one power … Play Retreat to return Lecturing Yordle to your hand and return the rune you recycled to play … Replay Lecturing Yordle to draw the remaining card",
+          "accessed": "2026-09-04"
         }
       ],
-      "rulesVersion": "2026-07-16"
+      "rulesVersion": "2026-07-16",
+      "notes": "SOURCE READ IN FULL 2026-09-04: the whole TCGplayer article was opened through a reader proxy and the quote above confirmed verbatim (docs/phase0/walks/2026-09-04-source-verification-tcgplayer.md)."
     },
     {
       "id": "renata-mastermind-points",
@@ -212,12 +217,14 @@
         {
           "title": "Analyzing Infinite Combo Lux (TCGplayer Infinite), Stage 4.3",
           "kind": "tournament-report",
-          "url": "https://infinite.tcgplayer.com/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
-          "date": "2026-06-10"
+          "url": "https://www.tcgplayer.com/content/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
+          "date": "2026-06-10",
+          "quote": "Play Renata Glasc - Mastermind to your conquered battlefield. Thanks to Rally the Troops, she will enter as a Mighty unit. … Spend four energy and four power. Exhaust Renata Glasc to score a point. … Use Retreat to return Renata to your hand. … Repeat ad infinitum",
+          "accessed": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Any other repeatable ready would replace Fiora + Rally the Troops; this is the line the tournament deck used."
+      "notes": "Any other repeatable ready would replace Fiora + Rally the Troops; this is the line the tournament deck used. SOURCE READ IN FULL 2026-09-04 (docs/phase0/walks/2026-09-04-source-verification-tcgplayer.md): the same author's Hartford report calls this the previous plan — 'Previously, this was done by making Renata Glasc - Mastermind mighty with Rally the Troops, then readying it repeatedly with a combination of Fiora - Worthy and Retreat. Funnily enough, this combo still exists in the sideboard of Relivia's list' — with Time Warp taking over the main deck. The line still closes; it is simply no longer the deck's primary finisher."
     },
     {
       "id": "pursuer-herald-recruits",
@@ -1151,7 +1158,9 @@
           "title": "TCGplayer — Analyzing Infinite Combo Lux, Riftbound's Hottest New Deck (Scott Mines)",
           "url": "https://www.tcgplayer.com/content/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
           "kind": "article",
-          "date": "2026-06-10"
+          "date": "2026-06-10",
+          "quote": "Ashe - Focused is here to save the day. Ashe will banish any problem card from the opposing hand and then be incorporated into a Retreat loop to repeatedly pick her up and replay her, allowing you to clear the way entirely before you start deploying the more fragile combo pieces.",
+          "accessed": "2026-09-04"
         },
         {
           "title": "Hunt v2 lens L5, entry L5-02 (docs/phase0/hunt2/L5-recursion-bounce.md)",
@@ -1170,7 +1179,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Quote: 'Ashe - Focused is here to save the day. Ashe will banish any problem card from the opposing hand'. Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches). REFUTE 2026-09-03: WOUNDED — Ashe costs 5 Energy + 1 Order Power per cast, so this also needs the verified infinite-Power line. If you hold both battlefields the opponent never Holds and the banished cards never return. BUDGETED 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md, issue #21). Per card banished: Ashe 5E + 1 Order, Retreat 1E, plus 1E + 1 Mind for the extra draw = 7 Energy + 2 Power, about 25 Energy. It CLOSES. Ashe returns to hand rather than through the deck, so only Retreat needs a recycle slot and a draw, and both pass types leave spare slots - draws are the scarce thing and Renata Mastermind's exhaust-free 'Draw 1' sells them at 1E + 1 Mind. The lock is real while you hold both battlefields, because UNL-169 returns the banished card only 'when they hold'."
+      "notes": "Quote: 'Ashe - Focused is here to save the day. Ashe will banish any problem card from the opposing hand'. Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches). REFUTE 2026-09-03: WOUNDED — Ashe costs 5 Energy + 1 Order Power per cast, so this also needs the verified infinite-Power line. If you hold both battlefields the opponent never Holds and the banished cards never return. BUDGETED 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md, issue #21). Per card banished: Ashe 5E + 1 Order, Retreat 1E, plus 1E + 1 Mind for the extra draw = 7 Energy + 2 Power, about 25 Energy. It CLOSES. Ashe returns to hand rather than through the deck, so only Retreat needs a recycle slot and a draw, and both pass types leave spare slots - draws are the scarce thing and Renata Mastermind's exhaust-free 'Draw 1' sells them at 1E + 1 Mind. The lock is real while you hold both battlefields, because UNL-169 returns the banished card only 'when they hold'. SOURCE READ IN FULL 2026-09-04: the whole TCGplayer article was opened through a reader proxy and the quote above confirmed verbatim (docs/phase0/walks/2026-09-04-source-verification-tcgplayer.md)."
     },
     {
       "id": "promising-future-force-deck",
@@ -1218,7 +1227,9 @@
           "title": "TCGplayer — Analyzing Infinite Combo Lux, Riftbound's Hottest New Deck (Scott Mines)",
           "url": "https://www.tcgplayer.com/content/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
           "kind": "article",
-          "date": "2026-06-10"
+          "date": "2026-06-10",
+          "quote": "create a loop based on the above including Promising Future, which will allow you to force every card in the opponent's deck into play... then you can blow them up with The Ruination for good measure.",
+          "accessed": "2026-09-04"
         },
         {
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
@@ -1232,7 +1243,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Quote: 'create a loop based on the above including Promising Future, which will allow you to force every card [in the opponent's deck into play]'. Symmetric: you play one too — the article treats that as free because the loop deck's own picks are recycled. Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches). REFUTE 2026-09-03: WOUNDED — as a repeated engine it is net negative: each cast hands the opponent a free permanent or spell of their choice; their deck shrinks by one per cast and Burn Out recycles their trash first. The article's use is as a one-off. BUDGETED 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md, issue #21). Per cast: Promising Future 5E + 1P plus 1E + 1 Mind for the extra draw = 6 Energy + 2 Power, about 24 Energy. It CLOSES as a repeatable engine, which is all the entry claims. The printed text carries a limiter the entry never mentioned: OGN-115 says the players 'play those cards, ignoring Energy costs. (THEY MUST STILL PAY POWER COSTS.)', so even the free cards the opponent gets are gated on their Power. With 431.2.b refilling their deck from their trash before any Burn Out point, the entry's own verdict - engine at best, it cannot deck them - stands, and its value in the catalogue is recording why the community's 'force every card into play' claim does not win."
+      "notes": "Quote: 'create a loop based on the above including Promising Future, which will allow you to force every card in the opponent's deck into play'. Symmetric: you play one too — the article treats that as free because the loop deck's own picks are recycled. Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches). REFUTE 2026-09-03: WOUNDED — as a repeated engine it is net negative: each cast hands the opponent a free permanent or spell of their choice; their deck shrinks by one per cast and Burn Out recycles their trash first. The article's use is as a one-off. BUDGETED 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md, issue #21). Per cast: Promising Future 5E + 1P plus 1E + 1 Mind for the extra draw = 6 Energy + 2 Power, about 24 Energy. It CLOSES as a repeatable engine, which is all the entry claims. The printed text carries a limiter the entry never mentioned: OGN-115 says the players 'play those cards, ignoring Energy costs. (THEY MUST STILL PAY POWER COSTS.)', so even the free cards the opponent gets are gated on their Power. With 431.2.b refilling their deck from their trash before any Burn Out point, the entry's own verdict - engine at best, it cannot deck them - stands, and its value in the catalogue is recording why the community's 'force every card into play' claim does not win. SOURCE READ IN FULL 2026-09-04: the whole TCGplayer article was opened through a reader proxy and the quote above confirmed verbatim (docs/phase0/walks/2026-09-04-source-verification-tcgplayer.md)."
     },
     {
       "id": "ruination-sprite-burst-clear",
@@ -1279,7 +1290,9 @@
           "title": "TCGplayer — Analyzing Infinite Combo Lux, Riftbound's Hottest New Deck (Scott Mines)",
           "url": "https://www.tcgplayer.com/content/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
           "kind": "article",
-          "date": "2026-06-10"
+          "date": "2026-06-10",
+          "quote": "Simply send everything into the abyss with a copy of The Ruination or by looping back Sprite Burst until you have enough might to challenge everything.",
+          "accessed": "2026-09-04"
         },
         {
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
@@ -1293,7 +1306,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Quote: 'Simply send everything into the abyss with a copy of The Ruination or by looping back Sprite Burst until you have enough might to challenge everything.' Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches). REFUTE 2026-09-03: SURVIVES — the two ready Sprites can Standard-Move and Establish Control uncontested after The Ruination: +2 Conquer points the same turn (470); they die before any Hold (816.1.b), so put non-Temporary bodies there for the Holds. The Ruination kills your own Renata too — replay her under the loop. R7 applies only if Sprite Burst is looped rather than held in triplicate. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md): R7 does not apply to either half of what this entry claims. The Ruination is a ONE-SHOT - 9 Energy is free under the engine and its 3 Power is three rune recycles out of a 12-rune board - so it never rides the loop and consumes no Forge recycle slot; the recycle budget only binds cards that must come back through the deck every pass. And Sprite Burst is 5 Energy with NO Power, so three copies in hand are six ready Sprites without looping at all. R7 would only bite the single-copy looping optimisation. The Sprites enter ready, so after the wipe they Conquer two emptied battlefields for 2 points the same turn (470), and 816.1.b still stops them ever Holding."
+      "notes": "Quote: 'Simply send everything into the abyss with a copy of The Ruination or by looping back Sprite Burst until you have enough might to challenge everything.' Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches). REFUTE 2026-09-03: SURVIVES — the two ready Sprites can Standard-Move and Establish Control uncontested after The Ruination: +2 Conquer points the same turn (470); they die before any Hold (816.1.b), so put non-Temporary bodies there for the Holds. The Ruination kills your own Renata too — replay her under the loop. R7 applies only if Sprite Burst is looped rather than held in triplicate. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md): R7 does not apply to either half of what this entry claims. The Ruination is a ONE-SHOT - 9 Energy is free under the engine and its 3 Power is three rune recycles out of a 12-rune board - so it never rides the loop and consumes no Forge recycle slot; the recycle budget only binds cards that must come back through the deck every pass. And Sprite Burst is 5 Energy with NO Power, so three copies in hand are six ready Sprites without looping at all. R7 would only bite the single-copy looping optimisation. The Sprites enter ready, so after the wipe they Conquer two emptied battlefields for 2 points the same turn (470), and 816.1.b still stops them ever Holding. SOURCE READ IN FULL 2026-09-04: the whole TCGplayer article was opened through a reader proxy and the quote above confirmed verbatim (docs/phase0/walks/2026-09-04-source-verification-tcgplayer.md)."
     },
     {
       "id": "bloodharbor-bewitching-discard",
@@ -1340,7 +1353,9 @@
           "title": "TCGplayer — The Best Decks from Riftbound Regional Hartford (HowlingMines)",
           "url": "https://www.tcgplayer.com/content/article/The-Best-Decks-from-Riftbound-Regional-Hartford/715aa271-6096-4dd1-8279-cd47ed33fa13/",
           "kind": "article",
-          "date": "2026-06-25"
+          "date": "2026-06-25",
+          "quote": "There's a vicious Pyke - Bloodharbor Ripper control shell out there that cripples legends not named Master Yi - Wuju Bladesman with a never-ending stream of Bewitching Spirits",
+          "accessed": "2026-09-04"
         },
         {
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
@@ -1354,7 +1369,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Quote, verified by hand through a reader proxy on 2026-09-03: 'Pyke - Bloodharbor Ripper control shell out there that cripples legends not named Master Yi with a never-ending stream of Bewitching Spirits.' Card text verified against the corpus: the legend's ability costs an exhaust, so the stream is one per turn — the source's 'never-ending' is tempo, not infinity. First Fury/Chaos entry in the catalogue. REFUTE 2026-09-03: SURVIVES — the legend bounces 'a friendly unit at a battlefield', so the Spirit must be at a battlefield you control (play it there, or move it the next turn). 4 Energy per turn for one discard and one exhausted Gold. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-four-engines.md), promoted to verified. Simple by design: card texts verified and the entry already corrected its own source downward."
+      "notes": "Quote, verified by hand through a reader proxy on 2026-09-03: 'Pyke - Bloodharbor Ripper control shell out there that cripples legends not named Master Yi - Wuju Bladesman with a never-ending stream of Bewitching Spirits.' Card text verified against the corpus: the legend's ability costs an exhaust, so the stream is one per turn — the source's 'never-ending' is tempo, not infinity. First Fury/Chaos entry in the catalogue. REFUTE 2026-09-03: SURVIVES — the legend bounces 'a friendly unit at a battlefield', so the Spirit must be at a battlefield you control (play it there, or move it the next turn). 4 Energy per turn for one discard and one exhausted Gold. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-four-engines.md), promoted to verified. Simple by design: card texts verified and the entry already corrected its own source downward. SOURCE READ IN FULL 2026-09-04: the whole TCGplayer article was opened through a reader proxy and the quote above confirmed verbatim (docs/phase0/walks/2026-09-04-source-verification-tcgplayer.md)."
     },
     {
       "id": "time-warp-hold-burst",
@@ -1419,7 +1434,9 @@
           "title": "TCGplayer — The Best Decks from Riftbound Regional Hartford (HowlingMines)",
           "url": "https://www.tcgplayer.com/content/article/The-Best-Decks-from-Riftbound-Regional-Hartford/715aa271-6096-4dd1-8279-cd47ed33fa13/",
           "kind": "article",
-          "date": "2026-06-25"
+          "date": "2026-06-25",
+          "quote": "But in an ideal world, you're now closing the game by pressing The Ruination button, using Sprite Burst to get onto both battlefields, establishing some number of Soaring Scout/Ekko - Recurrent/Lux - Crownguard onto those battlefields, then firing off three copies of Time Warp to score the remaining six points needed in one fell swoop.",
+          "accessed": "2026-09-04"
         },
         {
           "title": "Hunt v2 lens L4, entry General note (docs/phase0/hunt2/L4-points-altwins.md)",
@@ -1438,7 +1455,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Quote, verified by hand via reader proxy 2026-09-03: '…then firing off three copies of Time Warp to score the remaining six points needed in one fell swoop.' Capped at three by deck limit + banish (427). riftbound.gg claims an unbounded version; lens L1 is checking whether anything returns cards from Banishment. REFUTE 2026-09-03: undercounted upward — the Sprite conquers on the casting turn are +2, so 8 from zero. Time Warp banishes itself (427) and can never be recycled: all three copies must already be in hand (Renata's Draw 1 can draw the whole deck first). 12 Mind Power total, so the infinite-Power line is needed too. Leave one card in the deck via Forge's spare recycle slot before each extra Draw Phase (431.2.c). Hold points are not Conquer points, so 471.1.b never applies. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-the-three-chain-finishers.md), and reclassed BURST -> CHAIN under issue #20. 355.2.a is what lets the Soaring Scouts be played STRAIGHT to the battlefields you control, and they are the whole point of the entry: 816.1.b kills the [Temporary] Sprites before the first extra turn's Scoring Step, and 190.4.a keeps control only while you have some unit there. 427.1/427.2 confirm Time Warp can never be recycled, so all three copies must already be in hand. The Burn Out caveat is real for extra turns 1 and 2 but not the last one, because the win lands at the Cleanup after the final Hold (472)."
+      "notes": "Quote, verified by hand via reader proxy 2026-09-03: '…then firing off three copies of Time Warp to score the remaining six points needed in one fell swoop.' Capped at three by deck limit + banish (427). riftbound.gg claims an unbounded version; lens L1 is checking whether anything returns cards from Banishment. REFUTE 2026-09-03: undercounted upward — the Sprite conquers on the casting turn are +2, so 8 from zero. Time Warp banishes itself (427) and can never be recycled: all three copies must already be in hand (Renata's Draw 1 can draw the whole deck first). 12 Mind Power total, so the infinite-Power line is needed too. Leave one card in the deck via Forge's spare recycle slot before each extra Draw Phase (431.2.c). Hold points are not Conquer points, so 471.1.b never applies. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-the-three-chain-finishers.md), and reclassed BURST -> CHAIN under issue #20. 355.2.a is what lets the Soaring Scouts be played STRAIGHT to the battlefields you control, and they are the whole point of the entry: 816.1.b kills the [Temporary] Sprites before the first extra turn's Scoring Step, and 190.4.a keeps control only while you have some unit there. 427.1/427.2 confirm Time Warp can never be recycled, so all three copies must already be in hand. The Burn Out caveat is real for extra turns 1 and 2 but not the last one, because the win lands at the Cleanup after the final Hold (472). SOURCE READ IN FULL 2026-09-04: the whole TCGplayer article was opened through a reader proxy and the quote above confirmed verbatim (docs/phase0/walks/2026-09-04-source-verification-tcgplayer.md)."
     },
     {
       "id": "renata-bubble-bot-ready",
@@ -3555,6 +3572,14 @@
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1uj028b/",
           "date": "2026-06-29"
+        },
+        {
+          "title": "TCGplayer — The Best Decks from Riftbound Regional Hartford (HowlingMines)",
+          "kind": "article",
+          "url": "https://www.tcgplayer.com/content/article/The-Best-Decks-from-Riftbound-Regional-Hartford/715aa271-6096-4dd1-8279-cd47ed33fa13/",
+          "date": "2026-06-25",
+          "quote": "It's easy to forget, but Pack of Wonders can easily bounce units too, so you've got at least nine ways (three of which are repeatable) to use Bewitching Spirits on-play ability multiple times in a game.",
+          "accessed": "2026-09-04"
         },
         {
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",

@@ -73,6 +73,10 @@ export interface Source {
   kind: "riot" | "tournament-report" | "article" | "agent" | "manual-walk";
   url?: string;
   date?: string;
+  /** Verbatim passage this entry stands on, transcribed from the source itself. */
+  quote?: string;
+  /** Date somebody on this project opened the url and read the quote there. */
+  accessed?: string;
 }
 
 /** AUTHORED. One entry per reviewed combo. Combos compose through needs/produces into a DAG. */
