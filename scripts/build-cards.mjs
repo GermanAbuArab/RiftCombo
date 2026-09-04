@@ -52,7 +52,13 @@ const stripHtml = (html) =>
   html
     .replace(/<br\s*\/?>/gi, "\n")
     .replace(/<\/p>\s*<p>/gi, "\n")
+    // Modal abilities ship as <ul><li>; stripping the tags bare glues the modes into one
+    // clause ("...this turn —Ready 2 runes.Channel 1 rune exhausted."). Keep the bullets.
+    .replace(/<li>/gi, "\n\u2022 ")
     .replace(/<[^>]+>/g, "")
+    // Riot's only entities are &gt; and &quot;; the rest are decoded because they are cheap
+    // to cover. &quot; must run before &amp; so a literal "&amp;quot;" is not double-decoded.
+    .replace(/&quot;/g, '"')
     .replace(/&gt;/g, ">")
     .replace(/&lt;/g, "<")
     .replace(/&amp;/g, "&")

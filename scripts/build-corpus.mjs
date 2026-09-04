@@ -54,6 +54,12 @@ const lines = [
   `# Icons: :rb_energy_N: = N Energy; :rb_rune_<domain>: = 1 Power of that domain; :rb_rune_rainbow: = 1 Power of any domain; :rb_exhaust: = exhaust; :rb_might: = Might.`,
   `# Equipment: the [Effect] clause is the text granted to the unit it is attached to ("I" = that unit).`,
   `# [BANNED format:status] marks cards on Riot's current ban list (Rules Hub).`,
+  `# Tokens (SET-T0n), runes (SET-R0n) and the two score-tracking helpers are included on purpose:`,
+  `#   card text names tokens by their stats ("play a 1 :rb_might: Tentacle unit token") and rule 187`,
+  `#   defines them, so a rules walk has to be able to look one up here. A type of "-" means Riot`,
+  `#   ships the card with no card type at all (UNL-T04 Buff, UNL-T08 XP Tracker).`,
+  `# Known upstream anomalies in Riot's own text (missing brackets, stray fields, wrong tags) are`,
+  `#   registered in docs/data-anomalies.md and are NOT corrected here.`,
   `code | name | type | domains | cost | text`,
 ];
 for (const c of rows) {
@@ -62,7 +68,7 @@ for (const c of rows) {
   if (c.tags?.length) text += ` [Tags: ${c.tags.join(", ")}]`;
   if (banned.has(c.code)) text = `[BANNED ${banned.get(c.code).join(", ")}] ${text}`;
   lines.push(
-    `${c.code} | ${c.name} | ${c.type.map((t) => t[0].toUpperCase() + t.slice(1)).join("/")} | ${c.domains.map((d) => d[0].toUpperCase() + d.slice(1)).join("/") || "Colorless"} | ${cost(c)} | ${text}`,
+    `${c.code} | ${c.name} | ${c.type.map((t) => t[0].toUpperCase() + t.slice(1)).join("/") || "-"} | ${c.domains.map((d) => d[0].toUpperCase() + d.slice(1)).join("/") || "Colorless"} | ${cost(c)} | ${text}`,
   );
 }
 writeFileSync(join(DATA, "corpus_flat.txt"), lines.join("\n") + "\n");

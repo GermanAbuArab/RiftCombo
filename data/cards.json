@@ -1,7 +1,7 @@
 {
  "source": "https://content.publishing.riotgames.com/publishing-content/v2.0/public/channel/riftbound_website/list/riftbound_gallery_cards",
- "resultsUpdatedAt": "2026-09-03T21:16:05.097292204Z",
- "built": "2026-09-03T21:16:08.909Z",
+ "resultsUpdatedAt": "2026-09-04T16:52:40.759853784Z",
+ "built": "2026-09-04T16:52:43.687Z",
  "count": 1189,
  "cards": [
   {
@@ -5025,7 +5025,7 @@
    "power": 1,
    "might": 6,
    "mightBonus": null,
-   "text": "Spend my buff: Choose one you've not chosen this turn —Deal 2 to a unit at a battlefield.Stun a unit at a battlefield.Ready me.Give me [Ganking] this turn.",
+   "text": "Spend my buff: Choose one you've not chosen this turn —\n• Deal 2 to a unit at a battlefield.\n• Stun a unit at a battlefield.\n• Ready me.\n• Give me [Ganking] this turn.",
    "effect": null,
    "tags": [
     "Udyr",
@@ -6466,7 +6466,7 @@
    "power": null,
    "might": 4,
    "mightBonus": null,
-   "text": "When I attack, reveal the top rune of your rune deck, then recycle it. Do one of the following based on its domain::rb_rune_fury: — Deal 2 to an enemy unit here and 1 to all other enemy units here.:rb_rune_mind: — Draw 1.:rb_rune_order: — Stun an enemy unit.",
+   "text": "When I attack, reveal the top rune of your rune deck, then recycle it. Do one of the following based on its domain:\n• :rb_rune_fury: — Deal 2 to an enemy unit here and 1 to all other enemy units here.\n• :rb_rune_mind: — Draw 1.\n• :rb_rune_order: — Stun an enemy unit.",
    "effect": null,
    "tags": [
     "Twisted Fate",
@@ -12470,7 +12470,7 @@
    "power": 1,
    "might": 4,
    "mightBonus": null,
-   "text": "When you attach an Equipment to me, choose one that hasn't been chosen this turn —Ready 2 runes.Channel 1 rune exhausted.Buff a friendly unit.",
+   "text": "When you attach an Equipment to me, choose one that hasn't been chosen this turn —\n• Ready 2 runes.\n• Channel 1 rune exhausted.\n• Buff a friendly unit.",
    "effect": null,
    "tags": [
     "Aphelios",
@@ -13436,7 +13436,7 @@
    "power": 1,
    "might": null,
    "mightBonus": null,
-   "text": "[Repeat] :rb_energy_4::rb_rune_mind: (You may pay the additional cost to repeat this spell's effect, and may make different choices.)\nChoose one —Deal 4 to a unit in a base.Kill a gear.",
+   "text": "[Repeat] :rb_energy_4::rb_rune_mind: (You may pay the additional cost to repeat this spell's effect, and may make different choices.)\nChoose one —\n• Deal 4 to a unit in a base.\n• Kill a gear.",
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -17066,7 +17066,7 @@
    "power": 1,
    "might": null,
    "mightBonus": null,
-   "text": "[Action] (Play on your turn or in showdowns.)\nMove a friendly unit. You may attach up to one Equipment with the same controller to it. This turn, that unit has &quot;When I conquer, you may move me to my base.&quot;",
+   "text": "[Action] (Play on your turn or in showdowns.)\nMove a friendly unit. You may attach up to one Equipment with the same controller to it. This turn, that unit has \"When I conquer, you may move me to my base.\"",
    "effect": null,
    "tags": [
     "Lucian"
@@ -17812,7 +17812,7 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": "While you control this battlefield, friendly legends have &quot;:rb_exhaust:: Attach an Equipment you control to a unit you control.&quot;",
+   "text": "While you control this battlefield, friendly legends have \":rb_exhaust:: Attach an Equipment you control to a unit you control.\"",
    "effect": null,
    "tags": [],
    "orientation": "landscape",
@@ -18253,7 +18253,7 @@
    "power": 1,
    "might": 4,
    "mightBonus": null,
-   "text": "When you attach an Equipment to me, choose one that hasn't been chosen this turn —Ready 2 runes.Channel 1 rune exhausted.Buff a friendly unit.",
+   "text": "When you attach an Equipment to me, choose one that hasn't been chosen this turn —\n• Ready 2 runes.\n• Channel 1 rune exhausted.\n• Buff a friendly unit.",
    "effect": null,
    "tags": [
     "Aphelios",
@@ -18283,7 +18283,7 @@
    "power": 1,
    "might": 4,
    "mightBonus": null,
-   "text": "When you attach an Equipment to me, choose one that hasn't been chosen this turn —Ready 2 runes.Channel 1 rune exhausted.Buff a friendly unit.",
+   "text": "When you attach an Equipment to me, choose one that hasn't been chosen this turn —\n• Ready 2 runes.\n• Channel 1 rune exhausted.\n• Buff a friendly unit.",
    "effect": null,
    "tags": [
     "Aphelios",
@@ -19940,7 +19940,7 @@
    "power": null,
    "might": 6,
    "mightBonus": null,
-   "text": "When I conquer, if you assigned 3 or more excess damage, play two Gold gear tokens exhausted. (They have &quot;[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:.&quot;)",
+   "text": "When I conquer, if you assigned 3 or more excess damage, play two Gold gear tokens exhausted. (They have \"[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:.\")",
    "effect": null,
    "tags": [
     "Noxus"
@@ -20845,7 +20845,7 @@
    "power": 2,
    "might": null,
    "mightBonus": null,
-   "text": "[Reaction]\nChoose one —Counter a spell.Play four 1 :rb_might: Bird unit tokens with [Deflect]. (Opponents must pay :rb_rune_rainbow: to choose them with a spell or ability.)",
+   "text": "[Reaction]\nChoose one —\n• Counter a spell.\n• Play four 1 :rb_might: Bird unit tokens with [Deflect]. (Opponents must pay :rb_rune_rainbow: to choose them with a spell or ability.)",
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -21831,7 +21831,7 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": "Deal 3 to an enemy unit. When it dies this turn, play a Gold gear token exhausted. (It has &quot;[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:.&quot;)",
+   "text": "Deal 3 to an enemy unit. When it dies this turn, play a Gold gear token exhausted. (It has \"[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:.\")",
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -22073,7 +22073,7 @@
    "power": 1,
    "might": 5,
    "mightBonus": null,
-   "text": "When I move, draw 1, then discard 1. Then, do the following based on the discarded card's type:Spell — Draw 1.Gear — Ready up to 2 runes.Unit — Give me +3 :rb_might: this turn.",
+   "text": "When I move, draw 1, then discard 1. Then, do the following based on the discarded card's type:\n• Spell — Draw 1.\n• Gear — Ready up to 2 runes.\n• Unit — Give me +3 :rb_might: this turn.",
    "effect": null,
    "tags": [
     "Ionia",
@@ -22860,7 +22860,7 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": "[Reaction] (Play any time, even before spells and abilities resolve.)\nChoose one —Choose up to 3 cards from opponents' trashes. Their owners recycle them.Draw 1.",
+   "text": "[Reaction] (Play any time, even before spells and abilities resolve.)\nChoose one —\n• Choose up to 3 cards from opponents' trashes. Their owners recycle them.\n• Draw 1.",
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -24265,7 +24265,7 @@
    "power": null,
    "might": 3,
    "mightBonus": null,
-   "text": "[Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.)\n[Backline] (I must be assigned combat damage last.)\nOnce each turn, when an enemy unit dies while I'm at a battlefield, play a Gold gear token exhausted. (It has &quot;[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:.&quot;)",
+   "text": "[Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.)\n[Backline] (I must be assigned combat damage last.)\nOnce each turn, when an enemy unit dies while I'm at a battlefield, play a Gold gear token exhausted. (It has \"[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:.\")",
    "effect": null,
    "tags": [
     "Pyke",
@@ -24355,7 +24355,7 @@
    "power": 3,
    "might": 12,
    "mightBonus": null,
-   "text": "As you play me, add the Baron Pit battlefield token to the board if it's not there already. If you do, I enter there. (It has &quot;Units can move here from anywhere.&quot;)\nI can't be chosen by enemy spells and abilities.\nOther friendly units have +2 :rb_might:.",
+   "text": "As you play me, add the Baron Pit battlefield token to the board if it's not there already. If you do, I enter there. (It has \"Units can move here from anywhere.\")\nI can't be chosen by enemy spells and abilities.\nOther friendly units have +2 :rb_might:.",
    "effect": null,
    "tags": [
     "The Void"
@@ -25619,7 +25619,7 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": "[Repeat] — :rb_energy_1: / :rb_rune_rainbow: / :rb_energy_1::rb_rune_rainbow: (You may pay each additional cost to repeat this spell's effect.)\nChoose one you haven't already chosen —Draw 1.Deal 2 to a unit at a battlefield.Deal 3 to a unit at a base.Give a unit at a battlefield -4 :rb_might: this turn.",
+   "text": "[Repeat] — :rb_energy_1: / :rb_rune_rainbow: / :rb_energy_1::rb_rune_rainbow: (You may pay each additional cost to repeat this spell's effect.)\nChoose one you haven't already chosen —\n• Draw 1.\n• Deal 2 to a unit at a battlefield.\n• Deal 3 to a unit at a base.\n• Give a unit at a battlefield -4 :rb_might: this turn.",
    "effect": null,
    "tags": [
     "Jhin"
@@ -25709,7 +25709,7 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": ":rb_energy_1:, :rb_exhaust:: Return a friendly unit at a battlefield to its owner's hand. Play a Gold gear token exhausted. (It has &quot;[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:.&quot;)",
+   "text": ":rb_energy_1:, :rb_exhaust:: Return a friendly unit at a battlefield to its owner's hand. Play a Gold gear token exhausted. (It has \"[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:.\")",
    "effect": null,
    "tags": [
     "Pyke"
@@ -26527,7 +26527,7 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": "Units here have &quot;:rb_exhaust:: Gain 1 XP.&quot;",
+   "text": "Units here have \":rb_exhaust:: Gain 1 XP.\"",
    "effect": null,
    "tags": [],
    "orientation": "landscape",
@@ -28531,7 +28531,7 @@
    "power": 1,
    "might": 4,
    "mightBonus": null,
-   "text": "You may discard 1 as an additional cost to play me.\nWhen you play me, if you paid the additional cost, play a 0 :rb_might: Shadow Clone unit token. (It has &quot;When I attack, you may banish a unit from your trash. If you do, give me [Assault 4] this turn.&quot;)",
+   "text": "You may discard 1 as an additional cost to play me.\nWhen you play me, if you paid the additional cost, play a 0 :rb_might: Shadow Clone unit token. (It has \"When I attack, you may banish a unit from your trash. If you do, give me [Assault 4] this turn.\")",
    "effect": null,
    "tags": [
     "Ionia",
@@ -28916,7 +28916,7 @@
    "power": 1,
    "might": null,
    "mightBonus": null,
-   "text": "[Reaction] (Play any time, even before spells and abilities resolve.)\nChoose one —Empower a unit. Disempower it at end of turn.Disempower a unit that's [Empowered]. Empower it at end of turn.",
+   "text": "[Reaction] (Play any time, even before spells and abilities resolve.)\nChoose one —\n• Empower a unit. Disempower it at end of turn.\n• Disempower a unit that's [Empowered]. Empower it at end of turn.",
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -29499,7 +29499,7 @@
    "power": 1,
    "might": null,
    "mightBonus": null,
-   "text": "[Reaction] (Play any time, even before spells and abilities resolve.)\nChoose one —Return a friendly unit to its owner's hand.Give an enemy unit -2 :rb_might: this turn.",
+   "text": "[Reaction] (Play any time, even before spells and abilities resolve.)\nChoose one —\n• Return a friendly unit to its owner's hand.\n• Give an enemy unit -2 :rb_might: this turn.",
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -30649,7 +30649,7 @@
    "power": 1,
    "might": 5,
    "mightBonus": null,
-   "text": "When I become ready, choose one to give me this turn —[Assault 2] (+2 :rb_might: while I'm an attacker.)[Deflect 2] (Opponents must pay :rb_rune_rainbow::rb_rune_rainbow: to choose me with a spell or ability.)[Ganking] (I can move from battlefield to battlefield.)",
+   "text": "When I become ready, choose one to give me this turn —\n• [Assault 2] (+2 :rb_might: while I'm an attacker.)\n• [Deflect 2] (Opponents must pay :rb_rune_rainbow::rb_rune_rainbow: to choose me with a spell or ability.)\n• [Ganking] (I can move from battlefield to battlefield.)",
    "effect": null,
    "tags": [
     "Jayce",
@@ -30679,7 +30679,7 @@
    "power": 1,
    "might": 5,
    "mightBonus": null,
-   "text": "When I become ready, choose one to give me this turn —[Assault 2][Deflect 2][Ganking]",
+   "text": "When I become ready, choose one to give me this turn —\n• [Assault 2]\n• [Deflect 2]\n• [Ganking]",
    "effect": null,
    "tags": [
     "Jayce"
@@ -31396,7 +31396,7 @@
    "power": 1,
    "might": 6,
    "mightBonus": null,
-   "text": "When I move to a battlefield, choose one —Each player discards 1.Each player draws 1.",
+   "text": "When I move to a battlefield, choose one —\n• Each player discards 1.\n• Each player draws 1.",
    "effect": null,
    "tags": [
     "Ionia"
@@ -31425,7 +31425,7 @@
    "power": null,
    "might": 5,
    "mightBonus": null,
-   "text": "When I conquer, play a 0 :rb_might: Shadow Clone unit token to your base. (It has &quot;When I attack, you may banish a unit from your trash. If you do, give me [Assault 4] this turn.&quot;)\n[Action][>] :rb_energy_1::rb_rune_chaos:: Move me and a Shadow Clone you control to each other's locations.",
+   "text": "When I conquer, play a 0 :rb_might: Shadow Clone unit token to your base. (It has \"When I attack, you may banish a unit from your trash. If you do, give me [Assault 4] this turn.\")\n[Action][>] :rb_energy_1::rb_rune_chaos:: Move me and a Shadow Clone you control to each other's locations.",
    "effect": null,
    "tags": [
     "Ionia",
@@ -32454,7 +32454,7 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": "[Action] (Play on your turn or in showdowns.)\nThis turn, double a unit's Might and give it &quot;:rb_rune_rainbow::rb_rune_rainbow:: Ready me.&quot;",
+   "text": "[Action] (Play on your turn or in showdowns.)\nThis turn, double a unit's Might and give it \":rb_rune_rainbow::rb_rune_rainbow:: Ready me.\"",
    "effect": null,
    "tags": [
     "Renekton"
@@ -32514,7 +32514,7 @@
    "power": 1,
    "might": null,
    "mightBonus": null,
-   "text": "[Burn 3]. (Put the top 3 cards of your Main Deck into your trash.)\nPlay a 0 :rb_might: Shadow Clone unit token. (It has &quot;When I attack, you may banish a unit from your trash. If you do, give me [Assault 4] this turn.&quot;)\n[Flow] :rb_energy_1::rb_rune_rainbow::rb_rune_rainbow: (You may play this from your trash for its Flow cost. Then banish it.)",
+   "text": "[Burn 3]. (Put the top 3 cards of your Main Deck into your trash.)\nPlay a 0 :rb_might: Shadow Clone unit token. (It has \"When I attack, you may banish a unit from your trash. If you do, give me [Assault 4] this turn.\")\n[Flow] :rb_energy_1::rb_rune_rainbow::rb_rune_rainbow: (You may play this from your trash for its Flow cost. Then banish it.)",
    "effect": null,
    "tags": [
     "Zed"

@@ -45,6 +45,19 @@ describe("plaintext decklists", () => {
     expect(deck.main["OGN-110"]).toBe(1);
   });
 
+  it("keeps a TTS dump that mixes alt-art codes with plain ones", () => {
+    const entries = parseDeckText("OGN-212-1 OGN-299*-1 OGN-110-1");
+    expect(entries.map((e) => e.code)).toEqual(["OGN-212", "OGN-299*", "OGN-110"]);
+  });
+
+  it("resolves the 22 base codes that are not SET-NNN", () => {
+    const deck = loadDeck("3 VEN-SP6\n1 Lux, Crownguard (VEN-SP6)\nUNL-T04-1 VEN-R01-1", cards);
+    expect(deck.unresolved).toEqual([]);
+    expect(deck.main["VEN-SP6"]).toBe(4);
+    expect(deck.main["UNL-T04"]).toBe(1);
+    expect(deck.runes["VEN-R01"]).toBe(1);
+  });
+
   it("reports unresolved lines instead of dropping them", () => {
     const deck = loadDeck("3 Totally Fake Card\n2 Retreat", cards);
     expect(deck.unresolved).toEqual([{ raw: "Totally Fake Card", count: 3 }]);

@@ -39,8 +39,10 @@ export function parseDeckText(text: string): DeckEntry[] {
       if (alias) { section = alias; line = inline[2]!.trim(); }
     }
 
-    // TTS token dump: "OGN-265-1 OGN-110-1 UNL-165-2 ..."
-    if (/^(?:[A-Z]{3}-[A-Z]*\d{1,3}[a-z]?-\d+\s*)+$/i.test(line)) {
+    // TTS token dump: "OGN-265-1 OGN-110-1 UNL-165-2 ...". The variant class must match CODE_RE's
+    // ([a-z*], not [a-z]): 45 printings are alt-arts whose code ends in "*", and this guard is a
+    // whole-line test, so one of them made every code on the line fall through as a bogus name.
+    if (/^(?:[A-Z]{3}-[A-Z]*\d{1,3}[a-z*]?-\d+\s*)+$/i.test(line)) {
       for (const tok of line.split(/\s+/)) {
         const m = tok.match(CODE_RE);
         if (m) out.push({ code: `${m[1]}-${m[2]}`, count: 1, section });
