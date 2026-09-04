@@ -5,6 +5,7 @@ import { CardIndex } from "../src/cards.js";
 import { generateVariants } from "../src/combos.js";
 import { isDeckCode, loadDeck, normalizeDeck, parseDeckText, type DeckEntry } from "../src/deck.js";
 import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
+import { planDeck, type Route } from "../src/plan.js";
 import type { Card, Combo, Deck, Domain, Feature, Format, LegalityEntry, Variant } from "../src/types.js";
 import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from "./graph.js";
 
@@ -28,6 +29,8 @@ const tray = $<HTMLElement>("#tray");
 const routeCount = $<HTMLElement>("#route-count");
 const zoomLabel = $<HTMLElement>("#zoom-label");
 const dimToggle = $<HTMLButtonElement>("#dim-toggle");
+const planPanel = $<HTMLElement>("#plan");
+const planBody = $<HTMLElement>("#plan-body");
 
 const EXAMPLE = `Legend
 1 Lady of Luminosity - Starter
@@ -229,6 +232,99 @@ function showEmptyState() {
   note.textContent = "The catalogue is hand-built and still small, so an empty result usually means the archetype has not been swept yet rather than that no combo exists.";
 }
 
+// --- what to add (#18) ----------------------------------------------------------------
+// The diagram answers "which combos does this list have". This answers the question a player
+// actually asks next: "which cards would give it one". Ranked by copies to add, so the number
+// carries the honesty — a six-card route is still shown, because hiding it hides a real answer.
+const ALT_LIMIT = 4;
+const routeName = (r: Route) => r.variant.comboIds.map((id) => combosById.get(id)!.name).join(" + ");
+const routeShort = (r: Route) => r.variant.comboIds.map((id) => combosById.get(id)!.name.replace(/\s[—–-]\s.*$/, "")).join(" + ");
+const routeOutcome = (r: Route) =>
+  r.variant.produces.map((f) => featuresById.get(f)).find((f) => f?.status === "STANDALONE")?.name ?? null;
+
+const addRow = (a: { card: string; quantity: number }) => {
+  const card = cards.get(a.card)!;
+  const src = thumb(card.image, 120);
+  const sub = [card.code, card.type.join("/"), card.domains.join("/")].filter(Boolean).join(" · ");
+  return `<div class="card-row" data-base="${esc(a.card)}">
+    ${src ? `<img src="${esc(src)}" alt="" loading="lazy" title="Click to read the card">` : `<span></span>`}
+    <div><div class="cname">${esc(card.name)}</div><div class="csub">${esc(sub)}</div></div>
+    <span class="have short">+${a.quantity}</span>
+  </div>`;
+};
+
+/** What adding these cards costs the list: deck slots, battlefield slots, or a rebuild. */
+function leadFootnote(r: Route): string {
+  const parts: string[] = [];
+  if (r.havePieces > 0) parts.push(`You already have <strong>${r.havePieces} of ${r.totalPieces}</strong> pieces.`);
+  const deckCopies = r.cost - r.battlefieldCopies;
+  if (deckCopies > 0) parts.push(`${deckCopies} card${deckCopies === 1 ? "" : "s"} in means ${deckCopies} out.`);
+  if (r.battlefieldCopies > 0) {
+    parts.push(r.battlefieldCopies === 1
+      ? "One of them is a battlefield, so it takes one of your three battlefield slots."
+      : `${r.battlefieldCopies} of them are battlefields, so they take ${r.battlefieldCopies} of your three battlefield slots.`);
+  }
+  if (r.cost >= 5) parts.push("At that distance this is a rebuild rather than an addition.");
+  return parts.join(" ");
+}
+
+function renderPlan() {
+  if (!deck) { planPanel.hidden = true; return; }
+  const plan = planDeck(deck, variants, cards, { format: fmt() });
+  const pair = plan.domains.length ? pairLabel(asPair(plan.domains)) : null;
+  const out: string[] = [];
+
+  if (plan.have.length) {
+    out.push(`<section class="plan-sec"><p class="plan-lab">Already in this list</p>
+      ${plan.have.map((r) => `<div class="plan-had"><span class="plan-had-name">${esc(routeShort(r))}</span><span class="plan-alt-class">${esc(r.variant.class.replace("_", " "))}</span></div>`).join("")}</section>`);
+  } else if (plan.pieces.length) {
+    // No line closes yet, but naming the catalogued pieces the list already holds is true and
+    // useful — it says the deck is on a road, not that it is empty.
+    const named = plan.pieces.map((b) => name(b)).sort((a, b) => a.localeCompare(b));
+    out.push(`<section class="plan-sec"><p class="plan-lab">Already in this list</p>
+      <p class="plan-note">No complete line yet. Pieces of one that are already here: <strong>${esc(named.slice(0, 6).join(", "))}</strong>${named.length > 6 ? ` and ${named.length - 6} more` : ""}.</p></section>`);
+  }
+
+  const lead = plan.routes[0];
+  if (!deck.legend) {
+    out.push(`<p class="plan-note">Name a legend in your list and this scopes to the two domains it can play.</p>`);
+  } else if (plan.legalHere === 0) {
+    const deep = coverageByPair().filter((p) => p.count > 0).slice(0, 3);
+    out.push(`<p class="plan-note">Not one of the ${combos.length} combos RiftCombo knows fits inside <strong>${esc(pair!)}</strong>, so there is nothing here to build toward. This is a gap in our catalogue, not a judgement on your deck.</p>
+      <p class="plan-note">Deeper pairs: ${deep.map((p) => `${esc(pairLabel(p.pair))} <strong>${p.count}</strong>`).join(" · ")}.</p>`);
+  } else if (!lead) {
+    out.push(`<p class="plan-note">This list already has every catalogued line that fits inside <strong>${esc(pair!)}</strong>.</p>`);
+  } else {
+    const outcome = routeOutcome(lead);
+    out.push(`<section class="plan-sec"><p class="plan-lab">First complete line</p>
+      <div class="plan-lead">
+        <div class="plan-lead-top">
+          <div>
+            <button type="button" class="plan-name" data-combo="${esc(lead.variant.comboIds[0]!)}">${esc(routeName(lead))}</button>
+            <p class="plan-out">${esc([outcome, lead.variant.class.replace("_", " ")].filter(Boolean).join(" · "))}</p>
+          </div>
+          <span class="pill plan-cost">+${lead.cost} CARD${lead.cost === 1 ? "" : "S"}</span>
+        </div>
+        <div class="plan-adds">${lead.add.map(addRow).join("")}</div>
+        <p class="plan-foot">${leadFootnote(lead)}</p>
+      </div></section>`);
+
+    const alts = plan.routes.slice(1, 1 + ALT_LIMIT);
+    if (alts.length) {
+      const rest = plan.routes.length - 1 - alts.length;
+      out.push(`<section class="plan-sec"><p class="plan-lab">Other routes</p>
+        <div class="plan-alts">${alts.map((r) => `<button type="button" class="plan-alt" data-combo="${esc(r.variant.comboIds[0]!)}">
+          <span class="plan-alt-cost">+${r.cost}</span>
+          <span class="plan-alt-name">${esc(routeShort(r))}</span>
+          <span class="plan-alt-class">${esc(r.variant.class.replace("_", " "))}</span></button>`).join("")}</div>
+        ${rest > 0 ? `<p class="plan-note">${rest} more line${rest === 1 ? "" : "s"} inside ${esc(pair!)} are further away.</p>` : ""}</section>`);
+    }
+  }
+
+  planBody.innerHTML = out.join("");
+  planPanel.hidden = out.length === 0;
+}
+
 function render() {
   if (!deck || !result) return;
   const hits = shownHits();
@@ -251,6 +347,7 @@ function render() {
     if (selected) view.select(selected);
   }
   renderTray(hits);
+  renderPlan();
   showDetail(selected);
 }
 
@@ -388,6 +485,15 @@ preview.addEventListener("click", (ev) => {
   if (t === preview || t.closest(".cp-close")) hideCard();
 });
 document.addEventListener("keydown", (ev) => { if (ev.key === "Escape") hideCard(); });
+// The plan panel reuses the drawer for detail and the preview for card text: a route name opens
+// its steps and sources, a thumbnail opens the card.
+planBody.addEventListener("click", (ev) => {
+  const t = ev.target as Element;
+  const row = t.closest<HTMLElement>(".card-row");
+  if (row?.dataset.base && t.closest("img")) { showCard(row.dataset.base); return; }
+  const btn = t.closest<HTMLElement>("[data-combo]");
+  if (btn?.dataset.combo) { selected = btn.dataset.combo; view?.select(selected); showDetail(selected); markChips(); }
+});
 detail.addEventListener("click", (ev) => {
   const t = ev.target as Element;
   const row = t.closest<HTMLElement>(".card-row");

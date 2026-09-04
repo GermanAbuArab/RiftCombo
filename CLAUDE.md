@@ -51,6 +51,8 @@
 - One accent. Outcome classes read through text and weight, not through a categorical rainbow.
 - No emoji, no blue/purple gradients, no decorative shadows, no glassmorphism.
 - Hand-rolled SVG graph — no graph library.
+- The **What to add** panel (#18, 2026-09-04) lives in the deck panel under the status card, not as a third view segment and not as a separate page — the user chose that placement over both. Its logic is `src/plan.ts` (`planDeck`), kept out of `web/` so it has tests. Three rules the user set and that must not be quietly reversed: it ranks by **copies to add**, with the combo class only breaking a tie; it shows the cheapest route **whatever it costs** — a six-card route is still displayed, because the count itself is the honest signal and hiding it hides a real answer; and it never suggests a card outside the legend's two domains (Domain Identity 103.1.b), which `test/plan.test.ts` pins against the mono-Fury fixture. It also drops any line whose ingredients are banned in the format being matched, so the panel never recommends buying an illegal card even when the matcher correctly reports the hit.
+- The panel answers only what is computable. The narrative half of a hunt entry ("Svellsongur on Hwei fires twice per move") came from an agent reading card text and is NOT derivable from `combos.json`; "Already in this list" therefore means catalogued lines the deck completes plus catalogued pieces it holds, and nothing is invented to fill that section.
 
 ## Web gotchas
 - CSP forbids inline `style=`: colour SVG through attributes, and HTML through CSSOM (`el.style.x = …`).

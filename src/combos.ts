@@ -28,7 +28,7 @@ export function validateCombos(combos: Combo[], features: Feature[], cards: Card
 const worst = (a: ComboStatus, b: ComboStatus): ComboStatus =>
   a === "refuted" || b === "refuted" ? "refuted" : a === "candidate" || b === "candidate" ? "candidate" : "verified";
 
-const CLASS_RANK: Record<ComboClass, number> = { ENGINE: 0, INFINITE: 1, BURST: 2, CHAIN: 3, ALT_WIN: 4 };
+export const CLASS_RANK: Record<ComboClass, number> = { ENGINE: 0, INFINITE: 1, BURST: 2, CHAIN: 3, ALT_WIN: 4 };
 
 /**
  * Flatten the combo DAG into Variants. A combo that `needs` a feature is expanded with every
