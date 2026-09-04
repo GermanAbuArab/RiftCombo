@@ -283,11 +283,11 @@
       "id": "ahri-blue-sentinel-hold",
       "name": "Ahri, Alluring × Blue Sentinel — multiplied Hold points",
       "class": "BURST",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "OGN-066",
-          "quantity": 2,
+          "quantity": 3,
           "role": "payoff",
           "zone": "BATTLEFIELD",
           "note": "When I hold, you score 1 point."
@@ -309,13 +309,17 @@
           "Legend domains cover Calm and Mind (Nine-Tailed Fox)."
         ],
         "notable": [
-          "Hold one battlefield through your Beginning Phase with N Ahri and K Blue Sentinel there.",
-          "Points per Hold: 1 + N × (1 + K). N=2, K=2 gives 7."
+          "Hold one battlefield through your Beginning Phase with N Ahri and K Blue Sentinel present. Presence is the whole condition (383.4.d.2.a) — the copies need not be ready, and units that entered exhausted still count.",
+          "Points per Hold: 1 + N x (1 + K). The 1 is the Score itself, capped once per battlefield per turn by 470; the rest are ability Gains that 470 does not touch (R2 = A) and that Blue Sentinel multiplies (R1 = A). 103.2.b caps both at 3 copies, so the reachable values are 2,3,4,5 / 3,5,7,9 / 4,7,10,13. N=3, K=2 gives 10; the cheapest board that reaches 8 at all is five units either way (N=2, K=3 gives 9 for one Energy less).",
+          "Nothing caps the total: 471.1.b restricts the Final Point only for a Conquer, and 471.1.a.1 says points Gained from non-Conquer sources are not beholden to those restrictions. The burst carries a player from 0 past 8 in one Hold.",
+          "Fragile in exactly one way: at N=3, K=2 there is no slack. Losing one Ahri drops it to 7, and so does losing one Sentinel. Five specific units must survive the opponent's whole turn on one battlefield, with Blue Sentinel's [Shield 2] the only protection either card brings. Total cost 23 Energy + 5 Power, necessarily spread over several turns."
         ]
       },
       "steps": [
-        "Establish and keep control of a battlefield with N copies of Ahri, Alluring and K copies of Blue Sentinel present.",
-        "At your Beginning Phase you Hold: score 1 (rule 470 cap) and each Ahri's hold trigger fires 1 + K times."
+        "Establish control of a battlefield and assemble 3 Ahri, Alluring and 2 Blue Sentinel there. 23 Energy and 5 Power in total, so this takes several turns and the opponent sees it coming.",
+        "Keep control through the opponent's turn. Blue Sentinel's [Shield 2] gives +2 Might while defending; nothing else here protects the board.",
+        "Your Beginning Phase: you Hold (469.2). Score 1 point — 470 caps that at one per battlefield per turn.",
+        "Each of the 3 Ahri triggers, and Blue Sentinel makes every hold effect fire 1 + K = 3 times: 9 ability-granted points on top of the Score. Total 10, past the Victory Score of 8."
       ],
       "terminatesIn": "burst of ability points in one Hold",
       "sources": [
@@ -328,10 +332,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk, 2026-09-04 — full pass against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-04-ahri-blue-sentinel-hold.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Load-bearing reading: card text (Golden Rule 002) lets Blue Sentinel add trigger instances despite 471.2.c. Pending human review. REFUTE 2026-09-03: SURVIVES."
+      "notes": "Load-bearing readings, both ruled 2026-09-03: R1 = A with stacking lets Blue Sentinel add a trigger instance per copy despite 471.2.c (card text supersedes rules text, Golden Rule 002; 471.2.c caps how often the battlefield triggers, not how many instances one trigger produces), and R2 = A makes Ahri's card-text \"you score 1 point\" an ability Gain under 194.1.c rather than a 469 Score, so 470 does not cap it. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-ahri-blue-sentinel-hold.md), promoted to verified WITH A CORRECTION: the entry asked for 2 Ahri and 2 Blue Sentinel, which its own printed formula resolves to 7 points — one short of the 8 that the BURST class requires, and nobody had checked the number against the class. Ahri raised to 3 for 10 points. 383.4.d.2.c is a bonus the entry never claimed: negating or replacing the Hold point does not stop the Ahri triggers. REFUTE 2026-09-03: SURVIVES."
     },
     {
       "id": "tryndamere-brambleback-conquer",

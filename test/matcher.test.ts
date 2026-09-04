@@ -93,16 +93,16 @@ describe("matcher", () => {
     const deck = loadDeck("Legend\n1 Nine-Tailed Fox\nMain\n1 Ahri, Alluring\n1 Blue Sentinel", cards);
     // Assert on the one line this deck is built around, not on the whole near-miss list —
     // any other Calm/Mind combo that is two cards away is a correct answer too.
-    const r2 = matchDeck(deck, variants, cards, { format: "constructed", maxMissing: 2 });
-    const ahri = r2.almostIncluded.find((h) => h.variant.comboIds.includes("ahri-blue-sentinel-hold"));
+    const r3 = matchDeck(deck, variants, cards, { format: "constructed", maxMissing: 3 });
+    const ahri = r3.almostIncluded.find((h) => h.variant.comboIds.includes("ahri-blue-sentinel-hold"));
     expect(ahri).toBeDefined();
-    expect(ahri!.missingCount).toBe(2); // needs 2 Ahri + 2 Sentinel, has 1 + 1: a multiset shortfall of 2
-    const r1 = matchDeck(deck, variants, cards, { format: "constructed", maxMissing: 1 });
-    expect(ids(r1.almostIncluded)).not.toContain("ahri-blue-sentinel-hold");
+    expect(ahri!.missingCount).toBe(3); // needs 3 Ahri + 2 Sentinel, has 1 + 1: a multiset shortfall of 3
+    const r2 = matchDeck(deck, variants, cards, { format: "constructed", maxMissing: 2 });
+    expect(ids(r2.almostIncluded)).not.toContain("ahri-blue-sentinel-hold");
   });
 
   it("treats alt-art printings as the same card", () => {
-    const deck = loadDeck("Legend\n1 Nine-Tailed Fox\nMain\n2 Ahri, Alluring (OGN-066a)\n2 Blue Sentinel", cards);
+    const deck = loadDeck("Legend\n1 Nine-Tailed Fox\nMain\n3 Ahri, Alluring (OGN-066a)\n2 Blue Sentinel", cards);
     const r = matchDeck(deck, variants, cards, { format: "constructed" });
     expect(ids(r.included)).toEqual(["ahri-blue-sentinel-hold"]);
   });
