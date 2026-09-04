@@ -580,7 +580,7 @@
       "id": "brambleback-trinity-skyfall-conquer",
       "name": "Red Brambleback × Trinity Force × Skyfall of Areion — Conquer burst",
       "class": "BURST",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-029",
@@ -615,7 +615,10 @@
         "notable": [
           "One Brambleback carries all three Trinity Forces and the Skyfall (Might 4 + 6 + 2 = 12); the second Brambleback only needs to be present.",
           "A battlefield you have not scored this turn, and that you can take.",
-          "Points on the Conquer: 1 + T × (1 + K). T=3, K=2 gives 10 from zero. T=3, K=1 gives 7 with a single body."
+          "Points on the Conquer: 1 + T × (1 + K). T=3, K=2 gives 10 from zero. T=3, K=1 gives 7 with a single body.",
+          "The open question this entry carried - whether Skyfall's \"my hold effects\" covers effects GRANTED by another Equipment - is closed by 136.2.d, the same rule that settled Svellsongur. In Effect Text, \"this\" and the gear's own name mean the gear, but \"I\" and \"me\" mean the Top-Most Card (the rules' examples are Guardian Angel and Brutalizer). \"My\" is the possessive of \"me\", so Skyfall reads as THE UNIT'S hold effects; and Trinity Force's \"When I hold\" is appended to that same unit by 136.2.c/718.3 with its \"I\" resolving the same way. The granted ability is one of the unit's hold effects, so Skyfall converts it.",
+          "Conquering from 0 is safe: 471.1.b's Final Point restriction only bites within 1 of the Victory Score, and 471.1.a.1 exempts non-Conquer Gains anyway. The conquer path mirrors the hold path exactly - 383.4.c.2.a puts each present unit's conquer ability on the chain once the player gains control and gains a point from Conquering.",
+          "466.5 grants Establishing Control only to a player who \"didn't already control this Battlefield\", and 466.5.d makes it a Conquer when they have not yet scored it this turn - so the target must be a battlefield you do not already hold."
         ]
       },
       "steps": [
@@ -636,10 +639,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk, 2026-09-04 — full pass against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-04-skyfall-conquer-pair.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Dominates the Tryndamere line: no excess-damage clause and fewer bodies. Open question the hunt flagged: whether Skyfall's 'my hold effects' covers effects GRANTED by other Equipment — they are appended to the unit's rules text (718.3) and worded 'When I hold', so yes on the plain reading. Rules check done by hand, not taken from the agent: 471.2.c says score effects 'cannot be triggered more than once per turn for a player'. Brambleback/Sentinel do not create a second Score — they make the effects of the single Score trigger extra times, so on this reading there is no conflict with 471.2.c and the Golden Rule (002) does not need to be invoked. That reading is arguable and is why this stays a candidate. REFUTE 2026-09-03: SURVIVES."
+      "notes": "Dominates the Tryndamere line: no excess-damage clause and fewer bodies. Open question the hunt flagged: whether Skyfall's 'my hold effects' covers effects GRANTED by other Equipment — they are appended to the unit's rules text (718.3) and worded 'When I hold', so yes on the plain reading. Rules check done by hand, not taken from the agent: 471.2.c says score effects 'cannot be triggered more than once per turn for a player'. Brambleback/Sentinel do not create a second Score — they make the effects of the single Score trigger extra times, so on this reading there is no conflict with 471.2.c and the Golden Rule (002) does not need to be invoked. That reading is arguable and is why this stays a candidate. REFUTE 2026-09-03: SURVIVES. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-skyfall-conquer-pair.md), promoted to verified. The 471.2.c caveat that kept this a candidate is R1, which the user ruled A on 2026-09-03. Its advantage over the Tryndamere line is real and now sharper: no excess-damage clause, so it does not depend on R28."
     },
     {
       "id": "svellsongur-copy-hold",
@@ -708,7 +716,7 @@
       "id": "skyfall-ahri-conquer",
       "name": "Skyfall Ahri — Hold points paid out on Conquer",
       "class": "BURST",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "OGN-066",
@@ -743,7 +751,9 @@
         "notable": [
           "Each Ahri wears a Skyfall of Areion (two Equipment on one body is legal, 434.1.b.1).",
           "The Bramblebacks are present at the battlefield being conquered, which you have not scored this turn.",
-          "Points from one Conquer: 1 + A x (1 + K), A = Ahri wearing Skyfall, K = Bramblebacks. A=3, K=2 gives 10 from zero. A=1, K=1 gives 3."
+          "Points from one Conquer: 1 + A x (1 + K), A = Ahri wearing Skyfall, K = Bramblebacks. A=3, K=2 gives 10 from zero. A=1, K=1 gives 3.",
+          "Simpler than the Trinity Force version: here Skyfall converts each Ahri's OWN printed hold effect, so the 136.2.d reading needed for granted text is not even required. R2 = A keeps Ahri's card-text point outside 470's cap and R1 = A supplies the multiplier; A=3, K=2 gives 10 as declared.",
+          "The dearest of the conquer boards - three Ahri at 5 Energy, three Skyfalls at 3 plus a Fury Power each to equip, two Bramblebacks at 4 - and it buys resilience, because the points sit on three bodies instead of one loaded carrier."
         ]
       },
       "steps": [
@@ -764,10 +774,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk, 2026-09-04 — full pass against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-04-skyfall-conquer-pair.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Fury/Calm had no line at all before this. Legend verified by hand against data/corpus_flat.txt: VEN-139 is the only Fury/Calm legend in the pool. Rule 470 caps Scoring (Conquer or Hold, 469); Ahri's points arrive as triggered abilities under 471.2, and 471.1.a.1 exempts non-Conquer sources from the Final Point restriction, so only the base conquer point is at risk of converting to a draw. UNRESOLVED, and it is why this is a candidate: adding SFD-059 Svellsongur would raise the count, but only if Svellsongur copies a unit's CURRENT rules text including appended Effect Text (434.1.c) rather than its printed text. The arithmetic above deliberately assumes the conservative printed-text reading and does not use Svellsongur. REFUTE 2026-09-03: SURVIVES."
+      "notes": "Fury/Calm had no line at all before this. Legend verified by hand against data/corpus_flat.txt: VEN-139 is the only Fury/Calm legend in the pool. Rule 470 caps Scoring (Conquer or Hold, 469); Ahri's points arrive as triggered abilities under 471.2, and 471.1.a.1 exempts non-Conquer sources from the Final Point restriction, so only the base conquer point is at risk of converting to a draw. UNRESOLVED, and it is why this is a candidate: adding SFD-059 Svellsongur would raise the count, but only if Svellsongur copies a unit's CURRENT rules text including appended Effect Text (434.1.c) rather than its printed text. The arithmetic above deliberately assumes the conservative printed-text reading and does not use Svellsongur. REFUTE 2026-09-03: SURVIVES. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-skyfall-conquer-pair.md), promoted to verified. The 471.2.c caveat that kept this a candidate is R1, which the user ruled A on 2026-09-03."
     },
     {
       "id": "svellsongur-ornn-hold",
