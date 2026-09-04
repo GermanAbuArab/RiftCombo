@@ -2693,6 +2693,499 @@
         }
       ],
       "notes": "First entry sourced from the Chinese meta, where the game launched in 2025-08. The article's complaint is about play pattern, not legality: \"players feel facing this deck isn't fun and lacks interactivity\"; it also names Aurora Volibear and Aurora Miss Fortune as the archetype's shells (Volibear's legend Relentless Storm is Fury/Body; Miss Fortune, Captain readies something on her first move). Card text verified against the corpus."
+    },
+    {
+      "id": "jhin-fiora-facebreaker-recall",
+      "name": "Jhin, Murderous Artist recalled by Facebreaker — Fiora readies him for infinite Energy and Recruits",
+      "class": "INFINITE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-022",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "[Ganking]. When I move, [Add] 1 Energy + 1 rainbow. 4 Might: Assault or Trifarian War Camp lifts him to Mighty only while he attacks, so he crosses the line on every move in."
+        },
+        {
+          "card": "SFD-180",
+          "quantity": 1,
+          "role": "ready",
+          "zone": "BASE",
+          "note": "When a unit you control becomes [Mighty], you may pay Order Power to ready it. Jhin's own rainbow from the move pays it."
+        },
+        {
+          "card": "OGN-220",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "[Hidden] 2 Energy: Stun a friendly unit and an enemy unit at the same battlefield. Stunned units deal no combat damage (423.1.b) and stay stunned until the end-of-turn cleanup (423.1.a.2), so one Facebreaker lasts the whole loop."
+        },
+        {
+          "card": "SFD-009",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Equipment, [Assault 2]. Any Assault source works: Cleave (OGN-004, Assault 3 this turn), Blood Rush (SFD-003), or fight at Trifarian War Camp (OGN-294, +1 Might to units there) with no Equipment at all."
+        },
+        {
+          "card": "SFD-153",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "[Effect] When I move, play a 1 Might Recruit unit token here. Optional: without it the loop still makes infinite Energy."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "infinite-energy",
+        "infinite-recruits"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Order."
+        ],
+        "notable": [
+          "An enemy unit of 2+ Might sits at a battlefield and the opponent has no reaction to the loop. Jhin ready in base with the Assault source; Fiora in base.",
+          "RULES the loop stands on: the combat cleanup heals all units (466.1.a.1) and recalls the attackers when defenders remain (466.1.a.2), the combat is then No Result (466.3.d); a recall is not a move and does not change the unit's state, so Jhin comes home ready and still stunned (458, 458.1). R13: Assault Might counts as becoming Mighty on each attack."
+        ]
+      },
+      "steps": [
+        "Jhin (with Eye of the Herald and Serrated Dirk) Standard Moves into the enemy battlefield: +1 Energy +1 rainbow, a Recruit appears there. As an attacker he is 6 Might: Fiora, pay the rainbow as Order Power, ready him.",
+        "First pass only: Facebreaker on Jhin and the enemy unit. Neither deals combat damage; the Recruit's 1 damage is healed in the cleanup.",
+        "Combat cleanup: defenders remain, so Jhin and the Recruit are recalled to base — ready, since a recall does not exhaust. No Result.",
+        "Repeat: every pass is +1 Energy and +1 Recruit in base for nothing. Spend the Energy on Azir, Sovereign (Accelerate; when he attacks, move any number of your tokens to that battlefield), on Scrutinizing Sergeant XP, or hold The Grand Plaza with 7+ bodies next turn."
+      ],
+      "terminatesIn": "infinite Energy this turn and unbounded Recruits in base; wins through Azir's token moves, a Grand Plaza hold, or a board the opponent cannot answer",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Reddit r/riftboundtcg — \"Infinites (All Current Ones) - Tokens, Energy, & Power\", badfeelingabout_this, flowcharts + 36 comments",
+          "kind": "article",
+          "url": "https://old.reddit.com/r/riftboundtcg/comments/1ryj4fw/",
+          "date": "2026-03-20"
+        },
+        {
+          "title": "Reddit r/riftboundtcg — \"Rek'Sai (red/yellow) Infinite unleashed!\", Shagric — played out on TCG Arena, 83 comments",
+          "kind": "article",
+          "url": "https://old.reddit.com/r/riftboundtcg/comments/1s2defo/",
+          "date": "2026-03-24"
+        },
+        {
+          "title": "Reddit r/riftboundtcg — \"$20 Dollar Infinite Recruit Decklist - Rek'Sai\", sahkuh",
+          "kind": "article",
+          "url": "https://old.reddit.com/r/riftboundtcg/comments/1tlk9n3/",
+          "date": "2026-05-23"
+        }
+      ],
+      "notes": "The infinite cousin of fiora-vault-breaker-jhin: the stun turns every attack into a No Result recall instead of a conquer, so Jhin never leaves the loop. Three-card floor: Jhin + Fiora + Facebreaker at Trifarian War Camp is infinite Energy with no Equipment. Community corrections already folded in: the recall is not a move, so it is not infinite Power (+1 −1 per pass); and the No Result combat is not a combat win, so a Draven opponent does not draw and cannot be decked this way (Unleashed rules clarification quoted in the 2026-05-23 thread). Card text verified against the corpus; rules quoted from Core Rules 2026-07-16."
+    },
+    {
+      "id": "garen-fiora-malzahar-facebreaker-recruits",
+      "name": "Garen, Commander and a buffed Malzahar trade Fiora readies — infinite Recruits without Stealthy Pursuer",
+      "class": "INFINITE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "OGS-013",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "6 Energy + 1 Power, 5 Might. Other friendly units have +1 Might here — his aura follows him between the battlefield and base."
+        },
+        {
+          "card": "SFD-153",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Two Eyes on Garen: two Recruits per move."
+        },
+        {
+          "card": "SFD-180",
+          "quantity": 1,
+          "role": "ready",
+          "zone": "BASE",
+          "note": "When a unit you control becomes [Mighty], you may pay Order Power to ready it. Fires for Garen on the way in and for Malzahar on the way back."
+        },
+        {
+          "card": "OGN-113",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "state": "buffed",
+          "note": "3 Might plus a buff = 4; Garen's aura in base makes him 5 and Mighty. Kill a friendly unit or gear, exhaust: Add 2 rainbow — eats one Recruit per pass and pays both Fiora readies."
+        },
+        {
+          "card": "OGN-095",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "1 Energy Reaction: Give a unit −1 Might this turn, to a minimum of 1. Draw 1. On Garen himself, so that 4 → 5 at Trifarian War Camp is a fresh crossing every pass."
+        },
+        {
+          "card": "OGN-220",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "[Hidden]: Stun a friendly unit and an enemy unit at the same battlefield. Once; stun lasts the turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "infinite-recruits"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order."
+        ],
+        "notable": [
+          "The opponent defends Trifarian War Camp (OGN-294, +1 Might to units there) with a 4+ Might unit. Malzahar enters the loop already buffed (Rally the Troops or any buff). Darius, Executioner in base (+1 Might to other friendly units here) replaces the War Camp: then Garen crosses on the way home instead.",
+          "RULES: recall does not change the unit's state (458); combat cleanup heals and recalls attackers when defenders remain (466.1.a); Malzahar's ability is an Action usable in showdowns. R13: a unit crossing 5 Might through an aura or a battlefield bonus 'becomes Mighty' each time."
+        ]
+      },
+      "steps": [
+        "Stupefy Garen: 4 Might this turn.",
+        "Garen attacks Trifarian War Camp: 5 Might there, Mighty — Fiora, 1 Order Power, ready him. Two Recruits enter with him.",
+        "First pass only: Facebreaker on Garen and the defender.",
+        "In the showdown, Malzahar kills one Recruit: +2 rainbow.",
+        "Cleanup: Garen and the surviving Recruit are recalled to base. Garen's aura lifts the buffed Malzahar to 5 — Fiora, 1 Power, ready him.",
+        "Repeat from the attack: Power in equals Power out, and one Recruit stays behind in base every pass."
+      ],
+      "terminatesIn": "unbounded Recruits in base for zero net resources; the finish is a wide board, Azir's token moves or a Grand Plaza hold",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Reddit r/riftboundtcg — \"Bring this incredible 7 card combo to your next nexus nights\" (Spin 2 Win flowchart), Pandorassong — 333 points, 93 comments, rules objections answered in-thread",
+          "kind": "article",
+          "url": "https://old.reddit.com/r/riftboundtcg/comments/1r7wh0p/",
+          "date": "2026-02-18"
+        }
+      ],
+      "notes": "Posted as a joke, defended seriously: the two objections raised (recall exhausts; Garen's aura is temporary) were answered with rule 458 and with the point that the aura toggling is exactly what produces a crossing per pass. The catalogue's other Recruit loop (pursuer-herald-recruits) is dead with Stealthy Pursuer banned; this one uses no banned card. Nothing here is Energy-positive, so the loop is bodies only. Card text verified against the corpus."
+    },
+    {
+      "id": "jhin-virtuoso-ekko-malzahar-vi",
+      "name": "The Jhinpendium — Virtuoso, Ekko, Malzahar and Vi loop into Renata's points",
+      "class": "INFINITE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-181",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Legend, Fury/Mind. When you play a spell spending 4+ Energy, you may banish it; the fourth banished spell returns all four to the trash, channels 4 runes (ready) and draws 1."
+        },
+        {
+          "card": "OGN-110",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "5 Energy + 1 Mind Power. [Deathknell] — Recycle me to ready your runes: the resource refill of the loop, once per death."
+        },
+        {
+          "card": "OGN-113",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Kill a friendly unit or gear, exhaust: Add 2 rainbow. The Ekko killer and the Power source."
+        },
+        {
+          "card": "UNL-009",
+          "quantity": 1,
+          "role": "ready",
+          "zone": "HAND",
+          "note": "2 Energy, [Repeat] 2 Energy: Ready a unit. Readies Malzahar (and later Renata); Vi recycles it every pass."
+        },
+        {
+          "card": "OGN-036",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "2 Energy + 1 Power. Recycle 1 from your trash: give me +1 Might this turn — no exhaust, no cost. The free recursion that puts Ekko, Comedy and the draw spells back under the empty deck."
+        },
+        {
+          "card": "OGN-083",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "4 Energy: Draw 2 (also a Hidden Reaction). Downstage Dramatics (UNL-061, 2 Energy + Repeat 2) is the interchangeable second copy: both spend 4 Energy for Virtuoso."
+        },
+        {
+          "card": "OGN-114",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "6 Energy + 1 Power: Draw 4. The second cycle's draw spell."
+        },
+        {
+          "card": "SFD-088",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "4 Energy + 4 Mind Power, exhaust: Score 1 point. Readied by Upstage Comedy each pass; her Draw 1 fetches the Comedy Vi just recycled."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "infinite-energy",
+        "infinite-power",
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend is Virtuoso (UNL-181, Fury/Mind)."
+        ],
+        "notable": [
+          "Same skeleton as the verified Lux loop: the Main Deck is empty, so a recycled card is the next draw; Ekko's death readies all twelve runes. What replaces Forge of the Future is Vi's free, unlimited recycle. Vi grows a point of Might per recycle and takes a battlefield for Renata; Brynhir Thundersong (OGN-026, 'opponents can't play cards this turn') protects the turn.",
+          "Primer's own cost lines: the Draw-2 cycle costs 11 Energy + 1 Power (Ekko 5E1P, Comedy 2E, the 4E spell) and gives back 12 readied runes plus Malzahar's 2 rainbow; the Progress Day cycle costs 13 Energy + 2 Power. Every fourth banish channels 4 more runes and draws 1."
+        ]
+      },
+      "steps": [
+        "Play Ekko (5 Energy + 1 Power). Upstage Comedy (2 Energy) readies Malzahar. Malzahar kills Ekko: +2 rainbow; Ekko's Deathknell recycles him and readies your runes.",
+        "Vi: recycle Upstage Comedy from the trash (free, +1 Might). Play Consult the Past or Downstage Dramatics for 4 Energy: draw 2 — Ekko and Comedy come back off the bottom of the empty deck. Banish the spell under Virtuoso.",
+        "Alternate with the Progress Day cycle (draw 4) so the spells rotate; the fourth banish returns them to the trash, channels 4 runes and draws 1. Repeat.",
+        "With Vi at a battlefield and Renata there: Renata scores 1; Comedy readies her; Vi recycles Comedy; Renata's Draw 1 gets it back. Repeat to 8."
+      ],
+      "terminatesIn": "8 points",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Reddit r/riftboundtcg — \"The Jhinpendium - Embrace Jhinfinity: A Primer for the Jhin - Virtuoso Ekko Combo\", Enhame_",
+          "kind": "article",
+          "url": "https://old.reddit.com/r/riftboundtcg/comments/1uv0brd/",
+          "date": "2026-07-13"
+        },
+        {
+          "title": "Google Doc primer \"Jhin-Virtuoso/Ekko Infinite Combo Summary\" (Enhame_), cycles and costs quoted from the plain-text export",
+          "kind": "article",
+          "url": "https://docs.google.com/document/d/187Ri03Zjvu7j6R2daiqPjgqJQK8FH_KLqcUgbuYv-k0/edit",
+          "date": "2026-07-13"
+        },
+        {
+          "title": "riftbound.gg deck \"The Jhinpendium – Infinite Ekko Combo (Primer)\"",
+          "kind": "article",
+          "url": "https://riftbound.gg/decks/the-jhinpendium-infinite-ekko-combo-primer/",
+          "date": "2026-07-13"
+        }
+      ],
+      "notes": "Community-documented as a pre-existing video combo refined into a written primer; the primer author says the video tutorial had mistakes, so walk the primer's lines, not the video. Lens L3 refuted every second-domain Ekko loop it tallied (L3-08) on Power deficit; none of those had Vi's free recycle or Virtuoso's channel, which is exactly what this route adds — the walk should re-tally with them. Aspirant's Climb, which the deck used to run, is banned and is not part of the loop. Card text verified against the corpus."
+    },
+    {
+      "id": "gemdragon-henge-vi-blind-fury",
+      "name": "Gentle Gemdragons, Ancient Henge and Vi — the Dragon loop that decks the opponent with Blind Fury",
+      "class": "INFINITE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-104",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "8 Energy, 8 Might. When you play me or another Dragon, ready up to 2 runes — three of them make every Dragon played worth 6 readied runes."
+        },
+        {
+          "card": "OGN-140",
+          "quantity": 2,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Your Dragons' Energy costs are reduced by 2, to a minimum of 1. Two Heralds: a Gemdragon costs 4, a Drakehound 1."
+        },
+        {
+          "card": "SFD-117",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "2 Energy + 1 Power gear. Exhaust: pay any amount of Energy to Add that much rainbow — the Energy-to-Power conversion the loop 'detonates' once it is flush."
+        },
+        {
+          "card": "OGN-036",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Recycle 1 from your trash: +1 Might this turn — free and unlimited. Puts the killed Dragons and the spent spells back into the deck."
+        },
+        {
+          "card": "UNL-020",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "2 Energy + 1 Power: Deal 2 to a unit; its controller may play this again for 1 rainbow with growing Bonus Damage. Kills your own Dragons so Vi can recycle and you can replay them."
+        },
+        {
+          "card": "OGN-025",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "4 Energy + 2 Power: each opponent reveals the top card of their Main Deck; banish it, then play it ignoring its cost. Every cast banishes one of their cards for good; with infinite resources and Vi recycling the spell, their deck runs out and each failed draw is a Burn Out point for you."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "infinite-energy",
+        "infinite-power",
+        "opponent-burn-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Body (Rengar, Pridestalker UNL-183 in the 12th-place list; Relentless Storm OGN-249 is the other Fury/Body legend)."
+        ],
+        "notable": [
+          "Board state before it starts: three Gemdragons and the cost reducers in play, the deck mostly drawn. Community verdict, quoted: 'It's unironically like a 10-15 card combo and isn't deterministic so you have to manually walk through the different phases of the loop over and over' — the redraw depends on what the deck gives back, so it is a grind, not a shortcut.",
+          "The draw engine that redraws the recycled Dragons is not named in any text source (Kadregrin the Infernal draws per Mighty unit; Eclipse Dragon draws on move with 4 or fewer runes): the walk must pick one and count it."
+        ]
+      },
+      "steps": [
+        "Play a Dragon for its reduced cost: the three Gemdragons ready up to 6 runes. Net Energy positive per Dragon.",
+        "Dancing Grenade a Dragon of yours (replay it for 1 rainbow as the damage grows); Vi recycles the dead Dragon and the Grenade from the trash for free.",
+        "Ancient Henge, once ready: pour the surplus Energy into rainbow Power.",
+        "Redraw, replay, repeat. Then Blind Fury the opponent every pass: their deck is banished a card at a time until every draw Burns Out and hands you a point."
+      ],
+      "terminatesIn": "infinite Energy, Power and Might on a non-deterministic grind; the kill is eight Burn Out points through Blind Fury",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Reddit r/riftboundtcg — \"Explanation for Ancient Henge infinite power combo\", verylaggy — RQ Sydney Round 1 stream, Voli-Dragon vs Irelia",
+          "kind": "article",
+          "url": "https://old.reddit.com/r/riftboundtcg/comments/1tefqto/",
+          "date": "2026-05-16"
+        },
+        {
+          "title": "Reddit r/riftboundtcg — \"The Rengar combo player from RQ Sydney R1 Stream is back with his 12th place Endless Riches Rengar deck!\", Sylencia",
+          "kind": "article",
+          "url": "https://old.reddit.com/r/riftboundtcg/comments/1vro7dd/",
+          "date": "2026-08-18"
+        },
+        {
+          "title": "Turn 'em Sideways!, \"Riftbound's Infinite Combos EXPLAINED\" — chapter 'Rengar/Volibear' 6:40–13:08 (video; transcript not obtainable without a login)",
+          "kind": "article",
+          "url": "https://youtu.be/X-ZZ0KzShFA",
+          "date": "2026-07-02"
+        }
+      ],
+      "notes": "The 'Dragonstorm' infinite that content creators list next to the Lux loop; played on stream and taken to 12th place. Reconstructed from the community's description, not from a written step list — the video is the only full walkthrough and YouTube's bot wall kept it out of reach this session. A Volibear player's own caveat, quoted: with three Gemdragons and the Heralds down 'you win in 100% of scenarios just by playing normally'. Card text verified against the corpus."
+    },
+    {
+      "id": "leblanc-zilean-reflection-doubling",
+      "name": "LeBlanc's Reflections copy Zilean — the clone count doubles on every score",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-199",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Legend, Mind/Order. When you conquer or hold, you may discard 1 and exhaust me to play a ready Reflection unit token there. Then do this: it becomes a copy of another unit there. Give it [Temporary]."
+        },
+        {
+          "card": "UNL-086",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Once each turn, if you would play a token unit while I'm at a battlefield, you may play that token and an additional copy of it instead. Every Zilean copy brings its own once-per-turn."
+        },
+        {
+          "card": "UNL-090",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Your [Temporary] effects at my battlefield don't trigger — the Reflections at her battlefield survive the Beginning Phase."
+        },
+        {
+          "card": "UNL-200",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "3 Energy + 2 Power: Choose a unit. Play a ready Reflection token to your base; it becomes a copy of that unit. Doubled by every Zilean at a battlefield."
+        },
+        {
+          "card": "OGN-243",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Other friendly units have +1 Might here. Copy Darius on the last turn and every clone gains one Might per Darius."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend is Deceiver (UNL-199, Mind/Order)."
+        ],
+        "notable": [
+          "Zilean and LeBlanc, Everywhere at Once at the scored battlefield; one discard per score. With N Zileans there, one Reflection becomes N+1, each a Zilean: the pilot's recursion is 'each time we score, the number of Zileans doubles, then adds 1'.",
+          "Bounded by turns, discards and the once-per-turn on each Zilean, and every clone dies with LeBlanc if she leaves — an exponential engine, not a loop."
+        ]
+      },
+      "steps": [
+        "Score with Zilean and LeBlanc at the battlefield: Deceiver makes a Reflection there; Zilean's replacement makes it two; both become Zilean copies.",
+        "Next score: every Zilean doubles the token again. Mirror Image between scores adds another doubled batch.",
+        "On the closing turn copy Darius, Executioner instead: each Darius gives every other clone +1 Might for the hold or the Grand Plaza count."
+      ],
+      "terminatesIn": "engine — the clone count roughly doubles every score; a real game reached 71 Zileans",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Reddit r/riftboundtcg — \"I hit the ultimate LeBlanc Combo, so I did a bunch of math for fun\", TotallyNotHappy — full decklist and the doubling recursion",
+          "kind": "article",
+          "url": "https://old.reddit.com/r/riftboundtcg/comments/1sv3yjk/",
+          "date": "2026-04-25"
+        }
+      ],
+      "notes": "Third LeBlanc entry: leblanc-temporary-plaza uses Keeper of Masks for the Plaza count; this one multiplies Zilean instead and needs no Plaza. The Rift Herald variant (one Herald into five) is the same engine with a different copy target. Card text verified against the corpus."
+    },
+    {
+      "id": "pack-of-wonders-bewitching-discard",
+      "name": "Pack of Wonders bounces Bewitching Spirit — a discard every turn",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "OGN-181",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "2 Energy gear. Exhaust: Return another friendly gear, unit, or facedown card to its owner's hand."
+        },
+        {
+          "card": "UNL-121",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "3 Energy, 2 Might. When you play me, choose a player. They discard 1."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "strip-opponent-hand"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Chaos."
+        ],
+        "notable": [
+          "3 Energy per discard after the first; each Pack is one bounce per turn, and Bloodharbor Ripper's legend bounce (bloodharbor-bewitching-discard) stacks on top for a second discard."
+        ]
+      },
+      "steps": [
+        "Play Bewitching Spirit: the opponent discards 1.",
+        "Pack of Wonders, exhaust: return the Spirit to hand.",
+        "Next turn (or with a second Pack), replay it. Repeat until the opponent's hand is empty."
+      ],
+      "terminatesIn": "engine — one discard per Pack per turn, no points",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Reddit r/riftboundtcg — \"How do i counter the pack of wonder and bewitching spirit combo\", TNTOM4 — 'you don't get to keep a single card in hand'",
+          "kind": "article",
+          "url": "https://old.reddit.com/r/riftboundtcg/comments/1uj028b/",
+          "date": "2026-06-29"
+        }
+      ],
+      "notes": "Second route for Bewitching Spirit, independent of the Bloodharbor Ripper legend and so open to any Chaos legend (the thread's pilot ran Ezreal). Card text verified against the corpus."
     }
   ]
 }
