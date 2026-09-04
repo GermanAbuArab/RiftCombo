@@ -648,6 +648,132 @@
       "status": "rule-verified",
       "reviewed": "2026-09-04",
       "reviewedCount": 13
+    },
+    {
+      "id": "gardens-of-becoming-xp",
+      "name": "Gardens of Becoming turns idle units into XP to spend",
+      "anchor": "UNL-213",
+      "partner": {
+        "textMatches": "(?:[Ss]pend|pay) \\d+ XP"
+      },
+      "why": "Every unit standing at Gardens of Becoming can exhaust for 1 XP, so costs that would otherwise wait on conquering and holding get paid by units doing nothing else. Two things the list cannot say. The ability is granted to every unit there, and the controller of an ability is the controller of its source (191.4.a), so an opponent's units at that battlefield feed their own XP the same way. And the exhaust is a real cost: a unit that pays it cannot also Standard Move that turn or pay a second exhaust cost (414.3.a, 414.4), though it keeps occupying the battlefield, and Hold asks for Control rather than for readiness (469.2).",
+      "basis": {
+        "rules": [
+          "191.4.a",
+          "414.3.a",
+          "414.4",
+          "469.2",
+          "729",
+          "730.1",
+          "730.2"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-04",
+      "reviewedCount": 12
+    },
+    {
+      "id": "blood-rose-level",
+      "name": "Blood Rose levels your XP thresholds without conquering",
+      "anchor": "UNL-109",
+      "partner": {
+        "textMatches": "\\[Level \\d+\\]"
+      },
+      "why": "Blood Rose turns each unit you play into 1 XP for 1 Energy, so Level abilities — \"While you have N or more XP, this card gains …\" (824.1.b.1) — come on from the curve instead of from winning battlefields. The tension the list cannot show: a Level ability goes Inactive the instant your total falls below N (824.1.d), and Blood Rose's own \"Spend 3 XP, exhaust: Ready a unit\" is one of the things that will drop it.",
+      "basis": {
+        "rules": [
+          "730.1",
+          "730.2",
+          "824.1.b.1",
+          "824.1.c",
+          "824.1.d"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-04",
+      "reviewedCount": 15
+    },
+    {
+      "id": "sanction-empower-unit",
+      "name": "Sanction turns on a unit's Empowered half without paying for it",
+      "anchor": "VEN-035",
+      "partner": {
+        "textMatches": "\\[Empowered\\]",
+        "types": [
+          "unit"
+        ],
+        "excludes": [
+          {
+            "card": "VEN-037",
+            "why": "reads an ENEMY gear's Empowered state to decide whether to disempower or kill it; nothing on Tomb-Raider Barbara cares about being Empowered herself."
+          }
+        ]
+      },
+      "why": "[Empower] is short for \"[Cost]: Empower this. Play only if not Empowered\" (827.1.c.1), so a unit's Empowered half normally has a printed price. Sanction pays none of it, and does it at Reaction speed. It lasts one turn — Sanction disempowers the unit at end of turn (442.1) — so a static \"[Empowered][>] I have +N Might\" is a one-turn buff, while a \"When I become [Empowered]\" trigger has already fired and keeps what it did, and can be fired again next turn once the state has lapsed. One card in the list has a depth the rule does not settle: Kayle, Justified may be Empowered up to three times (441.1.c.1), and whether the end-of-turn disempower strips one instance or all of them is not written anywhere.",
+      "basis": {
+        "rules": [
+          "441.1",
+          "441.1.a",
+          "441.1.b",
+          "442.1",
+          "827.1.c.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-04",
+      "reviewedCount": 31
+    },
+    {
+      "id": "hextech-formula-empower-gear",
+      "name": "Hextech Formula empowers a gear for an exhaust instead of its cost",
+      "anchor": "VEN-062",
+      "partner": {
+        "textMatches": "\\[Empowered\\]",
+        "types": [
+          "gear"
+        ]
+      },
+      "why": "Each of these gear has a stronger printed mode while it is Empowered, and its own [Empower] ability charges for that — Helm of Suppression asks four Energy and a Calm Power (827.1.c.1). Hextech Formula empowers another gear for an exhaust instead, and Empowered is a state that stays until something disempowers it (441.1.a, 442.1), so the cost is paid once and kept. Hextech Formula enters exhausted, so the first empower comes the turn after it lands (414.4).",
+      "basis": {
+        "rules": [
+          "414.4",
+          "441.1",
+          "441.1.a",
+          "442.1",
+          "827.1.c.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-04",
+      "reviewedCount": 4
+    },
+    {
+      "id": "stargazer-flow-spells",
+      "name": "Stargazer discounts every spell you replay out of the trash",
+      "anchor": "VEN-098",
+      "partner": {
+        "textMatches": "\\[Flow\\]",
+        "types": [
+          "spell"
+        ]
+      },
+      "why": "Flow is short for \"You may play this from your trash for its flow cost. Then banish it\" (829.1.b), and that cost replaces the base cost at finalization (829.1.c.1). Stargazer takes two Energy off it, to a minimum of one, so the second use of a spell you have already spent is the cheap one. Two limits the list cannot show: the discount is Energy only, and several Flow costs also ask for Power, which Stargazer does not touch; and the spell is banished after the replay (829.1.b.1), so this buys one extra use per copy, not a loop.",
+      "basis": {
+        "rules": [
+          "829.1.a",
+          "829.1.b",
+          "829.1.b.1",
+          "829.1.c.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-04",
+      "reviewedCount": 15
     }
   ]
 }
