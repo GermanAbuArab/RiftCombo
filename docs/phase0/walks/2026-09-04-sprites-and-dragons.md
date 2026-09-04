@@ -58,3 +58,29 @@ that much rainbow."
   top card feeds their own recovery.
 - **R15** (Dancing Grenade's escalating counter across recasts) appears only inside the already-refuted
   recursion, so the entry's claimed output does not touch it.
+
+---
+
+## 3. `ruination-sprite-burst-clear` — **HOLDS**, and it never needed R7
+
+**UNL-180 The Ruination** (Spell, Order, **E9 P3**): "Kill all units."
+**UNL-069 Sprite Burst** (Spell, Mind, **E5**, no Power): "Play **two ready** 3 Might Sprite unit tokens
+with `[Temporary]`."
+
+The entry was carrying the loop draw-budget caveat (R7) as a blocker. It does not apply to either half of
+what the entry actually claims:
+
+- **The Ruination is a one-shot.** Nine Energy under an infinite-Energy engine is free, and its 3 Power is
+  three rune recycles out of a 12-rune board (161.2.b, 164.2.b). Cast once, it never rides the loop, so it
+  consumes **no** Forge recycle slot and needs no extra draw. The recycle budget only binds cards that
+  must come back through the deck **every pass**.
+- **Sprite Burst at 5 Energy costs no Power at all**, and three copies held in hand are six ready Sprites
+  with no looping. R7 would only bite the version that loops a single copy, which is an optimisation, not
+  the claim.
+
+The rest checks out as the REFUTE left it: the Sprites enter **ready**, so after the wipe they can
+Standard-Move into two emptied battlefields and Establish Control for **2 Conquer points** the same turn
+(470 allows one Score per battlefield per turn). They are `[Temporary]`, so 816.1.b kills them before the
+next Scoring Step — Conquer yes, Hold never — which is why the entry says to put non-Temporary bodies
+there for the Holds. And The Ruination kills your own units too, Renata included; under the loop she is
+replayed from hand.
