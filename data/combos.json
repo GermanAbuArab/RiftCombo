@@ -2774,7 +2774,7 @@
       "id": "jhin-fiora-facebreaker-recall",
       "name": "Jhin, Murderous Artist recalled by Facebreaker — Fiora readies him for infinite Energy and Recruits",
       "class": "INFINITE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-022",
@@ -2823,7 +2823,8 @@
         ],
         "notable": [
           "An enemy unit of 2+ Might defends a battlefield the opponent already controls, and the total Might of enemy units there that Facebreaker does not stun is less than Jhin's attacking Might. The first matters because after the recall the defender is the only player with units at the battlefield, and 466.5.d turns Establishing Control into a Conquer — one free point for the opponent if the battlefield was not already theirs. The second matters because Facebreaker stuns exactly one enemy unit and damage kills before the cleanup heals in 3c. Jhin ready in base with the Assault source; Fiora in base.",
-          "RULES the loop stands on: the combat cleanup heals all units (466.1.a.1) and recalls the attackers when defenders remain (466.1.a.2), leaving No Result (466.3.d) with no re-staged combat because only one player has units left (466.3.d.1). A recall is explicitly not a move — \"Recalls are not Moves… They do not cause Triggered Abilities to trigger that are triggered by Move actions\" (456, 456.1) — so Jhin does not re-trigger on the way home, and 458.1 keeps him ready and stunned. The stun lasts the whole turn: it is cleared only in the end-of-turn cleanup (423.1.a.2). The defender cannot escape: a Standard Move happens only in its controller's own Main Phase (144.1.a) and never during a Showdown or Combat (144.1.c). R13 is near-literal here: 709 defines \"becomes Mighty\" as the moment Might crosses from below 5 to 5+, and Assault switches on with the Attacker designation (464.2.c) and off at the end of combat (466.7.a), so the crossing is fresh every pass."
+          "RULES the loop stands on: the combat cleanup heals all units (466.1.a.1) and recalls the attackers when defenders remain (466.1.a.2), leaving No Result (466.3.d) with no re-staged combat because only one player has units left (466.3.d.1). A recall is explicitly not a move — \"Recalls are not Moves… They do not cause Triggered Abilities to trigger that are triggered by Move actions\" (456, 456.1) — so Jhin does not re-trigger on the way home, and 458.1 keeps him ready and stunned. The stun lasts the whole turn: it is cleared only in the end-of-turn cleanup (423.1.a.2). The defender cannot escape: a Standard Move happens only in its controller's own Main Phase (144.1.a) and never during a Showdown or Combat (144.1.c). R13 is near-literal here: 709 defines \"becomes Mighty\" as the moment Might crosses from below 5 to 5+, and Assault switches on with the Attacker designation (464.2.c) and off at the end of combat (466.7.a), so the crossing is fresh every pass.",
+          "Not protected. Jhin has [Deflect] (opponents pay a rainbow to choose him with a spell or ability) but Fiora has nothing, and every pass opens a Showdown in which the opponent holds priority. Killing Fiora ends the loop. This is an interaction risk, not a rules break."
         ]
       },
       "steps": [
@@ -2857,9 +2858,14 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk, 2026-09-04 — full pass against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-04-jhin-fiora-facebreaker-recall.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
-      "notes": "The infinite cousin of fiora-vault-breaker-jhin: the stun turns every attack into a No Result recall instead of a conquer, so Jhin never leaves the loop. Three-card floor: Jhin + Fiora + Facebreaker at Trifarian War Camp is infinite Energy with no Equipment — but only in Match, where you pick which of your three battlefields is used (486.5); in Duel it is random (485.5). In that build Fiora's trigger and Jhin's Add come off the same move, so put them on the chain in the order that resolves the Add first. Community corrections already folded in: the recall is not a move, so it is not infinite Power (+1 −1 per pass); and the No Result combat is not a combat win, so a Draven opponent does not draw and cannot be decked this way (Unleashed rules clarification quoted in the 2026-05-23 thread). Card text verified against the corpus; rules quoted from Core Rules 2026-07-16. REFUTE 2 (2026-09-03): SURVIVES — +1 Energy, ±0 Power, +1 Recruit per pass, unbounded. Two preconditions added: the battlefield must already be the opponent's (466.5.d) and no un-stunned defender may out-damage Jhin before the heal."
+      "notes": "The infinite cousin of fiora-vault-breaker-jhin: the stun turns every attack into a No Result recall instead of a conquer, so Jhin never leaves the loop. Three-card floor: Jhin + Fiora + Facebreaker at Trifarian War Camp is infinite Energy with no Equipment — but only in Match, where you pick which of your three battlefields is used (486.5); in Duel it is random (485.5). In that build Fiora's trigger and Jhin's Add come off the same move, so put them on the chain in the order that resolves the Add first. Community corrections already folded in: the recall is not a move, so it is not infinite Power (+1 −1 per pass); and the No Result combat is not a combat win, so a Draven opponent does not draw and cannot be decked this way (Unleashed rules clarification quoted in the 2026-05-23 thread). Card text verified against the corpus; rules quoted from Core Rules 2026-07-16. REFUTE 2 (2026-09-03): SURVIVES — +1 Energy, ±0 Power, +1 Recruit per pass, unbounded. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-jhin-fiora-facebreaker-recall.md), promoted to verified: every step re-read from the Core Rules, tally confirmed, nothing decrements. The load-bearing facts are that a Standard Move costs exhausting the unit (144.2) which is exactly what Fiora refunds, that Stun is a binary status and not an exhaust so a stunned Jhin still moves (423.1), that it lasts until the end-of-turn cleanup so one Facebreaker covers every pass (423.1.a.2), and that the recall is not a move (456.1) so the trip home adds nothing. Two preconditions: the battlefield must already be the opponent's, which makes 466.5's \"if they didn't already control this Battlefield\" clause inert so 466.5.d never conquers; and the un-stunned enemy Might there must stay under Jhin's attacking 6, or 465.2.c.3 lets the opponent assign him lethal. The walk depends on no unruled reading: R13 is settled by 807.1.d.1 + 466.7.a + 709, which is rules text, not interpretation."
     },
     {
       "id": "garen-fiora-malzahar-facebreaker-recruits",
