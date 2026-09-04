@@ -12,7 +12,8 @@
     "build:web": "node scripts/build-web.mjs",
     "dev": "node scripts/build-web.mjs && vercel dev",
     "deploy": "vercel deploy --prod",
-    "deploy:preview": "vercel deploy"
+    "deploy:preview": "vercel deploy",
+    "synergies": "tsx src/cli-synergies.ts"
   },
   "license": "MIT",
   "dependencies": {

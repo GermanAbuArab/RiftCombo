@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { CardIndex } from "./cards.js";
-import type { Card, Combo, Feature, LegalityEntry } from "./types.js";
+import type { Card, Combo, Feature, LegalityEntry, Synergy } from "./types.js";
 
 const DATA = join(dirname(fileURLToPath(import.meta.url)), "..", "data");
 const read = <T>(file: string): T => JSON.parse(readFileSync(join(DATA, file), "utf8")) as T;
@@ -19,4 +19,8 @@ export function loadCombos(): { combos: Combo[]; features: Feature[] } {
     combos: read<{ combos: Combo[] }>("combos.json").combos,
     features: read<{ features: Feature[] }>("features.json").features,
   };
+}
+
+export function loadSynergies(): Synergy[] {
+  return read<{ synergies: Synergy[] }>("synergies.json").synergies;
 }

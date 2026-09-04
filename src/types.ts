@@ -124,3 +124,52 @@ export interface Deck {
   sideboard: Record<string, number>;
   unresolved: { raw: string; count: number }[];
 }
+
+export type SynergyStatus = "rule-verified";
+
+/**
+ * Predicate over the card pool. Every field is required to hold at once. `textMatches` runs
+ * against the card's rules text and, for Equipment, the text it grants the unit it is attached to —
+ * that second half is where Trinity Force keeps "When I hold, score 1 point".
+ */
+export interface SynergyPartner {
+  /** JavaScript regular expression source, applied to text + Equipment effect text. */
+  textMatches: string;
+  /** Regular expression that disqualifies a card `textMatches` caught. */
+  textExcludes?: string;
+  /** Card types a partner may have. Omitted means any type. */
+  types?: CardType[];
+  /** Equipment only: the Might it grants on attaching must be at least this. */
+  minMightBonus?: number;
+  /** Base codes read out of the match list by hand, each with the reason it does not belong. */
+  excludes?: { card: string; why: string }[];
+}
+
+export interface SynergyBasis {
+  /** Rules readings from issue #11 this rule leans on, e.g. "R1". */
+  readings?: string[];
+  /** Core Rules paragraph numbers, checked against data/Riftbound-Core-Rules-2026-07-16.txt. */
+  rules: string[];
+  /** Ids in combos.json this pattern was extracted from. Empty means it stands on the rules alone. */
+  combos: string[];
+}
+
+/**
+ * AUTHORED RULE, TEXT-MATCHED INSTANCES — a weaker guarantee than a Combo and it must be shown as
+ * one. The rule itself was walked by hand once against card text and the Core Rules, exactly like a
+ * combo. The cards it pairs the anchor with come from running `partner` over the pool: nobody
+ * walked those pairs one by one. Never merge these into combos.json.
+ */
+export interface Synergy {
+  id: string;
+  name: string;
+  /** Base code of the one card that anchors the pattern. */
+  anchor: string;
+  partner: SynergyPartner;
+  /** What the pair does, in one sentence. */
+  why: string;
+  basis: SynergyBasis;
+  status: SynergyStatus;
+  /** Date somebody on this project read this rule's whole match list, card by card. */
+  reviewed: string;
+}
