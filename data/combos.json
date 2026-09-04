@@ -352,7 +352,7 @@
       "id": "tryndamere-brambleback-conquer",
       "name": "Tryndamere, Barbarian × Red Brambleback — multiplied Conquer points",
       "class": "BURST",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "OGN-034",
@@ -383,8 +383,10 @@
         ]
       },
       "steps": [
-        "Standard-Move Tryndamere and K Red Bramblebacks from base to an enemy-held battlefield; win the combat with 5+ excess damage.",
-        "Conquer: score 1 (rule 470) and Tryndamere's conquer trigger fires 1 + K times."
+        "Standard-Move two Tryndamere and three Red Bramblebacks from base to an enemy-held battlefield. Defenders must be present: 'When I conquer AFTER AN ATTACK' needs the Attacker designation, which exists only inside a Combat (383.4.e), so an uncontested walk-in conquers but fires nothing.",
+        "Win the combat. The board attacks with 2x8 + 3x4 = 28 Might, and 465.2.c.4 forbids assigning a unit more damage than the minimum needed to kill it, so any garrison under 23 total Might leaves the 5 or more excess the trigger asks for (R28 = A).",
+        "Conquer: 471.1 gains the Score's own point first, then 471.2 triggers the Score abilities at that battlefield. Each Brambleback adds one trigger instance (R1 = A with stacking), so each Tryndamere fires 1 + 3 times.",
+        "1 + T x (1 + K) with T=2, K=3 = 9 points. The eight ability points are Gains by ability (R2 = A), so 470's once-per-battlefield cap does not touch them and 471.1.a.1 exempts them from the Final Point restriction."
       ],
       "terminatesIn": "burst of ability points in one Conquer",
       "sources": [
@@ -397,10 +399,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "REFUTE 2026-09-03: WOUNDED — with one Tryndamere and two Bramblebacks the Conquer is 1 + 1×(1+2) = 4 points, a strong Conquer, not a burst to 8; it reaches 8 only with two Tryndameres (T=2, K=3 = 9). The trigger reads 'When I conquer after an attack, if you assigned 5 or more excess damage', so defenders must be present — an uncontested walk-in is a Conquer but not an attack. AUDIT 2026-09-04: quantities corrected to the board REFUTE had already identified (T=2, K=3 = 9). Kept candidate: unlike the hold lines, this one leans on R28, the undefined term \"excess damage\"."
+      "notes": "AUDIT 2026-09-04: quantities corrected to the board REFUTE had already identified (T=2, K=3 = 9); the old T=1, K=2 board its own REFUTE note flagged is worth 4. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md) once R28 was ruled A: 'excess damage' is attacking Might that never got assigned, because 465.2.c.4 caps assignment at lethal and Sivir's 'deal that much' shows it is a computable quantity. Stands on R1 = A, R2 = A and R28 = A. Fragility: all five bodies must survive the combat to conquer, and the Bramblebacks are M4 into whatever the garrison hits back with."
     },
     {
       "id": "grand-plaza-recruit-vanguard",
@@ -656,7 +663,7 @@
       "id": "svellsongur-copy-hold",
       "name": "Svellsongur copies — multiplied Hold points",
       "class": "BURST",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "SFD-059",
@@ -695,9 +702,10 @@
         ]
       },
       "steps": [
-        "Attach one Svellsongur to Ahri (it copies 'When I hold, you score 1 point', giving a second point source on that body).",
-        "Attach two Svellsongur to Blue Sentinel (each copies 'Your hold effects for holding here trigger an additional time').",
-        "Hold the battlefield at your Beginning Phase: score 1, then the two hold-point sources each fire 1 + 3 times."
+        "Attach one Svellsongur to Ahri. Its effect text copies 'When I hold, you score 1 point', and 136.2.d makes that 'I' mean Ahri, so the body carries two point sources: N = 2.",
+        "Attach Svellsongur B to Blue Sentinel: it copies 'Your hold effects for holding here trigger an additional time', taking the Sentinel to 2 extra triggers.",
+        "Attach Svellsongur C to the same Sentinel. Under R6 = A it copies the Sentinel's CURRENT text, which already carries B's copy, so it adds two more: K = 4.",
+        "Hold the battlefield at your Beginning Phase: 1 + N x (1 + K) = 1 + 2 x 5 = 11 points."
       ],
       "terminatesIn": "burst of ability points in one Hold",
       "sources": [
@@ -710,10 +718,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Needs a human ruling before it moves off candidate, but the 2026-09-04 hand check below found the rules chain far stronger than this entry originally claimed. Rules check done by hand, not taken from the agent: 471.2.c says score effects 'cannot be triggered more than once per turn for a player'. Brambleback/Sentinel do not create a second Score — they make the effects of the single Score trigger extra times, so on this reading there is no conflict with 471.2.c and the Golden Rule (002) does not need to be invoked. That reading is arguable and is why this stays a candidate. REFUTE 2026-09-03: SURVIVES — 9 under the printed-text reading of Svellsongur (R6); 11 under the current-text reading, because the second Svellsongur on the Sentinel also copies the first copy (K=4). 9 is the floor. HAND-CHECKED 2026-09-04, the chain: 718.2 makes an attached card’s PRINTED Rules Text Inactive, but 725.1 carves out exactly the case Svellsongur is — \"a Passive or Replacement ability that applies during the process of Attaching … exists and can be processed as it Attaches\", and Svellsongur reads \"As this is attached to a unit, copy …\". The copy lands in its EFFECT text, which 136.2.b/136.2.c and 718.3 keep active and append to the Rules Text of the Top-Most Card. And 136.2.d settles who \"I\" is: in Effect Text, \"this\" and the gear’s own name mean the attached gear, but \"I\"/\"me\" mean the Top-Most Card — both worked examples in the rules say so (Guardian Angel: \"If I would die, kill Guardian Angel instead\"; Brutalizer: \"If this was attached to me this turn, I have an additional +2 Might\"). So Ahri’s copied \"When I hold\" resolves to Ahri, a Unit, and triggers under 383.4.d.2.a. What stays open is R6 — whether the copy is a snapshot taken at attach or tracks the unit’s current text — which is a magnitude question, not an existence one."
+      "notes": "HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md). The existence chain: 718.2 deactivates only PRINTED Rules Text, but 725.1 carves out exactly an attach-time passive and Svellsongur reads 'As this is attached to a unit, copy ...'; 136.2.b/136.2.c/718.3 keep the Effect Text active and append it to the Top-Most Card; 136.2.d makes 'I' the unit, with Guardian Angel and Brutalizer as the rules' own worked examples. R6 = A settles the magnitude: the copy tracks current text, so Svellsongur C on the Sentinel copies B's copy too and the board is worth 11, not the 9 a snapshot reading would give. R1 = A keeps the Sentinel adding trigger instances to the single Score rather than creating a second one, so 471.2.c is not contradicted; R2 = A keeps 470 off the ability points, and 471.1.a.1 keeps the Final Point restriction off them."
     },
     {
       "id": "skyfall-ahri-conquer",
@@ -791,7 +804,7 @@
       "id": "svellsongur-ornn-hold",
       "name": "Svellsongur on Ornn, Blacksmith — gear tutor twice per Hold",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "SFD-058",
@@ -837,16 +850,21 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Two cards, both Calm, so it fits gear/Ornn decks that otherwise contain no combo at all. Svellsongur copies the equipped unit's PRINTED text into its own effect text (SFD-059). That is the conservative reading and the only one this entry needs; the open question about copying appended Effect Text does not apply here. Confidence high on the mechanism per the lens; still a candidate because no human has walked 718.2 vs 725.1 for Svellsongur. REFUTE 2026-09-03: SURVIVES. REFUTE 2026-09-03: looking never Burns Out (431.1.c); you need at least 8 cards in the deck to see 8 distinct."
+      "notes": "Two cards, both Calm, so it fits gear/Ornn decks that otherwise contain no combo at all. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md): the 718.2 vs 725.1 chain for Svellsongur is walked there, which was this entry's only blocker. It needs no ruling on R6, because one Svellsongur on one unit gives the same number under the snapshot and the current-text readings. The copied 'when you play me' never re-fires - nothing plays an Equipment's effect text. Looking never Burns Out (431.1.c); a thin deck just shows fewer than 4."
     },
     {
       "id": "guardian-passage-svellsongur",
       "name": "Svellsongur on Guardian of the Passage — two returns from trash per Hold",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "SFD-035",
@@ -890,10 +908,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Svellsongur copies the equipped unit's PRINTED text into its own effect text (SFD-059). That is the conservative reading and the only one this entry needs; the open question about copying appended Effect Text does not apply here. REFUTE 2026-09-03: SURVIVES."
+      "notes": "HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md): the 718.2 vs 725.1 chain for Svellsongur is walked there, which was this entry's only blocker. It needs no ruling on R6, because one Svellsongur on one unit gives the same number under the snapshot and the current-text readings. Two returns from the trash per Hold, both cards Calm."
     },
     {
       "id": "world-atlas-sentinel-gold",
@@ -1909,7 +1932,7 @@
       "id": "leblanc-temporary-plaza",
       "name": "LeBlanc keeps Temporary bodies alive — The Grand Plaza with Keeper of Masks",
       "class": "ALT_WIN",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-090",
@@ -1943,7 +1966,9 @@
         ],
         "notable": [
           "You control The Grand Plaza (random 1 of 3 in Duel, chosen in Match) with LeBlanc on it.",
-          "Three Keepers played to the Plaza = 9 Temporary units + LeBlanc = 10. Survive one opponent turn: any 1 damage kills a 1-Might copy, and removing LeBlanc lets every Temporary die at your Beginning Phase."
+          "355.2.a makes a battlefield you control a default play location for units, so all three Keepers go straight to the Plaza and their Reflections appear 'here'. [Ambush] (822.1.b) is only needed for battlefields you do NOT control.",
+          "811.1.b caps hidden cards at one per battlefield, so exactly one Keeper is free; the other two cost 2 Energy each.",
+          "Might is not a copyable trait (477.1.b.1.a), so the six Reflections stay at the token's printed 0 Might. They do not die of it (142.4: a 0 Might unit still needs 1 damage marked), but any single point of damage removes one, and killing LeBlanc un-suppresses every [Temporary] at once. Survive one opponent turn, or close the window with Time Warp."
         ]
       },
       "steps": [
@@ -1963,10 +1988,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "What is new versus the Recruit the Vanguard line: the cheapest bodies in Mind are Temporary and normally never survive to a Hold. Sprite Burst / Sprite Call (3-Might Temporary Sprites) are fatter optional bodies; Zilean at the Plaza adds one token per play. Card text verified by hand. REFUTE 2026-09-03: SURVIVES. REFUTE 2026-09-03: Temporary is a triggered-ability keyword (816.1), so LeBlanc's text suppresses the kill on the plain reading (R10). Keeper plays its copies 'here', so the Plaza must be yours first. One 7-Might attacker or one kill on LeBlanc breaks it; Time Warp closes the window."
+      "notes": "What is new versus the Recruit the Vanguard line: the cheapest bodies in Mind are [Temporary] and normally never survive to a Hold. Sprite Burst / Sprite Call (3 Might Temporary Sprites) are fatter optional bodies; Zilean at the Plaza adds one token per play. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md). Stands on R10 = A, ruled the same day: 816.1 makes [Temporary] a Triggered Ability keyword and 383 makes Triggered Abilities effects, so LeBlanc's \"Your [Temporary] effects at my battlefield don't trigger\" reaches it. Count is 3 Keepers + 6 Reflections + LeBlanc = 10 units against a bar of 7, and UNL-T06's \"I don't get that card's play effects\" stops the copies from re-firing Keeper's play trigger."
     },
     {
       "id": "jayce-mesmerize-renata",
