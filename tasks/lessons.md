@@ -31,3 +31,15 @@
 Eight agents wrote `chunk*.jsonl`; four omitted a trailing newline. Per-file counts summed to **805**, but `cat` yielded **802** — three records fused at chunk boundaries. Fused lines are invalid JSON and a lenient loader (`except JSONDecodeError: pass`) drops them **silently**.
 
 **Rule:** normalize trailing newlines before merging, and verify `sum(per-file) == count(merged)`. Never let a parse-error handler swallow records without counting them.
+
+## 2026-09-04 — A loop is not bounded by the 3-copy limit if it can recycle
+
+**What happened.** Walking `jayce-mesmerize-renata` I saw that its bounce spell goes to the trash and that `103.2.b` caps a Main Deck at 3 copies of a name. I concluded the loop — and, worse, the already-**verified** `renata-mastermind-points` — was overclaimed as INFINITE, and opened issue #19 saying so. Then I read the verified Lux engine's own steps and found `416.1`: Recycle puts cards on the **bottom of the deck**. Forge of the Future recycles 3 of its 4 slots, Ekko's Deathknell recycles itself, and the 4 draws are exactly spent — leaving **one spare Forge recycle slot per pass**, which is precisely what cycles the bounce spell. The entry's own REFUTE R7 note, which I had read as admitting a bound, was the solution. Corrected and closed #19 the same day.
+
+**Rule.** Before declaring a loop bounded by card copies, find the recycle path first. The currency is the recycle-and-draw budget, not the deck-construction limit. And when a note in the catalogue looks like it concedes a problem, read it as the answer before assuming it is the confession — the previous walker usually got there first.
+
+## 2026-09-04 — Catalogue quantities are pinned by the matcher tests
+
+Raising `ahri-blue-sentinel-hold` from 2 Ahri to 3 (the entry's own formula gave 7 points, one short of the 8 its BURST class claims) broke two tests in `test/matcher.test.ts`, which hard-code that combo's multiset shortfall and a deck built to match it exactly.
+
+**Rule.** Editing a `quantity` in `data/combos.json` is a test-visible change. Run `npm test` before committing a data edit, and update the test's numbers while preserving what it actually asserts — never relax the assertion to make it pass.
