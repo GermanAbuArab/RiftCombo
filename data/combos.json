@@ -2228,7 +2228,7 @@
       "id": "platewyrm-egg-defender-gate",
       "name": "Platewyrm Eggs readied by Defender of Tomorrow and Acceleration Gate",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "VEN-075",
@@ -2293,10 +2293,15 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-aurora-reksai-platewyrm.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Bounded by Gates (3), Portals (3) and the once-per-turn legend exhaust; never closes. Mind/Body also holds Renata Glasc, Mastermind (SFD-088): a Gate that readies Renata and three Eggs is one point plus +6E — that is the point-loop lens (renata-bubble-bot-ready, jayce-mesmerize-renata). The Garbage Grabber re-draw variant is refuted (L3-05): recycled cards go to the bottom in random order (416.5) and the deck grows by 2 per pass. Card text verified against the corpus. Two numbers in the first write-up were wrong: the Awaken exhausts lose their Energy to 167, and the Repeated Gate cannot ready the same Eggs twice. The bare Gate (+4E −1P) beats the Portal-plus-Repeat version (+5E −3P) once you price Power as a rune leaving the board. REFUTE 2 (2026-09-03): WOUNDED — Awaken Energy evaporates at the Main Phase start (167) and Repeat cannot double the Eggs (R21); corrected to +6E +3E per turn and +4E −1P per bare Gate."
+      "notes": "Bounded by Gates (3), Portals (3) and the once-per-turn legend exhaust; never closes. Mind/Body also holds Renata Glasc, Mastermind (SFD-088): a Gate that readies Renata and three Eggs is one point plus +6E — that is the point-loop lens (renata-bubble-bot-ready, jayce-mesmerize-renata). The Garbage Grabber re-draw variant is refuted (L3-05): recycled cards go to the bottom in random order (416.5) and the deck grows by 2 per pass. Card text verified against the corpus. Two numbers in the first write-up were wrong: the Awaken exhausts lose their Energy to 167, and the Repeated Gate cannot ready the same Eggs twice. The bare Gate (+4E −1P) beats the Portal-plus-Repeat version (+5E −3P) once you price Power as a rune leaving the board. REFUTE 2 (2026-09-03): WOUNDED — Awaken Energy evaporates at the Main Phase start (167) and Repeat cannot double the Eggs (R21); corrected to +6E +3E per turn and +4E −1P per bare Gate. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-aurora-reksai-platewyrm.md). 820.1.d is explicit that Repeat executes \"one additional time DURING RESOLUTION\" and 820.1.c.3 caps it at one payment, so R21's conservative reading is the right one - and the entry's claimed output never uses the Portal, so R21 cannot make it overclaim; the other reading would only make it stronger. 164.2.a/b is why the Gate's rune readies are worth little (Energy by exhausting, Power only by recycling, and a recycled rune leaves the board). 416.5 confirms the refuted Garbage Grabber variant, with Garbage Grabber as the rule's own example."
     },
     {
       "id": "sprite-fountain-malzahar-jayce",
@@ -2426,7 +2431,7 @@
       "id": "reksai-undertitan-reveal",
       "name": "Rek'Sai, Swarm Queen reveals Undertitans — Energy on every attack",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "SFD-170",
@@ -2472,10 +2477,15 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-aurora-reksai-platewyrm.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Order had no resource entry. Fragile: a normal deck reveals an Undertitan by chance. Ivern, Nurturer and Double Trouble reveals also pay +2E but draw him. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — two Undertitans in a deck that draws one a turn is one reveal at +4E; three copies buy exactly one clean turn. Upward correction: revealing past the deck does not Burn Out (431.1.c)."
+      "notes": "Order had no resource entry. Fragile: a normal deck reveals an Undertitan by chance. Ivern, Nurturer and Double Trouble reveals also pay +2E but draw him. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — two Undertitans in a deck that draws one a turn is one reveal at +4E; three copies buy exactly one clean turn. Upward correction: revealing past the deck does not Burn Out (431.1.c). HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-aurora-reksai-platewyrm.md). This entry had 431.1.c right where dazzling-aurora-elder-dragon had it wrong: revealing past the end of the deck is explicitly NOT a Burn Out, which is the only reason a two-card deck can be revealed every attack. R22 does not move the number - whether \"Recycle the rest\" fires with nothing banished decides only whether the two Undertitans sit on the bottom of a two-card deck or on top, and the same two are revealed next attack either way."
     },
     {
       "id": "treasure-hunter-industrialist-gold",
@@ -2895,7 +2905,7 @@
       "id": "dazzling-aurora-elder-dragon",
       "name": "Dazzling Aurora flips Elder Dragon — a free 10-Might body and one kill per location",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "OGN-160",
@@ -2923,7 +2933,7 @@
         "notable": [
           "Aurora fires every end of turn while it survives: a free unit each turn, and whenever the revealed unit is Elder Dragon, one enemy unit dies at every location. Deck-building lever: the fewer non-Dragon units in the deck, the more often the flip is a Dragon.",
           "Elder Dragon's trigger is on play, so it repeats only if he returns to the deck; the engine's steady output is the free unit, the wipe is the jackpot.",
-          "Elder Dragon chooses his targets, so Deflect costs a rainbow Power to get through — payable, because Aurora fires in the Ending Step (317.1) before the Rune Pool empties (317.2.d), but only if a rune was left ready. The reveal can Burn Out (431.1.c) if the deck runs out of units, handing an opponent a point (431.2.c): that is the price of thinning the deck to raise the Dragon hit rate."
+          "Elder Dragon chooses his targets, so Deflect costs a rainbow Power to get through. Payable: Aurora fires in the Ending Step (317.1, \"At the end of the turn Game Effects take place\") and the Rune Pool only empties two steps later at 317.2.d, and 164.2.b's Power ability is \"Recycle this\" with no exhaust in its cost, so ANY rune still on the board pays it - it need not be ready. CORRECTED 2026-09-04: the entry used to say the reveal can Burn Out if the deck runs out of units, citing 431.1.c. That rule says the opposite - you reveal as many as possible and DO NOT Burn Out - and 431.1.c.1 adds that further instructions are then simply ignored, \"even if those instructions would cause those cards to change zones\". Thinning the deck to raise the Dragon hit rate costs nothing."
         ]
       },
       "steps": [
@@ -2944,9 +2954,14 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-aurora-reksai-platewyrm.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
-      "notes": "First entry sourced from the Chinese meta, where the game launched in 2025-08. The article's complaint is about play pattern, not legality: \"players feel facing this deck isn't fun and lacks interactivity\"; it also names Aurora Volibear and Aurora Miss Fortune as the archetype's shells (Volibear's legend Relentless Storm is Fury/Body; Miss Fortune, Captain readies something on her first move). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — \"board wipe\" was wrong: one kill per location, three at most in a 1v1. The free 12E+4P body every end of turn is the real engine."
+      "notes": "First entry sourced from the Chinese meta, where the game launched in 2025-08. The article's complaint is about play pattern, not legality: \"players feel facing this deck isn't fun and lacks interactivity\"; it also names Aurora Volibear and Aurora Miss Fortune as the archetype's shells (Volibear's legend Relentless Storm is Fury/Body; Miss Fortune, Captain readies something on her first move). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — \"board wipe\" was wrong: one kill per location, three at most in a 1v1. The free 12E+4P body every end of turn is the real engine. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-aurora-reksai-platewyrm.md), which removed a wrong Burn Out citation and an over-restriction on paying Deflect. 198.1 (\"Locations include the Battlefields and the Bases\") with 485.4 confirms at most three kills in a Duel. Depends on no unruled reading."
     },
     {
       "id": "jhin-fiora-facebreaker-recall",
