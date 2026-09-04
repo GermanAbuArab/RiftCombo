@@ -1107,7 +1107,7 @@
       "id": "ashe-retreat-hand-strip",
       "name": "Ashe, Focused looped with Retreat — banish the opponent's hand",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-169",
@@ -1162,16 +1162,21 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Loop budget ledger 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Quote: 'Ashe - Focused is here to save the day. Ashe will banish any problem card from the opposing hand'. Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches). REFUTE 2026-09-03: WOUNDED — Ashe costs 5 Energy + 1 Order Power per cast, so this also needs the verified infinite-Power line. If you hold both battlefields the opponent never Holds and the banished cards never return. Loop draw budget (REFUTE R7): the verified Lux engine recycles 4 and draws exactly 4 per pass — Forge's spare slot is a recycle slot, not a draw. Every extra card that must come back through the deck needs one extra draw per pass, which Renata Mastermind's verified '1 Energy + Mind: Draw 1' supplies at about +1E +1P per point; or hold three copies in hand.."
+      "notes": "Quote: 'Ashe - Focused is here to save the day. Ashe will banish any problem card from the opposing hand'. Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches). REFUTE 2026-09-03: WOUNDED — Ashe costs 5 Energy + 1 Order Power per cast, so this also needs the verified infinite-Power line. If you hold both battlefields the opponent never Holds and the banished cards never return. BUDGETED 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md, issue #21). Per card banished: Ashe 5E + 1 Order, Retreat 1E, plus 1E + 1 Mind for the extra draw = 7 Energy + 2 Power, about 25 Energy. It CLOSES. Ashe returns to hand rather than through the deck, so only Retreat needs a recycle slot and a draw, and both pass types leave spare slots - draws are the scarce thing and Renata Mastermind's exhaust-free 'Draw 1' sells them at 1E + 1 Mind. The lock is real while you hold both battlefields, because UNL-169 returns the banished card only 'when they hold'."
     },
     {
       "id": "promising-future-force-deck",
       "name": "Promising Future in the loop — make the opponent play their deck",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "OGN-115",
@@ -1219,10 +1224,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Loop budget ledger 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Quote: 'create a loop based on the above including Promising Future, which will allow you to force every card [in the opponent's deck into play]'. Symmetric: you play one too — the article treats that as free because the loop deck's own picks are recycled. Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches). REFUTE 2026-09-03: WOUNDED — as a repeated engine it is net negative: each cast hands the opponent a free permanent or spell of their choice; their deck shrinks by one per cast and Burn Out recycles their trash first. The article's use is as a one-off. Loop draw budget (REFUTE R7): the verified Lux engine recycles 4 and draws exactly 4 per pass — Forge's spare slot is a recycle slot, not a draw. Every extra card that must come back through the deck needs one extra draw per pass, which Renata Mastermind's verified '1 Energy + Mind: Draw 1' supplies at about +1E +1P per point; or hold three copies in hand.."
+      "notes": "Quote: 'create a loop based on the above including Promising Future, which will allow you to force every card [in the opponent's deck into play]'. Symmetric: you play one too — the article treats that as free because the loop deck's own picks are recycled. Rides the Lux infinite-Energy loop: every piece is replayed from hand through Retreat/Forge recycling, so 'repeat' costs nothing once the engine is up. Source quotes verified by hand through a reader proxy on 2026-09-03 (the page itself blocks fetches). REFUTE 2026-09-03: WOUNDED — as a repeated engine it is net negative: each cast hands the opponent a free permanent or spell of their choice; their deck shrinks by one per cast and Burn Out recycles their trash first. The article's use is as a one-off. BUDGETED 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md, issue #21). Per cast: Promising Future 5E + 1P plus 1E + 1 Mind for the extra draw = 6 Energy + 2 Power, about 24 Energy. It CLOSES as a repeatable engine, which is all the entry claims. The printed text carries a limiter the entry never mentioned: OGN-115 says the players 'play those cards, ignoring Energy costs. (THEY MUST STILL PAY POWER COSTS.)', so even the free cards the opponent gets are gated on their Power. With 431.2.b refilling their deck from their trash before any Burn Out point, the entry's own verdict - engine at best, it cannot deck them - stands, and its value in the catalogue is recording why the community's 'force every card into play' claim does not win."
     },
     {
       "id": "ruination-sprite-burst-clear",
@@ -1429,7 +1439,7 @@
       "id": "renata-bubble-bot-ready",
       "name": "Renata, Mastermind readied by Bubble Bot — alternative point loop",
       "class": "INFINITE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "SFD-088",
@@ -1492,10 +1502,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Loop budget ledger 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Same payoff as the verified Rally the Troops / Fiora line, different ready engine. Unbounded pass count; realistic pass count is a scale question. UNRESOLVED per the lens: whether Heimerdinger copying Renata's ability keeps her 'only while at a battlefield' clause. REFUTE 2026-09-03: WOUNDED — per point 8E+4P plus one extra draw for the bounce spell: 9 Energy + 5 Mind Power per point via Renata's own Draw 1, or three bounce spells in hand. Loop draw budget (REFUTE R7): the verified Lux engine recycles 4 and draws exactly 4 per pass — Forge's spare slot is a recycle slot, not a draw. Every extra card that must come back through the deck needs one extra draw per pass, which Renata Mastermind's verified '1 Energy + Mind: Draw 1' supplies at about +1E +1P per point; or hold three copies in hand.."
+      "notes": "Same payoff as the verified Rally the Troops / Fiora line, different ready engine. Unbounded pass count; realistic pass count is a scale question. UNRESOLVED per the lens: whether Heimerdinger copying Renata's ability keeps her 'only while at a battlefield' clause. REFUTE 2026-09-03: WOUNDED — per point 8E+4P plus one extra draw for the bounce spell: 9 Energy + 5 Mind Power per point via Renata's own Draw 1, or three bounce spells in hand. BUDGETED 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md, issue #21). Per point: Renata 4E + 4 Mind, Retreat 1E, Bubble Bot 3E, plus 1E + 1 Mind for the extra draw that brings Retreat back = 9 Energy + 5 Power, about 54 Energy at the 9-Energy-per-Power rate. That lands exactly on the figure this entry's own REFUTE note already carried. It CLOSES: the scarce resource per pass is draws, not Forge recycle slots (both pass types leave spare slots and zero spare draws), and Renata Mastermind's '1 Energy + 1 Mind: Draw 1' carries NO exhaust in its cost, so extra draws are unlimited at 1E + 1 Mind each. The Heimerdinger question in the older note (R12) is not a dependency - Heimerdinger is not in uses."
     },
     {
       "id": "swain-double-conquer",
@@ -2022,7 +2037,7 @@
       "id": "jayce-mesmerize-renata",
       "name": "Renata, Mastermind readied by Jayce — all-Mind point loop",
       "class": "INFINITE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "SFD-088",
@@ -2077,10 +2092,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Loop budget ledger 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Third route to the same kill as the verified Rally the Troops / Fiora line and the Bubble Bot line; this one needs no Mighty crossing and no Mech typing, all Mind. Independent corroboration: lens L1 also re-derived the Bottled Constellation, Power Nexus and Swain lines ingested from L4. REFUTE 2026-09-03: SURVIVES, undercounted upward — two readies per Jayce cycle halve the cost per point. Loop draw budget (REFUTE R7): the verified Lux engine recycles 4 and draws exactly 4 per pass — Forge's spare slot is a recycle slot, not a draw. Every extra card that must come back through the deck needs one extra draw per pass, which Renata Mastermind's verified '1 Energy + Mind: Draw 1' supplies at about +1E +1P per point; or hold three copies in hand.."
+      "notes": "Third route to the same kill as the verified Rally the Troops / Fiora line and the Bubble Bot line; this one needs no Mighty crossing and no Mech typing, all Mind. Independent corroboration: lens L1 also re-derived the Bottled Constellation, Power Nexus and Swain lines ingested from L4. REFUTE 2026-09-03: SURVIVES, undercounted upward — two readies per Jayce cycle halve the cost per point. BUDGETED 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md, issue #21). CORRECTED DOWNWARD: the entry claimed about 7.5 Energy + 5 Mind Power per point on the strength of TWO readies per Jayce cycle, one from 'When you play me' and one from 'the first time you play a non-token gear each turn'. The loop plays Forge of the Future every single pass, so the turn's first non-token gear play is long past and that clause fires at most once in the turn however many Jayce objects appear. Priced at ONE ready per cycle - exactly what a point needs - the pass is Renata 4E + 4 Mind, Mesmerize 1E + 1P, Jayce 6E + 1P, plus 1E + 1 Mind for the extra draw = 12 Energy + 7 Power, about 75 Energy per point. It still CLOSES. If a fresh Jayce object does get its own 'first time each turn' counter the cost roughly halves, so that reading can only make this cheaper, never break it."
     },
     {
       "id": "jhin-relentless-pursuit-wallop",
@@ -2836,7 +2856,7 @@
       "id": "renata-time-warp-ekko-refresh",
       "name": "Renata, Mastermind with Time Warp — Ekko's Deathknell readies the runes for the point",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "OGN-122",
@@ -2907,9 +2927,14 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
-      "notes": "Community-documented deck, not a loop: it needs no infinite engine, which separates it from time-warp-hold-burst and bottled-constellation-time-warp (both ride the Lux loop). The article states the requirements but not the action-by-action sequence; the steps above are the reconstruction from card text and are the part a human must walk, especially the Power count after Ekko's ready (161.2.b). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the Time Warp turn is payable with zero Gold if eight of the twelve runes make Mind, the Gold's job is the turn after and it arrives exhausted, the extra turn buys a Renata point or a second Time Warp but not both, and the 'one Time Warp per turn' clause the first write-up assumed does not exist. AUDIT 2026-09-04: reclassed BURST -> ENGINE. BURST means one scoring event reaches 8; this entry's own terminates-in line says \"burst of points across two consecutive extra turns\" and its own count is about 5. It is a strong extra-turn engine, not a burst."
+      "notes": "Community-documented deck, not a loop: it needs no infinite engine, which separates it from time-warp-hold-burst and bottled-constellation-time-warp (both ride the Lux loop). The article states the requirements but not the action-by-action sequence; the steps above are the reconstruction from card text and are the part a human must walk, especially the Power count after Ekko's ready (161.2.b). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the Time Warp turn is payable with zero Gold if eight of the twelve runes make Mind, the Gold's job is the turn after and it arrives exhausted, the extra turn buys a Renata point or a second Time Warp but not both, and the 'one Time Warp per turn' clause the first write-up assumed does not exist. AUDIT 2026-09-04: reclassed BURST -> ENGINE. BURST means one scoring event reaches 8; this entry's own terminates-in line says \"burst of points across two consecutive extra turns\" and its own count is about 5. It is a strong extra-turn engine, not a burst. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md, appendix). It was swept into issue #21 by mistake - its needs is empty and it rides no loop. The rune arithmetic checks out: a rune already exhausted for Energy can still be recycled for Power, because 164.2.b prices the Power ability as \"Recycle this\" with no exhaust, so 12 runes are 12 Energy and then 4 Mind Power, which pays Time Warp with 2 Energy to spare; Ekko readies the surviving 8; and 4 more exhaust-then-recycle runes pay Renata. Zero Gold needed on that turn, provided eight of the twelve runes make Mind. 735 confirms two copies buy two Additional Turns - the effect inserts one into the turn queue and nothing limits it per turn. Two constraints added: Hidden Blade kills a unit AT A BATTLEFIELD, so Ekko cannot sit at base, and its \"draws 2\" resolves after the Deathknell into a near-empty deck."
     },
     {
       "id": "dazzling-aurora-elder-dragon",
