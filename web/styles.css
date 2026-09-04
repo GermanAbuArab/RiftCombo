@@ -294,6 +294,21 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .plan-head { margin: 0; font-size: 13px; letter-spacing: .05em; color: var(--accent); }
 #plan-body { display: flex; flex-direction: column; gap: 15px; }
 .plan-sec { display: flex; flex-direction: column; gap: 7px; }
+
+/* Ban list. Sits above the status card because a tournament list wants that answer first. The
+   status is carried by the left rule and the tag's weight, not by a second accent colour. */
+.bans .plan-head { color: var(--danger); }
+.ban-row { padding: 8px 10px; border: 1px solid var(--line); border-left: 2px solid var(--danger); border-radius: 6px; background: var(--panel); }
+.ban-row + .ban-row { margin-top: 7px; }
+.ban-row.restricted { border-left-color: var(--accent-dim); }
+.ban-name { margin: 0; font: 600 13px/1.35 var(--font); color: var(--text); }
+.ban-tag { margin-left: 5px; font: 500 10.5px var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--danger); }
+.ban-row.restricted .ban-tag { color: var(--accent); }
+.ban-meta { margin: 3px 0 0; font-size: 11.5px; line-height: 1.5; color: var(--muted); }
+.ban-meta a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+.ban-meta a:hover { color: var(--accent); }
+.bans-foot { margin: 0; font-size: 11.5px; line-height: 1.6; color: var(--faint); }
+.bans-foot:empty { display: none; }
 .plan-lab { font: 500 10.5px var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .plan-note { margin: 0; font-size: 12.5px; line-height: 1.6; color: var(--muted); }
 .plan-note strong { color: var(--text); font-weight: 600; }

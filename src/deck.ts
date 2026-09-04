@@ -1,6 +1,6 @@
 import { getDeckFromCode } from "@piltoverarchive/riftbound-deck-codes";
 import type { CardIndex } from "./cards.js";
-import type { Deck } from "./types.js";
+import type { Deck, Format, LegalityEntry } from "./types.js";
 
 export interface DeckEntry {
   /** A card code ("OGN-212", "OGN-212/298", "OGN-212-1") if the source gave one. */
@@ -105,4 +105,37 @@ export function normalizeDeck(entries: DeckEntry[], cards: CardIndex): Deck {
 export function loadDeck(input: string, cards: CardIndex): Deck {
   const entries = isDeckCode(input) ? decodeDeckCode(input) : parseDeckText(input);
   return normalizeDeck(entries, cards);
+}
+
+/** A banned or restricted card the pasted list actually holds, in one format. */
+export interface DeckRestriction {
+  entry: LegalityEntry;
+  /** Base code as the list resolved it. */
+  base: string;
+  /** Copies across every zone of the list, sideboard included. */
+  count: number;
+}
+
+/**
+ * The restricted cards a parsed list holds. Legality is format-scoped, so this is a read over the
+ * deck taking the format, never a flag baked into the parse: the same list is legal or not
+ * depending on which format the player picked. Same shape as `matchDeck`'s per-variant `illegal`.
+ * Banned first, then restricted, each group by name.
+ */
+export function deckRestrictions(deck: Deck, cards: CardIndex, format: Format): DeckRestriction[] {
+  const found = new Map<string, DeckRestriction>();
+  const seen = (base: string, count: number) => {
+    const entry = cards.legality(base, format);
+    if (!entry) return;
+    const prev = found.get(base);
+    if (prev) prev.count += count;
+    else found.set(base, { entry, base, count });
+  };
+  // The champion is already counted inside main; the legend is the only card outside the bags.
+  if (deck.legend) seen(deck.legend, 1);
+  for (const bag of [deck.main, deck.battlefields, deck.runes, deck.sideboard]) {
+    for (const [base, n] of Object.entries(bag)) seen(base, n);
+  }
+  const rank = (r: DeckRestriction) => (r.entry.status === "banned" ? 0 : 1);
+  return [...found.values()].sort((a, b) => rank(a) - rank(b) || a.entry.name.localeCompare(b.entry.name));
 }

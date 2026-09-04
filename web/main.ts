@@ -4,7 +4,7 @@ import legalityJson from "../data/legality.json" with { type: "json" };
 import synergiesJson from "../data/synergies.json" with { type: "json" };
 import { CardIndex } from "../src/cards.js";
 import { generateVariants } from "../src/combos.js";
-import { isDeckCode, loadDeck, normalizeDeck, parseDeckText, type DeckEntry } from "../src/deck.js";
+import { deckRestrictions, isDeckCode, loadDeck, normalizeDeck, parseDeckText, type DeckEntry, type DeckRestriction } from "../src/deck.js";
 import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
 import { planDeck, type Route } from "../src/plan.js";
 import { matchSynergies, type SynergyHit } from "../src/synergies.js";
@@ -13,7 +13,7 @@ import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from
 
 const combos = (combosJson as { combos: Combo[] }).combos;
 const features = (featuresJson as { features: Feature[] }).features;
-const legality = (legalityJson as { entries: LegalityEntry[] }).entries;
+const { entries: legality, retrieved: legalityRetrieved } = legalityJson as { entries: LegalityEntry[]; retrieved: string };
 const synergies = (synergiesJson as unknown as { synergies: Synergy[] }).synergies;
 const combosById = new Map(combos.map((c) => [c.id, c]));
 const featuresById = new Map(features.map((f) => [f.id, f]));
@@ -34,6 +34,9 @@ const zoomLabel = $<HTMLElement>("#zoom-label");
 const dimToggle = $<HTMLButtonElement>("#dim-toggle");
 const planPanel = $<HTMLElement>("#plan");
 const planBody = $<HTMLElement>("#plan-body");
+const banPanel = $<HTMLElement>("#bans");
+const banBody = $<HTMLElement>("#bans-body");
+const banFoot = $<HTMLElement>("#bans-foot");
 const synergyPanel = $<HTMLElement>("#synergy");
 const synergyBody = $<HTMLElement>("#synergy-body");
 
@@ -262,6 +265,31 @@ const addRow = (a: { card: string; quantity: number }) => {
   </div>`;
 };
 
+const FORMAT_LABEL: Record<Format, string> = { constructed: "Constructed", "2v2": "2v2" };
+
+/**
+ * The ban list, first thing in the panel, because somebody bringing a list to a tournament wants
+ * that before any combo. Legality is format-scoped, so this is read again on every format change
+ * and a card banned in one format is silent in the other.
+ */
+function renderBans() {
+  if (!deck) { banPanel.hidden = true; return; }
+  const found = deckRestrictions(deck, cards, fmt());
+  banBody.innerHTML = found.map(banRow).join("");
+  banFoot.textContent = found.length
+    ? `Riot's ban list for ${FORMAT_LABEL[fmt()]}, transcribed from the Rules Hub on ${legalityRetrieved.slice(0, 10)}. Switch format above to check the other one.`
+    : "";
+  banPanel.hidden = found.length === 0;
+}
+
+function banRow(r: DeckRestriction): string {
+  const copies = `${r.count} ${r.count === 1 ? "copy" : "copies"}`;
+  return `<div class="ban-row ${r.entry.status}">
+    <p class="ban-name">${esc(r.entry.name)} <span class="ban-tag">${r.entry.status}</span></p>
+    <p class="ban-meta">${copies} in your list · ${esc(FORMAT_LABEL[r.entry.format])} · since ${esc(r.entry.since)} · <a href="${esc(r.entry.source)}" target="_blank" rel="noopener noreferrer">Riot's notice</a></p>
+  </div>`;
+}
+
 /** What adding these cards costs the list: deck slots, battlefield slots, or a rebuild. */
 function leadFootnote(r: Route): string {
   const parts: string[] = [];
@@ -394,6 +422,7 @@ function render() {
     if (selected) view.select(selected);
   }
   renderTray(hits);
+  renderBans();
   renderPlan();
   renderSynergies();
   showDetail(selected);

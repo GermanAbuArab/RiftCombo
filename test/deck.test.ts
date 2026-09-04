@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { getCodeFromDeck } from "@piltoverarchive/riftbound-deck-codes";
 import { loadCardIndex } from "../src/load.js";
-import { decodeDeckCode, isDeckCode, loadDeck, normalizeDeck, parseDeckText } from "../src/deck.js";
+import { deckRestrictions, decodeDeckCode, isDeckCode, loadDeck, normalizeDeck, parseDeckText } from "../src/deck.js";
 
 const cards = loadCardIndex();
 const fixture = (n: string) => readFileSync(new URL(`./fixtures/${n}`, import.meta.url), "utf8");
@@ -85,5 +85,34 @@ describe("deck codes", () => {
     expect(deck.runes["OGN-089"]).toBe(6);
     expect(deck.sideboard["OGN-104"]).toBe(2);
     expect(loadDeck(code, cards).legend).toBe("OGS-021");
+  });
+});
+
+describe("restricted cards in a pasted list", () => {
+  it("reports a banned battlefield the list actually holds", () => {
+    const deck = loadDeck(fixture("fury.txt"), cards);
+    const r = deckRestrictions(deck, cards, "constructed");
+    expect(r.map((x) => x.base)).toEqual(["OGN-284"]); // Obelisk of Power
+    expect(r[0]!.count).toBe(1);
+    expect(r[0]!.entry.status).toBe("banned");
+    expect(r[0]!.entry.since).toBe("2026-07-16");
+  });
+
+  it("counts every copy and keeps the format scope", () => {
+    const deck = loadDeck(fixture("recruits.txt"), cards);
+    expect(deckRestrictions(deck, cards, "constructed").map((x) => [x.base, x.count])).toEqual([["OGN-177", 3]]);
+    expect(deckRestrictions(deck, cards, "2v2").map((x) => [x.base, x.count])).toEqual([["OGN-177", 3]]);
+  });
+
+  it("separates restricted from banned and only flags the format that says so", () => {
+    const deck = loadDeck("1 OGS-019\n3 Stealthy Pursuer\n2 Retreat", cards);
+    expect(deck.legend).toBe("OGS-019");
+    expect(deckRestrictions(deck, cards, "constructed").map((x) => x.base)).toEqual(["OGN-177"]);
+    const duo = deckRestrictions(deck, cards, "2v2");
+    expect(duo.map((x) => [x.base, x.entry.status])).toEqual([["OGN-177", "banned"], ["OGS-019", "restricted"]]);
+  });
+
+  it("says nothing about a clean list", () => {
+    expect(deckRestrictions(loadDeck(fixture("lux.txt"), cards), cards, "constructed")).toEqual([]);
   });
 });
