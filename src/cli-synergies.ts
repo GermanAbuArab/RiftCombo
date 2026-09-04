@@ -33,7 +33,8 @@ for (const s of selected) {
   total += partners.length;
   console.log(`\n${s.id} — ${s.name}`);
   console.log(`  anchor    ${s.anchor} ${anchor.name} [${anchor.type.join(",")}] {${anchor.domains.join(",")}}`);
-  console.log(`  predicate /${s.partner.textMatches}/${s.partner.textExcludes ? ` minus /${s.partner.textExcludes}/` : ""}` +
+  console.log(`  predicate ${s.partner.textMatches ? `/${s.partner.textMatches}/` : "any text"}${s.partner.textExcludes ? ` minus /${s.partner.textExcludes}/` : ""}` +
+    `${s.partner.tags ? ` · tags ${s.partner.tags.join(",")}` : ""}` +
     `${s.partner.types ? ` · types ${s.partner.types.join(",")}` : ""}${s.partner.minMightBonus !== undefined ? ` · Might bonus >= ${s.partner.minMightBonus}` : ""}`);
   console.log(`  basis     rules ${s.basis.rules.join(", ")}${s.basis.readings?.length ? ` · readings ${s.basis.readings.join(", ")}` : ""} · ${s.basis.combos.length} combo(s)`);
   const drift = partners.length - s.reviewedCount;
@@ -44,13 +45,13 @@ for (const s of selected) {
     console.log(`  excluded  ${x.card} ${cards.get(x.card)?.name ?? "?"} — ${x.why}`);
   }
   if (terse) continue;
-  const re = new RegExp(s.partner.textMatches);
+  const re = s.partner.textMatches ? new RegExp(s.partner.textMatches) : null;
   for (const c of partners) {
     const head = `    ${c.base.padEnd(8)}${c.name.padEnd(32)}${c.type.join(",").padEnd(12)}{${c.domains.join(",")}}`;
     const flat = synergyText(c).replace(/\s*\n\s*/g, " / ").trim();
     let body = flat.slice(0, 150);
     if (fragment) {
-      const m = re.exec(flat);
+      const m = re?.exec(flat);
       body = m ? flat.slice(Math.max(0, m.index - 12), m.index + m[0].length + 60) : flat.slice(0, 90);
     }
     console.log(head.padEnd(74) + body);

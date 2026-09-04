@@ -34,6 +34,8 @@ export function validateSynergies(synergies: Synergy[], cards: CardIndex, opts: 
     const anchor = cards.get(s.anchor);
     if (!anchor) errors.push(`${s.id}: unknown anchor ${s.anchor}`);
     else if (anchor.base !== s.anchor) errors.push(`${s.id}: anchor ${s.anchor} is not a base code (use ${anchor.base})`);
+    // A predicate that narrows on nothing is the whole pool wearing a rule's name.
+    if (!s.partner.textMatches && !s.partner.tags) errors.push(`${s.id}: partner needs textMatches or tags`);
     for (const src of [s.partner.textMatches, s.partner.textExcludes]) {
       if (src === undefined) continue;
       try { new RegExp(src); } catch (e) { errors.push(`${s.id}: bad regex ${JSON.stringify(src)} — ${(e as Error).message}`); }
@@ -69,7 +71,7 @@ export function validateSynergies(synergies: Synergy[], cards: CardIndex, opts: 
  * list a human reviews is the list of distinct cards.
  */
 export function partnersOf(s: Synergy, cards: CardIndex): Card[] {
-  const match = new RegExp(s.partner.textMatches);
+  const match = s.partner.textMatches ? new RegExp(s.partner.textMatches) : null;
   const reject = s.partner.textExcludes ? new RegExp(s.partner.textExcludes) : null;
   const banned = new Set((s.partner.excludes ?? []).map((x) => x.card));
   const anchor = new Set(cards.equivalents(s.anchor));
@@ -82,9 +84,10 @@ export function partnersOf(s: Synergy, cards: CardIndex): Card[] {
     if (c.domains.length === 0 && !c.type.includes("battlefield")) continue;
     if (anchor.has(c.base) || banned.has(c.base)) continue;
     if (s.partner.types && !s.partner.types.some((t) => c.type.includes(t))) continue;
+    if (s.partner.tags && !s.partner.tags.some((t) => c.tags.includes(t))) continue;
     if (s.partner.minMightBonus !== undefined && (c.mightBonus ?? -1) < s.partner.minMightBonus) continue;
     const text = synergyText(c);
-    if (!match.test(text) || (reject && reject.test(text))) continue;
+    if ((match && !match.test(text)) || (reject && reject.test(text))) continue;
     const key = cards.resolveName(c.name) ?? c.base;
     if (!canonical.has(key)) canonical.set(key, cards.get(key) ?? c);
   }

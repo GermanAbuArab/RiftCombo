@@ -53,6 +53,21 @@ describe("synergy rules", () => {
     }
   });
 
+  it("lets a tribal rule stand on tags alone, and pairs only cards carrying the tag", () => {
+    // Mega-Mech is a Mech with no rules text at all, so a tribe has no text signature to match on.
+    const mech = synergies.find((s) => s.id === "rumble-scrapper-mech")!;
+    expect(mech.partner.textMatches).toBeUndefined();
+    const partners = partnersOf(mech, cards);
+    expect(partners.map((c) => c.base)).toContain("OGN-088");
+    for (const c of partners) expect(c.tags, c.base).toContain("Mech");
+  });
+
+  it("rejects a partner predicate that narrows on nothing", () => {
+    const wide = synergies.map((s, i) => (i === 0 ? { ...s, partner: { excludes: [] } } : s));
+    const errors = validateSynergies(wide, cards, { skipReviewCount: true });
+    expect(errors.some((e) => e.includes("needs textMatches or tags"))).toBe(true);
+  });
+
   it("every rule matches something and no rule matches the whole pool", () => {
     for (const s of synergies) {
       const n = partnersOf(s, cards).length;

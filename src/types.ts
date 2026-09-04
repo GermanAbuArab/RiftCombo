@@ -133,12 +133,18 @@ export type SynergyStatus = "rule-verified";
  * that second half is where Trinity Force keeps "When I hold, score 1 point".
  */
 export interface SynergyPartner {
-  /** JavaScript regular expression source, applied to text + Equipment effect text. */
-  textMatches: string;
+  /**
+   * JavaScript regular expression source, applied to the card's rules text and, for Equipment, the
+   * text it grants the unit it is attached to. Optional: a tribal rule has no text signature at all
+   * (Mega-Mech is a Mech with no rules text), so `tags` alone may carry the predicate.
+   */
+  textMatches?: string;
   /** Regular expression that disqualifies a card `textMatches` caught. */
   textExcludes?: string;
   /** Card types a partner may have. Omitted means any type. */
   types?: CardType[];
+  /** Card tags a partner must carry, e.g. ["Mech"]. A card carrying any one of them passes. */
+  tags?: string[];
   /** Equipment only: the Might it grants on attaching must be at least this. */
   minMightBonus?: number;
   /** Base codes read out of the match list by hand, each with the reason it does not belong. */

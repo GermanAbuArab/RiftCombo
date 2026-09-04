@@ -774,6 +774,53 @@
       "status": "rule-verified",
       "reviewed": "2026-09-04",
       "reviewedCount": 15
+    },
+    {
+      "id": "rumble-scrapper-mech",
+      "name": "Rumble, Scrapper makes every Mech in the list bigger",
+      "anchor": "SFD-089",
+      "partner": {
+        "tags": [
+          "Mech"
+        ]
+      },
+      "why": "\"Your Mechs have +1 Might (including me)\" reads the Mech tag and nothing else, so this is the one predicate in the file that needs no text at all — Mega-Mech is a 7-cost Mech with no rules text and still counts. Rumble also plays a 3 Might Mech token every time he holds, and those tokens are Mechs too, though a token never appears in a list and so never appears here. The list cannot show Experimental Hexplate: it is an Equipment that says \"I am a Mech\", granting the type to whatever it is attached to rather than carrying the tag itself.",
+      "basis": {
+        "rules": [
+          "133.8",
+          "133.8.a",
+          "143.1",
+          "185.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-04",
+      "reviewedCount": 15
+    },
+    {
+      "id": "rumble-hotheaded-mech",
+      "name": "Rumble, Hotheaded gives the whole Mech board Assault",
+      "anchor": "SFD-026",
+      "partner": {
+        "tags": [
+          "Mech"
+        ]
+      },
+      "why": "The Fury half of the same tribe: \"Your Mechs each have [Assault]\" is +1 Might while they are attackers, granted off the tag with no text condition on the Mech itself. Assault only pays inside a Combat, where the Attacker designation exists — walking into an empty enemy battlefield is not an attack — so this rule is worth what the deck's attacks are worth, and nothing on a turn that only holds.",
+      "basis": {
+        "rules": [
+          "133.8",
+          "133.8.a",
+          "383.4.e",
+          "807.1.d",
+          "807.1.d.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-04",
+      "reviewedCount": 15
     }
   ]
 }
