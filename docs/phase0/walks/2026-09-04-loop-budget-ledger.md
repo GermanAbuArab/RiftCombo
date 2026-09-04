@@ -134,3 +134,58 @@ nearly empty. And the Gold arrives **exhausted** with no Renata Industrialist in
 
 **The 2026-09-04 reclass to ENGINE stands.** Its own count is about 5 points across two turns, and BURST
 means one scoring event reaches 8.
+
+---
+
+# Appendix 2 — `jhin-virtuoso-ekko-malzahar-vi` runs its **own** engine — **HOLDS as INFINITE**
+
+The last entry on #21, and the only one that never touched the Lux loop: **Vi's free recycle replaces
+Forge of the Future entirely.**
+
+**OGN-036 Vi, Destructive** (Fury, E2 P1 M3): **"Recycle 1 from your trash: Give me +1 Might this turn."**
+No exhaust, no Energy — an **unlimited** recycle, one card at a time.
+**UNL-181 Virtuoso** (Legend, Fury/Mind) · **OGN-110 Ekko, Recurrent** · **OGN-113 Malzahar, Fanatic** ·
+**UNL-009 Upstage Comedy** (Fury, E2, `[Repeat]` 2E: "Ready a unit") ·
+**OGN-083 Consult the Past** (Mind, **E4**: "Draw 2") · **SFD-088 Renata Glasc, Mastermind**
+
+## The Draw-2 pass
+
+| | Energy | Power |
+|---|---|---|
+| Play Ekko | −5 | −1 Mind |
+| Upstage Comedy, readying Malzahar | −2 | |
+| Malzahar kills Ekko as a cost (428.1.a.1) and exhausts | | **+2 rainbow** |
+| Ekko's Deathknell: recycle him, **ready every rune on the board** | **+N** | |
+| Vi recycles Upstage Comedy from the trash, free | | |
+| Consult the Past (4E, so Virtuoso may banish it): draw 2 — Ekko and Comedy return | −4 | |
+| **net** | **N − 11** | **+1** |
+
+Break-even at 11 runes on the board, **+1 Energy at 12**, exactly as the entry says. Malzahar's rainbow is
+**Universal Power** (163.2.b, and 135.2.e.5 makes the rainbow symbol mean any Domain), so it pays Ekko's
+Mind cost and no rune ever has to be recycled after the first pass — which is why the board stays at 12.
+
+**The draws balance exactly:** two cards return through the deck each pass (Ekko by his own Deathknell,
+Comedy by Vi) and the 4-Energy spell draws two. And **416.5 does not bite**, because it randomises only
+cards recycled *simultaneously* — Vi recycles one at a time, so the order is deterministic.
+
+## The fourth pass pays a debt and collects a bigger prize
+
+Virtuoso's fourth banish puts all four spells in the trash at once, channels 4 runes and draws 1.
+
+- **The debt:** four spells to bring back, one draw supplied. The other three cost 1 Energy + 1 Mind each
+  from Renata's exhaust-free `Draw 1`. **−3E −3P.**
+- **The prize, and it is the cleverest thing in the catalogue:** with all twelve runes on the board the
+  Rune Deck is empty, so "channel 4 runes" would do **nothing** (430.3: *"channel as many as possible"*).
+  So **recycle four already-exhausted runes for 4 Power first** — 164.2.b's Power ability is "Recycle
+  this", no exhaust in the cost — and let Virtuoso channel those same four straight back **ready**
+  (430.2.a). Board count unchanged, and you keep both the Power and the Energy from exhausting them again.
+  **+4E +4P for nothing.**
+
+**Four passes at 12 runes: +4E +4P from the passes, +4E +4P from the supercycle, −3E −3P for the debt ≈
++5 Energy and +5 Power.** Positive, unbounded, and no Lux loop underneath it.
+
+The payoff is then Renata at 4E + 4 Mind for a point, Comedy (2E) to ready her, Vi to recycle Comedy, and
+Renata's own Draw 1 (1E + 1 Mind) to get it back — about **7 Energy + 5 Power per point**, roughly one
+point per four to six passes. Much cheaper per point than any of the Lux-fed routes.
+
+**#21 is fully answered.** All six entries close.
