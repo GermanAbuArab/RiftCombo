@@ -160,14 +160,18 @@ const shownHits = (): Hit[] => {
 };
 
 /**
- * How many known combos are even legal under this deck's legend. Domain Identity (103.1.b) means
- * every card in a combo must sit inside the legend's two domains, so this is the honest ceiling on
- * what the deck could ever match.
+ * How many known combos are even legal under this deck's legend, in the format being matched.
+ * Domain Identity (103.1.b) means every card in a combo must sit inside the legend's two domains,
+ * and a combo holding a banned card cannot be built at all — pursuer-herald-recruits is Mind + Order
+ * and dead in both formats, because Stealthy Pursuer has been banned since 2026-07-24. Counting it
+ * would put two numbers called "legal" on the same screen with different meanings, since
+ * planDeck already drops the banned ones (#23).
  */
-const playableUnderLegend = (): number | null => {
+const playableUnderLegend = (format: Format): number | null => {
   if (!deck?.legend) return null;
   const dom = new Set(cards.domainsOf(deck.legend));
-  return combos.filter((c) => c.uses.every((u) => cards.domainsOf(u.card).every((d) => dom.has(d)))).length;
+  return combos.filter((c) =>
+    c.uses.every((u) => cards.domainsOf(u.card).every((d) => dom.has(d)) && !cards.legality(u.card, format))).length;
 };
 
 const DOMAINS: Domain[] = ["fury", "calm", "mind", "body", "chaos", "order"];
@@ -214,7 +218,7 @@ function showEmptyState() {
   const body = $<HTMLElement>("#empty .empty-body");
   const note = $<HTMLElement>("#empty-note");
   const legend = deck?.legend ? name(deck.legend).replace(/ - Starter$/, "") : null;
-  const legalHere = playableUnderLegend();
+  const legalHere = playableUnderLegend(fmt());
   const verified = combos.filter((c) => c.status === "verified").length;
   const own = deck?.legend ? asPair(cards.domainsOf(deck.legend)) : null;
 
@@ -373,7 +377,7 @@ function render() {
   const hits = shownHits();
   routeCount.textContent = String(hits.length);
   empty.hidden = hits.length > 0;
-  const legalHere = playableUnderLegend();
+  const legalHere = playableUnderLegend(fmt());
   $<HTMLElement>("#ws-sub").textContent = legalHere === null
     ? `${combos.length} combos catalogued`
     : `${legalHere} of ${combos.length} catalogued combos are legal in this legend's domains`;
