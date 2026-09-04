@@ -28,6 +28,17 @@ export function validateCombos(combos: Combo[], features: Feature[], cards: Card
 const worst = (a: ComboStatus, b: ComboStatus): ComboStatus =>
   a === "refuted" || b === "refuted" ? "refuted" : a === "candidate" || b === "candidate" ? "candidate" : "verified";
 
+/**
+ * A deck has exactly one legend, so a composed variant only runs under the legends BOTH halves
+ * allow. `undefined` means any legend; `null` means the restrictions do not overlap and the
+ * composition is impossible.
+ */
+const bothLegends = (a?: string[], b?: string[]): string[] | undefined | null => {
+  if (!a || !b) return a ?? b;
+  const shared = a.filter((l) => b.includes(l));
+  return shared.length > 0 ? shared : null;
+};
+
 export const CLASS_RANK: Record<ComboClass, number> = { ENGINE: 0, INFINITE: 1, BURST: 2, CHAIN: 3, ALT_WIN: 4 };
 
 /**
@@ -62,6 +73,8 @@ export function generateVariants(combos: Combo[], cards: CardIndex, maxDepth = 3
         if (p.produces.has(need)) { next.push(p); continue; }
         for (const opt of options) {
           for (const sub of expand(opt, depth + 1, new Set([...seen, combo.id]))) {
+            const legends = bothLegends(p.legends, sub.legends);
+            if (legends === null) continue; // the two halves need different legends
             const merged: Record<string, number> = { ...p.cards };
             for (const [k, v] of Object.entries(sub.cards)) merged[k] = Math.max(merged[k] ?? 0, v);
             next.push({
@@ -70,7 +83,7 @@ export function generateVariants(combos: Combo[], cards: CardIndex, maxDepth = 3
               produces: new Set([...p.produces, ...sub.produces]),
               status: worst(p.status, sub.status),
               cls: CLASS_RANK[p.cls] >= CLASS_RANK[sub.cls] ? p.cls : sub.cls,
-              legends: p.legends ?? sub.legends,
+              legends,
             });
           }
         }
