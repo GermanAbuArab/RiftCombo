@@ -1,17 +1,20 @@
 import combosJson from "../data/combos.json" with { type: "json" };
 import featuresJson from "../data/features.json" with { type: "json" };
 import legalityJson from "../data/legality.json" with { type: "json" };
+import synergiesJson from "../data/synergies.json" with { type: "json" };
 import { CardIndex } from "../src/cards.js";
 import { generateVariants } from "../src/combos.js";
 import { isDeckCode, loadDeck, normalizeDeck, parseDeckText, type DeckEntry } from "../src/deck.js";
 import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
 import { planDeck, type Route } from "../src/plan.js";
-import type { Card, Combo, Deck, Domain, Feature, Format, LegalityEntry, Variant } from "../src/types.js";
+import { matchSynergies, type SynergyHit } from "../src/synergies.js";
+import type { Card, Combo, Deck, Domain, Feature, Format, LegalityEntry, Synergy, Variant } from "../src/types.js";
 import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from "./graph.js";
 
 const combos = (combosJson as { combos: Combo[] }).combos;
 const features = (featuresJson as { features: Feature[] }).features;
 const legality = (legalityJson as { entries: LegalityEntry[] }).entries;
+const synergies = (synergiesJson as unknown as { synergies: Synergy[] }).synergies;
 const combosById = new Map(combos.map((c) => [c.id, c]));
 const featuresById = new Map(features.map((f) => [f.id, f]));
 
@@ -31,6 +34,8 @@ const zoomLabel = $<HTMLElement>("#zoom-label");
 const dimToggle = $<HTMLButtonElement>("#dim-toggle");
 const planPanel = $<HTMLElement>("#plan");
 const planBody = $<HTMLElement>("#plan-body");
+const synergyPanel = $<HTMLElement>("#synergy");
+const synergyBody = $<HTMLElement>("#synergy-body");
 
 const EXAMPLE = `Legend
 1 Lady of Luminosity - Starter
@@ -325,6 +330,44 @@ function renderPlan() {
   planPanel.hidden = out.length === 0;
 }
 
+/**
+ * The pairs a deck already runs. This is a different guarantee from everything else on the page and
+ * the panel says so in its own words: the rule was walked by hand once, the instances are text
+ * matches over the pool. Nothing here is counted as a combo or drawn in the diagram.
+ */
+function renderSynergies() {
+  if (!deck) { synergyPanel.hidden = true; return; }
+  const hits = matchSynergies(deck, synergies, cards, { format: fmt() });
+  synergyBody.innerHTML = hits.map(synergyRow).join("");
+  synergyPanel.hidden = hits.length === 0;
+}
+
+function synergyRow(h: SynergyHit): string {
+  const s = h.synergy;
+  const chip = (base: string, copies: number) =>
+    `<button type="button" class="syn-card" data-card="${esc(base)}"><span class="syn-n">${copies}\u00d7</span> ${esc(name(base))}</button>`;
+  const partners = h.partners.map((p) => chip(p.card, p.copies)).join("");
+  const rules = s.basis.rules.map((r) => `<span class="syn-ref">${esc(r)}</span>`).join("");
+  const readings = (s.basis.readings ?? []).map((r) => `<span class="syn-ref">${esc(r)}</span>`).join("");
+  // The whole provenance, not a first entry and a count: which walked combos this rule was pulled
+  // out of is the only thing standing behind it, and each one opens in the drawer.
+  const from = s.basis.combos.length
+    ? `<div class="syn-from"><span class="syn-lab">Taken from</span>
+        <ul class="syn-from-list">${s.basis.combos.map((id) => `<li><button type="button" class="syn-link" data-combo="${esc(id)}">${esc(combosById.get(id)?.name ?? id)}</button></li>`).join("")}</ul></div>`
+    : `<p class="syn-alone">Not taken from a catalogued combo — this one stands on the rules text alone.</p>`;
+  return `<details class="syn">
+    <summary class="syn-sum">
+      <span class="syn-name">${esc(s.name)}</span>
+      <span class="syn-pair">${chip(s.anchor, h.anchorCopies)}<span class="syn-plus">+</span>${partners}</span>
+    </summary>
+    <div class="syn-open">
+      <p class="syn-why">${esc(s.why)}</p>
+      ${from}
+      <p class="syn-basis"><span class="syn-lab">Core Rules</span>${rules}${readings ? `<span class="syn-lab">Readings</span>${readings}` : ""}</p>
+    </div>
+  </details>`;
+}
+
 function render() {
   if (!deck || !result) return;
   const hits = shownHits();
@@ -348,6 +391,7 @@ function render() {
   }
   renderTray(hits);
   renderPlan();
+  renderSynergies();
   showDetail(selected);
 }
 
@@ -493,6 +537,15 @@ planBody.addEventListener("click", (ev) => {
   if (row?.dataset.base && t.closest("img")) { showCard(row.dataset.base); return; }
   const btn = t.closest<HTMLElement>("[data-combo]");
   if (btn?.dataset.combo) { selected = btn.dataset.combo; view?.select(selected); showDetail(selected); markChips(); }
+});
+// A pair's card chip opens that card; the combo it descends from opens in the same drawer a combo
+// name would, which is the whole point of showing where the rule came from.
+synergyBody.addEventListener("click", (ev) => {
+  const t = ev.target as Element;
+  const card = t.closest<HTMLElement>("[data-card]");
+  if (card?.dataset.card) { ev.preventDefault(); showCard(card.dataset.card); return; }
+  const combo = t.closest<HTMLElement>("[data-combo]");
+  if (combo?.dataset.combo) { ev.preventDefault(); selected = combo.dataset.combo; view?.select(selected); showDetail(selected); markChips(); }
 });
 detail.addEventListener("click", (ev) => {
   const t = ev.target as Element;

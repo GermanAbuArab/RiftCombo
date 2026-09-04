@@ -315,3 +315,31 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .plan-alt-cost { font: 600 11px var(--mono); color: var(--accent); }
 .plan-alt-name { font-size: 12px; line-height: 1.35; color: var(--text); }
 .plan-alt-class { font: 500 9.5px var(--mono); letter-spacing: .06em; color: var(--faint); }
+
+/* Pairs in this deck (#22). A weaker guarantee than a combo, so the panel leads with what it is
+   rather than with a count, and the rows carry the rule and its paragraphs instead of a score. */
+.syn-guarantee { margin: -4px 0 0; font-size: 11.5px; line-height: 1.6; color: var(--muted); }
+#synergy-body { display: flex; flex-direction: column; }
+.syn { border-bottom: 1px solid var(--line); }
+.syn:last-child { border-bottom: 0; }
+.syn-sum { display: flex; flex-direction: column; gap: 5px; padding: 9px 2px; cursor: pointer; list-style: none; }
+.syn-sum::-webkit-details-marker { display: none; }
+.syn-name { font: 600 12.5px/1.35 var(--font); color: var(--text); }
+.syn[open] .syn-name, .syn-sum:hover .syn-name { color: var(--accent); }
+.syn-pair { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 6px; }
+.syn-card { padding: 0; border: 0; background: none; font: 400 11.5px/1.4 var(--font); color: var(--muted); cursor: pointer; text-align: left; }
+.syn-card:hover { color: var(--text); }
+.syn-n { font: 600 10.5px var(--mono); color: var(--faint); }
+.syn-plus { font: 600 11px var(--mono); color: var(--faint); }
+.syn-open { display: flex; flex-direction: column; gap: 8px; padding: 2px 2px 12px; }
+.syn-why { margin: 0; font-size: 12px; line-height: 1.65; color: var(--muted); }
+.syn-from { display: flex; flex-direction: column; gap: 5px; }
+.syn-alone { margin: 0; font-size: 11.5px; line-height: 1.55; color: var(--faint); }
+.syn-from-list { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.syn-from-list li { display: flex; gap: 6px; }
+.syn-from-list li::before { content: "\2014"; color: var(--faint); font: 400 11.5px/1.5 var(--mono); }
+.syn-link { flex: 1; padding: 0; border: 0; background: none; text-align: left; font: 400 11.5px/1.5 var(--font); color: var(--muted); cursor: pointer; }
+.syn-link:hover { color: var(--accent); }
+.syn-basis { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin: 0; }
+.syn-lab { font: 500 9.5px var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+.syn-ref { font: 500 10px var(--mono); color: var(--muted); padding: 1px 5px; border: 1px solid var(--line); border-radius: 6px; }
