@@ -3069,7 +3069,7 @@
       "id": "garen-fiora-malzahar-facebreaker-recruits",
       "name": "Garen, Commander and a buffed Malzahar trade Fiora readies — infinite Recruits without Stealthy Pursuer",
       "class": "INFINITE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "OGS-013",
@@ -3149,9 +3149,14 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-garen-recruit-loop.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
-      "notes": "Posted as a joke, defended seriously: the two objections raised (recall exhausts; Garen's aura is temporary) were answered with rule 458 and with the point that the aura toggling is exactly what produces a crossing per pass. The catalogue's other Recruit loop (pursuer-herald-recruits) is dead with Stealthy Pursuer banned; this one uses no banned card. Nothing here is Energy-positive, so the loop is bodies only. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the loop closes at +1 Recruit per pass, but the buff has to be Bonds of Strength (Rally the Troops would re-enter Malzahar exhausted, R11), the War Camp build needs 1 Power of priming, and Darius and the buff are mutually exclusive."
+      "notes": "Posted as a joke, defended seriously: the two objections raised (recall exhausts; Garen's aura is temporary) were answered with rule 458 and with the point that the aura toggling is exactly what produces a crossing per pass. The catalogue's other Recruit loop (pursuer-herald-recruits) is dead with Stealthy Pursuer banned; this one uses no banned card. Nothing here is Energy-positive, so the loop is bodies only. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the loop closes at +1 Recruit per pass, but the buff has to be Bonds of Strength (Rally the Troops would re-enter Malzahar exhausted, R11), the War Camp build needs 1 Power of priming, and Darius and the buff are mutually exclusive. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-garen-recruit-loop.md): the pass closes at 2 Power out, 2 Power back and +1 Recruit, unbounded. 458 is flat that a Recall leaves statuses untouched, so Garen comes home READY after Fiora readies him; 466.1.a.2 only recalls attackers IF DEFENDERS REMAIN, which is what Facebreaker's stun buys; and 466.5.d is why the prerequisite insists the battlefield is already the opponent's, or every pass would hand them a Conquer. Each pass is a fresh 709 crossing for BOTH units and for different reasons - Garen is Stupefied to 4 and only reaches 5 AT the War Camp, Malzahar only reaches 5 while Garen is at base, because Garen's aura says \"here\". Depends on no unruled reading; its R13 note is the one settled the same day on fiora-vault-breaker-jhin."
     },
     {
       "id": "jhin-virtuoso-ekko-malzahar-vi",
