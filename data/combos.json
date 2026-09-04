@@ -2307,7 +2307,7 @@
       "id": "sprite-fountain-malzahar-jayce",
       "name": "Sprite Fountain fed to Malzahar, Fanatic — Power and two ready Sprites per Fountain",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-078",
@@ -2360,10 +2360,15 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Target (b) of lens L3: the repeatable core of an Ornn Calm/Mind gear deck. Sinks are the weak point. The Grand Plaza's win condition is a Hold trigger and Temporary kills before scoring, so it needs LeBlanc suppressing the Temporary trigger (see leblanc-temporary-plaza); Bottled Constellation triggers at the start of your Main Phase, always after the Beginning Phase that killed the Sprites, so it can never eat them. What the engine buys is 18 Might of ready bodies for two conquers and a defensive turn. Shurelya's Requiem (SFD-192) readies every unit once per play and Legion Quartermaster (SFD-044) returns it to hand for a replay at 7E+2P — a bounded second ready of all Malzahars, not an engine of its own (L3-07). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the per-Fountain numbers hold but both named sinks were dead: Temporary Sprites never see a Hold or a Main Phase start."
+      "notes": "Target (b) of lens L3: the repeatable core of an Ornn Calm/Mind gear deck. Sinks are the weak point. The Grand Plaza's win condition is a Hold trigger and Temporary kills before scoring, so it needs LeBlanc suppressing the Temporary trigger (see leblanc-temporary-plaza); Bottled Constellation triggers at the start of your Main Phase, always after the Beginning Phase that killed the Sprites, so it can never eat them. What the engine buys is 18 Might of ready bodies for two conquers and a defensive turn. Shurelya's Requiem (SFD-192) readies every unit once per play and Legion Quartermaster (SFD-044) returns it to hand for a replay at 7E+2P — a bounded second ready of all Malzahars, not an engine of its own (L3-07). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the per-Fountain numbers hold but both named sinks were dead: Temporary Sprites never see a Hold or a Main Phase start. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md). The engine turns on 428.1.a.1, which counts a kill taken AS A COST as an Active Kill, and 428.1.a.1.b, which puts the death trigger on the chain before the unit reaches the trash (Draven, Audacious is the rules' worked example) - so Malzahar's cost-kill really does repeat the Fountain's play effect. Both named sinks are correctly refuted: 816.1.b kills the Temporary Sprites before the Scoring Step (315.2.b), so they never Hold and never see a Main Phase start. Depends on no unruled reading."
     },
     {
       "id": "sona-viktor-opponent-turn",
@@ -3267,7 +3272,7 @@
       "id": "gemdragon-henge-vi-blind-fury",
       "name": "Gentle Gemdragons with Heralds of Scales — every Dragon played readies six runes",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-104",
@@ -3334,9 +3339,14 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
-      "notes": "The 'Dragonstorm' infinite that content creators list next to the Lux loop, played on stream and taken to 12th place; the only full walkthrough is a video YouTube's bot wall kept out of reach, so the recursion was reconstructed from the community's description and then walked. A Volibear player's own caveat, quoted: with three Gemdragons and the Heralds down 'you win in 100% of scenarios just by playing normally'. Card text verified against the corpus. Reclassified INFINITE → ENGINE on 2026-09-03. The play side is real: with two Heralds a Gemdragon costs 4 Energy and an Eager Drakehound 1 Energy + 1 Power, and three Gemdragons ready six runes per Dragon played. The recursion side does not close: killing the Dragon and redrawing it costs Power the loop cannot make — with Dancing Grenade as the kill and Show of Strength as the draw a pass is +1 Energy and −4 Power, every Power costs a rune off the board (161.2.b) that nothing channels back, and the board falls under six runes by the second pass; Ancient Henge converts one for one and cannot cover a deficit. The Blind Fury finish was mis-stated too: the spell banishes the opponent's top card and then plays it, which returns it to their trash, and Burn Out recycles their whole trash into their deck for a single point (431.2), so it is not a deck-out. And the source deck's own Endless Riches (VEN-022) banishes anything that would reach your trash from off the Main Deck, which forbids the Vi recursion outright. Dancing Grenade's escalating counter across recasts is itself an open reading (R15). REFUTE 2 (2026-09-03): DEAD as INFINITE, kept as ENGINE — no closed pass can be written in Fury/Body; the Gemdragon ramp is real, the loop and the Blind Fury deck-out are not."
+      "notes": "The 'Dragonstorm' infinite that content creators list next to the Lux loop, played on stream and taken to 12th place; the only full walkthrough is a video YouTube's bot wall kept out of reach, so the recursion was reconstructed from the community's description and then walked. A Volibear player's own caveat, quoted: with three Gemdragons and the Heralds down 'you win in 100% of scenarios just by playing normally'. Card text verified against the corpus. Reclassified INFINITE → ENGINE on 2026-09-03. The play side is real: with two Heralds a Gemdragon costs 4 Energy and an Eager Drakehound 1 Energy + 1 Power, and three Gemdragons ready six runes per Dragon played. The recursion side does not close: killing the Dragon and redrawing it costs Power the loop cannot make — with Dancing Grenade as the kill and Show of Strength as the draw a pass is +1 Energy and −4 Power, every Power costs a rune off the board (161.2.b) that nothing channels back, and the board falls under six runes by the second pass; Ancient Henge converts one for one and cannot cover a deficit. The Blind Fury finish was mis-stated too: the spell banishes the opponent's top card and then plays it, which returns it to their trash, and Burn Out recycles their whole trash into their deck for a single point (431.2), so it is not a deck-out. And the source deck's own Endless Riches (VEN-022) banishes anything that would reach your trash from off the Main Deck, which forbids the Vi recursion outright. Dancing Grenade's escalating counter across recasts is itself an open reading (R15). REFUTE 2 (2026-09-03): DEAD as INFINITE, kept as ENGINE — no closed pass can be written in Fury/Body; the Gemdragon ramp is real, the loop and the Blind Fury deck-out are not. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md). The Herald's printed words are 'Energy costs', so a Drakehound still pays its Power - the correction is right off the card face. The INFINITE-to-ENGINE reclassification holds: 161.2.b sends a recycled rune to the RUNE DECK, so every Power costs a rune off the board that nothing in Fury/Body channels back, and Ancient Henge's one-for-one conversion cannot cover a deficit. R15 appears only inside the already-refuted Vi recursion, so the claimed output does not touch it."
     },
     {
       "id": "leblanc-zilean-reflection-doubling",
