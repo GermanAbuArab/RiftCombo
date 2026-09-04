@@ -2568,6 +2568,131 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "Legend-only engine, no second card required; listed so a Fury/Mind big-spell deck sees the payoff and its ceiling. The four spells return to the trash, so anything that recycles or replays from trash (Fizz, Heedless Resurrection lines) can loop them, but nothing in Fury/Mind refunds the Energy. Card text verified against the corpus."
+    },
+    {
+      "id": "renata-time-warp-ekko-refresh",
+      "name": "Renata, Mastermind with Time Warp — Ekko's Deathknell readies the runes for the point",
+      "class": "BURST",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "OGN-122",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "10 Energy + 4 Mind Power: Take a turn after this one. Banish this. One per turn, so two copies for two extra turns in a row."
+        },
+        {
+          "card": "SFD-088",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "4 Energy + 4 Mind Power, exhaust: Score 1 point (a Gain, R2). Once per turn per ready; on every extra turn it readies again in the Awaken."
+        },
+        {
+          "card": "OGN-110",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "[Deathknell] — Recycle me to ready your runes. Killed after Time Warp is paid, he readies the runes exhausted for Energy so Renata's 8 resources are still there this turn."
+        },
+        {
+          "card": "OGN-213",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "state": "hidden",
+          "note": "[Hidden] for 1 rainbow earlier, played from hidden for 0: Kill a unit at a battlefield. Its controller draws 2. Kills Ekko on demand; Deathgrip (SFD-163, 2 Energy Reaction) does the same job from hand."
+        },
+        {
+          "card": "SFD-201",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Legend, Mind/Order. When you or an ally hold, exhaust: play a Gold gear token. While your score is within 3 points of the Victory Score, your Gold [Add] an additional Energy: each Gold is 2 resources from 5 points up."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend is Chem-Baroness (SFD-201, Mind/Order) — the Gold doubling from 5 points up is what closes the resource count."
+        ],
+        "notable": [
+          "The deck-tech requirements, quoted: 12 runes, at least 1 Gold token in base, an Ekko, Recurrent in play, a Hidden Blade or Deathgrip in hand; add 2 Gold and Renata at a battlefield to also score with Renata that turn; 4 Gold to score on the following turn too, halved once you have 5+ points.",
+          "RULES POINT to walk: Power paid by recycling runes returns those runes to the Rune Deck (161.2.b), so Ekko readies only the runes exhausted for Energy; the Mind Power for Renata has to come from Gold, Seals of Insight or runes kept back."
+        ]
+      },
+      "steps": [
+        "Main Phase with 12 runes and Gold in base: Time Warp (10 Energy + 4 Mind Power).",
+        "Hidden Blade from hidden (0) or Deathgrip (2 Energy) kills Ekko: his Deathknell recycles him and readies your runes.",
+        "Renata, Mastermind: 4 Energy + 4 Mind Power, exhaust — score 1.",
+        "Extra turn: Awaken readies everything; hold your battlefields, cast the second Time Warp, score with Renata again. Two extra turns of holds plus two or three Renata points from a mid-game score is the finish."
+      ],
+      "terminatesIn": "burst of points across two consecutive extra turns — holds plus a Renata point per turn",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Cards Realm, \"Riftbound: Deck Tech - Renata Combo\", Gabriel 'total' da Rosa, 2026-03-12",
+          "kind": "article",
+          "url": "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-tech-renata-combo",
+          "date": "2026-03-12"
+        }
+      ],
+      "notes": "Community-documented deck, not a loop: it needs no infinite engine, which separates it from time-warp-hold-burst and bottled-constellation-time-warp (both ride the Lux loop). The article states the requirements but not the action-by-action sequence; the steps above are the reconstruction from card text and are the part a human must walk, especially the Power count after Ekko's ready (161.2.b). Card text verified against the corpus."
+    },
+    {
+      "id": "dazzling-aurora-elder-dragon",
+      "name": "Dazzling Aurora flips Elder Dragon — a free board wipe at end of turn",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "OGN-160",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "9 Energy + 2 Body Power gear. At the end of your turn, reveal cards from the top of your Main Deck until you reveal a unit and banish it. Play it, ignoring its cost, and recycle the rest (errata 2025-10-28)."
+        },
+        {
+          "card": "UNL-118",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "DECK",
+          "note": "12 Energy + 4 Power, 10 Might. Any amount of your damage is enough to kill enemy units. When you play me, choose up to one enemy unit at each location. Deal 1 to them."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Body (both cards are Body)."
+        ],
+        "notable": [
+          "Aurora fires every end of turn while it survives: a free unit each turn, and whenever the revealed unit is Elder Dragon, one enemy unit dies at every location. Deck-building lever: the fewer non-Dragon units in the deck, the more often the flip is a Dragon.",
+          "Elder Dragon's trigger is on play, so it repeats only if he returns to the deck; the engine's steady output is the free unit, the wipe is the jackpot."
+        ]
+      },
+      "steps": [
+        "Resolve Aurora at the end of your turn: reveal until a unit, banish it, play it for free, recycle the rest.",
+        "If it is Elder Dragon: deal 1 to up to one enemy unit at each location — all of them die.",
+        "Next turn, Aurora fires again: Direwing (enters ready with another Dragon) or Gentle Gemdragon (readies 2 runes per Dragon played) keep the pressure up."
+      ],
+      "terminatesIn": "engine only — a free unit every end of turn; a one-per-location board wipe when it hits Elder Dragon",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Tencent News, 「从苏州到悉尼：破限为符文战场带来了什么？」, saralolita, 2026-05-18 — Aurora decks at the Suzhou and Sydney regional opens, one player facing five in seven Swiss rounds",
+          "kind": "article",
+          "url": "https://news.qq.com/rain/a/20260518A00O1S00",
+          "date": "2026-05-18"
+        }
+      ],
+      "notes": "First entry sourced from the Chinese meta, where the game launched in 2025-08. The article's complaint is about play pattern, not legality: \"players feel facing this deck isn't fun and lacks interactivity\"; it also names Aurora Volibear and Aurora Miss Fortune as the archetype's shells (Volibear's legend Relentless Storm is Fury/Body; Miss Fortune, Captain readies something on her first move). Card text verified against the corpus."
     }
   ]
 }
