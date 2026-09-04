@@ -17,6 +17,8 @@
 - Errata is a dated overlay in `data/errata.json`; the build must fail if a find-string stops matching exactly once per printing. The one tolerated exception is a reprint that already carries the new text (Sona VEN-SP2, Void Burrower SFD-243): the build skips it. Riot's gallery API lags its errata pages by months, so after each Riot errata post, transcribe it into the overlay (audit of all four pages done 2026-09-03, #17).
 - Legality is hand-transcribed from Riot's Rules Hub into `data/legality.src.json` (names) and resolved to codes at build time; it is format-scoped and entity-typed, never a boolean on the card.
 - Match cards on base codes (`OGN-212`), never on names. Names are only for parsing pasted decklists.
+- Card `type` is exactly one of `unit`, `spell`, `rune`, `gear`, `legend`, `battlefield`. **Equipment is not a type** — it is `gear` carrying the `Equipment` tag, so any filter on `type == "Equipment"` returns zero rows silently. Tags exist only in `data/corpus_flat.txt`; `cards.json` drops them. Two helpers (`UNL-T04 Buff`, `UNL-T08 XP Tracker`) carry an empty `type`.
+- All 94 legends are named as bare epithets in the gallery (`Deceiver`), while Riot's own errata pages and players write `LeBlanc, Deceiver`. `resolveName` therefore retries on the text after the first comma, and `normalizeName` accepts both `- Starter` and `, Starter`. Verified 2026-09-04: no card name collides with another card's `X, Y` suffix, so the fallback can only rescue, never mislead.
 
 ## Combos
 - `data/combos.json` is AUTHORED. `status: verified` requires a hand-walked loop against card text + Core Rules with sources; agent output enters as `candidate` until a human reviews it.

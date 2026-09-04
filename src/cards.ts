@@ -4,7 +4,9 @@ export const normalizeName = (s: string): string =>
   s
     .toLowerCase()
     .replace(/[’‘]/g, "'")
-    .replace(/\s*[-–—]\s*starter$/, "")
+    // Riot's gallery writes "Dark Child - Starter"; Riot's own errata pages write "Dark Child,
+    // Starter". Accept either separator so both dialects land on the same key.
+    .replace(/\s*[-–—,]\s*starter$/, "")
     .replace(/[^a-z0-9]/g, "");
 
 /** "UNL-079a" -> "UNL-079"; "SFD-227*" -> "SFD-227"; "OGN-212" -> "OGN-212" */
@@ -58,8 +60,19 @@ export class CardIndex {
     return card ? card.base : null;
   }
 
-  /** Resolve a card name (any common dialect) to a base code. Returns null if unknown or ambiguous across types. */
+  /** Resolve a card name (any common dialect) to a base code. Returns null if unknown. */
   resolveName(name: string): string | null {
+    const direct = this.pickByName(name);
+    if (direct) return direct;
+    // Riot's gallery names every legend as a bare epithet ("Deceiver"), but Riot's own errata pages
+    // and players write them as "Champion, Epithet" ("LeBlanc, Deceiver"). Retry on the epithet.
+    // Measured 2026-09-04: all 94 legends are bare epithets and no card name matches another card's
+    // "X, Y" suffix, so this can only rescue a line that would otherwise be dropped entirely.
+    const comma = name.indexOf(",");
+    return comma > 0 ? this.pickByName(name.slice(comma + 1)) : null;
+  }
+
+  private pickByName(name: string): string | null {
     const hits = this.byName.get(normalizeName(name));
     if (!hits || hits.length === 0) return null;
     const bases = [...new Set(hits.map((c) => c.base))];

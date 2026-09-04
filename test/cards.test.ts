@@ -50,6 +50,24 @@ describe("card index", () => {
     expect(cards.resolveName("Nope Not A Card")).toBeNull();
   });
 
+  it("resolves legends written as \"Champion, Epithet\", which is how Riot's own errata writes them", () => {
+    // Every one of the 94 legends is a bare epithet in the gallery, but players and Riot's errata
+    // pages prefix the champion. Without the fallback a pasted list loses its legend, and with it
+    // the domain pair that gates every match.
+    expect(cards.resolveName("Deceiver")).toBe("UNL-199");
+    expect(cards.resolveName("LeBlanc, Deceiver")).toBe("UNL-199");
+    expect(cards.resolveName("Ahri, Nine-Tailed Fox")).toBe("OGN-255");
+    expect(cards.resolveName("Ornn, Fire Below the Mountain")).toBe("SFD-189");
+    // A real comma in a card's own name still wins outright.
+    expect(cards.resolveName("Jhin, Murderous Artist")).toBe("UNL-022");
+    expect(cards.resolveName("Lux, Crownguard")).toBe("OGS-014");
+    // The fallback only rescues; it never invents a match.
+    expect(cards.resolveName("Garen, Not A Real Epithet")).toBeNull();
+    // Riot writes the starter suffix with a comma on its errata pages and a dash in the gallery.
+    expect(cards.resolveName("Dark Child, Starter")).toBe("OGS-017");
+    expect(cards.resolveName("Dark Child - Starter")).toBe("OGS-017");
+  });
+
   it("groups printings of one card that sit under different collector numbers", () => {
     expect(cards.equivalents("UNL-191")).toContain("UNL-231"); // Wuju Master, promo printing
     expect(cards.equivalents("OGN-066")).toEqual(["OGN-066"]); // Ahri, Alluring: alt-art shares the base
