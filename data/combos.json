@@ -57,7 +57,7 @@
       "steps": [
         "Activate Forge of the Future (Kill this): recycle Forge itself, a Shadow's Call and a Sacrifice from the trash. Deck: 3 cards.",
         "Play Ekko, Recurrent for 5 Energy + 1 Mind Power. Pay the Power by recycling an EXHAUSTED Mind rune (rule 164.2.b has no exhaust in its cost).",
-        "Play Shadow's Call (2 Energy) on any friendly unit. In response play Sacrifice (1 Energy, Reaction) killing Ekko as its cost. Exhaust every still-ready rune for floating Energy first.",
+        "Play Shadow's Call (2 Energy). It must Choose a friendly unit WITHOUT [Temporary] and give it [Temporary], so each pass marks one body for death at the start of your next Beginning Phase, before scoring (816.1.b). In response play Sacrifice (1 Energy, Reaction) killing Ekko as its cost. Exhaust every still-ready rune for floating Energy first.",
         "Ekko's Deathknell resolves: recycle Ekko (deck: 4 cards) and ready all 11 runes on the board.",
         "Sacrifice resolves: draw 2, channel the recycled rune back exhausted (12 runes again). Shadow's Call resolves: draw 2. Hand now holds Forge, Shadow's Call, Sacrifice, Ekko.",
         "Play Forge (2 Energy) — its play trigger makes a 1 Might Recruit at your base. Repeat from step 1."
@@ -82,7 +82,8 @@
           "date": "2026-09-02"
         }
       ],
-      "rulesVersion": "2026-07-16"
+      "rulesVersion": "2026-07-16",
+      "notes": "The loop pays a body per pass: Shadow's Call must Choose a friendly unit WITHOUT [Temporary] and mark it, and it can never re-mark one, so the number of units that will still be alive at your next Scoring Step is CONSTANT across the loop no matter how many passes you run. infinite-recruits here therefore means unbounded bodies for THIS turn (fodder, chump blockers, showdown numbers), not a garrison that grows into a Hold - [Temporary] kills them at the start of your Beginning Phase, before scoring (816.1.b). Found 2026-09-04 while walking grand-plaza-loop-time-warp; R29 on issue #11 is the reading that would remove the tax."
     },
     {
       "id": "lux-infinite-power",
@@ -1781,7 +1782,7 @@
           "card": "SFD-171",
           "quantity": 1,
           "role": "enabler",
-          "zone": "BATTLEFIELD",
+          "zone": "BOARD",
           "note": "Your tokens enter ready — the Recruits can Standard-Move the turn they are made."
         },
         {
@@ -1808,9 +1809,10 @@
         ]
       },
       "steps": [
-        "Loop until seven or more Recruits exist; with Industrialist they are ready.",
-        "Standard-Move them to the Grand Plaza; win the showdown by numbers; Establish Control.",
-        "Cast Time Warp. Your extra turn's Beginning Phase: Hold with 7+ units → win (195)."
+        "BLOCKED (see notes): loop until seven or more Recruits exist that are NOT [Temporary]. With Industrialist they enter ready (143.4.a).",
+        "Standard-Move all of them to the Grand Plaza as one action (144.3) so the showdown stages once; win it by numbers and establish Control - that is a Conquer, not a Hold (469.1).",
+        "Cast Time Warp (10 Energy, 4 Power). Its extra turn is why the line needs it at all: the Plaza pays on hold, and without the extra turn the opponent gets a whole turn to clear the battlefield first.",
+        "Extra turn, Scoring Step of the Beginning Phase (315.2.b.2): you hold the Plaza with 7+ units -> win (195, 196). This is two steps before the Draw Phase (315.4), so no card need be left in the deck."
       ],
       "terminatesIn": "win the game",
       "sources": [
@@ -1826,7 +1828,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Same payoff as the two-turn Recruit the Vanguard line, but the loop supplies the bodies and Time Warp removes the opponent's window. High on rules, format-dependent. REFUTE 2026-09-03: SURVIVES — Time Warp's 4 Power needs the infinite-Power line; leave a card in the deck for the extra Draw Phase (Forge's spare slot); Industrialist overrides 143.4 by card text."
+      "notes": "Same payoff as the two-turn Recruit the Vanguard line, but the loop is meant to supply the bodies and Time Warp to remove the opponent's turn. Frame verified 2026-09-04 (docs/phase0/walks/2026-09-04-divide-and-plaza.md): 195, 143.4.a, 315.2.b.2 vs 315.4, 469.2/470 and 144.3 all say what the entry needs, and the previous REFUTE worry about leaving a card for the extra Draw Phase is void - the win resolves two steps earlier. BLOCKED ON A NEW OBSTACLE INSTEAD: the loop plays Shadow's Call (UNL-165) every pass, which must Choose a friendly unit WITHOUT [Temporary] and give it [Temporary], and 816.1.b kills [Temporary] permanents at the start of the Beginning Phase BEFORE SCORING - exactly when the Plaza counts. Each pass thus creates one clean Recruit and marks one, so the count of units alive at the Scoring Step is CONSTANT and never reaches 7. The only escape is to point Shadow's Call at Ekko, who dies to Sacrifice's additional cost before it resolves, and rely on the Draw 2 executing anyway; 359.3.e.7, 758.1 and 359.3.e.11 all support that per-instruction reading but it is unruled. Filed as R29 on issue #11."
     },
     {
       "id": "zed-clone-eye-recruits",
@@ -2101,7 +2103,7 @@
       "id": "jhin-emperors-divide-hidden",
       "name": "Three Jhins and a hidden Emperor's Divide — a ten-resource turn",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-022",
@@ -2124,6 +2126,13 @@
           "role": "ready",
           "zone": "BOARD",
           "note": "When I attack, ready another friendly unit: readies the Jhins that exhausted themselves moving in. Needs enemy units present: an Attack Trigger requires the Attacker designation, which only exists inside a Combat (383.4.e, 464.2.c, 461). One trigger per Reveler per combat, and each readies another unit, never itself."
+        },
+        {
+          "card": "VEN-139",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "[Action] exhaust: move a friendly unit in a showdown to base, and ready it while Empowered. Empowered is a persistent board state (441.2, 827.1.c.1), so its 3 Energy + 1 Power is paid once on any earlier turn and the last two moves are free."
         }
       ],
       "needs": [],
@@ -2135,17 +2144,19 @@
           "Legend domains cover Fury and Calm (Rogue Assassin VEN-139 is the natural pick)."
         ],
         "notable": [
-          "You control battlefield X with a Divide hidden there; three Jhins ready at base; the opponent has units on a battlefield for the Revelers to attack. Attack triggers need a Combat, and a Combat needs units from two opposing players at the battlefield (461, 383.4.e) — an empty enemy battlefield gives a showdown and no triggers.",
-          "Only one facedown card per battlefield (811.1.b), so a second Divide needs a second controlled battlefield. Duel has exactly two battlefields (485.4), so a second Divide and an attackable enemy battlefield cannot coexist there: the two-Divide version needs a three-battlefield mode.",
-          "Divide's targets must be at the battlefield it was hidden at (811.1.d.2). Moving into a battlefield you already control applies no Contested status (190.3.a.1), so the three Jhins walk in without opening a showdown; emptying X on the Divide costs you control of X at the next cleanup and would trash any second hidden card there (323.6, 323.7)."
+          "You control battlefield X with a Divide hidden there; three Jhins ready at base; the opponent has units on a battlefield for the Revelers to attack. Attack triggers need a Combat, and a Combat needs units from two opposing players at the battlefield (461, 383.4.e) - an empty enemy battlefield gives a showdown and no triggers.",
+          "Only one facedown card per battlefield (811.1.b), so a second Divide needs a second controlled battlefield. Duel has exactly two battlefields (485.4, 485.5), so a second Divide and an attackable enemy battlefield cannot coexist there: the two-Divide version needs a three-battlefield mode.",
+          "Divide's targets must be at the battlefield it was hidden at (811.1.d.2). Moving into a battlefield you already control applies no Contested status (190.3.a.1), so the three Jhins walk in without opening a showdown; emptying X on the Divide costs you control of X at the next cleanup and would trash any second hidden card there (323.6, 323.7).",
+          "The Revelers are spent on the attack: they are M3 into whatever garrisons Y, and the line only needs their triggers, not their survival."
         ]
       },
       "steps": [
-        "Jhins A, B, C Standard Move to X: +3E +3P (all three exhausted at X).",
-        "Reveler 1 attacks the enemy battlefield: ready A. Reveler 2 attacks: ready B.",
-        "Play the hidden Divide (cost ignored): A, B, C to base: +3E +3P.",
-        "A and B Standard Move back to X: +2E +2P. X is uncontrolled now, so this opens a showdown; re-establishing control scores nothing because you already Held X this Beginning Phase (470).",
-        "That showdown is the opening for an Empowered Rogue Assassin: move A to base and ready it (+1E +1P), then walk it back in after the showdown closes (+1E +1P). Ten moves, +10E +10P."
+        "Jhins A, B, C Standard Move base -> X, a battlefield you already control: +3E +3P. No Contested applies (190.3.a.1), so nothing opens at X. All three are exhausted, because exhausting is the cost of a Standard Move (144.2).",
+        "Two Twilight Revelers Standard Move to the enemy battlefield Y and you initiate: every unit you control at the contested battlefield gains the Attacker designation at once (464.2.c.3), so both Revelers trigger off the single combat (383.4.e.2.a caps each at one check). Ready A and B.",
+        "Play the hidden Divide, ignoring its base cost (811.1.b): A, B, C move X -> base. +3E +3P. This is an effect move, not a Standard Move, so it pays no exhaust cost and A and B arrive at base still ready.",
+        "A and B Standard Move base -> X: +2E +2P. X went uncontrolled at the Cleanup after the Divide emptied it (190.4.c, 323.6), so this time Contested does apply and a Non-Combat Showdown stages there (323.8, 316.8.b.1). That is eight moves, +8E +8P.",
+        "In that showdown, an Empowered Rogue Assassin moves A to base and readies it: +1E +1P. B stays, so control of X is re-established when the showdown closes (190.4).",
+        "A Standard Moves back into X once the showdown has closed - a Standard Move is illegal during one (144.1.c). Ten moves, +10E +10P, every point of it added in the Main Phase and so spendable until end of turn (167)."
       ],
       "terminatesIn": "engine only — eight moves for +8 Energy and +8 Power in a turn, ten and +10/+10 with an Empowered Rogue Assassin, all for 1 rainbow paid on an earlier turn",
       "sources": [
@@ -2161,7 +2172,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "First Fury/Calm entry. Bounded by Divides (3), Jhins (3), Reveler attacks and hidden slots; nothing in Fury/Calm recurs a Divide. Rogue Assassin Empowered adds +2E +2P once per turn, but only on a unit that is in a showdown — in this line that is the showdown the re-entry to X opens after the Divide emptied it. No in-domain kill: it hands the deck a 10/10 turn for its big spells. Card text verified against the corpus. REFUTE 2 (2026-09-03): SURVIVES with corrected numbers — +8E +8P in Duel (the second Divide needs a third battlefield), +10/+10 with an Empowered Rogue Assassin through the re-entry showdown."
+      "notes": "First Fury/Calm entry. Bounded by Divides (3), Jhins (3), Reveler attacks and hidden slots; nothing in Fury/Calm recurs a Divide. No in-domain kill: it hands the deck a 10/10 turn for its big spells. Card text verified against the corpus. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-divide-and-plaza.md): all seven rule numbers the entry already cited check out, and four load-bearing ones it was missing were added. The critical one is 144.2 - exhausting is the COST of a Standard Move, so the Divide's effect move costs no exhaust and the readied Jhins come back to base still ready; without that the line is six moves, not eight. Depends on no unruled reading."
     },
     {
       "id": "platewyrm-egg-defender-gate",
