@@ -2466,7 +2466,7 @@
       "id": "treasure-hunter-industrialist-gold",
       "name": "Treasure Hunter with Renata Glasc, Industrialist — a ready Gold on every move",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "SFD-130",
@@ -2519,10 +2519,15 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-two-industrialist-engines.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "The unbounded version was Stealthy Pursuer (OGN-177), banned; no other 'moves with it' text exists in the pool on the L2 and L3 reads. Fae Porter (SFD-125) pays Chaos Power to bring the Hunter along for net zero and a Recruit. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — steady state is 4 Gold and 4 Recruits a turn for 3E + 1 Chaos Power with Ride the Wind and The Syren; the turn he lands it is zero; and the Gold is spendable the turn it appears (R25 ruled A, 2026-09-04)."
+      "notes": "The unbounded version was Stealthy Pursuer (OGN-177), banned; no other 'moves with it' text exists in the pool on the L2 and L3 reads. Fae Porter (SFD-125) pays Chaos Power to bring the Hunter along for net zero and a Recruit. Card text verified against the corpus. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-two-industrialist-engines.md): four moves a turn (Standard Move, Ride the Wind which moves AND readies, Standard Move, The Syren) for 3 Energy + 1 Chaos Power, so four Gold, net +3 Power and -3 Energy. 187.5 makes the Gold's ability an EXHAUST cost, which is exactly why R25 = A matters. The Eye of the Herald rider also holds: 136.2.d makes its Effect Text 'I' the Hunter and 359.3.f.2 reads 'here' at resolution, i.e. the post-move location. VEN-155 Heart of the Tempest confirmed as the only Order/Chaos legend by scanning every Legend row. Depends on no unruled reading - R9 is settled by 420.1/420.2.a/456.1 and 359.3.f. REFUTE 2 (2026-09-03): WOUNDED — steady state is 4 Gold and 4 Recruits a turn for 3E + 1 Chaos Power with Ride the Wind and The Syren; the turn he lands it is zero; and the Gold is spendable the turn it appears (R25 ruled A, 2026-09-04)."
     },
     {
       "id": "fiora-vault-breaker-jhin",
@@ -2591,7 +2596,7 @@
       "id": "fae-dragon-wallop-industrialist",
       "name": "Fae Dragon buffs, Wallop spends them — a ready Gold and Lux Energy per buff",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "SFD-101",
@@ -2652,10 +2657,15 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-two-industrialist-engines.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Body/Order had no entry. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the Energy is Lux's and spell-only, and it appears only when the buff readies a Lux you had already exhausted; per Wallop +2 spell Energy and one Gold, usable the same turn (R25 ruled A, 2026-09-04). Overt Operation at 5E+2P is worse than the free Wallop."
+      "notes": "Body/Order had no entry. Card text verified against the corpus. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-two-industrialist-engines.md): a free Wallop spends a buff, the Dragon plays a Gold that is ready under R25 = A (1 rainbow), and the readied Lux exhausts for 2 spell-only Energy. 702.2.b defines spending a buff flatly, with no exemption for spends made as a cost, so Wallop's additional cost does trigger the Dragon. Bounded by 103.2.b (three Wallops), four buffs per Dragon play and 702.3 (one buff per unit at a time). Depends on no unruled reading. REFUTE 2 (2026-09-03): WOUNDED — the Energy is Lux's and spell-only, and it appears only when the buff readies a Lux you had already exhausted; per Wallop +2 spell Energy and one Gold, usable the same turn (R25 ruled A, 2026-09-04). Overt Operation at 5E+2P is worse than the free Wallop."
     },
     {
       "id": "aphelios-jax-quickdraw-attach",
