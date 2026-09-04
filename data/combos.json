@@ -57,10 +57,12 @@
       "steps": [
         "Activate Forge of the Future (Kill this): recycle Forge itself, a Shadow's Call and a Sacrifice from the trash. Deck: 3 cards.",
         "Play Ekko, Recurrent for 5 Energy + 1 Mind Power. Pay the Power by recycling an EXHAUSTED Mind rune (rule 164.2.b has no exhaust in its cost).",
-        "Play Shadow's Call (2 Energy). It must Choose a friendly unit WITHOUT [Temporary] and give it [Temporary], so each pass marks one body for death at the start of your next Beginning Phase, before scoring (816.1.b). In response play Sacrifice (1 Energy, Reaction) killing Ekko as its cost. Exhaust every still-ready rune for floating Energy first.",
-        "Ekko's Deathknell resolves: recycle Ekko (deck: 4 cards) and ready all 11 runes on the board.",
-        "Sacrifice resolves: draw 2, channel the recycled rune back exhausted (12 runes again). Shadow's Call resolves: draw 2. Hand now holds Forge, Shadow's Call, Sacrifice, Ekko.",
-        "Play Forge (2 Energy) — its play trigger makes a 1 Might Recruit at your base. Repeat from step 1."
+        "Play Shadow's Call (2 Energy) targeting EKKO and let it resolve: Ekko gains [Temporary], draw 2. Target Ekko, never a Recruit - Shadow's Call must Choose a friendly unit WITHOUT [Temporary], and whatever it marks dies at the start of your next Beginning Phase before scoring (816.1.b).",
+        "Exhaust every still-ready rune for floating Energy, before the Deathknell readies them.",
+        "Play Sacrifice (1 Energy, Reaction - 813.1.b gives it every permission of Action, so a plain Open State is fine). Its additional cost kills Ekko, and Ekko's [Temporary] dies with him, so no Recruit is ever marked.",
+        "Ekko's Deathknell resolves: recycle Ekko and ready all 11 runes.",
+        "Sacrifice resolves: draw 2, channel the recycled rune back exhausted (12 runes again). Hand holds Forge, Shadow's Call, Sacrifice, Ekko.",
+        "Play Forge (2 Energy) - its play trigger makes a 1 Might Recruit at your base. Repeat from step 1."
       ],
       "netPerIteration": "-10 Energy -1 Power spent; 11 runes readied and 1 channeled back; +1 floating Energy and +1 Recruit token per pass. Unbounded.",
       "terminatesIn": "infinite energy (engine); infinite Recruits at base",
@@ -83,7 +85,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "The loop pays a body per pass: Shadow's Call must Choose a friendly unit WITHOUT [Temporary] and mark it, and it can never re-mark one, so the number of units that will still be alive at your next Scoring Step is CONSTANT across the loop no matter how many passes you run. infinite-recruits here therefore means unbounded bodies for THIS turn (fodder, chump blockers, showdown numbers), not a garrison that grows into a Hold - [Temporary] kills them at the start of your Beginning Phase, before scoring (816.1.b). Found 2026-09-04 while walking grand-plaza-loop-time-warp; R29 on issue #11 is the reading that would remove the tax."
+      "notes": "Shadow's Call must Choose a friendly unit WITHOUT [Temporary], and 816.1.b kills whatever it marks at the start of your next Beginning Phase, BEFORE scoring. Point it at Ekko and resolve it before playing Sacrifice: Sacrifice's additional cost then kills Ekko and the mark goes with him, so the Recruits stay clean and accumulate across turns. The stacked ordering (Sacrifice in response) would leave Shadow's Call resolving with a dead target and make the loop depend on a mistarget reading; it also has to mark a live Recruit instead, which caps the surviving body count. Sequencing found by the user 2026-09-04 while reviewing R29, which is now moot for the catalogue."
     },
     {
       "id": "lux-infinite-power",
@@ -1762,7 +1764,7 @@
       "id": "grand-plaza-loop-time-warp",
       "name": "The Grand Plaza under the loop — seven ready Recruits, then Time Warp",
       "class": "ALT_WIN",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "OGN-293",
@@ -1805,14 +1807,17 @@
           "Legend domains cover Mind and Order."
         ],
         "notable": [
-          "The Grand Plaza in play (random 1 of 3 in Duel, chosen in Match). Loop until 7+ ready Recruits exist."
+          "The Grand Plaza in play (random 1 of 3 in Duel, chosen in Match).",
+          "Every pass's Shadow's Call must target Ekko, not a Recruit: 816.1.b kills [Temporary] permanents at the start of the Beginning Phase BEFORE scoring, which is exactly when the Plaza counts.",
+          "The Plaza's 'if you have 7+ units here' is checked again on resolution, and the opponent still gets priority windows on both turns even though Time Warp denies them a turn. The loop is unbounded, so overshoot the seven."
         ]
       },
       "steps": [
-        "BLOCKED (see notes): loop until seven or more Recruits exist that are NOT [Temporary]. With Industrialist they enter ready (143.4.a).",
-        "Standard-Move all of them to the Grand Plaza as one action (144.3) so the showdown stages once; win it by numbers and establish Control - that is a Conquer, not a Hold (469.1).",
-        "Cast Time Warp (10 Energy, 4 Power). Its extra turn is why the line needs it at all: the Plaza pays on hold, and without the extra turn the opponent gets a whole turn to clear the battlefield first.",
-        "Extra turn, Scoring Step of the Beginning Phase (315.2.b.2): you hold the Plaza with 7+ units -> win (195, 196). This is two steps before the Draw Phase (315.4), so no card need be left in the deck."
+        "Run the loop, pointing each pass's Shadow's Call at Ekko and resolving it before Sacrifice, so no Recruit is ever marked [Temporary]. Each pass is +1 clean Recruit, and Industrialist makes them enter ready (143.4.a).",
+        "Loop to seven or more Recruits, then Standard-Move them all to the Grand Plaza as ONE action (144.3) so the showdown stages once instead of after each body.",
+        "Win the showdown and establish Control. That is a Conquer (469.1), not a Hold - which is why the Plaza has not paid yet.",
+        "Cast Time Warp (10 Energy, 4 Power; the Power comes from the infinite-Power line). Without the extra turn the opponent gets a whole turn to clear the battlefield before your next Beginning Phase.",
+        "Extra turn, Scoring Step of the Beginning Phase (315.2.b.2): you hold the Plaza with 7+ units, so you win (195, 196). That is two steps before the Draw Phase (315.4), so no card need be left in the deck."
       ],
       "terminatesIn": "win the game",
       "sources": [
@@ -1828,7 +1833,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Same payoff as the two-turn Recruit the Vanguard line, but the loop is meant to supply the bodies and Time Warp to remove the opponent's turn. Frame verified 2026-09-04 (docs/phase0/walks/2026-09-04-divide-and-plaza.md): 195, 143.4.a, 315.2.b.2 vs 315.4, 469.2/470 and 144.3 all say what the entry needs, and the previous REFUTE worry about leaving a card for the extra Draw Phase is void - the win resolves two steps earlier. BLOCKED ON A NEW OBSTACLE INSTEAD: the loop plays Shadow's Call (UNL-165) every pass, which must Choose a friendly unit WITHOUT [Temporary] and give it [Temporary], and 816.1.b kills [Temporary] permanents at the start of the Beginning Phase BEFORE SCORING - exactly when the Plaza counts. Each pass thus creates one clean Recruit and marks one, so the count of units alive at the Scoring Step is CONSTANT and never reaches 7. The only escape is to point Shadow's Call at Ekko, who dies to Sacrifice's additional cost before it resolves, and rely on the Draw 2 executing anyway; 359.3.e.7, 758.1 and 359.3.e.11 all support that per-instruction reading but it is unruled. Filed as R29 on issue #11."
+      "notes": "Frame hand-walked 2026-09-04 (docs/phase0/walks/2026-09-04-divide-and-plaza.md). 195, 143.4.a, 315.2.b.2 vs 315.4, 469.1/469.2/470, 144.3 and 186.1 all check out. The previous REFUTE worry about leaving a card for the extra Draw Phase is void: the win resolves at the Scoring Step, two steps earlier. The real obstacle was that the loop's Shadow's Call marks a friendly unit [Temporary] every pass, which would hold the surviving body count constant - solved by resolving Shadow's Call on Ekko before Sacrifice kills him, so the mark is discarded with the unit. Depends on R25 = A (ruled) and on no unruled reading."
     },
     {
       "id": "zed-clone-eye-recruits",

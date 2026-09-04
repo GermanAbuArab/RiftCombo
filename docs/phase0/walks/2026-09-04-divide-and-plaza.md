@@ -1,8 +1,9 @@
 # Hand walks — the two entries left mid-analysis
 
 **Date:** 2026-09-04 · **Rules version:** Core Rules 2026-07-16
-**Verdicts:** `jhin-emperors-divide-hidden` **HOLDS** → verified. `grand-plaza-loop-time-warp`
-**FAILS as written** → stays candidate, and the failure is a new numbered reading (R29).
+**Verdicts:** both **HOLD** → verified. `grand-plaza-loop-time-warp` failed on the first pass and was
+rescued by a resequencing the user pointed out; the reading it would otherwise have needed (R29) is
+retired unused.
 
 Both entries were REFUTE survivors carrying no open reading, which is why they were queued. One of
 them turned out to carry one nobody had noticed, hidden inside a *verified* entry it depends on.
@@ -135,27 +136,42 @@ Before scoring is exactly when the Grand Plaza is checked. So:
 "Play Shadow's Call on **any** friendly unit", and that word hides a per-pass tax that this entry's
 payoff cannot pay. Its `produces: "infinite-recruits"` is true only within the turn.
 
-### The one escape, and why it is a ruling and not a fix
+### The fix: resolve Shadow's Call *before* playing Sacrifice
 
-The tax disappears if Shadow's Call is pointed at **Ekko**, who is killed by Sacrifice's additional cost
-(UNL-173: *"As an additional cost to play this, kill a friendly [Mighty] unit"*; Ekko at M5 is the only
-Mighty unit in the loop) before Shadow's Call resolves. Ekko is a legal choice when Shadow's Call is
-played (355.8 checks validity at that moment) and gone when it resolves. The question is whether the
-**"Draw 2"** still happens. Three rules say it does:
+My first answer was to point Shadow's Call at **Ekko** and let it resolve with a dead target, on the
+argument that the mistarget kills only the instruction that named the unit and "Draw 2" survives
+(359.3.e.7, 758.1, 359.3.e.11). That works, but it is needlessly clever and makes the catalogue stand on
+an unruled reading. **The user pointed out the obvious better line:** target Ekko, let Shadow's Call
+**resolve normally**, and play Sacrifice *afterwards*.
 
-- **359.3.e.7** — *"If all of **an instruction's** targets become Invalid or Unavailable … **that
-  instruction** will not execute."* Per instruction, not per spell.
-- **758.1** — *"Any instructions **related to that Game Object** will be ignored as the spell resolves."*
-  "Draw 2" is not related to the chosen unit.
-- **359.3.e.11** — *"Instructions that can be partially followed are followed as much as possible."*
-  Its own example is "Discard 2, then draw 2" with an empty hand: the discard is skipped, **the draw
-  still happens**. Shadow's Call's "Draw 2." is a separate sentence, so it is at least as separable.
+| | stacked (Sacrifice in response) | sequenced (user's line) |
+|---|---|---|
+| Shadow's Call | resolves with a dead target — **needs a mistarget reading** | resolves normally: Ekko gains [Temporary], draw 2 |
+| Sacrifice | played in response | played after, kills Ekko as its additional cost |
+| the [Temporary] mark | never lands | lands on Ekko and **dies with him** |
+| draws per pass | 4 | 4, identical |
+| Recruits marked | 0, only if the reading goes one way | **0, unconditionally** |
 
-And 359.3.e.10's example is carefully worded *"a spell that reads 'Deal 2 to a unit at a battlefield'
-**with no other instructions**"* — the qualifier only makes sense if a spell with other instructions
-executes them.
+Legal on three counts: **813.1.b** — *"Reaction grants the corresponding card or effect all abilities and
+permissions of Action"* — so Sacrifice can be played in a plain Main Phase Open State with an empty
+chain, not only in response to something. Ekko is a legal choice when Shadow's Call is played and still
+alive when it resolves, so 355.8 is satisfied twice over. And [Temporary] only ever triggers at the start
+of a Beginning Phase (816.1.b), so marking Ekko costs nothing during the turn he dies in.
 
-This is well supported, but it is a reading the catalogue would then **stand on**, and it silently
-rewrites a step of a verified entry. Filed as **R29** on issue #11 for the user to rule. Until then
-`grand-plaza-loop-time-warp` stays `candidate`, with the real obstacle named in its notes instead of the
-imaginary Draw Phase one.
+The deck bookkeeping is unchanged. Sacrifice is in hand from the start of the pass, so it never depends on
+Shadow's Call's draws; and exhausting the runes for floating Energy still happens before Ekko's Deathknell
+readies them:
+
+| step | deck | note |
+|---|---|---|
+| Kill Forge, recycle Forge + Shadow's Call + Sacrifice | 3 | |
+| Shadow's Call resolves, draw 2 | 1 | |
+| Sacrifice's cost kills Ekko → Deathknell recycles Ekko | 2 | 11 runes readied |
+| Sacrifice resolves, draw 2 | 0 | hand: Forge, Shadow's Call, Sacrifice, Ekko |
+
+Four recycles, four draws, same as the stacked version. `lux-infinite-energy`'s step 3 now names Ekko and
+the ordering explicitly, and `grand-plaza-loop-time-warp` is promoted: each pass is +1 clean Recruit,
+unbounded, so seven is trivial.
+
+**R29 is retired.** It was a real question about instruction-level mistargeting, but no entry in the
+catalogue stands on it any more, so it does not need a ruling.
