@@ -351,13 +351,13 @@
       "uses": [
         {
           "card": "OGN-034",
-          "quantity": 1,
+          "quantity": 2,
           "role": "payoff",
           "note": "When I conquer after an attack, if you assigned 5 or more excess damage to enemy units, you score 1 point."
         },
         {
           "card": "UNL-029",
-          "quantity": 2,
+          "quantity": 3,
           "role": "engine",
           "note": "Your conquer effects for conquering here trigger an additional time."
         }
@@ -371,7 +371,10 @@
           "Mono-Fury: any Fury legend."
         ],
         "notable": [
-          "Move Tryndamere and the Bramblebacks (not play them) onto an enemy battlefield with a thin garrison so the excess-damage clause is met."
+          "Move Tryndamere and the Bramblebacks (not play them) onto an enemy battlefield with a thin garrison so the excess-damage clause is met.",
+          "Points on the Conquer: 1 + T x (1 + K), T = Tryndamere copies, K = Red Bramblebacks. The entry asked for T=1, K=2, which is 4 — its own REFUTE note said so in 2026-09-03 (\"a strong Conquer, not a burst to 8\") and the fix was never applied. Corrected on 2026-09-04 to T=2, K=3 = 9 points for 26 Energy and 7 Power, which is the board REFUTE itself named.",
+          "The Conquer path mirrors the Hold path exactly: 383.4.c.2.a puts each present unit's conquer ability on the chain once the player gains control and gains a point from Conquering, and R1 = A names Red Brambleback directly. Conquering from 0 is safe despite 471.1.b, because that Final Point restriction only bites when the player is already within 1 of the Victory Score, and 471.1.a.1 exempts non-Conquer Gains anyway.",
+          "STILL A CANDIDATE because of R28: \"excess damage\" is printed on six cards (Tryndamere, Sivir Ambitious, Yeti Brawler, Piltover Enforcer among them) and is NOT defined anywhere in Core Rules 2026-07-16. The natural reading is attacking Might beyond what 465.2.c.4 allows to be assigned, which 2 Tryndamere + 3 Brambleback (28 Might) clears trivially against a thin garrison — but it is a reading, not text."
         ]
       },
       "steps": [
@@ -392,7 +395,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "REFUTE 2026-09-03: WOUNDED — with one Tryndamere and two Bramblebacks the Conquer is 1 + 1×(1+2) = 4 points, a strong Conquer, not a burst to 8; it reaches 8 only with two Tryndameres (T=2, K=3 = 9). The trigger reads 'When I conquer after an attack, if you assigned 5 or more excess damage', so defenders must be present — an uncontested walk-in is a Conquer but not an attack."
+      "notes": "REFUTE 2026-09-03: WOUNDED — with one Tryndamere and two Bramblebacks the Conquer is 1 + 1×(1+2) = 4 points, a strong Conquer, not a burst to 8; it reaches 8 only with two Tryndameres (T=2, K=3 = 9). The trigger reads 'When I conquer after an attack, if you assigned 5 or more excess damage', so defenders must be present — an uncontested walk-in is a Conquer but not an attack. AUDIT 2026-09-04: quantities corrected to the board REFUTE had already identified (T=2, K=3 = 9). Kept candidate: unlike the hold lines, this one leans on R28, the undefined term \"excess damage\"."
     },
     {
       "id": "grand-plaza-recruit-vanguard",
@@ -1603,11 +1606,11 @@
       "id": "ivern-sentinel-hold",
       "name": "Ivern, Friend to All × Blue Sentinel — multiplied Hold points",
       "class": "BURST",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-177",
-          "quantity": 2,
+          "quantity": 3,
           "role": "payoff",
           "zone": "BATTLEFIELD",
           "note": "When I conquer or hold, score 1 point if your units have Bird, Cat, Dog and Poro among them."
@@ -1629,8 +1632,9 @@
           "Legend domains cover Mind and Order."
         ],
         "notable": [
-          "All four tags among your units. Ivern supplies one on play; the lens lists cheap taggers in Mind+Order (Ultrasoft Poro + its Bird token, Fallen Feline, Hungry Wolf).",
-          "Points per Hold: 1 + N × (1 + K). N=2, K=2 gives 7; N=3, K=3 gives 13."
+          "All four tags among your units. Each Ivern chooses one on play (Bird, Cat, Dog or Poro), so three Iverns supply three of the four and one cheap tagger covers the last — the L6 lens lists Ultrasoft Poro with its Bird token, Fallen Feline and Hungry Wolf in Mind+Order.",
+          "Points per Hold: 1 + N x (1 + K), N = Ivern copies present, K = Blue Sentinel copies. N=3, K=2 gives 10 for 26 Energy; N=2, K=3 gives 9 for 24 but needs a second outside tagger. N=2, K=2 gives only 7, which is what this entry asked for before the 2026-09-04 audit.",
+          "The machinery is exactly ahri-blue-sentinel-hold's, walked in full at docs/phase0/walks/2026-09-04-ahri-blue-sentinel-hold.md: 383.4.d.2.a puts each present Ivern's hold ability on the chain, R2 = A keeps its card-text point outside 470's cap, and R1 = A has each Sentinel add an instance. The only delta is Ivern's four-tag condition and his 6 Energy body."
         ]
       },
       "steps": [
@@ -1648,10 +1652,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk, 2026-09-04 — same machinery as ahri-blue-sentinel-hold, walked at docs/phase0/walks/2026-09-04-ahri-blue-sentinel-hold.md; delta is the four-tag condition",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "The Reckoner's Arena double-dip in the lens (its hold ability re-activates conquer effects) is left out: whether Sentinel multiplies the Arena's own trigger is UNRESOLVED. Tag requirement is the real deckbuilding cost. Rests on the Blue Sentinel reading shared with every Hold line: 471.2.c limits score effects to a Score event, and Sentinel adds trigger instances of that one event rather than a second Score. Arguable, hence candidate. REFUTE 2026-09-03: SURVIVES."
+      "notes": "The Reckoner's Arena double-dip in the lens (its hold ability re-activates conquer effects) is left out: whether Sentinel multiplies the Arena's own trigger is UNRESOLVED. Tag requirement is the real deckbuilding cost. Rests on the Blue Sentinel reading shared with every Hold line: 471.2.c limits score effects to a Score event, and Sentinel adds trigger instances of that one event rather than a second Score. Arguable, hence candidate. REFUTE 2026-09-03: SURVIVES. HAND-WALKED 2026-09-04, promoted to verified WITH A CORRECTION found by the BURST audit: the entry asked for 2 Ivern + 2 Blue Sentinel, which its own formula gives as 7 points — one short of the 8 its class claims. Ivern raised to 3 for 10 points, which also supplies three of the four tags his own condition needs."
     },
     {
       "id": "kharox-sanction-burn",
@@ -2673,7 +2682,7 @@
     {
       "id": "renata-time-warp-ekko-refresh",
       "name": "Renata, Mastermind with Time Warp — Ekko's Deathknell readies the runes for the point",
-      "class": "BURST",
+      "class": "ENGINE",
       "status": "candidate",
       "uses": [
         {
@@ -2747,7 +2756,7 @@
           "date": "2026-09-03"
         }
       ],
-      "notes": "Community-documented deck, not a loop: it needs no infinite engine, which separates it from time-warp-hold-burst and bottled-constellation-time-warp (both ride the Lux loop). The article states the requirements but not the action-by-action sequence; the steps above are the reconstruction from card text and are the part a human must walk, especially the Power count after Ekko's ready (161.2.b). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the Time Warp turn is payable with zero Gold if eight of the twelve runes make Mind, the Gold's job is the turn after and it arrives exhausted, the extra turn buys a Renata point or a second Time Warp but not both, and the 'one Time Warp per turn' clause the first write-up assumed does not exist."
+      "notes": "Community-documented deck, not a loop: it needs no infinite engine, which separates it from time-warp-hold-burst and bottled-constellation-time-warp (both ride the Lux loop). The article states the requirements but not the action-by-action sequence; the steps above are the reconstruction from card text and are the part a human must walk, especially the Power count after Ekko's ready (161.2.b). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the Time Warp turn is payable with zero Gold if eight of the twelve runes make Mind, the Gold's job is the turn after and it arrives exhausted, the extra turn buys a Renata point or a second Time Warp but not both, and the 'one Time Warp per turn' clause the first write-up assumed does not exist. AUDIT 2026-09-04: reclassed BURST -> ENGINE. BURST means one scoring event reaches 8; this entry's own terminatesIn says \"burst of points across two consecutive extra turns\" and its own count is about 5. It is a strong extra-turn engine, not a burst."
     },
     {
       "id": "dazzling-aurora-elder-dragon",

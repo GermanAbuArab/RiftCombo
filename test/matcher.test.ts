@@ -66,8 +66,13 @@ describe("matcher", () => {
     const r = matchDeck(deck, variants, cards, { format: "constructed" });
     expect(r.included).toEqual([]);
     expect(r.includedByChangingLegend).toEqual([]);
-    expect(ids(r.almostIncluded)).toEqual(["tryndamere-brambleback-conquer"]);
-    expect(r.almostIncluded[0]!.missing).toEqual([{ card: "OGN-034", quantity: 1 }]);
+    // The fixture holds 2 Red Brambleback and no Tryndamere. Since the 2026-09-04 BURST audit
+    // corrected the line to 2 Tryndamere + 3 Brambleback, the shortfall is 3 and the deck falls
+    // outside the default near-miss ceiling of 2 — so widen the ceiling to see it.
+    expect(r.almostIncluded).toEqual([]);
+    const r3 = matchDeck(deck, variants, cards, { format: "constructed", maxMissing: 3 });
+    expect(ids(r3.almostIncluded)).toEqual(["tryndamere-brambleback-conquer"]);
+    expect(r3.almostIncluded[0]!.missing).toEqual([{ card: "OGN-034", quantity: 2 }, { card: "UNL-029", quantity: 1 }]);
   });
 
   it("reports the banned Recruits loop as included but illegal in the format", () => {
