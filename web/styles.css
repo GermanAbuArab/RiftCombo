@@ -149,6 +149,8 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .empty-title { margin: 14px 0 0; font-family: var(--font); font-weight: 600; font-size: 18px; color: var(--text); }
 .empty-body { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.6; }
 .empty-body strong { color: var(--text); font-weight: 600; }
+.empty-coverage { margin: 4px 0 0; font-size: 12.5px; color: var(--muted); line-height: 1.7; font-variant-numeric: tabular-nums; }
+.empty-coverage strong { color: var(--text); font-weight: 600; }
 .empty-note { margin: 10px 0 0; padding-top: 10px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--faint); line-height: 1.6; }
 
 /* Graph */

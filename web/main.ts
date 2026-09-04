@@ -5,7 +5,7 @@ import { CardIndex } from "../src/cards.js";
 import { generateVariants } from "../src/combos.js";
 import { isDeckCode, loadDeck, normalizeDeck, parseDeckText, type DeckEntry } from "../src/deck.js";
 import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
-import type { Card, Combo, Deck, Feature, Format, LegalityEntry, Variant } from "../src/types.js";
+import type { Card, Combo, Deck, Domain, Feature, Format, LegalityEntry, Variant } from "../src/types.js";
 import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from "./graph.js";
 
 const combos = (combosJson as { combos: Combo[] }).combos;
@@ -162,6 +162,40 @@ const playableUnderLegend = (): number | null => {
   return combos.filter((c) => c.uses.every((u) => cards.domainsOf(u.card).every((d) => dom.has(d)))).length;
 };
 
+const DOMAINS: Domain[] = ["fury", "calm", "mind", "body", "chaos", "order"];
+const titleCase = (d: string) => d.charAt(0).toUpperCase() + d.slice(1);
+/** Legends carry exactly two domains, so a pair is the unit of coverage. Order them consistently. */
+const asPair = (ds: Domain[]): Domain[] => [...new Set(ds)].sort((a, b) => DOMAINS.indexOf(a) - DOMAINS.indexOf(b));
+const pairLabel = (p: Domain[]) => p.map(titleCase).join(" + ");
+
+/**
+ * How many catalogued combos each legend domain pair could ever run. Domain Identity (103.1.b) caps
+ * a deck at its legend's two domains, so this is the map of where the catalogue actually has depth.
+ * An empty result on a thin pair is our gap, and the reader deserves to see which pairs are thick.
+ */
+const coverageByPair = (): { pair: Domain[]; count: number }[] => {
+  const needs = combos.map((c) => new Set(c.uses.flatMap((u) => cards.domainsOf(u.card))));
+  const out: { pair: Domain[]; count: number }[] = [];
+  for (const [i, a] of DOMAINS.entries()) {
+    for (const b of DOMAINS.slice(i + 1)) {
+      const pair = [a, b];
+      out.push({ pair, count: needs.filter((n) => [...n].every((d) => pair.includes(d))).length });
+    }
+  }
+  return out.sort((a, b) => b.count - a.count || pairLabel(a.pair).localeCompare(pairLabel(b.pair)));
+};
+
+/** Name the deck's own pair and the pairs that are actually deep, so an empty result points somewhere. */
+function showCoverage(own: Domain[] | null) {
+  const host = $<HTMLElement>("#empty-coverage");
+  const all = coverageByPair();
+  const ownKey = own?.length === 2 ? own.join("/") : null;
+  const top = all.filter((p) => p.count > 0 && p.pair.join("/") !== ownKey).slice(0, 4);
+  if (!top.length) { host.hidden = true; return; }
+  host.innerHTML = `Other legend pairs: ${top.map((p) => `${esc(pairLabel(p.pair))} <strong>${p.count}</strong>`).join(" · ")}.`;
+  host.hidden = false;
+}
+
 /**
  * An empty result is almost always thin coverage, not a verdict on the deck — say so. Blaming the
  * list ("no combos in this list") reads as "your deck is bad" when the truth is "we have not
@@ -174,18 +208,22 @@ function showEmptyState() {
   const legend = deck?.legend ? name(deck.legend).replace(/ - Starter$/, "") : null;
   const legalHere = playableUnderLegend();
   const verified = combos.filter((c) => c.status === "verified").length;
+  const own = deck?.legend ? asPair(cards.domainsOf(deck.legend)) : null;
 
   if (mode() !== "network") {
     title.textContent = "Nothing within reach";
     body.textContent = `No known combo is within ${maxMissing()} card${maxMissing() === 1 ? "" : "s"} of this list. Raising that distance in the panel will widen the search.`;
+    $<HTMLElement>("#empty-coverage").hidden = true;
   } else if (legalHere === 0 && legend) {
     title.textContent = "No catalogued combos for this legend yet";
-    body.innerHTML = `Not one of the ${combos.length} combos RiftCombo knows is even legal under <strong>${esc(legend)}</strong>'s two domains, so there is nothing here to match against. This is a gap in our catalogue, not a judgement on your deck.`;
+    body.innerHTML = `Not one of the ${combos.length} combos RiftCombo knows fits inside <strong>${esc(own ? pairLabel(own) : legend)}</strong>, so there is nothing here to match against. This is a gap in our catalogue, not a judgement on your deck.`;
+    showCoverage(own);
   } else {
     title.textContent = "No complete combo in this list";
     body.innerHTML = legend
-      ? `RiftCombo knows ${combos.length} combos (${verified} walked by hand), of which <strong>${legalHere}</strong> are legal under ${esc(legend)}'s domains — and this list has all the pieces for none of them. Try <strong>Near misses</strong> to see what it is short of.`
+      ? `RiftCombo knows ${combos.length} combos (${verified} walked by hand), of which <strong>${legalHere}</strong> fit inside ${esc(own ? pairLabel(own) : `${legend}'s domains`)} — and this list has all the pieces for none of them. Try <strong>Near misses</strong> to see what it is short of.`
       : `RiftCombo knows ${combos.length} combos and this list has all the pieces for none of them. Try <strong>Near misses</strong> to see what it is short of.`;
+    showCoverage(own);
   }
   note.hidden = false;
   note.textContent = "The catalogue is hand-built and still small, so an empty result usually means the archetype has not been swept yet rather than that no combo exists.";
