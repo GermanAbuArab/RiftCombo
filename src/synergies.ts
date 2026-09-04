@@ -16,8 +16,16 @@ export interface SynergyOptions {
   format: Format;
 }
 
+export interface ValidateOptions {
+  /**
+   * Let a stale `reviewedCount` through. Only the review tool sets this: its whole job is to print
+   * the list that has drifted so a human can read it, and refusing to run would hide it.
+   */
+  skipReviewCount?: boolean;
+}
+
 /** Sanity checks the authored file must pass before anything is matched against it. */
-export function validateSynergies(synergies: Synergy[], cards: CardIndex): string[] {
+export function validateSynergies(synergies: Synergy[], cards: CardIndex, opts: ValidateOptions = {}): string[] {
   const errors: string[] = [];
   const ids = new Set<string>();
   for (const s of synergies) {
@@ -44,7 +52,13 @@ export function validateSynergies(synergies: Synergy[], cards: CardIndex): strin
     if (anchor && formats.every((f) => cards.legality(s.anchor, f))) {
       errors.push(`${s.id}: anchor ${s.anchor} is banned in every format`);
     }
-    if (partnersOf(s, cards).length === 0) errors.push(`${s.id}: partner predicate matches nothing`);
+    const found = partnersOf(s, cards).length;
+    if (found === 0) errors.push(`${s.id}: partner predicate matches nothing`);
+    else if (found !== s.reviewedCount && !opts.skipReviewCount) {
+      const delta = found - s.reviewedCount;
+      errors.push(`${s.id}: match list is ${s.reviewedCount} -> ${found} (${delta > 0 ? "+" : ""}${delta}) since ${s.reviewed}. ` +
+        `Run \`npm run synergies -- ${s.id} --match\`, read it again, then update reviewed and reviewedCount.`);
+    }
   }
   return errors;
 }

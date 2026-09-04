@@ -15,6 +15,22 @@ describe("synergy rules", () => {
     expect(validateSynergies(synergies, cards)).toEqual([]);
   });
 
+  it("fails when a rule's match list has drifted since somebody read it", () => {
+    // The whole guarantee is that a human read the list. A new set silently widening a predicate is
+    // the one way that decays without anyone noticing, so the stamped count has to be load-bearing.
+    const drifted = synergies.map((s, i) => (i === 0 ? { ...s, reviewedCount: s.reviewedCount + 6 } : s));
+    const errors = validateSynergies(drifted, cards);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toContain(synergies[0]!.id);
+    expect(errors[0]).toContain("-6");
+    // The review tool has to be able to run on exactly that file, or the list stays unread.
+    expect(validateSynergies(drifted, cards, { skipReviewCount: true })).toEqual([]);
+  });
+
+  it("stamped every rule with the size of the list that was read", () => {
+    for (const s of synergies) expect(s.reviewedCount, s.id).toBe(partnersOf(s, cards).length);
+  });
+
   it("cites combos that exist, and only verified ones", () => {
     const byId = new Map(combos.map((c) => [c.id, c]));
     for (const s of synergies) {

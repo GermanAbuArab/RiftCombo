@@ -9,19 +9,45 @@
       "partner": {
         "textMatches": "When (I|you)( or an ally)? (hold|conquer or hold)\\b",
         "excludes": [
-          { "card": "OGN-067", "why": "\"When I hold, return me to my owner's hand\" — the second trigger finds him already in hand and does nothing." },
-          { "card": "OGN-281", "why": "returns your Chosen Champion only if the Champion Zone is empty, which the first trigger has already stopped being true." },
-          { "card": "UNL-219", "why": "makes your own non-token units cost 1 more; triggering it twice doubles a drawback." }
+          {
+            "card": "OGN-067",
+            "why": "\"When I hold, return me to my owner's hand\" — the second trigger finds him already in hand and does nothing."
+          },
+          {
+            "card": "OGN-281",
+            "why": "returns your Chosen Champion only if the Champion Zone is empty, which the first trigger has already stopped being true."
+          },
+          {
+            "card": "UNL-219",
+            "why": "makes your own non-token units cost 1 more; triggering it twice doubles a drawback."
+          }
         ]
       },
       "why": "Every hold effect you have at Blue Sentinel's battlefield triggers one extra time, and two Sentinels there make it three. The effect need not sit on a unit — a battlefield's own hold trigger counts as yours (R8). One caveat the list cannot express: a trigger whose cost is exhausting its own source, as several legends have, can only be paid once unless you ready that source between the two resolutions.",
       "basis": {
-        "readings": ["R1", "R8"],
-        "rules": ["383.4.d", "383.4.d.1", "383.4.d.2", "471.2.b", "823.1.b"],
-        "combos": ["ahri-blue-sentinel-hold", "blue-sentinel-trinity-force-hold", "ivern-sentinel-hold", "world-atlas-sentinel-gold", "power-nexus-sentinel", "svellsongur-copy-hold"]
+        "readings": [
+          "R1",
+          "R8"
+        ],
+        "rules": [
+          "383.4.d",
+          "383.4.d.1",
+          "383.4.d.2",
+          "471.2.b",
+          "823.1.b"
+        ],
+        "combos": [
+          "ahri-blue-sentinel-hold",
+          "blue-sentinel-trinity-force-hold",
+          "ivern-sentinel-hold",
+          "world-atlas-sentinel-gold",
+          "power-nexus-sentinel",
+          "svellsongur-copy-hold"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 45
     },
     {
       "id": "red-brambleback-conquer",
@@ -30,19 +56,41 @@
       "partner": {
         "textMatches": "When (I|you)( or an ally)? (conquer|hold or conquer)\\b",
         "excludes": [
-          { "card": "OGN-252", "why": "returns itself from the trash to your hand; the second trigger has nothing left in the trash to return." },
-          { "card": "OGN-287", "why": "you MUST recycle one of your runes — triggering it twice doubles a mandatory cost." },
-          { "card": "SFD-184", "why": "the conquer text is quoted inside the spell and granted to the moved unit; it moves that unit to its base, so a second move does nothing." }
+          {
+            "card": "OGN-252",
+            "why": "returns itself from the trash to your hand; the second trigger has nothing left in the trash to return."
+          },
+          {
+            "card": "OGN-287",
+            "why": "you MUST recycle one of your runes — triggering it twice doubles a mandatory cost."
+          },
+          {
+            "card": "SFD-184",
+            "why": "the conquer text is quoted inside the spell and granted to the moved unit; it moves that unit to its base, so a second move does nothing."
+          }
         ]
       },
       "why": "Every conquer effect you have at Red Brambleback's battlefield triggers one extra time, the mirror of Blue Sentinel. [Hunt] counts as a conquer effect (823.1.b), so a Hunt unit conquering there gains its XP twice. Same caveat: a trigger paid by exhausting its own source can only fire once unless you ready it in between.",
       "basis": {
-        "readings": ["R1"],
-        "rules": ["383.4.c", "383.4.c.1", "383.4.c.2", "471.2.a", "823.1.b"],
-        "combos": ["tryndamere-brambleback-conquer", "brambleback-trinity-skyfall-conquer", "skyfall-ahri-conquer"]
+        "readings": [
+          "R1"
+        ],
+        "rules": [
+          "383.4.c",
+          "383.4.c.1",
+          "383.4.c.2",
+          "471.2.a",
+          "823.1.b"
+        ],
+        "combos": [
+          "tryndamere-brambleback-conquer",
+          "brambleback-trinity-skyfall-conquer",
+          "skyfall-ahri-conquer"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 57
     },
     {
       "id": "skyfall-hold-conquer-bridge",
@@ -51,20 +99,42 @@
       "partner": {
         "textMatches": "When I (hold|conquer)\\b",
         "textExcludes": "When I conquer or hold|When I hold or conquer|\\[Hunt|after an attack|excess damage",
-        "types": ["unit"],
+        "types": [
+          "unit"
+        ],
         "excludes": [
-          { "card": "OGN-067", "why": "his hold effect returns him to hand; firing it on a conquer as well only takes him off the board sooner." },
-          { "card": "SFD-116", "why": "\"When I conquer a battlefield that was uncontrolled\" — that condition cannot be met by holding a battlefield you already control." },
-          { "card": "VEN-065", "why": "his conquer effect needs a unit, a gear and a spell played this turn, and a hold resolves in your Beginning Phase before you have played anything." }
+          {
+            "card": "OGN-067",
+            "why": "his hold effect returns him to hand; firing it on a conquer as well only takes him off the board sooner."
+          },
+          {
+            "card": "SFD-116",
+            "why": "\"When I conquer a battlefield that was uncontrolled\" — that condition cannot be met by holding a battlefield you already control."
+          },
+          {
+            "card": "VEN-065",
+            "why": "his conquer effect needs a unit, a gear and a spell played this turn, and a hold resolves in your Beginning Phase before you have played anything."
+          }
         ]
       },
       "why": "While attached, Skyfall reads the equipped unit's hold effects as conquer effects and its conquer effects as hold effects, so a unit that paid on only one of the two scoring routes now pays on both. Effects already keyed to both — [Hunt] and any \"When I conquer or hold\" — gain nothing and are left out.",
       "basis": {
-        "rules": ["383.4.c", "383.4.d", "471.2.a", "471.2.b", "818", "823.1.b"],
-        "combos": ["skyfall-ahri-conquer", "brambleback-trinity-skyfall-conquer"]
+        "rules": [
+          "383.4.c",
+          "383.4.d",
+          "471.2.a",
+          "471.2.b",
+          "818",
+          "823.1.b"
+        ],
+        "combos": [
+          "skyfall-ahri-conquer",
+          "brambleback-trinity-skyfall-conquer"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 28
     },
     {
       "id": "reckoners-arena-conquer-on-hold",
@@ -73,19 +143,33 @@
       "partner": {
         "textMatches": "When I conquer\\b",
         "textExcludes": "after an attack|excess damage",
-        "types": ["unit"],
+        "types": [
+          "unit"
+        ],
         "excludes": [
-          { "card": "SFD-116", "why": "\"a battlefield that was uncontrolled\" is a non-conquer part of the condition and it is false while you are holding the Arena." },
-          { "card": "VEN-065", "why": "needs a unit, a gear and a spell played this turn; a hold resolves in your Beginning Phase, before you have played anything." }
+          {
+            "card": "SFD-116",
+            "why": "\"a battlefield that was uncontrolled\" is a non-conquer part of the condition and it is false while you are holding the Arena."
+          },
+          {
+            "card": "VEN-065",
+            "why": "needs a unit, a gear and a spell played this turn; a hold resolves in your Beginning Phase, before you have played anything."
+          }
         ]
       },
       "why": "Holding the Arena activates the conquer effects of your units there with no combat at all. The Core Rules use this exact card to define what activating a named trigger means, and they also set the limit this list respects: if any non-conquer part of the condition is unfulfilled, the ability does not go on the chain (383.4.g.1).",
       "basis": {
-        "rules": ["383.4.g", "383.4.g.1", "383.4.c", "383.4.d"],
+        "rules": [
+          "383.4.g",
+          "383.4.g.1",
+          "383.4.c",
+          "383.4.d"
+        ],
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 28
     },
     {
       "id": "svellsongur-copy",
@@ -93,21 +177,43 @@
       "anchor": "SFD-059",
       "partner": {
         "textMatches": "When I (hold|conquer|move|attack|win a combat)\\b",
-        "types": ["unit"],
+        "types": [
+          "unit"
+        ],
         "excludes": [
-          { "card": "OGN-067", "why": "the copied trigger returns him to hand, and the second copy finds nothing on the board to return." },
-          { "card": "OGN-035", "why": "her conquer effect returns her to your hand; a second copy of it has nothing left to do." },
-          { "card": "VEN-023", "why": "the \"When I attack\" text the predicate caught belongs to the Shadow Clone token quoted inside his card, not to Zed." }
+          {
+            "card": "OGN-067",
+            "why": "the copied trigger returns him to hand, and the second copy finds nothing on the board to return."
+          },
+          {
+            "card": "OGN-035",
+            "why": "her conquer effect returns her to your hand; a second copy of it has nothing left to do."
+          },
+          {
+            "card": "VEN-023",
+            "why": "the \"When I attack\" text the predicate caught belongs to the Shadow Clone token quoted inside his card, not to Zed."
+          }
         ]
       },
       "why": "Svellsongur copies the unit's text into its own effect text while attached, and that effect text is granted back to the same unit, so a recurring \"When I …\" trigger goes on the chain twice. R6 = A: it copies the unit's current text, not a snapshot taken when it attached.",
       "basis": {
-        "readings": ["R6"],
-        "rules": ["818", "383.3", "477.1"],
-        "combos": ["svellsongur-copy-hold", "svellsongur-ornn-hold", "guardian-passage-svellsongur"]
+        "readings": [
+          "R6"
+        ],
+        "rules": [
+          "818",
+          "383.3",
+          "477.1"
+        ],
+        "combos": [
+          "svellsongur-copy-hold",
+          "svellsongur-ornn-hold",
+          "guardian-passage-svellsongur"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 102
     },
     {
       "id": "renata-industrialist-tokens",
@@ -118,12 +224,26 @@
       },
       "why": "Units enter exhausted and Gold gear tokens are printed \"exhausted\"; Renata rewrites how both enter, so the token blocks, moves or pays Power the turn it is made. R25 = A: her replacement beats the card's own \"exhausted\".",
       "basis": {
-        "readings": ["R25"],
-        "rules": ["179", "369.3", "370.1.c", "375"],
-        "combos": ["pursuer-herald-recruits", "treasure-hunter-industrialist-gold", "fae-dragon-wallop-industrialist", "zed-clone-eye-recruits", "grand-plaza-loop-time-warp"]
+        "readings": [
+          "R25"
+        ],
+        "rules": [
+          "179",
+          "369.3",
+          "370.1.c",
+          "375"
+        ],
+        "combos": [
+          "pursuer-herald-recruits",
+          "treasure-hunter-industrialist-gold",
+          "fae-dragon-wallop-industrialist",
+          "zed-clone-eye-recruits",
+          "grand-plaza-loop-time-warp"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 73
     },
     {
       "id": "grand-plaza-unit-tokens",
@@ -134,11 +254,20 @@
       },
       "why": "Holding the Plaza with seven units there wins outright, and only token makers put that many bodies on one battlefield. Tokens made at your base still have to walk over, so a card that plays them at the battlefield is worth more than one that does not.",
       "basis": {
-        "rules": ["179", "383.4.d", "471.2.b"],
-        "combos": ["grand-plaza-recruit-vanguard", "leblanc-temporary-plaza", "grand-plaza-loop-time-warp"]
+        "rules": [
+          "179",
+          "383.4.d",
+          "471.2.b"
+        ],
+        "combos": [
+          "grand-plaza-recruit-vanguard",
+          "leblanc-temporary-plaza",
+          "grand-plaza-loop-time-warp"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 50
     },
     {
       "id": "leblanc-temporary",
@@ -149,12 +278,22 @@
       },
       "why": "[Temporary] is a triggered ability that kills the permanent at the start of its controller's Beginning Phase, before scoring. LeBlanc switches those triggers off at her battlefield, so the bodies are still there when you hold. R10 = A. She only covers her own battlefield, so a token made at your base has to move there first — and the list deliberately leaves out the cards that hand [Temporary] to an enemy permanent, which is removal you would rather keep working.",
       "basis": {
-        "readings": ["R10"],
-        "rules": ["816.1", "816.1.b", "816.1.c", "383"],
-        "combos": ["leblanc-temporary-plaza"]
+        "readings": [
+          "R10"
+        ],
+        "rules": [
+          "816.1",
+          "816.1.b",
+          "816.1.c",
+          "383"
+        ],
+        "combos": [
+          "leblanc-temporary-plaza"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 13
     },
     {
       "id": "fiora-buff-ready",
@@ -163,19 +302,42 @@
       "partner": {
         "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)|[Gg]ive (me|it|a unit|a friendly unit|another friendly unit|your units)[^.]{0,60}\\+\\d+ :rb_might:",
         "excludes": [
-          { "card": "OGN-146", "why": "spends a buff as a cost; it consumes Might rather than granting it." },
-          { "card": "OGN-207", "why": "spends a buff as a cost, same as Wallop — a consumer, not a source." },
-          { "card": "OGN-152", "why": "reacts to a buff by readying the unit; it grants no Might of its own." },
-          { "card": "SFD-047", "why": "reacts to being buffed by readying himself; he grants no Might of his own." }
+          {
+            "card": "OGN-146",
+            "why": "spends a buff as a cost; it consumes Might rather than granting it."
+          },
+          {
+            "card": "OGN-207",
+            "why": "spends a buff as a cost, same as Wallop — a consumer, not a source."
+          },
+          {
+            "card": "OGN-152",
+            "why": "reacts to a buff by readying the unit; it grants no Might of its own."
+          },
+          {
+            "card": "SFD-047",
+            "why": "reacts to being buffed by readying himself; he grants no Might of his own."
+          }
         ]
       },
       "why": "A unit becomes Mighty the moment its Might crosses from under 5 to 5 or more (709), and Fiora readies it for one Order rune. Whether a given buff crosses that line depends on the unit's printed Might, so this lists the Might sources, not a promise.",
       "basis": {
-        "rules": ["706", "708", "709", "702.2"],
-        "combos": ["renata-mastermind-points", "fiora-vault-breaker-jhin", "jhin-fiora-facebreaker-recall", "garen-fiora-malzahar-facebreaker-recruits"]
+        "rules": [
+          "706",
+          "708",
+          "709",
+          "702.2"
+        ],
+        "combos": [
+          "renata-mastermind-points",
+          "fiora-vault-breaker-jhin",
+          "jhin-fiora-facebreaker-recall",
+          "garen-fiora-malzahar-facebreaker-recruits"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 98
     },
     {
       "id": "fiora-equipment-ready",
@@ -183,16 +345,27 @@
       "anchor": "SFD-180",
       "partner": {
         "textMatches": "\\[Equip\\]|\\[Quick-Draw\\]",
-        "types": ["gear"],
+        "types": [
+          "gear"
+        ],
         "minMightBonus": 2
       },
       "why": "Attaching Equipment raises the unit's Might on the spot, and +2 or more takes a 3-Might body over the Mighty line, which readies it under Fiora. Same caveat as the buff rule: the unit's printed Might decides whether the line is actually crossed.",
       "basis": {
-        "rules": ["706", "708", "709", "818"],
-        "combos": ["fiora-vault-breaker-jhin", "jhin-fiora-facebreaker-recall"]
+        "rules": [
+          "706",
+          "708",
+          "709",
+          "818"
+        ],
+        "combos": [
+          "fiora-vault-breaker-jhin",
+          "jhin-fiora-facebreaker-recall"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 21
     },
     {
       "id": "jayce-readies-exhaust-abilities",
@@ -203,11 +376,19 @@
       },
       "why": "The first non-token gear you play each turn readies something else that is exhausted, so an ability whose cost includes exhausting its own source runs a second time that turn. He also un-taps an attacker, which no predicate over card text can find.",
       "basis": {
-        "rules": ["383.4.a", "383.4.a.1"],
-        "combos": ["jayce-mesmerize-renata", "sprite-fountain-malzahar-jayce", "swain-double-conquer"]
+        "rules": [
+          "383.4.a",
+          "383.4.a.1"
+        ],
+        "combos": [
+          "jayce-mesmerize-renata",
+          "sprite-fountain-malzahar-jayce",
+          "swain-double-conquer"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 78
     },
     {
       "id": "ride-the-wind-move-triggers",
@@ -218,11 +399,19 @@
       },
       "why": "An effect moving a unit is a Move (420.1), so it sets off that unit's move triggers, and the triggers of any Equipment attached to it. Ride the Wind readies the unit as well, so the body is still available afterwards. A recall is not a Move (456.1) and would not do this.",
       "basis": {
-        "rules": ["420.1", "420.2.a", "456.1", "359.3.f.1"],
-        "combos": ["treasure-hunter-industrialist-gold"]
+        "rules": [
+          "420.1",
+          "420.2.a",
+          "456.1",
+          "359.3.f.1"
+        ],
+        "combos": [
+          "treasure-hunter-industrialist-gold"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 28
     },
     {
       "id": "relentless-pursuit-move-triggers",
@@ -233,11 +422,19 @@
       },
       "why": "The same Move as Ride the Wind, but it can attach an Equipment in the same breath, so the move trigger you want can be bolted on to whichever unit is going.",
       "basis": {
-        "rules": ["420.1", "420.2.a", "456.1", "818"],
-        "combos": ["jhin-relentless-pursuit-wallop"]
+        "rules": [
+          "420.1",
+          "420.2.a",
+          "456.1",
+          "818"
+        ],
+        "combos": [
+          "jhin-relentless-pursuit-wallop"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 28
     },
     {
       "id": "windswept-hillock-move-triggers",
@@ -246,13 +443,20 @@
       "partner": {
         "textMatches": "When I move\\b"
       },
-      "why": "Units at the Hillock have [Ganking], which is short for \"I may move to a battlefield from another battlefield\" (810.1.b), and that move is a Move (420.1) \u2014 so it fires the unit's move triggers and those of any Equipment attached to it, on your turn, without spending a card. The Hillock has no domain, so any legend can run it.",
+      "why": "Units at the Hillock have [Ganking], which is short for \"I may move to a battlefield from another battlefield\" (810.1.b), and that move is a Move (420.1) — so it fires the unit's move triggers and those of any Equipment attached to it, on your turn, without spending a card. The Hillock has no domain, so any legend can run it.",
       "basis": {
-        "rules": ["810.1", "810.1.b", "420.1", "420.2.a", "456.1"],
+        "rules": [
+          "810.1",
+          "810.1.b",
+          "420.1",
+          "420.2.a",
+          "456.1"
+        ],
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 28
     },
     {
       "id": "retreat-replays-a-body",
@@ -260,18 +464,28 @@
       "anchor": "OGN-104",
       "partner": {
         "textMatches": "When you play me[^.]{0,110}?[Pp]lay (a|an|two|three|four)\\b",
-        "types": ["unit"],
+        "types": [
+          "unit"
+        ],
         "excludes": [
-          { "card": "VEN-068", "why": "the predicate caught \"play a non-token gear\" in his trigger condition; his play effect readies something, it puts nothing on the board." }
+          {
+            "card": "VEN-068",
+            "why": "the predicate caught \"play a non-token gear\" in his trigger condition; his play effect readies something, it puts nothing on the board."
+          }
         ]
       },
       "why": "Retreat returns a friendly unit to hand as a [Reaction] for one Energy, and replaying it fires its Play Effect again (383.4.a.1). The list is deliberately narrow: it holds the units whose play effect leaves another permanent behind, so the bounce pays for the card. Retreat replays every play effect in the game, which is a fact about Retreat rather than a pairing worth naming.",
       "basis": {
-        "rules": ["383.4.a", "383.4.a.1", "383.4.a.2"],
+        "rules": [
+          "383.4.a",
+          "383.4.a.1",
+          "383.4.a.2"
+        ],
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 14
     },
     {
       "id": "pack-of-wonders-replays-a-body",
@@ -279,18 +493,30 @@
       "anchor": "OGN-181",
       "partner": {
         "textMatches": "When (you play me|you play this|I'm played)[^.]{0,110}?[Pp]lay (a|an|two|three|four)\\b",
-        "types": ["unit", "gear"],
+        "types": [
+          "unit",
+          "gear"
+        ],
         "excludes": [
-          { "card": "VEN-068", "why": "the predicate caught \"play a non-token gear\" in his trigger condition; his play effect readies something, it puts nothing on the board." }
+          {
+            "card": "VEN-068",
+            "why": "the predicate caught \"play a non-token gear\" in his trigger condition; his play effect readies something, it puts nothing on the board."
+          }
         ]
       },
       "why": "Exhausting the Pack bounces another friendly gear, unit or facedown card to hand; replaying it fires its play effect again. It costs no card, only the Pack readying up, so unlike Retreat it repeats every turn — and unlike Retreat it can bounce a gear.",
       "basis": {
-        "rules": ["383.4.a", "383.4.a.1"],
-        "combos": ["pack-of-wonders-bewitching-discard"]
+        "rules": [
+          "383.4.a",
+          "383.4.a.1"
+        ],
+        "combos": [
+          "pack-of-wonders-bewitching-discard"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 16
     },
     {
       "id": "aphelios-equipment-attach",
@@ -298,15 +524,24 @@
       "anchor": "SFD-049",
       "partner": {
         "textMatches": "\\[Equip\\]|\\[Quick-Draw\\]",
-        "types": ["gear"]
+        "types": [
+          "gear"
+        ]
       },
       "why": "Each attach to Aphelios picks a mode not picked this turn — two ready runes, a channelled rune, or a buff — so the value is per Equipment attached, not per Equipment owned. Re-attaching a piece you already control counts.",
       "basis": {
-        "rules": ["818", "383.3"],
-        "combos": ["azir-aphelios-attach", "aphelios-jax-quickdraw-attach"]
+        "rules": [
+          "818",
+          "383.3"
+        ],
+        "combos": [
+          "azir-aphelios-attach",
+          "aphelios-jax-quickdraw-attach"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 39
     },
     {
       "id": "ekko-deathknell-runes",
@@ -317,11 +552,19 @@
       },
       "why": "Ekko's [Deathknell] recycles him to ready your runes, so anything that kills your own unit on demand converts him into Power. He has 5 Might, so the outlets that demand a [Mighty] unit can take him too. Recycling sends him to the bottom of the Main Deck, not the trash (416.1).",
       "basis": {
-        "rules": ["416.1", "383.3"],
-        "combos": ["lux-infinite-energy", "renata-time-warp-ekko-refresh", "jhin-virtuoso-ekko-malzahar-vi"]
+        "rules": [
+          "416.1",
+          "383.3"
+        ],
+        "combos": [
+          "lux-infinite-energy",
+          "renata-time-warp-ekko-refresh",
+          "jhin-virtuoso-ekko-malzahar-vi"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 10
     },
     {
       "id": "malzahar-token-fodder",
@@ -332,11 +575,20 @@
       },
       "why": "Malzahar's cost is killing a friendly unit or gear, and a token is the cheapest thing you own to feed him — so every token a card makes is two rainbow Power once he is on the board.",
       "basis": {
-        "rules": ["179", "383.3.b"],
-        "combos": ["sprite-fountain-malzahar-jayce", "jhin-virtuoso-ekko-malzahar-vi", "garen-fiora-malzahar-facebreaker-recruits", "gutter-palace-keeper-time-warp"]
+        "rules": [
+          "179",
+          "383.3.b"
+        ],
+        "combos": [
+          "sprite-fountain-malzahar-jayce",
+          "jhin-virtuoso-ekko-malzahar-vi",
+          "garen-fiora-malzahar-facebreaker-recruits",
+          "gutter-palace-keeper-time-warp"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 73
     },
     {
       "id": "wallop-buff-spend",
@@ -346,17 +598,31 @@
         "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)",
         "textExcludes": "spend a buff as an additional cost",
         "excludes": [
-          { "card": "OGN-152", "why": "reacts to a buff by readying the unit; it creates no buff for Wallop to spend." },
-          { "card": "SFD-047", "why": "reacts to being buffed by readying himself; he creates no buff." }
+          {
+            "card": "OGN-152",
+            "why": "reacts to a buff by readying the unit; it creates no buff for Wallop to spend."
+          },
+          {
+            "card": "SFD-047",
+            "why": "reacts to being buffed by readying himself; he creates no buff."
+          }
         ]
       },
       "why": "Spending a buff as an additional cost ignores Wallop's Energy cost, so any buff source makes readying a unit cost nothing but the card. Only buffs are spendable, so the \"+N Might this turn\" half of the list feeds Fiora rather than Wallop; the cards that spend a buff themselves are left out, since they compete for the same counter.",
       "basis": {
-        "rules": ["701", "702.2", "702.2.b"],
-        "combos": ["jhin-relentless-pursuit-wallop", "fae-dragon-wallop-industrialist"]
+        "rules": [
+          "701",
+          "702.2",
+          "702.2.b"
+        ],
+        "combos": [
+          "jhin-relentless-pursuit-wallop",
+          "fae-dragon-wallop-industrialist"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 33
     },
     {
       "id": "time-warp-once-per-turn",
@@ -367,11 +633,21 @@
       },
       "why": "The extra turn brings a whole Beginning Phase and a whole end of turn with it, so anything keyed to those fires again — and you score your held battlefields again on the way in.",
       "basis": {
-        "rules": ["383.3", "471.2.b"],
-        "combos": ["time-warp-hold-burst", "bottled-constellation-time-warp", "gutter-palace-keeper-time-warp", "grand-plaza-loop-time-warp", "renata-time-warp-ekko-refresh"]
+        "rules": [
+          "383.3",
+          "471.2.b"
+        ],
+        "combos": [
+          "time-warp-hold-burst",
+          "bottled-constellation-time-warp",
+          "gutter-palace-keeper-time-warp",
+          "grand-plaza-loop-time-warp",
+          "renata-time-warp-ekko-refresh"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04"
+      "reviewed": "2026-09-04",
+      "reviewedCount": 13
     }
   ]
 }

@@ -172,4 +172,12 @@ export interface Synergy {
   status: SynergyStatus;
   /** Date somebody on this project read this rule's whole match list, card by card. */
   reviewed: string;
+  /**
+   * How many partners the predicate caught on that date. The build fails when the live count
+   * differs, which is what turns "somebody read it once" into an invariant a new set cannot erode.
+   * A count cannot see a swap that leaves the total unchanged; sets only add cards, and the one
+   * thing that removes one — an errata rewriting card text — is already gated by the find-string
+   * in data/errata.json.
+   */
+  reviewedCount: number;
 }
