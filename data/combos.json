@@ -985,7 +985,7 @@
       "id": "gauntlets-enforcer-conquer",
       "name": "Hextech Gauntlets under Piltover Enforcer — draw and ready on Conquer",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-187",
@@ -1029,10 +1029,15 @@
           "title": "REFUTE pass 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-jhin-fiora-gauntlets-pack.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Fury/Order had no entry at all. Modest but real, and the only line found so far for that pair. REFUTE 2026-09-03: WOUNDED — the earlier note called the Equip free; only the Energy is reduced by Might, the rainbow Power stays. Both triggers share one condition and each fires once per Conquer: additive, not multiplicative. Kept as the only Fury/Order line."
+      "notes": "Fury/Order had no entry at all. Modest but real, and the only line found so far for that pair. REFUTE 2026-09-03: WOUNDED — the earlier note called the Equip free; only the Energy is reduced by Might, the rainbow Power stays. Both triggers share one condition and each fires once per Conquer: additive, not multiplicative. Kept as the only Fury/Order line. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-jhin-fiora-gauntlets-pack.md) once R28 was ruled A, which is what gives the shared condition a value. The Equip reduction is printed on 'this ability's ENERGY cost', so a 3+ Might bearer zeroes the Energy and the rainbow Power is still paid. The [Effect] 'When I conquer' is the bearer's own trigger by 136.2.d, the same chain as World Atlas and Trinity Force."
     },
     {
       "id": "azir-aphelios-attach",
@@ -2543,7 +2548,7 @@
       "id": "fiora-vault-breaker-jhin",
       "name": "Fiora, Worthy re-readies Jhin each time Assault makes him Mighty",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "SFD-180",
@@ -2597,10 +2602,15 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-jhin-fiora-gauntlets-pack.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Bounded by garrisoned enemy battlefields — two in Duel — and by Jhin surviving each combat at 6 Might. The Fiora readies are close to break-even in resources (+2E, no net Power, one card and two Order Power); the real payout is the two conquers. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — Assault needs a Combat, so both battlefields must be garrisoned; the tally is +2E and no net Power for two attacks, plus the 2 conquer points the first write-up left out. R13 is near-textual: 466.7.a removes the Attacker designation after every combat."
+      "notes": "Bounded by garrisoned enemy battlefields — two in Duel — and by Jhin surviving each combat at 6 Might. The Fiora readies are close to break-even in resources (+2E, no net Power, one card and two Order Power); the real payout is the two conquers. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — Assault needs a Combat, so both battlefields must be garrisoned; the tally is +2E and no net Power for two attacks, plus the 2 conquer points the first write-up left out. R13 is near-textual: 466.7.a removes the Attacker designation after every combat. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-jhin-fiora-gauntlets-pack.md). R13 is textual: 807.1.d.1 keeps Assault only while the Attacker designation is held, 466.7.a removes that designation at the end of every combat, and 709's own example is a Might 4 unit crossing to 5+, so each new combat is a fresh becoming-Mighty and a fresh Fiora trigger. Three moves for +3E +3 rainbow gross, net +2 Energy and zero Power after Vault Breaker's Power and two Order for the readies, plus the two conquers. Its R14 note only CAPS the engine (re-entering a conquered battlefield adds nothing), so the entry cannot overclaim on it."
     },
     {
       "id": "fae-dragon-wallop-industrialist",
@@ -3406,7 +3416,7 @@
       "id": "pack-of-wonders-bewitching-discard",
       "name": "Pack of Wonders bounces Bewitching Spirit — a discard every turn",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "OGN-181",
@@ -3453,9 +3463,14 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-jhin-fiora-gauntlets-pack.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
-      "notes": "Second route for Bewitching Spirit, independent of the Bloodharbor Ripper legend and so open to any Chaos legend (the thread's pilot ran Ezreal). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — one Pack is a treadmill against the Draw Phase; the hand shrinks only from two Packs up, at 3E per discard."
+      "notes": "Second route for Bewitching Spirit, independent of the Bloodharbor Ripper legend and so open to any Chaos legend (the thread's pilot ran Ezreal). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — one Pack is a treadmill against the Draw Phase; the hand shrinks only from two Packs up, at 3E per discard. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-jhin-fiora-gauntlets-pack.md). 149.1 - 'Gear enter play Ready' - is what makes three Packs worth three cycles in ONE turn rather than three turns; each then readies only in your Awaken, so one bounce per Pack per turn. 'Another' stops a Pack bouncing itself. One Pack is a treadmill against the opponent's Draw Phase (315.4.b); the hand shrinks only from two up. Depends on no unruled reading."
     }
   ]
 }
