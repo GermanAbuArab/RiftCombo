@@ -9,7 +9,7 @@
 - Every task the user names becomes a GitHub issue. Create it immediately with `gh issue create`, don't batch them up.
 - Labels: `de-clone`, `ui`, `bug`, `data`, `legal`, `infra`. Reuse them; only add a new label when none fits.
 - An issue body states what is wrong, the measured evidence, the files involved, and its dependencies on other issues. No vague one-liners.
-- Close issues from commit messages (`Closes #4`) so the backlog does not drift from the code.
+- Close issues from commit messages (`Closes #4`) so the backlog does not drift from the code. Qualifying it does NOT scope it: `Closes #23 for web/main.ts` still closed all of #23 on push, and its second half had to be reopened by hand. When a commit does part of an issue, write `Refs #23`.
 - `tasks/todo.md` is scratch for the current session only. GitHub issues are the durable backlog.
 
 ## Data
