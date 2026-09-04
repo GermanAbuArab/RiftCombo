@@ -200,3 +200,61 @@ Ezreal, Prodigal Explorer (SFD-199) o Soul's Reflection (VEN-151).
 
 - Issue #16 — minado de comunidad.
 - `docs/phase0/walks/2026-09-04-source-verification-tcgplayer.md` — verificación de fuentes del mismo día.
+
+---
+
+## Adenda — segunda pasada de búsqueda (mismo día)
+
+Cinco búsquedas más sobre el sub (`OTK`, `loop`, `spreadsheet combo`, `combo list`,
+`win the game combo`). **No existe una lista comunitaria de combos.** Lo único que el sub llama
+"spreadsheet" es un análisis de costo-por-carta de los hechizos de robo (326 puntos, 2026-03-27),
+que no es un catálogo de combos. Esto confirma, ahora con búsqueda dirigida, la conclusión que el
+issue #16 traía del primer minado.
+
+### Gutter Palace fue jugado en un Regional, y el plan es el de esta entrada
+
+"The Gutter Palace List" (`comments/1twxwef/`, 118 puntos, 2026-06-04), sobre RQ Vancouver:
+
+> "I sprint to proc the Jhin legend, playing nothing but 4 cost spells for my first 4 turns. Then I
+> use the rune economy to continue churning my deck, setting up key permanents like Hextech Anomaly
+> and Gutter Palace, before sneaking on to a battlefield, dropping 4 units and Warping into a win."
+
+Es exactamente el plan de `gutter-palace-keeper-time-warp`: cuatro cuerpos en un battlefield y Time
+Warp para llegar al Beginning Phase sin turno rival. Y no es teoría — hay testigos en el hilo
+("I have sat next to this deck and seen it in action multiple times this weekend", 57 puntos) y un
+oponente del torneo comentando. Agregado como fuente.
+
+**Discrepancia que NO se resuelve por conjetura.** El mismo autor lista entre sus logros del fin de
+semana *"Winning through an Invert that discarded 13 of my cards"*. La única carta "Invert" del pool
+es **Invert Timelines (OGN-201), que es Chaos**, y el único legend de Jhin es **Virtuoso (UNL-181),
+Fury/Mind**. Chaos no es subconjunto de {Fury, Mind}, así que un deck de Virtuoso no puede llevarla.
+Las salidas posibles — que "Invert" sea jerga por otra carta, que el autor recuerde mal, que exista
+un legend de Jhin fuera de nuestro snapshot, o que el deck no use el legend de Jhin — no se pueden
+distinguir desde acá. **Queda registrado como discrepancia abierta.** La fuente se cita solo por la
+mitad que sí es verificable y neutra en dominio: el cierre "cuatro unidades + Time Warp" (Gutter
+Palace y Time Warp son las dos Mind).
+
+### Lead nuevo, escrito pero sin caminar: el loop de Jayce
+
+En "New Jayce OTK" (`comments/1uxixmo/`, 2026-07-15), el comentario de Pitch2Force (6 puntos) es el
+primer enunciado **escrito** del combo de Jayce que hasta ahora solo existía en video
+(`09bb3L-SjLA`, "5 Turns or BUST! Jayce Infinite Combo"). Textual:
+
+> "You still have to have no cards in deck, as well as 3 Heralds and 3 Gemstone Dragons in play,
+> then you recycle 2 Retreat and a jayce Sig spell witj Garbage Grabber. Play 2 cloud drakes, retreat
+> them both, then sig spell to untap garbage grabber. Repeat for infinite power and energy, then
+> start untapping a Heimer to copy Renata's ability."
+
+Piezas que sí existen en el corpus: Garbage Grabber (OGN-099), Heimerdinger, Inventor (OGN-111,
+"I have all exhaust abilities of all friendly legends, units, and gear"), Cloud Drake (VEN-048),
+Acceleration Gate (VEN-150, la Sig de Jayce: "Ready up to 4 units, gear, and/or runes"), y el legend
+Defender of Tomorrow (VEN-149, Mind/Body).
+
+**No se ingiere.** Dos nombres del comentario no resuelven contra el corpus: "Gemstone Dragons" (lo
+más cercano es Gentle Gemdragon, UNL-104, Body) y "Heralds" sin desambiguar. Meter un loop a medio
+entender en el catálogo sería exactamente lo que la regla de `verified` existe para impedir. Queda
+como lead con cita exacta en el issue #16.
+
+Otro comentarista dimensiona el combo sin que nadie lo contradiga: *"This is a ten card combo,
+requiring you to run through your deck, Have all your energy up, and have several specific cards in
+your hand. On top of that you are dead to tons of interaction."* (59 puntos.)

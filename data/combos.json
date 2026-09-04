@@ -540,6 +540,14 @@
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1ud54d0/",
           "date": "2026-06-23",
           "accessed": "2026-09-04"
+        },
+        {
+          "title": "Reddit r/riftboundtcg — \"The Gutter Palace List\" (RQ Vancouver report, witnesses in-thread)",
+          "kind": "tournament-report",
+          "url": "https://old.reddit.com/r/riftboundtcg/comments/1twxwef/",
+          "date": "2026-06-04",
+          "quote": "Then I use the rune economy to continue churning my deck, setting up key permanents like Hextech Anomaly and Gutter Palace, before sneaking on to a battlefield, dropping 4 units and Warping into a win.",
+          "accessed": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -629,13 +637,21 @@
           "accessed": "2026-09-04"
         },
         {
+          "title": "Reddit r/riftboundtcg — \"The Gutter Palace List\" (RQ Vancouver report, witnesses in-thread)",
+          "kind": "tournament-report",
+          "url": "https://old.reddit.com/r/riftboundtcg/comments/1twxwef/",
+          "date": "2026-06-04",
+          "quote": "Then I use the rune economy to continue churning my deck, setting up key permanents like Hextech Anomaly and Gutter Palace, before sneaking on to a battlefield, dropping 4 units and Warping into a win.",
+          "accessed": "2026-09-04"
+        },
+        {
           "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-reddit-mining-and-gutter-palace.md)",
           "kind": "manual-walk",
           "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "The community's contribution here is the two tuners the bare gutter-palace entry lacked: Invert Timelines (OGN-201) fixes the hand at exactly 4 in one card, and Keeper of Masks (UNL-081) puts three bodies at one battlefield in one card. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-reddit-mining-and-gutter-palace.md). Three checks carry it. (1) The Reflections count even at 0 Might: 187.6 defines them as domainless unit tokens with 0 Might, they are units, and the card counts units. They stay at 0 because 477.1.b.1.a lists the copyable traits - Name, Super Type, Type, Tags, Cost, Domain, Rules Text - and Might is not among them, which is R27, already retired on that same list. (2) No hidden loop: UNL-T06 prints \"I don't get that card's play effects\", so the copies never re-fire \"play two Reflection unit tokens\". (3) The copies DO inherit [Temporary], because Rules Text is copyable and Riot's own worked example at 477.1.b.1.b says so outright (\"two of which are token Copies with Temporary\") - and it does not matter, because 816.1 makes Temporary a Triggered Ability, 816.1.c fires it at the same instant as the win check, and 383.3.d gives the controller of both the ordering. Burn Out cannot beat it either: the win check is the Beginning Step (315.2.a) and the Draw Phase is 315.4. The line loses to any removal held for the single Open State inside your own turn - the source says as much - so it is a real ALT_WIN, not a consistent one."
+      "notes": "The community's contribution here is the two tuners the bare gutter-palace entry lacked: Invert Timelines (OGN-201) fixes the hand at exactly 4 in one card, and Keeper of Masks (UNL-081) puts three bodies at one battlefield in one card. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-reddit-mining-and-gutter-palace.md). Three checks carry it. (1) The Reflections count even at 0 Might: 187.6 defines them as domainless unit tokens with 0 Might, they are units, and the card counts units. They stay at 0 because 477.1.b.1.a lists the copyable traits - Name, Super Type, Type, Tags, Cost, Domain, Rules Text - and Might is not among them, which is R27, already retired on that same list. (2) No hidden loop: UNL-T06 prints \"I don't get that card's play effects\", so the copies never re-fire \"play two Reflection unit tokens\". (3) The copies DO inherit [Temporary], because Rules Text is copyable and Riot's own worked example at 477.1.b.1.b says so outright (\"two of which are token Copies with Temporary\") - and it does not matter, because 816.1 makes Temporary a Triggered Ability, 816.1.c fires it at the same instant as the win check, and 383.3.d gives the controller of both the ordering. Burn Out cannot beat it either: the win check is the Beginning Step (315.2.a) and the Draw Phase is 315.4. The line loses to any removal held for the single Open State inside your own turn - the source says as much - so it is a real ALT_WIN, not a consistent one. PLAYED AT A REGIONAL: the four-units-plus-Time-Warp finish is not theorycraft. The RQ Vancouver report above describes exactly it, and the thread carries witnesses and a tournament opponent. That deck is a different build - Jhin, and it names Hextech Anomaly (SFD-083) as the rune-to-Energy engine in place of Ekko - so it corroborates the finish, not this entry's specific assembly. One thing in that report does not resolve: its author says he won \"through an Invert that discarded 13 of my cards\", but the pool's only Invert is Invert Timelines (OGN-201, Chaos) and the pool's only Jhin legend is Virtuoso (UNL-181, Fury/Mind), and Chaos is not a subset of Fury/Mind. Left as an open discrepancy rather than guessed at; the citation above is only for the domain-neutral half."
     },
     {
       "id": "blue-sentinel-trinity-force-hold",
