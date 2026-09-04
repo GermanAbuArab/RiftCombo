@@ -2342,7 +2342,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BOARD",
-          "note": "Your tokens enter ready. If that beats Treasure Hunter's \"play a Gold gear token exhausted\" (unruled, R25), the Gold is 1 rainbow Power the moment it appears; if not, it is Power next turn. The Eye's Recruits are not in doubt: units default to exhausted (143.4) and Renata overrides the default."
+          "note": "Your tokens enter ready. R25 ruled A (2026-09-04): Renata beats Treasure Hunter's \"play a Gold gear token exhausted\", so the Gold is 1 rainbow Power the moment it appears. The Eye's Recruits were never in doubt either: units default to exhausted (143.4) and Renata overrides the default."
         },
         {
           "card": "OGN-173",
@@ -2362,7 +2362,7 @@
         ],
         "notable": [
           "The Hunter has no Ganking, so a Standard Move only ever runs base to battlefield or back (144.4.a/b): one free move per turn. A second move in the same turn needs a bounce: Ride the Wind (OGN-173) moves and readies him for 2E+1P, The Syren (OGN-184) sends him to base for 1E and its own exhaust, Flash (OGS-011) returns two units to base for 2E. He enters exhausted (143.4), so the turn he lands he produces nothing.",
-          "Both the token-maker's \"play a Gold gear token exhausted\" and Renata's \"Your tokens enter ready\" apply to the same event and the rules do not say which wins (unruled, R25: rule 375's own example makes the exhausted rider inherit through a replacement, 369.3/370.1.c let Renata rewrite how a token enters). Under the adverse reading each Gold is Power next turn, not this turn. The Eye of the Herald Recruits are not in doubt: units default to exhausted (143.4) and Renata overrides the default."
+          "R25 ruled A (2026-09-04): Renata's \"Your tokens enter ready\" beats the token-maker's \"play a Gold gear token exhausted\", so each Gold is Power the turn it appears. 369.3/370.1.c let Renata rewrite how a token enters, and rule 375 only makes a replacement inherit modifications it is itself silent about — its own example is a replacement that duplicates the token and says nothing about ready or exhausted. The Eye of the Herald Recruits were never in doubt: units default to exhausted (143.4) and Renata overrides the default."
         ]
       },
       "steps": [
@@ -2384,7 +2384,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "The unbounded version was Stealthy Pursuer (OGN-177), banned; no other 'moves with it' text exists in the pool on the L2 and L3 reads. Fae Porter (SFD-125) pays Chaos Power to bring the Hunter along for net zero and a Recruit. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — steady state is 4 Gold and 4 Recruits a turn for 3E + 1 Chaos Power with Ride the Wind and The Syren; the turn he lands it is zero; and whether the Gold is spendable this turn hangs on R25."
+      "notes": "The unbounded version was Stealthy Pursuer (OGN-177), banned; no other 'moves with it' text exists in the pool on the L2 and L3 reads. Fae Porter (SFD-125) pays Chaos Power to bring the Hunter along for net zero and a Recruit. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — steady state is 4 Gold and 4 Recruits a turn for 3E + 1 Chaos Power with Ride the Wind and The Syren; the turn he lands it is zero; and the Gold is spendable the turn it appears (R25 ruled A, 2026-09-04)."
     },
     {
       "id": "fiora-vault-breaker-jhin",
@@ -2495,7 +2495,7 @@
         ],
         "notable": [
           "Fae Dragon is 7E+1P and buffs up to four units; each Wallop spends one buff, so one Dragon fuels four Wallops but a deck holds only three. Lux, Crownguard's Energy is spell-locked (\"Use only to play spells\"), so the loop pays for more spells, not for units. Overt Operation (OGN-153, 5E+2P) spends every buff at once and re-buffs all friendly units with no cap — a refuel, and a net loss as a Gold converter.",
-          "Both the token-maker's \"play a Gold gear token exhausted\" and Renata's \"Your tokens enter ready\" apply to the same event and the rules do not say which wins (unruled, R25: rule 375's own example makes the exhausted rider inherit through a replacement, 369.3/370.1.c let Renata rewrite how a token enters). Under the adverse reading each Gold is Power next turn, not this turn. The Eye of the Herald Recruits are not in doubt: units default to exhausted (143.4) and Renata overrides the default."
+          "R25 ruled A (2026-09-04): Renata's \"Your tokens enter ready\" beats the token-maker's \"play a Gold gear token exhausted\", so each Gold is Power the turn it appears. 369.3/370.1.c let Renata rewrite how a token enters, and rule 375 only makes a replacement inherit modifications it is itself silent about — its own example is a replacement that duplicates the token and says nothing about ready or exhausted. The Eye of the Herald Recruits were never in doubt: units default to exhausted (143.4) and Renata overrides the default."
         ]
       },
       "steps": [
@@ -2517,7 +2517,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Body/Order had no entry. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the Energy is Lux's and spell-only, and it appears only when the buff readies a Lux you had already exhausted; per Wallop +2 spell Energy and one Gold (R25 for its timing). Overt Operation at 5E+2P is worse than the free Wallop."
+      "notes": "Body/Order had no entry. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the Energy is Lux's and spell-only, and it appears only when the buff readies a Lux you had already exhausted; per Wallop +2 spell Energy and one Gold, usable the same turn (R25 ruled A, 2026-09-04). Overt Operation at 5E+2P is worse than the free Wallop."
     },
     {
       "id": "aphelios-jax-quickdraw-attach",
@@ -2611,7 +2611,7 @@
         ],
         "notable": [
           "Only spells on which you actually spent 4+ Energy count (cost reductions can drop a 4-cost spell below the line). Channelled runes enter ready (430.2.a) and are usable the same turn; the fourth spell's own banish is what completes the set.",
-          "Unruled (R26): the Chain resolves newest-first (340.1) and a \"when you play a spell\" trigger is appended after the spell, so a literal read has Virtuoso's trigger resolve while the spell is still an unresolved Chain Item — banishing it there would counter your own spell (359.3.d only sends a spell to the trash after its effect executes). The entry assumes the trigger waits until the spell has resolved, which is how the community plays it."
+          "R26 ruled B (2026-09-04): the trigger waits until the spell has resolved and banishes it from the trash, which is how the community plays it. The literal Chain read points the other way — playing completes at Finalize (337.1), the trigger goes on the Chain at once (383.3.c) and 340.1 resolves newest-first, so Virtuoso would banish an unresolved spell and counter himself — but the Core Rules example at 359.3.e.10 describes a \"When you play a spell\" ability firing \"as the spell resolves\". A rewording from Riot that puts the trigger above the spell reopens R26."
         ]
       },
       "steps": [
@@ -2632,7 +2632,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Legend-only engine, no second card required; listed so a Fury/Mind big-spell deck sees the payoff and its ceiling. The four spells return to the trash, so anything that recycles or replays from trash (Fizz, Heedless Resurrection lines) can loop them, but nothing in Fury/Mind refunds the Energy. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the payoff is permanent ramp toward 12, not +4 Energy per cycle, and the whole legend stands on R26."
+      "notes": "Legend-only engine, no second card required; listed so a Fury/Mind big-spell deck sees the payoff and its ceiling. The four spells return to the trash, so anything that recycles or replays from trash (Fizz, Heedless Resurrection lines) can loop them, but nothing in Fury/Mind refunds the Energy. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the payoff is permanent ramp toward 12, not +4 Energy per cycle, and the legend works as written now that R26 is ruled B (2026-09-04)."
     },
     {
       "id": "renata-time-warp-ekko-refresh",
