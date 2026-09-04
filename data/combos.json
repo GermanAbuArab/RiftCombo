@@ -2106,7 +2106,7 @@
       "id": "jhin-relentless-pursuit-wallop",
       "name": "Jhin, Murderous Artist on Relentless Pursuit — Energy and Power on every move",
       "class": "ENGINE",
-      "status": "candidate",
+      "status": "verified",
       "uses": [
         {
           "card": "UNL-022",
@@ -2169,10 +2169,15 @@
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
           "kind": "agent",
           "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-jhin-pursuit-and-r20.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "First Fury/Body entry. Bounded by cards (Pursuit x3, one Wallop per buff, Reveler attacks) and by the two enemy battlefields of a Duel; it never closes because no repeatable free ready exists in Fury/Body — Dominus's '2 rainbow: Ready me' is a net-zero converter (L3-03), as are Upstage Comedy and Perfect Execution. The Twilight Reveler line in the first write-up does not work: the same empty battlefields that make the conquers free make a Combat impossible, so the Reveler never gains the Attacker designation (383.4.e, 461). The repaired six-move line casts a second Wallop inside the second showdown instead. Miss Fortune, Captain (OGN-162) still adds one ready on her first move each turn. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — step 4 was illegal (an Attack Trigger needs a Combat, and the empty battlefields that make the conquers free rule one out); re-authored with a second Wallop: +4E +5P net and 2 points for three cards. The unopposed-entry showdown window is R20."
+      "notes": "First Fury/Body entry. Bounded by cards (Pursuit x3, one Wallop per buff, Reveler attacks) and by the two enemy battlefields of a Duel; it never closes because no repeatable free ready exists in Fury/Body — Dominus's '2 rainbow: Ready me' is a net-zero converter (L3-03), as are Upstage Comedy and Perfect Execution. The Twilight Reveler line in the first write-up does not work: the same empty battlefields that make the conquers free make a Combat impossible, so the Reveler never gains the Attacker designation (383.4.e, 461). The repaired six-move line casts a second Wallop inside the second showdown instead. Miss Fortune, Captain (OGN-162) still adds one ready on her first move each turn. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — step 4 was illegal (an Attack Trigger needs a Combat, and the empty battlefields that make the conquers free rule one out); re-authored with a second Wallop: +4E +5P net and 2 points for three cards. R20 RETIRED 2026-09-04 as settled by rules text: 344.2 opens a Showdown at the next Cleanup when a battlefield is Contested and there are NO units of different players there, 348.2.a establishes Control at its close, and 348.2.a.1 says outright \"This results in a Conquer\". The window is real too - 345 gives Focus to the player who applied Contested and 347.1 lets them play any legally timed card, which is what the second Wallop needs. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-jhin-pursuit-and-r20.md): six moves for +6E +6 rainbow gross, net +4 Energy +5 Power plus 2 points. The rule the entry only asserted is 383.4.c.2.a - a Conquer Effect fires for a Unit present when its controller gains control AND GAINS 1 VICTORY POINT - which is exactly why move 5 back into the already-scored battlefield gives no Warmog buff and no Pursuit bounce, and so why the engine stops at six."
     },
     {
       "id": "jhin-emperors-divide-hidden",
