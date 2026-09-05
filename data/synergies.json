@@ -932,6 +932,35 @@
       "status": "rule-verified",
       "reviewed": "2026-09-04",
       "reviewedCount": 50
+    },
+    {
+      "id": "ezreal-prodigy-accelerate",
+      "name": "Ezreal, Prodigy halves every Accelerate cost",
+      "anchor": "SFD-149",
+      "partner": {
+        "textMatches": "\\[Accelerate\\]"
+      },
+      "why": "805.2 calls Accelerate \"an Optional Additional Cost\" in those words, and Ezreal is the only card in the pool that makes optional additional costs cheaper, so he cuts the one printed exception to \"units enter exhausted\" in half. What that exception is worth: 359.2.c lets you choose the location a unit is played to, so Accelerate is not about presence — it is about acting. 143.4 enters the unit exhausted and 143.4.a names Accelerate as the way to alter that, while 144.2 makes exhausting the unit the cost of a Standard Move, so an ordinary unit can neither move nor pay an exhaust cost on the turn it lands. That is why Riot printed Accelerate almost entirely on attack and move payoffs: five of the twenty-six carry [Assault], four have a \"When I move\" trigger and two have \"When I attack\". Three things the list cannot say. The discount is 1 Energy OR 1 rainbow, never both, and 805.1.a.1 restricts the Power half to a domain the unit itself has, so an accelerated unit is never free — it drops to one rune of its own domain, or to one Energy. Ezreal's reduction is generic, so a deck holding him also pays less for [Repeat] (820.1) and for every \"you may pay X as an additional cost\" clause; this list is the narrow half of what he does. And this is the only pairing the keyword can have at all: 805.3 says outright that \"Accelerate has no function while on the board\", 805.2.a forbids paying it once the unit is there and 805.4 makes a second instance redundant, so no card can read it off a permanent the way Renata Glasc, Industrialist reads a token entering. The interaction has to happen at the moment of payment, and Ezreal is the only card standing there.",
+      "basis": {
+        "rules": [
+          "143.4",
+          "143.4.a",
+          "144.2",
+          "163.2.b",
+          "359.2.c",
+          "805.1",
+          "805.1.a",
+          "805.1.a.1",
+          "805.2",
+          "805.2.a",
+          "805.3",
+          "805.4"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-04",
+      "reviewedCount": 26
     }
   ]
 }
