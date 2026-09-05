@@ -2869,7 +2869,7 @@
           "Legend domains cover Body and Order."
         ],
         "notable": [
-          "Fae Dragon is 7E+1P and buffs up to four units; each Wallop spends one buff, so one Dragon fuels four Wallops but a deck holds only three. Lux, Crownguard's Energy is spell-locked (\"Use only to play spells\"), so the loop pays for more spells, not for units. Overt Operation (OGN-153, 5E+2P) spends every buff at once and re-buffs all friendly units with no cap — a refuel, and a net loss as a Gold converter.",
+          "Fae Dragon is 7E+1P and buffs up to four units; each Wallop spends one buff, so one Dragon fuels four Wallops but a deck holds only three. Lux, Crownguard's Energy is spell-locked (\"Use only to play spells\"), so the loop pays for more spells, not for units. Overt Operation (OGN-153, 5E+2P) spends every buff at once and re-buffs all friendly units with no cap. CORRECTED 2026-09-04 (hunt L8, B3): it is not \"a net loss as a Gold converter\". With K buffed friendly units one resolution gives K readies + K Fae Dragon triggers (K Golds, entering READY under Renata by R25) + a re-buff of every friendly unit, against a cost of 2 Power. It breaks even at K=2 and is Power-positive from K=3 (K=3 -> +1, K=5 -> +3). The old wording is only true at K=1, and it was steering the deck away from the card that best exploits the engine. Ordering caveat: the Golds arrive AFTER the spell is paid, so the 2 Power must be up front and the surplus is only usable later in the same Main Phase.",
           "R25 ruled A (2026-09-04): Renata's \"Your tokens enter ready\" beats the token-maker's \"play a Gold gear token exhausted\", so each Gold is Power the turn it appears. 369.3/370.1.c let Renata rewrite how a token enters, and rule 375 only makes a replacement inherit modifications it is itself silent about — its own example is a replacement that duplicates the token and says nothing about ready or exhausted. The Eye of the Herald Recruits were never in doubt: units default to exhausted (143.4) and Renata overrides the default."
         ]
       },
@@ -2897,7 +2897,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Body/Order had no entry. Card text verified against the corpus. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-two-industrialist-engines.md): a free Wallop spends a buff, the Dragon plays a Gold that is ready under R25 = A (1 rainbow), and the readied Lux exhausts for 2 spell-only Energy. 702.2.b defines spending a buff flatly, with no exemption for spends made as a cost, so Wallop's additional cost does trigger the Dragon. Bounded by 103.2.b (three Wallops), four buffs per Dragon play and 702.3 (one buff per unit at a time). Depends on no unruled reading. REFUTE 2 (2026-09-03): WOUNDED — the Energy is Lux's and spell-only, and it appears only when the buff readies a Lux you had already exhausted; per Wallop +2 spell Energy and one Gold, usable the same turn (R25 ruled A, 2026-09-04). Overt Operation at 5E+2P is worse than the free Wallop."
+      "notes": "Body/Order had no entry. Card text verified against the corpus. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-two-industrialist-engines.md): a free Wallop spends a buff, the Dragon plays a Gold that is ready under R25 = A (1 rainbow), and the readied Lux exhausts for 2 spell-only Energy. 702.2.b defines spending a buff flatly, with no exemption for spends made as a cost, so Wallop's additional cost does trigger the Dragon. Bounded by 103.2.b (three Wallops), four buffs per Dragon play and 702.3 (one buff per unit at a time). Depends on no unruled reading. REFUTE 2 (2026-09-03): WOUNDED — the Energy is Lux's and spell-only, and it appears only when the buff readies a Lux you had already exhausted; per Wallop +2 spell Energy and one Gold, usable the same turn (R25 ruled A, 2026-09-04). Overt Operation at 5E+2P is worse than the free Wallop. 2026-09-04: the Overt Operation clause in prerequisites.notable was recalibrated after hunt L8 (B3) ran the arithmetic — it said \"a net loss as a Gold converter\" when the entry's own numbers break even at K=2 and win from K=3. Status stays verified: the correction is to a note, not to the walked line."
     },
     {
       "id": "aphelios-jax-quickdraw-attach",
@@ -3732,6 +3732,521 @@
         }
       ],
       "notes": "Second route for Bewitching Spirit, independent of the Bloodharbor Ripper legend and so open to any Chaos legend (the thread's pilot ran Ezreal). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — one Pack is a treadmill against the Draw Phase; the hand shrinks only from two Packs up, at 3E per discard. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-jhin-fiora-gauntlets-pack.md). 149.1 - 'Gear enter play Ready' - is what makes three Packs worth three cycles in ONE turn rather than three turns; each then readies only in your Awaken, so one bounce per Pack per turn. 'Another' stops a Pack bouncing itself. One Pack is a treadmill against the opponent's Draw Phase (315.4.b); the hand shrinks only from two up. Depends on no unruled reading."
+    },
+    {
+      "id": "yasuo-syren-unforgiven-point",
+      "name": "Yasuo's third move each turn — a point for 3 Energy and no cards",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "OGN-205",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "5 Energy, 1 Power, 4 Might. [Ganking]. 'The third time I move in a turn, you score 1 point.'"
+        },
+        {
+          "card": "OGN-259",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Yasuo's Calm/Chaos legend. '2 Energy, exhaust: Move a friendly unit to or from its base.'"
+        },
+        {
+          "card": "OGN-184",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "2 Energy gear. '1 Energy, exhaust: Move a friendly unit at a battlefield to its base.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Chaos — Unforgiven is the legend, so the identity is fixed (103.1.b)."
+        ],
+        "notable": [
+          "Yasuo enters exhausted (143.4), so the engine starts the turn AFTER he lands, with him ready at his base.",
+          "The legend and The Syren each ready only in your Awaken, so the three-move sequence runs exactly once per turn.",
+          "Step 3 leaves Yasuo exhausted at a battlefield. Swapping it for OGN-173 Ride the Wind ('Move a friendly unit and ready it', 2E 1P) leaves him ready to defend, at the cost of one card and 2E+1P instead of nothing."
+        ]
+      },
+      "steps": [
+        "Unforgiven: pay 2 Energy and exhaust the legend — move Yasuo from his base to a battlefield. MOVE 1. Yasuo stays ready: only the Standard Move exhausts a unit (144.2), an effect move does not.",
+        "The Syren: pay 1 Energy and exhaust the gear — move Yasuo from that battlefield to his base. MOVE 2.",
+        "Standard Move: Yasuo goes base to battlefield, exhausting himself as the cost (144.2, 144.4.a). MOVE 3 — 'the third time I move in a turn, you score 1 point.'"
+      ],
+      "terminatesIn": "engine — exactly one point per turn ('the third time', not 'every third time'), for 3 Energy and zero cards spent; eight turns to the Victory Score on its own",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Hunt L7 — Chaos (docs/phase0/hunt3/L7-chaos.md), candidate C1",
+          "kind": "agent",
+          "date": "2026-09-04"
+        }
+      ],
+      "notes": "CANDIDATE from the L7 domain lens (issue #28); NOT hand-walked. All three card texts verified verbatim against data/corpus_flat.txt on 2026-09-04. 446.1 makes each of the three position changes a Move — 'A Permanent changing its position from any space on the Board to another space on the Board is a Move' — and none is a recall, so 456 ('Recalls are not Moves') does not apply. R2 (ruled A) is load-bearing: 'you score 1 point' printed on a card is a point Gain by ability (194.1.c), not a 469 Score, so 470's once-per-battlefield cap does not touch it and Yasuo's point STACKS on the same battlefield's Hold. Trap check: no attack trigger anywhere, so the empty-enemy-battlefield trap (383.4.e, 461) does not bite; no [Temporary]; no rune recycled; the Energy is spent in the Main Phase, so 167 does not bite. calm+chaos had four catalogued entries and no point source at all."
+    },
+    {
+      "id": "battle-mistress-gold-refund",
+      "name": "Battle Mistress refunds the runes you spend — and Twisted Fate recycles one for free",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-203",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Body/Chaos legend. 'When you recycle a rune, you may exhaust me to play a Gold gear token exhausted. When one or more enemy units die, ready me.'"
+        },
+        {
+          "card": "OGN-200",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "4 Energy, 4 Might. 'When I attack, reveal the top rune of your rune deck, then recycle it.' The only rune recycle in the pool that costs no board."
+        },
+        {
+          "card": "SFD-204",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "1 Energy, 2 Power. 'Ready your units.' The Body/Chaos mass ready; no catalogued entry used it before."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "gold-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Body and Chaos — Battle Mistress is the legend (103.1.b)."
+        ],
+        "notable": [
+          "The trigger is far wider than its wording suggests. 164.2.b makes the second printed ability of every Basic Rune 'Recycle this: [Reaction] — Add [C]', so recycling a rune IS how Power is produced: every Power cost you pay offers Battle Mistress her trigger.",
+          "It is a PARTIAL REFUND, never profit. 161.2.b and 416.1.b send the recycled rune to the Rune Deck for good; that rune would have made 1 Energy every turn (164.2.a), while the Gold makes 1 Power once (187.5). She makes paying Power cheaper, not free.",
+          "Twisted Fate is the exception that costs nothing: he recycles the top rune of your Rune DECK, which was already there, so his trigger is free value rather than a rune traded away.",
+          "Twisted Fate needs the Attacker designation, which exists only inside a Combat with a garrison (383.4.e, 461) — moving into an EMPTY enemy battlefield triggers nothing. And 383.4.e.2.a checks an attack trigger only once per combat.",
+          "The Gold enters exhausted, and SFD-171 Renata Glasc, Industrialist is Order, outside this identity — R25 does not apply here, so every Gold is next-turn Power. Kill it in the Main Phase: 167 empties the Rune Pool at the Main Phase start and 167.1 loses anything unspent.",
+          "Battle Mistress exhausts for each Gold, so without enemy deaths it is one Gold per turn; 'when one or more enemy units die, ready me' re-arms her once per wave, not once per death."
+        ]
+      },
+      "steps": [
+        "Any turn you pay a Power cost, the rune you recycle to produce it (164.2.b) offers Battle Mistress her trigger: exhaust her, play a Gold gear token exhausted.",
+        "Twisted Fate attacks a garrisoned battlefield: 'reveal the top rune of your rune deck, then recycle it'. That recycle is board-neutral, so it is a free extra trigger on top of the revealed rune's own mode (2 damage to an enemy unit here / draw 1 / stun).",
+        "When one or more enemy units die, Battle Mistress readies and can convert the next recycle too. On the Hunt (1E 2P) readies your board for a second combat, and its own 2 Power payment recycles two more runes.",
+        "In your next Awaken the Golds ready; kill them during your Main Phase for 1 Power each."
+      ],
+      "terminatesIn": "engine — one Gold per rune recycle while she is ready, so about one per turn and two or three in a turn with enemy deaths; each Gold is 1 Power the following turn",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Hunt L7 — Chaos (docs/phase0/hunt3/L7-chaos.md), candidate C2",
+          "kind": "agent",
+          "date": "2026-09-04"
+        },
+        {
+          "title": "Hunt L8 — Body (docs/phase0/hunt3/L8-body.md), candidate B6",
+          "kind": "agent",
+          "date": "2026-09-04"
+        }
+      ],
+      "notes": "CANDIDATE; NOT hand-walked. UNIFIED ENTRY: L7 (C2) and L8 (B6) reached SFD-203 independently from opposite sides and each had half the picture. L8 found the wide surface — 164.2.b means every Power payment recycles a rune, so the trigger is not the dead letter it looks like. L7 found the free one — OGN-200 recycles the top of the Rune DECK, not a rune on your board, and a grep of all 935 cards for rune-recycling text returns only three sources: OGN-200 (free), OGN-287 Sigil of the Storm ('you MUST recycle one of your runes', a board rune, so a net loss) and OGN-244 Divine Judgment (catastrophic). Both halves are recorded above because they are both true and neither alone is the whole line. body+chaos is the one pair of the fifteen where NO catalogued entry crosses the two domains. Card text verified verbatim against data/corpus_flat.txt on 2026-09-04. Trap check: the rune recycled by a Power payment leaves the board for good and the entry says so; the Gold is not [Temporary] (187.5); no Awaken Energy."
+    },
+    {
+      "id": "tornado-warrior-matriarch-recursion",
+      "name": "Tornado Warrior empowers the Matriarch for free, and undoes it at end of turn",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "VEN-104",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "'[Empower] 2 Energy + 1 Chaos … When I become [Empowered], you may choose a unit in your trash with Energy cost no more than 3 and Power cost no more than 1. Play it to your base, ignoring its cost.'"
+        },
+        {
+          "card": "VEN-099",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "3 Energy, 3 Might, [Hidden]. 'When you play me from face down, you may empower something here. Disempower it at end of turn.'"
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Chaos — both cards are mono-Chaos, so any Chaos legend runs it."
+        ],
+        "notable": [
+          "Tornado Warrior must arrive at the Matriarch's location: 'empower something HERE'. It is [Hidden], so it is hidden first and played from face down later.",
+          "The Matriarch's payoff has a hard ceiling: a unit in your trash with Energy cost no more than 3 AND Power cost no more than 1, and it arrives at your BASE, entering exhausted (143.4). If the trash holds no such unit the trigger resolves into nothing — declare the trash contents, do not assume them.",
+          "One Tornado Warrior per empower, so this costs a card per cycle. The no-card version is paying the Matriarch's own [Empower] cost (2 Energy + 1 Chaos Power), and that is a single use: 827.1.c.1 makes Empower short for '[Cost]: Empower this. Play only if not Empowered.'",
+          "Two better free empowerers exist outside mono-Chaos and open thin pairs: VEN-082 Profiteer (Body — 'you may disempower something you control to empower a legend, unit, or gear') gives body+chaos, and VEN-035 Sanction (Calm) gives calm+chaos. Sanction is already the anchor of the sanction-empower-unit pattern and already has kharox-sanction-burn, so a Sanction version would be the same trick with a different payoff."
+        ]
+      },
+      "steps": [
+        "Tail-Cloaked Matriarch on the board, not Empowered.",
+        "Play Tornado Warrior from face down at her location: 'you may empower something here' — empower the Matriarch for free. 441.3.a lets any Game Effect empower, and 441.2.a is the moment she BECOMES Empowered, which is what her trigger reads.",
+        "Her trigger fires: play a unit from your trash with Energy cost 3 or less and Power cost 1 or less to your base, ignoring its cost.",
+        "At end of turn Tornado Warrior's own delayed clause disempowers her, so 441.1.b ('An Empowered Game Object can not be Empowered') stops blocking and the next Tornado Warrior can do it again."
+      ],
+      "terminatesIn": "engine — one free unit out of the trash per empower; one card (a Tornado Warrior) per cycle, and the self-cleanup is what makes it repeatable at all",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Hunt L7 — Chaos (docs/phase0/hunt3/L7-chaos.md), candidate C3",
+          "kind": "agent",
+          "date": "2026-09-04"
+        }
+      ],
+      "notes": "CANDIDATE from the L7 domain lens; NOT hand-walked. Both texts verified verbatim against data/corpus_flat.txt on 2026-09-04. The point of the line is that Tornado Warrior is not just a free empowerer, it is a free empowerer that CLEANS UP AFTER ITSELF: 441.1.b would otherwise lock the Matriarch out after the first empower, and her own [Empower] ability is single-use by 827.1.c.1. PRODUCES IS EMPTY ON PURPOSE — data/features.json has no outcome for 'free replay out of the trash', and features.json is capped at ~20 entries by design, so nothing was invented. Trap check: no [Temporary]; units enter exhausted (143.4) and the entry says the revived body lands at your base; no attack trigger; no rune recycled; no Awaken Energy."
+    },
+    {
+      "id": "kennen-stargazer-arena-flow",
+      "name": "Reckoner's Arena turns Kennen's conquer into a Hold — a discounted spell out of the trash every turn",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "VEN-113",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "3 Energy, 1 Power, 4 Might. 'When you play me, [Burn 2]. When I conquer, give a spell in your trash [Flow] equal to its cost this turn.'"
+        },
+        {
+          "card": "VEN-098",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "5 Energy, 4 Might. 'Spells with [Flow] you play from your trash cost 2 Energy less, to a minimum of 1 Energy.'"
+        },
+        {
+          "card": "OGN-286",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BOARD",
+          "note": "Colorless battlefield. 'When you hold here, activate the conquer effects of units here.' Colorless, so it fits any Domain Identity."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "hold-card-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Chaos — Kennen and Stargazer are both mono-Chaos, so any Chaos legend runs it."
+        ],
+        "notable": [
+          "You must be HOLDING Reckoner's Arena with Kennen standing there. Lose the battlefield and the engine stops. Reckoner's Arena is colorless, so the opponent can bring it too — 127.1 with 485.4.a means the one you control in a Duel is normally the one you brought.",
+          "The fuel is finite and this is why it is not INFINITE. 829.1.b.1 makes the Flow banish a delayed replacement effect: the spell is banished when it leaves the chain, so each copy in the trash can be re-flowed EXACTLY ONCE. With the 3-copy deck limit the engine runs dry.",
+          "Stargazer discounts Energy only, to a minimum of 1 Energy. The Power cost is paid in full every time: Downwell still costs 2 Power.",
+          "829.1.b.2 — playing for a Flow cost does not change the spell's timing. A spell without [Action] or [Reaction] is still a Main Phase spell even though the Flow was granted during your Beginning Phase; the 'this turn' duration covers it."
+        ]
+      },
+      "steps": [
+        "Kennen stands at Reckoner's Arena, which you control.",
+        "In your Beginning Phase you hold there. 383.4.g.1 tells you how: 'that player checks the condition of all of the specified effects, as if they had fulfilled the named part of the condition' — and its own worked example IS Reckoner's Arena. Kennen's conquer trigger fires on the hold.",
+        "Kennen gives a spell in your trash [Flow] equal to its cost, this turn. Kennen carries no non-conquer condition, so 383.4.g.1 lets it reach the chain — unlike Yone and Swain, which the reckoners-arena-conquer-on-hold pattern excludes for exactly that reason.",
+        "In your Main Phase, play that spell from the trash for its Flow cost minus 2 Energy (Stargazer), minimum 1 Energy, full Power. Examples measured against the corpus: OGN-198 The Harrowing E6 P2 becomes E4 P2; SFD-147 Downwell E8 P2 becomes E6 P2; VEN-103 Shadows of the Past E3 P1 becomes E1 P1.",
+        "The spell is banished as it leaves the chain (829.1.b.1). Next turn, a different spell in the trash."
+      ],
+      "terminatesIn": "engine — one discounted spell out of the trash per Hold, no cards spent, until the trash runs out of spells that have not been re-flowed",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Hunt L7 — Chaos (docs/phase0/hunt3/L7-chaos.md), candidate C4",
+          "kind": "agent",
+          "date": "2026-09-04"
+        }
+      ],
+      "notes": "CANDIDATE from the L7 domain lens; NOT hand-walked. All three texts verified verbatim against data/corpus_flat.txt on 2026-09-04. This line crosses the ONLY TWO verified synergy patterns in data/synergies.json with zero combos behind them: stargazer-flow-spells (15 partners, 0 combos) and reckoners-arena-conquer-on-hold (28 partners, 0 combos), and VEN-113 is already in the second list. Same battlefield, second body worth noting: VEN-112 Zed, Without a Sound ('When I conquer, play a 0 Might Shadow Clone unit token to your base') is also on that list, so parked at Reckoner's Arena he makes a free Shadow Clone every turn with no conquer — a mono-Chaos route to the clones that zed-clone-eye-recruits reaches through Order. Trap check: the trigger arrives by Hold, not by the Attacker designation, so 383.4.e/461 does not bite; no [Temporary]; no rune recycled; the hold lands in the Beginning Phase but the Energy is spent in the Main Phase, so 167 does not bite."
+    },
+    {
+      "id": "draven-glorious-executioner-point",
+      "name": "Draven's first combat win each turn — a point and a card",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-148",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "6 Energy, 1 Power, 6 Might. [Deflect]. 'The first time I win a combat each turn, you score 1 point. When I die in combat, choose an opponent. They score 1 point.'"
+        },
+        {
+          "card": "SFD-185",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Draven's Fury/Chaos legend. 'When you win a combat, draw 1.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Chaos — Glorious Executioner is the legend (103.1.b)."
+        ],
+        "notable": [
+          "This engine DEPENDS ON THE OPPONENT. Winning a combat needs a combat, and 461 needs units of two players at the battlefield; moving into an empty enemy battlefield produces nothing. Against a board that never garrisons, Draven scores zero.",
+          "'The first time … each turn' caps Draven at one point per turn no matter how many combats he wins. The legend has no such clause, so three wins still draw three cards.",
+          "The drawback is real and symmetric: 'When I die in combat, choose an opponent. They score 1 point.' At 6 Might with [Deflect] he is hard to remove with spells, but he dies to a bigger garrison and hands the point over.",
+          "R2 (ruled A): Draven's point is a Gain by ability (194.1.c), not a 469 Score, so 470's once-per-battlefield cap does not consume the battlefield's own Hold."
+        ]
+      },
+      "steps": [
+        "Draven at a battlefield the opponent garrisons — 461 stages the combat.",
+        "Win the combat (the legend spells out the condition: 'You win if only your units remain after combat').",
+        "Draven's first win of the turn scores 1 point; Glorious Executioner draws 1 for that win and for every further win in the same turn."
+      ],
+      "terminatesIn": "engine — one point per turn plus one card per combat won, and only while the opponent keeps giving you combats to win",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Hunt L7 — Chaos (docs/phase0/hunt3/L7-chaos.md), candidate C5",
+          "kind": "agent",
+          "date": "2026-09-04"
+        }
+      ],
+      "notes": "CANDIDATE from the L7 domain lens; NOT hand-walked. Both texts verified verbatim against data/corpus_flat.txt on 2026-09-04. fury+chaos had a single catalogued entry (bloodharbor-bewitching-discard, a discard engine) and no point source; this is the champion's own legend paired with the champion's own unit. Trap check: this is the one candidate of the six where the empty-enemy-battlefield trap (383.4.e, 461) genuinely bites, and it is written into prerequisites rather than hidden; the 'they score 1 point' clause is the doubled-drawback shape CLAUDE.md asks to record, so it is in prerequisites too; no [Temporary]; no rune recycled."
+    },
+    {
+      "id": "pack-of-wonders-fizz-spell-recursion",
+      "name": "Pack of Wonders bounces Fizz — a free spell out of the trash every turn",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "OGN-181",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "2 Energy gear. 'Exhaust: Return another friendly gear, unit, or facedown card to its owner's hand.'"
+        },
+        {
+          "card": "SFD-140",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "3 Energy, 1 Power, 3 Might. 'When you play me, you may play a spell from your trash with Energy cost no more than 3, ignoring its Energy cost. Then recycle it. (You must still pay its Power cost.)'"
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Chaos — both cards are mono-Chaos."
+        ],
+        "notable": [
+          "One cycle per Pack per turn. Pack of Wonders exhausts and NOTHING IN CHAOS READIES A GEAR: a sweep of all 211 Chaos cards finds ready effects aimed only at units (OGN-173, OGN-260, SFD-204, OGN-202, SFD-195) or runes (OGS-017). It readies in your Awaken. Extra copies buy extra cycles in the same turn, exactly as pack-of-wonders-bewitching-discard already documents.",
+          "3 Energy and 1 Power per cycle — a fresh play of Fizz each time — and the free spell must be Energy cost 3 or less, with its Power cost still paid.",
+          "Fizz re-enters exhausted (143.4), so he does no Standard Move on the turn he is replayed. The line does not need him to move.",
+          "The spell is RECYCLED, not banished: 416.1 puts it on the bottom of the Main Deck, so it comes back later. That is the difference from kennen-stargazer-arena-flow, where 829.1.b.1 banishes the spell instead."
+        ]
+      },
+      "steps": [
+        "Fizz in hand, Pack of Wonders on the board and ready.",
+        "Play Fizz for 3 Energy and 1 Power: his trigger plays a spell of Energy cost 3 or less out of your trash for free (its Power cost is still yours), then recycles it to the bottom of the deck.",
+        "Exhaust Pack of Wonders to return Fizz to your hand.",
+        "Next turn (or immediately, with a second and third Pack), replay him."
+      ],
+      "terminatesIn": "engine — one free Energy-cost-3-or-less spell per Pack per turn, at 3E and 1P each, spending no cards",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Hunt L7 — Chaos (docs/phase0/hunt3/L7-chaos.md), candidate C6",
+          "kind": "agent",
+          "date": "2026-09-04"
+        }
+      ],
+      "notes": "CANDIDATE from the L7 domain lens; NOT hand-walked. Both texts verified verbatim against data/corpus_flat.txt on 2026-09-04. The pack-of-wonders-replays-a-body synergy pattern is already verified and lists 16 partners; the only catalogued combo on it uses UNL-121 Bewitching Spirit, whose play effect is 'a player discards 1'. Fizz is the strongest Chaos body on that list and was never walked. The third Chaos partner, OGN-196 Soulgorger ('When you play me, you may play a unit from your trash, ignoring its Energy cost'), is the same structure with units instead of spells and is still uncatalogued. PRODUCES IS EMPTY ON PURPOSE — data/features.json has no outcome for 'free replay out of the trash' and is capped at ~20 entries by design. Trap check: no [Temporary]; units enter exhausted and the entry says so; no attack trigger; no rune recycled."
+    },
+    {
+      "id": "lee-sin-buff-bank",
+      "name": "Lee Sin is the only unit that can bank buffs — and every buff is a free ready",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "OGN-078",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "5 Energy, 1 Power, 5 Might. '[Shield] … Exhaust: Buff me. I can have any number of buffs.' The only card in the pool with that permission."
+        },
+        {
+          "card": "OGN-152",
+          "quantity": 1,
+          "role": "ready",
+          "zone": "BOARD",
+          "note": "3 Energy gear. 'When you buff a friendly unit, you may pay 1 Body Power and exhaust this to ready it.'"
+        },
+        {
+          "card": "OGN-257",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Lee Sin's Calm/Body legend. '1 Energy, exhaust: Buff a friendly unit.' One free buff onto the bank every turn."
+        },
+        {
+          "card": "OGN-146",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "2 Energy spell. 'As you play this, you may spend a buff as an additional cost. If you do, ignore this spell's cost. Ready a unit.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Body — Lee Sin is Calm and Mistfall, Wallop and Fae Dragon are Body, so 103.1.b forces a Calm/Body legend: OGN-257 Blind Monk, UNL-191 Wuju Master or SFD-193 Grandmaster at Arms. Blind Monk is the one that also makes a buff every turn."
+        ],
+        "notable": [
+          "Everything rides on one body. 705: 'If a Unit leaves play, remove all Buffs from it.' Killing Lee Sin (5 Might, and [Shield] only while he defends) erases the whole bank at once. This is the structural weakness of the line and must not be softened.",
+          "Mistfall exhausts, so it is one extra ready per turn at 1 Body Power — a Power-to-ready converter, not a loop.",
+          "The bank grows by the NUMBER of buffing effects, not by the size of each: 702.3 allows one buff per unit and 702.3.a says a second is simply 'not placed instead', so an effect that buffs four units still puts exactly one counter on Lee Sin.",
+          "103.2.b caps Wallop at 3 copies per deck."
+        ]
+      },
+      "steps": [
+        "Lee Sin on the board. Exhaust him: 'Buff me' — buff 1. His printed 'I can have any number of buffs' is the permission 426.1.b.2 contemplates ('Some effects may grant a Game Object permission to be Buffed multiple times'), and it is the only one in the pool.",
+        "Mistfall sees that buff: pay 1 Body Power, exhaust Mistfall, ready Lee Sin. It does not consume the buff — 702.2.b defines spending a buff as removing a counter, and Mistfall never says to.",
+        "Exhaust Lee Sin again for buff 2. Blind Monk (1 Energy, exhaust) adds buff 3. Any further 'buff a friendly unit' effect in the deck adds one more.",
+        "Cash the bank: each buff spent is a Wallop for 0 Energy and 0 Power (a free ready), or 1 Body Power off OGN-150 Kraken Hunter, or — with SFD-101 Fae Dragon on the board — an extra Gold gear token, since its 'When you spend a buff' carries no once-per-turn clause."
+      ],
+      "terminatesIn": "engine — one banked buff per buffing effect per turn, each cashable as a free ready, a Power discount or a Gold; no loop, because the ready side of the cycle costs a buff that has to come from somewhere else",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Hunt L8 — Body (docs/phase0/hunt3/L8-body.md), candidate B1",
+          "kind": "agent",
+          "date": "2026-09-04"
+        }
+      ],
+      "notes": "CANDIDATE from the L8 domain lens (issue #28); NOT hand-walked. All four texts verified verbatim against data/corpus_flat.txt on 2026-09-04, and 702.3, 702.3.a, 426.1.b.2, 703, 704.1 and 705 verified against the Core Rules. The finding is that 702.3 makes buffs a resource you CANNOT stockpile anywhere in the game except on OGN-078 — a pool sweep for 'any number of buffs / another buff / additional buff' returns that one card. Must NOT be labelled INFINITE: L8's own B7 shows the return half of the cycle is not printed — 'ready on buff' exists (Mistfall) but 'buff on ready' does not, and +1 Might this turn is not a buff, because 702 makes a buff a counter and 426.2.a only allows buffing when a Game Effect says so. Trap check: no attack trigger; no [Temporary]; the only rune recycled is the explicit Body Power Mistfall charges; buffs are counters and 704.1 says counters are not targeted, so [Deflect] does not stop them."
+    },
+    {
+      "id": "kraken-hunter-buff-discount-gold",
+      "name": "Kraken Hunter paid in buffs — the pool's only Power discount, with Fae Dragon behind it",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "SFD-101",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "7 Energy, 1 Power, 7 Might. 'When you play me, buff up to four friendly units. When you spend a buff, play a Gold gear token exhausted.'"
+        },
+        {
+          "card": "OGN-150",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "3 Energy, 2 Power, 5 Might. 'As you play me, you may spend any number of buffs as an additional cost. Reduce my cost by 1 Body Power for each buff you spend.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "gold-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Body — both cards are mono-Body, so any legend with Body runs it."
+        ],
+        "notable": [
+          "Why a Power discount is worth more than an Energy discount: 164.2.b makes 'Recycle this: [Reaction] — Add [C]' the only way a rune produces Power, and 161.2.b with 416.1.b sends that rune to the Rune Deck for good. Two Power saved is two runes that stay on the board making 1 Energy each every turn (164.2.a).",
+          "702.3 caps a unit at one buff, so 'any number of buffs' means in practice 'as many buffs as you have buffed units' — unless the bank is OGN-078 Lee Sin (see lee-sin-buff-bank).",
+          "The Golds enter exhausted by Fae Dragon's own text and are NOT [Temporary] (187.5), so they survive to your next Awaken and ready there. Kill them during the Main Phase: 167 empties the Rune Pool at the Main Phase start and 167.1 loses anything unspent.",
+          "With SFD-171 Renata Glasc, Industrialist the Golds enter ready and are immediate Power (R25 = A), but that moves the line to Body+Order and overlaps the verified fae-dragon-wallop-industrialist.",
+          "[Accelerate] (1 Energy + 1 Body Power) is what answers 143.4 for Kraken Hunter himself; without paying it he enters exhausted and cannot Standard Move."
+        ]
+      },
+      "steps": [
+        "Play Fae Dragon: buff up to four friendly units.",
+        "Play Kraken Hunter spending 2 of those buffs as an additional cost: his Power cost drops from 2 Body Power to zero, so he lands for 3 Energy.",
+        "Each buff spent fires Fae Dragon: 2 Gold gear tokens, entering exhausted.",
+        "They ready in your next Awaken; kill them in the Main Phase for 1 Power each."
+      ],
+      "terminatesIn": "engine — up to 2 Power of discount and one Gold per buff spent, bounded by how many buffed units you have (702.3) and by Fae Dragon staying on the board",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Hunt L8 — Body (docs/phase0/hunt3/L8-body.md), candidate B2",
+          "kind": "agent",
+          "date": "2026-09-04"
+        }
+      ],
+      "notes": "CANDIDATE from the L8 domain lens; NOT hand-walked. Both texts verified verbatim against data/corpus_flat.txt on 2026-09-04. OGN-150 is the only buff-paid POWER discount in the pool; every other spend-a-buff payoff trades for a ready, a Gold, a rune or Might. Trap check: the Golds are not [Temporary]; no attack trigger; the entry is explicit that the discount does not recycle any rune of yours (it prevents recycles, which is the whole point); Energy and Power are spent in the Main Phase, so 167 does not bite."
+    },
+    {
+      "id": "wuju-master-blood-rose-level",
+      "name": "Wuju Master at Level 11 — the only permanent 'your units enter ready', and the XP that pays for it",
+      "class": "ENGINE",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "UNL-191",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Body legend. '[Level 6] Your units have +1 Might. [Level 11] Your units enter ready.'"
+        },
+        {
+          "card": "UNL-109",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "1 Energy gear. 'When you play a unit, you may pay 1 Energy to gain 1 XP. Spend 3 XP, exhaust: Ready a unit.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Body — Wuju Master is the legend (103.1.b)."
+        ],
+        "notable": [
+          "SPENT XP LOWERS YOUR LEVEL. 824.1.b.1 makes [Level N] short for 'While you have N or more XP, this card gains [Text]', 824.1.d says the ability 'will be Inactive as soon as the controlling player has less than [N] XP', and 730.2 says spending XP reduces the value marked on you. It is a current balance, not a historical threshold.",
+          "That makes Blood Rose both the ramp and the drain: its own 'Spend 3 XP, exhaust: Ready a unit' drops you from 11 to 8 and TURNS OFF 'your units enter ready' until you climb back. Any deck aiming at Level 11 has to declare the margin it keeps, and treat the other Body XP sinks (UNL-102 Crowd Favorite 2 XP, UNL-119 Kha'Zix 3 XP, UNL-203 Keeper of the Hammer 3 XP, UNL-201 Voidreaver 1-2 XP) the same way.",
+          "Climb rate: Blood Rose charges 1 Energy per unit played, and 185.2.a ('Tokens can be played by their owner if their card type is played') means UNIT TOKENS COUNT — every Recruit, Sand Soldier or Bird token played is 1 XP for 1 Energy. In Calm+Body the legal generators are UNL-044 Flurry of Feathers (four Bird tokens, 4E 2P), UNL-033 Frisky Hunter, SFD-031 Desert's Call, and the colorless battlefields OGN-275 Altar to Unity and UNL-217 Trapping Grounds.",
+          "SFD-031 Desert's Call is NOT a scalable XP bomb: 820.1.c.3 says 'Each Repeat Cost can be paid only a single time', so its [Repeat] gives two Sand Soldiers, not N.",
+          "Why Level 11 is the ceiling of the domain: 143.4 says 'Units enter the Board exhausted', and a sweep of the pool finds only one other permanent, free, all-units answer to it — and it is a legend, so it cannot be drawn, killed or cost a card. Everything else (OGN-129 Confront, SFD-004 Bushwhack) lasts a turn, or is a single body (OGN-011 Magma Wurm)."
+        ]
+      },
+      "steps": [
+        "Blood Rose on the board. Every unit you play, including unit tokens (185.2.a), can be turned into 1 XP for 1 Energy.",
+        "Climb past 11 XP and hold there. [Level 6] switches on '+1 Might to your units' along the way.",
+        "At 11 or more XP, 'Your units enter ready' is live: everything you play acts the turn it lands, ignoring 143.4.",
+        "Only spend XP with a margin: dropping under 11 turns the ability off immediately (824.1.d)."
+      ],
+      "terminatesIn": "engine — permanent 'your units enter ready' once you are at 11 XP and stay there; a multi-turn clock, and the level falls the moment you spend below the threshold",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Hunt L8 — Body (docs/phase0/hunt3/L8-body.md), candidate B4",
+          "kind": "agent",
+          "date": "2026-09-04"
+        }
+      ],
+      "notes": "CANDIDATE from the L8 domain lens; NOT hand-walked. Both texts verified verbatim against data/corpus_flat.txt on 2026-09-04, and 824.1.b.1, 824.1.d, 730.2, 185.2.a, 820.1.c.3 and 143.4 verified against the Core Rules. The new authoring trap this entry carries — spent XP lowers your Level, so a [Level N] deck full of XP sinks fights itself — is not registered anywhere else in the project yet and is the same failure shape as the 2026-09-04 BURST audit: an entry that does not close with the quantities it declares. 'token-body-engine' is the closest feature ('Repeatable ready bodies … bounded by cards in hand') and it is a stretch: the bodies here are real units, not tokens. Trap check: [Hunt] is both Conquer and Hold (823.1.b) so it can raise XP without attacking, but holding needs the unit at the battlefield in your Beginning Phase and a [Temporary] token dies before scoring (816.1.b) and never holds; the Energy is spent in the Main Phase, so 167 does not bite."
     }
   ]
 }
