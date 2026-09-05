@@ -656,7 +656,7 @@
       "partner": {
         "textMatches": "(?:[Ss]pend|pay) \\d+ XP"
       },
-      "why": "Every unit standing at Gardens of Becoming can exhaust for 1 XP, so costs that would otherwise wait on conquering and holding get paid by units doing nothing else. Two things the list cannot say. The ability is granted to every unit there, and the controller of an ability is the controller of its source (191.4.a), so an opponent's units at that battlefield feed their own XP the same way. And the exhaust is a real cost: a unit that pays it cannot also Standard Move that turn or pay a second exhaust cost (414.3.a, 414.4), though it keeps occupying the battlefield, and Hold asks for Control rather than for readiness (469.2).",
+      "why": "Every unit standing at Gardens of Becoming can exhaust for 1 XP, so costs that would otherwise wait on conquering and holding get paid by units doing nothing else. Two things the list cannot say. The ability is granted to every unit there, and the controller of an ability is the controller of its source (191.4.a), so an opponent's units at that battlefield feed their own XP the same way. And the exhaust is a real cost: a unit that pays it cannot also Standard Move that turn or pay a second exhaust cost (414.3.a, 414.4), though it keeps occupying the battlefield, and Hold asks for Control rather than for readiness (469.2). The trap on the spending side, which no match list shows: XP is a running balance, not a lifetime total — 730.2 reduces it when you spend, and 824.1.d turns a [Level N] ability Inactive the instant you drop below N. Paying one of these costs can switch off a Level ability you were already relying on.",
       "basis": {
         "rules": [
           "191.4.a",
@@ -821,6 +821,117 @@
       "status": "rule-verified",
       "reviewed": "2026-09-04",
       "reviewedCount": 15
+    },
+    {
+      "id": "karthus-deathknell-double",
+      "name": "Karthus, Eternal makes every death trigger twice",
+      "anchor": "OGN-236",
+      "partner": {
+        "textMatches": "\\[Deathknell\\]",
+        "excludes": [
+          {
+            "card": "OGN-110",
+            "why": "\"[Deathknell] — Recycle me to ready your runes\" is a Cost linked to an Effect (202). The first instance recycles Ekko out of the trash; on the second the recycle is impossible, and 203.3 says a player who cannot pay the Cost does not execute the linked Effect. The extra trigger readies nothing."
+          },
+          {
+            "card": "SFD-090",
+            "why": "The Zero Drive's granted \"[Deathknell] — Banish me\" moves the dead unit out of the trash once. The second instance finds nothing left to banish, so it is a no-op — and The Zero Drive's payoff counts units banished with it, not times it tried."
+          }
+        ]
+      },
+      "why": "\"Your [Deathknell] effects trigger an additional time\" reads a characteristic the rules make referenceable (808.3), so every Deathknell on your board resolves twice: two Recruit batches off Machine Evangel, two runes channeled off Soaring Scout, two units back from the trash off Glasc Mixologist. Two things the list cannot say. The doubling copies the whole effect including its downside — Undercover Agent becomes discard 4 then draw 4, Kog'Maw deals 4 twice to every unit at his battlefield including yours — and drawing more is a liability in a game with Burn Out (431.1.a). And 808.1.d.1 removes the trigger entirely if the death is replaced by a recall, so a Zhonya's Hourglass or a heal-and-recall effect turns both instances off at once, not one.",
+      "basis": {
+        "rules": [
+          "202",
+          "203.3",
+          "383.3",
+          "431.1.a",
+          "808.1.b",
+          "808.1.c",
+          "808.1.d",
+          "808.1.d.1",
+          "808.2",
+          "808.3"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-04",
+      "reviewedCount": 23
+    },
+    {
+      "id": "bandle-tree-hidden",
+      "name": "Bandle Tree banks a second facedown card at the same battlefield",
+      "anchor": "OGN-278",
+      "partner": {
+        "textMatches": "\\[?Hidden\\]? ?\\(Hide now for"
+      },
+      "why": "A Facedown Zone holds exactly one card (107.3.b) and Bandle Tree is the pool's way of raising that maximum (107.3.b.1), so the battlefield that would bank one trick banks two. What each card is worth there is 811.6: a hidden card gains Reaction while facedown, so it comes back on any player's turn for the [Hidden] price instead of its printed cost — Fox-Fire, Hidden Blade and Hostile Takeover are the expensive end of that. The predicate keys on the reminder text rather than on the bracket, because the keyword itself is printed without brackets on Windsinger (a registered upstream anomaly), and because six cards in the pool name [Hidden] while carrying none — Ava Achiever, Swift Scout, Guerilla Warfare, Ember Monk, Noxus Saboteur and Mystic Vortex all read the keyword on other cards. The cost the list cannot show: 107.3.d removes every facedown card there during the next Cleanup if you lose control of the battlefield, so Bandle Tree doubles the exposure along with the storage.",
+      "basis": {
+        "rules": [
+          "107.3.a",
+          "107.3.b",
+          "107.3.b.1",
+          "107.3.c",
+          "107.3.d",
+          "421.1",
+          "421.2.a",
+          "811.1.c",
+          "811.6"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-04",
+      "reviewedCount": 39
+    },
+    {
+      "id": "trapping-grounds-excess-damage",
+      "name": "Trapping Grounds pays for the attacking Might you could not assign",
+      "anchor": "UNL-217",
+      "partner": {
+        "textMatches": "\\[Assault"
+      },
+      "why": "R28 ruled that \"excess damage\" is attacking Might that never got assigned, because 465.2.c.4 forbids giving a unit more damage than the minimum needed to kill it. [Assault] is the pool's printed way to add Might that only exists while attacking (807.1.c), and 807.2 sums every source, so Assault is the cheapest route to the three excess damage Trapping Grounds asks for — and to the same clause on Yeti Brawler, Piltover Enforcer, Tryndamere and Sivir, Ambitious. Two things the list cannot say. Assault pays nothing outside a Combat: the Attacker designation only exists when a garrison is there to fight (383.4.e, 807.1.d), so walking into an empty enemy battlefield conquers without generating a point of excess. And three of the matches carry the Assault inside a quoted token ability rather than on themselves — both Zeds and Death Mark hand it to a Shadow Clone — which still lands on your board and still counts, unlike the nested quotes that are false positives elsewhere in this file.",
+      "basis": {
+        "readings": [
+          "R28"
+        ],
+        "rules": [
+          "383.4.e",
+          "465.2.c.3",
+          "465.2.c.4",
+          "807.1.b.3",
+          "807.1.c",
+          "807.1.d",
+          "807.2"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-04",
+      "reviewedCount": 41
+    },
+    {
+      "id": "shadow-temple-trash-fuel",
+      "name": "Shadow Temple fills the trash these cards spend",
+      "anchor": "VEN-165",
+      "partner": {
+        "textMatches": "(?:[Pp]lay|[Rr]eturn|[Rr]ecycle|[Bb]anish)[^.]{0,80}from (?:your|any|a) trash|from trashes"
+      },
+      "why": "Every turn you hold there, Shadow Temple puts three cards from your Main Deck into your trash for nothing — the only repeatable free trash filler in the pool — and the trash is where [Flow] spells are cast from, where Soulgorger and The Harrowing find a body, and what Vi, Garbage Grabber, Assembly Rig and Last Rites pay their costs with. The predicate is deliberately one-directional: it catches cards that take something OUT of your trash, not the other burn and discard effects that only put cards in, because two fillers are not a pair. The cost, which no match list shows: 431.1.b makes putting cards from your Main Deck into the trash in excess of what remains a Burn Out, so holding this battlefield is a self-imposed clock, and Forge of the Future's \"Recycle up to 4 cards from trashes\" is on the list precisely as the answer to it. Two matches are subtler than they look. Hallowed Tomb returns your Chosen Champion from the trash, and 103.2.a.3 makes every same-named copy in your Main Deck count as that Chosen Champion, so a Burn 3 really can put one there. And Dr. Mundo is on the list for a clause that is a drawback, not a payoff — \"At the start of your Beginning Phase, recycle 3 from your trash\" empties the very pile his Might is counted from; Shadow Temple refills exactly what he is forced to give back.",
+      "basis": {
+        "rules": [
+          "103.2.a.3",
+          "416.1.a",
+          "431.1.b",
+          "431.2"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-04",
+      "reviewedCount": 50
     }
   ]
 }
