@@ -133,14 +133,33 @@ describe("matching a deck", () => {
     for (const h of hits) expect(h.partners.map((p) => p.card)).not.toContain("OGN-177");
   });
 
-  it("never surfaces a partner outside a mono-Fury legend's domains", () => {
+  /**
+   * #139: this asserted nothing. The mono-Fury list matches no rule at all, so `hits` is empty and
+   * the loop body never ran — a green test that would have stayed green through any identity bug.
+   * The claim is made where there ARE partners to check, and the empty case is now stated as the
+   * fact it is, so it fails if a rule ever starts reaching that list unnoticed.
+   */
+  it("matches no rule at all against the mono-Fury list", () => {
     const deck = loadDeck(fixture("fury.txt"), cards);
-    const hits = matchSynergies(deck, synergies, cards, constructed);
-    for (const h of hits) {
-      for (const p of h.partners) {
-        expect(cards.domainsOf(p.card), `${h.synergy.id} -> ${p.card}`).toEqual(["fury"]);
+    expect(matchSynergies(deck, synergies, cards, constructed)).toEqual([]);
+  });
+
+  it("never surfaces a partner outside the legend's domains, on the lists that do match", () => {
+    let partners = 0;
+    for (const f of ["lux.txt", "recruits.txt"]) {
+      const deck = loadDeck(fixture(f), cards);
+      const identity = cards.domainsOf(deck.legend!);
+      const hits = matchSynergies(deck, synergies, cards, constructed);
+      expect(hits.length, f).toBeGreaterThan(0);
+      for (const h of hits) {
+        for (const p of h.partners) {
+          partners++;
+          expect(cards.domainsOf(p.card).every((d) => identity.includes(d)), `${h.synergy.id} -> ${p.card}`).toBe(true);
+        }
       }
     }
+    // The loop above is the test; this is what says it ran.
+    expect(partners).toBeGreaterThan(0);
   });
 
   it("reports nothing for a list with no legend", () => {
@@ -174,6 +193,7 @@ describe("one card away", () => {
     for (const f of ["fury.txt", "lux.txt", "recruits.txt"]) {
       const deck = loadDeck(fixture(f), cards);
       const domains = cards.domainsOf(deck.legend!);
+      expect(plan(fixture(f)).length, `${f} plans nothing — this test would assert nothing`).toBeGreaterThan(0);
       for (const g of plan(fixture(f))) {
         for (const a of g.add) {
           expect(cards.domainsOf(a.card).every((d) => domains.includes(d)), `${g.synergy.id} -> ${a.card}`).toBe(true);
@@ -185,6 +205,7 @@ describe("one card away", () => {
 
   it("never suggests a card that cannot be played in the format being matched", () => {
     // Stealthy Pursuer (OGN-177) is banned in constructed and this list runs three of it.
+    expect(plan(fixture("recruits.txt")).length).toBeGreaterThan(0);
     for (const g of plan(fixture("recruits.txt"))) {
       for (const a of g.add) expect(cards.legality(a.card, "constructed"), a.card).toBeUndefined();
       expect(g.add.map((a) => a.card)).not.toContain("OGN-177");
@@ -197,6 +218,7 @@ describe("one card away", () => {
     const hits = matchSynergies(deck, synergies, cards, constructed).map((h) => h.synergy.id);
     const gaps = plan(fixture("lux.txt"));
 
+    expect(gaps.length).toBeGreaterThan(0);
     // A rule the list already runs is a hit, not a gap: the two lists never name the same rule.
     for (const g of gaps) expect(hits, g.synergy.id).not.toContain(g.synergy.id);
     for (const g of gaps) {
@@ -224,6 +246,7 @@ describe("one card away", () => {
 
   it("names at most three partners, cheapest first and every battlefield behind every card", () => {
     for (const f of ["fury.txt", "lux.txt", "recruits.txt"]) {
+      expect(plan(fixture(f)).length, f).toBeGreaterThan(0);
       for (const g of plan(fixture(f))) {
         expect(g.add.length, g.synergy.id).toBeLessThanOrEqual(3);
         if (g.missing === "anchor") expect(g.add.map((a) => a.card)).toEqual([g.synergy.anchor]);
