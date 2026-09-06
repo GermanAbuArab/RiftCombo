@@ -4828,7 +4828,7 @@
       ],
       "needs": [],
       "produces": [
-        "token-body-engine"
+        "conquer-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -4841,7 +4841,8 @@
           "SFD-031 Desert's Call is NOT a scalable XP bomb: 820.1.c.3 says 'Each Repeat Cost can be paid only a single time', so its [Repeat] gives two Sand Soldiers, not N.",
           "Why Level 11 is the ceiling of the domain: 143.4 says 'Units enter the Board exhausted', and a sweep of the pool finds only one other permanent, free, all-units answer to it — and it is a legend, so it cannot be drawn, killed or cost a card. Everything else (OGN-129 Confront, SFD-004 Bushwhack) lasts a turn, or is a single body (OGN-011 Magma Wurm).",
           "The actionable form of the trap is a band, not a warning: in the 11-13 XP range simply do not use Blood Rose's ready. You do not need it — once [Level 11] is live, 'your units enter ready' already does the job that ability exists for, so the sink is redundant exactly where it is dangerous. It becomes safe again at 14+.",
-          "Cheapest ramp, missed by the entry: OGN-275 Altar to Unity is a COLORLESS battlefield — 'When you hold here, play a 1 Might Recruit unit token in your base.' By 185.2.a that Recruit is a unit play, so Blood Rose turns every hold into 1 XP for 1 Energy, spending no card. Better than UNL-044 Flurry of Feathers (E4 P2 for four Birds, i.e. 4 XP for 4 more Energy plus a card)."
+          "Cheapest ramp, missed by the entry: OGN-275 Altar to Unity is a COLORLESS battlefield — 'When you hold here, play a 1 Might Recruit unit token in your base.' By 185.2.a that Recruit is a unit play, so Blood Rose turns every hold into 1 XP for 1 Energy, spending no card. Better than UNL-044 Flurry of Feathers (E4 P2 for four Birds, i.e. 4 XP for 4 more Energy plus a card).",
+          "WHAT IT PRODUCES IS CONQUERS, NOT TOKENS (corrected 2026-09-06). The old 'token-body-engine' label came from a display name and this line creates no token at all. 143.4 ('Units enter the Board exhausted') is what [Level 11] switches off, and a body that enters ready can spend its own exhaust on a Standard Move (144.2) the turn it lands — which is the whole tempo claim. Domain Identity keeps it out of every conquer consumer today (Calm/Body against Order is three domains), so the label publishes nothing either way; it is now simply true."
         ]
       },
       "steps": [
@@ -4864,7 +4865,7 @@
           "date": "2026-09-04"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-nine-domain-lens-candidates.md), issue #29. Both texts verified verbatim against data/corpus_flat.txt on 2026-09-04, and 824.1.b.1, 824.1.d, 730.2, 185.2.a, 820.1.c.3 and 143.4 verified against the Core Rules. The new authoring trap this entry carries — spent XP lowers your Level, so a [Level N] deck full of XP sinks fights itself — is not registered anywhere else in the project yet and is the same failure shape as the 2026-09-04 BURST audit: an entry that does not close with the quantities it declares. 'token-body-engine' is the closest feature ('Repeatable ready bodies … bounded by cards in hand') and it is a stretch: the bodies here are real units, not tokens. Trap check: [Hunt] is both Conquer and Hold (823.1.b) so it can raise XP without attacking, but holding needs the unit at the battlefield in your Beginning Phase and a [Temporary] token dies before scoring (816.1.b) and never holds; the Energy is spent in the Main Phase, so 167 does not bite. WALK: holds after a rewrite, and the new trap survives — 824.1.b.1, 824.1.d and 730.2 confirm that Level is a current balance and spending XP walks it down. But the walk also resolves the tension B4 raised: once [Level 11] is live, 'your units enter ready' already does what Blood Rose's ready exists for, so the sink is redundant exactly where it is dangerous, and the actionable form is the 11-13 band. Two of the four listed sinks were legends that can never share a deck with Wuju Master, and are removed. The 'only permanent your-units-enter-ready in the pool' claim was re-swept and stands: the other six are one-turn, one-body, or tokens only."
+      "notes": "HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-nine-domain-lens-candidates.md), issue #29. Both texts verified verbatim against data/corpus_flat.txt on 2026-09-04, and 824.1.b.1, 824.1.d, 730.2, 185.2.a, 820.1.c.3 and 143.4 verified against the Core Rules. The new authoring trap this entry carries — spent XP lowers your Level, so a [Level N] deck full of XP sinks fights itself — is not registered anywhere else in the project yet and is the same failure shape as the 2026-09-04 BURST audit: an entry that does not close with the quantities it declares. 'token-body-engine' is the closest feature ('Repeatable ready bodies … bounded by cards in hand') and it is a stretch: the bodies here are real units, not tokens. Trap check: [Hunt] is both Conquer and Hold (823.1.b) so it can raise XP without attacking, but holding needs the unit at the battlefield in your Beginning Phase and a [Temporary] token dies before scoring (816.1.b) and never holds; the Energy is spent in the Main Phase, so 167 does not bite. WALK: holds after a rewrite, and the new trap survives — 824.1.b.1, 824.1.d and 730.2 confirm that Level is a current balance and spending XP walks it down. But the walk also resolves the tension B4 raised: once [Level 11] is live, 'your units enter ready' already does what Blood Rose's ready exists for, so the sink is redundant exactly where it is dangerous, and the actionable form is the 11-13 band. Two of the four listed sinks were legends that can never share a deck with Wuju Master, and are removed. The 'only permanent your-units-enter-ready in the pool' claim was re-swept and stands: the other six are one-turn, one-body, or tokens only. PRODUCES CORRECTED 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md, issue #59's extra task; the mislabel was recorded in section V of docs/phase0/walks/2026-09-06-issue63-payoff-lens.md and left for this walk). It carried 'token-body-engine' from an older display name, 'Repeatable ready bodies', and it makes NO token. What it produces is repeatable Conquers: 'conquer-engine' is the feature whose description was deliberately broadened in #64 to 'Conquers taken over and over, each carrying whatever rider the entry names — a draw, a ready, a relocation', and both riders are named there. For Wuju Master the rider is the READY: 143.4 makes units enter exhausted, so [Level 11] is what lets a body played this turn take its Standard Move (144.2) to a battlefield and take it, turn after turn. It is not a resource-engine — no Energy or Power comes back — and it is not token-body-engine, since the bodies are printed units."
     },
     {
       "id": "ezreal-marai-spire-free-repeat",
@@ -10275,7 +10276,7 @@
           "Your legend must still be READY: 414.1.b forbids exhausting what is already exhausted, and the trigger checks 'if you paid the additional cost'. 107.4.c is why a legend can be exhausted at all ('The Champion Legend here is a Game Object')."
         ],
         "notable": [
-          "'OPEN BATTLEFIELD' MEANS WITHOUT A CONTROLLER, AND THE EVIDENCE IS RIOT'S OWN ERRATA — this is what unblocks the entry, which issue #58 had filed as its refutation R3 pending a ruling. Riot's Spiritforged errata of 2026-01-14 (data/errata.json, https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata) rewrote Yone, Blademaster's 'When I conquer an open battlefield,' as 'When I conquer a battlefield that was uncontrolled,'. Neither the Core Rules nor the Tournament Rules define the term; Riot translated it itself. SCOPE, STATED RATHER THAN HIDDEN: Yone's is a CONQUER text and the five cards that still print 'open battlefield' (OGN-174, OGN-176, OGN-193, SFD-079, VEN-115) are PLAY and MOVE texts that Riot has not reworded. The errata is direct evidence of what the word means, not a rewrite of this card.",
+          "'OPEN BATTLEFIELD' IS DEFINED IN THE CORE RULES AND IT IS TWO CONDITIONS. 170.11.c: \"Battlefields can be 'open.' This means they are UNOCCUPIED AND UNCONTROLLED.\" Both, not just the control half. This is what unblocks the entry, which issue #58 had filed as its refutation R3 pending a ruling, and it agrees with Riot's own Spiritforged errata of 2026-01-14 (data/errata.json, https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata), which rewrote Yone, Blademaster's 'When I conquer an open battlefield,' as 'When I conquer a battlefield that was uncontrolled,'. SCOPE, STATED RATHER THAN HIDDEN: Yone's is a CONQUER text and the five cards that still print 'open battlefield' (OGN-174, OGN-176, OGN-193, SFD-079, VEN-115) are PLAY and MOVE texts Riot has not reworded; the errata is direct evidence of what the word means, not a rewrite of this card. WHAT THE SECOND CONDITION COSTS THIS ENTRY: an uncontrolled battlefield with ENEMY units standing on it is NOT open, so Bard can never drop your board on top of a garrison, and one where you already have a unit is not open either. Nothing else in the entry changes — its Conquer route already assumed the destination was empty, and 323.6 re-opens a battlefield precisely 'without their Units occupying them', so what it re-opens is unoccupied by construction.",
           "WHAT IT DOES THAT NOTHING ELSE IN THE POOL DOES. 'Move any number of your units' in one effect, for 4 Energy + 1 Mind Power plus the legend's exhaust. It is an effect move (420.2, 420.2.a), so 144.4 and 420.3.a do not apply: it moves EXHAUSTED units, and it goes base to battlefield or battlefield to battlefield with no [Ganking] (810.1.c.3). Issue #48 measured that 18 of the 49 token makers leave their tokens 'at your base' while points are scored at battlefields, and that SFD-177 Azir, Sovereign is the only bulk mover of TOKENS. Bard is the only bulk mover of units of any kind — and the two need opposite boards, so they complement rather than compete.",
           "THE DESTINATION IS THE CONSTRAINT, AND IT IS THE WINDOW A DUEL OPENS WITH. 190.1: 'Control is established over Battlefields through the course of play', so both battlefields start uncontrolled and the one you provided is open until somebody takes it. 323.6 re-opens one whenever its garrison leaves. Once you control a battlefield it is no longer a legal destination for this trigger, which is exactly what stops Bard being a general-purpose shuttle.",
           "THE MOVE CONQUERS BY ITSELF. 450: your units apply Contested to an uncontested battlefield you do not control. 323.8 stages a Showdown; 323.9 stages no Combat, because an uncontrolled battlefield normally has nobody on it. 323.12 opens it, 348 closes it, 348.2.a establishes Control and 348.2.a.1 makes it a Conquer — 471.1, one point, the same turn the bodies arrive. Trap 1 is respected: no Combat exists, so no Attacker designation is handed out (464.2.c.3) and no 'When I attack' is claimed.",
@@ -10301,6 +10302,11 @@
           "date": "2026-07-16"
         },
         {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md) — 170.11.c",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
           "title": "Movement lens — issue #58 (GitHub)",
           "kind": "agent",
           "url": "https://github.com/GermanAbuArab/RiftCombo/issues/58",
@@ -10320,7 +10326,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 refutation R3, OVERTURNED. The candidate was blocked on the undefined printed term 'open battlefield' (the project's reading R31). It never needed a vote: Riot's own Spiritforged errata rewrote the term as 'a battlefield that was uncontrolled' on Yone, Blademaster, and that errata is already transcribed in data/errata.json. R31 is retired, open = without a Controller, and the scope caveat (Yone is a conquer text; the five surviving cards are play/move texts Riot has not reworded) rides in the first notable rather than in the walk only. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.4.c, 107.4.c, 144.4, 190.1, 190.3.a.1, 312.2.a, 315.2.b.2, 323.6, 323.8, 323.9, 323.12, 348, 348.2.a, 348.2.a.1, 383.2.a.1, 414.1.b, 420.2, 420.2.a, 420.3.a, 450, 464.2.c.3, 471.1, 485.5, 486.5, 487.5, 810.1.c.3. Ban check: SFD-079, OGN-293 and SFD-177 carry no [BANNED marker. Arithmetic against its own declared quantity: one card, one activation, 4 Energy + 1 Mind Power, uncapped bodies; Bard plus six banked tokens is exactly the Plaza's seven. Trap check: no Combat is ever staged so no attack is claimed (trap 1); no [Repeat]; no [Temporary]; no recall used as a move; no Awaken Energy carried across a phase. Depends on no unruled reading — R31 is retired by rules evidence, not voted."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 refutation R3, OVERTURNED. The candidate was blocked on the undefined printed term 'open battlefield' (the project's reading R31). It never needed a vote: Riot's own Spiritforged errata rewrote the term as 'a battlefield that was uncontrolled' on Yone, Blademaster, and that errata is already transcribed in data/errata.json. R31 is retired, open = without a Controller, and the scope caveat (Yone is a conquer text; the five surviving cards are play/move texts Riot has not reworded) rides in the first notable rather than in the walk only. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.4.c, 107.4.c, 144.4, 190.1, 190.3.a.1, 312.2.a, 315.2.b.2, 323.6, 323.8, 323.9, 323.12, 348, 348.2.a, 348.2.a.1, 383.2.a.1, 414.1.b, 420.2, 420.2.a, 420.3.a, 450, 464.2.c.3, 471.1, 485.5, 486.5, 487.5, 810.1.c.3. Ban check: SFD-079, OGN-293 and SFD-177 carry no [BANNED marker. Arithmetic against its own declared quantity: one card, one activation, 4 Energy + 1 Mind Power, uncapped bodies; Bard plus six banked tokens is exactly the Plaza's seven. Trap check: no Combat is ever staged so no attack is claimed (trap 1); no [Repeat]; no [Temporary]; no recall used as a move; no Awaken Energy carried across a phase. Depends on no unruled reading — R31 is retired by rules evidence, not voted. CORRECTED 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md, issue #59's extra task): the first notable read \"'OPEN BATTLEFIELD' MEANS WITHOUT A CONTROLLER\" — one condition. 170.11.c defines the printed term outright and gives TWO: 'unoccupied and uncontrolled'. R31's retirement had recorded only the control half, which the Spiritforged errata is evidence for; the Core Rules paragraph is the definition. The entry's mechanics are unaffected and its Conquer route is strengthened, since the destination is now unoccupied by definition rather than by assumption. SFD-079 is the only card printing 'open battlefield' that appears in any entry."
     },
     {
       "id": "threshold-reveler-infinite-energy",
@@ -13253,7 +13259,7 @@
       ],
       "needs": [],
       "produces": [
-        "token-body-engine"
+        "conquer-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -13265,7 +13271,8 @@
           "THE HIDING IS THE COST AND IT TAKES A TURN. 811.1.b: 1 Power to hide facedown at a battlefield you control, and only 'beginning on the next turn' does it gain [Reaction] and become playable for 0 Energy. 811.1.d.1 then forces it to be played to that battlefield, which is where the Mega-Mech ends up.",
           "323.7 IS THE RISK: a hidden card at a battlefield you stop controlling is removed and put in its owner's trash at the next Cleanup.",
           "IT IS A +6 SWING, NOT A +8. You trade a 2 Might body at the battlefield for an 8 Might one, and the Tideturner goes to your base - the figure the source gives.",
-          "The Mega-Mech has no text, so nothing is lost or gained by moving it; what it brings is raw Might and the Mech tag."
+          "The Mega-Mech has no text, so nothing is lost or gained by moving it; what it brings is raw Might and the Mech tag.",
+          "WHAT IT PRODUCES IS A CONQUER, NOT TOKENS (corrected 2026-09-06). Neither OGN-199 nor OGN-088 makes a token — the Mega-Mech is a printed unit card. The 8 Might arriving at a battlefield is what wins the combat there, which 466.5.d makes a Conquer, so the honest feature is conquer-engine, the same one azir-sovereign-token-gather produces off a relocation."
         ]
       },
       "steps": [
@@ -13304,7 +13311,7 @@
           "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. Both OGN-199 Tideturner and OGN-088 Mega-Mech appeared in NO entry before this. The rules point worth having on record is 811.1.d.2's exception clause: a hidden card's targets are normally confined to the battlefield it was hidden at, and a card that explicitly says 'at ANOTHER location' escapes it by the rule's own wording. That is the second time in this issue that reading a clause to its end changed the answer - the first was 190.6.d's second sentence. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; a swap is a Move by effect and not a Recall, so 456 never applies; 143.4 is the very thing the line works around. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. Both OGN-199 Tideturner and OGN-088 Mega-Mech appeared in NO entry before this. The rules point worth having on record is 811.1.d.2's exception clause: a hidden card's targets are normally confined to the battlefield it was hidden at, and a card that explicitly says 'at ANOTHER location' escapes it by the rule's own wording. That is the second time in this issue that reading a clause to its end changed the answer - the first was 190.6.d's second sentence. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; a swap is a Move by effect and not a Recall, so 456 never applies; 143.4 is the very thing the line works around. Depends on no unruled reading. PRODUCES CORRECTED 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md, issue #59's extra task; the mislabel was recorded in section V of docs/phase0/walks/2026-09-06-issue63-payoff-lens.md and left for this walk). It carried 'token-body-engine' from an older display name, 'Repeatable ready bodies', and it makes NO token. What it produces is repeatable Conquers: 'conquer-engine' is the feature whose description was deliberately broadened in #64 to 'Conquers taken over and over, each carrying whatever rider the entry names — a draw, a ready, a relocation', and both riders are named there. For Tideturner the rider is the RELOCATION, the same shape as azir-sovereign-token-gather, whose own terminatesIn reads 'it relocates bodies and conquers'. OGN-088 Mega-Mech is a printed unit card, not a token."
     },
     {
       "id": "azir-ascendant-stellacorn-draw",
@@ -13685,6 +13692,466 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. The source states the interaction precisely, down to the 3 + 2 = 5. The walk's addition is 709's worked example, which says in as many words that a unit already at 5 does NOT become Mighty when it grows - so the Atlas is only a Fiora trigger while it is going onto a body below the line, and a player who attaches it to their biggest unit gets the Gold and nothing else. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; the Gold tokens enter exhausted, which R25 = A only overrides under Renata Glasc, Industrialist; no recall; 434.1.f governs re-attachment. Depends on no unruled reading."
+    },
+    {
+      "id": "jae-medarda-choose-draw",
+      "name": "Jae Medarda turns every spell that chooses him into an extra card — 1 Energy per card, the cheapest in the pool",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-142",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos unit, E5 P2 M5. 'When you choose me with a spell, draw 1.' The marginal cost of this draw is literally zero — the body was already paid for."
+        },
+        {
+          "card": "OGN-095",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind spell, E1, [Reaction]. 'Give a unit -1 Might this turn, to a minimum of 1 Might. Draw 1.' A cantrip that replaces itself, so Jae's draw is the whole net gain: +1 card for 1 Energy."
+        },
+        {
+          "card": "SFD-144",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos gear, E2. 'When you choose a friendly unit, you may pay 1 Energy and exhaust this to draw 1.' Triggers on choosing ANY friendly unit, but the exhaust caps it at once per turn (readied at Awaken, 315.1.b)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Mind and Chaos. Four legends cover the pair: OGN-263 Swift Scout, SFD-199 Prodigal Explorer, UNL-197 Scorn of the Moon, VEN-151 Soul's Reflection.",
+          "Jae has to be on the board before the spell is played — he is the thing being chosen."
+        ],
+        "notable": [
+          "IT NEEDS NO RULES READING: 355.5.a ANSWERS IT WITH ITS OWN WORKED EXAMPLE. 355.5 is step 2 of playing a card ('If a card requires you to specifically choose one or more Game Objects, that choice is made now') and 355.5.a says 'Example: \"Stun a unit at a battlefield\" is a Choice.' Stupefy's 'Give a unit -1 Might this turn' is the same grammar, so choosing Jae with it is 'you choose me with a spell'. 355.7 adds that such a choice is also Targeted.",
+          "THE TRIGGER FIRES BEFORE THE SPELL IS PAID FOR, LET ALONE RESOLVED, and that is why a counter does not stop it. The five steps of playing a card are 354 (onto the Chain), 355 (make the choices), 357 (pay the costs), 358 (check legality), 359 (finalize). Jae triggers at step 2. 419.4 is the rule that would switch a trigger off on a countered card, and its own first sentence scopes it to abilities that trigger 'when cards are played' — 419.4.a puts those at resolution. Jae triggers on a CHOICE, not on a play.",
+          "THE PRICE, AGAINST THE ONE THE CATALOGUE ALREADY USES. The loop ledger of issue #21 prices SFD-088 Renata Glasc, Mastermind's exhaust-free '1 Energy + 1 Mind: Draw 1' at 1 Power = 9 Energy, so about 10 Energy per extra card. Jae's marginal card costs 1 Energy. It is a factor of ten and it is the reason this entry exists.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. One Stupefy on Jae: 1 Energy, 1 card spent, 2 drawn, net +1 card. With Spirit Wheel ready: 2 Energy, 1 card spent, 3 drawn, net +2. All three Stupefies with one Spirit Wheel activation: 4 Energy, 3 cards spent, 7 drawn, NET +4 CARDS.",
+          "WHY IT IS ENGINE AND NOT AN INFINITE'S DRAW ENGINE. Nothing in Mind/Chaos recycles Stupefy, so 103.2.b's three copies are the ceiling. And it reaches no loop: re-measured 2026-09-06 against the FOURTEEN INFINITE entries in the catalogue, the only one whose domain union contains Chaos is pursuer-herald-recruits, whose anchor OGN-177 Stealthy Pursuer carries [BANNED constructed:banned, 2v2:banned] in the corpus. The two mono-Mind loops are fed by lux-infinite-energy, which is Mind/Order.",
+          "THE COST NOBODY PRICED: EVERY STUPEFY SHRINKS JAE. '-1 Might this turn, to a minimum of 1' runs him 5 -> 4 -> 3 -> 2 over three casts. He stops being Mighty on the first one, which matters in any shell that pays for [Mighty].",
+          "THE CALM/CHAOS VARIANT IS A DIFFERENT DECK, NOT AN UPGRADE. SFD-196 Defiant Dance (Calm/Chaos, E1 P1) chooses TWO units, so two Jae would draw two — but 103.1.b.1 keeps Mind and Calm apart and that shell is SFD-195 Blade Dancer's, which the catalogue holds as blade-dancer-caitlyn-choose-ready."
+        ]
+      },
+      "steps": [
+        "Jae Medarda on the board (5 Energy + 2 Power). Spirit Wheel on the board and ready, if you run it.",
+        "Play Stupefy for 1 Energy, choosing JAE as the unit that gets -1 Might.",
+        "The choice is made at step 2 of playing (355, 355.5): Jae's trigger goes on the Chain and draws 1.",
+        "Spirit Wheel sees the same choice ('a friendly unit'): pay 1 Energy and exhaust it to draw 1 more. Once per turn.",
+        "Stupefy resolves: -1 Might on Jae and its own Draw 1.",
+        "Repeat with the second and third copies. Spirit Wheel readies at your next Awaken (315.1.b)."
+      ],
+      "netPerIteration": "+1 card per spell that chooses Jae, at zero marginal cost — 1 Energy per net card with Stupefy, +2 with Spirit Wheel ready",
+      "terminatesIn": "engine only — bounded by the three copies of the choose-spell, since nothing in Mind/Chaos recycles them; it feeds no catalogued loop, because no legal INFINITE has Chaos",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Lente del draw — issue #59 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/59",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Joint loop budget — issue #21 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md), issue #59 candidate 1. SFD-142, OGN-095 and SFD-144 appeared in no entry before this except OGN-095, which garen-fiora-malzahar-facebreaker-recruits uses for a different purpose. Card text verbatim from data/corpus_flat.txt; 355.5, 355.5.a, 355.7, 354/355/357/358/359, 419.4/419.4.a/419.4.a.1, 315.1.b and 103.1.b.1 opened in the Core Rules. Ban check: none of the three carries a [BANNED marker. THE WALK'S ADDITION over the hunt: the 419.4 question is answered by 419.4's own scoping sentence rather than being filed as a reading; the Might drain on Jae was not priced by the hunt; and the no-INFINITE-has-Chaos measurement was redone against 14 entries rather than the 12 the hunt saw. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; no recall; no battlefield; no Awaken Energy. Depends on no unruled reading."
+    },
+    {
+      "id": "dusk-rose-lab-leblanc-beginning-draw",
+      "name": "Dusk Rose Lab kills LeBlanc, Fragmented in your own Beginning Phase — three cards for nothing, before scoring",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-209",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'At the start of your Beginning Phase, you may kill a unit you control here to draw 1. (This happens before scoring.)' The kill is free and repeats every turn."
+        },
+        {
+          "card": "UNL-172",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 P1 M3. '[Assault] [Deathknell][>] Draw 1. If it's your Beginning Phase, draw 2 instead.' The Lab's kill lands inside the Beginning Phase, so it is always the 'draw 2' branch."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains only need Order — LeBlanc is Order and the Lab is colorless, so any Order legend runs it.",
+          "You must CONTROL the Lab. 190.6.d: \"'You' in a battlefield's abilities refers to the battlefield's Controller, as does the implied 'you' in instructions that don't specify a player like 'draw 1.' If the battlefield has no Controller, 'you' refers to no one, and all such instructions are ignored.\" 190.1 makes a battlefield you brought start uncontrolled, so walking a body there is part of the cost."
+        ],
+        "notable": [
+          "THE SECOND BODY AT THE LAB IS AN INGREDIENT, AND THE CLEANUP IS ONE STEP LATER THAN IT LOOKS. Kill LeBlanc and 319.6 makes a Cleanup Outstanding — but her Deathknell is already a Pending Item on the Chain (808.1.d), so the turn is Neutral Closed (310.2) and 323.6's 'if the turn is in an Open State' is FALSE: control is not stripped there. The Deathknell resolves (340.1), the Chain empties, 319.1 makes a second Cleanup, and THAT one runs 323.6 and takes the Lab off you — still before 315.2.b.2 Holds. So with LeBlanc as your only body there you draw the three cards and lose the point; with a second body you keep both.",
+          "THE TIMING IS PRINTED ON BOTH CARDS AND CONFIRMED BY THE PHASE RULES. 315.2.a.1 ('At the start of Beginning Phase game effects take place') is the Beginning Step; 315.2.b.2 ('The Turn Player Holds all Battlefields they Control') is the Scoring Step after it; both are inside the Beginning Phase (315.2). So 'If it's your Beginning Phase, draw 2 instead' is live, and the Lab's own reminder text says '(This happens before scoring.)'.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. 1 card from the Lab + 2 from the Deathknell = 3 CARDS FOR 0 ENERGY AND 0 POWER, at the start of each of three Beginning Phases. LeBlanc costs E3 + 1 Power on an earlier turn, so the line is 3 cards for 3 Energy + 1 Power spread over two turns. After the three copies are spent the Lab keeps paying 1 card a turn for any spare body — including a token, since killing a token is a kill (186.1 only says it ceases to exist afterwards).",
+          "BURN OUT IS THE CEILING AND IT ARRIVES EARLY. The three cards land in the Beginning Phase, BEFORE the Draw Phase (315.4.b, 'The Turn Player draws 1'). 431.1.a then draws what is left of a thin deck, 431.2.c gives an opponent a point and 194.1.d records it. Do not run this line on an empty deck.",
+          "A BATTLEFIELD IS RANDOM 1 OF 3 IN DUEL (485.5) AND SKIRMISH (487.5), CHOSEN IN MATCH (486.5), and 103.4.c plus Tournament Rules 402.1 forbid carrying two of a battlefield with the same name, so three copies are not a way to make it certain. 485.4.a: 'Each player provides three (3) Battlefields ... Only 1 will be used, chosen during setup.'",
+          "NOT A DUPLICATE OF karthus-leblanc-fragmented-temporary-draw. Same LeBlanc, different killer: that entry marks her with [Temporary] from Shadow's Call and doubles the Deathknell with two Karthus (R1 = A); this one needs no second card at all and repeats every turn the Lab is yours. They share no card but LeBlanc."
+        ]
+      },
+      "steps": [
+        "Bring Dusk Rose Lab and take control of it — 190.1 means it starts uncontrolled and its text is off until you do.",
+        "Play LeBlanc, Fragmented (3 Energy + 1 Power) and get her to the Lab, with at least one other unit of yours standing there.",
+        "Your next Beginning Phase, Beginning Step (315.2.a.1): the Lab's trigger goes on the Chain. Kill LeBlanc. Draw 1.",
+        "Her Deathknell triggers (808.1.d). It is your Beginning Phase, so it draws 2.",
+        "The second body keeps the Lab occupied, so 323.6 never strips your control and 315.2.b.2 Holds it in the Scoring Step for the point.",
+        "Repeat with the second and third LeBlanc; afterwards the Lab still trades any spare body for 1 card a turn."
+      ],
+      "netPerIteration": "3 cards at the start of your Beginning Phase for 0 Energy and 0 Power, on each of three turns; 1 card a turn afterwards for any spare body",
+      "terminatesIn": "engine only — three big turns, one per LeBlanc, then a permanent 1 card a turn; the ceiling is Burn Out (431.1.a), not the cards",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Lente del draw — issue #59 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/59",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md), issue #59 candidate 2. UNL-209 Dusk Rose Lab appeared in no entry before this. Card text verbatim from data/corpus_flat.txt; 190.1, 190.6.d, 310.2, 315.2.a.1, 315.2.b.2, 315.4.b, 319.1, 319.6, 323.6, 340.1, 431.1.a, 431.2.c, 194.1.d, 485.4.a/485.5/486.5/487.5 and 103.4.c opened in the Core Rules. Ban check: neither card carries a [BANNED marker. THE WALK'S ADDITION over the hunt: the hunt said losing your last body at the Lab strips control 'before 315.2.b.2', which is true, but traced through 319/323 it happens at the SECOND Cleanup, not the first — the Deathknell holds the turn in a Closed State (310.2) and 323.6 is conditioned on an Open one. Trap check: no attack designation ([Assault] is a Might modifier, not a trigger); no [Repeat]; no [Temporary]; no Gold; no recall, so 808.1.d.1 never engages and the Deathknell is safe; the battlefield caveat is declared. Depends on no unruled reading."
+    },
+    {
+      "id": "unsung-hero-sacrifice-double-draw",
+      "name": "B.F. Sword makes Unsung Hero Mighty, Sacrifice kills him — four cards off one Energy, and why the Lux loop still cannot use it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-167",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E2 M2. '[Deathknell] — If I was [Mighty], draw 2.' Base Might 2, so the entry has to buy +3."
+        },
+        {
+          "card": "UNL-173",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, E1, [Reaction]. 'As an additional cost to play this, kill a friendly [Mighty] unit. Draw 2 and channel 1 rune exhausted.' The kill is a cost (357, 428.1.a.1), so the Deathknell rides on top of the spell's own two cards."
+        },
+        {
+          "card": "SFD-161",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order Equipment, E4, M+3, [Equip] 1 Order rune. The only clean +3 in Order: a [Buff] is +1 and a unit can hold only one, so no stack of buffs reaches 5. 434.1.f moves the Sword to the next Unsung Hero for another Order rune."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains only need Order — all three cards are Order.",
+          "Unsung Hero has to be on the board with the Sword attached before Sacrifice is played: 709 is the crossing (2 + 3 = 5) and Sacrifice checks [Mighty] as it pays its cost."
+        ],
+        "notable": [
+          "ARITHMETIC WITH THE QUANTITIES DECLARED, FULL LEDGER. Per cycle: 2 cards spent (Unsung Hero, Sacrifice), 4 cards DRAWN (Deathknell 2 + Sacrifice 2), so NET +2 CARDS; 3 Energy out (E2 body + E1 spell); 2 Order Power out (the Sword's [Equip], once per Unsung Hero); and +1 rune channelled exhausted, which 164.2.b recycles for 1 Power with no exhaust in its cost, buying one of those two back. About 3 Energy + 1 net Order Power for 2 cards, against the ledger's ~10 Energy per card. Three cycles, one per copy.",
+          "THE ORDER OF THE CHAIN, AND IT DOES NOT CHANGE THE TOTAL. The kill is an additional cost paid at step 4 of playing (357) and 428.1.a.1 makes killing-as-a-cost an Active Kill; 808.1.d fires the Deathknell, which goes on the Chain above Sacrifice, so 340.1 resolves 'If I was Mighty, draw 2' first and Sacrifice's own Draw 2 second. Four cards either way.",
+          "434.1.g AND 434.1.h ARE WHY THE SWORD HAS TO TRAVEL. 'Attaching a card to its current Top-Most Card will not have any effect' / '... nothing additional happens.' When Unsung Hero dies the Sword is left unattached on the board; 434.1.f puts it on the next one for 1 Order rune.",
+          "IT DOES NOT PATCH THE LUX LEDGER, AND THE HUNT'S REASON WAS THE WRONG ONE. Issue #59 modelled this as the Energy pass's Sacrifice killing Unsung Hero instead of Ekko. That swap is not available: lux-infinite-energy's own steps say 'Its additional cost kills Ekko', and OGN-110 Ekko, Recurrent's Deathknell ('Recycle me to ready your runes') IS the engine — he is M5, so he satisfies [Mighty] himself. Adding Unsung Hero therefore needs a SECOND Sacrifice every pass: six cards to bring back instead of four, against a Forge of the Future that recycles 'up to 4' and already spends three, so Unsung Hero gets NO recycle slot at all; and eight draws instead of four against five cards entering the deck. With the Main Deck EMPTY (that entry's own first notable) the surplus is 431.1.a three times, i.e. 431.2.c -> 194.1.d, three points to the opponent per pass. Standalone Order engine, never a loop patch.",
+          "SFD-178 Blade of the Ruined King (M+4) is the other Order Equipment that crosses the line, but its [Equip] costs a friendly unit's life on top of the rune."
+        ]
+      },
+      "steps": [
+        "Play Unsung Hero (2 Energy). Attach B.F. Sword for 1 Order Power: 2 + 3 = 5, the crossing 709 describes.",
+        "Play Sacrifice (1 Energy). It is a [Reaction], and 813.1.b gives Reaction every permission of Action, so a plain Open State on your turn is enough.",
+        "Pay its additional cost by killing Unsung Hero (357, 428.1.a.1). The Sword is left unattached on the board.",
+        "The Deathknell resolves first (340.1): 'If I was Mighty, draw 2'.",
+        "Sacrifice resolves: draw 2 more and channel 1 rune exhausted. Recycle that rune later for 1 Power (164.2.b, no exhaust in the cost).",
+        "Move the Sword to the next Unsung Hero for 1 Order Power (434.1.f) and repeat. Three cycles."
+      ],
+      "netPerIteration": "4 cards drawn against 2 spent (net +2) and 1 rune channelled, for 3 Energy and 2 Order Power, one of which the channelled rune buys back",
+      "terminatesIn": "engine only — three cycles, one per copy; nothing in Order recycles Sacrifice or Unsung Hero, and it cannot ride the Lux loop (see the notables)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Lente del draw — issue #59 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/59",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Joint loop budget — issue #21 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md), issue #59 candidate 3. SFD-167 and SFD-161 appeared in no entry before this; UNL-173 Sacrifice is already the Lux loop's kill spell, which is exactly what the negative half is about. Card text verbatim from data/corpus_flat.txt; 357, 340.1, 428.1.a.1, 434.1.f/g/h, 435.1, 709, 808.1.c/d, 813.1.b, 164.2.b, 431.1.a and 431.2.c opened in the Core Rules. Ban check: none of the three carries a [BANNED marker. THE WALK'S ADDITION over the hunt: the hunt asked for '+3 Might' without naming a card — B.F. Sword is the only clean answer in Order, since a [Buff] is +1 and a unit can hold only one; and the hunt's Lux table swapped Sacrifice's victim, which the loop cannot afford, so the refutation was rebuilt around a SECOND Sacrifice and comes out three Burn Outs a pass instead of one. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; no Gold; the kill is a real kill to the Trash, so 808.1.d.1's shield trap never engages; no battlefield. Depends on no unruled reading."
+    },
+    {
+      "id": "jax-angle-shot-attach-draw",
+      "name": "Angle Shot walks Serrated Dirk off Jax and back on — a card for 5 Energy, paid in recycle slots",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-119",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E4 P1 M3. 'When you attach an Equipment to me, you may pay 1 Energy to draw 1.' No exhaust and no cap on the trigger — the cap is 434.1.g, which forbids re-attaching what is already on him."
+        },
+        {
+          "card": "SFD-011",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury spell, E2, [Reaction]. 'Choose a unit and an Equipment with the same controller. Attach that Equipment to that unit or detach that Equipment from that unit. Draw 1.' One copy detaches, the next re-attaches; each replaces itself."
+        },
+        {
+          "card": "SFD-009",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Fury Equipment, E1, M+0, [Equip] 1 Fury rune. Chosen over the hunt's SFD-064 Cloth Armor for two reasons: Cloth Armor is MIND and would make the entry three domains (103.1.b.1), and M+0 keeps Jax at 3 Might."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Fury and Body. Four legends cover the pair: OGN-249 Relentless Storm, SFD-183 Purifier, UNL-183 Pridestalker, VEN-141 Butcher of the Sands.",
+          "Jax on the board with the Dirk attached; the first attach is the Dirk's own [Equip] for 1 Fury rune, and it already draws once."
+        ],
+        "notable": [
+          "THE HUNT'S OWN VERSION IS ILLEGAL AND THIS IS THE FIX. Issue #59 paired Jax (Body) and Angle Shot (Fury) with SFD-064 Cloth Armor, which is MIND — three domains, and 103.1.b.1 says 'Cards included in your deck must abide by your Domain Identity', with every Legend carrying exactly two. Swept all 40 Equipment in the pool: the Fury or Body ones with NO Might Bonus are SFD-009 Serrated Dirk (E1) and SFD-016 Recurve Bow (E2). The Dirk is entered.",
+          "434.1.g IS THE SHAPE OF THE CYCLE. 'Attaching a card to its current Top-Most Card will not have any effect', and 434.1.h says an instruction to do it does nothing either. So the Dirk has to come off first — by Angle Shot's own detach mode, or by 434.1.f, which detaches it by attaching it somewhere else.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Angle Shot A detaches (2 Energy, 1 card spent, 1 drawn); Angle Shot B re-attaches (2 Energy, 1 card spent, 1 drawn); Jax's trigger on that attach (1 Energy, 1 drawn). CYCLE: 5 Energy, 2 cards spent, 3 drawn, NET +1 CARD. Against the #21 ledger's ~10 Energy per card that is half price, and what it spends instead is recycle slots, which #21 measured as the abundant resource ('~50 spare slots accumulate per point').",
+          "THE ROUTE THAT LOOKS CHEAPER IS ALMOST FOUR TIMES DEARER. The Dirk's own '1 Fury: Attach this to a unit you control' has no exhaust and no cap, but 434.1.g means one attach onto another body and one back: 2 Power + 1 Energy, about 19 Energy at the ledger's 9 Energy per Power, and no Angle Shot draws. Recorded so nobody re-derives it as the cheap line.",
+          "THE ONLY FURY/BODY LOOP DOES NOT WANT THIS, AND ITS OWN LEDGER SAYS WHY. gemdragon-henge-vi-blind-fury recycles with OGN-036 Vi, Destructive — free, uncapped, one card at a time — so cards are not scarce there. Its binding constraint is an equality: 'the Mighty count must be exactly 8' at Show of Strength, and its general law R = D - 4 prices one extra card per pass at ONE more Mighty resident, i.e. nothing per pass, against 5 Energy and two Angle Shots here. Worse, a Might Bonus on Jax would make him a ninth Mighty body, which that entry already forbids before its last Show of Strength; the Dirk's M+0 leaves him at 3, though [Assault 2] does make him 5 WHILE HE IS AN ATTACKER.",
+          "[Weaponmaster] is a PLAY trigger ('When you play me, you may [Equip] one of your Equipment to me for 1 rainbow less'), so its discount is once per Jax object and is not part of the cycle.",
+          "Not a duplicate of pridestalker-mighty-draw, the other Fury/Body card-advantage-engine: that one is UNL-183 + OGN-012 + SFD-106 + OGN-038 and shares no card with this."
+        ]
+      },
+      "steps": [
+        "Play Jax, Unrelenting (4 Energy + 1 Power) and Serrated Dirk (1 Energy).",
+        "Attach the Dirk to Jax with its [Equip] for 1 Fury rune. Jax's trigger: pay 1 Energy, draw 1.",
+        "Angle Shot (2 Energy): choose Jax and the Dirk, take the DETACH mode. Draw 1. The Dirk sits unattached on the board.",
+        "Angle Shot again (2 Energy): choose Jax and the Dirk, take the ATTACH mode. Draw 1.",
+        "Jax's trigger fires on that attach: pay 1 Energy, draw 1.",
+        "Cycle total 5 Energy, two Angle Shots spent, three cards drawn. Repeat while copies last."
+      ],
+      "netPerIteration": "+1 card per detach-and-reattach cycle, for 5 Energy and two Angle Shots — about half the ledger's price per card, paid in recycle slots",
+      "terminatesIn": "engine only — three Angle Shots make one and a half cycles, and nothing in Fury/Body recycles them cheaply; it is not worth adding to gemdragon-henge-vi-blind-fury (see the notables)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Lente del draw — issue #59 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/59",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Joint loop budget — issue #21 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md), issue #59 candidate 4. SFD-119 and SFD-011 appeared in no entry before this; SFD-009 Serrated Dirk is already in jhin-fiora-facebreaker-recall. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 434.1.c/d/f/g/h and 435.1 opened in the Core Rules. Ban check: none of the three carries a [BANNED marker. THE WALK'S TWO ADDITIONS over the hunt: the hunt's own card list is ILLEGAL by Domain Identity (Cloth Armor is Mind), fixed with a Fury Equipment of M+0; and the cross-check the walk was asked for — the Dragonstorm loop does not want this draw, because its recycling is free (Vi) and its own R = D - 4 buys an extra card per pass for one more Mighty resident rather than 5 Energy. Trap check: no attack designation is claimed ([Assault 2] is a Might modifier); no [Repeat]; no [Temporary]; no token; no recall; no battlefield; no Awaken Energy. Depends on no unruled reading."
+    },
+    {
+      "id": "ivern-nurturer-hold-tutor",
+      "name": "Ivern, Nurturer digs three on every Hold — the only free repeatable draw that cannot Burn Out",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-051",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 P1 M4. 'When you play me or when I hold, look at the top 3 cards of your Main Deck. You may reveal a unit from among them and draw it. Recycle the rest. Then if you revealed a Bird, Cat, Dog, or Poro, do this: [Buff] a friendly unit.' Not the catalogued Ivern — that is UNL-177."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains only need Calm — Ivern, Nurturer is mono-Calm.",
+          "He has to be standing at the battlefield when you Hold it: 383.4.d.2.a puts a Hold ability on the Chain only for a unit 'present at a Battlefield when a player maintains control of it and Gains 1 Victory Point during their Beginning Phase from Holding'."
+        ],
+        "notable": [
+          "431.1.c IS THE WHOLE POINT AND IT IS PRINTED IN THE NEGATIVE. 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, BUT DOES NOT BURN OUT.' 431.1.c.1 repeats it for the follow-up actions and adds the reminder that 'Cards are considered in the zone of origin while being looked at or revealed, in this case the Main Deck' — so the draw can never reach past what you already saw. With a Main Deck of 0 this looks at nothing and costs nothing. Every other repeatable draw in the pool is 431.1.a waiting to happen.",
+          "IT IS CARD ADVANTAGE, WHICH ITS OWN HUNT DENIED. Issue #59 filed it as 'consistency, not card advantage'. 'You may reveal a unit from among them AND DRAW IT' moves a card from the Main Deck to your hand: hand +1, deck -1, on top of the Draw Phase (315.4.b). What is conditional is the hit rate — a Hold that turns up no unit in the top 3 gives nothing.",
+          "ARITHMETIC WITH THE QUANTITY DECLARED. +1 card per Hold, 0 Energy, 0 Power, every turn, unbounded in turns. The body is E5 + 1 Power once. Three Ivern on three held battlefields is three cards a turn, and 315.2.b.2 is where the Holds happen.",
+          "THE TWO REJECTS GO TO THE BOTTOM AND ARE RANDOMISED ONLY AGAINST EACH OTHER. 416.1 puts recycled cards on the bottom of the deck, 416.1.a sends Main Deck cards to the Main Deck, and 416.5 randomises only cards recycled 'simultaneously' — these two, not the rest of the deck.",
+          "IT IS THE ONLY ONE OF ITS FAMILY ON A REPEATING EVENT. UNL-064 Fate Weaver and SFD-188 Void Rush are one-shots; UNL-032 Double Trouble is capped by 820.1.c.3 ('Each Repeat Cost can be paid only a single time') at two executions; UNL-179 Rift Herald, SFD-041 Apprentice Smith and VEN-033 Pakaa Protector all hang off a move. Ivern hangs off a Hold, which is the only free repeating event in the game.",
+          "NOT THE CATALOGUED IVERN. ivern-sentinel-hold and ivern-arena-sentinel-hold both use UNL-177 Ivern, Friend to All. UNL-051 appeared in no entry before this.",
+          "The [Buff] rider needs a Bird, Cat, Dog or Poro among the three; Ivern's own tags are Ivern and Ionia, so he never feeds himself. It is a Calm-tribal bonus, not part of the claim."
+        ]
+      },
+      "steps": [
+        "Play Ivern, Nurturer (5 Energy + 1 Power). His play trigger already digs three.",
+        "Get him to a battlefield you control and keep him there through your opponent's turn.",
+        "Your Beginning Phase, Scoring Step (315.2.b.2): you Hold, and 383.4.d.2.a puts his Hold ability on the Chain.",
+        "Look at the top 3. Reveal a unit from among them and draw it; recycle the other two to the bottom (416.1, 416.5).",
+        "If the reveal was a Bird, Cat, Dog or Poro, [Buff] a friendly unit.",
+        "Repeat every turn he survives. With an empty Main Deck it does nothing and costs nothing — 431.1.c, no Burn Out."
+      ],
+      "netPerIteration": "+1 card per Hold, for 0 Energy and 0 Power, conditional only on a unit being among the top 3 — and it can never Burn Out",
+      "terminatesIn": "engine only — one card per Hold per Ivern, for as long as he stands there; the ceiling is how many battlefields you hold, not the deck",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Lente del draw — issue #59 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/59",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md), issue #59 candidate 5. UNL-051 appeared in no entry before this. Card text verbatim from data/corpus_flat.txt; 431.1.c, 431.1.c.1, 431.1.a, 416.1, 416.1.a, 416.5, 315.2.b.2, 315.4.b, 383.4.d.2.a and 820.1.c.3 opened in the Core Rules. Ban check: UNL-051 carries no [BANNED marker. THE WALK'S CORRECTION to the hunt: #59 called this 'consistency, not card advantage' and it is card advantage — the revealed unit is DRAWN, so the hand grows by one on top of the Draw Phase. What the entry does not claim is unconditionality. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; no Gold; no recall; no battlefield of its own; the Hold requires the body present (383.4.d.2.a), which is the same condition the [Temporary] trap turns on. Depends on no unruled reading."
+    },
+    {
+      "id": "hwei-move-draw-ready-runes",
+      "name": "Hwei, Brooding Painter — every move is a card or two Energy, and the first one each turn is free",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-080",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E5 P1 M5. 'When I move, draw 1, then discard 1. Then, do the following based on the discarded card's type: Spell — Draw 1. Gear — Ready up to 2 runes. Unit — Give me +3 Might this turn.' Modal, and you pick the mode by choosing what to discard."
+        },
+        {
+          "card": "UNL-083",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind spell, E2, [Hidden][Action]. 'Choose a unit you control and another unit you control at a different location. If at least one of them has [Temporary], move each to the other's location. Draw 1.' The in-turn mover, and it replaces itself."
+        },
+        {
+          "card": "UNL-078",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind gear, E2 P1, [Temporary]. 'When you play this, play a ready 3 Might Sprite unit token with [Temporary] to your base. [Deathknell][>] Repeat this gear's play effect.' Two [Temporary] bodies per copy — the half of the swap Smoke and Mirrors requires."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains only need Mind — all three cards are mono-Mind, so any Mind legend runs the whole line.",
+          "Hwei has to be ready to use his free move, which 315.1.b gives back every Awaken; 143.4 makes him enter exhausted, so the first free move is the turn after he lands."
+        ],
+        "notable": [
+          "THE MOVER THE HUNT ASKED FOR IS TWO MOVERS, AND THE FIRST IS FREE. Issue #59 filed this candidate as conditional on finding a repeatable Mind mover and missed the cheapest one: Hwei's own Standard Move. 144.2 — 'Exhausting the Unit is the Cost for this action' — is the WHOLE cost, and 315.1.b readies him at every Awaken. One move a turn, base to battlefield or battlefield to base (144.4), for nothing at all.",
+          "THE SECOND MOVER IS MONO-MIND. UNL-083 Smoke and Mirrors swaps two of your units at different locations provided one carries [Temporary]. 446.1 makes that a Move ('A Permanent changing its position from any space on the Board to another space on the Board is a Move') and 456.1 excludes only Recalls, so Hwei's 'When I move' fires. Mind is the domain that prints [Temporary] bodies: UNL-078 Sprite Fountain (two per copy), OGN-094 Sprite Call, UNL-084 Sprite Queen, UNL-082 Lillia.",
+          "WHAT A MOVE IS WORTH, ALL THREE MODES. Discard a SPELL: draw 1, discard 1, draw 1 = net +1 card in hand. Discard a GEAR: ready up to 2 runes, and 164.2.a makes each rune 1 Energy again = +2 Energy. Discard a UNIT: +3 Might this turn, a 5 to 8 body for one combat. The floor is therefore +1 card OR +2 Energy per turn for 0 Energy, and each Smoke and Mirrors buys one more move for 2 Energy while replacing itself, so an extra move is +1 net card for 2 Energy.",
+          "THE CEILING, STATED. One free move a turn plus three Smoke and Mirrors (103.2.b). Nothing in mono-Mind readies Hwei repeatably: VEN-150 Acceleration Gate and OGN-162 Miss Fortune, Captain both reach him but are Mind/Body and are a one-shot and a once-a-turn respectively. Four moves in a turn is the honest maximum.",
+          "THE [Hidden] DISCOUNT IS PRICED AT ZERO HERE, ON PURPOSE, AND THE CATALOGUE IS INCONSISTENT ABOUT IT. 811.1.b would let a copy be hidden for 1 rainbow and played later for 0 Energy, and 811.1.d.2's exception ('unless the ability explicitly restricts targeting in a way that makes this impossible') applies on its face, since the spell is DEFINED by choosing units at different locations. But lillia-smoke-mirrors-sprite-relay prices the same three copies at base cost citing 811.1.d, while tideturner-mega-mech-swap takes the exception for OGN-199. This entry prices at base cost, matching the older entry and erring expensive; it changes no class.",
+          "OVERLAP DECLARED. lillia-smoke-mirrors-sprite-relay already uses Smoke and Mirrors as UNL-082 Lillia's mover, and both entries want the same three copies, so in one deck they are alternatives rather than additions. A swap that pairs Lillia with Hwei is illegal anyway: neither has [Temporary].",
+          "THE SPRITES NEVER HOLD. 816.1.b kills a [Temporary] permanent 'at the start of this permanent's controller's Beginning Phase, before scoring', so they are the other half of a swap and nothing else — this entry claims no Hold and no Grand Plaza count from them."
+        ]
+      },
+      "steps": [
+        "Play Hwei, Brooding Painter (5 Energy + 1 Power). He enters exhausted (143.4).",
+        "Next Awaken readies him (315.1.b). Standard-Move him base to battlefield: the cost is his own exhaust and nothing else (144.2).",
+        "His trigger: draw 1, then discard 1. Discard a spell for another card, or a gear to ready 2 runes (+2 Energy), or a unit for +3 Might.",
+        "For more moves in the same turn, play Sprite Fountain (2 Energy + 1 Power) for a ready [Temporary] Sprite at your base.",
+        "Play Smoke and Mirrors (2 Energy): choose Hwei and the Sprite, at different locations. They swap, Hwei's trigger fires again, and the spell draws 1 to replace itself.",
+        "Up to three swaps a turn, alternating Hwei between base and battlefield."
+      ],
+      "netPerIteration": "per move: +1 card (discard a spell) or +2 Energy (discard a gear) or +3 Might; the first move each turn costs nothing, each further one costs 2 Energy and a Smoke and Mirrors that replaces itself",
+      "terminatesIn": "engine only — one free move a turn forever, plus at most three swaps in any single turn; nothing in mono-Mind readies Hwei repeatably",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Lente del draw — issue #59 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/59",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md), issue #59 candidate 6, which the hunt filed as CONDITIONAL on somebody finding the mover. UNL-080 and UNL-078 appeared in no entry with Hwei before this; UNL-083 is already lillia-smoke-mirrors-sprite-relay's, and the overlap is declared in the notables. Card text verbatim from data/corpus_flat.txt; 143.4, 144.2, 144.4, 164.2.a, 315.1.b, 415.1, 420.1, 420.2.a, 446.1, 456.1, 811.1.b, 811.1.d.2 and 816.1.b opened in the Core Rules. Ban check: none of the three carries a [BANNED marker. THE WALK'S ADDITION over the hunt: the hunt looked for a mover and missed the free one — the Standard Move, whose entire cost 144.2 makes the unit's own exhaust, readied every Awaken by 315.1.b. It also records the pricing inconsistency between two existing entries over 811.1.d.2 rather than silently picking a side. Trap check: no attack designation; no [Repeat]; the [Temporary] Sprites never Hold and the entry claims none (816.1.b); a swap is a Move and not a Recall (446.1, 456.1); no Gold; no battlefield of its own. Depends on no unruled reading."
     }
   ]
 }
