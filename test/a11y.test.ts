@@ -252,6 +252,36 @@ describe("the deckbuilder", () => {
     expect(builder).not.toMatch(/aria-live[^>]*>\$\{[^}]*gridHtml/);
   });
 
+  /**
+   * #129: the same defect the two counters above were fixed for, in the two places it was missed.
+   *
+   * A — the Construction verdict ("N to fix" / "Legal") is recomputed on every add and remove, and
+   * it is drawn inside `#deck-zones`, which is replaced wholesale. A screen-reader user had to
+   * re-navigate to the checklist and re-read it after every single edit to learn whether the deck
+   * had just become legal.
+   *
+   * B — every message reporting what a write DID (saved, updated, deleted, imported, copied, or the
+   * network error that says nothing was changed) went into a plain <p> nobody was listening to.
+   * Delete is irreversible; silence there is the worst of the four.
+   */
+  it("announces the Construction verdict, and every line that reports what a write did", () => {
+    expect(builder, "the third counter is not a live region").toContain('id="chk-status" aria-live="polite"');
+    expect(builder, "#chk-status is rebuilt rather than updated").toMatch(/#chk-status"\);\n\s*if \(\w+\) \w+\.textContent/);
+    // It must NOT sit in the subtree that is replaced, or it is the bug it was written to fix.
+    expect(builder.indexOf('id="chk-status"')).toBeLessThan(builder.indexOf('<div id="deck-zones">'));
+
+    const decks = read("web/decks.ts");
+    expect(home).toContain('id="account-msg" role="status" aria-live="polite"');
+    expect(decks.match(/id="decks-msg" role="status" aria-live="polite"/g) ?? []).toHaveLength(2);
+    expect(builder).toContain('id="bld-import-msg" role="status" aria-live="polite"');
+    // And no fifth one appears later without the same treatment.
+    for (const [name, src] of [["index.html", home], ["decks.ts", decks], ["builder.ts", builder]] as const) {
+      for (const tag of src.match(/<p class="acct-msg"[^>]*>/g) ?? []) {
+        expect(tag, `${name}: an .acct-msg with no live region`).toMatch(/aria-live="polite"/);
+      }
+    }
+  });
+
   it("puts the focus back on the control the click destroyed", () => {
     // Clicking a pool cell replaces the grid, and with it the button that was pressed. Without this
     // a keyboard lands on BODY after every single card added.

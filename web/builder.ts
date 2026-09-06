@@ -137,6 +137,7 @@ export function builderHtml(actions: string): string {
     <section class="bld-pool" aria-label="Card pool">${poolHtml()}</section>
     <section class="bld-deck" aria-label="Deck">
       <p class="bld-totals" id="bld-totals" aria-live="polite">${esc(totalsLine())}</p>
+      <p class="sr-only" id="chk-status" aria-live="polite">${esc(checkStatus())}</p>
       <div id="deck-zones">${deckHtml()}</div>
       <div class="detail-acts" id="detail-acts">${actions}</div>
     </section>
@@ -304,6 +305,20 @@ function rowLead(card: Card): string {
 function totalsLine(): string {
   const n = zoneCounts(deck);
   return `Main ${n.main}/40 · Runes ${n.runes}/12 · Battlefields ${n.battlefields}/3`;
+}
+
+/**
+ * The Construction verdict, spoken (#129). It is on screen inside `.bld-check-head`, which lives in
+ * `#deck-zones` — replaced wholesale on every click — so a live region there would be destroyed by
+ * the very update it announces, which is the bug `#bld-totals` and `#pool-count` were lifted out of
+ * their containers to avoid. The third counter was missed. This line is the announcement only: it is
+ * `.sr-only`, it says nothing for an untouched list (there is no verdict yet to give), and the
+ * heading keeps drawing the same words for everyone else.
+ */
+function checkStatus(): string {
+  if (isEmptyDeck(deck)) return "";
+  const broken = checkBuild(deck, cards(), env.format()).rules.filter((r) => r.status === "fail").length;
+  return broken ? `Construction: ${broken} rule${broken === 1 ? "" : "s"} to fix.` : "Construction: legal.";
 }
 
 /** The same three counts for the fixed bar, where 390px does not hold the word "Battlefields". */
@@ -495,7 +510,7 @@ function importDialog(): string {
     <p class="fine">A written-out list, a deck code, a Tabletop Simulator dump, or a public Piltover Archive link. It replaces what is in the editor; nothing is written to your account until you press Save.</p>
     <textarea id="bld-import-text" rows="12" spellcheck="false" autocomplete="off"
       placeholder="Legend&#10;1 Lady of Luminosity - Starter&#10;&#10;Champion&#10;1 Lux, Illuminated&#10;&#10;Main Deck&#10;3 Forge of the Future&#10;…"></textarea>
-    <p class="acct-msg" id="bld-import-msg"></p>
+    <p class="acct-msg" id="bld-import-msg" role="status" aria-live="polite"></p>
     <div class="detail-acts">
       <button type="button" class="primary" data-b="import-go">Load into the editor</button>
       <button type="button" class="linklike" data-b="import-close">Cancel</button>
@@ -603,6 +618,8 @@ function render(): void {
   if (zones) zones.innerHTML = deckHtml();
   const totals = $<HTMLElement>("#bld-totals");
   if (totals) totals.textContent = totalsLine();
+  const status = $<HTMLElement>("#chk-status");
+  if (status) status.textContent = checkStatus();
   const bar = document.querySelector<HTMLElement>(".bld-bar-counts");
   if (bar) bar.textContent = shortTotals();
   const save = document.querySelector<HTMLButtonElement>(".bld-bar [data-act='save']");

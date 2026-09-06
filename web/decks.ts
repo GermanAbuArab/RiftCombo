@@ -193,7 +193,7 @@ function libraryView(): string {
       </div>
       <p class="fine">Public decks only. The link is fetched once through this site's own server, and the list is saved to your account under the title Piltover gives it.</p>
     </form>
-    <p class="acct-msg" id="decks-msg">${esc(message)}</p>
+    <p class="acct-msg" id="decks-msg" role="status" aria-live="polite">${esc(message)}</p>
     ${decks.length
       ? `<div class="deck-grid">${decks.map(deckCard).join("")}</div>`
       : loaded
@@ -308,7 +308,7 @@ function detailView(id: string): string {
     </fieldset>
   </div>
   <p class="notice">Nothing is written to your account until you press ${saved ? "Update" : "Save"}. There is no auto-save.</p>
-  <p class="acct-msg" id="decks-msg">${esc(message)}</p>
+  <p class="acct-msg" id="decks-msg" role="status" aria-live="polite">${esc(message)}</p>
   ${builderHtml(actions())}`;
 }
 
