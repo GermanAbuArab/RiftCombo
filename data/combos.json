@@ -828,7 +828,7 @@
         ],
         "notable": [
           "Hold one battlefield with Ahri carrying one Svellsongur and Blue Sentinel carrying two.",
-          "Each Svellsongur on the Sentinel duplicates its multiplier passive, so one Sentinel with two counts as K=3: 2 × (1 + 3) + 1 = 9 from two bodies.",
+          "Each Svellsongur on the Sentinel duplicates its multiplier passive, and under R6 = A the second one copies the first's appended text as well, so one Sentinel wearing two counts as K=4: 1 + 2 x (1 + 4) = 11 from two bodies. (This bullet published the pre-R6 number — K=3 for 9 — which the steps and notes below have contradicted since 2026-09-04; corrected 2026-09-05.)",
           "Svellsongur also works on Ahri, which this entry never used: copying \"When I hold, you score 1 point\" onto a second slot raises N, not K. Enumerated over the 3-copy cap (103.2.b), the cheapest five-card board that reaches 8 is 1 Ahri + 1 Sentinel + 3 Svellsongur with two of them on Ahri — N=3, K=2, 10 points for 18 Energy, five Energy under the Svellsongur-free board. The ceiling with all three at three copies is 26 points (3 Ahri + 3 Sentinel + 3 Svellsongur, two on Ahri: N=5, K=4), against 13 without the gear."
         ]
       },
@@ -929,7 +929,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Fury/Calm had no line at all before this. Legend verified by hand against data/corpus_flat.txt: VEN-139 is the only Fury/Calm legend in the pool. Rule 470 caps Scoring (Conquer or Hold, 469); Ahri's points arrive as triggered abilities under 471.2, and 471.1.a.1 exempts non-Conquer sources from the Final Point restriction, so only the base conquer point is at risk of converting to a draw. UNRESOLVED, and it is why this is a candidate: adding SFD-059 Svellsongur would raise the count, but only if Svellsongur copies a unit's CURRENT rules text including appended Effect Text (434.1.c) rather than its printed text. The arithmetic above deliberately assumes the conservative printed-text reading and does not use Svellsongur. REFUTE 2026-09-03: SURVIVES. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-skyfall-conquer-pair.md), promoted to verified. The 471.2.c caveat that kept this a candidate is R1, which the user ruled A on 2026-09-03."
+      "notes": "Fury/Calm had no line at all before this. Legend verified by hand against data/corpus_flat.txt: VEN-139 is the only Fury/Calm legend in the pool. Rule 470 caps Scoring (Conquer or Hold, 469); Ahri's points arrive as triggered abilities under 471.2, and 471.1.a.1 exempts non-Conquer sources from the Final Point restriction, so only the base conquer point is at risk of converting to a draw. SETTLED 2026-09-05 (docs/phase0/walks/2026-09-05-equipment-lens-candidates.md): what kept SFD-059 Svellsongur out of this board — whether it copies a unit's CURRENT rules text including appended Effect Text (434.1.c) rather than its printed text — is R6 = A, ruled 2026-09-04, and svellsongur-copy-hold already stands on it (its step 3 has one Svellsongur copying another's appended Effect Text). 434.1.e and 718.2 write \"printed\" where they mean printed; 434.1.c does not. The arithmetic above is left unchanged on purpose: A=3, K=2 already gives 10 against a bar of 8, so the Svellsongur-free board is a choice and not an error. REFUTE 2026-09-03: SURVIVES. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-skyfall-conquer-pair.md), promoted to verified. The 471.2.c caveat that kept this a candidate is R1, which the user ruled A on 2026-09-03."
     },
     {
       "id": "svellsongur-ornn-hold",
@@ -6287,6 +6287,293 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md), issue #40 candidate 9. Card text verbatim from data/corpus_flat.txt. REWRITTEN on its central claim: issue #40 quotes the free-from-Hidden mode as the combo's mode, but 811.1.d.2 plus 811.1.b confine a hidden Lotus Trap to a unit at a battlefield YOU control, which is defensive, and defending never conquers — every excess-damage card in the pool is gated on 'When I conquer' or 'When you conquer'. To feed the Yeti it has to be played from hand for 2 Energy under 811.3. The small case is written out rather than hidden: a 3 Might defender frees only 1 and does not reach the Yeti's threshold. Stands on R28 = A, already ruled, and inherits 383.4.c.2.a's survival requirement from yeti-brambleback-renata-gold."
+    },
+    {
+      "id": "ahri-trinity-svellsongur-hold",
+      "name": "Ahri × Trinity Force × Svellsongur — nine points in one Hold, no Sentinel",
+      "class": "BURST",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-066",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "When I hold, you score 1 point. She is the Top-Most Card the whole board sits on."
+        },
+        {
+          "card": "SFD-115",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "[Equip] Body. [Effect] When I hold, score 1 point. All three on Ahri: Trinity Force is not [Unique] and 434.1.b.1 contemplates more than one card attached to a Top-Most card."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Attached to Ahri LAST, after the three Trinity Forces, so it copies her text as it stands then: 1 printed instance plus 3 appended."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Body — Grandmaster at Arms (SFD-193), Blind Monk (OGN-257) or Wuju Master (UNL-191). OGS-019 Wuju Bladesman - Starter also fits the pair but is restricted in 2v2, so it is not the recommendation. Grandmaster at Arms is the pick: its bare exhaust ability reattaches an Equipment for free while you build."
+        ],
+        "notable": [
+          "Hold one battlefield through your Beginning Phase with Ahri present, carrying three Trinity Force and one Svellsongur. The entry names NO battlefield, so 485.4.a, 485.5 and 103.4.c never touch it — unlike every Grand Plaza line in this catalogue, any battlefield you can hold will do. That is its real advantage.",
+          "Why the gear's line becomes Ahri's line: 136.2.b keeps Effect Text active while attached, 434.1.c / 136.2.c / 718.3 append it to the Top-Most Card's Rules Text, and 136.2.d makes \"I\" mean that unit (the rules' own worked examples are Guardian Angel and Brutalizer). Svellsongur's own copy clause is printed Rules Text, which 718.2 would deactivate; 725.1 is the exception that keeps an attach-time passive alive, the same chain svellsongur-copy-hold already stands on.",
+          "Points per Hold: 1 + (1 + T) x (1 + S), T = Trinity Forces on Ahri, S = Svellsongur on Ahri. T=3, S=1 gives 9 from zero for 21 Energy and 6 Power spread over several turns; the Hold turn itself costs nothing. T=3, S=0 gives 5 and T=2, S=1 gives 7, so the declared board is the cheapest that clears 8.",
+          "Attach the three Trinity Forces FIRST and Svellsongur LAST. The copy then measures 1 + 3 = 4 under both available readings — 725.1's literal \"can be processed as it Attaches\" and R6 = A's continuous one — so this entry stands on no open question. A second Svellsongur on the same body would (two copies on one unit read each other), which is why there is exactly one.",
+          "The first BURST in this catalogue that reaches 8 without Blue Sentinel or Red Brambleback: the other nine all use one of the two, and the grep of \"trigger an additional time\" finds only three multipliers in the whole pool (UNL-087 hold, UNL-029 conquer, OGN-236 Deathknell). Neither hold nor conquer multiplier is in Calm/Body, so the Equipment is the entire multiplier — and this is the first entry of either burst class in that identity.",
+          "One point of failure: four Equipment on one body. Ahri ends at 4 + 2 + 2 + 2 + 0 = 10 Might, and 435.4.b leaves the Equipment at the location if she goes. SFD-051 Guardian Angel (Calm, 2 Energy) is the insurance inside the identity, and 136.2.d's own worked example is its text."
+        ]
+      },
+      "steps": [
+        "Play Ahri, Alluring to a battlefield you can hold (5 Energy, 1 Power).",
+        "Equip the three Trinity Forces to her, 4 Energy each plus 1 Body Power to attach (818.1.c.2). Her Rules Text is now her printed hold point plus three appended copies of \"When I hold, score 1 point\", with 136.2.d reading every \"I\" as Ahri.",
+        "Equip Svellsongur last: 3 Energy and 1 Power to play, then 1 Energy and 1 Calm Power to attach. Its Effect Text becomes a copy of Ahri's text as it stands — four instances — and 434.1.c appends that copy back onto her.",
+        "At your Beginning Phase Scoring Step (315.2.b.2) you Hold the battlefield. That is the Score: 1 point, which 470 caps at one per battlefield per turn.",
+        "383.4.d.2.a puts all eight \"score 1 point\" instances on the chain. R2 = A makes them Gains by ability under 194.1.c rather than Scores, so 470 does not cap them and 471.1.a.1 keeps the Final Point restriction off them. 1 + 8 = 9 against a Victory Score of 8 (194.3, 485.3), and 472 ends the game at the next cleanup."
+      ],
+      "terminatesIn": "burst of ability points in one Hold",
+      "sources": [
+        {
+          "title": "Equipment lens hunt, issue #41 candidate 1 (rc-huntE)",
+          "kind": "agent",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-equipment-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-equipment-lens-candidates.md), issue #41 candidate 1, promoted with NO change to any declared quantity: its own formula gives 9 for T=3, S=1 and the class matches. Card text verbatim from data/corpus_flat.txt; every rule reopened in that walk's block 0. The structural step it needs — Svellsongur copying text that reached the unit from ANOTHER Equipment's Effect Text — is not new and archives no reading: R6 = A ruled it on 2026-09-04 and step 3 of svellsongur-copy-hold already uses it. 434.1.e and 718.2 write \"printed\" where they mean printed and 434.1.c does not, which is the text half of the same point. Depends on R2 = A; does NOT depend on R1."
+    },
+    {
+      "id": "noxian-drummer-eye-svellsongur-plaza",
+      "name": "Noxian Drummer × Eye of the Herald × Svellsongur — eight Recruits on one move",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "When you hold here, if you have 7+ units here, you win the game."
+        },
+        {
+          "card": "OGN-222",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "When I move to a battlefield, play a 1 Might Recruit unit token here. The carrier brings the trigger printed, so Svellsongur's copy is worth four instances instead of three."
+        },
+        {
+          "card": "SFD-153",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "[Equip] Order. [Effect] When I move, play a 1 Might Recruit unit token here. All three on the Drummer."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Attached to the Drummer LAST, after the three Eyes: it copies his text as it stands then, 1 printed instance plus 3 appended."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Order — Emperor of the Sands (SFD-247), Radiant Dawn (OGN-261), Green Father (UNL-195) or Eye of Twilight (VEN-147). None carries a ban marker."
+        ],
+        "notable": [
+          "The Grand Plaza must be the battlefield in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5).",
+          "Conquer the Plaza BEFORE the Drummer walks in, in the same Main Phase. A cheap body enters the uncontrolled Plaza and applies Contested (190.3.a.1); 344.2 opens a Showdown at the next Cleanup; 348.2.a leaves only your units and establishes Control; 348.2.a.1 says outright \"This results in a Conquer\". Only then does the Drummer move in — 190.3.a.1 applies no Contested to a battlefield you already control, so the Recruits are played to a battlefield you control and 355.2.a is satisfied by default. Playing them into a Plaza you do not yet control would need 355.2.b to read the Eye's \"here\" as a permission, and this entry does not ask that: the REFUTE of grand-plaza-recruit-vanguard recorded the same requirement, and zed-clone-eye-recruits puts Zed at the Plaza after conquering it.",
+          "Bodies from one Standard Move: (1 + T) x (1 + S) Recruits, T = Eyes on the Drummer, S = Svellsongur. T=3, S=1 gives 8, plus the Drummer himself and the body that conquered — 10 units against a bar of 7. It costs 10 Energy and 5 Power, the cheapest Grand Plaza line in this catalogue.",
+          "Why the gear's line becomes the Drummer's line: 434.1.c / 136.2.c / 718.3 append each Eye's Effect Text to his Rules Text and 136.2.d makes \"I\" mean him; 725.1 keeps Svellsongur's own printed attach-time passive alive against 718.2. Attaching the Eyes first and Svellsongur last fixes the copy at four instances under both readings of Svellsongur (725.1 literal and R6 = A), which is why S is 1 and not 2.",
+          "The Recruits are 1 Might, and OGN-133 Flurry of Blades (Body, 1 Energy, [Reaction], \"Deal 1 to all units at battlefields\") is lethal to every one of them under 142.4.b for a single Energy. You expose the board for one full opponent turn, so the margin of 3 over the bar is the entry's only cushion.",
+          "The Recruits carry no [Temporary] (187.1), so 816.1.b never touches them; they enter exhausted (143.4), which does not matter for holding; and the Plaza's \"if you have 7+ units here\" is a Trigger Condition measured at the instant of the Hold (383.2.a.1, 383.2.c), which this board has been meeting since your previous Main Phase.",
+          "Different identity and different mechanism from zed-clone-eye-recruits (Order/Chaos, two bodies per activation, bounded by Chaos runes): this one resolves in a single move."
+        ]
+      },
+      "steps": [
+        "Play Noxian Drummer to your base (3 Energy) and equip the three Eyes of the Herald to him, 1 Energy and 1 Order Power each.",
+        "Equip Svellsongur last: 3 Energy and 1 Power to play, then 1 Energy and 1 Calm Power to attach. The Drummer's Rules Text now carries four instances of \"when I move, play a 1 Might Recruit unit token here\".",
+        "In your Main Phase, walk any cheap body into The Grand Plaza while it is uncontrolled: Contested (190.3.a.1) → Showdown at the next Cleanup (344.2) → Control with only your units present (348.2.a) → Conquer (348.2.a.1). The Plaza is now yours, in your own Main Phase.",
+        "Still in the same Main Phase, Standard-Move the Drummer from base to the Plaza (144.1.a; exhausting him is the cost, 144.2). All four move triggers resolve, 359.3.f.2 reads \"here\" on execution and on execution he is at the Plaza, so eight Recruits join him there — ten friendly units in total.",
+        "Survive one opponent turn with 7+ units there. At your next Beginning Phase you Hold the Plaza, its trigger finds ten units, and 195 grants you the game."
+      ],
+      "terminatesIn": "win the game at the next Hold",
+      "sources": [
+        {
+          "title": "Equipment lens hunt, issue #41 candidate 2 (rc-huntE)",
+          "kind": "agent",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-equipment-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-equipment-lens-candidates.md), issue #41 candidate 2, REWRITTEN on three defects. (1) The candidate's uses listed three Eyes, two Svellsongur and the Plaza and NO unit — an Equipment attaches to a unit (818.1.b), so it was not playable as written; OGN-222 Noxian Drummer is named as the carrier and, bringing the trigger printed, makes the copy worth 4 instead of 3. (2) The candidate had the Recruits born at a Plaza it did not yet control, which needs 355.2.b to read \"here\" as permission against 355.2.a's default; conquering the Plaza first and moving in afterwards — same Main Phase, 344.2 to 348.2.a.1 to 190.3.a.1 — removes the reading entirely. (3) Two Svellsongur on one body lean on the mutual-copy treatment; S is dropped to 1 and the attach order fixed, which leaves 8 Recruits and a margin of 3 instead of the candidate's 7 with none. Card text verbatim from data/corpus_flat.txt."
+    },
+    {
+      "id": "boneshiver-brambleback-channel",
+      "name": "Boneshiver × Red Brambleback — one Conquer channels the rest of your Rune Deck",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-118",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "[Equip] Body. [Effect] When I conquer, channel 1 rune exhausted. One on each Brambleback, so the entry needs no separate carrier."
+        },
+        {
+          "card": "UNL-029",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Your conquer effects for conquering here trigger an additional time. Two present make every conquer effect fire 1 + 2 = 3 times (R1 = A, with stacking)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Body — Purifier (SFD-183) is the pick, since \"Your Equipment each give [Assault]\" helps win the combat that leads to the Conquer. Relentless Storm (OGN-249), Pridestalker (UNL-183) and Butcher of the Sands (VEN-141) also cover the pair."
+        ],
+        "notable": [
+          "Both Bramblebacks present at the battlefield being conquered, each wearing a Boneshiver: 2 conquer effects x (1 + K) with K = 2 gives 6 channels off one Conquer, for 16 Energy and 4 Power in two bodies.",
+          "The count is capped by the Rune Deck, not by the trigger count, and that is why the entry declares 6 and not more. 430.3 channels \"as many as possible\" and 161.2.a fixes the Rune Deck at exactly 12 cards, of which everything on your board is missing. Channelling 2 a turn (315.3.b) while paying this board's 16 Energy and 4 Power stands it up around turn 5, with about 5 runes in play and 7 left to draw from. A third Boneshiver would add three more trigger instances that 430.3 turns into nothing.",
+          "Recycling a rune for Power returns it to the Rune Deck (161.2.b), not the Main Deck, so this board's 4 Power feeds the very deck the Boneshivers channel from.",
+          "The runes arrive exhausted — 430.2's own worked example is literally \"Channel 1 rune exhausted\" — and ready at your next Awaken (315.1.b). The payoff is one turn late and then permanent: the board goes from roughly 5 runes to roughly 11, most of the Rune Deck, off a single Conquer.",
+          "ENGINE and not INFINITE, for a reason that is written in the rules rather than assumed: the Rune Deck is 12 cards (161.2.a) and 430.3 stops there. Riders declared and NOT multiplied into the count: each Brambleback's own \"When I conquer, [Buff] a friendly unit\" is also a conquer effect and does fire three times, but it pays in Might; and SFD-030 Skyfall of Areion would make the Boneshiver trigger a hold effect too — it is not in uses and would not be multiplied there, because Brambleback multiplies conquer effects \"for conquering here\" and a Hold is not a conquer.",
+          "Svellsongur cannot join this board: it is Calm and the identity is Fury/Body (103.1.b.2). Red Brambleback's [Accelerate] (1 Energy and 1 Fury Power more) has it enter ready, which is how it conquers the turn it lands."
+        ]
+      },
+      "steps": [
+        "Play the two Red Bramblebacks, 4 Energy and 1 Fury Power each, paying [Accelerate] if you want them to act the same turn.",
+        "Equip a Boneshiver to each: 3 Energy to play, then 1 Energy and 1 Body Power to attach. 434.1.c appends \"When I conquer, channel 1 rune exhausted\" to each Brambleback's Rules Text and 136.2.d makes that \"I\" the Brambleback.",
+        "Take a battlefield you have not scored this turn with both of them present. At the Cleanup 348.2.a establishes Control and 348.2.a.1 makes it a Conquer (469.1).",
+        "Both Boneshiver triggers fire and each Brambleback makes every conquer effect fire an additional time: 2 x 3 = 6 channels, which 430.3 caps at the runes still in the Rune Deck.",
+        "The channelled runes sit exhausted until your next Awaken readies them (315.1.b). From then on they are Energy and Power like any other rune, and 167 empties the pool they fill at each Main Phase start as usual."
+      ],
+      "terminatesIn": "one Conquer channels what is left of the Rune Deck, exhausted; bounded by the 12 runes of 161.2.a and by 430.3",
+      "sources": [
+        {
+          "title": "Equipment lens hunt, issue #41 candidate 4 (rc-huntE)",
+          "kind": "agent",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-equipment-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-equipment-lens-candidates.md), issue #41 candidate 4, REWRITTEN on its own arithmetic. The candidate declared 3 Boneshiver and 2 Red Brambleback for 9 channels, but 430.3 (\"channel as many as possible\") and 161.2.a (\"Exactly 12 Rune cards\") make the Rune Deck the complement of your board, and a board costing 20 Energy and 5 Power is not standing before about turn 5, when roughly 7 runes are left. The walk tabulates it turn by turn. Rebuilt at 2 and 2 for 6 channels — what the deck can actually pay — which also costs 4 Energy and 1 Power less, and putting the Boneshivers on the Bramblebacks themselves removes the separate carrier the candidate never named. Card text verbatim from data/corpus_flat.txt. Stands on R1 = A with stacking, already ruled."
+    },
+    {
+      "id": "arise-sand-soldiers-plaza",
+      "name": "Arise! — one 2-Might body per Equipment, straight onto The Grand Plaza",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "When you hold here, if you have 7+ units here, you win the game."
+        },
+        {
+          "card": "SFD-198",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Play a 2 Might Sand Soldier unit token for each Equipment you control. Then do this: Ready up to two of them."
+        },
+        {
+          "card": "SFD-033",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "1 Energy Calm Equipment. Counts whether or not it is attached (718.5.a)."
+        },
+        {
+          "card": "UNL-039",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "1 Energy Calm Equipment. Counts whether or not it is attached (718.5.a)."
+        },
+        {
+          "card": "SFD-153",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "1 Energy Order Equipment. Counts whether or not it is attached (718.5.a); it is also the engine of noxian-drummer-eye-svellsongur-plaza, so the two lines share a shell."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Order. Emperor of the Sands (SFD-247) is the natural pick — Sand Soldiers he plays have [Weaponmaster], so each token entering may equip one of your detached gear for 1 Power less — but Radiant Dawn (OGN-261), Green Father (UNL-195) and Eye of Twilight (VEN-147) also cover the pair."
+        ],
+        "notable": [
+          "The Grand Plaza must be the battlefield in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5).",
+          "Control the Plaza BEFORE resolving Arise!, not after. The spell names no location, so 439.2.b.1 and 355.2.a send the tokens to your base or to a battlefield you control — the same requirement the REFUTE of grand-plaza-recruit-vanguard recorded for the Vanguard line. Each token chooses its location separately (355.2), so all nine can enter the Plaza.",
+          "Nine Equipment, nine 2-Might Sand Soldiers (187.3), plus the body already holding the Plaza: 10 units against a bar of 7. They need not be attached — 718.5.a keeps Types and Tags on attached cards and \"each Equipment you control\" asks for nothing more. Doran's Shield, Soul Sword and Eye of the Herald are the only Calm or Order Equipment in the pool at 1 Energy; the next cheapest is 2.",
+          "Why it exists next to grand-plaza-recruit-vanguard, which does the same thing in 2 cards and 12 Energy and sits inside this identity (OGS-015 is Order): this loses 8 deck slots and wins on two measurable points. The finishing turn costs 6 Energy and 1 Power against 12 Energy, and the bodies are 2 Might — OGN-133 Flurry of Blades (Body, 1 Energy, [Reaction], \"Deal 1 to all units at battlefields\") is lethal to every 1-Might Recruit under 142.4.b and does nothing whatever to a Sand Soldier. The slot count is the honest signal and it is stated rather than hidden.",
+          "The Sand Soldiers carry no [Temporary] (187.3), so 816.1.b never touches them, and they enter exhausted (143.4), which does not matter for holding — Arise! readies two anyway. The Plaza's \"if you have 7+ units here\" is a Trigger Condition measured at the instant of the Hold (383.2.a.1, 383.2.c), so the nine must already be standing when the Scoring Step arrives.",
+          "The 9 Equipment are paid one at a time through the early game and are not dead cards while they wait: Doran's Shield grants [Tank], Soul Sword grants Might at 3 XP, and Eye of the Herald makes a Recruit on every move of its bearer."
+        ]
+      },
+      "steps": [
+        "Play the nine 1-Energy Equipment over the early turns, 9 Energy in total. They need not be attached to anything to be counted.",
+        "Take control of The Grand Plaza with any body and keep it — conquering it is what makes it a valid location for the tokens (355.2.a).",
+        "In a later Main Phase, resolve Arise! for 6 Energy and 1 Power. 439.2.b.1 and 355.2.a let each of the nine 2-Might Sand Soldiers enter at the Plaza you control; the spell readies two of them.",
+        "Survive one opponent turn with 7+ units there. A 1-damage sweep does not reach them (142.4.b).",
+        "At your next Beginning Phase you Hold the Plaza, its trigger finds ten units, and 195 grants you the game."
+      ],
+      "terminatesIn": "win the game at the next Hold",
+      "sources": [
+        {
+          "title": "Equipment lens hunt, issue #41 candidate 5 (rc-huntE)",
+          "kind": "agent",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-equipment-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-equipment-lens-candidates.md), issue #41 candidate 5, promoted with no change to any declared quantity. Card text verbatim from data/corpus_flat.txt and every rule reopened in that walk. Verified by hand that SFD-033, UNL-039 and SFD-153 are the only 1-Energy Equipment in Calm or Order across the whole pool, and that OGN-133 Flurry of Blades is a 1-Energy Reaction that clears an 8-Recruit board and no Sand Soldier — that measurement, not a preference, is what separates this from grand-plaza-recruit-vanguard."
     }
   ]
 }

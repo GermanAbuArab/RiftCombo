@@ -66,13 +66,17 @@ describe("matcher", () => {
     const r = matchDeck(deck, variants, cards, { format: "constructed" });
     expect(r.included).toEqual([]);
     expect(r.includedByChangingLegend).toEqual([]);
-    // The fixture holds 2 Red Brambleback and no Tryndamere. Since the 2026-09-04 BURST audit
-    // corrected the line to 2 Tryndamere + 3 Brambleback, the shortfall is 3 and the deck falls
-    // outside the default near-miss ceiling of 2 — so widen the ceiling to see it.
-    expect(r.almostIncluded).toEqual([]);
+    // The fixture holds 2 Red Brambleback and its legend, Relentless Storm, is Fury/Body — so the
+    // 2026-09-05 equipment walk put a second line in reach: boneshiver-brambleback-channel wants
+    // those same 2 Bramblebacks plus 2 Boneshiver, which is exactly the default ceiling of 2.
+    expect(ids(r.almostIncluded)).toEqual(["boneshiver-brambleback-channel"]);
+    expect(r.almostIncluded[0]!.missing).toEqual([{ card: "SFD-118", quantity: 2 }]);
+    // Tryndamere is 3 away: since the 2026-09-04 BURST audit corrected that line to 2 Tryndamere +
+    // 3 Brambleback the shortfall is 3, outside the default ceiling — so widen it to see that one.
     const r3 = matchDeck(deck, variants, cards, { format: "constructed", maxMissing: 3 });
-    expect(ids(r3.almostIncluded)).toEqual(["tryndamere-brambleback-conquer"]);
-    expect(r3.almostIncluded[0]!.missing).toEqual([{ card: "OGN-034", quantity: 2 }, { card: "UNL-029", quantity: 1 }]);
+    expect(ids(r3.almostIncluded)).toContain("tryndamere-brambleback-conquer");
+    const tryn = r3.almostIncluded.find((h) => h.variant.id === "tryndamere-brambleback-conquer")!;
+    expect(tryn.missing).toEqual([{ card: "OGN-034", quantity: 2 }, { card: "UNL-029", quantity: 1 }]);
   });
 
   it("reports the banned Recruits loop as included but illegal in the format", () => {
