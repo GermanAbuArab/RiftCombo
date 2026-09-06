@@ -16840,6 +16840,189 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md), issue #97 candidate 5. REWRITTEN ON TWO POINTS. (1) The issue's headline arithmetic (1 Overt Operation + 1 Fae Dragon, N=5, +3 Power) cannot happen on the first casting: SFD-101 buffs 'up to FOUR'. The first casting is +2 and the N=5 figure belongs to the second, after the refill has covered every body; both are stated separately, with the Body/Order buffers that would supply a fifth buff on the first pass named. (2) The issue calls OGN-153 'la unica carta del pool que gasta N buffs de un golpe'; a grep of every buff-spender finds ten, two of which take more than one (OGN-153 and OGN-230 Albus Ferros). The surviving claim is that it is the only one that spends N AND refills in the same resolution. The +2/+(N-2) ledger and the R25 reading are consistent with the verified fae-dragon-wallop-industrialist, whose own note already ran the K-body arithmetic; this entry gives OGN-153 a row of its own with its cap stated. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.b, 187.5, 355.10.c.1, 429.2, 429.2.a, 702.2.a, 702.2.b, 702.3, 702.3.a, 703, 705, 709. Ban check: OGN-153, SFD-101, SFD-171, the three extra buffers and all five Body/Order legends carry no [BANNED marker. Trap check: no attack (807.1.d, 383.4.e, 461 never arise); all spending is Main Phase (167); no [Repeat]; no [Temporary]; the Gold token is killed by its own cost and never recycled, so 185/186.1 do not bite; no recall; no battlefield of its own. Stands on R25 = A, ruled on issue #11; depends on no unruled reading."
+    },
+    {
+      "id": "revna-eye-herald-recruits",
+      "name": "Revna × Eye of the Herald — a Recruit born at the battlefield, one per 4-Energy spell",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-005",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "[Ganking]. When you play a spell, if you spent 4 Energy or more, ready me. The only body in the pool that readies ITSELF on a card play with no exhaust in the trigger."
+        },
+        {
+          "card": "SFD-153",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Equipment, 1 Order Power to [Equip]. 434.1.c appends its [Effect] to Revna: 'When I move, play a 1 Might Recruit unit token here.'"
+        },
+        {
+          "card": "UNL-009",
+          "quantity": 3,
+          "role": "resource",
+          "zone": "HAND",
+          "note": "E2 with [Repeat] E2. 820.1.c.1 makes the Repeat cost part of playing, so 4 Energy leaves the Rune Pool and Revna readies; 820.1.b then readies a unit twice. Cheapest ready in the shell — three copies is the 103.2.b maximum and covers one full turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Order: OGN-253 Hand of Noxus, SFD-187 Void Burrower, UNL-187 Piltover Enforcer. None carries a ban marker."
+        ],
+        "notable": [
+          "Eye of the Herald attached to Revna (1 Order Power) and Revna already on the board: she is E7 + 1 Power and 143.4 enters her exhausted, so the turn she lands she does not move.",
+          "Revna is a 'spent' card, not a 'costs' card. 166.2 and 203.1 make the threshold read what actually left the Rune Pool, so ANY discount switches the ready off — OGN-031 Raging Firebrand ('the next spell you play this turn costs 5 less') is in-domain and turns her off outright — and 811.1.b + 356.1.b.1 set a [Hidden] card's base costs to zero, so a spell played from hidden never readies her. 206 does the opposite for the 'costs N or more' family; the two wordings behave in reverse.",
+          "Battlefields you control, or empty ones. 810.1.b + 144.4.c.1 let [Ganking] move her battlefield to battlefield, but moving onto an occupied enemy battlefield makes her the Attacker (190.3.a.1, 464.2.c.1) and 144.1.c then forbids further Standard Moves during the Combat.",
+          "SFD-171 Renata Glasc, Industrialist (Order, in-domain) is optional and only matters off the battlefield: the Recruit born at a battlefield does not need to be ready to Hold, but a base-born one needs a ready before it can walk (143.4, 185.2.d). Upstage Comedy's second execution supplies that ready anyway.",
+          "The Grand Plaza is NOT a route from here. Shuttling base to Plaza and back, every Recruit can reach the Plaza (Upstage Comedy or Renata readies the base-born ones, 144.4.a walks them), but six Recruits plus Revna is seven moves — about 24 Energy in one turn against a 12-rune ceiling. Across two turns it gets there and half the bodies then have to survive TWO opponent turns instead of the one every catalogued Plaza line pays. Refuted as an ALT_WIN; recorded here so the next hunt does not re-derive it."
+        ]
+      },
+      "steps": [
+        "With Revna ready at a battlefield (or at base), Standard-Move her: 420.3.a exhausts her, 144.4.c.1 allows battlefield to battlefield.",
+        "The Eye's granted effect fires. 359.3.f.2 reads 'here' on execution, so the 1 Might Recruit is played at the DESTINATION — no walk from the base, which is the bottleneck #48 measured for every other token line.",
+        "Play Upstage Comedy paying its E2 plus the [Repeat] E2: 4 Energy spent, so Revna's trigger readies her, and the spell's two executions ready a unit each (820.1.b) — spend one on the Recruit that just landed.",
+        "Move again. A 12-rune turn is the Awaken ready plus three qualifying spells: 4 moves, 4 Recruits."
+      ],
+      "netPerIteration": "-4 Energy per move after the first; +1 Recruit at a battlefield and +1 spare ready per move.",
+      "terminatesIn": "engine only — about 4 Recruits per turn, each born AT a battlefield, bounded by the Energy of the turn and by the three copies of the ready spell",
+      "sources": [
+        {
+          "title": "Riot Games — July Ban List Updates (the banned predecessor of this line names Eye of the Herald as its partner)",
+          "kind": "riot",
+          "url": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/",
+          "date": "2026-07-24"
+        },
+        {
+          "title": "Hunt rc-huntP — the \"this turn\" counter lens (issue #98)",
+          "kind": "agent",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-this-turn-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "The legal Fury/Order rebuild of pursuer-herald-recruits, whose mover OGN-177 Stealthy Pursuer has been banned in Constructed and 2v2 since 2026-07-24; zed-clone-eye-recruits is the Order/Chaos rebuild. WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-this-turn-lens.md). REWRITTEN from issue #98's candidate C1, which priced a ready at one of the sixteen Fury/Order spells printed at E4 or more and so put the rate at 2-3 Recruits per turn. It never opened 820.1.c.1 ('The Cost is an Additional Cost to be paid during the steps of playing the spell or ability'), which makes UNL-009 Upstage Comedy — E2 with [Repeat] E2 — a 4-Energy spend that also readies twice; the rate is 4 per turn and the issue's R1 refutation of the Plaza needs 7 moves, not the 11 it computed. 206's own Defy / Rocket Barrage example is the other half of the same fact: a 'costs N' card ignores a paid Repeat cost, while a 'spent N' card counts it. ONE AMBIGUITY, DELIBERATELY NOT FILED: Revna's 'if you spent 4 or more' can be read per-spell or cumulatively for the turn (UNL-004 and UNL-089 both spell out 'to play a spell this turn'). This entry stands on the NARROW reading, which both satisfy, so no R-number was opened."
+    },
+    {
+      "id": "yordle-explorer-power-cantrips",
+      "name": "Yordle Explorer — every printed 2-Power card draws, and the free 2 Power pays one outright",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-100",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "When you play a card with Power cost [rainbow][rainbow] or more, draw 1. No exhaust in the trigger, no cap per turn."
+        },
+        {
+          "card": "SFD-097",
+          "quantity": 3,
+          "role": "resource",
+          "zone": "HAND",
+          "note": "E1 P2. The free floor of 2 Power per turn pays the whole Power half, so it is 1 Energy for a card plus a +5 Might trick. Three copies is the 103.2.b maximum and is what makes the floor hold turn after turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend whose domains include Body. Yordle Explorer is mono-Body and Punch First is mono-Body, so the second domain is free."
+        ],
+        "notable": [
+          "206 makes the threshold read the PRINTED cost, and the rule's worked example is this exact wording on Lux, Illuminated: no discount, no [Hidden] play and no cost-ignoring effect can switch it off. This is the opposite behaviour to the 'if you spent N or more' family (Revna, Virtuoso, Jhin Meticulous, Sivir Mercenary, Prepared Neophyte, Forgotten Library), which any discount kills.",
+          "It counts CARDS. 350.2 keeps tokens out of the word, and they carry no printed cost in any case, so no token engine feeds it.",
+          "The fuel is measured, and it is a per-legend number, not one number. 83 base codes in the pool carry a printed Power cost of 2 or more; Domain Identity (103.1.b) makes the usable share depend on the legend's second domain — Body/Fury 22, Body/Mind 22, Body/Calm 26, Body/Chaos 29, Body/Order 29. Body/Mind has exactly one legend (VEN-149 Defender of Tomorrow).",
+          "The free 2 Power per turn is why the floor costs 1 Energy: 164.2.b ('Recycle this: [Reaction] — Add [C]') carries no exhaust, so a rune already spent for Energy still pays, and 315.3.b / 430.4.a channel 2 back before the next Main Phase. A SECOND P2 card in the same turn is paid with runes that do not come back, so the sustainable rate is one guaranteed draw per turn plus whatever the deck's own curve already spends Power on.",
+          "It is an engine per TURN, not per pass (#63). Inside a loop, 2 Power at the ~9-Energy-per-Power rate is worse than Renata Mastermind's '1 Energy + 1 Mind Power: Draw 1', and none of the five cards of the lux-infinite-energy pass (OGN-085, UNL-165, UNL-173, OGN-212, OGN-110) has a printed Power cost of 2, so it never fires there. #59's wall also applies: with the Main Deck empty an unpaid extra draw is a Burn Out (431.1.a) and a point for the opponent (194.1.d)."
+        ]
+      },
+      "steps": [
+        "Land Yordle Explorer (E4). 143.4 enters him exhausted, but the trigger needs no exhaust, so it is live from the moment he is on the board.",
+        "Recycle two runes for 2 Power (164.2.b, no exhaust in the cost) and play Punch First for 1 Energy: draw 1, and give a unit +5 Might this turn for free.",
+        "315.3.b channels the two runes back in the next Channel Phase, so the deck is where it started.",
+        "Every other card the deck plays with a printed Power cost of 2 or more draws as well — 22 to 29 of them are in domain depending on the legend."
+      ],
+      "netPerIteration": "-1 Energy and the turn's two free Power for +1 card; every further printed-P2 card the deck plays draws on top.",
+      "terminatesIn": "engine only — one guaranteed extra card per turn for 1 Energy, plus one per printed-2-Power card the deck was playing anyway; nothing here scores",
+      "sources": [
+        {
+          "title": "Hunt rc-huntP — the \"this turn\" counter lens (issue #98)",
+          "kind": "agent",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-this-turn-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-this-turn-lens.md). REWRITTEN from issue #98's candidate C2, whose fuel count ('82 cards with printed Power >= 2; 18 legal in Body') is not a well-formed number: measured over data/cards.json one row per base code it is 83 cards, and 'legal in Body' is a subset test against the legend's TWO domains (103.1.b), so the honest figure is the five per-pair counts in the notable, whose floor is 22. Punch First was promoted from an example to a declared ingredient because the anchor alone produces nothing. The refutation the issue wrote against itself is kept verbatim in the last notable, because it is correct."
+    },
+    {
+      "id": "brynhir-lockout-window",
+      "name": "Brynhir Thundersong — one contestable window, then no cards from the opponent for the rest of your turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-026",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "E6 M5, Fury. When you play me, opponents can't play cards this turn."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Any legend whose domains include Fury. Brynhir is mono-Fury, so she fits every Fury pair."
+        ],
+        "notable": [
+          "It never covers your own Hold, and that is a phase-order fact, not an opinion: 315.1 Awaken, 315.2 Beginning Phase (the Hold is 315.2.b.2), 315.3 Channel, 315.4 Draw, then 316 Main Phase. Brynhir is a unit without [Reaction], so she is played after the Hold has already resolved. Every ALT_WIN and the seven Hold BURSTs of the catalogue are out of reach.",
+          "What she DOES escort is the Conquer half of the catalogue, which happens in the Main Phase: five of the twelve BURSTs score on a Conquer — tryndamere-brambleback-conquer (mono-Fury, no needs), brambleback-trinity-skyfall-conquer, dragonstorm-brambleback-trinity-conquer ('10 points in one Conquer, which is the game'), skyfall-ahri-conquer and nasus-ascended-brambleback-conquer — and all five carry Fury among their card domains, so Brynhir is in domain for every one of them.",
+          "One window survives, and it is her own. 312.2.c/d give the opponent priority while her trigger sits on the Chain, so a [Reaction] can answer Brynhir before the lock lands. Played FIRST, that is the whole exposure of the turn: they must spend their answer on a 6-Energy body instead of on the combo. One contestable window instead of one per chain item is the honest claim; 'the opponent cannot interact' is not.",
+          "Four things leak through the word 'cards'. Activated abilities: 338.1.a enumerates 'Play a Card or Activated Ability' separately. [Deflect] payments: 356.2.a.2 makes that cost a Mandatory Additional Cost, not the playing of a card. Tokens: 350.2, 'Tokens are not cards, but can still be Played'. Hiding: 811.1.c.1, 'Hide is not a subset of Play' — the opponent may still hide a card, they simply cannot play the one already hidden. And 052 keeps runes, legends and battlefields out of the word, so channelling is untouched.",
+          "6 Energy out of the burst turn's budget. If the opponent held no [Reaction], that is 6 Energy for nothing — which is why the four Conquer BURSTs that carry no 'needs' are the ones worth escorting."
+        ]
+      },
+      "steps": [
+        "In your Main Phase, before committing anything to the burst, play Brynhir for 6 Energy.",
+        "Her trigger goes on the Chain and 312.2.c/d hand the opponent priority: this is their one window, and it is aimed at a 6-Energy body rather than at the combo.",
+        "The trigger resolves. For the rest of the turn opponents play no cards — no [Reaction], no counter, no card from [Hidden].",
+        "Run the Conquer burst inside the lock."
+      ],
+      "terminatesIn": "engine only — one turn in which opponents play no cards after the lock resolves; it scores nothing by itself and does not reach your own Hold",
+      "sources": [
+        {
+          "title": "Hunt rc-huntP — the \"this turn\" counter lens (issue #98)",
+          "kind": "agent",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-this-turn-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-this-turn-lens.md). SEPARATE ENTRY BY DECISION: jhin-virtuoso-ekko-malzahar-vi already names Brynhir in its prerequisites.notable, but putting her in that entry's uses[] would make the matcher demand a card the loop does not need to run, so the escort is its own ENGINE and the INFINITE was left untouched (no quantity of any existing entry changed). OVERTURNS ISSUE #100 §325, which orders this card 'documentada como refutada, no como candidata' on two grounds. Ground (a) — 'it never covers your Hold, and all the ALT_WINs and THE TWO Hold BURSTs resolve there' — is right about Holds and wrong about the census: of the twelve BURSTs, seven score on a Hold and FIVE score on a Conquer, in the Main Phase, where Brynhir does reach, and all five carry Fury. Ground (b) — the opponent can answer her own trigger under 312.2.c/d — is correct as rules and is a limitation, not a refutation: it turns N contestable windows into one, taken before anything is committed. Both objections are written into the notables above so the denial-lens walk does not re-litigate them. produces is empty because the catalogue has no feature name for 'a turn the opponent cannot answer' and data/features.json was not this session's file; 49 entries already ship with an empty produces."
     }
   ]
 }
