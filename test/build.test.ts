@@ -131,3 +131,23 @@ Main Deck
     expect(r.detail).toContain("002");
   });
 });
+
+describe("103.3.a — twelve runes inside the identity", () => {
+  it("passes on 6 + 6 in the legend's two domains", () => {
+    const r = row(rows(LEGAL), "103.3.a");
+    expect(r.status).toBe("pass");
+    expect(r.detail).toContain("12");
+  });
+
+  it("fails on eleven and says how many there are", () => {
+    const r = row(rows(LEGAL.replace("6 Order Rune", "5 Order Rune")), "103.3.a");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toContain("11");
+  });
+
+  it("fails a rune outside the legend's domains and names it", () => {
+    const r = row(rows(LEGAL.replace("6 Order Rune", "5 Order Rune\n1 Fury Rune")), "103.3.a");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toContain("Fury Rune");
+  });
+});

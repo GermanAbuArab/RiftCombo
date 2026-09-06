@@ -6,7 +6,7 @@
 // Pure: no DOM, no network, so it is tested the way planDeck and checkSave are.
 
 import type { CardIndex } from "./cards.js";
-import type { Deck, Format } from "./types.js";
+import type { Deck, Domain, Format } from "./types.js";
 
 /**
  * "pass" and "fail" are computed. "unknown" is a rule we can state but not check from Riot's card data —
@@ -34,7 +34,7 @@ export interface BuildReport {
 const total = (bag: Record<string, number>) => Object.values(bag).reduce((a, b) => a + b, 0);
 
 export function checkBuild(deck: Deck, cards: CardIndex, _format: Format): BuildReport {
-  const rules: BuildRule[] = [legendRule(deck, cards), sizeRule(deck), copiesRule(deck, cards)];
+  const rules: BuildRule[] = [legendRule(deck, cards), sizeRule(deck), copiesRule(deck, cards), runeRule(deck, cards)];
   return { rules, legal: rules.every((r) => r.status !== "fail") };
 }
 
@@ -102,4 +102,35 @@ function copiesRule(deck: Deck, cards: CardIndex): BuildRule {
       ? `No name over three, and ${exempt.map((x) => `${x.count}× ${x.name}`).join(" · ")} is past it only because its own text says so (002).`
       : "No name appears more than three times.",
   };
+}
+
+/**
+ * 103.1.b.3 and 103.1.b.4 both speak of the domains a card indicates, so a card indicating none — every
+ * one of the 66 battlefield printings in the pool — is inside every identity. With no legend there is no
+ * identity to break, which is a different answer from "it is broken".
+ */
+function identityOf(deck: Deck, cards: CardIndex): ((base: string) => boolean) | null {
+  if (!deck.legend) return null;
+  const identity = new Set<Domain>(cards.domainsOf(deck.legend));
+  return (base) => cards.domainsOf(base).every((d) => identity.has(d));
+}
+
+const RUNE_COUNT = 12;
+
+/**
+ * One row for 103.3.a and 103.3.a.1. The identity half is reported first: when both are wrong, "your Fury
+ * Rune is not in a Mind + Order deck" is the more useful of the two answers.
+ */
+function runeRule(deck: Deck, cards: CardIndex): BuildRule {
+  const base = { rule: "103.3.a · 103.3.a.1", label: "12 runes in the identity" };
+  const inIdentity = identityOf(deck, cards);
+  const off = inIdentity
+    ? Object.keys(deck.runes).filter((b) => !inIdentity(b)).map((b) => cards.get(b)?.name ?? b)
+    : [];
+  if (off.length) {
+    return { ...base, status: "fail", detail: `${off.join(", ")} ${off.length === 1 ? "is" : "are"} outside the legend's domains (103.3.a.1).` };
+  }
+  const n = total(deck.runes);
+  if (n !== RUNE_COUNT) return { ...base, status: "fail", detail: `${n} rune${n === 1 ? "" : "s"} — the Rune Deck is 12.` };
+  return { ...base, status: "pass", detail: "12 runes, all inside the legend's domains." };
 }
