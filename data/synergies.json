@@ -58,7 +58,7 @@
         "excludes": [
           {
             "card": "OGN-252",
-            "why": "returns itself from the trash to your hand; the second trigger has nothing left in the trash to return."
+            "why": "the extra instance lands on the copy that has just left the trash and finds it already in your hand. 385.2 does give every copy sitting in the trash its own trigger — three copies answer one conquer three times, each with its own discard — but that is three copies working, not Red Brambleback doubling one."
           },
           {
             "card": "OGN-287",
@@ -1484,6 +1484,369 @@
       "status": "rule-verified",
       "reviewed": "2026-09-06",
       "reviewedCount": 16
+    },
+    {
+      "id": "blade-dancer-buff-is-choosing",
+      "name": "Blade Dancer readies whatever a buff chooses",
+      "anchor": "SFD-195",
+      "partner": {
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)",
+        "excludes": [
+          {
+            "card": "OGN-146",
+            "why": "\"Ready a unit\" — the fragment caught is \"spend a buff as an additional cost\". Wallop places no buff, so 702.2.a's choose never happens; it also readies, which is the job Blade Dancer is here to do."
+          },
+          {
+            "card": "OGN-207",
+            "why": "same sentence as Wallop — it SPENDS a buff, it does not place one. Its \"Give a unit +3 Might\" does choose under 355.7, but that is a different fact than the one this rule stands on."
+          },
+          {
+            "card": "OGN-152",
+            "why": "\"When you buff a friendly unit, you may pay Body Power and exhaust this to ready it\" — it reacts to a buff instead of placing one, and it readies the same unit Blade Dancer would."
+          },
+          {
+            "card": "SFD-047",
+            "why": "\"When you buff me, ready me\" — the same shape: a second payoff for somebody else's buff, competing with Blade Dancer for it rather than feeding her."
+          }
+        ]
+      },
+      "why": "702.2.a — \"To Buff a Unit, a player CHOOSES a Unit and then places a buff on it.\" — so every buff in this list is a choose of a friendly unit, and Blade Dancer's \"When you choose a friendly unit, you may exhaust me and pay [A] to ready it\" fires on all of them. A mass buffer is several chooses off one card: Peak Guardian buffs every friendly unit at its battlefield, Fae Dragon up to four, Overt Operation all of them, Kinkou Monk two. Two limits the list cannot show. Her cost is exhausting herself, so it is one ready per turn unless something readies her — her own second line does, \"When you conquer, you may pay 1 Energy to ready me\". And 702.3.a means a buff aimed at a unit that already has one \"is not placed instead\"; the choose still happened, but a mass buffer run twice into the same board buys nothing new. Blade Dancer is Calm/Chaos and most of the mass buffers here are Body and Order, so 103.1.b keeps them apart in a real deck — the pairs this rule reaches under her are the Calm ones.",
+      "basis": {
+        "rules": [
+          "702.2.a",
+          "702.3",
+          "702.3.a",
+          "355.7",
+          "703",
+          "415.1"
+        ],
+        "combos": [
+          "blade-dancer-caitlyn-choose-ready"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 33
+    },
+    {
+      "id": "irelia-fervent-buff-is-choosing",
+      "name": "Irelia, Fervent grows every time a buff picks her",
+      "anchor": "SFD-057",
+      "partner": {
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|up to|your)",
+        "excludes": [
+          {
+            "card": "OGN-146",
+            "why": "\"Ready a unit\" — caught by \"spend a buff as an additional cost\". It places no buff at all."
+          },
+          {
+            "card": "OGN-207",
+            "why": "spends a buff instead of placing one, same sentence as Wallop."
+          },
+          {
+            "card": "OGN-152",
+            "why": "reacts to a buff by readying the unit; it places none of its own."
+          },
+          {
+            "card": "SFD-091",
+            "why": "its own text buffs only itself — the fragment caught is the reminder \"To buff a unit, give it a +1 Might buff\", a nested quote, not an instruction that can pick Irelia."
+          },
+          {
+            "card": "UNL-102",
+            "why": "\"Spend 2 XP: [Buff] me\" — it can only ever choose itself, so it never reaches Irelia."
+          },
+          {
+            "card": "UNL-162",
+            "why": "\"Spend 2 XP: [Buff] me\" — same, a self-buff that cannot pick another unit."
+          }
+        ]
+      },
+      "why": "\"When you choose or ready me, give me +1 Might this turn\" and 702.2.a make a buff a choose, so each of these adds +1 Might on top of the buff's own +1 (703) — a buff aimed at Irelia is worth 2 Might the turn it lands. The predicate drops every \"buff me\" card on purpose: a card that can only buff itself never chooses Irelia. Two rows carry a condition the list cannot show — Arena Bar buffs an EXHAUSTED friendly unit, and Navori Fighting Pit buffs a unit HERE, so Irelia has to be standing at it. And 702.3 caps her at one buff at a time, so the repeatable half of this is the +1 Might this turn, not a stack of counters. Her [Deflect] charges an opponent a rainbow to choose her, which does not touch your own buffs.",
+      "basis": {
+        "rules": [
+          "702.2.a",
+          "702.3",
+          "703",
+          "355.7",
+          "415.1"
+        ],
+        "combos": [
+          "blade-dancer-caitlyn-choose-ready"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 21
+    },
+    {
+      "id": "jae-medarda-chosen-by-spell",
+      "name": "Jae Medarda draws a card every time a spell picks him",
+      "anchor": "SFD-142",
+      "partner": {
+        "textMatches": "[Cc]hoose a friendly unit|[Gg]ive (a|an|another|two|your|up to)[^.]{0,45}\\+\\d+ :rb_might:|\\[Buff\\]|[Bb]uff (a|all|another|up to|your)",
+        "types": [
+          "spell"
+        ],
+        "excludes": [
+          {
+            "card": "SFD-182",
+            "why": "\"Give your Mechs +1 Might this turn\" — Jae Medarda is tagged Noxus, not Mech, so this spell can never choose him."
+          },
+          {
+            "card": "UNL-165",
+            "why": "\"Choose a friendly unit without [Temporary]. Give it [Temporary]\" — it does choose him, and then kills him at the start of your next Beginning Phase (816.1.b). Trading a 5-Might body for one card is a drawback, not a pairing."
+          }
+        ]
+      },
+      "why": "\"When you choose me with a spell, draw 1\" — and 355.7 makes choosing a specific Game Object a target, so every spell in this list that can be pointed at a friendly unit pays a card for being pointed at Jae. Only spells are here, because his trigger names one; an ability that buffs him is worth nothing. Three shapes make the list: an explicit \"Choose a friendly unit\", a \"+N Might\" (which chooses under 355.7 even when the card never says the word), and a buff (702.2.a). Wallop is in the list on the strength of a fragment about spending a buff, and it belongs anyway — its \"Ready a unit\" chooses him too. The rows that damage what they choose (Challenge, Rampage, Gentlemen's Duel, Stormbringer) are kept because they are ordinary plays with a real choose, and the card they draw is the point; the two rows that only harm what they pick are excluded above.",
+      "basis": {
+        "rules": [
+          "355.7",
+          "355.8",
+          "702.2.a",
+          "703"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 34
+    },
+    {
+      "id": "renekton-brute-relative-might-gate",
+      "name": "Renekton, Brute buys a relative Might gate at 1 Energy per point",
+      "anchor": "VEN-092",
+      "partner": {
+        "textMatches": "less Might than",
+        "excludes": [
+          {
+            "card": "UNL-105",
+            "why": "\"an enemy unit here with less Might than ME\" — the threshold is Imposing Challenger's own Might, and Renekton's ability only pumps Renekton."
+          },
+          {
+            "card": "VEN-136",
+            "why": "\"kill an enemy unit here with less Might than ME\" — same, the gate reads Ambessa's Might, not a unit you choose."
+          },
+          {
+            "card": "SFD-173",
+            "why": "\"if it has less Might than ME\" — Soraka's shield is measured against Soraka, so pumping Renekton widens nothing."
+          },
+          {
+            "card": "UNL-057",
+            "why": "\"Your units here with less Might than ME can't be chosen\" — Alpha Wildclaw's own Might is the bar."
+          },
+          {
+            "card": "UNL-060",
+            "why": "\"Enemy units here with less Might than ME don't deal combat damage\" — Vilemaw's own Might is the bar."
+          }
+        ]
+      },
+      "why": "Renekton prints \":rb_energy_1:: Give me +1 Might this turn\" with NO exhaust in the cost and no cap, so he converts Energy into Might one for one, as many times as you can pay. Two cards in the pool set their threshold against a unit YOU CHOOSE rather than against their own body, and those are the two this buys: Public Execution (\"Choose a friendly unit. Kill an enemy unit with less Might than it\") reaches a unit at the enemy BASE, which nothing else in the catalogue does, and Stare Down moves the whole garrison home for E2 and 1 XP. Against a 6-Might body Renekton needs 7, which is 3 activations: 3 Energy plus the spell. 477.3.e.1.a applies increases first, so the pump is in place when the spell reads — but 477.3.e.2.a applies decreases LAST, so a −Might played in response still wins the race and drops the gate under the target. The five rows excluded above measure against their own Might and are the other half of #97's inventory of 22 gates; the fixed thresholds are bought from the other side, by [[moonlight-affliction-might-gate]].",
+      "basis": {
+        "rules": [
+          "477.3.e.1.a",
+          "477.3.e.2.a",
+          "355.7",
+          "355.8",
+          "143.2.b"
+        ],
+        "combos": [
+          "renekton-dominus-double-conquer"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 2
+    },
+    {
+      "id": "moonlight-affliction-might-gate",
+      "name": "Moonlight Affliction collapses a fixed Might gate",
+      "anchor": "UNL-066",
+      "partner": {
+        "textMatches": "\\d :rb_might: or less|total Might (of )?\\d+ or less"
+      },
+      "why": "Sixteen cards in the pool price removal by a Might threshold — kill, banish, return to hand, take control, move, or empty a garrison, all gated on \"N Might or less\" — and Moonlight Affliction is the largest reduction printed anywhere: \"[Reaction] Give a unit -10 Might this turn\", with no floor. 143.2.b is what makes it a key rather than an overpayment: \"If a unit's Might is ever less than 0, it is treated as 0 WHEN REFERENCED BY SPELLS AND ABILITIES\", so a body at -2 reads as 0 and contributes 0 to the four rows that gate on a TOTAL (Fox-Fire's 4, Decree of Discord's 5, Tricksy Tentacles' 8, Corrupted Dragon's per-unit 5). 143.2.b.1 is the other half: \"it is not 0\", so an opponent undoing it has to climb from the real number. Two limits the list cannot show. 477.3.b snapshots any \"to a minimum of 1\" clause at the moment it applies, so the nine Origins reductions do not stack with each other — Moonlight Affliction carries no floor, which is why it is the anchor. And 477.3.e.2.a applies decreases LAST, so the reduction always lands after the opponent's pump, whatever order the two were played in.",
+      "basis": {
+        "rules": [
+          "143.2.b",
+          "143.2.b.1",
+          "477.3.b",
+          "477.3.e.2.a"
+        ],
+        "combos": [
+          "corrupted-dragon-mass-evacuate",
+          "faefolk-challenger-forced-attacker"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 16
+    },
+    {
+      "id": "pit-crew-gear-ready",
+      "name": "Pit Crew turns every gear you play into another Standard Move",
+      "anchor": "OGN-091",
+      "partner": {
+        "textMatches": "[\\s\\S]",
+        "types": [
+          "gear"
+        ]
+      },
+      "why": "\"When you play a gear, ready me\" is the pool's only free, uncapped ready with no cost of its own, and every gear in the list triggers it — there is nothing to read in the text, so the predicate is the card type. What the ready buys is a Standard Move: 420.3.a makes the cost of a move \"Exhausting one or more Units\", so an exhausted Pit Crew cannot move again until something readies it, and 415.1 is that ready. Pit Crew has no exhaust ability of its own, which is why the 2026-09-02 hunt refuted it as an engine — the ready is worth exactly one more move, and 144.4 leaves a body without [Ganking] only the round trip to its base. The gear that fixes that is itself a gear: Boots of Swiftness grants [Ganking] (144.4.c.1), and then each gear played is another battlefield-to-battlefield move, which is how a deck scores both battlefields in one turn and takes the Final Point (470, 471.1.b.1). Gold and other gear TOKENS trigger it too and are not in this list on purpose: 350.2 says \"Tokens are not cards, but can still be Played\", so they fire \"when you play a gear\" while never appearing in a decklist — and by 185 they would never fire a [Legion] or a \"played a card\" clause.",
+      "basis": {
+        "rules": [
+          "383.4.a",
+          "415.1",
+          "420.3.a",
+          "144.4",
+          "144.4.c.1",
+          "350.2",
+          "185",
+          "470",
+          "471.1.b.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 106
+    },
+    {
+      "id": "shurelyas-requiem-ganking-second-move",
+      "name": "Shurelya's Requiem readies your units and hands out the [Ganking] itself",
+      "anchor": "SFD-192",
+      "partner": {
+        "textMatches": "Ganking"
+      },
+      "why": "The fourth anchor of the [Ganking]-plus-ready family, and the only card that is both halves at once: \"When you play this, ready your units\" and \"[Effect] Your units here have [Ganking]\". `grep -i \"ready your units\"` over the corpus returns exactly two cards, this and On the Hunt, and only this one also grants the keyword. 810.1.c.3 is why the ready is what matters — [Ganking] \"does not give additional abilities or activations of Movement, only new options for the Standard Move\" — and 144.4.c.1 is the option itself, battlefield to battlefield. Two limits. The ready is \"When you play this\", not the [Equip], so Yone's and Ornn's [Weaponmaster] re-attach does not fire it again: attaching is not playing. And the [Ganking] it grants is \"here\", so it pays for the trip out and not for the trip back — the same caveat the other three anchors carry for Windswept Hillock. It is [Unique] (103.2.e), so a deck holds one, and Calm/Mind, an identity none of Twilight Reveler (Fury), On the Hunt (Body/Chaos) or Acceleration Gate (Mind/Body) can be played under.",
+      "basis": {
+        "rules": [
+          "144.4.c.1",
+          "348.2.a.1",
+          "415.1",
+          "420.3.a",
+          "470",
+          "471.1.b.1",
+          "810.1.c.3"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 36
+    },
+    {
+      "id": "yordle-explorer-power-two",
+      "name": "Yordle Explorer draws off every card with two Power printed",
+      "anchor": "SFD-100",
+      "partner": {
+        "textMatches": "[\\s\\S]",
+        "minPower": 2
+      },
+      "why": "\"When you play a card with Power cost [A][A] or more, draw 1\" — 82 cards in the pool print two or more Power, and this is the whole list. 206 is what makes it safe to read off the printed cost: \"Effects that need to determine a card's cost for any purpose always use its PRINTED or copied cost, even if that cost is increased, decreased, or IGNORED as the card is played\", and its own worked example is this exact clause on Lux, Illuminated. So a card played from [Hidden] for nothing (811.1.b: \"you may play this, ignoring its base cost\") still draws, and so does one discounted to zero. The trigger says CARD, which is the line worth knowing: 350.2 lets a token be played, and 185 says \"Tokens are not cards\", so no token ever draws here however much Power the thing it imitates prints. It counts an opponent's plays too — the clause is \"when you play\", so it does not.",
+      "basis": {
+        "rules": [
+          "206",
+          "185",
+          "350.2",
+          "811.1.b"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 82
+    },
+    {
+      "id": "lady-of-luminosity-expensive-spells",
+      "name": "Lady of Luminosity draws off every spell with five Energy printed",
+      "anchor": "OGS-021",
+      "partner": {
+        "textMatches": "[\\s\\S]",
+        "types": [
+          "spell"
+        ],
+        "minEnergy": 5
+      },
+      "why": "\"When you play a spell that costs 5 Energy or more, draw 1\", and 37 spells in the pool print that much. 206 settles which number is read — the PRINTED cost, \"even if that cost is increased, decreased, or ignored as the card is played\" — and the rule's worked example is this family: Sky Splitter costs 8 and reduces its own Energy by the highest Might you control, and it triggers Lux \"regardless of how much was actually paid\". Every discount in the list works the same way: Concentrate at [Level 6], Master Yi's level lines, Rhasa's own trash discount. So does [Hidden] — Hostile Takeover played face down costs 0 (811.1.b) and still counts as its printed 5. The one wording that does NOT work this way is \"if you spent N or more\", which reads what actually left the Rune Pool; nothing in this list is that clause. Lux, Illuminated (OGS-006) prints the same trigger for +3 Might instead of a card, on the same 37 spells.",
+      "basis": {
+        "rules": [
+          "206",
+          "811.1.b"
+        ],
+        "combos": [
+          "lady-luminosity-loop-comet"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 37
+    },
+    {
+      "id": "get-excited-expensive-discard",
+      "name": "Get Excited! turns an expensive card in hand into that much damage",
+      "anchor": "OGN-008",
+      "partner": {
+        "textMatches": "[\\s\\S]",
+        "minEnergy": 7
+      },
+      "why": "\"Discard 1. Deal its Energy cost as damage to a unit at a battlefield. (Ignore its Power cost.)\" — the payoff IS the discarded card's cost, so the rule is a price list and the floor is where the price starts being worth a card. It is set at 7 because 7 damage kills 479 of the pool's 521 units: only 42 print 7 Might or more. 206 reads the PRINTED cost, so the best fuel is a card whose real cost is nothing like its printed one — Rhasa the Sunderer prints 10 and costs 1 less per card in your trash, Plaza Guardian prints 8 and Master Yi, Unstoppable 12. Two things the list cannot show. Get Excited! is E2 P1 Fury and 103.1.b caps the deck at the legend's two domains, so the fuel that is actually reachable is the Fury half plus one; and 422.1 makes discarding move the card \"from a player's hand DIRECTLY into their trash\", so every card spent here is still there for a trash payoff afterwards, which is the other half of the same lens ([[rhasa-trash-counter]]).",
+      "basis": {
+        "rules": [
+          "206",
+          "422.1",
+          "422.1.b"
+        ],
+        "combos": [
+          "bloodharbor-bewitching-discard"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 67
+    },
+    {
+      "id": "rhasa-trash-counter",
+      "name": "Rhasa the Sunderer gets cheaper for everything you throw away",
+      "anchor": "OGN-195",
+      "partner": {
+        "textMatches": "\\[Burn \\d\\]|[Dd]iscard \\d|into your trash",
+        "excludes": [
+          {
+            "card": "VEN-114",
+            "why": "\"choose an OPPONENT. They [Burn 3]\" — it can only ever fill somebody else's trash, and Rhasa counts YOUR trash."
+          },
+          {
+            "card": "VEN-002",
+            "why": "\"The first time I move each turn, choose a player. They [Burn 1]\" — aimed at an opponent's deck; feeding your own trash with it means choosing yourself for one card a turn."
+          },
+          {
+            "card": "UNL-121",
+            "why": "\"choose a player. They discard 1\" — same shape: a card written to strip an opponent's hand, not to fill your trash."
+          },
+          {
+            "card": "VEN-022",
+            "why": "\"banish your hand and trash, then [Burn 7] ... If a card would go to your trash from anywhere other than your Main Deck, banish it instead\" — it empties the very counter Rhasa reads and keeps it empty. Anti-synergic, not synergic."
+          },
+          {
+            "card": "OGN-252",
+            "why": "\"you may discard 1 to return this from your trash to your hand\" — one card in, one card out; the net effect on Rhasa's count is zero."
+          }
+        ]
+      },
+      "why": "\"I cost 1 Energy less for each card in your trash\", printed at 10 Energy and 1 Power — the pool's most expensive unit and the one card that reads the trash as a resource from the paying end. 29 cards fill it, in three shapes: a discard (422.1, \"moving it from a player's hand DIRECTLY into their trash\"), a [Burn N] or any \"put cards from your Main Deck into your trash\" (431.1.b), and a look-and-keep that trashes the rest. Two facts worth carrying. The count is read when the cost is determined, so the filling has to happen first in the same turn — a discard-then-draw like Lunar Boon or Traveling Merchant is free fuel because the card comes straight back. And a Burn Out UNDOES the whole thing: 431.2.b recycles your trash into your Main Deck when you draw past the end of it, so the counter resets to zero at the exact moment a deck that has been burning itself all game runs out. This is the mirror of [[shadow-temple-trash-fuel]], which anchors on a filler and pairs it with the cards that spend the trash.",
+      "basis": {
+        "rules": [
+          "422.1",
+          "431.1.b",
+          "431.2.b",
+          "416.1.a"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 29
     }
   ]
 }
