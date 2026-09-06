@@ -374,13 +374,17 @@
           "title": "Riot Games — July Ban List Updates: \"the potential to create infinite Recruits as early as turn three\"",
           "kind": "riot",
           "url": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/",
-          "date": "2026-07-24"
+          "date": "2026-07-24",
+          "quote": "This has the potential to create infinite Recruits as early as turn three with only small windows for interaction.",
+          "accessed": "2026-09-06"
         },
         {
           "title": "Piltover Archive — Vendetta rules update coverage",
           "kind": "article",
           "url": "https://piltoverarchive.com/news/vendetta-rules-update",
-          "date": "2026-07-17"
+          "date": "2026-07-17",
+          "quote": "Stealthy Pursuer from Origins has been banned due to its infinite combo with Eye of the Herald and Renata Glasc Industrialist. The combo was highlighted well before Vendetta’s release, with Riot earmarking it for a ban earlier in the month.",
+          "accessed": "2026-09-06"
         },
         {
           "title": "Reddit r/riftboundtcg — \"Pre-Rift Event Infinite\" (the earliest written statement of this loop)",
@@ -2137,7 +2141,9 @@
           "title": "RiftJudge Q10155 — Blue Sentinel multiplies its own hold trigger (fan judge database, not official)",
           "kind": "article",
           "url": "https://app.riftjudge.com/questions/10155",
-          "date": "2026-05-08"
+          "date": "2026-05-08",
+          "quote": "Ruling: Yes. Blue Sentinel's passive ability states \"Your hold effects for holding here trigger an additional time.\" Since the card text does not specify \"other\" hold effects, it applies to the Sentinel's own \"When I hold, [Add] [A] at the start of your next Main Phase\" ability. When you hold the battlefield with Blue Sentinel, you will add 2 Power total at the start of your next Main Phase.",
+          "accessed": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -3564,7 +3570,9 @@
           "title": "Cards Realm, \"Riftbound: Deck Tech - Renata Combo\", Gabriel 'total' da Rosa, 2026-03-12",
           "kind": "article",
           "url": "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-tech-renata-combo",
-          "date": "2026-03-12"
+          "date": "2026-03-12",
+          "quote": "To play Time Warp twice in a row, you must have 12 runes, at least 1 Gold Gear Tokens in your base, an Ekko - Recurrent in play, and a Hidden Blade or Deathgrip in your hand.",
+          "accessed": "2026-09-06"
         },
         {
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
@@ -3635,7 +3643,9 @@
           "title": "Tencent News, 「从苏州到悉尼：破限为符文战场带来了什么？」, saralolita, 2026-05-18 — Aurora decks at the Suzhou and Sydney regional opens, one player facing five in seven Swiss rounds",
           "kind": "article",
           "url": "https://news.qq.com/rain/a/20260518A00O1S00",
-          "date": "2026-05-18"
+          "date": "2026-05-18",
+          "quote": "在苏州站和悉尼站的比赛中，我们看到了很多极光卡组的出现，甚至有玩家在瑞士轮首日的7轮比赛中遇到5个极光卡组。",
+          "accessed": "2026-09-06"
         },
         {
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
@@ -3720,19 +3730,22 @@
           "title": "Reddit r/riftboundtcg — \"Infinites (All Current Ones) - Tokens, Energy, & Power\", badfeelingabout_this, flowcharts + 36 comments",
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1ryj4fw/",
-          "date": "2026-03-20"
+          "date": "2026-03-20",
+          "note": "REDDIT CLOSED (2026-09-06): old.reddit.com now answers a \"Prove your humanity\" CAPTCHA / login wall to this session on every route tried (plain curl, r.jina.ai, headless and headed Playwright with cookies). Per CLAUDE.md this URL cannot be opened from this machine; content is unverified and kept only as a lead. accessed left absent."
         },
         {
           "title": "Reddit r/riftboundtcg — \"Rek'Sai (red/yellow) Infinite unleashed!\", Shagric — played out on TCG Arena, 83 comments",
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1s2defo/",
-          "date": "2026-03-24"
+          "date": "2026-03-24",
+          "note": "REDDIT CLOSED (2026-09-06): old.reddit.com now answers a \"Prove your humanity\" CAPTCHA / login wall to this session on every route tried (plain curl, r.jina.ai, headless and headed Playwright with cookies). Per CLAUDE.md this URL cannot be opened from this machine; content is unverified and kept only as a lead. accessed left absent."
         },
         {
           "title": "Reddit r/riftboundtcg — \"$20 Dollar Infinite Recruit Decklist - Rek'Sai\", sahkuh",
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1tlk9n3/",
-          "date": "2026-05-23"
+          "date": "2026-05-23",
+          "note": "REDDIT CLOSED (2026-09-06): old.reddit.com now answers a \"Prove your humanity\" CAPTCHA / login wall to this session on every route tried (plain curl, r.jina.ai, headless and headed Playwright with cookies). Per CLAUDE.md this URL cannot be opened from this machine; content is unverified and kept only as a lead. accessed left absent."
         },
         {
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
@@ -3841,7 +3854,8 @@
           "title": "Reddit r/riftboundtcg — \"Bring this incredible 7 card combo to your next nexus nights\" (Spin 2 Win flowchart), Pandorassong — 333 points, 93 comments, rules objections answered in-thread",
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1r7wh0p/",
-          "date": "2026-02-18"
+          "date": "2026-02-18",
+          "note": "REDDIT CLOSED (2026-09-06): old.reddit.com now answers a \"Prove your humanity\" CAPTCHA / login wall to this session on every route tried (plain curl, r.jina.ai, headless and headed Playwright with cookies). Per CLAUDE.md this URL cannot be opened from this machine; content is unverified and kept only as a lead. accessed left absent."
         },
         {
           "title": "Rift Mana — \"Infinite Combo\", Viktor Herald of the Arcane by SpicyMcChicken (published 2026-02-19, 1186 views)",
@@ -3957,19 +3971,23 @@
           "title": "Reddit r/riftboundtcg — \"The Jhinpendium - Embrace Jhinfinity: A Primer for the Jhin - Virtuoso Ekko Combo\", Enhame_",
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1uv0brd/",
-          "date": "2026-07-13"
+          "date": "2026-07-13",
+          "note": "REDDIT CLOSED (2026-09-06): old.reddit.com now answers a \"Prove your humanity\" CAPTCHA / login wall to this session on every route tried (plain curl, r.jina.ai, headless and headed Playwright with cookies). Per CLAUDE.md this URL cannot be opened from this machine; content is unverified and kept only as a lead. accessed left absent."
         },
         {
           "title": "Google Doc primer \"Jhin-Virtuoso/Ekko Infinite Combo Summary\" (Enhame_), cycles and costs quoted from the plain-text export",
           "kind": "article",
           "url": "https://docs.google.com/document/d/187Ri03Zjvu7j6R2daiqPjgqJQK8FH_KLqcUgbuYv-k0/edit",
-          "date": "2026-07-13"
+          "date": "2026-07-13",
+          "quote": "With 11 runes in play and “Draw 2” spells, you can play through the “Draw 2” Cycle from the Core Loop section. Each cycle nets +1P, -1 “Draw 2”, and +1 card banished under Virtuoso. The goal from this point is to use “Draw 2” spells as fodder for Virtuoso triggers. Once you are able to trigger the buyout on Virtuoso, activate Vi to recycle a Progress Day from your trash. The Virtuoso trigger will restore you to 12 runes and draw the Progress Day out of your deck. Now, you are at the starting point of the Progress Day Cycle with 12 runes and can proceed to infinite.",
+          "accessed": "2026-09-06"
         },
         {
           "title": "riftbound.gg deck \"The Jhinpendium – Infinite Ekko Combo (Primer)\"",
           "kind": "article",
           "url": "https://riftbound.gg/decks/the-jhinpendium-infinite-ekko-combo-primer/",
-          "date": "2026-07-13"
+          "date": "2026-07-13",
+          "note": "UNREACHABLE (2026-09-06): riftbound.gg's /decks/<slug> pages sit behind a Cloudflare challenge (curl and WebFetch both get HTTP 403 with a cf_chl_opt redirect payload, matching CLAUDE.md's own record of this route). The same deck list is readable via api.dotgg.gg, but that API does not carry this page's prose, so the citation stays unread. accessed left absent."
         },
         {
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
@@ -4110,19 +4128,23 @@
           "title": "Reddit r/riftboundtcg — \"Explanation for Ancient Henge infinite power combo\", verylaggy — RQ Sydney Round 1 stream, Voli-Dragon vs Irelia",
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1tefqto/",
-          "date": "2026-05-16"
+          "date": "2026-05-16",
+          "note": "REDDIT CLOSED (2026-09-06): old.reddit.com now answers a \"Prove your humanity\" CAPTCHA / login wall to this session on every route tried (plain curl, r.jina.ai, headless and headed Playwright with cookies). Per CLAUDE.md this URL cannot be opened from this machine; content is unverified and kept only as a lead. accessed left absent."
         },
         {
           "title": "Reddit r/riftboundtcg — \"The Rengar combo player from RQ Sydney R1 Stream is back with his 12th place Endless Riches Rengar deck!\", Sylencia",
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1vro7dd/",
-          "date": "2026-08-18"
+          "date": "2026-08-18",
+          "note": "REDDIT CLOSED (2026-09-06): old.reddit.com now answers a \"Prove your humanity\" CAPTCHA / login wall to this session on every route tried (plain curl, r.jina.ai, headless and headed Playwright with cookies). Per CLAUDE.md this URL cannot be opened from this machine; content is unverified and kept only as a lead. accessed left absent."
         },
         {
-          "title": "Turn 'em Sideways!, \"Riftbound's Infinite Combos EXPLAINED\" — chapter 'Rengar/Volibear' 6:40–13:08 (video; transcript not obtainable without a login)",
+          "title": "Turn 'em Sideways!, \"Riftbound's Infinite Combos EXPLAINED\" — chapter 'Rengar/Volibear' 6:40–13:08",
           "kind": "article",
           "url": "https://youtu.be/X-ZZ0KzShFA",
-          "date": "2026-07-02"
+          "date": "2026-07-02",
+          "quote": "[10:36] All six dorks will net 30 energy. You can then use the Henge to convert 11 of that energy to 11 power.",
+          "accessed": "2026-09-06"
         },
         {
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
@@ -4278,13 +4300,16 @@
           "title": "Reddit r/riftboundtcg — \"I hit the ultimate LeBlanc Combo, so I did a bunch of math for fun\", TotallyNotHappy — full decklist and the doubling recursion",
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1sv3yjk/",
-          "date": "2026-04-25"
+          "date": "2026-04-25",
+          "note": "REDDIT CLOSED (2026-09-06): old.reddit.com now answers a \"Prove your humanity\" CAPTCHA / login wall to this session on every route tried (plain curl, r.jina.ai, headless and headed Playwright with cookies). Per CLAUDE.md this URL cannot be opened from this machine; content is unverified and kept only as a lead. accessed left absent."
         },
         {
           "title": "Riot, Unleashed Rules FAQ and Clarifications — \"If I conquer a battlefield with Zilean, Time Mage, can I copy him with my Deceiver legend? Will I make infinite Zileans?\": \"Yes, you can copy Zilean, but you will not make an infinite number.\"",
           "kind": "riot",
           "url": "https://playriftbound.com/en-us/news/rules-and-releases/unleashed-rules-faq-and-clarifications",
-          "date": "2026-04-29"
+          "date": "2026-04-29",
+          "quote": "Yes, you can copy Zilean, but you will not make an infinite number. The Deceiver reflexive trigger effect for turning the tokens into copies of Zilean takes place after they are already resolved.",
+          "accessed": "2026-09-06"
         },
         {
           "title": "REFUTE pass 2, 2026-09-03 (docs/phase0/hunt2/REFUTE-2026-09-03b.md)",
@@ -4352,7 +4377,8 @@
           "title": "Reddit r/riftboundtcg — \"How do i counter the pack of wonder and bewitching spirit combo\", TNTOM4 — 'you don't get to keep a single card in hand'",
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1uj028b/",
-          "date": "2026-06-29"
+          "date": "2026-06-29",
+          "note": "REDDIT CLOSED (2026-09-06): old.reddit.com now answers a \"Prove your humanity\" CAPTCHA / login wall to this session on every route tried (plain curl, r.jina.ai, headless and headed Playwright with cookies). Per CLAUDE.md this URL cannot be opened from this machine; content is unverified and kept only as a lead. accessed left absent."
         },
         {
           "title": "TCGplayer — The Best Decks from Riftbound Regional Hartford (HowlingMines)",
@@ -10481,7 +10507,8 @@
           "kind": "riot",
           "url": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
           "date": "2026-01-14",
-          "quote": "Yone, Blademaster: 'When I conquer an open battlefield,' becomes 'When I conquer a battlefield that was uncontrolled,'"
+          "quote": "[NEW TEXT] When I conquer a battlefield that was uncontrolled, deal damage equal to my Might to an enemy unit in a base. [OLD TEXT] When I conquer an open battlefield, deal damage equal to my Might to an enemy unit in a base.",
+          "accessed": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -16904,7 +16931,9 @@
           "title": "Riot Games — July Ban List Updates (the banned predecessor of this line names Eye of the Herald as its partner)",
           "kind": "riot",
           "url": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/",
-          "date": "2026-07-24"
+          "date": "2026-07-24",
+          "quote": "We shared our intent to ban this card early in Vendetta' preview season as many in the community had already identified a potential infinite Unit combo involving it, Eye of the Herald, and Renata Glasc, Industrialist.",
+          "accessed": "2026-09-06"
         },
         {
           "title": "Hunt rc-huntP — the \"this turn\" counter lens (issue #98)",
