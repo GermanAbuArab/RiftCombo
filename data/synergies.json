@@ -266,8 +266,8 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 50
+      "reviewed": "2026-09-05",
+      "reviewedCount": 47
     },
     {
       "id": "leblanc-temporary",
@@ -930,8 +930,8 @@
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 50
+      "reviewed": "2026-09-05",
+      "reviewedCount": 49
     },
     {
       "id": "ezreal-prodigy-accelerate",

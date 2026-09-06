@@ -75,6 +75,11 @@ export function partnersOf(s: Synergy, cards: CardIndex): Card[] {
   const reject = s.partner.textExcludes ? new RegExp(s.partner.textExcludes) : null;
   const banned = new Set((s.partner.excludes ?? []).map((x) => x.card));
   const anchor = new Set(cards.equivalents(s.anchor));
+  // 485.4.a: "Each player provides three (3) Battlefields ... Only 1 will be used, chosen during
+  // setup." (486.4.a and 487.4.a say the same for the other formats.) So two of your battlefields
+  // never share a board, and a rule anchored on one can never pair with another. This is a fact
+  // about the format rather than about four cards, so it belongs here and not in `excludes`.
+  const anchorIsBattlefield = !!cards.get(s.anchor)?.type.includes("battlefield");
 
   const canonical = new Map<string, Card>();
   for (const c of cards.cards) {
@@ -82,6 +87,7 @@ export function partnersOf(s: Synergy, cards: CardIndex): Card[] {
     // Tokens and the two helper cards are never in a decklist. Battlefields have no domains either,
     // and they are deckable, so the test has to spare them.
     if (c.domains.length === 0 && !c.type.includes("battlefield")) continue;
+    if (anchorIsBattlefield && c.type.includes("battlefield")) continue;
     if (anchor.has(c.base) || banned.has(c.base)) continue;
     if (s.partner.types && !s.partner.types.some((t) => c.type.includes(t))) continue;
     if (s.partner.tags && !s.partner.tags.some((t) => c.tags.includes(t))) continue;

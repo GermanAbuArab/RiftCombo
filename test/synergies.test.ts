@@ -226,3 +226,30 @@ describe("one card away", () => {
     expect(plan("Main\n3 Red Brambleback\n2 Wallop")).toEqual([]);
   });
 });
+
+describe("a battlefield never pairs with another battlefield", () => {
+  // 485.4.a: "Each player provides three (3) Battlefields, included in their deck during deck
+  // building. Only 1 will be used, chosen during setup." (486.4.a, 487.4.a for the other formats.)
+  // A deck holds three, so two of them are legal together in a list and impossible together on a
+  // board. `grand-plaza-unit-tokens` used to offer Altar to Unity, Emperor's Dais and Trapping
+  // Grounds; `shadow-temple-trash-fuel` used to offer Hallowed Tomb. Four pairs that never fire.
+  const isBattlefield = (base: string) => !!cards.get(base)?.type.includes("battlefield");
+
+  it("holds for every rule in the file, including the ones written after this test", () => {
+    const anchored = synergies.filter((s) => isBattlefield(s.anchor));
+    // If this ever reads 0 the assertion below is vacuous and the guard has stopped being tested.
+    expect(anchored.length).toBeGreaterThan(0);
+    for (const s of anchored) {
+      const offenders = partnersOf(s, cards).filter((c) => c.type.includes("battlefield"));
+      expect(offenders.map((c) => `${s.id} -> ${c.base} ${c.name}`)).toEqual([]);
+    }
+  });
+
+  it("leaves the rules anchored on anything else untouched", () => {
+    // The guard keys on the anchor, so a unit or gear rule may still name a battlefield partner —
+    // you do get one battlefield, and pairing a card with it is a real pairing.
+    const others = synergies.filter((s) => !isBattlefield(s.anchor));
+    const withBattlefieldPartner = others.filter((s) => partnersOf(s, cards).some((c) => c.type.includes("battlefield")));
+    expect(withBattlefieldPartner.length).toBeGreaterThan(0);
+  });
+});
