@@ -23,6 +23,9 @@ const connect = ["'self'", url].filter(Boolean).join(" ");
 const config = {
   $schema: "https://openapi.vercel.sh/vercel.json",
   buildCommand: "npm run build:web",
+  // Vercel's Hobby plan caps builds at 100 a day, and on 2026-09-06 this repo spent it by 20:00: 130 commits, most
+  // of them CLAUDE.md and walk documents that change nothing the bundle reads. Exit 0 = skip the build, 1 = build.
+  ignoreCommand: "git diff --quiet HEAD^ HEAD -- web src data scripts package.json package-lock.json tsconfig.json vercel.json",
   outputDirectory: "public",
   framework: null,
   // /privacy and /terms rather than /privacy.html: Google's OAuth branding page wants both links,
