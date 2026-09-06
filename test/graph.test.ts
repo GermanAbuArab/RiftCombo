@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { actualBox, fitBox, type Box } from "../web/graph.js";
+import { actualBox, fitBox, layoutCircular, type Box, type Model } from "../web/graph.js";
+import type { Combo, Feature, Ingredient } from "../src/types.js";
 
 /**
  * The diagram's viewBox is computed from the stage's own measured box, and #57 was what happens when
@@ -121,5 +122,88 @@ describe("the viewBox geometry", () => {
       expect(b.x + b.w).toBeLessThan(desktop.x + desktop.w);
       expect(b.y + b.h).toBeLessThan(desktop.y + desktop.h);
     });
+  });
+});
+
+/**
+ * The circular ("Radial") layout puts pieces on an inner ring and outcomes on an outer one, each
+ * outcome angled toward the mean direction of the cards that feed it, then nudged apart from its
+ * sorted neighbour by a minimum angular gap. That gap used to be sized from `RESULT_H` alone (82),
+ * which is only the right dimension for two outcomes stacked along the LEFT or RIGHT of the ring,
+ * where the tangent runs roughly vertical. At the TOP or BOTTOM the tangent runs roughly horizontal
+ * and the box's WIDTH (168 — more than twice its height) is what actually separates two neighbours,
+ * so an `RESULT_H`-only gap let two outcomes 20° apart at the bottom of the ring overlap by 0.4px of
+ * width and 52px of height (found 2026-09-06 on the Lady of Luminosity list `utrecht-27`, whose four
+ * matched combos put "Infinite Power" at 90° and "Pressure on the opponent's deck" at 110°). The fix
+ * gates the gap on the box's diagonal instead: two same-size axis-aligned boxes whose centres are at
+ * least a full diagonal apart can never overlap on either axis at once, whatever the direction between
+ * them, so a diagonal-sized gap is safe at every point on the ring, not only at the sides.
+ */
+describe("the circular layout's outcome ring", () => {
+  const ingredient = (card: string): Ingredient => ({ card, quantity: 1, role: "payoff" });
+  const feature = (id: string): Feature => ({ id, name: id, status: "STANDALONE", uncountable: false });
+  const combo = (id: string, cards: string[], produces: string[]): Combo => ({
+    id,
+    name: id,
+    class: "ENGINE",
+    status: "verified",
+    uses: cards.map(ingredient),
+    needs: [],
+    produces,
+    prerequisites: { easy: [], notable: [] },
+    steps: [],
+    terminatesIn: "",
+    sources: [],
+    rulesVersion: "",
+  });
+
+  /** n cards evenly spaced on the ring; combos each pin one outcome to one card's angle. */
+  const modelFor = (n: number, outcomeCardIndexes: number[]): Model => {
+    const cards = Array.from({ length: n }, (_, i) => `c${i}`);
+    const outcomeIds = outcomeCardIndexes.map((_, k) => `f${k}`);
+    const combos = outcomeCardIndexes.map((i, k) => combo(`combo${k}`, [cards[i]!], [outcomeIds[k]!]));
+    const outcomes = outcomeIds.map(feature);
+    const need = new Map(cards.map((c) => [c, 1]));
+    return { combos, cards, outcomes, missing: new Set(), need, lines: new Map(), land: new Set() };
+  };
+
+  const overlaps = (a: { x: number; y: number; w: number; h: number }, b: { x: number; y: number; w: number; h: number }) =>
+    a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
+
+  it("never overlaps two outcomes that land at the bottom of the ring 20° apart (the exact regression)", () => {
+    // 9 cards, indexes 4 and 5 sit at -90+4*40=70° and -90+5*40=110° respectively; picking a single
+    // card each keeps the pre-adjustment centroid angle exactly at the card's own angle, reproducing
+    // the utrecht-27 case (90° and 110°) closely enough to hit the same failure mode.
+    const m = modelFor(9, [4, 5]);
+    const L = layoutCircular(m);
+    const boxes = m.outcomes.map((f) => L.pos.get(f.id)!);
+    expect(overlaps(boxes[0]!, boxes[1]!)).toBe(false);
+  });
+
+  it("never overlaps any pair of outcomes, for every outcome count up to the full STANDALONE vocabulary", () => {
+    // Force outcomes onto adjacent card indexes (the tightest pre-adjustment spacing) at every count
+    // from 2 to 13, the ceiling `data/features.json` documents for STANDALONE features.
+    for (let k = 2; k <= 13; k++) {
+      const n = Math.max(k, 9);
+      const m = modelFor(n, Array.from({ length: k }, (_, i) => i));
+      const L = layoutCircular(m);
+      const boxes = m.outcomes.map((f) => L.pos.get(f.id)!);
+      for (let i = 0; i < boxes.length; i++) {
+        for (let j = i + 1; j < boxes.length; j++) {
+          expect(overlaps(boxes[i]!, boxes[j]!)).toBe(false);
+        }
+      }
+    }
+  });
+
+  it("keeps every outcome box a finite, positive size positioned on the outer ring", () => {
+    const m = modelFor(9, [0, 3, 5]);
+    const L = layoutCircular(m);
+    for (const f of m.outcomes) {
+      const p = L.pos.get(f.id)!;
+      expect([p.x, p.y, p.w, p.h].every((v) => Number.isFinite(v))).toBe(true);
+      expect(p.w).toBeGreaterThan(0);
+      expect(p.h).toBeGreaterThan(0);
+    }
   });
 });

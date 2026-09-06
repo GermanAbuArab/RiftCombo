@@ -72,7 +72,7 @@ const wrap = (s: string, maxChars: number, maxLines: number): string[] => {
   return lines;
 };
 
-interface Model {
+export interface Model {
   combos: Combo[];
   cards: string[];
   outcomes: Feature[];
@@ -240,7 +240,7 @@ function layoutLayered(m: Model, aspect: number) {
 }
 
 /** Circular: legend hub in the middle, pieces on a ring, payoffs on an outer ring. */
-function layoutCircular(m: Model) {
+export function layoutCircular(m: Model) {
   const pos = new Map<string, Placed>();
   const edges: Edge[] = [];
   const n = Math.max(1, m.cards.length);
@@ -260,7 +260,14 @@ function layoutCircular(m: Model) {
     const sx = cards.reduce((s, b) => s + Math.cos(angle.get(b) ?? 0), 0), sy = cards.reduce((s, b) => s + Math.sin(angle.get(b) ?? 0), 0);
     return { f, a: cards.length ? Math.atan2(sy, sx) : 0 };
   }).sort((p, q) => p.a - q.a);
-  const minGap = (RESULT_H + 34) / r2;
+  // Two same-size axis-aligned boxes never overlap once their centres are at least a full diagonal
+  // apart, whatever direction separates them (if centres are `diag` apart, one box would need both
+  // dx < RESULT_W and dy < RESULT_H at once, which needs dx²+dy² < RESULT_W²+RESULT_H² = diag² — a
+  // contradiction). Using only RESULT_H here under-measured the gap needed at the top and bottom of
+  // the ring, where the boxes sit wide-side-on to their neighbour and RESULT_W is what matters: two
+  // outcomes 20° apart at the bottom of the ring overlapped by 0.4px width and 52px height even
+  // though the (H-only) minGap said they had room. The diagonal is the dimension-agnostic bound.
+  const minGap = (Math.hypot(RESULT_W, RESULT_H) + 34) / r2;
   for (let i = 1; i < outcomeAngle.length; i++) if (outcomeAngle[i]!.a - outcomeAngle[i - 1]!.a < minGap) outcomeAngle[i]!.a = outcomeAngle[i - 1]!.a + minGap;
   for (const { f, a } of outcomeAngle) pos.set(f.id, { id: f.id, x: cx + r2 * Math.cos(a) - RESULT_W / 2, y: cy + r2 * Math.sin(a) - RESULT_H / 2, w: RESULT_W, h: RESULT_H });
   for (const c of m.combos) {
