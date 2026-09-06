@@ -1,0 +1,34 @@
+Legend:
+1 Fiora, Grand Duelist
+Champion:
+1 Fiora, Victorious
+Main Deck:
+3 B.F. Sword
+2 Doran's Blade
+2 Call to Glory
+3 Challenge
+2 Deathgrip
+2 Hidden Blade
+3 Punch First
+3 Riposte
+2 Sabotage
+3 First Mate
+3 Karma, Channeler
+3 Pit Rookie
+3 Sett, Brawler
+2 Spectral Matron
+3 Unsung Hero
+Battlefields:
+1 Monastery of Hirana
+1 Sunken Temple
+1 Trifarian War Camp
+Rune Pool:
+6 Body Rune
+6 Order Rune
+Sideboard:
+1 Fiora, Worthy
+2 Ruin Runner
+1 Hidden Blade
+1 Sabotage
+2 Salvage
+1 Unyielding Spirit

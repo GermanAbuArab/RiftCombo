@@ -1,0 +1,39 @@
+Legend:
+1 Kai'Sa, Daughter of the Void
+Champion:
+1 Kai'Sa, Survivor
+Main Deck:
+1 Darius, Trifarian
+3 Falling Star
+2 Ferrous Forerunner
+1 Get Excited!
+1 Hextech Ray
+3 Lecturing Yordle
+3 Noxus Hopeful
+2 Piercing Light
+3 Plundering Poro
+2 Progress Day
+1 Retreat
+1 Rocket Barrage
+1 Shakedown
+2 Singularity
+1 Smoke Screen
+3 Stupefy
+3 Thousand-Tailed Watcher
+2 Time Warp
+1 Unchecked Power
+3 Watchful Sentry
+Battlefields:
+1 Ravenbloom Conservatory
+1 Vilemaw's Lair
+1 Void Gate
+Rune Pool:
+6 Fury Rune
+6 Mind Rune
+Sideboard:
+1 Bellows Breath
+1 Get Excited!
+1 Icathian Rain
+2 Immortal Phoenix
+1 Shakedown
+2 Thermo Beam

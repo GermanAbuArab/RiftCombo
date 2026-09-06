@@ -1,0 +1,36 @@
+Legend:
+1 Teemo, Swift Scout
+Champion:
+1 Teemo, Scout
+Main Deck:
+2 Beast Below
+3 Black Market Broker
+3 Ember Monk
+2 Lecturing Yordle
+3 Nocturne, Horrifying
+3 Teemo, Strategist
+2 Thousand-Tailed Watcher
+2 Tideturner
+3 Consult the Past
+1 Guerilla Warfare
+1 Hard Bargain
+1 Rebuke
+1 Ride the Wind
+3 Sprite Call
+3 Stacked Deck
+3 Switcheroo
+1 Time Warp
+2 Edge of Night
+Battlefields:
+1 Bandle Tree
+1 The Candlelit Sanctum
+1 Vilemaw's Lair
+Rune Pool:
+7 Chaos Rune
+5 Mind Rune
+Sideboard:
+2 Acceptable Losses
+1 Hard Bargain
+1 Rebuke
+1 Dr. Mundo, Expert
+2 Windsinger

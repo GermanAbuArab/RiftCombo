@@ -1,0 +1,34 @@
+Legend:
+1 Nasus, Curator of the Sands
+Champion:
+1 Nasus, Ascended
+Main Deck:
+3 Bellows Breath
+2 Charm
+3 Clockwork Keeper
+3 Defy
+3 Discipline
+2 Eclipse
+3 En Garde
+3 Find Your Center
+3 Lonely Poro
+1 Not So Fast
+3 Ravenbloom Student
+3 Sprite Queen
+3 Stupefy
+1 Tasty Faefolk
+3 Thousand-Tailed Watcher
+Battlefields:
+1 Ravenbloom Conservatory
+1 Targon's Peak
+1 Vilemaw's Lair
+Rune Pool:
+6 Calm Rune
+6 Mind Rune
+Sideboard:
+3 Disarming Rake
+2 Helm of Suppression
+1 Not So Fast
+2 Pickpocket
+1 Singularity
+1 Vilemaw

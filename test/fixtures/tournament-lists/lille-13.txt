@@ -1,0 +1,37 @@
+Legend:
+1 Ahri, Nine-Tailed Fox
+Champion:
+1 Ahri, Inquisitive
+Main Deck:
+1 Bellows Breath
+1 Blitzcrank, Impassive
+1 Block
+1 Clockwork Keeper
+2 Defy
+3 Desert's Call
+3 Discipline
+3 Eager Apprentice
+2 Emperor's Divide
+3 Feral Strength
+2 Find Your Center
+2 Meditation
+1 Not So Fast
+3 Ravenbloom Student
+1 Singularity
+3 Sona, Harmonious
+3 Thousand-Tailed Watcher
+3 Thwonk!
+1 Time Warp
+Battlefields:
+1 Grove of the God-Willow
+1 Marai Spire
+1 Trifarian War Camp
+Rune Pool:
+6 Calm Rune
+6 Mind Rune
+Sideboard:
+1 Ahri, Alluring
+3 Disarming Rake
+1 Meditation
+2 Not So Fast
+1 Wind Wall

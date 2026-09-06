@@ -1,0 +1,40 @@
+Legend:
+1 Ezreal, Prodigal Explorer
+Champion:
+1 Ezreal, Prodigy
+Main Deck:
+1 Acceptable Losses
+3 Stupefy
+3 Wages of Pain
+3 Gust
+1 Mindsplitter
+1 Time Warp
+2 Retreat
+1 Singularity
+3 Treasure Hunter
+1 Overzealous Fan
+3 Fizz, Trickster
+3 Arcane Shift
+3 Bewitching Spirit
+1 Vex, Apathetic
+1 Frigid Touch
+2 Bellows Breath
+1 Windsinger
+2 Star-Crossed
+3 Stacked Deck
+1 Rebuke
+Battlefields:
+Void Gate
+Treasure Hoard
+Forbidding Waste
+Rune Pool:
+7 Chaos Rune
+5 Mind Rune
+Sideboard:
+1 Vex, Apathetic
+1 Vex, Cheerless
+1 Star-Crossed
+2 Turn to Dust
+1 Downwell
+1 Mindsplitter
+1 Thousand-Tailed Watcher

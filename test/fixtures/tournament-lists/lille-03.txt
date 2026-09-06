@@ -1,0 +1,37 @@
+Legend:
+1 Teemo, Swift Scout
+Champion:
+1 Teemo, Scout
+Main Deck:
+1 Bellows Breath
+3 Consult the Past
+2 Edge of Night
+3 Ember Monk
+1 Guerilla Warfare
+3 Nocturne, Horrifying
+1 Rebuke
+1 Ride the Wind
+2 Sivir, Mercenary
+3 Sprite Call
+3 Stacked Deck
+3 Switcheroo
+3 Teemo, Strategist
+2 Thousand-Tailed Watcher
+3 Tideturner
+1 Time Warp
+3 Wages of Pain
+1 Windsinger
+Battlefields:
+1 Bandle Tree
+1 Ravenbloom Conservatory
+1 Void Gate
+Rune Pool:
+7 Chaos Rune
+5 Mind Rune
+Sideboard:
+2 Acceptable Losses
+2 Bellows Breath
+1 Hard Bargain
+1 Rebuke
+1 Singularity
+1 Whirlwind

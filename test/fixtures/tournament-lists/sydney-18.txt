@@ -1,0 +1,39 @@
+Legend:
+1 Kai'Sa, Daughter of the Void
+Champion:
+1 Kai'Sa, Survivor
+Main Deck:
+3 Hextech Ray
+3 Falling Star
+3 Lecturing Yordle
+3 Stupefy
+3 Thousand-Tailed Watcher
+3 Ferrous Forerunner
+3 Plundering Poro
+1 Smite
+1 Time Warp
+1 Singularity
+1 Rocket Barrage
+1 Darius, Trifarian
+1 Retreat
+1 Smoke Screen
+2 Void Seeker
+3 Watchful Sentry
+1 Progress Day
+3 Noxus Hopeful
+2 Ravenbloom Student
+Battlefields:
+Ravenbloom Conservatory
+Targon's Peak
+Void Gate
+Rune Pool:
+7 Fury Rune
+5 Mind Rune
+Sideboard:
+1 Thermo Beam
+1 Turn to Dust
+1 Retreat
+1 Rocket Barrage
+2 Smite
+1 Dr. Mundo, Expert
+1 Bellows Breath

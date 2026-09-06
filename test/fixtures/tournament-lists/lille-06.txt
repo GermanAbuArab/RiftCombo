@@ -1,0 +1,39 @@
+Legend:
+1 Leona, Radiant Dawn
+Champion:
+1 Leona, Determined
+Main Deck:
+2 B.F. Sword
+1 Brutalizer
+2 Call to Glory
+1 Charm
+2 Clockwork Keeper
+2 Defy
+3 Discipline
+3 Emperor's Divide
+3 Fiora, Victorious
+2 Hidden Blade
+3 Honest Broker
+2 Irelia, Fervent
+3 Lonely Poro
+1 Navori Scout
+2 Not So Fast
+1 Salvage
+2 Solari Shieldbearer
+2 Zenith Blade
+2 Zhonya's Hourglass
+Battlefields:
+1 Monastery of Hirana
+1 Ravenbloom Conservatory
+1 Sunken Temple
+Rune Pool:
+6 Calm Rune
+6 Order Rune
+Sideboard:
+1 Blitzcrank, Impassive
+1 Charm
+2 Salvage
+1 Solari Shieldbearer
+1 Thwonk!
+1 Zenith Blade
+1 Zhonya's Hourglass

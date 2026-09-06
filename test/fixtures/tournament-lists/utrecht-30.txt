@@ -1,0 +1,33 @@
+Legend:
+1 Sivir, Battle Mistress
+Champion:
+1 Sivir, Mercenary
+Main Deck:
+3 Catalyst of Aeons
+2 Challenge
+3 Dazzling Aurora
+3 Elder Dragon
+3 Flurry of Blades
+3 Gust
+2 Last Rites
+3 Lunar Boon
+1 Mindsplitter
+3 Mobilize
+1 Pack of Wonders
+3 Sabotage
+3 Scryer's Bloom
+3 Stacked Deck
+3 Treasure Trove
+Battlefields:
+1 Aspirant's Climb
+1 Forgotten Monument
+1 Sigil of the Storm
+Rune Pool:
+6 Body Rune
+6 Chaos Rune
+Sideboard:
+2 Akshan, Mischievous
+1 Challenge
+2 Factory Recall
+2 Mindsplitter
+1 Pack of Wonders

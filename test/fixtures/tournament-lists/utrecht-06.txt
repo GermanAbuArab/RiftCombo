@@ -1,0 +1,35 @@
+Legend:
+1 Lee Sin, Blind Monk
+Champion:
+1 Lee Sin, Centered
+Main Deck:
+2 Back Off
+3 Catalyst of Aeons
+2 Charm
+1 Confront
+3 Dazzling Aurora
+3 Defy
+3 Desert's Call
+2 Discipline
+3 Elder Dragon
+3 Find Your Center
+3 Flurry of Blades
+3 Mobilize
+2 Not So Fast
+2 Sabotage
+2 Vilemaw
+2 Zhonya's Hourglass
+Battlefields:
+1 Aspirant's Climb
+1 Sigil of the Storm
+1 Trapping Ground
+Rune Pool:
+6 Body Rune
+6 Calm Rune
+Sideboard:
+2 Akshan, Mischievous
+1 Dragon's Rage
+1 Not So Fast
+1 Sabotage
+2 Unyielding Spirit
+1 Zhonya's Hourglass

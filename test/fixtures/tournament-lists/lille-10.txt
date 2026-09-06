@@ -1,0 +1,33 @@
+Legend:
+1 Sivir, Battle Mistress
+Champion:
+1 Si vir, Mercenary
+Main Deck:
+3 Boots of Swiftness
+3 Challenge
+2 Edge of Night
+2 First Mate
+1 Hard Bargain
+3 Lucian, Merciless
+3 Overzealous Fan
+3 Punch First
+3 Qiyana, Victorious
+3 Rebuke
+1 Ride the Wind
+2 Sabotage
+2 Sivir, Mercenary
+3 Stacked Deck
+3 Tideturner
+2 Yone, Blademaster
+Battlefields:
+1 Ornn's Forge
+1 Sunken Temple
+1 The Candlelit Sanctum
+Rune Pool:
+6 Body Rune
+6 Chaos Rune
+Sideboard:
+2 Akshan, Mischievous
+2 Ruin Runner
+1 Sabotage
+3 Unyielding Spirit

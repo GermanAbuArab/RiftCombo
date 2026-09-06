@@ -1,0 +1,38 @@
+Legend:
+1 Master Yi, Wuju Bladesman
+Champion:
+1 Master Yi, Honed
+Main Deck:
+3 Charm
+2 Defy
+3 Desert's Call
+3 Discipline
+2 En Garde
+2 Find Your Center
+2 First Mate
+1 Guardian Angel
+3 Lonely Poro
+2 Navori Scout
+2 Not So Fast
+2 Punch First
+3 Ruin Runner
+2 Stellacorn Herder
+1 Tasty Faefolk
+1 Thwonk!
+2 Trinity Force
+1 Whiteflame Protector
+2 Zhonya's Hourglass
+Battlefields:
+1 Forge of the Fluft
+1 Ravenbloom Conservatory
+1 Vilemaw's Lair
+Rune Pool:
+6 Body Rune
+6 Calm Rune
+Sideboard:
+3 Akshan, Mischievous
+1 Brutalizer
+1 Defy
+1 First Mate
+1 Not So Fast
+1 Thwonk!

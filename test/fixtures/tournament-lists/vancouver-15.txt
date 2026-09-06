@@ -1,0 +1,37 @@
+Legend:
+Darius, Hand of Noxus
+Champion:
+1 Darius, Trifarian
+Main Deck:
+2 Ashe, Focused
+2 B.F. Sword
+3 Cleave
+1 Cull the Weak
+1 Darius, Trifarian
+2 Deathgrip
+2 Falling Star
+2 Ferrous Forerunner
+3 Hidden Blade
+3 Honest Broker
+3 Inferna
+1 Long Sword
+1 Noxian Guillotine
+3 Noxus Hopeful
+2 Pyke, Dockside Butcher
+2 Rally the Troops
+2 Rek'Sai, Breacher
+2 Undying Legion
+2 Unsung Hero
+Battlefields:
+1 Seat of Power
+1 Sunken Temple
+1 The Arena's Greatest
+Rune Pool:
+7 Fury Rune
+5 Order Rune
+Sideboard:
+1 Ashe, Focused
+2 Cull the Weak
+1 Noxian Guillotine
+2 Salvage
+2 Vi, Peacekeeper

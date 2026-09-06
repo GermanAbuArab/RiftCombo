@@ -1,0 +1,34 @@
+Legend:
+1 Lee Sin, Blind Monk
+Champion:
+1 Lee Sin, Centered
+Main Deck:
+3 Challenge
+3 Charm
+3 Defy
+3 Discipline
+2 Doran's Blade
+1 Emperor's Divide
+3 First Mate
+3 Guardian Angel
+2 Irelia, Fervent
+3 Lonely Poro
+3 Lucian, Merciless
+3 Punch First
+3 Ruin Runner
+1 Sabotage
+3 Trinity Force
+Battlefields:
+1 Grove of the God-Willow
+1 Monastery of Hirana
+1 Sunken Temple
+Rune Pool:
+7 Body Rune
+5 Calm Rune
+Sideboard:
+2 Akshan, Mischievous
+1 Emperor's Divide
+1 Janna, Savior
+1 Not So Fast
+2 Sabotage
+1 Wind Wall

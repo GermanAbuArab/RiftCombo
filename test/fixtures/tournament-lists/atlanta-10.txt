@@ -1,0 +1,32 @@
+Legend:
+1 Rek'Sai, Void Burrower
+Champion:
+1 Rek'Sai, Breacher
+Main Deck:
+3 Battering Ram
+3 Daring Poro
+3 Faithful Manufactor
+3 Noxus Hopeful
+2 Trifarian Gloryseeker
+3 Undertitan
+3 Vanguard Captain
+3 Void Drone
+3 Void Hatchling
+1 Cull the Weak
+3 Hidden Blade
+2 Rally the Troops
+1 Salvage
+3 Void Rush
+3 Seal of Unity
+Battlefields:
+1 The Arena's Greatest
+1 The Candlelit Sanctum
+1 Trifarian War Camp
+Rune Pool:
+1 Fury Rune
+11 Order Rune
+Sideboard:
+2 Cull the Weak
+2 Imperial Decree
+2 Salvage
+2 Xin Zhao, Vigilant

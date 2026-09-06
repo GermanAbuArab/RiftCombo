@@ -1,0 +1,41 @@
+Legend:
+1 Jhin, Virtuoso
+Champion:
+1 Jhin, Meticulous Killer
+Main Deck:
+3 Downstage Dramatics
+2 Disintegrate
+3 Piercing Light
+3 Curtain Call
+2 Rocket Barrage
+1 Hextech Anomaly
+2 Kai'Sa, Survivor
+2 Jhin, Meticulous Killer
+2 Singularity
+2 Thousand-Tailed Watcher
+3 Plundering Poro
+1 Production Surge
+2 Watchful Sentry
+2 Deadly Flourish
+1 Pouty Poro
+1 Upstage Comedy
+1 Sprite Burst
+1 Time Warp
+1 Consult the Past
+2 Ferrous Forerunner
+2 Frigid Touch
+Battlefields:
+Void Gate
+Rockfall Path
+Ravenbloom Conservatory
+Rune Pool:
+7 Mind Rune
+5 Fury Rune
+Sideboard:
+1 Square Up
+1 Unchecked Power
+2 Smite
+1 Brynhir Thundersong
+1 Frigid Touch
+1 Thermo Beam
+1 Sprite Burst

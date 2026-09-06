@@ -1,0 +1,40 @@
+Legend:
+1 Draven, Glorious Executioner
+Champion:
+1 Draven, Showboat
+Main Deck:
+1 Brynhir Thundersong
+2 Cleave
+3 Darius, Trifarian
+1 Draven, Audacious
+2 Falling Star
+3 Ferrous Forerunner
+2 Flash
+1 Hard Bargain
+3 Kai'Sa, Survivor
+2 Noxus Hopeful
+3 Overzealous Fan
+3 Pouty Poro
+2 Rebuke
+1 Rek'Sai, Breacher
+1 Ride the Wind
+1 Rumble, Hotheaded
+3 Spinning Axe
+3 Stacked Deck
+2 Tideturner
+Battlefields:
+1 Aspirant's Climb
+1 The Arena's Greatest
+1 Zaun Warrens
+Rune Pool:
+6 Chaos Rune
+6 Fury Rune
+Sideboard:
+1 Against the Odds
+1 Beast Below
+1 Brynhir Thundersong
+1 Last Rites
+1 Rebuke
+1 Switcheroo
+1 Thermo Beam
+1 Vex, Cheerless

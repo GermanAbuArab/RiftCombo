@@ -1,0 +1,41 @@
+Legend:
+1 Volibear, Relentless Storm
+Champion:
+1 Volibear, Furious
+Main Deck:
+3 Blazing Scorcher
+1 Brynhir Thundersong
+2 Catalyst of Aeons
+2 Challenge
+3 Confront
+3 Dazzling Aurora
+3 Deadbloom Predator
+1 Doran's Blade
+1 Ferrous Forerunner
+3 Kadregrin the Infernal
+2 Minotaur Reckoner
+1 Miss Fortune, Captain
+3 Mobilize
+1 Punch First
+2 Sabotage
+2 Sky Splitter
+1 Stormbringer
+1 Sudden Storm
+1 Vi, Destructive
+2 Void Seeker
+1 Yone, Blademaster
+Battlefields:
+1 Aspirant's Climb
+1 Sigil of the Storm
+1 Vilemaw's Lair
+Rune Pool:
+6 Body Rune
+6 Fury Rune
+Sideboard:
+2 Akshan, Mischievous
+1 Anivia, Primal
+1 Brynhir Thundersong
+1 Ferrous Forerunner
+1 Punch First
+1 Sivir, Ambitious
+1 Thermo Beam

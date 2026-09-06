@@ -1,0 +1,38 @@
+Legend:
+1 Rumble, Mechanized Menace
+Champion:
+1 Rumble, Scrapper
+Main Deck:
+1 Bellows Breath
+1 Brynhir Thundersong
+3 Bubble Bot
+2 Cleave
+1 Cloth Armor
+1 Consult the Past
+2 Falling Star
+3 Ferrous Forerunner
+3 Forecaster
+3 Gem Jammer
+2 Noxus Hopeful
+2 Patched Porobot
+3 Production Surge
+3 Rumble, Hotheaded
+1 Singularity
+3 Stupefy
+2 Temporal Breach
+3 Thousand-Tailed Watcher
+Battlefields:
+1 Heisho, Shell of the World
+1 Seat of Power
+1 Zaun Warrens
+Rune Pool:
+6 Fury Rune
+6 Mind Rune
+Sideboard:
+1 Against the Odds
+1 Bellows Breath
+2 Brittle Steel
+2 Brynhir Thundersong
+2 Decree of Insight
+1 Temporal Breach
+1 Turn to Dust

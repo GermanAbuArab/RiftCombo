@@ -1,0 +1,45 @@
+Legend:
+1 Pyke, Bloodharbor Ripper
+Champion:
+1 Pyke, Dockside Butcher
+Main Deck:
+2 Baron Nashor
+1 Beast Below
+3 Bewitching Spirit
+1 Darius, Trifarian
+1 Death from Below
+1 Downwell
+1 Ezreal, Prodigy
+3 Falling Star
+2 Fizz, Trickster
+1 Gust
+1 Last Rites
+1 Mindsplitter
+2 Noxus Hopeful
+1 Piercing Light
+1 Sharkling
+1 Stacked Deck
+2 Star-Crossed
+1 Switcheroo
+2 The List
+2 Tideturner
+3 Traveling Merchant
+3 Treasure Hunter
+2 Vex, Apathetic
+1 Void Seeker
+Battlefields:
+1 Forbidding Waste
+1 Ripper's Bay
+1 Void Gate
+Rune Pool:
+6 Chaos Rune
+6 Fury Rune
+Sideboard:
+1 Blighted Battleaxe
+1 Brynhir Thundersong
+1 Gust
+1 Soulgorger
+1 Star-Crossed
+1 Switcheroo
+1 Thermo Beam
+1 Windsinger

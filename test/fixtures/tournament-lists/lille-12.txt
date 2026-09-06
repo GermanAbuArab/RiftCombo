@@ -1,0 +1,39 @@
+Legend:
+1 Sett, The Boss
+Champion:
+1 Sett, Brawler
+Main Deck:
+1 Akshan, Mischievous
+2 Boneshiver
+1 Call to Glory
+3 Challenge
+2 Deathgrip
+1 Doran's Blade
+2 Fae Dragon
+3 Fiora, Victorious
+3 First Mate
+1 Hidden Blade
+3 Honest Broker
+3 Lucian, Merciless
+3 Pit Rookie
+3 Punch First
+2 Ruin Runner
+1 Sabotage
+3 Showstopper
+2 Warmog's Armor
+Battlefields:
+1 Monastery of Hirana
+1 Seat of Power
+1 Sunken Temple
+Rune Pool:
+9 Body Rune
+3 Order Rune
+Sideboard:
+1 Akshan, Mischievous
+1 Call to Glory
+1 Cull the Weak
+1 Hidden Blade
+1 Marching Orders
+1 Sabotage
+1 Salvage
+1 Unyielding Spirit

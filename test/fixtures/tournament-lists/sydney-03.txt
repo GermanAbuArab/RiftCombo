@@ -1,0 +1,36 @@
+Legend:
+1 Rumble, Mechanized Menace
+Champion:
+1 Rumble, Hotheaded
+Main Deck:
+2 Rumble, Hotheaded
+3 Ferrous Forerunner
+1 Bellows Breath
+3 Gem Jammer
+3 Forecaster
+3 Plundering Poro
+1 Blood Rush
+3 Bubble Bot
+2 Deadly Flourish
+2 Eclipse
+3 Falling Star
+3 Hwei, Brooding Painter
+2 Retreat
+3 Stupefy
+3 Thousand-Tailed Watcher
+1 Singularity
+1 Time Warp
+Battlefields:
+Trifarian War Camp
+Star Spring
+Ravenbloom Conservatory
+Rune Pool:
+6 Fury Rune
+6 Mind Rune
+Sideboard:
+2 Unchecked Power
+1 Rumble, Scrapper
+1 Turn to Dust
+2 Thermo Beam
+1 Time Warp
+1 Singularity

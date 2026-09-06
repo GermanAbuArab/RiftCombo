@@ -1,0 +1,36 @@
+Legend:
+1 Master Yi, Wuju Bladesman
+Champion:
+1 Master Yi, Honed
+Main Deck:
+3 Charm
+3 Clockwork Keeper
+2 Confront
+2 Defy
+3 Discipline
+3 En Garde
+3 First Mate
+3 Guardian Angel
+2 Irelia, Fervent
+3 Lonely Poro
+3 Punch First
+3 Ruin Runner
+1 Sea Monkey
+3 Stellacorn Herder
+1 Thwonk!
+1 Trinity Force
+Battlefields:
+1 Forge of the Fluft
+1 Grove of the God-Willow
+1 Vilemaw's Lair
+Rune Pool:
+6 Calm Rune
+6 Body Rune
+Sideboard:
+2 Akshan, Mischievous
+1 Defy
+1 Disarming Rake
+1 Not So Fast
+1 Sabotage
+1 Thwonk!
+1 Unyielding Spirit

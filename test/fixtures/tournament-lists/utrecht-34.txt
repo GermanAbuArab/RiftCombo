@@ -1,0 +1,35 @@
+Legend:
+1 Master Yi, Wuju Bladesman
+Champion:
+1 Master Yi, Tempered
+Main Deck:
+2 Akshan, Mischievous
+1 Challenge
+3 Charm
+3 Defy
+3 Discipline
+2 En Garde
+3 First Mate
+1 Grim Resolve
+3 Lonely Poro
+3 Pit Rookie
+1 Primal Strength
+3 Punch First
+3 Rengar, Trophy Hunter
+2 Ruin Runner
+1 Sabotage
+3 Scuttle Crab
+2 Zhonya's Hourglass
+Battlefields:
+1 Emperor's Dais
+1 Seat of Power
+1 Star Spring
+Rune Pool:
+7 Body Rune
+5 Calm Rune
+Sideboard:
+1 Alpha Strike
+2 Disarming Rake
+1 Ruin Runner
+2 Sabotage
+2 Unyielding Spirit

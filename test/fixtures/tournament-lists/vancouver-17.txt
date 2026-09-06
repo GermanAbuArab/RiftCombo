@@ -1,0 +1,33 @@
+Legend:
+Vi, Piltover Enforcer
+Champion:
+1 Vi, Peacekeeper
+Main Deck:
+1 Ashe, Focused
+2 Cleave
+3 Daring Poro
+3 Deathgrip
+3 Gem Jammer
+3 Hextech Gauntlets
+3 Hidden Blade
+3 Honest Broker
+3 Kai'Sa, Survivor
+3 Noxus Hopeful
+3 Pyke, Dockside Butcher
+3 Rek'Sai, Breacher
+2 Rengar, Pouncing
+1 Salvage
+1 Shen, Kinkou
+2 Vault Breaker
+Battlefields:
+1 Star Spring
+1 The Arena's Greatest
+1 Windswept Hillock
+Rune Pool:
+7 Fury Rune
+5 Order Rune
+Sideboard:
+2 Ashe, Focused
+2 Falling Star
+2 Salvage
+2 Smite

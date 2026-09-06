@@ -1,0 +1,33 @@
+Legend:
+1 Darius, Hand of Noxus
+Champion:
+1 Darius, Trifarian
+Main Deck:
+3 Baited Hook
+1 Deathgrip
+3 Draven, Showboat
+1 Ferrous Forerunner
+1 Glasc Mixologist
+1 Grand Strategem
+3 Hidden Blade
+3 Honest Broker
+3 Noxus Hopeful
+3 Rally the Troops
+3 Seal of Unity
+3 Spectral Matron
+3 Trifarian Gloryseeker
+2 Trusty Ramhound
+3 Vanguard Captain
+3 Xin Zhao, Vigilant
+Battlefields:
+1 Monastery of Hirana
+1 Seat of Power
+1 Trifarian War Camp
+Rune Pool:
+3 Fury Rune
+9 Order Rune
+Sideboard:
+2 Brynhir Thundersong
+2 Ferrous Forerunner
+1 Grand Strategem
+3 Salvage
