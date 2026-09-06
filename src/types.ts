@@ -68,9 +68,19 @@ export interface Feature {
   description?: string;
 }
 
+/**
+ * The kinds a source can carry. A runtime list, and the type is derived from it, because a union that
+ * exists only at compile time is checked only where a source is WRITTEN in TypeScript — and none are:
+ * they are authored in `data/combos.json` and arrive through a JSON import. `video` (the deck-tech
+ * transcripts of #46 and #62) sat in the catalogue 54 times without ever being declared here, and
+ * nothing said so. `test/combos.test.ts` walks every source in the catalogue against this list.
+ */
+export const SOURCE_KINDS = ["riot", "tournament-report", "article", "agent", "manual-walk", "video"] as const;
+export type SourceKind = (typeof SOURCE_KINDS)[number];
+
 export interface Source {
   title: string;
-  kind: "riot" | "tournament-report" | "article" | "agent" | "manual-walk";
+  kind: SourceKind;
   url?: string;
   date?: string;
   /** Verbatim passage this entry stands on, transcribed from the source itself. */

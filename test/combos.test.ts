@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { CardIndex } from "../src/cards.js";
 import { CLASS_RANK, generateVariants, sourceHref, validateCombos } from "../src/combos.js";
 import { loadCombos } from "../src/load.js";
+import { SOURCE_KINDS } from "../src/types.js";
 import type { Card, Combo, ComboClass, ComboStatus, Domain, Ingredient } from "../src/types.js";
 
 // Only the feature vocabulary comes from data/ — it is capped at ~20 entries by design and every
@@ -384,5 +385,29 @@ describe("a cited walk is a link a reader can open (#55)", () => {
     expect(sourceHref({ title: "TCGplayer article", url: "https://www.tcgplayer.com/content/article/x/" }))
       .toBe("https://www.tcgplayer.com/content/article/x/");
     expect(sourceHref({ title: "Equipment lens hunt, issue #41 candidate 1 (rc-huntE)" })).toBeNull();
+  });
+});
+
+/**
+ * Every source in the catalogue, against the declared vocabulary. `Source["kind"]` is a compile-time
+ * union over data that is never written in TypeScript — the entries are authored in
+ * `data/combos.json` and arrive through a JSON import — so nothing was checking it: `video` was used
+ * 54 times by the deck-tech walks of #46 and #62 while the union still listed five kinds. This is the
+ * check that was missing, and it runs over the real catalogue rather than a fixture, because that is
+ * where an undeclared kind can actually appear.
+ */
+describe("the source vocabulary covers what the catalogue actually uses", () => {
+  const { combos } = loadCombos();
+  const sources = combos.flatMap((c) => c.sources ?? []);
+
+  it("declares every kind in use, so a new one cannot ride along unannounced", () => {
+    const used = [...new Set(sources.map((s) => s.kind as string))].sort();
+    const undeclared = used.filter((k) => !(SOURCE_KINDS as readonly string[]).includes(k));
+    expect(undeclared).toEqual([]);
+  });
+
+  it("reads a real catalogue, so the check above cannot pass by finding nothing", () => {
+    expect(sources.length).toBeGreaterThan(100);
+    expect(new Set(sources.map((s) => s.kind)).size).toBeGreaterThan(1);
   });
 });
