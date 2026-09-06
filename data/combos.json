@@ -9440,6 +9440,540 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-ready-lens-candidates.md), issue #56 candidate 4. Card text verbatim from data/corpus_flat.txt; 143.4, 144.2, 190.1/190.6.b/190.6.d, 355.2.a, 381, 411.1, 461/462, 466.5, 485.4a/485.5/486.5/487.5, 103.4.c, 730.2, 731.1, 824.1.b.1 and 824.1.d opened and read. Ban check: none of UNL-213, UNL-191, UNL-109 carries a [BANNED marker; UNL-191 Wuju Master is a different card from OGS-019 Wuju Bladesman - Starter, which is the one restricted in 2v2. It is the strictly better ramp for wuju-master-blood-rose-level, whose last notable proposes Altar to Unity at 1 XP for 1 Energy a turn; the two battlefields cannot both be drawn (103.4.c, 485.4.a), so this is a replacement, not an addition, and that older entry is left unchanged on purpose. The one interpretive step — who gains the XP from an ability a battlefield grants to a unit — is written out in both readings and the entry's numbers are the same either way, so no numbered reading was filed. Trap check: no attack; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; 167 does not bite because nothing here spends Energy outside the Main Phase. ENGINE and not more: XP is not a point."
+    },
+    {
+      "id": "charm-evacuate-conquer",
+      "name": "Charm — the Conquer that never opens a Combat",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-043",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E1 P1. 'Move an enemy unit.' It names no destination, so 355.4 lets its controller choose one; their own base is the choice that empties the battlefield."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm. Charm is mono-Calm, so any legend with Calm runs it.",
+          "A ready friendly unit at your base to walk in afterwards — its Standard Move is the only other cost."
+        ],
+        "notable": [
+          "THE ORDER IS MANDATORY, NOT PREFERRED, AND THAT IS THIS ENTRY'S CORRECTION TO ISSUE #58. Evacuate first, enter second. If you move in first, the Cleanup that 453 requires when the move completes marks the Combat at 323.9 and OPENS it at 323.13 in the same Cleanup, because the state is Neutral Open (310.1) — there is no window in between. And once a Showdown is in progress, 155 bars the spell outright: 'A spell can be played during an Open State OUTSIDE OF SHOWDOWNS on its controller's turn', and Charm carries neither [Action] nor [Reaction].",
+          "THE CONQUER, RULE BY RULE. Charm empties the battlefield; the Cleanup strips the opponent's Control at 323.6 ('Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there'). Your unit walks in with its Standard Move (144.4.a, cost 144.2 / 420.3.a) and applies Contested (450, 190.3.a.1). The next Cleanup stages a Showdown (323.8) and NO Combat, because 323.9 requires 'Units present controlled by opposing players'. 323.12 opens it, 345 gives you Focus, 348 closes it, 348.2.a establishes Control and 348.2.a.1 says outright 'This results in a Conquer'. 471.1 gives the point.",
+          "TRAP 1 IS NOT WORKED AROUND, IT IS AVOIDED. No Combat is ever staged, so no Attacker designation is handed out (464.2.c.3) and no 'When I attack' ability exists to claim — which is exactly what 383.4.e, 807.1.d and 461 say. This entry declares no attack at all.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED. One Charm moves ONE unit, so the line closes only against a garrison of exactly one. Total: 1 Energy + 1 Calm Power plus a Standard Move you already had. Against two or more defenders it empties nothing and entering stages a real Combat.",
+          "THE ALTERNATIVES ARE NOT INTERCHANGEABLE — 103.1.b.1 binds each to its own domain. UNL-124 Isolate (Chaos, E2, one, +1 card if an enemy is left alone), UNL-038 Skyward Strike (Calm, E2 + 1 Power, one), SFD-129 Temptation (Chaos, E2 + E2 [Repeat], TWO and not more: 820.1.c.3, 'Each Repeat Cost can be paid only a single time'), UNL-107 Stare Down (Body, E2, ALL enemies at one battlefield under a chosen friendly unit's Might, +1 XP) and UNL-054 Tricksy Tentacles (Calm, E4 + 1 Power, all of one controller's up to 8 total Might). Stare Down is the one that scales and it is the Body twin of this entry, not a version of it.",
+          "MOVING IT TO YOUR OWN BASE ACHIEVES NOTHING: 323.7 recalls 'all Permanents and Runes in Bases other than their controller's' at the next Cleanup.",
+          "THE BATTLEFIELD IT LEAVES BEHIND IS 'OPEN' IN THE SENSE RIOT USES. Riot's Spiritforged errata (2026-01-14, in data/errata.json) rewrote Yone, Blademaster's 'When I conquer an open battlefield' as 'When I conquer a battlefield that was uncontrolled', so open = without a Controller. That is the state 323.6 produces here, and OGN-193 Miss Fortune, Buccaneer ('Friendly units may be played to open battlefields') converts it into a play permission under 355.2.b."
+        ]
+      },
+      "steps": [
+        "In your Main Phase, in a Neutral Open State (310.1, 155), play Charm for 1 Energy + 1 Calm Power and send the single defender of the opponent's battlefield to their base (355.4 chooses the destination).",
+        "The Cleanup that follows strips their Control of that battlefield (323.6).",
+        "Standard-Move a ready friendly unit from your base into it (144.4.a; the cost is that unit's own exhaust, 144.2 / 420.3.a). 450 and 190.3.a.1 apply Contested.",
+        "The next Cleanup stages a Showdown (323.8) but no Combat (323.9 needs units of opposing players) and opens it (323.12).",
+        "Everyone passes, the Showdown closes (348), you establish Control (348.2.a) and 348.2.a.1 makes it a Conquer: 1 point by 471.1."
+      ],
+      "netPerIteration": "one Conquer for 1 Energy + 1 Calm Power and one Standard Move, with no combat damage dealt or taken",
+      "terminatesIn": "engine only — one point per casting, bounded by the 3 copies of 103.2.b and by 470 (one Score per battlefield per turn)",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Movement lens — issue #58 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/58",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 candidate 1, with ONE correction to the candidate: it wrote the right sequence without saying that the reverse is illegal. 310.1/310.2 + 323.13 + 155 close it, and that is now the first notable. Card text verbatim from data/corpus_flat.txt. Every citation opened and read: 144.2, 144.4.a, 155, 190.3.a.1, 310.1, 320, 323.6, 323.7, 323.8, 323.9, 323.12, 323.13, 345, 348, 348.2.a, 348.2.a.1, 355.4, 383.4.e, 420.3.a, 450, 453, 461, 464.2.c.3, 471.1, 807.1.d, 820.1.c.3, 103.1.b.1, 103.2.b, 470. Ban check: OGN-043, UNL-124, UNL-038, SFD-129, UNL-107 and UNL-054 carry no [BANNED marker in the corpus. Arithmetic against its own declared quantity: 1 Charm, 1 enemy unit, 1 point. Trap check: no attack (no Combat is ever staged); no Awaken Energy held across a phase (167); [Repeat] appears only in the alternatives table with 820.1.c.3 quoted; no [Temporary]; no recall used as a move (456). Depends on no unruled reading."
+    },
+    {
+      "id": "sinister-poro-attack-evacuate",
+      "name": "Sinister Poro — a 1 Might body wins the combat by emptying the garrison",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-137",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E2 P1 M1. 'When I attack, you may pay 1 Energy to move an enemy unit here to its base.' The trigger resolves inside Step 1 of Combat (464.2.e), before the Damage Step exists."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Chaos. The Poro is mono-Chaos, so any legend with Chaos runs it.",
+          "The Poro must be ready to pay for its own Standard Move: 143.4 makes it enter exhausted and it has no [Accelerate], so it lands one turn and attacks the next (315.1.b readies it)."
+        ],
+        "notable": [
+          "TRAP 1 IS SATISFIED, NOT SIDESTEPPED. The Poro walks into a battlefield that HAS a garrison, so 461 makes a Combat exist, 323.9 stages it, 323.13 opens it and 464.2.c.1/464.2.c.3 hand out the Attacker designation — which is exactly what 383.4.e requires ('Attack Triggers are Triggered Abilities that trigger when a Unit or Player gains the Attacker designation for the first time during a combat') and what 807.1.d defines. Walking into an EMPTY battlefield would give no trigger at all.",
+          "THE TIMING CLOSES INSIDE STEP 1. 464.2.e adds the trigger to the Combat Chain during the Combat Showdown Step; it resolves there, the defender goes to its base, and only then does the game reach Step 2, whose 465.1 reads 'If both Attacking and Defending units remain at this battlefield, the following Tasks become Outstanding' — the condition now fails, so no damage is dealt in either direction (465.3 skips the FEPR process and cancels the outstanding tasks).",
+          "AND THE PORO STAYS. 466.1.a.2 inserts '3d. Recall Attackers present at the Battlefield if Defenders are still present' — there are none, so it does not fire. 466.3.a wins the combat, 466.5 establishes Control and 466.5.d makes that a Conquer.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED. One trigger per attack, one unit per trigger, so one Poro clears a garrison of exactly ONE for 2 Energy + 1 Chaos Power once plus 1 Energy on the trigger. A garrison of k needs k Poros moving together — 144.3 ('Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units') with 144.3.a forcing the shared destination — and 103.2.b caps that at 3, so a garrison of 4 is out of reach.",
+          "WHAT REFUTES IT, AND IT IS PRINTED IN THE POOL. The trigger sits on the Combat Chain, so the defender gets Focus windows (347.1) to add a body or kill a 1 Might unit; if a single defender survives, 465.1 is met and the Poro dies to any damage. And UNL-163 Mageseeker Investigator (Order, E4 M4) is the printed tax on the 144.3 move this entry needs: 'Opponents must pay 1 rainbow Power for each unit beyond the first to move multiple units to my battlefield at the same time.'",
+          "THE 'YOU MAY' IS A CHOICE MADE AT FINALIZATION (383.3.a), and the Energy is paid then, not when the trigger is placed."
+        ]
+      },
+      "steps": [
+        "Land the Poro (2 Energy + 1 Chaos Power). It enters exhausted (143.4) and readies in your next Awakening (315.1.b).",
+        "Standard-Move it into a battlefield the opponent controls that has exactly one unit (144.4.a; cost 144.2). 450 and 190.3.a.1 apply Contested.",
+        "The Cleanup stages a Combat (323.9) and opens it (323.13). 464.2.c.1 makes you the Attacker and 464.2.c.3 designates the Poro.",
+        "Its attack trigger goes on the Combat Chain (464.2.e); pay 1 Energy and the defender goes to its base.",
+        "465.1 no longer holds, so there is no Combat Damage Step (465.3). 466.3.a wins it, 466.5 gives Control and 466.5.d makes it a Conquer."
+      ],
+      "netPerIteration": "one Conquer per attack for 1 Energy, with no damage dealt or taken and the Poro left standing",
+      "terminatesIn": "engine only — one point per turn the Poro readies and attacks, bounded by 470",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Movement lens — issue #58 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/58",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 candidate 2. The candidate survives unchanged; the walk adds the two rules that make the timing airtight (464.2.e for where the trigger lives, 465.3 for what happens when 465.1 fails) and the printed counter, UNL-163. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 143.4, 144.2, 144.3, 144.3.a, 144.4.a, 190.3.a.1, 315.1.b, 323.9, 323.13, 347.1, 383.3.a, 383.4.e, 450, 461, 464.2.c.1, 464.2.c.3, 464.2.e, 465.1, 465.3, 466.1.a.2, 466.3.a, 466.5, 466.5.d, 807.1.d. Ban check: UNL-137 and UNL-163 carry no [BANNED marker. Arithmetic: 1 Poro, 1 defender, 1 Energy, 1 Conquer; the k-Poro scaling is stated with its 103.2.b ceiling. Trap check: the attack is legitimate because the battlefield is garrisoned when Combat opens; no [Repeat]; no [Temporary]; no recall as a move; no Awaken Energy carried. Depends on no unruled reading."
+    },
+    {
+      "id": "corrupted-dragon-mass-evacuate",
+      "name": "Corrupted Dragon — the pool's only free mass evacuation, and it switches itself off at 5 points",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-091",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E10 P2 M10. 'If your score is not within 3 points of the Victory Score, I enter ready. When I attack, you may move any number of enemy units here each with 5 Might or less to their base.' No Energy in the trigger and no cap on the count."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Body. The Dragon is mono-Body, so any legend with Body runs it.",
+          "10 Energy and 2 Body Power in one Main Phase."
+        ],
+        "notable": [
+          "THE READY CLAUSE, RESOLVED AGAINST THE RULE. 485.3 fixes 'Victory Score: 8' in a Duel, so 'not within 3 points of the Victory Score' is a score of 4 OR LESS. At 0-4 the Dragon enters ready — 143.4 says 'Units enter the Board exhausted' and 143.4.a allows exactly this kind of alteration — so it can pay its own Standard Move the same turn (144.2). At 5 or more it enters exhausted and does nothing that turn, and that is precisely the turn you most want it. Both halves are true and both are the entry's claim.",
+          "THE EVACUATION IS FREE AND UNCAPPED: 'any number of enemy units here each with 5 Might or less', with no Energy or Power in the trigger. 'Here' is read on execution (359.3.f.2), so it is the Dragon's battlefield at the moment the trigger resolves, not at the moment it was placed.",
+          "SAME SKELETON AS sinister-poro-attack-evacuate AND THE SAME TRAP CHECK. The Dragon attacks a battlefield that HAS a garrison, so 461 / 323.9 / 464.2.c.1 / 464.2.c.3 make the Attacker designation real and 383.4.e gives it a genuine attack trigger. 464.2.e puts it on the Combat Chain, it resolves, and 465.1 then fails: no damage (465.3). 466.1.a.2 does not recall the Dragon because no Defenders are present. 466.3.a, 466.5 and 466.5.d turn it into a Conquer.",
+          "WHAT IT BUYS OVER SIMPLY WINNING THE FIGHT, since a 10 Might body beats most garrisons on damage anyway: no damage is dealt, so none of the opponent's units die and none of their death triggers fire; and it beats a garrison whose TOTAL Might exceeds 10, which a damage fight does not.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED. One card, 10 Energy + 2 Body Power, once. Repeatable every turn the Awakening readies it (315.1.b). It clears a garrison of any size as long as EVERY body in it is 5 Might or less; a single defender of 6+ stays, 465.1 is met and the Dragon takes damage.",
+          "AND THE BATTLEFIELD IT EMPTIES BECOMES 'OPEN' IN RIOT'S SENSE (a battlefield that was uncontrolled — the Spiritforged errata to Yone, Blademaster, 2026-01-14, in data/errata.json), which is what 323.6 does at the next Cleanup when the last defender has gone home. That is the state OGN-193 Miss Fortune, Buccaneer turns into a play permission under 355.2.b."
+        ]
+      },
+      "steps": [
+        "With a score of 4 or less, play Corrupted Dragon for 10 Energy + 2 Body Power. Its own clause makes it enter ready (143.4 / 143.4.a).",
+        "Standard-Move it the same turn into a battlefield the opponent controls whose bodies are each 5 Might or less (144.4.a; cost 144.2). 450 and 190.3.a.1 apply Contested.",
+        "The Cleanup stages the Combat (323.9) and opens it (323.13); 464.2.c.1/c.3 designate the Dragon as an Attacker.",
+        "Its attack trigger goes on the Combat Chain (464.2.e) and moves every qualifying enemy unit there to their base, for no cost.",
+        "465.1 no longer holds, so no damage is dealt (465.3). 466.3.a wins the combat, 466.5 establishes Control and 466.5.d makes it a Conquer.",
+        "The Dragon readies in each Awakening (315.1.b) and can do it again, until your score reaches 5 and the ready clause stops applying to new copies."
+      ],
+      "netPerIteration": "one Conquer per attack with the whole enemy garrison sent home and zero damage on either side, for 0 Energy on the trigger",
+      "terminatesIn": "engine only — one point per attack, bounded by 470 and by the ready clause switching off at 5 points",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Movement lens — issue #58 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/58",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 candidate 3. The candidate survives unchanged. The walk resolves the 'not within 3 points' clause against 485.3 arithmetically (score <= 4) and adds what the evacuation buys over a damage win, which the candidate left implicit. Card text verbatim from data/corpus_flat.txt. Citations opened: 143.4, 143.4.a, 144.2, 144.4.a, 190.3.a.1, 315.1.b, 323.6, 323.9, 323.13, 355.2.b, 359.3.f.2, 383.4.e, 450, 461, 464.2.c.1, 464.2.c.3, 464.2.e, 465.1, 465.3, 466.1.a.2, 466.3.a, 466.5, 466.5.d, 485.3. Ban check: VEN-091 carries no [BANNED marker. Arithmetic: 10 Energy + 2 Power once, 0 on the trigger, a garrison of any size at 5 Might or less. Trap check: the attack is legitimate (garrison present when Combat opens); no [Repeat]; no [Temporary]; no recall as a move; no Awaken Energy carried across a phase. Depends on no unruled reading."
+    },
+    {
+      "id": "janna-overzealous-empty-the-attack",
+      "name": "Janna and the Overzealous Fan — cancel the Combat Damage Step by emptying the attackers",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-128",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E2 M2. 'When I defend, you may kill me to move an attacking unit to its base.' The pool's only free evacuation, paid for with its own body. 383.4.f is the trigger category."
+        },
+        {
+          "card": "SFD-053",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm unit, E3 P1 M3, [Reaction]. 'When you play me, heal your units here, then move up to one enemy unit from here to its base.' The pool's only evacuation at Reaction speed now that OGN-168 Fight or Flight is banned."
+        },
+        {
+          "card": "SFD-123",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E3 P1 M4. 'When I move to a battlefield, discard 1. When I win a combat, draw 1.' A UNIT winning a combat is defined by Riot's own reminder text on the same wording — UNL-114 Nidalee, Cat Form prints '(I win if I remain after combat.)' — and with the damage step cancelled the Enforcer always remains. See the notable on why Voidreaver cannot be the payoff."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Chaos: OGN-259 Unforgiven, SFD-195 Blade Dancer or UNL-193 Gloomist. None carries a ban marker.",
+          "You are the Defender — this line runs on the opponent's turn, at a battlefield you already control."
+        ],
+        "notable": [
+          "THE DEFENDER'S TRIGGER RESOLVES FIRST, AND THAT IS A RULE. 383.4.f defines Defend Triggers as firing 'when a Unit or Player gains the Defender designation for the first time during a combat'; 464.2.e.1 puts the Defending player's triggers on the Combat Chain LAST ('The Attacking player, who has Focus, places Triggered Abilities on the Chain first, followed by all non-Defender players in Turn Order, followed by the Defending Player'); and 340.1 resolves 'The newest Finalized Chain Item' first. So the Fan's evacuation happens before the attacker's own 'When I attack' triggers resolve, and by 359.3.f.2 those then read 'here' on an attacker that has already gone home.",
+          "AND THEN THERE IS NO DAMAGE STEP AT ALL. 465.1: 'If both Attacking and Defending units remain at this battlefield, the following Tasks become Outstanding' — with the single attacker gone the condition fails and 465.3 cancels the outstanding tasks. 466.3.b makes the attacker the loser and 466.3.a makes you the winner. There is no Conquer: you already controlled the battlefield.",
+          "WHAT IT DOES NOT BUY, AND THIS IS THE ENTRY'S OWN LIMIT. 466.1.a.2 inserts '3d. Recall Attackers present at the Battlefield if Defenders are still present' into the Combat Cleanup, so surviving attackers go home anyway. The evacuation removes nothing the cleanup was not already going to send back; what it buys is taking NO DAMAGE. And against two or more attackers, removing one leaves 465.1 satisfied and the damage happens as normal.",
+          "JANNA'S SPEED IS THE HALF THAT IS HARD TO REPLACE. 813.1 makes Reaction a Permissive keyword, 813.1.b grants 'all abilities and permissions of Action', and 806.1.b gives permission 'to be played or activated during Showdowns, even when it is not the Controlling player's turn'. 355.2.a already makes a battlefield you control a valid location, which is what her reminder text restates. She costs 3 Energy + 1 Calm Power and leaves a 3 Might body; the Fan costs 2 Energy and dies.",
+          "THE PAYOFF CORRECTION. Issue #58 offered UNL-201 Voidreaver ('When you win a combat, gain 1 XP') as a payoff — but Voidreaver is a LEGEND (Body/Chaos), so it cannot sit in a Calm/Chaos deck and be its payoff at the same time (103.1.b.1). SFD-123 Corrupt Enforcer is the Chaos unit that does the same job, and its own 'When I move to a battlefield, discard 1' is a real cost that the entry declares rather than hides. The card says 'When I win a combat', which 466.3.a only defines for a PLAYER — Riot supplies the unit-level reading in its own reminder text on the identical wording: UNL-114 Nidalee, Cat Form prints '(I win if I remain after combat.)' and SFD-185 Glorious Executioner prints '(You win if only your units remain after combat.)'. With 465.1 failing, the Enforcer remains and the attacker does not, so both readings pay.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED. ONE evacuation per card. With the maximum 3 Janna + 3 Fan (103.2.b) the ceiling is six evacuations across a game, one per attacker per combat — it is a tempo line, never a lock."
+        ]
+      },
+      "steps": [
+        "On the opponent's turn a single attacker moves into a battlefield you control. 450 and 190.3.a.1 make them apply Contested; 464.2.c.1/c.2 make them the Attacker and you the Defender.",
+        "464.2.c.3 designates your units; the Fan's 'When I defend' trigger becomes pending and 464.2.e.1 puts it on the Chain after theirs.",
+        "It resolves first (340.1): kill the Fan, move the attacking unit to its base. Or, instead, play Janna at Reaction speed to that battlefield (813.1.b, 806.1.b) and use her trigger.",
+        "465.1 no longer holds, so no combat damage is dealt in either direction (465.3).",
+        "466.3.b makes the attacker the loser and 466.3.a makes you the winner; Corrupt Enforcer's 'When I win a combat' draws a card.",
+        "466.1.a.2 would have recalled the attacker anyway — what you bought is that nothing of yours took damage."
+      ],
+      "netPerIteration": "one attacker removed from the damage step per card, no damage taken, and a card off the win-a-combat payoff",
+      "terminatesIn": "engine only — it wins combats without damage; it scores nothing by itself, because you already control the battlefield",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Movement lens — issue #58 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/58",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 candidate 4, with TWO corrections. (1) The candidate's payoff UNL-201 Voidreaver is a LEGEND and cannot coexist with a Calm/Chaos identity, so the entry uses SFD-123 Corrupt Enforcer and names the three legal legends. (2) The candidate's own caveat about 466.1.a.2 is promoted into the entry as its stated limit rather than left as a footnote: the evacuation buys no damage, not removal. Card text verbatim from data/corpus_flat.txt. Riot's own reminder text on UNL-114 and SFD-185 supplies the unit-level meaning of 'win a combat', which 466.3.a defines only for a player. Citations opened: 103.1.b.1, 103.2.b, 340.1, 355.2.a, 359.3.f.2, 383.4.f, 450, 190.3.a.1, 464.2.c.1, 464.2.c.2, 464.2.c.3, 464.2.e, 464.2.e.1, 465.1, 465.3, 466.1.a.2, 466.3.a, 466.3.b, 806.1.b, 813.1, 813.1.b. Ban check: SFD-053, SFD-128 and SFD-123 carry no [BANNED marker; OGN-168 Fight or Flight, named only as the banned alternative, does. Arithmetic: one evacuation per card, ceiling six at 3 + 3 copies. Trap check: the combat is opened by the OPPONENT against a garrison, so no empty-battlefield attack is claimed; no [Repeat]; no [Temporary]; no recall used as a move (466.1.a.2's recall is explicitly NOT a move, 456.1); no Awaken Energy carried. Depends on no unruled reading."
+    },
+    {
+      "id": "signpost-corina-two-battlefields",
+      "name": "Forgotten Signpost moves Corina a second time — three Recruits at each of two battlefields",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-045",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm gear, E2. '[Action][>] Exhaust a unit you control, exhaust: Move a different unit you control to the location of the unit you exhausted to pay for this ability.' The pool's only effect move at 0 Energy and 0 Power."
+        },
+        {
+          "card": "SFD-179",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E7 P1 M6. '[Accelerate] … When I move to a battlefield, play three 1 Might Recruit unit tokens here.' Three tokens on one landing is the maximum in the pool."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Order: SFD-247 Emperor of the Sands, OGN-261 Radiant Dawn, UNL-195 Green Father or VEN-147 Eye of Twilight. None carries a ban marker."
+        ],
+        "notable": [
+          "YOU MUST ALREADY CONTROL BOTH BATTLEFIELDS, AND THAT IS THE PREREQUISITE ISSUE #58 DID NOT STATE. Corina's Recruits are PLAYED, and 355.2.a limits that to 'the controller's Base or a Battlefield the controller controls'. Two landings therefore mean two battlefields you control — and 485.4 fixes 'Battlefield Count: 2' in a Duel, so this line asks for the whole board. Taking each one is part of the cost (190.1: 'Control is established over Battlefields through the course of play').",
+          "THE SIX RECRUITS DO NOT CONCENTRATE, AND #58's '2 moves x 6 = 12 at The Grand Plaza' IS WRONG. 359.3.f.2 reads 'here' ON EXECUTION, so each landing drops its three where Corina actually is; two landings are two different battlefields. The same correction is already written into corina-svellsongur-plaza (issue #48) and this entry does not contradict it. What you get is 3 at B and 3 at C.",
+          "WHY THE SIGNPOST MOVE IS LEGAL AT ALL, WHICH IS THIS ENTRY'S REAL CONTENT. 420.2 makes Moving a Limited Action and 420.2.a says players move Game Objects only 'when instructed to do so by Game Effects or costs'; 420.3/420.3.a put the exhaust cost on the STANDARD Move alone; 144.4 restricts destinations 'with their Standard Move' alone; and 810.1.c.3 confirms [Ganking] 'does not give additional abilities or activations of Movement, only new options for the Standard Move'. So the Signpost moves an EXHAUSTED Corina from battlefield to battlefield with no [Ganking] and no exhaust, for 0 Energy and 0 Power. 447.2.a and 447.2.b are the only invalid destinations for 'Moves of all kinds' and neither exists in a Duel.",
+          "ITS [Action] IS LOAD-BEARING: 151.2 would otherwise confine a gear ability to 'the controlling player's Main Phase during an Open State, and not during a Showdown'. 806.1.d confirms '[Action][>]' is the ability form and 806.1.c.2 its plain-language equivalent.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED (1 Corina, 1 Signpost, 1 ready friendly unit at the second battlefield). Landings on a battlefield this turn = 2 (Standard Move + Signpost). Recruits per landing = 3. Total 6, as 3 + 3. Finishing-turn cost 8 Energy + 2 Power: Corina 7 Energy + 1 Power, [Accelerate] 1 Energy + 1 Order Power (805.1.a), Signpost activation 0 + 0; the gear's own 2 Energy was paid on an earlier turn (149.1: 'Gear enter play Ready').",
+          "CORINA LEAVES B BUT THE THREE RECRUITS SHE LEFT KEEP IT, so 323.6 does not strip your Control of it, and 315.2.b.2 ('The Turn Player Holds all Battlefields they Control') scores BOTH in your next Beginning Phase. That is the payoff of the entry.",
+          "THE CHEAPER VARIANT: skip [Accelerate] entirely. Corina enters exhausted at your base (143.4) and the Signpost moves her, exhausted, to her one landing — minus 1 Energy and minus 1 Order Power, at the price of a ready friendly unit already standing there.",
+          "WHAT LIMITS IT. The destination is not chosen freely: it is wherever the unit you exhausted stands, and 'a different unit you control' forbids Corina paying her own cost. The Signpost exhausts itself, so it is ONE activation per turn cycle unless something readies it — the five cards that ready gear are VEN-149, VEN-150, SFD-221, OGN-162 and VEN-068 (issue #56). There is no [Repeat] here, so 820.1.c.3 is not involved, and this is not a loop.",
+          "The Recruits are 187.1 tokens with no [Temporary], so 816.1.b never touches them, and they enter exhausted (143.4), which does not matter for garrisoning or Holding."
+        ]
+      },
+      "steps": [
+        "On an earlier turn, play Forgotten Signpost for 2 Energy (149.1: it enters ready) and establish Control of both battlefields.",
+        "Play Corina Veraza for 7 Energy + 1 Power, paying [Accelerate]'s 1 Energy + 1 Order Power so she enters ready (805.1.a, against 143.4).",
+        "Standard-Move her from base to B (144.4.a; the cost is her own exhaust, 144.2). Her trigger plays three Recruits at B (355.2.a: you control it).",
+        "Activate the Signpost: exhaust a ready friendly unit standing at C and exhaust the Signpost itself. Move Corina — exhausted, which 420.3.a makes irrelevant — to C.",
+        "Her trigger fires again on the new landing: three Recruits at C. Six Recruits, split 3 and 3, because 359.3.f.2 reads 'here' on execution.",
+        "The Recruits garrison both battlefields, so 323.6 leaves your Control intact and 315.2.b.2 Holds both in your next Beginning Phase."
+      ],
+      "netPerIteration": "a second landing for Corina at 0 Energy and 0 Power, worth three more Recruits, once per turn cycle",
+      "terminatesIn": "engine only — six bodies across two battlefields and two Holds next Beginning Phase; it scores no points by itself",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Movement lens — issue #58 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/58",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 candidate 5, REWRITTEN. Two things the candidate got wrong: (1) its cross-reference to issue #48 claimed '2 moves x 6 = 12 Recruits' at The Grand Plaza, which 359.3.f.2 forbids — each landing drops its batch where it lands, and corina-svellsongur-plaza already says so; (2) it never stated that 355.2.a plus 485.4 require you to control BOTH battlefields of a Duel, which is now the first notable. What survives is the mechanism, and it is the cleanest case of the lens: the Signpost is the pool's only 0-Energy 0-Power effect move. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 143.4, 144.2, 144.4, 144.4.a, 149.1, 151.2, 187.1, 190.1, 315.2.b.2, 323.6, 355.2.a, 359.3.f.2, 420.2, 420.2.a, 420.3, 420.3.a, 447.2.a, 447.2.b, 485.4, 805.1.a, 806.1.c.2, 806.1.d, 810.1.c.3, 816.1.b, 820.1.c.3. Ban check: UNL-045 and SFD-179 carry no [BANNED marker. Arithmetic against its own declared quantities: 2 landings x 3 Recruits = 6, as 3 + 3, for 8 Energy + 2 Power on the finishing turn. Trap check: no attack is declared anywhere; no [Repeat]; the Recruits carry no [Temporary]; no recall used as a move; no Awaken Energy carried across a phase. Depends on no unruled reading."
+    },
+    {
+      "id": "faefolk-challenger-forced-attacker",
+      "name": "Irresistible Faefolk and Imposing Challenger — move the enemy, take the battlefield",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-112",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E2 M1. 'When I move to a battlefield, you may move an enemy unit to that battlefield.' Drags an enemy body onto a battlefield you control, which makes THEM the Attacker on your turn."
+        },
+        {
+          "card": "UNL-105",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E5 M5. 'When I move, you may move an enemy unit here with less Might than me to a different battlefield.' Pushes the garrison out of the battlefield he just entered, before the staged Combat can open."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Body. Both are mono-Body, so any legend with Body runs them.",
+          "Neither has [Accelerate], so 143.4 costs each of them a turn before it can pay for its own Standard Move (144.2, 315.1.b)."
+        ],
+        "notable": [
+          "THE OPPONENT APPLIES CONTESTED, AND THEREFORE ATTACKS ON YOUR TURN. 190.3.a keys Contested on 'a Unit controlled by a Player who does not currently Control that Battlefield'; 190.3.a.1 says 'that UNIT'S CONTROLLER does not already control that battlefield'; 450 says 'not controlled by the controller of the Unit or Units that moved'. All three follow the unit, not whoever caused the move. So 464.2.c.1 ('The Attacker is the player whose unit(s) applied the Contested status') makes the opponent the Attacker at a battlefield you chose, with the garrison you built, and 323.13 lets you, the Turn Player, choose when it opens. SFD-128 Overzealous Fan is a 'When I defend' trigger (383.4.f) and this is how you fire it on your own turn.",
+          "THE CHALLENGER CONQUERS WITHOUT A COMBAT EVER OPENING, AND 323.10 IS THE RULE THAT ALLOWS IT — the walk's addition, uncited in issue #58. 'If Units of two opposing players are no longer present at a Battlefield that has a Combat Staged BEFORE IT HAS OPENED, the Combat will cease being Staged.' Sequence: his Standard Move completes, 453 and 319.3 make a Cleanup outstanding, but the trigger is a Pending Chain item so the state is Neutral Closed (310.2) and 323.13 ('If the current state is a NEUTRAL OPEN State … Combat begins there') does not fire. The trigger then resolves and pushes the garrison out. At the next Cleanup 323.6 strips their Control (a Combat is STAGED there, not ongoing), 323.10 un-stages the Combat, 323.11 leaves Contested standing because your units are still there, 323.8.a keeps the Showdown staged, 323.12 opens it, and 348.2.a / 348.2.a.1 give you Control and a Conquer with no damage.",
+          "THE SAME WINDOW IS CLOSED TO A PLAIN SPELL, which is why this entry and charm-evacuate-conquer are different lines and not versions of one another: after a move by a unit with no trigger, the very next Cleanup opens the Combat at 323.13, and 155 bars a spell without [Action] or [Reaction] from a Showdown.",
+          "'A DIFFERENT BATTLEFIELD' IS DETERMINISTIC IN A DUEL: 485.4 fixes 'Battlefield Count: 2', so there is exactly one legal destination. 485.4.a, with 485.5 (Duel) and 487.5 (Skirmish) selecting randomly and 486.5 (Match) selecting, is why you cannot plan on which of your three battlefields is in play; 103.4.c and Tournament Rules 402.1 forbid bringing two of the same name.",
+          "THE DRAWBACK IS SYMMETRIC AND IT IS PART OF THE ENTRY. The pushed unit lands at the other battlefield and 190.3.a.1 makes THEM apply Contested there. If you hold it with a garrison, you get a combat on your terms and 466.1.a.2 sends the survivor home; if it is empty or uncontrolled, they open a Showdown and Conquer it. And the Faefolk hands the opponent the Attacker designation, so THEIR 'When I attack' triggers fire and your defenders take damage (465.2 resolves it 'using their current Might'). Neither card is played without the Might arithmetic done first.",
+          "DRAGGING THEIR LAST BODY OFF A BATTLEFIELD TAKES THE BATTLEFIELD FROM THEM. 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there' — so a Faefolk drag leaves that battlefield uncontrolled, which is 'open' in Riot's sense (the Spiritforged errata to Yone, Blademaster rewrote 'an open battlefield' as 'a battlefield that was uncontrolled'), and a second ready body of yours walks in and Conquers it in the same Main Phase.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED. One enemy unit per trigger, one trigger per move, one move per readying (144.2 + 415.3.a). Faefolk: 2 Energy, one drag per turn. Challenger: 5 Energy, one push per turn, filtered at 'less Might than me' = 4 or less. 810.1.c.3 is why neither of them ever moves twice."
+        ]
+      },
+      "steps": [
+        "Land the Faefolk (2 Energy) or the Challenger (5 Energy); 143.4 makes it enter exhausted and 315.1.b readies it in your next Awakening.",
+        "CHALLENGER LINE: Standard-Move him into a battlefield the opponent controls whose garrison is one unit of 4 Might or less (144.4.a, cost 144.2). 450 applies Contested.",
+        "The Cleanup stages a Showdown and a Combat there, but the state is Neutral Closed with his trigger pending (310.2), so 323.13 does not open it.",
+        "The trigger resolves: the enemy unit is pushed to the only other battlefield (485.4).",
+        "Next Cleanup: 323.6 strips their Control, 323.10 un-stages the Combat, 323.12 opens the Showdown; 348.2.a and 348.2.a.1 give you Control and a Conquer with no damage.",
+        "FAEFOLK LINE: Standard-Move him onto a battlefield you control and garrison; the trigger drags an enemy unit there. 190.3.a.1 makes THEM apply Contested and 464.2.c.1 makes them the Attacker on your turn — and if that body was the last one at a battlefield they controlled, 323.6 hands you that battlefield too."
+      ],
+      "netPerIteration": "one enemy body relocated per turn: either a Conquer with no combat at all, or a fight the opponent is forced to open on your board",
+      "terminatesIn": "engine only — a point per Conquer, bounded by 470 and by one move per readying",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Movement lens — issue #58 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/58",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 candidate 6. The candidate stands and the walk adds the better half of it: 323.10, which issue #58 never cited, lets the Imposing Challenger un-stage a Combat that has not opened and Conquer with no damage — and 310.2 explains why a Triggered Ability reaches that window while a plain spell (charm-evacuate-conquer) cannot. 323.6 is the second addition: dragging the last enemy body off a battlefield they control takes the battlefield from them. The candidate's own drawback (handing over the Attacker designation, and the pushed unit contesting the other battlefield) is kept in full. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.4.c, 143.4, 144.2, 144.4.a, 155, 190.3.a, 190.3.a.1, 310.2, 315.1.b, 319.3, 323.6, 323.8.a, 323.10, 323.11, 323.12, 323.13, 348.2.a, 348.2.a.1, 383.4.f, 415.3.a, 450, 453, 464.2.c.1, 465.2, 466.1.a.2, 485.4, 485.4.a, 485.5, 486.5, 487.5, 810.1.c.3. Ban check: UNL-112 and UNL-105 carry no [BANNED marker. Arithmetic: one unit per trigger, one trigger per move, one move per readying; 2 Energy and 5 Energy respectively. Trap check: NO attack on an empty battlefield is declared — the Challenger line conquers with the Combat un-staged and no Attacker designation ever handed out, and the Faefolk line is defended, not attacked; no [Repeat]; no [Temporary]; no recall used as a move; no Awaken Energy carried. Depends on no unruled reading."
+    },
+    {
+      "id": "lillia-smoke-mirrors-sprite-relay",
+      "name": "Lillia and Smoke and Mirrors — four Sprites out of one unit and three spells",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-082",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E3 M3, [Accelerate]. 'When I move from a location, play a 3 Might Sprite unit token with [Temporary] there.' The only card in the pool that leaves a token at the place it is leaving."
+        },
+        {
+          "card": "UNL-083",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind spell, E2, [Hidden] and [Action]. 'Choose a unit you control and another unit you control at a different location. If at least one of them has [Temporary], move each to the other's location. Draw 1.' The only move in the pool that REQUIRES a [Temporary] unit — and Lillia manufactures them."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind. Both cards are mono-Mind. UNL-189 Bashful Bloom (Calm/Mind, Lillia's own legend) is the one that pays the most — see the notable.",
+          "A battlefield you control, because 355.2.a limits where the Sprites can be played."
+        ],
+        "notable": [
+          "EVERY SWAP IS A MOVE AND THEREFORE FIRES HER. 446.1: 'A Permanent changing its position from any space on the Board to another space on the Board is a Move, unless it is caused by a corrective Recall or an Attached Permanent changing locations to or with its Top-Most Card.' 420.1 says the same from the other side, and 456 / 456.1 exclude only recalls ('Recalls are not Moves… They do not cause Triggered Abilities to trigger that are triggered by Move actions'). 'There' is the ORIGIN, read on execution (359.3.f.2), and 355.2.a makes it legal only because the origin is your base or a battlefield you control.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED — FOUR SPRITES, BUT NOT TWELVE MIGHT IN ONE PLACE, WHICH IS THIS ENTRY'S CORRECTION TO ISSUE #58. Tracked position by position with 1 Lillia and the 3 copies 103.2.b allows: after her Standard Move base->B the board is base {S1} / B {Lillia}; after swap 1, base {Lillia} / B {S1,S2}; after swap 2, base {S1,S3} / B {S2,Lillia}; after swap 3, base {S3,Lillia} / B {S1,S2,S4}. Four Sprites and 12 Might in total, but every swap moves Lillia the other way, so after an odd number of swaps she is back at the base and AT MOST THREE SPRITES (9 Might) stand at the battlefield. Stop at two swaps and it is Lillia plus one Sprite there.",
+          "COSTS, WITH THE [Hidden] DISCOUNT PRICED HONESTLY. 3 Energy for Lillia, 1 Energy + 1 Mind Power for [Accelerate] (805.1.a), 2 Energy per copy: 10 Energy + 1 Power, and cards net minus one (three spent, three drawn). 811.1.b does let you hide a copy 'at a battlefield you control' for one rainbow Power and play it later for 0 Energy — but 811.1.d warns that 'Some choices made while playing a card from Hidden are restricted to the battlefield where it was hidden', and this spell is DEFINED by choosing two units at DIFFERENT locations, so one of its two choices is necessarily off that battlefield. The entry prices the copies at their base cost.",
+          "TRAP 4 BITES IN FULL AND IS DECLARED, NOT WORKED AROUND. 816.1 makes [Temporary] a Triggered Ability keyword and 816.1.b is 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this.' The Sprites NEVER Hold, so they never count for OGN-293 The Grand Plaza, whose condition 383.2.a.1 measures at the Scoring Step that 315.2.b.2 places in the Beginning Phase. They are one turn cycle of combat bodies and that is all this entry claims.",
+          "THE LEGEND THAT BELONGS WITH IT. UNL-189 Bashful Bloom (Calm/Mind): '4 Energy, exhaust: Play a ready 3 Might Sprite unit token with [Temporary]. This ability costs 1 Energy less for each friendly unit with [Temporary].' With four Sprites out it costs 0, and its Sprite enters READY — the only ready body in the line. It also starts the relay without spending Lillia's Standard Move: play its Sprite at a battlefield you control and Lillia at the base is already 'at a different location'.",
+          "[Action] IS WHY THE BODIES CAN APPEAR INSIDE A SHOWDOWN (806.1.c.1: 'This can be played during showdowns on any player's turn'), which is the difference between a relay and a sorcery-speed trick.",
+          "THE CEILING IS THE COPY LIMIT. 103.2.b caps Smoke and Mirrors at 3 and there is no recycle route in this line that brings one back, so the relay is three swaps long and stops."
+        ]
+      },
+      "steps": [
+        "Play Lillia for 3 Energy, paying [Accelerate]'s 1 Energy + 1 Mind Power so she enters ready (805.1.a against 143.4).",
+        "Standard-Move her from base to a battlefield you control (144.4.a; cost 144.2). She moved FROM the base, so Sprite #1 is played at the base (355.2.a).",
+        "Play Smoke and Mirrors (2 Energy): choose Lillia and a Sprite at a different location. They swap; Lillia moved from her location, so a new Sprite is played there. Draw 1.",
+        "Repeat with the second and third copies, alternating base and battlefield. Each one adds a Sprite and replaces the card it spent.",
+        "Four Sprites, 12 Might; at most three of them (9 Might) end at the battlefield, with Lillia at the base after an odd number of swaps.",
+        "816.1.b kills every Sprite at the start of your next Beginning Phase, before scoring — they defend for one turn cycle and never Hold."
+      ],
+      "netPerIteration": "one 3 Might [Temporary] body and one card drawn per copy of Smoke and Mirrors, for 2 Energy",
+      "terminatesIn": "engine only — four bodies for one turn cycle and three cards; they die before scoring, so they never convert to points",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Movement lens — issue #58 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/58",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 candidate 7, with ONE correction. The candidate's '4 Sprites -> 12 Might' is right as a total and wrong as a board: every swap moves Lillia the other way, so at most three Sprites (9 Might) end at the battlefield and she ends at the base after three swaps. The walk tracks the positions swap by swap. It also prices the [Hidden] discount against 811.1.d instead of quoting the reminder text, and adds UNL-189 Bashful Bloom as the legend that both discounts to 0 on four Sprites and starts the relay without spending her Standard Move. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 143.4, 144.2, 144.4.a, 315.2.b.2, 355.2.a, 359.3.f.2, 383.2.a.1, 420.1, 446.1, 456, 456.1, 805.1.a, 806.1.c.1, 811.1.b, 811.1.d, 816.1, 816.1.b. Ban check: UNL-082, UNL-083 and UNL-189 carry no [BANNED marker. Arithmetic against its own declared quantities: 1 Lillia + 3 Smoke and Mirrors = 4 Sprites for 10 Energy + 1 Power, cards net -1. Trap check: trap 4 applies in full and is declared (the Sprites never Hold); no attack; no [Repeat]; recalls are excluded by name (456.1); no Awaken Energy carried across a phase. Depends on no unruled reading."
+    },
+    {
+      "id": "bard-mercurial-mass-relocation",
+      "name": "Bard, Mercurial — the only card that moves your whole board at once, and it Conquers as it lands",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-079",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind unit, E4 P1 M4. 'You may exhaust your legend as an additional cost to play me. When you play me, if you paid the additional cost, move any number of your units to an open battlefield.' No cap on the number moved."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind. Bard is mono-Mind, so any legend with Mind runs him.",
+          "Your legend must still be READY: 414.1.b forbids exhausting what is already exhausted, and the trigger checks 'if you paid the additional cost'. 107.4.c is why a legend can be exhausted at all ('The Champion Legend here is a Game Object')."
+        ],
+        "notable": [
+          "'OPEN BATTLEFIELD' MEANS WITHOUT A CONTROLLER, AND THE EVIDENCE IS RIOT'S OWN ERRATA — this is what unblocks the entry, which issue #58 had filed as its refutation R3 pending a ruling. Riot's Spiritforged errata of 2026-01-14 (data/errata.json, https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata) rewrote Yone, Blademaster's 'When I conquer an open battlefield,' as 'When I conquer a battlefield that was uncontrolled,'. Neither the Core Rules nor the Tournament Rules define the term; Riot translated it itself. SCOPE, STATED RATHER THAN HIDDEN: Yone's is a CONQUER text and the five cards that still print 'open battlefield' (OGN-174, OGN-176, OGN-193, SFD-079, VEN-115) are PLAY and MOVE texts that Riot has not reworded. The errata is direct evidence of what the word means, not a rewrite of this card.",
+          "WHAT IT DOES THAT NOTHING ELSE IN THE POOL DOES. 'Move any number of your units' in one effect, for 4 Energy + 1 Mind Power plus the legend's exhaust. It is an effect move (420.2, 420.2.a), so 144.4 and 420.3.a do not apply: it moves EXHAUSTED units, and it goes base to battlefield or battlefield to battlefield with no [Ganking] (810.1.c.3). Issue #48 measured that 18 of the 49 token makers leave their tokens 'at your base' while points are scored at battlefields, and that SFD-177 Azir, Sovereign is the only bulk mover of TOKENS. Bard is the only bulk mover of units of any kind — and the two need opposite boards, so they complement rather than compete.",
+          "THE DESTINATION IS THE CONSTRAINT, AND IT IS THE WINDOW A DUEL OPENS WITH. 190.1: 'Control is established over Battlefields through the course of play', so both battlefields start uncontrolled and the one you provided is open until somebody takes it. 323.6 re-opens one whenever its garrison leaves. Once you control a battlefield it is no longer a legal destination for this trigger, which is exactly what stops Bard being a general-purpose shuttle.",
+          "THE MOVE CONQUERS BY ITSELF. 450: your units apply Contested to an uncontested battlefield you do not control. 323.8 stages a Showdown; 323.9 stages no Combat, because an uncontrolled battlefield normally has nobody on it. 323.12 opens it, 348 closes it, 348.2.a establishes Control and 348.2.a.1 makes it a Conquer — 471.1, one point, the same turn the bodies arrive. Trap 1 is respected: no Combat exists, so no Attacker designation is handed out (464.2.c.3) and no 'When I attack' is claimed.",
+          "THE ARITHMETIC WITH THE QUANTITY DECLARED. One card, one activation, 4 Energy + 1 Mind Power, no cap on the number of units moved. Bard is already on the board when 'When you play me' resolves, so he is one of the bodies. Against OGN-293 The Grand Plaza, whose bar is seven and whose condition 383.2.a.1 measures at the Hold (315.2.b.2 puts that in your Beginning Phase), Bard plus six banked tokens is exactly the bar and every extra token banked at the base is margin — but the swarm must survive the opponent's whole turn, and 312.2.a gives priority only in the Main Phase, so there is no window to top it up.",
+          "IF THE PLAZA IS THE TARGET, THE USUAL BATTLEFIELD CAVEAT APPLIES: a deck may not carry two of a battlefield of the same name (103.4.c, Tournament Rules 402.1), and it is random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5).",
+          "The legend exhaust competes with everything else your legend does that turn, and that is the real price: many Mind legends want their own exhaust ability on the turn you would want Bard."
+        ]
+      },
+      "steps": [
+        "Bank bodies wherever they are made — the base is fine, and 18 of the 49 token makers leave them nowhere else (issue #48).",
+        "With your legend still ready, play Bard for 4 Energy + 1 Mind Power and pay the additional cost by exhausting the legend (107.4.c, 414.1.b).",
+        "His trigger resolves: move any number of your units — Bard included, since he is on the board by then — to a battlefield with no Controller (190.1, or one 323.6 has just re-opened).",
+        "450 and 190.3.a.1 apply Contested. The Cleanup stages a Showdown (323.8) and no Combat (323.9), and 323.12 opens it.",
+        "348 closes it, 348.2.a establishes Control and 348.2.a.1 makes it a Conquer: one point by 471.1, with the whole swarm now standing there.",
+        "From your next Beginning Phase, 315.2.b.2 Holds it every turn the garrison survives."
+      ],
+      "netPerIteration": "your entire base emptied onto one battlefield in a single effect, plus the Conquer that move causes, for 4 Energy + 1 Mind Power and the legend's exhaust",
+      "terminatesIn": "engine only — one Conquer and a garrison; the win comes from what the bodies then do, e.g. a Grand Plaza hold on the following turn",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Movement lens — issue #58 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/58",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Spiritforged errata (Riot), transcribed in data/errata.json",
+          "kind": "riot",
+          "url": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
+          "date": "2026-01-14",
+          "quote": "Yone, Blademaster: 'When I conquer an open battlefield,' becomes 'When I conquer a battlefield that was uncontrolled,'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 refutation R3, OVERTURNED. The candidate was blocked on the undefined printed term 'open battlefield' (the project's reading R31). It never needed a vote: Riot's own Spiritforged errata rewrote the term as 'a battlefield that was uncontrolled' on Yone, Blademaster, and that errata is already transcribed in data/errata.json. R31 is retired, open = without a Controller, and the scope caveat (Yone is a conquer text; the five surviving cards are play/move texts Riot has not reworded) rides in the first notable rather than in the walk only. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.4.c, 107.4.c, 144.4, 190.1, 190.3.a.1, 312.2.a, 315.2.b.2, 323.6, 323.8, 323.9, 323.12, 348, 348.2.a, 348.2.a.1, 383.2.a.1, 414.1.b, 420.2, 420.2.a, 420.3.a, 450, 464.2.c.3, 471.1, 485.5, 486.5, 487.5, 810.1.c.3. Ban check: SFD-079, OGN-293 and SFD-177 carry no [BANNED marker. Arithmetic against its own declared quantity: one card, one activation, 4 Energy + 1 Mind Power, uncapped bodies; Bard plus six banked tokens is exactly the Plaza's seven. Trap check: no Combat is ever staged so no attack is claimed (trap 1); no [Repeat]; no [Temporary]; no recall used as a move; no Awaken Energy carried across a phase. Depends on no unruled reading — R31 is retired by rules evidence, not voted."
     }
   ]
 }
