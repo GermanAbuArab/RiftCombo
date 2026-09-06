@@ -47,6 +47,17 @@ Baseline on the reviewed tree: **318 tests across 17 files, all passing**; `npm 
 
 ## Findings
 
+Thirteen issues, #126 and #128–#139. (#127 is another session's, filed the same afternoon.)
+
+| Severity | Count | Issues |
+|---|---|---|
+| HIGH | 6 | #126 (fixed here), #128, #129, #132, #133, #138 |
+| MEDIUM | 1 | #134 |
+| LOW | 6 | #130, #131, #135, #136, #137, #139 |
+
+One further finding was **rejected on verification** and is recorded below rather than filed.
+
+
 ### Fixed in this pass
 
 **#126 — HIGH — the Vercel ignore step silently skipped real deploys.** `d3ef269`
