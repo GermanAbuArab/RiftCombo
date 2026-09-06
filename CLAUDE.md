@@ -55,13 +55,15 @@
   battlefield` discount is NOT a deckbuilding freebie — walking a body there and establishing Control
   (466.5) is part of the entry's cost. Six battlefields print that wording; only SFD-211 Marai Spire
   is in the catalogue, and `ezreal-marai-spire-free-repeat` says so in its own notable (2026-09-05).
-- **A battlefield is drawn at random, and only in some formats.** 485.4.a: a player provides three and
-  only 1 is used; **485.5 and 487.5 say "randomly selects"**, while **486.5 says only "selects"**. So
-  two of your battlefields never share a board (#33 fixes the synergy layer on this), and a
-  battlefield-dependent combo is not certain to come online. `docs/plan.md:63` called for a
-  "consistency penalty" on 2026-09-02 and it was never applied — that is #35, and it turns on whether
-  a deck may bring 3 copies of the same battlefield, which the Core Rules never forbid (103.2.b caps
-  copies of a Main Deck card, and a battlefield is not Main Deck).
+- **A battlefield is drawn at random, and only in some formats, and you cannot stack copies of it.** 485.4.a: a
+  player provides three and only 1 is used; **485.5 and 487.5 say "randomly selects"**, while **486.5 says only
+  "selects"**. So two of your battlefields never share a board (#33 fixes the synergy layer on this), and a
+  battlefield-dependent combo is not certain to come online. Bringing 3 copies of the same battlefield is NOT a
+  way out: **Core Rules 103.4.c** ("Cannot include more than one of a Battlefield of the same name when there
+  are more than one required for the deck") and **Tournament Rules 402.1** ("exactly 3 battlefields each with a
+  unique name") both forbid it. Issue #35 (2026-09-05) was opened believing the Core Rules were silent on this;
+  they are not — 103.2.b is the Main Deck cap, the battlefield cap is three paragraphs further down. Every entry
+  that needs a specific battlefield states this in `prerequisites.notable`, per format.
 - A rule that matches most of the pool is a fact about the pool, not a pairing. "Retreat replays any play effect" measured 132 and was narrowed to play effects that leave another permanent behind (14).
 - UI lives in the deck panel **below** "What to add", so #18 keeps the placement the user chose.
 

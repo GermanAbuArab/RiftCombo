@@ -1822,6 +1822,7 @@
           "Any legend that can play Blue Sentinel (Mind) — Power Nexus is colorless."
         ],
         "notable": [
+          "Power Nexus must be the battlefield in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5).",
           "Hold the Nexus with K Sentinels there: the trigger fires 1+K times, each may pay 4 Power for a point, plus the Hold's own point (470). K=2: 4 points per Beginning Phase for 12 Power. Hold-gated: once per turn.",
           "The Power must exist in the Beginning Phase — rune recycles are Reaction-speed Adds (429.3), so it is legal to make it then."
         ]
@@ -2099,6 +2100,7 @@
           "Legend is Heart of the Tempest (VEN-155) — the only Order/Chaos legend in the pool."
         ],
         "notable": [
+          "The Grand Plaza must be the battlefield in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5).",
           "Zed at The Grand Plaza after conquering it (so his Clone exists at base); an Eye on each; Renata on board; 12 runes with at least 6 Chaos in the Rune Deck.",
           "Per activation: −1 Energy and −1 Chaos Power. The Power rune can be the very rune just exhausted for the Energy (recycling needs no exhaust), so N Chaos runes give N swaps and 2N ready Recruits — twelve Chaos runes is 24 bodies, and seven is enough for the Plaza."
         ]
@@ -3965,6 +3967,7 @@
           "Legend domains cover Chaos — Kennen and Stargazer are both mono-Chaos, so any Chaos legend runs it."
         ],
         "notable": [
+          "Reckoner's Arena must be the battlefield in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5) — unless the opponent brings it, since it is colorless.",
           "You must be HOLDING Reckoner's Arena with Kennen standing there. Lose the battlefield and the engine stops. Reckoner's Arena is colorless, so the opponent can bring it too — 127.1 with 485.4.a means the one you control in a Duel is normally the one you brought.",
           "The fuel is finite and this is why it is not INFINITE. 829.1.b.1 makes the Flow banish a delayed replacement effect: the spell is banished when it leaves the chain, so each copy in the trash can be re-flowed EXACTLY ONCE. With the 3-copy deck limit the engine runs dry.",
           "Stargazer discounts Energy only, to a minimum of 1 Energy. The Power cost is paid in full every time: Downwell still costs 2 Power.",
