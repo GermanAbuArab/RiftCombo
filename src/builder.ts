@@ -154,6 +154,12 @@ export const inIdentity = (card: Card, identity: readonly Domain[]): boolean =>
 // The haystack a search runs against, spelled out once per card index. `readableCardText` is what
 // the player reads on the card, so it is what a search for "4 Energy" has to match — the raw text
 // says `:rb_energy_4:`.
+//
+// The TAGS are in there too, and they carry the search a player actually types (#109). All 94
+// legends are printed as a bare epithet — `Lady of Luminosity`, `Nine-Tailed Fox` — and the
+// champion's name is only ever a tag, so `lux` and `ahri` in the Legend zone found nothing at all
+// until now. The same line answers a tribal search: `OGN-088 Mega-Mech` is a Mech with no rules
+// text, and `mech`, `yordle`, `equipment` or `noxus` reach it through no other field.
 const haystacks = new WeakMap<CardIndex, Map<string, string>>();
 
 function haystack(cards: CardIndex, card: Card): string {
@@ -161,7 +167,7 @@ function haystack(cards: CardIndex, card: Card): string {
   if (!map) { map = new Map(); haystacks.set(cards, map); }
   const hit = map.get(card.base);
   if (hit !== undefined) return hit;
-  const text = `${card.name}\n${readableCardText(card.text ?? "")}\n${readableCardText(card.effect ?? "")}`.toLowerCase();
+  const text = `${card.name}\n${card.tags.join(" ")}\n${readableCardText(card.text ?? "")}\n${readableCardText(card.effect ?? "")}`.toLowerCase();
   map.set(card.base, text);
   return text;
 }

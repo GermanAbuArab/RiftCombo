@@ -267,11 +267,28 @@ describe("the deckbuilder", () => {
 
   it("names the domain behind each coloured chip", () => {
     // Six circles differing only in hue say nothing to a screen reader, and nothing to anyone who
-    // cannot tell Fury from Body. The name rides inside the button, the state in aria-pressed.
-    expect(builder).toContain('<span class="sr-only">${name}</span>');
+    // cannot tell Fury from Body — and a name that is only ever read aloud leaves everybody else
+    // guessing too, which is what #109 was opened for. The name is visible text on the chip now.
+    expect(builder).toContain('<span class="dom-dot" aria-hidden="true"></span>${name}');
     expect(builder).toContain('aria-pressed="${filters.domains.includes(d)}"');
     // Filled means selected, a ring means not: the state is a shape as well as a colour.
-    expect(css).toMatch(/\.dom-chip \{[^}]*background: transparent/);
-    expect(css).toMatch(/\.dom-chip\.on \{[^}]*background: currentColor/);
+    expect(css).toMatch(/\.dom-dot \{[^}]*border: [\d.]+px solid var\(--dom\)/);
+    expect(css).toMatch(/\.dom-chip\.on \.dom-dot \{[^}]*background: var\(--dom\)/);
+  });
+
+  /**
+   * The filter bar carried four control heights in four rows (#109): the Zone segmented at 30.75px,
+   * the selects at 29, the Cost chips at 24 and the domain circles at 22, in two type families. One
+   * token holds the height now, and every control in the bar is measured against it.
+   */
+  it("gives every control in the filter bar one height and one type family", () => {
+    expect(css).toMatch(/\.bld-filters \{ --ctl: \d+px;/);
+    for (const sel of [".bld-filters .segmented span", ".dom-chip", ".bld-clear", ".bld-select"]) {
+      const rule = css.split("\n").find((l) => l.trim().startsWith(`${sel} {`));
+      expect(rule, `${sel} is not in the filter bar's one height`).toMatch(/height: (calc\()?var\(--ctl\)/);
+    }
+    // The Cost row was the one control set in the mono face; it is a segmented control now.
+    expect(css).not.toContain(".cost-chip");
+    expect(builder).toContain('class="segmented small bld-costs"');
   });
 });

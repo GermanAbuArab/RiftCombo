@@ -65,6 +65,12 @@ const ZONES: [PoolZone, string][] = [
 ];
 const TYPES: [PoolType, string][] = [["unit", "Unit"], ["spell", "Spell"], ["gear", "Gear"], ["equipment", "Equipment"]];
 const SORTS: [SortKey, string][] = [["name", "Name"], ["cost", "Cost"], ["code", "Code"]];
+/** The Energy filter as a segmented control: `Any` is an option, not the absence of one. */
+const COSTS: [string, string][] = [
+  ["", "Any"],
+  ...Array.from({ length: COST_BUCKETS }, (_, i): [string, string] => [String(i), i === COST_BUCKETS - 1 ? `${i}+` : String(i)]),
+];
+const costValue = (): string => (filters.cost === null ? "" : String(filters.cost));
 
 /** How many cells the grid draws before it offers the rest. 1030 at once is a second of layout. */
 const PAGE = 48;
@@ -146,47 +152,51 @@ export function builderHtml(actions: string): string {
 
 function poolHtml(): string {
   return `<div class="bld-filters">
-      <input id="bld-search" class="bld-search" type="search" autocomplete="off" spellcheck="false"
-        placeholder="Search a name or rules text" aria-label="Search the pool by name or rules text" value="${esc(filters.search)}">
+      <div class="bld-top">
+        <input id="bld-search" class="bld-search" type="search" autocomplete="off" spellcheck="false"
+          placeholder="Search a name, a tag or rules text" aria-label="Search the pool by name, tag or rules text" value="${esc(filters.search)}">
+        <p class="pool-count" id="pool-count" aria-live="polite">${esc(countLine())}</p>
+      </div>
       <details class="bld-more"${filtersOpen ? " open" : ""}>
       <summary class="bld-more-sum">Filters</summary>
+      <div class="bld-rows">
+      <span class="bld-lab" aria-hidden="true">Domain</span>
       <div class="dom-chips" role="group" aria-label="Domains">
         ${DOMAINS.map((d) => {
           const name = d[0]!.toUpperCase() + d.slice(1);
-          // Selected is FILLED, unselected is a ring: a chip must not say what it says with colour
-          // alone. The six colours are Riot's and are reserved for domains, which is the one thing
-          // they are used for here.
-          return `<button type="button" class="dom-chip${filters.domains.includes(d) ? " on" : ""}" data-b="domain" data-domain="${d}" aria-pressed="${filters.domains.includes(d)}" title="${name}"><span class="sr-only">${name}</span></button>`;
+          // The chip carries its own name in text: six coloured circles say nothing to a screen
+          // reader and nothing to anyone who cannot tell Fury from Body. The dot is filled when the
+          // chip is on and a ring when it is off, so the state is a shape as well as a colour, and
+          // the six reserved colours appear here and on the domain dot alone.
+          return `<button type="button" class="dom-chip${filters.domains.includes(d) ? " on" : ""}" data-b="domain" data-domain="${d}" aria-pressed="${filters.domains.includes(d)}"><span class="dom-dot" aria-hidden="true"></span>${name}</button>`;
         }).join("")}
-        <button type="button" class="linklike bld-clear" data-b="all-domains"${filters.domains.length ? "" : " disabled"}>All domains</button>
+        <button type="button" class="bld-clear" data-b="all-domains"${filters.domains.length ? "" : " disabled"}>All domains</button>
       </div>
+      <span class="bld-lab" aria-hidden="true">Zone</span>
       <fieldset class="segmented small bld-zones" aria-label="Zone">
         ${ZONES.map(([z, label]) => `<label><input type="radio" name="bld-zone" value="${z}"${filters.zone === z ? " checked" : ""}><span>${label}</span></label>`).join("")}
       </fieldset>
+      <span class="bld-lab" aria-hidden="true">Cost</span>
+      <fieldset class="segmented small bld-costs" aria-label="Energy cost">
+        ${COSTS.map(([value, label]) => `<label><input type="radio" name="bld-cost" value="${value}"${costValue() === value ? " checked" : ""}><span>${label}</span></label>`).join("")}
+      </fieldset>
+      <span class="bld-lab" aria-hidden="true">Show</span>
       <div class="bld-selects">
-        <label class="bld-select">Type <select data-b="type">
+        <label class="bld-select"><span>Type</span><select data-b="type">
           <option value=""${filters.type ? "" : " selected"}>Any</option>
           ${TYPES.map(([t, label]) => `<option value="${t}"${filters.type === t ? " selected" : ""}>${label}</option>`).join("")}
         </select></label>
-        <label class="bld-select">Set <select data-b="set">
+        <label class="bld-select"><span>Set</span><select data-b="set">
           <option value=""${filters.set ? "" : " selected"}>Any</option>
-          ${SETS.map((s) => `<option value="${s}"${filters.set === s ? " selected" : ""}>${s}</option>`).join("")}
+          ${SETS.map((sn) => `<option value="${sn}"${filters.set === sn ? " selected" : ""}>${sn}</option>`).join("")}
         </select></label>
-        <label class="bld-select">Sort <select data-b="sort">
-          ${SORTS.map(([s, label]) => `<option value="${s}"${filters.sort === s ? " selected" : ""}>${label}</option>`).join("")}
+        <label class="bld-select"><span>Sort</span><select data-b="sort">
+          ${SORTS.map(([sk, label]) => `<option value="${sk}"${filters.sort === sk ? " selected" : ""}>${label}</option>`).join("")}
         </select></label>
       </div>
-      <div class="cost-chips" role="group" aria-label="Energy cost">
-        <span class="cost-label">Cost</span>
-        ${Array.from({ length: COST_BUCKETS }, (_, i) => {
-          const on = filters.cost === i;
-          const label = i === COST_BUCKETS - 1 ? `${i}+` : String(i);
-          return `<button type="button" class="cost-chip${on ? " on" : ""}" data-b="cost" data-cost="${i}" aria-pressed="${on}">${label}</button>`;
-        }).join("")}
       </div>
       </details>
     </div>
-    <p class="pool-count" id="pool-count" aria-live="polite">${esc(countLine())}</p>
     <div class="pool-grid" id="pool-grid">${gridHtml()}</div>`;
 }
 
@@ -194,6 +204,10 @@ function poolHtml(): string {
  * How many cards the filters left, in its own element OUTSIDE the grid. A live region has to survive
  * the update it is announcing: written inside `#pool-grid`, it was destroyed and rebuilt on every
  * click and announced nothing at all.
+ *
+ * It rides on the search row rather than beside Sort (#109 asked for the sort row), because that row
+ * is the one that is always on screen: below 900px the filters fold into a `<details>`, and a count
+ * that disappears with them answers nobody. Search and its result count belong together anyway.
  */
 function countLine(): string {
   const n = filterPool(cards(), filters).length;
@@ -520,11 +534,10 @@ function markFilters(): void {
     chip.classList.toggle("on", on);
     chip.setAttribute("aria-pressed", String(on));
   }
-  for (const chip of document.querySelectorAll<HTMLElement>(".cost-chip")) {
-    const on = filters.cost === Number(chip.dataset["cost"]);
-    chip.classList.toggle("on", on);
-    chip.setAttribute("aria-pressed", String(on));
-  }
+  // The two segmented controls are radios the grid never redraws, so they are synced rather than
+  // rebuilt: a filter reset from outside a click (a list opened, a legend picked) has to reach them.
+  for (const r of document.querySelectorAll<HTMLInputElement>("input[name='bld-cost']")) r.checked = r.value === costValue();
+  for (const r of document.querySelectorAll<HTMLInputElement>("input[name='bld-zone']")) r.checked = r.value === filters.zone;
   const clear = document.querySelector<HTMLButtonElement>(".bld-clear");
   if (clear) clear.disabled = filters.domains.length === 0;
 }
@@ -585,13 +598,6 @@ function onClick(ev: Event): void {
       return;
     }
     case "all-domains": ev.preventDefault(); filters.domains = []; renderPool(); return;
-    case "cost": {
-      ev.preventDefault();
-      const c = Number(el.dataset["cost"]);
-      filters.cost = filters.cost === c ? null : c;
-      renderPool();
-      return;
-    }
     case "more": {
       ev.preventDefault();
       shown += PAGE;
@@ -620,6 +626,7 @@ function onInput(ev: Event): void {
 function onChange(ev: Event): void {
   const t = ev.target as HTMLInputElement | HTMLSelectElement;
   if (t.name === "bld-zone") { filters.zone = t.value as PoolZone; renderPool(); return; }
+  if (t.name === "bld-cost") { filters.cost = t.value === "" ? null : Number(t.value); renderPool(); return; }
   if (t.name === "bld-tab") {
     tab = t.value as "pool" | "deck";
     document.querySelector<HTMLElement>("#builder")?.setAttribute("data-tab", tab);

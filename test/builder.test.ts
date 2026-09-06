@@ -119,6 +119,21 @@ describe("filtering the pool", () => {
     for (const c of hits) expect(`${c.text ?? ""}${c.effect ?? ""}`).toMatch(/:rb_energy_4:/);
   });
 
+  /**
+   * #109: a player looking for the Lux legend types "lux", and every one of the 94 legends is
+   * printed as a bare epithet — the champion's name is only ever a tag. The Legend zone answered
+   * "0 cards" to `lux`, `ahri` and `master yi` until the tags joined the haystack.
+   */
+  it("matches a search against the tags, which is where a champion's name lives", () => {
+    const legends = filterPool(cards, { search: "lux", zone: "legend" });
+    expect(legends.map((c) => c.base)).toContain(LADY);
+    expect(cards.get(LADY)!.name).not.toMatch(/lux/i);
+    // The same line answers a tribal search: OGN-088 Mega-Mech is a Mech with no rules text at all.
+    const mechs = filterPool(cards, { search: "mech" });
+    expect(mechs.map((c) => c.base)).toContain("OGN-088");
+    expect(cards.get("OGN-088")!.text).toBeNull();
+  });
+
   it("scopes the Champion zone to the legend's champion tag", () => {
     const hits = filterPool(cards, { zone: "champion", legend: LADY });
     expect(hits.map((c) => c.base)).toContain(LUX);

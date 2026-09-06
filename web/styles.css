@@ -559,35 +559,50 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .builder { display: grid; grid-template-columns: minmax(0, 1fr) 372px; gap: 22px; align-items: start; }
 .builder-tabs { display: none; }
 
-/* Pool */
-.bld-filters { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
-.bld-search { width: 100%; padding: 9px 12px; border: 1px solid var(--line-2); border-radius: 6px; background: var(--bg); color: var(--text); font-size: 13.5px; }
+/* Pool. Every control in the filter bar is one height (--ctl) in one type family: four heights in
+   four rows read as four instruments, which is what #109 was opened for. */
+.bld-filters { --ctl: 32px; display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.bld-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.bld-search { flex: 1 1 220px; min-width: 0; padding: 9px 12px; border: 1px solid var(--line-2); border-radius: 6px; background: var(--bg); color: var(--text); font-size: 13.5px; }
 .bld-search:focus { border-color: var(--accent); }
-.dom-chips { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-/* Filled means on, a ring means off — a chip may not carry its state in colour alone. */
-.dom-chip { width: 22px; height: 22px; padding: 0; border: 2px solid currentColor; border-radius: 50%; background: transparent; cursor: pointer; }
-.dom-chip.on { background: currentColor; }
-.dom-chip[data-domain="fury"] { color: var(--dom-fury); }
-.dom-chip[data-domain="calm"] { color: var(--dom-calm); }
-.dom-chip[data-domain="mind"] { color: var(--dom-mind); }
-.dom-chip[data-domain="body"] { color: var(--dom-body); }
-.dom-chip[data-domain="chaos"] { color: var(--dom-chaos); }
-.dom-chip[data-domain="order"] { color: var(--dom-order); }
-.bld-clear { margin-left: 4px; font-size: 12px; }
+.bld-rows { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 12px; align-items: center; }
+/* A segmented control is a grid item, so it would stretch across the column and leave a long empty
+   tail; every control in the bar hugs its own labels instead. */
+.bld-rows > * { justify-self: start; max-width: 100%; }
+.bld-lab { font-size: 12.5px; color: var(--muted); }
+/* Minus the fieldset's own two border pixels, so a segmented control measures --ctl outside like
+   the chips and the selects beside it. */
+.bld-filters .segmented span { display: flex; align-items: center; height: calc(var(--ctl) - 2px); padding: 0 11px; font-size: 12.5px; }
+.dom-chips { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.dom-chip { display: inline-flex; align-items: center; gap: 7px; height: var(--ctl); padding: 0 11px; border: 1px solid var(--line-2); border-radius: 6px; background: transparent; color: var(--muted); font: 400 12.5px var(--font); cursor: pointer; }
+.dom-chip:hover { color: var(--text); }
+/* A filled dot is on, a ring is off — a chip may not carry its state in colour alone — and the
+   selected chip takes the same panel step and weight the segmented controls beside it use. */
+.dom-dot { width: 11px; height: 11px; flex: 0 0 auto; border: 1.5px solid var(--dom); border-radius: 50%; }
+.dom-chip.on { background: var(--panel-2); color: var(--text); font-weight: 500; }
+.dom-chip.on .dom-dot { background: var(--dom); }
+.dom-chip[data-domain="fury"] { --dom: var(--dom-fury); }
+.dom-chip[data-domain="calm"] { --dom: var(--dom-calm); }
+.dom-chip[data-domain="mind"] { --dom: var(--dom-mind); }
+.dom-chip[data-domain="body"] { --dom: var(--dom-body); }
+.dom-chip[data-domain="chaos"] { --dom: var(--dom-chaos); }
+.dom-chip[data-domain="order"] { --dom: var(--dom-order); }
+.bld-clear { height: var(--ctl); padding: 0 11px; border: 1px solid var(--line-2); border-radius: 6px; background: transparent; color: var(--muted); font: 400 12.5px var(--font); cursor: pointer; }
+.bld-clear:hover:not(:disabled) { color: var(--text); }
+.bld-clear:disabled { color: var(--faint); border-color: var(--line); cursor: not-allowed; }
 /* The filters fold on a phone and are always open on a desktop, where the summary is not drawn. */
 .bld-more { display: contents; }
 .bld-more-sum { display: none; }
-.segmented.bld-zones { flex-wrap: wrap; max-width: 100%; }
-.bld-selects { display: flex; gap: 12px; flex-wrap: wrap; }
-.bld-select { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); }
-.bld-select select { padding: 5px 8px; border: 1px solid var(--line-2); border-radius: 6px; background: var(--panel-2); color: var(--text); font-size: 12.5px; }
-.cost-chips { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-.cost-label { font-size: 12.5px; color: var(--muted); }
-.cost-chip { min-width: 30px; padding: 4px 7px; border: 1px solid var(--line-2); border-radius: 6px; background: transparent; color: var(--muted); font: 500 12px var(--mono); cursor: pointer; }
-.cost-chip:hover { color: var(--text); }
-.cost-chip.on { border-color: var(--accent); background: var(--panel-2); color: var(--text); }
+.segmented.bld-zones, .segmented.bld-costs { flex-wrap: wrap; max-width: 100%; }
+.bld-selects { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+/* The label rides inside the control, so three selects are three boxes of one height and one width
+   rather than three loose words beside three different boxes. */
+.bld-select { display: inline-flex; align-items: stretch; height: var(--ctl); border: 1px solid var(--line-2); border-radius: 6px; overflow: hidden; font-size: 12.5px; color: var(--muted); }
+.bld-select > span { display: flex; align-items: center; padding: 0 9px; border-right: 1px solid var(--line-2); }
+.bld-select select { min-width: 104px; padding: 0 8px; border: 0; background: var(--panel-2); color: var(--text); font: 400 12.5px var(--font); cursor: pointer; }
+.bld-select select:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
-.pool-count { margin: 0 0 8px; font-size: 12px; color: var(--faint); }
+.pool-count { margin: 0; margin-left: auto; flex: 0 0 auto; font-size: 12px; color: var(--faint); }
 .pool-note { margin: 0 0 10px; font-size: 13px; color: var(--muted); }
 .pool-cells { display: grid; grid-template-columns: repeat(auto-fill, minmax(134px, 1fr)); gap: 14px 12px; }
 .pool-cell { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
@@ -675,6 +690,10 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
   .bld-totals { display: none; }
   .bld-more { display: block; }
   .bld-more[open] { display: flex; flex-direction: column; gap: 10px; }
+  /* A label column costs 55px of a 390px screen, and the segmented controls need every one of
+     them: below 900px each label sits on its own line above the control it names. */
+  .bld-rows { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .bld-lab { margin-top: 4px; }
   .bld-more-sum { display: block; padding: 6px 0; font-size: 12.5px; color: var(--muted); cursor: pointer; list-style: none; }
   .bld-more-sum::-webkit-details-marker { display: none; }
   .bld-more-sum::after { content: " ▾"; }
