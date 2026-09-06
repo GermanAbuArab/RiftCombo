@@ -57,6 +57,10 @@ const config = {
             "img-src 'self' data: https://cmsassets.rgpub.io",
             `connect-src ${connect}`,
             "frame-ancestors 'none'",
+            // `default-src 'self'` would already cover plugin content, but its fallback is 'self', not
+            // 'none'. The app has no <object>, <embed> or <applet> anywhere, so pinning it to 'none'
+            // costs nothing and stays correct if a same-origin file is ever served from this domain.
+            "object-src 'none'",
             "base-uri 'self'",
             "form-action 'self'",
           ].join("; "),
