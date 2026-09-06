@@ -6574,6 +6574,419 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-equipment-lens-candidates.md), issue #41 candidate 5, promoted with no change to any declared quantity. Card text verbatim from data/corpus_flat.txt and every rule reopened in that walk. Verified by hand that SFD-033, UNL-039 and SFD-153 are the only 1-Energy Equipment in Calm or Order across the whole pool, and that OGN-133 Flurry of Blades is a 1-Energy Reaction that clears an 8-Recruit board and no Sand Soldier — that measurement, not a preference, is what separates this from grand-plaza-recruit-vanguard."
+    },
+    {
+      "id": "soraka-fiora-loop-shield",
+      "name": "Soraka, Wanderer in base — the Fiora loops stop dying to one removal spell",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-173",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "If another unit you control here would die, if it has less Might than me, instead heal it, exhaust it, and recall it. 4 Might, so the gate is \"3 Might or less\"."
+        },
+        {
+          "card": "SFD-180",
+          "quantity": 1,
+          "role": "ready",
+          "zone": "BASE",
+          "note": "3 Might, and the single point of failure four verified entries name in their own text. Her ability costs Order Power and carries no exhaust, so a shield that exhausts her costs nothing."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Order, which every Fiora entry already does: renata-mastermind-points and garen-fiora-malzahar-facebreaker-recruits are Mind/Order, jhin-fiora-facebreaker-recall and fiora-vault-breaker-jhin are Fury/Order.",
+          "Soraka and Fiora in the same place. In the Jhin line that is base, which is where both already sit."
+        ],
+        "notable": [
+          "\"Here\" includes the base, and the Core Rules settle it with a worked example written on this very card. 373.2: \"Soraka dies simultaneously with two 1 [M] Recruit tokens at the same battlefield and two 1 [M] Recruit tokens in base. ... If the Replacement Effect appended by Guardian Angel is applied first, it saves Soraka and recalls her - then when Soraka's Replacement Effect is applied, it can only save the Recruits in base.\" So a Soraka standing in base covers a Fiora standing in base. No reading had to be filed.",
+          "The three riders of the replacement are all free on Fiora, and \"exhaust it\" is the one worth checking: 414.4 says the Exhaust action only has to be completable when it is listed AS a cost, and 414.1.c says exhausting an already-exhausted object does nothing. Fiora's trigger costs 1 Order Power and prints no exhaust symbol, unlike the Score ability of Renata Glasc, Mastermind beside it. An exhausted Fiora readies units exactly as well. The recall is not a move (456, 456.1) and changes no state (458.1), and it sends her to a base she is already in.",
+          "The Might gate is exactly satisfied and only just: Fiora is 3 Might against Soraka's 4, and Rally the Troops (SFD-166) only buffs units played AFTER it resolves, so a Fiora who was already on the board stays at 3. Jhin is NOT covered - he is 4 Might in base, which is not LESS than 4.",
+          "The shield BLANKS the Deathknell of whatever it saves. 808.1.d.1: \"If the Permanent with the effect is not sent to the Trash, for example because its 'killed' event was replaced with a recall, the triggered ability will be removed from the chain.\" Soraka's replacement carries no \"may\", so it fires whether you want it or not, and any Deathknell body under 4 Might dying beside her loses its trigger - UNL-153 Carrion Dredger is exactly that shape.",
+          "UNL-175 Tactical Retreat (Order, 2 Energy, no Power, [Reaction]) is the alternative and this entry replaced it, because a loop opens a Showdown on EVERY pass: three one-shot saves that expire at end of turn do not bound an unbounded number of passes, and Soraka's replacement has no per-use cost and no per-turn limit. Keep Tactical Retreat for the two things it still does better - it costs zero Power, and it has no Might gate, so it is the only one of the two that can save Jhin. OGN-023 Unlicensed Armory (Fury, 2 Energy gear) is a third route for the Fury/Order pairs only: discard 1, exhaust, and 1 Fury Power per save, so once per turn (415.3.a), not once per pass.",
+          "It answers death and nothing else. \"Would die\" does not cover banish, bounce or a change of control: UNL-128 Star-Crossed (Chaos, 3 Energy + 1 Power, [Reaction], returns a friendly and an enemy unit to hand) walks straight through it. OGN-169 Gust cannot, because it only reaches a unit AT a battlefield and Fiora is in base. And Soraka herself has no Deflect, so removing her puts the loop back on its original point of failure - one card deeper."
+        ]
+      },
+      "steps": [
+        "Play Soraka, Wanderer to your base for 4 Energy + 1 Order Power, in the same place as Fiora. She enters exhausted (143.4), which does not matter: her ability is a static replacement effect, not an activation.",
+        "Run the loop. Every pass opens a Showdown in which the opponent holds priority.",
+        "The opponent kills Fiora. Soraka's replacement applies instead: Fiora is healed, exhausted and recalled to the base she is already standing in.",
+        "Fiora keeps readying, because her trigger costs Order Power and no exhaust (414.4). The loop continues, and the replacement is available again on the next non-simultaneous death (373.2.a: a separate set of simultaneous events is a separate sequence)."
+      ],
+      "terminatesIn": "the four Fiora lines survive an unbounded number of kill effects aimed at Fiora, for one card and no per-use cost",
+      "sources": [
+        {
+          "title": "Reaction/Deflect lens hunt, issue #44 candidate 1 (rc-huntF)",
+          "kind": "agent",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md), issue #44 candidate 1, REWRITTEN. The candidate was tactical-retreat-fiora-shield and its mechanics were sound, but its closing claim - \"no in-domain alternative, Tactical Retreat is the only legal answer\" - is false: grep -i \"would die\" over the 935-card corpus returns nine cards, and SFD-173 Soraka, Wanderer is Order (all four Fiora pairs) while OGN-023 Unlicensed Armory is Fury (the two Fury/Order pairs). Soraka wins on the one axis a loop cares about, unbounded uses, so the entry is re-anchored on her. Two further corrections carried out of the walk: the candidate cited 415.3 for \"exhausted does not switch off an ability whose cost carries no exhaust\", and 415.3 reads \"This is a Limited Action.\" - the rule that says it is 414.4 plus 414.1.c; and nobody had written down 808.1.d.1, which makes every shield in this family delete the Deathknell of what it saves."
+    },
+    {
+      "id": "seal-power-faucet-bootstrap",
+      "name": "Three Seals pay for each other — one rune buys a permanent Power faucet",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-120",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "0 Energy, 1 Power gear. Exhaust: [Reaction] - [Add] 1 Mind Power. Enters ready (149.1, 359.2.d), so it refunds its own cost the turn it is played."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover the Seal's domain. Play the Seal your deck already runs - the line is identical in all six: OGN-040 Rage (Fury), OGN-081 Focus (Calm), OGN-120 Insight (Mind), OGN-163 Strength (Body), OGN-204 Discord (Chaos), OGN-245 Unity (Order). Mind is anchored here only because it is the domain the catalogue touches most (37 of 91 entries)."
+        ],
+        "notable": [
+          "The floor this is measured against, which the repo had never written down: every deck already gets 2 Power per turn for free, forever, with no card spent. 164.2.b's \"Recycle this: [Reaction] - Add [C]\" carries no exhaust in its cost, so a rune already exhausted for its Energy can still be recycled for its Power - it is worth 1 Energy AND THEN 1 Power. 161.2.b returns the recycled rune to the RUNE DECK, and 315.3.b / 430.4.a channel 2 runes back every Channel Phase, which sits before the Main Phase (315.1 -> 315.2 -> 315.3 -> 315.4 -> 316). Recycling two exhausted runes a turn is therefore free and repaid; recycling three erodes the board, because only two come back. So the sustainable rune rate is exactly 2 Power per turn, and there is no 12-Power lifetime cap of any kind.",
+          "What the Seals buy is the rate above that 2, without shrinking the rune board - and they buy it for one rune. Bootstrap, in one Main Phase: exhaust a Mind rune for 1 Energy, recycle that same rune for 1 Mind Power (164.2.b), play Seal #1; it enters READY (149.1, 359.2.d), exhaust it for 1 Mind Power, play Seal #2; exhaust that for 1 Mind Power, play Seal #3; exhaust that and 1 Mind Power is still floating. Total cost of three Seals: ONE recycled rune, which the next Channel Phase gives back, and zero Energy. From the following turn 315.1.b readies all three: +3 Mind Power per turn on top of the 2 from runes.",
+          "The bootstrap does not depend on whether a Seal's printed Power symbol is its own domain or rainbow, because the Add feeding it and the cost it pays are the same card. 163.2 and 135.2.e.6 make the ordinary case the card's own domain.",
+          "This is why it is not part of any loop, and it has to be said rather than hidden: a Seal readies once per turn (415.3.a) and the catalogue's loops spend Power PER PASS, where a pass takes an instant. Three Seal of Insight are 3 Mind Power for the whole turn, not 3 per pass. They feed a normal deck. The 9-Energy-per-Power exchange rate of the #21 ledger is untouched by them.",
+          "167 and 316.3 empty the Rune Pool at the start of each Main Phase and at end of turn, so exhausting a Seal during your Awakening Phase throws the Power away. Exhaust it in the Main Phase or later - and because 429.3 makes it an Add Reaction, \"later\" includes the middle of an opponent's spell resolving, with no window of priority needed (429.3.a).",
+          "UNL-049 Honeyfruit is the Calm alternative and is deliberately not an ingredient here, because uses is a multiset requirement and listing it would force a deck to carry both. Three copies are 6 Energy, no Power and no runes at all, and they Add rainbow (payable in any domain, 135.2.e.5.a) - but \"This enters exhausted\" delays the first Power by a turn and breaks the bootstrap, since a Honeyfruit cannot pay for the next one.",
+          "Every printed Add-a-Power card was measured: grep '[Add]' over the corpus filtered to rune symbols returns 20 cards, and the permanent, repeatable, unconditional ones are exactly seven - the six Seals and Honeyfruit. The rest are conditional (OGN-113, UNL-018, UNL-087, UNL-145, UNL-073), single-use (UNL-T05 Gold: \"Kill this\"), restricted in what they may pay for (OGN-247, SFD-189, VEN-141, UNL-022, UNL-185), or 1:1 converters that produce nothing net (SFD-117 Ancient Henge Energy->rainbow, SFD-083 Hextech Anomaly rainbow->Energy). None of the seven was in the catalogue before this entry."
+        ]
+      },
+      "steps": [
+        "In a Main Phase, exhaust a Mind rune for 1 Energy, then recycle that same exhausted rune (164.2.b, no exhaust in its cost) for 1 Mind Power.",
+        "Play Seal of Insight for 0 Energy + that 1 Power. 149.1 and 359.2.d put it on the board READY.",
+        "Exhaust it: [Add] 1 Mind Power (429.3 - an Add Reaction needs no window of priority). Play the second Seal with it.",
+        "Repeat once more for the third Seal, and exhaust it too - the turn ends with three Seals installed, one rune in the Rune Deck and 1 Mind Power still floating.",
+        "315.3.b channels the rune back at your next Channel Phase and 315.1.b readies the three Seals every Awakening Phase: +3 Mind Power per turn from here on, on top of the 2 the runes already give for free."
+      ],
+      "netPerIteration": "+1 Mind Power per Seal per turn, on top of the 2 Power per turn every deck already gets from recycling exhausted runes. Not per pass.",
+      "terminatesIn": "a permanent per-turn Power rate above the Channel Phase's free 2, at a one-off cost of one recycled rune",
+      "sources": [
+        {
+          "title": "Reaction/Deflect lens hunt, issue #44 candidate 2 (rc-huntF)",
+          "kind": "agent",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md), issue #44 candidate 2. The conclusion of the hunt's finding C holds and its premise does not. #44 argued from \"161.2.a Exactly 12 Rune cards, so a normal deck's Power is capped at 12 recycles for the whole game\"; 161.2.b returns the recycled rune to the Rune Deck and 315.3.b / 430.4.a channel two back every turn, so the real ceiling is a sustainable 2 Power per turn and the Seals raise the rate rather than escape a cap. The hunt also priced three Seals at three recycled runes; walked here they cost ONE, because each Seal enters ready and its own Add pays for the next. What does NOT change is the #21 ledger: Seals produce per turn and loops spend per pass, so the ~9 Energy per Power figure stands untouched."
+    },
+    {
+      "id": "tianna-wildclaw-point-lock",
+      "name": "Tianna Crownguard behind two Tanks and Alpha Wildclaw — the opponent scores nothing while she stands",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-060",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "While I'm at a battlefield, opponents can't gain points. The only card in the 935 that says it."
+        },
+        {
+          "card": "UNL-057",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "[Tank] at 7 Might, and \"Your units here with less Might than me can't be chosen by enemy spells and abilities\" - which covers Tianna (4) and both Galios (6)."
+        },
+        {
+          "card": "UNL-171",
+          "quantity": 2,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "[Tank] at 6 Might with [Deflect], and \"I don't deal combat damage\", so the wall gives the opponent nothing back."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Order: OGN-261 Radiant Dawn, SFD-247 Emperor of the Sands, UNL-195 Green Father or VEN-147 Eye of Twilight. Eye of Twilight hands out [Tank] for an exhaust each turn, so under her the second Galio is optional.",
+          "All four bodies at the same battlefield, which is also what Alpha Wildclaw's \"here\" requires."
+        ],
+        "notable": [
+          "It stops points, not winning. 194.1 lists the four ways to gain points - hold (a), conquer (b), a spell or ability that says to gain them (c), and Burn Out (d) - and \"opponents can't gain points\" cuts all four. It does NOT stop rule 195, the \"you win the game\" effects, because 194.2 makes winning a separate thing from gaining points; the catalogue's five ALT_WIN lines go straight through this wall.",
+          "Any battlefield does. Tianna's text asks only that she be AT one, not that you control it, so nothing here depends on which of your three battlefields came up (485.4.a / 485.5 / 486.5 / 487.5) and no battlefield name is an ingredient.",
+          "Combat is the honest way through and it costs 23 Might in one combat. 815.1.b makes every [Tank] take lethal before any non-Tank the same player controls, 465.2.c.3 forces lethal in full before moving on, and 465.2.c.4 forbids over-assigning: 7 (Wildclaw) + 6 + 6 (Galios) + 4 (Tianna) = 23. Combat damage does not choose, so Deflect never applies to it.",
+          "Spells and abilities are shut off entirely, not taxed, while Alpha Wildclaw lives. 355.7 makes any card that Chooses a Game Object a targeting card, and UNL-057 says units here below her 7 Might can't be chosen by enemy spells and abilities - so Star-Crossed, Gust and Smoke Screen cannot touch Tianna or the Galios at all. Alpha Wildclaw herself has no Deflect and is the way in: she is one card of entry fee. Once she is gone the wall falls back to the printed Deflect tax, 1 Power per choice in any domain (809.1.c, 809.1.c.1, 356.2.a.2).",
+          "UNL-041 Allay, Eager Admirer was in the hunt's version of this entry and was cut, because Tianna and both Galios already print [Deflect] and the only thing Allay could add is a summed value - which is exactly what 809.2 leaves unresolved, since it says \"the Deflect Value of all GRANTED Deflect keywords is summed\" without saying whether the printed value joins them. Cutting the card removes an unresolved reading, saves 3 Energy and loses nothing.",
+          "What breaks it, printed and in the pool. OGN-268 Bullet Time (Body/Chaos, 1 Energy, \"Pay any amount of rainbow to deal that much damage to all enemy units at a battlefield\") kills all four for 23 Power without paying a single Power of Deflect and without Alpha Wildclaw mattering, because it chooses a battlefield and not units. VEN-004 Dune Surfer (Fury, 3 Energy, 3 Might) reads \"You ignore [Tank] while assigning combat damage here\" and turns the 23 into 4. VEN-158 Heisho, Shell of the World switches Deflect off at its own battlefield. And Tianna only denies points \"While I'm at a battlefield\", so a bounce or a move disarms her without killing her - which under Alpha Wildclaw means killing Wildclaw first.",
+          "143.4 enters all four exhausted, so the wall is a turn behind the cards that build it, and 19 Energy + 6 Power is several turns of paying for it. This is a wall that buys turns, not a lock."
+        ]
+      },
+      "steps": [
+        "Take a battlefield and build on it over several turns: Alpha Wildclaw (6 Energy + 2 Calm Power), the two Galios (3 Energy + 1 Order Power each), and Tianna Crownguard (7 Energy + 2 Calm Power). Each enters exhausted (143.4).",
+        "With Tianna standing at the battlefield, the opponent gains no points from holding, conquering, a point-granting ability or your Burn Out (194.1).",
+        "Their spells cannot reach Tianna or the Galios while Alpha Wildclaw is there (355.7 plus UNL-057), so the removal has to start by killing a 7-Might body that has no Deflect.",
+        "Their combat has to assign lethal to all three Tanks before Tianna (815.1.b, 465.2.c.3, 465.2.c.4): 23 Might at one battlefield in one combat, against a wall where two of the three deal no combat damage back."
+      ],
+      "terminatesIn": "the opponent's score is frozen for as long as Tianna stands at a battlefield; it buys turns for a payoff, it does not win by itself",
+      "sources": [
+        {
+          "title": "Reaction/Deflect lens hunt, issue #44 candidate 3 (rc-huntF)",
+          "kind": "agent",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md), issue #44 candidate 3, REWRITTEN. The hunt's package was Tianna + 2 Galio + UNL-041 Allay, and Allay does nothing there: all three of the others already print [Deflect], so its grant is either redundant or turns on 809.2's unresolved question about whether a printed Deflect Value sums with granted ones. Allay is out and UNL-057 Alpha Wildclaw is in, which is a different kind of card - a 7-Might [Tank] that makes every unit here below 7 Might unchoosable by enemy spells and abilities, which is what actually answers the three refutations (Star-Crossed, Gust, Smoke Screen) the hunt wrote against its own entry. Two printed answers the hunt missed are now in the refutation: VEN-004 Dune Surfer ignores Tank outright, and OGN-268 Bullet Time never chooses a unit so neither Deflect nor Wildclaw sees it. Verified by hand that \"can't gain points\" appears on exactly one card in the pool."
+    },
+    {
+      "id": "ledros-bird-power-discount",
+      "name": "Commander Ledros fed on free Birds — an 8-Might body for six Energy and no Power",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-231",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "6 Energy + 4 Order Power, 8 Might, [Deflect] and [Ganking]. As you play me, you may kill any number of friendly units as an additional cost, reducing my cost by 1 Order Power for each."
+        },
+        {
+          "card": "UNL-160",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Exhaust: play two 1-Might Bird tokens with [Deflect]. Only while at a battlefield, so once per turn (415.3.a)."
+        },
+        {
+          "card": "UNL-153",
+          "quantity": 2,
+          "role": "resource",
+          "zone": "BOARD",
+          "note": "2 Energy, 1 Might. [Deathknell]: play a 1-Might Bird token to your base - so sacrificing it to Ledros hands a Bird back."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Mono-Order: all four cards are Order.",
+          "A battlefield you control for Ultrasoft Poro to stand on - his ability is switched off anywhere else."
+        ],
+        "notable": [
+          "The kill is an OPTIONAL additional cost - 356.2.b.1, the phrase is \"you may ... as an additional cost\" - and 356.6 caps what it buys: \"Energy and Power costs can't be reduced below 0\", so the discount stops at the printed 4 Power and a fifth body is wasted.",
+          "The Poro is a turn slower than it looks. He enters exhausted (143.4), so the first two Birds arrive the turn AFTER he is played, and 415.3.a gives one activation per turn. Four Birds is two turns of Poro, or one turn of Poro plus the two Carrion Dredgers.",
+          "Sacrificing Dredgers refunds Birds. 428.1.a.1 makes a kill paid as a cost an Active Kill and 428.1.a.1.b puts the Deathknell on the chain as a Pending Item before the kill completes, so 2 Dredgers + 2 Birds is four deaths and leaves two new Birds in base.",
+          "What 4 Power is worth, priced honestly against the rune economy rather than against a cap that does not exist: every deck can recycle two exhausted runes a turn for 2 Power and get them back at the next Channel Phase (164.2.b, 161.2.b, 315.3.b), so 4 Power is two turns of that free rate, or four recycles in one turn of which only two are refilled. Real, and smaller than \"four runes gone forever\".",
+          "The tokens have nowhere illegal to go: the ability names no location, so 355.2.a sends each to your base or a battlefield you control, and 143.4 enters them exhausted, which does not matter for fodder.",
+          "What refutes it. The Birds are 1 Might and OGN-133 Flurry of Blades (Body, 1 Energy, [Reaction], \"Deal 1 to all units at battlefields\") is lethal to every one of them standing at a battlefield under 142.4.b, without paying Deflect, because it chooses nothing. The discount is on Power only, so the 6 Energy is always paid. And OGN-113 Malzahar, Fanatic converts a body into 2 Power at any time rather than only while playing a card, which is a better rate - but it is [Action], it is Mind, and it is already catalogued."
+        ]
+      },
+      "steps": [
+        "Play Ultrasoft Poro (5 Energy) to a battlefield you control. He enters exhausted (143.4).",
+        "Next turn he readies (315.1.b): exhaust him for two 1-Might Bird tokens with [Deflect].",
+        "Either wait one more turn for two more Birds, or put the two Carrion Dredgers on the board for 2 Energy each.",
+        "Play Commander Ledros, killing four friendly bodies as the optional additional cost: the printed 6 Energy + 4 Order Power becomes 6 Energy + 0 Power (356.6 stops it there).",
+        "If the four were 2 Dredgers + 2 Birds, both Deathknells resolve first (428.1.a.1.b) and two fresh Birds land in your base, ready for the next Ledros or for Stalking Wolf."
+      ],
+      "terminatesIn": "an 8-Might [Deflect] [Ganking] body on the board for 6 Energy and no Power, plus two Birds back if Dredgers paid for it",
+      "sources": [
+        {
+          "title": "Reaction/Deflect lens hunt, issue #44 candidate 4 (rc-huntF)",
+          "kind": "agent",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md), issue #44 candidate 4. Two corrections to the hunt's arithmetic, neither of which breaks it: the sequence skipped the turn Ultrasoft Poro spends entering exhausted, so four Birds is the third turn and not the second; and the value of the saved 4 Power was written as \"4 runes that do not leave the board\", which overstates it - 161.2.b returns a recycled rune to the Rune Deck and 315.3.b channels two back every turn, so 4 Power is two turns of the free rate. Verified against the corpus that UNL-153 Carrion Dredger is [Mech, Zaun] and its token is the Bird."
+    },
+    {
+      "id": "downstage-dramatics-lux-draws",
+      "name": "Downstage Dramatics on the Power pass — an extra cycled card for four Energy and no Power",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-061",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "2 Energy, no Power, [Reaction], [Repeat] 2 Energy, Draw 1. Paying the Repeat makes it Draw 2 for 4 Energy - and 820.1.c.3 stops it there."
+        }
+      ],
+      "needs": [
+        "infinite-energy",
+        "infinite-power"
+      ],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order, which the Lux shell already is (103.1.b.1)."
+        ],
+        "notable": [
+          "The Repeat is not optional for this entry to exist. Without it the spell is 2 Energy for Draw 1, and that single draw is spent pulling the spell itself back out of the deck: net zero. With it, 4 Energy buys Draw 2, of which one redraws the spell - net +1 draw. 820.1.c.1 makes the Repeat an Additional Cost paid while playing, and 820.1.c.3 (\"Each Repeat Cost can be paid only a single time\") makes Draw 3 impossible, so 4 Energy per extra draw is a floor as well as a price.",
+          "It only fits on the Power pass, and this is the piece the hunt did not measure. An extra cycled card needs BOTH a recycle slot and a draw, and Forge of the Future prints a hard cap: \"Kill this: Recycle up to 4 cards from trashes.\" On the Energy pass the #21 ledger counts 3 of those 4 slots used (Forge, Shadow's Call, Sacrifice) plus Ekko recycling himself, leaving 1 spare slot and 0 spare draws - so putting Downstage Dramatics in the rotation spends that one spare slot and converts it into one spare draw, leaving the target card with no slot. Net zero. On the Power pass the ledger counts 2 of 4 used (Forge, Retreat), so Forge can recycle Forge, Retreat, the target card and Downstage Dramatics in one activation, and the pass's 2 draws plus the spell's 2 cover all four.",
+          "Against the ledger's own price for the same thing - \"an extra cycled card costs 1 Energy + 1 Mind Power, about 10 Energy\", bought with Renata Glasc, Mastermind's draw ability, which carries no exhaust and is therefore unlimited - this is 4 Energy against 10. The number that matters more than the ratio is the Power: Downstage Dramatics spends NONE, and Power is what the engine has to manufacture at 9 Energy each.",
+          "Renata's draw stays the right answer on the Energy pass, because it consumes no recycle slot at all. The two are complements, not rivals.",
+          "Sequencing has to keep the deck non-empty. lux-infinite-energy declares \"Main Deck EMPTY\" as a prerequisite and the loop deck is 4 or 5 cards, so 416.1's bottom-of-deck is reached again inside the same pass; but a Power pass ends with one card left in the deck, and that card is what absorbs the sixth draw of the following Energy pass instead of a Burn Out."
+        ]
+      },
+      "steps": [
+        "Run a Power pass of the Lux engine. Kill Forge of the Future and use all four recycle slots: Forge, Retreat, the card you actually want back, and Downstage Dramatics.",
+        "Play Downstage Dramatics for 2 Energy and pay its [Repeat] for 2 more: Draw 2, no Power spent (820.1.c.1, 820.1.c.3).",
+        "Between the pass's own two draws from Lecturing Yordle and these two, all four recycled cards come back to hand - the target card among them.",
+        "Bank the 4 Energy out of the engine's own output rather than out of Power. The same card retrieved through Renata's ability would have cost 1 Energy + 1 Mind Power, which the #21 ledger prices at about 10 Energy."
+      ],
+      "netPerIteration": "+1 net drawn card for 4 Energy and 0 Power, using one of the Power pass's two spare Forge slots.",
+      "terminatesIn": "cards out of the trash and back into hand at 4 Energy each instead of 10, for as long as the engine runs",
+      "sources": [
+        {
+          "title": "Reaction/Deflect lens hunt, issue #44 candidate 5 (rc-huntF)",
+          "kind": "agent",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md), issue #44 candidate 5, REWRITTEN. The hunt's headline (4 Energy against the #21 ledger's 10) survives, but its derivation did not separate the two things an extra cycled card needs. Walked out here on the accounting identity that over any closed cycle cards drawn equals cards recycled: the card needs a slot AND a draw, Forge of the Future caps recycling at 4 per activation, and the Energy pass has only one spare slot - which Downstage Dramatics itself consumes. The line therefore lives on the Power pass, where the ledger counts two spare slots. Also measured and not in the hunt: without paying the Repeat the spell is exactly break-even, so the Repeat is mandatory. CLAUDE.md's ~10 Energy figure is not wrong - it is the price of the slot-free route."
+    },
+    {
+      "id": "stalking-wolf-bird-ambush",
+      "name": "Stalking Wolf eats a Bird — six Might at Reaction speed where you have nothing left",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-166",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "4 Energy + 1 Order Power, 6 Might, [Ambush]. Killing a Bird, Cat, Dog or Poro you control is a MANDATORY additional cost, so he is unplayable without one."
+        },
+        {
+          "card": "UNL-160",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Two 1-Might Bird tokens per turn, and he is himself a legal sacrifice ([Tags: Poro, Freljord])."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Mono-Order.",
+          "A battlefield you control with one of your Birds standing on it - which is also the Bird you are about to kill."
+        ],
+        "notable": [
+          "The pair is a real dependency, not a preference: 356.2.a.1 makes \"as an additional cost to play me, kill a Bird, Cat, Dog, or Poro you control\" mandatory, because it carries no \"may\". Without one of those four tags on the board Stalking Wolf is a dead card.",
+          "The fuel is exactly the tag, checked card by card in the corpus. UNL-T02 Bird is [Tags: Bird] and qualifies; UNL-160 Ultrasoft Poro qualifies as himself, [Tags: Poro, Freljord]; UNL-153 Carrion Dredger does NOT - it is [Tags: Mech, Zaun] - although the Bird token it dies into does.",
+          "What the final clause actually widens, and what it does not. 822.1.b is \"I may be played to a battlefield where you control Units\" and 822.1.c calls Ambush a passive that \"adds options to locations that are valid\"; the Wolf's own sentence waives Ambush's own requirement for one battlefield, so he can arrive at a battlefield you control where your last body there is the token you just killed. It does not hand out a battlefield you do not control: 813.3.a keeps the inherent restriction that a unit played with Reaction \"can only be played to the controlling player's base or a battlefield they control\". This entry is written so it never has to settle whether the clause overrides 813.3.a for a token that walked onto an enemy battlefield - that question is real but no line here stands on it.",
+          "He arrives exhausted (143.4), so he never attacks or moves the turn he lands. His whole value is being present before the Cleanup: 464.2.c.3.a gives a unit that becomes present after the fact the Attacker or Defender designation during the Cleanup following the action, so 6 Might joins the combat after the opponent has already committed their turn.",
+          "Ultrasoft Poro readies once a turn (415.3.a) and makes two Birds, so he sustains one Wolf per turn. 103.2.b caps the Wolves at 3, and each is a one-shot: 4 Energy + 1 Order Power + one token, three times."
+        ]
+      },
+      "steps": [
+        "Have Ultrasoft Poro at a battlefield you control and exhaust him on your turn for two 1-Might Bird tokens.",
+        "Pass. The opponent commits their turn against a board that looks like two 1-Might tokens.",
+        "At Reaction speed, play Stalking Wolf: the mandatory additional cost kills one of the Birds (356.2.a.1) and the final clause lets him [Ambush] to that Bird's battlefield even if it was your only body there.",
+        "464.2.c.3.a gives him the Defender designation in the Cleanup that follows, so a 6-Might body is in the combat the opponent had already sized up. He is exhausted (143.4) and does nothing else this turn."
+      ],
+      "terminatesIn": "one 6-Might Reaction body per turn out of a free token, up to three across the game",
+      "sources": [
+        {
+          "title": "Reaction/Deflect lens hunt, issue #44 candidate 6 (rc-huntF)",
+          "kind": "agent",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md), issue #44 candidate 6. The verdict is the hunt's, the argument is not. #44 closed the door on an enemy battlefield with 355.2.a - \"tokens can only have been played to your base or a battlefield you control, so there is never a token of yours where you have no presence\" - and 355.2.a governs where a token is PLAYED, not where it can stand: a token moves, and moving to an enemy battlefield is how attacking works. The rule that actually closes it is 813.3.a, with 822.1.c explaining that what the Wolf's clause lifts is Ambush's own \"where you control Units\" requirement. Written so that the residual question (822.1.c against 813.3.a) is not load-bearing, so no reading was filed, the same discipline #44 used for 809.2."
+    },
+    {
+      "id": "heedless-resurrection-removal-blank",
+      "name": "Heedless Resurrection — kill your own unit in response and it comes straight back",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-142",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "2 Energy + 1 Chaos Power, [Reaction]. Kill a friendly unit as a mandatory additional cost, then play a unit from your trash costing no more Energy and no more Power than it, ignoring its cost."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Chaos.",
+          "A real unit on the board worth saving. A token is not one - see below."
+        ],
+        "notable": [
+          "The killed unit reanimates ITSELF, which is what makes this more than a trade and is not obvious from the text. The kill is paid in the cost step, so the unit is already in the trash when the spell resolves; the filter is \"costs no more Energy and no more Power than the killed unit\" and the card never says \"another unit\", so the unit that just died is always a legal choice for its own replacement. It returns as a new object, exhausted (143.4), and the cost is ignored.",
+          "The opponent's removal then does nothing. 355.7 makes any card that Chooses a Game Object a targeting card, and 359.3.e.5 says \"If any of the spell's targets are no longer legal, those game objects, players, or zones are unaffected by the spell as it resolves\" - the rest of the spell still happens, so a rider like \"Draw 1\" still resolves for them.",
+          "The Deathknell fires, unlike under a recall shield. 428.1.a.1 makes a kill paid as a cost an Active Kill and 428.1.a.1.b adds the Deathknell to the chain before the kill completes. Compare 808.1.d.1, which DELETES the Deathknell when a death is replaced by a recall - soraka-fiora-loop-shield and this entry answer the same problem from opposite sides.",
+          "356.2.a.1 makes the kill mandatory (\"as an additional cost\", no \"may\"), so there is no way to play this without spending a body.",
+          "Tokens are not fuel. 186.1: \"If a token is put into any Non-Board Zone besides the chain, it ceases to exist\" - a token never reaches the trash and has no printed cost, so killing a Bird reanimates nothing.",
+          "Its limits. \"No more Energy AND no more Power\" is two ceilings at once, so a cheap sacrifice buys nothing expensive. Against removal that does not choose - OGN-133 Flurry of Blades, OGN-268 Bullet Time - the illegal-target trick does not exist and all that is left is the body swap. And the opponent sees the Power: 3 copies is 6 Energy and 3 Chaos Power across a game."
+        ]
+      },
+      "steps": [
+        "The opponent plays removal choosing your unit X, paying X's Deflect tax if it has one (809.1.c).",
+        "In response, play Heedless Resurrection for 2 Energy + 1 Chaos Power. Its mandatory additional cost kills X (356.2.a.1, 428.1.a.1), and X's Deathknell goes on the chain first if it has one (428.1.a.1.b).",
+        "Heedless Resurrection resolves: X is in the trash and costs exactly as much as X, so play X back from the trash ignoring its cost. It enters exhausted (143.4) as a new object.",
+        "The opponent's removal resolves with no legal target and does nothing to it (359.3.e.5). They spent a card and its Power; you spent 2 Energy and 1 Power and kept the board."
+      ],
+      "terminatesIn": "one targeted removal spell answered per copy, with the unit back on the board for 2 Energy and 1 Power",
+      "sources": [
+        {
+          "title": "Reaction/Deflect lens hunt, issue #44 candidate 7 (rc-huntF)",
+          "kind": "agent",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md), issue #44 candidate 7. Verified as claimed and then found to be stronger than the hunt wrote it: #44 described the payoff as \"a unit from the trash of cost <= the killed unit\", which reads as a downgrade, and missed that the killed unit is itself in the trash at resolution and costs exactly its own cost, so the card is \"your unit dodges the removal and comes straight back, ignoring its cost\". The card prints no \"another unit\". The Deathknell comparison against 808.1.d.1 was added because the two anti-removal shapes in this batch behave in opposite ways on that point."
     }
   ]
 }
