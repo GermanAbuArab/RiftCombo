@@ -169,7 +169,7 @@ function poolHtml(): string {
           // reader and nothing to anyone who cannot tell Fury from Body. The dot is filled when the
           // chip is on and a ring when it is off, so the state is a shape as well as a colour, and
           // the six reserved colours appear here and on the domain dot alone.
-          return `<button type="button" class="dom-chip${filters.domains.includes(d) ? " on" : ""}" data-b="domain" data-domain="${d}" aria-pressed="${filters.domains.includes(d)}"><span class="dom-dot" aria-hidden="true"></span>${name}</button>`;
+          return `<button type="button" class="dom-chip${filters.domains.includes(d) ? " on" : ""}" data-b="domain" data-domain="${d}" aria-pressed="${filters.domains.includes(d)}"><span class="chip-dot" aria-hidden="true"></span>${name}</button>`;
         }).join("")}
         <button type="button" class="bld-clear" data-b="all-domains"${filters.domains.length ? "" : " disabled"}>All domains</button>
       </div>

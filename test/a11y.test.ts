@@ -280,11 +280,13 @@ describe("the deckbuilder", () => {
     // Six circles differing only in hue say nothing to a screen reader, and nothing to anyone who
     // cannot tell Fury from Body — and a name that is only ever read aloud leaves everybody else
     // guessing too, which is what #109 was opened for. The name is visible text on the chip now.
-    expect(builder).toContain('<span class="dom-dot" aria-hidden="true"></span>${name}');
+    expect(builder).toContain('<span class="chip-dot" aria-hidden="true"></span>${name}');
     expect(builder).toContain('aria-pressed="${filters.domains.includes(d)}"');
     // Filled means selected, a ring means not: the state is a shape as well as a colour.
-    expect(css).toMatch(/\.dom-dot \{[^}]*border: [\d.]+px solid var\(--dom\)/);
-    expect(css).toMatch(/\.dom-chip\.on \.dom-dot \{[^}]*background: var\(--dom\)/);
+    expect(css).toMatch(/\.chip-dot \{[^}]*border: [\d.]+px solid var\(--dom\)/);
+    expect(css).toMatch(/\.dom-chip\.on \.chip-dot \{[^}]*background: var\(--dom\)/);
+    // `.dom-dot` belongs to the deck library's legend dots and may not be redefined here (#109).
+    expect(css.split("\n").filter((l) => l.trim().startsWith(".dom-dot {"))).toHaveLength(1);
   });
 
   /**

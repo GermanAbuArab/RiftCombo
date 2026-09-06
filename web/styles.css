@@ -578,9 +578,11 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .dom-chip:hover { color: var(--text); }
 /* A filled dot is on, a ring is off — a chip may not carry its state in colour alone — and the
    selected chip takes the same panel step and weight the segmented controls beside it use. */
-.dom-dot { width: 11px; height: 11px; flex: 0 0 auto; border: 1.5px solid var(--dom); border-radius: 50%; }
+/* `.dom-dot` was taken: the deck library paints the legend's domains with it (line ~516), and a
+   second rule of that name grew those dots and gave them a ring. This one is the chip's own. */
+.chip-dot { width: 11px; height: 11px; flex: 0 0 auto; border: 1.5px solid var(--dom); border-radius: 50%; }
 .dom-chip.on { background: var(--panel-2); color: var(--text); font-weight: 500; }
-.dom-chip.on .dom-dot { background: var(--dom); }
+.dom-chip.on .chip-dot { background: var(--dom); }
 .dom-chip[data-domain="fury"] { --dom: var(--dom-fury); }
 .dom-chip[data-domain="calm"] { --dom: var(--dom-calm); }
 .dom-chip[data-domain="mind"] { --dom: var(--dom-mind); }
