@@ -29,11 +29,6 @@ const config = {
   // and they are printed in the footer of every page.
   cleanUrls: true,
   rewrites: [{ source: "/favicon.ico", destination: "/favicon.svg" }],
-  // One canonical host (#42): www and the old vercel.app hostname send visitors to riftcombo.app,
-  // so there is a single origin for sessions, links and search engines.
-  redirects: ["www.riftcombo.app", "riftcombo.vercel.app"].map((host) => ({
-    source: "/:path*", has: [{ type: "host", value: host }], destination: "https://riftcombo.app/:path*", permanent: true,
-  })),
   headers: [
     {
       source: "/(.*)",

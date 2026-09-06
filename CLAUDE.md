@@ -93,8 +93,11 @@
 
 ## Accounts (#31)
 - **The site lives at `https://riftcombo.app`** (bought through Vercel on 2026-09-05, #42; renewal US$15/yr,
-  Vercel nameservers, `www` redirects to the apex). `riftcombo.vercel.app` still answers and stays in the
-  Supabase redirect allow-list, but every link, `site_url` and doc names the `.app` domain.
+  Vercel nameservers). `www.riftcombo.app` and `riftcombo.vercel.app` answer 308 to the apex, and that
+  redirect is a **project-domain setting** (`PATCH /v9/projects/<id>/domains/<host>` with
+  `{"redirect":"riftcombo.app","redirectStatusCode":308}`), not a `vercel.json` rule: a host-matched
+  `redirects` entry in `vercel.json` was tried first on 2026-09-05 and never matched on a Git deploy.
+  The old host stays in the Supabase redirect allow-list; every link, `site_url` and doc names `.app`.
 - The hosted Supabase project is `bpbwsimgiyxzaorunqeo` in `us-east-1`, the region iad deploys to.
   Its **anon key is public by design** and rides in `public/app.js`; what keeps one player's rows
   away from another is RLS, proved by `node scripts/check-rls.mjs` (14 checks, two real users,

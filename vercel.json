@@ -10,30 +10,6 @@
       "destination": "/favicon.svg"
     }
   ],
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.riftcombo.app"
-        }
-      ],
-      "destination": "https://riftcombo.app/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "riftcombo.vercel.app"
-        }
-      ],
-      "destination": "https://riftcombo.app/:path*",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
