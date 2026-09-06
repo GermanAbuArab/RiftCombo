@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { loadCardIndex } from "../src/load.js";
 import { loadDeck } from "../src/deck.js";
-import { checkBuild, type BuildReport } from "../src/build.js";
+import { championTagOf, checkBuild, type BuildReport } from "../src/build.js";
 
 const cards = loadCardIndex();
 
@@ -196,5 +196,53 @@ describe("103.1.b — Domain Identity", () => {
 
   it("is unknown rather than failed when the list names no legend", () => {
     expect(row(rows(LEGAL.replace("1 Lady of Luminosity - Starter", "")), "103.1.b").status).toBe("unknown");
+  });
+});
+
+describe("the champion tag, derived rather than flagged", () => {
+  /**
+   * Riot's data has no "this tag is the champion" field. A tag T is a champion tag when some card is
+   * named "T, <epithet>" — which is 103.2.a.2's own example, "Jinx, Rebel" for Jinx. Measured 2026-09-06:
+   * all 127 legend printings resolve to exactly one. This test re-measures it over the whole pool, so a
+   * set that broke the derivation fails the build instead of silently mislabelling a legend.
+   */
+  it("gives exactly one champion tag to every legend printing in the pool", () => {
+    const legends = cards.cards.filter((c) => c.type.includes("legend"));
+    expect(legends.length).toBeGreaterThan(120);
+    const without = legends.filter((c) => championTagOf(c.code, cards) === null);
+    expect(without.map((c) => `${c.code} ${c.name}`)).toEqual([]);
+  });
+
+  it("picks the champion out of a legend carrying a creature tag too", () => {
+    // VEN-155 Heart of the Tempest is tagged Yordle and Kennen.
+    expect(championTagOf("VEN-155", cards)).toBe("Kennen");
+  });
+
+  it("says a card with no champion tag has none", () => {
+    expect(championTagOf("OGN-104", cards)).toBeNull(); // Retreat
+  });
+});
+
+describe("103.2.a.2 — the Chosen Champion carries the legend's tag", () => {
+  it("passes Lux, Illuminated under Lady of Luminosity", () => {
+    const r = row(rows(LEGAL), "103.2.a.2");
+    expect(r.status).toBe("pass");
+    expect(r.detail).toContain("Lux");
+  });
+
+  it("fails a champion of another legend", () => {
+    const r = row(rows(LEGAL.replace("Champion\n1 Lux, Illuminated", "Champion\n1 Ekko, Recurrent")), "103.2.a.2");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toContain("Ekko");
+  });
+
+  it("fails when no champion section names one", () => {
+    const r = row(rows(LEGAL.replace("Champion\n1 Lux, Illuminated", "")), "103.2.a.2");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toMatch(/no Chosen Champion/i);
+  });
+
+  it("says out loud that it cannot tell a signature unit from a champion unit", () => {
+    expect(row(rows(LEGAL), "103.2.a.2").detail).toMatch(/signature/i);
   });
 });

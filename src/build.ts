@@ -38,6 +38,7 @@ export function checkBuild(deck: Deck, cards: CardIndex, _format: Format): Build
   const rules: BuildRule[] = [
     legendRule(deck, cards),
     identityRule(deck, cards),
+    championRule(deck, cards),
     sizeRule(deck),
     copiesRule(deck, cards),
     runeRule(deck, cards),
@@ -184,4 +185,52 @@ function identityRule(deck: Deck, cards: CardIndex): BuildRule {
     return { ...base, status: "fail", detail: `Outside ${pair}: ${off.slice(0, 4).join(", ")}${off.length > 4 ? ` and ${off.length - 4} more` : ""}.` };
   }
   return { ...base, status: "pass", detail: `Every card sits inside ${pair}.` };
+}
+
+/**
+ * Riot's gallery data has no field saying which of a card's tags is the champion, so it is derived: a tag
+ * T is a champion tag when some card in the pool is named "T, <epithet>" — "Jinx, Rebel" for Jinx, which
+ * is 103.2.a.2's own example. All 127 legend printings resolve to exactly one, the four carrying a
+ * creature or region tag as well included (VEN-155 Heart of the Tempest is Yordle + Kennen; the champion
+ * is Kennen). test/build.test.ts re-measures that over the whole pool.
+ * See docs/phase0/walks/2026-09-06-deck-construction-rules.md.
+ */
+let championTags: Set<string> | null = null;
+const tagKey = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+function championTagSet(cards: CardIndex): Set<string> {
+  if (championTags) return championTags;
+  const named = new Set<string>();
+  for (const c of cards.cards) {
+    const m = /^([^,]+),\s/.exec(c.name);
+    if (m) named.add(tagKey(m[1]!));
+  }
+  championTags = named;
+  return named;
+}
+
+/** The one tag on this card that names a champion, or null if it carries none. */
+export function championTagOf(code: string, cards: CardIndex): string | null {
+  const card = cards.get(code);
+  if (!card) return null;
+  const named = championTagSet(cards);
+  return card.tags.find((t) => named.has(tagKey(t))) ?? null;
+}
+
+function championRule(deck: Deck, cards: CardIndex): BuildRule {
+  const base = { rule: "103.2.a.2", label: "Chosen Champion" };
+  const tag = deck.legend ? championTagOf(deck.legend, cards) : null;
+  if (!tag) return { ...base, status: "unknown", detail: "Name a legend and this checks that your Chosen Champion carries its champion tag." };
+  if (!deck.champion) {
+    return { ...base, status: "fail", detail: `This list names no Chosen Champion. It needs one champion unit tagged ${tag}.` };
+  }
+  const champ = cards.get(deck.champion);
+  if (!champ) return { ...base, status: "fail", detail: "The Chosen Champion line was not recognised as a card." };
+  if (!champ.tags.includes(tag)) {
+    return { ...base, status: "fail", detail: `${champ.name} is not tagged ${tag}, so it cannot be this legend's Chosen Champion.` };
+  }
+  // 103.2.a.2's own second example is Tibbers: tagged Annie, but a signature unit, and therefore not a
+  // legal Chosen Champion. Riot's card data carries no signature marker, so this row cannot see it and
+  // says as much instead of claiming more than it knows.
+  return { ...base, status: "pass", detail: `${champ.name} carries the ${tag} tag. Signature units carry it too and Riot's card data cannot tell them apart, so check yours is a champion unit.` };
 }
