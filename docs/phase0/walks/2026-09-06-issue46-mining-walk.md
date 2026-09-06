@@ -284,7 +284,7 @@ Board exhausted"* — sólo unidades, así que el gear entra ready y convierte e
 **167** vacía el Rune Pool sólo al inicio de la Main Phase y al final del turno, así que todo flota
 durante el turno de combo. La primera pasada hay que cebarla con 11 Power.
 
-### Y aun así la entrada NO se promueve: R15
+### El bloqueante era R15 — y el usuario la ruleó A el mismo día
 
 Todo el ledger de Energy cuelga de **R15, que está ABIERTA** en #11.
 
@@ -295,17 +295,33 @@ Todo el ledger de Energy cuelga de **R15, que está ABIERTA** en #11.
   lanzamiento hace 2, cada dragón necesita 3, los seis necesitan **18** — Power sale 21 contra 21
   Energy convertible, y la pasada neta **exactamente 0. ENGINE**.
 
-La fila de R15 en #11 registra su dependencia como *"ninguno (el Dragonstorm murió por otra vía)"*.
-**Ya no es cierto**, porque esa otra vía era esta reconstrucción, y la reconstrucción estaba mal.
+La fila de R15 en #11 registraba su dependencia como *"ninguno (el Dragonstorm murió por otra vía)"*.
+**Había dejado de ser cierto**, porque esa otra vía era esta reconstrucción, y la reconstrucción
+estaba mal. Se la pasé al usuario con el ledger de las dos lecturas y **la ruleó A el 2026-09-06**: el
+contador es por carta y por turno y sobrevive al trash entre relanzamientos; bajo B la cláusula sería
+letra muerta, que es el mismo argumento con el que se cerró R28.
 
-**Probé el escape por orden legal, como manda CLAUDE.md, y no hay:** el único otro modo de devolver
-a la mano un dragón ya jugado en Fury/Body es `UNL-021 Grim Apothecary`, que devuelve una unidad
-*"at a battlefield"* mientras los dragones están en base, cuesta una carta por rebote y no agrega
-ningún robo. Estrictamente peor.
+**Probé el escape por orden legal antes de escalarla, como manda CLAUDE.md, y no hay:** el único otro
+modo de devolver a la mano un dragón ya jugado en Fury/Body es `UNL-021 Grim Apothecary`, que devuelve
+una unidad *"at a battlefield"* mientras los dragones están en base, cuesta una carta por rebote y no
+agrega ningún robo. Estrictamente peor.
 
-**Veredicto: la entrada QUEDA EN ENGINE, con su refutación reescrita en los tres puntos falsos, el
-ledger real publicado y su clase declarada como dependiente de R15.** Una clase no se para sobre una
-lectura sin rulear. R15 pasa al usuario con el ledger de las dos lecturas.
+### La ley general del ciclo, que ninguna fuente escribe
+
+Con `D` dragones ciclando, el mazo tiene `D+2` cartas cuando resuelve Show of Strength y el conteo de
+Mighty es `6+R`. Igualarlos da **`R = D − 4`**. Y las cartas cierran solas para cualquier `D`: se
+gastan `D+5` y se roban `2 + (D+2) + 1 = D+5`.
+
+| D (dragones por pasada) | R (residentes) | neto |
+|---|---|---|
+| 4 | **0** | +2 Energy — la versión mínima, sin residentes |
+| 6 | 2 | **+10 Energy** — la del video |
+| 8 | 4 | más, si el tablero lo aguanta |
+
+**Veredicto: `gemdragon-henge-vi-blind-fury` vuelve a INFINITE**, con sus once cartas reales, el
+ledger de Energy y el de cartas publicados, los dos Kadregrin como ingrediente y no como adorno, y un
+paso de repetición explícito. Su refutación vieja queda reescrita en los tres puntos falsos, y lo
+único que sobrevive de ella —que Blind Fury no es un deck-out— se queda en los notables.
 
 **Y deja una pregunta para CLAUDE.md, que no toco yo:** *"the ~9 Energy per Power rate for a loop
 stands"*. El Ancient Henge es una excepción impresa en una carta — convierte **1:1 y sin tope por
@@ -960,16 +976,21 @@ cuerpos en Power; ésta duplica su tasa.
 
 Y una entrada vieja tocada, que no estaba en el encargo y resultó lo más caro del issue:
 
-| — | `gemdragon-henge-vi-blind-fury` | ya `verified` como ENGINE | **REFUTACIÓN REESCRITA, clase retenida.** Sus tres argumentos eran falsos (§4.1); el ledger real cierra en cartas (11 = 11) y da +10 Energy por pasada, pero la clase cuelga de **R15, que está abierta** |
+| — | `gemdragon-henge-vi-blind-fury` | ya `verified` como ENGINE | **ENGINE → INFINITE**, con la refutación reescrita. Sus tres argumentos eran falsos (§4.1); el ledger cierra en cartas (11 = 11) y da +10 Energy por pasada. **R15 = A, ruleada por el usuario el 2026-09-06** |
 
 **12 entradas nuevas verified, 0 refutadas, 1 reescrita de raíz, 1 bajada de clase, y 1 entrada
-existente con su refutación reescrita.** Ninguna ENGINE nueva resultó INFINITE; la única INFINITE
-nueva ya venía declarada como tal.
+existente promovida de ENGINE a INFINITE con su refutación reescrita.** Catálogo: 99 → **112**, los
+112 verified.
 
-**Una lectura vuelve a estar viva: R15.** No es nueva —está en #11 desde el 2026-09-03— pero su
-fila dice que no de nada depende, y eso dejó de ser cierto: decide si
-`gemdragon-henge-vi-blind-fury` es ENGINE o INFINITE. Es la única pregunta que este walk le
-devuelve al usuario, además de R30, que ya votó.
+Ninguna de las candidatas ENGINE nuevas resultó INFINITE. **La que sí resultó INFINITE es una entrada
+que ya estaba en el catálogo**, y no porque apareciera una carta nueva sino porque el video que su
+propia nota daba por inalcanzable hoy se puede leer.
+
+**Cero lecturas nuevas archivadas.** Las dos que parecían necesarias las contestó el reglamento
+—**335** y **423.1.a.2**— y las dos que sí se usaron ya existían y el usuario las votó el mismo día:
+**R30 = B** (Heimerdinger) y **R15 = A** (Dancing Grenade). R15 no era nueva, pero su fila en #11
+decía que no dependía de nada, y eso dejó de ser cierto en cuanto la reconstrucción que la había
+dejado sin uso resultó equivocada.
 
 **Cero lecturas nuevas archivadas.** Las dos que parecían necesitarse las contestó el reglamento:
 **335** la del Plaza en la Beginning Phase, y **423.1.a.2** la del presupuesto del Facebreaker.

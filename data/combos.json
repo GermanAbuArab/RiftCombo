@@ -3656,8 +3656,8 @@
     },
     {
       "id": "gemdragon-henge-vi-blind-fury",
-      "name": "Gentle Gemdragons with Heralds of Scales — every Dragon played readies six runes",
-      "class": "ENGINE",
+      "name": "Dragonstorm — six Dragons a pass, Vi recycles them one at a time, the Henge reconverts",
+      "class": "INFINITE",
       "status": "verified",
       "uses": [
         {
@@ -3665,47 +3665,114 @@
           "quantity": 3,
           "role": "engine",
           "zone": "BOARD",
-          "note": "8 Energy, 8 Might. When you play me or another Dragon, ready up to 2 runes — three of them make every Dragon played worth 6 readied runes."
+          "note": "Body unit, E8 M8 (4 with two Heralds). 'When you play me or another Dragon, ready up to 2 runes' — three of them make every Dragon played worth 6 readied runes. They NEVER cycle: Dancing Grenade chooses its target ('Deal 2 to a unit'), so it is never pointed at an 8 Might body, and the three stay on the board for the whole loop."
         },
         {
           "card": "OGN-140",
           "quantity": 2,
           "role": "enabler",
           "zone": "BOARD",
-          "note": "Your Dragons' Energy costs are reduced by 2, to a minimum of 1. Two Heralds: a Gentle Gemdragon costs 4 Energy, an Eager Drakehound 1 Energy — but the Drakehound still costs its 1 Power, because the Herald reduces Energy costs only."
+          "note": "Body unit, E4 M3. 'Your Dragons' Energy costs are reduced by 2, to a minimum of 1.' BOTH apply: 356.4.e says a discount's minimum applies only to that discount, so a 5 Energy Dragon goes 5 → 3 → 1. At 3 Might they are never Mighty and never count for Show of Strength."
+        },
+        {
+          "card": "OGN-001",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury Dragon, E5 M5 — 1 Energy under two Heralds, and worth 6 readied runes. Three of the six that cycle."
+        },
+        {
+          "card": "OGN-131",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body Dragon, E5 M5 — the other three that cycle. Six Dragon plays a pass is +30 Energy."
+        },
+        {
+          "card": "OGN-038",
+          "quantity": 2,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Fury Dragon, E9 P2 M9. The TWO resident Mighty bodies the Grenade never targets. They are not optional bookkeeping: they are what makes the Mighty count equal the deck size at Show of Strength. Their own play trigger ('draw 1 for each of your Mighty units') is what assembles the board during setup."
+        },
+        {
+          "card": "OGN-036",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Fury unit, E2 P1 M3. 'Recycle 1 from your trash: Give me +1 Might this turn.' No exhaust and no cap, so she returns the whole trash to the deck for free — ONE CARD AT A TIME, which is why 416.5's random bottom never engages. The Might she gains on the way makes her Mighty for Show of Strength."
+        },
+        {
+          "card": "UNL-020",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury spell, E2 P1. 'Deal 2 to a unit. Its controller may play this spell again for 1 rainbow. If they do, this deals 1 additional Bonus Damage for each time this spell has dealt damage this turn.' Under R15 = A the casts deal 2, 3, 4, 5, 6, 7, 8, 9 and eight of them kill six 5 Might Dragons for 2 Energy + 8 Power. 'Its CONTROLLER' is you, which is what makes replaying it off your own bodies legal."
+        },
+        {
+          "card": "SFD-005",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury spell, E1 P1. 'Kill a gear. Its controller draws 2.' Kills your own Ancient Henge — that is how the Henge gets back into the deck for Vi to recycle and for you to replay ready."
+        },
+        {
+          "card": "SFD-106",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Body spell, E2 P1, [Reaction]. 'Draw 1 for each of your [Mighty] units.' The pass's big draw, and its mandatory nature is the loop's tightest constraint — see the notables."
+        },
+        {
+          "card": "OGN-129",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Body spell, E2. 'Units you play this turn enter ready. Draw 1.' Its only job is to draw back the Show of Strength that Vi just recycled under an empty deck."
         },
         {
           "card": "SFD-117",
           "quantity": 1,
-          "role": "enabler",
+          "role": "engine",
           "zone": "BOARD",
-          "note": "2 Energy + 1 Power gear. Exhaust: 'Pay ANY amount of Energy to [Add] that much rainbow' — ONE activation converts without a cap, which is the fact the 2026-09-03 reconstruction did not have. Gear enters ready (143.4 exhausts only units), so a replayed Henge converts the turn it lands."
+          "note": "Body gear, E2 P1. 'Exhaust: Pay ANY amount of Energy to [Add] that much rainbow.' ONE activation converts without a cap — this is the piece the 2026-09-03 reconstruction did not have, and it is why Power is not the loop's scarce currency. Gear enters ready (143.4 exhausts only units), so a replayed Henge converts the turn it lands."
         }
       ],
       "needs": [],
       "produces": [
-        "resource-engine"
+        "infinite-energy",
+        "infinite-power"
       ],
       "prerequisites": {
         "easy": [
-          "Legend domains cover Fury and Body (Rengar, Pridestalker UNL-183 in the 12th-place list; Relentless Storm OGN-249 is the other Fury/Body legend)."
+          "Legend domains cover Fury and Body: OGN-249 Relentless Storm (Volibear, which the source recommends), SFD-183 Purifier, UNL-183 Pridestalker, VEN-141 Butcher of the Sands. Every card here is Body or Fury."
         ],
         "notable": [
-          "Board state: three Gemdragons and the two Heralds in play. A Volibear player's own caveat, quoted: with that board 'you win in 100% of scenarios just by playing normally'.",
-          "A DRAGON OF 5 MIGHT COSTS 1 ENERGY AND READIES 6 RUNES, so it is +5 Energy. 356.4.e — 'If a discount applies a minimum cost, that minimum applies only to that discount' — so both Heralds apply: 5 − 2 = 3, 3 − 2 = 1. Gentle Gemdragon itself is E8 and comes down to 4, so it is NOT one of the cycling dragons: the three Gemdragons stay on the board for good, and Dancing Grenade chooses its target ('Deal 2 to a unit') so it is never pointed at an 8 Might body.",
-          "THE CLASS OF THIS ENTRY NOW HANGS ON R15, WHICH IS OPEN. Under R15 = A (Dancing Grenade's counter is per card per turn and survives the trash) the casts deal 2, 3, 4, 5, 6, 7, 8, 9 and eight of them kill six 5-Might dragons for 2 Energy + 8 Power; the pass is then +30 Energy in, 9 Energy and 11 Power out, and one Henge conversion of 11 Energy leaves +10 Energy and 0 Power — unbounded, INFINITE. Under R15 = B (124/383.1 make each cast a new object and reset the counter) every cast deals 2, six dragons need 18 casts, Power out becomes 21 against 21 convertible Energy, and the pass nets EXACTLY 0 — ENGINE. The entry is held at ENGINE because a class may not stand on an unruled reading.",
-          "THE CARD LEDGER CLOSES EXACTLY, WITH NO SLACK, AND IT CONSTRAINS THE BOARD. Consumed per pass: 6 dragons + Dancing Grenade + Detonate + Show of Strength + Confront + Ancient Henge = 11. Drawn per pass: Detonate 2, Show of Strength 1 per Mighty unit, Confront 1. At the moment Show of Strength resolves the deck holds 8 cards, so it must draw exactly 8, so the Mighty count must be exactly 8: three Gemdragons, Vi, the two dragons replayed before it, and EXACTLY TWO resident 5-Might dragons the Grenade never targets. The Heralds are 3 Might and never count. Two is not a preference — Show of Strength is mandatory, and if the Mighty count exceeds the deck the draw Burns Out (431) and hands the opponent a point (194.1.d).",
-          "WHY VI'S RECYCLING IS DIFFERENT FROM GARBAGE GRABBER'S. 416.5 randomises the bottom of the Main Deck only when '2 or more cards are Recycled … simultaneously', and its worked example is Garbage Grabber recycling 3 at once. Vi recycles ONE at a time with no exhaust and no cap, so 416.5 never engages and the order of the bottom is hers — which is what lets Confront find the Show of Strength that Vi just put under an empty deck.",
-          "TIMING OF THE POWER. The replayed Henge lands AFTER the Grenade has already spent its 8 Power, so each pass is paid for by the conversion made at the end of the previous one. 167 empties the Rune Pool only at the start of the Main Phase and at end of turn, so the floating Energy and Power bank across the whole combo turn; the first pass has to be primed.",
-          "The Blind Fury finish is still not a deck-out: the spell banishes the opponent's top card and then plays it, which sends it to their trash, and Burn Out recycles their whole trash back into their deck for a single point (431.2)."
+          "SETUP: three Gemdragons, two Heralds, Vi and the two Kadregrin already on the board, the Ancient Henge in play, and the Main Deck emptied down to the loop's own cards. A Volibear player's own caveat, quoted: with that board 'you win in 100% of scenarios just by playing normally'.",
+          "PRIME THE FIRST PASS WITH 11 POWER. The replayed Henge lands AFTER the Grenade has already spent its 8 Power, so each pass is paid for by the conversion made at the end of the previous one. 167 empties the Rune Pool only at the start of the Main Phase and at end of turn, so Energy and Power float across the whole combo turn.",
+          "THE CARD LEDGER CLOSES EXACTLY, WITH NO SLACK. Spent per pass: 6 Dragons + Dancing Grenade + Detonate + Show of Strength + Confront + Ancient Henge = 11. Drawn per pass: Detonate 2, Show of Strength 8, Confront 1 = 11.",
+          "AND IT CONSTRAINS THE BOARD, WHICH IS THE THING NOBODY HAD WRITTEN. When Show of Strength resolves the deck holds exactly 8 cards, so it must draw exactly 8, so the Mighty count must be exactly 8: three Gemdragons, Vi, the two Dragons replayed before it, and the two Kadregrin. The Heralds are 3 Might and never count. Two residents is not a preference — Show of Strength's draw is mandatory, and if the Mighty count exceeds the deck the draw Burns Out (431) and hands the opponent a point (194.1.d).",
+          "THE GENERAL LAW, IF YOU WANT A DIFFERENT SIZE. With D cycling Dragons the deck holds D+2 at Show of Strength and the Mighty count is 6+R, so the loop balances whenever R = D − 4 — and it always balances on cards, since both sides come to D+5. D = 6 with two residents is the source's build at +10 Energy a pass; D = 4 with NO residents is the minimum viable version and nets +2 Energy a pass.",
+          "WHY VI'S RECYCLING IS NOT GARBAGE GRABBER'S. 416.5 randomises the bottom of the Main Deck only when '2 or more cards are Recycled … simultaneously', and its own worked example is Garbage Grabber recycling 3 at once. Vi recycles ONE at a time, so 416.5 never engages and the order of the bottom is hers — which is what lets Confront find the Show of Strength she just put under an empty deck. The refuted Garbage Grabber variant of platewyrm-egg-defender-gate died on exactly this distinction.",
+          "IT STANDS ON R15, RULED A ON 2026-09-06. Dancing Grenade's counter is per card per turn and survives the trash between recasts. Under the other reading every cast would deal 2, six Dragons would need 18 casts, and the pass would net exactly 0 — an engine, not a loop.",
+          "THE BLIND FURY FINISH IS STILL NOT A DECK-OUT. The spell banishes the opponent's top card and then plays it, which sends it to their trash, and Burn Out recycles their whole trash back into their deck for a single point (431.2). Blind Fury is a way to spend the Energy, not a way to win by decking.",
+          "The extra card per pass this line can afford (Blind Fury, or anything else) has to be paid for in Mighty bodies: one more resident buys one more draw, and R = D − 4 is the accounting."
         ]
       },
       "steps": [
-        "Play a Dragon for its reduced cost: the three Gemdragons ready up to 6 runes between them, and exhausting those runes is +6 Energy against a cost of 1. Every 5-Might Dragon in hand is +5 Energy.",
-        "Ancient Henge, once ready: pour any amount of the surplus Energy into rainbow Power, one for one, in a single activation.",
-        "The recursion the community plays (Dancing Grenade kills the cycling Dragons, Vi recycles them one at a time, Detonate and Show of Strength and Confront redraw them, a replayed Henge reconverts) DOES balance on cards — 11 drawn against 11 spent — and its Energy result depends entirely on R15: +10 a pass under reading A, exactly 0 under reading B. Until R15 is ruled this entry claims only the ramp."
+        "Board set up as above, 11 Power banked, six 5 Might Dragons on the board.",
+        "Dancing Grenade, targeting only the six 5 Might Dragons and never a Gemdragon or a Kadregrin: eight casts dealing 2, 3, 4, 5, 6, 7, 8, 9 kill all six. 2 Energy + 8 Power.",
+        "Vi recycles, one card at a time, the six Dragons plus the Grenade plus last pass's Confront: deck 8. Every recycle gives her +1 Might, so she is comfortably Mighty.",
+        "Detonate (1 Energy + 1 Power): kill your own Ancient Henge, draw 2 Dragons. Deck 6.",
+        "Vi recycles Detonate and the Henge: deck 8.",
+        "Play the two drawn Dragons for 1 Energy each; the three Gemdragons ready 6 runes apiece, and exhausting them is +6 Energy per Dragon. +10 Energy.",
+        "Show of Strength (2 Energy + 1 Power): eight Mighty units — three Gemdragons, Vi, the two Kadregrin, the two fresh Dragons — draw exactly the 8 cards in the deck. Deck 0.",
+        "Replay Ancient Henge (2 Energy + 1 Power). It enters ready (143.4).",
+        "Vi recycles the spent Show of Strength: deck 1. Confront (2 Energy) draws it back. Deck 0.",
+        "Play the remaining four Dragons: +20 Energy. The board is exactly as it was at step 1.",
+        "REPEAT from step 2. Nothing decremented: 11 cards drawn against 11 spent, and +21 Energy against 11 Power, which one Henge activation converts one for one. Each pass banks +10 Energy and the loop has no exit condition."
       ],
-      "terminatesIn": "engine only — each Dragon played is worth up to 6 readied runes with three Gemdragons out, i.e. +5 Energy a Dragon. The community's closed recursion is +10 Energy a pass under R15 = A and exactly break-even under R15 = B, so the loop is not claimed here",
+      "terminatesIn": "unbounded Energy and, through the Henge's uncapped one-for-one conversion, unbounded Power in a single turn; it wins by spending them, not by decking the opponent",
       "rulesVersion": "2026-07-16",
       "sources": [
         {
@@ -3737,7 +3804,7 @@
           "date": "2026-09-04"
         },
         {
-          "title": "YouTube - Laggy, \"Riftbound's FIRST INFINITE COMBO? - Riftbound Unleashed\", 11.298 views - the full walkthrough this entry was written without",
+          "title": "YouTube - Laggy, \"Riftbound's FIRST INFINITE COMBO? - Riftbound Unleashed\", 11.298 views - the full walkthrough this entry had been written without",
           "kind": "video",
           "url": "https://www.youtube.com/watch?v=8FMsltx5Id4&t=58",
           "date": "2026-05-06",
@@ -3745,7 +3812,8 @@
           "accessed": "2026-09-06"
         }
       ],
-      "notes": "The 'Dragonstorm' infinite that content creators list next to the Lux loop, played on stream and taken to 12th place. REOPENED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md, issue #46): the full walkthrough this entry says was 'kept out of reach' by YouTube's bot wall is video 8FMsltx5Id4, and yt-dlp now downloads its subtitles without a login. It was read end to end, and the 2026-09-03 reconstruction it was reclassified on is wrong in three specific places. (1) 'a pass is +1 Energy and -4 Power' priced ONE Dragon a pass; the author plays SIX, at +5 Energy each, so the pass is +30 Energy in against 9 Energy and 11 Power out. (2) 'every Power costs a rune off the board (161.2.b) that nothing channels back' does not apply to this line at all: the Power is not made by recycling runes, it is made by Ancient Henge, which pays ENERGY and converts without a cap in one activation. (3) 'Endless Riches (VEN-022) forbids the Vi recursion outright' is about the Rengar 12th-place list; the walkthrough's deck is the Volibear build the video recommends and does not run it. WHAT SURVIVES OF THE OLD REFUTATION: the Blind Fury deck-out, which really is not a deck-out (431.2). WHAT IS NEW AND WHY THE CLASS DID NOT MOVE: the card ledger was walked and it closes exactly - 11 drawn against 11 spent, requiring exactly two resident 5-Might dragons so the Mighty count matches the deck size, or Show of Strength's mandatory draw Burns Out (431). But the Energy result turns on R15, which is OPEN. Under A the pass is +10 Energy and this is INFINITE; under B it is exactly 0 and it is ENGINE. R15's row on issue #11 records its dependency as 'ninguno (el Dragonstorm murio por otra via)' - that is no longer true, because the other way was this reconstruction. NO LEGAL REORDERING ESCAPES IT: the only other way to return a played Dragon to hand in Fury/Body is UNL-021 Grim Apothecary, which returns a unit 'at a battlefield' while the Dragons sit in base, costs a card per bounce and adds no draws. The entry is therefore HELD AT ENGINE, with the ramp as its only claim, until R15 is ruled. Earlier history, unchanged: card text verified against the corpus; the Herald's printed words are 'Energy costs', so a Drakehound still pays its Power; HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md)."
+      "notes": "The 'Dragonstorm' infinite that content creators list next to the Lux loop, played on stream and taken to 12th place. PROMOTED BACK TO INFINITE 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md, issue #46), after R15 was ruled A the same day. It had been reclassified INFINITE -> ENGINE on 2026-09-03 on a RECONSTRUCTION, because its own notes recorded that 'the only full walkthrough is a video YouTube's bot wall kept out of reach'. That video is 8FMsltx5Id4 and yt-dlp now downloads its subtitles without a login. It was read end to end and the reconstruction is wrong in three specific places. (1) 'a pass is +1 Energy and -4 Power' priced ONE Dragon a pass; the author plays SIX at +5 Energy each, so the pass is +30 Energy in against 9 Energy and 11 Power out. (2) 'every Power costs a rune off the board (161.2.b) that nothing channels back' does not touch this line: the Power is not made by recycling runes but by Ancient Henge, which pays ENERGY and converts without a cap in a single activation. (3) 'Endless Riches (VEN-022) forbids the Vi recursion outright' is about the Rengar 12th-place list; the walkthrough's deck is the Volibear build the video recommends and does not run it. WHAT SURVIVED THE REWRITE: the Blind Fury finish really is not a deck-out (431.2), and it stays in the notables. WHAT THE WALK ADDED THAT NO SOURCE STATES: the card ledger. Eleven cards are spent a pass and eleven are drawn, and the equality forces the board - the Mighty count at Show of Strength must equal the deck size or the mandatory draw Burns Out (431) and gives the opponent a point (194.1.d), which is why exactly two resident Mighty bodies are an ingredient and not flavour. The general form is R = D - 4, so D = 4 with no residents is the minimum viable loop at +2 Energy a pass. THE READING IT STANDS ON: R15 = A, ruled 2026-09-06 - Dancing Grenade's damage counter is per card per turn and survives the trash between recasts. Under B the six Dragons would need 18 casts and the pass would net exactly 0. No legal reordering avoids the Grenade: the only other way to return a played Dragon to hand in Fury/Body is UNL-021 Grim Apothecary, which returns a unit 'at a battlefield' while the Dragons sit in base, costs a card per bounce and adds no draws. Earlier history, unchanged: card text verified against the corpus; the Herald's printed words are 'Energy costs', so a Drakehound still pays its Power; HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md).",
+      "netPerIteration": "+10 Energy a pass (+30 from six Dragons, −9 Energy and −11 Power in spells, the Power bought back one for one by the Henge), and 11 cards drawn against 11 spent"
     },
     {
       "id": "leblanc-zilean-reflection-doubling",
