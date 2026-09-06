@@ -134,6 +134,23 @@ describe("filtering the pool", () => {
     expect(cards.get("OGN-088")!.text).toBeNull();
   });
 
+  /**
+   * #112: picking a legend preselects its two domains, and every one of the 66 battlefields
+   * indicates none, so a `some` test emptied the Battlefields zone the moment a list had a legend.
+   * A card that indicates no domain is inside every identity — which is what `inIdentity` says with
+   * its `every` over an empty list — so it passes every domain filter too.
+   */
+  it("keeps the domainless cards under a domain filter, which is all 66 battlefields", () => {
+    const fields = filterPool(cards, { zone: "battlefields", domains: ["calm", "mind"] });
+    expect(fields.length).toBe(filterPool(cards, { zone: "battlefields" }).length);
+    expect(fields.length).toBe(66);
+    for (const c of fields) expect(c.domains, c.base).toEqual([]);
+    // A card that DOES indicate a domain is still filtered on it.
+    for (const c of filterPool(cards, { domains: ["calm"] })) {
+      expect(c.domains.length === 0 || c.domains.includes("calm"), c.base).toBe(true);
+    }
+  });
+
   it("scopes the Champion zone to the legend's champion tag", () => {
     const hits = filterPool(cards, { zone: "champion", legend: LADY });
     expect(hits.map((c) => c.base)).toContain(LUX);
@@ -161,7 +178,7 @@ describe("filtering the pool", () => {
   });
 
   it("filters by domain, by set and by cost, and treats 7 as 7 or more", () => {
-    for (const c of filterPool(cards, { domains: ["fury"] })) expect(c.domains, c.base).toContain("fury");
+    for (const c of filterPool(cards, { domains: ["fury"] })) expect(c.domains.length === 0 || c.domains.includes("fury"), c.base).toBe(true);
     for (const c of filterPool(cards, { set: "VEN" })) expect(c.set, c.base).toBe("VEN");
     for (const c of filterPool(cards, { cost: 2 })) expect(c.energy, c.base).toBe(2);
     const big = filterPool(cards, { cost: 7 });

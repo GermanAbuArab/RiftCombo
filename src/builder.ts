@@ -192,7 +192,12 @@ export function filterPool(cards: CardIndex, filters: Partial<PoolFilters> = {})
     if (zone === "runes" && !card.type.includes("rune")) return false;
     if (zone === "main" && zoneOf(card) !== "main") return false;
     if (zone === "champion" && !(card.type.includes("unit") && card.tags.includes(tag!))) return false;
-    if (domains.length && !card.domains.some((d) => domains.includes(d))) return false;
+    // A card that indicates NO domain passes every domain filter (#112). All 66 battlefields are
+    // domainless, so a `some` test dropped the whole zone the moment a legend preselected its two
+    // chips — and `inIdentity`, three lines up in this same file, already calls a battlefield legal
+    // under any identity (`every` over an empty list). The filter may not hide what the cell would
+    // happily add.
+    if (domains.length && card.domains.length && !card.domains.some((d) => domains.includes(d))) return false;
     if (type && !typeMatches(card, type)) return false;
     if (set && card.set !== set) return false;
     if (cost !== null) {
