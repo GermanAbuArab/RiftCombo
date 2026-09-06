@@ -15662,6 +15662,145 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-stun-lens-candidates.md), issue #61 candidate 5, REWRITTEN. UNL-140 Conscription and UNL-193 Gloomist appeared in NO entry before this; UNL-045 Forgotten Signpost is in signpost-corina-two-battlefields and the overlap is declared. THE WALK'S CORRECTION: #61 used Forgotten Signpost as the way to walk the stolen, exhausted body into the battlefield Conscription had just emptied. It cannot - its cost is 'Exhaust a unit you control' and it moves a different unit 'to the LOCATION OF THE UNIT YOU EXHAUSTED', so you must already have a body at the destination, and if you do you have already conquered it. The Signpost is reinforcement here and the entry says so. The walk also supplied the rule #61 asserted without one: 107.1.c ('Permanents and Runes controlled by a player reside in that player's Base') read with 158.1 is why 455's 'its Base' means yours, since the control change is printed first. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b, 103.2.b, 107.1.c, 143.4, 144.2, 155, 158.1, 190.3.a, 323.6, 344.2, 348.2.a, 348.2.a.1, 415.3.a, 455, 458, 470. Ban check: none of the three carries a [BANNED marker in data/corpus_flat.txt. Trap check: the empty-battlefield trap is respected - no 'When I attack' trigger is claimed and the Conquer comes from 348.2.a.1, not from combat; the recall is the one in 455 and 458 is cited; no [Repeat]; no [Temporary]; no token, so 185 and 186.1 never arise; no Gold; no battlefield of its own. Depends on no unruled reading."
+    },
+    {
+      "id": "applied-researchers-time-warp-discount",
+      "name": "Applied Researchers stack — Time Warp for 7 Energy + 1 Mind",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-055",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "state": "empowered",
+          "note": "4 Energy to play plus 3 Energy to Empower, and the Empower cost carries no exhaust (827.1.c.1), so a copy can be Empowered the turn it enters even though 143.4 makes it enter exhausted. [Empowered][>] Your spells cost 1 Energy + 1 rainbow less, to a minimum of 1 Energy."
+        },
+        {
+          "card": "OGN-122",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "10 Energy + 4 Mind printed: Take a turn after this one. Banish this. The single most expensive Power cost the discount can attack."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend covers Mind — both cards are Mind, so any of the ten Mind legends runs it (103.1.b.1)."
+        ],
+        "notable": [
+          "21 Energy of setup spread over earlier turns: 3 x 4 Energy to play plus 3 x 3 Energy to Empower. 103.2.b caps the discount at three copies, and the third copy is the one that stops paying for itself on Energy.",
+          "The Energy floor does NOT chain and the Power halves DO. 356.4.e: 'If a discount applies a minimum cost, that minimum applies only to that discount.' Each copy carries its own 1-Energy minimum, so the Energy component of any spell bottoms out at 1 however many copies are out; the printed minimum says nothing about Power, so the rainbow halves stack down to 356.6's zero.",
+          "The discount reads 'Your spells'. Units, gear and legends are untouched, and 818.1 makes an [Equip] an Activated Ability rather than a spell, so Equipment costs are untouched twice over."
+        ]
+      },
+      "steps": [
+        "On earlier turns play up to three Applied Researchers (4 Energy each) and Empower each for 3 Energy. Empower is an Activated Ability whose cost here is 3 Energy with no exhaust (827.1.c.1), so a copy can be Empowered the turn it lands.",
+        "Play Time Warp. Its printed cost is 10 Energy + 4 Power, and its Power symbol is [C] — its own domain, Mind (135.2.e.6), which is why the rainbow half of the discount reaches it: every Power cost printed in this pool is [C] and none is [A], so a rainbow discount that only removed rainbow symbols would be dead letter across the whole game (rule 002).",
+        "With one copy Empowered Time Warp costs 9 Energy + 3 Mind; with two, 8 + 2; with three, 7 Energy + 1 Mind. Against the free floor of 2 Power a turn (164.2.b plus 315.3.b/430.4.a), three copies turn Time Warp from a four-Power card into a one-Power card.",
+        "Every other spell in the deck is discounted at the same time: 1 Energy off anything printed above 1 Energy, and 1 Power off anything with a Power cost — which at the catalogue's standing rate of 9 Energy per Power is where nearly all of the value is."
+      ],
+      "netPerIteration": "-1 Energy and -1 Power per Empowered copy on every spell you play, floored at 1 Energy by 356.4.e and at 0 Power by 356.6; Time Warp goes from 10 Energy + 4 Mind to 7 Energy + 1 Mind on three copies",
+      "terminatesIn": "engine only - a cost reduction on every spell; nothing here scores and the extra turn still has to be used",
+      "sources": [
+        {
+          "title": "YouTube - \"Riftbound Vendetta set review\" segment on VEN-055 Applied Researchers, cited in issue #62 as a way to play Time Warp without Seals",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=2CWA0GAPyno&t=40",
+          "date": "2026-08",
+          "quote": "[0:41] Your spells cost 1 Energy and 1 rainbow less, to a minimum of 1 Energy.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Hand walk against Core Rules 2026-07-16 and the #21 loop ledger (docs/phase0/walks/2026-09-06-issue85-three-loose-ends.md, section 1)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Walked for issue #85, whose actual question was whether this card moves the #21 loop ledger (docs/phase0/walks/2026-09-04-loop-budget-ledger.md). MEASURED ANSWER: NO for the thing that matters. The ledger's scarce resource is DRAWS, and the draw is bought from SFD-088 Renata Glasc, Mastermind's '1 Energy + 1 Mind: Draw 1' - an Activated Ability, recognised by the ':' at 377.1, not a spell - so this discount never sees it and rate 3 (an extra cycled card = 1 Energy + 1 Mind Power, about 10 Energy) is unchanged. Rate 2 is unchanged too: the Power pass's only spell is OGN-104 Retreat at 1 Energy, already on the floor, so a Power still costs 9 Energy. And the wall itself does not move, because '0 spare draws' is 431.1.a - a fifth draw into an empty Main Deck is a Burn Out and a point for the opponent - and a discount buys Energy, not cards. What it does move: the Energy pass of lux-infinite-energy spends 10 Energy, of which UNL-165 Shadow's Call (Spell, 2 Energy) becomes 1 and UNL-173 Sacrifice (Spell, 1 Energy) is already at this discount's own minimum, while OGN-110 Ekko is a Unit and OGN-212 Forge is Gear; so the pass goes from +1 to +2 Energy and the loop converges in half the passes, which changes nothing about what an already-unbounded loop can reach. Against the four payoffs the ledger priced, two do not move (renata-bubble-bot-ready and ashe-retreat-hand-strip pay only for Retreat, a Unit and a Gear) and two do: jayce-mesmerize-renata's VEN-052 Mesmerize is a Spell at 1 Energy + 1 Power and loses the Power, taking it from about 75 to about 66 Energy per point; promising-future-force-deck's OGN-115 Promising Future is a Spell at 5 Energy + 1 Power and loses both, taking it from about 24 to about 14 per cast. TWO READINGS WERE NOT NEEDED and are recorded rather than filed: whether an [A] discount removes a [C] cost (it must - zero cards in the pool print an [A] Power cost, so the other reading is dead letter, the rule-002/R28 argument), and whether 'to a minimum of 1 Energy' floors the Energy component or the total (the answer is the same for every spell in this walk). 476.1 is the WRONG frame for any of it: cost determination is 356, a step of playing a card, while 476/477 are the layer system for objects on the board - reaching for 476.1 here is the citation error the 2026-09-04 audit found three times. VEN-055 appeared in zero entries before this one."
+    },
+    {
+      "id": "malzahar-gate-sprite-fountain-power",
+      "name": "Acceleration Gate readies three Malzahars - 13 Power in a turn off Sprite Fountains",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-113",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Kill a friendly unit or gear, exhaust: [Action] - [Add] 2 rainbow. The kill is taken as a COST, which 428.1.a.1 makes an Active Kill, so a Deathknell on what it eats still fires. 429.2 resolves the [Add] as soon as it is finalized."
+        },
+        {
+          "card": "VEN-150",
+          "quantity": 2,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "3 Energy + 1 Power: Ready up to 4 units, gear, and/or runes (415.1). Three exhausted Malzahars plus one exhausted rune is the whole payload; the rune pays 1 Energy back (164.2.a)."
+        },
+        {
+          "card": "UNL-078",
+          "quantity": 3,
+          "role": "resource",
+          "zone": "HAND",
+          "note": "2 Energy + 1 Mind, [Temporary] gear: a ready 3 Might Sprite token with [Temporary] to your base, and [Deathknell] Repeat this gear's play effect. One card, three bodies - the gear itself plus two Sprites - which is exactly three Malzahar activations."
+        },
+        {
+          "card": "VEN-149",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Legend, Mind/Body - the ONLY Mind/Body legend in the pool, so it is the forced shell for Acceleration Gate. Its own '1 Energy, exhaust: Ready a gear' never reaches Malzahar, who is a unit; it is here for the Domain Identity."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend is Defender of Tomorrow (VEN-149, Mind/Body). Acceleration Gate is Mind/Body, so 103.1.b.1 forces it: all 49 legends in the pool were swept and exactly one carries both domains."
+        ],
+        "notable": [
+          "Three Malzahars on the board from earlier turns - 12 Energy of setup - and all three ready from the Awaken (315.1.b). Each activation exhausts one and eats one friendly unit or gear.",
+          "The Power is Added in the Main Phase, so it lasts the turn and is lost at its end (316.3). Nothing here scores: the turn has to hold its own sink.",
+          "Bounded by copies, not by fuel: 103.2.b caps Acceleration Gate at 3 and Sprite Fountain at 3, and nothing in Mind/Body brings a spell back from the trash for free or readies a unit repeatably inside one turn. That is why this is an ENGINE and not the INFINITE its source gestured at."
+        ]
+      },
+      "steps": [
+        "Round 1, off the Awaken readies. Play Sprite Fountain (2 Energy + 1 Mind): a ready 3 Might Sprite token with [Temporary] at your base.",
+        "Malzahar #1 kills the Fountain as the ability's cost and exhausts: [Add] 2 rainbow. The kill as a cost is an Active Kill (428.1.a.1), and Deathknell is present on Permanents (808.1.a) with its trigger added to the chain before the card reaches the trash (808.1.d.2), so the Fountain's 'Repeat this gear's play effect' still fires and makes a second ready Sprite.",
+        "Malzahar #2 eats one Sprite, Malzahar #3 eats the other: [Add] 2 rainbow each. Round net: -2 Energy -1 Power +6 rainbow = -2 Energy, +5 Power.",
+        "Round 2: Acceleration Gate (3 Energy + 1 Power) readies the three exhausted Malzahars plus one exhausted rune; exhaust that rune back for 1 Energy (164.2.a). Play the second Sprite Fountain and repeat the round. Net -4 Energy, +4 Power.",
+        "Round 3: the second Gate, the third Fountain, the same round. Net -4 Energy, +4 Power.",
+        "Turn total: -10 Energy and +13 Power, against a catalogue whose standing rate is 9 Energy per Power. Spend it the same turn - 316.3 empties the pool at the end of it."
+      ],
+      "netPerIteration": "-2 Energy +5 Power per un-Gated Fountain round; -4 Energy +4 Power per Gated round; -10 Energy +13 Power for a maximal turn of 3 Fountains and 2 Gates",
+      "terminatesIn": "engine only - up to 13 Power in one Main Phase, lost at the end of that turn (316.3); nothing here scores",
+      "sources": [
+        {
+          "title": "YouTube - Riftbound legend roundtable, the Jayce segment: the 'infinite combo' with Acceleration Gate and Malzahar, named and dismissed without a fuel",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=5__EMKuKkTE&t=763",
+          "date": "2026-08",
+          "quote": "[12:43] There's also like an infinite combo because of his signature spell. It like untaps up to uh four gears or like runes and units. So, like there's some cute infinites you can do, but they all require you to like untap with a Malzahar on board, which almost never happens in competitive.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Hand walk against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-06-issue85-three-loose-ends.md, section 2)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "Walked for issue #85. THE SOURCE'S 'INFINITE' IS REFUTED and this is what the mechanism closes as. Two independent reasons, both measured inside Mind/Body, which 103.1.b.1 forces because VEN-149 is the only Mind/Body legend in the pool. (a) The Gate does not come back: every Mind or Body card touching the trash was read and none is a free repeatable spell recursion - OGN-112 is once per conquer, VEN-049/051/081 are [Flow] and banish themselves, OGN-099 Garbage Grabber carries an exhaust in its cost, SFD-061 returns a gear, OGN-109 recycles once a turn in the Beginning Phase, VEN-089 reads the deck and not the trash - so 103.2.b caps the Gate at 3 copies. The Order and Fury engines the catalogue usually leans on, OGN-212 Forge of the Future and OGN-036 Vi, Destructive, are both illegal here. (b) Malzahar does not come back either: the legend readies GEAR and he is a unit, VEN-068 fires on the first non-token gear each turn, UNL-109 needs 3 XP and an exhaust, OGN-132 and SFD-062 ready once per play, and OGN-146/OGN-153 are spells capped at 3 copies. NOT A DUPLICATE of sprite-fountain-malzahar-jayce: that entry is Calm/Mind, its third card is VEN-068 Jayce Brilliant Inventor, and it KEEPS the Sprites (produces temporary-body-engine, '18 Might of ready bodies'); this one is Mind/Body, its extra cards are the Gate and the Jayce legend, and it EATS them for Power (produces resource-engine). Same two-card core, opposite payload - said out loud so nobody re-merges them. TRAPS CHECKED AND CLEAR: 185/186.1 do not bite because Malzahar KILLS and never recycles - killing a token is legal and 186.1 only means the dead Sprite ceases to exist instead of sitting in the trash, which this line never wanted; 816.1.b does not bite because every [Temporary] body here is eaten in the same Main Phase it is made; 167 does not bite (the Power is Added in the Main Phase) but 316.3 does, which is why it is ENGINE. The Gate's rune readies are worth little for the reason platewyrm-egg-defender-gate already records: 164.2.a gives Energy by exhausting and 164.2.b gives Power only by recycling, and a recycled rune leaves the board. CITATION REFINED: sprite-fountain-malzahar-jayce cites 428.1.a.1.b for a GEAR Deathknell firing on a cost-kill and that rule's own sentence says 'a unit'; 808.1.a ('present on Permanents') plus 808.1.d.2 ('the card with an ability that triggers on its own death') covers gear on its face and is the citation used here."
     }
   ]
 }

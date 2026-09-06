@@ -189,3 +189,51 @@ Renata's own Draw 1 (1E + 1 Mind) to get it back — about **7 Energy + 5 Power 
 point per four to six passes. Much cheaper per point than any of the Lux-fed routes.
 
 **#21 is fully answered.** All six entries close.
+
+---
+
+# Appendix 3 — `VEN-055 Applied Researchers` against these three rates (2026-09-06, issue #85)
+
+#62 cited Applied Researchers as *"a way to play Time Warp without Seals"* and wrote down that nobody had
+checked it against this ledger. Checked. Full walk in
+`docs/phase0/walks/2026-09-06-issue85-three-loose-ends.md` §1.
+
+```
+VEN-055 | Applied Researchers | Unit | Mind | E4 M4 | [Empower] :rb_energy_3: … [Empowered][>] Your spells
+  cost :rb_energy_1::rb_rune_rainbow: less, to a minimum of :rb_energy_1:.
+```
+
+| rate | before | after (one Empowered copy) |
+|---|---|---|
+| 1. one Energy pass | **+1 Energy** | **+2 Energy** |
+| 2. 1 Power | **9 Energy** | **9 Energy — unchanged** |
+| 3. one extra cycled card | **1 Energy + 1 Mind Power ≈ 10 Energy** | **unchanged** |
+
+**Rate 3 is the question #85 asked, and the answer is no.** The draw is bought from `SFD-088 Renata Glasc,
+Mastermind`'s `1 Energy + 1 Mind: Draw 1`, which is an **Activated Ability** — 377.1 makes the ":" the whole
+recognition test — and this card discounts *spells*. It never sees her.
+
+**Rate 2 does not move either.** The Power pass's only spell is `OGN-104 Retreat` (Mind, 1 Energy), already
+at the discount's own floor; `OGN-087 Lecturing Yordle` is a Unit and the Forge is Gear.
+
+**Rate 1 doubles.** The Energy pass's 10 Energy contains two spells: `UNL-165 Shadow's Call` (2 Energy →
+**1**) and `UNL-173 Sacrifice` (1 Energy, already at the floor). `OGN-110 Ekko` is a Unit, `OGN-212 Forge`
+is Gear. The pass costs 9 instead of 10. The loop converges in half the passes and reaches nothing it could
+not reach before.
+
+**And the wall does not move.** *"0 spare draws"* is **431.1.a**: with the Main Deck empty, a fifth draw in a
+pass is a Burn Out and a point for the opponent (194.1.d). A discount buys Energy, never cards.
+
+**Where it does land: any spell with a Power cost, which is worth 9 Energy by rate 2.**
+
+| payoff priced above | its spells | before | after |
+|---|---|---|---|
+| `renata-bubble-bot-ready` | Retreat only (floor); `SFD-073` Gear, `SFD-062` Unit | ≈ 54 / point | **≈ 54** |
+| `ashe-retreat-hand-strip` | Retreat only; `UNL-169` Unit | ≈ 25 / card | **≈ 25** |
+| `jayce-mesmerize-renata` | `VEN-052 Mesmerize`, Spell E1 + 1 Power → E1 + **0** | ≈ 75 / point | **≈ 66 / point** |
+| `promising-future-force-deck` | `OGN-115 Promising Future`, Spell E5 + 1 Power → **E4 + 0** | ≈ 24 / cast | **≈ 14 / cast** |
+
+Three copies stack on the **Power** half and not on the Energy half — **356.4.e**, *"If a discount applies a
+minimum cost, that minimum applies only to that discount"* — so `OGN-122 Time Warp` goes 10 Energy + 4 Mind
+→ 9 + 3 → 8 + 2 → **7 Energy + 1 Mind**. That is the entry
+`applied-researchers-time-warp-discount` (ENGINE), and it is the only thing this card added to the catalogue.
