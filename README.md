@@ -2,7 +2,7 @@
 
 Paste a Riftbound deck list, deck code, or public Piltover Archive link and see which known combos it already contains — and which it is a few cards short of — drawn as a map of pieces, combos and payoffs.
 
-**Live:** https://riftcombo.vercel.app
+**Live:** https://riftcombo.app
 
 Riftbound has no public combo database. This repository is one: every entry in `data/combos.json` is hand-authored from Riot's card text and the Core Rules, with its sources attached. Entries marked `verified` were walked step by step by a person; entries marked `candidate` were proposed by an automated sweep or documented by the community and have not been walked yet. Treat candidates as leads, not facts.
 
