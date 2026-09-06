@@ -2997,7 +2997,7 @@
       },
       "steps": [
         "Play Sprite Fountain (2E+1P): a ready 3 Might Sprite token at your base. Jayce's trigger fires here, on the first non-token gear of the turn — every Malzahar is still ready from Awaken at this point, so the useful target is an exhausted rune (+1E), not a Malzahar.",
-        "Malzahar: kill the Fountain as the ability's cost and exhaust him for +2 rainbow. Killing as a cost still fires the Deathknell (428.1.a.1.b), which repeats the play effect for a second ready Temporary Sprite.",
+        "Malzahar: kill the Fountain as the ability's cost and exhaust him for +2 rainbow. Killing as a cost still fires the Deathknell (428.1.a.1 makes a cost-kill an Active Kill; the gear paragraph is 808.1.a 'present on Permanents' + 808.1.d.2, not 428.1.a.1.b, which says 'a unit'), which repeats the play effect for a second ready Temporary Sprite.",
         "Net per Fountain: −2E +1P and two ready 3 Might bodies. Three Fountains and three Malzahars is six Sprites for a net −6E +3P."
       ],
       "terminatesIn": "engine only — up to six ready 3 Might Temporary bodies a turn for a net −6E +3P; they can conquer the turn they are made but cannot hold",
@@ -3019,7 +3019,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Target (b) of lens L3: the repeatable core of an Ornn Calm/Mind gear deck. Sinks are the weak point. The Grand Plaza's win condition is a Hold trigger and Temporary kills before scoring, so it needs LeBlanc suppressing the Temporary trigger (see leblanc-temporary-plaza); Bottled Constellation triggers at the start of your Main Phase, always after the Beginning Phase that killed the Sprites, so it can never eat them. What the engine buys is 18 Might of ready bodies for two conquers and a defensive turn. Shurelya's Requiem (SFD-192) readies every unit once per play and Legion Quartermaster (SFD-044) returns it to hand for a replay at 7E+2P — a bounded second ready of all Malzahars, not an engine of its own (L3-07). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the per-Fountain numbers hold but both named sinks were dead: Temporary Sprites never see a Hold or a Main Phase start. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md). The engine turns on 428.1.a.1, which counts a kill taken AS A COST as an Active Kill, and 428.1.a.1.b, which puts the death trigger on the chain before the unit reaches the trash (Draven, Audacious is the rules' worked example) - so Malzahar's cost-kill really does repeat the Fountain's play effect. Both named sinks are correctly refuted: 816.1.b kills the Temporary Sprites before the Scoring Step (315.2.b), so they never Hold and never see a Main Phase start. Depends on no unruled reading. FEATURE CORRECTED 2026-09-06 (issue #64, docs/phase0/walks/2026-09-06-issue63-payoff-lens.md): produces temporary-body-engine, not token-body-engine. UNL-078 Sprite Fountain plays 'a ready 3 Might Sprite unit token with [Temporary]', and 816.1.b kills a [Temporary] permanent at the start of its controller's Beginning Phase BEFORE scoring. This entry's own terminatesIn already said the bodies cannot hold; the split makes the graph say it too, so a Grand Plaza consumer can never be fed by them."
+      "notes": "Target (b) of lens L3: the repeatable core of an Ornn Calm/Mind gear deck. Sinks are the weak point. The Grand Plaza's win condition is a Hold trigger and Temporary kills before scoring, so it needs LeBlanc suppressing the Temporary trigger (see leblanc-temporary-plaza); Bottled Constellation triggers at the start of your Main Phase, always after the Beginning Phase that killed the Sprites, so it can never eat them. What the engine buys is 18 Might of ready bodies for two conquers and a defensive turn. Shurelya's Requiem (SFD-192) readies every unit once per play and Legion Quartermaster (SFD-044) returns it to hand for a replay at 7E+2P — a bounded second ready of all Malzahars, not an engine of its own (L3-07). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the per-Fountain numbers hold but both named sinks were dead: Temporary Sprites never see a Hold or a Main Phase start. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md). The engine turns on 428.1.a.1, which counts a kill taken AS A COST as an Active Kill, and on 808.1.a ('It is present on Permanents') + 808.1.d.2 ('the card with an ability that triggers on its own death'), which put the death trigger on the chain before the GEAR reaches the trash - so Malzahar's cost-kill really does repeat the Fountain's play effect. CITATION CORRECTED 2026-09-06 by the #107 walk: this entry cited 428.1.a.1.b, whose text opens 'When a unit with a Deathknell...' and so does not reach gear; CLAUDE.md already recorded the right pair from the #85 walk and it had never been applied here. Mechanism, class and quantities unchanged. Both named sinks are correctly refuted: 816.1.b kills the Temporary Sprites before the Scoring Step (315.2.b), so they never Hold and never see a Main Phase start. Depends on no unruled reading. FEATURE CORRECTED 2026-09-06 (issue #64, docs/phase0/walks/2026-09-06-issue63-payoff-lens.md): produces temporary-body-engine, not token-body-engine. UNL-078 Sprite Fountain plays 'a ready 3 Might Sprite unit token with [Temporary]', and 816.1.b kills a [Temporary] permanent at the start of its controller's Beginning Phase BEFORE scoring. This entry's own terminatesIn already said the bodies cannot hold; the split makes the graph say it too, so a Grand Plaza consumer can never be fed by them."
     },
     {
       "id": "sona-viktor-opponent-turn",
@@ -17626,6 +17626,156 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-combat-keyword-lens.md), the single candidate of issue #106. The candidate's mechanism survives verbatim and its ARITHMETIC WAS REWRITTEN by the walk: 702.3 / 702.3.a cap a unit at one buff forever, and the loop makes exactly one new body per pass, so two Karma triggers per pass buy one buff, not two, and there is no accumulating Might. The measured product is therefore a quality change to a token engine already catalogued, not a new resource — which is why produces is empty and the shape matches azir-sovereign-token-gather. The issue's own step-by-step was checked against lux-infinite-energy's eight steps one by one and its trigger count (2) is right; what it did not do is measure the bodies against the triggers. Depends on no unruled reading. Card text verbatim from data/corpus_flat.txt; every rule quoted from data/Riftbound-Core-Rules-2026-07-16.txt."
+    },
+    {
+      "id": "sprite-fountain-shard-undoing-beginning-removal",
+      "name": "Shard of Undoing fed by Sprite Fountain — one forced enemy kill per turn, two turns per Fountain",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-174",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Gear, mono-Order, 6 Energy, no Power. 'The first time a friendly unit dies during your Beginning Phase each turn, each opponent must kill one of their units.' ONE copy: 383.3.e.1 caps it at one performance per turn, so a second Shard on the board adds nothing."
+        },
+        {
+          "card": "UNL-078",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Gear, mono-Mind, 2 Energy + 1 Mind Power. '[Temporary] (Kill this at the start of its controller's Beginning Phase, before scoring.) When you play this, play a ready 3 Might Sprite unit token with [Temporary] to your base. [Deathknell][>] Repeat this gear's play effect.' Three copies, but they must be played on a two-turn cadence — see terminatesIn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order. Sprite Fountain is mono-Mind and Shard of Undoing is mono-Order, so 103.1.b.3 (single domain) admits each on its own; the deck still needs a legend holding both, and the pool has exactly four — OGN-265 Herald of the Arcane (Viktor), OGS-021 Lady of Luminosity - Starter (Lux), SFD-201 Chem-Baroness (Renata Glasc), UNL-199 Deceiver (LeBlanc). None of the six cards involved is banned or restricted in either format."
+        ],
+        "notable": [
+          "THE CEILING IS ONE FORCED KILL PER TURN, NOT ONE PER SPRITE. 383.3.e.1: 'Such a Triggered Ability will only be performed the specified number of times each turn. If its trigger condition would be fulfilled and it has already been performed that many times, it does not trigger.' The Shard reads 'the first time ... each turn', which 383.1 identifies as the [Nth]-time trigger form (383.1.b's worked example is Wraith of Echoes, 'The first time another friendly unit dies each turn, draw 1'). So three Fountains played on the SAME turn buy two forced kills, not six: three Sprites die in your next Beginning Phase and 383.3.e.1 discards two of those deaths, then three more die the turn after and it discards two again.",
+          "THE THREE COPIES MUST BE PLAYED ON A TWO-TURN CADENCE. Each Fountain supplies exactly two consecutive turns of Beginning-Phase deaths: the Sprite from its play effect dies on turn T+1, the Sprite from its Deathknell dies on T+2, and then the gear is in the trash. Played on T, T+2 and T+4 the three copies cover T+1 through T+6 with one death each — six forced kills. Played on T, T+1, T+2 they overlap and yield four. Played together they yield two. The '6' is a schedule you play to, not a quantity you hold.",
+          "THE SECOND SPRITE SURVIVES THE TURN IT IS BORN, AND THAT IS THE WHOLE ENGINE. 816.1.c makes the Trigger Condition of [Temporary] 'the controller of the permanent's Beginning Phase starting'; 383.2.c.1 triggers an ability only if its object 'enters that zone at the same time that its Trigger's condition is met'. The Deathknell's Sprite enters during the resolution of a trigger, strictly after that start, so its own [Temporary] is never evaluated that turn. Same window gutter-palace runs on (issue #62).",
+          "THE DEATHKNELL ON A GEAR IS 808.1.a + 808.1.d.2, NOT 428.1.a.1.b. 808.1.a: '[Deathknell] is present on Permanents.' 808.1.d.2: 'The trigger will be added to the chain as a Pending Item before the card with an ability that triggers on its own death is moved to the trash due to a Kill instruction or a Cleanup.' 808.1.d.3 preserves what the trigger needs to execute from the trash. 428.1.a.1.b says 'a unit' and does not reach gear. Nothing replaces the Fountain's death, so 808.1.d.1 never removes the trigger.",
+          "THE TWO KILLS ARE SEQUENTIAL, NOT SIMULTANEOUS, SO 383.2.c.2 NEVER BITES. Both [Temporary] abilities trigger on the same condition and you order them (383.3.d), but they are two chain items and 340.1 resolves them one at a time. The ordering is therefore free: either way one Sprite dies and one Deathknell fires. (383.2.c.2 — the Viktor, Leader case where a trigger is lost because its source leaves at the same time — cannot apply to the Shard, which carries no [Temporary] and never leaves.)",
+          "THE REMOVAL IS FORCED BUT NEVER AIMED, AND [Deflect] NEVER TAXES IT. 355.10.e: 'It is part of a set of objects chosen in whole or in part by other players. e.g., \"Each player kills a unit they control\" does not target.' 355.10.f: 'It is identified in an instruction that a player \"must\" complete.' So the Shard targets nothing and the OPPONENT picks which of their units dies — a Recruit or a Bird token is a unit (185.2.d), so a wide board pays almost nothing. Against two premium bodies it is real. The flip side of not targeting: 809.1.c/809.1.d charge Deflect only on spells and abilities that target or choose the Deflect body, so a Bird token's Deflect is no shield here.",
+          "A WHIFF STILL BURNS THE TURN'S TRIGGER. With no enemy units, 055 ignores the instruction ('do as much as you can, ignoring impossible instructions') but 383.3.e.1 counts the performance. Academic — an opponent with no units has nothing to lose either way.",
+          "IT DOES NOT CONTRADICT sprite-fountain-malzahar-jayce, IT INVERTS IT. That entry's REFUTE note killed both of its sinks with '[Temporary] Sprites never see a Hold or a Main Phase start' (816.1.b, 315.2.b). This entry buys the death itself, which is the one thing that sentence guarantees."
+        ]
+      },
+      "steps": [
+        "Land Shard of Undoing (6 Energy, no Power). It is gear with no location clause, so 355.2.a puts it at your base and it stays there.",
+        "Turn T, Main Phase: play Sprite Fountain (2 Energy + 1 Mind Power). Its play effect makes a ready 3 Might Sprite with [Temporary] at your base.",
+        "Turn T+1, Beginning Step (315.2.a.1, after Awaken 315.1.b): both [Temporary] abilities trigger on the same condition (816.1.c) and you order them (383.3.d); 340.1 resolves them one at a time. The Sprite's kill (816.1.b) is a friendly unit death during your Beginning Phase — the Shard triggers and each opponent must kill one of their units, of their own choosing (355.10.e/f).",
+        "The Fountain's kill puts its [Deathknell] on the chain before the gear reaches the trash (808.1.a, 808.1.d.2, 808.1.d.3). It repeats the play effect: a second ready 3 Might Sprite with [Temporary]. That Sprite entered after the Beginning Phase started, so 383.2.c.1 spares it this turn.",
+        "Turn T+2: the second Sprite's [Temporary] kills it, the Shard's per-turn counter has reset (383.3.e.1), and the opponent kills a second unit. This Fountain is spent — there is no third Sprite.",
+        "Play the second Fountain on turn T+2 and the third on T+4 so no two Sprite deaths land in the same Beginning Phase. Six turns of forced removal for 12 Energy and 3 Mind Power total."
+      ],
+      "netPerIteration": "one enemy unit killed per turn of yours, chosen by the opponent. Each Sprite Fountain funds exactly two such turns (its play-effect Sprite and its Deathknell Sprite); no Energy, Power, card or draw is spent at trigger time.",
+      "terminatesIn": "engine only — one forced enemy kill in each of your Beginning Phases, capped at one per turn by 383.3.e.1. Three Fountains played on a two-turn cadence (T, T+2, T+4) cover six consecutive turns for 12 Energy + 3 Mind Power; played all at once they cover two. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "816.1.b It is functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this.\" / 816.1.c The Trigger Condition is the controller of the permanent's Beginning Phase starting. / 383.3.e.1 Such a Triggered Ability will only be performed the specified number of times each turn. If its trigger condition would be fulfilled and it has already been performed that many times, it does not trigger. / 383.2.c.1 If a Game Object has a Triggered Ability that is active in a specific zone, it is evaluated and subsequently triggered if it enters that zone at the same time that its Trigger's condition is met. / 808.1.d.2 The trigger will be added to the chain as a Pending Item before the card with an ability that triggers on its own death is moved to the trash due to a Kill instruction or a Cleanup. / 355.10.e It is part of a set of objects chosen in whole or in part by other players. e.g., \"Each player kills a unit they control\" does not target. / 355.10.f It is identified in an instruction that a player \"must\" complete."
+        },
+        {
+          "title": "Riot gallery card text (data/corpus_flat.txt, errata applied)",
+          "kind": "riot",
+          "date": "2026-09-06",
+          "quote": "UNL-078 | Sprite Fountain | Gear | Mind | E2 P1 | [Temporary] (Kill this at the start of its controller's Beginning Phase, before scoring.) When you play this, play a ready 3 :rb_might: Sprite unit token with [Temporary] to your base. [Deathknell][>] Repeat this gear's play effect. (When this dies, get the effect.) || UNL-174 | Shard of Undoing | Gear | Order | E6 | The first time a friendly unit dies during your Beginning Phase each turn, each opponent must kill one of their units."
+        },
+        {
+          "title": "Gear-without-Equipment lens — issue #107 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/107",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-gear-without-equipment-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-gear-without-equipment-lens.md), the single candidate of issue #107. UNL-174 Shard of Undoing had ZERO occurrences in data/combos.json and data/synergies.json before this walk. The mechanism survives verbatim; its ARITHMETIC WAS REWRITTEN. The issue counted '2 forced removals per Fountain copy, up to 6 turns with 3 copies' without pricing 383.3.e.1, which caps the Shard at ONE performance per turn regardless of how many Sprites die — so the ceiling of 6 is only reachable on a two-turn cadence (T, T+2, T+4) and collapses to 2 if the copies are played together. Two further corrections to the issue: the domain paragraph is 103.1.b.3 (both gear are single-domain), not 103.1.b.4; and the gear Deathknell is 808.1.a + 808.1.d.2 + 808.1.d.3, not 428.1.a.1.b, which says 'a unit' (CLAUDE.md already records this from the #85 walk). 383.3.d is cited but is NOT load-bearing: 340.1 resolves the two [Temporary] triggers one at a time, so either ordering gives one Sprite death and one Deathknell. Three blocks the catalogue had never cited carry the entry: 355.10.e and 355.10.f (the Shard targets nothing and the opponent chooses, so [Deflect] never taxes it), 383.3.e.1 (the per-turn cap), and 808.1.d.3. Depends on no unruled reading. Card text verbatim from data/corpus_flat.txt; every rule quoted from data/Riftbound-Core-Rules-2026-07-16.txt."
+    },
+    {
+      "id": "shard-undoing-deceiver-reflection-removal",
+      "name": "Shard of Undoing under Deceiver — a Temporary Reflection every turn is a forced enemy kill every turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-174",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Gear, mono-Order, 6 Energy, no Power. 'The first time a friendly unit dies during your Beginning Phase each turn, each opponent must kill one of their units.' ONE copy: 383.3.e.1 caps it at one performance per turn, so a second Shard on the board adds nothing."
+        },
+        {
+          "card": "UNL-199",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Legend, Mind/Order. 'When you conquer or hold, you may discard 1 and exhaust me to play a ready Reflection unit token there. Then do this: It becomes a copy of another unit there. Give it [Temporary].' The [Temporary] is the fuel, not a drawback."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "legends": [
+        "UNL-199"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend IS Deceiver (UNL-199, Mind/Order), so the Order Shard is in identity by 103.1.b.3. Neither card is banned or restricted in either format.",
+          "You hold or conquer a battlefield each turn. A Hold is automatic in the Scoring Step at every battlefield you control (315.2.b.2), and holding is what you are trying to do anyway."
+        ],
+        "notable": [
+          "THE REFLECTION IS BORN AFTER THE WINDOW AND DIES IN THE NEXT ONE. Deceiver's trigger fires on a hold (Scoring Step, 315.2.b.2) or a conquer (Main Phase) — both strictly after the Beginning Phase started, so 383.2.c.1 spares the Reflection its own [Temporary] that turn. At the start of your next Beginning Phase 816.1.b kills it in the Beginning Step (315.2.a.1), which is BEFORE the Scoring Step where the next Reflection is made. One friendly unit death in your Beginning Phase, every turn, indefinitely.",
+          "ONCE PER TURN ON BOTH SIDES, WHICH IS WHY THEY FIT. Deceiver exhausts to make the Reflection and only readies in Awaken (315.1.b), so at most one Reflection per turn; 383.3.e.1 caps the Shard at one performance per turn. Neither half wastes the other. Adding a second Shard or a second death source buys nothing.",
+          "THIS ENTRY AND leblanc-zilean-reflection-doubling CANNOT SHARE A BATTLEFIELD. That entry spends UNL-090 LeBlanc, Everywhere at Once ('Your [Temporary] effects at my battlefield don't trigger', R10 = A) precisely to keep its Reflections alive, and its own step 2 states that unprotected Reflections 'die at your Beginning Phase (816.1.b)'. This entry wants that death. Run both and the protected battlefield produces clones but no fuel; the fuel has to come from a Reflection made somewhere LeBlanc is not.",
+          "THE PRICE IS YOUR DRAW STEP. The discard is a cost inside Deceiver's trigger and you draw exactly 1 per turn (315.4.b), so the engine runs at parity with your draw and nothing else. That is the real constraint, not Energy — the Shard is a one-time 6 Energy and the trigger costs none.",
+          "FORCED, NOT AIMED, AND [Deflect]-PROOF. Same two paragraphs as the Fountain entry: 355.10.e ('Each player kills a unit they control' does not target) and 355.10.f (an instruction a player 'must' complete). The opponent picks their own worst unit — a token counts (185.2.d) — and 809.1.c/809.1.d never charge, because nothing here targets or chooses an enemy body.",
+          "THE COPY CLAUSE IS OPTIONAL FUEL, NOT A REQUIREMENT. If there is no other unit at that battlefield, 055 ignores 'It becomes a copy of another unit there' and the token stays a 0 Might Reflection — still a unit, still [Temporary], still a death next Beginning Phase. In practice a hold means you control the battlefield and have a body there, so the copy usually lands."
+        ]
+      },
+      "steps": [
+        "Land Shard of Undoing once, 6 Energy, no Power (355.2.a puts it at your base).",
+        "Every turn you hold or conquer: discard 1 and exhaust Deceiver to play a ready Reflection token there, with [Temporary] appended. It survives this turn — 383.2.c.1, the condition of 816.1.c already passed.",
+        "Next turn's Beginning Step (315.2.a.1): the Reflection's [Temporary] kills it (816.1.b). A friendly unit has died during your Beginning Phase, so the Shard triggers and each opponent must kill one of their units, of their own choosing.",
+        "The Scoring Step follows in the same Beginning Phase (315.2.b.2): you hold, Deceiver readied in Awaken (315.1.b), and you make the next Reflection. The cycle costs one card per turn and nothing else."
+      ],
+      "netPerIteration": "one enemy unit killed per turn of yours, chosen by them, for one discarded card and the legend's exhaust. No Energy, no Power, no board commitment beyond the 6-Energy gear.",
+      "terminatesIn": "engine only — one forced enemy kill in every one of your Beginning Phases, for as long as you hold or conquer and have a card to discard. Unbounded in turns, capped at one per turn by 383.3.e.1. Nothing here scores; the points come from the holds that fuel it.",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "816.1.b It is functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this.\" / 383.2.c.1 ...it is evaluated and subsequently triggered if it enters that zone at the same time that its Trigger's condition is met. / 315.2.a.1 At the start of Beginning Phase game effects take place. / 315.2.b.2 1. The Turn Player Holds all Battlefields they Control. / 315.1.b 1. The Turn Player readies all Game Objects they control that are able to be readied. / 383.3.e.1 Such a Triggered Ability will only be performed the specified number of times each turn. / 355.10.e ... e.g., \"Each player kills a unit they control\" does not target."
+        },
+        {
+          "title": "Riot gallery card text (data/corpus_flat.txt, errata applied)",
+          "kind": "riot",
+          "date": "2026-09-06",
+          "quote": "UNL-199 | Deceiver | Legend | Mind/Order | - | When you conquer or hold, you may discard 1 and exhaust me to play a ready Reflection unit token there. Then do this: It becomes a copy of another unit there. Give it [Temporary]. [Tags: LeBlanc] || UNL-174 | Shard of Undoing | Gear | Order | E6 | The first time a friendly unit dies during your Beginning Phase each turn, each opponent must kill one of their units."
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-gear-without-equipment-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "FOUND BY THE #107 WALK, not by the issue (docs/phase0/walks/2026-09-06-gear-without-equipment-lens.md). The issue's candidate pairs the Shard with Sprite Fountain, which is a TWO-TURN supply of Beginning-Phase deaths per copy; the Shard wants one such death per turn forever, and UNL-199 Deceiver — one of the four Mind/Order legends the candidate already had to choose from — supplies exactly that for a discard. No new reading is needed: leblanc-zilean-reflection-doubling already states in its own step 2 that an unprotected Reflection dies at your Beginning Phase (816.1.b), and spends UNL-090 LeBlanc, Everywhere at Once (R10 = A) to stop it. This entry is the inversion of that one and the two cannot share a battlefield, which is written into notable. The timing turns on the Beginning Phase's two substeps: 816.1.b kills in the Beginning Step (315.2.a.1) and Deceiver's hold trigger fires in the Scoring Step (315.2.b.2) that follows, so the replacement is always made after the window that would have killed it (383.2.c.1). Cheaper than the Fountain line (6 Energy once, no Power) and unbounded in turns; the cost is one card per turn against a 1-card draw step (315.4.b). Depends on no unruled reading. Card text verbatim from data/corpus_flat.txt; every rule quoted from data/Riftbound-Core-Rules-2026-07-16.txt."
     }
   ]
 }
