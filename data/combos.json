@@ -17407,6 +17407,152 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-denial-lens-candidates.md), issue #100 candidate 6, REWRITTEN AND RENAMED from vex-apathetic-reinforcement-stun, because the entry no longer claims what that id says. The issue sold Vex as an answer to reinforcement on the strength of 423.1.b; 423.1.a.2 (the stun clears at the END OF TURN cleanup, i.e. before your attack) and 423.1.c (a stunned body still soaks its full Might) refute that, and this project had already been corrected in the same direction once, by #89. The clause that does work is 'They can't move it this turn', and it closes exactly the leak warden-tianna-base-lock has to declare: the 26 [Accelerate] units of 805.1.a and the three effect-movers of #58. The pair's claim is written as a route table so it can be checked rather than believed. The issue's own candidate was 'Vex + an attacker', which names no second card; the second card here is the Warden, and the Calm/Chaos legend list was grepped over all 49 legends. No quantity of any existing entry was touched. Card text verbatim from data/corpus_flat.txt. Ban check: neither code is among the 12 [BANNED] corpus lines nor in data/legality.json."
+    },
+    {
+      "id": "amateur-recital-free-evacuation",
+      "name": "Amateur Recital — the free, repeating evacuation, and the Conquer it opens the same turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-207",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you hold here, you may move a unit at a battlefield to its base.' No owner qualifier, so it reaches an enemy garrison: the pool's other printing of the same sentence is OGN-168 Fight or Flight, a removal spell banned in both formats."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend: Amateur Recital is Colorless and the line needs no other card.",
+          "TWO ready bodies, not one: one occupying the Recital so you control it at your Beginning Phase, one at your base to walk into the battlefield you empty."
+        ],
+        "notable": [
+          "The battlefield must be the one in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5). And 190.1 ('Control is established over Battlefields through the course of play') plus 190.6.d's second sentence ('If the battlefield has no Controller, \"you\" refers to no one, and all such instructions are ignored') mean the trigger does not exist until you have conquered your own Recital — that is part of the cost.",
+          "THE ORDER IS THE TURN STRUCTURE, WHICH IS WHY THIS IS FREE WHERE charm-evacuate-conquer IS NOT. The Hold sits in the Scoring Step of the Beginning Phase (315.2.b.2) and the walk-in in the Main Phase (316), so the evacuation is always first. Charm has to be sequenced by hand, because entering a garrisoned battlefield first stages the Combat (323.9) and OPENS it (323.13) in the same Cleanup and 155 then bars the spell.",
+          "EMPTYING IT GIVES YOU NOTHING BY ITSELF — 323.6 ONLY TAKES. 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' The state qualifies: with the trigger resolved the chain is empty and no Combat or Showdown is in progress, which is 310.1 Neutral Open. Nobody has Priority there (312.2.a is Main-Phase only) but 323.6 asks about the STATE, not about Priority. The battlefield ends unoccupied and uncontrolled, i.e. 'open' in the sense of 170.11.c.",
+          "THE CONQUER, RULE BY RULE, AND IT SCORES THE SAME TURN. A ready body Standard-Moves from your base (144.4.a; the cost is its own exhaust, 420.3.a) and applies Contested (450, 190.3.a.1). The next Cleanup stages a Showdown (323.8) and NO Combat, because 323.9 requires 'Units present controlled by opposing players'; 323.12 opens it, 345 gives you Focus, 348 closes it, 348.2.a establishes Control and 348.2.a.1 says outright 'This results in a Conquer if that player has not yet scored that Battlefield this turn'. 469.1 makes it a Score and 471.1 gives the point. 466.5 is NOT the route here and is not cited: it is a step of the Combat Resolution Step, and no Combat is ever opened.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED: 2 POINTS PER TURN, AND THAT IS THE CEILING. Point 1 is the Recital's own Hold (469.2, 471.1); point 2 is the Conquer of the other battlefield. 470 caps Scoring at once per Battlefield per turn and a Duel has exactly two (485.4), so this line reaches the maximum a turn can hold without dealing or taking any combat damage. Cost: 0 Energy, 0 Power and 0 cards for the evacuation, plus one body and its exhaust for the walk-in.",
+          "IT MOVES ONE UNIT, SO IT CLOSES ONLY AGAINST A GARRISON OF EXACTLY ONE. Against two or more, 323.6 never fires and the trigger achieves nothing. Same ceiling charm-evacuate-conquer declares; renekton-stare-down-evacuate is the card that scales instead, and it is a Body spell, not a battlefield.",
+          "THE DENIAL HALF, TAKEN ALONE, NETS THE OPPONENT ZERO POINTS. Emptying their battlefield without walking in costs them their Hold (469.2 needs Control during their Beginning Phase) but hands them a Conquer when they walk back in on their turn (348.2.a.1) — a Score either way. The value is that YOU take the free Conquer first, in the window between.",
+          "[Deflect] TAXES IT, AND THE TAX IS PAYABLE IN THE BEGINNING PHASE. The moved unit is chosen by the ability's controller, so 355.10 makes it a target and 355.10.d's programmatic-selection exemption does not apply (that is what separates this from renekton-stare-down-evacuate). 809.1.c / 809.1.d price it at the Deflect Value in Power, of any domain (809.1.c.1). The Rune Pool is empty then (167), but 164.2.b ('Recycle this: [Reaction] — Add [C]') carries no exhaust and 429.3 lets a Reaction Add be made 'at any time that spells or abilities require resources be paid', inside the Closed State the trigger itself opened (310.2, 312.2.c/d, 813.1.c.1) — the same mechanism power-nexus-sentinel uses to pay in the Beginning Phase.",
+          "IT IS A MOVE, NOT A RECALL, AND THE DIFFERENCE CUTS BOTH WAYS. 455 defines a Recall as relocation to a base 'without it being a Move', and this card says move, so 456.1 does not apply: 'when I move' abilities on the evacuated unit DO fire, including the opponent's. What does hold is the other half — the unit ends at its base, so any 'While I'm at a battlefield' text it carries switches off, and that is part of the denial.",
+          "THE OPPONENT GETS A REAL WINDOW. While the trigger is on the chain the state is Neutral Closed (310.2), 312.2.c/312.2.d hand out Priority and 813.1.c.1 lets a [Reaction] card be played 'during Closed States on any player's turn'. The same window #62 found for [Temporary]. They can also break the Showdown in your Main Phase by removing the body you walked in.",
+          "AIMING IT AT YOUR OWN GARRISON IS A FOOTGUN THE 'may' EXISTS TO AVOID: moving your own last body off a battlefield you control hands 323.6 your own Control."
+        ]
+      },
+      "steps": [
+        "Board state: you control Amateur Recital with a body on it; the opponent's battlefield is garrisoned by exactly one unit.",
+        "Your Beginning Phase, Scoring Step (315.2.b.2): you Hold the Recital — 469.2, 471.1, point 1 — and its trigger goes on the chain (383.3.c).",
+        "The trigger resolves: move the opponent's single defender to its base (449, a Move by effect; not a Recall, 455; no exhaust, since 420.3.a prices only the Standard Move).",
+        "The Cleanup that 453 requires (held until the chain empties, 321 / 321.1) strips their Control at 323.6. The battlefield is now open (170.11.c).",
+        "Your Main Phase: Standard-Move a ready body from your base into it (144.4.a, cost 420.3.a). 450 and 190.3.a.1 apply Contested.",
+        "The next Cleanup stages a Showdown (323.8) and no Combat (323.9) and opens it (323.12); it closes when all pass (348), 348.2.a establishes Control and 348.2.a.1 makes it a Conquer: point 2 by 471.1."
+      ],
+      "netPerIteration": "2 points per turn — the Recital's own Hold plus a Conquer of the other battlefield — for 0 Energy, 0 Power, 0 cards and one body's Standard Move",
+      "terminatesIn": "engine — 2 points a turn, which 470 and the two battlefields of a Duel (485.4) make the per-turn ceiling; it never compounds, and it stops the moment the opponent garrisons with two bodies",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Battlefield lens — issue #102 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/102",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-battlefield-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-battlefield-lens-candidates.md), issue #102 candidate 1, REWRITTEN in four places. (1) #102 never says when Control changes hands: 323.6 only makes the opponent LOSE it, and the Conquer needs a body walked in during the Main Phase — the entry now spells out both halves and cites the Showdown route (323.8 / 323.12 / 348.2.a / 348.2.a.1) instead of #102's '466.5.b / 466.5.d (o 348.2.a...)', since 466.5 is a step of the Combat Resolution Step and no Combat is ever opened here. (2) #102's '315.2.b.2: el Hold corre una vez por Beginning Phase' conflates where the Hold happens with why it is capped: 315.2.b.2 is 'The Turn Player Holds all Battlefields they Control', the cap is 470 and the definition is 469.2. (3) The denial half taken alone nets the opponent zero points, because 348.2.a.1 gives them a Conquer when they walk back in; that is now a notable. (4) It moves ONE unit, so it closes only against a garrison of one — #102 does not say so. The walk also adds the evidence #102 lacks for its unqualified-'a unit' reading: OGN-168 Fight or Flight prints the same sentence and is banned in both formats as removal. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.4.c, 144.4.a, 155, 164.2.b, 167, 170.11.c, 190.1, 190.3.a.1, 190.6.d, 310.1, 310.2, 312.2.a, 312.2.c, 312.2.d, 315.2.b.2, 316, 321, 321.1, 323.6, 323.8, 323.9, 323.12, 323.13, 345, 348, 348.2.a, 348.2.a.1, 355.10, 355.10.d, 383.3.c, 383.4.e, 420.3.a, 429.3, 449, 450, 453, 455, 456.1, 461, 466.5, 469.1, 469.2, 470, 471.1, 485.4, 485.4.a, 485.5, 486.5, 487.5, 807.1.d, 809.1.c, 809.1.c.1, 809.1.d, 813.1.c.1. Ban check: UNL-207 carries no [BANNED marker; OGN-168 is banned and is cited only as evidence, never used. Arithmetic against its own declared quantities: 1 battlefield, 1 enemy unit moved, 2 points, which 470 plus 485.4 make the per-turn ceiling. Trap check: no attack is ever declared (no Combat is staged, 323.9); no Energy is banked across 167/316.3; no [Repeat]; no [Temporary]; no token; the evacuation is a Move and not a Recall (455). One question was deliberately NOT filed as a reading: whether [Deflect] prices a Triggered Ability at all, given 809.1.c says 'to play'. The entry is written under the stricter reading (it does, and the Power is made at Reaction speed by 429.3 + 164.2.b), so it stands either way."
+    },
+    {
+      "id": "altar-unity-industrialist-recruit-faucet",
+      "name": "Altar to Unity with Renata Glasc, Industrialist — a free READY body every Beginning Phase, forever",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-275",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you hold here, play a 1 Might Recruit unit token in your base.' 350.2 ('Tokens are not cards, but can still be Played') makes this a real 'play a unit' event, and it costs 0 Energy, 0 Power and 0 cards, every turn you hold it."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order unit, E4 P1 M4. 'Your tokens enter ready.' 143.4 makes units enter exhausted, so without her the Recruit is next turn's body; with her it is born ready in the Beginning Phase and can Standard-Move to a battlefield in the same Main Phase. R25 = A already ruled she beats a token's PRINTED entry state, so she beats the 143.4 default a fortiori."
+        },
+        {
+          "card": "VEN-121",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E4 P1 M3. 'When you play another unit, give me +2 Might this turn.' No cost clause, so it is one of only three payoffs in the pool that can collect the Hold's play event with the Rune Pool empty — and the biggest. Optional: the entry works on the first two cards alone."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend's Domain Identity includes Order (103.1.b.1, 103.1.b.2) — Renata and Reluctant Leader are both mono-Order and Altar to Unity is Colorless, so mono-Order works.",
+          "A body on the Altar so you control it at your Beginning Phase."
+        ],
+        "notable": [
+          "The battlefield must be the one in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5). And 190.1 plus 190.6.d's second sentence mean the Altar produces nothing until you have conquered it: 'If the battlefield has no Controller, \"you\" refers to no one, and all such instructions are ignored.'",
+          "THE PRODUCT IS THE BODY, NOT THE MIGHT — AND THAT IS THIS ENTRY'S CORRECTION TO ISSUE #102. #48 established that the bottleneck of every token line in this game is walking a token from the base to a battlefield. This is the only card-free, per-turn body faucet in the pool, and Renata is what makes the body usable the turn it appears rather than the turn after (143.4, R25 = A).",
+          "THE COMPLETE PAYOFF TABLE FOR THE HOLD'S PLAY EVENT, AND WHY MOST OF IT IS DEAD. Fires, free: VEN-121 Reluctant Leader (+2 Might this turn, Order), UNL-183 Pridestalker (+1, a Fury/Body legend) and UNL-058 Lillia, Protector of Dreams (+1 on herself, Calm, 'when you play a token unit'). Fires ONCE and never again: OGN-139 Cithria of Cloudfield, because 702.3 says 'There can only be one Buff on a Unit at a time' and 702.3.a does not place the second — the same rule that refutes Navori Fighting Pit. Never fires: UNL-109 Blood Rose (its 1 Energy cannot be paid — 315.3 has not run and 167 emptied the pool), UNL-011 Fresh Beans (needs a showdown), VEN-145 Curator of the Sands (needs a printed Energy cost of 7+, and 206 reads the printed cost; a token has none), SFD-166 Rally the Troops (155 confines it to your Main Phase and its 'this turn' is gone by the next Beginning Phase), and OGN-027 Darius, Trifarian and VEN-044 Astral Heron, both of which count CARDS — 185, 'Tokens are not cards.'",
+          "#102's OWN SHELL CANNOT HOLD BOTH HALVES. Pridestalker is a Fury/Body legend and Renata Glasc, Industrialist is Order, so 103.1.b.1 / 103.1.b.2 keep them out of each other's decks. The Pridestalker shell gets +1 Might and a body that arrives a turn late; the Order shell gets the ready body and the bigger payoff. This entry is the Order shell and the choice is deliberate.",
+          "IT IS NOT guards-industrialist-ready-soldiers. That entry is 3 copies of a spell, capped by 103.2.b, spent one body at a time. This one is a battlefield that never runs out and costs no card at all. It is not zed-clone-eye-recruits either: SFD-153 Eye of the Herald makes its Recruit 'here' and needs a move to fire; the Altar makes it at the base and needs nothing.",
+          "IT SCORES NOTHING ON ITS OWN. One 1-Might body a turn, no points, no [Temporary] (816.1.b never touches the Recruit), no loop. ENGINE, and there is no reading of it that is more.",
+          "THE RECRUIT IS BORN AT YOUR BASE BECAUSE THE CARD SAYS SO, not by 355.2.a's default, and it is a Recruit unit token with no other printed text — the same body zed-clone-eye-recruits and pursuer-herald-recruits use."
+        ]
+      },
+      "steps": [
+        "Conquer the Altar to Unity and keep a body there; have Renata Glasc, Industrialist on the board.",
+        "Your Beginning Phase, Scoring Step (315.2.b.2): you Hold the Altar (469.2, 471.1, 1 point) and its trigger plays a 1 Might Recruit token in your base.",
+        "350.2 / 185.2.a make that a played unit, so Reluctant Leader's 'when you play another unit' fires: +2 Might on her for the turn, paid for with nothing.",
+        "Renata's 'Your tokens enter ready' overrides 143.4, so the Recruit is ready now, not at your next Awaken.",
+        "In your Main Phase the Recruit can Standard-Move to a battlefield (144.4.a, cost 420.3.a) — the walk-in that #48 says every token line lacks.",
+        "Repeat every turn you hold the Altar; nothing is spent, so nothing runs out."
+      ],
+      "netPerIteration": "one ready 1-Might body at your base per turn, plus one free 'you played a unit' trigger, for 0 Energy, 0 Power and 0 cards",
+      "terminatesIn": "engine — one body a turn for as long as you hold the Altar; it produces no points of its own and does not compound",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Battlefield lens — issue #102 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/102",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-battlefield-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-battlefield-lens-candidates.md), issue #102 candidate 2, REWRITTEN with a different partner. #102's mechanics are right — 350.2 makes the Hold's token a played unit, and its reason for rejecting Blood Rose (the Rune Pool is empty in the Beginning Phase, since 315.3 runs after 315.2.b and 167 emptied it) is correct and is preserved here. What the walk changes: (1) #102 picked the SMALLEST of the three free payoffs; the complete grep over the pool gives VEN-121 Reluctant Leader at +2 and UNL-058 Lillia beside Pridestalker's +1, and six more that cannot fire, each for its own rule. (2) The product is the BODY, not the Might: with SFD-171 the Recruit is born ready (R25 = A over the 143.4 default) and can walk to a battlefield the same turn, which is exactly the bottleneck #48 identified for every token line. (3) #102's own two halves cannot share a deck — Pridestalker is a Fury/Body legend, Renata is Order, 103.1.b.1 — so the shell is a real choice and this entry states it. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.1.b.2, 103.2.b, 103.4.c, 143.4, 144.4.a, 155, 167, 185, 185.2.a, 190.1, 190.6.d, 206, 315.2.b.2, 315.3, 316.3, 350.2, 355.2.a, 420.3.a, 469.2, 471.1, 485.4.a, 485.5, 486.5, 487.5, 702, 702.3, 702.3.a, 703, 816.1.b. Ban check: OGN-275, SFD-171, VEN-121, UNL-183, UNL-058, OGN-139, UNL-109, UNL-011, VEN-145, SFD-166, OGN-027 and VEN-044 carry no [BANNED marker in the corpus. Arithmetic against its own declared quantities: 1 Altar, 1 Renata, 1 Reluctant Leader; one 1-Might body and one +2 Might per turn; zero points. Trap check: no attack; no Energy banked across 167/316.3 (that is the reason Blood Rose is out); no [Repeat]; the Recruit is NOT [Temporary], so 816.1.b never touches it; no token is recycled (185, 186.1, 416.1); the battlefield starts uncontrolled (190.1). Depends on no unruled reading beyond R25, which was ruled A on 2026-09-04."
     }
   ]
 }
