@@ -4747,6 +4747,841 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-repeat-accelerate-add-candidates.md), issue #32, where it was filed as the thinnest of the six and explicitly handed to a human to decide whether it deserved a row. It does: the same-target trick is a fact about Existential Dread that is NOT derivable from ezreal-marai-spire-free-repeat. That entry tells you the spell doubles; it does not tell you that doubling converts a conditional stun into an unconditional bounce. Card text verbatim from data/corpus_flat.txt; 820.1.c.3, 820.1.d.1, 820.2, 820.2.a, 820.3.a, 356.2.b.1, 356.4.c, 356.4.c.1, 356.4.f, 356.4.f.1, 356.6, 190.1 and 190.6.d all opened and read. HOLDS AS WRITTEN, with one addition: the raw cost (E1 + 1 Power + E2) is stated next to the discounted one, so the entry does not depend on holding Marai Spire to be worth knowing. Trap check: no attack trigger of our own; no [Temporary]; no recall; no rune recycled for Power; the Energy is spent as a spell cost in a showdown, not in Awaken, so 167 does not bite; one battlefield, so 485.4.a is respected. Added 2026-09-05 after the project registered 485.5/486.5: a Duel selects your one battlefield AT RANDOM, so the Marai Spire half of this line comes online 1 game in 3 there and by choice in 1v1 Match play (486.5). That is a consistency question, not a correctness one — issue #35 — and the entry states it rather than assuming the Spire."
+    },
+    {
+      "id": "karthus-leblanc-fragmented-temporary-draw",
+      "name": "Karthus × LeBlanc, Fragmented — Shadow's Call turns [Temporary] into six cards",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-236",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "'Your [Deathknell] effects trigger an additional time.' Two copies make every Deathknell run three times (R1 = A with stacking; 808.1.b.1 gives 'the Deathknell effect' a referent, and the seven 'redundant' clauses in the Core Rules are all keyword-specific, so no general rule collapses repeated passives). 365.1 requires Karthus to be on the Board at the instant of the kill. Not [Unique] — only SFD-190/191/192 are."
+        },
+        {
+          "card": "UNL-172",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E3 P1 M3. '[Deathknell][>] Draw 1. If it's your Beginning Phase, draw 2 instead.' The only Deathknell in the pool with a bonus conditioned on your Beginning Phase."
+        },
+        {
+          "card": "UNL-165",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Order spell, E2. 'Choose a friendly unit without [Temporary]. Give it [Temporary]. Draw 2.' The [Temporary] kill is what pays LeBlanc's condition."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Mono-Order: any legend whose Domain Identity covers Order (103.1.b)."
+        ],
+        "notable": [
+          "The timing is the whole entry and every step is printed: 816.1.b kills the [Temporary] unit 'at the start of this permanent's controller's Beginning Phase, before scoring'; 315.2.a.1 puts start-of-Beginning-Phase effects in the Beginning Step and 315.2.b is the Scoring Step after it, both inside the Beginning Phase (315.2). So when the Deathknell resolves it IS your Beginning Phase and 'draw 2 instead' is live.",
+          "Gross is 8 cards for 5 Energy + 1 Power; NET is +6, because LeBlanc and Shadow's Call are the two cards you spent. Neighbours: one Karthus gives 4 from the Deathknell (net +4), zero gives 2 (net 0 and there is no line). The jump is the second Karthus.",
+          "ANTI-SYNERGY with UNL-090 LeBlanc, Everywhere at Once, and they are two different LeBlanc: 'Your [Temporary] effects at my battlefield don't trigger' plus R10 = A means the kill never fires at her battlefield, so there is no Deathknell and no cards. Two catalogued entries want that other LeBlanc on the board.",
+          "Burn Out is the real ceiling. The six cards land in the Beginning Phase, BEFORE the Draw Phase (315.4.b), and 431.1.a makes you draw what is left, Burn Out, and keep drawing."
+        ]
+      },
+      "steps": [
+        "Turn N: play LeBlanc, Fragmented (3 Energy + 1 Power). Play Shadow's Call on her (2 Energy): she gains [Temporary] and you draw 2.",
+        "Turn N+1, Beginning Step: 816.1.b kills her before scoring.",
+        "Her Deathknell goes on the chain as a Pending Item before she reaches the trash (428.1.a.1.b, 808.1.d.2), and Karthus ×2 makes it trigger three times (R1 = A).",
+        "Each instance reads 'If it's your Beginning Phase, draw 2 instead': six cards."
+      ],
+      "netPerIteration": "8 cards drawn for 5 Energy + 1 Power, net +6 cards; one-shot per LeBlanc",
+      "terminatesIn": "engine — one burst of six cards per LeBlanc killed by [Temporary], bounded by the 3 copies of each piece and by Burn Out (431.1.a)",
+      "sources": [
+        {
+          "title": "Hunt lens — issue #36 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/36",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-death-and-return-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "816.1.b kills at the start of the Beginning Phase and 315.2.b puts the Scoring Step after it, so the Deathknell resolves inside the Beginning Phase and 'draw 2 instead' is the live clause."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-death-and-return-candidates.md), issue #36. All card text verbatim from data/corpus_flat.txt; every rule opened in data/Riftbound-Core-Rules-2026-07-16.txt. FIRST ENTRY IN THE CATALOGUE ON OGN-236 Karthus, Eternal, which had zero appearances before today. The [Temporary] authoring trap from CLAUDE.md is used FORWARDS here rather than avoided: the start-of-Beginning-Phase kill is the condition LeBlanc is paid for. REWRITE against the issue: it quoted 8 cards without netting the two cards spent, so the entry states both. Trap check: no attack, so 807.1.d/383.4.e/461 cannot bite; every payment is a Main Phase cost so 167 does not bite; no [Repeat]; no recall; no rune recycled for Power. No new rules reading filed — the Karthus stack rides on R1 = A with stacking, already ruled 2026-09-03 for Blue Sentinel's identical 'trigger an additional time' wording."
+    },
+    {
+      "id": "karthus-honest-broker-blade-gold",
+      "name": "Karthus × Honest Broker × Blade of the Ruined King — Gold with no per-turn cap",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-178",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Gear, Order, E3 P1 M+4. '[Equip] — 1 Order Power, Kill a friendly unit.' 818.1.c.2 makes Equip '[Cost]: Attach this gear to a unit you control', and 377 — 'Activated Abilities are repeatable effects with a cost' — is why there is no cap per turn: the printed cost carries no exhaust and no once-per-turn. Killing as a cost still fires the Deathknell (428.1.a.1, 428.1.a.1.b). Alternate the attach between two bodies, because 434.1.g makes re-attaching to the current carrier a no-op, and never point it at the body you are killing (355.5 chooses the target before 359.3.e.2 checks it)."
+        },
+        {
+          "card": "OGN-236",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "'Your [Deathknell] effects trigger an additional time.' Two copies make every Deathknell run three times (R1 = A with stacking; 808.1.b.1 gives 'the Deathknell effect' a referent, and the seven 'redundant' clauses in the Core Rules are all keyword-specific, so no general rule collapses repeated passives). 365.1 requires Karthus to be on the Board at the instant of the kill. Not [Unique] — only SFD-190/191/192 are."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "'Your tokens enter ready.' MECHANISM, NOT DISCOUNT: the Gold token is printed 'exhausted' and its own ability costs an exhaust, so without Renata 414.1.b and 414.4 leave it producing nothing at all. R25 = A, ruled 2026-09-04 on Treasure Hunter's identical 'play a Gold gear token exhausted' wording."
+        },
+        {
+          "card": "SFD-155",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order unit, E2 M2. '[Deathknell] — Play a Gold gear token exhausted.' Three copies is the cap (103.2.b) and the entry's real limit."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "gold-engine",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Order: any legend whose Domain Identity covers Order (103.1.b)."
+        ],
+        "notable": [
+          "Net per Broker: −2 Energy, −1 Order Power, +3 rainbow Power = −2 Energy, +2 Power. Three Brokers in one Main Phase is −6 Energy, +6 Power. One Karthus makes it +1 Power; zero Karthus makes it 0 and there is no entry.",
+          "The Gold's Power pays the Blade's own Order cost, so the Blade self-finances after one seed Power: 135.2.e.5.b — 'When Added to a player's Rune Pool, [A] can be spent to pay a Power cost of any Domain' — and 163.2.b says the same of Universal Power.",
+          "NO PER-EVENT CAP, and that is the whole point against the catalogue. yeti-brambleback-renata-gold gives 6 Power but only once per battlefield per turn (466.5.d, 470); treasure-hunter-industrialist-gold gives one Gold per move. This one is capped only by Broker copies and by the seed Power.",
+          "The setup is heavy and the issue did not price it: Blade E3+1P, Renata E4+1P, two Karthus E3+1P each = 13 Energy and 4 Power of permanents before the first Broker, against a 12-card Rune Deck (103.3.a). It is a multi-turn build.",
+          "167 empties the Rune Pool at the start of each Main Phase and the end of each turn, so all six Power must be spent inside the turn that made it.",
+          "Rider, deliberately NOT in uses because a discount is not the mechanism (the lesson from #32): with SFD-201 Chem-Baroness as the legend (Mind/Order), 'While your score is within 3 points of the Victory Score, your Gold [Add] an additional 1 Energy' turns each Broker Energy-positive from 5 points on."
+        ]
+      },
+      "steps": [
+        "Board: Blade of the Ruined King, two Karthus, Renata Glasc Industrialist. Hold one Order Power as the seed.",
+        "Play Honest Broker (2 Energy).",
+        "Activate the Blade's [Equip] (1 Order Power), attaching to a body that is NOT the Broker, and pay the non-resource half of the cost by killing the Broker (818.1.c.3, 428.1.a.1).",
+        "The Broker's Deathknell goes on the chain before he reaches the trash (428.1.a.1.b) and runs three times: three Gold tokens.",
+        "Renata makes them enter ready, so each can pay 'Kill this, exhaust: [Add] 1 rainbow Power' (813.1.b lets the Reaction ability be used in your Main Phase). Three Power.",
+        "Repeat with the next Broker; the Power just added pays the next Blade activation."
+      ],
+      "netPerIteration": "−2 Energy, +2 Power per Honest Broker, with no cap on how many times per turn the Blade may be activated",
+      "terminatesIn": "engine — up to +6 Power for 6 Energy in one Main Phase with three Brokers; bounded by Broker copies (103.2.b) and by 167 emptying the pool at end of turn",
+      "sources": [
+        {
+          "title": "Hunt lens — issue #36 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/36",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-death-and-return-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "377: 'Activated Abilities are repeatable effects with a cost.' The Blade's printed [Equip] cost carries no exhaust and no once-per-turn, so the sacrifice outlet has no per-turn cap; 818.4 does NOT say this — it covers a gear printing several Equip instances."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-death-and-return-candidates.md), issue #36. CITATION CORRECTED AGAINST THE ISSUE: #36 rested the 'no per-turn cap' on 818.4, but 818.4 is about a gear that prints MULTIPLE Equip instances, not about repeating one. The rule that says what the entry needs is 377 ('Activated Abilities are repeatable effects with a cost') plus 378, and the Blade's printed cost carrying no exhaust. NOT INFINITE, and the walk closed the only case that could have been: with Chem-Baroness the pass turns Energy-positive, but feeding it needs UNL-168 Undying Loyalty to replay the Broker, which costs a CARD per pass for +1 Energy and +1 Power and never recycles itself — at the #21 ledger's rate that is break-even at best, and the nine Order trash-recursion cards were read one by one (five are [Flow], banished for good by 829.1.b.1; four are once per copy). Trap check: no attack; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power — the Power comes from Gold tokens, not from 161.2.b. Shares its Karthus + Blade skeleton with karthus-sacred-shears-blade-draw (cards), karthus-glasc-mixologist-double-reanimate (bodies) and karthus-machine-evangel-renata-plaza (the win); the payoffs are different resources, which is why they are four entries."
+    },
+    {
+      "id": "karthus-sacred-shears-blade-draw",
+      "name": "Sacred Shears lends [Deathknell] to any body, and Karthus triples it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-172",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Gear, Order, E2 P1 M+1. '[Equip] 1 Order Power. [Effect] [Deathknell] — Draw 1.' 434.1.c appends an Equipment's Effect Text to the carrier's Rules Text, so ANY unit you control gains '[Deathknell] — Draw 1'."
+        },
+        {
+          "card": "SFD-178",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Gear, Order, E3 P1 M+4. '[Equip] — 1 Order Power, Kill a friendly unit.' 818.1.c.2 makes Equip '[Cost]: Attach this gear to a unit you control', and 377 — 'Activated Abilities are repeatable effects with a cost' — is why there is no cap per turn: the printed cost carries no exhaust and no once-per-turn. Killing as a cost still fires the Deathknell (428.1.a.1, 428.1.a.1.b). Alternate the attach between two bodies, because 434.1.g makes re-attaching to the current carrier a no-op, and never point it at the body you are killing (355.5 chooses the target before 359.3.e.2 checks it)."
+        },
+        {
+          "card": "OGN-236",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "'Your [Deathknell] effects trigger an additional time.' Two copies make every Deathknell run three times (R1 = A with stacking; 808.1.b.1 gives 'the Deathknell effect' a referent, and the seven 'redundant' clauses in the Core Rules are all keyword-specific, so no general rule collapses repeated passives). 365.1 requires Karthus to be on the Board at the instant of the kill. Not [Unique] — only SFD-190/191/192 are."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Mono-Order: any legend whose Domain Identity covers Order (103.1.b)."
+        ],
+        "notable": [
+          "The Shears survive their carrier and come back for 1 Order Power: 435.4.b detaches them at the carrier's last location, 435.4.a and 149.3 recall an unattached non-unit gear from a battlefield to your base at the next Cleanup.",
+          "PRICE, corrected against the issue, which stated a flat 2 Power for 3 cards and left it there. The FIRST body of a turn costs 1 Order Power (the Blade) if the Shears were already attached from an earlier turn; 2 Power is the rate from the second body onward, because you also pay to re-equip. Against the #21 loop ledger, where Power runs about 9 Energy, three cards for two Power is a BAD rate on its own and the entry says so.",
+          "Where it is actually good: put the Shears on an Honest Broker and kill that (karthus-honest-broker-blade-gold). One Blade activation then yields 3 Gold AND 3 cards, so the pass reads −2 Energy, +1 Power net, +3 cards. The Broker is deliberately NOT in uses — the mechanism of this entry is 434.1.c, not the Gold.",
+          "The Blade's attach must point at a body OTHER than the one you are killing: 355.5 makes the choice before the cost is paid, and 359.3.e.2 makes the target illegal on resolution if it left the board, so you would pay the kill and lose the attach. Alternating the Blade between two bodies needs no reading at all (434.1.f, 434.1.g).",
+          "Burn Out (431.1.a) is the ceiling on any draw engine, and 3 copies of the Shears (103.2.b) let three bodies carry one from the start instead of re-equipping.",
+          "Rider outside uses: OGN-246 Viktor, Leader plays a 1 Might Recruit into your base whenever another NON-Recruit unit you control dies, which is the next turn's body. 383.2.c.2's worked example is Viktor himself and warns that he does not trigger if he dies in the same game action."
+        ]
+      },
+      "steps": [
+        "Equip Sacred Shears to the body you intend to kill (1 Order Power; free if it was already wearing them).",
+        "Activate the Blade's [Equip] (1 Order Power) attaching to a DIFFERENT unit, paying the kill half of the cost with the Shears' carrier.",
+        "434.1.c had appended '[Deathknell] — Draw 1' to that carrier, so the Deathknell triggers, and Karthus ×2 runs it three times: three cards.",
+        "The Shears detach at that location (435.4.b) and return to base at the next Cleanup (149.3). Re-equip for the next body."
+      ],
+      "netPerIteration": "3 cards per body, for 2 Order Power (1 if the Shears were already on it)",
+      "terminatesIn": "engine — three cards per body killed, no per-turn cap; bounded by bodies to kill, by Power, and by Burn Out",
+      "sources": [
+        {
+          "title": "Hunt lens — issue #36 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/36",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-death-and-return-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.' That is what turns any body into a Deathknell carrier, and it is the one rule this entry stands on that the sibling Karthus entries do not use."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-death-and-return-candidates.md), issue #36. REWRITTEN on price: the issue declared '2 Power of Order -> 3 cards, no per-turn cap' and stopped there. Two things were missing and both are now in prerequisites — the first body of a turn is cheaper (1 Power) when the Shears were already attached, and three cards for two Power is a bad rate at the #21 ledger's ~9-Energy-per-Power, so the honest use is stacking the Shears on a body that already pays for itself. Kept as its own entry rather than folded into karthus-honest-broker-blade-gold because the load-bearing rule is different: 434.1.c, Equipment lending its Effect Text, which no other entry in the catalogue uses for a Deathknell. Trap check: no attack; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; costs paid in the Main Phase so 167 does not bite."
+    },
+    {
+      "id": "karthus-machine-evangel-renata-plaza",
+      "name": "Machine Evangel dies three times over — nine ready Recruits into The Grand Plaza",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "'When you hold here, if you have 7+ units here, you win the game.' 195 grants the win."
+        },
+        {
+          "card": "OGN-239",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E5 P1 M4. '[Deathknell] — Play three 1 Might Recruit unit tokens into your base.'"
+        },
+        {
+          "card": "OGN-236",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "'Your [Deathknell] effects trigger an additional time.' Two copies make every Deathknell run three times (R1 = A with stacking; 808.1.b.1 gives 'the Deathknell effect' a referent, and the seven 'redundant' clauses in the Core Rules are all keyword-specific, so no general rule collapses repeated passives). 365.1 requires Karthus to be on the Board at the instant of the kill. Not [Unique] — only SFD-190/191/192 are."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "'Your tokens enter ready' overrides 143.4, so the nine Recruits can take their Standard Move (144.1.a) the same turn they are made. Already catalogued behaviour (pursuer-herald-recruits, zed-clone-eye-recruits)."
+        },
+        {
+          "card": "SFD-178",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Gear, Order, E3 P1 M+4. '[Equip] — 1 Order Power, Kill a friendly unit.' 818.1.c.2 makes Equip '[Cost]: Attach this gear to a unit you control', and 377 — 'Activated Abilities are repeatable effects with a cost' — is why there is no cap per turn: the printed cost carries no exhaust and no once-per-turn. Killing as a cost still fires the Deathknell (428.1.a.1, 428.1.a.1.b). Alternate the attach between two bodies, because 434.1.g makes re-attaching to the current carrier a no-op, and never point it at the body you are killing (355.5 chooses the target before 359.3.e.2 checks it)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Order: any legend whose Domain Identity covers Order (103.1.b). The Grand Plaza is domainless."
+        ],
+        "notable": [
+          "The battlefield must be the one in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5). The Grand Plaza is one of YOUR three, and in a Duel there are only two battlefields on the table at all (485.4).",
+          "You must already CONTROL the Plaza before the Recruits walk in. 190.1 says control is established through the course of play, and 190.3.a.1 says moving to a battlefield you already control applies no Contested — so with the Plaza yours the nine bodies arrive without opening a Showdown.",
+          "Nine Recruits for 1 Order Power once Machine Evangel is on the board (E5 + 1 Power). The bar is 7, so two may die. One Karthus gives 6, zero gives 3 and there is no line.",
+          "The Recruits arrive exhausted because 144.2 charges the Standard Move an exhaust, but that is harmless: 315.1.b readies them in your Awaken before the Hold, and the Plaza's condition measures presence, not state.",
+          "The condition is checked AT THE HOLD, not on resolution: 383.2.a's Loose Cannon example makes an 'if' immediately after the trigger condition part of the Condition, and 383.2.c evaluates a Condition when the inciting event is processed. Here that changes nothing, because the nine bodies arrive a whole turn earlier — it is stated so nobody re-derives it.",
+          "Same fragility every Plaza line declares: you must survive one opponent turn with 7+ one-Might bodies, and the Plaza is symmetric, so an opponent parking seven units on it wins the same way.",
+          "Rider outside uses: OGN-246 Viktor, Leader adds a tenth Recruit, since Machine Evangel is not a Recruit."
+        ]
+      },
+      "steps": [
+        "Control The Grand Plaza. Board: two Karthus, Renata Glasc Industrialist, Blade of the Ruined King, and Machine Evangel (5 Energy + 1 Power).",
+        "Activate the Blade's [Equip] for 1 Order Power, attaching to another body and paying the kill half with Machine Evangel.",
+        "His Deathknell runs three times (Karthus ×2): nine 1 Might Recruit tokens into your base, entering ready (Renata).",
+        "Standard-Move all nine to the Plaza in the same Main Phase (144.1.a, 144.3 allows one declaration for all of them).",
+        "Survive the opponent's turn. At your Beginning Phase you Hold the Plaza with 9 units there: you win (195)."
+      ],
+      "terminatesIn": "win the game at the next Hold",
+      "sources": [
+        {
+          "title": "Hunt lens — issue #36 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/36",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-death-and-return-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' With the Plaza already yours the nine Recruits walk in without opening a Showdown."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-death-and-return-candidates.md), issue #36. Against grand-plaza-recruit-vanguard, which is eight exhausted Recruits for 12 Energy in one turn: this puts NINE ready bodies down for 1 Order Power once the Evangel is paid, so it is far cheaper on the key turn and far dearer to assemble (Blade E3+1P, Renata E4+1P, two Karthus E3+1P each, Evangel E5+1P). Both are honest and neither replaces the other. Trap check: no attack designation is needed anywhere, which is what separates a Plaza Hold from a Conquer line; no [Repeat]; no [Temporary] — the Recruits carry none, so 816.1.b never touches them; no recall; no rune recycled for Power. No new rules reading: the Karthus stack is R1 = A and Renata readying tokens is R25 = A, both already ruled."
+    },
+    {
+      "id": "karthus-glasc-mixologist-double-reanimate",
+      "name": "Glasc Mixologist reanimates three times for one Power",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-165",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E5 P1 M5. '[Deathknell] — You may play a unit with cost no more than 3 Energy and no more than 1 Power from your trash, ignoring its cost.'"
+        },
+        {
+          "card": "OGN-236",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "'Your [Deathknell] effects trigger an additional time.' Two copies make every Deathknell run three times (R1 = A with stacking; 808.1.b.1 gives 'the Deathknell effect' a referent, and the seven 'redundant' clauses in the Core Rules are all keyword-specific, so no general rule collapses repeated passives). 365.1 requires Karthus to be on the Board at the instant of the kill. Not [Unique] — only SFD-190/191/192 are."
+        },
+        {
+          "card": "SFD-178",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Gear, Order, E3 P1 M+4. '[Equip] — 1 Order Power, Kill a friendly unit.' 818.1.c.2 makes Equip '[Cost]: Attach this gear to a unit you control', and 377 — 'Activated Abilities are repeatable effects with a cost' — is why there is no cap per turn: the printed cost carries no exhaust and no once-per-turn. Killing as a cost still fires the Deathknell (428.1.a.1, 428.1.a.1.b). Alternate the attach between two bodies, because 434.1.g makes re-attaching to the current carrier a no-op, and never point it at the body you are killing (355.5 chooses the target before 359.3.e.2 checks it)."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Mono-Order: any legend whose Domain Identity covers Order (103.1.b)."
+        ],
+        "notable": [
+          "Three free units out of the trash for 1 Order Power, once per Mixologist. One Karthus gives two. Three copies (103.2.b) is nine bodies across a game, at 5 Energy + 1 Power each.",
+          "CORRECTION to the issue, which said the bodies land at your base. The Mixologist names no location, so 355.2.a applies: 'Valid locations include the controller's Base or a Battlefield the controller controls'. You choose.",
+          "They still enter EXHAUSTED (143.4). Renata Glasc, Industrialist does not help here — 'Your tokens enter ready' reaches tokens, and these are cards.",
+          "This is bodies, not tempo, and it has to say so: you cannot bolt [Accelerate] on, because 'ignoring its cost' collides with 356.5.a. That is the same reasoning by which reksai-sarcophagus-accelerated-recursion picked Cursed Sarcophagus and rejected this Mixologist.",
+          "Against UNL-148 Cursed Sarcophagus, which is one body per turn and you PAY the costs: this is three at once and free, but once per Mixologist. Different shape, and the Sarcophagus is Chaos so the two never share a deck with Karthus."
+        ]
+      },
+      "steps": [
+        "Board: two Karthus, Blade of the Ruined King, and Glasc Mixologist (5 Energy + 1 Power). Trash holds units costing at most 3 Energy and 1 Power.",
+        "Activate the Blade's [Equip] for 1 Order Power, attaching elsewhere and killing the Mixologist as the cost.",
+        "His Deathknell goes on the chain before he reaches the trash (428.1.a.1.b) and runs three times (Karthus ×2).",
+        "Each instance plays one qualifying unit out of the trash ignoring its cost, to your base or to a battlefield you control (355.2.a). All three enter exhausted (143.4)."
+      ],
+      "netPerIteration": "three free units out of the trash for 1 Order Power, once per Mixologist",
+      "terminatesIn": "engine — three bodies per Mixologist, nine across the three copies; it is a burst of bodies, not a loop",
+      "sources": [
+        {
+          "title": "Hunt lens — issue #36 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/36",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-death-and-return-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' The Mixologist names no location, so the revived bodies are not stuck at base — but 143.4 still enters them exhausted."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-death-and-return-candidates.md), issue #36. One correction to the issue (the bodies are not confined to your base, 355.2.a) and one confirmation (they do enter exhausted, 143.4, and Renata does not reach them). Shares the Karthus + Blade skeleton with karthus-honest-broker-blade-gold, karthus-sacred-shears-blade-draw and karthus-machine-evangel-renata-plaza; this one pays in bodies. Trap check: no attack; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; the Power is spent in the Main Phase so 167 does not bite. No new rules reading — the stack is R1 = A."
+    },
+    {
+      "id": "leblanc-bashful-bloom-trevor-plaza",
+      "name": "LeBlanc keeps the Sprites, so Bashful Bloom's ability ratchets to zero — The Grand Plaza on the third Hold",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-189",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Mind legend. '4 Energy, exhaust: Play a ready 3 Might Sprite unit token with [Temporary]. This ability costs 1 Energy less for each friendly unit with [Temporary].' The discount is what 816.3 keeps alive under LeBlanc."
+        },
+        {
+          "card": "UNL-090",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 M4, [Backline]. 'Your [Temporary] effects at my battlefield don't trigger' — the start-of-Beginning-Phase kill (816.1.b) never fires here. R10 = A, ruled 2026-09-04."
+        },
+        {
+          "card": "UNL-048",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M3, [Shield]. 'When I hold, play a ready 3 Might Sprite unit token with [Temporary] here.' A hold effect (383.4.d.1), so it fires every Hold, for free."
+        },
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "'When you hold here, if you have 7+ units here, you win the game.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "legends": [
+        "UNL-189"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Bashful Bloom (UNL-189) IS the legend, and its Calm/Mind identity is exactly what Trevor (Calm) and LeBlanc (Mind) need (103.1.b)."
+        ],
+        "notable": [
+          "The battlefield must be the one in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5). The Grand Plaza is one of YOUR three, and in a Duel only two battlefields are on the table (485.4).",
+          "THE LOAD-BEARING RULE, and the project had not used it: LeBlanc switches off the [Temporary] TRIGGER (R10 = A), she does not remove the keyword — and 816.3 says outright that 'Temporary, and whether or not a permanent has Temporary, is a characteristic of the permanent and may be checked or referenced by other Game Effects'. So every surviving Sprite still counts for Bashful Bloom's discount, and the ability ratchets down to 0 Energy and stays there.",
+          "The count is checked AT THE HOLD, not on resolution. 383.2.a's Loose Cannon example makes an 'if' that sits immediately after the trigger condition part of the CONDITION, and 383.2.c evaluates a Condition once the inciting event is processed. So the Sprite Trevor plays on that same Hold does NOT count toward that Hold. Recounted with that: before Hold k you have 2 + (k−1) + k = 2k+1 units, so k=1 gives 3, k=2 gives 5 and k=3 gives 7 — the third Hold wins, and it needs no trigger-ordering argument at all.",
+          "Total Energy is 13, because the discount pays for itself: T0 Main is LeBlanc 4 + Trevor 3 + Bloom 4 (no [Temporary] friends yet) = 11; T1 Main is Bloom at 2 (two [Temporary] friends); T2 Main is Bloom at 0 (four).",
+          "Where the Sprites land: Bashful Bloom's ability names no location, so 439.2.b.1 and 355.2.a put the token at the Plaza you control. Trevor's says 'here', which is wherever he Holds — so he must be at the Plaza.",
+          "DO NOT pair with UNL-208 Black Flame Altar ('Units here with [Temporary] have [Shield]'), however well it reads: 485.4.a puts only ONE of your three battlefields into play. That is exactly the mistake #33 fixed in the synergy layer.",
+          "If LeBlanc dies or moves, every Sprite dies at your next Beginning Phase. Same exposure leblanc-temporary-plaza already declares.",
+          "Rider outside uses: UNL-076 Petal Pixie has '+1 Might for each of your units with [Temporary] at my battlefield' and grows permanently under LeBlanc."
+        ]
+      },
+      "steps": [
+        "Control The Grand Plaza. T0 Main: play LeBlanc, Everywhere at Once and Trevor Snoozebottom there, and activate Bashful Bloom for 4 Energy — one Sprite at the Plaza. Three units.",
+        "T1 Beginning: Hold. The Plaza sees 3 and does not fire; Trevor's hold effect adds a Sprite (four). Main: Bloom now costs 2 (two [Temporary] friends) — five.",
+        "T2 Beginning: Hold, the Plaza sees 5; Trevor adds a Sprite (six). Main: Bloom costs 0 (four [Temporary] friends) — seven.",
+        "T3 Beginning: Hold with 7 units at the Plaza — you win (195). None of the Sprites ever died, because LeBlanc's clause plus R10 = A stops 816.1.b from triggering at her battlefield."
+      ],
+      "terminatesIn": "win the game on the third Hold after setup, for 13 Energy total",
+      "sources": [
+        {
+          "title": "Hunt lens — issue #36 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/36",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-death-and-return-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "383.2.a, Loose Cannon example: an 'if' clause that is NOT immediately after the trigger condition is part of the effect. The Grand Plaza's 'if you have 7+ units here' IS immediately after it, so it is part of the Condition and 383.2.c evaluates it when the Hold happens."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-death-and-return-candidates.md), issue #36. REWRITTEN: the issue reached seven units on the third Hold by counting the Sprite Trevor plays during that same Hold, which 383.2.a plus 383.2.c do not allow — the Plaza's 'if' is part of the Condition and is measured when the Hold happens. Recounted honestly the answer is still the third Hold (2k+1 units before Hold k), because the setup turn's Bashful Bloom Sprite carries it, so the entry needs no trigger-ordering reading and none was filed. Against leblanc-temporary-plaza, which reaches ten units in ONE turn: six of those are 0 Might Reflections and its own notable says any single point of damage removes one. This is slower and every body is 3 Might, with Trevor holding [Shield] and LeBlanc [Backline]. Trap check: no attack; no [Repeat]; no recall; no rune recycled; 167 does not bite because every activation is a Main Phase cost; and [Temporary] is used forwards — the entry's whole point is that the kill never fires."
+    },
+    {
+      "id": "death-from-below-recurring-kill",
+      "name": "Death from Below buys itself back for one Power — repeatable removal and a sacrifice outlet",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-186",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury/Chaos spell, E4 P1. 'Kill a unit at a battlefield. Then, if it had 3 Might or less, do this: You may play this from your trash for 1 rainbow Power.' It does not say ENEMY unit, so it is also a sacrifice outlet."
+        },
+        {
+          "card": "OGN-037",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "TRASH",
+          "note": "Fury unit, E3 P1 M3, [Assault 2]. 'When you kill a unit with a spell, you may pay 1 Energy + 1 Fury Power to play me from your trash.' 428.5.b attributes the kill to the spell, because the Kill instruction is in the spell's own text."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Chaos (103.1.b): VEN-143 Master of Shadows is the Fury/Chaos legend in the pool."
+        ],
+        "notable": [
+          "The timing is printed, not read in. 'Do this:' is a Reflexive Trigger (387.1) and 388.1 puts it on the chain as a NEW pending item, while 359.3.d finishes the spell by executing its text 'and then place the card in the Trash of the owning player'. By the time the reflexive item resolves the card is in the trash, which is where 'play this from your trash' looks. This is the same shape the project already ruled as R26 = B.",
+          "One rainbow Power per repetition, with no per-event cap, as long as each target had 3 Might or less. The ceiling is the 12-card Rune Deck (103.3.a) — the same bound that makes zed-clone-eye-recruits an ENGINE rather than an INFINITE.",
+          "It may kill your OWN Immortal Phoenix, and this needed no filed reading: 383.2.c.1's worked example is that card by name — 'This ability triggers if Immortal Phoenix is in your trash immediately after you kill a unit with a spell, even if the unit you killed with a spell was that Immortal Phoenix.' The issue avoided this on 141.1.b.2 grounds; Riot answers it directly.",
+          "DOMAIN WALL, and it splits the whole death-and-return lens in two: this is Fury/Chaos and OGN-236 Karthus, Eternal is Order. A legend has exactly two domains (103.1.b), so the Karthus multiplier and this outlet can never share a deck.",
+          "Not an INFINITE even next to lux-infinite-power, for the same reason: that engine is Mind/Order."
+        ]
+      },
+      "steps": [
+        "Play Death from Below for 4 Energy + 1 Power. Kill a unit at a battlefield — yours or theirs.",
+        "If it had 3 Might or less, the reflexive trigger goes on the chain (387.1, 388.1) while the spell finishes resolving into the trash (359.3.d).",
+        "The trigger resolves: replay Death from Below out of the trash for 1 rainbow Power. It kills again.",
+        "Repeat while runes and legal targets last. Each kill also satisfies Immortal Phoenix's trigger (428.5.b), so one Fury Power and one Energy returns him from the trash."
+      ],
+      "netPerIteration": "one kill per 1 rainbow Power after the first cast, plus one Immortal Phoenix return per time he is in the trash",
+      "terminatesIn": "engine — one kill per rainbow Power, bounded by the 12-rune deck (103.3.a) and by targets of 3 Might or less; never unbounded",
+      "sources": [
+        {
+          "title": "Hunt lens — issue #36 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/36",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-death-and-return-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "383.2.c.1, worked example: 'This ability triggers if Immortal Phoenix is in your trash immediately after you kill a unit with a spell, even if the unit you killed with a spell was that Immortal Phoenix.' Riot answers by name the question the hunt had deliberately avoided."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-death-and-return-candidates.md), issue #36. REWRITTEN UPWARD: the issue said it had deliberately avoided the reading of Death from Below killing the Phoenix itself, because 141.1.b.2 says a unit in the trash 'cannot take actions'. There is nothing to avoid — 383.2.c.1's worked example is that exact card and that exact case, so the entry uses it and no reading is filed. The second repeatable sacrifice outlet in the pool alongside SFD-178 Blade of the Ruined King, and the only one that is a spell. Trap check: no attack designation is needed, so 807.1.d/383.4.e/461 cannot bite; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; all costs are Main Phase costs, so 167 does not bite."
+    },
+    {
+      "id": "nasus-ascended-sentinel-arena-hold",
+      "name": "Nasus, Ascended under Reckoner's Arena — nine points on one Hold, on an M8 body",
+      "class": "BURST",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-046",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E8 P1 M8. '[Deflect 2] … [Empower] 8 Energy … [Empowered][>] When I conquer, you score 1 point.' 828.1.b.1 makes the Empowered clause 'While I have the Empowered status, this card gains [Text]', and 441.2 makes Empowered a board state, so the 8 Energy is paid once and survives every turn after. Not [Unique] — the pool has exactly three [Unique] cards (SFD-190/191/192)."
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M4, [Shield 2]. 'Your hold effects for holding here trigger an additional time.' R8 = A makes the Arena's own hold trigger one of them; R1 = A with stacking makes three copies give four runs."
+        },
+        {
+          "card": "OGN-286",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "'When you hold here, activate the conquer effects of units here.' 383.4.g.1's worked example is this card BY NAME: for each unit here you check its conquer effects 'treating the conquer portion of the condition as having been fulfilled'."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Mind (103.1.b). Four exist: OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom and VEN-145 Curator of the Sands."
+        ],
+        "notable": [
+          "The battlefield must be the one in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5). Reckoner's Arena is one of YOUR three, and in a Duel only two battlefields are on the table (485.4).",
+          "Points per Hold: 1 + N × (1 + K), N = Empowered Nasus present, K = Blue Sentinel present. N=2, K=3 gives 9. Neighbours, written so nobody repeats the 2026-09-04 audit's mistake: N=2, K=2 gives 7 and N=1, K=3 gives 5.",
+          "N × (1 + K) = 8 on its own, so the entry clears the Victory Score even if the battlefield's own Score point never lands. 471.1.a.1 exempts non-Conquer Gains from the Final Point restriction, and R2 = A keeps Nasus's card-text point outside 470's once-per-battlefield cap.",
+          "Cost is 44 Energy and 5 Power: two Nasus (16E + 2P), two Empower activations (16E), three Blue Sentinel (12E + 3P). With a 12-card Rune Deck (103.3.a) that is roughly a six-turn build, not one expensive turn — 441.2 is why it can be spread out, because the Empowered state persists.",
+          "Against ahri-blue-sentinel-hold, which runs the same formula for 23 Energy: what this buys is durability, and that is exactly what Ahri's own notable flags as her single weakness. OGN-066 Ahri is M4 naked; VEN-046 Nasus is M8 with [Deflect 2], so an opponent pays 2 rainbow Power for every spell or ability aimed at him. The 44E price is the honest counterweight.",
+          "Against nasus-ascended-brambleback-conquer, which reaches the same 9: that one wins on a Conquer and needs no battlefield of yours; this one wins on a HOLD, with no combat at all. The catalogue already carries both faces of the Ahri package for the same reason.",
+          "VEN-145 Curator of the Sands is the legend that completes the package: Calm/Mind with the Nasus tag, and 'When you play a unit, gear, or activated ability with Energy cost 7 or more, you may exhaust me to ready up to 2 runes' — Nasus's body (E8) and his Empower (E8, an Activated Ability by 827.1) both qualify.",
+          "All five units must survive the opponent's whole turn at the Arena, and the Arena must already be yours (190.1)."
+        ]
+      },
+      "steps": [
+        "Establish Control of Reckoner's Arena and assemble two Nasus and three Blue Sentinel there over several turns.",
+        "Pay each Nasus's [Empower] for 8 Energy (827.1.c.1). 441.2 keeps them Empowered from then on, so 828.1.b.1 gives each of them 'When I conquer, you score 1 point' permanently.",
+        "At your Beginning Phase you Hold the Arena (469.2): that is the Score, worth 1 point, capped by 470.",
+        "The Arena's hold trigger is one of your hold effects (R8 = A), so Blue Sentinel ×3 makes it run four times (R1 = A).",
+        "Each run activates the conquer effects of every unit there (383.4.g.1), so each of the two Nasus gains a point per run: eight ability Gains (194.1.c, R2 = A). Nine points in one Hold."
+      ],
+      "terminatesIn": "burst of nine points in one Hold, eight of them ability Gains that 470 does not cap",
+      "sources": [
+        {
+          "title": "Hunt lens [Empower]/[Flow]/[Level N] — issue #34 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/34",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-escalation-empower-flow-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "383.4.g.1's worked example is Reckoner's Arena by name: 'For each unit at the battlefield, you will check the trigger condition of their conquer effects to see if the condition has been fulfilled, treating the conquer portion of the condition as having been fulfilled.' Nasus's Empowered clause has no non-conquer part, so it always reaches the chain."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-escalation-empower-flow-candidates.md), issue #34. All card text verbatim from data/corpus_flat.txt; every rule opened in the Core Rules file. No new rules reading: the entry stands entirely on R1 = A with stacking, R2 = A and R8 = A, all already ruled, plus 383.4.g.1, which is the strongest citation available because Riot writes the interaction with the card named. The formula was checked against its own declared quantities before authoring, which is the check the 2026-09-04 audit found four BURSTs had skipped: 1 + 2 × 4 = 9, and N × (1+K) = 8 without the battlefield point. Trap check: a Hold needs no Attacker designation, so 807.1.d/383.4.e/461 cannot bite (this is the whole reason the Hold version exists beside the Conquer one); no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; the Empower cost is a Main Phase activation so 167 does not bite."
+    },
+    {
+      "id": "nasus-ascended-brambleback-conquer",
+      "name": "Nasus, Ascended × Red Brambleback — nine points on one Conquer, in two cards",
+      "class": "BURST",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-046",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E8 P1 M8. '[Deflect 2] … [Empower] 8 Energy … [Empowered][>] When I conquer, you score 1 point.' 828.1.b.1 makes the Empowered clause 'While I have the Empowered status, this card gains [Text]', and 441.2 makes Empowered a board state, so the 8 Energy is paid once and survives every turn after. Not [Unique] — the pool has exactly three [Unique] cards (SFD-190/191/192)."
+        },
+        {
+          "card": "UNL-029",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 P1 M4, [Accelerate]. 'Your conquer effects for conquering here trigger an additional time.' R1 = A with stacking: three copies make each conquer effect run four times."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "VEN-139 Rogue Assassin is the ONLY Fury/Calm legend in the pool — verified by grep over all 94 legends, the same close skyfall-ahri-conquer already uses."
+        ],
+        "notable": [
+          "Points on the Conquer: 1 + N × (1 + K), N = Empowered Nasus present, K = Red Bramblebacks present. N=2, K=3 gives 9. N=2, K=2 gives 7 and N=1, K=3 gives 5.",
+          "N × (1 + K) = 8 without the Conquer's own point, and that matters here more than in the Hold version. 471.1.b.1 turns the Conquer point into a card draw when you are already within one of the Victory Score — but 383.4.c.2.c says outright that 'If the act of gaining one point from Conquering is negated or replaced in any way, the Conquer Effect will still trigger', so Nasus's eight Gains arrive regardless, and 471.1.a.1 exempts them anyway.",
+          "383.4.c.2.a is the mechanism: 'The Conquer Abilities of Units are put on the Chain as Pending Items after the Unit(s) these effects correspond to are present at a Battlefield when a player gains control of it and gains 1 Victory Point from Conquering.' All five bodies must be present at the battlefield being conquered.",
+          "Against skyfall-ahri-conquer, which is already catalogued: that one needs SFD-030 Skyfall of Areion to convert Ahri's hold effect into a conquer effect, so it is three distinct cards in 3+3+2 copies. Nasus's trigger is already 'When I conquer', so this is two distinct cards in 2+3 copies. planDeck ranks by copies to add, so the difference shows in the panel.",
+          "What this pays and the Hold version does not: you have to CONQUER, that is establish Control of a battlefield you do not control (466.5) with all five bodies present and surviving. Cost 44 Energy + 5 Power — two Nasus (16E+2P), two Empowers (16E), three Brambleback (12E+3P) — spread over about six turns against a 12-card Rune Deck (103.3.a), because 441.2 keeps the Empowered state.",
+          "No battlefield of yours is required, which is the one consistency advantage over nasus-ascended-sentinel-arena-hold: 485.5 does not get a vote here."
+        ]
+      },
+      "steps": [
+        "Assemble two Nasus and three Red Brambleback and pay each Nasus's [Empower] for 8 Energy (827.1.c.1). 441.2 keeps them Empowered.",
+        "Move the five onto a battlefield you do not control and take it (466.5): establishing Control results in a Conquer (466.5.d) and gains a point.",
+        "383.4.c.2.a puts each present unit's conquer ability on the chain; Red Brambleback ×3 makes each conquer effect run four times (R1 = A).",
+        "Each of the two Nasus gains a point per run: eight ability Gains (194.1.c, R2 = A), which 470 does not cap. Nine points from the one Conquer."
+      ],
+      "terminatesIn": "burst of nine points in one Conquer, eight of them ability Gains outside 470's cap",
+      "sources": [
+        {
+          "title": "Hunt lens [Empower]/[Flow]/[Level N] — issue #34 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/34",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-escalation-empower-flow-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "383.4.c.2.c: 'If the act of gaining one point from Conquering is negated or replaced in any way, the Conquer Effect will still trigger.' So even when 471.1.b.1 converts the Conquer point into a draw, Nasus's eight Gains still arrive."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-escalation-empower-flow-candidates.md), issue #34. Stands on R1 = A with stacking and R2 = A, both ruled 2026-09-03; no new reading. 383.4.c.2.c is a guarantee the issue never claimed and it is what makes the Final Point safe. The formula was verified against its own declared quantities before authoring. Trap check: this is the version that DOES pay the attack trap — 383.4.c.2.a needs all five bodies present through the Conquer, which normally means a Combat, though R20's retirement established that a Showdown at the next Cleanup also establishes Control (344.2, 348.2.a.1). No [Repeat]; no [Temporary]; no recall; no rune recycled for Power; the Empower is a Main Phase activation so 167 does not bite."
+    },
+    {
+      "id": "matriarch-of-war-empower-ready",
+      "name": "Hextech Disc re-arms itself, so Matriarch of War readies a unit every turn for free",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-153",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Body/Order legend. 'When you empower something else, empower me. Disempower me, 1 rainbow Power, exhaust: Ready a unit.' The trigger is free and automatic — 441.3.a makes any Empower a game effect you performed, and 441.1.c means it does nothing while she is already Empowered, which her own ability undoes each time."
+        },
+        {
+          "card": "VEN-087",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Body gear, E4 P1. '[Empower] — exhaust. Disempower this, 1 Energy, exhaust: Play a 3 Might Mech unit token to your base.' It is the only Empower source in the pool that costs nothing but an exhaust AND disempowers itself, so it is the one that can be re-armed every turn (441.1.b would otherwise lock it after the first)."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "legends": [
+        "VEN-153"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Matriarch of War (VEN-153) IS the legend; Hextech Disc is Body, inside her identity (103.1.b)."
+        ],
+        "notable": [
+          "THE ENABLERS THE ISSUE NAMED DO NOT SUSTAIN IT. VEN-074 Legion Marauder and VEN-124 Escaped Grayback are one Empower per copy (827.1.c.1, 'Play only if not Empowered') and nothing disempowers them, so three copies of each is six Empowers in a whole game. Hextech Disc is the only Body/Order card whose [Empower] costs nothing but an exhaust AND that disempowers itself, so it is the only one that comes back every turn.",
+          "One Disc alternates on a two-turn cycle: on the odd turn the Awaken (315.1.b) readies it, its [Empower] exhausts it, the Matriarch's trigger empowers her for free and you pay 'Disempower me, 1 rainbow Power, exhaust' to ready a unit. On the even turn the Awaken readies it Empowered, and 'Disempower this, 1 Energy, exhaust' makes a 3 Might Mech token, leaving it disempowered for the next odd turn.",
+          "TWO Discs out of phase give both halves every turn: one unit readied and one 3 Might Mech token per turn, for 1 Energy plus 1 rainbow Power. Setup is 2 Hextech Disc = 8 Energy + 2 Power; the legend is free.",
+          "Hard ceiling of one ready per turn, and it does not open up. The Matriarch's payment carries her own exhaust, and 'Ready a unit' cannot reach her — a legend is its own card type, not a unit. The only untapper in the pool is SFD-210 Hall of Legends ('When you conquer here, you may pay 1 Energy to ready your legend'), which is tied to conquering and to that battlefield being the one drawn (485.5). That is why this is an ENGINE and nothing more.",
+          "What the ready buys: a body that already spent its exhaust — a second Standard Move in the turn (144.2 charges the move an exhaust) or a second use of an exhaust ability.",
+          "Rider outside uses: SFD-171 Renata Glasc, Industrialist is a UNIT of Order, not a legend, so she is legal in Body/Order and makes the Mech tokens enter READY (R25 = A), able to move the turn they appear. SFD-089 Rumble, Scrapper is NOT available here — he is Mind.",
+          "Not an INFINITE, and the reason is printed: 441.1.a makes Empowered binary and 441.1.b forbids re-empowering, so every cycle has to spend a disempower, and every disempower in the pool that is repeatable also charges an exhaust."
+        ]
+      },
+      "steps": [
+        "Board two Hextech Discs, one turn apart so they sit in opposite halves of the cycle.",
+        "Odd turn for Disc A: activate its [Empower] (exhaust only). 441.2.a makes that a 'becomes Empowered' event and the Matriarch's trigger reads 'When you empower something else, empower me' — she is Empowered for free.",
+        "Pay her: disempower her, 1 rainbow Power, exhaust her. Ready a unit.",
+        "Same turn for Disc B, which is Empowered and was readied at Awaken: 'Disempower this, 1 Energy, exhaust' — a 3 Might Mech token to your base.",
+        "Next turn the Discs have swapped halves. Repeat."
+      ],
+      "netPerIteration": "one unit readied and one 3 Might Mech token per turn, for 1 Energy + 1 rainbow Power",
+      "terminatesIn": "engine — one ready plus one Mech token every turn, hard-capped at one ready by the Matriarch's own exhaust",
+      "sources": [
+        {
+          "title": "Hunt lens [Empower]/[Flow]/[Level N] — issue #34 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/34",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-escalation-empower-flow-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "441.1.b: 'An Empowered Game Object can not be Empowered.' Every engine in this family has to spend a disempower to charge again, and Hextech Disc is the only Body/Order card that both empowers for an exhaust alone and disempowers itself."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-escalation-empower-flow-candidates.md), issue #34. REWRITTEN AT THE ENGINE: the issue armed the Matriarch with Legion Marauder and Escaped Grayback, and both are one Empower per copy — six in a whole game, which is not a motor. The sustainable source came out of the walk's own disempower census (grep -i disempower, 12 cards, domains read off each): VEN-087 Hextech Disc is Body, its [Empower] costs only an exhaust, and its other ability disempowers it, so 441.1.b stops blocking every second turn. Two Discs out of phase is what makes it a per-turn engine rather than an alternating one. The one-ready-per-turn ceiling is unchanged from the issue and is correct: her payment carries her own exhaust and 'Ready a unit' does not reach a legend. Trap check: no attack; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; every payment is a Main Phase activation so 167 does not bite. Shares Hextech Disc with hextech-disc-defender-mech-token, which is a different legend (Mind/Body) and a different payoff."
+    },
+    {
+      "id": "hextech-disc-defender-mech-token",
+      "name": "Defender of Tomorrow readies two gear a turn — two Mech tokens out of the Hextech Discs",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-087",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Body gear, E4 P1. '[Empower] — exhaust. Disempower this, 1 Energy, exhaust: Play a 3 Might Mech unit token to your base.' It is the only Empower source in the pool that costs nothing but an exhaust AND disempowers itself, so it is the one that can be re-armed every turn (441.1.b would otherwise lock it after the first)."
+        },
+        {
+          "card": "VEN-149",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "LEGEND",
+          "note": "Mind/Body legend. '[Empower] 2 Energy + 2 rainbow Power … 1 Energy, exhaust: Ready a gear. [Empowered][>] 1 Energy, exhaust: Ready 2 gear.' The ONLY card in the pool that readies gear — grep -iE 'ready [0-9a-z]* ?gear' over all 935 cards returns this line and nothing else."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "legends": [
+        "VEN-149"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Defender of Tomorrow (VEN-149) IS the legend; Hextech Disc is Body, inside its Mind/Body identity (103.1.b)."
+        ],
+        "notable": [
+          "Each Mech costs TWO readies of a Disc, and that is the whole arithmetic: one ready is spent paying the [Empower] (exhaust), and the ability that makes the token demands the Disc ready again, because 414.1.b and 414.4 forbid paying an exhaust cost with something already exhausted.",
+          "Readies per turn = one per Disc from the Awaken (315.1.b) plus 2 from an Empowered Defender. So Mechs per turn = floor((#Discs + 2) / 2): one Disc gives 1, two give 2, THREE STILL GIVE 2. Two Discs is the efficient number, and the issue's 'one token per turn for 2 Energy' undercounted it — the steady state is two tokens for 3 Energy.",
+          "Empower the Defender once (2 Energy + 2 rainbow Power, 827.1.c.1) to reach the two-ready version; 441.2 keeps it Empowered for the rest of the game.",
+          "VEN-062 Hextech Formula ('This enters exhausted. exhaust: Empower another gear') moves one of the two exhausts onto a different card but does not remove it, so it does not raise the ceiling. Noted, deliberately not in uses.",
+          "The tokens land in your base EXHAUSTED (143.4). Renata Glasc, Industrialist cannot fix that here — she is Order, outside Mind/Body. SFD-089 Rumble, Scrapper is Mind and does fit: 'Your Mechs have +1 Might (including me)' makes them 4 Might. Rider, not in uses.",
+          "Against Rumble, Scrapper alone, who makes one Mech per Hold: this needs no scoring and no battlefield, so 485.5 does not get a vote.",
+          "Setup is 2 Hextech Disc (8 Energy + 2 Power) plus the Defender's Empower (2 Energy + 2 Power)."
+        ]
+      },
+      "steps": [
+        "Empower Defender of Tomorrow once, for 2 Energy and 2 rainbow Power. It stays Empowered (441.2).",
+        "Awaken readies both Hextech Discs, disempowered from the previous turn (315.1.b).",
+        "Main Phase: pay each Disc's [Empower], which costs only its own exhaust. Both are now Empowered and exhausted.",
+        "Activate the Defender: 1 Energy, exhaust, ready 2 gear — both Discs are ready again.",
+        "Pay each Disc's 'Disempower this, 1 Energy, exhaust': two 3 Might Mech unit tokens to your base, and both Discs end disempowered and exhausted, set up for the next Awaken."
+      ],
+      "netPerIteration": "two 3 Might Mech unit tokens per turn for 3 Energy, every turn",
+      "terminatesIn": "engine — two Mech tokens a turn; the ceiling is readies, not cards, and floor((#Discs + 2) / 2) makes a third Disc worthless",
+      "sources": [
+        {
+          "title": "Hunt lens [Empower]/[Flow]/[Level N] — issue #34 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/34",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-escalation-empower-flow-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "414.4: 'When Exhausting is listed as a Cost, then the Action must be able to be completed for the cost to be paid.' That is why each Mech needs two readies of the Disc, and it is what fixes the rate at floor((#Discs + 2) / 2) per turn."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-escalation-empower-flow-candidates.md), issue #34, which filed it as 'confianza baja'. REWRITTEN UPWARD after counting the cycle: the issue measured one token per turn for 2 Energy, but with two Discs the steady state is two tokens for 3 Energy, and the readies-per-turn budget (one per Disc from the Awaken plus two from an Empowered Defender) makes floor((#Discs + 2) / 2) the exact rate, so a third Disc buys nothing. VEN-149 was confirmed by grep to be the pool's ONLY gear-readier, which is why the entry cannot be built with any other legend. Trap check: no attack; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; all costs are Main Phase activations so 167 does not bite. Shares Hextech Disc with matriarch-of-war-empower-ready, which is a different legend (Body/Order) and pays in readies instead of bodies; the two cannot share a deck, because a legend has exactly two domains (103.1.b)."
     }
   ]
 }
