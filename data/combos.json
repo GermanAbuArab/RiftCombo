@@ -10436,6 +10436,396 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-combat-loop.md), issue #62 section 1.3, the tail. WHAT IS THE SOURCE'S AND WHAT IS THE WALK'S, stated plainly: the source builds the token engine on camera and ends at 'infinite Sand Soldiers, infinite power, infinite energy' - it never names a win condition, and it closes with 'I think the combo is not consistent enough right now'. THE GRAND PLAZA FINISH IS THIS WALK'S, and it rests on a rule the source never uses: 355.2.a lets a token with no printed destination be played to a battlefield its controller controls, so the Sand Soldiers are born ON the Plaza and the token bottleneck #48 measured - one Standard Move per body - never arises. THE RECYCLE TARGET IS SAFE FOR A REASON THE SOURCE GUESSES AT AND THE RULES SETTLE: 186 and 186.1 make a token cease to exist the moment it enters any Non-Board Zone, so no Sand Soldier ever reaches the trash and Vi's 'Recycle 1 from your trash' can only ever find real cards; 416.6 then gives the choice to the player, so the trash need not hold Desert's Call alone as the source believes. Its 820.1.c.3 reasoning is right and worth keeping: infinite Energy does NOT let you repeat Desert's Call more than once per cast, which is exactly why the recycle-and-draw cycle is needed at all. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "shen-duo-mutual-hold",
+      "name": "Two Shens, each the other's \"exactly one other unit\" — a point and a card every Hold",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-138",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P2 M7, [Shield] (+1 Might while defending, so 8 on defence). 'When I hold, if there is exactly one other unit you control here, you score 1 point.'"
+        },
+        {
+          "card": "VEN-042",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 P1 M6. 'When I hold, if there is exactly one other unit you control here, draw 1.' Same clause, different reward - and each Shen IS the other's one other unit."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "hold-card-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Order and Calm: VEN-147 Eye of Twilight (Shen), which is also the legend the source builds around and whose [Tank] grant protects whichever Shen you want to keep."
+        ],
+        "notable": [
+          "THE CONDITION IS 'EXACTLY ONE', SO A THIRD BODY TURNS OFF BOTH. 383.2.a.1 makes 'if there is exactly one other unit you control here' part of the Trigger Condition, not the Effect, so an unfulfilled count keeps the ability off the chain entirely. That collides head on with wanting to defend the battlefield, and it is the entry's real price: the garrison is two units and cannot be three. Gear does not count - it is not a unit - and neither does a token you park elsewhere, but any token that lands here does.",
+          "R2 = A IS LOAD-BEARING. VEN-138 says 'you score 1 point', which 194.1.c makes a point gain by ability rather than a 469 Score, so 470's 'only Score once per Battlefield per turn' does not swallow it and it stacks on the battlefield's own Hold. Without R2 this entry is worth zero extra points.",
+          "The two of them are 7 and 6 Might, and the [Shield] puts the Leader at 8 on defence, so the two-body garrison the condition forces is also a garrison that can hold itself. That is why the restriction is survivable at all.",
+          "Both must have held the battlefield into your Beginning Phase: 315.2.b.2, 'The Turn Player Holds all Battlefields they Control', and 469.2 defines the Hold as maintaining Control of a battlefield you did not yet Score this turn."
+        ]
+      },
+      "steps": [
+        "Get both Shens onto the same battlefield you control and end your turn with exactly the two of them there.",
+        "Your Beginning Phase: 315.2.b.2 Holds the battlefield. The Hold itself Scores 1 point (469.2, 471.1).",
+        "Both Shen triggers see 'exactly one other unit you control here' - each other - and both fire (383.2.a.1 satisfied).",
+        "VEN-138: +1 point by ability (194.1.c, R2 = A), so the turn is 2 points off one battlefield. VEN-042: draw 1.",
+        "Repeat every turn the two of them survive alone there."
+      ],
+      "netPerIteration": "+2 points and +1 card per turn from one battlefield; 0 Energy, 0 Power, 0 cards spent",
+      "terminatesIn": "engine only - 2 points and a card a turn for as long as exactly the two of them hold",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Riftlab, \"How to Play SHEN | Vendetta Riftbound Guide & Decklist\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=MU0JNWKwZ50&t=103",
+          "date": "2026-07-29",
+          "quote": "[1:41] he's not as powerful as uh Shen, Leader of the Kinkou Order. However, if both Shens are holding together, you'll draw an extra card and score an extra point every turn. When combined with strong battlefields like Grove of the God Willow, this Shen duo can really spiral out of control.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-legends-without-entries.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-legends-without-entries.md), issue #62 section 2.1. VEN-147 Eye of Twilight had NO entry in the catalogue before this. Card text verbatim from data/corpus_flat.txt; every rule opened in data/Riftbound-Core-Rules-2026-07-16.txt. The joke of the pair is that the clause which normally punishes you - 'exactly one other unit you control here' - is satisfied by the OTHER copy, so the restriction becomes the enabler. The walk's addition over the source is the price tag: 383.2.a.1 makes that clause a Trigger Condition, so a third friendly body at that battlefield does not dilute the reward, it deletes both triggers. Trap check: no attack designation anywhere, so 383.4.e/461 never bite; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; nothing enters ready, so 143.4 only delays the first Hold by a turn. Depends on R2 (ruled A)."
+    },
+    {
+      "id": "renekton-dominus-double-conquer",
+      "name": "One Energy, then Dominus doubles it — Renekton crosses 10, empowers, and takes both battlefields",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-092",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Body unit, E5 M4. '1 Energy: Give me +1 Might this turn. When my Might becomes 10 or more, empower me. [Empowered] I have [Deflect] and [Ganking].' The ability has no exhaust in its cost, so 377/378 make it repeatable."
+        },
+        {
+          "card": "VEN-142",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury/Body spell, E4, [Action]. 'This turn, double a unit's Might and give it \"2 rainbow: Ready me.\"' Both halves matter: the double is what crosses 10, and the granted ability is what buys the second battlefield."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Fury and Body: VEN-141 Butcher of the Sands (Renekton), whose own [Reaction] Add of 2 Energy is spendable 'only to play units or activated abilities of units' - which is exactly what the +1 Might activation is."
+        ],
+        "notable": [
+          "THE ORDER IS THE WHOLE TRICK AND IT IS NOT REVERSIBLE. Pay the Energy FIRST: 4 -> 5, then Dominus doubles to 10 and 'When my Might becomes 10 or more' fires. Double first and it is 4 -> 8, then +1 is 9, and nothing happens. 710 evaluates units by current Might; 709 is the analogous worked threshold ('becomes Mighty' is the moment Might crosses from below 5 to 5 or more) and shows the reading is the intended one.",
+          "IT IS TWO POINTS, NOT EIGHT, AND THAT IS WHY IT IS NOT A BURST OR A CHAIN. 470 caps Scoring at once per Battlefield per turn and a Duel has two battlefields (485.4), so the ceiling of one turn is two. The issue filed it as 'BURST/CHAIN, clase a decidir'; it reaches neither bar. It is also NOT turn-repeatable: Dominus is a spell and its grant lasts 'this turn', so the line runs once per copy, three times a game.",
+          "LOSING THE FIRST BATTLEFIELD DOES NOT REFUND THE POINT. Ganking off it leaves it empty, and 323.6 strips your Control at the next Cleanup - but 471.1 already gained the point when Control was established (469.1, 466.5.d).",
+          "The second leg needs a battlefield he can actually take: either uncontrolled (Showdown, 348.2.a and 348.2.a.1 give Control and a Conquer) or garrisoned by less than 10 Might. At 10 with [Deflect] he is also hard to answer - opponents must pay a rainbow to choose him."
+        ]
+      },
+      "steps": [
+        "Renekton in base, ready. Activate '1 Energy: Give me +1 Might this turn' once: 4 -> 5.",
+        "Play Dominus (4 Energy, [Action]): his Might doubles to 10, and he gains '2 rainbow: Ready me'.",
+        "'When my Might becomes 10 or more, empower me' fires: he is [Empowered] and now has [Deflect] and [Ganking].",
+        "Standard Move base -> first battlefield (144.4.a, cost is the exhaust). Win or walk in; Establishing Control is a Conquer (466.5.d, or 348.2.a.1 through a Showdown) and Scores (469.1).",
+        "Pay 2 rainbow Power for the granted 'Ready me' (415.1). It is an Activated Ability with a cost, so 377/378 allow it as often as you can pay.",
+        "[Ganking] Standard Move battlefield -> battlefield (144.4.c.1). Conquer the second one: a second point, because 470 caps per battlefield and this is a different one."
+      ],
+      "netPerIteration": "+2 points in one turn for 5 Energy and 2 Power, once per Dominus",
+      "terminatesIn": "two points in a single turn; not a loop - three Dominus is six points across three turns",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Turn 'em Sideways!, \"The FIRST Renekton Riftbound Deck You Should Build in Vendetta | First 40s\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=oVU14RDZklg&t=50",
+          "date": "2026-08-11",
+          "quote": "[0:50] The other option being Renekton Brute, which has a repeatable effect of one energy to give plus one might this turn. And when his might becomes 10 or more, you can empower him. And he has deflect and ganking when empowered. So that can synergize especially with the signature spell dominus, which is a four energy spell with action. This turn double a unit's might and give it pay two power to ready me a repeatable effect. [1:16] You pay one to make him a five. Then you play Dominus to make him a 10. And then you can even ready him to go for both battlefields on a single turn.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-legends-without-entries.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-legends-without-entries.md), issue #62 section 2.2. VEN-141 Butcher of the Sands had no entry, and VEN-092 Renekton, Brute appeared in NO entry of the catalogue at all. CLASS DECIDED DOWNWARD, DELIBERATELY: #62 filed this as 'BURST/CHAIN (clase a decidir)'. A BURST has to reach 8 in one scoring event and a CHAIN across several without an opponent turn in between; this reaches two, because 470 caps Scoring at once per battlefield per turn and a Duel has two battlefields. Calling it BURST would have been false in the same way labelling a CHAIN an ENGINE was false in #20. What the entry does claim is exact and checked against its own quantities: 4 +1 = 5, doubled = 10, which is the threshold to the digit. Card text verbatim from data/corpus_flat.txt. Trap check: no [Repeat]; no [Temporary]; no token; no recall; the Energy is Main Phase so 167 never bites; the enemy battlefield is not entered empty for an attack trigger, because nothing here needs one - it needs a Conquer, which 466.5.d and 348.2.a.1 both give. Depends on no unruled reading."
+    },
+    {
+      "id": "rumble-forerunner-mech-recursion",
+      "name": "Rumble replays the Ferrous Forerunner at a discount on every conquer — but never off a token",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-026",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 M4. 'Your Mechs each have [Assault]. When I conquer, you may recycle another friendly unit to play a Mech from your trash. Reduce its Energy cost by the Might of the unit you recycled.' The conquer is the throttle: one per battlefield he takes."
+        },
+        {
+          "card": "SFD-021",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "TRASH",
+          "note": "Fury unit, E6 P1 M6. '[Deathknell] — Play two 3 Might Mech unit tokens to your base.' It is what Rumble pulls back, and the two tokens are BOARD, not fuel - see the notable."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are Fury; the legend is SFD-181 Mechanized Menace (Rumble), Fury/Mind, whose 'Your Mechs have [Shield]' puts the Forerunner at 7 Might on defence and the tokens at 4."
+        ],
+        "notable": [
+          "THE MECH TOKENS ARE NOT RECYCLE FUEL, AND BOTH THE SOURCE AND THE ISSUE GET THIS WRONG. Rule 185 is one sentence: 'Tokens are not cards.' Rule 416.1 defines Recycling as taking 'one or more CARDS from a specific zone', and 416.3 says a Recycle listed as a Cost 'must be able to be completed for the cost to be paid'. So 'recycle another friendly unit' can never take a 3 Might Mech token, and the source's line - 'you can just recycle a token and then you reduce its cost by three' - does not work. The fuel has to be a real unit CARD, and the discount is that card's Might.",
+          "SO THE PRICE PER CYCLE IS A BODY, NOT A FREE TOKEN. Recycling a 3 Might unit card brings the Forerunner back at 3 Energy + 1 Power; recycling a 6 Might one brings it back at 1 (356.4 style minimums do not apply - the reduction is by Might, and the Power cost is untouched, since the card says 'Energy cost').",
+          "AND THE FORERUNNER HAS TO DIE AGAIN EACH CYCLE. Rumble pulls 'a Mech from your trash', so the loop needs a death every pass, and the Deathknell only pays out on that death. That plus one conquer per battlefield is why the source's 'basically infinitely' is false and why this is an ENGINE measured in turns.",
+          "The conquer is a real cost too: Rumble has to take a battlefield he does not already control (469.1), so in a Duel with two battlefields the ceiling is two cycles a turn and realistically one."
+        ]
+      },
+      "steps": [
+        "The Forerunner has already died once, so it is in the trash and its Deathknell has already put two 3 Might Mech tokens in your base.",
+        "Rumble conquers a battlefield: Establishing Control is a Conquer (466.5.d), or a Showdown gives it (348.2.a.1).",
+        "His trigger: recycle another friendly UNIT CARD - never a token (185, 416.1, 416.3) - and play the Forerunner from the trash with its Energy cost reduced by that card's Might. A 3 Might card makes it 3 Energy + 1 Power.",
+        "The Forerunner enters exhausted (143.4) as a 6 Might body, 7 on defence under the legend's [Shield].",
+        "When it dies again, the Deathknell pays two more 3 Might Mech tokens into your base, each with [Assault] from Rumble.",
+        "Repeat on the next conquer, for as long as you have a spare unit card on board to feed it."
+      ],
+      "netPerIteration": "one discounted Ferrous Forerunner per conquer, at the price of one friendly unit card recycled; +2 Mech tokens each time it dies",
+      "terminatesIn": "engine only - roughly one cycle a turn, bounded by conquers and by spare unit cards on the board",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Katchouze - Riftbound, \"THIS MECH CURVE IS UNSTOPPABLE ?! - Early Rumble Competitive Guide\" — la fuente, con la mitad que las reglas refutan",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=I8ZplUz7Jmg&t=572",
+          "date": "2025-12-27",
+          "quote": "[9:32] then for three you can just replay a forrunner and you can just do this like basically infinitely and you can even use the tokens if you want to replay the runner like you can just recycle a token and then like you reduce its cost by three and it's a three energy uh one power unit so like this is completely cracked obviously this deck is like cycling Forerunner forever",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-legends-without-entries.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-legends-without-entries.md), issue #62 section 2.3. SFD-181 Mechanized Menace had no entry. REWRITTEN AT THE ENGINE, and the correction is the reason this walk was worth doing: #62 describes the two Deathknell tokens as 'el combustible del reciclado' and the source says outright that you recycle a token for the discount. Rule 185 - 'Tokens are not cards' - plus 416.1, which defines Recycling over cards only, plus 416.3, which requires a cost Recycle to be completable, kill that half. This is the SECOND independent source in issue #62 to hit that wall: section 5 item 7 is two players guessing that tokens cannot be recycled and not knowing why. The rules say why, in one sentence. What survives is real and is what the entry claims: a conquer buys back the Forerunner cheap, and every death of it pays two bodies. Card text verbatim from data/corpus_flat.txt. Trap check: no [Repeat]; the tokens are not [Temporary]; no recall; no rune recycled for Power; 143.4 is respected - the replayed Forerunner enters exhausted. Depends on no unruled reading."
+    },
+    {
+      "id": "tianna-guardian-angel-forge-god-lock",
+      "name": "Tianna locks scoring, Guardian Angel keeps her alive — and the save is what turns the lock off",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-060",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E7 P2 M4, [Deflect]. 'While I'm at a battlefield, opponents can't gain points.' The whole lock is that one clause, and it is scoped to her LOCATION, not to her being alive."
+        },
+        {
+          "card": "SFD-051",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Calm Equipment, E2 M+1, [Equip] 1 Calm. '[Effect] If I would die, kill Guardian Angel instead. Heal me, exhaust me, and recall me.' Attached to Tianna it answers removal - at the price named in the notable."
+        },
+        {
+          "card": "SFD-085",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E6 M4, [Deflect 2], [Weaponmaster], 'I have +1 Might for each friendly gear.' The body that actually keeps the battlefield, and the one that grows with every gear the deck already wants."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Calm and Mind: SFD-189 Fire Below the Mountain (Ornn), whose exhaust adds a rainbow 'only to play gear or use gear abilities' - which pays the Guardian Angel's [Equip] and part of its play cost."
+        ],
+        "notable": [
+          "THE SAVE BREAKS THE LOCK, AND NO SOURCE SAYS SO. Guardian Angel's replacement ends in 'recall me', and 455 defines a Recall as relocating a permanent 'from anywhere to its Base'. Tianna's clause is 'While I'M AT A BATTLEFIELD', so the moment the shield fires she is at her base and opponents can score again. She also comes back exhausted, so she cannot walk back the same turn: 315.1.b readies her next Awaken and 144.1.a lets her move then. The shield buys her life and costs a full turn of the lock.",
+          "808.1.d.1 DOES NOT BITE HERE, and it is worth saying why since it killed a line on soraka-fiora-loop-shield: a heal/exhaust/recall replacement erases the Deathknell of what it saves, because the permanent never reaches the Trash. Tianna has no Deathknell, so nothing is lost. Ornn has none either.",
+          "IT IS A LOCK, NOT A CLOCK. 'Opponents can't gain points' stops them; it scores you nothing. The deck still has to win on its own, which is why the honest class is ENGINE.",
+          "The bill, counted: Tianna 7 Energy + 2 Power, Ornn 6 Energy, Guardian Angel 2 Energy plus its [Equip] of 1 Calm Power - 15 Energy and 3 Power across at least two turns. The source says 13 Energy; our own count of the printed costs is 15, and the gap is worth knowing before anyone treats this as a turn-five plan.",
+          "Different cards from tianna-wildclaw-point-lock, which holds the same lock up with UNL-057 Alpha Wildclaw's unchoosability and two Galio. This one holds it up with a death replacement and a [Deflect 2] body. Neither replaces the other; the Wildclaw version never leaves the battlefield, and this one survives what the Wildclaw version cannot."
+        ]
+      },
+      "steps": [
+        "Play Ornn to the battlefield you intend to lock; his [Weaponmaster] equips one of your Equipment to him for a rainbow less on the way in.",
+        "Play Guardian Angel and [Equip] it to Tianna for 1 Calm Power - the legend's exhaust pays that rainbow, since it is a gear ability.",
+        "Walk Tianna to the same battlefield. From the moment she is AT it, 'opponents can't gain points'.",
+        "Ornn's Might rises by 1 for each friendly gear, and the legend keeps making rainbow for more gear, so the garrison outgrows what has to fight through it.",
+        "If Tianna would die, Guardian Angel dies instead: she is healed, exhausted and recalled to base (455). The lock is off until she walks back next turn - ready her in the Awaken (315.1.b), then Standard Move (144.1.a, 144.4.a)."
+      ],
+      "netPerIteration": "opponents gain no points at all while Tianna is at a battlefield; one death answered per Guardian Angel, at the cost of one turn of the lock",
+      "terminatesIn": "engine only - it denies the opponent's clock, it does not advance yours",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Poro Party TCG, \"The STRANGEST Ornn Deck You've Ever Seen | Riftbound Vendetta\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=cdXSpMuP9D4&t=69",
+          "date": "2026-08-20",
+          "quote": "[1:09] let's hearken back to Orn[n] in the days of old. Before Sprite Fountain existed, Orn[n] players would stack up a forge god with [Svellsongur] and Ornn's shields, plop a Ti[a]na on that battlefield with a guardian angel, and lock your opponents out of scoring points for the rest of the game. But assembling that combo cost 13 energy that you'd have to assemble over two turns",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-legends-without-entries.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-legends-without-entries.md), issue #62 section 2.4. SFD-189 Fire Below the Mountain had no entry. THE FINDING THE WALK ADDS IS THAT THE SHIELD AND THE LOCK FIGHT EACH OTHER. #62 checked the right trap - 808.1.d.1, the heal/exhaust/recall family erasing a Deathknell - and correctly concluded it does not bite, because Tianna has no Deathknell. It missed the bigger one: the same replacement RECALLS her (455, 'relocated from anywhere to its Base'), and her lock is worded 'While I'm at a battlefield'. So the card that keeps her alive is also the card that switches her off for a turn. That is not a refutation - answering removal at the price of one turn is still worth the slot - but an entry that did not say it would be selling a lock it cannot keep. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation needed; no [Repeat]; no [Temporary]; no token; no rune recycled for Power; 143.4 delays the lock by the turn Tianna enters exhausted. Depends on no unruled reading."
+    },
+    {
+      "id": "mel-matriarch-fizz-removal-chain",
+      "name": "One Empower pays three times — the legend, Fizz out of the trash, and a spell out of the trash behind him",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-104",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 M4. '[Empower] 2 Energy + Chaos. When I become [Empowered], you may choose a unit in your trash with Energy cost no more than 3 and Power cost no more than 1 rainbow. Play it to your base, ignoring its cost.' Fizz is E3 P1 - inside both bars, to the digit."
+        },
+        {
+          "card": "SFD-140",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "TRASH",
+          "note": "Chaos unit, E3 P1 M3. 'When you play me, you may play a spell from your trash with Energy cost no more than 3, ignoring its Energy cost. Then recycle it. (You must still pay its Power cost.)' The Matriarch's 'ignoring its cost' covers his Power too, so he arrives free and brings a spell with him."
+        },
+        {
+          "card": "VEN-069",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Mind unit, E4 P1 M4. '[Empowered] If a spell or ability you control would give -Might to a unit it chooses, it gives an additional -1 Might.' It turns the legend's -2 into -3, and its own Empower is another trigger for the legend."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Mind and Chaos: VEN-151 Soul's Reflection (Mel). 'When you empower something else, empower me' plus 'Disempower me, exhaust: Give a unit at a battlefield -2 Might this turn' is the engine half; the three cards above are the payoff half."
+        ],
+        "notable": [
+          "THE LEGEND IS THE ONLY REPEATABLE PART, AND THE ENTRY IS SCOPED TO IT. The Matriarch's Empower reads 'Use only if not Empowered', and nothing here disempowers HER - the legend's cost disempowers the LEGEND - so each Matriarch fires her trash-recursion exactly once. What recurs is the removal: every Empower you pay anywhere re-Empowers the legend for free, and the legend converts it into -2 Might, once a turn because the cost carries an exhaust (315.1.b readies it in the next Awaken).",
+          "THE THREE PAYOUTS COME OFF ONE PAYMENT AND THE ORDER IS FIXED. Paying 2 Energy + 1 Chaos to Empower the Matriarch (a) empowers the legend for free, (b) plays Fizz from the trash for free, (c) lets Fizz replay a spell from the trash for its Power cost only. Three effects, one bill.",
+          "FIZZ FITS THE BARS EXACTLY. 'no more than 3 Energy and no more than 1 rainbow Power' against E3 P1. A single point more on either axis and the Matriarch cannot choose him.",
+          "'IGNORING ITS COST' IS BROADER THAN FIZZ'S OWN WORDING, and the difference is real: the Matriarch says 'ignoring its cost', so Fizz's Power is waived too, while Fizz himself says 'ignoring its Energy cost' and his reminder text spells out 'You must still pay its Power cost' for the spell he brings back.",
+          "Mel, Newly Awakened must be [Empowered] for the -1, which is its own 3 Energy - and that payment is itself another 'you empower something else' for the legend."
+        ]
+      },
+      "steps": [
+        "Fizz is in the trash and the Matriarch is on the board, not yet Empowered.",
+        "Pay [Empower] 2 Energy + 1 Chaos on the Matriarch.",
+        "The legend triggers first-class: 'When you empower something else, empower me' - it is now [Empowered] for nothing.",
+        "The Matriarch's own trigger: choose Fizz in the trash (E3, P1 - inside both bars) and play him to your base ignoring his cost.",
+        "Fizz's play trigger: play a spell from the trash with Energy cost 3 or less, ignoring its Energy cost, paying only its Power. Then recycle it.",
+        "Any turn after: 'Disempower me, exhaust: Give a unit at a battlefield -2 Might this turn' - and -3 while Mel, Newly Awakened is [Empowered]. Any later Empower you pay re-arms the legend."
+      ],
+      "netPerIteration": "one Empower payment buys a free legend Empower, a free Fizz and a free spell replay; then -2 (or -3) Might a turn, refuelled by any Empower",
+      "terminatesIn": "engine only - one removal a turn, and one three-for-one per Matriarch",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — GG Haven, \"Everyone Underestimated Mel... Until Now | Mel Beginners Guide\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=C1ISYwpVGvA&t=646",
+          "date": "2026-07-24",
+          "quote": "[10:46] Tail-Clo[ake]d Matriarch. I hope you guys got that. We were looking to pay Fizz with it. But with it, if you empower it, your legend gets empowered, you then play out Fizz, and then with Fizz, you can combo off any of these decks. So, you can use your legend Mel to make give something on a battlefield minus two, and maybe now it's in range of a gust. So, you can gust it away.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-legends-without-entries.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-legends-without-entries.md), issue #62 section 2.5. VEN-151 Soul's Reflection had no entry. SCOPED DOWNWARD ON PURPOSE: #62 presents the whole thing as one engine. It is two halves with different tempos, and the entry says which is which - the Matriarch's three-for-one is once per copy, because her own Empower reads 'Use only if not Empowered' and nothing in these domains disempowers her; the legend's removal is what actually repeats, because every Empower anywhere re-arms it for free and the exhaust cost resets in the Awaken (315.1.b). Calling the whole package repeatable would have been the same mistake #34 made with matriarch-of-war-empower-ready, where 'six in a whole game' was being sold as a motor. Card text verbatim from data/corpus_flat.txt. The two cost bars were checked against Fizz's printed cost digit by digit. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; no recall; the recycle Fizz performs is of a CARD from the trash, so 185 never comes up. Depends on no unruled reading."
     }
   ]
 }
