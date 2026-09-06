@@ -232,7 +232,7 @@ function whyIllegal(report: BuildReport, deck: Deck, format: Format): string {
       return `<span class="deck-card-why">${esc(one.entry.name)} banned since ${esc(one.entry.since)}${esc(rest)}</span>`;
     }
   }
-  return `<span class="deck-card-why">${esc(first.detail)} <span class="mono">${esc(first.rule)}</span>${esc(more)}</span>`;
+  return `<span class="deck-card-why">${esc(first.detail)} · <span class="mono">${esc(first.rule)}</span>${esc(more)}</span>`;
 }
 
 /**
