@@ -174,7 +174,7 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .zoom span { min-width: 46px; text-align: center; font-size: 12px; color: var(--muted); }
 
 .empty { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 8px; text-align: center; padding: 24px; max-width: 620px; margin: 0 auto; }
-.empty-glyph { width: 48px; height: 48px; border: 1px solid var(--line-2); border-radius: 14px; display: grid; place-items: center; }
+.empty-glyph { width: 48px; height: 48px; border: 1px solid var(--line-2); border-radius: 10px; display: grid; place-items: center; }
 .empty-glyph svg { width: 20px; height: 20px; fill: none; stroke: var(--faint); stroke-width: 1.5; stroke-linecap: round; }
 .empty-title { margin: 14px 0 0; font-family: var(--font); font-weight: 600; font-size: 18px; color: var(--text); }
 .empty-body { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.6; }
@@ -276,9 +276,9 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .card-preview-box {
   position: relative; display: grid; grid-template-columns: auto minmax(0, 380px); gap: 26px; align-items: start;
   max-width: min(960px, 100%); max-height: 100%; overflow: auto; padding: 24px 24px 26px;
-  background: var(--bg); border: 1px solid var(--line-2); border-radius: 14px;
+  background: var(--bg); border: 1px solid var(--line-2); border-radius: 10px;
 }
-.card-preview-box img { display: block; width: 330px; max-width: 100%; height: auto; border-radius: 14px; background: var(--panel); }
+.card-preview-box img { display: block; width: 330px; max-width: 100%; height: auto; border-radius: 10px; background: var(--panel); }
 .card-preview-box img.landscape { width: 470px; }
 .cp-close { position: absolute; top: 12px; right: 12px; }
 .cp-name { margin: 0 34px 4px 0; font-size: 21px; }
@@ -462,17 +462,9 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .acct-note strong { color: var(--text); font-weight: 600; }
 .acct-msg { margin: 0; font-size: 12px; line-height: 1.5; color: var(--accent); }
 .acct-msg:empty { display: none; }
-.acct-save { display: flex; gap: 8px; }
-.acct-save input, .acct-row input { flex: 1 1 auto; min-width: 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--text); font-size: 13px; }
-.acct-save input:focus-visible, .acct-row input:focus-visible { border-color: var(--accent); }
-.acct-row { display: flex; gap: 9px; align-items: center; justify-content: space-between; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }
-.acct-row.on { border-left: 2px solid var(--accent); }
 .acct-meta { min-width: 0; }
 .acct-name { margin: 0; font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .acct-sum { margin: 2px 0 0; font-size: 11.5px; color: var(--muted); }
-.acct-acts { display: flex; flex: 0 0 auto; gap: 9px; }
-.acct-acts .linklike { font-size: 12px; }
-.acct-acts .linklike.danger { color: var(--danger-text); }
 .acct-foot { margin: 2px 0 0; font-size: 11.5px; color: var(--faint); }
 .acct-foot .linklike, .acct-foot a { font-size: 11.5px; color: var(--faint); }
 .acct-foot .linklike:hover, .acct-foot a:hover { color: var(--accent); }
@@ -525,25 +517,9 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .detail-back { font-size: 13px; }
 .detail-back a { color: var(--muted); }
 .detail-back a:hover { color: var(--accent); }
-.detail { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 22px; align-items: start; }
-.detail-edit { display: flex; flex-direction: column; gap: 10px; }
 .detail-name { width: 100%; padding: 10px 12px; border: 1px solid var(--line-2); border-radius: 6px; background: var(--panel); color: var(--text); font: 600 16px var(--font); }
 .detail-name:focus { border-color: var(--accent); }
-.detail-edit .segmented { align-self: flex-start; }
 .detail-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-.detail-check { display: flex; flex-direction: column; gap: 10px; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
-.build-badge { display: flex; justify-content: space-between; align-items: baseline; margin: 0; font: 600 15px var(--font); }
-.build-badge span { font: 500 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-.build-badge.ok { color: var(--ok); } .build-badge.bad { color: var(--danger-text); }
-.build-rows { display: flex; flex-direction: column; }
-.build-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 10px; padding: 9px 0; border-top: 1px solid var(--line); }
-.build-label { margin: 0; font-size: 13px; font-weight: 500; color: var(--muted); }
-.build-row.fail .build-label { color: var(--text); }
-.build-rule { grid-column: 1 / -1; margin: 0; font: 400 10.5px/1.4 var(--mono); color: var(--faint); }
-.build-state { grid-column: 2; grid-row: 1; align-self: start; font: 500 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
-.build-row.pass .build-state { color: var(--ok); }
-.build-row.fail .build-state { color: var(--danger-text); }
-.build-detail { grid-column: 1 / -1; margin: 0; font-size: 11.5px; line-height: 1.5; color: var(--muted); }
 
 /* The strip that names the saved list Combos is showing, and the way to save a pasted one. */
 .analyzing { margin: 0; padding: 8px 11px; border-left: 2px solid var(--accent); font-size: 12.5px; color: var(--muted); }
@@ -551,7 +527,6 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .analyzing a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .save-here { margin: 0; }
 
-@media (max-width: 900px) { .detail { grid-template-columns: minmax(0, 1fr); } }
 
 /* The deckbuilder (#101). Two columns above 900px, two tabs below it. Nothing here is decorative:
    elevation is a border and a background step, hierarchy is size and weight, and the six domain

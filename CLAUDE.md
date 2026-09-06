@@ -98,7 +98,7 @@
 - Before shipping any UI string, check it is not lifted verbatim from the reference.
 
 ## UI — visual identity
-- Palette (from playriftbound.com, not from LOOPLINE): bg `#0f1a1e`, panel `#1E3043`, panel-alt `#293a4c`, rule `#336073`, text `#f9eedc`, muted `#8fa7b3`, accent `#EF7D00`.
+- Palette (from playriftbound.com, not from LOOPLINE), named as `web/styles.css` names it, which is the only place these numbers live: bg `#0f1a1e`, text `#f9eedc`, muted `#8fa7b3`, faint `#8199a4`, accent `#EF7D00`. The panels are THREE tiers and the lines TWO — `--panel` `#16242b` (cards and rows on the page), `--panel-2` `#1e3043` (the step above it: a checked segment, a filled chip, a pip), `--panel-3` `#293a4c` (defined, drawn nowhere today), `--line` `#24404c` (the ordinary border), `--line-2` `#336073` (the one that has to be seen). Until 2026-09-06 this line named only two panels and one line and used the old names, so "the panel colour" read as `#1E3043` when the code means `#16242b` (#131). Contrast is measured from the tokens in `test/a11y.test.ts`, never from here.
 - One type family: Inter. Hierarchy comes from size and weight, never from a display face. Cinzel (the Trajan analog) was tried on 2026-09-03 and rejected by the user as poster-like and illegible at diagram sizes — do not reintroduce a serif or display face.
 - Corners are rounded: containers 10px, controls 6px, diagram nodes 9–10px. Sharp 2–3px corners were tried and rejected as "too square". The diamond motif lives on the brand mark only; status dots and swatches are circles.
 - Battlefields are printed landscape (`orientation: "landscape"` in cards.json, 66 printings). Any card rendering must honour that or the art gets cropped and the text stands on end.

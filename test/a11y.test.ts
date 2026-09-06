@@ -219,6 +219,21 @@ describe("the two overlays and the keyboard", () => {
  * things it can silently get wrong are all here: a colour that carries meaning alone, a live region
  * that is destroyed by the very update it announces, and a focus that falls off the page on a click.
  */
+/**
+ * The corner scale is a decision, not a preference (#131): CLAUDE.md fixes it at 10px containers,
+ * 6px controls, 9-10px diagram nodes, and records that sharp corners were tried and rejected. Three
+ * rules had drifted to 14px. 4px is the small inner one (a row's art strip, a card thumbnail) and
+ * 50% is a dot; anything else is drift and fails here.
+ */
+describe("the corner scale", () => {
+  const ALLOWED = new Set(["4px", "6px", "9px", "10px", "50%", "0 10px 10px 0"]);
+  it("draws every corner from the decided scale", () => {
+    const radii = [...css.matchAll(/border-radius: ([^;]+);/g)].map((m) => m[1]!.trim());
+    expect(radii.length).toBeGreaterThan(20);
+    for (const r of radii) expect(ALLOWED, `border-radius: ${r} is outside the scale`).toContain(r);
+  });
+});
+
 describe("the deckbuilder", () => {
   const builder = read("web/builder.ts");
 
