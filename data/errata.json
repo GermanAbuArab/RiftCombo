@@ -163,7 +163,8 @@
    "effective": "2025-10-28",
    "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-origins-card-errata",
    "find": "While I'm at a battlefield, ready 4 friendly runes at the end of your turn.",
-   "replace": "At the end of your turn, if I'm at a battlefield, ready up to 4 friendly runes."
+   "replace": "At the end of your turn, if I'm at a battlefield, ready up to 4 friendly runes.",
+   "alreadyReprinted": ["VEN-SP2"]
   },
   {
    "name": "Targon's Peak",
@@ -296,7 +297,8 @@
    "effective": "2026-01-14",
    "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
    "find": "You may play one. Then recycle the rest.",
-   "replace": "You may banish one, then play it. Recycle the rest."
+   "replace": "You may banish one, then play it. Recycle the rest.",
+   "alreadyReprinted": ["SFD-243"]
   },
   {
    "name": "Void Rush",

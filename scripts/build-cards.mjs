@@ -115,7 +115,7 @@ function normalize(item) {
 
 // --- errata overlay ---------------------------------------------------------
 
-function applyErrata(cards, errata) {
+export function applyErrata(cards, errata) {
   const byName = new Map();
   for (const c of cards) {
     if (!byName.has(c.name)) byName.set(c.name, []);
@@ -124,11 +124,22 @@ function applyErrata(cards, errata) {
   for (const e of errata) {
     const targets = byName.get(e.name);
     if (!targets) throw new Error(`errata: no card named ${JSON.stringify(e.name)}`);
+    // A reprint may already carry the errata'd text (Sona VEN-SP2, Void Burrower SFD-243). That is
+    // named per printing in the entry's own `alreadyReprinted` list, never inferred from content —
+    // a coincidental match of the replace-text must not be able to disguise a mistyped find-string.
+    const alreadyReprinted = new Set(e.alreadyReprinted ?? []);
     for (const c of targets) {
       const field = e.field ?? "text";
       const cur = c[field] ?? "";
-      // A reprint may already carry the errata'd text (Sona VEN-SP2, Void Burrower SFD-243): skip it.
-      if (!cur.includes(e.find) && cur.includes(e.replace)) continue;
+      if (alreadyReprinted.has(c.code)) {
+        if (!cur.includes(e.replace)) {
+          throw new Error(
+            `errata: ${c.code} ${c.name} is listed in alreadyReprinted but its ${field} does not contain the replace-text\n  replace: ${e.replace}\n  text: ${cur}`,
+          );
+        }
+        alreadyReprinted.delete(c.code);
+        continue;
+      }
       const n = cur.split(e.find).length - 1;
       if (n !== 1) {
         throw new Error(
@@ -137,6 +148,11 @@ function applyErrata(cards, errata) {
       }
       c[field] = cur.replace(e.find, e.replace);
       c.errata = [...(c.errata ?? []), { effective: e.effective, source: e.source }];
+    }
+    if (alreadyReprinted.size > 0) {
+      throw new Error(
+        `errata: ${JSON.stringify(e.name)} alreadyReprinted names printings not found among its cards: ${[...alreadyReprinted].join(", ")}`,
+      );
     }
   }
 }
@@ -215,33 +231,39 @@ function resolveSignature(cards, src) {
 }
 
 // --- main -------------------------------------------------------------------
+//
+// Gated on direct execution (never on import) so test/errata.test.ts can import applyErrata above
+// without triggering a live fetch of Riot's gallery as a side effect of loading the module.
 
-const { items, updatedAt } = await fetchAll();
-const cards = items.map(normalize);
+const isMain = import.meta.url === `file://${process.argv[1]}`;
+if (isMain) {
+  const { items, updatedAt } = await fetchAll();
+  const cards = items.map(normalize);
 
-const ids = new Set(cards.map((c) => c.id));
-if (ids.size !== cards.length) throw new Error("duplicate ids in gallery payload");
+  const ids = new Set(cards.map((c) => c.id));
+  if (ids.size !== cards.length) throw new Error("duplicate ids in gallery payload");
 
-const errata = JSON.parse(readFileSync(join(DATA, "errata.json"), "utf8"));
-applyErrata(cards, errata.entries);
+  const errata = JSON.parse(readFileSync(join(DATA, "errata.json"), "utf8"));
+  applyErrata(cards, errata.entries);
 
-const legalitySrc = JSON.parse(readFileSync(join(DATA, "legality.src.json"), "utf8"));
-const legality = resolveLegality(cards, legalitySrc);
+  const legalitySrc = JSON.parse(readFileSync(join(DATA, "legality.src.json"), "utf8"));
+  const legality = resolveLegality(cards, legalitySrc);
 
-const signatureSrc = JSON.parse(readFileSync(join(DATA, "signature.src.json"), "utf8"));
-const signatureBases = resolveSignature(cards, signatureSrc);
-for (const c of cards) c.signature = signatureBases.has(c.base);
+  const signatureSrc = JSON.parse(readFileSync(join(DATA, "signature.src.json"), "utf8"));
+  const signatureBases = resolveSignature(cards, signatureSrc);
+  for (const c of cards) c.signature = signatureBases.has(c.base);
 
-cards.sort((a, b) => (a.set + a.code).localeCompare(b.set + b.code));
-mkdirSync(DATA, { recursive: true });
-writeFileSync(
-  join(DATA, "cards.json"),
-  JSON.stringify({ source: API, resultsUpdatedAt: updatedAt, built: new Date().toISOString(), count: cards.length, cards }, null, 1),
-);
-writeFileSync(join(DATA, "legality.json"), JSON.stringify(legality, null, 1));
+  cards.sort((a, b) => (a.set + a.code).localeCompare(b.set + b.code));
+  mkdirSync(DATA, { recursive: true });
+  writeFileSync(
+    join(DATA, "cards.json"),
+    JSON.stringify({ source: API, resultsUpdatedAt: updatedAt, built: new Date().toISOString(), count: cards.length, cards }, null, 1),
+  );
+  writeFileSync(join(DATA, "legality.json"), JSON.stringify(legality, null, 1));
 
-const withEffect = cards.filter((c) => c.effect).length;
-const errataApplied = cards.filter((c) => c.errata).length;
-console.log(`cards: ${cards.length} (${new Set(cards.map((c) => c.base)).size} unique printings ignoring alt-art)`);
-console.log(`equipment effects: ${withEffect}; errata applied to ${errataApplied} printings; legality entries: ${legality.entries.length}`);
-console.log(`signature: ${signatureBases.size} base cards`);
+  const withEffect = cards.filter((c) => c.effect).length;
+  const errataApplied = cards.filter((c) => c.errata).length;
+  console.log(`cards: ${cards.length} (${new Set(cards.map((c) => c.base)).size} unique printings ignoring alt-art)`);
+  console.log(`equipment effects: ${withEffect}; errata applied to ${errataApplied} printings; legality entries: ${legality.entries.length}`);
+  console.log(`signature: ${signatureBases.size} base cards`);
+}
