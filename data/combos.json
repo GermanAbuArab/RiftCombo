@@ -84,6 +84,14 @@
           "title": "Hand walk against Core Rules 2026-07-16 (docs/phase0-findings.md Result 5)",
           "kind": "manual-walk",
           "date": "2026-09-02"
+        },
+        {
+          "title": "YouTube - YamatoRiftbound, \"Riftbound Session Episode 5 Ft. eMOEtional (+ Full Loop Lux Deck Guide)\" - the loop's preconditions listed mid-game, matching this entry's own list",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=Lz08x8QOGtY&t=2738",
+          "date": "2026-08-11",
+          "quote": "[45:38] you go. Um, and so for the the loop to [45:40] happen, you need two sacrifices in your [45:43] trash. You need a forge in your trash. [45:45] Uh, and a sacri and a shadow's call in [45:47] your trash.",
+          "accessed": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -294,6 +302,22 @@
           "date": "2026-02-06",
           "quote": "So I just saw that there is an infinite combo in purple and yellow domain using Stealthy Pursuer, Renata, Industrial & Eye of the Herald.",
           "accessed": "2026-09-04"
+        },
+        {
+          "title": "YouTube - MoreThatMillGuy, \"Riftbound Has An *ILLEGAL* Infinite Combo - Can It Be Stopped!?\", 5.394 views - it is not a one-turn kill, said by the source itself",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=GWWmYzWZQTY&t=574",
+          "date": "2026-02-10",
+          "quote": "[9:34] bunch of stuff. The max you can score on [9:36] that turn is two points. You It's not a [9:39] OTK. You don't just win.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "YouTube - Turn 'em Sideways!, \"Riftbound's Infinite Combos EXPLAINED\" - a second, independent walkthrough with the same caveat",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=X-ZZ0KzShFA&t=187",
+          "date": "2026-07-02",
+          "quote": "[3:07] you have infinite tokens. Notably, this [3:10] combo does not immediately win the game. [3:12] This is just to generate infinite might [3:15] on the board",
+          "accessed": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -548,6 +572,14 @@
           "date": "2026-06-04",
           "quote": "Then I use the rune economy to continue churning my deck, setting up key permanents like Hextech Anomaly and Gutter Palace, before sneaking on to a battlefield, dropping 4 units and Warping into a win.",
           "accessed": "2026-09-04"
+        },
+        {
+          "title": "YouTube - Turn 'em Sideways!, \"GUTTER PALACE COMBO IS REAL?!?!\", 16.465 views - interview with the RQ Hartford Top 32 pilot",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=OML3sV9JnC4&t=1163",
+          "date": "2026-06-25",
+          "quote": "[19:23] that. This deck does not go infinite. [19:24] doesn't go infinite, right? [19:25] Yeah, it it just makes a lot. [19:28] people ask how to go infinite. You don't [19:29] go infinite in the deck. Um you just [19:31] take a max of four turns in a row.",
+          "accessed": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -649,6 +681,14 @@
           "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-reddit-mining-and-gutter-palace.md)",
           "kind": "manual-walk",
           "date": "2026-09-04"
+        },
+        {
+          "title": "YouTube - Turn 'em Sideways!, same interview - the Beginning Step has no window, said in a player's own words (rule 335)",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=OML3sV9JnC4&t=733",
+          "date": "2026-06-25",
+          "quote": "[12:13] The same goes the other way. You can't [12:14] respond in that beginning step to get it [12:16] on the chain. It just triggers at the [12:17] start. It needs to be the condition.",
+          "accessed": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -1586,6 +1626,14 @@
           "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-the-three-chain-finishers.md)",
           "kind": "manual-walk",
           "date": "2026-09-04"
+        },
+        {
+          "title": "YouTube (Spanish) - RUNEBOYS, \"PRIMER DECK OTK EN RIFTBOUND!! AHRI COMBO\" - the double Time Warp finish counted out loud, zero to eight",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=iWt-ZBZqiIo&t=934",
+          "date": "2025-09-16",
+          "quote": "[15:34] esté la Ari. Eso significa que has [15:36] pasado de cero a cinco con un time war y [15:39] con el segundo time war pasas de cinco a [15:42] ocho y ganas la partida.",
+          "accessed": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -3241,7 +3289,8 @@
         "notable": [
           "Aurora fires every end of turn while it survives: a free unit each turn, and whenever the revealed unit is Elder Dragon, one enemy unit dies at every location. Deck-building lever: the fewer non-Dragon units in the deck, the more often the flip is a Dragon.",
           "Elder Dragon's trigger is on play, so it repeats only if he returns to the deck; the engine's steady output is the free unit, the wipe is the jackpot.",
-          "Elder Dragon chooses his targets, so Deflect costs a rainbow Power to get through. Payable: Aurora fires in the Ending Step (317.1, \"At the end of the turn Game Effects take place\") and the Rune Pool only empties two steps later at 317.2.d, and 164.2.b's Power ability is \"Recycle this\" with no exhaust in its cost, so ANY rune still on the board pays it - it need not be ready. CORRECTED 2026-09-04: the entry used to say the reveal can Burn Out if the deck runs out of units, citing 431.1.c. That rule says the opposite - you reveal as many as possible and DO NOT Burn Out - and 431.1.c.1 adds that further instructions are then simply ignored, \"even if those instructions would cause those cards to change zones\". Thinning the deck to raise the Dragon hit rate costs nothing."
+          "Elder Dragon chooses his targets, so Deflect costs a rainbow Power to get through. Payable: Aurora fires in the Ending Step (317.1, \"At the end of the turn Game Effects take place\") and the Rune Pool only empties two steps later at 317.2.d, and 164.2.b's Power ability is \"Recycle this\" with no exhaust in its cost, so ANY rune still on the board pays it - it need not be ready. CORRECTED 2026-09-04: the entry used to say the reveal can Burn Out if the deck runs out of units, citing 431.1.c. That rule says the opposite - you reveal as many as possible and DO NOT Burn Out - and 431.1.c.1 adds that further instructions are then simply ignored, \"even if those instructions would cause those cards to change zones\". Thinning the deck to raise the Dragon hit rate costs nothing.",
+          "THE STATIC HALF IS A DIFFERENT CARD'S JOB, and it is now catalogued separately. 'One kill per location, not a board wipe' above is about the ON-PLAY trigger and it stands. Elder Dragon's other sentence - 'Any amount of your damage is enough to kill enemy units' - turns any mass damage of yours into a wipe, and OGN-133 Flurry of Blades (Body, 1 Energy, [Reaction], 'Deal 1 to all units at battlefields') is the card in the pool and in domain that supplies it. See elder-dragon-flurry-of-blades-wipe."
         ]
       },
       "steps": [
@@ -3269,7 +3318,7 @@
           "date": "2026-09-04"
         }
       ],
-      "notes": "First entry sourced from the Chinese meta, where the game launched in 2025-08. The article's complaint is about play pattern, not legality: \"players feel facing this deck isn't fun and lacks interactivity\"; it also names Aurora Volibear and Aurora Miss Fortune as the archetype's shells (Volibear's legend Relentless Storm is Fury/Body; Miss Fortune, Captain readies something on her first move). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — \"board wipe\" was wrong: one kill per location, three at most in a 1v1. The free 12E+4P body every end of turn is the real engine. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-aurora-reksai-platewyrm.md), which removed a wrong Burn Out citation and an over-restriction on paying Deflect. 198.1 (\"Locations include the Battlefields and the Bases\") with 485.4 confirms at most three kills in a Duel. Depends on no unruled reading."
+      "notes": "First entry sourced from the Chinese meta, where the game launched in 2025-08. The article's complaint is about play pattern, not legality: \"players feel facing this deck isn't fun and lacks interactivity\"; it also names Aurora Volibear and Aurora Miss Fortune as the archetype's shells (Volibear's legend Relentless Storm is Fury/Body; Miss Fortune, Captain readies something on her first move). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — \"board wipe\" was wrong: one kill per location, three at most in a 1v1. The free 12E+4P body every end of turn is the real engine. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-aurora-reksai-platewyrm.md), which removed a wrong Burn Out citation and an over-restriction on paying Deflect. 198.1 (\"Locations include the Battlefields and the Bases\") with 485.4 confirms at most three kills in a Duel. Depends on no unruled reading. CROSS-REFERENCED 2026-09-06 (issue #46): the on-play correction above is unchanged; the static's wipe with Flurry of Blades is a separate entry, elder-dragon-flurry-of-blades-wipe."
     },
     {
       "id": "jhin-fiora-facebreaker-recall",
@@ -3372,6 +3421,14 @@
           "date": "2026-03-20",
           "quote": "I was thinking the Jhin moving back to base is a move. But 444.1.a.2 - specifies that its a recall (during combat cleanups) - not a move, and Rule 432 says that recalls are not \"moves\" and do not trigger move abilities. So it would still be infinite energy (and tokens) as you don't need that, but your 1 power from moving to the battlefield and then being recalled is spent on readying him.",
           "accessed": "2026-09-04"
+        },
+        {
+          "title": "YouTube - BigChin Gaming, \"INFINITE TOKEN REKSAI\" - the loop played on camera and called what it is",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=YFCh8GPYwVo&t=1184",
+          "date": "2026-04-01",
+          "quote": "[19:44] pretty cool to see like a true infinite [19:45] in the game. Uh and this isn't like very [19:48] consistent so it's not that big of a [19:51] deal.",
+          "accessed": "2026-09-06"
         }
       ],
       "notes": "The infinite cousin of fiora-vault-breaker-jhin: the stun turns every attack into a No Result recall instead of a conquer, so Jhin never leaves the loop. Three-card floor: Jhin + Fiora + Facebreaker at Trifarian War Camp is infinite Energy with no Equipment — but only in Match, where you pick which of your three battlefields is used (486.5); in Duel it is random (485.5). In that build Fiora's trigger and Jhin's Add come off the same move, so put them on the chain in the order that resolves the Add first. Community corrections already folded in: the recall is not a move, so it is not infinite Power (+1 −1 per pass); and the No Result combat is not a combat win, so a Draven opponent does not draw and cannot be decked this way (Unleashed rules clarification quoted in the 2026-05-23 thread). Card text verified against the corpus; rules quoted from Core Rules 2026-07-16. REFUTE 2 (2026-09-03): SURVIVES — +1 Energy, ±0 Power, +1 Recruit per pass, unbounded. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-jhin-fiora-facebreaker-recall.md), promoted to verified: every step re-read from the Core Rules, tally confirmed, nothing decrements. The load-bearing facts are that a Standard Move costs exhausting the unit (144.2) which is exactly what Fiora refunds, that Stun is a binary status and not an exhaust so a stunned Jhin still moves (423.1), that it lasts until the end-of-turn cleanup so one Facebreaker covers every pass (423.1.a.2), and that the recall is not a move (456.1) so the trip home adds nothing. Two preconditions: the battlefield must already be the opponent's, which makes 466.5's \"if they didn't already control this Battlefield\" clause inert so 466.5.d never conquers; and the un-stunned enemy Might there must stay under Jhin's attacking 6, or 465.2.c.3 lets the opponent assign him lethal. The walk depends on no unruled reading: R13 is settled by 807.1.d.1 + 466.7.a + 709, which is rules text, not interpretation."
@@ -3622,7 +3679,7 @@
           "quantity": 1,
           "role": "enabler",
           "zone": "BOARD",
-          "note": "2 Energy + 1 Power gear. Exhaust: pay any amount of Energy to Add that much rainbow — one Energy-to-Power conversion per turn, one for one."
+          "note": "2 Energy + 1 Power gear. Exhaust: 'Pay ANY amount of Energy to [Add] that much rainbow' — ONE activation converts without a cap, which is the fact the 2026-09-03 reconstruction did not have. Gear enters ready (143.4 exhausts only units), so a replayed Henge converts the turn it lands."
         }
       ],
       "needs": [],
@@ -3635,15 +3692,20 @@
         ],
         "notable": [
           "Board state: three Gemdragons and the two Heralds in play. A Volibear player's own caveat, quoted: with that board 'you win in 100% of scenarios just by playing normally'.",
-          "The community calls a Vi Destructive / Dancing Grenade / Blind Fury extension of this board an infinite (played on the RQ Sydney R1 stream, 12th at a regional). Walked adversarially it does not close — see notes."
+          "A DRAGON OF 5 MIGHT COSTS 1 ENERGY AND READIES 6 RUNES, so it is +5 Energy. 356.4.e — 'If a discount applies a minimum cost, that minimum applies only to that discount' — so both Heralds apply: 5 − 2 = 3, 3 − 2 = 1. Gentle Gemdragon itself is E8 and comes down to 4, so it is NOT one of the cycling dragons: the three Gemdragons stay on the board for good, and Dancing Grenade chooses its target ('Deal 2 to a unit') so it is never pointed at an 8 Might body.",
+          "THE CLASS OF THIS ENTRY NOW HANGS ON R15, WHICH IS OPEN. Under R15 = A (Dancing Grenade's counter is per card per turn and survives the trash) the casts deal 2, 3, 4, 5, 6, 7, 8, 9 and eight of them kill six 5-Might dragons for 2 Energy + 8 Power; the pass is then +30 Energy in, 9 Energy and 11 Power out, and one Henge conversion of 11 Energy leaves +10 Energy and 0 Power — unbounded, INFINITE. Under R15 = B (124/383.1 make each cast a new object and reset the counter) every cast deals 2, six dragons need 18 casts, Power out becomes 21 against 21 convertible Energy, and the pass nets EXACTLY 0 — ENGINE. The entry is held at ENGINE because a class may not stand on an unruled reading.",
+          "THE CARD LEDGER CLOSES EXACTLY, WITH NO SLACK, AND IT CONSTRAINS THE BOARD. Consumed per pass: 6 dragons + Dancing Grenade + Detonate + Show of Strength + Confront + Ancient Henge = 11. Drawn per pass: Detonate 2, Show of Strength 1 per Mighty unit, Confront 1. At the moment Show of Strength resolves the deck holds 8 cards, so it must draw exactly 8, so the Mighty count must be exactly 8: three Gemdragons, Vi, the two dragons replayed before it, and EXACTLY TWO resident 5-Might dragons the Grenade never targets. The Heralds are 3 Might and never count. Two is not a preference — Show of Strength is mandatory, and if the Mighty count exceeds the deck the draw Burns Out (431) and hands the opponent a point (194.1.d).",
+          "WHY VI'S RECYCLING IS DIFFERENT FROM GARBAGE GRABBER'S. 416.5 randomises the bottom of the Main Deck only when '2 or more cards are Recycled … simultaneously', and its worked example is Garbage Grabber recycling 3 at once. Vi recycles ONE at a time with no exhaust and no cap, so 416.5 never engages and the order of the bottom is hers — which is what lets Confront find the Show of Strength that Vi just put under an empty deck.",
+          "TIMING OF THE POWER. The replayed Henge lands AFTER the Grenade has already spent its 8 Power, so each pass is paid for by the conversion made at the end of the previous one. 167 empties the Rune Pool only at the start of the Main Phase and at end of turn, so the floating Energy and Power bank across the whole combo turn; the first pass has to be primed.",
+          "The Blind Fury finish is still not a deck-out: the spell banishes the opponent's top card and then plays it, which sends it to their trash, and Burn Out recycles their whole trash back into their deck for a single point (431.2)."
         ]
       },
       "steps": [
-        "Play a Dragon for its reduced cost: the three Gemdragons ready up to 6 runes. Every Dragon in hand is Energy-positive.",
-        "Ancient Henge, once ready: pour the surplus Energy into rainbow Power, one for one.",
-        "There is no recursion that pays for itself in Fury/Body: killing a Dragon and redrawing it costs Power that nothing channels back (see notes). The engine is bounded by the Dragons in hand."
+        "Play a Dragon for its reduced cost: the three Gemdragons ready up to 6 runes between them, and exhausting those runes is +6 Energy against a cost of 1. Every 5-Might Dragon in hand is +5 Energy.",
+        "Ancient Henge, once ready: pour any amount of the surplus Energy into rainbow Power, one for one, in a single activation.",
+        "The recursion the community plays (Dancing Grenade kills the cycling Dragons, Vi recycles them one at a time, Detonate and Show of Strength and Confront redraw them, a replayed Henge reconverts) DOES balance on cards — 11 drawn against 11 spent — and its Energy result depends entirely on R15: +10 a pass under reading A, exactly 0 under reading B. Until R15 is ruled this entry claims only the ramp."
       ],
-      "terminatesIn": "engine only — each Dragon played is worth up to 6 readied runes with three Gemdragons out; bounded by the Dragons in hand, no loop closes",
+      "terminatesIn": "engine only — each Dragon played is worth up to 6 readied runes with three Gemdragons out, i.e. +5 Energy a Dragon. The community's closed recursion is +10 Energy a pass under R15 = A and exactly break-even under R15 = B, so the loop is not claimed here",
       "rulesVersion": "2026-07-16",
       "sources": [
         {
@@ -3673,9 +3735,17 @@
           "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md)",
           "kind": "manual-walk",
           "date": "2026-09-04"
+        },
+        {
+          "title": "YouTube - Laggy, \"Riftbound's FIRST INFINITE COMBO? - Riftbound Unleashed\", 11.298 views - the full walkthrough this entry was written without",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=8FMsltx5Id4&t=58",
+          "date": "2026-05-06",
+          "quote": "[0:57] sequence our infinite combo, we want to [0:58] play out all six of our five-might [1:00] dragons to gain 30 energy. Then, we [1:03] convert 11 of that energy to power with [1:06] Ancient Henge. ... [2:16] that each cycle nets us 10 energy, which [2:20] we can convert to power freely between [2:22] cycles with Ancient Henge. We can repeat [2:24] these cycles as many times as we please, [2:27] essentially providing infinite power and [2:29] energy.",
+          "accessed": "2026-09-06"
         }
       ],
-      "notes": "The 'Dragonstorm' infinite that content creators list next to the Lux loop, played on stream and taken to 12th place; the only full walkthrough is a video YouTube's bot wall kept out of reach, so the recursion was reconstructed from the community's description and then walked. A Volibear player's own caveat, quoted: with three Gemdragons and the Heralds down 'you win in 100% of scenarios just by playing normally'. Card text verified against the corpus. Reclassified INFINITE → ENGINE on 2026-09-03. The play side is real: with two Heralds a Gemdragon costs 4 Energy and an Eager Drakehound 1 Energy + 1 Power, and three Gemdragons ready six runes per Dragon played. The recursion side does not close: killing the Dragon and redrawing it costs Power the loop cannot make — with Dancing Grenade as the kill and Show of Strength as the draw a pass is +1 Energy and −4 Power, every Power costs a rune off the board (161.2.b) that nothing channels back, and the board falls under six runes by the second pass; Ancient Henge converts one for one and cannot cover a deficit. The Blind Fury finish was mis-stated too: the spell banishes the opponent's top card and then plays it, which returns it to their trash, and Burn Out recycles their whole trash into their deck for a single point (431.2), so it is not a deck-out. And the source deck's own Endless Riches (VEN-022) banishes anything that would reach your trash from off the Main Deck, which forbids the Vi recursion outright. Dancing Grenade's escalating counter across recasts is itself an open reading (R15). REFUTE 2 (2026-09-03): DEAD as INFINITE, kept as ENGINE — no closed pass can be written in Fury/Body; the Gemdragon ramp is real, the loop and the Blind Fury deck-out are not. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md). The Herald's printed words are 'Energy costs', so a Drakehound still pays its Power - the correction is right off the card face. The INFINITE-to-ENGINE reclassification holds: 161.2.b sends a recycled rune to the RUNE DECK, so every Power costs a rune off the board that nothing in Fury/Body channels back, and Ancient Henge's one-for-one conversion cannot cover a deficit. R15 appears only inside the already-refuted Vi recursion, so the claimed output does not touch it."
+      "notes": "The 'Dragonstorm' infinite that content creators list next to the Lux loop, played on stream and taken to 12th place. REOPENED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md, issue #46): the full walkthrough this entry says was 'kept out of reach' by YouTube's bot wall is video 8FMsltx5Id4, and yt-dlp now downloads its subtitles without a login. It was read end to end, and the 2026-09-03 reconstruction it was reclassified on is wrong in three specific places. (1) 'a pass is +1 Energy and -4 Power' priced ONE Dragon a pass; the author plays SIX, at +5 Energy each, so the pass is +30 Energy in against 9 Energy and 11 Power out. (2) 'every Power costs a rune off the board (161.2.b) that nothing channels back' does not apply to this line at all: the Power is not made by recycling runes, it is made by Ancient Henge, which pays ENERGY and converts without a cap in one activation. (3) 'Endless Riches (VEN-022) forbids the Vi recursion outright' is about the Rengar 12th-place list; the walkthrough's deck is the Volibear build the video recommends and does not run it. WHAT SURVIVES OF THE OLD REFUTATION: the Blind Fury deck-out, which really is not a deck-out (431.2). WHAT IS NEW AND WHY THE CLASS DID NOT MOVE: the card ledger was walked and it closes exactly - 11 drawn against 11 spent, requiring exactly two resident 5-Might dragons so the Mighty count matches the deck size, or Show of Strength's mandatory draw Burns Out (431). But the Energy result turns on R15, which is OPEN. Under A the pass is +10 Energy and this is INFINITE; under B it is exactly 0 and it is ENGINE. R15's row on issue #11 records its dependency as 'ninguno (el Dragonstorm murio por otra via)' - that is no longer true, because the other way was this reconstruction. NO LEGAL REORDERING ESCAPES IT: the only other way to return a played Dragon to hand in Fury/Body is UNL-021 Grim Apothecary, which returns a unit 'at a battlefield' while the Dragons sit in base, costs a card per bounce and adds no draws. The entry is therefore HELD AT ENGINE, with the ramp as its only claim, until R15 is ruled. Earlier history, unchanged: card text verified against the corpus; the Herald's printed words are 'Energy costs', so a Drakehound still pays its Power; HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md)."
     },
     {
       "id": "leblanc-zilean-reflection-doubling",
@@ -4914,6 +4984,14 @@
           "kind": "manual-walk",
           "date": "2026-09-05",
           "quote": "816.1.b kills at the start of the Beginning Phase and 315.2.b puts the Scoring Step after it, so the Deathknell resolves inside the Beginning Phase and 'draw 2 instead' is the live clause."
+        },
+        {
+          "title": "YouTube - MoreThatMillGuy, \"The Best Unleashed Combos You Don't Know About!\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=Ns_hcbulnIs&t=373",
+          "date": "2026-04-15",
+          "quote": "[6:13] draw two. Combo that with something like [6:15] Karthus Eternal. ... [6:21] additional time. Now that the that token [6:25] that you have that you made is now going [6:27] to be drawing you four cards.",
+          "accessed": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -7081,6 +7159,961 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md), issue #44 candidate 7. Verified as claimed and then found to be stronger than the hunt wrote it: #44 described the payoff as \"a unit from the trash of cost <= the killed unit\", which reads as a downgrade, and missed that the killed unit is itself in the trash at resolution and costs exactly its own cost, so the card is \"your unit dodges the removal and comes straight back, ignoring its cost\". The card prints no \"another unit\". The Deathknell comparison against 808.1.d.1 was added because the two anti-removal shapes in this batch behave in opposite ways on that point."
+    },
+    {
+      "id": "twilight-reveler-eye-facebreaker-recruits",
+      "name": "Two Twilight Revelers ready each other — one Facebreaker, unbounded Recruits",
+      "class": "INFINITE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-020",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury unit, E3 M3. 'When I attack, ready another friendly unit.' Two copies alternate: the one that moves exhausts (144.2), and the other's attack trigger readies it back. Exactly one is ready at any time, and it is always the one that has to move next."
+        },
+        {
+          "card": "SFD-153",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order Equipment, E1. '[Effect] When I move, play a 1 Might Recruit unit token here.' 434.1.c appends its Effect Text to the Reveler carrying it, so the Recruit appears on the way IN. It does not fire on the way home: 456.1 says recalls do not trigger move abilities."
+        },
+        {
+          "card": "OGN-220",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Order spell, E2, [Hidden]. Stun a friendly unit and an enemy unit at the same battlefield. ONE copy covers the whole turn: 423.1.a.2 clears Stunned only 'during step 3d of the end of turn cleanup', and 423.1.b keeps the stunned defender from dealing combat damage in every pass."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "infinite-recruits"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Order: OGN-253 Hand of Noxus, SFD-187 Void Burrower, UNL-187 Piltover Enforcer."
+        ],
+        "notable": [
+          "THE BATTLEFIELD MUST ALREADY BE THE OPPONENT'S. 466.5 has the player with units remaining 'Establish Control if they didn't already control this Battlefield', and 466.5.d turns Establishing Control into a Conquer. If the battlefield was not already theirs, every pass hands them a free point.",
+          "EXACTLY ONE ENEMY DEFENDER, OF 5+ MIGHT. One, because Facebreaker stuns exactly one enemy unit and any un-stunned enemy Might would kill a 3-Might Reveler. 5+, because the attackers each pass are the Reveler (3) plus the Recruit the Eye just made (1): 464.2.c.3 gives the Recruit the Attacker designation too, so 4 damage is assigned (465.2.c) and a 4-Might defender dies. If the defender dies there is no recall (466.1.a.2) and the loop stops. The sources split on this exactly as the arithmetic predicts: Dokgebi, who plays the Eye, says 'five might unit or greater'; Frobei, who does not, says four.",
+          "This is a condition on the OPPONENT'S board, not on yours, and it is the entry's real fragility - the same shape that sank sona-viktor-opponent-turn.",
+          "EVERY PASS OPENS A WINDOW. The combat showdown gives the opponent Focus (347.1) and the Revelers are 3 Might with no Deflect. Killing either one ends the loop. Interaction risk, not a rules break - the same note jhin-fiora-facebreaker-recall carries about Fiora.",
+          "Nothing here makes Energy. Twilight Reveler has no [Add], so unlike jhin-fiora-facebreaker-recall this produces bodies only."
+        ]
+      },
+      "steps": [
+        "Standard Move the Eye-carrying Reveler from base into the enemy battlefield (144.1.a, 144.4.a). 144.2: exhausting it is the whole cost - no Energy, no card.",
+        "446.1 makes that a Move, so the Eye plays a 1 Might Recruit there.",
+        "461/462 stage the combat; 464.2.c.3 gives the Reveler AND the Recruit the Attacker designation, and 383.4.e puts 'When I attack' on the chain: ready the other Reveler.",
+        "First pass only: Facebreaker on the enemy defender (and, as the card demands, on a friendly unit at the same battlefield). It stays stunned for the rest of the turn (423.1.a.2).",
+        "Damage: 4 assigned to the 5+ Might defender, 0 back (423.1.b). Combat Cleanup heals all units (466.1.a.1) and recalls the attackers because defenders remain (466.1.a.2). No Result (466.3.d), and 466.3.d.1 does not re-stage because only the opponent has units there.",
+        "The Reveler comes home exhausted (458) and the Recruit comes home with it. 456.1: the trip home triggers nothing.",
+        "Repeat with the other Reveler, which the attack trigger readied. Every pass costs zero Energy and zero cards; the Eye's pass adds a Recruit."
+      ],
+      "netPerIteration": "+1 Recruit in base on every pass made by the Eye-carrying Reveler; 0 Energy, 0 Power, 0 cards spent",
+      "terminatesIn": "unbounded Recruits in base this turn; wins the way jhin-fiora-facebreaker-recall does - Azir, Sovereign moving tokens in, or a Grand Plaza hold with 7+ bodies next turn",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube - GrappLr, \"The Rek'Sai INFINITE Swarm Is OUT OF CONTROL!\", 14.102 views",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=ZCBig0lDOvw&t=83",
+          "date": "2026-07-28",
+          "quote": "[1:23] is a threecard infinite combo. [1:26] You'll see it in game. Basically, you [1:29] equip one of these with this. You attack [1:32] with it. You stun it and the unit you're [1:35] attacking. It gets bounced back and then [1:38] you keep using the second Twilight [1:40] Reveler to ready it and it's infinite",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "YouTube - Dokgebi, \"Infinite Card Draw, Energy, and Power in Akali\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=Rxp5Gfl0fq8&t=256",
+          "date": "2026-07-18",
+          "quote": "[4:16] We only need four cards now. [4:19] It's two Twilight Revelers, [4:21] Eye of the Herald, and a Face Breaker. [4:23] So, that's less setup.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "YouTube - Frobei, \"New Infinite Loop Deck with Akali\", 10.362 views - the source's own refutation",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=HDnIw6NETTI&t=76",
+          "date": "2026-07-17",
+          "quote": "[1:16] cannot go infinite. If the unit has [1:19] units but lower than four might, you [1:21] cannot win uh this way either. [1:24] Uh you cannot make the infinite combo.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Internet mining lens — issue #46 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/46",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 2. Card text verbatim from data/corpus_flat.txt. The cheaper cousin of jhin-fiora-facebreaker-recall: same recall skeleton (466.1.a.2 + 456 + 458), but the second Twilight Reveler replaces Jhin + Fiora + an Assault source, so it is four cards instead of five and costs no Power per pass. THE BUDGET OBJECTION RAISED IN #46 DOES NOT HOLD, and it is worth recording why: #46 argued that Facebreaker is consumed every pass and capped at 3 copies (103.2.b), so without naming a recycle slot and a draw this could not be INFINITE. It is not consumed every pass. 423.1.a.2 clears the Stunned status only 'during step 3d of the end of turn cleanup', so a single Facebreaker keeps the defender stunned for every pass of the turn - the same fact jhin-fiora-facebreaker-recall already had written. Cost per pass in cards is zero, so there is nothing to recycle. The refinement the walk added over the sources: the Recruit the Eye makes is itself an attacker under 464.2.c.3, so the damage per pass is 4 and not 3, and the defender needs 5+ Might rather than the 4 one source states. Depends on no unruled reading."
+    },
+    {
+      "id": "twilight-reveler-svellsongur-stellacorn-draw",
+      "name": "Svellsongur doubles the Reveler's ready — Stellacorn Herder draws once per attack",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-020",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury unit, E3 M3. 'When I attack, ready another friendly unit.' Two copies, one of them carrying the Svellsongur."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm Equipment, E3 P1, [Equip] 1 Energy + 1 Calm Power. Copies the Reveler's text into its own Effect Text, which 434.1.c appends back to the Reveler: TWO instances of the attack trigger, so one attack readies two units. Settled by #45: v Svellsongur give 2^v instances (477.2.c, 476.1, 479.1, 480.3)."
+        },
+        {
+          "card": "SFD-048",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Calm unit, E4 M3. 'When I move, draw 1.' Its Standard Move exhausts it (144.2); the doubled attack trigger readies it back every pass."
+        },
+        {
+          "card": "UNL-042",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Calm spell, E3, [Hidden]. '[Stun] a unit.' ONE copy covers the whole turn (423.1.a.2). It has to be this card and not Facebreaker: Facebreaker is Order and the other three are Fury and Calm, which would make three domains and fail 103.1.b."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "infinite-draw"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Fury and Calm, and the pool holds exactly ONE such legend: VEN-139 Rogue Assassin. Facebreaker cannot be substituted for Back Off - it is Order, and the deck would need three domains."
+        ],
+        "notable": [
+          "Same board conditions as twilight-reveler-eye-facebreaker-recruits: the battlefield must already be the opponent's (466.5), with exactly one defender of 5+ Might, stunned once for the turn. The source sets the same bar in its own words.",
+          "WHY ONE SVELLSONGUR IS NECESSARY AND SUFFICIENT. Without it each attack readies only ONE unit, and with two Revelers both readies are spent on the Revelers themselves - the Stellacorn never gets one and the line dies after two draws. With one Svellsongur there are two instances, so one attack readies the other Reveler AND the Stellacorn. A second Svellsongur would give four (2^2), which this entry does not need.",
+          "THE CEILING IS YOUR OWN MAIN DECK, AND THAT IS WHY THIS IS NOT INFINITE. The mechanism is unbounded; the deck is not. 194.1.d lets an opponent gain a point 'When an opponent Burns Out', and 431.3 makes an empty Main Deck Burn Out again on every subsequent attempt, with 431.3.b/431.3.c chaining the points that gives away. Drawing your whole deck is the end of the resource, not the absence of a limit.",
+          "The source's own summary of the full package - 'infinite card draw, infinite energy, infinite power' - reaches Energy and Power only by ALSO running Jhin, Murderous Artist, which is Fury and would work here; this entry deliberately scopes to the draw half, because the Energy half is already catalogued as jhin-fiora-facebreaker-recall."
+        ]
+      },
+      "steps": [
+        "Attach Svellsongur to Reveler A (1 Energy + 1 Calm Power) - the Equip cost is part of the price and is counted.",
+        "First pass only: Back Off on the enemy defender. It stays stunned all turn (423.1.a.2), and playing it from hand draws 1.",
+        "A Standard Moves into the enemy battlefield, exhausting (144.2). 464.2.c.3 gives it the Attacker designation and BOTH instances of 'When I attack' go on the chain (383.4.e): ready Reveler B and ready the Stellacorn Herder.",
+        "Combat Cleanup heals and recalls the attackers (466.1.a.1, 466.1.a.2); No Result (466.3.d); A comes home exhausted (458).",
+        "Standard Move the Stellacorn in: 'When I move, draw 1'. It is recalled the same way at the next cleanup.",
+        "B attacks: ready A and the Stellacorn again. Repeat until the Main Deck is the thing you are worried about."
+      ],
+      "netPerIteration": "+1 card drawn per Reveler attack, for 0 Energy and 0 cards",
+      "terminatesIn": "engine only - draws until your Main Deck is empty, and past that point 431.3 Burns Out on every further draw and hands the opponent a point each time (194.1.d)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube - Dokgebi, \"Infinite Card Draw, Energy, and Power in Akali\" - the full package walked on camera",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=Rxp5Gfl0fq8&t=472",
+          "date": "2026-07-18",
+          "quote": "[7:52] on this attack trigger, we can ready two [7:54] other friendly units, which will be the [7:56] Stellicorn Herder and the Twilight [7:57] Reveler. And let's say there's a five [8:00] Might unit that's defending. We're going [8:02] to back off their five might unit um to [8:05] stun it.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "YouTube - Dokgebi, same video - the author's own claim, which this entry declines to adopt as a class",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=Rxp5Gfl0fq8&t=500",
+          "date": "2026-07-18",
+          "quote": "[8:20] And from here, I could just like push in [8:22] a Stellorn Herder. I'll get a draw. ... [9:11] we are at a state where we have infinite [9:14] card draw, infinite energy, infinite [9:16] power.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Internet mining lens — issue #46 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/46",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 2. DOWNGRADED FROM THE DECLARED CLASS: #46 filed it as INFINITE and it is ENGINE, because what the loop produces is cards and the Main Deck is finite - 194.1.d and 431.3 turn 'draw your whole deck' from a resource into a countdown, which is the line CLAUDE.md already carried ('infinite draw is a liability') and this is the first entry where it decides a class. TWO CORRECTIONS TO THE CANDIDATE AS FILED. (1) #46 never named the stun card; with Facebreaker (Order) the package would be Fury + Order + Calm, three domains, and 103.1.b makes it unbuildable. The source names UNL-042 Back Off, which is Calm, and that is what makes VEN-139 Rogue Assassin - the pool's only calm/fury legend - a legal shell. (2) The card identified in #46 by transcription ('Spell Slinger' in the English auto-captions, 'Svelongur' in the French video) is confirmed as SFD-059 Svellsongur from the described behaviour, and the 2^v composition it needs was settled on 2026-09-06 by the #45 walk and is not re-derived here. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "flurry-of-feathers-grand-plaza-win",
+      "name": "Flurry of Feathers on the opponent's turn — four Birds arrive after their last window",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "battlefield",
+          "note": "When you hold here, if you have 7+ units here, you win the game."
+        },
+        {
+          "card": "UNL-044",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Calm spell, E4 P2, [Reaction]. Second mode: play four 1 Might Bird unit tokens with [Deflect]. 355.2/355.2.a make a battlefield you control a valid destination by default, so the Birds can land on the Plaza."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Calm: any Calm legend. The Grand Plaza is domainless."
+        ],
+        "notable": [
+          "The Grand Plaza must be the battlefield in play: random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5). 103.4.c and Tournament Rules 402.1 forbid bringing two battlefields of the same name, so a second copy is not a way to raise the odds.",
+          "THREE OF YOUR UNITS ALREADY ON THE PLAZA, and the Plaza already yours - a Hold needs Control.",
+          "THE WINDOW IS THE OPPONENT'S TURN, NOT YOUR BEGINNING PHASE, and that is the whole point of the card. 813.1.c.1 makes a [Reaction] card playable 'during Closed States on any player's turn', and 331.1 says the turn is in a Closed State exactly when a Chain exists. So the moment the opponent plays anything or any trigger fires on their turn, the four Birds land - and then they get no further turn before your Beginning Phase measures the Hold. That is strictly better than grand-plaza-recruit-vanguard, whose own note has to say 'survive one opponent turn with 7+ units on it'.",
+          "WHAT DOES NOT WORK, AND THE COMMUNITY LINE THAT DOES IT. You cannot hold three units, let the Plaza trigger, and add the Birds in response. Two independent rules stop it. 383.2.a.1: 'Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled' - the 'if you have 7+ units here' sits immediately after 'When you hold here', so with three units the ability never reaches the chain and there is nothing to respond to. And 335: with no chain, no showdown and no combat, 'if it is any other phase of the turn, proceed to the next substep, step, phase, or turn' - nobody receives priority in the Beginning Phase at all.",
+          "The Birds carry [Deflect], so every removal the opponent aims at one costs them a rainbow Power (809.1.c). That is what this line buys over Recruit the Vanguard's plain Recruits, along with Calm instead of Order and 4 Energy + 2 Power instead of 6 Energy.",
+          "The Plaza is symmetric and visible. Dropping the count below 7 is easier than conquering it, which is the honest counter - and the Deflect tax is the answer to it."
+        ]
+      },
+      "steps": [
+        "Get three of your units onto The Grand Plaza and keep Control of it.",
+        "On the opponent's turn, the first time a Chain exists (331.1) - they play a card, or any trigger fires - play Flurry of Feathers for 4 Energy + 2 Calm Power and choose the second mode.",
+        "Place all four Birds on the Plaza (355.2, 355.2.a). Seven units.",
+        "Your Beginning Phase, Scoring Step (315.2.b.2): you Hold the Plaza, the count is 7, and rule 195 gives you the game."
+      ],
+      "terminatesIn": "win the game",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube - AkeenaTV, \"Sneaky Insta-Win Combo in a Control Deck?\" - the card and the four Birds; its SEQUENCE is refuted by this walk",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=WgrJVlUstXk&t=112",
+          "date": "2026-03-27",
+          "quote": "[1:52] we'll be using for the combo, play four [1:54] one might bird tokens with deflect. [1:58] That's a lot of bird tokens at instant [2:00] speed, and we can put them onto a [2:02] battlefield where you control",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "YouTube - Turn 'em Sideways!, \"GUTTER PALACE COMBO IS REAL?!?!\", 16.465 views - a player saying in his own words what rule 335 says",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=OML3sV9JnC4&t=734",
+          "date": "2026-06-25",
+          "quote": "[12:14] respond in that beginning step to get it on the chain. It just triggers at the start. It needs to be the condition.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Internet mining lens — issue #46 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/46",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 3. REWRITTEN FROM THE CANDIDATE: the source's own line is illegal. AkeenaTV plays three units, lets the Plaza's hold trigger go, and then adds the Birds 'in response to this battlefield trigger' - which 383.2.a.1 forbids, because the 7+ count is part of the Trigger Condition and an unfulfilled condition never puts the ability on the chain; and which 335 forbids a second time, because with an empty chain nobody has priority in the Beginning Phase. The entry survives on a different LEGAL ORDERING of the same two cards - deploy on the opponent's turn through [Reaction] (813.1.c.1 + 331.1) - which is exactly the move CLAUDE.md prescribes before filing a reading, and no reading was filed. The refutation #46 raised (Flurry does not say 'here', so where do the Birds go?) is answered by the default: 355.2.a already lists 'a Battlefield the controller controls'; OGS-015 spells it out in reminder text, not as an extra permission. Ninth Grand Plaza route in the catalogue and the first at Reaction speed. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "astral-heron-premonition-draw",
+      "name": "Astral Heron discounts Premonition — three cards for one Power",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-044",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E7 M7. 'When you play your first card each turn, if I'm at a battlefield, the next card you play this turn costs 2 Energy + 2 rainbow Power less.' Note the errata'd wording: 'the next card you play this turn', not 'your next card' (Riot, Vendetta errata 2026-07-23)."
+        },
+        {
+          "card": "SFD-087",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E2 P3, [Reaction] Draw 3. Under the discount it is 0 Energy + 1 Power."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Mind: OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom, VEN-145 Curator of the Sands."
+        ],
+        "notable": [
+          "THE DISCOUNT IS FOR YOUR SECOND CARD, NOT YOUR FIRST. The trigger is 'When you play your FIRST card each turn' and it discounts 'the NEXT card you play this turn'. Premonition has to be the second play of the turn, so a cheap first card is part of the price.",
+          "'if I'm at a battlefield' IS A CONDITION, NOT AN EFFECT. 383.2.a.1: an additional conditional statement immediately after the Condition is part of the Trigger Condition, and its own worked example is Sona, Harmonious's 'at the end of your turn, if I'm at a battlefield'. So the Heron has to be standing at a battlefield at the moment you play your first card, not later - and a 7-Might body parked at a battlefield is a target.",
+          "ONE DISCOUNT PER TURN. It is one trigger on one card, not a standing reduction.",
+          "Arithmetic against the declared quantities: Premonition's base cost is 2 Energy + 3 Power; 356.4 applies the discount of 2 Energy + 2 rainbow Power; the remainder is 0 Energy + 1 Power for Draw 3. That is the source's claim, exactly."
+        ]
+      },
+      "steps": [
+        "Have Astral Heron at a battlefield before your first play of the turn.",
+        "Play any cheap card. The Heron's trigger fires and marks the next card for 2 Energy + 2 rainbow Power less.",
+        "Play Premonition: 0 Energy + 1 Power, Draw 3. Its [Reaction] timing means the discounted play can also happen inside a showdown, which is when three cards for one Power is worth the most."
+      ],
+      "netPerIteration": "3 cards for 1 Power, once per turn",
+      "terminatesIn": "engine only — one discounted card per turn; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube - Zelonius, \"The MOST BROKEN Card Combos in Riftbound Vendetta!\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=ftJBJZFevI0&t=186",
+          "date": "2026-08-01",
+          "quote": "[3:06] less. So, with Astral [3:08] Heron, you can play this card for one [3:11] power. You can draw three cards for one [3:13] power. That is a crazy combo. One power [3:15] to draw three cards is nutty.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riot Games — Vendetta Errata Updates (Astral Heron reworded to \"the next card you play this turn\")",
+          "kind": "riot",
+          "url": "https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates",
+          "date": "2026-07-23",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Internet mining lens — issue #46 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/46",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 3. The source's number is exact and the walk confirms it against 356.4. What the source does not say, and what makes or breaks the line in play, is in the notables: the discount lands on the SECOND card of the turn, and 'if I'm at a battlefield' is a Trigger Condition under 383.2.a.1 measured when the first card is played. Opening Riot's Vendetta errata page for a different question (issue #46 section 5, the alleged [Temporary]-on-Equipment errata, which does not exist) confirmed as a side effect that this card was reworded on 2026-07-23 and that our corpus already carries the new text. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "shady-spectacles-baron-copy",
+      "name": "Shady Spectacles copies Baron Nashor onto a token — the text, not the Might",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-137",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order Equipment, E4, [Equip] 1 Energy + 1 Order Power. 'As this is attached to a unit, choose another friendly unit. The equipped unit becomes a copy of that unit for as long as this is attached to it.' A Copy effect - Layer 1 (477.1) - unlike Svellsongur, which appends text in Layer 2."
+        },
+        {
+          "card": "UNL-147",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Chaos unit, E10 P3 M12. 'I can't be chosen by enemy spells and abilities. Other friendly units have +2 Might.' Must already be on the board: Spectacles copies a friendly unit in play."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Order and Chaos, and the pool holds exactly ONE such legend: VEN-155 Heart of the Tempest."
+        ],
+        "notable": [
+          "MIGHT IS NOT COPIED, AND THAT IS THE WHOLE PRICE OF THE TRICK. 477.1.b.1.a lists the copyable traits as Name, Super Type, Type, Tags, Cost, Domain and Rules Text - Might is not among them. That is R27, retired on 2026-09-04 by finding the rule instead of asking. A Recruit token wearing Shady Spectacles and copying Baron Nashor is a Baron Nashor of 1 Might, not 12. The source says 'this card then gets all of the effects of that card' and does not mention it.",
+          "THE ON-PLAY EFFECT IS NOT COPIED EITHER, and here the source is right: 'As you play me, add the Baron Pit battlefield token' only happens when the card is played, and nothing is being played. No second Baron Pit.",
+          "WHAT YOU DO GET, and it is the measurable output: a second body that cannot be chosen by enemy spells and abilities, and a SECOND anthem - 'Other friendly units have +2 Might' - which stacks with the original's and also gives the original Baron +2.",
+          "PRICE, WITH THE EQUIP COST AND THE POWER COUNTED: 4 Energy for Shady Spectacles plus 1 Energy + 1 Order Power to attach it = 5 Energy + 1 Order Power, against the 10 Energy + 3 Power a second Baron Nashor would cost. Requires the first Baron already in play, which is the real gate.",
+          "Duplicate names are not a problem: 477.1.b.1.b's own worked example ends with 'three units named Honest Broker in play'."
+        ]
+      },
+      "steps": [
+        "Baron Nashor is already on the board.",
+        "Play Shady Spectacles (4 Energy) and pay its [Equip] (1 Energy + 1 Order Power) to attach it to a cheap body - a Recruit token does.",
+        "Choose Baron Nashor. The equipped body becomes a copy of him: his Rules Text, his Name, Cost, Domain, Type and Tags - at its own Might (477.1.b.1.a).",
+        "Two untargetable bodies and two +2 Might anthems, for 5 Energy + 1 Power."
+      ],
+      "terminatesIn": "engine only — a second copy of a unit's rules text on a cheap body, for as long as the Equipment stays attached",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube - Zelonius, \"The MOST BROKEN Card Combos in Riftbound Vendetta!\" - the Recruit-into-Baron example, half right",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=ftJBJZFevI0&t=86",
+          "date": "2026-08-01",
+          "quote": "[1:29] one of the best examples, and you can [1:31] only do this in Canada, of course, is [1:31] changing a recruit to Baron. [1:34] This card then gets all of the effects [1:37] of that card. The only thing it won't [1:39] get is the on play effect.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Internet mining lens — issue #46 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/46",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 3. The entry exists mostly for the correction: the source is right that the on-play effect does not transfer and silent about the thing that decides whether the trick is worth 5 Energy, which is that Might is not a copyable trait (477.1.b.1.a, already settled as R27). It is the counterpart of the Svellsongur family - a Layer 1 Copy effect against a Layer 2 Ability-Altering one - and the two behave differently: Svellsongur composes (2^v instances, settled 2026-09-06 on #45) while a Copy replaces the copyable traits wholesale. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "steel-paws-svellsongur-might",
+      "name": "Svellsongur doubles an Empowered ability — Steel Paws at 14 Might",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-043",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Calm unit, E1 M0, [Deflect]. '[Empower] 7 Energy' and '[Empowered][>] I have +7 Might.' 828.1.b.1 reads that as 'While I have the Empowered status, this card gains \"I have +7 Might\"'."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm Equipment, E3 P1, [Equip] 1 Energy + 1 Calm Power. Copies the unit's text into its Effect Text, which 434.1.c appends back to the unit: TWO instances of the Empowered ability, so +7 twice."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Mono-Calm: any Calm legend."
+        ],
+        "notable": [
+          "THE ARITHMETIC, AND THE SOURCE'S NUMBER IS EXACT. Base 0 Might. Empowered (827.2) switches on '[Empowered][>] I have +7 Might' (828.1.b.1). One Svellsongur gives 2^1 = 2 instances of that text - the composition settled on 2026-09-06 by the #45 walk from 477.2.c, 476.1, 479.1 and 480.3, and not re-derived here. 0 + 7 + 7 = 14 Might. With two Svellsongur it is 2^2 = 4 instances, so 28.",
+          "R27 DOES NOT APPLY HERE, and saying so is the point. R27 is that Might is not a copyable TRAIT (477.1.b.1.a). Nothing here copies the Might trait: Svellsongur copies rules text, and the rules text happens to grant Might. Copy effects and text-appending effects are different layers and behave differently.",
+          "PRICE, WITH THE EQUIP COST AND THE POWER COUNTED: 1 (Steel Paws) + 7 (Empower) + 3 (Svellsongur) + 1 (its Equip) = 12 Energy, plus 1 Calm Power to play the Svellsongur and 1 Calm Power for the Equip = 12 Energy + 2 Calm Power.",
+          "THE ENTRY DOES NOT STAND ON THE DEFLECT. Svellsongur copies [Deflect] too, and whether a second, GRANTED Deflect Value sums with the printed one is exactly the question 809.2 leaves open - the one that got UNL-041 Allay cut from tianna-wildclaw-point-lock. It does not matter here: the tax is 1 rainbow under either reading.",
+          "Steel Paws cannot be Empowered twice. Svellsongur also copies '[Empower] 7 Energy', and 827.3 makes multiple Empower instances separate activated abilities - but 827.1.c.1 is 'Use only if not Empowered', so the second one is dead."
+        ]
+      },
+      "steps": [
+        "Play Steel Paws (1 Energy).",
+        "Pay the Empower cost of 7 Energy: it becomes Empowered (827.2) and gains 'I have +7 Might' — 7 Might.",
+        "Play Svellsongur (3 Energy + 1 Calm Power) and attach it (1 Energy + 1 Calm Power). Its Effect Text is now a copy of Steel Paws' text, and 434.1.c appends it back: a second '[Empowered][>] I have +7 Might'.",
+        "14 Might on a [Deflect] body, well past the Mighty line of 5 (709), for 12 Energy + 2 Calm Power."
+      ],
+      "terminatesIn": "engine only — a 14 Might Deflect body; it feeds Mighty payoffs such as Fiora, Worthy, and scores nothing by itself",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube - Zelonius, \"The MOST BROKEN Card Combos in Riftbound Vendetta!\" - seen at a table, and the figure checks out",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=ftJBJZFevI0&t=491",
+          "date": "2026-08-01",
+          "quote": "[8:11] However, they empowered Steel Paws for [8:14] seven energy. So, Steel Paws went to [8:17] seven might. ... [8:31] Steel Paws went from a one energy zero [8:33] might card to a 14 might card out of [8:37] nowhere.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 — Svellsongur composes, 2^v instances (docs/phase0/walks/2026-09-06-issue45-two-boards.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Internet mining lens — issue #46 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/46",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 3. First entry in the catalogue where Svellsongur's composition is applied to an [Empowered] dependent ability rather than to a trigger, and the community's published figure of 14 Might is exactly what 2^1 instances of '+7 Might' give. The note that R27 does not bite here is deliberate: the next reader will reach for 'Might is not copyable' and be wrong, because that rule is about the Might trait and this is rules text that grants Might. The 809.2 Deflect question is named and explicitly not leaned on. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "nocturne-stacked-deck-cheat",
+      "name": "Stacked Deck looks, Nocturne banishes himself — a 4 Might Ganking body for one Power",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-194",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "DECK",
+          "note": "Chaos unit, E4 P1 M4, [Ganking]. 'As you look at or reveal me from the top of your deck, you may banish me. If you do, you may play me for 1 rainbow Power.' Three copies, because the line is a lottery and this is how many tickets 103.2.b allows."
+        },
+        {
+          "card": "OGN-183",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E1, [Action]. 'Look at the top 3 cards of your Main Deck. Put 1 into your hand and recycle the rest.' 'Look at' is the exact verb Nocturne's trigger asks for."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Mono-Chaos: any Chaos legend."
+        ],
+        "notable": [
+          "IT IS A LOTTERY WITH MANY TICKETS, NOT A MOTOR, and the class is ENGINE for that reason. Stacked Deck looks at 3 cards of a 40-card Main Deck (103.2.a). Three Stacked Decks and three Nocturnes give a real hit rate over a game, not a plan for turn one - the source's 'two Nocturnes turn one' is the tail of the distribution, and he says 'unless you get unlucky' in the same breath.",
+          "LIGHTNING RUSH (VEN-156) IS DELIBERATELY NOT AN INGREDIENT. It looks at the top 3 as well and would be a second enabler, but it is Order/Chaos, so 103.1.b would force the identity to Order + Chaos and the pool holds exactly ONE such legend, VEN-155 Heart of the Tempest. Stacked Deck alone keeps the shell mono-Chaos under any Chaos legend, which is worth more than a fourth looker.",
+          "THE DOWNSIDE IS PRINTED. Nocturne drawn normally is a 4 Energy + 1 Power body with [Ganking] and nothing else, which the source calls a brick. Every copy you add to raise the hit rate is a copy you can draw badly.",
+          "THE TRIGGER IS ON 'LOOK AT OR REVEAL', so anything that looks works: Stacked Deck, Lightning Rush, a Seal's look, Bait and Hook. It is not restricted to draws, and that is the whole reason the family exists.",
+          "Both the banish and the play are 'you may' — nothing is forced, so a Nocturne seen with no rainbow Power available simply stays in the deck order Stacked Deck sets."
+        ]
+      },
+      "steps": [
+        "Play Stacked Deck for 1 Energy: look at the top 3 of your Main Deck.",
+        "If Nocturne is among them, his trigger applies as you look: banish him.",
+        "Play him from banishment for 1 rainbow Power — a 4 Might [Ganking] body instead of 4 Energy + 1 Power.",
+        "Put one of the remaining two into hand and recycle the other (416.1: to the bottom of the Main Deck)."
+      ],
+      "terminatesIn": "engine only — a discounted body when the look hits; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube - Zelonius, \"The MOST BROKEN Card Combos in Riftbound Vendetta!\" - reported from a table, with its own caveat",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=ftJBJZFevI0&t=604",
+          "date": "2026-08-01",
+          "quote": "[10:07] a lot of ways in which unless you get [10:09] unlucky that you could see Nocturne off [10:11] of the reveal and then get to play him [10:14] for a power. ... [10:33] I've seen two Nocturnes turn one and had two Nocturnes [10:36] in base. ... [10:54] If you just draw Nocturne naturally, that [10:56] is quite a brick.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Internet mining lens — issue #46 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/46",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 3. Two changes from the candidate as filed. Lightning Rush was demoted to optional at quantity 0: it is Order/Chaos and would chain the deck to VEN-155 Heart of the Tempest, the pool's only chaos/order legend, while Stacked Deck alone keeps the shell mono-Chaos under any Chaos legend. And the class is held at ENGINE against the source's enthusiasm, because the mechanism is probabilistic - it is the first entry in the catalogue whose output is a hit rate rather than a quantity, and the entry says so instead of hiding it. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "decree-sabotage-hand-strip",
+      "name": "Decree of Strength and Sabotage — three cards off the opponent's hand for 3 Energy and a Power",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-085",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E1. 'Choose an opponent. They reveal their hand and you choose a Mind card from it. They recycle that card.' Only sees Mind cards."
+        },
+        {
+          "card": "OGN-156",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E1 P1. 'Choose an opponent. They reveal their hand. Choose a non-unit card from it, and recycle that card.' Only sees non-units."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Mono-Body: any Body legend."
+        ],
+        "notable": [
+          "Arithmetic against the declared quantities: 2 Decree + 1 Sabotage = 3 Energy + 1 Power for three cards off a hand, which is the source's own count on a five-card hand.",
+          "BOTH ARE CONDITIONAL ON THE OTHER PLAYER'S HAND, in opposite directions: Decree only sees Mind cards, Sabotage only sees non-units. Against a deck with no Mind in its identity, Decree is a one-Energy look at the hand and nothing else - which the source says is worth it on its own, and which is a claim about a metagame, not about the cards.",
+          "RECYCLE IS NOT DISCARD. 416.1 puts the card on the BOTTOM of the Main Deck, not in the trash. You are delaying it about forty turns, not removing it - and against a deck that draws itself out (Lux, the Jayce shells) that delay is worth much less.",
+          "Distinct from ashe-retreat-hand-strip, which BANISHES and lives inside the Lux loop. This is a two-card mono-Body pair playable on turn two, with no engine behind it."
+        ]
+      },
+      "steps": [
+        "Play Decree of Strength (1 Energy): the opponent reveals; recycle their best Mind card.",
+        "Repeat with the second Decree.",
+        "Play Sabotage (1 Energy + 1 Power): recycle their best non-unit card — the one Decree could not touch if it was not Mind."
+      ],
+      "terminatesIn": "engine only — three cards sent to the bottom of the opponent's deck, and full information on the rest of their hand",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube - Zelonius, \"The MOST BROKEN Card Combos in Riftbound Vendetta!\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=ftJBJZFevI0&t=827",
+          "date": "2026-08-01",
+          "quote": "[13:47] recycle any card from their hand. Now, [13:50] this combined with sabotage, [13:53] I had two Decree of Strength in hand and [13:55] a sabotage. So, if their hand is five [13:58] cards, all of a sudden, for five for [14:01] three energy and one power, their hand",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Internet mining lens — issue #46 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/46",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 3. The arithmetic is the source's and it holds. What the walk added is the two limits it does not state: the two spells look at disjoint and conditional slices of the hand, and 416.1 makes this a delay rather than a removal, which matters against exactly the decks this catalogue is full of. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "elder-dragon-flurry-of-blades-wipe",
+      "name": "Flurry of Blades under Elder Dragon — one Energy kills every enemy unit at every battlefield",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-118",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Body unit, E12 P4 M10. The static half is what matters here: 'Any amount of your damage is enough to kill enemy units.' It has to be on the board — at 12 Energy + 4 Power the way in is OGN-160 Dazzling Aurora."
+        },
+        {
+          "card": "OGN-133",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E1, [Reaction]. 'Deal 1 to all units at battlefields.' Your damage, so the Dragon's static applies to every point of it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Body: any Body legend. Both cards are Body."
+        ],
+        "notable": [
+          "THE ASYMMETRY IS THE ENTRY. Elder Dragon's static says 'Any amount of YOUR damage is enough to kill ENEMY units'. Flurry of Blades is your damage and hits all units at battlefields, so every enemy unit at a battlefield dies while yours take 1 damage each. One Energy.",
+          "'AT BATTLEFIELDS' DOES NOT INCLUDE THE BASES. 198.1 defines Locations as 'the Battlefields and the Bases' and Flurry names only battlefields. Whatever the opponent holds in base survives. The source's 'a full wipe across the board' overstates it by exactly that much.",
+          "[Reaction] is why this is more than a sweeper: 813.1.c.1 lets it be played during Closed States on any player's turn, so it answers a combat or a play the opponent commits to.",
+          "IT DOES NOT CHANGE WHAT dazzling-aurora-elder-dragon SAYS. That entry's correction — 'one kill per location, not a board wipe' — is about the Dragon's ON-PLAY trigger ('choose up to one enemy unit at each location'), and it stands. This entry is about the STATIC, which is a different sentence on the same card and does produce a wipe when another card supplies the damage."
+        ]
+      },
+      "steps": [
+        "Elder Dragon is on the board — in practice, flipped in for free at the end of your turn by Dazzling Aurora (OGN-160).",
+        "Play Flurry of Blades for 1 Energy, in your Main Phase or as a Reaction inside any Closed State (813.1.c.1, 331.1).",
+        "1 damage is dealt to all units at battlefields. For enemy units, any amount of your damage is lethal: every one of them at every battlefield dies. Your own units take 1 and survive unless they are 1 Might."
+      ],
+      "terminatesIn": "engine only — every enemy unit at every battlefield dies for 1 Energy, as often as you hold a Flurry of Blades; enemy units in base are untouched",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube - MoreThatMillGuy, \"The Best Unleashed Combos You Don't Know About!\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=Ns_hcbulnIs&t=645",
+          "date": "2026-04-15",
+          "quote": "[10:45] able to stop the Flurry of Blades. Other [10:47] than that, you're going to be able to deal one damage to all units on the [10:48] battlefield. [10:50] Um and it's at a battlefields in general, not even a battlefield, all [10:53] battlefields. So you just got a full [10:54] wipe across the board.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Internet mining lens — issue #46 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/46",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 3. #46 filed this as possibly a correction to dazzling-aurora-elder-dragon rather than a new entry; it is a new entry, and the old one is not corrected. The two claims are about two different sentences on the same card: dazzling-aurora-elder-dragon's REFUTE stands because it is about the on-play trigger, which really does kill at most one unit per location; this is about the static, which turns any mass damage into a wipe. The one thing the source overstates is 'across the board': 198.1 makes bases Locations too, and Flurry of Blades names only battlefields. This entry's citation was also re-attributed - #46 credited the quote to a different video, and the walk traced it to Ns_hcbulnIs. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "heimerdinger-renata-remote-score",
+      "name": "Heimerdinger carries Renata's score ability — she stays in base, he stands at the battlefield",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-111",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E3 P1 M3. 'I have all [exhaust] abilities of all friendly legends, units, and gear.' He takes Renata's '4 Energy + 4 Mind Power, exhaust: Score 1 point' — and under R30 = B he takes the battlefield restriction with it, so this is the body that stands exposed."
+        },
+        {
+          "card": "SFD-088",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind unit, E5 M4. The ability's source. She only has to be a friendly unit on the board for Heimerdinger to have her exhaust ability — she can sit in base, out of combat and out of reach of everything that says 'at a battlefield'. Her own 'Draw 1' has no exhaust in its cost, so Heimerdinger does not get that one."
+        },
+        {
+          "card": "VEN-150",
+          "quantity": 3,
+          "role": "ready",
+          "zone": "HAND",
+          "note": "Mind/Body spell, E3 P1. 'Ready up to 4 units, gear, and/or runes.' Readies Heimerdinger for another activation plus three runes. Three copies is the 103.2.b cap and it is what sets this line's ceiling."
+        }
+      ],
+      "needs": [
+        "resource-engine"
+      ],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Mind and Body, and the pool holds exactly ONE such legend: VEN-149 Defender of Tomorrow — which is also a piece of the engine this entry needs (platewyrm-egg-defender-gate)."
+        ],
+        "notable": [
+          "R30 = B, ruled by the user on 2026-09-06. Renata's 'Use my abilities only while I'm at a battlefield' TRAVELS with the granted ability (377.2.b, whose own worked example is this exact wording on Ultrasoft Poro), and 053.1 rereads the 'I' as whoever has it — so HEIMERDINGER must be at a battlefield. Renata does not. The community reads it as A (Heimerdinger scores from base); the catalogue follows B.",
+          "WHY IT IS A NEW ROUTE AND NOT A FOURTH COPY OF AN OLD ONE. The catalogue's three Renata routes (renata-mastermind-points, renata-bubble-bot-ready, jayce-mesmerize-renata) all say 'Only while at a battlefield' in their own uses, and all three put RENATA on the battlefield. Here she never leaves base and the exposed body is a 3-Energy, 3-Might unit instead of a 5-Energy, 4-Might one. That is the whole trade.",
+          "R2 = A IS LOAD-BEARING. The card says 'Score 1 point', which 194.1.c makes a point Gain by ability rather than a 469 Score, so 470's 'only Score once per Battlefield per turn' does not cap it and repeated activations in one turn each give a point.",
+          "THE PUBLISHED OTK NUMBER IS NOT REACHABLE IN THIS SHELL, and it is worth writing down. The community figure is 36 Energy and 36 Power for eight activations; eight activations really are 32 Energy + 32 Mind Power. 103.3.a fixes the Rune Deck at 12 Rune Cards; 164.2.b makes a rune recycle worth exactly 1 Power and 161.2.b returns it to the Rune Deck, with 315.3.b channelling 2 back per turn. A single turn therefore tops out around 12 Power, not 32. Reaching 32 needs an unbounded Power engine, and the catalogue's (lux-infinite-power) is Mind/Order — which cannot hold Acceleration Gate, a Mind/Body card, under 103.1.b.",
+          "THE REAL CEILING PER TURN. Heimerdinger starts ready for one activation and each Acceleration Gate buys one more, so three Gates give four activations: 16 Energy + 16 Mind Power for the points plus 9 Energy + 3 Power for the Gates. The Power runs out first. Two or three points a turn is the honest figure, which is why this is ENGINE and not BURST or CHAIN.",
+          "IT CAN ALSO SUBSTITUTE INTO THE MIND/ORDER LOOPS. Under a Mind/Order legend with an unbounded engine running, anything that readies Renata in the three existing routes readies Heimerdinger instead, and the line inherits their class. In that shape it competes for the SAME spare recycle slot those three share, so it is a fourth alternative, not a fourth stackable payoff.",
+          "SFD-060 Tianna Crownguard switches it off exactly as she switches off the other three: scoring by ability is a gain (194.1.c) and she reads 'opponents can't gain points'. She is catalogued as tianna-wildclaw-point-lock."
+        ]
+      },
+      "steps": [
+        "Renata Glasc, Mastermind on the board — base is fine and base is better.",
+        "Heimerdinger, Inventor at a battlefield (R30 = B). He now has her '4 Energy + 4 Mind Power, exhaust: Score 1 point'.",
+        "Pay 4 Energy + 4 Mind Power and exhaust HEIMERDINGER: 1 point (194.1.c, not capped by 470).",
+        "Acceleration Gate (3 Energy + 1 Power): ready Heimerdinger and three exhausted runes. Activate again.",
+        "Repeat until the Power runs out — three Gates, four activations."
+      ],
+      "netPerIteration": "1 point per activation, at 4 Energy + 4 Mind Power, plus 3 Energy + 1 Power for each Acceleration Gate that buys the next one",
+      "terminatesIn": "engine only — two or three points a turn in the Mind/Body shell, bounded by Power; wired into an unbounded Mind/Order engine instead, it inherits that loop's class as a fourth alternative to the three existing Renata routes",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube - Moore Than Moost, \"Riftbound Jayce OTK\" - the community reading (A), which the catalogue does not follow",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=Nb8CCT9vrZY&t=402",
+          "date": "2026-07-15",
+          "quote": "[6:50] This text, \"Use my abilities only while [6:52] I'm at a battlefield,\" is not part of [6:55] the tap ability. So, Heimerdinger [6:58] doesn't have to be [7:00] at a battlefield to use this effect.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "YouTube - Moore Than Moost, \"How To Loop With Jayce\" - the published OTK figure this entry measures and rejects",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=8m0x3wFBXZQ&t=678",
+          "date": "2026-07-21",
+          "quote": "[11:18] rack up 36 energy and 36 power because [11:22] that's how much we need to activate this [11:25] ability eight times.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "YouTube - Office Raccoon, \"Ornn Infinite Loop Infinite Energy Infinite power OTK\" - a third independent statement of reading A",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=TGTyb49Uprs&t=480",
+          "date": "2026-02-28",
+          "quote": "[8:00] Himerdinger will be able to copy [8:02] Ranata's uh you know, tap ability, but [8:05] Heimerdinger does not have uh use my [8:08] ability only when I'm at a battlefield. [8:10] Heimerdinger can actually do this from [8:12] base.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Internet mining lens — issue #46 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/46",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 1, WRITTEN IN FORM B. OGN-111 Heimerdinger, Inventor appeared in none of the catalogue's first 99 entries and the community calls this pairing 'the now classic Renata Heimer combo'; six independent sources state reading A (he scores from base) and the user ruled B on 2026-09-06 (377.2.b's worked example is this exact wording), so the entry is written with Heimerdinger at a battlefield and Renata safe in base, and the community reading is cited with a note saying the catalogue does not follow it. TWO THINGS THE WALK MEASURED AGAINST THE SOURCES. The class is ENGINE, not the INFINITE the candidate declared: the shell that can hold Acceleration Gate is Mind/Body, its only legend is VEN-149 Defender of Tomorrow, and its resource engine (platewyrm-egg-defender-gate) is explicitly bounded. And the published '36 energy and 36 power' is not reachable there — eight activations need 32 Mind Power, while 103.3.a caps the Rune Deck at 12 and 164.2.b makes each recycle worth exactly 1 Power. That is the kind of published figure CLAUDE.md already warns about after two '18 Energy' claims that had counted neither the Equip costs nor the Power. Card text verbatim from data/corpus_flat.txt."
+    },
+    {
+      "id": "heimerdinger-vanguard-armory-recruits",
+      "name": "Heimerdinger copies the Vanguard Armory — six Recruits a turn, every turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-111",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind unit, E3 P1 M3. 'I have all [exhaust] abilities of all friendly legends, units, and GEAR' — the Armory is gear and the text names it. No restriction clause travels here, so R30 does not bite and he can do this from base."
+        },
+        {
+          "card": "SFD-168",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order gear, E7 P1. 'exhaust: Play three 1 Might Recruit unit tokens. (You may play them to different locations.)' Unlike a spell, it comes back every turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "infinite-recruits"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order: OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-201 Chem-Baroness, UNL-199 Deceiver."
+        ],
+        "notable": [
+          "SIX A TURN, NOT NINE. #46 conjectured nine by adding Acceleration Gate to ready both — but the Gate is Mind/Body and this pairing is Mind/Order, so 103.1.b keeps it out of the deck. Three Recruits from the Armory's own exhaust and three from Heimerdinger's copy of it: six.",
+          "IT IS REPEATABLE, WHICH IS THE POINT. OGS-015 Recruit the Vanguard makes four tokens once, for 6 Energy; the Armory makes three every turn, and Heimerdinger doubles that, for a one-time 7 Energy + 1 Power.",
+          "IT CROSSES DIRECTLY INTO THE PLAZA ROUTES. Seven units at The Grand Plaza when you hold is the game (OGN-293, rule 195), and this reaches seven in two turns from an empty board. See grand-plaza-recruit-vanguard and spiderling-swarm-grand-plaza. The Armory's reminder permits different locations, and 355.2.a already allows a battlefield you control.",
+          "143.4 — the Recruits enter exhausted, so they neither defend nor move the turn they appear.",
+          "A two-turn build, not a turn-three kill: 7 Energy + 1 Power for the Armory and 3 Energy + 1 Power for Heimerdinger, and 143.4 means Heimerdinger cannot use the copied ability the turn he lands."
+        ]
+      },
+      "steps": [
+        "Play the Vanguard Armory (7 Energy + 1 Power). Gear enters ready (143.4 exhausts only units), so it can fire the same turn.",
+        "Play Heimerdinger, Inventor (3 Energy + 1 Power). He enters exhausted.",
+        "Next turn, Awaken readies both. Exhaust the Armory: three Recruits. Exhaust Heimerdinger, using his copy of the same ability: three more.",
+        "Six 1 Might Recruits a turn, placed at your base or at battlefields you control."
+      ],
+      "netPerIteration": "+6 Recruit tokens per turn, for 0 Energy after the build",
+      "terminatesIn": "engine only — six Recruits a turn for free; it wins through a Grand Plaza hold at 7+ units, not on its own",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Internet mining lens — issue #46 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/46",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 1. The candidate came from a Reddit thread that could not be opened on 2026-09-06 (Reddit now CAPTCHA-walls this machine even in a real browser with the project's own cookies), so it carries NO Reddit citation: the mechanism is read off the two cards' printed text and the rules instead, which is the stronger evidence anyway. The one correction to the candidate is the count — six, not nine, because Acceleration Gate is Mind/Body and cannot legally sit in a Mind/Order deck (103.1.b). This is the cleanest use of Heimerdinger in the catalogue, because the Armory carries no restriction clause and so R30 never comes up. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "heimerdinger-malzahar-double-power",
+      "name": "Heimerdinger copies Malzahar — a second body-to-Power conversion each turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-111",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind unit, E3 P1 M3. Malzahar's exhaust is part of the ability's cost, so it is one of the '[exhaust] abilities' Heimerdinger has. Using it exhausts HEIMERDINGER and kills a friendly permanent of your choice."
+        },
+        {
+          "card": "OGN-113",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Mind unit, E4 M3. 'Kill a friendly unit or gear, exhaust: [Action] — [Add] 2 rainbow.' No restriction clause, so R30 does not apply."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Mind: any Mind legend."
+        ],
+        "notable": [
+          "THE CEILING IS FUEL, NOT THE ABILITY. Every activation eats one of your own units or gear, so the output is +2 rainbow Power per body, twice a turn instead of once. A token maker is what makes it worth the second activation — the Recruits of heimerdinger-vanguard-armory-recruits are the obvious feed, but that pairing is Mind/Order and this one is mono-Mind, so they are alternatives rather than a stack.",
+          "167 — 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.' The Power has to be made and spent inside the same Main Phase or it is gone, which is the same trap platewyrm-egg-defender-gate had to be corrected for.",
+          "The ability is [Action], so it also works in showdowns on either player's turn (806.1.c.1), and its own reminder says abilities that add resources cannot be reacted to.",
+          "143.4 — Heimerdinger enters exhausted, so the second conversion starts the turn after he lands.",
+          "Malzahar is one of the twelve printings in the pool that make Power WITHOUT recycling a rune, which is the exception battle-mistress-gold-refund had to be rewritten for. Doubling him doubles a source that does not feed rune-recycle triggers."
+        ]
+      },
+      "steps": [
+        "Malzahar, Fanatic and Heimerdinger, Inventor both on the board and ready.",
+        "Main Phase: kill a friendly unit or gear and exhaust Malzahar — [Add] 2 rainbow Power.",
+        "Kill a second friendly unit or gear and exhaust Heimerdinger, using his copy of the same ability — [Add] 2 more.",
+        "Spend it this Main Phase (167)."
+      ],
+      "netPerIteration": "+2 rainbow Power per friendly permanent killed, twice per turn instead of once",
+      "terminatesIn": "engine only — 4 rainbow Power a turn if you have two spare bodies, and nothing at all if you do not",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube - gyroseanplays, \"Going Infinite in Mel is INSANE! (but kinda complicated)\", 7.091 views",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=_a8Osr36BX0&t=237",
+          "date": "2026-08-14",
+          "quote": "[3:57] going to use Heimerdinger's uh effect to [3:59] tap him and copy Malzahar's tap ability, [4:03] which says kill a friendly unit, add two [4:05] power. I'm going to kill the Bubblebot, [4:08] adding two power.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Internet mining lens — issue #46 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/46",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 1. The smallest of the three Heimerdinger entries and the one with the clearest bound: the ability is free to copy, the bodies it eats are not. Cross-references sprite-fountain-malzahar-jayce, which already uses Malzahar as a bodies-into-Power converter; this doubles its rate. The source's own deck needs Heimerdinger to be a Mech for unrelated reasons ('Heimerdinger needs to be a mech' at [3:53]) — that is a requirement of their Mel shell, not of this pairing, and it is deliberately not in the prerequisites. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
     }
   ]
 }
