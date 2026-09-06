@@ -668,41 +668,125 @@ function renderTray(hits: Hit[]) {
 }
 const markChips = () => { for (const c of tray.querySelectorAll<HTMLElement>(".chip")) c.classList.toggle("active", c.dataset.combo === selected); };
 
+/**
+ * A tray chip is a ROUTE, not an entry: `Variant` is one combo plus the entries that satisfy its
+ * `needs`, carrying the merged card set and the best class among them (`src/combos.ts`). Rendering
+ * only `comboIds[0]` made the drawer contradict the chip that opened it — 23 of today's routes put
+ * a different class in the two places, and 75 showed fewer pieces than the chip's own card count.
+ * So the route is the unit of display: merged pieces once at the top, then one section per entry.
+ *
+ * The sections run in resolution order, supporting entries first and the entry that needed them
+ * last, because that is the order they are played in. For the 92% of entries with no `needs` there
+ * is exactly one section and no disclosure furniture at all.
+ */
 function showDetail(id: string | null) {
   if (!id || !deck) { detail.hidden = true; return; }
-  const c = combosById.get(id)!;
-  const colors = outcomeColors(shownHits());
-  const rows = c.uses.map((u) => {
+  const hits = shownHits();
+  const variant = hits.find((h) => h.variant.comboIds[0] === id)?.variant;
+  const head = combosById.get(id)!;
+  const entries = (variant?.comboIds ?? [id]).map((cid) => combosById.get(cid)).filter((c): c is Combo => !!c);
+  const cls = variant?.class ?? head.class;
+  const status = variant?.status ?? head.status;
+  const colors = outcomeColors(hits);
+
+  // Merged pieces, in the order the entries introduce them, with the route's own quantity.
+  const seen = new Set<string>();
+  const pieces: { card: string; quantity: number; role: string }[] = [];
+  for (const e of entries) for (const u of e.uses) {
+    if (seen.has(u.card)) continue;
+    seen.add(u.card);
+    pieces.push({ card: u.card, quantity: variant?.cards[u.card] ?? u.quantity, role: u.role });
+  }
+  const rows = pieces.map((u) => {
     const card = cards.get(u.card)!;
     const have = own(u.card);
-    const src = thumb(card.image, 120);
+    const price = priceOf(u.card);
+    const sub = [card.code, price, u.role, card.domains.join("/")].filter(Boolean).join(" · ");
     return `<div class="card-row${have < u.quantity ? " missing" : ""}">
-      ${cardThumb(u.card, card.name, src)}
-      <div><div class="cname">${esc(card.name)}</div><div class="csub">${esc(card.code)} · ${esc(u.role)}${card.domains.length ? " · " + esc(card.domains.join("/")) : ""}</div></div>
+      ${cardThumb(u.card, card.name, thumb(card.image, 120))}
+      <div><div class="cname">${esc(card.name)}</div><div class="csub">${esc(sub)}</div></div>
       <span class="have${have < u.quantity ? " short" : ""}">${Math.min(have, u.quantity)}/${u.quantity}</span>
     </div>`;
   }).join("");
-  const title = c.uses.slice(0, 3).map((u) => esc(name(u.card))).join('<span class="plus">+</span>') + (c.uses.length > 3 ? `<span class="plus">+</span>${c.uses.length - 3} more` : "");
-  const legendDomains = [...new Set(c.uses.flatMap((u) => cards.domainsOf(u.card)))];
-  detail.hidden = false;
-  detail.innerHTML = `
-    <div class="drawer-head">
-      <div><p class="eyebrow">Selected route</p><h2>${title}</h2></div>
-      <button type="button" class="icon-btn" id="close-detail" aria-label="Close">×</button>
-    </div>
-    <p class="meta">${esc(c.name)} · ${esc(legendDomains.join(" + ") || "any legend")} · ${esc(classLabel(c.class))}${c.status === "verified" ? "" : " · " + esc(c.status)}</p>
-    ${victoryNote(c.class, fmt()) ? `<p class="score-short">${esc(victoryNote(c.class, fmt()))}</p>` : ""}
-    <h3>Pieces</h3><div class="card-list">${rows}</div>
+
+  // The tray chip counts COPIES, not distinct cards. Two numbers called "cards" disagreeing on one
+  // screen is the defect this change exists to remove, so the drawer counts the same way.
+  const copies = pieces.reduce((n, u) => n + u.quantity, 0);
+  const title = pieces.slice(0, 3).map((u) => esc(name(u.card))).join('<span class="plus">+</span>')
+    + (pieces.length > 3 ? `<span class="plus">+</span>${pieces.length - 3} more` : "");
+  const legendDomains = variant?.domains ?? [...new Set(entries.flatMap((c) => c.uses.flatMap((u) => cards.domainsOf(u.card))))];
+
+  /**
+   * A source a reader can open elsewhere and a record of this project's own walk are two different
+   * claims, and giving them the same accent link said they were one. The walk records are 63% of
+   * the 862 sources, which is why they were the whole of the wall.
+   */
+  const EXTERNAL = new Set(["article", "riot", "video", "tournament-report"]);
+  const sourcesOf = (c: Combo) => {
+    const ext = c.sources.filter((s) => s.url || EXTERNAL.has(s.kind));
+    const own_ = c.sources.filter((s) => !ext.includes(s));
+    const extLi = ext.map((s) => {
+      const href = sourceHref(s);
+      return `<li>${href ? `<a href="${esc(href)}" rel="noopener" target="_blank">${esc(s.title)}</a>` : esc(s.title)}${
+        s.date ? ` <span class="csub">${esc(s.date)}</span>` : ""}</li>`;
+    }).join("");
+    // The title of a walk record ends in the repo path it names; the path is the link, not the label.
+    const ownLi = own_.map((s) => {
+      const href = sourceHref(s);
+      const label = s.title.replace(/\s*\((docs\/[^\s)]+\.md)\)\s*$/, "");
+      return `<li>${esc(label)}${s.date ? ` <span class="csub">${esc(s.date)}</span>` : ""}${
+        href ? ` <a class="record" href="${esc(href)}" rel="noopener" target="_blank">record</a>` : ""}</li>`;
+    }).join("");
+    return `<h3>Sources</h3>${
+      ext.length ? `<p class="src-kind">Published elsewhere</p><ul class="sources">${extLi}</ul>` : ""}${
+      own_.length ? `<p class="src-kind">Walked here, in this project</p><ul class="sources own">${ownLi}</ul>` : ""}`;
+  };
+
+  const body = (c: Combo) => `
     ${c.prerequisites.notable.length ? `<h3>Prerequisites</h3><ul>${c.prerequisites.notable.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
-    ${c.needs.length ? `<h3>Needs first</h3><p>${c.needs.map((n) => esc(featuresById.get(n)?.name ?? n)).join(", ")}</p>` : ""}
     <h3>Steps</h3><ol>${c.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
     ${c.netPerIteration ? `<h3>Per iteration</h3><p class="net">${esc(c.netPerIteration)}</p>` : ""}
-    <h3>Payoff</h3><div class="pills">${c.produces.map((f) => featuresById.get(f)).filter((f): f is Feature => !!f && f.status === "STANDALONE").map((f) => `<span class="pill" data-feature="${esc(f.id)}">${esc(f.name)}</span>`).join("")}</div>
-    ${c.prerequisites.easy.length ? `<h3>Deck</h3><ul>${c.prerequisites.easy.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
-    <h3>Sources</h3><ul class="sources">${c.sources.map((s) => { const href = sourceHref(s); return `<li>${href ? `<a href="${esc(href)}" rel="noopener" target="_blank">${esc(s.title)}</a>` : esc(s.title)}${s.date ? ` <span class="csub">${esc(s.date)}</span>` : ""}</li>`; }).join("")}</ul>
+    ${c.terminatesIn ? `<h3>How it ends</h3><p class="ends">${esc(c.terminatesIn)}</p>` : ""}
+    ${sourcesOf(c)}
     ${c.notes ? `<details class="audit"><summary>How this entry was audited</summary>
       <p class="audit-key">${AUDIT_KEY}</p><p>${esc(c.notes)}</p></details>` : ""}
     <p class="rules-version">Walked against Core Rules ${esc(c.rulesVersion)}</p>`;
+
+  const ordered = entries.length > 1 ? [...entries].reverse() : entries;
+  const supplies = (c: Combo) => {
+    const names = head.needs.filter((n) => c.produces.includes(n)).map((n) => featuresById.get(n)?.name ?? n);
+    return names.length ? `<span class="rstep-supplies">supplies ${esc(names.join(", "))}</span>` : "";
+  };
+  const sections = entries.length === 1
+    ? body(entries[0]!)
+    : `<h3 class="route-h">The route · ${entries.length} catalogued entries</h3>` + ordered.map((c, i) => `
+      <details class="route-step"${i === 0 ? " open" : ""}>
+        <summary><span class="rstep-n">${i + 1}</span><span class="rstep-name">${esc(c.name)}</span>
+          <span class="rstep-class">${esc(classLabel(c.class))}</span>${supplies(c)}</summary>
+        ${body(c)}
+      </details>`).join("");
+
+  // The route's outcome pills and its deck requirements are properties of the whole route, so they
+  // are said once, above the sections, rather than repeated inside each of them.
+  const produces = [...new Set(entries.flatMap((c) => c.produces))];
+  const easy = [...new Set(entries.flatMap((c) => c.prerequisites.easy))];
+  const short = victoryNote(cls, fmt());
+
+  detail.hidden = false;
+  detail.innerHTML = `
+    <div class="drawer-head">
+      <div><p class="eyebrow">Selected route</p>
+        <p class="route-class">${esc(classLabel(cls))}</p>
+        <h2>${title}</h2></div>
+      <button type="button" class="icon-btn" id="close-detail" aria-label="Close">×</button>
+    </div>
+    <p class="meta">${copies} card${copies === 1 ? "" : "s"} · ${
+      esc(legendDomains.join(" + ") || "any legend")}${status === "verified" ? " · verified" : " · " + esc(status)}</p>
+    ${short ? `<p class="score-short">${esc(short)}</p>` : ""}
+    <h3>Pieces <span class="h3-hint">(have / need)</span></h3><div class="card-list">${rows}</div>
+    ${produces.length ? `<h3>Payoff</h3><div class="pills">${produces.map((f) => featuresById.get(f)).filter((f): f is Feature => !!f && f.status === "STANDALONE").map((f) => `<span class="pill" data-feature="${esc(f.id)}">${esc(f.name)}</span>`).join("")}</div>` : ""}
+    ${easy.length ? `<h3>Deck</h3><ul>${easy.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
+    ${sections}`;
   for (const pill of detail.querySelectorAll<HTMLElement>(".pills .pill")) { const col = colors.get(pill.dataset.feature!) ?? "#8b93a4"; pill.style.color = col; pill.style.borderColor = col; }
   detail.querySelector("#close-detail")!.addEventListener("click", closeDetail);
 }

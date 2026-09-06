@@ -250,10 +250,35 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
   background: var(--bg); border-left: 1px solid var(--line-2); z-index: 3;
 }
 .drawer-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-.drawer h2 { margin: 0 0 6px; font-size: 20px; line-height: 1.3; }
+/* The class is the drawer's headline. It reads through size and weight, never a per-class colour
+   (that would be the categorical rainbow this project rules out), which leaves the accent to mean
+   one thing here: something you can click. */
+.drawer .route-class { margin: 0 0 2px; font: 700 21px/1.2 var(--font); color: var(--text); }
+.drawer h2 { margin: 0 0 6px; font: 500 14px/1.35 var(--font); color: var(--muted); }
 .drawer h2 .plus { color: var(--accent); font-weight: 400; padding: 0 5px; }
 .drawer .meta { margin: 0 0 18px; font: 500 12px var(--mono); color: var(--muted); }
-.drawer h3 { margin: 20px 0 8px; font-family: var(--font); font-weight: 600; font-size: 13px; letter-spacing: .05em; color: var(--accent); }
+.drawer h3 { margin: 20px 0 8px; font-family: var(--font); font-weight: 600; font-size: 13px; letter-spacing: .05em; color: var(--faint); }
+.drawer h3 .h3-hint { font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--faint); }
+.drawer .ends { font-size: 13px; color: var(--muted); }
+
+/* One section per catalogued entry of the route, supporting entries first and the entry that needed
+   them last. Only the first is open: an 8% minority of entries have `needs` at all, and a route
+   caps at three, so this is progressive disclosure for the few and invisible for the many. */
+.route-step { border-top: 1px solid var(--line); padding: 10px 0 2px; }
+.route-step > summary { cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; font: 500 13px/1.4 var(--font); color: var(--text); }
+.route-step > summary:hover { color: var(--accent); }
+.route-step .rstep-n { font: 500 11px var(--mono); color: var(--faint); }
+.route-step .rstep-name { flex: 1 1 auto; }
+.route-step .rstep-class { font: 600 11px var(--mono); letter-spacing: .04em; color: var(--muted); }
+.route-step .rstep-supplies { flex: 1 0 100%; font: 500 11px var(--mono); color: var(--faint); }
+.drawer h3.route-h { margin-top: 22px; }
+
+/* A page a reader can open and a record of this project's own walk are two different claims, so
+   they do not get the same link affordance (#158). */
+.drawer .src-kind { margin: 10px 0 4px; font: 500 11px var(--mono); letter-spacing: .04em; color: var(--faint); }
+.drawer .sources.own { color: var(--faint); font-size: 12.5px; }
+.drawer .sources.own .record { margin-left: 6px; font: 500 11px var(--mono); color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+.drawer .sources.own .record:hover { color: var(--accent); }
 .drawer ol, .drawer ul { margin: 0; padding-left: 18px; font-size: 14px; color: var(--text); }
 .drawer li { margin: 6px 0; }
 .drawer li::marker { color: var(--faint); }

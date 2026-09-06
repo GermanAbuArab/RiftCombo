@@ -82,7 +82,8 @@ describe("the 2v2 toggle", () => {
     await settle();
     const drawer = document.querySelector<HTMLElement>("#detail")!;
     expect(drawer.hidden).toBe(false);
-    expect(drawer.querySelector(".meta")!.textContent).toContain("CHAIN · 8 points");
+    // The class is the drawer's headline now, not a fragment of the meta line (#158).
+    expect(drawer.querySelector(".route-class")!.textContent).toContain("CHAIN · 8 points");
     expect(drawer.querySelector(".score-short")!.textContent).toBe(NOTE);
   });
 
