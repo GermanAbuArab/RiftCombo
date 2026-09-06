@@ -8182,6 +8182,487 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 1. The smallest of the three Heimerdinger entries and the one with the clearest bound: the ability is free to copy, the bodies it eats are not. Cross-references sprite-fountain-malzahar-jayce, which already uses Malzahar as a bodies-into-Power converter; this doubles its rate. The source's own deck needs Heimerdinger to be a Mech for unrelated reasons ('Heimerdinger needs to be a mech' at [3:53]) — that is a requirement of their Mel shell, not of this pairing, and it is deliberately not in the prerequisites. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "lady-luminosity-loop-comet",
+      "name": "Lady of Luminosity pays for the loop's fourth recycle slot — a Falling Comet every pass",
+      "class": "INFINITE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-021",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Mind/Order legend. 'When you play a spell that costs 5 Energy or more, draw 1.' It occupies no deck slot, and 206's worked example transcribes the identical clause off OGS-006 Lux, Illuminated, so the printed cost is what it reads."
+        },
+        {
+          "card": "OGN-085",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E5, no Power: 'Deal 6 to a unit at a battlefield.' Cheapest printing in Mind/Order that clears Lady's 5-Energy threshold. One in hand and one in the trash at loop start, exactly like Shadow's Call and Sacrifice."
+        },
+        {
+          "card": "OGN-212",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "'Kill this: Recycle up to 4 cards from trashes.' The plain pass uses 3 of the 4; this line spends the fourth on the Comet."
+        },
+        {
+          "card": "OGN-110",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "[Deathknell] - Recycle me to ready your runes. Unchanged from lux-infinite-energy."
+        },
+        {
+          "card": "UNL-165",
+          "quantity": 2,
+          "role": "enabler",
+          "note": "Draw 2. Costs 2 Energy, so it never triggers Lady - which is what keeps the card ledger at exactly one extra draw per pass."
+        },
+        {
+          "card": "UNL-173",
+          "quantity": 2,
+          "role": "enabler",
+          "note": "Reaction; kills Ekko as its cost, draws 2, channels the recycled rune back. Costs 1 Energy, so it never triggers Lady either."
+        }
+      ],
+      "needs": [
+        "infinite-energy"
+      ],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend must be OGS-021 Lady of Luminosity specifically. lux-infinite-energy lists four legal Mind/Order legends; this is the one that turns the spare slot into a spell."
+        ],
+        "notable": [
+          "THE CARD LEDGER IS THE WHOLE ENTRY, AND IT CLOSES AT 5 = 5. A loop pass is closed only when cards recycled into the deck equal cards drawn. The verified Energy pass balances at 4 = 4 (Forge recycles Forge + Shadow's Call + Sacrifice, Ekko's Deathknell recycles Ekko; Shadow's Call and Sacrifice draw 2 each). Adding Falling Comet puts a fifth card into the deck through Forge's fourth slot, and Lady's draw is the fifth draw that takes it back out. Without Lady the pass strands one card in the deck, and 416.5 randomises cards recycled simultaneously so you cannot even choose which one.",
+          "PRICE: 4 ENERGY PER COMET, 0 POWER. The plain pass spends 10 Energy (Ekko 5 + Shadow's Call 2 + Sacrifice 1 + replaying Forge 2) against 11 from Ekko's readied runes, for +1. The Comet pass spends 15 against the same 11, for -4. Four plain passes fund one Comet, and the engine mints them without bound. Issue #47 priced this at 8 Energy on OGS-022 Final Spark; Falling Comet does the same job for 4 and stays inside Mind.",
+          "IT EXTENDS THE #21 LEDGER, IT DOES NOT CONTRADICT IT. That ledger's finding is that draws, not slots, are scarce - every pass leaves a spare slot and zero spare draws, and an extra cycled card costs 1 Energy + 1 Mind Power (about 10 Energy) through Renata Mastermind's exhaust-free 'Draw 1'. Lady supplies that draw free, paid for by a spell the deck wanted to cast anyway.",
+          "WHAT IT COMPETES WITH, PRECISELY. renata-mastermind-points cycles its Retreat through the one spare slot of the Energy pass, so on a pass that fires the Comet all four slots are taken and the two cannot share THAT pass. They are not alternatives: a Renata point costs about 50 passes and each pass leaves its slot behind, so the Retreat passes and the Comet passes simply interleave.",
+          "ORDER: FORGE FIRST, COMET SECOND. Lady's draw carries no 'may', so 431.1.a would Burn Out on an empty deck and hand an opponent a point. Firing Forge first puts the deck at 4; the Comet takes it to 3.",
+          "LADY FIRES EXACTLY ONCE PER PASS, and the ledger depends on it. Shadow's Call is 2 Energy and Sacrifice is 1, both under her threshold; Forge is gear and Ekko is a unit, and she only reads spells.",
+          "OGS-022 Final Spark (Mind/Order, E8, 'Deal 8 to a unit') is the same line 3 Energy dearer, and the upgrade when a 7- or 8-Might body has to die. OGS-015 Recruit the Vanguard (Order, E6, four Recruit tokens 'to your base or to battlefields you control') is the third instance, though the engine already makes a Recruit a pass through Forge's play trigger.",
+          "Falling Comet needs 'a unit at a battlefield'. With nothing on the table it is simply not played and the pass reverts to a plain one: this is a rider on the engine, never a requirement of it."
+        ]
+      },
+      "steps": [
+        "Run lux-infinite-energy to its steady state: Forge of the Future on the board, Main Deck empty, 12 runes out, and one each of Shadow's Call, Sacrifice and Falling Comet in the trash.",
+        "Activate Forge of the Future (Kill this) and recycle all FOUR slots: Forge, a Shadow's Call, a Sacrifice and a Falling Comet. Deck: 4 cards.",
+        "Play Ekko, Recurrent for 5 Energy + 1 Mind Power, paying the Power by recycling an already-exhausted Mind rune (164.2.b carries no exhaust in its cost).",
+        "Play Falling Comet from hand for 5 Energy. Lady of Luminosity triggers on the printed cost (206) and draws 1 - the deck is at 4, so the mandatory draw is safe. Deck: 3.",
+        "Play Shadow's Call (2 Energy) targeting Ekko and let it resolve: draw 2. Deck: 1.",
+        "Exhaust every still-ready rune for floating Energy, then play Sacrifice (1 Energy): its additional cost kills Ekko, whose Deathknell recycles him and readies the runes. Sacrifice resolves: draw 2. Deck: 0.",
+        "Replay Forge of the Future (2 Energy). Hand holds Shadow's Call, Sacrifice, Falling Comet and Ekko again, and the trash holds the three spells just played.",
+        "Repeat. Four plain passes pay for the next Comet."
+      ],
+      "netPerIteration": "-4 Energy and one Falling Comet (deal 6 to a unit at a battlefield) per Comet pass; the card count closes at 5 recycled = 5 drawn",
+      "terminatesIn": "unbounded repeatable removal - one Falling Comet every four Energy passes, forever, spending no Power and no net cards",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Legend lens — issue #47 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/47",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md), issue #47 candidate 1. PROMOTED ENGINE -> INFINITE by the walk, with the reason written down as CLAUDE.md requires: the pass is a closed cycle riding an engine already verified INFINITE and its net cost is Energy that same engine mints without bound, which is the shape of lux-infinite-power and renata-mastermind-points, both INFINITE and both needs: infinite-energy. Two corrections to the candidate: the spell is OGN-085 Falling Comet (Mind, E5, no Power), not OGS-022 Final Spark, which costs 3 more for 2 more damage; and the closing argument is the card-balance identity above, not the ledger's 'spare slot', which the #21 ledger had already demoted. Trap check: no [Repeat], so 429.3/R21 cannot bite; the [Temporary] mark goes on Ekko and dies with him inside the same Main Phase; no attack, so 807.1.d/383.4.e/461 never engage; no Energy crosses a Main Phase boundary (167); the rune recycled for Power goes to the Rune Deck (161.2.b) and Sacrifice channels it back. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "heimerdinger-herald-legend-recruits",
+      "name": "Heimerdinger reaches the Legend Zone — Herald of the Arcane's exhaust on a second body",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-111",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind unit, E3 P1 M3. 'I have all [exhaust] abilities of all friendly legends, units, and gear.' 355.9.a.4 gives the referent: \"'Legend' refers to a legend in the Legend Zone.\" Using the copy costs 1 Energy and exhausts HEIMERDINGER."
+        },
+        {
+          "card": "OGN-265",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Mind/Order legend. '1 Energy, [exhaust]: Play a 1 Might Recruit unit token.' 377.1 makes this an Activated Ability (a cost, a colon, an effect), which is why it travels; it prints no restriction clause, so R30 = B has nothing to carry."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "infinite-recruits"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend must be OGN-265 Herald of the Arcane specifically, and Heimerdinger is Mind, so the identity is Mind/Order (103.1.b)."
+        ],
+        "notable": [
+          "THE FIRST ENTRY IN THE CATALOGUE WHERE HEIMERDINGER REACHES A LEGEND. heimerdinger-vanguard-armory-recruits copies gear and heimerdinger-malzahar-double-power copies a unit; neither touches the Legend Zone. 355.9.a.4 is the referent that makes 'friendly legends' mean your Champion Legend.",
+          "AND IT IS THE ONLY LEGEND HE CAN REACH. A trigger worded 'When you conquer, you may exhaust me to ...' is a Triggered Ability (383.1), not an [exhaust] ability, so Heimerdinger does not get it. That excludes SFD-187 Void Burrower, UNL-193 Gloomist, UNL-195 Green Father, OGN-249 Relentless Storm, SFD-205 Grand Duelist and VEN-145 Curator of the Sands - six of the seven exhaust-paying legends in the lens. Herald is the one whose exhaust sits in an activated ability's cost.",
+          "THE TOKENS GO STRAIGHT TO A BATTLEFIELD. Herald's text names no destination, and 355.2.a settles it: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' Issue #47's third refutation point - that the Recruits land at base and need another turn of moves - is wrong.",
+          "TWO RECRUITS A TURN FOR 2 ENERGY, AND THE SEVENTH IS THE INTERESTING ONE. Heimerdinger has ALL the exhaust abilities but only one exhaust to spend, so beside SFD-168 Vanguard Armory (heimerdinger-vanguard-armory-recruits, same Mind/Order identity) he takes the Armory's three: Armory 3 + Heimerdinger 3 + the legend 1 = SEVEN in a single turn, which is exactly OGN-293 The Grand Plaza's threshold. That entry's 'reaches seven in two turns' becomes one turn once the legend is counted.",
+          "SFD-210 Hall of Legends ('When you conquer here, you may pay 1 Energy to ready your legend') is a third Recruit for 1 Energy plus the readying - but it and The Grand Plaza can never share a table: 485.4.a has each player provide three battlefields and use only one, and 103.4.c with Tournament Rules 402.1 forbid two of the same name. Random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5). And a battlefield you provide starts UNCONTROLLED (190.1, 190.6.d), so its text is off until you walk a body there.",
+          "143.4 - Heimerdinger enters exhausted, so the engine starts the turn after he lands, and the Recruits enter exhausted too, so they neither defend nor move the turn they appear. 415.3.a readies the legend and Heimerdinger every Awakening.",
+          "For the Plaza finish the seven must survive the opponent's whole turn: 315.2.b.2 puts the Hold in your Beginning Phase and 383.2.a.1 measures the condition when the trigger is placed."
+        ]
+      },
+      "steps": [
+        "Play Heimerdinger, Inventor (3 Energy + 1 Power). He enters exhausted (143.4).",
+        "From the next turn on, 415.3.a readies him in your Awakening alongside the legend.",
+        "Main Phase: pay 1 Energy and exhaust Herald of the Arcane - one 1 Might Recruit token, placed at your base or at a battlefield you control (355.2.a).",
+        "Pay 1 Energy again and exhaust Heimerdinger, using his copy of the same ability - a second Recruit, to the same choice of locations.",
+        "Two bodies a turn for 2 Energy and no cards, every turn. With the Vanguard Armory also on the board, take the Armory's three with Heimerdinger's exhaust instead and the turn total is seven."
+      ],
+      "netPerIteration": "+2 Recruit tokens per turn for 2 Energy and no cards; +7 per turn beside the Vanguard Armory",
+      "terminatesIn": "engine only - two free bodies a turn, seven with the Armory; it wins through a Grand Plaza hold at 7+ units, not on its own",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Legend lens — issue #47 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/47",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md), issue #47 candidate 2. Issue #47's finding D claimed Heimerdinger was uncatalogued; that was measured before the walk of #46 landed the two entries above the same day, and the correction is recorded here. What is genuinely new is the Legend Zone reach. Trap check: no [Repeat]; no [Temporary]; the tokens are not Temporary and so they do Hold; no attack trigger, so 807.1.d/383.4.e/461 do not engage; no rune recycled for Power; no Energy carried across a Main Phase boundary (167). R30 = B does not bite because Herald prints no 'use only while' clause. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "curator-printed-cost-rebate",
+      "name": "Curator of the Sands reads the printed cost — the discount is free, the Empower discount is not",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-145",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Mind legend. 'When you play a unit, gear, or activated ability with Energy cost 7 or more, you may exhaust me to ready up to 2 runes.' Core Rules 206.1 prints this card's clause verbatim inside its own worked example."
+        },
+        {
+          "card": "VEN-064",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E10 M8, [Deflect]. 'I cost 1 Energy less for each gear you control.' 206 keeps Curator reading the PRINTED 10 however far the actual cost falls."
+        },
+        {
+          "card": "OGN-120",
+          "quantity": 3,
+          "role": "resource",
+          "zone": "BOARD",
+          "note": "Mind gear, E0 P1. Three Seals of Insight are the cheapest gear count in Mind: they cost one recycled rune in total (see seal-power-faucet-bootstrap) and each shaves 1 Energy off Plaza Guardian."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend must be VEN-145 Curator of the Sands; the identity is Calm/Mind and every card here is Mind."
+        ],
+        "notable": [
+          "THE CANDIDATE'S HEADLINE LINE IS DEAD, AND 827.1.c.3 IS WHY. Issue #47 proposed VEN-050 Grumpy Rockbear and VEN-032 Frostcoat Mother, whose '[Empower] 12 Energy. This ability costs 1 Energy less for each rune you control' would cost 0 at 12 runes while 206.1 read the base 12. But 206.1 says 'ignoring any alterations to that base cost UNLESS OTHERWISE SPECIFIED', and 827.1.c.3 is the specification: 'Empower abilities may also include text that alters the Empower cost. Such text is taken into account when determining a card's Empower cost for any reason.' At 12 runes that Empower costs 0 and Curator does not trigger.",
+          "206 HAS NO SUCH ESCAPE CLAUSE, AND THAT ASYMMETRY IS THE ENTRY. 'Effects that need to determine a CARD's cost for any purpose always use its printed or copied cost, even if that cost is increased, decreased, or ignored as the card is played.' Curator's trigger names units and gear as well as abilities, so a discounted CARD still turns her on while a discounted EMPOWER does not.",
+          "THE ARITHMETIC, WITH THE DECLARED QUANTITIES. Plaza Guardian is printed at 10. With the three Seals on the board he is played for 7; every further gear takes another Energy off, and 206 holds the read at 10 the whole way down. Curator then readies 2 runes, worth 2 Energy through 164.2.a or 2 Power through 164.2.b - an M8 [Deflect] body for a net 5 Energy at three gear and a net 2 at six, with no Power.",
+          "ONLY TWO ACTIVATED ABILITIES IN THE POOL CAN EVER TRIGGER HER, AND THEY ARE THE FLAT EMPOWERS. A sweep of the whole corpus for an activated ability costing 7+ Energy returns four printings: VEN-032 and VEN-050, both dead by 827.1.c.3, and VEN-043 Steel Paws ([Empower] 7, a 1-Energy card that becomes an M7 [Deflect] body) and VEN-046 Nasus, Ascended ([Empower] 8). Both are Calm and both are in identity. 827.1 is what lets them in at all: 'Empower is an Activated Ability keyword.'",
+          "THE OTHER FALLBACK #47 OFFERED IS DEAD TOO. SFD-084 Jayce, Man of Progress plays 'a gear with Energy cost no more than 7 from hand this turn, ignoring its Energy cost', and 206 would indeed keep the read at the printed cost - but the only gear in the entire pool printed at exactly 7 Energy is SFD-168 Vanguard Armory, which is Order and outside Curator's Calm/Mind identity (103.1.b).",
+          "ONCE PER TURN. Curator pays an exhaust and 415.3.a returns it only in your own Awakening, so the rebate is 2 runes a turn whatever else happens. nasus-ascended-sentinel-arena-hold already carries the Nasus half of this as a notable and is untouched by this entry.",
+          "UNL-059 Master Yi, Unstoppable (Calm, printed E12, discounted by [Level 3]/[Level 6]/[Level 11]) and VEN-044 Astral Heron (Calm, E7, which discounts the NEXT card you play) are the other two 206 cases inside the identity."
+        ]
+      },
+      "steps": [
+        "Bootstrap the three Seals of Insight for one recycled rune and no Energy (the line in seal-power-faucet-bootstrap).",
+        "Play Plaza Guardian. With three gear he costs 7 Energy; with six he costs 4.",
+        "Curator's trigger reads the PRINTED cost of 10 (206), not what you paid. Exhaust her: ready up to 2 runes.",
+        "Exhaust those two runes for 2 Energy (164.2.a), or recycle them for 2 Power (164.2.b, no exhaust in its cost).",
+        "Next turn 415.3.a readies Curator again, for the next unit or gear printed at 7 or more - or for VEN-043 Steel Paws' flat [Empower] 7."
+      ],
+      "netPerIteration": "+2 readied runes per turn, on a card whose actual cost may be anything down to 0",
+      "terminatesIn": "engine only - 2 Energy or 2 Power a turn, and only on a turn you play something printed at 7+ Energy",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Legend lens — issue #47 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/47",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md), issue #47 candidate 3, which was REFUTED as proposed and rewritten. The refutation is the valuable half: 827.1.c.3 is the 'unless otherwise specified' that 206.1 leaves open, so the two discounted Empowers in the pool cannot be exploited, and 206.1's second worked example shows the same mechanism from the other side on an Equip cost. What survives stands on 206, which has no exception clause at all. Trap check: no [Repeat]; no [Temporary]; no attack trigger; the readied runes are spent in the same Main Phase they are made, so 167 does not bite; the runes recycled for Power leave for the Rune Deck (161.2.b). Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "blade-dancer-caitlyn-choose-ready",
+      "name": "Blade Dancer readies on a choose — Heart of Dark Ice both triggers her and doubles Caitlyn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-195",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Chaos legend. 'When you choose a friendly unit, you may exhaust me and pay 1 rainbow Power to ready it. When you conquer, you may pay 1 Energy to ready me.' The only ready in the pool triggered by choosing."
+        },
+        {
+          "card": "OGN-068",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 P1 M3. '[exhaust]: Deal damage equal to my Might to a unit at a battlefield. Use this ability only while I'm at a battlefield.' 377.2.b makes that last sentence a condition on activating, and its worked example is the same sentence on Ultrasoft Poro."
+        },
+        {
+          "card": "SFD-052",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Calm gear, E3 P1. '[exhaust]: Give a unit +3 Might this turn.' Pointed at Caitlyn it does two jobs at once: it is the choose that triggers Blade Dancer, and it is what makes the second activation hit for 6 instead of 3."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend must be SFD-195 Blade Dancer; Caitlyn and Heart of Dark Ice are both Calm, inside its Calm/Chaos identity."
+        ],
+        "notable": [
+          "THE CHOOSE IS REAL, AND TWO RULES SAY SO. 355.5: 'If a card requires you to specifically choose one or more Game Objects, that choice is made now.' 355.7: 'When a card Chooses one or more specific Game Objects to affect, it is Targeted unless indicated otherwise.' 'Give a unit +3 Might this turn' names one specific unit, so 355.5.a's carve-out for effects that hit objects 'based on criteria' does not apply. 426.1.c confirms the same reading for the buff family: 'Units with Buff Counters can still be chosen for actions that Buff units.'",
+          "THE TURN, WITH THE DECLARED QUANTITIES: exhaust Caitlyn for 3 damage; exhaust Heart of Dark Ice choosing Caitlyn, taking her to 6 Might; Blade Dancer triggers on that choose, exhaust her and pay 1 rainbow Power to ready Caitlyn; exhaust Caitlyn again for 6. NINE damage for one Power and no cards, against the three the same board deals without the pair.",
+          "THE SECOND AND THIRD READIES AND WHAT THEY COST. 415.3.a gives Blade Dancer one readying a turn for free. Her own 'When you conquer, you may pay 1 Energy to ready me' gives a second, but it buys nothing without a FURTHER choose, so it wants a second Heart of Dark Ice (103.2.b allows three): +1 Energy +1 Power, Caitlyn at 9 Might, a third activation for 9, eighteen damage in the turn. SFD-039 Royal Entourage (Calm, E3 P1 M4, 'When you play me, ready or exhaust a legend') is the third route and the only repeatable one, since it is a unit rather than a trigger.",
+          "THERE IS NO RECURSION, AND THE ENTRY DOES NOT PRETEND OTHERWISE. Blade Dancer readies the unit that was chosen, and readying is not itself a choose - 415.1 defines it as marking an object already on the board. One ready per exhaust of the legend, full stop. Caitlyn's own ability chooses an ENEMY unit, so it can never re-trigger the legend either.",
+          "Caitlyn has to stand at a battlefield for both activations (377.2.b), which also means she is exposed to combat; her 'I must be assigned combat damage last' is what keeps her alive there.",
+          "The +3 Might is 'this turn', not a Buff counter (702/703), so it is gone at end of turn and the damage has to be dealt inside the same turn."
+        ]
+      },
+      "steps": [
+        "Caitlyn, Patrolling at a battlefield and ready; Heart of Dark Ice on the board and ready.",
+        "Exhaust Caitlyn: deal 3 to a unit at a battlefield.",
+        "Exhaust Heart of Dark Ice, choosing Caitlyn: she is at 6 Might for the turn.",
+        "That choose triggers Blade Dancer. Exhaust her and pay 1 rainbow Power: ready Caitlyn.",
+        "Exhaust Caitlyn again: deal 6. Nine damage in the turn for one Power.",
+        "With a conquer and a second Heart of Dark Ice, pay 1 Energy to ready Blade Dancer and repeat for a third activation at 9 Might."
+      ],
+      "netPerIteration": "+1 extra Caitlyn activation per choose, at 1 rainbow Power each; 9 damage a turn on one Power, 18 with the conquer ready and a second gear",
+      "terminatesIn": "engine only - repeatable removal at 1 Power per shot, bounded by how many times something chooses a friendly unit and by Blade Dancer's own readyings",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Legend lens — issue #47 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/47",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md), issue #47 candidate 5. The candidate was filed honestly as 'a motor sin pago propio' and asked the walker to name the payment or send it to the synergy layer instead. The payment is Caitlyn, and the reason it is better than a payment is that the same gear activation does both jobs. Trap check: no [Repeat]; no [Temporary]; no attack designation is needed because nothing here is a combat trigger (807.1.d/383.4.e/461 do not engage); no rune recycled; the Power is spent in the Main Phase it is made (167). Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "void-burrower-play-from-deck",
+      "name": "Void Burrower plays off the top — the only route around the draw bottleneck, priced honestly",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-187",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Order legend. 'When you conquer, you may exhaust me to reveal the top 2 cards of your Main Deck. You may banish one, then play it. Recycle the rest.' It says only 'play it', with none of 356.1.b's 'ignoring' language, so 357.1 applies and the costs are paid."
+        },
+        {
+          "card": "SFD-164",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "DECK",
+          "note": "Order spell, E5 P1. 'I cost 2 Energy less to play from anywhere other than your hand. Kill a unit at a battlefield.' From banishment that is 3 Energy + 1 Power, against the 6 Energy + 1 Power OGS-012 Blast of Power charges for the identical effect in the same domain."
+        },
+        {
+          "card": "SFD-010",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "DECK",
+          "note": "Fury unit, E3 M3, tag The Void. Same 'cost 2 less from anywhere other than your hand' clause, so it lands for 1 Energy. It is the half of the pair issue #47 missed, and it doubles the hit rate."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend must be SFD-187 Void Burrower. Drag Under is Order and Void Drone is Fury, which is exactly its identity."
+        ],
+        "notable": [
+          "THE COSTS ARE PAID, AND 357.1 IS THE CITATION: 'In total, pay the combined Energy cost (if any) and Power cost (if any).' Nothing on Void Burrower matches 356.1.b's 'ignoring' wording, so the discount comes entirely from the two cards' own printed clause.",
+          "THE ODDS, STATED INSTEAD OF GLOSSED. 103.2 sets the Main Deck floor at 40 cards. With 6 of the 40 printed for this, one activation reveals two cards and hits with probability 1 - (34x33)/(40x39) = 28%. This entry promises a discounted play 28% of the time, not a kill on demand.",
+          "WHAT THE OTHER 72% BUYS IS NOT NOTHING. 'Recycle the rest' plus 416.1.a ('Main Deck cards are Recycled to the Main Deck') and 416.5 (bottom of the deck) means every activation filters two cards off the top for free - which, in a shell whose whole problem is the draw bottleneck, is paid every single turn whether or not the discount lands.",
+          "ONE ACTIVATION PER TURN. The exhaust is returned only by 415.3.a in your own Awakening, and the trigger needs a conquer, which 466.5.d caps at one per battlefield per turn.",
+          "UNL-029 Red Brambleback ('Your conquer effects for conquering here trigger an additional time') is Fury and does cross into this identity, but the additional instance has no second exhaust to pay, so it adds nothing here. The same is true of every other exhaust-paying conquer trigger among the legends.",
+          "It is the only card in the pool that plays a Main Deck card from outside your hand on a repeatable trigger, which is why it is worth an entry at 28%: nothing else in Fury/Order sidesteps the draw at all."
+        ]
+      },
+      "steps": [
+        "Conquer a battlefield (466.5.d, or through combat).",
+        "Exhaust Void Burrower: reveal the top 2 cards of your Main Deck.",
+        "If one of them is Drag Under, banish it and play it for 3 Energy + 1 Power - kill any unit at a battlefield. If it is Void Drone, banish it and play it for 1 Energy.",
+        "Recycle the rest to the bottom of the Main Deck (416.1.a, 416.5). On the 72% of activations that miss, that is two cards of free filtering.",
+        "415.3.a readies the legend in your next Awakening, for the next conquer."
+      ],
+      "netPerIteration": "one card played from outside your hand per conquer, at 2 Energy off when it is one of the six; two cards filtered off the top every time",
+      "terminatesIn": "engine only - one discounted play per conquer at a 28% hit rate, plus two cards of deck filtering per activation",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Legend lens — issue #47 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/47",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md), issue #47 candidate 6, rewritten. Issue #47 named only Drag Under and worried the entry would be a pure lottery; SFD-010 Void Drone carries the identical printed clause on the Fury side, which doubles the copies that can be hit, and the recycle half of the ability pays out on every activation. The 28% is computed from 103.2's 40-card floor and is stated in the entry rather than hidden. Trap check: no [Repeat]; no [Temporary]; the conquer is the trigger and needs no Attacker designation of its own; no rune recycled for Power; no Energy carried across a Main Phase boundary (167). Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "pridestalker-mighty-draw",
+      "name": "Pridestalker crosses the Mighty line for free — three bodies and three cards in one turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-183",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Body legend. 'When you play a unit, give a unit +1 Might this turn.' No cost and no 'may': every unit you play is a free +1 on a body of your choice, including the one that just arrived."
+        },
+        {
+          "card": "OGN-012",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "Fury unit, E4 M4. '[Legion] - I cost 2 Energy less. (Get the effect if you've played another card this turn.)' Three of them cost 4 + 2 + 2 = 8 Energy in one turn, and each enters at exactly 4 Might, one short of Mighty."
+        },
+        {
+          "card": "SFD-106",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E2 P1. '[Reaction] - Draw 1 for each of your [Mighty] units.' It is printed as a Reaction precisely because the +1s are 'this turn' and evaporate at end of turn."
+        },
+        {
+          "card": "OGN-038",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E9 P2 M9. 'When you play me, draw 1 for each of your [Mighty] units.' Playing him triggers Pridestalker at the same instant, and 383.3.d hands the ordering to you."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "infinite-draw"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend must be UNL-183 Pridestalker. Noxus Hopeful and Kadregrin are Fury, Show of Strength is Body: exactly its identity."
+        ],
+        "notable": [
+          "THE TURN, WITH THE DECLARED QUANTITIES AND NO BOARD BUILT IN ADVANCE. Play Noxus Hopeful #1 for 4 Energy: it enters at M4 and Pridestalker's trigger takes it to M5, Mighty. #2 and #3 cost 2 each with [Legion] on and cross the same way. EIGHT ENERGY FOR THREE MIGHTY BODIES. Then Show of Strength for 2 Energy + 1 Power draws THREE. Against the roughly 10 Energy per extra card the #21 ledger measured inside a closed loop, that is the cheapest draw in the catalogue that needs no engine underneath it.",
+          "THE TRIGGER REACHES THE UNIT THAT CAUSED IT. Playing finalises with the unit on the board and the trigger goes onto the Chain afterwards (383.3.c), so the freshly played body is a legal choice for its own +1. Nothing stops all the triggers landing on one body either: three plays put a lone M4 at M7.",
+          "383.3.d IS WHY KADREGRIN IS HERE. Playing him triggers Pridestalker and his own 'draw 1 for each of your [Mighty] units' simultaneously, and 383.3.d gives the ordering to the player who controls both. Resolve Pridestalker's +1 first, cross a fourth body, and Kadregrin draws for four - plus himself at M9, five.",
+          "SFD-103 Jaull-Fish (Body, E7 P2 M6, 'I cost 2 Energy less for each of your [Mighty] units') is the discount face of the same board: three Mighty units land him for 1 Energy + 2 Power.",
+          "ONE OF ISSUE #47'S OWN TRAPS IS DELETED ON DOMAIN. It warned that Pridestalker's mandatory +1 could be turned against you by UNL-173 Sacrifice, whose additional cost kills a friendly [Mighty] unit. Sacrifice is ORDER and Pridestalker is Fury/Body, so 103.1.b keeps it out of the deck. A sweep of the corpus for anything else that punishes your own Mighty units returns nothing: the five other printings naming [Mighty] (OGN-038, OGN-249, SFD-103, SFD-106, SFD-218) all reward it. The mandatory trigger is safe in this shell.",
+          "THE REAL BOUND. The +1 is 'this turn', not a Buff counter (702/703), so the whole Mighty board evaporates at end of turn and every payoff has to be cashed inside the same turn. 143.4 also means the three Hopefuls enter exhausted and cannot defend or move that turn.",
+          "Fury/Body is the only identity in the catalogue with no draw engine at all, which is what makes a 2 Energy + 1 Power draw-three worth an entry rather than a footnote."
+        ]
+      },
+      "steps": [
+        "Play Noxus Hopeful #1 for 4 Energy. It enters at 4 Might; Pridestalker's trigger gives it +1, so it is Mighty.",
+        "Play Noxus Hopeful #2 for 2 Energy ([Legion] is on - another card was played this turn) and cross it the same way.",
+        "Play Noxus Hopeful #3 for 2 Energy and cross it too. Three Mighty units for 8 Energy total.",
+        "Play Show of Strength as a Reaction for 2 Energy + 1 Power: draw 3.",
+        "Or instead play Kadregrin the Infernal for 9 Energy + 2 Power, ordering Pridestalker's trigger ahead of his own (383.3.d) so a fourth body crosses first, and draw for every Mighty unit including himself.",
+        "Repeat next turn: the +1s expire, but the legend costs no deck slot and the trigger has no per-turn limit."
+      ],
+      "netPerIteration": "+1 Might per unit played, free and unlimited per turn; three Mighty bodies for 8 Energy and three cards for 2 Energy + 1 Power",
+      "terminatesIn": "engine only - k cards for 2 Energy + 1 Power on a turn you played k units, and the Mighty board dies at end of turn",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Legend lens — issue #47 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/47",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md), issue #47 candidate 7, rewritten. #47 asked for the generic k to be redone against a real list rather than a symbol, and the line that came out needs three cards and one turn instead of a board built over several. Its second refutation point is deleted outright: the Sacrifice trap it feared is domain-illegal in Fury/Body. Trap check: no [Repeat]; no [Temporary]; the +1s are Might modifiers and not Buffs, so 702.3's one-buff-per-unit cap never engages; no attack designation is needed; no rune recycled; no Energy carried across a Main Phase boundary (167). Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
     }
   ]
 }
