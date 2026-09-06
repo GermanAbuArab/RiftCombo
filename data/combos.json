@@ -15801,6 +15801,604 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "Walked for issue #85. THE SOURCE'S 'INFINITE' IS REFUTED and this is what the mechanism closes as. Two independent reasons, both measured inside Mind/Body, which 103.1.b.1 forces because VEN-149 is the only Mind/Body legend in the pool. (a) The Gate does not come back: every Mind or Body card touching the trash was read and none is a free repeatable spell recursion - OGN-112 is once per conquer, VEN-049/051/081 are [Flow] and banish themselves, OGN-099 Garbage Grabber carries an exhaust in its cost, SFD-061 returns a gear, OGN-109 recycles once a turn in the Beginning Phase, VEN-089 reads the deck and not the trash - so 103.2.b caps the Gate at 3 copies. The Order and Fury engines the catalogue usually leans on, OGN-212 Forge of the Future and OGN-036 Vi, Destructive, are both illegal here. (b) Malzahar does not come back either: the legend readies GEAR and he is a unit, VEN-068 fires on the first non-token gear each turn, UNL-109 needs 3 XP and an exhaust, OGN-132 and SFD-062 ready once per play, and OGN-146/OGN-153 are spells capped at 3 copies. NOT A DUPLICATE of sprite-fountain-malzahar-jayce: that entry is Calm/Mind, its third card is VEN-068 Jayce Brilliant Inventor, and it KEEPS the Sprites (produces temporary-body-engine, '18 Might of ready bodies'); this one is Mind/Body, its extra cards are the Gate and the Jayce legend, and it EATS them for Power (produces resource-engine). Same two-card core, opposite payload - said out loud so nobody re-merges them. TRAPS CHECKED AND CLEAR: 185/186.1 do not bite because Malzahar KILLS and never recycles - killing a token is legal and 186.1 only means the dead Sprite ceases to exist instead of sitting in the trash, which this line never wanted; 816.1.b does not bite because every [Temporary] body here is eaten in the same Main Phase it is made; 167 does not bite (the Power is Added in the Main Phase) but 316.3 does, which is why it is ENGINE. The Gate's rune readies are worth little for the reason platewyrm-egg-defender-gate already records: 164.2.a gives Energy by exhausting and 164.2.b gives Power only by recycling, and a recycled rune leaves the board. CITATION REFINED: sprite-fountain-malzahar-jayce cites 428.1.a.1.b for a GEAR Deathknell firing on a cost-kill and that rule's own sentence says 'a unit'; 808.1.a ('present on Permanents') plus 808.1.d.2 ('the card with an ability that triggers on its own death') covers gear on its face and is the citation used here."
+    },
+    {
+      "id": "get-excited-flame-chompers-jinx",
+      "name": "Get Excited! deals the discarded card's PRINTED Energy cost — 10 damage for 2 Energy, and the card comes back as a body",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-008",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury spell, E2 P1. '[Action] Discard 1. Deal its Energy cost as damage to a unit at a battlefield. (Ignore its Power cost.)' The only discard outlet in the pool that turns the discarded card's cost into damage."
+        },
+        {
+          "card": "OGN-006",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E3 M3. 'When you discard me, you may pay [R Fury] to play me.' Discarded here it is 3 damage AND a 3 Might body."
+        },
+        {
+          "card": "OGN-195",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "HAND",
+          "note": "Chaos unit, E10 P1 M6. Nothing but the largest printed Energy cost in the Fury/Chaos pool that this deck already wants in its trash - discarded to Get Excited! it is 10 damage. UNL-147 Baron Nashor (Chaos, E10 P3 M12) is the other."
+        },
+        {
+          "card": "OGN-202",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Chaos unit, E5 P1 M5. 'When you discard one or more cards, ready me and give me +1 Might this turn.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-019",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Fury unit, E4 M4. 'If you've discarded a card this turn, I have [Assault] and [Ganking].' A continuous conditional, not a trigger: one discard anywhere in the turn switches it on for the rest of it."
+        },
+        {
+          "card": "OGN-251",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Chaos legend. 'At start of your Beginning Phase, draw 1 if you have one or fewer cards in your hand.' The line spends its hand on purpose, which is the condition this legend pays for."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Fury and Chaos (103.1.b.1 \"Cards included in your deck must abide by your Domain Identity\", 103.1.b.2 \"Your deck's Domain Identity is dictated by the domains of your Champion Legend\"). Five legends are Fury/Chaos: OGN-251 Loose Cannon, OGS-017 Dark Child, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows.",
+          "A unit at a battlefield to point the damage at. No battlefield of its own."
+        ],
+        "notable": [
+          "THE DAMAGE READS THE PRINTED COST, AND THAT IS THE WHOLE CARD. 206: \"Effects that need to determine a card's cost for any purpose always use its printed or copied cost, even if that cost is increased, decreased, or ignored as the card is played\" - its worked example is Lux, Illuminated reading Sky Splitter's printed 8 through a discount. So Get Excited!'s ceiling is not 3, it is 10: OGN-195 Rhasa the Sunderer (Chaos, E10 P1) and UNL-147 Baron Nashor (Chaos, E10 P3) are both in a Fury/Chaos identity, and \"(Ignore its Power cost.)\" says the Power does not count against you either way. Ten kills every unit printed in the pool except the two 12-Might ones. The issue measured this at 3 (Chompers) and 6 (Brazen Buccaneer); it is 10.",
+          "AND THE TWO USES OF RHASA DO NOT FIGHT. 206 means a discount never changes the printed cost, so the same Rhasa the trash-discount line wants to CAST cheaply (see rhasa-shadowblade-trash-discount) is still an E10 card when this spell reads it. Discarding one copy is 10 damage; the other two still cost what the trash says.",
+          "THE ONE FURY POWER IS THE WHOLE PRICE OF THE FLAME CHOMPERS BODY, and this walk re-checked the reading rather than inheriting it. 051 maps card wording onto the rules' own terms and 356.1.a says \"If an ability or instruction allows you to play a card 'for [Cost]', replace the card's Base Costs with [Cost].\" The pool supplies the contrast: SFD-150 Last Rites also plays a unit out of the trash and prints \"(You still pay its costs.)\"; OGN-006 and OGN-037 Immortal Phoenix, which prints the same \"pay X to play me\" shape, print no such clause. Under the additive reading Chompers from the trash would cost 3 Energy PLUS 1 Fury Power - strictly worse than playing it from hand - and both cards would be dead letter against rule 002. Same reading the catalogue already uses in flame-chompers-discard-recursion and death-from-below-recurring-kill. No reading is filed.",
+          "422.1.a IS WHY THE DISCARD IS AIMED: \"The player who is performing the action chooses which cards to send to their Trash, and may use Private Information to do so.\" 422.1.b is why the Chompers trigger works from the trash: \"'When I am discarded' abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.\" 355.2.a puts the body at your base OR a battlefield you control; 143.4 makes it enter exhausted.",
+          "WHAT JINX, REBEL'S READY IS ACTUALLY WORTH, PRICED. 415.1 makes Readying \"an action that marks a non-spell Game Object on the board as available for action\". She has no [Ganking], so 144.4 gives her exactly two destinations - 144.4.a base to battlefield and 144.4.b battlefield to base - and 144.2 makes her own exhaust the whole cost of the Standard Move. So the FIRST ready of a turn is the valuable one: it lets her leave the base on the turn she landed, which 143.4 otherwise forbids. A second ready the same turn only sends her home. The entry claims no more than that.",
+          "ONE TRIGGER PER DISCARD ACTION, NOT PER CARD. 422.5: \"This action is formatted as 'Discard X.'\" So a 'Discard 2' is one action and readies Jinx, Rebel once, not twice.",
+          "ARITHMETIC WITH THE DECLARED QUANTITIES. Per cast, discarding a Flame Chompers: 2 Energy + 1 Power for the spell, then 1 Fury Power for the body. Out comes 3 damage, a 3 Might body, Jinx readied at 6 Might, and [Assault]/[Ganking] on Raging Soul for the turn. Discarding Rhasa or Baron Nashor instead: 2 Energy + 1 Power for 10 damage and no body. Three copies of the spell, so three of these a game.",
+          "OVERLAP, DECLARED. flame-chompers-discard-recursion (#89) already pairs Chompers with OGN-003 / OGN-030 / OGN-252 under this same legend, and there the discard buys bodies. This is a different outlet with a different payoff - the discard becomes damage - and OGN-008, OGN-202 and OGN-019 appear in no entry. In one deck they are the same Chompers, so treat them as alternatives on that card, not a sum."
+        ]
+      },
+      "steps": [
+        "Hold a Flame Chompers, or a Rhasa / Baron Nashor you can afford to spend, and play Get Excited! for 2 Energy + 1 Power. [Action] (806.1.c.1) means this also works inside a showdown on either player's turn.",
+        "'Discard 1': 422.1.a lets you choose the card. 206 makes the damage read its PRINTED Energy cost - 3 for Chompers, 10 for Rhasa or Baron Nashor.",
+        "Deal that much to a unit at a battlefield.",
+        "422.1.b then executes the discard triggers. Flame Chompers is already in the trash when it says 'play me': pay 1 Fury Power and it enters at your base or a battlefield you control (355.2.a), exhausted (143.4).",
+        "Jinx, Rebel readies and takes +1 Might for the turn (one trigger per 'Discard X' action, 422.5). Raging Soul has [Assault] and [Ganking] for the rest of the turn.",
+        "Loose Cannon draws you back up at the start of your Beginning Phase whenever the line has emptied your hand."
+      ],
+      "netPerIteration": "one removal of 3 to 10 damage per copy of Get Excited!, plus a 3 Might body for 1 Fury Power whenever the discard can be a Flame Chompers",
+      "terminatesIn": "engine only - three copies of Get Excited! in a deck (103.2.b), so three of these a game; nothing here returns the spell from the trash",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de descarte y recursión desde el trash — issue #95 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/95",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md), issue #95 candidate 1. HOLDS, AND BIGGER THAN THE ISSUE WROTE IT: the issue priced the damage at 3 (Chompers) and 6 (Brazen Buccaneer) and never opened 206, which makes the spell read the PRINTED cost - so the in-domain ceiling is 10, from OGN-195 Rhasa or UNL-147 Baron Nashor, and the same 206 is why Rhasa can be both this spell's ammunition and the trash-discount line's payoff. The walk also priced Jinx, Rebel's ready against 144.4 rather than asserting it is worth a move, and added OGN-019 Raging Soul, one of the five PLAYABLE discard payoffs the pool prints (the sixth, OGN-182 Scrapheap, is BANNED in constructed and 2v2). Card text verbatim from data/corpus_flat.txt. Citations opened: 002, 051, 103.1.b.1, 103.1.b.2, 103.2.b, 143.4, 144.2, 144.4, 144.4.a, 144.4.b, 206, 355.2.a, 356.1.a, 383.4.e, 415.1, 422.1.a, 422.1.b, 422.5, 806.1.c.1, 807.1.d. Ban check: none of the six carries a [BANNED marker. Trap check: no Attacker designation is claimed anywhere, so Raging Soul's [Assault] is not counted into any Might figure (807.1.d, 383.4.e); no [Repeat]; no [Temporary]; no token, so 185/186.1 never arise; no recall, so 808.1.d.1 is not engaged; no Gold; no battlefield of its own; every cost is a Main Phase cost, so 167 does not bite. Depends on no unruled reading."
+    },
+    {
+      "id": "undercover-agent-heedless-chompers",
+      "name": "Kill your own Undercover Agent as a cost — its Deathknell discards two Flame Chompers and the Agent reanimates itself",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-142",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E2 P1, [Reaction]. 'As an additional cost to play this, kill a friendly unit. Play a unit from your trash that costs no more Energy and no more Power than the killed unit, ignoring its cost.'"
+        },
+        {
+          "card": "OGN-178",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos unit, E5 P1 M5. '[Deathknell] - Discard 2, then draw 2.' It is 422.4's worked example, by name, and appeared in no entry before this walk."
+        },
+        {
+          "card": "OGN-006",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E3 M3. 'When you discard me, you may pay [R Fury] to play me.' Two of them turn the Deathknell's discard into two bodies."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Fury and Chaos (103.1.b.1 \"Cards included in your deck must abide by your Domain Identity\", 103.1.b.2 \"Your deck's Domain Identity is dictated by the domains of your Champion Legend\"). Five legends are Fury/Chaos: OGN-251 Loose Cannon, OGS-017 Dark Child, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows.",
+          "A board where losing the Agent for the length of one chain is acceptable. No battlefield of its own."
+        ],
+        "notable": [
+          "UNDERCOVER AGENT IS 422.4'S WORKED EXAMPLE, QUOTED: \"When Discarding is part of an effect, then a player must Discard as many cards as possible from their hand. If instructed to discard more cards than they have in their hand, further discard instructions are ignored. Example: Undercover Agent has the ability '[Deathknell][>] Discard 2, then draw 2.' ... Regardless of how many cards they discard, they then draw 2.\" The draw is unconditional; the discard is capped by the hand, and that is the engine's real risk.",
+          "THE DEATHKNELL FIRES, AND 808.1.d.1 CANNOT BITE. 356.2.a.1 makes the kill mandatory (\"as an additional cost\", no \"may\"). 428.1.a.1 makes a kill paid as a cost an Active Kill, and 428.1.a.1.b adds the Deathknell to the chain as a Pending Item before the kill completes. 808.1.d says the trigger is \"the Permanent being Killed AND sent to the Trash\" - the Agent IS sent there, so 808.1.d.1, which deletes the ability when the body never reaches the trash, has nothing to remove. This is the mirror of soraka-fiora-loop-shield, which loses its Deathknell for exactly that reason.",
+          "THE ENTRY MAKES NO CLAIM ABOUT WHICH CHAIN ITEM RESOLVES FIRST, AND IT DOES NOT NEED ONE. 428.1.a.1.b puts the Deathknell on the chain while the spell's cost is being paid and 340.1 resolves \"the newest Finalized Chain Item\" first; the walk could not settle from the rules text which of the two finalizes last, so it asserts neither. Both orders give the same result: the Agent is in the trash from the moment the cost is paid, so Heedless Resurrection can always find it, and the Deathknell resolves either way. If the Deathknell goes first, the two discarded cards are also in the trash when the spell looks, which only widens the choice.",
+          "THE AGENT REANIMATES ITSELF. The filter is \"costs no more Energy and no more Power than the killed unit\" and the killed unit IS the Agent (E5 P1), so it always qualifies; the card never says \"another unit\". It returns as a new object, exhausted (143.4), at your base or a battlefield you control (355.2.a). Same shape heedless-resurrection-removal-blank found.",
+          "THE ONE FURY POWER IS THE WHOLE PRICE OF THE FLAME CHOMPERS BODY, and this walk re-checked the reading rather than inheriting it. 051 maps card wording onto the rules' own terms and 356.1.a says \"If an ability or instruction allows you to play a card 'for [Cost]', replace the card's Base Costs with [Cost].\" The pool supplies the contrast: SFD-150 Last Rites also plays a unit out of the trash and prints \"(You still pay its costs.)\"; OGN-006 and OGN-037 Immortal Phoenix, which prints the same \"pay X to play me\" shape, print no such clause. Under the additive reading Chompers from the trash would cost 3 Energy PLUS 1 Fury Power - strictly worse than playing it from hand - and both cards would be dead letter against rule 002. Same reading the catalogue already uses in flame-chompers-discard-recursion and death-from-below-recurring-kill. No reading is filed.",
+          "ARITHMETIC WITH THE DECLARED QUANTITIES. Per cast: 2 Energy + 1 Chaos Power, plus 1 Fury Power for each Flame Chompers discarded. With two in hand that is two 3 Might bodies, a hand of the same size (discard 2 / draw 2) and the Agent back on the board. THE CEILING IS THREE CHOMPERS (103.2.b) and nothing in the line returns one from the trash to hand - 422.1 defines a discard as moving a card FROM A PLAYER'S HAND into the trash - so it is one full cycle and one half, not three.",
+          "THE KARTHUS FORK, AND THE RULE THAT SPLITS IT. OGN-236 Karthus, Eternal (\"Your [Deathknell] effects trigger an additional time\") would make this discard 4 and draw 4. He is ORDER. 103.1.b.1 and 103.1.b.2 forbid him in a Fury/Chaos deck and a legend has exactly two domains. The build that CAN hold him is Order/Chaos under VEN-155 Heart of the Tempest, the pool's only Order/Chaos legend and one that pays for this line by itself (\"When you play a card from anywhere other than your hand, empower me\", which every reanimation satisfies) - but it loses Flame Chompers (Fury), leaving VEN-094 Mask Mother and OGN-202 Jinx, Rebel as the Chaos payoffs. Two decks, not one. Same Domain Identity trap #48 hit with Chemtech Cask.",
+          "A TOKEN IS NOT FUEL HERE EITHER. 185 \"Tokens are not cards.\" and 186.1 (a token ceases to exist on entering any Non-Board Zone) mean a token never reaches the trash and has no printed cost, so killing one as the additional cost reanimates nothing.",
+          "OVERLAP, DECLARED. heedless-resurrection-removal-blank already declares 3 copies of UNL-142 for the anti-removal use. Inside one deck the two are alternatives on that card, not a sum."
+        ]
+      },
+      "steps": [
+        "Have Undercover Agent on the board and two Flame Chompers in hand.",
+        "Play Heedless Resurrection for 2 Energy + 1 Chaos Power. Its mandatory additional cost (356.2.a.1) kills the Agent; 428.1.a.1 makes it an Active Kill and 428.1.a.1.b puts the Deathknell on the chain before the kill completes.",
+        "The Deathknell resolves: 'Discard 2, then draw 2'. 422.1.a lets you choose - send two Flame Chompers. 422.4 means a short hand discards what it has and still draws 2.",
+        "422.1.b runs each Chompers trigger from the trash: 1 Fury Power each, two 3 Might bodies at your base or a battlefield you control (355.2.a), exhausted (143.4).",
+        "Heedless Resurrection resolves: Undercover Agent is in the trash and costs exactly its own cost, so play it back ignoring its cost. It enters exhausted.",
+        "Do it again with the second Heedless Resurrection - but only one Flame Chompers is left (103.2.b), so the second cycle is half a cycle."
+      ],
+      "netPerIteration": "two 3 Might bodies for 2 Fury Power, a hand of unchanged size, and the Agent back on the board, for 2 Energy + 1 Chaos Power",
+      "terminatesIn": "engine only - three Flame Chompers and no route from the trash back to hand, so the discards stop being upside after one cycle and a half",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de descarte y recursión desde el trash — issue #95 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/95",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md), issue #95 candidate 2, the strongest of the seven. HOLDS AS WRITTEN except for one claim the walk DROPPED rather than inherit: the issue asserted the Deathknell resolves before Heedless Resurrection, and 340.1 plus 428.1.a.1.b do not settle which of the two finalizes last. The entry is written so the order does not matter, because it does not. THE WALK'S ADDITIONS: 808.1.d / 808.1.d.1 opened to show the shield trap cannot bite here (the body does reach the trash), the Karthus fork priced against 103.1.b.1/103.1.b.2 and routed to VEN-155 Heart of the Tempest, and 185/186.1 checked against the kill-as-cost. 385 and 422 were cited by NO entry in the catalogue before this walk (grep: 0 hits for 385, and 422 only as 422.1/422.1.a/422.1.b). Card text verbatim from data/corpus_flat.txt. Citations opened: 002, 051, 103.1.b.1, 103.1.b.2, 103.2.b, 143.4, 185, 186.1, 340.1, 355.2.a, 356.1.a, 356.2.a.1, 422.1, 422.1.a, 422.1.b, 422.4, 428.1.a.1, 428.1.a.1.b, 808.1.d, 808.1.d.1. Ban check: none of the three carries a [BANNED marker. Trap check: no Attacker designation; no [Repeat]; no [Temporary]; no recall; no Gold; no battlefield of its own; all costs are Main Phase or [Reaction] costs, so 167 does not bite. Depends on no unruled reading."
+    },
+    {
+      "id": "smdr-trash-copies-conquer",
+      "name": "385.2's worked example is Super Mega Death Rocket! — every copy in your trash answers the same conquer",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-252",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "TRASH",
+          "note": "Fury/Chaos spell, E4 P1. 'Deal 5 to a unit. When you conquer, you may discard 1 to return this from your trash to your hand.' Core Rules 385.2 quotes this sentence as its worked example."
+        },
+        {
+          "card": "OGN-006",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E3 M3. 'When you discard me, you may pay [R Fury] to play me.' It makes each Rocket's return cost negative."
+        },
+        {
+          "card": "OGN-251",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Chaos legend. 'At start of your Beginning Phase, draw 1 if you have one or fewer cards in your hand.' Three returns at once refill the hand, so this legend is the floor under the line rather than its engine."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Fury and Chaos (103.1.b.1 \"Cards included in your deck must abide by your Domain Identity\", 103.1.b.2 \"Your deck's Domain Identity is dictated by the domains of your Champion Legend\"). Five legends are Fury/Chaos: OGN-251 Loose Cannon, OGS-017 Dark Child, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows.",
+          "A battlefield you can conquer. No battlefield of its own - any conquer anywhere fires it."
+        ],
+        "notable": [
+          "NO READING IS NEEDED, BECAUSE THIS CARD IS THE RULE'S OWN EXAMPLE. 385.2, verbatim: \"Triggered Abilities outside of the Board will self-describe their context. Example: The triggered ability 'When you conquer, you may discard 1 to return this from your trash to your hand.' triggers while the card it's on is in the trash, and not anywhere else.\" That is OGN-252's printed text word for word. 385.1 is why it works at all - \"Triggered Abilities on cards outside of the Board rely on the Information Level of the zone they are in\" - and 108.2.d supplies it: \"Cards in a player's Trash are Public Information.\"",
+          "THREE COPIES IN THE TRASH ARE THREE INDEPENDENT TRIGGERS ON ONE CONQUER. Each trigger sits on its own card. You control all three, so 383.3.d lets you order them, and each asks for its OWN 'you may discard 1'. Three discards, three Rockets back in hand, off a single conquer.",
+          "AND THAT IS NOT THE SAME AS DOUBLING ONE. data/synergies.json excludes OGN-252 from red-brambleback-conquer, and its reason - rewritten in commit 6eaa1aa (#99, 2026-09-06) - already says exactly this: the extra instance lands on a copy that has just left the trash and finds it in your hand, while 385.2 still gives every copy SITTING in the trash its own trigger. This walk confirms that text; nothing needed changing.",
+          "THE BILL IS POWER, NOT THE TRIGGER. The returns are free - the discard IS the cost, and with a Flame Chompers it is a negative cost (1 Fury Power for a 3 Might body, 422.1.b / 355.2.a / 143.4). What is not free is casting them again: 4 Energy + 1 Power each. Against the project's measured free floor of 2 Power a turn (164.2.b, 161.2.b, 315.3.b / 430.4.a) that is TWO recasts a turn, three if you recycle a third rune and give up its Energy. Declaring three Rockets a turn would be false.",
+          "THE ONE FURY POWER IS THE WHOLE PRICE OF THE FLAME CHOMPERS BODY, and this walk re-checked the reading rather than inheriting it. 051 maps card wording onto the rules' own terms and 356.1.a says \"If an ability or instruction allows you to play a card 'for [Cost]', replace the card's Base Costs with [Cost].\" The pool supplies the contrast: SFD-150 Last Rites also plays a unit out of the trash and prints \"(You still pay its costs.)\"; OGN-006 and OGN-037 Immortal Phoenix, which prints the same \"pay X to play me\" shape, print no such clause. Under the additive reading Chompers from the trash would cost 3 Energy PLUS 1 Fury Power - strictly worse than playing it from hand - and both cards would be dead letter against rule 002. Same reading the catalogue already uses in flame-chompers-discard-recursion and death-from-below-recurring-kill. No reading is filed.",
+          "'DEAL 5' IS NOT POINTS. Repeatable reach at 5 damage a cast, no scoring anywhere in the line. ENGINE, and nothing more.",
+          "OVERLAP, DECLARED. flame-chompers-discard-recursion holds ONE copy of the Rocket, as an enabler that feeds the Chompers. This entry inverts it - the Rockets are the engine, the multiplicity is the finding - and raises the count to three for that reason. In one deck the Chompers are the same three cards."
+        ]
+      },
+      "steps": [
+        "Cast Super Mega Death Rocket! for 4 Energy + 1 Power: deal 5 to a unit. 157 places the spell in your trash when it has finished.",
+        "Do the same with the other two copies over the following turns. 108.2.d makes them Public Information there, which is what 385.1 needs for a trigger in that zone to work.",
+        "Conquer a battlefield. 385.2 gives EACH copy in the trash its own trigger; 383.3.d lets you order the three.",
+        "Each trigger asks its own 'you may discard 1'. Pay it with a Flame Chompers: 422.1.a chooses it, 422.1.b runs its trigger after the discard, 1 Fury Power buys a 3 Might body (355.2.a, exhausted by 143.4).",
+        "All three Rockets are back in your hand. Recasting is the real bill - 4 Energy + 1 Power apiece, so two a turn on the free floor of 2 Power."
+      ],
+      "netPerIteration": "one Rocket back in hand per copy sitting in the trash, per conquer, at one aimed discard each",
+      "terminatesIn": "engine only - the returns are free but each recast costs 4 Energy + 1 Power, so the free floor of 2 Power a turn pays for two; no scoring anywhere in the line",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de descarte y recursión desde el trash — issue #95 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/95",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md), issue #95 candidate 3. HOLDS. THE FINDING IS THE MULTIPLICITY AND IT IS SETTLED BY THE RULES' OWN WORKED EXAMPLE: 385.2 quotes OGN-252's printed sentence verbatim, so no reading is filed. 385 was cited by NO entry in the catalogue before this walk (grep: 0 hits), and 108.2.d is what makes a trash trigger executable at all. The extra task the issue asked for - correcting the misleading 'why' on the OGN-252 exclusion of the red-brambleback-conquer synergy - was ALREADY APPLIED in data/synergies.json by commit 6eaa1aa (#99, 2026-09-06); this walk read the current text and confirms it, and nothing in data/synergies.json was touched. Card text verbatim from data/corpus_flat.txt. Citations opened: 002, 051, 103.2.b, 108.2.d, 143.4, 157, 161.2.b, 164.2.b, 315.3.b, 355.2.a, 356.1.a, 383.3.d, 385.1, 385.2, 422.1.a, 422.1.b, 430.4.a. Ban check: none of the three carries a [BANNED marker. Trap check: no Attacker designation; no [Repeat]; no [Temporary]; no token, so 185/186.1 never arise; no recall; no Gold; no battlefield of its own; all costs are Main Phase costs, so 167 does not bite. Depends on no unruled reading."
+    },
+    {
+      "id": "master-of-shadows-banish-rummage",
+      "name": "Master of Shadows turns any banish into a free aimed discard — and Kennen is the only renewable banish in his own domains",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-143",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Chaos legend. 'When you banish a card you own, empower me. [Action][>] Disempower me, [exhaust]: Discard 1, then draw 1.' In zero entries before this walk, and the only legend in the pool whose own text is a discard outlet apart from UNL-199 Deceiver."
+        },
+        {
+          "card": "VEN-113",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E3 P1 M4. 'When you play me, [Burn 2]. When I conquer, give a spell in your trash [Flow] equal to its cost this turn.' The only renewable 'banish a card you own' in Fury/Chaos: one per conquer."
+        },
+        {
+          "card": "VEN-098",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Chaos unit, E5 M4. 'Spells with [Flow] you play from your trash cost 2 Energy less, to a minimum of 1 Energy.' Makes the banish cheap rather than possible."
+        },
+        {
+          "card": "VEN-144",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "TRASH",
+          "note": "Fury/Chaos spell, E2 P1. '[Burn 3]. Play a 0 Might Shadow Clone unit token. [Flow] 1 Energy + 2 rainbow.' It fills the trash and its own [Flow] play banishes it - three banishes with no conquer needed, and it is in the legend's own Zed package."
+        },
+        {
+          "card": "OGN-006",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E3 M3. 'When you discard me, you may pay [R Fury] to play me.' What makes the free discard worth having."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "The legend IS the requirement: VEN-143 Master of Shadows, Fury/Chaos, which covers every card here (103.1.b.1, 103.1.b.2).",
+          "A battlefield to conquer with Kennen, for the renewable half. No battlefield of its own."
+        ],
+        "notable": [
+          "THE ISSUE CITED THE WRONG RULE FOR THE GATE, AND THE WALK FIXES IT. #95 cited 827.1.c.1 for 'Disempower me cannot be paid while not Empowered'. 827.1.c.1 is the shorthand of the [Empower] KEYWORD (\"[Cost]: Empower this. Play only if not Empowered.\") and Master of Shadows carries no such keyword - he carries a Triggered Ability that empowers him and an Activated Ability whose cost is 'Disempower me, [exhaust]'. The rules that gate it are 442.1.a (\"Disempowering affects only cards that are currently Empowered.\") and 203.3 (\"If the game action associated with a Cost is impossible for any reason such that a player cannot perform it, then they cannot pay the Cost and they will not execute the linked Effect.\"). Same verdict, right citation.",
+          "203.3 IS THE GENERAL RULE AND THE CATALOGUE HAD NEVER CITED IT (grep: 0 hits before this walk). The catalogue quotes 414.4 for exhaust, 416.3 for recycle and 422.3 for discard, each saying 'the Action must be able to be completed for the cost to be paid' for one action. 203.3 is the form that covers a cost action the rules wrote no paragraph for.",
+          "A SECOND BANISH THE SAME TURN IS WORTH NOTHING. 441.1.a \"Empowered is a binary state.\" 441.1.b \"An Empowered Game Object can not be Empowered.\" So it is one activation per banish - and the exhaust in the cost caps it at one per turn regardless, because 315.1.b readies him in the AWAKEN PHASE, i.e. next turn.",
+          "THE FULL IN-DOMAIN INVENTORY OF 'BANISH A CARD YOU OWN', COUNTED FROM THE CORPUS. (a) 829.1.b - \"You may play this from your trash for its flow cost. THEN BANISH IT.\" - every [Flow] play is a banish, but each consumes the card; VEN-144 Death Mark is the Fury/Chaos one. (b) VEN-113 Kennen grants [Flow] to any spell in your trash on a conquer, which is the ONLY per-turn renewable source. (c) VEN-101 Gust Monk's optional additional cost, 1 Energy, 'banish a card from any trash' - three copies. (d) UNL-148 Cursed Sarcophagus banishes all units from your trash, and 441.1.b makes that one empower, not many. (e) the Shadow Clone token's 'When I attack, you may banish a unit from your trash' needs the Attacker designation (807.1.d, 383.4.e), so it is not free. The issue built the candidate on Stargazer, which is only a discount.",
+          "[Action] REACHES THE OPPONENT'S TURN. 806.1.c.2: \"On Activated Abilities: 'This can be activated during showdowns on any player's turn.'\"",
+          "THE ONE FURY POWER IS THE WHOLE PRICE OF THE FLAME CHOMPERS BODY, and this walk re-checked the reading rather than inheriting it. 051 maps card wording onto the rules' own terms and 356.1.a says \"If an ability or instruction allows you to play a card 'for [Cost]', replace the card's Base Costs with [Cost].\" The pool supplies the contrast: SFD-150 Last Rites also plays a unit out of the trash and prints \"(You still pay its costs.)\"; OGN-006 and OGN-037 Immortal Phoenix, which prints the same \"pay X to play me\" shape, print no such clause. Under the additive reading Chompers from the trash would cost 3 Energy PLUS 1 Fury Power - strictly worse than playing it from hand - and both cards would be dead letter against rule 002. Same reading the catalogue already uses in flame-chompers-discard-recursion and death-from-below-recurring-kill. No reading is filed.",
+          "WHAT IT DOES NOT DO. Discard 1 then draw 1 is CARD-NEUTRAL by itself; the whole value is in what the discard hits. Without Flame Chompers, VEN-094 Mask Mother, OGN-202 Jinx, Rebel or OGN-019 Raging Soul in the deck this ability is a filter, not an engine. The entry claims a filter that converts one dead card into a 3 Might body per turn, and nothing more.",
+          "OVERLAP, DECLARED. kennen-stargazer-arena-flow already pairs VEN-113 with VEN-098 under Reckoner's Arena, for the replayed spell. This entry uses the same conquer for the BANISH the [Flow] play leaves behind, which that entry never counted."
+        ]
+      },
+      "steps": [
+        "Conquer a battlefield with Kennen, Storm of Shuriken: 'give a spell in your trash [Flow] equal to its cost this turn.'",
+        "Play that spell from your trash for its Flow cost - Stargazer takes 2 Energy off it, to a minimum of 1.",
+        "829.1.b banishes it on the way out. That is a card you own, so Master of Shadows' first sentence empowers him (441.1.a/b: binary, so one banish is as good as five).",
+        "Activate him: '[Action][>] Disempower me, [exhaust]: Discard 1, then draw 1.' 442.1.a and 203.3 are why the empower was needed; 806.1.c.2 is why this also works in a showdown on the opponent's turn.",
+        "Aim the discard at a Flame Chompers (422.1.a). 422.1.b runs its trigger from the trash: 1 Fury Power, a 3 Might body at your base or a battlefield you control (355.2.a), exhausted (143.4). The draw replaces the card you spent.",
+        "315.1.b readies him in your next Awaken Phase; the next conquer, or the next Death Mark played out of the trash, re-empowers him."
+      ],
+      "netPerIteration": "one free aimed discard-and-draw per banish, capped at one per turn by the exhaust, converting a dead card into a 3 Might body for 1 Fury Power",
+      "terminatesIn": "engine only - one activation per turn, and only on a turn you can banish a card you own; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de descarte y recursión desde el trash — issue #95 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/95",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md), issue #95 candidate 4. REWRITTEN ON TWO POINTS. (1) THE ISSUE CITED THE WRONG GATING RULE: 827.1.c.1 is the [Empower] KEYWORD's shorthand and VEN-143 has no such keyword; the gate is 442.1.a plus 203.3, the general 'a cost you cannot perform cannot be paid' rule that this catalogue had never cited (0 hits before today) and that generalises the 414.4 / 416.3 / 422.3 it does cite. (2) THE ISSUE'S BANISH SOURCE WAS A DISCOUNT: it built the line on VEN-098 Stargazer, which only makes [Flow] cheaper. The walk inventoried every 'banish a card you own' in Fury/Chaos and found exactly one RENEWABLE source - VEN-113 Kennen's conquer trigger - with VEN-144 Death Mark as three one-shots inside the legend's own Zed package. 441.1.a/441.1.b were opened to establish that a second banish in a turn buys nothing. Card text verbatim from data/corpus_flat.txt. Citations opened: 002, 051, 103.1.b.1, 103.1.b.2, 143.4, 203.3, 315.1.b, 355.2.a, 356.1.a, 383.4.e, 414.4, 416.3, 422.1.a, 422.1.b, 422.3, 441.1.a, 441.1.b, 442.1.a, 806.1.c.2, 807.1.d, 827.1.c.1, 829.1.b. Ban check: none of the five carries a [BANNED marker. Trap check: the Shadow Clone route is explicitly priced as needing an Attacker designation rather than assumed free; no [Repeat]; no [Temporary]; no token is recycled or trashed, so 185/186.1 never arise; no recall; no Gold; no battlefield of its own. Depends on no unruled reading."
+    },
+    {
+      "id": "last-rites-stack-arena-reanimator",
+      "name": "Two Last Rites on one body is four trips to the trash on a Hold at Reckoner's Arena — and the Energy is paid in the Beginning Phase",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-150",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos gear, E3 M+2, Equipment. '[Equip] - [R Chaos], Recycle 2 cards from your trash. [Effect] When I conquer or hold, you may play a unit from your trash. (You still pay its costs.)' 818.4 makes each copy a separate Equip; 434.1.c appends both Effect Texts to the unit."
+        },
+        {
+          "card": "OGN-286",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BOARD",
+          "note": "Colorless battlefield. 'When you hold here, activate the conquer effects of units here.' Colorless, so it fits any Domain Identity."
+        },
+        {
+          "card": "VEN-155",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Order/Chaos legend, the only one in the pool. 'When you play a card from anywhere other than your hand, empower me. [Action][>] Disempower me, [exhaust]: Give a unit [Assault 2] this turn.' Every unit Last Rites pulls out of the trash satisfies its trigger."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Chaos (103.1.b.1). VEN-155 Heart of the Tempest is the one this entry names because its trigger is paid by the line itself; any Chaos legend runs the gear.",
+          "A unit at the Arena to attach to, and units in the trash to play."
+        ],
+        "notable": [
+          "The battlefield must be the one in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5). And a battlefield you bring starts UNCONTROLLED - 190.1 \"Control is established over Battlefields through the course of play\" and 190.6.d \"If the battlefield has no Controller, 'you' refers to no one, and all such instructions are ignored\" - so walking a body there and taking it is part of the cost, not a deckbuilding freebie.",
+          "THE STACKING IS REAL AND ALL FOUR RULES CHECK OUT. 818.4: \"Multiple instances of Equip are equivalent to multiple Activated Abilities and can each be activated separately by paying the corresponding costs.\" 818.3.b: \"A Top-Most Card is Equipped as long as one or more of its Attached cards are Equipment.\" 434.1.b.1: \"In the situation where there is more than one card attached to the Top-Most card, they should be stacked in such a way that all Effect Text boxes and Might Bonuses are readable. The order of the Attached cards has no bearing on the application of effects.\" 434.1.c: \"The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.\" Two attached copies give the unit the sentence twice, and two triggers.",
+          "AND THE DOUBLE-COUNT UNDER THE ARENA IS THE READING THE CATALOGUE ALREADY USES. 383.4.c.1 on Conquer Effects: \"These are commonly structured as 'When I conquer...' and 'When you conquer...'\". 383.4.d.1 on Hold Effects: \"These are commonly structured as 'When I hold...' or 'When you hold...'\". One printed sentence saying 'When I conquer or hold' is therefore BOTH. So on a Hold at the Arena the hold half fires twice and the Arena activates the conquer half twice more: FOUR windows. Same argument as ivern-arena-sentinel-hold, and 823.1.b is the [Hunt] rule, not the authority here.",
+          "CUT FROM SIX WINDOWS TO FOUR, AND THE REASON IS ENERGY. The issue declared three copies and six plays. The bill it did not compute: 6 Energy to play two gears, 2 Chaos Power and FOUR CARDS OFF THE TRASH to attach them, and then '(You still pay its costs.)' four times. A third attach buys two more windows for another 3 Energy, another Chaos Power and two more cards off the very trash the line plays from.",
+          "AND THE HOLD WINDOWS ARE PAID IN THE BEGINNING PHASE, WHICH IS EXPENSIVE. 315.2.b.2 puts the Hold in the Scoring Step; 167 says \"Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.\" So every Energy paid at the Hold is a rune exhausted before the Main Phase and gone from it - 315.1.b readied those runes in the Awaken Phase and they do not ready again until the next one. Four units at 2-3 Energy is 8-12 Energy taken straight out of the turn that follows. This is what decides how many of the four windows you actually use.",
+          "THE [Equip] COST IS A REAL GATE AND A TOKEN CANNOT PAY IT. 416.1 recycles \"one or more CARDS\" to the bottom of the deck; 185 \"Tokens are not cards.\"; 186.1 makes a token cease to exist on entering any Non-Board Zone, so none ever remains in a trash to be chosen; 416.3 requires a cost Recycle to be completable, so with fewer than two cards in the trash the attach is simply illegal.",
+          "THE LEGEND PAYS FOR ITSELF, ONCE. VEN-155's 'When you play a card from anywhere other than your hand, empower me' fires on every unit Last Rites pulls out of the trash - but 441.1.b (\"An Empowered Game Object can not be Empowered\") means four plays still buy exactly one [Assault 2].",
+          "THE HOLD HAS TO BE SURVIVED. 383.2.a.1 measures a trigger's condition when it is placed, and 315.2.b.2 puts that at the Scoring Step of your Beginning Phase, so the equipped unit must live through the opponent's whole turn. The Conquer window has no such wait.",
+          "OVERLAP, DECLARED. last-rites-lunar-boon-trash-recursion (#89) declares ONE copy and solves the trash-filling with UNL-125 Lunar Boon and UNL-136 Scryer's Bloom. This entry is the stacked version under the Arena and needs that entry's fill to work: four windows and four recycled cards are eight cards through the trash in a turn."
+        ]
+      },
+      "steps": [
+        "Get a unit to Reckoner's Arena and establish Control of it (190.1) - until then 190.6.d switches the battlefield's own text off.",
+        "Play two Last Rites (3 Energy each) and attach both to that unit: each [Equip] costs 1 Chaos Power and Recycle 2 cards from your trash (416.1 to the bottom of the Main Deck; 416.3 makes it illegal if the trash cannot pay; 185/186.1 mean no token counts).",
+        "434.1.c appends both Effect Texts to the unit, so it reads 'When I conquer or hold, you may play a unit from your trash' twice, and carries +4 Might.",
+        "Conquer with it: the conquer half fires twice. Each play is at full printed cost - '(You still pay its costs.)' is printed on the card.",
+        "Hold the Arena into your Beginning Phase: 383.4.d.1 fires the hold half twice, and 'When you hold here, activate the conquer effects of units here' fires the conquer half twice more. Four windows.",
+        "Pay for as many of the four as the Beginning Phase allows: 167 empties the Rune Pool at the start of your Main Phase, so every rune exhausted here is one the Main Phase will not have."
+      ],
+      "netPerIteration": "four chances to replay a unit from the trash on a Hold turn, two on a plain Conquer, each at the unit's full printed cost",
+      "terminatesIn": "engine only - the windows repeat for as long as the equipped unit conquers and holds, but every unit replayed costs full price out of a Beginning Phase Rune Pool, and each attach takes two cards off the trash it plays from",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de descarte y recursión desde el trash — issue #95 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/95",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md), issue #95 candidate 5. REWRITTEN DOWNWARD, from three copies and six windows to two and four. The rules half of the issue is right and every one of 818.3.b / 818.4 / 434.1.b.1 / 434.1.c says what it claims; what the issue never priced is that the Hold windows land in the BEGINNING PHASE, where 167 empties the Rune Pool at the start of the Main Phase, so their Energy is taken straight out of the following turn. Four windows is already 8-12 Energy plus 6 Energy of gear plus 2 Chaos Power plus four cards recycled off the trash the line plays from. The walk also named the legend the line pays for by itself - VEN-155 Heart of the Tempest, the pool's only Order/Chaos legend, whose 'play a card from anywhere other than your hand' trigger every reanimation satisfies - and checked 441.1.b, which caps the reward at one [Assault 2] however many units arrive. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.4.c, 167, 185, 186.1, 190.1, 190.6.d, 315.1.b, 315.2.b.2, 383.2.a.1, 383.4.c.1, 383.4.d.1, 416.1, 416.3, 434.1.b.1, 434.1.c, 441.1.b, 485.4.a, 485.5, 486.5, 487.5, 818.3.b, 818.4, plus Tournament Rules 402.1. Ban check: none of the three carries a [BANNED marker. Trap check: 818.1 makes Equip an Activated Ability, so attaching is never playing and no 'when you play this' fires from it; the Hold is measured at 383.2.a.1's instant and the entry says the body must survive the opponent's turn; no Attacker designation; no [Repeat]; no [Temporary]; no token is ever recycled; no recall. Depends on no unruled reading."
+    },
+    {
+      "id": "rhasa-shadowblade-trash-discount",
+      "name": "The trash is the price tag — Rhasa at zero Energy, and one Burn Out resets all of it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-195",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos unit, E10 P1 M6. 'I cost 1 Energy less for each card in your trash.' Ten cards in the trash and 356.6 floors it at 0 Energy; the 1 Power never goes away."
+        },
+        {
+          "card": "VEN-096",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos unit, E5 M5. 'I cost 2 Energy less for each card with my name in your trash.' Two copies in the trash is the most that can be there with a third left to play, so the real floor is 1 Energy for a 5 Might body."
+        },
+        {
+          "card": "VEN-013",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E5 M5. 'I enter ready if you have a card with my name in your trash.' Not a Ready (415.1 marks an object already on the board) but the exception to 143.4, so the body can take its Standard Move the turn it lands."
+        },
+        {
+          "card": "VEN-108",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos gear, E5. 'When you play this or at the start of your Beginning Phase, [Burn 1].' One card into the trash every turn, free - and the timer that walks the deck toward 431.2.b."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Fury and Chaos (103.1.b.1 \"Cards included in your deck must abide by your Domain Identity\", 103.1.b.2 \"Your deck's Domain Identity is dictated by the domains of your Champion Legend\"). Five legends are Fury/Chaos: OGN-251 Loose Cannon, OGS-017 Dark Child, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows. This entry is the Fury/Chaos build, because VEN-013 Shadow Assassin is Fury.",
+          "A Main Deck long enough that Forgotten Relic's burn does not reach the bottom. No battlefield of its own."
+        ],
+        "notable": [
+          "THE ISSUE'S OWN FIVE CARDS CANNOT SHARE A DECK, AND THIS ENTRY IS THE HALF THAT CAN. #95 listed VEN-013 Shadow Assassin (FURY) alongside VEN-156 Lightning Rush (ORDER/CHAOS). 103.1.b.1 \"Cards included in your deck must abide by your Domain Identity\" and 103.1.b.2 \"Your deck's Domain Identity is dictated by the domains of your Champion Legend\" - and a legend has exactly two domains. Fury + Chaos keeps Shadow Assassin and loses Lightning Rush; Order + Chaos, under VEN-155 Heart of the Tempest, keeps Lightning Rush and loses Shadow Assassin. Same trap #48 hit with Chemtech Cask.",
+          "AND LOSING LIGHTNING RUSH COSTS SOMETHING REAL. 431.1.c: an instruction to look at or reveal past the deck \"looks at or Reveals as many as possible, but does not Burn Out\", and 431.1.c.1 adds \"This does not cause a Burn Out, even if those instructions would cause those cards to change zones.\" VEN-156 ('Look at the top 3... draw 1... Put the rest into your trash') is therefore the only Burn-Out-safe trash filler in the pool. Forgotten Relic is not: 431.1.b covers any card moved from the Main Deck to another zone.",
+          "THE REFUTATION THE ENTRY HAS TO CARRY, VERBATIM. 431.2.b: \"Recycles their trash into their Main Deck.\" One Burn Out and all three discounts reset AT ONCE - and 431.2.c hands an opponent a point on top. Forgotten Relic burns one card every Beginning Phase whether you want it to or not, so this deck walks toward that wall on a timer. The catalogue cites 431.1.a twenty times and 431.2.b three; for this lens 431.2.b is the dominant rule.",
+          "356.6 VERBATIM: \"Energy and Power costs can't be reduced below 0.\" Ten cards in the trash put Rhasa at 0 Energy + 1 Power for a 6 Might body, and no amount of trash touches the Power.",
+          "206 CUTS THE OTHER WAY AND IT IS A GIFT. \"Effects that need to determine a card's cost for any purpose always use its printed or copied cost, even if that cost is increased, decreased, or ignored as the card is played.\" So a discounted Rhasa is still an E10 CARD for anything that reads a cost - including OGN-008 Get Excited!, which will deal 10. The same pile serves both lines (see get-excited-flame-chompers-jinx).",
+          "OGN-109 DR. MUNDO, EXPERT IS NOT THE FOURTH MEMBER, AND THE RULES SAY SO TWICE. 416.4: \"When Recycling is part of an effect, a player must Recycle as many cards as possible from the specified zone or zones.\" 416.6's worked example is Mundo by name: \"'At the start of your Beginning Phase, recycle 3 from your trash.' As that ability resolves, its controller recycles 3 cards from their trash.\" Mandatory, every turn, out of the exact pile Rhasa is priced against. And he is MIND, so 103.1.b.1 keeps him out regardless.",
+          "WHAT FILLS THE TRASH, MEASURED. 157 puts every resolved spell there. Forgotten Relic burns 1 every Beginning Phase for free. Combat deaths and this lens's 31 discard outlets do the rest. Ten is reachable, and it is not fast: the entry claims a mid-game price, not a turn-three one."
+        ]
+      },
+      "steps": [
+        "Play Forgotten Relic (5 Energy). It burns 1 at once and 1 more at the start of every Beginning Phase, free.",
+        "Let the trash fill: 157 puts every spell you resolve there, and the discard outlets of this lens put cards there on purpose.",
+        "At ten cards in the trash, Rhasa the Sunderer costs 0 Energy + 1 Power (356.6) for a 6 Might body. Three copies is three Power across a game.",
+        "Discard or lose two Shadowblade Lurkers along the way - OGN-008 Get Excited! pays their printed 5 Energy as 5 damage on the way - and the third costs 1 Energy for 5 Might.",
+        "Shadow Assassin enters ready once one copy is in the trash, so unlike every other unit (143.4) it can take its Standard Move (144.2, 144.4.a) the turn it lands.",
+        "Do not run the deck out. 431.2.b recycles the whole trash into the Main Deck on the first Burn Out and every discount resets at once."
+      ],
+      "netPerIteration": "a 6 Might body for one Power once the trash holds ten cards, plus a 5 Might body for one Energy once two Lurkers are down",
+      "terminatesIn": "engine only - three copies of each body (103.2.b), and the whole price structure resets the first time you Burn Out (431.2.b)",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de descarte y recursión desde el trash — issue #95 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/95",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md), issue #95 candidate 6. REWRITTEN: THE ISSUE'S OWN CARD LIST BREAKS DOMAIN IDENTITY. It paired VEN-013 Shadow Assassin (Fury) with VEN-156 Lightning Rush (Order/Chaos) in one deck, which 103.1.b.1/103.1.b.2 forbid - a legend has exactly two domains. The entry is the Fury/Chaos build, because that is the identity the rest of this lens lives in; the Order/Chaos alternative under VEN-155 Heart of the Tempest keeps Lightning Rush and loses Shadow Assassin, and is named in the notables with its rule. The walk also cut Shadowblade Lurker's advertised discount to its real floor (only 2 of the 3 copies can be in the trash with a third left to play, so 1 Energy, not 0), opened 416.4/416.6 on Dr. Mundo rather than repeating the issue's summary, and recorded the 206 link that makes the same Rhasa serve get-excited-flame-chompers-jinx as 10 damage. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 103.1.b.2, 103.2.b, 143.4, 144.2, 144.4.a, 157, 206, 356.6, 415.1, 416.4, 416.6, 431.1.b, 431.1.c, 431.1.c.1, 431.2.b, 431.2.c. Ban check: none of the four carries a [BANNED marker. Trap check: no Attacker designation; no [Repeat]; no [Temporary]; no token, so 185/186.1 never arise; no recall; no Gold; no battlefield of its own; all costs are Main Phase costs, so 167 does not bite. Depends on no unruled reading."
+    },
+    {
+      "id": "minah-ride-the-wind-mutual-discard",
+      "name": "A symmetric discard is a payoff engine for the player who brought payoffs — and Twilight Step cannot move Minah",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-111",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos unit, E6 P1 M6. 'When I move to a battlefield, choose one - Each player discards 1. / Each player draws 1.' The only repeatable symmetric discard in the pool, and in zero entries before this walk."
+        },
+        {
+          "card": "OGN-173",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Chaos spell, E2 P1, [Action]. 'Move a friendly unit and ready it.' An effect move, so 144.4's base-battlefield restriction does not apply (420.3.a puts the exhaust cost on the Standard Move only) - it is the mover that can actually move a 6 Might unit."
+        },
+        {
+          "card": "OGN-185",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos unit, E2 M2. 'When I move, discard 1, then draw 1.' No destination clause, so it fires on any move in either direction - the same Ride the Wind can serve it."
+        },
+        {
+          "card": "OGN-006",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E3 M3. 'When you discard me, you may pay [R Fury] to play me.' What turns your half of the symmetric discard into a body."
+        },
+        {
+          "card": "OGN-202",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Chaos unit, E5 P1 M5. 'When you discard one or more cards, ready me and give me +1 Might this turn.' One trigger per 'Discard X' action (422.5), not one per player."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "strip-opponent-hand"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Fury and Chaos (103.1.b.1 \"Cards included in your deck must abide by your Domain Identity\", 103.1.b.2 \"Your deck's Domain Identity is dictated by the domains of your Champion Legend\"). Five legends are Fury/Chaos: OGN-251 Loose Cannon, OGS-017 Dark Child, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows.",
+          "Minah on the board and a battlefield to move her to. No battlefield of its own."
+        ],
+        "notable": [
+          "THE ISSUE'S OWN MOVER CANNOT MOVE ITS OWN ENGINE. #95 built this candidate on VEN-105 Twilight Step, which reads 'Move a unit with 3 Might or less'. Minah is 6 Might. The issue noticed this in one sentence and kept the pairing anyway. Twilight Step moves OGN-185 Traveling Merchant (2 Might) and nothing else in the line.",
+          "THE MOVERS THAT CAN MOVE HER, FROM THE CORPUS, ALL CHAOS. The Standard Move: 144.2 makes the unit's own exhaust the whole cost, and 144.4.a/144.4.b restrict it to base-to-battlefield and back, once a turn. OGN-173 Ride the Wind (2 Energy + 1 Power, [Action]): 'Move a friendly unit and ready it' - an EFFECT move, and 420.3.a puts the exhaust cost on the Standard Move only, so 144.4 does not restrict where it goes. SFD-125 Fae Porter: 'When I move to a battlefield, you may pay [R Chaos] to move a unit you control to the same battlefield.' OGN-184 The Syren moves battlefield to base only, so it never triggers Minah.",
+          "'WHEN I MOVE TO A BATTLEFIELD' NEEDS THE MOVE TO END AT A BATTLEFIELD. A Ride the Wind that sends Minah home is a Traveling Merchant trigger and not a Minah one - the Merchant's 'When I move' has no destination clause and fires either way.",
+          "THE HONEST COUNT IS TWO A TURN, THREE IF YOU PAY FOR IT. Every mover but the Standard Move costs POWER, against the project's measured free floor of 2 Power a turn (164.2.b, 161.2.b, 315.3.b / 430.4.a). Standard Move plus one Ride the Wind is two triggers; a second Ride the Wind is a third rune recycled and its Energy given up.",
+          "422.1.a IS WHY THIS IS A PAYOFF ENGINE AND NOT A HAND STRIP: \"The player who is performing the action chooses which cards to send to their Trash, and may use Private Information to do so.\" They discard their WORST card. You discard a Flame Chompers and get a 3 Might body for 1 Fury Power (422.1.b, 355.2.a, 143.4), and Jinx, Rebel readies on the same action - 422.5 makes 'Discard X' one action, so one trigger, not one per player. 422.4 finishes it: against an empty hand the whole instruction is ignored. ashe-retreat-hand-strip and bloodharbor-bewitching-discard already own the opponent's half; this entry claims the self half.",
+          "THE ONE FURY POWER IS THE WHOLE PRICE OF THE FLAME CHOMPERS BODY, and this walk re-checked the reading rather than inheriting it. 051 maps card wording onto the rules' own terms and 356.1.a says \"If an ability or instruction allows you to play a card 'for [Cost]', replace the card's Base Costs with [Cost].\" The pool supplies the contrast: SFD-150 Last Rites also plays a unit out of the trash and prints \"(You still pay its costs.)\"; OGN-006 and OGN-037 Immortal Phoenix, which prints the same \"pay X to play me\" shape, print no such clause. Under the additive reading Chompers from the trash would cost 3 Energy PLUS 1 Fury Power - strictly worse than playing it from hand - and both cards would be dead letter against rule 002. Same reading the catalogue already uses in flame-chompers-discard-recursion and death-from-below-recurring-kill. No reading is filed.",
+          "NO COMBAT IS CLAIMED. 'When I move to a battlefield' is not an Attack Trigger - 383.4.e: \"Attack Triggers are Triggered Abilities that trigger when a Unit or Player gains the Attacker designation for the first time during a combat\" - so the destination can be a battlefield you already control and the trigger still fires. Nothing here needs 807.1.d.",
+          "DOMAIN. Minah, Ride the Wind, Traveling Merchant and Jinx, Rebel are Chaos; Flame Chompers is Fury. A Fury/Chaos legend covers all five (103.1.b.1)."
+        ]
+      },
+      "steps": [
+        "Land Minah Swiftfoot at your base for 6 Energy + 1 Power. 143.4 makes her enter exhausted.",
+        "Standard Move base to a battlefield (144.2, 144.4.a): 'When I move to a battlefield' fires. Choose 'Each player discards 1'.",
+        "422.1.a lets each player pick their own card. Yours is a Flame Chompers: 422.1.b, 1 Fury Power, a 3 Might body (355.2.a, exhausted by 143.4). Theirs is their worst card.",
+        "Jinx, Rebel readies and takes +1 Might on that one discard action (422.5).",
+        "Cast Ride the Wind (2 Energy + 1 Power, [Action]) to move Minah battlefield to battlefield and ready her - an effect move, so 144.4 does not apply (420.3.a). Second trigger.",
+        "Aim a further Ride the Wind at Traveling Merchant instead: 'When I move' fires on any move, so it is a third discard-and-draw for you alone."
+      ],
+      "netPerIteration": "one card off each player's hand per move Minah makes to a battlefield, with your half aimed at a Flame Chompers for 1 Fury Power",
+      "terminatesIn": "engine only - the movers cost Power, so two triggers a turn on the free floor and three if you spend a third rune; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de descarte y recursión desde el trash — issue #95 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/95",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md), issue #95 candidate 7. REWRITTEN: THE ISSUE'S MOVER CANNOT MOVE ITS ENGINE. It built the candidate on VEN-105 Twilight Step, which moves 'a unit with 3 Might or less'; Minah is 6. The walk swept the corpus for movers in Chaos and replaced it with OGN-173 Ride the Wind, which is an EFFECT move and therefore not bound by 144.4 (420.3.a puts the exhaust cost on the Standard Move only, the #58 finding), and named SFD-125 Fae Porter and OGN-184 The Syren with what each can and cannot do. It also priced the repetition against the free floor of 2 Power a turn rather than leaving it open, and pinned the destination clause: 'When I move TO A BATTLEFIELD' does not fire on the way home, while Traveling Merchant's bare 'When I move' does. Card text verbatim from data/corpus_flat.txt. Citations opened: 002, 051, 103.1.b.1, 143.4, 144.2, 144.4.a, 144.4.b, 161.2.b, 164.2.b, 315.3.b, 355.2.a, 356.1.a, 383.4.e, 420.3.a, 422.1.a, 422.1.b, 422.4, 422.5, 430.4.a, 807.1.d. Ban check: none of the five carries a [BANNED marker. Trap check: no Attacker designation is claimed, so 807.1.d/383.4.e/461 cannot bite; no [Repeat]; no [Temporary]; no token, so 185/186.1 never arise; no recall; no Gold; no battlefield of its own; all costs are Main Phase costs, so 167 does not bite. Depends on no unruled reading."
     }
   ]
 }
