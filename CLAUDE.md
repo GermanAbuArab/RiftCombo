@@ -125,4 +125,9 @@
 
 ## Verify
 - Run `npm test` and `npm run typecheck` before claiming anything works. Rebuild data with `npm run build:data`.
+- **Deploy is a push to master.** The Vercel project has been connected to `GermanAbuArab/RiftCombo`
+  since 2026-09-05 (`vercel git connect`), so every push to master builds `npm run build:web` on
+  Vercel from the COMMITTED tree and goes live; check it with `npx vercel ls riftcombo`. Before that,
+  `npx vercel deploy --prod --yes </dev/null` uploaded the working tree, which twice shipped another
+  session's uncommitted files. Keep that command only as a fallback when the Git build is broken.
 - `npm run dev` serves the app on http://127.0.0.1:8787. Kill the wrangler process when the session ends.
