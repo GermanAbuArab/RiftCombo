@@ -35,8 +35,12 @@ const config = {
   // TIP of the push, so a push carrying a data/ commit behind a docs/ commit would cancel and never deploy the
   // data (issue #126). Diffing from what was last deployed cannot miss anything still undeployed; `HEAD^` is
   // the fallback for the very first deployment, when there is no previous SHA.
+  // 2026-09-06 evening: VERCEL_GIT_PREVIOUS_SHA is not always present in Vercel's shallow clone — every build after
+  // the #126 change died with `fatal: bad object 55e24f3…` and production sat on that commit for hours. So the base
+  // is the previous SHA only when the clone holds that commit, HEAD^ otherwise (HEAD^ is always fetched; the
+  // pre-#126 command relied on it), which keeps `git diff --quiet` to its two honest exits: 0 = skip, 1 = build.
   ignoreCommand:
-    "git diff --quiet ${VERCEL_GIT_PREVIOUS_SHA:-HEAD^} HEAD -- web src data scripts api package.json package-lock.json tsconfig.json vercel.json",
+    "base=${VERCEL_GIT_PREVIOUS_SHA:-HEAD^}; git cat-file -e $base^{commit} 2>/dev/null || base=HEAD^; git diff --quiet $base HEAD -- web src data scripts api package.json package-lock.json tsconfig.json vercel.json",
   outputDirectory: "public",
   framework: null,
   // The Vercel build cap is per ACCOUNT, not per project, and this account carries another project —
