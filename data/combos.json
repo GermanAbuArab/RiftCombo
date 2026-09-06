@@ -2030,7 +2030,7 @@
         "notable": [
           "The Grand Plaza in play (random 1 of 3 in Duel, chosen in Match).",
           "Every pass's Shadow's Call must target Ekko, not a Recruit: 816.1.b kills [Temporary] permanents at the start of the Beginning Phase BEFORE scoring, which is exactly when the Plaza counts.",
-          "The Plaza's 'if you have 7+ units here' is checked again on resolution, and the opponent still gets priority windows on both turns even though Time Warp denies them a turn. The loop is unbounded, so overshoot the seven."
+          "The Plaza's 'if you have 7+ units here' sits immediately after the When clause, so 383.2.a.1 makes it part of the Trigger Condition and 383.2.c evaluates it at the instant of the Hold: all seven must already be standing there when the Scoring Step arrives, and a body that arrives from the same Hold would not count. The opponent still gets priority windows on both turns even though Time Warp denies them a turn. The loop is unbounded, so overshoot the seven."
         ]
       },
       "steps": [
