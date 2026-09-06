@@ -8,9 +8,10 @@ import { describe, expect, it } from "vitest";
  * user notices the site is a commit behind.
  *
  *  - the diff must start from VERCEL_GIT_PREVIOUS_SHA, "the git SHA of the last successful deployment
- *    for the project and branch". `HEAD^ HEAD` reads only the TIP of a push, so a push that carried a
- *    data/ commit behind a docs/ commit is cancelled and the data never deploys. That shape is in this
- *    repo's own history: 55e24f3 (data/combos.json) followed by 793ebad (CLAUDE.md only).
+ *    for the project and branch", with NO fallback. `HEAD^ HEAD` reads only the TIP of a push, so a push
+ *    that carried a data/ commit behind a docs/ commit is cancelled and the data never deploys. That
+ *    shape is in this repo's own history twice: 55e24f3 (data/combos.json) followed by 793ebad
+ *    (CLAUDE.md only), and the 813d5c7..b5230a0 promotion of 2026-09-06 night.
  *  - `api` must be watched. api/deck-url.ts is a live serverless route, and a commit that only fixes it
  *    would otherwise exit 0 and never be deployed.
  *
@@ -26,10 +27,22 @@ const vercel = JSON.parse(readFileSync(new URL("vercel.json", ROOT), "utf8")) as
 describe("the Vercel ignore build step", () => {
   const command = vercel.ignoreCommand ?? "";
 
-  it("diffs from the last successful deployment, not from the tip of the push", () => {
+  it("diffs from the last successful deployment, and never from the tip of the push", () => {
     expect(command).toContain("VERCEL_GIT_PREVIOUS_SHA");
-    // The fallback matters on the first deployment, when there is no previous SHA to diff from.
-    expect(command).toContain("${VERCEL_GIT_PREVIOUS_SHA:-HEAD^}");
+    // A HEAD^ fallback is the bug, not the safety net. Sessions push to `work` and the manager
+    // promotes a BATCH to master, so the tip of a promotion is routinely a docs-only commit —
+    // HEAD^ then asks "did the last commit touch code?" instead of "is anything undeployed?".
+    // 813d5c7..b5230a0 carried a drawer rewrite, 20 catalogue entries and 21 synergy rules, and
+    // was Canceled in 1s because its tip touched CLAUDE.md alone.
+    expect(command, "a HEAD^ fallback skips whole batches whose tip commit is docs-only")
+      .not.toContain("HEAD^");
+  });
+
+  it("normalises every failure path to exit 1, which is the only code Vercel reads as build", () => {
+    // Vercel reads 0 as skip and 1 as build. `git cat-file -e` on an object the shallow clone does
+    // not hold exits 128, which #126 measured as neither: the deployment errors and production sits
+    // on the old commit. So the whole test is grouped and any failure becomes an explicit 1.
+    expect(command).toMatch(/\|\|\s*exit 1\s*$/);
   });
 
   it("watches every path whose change has to reach the site", () => {
@@ -53,9 +66,11 @@ describe("vercel.json", () => {
     // hand-edit that drifts from scripts/build-headers.mjs would survive the next regeneration only
     // until someone runs it.
     const generator = readFileSync(new URL("scripts/build-headers.mjs", ROOT), "utf8");
-    const inGenerator = /ignoreCommand:\s*\n?\s*"((?:[^"\\]|\\.)*)"/.exec(generator)?.[1];
+    const inGenerator = /ignoreCommand:\s*\n?\s*("(?:[^"\\]|\\.)*")/.exec(generator)?.[1];
     expect(inGenerator, "no ignoreCommand found in scripts/build-headers.mjs").toBeDefined();
-    expect(vercel.ignoreCommand).toBe(inGenerator);
+    // The generator holds a JS string literal, so the shell quoting inside it arrives escaped.
+    // Parsing it is what compares the two commands rather than their spellings.
+    expect(vercel.ignoreCommand).toBe(JSON.parse(inGenerator!));
   });
 });
 

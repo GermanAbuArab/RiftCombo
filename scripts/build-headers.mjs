@@ -36,11 +36,20 @@ const config = {
   // data (issue #126). Diffing from what was last deployed cannot miss anything still undeployed; `HEAD^` is
   // the fallback for the very first deployment, when there is no previous SHA.
   // 2026-09-06 evening: VERCEL_GIT_PREVIOUS_SHA is not always present in Vercel's shallow clone — every build after
-  // the #126 change died with `fatal: bad object 55e24f3…` and production sat on that commit for hours. So the base
-  // is the previous SHA only when the clone holds that commit, HEAD^ otherwise (HEAD^ is always fetched; the
-  // pre-#126 command relied on it), which keeps `git diff --quiet` to its two honest exits: 0 = skip, 1 = build.
+  // the #126 change died with `fatal: bad object 55e24f3…` and production sat on that commit for hours.
+  //
+  // 2026-09-06 night: falling back to HEAD^ was itself the bug. Sessions push to `work` and the manager promotes a
+  // BATCH to master, so the tip of a promotion is often a docs-only commit — and HEAD^ made the step ask "did the
+  // last commit touch code?" instead of "is anything undeployed?". Promoting 813d5c7..b5230a0, which carried the
+  // whole drawer rewrite, 20 catalogue entries and 21 synergy rules, was Canceled in 1s because its tip commit
+  // touched CLAUDE.md alone. A skipped batch is far worse than a spent build, so there is no fallback now: the
+  // step skips ONLY when Vercel hands us a previous SHA the clone actually holds and nothing deployable changed
+  // since it. Missing, unreadable, or genuinely changed all mean BUILD.
+  // The braces and the `|| exit 1` are load-bearing: Vercel reads 0 as skip and 1 as build, and a bare
+  // `git cat-file` on a missing object exits 128, which #126 measured as NEITHER — the deployment errors.
+  // So every failure path is normalised to 1.
   ignoreCommand:
-    "base=${VERCEL_GIT_PREVIOUS_SHA:-HEAD^}; git cat-file -e $base^{commit} 2>/dev/null || base=HEAD^; git diff --quiet $base HEAD -- web src data scripts api package.json package-lock.json tsconfig.json vercel.json",
+    "base=$VERCEL_GIT_PREVIOUS_SHA; { [ -n \"$base\" ] && git cat-file -e \"$base^{commit}\" 2>/dev/null && git diff --quiet \"$base\" HEAD -- web src data scripts api package.json package-lock.json tsconfig.json vercel.json ; } || exit 1",
   outputDirectory: "public",
   framework: null,
   // The Vercel build cap is per ACCOUNT, not per project, and this account carries another project —
