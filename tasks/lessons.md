@@ -86,3 +86,9 @@ archivo, que no toque el transcript: que lo escriba el proceso que ya lo tiene.
 **What happened.** Levanté `python3 -m http.server 8788` para mirar la puerta de login y lo bajé con `pkill -f "http.server 8788"`. Los tres agentes hijos (rc-walk36, rc-huntD, rc-huntE) murieron en el acto: su prompt viaja en la línea de comando del proceso `claude`, y el prompt dice, textualmente, *"para ver la UI: `cd public && python3 -m http.server 8788`"*. `pkill -f` matcheó eso. rc-walk36 había terminado las 11 caminatas y estaba por commitear; el trabajo quedó en disco y las tres se recuperaron con `claude --resume <session-id>` en su misma tab, pero fueron veinte minutos de flota parada por un comando de una línea.
 
 **Rule.** Nunca `pkill -f`/`pgrep -f` con un patrón que pueda aparecer en un prompt. Para bajar un servidor propio: `lsof -ti :8788 | xargs kill`, o guardar el PID al lanzarlo (`python3 -m http.server 8788 & echo $! > /tmp/rc-http.pid`) y matar ese PID. Y antes de cualquier kill por patrón, `pgrep -fl <patrón>` y leer QUÉ procesos son.
+
+## 2026-09-06 — El index también es compartido: `git commit --only <rutas>`
+
+**What happened.** Dos sesiones en el mismo working tree. rc-code64 dejó cuatro archivos stageados (`git add` propio, sin commitear). rc-walk62 hizo `git add data/combos.json docs/phase0/walks/<archivo>` — por rutas, como manda la regla — y su `git commit` se llevó también los cuatro archivos ajenos, porque `git commit` commitea todo el index, no lo que acabás de agregar. Ya estaba pusheado cuando se vio; no se reescribió historia. Mi primer diagnóstico ("fue un `git add -A`") fue falso y rc-walk62 lo corrigió con la causa real.
+
+**Rule.** Con varias sesiones en un tree, `git add` por rutas no alcanza. Commitear siempre con `git commit --only <tus rutas> -F -`, que ignora el index. Y cuando una sesión te corrige un diagnóstico, la regla se reescribe con la causa, no se deja la que sonaba bien.
