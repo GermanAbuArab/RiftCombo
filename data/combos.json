@@ -8952,7 +8952,8 @@
           "THE SECOND AND THIRD READIES AND WHAT THEY COST. 415.3.a gives Blade Dancer one readying a turn for free. Her own 'When you conquer, you may pay 1 Energy to ready me' gives a second, but it buys nothing without a FURTHER choose, so it wants a second Heart of Dark Ice (103.2.b allows three): +1 Energy +1 Power, Caitlyn at 9 Might, a third activation for 9, eighteen damage in the turn. SFD-039 Royal Entourage (Calm, E3 P1 M4, 'When you play me, ready or exhaust a legend') is the third route and the only repeatable one, since it is a unit rather than a trigger.",
           "THERE IS NO RECURSION, AND THE ENTRY DOES NOT PRETEND OTHERWISE. Blade Dancer readies the unit that was chosen, and readying is not itself a choose - 415.1 defines it as marking an object already on the board. One ready per exhaust of the legend, full stop. Caitlyn's own ability chooses an ENEMY unit, so it can never re-trigger the legend either.",
           "Caitlyn has to stand at a battlefield for both activations (377.2.b), which also means she is exposed to combat; her 'I must be assigned combat damage last' is what keeps her alive there.",
-          "The +3 Might is 'this turn', not a Buff counter (702/703), so it is gone at end of turn and the damage has to be dealt inside the same turn."
+          "The +3 Might is 'this turn', not a Buff counter (702/703), so it is gone at end of turn and the damage has to be dealt inside the same turn.",
+          "EVERY BUFF IS A CHOOSE, BUT THE CHOOSES ARE NOT THE BOTTLENECK (issue #97, walked 2026-09-06). 702.2.a: 'To Buff a Unit, a player CHOOSES a Unit and then places a buff on it.' So any buffer triggers Blade Dancer without paying SFD-052 - the rule is right, and the conclusion is worth less than it looks, because her ready costs HER OWN EXHAUST ('you may exhaust me and pay 1 rainbow to ready it') and 415.3.a gives her one readying a turn. A mass buffer that chooses five bodies still buys ONE ready. The levers this entry already prices - a second Heart of Dark Ice plus her 'When you conquer, you may pay 1 Energy to ready me', and SFD-039 Royal Entourage - remain the correct ones. What the buff family DOES add is cheaper chooses inside Calm/Chaos for turns when the +3 Might is not needed: OGN-053 Stand United (Calm spell, E3, [Hidden] [Action], 'Buff a friendly unit'), OGN-063 Spirit's Refuge (Calm gear, E2 P1, 'When you play this, buff a friendly unit', and it hands out [Deflect]), OGN-078 Lee Sin, Ascetic (Calm, 'exhaust: Buff me', 'I can have any number of buffs' - the pool's one override of 702.3) and UNL-043 Enthusiastic Promoter (Calm, 'When I hold, [Buff] all units here'). Nothing about this entry's class, quantities or steps changes."
         ]
       },
       "steps": [
@@ -8981,10 +8982,21 @@
           "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md)",
           "kind": "manual-walk",
           "date": "2026-09-06"
+        },
+        {
+          "title": "Lente de buff y Might — issue #97 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/97",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md), issue #47 candidate 5. The candidate was filed honestly as 'a motor sin pago propio' and asked the walker to name the payment or send it to the synergy layer instead. The payment is Caitlyn, and the reason it is better than a payment is that the same gear activation does both jobs. Trap check: no [Repeat]; no [Temporary]; no attack designation is needed because nothing here is a combat trigger (807.1.d/383.4.e/461 do not engage); no rune recycled; the Power is spent in the Main Phase it is made (167). Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md), issue #47 candidate 5. The candidate was filed honestly as 'a motor sin pago propio' and asked the walker to name the payment or send it to the synergy layer instead. The payment is Caitlyn, and the reason it is better than a payment is that the same gear activation does both jobs. Trap check: no [Repeat]; no [Temporary]; no attack designation is needed because nothing here is a combat trigger (807.1.d/383.4.e/461 do not engage); no rune recycled; the Power is spent in the Main Phase it is made (167). Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading. REFINED 2026-09-06 (issue #97, docs/phase0/walks/2026-09-06-might-buff-lens.md): one notable added. The issue's refinement 3 is right on the rule (702.2.a makes every buff a choose) and wrong on the value - 415.3.a and the legend's own exhaust cap the line at one ready per readying however many chooses arrive, which this entry already said in another notable. The useful half is the list of cheaper Calm chooses. No change to class, quantities or steps."
     },
     {
       "id": "void-burrower-play-from-deck",
@@ -10057,7 +10069,8 @@
           "SAME SKELETON AS sinister-poro-attack-evacuate AND THE SAME TRAP CHECK. The Dragon attacks a battlefield that HAS a garrison, so 461 / 323.9 / 464.2.c.1 / 464.2.c.3 make the Attacker designation real and 383.4.e gives it a genuine attack trigger. 464.2.e puts it on the Combat Chain, it resolves, and 465.1 then fails: no damage (465.3). 466.1.a.2 does not recall the Dragon because no Defenders are present. 466.3.a, 466.5 and 466.5.d turn it into a Conquer.",
           "WHAT IT BUYS OVER SIMPLY WINNING THE FIGHT, since a 10 Might body beats most garrisons on damage anyway: no damage is dealt, so none of the opponent's units die and none of their death triggers fire; and it beats a garrison whose TOTAL Might exceeds 10, which a damage fight does not.",
           "THE ARITHMETIC WITH THE QUANTITIES DECLARED. One card, 10 Energy + 2 Body Power, once. Repeatable every turn the Awakening readies it (315.1.b). It clears a garrison of any size as long as EVERY body in it is 5 Might or less; a single defender of 6+ stays, 465.1 is met and the Dragon takes damage.",
-          "AND THE BATTLEFIELD IT EMPTIES BECOMES 'OPEN' IN RIOT'S SENSE (a battlefield that was uncontrolled — the Spiritforged errata to Yone, Blademaster, 2026-01-14, in data/errata.json), which is what 323.6 does at the next Cleanup when the last defender has gone home. That is the state OGN-193 Miss Fortune, Buccaneer turns into a play permission under 355.2.b."
+          "AND THE BATTLEFIELD IT EMPTIES BECOMES 'OPEN' IN RIOT'S SENSE (a battlefield that was uncontrolled — the Spiritforged errata to Yone, Blademaster, 2026-01-14, in data/errata.json), which is what 323.6 does at the next Cleanup when the last defender has gone home. That is the state OGN-193 Miss Fortune, Buccaneer turns into a play permission under 355.2.b.",
+          "A -MIGHT ANSWERS THE ENTRY'S OWN REFUTATION, AND THE DOMAIN DECIDES WHICH ONE (issue #97, walked 2026-09-06). The refutation above is that 'a single defender of 6+ stays'. Any UNFLOORED reduction takes that defender under the Dragon's gate of 5 - but a grep of every '-N Might' without a 'minimum of' clause shows the family is almost entirely MIND: SFD-066 Frigid Touch (-2, [Repeat]), UNL-063 Eclipse (E3, -4, [Reaction]), UNL-066 Moonlight Affliction (E7, -10), VEN-061 Decree of Insight (E1, -5 to an enemy BODY unit, and 'Ignore [Deflect] while paying this spell's cost'), plus SFD-067 Frostcoat Cub and UNL-065 Icevale Archer. AND THERE IS EXACTLY ONE MIND/BODY LEGEND IN THE POOL, VEN-149 Defender of Tomorrow, so the Mind answer is a forced shell, not a free option. The unforced answer is Chaos: UNL-138 The List (Chaos gear, E1, 'As you play this, name a tag. exhaust: Give a unit with the named tag -2 Might this turn'), unfloored, which takes a M6 or M7 defender to 4 or 5 - inside the gate - under any of the three Body/Chaos legends (OGN-267 Bounty Hunter, SFD-203 Battle Mistress, UNL-201 Voidreaver). Its price is that the tag is named as the gear is played, so it is a read on the opponent's deck rather than a universal answer. Nothing about this entry's class, quantities or steps changes."
         ]
       },
       "steps": [
@@ -10086,10 +10099,21 @@
           "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md)",
           "kind": "manual-walk",
           "date": "2026-09-06"
+        },
+        {
+          "title": "Lente de buff y Might — issue #97 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/97",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 candidate 3. The candidate survives unchanged. The walk resolves the 'not within 3 points' clause against 485.3 arithmetically (score <= 4) and adds what the evacuation buys over a damage win, which the candidate left implicit. Card text verbatim from data/corpus_flat.txt. Citations opened: 143.4, 143.4.a, 144.2, 144.4.a, 190.3.a.1, 315.1.b, 323.6, 323.9, 323.13, 355.2.b, 359.3.f.2, 383.4.e, 450, 461, 464.2.c.1, 464.2.c.3, 464.2.e, 465.1, 465.3, 466.1.a.2, 466.3.a, 466.5, 466.5.d, 485.3. Ban check: VEN-091 carries no [BANNED marker. Arithmetic: 10 Energy + 2 Power once, 0 on the trigger, a garrison of any size at 5 Might or less. Trap check: the attack is legitimate (garrison present when Combat opens); no [Repeat]; no [Temporary]; no recall as a move; no Awaken Energy carried across a phase. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 candidate 3. The candidate survives unchanged. The walk resolves the 'not within 3 points' clause against 485.3 arithmetically (score <= 4) and adds what the evacuation buys over a damage win, which the candidate left implicit. Card text verbatim from data/corpus_flat.txt. Citations opened: 143.4, 143.4.a, 144.2, 144.4.a, 190.3.a.1, 315.1.b, 323.6, 323.9, 323.13, 355.2.b, 359.3.f.2, 383.4.e, 450, 461, 464.2.c.1, 464.2.c.3, 464.2.e, 465.1, 465.3, 466.1.a.2, 466.3.a, 466.5, 466.5.d, 485.3. Ban check: VEN-091 carries no [BANNED marker. Arithmetic: 10 Energy + 2 Power once, 0 on the trigger, a garrison of any size at 5 Might or less. Trap check: the attack is legitimate (garrison present when Combat opens); no [Repeat]; no [Temporary]; no recall as a move; no Awaken Energy carried across a phase. Depends on no unruled reading. REFINED 2026-09-06 (issue #97, docs/phase0/walks/2026-09-06-might-buff-lens.md): one notable added naming the unfloored -Might cards that answer refutation (a), with the domain measurement the issue did not have - the family is Mind and the pool holds exactly one Mind/Body legend (VEN-149), so UNL-138 The List is the unforced Chaos answer. Citations opened: 143.2.b. No change to class, quantities or steps."
     },
     {
       "id": "janna-overzealous-empty-the-attack",
@@ -10271,7 +10295,8 @@
           "'A DIFFERENT BATTLEFIELD' IS DETERMINISTIC IN A DUEL: 485.4 fixes 'Battlefield Count: 2', so there is exactly one legal destination. 485.4.a, with 485.5 (Duel) and 487.5 (Skirmish) selecting randomly and 486.5 (Match) selecting, is why you cannot plan on which of your three battlefields is in play; 103.4.c and Tournament Rules 402.1 forbid bringing two of the same name.",
           "THE DRAWBACK IS SYMMETRIC AND IT IS PART OF THE ENTRY. The pushed unit lands at the other battlefield and 190.3.a.1 makes THEM apply Contested there. If you hold it with a garrison, you get a combat on your terms and 466.1.a.2 sends the survivor home; if it is empty or uncontrolled, they open a Showdown and Conquer it. And the Faefolk hands the opponent the Attacker designation, so THEIR 'When I attack' triggers fire and your defenders take damage (465.2 resolves it 'using their current Might'). Neither card is played without the Might arithmetic done first.",
           "DRAGGING THEIR LAST BODY OFF A BATTLEFIELD TAKES THE BATTLEFIELD FROM THEM. 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there' — so a Faefolk drag leaves that battlefield uncontrolled, which is 'open' in Riot's sense (the Spiritforged errata to Yone, Blademaster rewrote 'an open battlefield' as 'a battlefield that was uncontrolled'), and a second ready body of yours walks in and Conquers it in the same Main Phase.",
-          "THE ARITHMETIC WITH THE QUANTITIES DECLARED. One enemy unit per trigger, one trigger per move, one move per readying (144.2 + 415.3.a). Faefolk: 2 Energy, one drag per turn. Challenger: 5 Energy, one push per turn, filtered at 'less Might than me' = 4 or less. 810.1.c.3 is why neither of them ever moves twice."
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED. One enemy unit per trigger, one trigger per move, one move per readying (144.2 + 415.3.a). Faefolk: 2 Energy, one drag per turn. Challenger: 5 Energy, one push per turn, filtered at 'less Might than me' = 4 or less. 810.1.c.3 is why neither of them ever moves twice.",
+          "THE CHALLENGER'S GATE IS BUYABLE, AND THE PUMP MUST BE PRE-PAID (issue #97, walked 2026-09-06). UNL-105 is M5 and his gate is 'an enemy unit here with less Might than me', i.e. 4 or less. SFD-052 Heart of Dark Ice (Calm gear, E3 P1, 'exhaust: Give a unit +3 Might this turn') takes him to 8 and the gate to 7, which is most of the pool. THE TIMING IS FORCED AND THIS IS THE REASON THE ISSUE ASSERTS WITHOUT ONE: his ability is a Triggered Ability that fires when he moves, its enemy unit is a Choice with a targeting restriction (355.7, 355.9.b), and 355.8 requires valid choices 'in order to put a spell or ability on the chain' - the trigger is placed the instant the move completes, so the +3 must already be on him. It cannot be paid in response either: Heart of Dark Ice carries neither [Action] nor [Reaction], and 806.1.c.2 / 813.1.c.2 are the keywords that would have let an Activated Ability be used in a Showdown or a Closed State. Main Phase, before the Standard Move. Domain: Challenger is Body, the gear is Calm, so a Calm/Body legend - OGN-257 Blind Monk, SFD-193 Grandmaster at Arms, UNL-191 Wuju Master. OGS-019 Wuju Bladesman - Starter is the fourth and is left out on purpose: it carries [BANNED 2v2:restricted]. Nothing about this entry's class, quantities or steps changes."
         ]
       },
       "steps": [
@@ -10300,10 +10325,21 @@
           "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md)",
           "kind": "manual-walk",
           "date": "2026-09-06"
+        },
+        {
+          "title": "Lente de buff y Might — issue #97 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/97",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 candidate 6. The candidate stands and the walk adds the better half of it: 323.10, which issue #58 never cited, lets the Imposing Challenger un-stage a Combat that has not opened and Conquer with no damage — and 310.2 explains why a Triggered Ability reaches that window while a plain spell (charm-evacuate-conquer) cannot. 323.6 is the second addition: dragging the last enemy body off a battlefield they control takes the battlefield from them. The candidate's own drawback (handing over the Attacker designation, and the pushed unit contesting the other battlefield) is kept in full. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.4.c, 143.4, 144.2, 144.4.a, 155, 190.3.a, 190.3.a.1, 310.2, 315.1.b, 319.3, 323.6, 323.8.a, 323.10, 323.11, 323.12, 323.13, 348.2.a, 348.2.a.1, 383.4.f, 415.3.a, 450, 453, 464.2.c.1, 465.2, 466.1.a.2, 485.4, 485.4.a, 485.5, 486.5, 487.5, 810.1.c.3. Ban check: UNL-112 and UNL-105 carry no [BANNED marker. Arithmetic: one unit per trigger, one trigger per move, one move per readying; 2 Energy and 5 Energy respectively. Trap check: NO attack on an empty battlefield is declared — the Challenger line conquers with the Combat un-staged and no Attacker designation ever handed out, and the Faefolk line is defended, not attacked; no [Repeat]; no [Temporary]; no recall used as a move; no Awaken Energy carried. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 candidate 6. The candidate stands and the walk adds the better half of it: 323.10, which issue #58 never cited, lets the Imposing Challenger un-stage a Combat that has not opened and Conquer with no damage — and 310.2 explains why a Triggered Ability reaches that window while a plain spell (charm-evacuate-conquer) cannot. 323.6 is the second addition: dragging the last enemy body off a battlefield they control takes the battlefield from them. The candidate's own drawback (handing over the Attacker designation, and the pushed unit contesting the other battlefield) is kept in full. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.4.c, 143.4, 144.2, 144.4.a, 155, 190.3.a, 190.3.a.1, 310.2, 315.1.b, 319.3, 323.6, 323.8.a, 323.10, 323.11, 323.12, 323.13, 348.2.a, 348.2.a.1, 383.4.f, 415.3.a, 450, 453, 464.2.c.1, 465.2, 466.1.a.2, 485.4, 485.4.a, 485.5, 486.5, 487.5, 810.1.c.3. Ban check: UNL-112 and UNL-105 carry no [BANNED marker. Arithmetic: one unit per trigger, one trigger per move, one move per readying; 2 Energy and 5 Energy respectively. Trap check: NO attack on an empty battlefield is declared — the Challenger line conquers with the Combat un-staged and no Attacker designation ever handed out, and the Faefolk line is defended, not attacked; no [Repeat]; no [Temporary]; no recall used as a move; no Awaken Energy carried. Depends on no unruled reading. REFINED 2026-09-06 (issue #97, docs/phase0/walks/2026-09-06-might-buff-lens.md): one notable added pricing the Challenger's gate with SFD-052 Heart of Dark Ice, with the rule that forces the pump to be pre-paid (355.7 / 355.8 / 355.9.b, and 806.1.c.2 / 813.1.c.2 for why it cannot be paid in response) and the Calm/Body legend list minus the 2v2-restricted OGS-019. No change to class, quantities or steps."
     },
     {
       "id": "lillia-smoke-mirrors-sprite-relay",
@@ -15147,7 +15183,8 @@
           "THE FLOOR CLAUSE IS ON BOTH REDUCERS AND IT IS WHAT BOUNDS THE ENTRY. Ahri and the legend each say 'to a minimum of 1 [M]', so no amount of stacking takes a unit to 0 and the sum can never be driven below the number of units. That is why the answer is four bodies and not an arbitrary number.",
           "[Hidden] CONFINES THE SWEEP TO THE BATTLEFIELD IT WAS HIDDEN AT, AND THE ESCAPE CLAUSE DOES NOT APPLY. 811.1.d.2: 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible.' Fox-Fire names no other location, so played from Hidden it must sweep the battlefield where it sits. Played normally (811.3: 'at its normal timing with no restrictions on targeting') it reaches any battlefield for its full 3 Energy.",
           "THE PRICE OF HIDING IT, AND THE RISK. 811.1.b: 1 rainbow Power to hide it facedown at a battlefield you control, and only 'beginning on the next turn' does it gain [Reaction] and become playable for 0 Energy. 323.7 is the risk — a hidden card at a battlefield you stop controlling is removed and trashed at the next Cleanup. One facedown per battlefield, so at most one Fox-Fire is discounted at a time.",
-          "[Action] AND [Reaction] ARE WHY THE REDUCERS AND THE SWEEP MEET. Ahri's and the legend's triggers fire during combat; Fox-Fire is [Action], which 806.1.c.1 makes playable during showdowns, and [Hidden] gives it [Reaction] while facedown (811.6). So the -2 and the -1 are still on when the sweep resolves — both say 'this turn'."
+          "[Action] AND [Reaction] ARE WHY THE REDUCERS AND THE SWEEP MEET. Ahri's and the legend's triggers fire during combat; Fox-Fire is [Action], which 806.1.c.1 makes playable during showdowns, and [Hidden] gives it [Reaction] while facedown (811.6). So the -2 and the -1 are still on when the sweep resolves — both say 'this turn'.",
+          "THE FOUR-BODY CEILING IS SCOPED TO THIS LINE'S TWO FLOORED REDUCERS (added 2026-09-06 walking issue #97). Both OGN-119 and the legend print 'to a minimum of 1 [M]', which is why the sum can never fall below the number of units. It is NOT a fact about Fox-Fire. 143.2.b: 'If a unit's Might is ever less than 0, IT IS TREATED AS 0 when referenced by spells and abilities' - so an UNFLOORED reduction contributes 0 to Fox-Fire's sum, not 1, and the ceiling does not bind. SFD-066 Frigid Touch (-2, [Repeat]), UNL-063 Eclipse (-4) and UNL-066 Moonlight Affliction (-10) are all Mind, all unfloored and all inside this entry's own Calm/Mind identity. That version is authored separately as foxfire-unfloored-reduction-sweep, because its reducers are one-shot spells rather than the free combat triggers this line runs on. Nothing about this entry's class, quantities or steps changes."
         ]
       },
       "steps": [
@@ -15176,9 +15213,20 @@
           "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md)",
           "kind": "manual-walk",
           "date": "2026-09-06"
+        },
+        {
+          "title": "Lente de buff y Might — issue #97 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/97",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89's first extra candidate (104 registered lists). All three cards appeared in NO entry before this. The hunt's observation is right and worth having: reducing Might to lower the THRESHOLD of a sum-priced sweep is a mechanic none of this project's lenses (XP/Empower/Flow/Mech, Hidden/Ambush, Equip, Reaction/Deflect, tokens, ready, movement, draw, stun, payoff) ever measured. THE WALK'S ADDITION is the ceiling and the targeting. The ceiling: both reducers print 'to a minimum of 1 [M]', so the sum can never fall below the number of units and FOUR bodies at 1 Might each is exactly 4 — the largest sweep the line can make, which the hunt did not compute. The targeting: 811.1.d.2's escape clause does NOT apply to Fox-Fire, because the card names no other location, so a hidden Fox-Fire must sweep the battlefield it was hidden at; 811.3 is the way out, at full price. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 323.7, 710, 806.1.c.1, 811.1.b, 811.1.d.2, 811.3, 811.6. Ban check: none of the three carries a [BANNED marker. Trap check: Ahri's trigger needs an attack or a defence and the entry says so (807.1.d, 383.4.e, 461); no [Repeat]; no [Temporary]; no token; no recall; no Gold; no battlefield of its own; 323.7 is named as the risk of hiding. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89's first extra candidate (104 registered lists). All three cards appeared in NO entry before this. The hunt's observation is right and worth having: reducing Might to lower the THRESHOLD of a sum-priced sweep is a mechanic none of this project's lenses (XP/Empower/Flow/Mech, Hidden/Ambush, Equip, Reaction/Deflect, tokens, ready, movement, draw, stun, payoff) ever measured. THE WALK'S ADDITION is the ceiling and the targeting. The ceiling: both reducers print 'to a minimum of 1 [M]', so the sum can never fall below the number of units and FOUR bodies at 1 Might each is exactly 4 — the largest sweep the line can make, which the hunt did not compute. The targeting: 811.1.d.2's escape clause does NOT apply to Fox-Fire, because the card names no other location, so a hidden Fox-Fire must sweep the battlefield it was hidden at; 811.3 is the way out, at full price. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 323.7, 710, 806.1.c.1, 811.1.b, 811.1.d.2, 811.3, 811.6. Ban check: none of the three carries a [BANNED marker. Trap check: Ahri's trigger needs an attack or a defence and the entry says so (807.1.d, 383.4.e, 461); no [Repeat]; no [Temporary]; no token; no recall; no Gold; no battlefield of its own; 323.7 is named as the risk of hiding. Depends on no unruled reading. REFINED 2026-09-06 (issue #97, docs/phase0/walks/2026-09-06-might-buff-lens.md), a cross-reference the issue did not ask for and the walk found: issue #97's S8 table marks OGN-256 Fox-Fire uncatalogued, which is wrong - it is here. The closing ceiling of this entry is correctly scoped to its two FLOORED reducers, and one notable now says so explicitly and points at foxfire-unfloored-reduction-sweep, where 143.2.b makes an unfloored reduction worth 0 to the sum. Citations opened: 143.2.b. No change to class, quantities or steps."
     },
     {
       "id": "kayn-back-alley-bar-double-move",
@@ -16399,6 +16447,399 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-discard-trash-lens.md), issue #95 candidate 7. REWRITTEN: THE ISSUE'S MOVER CANNOT MOVE ITS ENGINE. It built the candidate on VEN-105 Twilight Step, which moves 'a unit with 3 Might or less'; Minah is 6. The walk swept the corpus for movers in Chaos and replaced it with OGN-173 Ride the Wind, which is an EFFECT move and therefore not bound by 144.4 (420.3.a puts the exhaust cost on the Standard Move only, the #58 finding), and named SFD-125 Fae Porter and OGN-184 The Syren with what each can and cannot do. It also priced the repetition against the free floor of 2 Power a turn rather than leaving it open, and pinned the destination clause: 'When I move TO A BATTLEFIELD' does not fire on the way home, while Traveling Merchant's bare 'When I move' does. Card text verbatim from data/corpus_flat.txt. Citations opened: 002, 051, 103.1.b.1, 143.4, 144.2, 144.4.a, 144.4.b, 161.2.b, 164.2.b, 315.3.b, 355.2.a, 356.1.a, 383.4.e, 420.3.a, 422.1.a, 422.1.b, 422.4, 422.5, 430.4.a, 807.1.d. Ban check: none of the five carries a [BANNED marker. Trap check: no Attacker designation is claimed, so 807.1.d/383.4.e/461 cannot bite; no [Repeat]; no [Temporary]; no token, so 185/186.1 never arise; no recall; no Gold; no battlefield of its own; all costs are Main Phase costs, so 167 does not bite. Depends on no unruled reading."
+    },
+    {
+      "id": "renekton-public-execution-gate",
+      "name": "Renekton buys the threshold at 1 Energy a point — the cheapest removal in the pool that reaches the base",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-092",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Body unit, E5 M4. ':rb_energy_1:: Give me +1 Might this turn. When my Might becomes 10 or more, empower me. [Empowered][>] I have [Deflect] and [Ganking].' One of only TWO cards in the pool whose Might pump is an Activated Ability with NO exhaust in the cost — the other is UNL-030 Vi, Hotheaded. 378 places no cap on activations."
+        },
+        {
+          "card": "VEN-154",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body/Order spell, E2 P1. 'Choose a friendly unit. Kill an enemy unit with less Might than it. [Flow] E5 + 2 rainbow.' No 'at a battlefield' clause, so it reaches the enemy base. In no entry before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Body and Order (103.1.b.1, 103.1.b.2). FIVE legends are Body/Order, not the two the issue names: OGN-269 The Boss, OGS-023 Might of Demacia - Starter, SFD-205 Grand Duelist, UNL-203 Keeper of the Hammer, VEN-153 Matriarch of War. None carries a [BANNED marker.",
+          "Renekton on the board. 143.4 makes him enter exhausted and 315.1.b readies him next Awakening, but that never matters here: his ability carries no exhaust, so an exhausted Renekton pumps and is chosen exactly like a ready one."
+        ],
+        "notable": [
+          "IT IS NOT THE ONLY REMOVAL THAT REACHES THE BASE, AND THAT IS THIS ENTRY'S CORRECTION TO ISSUE #97. A grep of every unit-kill in the corpus finds three more with no location clause: OGN-229 Vengeance (Order, E4 P2, no gate at all), OGN-234 Harnessed Dragon (Order, E8 P2, an M6 body) and SFD-158 Sandshifter (Order, E5 P2, an M6 body, gated at 3 Might or less). What survives is sharper anyway: VEN-154 is the CHEAPEST removal in the pool that reaches the base — 2 Energy and 1 Power against Vengeance's 4 and 2 — and the ONLY one whose threshold scales with your own board instead of being a printed number. For contrast, the removal that is confined to a battlefield: OGN-213 Hidden Blade, OGS-012 Blast of Power, SFD-162 Blood Money, SFD-164 Drag Under, UNL-159 Soul Harvest, UNL-186 Death from Below, and VEN-136 Ambessa, Respected and Feared, whose text reads 'kill an enemy unit HERE with less Might than me'.",
+          "THE MIGHT IS READ TWICE, AND THE ISSUE ONLY HAD THE FIRST READ. Both bodies are Choices and therefore targets (355.7 'When a card Chooses one or more specific Game Objects to affect, it is Targeted'), and 'with less Might than it' is a targeting restriction of the shape 355.9.b spells out ('a spell that refers to ... \"unit with Might 4 or greater\"'). So 355.8 ('In order to put a spell or ability on the chain, valid choices must be made for all targets') forces the pump to be paid BEFORE the spell goes on the chain. The second read is 359.3.e.7: 'If all of an instruction's Targets become Invalid or Unavailable by the time the spell begins resolving, that instruction will not execute' — 359.3.e.9 calls it mistargeting. A -Might played in response still breaks it, and 477.3.e.2.a ('Negative values, or decreases, to Might are applied last') means the reduction wins that race whatever the order of play.",
+          "THE EMPOWERED STATE IS PERMANENT AND THE ISSUE TREATS IT AS A TURN EFFECT. 'When my Might becomes 10 or more, empower me' prints no duration, and 441.2 says 'Empowered is a STATE for Game Objects on the board that other game effects and abilities can reference'; only 442.1 removes it. So the six Energy that first walks him from 4 to 10 is a one-time purchase of [Deflect] and [Ganking] for the rest of his time on the board, while the +1 Might is 'this turn' and has to be re-bought every turn. The [Deflect] then feeds back into the entry's own refutation: an opposing Eclipse costs 1 rainbow more (809.1.c 'Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more', and 809.1.c.1 lets that Power be any Domain).",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED. Renekton enters at M4, so killing an enemy of Might M needs M+1, that is M-3 activations at 1 Energy each. M5: 2 + (E2 P1) = 4 Energy + 1 Power. M6: 5 Energy + 1 Power. M10 — VEN-091 Corrupted Dragon, OGN-142 Mountain Drake, OGN-158 Volibear Imposing, UNL-118 Elder Dragon — 7 + 2 = 9 Energy + 1 Power, and that pump crosses the Empower threshold on the way, so the permanent [Deflect] and [Ganking] come free. M12, the two largest printed bodies in the pool (UNL-059 Master Yi Unstoppable, UNL-147 Baron Nashor): 11 Energy + 1 Power.",
+          "[Flow] IS REPETITION BETWEEN TURNS, NOT INSIDE ONE. 829.1.b: 'You may play this from your trash for its flow cost. Then banish it.' E5 + 2 rainbow. 829.1.b.2 is the fine print: 'Playing a spell for its Flow cost does not change the timing at which it can be played, nor any permissions' — Public Execution carries neither [Action] nor [Reaction], so from the trash it is still bound by 155 to the Main Phase.",
+          "THE ENEMY UNIT IS CHOSEN, SO [Deflect] TAXES THIS LINE. 809.1.d: Deflect 'imposes a Mandatory Additional Cost on Spells and Abilities that CHOOSE the Game Object that has this ability.' That is the whole difference between this entry and renekton-stare-down-evacuate, whose victims are not chosen at all (355.10.d) and are therefore moved for free.",
+          "TIMING. Renekton's ability carries neither [Action] nor [Reaction], so 806.1.c.2 and 813.1.c.2 never grant it the extra windows: it is a Main Phase Neutral Open State ability (312.2.a). 378 ('The controlling player chooses when and whether to activate an Activated Ability') is why it can be used as many times as the Energy lasts — no paragraph of 377 to 380 caps activations and the card prints no 'use only once'."
+        ]
+      },
+      "steps": [
+        "With Renekton on the board, in your Main Phase Neutral Open State (312.2.a), pay 1 Energy per point of Might until his Might exceeds the enemy body you want dead. Exhausted is fine — the ability has no exhaust in its cost.",
+        "If the target is 7 Might or more, the pump crosses 10 on the way and 'When my Might becomes 10 or more, empower me' fires: [Deflect] and [Ganking] from now on (441.2).",
+        "Play Public Execution for 2 Energy + 1 Power. 355.8 checks both choices as it goes on the chain, so the pump had to be already paid; if the target has [Deflect], add its Power (809.1.c, any Domain by 809.1.c.1).",
+        "The opponent's window: a -Might on Renekton makes the target invalid at resolution and the instruction does not execute (359.3.e.7). 477.3.e.2.a applies their decrease last, so it wins the race.",
+        "It resolves: the enemy unit dies wherever it stands, including at their base, since the card prints no 'at a battlefield' clause.",
+        "Next turn, replay it from the trash for its Flow cost, E5 + 2 rainbow, then it is banished (829.1.b). The +1 Might has to be re-bought — it was 'this turn' — but the Empowered state is not."
+      ],
+      "netPerIteration": "one enemy body dead per casting, anywhere on the board, for 2 Energy + 1 Power plus 1 Energy per point of Might the threshold needs",
+      "terminatesIn": "engine only — three copies (103.2.b), each replayable once from the trash by [Flow] and then banished; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de buff y Might — issue #97 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/97",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md), issue #97 candidate 1. REWRITTEN ON THREE POINTS. (1) The issue calls VEN-154 'la unica remocion que llega a la base'; a grep of every unit-kill in the corpus finds three more with no location clause (OGN-229, OGN-234, SFD-158), so the claim is narrowed to CHEAPEST-that-reaches-the-base and ONLY-relative-gate-that-does. (2) The issue cites 355.7/355.8 and stops; 359.3.e.7 re-checks the targets at resolution, which is the half that makes a -Might in response still work. (3) The issue treats the Empower as part of a turn's spend; 441.2 makes Empowered a persistent STATE, so 6 Energy buys [Deflect] and [Ganking] permanently. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.1.b.2, 103.2.b, 143.4, 155, 312.2.a, 315.1.b, 355.7, 355.8, 355.9.b, 359.3.e.7, 359.3.e.9, 378, 441.2, 442.1, 477.3.e.2.a, 806.1.c.2, 809.1.c, 809.1.c.1, 809.1.d, 813.1.c.2, 829.1.b, 829.1.b.2. Ban check: VEN-092, VEN-154 and all five Body/Order legends carry no [BANNED marker. Arithmetic against its own declared quantities: M-3 Energy of pump plus E2 P1, worked for M5/M6/M10/M12. Trap check: no attack and no Attacker designation is claimed (807.1.d, 383.4.e, 461 cannot bite); all spending is Main Phase, so 167 does not bite; no [Repeat]; no [Temporary]; no token, so 185/186.1 never arise; no recall; no battlefield of its own. Depends on no unruled reading."
+    },
+    {
+      "id": "renekton-stare-down-evacuate",
+      "name": "Stare Down evacuates the whole garrison and never chooses it — so [Deflect] does not tax the Conquer",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-107",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E2. 'Choose a friendly unit and a battlefield. Move all enemy units at that battlefield with less Might than the chosen unit to their base. Gain 1 XP.' The pool's only evacuation whose reach is a variable you control. In no entry before this walk; charm-evacuate-conquer names it in its alternatives table and calls it 'the Body twin of this entry, not a version of it'."
+        },
+        {
+          "card": "VEN-092",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "Body unit, E5 M4. ':rb_energy_1:: Give me +1 Might this turn.' The yardstick. He does NOT have to be at the battlefield and does NOT have to be ready — the spell chooses a friendly unit and a battlefield separately, and his ability has no exhaust in its cost."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Body, so ANY legend with Body runs the line (103.1.b.1). This is the cheapest domain requirement in the lens and the issue does not state it.",
+          "One ready friendly unit at your base to walk in afterwards. Its Standard Move is the only other cost (144.4.a, 144.2 / 420.3.a)."
+        ],
+        "notable": [
+          "THE YARDSTICK DOES NOT MOVE, WHICH IS WHY THE PACKAGE IS 5 ENERGY AND NOT 8. Issue #97 prices this at 8 Energy because it walks Renekton to 10 to buy [Ganking] so that he is the body that enters. He does not have to be. 'Choose a friendly unit AND a battlefield' is two independent choices with no clause tying one to the other, so Renekton can stand at your base, exhausted, and still set the threshold. The body that enters is any ready friendly unit, base to battlefield by 144.4.a with its own exhaust as the whole cost (144.2 / 420.3.a). 810.1.c.3 is why [Ganking] adds nothing here: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.'",
+          "THE VICTIMS ARE NOT TARGETS, SO [Deflect] NEVER TAXES THIS — the walk's own addition, and the sharpest thing in the lens. 355.10.d: a game object is not a target when 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller', with the worked example \"'Kill all units at a battlefield' targets a battlefield, but does not target any units.\" 'All enemy units at that battlefield with less Might than the chosen unit' is exactly that shape. Deflect keys on choosing (809.1.c 'that TARGET [me/this]', 809.1.d 'that CHOOSE the Game Object'), so a garrison of [Deflect] bodies is evacuated for free. renekton-public-execution-gate is the opposite case and pays the tax — that is why they are two entries, not two versions of one.",
+          "THE ORDER IS MANDATORY, NOT PREFERRED, exactly as in charm-evacuate-conquer. Stare Down carries neither [Action] nor [Reaction], so 155 ('A spell can be played during an Open State OUTSIDE OF SHOWDOWNS on its controller's turn') confines it to the Main Phase: evacuate first, enter second. Enter first and the very next Cleanup stages the Combat at 323.9 and opens it at 323.13 with no gap, and 155 then bars the spell outright.",
+          "THE CONQUER, RULE BY RULE. Stare Down MOVES the garrison home — 455 defines a Recall as relocation 'without it being a Move', so this is not one and 323.6 reads the departure: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' The battlefield is now uncontrolled and unoccupied, which is both halves of 170.11.c ('Battlefields can be \"open.\" This means they are unoccupied and uncontrolled'). Your unit walks in (144.4.a) and applies Contested (450, 190.3.a.1). The next Cleanup stages a Showdown (323.8) and NO Combat, because 323.9 requires 'Units present controlled by opposing players'. 323.12 opens it, 348.2.a establishes Control and 348.2.a.1 says outright 'This results in a Conquer'. 471.1 gives the point.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED. Against a garrison of M6 and M5, Renekton needs 7: three activations, 3 Energy. Stare Down is 2 Energy. TOTAL 5 ENERGY AND ZERO POWER, plus a Standard Move you already had, and the whole garrison goes home. Against a garrison whose largest body is M9, 6 Energy of pump takes him to 10 and the Empower comes free (441.2). Gain 1 XP is real and free; nothing in this entry spends XP.",
+          "WHAT REFUTES IT, KEPT IN FULL. (a) 477.3.e.2.a applies decreases last, so an Eclipse on Renekton shrinks the set — and here it shrinks it at EXECUTION, since 355.10.d means the set is computed then and not at finalization. (b) 347.1 lets the opponent play cards in the open Showdown: a body returned there makes the battlefield Contested by two players again. (c) Stare Down moves to their base, it does not banish — the same bodies are back next turn. This buys a point, not a board."
+        ]
+      },
+      "steps": [
+        "Main Phase, Neutral Open State. Pay 1 Energy per point of Might on Renekton at your base until his Might exceeds the largest body in the enemy garrison. Exhausted is fine.",
+        "Play Stare Down for 2 Energy, choosing Renekton and the enemy battlefield. The enemy units are selected by criteria, not chosen (355.10.d), so no [Deflect] cost is added.",
+        "It resolves: every enemy body under Renekton's Might moves to their base, and you gain 1 XP.",
+        "The Cleanup strips their Control of that battlefield (323.6); it is now open in the sense of 170.11.c.",
+        "Standard-Move a ready friendly unit from your base into it (144.4.a; the cost is its own exhaust, 144.2 / 420.3.a). 450 and 190.3.a.1 apply Contested.",
+        "The next Cleanup stages a Showdown (323.8) and no Combat (323.9), and 323.12 opens it. Everyone passes, 348.2.a establishes Control and 348.2.a.1 makes it a Conquer: 1 point by 471.1."
+      ],
+      "netPerIteration": "the whole enemy garrison under a threshold you buy at 1 Energy a point sent home, then one Conquer, with no damage dealt or taken and no [Deflect] paid",
+      "terminatesIn": "engine only — one point per casting, bounded by three copies (103.2.b) and by 470's one Score per battlefield per turn",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de buff y Might — issue #97 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/97",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md), issue #97 candidate 2. REWRITTEN ON TWO POINTS. (1) The issue prices the package at 8 Energy on the belief that Renekton must be Empowered for [Ganking] so he can be the entering body; the spell chooses a friendly unit and a battlefield independently, so he can sit exhausted at the base and any ready body walks in — 5 Energy and 0 Power against a M6+M5 garrison, and the domain is any Body legend rather than the issue's implied Body shell. (2) The walk adds the rule the issue does not have: 355.10.d makes the evacuated units non-targets, so 809.1.c/809.1.d never tax Stare Down, which is exactly what separates this entry from renekton-public-execution-gate. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.b, 144.2, 144.4.a, 155, 170.11.c, 190.3.a.1, 323.6, 323.8, 323.9, 323.12, 323.13, 347.1, 348.2.a, 348.2.a.1, 355.10.d, 420.3.a, 441.2, 450, 455, 470, 471.1, 477.3.e.2.a, 809.1.c, 809.1.d, 810.1.c.3. Ban check: UNL-107 and VEN-092 carry no [BANNED marker. Arithmetic against its own declared quantities: 3 Energy of pump + 2 Energy for the spell against a M6+M5 garrison. Trap check: NO attack is declared — the Conquer comes from a Showdown and no Attacker designation is ever handed out, so 807.1.d/383.4.e/461 cannot bite; all spending is Main Phase (167); no [Repeat]; no [Temporary]; no token; the move is a Move and not a Recall (455), which is what lets 323.6 read it; no battlefield of its own. Depends on no unruled reading."
+    },
+    {
+      "id": "foxfire-unfloored-reduction-sweep",
+      "name": "Fox-Fire's four-body ceiling is a fact about FLOORED reducers — 143.2.b makes an unfloored one cost the sum nothing",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-256",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm/Mind spell, E3, [Hidden] [Action]. 'Kill any number of units at a battlefield with total Might 4 or less.' The pool's only sweep priced on a SUM. Already catalogued in ahri-foxfire-might-threshold with the two FLOORED reducers; this entry is the unfloored half."
+        },
+        {
+          "card": "SFD-066",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind spell, E2, [Reaction] [Repeat] E2. 'Give a unit -2 Might this turn.' NO floor. Two executions and no more (820.1.b, 820.1.c.3), on two different units if you like (820.2.a)."
+        },
+        {
+          "card": "UNL-066",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind spell, E7, [Reaction]. 'Give a unit -10 Might this turn.' No floor, and the largest reduction in the pool. In no entry before this walk."
+        },
+        {
+          "card": "OGN-116",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind unit, E7 P1 M7, [Accelerate]. 'When you play me, give enemy units -3 Might this turn, to a minimum of 1 Might.' FLOORED, and 477.3.b snapshots the limit on the effect, not the result: it maps a body of Might M to max(1, M-3)."
+        },
+        {
+          "card": "OGN-255",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Mind legend, and it carries the Ahri tag Fox-Fire prints. 'When an enemy unit attacks a battlefield you control, give it -1 Might this turn, to a minimum of 1 Might.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Mind (103.1.b.1). Fox-Fire is Calm/Mind and the three reducers are Mind. Four legends qualify: OGN-255 Nine-Tailed Fox (the one that also carries the Ahri tag), SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom, VEN-145 Curator of the Sands.",
+          "Nothing enters the board except the Watcher in its own row; the Frigid Touch and Moonlight Affliction rows are all spells."
+        ],
+        "notable": [
+          "THIS ENTRY EXISTS BECAUSE A VERIFIED CEILING IS SCOPED AND ISSUE #97 DID NOT NOTICE THE ENTRY IT IS IN. ahri-foxfire-might-threshold ends on 'FOUR units at 1 Might sum to exactly 4, and that is the largest sweep THIS LINE can ever make.' That is true of that line, whose two reducers (OGN-119 Ahri, Inquisitive and the legend) both print 'to a minimum of 1'. It is not a fact about Fox-Fire. 143.2.b: 'If a unit's Might is ever less than 0, IT IS TREATED AS 0 when referenced by spells and abilities' — and Fox-Fire's 'total Might 4 or less' is a spell referencing Might. An unfloored reduction therefore costs the sum NOTHING, where a floored one always costs at least 1. 143.2.b had ZERO citations in the whole catalogue before this walk.",
+          "HOW THE SUM IS READ. 355.11: 'Some cards identify a group of Targets with Targeting Requirements that must be met by the group as a whole'; 355.11.a: 'such cards can choose any group of valid targets that collectively fulfill the targeting restriction'. 710: 'Units on the board are evaluated according to their current Might.' And the boundary nobody should reach for: 142.4.b makes lethal damage on a 0 Might body require 'at least 1 damage marked on it' — irrelevant here, because Fox-Fire KILLS, it does not deal damage.",
+          "THE WATCHER ROW OF ISSUE #97 IS BACKWARDS AND THIS IS THE CORRECTION. The issue says four bodies 'de cualquier tamano' are flattened to 1 each. 477.3.b's own worked example says otherwise: \"If an effect gives a unit '-4 [M] to a min of 1 this turn' choosing a unit with 2 [M], then the effect will generate -1 [M] this turn.\" The floor limits the SIZE OF THE REDUCTION, not the resulting Might, so '-3 to a minimum of 1' maps M to max(1, M-3) and a 10 Might body lands on 7. The honest budget against Fox-Fire's 4: four bodies of M4 or less (1+1+1+1), or two of M5 (2+2), or one of M7 (4). One M8 body is already 5 and does not fit. E7 P1 + E3 = 10 Energy + 1 Power for four small bodies or one M7 — not for 'a garrison of four of any size'.",
+          "THE MOONLIGHT AFFLICTION ROW OF ISSUE #97 IS AN ARITHMETIC SLIP AND THIS IS THE CORRECTION. It writes 'un solo cuerpo de M12: -10 -> -2'; 12 - 10 = 2. Rewritten: UNL-066 has no floor, so it maps M to M-10, and 143.2.b reads anything below 0 as 0. EVERY printed body of 10 Might or less lands at or below zero and costs Fox-Fire nothing at all — that covers VEN-091 Corrupted Dragon, OGN-142 Mountain Drake, OGN-158 Volibear Imposing and UNL-118 Elder Dragon. The two largest printed bodies in the pool are M12 (UNL-059 Master Yi Unstoppable, UNL-147 Baron Nashor) and land on 2, which still leaves room inside 4 for a 1 Might body beside them. E7 + E3 = 10 Energy and any single body in the game is gone.",
+          "143.2.b.1 IS THE PRICE OF THE TRICK: 'Although the unit's Might is treated as 0, IT IS NOT 0. Effects that calculate Might increases and decreases use the actual value of the unit's Might.' Undoing a -10 on an 8 Might body costs the opponent ten points of +Might, not two. The reduction is cheap to apply and expensive to answer.",
+          "THE FRIGID TOUCH ROW IS CORRECT AS ISSUE #97 WROTE IT, AND 820 IS WHY IT IS NOT AN ENGINE. SFD-066 is E2 with '[Repeat] E2' and no floor. 820.1.b gives 'a second time', 820.1.c.3 caps it there ('Each Repeat Cost can be paid only a single time'), and 820.2.a lets the second execution pick a different unit ('Choices made for the additional execution do not have to be the same'). So 4 Energy is -2 on each of two bodies: a M3+M3 garrison becomes 1+1 = 2, a M2+M2 garrison becomes 0+0. Plus Fox-Fire at E3 the whole garrison is gone for 7 ENERGY. A third body needs a second Frigid Touch.",
+          "THE [Hidden] DISCOUNT IS DEFENSIVE ONLY, AND THAT SPLITS THE CARD IN TWO. 811.1.b: you may pay 1 rainbow 'to hide this facedown at a battlefield YOU CONTROL'. 811.1.d.2 then confines a hidden spell's targets to that battlefield, and Fox-Fire names no other location so the escape clause never applies. So the 0 Energy Fox-Fire sweeps YOUR battlefield — the Nine-Tailed Fox legend's own scenario — while clearing THEIR garrison to walk in costs the full 3 Energy from hand. Only the second one leads to a Conquer.",
+          "FOX-FIRE CHOOSES ITS VICTIMS, SO IT PAYS [Deflect] ONCE PER BODY. 355.11.a makes them a chosen group and 809.1.c charges 'for each time they choose'. This is the opposite of renekton-stare-down-evacuate, whose victims are selected by criteria (355.10.d) and cost nothing. And the card says 'units', not 'enemy units': your own bodies at that battlefield count toward the sum and can die, which is why the sweep and the walk-in are two steps and not one.",
+          "THE CONQUER AFTERWARDS IS THE SAME CHAIN AS charm-evacuate-conquer AND renekton-stare-down-evacuate: 323.6 strips their Control at the Cleanup once the battlefield is empty, a ready body walks in (144.4.a, 144.2 / 420.3.a), 323.8 stages a Showdown and 323.9 stages no Combat, 323.12 opens it, 348.2.a and 348.2.a.1 give Control and a Conquer, 471.1 gives the point. No Attacker designation is ever claimed."
+        ]
+      },
+      "steps": [
+        "Choose which body is the problem. If it is one big body, Moonlight Affliction (E7, [Reaction], no floor) takes anything printed at 10 Might or less to zero or below, which 143.2.b reads as 0.",
+        "If it is two mid bodies, Frigid Touch with its Repeat paid (E2 + E2) gives -2 to each (820.2.a), taking a M3+M3 garrison to 1+1.",
+        "If it is a wide garrison of small bodies, Thousand-Tailed Watcher (E7 P1) maps each to max(1, M-3): four bodies of M4 or less become 1 each.",
+        "Add up the survivors at their CURRENT Might (710). If the total is 4 or less, play Fox-Fire from hand for 3 Energy — not from Hidden, which 811.1.d.2 would confine to your own battlefield — and choose the group (355.11.a). Add 1 rainbow per [Deflect] body chosen (809.1.c).",
+        "They all die at once. Do not include your own bodies: the card says 'units', not 'enemy units'.",
+        "The Cleanup strips their Control (323.6). Walk a ready body in (144.4.a) and take the Conquer through the Showdown (323.8 / 323.9 / 323.12 / 348.2.a / 348.2.a.1 / 471.1)."
+      ],
+      "netPerIteration": "one Fox-Fire kills a garrison whose CURRENT Might sums to 4 or less, and an unfloored reduction contributes 0 to that sum instead of 1 — so the four-body ceiling of the floored version does not bind",
+      "terminatesIn": "engine only — three Fox-Fires, each consumed, and every reducer is a card spent; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de buff y Might — issue #97 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/97",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md), issue #97 candidate 3. REWRITTEN ON THREE POINTS. (1) ISSUE #97 MISSED THAT HALF OF ITS OWN CANDIDATE IS ALREADY CATALOGUED: its S8 table marks OGN-256 Fox-Fire uncatalogued, but Fox-Fire and OGN-255 are both in ahri-foxfire-might-threshold (verified 2026-09-06, issue #89). This entry is authored as the unfloored companion and says so, and a cross-reference notable was added to that entry in the same commit. (2) The Thousand-Tailed Watcher arithmetic is backwards in the issue: 477.3.b's worked example shows the floor limits the SIZE of the reduction, so '-3 to a minimum of 1' maps M to max(1, M-3) and four 10 Might bodies sum to 28, not 4. (3) 'M12 -10 = -2' is an arithmetic slip; it is 2, and the negative-Might case starts below M10. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 142.4.b, 143.2.b, 143.2.b.1, 144.2, 144.4.a, 323.6, 323.8, 323.9, 323.12, 348.2.a, 348.2.a.1, 355.10.d, 355.11, 355.11.a, 420.3.a, 471.1, 477.3.b, 710, 809.1.c, 811.1.b, 811.1.d.2, 820.1.b, 820.1.c.3, 820.2.a. 143.2.b and 143.2.b.1 had ZERO citations in the catalogue before this walk. Ban check: OGN-256, SFD-066, UNL-066, OGN-116, OGN-255 and the three alternative legends carry no [BANNED marker. Arithmetic against its own declared quantities: three worked rows, each with the card count it needs. Trap check: no attack and no Attacker designation (807.1.d, 383.4.e, 461); all Main Phase (167); [Repeat] is used exactly as 820.1.c.3 allows and is not treated as an engine; no [Temporary]; no token; no recall. Depends on no unruled reading."
+    },
+    {
+      "id": "vi-hotheaded-excess-threshold",
+      "name": "Vi doubles for 2 Energy and a Power, and one doubling is the whole difference between 4 excess and 7",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-030",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 M3, [Deflect]. ':rb_energy_2::rb_rune_fury:: Double my Might this turn.' The pool's only repeatable Might multiplier: of five doublers, the only one that is an Activated Ability, and one of only two Might pumps in the pool with no exhaust in the cost. In no entry before this walk."
+        },
+        {
+          "card": "OGN-034",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E7 P2 M8. 'When I conquer after an attack, if you assigned 5 or more excess damage to enemy units, you score 1 point.' The ONLY bridge from Might to a point in the whole pool, and it is a threshold, not a scale."
+        },
+        {
+          "card": "SFD-117",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BOARD",
+          "note": "Body gear, E2 P1. ':rb_exhaust:: [Reaction] - Pay any amount of Energy to [Add] that much rainbow.' Only needed from the third doubling on, and only in the Fury/Body version: 135.2.e.5 makes rainbow 'Power of any Domain', so it does pay Vi's Fury Power."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "WITHOUT the Henge the line is MONO-FURY and runs under any Fury legend — Vi and Tryndamere are both Fury. Issue #97 asserts a Fury/Body legend unconditionally, which is only true of the Henge version.",
+          "With SFD-117 Ancient Henge the legend must be Fury/Body (103.1.b.1). Four qualify: OGN-249 Relentless Storm, SFD-183 Purifier, UNL-183 Pridestalker, VEN-141 Butcher of the Sands.",
+          "Both bodies at the same enemy-held battlefield, and both must survive the combat to conquer."
+        ],
+        "notable": [
+          "THE ISSUE'S ARITHMETIC LEAVES THE PAYOFF OUT OF ITS OWN COMBAT, AND THIS IS THE CORRECTION. It prices one doubling against 'una guarnicion cuyo minimo letal sume 1' and gets exactly 5 excess. Vi attacking alone does leave 5 — but Vi carries no excess payoff. Both payoffs read 'When I conquer after an attack', so OGN-034 or SFD-120 has to be AT that battlefield, and 464.2.c.3 ('Units at the Contested Battlefield controlled by the Attacker or Defender gain the Attacker or Defender designation now') then makes it an attacker too, so 465.2.c ('each player assigns an amount of damage equal to their SUMMED Might') puts its Might into the same sum. Tryndamere alone is M8 and already leaves 7 excess against a 1 Might garrison; the doubling buys nothing there. Vi is worth her Energy on the opposite board: a FAT garrison.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED (1 Vi, 1 Tryndamere). Excess is the attacking sum minus the total lethal the garrison requires (R28 = A). 0 doublings: Vi 3 + Tryndamere 8 = 11, so 5 excess needs a garrison summing 6 or less. 1 doubling (2 Energy + 1 Fury Power): Vi 6, sum 14, garrison 9 or less. 2 doublings (4 Energy + 2 Fury Power): Vi 12, sum 20, garrison 15 or less. 3 doublings (6 Energy + 3 Fury Power): Vi 24, sum 32, garrison 27 or less. 477.3.b is why the ladder compounds instead of adding: the double 'is applied once ... it will snapshot', so it reads Vi's Might at the moment of application — 3, +3, 6, +6, 12, +12, 24.",
+          "THE TIGHTEST NUMBER, AND IT IS THE ENTRY'S POINT. Tryndamere is M8, and the defenders assign their own summed Might back (465.2.c) with 465.2.c.3 forcing lethal onto one unit in full first ('Units must have lethal damage assigned to them in full before damage is assigned to a different Unit'). A garrison summing exactly 7 cannot kill him; it can only kill Vi at 6. And 11 - 7 = 4 excess, no point; 14 - 7 = 7 excess, a point. SO ONE DOUBLING — 2 ENERGY AND 1 FURY POWER — IS THE WHOLE DIFFERENCE BETWEEN NO POINT AND A POINT AGAINST A 7 MIGHT GARRISON, with Tryndamere surviving to conquer either way. tryndamere-brambleback-conquer buys the same clause with 28 Might in five bodies.",
+          "THE 'unless' TAIL OF 465.2.c.4, STATED HONESTLY — the catalogue cites that rule in 18 places and this tail in none of them. In full: 'Units cannot have more damage assigned to them than the minimum required to constitute lethal damage UNLESS NO FURTHER UNITS REMAIN TO HAVE DAMAGE ASSIGNED TO THEM.' Against a single defender the tail permits dumping the whole sum, which would leave no excess at all. It is a permission, not an instruction: 465.2.c says the player ASSIGNS, and the attacker stops at minimum lethal precisely so the excess exists. R28 = A is untouched.",
+          "WHERE THE THIRD POWER COMES FROM. The project's measured free floor is 2 Power a turn (164.2.b, 161.2.b, 315.3.b / 430.4.a), so the third doubling needs a third rune or the Henge. 135.2.e.5 is why the Henge works at all here: 'Power of any Domain is represented by a swirling rainbow symbol', so its [Add] pays a Fury Power cost. 429.2 makes the Add resolve as soon as it is finalized.",
+          "709, AND WHY ONLY THE FIRST DOUBLING CAN FIRE A 'becomes Mighty' PAYOFF. 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater', with the worked example 'A Unit with Might 5 that gets +1 [M] does not become Mighty, because it was already Mighty.' Vi's first doubling (3 to 6) is a becomes-Mighty; the second and third are not. SFD-205 Grand Duelist is the pool's payoff for that clause and it is Body/Order, outside this shell — recorded so nobody adds it later.",
+          "WHAT REFUTES IT. (a) 477.3.c, word for word, with UNL-063 Eclipse in the rules' own worked example: 'Players cannot increase a numeric attribute by a negative amount ... they increase it by 0 instead', so a -Might that resolves BEFORE the double makes the double add nothing. Vi's [Deflect] taxes that Eclipse by 1 rainbow (809.1.c, any Domain by 809.1.c.1) and no more. (b) The whole ladder is 'this turn'. (c) Both bodies must survive the combat.",
+          "AND THE HONEST CEILING OF THE WHOLE LENS. Nothing in the pool converts the SIZE of a Might into points: the only bridge is OGN-034's threshold of 5, and the other five excess-damage payoffs (SFD-120 Sivir Ambitious, UNL-018, UNL-187, UNL-188, UNL-217) ask for 3 or 5 and pay nothing more for more. SFD-120 is the only one that scales, and what it scales into is damage. That is why an uncapped Might ladder is an ENGINE and never a BURST."
+        ]
+      },
+      "steps": [
+        "Vi and Tryndamere at your base, both ready (143.4 made them enter exhausted; 315.1.b readies them in the Awakening).",
+        "Main Phase: pay 2 Energy + 1 Fury Power to double Vi. 3 becomes 6, and 709 makes that a 'becomes Mighty'. 477.3.b snapshots it, so a second doubling would read 6 and give +6.",
+        "Standard-Move both into a battlefield the opponent garrisons (144.4.a, cost 144.2 / 420.3.a). 450 and 190.3.a.1 apply Contested.",
+        "The Cleanup stages the Combat (323.9) and 323.13 opens it; 464.2.c.1 and 464.2.c.3 make both of them Attackers.",
+        "Combat Damage Step: assign your summed 14 among their bodies, stopping at minimum lethal on each (465.2.c, 465.2.c.3, 465.2.c.4). Against a garrison summing 7 that leaves 7 excess.",
+        "They assign 7 back and 465.2.c.3 makes them kill Vi rather than fail to kill Tryndamere. Tryndamere conquers, his clause sees 5 or more excess, and he scores 1 point on top of the Conquer's own (R2 = A, 471.1)."
+      ],
+      "netPerIteration": "one doubling per 2 Energy + 1 Fury Power, compounding, and the 5-excess clause bought for that instead of for 28 Might in bodies",
+      "terminatesIn": "engine only — the ladder is 'this turn' and the point is one per Conquer, capped by 470 at one Score per battlefield per turn",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de buff y Might — issue #97 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/97",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md), issue #97 candidate 4. REWRITTEN: THE ISSUE'S ARITHMETIC LEAVES ITS OWN PAYOFF OUT OF THE COMBAT. It computes 5 excess from Vi attacking alone, but Vi carries no excess payoff and 464.2.c.3 + 465.2.c put the payoff body's Might into the same sum, so Tryndamere alone already clears the threshold against a thin garrison and the doubling buys nothing there. The walk re-derived the ladder against a FAT garrison and found the tight number the issue does not have: against a garrison summing 7, one doubling is exactly the difference between 4 excess (no point) and 7 excess (a point), and 465.2.c.3 is why Tryndamere survives it either way. It also states the 'unless' tail of 465.2.c.4, which the catalogue cites in 18 places and had never quoted, and resolves it as a permission the attacker declines — R28 = A untouched. Domain corrected: mono-Fury without the Henge, Fury/Body with it. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 135.2.e.5, 143.4, 144.2, 144.4.a, 190.3.a.1, 315.1.b, 323.9, 323.13, 420.3.a, 429.2, 450, 464.2.c.1, 464.2.c.3, 465.2.c, 465.2.c.3, 465.2.c.4, 470, 471.1, 477.3.b, 477.3.c, 709, 809.1.c, 809.1.c.1. Ban check: UNL-030, OGN-034, SFD-117 and the four Fury/Body legends carry no [BANNED marker. Trap check: the attack is legitimate, with a garrison present when the Combat opens (461, 383.4.e, 807.1.d); all spending is Main Phase (167); no [Repeat]; no [Temporary]; no token; no recall. Stands on R28 = A and R2 = A, both ruled on issue #11; depends on no unruled reading."
+    },
+    {
+      "id": "overt-operation-fae-dragon-industrialist",
+      "name": "Overt Operation is the only card that spends N buffs and refills them in the same resolution",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-153",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E5 P2, [Action]. 'For each friendly unit, you may spend its buff to ready it. Then buff all friendly units.' In no entry's uses before this walk — it appeared only inside a note of fae-dragon-wallop-industrialist."
+        },
+        {
+          "card": "SFD-101",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Body unit, E7 P1 M7. 'When you play me, buff up to FOUR friendly units. When you spend a buff, play a Gold gear token exhausted.' The cap of four is what breaks the issue's N=5 arithmetic on the first casting."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order unit, E4 P1 M4. 'Your tokens enter ready.' R25 = A: the Gold is 1 Power of any Domain the moment it appears, because 187.5 puts an exhaust in the Gold's own cost."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Body and Order (103.1.b.1): OGN-153 and SFD-101 are Body, SFD-171 is Order. Five legends qualify: OGN-269 The Boss, OGS-023 Might of Demacia - Starter, SFD-205 Grand Duelist, UNL-203 Keeper of the Hammer, VEN-153 Matriarch of War.",
+          "Bodies on the board to hold the buffs. 702.3 caps it at one buff per body, so the ceiling is the number of units, never the number of buffers."
+        ],
+        "notable": [
+          "THE N=5 ARITHMETIC OF ISSUE #97 BELONGS TO THE SECOND CASTING, NOT THE FIRST, AND THIS IS THE CORRECTION. It declares '1 Overt Operation, 1 Fae Dragon, N=5 cuerpos buffeados' and gets +3 Power. Fae Dragon reads 'buff up to FOUR friendly units'. So with one Dragon and nothing else the first Overt Operation spends 4: 4 readies (702.2.b) + 4 Golds, which under SFD-171 enter ready (R25 = A) and are 4 Power, against E5 + 2 Power — NET +2 POWER, and everything is re-buffed. The SECOND Overt Operation is the one that spends one buff per friendly unit on the board: at N=5 it is +3, at N=7 it is +5. Both numbers are real; they are just two different castings.",
+          "THE FIFTH BUFF HAS TO COME FROM SOMEWHERE, and inside Body/Order the pool supplies it: OGN-141 Kinkou Monk (Body, E4 P1, 'buff up to two other friendly units'), OGN-223 Peak Guardian (Order, E6 P1, 'buff me. Then, if I am at a battlefield, buff all other friendly units there'), OGN-139 Cithria of Cloudfield (Body, E2, 'When you play another unit, buff me').",
+          "IT IS NOT THE ONLY MASS SPENDER EITHER, AND THAT IS THE SECOND CORRECTION. A grep of every 'spend ... buff' in the corpus returns TEN spenders, and two of them take more than one: OGN-153 and OGN-230 Albus Ferros (Order, E4 M3, 'When you play me, spend any number of buffs. For each buff spent, channel 1 rune exhausted'), which is also inside Body/Order and also fires the Dragon N times. WHAT SURVIVES IS THE CLAIM WORTH HAVING: Overt Operation is the only card in the pool that spends N buffs AND REFILLS THEM IN THE SAME RESOLUTION ('Then buff all friendly units'), which is what makes the next copy as good as the first. Albus Ferros pays in channelled runes instead of readies and does not refill; the other eight spend exactly one.",
+          "WHY THE SPEND FIRES THE DRAGON N TIMES. 702.2.b is flat — 'Spending a Buff removes a single Buff counter from a Unit' — with no exemption for a spend made as a cost, which is the reading fae-dragon-wallop-industrialist already stands on. 355.10.c.1 confirms the shape: 'This includes costs within instructions, identified by phrases like \"[do X] to [do Y]\"', and its own example is 'you may spend a buff to move a friendly unit'. Overt Operation says 'FOR EACH friendly unit, you may spend ITS buff', so each unit is its own spend.",
+          "THE ORDERING CAVEAT, INHERITED AND RE-CHECKED. The Golds arrive AFTER the spell has been paid, so the 2 Power must be up front and the surplus is only spendable later in the same Main Phase. 429.2 is what makes it spendable at all — 'Triggered and activated abilities that Add resources resolve as soon as they are finalized' — and 429.2.a adds that they 'will resolve before any other outstanding items on the chain are finalized'. 187.5 is the Gold itself: 'a domainless gear token with \"[Reaction][>] Kill this, [E]: [Add] [A]\"' — the exhaust in that cost is exactly why R25 matters.",
+          "WHAT REFUTES IT, KEPT IN FULL. (a) 705: 'If a Unit leaves play, remove all Buffs from it' — every body that dies is a coin gone. (b) 702.3: one buff per body at a time, and 702.3.a ('it is not placed instead') means a second buffer aimed at a buffed body does nothing; OGN-078 Lee Sin, Ascetic ('I can have any number of buffs') is the pool's one override and it is Calm, outside this shell. (c) The refill prints no 'may' — 'Then buff all friendly units' — so you cannot hold a body buff-less to keep a 'becomes Mighty' window open (709).",
+          "AND EVERY BUFF IS A CHOOSE (702.2.a, 'a player CHOOSES a Unit and then places a buff on it'), so a mass buffer is N chooses off one card. That is the trigger SFD-195 Blade Dancer and SFD-057 Irelia, Fervent read — but Blade Dancer is Calm/Chaos and her ready costs her own exhaust, so the chooses are not the bottleneck there. See blade-dancer-caitlyn-choose-ready."
+        ]
+      },
+      "steps": [
+        "Renata Glasc, Industrialist on the board first, so every Gold that follows enters ready (R25 = A).",
+        "Play Fae Dragon for 7 Energy + 1 Power: buff up to four friendly units.",
+        "Play Overt Operation for 5 Energy + 2 Power, the 2 Power up front. For each buffed unit, spend its buff to ready it: 4 readies.",
+        "Each spend fires the Dragon: 4 Gold gear tokens, entering ready. Each is 'Kill this, exhaust: Add 1 rainbow' (187.5), so that is 4 Power, and 429.2 resolves the Adds immediately. Net +2 Power on the first casting.",
+        "The same resolution then re-buffs ALL friendly units, with no 'may'.",
+        "A second Overt Operation now spends one buff per friendly unit on the board: at N=5 that is 5 readies, 5 Golds and a net of +3 Power; at N=7, +5."
+      ],
+      "netPerIteration": "one ready and one ready Gold per buff spent, against E5 + 2 Power a casting — net +2 Power after one Fae Dragon and +(N-2) once the refill has covered N bodies",
+      "terminatesIn": "engine only — three copies (103.2.b), one buff per body (702.3), and every dead body is a coin gone (705); nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de buff y Might — issue #97 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/97",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-might-buff-lens.md), issue #97 candidate 5. REWRITTEN ON TWO POINTS. (1) The issue's headline arithmetic (1 Overt Operation + 1 Fae Dragon, N=5, +3 Power) cannot happen on the first casting: SFD-101 buffs 'up to FOUR'. The first casting is +2 and the N=5 figure belongs to the second, after the refill has covered every body; both are stated separately, with the Body/Order buffers that would supply a fifth buff on the first pass named. (2) The issue calls OGN-153 'la unica carta del pool que gasta N buffs de un golpe'; a grep of every buff-spender finds ten, two of which take more than one (OGN-153 and OGN-230 Albus Ferros). The surviving claim is that it is the only one that spends N AND refills in the same resolution. The +2/+(N-2) ledger and the R25 reading are consistent with the verified fae-dragon-wallop-industrialist, whose own note already ran the K-body arithmetic; this entry gives OGN-153 a row of its own with its cap stated. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.b, 187.5, 355.10.c.1, 429.2, 429.2.a, 702.2.a, 702.2.b, 702.3, 702.3.a, 703, 705, 709. Ban check: OGN-153, SFD-101, SFD-171, the three extra buffers and all five Body/Order legends carry no [BANNED marker. Trap check: no attack (807.1.d, 383.4.e, 461 never arise); all spending is Main Phase (167); no [Repeat]; no [Temporary]; the Gold token is killed by its own cost and never recycled, so 185/186.1 do not bite; no recall; no battlefield of its own. Stands on R25 = A, ruled on issue #11; depends on no unruled reading."
     }
   ]
 }
