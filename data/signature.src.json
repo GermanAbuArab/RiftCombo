@@ -1,0 +1,24 @@
+{
+ "source": [
+  "https://piltoverarchive.com/api/external/v1/cards (paginated by page, header Origin: https://piltoverarchive.com; field card.super == \"Signature\")",
+  "https://api.dotgg.gg/cgfw/getcards?game=riftbound&mode=indexed (column supertype == \"Signature\")"
+ ],
+ "accessed": "2026-09-06",
+ "notes": [
+  "Riot's own gallery API (scripts/build-cards.mjs) carries no Signature marker at all — 0 hits — so this overlay is two independent third-party mirrors that agree by name, transcribed the same way data/legality.src.json transcribes bans: names only, resolved to base codes at build time.",
+  "Piltover Archive lists 51 Signature variants. dotgg lists 55 rows tagged Signature; the 4 extra are '<Name> (Spiritforged Nexus Night Promo)' rows (OGS-018-P, OGS-020-P, OGS-022-P, OGS-024-P) — the SAME four names (Tibbers, Highlander, Final Spark, Decisive Strike) reprinted under a promo code Riot's own gallery does not carry at all, not a 52nd Signature card. Names-only resolution collapses them onto the one base code each already has.",
+  "scripts/build-cards.mjs resolves each name to exactly one base card and fails loudly if a name resolves to zero or to more than one — verified by hand against data/cards.json on 2026-09-06: all 51 resolve to a single base, three are units (OGS-018 Tibbers, UNL-194 Shadow, UNL-196 Daisy!), four are Equipment gear (SFD-186, SFD-190, SFD-191, SFD-192, UNL-188 — five codes, four names since Ornn's three read as one row each), the rest are spells, and every one of the 51 carries exactly one champion tag."
+ ],
+ "names": [
+  "Icathian Rain", "Stormbringer", "Super Mega Death Rocket!", "Noxian Guillotine", "Fox-Fire",
+  "Dragon's Rage", "Last Breath", "Zenith Blade", "Guerilla Warfare", "Siphon Power", "Bullet Time",
+  "Showstopper", "Tibbers", "Highlander", "Final Spark", "Decisive Strike", "Danger Zone",
+  "Relentless Pursuit", "Spinning Axe", "Void Rush", "Forgefire Cape", "Rabadon's Deathcrown",
+  "Shurelya's Requiem", "Counter Strike", "Defiant Dance", "Arise!", "Arcane Shift",
+  "Hostile Takeover", "On the Hunt", "Riposte", "Curtain Call", "Thrill of the Hunt",
+  "Death from Below", "Hextech Gauntlets", "Lilting Lullaby", "Alpha Strike", "Shadow", "Daisy!",
+  "Moonfall", "Mirror Image", "Void Assault", "Keeper's Verdict", "Shuriken Flip", "Dominus",
+  "Death Mark", "Siphoning Strike", "Shadow Dash", "Acceleration Gate", "Rebuttal",
+  "Public Execution", "Lightning Rush"
+ ]
+}

@@ -242,20 +242,74 @@ describe("103.2.a.2 — the Chosen Champion carries the legend's tag", () => {
     expect(r.detail).toMatch(/no Chosen Champion/i);
   });
 
-  it("says out loud that it cannot tell a signature unit from a champion unit", () => {
-    expect(row(rows(LEGAL), "103.2.a.2").detail).toMatch(/signature/i);
+  // #103: Riot's gallery carries no Signature marker, but two independent mirrors (Piltover
+  // Archive's `card.super`, dotgg's `supertype`) agree on the same 51 names, resolved by
+  // data/signature.src.json into `Card.signature`. Tibbers is 103.2.a.2's own worked example:
+  // tagged Annie, but a Signature card, not a champion unit, so it cannot be Dark Child's Chosen
+  // Champion even though the tag matches (103.2.d.3).
+  it("fails a Signature card as Chosen Champion even when its tag matches (103.2.d.3, Tibbers)", () => {
+    const list = LEGAL.replace("Legend\n1 Lady of Luminosity - Starter", "Legend\n1 Dark Child - Starter").replace(
+      "Champion\n1 Lux, Illuminated",
+      "Champion\n1 Tibbers",
+    );
+    const r = row(rows(list), "103.2.a.2");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toContain("Tibbers");
+    expect(r.detail).toMatch(/signature/i);
   });
 });
 
-describe("103.2.d — the Signature cap we cannot check", () => {
-  it("states the rule and reports it unchecked rather than guessing", () => {
-    const r = row(rows(LEGAL), "103.2.d");
-    expect(r.status).toBe("unknown");
-    expect(r.detail).toMatch(/no Signature marker/i);
+describe("103.2.d — the Signature cap, now computed (#103)", () => {
+  it("carries exactly 51 Signature base cards, each with exactly one champion tag", () => {
+    const signature = cards.cards.filter((c) => c.signature);
+    const bases = new Set(signature.map((c) => c.base));
+    expect(bases.size).toBe(51);
+    const withoutTag = signature.filter((c) => championTagOf(c.base, cards) === null);
+    expect(withoutTag.map((c) => `${c.code} ${c.name}`)).toEqual([]);
   });
 
-  it("does not make a legal list illegal", () => {
-    expect(rows(LEGAL).legal).toBe(true);
+  it("passes a list with no Signature cards", () => {
+    const r = row(rows(LEGAL), "103.2.d");
+    expect(r.status).toBe("pass");
+    expect(r.detail).toMatch(/no signature cards/i);
+  });
+
+  it("fails at 4 Signature cards total, regardless of name (103.2.d.1)", () => {
+    const list = LEGAL.replace(
+      "1 Promising Future",
+      "1 Promising Future\n1 Final Spark\n1 Highlander\n1 Danger Zone\n1 Tibbers",
+    );
+    const r = row(rows(list), "103.2.d");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toContain("4 Signature cards");
+  });
+
+  it("fails a Signature card that does not carry the legend's champion tag (103.2.d.2)", () => {
+    // Final Spark is tagged Lux, which matches Lady of Luminosity's champion tag; Highlander is
+    // tagged Master Yi, which does not.
+    const list = LEGAL.replace("1 Promising Future", "1 Promising Future\n1 Highlander");
+    const r = row(rows(list), "103.2.d");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toContain("Highlander");
+    expect(r.detail).toMatch(/not tagged Lux/i);
+  });
+
+  it("passes 3 Signature cards that all carry the legend's champion tag", () => {
+    const list = LEGAL.replace("1 Promising Future", "1 Promising Future\n1 Final Spark");
+    const r = row(rows(list), "103.2.d");
+    expect(r.status).toBe("pass");
+    expect(r.detail).toContain("1 Signature card");
+    expect(r.detail).toContain("Lux");
+  });
+
+  it("checks the 3-total cap even with no legend named, without falling back to unknown", () => {
+    const list = LEGAL.replace("1 Promising Future", "1 Promising Future\n1 Final Spark").replace(
+      "Legend\n1 Lady of Luminosity - Starter",
+      "",
+    );
+    const r = row(rows(list), "103.2.d");
+    expect(r.status).toBe("pass");
+    expect(r.detail).toContain("1 Signature card");
   });
 });
 

@@ -242,9 +242,44 @@ The legend comes first because everything else is scoped to it; format legality 
 the one row that is about the tournament rather than about the deck. `103.2.e` sitting out of numeric order
 is deliberate and pinned by a test.
 
+---
+
+## #103 — Signature stopped being unknown
+
+The walk above (`signatureRule()`, `championRule()`) left 103.2.d fully `unknown` and half of 103.2.a.2
+unchecked because Riot's gallery API carries no Signature marker at all — `grep -oci signature
+data/cards_full.json` was 0, and no card in `data/cards.json` had a Signature tag either.
+
+Two independent mirrors closed the gap on 2026-09-06: Piltover Archive's `api/external/v1/cards` (field
+`card.super`) and dotgg's `api.dotgg.gg/cgfw/getcards?game=riftbound&mode=indexed` (column `supertype`)
+each list Signature cards, and they agree by name — Piltover Archive's 51 and dotgg's 55 differ only by
+four `(Spiritforged Nexus Night Promo)` reprints of names already in the 51 (Tibbers, Highlander, Final
+Spark, Decisive Strike), which Riot's own gallery does not carry as separate cards at all. The 51 names
+went into `data/signature.src.json`, transcribed the same way `data/legality.src.json` transcribes bans —
+names only, with `source` and `accessed` — and `scripts/build-cards.mjs` resolves each to exactly one base
+code, failing the build if a name resolves to zero or to more than one. It emits `Card.signature: boolean`.
+
+Verified against the whole pool on 2026-09-06: all 51 resolve to a single base (12 OGN, 4 OGS, 15 SFD, 12
+UNL, 8 VEN), 3 are units, 4 are Equipment gear, the rest are spells, and every one carries exactly one
+champion tag (using the same derivation as the section above) — pinned by `test/build.test.ts`.
+
+`checkBuild` now scores two rules that were previously `unknown`:
+
+- **103.2.d** — 103.2.d.1 caps the whole Main Deck at 3 Signature cards **regardless of name**, which is
+  a raw count and needs no legend at all, so it is checked even when the list names none. 103.2.d.2 (every
+  Signature card must carry the legend's champion tag) does need a legend for the tag to compare against;
+  with none named, the row still reports the 103.2.d.1 count rather than falling back to `unknown` for
+  having only half the picture — Core Rules text does not gate the count on a legend being named, so
+  neither does this row.
+- **103.2.a.2** — 103.2.d.3 ("Signature cards are not Champion units and cannot be placed in the Champion
+  Zone") is now checked on the Chosen Champion: a card tagged correctly but carrying `signature: true`
+  fails, which is 103.2.a.2's own worked example — Tibbers, tagged Annie, cannot be Dark Child's Chosen
+  Champion even though the tag matches.
+
 ## Links
 
 - Spec: `docs/superpowers/specs/2026-09-05-my-decks-design.md`
 - Plan: `docs/superpowers/plans/2026-09-06-my-decks-plan.md`
 - Data anomalies (`OGN-235 Karma, Channeler` is tagged `Vi`, which is Riot's own error and is registered,
   not normalised): `docs/data-anomalies.md`
+- #103: `data/signature.src.json`, `scripts/build-cards.mjs`, `src/build.ts`

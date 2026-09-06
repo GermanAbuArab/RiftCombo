@@ -29,6 +29,9 @@ export interface Card {
   artist: string | null;
   image: string | null;
   errata?: { effective: string; source: string }[];
+  /** Core Rules 133.7.b supertype. Not in Riot's gallery data; resolved by name from
+   *  data/signature.src.json in scripts/build-cards.mjs (#103). */
+  signature: boolean;
 }
 
 export interface LegalityEntry {

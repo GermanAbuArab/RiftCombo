@@ -15,7 +15,8 @@ const card = (base: string, domains: Domain[] = ["fury"], over: Partial<Card> = 
   id: base, code: base, base, variant: "", publicCode: base, name: base,
   set: base.slice(0, 3), collectorNumber: Number(base.slice(4)) || 0, type: ["unit"],
   rarity: null, domains, energy: null, power: null, might: null, mightBonus: null,
-  text: null, effect: null, tags: [], orientation: "portrait", artist: null, image: null, ...over,
+  text: null, effect: null, tags: [], orientation: "portrait", artist: null, image: null,
+  signature: false, ...over,
 });
 
 const cards = new CardIndex(

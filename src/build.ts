@@ -7,12 +7,14 @@
 
 import { deckRestrictions } from "./deck.js";
 import type { CardIndex } from "./cards.js";
-import type { Deck, Domain, Format } from "./types.js";
+import type { Card, Deck, Domain, Format } from "./types.js";
 
 /**
  * "pass" and "fail" are computed. "unknown" is a rule we can state but not check from Riot's card data —
- * a Signature cap with no Signature marker in the gallery, a restricted card whose limit is a per-team
- * rule rather than a copy count. Showing the row and saying it is unchecked beats both silence and a guess.
+ * no legend named, so nothing can be scoped to its Domain Identity or champion tag, or a restricted card
+ * whose limit is a per-team rule rather than a copy count (103.2.d's Signature cap was one of these until
+ * #103 resolved Signature by name from two independent mirrors). Showing the row and saying it is
+ * unchecked beats both silence and a guess.
  */
 export type BuildStatus = "pass" | "fail" | "unknown";
 
@@ -42,7 +44,7 @@ export function checkBuild(deck: Deck, cards: CardIndex, format: Format): BuildR
     championRule(deck, cards),
     sizeRule(deck),
     copiesRule(deck, cards),
-    signatureRule(),
+    signatureRule(deck, cards),
     runeRule(deck, cards),
     battlefieldRule(deck, cards),
     // Last, because it is the only row that is about the tournament rather than about the deck.
@@ -233,24 +235,67 @@ function championRule(deck: Deck, cards: CardIndex): BuildRule {
   if (!champ.tags.includes(tag)) {
     return { ...base, status: "fail", detail: `${champ.name} is not tagged ${tag}, so it cannot be this legend's Chosen Champion.` };
   }
-  // 103.2.a.2's own second example is Tibbers: tagged Annie, but a signature unit, and therefore not a
-  // legal Chosen Champion. Riot's card data carries no signature marker, so this row cannot see it and
-  // says as much instead of claiming more than it knows.
-  return { ...base, status: "pass", detail: `${champ.name} carries the ${tag} tag. Signature units carry it too and Riot's card data cannot tell them apart, so check yours is a champion unit.` };
+  // 103.2.a.2's own second example is Tibbers: tagged Annie, but a Signature card, not a champion unit
+  // (103.2.d.3), and therefore not a legal Chosen Champion even though the tag matches. #103 resolved
+  // Signature from data/signature.src.json, so this is now checked rather than left to the player.
+  if (champ.signature) {
+    return {
+      ...base,
+      status: "fail",
+      detail: `${champ.name} carries the ${tag} tag but is a Signature card, not a champion unit (103.2.d.3), so it cannot be your Chosen Champion.`,
+    };
+  }
+  return { ...base, status: "pass", detail: `${champ.name} carries the ${tag} tag and is not a Signature card, so it is a legal Chosen Champion.` };
 }
 
+const SIGNATURE_CAP = 3;
+
 /**
- * 103.2.d caps a deck at 3 Signature cards carrying the legend's champion tag. Riot's gallery API ships no
- * Signature flag — `grep -oci signature data/cards_full.json` is 0 and no card carries a Signature tag —
- * so this row states the rule and stops. A heuristic here would sit next to eight computed rows and read
- * like one of them.
+ * 103.2.d caps a deck at 3 Signature cards TOTAL (103.2.d.1, "regardless of name") and requires every one
+ * of them to carry the legend's champion tag (103.2.d.2). Riot's gallery API ships no Signature marker,
+ * so #103 resolved it from two independent mirrors (Piltover Archive's `card.super`, dotgg's `supertype`,
+ * 51 names that agree) into data/signature.src.json -> `Card.signature`.
+ *
+ * 103.2.d.1 does not need a legend at all — it is a raw count over the whole Main Deck — so it is checked
+ * even when no legend is named. 103.2.d.2 does need one (the champion tag it compares against), so with
+ * no legend this row reports the count check alone rather than falling back to "unknown" for lacking half
+ * of the picture.
  */
-function signatureRule(): BuildRule {
+function signatureRule(deck: Deck, cards: CardIndex): BuildRule {
+  const base = { rule: "103.2.d", label: "Up to 3 Signature cards" };
+  const held = Object.entries(deck.main)
+    .map(([code, n]) => ({ card: cards.get(code), n }))
+    .filter((x): x is { card: Card; n: number } => Boolean(x.card?.signature));
+  const totalN = held.reduce((a, x) => a + x.n, 0);
+  if (totalN > SIGNATURE_CAP) {
+    return {
+      ...base,
+      status: "fail",
+      detail: `${totalN} Signature cards (103.2.d.1 caps the deck at 3, regardless of name): ${held.map((x) => `${x.n}× ${x.card.name}`).join(" · ")}.`,
+    };
+  }
+  const tag = deck.legend ? championTagOf(deck.legend, cards) : null;
+  if (!tag) {
+    return {
+      ...base,
+      status: "pass",
+      detail: totalN
+        ? `${totalN} Signature card${totalN === 1 ? "" : "s"} (103.2.d.1 OK). Name a legend to also check they carry its champion tag (103.2.d.2).`
+        : "No Signature cards.",
+    };
+  }
+  const offTag = held.filter((x) => !x.card.tags.includes(tag));
+  if (offTag.length) {
+    return {
+      ...base,
+      status: "fail",
+      detail: `${offTag.map((x) => x.card.name).join(", ")} ${offTag.length === 1 ? "is" : "are"} Signature but not tagged ${tag} (103.2.d.2).`,
+    };
+  }
   return {
-    rule: "103.2.d",
-    label: "Up to 3 Signature cards",
-    status: "unknown",
-    detail: "Riot's card data carries no Signature marker, so this one is on you: at most 3 Signature cards, all with your legend's champion tag.",
+    ...base,
+    status: "pass",
+    detail: totalN ? `${totalN} Signature card${totalN === 1 ? "" : "s"}, all tagged ${tag}.` : "No Signature cards.",
   };
 }
 

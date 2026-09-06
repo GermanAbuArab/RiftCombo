@@ -172,6 +172,36 @@ function resolveLegality(cards, src) {
   return out;
 }
 
+// --- signature (#103) --------------------------------------------------------
+//
+// Riot's own gallery ships no Signature marker (Core Rules 133.7.b / 103.2.d). Two independent
+// mirrors (Piltover Archive's `card.super`, dotgg's `supertype`) agree on the same 51 names, so
+// data/signature.src.json carries the names and this resolves each to exactly one base code —
+// zero or two-or-more is a build failure, the same discipline resolveLegality already applies.
+
+function resolveSignature(cards, src) {
+  const byName = new Map();
+  for (const c of cards) {
+    const k = normName(c.name);
+    if (!byName.has(k)) byName.set(k, []);
+    byName.get(k).push(c);
+  }
+  const bases = new Set();
+  for (const name of src.names) {
+    const matches = byName.get(normName(name)) ?? [];
+    const distinctBases = [...new Set(matches.map((c) => c.base))];
+    if (distinctBases.length === 0) throw new Error(`signature: no card named ${JSON.stringify(name)}`);
+    if (distinctBases.length > 1) {
+      throw new Error(`signature: ${JSON.stringify(name)} resolves to ${distinctBases.length} base cards: ${distinctBases.join(", ")}`);
+    }
+    bases.add(distinctBases[0]);
+  }
+  if (bases.size !== src.names.length) {
+    throw new Error(`signature: ${src.names.length} names resolved to only ${bases.size} distinct base cards`);
+  }
+  return bases;
+}
+
 // --- main -------------------------------------------------------------------
 
 const { items, updatedAt } = await fetchAll();
@@ -186,6 +216,10 @@ applyErrata(cards, errata.entries);
 const legalitySrc = JSON.parse(readFileSync(join(DATA, "legality.src.json"), "utf8"));
 const legality = resolveLegality(cards, legalitySrc);
 
+const signatureSrc = JSON.parse(readFileSync(join(DATA, "signature.src.json"), "utf8"));
+const signatureBases = resolveSignature(cards, signatureSrc);
+for (const c of cards) c.signature = signatureBases.has(c.base);
+
 cards.sort((a, b) => (a.set + a.code).localeCompare(b.set + b.code));
 mkdirSync(DATA, { recursive: true });
 writeFileSync(
@@ -198,3 +232,4 @@ const withEffect = cards.filter((c) => c.effect).length;
 const errataApplied = cards.filter((c) => c.errata).length;
 console.log(`cards: ${cards.length} (${new Set(cards.map((c) => c.base)).size} unique printings ignoring alt-art)`);
 console.log(`equipment effects: ${withEffect}; errata applied to ${errataApplied} printings; legality entries: ${legality.entries.length}`);
+console.log(`signature: ${signatureBases.size} base cards`);
