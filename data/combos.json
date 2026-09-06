@@ -4302,6 +4302,448 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-nine-domain-lens-candidates.md), issue #29. Both texts verified verbatim against data/corpus_flat.txt on 2026-09-04, and 824.1.b.1, 824.1.d, 730.2, 185.2.a, 820.1.c.3 and 143.4 verified against the Core Rules. The new authoring trap this entry carries — spent XP lowers your Level, so a [Level N] deck full of XP sinks fights itself — is not registered anywhere else in the project yet and is the same failure shape as the 2026-09-04 BURST audit: an entry that does not close with the quantities it declares. 'token-body-engine' is the closest feature ('Repeatable ready bodies … bounded by cards in hand') and it is a stretch: the bodies here are real units, not tokens. Trap check: [Hunt] is both Conquer and Hold (823.1.b) so it can raise XP without attacking, but holding needs the unit at the battlefield in your Beginning Phase and a [Temporary] token dies before scoring (816.1.b) and never holds; the Energy is spent in the Main Phase, so 167 does not bite. WALK: holds after a rewrite, and the new trap survives — 824.1.b.1, 824.1.d and 730.2 confirm that Level is a current balance and spending XP walks it down. But the walk also resolves the tension B4 raised: once [Level 11] is live, 'your units enter ready' already does what Blood Rose's ready exists for, so the sink is redundant exactly where it is dangerous, and the actionable form is the 11-13 band. Two of the four listed sinks were legends that can never share a deck with Wuju Master, and are removed. The 'only permanent your-units-enter-ready in the pool' claim was re-swept and stands: the other six are one-turn, one-body, or tokens only."
+    },
+    {
+      "id": "ezreal-marai-spire-free-repeat",
+      "name": "Ezreal, Prodigy under Marai Spire — every E2 [Repeat] in the deck doubles for free",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-149",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Chaos unit, E3 P1 M3. 'Optional additional costs you pay cost 1 Energy or 1 rainbow Power less.' [Repeat] is an Optional Additional Cost keyword by 820.1, so the discount lands on it. Riot's own worked example at 356.4.c is this card applied to a [Repeat] spell."
+        },
+        {
+          "card": "SFD-211",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "'While you control this battlefield, friendly [Repeat] costs cost 1 Energy less.' YOU HAVE TO TAKE IT: 190.1 says control of battlefields is established through the course of play, and 190.6.d says that while a battlefield has no Controller its 'you' refers to no one and the instruction is ignored. The discount starts off. And it has to be DRAWN: 485.5 says that in a Duel 'Each player randomly selects one (1) of their three (3) Battlefields', so the Spire arrives 1 game in 3 unless the deck brings more than one copy. 486.5 (1v1 Match) says only 'selects', so there you pick it."
+        },
+        {
+          "card": "SFD-080",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E1 P1. '[Action] [Repeat] 1 Energy + 1 Mind Power. Deal 1 to up to three units at the same location.' The only anchor whose Repeat cost has BOTH components, so it is the one that needs both discounts: Spire kills the Energy, Ezreal kills the Power."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Chaos (103.1.b). Four legends do: SFD-199 Prodigal Explorer, OGN-263 Swift Scout, UNL-197 Scorn of the Moon, VEN-151 Soul's Reflection."
+        ],
+        "notable": [
+          "THE SPIRE IS NOT GUARANTEED TO BE IN PLAY. 485.4.a puts only one of your three battlefields into the game, and 485.5 says a Duel picks it AT RANDOM ('Each player randomly selects one (1) of their three (3) Battlefields'). 1v1 Match play is different: 486.5 says only 'selects', so there you choose it for game 1. Whether a deck may bring three copies of the same battlefield to make the Duel case certain is the open question of issue #35 — the Core Rules never forbid it (103.2 caps copies of a Main Deck card, and a battlefield is not a Main Deck card), but this entry does not assume it.",
+          "MARAI SPIRE MUST BE CONTROLLED. A battlefield you provide at setup is Uncontrolled (190.1), and 190.6.d makes an uncontrolled battlefield's 'you' refer to nobody, so the discount is off until you walk a body there and establish Control (466.5). This is the entry's real cost and it is not a deckbuilding freebie.",
+          "FOURTEEN spells in the pool go to a 0 Repeat cost with Marai Spire plus one Ezreal, not eleven (issue #32 lists fourteen codes and then miscounts them as eleven): SFD-003 Blood Rush (free on the Spire alone, its Repeat is only 1 Energy), SFD-031 Desert's Call, SFD-034 Feral Strength, SFD-040 Thwonk!, SFD-066 Frigid Touch, SFD-080 Bellows Breath, SFD-129 Temptation, SFD-136 Hard Bargain, SFD-151 Bonds of Strength, SFD-182 Danger Zone, UNL-009 Upstage Comedy, UNL-032 Double Trouble, UNL-061 Downstage Dramatics, UNL-134 Existential Dread.",
+          "Six of the fourteen are inside Mind/Chaos: Frigid Touch, Bellows Breath and Downstage Dramatics (Mind); Temptation, Hard Bargain and Existential Dread (Chaos).",
+          "Out of reach even so: SFD-114 Marching Orders (Repeat 3 Energy, falls to 1 with one Ezreal and 0 with two), SFD-023 Piercing Light (2 Energy + Fury Power, one discount short), SFD-077 Rocket Barrage (4 Energy + Mind Power, still 1 Energy with the Spire and THREE Ezreal, because one of the three has to be spent on the Power component).",
+          "SFD-199 Prodigal Explorer as the legend adds a draw: 'exhaust: [Reaction] Draw 1. Use only if you've chosen enemy units and/or gear twice this turn with spells or unit abilities.' Turn it on with TWO different unit-choosing spells in the turn (Frigid Touch, Temptation, Existential Dread, Bellows Breath) — do NOT lean on one Repeated spell counting as twice, which is an unruled question (820.3.a says the spell 'is only Played once' while 820.2 does make two sets of choices). The two-spell route needs no reading at all.",
+          "This is not and cannot be a loop: 820.1.c.3, 'Each Repeat Cost can be paid only a single time.' A 0-cost Repeat buys ONE extra execution per spell, forever, for free — never two."
+        ]
+      },
+      "steps": [
+        "Get Control of Marai Spire (190.1): move a unit there and establish Control, the same work as a Conquer. Until then the discount does nothing (190.6.d).",
+        "Play Ezreal, Prodigy (E3 P1). His own play effect is 'discard 1, then draw 2', so he replaces himself.",
+        "Play any of the fourteen [Repeat] spells and choose to pay the additional cost in step 2 of playing (356.2.b.1). The additional cost is added, then component discounts apply (356.4.c): Marai Spire takes the Energy, Ezreal takes whichever component is left.",
+        "The cost reaches 0. 356.4.f allows that, and 356.4.f.1 keeps it 'paid' because the decision to pay it was made, so 820.1.d.1 executes the spell's instructions a second time on resolution."
+      ],
+      "netPerIteration": "one extra execution of a [Repeat] spell per spell played, at zero additional cost",
+      "terminatesIn": "engine only — every E2 [Repeat] spell in the deck (and Bellows Breath's Energy+Power one) executes twice for its printed base cost, for as long as you hold Marai Spire; 820.1.c.3 caps it at one extra execution each, so it never loops",
+      "sources": [
+        {
+          "title": "Hunt lens [Repeat]/[Accelerate]/[Add] — issue #32 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/32",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-repeat-accelerate-add-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "Both Marai Spire (Energy component) and Ezreal (Energy or Power component, the player's pick) are component discounts, so 356.4.c.1 lets them be applied in either order to whichever component they were pointed at. 356.6 floors each at 0."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-repeat-accelerate-add-candidates.md), issue #32. All card text verbatim from data/corpus_flat.txt; every rule opened in data/Riftbound-Core-Rules-2026-07-16.txt. The strongest citation in the catalogue: rule 356.4.c's own worked example is 'Ezreal, Prodigy reads \"optional additional costs you pay cost [1] or [A] less.\" When playing a Frigid Touch and choosing to pay the additional cost in step 2, as soon as the additional cost is added to the cost of the spell, Ezreal, Prodigy's discount is applied to it.' Riot ruled this exact interaction. TWO REWRITES against the #32 candidate: (1) the Marai Spire discount needs CONTROL of the battlefield (190.1, 190.6.d) — neither rule had ever been cited in this project and the issue asserted the discount as passive from turn one; (2) the issue closed the entry by having one doubled Bellows Breath satisfy Prodigal Explorer's 'chosen enemy units twice', which is an unruled reading, so the entry stands on two different spells instead and no reading is filed. One correction: fourteen free spells, not the eleven the issue counts. Trap check: the [Repeat] family cannot loop (820.1.c.3); no attack trigger so 383.4.e/461 cannot bite; every payment is a Main Phase spell cost so 167 does not bite; no [Temporary], no recall, no rune recycled for Power; exactly one battlefield, so 485.4.a is respected. Added 2026-09-05 after the project registered 485.5/486.5: a Duel selects your one battlefield AT RANDOM, so the Marai Spire half of this line comes online 1 game in 3 there and by choice in 1v1 Match play (486.5). That is a consistency question, not a correctness one — issue #35 — and the entry states it rather than assuming the Spire."
+    },
+    {
+      "id": "ezreal-double-free-accelerate",
+      "name": "Two Ezreal, Prodigy — [Accelerate] costs nothing and the body acts the turn it lands",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-149",
+          "quantity": 2,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Chaos unit, E3 P1 M3. 'Optional additional costs you pay cost 1 Energy OR 1 rainbow Power less' — one discount each, so copy #1 takes the Energy half of the Accelerate cost and copy #2 takes the Power half. Not [Unique] (825.3.a), and the Tournament Rules allow 3 copies (703.3.a.3)."
+        },
+        {
+          "card": "UNL-127",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos unit, E2 M1. '[Accelerate] (You may pay 1 Energy + 1 Chaos Power as an additional cost to have me enter ready.) When I move to a battlefield, gain 2 XP.' Entering ready is what lets him pay the Standard Move's exhaust cost (144.2) the turn he lands."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Mono-Chaos: any legend with Chaos in its pair (103.1.b)."
+        ],
+        "notable": [
+          "THE ONE FINE LEG: that two copies of the same passive discount stack. Nothing caps it. 356.4.a says discounts 'may be applied by the card being played or by any other card or effect', 356.4.c.1 lets several discounts hit one component 'in any order', and the Core Rules' redundancy clauses are all keyword-specific and object-scoped — grepping 'redundant' returns exactly seven hits (805.4 Accelerate, 810.2 Ganking, 811.4 Hidden, 815.2 Tank, 816.2 Temporary, 822.2 Ambush, 826.5 Backline). 805.4 is about a unit carrying the Accelerate KEYWORD twice, not about two Ezreals discounting one Accelerate cost. If Riot ever rules the discount unique, this entry falls and ezreal-marai-spire-free-repeat does not, because that one needs only one copy.",
+          "805.1.a.1 restricts the Power portion of an Accelerate cost to the unit's own domain, but that is a restriction on PAYING it, not on discounting it. 356.4.f allows an additional cost to be reduced to 0 outright, and 356.4.f.1 keeps it 'paid' regardless of how much was actually paid, so 805.2.b still generates the delayed replacement and the unit enters ready.",
+          "WHAT IT IS NOT: 805.6.a says outright that 'Accelerate will not interact with, or trigger, abilities that are affected by units becoming ready', and 805.6 says the unit 'does not enter exhausted and then become ready'. Nothing built on a becomes-ready trigger can be attached to this.",
+          "The other mono-Chaos Accelerate bodies are SFD-131 Ancient Warmonger (E5 M4, [Assault] equal to the enemy units here) and SFD-143 Sivir, Mercenary (E4 P1 M4, +2 Might and [Ganking] if you have spent 2 Power this turn). 26 printings in the pool carry [Accelerate]; any of them inside the legend's pair rides the same discount.",
+          "Real price of admission: two Ezreal are E6 and 2 Power and two cards before this produces anything, though each one's own 'discard 1, then draw 2' is card-positive."
+        ]
+      },
+      "steps": [
+        "Both Ezreal on the board.",
+        "Play an [Accelerate] unit and declare the additional cost in step 2 of playing (356.2.b.1, 805.2 — it can only be paid as part of playing the card, 805.2.a).",
+        "Ezreal #1 applies its discount to the Energy component and Ezreal #2 to the Power component (356.4.c, 356.4.c.1). Both reach 0 (356.6).",
+        "356.4.f.1 keeps the additional cost 'paid', so 805.2.b's delayed Replacement Effect fires and the unit enters ready instead of exhausted (143.4, 805.6).",
+        "Mister Root Standard-Moves to a battlefield the same Main Phase (144.1.a) paying his own exhaust (144.2), and 'When I move to a battlefield, gain 2 XP' fires a full turn earlier than it otherwise could."
+      ],
+      "terminatesIn": "engine only — every [Accelerate] unit in the deck enters ready for zero extra cost, so each one can move or pay an exhaust cost the turn it is played instead of the turn after",
+      "sources": [
+        {
+          "title": "Hunt lens [Repeat]/[Accelerate]/[Add] — issue #32 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/32",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-repeat-accelerate-add-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "805.4 is the near-miss that has to be read carefully: 'Multiple instances of Accelerate are redundant' is about a unit carrying the keyword twice - it says nothing about two Ezreals each discounting the one Accelerate cost."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-repeat-accelerate-add-candidates.md), issue #32. HOLDS AS WRITTEN — the only candidate of the six that needed no rewrite besides c6. Card text verbatim from data/corpus_flat.txt; 805.1.a, 805.1.a.1, 805.2, 805.2.a, 805.2.b, 805.4, 805.6, 805.6.a, 356.4.a/c/c.1/f/f.1, 356.6, 143.4, 144.1.a, 144.2, 825.3.a and Tournament Rules 703.3.a.3 all opened and read. The stacking question was settled negatively rather than by assumption: the Core Rules contain NO general redundancy rule for repeated passives, only seven keyword-scoped clauses, none of which reaches a cost discount. Trap check: no [Repeat] involved so 820.1.c.3 is moot; no attack trigger; no [Temporary]; no recall; no rune recycled for Power; no battlefield used at all, so 485.4.a cannot bite; the Energy is spent in the Main Phase so 167 does not bite."
+    },
+    {
+      "id": "yeti-brambleback-renata-gold",
+      "name": "Yeti Brawler x Red Brambleback with Renata Glasc, Industrialist — six ready Gold off one Conquer",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-018",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E6 M6. 'When I conquer, if you assigned 3 or more excess damage, play two Gold gear tokens exhausted.' Must SURVIVE the combat: 383.4.c.2.a puts a Conquer Ability on the chain only after the unit it belongs to is present at the battlefield when its controller gains control and gains the point."
+        },
+        {
+          "card": "UNL-029",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 P1 M4, [Accelerate]. 'Your conquer effects for conquering here trigger an additional time.' R1 = A with stacking (ruled 2026-09-03): N copies give N+1 instances, so two Bramblebacks make Yeti's effect fire three times. Both must still be at the battlefield when it triggers, or the multiplier is smaller than declared."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order UNIT (not a legend), E4 P1 M4. 'Your tokens enter ready.' R25 = A (ruled 2026-09-04) on this exact text pattern: Renata beats a token-maker's printed 'exhausted'. Without her the six Gold are next-turn Power, because 187.5 makes the Gold's ability an EXHAUST cost."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "gold-engine",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Order (103.1.b). Three legends do: UNL-187 Piltover Enforcer, OGN-253 Hand of Noxus, SFD-187 Void Burrower."
+        ],
+        "notable": [
+          "PILTOVER ENFORCER (UNL-187) IS THE LEGEND, not Hand of Noxus: 'When you conquer, if you assigned 3 or more excess damage, you may exhaust me to ready a unit' is Yeti's condition word for word, so the same combat that makes the Gold also readies a body.",
+          "ONE CONQUER PER BATTLEFIELD PER TURN. 466.5.d: 'Establishing Control results in a Conquer if that player has not yet scored this Battlefield this turn.' This does not repeat inside a turn, and 485.4.a puts only two battlefields on the table in a Duel.",
+          "SPEND THE POWER THE TURN IT APPEARS. 167 empties the Rune Pool at the start of each player's Main Phase and at the end of each player's turn. The Conquer happens inside combat, i.e. after the Main Phase started, so the six Power survives to end of turn and no further.",
+          "EVERYBODY HAS TO LIVE. 383.4.c.2.a requires the units the conquer effects belong to be present when control is gained. Yeti is M6 and both Bramblebacks are M4, and all three have to survive a combat the deck also has to win. This is the entry's real fragility and issue #32 did not state it.",
+          "Excess damage: attacking Might is 6 + 4 + 4 = 14, so any garrison summing under 11 Might leaves the 3 or more the trigger asks for, under R28 = A (ruled 2026-09-04). Note the tail of 465.2.c.4 that R28 = A overrides: the rule caps assignment at lethal 'unless no further units remain to have damage assigned to them', and reading that tail literally would make excess damage always zero and all six cards printing the phrase dead letter, against rule 002.",
+          "A REAL COMBAT IS REQUIRED. Entering an empty enemy battlefield is not an attack (461 needs units of two opposing players at the battlefield), and with no combat no damage is assigned, so the 'excess damage' clause can never be met on a walk-in conquer.",
+          "The Reckoner's Arena exclusion does NOT apply here. data/synergies.json excludes Yeti Brawler from OGN-286 Reckoner's Arena by 383.4.g.1 ('If any of the non-conquer parts of the condition are not fulfilled, it will not be placed on the chain') because a HOLD assigns no damage. This line is a real Conquer after a real combat, so there is nothing for that exclusion to bite on.",
+          "Scaling: instances = 1 + K for K Bramblebacks, and Gold = 2 x instances. K=2 gives 6 Gold as declared; K=3 gives 8. Deployment for the declared board is 14 Energy and 3 Power across several turns."
+        ]
+      },
+      "steps": [
+        "Deploy Renata Glasc, Industrialist anywhere on the board, and Yeti Brawler plus both Red Bramblebacks (the Bramblebacks can pay [Accelerate] to skip a turn of 143.4).",
+        "Move all three onto an enemy-held battlefield with a garrison — a garrison is mandatory, both for the combat (461) and for the excess-damage clause.",
+        "Win the combat. Attacking Might is 14, and 465.2.c.4 caps assignment at each defender's lethal minimum, so a garrison under 11 total Might leaves 3 or more excess (R28 = A).",
+        "Establish Control: that is a Conquer (466.5.d), worth its own point.",
+        "Yeti's conquer effect goes on the chain (383.4.c.1, 383.4.c.2.a) and each Brambleback makes it trigger one additional time — 1 + 2 = 3 instances (R1 = A).",
+        "3 x 2 = six Gold gear tokens. Renata makes them enter ready (R25 = A), so each can immediately pay 'Kill this, exhaust: [Add] 1 rainbow Power' — six Power of any domain, usable for the rest of that turn (167)."
+      ],
+      "netPerIteration": "6 Power of any domain per Conquer with two Bramblebacks; 8 with three",
+      "terminatesIn": "engine only — one Conquer per battlefield per turn (466.5.d), and the Power it makes dies at end of turn (167); 8 Power is not 8 points and no Fury/Order sink converts it, so this stays ENGINE and is not a burst",
+      "sources": [
+        {
+          "title": "Hunt lens [Repeat]/[Accelerate]/[Add] — issue #32 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/32",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-repeat-accelerate-add-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "383.4.c.2.a is explicit that Conquer Abilities go on the Chain 'after the Unit(s) these effects correspond to are present at a Battlefield when a player gains control of it.' So Yeti (M6) must survive the combat, or his effect never triggers at all."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-repeat-accelerate-add-candidates.md), issue #32. Card text verbatim from data/corpus_flat.txt (including UNL-T05 Gold and rule 187.5's identical wording). REWRITTEN from the #32 candidate in three places: (1) the survival requirement for Yeti and both Bramblebacks, from 383.4.c.2.a, which the issue never stated and which is the line's real fragility; (2) Piltover Enforcer (UNL-187) replaces Hand of Noxus as the legend, because it shares Yeti's excess-damage condition word for word and converts the same combat into a ready unit; (3) the one-Conquer-per-turn cap (466.5.d) and the end-of-turn Power window (167) are stated. Stands on three user rulings, all already in force for verified entries: R1 = A with stacking, R25 = A, R28 = A. It does NOT stand on any open reading. The arithmetic closes with the quantities declared: 1 + K instances for K = 2 is 3, times 2 Gold, is 6 — which is what the entry claims. Class stays ENGINE deliberately: 8 Power is not 8 points and a sweep of Fury and Order found no sink that converts raw Power into points inside that window. Distinct from gauntlets-enforcer-conquer, which shares the legend but produces a draw and a ready, not Gold."
+    },
+    {
+      "id": "reksai-sarcophagus-accelerated-recursion",
+      "name": "Rek'Sai, Breacher x Cursed Sarcophagus — the unit that comes back from the trash comes back ready",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-029",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Fury unit, E3 M3, [Accelerate] and [Assault]. 'Friendly units played from anywhere other than a player's hand have [Accelerate].' He must be on the board for this to apply (365.1: a permanent's passive abilities are only active while on the Board)."
+        },
+        {
+          "card": "UNL-148",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos gear, E4 P1. 'When you play this, banish all units from your trash. exhaust: Play a unit banished with this. (You must pay its costs.)' The 'must pay its costs' wording is what makes this the right recursion card for the line."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Chaos (103.1.b). Five legends do: OGN-251 Loose Cannon, OGS-017 Dark Child - Starter, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows."
+        ],
+        "notable": [
+          "ONE UNIT PER TURN, not a loop. The Sarcophagus's ability costs its own exhaust, and 315.1.b readies it in your Awaken, so it fires once per turn. 151.2 puts the activation in your Main Phase during an Open State.",
+          "Units have to already be in the trash when the Sarcophagus is played — its banish clause is a play effect, so it snapshots the trash once and later arrivals are not added.",
+          "WHY THIS RECURSION CARD AND NOT A CHEAPER ONE. UNL-142 Heedless Resurrection, OGN-198 The Harrowing and SFD-165 Glasc Mixologist all play the unit 'ignoring its cost', which runs into 356.5.a ('set the total cost to [0], including any non-standard costs') and would force an unruled question about whether an ignored cost can still carry an optional additional cost. Cursed Sarcophagus says 'You must pay its costs', so the question never arises. 805.2.a is satisfied either way — the Accelerate cost is paid 'as part of the steps of playing a card', and the Sarcophagus plays the card.",
+          "Cost per recursion: 1 Energy plus 1 Power of the recurred unit's own domain (805.1.a, 805.1.a.1). With two Ezreal, Prodigy on the board it is FREE — see ezreal-double-free-accelerate. Ezreal is deliberately not in this entry's uses, because he is a discount and not part of the mechanism: without him the line still works.",
+          "What it buys: 143.4 makes units enter exhausted, so a recurred body normally does nothing until the next Awaken. Entering ready lets it Standard-Move the same turn (144.1.a, paying its own exhaust per 144.2) or pay an exhaust cost immediately.",
+          "The reading this line deliberately avoids: whether Rek'Sai's grant reaches TOKENS, which are played from outside the game rather than from a hand. It is never needed — SFD-171 Renata Glasc, Industrialist makes tokens enter ready with no cost and no condition, so she strictly dominates Rek'Sai in that role. This entry stands only on the trash, where 'anywhere other than a player's hand' is literal.",
+          "805.6.a: Accelerate 'will not interact with, or trigger, abilities that are affected by units becoming ready'. Nothing built on a becomes-ready trigger attaches to this."
+        ]
+      },
+      "steps": [
+        "Rek'Sai, Breacher on the board (he can pay his own [Accelerate] to be useful the turn he lands).",
+        "Play Cursed Sarcophagus for E4 + 1 Power with units already in your trash — its play effect banishes all of them.",
+        "Exhaust the Sarcophagus in your Main Phase (151.2) to play one of those units. It comes from banishment, so Rek'Sai's grant attaches: it has [Accelerate].",
+        "Declare the Accelerate additional cost while playing it (805.2, 805.2.a) and pay 1 Energy + 1 Power of its domain, or 0 with two Ezreal on board.",
+        "805.2.b's delayed Replacement Effect makes it enter ready instead of exhausted (143.4, 805.6), so it can move or pay an exhaust cost that same turn.",
+        "The Sarcophagus readies in your next Awaken (315.1.b) for the next one."
+      ],
+      "netPerIteration": "one unit back from the trash per turn, entering ready, for 1 Energy + 1 Power (0 with two Ezreal)",
+      "terminatesIn": "engine only — capped at one recursion per turn by the Sarcophagus's own exhaust cost, and bounded overall by how many units were in the trash when it was played",
+      "sources": [
+        {
+          "title": "Hunt lens [Repeat]/[Accelerate]/[Add] — issue #32 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/32",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-repeat-accelerate-add-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "Sarcophagus plays the unit - its own reminder text says 'You must pay its costs' - so 805.2.a is satisfied: the Accelerate cost is paid 'as part of the steps of playing a card.' The unit comes from banishment, which is 'anywhere other than a player's hand' literally, so Rek'Sai's grant attaches."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-repeat-accelerate-add-candidates.md), issue #32. Card text verbatim from data/corpus_flat.txt; 805.1.a, 805.1.a.1, 805.2, 805.2.a, 805.2.b, 805.6, 805.6.a, 356.5.a, 365.1, 151.2, 315.1.b, 143.4, 144.1.a and 144.2 all opened and read. REWRITTEN from the #32 candidate: the issue declared SFD-149 Ezreal, Prodigy x2 inside the combo, but Ezreal is a discount and not part of the mechanism — the line works without him at 1 Energy + 1 Power per unit, which the issue itself concedes — and declaring two copies would make src/plan.ts charge a deck for cards the engine does not need. The Ezreal upgrade is named in prerequisites instead. The issue's own card choice was right and its reasoning was checked and kept: picking Cursed Sarcophagus over the three 'ignoring its cost' recursion cards is exactly the try-another-ordering-before-filing-a-reading discipline, and it works. Trap check: no [Repeat]; no attack trigger; no [Temporary]; no recall; no rune recycled for Power; no battlefield used, so 485.4.a is moot; the Energy is spent in the Main Phase so 167 does not bite."
+    },
+    {
+      "id": "daughter-void-marai-curtain-call",
+      "name": "Curtain Call for all four modes — Marai Spire and Daughter of the Void pay the Repeats",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-182",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury/Mind spell, E4. THREE printed [Repeat] instances (1 Energy / 1 rainbow Power / 1 Energy + 1 rainbow Power) — the only card in the pool with three. 820.1.c.2 lets each be paid individually and 820.3 gives one extra execution per instance paid, so base + 3 = four executions, which is exactly the four printed modes."
+        },
+        {
+          "card": "SFD-211",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "'While you control this battlefield, friendly [Repeat] costs cost 1 Energy less.' Plural 'costs' — one reduction per Repeat instance, not one per spell. YOU HAVE TO TAKE IT: 190.1 and 190.6.d mean an uncontrolled battlefield's discount is simply off. And it has to be DRAWN: 485.5 says that in a Duel 'Each player randomly selects one (1) of their three (3) Battlefields', so the Spire arrives 1 game in 3 unless the deck brings more than one copy. 486.5 (1v1 Match) says only 'selects', so there you pick it."
+        },
+        {
+          "card": "OGN-247",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Mind legend. 'exhaust: [Reaction] — [Add] 1 rainbow Power. Use only to play spells.' 357.1.a lets Reaction Add abilities be used in the Pay Costs step, and 429.3 says they can be activated 'at any time that spells or abilities require resources be paid'."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend is Daughter of the Void (OGN-247). The other Fury/Mind legends are SFD-181 Mechanized Menace and UNL-181 Virtuoso; neither adds Power, so the line costs one more real rune under them."
+        ],
+        "notable": [
+          "THE SPIRE IS NOT GUARANTEED TO BE IN PLAY. 485.4.a puts only one of your three battlefields into the game, and 485.5 says a Duel picks it AT RANDOM ('Each player randomly selects one (1) of their three (3) Battlefields'). 1v1 Match play is different: 486.5 says only 'selects', so there you choose it for game 1. Whether a deck may bring three copies of the same battlefield to make the Duel case certain is the open question of issue #35 — the Core Rules never forbid it (103.2 caps copies of a Main Deck card, and a battlefield is not a Main Deck card), but this entry does not assume it.",
+          "MARAI SPIRE MUST BE CONTROLLED (190.1, 190.6.d). Both numbers are given below so the entry is honest either way.",
+          "With the Spire controlled and the legend ready: E4 base + 0 (instance #1, 1 Energy reduced to 0) + 1 Power (instance #2, pure Power, and 356.6 means the Spire's Energy discount has nothing to reduce) + 1 Power (instance #3, its 1 Energy reduced to 0) = E4 + 2 Power, one of which the legend adds for free. REAL COST: E4 + 1 Power for all four modes.",
+          "Without the Spire and without the legend: E4 + E1 + 1 Power + (E1 + 1 Power) = E6 + 2 Power. The saving is E2 + 1 Power.",
+          "ONE Power from the legend, not two. There is no window to ready and re-exhaust it between Repeat executions (429.3 and R21 — a Repeat gives no such window), and 315.1.b readies it only in your next Awaken. The table above assumes exactly one use, which is what is available.",
+          "HARD CEILING AT FOUR. The card says 'Choose one you haven't already chosen', so a fifth execution has no mode left and 820.1.d.2 ignores instructions not performed. SFD-078 Temporal Portal ('Give the next spell you play this turn [Repeat] equal to its cost') therefore adds nothing to this card, and UNL-216 The Academy could not be in the deck alongside Marai Spire at all: 485.4.a puts only one of your three battlefields into play.",
+          "820.2 puts all four mode choices in the Make Relevant Choices step of the single play, so they are declared up front, in order, before anything resolves."
+        ]
+      },
+      "steps": [
+        "Get Control of Marai Spire (190.1) — until then its discount is ignored (190.6.d).",
+        "Play Curtain Call and choose to pay all three [Repeat] instances in step 2 of playing (356.2.b.1, 820.1.c.2).",
+        "Component discounts apply (356.4.c): the Spire takes 1 Energy off instance #1 (to 0) and 1 off instance #3; instance #2 is pure Power and 356.6 leaves it at 1.",
+        "In the Pay Costs step, exhaust Daughter of the Void to add 1 rainbow Power (357.1.a, 429.3) and pay the other Power from a rune.",
+        "820.3 executes the spell four times in total. Pick all four printed modes: Draw 1, Deal 2 to a unit at a battlefield, Deal 3 to a unit at a base, and give a unit at a battlefield -4 Might."
+      ],
+      "terminatesIn": "engine only — one card buys all four of Curtain Call's modes for E4 + 1 real Power, once per turn (the legend readies in the next Awaken, 315.1.b); 820.1.c.3 caps each Repeat instance at one payment, so there is no fifth execution",
+      "sources": [
+        {
+          "title": "Hunt lens [Repeat]/[Accelerate]/[Add] — issue #32 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/32",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-repeat-accelerate-add-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "Marai Spire says 'friendly [Repeat] costs cost 1 Energy less' - plural, one reduction per Repeat cost, not one per spell. A fifth execution has no mode left to choose, and 820.1.d.2 says 'Any instructions not performed on resolution of the spell or ability are ignored.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-repeat-accelerate-add-candidates.md), issue #32. Card text verbatim from data/corpus_flat.txt; 820.1.c.2, 820.1.c.3, 820.1.d.2, 820.2, 820.3, 356.2.b.1, 356.4.c, 356.6, 357.1.a, 429.3, 315.1.b, 190.1, 190.6.d and 485.4.a all opened and read. REWRITTEN from the #32 candidate: the Marai Spire discount requires CONTROL of the battlefield (190.1, 190.6.d), which the issue asserted as passive, and the entry now carries the un-discounted number (E6 + 2 Power) next to the discounted one (E4 + 1 Power) instead of only the good one. The re-exhaust trap was checked explicitly and is the reason the legend contributes exactly one Power: a Repeat gives no window to ready a resource permanent between executions (R21). The arithmetic closes with the quantities declared. The Academy is excluded structurally, not by preference: 485.4.a means a deck can only ever put one of its three battlefields into play, so it and Marai Spire can never share a game. Added 2026-09-05 after the project registered 485.5/486.5: a Duel selects your one battlefield AT RANDOM, so the Marai Spire half of this line comes online 1 game in 3 there and by choice in 1v1 Match play (486.5). That is a consistency question, not a correctness one — issue #35 — and the entry states it rather than assuming the Spire."
+    },
+    {
+      "id": "existential-dread-repeat-bounce",
+      "name": "Existential Dread repeated on itself — a conditional stun becomes an unconditional bounce",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-134",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos spell, E1 P1. '[Action] [Repeat] 2 Energy. [Stun] an attacking enemy unit. If it's already stunned, return it to its owner's hand instead.' Pay the Repeat, name the SAME attacker twice: execution #1 stuns it, execution #2 finds it already stunned and bounces it."
+        },
+        {
+          "card": "SFD-211",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "'While you control this battlefield, friendly [Repeat] costs cost 1 Energy less.' Takes the Repeat from 2 Energy to 1. Needs Control (190.1, 190.6.d). And it has to be DRAWN: 485.5 says that in a Duel 'Each player randomly selects one (1) of their three (3) Battlefields', so the Spire arrives 1 game in 3 unless the deck brings more than one copy. 486.5 (1v1 Match) says only 'selects', so there you pick it."
+        },
+        {
+          "card": "SFD-149",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "'Optional additional costs you pay cost 1 Energy or 1 rainbow Power less.' Takes the remaining Energy to 0. 356.4.f allows the reduction to 0 and 356.4.f.1 keeps the cost 'paid', so the second execution still happens."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Chaos: any legend with Chaos in its pair (103.1.b). Marai Spire is Colorless."
+        ],
+        "notable": [
+          "THE SPIRE IS NOT GUARANTEED TO BE IN PLAY. 485.4.a puts only one of your three battlefields into the game, and 485.5 says a Duel picks it AT RANDOM ('Each player randomly selects one (1) of their three (3) Battlefields'). 1v1 Match play is different: 486.5 says only 'selects', so there you choose it for game 1. Whether a deck may bring three copies of the same battlefield to make the Duel case certain is the open question of issue #35 — the Core Rules never forbid it (103.2 caps copies of a Main Deck card, and a battlefield is not a Main Deck card), but this entry does not assume it.",
+          "820.2.a licenses this outright rather than by inference. Its worked example on Rocket Barrage says the controller 'may choose the same mode or a different one, and if they choose the same mode, may choose the same TARGET or a different one.'",
+          "820.1.d.1 makes resolution read as though the card printed the instruction twice — its own Desert's Call example spells that out — so execution #2 evaluates 'If it's already stunned' against the state execution #1 left behind.",
+          "Stun does not remove the Attacker designation: the card's own reminder says only that 'A stunned unit doesn't deal combat damage this turn', so the target is still 'an attacking enemy unit' when execution #2 resolves.",
+          "[Action] ('Play on your turn or in showdowns') is what lets this be used on the opponent's turn, which is when enemy attackers exist.",
+          "COSTS. Raw: E1 + 1 Power for the spell, plus E2 for the Repeat. With Marai Spire controlled and one Ezreal, the Repeat is 0 and the whole thing is E1 + 1 Power — see ezreal-marai-spire-free-repeat, which this entry is a rider on.",
+          "NO THIRD EXECUTION. 820.1.c.3: 'Each Repeat Cost can be paid only a single time.' One extra execution, so the stun-to-bounce is the ceiling."
+        ]
+      },
+      "steps": [
+        "An enemy unit is attacking. Play Existential Dread in the showdown ([Action]).",
+        "Choose to pay the [Repeat] additional cost in step 2 of playing (356.2.b.1). Marai Spire takes 1 Energy off it and Ezreal takes the other, leaving 0 (356.4.c, 356.4.c.1, 356.6); 356.4.f.1 keeps it 'paid'.",
+        "In the Make Relevant Choices step (820.2), name the SAME attacking enemy unit for both executions — permitted explicitly by 820.2.a.",
+        "On resolution (820.1.d.1): execution #1 stuns it; execution #2 sees it already stunned and returns it to its owner's hand instead."
+      ],
+      "terminatesIn": "engine only — one attacker removed outright per copy of the spell, for E1 + 1 Power under the discount pair; not repeatable within a single play (820.1.c.3)",
+      "sources": [
+        {
+          "title": "Hunt lens [Repeat]/[Accelerate]/[Add] — issue #32 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/32",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-repeat-accelerate-add-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "820.2.a's worked example is not a paraphrase of what this needs - it is the thing itself: 'they may choose the same mode or a different one, and if they choose the same mode, may choose the same target or a different one.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-repeat-accelerate-add-candidates.md), issue #32, where it was filed as the thinnest of the six and explicitly handed to a human to decide whether it deserved a row. It does: the same-target trick is a fact about Existential Dread that is NOT derivable from ezreal-marai-spire-free-repeat. That entry tells you the spell doubles; it does not tell you that doubling converts a conditional stun into an unconditional bounce. Card text verbatim from data/corpus_flat.txt; 820.1.c.3, 820.1.d.1, 820.2, 820.2.a, 820.3.a, 356.2.b.1, 356.4.c, 356.4.c.1, 356.4.f, 356.4.f.1, 356.6, 190.1 and 190.6.d all opened and read. HOLDS AS WRITTEN, with one addition: the raw cost (E1 + 1 Power + E2) is stated next to the discounted one, so the entry does not depend on holding Marai Spire to be worth knowing. Trap check: no attack trigger of our own; no [Temporary]; no recall; no rune recycled for Power; the Energy is spent as a spell cost in a showdown, not in Awaken, so 167 does not bite; one battlefield, so 485.4.a is respected. Added 2026-09-05 after the project registered 485.5/486.5: a Duel selects your one battlefield AT RANDOM, so the Marai Spire half of this line comes online 1 game in 3 there and by choice in 1v1 Match play (486.5). That is a consistency question, not a correctness one — issue #35 — and the entry states it rather than assuming the Spire."
     }
   ]
 }
