@@ -61,3 +61,22 @@ Raising `ahri-blue-sentinel-hold` from 2 Ahri to 3 (the entry's own formula gave
 **What happened.** rc-mulligan abrió el dashboard de Supabase con Playwright y su helper imprimió `page.url` entera tras el redirect de login. Supabase devuelve los tokens en el FRAGMENTO (`#access_token=…&refresh_token=…&provider_token=gho_…`), así que un JWT, un refresh token y un token OAuth de GitHub quedaron en el transcript de la sesión. Los dos primeros caducan o se invalidan cerrando sesión; el `gho_` no caduca solo y hubo que revocar la autorización de Supabase en GitHub → Settings → Applications (hecho con Playwright, confirmado por GitHub).
 
 **Rule.** Nunca loguear, snapshotear ni pegar una URL de vuelta de un flujo de auth sin cortarla en el `#` (y sin `code=`/`token=` en la query). Si un token cae en un transcript, el remedio es revocarlo en el proveedor, no borrar el texto. El que no caduca es el que se revoca primero.
+
+## 2026-09-05 — Inspeccionar un secreto es filtrarlo
+
+**What happened.** Para saber si el `SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET` de `.env.local` era real o
+un placeholder, imprimi su largo y sus ultimos 25 caracteres. Un client secret de Google es
+`GOCSPX-` + 28 caracteres: 25 de 28 es el secreto entero a efectos practicos. Despues, buscando el
+boton de rotacion, filtre un SEGUNDO secreto completo — el `aria-label` del boton "Copiar en el
+portapapeles" contiene el valor en claro, y mi filtro de botones lo devolvio tal cual. Los dos
+murieron borrando el cliente OAuth completo (Google no deja borrar un secreto suelto, solo
+inhabilitarlo, y topea en dos), y el cliente nuevo se capturo sin pasar por el transcript: el
+`run_code_unsafe` de Playwright leyo el valor, abrio una pestaña contra un servidor local en
+127.0.0.1 y lo posteo desde ahi a un handler que escribio `.env.local` — la funcion solo devolvio
+`{postStatus, secretLength}`.
+
+**Rule.** Nunca imprimir *ninguna* porcion de un secreto, ni para verificar que existe: el largo
+solo, o `<set>`, alcanza para eso (`sed -E 's/=.*/=<set>/'`). Y antes de devolver atributos del DOM
+—`aria-label`, `title`, `value`— asumir que traen el secreto adentro y redactarlos con una regex
+ANTES del `return`, no despues de leerlos. Cuando haga falta mover un secreto de un browser a un
+archivo, que no toque el transcript: que lo escriba el proceso que ya lo tiene.

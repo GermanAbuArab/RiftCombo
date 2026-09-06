@@ -91,6 +91,31 @@
 - `[hidden]` needs `display:none !important` because `.empty` sets `display:grid`.
 - Playwright MCP can only write screenshots into `.playwright-mcp/` (gitignored).
 
+## Accounts (#31)
+- The hosted Supabase project is `bpbwsimgiyxzaorunqeo` in `us-east-1`, the region iad deploys to.
+  Its **anon key is public by design** and rides in `public/app.js`; what keeps one player's rows
+  away from another is RLS, proved by `node scripts/check-rls.mjs` (14 checks, two real users,
+  run it **against the hosted project**, not only a local stack). The `service_role` key and the
+  database password live in `.env.local` and reach nothing else — `test/headers.test.ts` fails if
+  either name appears anywhere under `web/`.
+- **`supabase/config.toml` is the source of truth for Auth, and `supabase config push` applies it.**
+  Site URL, the redirect allow-list and the Google provider are all in there, with the client id and
+  secret read as `env(...)`. Changing them in the dashboard by hand puts the repo and the project out
+  of step, and the next `config push` silently reverts it.
+- **`vercel.json` is generated, never hand-edited.** `SUPABASE_URL=… node scripts/build-headers.mjs`
+  writes it and the result is committed, because Vercel reads it before the build command runs. The
+  same variable feeds the bundle through esbuild's `define`, so the origin is set in one place.
+- Sign-in is a **full-page redirect**, and that is load-bearing: `Cross-Origin-Opener-Policy:
+  same-origin` severs a popup from the window that opened it and the flow never reports back, with
+  no error printed anywhere.
+- A Google OAuth client **caps at two client secrets and offers no way to delete one** — only to
+  disable it. Rotating past that cap means deleting the whole client and creating a new one, which
+  costs re-entering the redirect URI and updating the client id. Google keeps a deleted client
+  restorable for 30 days.
+- Adding a redirect URI can take Google "5 minutes to a few hours" to apply. Do not debug it blind:
+  `curl -sL "$(curl -s -o /dev/null -w '%{redirect_url}' 'https://<ref>.supabase.co/auth/v1/authorize?provider=google&redirect_to=https%3A%2F%2Friftcombo.vercel.app')"`
+  answers `redirect_uri_mismatch` until it is live and the Google sign-in page after.
+
 ## Verify
 - Run `npm test` and `npm run typecheck` before claiming anything works. Rebuild data with `npm run build:data`.
 - `npm run dev` serves the app on http://127.0.0.1:8787. Kill the wrangler process when the session ends.
