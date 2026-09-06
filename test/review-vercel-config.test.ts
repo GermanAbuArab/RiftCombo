@@ -20,6 +20,7 @@ import { describe, expect, it } from "vitest";
 const ROOT = new URL("..", import.meta.url);
 const vercel = JSON.parse(readFileSync(new URL("vercel.json", ROOT), "utf8")) as {
   ignoreCommand?: string;
+  headers: { headers: { key: string; value: string }[] }[];
 };
 
 describe("the Vercel ignore build step", () => {
@@ -55,5 +56,36 @@ describe("vercel.json", () => {
     const inGenerator = /ignoreCommand:\s*\n?\s*"((?:[^"\\]|\\.)*)"/.exec(generator)?.[1];
     expect(inGenerator, "no ignoreCommand found in scripts/build-headers.mjs").toBeDefined();
     expect(vercel.ignoreCommand).toBe(inGenerator);
+  });
+});
+
+/**
+ * test/headers.test.ts pins COOP and the connect-src origin, which are the two that break the app when
+ * they move. These four are the opposite case: nothing visibly breaks if they weaken, so a regression
+ * would ship in silence. `default-src 'self'` already covers script-src and object-src by fallback —
+ * the point of stating them is that the fallback is 'self', which is not the value either one wants.
+ */
+describe("the Content-Security-Policy directives that fail silently", () => {
+  const csp = new Map(
+    (vercel.headers.flatMap((h) => h.headers).find((h) => h.key === "Content-Security-Policy")?.value ?? "")
+      .split(";")
+      .map((d) => {
+        const [name, ...rest] = d.trim().split(/\s+/);
+        return [name!, rest.join(" ")] as const;
+      }),
+  );
+
+  it("runs no inline or eval'd script", () => {
+    expect(csp.get("script-src")).toBe("'self'");
+  });
+
+  it("allows no plugin content at all, rather than same-origin plugin content", () => {
+    expect(csp.get("object-src")).toBe("'none'");
+  });
+
+  it("cannot be reframed, and cannot have its relative URLs repointed", () => {
+    expect(csp.get("frame-ancestors")).toBe("'none'");
+    expect(csp.get("base-uri")).toBe("'self'");
+    expect(csp.get("form-action")).toBe("'self'");
   });
 });
