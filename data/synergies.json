@@ -807,12 +807,14 @@
           "Mech"
         ]
       },
-      "why": "The Fury half of the same tribe: \"Your Mechs each have [Assault]\" is +1 Might while they are attackers, granted off the tag with no text condition on the Mech itself. Assault only pays inside a Combat, where the Attacker designation exists — walking into an empty enemy battlefield is not an attack — so this rule is worth what the deck's attacks are worth, and nothing on a turn that only holds.",
+      "why": "The Fury half of the same tribe: \"Your Mechs each have [Assault]\" is +1 Might while they are attackers, granted off the tag with no text condition on the Mech itself. Assault only pays inside a Combat, where the Attacker designation exists — walking into an empty enemy battlefield is not an attack — so this rule is worth what the deck's attacks are worth, and nothing on a turn that only holds. His other half is a trap the tag cannot show: \"When I conquer, you may recycle another friendly unit to play a Mech from your trash. Reduce its Energy cost by the Might of the unit you recycled\" reads as an invitation to feed it the 3 Might Mech token that Rumble, Scrapper plays on every hold — the biggest body in the tribe that costs nothing — and it cannot be done. 185 is one sentence, \"Tokens are not cards\", and 416.1 defines Recycling as taking \"one or more cards from a specific zone\", so no token ever pays a recycle. The discount has to be bought with a real printing. Killing a token is a different action and does work, which is what `blood-money-small-token-fodder` and `malzahar-token-fodder` are about.",
       "basis": {
         "rules": [
           "133.8",
           "133.8.a",
+          "185",
           "383.4.e",
+          "416.1",
           "807.1.d",
           "807.1.d.1"
         ],
@@ -1331,6 +1333,157 @@
       "status": "rule-verified",
       "reviewed": "2026-09-06",
       "reviewedCount": 21
+    },
+    {
+      "id": "twilight-reveler-ganking-second-move",
+      "name": "Twilight Reveler's ready buys a [Ganking] body its second Standard Move",
+      "anchor": "VEN-020",
+      "partner": {
+        "textMatches": "Ganking"
+      },
+      "why": "[Ganking] is not an extra move. 810.1.c.3 says it outright — \"It does not give additional abilities or activations of Movement, only new options for the Standard Move\" — and 144.4.c.1 is the only new option: battlefield to battlefield. The Standard Move's cost is exhausting the unit (420.3.a), so a body that already moved this turn needs a ready before it can move again, and that is the whole pairing. \"When I attack, ready another friendly unit\" costs no card and repeats on every attack, which makes it the cheapest second move in the pool: the catalogue's other multi-move lines buy theirs with effect moves that cost Energy and a card each time. What the second move is worth is the partner's business — a move trigger fires again (Jhin, Murderous Artist; Nilah, Joyful Ascetic), Kayn, Unleashed asks for two moves by name, Yasuo, Windrider scores a point on his third, and Kai'Sa, Evolutionary pays on the conquer. The tightest instance is Jayce, Hammer in Hand, whose \"When I become ready, choose one to give me this turn\" hands him [Ganking] with the same ready that pays for the move. The conquer is why the pattern matters at all: landing on an uncontrolled battlefield establishes Control and 348.2.a.1 makes that a Conquer, 470 caps scoring at once per battlefield per turn, and 471.1.b.1 gives the Final Point through a Conquer only to a player who has Scored every Battlefield this turn — so at 7 points one body reaching the second battlefield is the win condition, not a bonus. Three caveats the list cannot carry: the Reveler readies another unit and never itself; 415.1.b makes a ready of an already-ready unit do nothing; and Windswept Hillock and Shurelya's Requiem grant [Ganking] only \"here\", which pays for the one move out and not for the trip back. The Reveler must attack to pay, so a garrison has to be there — UNL-009 Upstage Comedy is the paid alternative that needs no combat and, with [Repeat], the only single card that buys Yasuo his third move.",
+      "basis": {
+        "rules": [
+          "144.4.c.1",
+          "348.2.a.1",
+          "415.1",
+          "415.1.b",
+          "420.3.a",
+          "470",
+          "471.1.b.1",
+          "810.1.c.3"
+        ],
+        "combos": [
+          "reveler-svellsongur-jhin-infinite-power",
+          "desert-call-vi-sand-soldier-plaza",
+          "twilight-reveler-eye-facebreaker-recruits",
+          "threshold-reveler-infinite-energy"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 37
+    },
+    {
+      "id": "on-the-hunt-ganking-second-move",
+      "name": "On the Hunt readies the garrison, so every [Ganking] body moves twice",
+      "anchor": "SFD-204",
+      "partner": {
+        "textMatches": "Ganking"
+      },
+      "why": "\"Ready your units\" for 1 Energy and 2 Power is the pool's cheapest mass ready, and against [Ganking] it converts into moves one for one: 810.1.c.3 gives no extra activation of Movement, only the battlefield-to-battlefield option of 144.4.c.1, and 420.3.a charges the Standard Move an exhaust, so each body readied is one more battlefield it can reach. It is the only one of the three ready anchors that scales with board width — a garrison of three Ganking bodies gets three second moves off one card — and it also refreshes the units that stayed home, which is what pays for a defence after the attackers have walked away. A second landing on an uncontrolled battlefield establishes Control and Conquers (348.2.a.1); 470 allows one score per battlefield per turn, so the second body has to go somewhere new, and 471.1.b.1 makes exactly that the requirement for the Final Point — a Conquer at 7 points scores only if every Battlefield was Scored that turn. Two limits: it readies units and nothing else, so the gear-borne grants in this list (Boots of Swiftness, Shurelya's Requiem) are not refreshed by it, and 415.1.b makes readying an already-ready body a no-op.",
+      "basis": {
+        "rules": [
+          "144.4.c.1",
+          "348.2.a.1",
+          "415.1",
+          "415.1.b",
+          "420.3.a",
+          "470",
+          "471.1.b.1",
+          "810.1.c.3"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 37
+    },
+    {
+      "id": "acceleration-gate-ganking-second-move",
+      "name": "Acceleration Gate readies four, and the runes among them refund it",
+      "anchor": "VEN-150",
+      "partner": {
+        "textMatches": "Ganking"
+      },
+      "why": "\"Ready up to 4 units, gear, and/or runes\" is the only ready in the pool that crosses all three object kinds, and that is what makes it cheap rather than merely wide: 164.2.a gives every Basic Rune \"[E]: [Reaction] — Add [1]\", so each rune it readies hands back an Energy and the card's own 3 Energy is largely refunded before the moves are paid for. Against [Ganking] the unit half works like the other two anchors — 810.1.c.3 grants no extra Movement activation, only 144.4.c.1's battlefield-to-battlefield option, and 420.3.a prices the Standard Move at an exhaust, so a ready is exactly one more battlefield reached; landing on an uncontrolled one establishes Control and Conquers (348.2.a.1), 470 permits one score per battlefield per turn, and 471.1.b.1 makes reaching every Battlefield in the turn the condition of the Final Point. The gear half is the part the other two anchors cannot do: it re-readies an exhausted converter, which is the third card the `ancient-henge-energy-surplus` and `hextech-anomaly-power-surplus` rules ask for. 415.1.b caps all of it — readying something already ready does nothing.",
+      "basis": {
+        "rules": [
+          "144.4.c.1",
+          "348.2.a.1",
+          "415.1",
+          "415.1.b",
+          "420.3.a",
+          "470",
+          "471.1.b.1",
+          "810.1.c.3",
+          "164.2.a"
+        ],
+        "combos": [
+          "signpost-corina-two-battlefields"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 37
+    },
+    {
+      "id": "ancient-henge-energy-surplus",
+      "name": "Ancient Henge spends surplus Energy as Power of any Domain",
+      "anchor": "SFD-117",
+      "partner": {
+        "textMatches": "\\[Add\\][^.]*(?::rb_energy|Energy)",
+        "excludes": [
+          {
+            "card": "OGS-014",
+            "why": "\"[Add] :rb_energy_2:. Use only to play spells.\" — the Henge is a gear's activated ability, not a spell, so this Energy can never reach it."
+          },
+          {
+            "card": "VEN-141",
+            "why": "\"Spend this Energy only to play units or activated abilities of units\" — the Henge is gear, so its ability is out of scope. Her ability also costs 2 rainbow Power to make 2 Energy, which runs the Henge's trade backwards."
+          }
+        ]
+      },
+      "why": "\":rb_exhaust:: [Reaction] — Pay any amount of Energy to [Add] that much :rb_rune_rainbow:\", with no cap per activation. 168 makes every [Add] ability an addition to the Rune Pool, and 135.2.e.5.b makes rainbow Power spendable on a Power cost of any Domain, so the Henge is the pool's one-way valve out of the cheap currency into the scarce one — the reason `gemdragon-henge-vi-blind-fury` keeps an Energy-only ledger. What it does not do is store: 167 empties every Rune Pool at the start of each Main Phase and at the end of each turn and 167.1 loses \"any unspent Energy or Power\", so the trade moves a surplus sideways inside one turn and never banks it for the next. The exhaust in its cost caps it at one conversion per turn unless the Henge is readied or replayed, which is why a ready — `acceleration-gate-ganking-second-move` readies gear — is its natural third card. Read the spend restrictions before counting a source: two of the fifteen are excluded below because their Energy is locked away from a gear ability, while Scorn of the Moon's \"only during showdowns\" does work, since the Henge is a [Reaction]. Chem-Baroness only adds Energy while your score is within 3 of the Victory Score, Undertitan only as it is revealed from your deck, and Threshold of the Gray pays the opponent the same 1 Energy it pays you. SFD-083 Hextech Anomaly is the mirror card rather than a source: running both converts domain-locked Power into any-domain Power (135.2.e.5.a going in, 135.2.e.5.b coming out) for two exhausts and no net resources.",
+      "basis": {
+        "rules": [
+          "135.2.e.5.a",
+          "135.2.e.5.b",
+          "167",
+          "167.1",
+          "168"
+        ],
+        "combos": [
+          "gemdragon-henge-vi-blind-fury",
+          "seal-power-faucet-bootstrap",
+          "platewyrm-egg-defender-gate",
+          "dominus-xerath-henge-removal"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 11
+    },
+    {
+      "id": "hextech-anomaly-power-surplus",
+      "name": "Hextech Anomaly spends surplus Power as Energy",
+      "anchor": "SFD-083",
+      "partner": {
+        "textMatches": "\\[Add\\][^.]*rb_rune",
+        "excludes": [
+          {
+            "card": "OGN-247",
+            "why": "\"[Add] :rb_rune_rainbow:. Use only to play spells.\" — the Anomaly is a gear's activated ability, so this Power can never pay it. Fire Below the Mountain is the same sentence with the opposite scope and stays in."
+          }
+        ]
+      },
+      "why": "\":rb_exhaust:: [Reaction] — Pay any amount of :rb_rune_rainbow: to [Add] that much Energy\" — the mirror of the Ancient Henge, uncapped in the same way, and 168 makes both of them additions to the Rune Pool. Its best partners are the six Seals, one per domain and the pool's only repeatable per-turn Power faucets: their Power is domain-locked, but 135.2.e.5.a lets a rainbow COST be paid by Power of any Domain, so a Seal of Rage reaches a Mind gear's ability without trouble. Fire Below the Mountain is the tightest fit in the list — \"Use only to play gear or use gear abilities\" names exactly what the Anomaly is — while Daughter of the Void prints the same restriction scoped to spells and is excluded. Four of the sixteen do not add Power in their own text at all: Bloodharbor Ripper, Deadly Flourish, Pyke, Returned and Yeti Brawler each play a Gold gear token whose quoted ability is \"Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:\", so they are one-shots that consume the token, not faucets. They stay in because the Power does land in your pool and the Gold token itself is never in a decklist. As with the Henge, 167 and 167.1 empty the pool at the start of every Main Phase and at the end of every turn, so this converts a surplus within the turn and stores nothing, and the exhaust in the cost allows one conversion per turn unless the Anomaly is readied.",
+      "basis": {
+        "rules": [
+          "135.2.e.5.a",
+          "167",
+          "167.1",
+          "168"
+        ],
+        "combos": [
+          "gutter-palace-keeper-time-warp",
+          "seal-power-faucet-bootstrap",
+          "platewyrm-egg-defender-gate"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 16
     }
   ]
 }
