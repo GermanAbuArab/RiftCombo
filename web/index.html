@@ -19,9 +19,10 @@
     <span class="brand-name">RIFTCOMBO</span>
   </a>
   <nav class="topnav">
-    <a href="#" class="active">Combos</a>
-    <a href="#how">Guide</a>
-    <a href="#data">Sources</a>
+    <a href="#/combos" class="active">Combos</a>
+    <a href="#/decks">My decks</a>
+    <a href="#/guide">Guide</a>
+    <a href="#/sources">Sources</a>
   </nav>
   <div class="topbar-right">
     <fieldset class="segmented small" aria-label="Format">
@@ -49,6 +50,7 @@
   </div>
 </section>
 
+<section class="view" id="view-combos">
 <div class="app-shell" id="shell">
   <aside class="deck-panel" id="deck-panel" aria-label="Deck input">
     <div class="panel-head">
@@ -160,8 +162,14 @@
     <div class="tray" id="tray"><p class="tray-empty">Results appear here.</p></div>
   </main>
 </div>
+</section>
 
-<section class="doc" id="how">
+<section class="view" id="view-decks" hidden>
+  <div class="decks" id="decks-host"></div>
+</section>
+
+<section class="view" id="view-guide" hidden>
+<div class="doc" id="how">
   <h2>Guide</h2>
   <ol>
     <li>Paste a deck list (any common export), a deck code, or a public Piltover Archive link, then press <strong>Find combos</strong>.</li>
@@ -173,7 +181,10 @@
     <li><strong>Your decks</strong>, under the list, holds your saved lists. Save keeps the list text itself, not the result of matching it, so an old list is re-matched against today's catalogue every time you load it. Until you press Save, nothing about a list leaves your browser.</li>
     <li data-when="candidates">Combos marked <strong>candidate</strong> were proposed by an automated sweep and have not been walked by a human yet. Treat them as leads, not facts.</li>
   </ol>
+</div>
 </section>
+
+<section class="view" id="view-sources" hidden>
 <footer class="doc colophon" id="data">
   <h2>Sources</h2>
   <p id="data-note">Card text and art come from Riot's official card gallery, with Riot's published errata applied. Legality follows the official Rules Hub. Combos are walked by hand against the Core Rules, card text and rule numbers cited.<span data-when="candidates"> Entries marked <em>candidate</em> were proposed by an automated sweep and not yet reviewed.</span> Pairs are a separate file with a weaker guarantee: the rule is walked once and cites its paragraphs, the instances are text matches, and every rule's whole match list was read card by card before it shipped.</p>
@@ -181,6 +192,7 @@
   <p>No advertising, no donations, no play-rate or win-rate data. RiftCombo describes combos; it never plays them for you.</p>
   <p><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
 </footer>
+</section>
 
 <div class="card-preview" id="card-preview" hidden>
   <div class="card-preview-box" id="card-preview-box" role="dialog" aria-modal="true" aria-label="Card detail"></div>

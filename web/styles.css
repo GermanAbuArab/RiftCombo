@@ -404,8 +404,8 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 
 /* Entrance (#39): the body carries the auth state and the stylesheet picks what is on screen.
    "pending" shows neither, so nothing flashes; "open" is a build with no accounts configured. */
-body[data-auth="pending"] .app-shell, body[data-auth="pending"] .doc, body[data-auth="pending"] .topnav, body[data-auth="pending"] .topbar-right,
-body[data-auth="out"] .app-shell, body[data-auth="out"] .doc, body[data-auth="out"] .topnav, body[data-auth="out"] .topbar-right { display: none; }
+body[data-auth="pending"] .view, body[data-auth="pending"] .topnav, body[data-auth="pending"] .topbar-right,
+body[data-auth="out"] .view, body[data-auth="out"] .topnav, body[data-auth="out"] .topbar-right { display: none; }
 .gate { display: none; }
 body[data-auth="out"] .gate { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - var(--topbar)); padding: 32px 22px; }
 .gate-box { width: min(440px, 100%); padding: 30px 30px 26px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); display: grid; gap: 14px; justify-items: start; }

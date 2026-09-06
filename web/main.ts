@@ -11,6 +11,7 @@ import { matchSynergies, planSynergies, type SynergyGap, type SynergyHit } from 
 import type { Card, Combo, Deck, Domain, Feature, Format, LegalityEntry, Synergy, Variant } from "../src/types.js";
 import { accountDeckChanged, gate, initAccount } from "./account.js";
 import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from "./graph.js";
+import { go, route, startRouter } from "./router.js";
 
 const combos = (combosJson as { combos: Combo[] }).combos;
 const features = (featuresJson as { features: Feature[] }).features;
@@ -122,8 +123,9 @@ async function boot() {
   const tally = verified === combos.length ? `${combos.length} combos, every one walked by hand` : `${combos.length} combos (${verified} verified)`;
   $<HTMLElement>("#data-note").insertAdjacentHTML("beforeend", ` Card data as of ${esc(data.resultsUpdatedAt.slice(0, 10))}: ${cards.cards.length} printings, ${tally}.`);
   setStatus("Ready", "Paste a deck list to begin.");
-  const hash = decodeURIComponent(location.hash.replace(/^#deck=/, ""));
-  if (location.hash.startsWith("#deck=") && hash) { input.value = hash; void run(); }
+  // A `#deck=<list>` link shared before the views existed still opens Combos with that list.
+  const opened = route();
+  if (opened.legacyDeck) { input.value = opened.legacyDeck; void run(); }
   initAccount({
     deckText: () => input.value,
     format: fmt,
@@ -165,7 +167,7 @@ async function run(source: "text" | "url" = "text") {
     // The list changed by a route that is not typing — Load example, a Piltover link, a saved deck
     // being restored — and the account panel reads it for the suggested name and the drift line.
     accountDeckChanged();
-    if (source === "text") location.hash = isDeckCode(text) ? `deck=${encodeURIComponent(text)}` : "";
+    if (source === "text") go(isDeckCode(text) ? `#deck=${encodeURIComponent(text)}` : "#/combos");
     const included = result.included.length;
     const near = Object.values(result).reduce((n, b) => n + b.length, 0) - included;
     const total = Object.values(deck.main).reduce((a, b) => a + b, 0);
@@ -694,4 +696,5 @@ $<HTMLButtonElement>("#fullscreen").addEventListener("click", () => { const st =
 let resizeTimer = 0;
 window.addEventListener("resize", () => { window.clearTimeout(resizeTimer); resizeTimer = window.setTimeout(() => view?.fit(), 150); });
 
+startRouter();
 void boot();
