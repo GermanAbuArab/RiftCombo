@@ -140,6 +140,24 @@ describe("writing a deck back out", () => {
     expect(text).toContain("6 Mind Rune (OGN-089)");
   });
 
+  /**
+   * #74. A deck imported by URL never reached the textarea, and everything that hangs off the textarea
+   * reads from there: the counter said "0 cards" beside a status card reading "40 in the main deck",
+   * and "Save this list to My decks" never appeared, so the import was a dead end. `fromUrl` now writes
+   * `deckToText` into it before matching. What has to hold for that to be safe is that the text shown
+   * to the player and the deck handed to the matcher are the same deck — otherwise the fix trades one
+   * pair of contradicting numbers for another.
+   */
+  it("makes the counter agree with the deck the matcher is given", () => {
+    const shown = loadDeck(deckToText(payload.entries, cards), cards);
+    const matched = normalizeDeck(payload.entries, cards);
+    expect(deckCountLine(shown)).toBe(deckCountLine(matched));
+    expect(deckCountLine(shown)).not.toBe("0 cards");
+    // The number the status card prints, from the same list the counter is describing.
+    const total = (d: typeof shown) => Object.values(d.main).reduce((a, b) => a + b, 0);
+    expect(deckCountLine(shown)).toContain(`${total(matched)} main`);
+  });
+
   it("keeps an unrecognised entry in the text rather than dropping it", () => {
     expect(deckToText([{ code: "ZZZ-999", count: 2, section: "main" }], cards)).toContain("2 ZZZ-999");
   });

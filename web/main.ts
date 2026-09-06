@@ -5,7 +5,7 @@ import synergiesJson from "../data/synergies.json" with { type: "json" };
 import { CardIndex, readableCardText } from "../src/cards.js";
 import { generateVariants, sourceHref } from "../src/combos.js";
 import { sizeRule } from "../src/build.js";
-import { deckCountLine, deckRestrictions, isDeckCode, loadDeck, normalizeDeck, type DeckEntry, type DeckRestriction } from "../src/deck.js";
+import { deckCountLine, deckRestrictions, deckToText, isDeckCode, loadDeck, normalizeDeck, type DeckEntry, type DeckRestriction } from "../src/deck.js";
 import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
 import { planDeck, type Route } from "../src/plan.js";
 import { matchSynergies, planSynergies, type SynergyGap, type SynergyHit } from "../src/synergies.js";
@@ -163,6 +163,14 @@ async function fromUrl(url: string): Promise<Deck> {
   const res = await fetch(`/api/deck-url?url=${encodeURIComponent(url)}`);
   if (!res.ok) throw new Error(((await res.json().catch(() => ({}))) as { error?: string }).error ?? "could not fetch that deck");
   const payload = (await res.json()) as { entries: DeckEntry[]; title?: string };
+  // The imported list goes into the textarea before anything is matched (#74). Everything that hangs
+  // off the textarea reads from there and nowhere else: the card counter, which used to say "0 cards"
+  // beside a status card reading "40 in the main deck", and the offer to save the list to My decks,
+  // which never appeared at all — so a deck imported by URL was a dead end. `deckToText` is the same
+  // serialisation My decks' own Piltover import writes, so the two paths produce identical text, and
+  // `test/deck.test.ts` pins that our parser reads it back as the very deck it came from.
+  input.value = deckToText(payload.entries, cards);
+  input.dispatchEvent(new Event("input"));
   const d = normalizeDeck(payload.entries, cards);
   if (payload.title) urlInput.dataset.title = payload.title;
   return d;
