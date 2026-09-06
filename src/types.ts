@@ -157,6 +157,14 @@ export interface SynergyPartner {
   tags?: string[];
   /** Equipment only: the Might it grants on attaching must be at least this. */
   minMightBonus?: number;
+  /**
+   * Printed Energy cost floor. 206 makes a "costs N or more" clause read the PRINTED cost (its own
+   * worked example is Lux, Illuminated), so this reads `energy` straight off cards.json and a card
+   * that prints no Energy at all never matches.
+   */
+  minEnergy?: number;
+  /** Printed Power cost floor, same reading of 206 as `minEnergy`. */
+  minPower?: number;
   /** Base codes read out of the match list by hand, each with the reason it does not belong. */
   excludes?: { card: string; why: string }[];
 }

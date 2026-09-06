@@ -35,7 +35,8 @@ for (const s of selected) {
   console.log(`  anchor    ${s.anchor} ${anchor.name} [${anchor.type.join(",")}] {${anchor.domains.join(",")}}`);
   console.log(`  predicate ${s.partner.textMatches ? `/${s.partner.textMatches}/` : "any text"}${s.partner.textExcludes ? ` minus /${s.partner.textExcludes}/` : ""}` +
     `${s.partner.tags ? ` · tags ${s.partner.tags.join(",")}` : ""}` +
-    `${s.partner.types ? ` · types ${s.partner.types.join(",")}` : ""}${s.partner.minMightBonus !== undefined ? ` · Might bonus >= ${s.partner.minMightBonus}` : ""}`);
+    `${s.partner.types ? ` · types ${s.partner.types.join(",")}` : ""}${s.partner.minMightBonus !== undefined ? ` · Might bonus >= ${s.partner.minMightBonus}` : ""}` +
+    `${s.partner.minEnergy !== undefined ? ` · printed Energy >= ${s.partner.minEnergy}` : ""}${s.partner.minPower !== undefined ? ` · printed Power >= ${s.partner.minPower}` : ""}`);
   console.log(`  basis     rules ${s.basis.rules.join(", ")}${s.basis.readings?.length ? ` · readings ${s.basis.readings.join(", ")}` : ""} · ${s.basis.combos.length} combo(s)`);
   const drift = partners.length - s.reviewedCount;
   console.log(`  reviewed  ${s.reviewed} · ${partners.length} partners in the pool` +

@@ -69,6 +69,31 @@ describe("synergy rules", () => {
     expect(errors.some((e) => e.includes("needs textMatches or tags"))).toBe(true);
   });
 
+  it("reads the PRINTED cost, and a card that prints none never clears a floor", () => {
+    // 206 makes a "costs N or more" clause read the printed cost, so minEnergy/minPower read
+    // cards.json and nothing else. Three cards, one per case: Overt Operation is E5 P2, Get
+    // Excited! is E2 P1, and Pit Crew is E3 with no Power printed at all.
+    const base = { id: "cost-probe", name: "cost probe", anchor: "UNL-087", why: "",
+      basis: { rules: ["206"], combos: [] }, status: "rule-verified" as const,
+      reviewed: "2026-09-06", reviewedCount: 0 };
+    const codes = (partner: object) => partnersOf({ ...base, partner } as never, cards).map((c) => c.base);
+
+    const twoPower = codes({ textMatches: ".", minPower: 2 });
+    expect(twoPower).toContain("OGN-153");
+    expect(twoPower).not.toContain("OGN-008");
+    expect(twoPower).not.toContain("OGN-091");
+
+    const onePower = codes({ textMatches: ".", minPower: 1 });
+    expect(onePower).toContain("OGN-153");
+    expect(onePower).toContain("OGN-008");
+    // A card with no Power cost reads as absent, not as 0, so it fails even the floor of 1.
+    expect(onePower).not.toContain("OGN-091");
+
+    const fiveEnergy = codes({ textMatches: ".", minEnergy: 5 });
+    expect(fiveEnergy).toContain("OGN-153");
+    expect(fiveEnergy).not.toContain("OGN-008");
+  });
+
   it("every rule matches something and no rule matches the whole pool", () => {
     for (const s of synergies) {
       const n = partnersOf(s, cards).length;

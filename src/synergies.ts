@@ -95,6 +95,10 @@ export function partnersOf(s: Synergy, cards: CardIndex): Card[] {
     if (s.partner.types && !s.partner.types.some((t) => c.type.includes(t))) continue;
     if (s.partner.tags && !s.partner.tags.some((t) => c.tags.includes(t))) continue;
     if (s.partner.minMightBonus !== undefined && (c.mightBonus ?? -1) < s.partner.minMightBonus) continue;
+    // Printed cost, per 206: a card that prints no Energy (or no Power) reads as absent, not as 0,
+    // so it fails any floor a rule sets. `?? -1` is what makes `minEnergy: 0` still mean "prints one".
+    if (s.partner.minEnergy !== undefined && (c.energy ?? -1) < s.partner.minEnergy) continue;
+    if (s.partner.minPower !== undefined && (c.power ?? -1) < s.partner.minPower) continue;
     const text = synergyText(c);
     if ((match && !match.test(text)) || (reject && reject.test(text))) continue;
     const key = cards.resolveName(c.name) ?? c.base;
