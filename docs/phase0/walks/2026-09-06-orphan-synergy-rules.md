@@ -213,3 +213,145 @@ The Bird matters beyond its 1 Might: it is a **Bird** for the four-tag package t
 `ivern-sentinel-hold` and `ivern-arena-sentinel-hold` are built on — but not in this shell, since
 Ivern is Order and Tryndamere is Fury, so the tag payoff would need a different legend. Recorded as
 a lead in `notable`, not as a `uses[]`.
+
+---
+
+## 6. `portal-rescue-replays-a-body` -> `portal-rescue-trove-golem-industrialist` (ENTRY) + four refusals
+
+`OGN-102 | Portal Rescue | Spell | Mind | E3 P1 | [Action] ... Banish a friendly unit, then its
+owner plays it to their base, ignoring its cost.`
+
+419.3 / 419.3.a / 419.4.a make the forced replay an ordinary Play, so the body's own
+`When you play me` fires a second time. The rule's 16-card partner list splits cleanly on **four
+words the predicate cannot see: "to their base."**
+
+**REFUSED — every partner whose trigger says "play a token HERE."** 359.3.f.2 reads `here` on
+execution, and after Portal Rescue the executing permanent is at the BASE. So `OGN-218 Vanguard
+Captain` (two Recruits here), `SFD-157 Royal Guard` (a Sand Soldier here), `OGN-211 Faithful
+Manufactor` (a Recruit here) and `UNL-033 Frisky Hunter` (a Bird here) are all strictly WORSE under
+Portal Rescue than under a return-to-hand, because the replay strands the token at the base and
+re-creates exactly the walk-to-the-battlefield problem #48 measured. Portal Rescue is a *rescue*, not
+an upgrade, for that whole family.
+
+**TAKEN — `SFD-174 Trove Golem`**, whose four Gold gear tokens carry no location clause at all, so
+the base-only replay costs the line nothing. With `SFD-171 Renata Glasc, Industrialist` on the board
+(R25 = A) the Golds enter ready and are Power the same turn. Ledger: Portal Rescue costs E3 + 1
+Power and returns 4 Power, net +3 per casting, three castings (103.2.b).
+
+Two facts the entry records because they cut both ways. 108.6.c makes Banishment the
+hard-to-recover zone, and the return here is the spell's own second clause — so the rescued body
+**never reaches the Trash**, which erases a [Deathknell] it was carrying exactly as a would-die
+shield does under 808.1.d.1, and no "when a friendly unit dies" payoff sees it. And 705 strips every
+buff on the way through.
+
+---
+
+## 7. `magma-wurm-mass-ready` -> `magma-wurm-assembly-rig-walk-in` (ENTRY)
+
+`OGN-011 | Magma Wurm | Unit | Fury | E8 P1 M8 | Other friendly units enter ready.`
+
+**This corrects a sentence this project has been repeating.** CLAUDE.md says a token minted
+exhausted "pays 144.2's exhaust the same turn only under SFD-171 Renata Glasc, Industrialist
+(mono-Order)". That is true of *Order* and of *tokens*; it is not true of the pool. 143.4 (*"Units
+enter the Board exhausted"*) carries 143.4.a — *"This can be altered by Accelerate or similar game
+effects"* — and Magma Wurm is the Fury card that alters it, for **every** friendly unit, played or
+minted, not only for tokens.
+
+Partner taken: `SFD-019 | Assembly Rig | Gear | Fury | E4 | E1 + 1 Fury, Recycle a unit from your
+trash, exhaust: Play a 3 Might Mech unit token to your base.` One Mech a turn, and with the Wurm out
+it walks to a battlefield in the same Main Phase (144.4.a, 144.2).
+
+**REFUSED — feeding the Rig with its own output.** 185 is one sentence, *"Tokens are not cards"*,
+and 416.1 defines Recycling over cards; 186.1 makes a token *"cease to exist immediately after
+moving to its new zone"*, so a dead Mech token is never in the trash to be chosen. 203.3 and 416.3
+then make the cost unpayable. The Rig needs a unit CARD in the trash every turn, and the entry says
+so. Two community lines died on this exact rule in issue #62.
+
+---
+
+## 8. `dauntless-vanguard-occupied-battlefield-assault` -> `dauntless-vanguard-long-sword-surprise-attack` (ENTRY) + one refusal
+
+`SFD-093 | Dauntless Vanguard | Unit | Body | E4 P1 M4 | You may play me to an occupied enemy
+battlefield.`
+
+The chain is short and every link was opened. 190.3.a.1 — *"Units moving to **or being played to** a
+battlefield apply Contested status"* — so being played there is enough. 464.2.c.1: *"The Attacker is
+the player whose unit(s) applied the Contested status to the Battlefield."* 323.9 stages the Combat
+at the next Cleanup and 323.13 opens it in the Neutral Open State of your own Main Phase. He never
+moves, so 144.2's exhaust is never paid and 143.4's entering-exhausted costs nothing — exhausted is
+not stunned, and 464.2.c.3 / 465.2.b do not filter by state.
+
+Payoff taken: `SFD-022 Long Sword`, E2 P1 M+2, **[Quick-Draw]** — 819.1.d: *"Quick-Draw is
+functionally short for '[Reaction]' and 'When you play this, attach it to a Unit you control.'"*
+464.2.f.1 / 464.2.g keep the Chain open inside the combat, so the Might is chosen **after** the
+garrison is known. 465.2.c reads Might at assignment, which is after the attach.
+
+**REFUSED — the Vanguard as an evacuation walker.** The tempting line is: empty the garrison with
+`UNL-107 Stare Down`, then walk in for a free Conquer. It cannot be built. (a) After Stare Down the
+battlefield is unoccupied, so the Vanguard's own condition — *"an occupied enemy battlefield"* —
+fails, and 355.2.a's default does not reach an enemy battlefield. (b) Played the other way round,
+there is no window: 323.10 only un-stages a Combat that has not yet opened, and after a play or a
+move the very next Cleanup both stages (323.9) and opens (323.13) it with no gap (the #58 finding).
+(c) A plain spell cannot help from inside, because 155 confines a spell with no [Action]/[Reaction]
+to *"an Open State outside of Showdowns"*, and Stare Down carries neither keyword.
+
+**Also refused: `SFD-009 Serrated Dirk` as the payoff**, even though the synergy rule is named for
+[Assault]. Its +2 is the same number as the Long Sword's, but it has no [Reaction], so it must be
+attached before the play — which telegraphs the one thing the Vanguard is bought for.
+
+---
+
+## 9. `rell-magnetic-free-equip-attach` -> `rell-magnetic-recurve-bow-per-attack` (ENTRY) + two refusals
+
+`SFD-024 | Rell, Magnetic | Unit | Fury | E4 M4 | [Tank] ... When I attack, you may play an Equipment
+with Energy cost no more than E2, ignoring its cost. If you do, then do this: Attach it to me.`
+
+818.1 makes [Equip] an Activated Ability, so attaching is never playing — but Rell **plays** the
+card and then attaches it, so a gear's own `When you play this` does fire. That distinction is the
+rule's own basis and it holds.
+
+**The finding is a timing one, and it splits the partner list in two.** Rell's trigger fires at the
+Attacker designation (464.2.c.3), so the Equipment arrives *after* that instant, and 383.2.a.1 makes
+a trigger's extra condition part of the Trigger Condition, checked when the trigger is placed. So:
+
+- an Equipment whose own text reads `When I attack` has **already missed** the attack that fetched
+  it. `SFD-016 Recurve Bow` deals its 2 damage in every LATER combat, never in the one it landed in;
+- an Equipment that is a flat Might bonus misses nothing, because 465.2.c reads Might when damage is
+  assigned. `SFD-022 Long Sword`'s M+2 is live immediately.
+
+**REFUSED — the Svellsongur route the rule itself suggests.** The rule's `why` points at 476.1 and
+the #45 composition finding as what makes a repeatable free attach valuable. It is out of reach:
+`SFD-059 Svellsongur` costs **E3**, and Rell's ceiling is a printed Energy cost of 2 — 206 makes
+that a PRINTED-cost test, so no discount widens it.
+
+**REFUSED — `SFD-186 Spinning Axe`** (E2 P1, M+3, Quick-Draw) as the Might target. It is legal for
+Rell and it is one Might better than the Long Sword, but it is Fury/Chaos, so it narrows the
+identity from "any legend with Fury" to a Fury/Chaos pair for +1 Might. Not worth it; recorded so
+the next session does not re-derive the comparison.
+
+---
+
+## 10. `hall-of-legends-readies-your-legend` -> `hall-of-legends-bloodharbor-double-ripper` (ENTRY)
+
+`SFD-210 | Hall of Legends | Battlefield | Colorless | When you conquer here, you may pay 1 Energy
+to ready your legend.`
+
+107.4.b says the Legend Zone *"is not a location"*, which is what killed the whole "legend +
+Reckoner's Arena" family in #47 — but 107.4.c says *"The Champion Legend here is a Game Object"*,
+and 415.1 readies *"a non-spell Game Object on the board"*. So the Hall reaches the legend and the
+107.4.b trap does not bite: nothing here asks the legend to be anywhere.
+
+What it buys is narrower than it looks, and the entry states it. 315.1.b already readies the legend
+every Awaken, so the Hall is not a per-turn doubling — it is a **second activation on the turns you
+conquer there**, for E1. Twenty-four legend printings carry an exhaust in an ability cost; five
+charge a Disempower or an XP cost on top, so the second activation still has to be funded.
+
+Partner taken: `UNL-185 Bloodharbor Ripper` (Pyke, Fury/Chaos) — the only one of the twenty-four
+whose ability produces a **resource** for a flat E1 with no second currency: *"E1, exhaust: Return a
+friendly unit at a battlefield to its owner's hand. Play a Gold gear token exhausted."* Bounce target
+`SFD-140 Fizz, Trickster`, whose replay is another free spell out of the trash (419.4.a).
+
+The Gold enters exhausted and stays that way: `SFD-171 Renata Glasc, Industrialist` is mono-Order
+and 103.1.b.2 keeps her out of a Fury/Chaos identity, so each Gold is next turn's Power. And the
+bounce is to HAND, not a Recall — 455 defines a Recall as relocation *to its Base*, so none of the
+Recall traps (455, 808.1.d.1) apply, though 705 and 716 still strip buffs and attachments.

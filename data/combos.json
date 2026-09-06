@@ -19384,6 +19384,369 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §5), issue #153, from three orphan rules at once: call-to-glory-buff-bank, trapping-grounds-excess-damage and wizened-elder-buffed-payoff (the last only as the observation that a banked buff is worth holding, not spending, when OGN-065 Wizened Elder is the body carrying it — the two uses are exclusive and this entry spends). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.4.c, 194.1.c, 383.4.e, 461, 464.2.c.3, 465.2.c, 465.2.c.3, 465.2.c.4, 466.5.d, 470, 485.4.a, 485.5, 486.5, 487.5, 702.2.a, 702.2.b.2, 702.3, 807.1.d, 813.1.c.1. Stands on R2 = A and R28 = A, both ruled 2026-09-04. Trap check: the attack is against a real garrison, so the empty-battlefield trap is respected; no [Repeat]; no [Temporary]; the Bird is a token and is never recycled (185); no recall; nothing added in Awaken, so 167 does not bite; the battlefield is declared as a 1-in-3 draw per 485.5. Formula checked against its own declared quantities before authoring: M8 + 3x3 = M17, assignment 3 + 3, excess 11 >= 5 and >= 3."
+    },
+    {
+      "id": "portal-rescue-trove-golem-industrialist",
+      "name": "Portal Rescue on the Trove Golem — four more Golds, ready, at [Action] speed",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-102",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind spell, E3 P1, [Action]. 'Banish a friendly unit, then its owner plays it to their base, ignoring its cost.' 419.3 / 419.3.a treat that forced play as an ordinary Play, so 419.4.a fires the unit's own 'When you play me' a second time."
+        },
+        {
+          "card": "SFD-174",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Order unit, E8 P2 M9. 'When you play me, play four Gold gear tokens exhausted.' The Golds carry no location clause, so 355.2.a's default is untouched by Portal Rescue's 'to their base' — unlike a 'play a token HERE' body, which the replay would strand at the base."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Order unit, E4 P1 M4. 'Your tokens enter ready.' R25 = A: this beats the Golem's printed 'exhausted', so the four Golds are Power on the turn they appear rather than next turn's."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Order: 103.1.b.2 is satisfied by any Mind/Order legend (OGN-265 Herald of the Arcane, SFD-201 Chem-Baroness, UNL-197 Scorn of the Moon, SFD-199 Prodigal Explorer).",
+          "No battlefield of yours is required."
+        ],
+        "notable": [
+          "Ledger, checked against the declared quantities before authoring: Portal Rescue costs E3 + 1 Power and returns four Gold, each of which is 'Kill this, exhaust: [Add] 1 rainbow'. Net +3 Power per casting, three castings a game (103.2.b). The Golem's M9 body also comes back — but to the BASE, so if it was standing at a battlefield the replay costs you that garrison.",
+          "The Golem is E8 P2 to cast the first time. Portal Rescue is the cheap half of the line, not the whole of it: it does not make the Golem playable, it makes the second and third resolutions of his trigger cost E3 + 1 Power instead of E8 + 2 Power.",
+          "Portal Rescue BANISHES first. 108.6.c makes Banishment the hard-to-recover zone, and nothing in the pool returns a card from it — the return here is the spell's own second clause, in the same breath. Two consequences the entry relies on: a unit rescued this way never reaches the Trash, so a [Deathknell] it carries is erased exactly as a heal/exhaust/recall shield erases one (808.1.d.1); and because it is not a death, no 'when a friendly unit dies' payoff sees it.",
+          "[Action] speed (806.1.b) means this reaches an opponent's Showdown as well as your own Main Phase, so it doubles as a save from removal — at the price of the banished body losing everything attached and every buff (705)."
+        ]
+      },
+      "steps": [
+        "Get Renata Glasc, Industrialist onto the board first: her static 'Your tokens enter ready' has to be present before the Golem's trigger resolves, or R25 = A never applies and the Golds are next turn's Power.",
+        "Play Trove Golem for E8 + 2 Power. His trigger plays four Gold gear tokens; Renata makes them enter ready.",
+        "Kill and exhaust each Gold for 1 rainbow Power ('[Reaction][>] Kill this, exhaust: [Add] 1 rainbow'). Four Power.",
+        "Play Portal Rescue for E3 + 1 Power. It banishes the Golem and its owner plays it to their base ignoring its cost (419.3.a treats Play as a Limited Action; 419.4.a fires the play trigger when the play completes).",
+        "Four more Golds, ready. Four more Power, for a net of three. Repeat with the second and third copies of Portal Rescue."
+      ],
+      "terminatesIn": "engine only — about +3 Power per casting of Portal Rescue, three castings a game (103.2.b), plus a re-played M9 body at your base. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "419.3: 'Game effects may result in cards being played as part of their resolution.' 419.3.a: 'This treats Play as a Limited Action.' 419.4.a: 'Any such triggered abilities trigger when the act of playing the card has been completed by the player.' 108.6.c: Banishment 'represents cards that have been removed from play in a more difficult-to-recover way'."
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §6), issue #153, from the orphan rule portal-rescue-replays-a-body. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 108.6.c, 355.2.a, 419.3, 419.3.a, 419.4.a, 705, 806.1.b. Stands on R25 = A, ruled 2026-09-04. The partner was chosen against a trap the rule's own predicate cannot see: Portal Rescue plays the body 'to their base', so 359.3.f.2 reads 'here' as the BASE for every partner whose trigger says 'play a token here' — OGN-218 Vanguard Captain, SFD-157 Royal Guard, OGN-211 Faithful Manufactor and UNL-033 Frisky Hunter are all strictly worse under Portal Rescue than under a bounce-to-hand, and are recorded as refusals in the walk document. Trap check: the Golds are tokens, so 185 / 186.1 forbid recycling them and nothing here tries; no attack; no [Repeat]; no [Temporary]; the banish is not a recall, so 455 does not apply, but 108.6.c does; nothing is added in Awaken, so 167 does not bite. Sibling: ava-achiever-temporal-breach-trove-golem re-plays the same Golem with a different, three-copies-a-game enabler."
+    },
+    {
+      "id": "magma-wurm-assembly-rig-walk-in",
+      "name": "Magma Wurm over the Assembly Rig — a Mech that walks in the turn it is minted",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-011",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury unit, E8 P1 M8. 'Other friendly units enter ready.' 143.4 defaults every unit to entering exhausted and 143.4.a says outright that 'This can be altered by Accelerate or similar game effects' — this static is the Fury answer to what SFD-171 Renata Glasc, Industrialist does for tokens in Order, and it reaches units played from hand as well."
+        },
+        {
+          "card": "SFD-019",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Fury gear, E4. 'E1 + 1 Fury, Recycle a unit from your trash, exhaust: Play a 3 Might Mech unit token to your base.' The exhaust caps it at one a turn; 315.1.b readies it every Awaken."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both mono-Fury, so 103.1.b.3 admits them under any legend carrying Fury.",
+          "A unit CARD in your trash every turn to pay the Rig's cost."
+        ],
+        "notable": [
+          "The bottleneck this removes is #48's, and it is worth stating exactly. A token minted at your base enters exhausted (143.4) and 144.2 prices the Standard Move at its own exhaust, so it cannot walk to a battlefield until the next turn — one full turn of the opponent's sweepers. Magma Wurm makes it enter ready, so the Mech is minted and walks in the same Main Phase (144.4.a).",
+          "Until now the project had exactly one card doing this and it was mono-Order (SFD-171 Renata Glasc, Industrialist, and only for tokens). Magma Wurm is the Fury one, and it is WIDER: 'Other friendly units', not 'Your tokens', so every unit you play from hand also enters ready.",
+          "The Rig cannot be fed by its own output. 185 — 'Tokens are not cards' — and 416.1 defines Recycling over cards, while 186.1 makes a token cease to exist the moment it enters any Non-Board Zone, so a dead Mech token never sits in the trash to be recycled. 203.3 and 416.3 then make the cost unpayable with no unit CARD in the trash. Two community lines died on exactly this in issue #62.",
+          "E8 + 1 Power for the Wurm is the whole objection to the line, and it is real: this is a late-game static, not a curve play. Its own M8 body is part of what you buy."
+        ]
+      },
+      "steps": [
+        "Get Magma Wurm onto the board. From that moment every other friendly unit you play or mint enters ready (143.4.a).",
+        "Each turn, pay the Assembly Rig's cost: E1 + 1 Fury Power, recycle a unit CARD from your trash (185 / 416.3 — a token will not do), exhaust the Rig.",
+        "The 3 Might Mech token is played to your base and, because of the Wurm, enters ready.",
+        "Standard-move it to a battlefield the same Main Phase: 144.4.a allows base to battlefield, 144.2 takes its exhaust as the cost.",
+        "315.1.b readies the Rig at the next Awaken and the cycle repeats, one Mech a turn."
+      ],
+      "terminatesIn": "engine only — one 3 Might Mech a turn that reaches a battlefield the turn it is minted, bounded by the unit cards in your trash and by the Rig's own exhaust. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "143.4: 'Units enter the Board exhausted.' 143.4.a: 'This can be altered by Accelerate or similar game effects.' 144.2: 'Exhausting the Unit is the Cost for this action.' 185: 'Tokens are not cards.' 186.1: 'If a token is put into any Non-Board Zone besides the chain, it ceases to exist immediately after moving to its new zone.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §7), issue #153, from the orphan rule magma-wurm-mass-ready. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 143.4, 143.4.a, 144.2, 144.4.a, 185, 186.1, 203.3, 315.1.b, 416.1, 416.3. This is the second card in the pool that beats 143.4 for a token, and the first one in Fury; CLAUDE.md's 'only under SFD-171 Renata Glasc, Industrialist' is a statement about Order, not about the pool. Trap check: no attack and no Attacker designation; no [Repeat]; no [Temporary]; the Rig's recycle cost is explicitly walked against 185 / 186.1 / 416.3 rather than assumed; no recall; nothing added in Awaken, so 167 does not bite. Depends on no unruled reading."
+    },
+    {
+      "id": "dauntless-vanguard-long-sword-surprise-attack",
+      "name": "Dauntless Vanguard — the Attacker designation with no move, and a Quick-Draw inside the combat",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-093",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E4 P1 M4. 'You may play me to an occupied enemy battlefield.' 355.2.a's list of valid locations is prefaced 'By default', and rule 002 lets his own text extend it; the enemy battlefield is not a location any other Body unit can be played to."
+        },
+        {
+          "card": "SFD-022",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury Equipment, E2 P1, M+2, [Quick-Draw]. 819.1.d: 'Quick-Draw is functionally short for \"[Reaction]\" and \"When you play this, attach it to a Unit you control.\"' The [Reaction] is what lets it land INSIDE the combat the Vanguard just opened, after the defenders are known."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Body + Fury: VEN-141 Butcher of the Sands (Renekton) is the legend (103.1.b.2).",
+          "The target battlefield must be OCCUPIED by an opponent — that is the Vanguard's own condition, and it is also what 323.9 needs to stage a Combat."
+        ],
+        "notable": [
+          "The whole value is one turn of tempo, and the rules chain is short. 190.3.a.1 — 'Units moving to OR BEING PLAYED TO a battlefield apply Contested status' — so being played there is enough; 464.2.c.1 makes 'the player whose unit(s) applied the Contested status' the Attacker; 323.9 stages the Combat at the next Cleanup and 323.13 opens it in the Neutral Open State of your own Main Phase. The Vanguard never moves, so 144.2's exhaust is never paid and 143.4's 'units enter exhausted' costs him nothing — exhausted is not stunned, and 464.2.c.3 / 465.2.b do not filter by state.",
+          "Ordinary units telegraph: play on turn N, move on turn N+1, attack on turn N+1. The Vanguard collapses that to one turn, which is the same delta [Accelerate] buys — except [Accelerate] costs extra and still needs the move.",
+          "There is NO pre-open window here. 323.10 lets a staged Combat un-stage if both sides empty out BEFORE it opens, but after a play or a move the very next Cleanup stages AND opens it with no gap (the #58 finding). So the evacuation route is not available on this line, and a plain spell cannot help either: 155 confines a spell with no [Action] or [Reaction] to 'an Open State outside of Showdowns'.",
+          "What DOES reach the opened combat is a [Reaction], through 464.2.f.1 / 464.2.g ('Players proceed with any play on the Chain as normal'). The Long Sword's Quick-Draw is exactly that, and its M+2 is read by 465.2.c's assignment because Might is measured when damage is assigned, not when the Attacker was designated.",
+          "The Vanguard is not a way to reach an EMPTY enemy battlefield. His text says occupied, and an empty enemy battlefield is not an attack anyway — 807.1.d / 383.4.e / 461 put the Attacker designation only inside a Combat with a garrison."
+        ]
+      },
+      "steps": [
+        "In your Main Phase, play Dauntless Vanguard for E4 + 1 Power directly to an occupied enemy battlefield (his own text; 002 over 355.2.a's default).",
+        "The Cleanup applies Contested (190.3.a.1) and stages the Combat (323.9). 323.13 opens it, because your Main Phase is a Neutral Open State.",
+        "464.2.c.1 makes you the Attacker and 464.2.c.3 hands the designation to the Vanguard. He is exhausted from 143.4 and it does not matter.",
+        "Inside the Combat Showdown (464.2.f.1, 464.2.g), play the Long Sword as a [Reaction] (819.1.d) and attach it to the Vanguard: M6 this combat, chosen after you have seen the garrison.",
+        "465.2.c assigns each side damage equal to its summed Might. If the garrison falls, 466.5 establishes your Control and 466.5.d makes it a Conquer — on the turn the Vanguard was played."
+      ],
+      "terminatesIn": "engine only — one conquer a turn earlier than any other Body body could reach it, with the Might chosen after the defenders are known. Nothing here scores by itself; the point comes from the Conquer (469) or from whatever payoff rides on it.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' 819.1.d: 'Quick-Draw is functionally short for \"[Reaction]\" and \"When you play this, attach it to a Unit you control.\"' 155: 'A spell can be played during an Open State outside of Showdowns on its controller's turn.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §8), issue #153, from the orphan rule dauntless-vanguard-occupied-battlefield-assault. Card text verbatim from data/corpus_flat.txt. Citations opened: 002, 103.1.b.2, 143.4, 144.2, 155, 190.3.a.1, 323.9, 323.10, 323.13, 355.2.a, 383.4.e, 461, 464.2.c.1, 464.2.c.3, 464.2.f.1, 464.2.g, 465.2.b, 465.2.c, 466.5, 466.5.d, 807.1.d, 819.1.d. The synergy rule is named for [Assault], and the walk moved off it on purpose: SFD-009 Serrated Dirk's [Assault 2] is the same +2 as the Long Sword's M+2 but has no [Reaction], so it must be attached before the play and telegraphs the line, which is the one thing the Vanguard is bought for. Trap check: the attack is against a real garrison, so the empty-battlefield trap is respected; no [Repeat]; no [Temporary]; no token; no recall; 167 is not touched. Depends on no unruled reading."
+    },
+    {
+      "id": "rell-magnetic-recurve-bow-per-attack",
+      "name": "Rell, Magnetic — a free Equipment every attack, and the one that misses its own combat",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-024",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 M4, [Tank]. 'When I attack, you may play an Equipment with Energy cost no more than E2, ignoring its cost. If you do, then do this: Attach it to me.' This is a PLAY, not an [Equip] activation — 818.1 makes Equip an Activated Ability and attaching is never playing, so a gear's 'When you play this' trigger DOES fire here while a re-equip would not."
+        },
+        {
+          "card": "SFD-016",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury Equipment, E2, M+0. '[Effect] When I attack or defend, deal 2 to an enemy unit here.' Its Energy cost is exactly 2, so Rell's ceiling reaches it, and 'ignoring its cost' waives the [Equip] Power as well."
+        },
+        {
+          "card": "SFD-022",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury Equipment, E2 P1, M+2, [Quick-Draw]. Energy cost 2, so Rell reaches it and 'ignoring its cost' waives the 1 Fury Power too. Unlike the Bow, its M+2 is live in the very combat it lands in."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All three mono-Fury (103.1.b.3), so any legend carrying Fury runs the line.",
+          "Rell must attack, which needs an enemy garrison: an empty enemy battlefield is not an attack (807.1.d, 383.4.e, 461)."
+        ],
+        "notable": [
+          "The finding is a timing one and it splits the partner list in two. Rell's trigger fires at the Attacker designation (464.2.c.3), so the Equipment attaches AFTER that instant. 383.2.a.1 makes a trigger's condition part of the Trigger Condition, checked when the trigger is placed — so a gear whose own text reads 'When I attack' has already missed the attack it arrived on. The Recurve Bow deals 2 in every LATER combat, not in the one that fetched it.",
+          "An Equipment that is a flat Might bonus does not miss anything: 465.2.c reads Might when damage is assigned, which is after the attach. The Long Sword's M+2 is live in the combat it lands in; the Bow's damage is not.",
+          "Rell's ceiling is 'Energy cost no more than 2', which is a PRINTED-cost test (206), so a discount neither widens nor narrows it. Eight Equipment in the pool clear it in Fury or Colorless terms; the two here are the ones whose text does something beyond Might.",
+          "Once per attack, not once per turn: two combats in a turn are two free Equipment. But 466.1.a.2 recalls surviving Attackers to their base after a combat with defenders remaining, so a second attack that same turn needs a second body or a re-entry.",
+          "This is not a loop. The Equipment come out of your hand, three copies each (103.2.b), and nothing returns them."
+        ]
+      },
+      "steps": [
+        "Move Rell into an occupied enemy battlefield. 464.2.c.1 makes you the Attacker and 464.2.c.3 gives her the designation; her trigger goes on the Chain.",
+        "Resolve it: play a Long Sword ignoring its cost and attach it to Rell. 434.1.c appends its effect text to her; her Might is 4 + 2 = 6 for this combat's assignment (465.2.c).",
+        "Next combat, take a Recurve Bow instead. It attaches too late to fire this time (383.2.a.1), but from the following combat onward it deals 2 to an enemy unit here whenever Rell attacks OR defends.",
+        "Repeat every attack. Rell's [Tank] means she is assigned combat damage first, which is what keeps the growing pile of Equipment on the board she wants it on."
+      ],
+      "terminatesIn": "engine only — one free Equipment per attack out of a hand of at most six, so about six free attaches a game plus 2 damage per combat once a Bow has landed. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "383.2.a.1: 'Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the Effect.' 464.2.c.3: 'The attacker and defender gain the Attacker or Defender designation now, as appropriate.' 466.1.a.2: 'Recall Attackers present at the Battlefield if Defenders are still present.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §9), issue #153, from the orphan rule rell-magnetic-free-equip-attach. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 206, 383.2.a.1, 383.4.e, 434.1.c, 461, 464.2.c.1, 464.2.c.3, 465.2.c, 466.1.a.2, 807.1.d, 818.1. The rule's own note points at 476.1 and the Svellsongur family as the best target; the walk did NOT take that route, because SFD-059 Svellsongur costs E3 and Rell's ceiling is a printed Energy cost of 2 (206) — the composition finding of #45 is out of her reach entirely. Trap check: the attack is against a real garrison; no [Repeat]; no [Temporary] except the Spinning Axe, which is deliberately not used here because it is Fury/Chaos and would narrow the identity for no gain; no token; the attach is not a play of the CARD by [Equip] (818.1) but a genuine Play by Rell's effect, which is exactly why the distinction is stated; no recall of Rell is claimed beyond 466.1.a.2's own; 167 is not touched. Depends on no unruled reading."
+    },
+    {
+      "id": "hall-of-legends-bloodharbor-double-ripper",
+      "name": "Hall of Legends — the legend's exhaust ability twice on the turn you take the battlefield",
+      "class": "ENGINE",
+      "status": "verified",
+      "legends": [
+        "UNL-185"
+      ],
+      "uses": [
+        {
+          "card": "SFD-210",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'When you conquer here, you may pay E1 to ready your legend.' 107.4.c makes the Champion Legend a Game Object on the board — which is what 415.1 needs — even though 107.4.b says the Legend Zone is not a location."
+        },
+        {
+          "card": "UNL-185",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "LEGEND",
+          "note": "Fury/Chaos legend (Pyke). 'E1, exhaust: Return a friendly unit at a battlefield to its owner's hand. Play a Gold gear token exhausted.' The exhaust is the whole cap; readying it is a second bounce and a second Gold in the same turn."
+        },
+        {
+          "card": "SFD-140",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E3 P1 M3. 'When you play me, you may play a spell from your trash with Energy cost no more than E3, ignoring its Energy cost. Then recycle it.' The bounce target: each return-and-replay is another free spell out of the trash, and 419.4.a fires his trigger on the replay."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine",
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Fury + Chaos: Bloodharbor Ripper is itself the legend, so the identity is fixed and Fizz (Chaos) is inside it (103.1.b.2 / 103.1.b.3).",
+          "You must conquer AT the Hall of Legends, not merely hold it — 466.5.d: 'Establishing Control results in a Conquer if that player has not yet scored this Battlefield this turn.'"
+        ],
+        "notable": [
+          "The Hall is one of YOUR three battlefields and only one of the three is used: randomly in a Duel (485.4.a, 485.5) and in Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy. So this is a 1-in-3 draw and the entry says so rather than pricing it as always-on. The battlefield you provide also starts UNCONTROLLED (190.1) and 190.6.d switches its text off until you take it — 'If the battlefield has no Controller, \"you\" refers to no one, and all such instructions are ignored' — so establishing Control is part of the cost, not a freebie.",
+          "What it buys is exact: a second activation of a legend ability whose only cap is its own exhaust. 315.1.b already readies the legend every Awaken, so the Hall is not a per-turn doubling of everything — it is a doubling on the turns you conquer there, for E1.",
+          "Twenty-four legend printings carry an exhaust in an ability cost, and five of them charge a Disempower or an XP cost on top, so the second activation still has to be funded. Pyke is the cheapest of the twenty-four at E1 with no second currency.",
+          "The Gold enters exhausted and nothing in Fury/Chaos overrides it — SFD-171 Renata Glasc, Industrialist is mono-Order and 103.1.b.2 keeps her out of this identity. So each Gold is NEXT turn's Power (it has to be readied by 315.1.b first), and this line ramps rather than bursts.",
+          "The bounce is not a Recall: it returns the unit to its owner's HAND, so 455 and the 'a Recall goes to the base' family do not apply, and everything attached to it falls off (716) with all buffs removed (705)."
+        ]
+      },
+      "steps": [
+        "Conquer the Hall of Legends: 466.5 establishes Control and 466.5.d makes it a Conquer.",
+        "Before that, in the same turn, pay E1 and exhaust Bloodharbor Ripper: return Fizz from a battlefield to your hand and play a Gold gear token exhausted.",
+        "Replay Fizz for E3 + 1 Power. 419.4.a fires his trigger: play a spell from your trash with printed Energy cost no more than 3, ignoring its Energy cost, then recycle it.",
+        "The Hall's conquer trigger resolves: pay E1 to ready your legend (415.1 on the Game Object of 107.4.c).",
+        "Exhaust the Ripper a second time this turn: a second bounce and a second Gold. Two Golds ready at the next Awaken (315.1.b) as 2 Power."
+      ],
+      "terminatesIn": "engine only — one extra legend activation on each turn you conquer at the Hall, which here is one extra bounce plus one extra Gold, and a 1-in-3 battlefield draw (485.5). Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "107.4.b: 'This is not a location.' 107.4.c: 'The Champion Legend here is a Game Object.' 415.1: 'Readying is an action that marks a non-spell Game Object on the board as available for action.' 466.5.d: 'Establishing Control results in a Conquer if that player has not yet scored this Battlefield this turn.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §10), issue #153, from the orphan rule hall-of-legends-readies-your-legend. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.4.c, 107.4.b, 107.4.c, 190.1, 190.6.d, 315.1.b, 415.1, 419.4.a, 455, 466.5, 466.5.d, 485.4.a, 485.5, 486.5, 487.5, 705, 716. The pairing was chosen against the twenty-four legend printings with an exhaust in a cost: Pyke is the only one whose ability produces a RESOURCE for a flat E1 with no second currency, which is what makes the E1 the Hall charges worth paying. Trap check: 107.4.b is respected — nothing here asks the legend to be at a location, only that it is a Game Object (107.4.c); the Gold is a token, so 185 / 186.1 forbid recycling it and nothing tries; the bounce is to HAND, so it is not a Recall (455) and does not erase a Deathknell the way a would-die shield does (808.1.d.1); no [Repeat]; no [Temporary]; the battlefield is declared a 1-in-3 draw and its uncontrolled start is priced in. Depends on no unruled reading."
     }
   ]
 }
