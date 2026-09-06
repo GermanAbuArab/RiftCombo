@@ -39,6 +39,15 @@ const config = {
     "git diff --quiet ${VERCEL_GIT_PREVIOUS_SHA:-HEAD^} HEAD -- web src data scripts api package.json package-lock.json tsconfig.json vercel.json",
   outputDirectory: "public",
   framework: null,
+  // The Vercel build cap is per ACCOUNT, not per project, and this account carries another project —
+  // measured 2026-09-06. This repo only ever pushes master, so preview deployments are switched off as
+  // insurance against a branch quietly spending the shared cap.
+  //
+  // The slashed globs are the whole trick: minimatch's `*` never crosses a `/`, so `*/*` and `*/**`
+  // match `feature/x` and `feature/a/b` but CANNOT match `master`, which is then enabled explicitly.
+  // Never write `"*": false` or a bare `deploymentEnabled: false` here — both match master and would
+  // switch production off.
+  git: { deploymentEnabled: { "*/*": false, "*/**": false, master: true } },
   // /privacy and /terms rather than /privacy.html: Google's OAuth branding page wants both links,
   // and they are printed in the footer of every page.
   cleanUrls: true,

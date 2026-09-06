@@ -4,6 +4,13 @@
   "ignoreCommand": "git diff --quiet ${VERCEL_GIT_PREVIOUS_SHA:-HEAD^} HEAD -- web src data scripts api package.json package-lock.json tsconfig.json vercel.json",
   "outputDirectory": "public",
   "framework": null,
+  "git": {
+    "deploymentEnabled": {
+      "*/*": false,
+      "*/**": false,
+      "master": true
+    }
+  },
   "cleanUrls": true,
   "rewrites": [
     {
