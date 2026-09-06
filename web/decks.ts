@@ -67,6 +67,8 @@ export function initDecks(h: DeckHooks): void {
       // Somebody with saved lists almost always came back for one of them; somebody with none has
       // nothing to see there. Only ever on a bare entry, so a shared link still wins.
       if (!location.hash && decks.length) go("#/decks");
+      // A page opened straight on #/combos?deck=<id> asked for a list we only have now.
+      handOver(current);
     });
   });
 
@@ -77,6 +79,22 @@ function onRouteChange(next: Route): void {
   if (!guardUnsaved(next)) return;
   current = next;
   if (next.view === "decks") render();
+  else handOver(next);
+}
+
+/**
+ * `#/combos?deck=<id>` is an address, not a souvenir: opening it loads that saved list into Combos. The
+ * id last handed over is remembered so returning to the tab does not overwrite an edit made there, and so
+ * the route we write ourselves does not bounce straight back through here.
+ */
+let handedOver: string | null = null;
+
+function handOver(r: Route): void {
+  if (r.view !== "combos" || !r.analyzing || r.analyzing === handedOver) return;
+  const d = decks.find((x) => x.id === r.analyzing);
+  if (!d) return;
+  handedOver = d.id;
+  hooks.analyze(d);
 }
 
 /**
@@ -348,9 +366,11 @@ async function saveDraft(): Promise<void> {
 function analyzeDraft(): void {
   if (!draft) return;
   const saved = decks.find((d) => d.id === draft!.id);
-  hooks.analyze(saved && saved.deckText === draft.text
+  const handing = saved && saved.deckText === draft.text
     ? saved
-    : { id: draft.id ?? "", name: draft.name.trim() || "This list", deckText: draft.text, format: draft.format, createdAt: "", updatedAt: "" });
+    : { id: draft.id ?? "", name: draft.name.trim() || "This list", deckText: draft.text, format: draft.format, createdAt: "", updatedAt: "" };
+  handedOver = handing.id || null;
+  hooks.analyze(handing);
 }
 
 async function exportCode(): Promise<void> {

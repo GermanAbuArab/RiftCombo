@@ -140,7 +140,6 @@ async function boot() {
       urlInput.value = "";
       analyzing = saved;
       input.dispatchEvent(new Event("input"));
-      go(saved.id ? `#/combos?deck=${encodeURIComponent(saved.id)}` : "#/combos");
       void run("text");
     },
   });
@@ -172,7 +171,12 @@ async function run(source: "text" | "url" = "text") {
     // The deck panel stays open after analysing. Collapsing it here used to hide the list the
     // user just pasted, and it widened the stage enough to make the diagram fit at ~54%.
     render();
-    if (source === "text") go(isDeckCode(text) ? `#deck=${encodeURIComponent(text)}` : "#/combos");
+    // Keep the address honest: a deck code travels in the hash itself, a list opened from My decks
+    // keeps its id there, and a list pasted here has nothing to put in a link.
+    if (source === "text") {
+      if (isDeckCode(text)) go(`#deck=${encodeURIComponent(text)}`);
+      else go(analyzing?.id ? `#/combos?deck=${encodeURIComponent(analyzing.id)}` : "#/combos");
+    }
     const included = result.included.length;
     const near = Object.values(result).reduce((n, b) => n + b.length, 0) - included;
     const total = Object.values(deck.main).reduce((a, b) => a + b, 0);
