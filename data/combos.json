@@ -831,7 +831,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "The community's contribution here is the two tuners the bare gutter-palace entry lacked: Invert Timelines (OGN-201) fixes the hand at exactly 4 in one card, and Keeper of Masks (UNL-081) puts three bodies at one battlefield in one card. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-reddit-mining-and-gutter-palace.md). Three checks carry it. (1) The Reflections count even at 0 Might: 187.6 defines them as domainless unit tokens with 0 Might, they are units, and the card counts units. They stay at 0 because 477.1.b.1.a lists the copyable traits - Name, Super Type, Type, Tags, Cost, Domain, Rules Text - and Might is not among them, which is R27, already retired on that same list. (2) No hidden loop: UNL-T06 prints \"I don't get that card's play effects\", so the copies never re-fire \"play two Reflection unit tokens\". (3) The copies DO inherit [Temporary], because Rules Text is copyable and Riot's own worked example at 477.1.b.1.b says so outright (\"two of which are token Copies with Temporary\") - and it does not matter, because 816.1 makes Temporary a Triggered Ability, 816.1.c fires it at the same instant as the win check, and 383.3.d gives the controller of both the ordering. Burn Out cannot beat it either: the win check is the Beginning Step (315.2.a) and the Draw Phase is 315.4. The line loses to any removal held for the single Open State inside your own turn - the source says as much - so it is a real ALT_WIN, not a consistent one. PLAYED AT A REGIONAL: the four-units-plus-Time-Warp finish is not theorycraft. The RQ Vancouver report above describes exactly it, and the thread carries witnesses and a tournament opponent. That deck is a different build - Jhin, and it names Hextech Anomaly (SFD-083) as the rune-to-Energy engine in place of Ekko - so it corroborates the finish, not this entry's specific assembly. One thing in that report does not resolve: its author says he won \"through an Invert that discarded 13 of my cards\", but the pool's only Invert is Invert Timelines (OGN-201, Chaos) and the pool's only Jhin legend is Virtuoso (UNL-181, Fury/Mind), and Chaos is not a subset of Fury/Mind. Left as an open discrepancy rather than guessed at; the citation above is only for the domain-neutral half."
+      "notes": "The community's contribution here is the two tuners the bare gutter-palace entry lacked: Invert Timelines (OGN-201) fixes the hand at exactly 4 in one card, and Keeper of Masks (UNL-081) puts three bodies at one battlefield in one card. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-reddit-mining-and-gutter-palace.md). Three checks carry it. (1) The Reflections count even at 0 Might: 187.6 defines them as domainless unit tokens with 0 Might, they are units, and the card counts units. They stay at 0 because 477.1.b.1.a lists the copyable traits - Name, Super Type, Type, Tags, Cost, Domain, Rules Text - and Might is not among them, which is R27, already retired on that same list. (2) No hidden loop: UNL-T06 prints \"I don't get that card's play effects\", so the copies never re-fire \"play two Reflection unit tokens\". (3) The copies DO inherit [Temporary], because 477.1.b.1.a lists \"Rules Text\" among the copyable traits and 816.3 makes \"whether or not a permanent has Temporary\" a characteristic other effects may read. CORRECTED 2026-09-06 (docs/phase0/walks/2026-09-06-mind-units-lens.md, issue #150): this sentence used to credit 477.1.b.1.b's worked example with saying so outright (\"two of which are token Copies with Temporary\"), and it does not — the card copied there is SFD-155 Honest Broker, which has no [Temporary] at all, and the keyword in that example comes from UNL-199 Deceiver's own \"Give it [Temporary]\". The conclusion is unchanged and stands on 477.1.b.1.a alone - and it does not matter, because 816.1 makes Temporary a Triggered Ability, 816.1.c fires it at the same instant as the win check, and 383.3.d gives the controller of both the ordering. Burn Out cannot beat it either: the win check is the Beginning Step (315.2.a) and the Draw Phase is 315.4. The line loses to any removal held for the single Open State inside your own turn - the source says as much - so it is a real ALT_WIN, not a consistent one. PLAYED AT A REGIONAL: the four-units-plus-Time-Warp finish is not theorycraft. The RQ Vancouver report above describes exactly it, and the thread carries witnesses and a tournament opponent. That deck is a different build - Jhin, and it names Hextech Anomaly (SFD-083) as the rune-to-Energy engine in place of Ekko - so it corroborates the finish, not this entry's specific assembly. One thing in that report does not resolve: its author says he won \"through an Invert that discarded 13 of my cards\", but the pool's only Invert is Invert Timelines (OGN-201, Chaos) and the pool's only Jhin legend is Virtuoso (UNL-181, Fury/Mind), and Chaos is not a subset of Fury/Mind. Left as an open discrepancy rather than guessed at; the citation above is only for the domain-neutral half."
     },
     {
       "id": "blue-sentinel-trinity-force-hold",
@@ -18854,6 +18854,160 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue141-teemo-strategist-reveal.md), issue #141 candidate 3. VERIFIED as ENGINE. IT DOES NOT DUPLICATE diana-lunari-showdown-scry's LEDGER, and the reason is one neither #117 nor #141 gave: Teemo's 'then recycle the revealed cards' is MANDATORY, so 416.1.a bottoms every Undertitan and 315.4.b can never draw one — each copy pays again on every cycle, where Diana's copies are spent one Add at a time because 424.1.a.2 leaves the card on top for the Draw Phase to take. The issue's arithmetic is corrected the same way as its siblings: 103.2 counts the Chosen Champion inside the 40 and 103.2.a.1 removes it, so the shuffled deck is 39 and the revealed five are a uniform 5-subset of it — E[hits] = 1.54 (not 1.7), P(0) = 14.02%, and 0.77 Energy per trigger. Two additions. (1) The Energy's use is now concrete rather than asserted: 167 keeps it only until the end of the opponent's turn, 312.2.a grants a Neutral-Open-State Priority only during your OWN Main Phase so on theirs you act solely in Showdowns and Closed States (312.2.b/c/d), and what that buys is a [Reaction] — in shell exactly VEN-135 Kennen's 2-Energy stun, which 383.3.b makes the trigger's BASE COST and 383.3.b.1 makes payable only at finalization, i.e. it must already be banked. (2) The Mind/Order [Hidden] pool is 13, not 14, under three of the four legends: SFD-202 Hostile Takeover is Signature tagged Renata Glasc, so 103.2.d.2 admits it only under SFD-201 Chem-Baroness. Structural weakness recorded rather than hidden: a grep of all 24 enemy-move effects in the pool finds NO Mind/Order card that drags an enemy body onto your own battlefield, so unlike candidates 1 and 2 this one cannot force its own Defend Trigger and stays reactive. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2, 103.2.a.1, 103.2.d.2, 116, 155, 164.2.b, 167, 312.2.a, 312.2.b, 312.2.c, 312.2.d, 340.1, 347.1, 383.3.b, 383.3.b.1, 383.4.f, 383.4.f.2.a, 385.2, 416.1.a, 416.5, 424.1, 424.1.a.1, 424.1.a.2, 429.2, 429.2.a, 431.1.a, 431.1.c, 431.1.c.1, 464.2.c.1, 464.2.c.2, 464.2.c.3, 464.2.c.3.a, 464.2.e.1, 809.1.c, 809.1.d, 811.1.b, 813.1.b, 813.1.c.1, 813.1.c.2, 813.3.a, 315.4.b. Ban check against data/legality.json: none of the three carries a marker in either format. Trap check: no Attacker designation is claimed; no [Repeat]; no [Temporary]; the Sand Soldier token of SFD-154 is density only and nothing counts it; no recall; nothing scores. Depends on no unruled reading."
+    },
+    {
+      "id": "petal-pixie-keeper-of-masks-might-wall",
+      "name": "Keeper of Masks is three [Temporary] bodies in one card — Petal Pixie's battlefield costs 12 damage to clear",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-076",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E2 M2. 'I have +1 Might for each of your units with [Temporary] at my battlefield.' It counts the KEYWORD, never the size of the body carrying it — which is why two 0 Might Reflections are worth as much to her as the Keeper they copy. 816.3 is what lets her read it: 'Temporary, and whether or not a permanent has Temporary, is a characteristic of the permanent and may be checked or referenced by other Game Effects.'"
+        },
+        {
+          "card": "UNL-081",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind unit, E2 M1. '[Hidden] [Temporary] When you play me, play two Reflection unit tokens here. Then do this: They become copies of me.' One card, three [Temporary] bodies at one battlefield. The Reflections copy his Rules Text (477.1.b.1.a lists it) so they carry [Temporary]; they stay at 0 Might because Might is not on that list and 477.1.a.1 walls its assignment off in a separate layer (R27). No recursion: UNL-T06 prints 'I don't get that card's play effects', and the tokens are played as Reflections BEFORE the copy effect resolves."
+        },
+        {
+          "card": "UNL-189",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Mind legend. '4 Energy, exhaust: Play a ready 3 Might Sprite unit token with [Temporary]. This ability costs 1 Energy less for each friendly unit with [Temporary].' This is the REPEATING half — an exhaust ability readied every Awakening (415.3.a), so one [Temporary] body every turn forever, at 4 Energy falling to 1 while a Keeper's three bodies are out. Without her the line is a three-card trick (103.2.b), not an engine."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "legends": [
+        "UNL-189"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Bashful Bloom (UNL-189) IS the legend, and Petal Pixie and Keeper of Masks are both mono-Mind, inside her Calm/Mind identity (103.1.b.3).",
+          "Petal Pixie has to be standing AT a battlefield you control. At your base her referent returns null (359.3.f.2.a) and she is a plain 2 Might body."
+        ],
+        "notable": [
+          "THE ARITHMETIC IS DAMAGE TO CLEAR, NOT MIGHT, AND 143.2.a IS WHY. 'If a Unit ever has NONZERO damage marked on it equalling or exceeding its Might, it is Killed' — so a 0 Might Reflection is not free, it costs the attacker 1. With 465.2.c.3 forcing lethal in full onto one unit at a time and 465.2.c.4 capping each at the minimum, the attacker's bill is the sum of those minimums. Bare: Petal Pixie M2, summed defending Might 2, clear for 2. One Keeper (E2): Pixie M5 + Keeper M1 + two Reflections M0, summed Might 6, clear for 8. Keeper then the legend's Sprite (E2 + E1): Pixie M6 + Keeper M1 + 2x M0 + Sprite M3, summed Might 10, clear for 12. Ceiling with three Keepers then the Sprite (E6 + E0): Pixie M12 + 3x M1 + 6x M0 + Sprite M3, summed Might 18, clear for 24.",
+          "PLAY THE KEEPERS BEFORE THE LEGEND'S ABILITY. Bashful Bloom's discount counts friendly units with [Temporary] at the moment she is activated, so three bodies take her from 4 Energy to 1 and nine take her to 0. 356.4.e scopes a minimum to the discount that states one, and she states none. Same reading leblanc-bashful-bloom-trevor-plaza already runs.",
+          "466.3.a IS THE WIN CONDITION AND IT ONLY NEEDS ONE SURVIVOR: a player wins the combat if they 'are the only Player that has units remaining at this battlefield during this step'. 465.2.b sums the Might of all Defending Units and does not filter by state, so 143.4 ('Units enter the Board exhausted') costs this line nothing — the bodies defend the turn they arrive.",
+          "THE WALL NEVER HOLDS, AND THAT IS THE POINT. 816.1.b kills every [Temporary] body 'at the start of this permanent's controller's Beginning Phase, before scoring', so the whole garrison survives the opponent's entire turn and then vanishes before the Scoring Step (315.2.b.2). Petal Pixie is not [Temporary]: she stays, at M2, and the Hold happens as normal (469.2). The exposure to declare is the mirror of it — if Petal Pixie dies in combat and only [Temporary] bodies survive, they all die at your Beginning Phase and 323.6 strips your control before scoring, so you Hold nothing.",
+          "THE [HIDDEN] ROUTE PUTS THE WALL UP INSIDE THE OPPONENT'S ATTACK, FOR 0 ENERGY. 811.1.b: hide the Keeper for 1 rainbow Power at a battlefield you control, and 'Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost'; 811.6 and 813.1.c.1 let a Reaction card be played in any Closed State on any player's turn. 811.1.d.1 forces him to that battlefield and 811.1.d.3 forces the two Reflections there too ('If a hidden spell or a play effect of a hidden permanent causes you to play a unit, you must choose to play that unit at that battlefield'). The three bodies still fight: 319.6 makes a Cleanup outstanding after Game Objects enter the Board, and 323.2.a hands them the Defender designation there — 464.2.c.3.a says the same from the other side — all before 465.2 resolves damage 'when the Showdown closes'. Same window keeper-of-masks-flurry-plaza-window uses.",
+          "THREE COSTS OF THAT ROUTE. Only ONE card may be hidden per battlefield (811.1.b, 'that doesn't already have a facedown card hidden there'), so at most one of the three Keepers arrives this way and the other two pay 2 Energy each. The rainbow Power is spent a turn early. And 323.7 — 'Remove all Hidden cards from all Battlefields that are not controlled by the same player and place them in their owner's Trash' — trashes it if that battlefield changes hands first.",
+          "IT CANNOT ATTACK. Petal Pixie's bonus reads 'at my battlefield', so moving her leaves the count behind; the Keeper and its Reflections enter exhausted (143.4) and cannot pay 144.2 that turn, and 144.4.c keeps a Standard Move off battlefield-to-battlefield without [Ganking]. This is a defensive engine and nothing in it scores.",
+          "DO NOT ADD UNL-090 LeBlanc, Everywhere at Once. With the [Temporary] trigger switched off (R10 = A) the bodies accumulate and Petal Pixie grows permanently — but that is leblanc-bashful-bloom-trevor-plaza's engine, which already names Petal Pixie as a rider. The two entries are kept apart on purpose.",
+          "709 fires once: Petal Pixie 'becomes Mighty' crossing 2 to 5, and its own worked example says 'A Unit with Might 5 that gets +1 does not become Mighty, because it was already Mighty' — a second Keeper does not re-fire it.",
+          "Overlap declared: UNL-081 is already in gutter-palace-keeper-time-warp, leblanc-temporary-plaza and keeper-of-masks-flurry-plaza-window, all ALT_WINs that count BODIES for The Grand Plaza or a hand size. This entry is the first to spend him on MIGHT. UNL-189 is already the legend of leblanc-bashful-bloom-trevor-plaza and keeper-of-masks-flurry-plaza-window. UNL-076 appears in no entry's uses."
+        ]
+      },
+      "steps": [
+        "Petal Pixie stands at a battlefield you control (E2, and 355.2.a makes a battlefield you control a valid play location for her).",
+        "Every turn from then on: activate Bashful Bloom — 4 Energy, exhaust — for a ready 3 Might Sprite with [Temporary]. Her ability names no location, so 355.2.a puts it at that same battlefield. Petal Pixie is M3 and the garrison costs 6 to clear.",
+        "On the turn it matters, play Keeper of Masks at that battlefield FIRST: 2 Energy, or 0 if he was hidden there (811.1.b) and is being played as a [Reaction] inside the opponent's own attack (813.1.c.1). His trigger plays two Reflection tokens 'here' (359.3.f.2) and they become copies of him, so three [Temporary] bodies land at once.",
+        "Petal Pixie is now M5. Then activate Bashful Bloom, whose ability now costs 1 Energy: the Sprite takes her to M6 and the garrison to 10 summed Might, 12 damage to clear.",
+        "At the start of your next Beginning Phase every [Temporary] body dies before scoring (816.1.b). Petal Pixie is back to M2, still there, and still Holds. Go to step 2."
+      ],
+      "netPerIteration": "one 3 Might [Temporary] Sprite per turn for 4 Energy (1 while a Keeper is out), each worth +1 Might on Petal Pixie; a Keeper is a further +3 Might and three bodies for 2 Energy",
+      "terminatesIn": "engine — the wall dies at the start of your own Beginning Phase before scoring (816.1.b) and the legend rebuilds one body of it every turn; the Keeper half is capped at 3 copies (103.2.b), of which at most one may come from Hidden per battlefield (811.1.b). Nothing here scores.",
+      "sources": [
+        {
+          "title": "Combo hunt: uncatalogued mind units — issue #150 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/150",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-mind-units-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06",
+          "quote": "477.1.b.1.a: 'Copyable traits are: Name, Super Type, Type, Tags, Cost, Domain, Rules Text.' 477.1.a.1: 'Assignment of Might is dealt with in this layer.' 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-mind-units-lens.md), issue #150 candidate 1. VERIFIED as ENGINE and REWRITTEN: the issue's line was Petal Pixie plus one Keeper of Masks, which is a three-copy TRICK (103.2.b), not an engine — nothing in it repeats. The repeating half the walk supplied is the legend itself, UNL-189 Bashful Bloom, whose exhaust ability is readied every Awakening (415.3.a) and whose own discount ('1 Energy less for each friendly unit with [Temporary]') is paid by the Keeper's three bodies, so the Sprite costs 1 Energy on a Keeper turn and 0 with three Keepers out. The second correction is the arithmetic: the issue measured the wall in Might, and what an attacker actually has to find is DAMAGE — 143.2.a needs nonzero damage to kill, so each 0 Might Reflection costs 1, and 465.2.c.3 plus 465.2.c.4 make the bill the sum of the minimums. Keeper plus Sprite is 12 to clear, not 10. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 143.2.a, 143.4, 144.2, 144.4.c, 185, 186.1, 187.6, 315.2.b.2, 319.6, 323.2.a, 323.6, 323.7, 355.2.a, 356.4.e, 359.3.f.1, 359.3.f.2, 359.3.f.2.a, 415.3.a, 439.2.b.1, 464.2.c.3.a, 465.2.b, 465.2.c.3, 465.2.c.4, 466.3.a, 469.2, 477.1.a.1, 477.1.b.1.a, 477.1.c, 709, 811.1.b, 811.1.d.1, 811.1.d.3, 811.6, 813.1.c.1, 816.1.b, 816.1.c, 816.3. Ban check: none of the four lines in data/corpus_flat.txt carries a [BANNED marker; all four are signature: false in data/cards.json, so 103.2.d never arises. Trap check: no attack is declared anywhere and no 'when I attack' text is used, so the empty-battlefield trap does not arise; the [Temporary]-never-Holds trap is the entry's own mechanism and is stated in both directions; no [Repeat] (429.3 / R21); no Gold (R25); no recall (455 / 456); no rune recycled for Power; no Energy carried across a phase (167); 186.1 means the Reflections cease to exist on death, so nothing recycles them and no Deathknell rides along. Depends on no unruled reading — R27 and R10 are both already ruled."
+    },
+    {
+      "id": "covert-informant-signpost-move-draw",
+      "name": "Forgotten Signpost is a free second move every turn — an Empowered Covert Informant turns it into a card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-057",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Mind unit, E3 P1 M4. '[Empower] 3 Energy. [Empowered][>] When I move, draw 1.' The Empower carries no exhaust and is paid once: 827.1.c.1 makes it '[Cost]: Empower this. Play only if not Empowered', 828.1.c keeps the dependent ability active while the status lasts, and 441.2 makes Empowered a state of the object on the board. She loses it only by leaving the board."
+        },
+        {
+          "card": "UNL-045",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm gear, E2. '[Action][>] Exhaust a unit you control, exhaust: Move a different unit you control to the location of the unit you exhausted to pay for this ability.' 420.3.a puts the exhaust cost on the STANDARD Move only, so this one leaves the moved unit ready — which is exactly what lets her spend her own exhaust on her own move in the same turn. Its own exhaust caps it at once per turn (415.3.a)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Domain Identity is Mind + Calm (103.1.b). Exactly four legends cover it — OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom, VEN-145 Curator of the Sands — and none is banned.",
+          "One friendly unit parked at a battlefield you control, ready at the start of your Main Phase. It is the Signpost's cost and its destination at the same time."
+        ],
+        "notable": [
+          "THE SIGNPOST IS WORTH EXACTLY +1 CARD A TURN, NOT THE WHOLE ENGINE, AND #150 SAID OTHERWISE. A unit needs nothing to move: 144 gives every unit the Standard Move as an Inherent Ability and 144.2 / 420.3.a price it at its own exhaust, so an Empowered Covert Informant already draws one card a turn for zero Energy, alone, by walking base to battlefield and back on alternate turns. What the Signpost adds is a SECOND move in the same turn. Two cards a turn total, 0 Energy and 0 Power marginal.",
+          "THE FUEL UNIT MUST BE SOMEWHERE SHE IS NOT. 420.1: 'Moving is the act of a Game Object moving between TWO Locations on The Board.' The Signpost's destination is the exhausted unit's location, so pointing it at a body standing where she already stands is not a move and draws nothing. #150 wrote the requirement as 'any second friendly unit'; it is narrower, and it is the same correction conscription-signpost-empty-garrison already applied to issue #61. 447.2.a and 447.2.b are the Invalid Destination list and both open with a player count a Duel does not have, so nothing else blocks it.",
+          "PARK THE FUEL AT A BATTLEFIELD YOU CONTROL. 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' Send her onto a battlefield you do not control and you have started a fight, not drawn a card. Keeping the parked unit there also means her leaving never strips your control (323.6).",
+          "SFD-048 STELLACORN HERDER PRINTS THE SAME TRIGGER WITH NO EMPOWER GATE, IN CALM. 'When I move, draw 1', 4 Energy flat, inside this very identity — against 3 Energy + 1 Power plus a 3 Energy Empower for the Informant, who buys 1 Might and a Mind body for the difference. The honest line is to run both: a second mover brings its own free Standard Move, so Informant + Herder + Signpost is THREE cards a turn (Signpost moves one of them and leaves it ready, then each spends its own exhaust). Rider, deliberately not in uses. A grep of 'when i move' returns 28 cards; only two carry [Empower] (VEN-021 Akali, Deadly Weapon is the other, in Fury), and SFD-048 is the only other unconditional draw — SFD-041 and VEN-033 draw only on a hit and UNL-080 Hwei draws then discards.",
+          "THE EFFECT MOVE IS A MOVE. 420.2 / 420.2.a make Moving a Limited Action performed 'when instructed to do so by Game Effects or costs', and 359.3.f.3's own worked example is a move trigger firing off one ('Lillia, Fae Fawn reads \"when I move from a location…\"'). The project already stands on this in ride-the-wind-move-triggers, relentless-pursuit-move-triggers and windswept-hillock-move-triggers. It is not a Recall, so 455 / 456 never carve it out.",
+          "SETUP IS 8 ENERGY + 1 POWER, ONCE: Informant 3 Energy + 1 Power, her Empower 3 Energy, Signpost 2 Energy. Against the project's own ledger (#21 / #44), where Renata Glasc, Mastermind's extra card costs 1 Energy + 1 Mind Power, about 10 Energy, it pays for itself on the first turn it runs.",
+          "BURN OUT IS THE CEILING AND IT IS NOT THE LOOP WALL. 431.1.a makes drawing past the Main Deck a Burn Out; 431.2.b recycles your trash back in and 431.2.c gives an opponent a point (194.1.d). Two extra cards a turn on top of the Draw Phase empties the 39 cards you shuffle (103.2 counts the Chosen Champion inside the 40, 103.2.a.1 removes it) in roughly a dozen turns. This entry is NOT inside a loop shell: the '0 spare draws' wall of lux-infinite-energy (#21 / #59) is a per-pass measurement with the deck already empty, and nothing here runs that way.",
+          "143.4 delays the start by a turn: she enters exhausted and cannot pay 144.2 for her own move until the following Awakening. Her Empower can be paid the turn she lands — it carries no exhaust.",
+          "Overlap declared: UNL-045 is already in signpost-corina-two-battlefields (a second landing for Corina's Recruits) and conscription-signpost-empty-garrison (reinforcement after a steal), both different payoffs. VEN-057 appears in no entry."
+        ]
+      },
+      "steps": [
+        "Play Covert Informant (3 Energy + 1 Power) and pay her [Empower] for 3 Energy. 441.2 keeps her Empowered for the rest of the game. Play Forgotten Signpost (2 Energy). Park any friendly unit at a battlefield you control.",
+        "From the next turn on, with the Informant at your base and everything ready after the Awakening (415.3.a): activate the Signpost — exhaust the parked unit at that battlefield, exhaust the Signpost — and move the Informant to its location. She moved: draw 1. She is still ready, because 420.3.a charges an exhaust only for a Standard Move.",
+        "Now take her own Standard Move back: exhaust her, battlefield to base (144.4.b). She moved: draw 1.",
+        "Everything readies at the next Awakening. Repeat, forever, for no Energy and no Power."
+      ],
+      "netPerIteration": "two cards a turn — one from the Signpost's move, one from her own Standard Move — for 0 Energy and 0 Power",
+      "terminatesIn": "engine — two cards a turn, capped at two by the Signpost's own exhaust and by the Informant's own exhaust on her Standard Move, both readied only at the next Awakening (415.3.a); the real ceiling is the Main Deck, where 431.1.a costs a point and 431.2.b refills from the trash",
+      "sources": [
+        {
+          "title": "Combo hunt: uncatalogued mind units — issue #150 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/150",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-mind-units-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06",
+          "quote": "420.1: 'Moving is the act of a Game Object moving between two Locations on The Board.' 144.2: 'Exhausting the Unit is the Cost for this action.' 420.3.a: 'The Cost is Exhausting one or more Units.' SFD-048 Stellacorn Herder | Unit | Calm | E4 M3 | When I move, draw 1."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-mind-units-lens.md), issue #150 candidate 2. VERIFIED as ENGINE and REWRITTEN AT THE PREMISE. #150 credited the whole draw to the Signpost ('marginal cost per draw: 0 Energy, forever'), which undercounts the baseline: 144 gives every unit an Inherent Standard Move and 144.2 / 420.3.a price it at its own exhaust, so an Empowered Covert Informant draws one card a turn on her own with no other card in play. The Signpost is worth exactly +1, and the walk states the engine as two cards a turn rather than one. Two further corrections. (1) 420.1 defines a Move as being 'between two Locations', so the fuel unit must stand somewhere she is not — #150's 'any second friendly unit' is too loose, and it is the same correction conscription-signpost-empty-garrison already applied to #61. (2) SFD-048 Stellacorn Herder prints 'When I move, draw 1' for 4 Energy flat with no [Empower] gate, in Calm, inside this identity; the Informant is not the cheapest carrier of her own trigger, and the honest line runs both for three cards a turn. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b, 103.2, 103.2.a.1, 143.4, 144, 144.2, 144.4.b, 190.3.a.1, 194.1.d, 323.6, 359.3.f.3, 415.3.a, 420.1, 420.2, 420.2.a, 420.3.a, 431.1.a, 431.2.b, 431.2.c, 441.1.a, 441.2, 447.2.a, 447.2.b, 455, 456, 806.1.b, 827.1.c.1, 828.1.b.1, 828.1.c. Ban check: neither line carries a [BANNED marker, and the four Calm/Mind legends are clean. Trap check: no attack and no Attacker designation, so the empty-battlefield trap does not arise; the move is by effect and is not a Recall, so 455 does not carve it out; no [Repeat]; no [Temporary]; no token, so 185 and 186.1 never arise; no Gold; no Energy carried across a phase (167). Depends on no unruled reading."
     }
   ]
 }
