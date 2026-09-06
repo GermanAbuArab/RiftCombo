@@ -15,6 +15,7 @@ import { initDecks } from "./decks.js";
 import { accountsEnabled } from "./supabase.js";
 import type { SavedDeck } from "../src/saved.js";
 import { esc } from "../src/html.js";
+import { classLabel, victoryNote } from "../src/victory.js";
 import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from "./graph.js";
 import { go, onRoute, route, startRouter } from "./router.js";
 
@@ -453,7 +454,8 @@ function renderPlan() {
         <div class="plan-lead-top">
           <div>
             <button type="button" class="plan-name" data-combo="${esc(lead.variant.comboIds[0]!)}">${esc(routeName(lead))}</button>
-            <p class="plan-out">${esc([outcome, lead.variant.class.replace("_", " ")].filter(Boolean).join(" · "))}</p>
+            <p class="plan-out">${esc([outcome, classLabel(lead.variant.class)].filter(Boolean).join(" · "))}</p>
+            ${victoryNote(lead.variant.class, fmt()) ? `<p class="score-short">${esc(victoryNote(lead.variant.class, fmt()))}</p>` : ""}
           </div>
           <span class="pill plan-cost">+${lead.cost} CARD${lead.cost === 1 ? "" : "S"}</span>
         </div>
@@ -646,12 +648,17 @@ function renderTray(hits: Hit[]) {
       ? `<span class="chip-meta illegal">${esc(hit.illegal.map((e) => `${e.name} ${e.status} in ${fmt()}`).join(" · "))}</span>`
       : hit.missing.length
         ? `<span class="chip-meta">MISSING ${esc(hit.missing.map((m) => `${m.quantity}× ${name(m.card)}`).join(", "))}</span>`
-        : `<span class="chip-meta">${esc(v.class.replace("_", " "))}${v.status === "verified" ? " · VERIFIED" : " · " + v.status.toUpperCase()}</span>`;
+        : `<span class="chip-meta">${esc(classLabel(v.class))}${v.status === "verified" ? " · VERIFIED" : " · " + v.status.toUpperCase()}</span>`;
+    // A BURST is one scoring event reaching 8, and 8 is the Victory Score of Constructed alone
+    // (194.3, 489.3). Under the 2v2 toggle the same line is three points short, and saying nothing
+    // would be claiming a win it does not have (#120).
+    const short = victoryNote(v.class, fmt());
     b.innerHTML = `
       <div class="chip-head"><span class="chip-title">${esc(v.comboIds.map((id) => combosById.get(id)!.name.replace(/\s[—–-]\s.*$/, "")).join(" + "))}</span>
         <span class="pill">${cardsN} CARD${cardsN === 1 ? "" : "S"}</span></div>
       <span class="chip-outcome"><span class="swatch"></span>${esc(outcome?.name ?? "Engine only")}</span>
-      ${meta}`;
+      ${meta}
+      ${short ? `<span class="score-short">${esc(short)}</span>` : ""}`;
     const pill = b.querySelector<HTMLElement>(".pill")!; pill.style.color = color; pill.style.borderColor = color;
     b.querySelector<HTMLElement>(".swatch")!.style.background = color;
     b.addEventListener("click", () => { selected = selected === primary.id ? null : primary.id; view?.select(selected); showDetail(selected); markChips(); });
@@ -683,7 +690,8 @@ function showDetail(id: string | null) {
       <div><p class="eyebrow">Selected route</p><h2>${title}</h2></div>
       <button type="button" class="icon-btn" id="close-detail" aria-label="Close">×</button>
     </div>
-    <p class="meta">${esc(c.name)} · ${esc(legendDomains.join(" + ") || "any legend")} · ${esc(c.class.replace("_", " "))}${c.status === "verified" ? "" : " · " + esc(c.status)}</p>
+    <p class="meta">${esc(c.name)} · ${esc(legendDomains.join(" + ") || "any legend")} · ${esc(classLabel(c.class))}${c.status === "verified" ? "" : " · " + esc(c.status)}</p>
+    ${victoryNote(c.class, fmt()) ? `<p class="score-short">${esc(victoryNote(c.class, fmt()))}</p>` : ""}
     <h3>Pieces</h3><div class="card-list">${rows}</div>
     ${c.prerequisites.notable.length ? `<h3>Prerequisites</h3><ul>${c.prerequisites.notable.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
     ${c.needs.length ? `<h3>Needs first</h3><p>${c.needs.map((n) => esc(featuresById.get(n)?.name ?? n)).join(", ")}</p>` : ""}
