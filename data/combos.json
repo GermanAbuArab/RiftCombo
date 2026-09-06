@@ -17023,6 +17023,390 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-this-turn-lens.md). SEPARATE ENTRY BY DECISION: jhin-virtuoso-ekko-malzahar-vi already names Brynhir in its prerequisites.notable, but putting her in that entry's uses[] would make the matcher demand a card the loop does not need to run, so the escort is its own ENGINE and the INFINITE was left untouched (no quantity of any existing entry changed). OVERTURNS ISSUE #100 §325, which orders this card 'documentada como refutada, no como candidata' on two grounds. Ground (a) — 'it never covers your Hold, and all the ALT_WINs and THE TWO Hold BURSTs resolve there' — is right about Holds and wrong about the census: of the twelve BURSTs, seven score on a Hold and FIVE score on a Conquer, in the Main Phase, where Brynhir does reach, and all five carry Fury. Ground (b) — the opponent can answer her own trigger under 312.2.c/d — is correct as rules and is a limitation, not a refutation: it turns N contestable windows into one, taken before anything is committed. Both objections are written into the notables above so the denial-lens walk does not re-litigate them. produces is empty because the catalogue has no feature name for 'a turn the opponent cannot answer' and data/features.json was not this session's file; 49 entries already ship with an empty produces."
+    },
+    {
+      "id": "warden-tianna-base-lock",
+      "name": "Mageseeker Warden in front of Tianna Crownguard — every shortcut onto her battlefield is closed, and the garrison that has to fight through is frozen",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-070",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Calm, E6 P1 M5. 'While I'm at a battlefield, opponents can only play units to their base. While I'm at a battlefield, spells and abilities can't ready enemy units and gear.' The only card in the pool that restricts where an opponent may play a unit."
+        },
+        {
+          "card": "SFD-060",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm, E7 P2 M4, [Deflect]. 'While I'm at a battlefield, opponents can't gain points.' The lock the Warden is protecting."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Mono-Calm, so any legend carrying Calm runs both. In the Calm/Order shell of tianna-wildclaw-point-lock that is OGN-261 Radiant Dawn, SFD-247 Emperor of the Sands, UNL-195 Green Father or VEN-147 Eye of Twilight.",
+          "Each card asks only that IT be at a battlefield, not that you control one and not that they share one, so no battlefield is an ingredient here and nothing depends on which of your three came up (485.4.a / 485.5 / 486.5 / 487.5)."
+        ],
+        "notable": [
+          "THE WARDEN DOES NOT SLOW THE ORDINARY ROUTE, AND ISSUE #100 SAID IT DOES. Its arithmetic was 'under the Warden every enemy body takes two turns to arrive: play it at base on turn N (143.4 enters it exhausted), Awaken readies it on turn N+1 and only then can it pay the Standard Move'. Every step is true and the delta is zero, because 144.4 gives a Standard Move only two destinations - 144.4.a base to battlefield, 144.4.b battlefield to base - and 144.4.c.1 adds battlefield to battlefield only for [Ganking]. The base is the staging area with or without the Warden. Those two turns are 143.4 plus 315.1.b, not this card.",
+          "WHAT HE ACTUALLY TAKES AWAY, and it is three routes, not a delay. (1) The seven cards that grant 355.2.b: OGN-161 Deadbloom Predator and SFD-093 Dauntless Vanguard say 'You may play me to an occupied enemy battlefield' and land STRAIGHT ON Tianna with no walk; OGN-174 Sai Scout, OGN-176 Sneaky Deckhand, OGN-193 Miss Fortune Buccaneer (who grants it to every friendly unit) and VEN-115 Ocean Drake say 'open battlefield'; and the battlefield VEN-157 Dragon Roost sells the same permission for two rainbow. 054.1 - 'Cards that forbid actions or effects... supersede cards that allow or permit that same action or effect' - kills all seven. (2) The 15 [Hidden] units of the pool, for good: 811.1.b hides at 'a battlefield you control', 811.1.d.1 forces the play 'to that battlefield', 107.3.c keeps that battlefield theirs, and 054.2 ('only') leaves the card face down for the rest of the game. (3) Reinforcing a battlefield they control: the defender has to be played to base and spend a turn there, so the summed Might you have to beat (465.2.c) is fixed from the moment you commit.",
+          "THE LEAK, NAMED: 26 [Accelerate] units. 805.1.a is 'As you play me, you may pay [1][C] as an additional cost. If you do, I enter ready', 143.4.a says outright that Accelerate alters the default, and 'enters ready' is not a Ready - 415.1 defines Readying as marking an object already on the board - so the Warden's second clause never touches it. An Accelerate body is played to base ready and walks in the same turn. The card that closes it is UNL-150 Vex, Apathetic; vex-warden-accelerate-lock is that entry.",
+          "The Warden is M5 and prints no [Deflect], which reads like the obvious answer - kill him with a spell, the one thing he does not deny. In the shell this entry belongs to that is already covered: UNL-057 Alpha Wildclaw, the third body of tianna-wildclaw-point-lock, reads 'Your units here with less Might than me can't be chosen by enemy spells and abilities' at 7 Might, and 5 is less than 7. He walks in behind the same cover as Tianna (4) and both Galio (6).",
+          "It stops points, not winning, exactly as tianna-wildclaw-point-lock already documents: 194.1 lists the four ways to gain points and 194.2 makes winning a separate thing, so the catalogue's ALT_WIN lines go straight through. This is a wall that buys turns.",
+          "The second clause is a real half and easy to skip: 'spells and abilities can't ready enemy units and gear'. An attacker that already spent its exhaust cannot be readied to move again. The Awaken is a turn step (315.1.b), not a spell or ability, so it keeps working - the clause slows a turn, it does not freeze a board.",
+          "13 Energy and 3 Power for the pair (6+1 and 7+2), and 143.4 enters each exhausted, so the pair is at least two turns of paying for it before either clause is on."
+        ]
+      },
+      "steps": [
+        "Take a battlefield and put Tianna Crownguard on it (7 Energy + 2 Power). From the moment she is AT a battlefield, opponents gain no points by any of the four routes of 194.1.",
+        "Play the Mageseeker Warden to a battlefield (6 Energy + 1 Power). From that moment their units can only be played to their base (054.2).",
+        "The two cards that would drop a body straight onto Tianna - OGN-161 and SFD-093 - are switched off by 054.1, and so are the four 'open battlefield' cards and VEN-157 Dragon Roost.",
+        "Their 15 [Hidden] units stay face down permanently: 811.1.d.1 needs a battlefield they control and the Warden forbids the play there.",
+        "Every body that comes at the wall does so from their base, one Standard Move at a time (144.4.a), and cannot be readied for a second move by any spell or ability."
+      ],
+      "terminatesIn": "engine only - the opponent's score is frozen while Tianna stands and every shortcut onto her battlefield is closed; it advances no clock of your own",
+      "sources": [
+        {
+          "title": "Denial lens hunt, issue #100 (rc-huntQ)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/100",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-denial-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-denial-lens-candidates.md), issue #100 candidate 1, REWRITTEN. The pair is real and the class is right; the arithmetic the issue sold it on is not. 'Under the Warden each enemy body takes two turns to arrive' is true and true without him, because 144.4 makes base-to-battlefield the only Standard Move a unit without [Ganking] has. The rewrite replaces the delay claim with the three routes he actually closes (the seven 355.2.b permissions, the 15 hidden units, reinforcement of a controlled battlefield), names the leak the issue's own finding D.5 implies but never counts (26 [Accelerate] units, 805.1.a + 143.4.a + 415.1), and answers the issue's own refutation - 'the Warden is M5 without Deflect, they kill him with a spell' - with UNL-057 Alpha Wildclaw, which is already in tianna-wildclaw-point-lock and makes every friendly unit under 7 Might unchoosable. Card text verbatim from data/corpus_flat.txt; every rule opened in data/Riftbound-Core-Rules-2026-07-16.txt. Ban check: neither code appears in the 12 [BANNED] lines of the corpus nor in data/legality.json. Depends on no unruled reading."
+    },
+    {
+      "id": "warden-saboteur-hidden-lock",
+      "name": "Mageseeker Warden buries the 15 hidden units and Noxus Saboteur switches off the other 24 in the one combat where they would fire",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-070",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Calm, E6 P1 M5. The 'opponents can only play units to their base' half is what leaves a hidden UNIT face down for good, since 811.1.d.1 demands it be played to the battlefield it was hidden at."
+        },
+        {
+          "card": "OGN-018",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "state": "at the enemy battlefield, for the duration of the combat",
+          "note": "Fury, E3 M3. 'Your opponents' [Hidden] cards can't be revealed here.' Covers the 22 hidden spells and the 2 hidden gear that the Warden's clause does not reach - but only where he stands."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both bodies are cheap for what they do: 9 Energy and 1 Power for the pair, and the Saboteur adds his 3 Might to the attacking sum of 465.2.c rather than costing you a slot in the combat."
+        ],
+        "notable": [
+          "EXACTLY ONE LEGEND IN THE POOL ALLOWS THE PAIR. The Warden is Calm and the Saboteur is Fury; of the 49 legends only VEN-139 Rogue Assassin (Akali) is Fury/Calm, so 103.1.b.1 leaves no second shell. That is a hard prerequisite, not a preference.",
+          "IT STANDS ON R33 = A, ruled 2026-09-06. Noxus Saboteur's 'can't be revealed here' forbids PLAYING the opponent's hidden card at that battlefield: 421.4 makes the reveal mandatory ('If a facedown card would change zones or if the game ends, its owner reveals it to all players'), 811.1.c.3 makes playing from facedown a zone change, and 054.1 makes the prohibition beat the permission 811.1.b grants. Reading B would leave the card dead letter, which is the argument this project already used for R28. A Riot ruling the other way collapses this entry to its Warden half.",
+          "THE DIVISION OF LABOUR, MEASURED. The pool holds 39 [Hidden] cards - counted by the reminder text 'Hide now for', which is the keyword's real signature; a bare grep for the bracketed word gives 43 because four cards only mention it, the Saboteur among them. They are 22 spells, 15 units and 2 gear (OGN-077, SFD-139). The Warden kills the 15 units everywhere and permanently. The Saboteur kills the other 24, but only 'here' (359.3.f.1, 359.3.f.2: the referent is read from the source and checked on execution).",
+          "WHERE 'HERE' HAS TO BE, AND WHY THAT IS THE POINT. 107.3.c - 'Cards can only be placed in or occupy the Facedown Zone if the controller of the card also controls the associated Battlefield' - means the opponent only has facedown cards at battlefields THEY control, so the Saboteur only bites standing on one, which is to say attacking. And the sequence favours it: you move him in a Neutral Open State of your Main Phase, where 312.2.a gives the opponent no priority at all; the Cleanup stages the Combat (323.9) and 323.13 opens it; 464 makes Step 1 the Combat Showdown, which by 312.2.b is the first moment they have Focus. He is already there when their window opens.",
+          "SCOPE: ONE COMBAT, AND THE ENTRY SAYS SO RATHER THAN SELLING A LOCK IT CANNOT KEEP. 466.1.a.2 inserts '3d. Recall Attackers present at the Battlefield if Defenders are still present', so the Saboteur goes home the moment the garrison survives - and 455 puts a Recall at his base, where 'here' is no battlefield of theirs. If the garrison does NOT survive you take the battlefield, and then 107.3.d removes their facedown cards in the next Cleanup anyway. Either way this is a combat-scoped tool.",
+          "What refutes it. The Saboteur is M3 with no [Deflect] and dies to anything; the Warden is M5 and the same. And 811.1.c.1 - 'Hide is not a subset of Play' - means the opponent may keep hiding cards under both of them: what is denied is playing the one already hidden, not the hiding."
+        ]
+      },
+      "steps": [
+        "Play the Mageseeker Warden to a battlefield (6 Energy + 1 Power). Their 15 [Hidden] units are now unplayable for the rest of the game: 811.1.d.1 needs them played to the battlefield they were hidden at, and 054.2 forbids it.",
+        "Play Noxus Saboteur to your base (3 Energy).",
+        "On a later turn, Standard Move him into the enemy battlefield that holds their facedown card (144.4.a). The opponent has no priority for this: 312.2.a gives it only in their own Main Phase.",
+        "At the Cleanup the Combat is staged (323.9) and opened (323.13). Step 1 is the Combat Showdown (464), the first window in which they could play the hidden card - and the Saboteur is standing there, so under R33 = A they cannot.",
+        "Resolve the combat with his 3 Might added to your summed assignment (465.2.c). If the garrison survives, 466.1.a.2 recalls him and the Saboteur half is over until you attack again."
+      ],
+      "terminatesIn": "engine only - the opponent's 15 hidden units never come off the table and the other 24 hidden cards are dead for the duration of one combat; nothing here scores",
+      "sources": [
+        {
+          "title": "Denial lens hunt, issue #100 (rc-huntQ)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/100",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-denial-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-denial-lens-candidates.md), issue #100 candidate 2, HELD AS WRITTEN with scope and legend spelled out. R33 was ruled A on 2026-09-06, which is what keeps the Saboteur half alive. The measurements were re-run rather than inherited: 'Hide now for' returns exactly 39 rows and they split 22 spells / 15 units / 2 gear, and the 15 unit codes are the ones the issue lists. Two things the issue left implicit are now in the entry, because an entry that omitted them would be selling a permanent lock: 107.3.c is why 'here' has to be an enemy battlefield (so the Saboteur has to attack to matter), and 466.1.a.2 plus 107.3.d are why he only holds it for one combat. The Fury/Calm legend count was re-grepped over all 49 legends and VEN-139 Rogue Assassin is the only one. Card text verbatim from data/corpus_flat.txt. Ban check: neither code is among the 12 [BANNED] corpus lines nor in data/legality.json."
+    },
+    {
+      "id": "lullaby-hold-escort",
+      "name": "Lilting Lullaby — the only counter in the pool that takes the rest of the opponent's turn with it, and the one card that reaches a Hold burst's window",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-190",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Calm/Mind spell, E2 P2, [Reaction]. 'Counter a spell. Its controller can't play spells this turn.' Held in hand through the opponent's turn - it is never cast on your own initiative."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Calm/Mind, and the pool prints four such legends: OGN-255 Nine-Tailed Fox (the Ahri legend, and the one the escorted boards already want), SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom (Lillia, whose name the card carries) and VEN-145 Curator of the Sands.",
+          "Two runes untapped when the opponent acts. That is the whole set-up; there is nothing to build."
+        ],
+        "notable": [
+          "IT IS UNIQUE, AND THE CLAIM SURVIVES A FULL GREP. All 14 lines of 'counter' in data/corpus_flat.txt were read end to end: 11 are counters, 3 are anti-counter text, and Lilting Lullaby is the ONLY one that adds a rider to the countered player's turn. OGN-064 Wind Wall is the same unconditional counter for one more Energy and no rider, so this card strictly dominates it at the price of a second domain.",
+          "WHAT IT ESCORTS. The two BURSTs that score in a Hold and sit in Calm/Mind are ahri-blue-sentinel-hold and svellsongur-copy-hold, and each names surviving the opponent's turn as its one fragility in its own words - 'Five specific units must survive the opponent's whole turn' and 'killing Ahri or stripping her gear collapses the whole board'. This is the card that answers the removal spell that would do it.",
+          "TWO WINDOWS, AND BOTH ARE REAL. On the opponent's turn their removal spell puts a Chain Item up, which is a Neutral Closed State (310.2); 312.2.c and 312.2.d hand you priority there, and 813.1.c.1 says a [Reaction] card 'can be played during Closed States on any player's turn'. In your OWN Beginning Phase the window exists only because the escorted entry's Hold trigger opens it: with an empty chain 335 gives nobody priority outside the Main Phase, and it is the trigger that creates the Chain.",
+          "THE MANA IS FREE ONLY ON THE TURN THAT WINS, and pretending otherwise would be the honest error. 164.2.a ('[E]: [Reaction] - Add [1]') and 164.2.b ('Recycle this: [Reaction] - Add [C]') are both playable in a Closed State, and 164.2.b carries no exhaust in its cost, so TWO runes pay the 2 Energy and then the 2 Power - exhaust both, then recycle both. 164.2.b.1 makes the Power match the recycled rune's domain, so a Calm/Mind deck pays with a Calm rune and a Mind rune, and 161.2.b sends them to the Rune Deck, with 315.3.b channelling 2 back next turn. On a turn that WINS none of that costs anything, because 319.5 makes a Cleanup outstanding when the trigger leaves the Chain, 194.2 checks the win there, and the Main Phase task 167 / 316.3 that empties the Rune Pool never arrives. On a turn that does not win, a rune exhausted in the Beginning Phase stays exhausted through the Main Phase, since Awaken (315.1.b) is already past.",
+          "WHAT GOES THROUGH IT, MEASURED. The lock says 'spells'. Untouched: the 10 [Reaction][>] activated abilities of the pool (UNL-018, UNL-049, UNL-073, UNL-093, UNL-145, UNL-185, UNL-197, UNL-T05, VEN-075, VEN-141); every Main-Phase activated ability of a permanent already on their board - a targeted sweep of the non-spell rows for a cost-then-kill ability finds at least ten (OGN-017, OGN-068, OGN-090, OGN-186, OGN-242, SFD-046, UNL-026, UNL-138, VEN-060, VEN-133), and that is a floor rather than a census; the 15 hidden units and 2 hidden gear, which are not spells; and playing tokens (350.2, 'Tokens are not cards, but can still be Played').",
+          "WHAT REFUTES IT: it needs a spell to counter. If the opponent answers with an activated ability, Lilting Lullaby is a dead card in hand and there is no lock at all. It is an escort conditioned on how the opponent removes, not a wall."
+        ]
+      },
+      "steps": [
+        "Hold Lilting Lullaby and two runes through the opponent's turn. Do not spend either.",
+        "When they play the removal spell aimed at the Hold board, the Chain Item puts the turn in a Neutral Closed State (310.2) and 312.2.c/d give you priority.",
+        "Exhaust both runes for 2 Energy (164.2.a), then recycle both for 2 Power (164.2.b, 164.2.b.1) and play Lilting Lullaby as a [Reaction] (813.1.c.1).",
+        "The spell is countered and its controller plays no more spells for the rest of that turn.",
+        "The board survives to your Beginning Phase, where the escorted entry Holds. If they respond to that trigger, the same card works there - and on a winning turn the two runes cost nothing, because 319.5 plus 194.2 end the game before 167 / 316.3 would empty the pool."
+      ],
+      "terminatesIn": "engine only - one enemy spell countered and the rest of that turn spell-less; it protects a scoring turn, it does not create one",
+      "sources": [
+        {
+          "title": "Denial lens hunt, issue #100 (rc-huntQ)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/100",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-denial-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-denial-lens-candidates.md), issue #100 candidate 3, HELD. Separate entry rather than a card added to ahri-blue-sentinel-hold or svellsongur-copy-hold, for the reason brynhir-lockout-window records: putting an escort into another entry's uses[] would make the matcher demand a card the burst does not need to run, and no quantity of either BURST was touched (test/matcher.test.ts pins those). The uniqueness claim was checked by reading all 14 'counter' lines of the corpus, not by memory - CLAUDE.md's rule after a grep that swallowed an adjective published a false 'the ONLY card that...' inside a verified entry. The list of what leaks through is measured: 10 [Reaction][>] abilities (the loose grep gives 11 because UNL-031 Combat Experience is a [Reaction] SPELL with a [Level 6][>] clause) and at least ten permanents with a cost-then-kill activated ability. Card text verbatim from data/corpus_flat.txt. Ban check: UNL-190 is not among the 12 [BANNED] corpus lines nor in data/legality.json."
+    },
+    {
+      "id": "ashe-fallen-feline-named-lock",
+      "name": "Ashe, Focused shows the hand and Fallen Feline names what she saw — and against an opponent who Holds nothing the banish never comes back",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-169",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order, E5 P1 M4. 'When you play me, choose an opponent. They reveal their hand. Choose a card revealed this way and banish it. When they hold, return it to their hand (even if I'm no longer on the board).' The only Order card among the seven that reveal a hand."
+        },
+        {
+          "card": "VEN-132",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order, E2 P1 M3. 'When you play me, name a spell. While I'm at a battlefield, opponents can't play spells with that name.' The only card in the whole pool that names anything."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Mono-Order, so any of the 17 legends carrying Order runs the pair (Fury/Order, Calm/Order, Mind/Order, Body/Order or Order/Chaos).",
+          "A battlefield you already control, for the Feline: 355.2.a makes a battlefield you control a valid location to play a unit to, and her clause is 'While I'M AT a battlefield'."
+        ],
+        "notable": [
+          "BOTH HALVES OF THE PAIRING ARE UNIQUENESS CLAIMS AND BOTH WERE GREPPED OVER THE WHOLE POOL. 'name a card|spell|unit' returns exactly one row, VEN-132. 'reveals their hand' returns seven - OGN-156 Sabotage (Body), OGN-192 Mindsplitter (Chaos), UNL-053 Scuttle Crab (Calm), UNL-135 Insightful Investigator (Chaos), UNL-139 Bone Skewer (Chaos), UNL-169 Ashe (Order) and VEN-085 Decree of Strength (Body) - and Ashe is the only Order one, which is why this pair is mono-domain instead of a forced two-domain shell.",
+          "WHY THEY COMPOSE. 762 only asks that the named card exist and be legal in the format, 762.1 forbids inventing one and 762.2 forbids naming a token, so naming is a free shot fired blind. Ashe's reveal turns it into an informed one: banish the best answer, name the second. And the halves expire differently, which is the point - Ashe's is temporary by her own text, the Feline's is keyed on the NAME and persists, so 103.2.b makes it worth up to 3 cards rather than 1.",
+          "HOW LONG ASHE'S BANISH REALLY LASTS, corrected. 'When they hold, return it to their hand' - and their Hold is 315.2.b.2, the Scoring Step of THEIR Beginning Phase, which is the first thing that happens on their next turn. So the banish covers the remainder of YOUR OWN TURN and nothing more. That makes Ashe a burst-turn escort at 5 Energy + 1 Power, not a resource-denial card, and issue #100's 'temporal, hasta su hold' reads a turn longer than the phase order allows.",
+          "AND THE HALF THAT IS NOT TEMPORARY AT ALL. 469.2 defines the Hold as 'A player maintains CONTROL OF A BATTLEFIELD they did not yet Score this turn during their Beginning Phase', and 315.2.b.2 holds only 'all Battlefields they Control'. An opponent who controls no battlefield never Holds, so the return trigger never fires and Ashe's banish is PERMANENT. That is not an exotic board - it is what a wall like warden-tianna-base-lock manufactures. 'Even if I'm no longer on the board' cuts the same way: killing Ashe does not bring the card back either.",
+          "SEQUENCE IS FORCED: Ashe first, Feline second, same turn or different turns. Reversed, the Feline names blind and the pair is worth less than its halves. And the Feline has to reach a battlefield YOU control - 190.1 says 'Control is established over Battlefields through the course of play' and the second sentence of 190.6.d blanks a battlefield with no Controller, so a battlefield you merely brought is not enough. At your base she names a spell and then does nothing.",
+          "7 Energy and 2 Power for the pair, and both enter exhausted (143.4). What refutes it: the reveal is one photograph - they draw 1 per turn (315.4.b) and can find another answer; the Feline is M3 with no protection, and killing her switches the name lock off; and if the revealed hand holds no second spell worth naming, the pair is worth less than the two cards apart.",
+          "Cheaper sight exists at the price of a second domain: OGN-156 Sabotage (Body, 1 Energy + 1 Power) reveals the hand and RECYCLES a non-unit - 416.1 puts it on the bottom of the deck, which outlasts Ashe's banish - and VEN-085 Decree of Strength (Body, 1 Energy) does the same for a Mind card. Both need a Body/Order legend and neither brings a 4-Might body, so the entry is walked on Ashe."
+        ]
+      },
+      "steps": [
+        "Play Ashe, Focused (5 Energy + 1 Power). The chosen opponent reveals their hand; banish the card that most threatens the turn you are about to take.",
+        "Read the rest of the hand while it is revealed (424.1: revealing is presenting the card to all players).",
+        "Play Fallen Feline to a battlefield you control (2 Energy + 1 Power) and name the best spell still in that hand. 762 asks only that it be a legal card in the format.",
+        "For as long as the Feline is at a battlefield, no copy of that spell can be played - including the copies they draw later, since the lock is on the name and 103.2.b lets them run three.",
+        "The banished card returns at the start of their next turn when they Hold (315.2.b.2). If they control no battlefield, 469.2 means they never Hold and it never returns."
+      ],
+      "terminatesIn": "engine only - one card gone for the rest of your turn and one spell name locked out for as long as the Feline stands; neither half scores",
+      "sources": [
+        {
+          "title": "Denial lens hunt, issue #100 (rc-huntQ)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/100",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-denial-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-denial-lens-candidates.md), issue #100 candidate 4, REWRITTEN. The pair and the class are right and both uniqueness claims survive a full-pool grep. Two corrections. First, the duration: the issue treats Ashe's banish as lasting until the opponent's Hold as if that were a turn away, when 315.2.b.2 puts their Hold at the very start of their next turn - so the banish covers the rest of YOUR turn and nothing more, which reclassifies Ashe as a burst-turn escort. Second, the finding the issue did not have: 469.2 defines a Hold over a battlefield the player CONTROLS, so an opponent controlling none never Holds and the banish is permanent - the board a denial wall creates. Also added, because 190.6.d's second sentence is a trap this project has been caught by before: the Feline needs a battlefield you actually control, not merely one you brought. Card text verbatim from data/corpus_flat.txt. Ban check: neither code is among the 12 [BANNED] corpus lines nor in data/legality.json. Depends on no unruled reading."
+    },
+    {
+      "id": "helm-empowered-spell-tax",
+      "name": "Helm of Suppression, Empowered — every opponent spell costs them a rune, and 206 is why it widens none of your own counters",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-045",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "state": "[Empowered]",
+          "note": "Calm gear, E4 P1, [Empower] 4 Energy + 1 Calm Power. 'Opponents' spells cost 1 Energy more. If this is [Empowered], they cost 1 Energy and one rainbow Power more instead.' Unempowered it is noise; the entry is about the Empowered half."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Mono-Calm, so any legend carrying Calm runs it, and the [Empower] cost asks specifically for Calm Power.",
+          "Nothing to walk anywhere: gear is played to base (811.1.d.1.a names that as 'the normal restriction that gear have in only being allowed to be played to base') and the Helm's clause carries no location requirement."
+        ],
+        "notable": [
+          "THE BILL, COUNTED WHOLE. 4 Energy + 1 Power to play, plus 4 Energy + 1 Calm Power for the [Empower] - 8 Energy and 2 Power in total. Two published figures in this project have already been wrong for leaving the second half of a gear's cost out, so it is written here in both halves. The [Empower] is an Activated Ability with no exhaust in its cost, so it can be paid the same turn the Helm lands, and 441.2 makes 'Empowered' a STATE of a game object on the board - once reached it is permanent, not a turn's buff.",
+          "THE POWER HALF IS THE WHOLE CLAIM, AND IT IS MEASURABLE. +1 Energy per enemy spell is noise. +1 rainbow Power per enemy spell is a different currency: 315.3.b channels each player 2 runes per turn, and 164.2.b turns a rune into 1 Power with no exhaust in the cost, so an opponent's free floor is exactly 2 Power a turn. An Empowered Helm therefore caps at TWO the number of spells they can cast off that floor, and every spell past it recycles a rune off the board into the Rune Deck (161.2.b) - Energy they will not have next turn. It is not a hard cap, it is a conversion of their spells into their own mana development.",
+          "THE TRAP: IT WIDENS NONE OF YOUR COUNTERS. OGN-045 Defy reads 'Counter a spell that costs no more than 4 Energy and no more than one rainbow', and 206 - whose own worked example IS Defy - says an effect that needs a card's cost 'always use[s] its printed or copied cost, even if that cost is increased, decreased, or ignored as the card is played'. Taxing an enemy spell to 5 Energy leaves it a legal Defy target and always will. Same for VEN-152 Rebuttal's 'no more than 4 Energy'. Anyone reading this entry as a way to push enemy spells out of counter range is reading it backwards.",
+          "IT IS ITS OWN ENTRY AND NOT A NOTABLE ON THE WALL, by the same argument brynhir-lockout-window records: putting it into warden-tianna-base-lock's uses[] would make the matcher demand a card that wall does not need, and the Helm does not need the wall either. Precedent for a one-card ENGINE is that same entry.",
+          "WHAT ANSWERS IT, listed correctly. Issue #100 names VEN-080 Noxian Demolitionist, SFD-074 Pickpocket and SFD-084 Jayce; none of the three can touch this Helm - the first kills a gear with Energy cost no more than its own Might (1), the second caps at 1 Energy, and the third only kills a FRIENDLY gear. What does answer it, from a grep of every gear-removal line in the pool: SFD-005 Detonate (Fury, 1 Energy + 1 Power, and it hands you 2 cards), VEN-003 Brittle Steel (Fury, 2 Energy + 1 Power), SFD-032 Disarming Rake (Calm), SFD-160 Zaun Punk (Order), OGN-056 Adaptatron (Calm, on conquer), SFD-077 Rocket Barrage (Mind) and OGN-022 Thermo Beam (Fury, kills ALL gear, yours included).",
+          "It is anti-synergic with VEN-039 Crumbling Sands, which is the other cheap Calm denial card and the obvious thing to pair it with: Crumbling Sands only counters 'if an opponent has played another spell this turn', and the Helm's entire purpose is to make that second spell not happen. And against a deck that wins with units, the Helm taxes nothing at all."
+        ]
+      },
+      "steps": [
+        "Play Helm of Suppression to your base for 4 Energy + 1 Power.",
+        "Activate its [Empower] for 4 Energy + 1 Calm Power - no exhaust in the cost, so the same turn is legal if the mana is there. 441.2 makes the state permanent.",
+        "From then on every spell an opponent plays costs 1 Energy and one Power of any domain more.",
+        "Their free Power is 2 a turn (315.3.b), so the third spell of any turn has to recycle a rune (164.2.b) off the board into the Rune Deck (161.2.b) to be cast at all."
+      ],
+      "terminatesIn": "engine only - a permanent tax of 1 Energy and 1 Power on every opponent spell; it slows their turns, it scores nothing",
+      "sources": [
+        {
+          "title": "Denial lens hunt, issue #100 (rc-huntQ)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/100",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-denial-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-denial-lens-candidates.md), issue #100 candidate 5, HELD as its own entry. The issue left the entry-or-notable question to the walk and the answer is its own entry, on brynhir-lockout-window's matcher argument. Two things the walk adds. First, the 206 trap: the tax does not widen Defy or Rebuttal, because 206 reads the PRINTED cost and its own worked example is Defy - a reader would otherwise assume the opposite. Second, the refutation list is corrected: all three cards issue #100 names as answers are unable to kill a 4-Energy gear (two are cost-capped below it, one only kills friendly gear), and the seven that actually can were found by grepping every gear-removal line in the corpus. The 2-Power free floor comes from #44 and is used here as the yardstick the tax is measured against. Card text verbatim from data/corpus_flat.txt. Ban check: VEN-045 is not among the 12 [BANNED] corpus lines nor in data/legality.json."
+    },
+    {
+      "id": "vex-warden-accelerate-lock",
+      "name": "Vex, Apathetic and Mageseeker Warden — no unit the opponent plays reaches a battlefield on the turn it is played",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-150",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos, E4 M4, [Deflect]. 'When an opponent plays a unit while I'm at a battlefield, [Stun] it. They can't move it this turn.' The 'while I'm at a battlefield' conditions VEX, not the unit played - so it reaches anything they play, anywhere."
+        },
+        {
+          "card": "OGN-070",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm, E6 P1 M5. 'Opponents can only play units to their base' forces every enemy unit through the base; Vex is what stops the ones that could leave it the same turn."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Calm + Chaos, and the pool prints three such legends: UNL-193 Gloomist (Vex's own), OGN-259 Unforgiven and SFD-195 Blade Dancer.",
+          "Both at a battlefield - each clause reads 'While I'm at a battlefield' and neither asks that you control it or that they share one."
+        ],
+        "notable": [
+          "THE STUN IS NOT WHAT MAKES THIS WORK, AND ISSUE #100 SAID IT WAS. Its claim was that the opponent 'cannot raise the defender's bar by adding bodies, because the ones they add are worth 0 in the damage step'. Two rules refute it, from the paragraph the issue quotes half of. 423.1.a.2: 'Stunned Units lose the Stunned status during step 3d of the END OF TURN cleanup' - they play units on their turn, so the stun is gone before your attack. 423.1.c: 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might value to be killed' - so even within its own turn a stunned body soaks exactly as much as an unstunned one. 423.1.b removes only the damage it deals BACK. And they cannot reinforce mid-combat in any case: 312.2.a gives them no priority in a Neutral Open State on your turn, 144.1.c bars moves during a Showdown or Combat, and 155 keeps a spell without [Action] or [Reaction] out of a Showdown.",
+          "THE REAL FUNCTION IS THE OTHER CLAUSE - 'They can't move it this turn' - AND IT IS THE EXACT COMPLEMENT OF THE WARDEN'S ONE LEAK. Under the Warden every enemy unit must be played to base (054.2) and 144.4 gives it no route to a battlefield but a Standard Move, whose cost is an exhaust (144.2, 420.3.a) it cannot pay on the turn it entered (143.4) - UNLESS it is one of the 26 [Accelerate] units, which 805.1.a lets enter READY, or unless something moves it by effect (UNL-045 Forgotten Signpost, SFD-177 Azir Sovereign for tokens, SFD-079 Bard Mercurial - an effect move pays no exhaust and moves exhausted units). Vex closes both, because her trigger is on the unit PLAYED, wherever it was played, and forbids any move of it that turn.",
+          "THE COMPLETE CLAIM, ROUTE BY ROUTE, and it is checkable rather than rhetorical. Play directly to a battlefield they control: Warden, 054.2. Play directly to an open or occupied enemy battlefield (the 7 cards that grant 355.2.b): Warden, 054.1. Play from [Hidden] at their battlefield (15 units): Warden, via 811.1.d.1 plus 054.2. Play a TOKEN unit to a battlefield: Warden, because 350.2 makes a token played and 185.2.a subjects it to 'any restrictions or modifications'. Play to base with [Accelerate] and Standard Move the same turn: Vex. Play to base and move it by effect: Vex. Play to base, ready it with a spell or ability, then move: the Warden's second clause.",
+          "SCOPE, STATED: it is about the turn a unit is PLAYED. A body already sitting at their base from an earlier turn moves normally - Vex touches nothing that is already on the board, and the Warden's clause is about playing, not moving.",
+          "NO LOOP, AND IT IS RULED OUT BY TEXT: 423.1.a.1, 'A Stunned Unit can not be Stunned again'. Each trigger answers a separate enemy play and nothing here repeats under your own control, so this is an ENGINE and cannot be anything more.",
+          "10 Energy and 1 Power for the pair. Vex prints [Deflect] and the Warden does not, so their spell removal costs 1 Power for her (809.1.c, 809.1.c.1: the Power may be of any domain) and nothing for him - he is the one they kill first, which warden-tianna-base-lock answers with UNL-057 Alpha Wildclaw at 7 Might."
+        ]
+      },
+      "steps": [
+        "Play the Mageseeker Warden to a battlefield (6 Energy + 1 Power). From here every enemy unit can only be played to their base.",
+        "Play Vex, Apathetic to a battlefield (4 Energy).",
+        "Each time the opponent plays a unit - card or token, at their base or anywhere else - Vex stuns it and it cannot be moved that turn.",
+        "An [Accelerate] body that pays 1 Energy and 1 Power to enter ready (805.1.a) still cannot walk out of the base, because the restriction is on moving, not on being exhausted.",
+        "The same clause stops UNL-045 Forgotten Signpost, SFD-177 Azir Sovereign and SFD-079 Bard Mercurial from carrying it out by effect."
+      ],
+      "terminatesIn": "engine only - every enemy unit spends the turn it is played sitting at their base; it buys a turn per body and scores nothing",
+      "sources": [
+        {
+          "title": "Denial lens hunt, issue #100 (rc-huntQ)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/100",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-denial-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-denial-lens-candidates.md), issue #100 candidate 6, REWRITTEN AND RENAMED from vex-apathetic-reinforcement-stun, because the entry no longer claims what that id says. The issue sold Vex as an answer to reinforcement on the strength of 423.1.b; 423.1.a.2 (the stun clears at the END OF TURN cleanup, i.e. before your attack) and 423.1.c (a stunned body still soaks its full Might) refute that, and this project had already been corrected in the same direction once, by #89. The clause that does work is 'They can't move it this turn', and it closes exactly the leak warden-tianna-base-lock has to declare: the 26 [Accelerate] units of 805.1.a and the three effect-movers of #58. The pair's claim is written as a route table so it can be checked rather than believed. The issue's own candidate was 'Vex + an attacker', which names no second card; the second card here is the Warden, and the Calm/Chaos legend list was grepped over all 49 legends. No quantity of any existing entry was touched. Card text verbatim from data/corpus_flat.txt. Ban check: neither code is among the 12 [BANNED] corpus lines nor in data/legality.json."
     }
   ]
 }
