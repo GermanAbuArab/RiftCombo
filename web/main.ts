@@ -664,11 +664,20 @@ function showDetail(id: string | null) {
     <h3>Payoff</h3><div class="pills">${c.produces.map((f) => featuresById.get(f)).filter((f): f is Feature => !!f && f.status === "STANDALONE").map((f) => `<span class="pill" data-feature="${esc(f.id)}">${esc(f.name)}</span>`).join("")}</div>
     ${c.prerequisites.easy.length ? `<h3>Deck</h3><ul>${c.prerequisites.easy.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
     <h3>Sources</h3><ul class="sources">${c.sources.map((s) => { const href = sourceHref(s); return `<li>${href ? `<a href="${esc(href)}" rel="noopener" target="_blank">${esc(s.title)}</a>` : esc(s.title)}${s.date ? ` <span class="csub">${esc(s.date)}</span>` : ""}</li>`; }).join("")}</ul>
-    ${c.notes ? `<h3>Notes</h3><p>${esc(c.notes)}</p>` : ""}
+    ${c.notes ? `<details class="audit"><summary>How this entry was audited</summary>
+      <p class="audit-key">${AUDIT_KEY}</p><p>${esc(c.notes)}</p></details>` : ""}
     <p class="rules-version">Walked against Core Rules ${esc(c.rulesVersion)}</p>`;
   for (const pill of detail.querySelectorAll<HTMLElement>(".pills .pill")) { const col = colors.get(pill.dataset.feature!) ?? "#8b93a4"; pill.style.color = col; pill.style.borderColor = col; }
   detail.querySelector("#close-detail")!.addEventListener("click", () => { selected = null; view?.select(null); showDetail(null); markChips(); });
 }
+
+/**
+ * The audit register speaks its own language, and the player is not expected to know it (#72). The
+ * notes stay verbatim — they are the record this catalogue stands on and their precision is worth more
+ * than their prose — so the four terms are translated beside them instead of being edited out of
+ * `data/combos.json`.
+ */
+const AUDIT_KEY = "REFUTE = a refutation pass, with its date and verdict · WOUNDED = the pass found a flaw and the entry was rewritten · BUDGETED = the pass checked the recycle-and-draw ledger · lens = the hunt that proposed it.";
 
 // --- card preview ---------------------------------------------------------------------
 // The drawer thumbnails are 34px wide, which is enough to recognise a card and not enough to
