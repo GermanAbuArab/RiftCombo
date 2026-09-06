@@ -1,5 +1,8 @@
 # Phase 0 findings — combo mining feasibility
 
+> **Este documento es el spike del 2026-09-02 y se conserva como historia.**
+> El estado actual del proyecto está en [`docs/status.md`](status.md).
+
 **Verdict: the gate FAILED for the architecture I planned, and the failure identified a better one.**
 **Addendum 2026-09-02 (Result 5): the follow-up hunt's claim that Riftbound has no infinite
 combos was wrong — two are verified against primary sources, and the product concept stands.**

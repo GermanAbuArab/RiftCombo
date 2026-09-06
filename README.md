@@ -1,75 +1,106 @@
 # RiftCombo
 
-Paste a Riftbound deck list, deck code, or public Piltover Archive link and see which known combos it already contains — and which it is a few cards short of — drawn as a map of pieces, combos and payoffs.
+Pegá una lista de Riftbound — texto, deck code o link público de Piltover Archive — y ves qué combos
+conocidos ya contiene, cuáles le faltan por una o dos cartas, y qué cartas están baneadas o
+restringidas en el formato que elijas, dibujado como un mapa de piezas, combos y remates.
 
-**Live:** https://riftcombo.app
+**Live:** https://riftcombo.app · **Estado del proyecto:** [`docs/status.md`](docs/status.md)
 
-Riftbound has no public combo database. This repository is one: every entry in `data/combos.json` is hand-authored from Riot's card text and the Core Rules, with its sources attached. Entries marked `verified` were walked step by step by a person; entries marked `candidate` were proposed by an automated sweep or documented by the community and have not been walked yet. Treat candidates as leads, not facts.
+Riftbound no tiene una base pública de combos. Este repositorio es una: cada entrada de
+`data/combos.json` está escrita a mano contra el texto de carta de Riot y las Core Rules, con sus
+fuentes adjuntas. Las **156 entradas de hoy son `verified`**: alguien caminó el loop paso a paso y
+dejó el documento de la caminata en [`docs/phase0/walks/`](docs/phase0/walks/README.md).
 
-## What it does
+## Qué hace
 
-- Matches on card codes (`OGN-212`), never on names, so alternate printings and errata never split a combo.
-- Composes combos through a small dependency graph: a line that needs infinite Energy is shown together with the loop that produces it.
-- Shows near misses: combos within one to three cards, with the missing pieces outlined.
-- Reports legality per format from Riot's Rules Hub, and applies Riot's published errata as a dated overlay.
-- Matches entirely in the browser. A list is stored only if you sign in and press Save, and then only the text you pasted, so an old list is re-matched against today's catalogue rather than kept as a stale result. A Piltover Archive link is fetched once through this site's own edge function and cached for ten minutes.
+- Empareja por código de carta (`OGN-212`), nunca por nombre, así que una reimpresión o una errata
+  nunca parte un combo en dos.
+- Compone combos en un grafo de dependencias: una línea que necesita Energía infinita se muestra
+  junto al loop que la produce.
+- Muestra los casi-aciertos: combos a una, dos o tres cartas, con las piezas que faltan marcadas.
+- Reporta legalidad por formato desde el Rules Hub de Riot, y aplica la errata publicada como un
+  overlay fechado.
+- **My decks**: biblioteca de mazos, editor con validación de construcción, importación desde
+  Piltover Archive y exportación a deck code.
+- Empareja entero en el navegador. Una lista se guarda sólo si iniciás sesión y apretás Save, y
+  entonces se guarda el texto que pegaste — así una lista vieja se vuelve a emparejar contra el
+  catálogo de hoy en vez de quedar como un resultado rancio.
 
-## Running it
+## Verificar
+
+Los tres, antes de decir que algo anda:
+
+```
+npm test && npm run typecheck && npm run build:web
+```
+
+## Correrlo
 
 ```
 npm install
-npm run build:data   # fetch Riot's card gallery -> data/cards.json, apply errata, resolve legality
-npm test && npm run typecheck
-npm run dev          # build web/ into public/ and serve it with the Vercel CLI
+npm run build:data   # baja la galería de Riot -> data/cards.json, aplica errata, resuelve legalidad
 ```
 
-Deploys with `npm run deploy` (Vercel). `api/deck-url.ts` is the only server-side code.
+`npm run dev` está roto (el Development Command del proyecto de Vercel es `npm run dev`, así que
+`vercel dev` lo rechaza como invocación recursiva). Para mirar la UI: `cd public && python3 -m
+http.server 8788`, que alcanza para todo menos la ruta `/api/deck-url`.
 
-## Accounts and saved decks
+**El deploy es un push a master**: Vercel está conectado al repo y construye desde el árbol
+committeado. `public/` es artefacto de build de `web/` — no se edita a mano.
 
-Optional, and off in any build that does not configure it — the app is fully usable signed out. Two
-public values switch it on, from `.env.local` locally and from Vercel's environment variables in
-production:
+## Cuentas
+
+Todo el sitio está detrás del login con Google. Dos valores públicos lo configuran, desde
+`.env.local` localmente y desde las variables de entorno de Vercel en producción:
 
 ```
 SUPABASE_URL=https://<ref>.supabase.co
-SUPABASE_ANON_KEY=<the project's anon key>
+SUPABASE_ANON_KEY=<la anon key del proyecto>
 ```
 
-Both are public by design: the anon key ships in every browser bundle, and what keeps one player's
-rows away from another is row-level security in the database. `scripts/build-web.mjs` bakes them
-into the bundle, and `npm run headers` regenerates `vercel.json` so the same origin appears verbatim
-in `connect-src` — run it after changing `SUPABASE_URL` and commit the result, because Vercel reads
-`vercel.json` before the build runs.
+Las dos son públicas por diseño: la anon key viaja en cada bundle del navegador, y lo que mantiene
+las filas de un jugador lejos de otro es row-level security en la base. `scripts/build-web.mjs` las
+hornea en el bundle, y `npm run headers` regenera `vercel.json` para que el mismo origen aparezca
+literal en `connect-src` — corrélo después de cambiar `SUPABASE_URL` y committeá el resultado,
+porque Vercel lee `vercel.json` antes de correr el build.
 
-Sign-in is a full-page redirect, not a popup: the site sends `Cross-Origin-Opener-Policy:
-same-origin`, under which a popup is severed from the page that opened it and the flow never
-returns, with nothing in the console to say so.
+El sign-in es una redirección de página completa, no un popup: el sitio manda
+`Cross-Origin-Opener-Policy: same-origin`, bajo la cual un popup queda cortado de la página que lo
+abrió y el flujo nunca vuelve, sin nada en la consola que lo diga.
 
 ```
-supabase db push                    # apply supabase/migrations/ to the linked project
-npm run check:rls                   # two real users; each must be unable to touch the other's rows
+supabase db push                    # aplica supabase/migrations/ al proyecto linkeado
+npm run check:rls                   # dos usuarios reales; ninguno puede tocar las filas del otro
 ```
 
-`npm run check:rls` also needs `SUPABASE_SERVICE_ROLE_KEY`, which is a server key: it bypasses RLS,
-it is read by that one script and nothing else, and it never appears in `web/` or in a commit.
+`npm run check:rls` necesita además `SUPABASE_SERVICE_ROLE_KEY`, que es una clave de servidor:
+saltea RLS, la lee ese script y nada más, y no aparece en `web/` ni en un commit.
 
-## Data
+## Datos
 
-| file | what | source |
+| archivo | qué | fuente |
 |---|---|---|
-| `data/cards.json` | every printing, with rules text and the Equipment `effect` text most mirrors drop | Riot's card gallery API, via `scripts/build-cards.mjs` |
-| `data/errata.json` | dated find/replace overlay | Riot's errata announcements |
-| `data/legality.src.json` | ban list per format | Riot's Rules Hub, transcribed by hand |
-| `data/combos.json` | the catalogue | authored; see each entry's `sources` |
-| `docs/phase0/` | the search itself: rules primer, refute spec, per-lens sweep reports | — |
+| `data/cards.json` | cada printing, con el texto de reglas y el `effect` de Equipment que la mayoría de los mirrors pierde | API de galería de Riot, vía `scripts/build-cards.mjs` |
+| `data/errata.json` | overlay fechado de find/replace; el build **falla** si un find-string deja de matchear | anuncios de errata de Riot |
+| `data/legality.src.json` | lista de bans por formato | Rules Hub de Riot, transcrita a mano |
+| `data/combos.json` | el catálogo, autorado | ver las `sources` de cada entrada |
+| `data/synergies.json` | 50 reglas de patrón: regla verificada a mano, instancias por texto | ver `basis` de cada regla |
+| `docs/status.md` | **el estado del proyecto** | medido |
+| `docs/phase0/walks/` | las 41 caminatas a mano, con su índice | — |
 
-## Contributing a combo
+## Aportar un combo
 
-Open an issue with the cards (codes, not just names), the exact card text that matters, the game state it needs, numbered steps with per-iteration arithmetic, the rule numbers you rely on, and where you found it. Anything that reaches 8 points, loops without bound, wins by alternate condition, or produces repeatable value belongs here. "It feels strong" does not.
+Abrí un issue con las cartas (códigos, no sólo nombres), el texto exacto que importa, el estado de
+juego que necesita, los pasos numerados con la aritmética por iteración, los números de regla en los
+que se apoya y dónde lo encontraste. Todo lo que llegue a 8 puntos, loopee sin cota, gane por
+condición alternativa o produzca valor repetible entra acá. "Se siente fuerte" no.
 
 ## Legal
 
-RiftCombo was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.
+El descargo va literal, sin parafrasear (`docs/plan.md` §1):
 
-No advertising, no donations, no play-rate or win-rate data. RiftCombo describes combos; it never plays them for you.
+> RiftCombo was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot
+> Games. Riot Games does not endorse or sponsor this project.
+
+Sin publicidad, sin donaciones, sin datos de play-rate ni win-rate. RiftCombo describe combos; nunca
+los juega por vos.

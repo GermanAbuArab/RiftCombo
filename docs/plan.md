@@ -1,5 +1,9 @@
 # RiftCombo — implementation plan
 
+> **Este documento es el plan del 2026-09-02 y se conserva como historia.**
+> El estado actual del proyecto está en [`docs/status.md`](status.md); donde el plan afirma algo que
+> ya se hizo o se decidió distinto, hay una nota `[2026-09-06: …]` al lado, sin borrar el original.
+
 A combo finder and visualizer for Riftbound TCG. Paste a decklist or deck code, get every known combo in it rendered as a graph.
 
 Modeled on [LOOPLINE](https://loopline.robiichi.workers.dev/) (MTG, by ろびいち), which cross-references a Moxfield deck against Commander Spellbook. The critical difference is stated up front, because it determines the whole plan:
@@ -61,6 +65,7 @@ Other load-bearing rules:
 - **Domain Identity** is dictated by the Champion Legend. `card.domains ⊆ legend.domains` — subset, not intersection.
 - **Three near-miss failure modes**, not one: (a) domain not a subset, (b) Signature card whose Champion Tag ≠ your Legend's, (c) >3 Signature cards. LOOPLINE's single color filter covers only (a).
 - Deck: 40 cards constructed, ≤3 copies, 12-card Rune Deck, 3 Battlefields (**only 1 used, randomly chosen in Duel** — battlefield-dependent combos need a consistency penalty).
+  > `[2026-09-06: resuelto en #35 como una nota por formato en prerequisites.notable, no como una penalización numérica; y traer 3 copias del mismo battlefield no es salida — 103.4.c y Tournament Rules 402.1 lo prohíben.]`
 - `is_banned` **must be format-scoped and entity-typed**. Bans exist on cards, battlefields *and* legends; the 2v2 list differs from 1v1 by one Legend. Current list (Rules Hub, retrieved 2026-09-02; the Stealthy Pursuer / Arena's Greatest / Aspirant's Climb bans took effect 2026-07-24): **cards** Called Shot, Draven Vanquisher, Fight or Flight, Scrapheap, Stealthy Pursuer; **battlefields** The Arena's Greatest, Aspirant's Climb, The Dreaming Tree, Obelisk of Power, Reaver's Row; **2v2** additionally restricts the Legend Master Yi, Wuju Bladesman (gallery name "Wuju Bladesman - Starter"). Source of truth in the repo: `data/legality.src.json` → `data/legality.json`.
 - 25 official keywords (rules 805–829).
 
@@ -184,6 +189,8 @@ was exactly such a claim, and it was wrong.
 
 Single Cloudflare Worker: static assets + `/api/*`. Matches LOOPLINE's proven shape (`cf-cache-status: HIT` on assets, `no-store` on API).
 
+> `[2026-09-06: migrado a Vercel en #12. El único código de servidor es api/deck-url.ts, una Edge Function; las cabeceras de seguridad vienen de vercel.json, que genera scripts/build-headers.mjs.]`
+
 **Decision 2026-09-02 — the matcher runs in the browser.** The whole database is ~1k cards and
 under 100 combos: a slimmed `cards.json` + `combos.json` + `legality.json` bundle is a few hundred
 KB, the deck codec is a dependency-free library, and `src/matcher.ts` is pure TypeScript. Shipping
@@ -191,6 +198,8 @@ them as static assets removes the 10 ms CPU concern, the API rate-limit surface 
 state for v1. The only server endpoint is `/api/deck-url`, a proxy for Piltover Archive deck pages
 (browser CORS forbids fetching them directly), with an allowlist and an honest User-Agent. D1
 enters only with the review queue.
+
+> `[2026-09-06: el matcher en el navegador se sostiene y es lo que corre hoy. Lo que cambió es "ningún estado de servidor": #31 agregó cuentas con Google y mazos guardados en Supabase Postgres con RLS, y #39 puso TODO el sitio detrás del login. No hubo cola de revisión ni D1.]`
 
 ### Data model — adapted from Commander Spellbook
 
@@ -231,6 +240,8 @@ TERMINAL: Ability Points · Conquer/Hold Points · Opponent Burn Out · Effect W
 ```
 A loop with an engine but no terminal is a **"combo without a kill"** — common here by design, since the game caps natural point sources. Surface it as its own category. `BURST` and `ALT_WIN` exist because Phase 0 showed most of Riftbound's combo space is *multiplicative* (Ahri × Blue Sentinel, Tryndamere × Red Brambleback) or *assembly* (The Grand Plaza, Gutter Palace), with only two known infinites on top. The class is displayed, never inferred: nothing is labelled `INFINITE` without a walked loop in its steps.
 
+> `[2026-09-06: son cinco clases, no tres — #20 agregó CHAIN (llega a 8 en varios eventos de scoring sin que el oponente juegue en el medio) y ENGINE es una clase de pleno derecho, la más numerosa de las cinco. Están tipadas en src/types.ts y rankeadas en src/combos.ts CLASS_RANK más los órdenes de web/graph.ts y web/main.ts: las cinco se actualizan juntas. Y los infinitos conocidos ya no son dos: 14.]`
+
 ### Matcher
 
 Copy CSB's six-bucket response shape, adapted to Riftbound's identity axes:
@@ -244,6 +255,8 @@ almostIncludedByChangingLegend
 almostIncludedByAddingDomainsAndChangingLegend
 ```
 Use **multisets** (a combo may need 2 copies). Near-miss in SQL, not app code: `missing = Σ max(0, required − owned)`, filter `<= N`, parameterized so "1 away" and "2 away" share a code path.
+
+> `[2026-09-06: los seis buckets son los que están en src/matcher.ts, tal cual. No hay SQL: el matcher corre en el navegador sobre un bundle estático, y la aritmética de near-miss vive en app code.]`
 
 ### Frontend
 
@@ -261,6 +274,8 @@ Per house design rules: no emoji in UI (LOOPLINE uses them — skip that), one c
 ### Hosting
 
 **Cloudflare Workers + D1.** Only option with a genuine always-on free tier and no non-commercial clause (Vercel Hobby forbids ads *and* donations; Render free has ~1-minute cold starts and 30-day Postgres expiry).
+
+> `[2026-09-06: se hostea en Vercel desde #12. La cláusula no comercial de Hobby dejó de ser un problema al fijar la postura legal: sin publicidad y sin donaciones, por decisión propia. Persistencia: Supabase Postgres, no D1. Dominio propio riftcombo.app desde #42 (US$15/año).]`
 
 Budget the **$5/mo paid plan early** — free tier is 10 ms CPU (tight for graph building over a 40-card deck) and **1,000 KV writes/day**. Use D1 (100k writes/day) for cache, not KV.
 
@@ -318,6 +333,7 @@ Build nothing permanent. Answer one question: *can we mine combos at acceptable 
 - Section 6 disclaimer, verbatim
 - Rate limiting, allowlist-not-blocklist for any URL fetching, SSRF guards, honest User-Agent
 - Deploy to Workers
+  > `[2026-09-06: el deploy es un push a master — Vercel está conectado al repo desde el 2026-09-05 y construye desde el árbol committeado. Live en https://riftcombo.app.]`
 - **Apply for the Riot API key** (see open decision below)
 
 ---
@@ -339,6 +355,8 @@ Phases 0–3 need no decision here — proceed, and the answer arrives before it
 **D2 — Card images.** `cdn.riftscribe.gg` is out (policy + their robots.txt). Riot's own `cmsassets.rgpub.io` serves official card images, responds 200 with no hotlink protection, and supports resize params — closer to compliant, still not "the Riot API." The gallery content API now returns each card's `cmsassets.rgpub.io` image URL alongside its text, so image and text come from the same Riot-operated source (`data/cards.json` → `image`). Resolve alongside D1.
 
 **D3 — Scope of v1.** Full LOOPLINE parity (network + suggestions + circular + layered + PNG export) or ship the matcher with one layout first? Recommend: one layout (layered/Sankey — it's the more legible of the two) through Phase 3, add circular after real decks have been run through it.
+
+> `[2026-09-06: resuelta con las dos. web/graph.ts trae layered (Pieces → Combos → Payoff) y circular (la leyenda como hub), y el sitio tiene cuatro vistas: Combos, My decks, Guide y Sources.]`
 
 ---
 

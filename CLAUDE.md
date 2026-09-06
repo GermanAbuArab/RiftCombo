@@ -1,7 +1,7 @@
 # RiftCombo — project rules
 
 ## Orientation
-- Read `docs/plan.md` then `docs/phase0-findings.md` before changing architecture; both are current as of 2026-09-02.
+- Read `docs/status.md` first — it is the measured state of the project, with the command behind every number and an index of the hand walks. `docs/plan.md` and `docs/phase0-findings.md` are the 2026-09-02 plan and spike, kept as history: read them for the reasoning, not for the current state, and mind their inline `[2026-09-06: …]` notes.
 - `docs/design/research-2026-09-02.md` holds the design research (LOOPLINE's CSS, Riftbound's palette, graph-UI conventions). Read it before touching the visual layer.
 - Repo: `github.com/GermanAbuArab/RiftCombo`, **private** until the de-clone (issues #1–#3) is done. Account `GermanAbuArab` — run `gh auth switch --user GermanAbuArab` before any push or PR.
 
