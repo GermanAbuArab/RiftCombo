@@ -634,9 +634,40 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .dzone-n { margin-left: auto; font: 500 11.5px var(--mono); color: var(--muted); }
 .dzone-head .ghost.tiny { margin-left: 0; padding: 3px 9px; font-size: 11.5px; }
 .dzone-empty { margin: 7px 0 0; font-size: 11.5px; line-height: 1.5; color: var(--faint); }
-.drow { display: flex; align-items: center; gap: 6px; padding: 3px 0; }
+.drow { display: flex; align-items: center; gap: 7px; padding: 4px 0; }
 .drow + .drow { border-top: 1px solid var(--line); }
-.drow-cost { flex: 0 0 18px; font-size: 11.5px; color: var(--faint); text-align: right; }
+/* The art strip (#113): 52x32 of the card's own art, with a bar in its domain colours down the left
+   edge. Two domains split the bar in half. The colours are attributes rather than an inline style,
+   which the CSP forbids, and they are the same six reserved for the pool's domain chips. */
+.drow-art { position: relative; flex: 0 0 auto; width: 52px; height: 32px; border-radius: 4px; overflow: hidden; background: var(--panel-2); }
+.drow-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.drow-art.land img { object-position: center; }
+.drow-art::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--dom-a, var(--line-2)); }
+.drow-art[data-dom2]::before { bottom: 50%; }
+.drow-art[data-dom2]::after { content: ""; position: absolute; left: 0; top: 50%; bottom: 0; width: 3px; background: var(--dom-b); }
+.drow [data-dom="fury"] { --dom-a: var(--dom-fury); }
+.drow [data-dom="calm"] { --dom-a: var(--dom-calm); }
+.drow [data-dom="mind"] { --dom-a: var(--dom-mind); }
+.drow [data-dom="body"] { --dom-a: var(--dom-body); }
+.drow [data-dom="chaos"] { --dom-a: var(--dom-chaos); }
+.drow [data-dom="order"] { --dom-a: var(--dom-order); }
+.drow [data-dom2="fury"] { --dom-b: var(--dom-fury); }
+.drow [data-dom2="calm"] { --dom-b: var(--dom-calm); }
+.drow [data-dom2="mind"] { --dom-b: var(--dom-mind); }
+.drow [data-dom2="body"] { --dom-b: var(--dom-body); }
+.drow [data-dom2="chaos"] { --dom-b: var(--dom-chaos); }
+.drow [data-dom2="order"] { --dom-b: var(--dom-order); }
+.drow-cost { flex: 0 0 auto; display: flex; align-items: center; gap: 3px; }
+.drow-pip { display: grid; place-items: center; width: 21px; height: 21px; border-radius: 50%; background: var(--panel-2); color: var(--text); font: 600 11px var(--font); font-variant-numeric: tabular-nums; }
+/* One dot per Power. Riot's data gives the number but not which domain each symbol asks for, so a
+   card indicating two domains gets neutral dots rather than a guess. */
+.drow-power { display: flex; flex-direction: column; gap: 2px; }
+.drow-power i { width: 5px; height: 5px; border-radius: 50%; background: var(--dom-a, var(--muted)); }
+.drow-power.mixed i { background: var(--muted); }
+.drow-might { flex: 0 0 auto; font: 500 10.5px var(--mono); color: var(--faint); }
+/* The Chosen Champion row already spends 70px on its tag, and it is the one row whose name is
+   always a long one. The Might steps out of that row rather than the name. */
+.drow.champ .drow-might { display: none; }
 .drow-name { flex: 1 1 auto; min-width: 0; overflow: hidden; padding: 0; border: 0; background: none; color: var(--text); font-size: 12.5px; text-align: left; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; }
 .drow-name:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .drow-tag { flex: 0 0 auto; font: 500 9.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
@@ -648,7 +679,13 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 /* The curve is data, not decoration, so its bars owe the 3:1 WCAG asks of a meaningful graphic.
    --line-2 measures 2.32:1 on --panel and was the first thing tried; --faint is 5.32. */
 .curve-bar { fill: var(--faint); }
+/* The bar the pointed-at row stands in, so the list and the curve talk to each other (#113). */
+.curve-bar.hot { fill: var(--accent); }
 .curve-tick { fill: var(--faint); font: 500 7px var(--mono); }
+/* The whole card beside the list while a row is pointed at or focused. Never takes the pointer, and
+   placed through CSSOM: the CSP forbids a style attribute. */
+.row-preview { position: fixed; z-index: 30; border: 1px solid var(--line-2); border-radius: 10px; overflow: hidden; background: var(--panel); pointer-events: none; }
+.row-preview img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* Construction, one <details> per rule */
 .bld-check { display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px solid var(--line); }
@@ -706,6 +743,10 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
   .bld-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; border-top: 1px solid var(--line-2); background: var(--bg); }
   .bld-bar-counts { margin: 0; font: 500 12px var(--mono); color: var(--muted); }
   .pool-cells { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+  /* 390px of row has to hold the art, the cost, the name and four controls. The strip shrinks and
+     the Might steps out — it is the one thing on the row the card modal answers in full. */
+  .drow-art { width: 44px; height: 28px; }
+  .drow-might { display: none; }
 }
 
 /* The format toggle scopes the combo matcher, so it is only on screen where it changes an answer. */

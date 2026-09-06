@@ -277,6 +277,38 @@ describe("the deckbuilder", () => {
   });
 
   /**
+   * The row preview (#113) is a convenience for a pointer and a keyboard, never a source of
+   * information: the card modal is the accessible route and every row still opens it. So the
+   * preview is out of the accessibility tree, its image carries no alternative text, and it never
+   * takes the pointer — a floating box that ate a click would break the row under it.
+   */
+  it("keeps the deck row preview decorative and out of the way", () => {
+    expect(builder).toContain('id="row-preview" aria-hidden="true" hidden');
+    expect(builder).toContain('<img alt="">');
+    const rule = css.split("\n").find((l) => l.trim().startsWith(".row-preview {"));
+    expect(rule).toMatch(/pointer-events: none/);
+    // Placed through CSSOM, never a style attribute: the CSP forbids the second.
+    expect(builder).toContain("box.style.left =");
+    expect(builder).not.toMatch(/<div class="row-preview"[^>]*style=/);
+  });
+
+  /**
+   * The art strip's domain bar and the Power dots are the only places besides the pool's domain
+   * chips where the six reserved colours appear, and they get there through a data attribute
+   * because the CSP forbids an inline style.
+   */
+  it("colours the deck row's domain bar from the reserved tokens alone", () => {
+    for (const d of ["fury", "calm", "mind", "body", "chaos", "order"]) {
+      expect(css, d).toContain(`.drow [data-dom="${d}"] { --dom-a: var(--dom-${d}); }`);
+      expect(css, d).toContain(`.drow [data-dom2="${d}"] { --dom-b: var(--dom-${d}); }`);
+    }
+    expect(builder).toContain('data-dom="${doms[0]}"');
+    expect(builder).not.toMatch(/class="drow-art[^"]*"[^>]*style=/);
+    // A Might that is not there is not printed as "M" with nothing after it.
+    expect(builder).toContain('card.might !== null ? `<span class="drow-might mono">M${card.might}</span>` : ""');
+  });
+
+  /**
    * The filter bar carried four control heights in four rows (#109): the Zone segmented at 30.75px,
    * the selects at 29, the Cost chips at 24 and the domain circles at 22, in two type families. One
    * token holds the height now, and every control in the bar is measured against it.

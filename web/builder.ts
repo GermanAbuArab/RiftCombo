@@ -145,6 +145,7 @@ export function builderHtml(actions: string): string {
       <button type="button" class="primary" data-act="save"${env.dirty() ? "" : " disabled"}>${esc(env.saveLabel())}</button>
     </div>
     ${importDialog()}
+    <div class="row-preview" id="row-preview" aria-hidden="true" hidden><img alt=""></div>
   </div>`;
 }
 
@@ -269,6 +270,29 @@ function cellHtml(card: Card): string {
 
 const TARGETS = { battlefields: 3, runes: 12, main: 40 } as const;
 
+/**
+ * The left of every deck row (#113): the card's own art, a bar in its domain colours, the Energy in
+ * a pip and one dot per Power. Everything here is an attribute and a class, never an inline style —
+ * the CSP forbids `style=` — and the six reserved domain colours appear on this bar, on those dots
+ * and on the pool's domain chips, nowhere else.
+ *
+ * A Power cost is a number and the domains are a list, and Riot's data never says which domain each
+ * Power symbol asks for: 41 of the 484 cards with a Power cost indicate two domains. So a dot takes
+ * a domain colour only when the card indicates exactly one domain it could honestly be.
+ */
+function rowLead(card: Card): string {
+  const src = thumb(card.image, 160);
+  const doms = card.domains;
+  const dom = doms[0] ? ` data-dom="${doms[0]}"` : "";
+  const dom2 = doms[1] ? ` data-dom2="${doms[1]}"` : "";
+  const power = card.power ?? 0;
+  const dots = power
+    ? `<span class="drow-power${doms.length === 1 ? "" : " mixed"}"${dom}>${"<i></i>".repeat(power)}</span>`
+    : "";
+  return `<span class="drow-art${card.orientation === "landscape" ? " land" : ""}"${dom}${dom2}>${src ? `<img src="${esc(src)}" alt="" loading="lazy">` : ""}</span>
+    <span class="drow-cost">${card.energy !== null ? `<span class="drow-pip">${card.energy}</span>` : ""}${dots}</span>`;
+}
+
 function totalsLine(): string {
   const n = zoneCounts(deck);
   return `Main ${n.main}/40 · Runes ${n.runes}/12 · Battlefields ${n.battlefields}/3`;
@@ -302,9 +326,10 @@ function sideboardHtml(): string {
   const n = zoneCounts(deck).sideboard;
   return `<section class="dzone">
     <h3 class="dzone-head">Sideboard<span class="dzone-n mono">${n}</span></h3>
-    ${rows.map((r) => `<div class="drow">
-      <span class="drow-cost mono">${r.card.energy ?? ""}</span>
-      <button type="button" class="drow-name" data-b="view" data-base="${esc(r.card.base)}">${esc(r.card.name)}</button>
+    ${rows.map((r) => `<div class="drow" data-base="${esc(r.card.base)}">
+      ${rowLead(r.card)}
+      <button type="button" class="drow-name" data-b="view" data-base="${esc(r.card.base)}" title="${esc(r.card.name)}">${esc(r.card.name)}</button>
+      ${mightHtml(r.card)}
       <span class="drow-n mono">${r.count}×</span>
     </div>`).join("")}
     <p class="dzone-empty">Came in with the list and is saved with it. Nothing in the pool adds here.</p>
@@ -326,9 +351,10 @@ function championHtml(): string {
   return `<section class="dzone">
     <h3 class="dzone-head">Champion<span class="dzone-n mono">${champ ? 1 : 0}/1</span></h3>
     ${champ
-      ? `<div class="drow">
-          <span class="drow-cost mono">${champ.energy ?? ""}</span>
-          <button type="button" class="drow-name" data-b="view" data-base="${esc(champ.base)}">${esc(champ.name)}</button>
+      ? `<div class="drow" data-base="${esc(champ.base)}">
+          ${rowLead(champ)}
+          <button type="button" class="drow-name" data-b="view" data-base="${esc(champ.base)}" title="${esc(champ.name)}">${esc(champ.name)}</button>
+          ${mightHtml(champ)}
           <button type="button" class="linklike drow-drop" data-b="unchampion">Clear</button>
         </div>`
       : `<p class="dzone-empty">${tag ? `A unit tagged ${esc(tag)}, from the Champion zone of the pool.` : "Name a legend and its champions appear in the pool."}</p>`}
@@ -367,21 +393,26 @@ function curveHtml(): string {
   const rects = bars.map((b, i) => {
     const h = Math.round((b.count / peak) * (H - 12));
     const x = i * (W + GAP);
-    return `<rect class="curve-bar" x="${x}" y="${H - 12 - h}" width="${W}" height="${Math.max(b.count ? 2 : 0, h)}" rx="2"></rect>
+    return `<rect class="curve-bar" data-e="${b.energy}" x="${x}" y="${H - 12 - h}" width="${W}" height="${Math.max(b.count ? 2 : 0, h)}" rx="2"></rect>
       <text class="curve-tick" x="${x + W / 2}" y="${H - 2}" text-anchor="middle">${b.label}</text>`;
   }).join("");
   const alt = bars.filter((b) => b.count).map((b) => `${b.count} at ${b.label}`).join(", ") || "no cards yet";
   return `<svg class="curve" viewBox="0 0 ${COST_BUCKETS * (W + GAP) - GAP} ${H}" role="img" aria-label="Energy curve: ${esc(alt)}">${rects}</svg>`;
 }
 
+/** A unit's Might, which is the one number the art strip does not show. Nothing for the rest. */
+const mightHtml = (card: Card): string =>
+  card.might !== null ? `<span class="drow-might mono">M${card.might}</span>` : "";
+
 function rowHtml(card: Card, count: number, zone: "legend" | "battlefields" | "runes" | "main"): string {
   const champ = deck.champion === card.base;
   const tag = deck.legend ? championTagOf(deck.legend, cards()) : null;
   const eligible = zone === "main" && !champ && !card.signature && card.type.includes("unit") && tag !== null && card.tags.includes(tag);
   const cap = capOf(deck, card.base, cards());
-  return `<div class="drow${champ ? " champ" : ""}">
-    <span class="drow-cost mono">${card.energy ?? ""}</span>
-    <button type="button" class="drow-name" data-b="view" data-base="${esc(card.base)}">${esc(card.name)}</button>
+  return `<div class="drow${champ ? " champ" : ""}" data-base="${esc(card.base)}">
+    ${rowLead(card)}
+    <button type="button" class="drow-name" data-b="view" data-base="${esc(card.base)}" title="${esc(card.name)}">${esc(card.name)}</button>
+    ${mightHtml(card)}
     ${card.signature ? `<span class="sig-tag" title="Signature card">S</span>` : ""}
     ${champ ? `<span class="drow-tag">Champion</span>` : ""}
     ${eligible ? `<button type="button" class="linklike drow-champ" data-b="champion" data-base="${esc(card.base)}">Champion</button>` : ""}
@@ -497,6 +528,49 @@ async function runImport(): Promise<void> {
   env.say(lost ? `Imported. ${lost} line${lost === 1 ? "" : "s"} were not recognised and were kept as written.` : "Imported into the editor. Press Save to keep it.");
 }
 
+// --- the row preview -------------------------------------------------------------------
+
+/**
+ * Pointing at a deck row shows the whole card beside the list and lights its bar in the curve (#113).
+ * A 52px strip of art is enough to recognise a card, never enough to read it, and the modal is two
+ * clicks away from every row it could answer.
+ *
+ * Desktop only, and by capability rather than by width: a touch screen has no hover to leave, and a
+ * tap on the row already opens the modal. The box is placed through CSSOM because the CSP forbids a
+ * `style=` attribute, and it never takes the pointer.
+ */
+function rowEnter(row: HTMLElement): void {
+  const base = row.dataset["base"];
+  const card = base ? cards().get(base) : null;
+  if (!card) return;
+  const bucket = card.energy === null ? -1 : Math.min(card.energy, COST_BUCKETS - 1);
+  for (const bar of document.querySelectorAll<SVGRectElement>(".curve-bar")) {
+    bar.classList.toggle("hot", Number(bar.dataset["e"]) === bucket);
+  }
+  if (!window.matchMedia("(min-width: 900px) and (hover: hover)").matches) return;
+  const box = $<HTMLElement>("#row-preview");
+  const img = box?.querySelector<HTMLImageElement>("img");
+  const land = card.orientation === "landscape";
+  const src = thumb(card.image, land ? 420 : 320);
+  if (!box || !img || !src) return;
+  img.src = src;
+  const w = land ? 300 : 224;
+  const h = Math.round(land ? (w * 5) / 7 : (w * 7) / 5);
+  const r = row.getBoundingClientRect();
+  // The box is sized before the image arrives, so an empty frame never flashes at zero height.
+  box.style.width = `${w}px`;
+  box.style.height = `${h}px`;
+  box.style.left = `${Math.max(12, r.left - w - 14)}px`;
+  box.style.top = `${Math.min(Math.max(12, r.top + r.height / 2 - h / 2), window.innerHeight - h - 12)}px`;
+  box.hidden = false;
+}
+
+function rowLeave(): void {
+  for (const bar of document.querySelectorAll<SVGRectElement>(".curve-bar")) bar.classList.remove("hot");
+  const box = $<HTMLElement>("#row-preview");
+  if (box) box.hidden = true;
+}
+
 // --- redraw ----------------------------------------------------------------------------
 
 /**
@@ -505,6 +579,9 @@ async function runImport(): Promise<void> {
  * never re-rendered either.
  */
 function render(): void {
+  // The row the pointer is on is about to be replaced, and a preview of a card that is no longer
+  // under the cursor is a lie. Whatever the pointer lands on next reopens it.
+  rowLeave();
   // A click destroys the button it came from, and the focus with it. Remembered by what the control
   // IS rather than by index, so the same cell keeps the focus even when the grid reflows around it.
   const active = document.activeElement as HTMLElement | null;
@@ -564,6 +641,21 @@ export function initBuilder(host: HTMLElement, e: BuilderEnv): void {
   host.addEventListener("input", onInput);
   host.addEventListener("change", onChange);
   host.addEventListener("keydown", onKeydown);
+  const rowOf = (ev: Event) => (ev.target as Element).closest<HTMLElement>(".drow");
+  host.addEventListener("mouseover", (ev) => { const row = rowOf(ev); if (row) rowEnter(row); });
+  host.addEventListener("mouseout", (ev) => {
+    const row = rowOf(ev);
+    const to = (ev as MouseEvent).relatedTarget as Node | null;
+    if (row && !(to && row.contains(to))) rowLeave();
+  });
+  // Keyboard focus opens the preview, a mouse click does not: clicking + three times in a row would
+  // otherwise leave a card hanging over the pool between clicks. `:focus-visible` is exactly that
+  // distinction, and it is the browser's own answer rather than a guess about pointer type.
+  host.addEventListener("focusin", (ev) => {
+    const row = rowOf(ev);
+    if (row && (ev.target as Element).matches(":focus-visible")) rowEnter(row);
+  });
+  host.addEventListener("focusout", (ev) => { if (rowOf(ev)) rowLeave(); });
   // `toggle` does not bubble in the DOM sense, but it is captured here so the fold survives a redraw.
   host.addEventListener("toggle", (ev) => {
     const el = ev.target as HTMLElement;
