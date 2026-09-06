@@ -44,6 +44,17 @@
 - What the predicates are allowed to lean on: 383.4.c.1 and 383.4.d.1 give `"When I conquer…"` / `"When I hold…"` as the standard wording of those trigger categories, and 823.1.b makes [Hunt] both. That is why the hold and conquer predicates are honest rather than guesses.
 - False positives found by reading the lists, and the shapes they come in — check any new rule against all four: a **nested quote** (Relentless Pursuit and Zed, From the Shadows carry a trigger written for another permanent inside their own text); a **second trigger that is a no-op** (Blitzcrank returns himself to hand, Hallowed Tomb needs an empty Champion Zone); a **doubled drawback** (Vaults of Helia, Sigil of the Storm); and a **condition that cannot be met on the other event** — 383.4.g.1 says an ability whose non-conquer parts are unfulfilled never reaches the chain, which is what kills Tryndamere, Sivir, Yeti Brawler, Yone and Swain under Reckoner's Arena. Record each as an `excludes` entry with its reason; never drop one silently.
 - Tokens and the two helper cards are filtered out of every list (`domains.length === 0 && !type.includes("battlefield")`), since a decklist can never hold one. An anchor banned in every format fails validation — that is how `stealthy-pursuer-move-triggers` was caught.
+- **A keyword lens opens with `grep -i <word>`, never with `[Keyword]`.** The bracketed form misses
+  every card that writes the mechanic in prose: 8 cards say `empower`/`disempower` in lower case with
+  no brackets and 4 of those are legends, so a `\[Empower\]` sweep silently skipped the legends of
+  the family it was hunting (#34, 2026-09-05). Open wide with `-i`, then close by reading the list.
+- **A battlefield is drawn at random, and only in some formats.** 485.4.a: a player provides three and
+  only 1 is used; **485.5 and 487.5 say "randomly selects"**, while **486.5 says only "selects"**. So
+  two of your battlefields never share a board (#33 fixes the synergy layer on this), and a
+  battlefield-dependent combo is not certain to come online. `docs/plan.md:63` called for a
+  "consistency penalty" on 2026-09-02 and it was never applied — that is #35, and it turns on whether
+  a deck may bring 3 copies of the same battlefield, which the Core Rules never forbid (103.2.b caps
+  copies of a Main Deck card, and a battlefield is not Main Deck).
 - A rule that matches most of the pool is a fact about the pool, not a pairing. "Retreat replays any play effect" measured 132 and was narrowed to play effects that leave another permanent behind (14).
 - UI lives in the deck panel **below** "What to add", so #18 keeps the placement the user chose.
 
