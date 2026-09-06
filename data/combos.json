@@ -17980,7 +17980,8 @@
           "ONCE PER TURN, WHICH IS WHY IT IS NOT INFINITE. 315.1.b readies the Hook only at Awaken; per #56's walk exactly five cards in the pool ready gear (VEN-149, VEN-150, SFD-221, OGN-162, VEN-068), so a second activation in one turn needs one of them.",
           "RIDER, NOT AN INGREDIENT: OGN-246 Viktor, Leader ('When another non-Recruit unit you control dies, play a 1 Might Recruit unit token into your base') pays a permanent Recruit for every Sprite the Hook eats — 187.2 gives the Sprite the Fae tag, so it is a non-Recruit death. Third card, so notable rather than uses.",
           "OVERLAP, DECLARED. viktor-leader-sprite-queen-free-bodies already uses UNL-084 and converts the Sprite's SCHEDULED death into a Recruit. This entry spends the same Sprite EARLY, in the Main Phase, for a card out of your own deck. They do not conflict — with Viktor out you get both off one kill — but the products are different.",
-          "Setup is slow and stated: Sprite Queen 7 Energy + 1 Power, Baited Hook 3 Energy. Sprite Queen must survive; nothing in the line protects her."
+          "Setup is slow and stated: Sprite Queen 7 Energy + 1 Power, Baited Hook 3 Energy. Sprite Queen must survive; nothing in the line protects her.",
+          "THE SCUTTLE CRAB VARIANT IS REFUTED, NOT AN ALTERNATIVE (issue #117 candidate 2, walked 2026-09-06 in docs/phase0/walks/2026-09-06-issue117-deck-manipulation.md). UNL-053 Scuttle Crab (Calm, E2 M0) as the fuel caps the Hook's fetch at Might 1, and in Calm ∪ Order exactly seven unit bases sit at Might ≤ 1 — OGN-216 Soaring Scout (E2), UNL-036 Mutated Mouser (E2), UNL-053 itself (E2), UNL-056 Yuumi Magical Cat (E3 P1), UNL-153 Carrion Dredger (E2), VEN-043 Steel Paws (E1), VEN-117 Disciple of Shen (E2) — so 1 Energy + 1 Order Power + the exhaust buys less than it costs. It is also not an engine: the Crab is a card, 103.2.b caps it at 3 copies and each dies once, against the Sprite that 816.1.b replays every Beginning Phase for free. And its Deathknell (808.1.c, 'When I die') fires from ANY death, so nothing about it needs the Hook. Killing UNL-153 Carrion Dredger instead lifts the ceiling only to Might 2, and 187.7 makes its Bird token Might 1, which returns to the same ceiling."
         ]
       },
       "steps": [
@@ -18181,6 +18182,162 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue116-champion-progression.md), issue #116 candidate C2. UNL-203 Keeper of the Hammer and UNL-117 Arachnoid Horror appeared in no entry's uses before this; UNL-203 was named in the prerequisites of poppy-confront-blood-rose and plaza-armory-miss-fortune, and the competition with the first is declared. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.2, 103.2.a.2, 144.4.a, 170.11.a, 315.1.b, 315.2.b.2, 316, 355, 355.2.a, 355.2.b, 356, 383.4.d.2.b, 431.1.a, 469.2, 470, 485.4, 729, 730.2, 731, 731.1, 733, 823.1.b, 823.1.c.1, 824.1.b.1, 824.1.d. Ban check: neither UNL-203 nor UNL-117 carries a [BANNED marker, and none of UNL-151, UNL-094, UNL-091, UNL-098 or UNL-116 does either. TWO CORRECTIONS TO THE ISSUE. (1) It counted the legend at 1 XP a turn ('banking 3 Holds' worth of XP (1 each)'); 315.2.b.2 Holds ALL battlefields you control and 485.4 gives a Duel two, so the ceiling is 2 — and at 2 the legend alone draws every other turn, which is why the [Hunt 2] partner is part of the entry rather than a footnote. (2) It treated XP as a ratchet; 824.1.d plus 730.2 make it a balance, and in Body/Order there are four [Level] cards whose thresholds each draw walks down by 3, split into a read-once family and a continuous one. The prompt's question about the Burn Out wall is answered in the entry: 431.1.a is not in play here and the Lux ledger's '0 spare draws' is a property of an empty-deck loop, not of a draw engine on a full deck. Trap check: no attack trigger; no [Repeat]; no [Temporary] (a [Temporary] body dies at 816.1.b before the Scoring Step and never Holds, which is why the [Hunt] partner is a printed unit); no token; no recall; no Gold; the Energy is spent in the Main Phase so 167 does not bite; the entry brings no battlefield of its own, so 190.6.d does not arise. Depends on no unruled reading."
+    },
+    {
+      "id": "forecaster-rumble-mech-vision-scry",
+      "name": "Forecaster × Rumble, Scrapper — the Mech the Hold mints filters your deck on the way in, every turn, for nothing",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-065",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Mind unit, E2 M2, tags Mech/Yordle/Bandle City. 'Your Mechs have [Vision]. (When you play us, look at the top card of your Main Deck. You may recycle it.)' Riot's reminder text says 'us', not 'them': the grant includes Forecaster itself, so its own arrival predicts too."
+        },
+        {
+          "card": "SFD-089",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E5 P1 M4, tags Mech/Yordle/Rumble/Bandle City. 'Your Mechs have +1 Might (including me). When I hold, play a 3 Might Mech unit token to your base.' 383.4.d.2.a requires him to be PRESENT at the battlefield being Held, and 470 caps Scoring at once per battlefield per turn, so this is one token per turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine",
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Mind: both cards carry a single domain, so 103.1.b.3 puts them inside any Domain Identity containing Mind. No legend constraint at all.",
+          "A battlefield you control with Rumble standing on it, not yet scored this turn (469.2 Hold, 315.2.b.2 'The Turn Player Holds all Battlefields they Control', 470)."
+        ],
+        "notable": [
+          "THE ISSUE'S OPEN READING IS CLOSED BY RULES TEXT, AND NO R-NUMBER WAS FILED. #117 filed as its refutation risk the question of whether a keyword granted by ANOTHER permanent's static ability is on the token early enough for 817.1.c's trigger. 383.2.c settles it: 'The Condition of a Trigger is evaluated after a potentially inciting event has been processed' — the token is already on the board, with Forecaster's continuous grant applying to it, when the evaluation happens. 383.2.c.1 is the explicit form ('it is evaluated and subsequently triggered if it enters that zone at the same time that its Trigger's condition is met', worked example Immortal Phoenix), and 817.3 is what lets a grant put Vision on a permanent at all.",
+          "THE TOKEN IS A MECH BY RULE, NOT BY GUESS. 187.4: 'A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag.' Rumble's own static then makes it 4 Might. 143.4 makes it enter exhausted at your base, so #48's walk-to-the-battlefield bottleneck is untouched by this entry — the product is the filter, not the board.",
+          "IT NEVER BURNS OUT, AND IT NEVER TUTORS. 436.4.a ('will not perform a Burn Out as a result of Predicting with too few cards') and 431.1.c cover the empty-deck case, so this runs inside a deck-empty shell. And 416.1.a / 416.5 send a recycled card to the BOTTOM: one look at the top, never a search, never a thinning.",
+          "SECOND INSTANCE, AND ITS TRAP: OGN-100 Gemcraft Seer (Mind, E3 P1 M3) prints '[Vision] ... Other friendly units have [Vision]', so a Mech token carries Forecaster's grant AND hers — 817.2, 'Multiple instances of Vision trigger separately', is two Predicts. 817.2.b is the limit and it is printed: 'If the player does not recycle the top card and nothing else happens in between the triggers resolving, each instance of Vision will see the same card.' The second look is worth something only when you recycled on the first. Third card, so notable rather than uses.",
+          "VARIANT 1b, AND THE LEGEND #117 LEFT FOR THE WALK: SFD-021 Ferrous Forerunner (Fury, E6 P1 M6) reads '[Deathknell] — Play two 3 Might Mech unit tokens to your base', which is two separate Vision triggers off one death (808.1.c + 817.2). It needs a Fury/Mind legend; grepping every legend line gives exactly three (OGN-247 Daughter of the Void, SFD-181 Mechanized Menace, UNL-181 Virtuoso) and SFD-181's own text is about Mechs. It is once per copy that dies, not once per turn, which is why it rides here instead of being a second entry.",
+          "KARMA IS A RIDER AND IS CAPPED WHERE #106 SAID. OGN-235 Karma, Channeler (Order) is the pool's only general 'when you recycle one or more cards to your Main Deck' payoff. Under a Mind/Order legend she buffs off each Vision recycle, but 702.3 / 702.3.a allow one Buff per unit and the Hold mints exactly ONE new unbuffed body per turn — so two Vision instances place one buff, not two. Third card plus a legend constraint: notable, never uses.",
+          "OTHER MECH FAUCETS, ALL PRICED IN CARDS: SFD-019 Assembly Rig, SFD-076 Production Surge, VEN-051 Iterative Design and VEN-087 Hextech Disc each mint a Mech token, so each one is another Vision trigger — but each costs a card or an exhaust, so none of them makes this repeat inside a turn. Rumble's Hold is the only free faucet."
+        ]
+      },
+      "steps": [
+        "Play Forecaster (2 Energy). Its own arrival already predicts — the reminder text reads 'When you play us', and 383.2.c evaluates the trigger after Forecaster is on the board with its own grant live.",
+        "Play Rumble, Scrapper (5 Energy + 1 Mind Power) and walk him to a battlefield. Establishing Control there is the entry's real setup cost (190.4, 348.2.a).",
+        "Each Beginning Phase, 315.2.b.2 Holds every battlefield you control. Rumble is present at one of them, so 383.4.d / 383.4.d.1 put his Hold Effect on the chain and it plays a 3 Might Mech unit token to your base (4 Might, by his own static).",
+        "The token entering the Board is 817.1.c's trigger. Vision resolves: look at the top card of your Main Deck and recycle it or leave it (436.1). 416.1.a / 416.5 put a recycled card on the bottom.",
+        "Repeat every turn you keep that battlefield. Nothing is spent: the point from the Hold, the body and the filter all come off the same trigger."
+      ],
+      "netPerIteration": "+1 four-Might Mech body at your base and +1 free look at the top of your deck (2 looks with Gemcraft Seer out), for 0 Energy and 0 Power, on every Hold",
+      "terminatesIn": "engine only — one Hold a turn is the faucet, so there is no repeat step inside a turn; the filter never draws a card and the tokens are born exhausted at the base",
+      "sources": [
+        {
+          "title": "Riot gallery card text (data/corpus_flat.txt, 2026-09-04, errata applied)",
+          "kind": "riot",
+          "date": "2026-09-04",
+          "quote": "SFD-065 | Forecaster | Unit | Mind | E2 M2 | Your Mechs have [Vision]. (When you play us, look at the top card of your Main Deck. You may recycle it.) [Tags: Mech, Yordle, Bandle City] / SFD-089 | Rumble, Scrapper | Unit | Mind | E5 P1 M4 | Your Mechs have +1 :rb_might: (including me). When I hold, play a 3 :rb_might: Mech unit token to your base. [Tags: Mech, Yordle, Rumble, Bandle City] / OGN-100 | Gemcraft Seer | Unit | Mind | E3 P1 M3 | [Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.) Other friendly units have [Vision]. [Tags: Mount Targon] / SFD-021 | Ferrous Forerunner | Unit | Fury | E6 P1 M6 | [Deathknell] — Play two 3 :rb_might: Mech unit tokens to your base. (When I die, get the effect.) [Tags: Mech, Yordle, Bandle City] / SFD-181 | Mechanized Menace | Legend | Fury/Mind | - | Your Mechs have [Shield]. (+1 :rb_might: while they're defenders.) [Tags: Rumble]"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "383.2.c The Condition of a Trigger is evaluated after a potentially inciting event has been processed. / 383.2.c.1 If a Game Object has a Triggered Ability that is active in a specific zone, it is evaluated and subsequently triggered if it enters that zone at the same time that its Trigger's condition is met. / 817.1.c The trigger is the permanent entering the Board. / 817.2 Multiple instances of Vision trigger separately. / 817.2.b If the player does not recycle the top card and nothing else happens in between the triggers resolving, each instance of Vision will see the same card. / 817.3 Vision, and whether or not a permanent has Vision, is a characteristic of the permanent and may be checked or referenced by other Game Effects. / 187.4 A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag. / 436.1 Predicting a card is the act of looking at a single card from the top of the Main Deck and choosing whether or not to Recycle it. / 436.4.a The Player will not perform a Burn Out as a result of Predicting with too few cards in their deck. / 383.4.d.2.a The Hold Abilities of Units are put on the Chain as Pending Items after the Unit these effects correspond to are present at a Battlefield when a player maintains control of it and Gains 1 Victory Point during their Beginning Phase from Holding. / 702.3 There can only be one Buff on a Unit at a time."
+        },
+        {
+          "title": "Deck-manipulation lens — issue #117 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/117",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue117-deck-manipulation.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue117-deck-manipulation.md), issue #117 candidate 1. The candidate is real and the class is ENGINE. THE WALK'S CONTRIBUTION IS THE CITATION THE ISSUE COULD NOT FIND: #117 recorded finding 2 as 'an open reading with no live exploit' and listed the granted-keyword timing under 'what refutes it'. 383.2.c and 383.2.c.1 answer both without a new R-number — a Trigger's Condition is evaluated AFTER the inciting event is processed, and a Triggered Ability active in a zone triggers on the very event of entering that zone. Also added by the walk: 187.4 (the token carries the Mech tag by rule); Riot's reminder text saying 'us' rather than 'them', which is the card admitting Forecaster's grant reaches Forecaster; OGN-100 Gemcraft Seer as a second stacking instance under 817.2 WITH its 817.2.b limit; SFD-181 Mechanized Menace as the Fury/Mind legend #117 explicitly left for the walk; and Karma capped at one buff per new body by 702.3 / 702.3.a, exactly as #106 found. Card text verbatim from data/corpus_flat.txt; the Fury/Mind legend census is a grep of every '| Legend |' line. Ban check against data/legality.json: none of SFD-065, SFD-089, SFD-021, SFD-181, OGN-100, OGN-235 appears in any entry, in either format. Trap check: no attack designation, so 807.1.d / 383.4.e never arise; no [Repeat]; no recall; no Gold; no token is ever recycled, so 185 / 186.1 / 416.1 never bite; no battlefield of its own, so 485.5 / 103.4.c never arise. Depends on no unruled reading."
+    },
+    {
+      "id": "diana-lunari-showdown-scry",
+      "name": "Diana, Lunari × Undertitan — the only Predict in the pool that ends in a Reveal, so the deck can pay you back at every showdown",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-079",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E3 M3. 'When a showdown begins here, you may pay 1 Energy to [Predict], then reveal the top card of your Main Deck. If it's a spell, draw it.' The only card in the pool that chains a Predict (436.1, a look) into a Reveal (424.1, a public presentation) — which is exactly the gap #117's finding 1 closes for Predict and Vision on their own."
+        },
+        {
+          "card": "SFD-175",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "DECK",
+          "note": "Order unit, E6 P1 M5. 'As I'm revealed from your deck, [Add] 2 Energy.' The pool's ONLY reveal-from-your-deck payoff — a grep of the corpus for 'revealed' returns five cards (OGN-018, OGN-121, SFD-175, UNL-051, UNL-169) and this is the one. 385.2 is why an ability on a card still in the Main Deck functions: 'Triggered Abilities outside of the Board will self-describe their context.' Three copies because 103.2.b allows three and each is worth one trip to the top."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Diana is mono-Mind and Undertitan mono-Order, so 103.1.b.3 admits both to any Mind/Order identity. Grepping every legend line, that is exactly four: OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity - Starter, SFD-201 Chem-Baroness, UNL-199 Deceiver.",
+          "Diana standing at a battlefield. Her trigger says 'here', and a unit is at one location, so only showdowns at HER battlefield count."
+        ],
+        "notable": [
+          "THE ENERGY IS A BASE COST PAID AT FINALIZATION, SO YOU MUST BANK IT BEFORE YOU MOVE. 383.3.b: a cost 'immediately following the \"you may\" ... that appears as the first part of the effect ... is treated as the base cost of the Triggered Ability', and 383.3.b.1: 'The cost must be paid in order to finalize the Triggered Ability to the Chain.' (383.3.b's second worked example, Insightful Investigator's 'You may pay 2 XP', is the contrast: not first in the effect, therefore paid on resolution.) 453 performs a Cleanup the moment the Move completes, 323.8 stages the Showdown and 323.12 begins it inside that same Cleanup, and 312.2 grants Priority at four times of which a Cleanup is none — so there is NO window between the move and the finalization. Add the Energy first; 167 keeps it, since the pool empties only at the start of a Main Phase and the end of a turn.",
+          "IT FIRES ON THE OPPONENT'S TURN TOO, AND THERE THE ENERGY COSTS A RUNE. 461.3 and 464 ('Step 1: The Combat Showdown Step') / 464.2 make every Combat open with a Combat Showdown, so an attack into Diana's battlefield triggers her. Your pool is empty at the start of their turn (167), but 164.2.a gives every Basic Rune '[E]: [Reaction] — Add [1]' and 813.1.c.2 lets a Reaction ability be activated 'during Closed States on any player's turn' with 312.2.c / 312.2.d granting the Priority — so bank it in any earlier Closed State of their turn. The rune then stays exhausted until your own Awaken (315.1.b). With no such window, the 'may' is simply declined and 383.3.a.2 removes the trigger.",
+          "#117's REASON FOR 'NOT ONCE PER TURN' IS WRONG; THE CONCLUSION SURVIVES ON A DIFFERENT RULE. The issue argued from showdowns being reopenable 'at different battlefields'. Diana's trigger says 'here'. On your own turn the count is near one anyway: 190.3.a.1 applies Contested only 'if that battlefield is not already Contested and that Unit's controller does not already control that battlefield', and 348.2.a hands you Control at the close. What makes it more than once per turn cycle is the opponent's attacks (461.3 / 464.2). And 323.14 caps the other direction: a Non-Combat Showdown that escalates BECOMES a Combat Showdown — it does not begin a second one, so no double trigger.",
+          "UNDERTITAN ON TOP IS ONE ADD, NOT A STANDING TAX. 424.1.a.2 keeps a revealed card in the deck, which tempts a 'leave it on top and reveal it again next showdown' line. 315.4.b kills it: '1. The Turn Player draws 1', every turn, unconditionally — a card left on top is in your hand by your next Draw Phase. Each copy is worth at most one Add per trip to the top. 429.2 makes the Add resolve as soon as it is finalized; 167 decides how long it lives (spendable that Main Phase on your turn, Reactions only on theirs).",
+          "IT IS TWO LOOKS, NOT A SEARCH, AND THAT IS THE WHOLE CLAIM. Predict first: if the top card is a spell, leave it and the Reveal draws it; if not, recycle it to the BOTTOM (416.1.a / 416.5) and the Reveal shows a fresh card. So one Energy buys two chances, the second informed by the first — which is what separates this from the blind reveals it shares a payoff with. Per #117's finding 4 nothing in this lens turns that probability into a certainty: no card in the pool searches the Main Deck for a named card.",
+          "OVERLAP, DECLARED. reksai-undertitan-reveal (SFD-170 + 3x SFD-175) and void-rush-undertitan-accelerate (SFD-188 + SFD-175 + SFD-029 + SFD-018) already use Undertitan. Both are blind reveals inside a Void shell on your own attack; this is an informed reveal inside Mind/Order that also fires on the opponent's turn. Same payoff card, different shells.",
+          "SAFE IN A DECK-EMPTY SHELL: 436.4.a (Predicting with too few cards does not Burn Out) and 431.1.c (looking or revealing in excess does not Burn Out) both apply; only the mandatory 315.4.b draw can burn you, and that is not this card."
+        ]
+      },
+      "steps": [
+        "Play Diana, Lunari (3 Energy) and get her to a battlefield.",
+        "BEFORE moving anything that will open a showdown there, put 1 Energy in your Rune Pool — 383.3.b makes it the trigger's base cost and 383.3.b.1 makes it payable only at finalization, with no Priority window inside the Cleanup that opens the showdown (312.2, 453, 323.12).",
+        "Move into the battlefield (or let the opponent attack into it). 190.3.a applies Contested; 323.8 stages the Showdown; 323.12 or, when their units are there, 461.3 / 464.2 open it as a Combat Showdown. Either way a showdown BEGINS at Diana's location.",
+        "Her trigger finalizes for 1 Energy. Predict 1 (436.1): look at the top card. If it is a spell, leave it. If it is Undertitan, leave it. Otherwise recycle it to the bottom (416.1.a, 416.5).",
+        "Reveal the top card (424.1). If it is a spell, draw it. If it is Undertitan, 385.2 lets its ability work from the Main Deck and 429.2 Adds 2 Energy at once — net +1 Energy on the activation."
+      ],
+      "netPerIteration": "one free look plus one revealed card per showdown at Diana's battlefield, for 1 Energy: a free draw whenever the revealed card is a spell, and +2 Energy (net +1) whenever it is an Undertitan",
+      "terminatesIn": "engine only — capped by how many showdowns open at Diana's own battlefield (roughly one per player's turn), and each Undertitan is worth one Add before 315.4.b draws it into your hand",
+      "sources": [
+        {
+          "title": "Riot gallery card text (data/corpus_flat.txt, 2026-09-04, errata applied)",
+          "kind": "riot",
+          "date": "2026-09-04",
+          "quote": "UNL-079 | Diana, Lunari | Unit | Mind | E3 M3 | When a showdown begins here, you may pay :rb_energy_1: to [Predict], then reveal the top card of your Main Deck. If it's a spell, draw it. (To Predict, look at the top card of your Main Deck. You may recycle it.) [Tags: Diana, Mount Targon] / SFD-175 | Undertitan | Unit | Order | E6 P1 M5 | When you play me, give your other units +2 :rb_might: this turn. As I'm revealed from your deck, [Add] :rb_energy_2:. [Tags: The Void]"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "383.3.b If a Triggered Ability contains a cost within instructions at the beginning of the effect or immediately following the 'you may' or 'they may' that appears as the first part of the effect, that cost is treated as the base cost of the Triggered Ability. / 383.3.b.1 The cost must be paid in order to finalize the Triggered Ability to the Chain. / 424.1 Revealing is the act of presenting a card to all players from a zone that one or more players do not have access to the information of. / 424.1.a.2 Cards remain in the zone they are being Revealed from. / 385.2 Triggered Abilities outside of the Board will self-describe their context. / 436.1 Predicting a card is the act of looking at a single card from the top of the Main Deck and choosing whether or not to Recycle it. / 461.3 If a Combat and Showdown are staged at the same Battlefield and the turn player initiates the Showdown, it will open as a Combat Showdown. / 464.2 When Combat opens, it either opens with a Combat Showdown, or the current Showdown becomes a Combat Showdown. / 323.14 10a. If the current state is Showdown Open State and Combat is Staged at a Battlefield where there is a Non-Combat Showdown ongoing, that Showdown becomes a Combat Showdown. / 167 Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn. / 164.2.a [E]: [Reaction] — Add [1]. / 813.1.c.2 On Activated Abilities: 'This can be activated during Closed States on any player's turn.' / 315.4.b 1. The Turn Player draws 1. / 429.2 Triggered and activated abilities that Add resources resolve as soon as they are finalized."
+        },
+        {
+          "title": "Deck-manipulation lens — issue #117 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/117",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue117-deck-manipulation.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue117-deck-manipulation.md), issue #117 candidate 3. The candidate is real and the class is ENGINE, but THE ISSUE'S REASONING NEEDED THREE CORRECTIONS. (1) It argued the ability is not once-per-turn because 'a showdown can be reopened multiple times per turn at different battlefields'; Diana's trigger says 'here' and a unit is at one location, so what actually makes it repeat is 461.3 / 464.2 — every Combat opens with a Combat Showdown, including the opponent's attacks — while 323.14 stops a Non-Combat Showdown that escalates from counting twice. (2) The issue never priced the Energy: 383.3.b makes it the BASE COST of the triggered ability and 383.3.b.1 makes it payable only at finalization, so it must be in the pool before the move that opens the showdown (no Priority inside a Cleanup: 312.2, 453, 323.12), and on the opponent's turn it must be banked in an earlier Closed State (164.2.a + 813.1.c.2 + 167). (3) The tempting 'leave Undertitan on top and reveal it every showdown' line dies to 315.4.b's mandatory draw, so each copy is worth one Add. What the issue got right and the walk confirmed: Diana IS the only card that chains a Predict into a Reveal, and 424.1 + 385.2 make that Reveal fire Undertitan's ability from the Main Deck; a corpus grep for 'revealed' returns five cards and SFD-175 is the pool's only reveal-from-your-deck payoff. Card text verbatim from data/corpus_flat.txt; the Mind/Order legend census is a grep of every '| Legend |' line. Ban check against data/legality.json: neither UNL-079 nor SFD-175 appears in any entry, in either format. Trap check: the showdown route respects #58 — no Attacker designation is claimed and nothing here scores; no [Repeat]; no recall; no token; no battlefield of its own, so 485.5 / 103.4.c never arise. Depends on no unruled reading."
     }
   ]
 }
