@@ -7004,7 +7004,8 @@
           "Points per Hold: 1 + (1 + T) x (1 + S), T = Trinity Forces on Ahri, S = Svellsongur on Ahri. T=3, S=1 gives 9 from zero for 21 Energy and 6 Power spread over several turns; the Hold turn itself costs nothing. T=3, S=0 gives 5 and T=2, S=1 gives 7, so the declared board is the cheapest that clears 8.",
           "Attach the three Trinity Forces FIRST and Svellsongur LAST. The copy then measures 1 + 3 = 4 under both available readings — 725.1's literal \"can be processed as it Attaches\" and R6 = A's continuous one — so this entry stands on no open question. A second Svellsongur on the same body would (two copies on one unit read each other), which is why there is exactly one.",
           "The first BURST in this catalogue that reaches 8 without Blue Sentinel or Red Brambleback: the other nine all use one of the two, and the grep of \"trigger an additional time\" finds only three multipliers in the whole pool (UNL-087 hold, UNL-029 conquer, OGN-236 Deathknell). Neither hold nor conquer multiplier is in Calm/Body, so the Equipment is the entire multiplier — and this is the first entry of either burst class in that identity.",
-          "One point of failure: four Equipment on one body. Ahri ends at 4 + 2 + 2 + 2 + 0 = 10 Might, and 435.4.b leaves the Equipment at the location if she goes. SFD-051 Guardian Angel (Calm, 2 Energy) is the insurance inside the identity, and 136.2.d's own worked example is its text."
+          "One point of failure: four Equipment on one body. Ahri ends at 4 + 2 + 2 + 2 + 0 = 10 Might, and 435.4.b leaves the Equipment at the location if she goes. SFD-051 Guardian Angel (Calm, 2 Energy) is the insurance inside the identity, and 136.2.d's own worked example is its text.",
+          "SFD-055 NEEDLESSLY LARGE YORDLE IS NOT FREE OFF THIS BOARD, AND THE ARITHMETIC IS RECORDED HERE SO IT IS NOT RE-DERIVED (walk of issue #115, 2026-09-06). Its text is 'I cost 2 Energy + 1 Calm Power less for each point you scored from HOLDING this turn', and the timing does work: 315.2.b.2 holds in the Scoring Step of the Beginning Phase, 383.4.d.2.a puts the Hold Abilities on the chain there, and 312.2.a gives Priority only 'in a Neutral Open State during their Main Phase', which is strictly later — so the discount always sees the turn's Hold points already banked. But the MAGNITUDE is one point, not nine. 468 defines Scoring as gaining a point through seizing or maintaining control of a Battlefield, 469 lists exactly two ways to Score (Conquer, Hold) and 470 caps it at once per Battlefield per turn; R2 = A makes card-text 'score 1 point' a GAIN by ability under 194.1.c rather than a 469 Score, which is the whole reason this entry reaches 9 past 470's cap. So of the nine points here exactly one is 'scored from holding'. The Yordle costs 10 - 2 = 8 Energy and 3 - 1 = 2 Calm Power, and the Duel ceiling is two Holds (485.4: Battlefield Count 2), i.e. 6 Energy + 1 Calm Power. It is also mono-Calm, so it is legal in this identity — it is simply not a free rider. Nothing in this entry's uses, class or quantities depends on it."
         ]
       },
       "steps": [
@@ -17862,6 +17863,162 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue111-order-buff-economy.md), the single candidate of issue #111. The candidate's mechanism and its non-scoring verdict both survive; the walk ADDS TWO THINGS THE HUNT DID NOT HAVE. First, 144.3: the army arrives in ONE game action with one shared destination, not one unit at a time — and 144.4.a.1 counts OTHER PLAYERS, so in a Duel (485.1: 2 players) it cannot bind at all, which 447.2.a confirms by opening with 'In Modes of Play with more than two players'. Second, the two-turn delay the issue treats as structural is optional: SFD-171 Renata Glasc, Industrialist is mono-Order and legal here by 103.1.b.3, and a token that enters ready pays 144.2's exhaust cost the turn it is minted. The class is ENGINE and deliberately not INFINITE: the unbounded stock is the token-body-engine lux-infinite-energy already produces, and Sett is a readout of it, the shape azir-sovereign-token-gather already carries. Sett's self-count ('for each buffed friendly unit', with no 'other', against OGN-151 / OGN-223 / OGN-139 which all say 'other') is left unresolved ON PURPOSE: the declared line never buffs him, so no numbered reading was filed. Card text verbatim from data/corpus_flat.txt. Citations opened: 054.2, 103.1.b.1-b.4, 103.2.b, 143.4, 144.1.a, 144.2, 144.3, 144.3.a-c, 144.4, 144.4.a, 144.4.a.1, 185.2.b, 185.2.d, 190.1, 194.1, 312.2.a, 355.2, 355.2.a, 355.2.b, 415.3.a, 420.3.a, 447.2.a, 465.2.c, 465.2.c.3, 469.1, 469.2, 485.1, 485.4, 485.5, 489.8.e, 702.2.a, 702.3, 702.3.a, 703, 705, 740.1.a, 805.1.a, 815.1.b, 815.1.c.2, 822.1.b. Ban check: none of OGN-240, OGN-235, SFD-171, OGN-223 carries a [BANNED marker. Trap check: no attack designation is claimed (the army walks to a battlefield you already control, so trap 1 never arises); no [Repeat]; no [Temporary]; no Gold; no recycled token (185 / 186.1); no battlefield of its own. Depends on no unruled reading."
+    },
+    {
+      "id": "blind-fury-kennen-deck-theft",
+      "name": "Blind Fury × Kennen — the pool's only theft from an opponent's deck, cast a second time out of your own trash",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-025",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury spell, E4 P2. '[Action] Each opponent reveals the top card of their Main Deck. Choose one and banish it, then play it, ignoring its cost. Then recycle the rest.' The only card in the pool that puts a card out of an OPPONENT'S Main Deck onto your board."
+        },
+        {
+          "card": "VEN-113",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E3 P1 M4. 'When you play me, [Burn 2]. When I conquer, give a spell in your trash [Flow] equal to its cost this turn.' The [Burn 2] can put Blind Fury in the trash for free; the conquer trigger is the pool's only renewable licence to cast it a second time."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "opponent-deck-pressure"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Chaos — OGN-251 Loose Cannon, OGS-017 Dark Child - Starter, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows. Blind Fury is mono-Fury and Kennen mono-Chaos (103.1.b.3), so the pair forces the identity and nothing else about the deck."
+        ],
+        "notable": [
+          "YOU PLAY IT AND YOU CONTROL IT, AND THE RULES SAY SO WITHOUT AN APPEAL TO A PARALLEL PRINTING. 191.2 makes you the Spell's Controller, 190.6.d is the rules' own statement that an implied 'you' resolves to a controller, and 191.1 — 'When a player Plays, Hides, or Creates a Card or other Game Object, they are established as that Game Object's Controller' — makes you the controller of whatever the spell plays. A stolen unit enters at your base or a battlefield you control (355.2.a) and exhausted (359.2.c).",
+          "THE STOLEN CARD NEVER JOINS YOUR RESOURCES, AND THE UNCHOSEN ONES GO HOME. 056 / 056.2: a card its owner brought can never enter another player's non-Board zone, so a stolen spell resolves into THEIR trash (157, 351.2) and a stolen unit you later lose dies into THEIR trash. 416.1.c: 'Each player Recycles cards to their own Main Deck and Rune Deck, regardless of which player is instructed to perform the Recycle action', so 'recycle the rest' returns each opponent's unchosen card to their own deck. In a Duel (485.1: 2 players) only one card is revealed and 'the rest' is empty; that clause is live only in 2v2.",
+          "DOMAIN IDENTITY DOES NOT GATE THE STEAL. 103.1.b.1 restricts 'Cards included in your deck'; a card in the opponent's deck is in nobody's deck of yours, and 'ignoring its cost' pays no domain Power. Any domain can land on your board this way.",
+          "IT NEVER BURNS THE OPPONENT OUT. Blind Fury reveals; it never draws and never mills. 431.1.c: an instruction to look at or reveal past the deck reveals as many as possible 'but does not Burn Out'; 431.1.c.1 extends that to the zone change of the revealed cards. Against an empty Main Deck nothing is revealed, the Choose step has no object, and 055 resolves the spell for nothing. 431.1.a (draw) and 431.1.b ([Burn N]) are the other two branches and neither is reached.",
+          "THE CEILING IS SIX PLAYS PER GAME, THREE OF THEM FREE OF A CARD, AND THAT IS WHY IT IS NOT INFINITE. 829.1.b ends the keyword with 'Then banish it' and 829.1.b.1 makes that a delayed replacement effect fired when the spell leaves the chain, so each copy can be re-flowed EXACTLY ONCE and is then in Banishment, out of reach of every recursion in the pool. 103.2.b caps the deck at 3 copies: 3 hand casts at 4 Energy + 2 Power plus 3 Flow casts at 4 Energy + 2 Power. The issue that opened this line described it as repeating once per conquer with no cap.",
+          "NO BETTER REPEAT EXISTS IN THE IDENTITY, MEASURED. Every Fury / Chaos 'from your trash' line was read: OGS-010 Annie, Stubborn returns a spell to hand on a PLAY trigger (3 more, 4 Energy + 1 Power each); OGN-252 Super Mega Death Rocket! returns only itself; VEN-022 Endless Riches grants 'You may play cards from your trash' and then banishes anything that would reach the trash from outside the Main Deck, so it too is one extra play per copy; OGN-196, OGN-198, SFD-150, UNL-142 and UNL-148 replay UNITS; SFD-140 Fizz caps at Energy cost 3 and Blind Fury is 4.",
+          "WHERE THE CONQUER COMES FROM. The minimal line takes it by attacking. OGN-286 Reckoner's Arena ('When you hold here, activate the conquer effects of units here') turns a Hold into that conquer with no attack — 383.4.g.1, whose worked example is Reckoner's Arena by name, and Kennen carries no non-conquer condition so its last sentence does not exclude him. It is NOT in uses because a battlefield is one of three and drawn at random (485.4.a, 485.5, 103.4.c), and requiring it would make the matcher demand a card that may never be on the table.",
+          "VEN-098 Stargazer ('Spells with [Flow] you play from your trash cost 2 Energy less, to a minimum of 1 Energy') takes the Flow cast to 2 Energy + 2 Power; the Power is never discounted. 829.2 makes Flow a characteristic of the spell, which is what lets a Kennen-granted Flow qualify for a discount written for printed ones — the same step kennen-stargazer-arena-flow stands on.",
+          "OVERLAP, DECLARED. kennen-stargazer-arena-flow already pairs VEN-113 with VEN-098 under OGN-286 and produces a discounted spell out of YOUR trash each Hold. This entry shares only Kennen, names the spell, and produces something that entry does not: cards out of the OPPONENT'S deck."
+        ]
+      },
+      "steps": [
+        "Play Kennen, Storm of Shuriken (3 Energy + 1 Power). His play trigger [Burn 2] puts the top 2 of your Main Deck into your trash (431.1.b) and may put a Blind Fury there for free.",
+        "Cast Blind Fury from hand for 4 Energy + 2 Power. The opponent reveals the top card of their Main Deck; banish it and play it ignoring its cost — you are its controller (191.1). Blind Fury goes to your trash (351.2).",
+        "On a later turn Kennen conquers. His trigger gives a spell in your trash [Flow] equal to its cost this turn: Blind Fury, 4 Energy + 2 Power (2 Energy + 2 Power with Stargazer out).",
+        "829.1.b.2 — a Flow cast does not change when the spell may be played, so the Main Phase cast is legal even though the Flow was granted in your Beginning Phase if the conquer came from Reckoner's Arena. Steal a second card the same way.",
+        "The spell is banished as it leaves the chain (829.1.b.1). That copy is spent for the game; the next steal needs another of the three copies."
+      ],
+      "netPerIteration": "+1 card out of the opponent's Main Deck, played free, for 4 Energy + 2 Power (2 Energy + 2 Power with Stargazer), once per Kennen conquer",
+      "terminatesIn": "engine only — card advantage and deck denial, capped at 6 Blind Fury plays per game by 829.1.b.1 with 103.2.b; it scores nothing by itself",
+      "sources": [
+        {
+          "title": "Riot gallery card text (data/corpus_flat.txt, 2026-09-04, errata applied)",
+          "kind": "riot",
+          "date": "2026-09-04",
+          "quote": "OGN-025 | Blind Fury | Spell | Fury | E4 P2 | [Action] (Play on your turn or in showdowns.) Each opponent reveals the top card of their Main Deck. Choose one and banish it, then play it, ignoring its cost. Then recycle the rest. / VEN-113 | Kennen, Storm of Shuriken | Unit | Chaos | E3 P1 M4 | When you play me, [Burn 2]. When I conquer, give a spell in your trash [Flow] equal to its cost this turn."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "416.1.c Each player Recycles cards to their own Main Deck and Rune Deck, regardless of which player is instructed to perform the Recycle action. / 056 Cards a player owns may never be placed into a non-Board zone belonging to another player. / 191.1 When a player Plays, Hides, or Creates a Card or other Game Object, they are established as that Game Object's Controller. / 431.1.c If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction. / 829.1.b It is functionally short for “You may play this from your trash for its flow cost. Then banish it.”"
+        },
+        {
+          "title": "Scoring-text and free-play lens — issue #115 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/115",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue115-scoring-and-free-plays.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue115-scoring-and-free-plays.md), issue #115 §4. The mechanism survives and the class is ENGINE; TWO THINGS IN THE ISSUE WERE CORRECTED. (1) THE PRONOUN NEEDED NO PARALLEL PRINTING: the issue inferred that 'you' play the stolen card from a contrast with VEN-114 Kharox's explicit wording; 191.2 plus 190.6.d's implied-'you' sentence plus 191.1 settle it from the rules, and 191.1 also answers who controls the card afterwards. (2) THE REPEAT IS CAPPED AND THE ISSUE DID NOT SAY SO: 829.1.b / 829.1.b.1 banish the spell after every Flow play, so each of the 3 copies (103.2.b) is re-flowable exactly once — 6 plays per game, not an open-ended once-per-conquer engine. This catalogue had never cited 056, 056.2, 191.1 or 416.1.c; they are what make the theft one-way. Card text verbatim from data/corpus_flat.txt. Citations opened: 052, 055, 056, 056.2, 103.1.b.1, 103.1.b.2, 103.1.b.3, 103.2.b, 127.1, 157, 190.6.d, 191.1, 191.2, 351.2, 355.2.a, 359.2.c, 416.1, 416.1.a, 416.1.c, 416.4, 416.5, 427.1, 431.1.a, 431.1.b, 431.1.c, 431.1.c.1, 485.1, 485.4.a, 485.5, 829.1.b, 829.1.b.1, 829.1.b.2, 829.1.c.1, 829.2, 383.4.g.1. Ban check against data/legality.json: neither OGN-025 nor VEN-113 is banned or restricted in constructed or 2v2. Trap check: no attack designation is claimed for the minimal line beyond an ordinary conquer; no [Temporary]; no [Repeat]; no token is recycled or trashed, so 185 / 186.1 never arise; no Gold; no recall; the battlefield is named in notable only. Depends on no unruled reading."
+    },
+    {
+      "id": "baited-hook-sprite-queen-free-unit",
+      "name": "Baited Hook × Sprite Queen — the token that dies anyway buys a free 4-Might unit out of your deck, every turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-242",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order gear, E3. '1 Energy + 1 Order Power, exhaust: Kill a friendly unit. Look at the top 5 cards of your Main Deck. You may banish a unit from among them that has Might up to 1 more than the killed unit and play it, ignoring its cost. Then recycle the rest.' Gear enters ready (143.4 exhausts units; 359.2.d), so it works the turn it is played."
+        },
+        {
+          "card": "UNL-084",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind unit, E7 P1 M6. 'When you play me or at the start of your Beginning Phase, play a ready 3 Might Sprite unit token with [Temporary] to your base.' 187.2 makes the token 3 Might, which sets the Hook's fetch ceiling at Might 4."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order — OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity - Starter, SFD-201 Chem-Baroness, UNL-199 Deceiver. Baited Hook is mono-Order and Sprite Queen mono-Mind (103.1.b.3)."
+        ],
+        "notable": [
+          "THE ISSUE TRANSCRIBED THE COST WRONG, AND THE TOKEN QUESTION DOES NOT ARISE. The activation is 1 Energy + 1 Order Power + exhaust, and 'Kill a friendly unit' is the first sentence of the EFFECT, after the colon — not a cost. So 416.3 (Recycling as a Cost) and 203.3 (an impossible cost cannot be paid) are both inapplicable, and 185 ('Tokens are not cards') never bites: the Hook KILLS (428.1, a permanent going to the trash from the board) and 185.2.d makes a token follow all the rules of its type. The only Recycle in the card is of the four cards you looked at, from your own Main Deck to your own Main Deck (416.1.a, 416.1.c, bottom, random order 416.5).",
+          "THE FUEL IS FREE BECAUSE IT IS ALREADY DEAD. 816.1.b reads [Temporary] as 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this', and 816.1.c puts the Trigger Condition at the START of the Beginning Phase, which is why the Sprite born inside that window survives the turn it appears. During your Main Phase you always control exactly one 3-Might body that is going to die for nothing; Sprite Queen replays it next Beginning Phase whether it died on schedule or early. Feeding it to the Hook costs zero.",
+          "WHY 3 MIGHT MATTERS: THE FETCH CEILING IS THE KILLED UNIT'S MIGHT + 1. Order's own faucets are smaller — the whole corpus list is 1-Might Recruits (OGN-211, OGN-212, OGN-218, OGN-222, OGN-239, OGN-246, OGS-015, SFD-153, SFD-168, SFD-179, VEN-128), 1-Might Birds (UNL-153, UNL-160) and 2-Might Sand Soldiers (SFD-154, SFD-157), so mono-Order caps the fetch at Might 3 and only once per copy. Sprite Queen is the only repeating source of a 3-Might disposable body in the identity.",
+          "WHAT THE FREE UNIT IS WORTH, MEASURED OVER EVERY Mind-or-Order UNIT WITH MIGHT ≤ 4. The ceiling is OGN-226 Spectral Matron (Order, E4 P2 M4), whose own play trigger is a SECOND free body — 'you may play a unit costing no more than 3 Energy and no more than 1 rainbow Power from your trash, ignoring its cost' — once your trash holds one. UNL-087 Blue Sentinel (Mind, E4 P1 M4) is the other headline. Also at the ceiling: OGN-225 Solari Chief, OGN-239 Machine Evangel, UNL-169 Ashe Focused, SFD-089 Rumble Scrapper (all E5 P1 M4) and UNL-164 Safety Inspector (E5 P1 M3). So 1 Energy + 1 Order Power buys up to 4 Energy + 2 Power of unit, against the free floor of 2 Power a turn.",
+          "IT IS A FIVE-CARD DIG, NOT A TUTOR, AND THE ENTRY CLAIMS NOTHING MORE. If no unit of the right Might is in the top 5 the 'may' is declined and you have spent 1 Energy + 1 Order Power and the Sprite for a reshuffle of the top four to the bottom. It never Burns Out (431.1.c), even with fewer than 5 cards left.",
+          "ONCE PER TURN, WHICH IS WHY IT IS NOT INFINITE. 315.1.b readies the Hook only at Awaken; per #56's walk exactly five cards in the pool ready gear (VEN-149, VEN-150, SFD-221, OGN-162, VEN-068), so a second activation in one turn needs one of them.",
+          "RIDER, NOT AN INGREDIENT: OGN-246 Viktor, Leader ('When another non-Recruit unit you control dies, play a 1 Might Recruit unit token into your base') pays a permanent Recruit for every Sprite the Hook eats — 187.2 gives the Sprite the Fae tag, so it is a non-Recruit death. Third card, so notable rather than uses.",
+          "OVERLAP, DECLARED. viktor-leader-sprite-queen-free-bodies already uses UNL-084 and converts the Sprite's SCHEDULED death into a Recruit. This entry spends the same Sprite EARLY, in the Main Phase, for a card out of your own deck. They do not conflict — with Viktor out you get both off one kill — but the products are different.",
+          "Setup is slow and stated: Sprite Queen 7 Energy + 1 Power, Baited Hook 3 Energy. Sprite Queen must survive; nothing in the line protects her."
+        ]
+      },
+      "steps": [
+        "Play Baited Hook (3 Energy). It enters ready — 143.4 exhausts units, and 359.2.d puts non-unit gear on the board ready at your base.",
+        "Play Sprite Queen (7 Energy + 1 Power). Her play trigger gives the first ready 3-Might Sprite with [Temporary], at your base.",
+        "Each Beginning Phase: 315.1.b readies the Hook; the old Sprite dies (816.1.b) and a fresh ready Sprite is played. Both triggers are yours, so 383.3.d lets you order them.",
+        "In your Main Phase (312.2.a), pay 1 Energy + 1 Order Power and exhaust the Hook. Kill the Sprite — free, since 816.1.b was going to kill it at the start of your next Beginning Phase anyway.",
+        "Look at the top 5 of your Main Deck. Banish a unit among them with Might up to 4 and play it ignoring its cost: 355.2.a puts it at your base or a battlefield you control, 359.2.c exhausted. Recycle the other four to the bottom of your own deck (416.1.a, 416.1.c, 416.5)."
+      ],
+      "netPerIteration": "+1 unit of Might up to 4 from your own deck, played free, for 1 Energy + 1 Order Power and a token that was going to die anyway",
+      "terminatesIn": "engine only — one free body a turn plus a 5-card dig; the bodies still have to walk to a battlefield to be worth points",
+      "sources": [
+        {
+          "title": "Riot gallery card text (data/corpus_flat.txt, 2026-09-04, errata applied)",
+          "kind": "riot",
+          "date": "2026-09-04",
+          "quote": "OGN-242 | Baited Hook | Gear | Order | E3 | :rb_energy_1::rb_rune_order:, :rb_exhaust:: Kill a friendly unit. Look at the top 5 cards of your Main Deck. You may banish a unit from among them that has Might up to 1 more than the killed unit and play it, ignoring its cost. Then recycle the rest. / UNL-084 | Sprite Queen | Unit | Mind | E7 P1 M6 | When you play me or at the start of your Beginning Phase, play a ready 3 :rb_might: Sprite unit token with [Temporary] to your base. / OGN-226 | Spectral Matron | Unit | Order | E4 P2 M4 | When you play me, you may play a unit costing no more than :rb_energy_3: and no more than :rb_rune_rainbow: from your trash, ignoring its cost."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "187.2 A 3 [M] Sprite token with Temporary is a domainless unit token with 3 Might, the Fae tag, and the Temporary keyword. / 816.1.b It is functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this.\" / 816.1.c The Trigger Condition is the controller of the permanent's Beginning Phase starting. / 428.1 Killing is the action of a Permanent going to the trash from the board. / 185.2.d Tokens have a type. They follow all rules for their type unless otherwise specified. / 431.1.c If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction. / 359.2.d If it is a Non-Unit Gear, it enters the Board Ready at the player's Base."
+        },
+        {
+          "title": "Scoring-text and free-play lens — issue #115 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/115",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue115-scoring-and-free-plays.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue115-scoring-and-free-plays.md), issue #115 §5. The candidate is real and the class is ENGINE, but THE ISSUE GOT THE COST AND THE GATING RULES WRONG. It wrote the activation as a bare exhaust; the card charges 1 Energy + 1 Order Power + exhaust. It asked whether 185 / 416.1 / 416.3 / 203.3 stop a token paying the cost; they cannot, because 'Kill a friendly unit' sits AFTER the colon and is effect text, not cost — the Hook kills (428.1) and 185.2.d makes a token follow its type's rules. It also asked about 383.3.e.1 ('the first time each turn'), which this card does not print: the gate is the exhaust plus 315.1.b. THE WALK'S OWN CONTRIBUTION IS THE FUEL: the issue proposed 'a cheap 0/1-Might token', which caps the fetch at Might 2 and is close to worthless; UNL-084's [Temporary] Sprite is 3 Might (187.2), free, recurring, and already condemned by 816.1.b, so killing it early costs nothing and lifts the ceiling to Might 4 — which is exactly OGN-226 Spectral Matron (E4 P2) and UNL-087 Blue Sentinel (E4 P1). Card text verbatim from data/corpus_flat.txt; the Might ≤ 4 target list was computed over every unit in Mind ∪ Order in data/cards.json. Citations opened: 055, 103.1.b.1, 103.1.b.2, 103.1.b.3, 143.4, 185, 185.2.b, 185.2.d, 187.2, 203.3, 312.2.a, 315.1.b, 355.2.a, 359.2.c, 359.2.d, 383.3.d, 416.1, 416.1.a, 416.1.c, 416.3, 416.5, 427.1, 428.1, 431.1.c, 431.1.c.1, 816.1.b, 816.1.c. Ban check against data/legality.json: neither OGN-242 nor UNL-084 is banned or restricted in constructed or 2v2. Trap check: no attack designation; no [Repeat]; no recall; no Gold; the Sprite is KILLED, never recycled, so 185 / 186.1 / 416.1 never bite; no battlefield of its own, so 485.5 / 103.4.c never arise. Depends on no unruled reading."
     }
   ]
 }
