@@ -95,6 +95,32 @@ export function partnersOf(s: Synergy, cards: CardIndex): Card[] {
 }
 
 /**
+ * Copies of each base code the list holds, counting alt printings under other numbers as the same
+ * card and the legend as one copy of itself. The sideboard is excluded, matching what the deck
+ * panel says about matching.
+ */
+function ownedCopies(deck: Deck, cards: CardIndex): (base: string) => number {
+  const owned = new Map<string, number>();
+  for (const bag of [deck.main, deck.battlefields]) {
+    for (const [base, n] of Object.entries(bag)) {
+      for (const eq of cards.equivalents(base)) owned.set(eq, (owned.get(eq) ?? 0) + n);
+    }
+  }
+  if (deck.legend) owned.set(deck.legend, 1);
+  return (base) => owned.get(base) ?? 0;
+}
+
+/**
+ * Whether this deck could play a card at all: Domain Identity (103.1.b) caps it at its legend's two
+ * domains, and a card carrying a legality entry in the format being matched is never named — the
+ * same bar `src/plan.ts` holds card suggestions to, so nothing here recommends buying an illegal card.
+ */
+function playableUnder(deck: Deck, cards: CardIndex, format: Format): (base: string) => boolean {
+  const identity = new Set<Domain>(deck.legend ? cards.domainsOf(deck.legend) : []);
+  return (base) => cards.domainsOf(base).every((d) => identity.has(d)) && !cards.legality(base, format);
+}
+
+/**
  * Report the patterns a deck already runs: the anchor is in the list and so is at least one card
  * its predicate catches. Domain Identity (103.1.b) caps a deck at its legend's two domains, so
  * anything outside them is dropped even when the list somehow holds it, and a card banned in the
@@ -102,18 +128,8 @@ export function partnersOf(s: Synergy, cards: CardIndex): Card[] {
  */
 export function matchSynergies(deck: Deck, synergies: Synergy[], cards: CardIndex, opts: SynergyOptions): SynergyHit[] {
   if (!deck.legend) return [];
-  const identity = new Set<Domain>(cards.domainsOf(deck.legend));
-  const playable = (base: string) =>
-    cards.domainsOf(base).every((d) => identity.has(d)) && !cards.legality(base, opts.format);
-
-  const owned = new Map<string, number>();
-  for (const bag of [deck.main, deck.battlefields]) {
-    for (const [base, n] of Object.entries(bag)) {
-      for (const eq of cards.equivalents(base)) owned.set(eq, (owned.get(eq) ?? 0) + n);
-    }
-  }
-  owned.set(deck.legend, 1);
-  const copies = (base: string) => owned.get(base) ?? 0;
+  const playable = playableUnder(deck, cards, opts.format);
+  const copies = ownedCopies(deck, cards);
 
   const hits: SynergyHit[] = [];
   for (const s of synergies) {
@@ -130,4 +146,120 @@ export function matchSynergies(deck: Deck, synergies: Synergy[], cards: CardInde
 
   // Most partners first: a rule the list feeds from several angles is the one worth reading.
   return hits.sort((a, b) => b.partners.length - a.partners.length || a.synergy.id.localeCompare(b.synergy.id));
+}
+
+/** How many partners a rule names when the anchor is in the list and no partner is. */
+const SUGGEST_PARTNERS = 3;
+
+/** One card the list could add, with what it costs and whether the catalogue already uses it. */
+export interface SynergySuggestion {
+  /** Base code to add. */
+  card: string;
+  /** Energy plus Power printed on the card. A battlefield prints neither and reads 0. */
+  cost: number;
+  /** Battlefields cost one of the three battlefield slots instead of resources. */
+  battlefield: boolean;
+  /** True when a verified combo in the catalogue already uses this card. */
+  catalogued: boolean;
+}
+
+/**
+ * A rule the list is exactly one card short of: it holds the anchor and no partner, or partners and
+ * no anchor. Rules it holds neither half of are not gaps, they are the rest of the catalogue.
+ */
+export interface SynergyGap {
+  synergy: Synergy;
+  /** Which half is missing. "anchor" means one card switches on everything the list already holds. */
+  missing: "anchor" | "partner";
+  /** Cards to add, cheapest first: the anchor, or up to three partners. */
+  add: SynergySuggestion[];
+  /** Partners the list already holds, most copies first. Empty when the anchor is what it holds. */
+  partners: { card: string; copies: number }[];
+  /** Copies of the anchor the list holds. 0 when the anchor is the missing half. */
+  anchorCopies: number;
+  /** Partners this legend could play at all, held or not. Says how wide the rule is here. */
+  partnersAvailable: number;
+}
+
+export interface PlanSynergyOptions {
+  format: Format;
+  /** Base codes used by verified combos, so a suggestion can say the catalogue already walked it. */
+  catalogued?: ReadonlySet<string>;
+}
+
+/**
+ * Name the one card that would complete a pattern. `matchSynergies` only speaks when the list holds
+ * both halves, which is silence for most decks — the fixture that motivated this holds two Red
+ * Brambleback and no conquer effect, and heard nothing. This is the same job `planDeck` does for
+ * catalogued lines: price what is missing and rank it, never leaving Domain Identity (103.1.b) or
+ * suggesting a card that cannot be played in the format being matched.
+ *
+ * A missing anchor outranks a missing partner: one card there switches on every partner the list
+ * already holds, while a missing partner only opens the rule from one side.
+ */
+export function planSynergies(
+  deck: Deck,
+  synergies: Synergy[],
+  cards: CardIndex,
+  opts: PlanSynergyOptions,
+): SynergyGap[] {
+  if (!deck.legend) return [];
+  const playable = playableUnder(deck, cards, opts.format);
+  const copies = ownedCopies(deck, cards);
+  const held = (base: string) => Math.max(...cards.equivalents(base).map(copies));
+  const catalogued = opts.catalogued ?? new Set<string>();
+
+  const suggestion = (base: string): SynergySuggestion => {
+    const c = cards.get(base);
+    return {
+      card: base,
+      cost: (c?.energy ?? 0) + (c?.power ?? 0),
+      battlefield: !!c?.type.includes("battlefield"),
+      catalogued: cards.equivalents(base).some((eq) => catalogued.has(eq)),
+    };
+  };
+  // Cheapest first, but every battlefield behind every card. A battlefield prints no Energy and no
+  // Power at all, so on cost alone it would sweep the top of every list — and it is the opposite of
+  // cheap: a deck has three battlefield slots against forty main-deck ones, which is why #18 counts
+  // battlefield copies as their own currency instead of adding them to the price.
+  const byCost = (a: SynergySuggestion, b: SynergySuggestion) =>
+    Number(a.battlefield) - Number(b.battlefield) ||
+    a.cost - b.cost ||
+    (cards.get(a.card)?.name ?? a.card).localeCompare(cards.get(b.card)?.name ?? b.card);
+
+  const gaps: SynergyGap[] = [];
+  for (const s of synergies) {
+    if (!playable(s.anchor)) continue;
+    const anchorCopies = held(s.anchor);
+    const available = partnersOf(s, cards).filter((c) => playable(c.base));
+    if (available.length === 0) continue;
+
+    const partners = available
+      .map((c) => ({ card: c.base, copies: held(c.base) }))
+      .filter((p) => p.copies > 0)
+      .sort((a, b) => b.copies - a.copies || (cards.get(a.card)?.name ?? "").localeCompare(cards.get(b.card)?.name ?? ""));
+
+    // Both halves present is a hit, not a gap; neither half is two cards away, not one.
+    if (anchorCopies > 0 && partners.length > 0) continue;
+    if (anchorCopies === 0 && partners.length === 0) continue;
+
+    gaps.push({
+      synergy: s,
+      missing: anchorCopies === 0 ? "anchor" : "partner",
+      add: anchorCopies === 0
+        ? [suggestion(s.anchor)]
+        : available.map((c) => suggestion(c.base)).sort(byCost).slice(0, SUGGEST_PARTNERS),
+      partners,
+      anchorCopies,
+      partnersAvailable: available.length,
+    });
+  }
+
+  return gaps.sort((a, b) =>
+    // A missing anchor first, then the one that switches on the most cards already in the list.
+    Number(a.missing === "partner") - Number(b.missing === "partner") ||
+    b.partners.length - a.partners.length ||
+    b.anchorCopies - a.anchorCopies ||
+    (a.add[0]?.cost ?? 0) - (b.add[0]?.cost ?? 0) ||
+    a.synergy.id.localeCompare(b.synergy.id));
 }

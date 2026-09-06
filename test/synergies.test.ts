@@ -2,11 +2,12 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { loadDeck } from "../src/deck.js";
 import { loadCardIndex, loadCombos, loadSynergies } from "../src/load.js";
-import { matchSynergies, partnersOf, validateSynergies } from "../src/synergies.js";
+import { matchSynergies, partnersOf, planSynergies, validateSynergies } from "../src/synergies.js";
 
 const cards = loadCardIndex();
 const synergies = loadSynergies();
 const { combos } = loadCombos();
+const catalogued = new Set(combos.filter((c) => c.status === "verified").flatMap((c) => c.uses.map((u) => u.card)));
 const fixture = (n: string) => readFileSync(new URL(`./fixtures/${n}`, import.meta.url), "utf8");
 const constructed = { format: "constructed" as const };
 
@@ -121,5 +122,107 @@ describe("matching a deck", () => {
     const deck = loadDeck("3 Blue Sentinel\n3 Ahri, Alluring", cards);
     expect(deck.legend).toBeNull();
     expect(matchSynergies(deck, synergies, cards, constructed)).toEqual([]);
+  });
+});
+
+describe("one card away", () => {
+  const plan = (text: string, format: "constructed" | "2v2" = "constructed") =>
+    planSynergies(loadDeck(text, cards), synergies, cards, { format, catalogued });
+
+  it("answers the Fury deck that the matcher had nothing to say to", () => {
+    // The list holds 2x Red Brambleback and no Fury or Body conquer effect, so matchSynergies is
+    // silent on it. That silence is the whole issue: the deck is one card from the rule.
+    const deck = loadDeck(fixture("fury.txt"), cards);
+    expect(matchSynergies(deck, synergies, cards, constructed)).toEqual([]);
+
+    const gaps = plan(fixture("fury.txt"));
+    expect(gaps.length).toBeGreaterThan(0);
+    const brambleback = gaps.find((g) => g.synergy.id === "red-brambleback-conquer")!;
+    expect(brambleback).toBeDefined();
+    expect(brambleback.missing).toBe("partner");
+    expect(brambleback.anchorCopies).toBe(2);
+    expect(brambleback.add.length).toBeGreaterThan(0);
+  });
+
+  it("never names a card outside the legend's two domains", () => {
+    // Domain Identity, 103.1.b — the same bar test/plan.test.ts holds planDeck to.
+    for (const f of ["fury.txt", "lux.txt", "recruits.txt"]) {
+      const deck = loadDeck(fixture(f), cards);
+      const domains = cards.domainsOf(deck.legend!);
+      for (const g of plan(fixture(f))) {
+        for (const a of g.add) {
+          expect(cards.domainsOf(a.card).every((d) => domains.includes(d)), `${g.synergy.id} -> ${a.card}`).toBe(true);
+        }
+        expect(cards.domainsOf(g.synergy.anchor).every((d) => domains.includes(d)), g.synergy.id).toBe(true);
+      }
+    }
+  });
+
+  it("never suggests a card that cannot be played in the format being matched", () => {
+    // Stealthy Pursuer (OGN-177) is banned in constructed and this list runs three of it.
+    for (const g of plan(fixture("recruits.txt"))) {
+      for (const a of g.add) expect(cards.legality(a.card, "constructed"), a.card).toBeUndefined();
+      expect(g.add.map((a) => a.card)).not.toContain("OGN-177");
+      expect(g.partners.map((p) => p.card)).not.toContain("OGN-177");
+    }
+  });
+
+  it("reports a gap only when exactly one half is missing", () => {
+    const deck = loadDeck(fixture("lux.txt"), cards);
+    const hits = matchSynergies(deck, synergies, cards, constructed).map((h) => h.synergy.id);
+    const gaps = plan(fixture("lux.txt"));
+
+    // A rule the list already runs is a hit, not a gap: the two lists never name the same rule.
+    for (const g of gaps) expect(hits, g.synergy.id).not.toContain(g.synergy.id);
+    for (const g of gaps) {
+      if (g.missing === "anchor") {
+        expect(g.anchorCopies, g.synergy.id).toBe(0);
+        expect(g.partners.length, g.synergy.id).toBeGreaterThan(0);
+      } else {
+        expect(g.anchorCopies, g.synergy.id).toBeGreaterThan(0);
+        expect(g.partners, g.synergy.id).toEqual([]);
+      }
+    }
+  });
+
+  it("puts a missing anchor first, then the rule that switches on the most cards held", () => {
+    const gaps = plan(fixture("lux.txt"));
+    const rank = (m: string) => (m === "anchor" ? 0 : 1);
+    for (let i = 1; i < gaps.length; i++) {
+      const prev = gaps[i - 1]!, cur = gaps[i]!;
+      expect(rank(prev.missing)).toBeLessThanOrEqual(rank(cur.missing));
+      if (prev.missing === cur.missing && prev.missing === "anchor") {
+        expect(prev.partners.length).toBeGreaterThanOrEqual(cur.partners.length);
+      }
+    }
+  });
+
+  it("names at most three partners, cheapest first and every battlefield behind every card", () => {
+    for (const f of ["fury.txt", "lux.txt", "recruits.txt"]) {
+      for (const g of plan(fixture(f))) {
+        expect(g.add.length, g.synergy.id).toBeLessThanOrEqual(3);
+        if (g.missing === "anchor") expect(g.add.map((a) => a.card)).toEqual([g.synergy.anchor]);
+        for (let i = 1; i < g.add.length; i++) {
+          const prev = g.add[i - 1]!, cur = g.add[i]!;
+          expect(Number(prev.battlefield), `${g.synergy.id} -> ${cur.card}`).toBeLessThanOrEqual(Number(cur.battlefield));
+          if (prev.battlefield === cur.battlefield) expect(prev.cost).toBeLessThanOrEqual(cur.cost);
+        }
+      }
+    }
+  });
+
+  it("marks a suggestion the verified catalogue already uses, and leaves the rest unmarked", () => {
+    const gaps = plan(fixture("fury.txt"));
+    const wallop = gaps.find((g) => g.synergy.id === "wallop-buff-spend")!;
+    // OGN-146 Wallop is an ingredient of verified combos, so the mark is not decoration.
+    expect(wallop.add[0]!.card).toBe("OGN-146");
+    expect(wallop.add[0]!.catalogued).toBe(true);
+    // Without the set nothing is marked: the flag is data, not a guess about the card.
+    const unmarked = planSynergies(loadDeck(fixture("fury.txt"), cards), synergies, cards, constructed);
+    for (const g of unmarked) for (const a of g.add) expect(a.catalogued, a.card).toBe(false);
+  });
+
+  it("says nothing when the list names no legend, because identity is unknown", () => {
+    expect(plan("Main\n3 Red Brambleback\n2 Wallop")).toEqual([]);
   });
 });

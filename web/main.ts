@@ -7,7 +7,7 @@ import { generateVariants } from "../src/combos.js";
 import { deckRestrictions, isDeckCode, loadDeck, normalizeDeck, parseDeckText, type DeckEntry, type DeckRestriction } from "../src/deck.js";
 import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
 import { planDeck, type Route } from "../src/plan.js";
-import { matchSynergies, type SynergyHit } from "../src/synergies.js";
+import { matchSynergies, planSynergies, type SynergyGap, type SynergyHit } from "../src/synergies.js";
 import type { Card, Combo, Deck, Domain, Feature, Format, LegalityEntry, Synergy, Variant } from "../src/types.js";
 import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from "./graph.js";
 
@@ -16,6 +16,11 @@ const features = (featuresJson as { features: Feature[] }).features;
 const { entries: legality, retrieved: legalityRetrieved } = legalityJson as { entries: LegalityEntry[]; retrieved: string };
 const synergies = (synergiesJson as unknown as { synergies: Synergy[] }).synergies;
 const combosById = new Map(combos.map((c) => [c.id, c]));
+// Cards a verified combo already uses. A suggestion carrying one has a hand-walked line behind it,
+// which is a different kind of evidence from "the predicate caught its text".
+const cataloguedCards = new Set(combos.filter((c) => c.status === "verified").flatMap((c) => c.uses.map((u) => u.card)));
+/** Rules the "One card away" panel shows before it becomes a list of the catalogue. */
+const GAP_LIMIT = 5;
 const featuresById = new Map(features.map((f) => [f.id, f]));
 
 const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel)!;
@@ -39,6 +44,8 @@ const banBody = $<HTMLElement>("#bans-body");
 const banFoot = $<HTMLElement>("#bans-foot");
 const synergyPanel = $<HTMLElement>("#synergy");
 const synergyBody = $<HTMLElement>("#synergy-body");
+const gapPanel = $<HTMLElement>("#gaps");
+const gapBody = $<HTMLElement>("#gaps-body");
 
 const EXAMPLE = `Legend
 1 Lady of Luminosity - Starter
@@ -374,6 +381,63 @@ function renderSynergies() {
   synergyPanel.hidden = hits.length === 0;
 }
 
+/**
+ * The rules this list is ONE card short of. matchSynergies only speaks when a deck holds both
+ * halves, which is silence for most lists — and silence reads as "no synergies here" when the truth
+ * is "you are one card in". Same guarantee as the panel above, same Domain Identity and ban-list
+ * bar as the plan: nothing named here is outside the legend's two domains or illegal in the format.
+ */
+function renderGaps() {
+  if (!deck) { gapPanel.hidden = true; return; }
+  const gaps = planSynergies(deck, synergies, cards, { format: fmt(), catalogued: cataloguedCards });
+  const rest = gaps.length - GAP_LIMIT;
+  // Say how many were cut. #18 settled that the count itself is the honest signal, and a panel that
+  // silently truncates reads as "that is all there is".
+  gapBody.innerHTML = gaps.slice(0, GAP_LIMIT).map(gapRow).join("") +
+    (rest > 0 ? `<p class="gap-wide gap-rest">${rest} more rule${rest === 1 ? " is" : "s are"} one card away.</p>` : "");
+  gapPanel.hidden = gaps.length === 0;
+}
+
+/** House vocabulary for a card's price, matching the card drawer: "2 energy · 1 power". */
+function priceOf(base: string): string {
+  const c = cards.get(base);
+  if (!c) return "";
+  if (c.type.includes("battlefield")) return "one battlefield slot";
+  const bits = [c.energy !== null ? `${c.energy} energy` : "", c.power ? `${c.power} power` : ""].filter(Boolean);
+  return bits.length ? bits.join(" \u00b7 ") : "no cost";
+}
+
+function gapRow(g: SynergyGap): string {
+  const s = g.synergy;
+  const held = g.partners
+    .map((p) => `<button type="button" class="syn-card" data-card="${esc(p.card)}"><span class="syn-n">${p.copies}\u00d7</span> ${esc(name(p.card))}</button>`)
+    .join("");
+  const adds = g.add.map((a) => `<li>
+      <button type="button" class="syn-card gap-add" data-card="${esc(a.card)}">${esc(name(a.card))}</button>
+      <span class="gap-cost">${esc(priceOf(a.card))}</span>
+      ${a.catalogued ? `<span class="gap-tag">in a walked combo</span>` : ""}
+    </li>`).join("");
+  // The anchor's name is already on the add row below, so the lead does not repeat it.
+  const lead = g.missing === "anchor"
+    ? `Switches on ${g.partners.length} card${g.partners.length === 1 ? "" : "s"} this list already runs:`
+    : `The list runs ${g.anchorCopies}\u00d7 <strong>${esc(name(s.anchor))}</strong> and nothing the rule pairs it with. The cheapest that fit:`;
+  const rules = s.basis.rules.map((r) => `<span class="syn-ref">${esc(r)}</span>`).join("");
+  const readings = (s.basis.readings ?? []).map((r) => `<span class="syn-ref">${esc(r)}</span>`).join("");
+  return `<details class="syn gap">
+    <summary class="syn-sum">
+      <span class="syn-name">${esc(s.name)}</span>
+      <span class="gap-lead">${lead}</span>
+      ${g.missing === "anchor" ? `<span class="syn-pair">${held}</span>` : ""}
+      <ul class="gap-list">${adds}</ul>
+    </summary>
+    <div class="syn-open">
+      <p class="syn-why">${esc(s.why)}</p>
+      <p class="gap-wide">${g.partnersAvailable} card${g.partnersAvailable === 1 ? "" : "s"} in the pool fit this rule inside ${esc(pairLabel(asPair(cards.domainsOf(deck!.legend!))))}.</p>
+      <p class="syn-basis"><span class="syn-lab">Core Rules</span>${rules}${readings ? `<span class="syn-lab">Readings</span>${readings}` : ""}</p>
+    </div>
+  </details>`;
+}
+
 function synergyRow(h: SynergyHit): string {
   const s = h.synergy;
   const chip = (base: string, copies: number) =>
@@ -425,6 +489,7 @@ function render() {
   renderBans();
   renderPlan();
   renderSynergies();
+  renderGaps();
   showDetail(selected);
 }
 
@@ -573,7 +638,7 @@ planBody.addEventListener("click", (ev) => {
 });
 // A pair's card chip opens that card; the combo it descends from opens in the same drawer a combo
 // name would, which is the whole point of showing where the rule came from.
-synergyBody.addEventListener("click", (ev) => {
+for (const host of [synergyBody, gapBody]) host.addEventListener("click", (ev) => {
   const t = ev.target as Element;
   const card = t.closest<HTMLElement>("[data-card]");
   if (card?.dataset.card) { ev.preventDefault(); showCard(card.dataset.card); return; }
