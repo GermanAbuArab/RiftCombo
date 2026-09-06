@@ -195,3 +195,83 @@ describe("the two overlays and the keyboard", () => {
     expect(main).toContain("previewReturnFocus?.focus()");
   });
 });
+
+// --- the deckbuilder (#101) -------------------------------------------------------------
+/**
+ * The builder is 1030 buttons and two counters that change under the player's hands, so the three
+ * things it can silently get wrong are all here: a colour that carries meaning alone, a live region
+ * that is destroyed by the very update it announces, and a focus that falls off the page on a click.
+ */
+describe("the deckbuilder", () => {
+  const builder = read("web/builder.ts");
+
+  it("draws the cost curve in a tint that clears 3:1 on the panel it stands on", () => {
+    // A curve is data. --line-2 was tried first and measures 2.32:1 on --panel, under the ratio
+    // WCAG asks of a meaningful graphic; whatever token .curve-bar ends up using has to clear it.
+    const rule = css.split("\n").find((l) => l.trim().startsWith(".curve-bar {"));
+    expect(rule, ".curve-bar is gone — did the curve change shape?").toBeDefined();
+    const used = /fill:\s*var\(--([a-z0-9-]+)\)/.exec(rule!)?.[1];
+    expect(used, `.curve-bar must fill from a token, got: ${rule}`).toBeDefined();
+    expect(contrast(token(used!), token("panel"))).toBeGreaterThanOrEqual(3);
+  });
+
+  it("keeps the accent readable as text on a panel, which is where the Champion tag sits", () => {
+    expect(contrast(token("accent"), token("panel"))).toBeGreaterThanOrEqual(4.5);
+  });
+
+  /**
+   * A live region has to survive the update it announces. Both of these were written INSIDE the
+   * container that is replaced on every click, which destroys and rebuilds the element and announces
+   * nothing at all; they are now siblings of it, updated through textContent.
+   */
+  it("keeps the two counters out of the containers that are rebuilt", () => {
+    for (const id of ["pool-count", "bld-totals"]) {
+      expect(builder, `#${id} is not a live region`).toContain(`id="${id}" aria-live="polite"`);
+      expect(builder, `#${id} is rebuilt rather than updated`).toMatch(new RegExp(`#${id}"\\);\\n\\s*if \\(\\w+\\) \\w+\\.textContent`));
+    }
+    // The two containers that ARE replaced wholesale must not be the ones carrying the counters.
+    expect(builder).toContain('innerHTML = gridHtml()');
+    expect(builder).toContain('innerHTML = deckHtml()');
+    expect(builder).not.toMatch(/aria-live[^>]*>\$\{[^}]*gridHtml/);
+  });
+
+  it("puts the focus back on the control the click destroyed", () => {
+    // Clicking a pool cell replaces the grid, and with it the button that was pressed. Without this
+    // a keyboard lands on BODY after every single card added.
+    expect(builder).toContain("document.activeElement as HTMLElement | null");
+    expect(builder).toMatch(/if \(was\) \$<HTMLElement>\(was\)\?\.focus\(\)/);
+  });
+
+  it("walks the grid with the arrow keys instead of 1030 tab stops", () => {
+    expect(builder).toContain('ev.key.startsWith("Arrow")');
+    for (const k of ["ArrowRight", "ArrowLeft", "ArrowDown"]) expect(builder, k).toContain(k);
+  });
+
+  /**
+   * A cell at its cap stays focusable and says why — `disabled` would take it out of the tab order
+   * and leave a screen reader with no reason at all. The same attribute is what the click handler
+   * reads, so the two can never disagree.
+   */
+  it("marks a capped or off-domain cell aria-disabled, with the reason in its name", () => {
+    expect(builder).toContain('aria-disabled="${blocked}"');
+    expect(builder).toContain('aria-label="${esc(label)}"');
+    expect(builder).toContain('el.getAttribute("aria-disabled") === "true"');
+    expect(builder).not.toMatch(/class="pool-add"[^`]*\bdisabled\b(?!=)/);
+  });
+
+  it("gives a Construction mark a word beside it, since ✓ and ✗ are a shape and a colour", () => {
+    expect(builder).toContain('<span class="chk-mark" aria-hidden="true">');
+    expect(builder).toContain('<span class="sr-only">${WORD[r.status]}</span>');
+    expect(css).toMatch(/\.sr-only \{[^}]*clip-path/);
+  });
+
+  it("names the domain behind each coloured chip", () => {
+    // Six circles differing only in hue say nothing to a screen reader, and nothing to anyone who
+    // cannot tell Fury from Body. The name rides inside the button, the state in aria-pressed.
+    expect(builder).toContain('<span class="sr-only">${name}</span>');
+    expect(builder).toContain('aria-pressed="${filters.domains.includes(d)}"');
+    // Filled means selected, a ring means not: the state is a shape as well as a colour.
+    expect(css).toMatch(/\.dom-chip \{[^}]*background: transparent/);
+    expect(css).toMatch(/\.dom-chip\.on \{[^}]*background: currentColor/);
+  });
+});

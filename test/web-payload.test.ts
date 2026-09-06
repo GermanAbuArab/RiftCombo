@@ -30,4 +30,19 @@ describe("the card payload the browser downloads", () => {
       expect(WEB_CARD_FIELDS, `${f} is read by src/synergies.ts`).toContain(f);
     }
   });
+
+  /**
+   * The same trap, one layer over (#101). `Card.signature` arrived with #103 and the projection did
+   * not learn about it, so in the browser every card read as `signature: false`: 103.2.d's cap said
+   * "No Signature cards" for a deck holding four of them, 103.2.a.2 accepted Tibbers as a Chosen
+   * Champion, and the builder's [S] mark would never have appeared. Passing tests, wrong site.
+   */
+  it("carries the fields the construction rules and the builder read", () => {
+    for (const f of ["signature", "energy", "power", "might", "orientation", "image", "collectorNumber", "set"]) {
+      expect(WEB_CARD_FIELDS, `${f} is read by src/build.ts or src/builder.ts`).toContain(f);
+    }
+    const withSig = cards.cards.filter((c: { signature?: boolean }) => c.signature);
+    expect(withSig.length).toBe(51);
+    expect(withSig.filter((c: unknown) => (slimCard(c) as { signature?: boolean }).signature).length).toBe(51);
+  });
 });

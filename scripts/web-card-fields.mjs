@@ -8,7 +8,7 @@
 export const WEB_CARD_FIELDS = [
   "code", "base", "variant", "name", "set", "collectorNumber",
   "type", "domains", "energy", "power", "might", "mightBonus",
-  "text", "effect", "tags", "image", "orientation",
+  "text", "effect", "tags", "image", "orientation", "signature",
 ];
 
 /** Project one full card record onto the fields the browser gets. */

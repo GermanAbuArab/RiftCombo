@@ -1,24 +1,28 @@
 // My decks (#43): the library of saved lists, and the detail that edits one.
 //
 // Everything that can answer without a network lives in src/ and has tests — src/saved.ts for names and
-// ordering, src/build.ts for the construction rules, src/deck.ts for parsing, serialising and encoding.
-// This file is the DOM around them.
+// ordering, src/build.ts for the construction rules, src/deck.ts for parsing, serialising and encoding,
+// src/builder.ts for the caps a click respects. This file is the DOM around them.
 //
-// The editor re-renders the validation column on every keystroke but never the textarea itself: replacing
-// the box somebody is typing into loses the caret, the undo history and any IME composition in flight.
+// Since #101 the detail is the visual builder in `web/builder.ts`, not a textarea. What is STORED did
+// not change: a saved deck is still `text` + `name` + `format`, and the builder writes that same
+// plaintext on every click. Pasting is still how a list arrives, behind Import.
 
-import { checkBuild, LEGALITY_RULE, type BuildReport, type BuildRule } from "../src/build.js";
+import { checkBuild, LEGALITY_RULE, type BuildReport } from "../src/build.js";
 import { deckRestrictions, deckToText, encodeDeckCode, loadDeck, type DeckEntry } from "../src/deck.js";
-import { checkSave, savedSummary, sortSaved, MAX_NAME, type SavedDeck } from "../src/saved.js";
+import { checkSave, sortSaved, MAX_NAME, type SavedDeck } from "../src/saved.js";
 import type { CardIndex } from "../src/cards.js";
 import type { Deck, Domain, Format } from "../src/types.js";
 import { accountsEnabled, createDeck, deleteDeck, listDecks, onAccount, updateDeck, type Account } from "./supabase.js";
+import { builderHtml, initBuilder, openImport, openList, refreshBuilder } from "./builder.js";
 import { go, onRoute, type Route } from "./router.js";
 
 export interface DeckHooks {
   cards(): CardIndex;
   /** Open Combos with this list loaded, and name it in the strip above the deck input. */
   analyze(deck: SavedDeck): void;
+  /** The card modal the Combos view owns, so a name in the builder opens the card. */
+  showCard(base: string): void;
 }
 
 const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel)!;
@@ -48,12 +52,23 @@ export function initDecks(h: DeckHooks): void {
   host = $<HTMLElement>("#decks-host");
   host.addEventListener("click", onClick);
   host.addEventListener("submit", (ev) => {
-    // The import row is a form so Enter in the URL box works; it must never reload the page.
+    // The library's import row is a form so Enter in the URL box works; it must never reload the
+    // page. The builder's Import dialog is a form too (method="dialog", which closes it), so this
+    // only claims the one it owns.
+    if (!(ev.target as Element).classList.contains("decks-import")) return;
     ev.preventDefault();
     void guard(importFromPiltover);
   });
   host.addEventListener("input", onInput);
   host.addEventListener("change", onChange);
+  initBuilder(host, {
+    cards: () => hooks.cards(),
+    format: () => draft?.format ?? "constructed",
+    showCard: (base) => hooks.showCard(base),
+    onEdit: (text) => { if (draft) { draft.text = text; copied = false; refreshActions(); } },
+    saveLabel: () => (draft?.id ? "Update" : "Save"),
+    say: (msg) => { message = msg; const el = maybe<HTMLElement>("#decks-msg"); if (el) el.textContent = msg; },
+  });
 
   onAccount((next) => {
     account = next;
@@ -139,6 +154,8 @@ async function guard(fn: () => Promise<void>): Promise<void> {
 
 function render(): void {
   if (!accountsEnabled || !host || current.view !== "decks") return;
+  // The library reads best in a column; the builder needs the width of two.
+  host.classList.toggle("building", Boolean(account && current.deckId));
   host.innerHTML = !account ? "" : current.deckId ? detailView(current.deckId) : libraryView();
 }
 
@@ -277,36 +294,22 @@ function detailView(id: string): string {
     };
     confirmingDelete = false;
     copied = false;
+    openList(draft.text);
   }
 
   return `<nav class="detail-back"><a href="#/decks">← My decks</a></nav>
-  <div class="detail">
-    <section class="detail-edit">
-      <input id="deck-name" class="detail-name" type="text" maxlength="${MAX_NAME}" autocomplete="off" spellcheck="false"
-        placeholder="Name this deck" aria-label="Deck name" value="${esc(draft.name)}">
-      <fieldset class="segmented small" aria-label="Format">
-        <label><input type="radio" name="deck-format" value="constructed"${draft.format === "constructed" ? " checked" : ""}><span>Constructed</span></label>
-        <label><input type="radio" name="deck-format" value="2v2"${draft.format === "2v2" ? " checked" : ""}><span>2v2</span></label>
-      </fieldset>
-      <textarea id="deck-text" rows="18" spellcheck="false" autocomplete="off"
-        placeholder="Legend&#10;1 Lady of Luminosity - Starter&#10;&#10;Champion&#10;1 Lux, Illuminated&#10;&#10;Main Deck&#10;3 Forge of the Future&#10;…&#10;&#10;or a deck code: CMAAAAAAAAAACAQAABM5MAIA…">${esc(draft.text)}</textarea>
-      <p class="fine" id="deck-summary">${esc(summaryLine())}</p>
-      <p class="notice">Nothing is written to your account until you press ${saved ? "Update" : "Save"}. There is no auto-save.</p>
-      <div class="detail-acts" id="detail-acts">${actions()}</div>
-      <p class="acct-msg" id="decks-msg">${esc(message)}</p>
-    </section>
-    <aside class="detail-check">
-      <h2 class="plan-head">Construction</h2>
-      ${checkPanel()}
-      <p class="fine">Every row cites the paragraph it stands on, in Riot's Core Rules of 2026-07-16 and the Tournament Rules of the same date. A row marked <strong>unchecked</strong> is a rule this site can state but cannot verify from Riot's card data.</p>
-    </aside>
-  </div>`;
+  <div class="detail-top">
+    <input id="deck-name" class="detail-name" type="text" maxlength="${MAX_NAME}" autocomplete="off" spellcheck="false"
+      placeholder="Name this deck" aria-label="Deck name" value="${esc(draft.name)}">
+    <fieldset class="segmented small" aria-label="Format">
+      <label><input type="radio" name="deck-format" value="constructed"${draft.format === "constructed" ? " checked" : ""}><span>Constructed</span></label>
+      <label><input type="radio" name="deck-format" value="2v2"${draft.format === "2v2" ? " checked" : ""}><span>2v2</span></label>
+    </fieldset>
+  </div>
+  <p class="notice">Nothing is written to your account until you press ${saved ? "Update" : "Save"}. There is no auto-save.</p>
+  <p class="acct-msg" id="decks-msg">${esc(message)}</p>
+  ${builderHtml(actions())}`;
 }
-
-const summaryLine = (): string => {
-  if (!draft?.text.trim()) return "Plain lists, Piltover Archive exports, TTS dumps and deck codes all work.";
-  return `${savedSummary(draft.text, hooks.cards())} · plain lists, Piltover Archive exports, TTS dumps and deck codes all work.`;
-};
 
 const dirtyNow = (): boolean => {
   if (!draft) return false;
@@ -322,6 +325,7 @@ function actions(): string {
   return `<button type="button" class="primary" data-act="save"${dirtyNow() ? "" : " disabled"}>${saved ? "Update" : "Save"}</button>
     <button type="button" class="ghost" data-act="analyze"${hasText ? "" : " disabled"}>Analyze combos</button>
     <button type="button" class="ghost" data-act="export"${hasText ? "" : " disabled"}>${copied ? "Copied" : "Export deck code"}</button>
+    <button type="button" class="ghost" data-act="import">Import</button>
     ${saved
       ? confirmingDelete
         ? `<button type="button" class="linklike danger" data-act="delete-confirm">Delete for good</button>
@@ -330,51 +334,30 @@ function actions(): string {
       : ""}`;
 }
 
-const STATUS_WORD: Record<BuildRule["status"], string> = { pass: "ok", fail: "fix", unknown: "unchecked" };
-
-function checkPanel(): string {
-  if (!draft) return "";
-  const cards = hooks.cards();
-  const report = checkBuild(loadDeck(draft.text, cards), cards, draft.format);
-  // Label, state, then the citation on its own line: inline, "Main Deck of 40" and
-  // "103.2 · Tournament Rules 402.1" broke across each other at every width worth having.
-  const rows = report.rules.map((r) => `<div class="build-row ${r.status}">
-      <p class="build-label">${esc(r.label)}</p>
-      <span class="build-state">${STATUS_WORD[r.status]}</span>
-      <p class="build-rule">${esc(r.rule)}</p>
-      <p class="build-detail">${esc(r.detail)}</p>
-    </div>`).join("");
-  return `<p class="build-badge ${report.legal ? "ok" : "bad"}" id="build-badge">${report.legal ? "Legal" : "Illegal"}<span>${draft.format === "2v2" ? "2v2" : "Constructed"}</span></p>
-    <div class="build-rows">${rows}</div>`;
-}
-
-/** Update everything that reads the draft, WITHOUT touching the name box or the textarea. */
-function refresh(): void {
+/** The buttons and the message line, which is all this file still draws inside the editor. */
+function refreshActions(): void {
   const acts = maybe<HTMLElement>("#detail-acts");
   if (acts) acts.innerHTML = actions();
-  const summary = maybe<HTMLElement>("#deck-summary");
-  if (summary) summary.textContent = summaryLine();
-  const check = maybe<HTMLElement>(".detail-check");
-  if (check) {
-    const badge = check.querySelector("#build-badge");
-    const rows = check.querySelector(".build-rows");
-    badge?.remove();
-    rows?.remove();
-    check.querySelector("h2")!.insertAdjacentHTML("afterend", checkPanel());
-  }
   const msg = maybe<HTMLElement>("#decks-msg");
   if (msg) msg.textContent = message;
+}
+
+/** Everything that reads the draft, WITHOUT touching the name box. */
+function refresh(): void {
+  refreshActions();
+  refreshBuilder();
 }
 
 function onInput(ev: Event): void {
   const t = ev.target as HTMLElement;
   if (!draft) return;
-  if (t.id === "deck-name") { draft.name = (t as HTMLInputElement).value; copied = false; refresh(); }
-  if (t.id === "deck-text") { draft.text = (t as HTMLTextAreaElement).value; copied = false; refresh(); }
+  if (t.id === "deck-name") { draft.name = (t as HTMLInputElement).value; copied = false; refreshActions(); }
 }
 
 function onChange(ev: Event): void {
   const t = ev.target as HTMLInputElement;
+  // The format scopes the ban marks in the pool and the legality row of Construction, so the whole
+  // builder is redrawn rather than only the buttons.
   if (draft && t.name === "deck-format") { draft.format = t.value as Format; refresh(); }
 }
 
@@ -387,8 +370,9 @@ function onClick(ev: Event): void {
     case "save": void guard(saveDraft); return;
     case "analyze": analyzeDraft(); return;
     case "export": void guard(exportCode); return;
-    case "delete": confirmingDelete = true; refresh(); return;
-    case "delete-cancel": confirmingDelete = false; refresh(); return;
+    case "import": openImport(); return;
+    case "delete": confirmingDelete = true; refreshActions(); return;
+    case "delete-cancel": confirmingDelete = false; refreshActions(); return;
     case "delete-confirm": void guard(removeDraft); return;
   }
 }
