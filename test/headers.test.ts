@@ -200,3 +200,46 @@ describe("the paste label survives a real 40-card list (#88)", () => {
     })).toBe("40 main · 12 runes · 3 battlefields · 8 sideboard · legend");
   });
 });
+
+/**
+ * The editor of My decks is the builder (#101), not a textarea. These pin the two facts that would
+ * otherwise regress silently: that the deck detail mounts `web/builder.ts`, and that the way to
+ * paste a list did not disappear when the box you used to paste it into did.
+ */
+describe("the deck editor is the builder", () => {
+  const decks = readFileSync(new URL("../web/decks.ts", import.meta.url), "utf8");
+  const builder = readFileSync(new URL("../web/builder.ts", import.meta.url), "utf8");
+
+  it("mounts the builder and no longer ships a deck textarea", () => {
+    expect(decks).toContain("builderHtml(actions())");
+    expect(decks).toContain("openList(draft.text)");
+    expect(decks, "the old textarea is back").not.toContain('id="deck-text"');
+  });
+
+  it("keeps every way a list arrives: paste, deck code, TTS dump, Piltover link", () => {
+    // The textarea moved into the Import dialog; the library's URL row is untouched.
+    expect(decks).toContain('data-act="import"');
+    expect(builder).toContain('id="bld-import-text"');
+    expect(builder).toContain("/api/deck-url?url=");
+    expect(builder).toContain("loadDeck(raw, cards())");
+    expect(decks).toContain('class="decks-import"');
+  });
+
+  it("stores exactly what it stored before: text, name and format", () => {
+    // The builder never invents a storage format — every mutation goes back out through deckToText.
+    expect(builder).toContain("builderText(deck, cards())");
+    expect(decks).toMatch(/updateDeck\(draft\.id, \{ name: check\.name, deckText: draft\.text, format: draft\.format \}\)/);
+  });
+
+  /**
+   * #49's rule for the nav, applied to the editor: below 900px the two columns become two tabs and
+   * a fixed bar, and neither is ever a hamburger or a drawer.
+   */
+  it("gives a phone two tabs and a fixed bar, never a hamburger", () => {
+    expect(builder).toContain('class="segmented small builder-tabs"');
+    expect(builder).toContain('class="bld-bar"');
+    const styles = readFileSync(new URL("../web/styles.css", import.meta.url), "utf8");
+    expect(styles).toMatch(/\.builder\[data-tab="pool"\] \.bld-deck \{ display: none; \}/);
+    expect(styles).toMatch(/\.builder\[data-tab="deck"\] \.bld-pool \{ display: none; \}/);
+  });
+});

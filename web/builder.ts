@@ -47,6 +47,8 @@ export interface BuilderEnv {
   onEdit(text: string): void;
   /** "Save" or "Update", so the bar under a phone says the same word as the button above it. */
   saveLabel(): string;
+  /** Whether the draft differs from what is stored, so the bar's Save reads like the one above it. */
+  dirty(): boolean;
   /** Say something in the editor's own message line. */
   say(message: string): void;
 }
@@ -132,7 +134,7 @@ export function builderHtml(actions: string): string {
     </section>
     <div class="bld-bar">
       <p class="bld-bar-counts">${esc(shortTotals())}</p>
-      <button type="button" class="primary" data-act="save">${esc(env.saveLabel())}</button>
+      <button type="button" class="primary" data-act="save"${env.dirty() ? "" : " disabled"}>${esc(env.saveLabel())}</button>
     </div>
     ${importDialog()}
   </div>`;
@@ -498,6 +500,8 @@ function render(): void {
   if (totals) totals.textContent = totalsLine();
   const bar = document.querySelector<HTMLElement>(".bld-bar-counts");
   if (bar) bar.textContent = shortTotals();
+  const save = document.querySelector<HTMLButtonElement>(".bld-bar [data-act='save']");
+  if (save) { save.disabled = !env.dirty(); save.textContent = env.saveLabel(); }
   markFilters();
 
   if (was) $<HTMLElement>(was)?.focus();

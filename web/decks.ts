@@ -67,6 +67,7 @@ export function initDecks(h: DeckHooks): void {
     showCard: (base) => hooks.showCard(base),
     onEdit: (text) => { if (draft) { draft.text = text; copied = false; refreshActions(); } },
     saveLabel: () => (draft?.id ? "Update" : "Save"),
+    dirty: () => dirtyNow(),
     say: (msg) => { message = msg; const el = maybe<HTMLElement>("#decks-msg"); if (el) el.textContent = msg; },
   });
 
