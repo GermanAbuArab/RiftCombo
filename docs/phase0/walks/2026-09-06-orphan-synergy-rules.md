@@ -355,3 +355,152 @@ The Gold enters exhausted and stays that way: `SFD-171 Renata Glasc, Industriali
 and 103.1.b.2 keeps her out of a Fury/Chaos identity, so each Gold is next turn's Power. And the
 bounce is to HAND, not a Recall — 455 defines a Recall as relocation *to its Base*, so none of the
 Recall traps (455, 808.1.d.1) apply, though 705 and 716 still strip buffs and attachments.
+
+---
+
+## 11. `daisy-four-tags` + `green-father-brush-four-tags` -> `daisy-green-father-four-tag-attacker` (ENTRY) + one deferral
+
+`UNL-196 | Daisy! | Unit | Calm/Order | E9 P2 M8 | I enter ready. Reduce my cost by E1 for each of
+the following tags among your units — Bird, Cat, Dog, and Poro. When I attack while your units have
+all 4 tags, [Stun] an enemy unit here.`
+
+**The legend is not a choice, and that is the finding.** `data/cards.json` marks Daisy
+`signature: true`, and 103.2.d.2 says *"All of the Signature cards must have the Champion tag that
+corresponds to the Champion Legend of the deck."* Her tags are Ivern and Ionia, and a grep of every
+legend printing for the Ivern tag returns exactly one row — `UNL-195 Green Father`. So every list
+that plays Daisy is a Green Father list, 103.2.d.1 makes three Daisy the deck's entire Signature
+budget, and 103.2.d.3 forbids her being the Chosen Champion. #141's walk warned that "a hunt that
+names a Signature card without naming the legend has an illegal shell"; Daisy is a live instance.
+
+The four tags come from four mono-Order E2 bodies — `OGN-216 Soaring Scout` (Bird),
+`VEN-132 Fallen Feline` (Cat), `SFD-159 Trusty Ramhound` (Dog), `OGN-210 Daring Poro` (Poro) — and
+her discount reads *"tags among your units"*, not "units here", so they can stand at your base while
+she attacks somewhere else. At E5 + 2 Power she beats 143.4 on her own text (*"I enter ready"*) and
+moves to an enemy battlefield the turn she lands.
+
+**The stun does not make the defender free to kill**, and the entry says so in the terms #89
+corrected #61 with: 423.1.b only removes the stunned unit's Might from the damage step, while
+423.1.c — *"A Stunned Unit must still have damage applied to it equal to, or greater than, its full
+might value to be killed"* — with 710 keeps its current Might as the bill. Stun the biggest HITTER,
+not the biggest body. And no engine hides here: 423.1.a.1 and 423.1.a.2 cap it at one enemy body a
+turn.
+
+**DEFERRED, not refused — Green Father's Brush swap.** *"you may exhaust me to replace that
+battlefield with a Brush battlefield token"* would give this exact package +1 Might, and it is the
+`green-father-brush-four-tags` rule's whole content. This walk did not settle what 438 Replace does
+to Control, nor what a battlefield token is for 190.x purposes, so the entry deliberately does not
+lean on it. That is the one orphan rule in this document left standing without an entry **because
+the rules question is open**, not because the line is bad. Next session: open 438 and 190.6.d
+together before writing it.
+
+---
+
+## 12. `starhound-four-tags` + `undying-loyalty-four-tags` -> `starhound-undying-loyalty-four-tag-recursion` (ENTRY)
+
+`UNL-168 | Undying Loyalty | Spell | Order | E2 P1 | This costs E2 less if you choose a Bird, Cat,
+Dog, or Poro. Play a unit with cost no more than E2 and no more than 1 rainbow from your trash,
+ignoring its cost.`
+`UNL-167 | Starhound | Unit | Order | E5 P1 M6 | When you play me, return a Bird, Cat, Dog, or Poro
+from your trash to your hand.`
+
+The two are not interchangeable and the difference is the entry. Undying Loyalty puts the body
+straight on the BOARD for 1 Order Power, but only if it is printed at E2 or less and 1 Power or
+less. Starhound returns it to HAND with **no cost ceiling at all**, which makes him the only route
+back for the expensive tag bodies (`UNL-047 Mosstomper`, `VEN-032 Frostcoat Mother`,
+`VEN-122 Solari Sunhawk`).
+
+206 is why the ceiling cannot be gamed: both clauses read the printed cost. And 355.2.a lets the
+reanimated body land *"at the controller's Base or a Battlefield the controller controls"*, so unlike
+the token lines of #48 there is no walk-to-the-battlefield bottleneck.
+
+**A trap worth recording: the tag families have tokens in them and neither card can reach one.**
+The [Deflect] Bird from `UNL-217 Trapping Grounds` is a Bird — but 185 (*"Tokens are not cards"*) and
+186.1 mean it never sits in the trash for either half to choose. A four-tag deck cannot rebuild its
+Bird out of a token.
+
+Six castings a game (103.2.b), not a loop. Stated that way in `terminatesIn`.
+
+---
+
+## 13. `hextech-formula-empower-gear` + `veiled-temple-readies-gear` -> `hextech-formula-rage-amplifier-free-empower` (ENTRY)
+
+`VEN-062 | Hextech Formula | Gear | Mind | E2 | This enters exhausted. exhaust: Empower another
+gear.`
+
+The value is a price comparison. `VEN-018 Rage Amplifier`'s printed [Empower] cost is **E6 + 1 Fury
+Power**, for *"Your units have +1 Might. If I'm [Empowered], they have +2 Might instead."* The
+Formula charges one exhaust, and 441.1 defines Empowering as *"the act of rendering one or more Game
+Objects Empowered"* with 441.1.a making it binary and 441.2 making it a board state other effects
+reference — so the +2 is bought once and kept.
+
+**827.1.c.3 must not be cited here and the entry says so.** That paragraph governs discounts applied
+to an Empower COST; nothing in this line pays one.
+
+The repeatable half is `VEN-054 Questionable Tome`, and it is a small, exact finding: its own
+[Empower] cost IS its exhaust, and its draw costs *"Disempower this, E1, exhaust"* — the same exhaust
+twice, so unaided it can Empower or draw in a turn, never both. With the Formula paying the Empower
+the Tome stays ready and draws for E1, disempowering itself on the way so the Formula can do it
+again next turn.
+
+`SFD-221 Veiled Temple` readies the Formula on a conquer there for a second Empower the same turn.
+Its second clause — *"If it's an Equipment, you may detach it"* — does **nothing** for this line:
+none of the three gear here carries [Equip] or a Might bonus, so 716 never comes into it. Named in
+the entry only so the next reader does not go hunting for the interaction.
+
+---
+
+## 14. `blast-cone-enemy-move` -> `blast-cone-moonfall-forced-attacker` (ENTRY)
+
+`UNL-133 | Blast Cone | Gear | Chaos | E4 P1 | When you play this, you may move an enemy unit. When
+you move an enemy unit, you may exhaust this to [Stun] it.`
+`UNL-198 | Moonfall | Spell | Mind/Chaos | E3 P1 | [Action] ... Choose a battlefield where you have
+units. You may move up to one enemy unit to that battlefield. Then give enemy units there -2 Might
+this turn.`
+
+**This is the first catalogued entry that moves an enemy unit in order to make them the Attacker.**
+CLAUDE.md recorded as of #58 that no entry moved an enemy unit at all. The chain: 190.3.a.1 applies
+Contested when a unit whose controller does not control the battlefield moves there — it keys on the
+MOVED unit's controller, not on who caused the move — and 464.2.c.1 says *"The Attacker is the
+player whose unit(s) applied the Contested status to the Battlefield."* So dragging an enemy body
+onto a battlefield you control makes **them** the Attacker on **your** turn.
+
+The Cone's second trigger fires on any enemy move you make, not only its own, so Moonfall keeps
+feeding it. 423.1.b then blanks their whole damage assignment while 465.2.c has your garrison assign
+its summed Might; 423.1.c + 710 price the kill at the body's current Might, which Moonfall's -2 has
+already lowered. 143.2.b caps the downside — a Might driven below zero is treated as 0 for the
+damage step.
+
+**It does NOT score, and the entry names the paragraph.** 464.2.c.2 (*"The Defender is the player
+who did not apply the Contested status"*) and 323.11.a make you the Defender at your own battlefield,
+and 466.5 establishes Control only *"for a player if they didn't already control this Battlefield"* —
+the #118 finding. This is removal, not a point.
+
+One stun per turn (the Cone's own exhaust, readied by 315.1.b), four drags a game (the Cone's play
+effect plus three Moonfalls, 103.2.b).
+
+---
+
+## 15. `dark-child-off-turn-reaction-units` -> `dark-child-inferna-off-turn-ambush` (ENTRY), with the rule narrowed
+
+`OGS-017 | Dark Child - Starter | Legend | Fury/Chaos | At the end of your turn, ready up to 2 runes.`
+
+**The walk narrowed the rule's own claim.** Readying a rune is worth nothing in POWER: 164.2.b is
+*"Recycle this: [Reaction] — Add [C]"*, a cost with no exhaust in it, so an already-tapped rune
+already pays 1 Power on any player's turn — that is the free floor of 2 Power per turn #44 measured,
+and Dark Child adds none of it. What she adds is **Energy**, because 164.2.a is *"[E]: [Reaction] —
+Add [1]"*, an exhaust ability that needs a ready rune, and after your own Main Phase none of yours
+are.
+
+167 is the paragraph that makes it survive: *"Every player's Rune Pool empties at the start of each
+player's Main Phase and the end of each player's turn."* The POOL empties; the readied RUNES do not
+un-ready. So on the opponent's turn you hold two ready runes, and 813.1.c.1 lets a [Reaction] card be
+played *"during Closed States on any player's turn."*
+
+Payoff taken: `UNL-002 Inferna` (Fury, E2, M1, [Ambush]) — exactly E2 with no Power. #150's finding
+applies: a body entering mid-combat gets the Defender designation at the next Cleanup (319.6,
+323.2.a) before 465.2 resolves, so she is counted in the summed Might. Her [Assault 2] is dead on
+defence — 807.1.d.1: *"Assault remains in effect as long as the Unit maintains the Attacker
+designation"* — and the entry does not count it.
+
+"Ready **up to** 2" has no cost and no downside, but nothing banks: this is 2 Energy per turn cycle,
+never an accumulating pool.

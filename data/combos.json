@@ -19747,6 +19747,406 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §10), issue #153, from the orphan rule hall-of-legends-readies-your-legend. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.4.c, 107.4.b, 107.4.c, 190.1, 190.6.d, 315.1.b, 415.1, 419.4.a, 455, 466.5, 466.5.d, 485.4.a, 485.5, 486.5, 487.5, 705, 716. The pairing was chosen against the twenty-four legend printings with an exhaust in a cost: Pyke is the only one whose ability produces a RESOURCE for a flat E1 with no second currency, which is what makes the E1 the Hall charges worth paying. Trap check: 107.4.b is respected — nothing here asks the legend to be at a location, only that it is a Game Object (107.4.c); the Gold is a token, so 185 / 186.1 forbid recycling it and nothing tries; the bounce is to HAND, so it is not a Recall (455) and does not erase a Deathknell the way a would-die shield does (808.1.d.1); no [Repeat]; no [Temporary]; the battlefield is declared a 1-in-3 draw and its uncontrolled start is priced in. Depends on no unruled reading."
+    },
+    {
+      "id": "daisy-green-father-four-tag-attacker",
+      "name": "Daisy! — a Signature card that names its own legend, ready and swinging at 5 Energy",
+      "class": "ENGINE",
+      "status": "verified",
+      "legends": [
+        "UNL-195"
+      ],
+      "uses": [
+        {
+          "card": "UNL-196",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm/Order unit, printed E9 P2 M8, SIGNATURE. 'I enter ready. Reduce my cost by E1 for each of the following tags among your units — Bird, Cat, Dog, and Poro. When I attack while your units have all 4 tags, [Stun] an enemy unit here.' With the four tags out she is E5 + 2 Power."
+        },
+        {
+          "card": "OGN-216",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Order unit, E2 M1, Bird. '[Deathknell] — Channel 1 rune exhausted.' The cheapest Bird in Order; its Deathknell is a bonus, not part of the line."
+        },
+        {
+          "card": "VEN-132",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Order unit, E2 P1 M3, Cat. The cheapest Cat in Order."
+        },
+        {
+          "card": "SFD-159",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Order unit, E2 M2, Dog. 'While you have another unit here, I have +1 Might.'"
+        },
+        {
+          "card": "OGN-210",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Order unit, E2 M2, Poro. '[Assault] (+1 Might while I'm an attacker.)'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Order. The four tag bodies are mono-Order (103.1.b.3) and Daisy is Calm/Order, so 103.1.b.2 needs a Calm/Order legend."
+        ],
+        "notable": [
+          "THE LEGEND IS NOT A CHOICE. Daisy is a Signature card, and 103.2.d.2 says 'All of the Signature cards must have the Champion tag that corresponds to the Champion Legend of the deck.' Her tags are Ivern and Ionia, and UNL-195 Green Father is the ONLY Ivern legend in the pool — a grep of every legend printing for the Ivern tag returns one row. So a list that plays Daisy plays Green Father, and 103.2.d.1 ('a deck may only contain a sum total of 3 Signature cards') means three Daisy is the deck's entire Signature budget. 103.2.d.3 also forbids her being the Chosen Champion.",
+          "Her discount reads 'tags among your units', not 'units here', so the four cheap bodies can sit at your base while she attacks somewhere else. Four E2 bodies is E8 + 1 Power of setup that also builds the board Ivern, Friend to All wants.",
+          "She beats 143.4 on her own — 'I enter ready' — so she moves to an enemy battlefield the turn she is played (144.2 takes her exhaust as the move's cost) and attacks on that same turn.",
+          "The stun does NOT make the defender free to kill. 423.1.b only removes its Might from the combat damage step; 423.1.c read with 710 keeps its full CURRENT Might as the damage needed to kill it (the #89 correction to #61's coverage). So a stunned M8 defender still costs Daisy's whole M8. What the stun buys is that YOUR side takes nothing back.",
+          "No engine can be built out of the stun: 423.1.a.1 ('A Stunned Unit can not be Stunned again') and 423.1.a.2 (cleared at end-of-turn cleanup step 3d) cap it at one enemy body per turn.",
+          "NOT WALKED and deliberately left out of the line: Green Father's 'you may exhaust me to replace that battlefield with a Brush battlefield token'. Whether 438 Replace preserves Control, and what a battlefield token is for 190.x purposes, was not settled by this walk, so the entry does not lean on the +1 Might it would give this exact package. Recorded as an open lead."
+        ]
+      },
+      "steps": [
+        "Build the four tags out with the four E2 Order bodies — Bird, Cat, Dog, Poro — anywhere on the board.",
+        "Play Daisy for E5 + 2 Power (printed E9 P2, minus E1 per tag). Her own text overrides 143.4 and she enters ready.",
+        "Standard-move her to an occupied enemy battlefield the same turn: 144.4.a allows it, 144.2 exhausts her. 190.3.a.1 applies Contested and 464.2.c.1 makes you the Attacker.",
+        "Her attack trigger checks the four tags at the Attacker designation (464.2.c.3, 383.2.a.1) and stuns one enemy unit here.",
+        "465.2.c has each side assign damage equal to its summed Might. The stunned defender contributes none (423.1.b) but still absorbs its full Might (423.1.c, 710), so pick the stun to blank the biggest hitter, not the biggest body.",
+        "466.5 establishes Control and 466.5.d makes it a Conquer."
+      ],
+      "terminatesIn": "engine only — one conquer with no damage taken from the stunned defender, once per turn (423.1.a.1 / 423.1.a.2 forbid an engine on the stun). Nothing here scores; UNL-177 Ivern, Friend to All is the payoff that would, on the same four tags.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "103.2.d.2: 'All of the Signature cards must have the Champion tag that corresponds to the Champion Legend of the deck.' 103.2.d.1: 'Regardless of name, a deck may only contain a sum total of 3 Signature cards.' 423.1.a.1: 'A Stunned Unit can not be Stunned again.' 423.1.a.2: 'Stunned Units lose the Stunned status during step 3d of the end of turn cleanup.' 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §11), issue #153, from the orphan rules daisy-four-tags and green-father-brush-four-tags. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.2.d, 103.2.d.1, 103.2.d.2, 103.2.d.3, 143.4, 144.2, 144.4.a, 190.3.a.1, 383.2.a.1, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 464.2.c.1, 464.2.c.3, 465.2.c, 466.5, 466.5.d, 710. The Signature check is the finding: #141's walk warned that 'a hunt that names a Signature card without naming the legend has an illegal shell', and Daisy is a live instance — every list running her is a Green Father list. Trap check: the attack is against a real garrison, so the empty-battlefield trap is respected; no [Repeat]; no [Temporary]; no token; no recall; nothing added in Awaken, so 167 does not bite; the battlefield is the opponent's, so 190.1 / 190.6.d and the 485.5 random draw do not apply. Depends on no unruled reading; Green Father's Brush swap is explicitly NOT walked and NOT used."
+    },
+    {
+      "id": "starhound-undying-loyalty-four-tag-recursion",
+      "name": "Starhound and Undying Loyalty — the four-tag board rebuilt for one Power a card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-168",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, printed E2 P1. 'This costs E2 less if you choose a Bird, Cat, Dog, or Poro. Play a unit with cost no more than E2 and no more than 1 rainbow from your trash, ignoring its cost.' With a tagged target the Energy half is zero and only the 1 Power remains; the ceiling is a PRINTED-cost test (206), so no discount widens it."
+        },
+        {
+          "card": "UNL-167",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order unit, E5 P1 M6, Dog. 'When you play me, return a Bird, Cat, Dog, or Poro from your trash to your hand.' The other half of the recursion: he takes the card back to hand instead of to the board, and he is himself a Dog, so he keeps the tag count up while he does it."
+        },
+        {
+          "card": "OGN-216",
+          "quantity": 3,
+          "role": "resource",
+          "zone": "TRASH",
+          "note": "Order unit, E2 M1, Bird. Printed E2 with no Power, so it is inside Undying Loyalty's ceiling, and its [Deathknell] channels a rune exhausted on the way to the trash — the recursion pays a rune for every trip."
+        },
+        {
+          "card": "OGN-210",
+          "quantity": 3,
+          "role": "resource",
+          "zone": "TRASH",
+          "note": "Order unit, E2 M2, Poro, [Assault]. Printed E2 with no Power, inside the ceiling."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Everything here is mono-Order, so 103.1.b.3 admits the package under any legend carrying Order — including UNL-195 Green Father, which is the legend the Daisy half of this package forces.",
+          "Bodies have to reach the trash first. Combat, a sweeper, or the bodies' own deaths supply that; nothing in the line kills on purpose."
+        ],
+        "notable": [
+          "The two halves are not interchangeable and the difference is the point. Undying Loyalty puts the body straight onto the BOARD ignoring its cost, but only if it is printed at E2 or less and 1 Power or less. Starhound returns it to HAND with no cost ceiling at all — so he is the only way back for the expensive tag bodies (UNL-047 Mosstomper, VEN-032 Frostcoat Mother, VEN-122 Solari Sunhawk).",
+          "206 is why the ceiling cannot be gamed: both 'costs no more than' clauses read the PRINTED cost, and its second worked example (Defy against Rocket Barrage) says a paid [Repeat] cost is ignored too. A discount on the tag body does not widen Undying Loyalty's window and a tax does not close it.",
+          "Where the reanimated body lands: 355.2.a's default — 'the controller's Base or a Battlefield the controller controls'. Unlike the token lines of #48 there is no walk-to-the-battlefield bottleneck, because a unit played from the trash may be played straight to a battlefield you control.",
+          "Six castings a game, not a loop: 103.2.b caps each spell at three copies and nothing here returns Undying Loyalty or Starhound themselves. That is the honest ceiling and the entry does not dress it up.",
+          "185: the bodies must be CARDS. A token with a Bird, Cat, Dog or Poro tag — the [Deflect] Bird from UNL-217 Trapping Grounds, for instance — never reaches the trash at all (186.1), so it can never be the target of either half."
+        ]
+      },
+      "steps": [
+        "Play the cheap tagged bodies and let them die: Soaring Scout's [Deathknell] channels a rune exhausted on the way out, so the first trip pays for itself.",
+        "Cast Undying Loyalty choosing a Bird, Cat, Dog or Poro. The E2 discount takes the Energy half to zero, so the cost is 1 Order Power.",
+        "Play a unit from the trash with printed cost no more than E2 and no more than 1 rainbow, ignoring its cost. 355.2.a lets it land at your base or at a battlefield you control.",
+        "When the expensive tag bodies die, cast Starhound instead (E5 + 1 Power): he returns one from the trash to your hand with no cost ceiling, and he is himself a Dog.",
+        "The four tags are back up, which is the condition UNL-196 Daisy! and UNL-177 Ivern, Friend to All both read."
+      ],
+      "terminatesIn": "engine only — up to six rebuilds a game (three Undying Loyalty at 1 Power each, three Starhound), which is what keeps the four-tag condition alive through a sweeper. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "206: 'Costs referred to by a card are the printed or base cost of the card.' 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' 185: 'Tokens are not cards.' 186.1: 'If a token is put into any Non-Board Zone besides the chain, it ceases to exist immediately after moving to its new zone.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §12), issue #153, from the two orphan rules starhound-four-tags and undying-loyalty-four-tags. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 185, 186.1, 206, 355.2.a. Trap check: no attack, no Attacker designation; no [Repeat]; no [Temporary]; the token half of the tag families is explicitly excluded by 185 / 186.1 rather than assumed; no recall, so 455 does not apply; a unit played from the trash enters exhausted (143.4) and this entry claims no same-turn move for it; 167 is not touched. Depends on no unruled reading. Companion to daisy-green-father-four-tag-attacker, which needs the same four tags standing."
+    },
+    {
+      "id": "hextech-formula-rage-amplifier-free-empower",
+      "name": "Hextech Formula — an Empower cost of E6 and a Power, paid with one exhaust",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-062",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind gear, E2. 'This enters exhausted. exhaust: Empower another gear. (It becomes Empowered if it's not already.)' The ability names no cost beyond the exhaust, so it never pays the target's printed [Empower] price."
+        },
+        {
+          "card": "VEN-018",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Fury gear, E4 P1. '[Empower] E6 + 1 Fury. Your units have +1 Might. If I'm [Empowered], they have +2 Might instead.' The Formula's exhaust buys the +2 outright; 441.2 makes Empowered a state on the board, so it is permanent once reached."
+        },
+        {
+          "card": "VEN-054",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Mind gear, E3. '[Empower] — exhaust. Disempower this, E1, exhaust: Draw 1.' Its own Empower cost is its own exhaust, which is the same exhaust the draw needs — so unaided it can Empower OR draw in a turn, never both. The Formula pays the Empower for it."
+        },
+        {
+          "card": "SFD-221",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'When you conquer here, you may ready a friendly gear. If it's an Equipment, you may detach it.' Readying the Formula on a conquer turn is a second Empower that turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Fury: OGN-247 Daughter of the Void (Kai'Sa) is the legend (103.1.b.2). Veiled Temple is Colorless.",
+          "The Formula enters exhausted by its own text, so its first activation is the turn AFTER it is played, once 315.1.b has readied it."
+        ],
+        "notable": [
+          "The whole value is a price comparison and it is worth stating in numbers. Rage Amplifier's printed [Empower] cost is E6 + 1 Fury Power. The Formula charges one exhaust. 441.2 — \"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference' — and 441.1.a makes it binary, so the +2 Might to your whole board is bought once and kept.",
+          "827.1.c.3's discount rule does not apply and must not be cited here: nothing is paying an Empower cost at all. The Formula's ability performs the Empower directly, which is 441.1's 'the act of rendering one or more Game Objects Empowered'.",
+          "The Questionable Tome is the repeatable half. Unaided, its [Empower] cost IS its exhaust and its draw costs 'Disempower this, E1, exhaust' — the same exhaust twice, so it can never do both in one turn. With the Formula paying the Empower, the Tome stays ready and draws for E1. It disempowers itself in the process (441.1.c is not reached, because it is not Empowered when the Formula next fires), so the cycle repeats every turn.",
+          "Veiled Temple is one of YOUR three battlefields and only one of the three is used: randomly in Duel (485.4.a, 485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy. It also starts UNCONTROLLED (190.1) with its text switched off (190.6.d: 'If the battlefield has no Controller, \"you\" refers to no one, and all such instructions are ignored'), so taking it is part of the cost.",
+          "The Temple's second half — 'If it's an Equipment, you may detach it' — does nothing for this line: none of the three gear here is an Equipment (no [Equip] and no Might bonus), so 716 never comes into it. It is named in the entry only so the next reader does not go looking for the interaction."
+        ]
+      },
+      "steps": [
+        "Play the Hextech Formula for E2. It enters exhausted by its own text.",
+        "Your next Awaken (315.1.b) readies it. Exhaust it: Empower the Rage Amplifier. Your units are now at +2 Might permanently (441.1.a, 441.2), for a printed price of E6 + 1 Fury Power that you never paid.",
+        "From the following turn, exhaust the Formula on the Questionable Tome instead. The Tome is Empowered without spending its own exhaust.",
+        "Pay E1, Disempower the Tome and exhaust it: draw 1. The Tome ends the turn ready to be Empowered again.",
+        "Awaken readies both. Repeat: one card a turn for E1.",
+        "On a turn you conquer at the Veiled Temple, ready the Formula there for a second Empower in the same turn."
+      ],
+      "terminatesIn": "engine only — a one-off Empower worth E6 + 1 Power, then one card a turn for E1, doubled on the turns you conquer at the Veiled Temple. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "441.1: 'Empowering is the act of rendering one or more Game Objects Empowered.' 441.1.a: 'Empowered is a binary state. A Game Object is Empowered or it isn't.' 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' 190.6.d: 'If the battlefield has no Controller, \"you\" refers to no one, and all such instructions are ignored.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §13), issue #153, from the two orphan rules hextech-formula-empower-gear and veiled-temple-readies-gear. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.4.c, 190.1, 190.6.d, 315.1.b, 441.1, 441.1.a, 441.1.b, 441.1.c, 441.2, 485.4.a, 485.5, 486.5, 487.5, 716. 827.1.c.3 is deliberately NOT cited: it governs discounts on an Empower COST, and nothing in this line pays one. The keyword-lens rule from CLAUDE.md was applied — the Empower family was opened with grep -i on 'empower', not on the bracketed form, which is what #34 found necessary. Trap check: no attack; no [Repeat]; no [Temporary]; no token; no recall; the gear enters exhausted by its own text rather than by 143.4, which applies to units only; nothing added in Awaken is carried past 167, since the E1 for the draw is spent in the Main Phase; the battlefield is declared a 1-in-3 draw with an uncontrolled start."
+    },
+    {
+      "id": "blast-cone-moonfall-forced-attacker",
+      "name": "Blast Cone and Moonfall — the opponent attacks into your garrison, stunned, on your turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-133",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Chaos gear, E4 P1. 'When you play this, you may move an enemy unit. When you move an enemy unit, you may exhaust this to [Stun] it.' The second trigger fires on ANY enemy move you make, not only its own, so it keeps paying after the play effect is spent."
+        },
+        {
+          "card": "UNL-198",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind/Chaos spell, E3 P1, [Action]. 'Choose a battlefield where you have units. You may move up to one enemy unit to that battlefield. Then give enemy units there -2 Might this turn.' The drag AND the shrink in one card, at [Action] speed."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Chaos: OGN-263 Swift Scout, SFD-199 Prodigal Explorer, UNL-197 Scorn of the Moon and VEN-151 Soul's Reflection all hold both (103.1.b.2). Blast Cone is mono-Chaos (103.1.b.3).",
+          "A garrison of your own at the destination battlefield — Moonfall's own condition, and what makes the combat one-sided."
+        ],
+        "notable": [
+          "The mechanism is CLAUDE.md's #58 and #141 finding used offensively, and every link was opened. 190.3.a.1 applies Contested to a battlefield when a unit whose controller does not control it moves there — it keys on the MOVED unit's controller, not on who caused the move. 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' So dragging an enemy body onto a battlefield you control makes THEM the Attacker, on YOUR turn.",
+          "The stun then blanks their whole side of the damage step: 423.1.b — 'A Stunned Unit does not contribute its might to damage in the combat damage step.' 465.2.c has each player assign damage equal to their summed Might; theirs is nothing, yours is the whole garrison.",
+          "It still has to DIE, and that is where Moonfall's second clause earns its place: 423.1.c with 710 keeps the stunned body's full CURRENT Might as the damage needed to kill it (the #89 correction to #61), and -2 Might this turn lowers exactly that number. 143.2.b caps the downside: a Might driven below zero is TREATED as 0 for the damage step, so the -2 can never hand the attacker anything back — though 143.2.b.1 warns it 'is not 0', which matters only if something later tries to add Might back.",
+          "One stun per turn. The Cone's second ability costs its own exhaust and 315.1.b readies it at Awaken, so three Moonfalls across three turns is three stuns; three in one turn is one stun and two ordinary drags. 423.1.a.1 ('A Stunned Unit can not be Stunned again') closes the other door.",
+          "This does not reach an EMPTY board. If the dragged unit is the opponent's last body at its origin, 323.6 strips their Control there as a bonus — but the combat this entry wins is at YOUR battlefield, and 466.5's Conquer is not available to you there because 464.2.c.2 and 323.11.a make you the Defender who already controls it (the #118 finding). This is removal, not a point.",
+          "Four drags a game at most: the Cone's play effect once, plus three Moonfalls (103.2.b)."
+        ]
+      },
+      "steps": [
+        "Have a garrison at a battlefield you control, and the Blast Cone on the board and ready.",
+        "In your Main Phase, cast Moonfall for E3 + 1 Power choosing that battlefield. Move one enemy unit there, then give enemy units there -2 Might this turn.",
+        "The Cone's second trigger sees the enemy move: exhaust it to [Stun] the unit you just dragged.",
+        "The Cleanup applies Contested (190.3.a.1). 323.9 stages the Combat and 323.13 opens it; 464.2.c.1 makes the OPPONENT the Attacker on your own turn, and 464.2.c.3 hands the designations out.",
+        "465.2.c: the stunned attacker assigns nothing (423.1.b); your garrison assigns its summed Might against a body that 423.1.c / 710 price at its current Might, already 2 lower. It dies and you take nothing.",
+        "466.1.a.2's recall of surviving Attackers has nothing to send home. Repeat next turn with the second Moonfall, after 315.1.b readies the Cone."
+      ],
+      "terminatesIn": "engine only — up to four enemy bodies dragged and up to one killed per turn with no damage taken, bounded by three Moonfalls (103.2.b) and by one Cone exhaust a turn. Nothing here scores: you are the Defender at your own battlefield, so 466.5 gives no Conquer.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' 423.1.a.1: 'A Stunned Unit can not be Stunned again.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §14), issue #153, from the orphan rule blast-cone-enemy-move. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.2.b, 143.2.b, 143.2.b.1, 190.3.a.1, 315.1.b, 323.6, 323.9, 323.11.a, 323.13, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 464.2.c.1, 464.2.c.2, 464.2.c.3, 465.2.c, 466.1.a.2, 466.5, 710. CLAUDE.md recorded that 'no entry of the catalogue moves an ENEMY unit' as of #58; this is the first that does it to make them the Attacker, and it names the reason the line does NOT score (#118's 464.2.c.2 / 323.11.a). Trap check: the combat has units of both players, so the empty-battlefield trap does not arise; no [Repeat] is used, and Moonfall carries none; no [Temporary]; no token; the drag is a move by effect, not a Recall, so 455 does not carve it out; 167 is not touched. Depends on no unruled reading."
+    },
+    {
+      "id": "dark-child-inferna-off-turn-ambush",
+      "name": "Dark Child — two Energy that survive into the opponent's turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "legends": [
+        "OGS-017"
+      ],
+      "uses": [
+        {
+          "card": "OGS-017",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "LEGEND",
+          "note": "Fury/Chaos legend (Annie). 'At the end of your turn, ready up to 2 runes.' The readying is the point: 164.2.a's [E] ability needs a READY rune, and 167 empties the Rune Pool at the start of YOUR Main Phase, never the opponent's."
+        },
+        {
+          "card": "UNL-002",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E2 M1. '[Ambush] (You may play me as a [Reaction] to a battlefield where you have units.) [Assault 2].' Exactly E2 and no Power, which is exactly what two readied runes pay for."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Fury + Chaos: Dark Child is itself the legend, and Inferna is mono-Fury (103.1.b.3).",
+          "You must have units at the battlefield you want to reinforce — that is [Ambush]'s own condition."
+        ],
+        "notable": [
+          "What Dark Child does and does not give. 164.2.b, 'Recycle this: [Reaction] — Add [C]', carries no exhaust in its cost, so an already-tapped rune ALREADY pays 1 Power on any player's turn — that is the free floor of 2 Power per turn #44 measured, and Dark Child adds nothing to it. What she adds is ENERGY: 164.2.a is '[E]: [Reaction] — Add [1]', an exhaust ability, so it needs a rune that is ready, and after your own Main Phase none of yours are.",
+          "167 empties the Rune Pool at the start of your Main Phase, not at the end of your turn, so the two runes she readies are still ready when the opponent takes their turn and 813.1.c.1 lets a [Reaction] card be played 'during Closed States on any player's turn'.",
+          "The body arrives in time to matter. #150's finding: a body entering mid-combat gets the Defender designation at the next Cleanup, before 465.2 resolves (319.6 + 323.2.a). So an Ambush unit played into the opponent's attack is counted in 465.2.c's summed Might.",
+          "Inferna is the exact fit at E2 with no Power, but she is one of 26 [Ambush] units; anything at E2 or less in Fury or Chaos is bought by the same two runes. Her [Assault 2] is dead on defence — 807.1.d.1: 'Assault remains in effect as long as the Unit maintains the Attacker designation' — and the entry does not count it.",
+          "'Ready UP TO 2' — there is no cost and no downside, but there is also nothing to bank: the runes ready at the end of every one of your turns whether you spend them or not, so this is 2 Energy per turn cycle, not an accumulating pool."
+        ]
+      },
+      "steps": [
+        "Play your turn normally, tapping runes for Energy as usual. At the end of it, Dark Child readies up to 2 of them.",
+        "On the opponent's turn, when they attack a battlefield where you have units, wait for a Closed State (312.2.c) — 813.1.c.1 lets a [Reaction] card be played there.",
+        "Tap the two readied runes for E2 (164.2.a, itself a [Reaction]) and play Inferna as an [Ambush] to that battlefield.",
+        "The Cleanup gives her the Defender designation before the damage step resolves (319.6, 323.2.a), so 465.2.c counts her Might on your side.",
+        "Your own Main Phase empties the Rune Pool (167) and the cycle starts again."
+      ],
+      "terminatesIn": "engine only — 2 Energy available on every opponent's turn, which is one E2 [Ambush] body or one E2 [Reaction] spell per turn cycle. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "164.2.a: '[E]: [Reaction] — Add [1].' 164.2.b: 'Recycle this: [Reaction] — Add [C].' 167 empties the Rune Pool at the start of the Main Phase. 807.1.d.1: 'Assault remains in effect as long as the Unit maintains the Attacker designation.' 813.1.c.1: a [Reaction] card 'can be played during Closed States on any player's turn.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §15), issue #153, from the orphan rule dark-child-off-turn-reaction-units. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 164.2.a, 164.2.b, 167, 312.2.c, 319.6, 323.2.a, 465.2.c, 807.1, 807.1.d.1, 813.1.c.1. The walk narrowed the rule's own claim: Dark Child's readies are worth ENERGY off-turn and nothing at all in Power, because 164.2.b has no exhaust in its cost and an exhausted rune already pays Power on any turn (#44's free floor of 2). Trap check: no attack of your own and no Attacker designation on your side; no [Repeat]; no [Temporary]; no token; no recall; 167 is respected explicitly rather than assumed — the Energy is spent on the opponent's turn, before your own Main Phase empties the pool. Depends on no unruled reading."
     }
   ]
 }
