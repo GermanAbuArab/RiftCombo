@@ -7,11 +7,11 @@
 // The editor re-renders the validation column on every keystroke but never the textarea itself: replacing
 // the box somebody is typing into loses the caret, the undo history and any IME composition in flight.
 
-import { checkBuild, type BuildRule } from "../src/build.js";
-import { deckToText, encodeDeckCode, loadDeck, type DeckEntry } from "../src/deck.js";
+import { checkBuild, LEGALITY_RULE, type BuildReport, type BuildRule } from "../src/build.js";
+import { deckRestrictions, deckToText, encodeDeckCode, loadDeck, type DeckEntry } from "../src/deck.js";
 import { checkSave, savedSummary, sortSaved, MAX_NAME, type SavedDeck } from "../src/saved.js";
 import type { CardIndex } from "../src/cards.js";
-import type { Domain, Format } from "../src/types.js";
+import type { Deck, Domain, Format } from "../src/types.js";
 import { accountsEnabled, createDeck, deleteDeck, listDecks, onAccount, updateDeck, type Account } from "./supabase.js";
 import { go, onRoute, type Route } from "./router.js";
 
@@ -202,8 +202,37 @@ function deckCard(d: SavedDeck): string {
     </span>
     <span class="deck-card-legend">${dots}${esc(legend)}</span>
     <span class="deck-card-meta">${total} card${total === 1 ? "" : "s"} · ${esc(d.format === "2v2" ? "2v2" : "Constructed")}</span>
+    ${whyIllegal(report, deck, d.format)}
     <span class="deck-card-when">Edited ${esc(ago(d.updatedAt))}</span>
   </a>`;
+}
+
+/**
+ * Why the badge says Illegal, in one line, out of the report the card already computed (#93).
+ *
+ * A grid of 25 lists carried 14 red badges and not one word of a reason, so finding out what was wrong
+ * with the library meant opening 14 decks. The rows were right there: `checkBuild` returns nine of them
+ * and this card was using `report.legal` alone. Nothing is reworded — the failing row's own `label` and
+ * paragraph are what a player then reads again, identically, inside Construction.
+ */
+function whyIllegal(report: BuildReport, deck: Deck, format: Format): string {
+  const broken = report.rules.filter((r) => r.status === "fail");
+  if (!broken.length) return "";
+  const first = broken[0]!;
+  const more = broken.length > 1 ? ` · +${broken.length - 1} more` : "";
+  // The ban row names its cards but not the date they went on the list, and that date is the whole
+  // answer for a list registered at an event: 14 of the 25 lists Riot published were legal the day
+  // they were played and lost a card in July. `deckRestrictions` is the same call `legalityRule`
+  // makes, so this reads the date off the row rather than deciding anything new about it.
+  if (first.rule === LEGALITY_RULE) {
+    const banned = deckRestrictions(deck, hooks.cards(), format).filter((r) => r.entry.status === "banned");
+    const one = banned[0];
+    if (one) {
+      const rest = banned.length > 1 ? ` · +${banned.length - 1} more` : more;
+      return `<span class="deck-card-why">${esc(one.entry.name)} banned since ${esc(one.entry.since)}${esc(rest)}</span>`;
+    }
+  }
+  return `<span class="deck-card-why">${esc(first.detail)} <span class="mono">${esc(first.rule)}</span>${esc(more)}</span>`;
 }
 
 /**

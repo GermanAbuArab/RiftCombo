@@ -259,8 +259,15 @@ function signatureRule(): BuildRule {
  * card, and the one restricted entry on Riot's list today is a per-team limit on a legend that our data
  * does not quantify. Calling that illegal would be false.
  */
+/**
+ * The paragraph `legalityRule` answers to. Exported because the Combos panel (#92) shows every failing
+ * row of this report EXCEPT this one — there the ban list is already drawn card by card, with the copy
+ * count, the format and a link to Riot's notice, so repeating it as one sentence would say it twice.
+ */
+export const LEGALITY_RULE = "103.2.e";
+
 function legalityRule(deck: Deck, cards: CardIndex, format: Format): BuildRule {
-  const base = { rule: "103.2.e", label: "Legal in this format" };
+  const base = { rule: LEGALITY_RULE, label: "Legal in this format" };
   const found = deckRestrictions(deck, cards, format);
   const banned = found.filter((r) => r.entry.status === "banned");
   if (banned.length) {

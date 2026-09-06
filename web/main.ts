@@ -4,7 +4,7 @@ import legalityJson from "../data/legality.json" with { type: "json" };
 import synergiesJson from "../data/synergies.json" with { type: "json" };
 import { CardIndex, readableCardText } from "../src/cards.js";
 import { generateVariants, sourceHref } from "../src/combos.js";
-import { sizeRule } from "../src/build.js";
+import { checkBuild, LEGALITY_RULE } from "../src/build.js";
 import { deckCountLine, deckRestrictions, deckToText, isDeckCode, loadDeck, normalizeDeck, type DeckEntry, type DeckRestriction } from "../src/deck.js";
 import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
 import { planDeck, type Route } from "../src/plan.js";
@@ -363,13 +363,21 @@ function renderBans() {
   const found = deckRestrictions(deck, cards, fmt());
   // A Main Deck that is not 40 is not a ban and does not render as one, but it belongs in the panel a
   // player reads to find out whether this list can be brought (#71): the panel used to name a banned
-  // card to the copy while saying nothing about a 36-card list. `sizeRule` is the same row My decks
-  // shows in Construction, so both views answer with one sentence and one citation instead of two.
-  const size = sizeRule(deck);
-  const sizeRow = size.status === "pass" ? "" : `<div class="size-row">
-    <p class="ban-name">${esc(size.label)}</p>
-    <p class="ban-meta">${esc(size.detail)} · <span class="mono">${esc(size.rule)}</span></p>
-  </div>`;
+  // card to the copy while saying nothing about a 36-card list.
+  //
+  // #92 finished that argument. Showing only the size row left the rest of `checkBuild` unsaid here
+  // while My decks printed all nine, so one list answered twice: the Utrecht Lee Sin list resolves to
+  // 2 battlefields — Riot's own article writes `Trapping Ground` for `UNL-217 Trapping Grounds` — and
+  // this panel called it clean while Construction called it `FIX · 103.4.a · 103.4.c`. Every failing
+  // row now lands here in the words and the citation the rule wrote for itself, so neither view has a
+  // sentence the other lacks. `LEGALITY_RULE` is the one exception: the ban rows below already say it
+  // card by card, with the copy count, the format and a link to Riot's notice.
+  const broken = checkBuild(deck, cards, fmt()).rules
+    .filter((r) => r.status === "fail" && r.rule !== LEGALITY_RULE);
+  const sizeRow = broken.map((r) => `<div class="size-row">
+    <p class="ban-name">${esc(r.label)}</p>
+    <p class="ban-meta">${esc(r.detail)} · <span class="mono">${esc(r.rule)}</span></p>
+  </div>`).join("");
   banBody.innerHTML = sizeRow + found.map(banRow).join("");
   banFoot.textContent = found.length
     ? `Riot's ban list for ${FORMAT_LABEL[fmt()]}, transcribed from the Rules Hub on ${legalityRetrieved.slice(0, 10)}. Switch format above to check the other one.`

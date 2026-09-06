@@ -54,6 +54,22 @@ describe("the palette against the backgrounds it is actually drawn on", () => {
   it("keeps --faint a visible step below --muted, which is the only reason it exists", () => {
     expect(luminance(token("faint"))).toBeLessThan(luminance(token("muted")));
   });
+
+  /**
+   * The line under the Illegal badge in My decks (#93) is a sentence a player reads, so it is bound by
+   * the rule above and not by the colour of the badge beside it. --danger measures 3.98:1 on --panel,
+   * which is where .deck-card stands, so reaching for the obvious red would have been the first tint
+   * added since #81 that fails AA. This pins the choice rather than the hex: whatever token that line
+   * ends up using has to clear 4.5:1 on the card it is drawn on.
+   */
+  it("draws the reason under the Illegal badge in a token that clears AA on --panel", () => {
+    const rule = css.split("\n").find((l) => l.trim().startsWith(".deck-card-why {"));
+    expect(rule, ".deck-card-why is gone — did the reason line move?").toBeDefined();
+    const used = /color:\s*var\(--([a-z0-9-]+)\)/.exec(rule!)?.[1];
+    expect(used, `.deck-card-why must colour itself from a token, got: ${rule}`).toBeDefined();
+    const r = contrast(token(used!), token("panel"));
+    expect(r, `--${used} on --panel is ${r.toFixed(2)}:1`).toBeGreaterThanOrEqual(4.5);
+  });
 });
 
 // --- focus (#82) ------------------------------------------------------------------------
