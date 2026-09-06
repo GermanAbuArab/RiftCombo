@@ -106,6 +106,7 @@
 - `[hidden]` needs `display:none !important` because `.empty` sets `display:grid`.
 - Playwright MCP can only write screenshots into `.playwright-mcp/` (gitignored).
 - **Every card field that `src/` reads at match time or in `checkBuild` MUST be listed in `scripts/web-card-fields.mjs`**, or it reaches the browser as `undefined` while every test passes (the tests read `data/cards.json`, the bundle reads the trimmed payload). It happened twice: the Mech tags (#27) and `signature` (#103, caught by rc-builder on the live site: 103.2.d said "No Signature cards" with four in the deck). `test/web-payload.test.ts` pins the list now; add the field there too.
+- **Every card field that `src/` reads at match time or in `checkBuild` MUST be listed in `scripts/web-card-fields.mjs`**, or it reaches the browser as `undefined` while every test passes (tests read `data/cards.json`, the bundle reads the trimmed payload). It happened twice: the Mech tags (#27) and `signature` (#103, caught by rc-builder on the live site, where 103.2.d said "No Signature cards" with four in the deck). `test/web-payload.test.ts` pins the list now; add any new field there too.
 
 ## Accounts (#31)
 - **The site lives at `https://riftcombo.app`** (bought through Vercel on 2026-09-05, #42; renewal US$15/yr,
