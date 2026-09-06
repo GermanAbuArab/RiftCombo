@@ -128,8 +128,13 @@ function edit(next: Deck): void {
 
 // --- the markup ------------------------------------------------------------------------
 
-/** The whole editor body. `actions` is the row `web/decks.ts` owns; it rides in the deck column. */
-export function builderHtml(actions: string): string {
+/**
+ * The whole editor body. `actions` is the row `web/decks.ts` owns; it rides in the deck column.
+ * `barActions` is the same three non-destructive actions (Analyze, Export, Import), compact, for
+ * the fixed bar (#127) — below 900px `.bld-deck` is hidden on the Pool tab, so without a copy here
+ * Import was only reachable after switching to Deck.
+ */
+export function builderHtml(actions: string, barActions = ""): string {
   return `<div class="builder" id="builder" data-tab="${tab}">
     <fieldset class="segmented small builder-tabs" aria-label="Editor column">
       ${(["pool", "deck"] as const).map((t) => `<label><input type="radio" name="bld-tab" value="${t}"${tab === t ? " checked" : ""}><span>${t === "pool" ? "Pool" : "Deck"}</span></label>`).join("")}
@@ -142,8 +147,11 @@ export function builderHtml(actions: string): string {
       <div class="detail-acts" id="detail-acts">${actions}</div>
     </section>
     <div class="bld-bar">
-      <p class="bld-bar-counts">${esc(shortTotals())}</p>
-      <button type="button" class="primary" data-act="save"${env.dirty() ? "" : " disabled"}>${esc(env.saveLabel())}</button>
+      <div class="bld-bar-top">
+        <p class="bld-bar-counts">${esc(shortTotals())}</p>
+        <button type="button" class="primary" data-act="save"${env.dirty() ? "" : " disabled"}>${esc(env.saveLabel())}</button>
+      </div>
+      <div class="bld-bar-acts" id="bld-bar-acts">${barActions}</div>
     </div>
     ${importDialog()}
     <div class="row-preview" id="row-preview" aria-hidden="true" hidden><img alt=""></div>

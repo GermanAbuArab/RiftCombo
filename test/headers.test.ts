@@ -211,7 +211,7 @@ describe("the deck editor is the builder", () => {
   const builder = readFileSync(new URL("../web/builder.ts", import.meta.url), "utf8");
 
   it("mounts the builder and no longer ships a deck textarea", () => {
-    expect(decks).toContain("builderHtml(actions())");
+    expect(decks).toContain("builderHtml(actions(), barActions())");
     expect(decks).toContain("openList(draft.text)");
     expect(decks, "the old textarea is back").not.toContain('id="deck-text"');
   });

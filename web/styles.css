@@ -703,7 +703,7 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 /* Below 900px the two columns become two tabs, and the counts follow you down the page. */
 .bld-bar { display: none; }
 @media (max-width: 900px) {
-  .decks.building { padding-bottom: 92px; }
+  .decks.building { padding-bottom: 140px; }
   /* The fixed bar already carries the three counts; saying them twice is not saying them louder. */
   .bld-totals { display: none; }
   .bld-more { display: block; }
@@ -721,8 +721,13 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
   .builder[data-tab="pool"] .bld-deck { display: none; }
   .builder[data-tab="deck"] .bld-pool { display: none; }
   .bld-deck { position: static; max-height: none; overflow: visible; }
-  .bld-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; border-top: 1px solid var(--line-2); background: var(--bg); }
+  /* #127: below 900px `.bld-deck` is hidden on the Pool tab, so Import, Analyze and Export ride a
+     second row here — one tap from either tab, never behind a switch to Deck. */
+  .bld-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; flex-direction: column; gap: 8px; padding: 10px 16px 12px; border-top: 1px solid var(--line-2); background: var(--bg); }
+  .bld-bar-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .bld-bar-counts { margin: 0; font: 500 12px var(--mono); color: var(--muted); }
+  .bld-bar-acts { display: flex; gap: 8px; }
+  .bld-bar-acts .ghost { flex: 1 1 0; padding: 7px 6px; font-size: 12.5px; text-align: center; }
   .pool-cells { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
   /* 390px of row has to hold the art, the cost, the name and four controls. The strip shrinks and
      the Might steps out — it is the one thing on the row the card modal answers in full. */

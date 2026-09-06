@@ -309,7 +309,7 @@ function detailView(id: string): string {
   </div>
   <p class="notice">Nothing is written to your account until you press ${saved ? "Update" : "Save"}. There is no auto-save.</p>
   <p class="acct-msg" id="decks-msg" role="status" aria-live="polite">${esc(message)}</p>
-  ${builderHtml(actions())}`;
+  ${builderHtml(actions(), barActions())}`;
 }
 
 const dirtyNow = (): boolean => {
@@ -335,10 +335,28 @@ function actions(): string {
       : ""}`;
 }
 
+/**
+ * The same three non-destructive actions, compact, for the fixed bar below 900px (#127). Below
+ * that width `.bld-deck` — and `.detail-acts` inside it — is hidden on the Pool tab, which used to
+ * leave a player who arrives with a list to paste unable to find Import without switching tabs
+ * first. These ride in `.bld-bar` next to Save, so all three are one tap away from either tab; the
+ * `data-act` values are the same ones `onClick` below already switches on, so no new wiring is
+ * needed for the click itself, only for keeping this second copy in sync with the first.
+ */
+function barActions(): string {
+  if (!draft) return "";
+  const hasText = Boolean(draft.text.trim());
+  return `<button type="button" class="ghost" data-act="analyze"${hasText ? "" : " disabled"}>Analyze</button>
+    <button type="button" class="ghost" data-act="export"${hasText ? "" : " disabled"}>${copied ? "Copied" : "Export"}</button>
+    <button type="button" class="ghost" data-act="import">Import</button>`;
+}
+
 /** The buttons and the message line, which is all this file still draws inside the editor. */
 function refreshActions(): void {
   const acts = maybe<HTMLElement>("#detail-acts");
   if (acts) acts.innerHTML = actions();
+  const barActs = maybe<HTMLElement>("#bld-bar-acts");
+  if (barActs) barActs.innerHTML = barActions();
   const msg = maybe<HTMLElement>("#decks-msg");
   if (msg) msg.textContent = message;
 }
