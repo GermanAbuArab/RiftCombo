@@ -34,7 +34,7 @@ export interface BuildReport {
 const total = (bag: Record<string, number>) => Object.values(bag).reduce((a, b) => a + b, 0);
 
 export function checkBuild(deck: Deck, cards: CardIndex, _format: Format): BuildReport {
-  const rules: BuildRule[] = [legendRule(deck, cards), sizeRule(deck), copiesRule(deck, cards), runeRule(deck, cards)];
+  const rules: BuildRule[] = [legendRule(deck, cards), sizeRule(deck), copiesRule(deck, cards), runeRule(deck, cards), battlefieldRule(deck, cards)];
   return { rules, legal: rules.every((r) => r.status !== "fail") };
 }
 
@@ -133,4 +133,28 @@ function runeRule(deck: Deck, cards: CardIndex): BuildRule {
   const n = total(deck.runes);
   if (n !== RUNE_COUNT) return { ...base, status: "fail", detail: `${n} rune${n === 1 ? "" : "s"} — the Rune Deck is 12.` };
   return { ...base, status: "pass", detail: "12 runes, all inside the legend's domains." };
+}
+
+/**
+ * Three in both of the formats this site offers: 485.4.a (1v1 Duel) and 489.4.a (2v2 Magma Chamber) both
+ * read "Each player provides three (3) Battlefields, included in their deck during deck building", and
+ * Tournament Rules 402.1 registers "exactly 3 battlefields each with a unique name". The number is a
+ * property of the Mode of Play (103.4.a), which is why it is named here rather than assumed.
+ */
+const BATTLEFIELDS = 3;
+
+function battlefieldRule(deck: Deck, cards: CardIndex): BuildRule {
+  const base = { rule: "103.4.a · 103.4.c", label: "3 battlefields, unique names" };
+  const names = new Map<string, number>();
+  for (const [code, n] of Object.entries(deck.battlefields)) {
+    const name = cards.get(code)?.name ?? code;
+    names.set(name, (names.get(name) ?? 0) + n);
+  }
+  const dupes = [...names.entries()].filter(([, n]) => n > 1);
+  if (dupes.length) {
+    return { ...base, status: "fail", detail: `${dupes.map(([n, c]) => `${c}× ${n}`).join(" · ")} — a deck cannot hold two battlefields of the same name (103.4.c).` };
+  }
+  const n = total(deck.battlefields);
+  if (n !== BATTLEFIELDS) return { ...base, status: "fail", detail: `${n} battlefield${n === 1 ? "" : "s"} — a deck provides 3.` };
+  return { ...base, status: "pass", detail: "3 battlefields, all named differently. Only one reaches the board, picked at random (485.5)." };
 }

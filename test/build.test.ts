@@ -151,3 +151,28 @@ describe("103.3.a — twelve runes inside the identity", () => {
     expect(r.detail).toContain("Fury Rune");
   });
 });
+
+describe("103.4 — three battlefields, all named differently", () => {
+  it("passes on three different names", () => {
+    const r = row(rows(LEGAL), "103.4.a");
+    expect(r.status).toBe("pass");
+    expect(r.detail).toContain("3");
+  });
+
+  it("fails on two", () => {
+    const r = row(rows(LEGAL.replace("1 Startipped Peak", "")), "103.4.a");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toContain("2");
+  });
+
+  it("fails two copies of one name and cites 103.4.c", () => {
+    const r = row(rows(LEGAL.replace("1 Startipped Peak", "2 The Grand Plaza").replace("1 The Grand Plaza\n", "")), "103.4.a");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toContain("The Grand Plaza");
+    expect(r.detail).toContain("103.4.c");
+  });
+
+  it("asks for three in 2v2 as well, since 489.4.a says three too", () => {
+    expect(row(rows(LEGAL, "2v2"), "103.4.a").status).toBe("pass");
+  });
+});
