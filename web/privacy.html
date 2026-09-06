@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy — RiftCombo</title>
+<meta name="description" content="What RiftCombo stores, when, and how to get rid of it.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">
+    <svg class="brand-mark" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 18.5 10 10 18.5 1.5 10Z"/><path d="M10 6.2 13.8 10 10 13.8 6.2 10Z"/></svg>
+    <span class="brand-name">RIFTCOMBO</span>
+  </a>
+  <nav class="topnav">
+    <a href="/">Combos</a>
+    <a href="/privacy" class="active">Privacy</a>
+    <a href="/terms">Terms</a>
+  </nav>
+  <div class="topbar-right"></div>
+</header>
+
+<section class="doc">
+  <h2>Privacy</h2>
+  <p>Last changed 5 September 2026.</p>
+
+  <h3>If you do not sign in</h3>
+  <p>Your deck list is parsed and matched inside your browser. It is not uploaded, not logged and not stored. The only request that leaves your browser on your behalf is the one that loads a public Piltover Archive deck: the link you paste is sent to this site's own server, which fetches that page and caches the result for ten minutes. Nothing about you is attached to it.</p>
+
+  <h3>If you sign in with Google</h3>
+  <p>Signing in gives this site, through Supabase Auth, the Google account identifier, email address, display name and profile picture URL that Google returns for your account. That is the whole of it: no contacts, no calendar, no Drive, nothing else.</p>
+  <p>Pressing <strong>Save</strong> stores one row: the deck list exactly as you pasted it, the name you gave it, which format you were matching against, and the times the row was created and last changed. Nothing derived from it is stored — the combos are recomputed in your browser each time you load a list, so a deck saved today is matched against tomorrow's catalogue rather than kept as a stale answer.</p>
+  <p>Only you can read your rows. That is enforced in the database itself by row-level security, which checks the signed-in account against the owner of every row on every read, insert, change and delete.</p>
+
+  <h3>What is never collected</h3>
+  <p>No advertising, no donations, no analytics, no tracking pixels, no play-rate or win-rate data, no profiling, and nothing sold or shared with anybody. There is no third-party script on any page of this site.</p>
+
+  <h3>Other people's computers</h3>
+  <p>Sign-in and the saved decks run on <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase</a>, in a Postgres database hosted in the United States. The pages themselves are served by <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel</a>. Sign-in itself goes through <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google</a>. Every page also loads the Inter typeface from Google Fonts, which means Google sees the request and therefore your IP address; that happens whether you sign in or not.</p>
+
+  <h3>Cookies</h3>
+  <p>This site sets no cookies. When you are signed in, your browser's local storage holds a session token so that you stay signed in between visits. Signing out deletes it.</p>
+
+  <h3>Getting rid of it</h3>
+  <p>Deleting a saved deck deletes the row. <strong>Delete account</strong>, in the same panel, deletes the account and every deck attached to it at once and for good; there is no copy kept and no waiting period. You do not have to write to anybody to make either happen.</p>
+
+  <h3>Asking about any of this</h3>
+  <p>Open an issue at <a href="https://github.com/GermanAbuArab/RiftCombo/issues" target="_blank" rel="noopener noreferrer">github.com/GermanAbuArab/RiftCombo</a>.</p>
+</section>
+
+<footer class="doc colophon">
+  <p>RiftCombo was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.</p>
+</footer>
+</body>
+</html>

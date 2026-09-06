@@ -25,6 +25,9 @@ const config = {
   buildCommand: "npm run build:web",
   outputDirectory: "public",
   framework: null,
+  // /privacy and /terms rather than /privacy.html: Google's OAuth branding page wants both links,
+  // and they are printed in the footer of every page.
+  cleanUrls: true,
   rewrites: [{ source: "/favicon.ico", destination: "/favicon.svg" }],
   headers: [
     {

@@ -96,6 +96,17 @@ export async function updateDeck(id: string, patch: { name?: string; deckText?: 
   return fromRow(data as DeckRow);
 }
 
+/**
+ * Delete the account and, through the cascade on decks.user_id, every deck attached to it. The
+ * function takes no argument on purpose — it acts on auth.uid() and nothing else — so there is no
+ * id here to get wrong. See supabase/migrations/20260905130000_delete_account.sql.
+ */
+export async function deleteAccount(): Promise<void> {
+  const { error } = await db().rpc("delete_account");
+  if (error) throw new Error(error.message);
+  await db().auth.signOut();
+}
+
 export async function deleteDeck(id: string): Promise<void> {
   const { error } = await db().from("decks").delete().eq("id", id);
   if (error) throw new Error(error.message);

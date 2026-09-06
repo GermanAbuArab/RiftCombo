@@ -81,8 +81,24 @@ try {
   const { data: anon } = await createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { persistSession: false } })
     .from("decks").select("id");
   check("a signed-out visitor reads nothing", (anon?.length ?? 0) === 0, `${anon?.length ?? 0} rows`);
+
+  // delete_account() is the one function that reaches auth.users, so it gets the hardest look.
+  // It takes no argument: the row is chosen by auth.uid(), which is why B calling it can only ever
+  // delete B. This runs last because it ends B's session.
+  const { error: anonDelete } = await createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { persistSession: false } })
+    .rpc("delete_account");
+  check("a signed-out visitor cannot call delete_account at all", Boolean(anonDelete), anonDelete?.message ?? "the call was accepted");
+
+  const { error: bDeletesSelf } = await b.client.rpc("delete_account");
+  check("a signed-in user can delete their own account", !bDeletesSelf, bDeletesSelf?.message ?? "");
+  const { data: bGone } = await admin.auth.admin.getUserById(b.id);
+  check("that account is really gone", !bGone?.user, bGone?.user ? "still there" : "");
+  const { data: aSurvives } = await admin.auth.admin.getUserById(a.id);
+  check("deleting one account leaves the other user alone", Boolean(aSurvives?.user));
+  const { data: aDeckSurvives } = await a.client.from("decks").select("id").eq("id", aDeck.id);
+  check("and leaves the other user's decks alone", aDeckSurvives?.length === 1, `${aDeckSurvives?.length ?? 0} rows`);
 } finally {
-  for (const u of [a, b]) await admin.auth.admin.deleteUser(u.id);
+  for (const u of [a, b]) await admin.auth.admin.deleteUser(u.id).catch(() => {});
   console.log("cleaned up both test users");
 }
 

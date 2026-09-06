@@ -5,7 +5,7 @@
 import { checkSave, savedSummary, sortSaved, suggestName, MAX_NAME, type SavedDeck } from "../src/saved.js";
 import type { CardIndex } from "../src/cards.js";
 import type { Format } from "../src/types.js";
-import { accountsEnabled, accountOf, createDeck, deleteDeck, listDecks, onAccount, signIn, signOut, updateDeck, type Account } from "./supabase.js";
+import { accountsEnabled, accountOf, createDeck, deleteAccount, deleteDeck, listDecks, onAccount, signIn, signOut, updateDeck, type Account } from "./supabase.js";
 
 export interface AccountHooks {
   /** The list currently in the textarea, exactly as the player typed or pasted it. */
@@ -26,6 +26,8 @@ let decks: SavedDeck[] = [];
 let loadedId: string | null = null;
 let renaming: string | null = null;
 let confirming: string | null = null;
+/** Deleting the account is two clicks, like deleting a deck, and it is never the default one. */
+let closing = false;
 let message = "";
 
 export function initAccount(h: AccountHooks): void {
@@ -74,6 +76,12 @@ function onPanelClick(ev: Event): void {
     case "delete": confirming = id; renaming = null; render(); return;
     case "delete-cancel": confirming = null; render(); return;
     case "delete-confirm": void guard(() => remove(id)); return;
+    case "close": closing = true; render(); return;
+    case "close-cancel": closing = false; render(); return;
+    case "close-confirm": void guard(async () => {
+      await deleteAccount();
+      decks = []; loadedId = null; closing = false;
+    }); return;
   }
 }
 
@@ -147,7 +155,10 @@ function signedIn(): string {
       <button type="button" class="ghost" data-act="save">Save</button>
     </div>
     ${changed ? `<p class="acct-note">This list no longer matches <strong>${esc(loaded.name)}</strong> as saved. <button type="button" class="linklike" data-act="overwrite" data-id="${esc(loaded.id)}">Update it</button> or save the new one under its own name.</p>` : ""}
-    ${decks.length ? decks.map(deckRow).join("") : `<p class="acct-note">No saved decks yet.</p>`}`;
+    ${decks.length ? decks.map(deckRow).join("") : `<p class="acct-note">No saved decks yet.</p>`}
+    ${closing
+      ? `<p class="acct-note">Deleting the account removes it and all ${decks.length} saved deck${decks.length === 1 ? "" : "s"} at once, with nothing kept. <button type="button" class="linklike danger" data-act="close-confirm">Delete for good</button> · <button type="button" class="linklike" data-act="close-cancel">Keep it</button></p>`
+      : `<p class="acct-foot"><button type="button" class="linklike" data-act="close">Delete account</button> · <a href="/privacy">Privacy</a></p>`}`;
 }
 
 function deckRow(d: SavedDeck): string {

@@ -25,7 +25,7 @@ const slim = {
   cards: full.cards.map(slimCard),
 };
 writeFileSync(join(OUT, "data", "cards.json"), JSON.stringify(slim));
-for (const f of ["index.html", "styles.css", "favicon.svg"]) copyFileSync(join(ROOT, "web", f), join(OUT, f));
+for (const f of ["index.html", "privacy.html", "terms.html", "styles.css", "favicon.svg"]) copyFileSync(join(ROOT, "web", f), join(OUT, f));
 
 // Both values are public by design and are baked in rather than fetched, so the account layer is
 // either present in a build or absent from it — never half-configured at runtime. An empty pair

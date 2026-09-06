@@ -61,6 +61,35 @@ describe("what the page promises about storing a list", () => {
   });
 });
 
+/**
+ * Riot's "Legal Jibber Jabber" policy prints this sentence and says not to paraphrase it. Four of
+ * five Riftbound fan sites get it wrong. It belongs on every page of the site, not only the home
+ * page, which is what the two pages added for Google's OAuth branding form made newly true.
+ */
+const DISCLAIMER = `RiftCombo was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.`;
+const PAGES = ["index.html", "privacy.html", "terms.html"];
+const page = (f: string) => readFileSync(new URL(`../web/${f}`, import.meta.url), "utf8");
+
+describe("every page the site serves", () => {
+  it("carries Riot's disclaimer verbatim", () => {
+    for (const f of PAGES) expect(page(f), f).toContain(DISCLAIMER);
+  });
+
+  it("sets no inline style attribute, which the CSP forbids", () => {
+    for (const f of PAGES) expect(page(f), f).not.toMatch(/<[^>]+\sstyle=/);
+  });
+
+  it("is copied into the build output", () => {
+    const build = readFileSync(new URL("../scripts/build-web.mjs", import.meta.url), "utf8");
+    for (const f of PAGES) expect(build, `${f} would never reach public/`).toContain(`"${f}"`);
+  });
+
+  it("is reachable without its extension, which is what /privacy and /terms are linked as", () => {
+    const config = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8")) as { cleanUrls?: boolean };
+    expect(config.cleanUrls).toBe(true);
+  });
+});
+
 describe("what the browser bundle is allowed to know", () => {
   it("never mentions the service_role key or the database password in web/", () => {
     for (const f of ["main.ts", "account.ts", "supabase.ts", "graph.ts", "index.html"]) {
