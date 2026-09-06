@@ -291,3 +291,37 @@ describe("a battlefield never pairs with another battlefield", () => {
     expect(withBattlefieldPartner.length).toBeGreaterThan(0);
   });
 });
+
+describe("an exclude reaches every printing of the card it names", () => {
+  // An exclude names one base code, but a card reprinted under a second one is the same card, and
+  // partnersOf collapses reprints onto the earliest printing. Banning only the named code let the
+  // reprint through and then relabelled it with the excluded base, so the list showed the very card
+  // the author had ruled out. Six shipped excludes were silently dead this way — Yone and Swain in
+  // `skyfall-hold-conquer-bridge` and `reckoners-arena-conquer-on-hold`, Vayne and Zed in
+  // `svellsongur-copy` — while every exclude on a single-printing card kept working, which is why
+  // nothing looked wrong. Fixed 2026-09-06 by expanding the ban over cards.equivalents.
+  it("drops Yone under Reckoner's Arena, whose SFD-233 reprint used to slip back in", () => {
+    const rule = synergies.find((s) => s.id === "reckoners-arena-conquer-on-hold")!;
+    // Guard the fixture itself: the bug only exists for a card with two printings.
+    expect(cards.equivalents("SFD-116")).toEqual(expect.arrayContaining(["SFD-116", "SFD-233"]));
+    expect(rule.partner.excludes?.map((x) => x.card)).toContain("SFD-116");
+    const named = partnersOf(rule, cards).flatMap((c) => cards.equivalents(c.base));
+    expect(named).not.toContain("SFD-116");
+    expect(named).not.toContain("SFD-233");
+  });
+
+  it("holds for every exclude in the file, on every printing", () => {
+    const withReprintedExclude = synergies.filter((s) =>
+      (s.partner.excludes ?? []).some((x) => cards.equivalents(x.card).length > 1));
+    // If this reads 0 the assertion below stops testing the bug it was written for.
+    expect(withReprintedExclude.length).toBeGreaterThan(0);
+    for (const s of synergies) {
+      const named = new Set(partnersOf(s, cards).flatMap((c) => cards.equivalents(c.base)));
+      for (const x of s.partner.excludes ?? []) {
+        for (const printing of cards.equivalents(x.card)) {
+          expect(named, `${s.id} excludes ${x.card} but lists ${printing}`).not.toContain(printing);
+        }
+      }
+    }
+  });
+});

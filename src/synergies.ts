@@ -73,7 +73,10 @@ export function validateSynergies(synergies: Synergy[], cards: CardIndex, opts: 
 export function partnersOf(s: Synergy, cards: CardIndex): Card[] {
   const match = s.partner.textMatches ? new RegExp(s.partner.textMatches) : null;
   const reject = s.partner.textExcludes ? new RegExp(s.partner.textExcludes) : null;
-  const banned = new Set((s.partner.excludes ?? []).map((x) => x.card));
+  // Expanded over every printing, exactly like the anchor below: an exclude names one base code, but
+  // a reprint under a second one carries the same card and collapses onto that base in the canonical
+  // map further down, so banning the named code alone let the excluded card back into the list.
+  const banned = new Set((s.partner.excludes ?? []).flatMap((x) => cards.equivalents(x.card)));
   const anchor = new Set(cards.equivalents(s.anchor));
   // 485.4.a: "Each player provides three (3) Battlefields ... Only 1 will be used, chosen during
   // setup." (486.4.a and 487.4.a say the same for the other formats.) So two of your battlefields
