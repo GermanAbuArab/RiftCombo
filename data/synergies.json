@@ -2331,6 +2331,101 @@
       "status": "rule-verified",
       "reviewed": "2026-09-06",
       "reviewedCount": 23
+    },
+    {
+      "id": "portal-rescue-replays-a-body",
+      "name": "Portal Rescue replays a body for free, off the board instead of out of hand",
+      "anchor": "OGN-102",
+      "partner": {
+        "textMatches": "When (you play me|you play this|I'm played)[^.]{0,110}?[Pp]lay (a|an|two|three|four)\\b",
+        "types": [
+          "unit",
+          "gear"
+        ],
+        "excludes": [
+          {
+            "card": "VEN-068",
+            "why": "the predicate caught \"play a non-token gear\" in his trigger condition; his play effect readies something, it puts nothing on the board."
+          }
+        ]
+      },
+      "why": "\"Banish a friendly unit, then its owner plays it to their base, ignoring its cost\" is a third enabler of the same shape retreat-replays-a-body and pack-of-wonders-replays-a-body already stand on, and a stronger one: 419.3 / 419.3.a / 419.3.b treat this forced replay as an ordinary Play (\"Treat all steps of Play as normal\"), so 419.4.a fires the unit's own \"When you play me\" trigger a second time exactly as a hand-replay does, and 355.2.a already lists the controller's Base among the default valid locations the card sends it to. Unlike Retreat (which only returns the body to hand, so the second cast still costs its full price) and Pack of Wonders (same, plus it needs another gear or unit to spend a card on), Portal Rescue banishes straight off the board and replays \"ignoring its cost\" in the same breath — one card buys a completely free second play effect, at [Action] speed, so it reaches the opponent's Showdowns as well as your own Main Phase.",
+      "basis": {
+        "rules": [
+          "419.3",
+          "419.3.a",
+          "419.3.b",
+          "419.4.a",
+          "355.2.a",
+          "383.4.a",
+          "383.4.a.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 16
+    },
+    {
+      "id": "teemo-strategist-lures-the-attacker",
+      "name": "Drag an enemy onto your own battlefield and Teemo's Defend Trigger fires on your turn",
+      "anchor": "OGN-121",
+      "partner": {
+        "textMatches": "[Mm]ove (up to \\w+ |any number of |all |a |an )?enemy units?|choose an opponent\\. They move a unit they control to the same battlefield",
+        "excludes": [
+          {
+            "card": "VEN-091",
+            "why": "\"When I attack, you may move any number of enemy units here each with 5 Might or less to their base\" fires on Corrupted Dragon's own attack and sends the enemy to its BASE, never to a battlefield — 450 needs the destination to be a Battlefield for Contested to apply, so this clears a path for an attack instead of luring anyone in."
+          },
+          {
+            "card": "UNL-105",
+            "why": "Imposing Challenger pushes the enemy AWAY to \"a different battlefield\", not toward one the mover controls; its own established use (faefolk-challenger-forced-attacker) un-stages the Combat he is already in via 323.10, the opposite mechanism from creating Contested at a battlefield you already garrison."
+          },
+          {
+            "card": "UNL-124",
+            "why": "Isolate sends the enemy unit to its own base. A base is never a Battlefield, so 450 never applies and no Contested status is created — this is removal, not a lure."
+          },
+          {
+            "card": "SFD-053",
+            "why": "Janna's optional move sends the enemy unit \"from here to its base\" — the same base destination as Isolate, so 450 is never met."
+          },
+          {
+            "card": "UNL-137",
+            "why": "Sinister Poro moves the enemy unit to ITS base, and its own catalogued combo (sinister-poro-attack-evacuate) uses exactly that to clear the Defender for a bloodless win on your own attack — the opposite direction from luring one onto your battlefield."
+          },
+          {
+            "card": "UNL-107",
+            "why": "Stare Down moves the enemy units at the chosen battlefield to their own base. Base is not a Battlefield, so 450 never applies here either."
+          },
+          {
+            "card": "SFD-129",
+            "why": "Temptation moves the enemy unit \"to a location where there's a unit with the same controller\" — toward the opponent's OWN board, never onto a battlefield the mover controls, so it can never apply Contested against them (190.3.a.1)."
+          }
+        ]
+      },
+      "why": "Teemo, Strategist's \"When I defend\" ability (383.4.f) only fires when the opponent chooses to attack his battlefield, which a player who has seen him simply stops doing. 190.3.a / 190.3.a.1 key the Contested status on the MOVED unit's controller, not on whoever caused the move, and 450 makes the destination Contested whenever it is a Battlefield \"not controlled by the controller of the Unit or Units that moved\" — so dragging (or forcing) an enemy unit onto a battlefield you already control makes THEM the Attacker (464.2.c.1) and every friendly unit standing there, Teemo included, the Defender (464.2.c.2, 464.2.c.3) on YOUR OWN turn. Several of these cards name no destination at all (Charm, Skyward Strike, Dragon's Rage, Tricksy Tentacles, Blast Cone); 355.4 / 355.4.a let the controller of the Move Effect pick any valid location, including a battlefield they already hold, which is exactly how teemo-strategist-rabadons-deathcrown-bonus-kill already uses Charm and teemo-strategist-swift-scout-hidden-flood already uses Evelynn, Entrancing. UNL-101 Call to Battle is a fourth, unique shape in the family: instead of you choosing which enemy unit moves, it forces the OPPONENT to send one of their own — 190.3.a.1 keys on the moved unit's controller regardless of who chose the move, so the effect is identical.",
+      "basis": {
+        "rules": [
+          "383.4.f",
+          "383.4.f.2.a",
+          "190.3.a",
+          "190.3.a.1",
+          "450",
+          "464.2.c.1",
+          "464.2.c.2",
+          "464.2.c.3",
+          "355.4",
+          "355.4.a"
+        ],
+        "combos": [
+          "faefolk-challenger-forced-attacker",
+          "teemo-strategist-swift-scout-hidden-flood",
+          "teemo-strategist-rabadons-deathcrown-bonus-kill"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 13
     }
   ]
 }
