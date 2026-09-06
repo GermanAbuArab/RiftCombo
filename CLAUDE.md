@@ -11,6 +11,7 @@
 - An issue body states what is wrong, the measured evidence, the files involved, and its dependencies on other issues. No vague one-liners.
 - Close issues from commit messages (`Closes #4`) so the backlog does not drift from the code. Qualifying it does NOT scope it: `Closes #23 for web/main.ts` still closed all of #23 on push, and its second half had to be reopened by hand. When a commit does part of an issue, write `Refs #23`.
 - `tasks/todo.md` is scratch for the current session only. GitHub issues are the durable backlog.
+- **Several sessions share ONE working tree, so `git add` is always path-scoped.** `git add -A` / `git add .` on 2026-09-06 swept four files another session was still finishing (src/combos.ts, src/matcher.ts and their tests) into a combos commit, and rewriting shared history was not an option. Each session owns named paths (a walk: `data/combos.json` + `docs/phase0/walks/`; UI: `web/`, `src/`, `test/`; synergies: `data/synergies.json` + its test) and stages only those; never stash or reset someone else's changes; before pushing, `git fetch` and push only when `origin/master` is an ancestor of `HEAD`.
 
 ## Data
 - Card text comes ONLY from Riot's gallery content API via `scripts/build-cards.mjs`; never from RiftScribe or other mirrors (they drop Equipment `effect` text and have no ban data).
