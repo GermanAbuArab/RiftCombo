@@ -11,7 +11,7 @@ proposed fix would have broken the build.
 | | |
 |---|---|
 | Base | `2b8ffad`, the last commit before 2026-09-06 |
-| Head | `97988e4` at the time of writing (the branch moved during the review; see below) |
+| Head | `97988e4` (the branch moved seven times during the review; see below) |
 | Commits | 148 |
 | Diff | 308 files, +43,955 / −1,736 |
 | Code only (`web/ src/ test/ scripts/ supabase/ api/`) | 261 files, +13,400 / −313 |
@@ -97,8 +97,32 @@ also catches `master` and would switch production off.
 | #129 | HIGH | The Construction verdict and all four status lines are never announced |
 | #134 | MEDIUM | `championTagSet` caches globally instead of per `CardIndex` |
 | #135 | LOW | `planDeck` treats *restricted* as *banned*; unresolved lines lose their section |
+| #138 | HIGH | The whole DOM layer of today's features is untested — no DOM environment is installed |
 | #130 | LOW | `esc()` is triplicated, escapes no `'`, and nothing tests it |
-| #131 | LOW | Three off-scale corner radii, a dead `--panel-3`, a stale palette in CLAUDE.md |
+| #131 | LOW | Three off-scale corner radii, dead CSS, a stale palette in CLAUDE.md |
+| #139 | LOW | A synergies test asserts nothing — its loop runs zero times |
+
+**#138 — the tests lane's single finding, with five faces.** `devDependencies` carries only `esbuild`,
+`tsx`, `typescript`, `vitest` and `@types/node`. There is no `jsdom` or `happy-dom`, so no test can
+mount a DOM, and every module whose logic *is* DOM wiring is unreachable by the suite:
+
+```
+$ grep -rl "from ['\"]\.\./web/decks"   test/   -> (nothing)
+$ grep -rl "from ['\"]\.\./web/builder" test/   -> (nothing)
+$ grep -rl "from ['\"]\.\./web/account" test/   -> (nothing)
+$ grep -rl "web/supabase"                 test/   -> (nothing)
+```
+
+That is `web/decks.ts` (426 lines — the entire My decks CRUD, `guardUnsaved`, the Piltover import),
+`web/router.ts:60-98` (`apply()`, `go()`, `onRoute()`, `startRouter()`; only the pure `parseHash` is
+tested), `web/builder.ts` (the rendering of today's own #122/#123 fix — reverting that hunk restores
+the "0 of 1" wrong badge with no test failing), `web/account.ts` (the gate transition; only the
+`data-auth="pending"` default is pinned, as a string match), and `web/supabase.ts` (117 lines, the
+whole persistence layer).
+
+Two parts of it are cheap and need no new tooling: `accountOf` is pure and has real branching, and
+`scripts/check-rls.mjs` — the 14-check proof that one player cannot read another's decks — is not in
+`npm test` and runs only when someone remembers to type it.
 
 The two most serious are worth restating, because both defeat `checkBuild`, which is the app's entire
 answer to *is this deck legal*:
@@ -114,6 +138,7 @@ answer to *is this deck legal*:
   so a Champion Legend named under "Champion" passes 103.2.a.2, and `normalizeDeck` also adds it to
   `deck.main`, inflating the 40-card count. The click builder is immune; only the text path — paste,
   deck code, URL import — has the hole.
+
 
 ### Filed as data debt
 
@@ -175,6 +200,13 @@ Stated explicitly, as required:
   code, never observed in a browser, because this pass was static by instruction.
 - **Google's redirect-URI allowlist** and Supabase Auth rate-limiting/CAPTCHA settings: both live
   outside the repo and were not inspected.
+- **Order dependence was inferred, not run.** No `Date.now()`, `Math.random()`, network call or shared
+  mutable fixture was found in a code path any test exercises, but the suite was not run with
+  `--sequence.shuffle` or file-by-file to prove it.
+- **The dead-CSS sweep is partial.** Only the 156 classes touched in today's `web/styles.css` diff were
+  checked, so pre-existing orphans elsewhere in the file are not ruled out.
+- **`src/saved.ts` coverage was not mapped.** It predates today's diff and `test/saved.test.ts` exists,
+  but which of its exports that test actually reaches was not established.
 
 Two corrections to this session's own framing, both settled by evidence rather than argument:
 
@@ -211,6 +243,13 @@ Worth recording, because a review that only lists defects misrepresents the tree
 - **Round-trip** `deckEntries → deckToText → loadDeck` is lossless across all 225 fixture decklists.
 - **The copy cap counts by name across reprints**, and runes and battlefields are kept out of it —
   the trap that would declare every legal deck illegal.
+- **Build determinism.** The clean tree was built twice into separate directories and diffed with
+  `diff -rq`: byte-identical, 6.1M each. No timestamp or hash-ordering nondeterminism.
+- **Type safety.** `tsconfig.json` has `strict: true` **and** `noUncheckedIndexedAccess: true`, which
+  is stronger than most projects carry. Today's diff introduced **zero** `as any`, `as unknown as`,
+  `@ts-ignore` or `@ts-expect-error`. `tsc --noEmit --noUnusedLocals --noUnusedParameters` is clean, so
+  there are no orphaned imports or variables anywhere in `src/` or `web/`. Only
+  `exactOptionalPropertyTypes` is off; no instance of the bug class it catches was found in the diff.
 - **Accessibility.** `test/a11y.test.ts` is genuinely strong: it recomputes contrast from the live CSS
   custom properties rather than repeating numbers, pins the single focus ring and its two legitimate
   exceptions, and pins the overlay's focus trap and restore. The deckbuilder uses real buttons,
@@ -237,10 +276,14 @@ Worth recording, because a review that only lists defects misrepresents the tree
    describe it. `git commit --only` prevents the reverse case but not this one, and the history now
    contains a commit whose message and diff disagree. The `work`-branch batching added mid-review helps
    the deployment quota, not this.
-5. **The guard rails are hand-maintained lists.** `scripts/web-card-fields.mjs` is an array someone must
-   remember to extend — the gap it exists to prevent shipped twice already. `esc()` is copy-pasted three
-   times with no shared source and no test (#130). Both are correct today and neither is enforced by
-   anything that fails when someone forgets.
+5. **Correctness rests on people remembering, in three places at once.** No DOM test environment is
+   installed, so the entire `web/` layer — My decks CRUD, the router, the builder's rendering, the
+   sign-in gate, the persistence client — is unreachable by the suite (#138); today's own #122/#123 fix
+   could be reverted with all 318 tests green. `scripts/web-card-fields.mjs` is an array someone must
+   remember to extend, and the gap it exists to prevent shipped twice already. `esc()` is copy-pasted
+   three times with no shared source and no test (#130). `check:rls` — the proof that one player cannot
+   read another's decks — is not in `npm test`. Each of these is correct today; none of them fails when
+   someone forgets.
 
 ## Process note
 
