@@ -8,8 +8,9 @@ Vision/Karma gap recorded for the synergies layer.
 
 Outcome in one line: **the candidate is REFUTED as its own entry and folded into
 `voidreaver-khazix-xp-removal` as a notable; four entries gain notables; two of them also carry a
-CORRECTION, because both stated "open" as "uncontrolled" alone.** No entry changed class, quantity or
-`uses`. The catalogue stays at 242 entries, all `verified`.
+CORRECTION, because both stated "open" as "uncontrolled" alone; and ONE NEW ENTRY was authored,
+`isolate-deckhand-open-conquer` (§2.7).** No existing entry changed class, quantity, `uses` or steps.
+The catalogue goes from 242 to **243 entries, all `verified`**.
 
 ---
 
@@ -213,9 +214,122 @@ is on the board *any* friendly unit is a walker. She reaches the board through h
 
 The mono-Chaos version of the Charm line needs no Calm at all: swap Charm for `UNL-124 Isolate`
 (E2), already listed among that entry's alternatives, and the whole Conquer is **Isolate + Sneaky
-Deckhand = 5 Energy, two cards, one Main Phase, nothing on the board beforehand**. Recorded as a
-notable; flagged to the orchestrator as arguably its own entry, since it is a different cost shape
-from the entry's declared "spell + a Standard Move".
+Deckhand = 5 Energy, two cards, one Main Phase, nothing on the board beforehand**. It was first
+recorded as a notable and then, on the user's instruction, authored as its own verified entry —
+`isolate-deckhand-open-conquer`, walked in §2.7 below.
+
+
+### 2.7 `isolate-deckhand-open-conquer` — walked in full, VERIFIED
+
+Authored as its own entry rather than left as a notable, on the user's instruction and for the reason
+they gave: **the catalogue prices shapes.** `charm-evacuate-conquer` costs 1 Energy + 1 Calm Power
+plus a Standard Move, and a Standard Move presupposes a body deployed on an earlier turn and readied
+since (143.4 → 315.1.b → 144.2 / 420.3.a). This pair costs 5 Energy and two cards and presupposes
+**nothing on the board**. Different prerequisite, different domain, different answer from `planDeck`.
+
+#### The two cards, verbatim
+
+```
+UNL-124 | Isolate         | Spell | Chaos | E2    | Move an enemy unit from a battlefield to its base. Then, if there's an enemy unit alone at that battlefield, draw 1.
+OGN-176 | Sneaky Deckhand | Unit  | Chaos | E3 M2 | You may play me to an open battlefield. [Tags: Pirate, Bilgewater]
+```
+
+Ban check: neither line carries a `[BANNED` marker. `data/cards.json`: both `domains: ["chaos"]`,
+both `signature: false`.
+
+#### Domain Identity
+
+**103.1.b.3** — "If a card has a single Domain, then that card is permitted in the Domain Identity
+that corresponds to the same Domain." Both cards are mono-Chaos, so all **16** Chaos legends in the
+pool run the pair: `OGN-251`, `OGN-259`, `OGN-263`, `OGN-267`, `OGS-017`, `SFD-185`, `SFD-195`,
+`SFD-199`, `SFD-203`, `UNL-185`, `UNL-193`, `UNL-197`, `UNL-201`, `VEN-143`, `VEN-151`, `VEN-155`.
+No legend is forced and no second domain is spent, which is the sharpest contrast with
+`charm-evacuate-conquer`: Charm is mono-Calm, so running the same walkers beside it costs a Calm/Chaos
+legend (`OGN-259`, `SFD-195`, `UNL-193` — three of the sixteen).
+
+#### The order is forced by the permission, not by a sequencing trap
+
+`charm-evacuate-conquer` has to *argue* its order: enter first and the Cleanup stages the Combat
+(323.9) and opens it (323.13) in the same Cleanup, and 155 then bars the spell. Here there is nothing
+to argue. The battlefield is not open until Isolate has resolved, so playing the Deckhand first is
+simply not a legal choice of location — **355.2** ("For Units, choose a valid Location where that Unit
+will enter upon being Played") is a step of playing the card, and **822.1.c** names it for permissions
+of exactly this kind: such an ability "adds options to locations that are valid for a Unit to be
+played to during the Make Relevant Choices step of Playing a Card".
+
+#### Step by step, with the Cleanups named
+
+1. **Main Phase, Neutral Open State.** 155: "A spell can be played during an Open State outside of
+   Showdowns on its controller's turn." 312.2.a gives you Priority there. Play Isolate, 2 Energy —
+   **164.2.a** gives each Basic Rune "[E]: [Reaction] — Add [1]", so the whole gate on this line is
+   five ready runes.
+2. **Isolate resolves.** The single defender moves to its **own** base — a Move by effect (449), not
+   a Recall (455), so 456.1 does not apply and that body's own "when I move" abilities do fire. Its
+   destination is printed, so 355.4 never comes up and it cannot be sent to *your* base by mistake
+   (the 323.7 trap `charm-evacuate-conquer` documents).
+3. **First Cleanup.** **319.8** ("After a Move is completed") and **453** ("When a Move action is
+   complete, perform a Cleanup") make it outstanding; **321** / **321.1** hold it until the chain
+   finishes resolving. **323.6** strips their Control. The battlefield is now **unoccupied** (170.11.a
+   does not apply — the garrison of one has gone and your Deckhand is still in hand) and
+   **uncontrolled** (170.11.b), so it is **open** in the full sense of **170.11.c**: "This means they
+   are unoccupied and uncontrolled." Both halves, checked.
+4. **Same Main Phase.** Play Sneaky Deckhand, 3 Energy, choosing that battlefield at 355.2 under
+   **355.2.b** ("Some Game Effects may grant players permission to play Units to locations that are
+   not normally Valid. Such locations become Valid for the purposes of Playing the Unit"), against
+   355.2.a's default of "the controller's Base or a Battlefield the controller controls". 143.4 makes
+   him enter exhausted; it costs nothing, because he never moves and no Combat is ever staged.
+5. **Contested lands, and the rules say so in terms.** **190.3.a.1**: "Units moving to **or being
+   played to** a battlefield apply Contested status if that battlefield is not already Contested and
+   that Unit's controller does not already control that battlefield." **450 is not cited anywhere in
+   this entry** — it is written about "the Unit or Units that *moved*", and no unit of yours moves.
+6. **Second Cleanup.** **319.6** ("After any number of Game Objects enter or leave the Board") makes
+   it outstanding. 323.8 stages a Showdown; **323.9 stages no Combat**, because it requires "Units
+   present controlled by opposing players". **344.2** is the paragraph written for this exact board:
+   "If Control of a Battlefield is Contested, there aren't units controlled by different players
+   there, and the turn is in a Neutral Open State, a Showdown is opened during the next Cleanup."
+   323.12 is its Cleanup step. 345 gives you Focus as the player who applied Contested.
+7. **The point.** All pass, 348 closes the Showdown, **348.2.a** establishes Control and
+   **348.2.a.1** — "This results in a Conquer if that player has not yet scored that Battlefield this
+   turn" — makes it a Conquer. 469.1 Scores it, 471.1 gives the point. 466.5 is *not* the route and is
+   not cited: it is a step of the Combat Resolution Step and no Combat opens.
+
+Trap 1 is **avoided, not worked around**: no Combat is staged, so no Attacker designation is handed
+out (464.2.c.3) and the entry declares no attack — 383.4.e, 807.1.d and 461 are satisfied by the
+board, not by an argument.
+
+#### Two things the walk found that the notable version did not say
+
+**Isolate's own draw can never fire in this line, and the card is anti-synergic with it.** The rider
+is "Then, if there's an enemy unit alone at that battlefield, draw 1". The pool settles "alone" in its
+own reminder text — `SFD-036 Lonely Poro`, "(I'm alone if there are no other friendly units here.)" —
+so it is an own-side measurement and the clause asks the **opponent** to still have exactly one unit
+there. This line empties the battlefield to zero, so there is no enemy unit to be alone. Isolate pays
+its rider in precisely the case this entry cannot use (a garrison of two, one moved) and pays nothing
+in the case it needs. The honest budget is 5 Energy for two cards and one point, **with no
+replacement**.
+
+**The opponent's only window is the Closed State that playing Isolate opens — not the gap between the
+two cards.** **312.2.a** grants Priority in a Neutral Open State only "during **their** Main Phase",
+so on your turn the opponent never holds it there, and the interval between the first Cleanup and the
+Deckhand's play is not a window at all. What they do get is 312.2.c / 312.2.d inside Isolate's own
+Closed State, where **813.1.c.1** lets a `[Reaction]` card be played "during Closed States on any
+player's turn". The concrete counterplay is an `[Ambush]` body: **822.1.b** is "I may be played to a
+battlefield where you control Units" plus "[Reaction] as long as I'm being played to a battlefield
+where you control Units", and at that instant they still control units there. A second body lands,
+Isolate moves one and leaves one, the battlefield stays theirs, the Deckhand has no open location —
+and the rider above finally fires. The counterplay **degrades the line into a 2-Energy cantrip**
+rather than beating it outright. That is the honest failure mode and it is on the entry.
+
+#### Class and ceiling
+
+**ENGINE.** One Conquer per pair. `terminatesIn`: bounded by the 3 copies each of 103.2.b and by 470
+(one Score per Battlefield per turn), which a Duel's two battlefields (485.4) cap at 2 a turn. It
+never compounds, and it does nothing at all against a garrison of two — the same ceiling
+`charm-evacuate-conquer` and `amateur-recital-free-evacuation` declare. `SFD-129 Temptation` (Chaos,
+E2 + E2 `[Repeat]`, and **not** more: 820.1.c.3, "Each Repeat Cost can be paid only a single time") is
+the substitution that closes against two; `UNL-107 Stare Down` and `renekton-stare-down-evacuate` are
+the lines that scale, and they are Body.
+
 
 ---
 
@@ -301,5 +415,8 @@ opening a paragraph.
 103.1.b.1, 103.1.b.2, 103.1.b.3, 103.2.b, 103.2.d.3, 143.4, 143.4.a, 144.2, 170.11.a, 170.11.b,
 170.11.c, 190.3.a, 190.3.a.1, 315.1.b, 315.2.b.2, 316, 323.6, 323.7, 323.8, 323.8.a, 323.9, 323.9.a,
 323.10, 323.11, 323.11.a, 323.12, 323.13, 348.2.a, 348.2.a.1, 355.2, 355.2.a, 355.2.b, 355.9.a,
-355.9.a.1, 383.3.e, 383.3.e.1, 383.3.e.2, 420.3.a, 449, 449.1, 450, 455, 465.2.c, 485.4, 702.3,
-702.3.a, 703, 729, 730, 730.1, 730.2, 731, 733, 824.1.b.1, 824.1.c, 824.1.d.
+355.4, 355.9.a.1, 383.3.e, 383.3.e.1, 383.3.e.2, 383.4.e, 420.3.a, 449, 449.1, 450, 453,
+455, 456.1, 461, 464.2.c.3, 465.2.c, 469.1, 470, 471.1, 485.4, 702.3, 702.3.a, 703, 729, 730, 730.1,
+730.2, 731, 733, 807.1.d, 813.1.c.1, 820.1.c.3, 822.1.b, 822.1.c, 824.1.b.1, 824.1.c, 824.1.d.
+Added for §2.7: 155, 164.2.a, 310.1, 312.2.a, 312.2.c, 312.2.d, 319.6, 319.8, 321, 321.1, 344.2, 345,
+348, 355.2.
