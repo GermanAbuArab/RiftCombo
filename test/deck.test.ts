@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { getCodeFromDeck } from "@piltoverarchive/riftbound-deck-codes";
 import { loadCardIndex } from "../src/load.js";
-import { deckRestrictions, decodeDeckCode, isDeckCode, loadDeck, normalizeDeck, parseDeckText } from "../src/deck.js";
+import { deckRestrictions, decodeDeckCode, deckToText, encodeDeckCode, isDeckCode, loadDeck, normalizeDeck, parseDeckText, type DeckEntry } from "../src/deck.js";
 
 const cards = loadCardIndex();
 const fixture = (n: string) => readFileSync(new URL(`./fixtures/${n}`, import.meta.url), "utf8");
@@ -114,5 +114,45 @@ describe("restricted cards in a pasted list", () => {
 
   it("says nothing about a clean list", () => {
     expect(deckRestrictions(loadDeck(fixture("lux.txt"), cards), cards, "constructed")).toEqual([]);
+  });
+});
+
+describe("writing a deck back out", () => {
+  const payload = JSON.parse(fixture("piltover-api.json")) as { title: string; entries: DeckEntry[] };
+
+  it("serialises a Piltover Archive payload into a list our own parser reads back identically", () => {
+    const text = deckToText(payload.entries, cards);
+    expect(loadDeck(text, cards)).toEqual(normalizeDeck(payload.entries, cards));
+  });
+
+  it("writes the sections a player expects to see, in reading order", () => {
+    const text = deckToText(payload.entries, cards);
+    const at = (s: string) => {
+      const i = text.indexOf(s);
+      expect(i, `${s} is missing`).toBeGreaterThan(-1);
+      return i;
+    };
+    expect(at("Legend")).toBeLessThan(at("Champion"));
+    expect(at("Champion")).toBeLessThan(at("Battlefields"));
+    expect(at("Battlefields")).toBeLessThan(at("Runes"));
+    expect(at("Runes")).toBeLessThan(at("Main Deck"));
+    expect(at("Main Deck")).toBeLessThan(at("Sideboard"));
+    expect(text).toContain("6 Mind Rune (OGN-089)");
+  });
+
+  it("keeps an unrecognised entry in the text rather than dropping it", () => {
+    expect(deckToText([{ code: "ZZZ-999", count: 2, section: "main" }], cards)).toContain("2 ZZZ-999");
+  });
+
+  it("round-trips a parsed list through a deck code", () => {
+    const deck = loadDeck(fixture("lux.txt"), cards);
+    const code = encodeDeckCode(deck);
+    expect(isDeckCode(code)).toBe(true);
+    const back = normalizeDeck(decodeDeckCode(code), cards);
+    expect(back.legend).toBe(deck.legend);
+    expect(back.champion).toBe(deck.champion);
+    expect(back.main).toEqual(deck.main);
+    expect(back.runes).toEqual(deck.runes);
+    expect(back.battlefields).toEqual(deck.battlefields);
   });
 });

@@ -1,4 +1,4 @@
-import { getDeckFromCode } from "@piltoverarchive/riftbound-deck-codes";
+import { getCodeFromDeck, getDeckFromCode } from "@piltoverarchive/riftbound-deck-codes";
 import type { CardIndex } from "./cards.js";
 import type { Deck, Format, LegalityEntry } from "./types.js";
 
@@ -138,4 +138,64 @@ export function deckRestrictions(deck: Deck, cards: CardIndex, format: Format): 
   }
   const rank = (r: DeckRestriction) => (r.entry.status === "banned" ? 0 : 1);
   return [...found.values()].sort((a, b) => rank(a) - rank(b) || a.entry.name.localeCompare(b.entry.name));
+}
+
+/**
+ * The sections a written-out list carries, in the order a player reads them. Every header here is one
+ * SECTION_ALIASES already accepts, so anything this writes, `parseDeckText` reads back.
+ */
+const SECTION_ORDER: [string, string][] = [
+  ["legend", "Legend"],
+  ["champion", "Champion"],
+  ["battlefields", "Battlefields"],
+  ["runes", "Runes"],
+  ["main", "Main Deck"],
+  ["sideboard", "Sideboard"],
+];
+
+/**
+ * Serialise entries — an `/api/deck-url` payload, or anything else shaped like one — into the plaintext
+ * dialect the textarea accepts. Every line carries BOTH the name and the base code
+ * ("3 Sacrifice (UNL-173)"), because the name is what a player recognises and the code is what survives a
+ * reprint. An entry the card index does not know keeps whatever it arrived with, so importing a deck
+ * never silently loses a line.
+ */
+export function deckToText(entries: readonly DeckEntry[], cards: CardIndex): string {
+  const bySection = new Map<string, string[]>();
+  for (const e of entries) {
+    const base = (e.code && cards.resolveCode(e.code)) || (e.name && cards.resolveName(e.name)) || null;
+    const card = base ? cards.get(base) : undefined;
+    const section = e.section && SECTION_ORDER.some(([k]) => k === e.section) ? e.section : "main";
+    const line = card ? `${e.count} ${card.name} (${card.base})` : `${e.count} ${e.name ?? e.code ?? "?"}`;
+    if (!bySection.has(section)) bySection.set(section, []);
+    bySection.get(section)!.push(line);
+  }
+  return SECTION_ORDER
+    .filter(([key]) => bySection.get(key)?.length)
+    .map(([key, header]) => `${header}\n${bySection.get(key)!.join("\n")}`)
+    .join("\n\n");
+}
+
+/**
+ * A Piltover Archive deck code for a parsed list. The codec takes one flat array for everything that is
+ * not a sideboard — legend, runes and battlefields included — plus the Chosen Champion separately, and it
+ * counts that champion as a Main Deck card on the way back out. `deck.main` already holds it (see
+ * `normalizeDeck`, and Tournament Rules 402.1's "40 cards including a chosen champion"), so the one copy
+ * in the champion slot is taken out of the array here or it would come back doubled. Extra copies of the
+ * same card stay, which is exactly what 103.2.b.1 allows.
+ */
+export function encodeDeckCode(deck: Deck): string {
+  const main: { cardCode: string; count: number }[] = [];
+  const push = (bag: Record<string, number>) => {
+    for (const [cardCode, count] of Object.entries(bag)) if (count > 0) main.push({ cardCode, count });
+  };
+  if (deck.legend) main.push({ cardCode: deck.legend, count: 1 });
+  const mainless = { ...deck.main };
+  const chosen = deck.champion ? mainless[deck.champion] : undefined;
+  if (deck.champion && chosen) mainless[deck.champion] = chosen - 1;
+  push(mainless);
+  push(deck.runes);
+  push(deck.battlefields);
+  const side = Object.entries(deck.sideboard).map(([cardCode, count]) => ({ cardCode, count }));
+  return getCodeFromDeck(main, side, deck.champion ?? undefined);
 }

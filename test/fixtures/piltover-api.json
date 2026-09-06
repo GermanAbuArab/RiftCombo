@@ -1,0 +1,18 @@
+{
+  "title": "Lux Forge",
+  "source": "https://piltoverarchive.com/decks/view/example",
+  "entries": [
+    { "code": "OGS-021", "name": "", "count": 1, "section": "legend" },
+    { "code": "OGS-006", "name": "Lux, Illuminated", "count": 1, "section": "champion" },
+    { "code": "UNL-214", "name": "Ripper's Bay", "count": 1, "section": "battlefields" },
+    { "code": "OGN-293", "name": "The Grand Plaza", "count": 1, "section": "battlefields" },
+    { "code": "OGN-288", "name": "Startipped Peak", "count": 1, "section": "battlefields" },
+    { "code": "OGN-089", "name": "Mind Rune", "count": 6, "section": "runes" },
+    { "code": "OGN-214", "name": "Order Rune", "count": 6, "section": "runes" },
+    { "code": "OGN-212", "name": "Forge of the Future", "count": 3, "section": "main" },
+    { "code": "OGN-110", "name": "Ekko, Recurrent", "count": 3, "section": "main" },
+    { "code": "UNL-165", "name": "Shadow's Call", "count": 3, "section": "main" },
+    { "code": "UNL-173", "name": "Sacrifice", "count": 3, "section": "main" },
+    { "code": "OGN-104", "name": "Retreat", "count": 2, "section": "sideboard" }
+  ]
+}
