@@ -1,7 +1,9 @@
 {
   "notes": [
     "Controlled outcome vocabulary. STANDALONE features are shown to users; HELPER features are graph plumbing between combos; HIDDEN are generator internals.",
-    "Keep this list under ~20 entries. Commander Spellbook's 1,310 features forced LOOPLINE to build a second taxonomy on top."
+    "Keep this list under ~20 entries. Commander Spellbook's 1,310 features forced LOOPLINE to build a second taxonomy on top.",
+    "ONE NAME PER THING (2026-09-06, issues #63 and #64). Two names for one product orphan its producers: infinite-recruits had 7 producers and 0 consumers while token-body-engine held the only consumer. Before adding a name, check that no existing one already denotes the same product; the table of what was merged and what was kept apart, with the reason for each, is in docs/phase0/walks/2026-09-06-issue63-payoff-lens.md section V.",
+    "A feature with no consumer is NOT a defect when the feature IS the payoff: points, wins and removal are outputs of the graph, never inputs to it."
   ],
   "features": [
     {
@@ -19,38 +21,11 @@
       "description": "Unbounded Power of the deck's domains within one turn."
     },
     {
-      "id": "infinite-recruits",
-      "name": "Infinite Recruits",
-      "status": "STANDALONE",
-      "uncountable": true,
-      "description": "Unbounded 1 Might Recruit tokens."
-    },
-    {
-      "id": "infinite-ready-recruits",
-      "name": "Infinite ready Recruits",
-      "status": "STANDALONE",
-      "uncountable": true,
-      "description": "Unbounded Recruit tokens that enter ready and can move or attack the turn they appear."
-    },
-    {
       "id": "infinite-recycle",
       "name": "Infinite recycle / redraw",
       "status": "HELPER",
       "uncountable": true,
       "description": "Any card in the trash can be recycled and redrawn at will (requires an empty Main Deck)."
-    },
-    {
-      "id": "infinite-ready",
-      "name": "Infinite Ready",
-      "status": "STANDALONE",
-      "uncountable": true
-    },
-    {
-      "id": "infinite-draw",
-      "name": "Infinite draw (liability)",
-      "status": "HELPER",
-      "uncountable": true,
-      "description": "Drawing past an empty deck is Burn Out and gives an opponent a point."
     },
     {
       "id": "ability-points",
@@ -86,60 +61,46 @@
       "uncountable": true
     },
     {
-      "id": "hold-card-engine",
-      "name": "Repeatable card advantage on Hold",
-      "status": "STANDALONE",
-      "uncountable": false,
-      "description": "Each Hold draws, tutors or returns more than one card. An engine, not a kill."
-    },
-    {
-      "id": "gold-engine",
-      "name": "Repeatable Gold tokens",
-      "status": "STANDALONE",
-      "uncountable": false,
-      "description": "Several Gold gear tokens per Hold. Gold is domainless (187.5) and enters exhausted, so it is next-turn Power for any legend."
-    },
-    {
       "id": "conquer-engine",
-      "name": "Draw and ready on Conquer",
+      "name": "Repeatable Conquers",
       "status": "STANDALONE",
       "uncountable": false,
-      "description": "Conquering with excess damage draws a card and readies a unit."
-    },
-    {
-      "id": "attach-engine",
-      "name": "Runes readied or channeled on attach",
-      "status": "STANDALONE",
-      "uncountable": false,
-      "description": "Attaching Equipment produces rune value, capped per turn."
-    },
-    {
-      "id": "force-opponent-deck",
-      "name": "Force the opponent to play their deck",
-      "status": "STANDALONE",
-      "uncountable": false,
-      "description": "Repeatedly makes the opponent play cards off the top of their Main Deck, ignoring Energy costs."
-    },
-    {
-      "id": "opponent-burn-engine",
-      "name": "Repeatable opponent Burn",
-      "status": "STANDALONE",
-      "uncountable": false,
-      "description": "Makes the opponent put cards from the top of their Main Deck into their trash, repeatedly. Pressure, not a kill: Burn Out recycles their trash before awarding a point (431.2)."
+      "description": "Conquers taken over and over, each carrying whatever rider the entry names — a draw, a ready, a relocation. 470 still caps Scoring at once per battlefield per turn."
     },
     {
       "id": "resource-engine",
       "name": "Repeatable Energy or Power",
       "status": "STANDALONE",
       "uncountable": false,
-      "description": "Bounded Energy or Power returned by moves, readies or reveals within a turn, or held ready through the opponent's. An engine, not a loop: the Rune Pool still empties at end of turn (167)."
+      "description": "Bounded Energy or Power returned by moves, readies, attaches, reveals or Gold tokens within a turn, or held ready through the opponent's. An engine, not a loop: the Rune Pool still empties at end of turn (167). Absorbed gold-engine (187.5 makes a Gold token gear that adds Power, and 9 of its 15 producers already carried both names) and attach-engine (its producers price themselves in runes) on 2026-09-06."
     },
     {
       "id": "token-body-engine",
-      "name": "Repeatable ready bodies",
+      "name": "Repeatable bodies",
+      "status": "STANDALONE",
+      "uncountable": true,
+      "description": "Token units made repeatably, or without bound inside a turn, THAT STAY ON THE BOARD. One name for what was split across infinite-recruits, infinite-ready-recruits and token-body-engine until 2026-09-06 (issues #63, #64): the unbounded producers had no consumer at all. Feeds a Hold, The Grand Plaza or a kill-fodder payoff; not a kill by itself, and 143.4 makes tokens enter exhausted unless something like SFD-171 Renata Glasc, Industrialist says otherwise. Bodies that die before the Scoring Step are temporary-body-engine instead."
+    },
+    {
+      "id": "temporary-body-engine",
+      "name": "Repeatable [Temporary] bodies",
       "status": "STANDALONE",
       "uncountable": false,
-      "description": "Several ready unit tokens per turn, bounded by cards in hand. Feeds a Hold, The Grand Plaza or a kill-fodder payoff; not a kill by itself."
+      "description": "Token units carrying [Temporary], which 816.1.b kills at the start of their controller's Beginning Phase BEFORE scoring. They can move, attack and conquer the turn they are made, and can never be standing there for a Hold — which is why they are not token-body-engine. Only UNL-090 LeBlanc, Everywhere at Once switches the kill off, and only at her battlefield (R10 = A)."
+    },
+    {
+      "id": "card-advantage-engine",
+      "name": "Repeatable card advantage",
+      "status": "STANDALONE",
+      "uncountable": true,
+      "description": "More than one card per turn into hand, by draw, tutor or return from the trash — on a Hold, on a Conquer or on nothing at all. Merged from hold-card-engine and infinite-draw on 2026-09-06, because both name the same product. In Riftbound the unbounded version is a liability, not a win: drawing past an empty Main Deck is Burn Out (431.1.a) and gives an opponent a point (194.1.d)."
+    },
+    {
+      "id": "opponent-deck-pressure",
+      "name": "Pressure on the opponent's deck",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "Makes the opponent burn through their own Main Deck, by milling it or by forcing them to play off the top. Merged from force-opponent-deck and opponent-burn-engine on 2026-09-06. Pressure, never a kill: Burn Out recycles their trash before awarding a point (431.2)."
     }
   ]
 }

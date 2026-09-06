@@ -41,7 +41,7 @@
       "needs": [],
       "produces": [
         "infinite-energy",
-        "infinite-recruits",
+        "token-body-engine",
         "infinite-recycle"
       ],
       "prerequisites": {
@@ -293,8 +293,7 @@
       ],
       "needs": [],
       "produces": [
-        "infinite-recruits",
-        "infinite-ready-recruits"
+        "token-body-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -494,7 +493,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "AUDIT 2026-09-04: quantities corrected to the board REFUTE had already identified (T=2, K=3 = 9); the old T=1, K=2 board its own REFUTE note flagged is worth 4. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md) once R28 was ruled A: 'excess damage' is attacking Might that never got assigned, because 465.2.c.4 caps assignment at lethal and Sivir's 'deal that much' shows it is a computable quantity. Stands on R1 = A, R2 = A and R28 = A. Fragility: all five bodies must survive the combat to conquer, and the Bramblebacks are M4 into whatever the garrison hits back with."
+      "notes": "AUDIT 2026-09-04: quantities corrected to the board REFUTE had already identified (T=2, K=3 = 9); the old T=1, K=2 board its own REFUTE note flagged is worth 4. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md) once R28 was ruled A: 'excess damage' is attacking Might that never got assigned, because 465.2.c.4 caps assignment at lethal and Sivir's 'deal that much' shows it is a computable quantity. Stands on R1 = A, R2 = A and R28 = A. Fragility: all five bodies must survive the combat to conquer, and the Bramblebacks are M4 into whatever the garrison hits back with. FINANCING MEASURED 2026-09-06 (issue #63, docs/phase0/walks/2026-09-06-issue63-payoff-lens.md) and deliberately NOT authored as a row: gemdragon-henge-vi-blind-fury (body/fury) can pay this package's 26 Energy + 7 Power as 33 Energy through Ancient Henge's 1:1 conversion, for 9 points. It is dominated on every axis by dragonstorm-brambleback-trinity-conquer — 33 Energy against 30, 9 points against 10, five bodies against two plus three gear — and decisively by one rule: 'when I conquer AFTER AN ATTACK' needs the Attacker designation, which exists only inside a Combat (383.4.e), so this line cannot use the open-battlefield Showdown route (344.2 / 348.2.a / 348.2.a.1) that lets the Trinity Force package conquer with no damage step. It also stands on R28, where that one stands on no reading."
     },
     {
       "id": "grand-plaza-recruit-vanguard",
@@ -887,6 +886,81 @@
       "notes": "Dominates the Tryndamere line: no excess-damage clause and fewer bodies. SETTLED 2026-09-06 by rules text, with no reading filed: whether Skyfall's 'my hold effects' covers effects GRANTED by other Equipment. SFD-030's [Effect] reads 'My hold effects are also conquer effects, and vice versa' and SFD-115 Trinity Force's reads 'When I hold, score 1 point'. 136.2.c and 718.3 append BOTH to the Rules Text of the same Top-Most Card, 434.1.c says it again ('The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text'), and 136.2.d makes every 'I'/'my' in Effect Text mean that Top-Most Card (its worked examples are Guardian Angel and Brutalizer). So the Trinity Force line IS that unit's own hold effect and Skyfall's 'my' reaches it - the same chain blue-sentinel-trinity-force-hold's notable already records as needing no unruled reading. Rules check done by hand, not taken from the agent: 471.2.c says score effects 'cannot be triggered more than once per turn for a player'. Brambleback/Sentinel do not create a second Score — they make the effects of the single Score trigger extra times, so on this reading there is no conflict with 471.2.c and the Golden Rule (002) does not need to be invoked. REFUTE 2026-09-03: SURVIVES. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-skyfall-conquer-pair.md), promoted to verified. The 471.2.c caveat that kept this a candidate is R1, which the user ruled A on 2026-09-03. Its advantage over the Tryndamere line is real and now sharper: no excess-damage clause, so it does not depend on R28."
     },
     {
+      "id": "dragonstorm-brambleback-trinity-conquer",
+      "name": "The Dragonstorm buys the Conquer burst — 30 Energy for 10 points in one scoring event",
+      "class": "BURST",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-029",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 P1 M4. 'Your conquer effects for conquering here trigger an additional time.' Two of them make each Trinity Force fire 1 + 2 = 3 times (R1 = A with stacking). BARE they are M4, and 709 puts Mighty at 5, so they may sit on the board through the whole loop without disturbing the Show of Strength count — only the gear has to wait."
+        },
+        {
+          "card": "SFD-115",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body gear, E4 M+2, [Equip] 1 Body Power. '[Effect] When I hold, score 1 point.' Three on one carrier is legal (434.1.b.1) and 818.4 makes the three Equips three separate activations."
+        },
+        {
+          "card": "SFD-030",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Fury gear, E3 M+2, [Equip] 1 Energy + 1 Fury Power. '[Effect] My hold effects are also conquer effects, and vice versa' — this is what turns the three Trinity Forces into Conquer payoffs, settled by 136.2.c/136.2.d/434.1.c/718.3 on the standalone entry and not re-derived here."
+        }
+      ],
+      "needs": [
+        "infinite-energy",
+        "infinite-power"
+      ],
+      "produces": [
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Body — the same list the engine already asks for: OGN-249 Relentless Storm (Volibear), SFD-183 Purifier, UNL-183 Pridestalker, VEN-141 Butcher of the Sands."
+        ],
+        "notable": [
+          "THE PRICE, ITEM BY ITEM: 2 Red Brambleback (E4 P1) = 8 Energy + 2 Power; 3 Trinity Force (E4) plus 3 Body Equips = 12 Energy + 3 Power; Skyfall (E3) plus its 1 Energy + 1 Fury Power Equip = 4 Energy + 1 Power. Package 24 Energy + 6 Power. 163.2.b makes the Henge's rainbow Universal, so ONE Ancient Henge activation buys all six Power for 6 Energy: 30 Energy in total, 3 Energy per point.",
+          "TWO PASSES, NOT THREE. A pass nets +10 Energy while it primes the next one with 11 Power; the pass you exit on does not prime, so it nets +21 and leaves the freshly replayed Henge ready with its one uncapped activation. Banked at the exit of pass N is 10(N-1) + 21 = 10N + 11, and 30 needs N = 2. Pre-deploying the two bare Bramblebacks during the loop drops the post-loop bill to 16 Energy + 4 Power = 20 Energy, which is ONE pass.",
+          "THE GEAR GOES ON AFTER THE LAST SHOW OF STRENGTH, AND THAT IS THE ONLY ORDERING CONSTRAINT. The engine's ledger closes exactly: the Main Deck holds 8 cards when Show of Strength resolves and the [Mighty] count must equal 8, or the mandatory draw Burns Out (431.1.a) and gives the opponent a point (194.1.d). The carrier at 4 + 6 + 2 = 12 Might is a ninth Mighty body. Attaching after the last pass costs nothing, because no mandatory draw follows.",
+          "THE SIX CARDS MUST BE IN HAND BEFORE THE LOOP REACHES REGIME. One of them left in the Main Deck breaks the same equality from the other side. The setup already drains the deck through Kadregrin's 'draw 1 for each of your Mighty units'; the deck is simply six cards larger than the engine alone needs.",
+          "AN OPEN BATTLEFIELD IS ENOUGH — NO GARRISON REQUIRED. Moving onto an uncontrolled battlefield makes it Contested (190.3.a), 344.2 opens a Showdown at the next Cleanup because no units of different players are there, 348.2.a establishes Control and 348.2.a.1 says outright 'This results in a Conquer.' No damage step, so the M4 second Brambleback cannot be killed before 383.4.c.2.a checks that both are present. A garrisoned battlefield is the fallback (466.5, 466.5.d), not the requirement. In a Duel there are exactly 2 battlefields (485.4), both uncontrolled at the start (190.1).",
+          "THE BRAMBLEBACKS ENTER READY FOR FREE. Confront ('Units you play this turn enter ready. Draw 1.') is cast every pass and is a turn-long continuous effect, which 143.4.a admits ('This can be altered by Accelerate or similar game effects'). If it has been spent otherwise, [Accelerate] on the Brambleback itself is the fallback at 1 Energy + 1 Fury Power each. 144.3 moves both as one action and 144.2 makes exhausting them the whole cost.",
+          "Equip resolves the turn the gear lands: 818.1 makes it an Activated Ability, 818.1.c.2 spells the cost out as '[Cost]: Attach this gear to a unit you control' with no exhaust, and gear enters ready because 143.4 exhausts Units only."
+        ]
+      },
+      "steps": [
+        "Run the Dragonstorm to the end of a pass (two passes suffice; see the notables). The Henge has been replayed and is ready, and 10N + 11 Energy is banked.",
+        "Play the two Red Bramblebacks for 8 Energy + 2 Power. Confront, cast during the pass, makes them enter ready (143.4.a).",
+        "Activate the Ancient Henge once: pay 6 Energy, [Add] 6 rainbow (163.2.b makes it Universal, so it pays both the Body Equips and the Fury costs).",
+        "Play the three Trinity Forces and the Skyfall of Areion and pay their four Equip costs (818.1.c.2, no exhaust), all onto the SAME Brambleback: 12 Might. This happens after the last Show of Strength, so the Mighty count no longer has to equal the deck.",
+        "Standard-Move both Bramblebacks to a battlefield you do not control and have not scored this turn, as one action (144.3, 144.4.a). Prefer an open one.",
+        "At the next Cleanup the Showdown opens (344.2), you establish Control (348.2.a) and that is a Conquer (348.2.a.1) — or, against a garrison, win the Combat and take it by 466.5/466.5.d.",
+        "Score: 1 for the Conquer, plus each Trinity Force's 'When I hold' turned conquer by Skyfall, each firing 1 + 2 times. 1 + 3 x 3 = 10 points, and 194.2 ends the game in that cleanup."
+      ],
+      "terminatesIn": "10 points in one Conquer, which is the game (194.2, Victory Score 8 by 194.3)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Issue #63 — the payoff lens, candidate C1",
+          "kind": "agent",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue63-payoff-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "AUTHORED 2026-09-06 from issue #63, the payoff lens, which measured that the catalogue's richest engine had no win condition: gemdragon-henge-vi-blind-fury banks +10 Energy a pass and converts to Power 1:1 without a cap through SFD-117 Ancient Henge, and its terminatesIn named no card that scores. This is that card list, and at 3 Energy per point it is the cheapest point in the catalogue against 51 for the Renata routes. It is a NEW row rather than a needs on brambleback-trinity-skyfall-conquer for a mechanical reason: generateVariants drops the standalone partial of any combo that declares a needs, so adding one to that entry would delete the legitimate deck that assembles the same six cards over several turns with no infinite engine behind them. Two numbers in #63 were corrected by the walk: the pass count is two, not three (10N + 11 >= 30), and an enemy garrison is not required — the open-battlefield Showdown route of 344.2/348.2.a/348.2.a.1 conquers with no damage step, which is strictly safer for two M4 bodies. Stands on R1 = A with stacking and R2 = A, both ruled; on no unruled reading (unlike the Tryndamere package, which needs R28). Depends on the engine's own ledger, which is why the ordering constraint — gear after the last Show of Strength — is an ingredient and not flavour.",
+      "netPerIteration": "not iterative: one deployment for 30 Energy, 10 points, and the game"
+    },
+    {
       "id": "svellsongur-copy-hold",
       "name": "Svellsongur copies — multiplied Hold points",
       "class": "BURST",
@@ -1060,7 +1134,7 @@
       ],
       "needs": [],
       "produces": [
-        "hold-card-engine"
+        "card-advantage-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -1120,7 +1194,7 @@
       ],
       "needs": [],
       "produces": [
-        "hold-card-engine"
+        "card-advantage-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -1178,7 +1252,7 @@
       ],
       "needs": [],
       "produces": [
-        "gold-engine"
+        "resource-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -1304,7 +1378,7 @@
       ],
       "needs": [],
       "produces": [
-        "attach-engine"
+        "resource-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -1436,7 +1510,7 @@
         "infinite-energy"
       ],
       "produces": [
-        "force-opponent-deck"
+        "opponent-deck-pressure"
       ],
       "prerequisites": {
         "easy": [
@@ -2140,7 +2214,7 @@
       ],
       "needs": [],
       "produces": [
-        "opponent-burn-engine"
+        "opponent-deck-pressure"
       ],
       "prerequisites": {
         "easy": [
@@ -2254,6 +2328,71 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "Frame hand-walked 2026-09-04 (docs/phase0/walks/2026-09-04-divide-and-plaza.md). 195, 143.4.a, 315.2.b.2 vs 315.4, 469.1/469.2/470, 144.3 and 186.1 all check out. The previous REFUTE worry about leaving a card for the extra Draw Phase is void: the win resolves at the Scoring Step, two steps earlier. The real obstacle was that the loop's Shadow's Call marks a friendly unit [Temporary] every pass, which would hold the surviving body count constant - solved by resolving Shadow's Call on Ekko before Sacrifice kills him, so the mark is discarded with the unit. Depends on R25 = A (ruled) and on no unruled reading."
+    },
+    {
+      "id": "ready-recruits-grand-plaza",
+      "name": "Renata Glasc, Industrialist and The Grand Plaza — any token engine wins, without Time Warp",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order UNIT (not a legend), E4 P1 M4. 'Your tokens enter ready.' Without her the tokens enter exhausted (143.4) and can never pay 144.2's exhaust cost to walk; readying is an action on something already on the board (415.1), so 'enters ready' is the only way. R25 = A: her line beats a printed 'enters exhausted'."
+        },
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you hold here, if you have 7+ units here, you win the game.'"
+        }
+      ],
+      "needs": [
+        "token-body-engine"
+      ],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Renata Glasc, Industrialist is mono-Order and the Plaza is Colorless, so the identity is whatever the token engine brings plus Order — which every one of the unbounded Recruit producers already is."
+        ],
+        "notable": [
+          "The Grand Plaza in play: each player provides three battlefields and only 1 is used (485.4.a), randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5). 103.4.c and Tournament Rules 402.1 forbid bringing three copies to force it.",
+          "THE WHOLE CHAIN IS THREE RULES. Tokens are born at the base (355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls'); Industrialist makes them enter ready, which 143.4.a admits as an alteration of 143.4; and then 144.2 / 144.3 / 144.4.a walk any number of them to the Plaza as ONE free action.",
+          "THIS IS grand-plaza-loop-time-warp WITHOUT THE TIME WARP. That entry buys the missing turn with OGN-122 Time Warp (Mind, E10 P4), which is only available in a Mind identity and only in an engine with Energy to spare. This row pays with a surviving turn instead, which is the version fury/order, chaos/order and mind/order engines can actually run.",
+          "RECRUITS ARE 1 MIGHT, so overshoot the seven — that is the entire mitigation, and it is why the feeder has to be unbounded, or at least repeatable across turns. The count is measured at the Hold (383.2.a.1), includes the bodies that conquered the battlefield, and cannot be topped up at that instant.",
+          "A FEEDER THAT MARKS A BODY [Temporary] MUST NOT MARK THE PARKED ONES. 816.1.b kills them at the start of the Beginning Phase BEFORE scoring, which is exactly when the Plaza counts; grand-plaza-loop-time-warp records the same trap for Shadow's Call and solves it by pointing it at Ekko.",
+          "Taking the Plaza is the same Showdown as everywhere else: a battlefield you bring starts uncontrolled (190.1) with its 'you' blanked (190.6.d), walking in makes it Contested (190.3.a), 344.2 opens the Showdown, 348.2.a gives Control and 348.2.a.1 makes it a Conquer. 323.6 takes the Control back the moment your last body leaves.",
+          "THE THIRTEEN FEEDERS THE GRAPH GIVES THIS ROW WERE CHECKED ONE BY ONE against the token-maker's own line in data/corpus_flat.txt, because the class shown to a player is the composed variant's: OGN-212 Forge of the Future, SFD-153 Eye of the Herald, SFD-154 Guards!, SFD-168 Vanguard Armory, OGN-265 Herald of the Arcane, OGN-246 Viktor Leader, SFD-021 Ferrous Forerunner and OGN-218 Vanguard Captain all play a plain unit token that stays on the board. The one that needs a condition is leblanc-zilean-reflection-doubling: UNL-200 Mirror Image's Reflections carry [Temporary], and only UNL-090 LeBlanc, Everywhere at Once switches the kill off, and only at HER battlefield (R10 = A) — so with that feeder the Plaza has to be where LeBlanc is standing. The two Sprite Fountain engines cannot feed this row at all and were moved to temporary-body-engine in the same commit."
+        ]
+      },
+      "steps": [
+        "Have Renata Glasc, Industrialist on the board and The Grand Plaza in play, uncontrolled.",
+        "Run the token engine until seven or more token units stand at your base, each entering ready (143.4.a).",
+        "Standard-Move them all to the Plaza as ONE action (144.3, 144.4.a). No Energy is paid (144.2).",
+        "At the next Cleanup the Showdown opens (344.2), you establish Control (348.2.a) and that is a Conquer (348.2.a.1) worth 1 point.",
+        "Survive the opponent's turn with at least seven of them still there.",
+        "Your Beginning Phase: 315.2.b.2 Holds the Plaza, the Trigger Condition finds 7+ units here (383.2.a.1) and 195 wins the game."
+      ],
+      "terminatesIn": "win the game",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Issue #63 — the payoff lens, candidate C4",
+          "kind": "agent",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue63-payoff-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "AUTHORED 2026-09-06 from issue #63, which measured that infinite-recruits had seven producers and zero consumers while the one consumer in the catalogue asked for token-body-engine — two names for one thing, with the unbounded side orphaned. The vocabulary was merged in the same commit (see the walk's section V) and this row is the consumer that side never had. It is deliberately generic: the feeder is named by feature, not by card, because the seven producers are the whole point. Domain Identity does the filtering for free — Industrialist is mono-Order, so an Order-inclusive feeder composes and a calm/body or chaos/mind one does not, and that is correct rather than something to work around. Trap check against CLAUDE.md: tokens are born at the base and the walk to the battlefield is the bottleneck (#48), which is exactly what this row pays for with 144.3; nothing here recycles a token (185, 416.1); no attack designation is needed; the Plaza count includes the conqueror. Depends on R25 = A (ruled 2026-09-04) and on no unruled reading."
     },
     {
       "id": "zed-clone-eye-recruits",
@@ -2741,7 +2880,7 @@
       ],
       "needs": [],
       "produces": [
-        "token-body-engine"
+        "temporary-body-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -2776,7 +2915,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Target (b) of lens L3: the repeatable core of an Ornn Calm/Mind gear deck. Sinks are the weak point. The Grand Plaza's win condition is a Hold trigger and Temporary kills before scoring, so it needs LeBlanc suppressing the Temporary trigger (see leblanc-temporary-plaza); Bottled Constellation triggers at the start of your Main Phase, always after the Beginning Phase that killed the Sprites, so it can never eat them. What the engine buys is 18 Might of ready bodies for two conquers and a defensive turn. Shurelya's Requiem (SFD-192) readies every unit once per play and Legion Quartermaster (SFD-044) returns it to hand for a replay at 7E+2P — a bounded second ready of all Malzahars, not an engine of its own (L3-07). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the per-Fountain numbers hold but both named sinks were dead: Temporary Sprites never see a Hold or a Main Phase start. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md). The engine turns on 428.1.a.1, which counts a kill taken AS A COST as an Active Kill, and 428.1.a.1.b, which puts the death trigger on the chain before the unit reaches the trash (Draven, Audacious is the rules' worked example) - so Malzahar's cost-kill really does repeat the Fountain's play effect. Both named sinks are correctly refuted: 816.1.b kills the Temporary Sprites before the Scoring Step (315.2.b), so they never Hold and never see a Main Phase start. Depends on no unruled reading."
+      "notes": "Target (b) of lens L3: the repeatable core of an Ornn Calm/Mind gear deck. Sinks are the weak point. The Grand Plaza's win condition is a Hold trigger and Temporary kills before scoring, so it needs LeBlanc suppressing the Temporary trigger (see leblanc-temporary-plaza); Bottled Constellation triggers at the start of your Main Phase, always after the Beginning Phase that killed the Sprites, so it can never eat them. What the engine buys is 18 Might of ready bodies for two conquers and a defensive turn. Shurelya's Requiem (SFD-192) readies every unit once per play and Legion Quartermaster (SFD-044) returns it to hand for a replay at 7E+2P — a bounded second ready of all Malzahars, not an engine of its own (L3-07). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the per-Fountain numbers hold but both named sinks were dead: Temporary Sprites never see a Hold or a Main Phase start. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md). The engine turns on 428.1.a.1, which counts a kill taken AS A COST as an Active Kill, and 428.1.a.1.b, which puts the death trigger on the chain before the unit reaches the trash (Draven, Audacious is the rules' worked example) - so Malzahar's cost-kill really does repeat the Fountain's play effect. Both named sinks are correctly refuted: 816.1.b kills the Temporary Sprites before the Scoring Step (315.2.b), so they never Hold and never see a Main Phase start. Depends on no unruled reading. FEATURE CORRECTED 2026-09-06 (issue #64, docs/phase0/walks/2026-09-06-issue63-payoff-lens.md): produces temporary-body-engine, not token-body-engine. UNL-078 Sprite Fountain plays 'a ready 3 Might Sprite unit token with [Temporary]', and 816.1.b kills a [Temporary] permanent at the start of its controller's Beginning Phase BEFORE scoring. This entry's own terminatesIn already said the bodies cannot hold; the split makes the graph say it too, so a Grand Plaza consumer can never be fed by them."
     },
     {
       "id": "sona-viktor-opponent-turn",
@@ -2938,7 +3077,7 @@
       ],
       "needs": [],
       "produces": [
-        "gold-engine"
+        "resource-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -3080,7 +3219,6 @@
       ],
       "needs": [],
       "produces": [
-        "gold-engine",
         "resource-engine"
       ],
       "prerequisites": {
@@ -3155,7 +3293,7 @@
       ],
       "needs": [],
       "produces": [
-        "attach-engine"
+        "resource-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -3452,7 +3590,7 @@
       "needs": [],
       "produces": [
         "infinite-energy",
-        "infinite-recruits"
+        "token-body-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -3572,7 +3710,7 @@
       ],
       "needs": [],
       "produces": [
-        "infinite-recruits"
+        "token-body-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -3843,7 +3981,8 @@
           "WHY VI'S RECYCLING IS NOT GARBAGE GRABBER'S. 416.5 randomises the bottom of the Main Deck only when '2 or more cards are Recycled … simultaneously', and its own worked example is Garbage Grabber recycling 3 at once. Vi recycles ONE at a time, so 416.5 never engages and the order of the bottom is hers — which is what lets Confront find the Show of Strength she just put under an empty deck. The refuted Garbage Grabber variant of platewyrm-egg-defender-gate died on exactly this distinction.",
           "IT STANDS ON R15, RULED A ON 2026-09-06. Dancing Grenade's counter is per card per turn and survives the trash between recasts. Under the other reading every cast would deal 2, six Dragons would need 18 casts, and the pass would net exactly 0 — an engine, not a loop.",
           "THE BLIND FURY FINISH IS STILL NOT A DECK-OUT. The spell banishes the opponent's top card and then plays it, which sends it to their trash, and Burn Out recycles their whole trash back into their deck for a single point (431.2). Blind Fury is a way to spend the Energy, not a way to win by decking.",
-          "The extra card per pass this line can afford (Blind Fury, or anything else) has to be paid for in Mighty bodies: one more resident buys one more draw, and R = D − 4 is the accounting."
+          "The extra card per pass this line can afford (Blind Fury, or anything else) has to be paid for in Mighty bodies: one more resident buys one more draw, and R = D − 4 is the accounting.",
+          "IT HAS TWO WIN CONDITIONS AS OF 2026-09-06 (issue #63), and until then it had none written down. dragonstorm-brambleback-trinity-conquer spends 24 Energy + 6 Power on two Red Brambleback, three Trinity Force and a Skyfall of Areion for 10 points in one Conquer — 30 Energy through the Henge, TWO passes, 3 Energy per point, the cheapest in the catalogue. dragonstorm-confront-grand-plaza spends nothing: the eight resident bodies (fourteen after a pass, ready through Confront) walk to The Grand Plaza as one free action. The only ordering constraint the first one adds is that the gear goes on AFTER the last Show of Strength, because a carrier at 4 + 6 + 2 = 12 Might is a ninth Mighty body and the ledger below wants exactly eight."
         ]
       },
       "steps": [
@@ -3859,7 +3998,7 @@
         "Play the remaining four Dragons: +20 Energy. The board is exactly as it was at step 1.",
         "REPEAT from step 2. Nothing decremented: 11 cards drawn against 11 spent, and +21 Energy against 11 Power, which one Henge activation converts one for one. Each pass banks +10 Energy and the loop has no exit condition."
       ],
-      "terminatesIn": "unbounded Energy and, through the Henge's uncapped one-for-one conversion, unbounded Power in a single turn; it wins by spending them, not by decking the opponent",
+      "terminatesIn": "unbounded Energy and, through the Henge's uncapped one-for-one conversion, unbounded Power in a single turn; it wins by buying dragonstorm-brambleback-trinity-conquer (30 Energy, 10 points in one Conquer) or, for nothing at all, by walking its own board onto The Grand Plaza (dragonstorm-confront-grand-plaza)",
       "rulesVersion": "2026-07-16",
       "sources": [
         {
@@ -3899,8 +4038,72 @@
           "accessed": "2026-09-06"
         }
       ],
-      "notes": "The 'Dragonstorm' infinite that content creators list next to the Lux loop, played on stream and taken to 12th place. PROMOTED BACK TO INFINITE 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md, issue #46), after R15 was ruled A the same day. It had been reclassified INFINITE -> ENGINE on 2026-09-03 on a RECONSTRUCTION, because its own notes recorded that 'the only full walkthrough is a video YouTube's bot wall kept out of reach'. That video is 8FMsltx5Id4 and yt-dlp now downloads its subtitles without a login. It was read end to end and the reconstruction is wrong in three specific places. (1) 'a pass is +1 Energy and -4 Power' priced ONE Dragon a pass; the author plays SIX at +5 Energy each, so the pass is +30 Energy in against 9 Energy and 11 Power out. (2) 'every Power costs a rune off the board (161.2.b) that nothing channels back' does not touch this line: the Power is not made by recycling runes but by Ancient Henge, which pays ENERGY and converts without a cap in a single activation. (3) 'Endless Riches (VEN-022) forbids the Vi recursion outright' is about the Rengar 12th-place list; the walkthrough's deck is the Volibear build the video recommends and does not run it. WHAT SURVIVED THE REWRITE: the Blind Fury finish really is not a deck-out (431.2), and it stays in the notables. WHAT THE WALK ADDED THAT NO SOURCE STATES: the card ledger. Eleven cards are spent a pass and eleven are drawn, and the equality forces the board - the Mighty count at Show of Strength must equal the deck size or the mandatory draw Burns Out (431) and gives the opponent a point (194.1.d), which is why exactly two resident Mighty bodies are an ingredient and not flavour. The general form is R = D - 4, so D = 4 with no residents is the minimum viable loop at +2 Energy a pass. THE READING IT STANDS ON: R15 = A, ruled 2026-09-06 - Dancing Grenade's damage counter is per card per turn and survives the trash between recasts. Under B the six Dragons would need 18 casts and the pass would net exactly 0. No legal reordering avoids the Grenade: the only other way to return a played Dragon to hand in Fury/Body is UNL-021 Grim Apothecary, which returns a unit 'at a battlefield' while the Dragons sit in base, costs a card per bounce and adds no draws. Earlier history, unchanged: card text verified against the corpus; the Herald's printed words are 'Energy costs', so a Drakehound still pays its Power; HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md).",
+      "notes": "The 'Dragonstorm' infinite that content creators list next to the Lux loop, played on stream and taken to 12th place. PROMOTED BACK TO INFINITE 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md, issue #46), after R15 was ruled A the same day. It had been reclassified INFINITE -> ENGINE on 2026-09-03 on a RECONSTRUCTION, because its own notes recorded that 'the only full walkthrough is a video YouTube's bot wall kept out of reach'. That video is 8FMsltx5Id4 and yt-dlp now downloads its subtitles without a login. It was read end to end and the reconstruction is wrong in three specific places. (1) 'a pass is +1 Energy and -4 Power' priced ONE Dragon a pass; the author plays SIX at +5 Energy each, so the pass is +30 Energy in against 9 Energy and 11 Power out. (2) 'every Power costs a rune off the board (161.2.b) that nothing channels back' does not touch this line: the Power is not made by recycling runes but by Ancient Henge, which pays ENERGY and converts without a cap in a single activation. (3) 'Endless Riches (VEN-022) forbids the Vi recursion outright' is about the Rengar 12th-place list; the walkthrough's deck is the Volibear build the video recommends and does not run it. WHAT SURVIVED THE REWRITE: the Blind Fury finish really is not a deck-out (431.2), and it stays in the notables. WHAT THE WALK ADDED THAT NO SOURCE STATES: the card ledger. Eleven cards are spent a pass and eleven are drawn, and the equality forces the board - the Mighty count at Show of Strength must equal the deck size or the mandatory draw Burns Out (431) and gives the opponent a point (194.1.d), which is why exactly two resident Mighty bodies are an ingredient and not flavour. The general form is R = D - 4, so D = 4 with no residents is the minimum viable loop at +2 Energy a pass. THE READING IT STANDS ON: R15 = A, ruled 2026-09-06 - Dancing Grenade's damage counter is per card per turn and survives the trash between recasts. Under B the six Dragons would need 18 casts and the pass would net exactly 0. No legal reordering avoids the Grenade: the only other way to return a played Dragon to hand in Fury/Body is UNL-021 Grim Apothecary, which returns a unit 'at a battlefield' while the Dragons sit in base, costs a card per bounce and adds no draws. Earlier history, unchanged: card text verified against the corpus; the Herald's printed words are 'Energy costs', so a Drakehound still pays its Power; HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-sprites-and-dragons.md). EXITS NAMED 2026-09-06 (docs/phase0/walks/2026-09-06-issue63-payoff-lens.md, issue #63): the old terminatesIn ended 'it wins by spending them', naming no card that scores, and the payoff lens measured that as the hole in the catalogue's richest engine. Two rows now spend them, and both are body/fury so Domain Identity lets them compose with this one and with nothing else.",
       "netPerIteration": "+10 Energy a pass (+30 from six Dragons, −9 Energy and −11 Power in spells, the Power bought back one for one by the Henge), and 11 cards drawn against 11 spent"
+    },
+    {
+      "id": "dragonstorm-confront-grand-plaza",
+      "name": "The Dragonstorm walks onto The Grand Plaza — fourteen ready bodies, zero Energy",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you hold here, if you have 7+ units here, you win the game.'"
+        },
+        {
+          "card": "OGN-129",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Body spell, E2. 'Units you play this turn enter ready. Draw 1.' Already cast every pass by the engine; its second job here is that the six Dragons played during the last pass are ready and can walk."
+        }
+      ],
+      "needs": [
+        "infinite-energy",
+        "infinite-power"
+      ],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Body and Fury — the engine's own list (OGN-249 Relentless Storm, SFD-183 Purifier, UNL-183 Pridestalker, VEN-141 Butcher of the Sands)."
+        ],
+        "notable": [
+          "The Grand Plaza in play: each player provides three battlefields and only 1 is used (485.4.a), randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5). 103.4.c and Tournament Rules 402.1 forbid bringing three copies to force it.",
+          "THE LOOP IS NOT REQUIRED FOR THE SEVEN, and the entry says so rather than borrowing the engine's grandeur. The Dragonstorm's resident board is three Gemdragons, two Heralds, two Kadregrin and Vi = EIGHT units, and 315.1.b readies all of them every Awaken. What a completed pass adds is the six 5-Might Dragons standing on the board at its end, ready through Confront (143.4.a): fourteen bodies, which is the version that survives removal.",
+          "THE MOVE COSTS NOTHING. 144.2 makes exhausting the unit the whole cost, 144.3 makes several standard moves ONE game action (same destination 144.3.a, origins free 144.3.b, exhausts paid together 144.3.c) and 144.4.a allows base to battlefield. Zero Energy, zero cards.",
+          "A BATTLEFIELD YOU BRING STARTS UNCONTROLLED (190.1) AND ITS TEXT IS OFF: 190.6.d's second sentence — 'If the battlefield has no Controller, \"you\" refers to no one, and all such instructions are ignored.' Walking in makes it Contested (190.3.a), 344.2 opens a Showdown at the next Cleanup, 348.2.a gives Control and 348.2.a.1 makes it a Conquer worth 1 point. Only from the next Beginning Phase does 315.2.b.2 Hold it.",
+          "THE COUNT IS MEASURED AT THE HOLD AND INCLUDES THE BODIES THAT CONQUERED IT. 'if you have 7+ units here' sits immediately after the When clause, so 383.2.a.1 makes it part of the Trigger Condition; no body can be added at that instant, and the seven must survive the opponent's whole turn. That is the price of this route against dragonstorm-brambleback-trinity-conquer, which wins inside the combo turn; the mitigation is size, since M8 x3, M9 x2 and M5 x6 is not a board the pool's removal clears to under seven.",
+          "323.6 strips Control the moment your last body leaves, so the garrison cannot be pulled back to keep looping and hold the Plaza at the same time. Standing the engine at the Plaza costs it nothing else: every resident ability (the Gemdragons' rune-ready, the Heralds' Dragon discount, Kadregrin's play trigger, Vi's recycle) is location-free, and newly played Dragons still arrive at the base."
+        ]
+      },
+      "steps": [
+        "Run the Dragonstorm to the end of a pass, or do not run it at all — the eight resident bodies already clear the seven.",
+        "Standard-Move every ready body to The Grand Plaza as ONE action (144.3): the six Dragons played this pass plus the eight residents, all from the base (144.4.a). No Energy is paid.",
+        "At the next Cleanup the Showdown opens (344.2) and you establish Control (348.2.a), which is a Conquer (348.2.a.1) worth 1 point. The Plaza's text is only now switched on for you (190.6.d).",
+        "Survive the opponent's turn with at least seven units still there.",
+        "Your Beginning Phase: 315.1.b readies them, 315.2.b.2 Holds the Plaza, the Trigger Condition finds 7+ units here (383.2.a.1) and 195 wins the game."
+      ],
+      "terminatesIn": "win the game",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Issue #63 — the payoff lens, candidate C3",
+          "kind": "agent",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue63-payoff-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "AUTHORED 2026-09-06 from issue #63. The Dragonstorm's second exit and the only one that needs no enemy battlefield and no Energy at all. 'needs: infinite-energy + infinite-power' is a proxy for 'the Dragonstorm's board', and it is a precise one: this entry's own cards are Body and Colorless, so of the seven producers of infinite-energy only gemdragon-henge-vi-blind-fury (body/fury) stays inside a two-domain identity — the others are order/mind, fury/order, fury/mind and fury/calm, and Domain Identity (103.1.b) drops every one of them. The honest caveat is written into the notables instead of being hidden: the loop is not needed for the seven bodies, only for the six extra ones and for Confront making them ready. Trap check against CLAUDE.md: entering your own battlefield is not an attack and nothing here needs the Attacker designation; no Energy is carried across a Main Phase start (167); no [Repeat]; no [Temporary] body is parked; no recall. Depends on no unruled reading."
     },
     {
       "id": "leblanc-zilean-reflection-doubling",
@@ -4178,7 +4381,7 @@
       ],
       "needs": [],
       "produces": [
-        "gold-engine"
+        "resource-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -4309,7 +4512,7 @@
       ],
       "needs": [],
       "produces": [
-        "hold-card-engine"
+        "card-advantage-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -4564,7 +4767,7 @@
       ],
       "needs": [],
       "produces": [
-        "gold-engine"
+        "resource-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -4835,7 +5038,6 @@
       ],
       "needs": [],
       "produces": [
-        "gold-engine",
         "resource-engine"
       ],
       "prerequisites": {
@@ -5221,7 +5423,6 @@
       ],
       "needs": [],
       "produces": [
-        "gold-engine",
         "resource-engine"
       ],
       "prerequisites": {
@@ -5997,7 +6198,6 @@
       ],
       "needs": [],
       "produces": [
-        "gold-engine",
         "resource-engine"
       ],
       "legends": [
@@ -6087,7 +6287,6 @@
       ],
       "needs": [],
       "produces": [
-        "gold-engine",
         "resource-engine"
       ],
       "legends": [
@@ -6176,7 +6375,6 @@
       ],
       "needs": [],
       "produces": [
-        "gold-engine",
         "resource-engine"
       ],
       "prerequisites": {
@@ -6467,7 +6665,7 @@
       "needs": [],
       "produces": [
         "repeatable-removal",
-        "gold-engine"
+        "resource-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -6609,7 +6807,7 @@
       ],
       "needs": [],
       "produces": [
-        "gold-engine"
+        "resource-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -7389,7 +7587,7 @@
       ],
       "needs": [],
       "produces": [
-        "infinite-recruits"
+        "token-body-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -7496,7 +7694,7 @@
       ],
       "needs": [],
       "produces": [
-        "infinite-draw"
+        "card-advantage-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -8221,7 +8419,7 @@
       ],
       "needs": [],
       "produces": [
-        "infinite-recruits"
+        "token-body-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -8469,7 +8667,7 @@
       ],
       "needs": [],
       "produces": [
-        "infinite-recruits"
+        "token-body-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -8779,7 +8977,7 @@
       ],
       "needs": [],
       "produces": [
-        "infinite-draw"
+        "card-advantage-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -8932,7 +9130,6 @@
       ],
       "needs": [],
       "produces": [
-        "gold-engine",
         "resource-engine"
       ],
       "prerequisites": {
@@ -9007,7 +9204,6 @@
       ],
       "needs": [],
       "produces": [
-        "gold-engine",
         "resource-engine"
       ],
       "legends": [
@@ -9082,7 +9278,6 @@
       ],
       "needs": [],
       "produces": [
-        "gold-engine",
         "resource-engine"
       ],
       "prerequisites": {
@@ -10461,7 +10656,7 @@
       "needs": [],
       "produces": [
         "ability-points",
-        "hold-card-engine"
+        "card-advantage-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -10851,7 +11046,7 @@
       "needs": [],
       "produces": [
         "ability-points",
-        "hold-card-engine"
+        "card-advantage-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -10926,7 +11121,7 @@
       ],
       "needs": [],
       "produces": [
-        "attach-engine"
+        "resource-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -11091,7 +11286,7 @@
       ],
       "needs": [],
       "produces": [
-        "hold-card-engine"
+        "card-advantage-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -11720,7 +11915,7 @@
       ],
       "needs": [],
       "produces": [
-        "token-body-engine"
+        "temporary-body-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -11770,7 +11965,7 @@
           "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. The source is a Regional Qualifier discussion, so this is a line somebody brought to an event rather than theorycraft. The walk's additions are the two limits that decide how the deck uses it: 816.1.b means every Sprite is an attacker and none of them can ever be part of a Hold, and 415.1 means 'enters ready' is not a ready and cannot stand in for one - the distinction the #56 ready lens established. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation is needed for the tokens to be useful; no [Repeat] on any card here; no recall; no token is ever recycled (185). Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. The source is a Regional Qualifier discussion, so this is a line somebody brought to an event rather than theorycraft. The walk's additions are the two limits that decide how the deck uses it: 816.1.b means every Sprite is an attacker and none of them can ever be part of a Hold, and 415.1 means 'enters ready' is not a ready and cannot stand in for one - the distinction the #56 ready lens established. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation is needed for the tokens to be useful; no [Repeat] on any card here; no recall; no token is ever recycled (185). Depends on no unruled reading. FEATURE CORRECTED 2026-09-06 (issue #64, docs/phase0/walks/2026-09-06-issue63-payoff-lens.md): produces temporary-body-engine, not token-body-engine. UNL-078 Sprite Fountain plays 'a ready 3 Might Sprite unit token with [Temporary]', and 816.1.b kills a [Temporary] permanent at the start of its controller's Beginning Phase BEFORE scoring. This entry's own terminatesIn already said the bodies cannot hold; the split makes the graph say it too, so a Grand Plaza consumer can never be fed by them."
     },
     {
       "id": "poppy-confront-blood-rose",
@@ -12211,7 +12406,7 @@
       ],
       "needs": [],
       "produces": [
-        "hold-card-engine"
+        "card-advantage-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -12677,7 +12872,7 @@
       ],
       "needs": [],
       "produces": [
-        "hold-card-engine"
+        "card-advantage-engine"
       ],
       "prerequisites": {
         "easy": [
@@ -13134,7 +13329,7 @@
       ],
       "needs": [],
       "produces": [
-        "hold-card-engine"
+        "card-advantage-engine"
       ],
       "prerequisites": {
         "easy": [
