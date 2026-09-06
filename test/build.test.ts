@@ -246,3 +246,62 @@ describe("103.2.a.2 — the Chosen Champion carries the legend's tag", () => {
     expect(row(rows(LEGAL), "103.2.a.2").detail).toMatch(/signature/i);
   });
 });
+
+describe("103.2.d — the Signature cap we cannot check", () => {
+  it("states the rule and reports it unchecked rather than guessing", () => {
+    const r = row(rows(LEGAL), "103.2.d");
+    expect(r.status).toBe("unknown");
+    expect(r.detail).toMatch(/no Signature marker/i);
+  });
+
+  it("does not make a legal list illegal", () => {
+    expect(rows(LEGAL).legal).toBe(true);
+  });
+});
+
+describe("103.2.e — card legality of the format", () => {
+  it("passes a clean list", () => {
+    expect(row(rows(LEGAL), "103.2.e").status).toBe("pass");
+  });
+
+  it("fails a banned card and names it", () => {
+    const r = row(rows(LEGAL.replace("1 Ripper's Bay", "1 Obelisk of Power")), "103.2.e");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toContain("Obelisk of Power");
+    expect(r.detail).toContain("banned");
+  });
+
+  it("does not call a restricted card illegal, and says so only in the format that restricts it", () => {
+    const list = LEGAL.replace("1 Lady of Luminosity - Starter", "1 Wuju Bladesman - Starter");
+    expect(row(rows(list, "constructed"), "103.2.e").status).toBe("pass");
+    const duo = row(rows(list, "2v2"), "103.2.e");
+    expect(duo.status).toBe("unknown");
+    expect(duo.detail).toContain("restricted");
+  });
+});
+
+describe("the badge", () => {
+  it("calls the reference list legal", () => {
+    const r = rows(LEGAL);
+    expect(r.legal).toBe(true);
+    expect(r.rules.filter((x) => x.status === "fail")).toEqual([]);
+  });
+
+  it("calls a 39-card list illegal", () => {
+    expect(rows(LEGAL.replace("1 Promising Future", "")).legal).toBe(false);
+  });
+
+  it("prints every rule the spec asked for, in a stable order", () => {
+    expect(rows(LEGAL).rules.map((x) => x.rule)).toEqual([
+      "103.1",
+      "103.1.b",
+      "103.2.a.2",
+      "103.2 · Tournament Rules 402.1",
+      "103.2.b",
+      "103.2.d",
+      "103.3.a · 103.3.a.1",
+      "103.4.a · 103.4.c",
+      "103.2.e",
+    ]);
+  });
+});

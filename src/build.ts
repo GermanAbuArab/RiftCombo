@@ -5,6 +5,7 @@
 //
 // Pure: no DOM, no network, so it is tested the way planDeck and checkSave are.
 
+import { deckRestrictions } from "./deck.js";
 import type { CardIndex } from "./cards.js";
 import type { Deck, Domain, Format } from "./types.js";
 
@@ -33,7 +34,7 @@ export interface BuildReport {
 
 const total = (bag: Record<string, number>) => Object.values(bag).reduce((a, b) => a + b, 0);
 
-export function checkBuild(deck: Deck, cards: CardIndex, _format: Format): BuildReport {
+export function checkBuild(deck: Deck, cards: CardIndex, format: Format): BuildReport {
   // The legend comes first because every other row is scoped to it.
   const rules: BuildRule[] = [
     legendRule(deck, cards),
@@ -41,8 +42,11 @@ export function checkBuild(deck: Deck, cards: CardIndex, _format: Format): Build
     championRule(deck, cards),
     sizeRule(deck),
     copiesRule(deck, cards),
+    signatureRule(),
     runeRule(deck, cards),
     battlefieldRule(deck, cards),
+    // Last, because it is the only row that is about the tournament rather than about the deck.
+    legalityRule(deck, cards, format),
   ];
   return { rules, legal: rules.every((r) => r.status !== "fail") };
 }
@@ -233,4 +237,38 @@ function championRule(deck: Deck, cards: CardIndex): BuildRule {
   // legal Chosen Champion. Riot's card data carries no signature marker, so this row cannot see it and
   // says as much instead of claiming more than it knows.
   return { ...base, status: "pass", detail: `${champ.name} carries the ${tag} tag. Signature units carry it too and Riot's card data cannot tell them apart, so check yours is a champion unit.` };
+}
+
+/**
+ * 103.2.d caps a deck at 3 Signature cards carrying the legend's champion tag. Riot's gallery API ships no
+ * Signature flag — `grep -oci signature data/cards_full.json` is 0 and no card carries a Signature tag —
+ * so this row states the rule and stops. A heuristic here would sit next to eight computed rows and read
+ * like one of them.
+ */
+function signatureRule(): BuildRule {
+  return {
+    rule: "103.2.d",
+    label: "Up to 3 Signature cards",
+    status: "unknown",
+    detail: "Riot's card data carries no Signature marker, so this one is on you: at most 3 Signature cards, all with your legend's champion tag.",
+  };
+}
+
+/**
+ * 103.2.e delegated to the ban list (#23). Banned fails. Restricted does NOT: it is a cap, not an illegal
+ * card, and the one restricted entry on Riot's list today is a per-team limit on a legend that our data
+ * does not quantify. Calling that illegal would be false.
+ */
+function legalityRule(deck: Deck, cards: CardIndex, format: Format): BuildRule {
+  const base = { rule: "103.2.e", label: "Legal in this format" };
+  const found = deckRestrictions(deck, cards, format);
+  const banned = found.filter((r) => r.entry.status === "banned");
+  if (banned.length) {
+    return { ...base, status: "fail", detail: `${banned.map((r) => `${r.entry.name} is banned`).join(" · ")} in this format.` };
+  }
+  const restricted = found.filter((r) => r.entry.status === "restricted");
+  if (restricted.length) {
+    return { ...base, status: "unknown", detail: `${restricted.map((r) => `${r.entry.name} is restricted`).join(" · ")} in this format — a cap, not a ban. Read Riot's notice for what it limits.` };
+  }
+  return { ...base, status: "pass", detail: "No banned or restricted card in this list." };
 }
