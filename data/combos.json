@@ -14457,7 +14457,8 @@
           "WHAT MAKES IT REPEATABLE IS 'WHEN YOU CONQUER, READY ME', NOT A ONCE-PER-TURN CLAUSE. The exhaust is inside the shield's cost, so one save costs The Boss's readiness; 415.3.a gives it back once, 'during the Awakening Phase', and every Conquer after that gives it back again for free. Saves per turn cycle = 1 + the number of Conquers. A legend IS readied by this: 107.4.c makes the Champion Legend a Game Object on the board even though 107.4.b says the Legend Zone is not a location.",
           "SHOWSTOPPER IS A MOVE BY EFFECT, WHICH IS WHY IT REACHES AN EXHAUSTED BODY. 420.3.a puts the exhaust cost only on the Standard Move and 144.4 only restricts its destinations, so 'move it to a battlefield' works on the exhausted unit the shield just sent home — the same fact #58 established, used here on the return leg. It also buffs it on the way, which re-arms the shield.",
           "THE ARITHMETIC WITH THE QUANTITIES DECLARED. One full cycle: 1 rainbow Power + The Boss's exhaust + one spent buff (the save), then 1 Energy + 1 Power (Showstopper) to buff and redeploy. Two Power and one Energy per body saved and put back at a battlefield. With Cithria of Cloudfield, Sett, Kingpin and one more buffed body at his battlefield, Sett is a 5 + 3 = 8 Might [Tank]; each save drops him to 7 until the buff comes back.",
-          "THE CEILING IS THE SHOWSTOPPERS AND THE CONQUERS. 103.2.b caps Showstopper at 3 per turn, and Arena Bar's own exhaust caps its re-buff at one a turn. This is an engine, not a lock: nothing here readies The Boss without a Conquer."
+          "THE CEILING IS THE SHOWSTOPPERS AND THE CONQUERS. 103.2.b caps Showstopper at 3 per turn, and Arena Bar's own exhaust caps its re-buff at one a turn. This is an engine, not a lock: nothing here readies The Boss without a Conquer.",
+          "OGN-151 LEE SIN, CENTERED COMPOUNDS HERE AND IS NOT IN uses ON PURPOSE (issue #111, walked 2026-09-06). 'Other buffed friendly units at my battlefield have +2 [M].' He is mono-Body, so 103.1.b.3 admits him under The Boss's Body/Order identity, and Sett, Kingpin is already at that battlefield. THE TWO EFFECTS STACK ON THE SAME BODIES BUT DO NOT FEED EACH OTHER: Lee Sin's +2 is a continuous Might modifier, not a 702 buff counter, so it never adds to Sett's own count and never collides with 702.3. 'Other' excludes Lee Sin himself, and he only counts FOR Sett if something buffs him — Arena Bar does it for free, since 143.4 leaves him exhausted unless the 805.1.a [Accelerate] cost (1 Energy + 1 Body Power) is paid. Price: E6, or E6 + 1 Energy + 1 Body Power to act the same turn. On the board declared above he takes the two 2 Might buffed bodies to 4 and the 8 Might Sett to 10. He stays out of uses because the card multiset is what the matcher and planDeck price, and a five-card line does not become a six-card line on the strength of a rider."
         ]
       },
       "steps": [
@@ -17776,6 +17777,91 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "FOUND BY THE #107 WALK, not by the issue (docs/phase0/walks/2026-09-06-gear-without-equipment-lens.md). The issue's candidate pairs the Shard with Sprite Fountain, which is a TWO-TURN supply of Beginning-Phase deaths per copy; the Shard wants one such death per turn forever, and UNL-199 Deceiver — one of the four Mind/Order legends the candidate already had to choose from — supplies exactly that for a discard. No new reading is needed: leblanc-zilean-reflection-doubling already states in its own step 2 that an unprotected Reflection dies at your Beginning Phase (816.1.b), and spends UNL-090 LeBlanc, Everywhere at Once (R10 = A) to stop it. This entry is the inversion of that one and the two cannot share a battlefield, which is written into notable. The timing turns on the Beginning Phase's two substeps: 816.1.b kills in the Beginning Step (315.2.a.1) and Deceiver's hold trigger fires in the Scoring Step (315.2.b.2) that follows, so the replacement is always made after the window that would have killed it (383.2.c.1). Cheaper than the Fountain line (6 Energy once, no Power) and unbounded in turns; the cost is one card per turn against a 1-card draw step (315.4.b). Depends on no unruled reading. Card text verbatim from data/corpus_flat.txt; every rule quoted from data/Riftbound-Core-Rules-2026-07-16.txt."
+    },
+    {
+      "id": "sett-kingpin-karma-army-might-wall",
+      "name": "Sett, Kingpin reads the buffed army the recycle loop mints — unbounded Might on a [Tank], and not one point",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-240",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 + 1 Order Power, M5. '[Tank] (I must be assigned combat damage first.) I get +1 [M] for each buffed friendly unit at my battlefield.' 'Buffed' is the 702 counter and nothing else: 702.3 caps every body at ONE buff, so the count is the NUMBER OF BUFFED BODIES, never a stack height. He does not say 'other' — the pool writes 'other' when it means it (OGN-151, OGN-223, OGN-139) — but the line below never buffs him, so the self-count question never has to be answered."
+        },
+        {
+          "card": "OGN-235",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order unit, E6 + 1 Order Power, M6. 'When you recycle one or more cards to your Main Deck, buff a friendly unit.' The unbounded buff source, already walked in karma-lux-recycle-buff-army: exactly one buff lands per pass, because the loop makes exactly one new body per pass and 702.3.a discards a buff aimed at a body that already has one. One copy; a second Karma buys nothing."
+        }
+      ],
+      "needs": [
+        "token-body-engine",
+        "infinite-recycle"
+      ],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order — the four legends lux-infinite-energy already forces (OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity - Starter, SFD-201 Chem-Baroness, UNL-199 Deceiver). Sett, Kingpin and Karma, Channeler are both mono-Order, so 103.1.b.3 admits them without touching the deck's Domain Identity.",
+          "Sett has to be standing at a battlefield you control before the army walks. He is E4 + 1 Order Power with no [Accelerate], so 143.4 lands him exhausted and he walks the turn after he is played.",
+          "No battlefield of its own, so 485.4.a / 485.5's random draw never enters the price."
+        ],
+        "notable": [
+          "144.4.a.1 IS THE ONLY RESTRICTION ON THE WALK, AND IN A DUEL IT CANNOT BIND. 'Units cannot Move to a Battlefield that already has units from 2 other players present, or where a Combat is ongoing that has 2 other players as participants.' The count is of OTHER PLAYERS, not of units, and 485.1 puts exactly 2 players in a Duel — so the clause is unsatisfiable there. 447.2.a, the cross-reference 144.4.a.1 itself points at, opens with 'In Modes of Play with more than two players'. Nothing in the rules caps how many of your own bodies stand at one battlefield.",
+          "THE WHOLE ARMY ARRIVES IN ONE GAME ACTION. 144.3: 'Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units.' 144.3.a requires one shared destination (Sett's battlefield), 144.3.b lets the origins differ, and 144.3.c pays every exhaust cost simultaneously. It costs 0 Energy and 0 Power: 144.2 / 420.3.a make exhausting the movers the entire cost.",
+          "TOKENS COUNT, AND THEY KEEP THEIR BUFF ACROSS THE WALK. 185.2.d's own worked example says 'A token unit is a unit. It enters exhausted, can take the standard move action, deals damage equal to its Might in combat', and 185.2.b gives token units a Might. 705 strips a buff only when a unit LEAVES PLAY, and a move is not that.",
+          "TWO ROUTES, AND ONLY THE SECOND ONE DENIES THE OPPONENT A TURN. Route A (two turns): 143.4 makes every Recruit enter exhausted and 144.2 / 420.3.a make exhausting the mover the cost of its own move, so a Recruit minted on turn T cannot walk on turn T; 415.3.a readies the whole board at the next Awakening Phase and the army walks on T+1. Route B (one turn): SFD-171 Renata Glasc, Industrialist ('Your tokens enter ready.') is mono-Order, E4 + 1 Order Power, legal here by 103.1.b.3 — a ready Recruit pays 144.2 immediately and the army walks the turn it is minted. Same card, same reason, as ready-recruits-grand-plaza.",
+          "ON ROUTE A THE ARMY HAS TO SURVIVE A WHOLE ENEMY TURN AT YOUR BASE. 312.2.a gives a player priority only 'When the turn is in a Neutral Open State during their Main Phase', so nobody interacts DURING the loop — but the opponent's entire turn sits between T and T+1. Three cards in the pool end it: SFD-158 Sandshifter ('When you play me, kill an enemy unit with 3 [M] or less' — a buffed Recruit is 2 Might by 703, and the card carries no 'at a battlefield' clause, so it reaches the base), OGN-229 Vengeance ('Kill a unit', no Might bound at all) and UNL-180 The Ruination ('Kill all units'), which erases the army and, by 705, every buff on it.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED. Run the loop for P passes and cash the trailing buff with the extra Forge activation karma-lux-recycle-buff-army already declares: P Recruits, all buffed, all 2 Might (703). Walk all P to Sett's battlefield. Buffed friendlies there = P. Sett = 5 + P. The garrison's summed Might, which is what 465.2.c gives you to assign in a combat, = 2P + (5 + P) = 3P + 5. P is unbounded because lux-infinite-energy is a verified INFINITE, so 5 + P is unbounded.",
+          "IT IS A WALL AGAINST COMBAT AND NOT AGAINST REMOVAL. 815.1.b: '[Tank] is functionally short for I must be assigned lethal damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step', and 815.1.c.2 keeps every non-Tank body an invalid assignment until Sett has lethal on him. 465.2.c gives the attacker only their summed Might to spend, so at 5 + P nothing can clear him and the battlefield keeps Holding under 469.2. OGN-229 Vengeance still kills him for 4 Energy + 2 Power, because it reads no Might.",
+          "IT NEVER SCORES, AND THAT IS A MEASUREMENT, NOT A GUESS. 194.1 lists the four ways to gain points — Holding (194.1.a), Conquering (194.1.b), an instruction to gain points (194.1.c), an opponent's Burn Out (194.1.d) — and none reads Might. The full grep of 'excess' over the pool returns six cards and exactly one pays a point: OGN-034 Tryndamere, Barbarian, which is Fury and excluded by 103.1.b.1. SFD-120 Sivir, Ambitious is Body; UNL-018 Yeti Brawler is Fury; UNL-187 Piltover Enforcer and UNL-188 Hextech Gauntlets are Fury/Order and excluded by 103.1.b.4, which admits a card only into an identity containing ALL of its domains; the one colorless option, UNL-217 Trapping Grounds, pays a Bird token. This reconfirms the boundary issue #97 measured rather than opening a new one.",
+          "IT IS AN UNBOUNDED ENGINE, NOT AN INFINITE. The unbounded thing is the ARMY, and that is already the token-body-engine lux-infinite-energy produces and the catalogue has priced. Sett is a one-time readout of that stock with no repeat step of his own — the same shape as azir-sovereign-token-gather, which is ENGINE for the same reason.",
+          "THE SAME SHELL ALREADY HOLDS A STRICTLY WINNING PAYOFF, AND THE ENTRY SAYS SO. ready-recruits-grand-plaza (ALT_WIN, needs token-body-engine) walks seven ready Recruits onto OGN-293 The Grand Plaza and wins outright. Sett is worth running anyway because 485.4 / 485.5 make the Plaza one of three battlefields RANDOMLY SELECTED at setup ('Each player randomly selects one (1) of their three (3) Battlefields'), while Sett is a card you draw.",
+          "OGN-223 PEAK GUARDIAN IS A LEGAL ALTERNATIVE BUFF SOURCE, AND ISSUE #111 REFUTED IT WRONGLY. The issue read 355.2.a as playing him to the base by default; 355.2.a says the opposite — 'By default, Valid locations include the controller's Base OR A BATTLEFIELD THE CONTROLLER CONTROLS.' [Ambush] was never what the card needed: 822.1.b grants 'I may be played to a battlefield where you control Units', which is a battlefield you have bodies at but do NOT control. So Peak Guardian (mono-Order, E6 + 1 Order Power) played to a battlefield you control does buff every other friendly unit there. Against Karma he is marginal, because 702.3.a refuses a second buff on an already-buffed body; for an Order token faucet WITHOUT Karma he is the whole buff economy in one card.",
+          "ONE ORDER PAYOFF THE ARMY SWITCHES OFF. VEN-138 Shen, Leader of the Kinkou Order reads 'When I hold, if there is exactly one other unit you control here, you score 1 point.' The garrison this entry builds makes that condition false. Do not staple them together."
+        ]
+      },
+      "steps": [
+        "Before the loop: get Sett, Kingpin (4 Energy + 1 Order Power) onto a battlefield you control. 143.4 lands him exhausted, so he walks there the following turn, or arrives on a Conquer you were making anyway. Karma, Channeler is on the board already, per karma-lux-recycle-buff-army.",
+        "Run lux-infinite-energy for P passes. Each pass mints one 1 Might Recruit at your base (Forge of the Future's play trigger) and Karma buffs the previous pass's Recruit to 2 Might (703). Activate the Forge once more at the end to cash the trailing buff onto the last one: P Recruits, all buffed.",
+        "Move the army. With SFD-171 Renata Glasc, Industrialist on the board the Recruits entered ready and walk the same turn; without it, 415.3.a readies them at the next Awakening Phase and they walk on the following turn's Main Phase (144.1.a).",
+        "Declare all P moves as ONE action (144.3) with Sett's battlefield as the shared destination (144.3.a). The cost is exhausting the movers (144.2 / 420.3.a) — no Energy, no Power. 144.4.a.1 does not bind: it counts other PLAYERS, and a Duel has one.",
+        "Sett now reads P buffed friendly units at his battlefield and stands at 5 + P Might, with the garrison summing 3P + 5 for 465.2.c. 815.1.b forces every point of enemy combat damage onto him first, so the Recruits are untouchable in combat and the battlefield Holds under 469.2 every Beginning Phase.",
+        "Stop. Nothing here converts Might into a point: take the Holds, or bring the Grand Plaza line instead when the random battlefield draw (485.5) gives it to you."
+      ],
+      "netPerIteration": "no iteration of its own — a one-time readout of the loop's stock. P passes of lux-infinite-energy give P buffed 2 Might Recruits; walking them costs 0 Energy and 0 Power and puts Sett at 5 + P Might with a garrison summing 3P + 5.",
+      "terminatesIn": "engine only — an unbounded-Might [Tank] that no board can clear in combat (815.1.b, 465.2.c), so the battlefield keeps Holding under 469.2. It never scores by itself: 194.1's four point routes read no Might, and the only card that pays a point for excess damage (OGN-034, Fury) is outside a Mind/Order identity.",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "144.4.a.1 Units cannot Move to a Battlefield that already has units from 2 other players present, or where a Combat is ongoing that has 2 other players as participants. / 144.3 Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units. / 815.1.b It is functionally short for \"I must be assigned lethal damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step.\" / 702.3 There can only be one Buff on a Unit at a time."
+        },
+        {
+          "title": "Riot gallery card text (data/corpus_flat.txt, 2026-09-04, errata applied)",
+          "kind": "riot",
+          "date": "2026-09-04",
+          "quote": "OGN-240 | Sett, Kingpin | Unit | Order | E4 P1 M5 | [Tank] (I must be assigned combat damage first.) I get +1 :rb_might: for each buffed friendly unit at my battlefield. [Tags: Sett, Ionia]"
+        },
+        {
+          "title": "Order buff-economy lens — issue #111 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/111",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue111-order-buff-economy.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue111-order-buff-economy.md), the single candidate of issue #111. The candidate's mechanism and its non-scoring verdict both survive; the walk ADDS TWO THINGS THE HUNT DID NOT HAVE. First, 144.3: the army arrives in ONE game action with one shared destination, not one unit at a time — and 144.4.a.1 counts OTHER PLAYERS, so in a Duel (485.1: 2 players) it cannot bind at all, which 447.2.a confirms by opening with 'In Modes of Play with more than two players'. Second, the two-turn delay the issue treats as structural is optional: SFD-171 Renata Glasc, Industrialist is mono-Order and legal here by 103.1.b.3, and a token that enters ready pays 144.2's exhaust cost the turn it is minted. The class is ENGINE and deliberately not INFINITE: the unbounded stock is the token-body-engine lux-infinite-energy already produces, and Sett is a readout of it, the shape azir-sovereign-token-gather already carries. Sett's self-count ('for each buffed friendly unit', with no 'other', against OGN-151 / OGN-223 / OGN-139 which all say 'other') is left unresolved ON PURPOSE: the declared line never buffs him, so no numbered reading was filed. Card text verbatim from data/corpus_flat.txt. Citations opened: 054.2, 103.1.b.1-b.4, 103.2.b, 143.4, 144.1.a, 144.2, 144.3, 144.3.a-c, 144.4, 144.4.a, 144.4.a.1, 185.2.b, 185.2.d, 190.1, 194.1, 312.2.a, 355.2, 355.2.a, 355.2.b, 415.3.a, 420.3.a, 447.2.a, 465.2.c, 465.2.c.3, 469.1, 469.2, 485.1, 485.4, 485.5, 489.8.e, 702.2.a, 702.3, 702.3.a, 703, 705, 740.1.a, 805.1.a, 815.1.b, 815.1.c.2, 822.1.b. Ban check: none of OGN-240, OGN-235, SFD-171, OGN-223 carries a [BANNED marker. Trap check: no attack designation is claimed (the army walks to a battlefield you already control, so trap 1 never arises); no [Repeat]; no [Temporary]; no Gold; no recycled token (185 / 186.1); no battlefield of its own. Depends on no unruled reading."
     }
   ]
 }
