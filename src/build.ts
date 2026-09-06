@@ -84,7 +84,7 @@ const COPY_CAP = 3;
  * cards named Spiderling", which is the whole of the exception today; matching the clause rather than
  * keeping a list of codes means the next card printing it is exempt the day it ships.
  */
-const ANY_NUMBER = /can have any number of cards named/i;
+export const ANY_NUMBER = /can have any number of cards named/i;
 
 /**
  * The cap is on the MAIN DECK — "Your Main Deck can include up to 3 copies of the same named card" — and
