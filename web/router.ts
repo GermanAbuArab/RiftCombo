@@ -20,6 +20,19 @@ export interface Route {
 
 const DEFAULT: Route = { view: "combos", deckId: null, analyzing: null, legacyDeck: null };
 
+/**
+ * What the browser tab says on each route (#79). Combos keeps the whole descriptive title because it
+ * is the title of the site itself — it is what `/` is bookmarked and indexed under. The other three
+ * are named, so history, the window switcher and a screen reader all report the view change that the
+ * hash alone makes silent.
+ */
+const TITLES: Record<ViewName, string> = {
+  combos: "RiftCombo — Riftbound combo finder",
+  decks: "My decks — RiftCombo",
+  guide: "Guide — RiftCombo",
+  sources: "Sources — RiftCombo",
+};
+
 export function parseHash(hash: string): Route {
   const raw = hash.replace(/^#/, "");
   if (raw.startsWith("deck=")) return { ...DEFAULT, legacyDeck: decodeURIComponent(raw.slice(5)) };
@@ -63,8 +76,13 @@ function apply(force = false): void {
     const el = document.querySelector<HTMLElement>(`#view-${name}`);
     if (el) el.hidden = name !== r.view;
   }
+  document.title = TITLES[r.view];
   for (const a of document.querySelectorAll<HTMLAnchorElement>(".topnav a")) {
-    a.classList.toggle("active", a.getAttribute("href") === `#/${r.view}`);
+    const here = a.getAttribute("href") === `#/${r.view}`;
+    a.classList.toggle("active", here);
+    // The orange underline says which tab you are on to everyone who can see it; this says it to
+    // everyone else. Removed rather than set to "false", which is not a value aria-current takes.
+    if (here) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
   }
   for (const cb of listeners) cb(r);
 }

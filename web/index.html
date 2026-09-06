@@ -95,7 +95,9 @@
       <div id="bans-body"></div>
       <p class="bans-foot" id="bans-foot"></p>
     </section>
-    <div class="status-card" id="status-card">
+    <!-- The one element that reports what happened when Find combos runs. Announced, because the focus
+         stays on the button and the diagram it draws is nowhere near it (#80). -->
+    <div class="status-card" id="status-card" role="status" aria-live="polite" aria-atomic="true">
       <div class="status-dot" aria-hidden="true"></div>
       <div><strong id="status-title">Ready</strong><span id="status-body">Paste a deck list to begin.</span></div>
     </div>
@@ -169,12 +171,12 @@
 </section>
 
 <section class="view" id="view-decks" hidden>
-  <div class="decks" id="decks-host"></div>
+  <main class="decks" id="decks-host"></main>
 </section>
 
 <section class="view" id="view-guide" hidden>
-<div class="doc" id="how">
-  <h2>Guide</h2>
+<main class="doc" id="how">
+  <h1>Guide</h1>
   <ol>
     <li>Paste a deck list (any common export), a deck code, or a public Piltover Archive link, then press <strong>Find combos</strong>.</li>
     <li><strong>Complete</strong> shows combos your list already has every piece of. <strong>Near misses</strong> shows combos within a few cards, with the missing pieces outlined.</li>
@@ -187,18 +189,18 @@
     <li>Opening a deck shows the list on the left and <strong>Construction</strong> on the right: one row per deck-building rule, each citing the paragraph of Riot's Core Rules it stands on. A row marked <em>unchecked</em> is a rule this site can state but not verify from Riot's card data — the Signature cap is the one that matters, because the card gallery carries no Signature marker. <strong>Analyze combos</strong> hands the list to the Combos tab; <strong>Export deck code</strong> copies a code any Riftbound deck site reads.</li>
     <li data-when="candidates">Combos marked <strong>candidate</strong> were proposed by an automated sweep and have not been walked by a human yet. Treat them as leads, not facts.</li>
   </ol>
-</div>
+</main>
 </section>
 
 <section class="view" id="view-sources" hidden>
-<footer class="doc colophon" id="data">
-  <h2>Sources</h2>
+<main class="doc colophon" id="data">
+  <h1>Sources</h1>
   <p id="data-note">Card text and art come from Riot's official card gallery, with Riot's published errata applied. Legality follows the official Rules Hub. Combos are walked by hand against the Core Rules, card text and rule numbers cited.<span data-when="candidates"> Entries marked <em>candidate</em> were proposed by an automated sweep and not yet reviewed.</span> Pairs are a separate file with a weaker guarantee: the rule is walked once and cites its paragraphs, the instances are text matches, and every rule's whole match list was read card by card before it shipped.</p>
   <p>Saving a deck stores the list text you typed, not the result of matching it, so an old list is read again against today's catalogue and today's ban list every time you open it. Only you can read your own rows.</p>
   <p>RiftCombo was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.</p>
   <p>No advertising, no donations, no play-rate or win-rate data. RiftCombo describes combos; it never plays them for you.</p>
   <p><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
-</footer>
+</main>
 </section>
 
 <div class="card-preview" id="card-preview" hidden>

@@ -25,7 +25,9 @@ const slim = {
   cards: full.cards.map(slimCard),
 };
 writeFileSync(join(OUT, "data", "cards.json"), JSON.stringify(slim));
-for (const f of ["index.html", "privacy.html", "terms.html", "styles.css", "favicon.svg"]) copyFileSync(join(ROOT, "web", f), join(OUT, f));
+// 404.html is served by Vercel for any address that matches nothing, so it carries no script: it has
+// to work in the case where the bundle is what went wrong (#77).
+for (const f of ["index.html", "privacy.html", "terms.html", "404.html", "styles.css", "favicon.svg"]) copyFileSync(join(ROOT, "web", f), join(OUT, f));
 
 // Both values are public by design and are baked in rather than fetched, so the account layer is
 // either present in a build or absent from it — never half-configured at runtime. An empty pair

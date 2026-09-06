@@ -407,6 +407,9 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
       lines.forEach((ln, i) => t.append(el("tspan", { x: RESULT_W / 2, dy: i === 0 ? 0 : 18 }, ln)));
       g.append(t);
       g.append(el("text", { class: "result-sub", x: RESULT_W / 2, y: RESULT_H - 14, "text-anchor": "middle" }, `${routes} ${routes === 1 ? "combo" : "combos"}`));
+      // Every node is a tab stop, so every node needs a name: without this the outcome column is a row
+      // of focusable boxes a screen reader announces as "group" and nothing else (#78).
+      g.append(el("title", {}, `${f.name} — ${routes} ${routes === 1 ? "combo" : "combos"}`));
     });
   }
 

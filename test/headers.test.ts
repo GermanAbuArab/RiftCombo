@@ -74,7 +74,7 @@ describe("what the page promises about storing a list", () => {
  * page, which is what the two pages added for Google's OAuth branding form made newly true.
  */
 const DISCLAIMER = `RiftCombo was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.`;
-const PAGES = ["index.html", "privacy.html", "terms.html"];
+const PAGES = ["index.html", "privacy.html", "terms.html", "404.html"];
 const page = (f: string) => readFileSync(new URL(`../web/${f}`, import.meta.url), "utf8");
 
 describe("every page the site serves", () => {

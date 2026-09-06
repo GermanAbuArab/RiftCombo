@@ -676,8 +676,11 @@ function showDetail(id: string | null) {
       <p class="audit-key">${AUDIT_KEY}</p><p>${esc(c.notes)}</p></details>` : ""}
     <p class="rules-version">Walked against Core Rules ${esc(c.rulesVersion)}</p>`;
   for (const pill of detail.querySelectorAll<HTMLElement>(".pills .pill")) { const col = colors.get(pill.dataset.feature!) ?? "#8b93a4"; pill.style.color = col; pill.style.borderColor = col; }
-  detail.querySelector("#close-detail")!.addEventListener("click", () => { selected = null; view?.select(null); showDetail(null); markChips(); });
+  detail.querySelector("#close-detail")!.addEventListener("click", closeDetail);
 }
+
+/** Letting the drawer go is the same four steps wherever it is asked for: the ×, or Escape (#76). */
+function closeDetail(): void { selected = null; view?.select(null); showDetail(null); markChips(); }
 
 /**
  * The audit register speaks its own language, and the player is not expected to know it (#72). The
@@ -731,7 +734,35 @@ preview.addEventListener("click", (ev) => {
   const t = ev.target as Element;
   if (t === preview || t.closest(".cp-close")) hideCard();
 });
-document.addEventListener("keydown", (ev) => { if (ev.key === "Escape") hideCard(); });
+/**
+ * The two keys the overlays owe the keyboard (#75, #76).
+ *
+ * Escape belongs to the top layer only: with a card open it closes the card and leaves the drawer
+ * underneath standing, which is the state the player came from.
+ *
+ * Tab is trapped inside the card. `aria-modal="true"` is a promise that the rest of the page is out
+ * of reach and the browser does not keep it on its own: without this the first Tab off the close
+ * button landed on BODY and then walked the top bar and the deck panel *behind* an opaque overlay,
+ * with nothing on screen showing where the focus had gone. Focus that is already outside is pulled
+ * back in rather than corrected later, so the trap also repairs a stray click.
+ */
+document.addEventListener("keydown", (ev) => {
+  if (ev.key === "Escape") {
+    if (!preview.hidden) hideCard();
+    else if (!detail.hidden) closeDetail();
+    return;
+  }
+  if (ev.key !== "Tab" || preview.hidden) return;
+  const stops = [...previewBox.querySelectorAll<HTMLElement>("a[href], button:not([disabled])")];
+  const first = stops[0], last = stops.at(-1);
+  if (!first || !last) return;
+  const inside = previewBox.contains(document.activeElement);
+  const edge = ev.shiftKey ? first : last;
+  if (!inside || document.activeElement === edge) {
+    ev.preventDefault();
+    (ev.shiftKey ? last : first).focus();
+  }
+});
 // An overlay belongs to the view that opened it. Left open across a tab switch it stays on top of the
 // next view and swallows every click there, with nothing on screen saying Esc is the way out.
 onRoute(hideCard);
