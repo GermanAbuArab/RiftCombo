@@ -19009,6 +19009,381 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-mind-units-lens.md), issue #150 candidate 2. VERIFIED as ENGINE and REWRITTEN AT THE PREMISE. #150 credited the whole draw to the Signpost ('marginal cost per draw: 0 Energy, forever'), which undercounts the baseline: 144 gives every unit an Inherent Standard Move and 144.2 / 420.3.a price it at its own exhaust, so an Empowered Covert Informant draws one card a turn on her own with no other card in play. The Signpost is worth exactly +1, and the walk states the engine as two cards a turn rather than one. Two further corrections. (1) 420.1 defines a Move as being 'between two Locations', so the fuel unit must stand somewhere she is not — #150's 'any second friendly unit' is too loose, and it is the same correction conscription-signpost-empty-garrison already applied to #61. (2) SFD-048 Stellacorn Herder prints 'When I move, draw 1' for 4 Energy flat with no [Empower] gate, in Calm, inside this identity; the Informant is not the cheapest carrier of her own trigger, and the honest line runs both for three cards a turn. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b, 103.2, 103.2.a.1, 143.4, 144, 144.2, 144.4.b, 190.3.a.1, 194.1.d, 323.6, 359.3.f.3, 415.3.a, 420.1, 420.2, 420.2.a, 420.3.a, 431.1.a, 431.2.b, 431.2.c, 441.1.a, 441.2, 447.2.a, 447.2.b, 455, 456, 806.1.b, 827.1.c.1, 828.1.b.1, 828.1.c. Ban check: neither line carries a [BANNED marker, and the four Calm/Mind legends are clean. Trap check: no attack and no Attacker designation, so the empty-battlefield trap does not arise; the move is by effect and is not a Recall, so 455 does not carve it out; no [Repeat]; no [Temporary]; no token, so 185 and 186.1 never arise; no Gold; no Energy carried across a phase (167). Depends on no unruled reading."
+    },
+    {
+      "id": "peak-guardian-albus-ferros-rune-refill",
+      "name": "Peak Guardian into Albus Ferros — five Power that costs no runes",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-223",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P1 M5. 'When you play me, buff me. Then, if I am at a battlefield, buff all other friendly units there.' 355.2.a makes a battlefield you control a default play location, so the second sentence is live on the turn he is played — the #111 correction to the #100 hunt, which had called this clause dead letter."
+        },
+        {
+          "card": "OGN-230",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Order unit, E4 M3. 'When you play me, spend any number of buffs. For each buff spent, channel 1 rune exhausted.' 702.3 is what makes 'buffs spent' and 'buffed units' the same number; 702.2.b.1 and 702.2.b.2 cap it at real buffs on units you control."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits them under any legend carrying Order: 'If a card has a single Domain, then that card is permitted in the Domain Identity'. Neither is Signature, so 103.2.d.2 forces no legend.",
+          "Peak Guardian must be played to a battlefield you control, with other friendly units already there. Four other bodies is five buffs."
+        ],
+        "notable": [
+          "The naive reading of Albus is a RAMP — N buffs into N extra runes on the board — and it is wrong. 430.1 channels 'from the top of a player's Rune Deck' and 430.3 says 'If there aren't sufficient runes in the Rune Deck, channel as many as possible.' A deck channelling 2 a turn (315.3.b) is at 10-12 runes by the turn it can afford E10, and the Rune Deck is nearly empty. The naive line channels 2.",
+          "What makes it real is 161.2.b — 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck' — read with 164.2.b, 'Recycle this: [Reaction] — Add [C]', a cost with NO exhaust in it, so a rune already tapped for Energy still pays it. Recycle five exhausted runes for 5 Power, then let Albus channel five back. The rune count ends where it started and the Power was free.",
+          "Rate: E10 + 1 Order Power and two cards for 5 Power, against the project's ~9 Energy per Power for a loop (issue #21's ledger). About 2 Energy per Power, and it leaves an M5 and an M3 on the board.",
+          "The honest limit is 430.1: the runes come back FROM THE TOP of the Rune Deck, so the count is restored but the domains are not chosen. A line that needs five Power of one named domain cannot lean on this.",
+          "Not a loop. Albus's trigger is 'When you play me', so it is once per copy — three castings a game (103.2.b), and each needs its own bank of buffs."
+        ]
+      },
+      "steps": [
+        "Tap ready runes for Energy (164.2.a) to pay for the turn. They are now exhausted.",
+        "Play Peak Guardian to a battlefield you control (355.2.a). He buffs himself and every other friendly unit there — five bodies present is five buffs (702.2.a), and 702.3 stops any of them doubling up.",
+        "Recycle five of the EXHAUSTED runes for 5 Power (164.2.b; the cost is 'Recycle this', with no exhaust in it). 161.2.b returns them to the Rune Deck.",
+        "Play Albus Ferros and spend the five buffs (702.2.b). Channel five runes exhausted (430.2's own worked example is this wording). The board is back to the rune count it started the turn with.",
+        "Spend the 5 Power in the same Main Phase. 167 empties the Rune Pool at the START of the Main Phase, so nothing here is carried across a phase boundary."
+      ],
+      "terminatesIn": "engine only — five Power for E10 + 1 Order Power with the rune count unchanged, once per copy of Albus (three a game). Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "164.2.b: 'Recycle this: [Reaction] — Add [C].' — the cost is the recycle, with no exhaust symbol, which is why an already-tapped rune still pays it. 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 430.3: 'If there aren't sufficient runes in the Rune Deck, channel as many as possible.' 702.3: 'There can only be one Buff on a Unit at a time.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §1), issue #153, from the orphan synergy rule albus-ferros-buff-bank. Card text verbatim from data/corpus_flat.txt. Citations opened in the Core Rules file: 103.1.b.3, 103.2.b, 103.2.d.2, 161.2.b, 164.2.a, 164.2.b, 167, 315.3.b, 355.2.a, 430.1, 430.2, 430.3, 702.2.a, 702.2.b, 702.2.b.1, 702.2.b.2, 702.3, 703. The walk's own first reading (Albus as a rune RAMP) was refuted by 430.1 + 430.3 and replaced by the refill reading; that correction is the entry. Trap check: no attack and no Attacker designation; no [Repeat]; no [Temporary]; no token anywhere, so 185 / 186.1 / 416.1 never arise; no recall, so 455 and 808.1.d.1 do not bite; nothing is added in Awaken, so 167 does not bite; no battlefield of yours is required, so 190.1 / 190.6.d and the 485.5 random draw do not apply. Depends on no unruled reading."
+    },
+    {
+      "id": "gemcraft-karma-herald-buff-faucet",
+      "name": "Gemcraft Seer × Karma — every body that lands arrives buffed",
+      "class": "ENGINE",
+      "status": "verified",
+      "legends": [
+        "OGN-265"
+      ],
+      "uses": [
+        {
+          "card": "OGN-100",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind unit, E3 P1 M3. '[Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.) Other friendly units have [Vision].' The static grant is the whole point: 817.1.c makes the trigger 'the permanent entering the Board', not 'when played', so a token that enters carries it too."
+        },
+        {
+          "card": "OGN-235",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Order unit, E6 P1 M6. 'When you recycle one or more cards to your Main Deck, buff a friendly unit.' 416.1.a — 'Main Deck cards are Recycled to the Main Deck' — is why the [Vision] recycle is her trigger."
+        },
+        {
+          "card": "OGN-265",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "LEGEND",
+          "note": "Mind/Order legend (Viktor). 'E1, exhaust: Play a 1 Might Recruit unit token.' One fresh body a turn for one Energy, and 315.1.b readies the legend every Awaken. 107.4.c makes the legend a Game Object on the board, which is what 415.1 needs to ready it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Order + a Mind/Order legend: 103.1.b.2 is satisfied by Herald of the Arcane exactly.",
+          "No battlefield of yours is needed, so nothing here is a 1-in-3 draw (485.5)."
+        ],
+        "notable": [
+          "The cap that normally kills a repeatable buffer does not bite here. 702.3 ('There can only be one Buff on a Unit at a time') means a buffer yields min(triggers, new unbuffed bodies) — the #106 finding. In this line supply and demand arrive together: the unit that enters is both the trigger (its own [Vision] recycle) and the fresh unbuffed body, so every entering body arrives at +1 Might.",
+          "436.4.a: 'The Player will not perform a Burn Out as a result of Predicting with too few cards in their [deck]' — the faucet is safe with the Main Deck empty, which matters because recycling the looked-at card is optional and the deck never shrinks.",
+          "The Recruits are born at the base (355.2.a), so #48's walk-to-the-battlefield bottleneck is untouched; this line supplies bodies, it does not place them.",
+          "Sibling: karma-lux-recycle-buff-army runs Karma off the Lux loop's recycles and reaches an unbounded army. This one needs no loop at all — one Energy a turn — and is therefore the version a fair deck can run, at one body a turn rather than one a pass."
+        ]
+      },
+      "steps": [
+        "Play Gemcraft Seer. Its own [Vision] looks at the top card; recycling it is already one Karma trigger if Karma is out.",
+        "Play Karma, Channeler. From here every friendly unit that ENTERS the board carries [Vision] (817.1.c: 'The trigger is the permanent entering the Board'), including tokens.",
+        "Each turn, pay E1 and exhaust Herald of the Arcane for a 1 Might Recruit token. It enters, predicts (817.1.b), and you recycle the looked-at card to the Main Deck (416.1.a).",
+        "Karma's trigger fires and buffs a friendly unit — put the buff on the Recruit that just landed, which is guaranteed unbuffed, so 702.3 never refuses it. The Recruit is a 2 Might body (703).",
+        "315.1.b readies the legend at the next Awaken and the cycle repeats for one Energy a turn."
+      ],
+      "terminatesIn": "engine only — one 2 Might body a turn for 1 Energy, plus a buff on every other unit you play. Nothing here scores; the points still come from whatever walks the bodies to a battlefield.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "817.1.c: 'The trigger is the permanent entering the Board.' 817.1.b: 'It is functionally short for \"When this is played, predict.\"' 436.4.a: 'The Player will not perform a Burn Out as a result of Predicting with too few cards in their Main Deck.' 416.1.a: 'Main Deck cards are Recycled to the Main Deck.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §2), issue #153, from the two orphan rules gemcraft-seer-vision-generalization and karma-channeler-vision-recycle. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 107.4.c, 315.1.b, 355.2.a, 415.1, 416.1.a, 436.4.a, 702.2.a, 702.3, 703, 817.1.b, 817.1.c. Trap check: the Recruit is a token, so 185 / 186.1 forbid recycling or reanimating it and the entry claims neither; no attack, no [Repeat], no [Temporary], no recall; 167 is not touched, since the Energy is spent in the Main Phase it is added in; 107.4.b (the Legend Zone is not a location) does not bite, because nothing here asks the legend to be anywhere — only 107.4.c, that it is a Game Object, which is what 415.1 needs. Depends on no unruled reading."
+    },
+    {
+      "id": "pit-crew-eye-herald-recruit-shuttle",
+      "name": "Pit Crew under the Eye of the Herald — a Recruit at the battlefield per 1-Energy gear",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-091",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E3 M3. 'When you play a gear, ready me.' The readier is a GEAR being played, not Energy spent, which is what makes this shuttle cheaper than the spell-driven one."
+        },
+        {
+          "card": "SFD-153",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Order Equipment, E1, [Equip] 1 Order. '[Effect] When I move, play a 1 Might Recruit unit token here.' 434.1.c appends the effect text to the carrier, so 'I' is Pit Crew and 'here' is read on execution (359.3.f.2) — the Recruit is born at the DESTINATION."
+        },
+        {
+          "card": "SFD-064",
+          "quantity": 3,
+          "role": "resource",
+          "zone": "HAND",
+          "note": "Mind Equipment, E1, [Quick-Draw], [Effect] [Shield 2]. Three copies is three extra readies of Pit Crew for 3 Energy total. Any E1 gear in identity does the job; SFD-073 Experimental Hexplate is the second Mind one."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Order: Herald of the Arcane (OGN-265) or any other Mind/Order legend satisfies 103.1.b.2. The Eye costs 1 Order Power to attach, the gear E1 each.",
+          "No battlefield of yours is required."
+        ],
+        "notable": [
+          "144.2 prices a Standard Move at the unit's own exhaust, so a unit moves once a turn on its own. Every gear played readies Pit Crew (415.1) and buys another move; four gears in a turn is five moves.",
+          "144.4.a / 144.4.b are the only destinations Pit Crew has — base to battlefield and back — because it has no [Ganking] (810.1.c.3). So the shuttle alternates, and roughly half the Recruits land at the battlefield and half at the base. That is still the only cheap way to put a token AT a battlefield: #48 measured that bottleneck and only SFD-177 Azir, Sovereign moves tokens in bulk.",
+          "190.3.a.1 — 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' The FIRST arrival at an uncontrolled battlefield contests it, and 344.2 / 348.2.a / 348.2.a.1 turn that into a Showdown and a Conquer. Every later arrival at a battlefield you now control is free of Contested and opens no Combat.",
+          "190.4.a — 'If a player controls Units at a Battlefield ... they maintain Control of that Battlefield for as long as they have Units at that Battlefield.' Pit Crew must not be the last body there when it leaves, or Control lapses and the next arrival contests again. The first Recruit it drops is that body, so the shuttle is self-priming from the second move on.",
+          "Sibling: revna-eye-herald-recruits buys the same shuttle with UNL-009 Upstage Comedy at 4 Energy spent per move and gets battlefield-to-battlefield moves out of it. This one costs 1 Energy per move and is stuck on base-to-battlefield."
+        ]
+      },
+      "steps": [
+        "Attach the Eye of the Herald to Pit Crew for 1 Order Power ([Equip]). 434.1.c gives Pit Crew the Eye's effect text.",
+        "Standard-move Pit Crew from your base to a battlefield: 144.4.a allows it, 144.2 exhausts him. The Eye fires and plays a 1 Might Recruit token HERE — at the battlefield (359.3.f.2).",
+        "If the battlefield was uncontrolled, the Cleanup applies Contested (190.3.a.1) and 344.2 stages a Showdown; 348.2.a.1 makes establishing Control a Conquer. From now on you control it.",
+        "Play a Cloth Armor for E1. Pit Crew readies (his own trigger, 415.1). Standard-move him back to the base (144.4.b): the Eye fires again, and this Recruit lands at the base.",
+        "Play the next E1 gear, ready, move back to the battlefield: another Recruit there. The Recruit already standing keeps Control (190.4.a) so the return never contests.",
+        "Four gears in a turn is five moves and five Recruits, three of them at the battlefield."
+      ],
+      "terminatesIn": "engine only — about five 1 Might Recruits a turn, alternating between the battlefield and the base, bounded by how many 1-Energy gears the turn can pay for and by three copies of each (103.2.b).",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 190.4.a: 'If a player controls Units at a Battlefield, outside of Combat, they maintain Control of that Battlefield for as long as they have Units at that Battlefield.' 434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §3), issue #153, from the orphan rule pit-crew-gear-ready. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 144.2, 144.4.a, 144.4.b, 190.3.a.1, 190.4.a, 344.2, 348.2.a, 348.2.a.1, 359.3.f.2, 415.1, 415.1.b, 434.1.c, 810.1.c.3. Trap check: 'enters ready' is not asked of anything here (#56); no attack and no Attacker designation, so 807.1.d / 383.4.e / 461 cannot bite; the move is a Standard Move, not a Recall, so 455 does not carve it out; the Recruits are tokens, so 185 / 186.1 forbid recycling them and the entry claims nothing of the kind; no [Repeat], no [Temporary], no Gold, and 167 is not touched. Depends on no unruled reading."
+    },
+    {
+      "id": "trevor-altar-of-memories-beginning-draw",
+      "name": "Trevor Snoozebottom into the Altar — a card a turn out of a Sprite that dies on schedule",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-048",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M3, [Shield]. 'When I hold, play a ready 3 Might Sprite unit token with [Temporary] here.' The token is the feed: 816.1.b kills it at the start of your NEXT Beginning Phase, before scoring, with no cost to you."
+        },
+        {
+          "card": "SFD-169",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Order gear, E2. 'When a friendly unit dies, you may exhaust me to draw 1, then put a card from your hand on the top or bottom of your Main Deck.' The exhaust is why the timing matters: 315.1.b readies it in Awaken, one step BEFORE the Beginning Phase the Sprite dies in."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine",
+        "temporary-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Order: OGN-261 Radiant Dawn, UNL-195 Green Father, VEN-147 Eye of Twilight and SFD-247 Emperor of the Sands all hold both (103.1.b.2).",
+          "You must be Holding a battlefield each turn — 469.2 defines Hold on a battlefield the player CONTROLS, so an opponent who walls you off switches the whole line off."
+        ],
+        "notable": [
+          "The timing IS the finding, and it needs 315 read in order. Awaken (315.1) is NOT part of the Beginning Phase (315.2): it is the step before it, and 315.1.b readies 'all Game Objects they control that are able to be readied'. 816.1.b then fires the [Temporary] kill 'At the start of this permanent's controller's Beginning Phase, before scoring' — 315.2.a — with the Altar already ready, and 315.2.b.2 Holds the battlefields after that. So the Altar is available every single turn and Trevor mints the replacement Sprite in the same phase.",
+          "Net neutral on deck size: the draw and the card put back on top or bottom are one trigger, so 431.1.a never bites and this is one of the few draw engines that does not walk a deck toward Burn Out.",
+          "The Sprite is a 3 Might body with a full turn of life — born in one Scoring Step, killed in the next — so it defends the battlefield Trevor holds for the opponent's whole turn.",
+          "185 / 186.1: the Sprite is a token and never reaches the trash, so nothing in this line can recycle or reanimate it, and none of it tries to."
+        ]
+      },
+      "steps": [
+        "Get Trevor to a battlefield you control and the Altar of Memories on the board. Setup is E3 + E2, paid once.",
+        "Scoring Step (315.2.b.2): you Hold. Trevor's trigger plays a ready 3 Might Sprite with [Temporary] at that battlefield.",
+        "The Sprite defends through the opponent's turn.",
+        "Your Awaken (315.1.b) readies the Altar.",
+        "Your Beginning Step (315.2.a): 816.1.b kills the Sprite before scoring. 'A friendly unit dies' fires — exhaust the Altar, draw 1, put a card from hand on the top or bottom of the Main Deck.",
+        "The same turn's Scoring Step Holds again and mints the next Sprite. Repeat every turn at zero further cost."
+      ],
+      "terminatesIn": "engine only — one card drawn and one card filtered onto the top or bottom of the deck every turn, for free after E5 of setup, plus a 3 Might defender that renews itself. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "315.1.b: '1. The Turn Player readies all Game Objects they control that are able to be readied.' 315.2.a.1: 'At the start of Beginning Phase game effects take place.' 315.2.b.2: '1. The Turn Player Holds all Battlefields they Control.' 816.1.b: 'It is functionally short for \"At the start of this permanent's controller's Beginning Phase, [kill this], before scoring.\"'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §4), issue #153, from the orphan rule shadow-watcher-temporary-death-window. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 185, 186.1, 315.1, 315.1.b, 315.2.a, 315.2.a.1, 315.2.b.2, 431.1.a, 469.2, 816.1.b, 816.1.c. Deliberately NOT written: Trevor beside UNL-174 Shard of Undoing, which would be a third copy of sprite-fountain-shard-undoing-beginning-removal and shard-undoing-deceiver-reflection-removal — those two already occupy the [Temporary]-death-forces-a-kill slot with two different feeds. Trap check: no attack; no [Repeat]; the token is never recycled or reanimated (185 / 186.1); no recall, so 455 and 808.1.d.1 do not bite — and note that the Sprite's death is the POINT here, so a heal/exhaust/recall shield on it would switch the engine off rather than protect it; 167 is not touched. Depends on no unruled reading."
+    },
+    {
+      "id": "tryndamere-call-to-glory-trapping-grounds",
+      "name": "Buffs into excess damage — Tryndamere's point and the Trapping Grounds Bird",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-034",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E7 P2 M8. 'When I conquer after an attack, if you assigned 5 or more excess damage to enemy units, you score 1 point.' R28 = A: excess damage is attacking Might that never got assigned, because 465.2.c.4 forbids assigning a unit more than the minimum needed to kill it."
+        },
+        {
+          "card": "OGN-207",
+          "quantity": 3,
+          "role": "resource",
+          "zone": "HAND",
+          "note": "Order spell, E3, [Reaction]. 'As you play this, you may spend a buff as an additional cost. If you do, ignore this spell's cost. Give a unit +3 Might this turn.' Each banked buff is +3 to the attacker's Might and therefore +3 to the excess, for no Energy at all."
+        },
+        {
+          "card": "OGN-223",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P1 M5. 'When you play me, buff me. Then, if I am at a battlefield, buff all other friendly units there.' The bank: 702.3 makes one buff per body, so three bodies at his battlefield is three free Calls to Glory."
+        },
+        {
+          "card": "UNL-217",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'When you conquer here, if you assigned 3 or more excess damage, play a 1 Might Bird unit token with [Deflect].' A second payoff on the same measurement, at a lower threshold, so it fires whenever Tryndamere's does."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Fury + Order: OGN-253 Hand of Noxus (Darius) is the legend (103.1.b.2). Trapping Grounds is Colorless and costs no domain.",
+          "Tryndamere must attack — 'when I conquer AFTER AN ATTACK' — so the enemy battlefield needs a garrison. An empty enemy battlefield is not an attack: the Attacker designation exists only inside a Combat with a garrison (807.1.d, 383.4.e, 461)."
+        ],
+        "notable": [
+          "Trapping Grounds is one of YOUR three battlefields and only one of the three is used: randomly in a Duel (485.4.a, 485.5) and in Skirmish (487.5), chosen in Match (486.5). 103.4.c and Tournament Rules 402.1 forbid carrying two copies. So the Bird half is a 1-in-3 draw; Tryndamere's point is not.",
+          "The arithmetic against the declared board, which is the check the 2026-09-04 BURST audit found four entries failing. Tryndamere at M8 into a garrison of two 3 Might defenders assigns 3 + 3 (465.2.c, 465.2.c.3) and carries 2 excess — SHORT of his own threshold of 5. Peak Guardian with two other bodies at his battlefield banks 3 buffs; three free Calls to Glory put him at M17, so the assignment is still 3 + 3 and the excess is 11: over Tryndamere's 5 and over the Trapping Grounds' 3.",
+          "Buffs may be spent from any unit you control (702.2.b.2), so Peak Guardian's garrison and Tryndamere's battlefield do not have to be the same one.",
+          "Call to Glory is a [Reaction], so 813.1.c.1 lets it be played inside the Combat's Closed States, after the defenders are known — you never have to guess the bar before you see it.",
+          "The Bird is a BIRD, which is one of the four tags ivern-sentinel-hold and ivern-arena-sentinel-hold are built on. It does NOT combine here: Ivern is Order and Tryndamere is Fury, and while both fit Hand of Noxus, the Ivern line needs Cat, Dog and Poro bodies as well. Recorded as a lead, not as a uses[].",
+          "This is one Gain per conquer (194.1.c, R2 = A), not a Score, so 470's one-Score-per-battlefield-per-turn cap is not what bounds it — Tryndamere conquering once a turn is."
+        ]
+      },
+      "steps": [
+        "Play Peak Guardian to a battlefield you control with two other friendly units there: three buffs (702.2.a, 702.3).",
+        "Attack the Trapping Grounds with Tryndamere. He gets the Attacker designation at 464.2.c.3, which is what 'after an attack' needs.",
+        "Inside the Combat's Closed State, play the three Calls to Glory, each spending a buff instead of its Energy (813.1.c.1 for the window; the card's own 'ignore this spell's cost' for the price). Tryndamere is M17 this turn.",
+        "465.2.c has each side assign damage equal to its summed Might and 465.2.c.3 forces lethal onto one unit first; 465.2.c.4 forbids overkill, so 3 + 3 is assigned and 11 Might is excess.",
+        "The Conquer resolves (466.5.d). Tryndamere's trigger sees 11 >= 5 and you gain 1 point (194.1.c). The Trapping Grounds' trigger sees 11 >= 3 and plays a 1 Might Bird token with [Deflect] there."
+      ],
+      "terminatesIn": "engine only — one ability point and one [Deflect] Bird per conquer, bounded by Tryndamere conquering once a turn and by three copies of Call to Glory. Eight is not in reach from here.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "465.2.c.4: 'Units cannot have more damage assigned to them than the minimum required to kill them.' 194.1.c: 'Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more [points].' 470: 'A player may only Score, from either method, once per Battlefield per turn.' 702.2.b.2: 'A player can only spend buffs on units they control.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §5), issue #153, from three orphan rules at once: call-to-glory-buff-bank, trapping-grounds-excess-damage and wizened-elder-buffed-payoff (the last only as the observation that a banked buff is worth holding, not spending, when OGN-065 Wizened Elder is the body carrying it — the two uses are exclusive and this entry spends). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.4.c, 194.1.c, 383.4.e, 461, 464.2.c.3, 465.2.c, 465.2.c.3, 465.2.c.4, 466.5.d, 470, 485.4.a, 485.5, 486.5, 487.5, 702.2.a, 702.2.b.2, 702.3, 807.1.d, 813.1.c.1. Stands on R2 = A and R28 = A, both ruled 2026-09-04. Trap check: the attack is against a real garrison, so the empty-battlefield trap is respected; no [Repeat]; no [Temporary]; the Bird is a token and is never recycled (185); no recall; nothing added in Awaken, so 167 does not bite; the battlefield is declared as a 1-in-3 draw per 485.5. Formula checked against its own declared quantities before authoring: M8 + 3x3 = M17, assignment 3 + 3, excess 11 >= 5 and >= 3."
     }
   ]
 }
