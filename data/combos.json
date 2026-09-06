@@ -2748,7 +2748,8 @@
           "Sona has to survive on a battlefield at 4 Might for the readies to happen at all. Chemtech Cask's Gold enters exhausted and cannot be spent until your next Awaken.",
           "Every rule this entry cites was checked verbatim on 2026-09-04 and holds: 164.2.a (\"[E]: [Reaction] - Add [1]\") and 164.2.b give rune abilities Reaction, 813.1.c.2 lets Reaction activated abilities fire \"during Closed States on any player's turn\", 143.4 makes the Recruits enter exhausted, and 811.6 grants Reaction to a card played from facedown.",
           "CONSTRAINT 811.1.b hands over that the entry omitted: the rule reads \"...you may pay [A] to hide this facedown... BEGINNING ON THE NEXT TURN, this gains [Reaction] and you may play this, ignoring its base cost.\" So the free flips are free only if the hiding happened on an earlier turn, and note it is the BASE cost that is ignored, not additional costs.",
-          "323.7 — THE FREE FLIPS COST A CARD IF THE BATTLEFIELD GOES. This engine's cheapest Viktor triggers are cards flipped from Hidden on the opponent's turn, and a hidden card only survives while you control the battlefield it sits on: 323.7 removes Hidden cards from battlefields \"not controlled by the same player\" and places them \"in their owner's Trash\", and 466.5.c does the same the instant Control is established. A battlefield lost between hiding and flipping does not delay the trigger, it eats the card."
+          "323.7 — THE FREE FLIPS COST A CARD IF THE BATTLEFIELD GOES. This engine's cheapest Viktor triggers are cards flipped from Hidden on the opponent's turn, and a hidden card only survives while you control the battlefield it sits on: 323.7 removes Hidden cards from battlefields \"not controlled by the same player\" and places them \"in their owner's Trash\", and 466.5.c does the same the instant Control is established. A battlefield lost between hiding and flipping does not delay the trigger, it eats the card.",
+          "TARGON'S PEAK IS ONE EVENT, NOT A SECOND FAUCET. OGN-289 Targon's Peak ('When you conquer here, ready up to 2 runes at the end of this turn') is the pool's only other battlefield-side rune ready and it lands in the same window Sona uses, so a conquer turn runs six ready runes instead of four. But it does NOT repeat while you keep the battlefield: 469.1 defines Conquer as gaining Control of a Battlefield 'they did not yet Score this turn' and 466.5 only Establishes Control 'if they didn't already control this Battlefield'. It is +2 on the turn you take it and again only if it changes hands. It also costs the battlefield slot (485.4.a, 1 of 3 at random in Duel by 485.5), which in Calm/Mind competes with every other battlefield you might want, and the whole engine is capped above by the Rune Deck anyway: 161.2.a, 'Exactly 12 Rune cards chosen during Deck Construction.'"
         ]
       },
       "steps": [
@@ -2772,10 +2773,16 @@
           "title": "Hand walk, 2026-09-04 — full pass against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-04-four-engines.md)",
           "kind": "manual-walk",
           "date": "2026-09-04"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-ready-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06",
+          "quote": "466.5: 'the player with Units remaining here Establishes Control if they didn't already control this Battlefield.' 469.1: 'Conquer: A player gains Control of a Battlefield they did not yet Score this turn.' Targon's Peak fires once per change of hands, not once per turn."
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Bounded per turn by four runes and by the Reactions in hand. Targon's Peak (OGN-289) stacks: it readies up to 2 more at the end of a turn in which you conquered there, for up to six. Dark Child (OGS-017) is not an alternative here — it is a Fury/Chaos legend and cannot legally run Sona (Calm) or Viktor (Mind). Card text verified against the corpus. REFUTE 2 (2026-09-03): SURVIVES with corrections — the off-turn rune spend is legal; the entry cited the VEN-SP2 reprint instead of the base code OGN-073, the Dark Child alternative was domain-illegal and the Cask's Gold is exhausted on arrival. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-four-engines.md), promoted to verified. Depends on no unruled reading."
+      "notes": "Bounded per turn by four runes and by the Reactions in hand. Targon's Peak (OGN-289) stacks: it readies up to 2 more at the end of a turn in which you conquered there, for up to six — but only ON A CONQUER, which is the cap this sentence omitted until 2026-09-06; see the correction at the end of this note and the notable that now carries it. Dark Child (OGS-017) is not an alternative here — it is a Fury/Chaos legend and cannot legally run Sona (Calm) or Viktor (Mind). Card text verified against the corpus. REFUTE 2 (2026-09-03): SURVIVES with corrections — the off-turn rune spend is legal; the entry cited the VEN-SP2 reprint instead of the base code OGN-073, the Dark Child alternative was domain-illegal and the Cask's Gold is exhausted on arrival. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-four-engines.md), promoted to verified. Depends on no unruled reading. CORRECTED 2026-09-06 by the ready-lens walk (docs/phase0/walks/2026-09-06-ready-lens-candidates.md), issue #56. The old note said 'Targon's Peak (OGN-289) stacks: it readies up to 2 more at the end of a turn in which you conquered there, for up to six' and omitted the cap. It does stack, but only on a conquer, and 466.5 plus 469.1 mean there is no conquer while you already control the battlefield. #56 proposed the pair as a standalone ENGINE entry; it was REFUTED for exactly that reason — one event is not a motor, and a class that does not match the formula is the defect the 2026-09-04 BURST audit punished. The fact is applied here instead. Class, uses, quantities and steps are UNCHANGED."
     },
     {
       "id": "reksai-undertitan-reveal",
@@ -5721,7 +5728,7 @@
           "THE ENABLERS THE ISSUE NAMED DO NOT SUSTAIN IT. VEN-074 Legion Marauder and VEN-124 Escaped Grayback are one Empower per copy (827.1.c.1, 'Play only if not Empowered') and nothing disempowers them, so three copies of each is six Empowers in a whole game. Hextech Disc is the only Body/Order card whose [Empower] costs nothing but an exhaust AND that disempowers itself, so it is the only one that comes back every turn.",
           "One Disc alternates on a two-turn cycle: on the odd turn the Awaken (315.1.b) readies it, its [Empower] exhausts it, the Matriarch's trigger empowers her for free and you pay 'Disempower me, 1 rainbow Power, exhaust' to ready a unit. On the even turn the Awaken readies it Empowered, and 'Disempower this, 1 Energy, exhaust' makes a 3 Might Mech token, leaving it disempowered for the next odd turn.",
           "TWO Discs out of phase give both halves every turn: one unit readied and one 3 Might Mech token per turn, for 1 Energy plus 1 rainbow Power. Setup is 2 Hextech Disc = 8 Energy + 2 Power; the legend is free.",
-          "Hard ceiling of one ready per turn, and it does not open up. The Matriarch's payment carries her own exhaust, and 'Ready a unit' cannot reach her — a legend is its own card type, not a unit. The only untapper in the pool is SFD-210 Hall of Legends ('When you conquer here, you may pay 1 Energy to ready your legend'), which is tied to conquering and to that battlefield being the one drawn (485.5). That is why this is an ENGINE and nothing more.",
+          "Ceiling of one ready per turn on the Matriarch alone. Her payment carries her own exhaust, and 'Ready a unit' cannot reach her — a legend is its own card type, not a unit. CORRECTED 2026-09-06, and this is where the old text was wrong: it said the ceiling 'does not open up' because SFD-210 Hall of Legends was the pool's only untapper. There are two untappers legal here, not one, and the second is free. The pool's legend-readers are SFD-039 Royal Entourage (Calm, out of Body/Order), SFD-210 Hall of Legends (Colorless, tied to conquering and to that battlefield being the one drawn, 485.5), VEN-068 Jayce, Brilliant Inventor (Mind, out of Body/Order) and OGN-162 Miss Fortune, Captain (Body, legal here). VEN-150 Acceleration Gate does NOT count: it enumerates 'units, gear, and/or runes' and a legend is none of the three. Miss Fortune readies 'something else that's exhausted' the first time she moves each turn, and 144.2 charges that move only her own exhaust, so she doubles the Matriarch to TWO readies a turn for free — the ready reaches the legend because 107.4.c makes it a Game Object and 415.1 readies Game Objects on the board, even though 107.4.b keeps it out of any location. Rider, deliberately not in uses. It is still an ENGINE: two readies a turn is not a loop.",
           "What the ready buys: a body that already spent its exhaust — a second Standard Move in the turn (144.2 charges the move an exhaust) or a second use of an exhaust ability.",
           "Rider outside uses: SFD-171 Renata Glasc, Industrialist is a UNIT of Order, not a legend, so she is legal in Body/Order and makes the Mech tokens enter READY (R25 = A), able to move the turn they appear. SFD-089 Rumble, Scrapper is NOT available here — he is Mind.",
           "Not an INFINITE, and the reason is printed: 441.1.a makes Empowered binary and 441.1.b forbids re-empowering, so every cycle has to spend a disempower, and every disempower in the pool that is repeatable also charges an exhaust."
@@ -5753,10 +5760,16 @@
           "kind": "manual-walk",
           "date": "2026-09-05",
           "quote": "441.1.b: 'An Empowered Game Object can not be Empowered.' Every engine in this family has to spend a disempower to charge again, and Hextech Disc is the only Body/Order card that both empowers for an exhaust alone and disempowers itself."
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-ready-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06",
+          "quote": "Grep of every legend-reader in the pool: SFD-039, SFD-210, OGN-162, VEN-068. 'The only untapper in the pool is SFD-210' was false, and OGN-162 Miss Fortune, Captain is legal in Body/Order."
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-escalation-empower-flow-candidates.md), issue #34. REWRITTEN AT THE ENGINE: the issue armed the Matriarch with Legion Marauder and Escaped Grayback, and both are one Empower per copy — six in a whole game, which is not a motor. The sustainable source came out of the walk's own disempower census (grep -i disempower, 12 cards, domains read off each): VEN-087 Hextech Disc is Body, its [Empower] costs only an exhaust, and its other ability disempowers it, so 441.1.b stops blocking every second turn. Two Discs out of phase is what makes it a per-turn engine rather than an alternating one. The one-ready-per-turn ceiling is unchanged from the issue and is correct: her payment carries her own exhaust and 'Ready a unit' does not reach a legend. Trap check: no attack; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; every payment is a Main Phase activation so 167 does not bite. Shares Hextech Disc with hextech-disc-defender-mech-token, which is a different legend (Mind/Body) and a different payoff."
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-escalation-empower-flow-candidates.md), issue #34. REWRITTEN AT THE ENGINE: the issue armed the Matriarch with Legion Marauder and Escaped Grayback, and both are one Empower per copy — six in a whole game, which is not a motor. The sustainable source came out of the walk's own disempower census (grep -i disempower, 12 cards, domains read off each): VEN-087 Hextech Disc is Body, its [Empower] costs only an exhaust, and its other ability disempowers it, so 441.1.b stops blocking every second turn. Two Discs out of phase is what makes it a per-turn engine rather than an alternating one. The one-ready-per-turn ceiling is unchanged from the issue and is correct: her payment carries her own exhaust and 'Ready a unit' does not reach a legend. Trap check: no attack; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; every payment is a Main Phase activation so 167 does not bite. Shares Hextech Disc with hextech-disc-defender-mech-token, which is a different legend (Mind/Body) and a different payoff. CORRECTED 2026-09-06 by the ready-lens walk (docs/phase0/walks/2026-09-06-ready-lens-candidates.md), issue #56: the notable claimed SFD-210 Hall of Legends was the pool's only untapper for a legend. It is not — OGN-162 Miss Fortune, Captain readies 'something else that's exhausted' every turn for free and is Body, so she is legal here and takes the Matriarch from one ready a turn to two. Class, uses, quantities and steps are UNCHANGED; she is named as a rider, not added to uses."
     },
     {
       "id": "hextech-disc-defender-mech-token",
@@ -5776,7 +5789,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "LEGEND",
-          "note": "Mind/Body legend. '[Empower] 2 Energy + 2 rainbow Power … 1 Energy, exhaust: Ready a gear. [Empowered][>] 1 Energy, exhaust: Ready 2 gear.' The ONLY card in the pool that readies gear — grep -iE 'ready [0-9a-z]* ?gear' over all 935 cards returns this line and nothing else."
+          "note": "Mind/Body legend. '[Empower] 2 Energy + 2 rainbow Power … 1 Energy, exhaust: Ready a gear. [Empowered][>] 1 Energy, exhaust: Ready 2 gear.' The only card in the pool that readies gear REPEATABLY AND FOR FREE, and the only Mind/Body legend (grep '| Legend | Mind/Body |' returns one line), so the entry cannot change legend. It is NOT the only gear-readier: that claim stood here until 2026-09-06 and was false. A grep that does not swallow the adjective — grep -inE \"ready [^|]*gear|ready something\" — returns five: VEN-149, VEN-150 Acceleration Gate (a spell, one use per copy), SFD-221 Veiled Temple (a battlefield, and 466.5 + 469.1 make it one conquer per change of hands), OGN-162 Miss Fortune, Captain and VEN-068 Jayce, Brilliant Inventor (each readies ONE object, not two). Three of the four others are legal in Mind/Body."
         }
       ],
       "needs": [],
@@ -5790,9 +5803,9 @@
         ],
         "notable": [
           "Each Mech costs TWO readies of a Disc, and that is the whole arithmetic: one ready is spent paying the [Empower] (exhaust), and the ability that makes the token demands the Disc ready again, because 414.1.b and 414.4 forbid paying an exhaust cost with something already exhausted.",
-          "Readies per turn = one per Disc from the Awaken (315.1.b) plus 2 from an Empowered Defender. So Mechs per turn = floor((#Discs + 2) / 2): one Disc gives 1, two give 2, THREE STILL GIVE 2. Two Discs is the efficient number, and the issue's 'one token per turn for 2 Energy' undercounted it — the steady state is two tokens for 3 Energy.",
+          "CORRECTED 2026-09-06: count exhausts, do not apply a floor per turn. The floor assumed the Empowered state does not cross the Awaken, and it does — 441.2 makes Empowered a state of the object on the board and only the Disc's own ability takes it off, so a Disc that ends a turn Empowered and exhausted starts the next one Empowered and READY and makes a Mech for a single exhaust. Disc exhausts per turn = #Discs (Awaken 315.1.b) + A x min(2, #Discs), where A is the Defender's activations; each Mech costs two of them, so with #Discs >= 2 the amortized rate is #Discs/2 + A. One Disc gives 1 (the second half of 'Ready 2 gear' is wasted), two give 2 — the published rate, and correct — and THREE GIVE 2.5, not 2, on a 2/3/2/3 alternation. A third Disc does buy something, half of what the second buys, for 4 Energy + 1 Power; two Discs remains the efficient number and is what this entry declares.",
           "Empower the Defender once (2 Energy + 2 rainbow Power, 827.1.c.1) to reach the two-ready version; 441.2 keeps it Empowered for the rest of the game.",
-          "VEN-062 Hextech Formula ('This enters exhausted. exhaust: Empower another gear') moves one of the two exhausts onto a different card but does not remove it, so it does not raise the ceiling. Noted, deliberately not in uses.",
+          "VEN-062 Hextech Formula ('This enters exhausted. exhaust: Empower another gear') moves one of the two exhausts onto a different card but does not remove it, so it does not raise the ceiling. Noted, deliberately not in uses. What DOES raise it is a second gear-ready: OGN-162 Miss Fortune, Captain (Body) readies the legend for free every turn and takes A from 1 to 2, which is the separate entry miss-fortune-defender-hextech-double.",
           "The tokens land in your base EXHAUSTED (143.4). Renata Glasc, Industrialist cannot fix that here — she is Order, outside Mind/Body. SFD-089 Rumble, Scrapper is Mind and does fit: 'Your Mechs have +1 Might (including me)' makes them 4 Might. Rider, not in uses.",
           "Against Rumble, Scrapper alone, who makes one Mech per Hold: this needs no scoring and no battlefield, so 485.5 does not get a vote.",
           "Setup is 2 Hextech Disc (8 Energy + 2 Power) plus the Defender's Empower (2 Energy + 2 Power)."
@@ -5806,7 +5819,7 @@
         "Pay each Disc's 'Disempower this, 1 Energy, exhaust': two 3 Might Mech unit tokens to your base, and both Discs end disempowered and exhausted, set up for the next Awaken."
       ],
       "netPerIteration": "two 3 Might Mech unit tokens per turn for 3 Energy, every turn",
-      "terminatesIn": "engine — two Mech tokens a turn; the ceiling is readies, not cards, and floor((#Discs + 2) / 2) makes a third Disc worthless",
+      "terminatesIn": "engine — two Mech tokens a turn with the two Discs it declares; the ceiling is readies, not cards, and the amortized rate is #Discs/2 + Defender activations, so a third Disc buys half of what the second did",
       "sources": [
         {
           "title": "Hunt lens [Empower]/[Flow]/[Level N] — issue #34 (GitHub)",
@@ -5824,10 +5837,16 @@
           "kind": "manual-walk",
           "date": "2026-09-05",
           "quote": "414.4: 'When Exhausting is listed as a Cost, then the Action must be able to be completed for the cost to be paid.' That is why each Mech needs two readies of the Disc, and it is what fixes the rate at floor((#Discs + 2) / 2) per turn."
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-ready-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06",
+          "quote": "415.1: 'Readying is an action that marks a non-spell Game Object on the board as available for action.' 107.4.c: 'The Champion Legend here is a Game Object.' The Legend Zone sits under 107. The Board, so a ready reaches the legend even though 107.4.b says it is not a location."
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-escalation-empower-flow-candidates.md), issue #34, which filed it as 'confianza baja'. REWRITTEN UPWARD after counting the cycle: the issue measured one token per turn for 2 Energy, but with two Discs the steady state is two tokens for 3 Energy, and the readies-per-turn budget (one per Disc from the Awaken plus two from an Empowered Defender) makes floor((#Discs + 2) / 2) the exact rate, so a third Disc buys nothing. VEN-149 was confirmed by grep to be the pool's ONLY gear-readier, which is why the entry cannot be built with any other legend. Trap check: no attack; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; all costs are Main Phase activations so 167 does not bite. Shares Hextech Disc with matriarch-of-war-empower-ready, which is a different legend (Body/Order) and pays in readies instead of bodies; the two cannot share a deck, because a legend has exactly two domains (103.1.b)."
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-escalation-empower-flow-candidates.md), issue #34, which filed it as 'confianza baja'. REWRITTEN UPWARD after counting the cycle: the issue measured one token per turn for 2 Energy, but with two Discs the steady state is two tokens for 3 Energy, and the readies-per-turn budget (one per Disc from the Awaken plus two from an Empowered Defender) was written up as floor((#Discs + 2) / 2), 'so a third Disc buys nothing' — SUPERSEDED, see the correction at the end of this note. That same 2026-09-05 pass reported by grep that VEN-149 was the pool's ONLY gear-readier — FALSE, also corrected below; what is true is that it is the only Mind/Body legend, which is why the entry cannot be built with another legend. Trap check: no attack; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; all costs are Main Phase activations so 167 does not bite. Shares Hextech Disc with matriarch-of-war-empower-ready, which is a different legend (Body/Order) and pays in readies instead of bodies; the two cannot share a deck, because a legend has exactly two domains (103.1.b). CORRECTED 2026-09-06 by the ready-lens walk (docs/phase0/walks/2026-09-06-ready-lens-candidates.md), issue #56. Two things in this entry were false. (1) The uniqueness claim on VEN-149: its own grep, 'ready [0-9a-z]* ?gear', requires exactly one word between 'ready' and 'gear' and so swallows every adjective; five cards ready gear, not one. (2) The rate for three Discs: the floor was applied per turn, but 441.2 carries the Empowered state across the Awaken, so three Discs run 2/3/2/3 and amortize to 2.5. Class, uses, quantities and steps are UNCHANGED — two Discs is still the efficient number this entry declares."
     },
     {
       "id": "black-market-broker-bandle-tree-gold",
@@ -8073,11 +8092,12 @@
           "Legend domains cover Mind and Order: OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-201 Chem-Baroness, UNL-199 Deceiver."
         ],
         "notable": [
-          "SIX A TURN, NOT NINE. #46 conjectured nine by adding Acceleration Gate to ready both — but the Gate is Mind/Body and this pairing is Mind/Order, so 103.1.b keeps it out of the deck. Three Recruits from the Armory's own exhaust and three from Heimerdinger's copy of it: six.",
+          "SIX A TURN, NOT NINE — and 2026-09-06 closes the domain question for good. #46 conjectured nine by adding Acceleration Gate to ready both; the Gate is Mind/Body and this pairing is Mind/Order, so 103.1.b.4 keeps it out. The ready lens (#56) asked whether OGN-162 Miss Fortune, Captain rescues it. She does not: she is Body, and Mind + Order + Body is THREE domains against a legend's two (103.1.b.4), the same wall as the Gate. What she rescues is the SHAPE, in another deck — plaza-armory-miss-fortune is the Body/Order route, and the two can never share a list. Steady state here stays six: three Recruits from the Armory's own exhaust and three from Heimerdinger's copy of it.",
           "IT IS REPEATABLE, WHICH IS THE POINT. OGS-015 Recruit the Vanguard makes four tokens once, for 6 Energy; the Armory makes three every turn, and Heimerdinger doubles that, for a one-time 7 Energy + 1 Power.",
           "IT CROSSES DIRECTLY INTO THE PLAZA ROUTES, AND IT REACHES SEVEN IN ONE TURN, NOT TWO. Seven units at The Grand Plaza when you hold is the game (OGN-293, rule 195). With OGN-265 Herald of the Arcane as the legend — already the first name in this entry's own prerequisite — the count is Armory 3 + Heimerdinger's copy of the Armory 3 + the legend's own '1 Energy, [exhaust]: Play a 1 Might Recruit unit token' 1 = SEVEN in a single Main Phase. Heimerdinger has all the [exhaust] abilities but only one exhaust to spend, so he takes the Armory's three and the legend still has its own; R30 = B does not bite, because neither the Armory nor the Herald prints a 'use only while' clause. heimerdinger-herald-legend-recruits states the same count from the other side. See grand-plaza-recruit-vanguard and spiderling-swarm-grand-plaza. The Armory's reminder permits different locations, and 355.2.a already allows a battlefield you control.",
           "143.4 — the Recruits enter exhausted, so they neither defend nor move the turn they appear.",
-          "A two-turn build, not a turn-three kill: 7 Energy + 1 Power for the Armory and 3 Energy + 1 Power for Heimerdinger, and 143.4 means Heimerdinger cannot use the copied ability the turn he lands."
+          "A two-turn build, not a turn-three kill: 7 Energy + 1 Power for the Armory and 3 Energy + 1 Power for Heimerdinger, and 143.4 means Heimerdinger cannot use the copied ability the turn he lands.",
+          "NINE IS REACHABLE IN MIND/ORDER, BUT ONLY ON A GEAR TURN. VEN-068 Jayce, Brilliant Inventor is Mind, so he is legal here, and reads 'When you play me or the first time you play a non-token gear each turn, you may ready something besides me that's exhausted.' Readying the Armory (or Heimerdinger) is three more Recruits, for nine. The price is a non-token gear played every turn — a card and its Energy each time — so it is a rider on gear turns, not the steady state. Deliberately not in uses."
         ]
       },
       "steps": [
@@ -8105,9 +8125,15 @@
           "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md)",
           "kind": "manual-walk",
           "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-ready-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06",
+          "quote": "103.1.b.4: 'If a card has more than one Domain, then that card is permitted only in a Domain Identity that contains all of the indicated Domains on that card.' Heimerdinger is Mind, the Armory is Order, Miss Fortune is Body: three domains, no legal legend."
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 1. The candidate came from a Reddit thread that could not be opened on 2026-09-06 (Reddit now CAPTCHA-walls this machine even in a real browser with the project's own cookies), so it carries NO Reddit citation: the mechanism is read off the two cards' printed text and the rules instead, which is the stronger evidence anyway. The one correction to the candidate is the count — six, not nine, because Acceleration Gate is Mind/Body and cannot legally sit in a Mind/Order deck (103.1.b). This is the cleanest use of Heimerdinger in the catalogue, because the Armory carries no restriction clause and so R30 never comes up. CORRECTED 2026-09-06 by the #48 walk (docs/phase0/walks/2026-09-06-token-lens-candidates.md): notable[2] said this line 'reaches seven in two turns from an empty board', which was measured without counting Herald of the Arcane's own exhaust — Armory 3 + Heimerdinger 3 + the legend 1 is seven in ONE turn. Class, uses, quantities and steps are UNCHANGED. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 1. The candidate came from a Reddit thread that could not be opened on 2026-09-06 (Reddit now CAPTCHA-walls this machine even in a real browser with the project's own cookies), so it carries NO Reddit citation: the mechanism is read off the two cards' printed text and the rules instead, which is the stronger evidence anyway. The one correction to the candidate is the count — six, not nine, because Acceleration Gate is Mind/Body and cannot legally sit in a Mind/Order deck (103.1.b). This is the cleanest use of Heimerdinger in the catalogue, because the Armory carries no restriction clause and so R30 never comes up. CORRECTED 2026-09-06 by the #48 walk (docs/phase0/walks/2026-09-06-token-lens-candidates.md): notable[2] said this line 'reaches seven in two turns from an empty board', which was measured without counting Herald of the Arcane's own exhaust — Armory 3 + Heimerdinger 3 + the legend 1 is seven in ONE turn. Class, uses, quantities and steps are UNCHANGED. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading. DOMAIN REFUTATION FROM #46 CLOSED 2026-09-06 by the ready-lens walk (docs/phase0/walks/2026-09-06-ready-lens-candidates.md), issue #56: Miss Fortune does not rescue the 'nine' conjecture either — Mind + Order + Body is three domains (103.1.b.4). She rescues the shape in a different deck, plaza-armory-miss-fortune, and the two routes can never share a list. The walk did find the one card that reaches nine inside Mind/Order: VEN-068 Jayce, Brilliant Inventor, on any turn you play a non-token gear. Added as a notable rider. Class, uses, quantities and steps are UNCHANGED."
     },
     {
       "id": "heimerdinger-malzahar-double-power",
@@ -9097,6 +9123,323 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-token-lens-candidates.md), issue #48 candidate 7. The candidate's arithmetic and class both survive unchanged; the walk adds 187.2 (the Sprite carries the Fae tag, which is what makes it non-Recruit) and 383.2.c.2 (the Core Rules' own worked example on Viktor). Depends on no unruled reading. Card text verbatim from data/corpus_flat.txt."
+    },
+    {
+      "id": "plaza-armory-miss-fortune",
+      "name": "Miss Fortune readies the Vanguard Armory — ten bodies at The Grand Plaza, and the finishing turn costs 0 Energy",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BOARD",
+          "note": "Colorless battlefield. 'When you hold here, if you have 7+ units here, you win the game.' 315.2.b.2 puts the Hold in your Beginning Phase and rule 195 grants the win."
+        },
+        {
+          "card": "SFD-168",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order gear, E7 P1. 'exhaust: Play three 1 Might Recruit unit tokens. (You may play them to different locations.)' 149.1 ('Gear enter play Ready') lets it fire the turn it lands, and it is a PERMANENT — it keeps making three a turn after a failed attempt, which is what a spell cannot do. ONE copy reaches exactly 7 with no margin; the second copy is what buys the three spare bodies."
+        },
+        {
+          "card": "OGN-162",
+          "quantity": 1,
+          "role": "ready",
+          "zone": "BOARD",
+          "note": "Body unit, E5 P1 M5. '[Accelerate] … [Ganking] … The first time I move each turn, you may ready something else that's exhausted.' 144.2 charges her Standard Move only her own exhaust, so the ready is free; and by moving to the Plaza she is the seventh body herself."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Body and Order (the Plaza is Colorless): OGN-269 The Boss, OGS-023 Might of Demacia, SFD-205 Grand Duelist, UNL-203 Keeper of the Hammer, VEN-153 Matriarch of War. OGS-023 is the best of the five — 'When you conquer, if you have 4+ units at that battlefield, draw 2' pays out on the very conquer this line needs to make the Plaza yours."
+        ],
+        "notable": [
+          "The Grand Plaza has to be the battlefield in play: random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5), and 103.4.c plus Tournament Rules 402.1 forbid bringing two battlefields of the same name, so copies are not a way around the draw. A battlefield you provide starts UNCONTROLLED (190.1), and you must control the Plaza BEFORE the Armory fires, because 355.2.a only permits your base or a battlefield you control as a destination — taking it is part of the cost, not a freebie.",
+          "THE FINISHING TURN COSTS 0 ENERGY AND 0 POWER, AND THAT IS THE WHOLE POINT. Awaken (315.1.b) readies both Armories and Miss Fortune. Exhaust Armory A for three Recruits at the Plaza, Armory B for three more (six). Miss Fortune takes her Standard Move from base to the Plaza (144.1.a, 144.4.a; the cost is her own exhaust, 144.2) and her trigger readies Armory A. Exhaust Armory A again: three more. Nine Recruits plus Miss Fortune is TEN units against a bar of seven, so three may die. Compare grand-plaza-recruit-vanguard, which is two cards but 12 Energy of open mana on the finishing turn, telegraphing it.",
+          "THE HONEST COMPARISON, NOT HIDDEN: this is three cards and 19 Energy + 3 Power spread over earlier turns, against two cards and 12 Energy in one turn for grand-plaza-recruit-vanguard. Total cost is higher and the card count is higher. What it buys is that the Armory is a permanent and the finishing turn is free.",
+          "SEVEN AT THE HOLD, NOT AT THE WIN, AND THERE IS NO WINDOW TO TOP UP. 383.2.a.1 makes 'if you have 7+ units here' part of the TRIGGER CONDITION, measured when the Hold is processed, and 312.2.a gives priority only in the Main Phase — so the bodies must survive the opponent's whole turn. The Recruits are 187.1 tokens with no [Temporary], so 816.1.b never touches them.",
+          "IF MISS FORTUNE LANDS THE SAME TURN SHE MUST BE ACCELERATED. 143.4 makes units enter exhausted and 414.1.b forbids exhausting what is already exhausted, so without paying [Accelerate]'s 1 Energy + 1 Body Power she cannot pay for the move that turn — and the move is the trigger.",
+          "WHAT KILLS IT: nine of the ten are 1 Might Recruits, and OGN-133 Flurry of Blades (Body, E1, [Reaction], 'Deal 1 to all units at battlefields') sweeps all nine for one Energy at instant speed. arise-sand-soldiers-plaza, whose bodies are 2 Might Sand Soldiers, is immune to that; this is not.",
+          "A THIRD ARMORY BUYS NOTHING ON THE FINISHING TURN. The trigger reads 'the FIRST time I move each turn': one ready per turn, and nothing in Body/Order readies Miss Fortune's trigger again.",
+          "The Plaza is symmetric — 'When YOU hold here' reads for whoever holds it (190.6.d), so an opponent parking seven units on it wins the same way.",
+          "THIS ROUTE AND heimerdinger-vanguard-armory-recruits CAN NEVER SHARE A LIST. Heimerdinger is Mind, the Armory is Order, Miss Fortune is Body: three domains against a legend's two (103.1.b.4). They are alternatives, and that is the closure of the domain refutation #46 left open."
+        ]
+      },
+      "steps": [
+        "Establish Control of The Grand Plaza (190.1; a battlefield you provide starts uncontrolled). Land both Vanguard Armories, 7 Energy + 1 Power each, and Miss Fortune, 5 Energy + 1 Power.",
+        "On the finishing turn the Awaken readies all three (315.1.b).",
+        "Exhaust Armory A: three 1 Might Recruits to the Plaza (355.2.a plus the Armory's own reminder). Exhaust Armory B: three more. Six.",
+        "Miss Fortune takes her Standard Move from base to the Plaza, paying her own exhaust (144.2). Her trigger readies Armory A. Seven units are now there, counting her.",
+        "Exhaust Armory A again: three more Recruits. Ten units at the Plaza, for 0 Energy and 0 Power this turn.",
+        "Survive the opponent's turn with seven or more still there, then Hold in your Beginning Phase (315.2.b.2): the Plaza's condition is met at the Hold (383.2.a.1) and rule 195 gives you the game."
+      ],
+      "terminatesIn": "win the game — ten bodies against a bar of seven, and the Armories keep producing three a turn if the first attempt is answered",
+      "sources": [
+        {
+          "title": "Hunt lens ready — issue #56 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/56",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-ready-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06",
+          "quote": "187.1: 'A 1 [M] Recruit token is a domainless unit token with 1 Might and the Recruit tag.' No [Temporary], so 816.1.b never touches them and they are still there for the Scoring Step. 144.2: 'Exhausting the Unit is the Cost for this action' — Miss Fortune's ready costs no Energy at all."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-ready-lens-candidates.md), issue #56 candidate 1. Card text verbatim from data/corpus_flat.txt; 107.4.c, 415.1, 143.4, 144.1.a/144.2/144.4.a, 149.1, 187.1, 195, 315.1.b, 315.2.b.2, 312.2.a, 355.2.a, 383.2.a.1, 414.1.b, 466.5, 485.4a/485.5/486.5/487.5 and 103.1.b.4/103.4.c all opened and read in the walk. Ban check: none of OGN-293, SFD-168 or OGN-162 carries a [BANNED marker in the corpus. Arithmetic checked against its own quantities: 3 + 3 + 3 Recruits plus Miss Fortune is 10 against a bar of 7, and with a single Armory it is exactly 7 with no margin, which is why quantity is 2. Trap check: no attack (she MOVES, and the trigger is 'the first time I move'); no [Repeat]; no [Temporary]; no recall (144 Standard Move, not 456); no rune recycled for Power; every cost is paid in the Main Phase so 167 does not bite. Depends on no unruled reading."
+    },
+    {
+      "id": "miss-fortune-defender-hextech-double",
+      "name": "Miss Fortune readies the legend — Defender of Tomorrow readies four gear a turn and the Hextech Discs make three Mechs",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-149",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Mind/Body legend, and the pool's only Mind/Body legend. '[Empower] 2 Energy + 2 rainbow Power … 1 Energy, exhaust: Ready a gear. [Empowered][>] 1 Energy, exhaust: Ready 2 gear.' Its exhaust is what caps the older entry at one activation a turn; this entry buys a second."
+        },
+        {
+          "card": "VEN-087",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Body gear, E4 P1. '[Empower] — exhaust. Disempower this, 1 Energy, exhaust: Play a 3 Might Mech unit token to your base.' Each Mech costs TWO exhausts of the same Disc (414.1.b + 414.4), and 441.2 carries the Empowered state across the Awaken, which is why half-cycles amortize."
+        },
+        {
+          "card": "OGN-162",
+          "quantity": 1,
+          "role": "ready",
+          "zone": "BOARD",
+          "note": "Body unit, E5 P1 M5. 'The first time I move each turn, you may ready something else that's exhausted.' The pool's only ready with no type restriction, and 144.2 makes the move that triggers it cost nothing but her own exhaust. It reaches the LEGEND: 107.4.c makes the Champion Legend a Game Object, 107.4.b keeps it out of any location but the Legend Zone sits under 107. The Board, and 415.1 readies Game Objects on the board — the Core Rules say so themselves at 355.10.a, 'Ready a legend targets a legend, because the Legend Zone is Public.'"
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "legends": [
+        "VEN-149"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Defender of Tomorrow (VEN-149) IS the legend; Hextech Disc and Miss Fortune are both Body, inside its Mind/Body identity (103.1.b.3)."
+        ],
+        "notable": [
+          "THE RATE, COUNTED IN EXHAUSTS RATHER THAN WITH A FLOOR. Disc exhausts per turn = #Discs (Awaken, 315.1.b) + A x min(2, #Discs), where A is the Defender's activations; each Mech costs two of them. With #Discs >= 2 that is #Discs/2 + A per turn. A = 1 is the older entry: 2 Discs, 2 Mechs, 3 Energy. A = 2 with Miss Fortune: 2 Discs, THREE Mechs, 5 Energy. Fifty percent more throughput for one card played once — and the price per Mech rises from 1.50 to 1.67 Energy, which is the honest half of the trade.",
+          "IT ALTERNATES 2 / 4 AND AVERAGES 3, IT DOES NOT MAKE THREE EVERY TURN. On the first turn both Discs end Empowered and exhausted, so the next Awaken finds them Empowered and ready (441.2) and they make two Mechs for one exhaust each before the cycle even starts. 2, 4, 2, 4. The steady figure is the average; a walk that reports 'three a turn' flat is rounding.",
+          "MISS FORTUNE MUST HAVE A MOVE EVERY TURN, AND A SAFE ONE. Duel has two battlefields (485.4) and she has [Ganking] (144.4.c.1); failing that she alternates base to battlefield and back (144.4.a, 144.4.b). She never runs out of destinations, but she ends every turn exhausted, and moving into a battlefield the opponent garrisons stages a Combat (461) that can kill her. Move to a battlefield you control or to an empty one.",
+          "A WASTED READY IS A REAL COST. Readying the legend is worth two gear; readying a Disc directly is worth one. If the legend is already ready on some turn, 415.1.c makes the trigger do nothing at all.",
+          "THE ALTERNATIVES INSIDE MIND/BODY, SAID SO NOBODY REDISCOVERS THEM. VEN-068 Jayce, Brilliant Inventor (Mind) does the same job 'the first time you play a non-token gear each turn' — but that demands a gear played every turn, a card and its Energy each time, where Miss Fortune charges only a move. VEN-150 Acceleration Gate (Mind/Body) readies four objects at once but is a spell: one use per copy, not a motor. SFD-221 Veiled Temple readies a gear on a conquer, and 466.5 plus 469.1 make that once per change of hands.",
+          "STILL A BASE ENGINE. VEN-087 says 'to your base' and 143.4 lands the Mechs exhausted, so #48's bottleneck is untouched: points are scored at battlefields, and SFD-177 Azir, Sovereign is the only card in the pool that moves tokens in bulk. SFD-089 Rumble, Scrapper (Mind) fits and makes them 4 Might; Renata Glasc, Industrialist does not — she is Order.",
+          "Empower the Defender once (2 Energy + 2 rainbow Power, 827.1.c.1); 441.2 keeps it Empowered for the rest of the game. Setup is 2 Hextech Disc (8 Energy + 2 Power), the Empower (2 Energy + 2 Power) and Miss Fortune (5 Energy + 1 Power)."
+        ]
+      },
+      "steps": [
+        "Board both Hextech Discs and Miss Fortune, and Empower the Defender once (2 Energy + 2 rainbow Power).",
+        "Awaken readies both Discs, the legend and Miss Fortune (315.1.b).",
+        "Pay each Disc's [Empower], whose whole cost is its own exhaust. Both are Empowered and exhausted.",
+        "Defender activation 1 (1 Energy, exhaust): Ready 2 gear — both Discs are ready again. Pay each Disc's 'Disempower this, 1 Energy, exhaust': two 3 Might Mech tokens to your base.",
+        "Miss Fortune takes her Standard Move, paying only her own exhaust (144.2). Her trigger readies the LEGEND (107.4.c + 415.1).",
+        "Defender activation 2 (1 Energy, exhaust): Ready 2 gear again. Spend those two exhausts on whichever half of the Disc cycle is pending — a Mech now if the Disc is Empowered, an [Empower] that pays off next Awaken if it is not.",
+        "Across the alternation this is three Mech tokens a turn for 5 Energy, against two for 3 Energy without her."
+      ],
+      "netPerIteration": "three 3 Might Mech tokens per turn for 5 Energy, amortized over a 2/4 alternation",
+      "terminatesIn": "engine — #Discs/2 + Defender activations Mechs a turn; readies are the ceiling, and every Mech still costs two exhausts of one Disc (414.1.b, 414.4), so nothing re-feeds",
+      "sources": [
+        {
+          "title": "Hunt lens ready — issue #56 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/56",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-ready-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06",
+          "quote": "355.10.a, a worked example of the Core Rules: 'e.g., \"Ready a legend\" targets a legend, because the Legend Zone is Public.' 107.4.c: 'The Champion Legend here is a Game Object.' 415.1: readying marks 'a non-spell Game Object on the board'."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-ready-lens-candidates.md), issue #56 candidate 2. It is the upgrade of hextech-disc-defender-mech-token, whose false 'only card that readies gear' note and mis-applied floor were corrected in the same pass. The structural fact it stands on is that BOARD and LOCATION are not the same thing: 107.4.b keeps a legend out of every location — which is why Reckoner's Arena and Svellsongur cannot reach it, #47's finding, still standing — but 107.4.c makes it a Game Object and the Legend Zone sits under 107. The Board, so 415.1 reaches it, and the rules say so themselves in the worked example at 355.10.a. Ban check: none of VEN-149, VEN-087, OGN-162 carries a [BANNED marker. Arithmetic checked against its own quantities and walked turn by turn in the walk document: 2/4/2/4, averaging three. Trap check: no attack (she moves); no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; all costs are Main Phase activations so 167 does not bite. Not INFINITE and the reason is printed: each Mech costs two exhausts of the same Disc and the readies per turn are finite. Depends on no unruled reading."
+    },
+    {
+      "id": "dominus-xerath-henge-removal",
+      "name": "Dominus is the pool's only uncapped ready — Xerath fires again for 3 Power a shot, and Ancient Henge buys the Power",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-142",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury/Body spell, E4. '[Action] … This turn, double a unit's Might and give it \"2 rainbow Power: Ready me.\"' The ability it hands over carries NO exhaust and NO once-per-turn clause, and 377 says what that means: 'Activated Abilities are repeatable effects with a cost.' It is the only ready in the pool with neither cap."
+        },
+        {
+          "card": "UNL-026",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E5 M5. 'Fury Power, exhaust: Deal 3 to a unit. Use this ability only while I'm at a battlefield.' 377.2.b (worked example: Ultrasoft Poro) makes that last sentence a condition of the ability, so he has to be standing at a battlefield for every shot. Dominus also doubles him to 10 Might."
+        },
+        {
+          "card": "SFD-117",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BOARD",
+          "note": "Body gear, E2 P1. 'exhaust: [Reaction] — Pay any amount of Energy to [Add] that much rainbow.' One activation per turn, but NO cap per activation, which is the exception #46 registered. 135.2.e.5.b lets that rainbow pay Xerath's Fury Power cost: 'When Added to a player's Rune Pool, [A] can be spent to pay a Power cost of any Domain.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Fury and Body: OGN-249 Relentless Storm, SFD-183 Purifier, UNL-183 Pridestalker, VEN-141 Butcher of the Sands."
+        ],
+        "notable": [
+          "THE OBVIOUS ROUTE IS ILLEGAL AND HAS TO BE SAID FIRST. An uncapped ready pointed at SFD-088 Renata Glasc, Mastermind ('4 Energy + 4 Mind Power, exhaust: Score 1 point') would be unbounded points. It cannot be built: Dominus is Fury/Body and Renata is Mind, so the deck would need Fury + Body + Mind and 103.1.b.4 permits a card only in an identity containing all of its domains, while a legend has exactly two. There is no legal list.",
+          "XERATH IS THE BEST LEGAL SINK, MEASURED RATHER THAN ASSUMED. Crossing '| Unit | Fury |' and '| Unit | Body |' with an exhaust-cost activated ability returns exactly four cards in the pool: UNL-001 Arena Kingpin (+3 Might, which does not score), UNL-018 Yeti Brawler (the exhaust is on the Gold token, not on him), UNL-026 Xerath, Freed, and UNL-093 Dragonsoul Sage. Xerath is the only one that converts the ready into something that wins.",
+          "THE PRICE, WITH THE QUANTITIES DECLARED. First shot: 1 Fury Power. Every shot after: 2 rainbow Power for the ready plus 1 Fury Power, so 3 Power for 3 damage. Shots = 1 + floor((P - 1) / 3) for P Power available in the turn. At the free floor of 2 Power a turn (164.2.b, 161.2.b, 315.3.b / 430.4.a) that is ONE shot: without a Power engine this card does nothing. With the Henge converting X Energy at one for one, P = 2 + X; X = 12 gives P = 14 and five shots, 15 damage spread across separate targets in one turn.",
+          "IT IS A TURN, NOT A LOOP, AND THAT IS THE CLASS. Dominus says 'This turn'. The engine costs a fresh 4 Energy card every time you want it, so it is a big removal turn, not recursion. ENGINE, and terminatesIn says so.",
+          "DOMINUS + UNL-093 DRAGONSOUL SAGE IS NOT INFINITE, walked because it is the obvious trap. The Sage is '[Reaction][>] exhaust: [Add] 1 Energy'; the ready costs 2 Power and the Henge turns 1 Energy into 1 Power, so each cycle loses a net Power — and the Henge exhausts, so it converts only once a turn anyway. It dies on arithmetic, not on a rule.",
+          "167 does not bite: the Rune Pool empties at the START of the Main Phase and at end of turn, and every payment here happens inside the Main Phase (145.2 opens the granted ability there, in an Open State, and not during a Showdown).",
+          "SFD-117 Ancient Henge is already in the catalogue as part of gemdragon-henge-vi-blind-fury. This entry shares it; it does not introduce it.",
+          "Xerath can be killed in response to Dominus and both cards are gone. The ability rides on him, not on you."
+        ]
+      },
+      "steps": [
+        "Xerath, Freed at a battlefield (377.2.b: his own text makes that a condition of the ability), Ancient Henge on the board.",
+        "In your Main Phase, activate the Henge: exhaust, pay X Energy, [Add] X rainbow Power (429.1). With the turn's free 2 Power that is P = 2 + X.",
+        "Play Dominus on Xerath (4 Energy): his Might doubles to 10 and he gains '2 rainbow Power: Ready me.'",
+        "Fury Power + exhaust: deal 3 to a unit.",
+        "Pay 2 rainbow Power to ready him (415.1: he must be exhausted for it to do anything, so the order is always fire, then ready), and fire again for another Fury Power.",
+        "Repeat while the Power lasts: 1 + floor((P - 1) / 3) shots, three damage each, at separate targets. At end of turn the granted ability expires with 'This turn' and 167 empties the pool."
+      ],
+      "netPerIteration": "3 damage per 3 Power after the first shot, at separate targets, inside one turn",
+      "terminatesIn": "engine — a one-turn removal burst of 1 + floor((P - 1) / 3) shots; it ends with the turn, because Dominus says 'This turn'",
+      "sources": [
+        {
+          "title": "Hunt lens ready — issue #56 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/56",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-ready-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06",
+          "quote": "377: 'Activated Abilities are repeatable effects with a cost.' The ability Dominus grants carries neither an exhaust nor a once-per-turn clause, and a sweep of every other ready in the pool found that all of them carry one or the other."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-ready-lens-candidates.md), issue #56 candidate 3, from its hallazgo D. Card text verbatim from data/corpus_flat.txt; 377, 377.2.b, 145.2, 415.1/415.1.b, 135.2.e.5.a/b, 429.1, 167, 103.1.b.4 and 820.1.c.3 all opened and read. Ban check: none of VEN-142, UNL-026, SFD-117 carries a [BANNED marker. The structural claim — that this is the pool's ONLY ready with neither an exhaust in its cost nor a per-turn cap — was checked card by card against the sixteen readies of another object plus the ones already catalogued, and the table is in the walk (OGN-152, VEN-149, VEN-153, SFD-195, UNL-109 carry an exhaust; VEN-125, OGN-162, VEN-068 carry a 'once/first time each turn'; UNL-009 Upstage Comedy is capped by 820.1.c.3, the #32 finding; SFD-180 rides a trigger that fires once per body). Trap check: no attack; no [Repeat] resurrected (820.1.c.3 stays); no [Temporary]; no recall; no rune recycled for Power; all payments are Main Phase so 167 does not bite. Depends on no unruled reading."
+    },
+    {
+      "id": "gardens-becoming-wuju-xp-faucet",
+      "name": "Gardens of Becoming is the pool's only free exhaust sink — one XP per body per turn, and at Level 11 the units arrive ready to pay it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-213",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BOARD",
+          "note": "Colorless battlefield. 'Units here have \"exhaust: Gain 1 XP.\"' The only exhaust sink in the pool that costs nothing at all and pays per body — the census in the walk lists all six sinks and the other five charge Energy, Power, XP or a disempower."
+        },
+        {
+          "card": "UNL-191",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Body legend. '[Level 6][>] Your units have +1 Might. [Level 11][>] Your units enter ready.' 824.1.b.1 makes [Level N] short for 'While you have N or more XP', so it is a current balance and 824.1.d switches it off the moment you drop below."
+        },
+        {
+          "card": "UNL-109",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Body gear, E1. 'When you play a unit, you may pay 1 Energy to gain 1 XP. Spend 3 XP, exhaust: Ready a unit.' Kept for its ramp half only; its ready half is the drain the older entry documents (730.2 walks the level back down)."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "legends": [
+        "UNL-191"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Wuju Master (UNL-191) IS the legend and Blood Rose is Body, inside Calm/Body (103.1.b.3). Gardens of Becoming is Colorless and fits any identity."
+        ],
+        "notable": [
+          "Gardens of Becoming has to be the battlefield in play: random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5), and 103.4.c plus Tournament Rules 402.1 forbid two battlefields of the same name. It REPLACES OGN-275 Altar to Unity in the slot rather than adding to it — the two cannot both be brought and drawn.",
+          "THE RATE, AGAINST THE RAMP THE OLDER ENTRY CALLS CHEAPEST. wuju-master-blood-rose-level ends on 'Altar to Unity + Blood Rose: 1 XP for 1 Energy per turn'. Gardens is N XP a turn for ZERO Energy and zero cards, N being your units standing there. With four bodies that is 11 XP in three turns, against eleven turns and eleven Energy through the Altar.",
+          "IT ACCELERATES EXACTLY WHEN IT ARRIVES. 143.4 makes a unit enter exhausted, so a body played this turn cannot pay the exhaust — the faucet runs on bodies that were already there. Once [Level 11] is live, 'Your units enter ready' cancels 143.4 and EVERY unit you play to the Gardens is +1 XP the moment it lands (355.2.a permits a battlefield you control as a destination).",
+          "IT ONLY SUMS, WHICH IS WHY IT BEATS BLOOD ROSE'S OWN READY INSIDE THE DANGER BAND. 730.2 reduces the XP marked on you when you Spend, and 824.1.d turns [Level 11] off in the same instant. Gardens never spends. The 11-13 band the older entry defines stops being a tightrope: you ramp through it for free.",
+          "WHO GETS THE XP, AND WHY THE ENTRY DOES NOT DEPEND ON THE ANSWER. Gardens prints no 'you' of its own — it says 'Units here have …', and the granted ability then lives on the unit, whose controller is the only one who can activate it (381) and who is responsible for the action (411.1), so the XP is theirs. The competing read is that 190.6.d rewrites the implied 'you' of 'Gain 1 XP' to the battlefield's Controller. Both give this entry the same number, because it declares that you control the Gardens and the bodies are yours. No new reading is filed.",
+          "IT IS SYMMETRIC AND IT CAN CHANGE HANDS. 'Units here have' names no player, so under 190.6.b the clause stands even while the battlefield is Uncontrolled, and it arms the opponent's units standing there too. 466.5 can hand the Gardens to them outright.",
+          "THE FAUCET STARTS A TURN LATE, EVERY TIME. Getting a body to the Gardens spends its Standard Move, whose cost is its own exhaust (144.2), so it cannot also pay for XP that turn. And 381 keeps the ability to your own turn: there is no XP on the opponent's.",
+          "Exhausting your bodies for XP does NOT take them out of combat. 461 and 462 define Combat by which players have units at the battlefield, and a grep of the whole rulebook crossing 'exhaust' with attack/defend/combat returns nothing. What they lose is the move."
+        ]
+      },
+      "steps": [
+        "Establish Control of Gardens of Becoming (190.1) and walk bodies there; each move costs that unit its own exhaust, so the first turn pays nothing.",
+        "From the next turn on, the Awaken readies them (315.1.b) and each one exhausts for 1 XP — N bodies, N XP, no Energy and no cards.",
+        "Blood Rose's ramp half still applies on top: 1 Energy per unit played, including unit tokens (185.2.a).",
+        "Climb past 11 XP without ever spending: [Level 6] gives +1 Might along the way and [Level 11] gives 'Your units enter ready'.",
+        "From 11 XP on, play units straight to the Gardens: they enter ready and exhaust for XP the same turn, so the faucet feeds its own threshold."
+      ],
+      "netPerIteration": "one XP per friendly body at the Gardens per turn, for 0 Energy and 0 cards",
+      "terminatesIn": "engine — an XP faucet, and XP is not a point; it exists to reach and hold [Level 11], and 824.1.d drops the ability the instant the balance falls",
+      "sources": [
+        {
+          "title": "Hunt lens ready — issue #56 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/56",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-ready-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06",
+          "quote": "824.1.b.1: '[Level N] is functionally short for \"While you have [N] or more XP, this card gains [Text]\".' 730.2: 'To Spend XP, reduce the value of XP marked on the Player spending it.' Gardens of Becoming only adds, so it is the one ramp that cannot walk the level back down."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-ready-lens-candidates.md), issue #56 candidate 4. Card text verbatim from data/corpus_flat.txt; 143.4, 144.2, 190.1/190.6.b/190.6.d, 355.2.a, 381, 411.1, 461/462, 466.5, 485.4a/485.5/486.5/487.5, 103.4.c, 730.2, 731.1, 824.1.b.1 and 824.1.d opened and read. Ban check: none of UNL-213, UNL-191, UNL-109 carries a [BANNED marker; UNL-191 Wuju Master is a different card from OGS-019 Wuju Bladesman - Starter, which is the one restricted in 2v2. It is the strictly better ramp for wuju-master-blood-rose-level, whose last notable proposes Altar to Unity at 1 XP for 1 Energy a turn; the two battlefields cannot both be drawn (103.4.c, 485.4.a), so this is a replacement, not an addition, and that older entry is left unchanged on purpose. The one interpretive step — who gains the XP from an ability a battlefield grants to a unit — is written out in both readings and the entry's numbers are the same either way, so no numbered reading was filed. Trap check: no attack; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; 167 does not bite because nothing here spends Energy outside the Main Phase. ENGINE and not more: XP is not a point."
     }
   ]
 }
