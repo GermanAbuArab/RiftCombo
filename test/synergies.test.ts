@@ -227,6 +227,44 @@ describe("one card away", () => {
   });
 });
 
+describe("a rule whose partner is a legend", () => {
+  // Three rules of the 2026-09-06 batch (#60) ready your legend, so their partner list is the 24
+  // legends carrying an ability with exhaust in its cost. A deck holds exactly one legend and it is
+  // the one that fixes the identity, so the matcher must never present a second legend as a card
+  // the list "runs" — two legends with the same domain pair would otherwise read as a pairing.
+  const legendRules = synergies.filter((s) => s.partner.types?.length === 1 && s.partner.types[0] === "legend");
+
+  it("exists, and only ever names the deck's own legend as the partner it holds", () => {
+    expect(legendRules.length).toBeGreaterThan(0);
+    // VEN-155 Heart of the Tempest carries "Disempower me, exhaust: ...", and SFD-210 Hall of
+    // Legends is colourless, so this list is the smallest one that actually fires such a rule.
+    const decks = [
+      loadDeck("Legend: Heart of the Tempest\nBattlefields: Hall of Legends\nMain\n3 Gust", cards),
+      loadDeck(fixture("fury.txt"), cards),
+      loadDeck(fixture("lux.txt"), cards),
+      loadDeck(fixture("recruits.txt"), cards),
+    ];
+    let fired = 0;
+    for (const deck of decks) {
+      for (const h of matchSynergies(deck, synergies, cards, constructed)) {
+        if (!legendRules.some((s) => s.id === h.synergy.id)) continue;
+        fired++;
+        expect(h.partners.map((p) => p.card), h.synergy.id).toEqual([deck.legend]);
+      }
+    }
+    expect(fired).toBeGreaterThan(0);
+  });
+
+  it("only ever pairs with a legend that has an ability costing its own exhaust", () => {
+    for (const s of legendRules) {
+      for (const c of partnersOf(s, cards)) {
+        expect(c.type, `${s.id} -> ${c.base}`).toContain("legend");
+        expect([c.text ?? "", c.effect ?? ""].join("\n"), `${s.id} -> ${c.base}`).toContain(":rb_exhaust::");
+      }
+    }
+  });
+});
+
 describe("a battlefield never pairs with another battlefield", () => {
   // 485.4.a: "Each player provides three (3) Battlefields, included in their deck during deck
   // building. Only 1 will be used, chosen during setup." (486.4.a, 487.4.a for the other formats.)

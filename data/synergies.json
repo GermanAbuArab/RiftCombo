@@ -961,6 +961,376 @@
       "status": "rule-verified",
       "reviewed": "2026-09-04",
       "reviewedCount": 26
+    },
+    {
+      "id": "dark-child-off-turn-reactions",
+      "name": "Dark Child pays for a Reaction spell on the opponent's turn",
+      "anchor": "OGS-017",
+      "partner": {
+        "textMatches": "\\[Reaction\\]",
+        "types": [
+          "spell"
+        ],
+        "excludes": [
+          {
+            "card": "UNL-073",
+            "why": "the [Reaction] is inside the quoted text of the Gold token it makes, not the spell's own speed; Deadly Flourish itself is played at normal speed."
+          }
+        ]
+      },
+      "why": "415.3.a readies your objects during the Awakening Phase on their turn, so a rune you exhausted on your own turn is dead for the whole of the opponent's. Dark Child hands two of them back at end of turn, 167 empties the Rune Pool and not the runes, and 164.2.a's \"[E]: [Reaction] - Add [1]\" turns them into resources at Reaction speed. What that buys is this list: 813.1.c.1 makes a Reaction card playable during Closed States on any player's turn. Only the spells are listed — a Reaction ability on a permanent you already control is paid the same way, but the pairing worth naming is the card you could not otherwise cast. Her identity is Fury/Chaos, so a deck only ever sees the Fury and Chaos end of the list.",
+      "basis": {
+        "rules": [
+          "164.2.a",
+          "167",
+          "415.3.a",
+          "813.1.b",
+          "813.1.c.1"
+        ],
+        "combos": [
+          "sona-viktor-opponent-turn"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 62
+    },
+    {
+      "id": "azir-sovereign-token-relay",
+      "name": "Azir, Sovereign carries tokens stranded at your base to a battlefield",
+      "anchor": "SFD-177",
+      "partner": {
+        "textMatches": "(?=[\\s\\S]*unit token)(?=[\\s\\S]*\\byour base\\b)",
+        "excludes": [
+          {
+            "card": "OGS-015",
+            "why": "its own reminder says the four Recruits \"can be played to your base or to battlefields you control\", so it never strands them and needs no relay."
+          }
+        ]
+      },
+      "why": "Points are scored at battlefields and 355.2.a defaults a token to your base, where 143.4 leaves it exhausted and 420.3.a charges an exhaust for the Standard Move it can no longer pay. Azir moves any number of your token units by effect (420.2.a), which pays neither that cost nor 144.4's destinations. He is the only card in the pool that does it in bulk. His trigger is \"When I attack\", so it needs a real Combat: entering an empty enemy battlefield gives no Attacker designation and never fires it. Three of the seventeen print a ready token, and there the relay saves the exhaust the Standard Move would have cost rather than the whole walk.",
+      "basis": {
+        "rules": [
+          "143.4",
+          "144.4",
+          "355.2.a",
+          "420.2.a",
+          "420.3.a"
+        ],
+        "combos": [
+          "azir-sovereign-token-gather"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 17
+    },
+    {
+      "id": "forgotten-signpost-carries-exhausted",
+      "name": "Forgotten Signpost walks an exhausted token over for nothing",
+      "anchor": "UNL-045",
+      "partner": {
+        "textMatches": "(?=[\\s\\S]*unit token)(?=[\\s\\S]*\\byour base\\b)",
+        "excludes": [
+          {
+            "card": "OGS-015",
+            "why": "its own reminder says the four Recruits \"can be played to your base or to battlefields you control\", so it never strands them and needs no relay."
+          }
+        ]
+      },
+      "why": "The same bottleneck as Azir's, solved one body at a time and at [Action] speed for 0 Energy and 0 Power: the cost is exhausting a unit you already have at the destination plus the gear itself. Because it is a move by effect (420.2.a) it skips 420.3.a's exhaust and 144.4's destination list, which is exactly what a token needs — 143.4 makes it enter exhausted and 355.2.a leaves it at your base. Three of the seventeen print a ready token, and there the relay saves the exhaust the Standard Move would have cost rather than the whole walk.",
+      "basis": {
+        "rules": [
+          "143.4",
+          "144.4",
+          "355.2.a",
+          "420.2.a",
+          "420.3.a"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 17
+    },
+    {
+      "id": "blood-money-small-token-fodder",
+      "name": "Blood Money eats a small token of yours for two Gold",
+      "anchor": "SFD-162",
+      "partner": {
+        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,90}?\\b[012] :rb_might: [^.]{0,45}?unit tokens?\\b",
+        "excludes": [
+          {
+            "card": "UNL-130",
+            "why": "the Bird token is played by an opponent you choose, so Blood Money pays one Gold for it instead of two, and its [Deflect] charges you a rainbow to choose it at all."
+          }
+        ]
+      },
+      "why": "Blood Money kills a unit at a battlefield with 2 Might or less, and pays double for a friendly one: two Gold gear tokens against an enemy's one. The list is the token makers whose printed Might fits under that cap. Two cautions ride with it. The body has to be at a battlefield, not at your base, which is the walk the Azir and Forgotten Signpost rules pay for. And UNL-077 Soul Shepherd, \"Your token units have +1 Might\", pushes a Sand Soldier from 2 to 3 and out of range — it is anti-synergy here, not a partner. R25 = A: with Renata Glasc, Industrialist on the board the two Gold enter ready and are Power the same turn instead of the next.",
+      "basis": {
+        "readings": [
+          "R25"
+        ],
+        "rules": [
+          "179",
+          "323.6",
+          "355.2.a"
+        ],
+        "combos": [
+          "blood-money-bird-industrialist-power-spike"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 29
+    },
+    {
+      "id": "defender-of-tomorrow-readies-gear",
+      "name": "Defender of Tomorrow buys back a gear's exhaust ability every turn",
+      "anchor": "VEN-149",
+      "partner": {
+        "textMatches": ":rb_exhaust::",
+        "types": [
+          "gear"
+        ],
+        "excludes": [
+          {
+            "card": "OGN-186",
+            "why": "its only exhaust ability is \"Kill this\" — after one use the gear is in the trash, where no ready can reach it."
+          },
+          {
+            "card": "UNL-161",
+            "why": "the ability's cost is \"Kill this\", so the gear is gone by the time it is exhausted; readying it buys nothing."
+          },
+          {
+            "card": "UNL-136",
+            "why": "same shape — \"Kill this, 1 Energy, exhaust\" puts it in the trash on its only activation."
+          },
+          {
+            "card": "VEN-133",
+            "why": "its exhaust ability hands the gear to a player of your choice and recalls it; a second use is not yours to have, and it is no longer a friendly gear."
+          }
+        ]
+      },
+      "why": "\"1 Energy, exhaust: Ready a gear\", and two of them once Empowered, so any gear whose ability costs its own exhaust runs a second and third time in the same turn. 415.1 only marks an object already on the board, which is why the four gear whose ability kills or gives away their own source are left out. He is a legend, so this rule only ever fires for a Mind/Body list — he is the pool's only legend in that pair.",
+      "basis": {
+        "rules": [
+          "415.1",
+          "415.3.a",
+          "415.3.b"
+        ],
+        "combos": [
+          "hextech-disc-defender-mech-token"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 34
+    },
+    {
+      "id": "veiled-temple-readies-gear",
+      "name": "Veiled Temple readies a gear each time it changes hands",
+      "anchor": "SFD-221",
+      "partner": {
+        "textMatches": ":rb_exhaust::",
+        "types": [
+          "gear"
+        ],
+        "excludes": [
+          {
+            "card": "OGN-186",
+            "why": "its only exhaust ability is \"Kill this\" — after one use the gear is in the trash, where no ready can reach it."
+          },
+          {
+            "card": "UNL-161",
+            "why": "the ability's cost is \"Kill this\", so the gear is gone by the time it is exhausted; readying it buys nothing."
+          },
+          {
+            "card": "UNL-136",
+            "why": "same shape — \"Kill this, 1 Energy, exhaust\" puts it in the trash on its only activation."
+          },
+          {
+            "card": "VEN-133",
+            "why": "its exhaust ability hands the gear to a player of your choice and recalls it; a second use is not yours to have, and it is no longer a friendly gear."
+          }
+        ]
+      },
+      "why": "\"When you conquer here, you may ready a friendly gear\" — a second activation of any gear ability that costs its own exhaust, and a free detach if the gear is an Equipment. It is not a per-turn engine: 466.5 only establishes Control over a battlefield you did not already control and 466.5.d is what makes that a Conquer, so it pays once per change of hands, not once per turn. Same limit as the other rule of this family: 415.1 marks an object on the board, so the four gear that kill or give away their own source are left out.",
+      "basis": {
+        "rules": [
+          "415.1",
+          "415.3.b",
+          "466.5",
+          "466.5.d"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 34
+    },
+    {
+      "id": "royal-entourage-readies-your-legend",
+      "name": "Royal Entourage gives your legend a second activation",
+      "anchor": "SFD-039",
+      "partner": {
+        "textMatches": ":rb_exhaust::",
+        "types": [
+          "legend"
+        ]
+      },
+      "why": "\"When you play me, ready or exhaust a legend.\" A legend is not at a location (107.4.b) but it is on the board — 107.4.c calls the Champion Legend here a Game Object — and 415.1 readies non-spell Game Objects on the board, so the ready reaches it. The partner is your own legend: 24 of the pool's legends carry an ability with exhaust in its cost, and for those this is a second use of it per copy of Royal Entourage played. The other half of the text is the mirror, exhausting an opponent's legend before they use theirs. Five of the twenty-four charge a Disempower or an XP cost on top of the exhaust, so the second activation still has to be funded.",
+      "basis": {
+        "rules": [
+          "107.4.b",
+          "107.4.c",
+          "415.1",
+          "415.3.a"
+        ],
+        "combos": [
+          "heimerdinger-herald-legend-recruits"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 24
+    },
+    {
+      "id": "hall-of-legends-readies-your-legend",
+      "name": "Hall of Legends readies your legend on a conquer",
+      "anchor": "SFD-210",
+      "partner": {
+        "textMatches": ":rb_exhaust::",
+        "types": [
+          "legend"
+        ]
+      },
+      "why": "\"When you conquer here, you may pay 1 Energy to ready your legend.\" 107.4.c makes the Champion Legend a Game Object and 415.1 readies Game Objects on the board, so a legend ability with exhaust in its cost runs twice on the turn you take this battlefield. It costs one of your three battlefield slots and only one of the three is used (485.4.a), and 466.5 / 466.5.d mean it pays on establishing Control, not on holding. Five of the twenty-four charge a Disempower or an XP cost on top of the exhaust, so the second activation still has to be funded.",
+      "basis": {
+        "rules": [
+          "107.4.c",
+          "415.1",
+          "466.5.d",
+          "485.4.a"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 24
+    },
+    {
+      "id": "miss-fortune-readies-your-legend",
+      "name": "Miss Fortune, Captain readies your legend every turn for free",
+      "anchor": "OGN-162",
+      "partner": {
+        "textMatches": ":rb_exhaust::",
+        "types": [
+          "legend"
+        ]
+      },
+      "why": "\"The first time I move each turn, you may ready something else that's exhausted\" — the pool's only ready with no restriction on what it readies, and the cost is a Standard Move she was going to make anyway (144.2). 107.4.c makes the Champion Legend a Game Object and 415.1 readies Game Objects on the board, so it reaches your legend, every turn, for nothing. This does not contradict the finding that a legend is not at a location (107.4.b): the board and a location are not the same thing. Her text has no type restriction either, so the same free ready also reaches a gear or a unit when the legend does not want it. Five of the twenty-four charge a Disempower or an XP cost on top of the exhaust, so the second activation still has to be funded.",
+      "basis": {
+        "rules": [
+          "107.4.b",
+          "107.4.c",
+          "144.2",
+          "415.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 24
+    },
+    {
+      "id": "stare-down-empties-the-garrison",
+      "name": "Stare Down empties the garrison and the battlefield is conquered without damage",
+      "anchor": "UNL-107",
+      "partner": {
+        "textMatches": "When (I|you)( or an ally)? (conquer|hold or conquer)\\b",
+        "textExcludes": "after an attack|excess damage",
+        "excludes": [
+          {
+            "card": "SFD-184",
+            "why": "the conquer text is quoted inside the spell and granted to the unit it moved; it is not a conquer effect Stare Down's controller has."
+          },
+          {
+            "card": "OGN-287",
+            "why": "\"you must recycle one of your runes\" is a cost the conquer charges you, not a payoff it pays out; the rule pairs Stare Down with what conquering earns."
+          }
+        ]
+      },
+      "why": "Send every enemy unit under your chosen unit's Might home for 2 Energy, then walk in. 190.3.a.1 and 450 make the destination Contested, 323.9 stages no Combat because no opposing units are present, 348.2.a establishes Control when the showdown closes and 348.2.a.1 says outright that this results in a Conquer. Every conquer effect you have then pays out, with no damage dealt in either direction. That is also why the list drops the ones keyed to excess damage or to conquering after an attack: with no garrison there is no Attacker designation and no Combat Damage Step (465.1), so those conditions are never met and 383.4.g.1 keeps the ability off the chain. Emptying a battlefield the opponent controls does not strip their Control by itself — 190.4.c only does that at the following cleanup — but establishing Control by walking in does.",
+      "basis": {
+        "rules": [
+          "190.3.a.1",
+          "190.4.c",
+          "323.9",
+          "348.2.a",
+          "348.2.a.1",
+          "383.4.g.1",
+          "450",
+          "465.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 53
+    },
+    {
+      "id": "blast-cone-enemy-move",
+      "name": "Blast Cone stuns whatever else moves an enemy body",
+      "anchor": "UNL-133",
+      "partner": {
+        "textMatches": "[Mm]ove (up to \\w+ |any number of |all |a |an )?(enemy|attacking) unit"
+      },
+      "why": "\"When you move an enemy unit, you may exhaust this to [Stun] it\" — Blast Cone charges nothing for the stun beyond its own exhaust, so it is one free stun per turn on top of any card in this list. Nothing here is a stun engine: 423.1.a.1 says a Stunned Unit cannot be Stunned again and 423.1.a.2 only clears the state at step 3d of the end of turn cleanup, so the ceiling is how many unstunned bodies the opponent has. Six of the nineteen send the body to its base, and there 423.1.b prevents no damage it was going to deal that turn — the stun is then worth only the triggers it fires, which is what makes Radiant Dawn the other half of this lens.",
+      "basis": {
+        "rules": [
+          "414.1.b",
+          "420.2.a",
+          "423.1.a.1",
+          "423.1.a.2",
+          "423.1.b"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 19
+    },
+    {
+      "id": "radiant-dawn-stun-buff",
+      "name": "Radiant Dawn turns every stun into a buff",
+      "anchor": "OGN-261",
+      "partner": {
+        "textMatches": "\\[Stun\\]|[Ss]tun (a|an|one|up to|all|the|each|that|target)",
+        "excludes": [
+          {
+            "card": "OGN-059",
+            "why": "it does not stun anything — \"When you stun an enemy unit, ready me\" is a second payoff for the stun, so it wants the same third card Radiant Dawn does rather than pairing with her. It is also 423.1.a.1's own worked example."
+          },
+          {
+            "card": "UNL-055",
+            "why": "same shape — \"When you [Stun] an enemy unit at a battlefield, you may move me there\" pays for a stun somebody else provides; she is not a source."
+          }
+        ]
+      },
+      "why": "\"When you stun one or more enemy units, buff a friendly unit\" — she is the pool's only legend that pays for the stun, and being Calm/Order her identity reaches 21 of the pool's 29 stun lines. Buffs are where the value lands, so the cards that spend one are the follow-up, but five of the pool's seven buff spenders are Body and Domain Identity (103.1.b) keeps them out of her list on its own; the Body end of that axis is the `wallop-buff-spend` rule instead. The pool's two other stun payoffs, Eclipse Herald and Vex, Mocking, are left out for the same reason: they want the third card she wants, they do not supply it. Read \"one or more\" literally: she pays once per stun resolution, not once per body, and 423.1.a.1 caps the whole family — a Stunned Unit cannot be Stunned again, and 423.1.a.2 only clears the state at the end of turn cleanup.",
+      "basis": {
+        "rules": [
+          "103.1.b",
+          "423.1.a.1",
+          "423.1.a.2",
+          "423.1.b"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 21
     }
   ]
 }
