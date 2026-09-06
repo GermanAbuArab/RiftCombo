@@ -176,3 +176,25 @@ describe("103.4 — three battlefields, all named differently", () => {
     expect(row(rows(LEGAL, "2v2"), "103.4.a").status).toBe("pass");
   });
 });
+
+describe("103.1.b — Domain Identity", () => {
+  it("passes a Mind + Order list", () => {
+    expect(row(rows(LEGAL), "103.1.b").status).toBe("pass");
+  });
+
+  it("fails a Chaos card under a Mind + Order legend and names it", () => {
+    const r = row(rows(LEGAL.replace("3 Watchful Sentry", "3 Stealthy Pursuer")), "103.1.b");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toContain("Stealthy Pursuer");
+  });
+
+  it("does not blame a battlefield for having no domain at all", () => {
+    // All 66 battlefield printings carry no domain; 103.1.b.3 and b.4 speak of the domains a card
+    // indicates, and there are none to fail.
+    expect(row(rows(LEGAL), "103.1.b").detail).not.toContain("Grand Plaza");
+  });
+
+  it("is unknown rather than failed when the list names no legend", () => {
+    expect(row(rows(LEGAL.replace("1 Lady of Luminosity - Starter", "")), "103.1.b").status).toBe("unknown");
+  });
+});

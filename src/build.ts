@@ -34,7 +34,15 @@ export interface BuildReport {
 const total = (bag: Record<string, number>) => Object.values(bag).reduce((a, b) => a + b, 0);
 
 export function checkBuild(deck: Deck, cards: CardIndex, _format: Format): BuildReport {
-  const rules: BuildRule[] = [legendRule(deck, cards), sizeRule(deck), copiesRule(deck, cards), runeRule(deck, cards), battlefieldRule(deck, cards)];
+  // The legend comes first because every other row is scoped to it.
+  const rules: BuildRule[] = [
+    legendRule(deck, cards),
+    identityRule(deck, cards),
+    sizeRule(deck),
+    copiesRule(deck, cards),
+    runeRule(deck, cards),
+    battlefieldRule(deck, cards),
+  ];
   return { rules, legal: rules.every((r) => r.status !== "fail") };
 }
 
@@ -157,4 +165,23 @@ function battlefieldRule(deck: Deck, cards: CardIndex): BuildRule {
   const n = total(deck.battlefields);
   if (n !== BATTLEFIELDS) return { ...base, status: "fail", detail: `${n} battlefield${n === 1 ? "" : "s"} — a deck provides 3.` };
   return { ...base, status: "pass", detail: "3 battlefields, all named differently. Only one reaches the board, picked at random (485.5)." };
+}
+
+/**
+ * 103.1.b.1: cards included in your deck must abide by your Domain Identity. Runes have their own row
+ * (103.3.a.1), so this one reads the Main Deck and the battlefields.
+ */
+function identityRule(deck: Deck, cards: CardIndex): BuildRule {
+  const base = { rule: "103.1.b", label: "Domain Identity" };
+  const inIdentity = identityOf(deck, cards);
+  if (!inIdentity) return { ...base, status: "unknown", detail: "No legend named, so there is no Domain Identity to measure against." };
+  const off = [...new Set([...Object.keys(deck.main), ...Object.keys(deck.battlefields)])]
+    .filter((b) => !inIdentity(b))
+    .map((b) => cards.get(b)?.name ?? b)
+    .sort((a, b) => a.localeCompare(b));
+  const pair = cards.domainsOf(deck.legend!).join(" + ");
+  if (off.length) {
+    return { ...base, status: "fail", detail: `Outside ${pair}: ${off.slice(0, 4).join(", ")}${off.length > 4 ? ` and ${off.length - 4} more` : ""}.` };
+  }
+  return { ...base, status: "pass", detail: `Every card sits inside ${pair}.` };
 }
