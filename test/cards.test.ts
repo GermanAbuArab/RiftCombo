@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { baseOf, normalizeName } from "../src/cards.js";
+import { baseOf, normalizeName, readableCardText } from "../src/cards.js";
 import { loadCardIndex } from "../src/load.js";
 
 const cards = loadCardIndex();
@@ -72,5 +72,45 @@ describe("card index", () => {
     expect(cards.equivalents("UNL-191")).toContain("UNL-231"); // Wuju Master, promo printing
     expect(cards.equivalents("OGN-066")).toEqual(["OGN-066"]); // Ahri, Alluring: alt-art shares the base
     expect(cards.get("OGN-293")!.domains).toEqual([]); // The Grand Plaza is domainless, not "colorless"
+  });
+});
+
+describe("readableCardText", () => {
+  it("joins adjacent symbols instead of gluing the words together", () => {
+    // UNL-029 Red Brambleback, the card the bug was reported from. It used to render
+    // "1 EnergyFury Rune".
+    expect(readableCardText(cards.get("UNL-029")!.text!)).toContain(
+      "You may pay 1 Energy + 1 Fury Power as an additional cost",
+    );
+  });
+
+  it("collapses a repeated domain symbol into a count", () => {
+    // SFD-088 Renata Glasc, Mastermind: four Mind symbols, once rendered as four clauses.
+    expect(readableCardText(cards.get("SFD-088")!.text!)).toContain("4 Energy + 4 Mind Power, Exhaust:");
+  });
+
+  it("calls a domain symbol Power, not a Rune", () => {
+    // 135.2.e.4/e.5: the symbol is Power of a domain. A Rune is a card on the board, and
+    // recycling one for Power sends it to the Rune Deck (161.2.b) — a different cost entirely.
+    expect(readableCardText(":rb_rune_fury:")).toBe("1 Fury Power");
+    expect(readableCardText(":rb_rune_rainbow:")).toBe("1 Power of any domain");
+    expect(readableCardText(":rb_rune_rainbow::rb_rune_rainbow:")).toBe("2 Power of any domain");
+  });
+
+  it("leaves the non-cost symbols alone", () => {
+    expect(readableCardText("+2 :rb_might: this turn")).toBe("+2 Might this turn");
+    // The corpus writes an exhaust cost as `:rb_exhaust::`, so the trailing colon must survive.
+    expect(readableCardText(":rb_exhaust:: Deal 2")).toBe("Exhaust: Deal 2");
+  });
+
+  it("spells out every symbol on every printing", () => {
+    for (const c of cards.cards) {
+      for (const field of [c.text, c.effect]) {
+        if (!field) continue;
+        const out = readableCardText(field);
+        expect(out).not.toMatch(/:rb_/);
+        expect(out).not.toMatch(/(Energy|Power|Might|Exhaust)[A-Z]/); // the glue bug
+      }
+    }
   });
 });

@@ -2,7 +2,7 @@ import combosJson from "../data/combos.json" with { type: "json" };
 import featuresJson from "../data/features.json" with { type: "json" };
 import legalityJson from "../data/legality.json" with { type: "json" };
 import synergiesJson from "../data/synergies.json" with { type: "json" };
-import { CardIndex } from "../src/cards.js";
+import { CardIndex, readableCardText } from "../src/cards.js";
 import { generateVariants } from "../src/combos.js";
 import { deckRestrictions, isDeckCode, loadDeck, normalizeDeck, parseDeckText, type DeckEntry, type DeckRestriction } from "../src/deck.js";
 import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
@@ -578,18 +578,6 @@ const preview = $<HTMLElement>("#card-preview");
 const previewBox = $<HTMLElement>("#card-preview-box");
 let previewReturnFocus: HTMLElement | null = null;
 
-/** Riot's card text carries icon tokens like `:rb_might:`; spell them out rather than show them raw. */
-const readable = (s: string) =>
-  s.replace(/:rb_([a-z0-9_]+):/g, (_, tok: string) => {
-    const energy = /^energy_(\d+)$/.exec(tok);
-    if (energy) return `${energy[1]} Energy`;
-    const rune = /^rune_(\w+)$/.exec(tok);
-    if (rune) return rune[1] === "rainbow" ? "any Rune" : `${rune[1]![0]!.toUpperCase()}${rune[1]!.slice(1)} Rune`;
-    if (tok === "might") return "Might";
-    if (tok === "exhaust") return "Exhaust";
-    return tok.replace(/_/g, " ");
-  });
-
 function showCard(base: string) {
   const card = cards.get(base);
   if (!card) return;
@@ -609,8 +597,8 @@ function showCard(base: string) {
     <div>
       <h2 class="cp-name">${esc(card.name)}</h2>
       <p class="cp-meta">${esc(meta)}</p>
-      <div class="cp-text">${esc(readable(card.text ?? ""))}</div>
-      ${card.effect ? `<div class="cp-effect"><span class="cp-label">Granted to the equipped unit</span>${esc(readable(card.effect))}</div>` : ""}
+      <div class="cp-text">${esc(readableCardText(card.text ?? ""))}</div>
+      ${card.effect ? `<div class="cp-effect"><span class="cp-label">Granted to the equipped unit</span>${esc(readableCardText(card.effect))}</div>` : ""}
       <p class="cp-hint">Esc or click outside to close.</p>
     </div>`;
   preview.hidden = false;

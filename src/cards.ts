@@ -101,3 +101,54 @@ export class CardIndex {
     return this.banned.get(format)?.get(base);
   }
 }
+
+// --- card text for humans ---------------------------------------------------------------
+// Riot's card text carries icon tokens like `:rb_might:`. `data/cards.json` and
+// `data/corpus_flat.txt` keep them raw on purpose — they are what a grep matches — so the
+// spelling-out belongs here, at the presentation edge.
+
+const DOMAIN_LABEL: Record<string, string> = {
+  fury: "Fury", body: "Body", mind: "Mind", calm: "Calm", chaos: "Chaos", order: "Order",
+};
+
+/**
+ * One `:rb_*:` token, given how many identical ones sit next to it. A domain symbol is
+ * Power, NOT a Rune: 135.2.e.4 makes it "Power of a specific Domain" and 135.2.e.5 makes the
+ * rainbow "Power of any Domain". The distinction is load-bearing, since a Rune is a card on
+ * the board that recycling sends to the Rune Deck (161.2.b), while Power is what you spend.
+ */
+const spellRb = (tok: string, n: number): string => {
+  const energy = /^energy_(\d+)$/.exec(tok);
+  if (energy) return `${energy[1]} Energy`;
+  const rune = /^rune_([a-z]+)$/.exec(tok);
+  if (rune) {
+    const d = rune[1]!;
+    if (d === "rainbow") return `${n} Power of any domain`;
+    return `${n} ${DOMAIN_LABEL[d] ?? d[0]!.toUpperCase() + d.slice(1)} Power`;
+  }
+  if (tok === "might") return "Might";
+  if (tok === "exhaust") return "Exhaust";
+  return tok.replace(/_/g, " ");
+};
+
+/**
+ * Spell out the icon tokens in a card's text. Adjacent tokens are a single cost and are
+ * joined with " + " — replacing them one by one glued the words together (`1 EnergyFury
+ * Rune`). Repeats of the same domain symbol collapse into a count, because four Mind symbols
+ * are 4 Power of Mind, not four separate clauses.
+ */
+export const readableCardText = (s: string): string =>
+  s.replace(/(?::rb_[a-z0-9_]+:)+/g, (run) => {
+    const toks = run.match(/:rb_[a-z0-9_]+:/g)!.map((t) => t.slice(4, -1));
+    const parts: string[] = [];
+    for (let i = 0; i < toks.length; i++) {
+      const tok = toks[i]!;
+      // Only domain symbols collapse: each one means exactly 1 Power, so N of them is a
+      // quantity. An energy token already carries its own number, so it is never merged.
+      let n = 1;
+      if (tok.startsWith("rune_")) while (toks[i + n] === tok) n++;
+      parts.push(spellRb(tok, n));
+      i += n - 1;
+    }
+    return parts.join(" + ");
+  });
