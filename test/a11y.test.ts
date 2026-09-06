@@ -259,6 +259,17 @@ describe("the deckbuilder", () => {
     expect(builder).not.toMatch(/class="pool-add"[^`]*\bdisabled\b(?!=)/);
   });
 
+  /**
+   * 103.2.d.3 — a Signature card is never the Chosen Champion, and Tibbers is the rule's own worked
+   * example. The deck column refuses to offer "Champion" on a Signature row, so the pool's Champion
+   * zone has to refuse it too (#122): the two columns may not disagree about the same card.
+   */
+  it("refuses a Signature card in the Champion zone, with the paragraph on the button", () => {
+    expect(builder).toContain("const noSignatureChampion = setChamp && card.signature;");
+    expect(builder).toContain('"A Signature card is never the Chosen Champion (103.2.d.3)."');
+    expect(builder).toContain("const blocked = off || noSignatureChampion || cap.full;");
+  });
+
   it("gives a Construction mark a word beside it, since ✓ and ✗ are a shape and a colour", () => {
     expect(builder).toContain('<span class="chk-mark" aria-hidden="true">');
     expect(builder).toContain('<span class="sr-only">${WORD[r.status]}</span>');

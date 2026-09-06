@@ -315,12 +315,18 @@ function legalityRule(deck: Deck, cards: CardIndex, format: Format): BuildRule {
   const base = { rule: LEGALITY_RULE, label: "Legal in this format" };
   const found = deckRestrictions(deck, cards, format);
   const banned = found.filter((r) => r.entry.status === "banned");
-  if (banned.length) {
-    return { ...base, status: "fail", detail: `${banned.map((r) => `${r.entry.name} is banned`).join(" · ")} in this format.` };
-  }
   const restricted = found.filter((r) => r.entry.status === "restricted");
-  if (restricted.length) {
-    return { ...base, status: "unknown", detail: `${restricted.map((r) => `${r.entry.name} is restricted`).join(" · ")} in this format — a cap, not a ban. Read Riot's notice for what it limits.` };
+  // Every card the list is in trouble over, in one sentence, carrying the status of the worst of
+  // them (#124). Returning on the first non-empty bucket dropped a restricted card the moment a
+  // banned one was in the list, so a player who deleted the banned card met a second problem they
+  // had never been told about.
+  if (banned.length || restricted.length) {
+    const parts = [
+      ...banned.map((r) => `${r.entry.name} is banned`),
+      ...restricted.map((r) => `${r.entry.name} is restricted`),
+    ];
+    const tail = restricted.length ? " A restriction is a cap, not a ban — read Riot's notice for what it limits." : "";
+    return { ...base, status: banned.length ? "fail" : "unknown", detail: `${parts.join(" · ")} in this format.${tail}` };
   }
   return { ...base, status: "pass", detail: "No banned or restricted card in this list." };
 }

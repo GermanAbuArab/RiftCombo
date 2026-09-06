@@ -244,11 +244,19 @@ function cellHtml(card: Card): string {
     card.power ? `${card.power} Power` : "",
     card.might !== null ? `${card.might} Might` : "",
   ].filter(Boolean).join(", ");
+  // 103.2.d.3: a Signature card is never the Chosen Champion, and Tibbers is the rule's own worked
+  // example. The deck column already refuses to offer "Champion" on a Signature row (`rowHtml`), so
+  // the Champion zone of the pool has to refuse it too, with the reason on the button (#122).
+  const setChamp = filters.zone === "champion";
+  const noSignatureChampion = setChamp && card.signature;
   // Domain Identity is a mark, not a filter: hiding a card is hiding the answer, so an out-of-domain
   // card stays in the grid, dimmed, with the reason on the button that will not take it.
-  const why = off ? `Outside ${identity().join(" + ")} — Domain Identity (103.1.b).` : cap.why;
-  const blocked = off || cap.full;
-  const setChamp = filters.zone === "champion";
+  const why = off
+    ? `Outside ${identity().join(" + ")} — Domain Identity (103.1.b).`
+    : noSignatureChampion
+      ? "A Signature card is never the Chosen Champion (103.2.d.3)."
+      : cap.why;
+  const blocked = off || noSignatureChampion || cap.full;
   // #104: the cell is one NAME, and 101 of them reprint under a second (or third) base. The other
   // bases ride only in the accessible name and a title — there is nothing to click differently.
   const others = otherBasesOf(cards(), card.base);
@@ -259,7 +267,7 @@ function cellHtml(card: Card): string {
       aria-disabled="${blocked}" aria-label="${esc(label)}">
       ${src ? `<img src="${esc(src)}" alt="" loading="lazy">` : `<span class="pool-noart">${esc(card.name)}</span>`}
       ${held ? `<span class="pool-n mono">${held}×</span>` : ""}
-      ${blocked ? `<span class="pool-full">${esc(off ? "Off domain" : `${cap.held} of ${cap.max === Infinity ? "∞" : cap.max}`)}</span>` : ""}
+      ${blocked ? `<span class="pool-full">${esc(off ? "Off domain" : noSignatureChampion ? "Signature" : cap.badge)}</span>` : ""}
     </button>
     <p class="pool-name"><span class="pool-name-txt">${esc(card.name)}</span>${card.signature ? `<span class="sig-tag" title="Signature card">S</span>` : ""}${legality ? `<span class="ban-tag${legality.status === "restricted" ? " restricted" : ""}">${legality.status}</span>` : ""}</p>
     <button type="button" class="linklike pool-view" data-b="view" data-base="${esc(card.base)}">View<span class="sr-only"> ${esc(card.name)}</span></button>

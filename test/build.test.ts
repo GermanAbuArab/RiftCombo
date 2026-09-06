@@ -332,6 +332,22 @@ describe("103.2.e — card legality of the format", () => {
     expect(duo.status).toBe("unknown");
     expect(duo.detail).toContain("restricted");
   });
+
+  /**
+   * #124: the row returned on the first non-empty bucket, so a restriction went unmentioned as soon
+   * as anything was banned — and the player who deleted the banned card met a second problem they
+   * had never been told about. Both are named now, and the status is the worse of the two.
+   */
+  it("names the restricted card as well when the list also holds a banned one", () => {
+    const list = LEGAL
+      .replace("1 Lady of Luminosity - Starter", "1 Wuju Bladesman - Starter")
+      .replace("1 Ripper's Bay", "1 Obelisk of Power");
+    const duo = row(rows(list, "2v2"), "103.2.e");
+    expect(duo.status).toBe("fail");
+    expect(duo.detail).toContain("Obelisk of Power is banned");
+    expect(duo.detail).toContain("Wuju Bladesman - Starter is restricted");
+    expect(duo.detail).toContain("a cap, not a ban");
+  });
 });
 
 describe("the badge", () => {

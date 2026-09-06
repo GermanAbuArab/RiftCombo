@@ -248,6 +248,29 @@ describe("the caps a click has to respect", () => {
     expect(zoneCounts(deck).battlefields).toBe(3);
   });
 
+  /**
+   * #123: the badge across a blocked cell has to name the rule that BINDS. A fourth battlefield is
+   * refused by the three already in the list, not by the one copy of its own name, and the cell
+   * used to read "0 of 1" there while the accessible name said "3 of 3 battlefields".
+   */
+  it("badges a blocked cell with the count of the rule that refuses it", () => {
+    let deck = emptyDeck();
+    const fields = poolOf(cards).filter((c) => c.type.includes("battlefield"));
+    for (const c of fields.slice(0, 3)) deck = addCard(deck, c.base, cards);
+    const fourth = capOf(deck, fields[3]!.base, cards);
+    expect(fourth).toMatchObject({ held: 0, full: true, badge: "3 of 3" });
+    expect(capOf(deck, fields[0]!.base, cards).badge).toBe("1 of 1");
+
+    let main = emptyDeck();
+    for (let i = 0; i < 3; i++) main = addCard(main, FORGE, cards);
+    expect(capOf(main, FORGE, cards).badge).toBe("3 of 3");
+    expect(capOf(main, PLAZA, cards).badge).toBe("");
+
+    let runes = emptyDeck();
+    for (let i = 0; i < 12; i++) runes = addCard(runes, MIND_RUNE, cards);
+    expect(capOf(runes, ORDER_RUNE, cards).badge).toBe("12 of 12");
+  });
+
   it("takes twelve runes and no more (103.3.a)", () => {
     let deck = emptyDeck();
     for (let i = 0; i < 20; i++) deck = addCard(deck, MIND_RUNE, cards);

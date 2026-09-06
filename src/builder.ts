@@ -247,34 +247,49 @@ export interface Cap {
   full: boolean;
   /** Why, in the sentence the cell shows. Empty when there is still room. */
   why: string;
+  /**
+   * The same refusal in three words, for the badge across a cell (#123). It is the count of the
+   * rule that BINDS, which is not always the card's own: a fourth battlefield is refused by the
+   * three in the list, not by the one copy of its name, and a cell that read "0 of 1" there was
+   * answering a question nobody asked while the accessible name said the right thing.
+   */
+  badge: string;
 }
 
 export function capOf(deck: Deck, base: string, cards: CardIndex): Cap {
   const card = cards.get(base);
-  if (!card) return { held: 0, max: 0, full: true, why: "Not a card in this pool." };
+  if (!card) return { held: 0, max: 0, full: true, why: "Not a card in this pool.", badge: "Not in the pool" };
   const zone = zoneOf(card);
   if (zone === "legend") {
     const held = deck.legend === base ? 1 : 0;
-    return { held, max: 1, full: held === 1, why: held ? "Already the legend of this list." : "" };
+    return { held, max: 1, full: held === 1, why: held ? "Already the legend of this list." : "", badge: held ? "The legend" : "" };
   }
   if (zone === "battlefields") {
     const held = deck.battlefields[base] ?? 0;
     const total = sum(deck.battlefields);
-    if (held >= 1) return { held, max: 1, full: true, why: "1 of 1 · a deck holds one battlefield of each name (103.4.c)." };
-    if (total >= BATTLEFIELDS) return { held, max: 1, full: true, why: `${total} of 3 battlefields (103.4.a).` };
-    return { held, max: 1, full: false, why: "" };
+    if (held >= 1) return { held, max: 1, full: true, why: "1 of 1 · a deck holds one battlefield of each name (103.4.c).", badge: "1 of 1" };
+    if (total >= BATTLEFIELDS) return { held, max: 1, full: true, why: `${total} of 3 battlefields (103.4.a).`, badge: `${total} of 3` };
+    return { held, max: 1, full: false, why: "", badge: "" };
   }
   if (zone === "runes") {
     const held = deck.runes[base] ?? 0;
     const total = sum(deck.runes);
-    return { held, max: RUNES, full: total >= RUNES, why: total >= RUNES ? `${total} of 12 runes (103.3.a).` : "" };
+    const full = total >= RUNES;
+    return { held, max: RUNES, full, why: full ? `${total} of 12 runes (103.3.a).` : "", badge: full ? `${total} of 12` : "" };
   }
   // 002 — card text supersedes rules text. `VEN-097 Spiderling` prints "Your deck can have any number
   // of cards named Spiderling", which is the whole of the exception today; matching the clause rather
   // than keeping a list of codes means the next card printing it is exempt the day it ships.
   const max = ANY_NUMBER.test(card.text ?? "") ? Infinity : MAIN_COPIES;
   const held = mainCopiesOfName(deck, cards, card.name);
-  return { held, max, full: held >= max, why: held >= max ? `${held} of 3 · a Main Deck takes three of a name (103.2.b).` : "" };
+  const full = held >= max;
+  return {
+    held,
+    max,
+    full,
+    why: full ? `${held} of 3 · a Main Deck takes three of a name (103.2.b).` : "",
+    badge: full ? `${held} of 3` : "",
+  };
 }
 
 const bump = (bag: Record<string, number>, base: string, by: number): Record<string, number> => {
