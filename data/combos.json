@@ -10826,6 +10826,1035 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-legends-without-entries.md), issue #62 section 2.5. VEN-151 Soul's Reflection had no entry. SCOPED DOWNWARD ON PURPOSE: #62 presents the whole thing as one engine. It is two halves with different tempos, and the entry says which is which - the Matriarch's three-for-one is once per copy, because her own Empower reads 'Use only if not Empowered' and nothing in these domains disempowers her; the legend's removal is what actually repeats, because every Empower anywhere re-arms it for free and the exhaust cost resets in the Awaken (315.1.b). Calling the whole package repeatable would have been the same mistake #34 made with matriarch-of-war-empower-ready, where 'six in a whole game' was being sold as a motor. Card text verbatim from data/corpus_flat.txt. The two cost bars were checked against Fizz's printed cost digit by digit. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; no recall; the recycle Fizz performs is of a CARD from the trash, so 185 never comes up. Depends on no unruled reading."
+    },
+    {
+      "id": "dunebreaker-trinity-force-hold",
+      "name": "Trinity Force on the Dunebreaker — two points and two cards off one Hold",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-027",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E7 P1 M7. 'If you have two or fewer cards in your hand, I enter ready. When I hold, draw 2.' The 7 Might is what keeps the battlefield through the opponent's turn."
+        },
+        {
+          "card": "SFD-115",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Body Equipment, E4 M+2, [Equip] 1 Body. '[Effect] When I hold, score 1 point.' 434.1.c appends that to the Dunebreaker, and 053.1 reads the 'I' as him, so it is HIS hold that pays."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "hold-card-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Fury and Body: SFD-183 Purifier (Lucian), whose 'Your Equipment each give [Assault]' also puts the Dunebreaker at 10 on the attack."
+        ],
+        "notable": [
+          "THE SECOND POINT IS BY ABILITY, NOT BY SCORE, WHICH IS THE ONLY REASON IT STACKS. 469.2 Scores the Hold once and 470 caps Scoring at once per Battlefield per turn; Trinity Force says 'score 1 point', which 194.1.c makes a point gain by ability. Without R2 (= A) this entry is worth one point, not two.",
+          "THE DUNEBREAKER'S TWO CLAUSES FIGHT EACH OTHER, and the entry says so rather than selling both. 'If you have two or fewer cards in your hand, I enter ready' wants an empty hand; 'When I hold, draw 2' fills it. The free ready is a one-off on the turn he lands, and every Hold after that makes it less likely for the next copy.",
+          "The Equipment has to be ON him. 434.1.c appends Effect Text to the Top-Most Card only, so a Trinity Force sitting unattached does nothing, and 323.7 recalls unattached gear off battlefields at every Cleanup.",
+          "At 7 Might, 9 with the Trinity Force's +2, he is the garrison as well as the payoff - which matters because the Hold has to survive the opponent's whole turn."
+        ]
+      },
+      "steps": [
+        "Equip Trinity Force to the Dunebreaker (1 Body Power) and walk him to a battlefield; he enters exhausted (143.4) unless your hand is down to two cards.",
+        "Take the battlefield: Establishing Control is a Conquer (466.5.d) and Scores.",
+        "Survive the opponent's turn.",
+        "Your Beginning Phase: 315.2.b.2 Holds it. The Hold Scores 1 point (469.2, 471.1).",
+        "Both hold effects fire: Trinity Force pays a second point by ability (194.1.c, R2 = A) and the Dunebreaker draws 2.",
+        "Repeat every turn he holds."
+      ],
+      "netPerIteration": "+2 points and +2 cards per turn from one battlefield; 0 Energy and 0 Power spent after setup",
+      "terminatesIn": "engine only - 2 points and 2 cards a turn for as long as he holds",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — GG Haven, \"The Lucian Mistake That's Costing You Games | Lucian Beginners Guide\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=5J7wtHATipM&t=596",
+          "date": "2026-01-30",
+          "quote": "[9:47] one of the best unit equipment I think arguably in this set called Trinity Force. Basically, when you hold, you score one point. So, let me break it down for you. If you take your Dune Breaker and you hold with the Dune Breaker with the Trinity Force, you aren't just getting two points, one for the hold and one for Trinity Force hold, but you're also drawing two cards because of Dune Breaker. So, that's intense value.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. Card text verbatim from data/corpus_flat.txt; every rule opened in the rules file. The source's arithmetic is right and its own breakdown names the two sources of the two points correctly. What the walk adds is the tension between the Dunebreaker's own two clauses, which no source mentions and which decides how the card is actually played. Trap check: no attack designation needed; no [Repeat]; no [Temporary]; no token; no recall; 143.4 delays the first Hold by a turn unless the hand condition is met. Depends on R2 (ruled A)."
+    },
+    {
+      "id": "boneshiver-skyfall-hold-channel",
+      "name": "Skyfall of Areion turns the Boneshiver's conquer into a hold — a rune every scoring event",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-118",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Body Equipment, E3 M+2, [Equip] 1 Energy + 1 Body. '[Effect] When I conquer, channel 1 rune exhausted.' On its own it only pays on the turn you take a battlefield."
+        },
+        {
+          "card": "SFD-030",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Fury Equipment, E3 M+2, [Equip] 1 Energy + 1 Fury. '[Effect] My hold effects are also conquer effects, and vice versa.' Both go on the SAME unit: 434.1.c appends the Effect Text of ALL attached cards to the Top-Most Card."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "attach-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Fury and Body: SFD-183 Purifier (Lucian). Boneshiver is Body and Skyfall is Fury, so no other pair of domains works."
+        ],
+        "notable": [
+          "IT FIRES ONCE PER SCORING EVENT, NOT TWICE ON A CONQUER. Skyfall makes the unit's conquer effects also hold effects and vice versa, so the Boneshiver's trigger now has both categories - but a Conquer resolves it once and a Hold resolves it once. The doubling shape that DOES exist is Reckoner's Arena over an ability worded 'When I conquer or hold' (823.1.b, 823.1.c.1), and there is no Arena here. What this pair buys is the turns you hold, which the Boneshiver alone throws away.",
+          "BOTH EQUIPMENT ON ONE UNIT, AND 434.1.c IS WHY THAT WORKS. The Top-Most Card gets all the Effect Text of all attached cards, and 053.1 then reads every 'I' and 'My' as that unit. Split them across two units and Skyfall converts nothing.",
+          "The channeled rune enters EXHAUSTED, so it is next turn's Energy, not this turn's - the same shape as a Gold token made on a Hold.",
+          "Bill: 3 + 3 Energy for the two gears plus 2 Energy and two Power for the two [Equip] costs, and the source itself says the Boneshiver 'cost is a little steep, that's why we play it at two'."
+        ]
+      },
+      "steps": [
+        "Equip both Boneshiver and Skyfall of Areion to the same unit (1 Energy + 1 Body, then 1 Energy + 1 Fury).",
+        "Conquer a battlefield: the Boneshiver's conquer effect channels 1 rune exhausted, as it always did.",
+        "Survive the opponent's turn.",
+        "Your Beginning Phase Holds it (315.2.b.2). Skyfall has made the Boneshiver's conquer effect a hold effect too, so it fires again: another rune, exhausted.",
+        "Repeat every turn the unit holds."
+      ],
+      "netPerIteration": "+1 rune channelled exhausted per scoring event instead of per conquer only",
+      "terminatesIn": "engine only - one extra rune a turn while the unit holds; the rune arrives exhausted, so it pays next turn",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Legendori, \"This Lucian Deck BREAKS the Draven Meta — Spiritforged Riftbound Deck Profile\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=Yqd91EfYj_E&t=532",
+          "date": "2026-03-10",
+          "quote": "[8:52] The Bone Shiver cost is a little steep, that's why we play it at two. But, when I conquer channel one rune exhausted and it pairs well with the Skyfall of Aerion. Now, Skyfall of Aerion is not necessary in the deck, but it's super useful and cool because the hold effects are conquer effects and [vice versa]",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. SCOPED DOWN FROM THE OBVIOUS OVERCLAIM: it would be easy to read Skyfall as making the trigger fire twice on a conquer, since the ability is now in both categories. It does not - a Conquer resolves it once. The catalogue already has the shape where a two-category ability IS paid twice, ivern-arena-sentinel-hold under 823.1.b, and it needs Reckoner's Arena to do it. Card text verbatim from data/corpus_flat.txt. Trap check: no [Repeat]; no [Temporary]; no token; no recall; the channelled rune is exhausted, so 167 never comes into it. Depends on no unruled reading."
+    },
+    {
+      "id": "lucian-skyfinity-double-conquer",
+      "name": "Skyfall makes Trinity Force pay on a conquer — Lucian readies himself and takes the second battlefield too",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-113",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Body unit, E3 M3, [Weaponmaster]. 'The first time I conquer each turn, ready me.' ONCE a turn, not once per conquer - which is exactly what caps the line at two battlefields."
+        },
+        {
+          "card": "SFD-030",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Fury Equipment. '[Effect] My hold effects are also conquer effects, and vice versa.' The hinge: it is what lets a hold-only payoff fire on a Conquer."
+        },
+        {
+          "card": "SFD-115",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Body Equipment. '[Effect] When I hold, score 1 point.' Under Skyfall it also pays on every Conquer."
+        },
+        {
+          "card": "SFD-184",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury/Body spell, E2 P1, [Action]. 'Move a friendly unit. You may attach up to one Equipment with the same controller to it. This turn, that unit has \"When I conquer, you may move me to my base.\"' It moves Lucian in, attaches the second gear for free, and sends him home after each conquer so the next move is legal."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Fury and Body: SFD-183 Purifier (Lucian), which the source takes as the Chosen Champion outright."
+        ],
+        "notable": [
+          "FOUR POINTS IN A TURN, WHICH IS NOT A BURST AND NOT A CHAIN. Each conquer pays twice - 1 by Score (469.1) and 1 by ability from Trinity Force (194.1.c, R2 = A) - and Lucian's self-ready buys a second battlefield, so a Duel's two battlefields (485.4) give 4. A BURST has to reach 8 in one scoring event and a CHAIN across several with no opponent turn in between; this reaches 8 in TWO turns, with the opponent's turn in the middle, which is what the source says in its own words.",
+          "'THE FIRST TIME I CONQUER EACH TURN' IS THE CEILING. It is once a turn, not once per conquer, so there is no third battlefield even if one existed. #62's table quotes this line as '0 a 4 puntos en un turno'; the source itself says 'zero points to eight points in a matter of two turns'. Both are the same arithmetic seen over one turn and two.",
+          "BOTH GEARS MUST END UP ON LUCIAN. 434.1.c appends Effect Text to the Top-Most Card only; Relentless Pursuit is what attaches the second one 'without expending a further power', in the source's words, because [Weaponmaster] has already paid for the first.",
+          "The Weaponmaster discount is on PLAY: 'When you play me, you may [Equip] one of your Equipment to me for a rainbow less.' It cannot be re-used later in the turn.",
+          "Bill: Skyfall 3 + Lucian 3 + Trinity Force 4 + Relentless Pursuit 2 Energy and 1 Power, plus the [Equip] costs the discounts do not cover - a four-card, two-turn assembly before the first point."
+        ]
+      },
+      "steps": [
+        "Play Skyfall of Areion.",
+        "Play Lucian, Merciless and use [Weaponmaster] to equip Skyfall to him for a rainbow less.",
+        "Play Trinity Force and leave it unattached.",
+        "Play Relentless Pursuit: move Lucian to a battlefield and attach the Trinity Force to him on the way, for no extra Power.",
+        "Conquer: the Conquer Scores 1 (469.1), and Skyfall has made Trinity Force's hold effect a conquer effect, so it pays a second point by ability. Relentless Pursuit's grant moves him to base.",
+        "'The first time I conquer each turn, ready me' fires: Standard Move him to the second battlefield (144.4.a) and conquer it for 2 more points.",
+        "Next turn, hold what you kept for another 2."
+      ],
+      "netPerIteration": "+4 points in one turn: two battlefields, two points each",
+      "terminatesIn": "four points a turn - eight across two turns, with the opponent's turn in between, which is why it is not a CHAIN",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Riftlab, \"How to Play LUCIAN | Spiritforged Riftbound Legend Guide\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=ncENcDY6zmg&t=65",
+          "date": "2026-02-15",
+          "quote": "[1:05] cards which could take you from zero points to eight points in a matter of two turns. … We are going to refer to this combo as the Skyfinity and it involves four cards. [1:22] This unit has the weapon master keyword and comes with a unique ability whereby he readies himself once per turn upon conquering a battlefield. [1:44] With Skyfall, any of your conquering effects your unit has also works when you hold and vice versa. With the Trinity Force, while you hold a battlefield, you score a point. By combining these two gears on the same unit, you can trigger the Trinity Force effect when you conquer, making you score two points instead of one.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. THE HIGHEST POINT RATE IN THE CATALOGUE THAT IS STILL AN ENGINE, and the class was checked rather than assumed: four points in a turn is enormous and is still not eight in one scoring event (BURST) nor eight before the opponent's next turn (CHAIN). #62's table and the source state the same figure over different windows and both are right. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation is needed - a Conquer comes from Establishing Control (466.5.d) or from a Showdown (348.2.a.1); no [Repeat]; no [Temporary]; no token; the 'move me to my base' Relentless Pursuit grants IS a move, not a recall, so 456 never applies to it. Depends on R2 (ruled A)."
+    },
+    {
+      "id": "vilemaw-grove-double-draw",
+      "name": "Vilemaw holds the Grove of the God-Willow — the unit draws and the battlefield draws",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-060",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E8 P2 M8, [Ambush]. 'Enemy units here with less Might than me don't deal combat damage. When I hold, draw 1.' At 8 Might he is both the draw and the reason the battlefield keeps being yours."
+        },
+        {
+          "card": "OGN-280",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BOARD",
+          "note": "Colorless battlefield. 'When you hold here, draw 1.' Its own hold trigger is one of YOUR hold effects (R8 = A), and here it simply adds a second draw."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "hold-card-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Calm and Mind: OGN-255 Nine-Tailed Fox (Ahri), which the source plays; the Grove is Colorless, so 103.1.b.1 never touches it."
+        ],
+        "notable": [
+          "THE BATTLEFIELD IS RANDOM AND CANNOT BE DOUBLED UP: random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy by name. Every turn the Grove is not the one drawn, this entry is Vilemaw alone.",
+          "VILEMAW'S OTHER CLAUSE IS WHAT MAKES THE HOLD REPEAT, and it is worth reading precisely: 'Enemy units here with LESS Might than me don't deal combat damage'. At 8 Might that is most of the pool, but it is not [Tank] and not immunity - an 8+ Might attacker fights him normally and nothing stops spells.",
+          "8 Energy and 2 Power is the real barrier, not the rules. [Ambush] lets him arrive as a [Reaction] to a battlefield where you already have units, which is how the cost gets paid on a turn that also does something else.",
+          "The draws are a liability past the point where the Main Deck runs thin: 431.1.a Burns Out and 194.1.d hands the opponent a point. Two a turn arrives faster than one."
+        ]
+      },
+      "steps": [
+        "Hold or take the Grove of the God-Willow with any body.",
+        "Play Vilemaw there - [Ambush] lets him come down as a Reaction to a battlefield where you have units.",
+        "Survive the opponent's turn; 8 Might plus the no-combat-damage clause does most of that work.",
+        "Your Beginning Phase: 315.2.b.2 Holds the Grove. It Scores 1 point (469.2) and both hold effects fire - the Grove draws 1, Vilemaw draws 1.",
+        "Repeat every turn."
+      ],
+      "netPerIteration": "+2 cards and +1 point per turn from one battlefield",
+      "terminatesIn": "engine only - two cards a turn while he holds, and the deck is finite",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — TempoKing Ash - Riftbound, \"My Ahri Deck Made Him RAGE QUIT\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=u9pgyt9Um5U&t=76",
+          "date": "2026-05-09",
+          "quote": "[1:16] it can be absolutely insane because Vilemaw has draw in his card, and then he will also get draw from this so he can get two draw per turn. It's a crazy combo. So, that's why I'm running Grove of the God-Willow.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. OGN-255 Nine-Tailed Fox had no entry before this. The pairing is simple and the walk's contribution is the two things around it: the battlefield is drawn at random and cannot be stacked (485.5, 103.4.c, TR 402.1), which every battlefield-dependent entry in this catalogue states; and two draws a turn on a finite Main Deck is the liability CLAUDE.md has carried since the first session, not pure profit. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; no recall. Depends on no unruled reading - R8 is cited for completeness but the two triggers here do not need to share a controller to both fire."
+    },
+    {
+      "id": "vi-ride-the-wind-double-conquer",
+      "name": "Ride the Wind moves Vi and readies her — the Ganking is the second battlefield",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-036",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury unit, E2 P1 M3, [Ganking]. 'Recycle 1 from your trash: Give me +1 Might this turn.' No exhaust in the cost, so 377/378 make it repeatable, and 416.3 caps it at the size of your trash."
+        },
+        {
+          "card": "OGN-173",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Chaos spell, E2 P1, [Action]. 'Move a friendly unit and ready it.' The ready is what matters: an effect move costs no exhaust (420.3.a puts that only on the Standard Move), so she arrives ready and can Standard Move again."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Fury and Chaos: OGS-017 Dark Child (Annie). Vi is Fury and Ride the Wind is Chaos."
+        ],
+        "notable": [
+          "THE TRASH IS THE MIGHT, AND 416.3 IS THE CAP. 'Recycle 1 from your trash' with no exhaust means she grows one Might per card you are willing to put back in your deck, and 416.3 says a cost Recycle 'must be able to be completed for the cost to be paid' - an empty trash is a hard stop. 185 also means no token you own can ever be that card.",
+          "TWO CONQUERS, SO TWO POINTS, AND THAT IS ALL. 470 caps Scoring at once per Battlefield per turn and a Duel has two battlefields (485.4). #62's table files this as BURST; a BURST has to reach 8 in one scoring event. Both sources describe it as a way to finish from six points, which is the honest framing and is in the quote.",
+          "RIDE THE WIND IS NOT A RECALL AND THAT MATTERS. 446.1 makes it a Move, so any 'when I move' text still triggers, and 456 never applies. Vi's own [Ganking] then covers the second leg (144.4.c.1, 810.1.c.3 - Ganking is not an extra move, it is a new destination for the Standard Move she still has).",
+          "The second leg costs her exhaust (144.2), which is why the ready on Ride the Wind is the load-bearing half and not the move."
+        ]
+      },
+      "steps": [
+        "Vi in base, ready, with a stocked trash.",
+        "Play Ride the Wind (2 Energy + 1 Power): move Vi to the first battlefield and ready her. The move is by effect, so nothing exhausts.",
+        "Activate 'Recycle 1 from your trash: Give me +1 Might this turn' as many times as the trash allows, before or after the move.",
+        "Win there and Establish Control: that is a Conquer (466.5.d) and Scores 1 point.",
+        "Standard Move battlefield to battlefield with [Ganking] (144.4.c.1), exhausting her.",
+        "Conquer the second battlefield: a second point, because 470 caps per battlefield and this is a different one."
+      ],
+      "netPerIteration": "+2 points in one turn for 4 Energy and 2 Power, plus one card of trash per Might",
+      "terminatesIn": "two points in a single turn; not a loop - one Ride the Wind, one pair of battlefields",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Arcane Academy, \"How To Build With Jinx Loose Cannon In Riftbound! Champion Deck Upgrade\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=HVHcz0nF6vE&t=618",
+          "date": "2025-11-21",
+          "quote": "[10:22] The next option is to lean into the killer combo of Vi destructive alongside the tricky and excellent spell Ride the Wind. This is a great way to close out a game once you're at six points but struggling to get across the finish line. All in one turn, you can play Vi, recycle most or all of the cards in your trash to move her into double digit might numbers, and then use Ride the Wind",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "YouTube — Pukha Riftbound, \"Shoot Faster | Jinx Riftbound Budget Deck Tech\" — la misma línea, con los dos battlefields nombrados",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=p8g1qwo_Q1M&t=96",
+          "date": "2026-01-27",
+          "quote": "[1:36] With this card, we look to close the game out with a combination of Vi and Ride the Wind. Ride the Wind allows us to move Vi into a battlefield and ready her. We win the first showdown. Then we gank Vi over to the second battlefield",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6, two independent sources. CLASS CORRECTED DOWNWARD from the BURST #62 declares: two points is not eight in one scoring event. Both sources agree on the role - a finisher from six, not a combo that wins from zero - and that is what the entry says. Card text verbatim from data/corpus_flat.txt. Trap check: no attack trigger is needed anywhere, so the empty-battlefield trap (383.4.e, 461) cannot bite; no [Repeat]; no [Temporary]; no recall; the Might is 'this turn' and expires, which is why the two conquers must be in the same turn. Depends on no unruled reading."
+    },
+    {
+      "id": "confront-vi-stormbringer",
+      "name": "Confront makes Vi enter ready, Stormbringer throws her Might at a battlefield and walks her in",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-129",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Body spell, E2, [Action]. 'Units you play this turn enter ready. Draw 1.' It overrides 143.4 for the turn, which is the only reason Vi can act the turn she lands."
+        },
+        {
+          "card": "OGN-036",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury unit, E2 P1 M3, [Ganking]. 'Recycle 1 from your trash: Give me +1 Might this turn.' She is both the damage Stormbringer throws and the body that walks in behind it."
+        },
+        {
+          "card": "OGN-250",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury/Body spell, E6 P2. 'Choose a friendly unit in your base. Deal damage equal to its Might to all enemy units at a battlefield, then move your unit there.' The unit must be IN YOUR BASE when it is chosen, which is what forces the order."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal",
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Fury and Body: OGN-249 Relentless Storm (Volibear), whose 'When you play a [Mighty] unit, you may exhaust me to channel 1 rune exhausted' fires off the pumped Vi."
+        ],
+        "notable": [
+          "THE WIPE IS WHAT MAKES THE CONQUER FREE, AND #58's FINDING IS EXACTLY THIS SHAPE. Stormbringer kills the garrison BEFORE it moves Vi in, so when she arrives there are no opposing units: 323.9 stages no Combat, a Showdown opens instead (323.8, 323.12) and 348.2.a establishes Control with 348.2.a.1 calling it a Conquer. No attack designation, no damage step, no risk.",
+          "VI HAS TO BE IN YOUR BASE WHEN STORMBRINGER IS CAST. 'Choose a friendly unit in your base' - so Confront first, Vi second, pump third, Stormbringer fourth. Move her early and the spell has nothing to choose.",
+          "SHE ARRIVES READY. Stormbringer's 'move your unit there' is an effect move and 420.3.a puts the exhaust cost only on the Standard Move, so she keeps her ready state and can [Ganking] to the second battlefield for a second point (470 caps per battlefield, not per turn).",
+          "THE MIGHT IS THE TRASH AND IT EXPIRES. 'Give me +1 Might this turn' - so the damage Stormbringer throws is however much trash you spend, and 416.3 stops when the trash is empty. 185 rules out spending a token.",
+          "Bill: 2 + 2 + 6 Energy and 3 Power in one turn, which is a full late-game turn and not a curve play."
+        ]
+      },
+      "steps": [
+        "Play Confront (2 Energy): units you play this turn enter ready, and draw 1.",
+        "Play Vi (2 Energy + 1 Power) to your base; Confront makes her enter ready instead of exhausted (143.4).",
+        "Activate 'Recycle 1 from your trash: Give me +1 Might this turn' as often as the trash allows.",
+        "Play Stormbringer (6 Energy + 2 Power) choosing Vi in your base: it deals her whole Might to every enemy unit at a battlefield, then moves her there.",
+        "With the garrison gone there is nothing to fight: a Showdown opens and Control is established (348.2.a), which is a Conquer (348.2.a.1) and Scores.",
+        "She is still ready, so [Ganking] Standard Move to the second battlefield and conquer that too."
+      ],
+      "netPerIteration": "one battlefield wiped and two points, for 10 Energy and 3 Power plus one card of trash per point of damage",
+      "terminatesIn": "a single very large turn - a wipe plus two points; not a loop",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Zachary Mango, \"Volibear Relentless Storm Deck Tech\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=lIJi0j1jJkE&t=876",
+          "date": "2026-01-04",
+          "quote": "[14:36] you just hold your VI into your hand. You play your VI. you have 10 or you have eight mana or you have 10 mana, you play your VI, you recycle a bunch of stuff and then you stormbringer your VI. It guarantee wipes anything that any deck could put in there assuming you have the cards in your yard and you will have them at in the late game.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. OGN-249 Relentless Storm had no entry. #62's table describes this row as a 'three-card combo, double conquer win'; the source it cites talks about a board WIPE and never mentions two battlefields, so the second conquer is the walk's, and it is legal for a reason the catalogue already established in #58 - a battlefield whose garrison is gone is taken with no Combat and no Attacker designation. The order is the part that is easy to get wrong and it is written into the steps: Stormbringer chooses a unit IN YOUR BASE. Card text verbatim from data/corpus_flat.txt. Trap check: no attack trigger is used, so 383.4.e/461 cannot bite; no [Repeat]; no [Temporary]; no token recycled (185); no recall. Depends on no unruled reading."
+    },
+    {
+      "id": "annie-stubborn-star-crossed-lock",
+      "name": "Star-Crossed bounces Annie with the threat, and replaying Annie fetches Star-Crossed back",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-010",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos unit, E4 P1 M3. 'When you play me, return a spell from your trash to your hand.' The spell it fetches is the one that bounced it, which is what closes the cycle."
+        },
+        {
+          "card": "UNL-128",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E3 P1, [Reaction]. 'Return a friendly unit and an enemy unit to their owners' hands.' The friendly half is not a drawback here - it is the return trip for Annie."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Fury and Chaos: OGS-017 Dark Child (Annie), whose 'At the end of your turn, ready up to 2 runes' pays part of the next cycle."
+        ],
+        "notable": [
+          "THE 'DRAWBACK' IS THE ENGINE. Star-Crossed must return a friendly unit as well as an enemy one; pointing the friendly half at Annie puts her back in hand, and replaying her is what returns Star-Crossed from the trash. Neither card loops on its own.",
+          "IT IS ONE BOUNCE A TURN, PAID IN FULL. 3 Energy + 1 Power for Star-Crossed and 4 Energy + 1 Power for Annie is 7 Energy and 2 Power a cycle, every cycle, with no discount anywhere - which is exactly the trap the Blitzcrank false positive registered in data/synergies.json is about, and this entry does not repeat it.",
+          "IT ANSWERS ONE THREAT, NOT A BOARD. 'an enemy unit' is singular, and a bounced permanent is not dead - the opponent replays it, and the source's own account is a turn-by-turn grind against one card, not a lock in the sense tianna-wildclaw-point-lock is.",
+          "[Reaction] is the reason it works as an answer at all: 813.1.b gives Reaction every permission of Action, so Star-Crossed can be held for the moment the threat lands and does not have to be cast into an open board."
+        ]
+      },
+      "steps": [
+        "Annie, Stubborn on the board, Star-Crossed in hand.",
+        "The opponent lands the unit you cannot beat.",
+        "Play Star-Crossed as a [Reaction] (3 Energy + 1 Power): return their unit AND Annie to hand. Star-Crossed resolves to your trash.",
+        "Replay Annie (4 Energy + 1 Power). Her play trigger returns a spell from your trash to your hand - Star-Crossed.",
+        "Repeat next turn, for as long as you can pay 7 Energy and 2 Power a turn."
+      ],
+      "netPerIteration": "one enemy unit bounced per turn, for 7 Energy and 2 Power; Star-Crossed is never consumed",
+      "terminatesIn": "engine only - one bounce a turn, bounded by Energy and Power, not by copies",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Zelonius - Riftbound, \"Prismaticism's Annie Deck Is INSANE! (Deck Guide + Gameplay)\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=2_I-2EIF3HQ&t=105",
+          "date": "2026-06-02",
+          "quote": "[1:45] So, we've got Annie Stubborn as the champ. This can get into a really disgusting loop where your opponent plays a big unit. So, I played a best of three against my friend last night. … He was playing Diana. He played his [Yi]. He didn't have many runes up. I played Star Crossed on like a two cost unit on his [Yi]. [Yi] goes back. He plays [Yi] again the next turn. I play Annie from base. Get Star Crossed back and [do it again]",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. What makes this worth an entry rather than a synergy row is that the two cards fix each other's drawback and neither is a loop alone. What keeps it honest is the price: nothing here is discounted, so the source's word 'loop' is true in the sense that the pieces come back and false in the sense that would matter - 7 Energy and 2 Power a turn is the whole cost, every turn. That is the same arithmetic the Blitzcrank exclusion in data/synergies.json rests on. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; a return to hand is not a Recall (455 sends a permanent to its Base, not to its owner's hand), so 456 and 458 do not apply. Depends on no unruled reading."
+    },
+    {
+      "id": "apothecary-pridestalker-buff",
+      "name": "Grim Apothecary bounces a body so it can be replayed — every replay is another Pridestalker buff",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-021",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury unit, E3 M3, [Ambush]. 'When you play me, you may return a friendly unit at a battlefield to its owner's hand.' The return is optional and it is what makes the next play possible."
+        },
+        {
+          "card": "UNL-183",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Body legend (Rengar). 'When you play a unit, give a unit +1 Might this turn.' Every unit play is a buff, so the number of plays IS the payoff."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend IS one of the two pieces, so the deck is Fury/Body by construction and the Apothecary (Fury) is inside it."
+        ],
+        "notable": [
+          "A THIRD BODY IS REQUIRED AND THE SOURCE SAYS SO OUTRIGHT: 'you can't do it obviously with each other, but you can do it if you have a third unit on the battlefield'. The Apothecary you just played needs a different friendly unit at a battlefield to bounce, or the cycle has nothing to return.",
+          "THE BUFF IS 'THIS TURN' AND SO IS THE WHOLE ENGINE. Pridestalker gives +1 Might this turn per unit played, so every point of Might bought here evaporates at end of turn. It is a combat-trick faucet, not a board.",
+          "IT IS BOUNDED BY ENERGY, NOT BY COPIES. Each replay is 3 Energy for the Apothecary (or the cost of whatever you bounced and replayed), so the Might you can buy in a turn is your unspent Energy divided by three - the source's own framing, 'if you have the runes to do it, you can do it'.",
+          "[Ambush] is what makes it usable on the opponent's turn: it plays as a [Reaction] to a battlefield where you already have units, so the buff can arrive inside a combat rather than before it.",
+          "UNL-183 already appears in pridestalker-mighty-draw, which is the other side of the same legend - that one converts a turn's unit plays into cards through Mighty units, this one converts them into Might. They share no other card."
+        ]
+      },
+      "steps": [
+        "Have a friendly unit at a battlefield besides the Apothecary you are about to play.",
+        "Play Grim Apothecary there with [Ambush] (3 Energy): Pridestalker gives +1 Might this turn to a unit of your choice.",
+        "The Apothecary's own play trigger returns a friendly unit at that battlefield to your hand - pick the one you intend to replay.",
+        "Replay it: another Pridestalker trigger, another +1 Might this turn.",
+        "Repeat while Energy lasts."
+      ],
+      "netPerIteration": "+1 Might this turn per unit played, at the Energy cost of the unit replayed",
+      "terminatesIn": "engine only - Might this turn, bounded by unspent Energy and gone at end of turn",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Hazmatt (Riftbound), \"Guide to Rengar in the Unleashed Meta [hazmatt.gg]\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=aePfGcia5fY&t=1920",
+          "date": "2026-06-02",
+          "quote": "[31:49] Another fun thing to do that uh, Rasha was telling me about is that you have uh, you can you can play Apothecary on the Apothecary. So, if you have another unit like in the middle, I don't have it listed here, but if you have a unit in the middle, you can just keep bouncing an Apothecary. If you just need a couple more might, you can trigger off the Rengar Leg[end] and just keep adding might over and over and over and over. So, you know, you can't do it obviously with each other, but you can do it if you have a third unit on the battlefield",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6, which files it correctly as 'ENGINE acotado por runas' and correctly notes that UNL-183 already has an entry. It is catalogued anyway because the mechanism is different from pridestalker-mighty-draw and shares no card with it. The constraint the walk keeps from the source rather than smoothing over is the third body: the two Apothecaries cannot bounce each other into a loop. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; a return to hand is not a Recall (455). Depends on no unruled reading."
+    },
+    {
+      "id": "faefolk-star-spring-drag",
+      "name": "The Faefolk drags an enemy unit onto your battlefield, and Star Spring sends the Faefolk home to do it again",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-112",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Body unit, E2 M1. 'When I move to a battlefield, you may move an enemy unit to that battlefield.' 2 Energy for a body that decides where the opponent's units stand."
+        },
+        {
+          "card": "UNL-215",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BOARD",
+          "note": "Colorless battlefield. 'The first time a player plays a non-token unit here each turn, they may move another unit they control here to its base.' The free return trip that makes the drag repeatable."
+        },
+        {
+          "card": "UNL-002",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury unit, E2 M1, [Ambush], [Assault 2]. The cheap non-token body you play at the Spring to fire its trigger - any would do, and this one is the source's and also attacks for 3."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Fury and Body: UNL-183 Pridestalker (Rengar), which the source plays; Star Spring is Colorless."
+        ],
+        "notable": [
+          "THE DRAGGED UNIT MAKES ITS OWN CONTROLLER THE ATTACKER, ON YOUR TURN. 190.3.a and 190.3.a.1 apply Contested according to the moved unit's CONTROLLER, not according to who caused the move, so an enemy body you pull onto your battlefield contests it for them and 464.2.c.1 makes them the Attacker. 464.2.e.1 then puts the Defender's triggers on the Combat Chain last, which by 340.1 resolves them first. That is the whole point of the card and it is #58's finding applied to a different pair.",
+          "THE BATTLEFIELD IS RANDOM AND CANNOT BE DOUBLED UP: random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy by name.",
+          "'THE FIRST TIME A PLAYER PLAYS A NON-TOKEN UNIT HERE EACH TURN' IS THE THROTTLE. Once a turn, and the unit played must be a real card - 185 makes a token ineligible, so a token generator cannot substitute for Inferna.",
+          "THE RETURN IS A MOVE, NOT A RECALL. Star Spring says 'move another unit they control here to its base', so 446.1 applies and any 'when I move' text on the returning unit still fires; 456 never comes into it.",
+          "Different pair from faefolk-challenger-forced-attacker, which uses the same UNL-112 with UNL-105 to buy one forced attack. This one buys a forced attack EVERY turn, because Star Spring pays the Faefolk's way home for free."
+        ]
+      },
+      "steps": [
+        "Star Spring is your battlefield and you control it. The Faefolk is in your base, ready.",
+        "Standard Move the Faefolk to Star Spring (144.4.a, cost is the exhaust). Its trigger: move an enemy unit to that battlefield.",
+        "That enemy unit applies Contested for ITS controller (190.3.a.1), so the Combat that stages makes them the Attacker on your turn (464.2.c.1).",
+        "Play Inferna at Star Spring with [Ambush] (2 Energy): it is the first non-token unit played there this turn, so Star Spring lets you move another unit you control there back to its base - the Faefolk.",
+        "Next turn the Faefolk is ready again (315.1.b) and the whole thing repeats."
+      ],
+      "netPerIteration": "one enemy unit dragged onto your battlefield per turn, for 2 Energy and the Faefolk's exhaust; the Faefolk goes home free",
+      "terminatesIn": "engine only - one forced reposition a turn, throttled by Star Spring's once-per-turn clause",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Hazmatt (Riftbound), \"Guide to Rengar in the Unleashed Meta [hazmatt.gg]\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=aePfGcia5fY&t=1679",
+          "date": "2026-06-02",
+          "quote": "[27:59] when you have Starspring out, Starspring is absolutely one of my favorite battlefields for this deck because you have Starspring out, you know, like I was telling you, you play Fa[e]folk turn one, and then on turn two, you move into the Starspring and you pull the opponent's unit in, and then you play Inferna, trigger Starspring, drop the Fa[e]folk back, and then you can use it again the next turn. And pretty much just continuously do this over and over and over again",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. The catalogue already had UNL-112 in faefolk-challenger-forced-attacker; what is new here is that Star Spring turns a one-shot into a per-turn engine by paying the return trip. The rule that makes the drag worth anything - Contested keys on the moved unit's controller, so THEY become the Attacker on YOUR turn - was established by the #58 walk and is applied, not re-derived. Card text verbatim from data/corpus_flat.txt. Trap check: no [Repeat]; no [Temporary]; no token is played at the Spring (185 would make it ineligible anyway); the return is a move and not a recall; 143.4 means Inferna arrives exhausted, which does not matter since it is played for the trigger. Depends on no unruled reading."
+    },
+    {
+      "id": "darius-trifarian-thrill",
+      "name": "Thrill of the Hunt on the opponent's turn is your first card, and the unit it replays is your second",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-027",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E5 P1 M5. 'When you play your second card in a turn, give me +2 Might this turn and ready me.' The trigger counts CARDS, not units, and it does not care whose turn it is."
+        },
+        {
+          "card": "UNL-184",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury/Body spell, E2 P1, [Reaction]. 'Banish a friendly unit, then its owner plays it to any battlefield, ignoring its cost.' Two cards played off one spell: itself, and the unit it replays."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must be Fury AND Body, because Thrill of the Hunt is a Fury/Body card and 103.1.b.1 binds every card to the deck's Domain Identity. UNL-183 Pridestalker (Rengar) is the source's, and it adds a third point of Might through 'When you play a unit, give a unit +1 Might this turn'. #62's table names OGN-253 Hand of Noxus as the legend for this row; Hand of Noxus is Fury/ORDER and cannot legally hold Thrill of the Hunt."
+        ],
+        "notable": [
+          "THE TRIGGER COUNTS CARDS AND THE SPELL PLAYS TWO OF THEM. Thrill of the Hunt is card one; the unit it makes its owner play, ignoring its cost, is card two - so on a turn where you have played nothing, one spell fires Darius. 'When you play your second card in a turn' names no turn player, which is why the [Reaction] timing works.",
+          "8 MIGHT IS THREE SOURCES, NOT TWO. Darius is 5 printed, +2 from his own trigger, +1 from Pridestalker's 'when you play a unit' off the replayed body - which is exactly the figure the source gives. Without the legend it is 7.",
+          "DO NOT REPLAY DARIUS HIMSELF WITH IT. His trigger has to be on the board when the second card is played, and a Darius who IS that second card is arriving as it resolves - the same timing knot R26 was opened over. Banish and replay a different friendly unit and the question never comes up. That is also what the source describes.",
+          "THE MIGHT IS 'THIS TURN'. On the opponent's turn the payoff is a defender, and the ready is what makes the body available at all; nothing carries over except the repositioning, since Thrill of the Hunt plays the banished unit 'to any battlefield'.",
+          "One Thrill of the Hunt is one firing. 103.2.b allows three copies and there is no recursion here."
+        ]
+      },
+      "steps": [
+        "Darius on a battlefield, ready or not; Thrill of the Hunt in hand; nothing played yet this turn.",
+        "On the opponent's turn, play Thrill of the Hunt as a [Reaction] (2 Energy + 1 Power). That is your first card.",
+        "It banishes a friendly unit and its owner plays it to any battlefield ignoring its cost. That play is your second card.",
+        "Darius triggers: +2 Might this turn and ready me. Pridestalker's 'when you play a unit' adds another +1.",
+        "Darius is an 8 Might ready body in the middle of the opponent's turn, and the banished unit has been relocated for free."
+      ],
+      "netPerIteration": "one 8 Might ready Darius on the opponent's turn, plus a free relocation, for 2 Energy and 1 Power",
+      "terminatesIn": "a single [Reaction] trick per copy - three a game, no recursion",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Hazmatt (Riftbound), \"Guide to Rengar in the Unleashed Meta [hazmatt.gg]\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=aePfGcia5fY&t=1968",
+          "date": "2026-06-02",
+          "quote": "[32:48] one of the thing when I was running him, if you play thrill of the hunt on the opponent's turn, this is your first spell and this is your first card that you play and this is your second card that you play and you will swing in for eight might with Darius. So, he's just so good. Like Darius is so so so super strong with thrill of the hunt that I'm considering running him again.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. LEGEND CORRECTED: #62's table lists this row under OGN-253 Hand of Noxus as a legend without a combo. Hand of Noxus is Fury/Order and UNL-184 Thrill of the Hunt is a Fury/BODY card, so 103.1.b.1 makes that deck illegal - the shell has to be Fury/Body, which is what the source actually plays. The walk also declines the version where Thrill replays Darius himself: that runs into the same 'does the trigger see its own play' knot R26 was opened over, and replaying any other unit gets the same 8 Might with no reading at all. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; a banish-and-replay is not a Recall. Depends on no unruled reading."
+    },
+    {
+      "id": "sett-first-mate-windswept-hillock",
+      "name": "First Mate readies Sett after the conquer, and the Hillock's Ganking sells him the second battlefield",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-164",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Body unit, E5 P1 M4. 'When I'm played and when I conquer, buff me. Spend my buff: Give me +4 Might this turn.' Every conquer re-arms the buff, so the second fight is paid for by the first."
+        },
+        {
+          "card": "OGN-132",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Body unit, E3 M3. 'When you play me, ready another unit.' The ready is the whole point and it costs a body, not an exhaust."
+        },
+        {
+          "card": "OGN-297",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BOARD",
+          "note": "Colorless battlefield. 'Units here have [Ganking].' Sett does not print Ganking; the battlefield lends it to him while he stands there, which is why the FIRST conquer has to be this one."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Body and Order: OGN-269 The Boss (Sett), whose 'When you conquer, ready me' and buff-spending save are both live in this line."
+        ],
+        "notable": [
+          "THE ORDER OF THE TWO BATTLEFIELDS IS FORCED. 'Units HERE have [Ganking]' is scoped to the Hillock, so Sett only has the keyword while he is standing on it. He must conquer the Hillock first and gank off it; do it the other way round and he has no way to cross (144.4 restricts a Standard Move to base-to-battlefield and battlefield-to-base without Ganking).",
+          "THE BATTLEFIELD IS RANDOM AND CANNOT BE DOUBLED UP: random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy by name. Without the Hillock this is a one-battlefield line.",
+          "TWO POINTS, NOT MORE. 470 caps Scoring at once per Battlefield per turn and a Duel has two battlefields (485.4). The buff refresh on the second conquer is fuel for the fight, not a third point.",
+          "810.1.c.3 IS WHY IT IS EXACTLY ONE EXTRA HOP: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' Sett still has one Standard Move and one exhaust to spend on it - First Mate's ready is what gives him the exhaust to pay.",
+          "First Mate's ready is a play trigger, so it is one ready per copy of First Mate, not a repeatable ability."
+        ]
+      },
+      "steps": [
+        "Sett to the Windswept Hillock; 'When I'm played' already gave him a buff, and he can spend it for +4 Might this turn.",
+        "Conquer the Hillock: Establishing Control is a Conquer (466.5.d) and Scores 1 point. 'When I conquer, buff me' re-arms the buff, and the legend's 'When you conquer, ready me' readies The Boss.",
+        "Play First Mate (3 Energy): 'When you play me, ready another unit' - Sett.",
+        "Sett has [Ganking] while he stands on the Hillock, so Standard Move battlefield to battlefield (144.4.c.1), exhausting him.",
+        "Spend the refreshed buff for +4 Might and conquer the second battlefield: a second point."
+      ],
+      "netPerIteration": "+2 points in one turn, for one First Mate and Sett's own buff economy",
+      "terminatesIn": "two points in a single turn; not a loop - one ready per First Mate",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Riftlab, \"Learn SETT in Riftbound | Full Deck Guide & Combos\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=D1wFsawM7CE&t=225",
+          "date": "2025-09-12",
+          "quote": "[3:45] Windswept Ho[l]lock. You can move a buffed Sett B[raw]ler into one battlefield, conquer it, then ready him with first mate, then gank straight across using the ganking ability, making your opponent think twice about spreading their units too thin.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. OGN-269 The Boss had no entry. The source states the sequence correctly; what the walk adds is that the order is not a preference but a constraint - the Hillock lends Ganking only to units standing on it, so it has to be the first conquer, and 810.1.c.3 means the loan is one new destination for the one Standard Move Sett already had, not an extra move. Card text verbatim from data/corpus_flat.txt. Trap check: no attack trigger is needed, since a Conquer comes from Establishing Control (466.5.d) or a Showdown (348.2.a.1); no [Repeat]; no [Temporary]; no token; the buff is a status (124.2) and survives the move. Depends on no unruled reading."
+    },
+    {
+      "id": "sprite-fountain-aspiring-engineer",
+      "name": "Sprite Fountain pays twice and the Aspiring Engineer buys it back out of the trash",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-078",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind gear, E2 P1, [Temporary]. 'When you play this, play a ready 3 Might Sprite unit token with [Temporary] to your base. [Deathknell] Repeat this gear's play effect.' Two Sprites per copy: one on the way in, one when its own [Temporary] kills it."
+        },
+        {
+          "card": "SFD-061",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind unit, E3 P1 M3. 'When you play me, return a gear from your trash to your hand.' That is how the Fountain comes back after its Deathknell has resolved."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Calm and Mind: SFD-189 Fire Below the Mountain (Ornn), whose 'exhaust: [Reaction] — [Add] 1 rainbow. Use only to play gear or use gear abilities' pays the Fountain's Power cost every turn - the source names exactly that."
+        ],
+        "notable": [
+          "THE SPRITES ARE ATTACKERS, NEVER HOLDERS. 816.1.b makes [Temporary] 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this' - so a Sprite made on your turn dies before the next Scoring Step and can never Hold. The source says the same thing in its own words: 'attack in, it becomes temporary'.",
+          "THE FOUNTAIN KILLS ITSELF, AND THAT IS THE SECOND SPRITE. It carries [Temporary] too, so at the start of your Beginning Phase it dies and its [Deathknell] repeats the play effect: another Sprite. The card is two bodies for one payment, and the second one arrives on the turn you get it back.",
+          "THE SPRITES ENTER READY, WHICH IS NOT A READY. The Fountain says 'play a READY 3 Might Sprite unit token', overriding 143.4 - but 415.1 defines Readying as marking something already on the board, so this gives back no exhaust and cannot be substituted for by any of the sixteen cards in the pool that ready something.",
+          "THE ENGINEER IS THE ONLY REASON IT REPEATS, and it costs a card and a body every time: 3 Energy + 1 Power for a 3 Might unit whose whole job is the fetch. One Fountain cycle per Engineer.",
+          "185 is why the Sprites cannot pay for anything: they are not cards, so no recycle, discard or 'return a card' cost can ever take one."
+        ]
+      },
+      "steps": [
+        "Play Sprite Fountain (2 Energy + 1 Power, the Power off the legend's rainbow): a ready 3 Might Sprite with [Temporary] appears at your base.",
+        "Move the Sprite in and attack with it the same turn - it is ready, and it will not survive to your next Scoring Step.",
+        "At the start of your next Beginning Phase, [Temporary] kills the Fountain (816.1.b) and its [Deathknell] repeats the play effect: a second Sprite. The Fountain is now in your trash.",
+        "Play Aspiring Engineer (3 Energy + 1 Power): return the Fountain from your trash to your hand.",
+        "Replay the Fountain the same turn, paying the Power with the legend again. Repeat."
+      ],
+      "netPerIteration": "2 ready 3 Might Sprites per Sprite Fountain; one Fountain returned per Aspiring Engineer, at 3 Energy + 1 Power",
+      "terminatesIn": "engine only - a pair of temporary bodies a cycle, none of which ever survives to a Hold",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — MoreThatMillGuy, \"Ornn FINALLY Wins & Kennen Is Everywhere!? | Riftbound | Regional Qualifier Barcelona Discussion\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=ry1n9MGZJAA&t=706",
+          "date": "2026-08-24",
+          "quote": "[11:46] The Aspiring Engineer, when you play me, return a gear from your trash to your hand, allowing you to reuse things like Sprite Fountain that allow you to make more sprites that are ready and getting aggressive. So, you can have a Sprite Fountain that has temporary on your turn, disappears. You make a sprite token. Then you Aspiring Engineer to return that to your hand. You play that again. You don't lose any tempo because you use Ornn, Fire [Below the Mountain] to be able to play it again with that power cost, get another sprite, attack in, it becomes temporary",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. The source is a Regional Qualifier discussion, so this is a line somebody brought to an event rather than theorycraft. The walk's additions are the two limits that decide how the deck uses it: 816.1.b means every Sprite is an attacker and none of them can ever be part of a Hold, and 415.1 means 'enters ready' is not a ready and cannot stand in for one - the distinction the #56 ready lens established. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation is needed for the tokens to be useful; no [Repeat] on any card here; no recall; no token is ever recycled (185). Depends on no unruled reading."
+    },
+    {
+      "id": "poppy-confront-blood-rose",
+      "name": "Confront guarantees Poppy enters ready, and Blood Rose turns her 3 XP straight back into a second ready",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-116",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body unit, E5 M5, [Deflect]. 'When you play me, if an opponent's score is within 3 points of the Victory Score, ready me and gain 3 XP.' The XP is the half that matters - the ready is conditional and Confront covers it either way."
+        },
+        {
+          "card": "OGN-129",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Body spell, E2, [Action]. 'Units you play this turn enter ready. Draw 1.' It overrides 143.4 unconditionally, which is what makes Poppy live on a turn her own condition is not met."
+        },
+        {
+          "card": "UNL-109",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Body gear, E1. 'When you play a unit, you may pay 1 Energy to gain 1 XP. Spend 3 XP, exhaust: Ready a unit.' Poppy's 3 XP is exactly one activation, and the gear keeps accruing after that."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Body and Order: UNL-203 Keeper of the Hammer (Poppy), whose 'When you hold, gain 1 XP' feeds the same pool Blood Rose spends."
+        ],
+        "notable": [
+          "THE TWO READIES ARE NOT REDUNDANT, THEY COVER DIFFERENT CASES. Poppy's own ready fires only 'if an opponent's score is within 3 points of the Victory Score' - 383.2.a.1 makes that clause part of the Trigger Condition, so when the opponent is behind she enters exhausted and does nothing. Confront's 'units you play this turn enter ready' has no condition. Running both is the difference between a card that works and a card that works when you are losing.",
+          "THE 3 XP IS ONE BLOOD ROSE ACTIVATION TO THE DIGIT: 'Spend 3 XP, exhaust: Ready a unit' against Poppy's 'gain 3 XP'. That is the second ready, and it is what turns one body into two conquers.",
+          "BLOOD ROSE IS ONCE A TURN. Its cost carries an exhaust, so 315.1.b readies it in your next Awaken and no amount of XP buys a second activation in the same turn.",
+          "IT IS TWO POINTS AT MOST. 470 caps Scoring at once per Battlefield per turn and a Duel has two battlefields (485.4). #62's table calls it 'un turno grande, no un motor'; the walk keeps it as an ENGINE because Blood Rose keeps producing an extra ready every turn on XP the legend also feeds, long after Poppy's one-off is spent.",
+          "The XP faucet on Blood Rose - 'When you play a unit, you may pay 1 Energy to gain 1 XP' - is what keeps it live after Poppy: 3 Energy across three unit plays is a ready."
+        ]
+      },
+      "steps": [
+        "Blood Rose on the board from an earlier turn.",
+        "Play Confront (2 Energy): units you play this turn enter ready, and draw 1.",
+        "Play Poppy, Paragon (5 Energy). She enters ready because of Confront, and if the opponent is within 3 points of winning she also readies herself and gains 3 XP.",
+        "Move her in and conquer: Establishing Control is a Conquer (466.5.d) and Scores.",
+        "Activate Blood Rose: spend the 3 XP and exhaust it to ready a unit - Poppy.",
+        "Standard Move her to the second battlefield and conquer that too.",
+        "On later turns, Blood Rose keeps paying: 1 Energy per unit played buys 1 XP, and the legend's 'When you hold, gain 1 XP' adds one more."
+      ],
+      "netPerIteration": "+2 points on the turn Poppy lands; afterwards, one extra ready per turn for 3 XP",
+      "terminatesIn": "engine only - one extra ready a turn once the XP is flowing; two points on the Poppy turn itself",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — GG Haven, \"It's Hammer Time!! | Poppy Beginners Guide | Riftbound Unleashed TCG\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=VF-IyoPiXuo&t=804",
+          "date": "2026-05-08",
+          "quote": "[13:24] Combo two, you're going to need your Poppy Paragon unit, Confront, and Blood Rose. Play Confront to ensure all units enter ready. Drop Poppy Paragon when the opponent is near victory to ready her",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. UNL-203 Keeper of the Hammer had no entry. The obvious objection to this trio is that Confront and Poppy both ready her, so one is wasted; the walk checked it and they are not redundant - 383.2.a.1 makes Poppy's ready conditional on the opponent being within 3 points of winning, and Confront's is not conditional at all, so the pair covers both board states. That is also why #62's 'un turno grande, no un motor' is only half right: the big turn is real, and Blood Rose keeps producing a ready a turn afterwards on XP the legend feeds. Card text verbatim from data/corpus_flat.txt. Trap check: no attack trigger; no [Repeat]; no [Temporary]; no token; no recall; 143.4 is the very thing Confront is there to override. Depends on no unruled reading."
     }
   ]
 }
