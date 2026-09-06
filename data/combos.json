@@ -614,7 +614,8 @@
           "One unit already at a battlefield you control, and Keeper of Masks already Hidden from a previous turn (Hidden is paid for when you hide it, so the reveal costs 0 Energy and never passes through your hand).",
           "Twelve runes. The turn costs 22 Energy and 6 Power: exhaust all 12 for Energy, recycle one for Ekko's Power, then Malzahar kills Ekko and the Deathknell readies the remaining 11 for a second 11 Energy. The 6 Power comes from Malzahar's Add 2 plus four rune recycles, and recycling needs no ready. One Energy is left over.",
           "The three Reflection-and-Keeper bodies are [Temporary] and die at the start of your Beginning Phase, at the same instant the win check fires. Both abilities are yours, so 383.3.d hands you the order and the win resolves first. This is settled, not an open reading - see the entry notes.",
-          "Malzahar must already be on the board, since he needs to be ready to exhaust."
+          "Malzahar must already be on the board, since he needs to be ready to exhaust.",
+          "323.7 — LOSING THE BATTLEFIELD TRASHES THE HIDDEN KEEPER. A Cleanup step 5 reads \"Remove all Hidden cards from all Battlefields that are not controlled by the same player and place them in their owner's Trash\", and 466.5.c repeats it the instant somebody establishes Control. The Keeper of Masks waiting facedown from an earlier turn is not merely stranded if the battlefield changes hands — it goes to the trash, and with it the four-unit count this line needs."
         ]
       },
       "steps": [
@@ -2172,7 +2173,8 @@
           "You control The Grand Plaza (random 1 of 3 in Duel, chosen in Match) with LeBlanc on it.",
           "355.2.a makes a battlefield you control a default play location for units, so all three Keepers go straight to the Plaza and their Reflections appear 'here'. [Ambush] (822.1.b) is only needed for battlefields you do NOT control.",
           "811.1.b caps hidden cards at one per battlefield, so exactly one Keeper is free; the other two cost 2 Energy each.",
-          "Might is not a copyable trait (477.1.b.1.a), so the six Reflections stay at the token's printed 0 Might. They do not die of it (142.4: a 0 Might unit still needs 1 damage marked), but any single point of damage removes one, and killing LeBlanc un-suppresses every [Temporary] at once. Survive one opponent turn, or close the window with Time Warp."
+          "Might is not a copyable trait (477.1.b.1.a), so the six Reflections stay at the token's printed 0 Might. They do not die of it (142.4: a 0 Might unit still needs 1 damage marked), but any single point of damage removes one, and killing LeBlanc un-suppresses every [Temporary] at once. Survive one opponent turn, or close the window with Time Warp.",
+          "323.7 — THE FREE KEEPER IS DESTROYED IF THE PLAZA CHANGES HANDS. The one Keeper of Masks hidden at the Plaza is removed and placed in its owner's trash by a Cleanup (323.7) or the moment another player establishes Control (466.5.c). Losing the Plaza costs the card as well as the position."
         ]
       },
       "steps": [
@@ -2396,7 +2398,8 @@
           "You control battlefield X with a Divide hidden there; three Jhins ready at base; the opponent has units on a battlefield for the Revelers to attack. Attack triggers need a Combat, and a Combat needs units from two opposing players at the battlefield (461, 383.4.e) - an empty enemy battlefield gives a showdown and no triggers.",
           "Only one facedown card per battlefield (811.1.b), so a second Divide needs a second controlled battlefield. Duel has exactly two battlefields (485.4, 485.5), so a second Divide and an attackable enemy battlefield cannot coexist there: the two-Divide version needs a three-battlefield mode.",
           "Divide's targets must be at the battlefield it was hidden at (811.1.d.2). Moving into a battlefield you already control applies no Contested status (190.3.a.1), so the three Jhins walk in without opening a showdown; emptying X on the Divide costs you control of X at the next cleanup and would trash any second hidden card there (323.6, 323.7).",
-          "The Revelers are spent on the attack: they are M3 into whatever garrisons Y, and the line only needs their triggers, not their survival."
+          "The Revelers are spent on the attack: they are M3 into whatever garrisons Y, and the line only needs their triggers, not their survival.",
+          "323.7 — THE HIDDEN DIVIDE IS DESTROYED IF X CHANGES HANDS, not just switched off. \"Remove all Hidden cards from all Battlefields that are not controlled by the same player and place them in their owner's Trash\" (323.7, and 466.5.c on establishing Control) applies to the Divide waiting at X, not only to a hypothetical second facedown card. Keeping control of X between hiding and flipping is part of the line's cost."
         ]
       },
       "steps": [
@@ -2602,7 +2605,8 @@
           "Sona must be at a battlefield when your turn ends; the four runes fund Reactions (Premonition, Consult the Past, Counter Strike) during the opponent's turn.",
           "Sona has to survive on a battlefield at 4 Might for the readies to happen at all. Chemtech Cask's Gold enters exhausted and cannot be spent until your next Awaken.",
           "Every rule this entry cites was checked verbatim on 2026-09-04 and holds: 164.2.a (\"[E]: [Reaction] - Add [1]\") and 164.2.b give rune abilities Reaction, 813.1.c.2 lets Reaction activated abilities fire \"during Closed States on any player's turn\", 143.4 makes the Recruits enter exhausted, and 811.6 grants Reaction to a card played from facedown.",
-          "CONSTRAINT 811.1.b hands over that the entry omitted: the rule reads \"...you may pay [A] to hide this facedown... BEGINNING ON THE NEXT TURN, this gains [Reaction] and you may play this, ignoring its base cost.\" So the free flips are free only if the hiding happened on an earlier turn, and note it is the BASE cost that is ignored, not additional costs."
+          "CONSTRAINT 811.1.b hands over that the entry omitted: the rule reads \"...you may pay [A] to hide this facedown... BEGINNING ON THE NEXT TURN, this gains [Reaction] and you may play this, ignoring its base cost.\" So the free flips are free only if the hiding happened on an earlier turn, and note it is the BASE cost that is ignored, not additional costs.",
+          "323.7 — THE FREE FLIPS COST A CARD IF THE BATTLEFIELD GOES. This engine's cheapest Viktor triggers are cards flipped from Hidden on the opponent's turn, and a hidden card only survives while you control the battlefield it sits on: 323.7 removes Hidden cards from battlefields \"not controlled by the same player\" and places them \"in their owner's Trash\", and 466.5.c does the same the instant Control is established. A battlefield lost between hiding and flipping does not delay the trigger, it eats the card."
         ]
       },
       "steps": [
@@ -3079,7 +3083,8 @@
         ],
         "notable": [
           "Corrected requirement for the Time Warp turn: 12 runes on the board of which at least 8 produce Mind Power, Ekko, Recurrent on the board (at a battlefield if you are killing him with Hidden Blade), Renata Glasc, Mastermind ready at a battlefield, and either a Hidden Blade hidden on an earlier turn for 1 rainbow or a Deathgrip in hand. No Gold is needed for that turn: exhausting every rune, readying them all through Ekko and recycling eight Mind runes makes 20 Energy and 8 Mind Power against 14 Energy and 8 Power spent, ending the turn with 4 runes on the board. Gold matters on the turn after: each is Kill this, exhaust: Add 1 rainbow, plus 1 Energy while your score is 5 or higher, it enters exhausted so it is usable only from the following turn, and Chem-Baroness makes at most one per turn. The deck-tech's own requirement line (12 runes, at least 1 Gold, Ekko, Hidden Blade or Deathgrip) is quoted for the record.",
-          "RULES the count stands on: Power paid by recycling runes returns those runes to the Rune Deck (161.2.b), so Ekko readies only the runes still on the board — pay Time Warp's Power from Gold instead of rune recycles and the board stays at 12 through his Deathknell, ending the turn with 8 runes rather than 4. On the extra turn, Awaken readies everything (315.1.b), the Beginning Phase holds every battlefield you control (capped at one Score per battlefield per turn by 470, two battlefields in Duel, 485.4), the Channel Phase adds 2 runes and the Draw Phase 1. Ekko is in the Main Deck by then, so there is no second rune-ready: six runes pay for either a second Renata point or a second Time Warp, not both."
+          "RULES the count stands on: Power paid by recycling runes returns those runes to the Rune Deck (161.2.b), so Ekko readies only the runes still on the board — pay Time Warp's Power from Gold instead of rune recycles and the board stays at 12 through his Deathknell, ending the turn with 8 runes rather than 4. On the extra turn, Awaken readies everything (315.1.b), the Beginning Phase holds every battlefield you control (capped at one Score per battlefield per turn by 470, two battlefields in Duel, 485.4), the Channel Phase adds 2 runes and the Draw Phase 1. Ekko is in the Main Deck by then, so there is no second rune-ready: six runes pay for either a second Renata point or a second Time Warp, not both.",
+          "323.7 — THE HIDDEN BLADE DIES WITH THE BATTLEFIELD. Hidden Blade (OGN-213) is hidden a turn early so the kill on Ekko costs 1 rainbow instead of 2 Energy. If the battlefield it sits on changes hands first, 323.7 (\"place them in their owner's Trash\") and 466.5.c remove it outright, and the Time Warp turn falls back on the Deathgrip line."
         ]
       },
       "steps": [
@@ -3905,7 +3910,8 @@
           "The Matriarch's payoff has a hard ceiling: a unit in your trash with Energy cost no more than 3 AND Power cost no more than 1, and it arrives at your BASE, entering exhausted (143.4). If the trash holds no such unit the trigger resolves into nothing — declare the trash contents, do not assume them.",
           "One Tornado Warrior per empower, so this costs a card per cycle. The no-card version is paying the Matriarch's own [Empower] cost (2 Energy + 1 Chaos Power), and that is a single use: 827.1.c.1 makes Empower short for '[Cost]: Empower this. Play only if not Empowered.'",
           "Two alternatives outside mono-Chaos, both checked in the walk. VEN-035 Sanction (Calm, E3 P1, Reaction) has the same self-cleanup with no hide tax and no delay, but costs a card AND 1 Power, and moves the line to calm+chaos where kharox-sanction-burn already runs this exact trick. VEN-082 Profiteer (Body, E4, NO Power) spends no rune and has no delay, but CORRECTION to the L7 note that first proposed it: Profiteer is a TRANSFER, not a source — 'you may disempower something you control to empower a legend, unit, or gear' needs something already Empowered, so it cannot start the first cycle by itself. Sanction is already the anchor of the sanction-empower-unit pattern and already has kharox-sanction-burn, so a Sanction version would be the same trick with a different payoff.",
-          "(Original wording, kept for the record: Tornado Warrior must arrive at the Matriarch's location — 'empower something HERE'.)"
+          "(Original wording, kept for the record: Tornado Warrior must arrive at the Matriarch's location — 'empower something HERE'.)",
+          "323.7 — EACH CYCLE'S CARD IS AT RISK BETWEEN THE HIDE AND THE FLIP. Tornado Warrior sits facedown for a whole turn (811.1.b), and 323.7 removes Hidden cards from battlefields \"not controlled by the same player\" and places them \"in their owner's Trash\" — 466.5.c the moment Control is established. Losing that battlefield in the window costs the card as well as the empower."
         ]
       },
       "steps": [
@@ -5582,6 +5588,705 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-escalation-empower-flow-candidates.md), issue #34, which filed it as 'confianza baja'. REWRITTEN UPWARD after counting the cycle: the issue measured one token per turn for 2 Energy, but with two Discs the steady state is two tokens for 3 Energy, and the readies-per-turn budget (one per Disc from the Awaken plus two from an Empowered Defender) makes floor((#Discs + 2) / 2) the exact rate, so a third Disc buys nothing. VEN-149 was confirmed by grep to be the pool's ONLY gear-readier, which is why the entry cannot be built with any other legend. Trap check: no attack; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; all costs are Main Phase activations so 167 does not bite. Shares Hextech Disc with matriarch-of-war-empower-ready, which is a different legend (Body/Order) and pays in readies instead of bodies; the two cannot share a deck, because a legend has exactly two domains (103.1.b)."
+    },
+    {
+      "id": "black-market-broker-bandle-tree-gold",
+      "name": "Black Market Broker x Bandle Tree with Renata Glasc, Industrialist — two flips a turn, six ready Gold",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-121",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos unit, E3 M3. 'When you play a card from face down, play a Gold gear token exhausted.' 811.1.c.3 makes \"from facedown\" and \"from Hidden\" the same event word for word. Three Brokers are three separate permanents with three separate triggered abilities: grepping \"redundant\" in the Core Rules returns exactly seven clauses (805.4, 810.2, 811.4, 815.2, 816.2, 822.2, 826.5), all keyword-scoped to one object, so there is no redundancy rule between them."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order UNIT (not a legend), E4 P1 M4. 'Your tokens enter ready.' R25 = A (ruled 2026-09-04) on this exact wording: Renata beats a token-maker's printed 'exhausted'. Without her, 187.5 makes the Gold's ability an EXHAUST cost, so it is next-Awaken Power (315.1.b)."
+        },
+        {
+          "card": "OGN-278",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'You may hide an additional card here.' The only card in the pool that raises 811.1.b's one-facedown-per-battlefield cap, and it does so by rule 002 (card text supersedes rules text). Two slots once you control it."
+        },
+        {
+          "card": "SFD-154",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order spell, E3, [Hidden]. 'Play a 2 Might Sand Soldier unit token. Then do this: You may pay 1 Order Power to ready it.' Flipped from hidden it costs 0 (811.1.b), 811.1.d.3 sends the token to the battlefield it was hidden at, and Renata makes it enter ready so the ready clause is never paid. Any card with [Hidden] feeds the Brokers; Guards! is the one that pays a body on top."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "gold-engine",
+        "resource-engine"
+      ],
+      "legends": [
+        "VEN-155"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend is Heart of the Tempest (VEN-155) — the only Order/Chaos legend in the pool, confirmed again on 2026-09-05 by listing every Legend row in the corpus.",
+          "Cards with [Hidden] in hand to feed the slots. Order/Chaos has 15 legal names (16 print [Hidden]; OGN-168 Fight or Flight is banned in constructed and 2v2)."
+        ],
+        "notable": [
+          "Battlefield entries: a player provides three battlefields and only one is used (485.4.a) — randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5) — and 103.4.c plus Tournament Rules 402.1 forbid bringing two of the same name, so there is no way to raise the odds. Bandle Tree and The Grand Plaza are both yours, so this entry and spiderling-swarm-grand-plaza cannot share a board.",
+          "A battlefield you provide starts UNCONTROLLED (190.1) and 190.6.d switches its text off while it has no Controller: \"If the battlefield has no Controller, 'you' refers to no one, and all such instructions are ignored.\" Walking a body there and establishing Control (466.5) is part of this entry's cost, and 811.1.b only lets you hide at a battlefield you control. Until you control the Tree there is no first slot either, let alone the additional one.",
+          "323.7 IS THE REAL PRICE OF HIDING. A Cleanup step 5 reads \"Remove all Hidden cards from all Battlefields that are not controlled by the same player and place them in their owner's Trash\", and 466.5.c repeats it the instant somebody establishes Control. Losing the battlefield does not put the hidden card on hold — it TRASHES it. Lose the Bandle Tree and both facedown cards go to the trash, so the engine does not merely stall — it eats two cards.",
+          "THE SCARCE RESOURCE IS THE CARD, NOT THE SLOT. Every flip consumes one card with [Hidden]; 811.1.b's \"Beginning on the next turn\" caps flips at the number of slots you control, and there are only two battlefields on the table in a Duel (485.4). The engine runs while [Hidden] cards last — it is not perpetual, and that is why it is not INFINITE.",
+          "THE FLIP CAN LAND ON THE OPPONENT'S TURN. 811.1.b opens the window \"beginning on the next turn\" and 811.6 gives the facedown card [Reaction], so you do not have to wait for your own turn. With Renata the Gold enters ready either way, so this just moves the Power a turn earlier, into the opponent's window.",
+          "419.4.a is the fine print: a trigger on playing a card fires \"when the act of playing the card has been completed by the resolution of the card\", and 419.4.a.1 kills it outright if the flipped card is countered. No Gold from a countered flip.",
+          "Neighbouring values, written out: 1 Broker nets 0 per turn (2 Gold for 2 hides — the engine only pays for itself), 2 Brokers net +2, 3 Brokers net +4, and 3 Brokers on 3 slots (the enemy battlefield conquered too) net +6."
+        ]
+      },
+      "steps": [
+        "Establish Control of the Bandle Tree; only then does 'You may hide an additional card here' do anything (190.6.d), giving 2 slots there.",
+        "In an Open State on your turn, hide two cards with [Hidden] at the Tree: 1 rainbow Power each (811.1.b), −2 Power.",
+        "From the next turn on (yours or the opponent's — 811.6 gives the facedown card [Reaction]), play both, ignoring their base cost.",
+        "Each flip is 'a card played from face down' (811.1.c.3): 2 flips × 3 Brokers = 6 Gold gear tokens.",
+        "Renata Glasc, Industrialist makes the six enter ready (R25 = A), and 187.5 makes each one 'Kill this, exhaust: [Add] 1 rainbow Power' on demand.",
+        "Re-hide two cards: −2 Power. Net +4 Gold banked per turn, and the Gold is gear, so 167's Rune Pool wipe never touches it."
+      ],
+      "netPerIteration": "+4 Gold gear tokens (4 rainbow Power, banked) per turn with 3 Brokers and 2 slots, plus whatever the two flipped cards do",
+      "terminatesIn": "engine only — 811.1.b's \"Beginning on the next turn\" caps flips at one per slot per turn, and each flip burns a card with [Hidden]; a two-domain deck has 15 such names, so the engine runs for a stack of turns and then stops",
+      "sources": [
+        {
+          "title": "Hunt lens [Hidden]/[Ambush] — issue #40 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/40",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "The scarce resource of this lens is the card with [Hidden] in hand, not the slot: every flip consumes one, and Order/Chaos has 15 legal names once OGN-168 Fight or Flight is removed as banned."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md), issue #40 candidate 1. Card text verbatim from data/corpus_flat.txt. REWRITTEN from the #40 candidate in three places: (1) the ceiling is the [Hidden] card count, not the slot count — #40 wrote the cycle as a perpetual steady state and it is not; (2) the flip can be taken on the opponent's turn (811.1.b + 811.6), which #40 never says; (3) Bandle Tree and The Grand Plaza exclude each other by 485.4.a, so this entry and spiderling-swarm-grand-plaza are alternatives. Stands on R25 = A only, already ruled. Distinct from treasure-hunter-industrialist-gold and yeti-brambleback-renata-gold, which share Renata but make their Gold off a move and off a conquer respectively."
+    },
+    {
+      "id": "swift-scout-guerilla-hide-cycle",
+      "name": "Swift Scout — hiding for 1 Energy turns the Broker into an Energy-to-Power converter",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-263",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Mind/Chaos legend. 'You may pay 1 Energy to hide a card with [Hidden] instead of 1 rainbow Power.' That replaces 811.1.b's [A] and is the whole entry. Note her FIRST ability carries no exhaust — only the second (the Teemo bounce) does — so the two never compete, the same detail CLAUDE.md records for Renata Mastermind."
+        },
+        {
+          "card": "SFD-121",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos unit, E3 M3. 'When you play a card from face down, play a Gold gear token exhausted.' Three separate permanents, three triggers per flip (no redundancy rule between objects)."
+        },
+        {
+          "card": "OGN-264",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind/Chaos spell, E2 P1. 'Return up to two cards with [Hidden] from your trash to your hand. You can hide cards ignoring costs this turn.' The pool's only recursion of hidden cards, and it only reaches SPELLS: a flipped unit stays on the board and never passes through the trash. 3 copies (103.2.b) = 6 cards recovered per game."
+        },
+        {
+          "card": "OGN-101",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Mind gear, E2. 'At the start of your Beginning Phase, if you control a facedown card at a battlefield, draw 1.' It wants a slot still LOADED when your Beginning Phase starts, which is in tension with flipping early — see the notable."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "gold-engine",
+        "resource-engine"
+      ],
+      "legends": [
+        "OGN-263"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend is Swift Scout (OGN-263) by name: the entry is her first ability.",
+          "Cards with [Hidden] to cycle. Mind/Chaos has 18 legal names (20 text hits, minus Swift Scout and Guerilla Warfare, which only mention [Hidden], minus OGN-168 Fight or Flight, banned)."
+        ],
+        "notable": [
+          "THE DELAY IS ONE TURN, AND ONLY IF YOU FLIP ON THE OPPONENT'S TURN. Renata Glasc, Industrialist is Order and cannot enter a Mind/Chaos deck (103.1.b.4), so the Gold enters exhausted and waits for an Awaken (315.1.b). Flip on your own next turn and it does not ready until the turn after that. Flip on the OPPONENT'S turn instead — 811.1.b opens the window \"beginning on the next turn\" and 811.6 grants [Reaction] — and the Gold readies at your very next Awaken. The entry declares that ordering.",
+          "WHERE THE SECOND SLOT COMES FROM. 811.1.b gives one facedown per battlefield you control, and in a Duel there are two battlefields total (485.4). A second slot means either conquering the opponent's battlefield (and then 323.7 charges you the card if you lose it again) or bringing OGN-278 Bandle Tree, which is Colorless and legal here exactly as it is in black-market-broker-bandle-tree-gold. With one battlefield of your own the slot count is ONE.",
+          "323.7 IS THE REAL PRICE OF HIDING. A Cleanup step 5 reads \"Remove all Hidden cards from all Battlefields that are not controlled by the same player and place them in their owner's Trash\", and 466.5.c repeats it the instant somebody establishes Control. Losing the battlefield does not put the hidden card on hold — it TRASHES it.",
+          "MUSHROOM POUCH PULLS THE OTHER WAY. It checks \"if you control a facedown card at a battlefield\" at the start of your Beginning Phase, so a slot you emptied on the opponent's turn draws you nothing. With two slots you get both: flip one for the Power, leave the other loaded through your Beginning Phase for the draw.",
+          "RATE, stated so it can be argued with: 1 Energy plus one card with [Hidden] buys 3 rainbow Power (3 Brokers), available at your next Awaken. The loop-budget ledger (docs/phase0/walks/2026-09-04-loop-budget-ledger.md) prices Power at roughly 9 Energy inside the Lux engine, so the Energy side is cheap and the CARD is what this actually costs.",
+          "Battlefield entries: a player provides three battlefields and only one is used (485.4.a) — randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5) — and 103.4.c plus Tournament Rules 402.1 forbid bringing two of the same name, so there is no way to raise the odds. Only relevant if you bring the Bandle Tree for the second slot."
+        ]
+      },
+      "steps": [
+        "Swift Scout in the Legend Zone; three Black Market Brokers on the board; Mushroom Pouch in play.",
+        "In an Open State on your turn, hide two cards with [Hidden] paying 1 Energy each instead of 1 rainbow Power (Swift Scout over 811.1.b).",
+        "On the OPPONENT'S turn, flip one of them for 0 (811.1.b, 811.6): 3 Brokers → 3 Gold, exhausted.",
+        "Your Awaken readies them (315.1.b): 3 rainbow Power available on your turn.",
+        "Your Beginning Phase: the second slot is still loaded, so Mushroom Pouch draws 1.",
+        "Guerilla Warfare returns two spent [Hidden] spells from the trash and makes that turn's hides free; re-load the slots."
+      ],
+      "netPerIteration": "2 Energy and 2 cards with [Hidden] in, 6 rainbow Power out one turn later, plus a draw from Mushroom Pouch",
+      "terminatesIn": "engine only — one flip per slot per turn (811.1.b) and one card burned per flip; Guerilla Warfare recovers 2 spells a copy, 6 per game at the 3-copy cap (103.2.b)",
+      "sources": [
+        {
+          "title": "Hunt lens [Hidden]/[Ambush] — issue #40 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/40",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "315.1.b readies at the Awaken of the turn that readies. Flip on your own next turn and the Gold waits until the turn after; flip on the opponent's turn — 811.1.b's \"beginning on the next turn\" plus 811.6's [Reaction] — and it readies at your very next Awaken."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md), issue #40 candidate 2. REWRITTEN from the #40 candidate in three places: (1) the delay #40 calls 'one turn' is TWO unless the flip is taken on the opponent's turn, which is what 811.1.b + 811.6 actually permit; (2) #40 assumes two slots without saying where the second comes from — it is a conquered enemy battlefield or the Bandle Tree, and with only your own battlefield the count is one; (3) the tension between flipping early and Mushroom Pouch's Beginning-Phase check, which #40 does not mention. Guerilla Warfare reaches spells only, because a flipped unit never enters the trash. Depends on no unruled reading."
+    },
+    {
+      "id": "ava-achiever-temporal-breach-trove-golem",
+      "name": "Ava Achiever x Temporal Breach — replaying the Trove Golem for twelve ready Gold in one combat",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-107",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E5 M4. 'When I attack, you may pay 1 Mind Power to play a card with [Hidden] from your hand, ignoring its cost. If it's a unit, play it here.' The only card in the pool that plays a [Hidden] card FROM HAND for free, which is what skips 811.1.d entirely — that rule restricts choices made while playing a card FROM Hidden."
+        },
+        {
+          "card": "VEN-066",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind spell, E2 P1, [Hidden]. 'Banish a unit, then its owner plays it to the same location, ignoring its cost.' 356.1.b.1 sets base Energy AND base Power to zero. It prints neither [Action] nor [Reaction] — it is one of 90 spells in the pool with no timing keyword — so it reaches the combat only through 419.3/419.3.a, which make a card played by an effect's instruction a Limited Action."
+        },
+        {
+          "card": "SFD-174",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Order unit, E8 P2 M9. 'When you play me, play four Gold gear tokens exhausted.' Keep him at YOUR BASE: 'plays it to the same location' then returns him to base and keeps the combat clean. He re-enters exhausted every time (143.4) — he is a card, not a token, so Renata does not touch him."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order unit, E4 P1 M4. 'Your tokens enter ready.' R25 = A: the twelve Gold TOKENS enter ready and are spendable at once (187.5)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "gold-engine",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order (103.1.b.4). Four do: OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity - Starter, SFD-201 Chem-Baroness, UNL-199 Deceiver.",
+          "Trove Golem already deployed at your base (E8 + 2 Power, once), Renata on the board, three Avas at the battlefield you are attacking, and three Temporal Breach in hand."
+        ],
+        "notable": [
+          "A REAL COMBAT IS REQUIRED. 461: a Combat is staged only when units of two opposing players are at a battlefield. Walking into an empty enemy battlefield gives a showdown and no Attacker designation, so 383.4.e never fires and the whole line produces nothing.",
+          "ONE COMBAT, THREE TRIGGERS. 464.2.c.3 gives every unit you control at the contested battlefield the Attacker designation at the same moment, so all three Avas trigger off a single combat; 383.4.e.2.a then caps each at one condition check per combat. This is the same mechanism jhin-emperors-divide-hidden uses for its two Twilight Revelers.",
+          "419.3.a IS THE BEAM, and issue #40 never cited it: Temporal Breach prints no timing keyword, so its own timing would not reach a showdown. 419.3 says \"Game effects may result in cards being played as part of their resolution\" and 419.3.a says \"This treats Play as a Limited Action\" — that, not the card's timing, is what lets Ava play it mid-combat.",
+          "FROM HAND, SO NO TARGETING RESTRICTION. 811.1.d only governs \"choices made while playing a card from Hidden\"; Ava plays from hand, so 811.3 applies — \"may be played for its cost as normal, at its normal timing with no restrictions on targeting\" — and the Breach can reach the Golem sitting at your base.",
+          "THREE DETONATIONS PER GAME, NOT A PER-TURN ENGINE. Temporal Breach caps at 3 copies (103.2.b) and Mind/Order has NO recursion of hidden cards: OGN-264 Guerilla Warfare is Mind/Chaos and 103.1.b.4 keeps it out.",
+          "Deployment is heavy and has to be paid before any of this: three Avas are 15 Energy, the Golem is 8 Energy and 2 Power, Renata is 4 Energy and 1 Power."
+        ]
+      },
+      "steps": [
+        "Trove Golem at your base, Renata Glasc Industrialist on the board, three Ava Achiever at the enemy battlefield with a garrison on it (461).",
+        "Initiate: 464.2.c.3 gives all three Avas the Attacker designation at once, so all three attack triggers go on the chain.",
+        "Ava #1: pay 1 Mind Power, play Temporal Breach from hand for 0 (356.1.b.1, 419.3.a). Banish the Golem; you play it back to the same location — your base — ignoring its cost.",
+        "419.4.a: the Golem's 'When you play me' completes on resolution and makes four Gold gear tokens; Renata makes them enter ready (R25 = A).",
+        "Ava #2 and Ava #3 do the same in the same combat: 3 × 4 = twelve ready Gold, at a cost of 3 Mind Power.",
+        "Cash the Gold as needed: 187.5, 'Kill this, exhaust: [Add] 1 rainbow Power'. Net +9 rainbow Power from one combat."
+      ],
+      "netPerIteration": "+9 rainbow Power per combat with three Avas (12 Gold minus the 3 Mind Power the triggers cost); +3 with one Ava, +6 with two",
+      "terminatesIn": "engine only — Ava's attack trigger checks once per combat (383.4.e.2.a) and Temporal Breach caps at 3 copies with no Mind/Order recursion, so this is three detonations across a game, not a per-turn loop",
+      "sources": [
+        {
+          "title": "Hunt lens [Hidden]/[Ambush] — issue #40 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/40",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "Temporal Breach prints neither [Action] nor [Reaction] and is one of 90 spells in the pool with no timing keyword. What lets Ava play it inside a combat is 419.3.a: 'This treats Play as a Limited Action.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md), issue #40 candidate 3. Card text verbatim from data/corpus_flat.txt. CORRECTION added to the #40 candidate: 419.3/419.3.a is the rule the line stands on for timing, which #40 omitted, and the Golem is declared at BASE so that 'the same location' keeps him out of the combat. The arithmetic closes with the quantities declared: 3 Avas × 1 Breach × 4 Gold = 12, minus 3 Mind Power, net +9. Stands on R25 = A only."
+    },
+    {
+      "id": "ava-achiever-hostile-takeover-conquer",
+      "name": "Ava Achiever x Hostile Takeover — a seven-resource spell for 1 Power, and the garrison walks off",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-107",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E5 M4. 'When I attack, you may pay 1 Mind Power to play a card with [Hidden] from your hand, ignoring its cost.' 356.1.b.1 zeroes both cost components; 419.3.a makes the play a Limited Action so the timing of the played card does not gate it."
+        },
+        {
+          "card": "SFD-202",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind/Order spell, E5 P2, [Hidden] — the most expensive [Hidden] card in the pool at 7 resources. 'Take control of an enemy unit at a battlefield. Ready it. (Start a combat if other enemies are there. Otherwise, conquer.) Lose control of that unit and recall it at end of turn.'"
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order (103.1.b.4): OGN-265, OGS-021, SFD-201, UNL-199.",
+          "Ava at the enemy battlefield you are attacking, one Hostile Takeover in hand, 1 Mind Power available during the combat."
+        ],
+        "notable": [
+          "THE GARRISON MUST BE EXACTLY ONE UNIT. Hostile Takeover's own reminder splits on it: 'Start a combat if other enemies are there. Otherwise, conquer.' With 2+ enemy units at the battlefield you steal one and still have to fight the rest. That is a condition on the opponent's board, not on yours, and it is the entry's real fragility.",
+          "WHY IT IS PLAYED FROM HAND, NOT FROM HIDDEN. 811.1.d.2 makes a hidden spell's targets \"chosen from among options at that battlefield\", and 811.1.b only lets you hide at a battlefield YOU control — so from Hidden this could only steal an enemy unit standing on your own battlefield, where taking it conquers nothing because you already hold it. Ava's from-hand play is governed by 811.3 instead: \"no restrictions on targeting\".",
+          "HOW THE POINT ACTUALLY LANDS. With the lone defender now yours, the opponent has no units at the battlefield, so 466.3.a gives you the combat (\"the only Player that has units remaining at this battlefield during this step\") and 466.5 plus 466.5.d establish Control, which \"results in a Conquer if that player has not yet scored this Battlefield this turn\". The showdown route says the same thing at 348.2.a / 348.2.a.1 — that pair is why R20 was retired rather than ruled.",
+          "THE RECALL DOES NOT UNDO IT. 'Lose control of that unit and recall it at end of turn' happens after the conquer, and 456/458 confirm a recall is not a move and changes no state. The point stays.",
+          "ONE POINT PER BATTLEFIELD PER TURN. 470: 'A player may only Score, from either method, once per Battlefield per turn.' Three Avas are not three points on the same battlefield, and a Duel puts two battlefields on the table (485.4), so scoring caps at 2 a turn. THAT is why this is ENGINE and not CHAIN.",
+          "AT SEVEN POINTS IT STOPS BEING A FINISHER. 471.1.b.1: a Conquer at one point from the Victory Score gives the final point only 'If the player has Scored every Battlefield this turn'; otherwise you draw a card instead of scoring.",
+          "A REAL COMBAT IS REQUIRED for Ava's trigger at all (461, 383.4.e): entering an empty enemy battlefield is not an attack."
+        ]
+      },
+      "steps": [
+        "Ava Achiever attacks battlefield Y, garrisoned by exactly one enemy unit (461: a Combat needs units of two opposing players).",
+        "464.2.c.3 gives Ava the Attacker designation; 383.4.e puts her attack trigger on the chain.",
+        "Pay 1 Mind Power; play Hostile Takeover from hand for 0 (356.1.b.1) as a Limited Action (419.3.a).",
+        "Take control of the lone defender and ready it. Y now has no enemy units.",
+        "466.3.a: you are the only player with units there, so you won the combat. 466.5 + 466.5.d establish Control, which is a Conquer — the point, plus every 'When I conquer' you control there.",
+        "At end of turn the stolen unit is recalled to its owner's base; the point is already scored (456, 458)."
+      ],
+      "netPerIteration": "one Conquer (1 point, subject to 470 and 471.1.b.1) plus a ready enemy body for the turn, for 1 Mind Power and a card",
+      "terminatesIn": "engine only — 470 caps scoring at once per battlefield per turn and a Duel has two battlefields (485.4), so the ceiling is 2 points a turn and this never becomes a chain",
+      "sources": [
+        {
+          "title": "Hunt lens [Hidden]/[Ambush] — issue #40 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/40",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "466.3.a: 'A Player has won a combat if they received either the attacker or defender designation and are the only Player that has units remaining at this battlefield during this step.' With the lone defender stolen, that is you, and 466.5.d turns establishing Control into a Conquer."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md), issue #40 candidate 4. Card text verbatim from data/corpus_flat.txt. The conquer path was walked through 466.3.a / 466.5 / 466.5.d rather than taken from the card's reminder text, and 348.2.a.1 confirms the showdown route reaches the same place — the pair that got R20 retired on 2026-09-04. Class held at ENGINE deliberately: 470 and the two-battlefield Duel board (485.4) cap scoring at 2 a turn, so this cannot be CHAIN. Distinct from ava-achiever-temporal-breach-trove-golem, which shares Ava but converts her trigger into Gold rather than into a conquer."
+    },
+    {
+      "id": "spiderling-swarm-grand-plaza",
+      "name": "Spiderling swarm on The Grand Plaza — the one card in the pool that ignores the 3-copy limit",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-097",
+          "quantity": 7,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E3 M1, [Hidden]. 'I have +1 Might for each other unit you control here with my name. Your deck can have any number of cards named Spiderling.' grep \"any number of cards named\" over the corpus returns exactly one line — this one. Rule 002 (card text supersedes rules text) is what lets it beat 103.2.b's 3-copy cap. With seven on the Plaza each is 1 + 6 = 7 Might."
+        },
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you hold here, if you have 7+ units here, you win the game.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend's Domain Identity includes Chaos (103.1.b.3); the Plaza is Colorless and fits any deck.",
+          "Seven Spiderlings alive at the Plaza when your Beginning Phase starts."
+        ],
+        "notable": [
+          "Battlefield entries: a player provides three battlefields and only one is used (485.4.a) — randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5) — and 103.4.c plus Tournament Rules 402.1 forbid bringing two of the same name, so there is no way to raise the odds.",
+          "A battlefield you provide starts UNCONTROLLED (190.1) and 190.6.d switches its text off while it has no Controller: \"If the battlefield has no Controller, 'you' refers to no one, and all such instructions are ignored.\" Walking a body there and establishing Control (466.5) is part of this entry's cost, and 811.1.b only lets you hide at a battlefield you control. You have to conquer the Plaza before a Spiderling can even be hidden there.",
+          "THE SEVEN ARE COUNTED AT THE INSTANT OF THE HOLD. 383.2.a.1: 'Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the Effect.' The Plaza's 'if you have 7+ units here' sits immediately after 'When you hold here', and 383.2.c evaluates the Condition 'after a potentially inciting event has been processed' — so the seven bodies must already be there when the Hold (469.2) happens, not afterwards.",
+          "THAT IS WHY THIS ROUTE IS DIFFERENT FROM THE [Temporary] ONES. leblanc-temporary-plaza reaches seven with Keeper of Masks, but those bodies are [Temporary] and 816.1.b kills them at the start of your Beginning Phase, which is why that entry needs UNL-090 LeBlanc, Everywhere at Once to switch the kill off (R10 = A) and why its Reflections sit at 0 Might (R27). Spiderlings are not [Temporary], need no keyword suppressed, and stand at 7 Might each.",
+          "COST OF ADMISSION: 7 × 3 Energy = 21 Energy spread over several turns, and seven slots in a Main Deck of at least 40 cards (103.2) — about 17.5% of the deck. This is a deck, not a tech package.",
+          "[Hidden] pays for one of them a turn: 811.1.b makes the flip free from the next turn on, and 811.1.d.1 sends the hidden permanent to the battlefield it was hidden at, i.e. the Plaza. The rest are played normally, since 355.2.a makes a battlefield you control a default valid location for units.",
+          "323.7 IS THE REAL PRICE OF HIDING. A Cleanup step 5 reads \"Remove all Hidden cards from all Battlefields that are not controlled by the same player and place them in their owner's Trash\", and 466.5.c repeats it the instant somebody establishes Control. Losing the battlefield does not put the hidden card on hold — it TRASHES it. Lose the Plaza and the Spiderling waiting facedown there is gone, not merely stranded.",
+          "The Plaza and OGN-278 Bandle Tree are both battlefields of yours, so 485.4.a keeps them off the same board: this entry and black-market-broker-bandle-tree-gold are alternatives, never a package.",
+          "Seven Spiderlings at 7 Might each survive damage well; they do not survive bounce or a board sweep, and the opponent gets turns in between."
+        ]
+      },
+      "steps": [
+        "Conquer The Grand Plaza (190.1: control is established through play; until then its text is ignored, 190.6.d).",
+        "Play Spiderlings to the Plaza across several turns — 355.2.a makes it a default valid location — and hide one per turn for a free flip later (811.1.b, 811.1.d.1).",
+        "Reach seven units at the Plaza. Each Spiderling is now 1 + 6 = 7 Might, 49 Might in total.",
+        "Survive to your Beginning Phase still holding the Plaza.",
+        "The Hold (469.2) fires the Plaza's trigger; 383.2.a.1 checks '7+ units here' as part of the Condition, at that instant — they are there — and you win the game (195)."
+      ],
+      "terminatesIn": "you win the game on the Hold, the moment seven units are standing at The Grand Plaza when your Beginning Phase starts",
+      "sources": [
+        {
+          "title": "Hunt lens [Hidden]/[Ambush] — issue #40 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/40",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "grep -in 'any number of cards named' data/corpus_flat.txt returns exactly one line, VEN-097 Spiderling. Rule 002 — 'Card text supersedes rules text. Whenever a card fundamentally contradicts the rules, the card's indication is what is true.' — is what makes it beat 103.2.b."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md), issue #40 candidate 5. Card text verbatim from data/corpus_flat.txt. The card-versus-rule question was resolved by opening rule 002 (the Golden Rule) rather than assuming it: 051, the Silver Rule, is the other half and governs terminology, not a permission conflict, so it does not apply. rc-walk36's Grand Plaza correction (383.2.a.1 + 383.2.c: the seven are counted at the instant of the Hold) is applied here and works in this route's FAVOUR — nothing has to be kept alive through a window, because the bodies are not [Temporary]. Excludes black-market-broker-bandle-tree-gold by 485.4.a. Depends on no unruled reading."
+    },
+    {
+      "id": "guards-industrialist-ready-soldiers",
+      "name": "Guards! with Renata Glasc, Industrialist — a ready body for a Power paid last turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-154",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, E3, [Hidden]. 'Play a 2 Might Sand Soldier unit token. Then do this: You may pay 1 Order Power to ready it.' Flipped from hidden it costs 0 (811.1.b) and 811.1.d.3 puts the token at the battlefield it was hidden at."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order unit, E4 P1 M4. 'Your tokens enter ready.' Guards! prints no entry state at all, so this is the plainest case of R25 = A in the pool: the default is 143.4 ('Units enter the Board exhausted') and Renata overrides the default, which means the 'You may pay 1 Order Power to ready it' clause is never paid."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend's Domain Identity includes Order (103.1.b.3). Mono-Order works, which is the whole point of this entry.",
+          "A battlefield you control to hide at, and Renata on the board when the flip resolves."
+        ],
+        "notable": [
+          "THREE PER GAME. 103.2.b caps Guards! at 3 copies and mono-Order has NO recursion of hidden cards — OGN-264 Guerilla Warfare is Mind/Chaos and 103.1.b.4 keeps it out. Order's five [Hidden] names are OGN-213, OGN-220, SFD-154, VEN-117 and VEN-135, and only Guards! makes a token.",
+          "This is deliberately the mono-Order floor of black-market-broker-bandle-tree-gold: same payload half, no Black Market Broker, no Chaos requirement, so it fits decks that entry cannot.",
+          "323.7 IS THE REAL PRICE OF HIDING. A Cleanup step 5 reads \"Remove all Hidden cards from all Battlefields that are not controlled by the same player and place them in their owner's Trash\", and 466.5.c repeats it the instant somebody establishes Control. Losing the battlefield does not put the hidden card on hold — it TRASHES it.",
+          "The Sand Soldier is not [Temporary], so it stays; 2 Might is still 2 Might, and the value here is that it arrives READY at a battlefield for a rainbow Power paid a turn earlier, against E3 + 1 Order Power from hand.",
+          "811.1.b's window is the catch: the flip is free only from the turn AFTER you hid it, and it is the BASE cost that is ignored, not additional costs."
+        ]
+      },
+      "steps": [
+        "Renata Glasc, Industrialist on the board.",
+        "In an Open State on your turn, hide Guards! at a battlefield you control for 1 rainbow Power (811.1.b).",
+        "From the next turn on, play it from facedown for 0, ignoring its base cost.",
+        "811.1.d.3 puts the 2 Might Sand Soldier token at that same battlefield.",
+        "Renata makes the token enter ready (R25 = A), so the 'You may pay 1 Order Power to ready it' clause is skipped: a ready body for a Power paid last turn."
+      ],
+      "netPerIteration": "one ready 2 Might Sand Soldier at a battlefield per hidden Guards!, for 1 rainbow Power paid the turn before",
+      "terminatesIn": "engine only — three copies of Guards! (103.2.b) with no mono-Order recursion of hidden cards, so three ready bodies a game",
+      "sources": [
+        {
+          "title": "Hunt lens [Hidden]/[Ambush] — issue #40 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/40",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "Guards! prints no entry state, so this is the cleanest R25 case left in the pool: the default is 143.4, 'Units enter the Board exhausted', and Renata overrides the default rather than a printed 'exhausted'."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md), issue #40 candidate 6. Card text verbatim from data/corpus_flat.txt. Kept as a separate entry from black-market-broker-bandle-tree-gold because it needs no Chaos and therefore runs under legends that entry cannot, but the ceiling is stated plainly: three uses a game. Stands on R25 = A only, and on the weakest form of it — there is no printed 'exhausted' to override, only 143.4's default."
+    },
+    {
+      "id": "katarina-reckless-hidden-burn",
+      "name": "Katarina, Reckless — hide to ready her, flip to burn, at the opponent's speed",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-023",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E5 P1 M5. 'When you hide a card, ready me. When you play a card from face down, deal 2 to an enemy unit.' The only card in the pool that pays for the ACT of hiding, which 421.1/421.2 make a Discretionary Action distinct from playing (811.1.c.1: 'Hide is not a subset of Play')."
+        },
+        {
+          "card": "SFD-121",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos unit, E3 M3. 'When you play a card from face down, play a Gold gear token exhausted.' Three separate permanents fire three times per flip. The Gold enters exhausted here: Renata Glasc, Industrialist is Order and cannot join a Fury/Chaos deck (103.1.b.4), so it readies at your Awaken (315.1.b)."
+        },
+        {
+          "card": "OGN-278",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'You may hide an additional card here.' Two slots means two hides and two flips a turn, i.e. two readies for Katarina and 4 free damage."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal",
+        "gold-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Chaos (103.1.b.4). Five do: OGN-251 Loose Cannon, OGS-017 Dark Child - Starter, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows.",
+          "Cards with [Hidden] to cycle, and a battlefield you control to hide at."
+        ],
+        "notable": [
+          "THE 'READY ME' IS THE STRONG HALF, NOT THE WEAK ONE, AND IT IS AN ORDERING TRICK. 144.2 makes exhausting the unit the COST of a Standard Move, and 811.1.b lets you hide 'on your turn during an Open State', which the Main Phase is. So: Standard Move Katarina to a battlefield (she exhausts), THEN hide a card, and the trigger readies her. She lands at a battlefield ready, the same turn, with no [Accelerate] and nothing extra paid. Issue #40 filed this as the weak half; the order is what makes it the strong one.",
+          "THE BURN IGNORES 811.1.d. 'Deal 2 to an enemy unit' is KATARINA'S triggered ability, not the flipped card's. 811.1.d.2 restricts 'a hidden spell or a play effect of a hidden permanent', and Katarina is neither, so the 2 damage can go to any enemy unit anywhere.",
+          "IT ARRIVES IN THE OPPONENT'S WINDOW. 811.6 gives a facedown card [Reaction], and 811.1.b opens the window 'beginning on the next turn' — which is the opponent's. Two flips there are 4 free damage at Reaction speed, on top of whatever the flipped cards do.",
+          "419.4.a.1 is the fine print: if the flipped card is countered, neither Katarina's second trigger nor the Brokers fire, because a play trigger waits for the card to resolve.",
+          "The hide cost is 1 rainbow Power per card (811.1.b), so two hides a turn is 2 Power out. Fury/Chaos has no way to make hiding free — OGN-263 Swift Scout and OGN-264 Guerilla Warfare are both Mind/Chaos.",
+          "Battlefield entries: a player provides three battlefields and only one is used (485.4.a) — randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5) — and 103.4.c plus Tournament Rules 402.1 forbid bringing two of the same name, so there is no way to raise the odds.",
+          "A battlefield you provide starts UNCONTROLLED (190.1) and 190.6.d switches its text off while it has no Controller: \"If the battlefield has no Controller, 'you' refers to no one, and all such instructions are ignored.\" Walking a body there and establishing Control (466.5) is part of this entry's cost, and 811.1.b only lets you hide at a battlefield you control.",
+          "323.7 IS THE REAL PRICE OF HIDING. A Cleanup step 5 reads \"Remove all Hidden cards from all Battlefields that are not controlled by the same player and place them in their owner's Trash\", and 466.5.c repeats it the instant somebody establishes Control. Losing the battlefield does not put the hidden card on hold — it TRASHES it."
+        ]
+      },
+      "steps": [
+        "Control the Bandle Tree: 2 hiding slots there (811.1.b plus the Tree's own text, by rule 002).",
+        "Standard Move Katarina to a battlefield — she exhausts, because that is the cost (144.2).",
+        "Hide a card with [Hidden] at a slot: 1 rainbow Power, and 'When you hide a card, ready me' readies her. She is a ready 5 Might body at a battlefield the turn she arrived.",
+        "Hide the second card: −1 more Power.",
+        "On the opponent's turn, flip both for 0 at Reaction speed (811.1.b, 811.6).",
+        "Each flip: Katarina deals 2 to any enemy unit (4 total, free), and three Black Market Brokers each make a Gold — six Gold, exhausted until your Awaken (315.1.b)."
+      ],
+      "netPerIteration": "4 damage spread freely across enemy units and 6 Gold tokens per turn on two slots, for 2 rainbow Power and 2 cards with [Hidden]; plus a ready Katarina after every exhaust",
+      "terminatesIn": "engine only — 811.1.b caps flips at one per slot per turn and each flip burns a card; Fury/Chaos has no recursion of hidden cards, so the engine runs while the deck's [Hidden] cards last",
+      "sources": [
+        {
+          "title": "Hunt lens [Hidden]/[Ambush] — issue #40 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/40",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "144.2 makes exhausting the unit the cost of a Standard Move and 811.1.b lets you hide during an Open State on your turn. Move first, hide second, and 'When you hide a card, ready me' gives you a ready 5 Might body at a battlefield the turn it arrives."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md), issue #40 candidate 7. Card text verbatim from data/corpus_flat.txt. REWRITTEN from the #40 candidate on its central claim: #40 calls the 'ready me' half weak because readying a ready unit does nothing, and that is true only if you hide before you move. Move first (144.2 makes the exhaust the cost) and hide second, both inside the same Main Phase Open State (811.1.b), and the trigger buys a ready body at a battlefield on arrival. The burn's free targeting was checked against 811.1.d.2 word for word: it restricts a hidden spell or a hidden permanent's play effect, and Katarina's trigger is neither. Depends on no unruled reading."
+    },
+    {
+      "id": "vi-peacekeeper-ambush-stun",
+      "name": "Vi, Peacekeeper — ambushing into a live combat, the stun lands after the opponent commits",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-176",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order unit, E5 P1 M5. '[Ambush] (You may play me as a [Reaction] to a battlefield where you have units.) When I attack, [Stun] an enemy unit here.' 822.1.b is what buys the location: 'I may be played to a battlefield where you control Units' AND '[Reaction] as long as I'm being played to a battlefield where you control Units.'"
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend's Domain Identity includes Order (103.1.b.3); mono-Order runs it.",
+          "Cheap bodies of your own already at the enemy battlefield, and a real garrison there to fight (461)."
+        ],
+        "notable": [
+          "[Ambush] IS DOING THE WORK, NOT [Hidden]. 813.3.a: 'Playing Units with Reaction still has the inherent restrictions of playing Units without Reaction. It can only be played to the controlling player's base or a battlefield they control.' Reaction alone therefore cannot put a unit on a battlefield you do NOT control; 822.1.b adds that permission, and 355.2.b makes such a location Valid. A [Hidden] unit could never do this.",
+          "WHY THE TRIGGER STILL FIRES AFTER THE COMBAT STARTED. 319.6 makes a Cleanup outstanding 'After any number of Game Objects enter or leave the Board', so one falls due the moment Vi arrives; 464.2.c.3.a then gives her the Attacker designation 'during the Cleanup phase following the action that caused it to become present'; 383.4.e fires Attack Triggers on gaining that designation; and 465.2 does not resolve combat damage until 'the Showdown closes'. The stun lands after the opponent has spent their window and before any damage.",
+          "WHAT THE STUN ACTUALLY BUYS. 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' It buys the enemy's OUTPUT. It does not make the unit cheaper to kill — 423.1.c: 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might value to be killed.' And 423.1.a.2 drops the status at step 3d of the end-of-turn cleanup, so it lasts one turn.",
+          "822.3 IS THE REFUTATION TO PLAY AROUND: 'If there are no units at the location chosen before Finalization completes for any reason, then it is no longer a valid location by Ambush's reasoning and cannot be played there.' Sweep your cheap bodies in response and Vi has nowhere to go.",
+          "383.4.e.2.a caps her at one condition check per combat, so a second stun needs a second combat.",
+          "This is tempo, not points: +5 attacking Might arriving late and −(the stunned unit's Might) on defence, decided after the opponent has committed. Nothing here scores."
+        ]
+      },
+      "steps": [
+        "Open a combat yourself at the enemy battlefield with cheap bodies — 461 needs units of two opposing players there.",
+        "The showdown runs: 347.1 lets both players play legally timed cards, and the opponent commits their tricks first.",
+        "Play Vi with [Ambush] to that battlefield (822.1.b gives both the location and the [Reaction] timing).",
+        "319.6 makes a Cleanup outstanding as she enters the Board; 320 freezes the chain while it runs.",
+        "464.2.c.3.a gives Vi the Attacker designation during that Cleanup; 383.4.e puts 'When I attack, [Stun] an enemy unit here' on the chain.",
+        "The showdown closes and 465.2 resolves damage with current Might: Vi's 5 is in, and the stunned unit's Might is out (423.1.b)."
+      ],
+      "netPerIteration": "+5 attacking Might and one enemy unit's Might removed from the defence, both decided after the opponent's window closed",
+      "terminatesIn": "engine only — one attack trigger per combat (383.4.e.2.a) and the stun expires at the end-of-turn cleanup (423.1.a.2); it wins combats, it does not score",
+      "sources": [
+        {
+          "title": "Hunt lens [Hidden]/[Ambush] — issue #40 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/40",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "319.6 makes a Cleanup outstanding 'After any number of Game Objects enter or leave the Board' and 464.2.c.3.a gives a late-arriving unit the Attacker designation 'during the Cleanup phase following the action that caused it to become present'. 465.2 only resolves damage 'when the Showdown closes', so the ambushed attack trigger beats the damage."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md), issue #40 candidate 8. Card text verbatim from data/corpus_flat.txt. All four rules issue #40 leans on (319.6, 464.2.c.3.a, 383.4.e, 465.2) were opened and say what #40 says they say. One precision added that #40 does not state: 423.1.c means a stun does NOT make the unit cheaper to kill — it removes its damage output only. Class held at ENGINE: this is tempo, nothing in it scores."
+    },
+    {
+      "id": "lotus-trap-morgana-excess-damage",
+      "name": "Lotus Trap — halving what a blocker costs to kill is how you manufacture excess damage",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-013",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury spell, E2, [Hidden] and [Reaction]. 'Choose a unit. Double all damage that would be dealt to it this turn.' The Core Rules quote this text word for word in the worked example at 465.2.c.4.a and NAME the card at 465.2.c.5."
+        },
+        {
+          "card": "UNL-018",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E6 M6. 'When I conquer, if you assigned 3 or more excess damage, play two Gold gear tokens exhausted.' He must SURVIVE the combat: 383.4.c.2.a only puts a Conquer Ability on the chain after the unit it belongs to is present when its controller gains control."
+        },
+        {
+          "card": "VEN-017",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E5 P1 M5, [Ambush]. 'When you play me, deal damage to a unit equal to the damage marked on it.' Under Lotus Trap the k damage she deals is doubled to 2k, so a unit with k marked ends at 3k. She needs damage ALREADY marked — combat damage is not dealt until the showdown closes (465.2)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "gold-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend's Domain Identity includes Fury (103.1.b.3); mono-Fury runs all three.",
+          "A real combat you are attacking into, with a garrison — the Yeti's payoff is a Conquer trigger."
+        ],
+        "notable": [
+          "PLAY LOTUS TRAP FROM HAND, NOT FROM HIDDEN, WHEN YOU ARE THE ATTACKER. This is the correction to issue #40, which quotes the free-from-hidden mode as the combo's mode. From Hidden, 811.1.d.2 forces the target 'from among options at that battlefield' and 811.1.b only lets you hide at a battlefield YOU control — so the free mode can only point at a unit standing on your own battlefield, which is a DEFENSIVE mode. And defending never conquers: all six excess-damage cards read 'When I conquer' or 'When you conquer'. To feed the Yeti, play it from hand for 2 Energy under 811.3 ('may be played for its cost as normal, at its normal timing with no restrictions on targeting') plus its own [Reaction].",
+          "HOW THE HALVING WORKS, from the rules' own example. 465.2.c.4.a: 'If the damage assigned to a Unit is modified to or replaced by an amount of damage larger than the initial value, the assigning player must choose the minimum applied value such that the unit would take lethal damage.' Its worked example uses Lotus Trap's exact text on a 3 Might unit and concludes you assign 2, which doubles to 4. So against a defender of Might M you spend ceil(M/2) of your Might pool instead of M.",
+          "AND THE MIGHT YOU SAVED IS THE EXCESS. 'Excess damage' appears ZERO times in the Core Rules — grepped in this walk — and is printed on six cards (OGN-034, SFD-120, UNL-018, UNL-187, UNL-188, UNL-217). R28 = A (ruled 2026-09-04) defines it as attacking Might that never got assigned, and notes the tail of 465.2.c.4 it overrides ('unless no further units remain to have damage assigned to them'), which read literally would make all six cards dead letter against rule 002.",
+          "THE SMALL CASE DOES NOT CLOSE, and it is stated rather than hidden: against a 6 Might defender you assign 3 instead of 6 and free 3, which is exactly the Yeti's threshold. Against a 3 Might defender you assign 2 instead of 3 and free 1 — not enough on its own.",
+          "DISTINCT FROM yeti-brambleback-renata-gold, which shares the Yeti. That entry takes its excess from a LIGHT garrison ('any garrison summing under 11 Might') and multiplies it with Red Brambleback under R1 = A. This one MANUFACTURES excess against a heavy garrison with a replacement effect, in mono-Fury and without Renata, so the two Gold enter exhausted and ready at your Awaken (315.1.b).",
+          "MORGANA NEEDS DAMAGE ALREADY MARKED. 465.2 deals combat damage only when the showdown closes, so her 'equal to the damage marked on it' reads whatever was marked earlier in the turn — burn, or an earlier combat. [Ambush] (822.1.b) is what lets her arrive at a battlefield you do not control, provided you have units there; 822.3 takes that permission away if those units die first.",
+          "A REAL COMBAT IS REQUIRED: 461 needs units of two opposing players, and with no combat no damage is assigned, so the excess-damage clause can never be met on a walk-in conquer.",
+          "ONE CONQUER PER BATTLEFIELD PER TURN (466.5.d, 470), and the Yeti has to survive it (383.4.c.2.a)."
+        ]
+      },
+      "steps": [
+        "Attack an enemy battlefield with the Yeti Brawler and whatever else you brought; a garrison is mandatory (461).",
+        "During the showdown, play Lotus Trap FROM HAND for 2 Energy at Reaction speed (811.3 plus its printed [Reaction]), choosing the biggest defender.",
+        "The showdown closes. 465.2.c.4.a makes you assign that defender ceil(M/2) instead of M, so the rest of your attacking Might has nowhere to go: that leftover is excess damage under R28 = A.",
+        "Win the combat and establish Control: 466.5.d makes that a Conquer.",
+        "Yeti's trigger checks '3 or more excess damage', finds it, and plays two Gold gear tokens exhausted; they ready at your next Awaken (315.1.b).",
+        "Optional, and a separate window: Morgana ambushes in (822.1.b) and deals a unit damage equal to what is already marked on it — doubled by Lotus Trap if she is aimed at the same target."
+      ],
+      "netPerIteration": "ceil(M/2) instead of M spent on the chosen defender, so M - ceil(M/2) of attacking Might becomes excess damage; two Gold from the Yeti when that reaches 3",
+      "terminatesIn": "engine only — one Conquer per battlefield per turn (466.5.d, 470) and two exhausted Gold per trigger; Lotus Trap caps at 3 copies (103.2.b)",
+      "sources": [
+        {
+          "title": "Hunt lens [Hidden]/[Ambush] — issue #40 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/40",
+          "date": "2026-09-05"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-05",
+          "quote": "465.2.c.5's third worked example names the card outright: 'That unit has a prevent value of two being applied to it, as well as the effect of Lotus Trap, doubling the damage dealt to them.' 465.2.c.4.a's example uses Lotus Trap's text verbatim and makes the assigning player choose 2 against a 3 Might unit."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md), issue #40 candidate 9. Card text verbatim from data/corpus_flat.txt. REWRITTEN on its central claim: issue #40 quotes the free-from-Hidden mode as the combo's mode, but 811.1.d.2 plus 811.1.b confine a hidden Lotus Trap to a unit at a battlefield YOU control, which is defensive, and defending never conquers — every excess-damage card in the pool is gated on 'When I conquer' or 'When you conquer'. To feed the Yeti it has to be played from hand for 2 Energy under 811.3. The small case is written out rather than hidden: a 3 Might defender frees only 1 and does not reach the Yeti's threshold. Stands on R28 = A, already ruled, and inherits 383.4.c.2.a's survival requirement from yeti-brambleback-renata-gold."
     }
   ]
 }
