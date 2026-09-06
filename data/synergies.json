@@ -855,7 +855,10 @@
           "808.2",
           "808.3"
         ],
-        "combos": []
+        "combos": [
+          "karthus-black-rose-double-channel",
+          "karthus-rift-herald-double-play"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
@@ -908,7 +911,11 @@
           "807.1.d",
           "807.2"
         ],
-        "combos": []
+        "combos": [
+          "tryndamere-brambleback-conquer",
+          "vi-hotheaded-excess-threshold",
+          "gauntlets-enforcer-conquer"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
@@ -929,7 +936,13 @@
           "431.1.b",
           "431.2"
         ],
-        "combos": []
+        "combos": [
+          "jhin-virtuoso-ekko-malzahar-vi",
+          "gemdragon-henge-vi-blind-fury",
+          "desert-call-vi-sand-soldier-plaza",
+          "vi-ride-the-wind-double-conquer",
+          "confront-vi-stormbringer"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-05",
@@ -1328,7 +1341,10 @@
           "423.1.a.2",
           "423.1.b"
         ],
-        "combos": []
+        "combos": [
+          "radiant-dawn-stun-buff-free-glory",
+          "solari-chief-facebreaker-shrine-kill"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2725,6 +2741,637 @@
           "383.2.c.2"
         ],
         "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 7
+    },
+    {
+      "id": "heimerdinger-inventor-exhaust-copy",
+      "name": "Heimerdinger, Inventor gains every friendly exhaust ability on the board",
+      "anchor": "OGN-111",
+      "partner": {
+        "textMatches": ":rb_exhaust::",
+        "types": [
+          "unit",
+          "gear",
+          "legend"
+        ]
+      },
+      "why": "\"I have all exhaust abilities of all friendly legends, units, and gear\" makes 377.1's colon syntax the whole predicate: any Activated Ability on a friendly legend, unit or gear becomes Heimerdinger's own, usable off his own exhaust and whatever else the cost asks for, without owning the source card or even having it on the board (Malzahar's kill-cost Power, Renata Mastermind's scoring exhaust, Vanguard Armory's three Recruits). Two things the list cannot show. 053.1 re-reads every \"I\"/\"me\" in the borrowed text as Heimerdinger, so a condition worded \"while I'm at a battlefield\" (377.2.b's own worked example is Ultrasoft Poro) becomes a condition on HIM, not on the card he copied it from (R30) — he must stand at a battlefield to use Renata's, Caitlyn's or Xerath's line even though they need not. And 383.1 is why this predicate stays clean of the readying family's traps: a \"you may exhaust me to …\" clause is a Triggered Ability (it fires off a trigger condition, not off being activated) and carries no colon, so it never matches and is never copied — only genuine Activated Abilities are.",
+      "basis": {
+        "rules": [
+          "377.1",
+          "377.2.b",
+          "053.1",
+          "383.1"
+        ],
+        "combos": [
+          "heimerdinger-renata-remote-score",
+          "heimerdinger-vanguard-armory-recruits",
+          "heimerdinger-malzahar-double-power",
+          "heimerdinger-herald-legend-recruits"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 75
+    },
+    {
+      "id": "blade-of-ruined-king-deathknell-ondemand",
+      "name": "Blade of the Ruined King pays its own Equip cost with any [Deathknell] card",
+      "anchor": "SFD-178",
+      "partner": {
+        "textMatches": "\\[Deathknell\\]",
+        "types": [
+          "unit"
+        ],
+        "excludes": [
+          {
+            "card": "OGN-236",
+            "why": "\"Your [Deathknell] effects trigger an additional time\" only doubles OTHER permanents' Deathknells; he carries none of his own, so killing him with the Equip cost fires nothing."
+          }
+        ]
+      },
+      "why": "818.1.c.2 makes Equip a Cost — \"Attach this gear to a unit you control\" — and 377.1 reads the Blade's \"[Equip] — 1 Order Power, Kill a friendly unit\" as one combined cost paid to attach it, so the kill is EFFECT TEXT after the comma, not a targeted removal spell (416.3/203.3/185 never bite: 428.1 lets any friendly unit, including a token, pay it). Any [Deathknell] unit turns that cost into its own payoff on demand, in the same beat the Blade goes on: 808.1.a puts the Deathknell on the dying permanent and 808.1.d.2 chains it before the Blade's own Equip resolves. The Equip cost only spends a UNIT — the three gear carrying [Deathknell] in the raw grep (The Zero Drive, Sacred Shears, Sprite Fountain) never qualify, which is why the predicate is typed to units.",
+      "basis": {
+        "rules": [
+          "818.1.c.2",
+          "808.1.a",
+          "808.1.d.2"
+        ],
+        "combos": [
+          "karthus-honest-broker-blade-gold",
+          "karthus-sacred-shears-blade-draw",
+          "karthus-machine-evangel-renata-plaza",
+          "karthus-glasc-mixologist-double-reanimate"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 22
+    },
+    {
+      "id": "heedless-resurrection-deathknell-ondemand",
+      "name": "Heedless Resurrection pays its own additional cost with any [Deathknell] card",
+      "anchor": "UNL-142",
+      "partner": {
+        "textMatches": "\\[Deathknell\\]",
+        "types": [
+          "unit"
+        ],
+        "excludes": [
+          {
+            "card": "OGN-236",
+            "why": "\"Your [Deathknell] effects trigger an additional time\" only doubles OTHER permanents' Deathknells; he carries none of his own, so killing him as the additional cost fires nothing."
+          }
+        ]
+      },
+      "why": "Heedless Resurrection's additional cost — \"kill a friendly unit\" — is EFFECT text tied to a Cost (202/203.3), so any [Deathknell] unit turns the mandatory kill it needs to pay for anyway into a free extra trigger, on top of the reanimated body the spell hands back for no more Energy and no more Power than the one killed. 808.1.a puts the Deathknell on the dying permanent, and 808.1.d.2 chains it ahead of the spell's own resolution. Typed to units for the same reason as Blade of the Ruined King: the cost only spends a UNIT, so the three [Deathknell] gear in the pool never qualify.",
+      "basis": {
+        "rules": [
+          "808.1.a",
+          "808.1.d.2"
+        ],
+        "combos": [
+          "heedless-resurrection-removal-blank",
+          "undercover-agent-heedless-chompers"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 22
+    },
+    {
+      "id": "unforgiven-move-triggers",
+      "name": "Unforgiven's exhaust move fires a move trigger every turn for free",
+      "anchor": "OGN-259",
+      "partner": {
+        "textMatches": "When I move\\b"
+      },
+      "why": "Unforgiven's legend ability — \"2 Energy, exhaust: Move a friendly unit to or from its base\" — is an effect Move (420.1), so it fires that unit's own move triggers and those of any Equipment attached to it (420.2.a), exactly like Ride the Wind and the other two move-effect anchors. The legend's cost carries an exhaust, so 315.1.b readies it once every Awaken: one free move trigger a turn for as long as Unforgiven is out, with no card spent. A recall is not a Move (456.1) and would not do this.",
+      "basis": {
+        "rules": [
+          "420.1",
+          "420.2.a",
+          "456.1"
+        ],
+        "combos": [
+          "yasuo-syren-unforgiven-point",
+          "yasuo-windrider-ride-the-wind-chain",
+          "yasuo-stellacorn-svellsongur-draw"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 28
+    },
+    {
+      "id": "grandmaster-at-arms-equip-relay",
+      "name": "Grandmaster at Arms re-attaches an Equipment's per-event bonus to a new body for free every turn",
+      "anchor": "SFD-193",
+      "partner": {
+        "textMatches": "attached to me this turn|[Ww]hen I (conquer|hold|attack|move|win a combat)",
+        "types": [
+          "gear"
+        ]
+      },
+      "why": "Grandmaster at Arms' second ability — \"exhaust: Attach an attached Equipment you control to a unit you control\" — carries no Energy, so once any of these fourteen is on somebody it can move to a fresh unit every turn for the price of the exhaust alone (818.1.c.2 makes Equip functionally \"[Cost]: Attach this gear to a unit you control\", and 434.1.f detaches it from the old unit automatically). Each of the fourteen grants a bonus keyed to something the WEARER does — conquer, hold, move, attack or defend, or (Brutalizer) simply having just been attached — so relaying it to a new unit each turn either spreads a one-shot buff across the board (Warmog's Armor, the two Gold-makers) or repoints a repeatable trigger at whichever body is best placed to fire it that turn (Recurve Bow, Forgefire Cape, Pendulum Blade). Two things the list cannot show. The legend's FIRST ability — \"1 Energy, exhaust: attach a DETACHED Equipment\" — is a separate, costed ability for the initial equip; only the free reattach is the engine here, so 315.1.b limits it to one reattachment a turn. And 434.1.c is why the moved bonus is live the instant it lands: the Top-Most Card's Rules Text already carries all Effect Text of everything Attached to it.",
+      "basis": {
+        "rules": [
+          "434.1.c",
+          "434.1.f",
+          "818.1.c.2"
+        ],
+        "combos": [
+          "jax-grandmaster-warmogs-buff",
+          "jax-grandmaster-brutalizer-refresh"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 14
+    },
+    {
+      "id": "kadregrin-mighty-payoff",
+      "name": "Kadregrin draws off the same Mighty count a mass buff or a big body maximizes",
+      "anchor": "OGN-038",
+      "partner": {
+        "textMatches": "\\[Mighty\\]"
+      },
+      "why": "Kadregrin's \"When you play me, draw 1 for each of your [Mighty] units\" (708: 5+ Might) reads off the same count every other [Mighty]-keyed card in the pool cares about, and the walked entries use him on both sides of it. As a PAYOFF he pairs with anything that pushes bodies past the 5-Might line for free — Pridestalker's unconditional \"give a unit +1 Might\" on every unit play is the clean example, and Show of Strength (SFD-106) prints the identical \"draw 1 for each of your [Mighty] units\" line, so the two payoffs stack rather than compete. As a 9-Might BODY he is also fodder for cards that key off Mighty state or count rather than grant it — Sky Splitter's cost reduction reads \"the highest Might among units you control\", and Sacrifice and Sunken Temple both gate on a Mighty unit being present. The list mixes payoffs, triggers and thresholds on purpose: all nine observe the same 5-Might line, and a deck stacking several of them turns one buff or one big body into several simultaneous payoffs.",
+      "basis": {
+        "rules": [
+          "708"
+        ],
+        "combos": [
+          "gemdragon-henge-vi-blind-fury",
+          "pridestalker-mighty-draw",
+          "sky-splitter-volibear-free-removal"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 9
+    },
+    {
+      "id": "undertitan-reveal-fuel",
+      "name": "Undertitan pays for its own play with any effect that reveals from your own Main Deck",
+      "anchor": "SFD-175",
+      "partner": {
+        "textMatches": "[Rr]eveal(s|ed|ing)? (the top|up to \\d+ cards?|cards from|the top \\d+ cards?)",
+        "excludes": [
+          {
+            "card": "OGN-025",
+            "why": "\"Each opponent reveals the top card of their Main Deck\" reveals from the OPPONENT's deck, where Undertitan can never be sitting."
+          },
+          {
+            "card": "OGN-200",
+            "why": "\"reveal the top rune of your rune deck\" reveals from the Rune Deck, not the Main Deck a unit card lives in."
+          }
+        ]
+      },
+      "why": "Undertitan's \"As I'm revealed from your deck, [Add] 2 Energy\" is a zone-active Triggered Ability (385.2: abilities outside the board self-describe their context) that fires the instant ANY effect reveals from your own Main Deck (424.1/424.1.a.1 let a card reference the act of being revealed), whether or not it ends up played. The predicate is restricted to your OWN Main Deck on purpose: Blind Fury reveals the opponent's deck and Twisted Fate reveals the Rune Deck, and Undertitan can never be sitting in either. Left unplayed, a revealed Undertitan just recycles to the bottom (416.1.a) and can pay again the next time it surfaces, so every reveal-heavy card in the pool finances part of its own cost for free.",
+      "basis": {
+        "rules": [
+          "385.2",
+          "424.1",
+          "424.1.a.1",
+          "416.1.a"
+        ],
+        "combos": [
+          "reksai-undertitan-reveal",
+          "void-rush-undertitan-accelerate",
+          "diana-lunari-showdown-scry",
+          "teemo-strategist-undertitan-mind-order-reveal"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 10
+    },
+    {
+      "id": "black-market-broker-hidden-family",
+      "name": "Black Market Broker turns every card in the [Hidden] package into a free Gold token",
+      "anchor": "SFD-121",
+      "partner": {
+        "textMatches": "\\[Hidden\\]",
+        "excludes": [
+          {
+            "card": "OGN-107",
+            "why": "plays the [Hidden] card FROM HAND, ignoring its cost — 811.1.c.1 (\"Hide is not a subset of Play\") means that is not playing it from face down, so Black Market Broker never sees it."
+          },
+          {
+            "card": "OGN-167",
+            "why": "watches for a card played from [Hidden]; it does not carry [Hidden] itself, so playing Ember Monk openly never triggers Black Market Broker."
+          },
+          {
+            "card": "OGN-264",
+            "why": "returns [Hidden] cards from the trash and lets you hide cards for free; Guerilla Warfare itself carries no [Hidden] to be played from face down."
+          },
+          {
+            "card": "OGN-018",
+            "why": "\"Your opponents' [Hidden] cards can't be revealed here\" is about the OPPONENT's hidden cards; Noxus Saboteur carries no [Hidden] of his own."
+          },
+          {
+            "card": "OGN-263",
+            "why": "lets you hide a card for less; the legend itself has no [Hidden] to play from face down."
+          }
+        ]
+      },
+      "why": "811.1.c.3 — \"Playing a card from facedown (or 'from Hidden') does open a chain\" — is the event Black Market Broker's \"When you play a card from face down\" watches for, and every card printed with the [Hidden] keyword is a card that CAN be that event: hide it for the printed rainbow cost, then play it later from Hidden, and the Broker mints a Gold gear token on top of whatever the card itself does. The predicate is deliberately about carrying [Hidden] on the card's OWN text, not about mentioning the keyword: five cards in the raw grep only reference [Hidden] cards in general (Ava Achiever plays one from hand, which 811.1.c.1 says is not the same event; Ember Monk, Noxus Saboteur, Guerilla Warfare and Swift Scout all talk about hiding or revealing without carrying [Hidden] themselves) and never trigger the Broker.",
+      "basis": {
+        "rules": [
+          "811.1.c.3",
+          "811.1.c.1"
+        ],
+        "combos": [
+          "black-market-broker-bandle-tree-gold",
+          "swift-scout-guerilla-hide-cycle",
+          "katarina-reckless-hidden-burn",
+          "chemtech-cask-broker-double-gold"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 38
+    },
+    {
+      "id": "flame-chompers-discard-family",
+      "name": "Flame Chompers turns any effect that discards your own hand into a body, free",
+      "anchor": "OGN-006",
+      "partner": {
+        "textMatches": "[Dd]iscard \\d|[Yy]ou (may )?discard",
+        "excludes": [
+          {
+            "card": "OGN-202",
+            "why": "\"When you discard one or more cards, ready me\" WATCHES for a discard; Jinx, Rebel never causes one herself, so she never puts Flame Chompers in the trash."
+          },
+          {
+            "card": "VEN-094",
+            "why": "\"When you discard me, you may pay to buff a unit\" is a self-recursion payoff of the same shape as Flame Chompers, not a source that discards him."
+          }
+        ]
+      },
+      "why": "\"When you discard me, you may pay [Fury]: play me\" is a Triggered Ability that self-describes its context (385.2) and evaluates its condition after the discard resolves (383.2.c) — it does not care WHY the card left the hand, only that it did, so every effect in the pool that discards a card from your own hand turns a 3-Energy 3-Might body sitting dead in your hand into a 1-Fury-Power body on the board. Repeatable sources (Square Up's [Repeat] discard, Master of Shadows' exhaust-discard) can rebuy him more than once a turn; a card that only discards on a Deathknell (Undercover Agent) or a move (Corrupt Enforcer, Hwei, Traveling Merchant) still finds him eventually. The predicate is restricted to effects that DISCARD — two cards in the raw grep only watch for a discard (Jinx, Rebel) or share Flame Chompers' own self-recursion shape (Mask Mother) without causing one.",
+      "basis": {
+        "rules": [
+          "385.2",
+          "383.2.c",
+          "203.1"
+        ],
+        "combos": [
+          "flame-chompers-discard-recursion",
+          "get-excited-flame-chompers-jinx",
+          "undercover-agent-heedless-chompers",
+          "smdr-trash-copies-conquer",
+          "master-of-shadows-banish-rummage",
+          "minah-ride-the-wind-mutual-discard"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 24
+    },
+    {
+      "id": "fae-dragon-buff-spend-payoff",
+      "name": "Fae Dragon pays a Gold token for any card that spends a buff",
+      "anchor": "SFD-101",
+      "partner": {
+        "textMatches": "spend (a|any number of|its) buff"
+      },
+      "why": "\"When you spend a buff, play a Gold gear token exhausted\" is a Triggered Ability that watches the Buff status leave a unit (701, 702.2, 702.2.b), not who spends it or why, so Fae Dragon's own play trigger — buff up to four friendly units — feeds directly into every other card in the pool whose cost or effect spends one: Wallop and Call to Glory ignore their own cost for it, Kraken Hunter discounts itself per buff spent, Albus Ferros and Overt Operation spend several at once for runes or readies, Wildclaw Shaman and Monastery of Hirana spend one to ready or draw, and The Boss spends a dying unit's buff to save it. Each spend is a separate Gold, so Albus Ferros or Overt Operation spending several buffs in one resolution mints one Gold per buff, not one for the card.",
+      "basis": {
+        "rules": [
+          "701",
+          "702.2",
+          "702.2.b"
+        ],
+        "combos": [
+          "fae-dragon-wallop-industrialist",
+          "kraken-hunter-buff-discount-gold",
+          "overt-operation-fae-dragon-industrialist"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 8
+    },
+    {
+      "id": "leona-zealot-stun-might-collapse",
+      "name": "Leona, Zealot turns any stun into near-lethal removal",
+      "anchor": "OGN-079",
+      "partner": {
+        "textMatches": "\\[Stun\\]|[Ss]tun (a|an|one|up to|all|the|each|that|target)",
+        "excludes": [
+          {
+            "card": "OGN-059",
+            "why": "it does not stun anything — \"When you stun an enemy unit, ready me\" is a second payoff for the stun, so it wants the same third card Leona does rather than pairing with her."
+          },
+          {
+            "card": "UNL-055",
+            "why": "same shape — \"When you [Stun] an enemy unit at a battlefield, you may move me there\" pays for a stun somebody else provides; she is not a source."
+          },
+          {
+            "card": "OGN-261",
+            "why": "\"When you stun one or more enemy units, buff a friendly unit\" is the same shape as Eclipse Herald and Vex, Mocking: a payoff that watches for a stun rather than a source that provides one."
+          }
+        ]
+      },
+      "why": "Leona's \"Stunned enemy units here have -8 Might, to a minimum of 1\" makes 423.1.c matter more than 423.1.b: a stunned unit still needs damage equal to its full CURRENT Might to die, so any stun landed at her battlefield collapses the defender to as low as 1 Might before combat damage is even assigned. 423.1.a.1 caps the family (a Stunned Unit cannot be Stunned again) and 423.1.a.2 clears the state only at end-of-turn cleanup, so one stun a turn per unit is the ceiling regardless of how many sources are stacked. Two entries in the raw grep only watch for a stun instead of causing one — same shape as radiant-dawn-stun-buff's own excludes, plus Radiant Dawn herself for the identical reason.",
+      "basis": {
+        "rules": [
+          "423.1.a.1",
+          "423.1.a.2",
+          "423.1.c"
+        ],
+        "combos": [
+          "leona-zealot-stun-might-collapse",
+          "leona-zealot-stun-lethal-spread"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 21
+    },
+    {
+      "id": "solari-chief-stun-into-kill",
+      "name": "Solari Chief turns a second stun source into an outright kill",
+      "anchor": "OGN-225",
+      "partner": {
+        "textMatches": "\\[Stun\\]|[Ss]tun (a|an|one|up to|all|the|each|that|target)",
+        "excludes": [
+          {
+            "card": "OGN-059",
+            "why": "it does not stun anything — \"When you stun an enemy unit, ready me\" is a second payoff for the stun, so it wants the same third card Solari Chief does rather than pairing with him."
+          },
+          {
+            "card": "UNL-055",
+            "why": "same shape — \"When you [Stun] an enemy unit at a battlefield, you may move me there\" pays for a stun somebody else provides; she is not a source."
+          },
+          {
+            "card": "OGN-261",
+            "why": "\"When you stun one or more enemy units, buff a friendly unit\" is the same shape as Eclipse Herald and Vex, Mocking: a payoff that watches for a stun rather than a source that provides one."
+          }
+        ]
+      },
+      "why": "Solari Chief's own play trigger — \"Choose an enemy unit. If it is stunned, kill it. Otherwise, stun it.\" — is itself a conditional stun/kill, so any OTHER stun source in the pool that reaches the same unit first turns his second half into an outright kill instead of a second stun (423.1.a.1 forbids stunning an already-stunned unit anyway, so the card's own text anticipates exactly this). 423.1.a.2 clears the state only at end-of-turn cleanup, so the two stuns have to land in the same turn. Two entries in the raw grep only watch for a stun instead of causing one, plus Radiant Dawn for the same reason.",
+      "basis": {
+        "rules": [
+          "423.1.a.1",
+          "423.1.a.2"
+        ],
+        "combos": [
+          "solari-chief-facebreaker-shrine-kill"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 21
+    },
+    {
+      "id": "ava-achiever-hidden-discount",
+      "name": "Ava Achiever plays any [Hidden] card from hand for 1 Mind Power",
+      "anchor": "OGN-107",
+      "partner": {
+        "textMatches": "\\[Hidden\\]",
+        "excludes": [
+          {
+            "card": "OGN-167",
+            "why": "watches for a card played from [Hidden]; it does not carry [Hidden] itself."
+          },
+          {
+            "card": "OGN-264",
+            "why": "returns [Hidden] cards from the trash and discounts hiding; it carries no [Hidden] of its own."
+          },
+          {
+            "card": "OGN-018",
+            "why": "\"Your opponents' [Hidden] cards can't be revealed here\" is about the opponent's hidden cards; he carries none himself."
+          },
+          {
+            "card": "OGN-263",
+            "why": "discounts hiding a card; the legend itself has no [Hidden] to play."
+          },
+          {
+            "card": "SFD-139",
+            "why": "\"When you play this from face down\" needs the card to actually come from Hidden — Ava Achiever plays it FROM HAND instead, so the attach trigger never fires."
+          },
+          {
+            "card": "UNL-141",
+            "why": "\"When you play me from face down on your turn\" is the same trap: played from hand, her move-in trigger never fires."
+          },
+          {
+            "card": "VEN-099",
+            "why": "\"When you play me from face down\" — played from hand instead, the Empower option never triggers."
+          }
+        ]
+      },
+      "why": "Ava Achiever's \"When I attack, you may pay 1 Mind Power to play a card with [Hidden] from your hand, ignoring its cost\" turns every card in the [Hidden] package into a flat 1-Power play, whatever it prints — 811.1.a scopes the keyword to Spells, Units and Gear, so a 6-Energy [Hidden] spell and a 1-Energy one cost the same off her attack trigger. Two shapes in the raw grep do not belong. Four cards only mention [Hidden] in their own text without carrying it (the same four Black Market Broker's rule excludes for the same reason). And 811.1.c.1 (\"Hide is not a subset of Play\") is why three more are only PARTIALLY live here: Edge of Night, Evelynn, Entrancing and Tornado Warrior each gate their real payoff on being played FROM FACE DOWN specifically, and Ava Achiever's ability plays the card from hand instead — the card still lands on the board, but the attach/move/empower bonus that makes it worth naming here never fires.",
+      "basis": {
+        "rules": [
+          "811.1.a",
+          "811.1.c.1"
+        ],
+        "combos": [
+          "ava-achiever-temporal-breach-trove-golem",
+          "ava-achiever-hostile-takeover-conquer"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 35
+    },
+    {
+      "id": "show-of-strength-mighty-payoff",
+      "name": "Show of Strength draws off the same Mighty count Kadregrin does",
+      "anchor": "SFD-106",
+      "partner": {
+        "textMatches": "\\[Mighty\\]"
+      },
+      "why": "Show of Strength prints the identical \"Draw 1 for each of your [Mighty] units\" Kadregrin carries, as a [Reaction] spell instead of a unit's play trigger — so it stacks with him rather than competing, and it can be cast on the opponent's turn once your board is already built. Same family (708: 5+ Might) and same two-sided pairing as kadregrin-mighty-payoff: a mass-buff enabler (Pridestalker) that pushes bodies over the line feeds it directly, and it also reads off the same count as the threshold cards (Sacrifice, Sunken Temple) that only need a Mighty unit to be present.",
+      "basis": {
+        "rules": [
+          "708"
+        ],
+        "combos": [
+          "pridestalker-mighty-draw",
+          "gemdragon-henge-vi-blind-fury"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 9
+    },
+    {
+      "id": "pridestalker-mighty-enabler",
+      "name": "Pridestalker pushes every unit you play toward the 5-Might line, for free",
+      "anchor": "UNL-183",
+      "partner": {
+        "textMatches": "\\[Mighty\\]"
+      },
+      "why": "\"When you play a unit, give a unit +1 Might this turn\" has no cost and no \"may\" — 709 makes becoming Mighty an event that fires only the moment Might crosses from below 5 to 5+, so a body sitting at 4 only needs this ONE buff to cross it, on every single unit play. That is the enabler half of the [Mighty] family: Kadregrin and Show of Strength both draw off the resulting count, and the threshold cards (Sacrifice, Sunken Temple, Unsung Hero) only need the crossing to have happened once. The buff itself is a continuous modifier granted by card text, not a 702 counter, so it never collides with 702.3's one-buff cap.",
+      "basis": {
+        "rules": [
+          "708",
+          "709"
+        ],
+        "combos": [
+          "pridestalker-mighty-draw",
+          "apothecary-pridestalker-buff"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 10
+    },
+    {
+      "id": "isolate-open-battlefield-walker",
+      "name": "Isolate empties a battlefield for a card that walks straight onto it",
+      "anchor": "UNL-124",
+      "partner": {
+        "textMatches": "play me to an open battlefield|played to open battlefields"
+      },
+      "why": "Isolate moves the garrison's last body to its own base, and 323.6 strips the opponent's Control the moment it leaves — 170.11.c defines \"open\" as unoccupied AND uncontrolled, both of which are now true, so 355.2.b's small family of cards that may be PLAYED to a battlefield they do not already occupy can walk straight in from hand. 190.3.a.1 (not 450) is the citation for the played half — units \"moving to or being played to\" a battlefield apply Contested. The predicate is narrow on purpose: 449 governs a MOVE onto an open battlefield, a different action from being PLAYED there, so Bard, Mercurial (which moves units it already controls) is not a match — he needs the board empty of everyone, not merely open, and grants no play permission at all.",
+      "basis": {
+        "rules": [
+          "170.11.c",
+          "355.2.b",
+          "323.6",
+          "190.3.a.1"
+        ],
+        "combos": [
+          "isolate-deckhand-open-conquer"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 4
+    },
+    {
+      "id": "curator-of-the-sands-printed-cost",
+      "name": "Curator of the Sands readies runes off any 7-Energy unit or gear, printed cost only",
+      "anchor": "VEN-145",
+      "partner": {
+        "textMatches": "[\\s\\S]",
+        "types": [
+          "unit",
+          "gear"
+        ],
+        "minEnergy": 7
+      },
+      "why": "\"When you play a unit, gear, or activated ability with Energy cost 7 or more, you may exhaust me to ready up to 2 runes\" is the same 206 reading lady-of-luminosity-expensive-spells stands on — 206's own worked example IS this family (Lux, Illuminated), so a discount, a Hidden play at 811.1.b's 0 Energy, or any other reduction never switches the trigger off; only the PRINTED cost is read. One threshold higher than Lady of Luminosity's 5, and on the other two card types instead of spells. The third leg of Curator's own text — an activated ability costing 7+ Energy — has no printed-cost field at card level (`minEnergy` reads the CARD's own cost, not an ability's), so it cannot be represented here and is not covered by this rule's partner list.",
+      "basis": {
+        "rules": [
+          "206"
+        ],
+        "combos": [
+          "curator-printed-cost-rebate"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 54
+    },
+    {
+      "id": "jax-unrelenting-attach-draw",
+      "name": "Jax, Unrelenting draws a card for every Equipment attach, on top of the Weaponmaster discount",
+      "anchor": "SFD-119",
+      "partner": {
+        "textMatches": "\\[Equip\\]|\\[Quick-Draw\\]",
+        "types": [
+          "gear"
+        ]
+      },
+      "why": "\"When you attach an Equipment to me, you may pay 1 Energy to draw 1\" is a Triggered Ability that fires on the Attach action itself (818.1 makes Equip an Activated Ability that performs it, and any other effect that attaches a card counts too), with no cap and no exhaust — every [Equip] activation and every [Quick-Draw] auto-attach draws a card if you spend the Energy, and 434.1.g's only carve-out (attaching a card to its CURRENT Top-Most Card does nothing) never applies to a fresh attach. Same predicate and shape as aphelios-equipment-attach, a second anchor on the same family: any Equipment in the pool works, and a detach-then-reattach loop (Serrated Dirk's own Reaction) or a [Weaponmaster] re-equip both trigger it again.",
+      "basis": {
+        "rules": [
+          "818.1",
+          "434.1.g"
+        ],
+        "combos": [
+          "jax-angle-shot-attach-draw"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 39
+    },
+    {
+      "id": "marai-spire-repeat-discount",
+      "name": "Marai Spire discounts every [Repeat] cost in the list by 1 Energy",
+      "anchor": "SFD-211",
+      "partner": {
+        "textMatches": "\\[Repeat",
+        "excludes": [
+          {
+            "card": "SFD-122",
+            "why": "its [Repeat] cost is a rune only (\"[Repeat] rune_chaos\") — no Energy for a \"1 Energy less\" discount to reduce."
+          },
+          {
+            "card": "UNL-017",
+            "why": "its [Repeat] cost is \"Discard 1\" — no Energy component, so the discount has nothing to apply to."
+          }
+        ]
+      },
+      "why": "\"While you control this battlefield, friendly [Repeat] costs cost 1 Energy less\" reads the PLURAL \"costs\", so a spell with more than one [Repeat] instance in its own text (Curtain Call prints three) gets the discount on EACH one, not once per spell. Two caveats the list cannot show: 190.1 means the battlefield has to be taken before its text does anything, and 485.5 draws it at random from the three a player brings, so it is not guaranteed to be on the board even when it is in the deck. Excluded are the two [Repeat] costs printed with no Energy component at all (a rune, a discard) — a \"1 Energy less\" discount has nothing to reduce on either.",
+      "basis": {
+        "rules": [
+          "190.1",
+          "485.5"
+        ],
+        "combos": [
+          "ezreal-marai-spire-free-repeat",
+          "daughter-void-marai-curtain-call",
+          "existential-dread-repeat-bounce"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 20
+    },
+    {
+      "id": "lee-sin-ascetic-unlimited-buffs",
+      "name": "Lee Sin, Ascetic breaks the one-buff cap for any repeatable buff source",
+      "anchor": "OGN-078",
+      "partner": {
+        "textMatches": ":rb_exhaust:[^.]*[Bb]uff|[Bb]uff[^.]*:rb_exhaust:"
+      },
+      "why": "702.3 caps every unit in the pool at ONE buff at a time (702.3.a: a second buff offered to an already-buffed unit is simply not placed), which is why buffs elsewhere are a status to spend, not a resource to stack — Lee Sin, Ascetic's own \"I can have any number of buffs\" is the pool's one printed exception. That makes any REPEATABLE buff source worth stacking on him specifically: an exhaust-cost activated ability readies every Awaken (315.1.b), so Blind Monk's legend ability and Arena Bar's gear ability both add a fresh +1 Might to him every turn instead of fizzling against the cap. The list is small on purpose — a one-shot buff (a play trigger, a spell) only ever gives him the one it would give anyone else; it is the REPEATABLE sources that turn his exception into unbounded Might.",
+      "basis": {
+        "rules": [
+          "702.3",
+          "702.3.a"
+        ],
+        "combos": [
+          "lee-sin-buff-bank"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 3
+    },
+    {
+      "id": "bewitching-spirit-bounce-replay",
+      "name": "Bewitching Spirit strips a hand card every time a friendly unit-bounce effect fires",
+      "anchor": "UNL-121",
+      "partner": {
+        "textMatches": "[Rr]eturn (a|another|this|your) friendly[^.]*hand",
+        "excludes": [
+          {
+            "card": "SFD-044",
+            "why": "\"return a friendly gear to its owner's hand\" only ever moves gear — Bewitching Spirit is a unit, so this can never bounce him for a replay."
+          }
+        ]
+      },
+      "why": "\"When you play me, choose a player. They discard 1\" fires again every time Bewitching Spirit is replayed, and 124 makes each replay a new object, so any effect that returns a FRIENDLY UNIT to its owner's hand — Retreat, Pack of Wonders, Grim Apothecary's own play trigger, Bloodharbor Ripper's exhaust, Mesmerize's first mode — buys another discard for a card already spent once. \"Choose a player\" lets the discard land on either hand: aimed at yourself it feeds Flame Chompers or any other discard-triggered recursion; aimed at an opponent it strips their hand one card at a turn. The predicate is typed to bounces of a UNIT specifically: Legion Quartermaster's near-identical wording only returns a friendly GEAR, so it can never pick Bewitching Spirit up.",
+      "basis": {
+        "rules": [
+          "124"
+        ],
+        "combos": [
+          "bloodharbor-bewitching-discard",
+          "pack-of-wonders-bewitching-discard"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",

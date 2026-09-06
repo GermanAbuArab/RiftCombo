@@ -134,14 +134,19 @@ describe("matching a deck", () => {
   });
 
   /**
-   * #139: this asserted nothing. The mono-Fury list matches no rule at all, so `hits` is empty and
-   * the loop body never ran — a green test that would have stayed green through any identity bug.
-   * The claim is made where there ARE partners to check, and the empty case is now stated as the
-   * fact it is, so it fails if a rule ever starts reaching that list unnoticed.
+   * #139: this originally asserted the mono-Fury list matched no rule at all. Issue #156 gave the
+   * pool a real one: 3x Brazen Buccaneer and 3x Chemtech Enforcer both discard a card as they play,
+   * and 3x Flame Chompers is the anchor of flame-chompers-discard-family, so the list now matches
+   * for real — a live copy of Flame Chompers sitting behind two genuine discard sources. The
+   * assertion is now the exact hit rather than an empty list, so a second rule reaching this fixture
+   * unnoticed still fails the test.
    */
-  it("matches no rule at all against the mono-Fury list", () => {
+  it("matches only the flame-chompers-discard-family rule against the mono-Fury list", () => {
     const deck = loadDeck(fixture("fury.txt"), cards);
-    expect(matchSynergies(deck, synergies, cards, constructed)).toEqual([]);
+    const hits = matchSynergies(deck, synergies, cards, constructed);
+    expect(hits.map((h) => h.synergy.id)).toEqual(["flame-chompers-discard-family"]);
+    expect(hits[0]!.anchorCopies).toBe(3);
+    expect(hits[0]!.partners.map((p) => p.card).sort()).toEqual(["OGN-002", "OGN-003"]);
   });
 
   it("never surfaces a partner outside the legend's domains, on the lists that do match", () => {
@@ -173,11 +178,14 @@ describe("one card away", () => {
   const plan = (text: string, format: "constructed" | "2v2" = "constructed") =>
     planSynergies(loadDeck(text, cards), synergies, cards, { format, catalogued });
 
-  it("answers the Fury deck that the matcher had nothing to say to", () => {
+  it("answers the Fury deck that the matcher had nothing to say to about Red Brambleback", () => {
     // The list holds 2x Red Brambleback and no Fury or Body conquer effect, so matchSynergies is
-    // silent on it. That silence is the whole issue: the deck is one card from the rule.
+    // silent on that rule specifically (it does match flame-chompers-discard-family, unrelated to
+    // the gap this test is about). That silence is the whole issue: the deck is one card from the rule.
     const deck = loadDeck(fixture("fury.txt"), cards);
-    expect(matchSynergies(deck, synergies, cards, constructed)).toEqual([]);
+    expect(matchSynergies(deck, synergies, cards, constructed).map((h) => h.synergy.id)).not.toContain(
+      "red-brambleback-conquer",
+    );
 
     const gaps = plan(fixture("fury.txt"));
     expect(gaps.length).toBeGreaterThan(0);
