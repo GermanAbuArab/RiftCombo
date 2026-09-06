@@ -17553,6 +17553,79 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-battlefield-lens-candidates.md), issue #102 candidate 2, REWRITTEN with a different partner. #102's mechanics are right — 350.2 makes the Hold's token a played unit, and its reason for rejecting Blood Rose (the Rune Pool is empty in the Beginning Phase, since 315.3 runs after 315.2.b and 167 emptied it) is correct and is preserved here. What the walk changes: (1) #102 picked the SMALLEST of the three free payoffs; the complete grep over the pool gives VEN-121 Reluctant Leader at +2 and UNL-058 Lillia beside Pridestalker's +1, and six more that cannot fire, each for its own rule. (2) The product is the BODY, not the Might: with SFD-171 the Recruit is born ready (R25 = A over the 143.4 default) and can walk to a battlefield the same turn, which is exactly the bottleneck #48 identified for every token line. (3) #102's own two halves cannot share a deck — Pridestalker is a Fury/Body legend, Renata is Order, 103.1.b.1 — so the shell is a real choice and this entry states it. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.1.b.2, 103.2.b, 103.4.c, 143.4, 144.4.a, 155, 167, 185, 185.2.a, 190.1, 190.6.d, 206, 315.2.b.2, 315.3, 316.3, 350.2, 355.2.a, 420.3.a, 469.2, 471.1, 485.4.a, 485.5, 486.5, 487.5, 702, 702.3, 702.3.a, 703, 816.1.b. Ban check: OGN-275, SFD-171, VEN-121, UNL-183, UNL-058, OGN-139, UNL-109, UNL-011, VEN-145, SFD-166, OGN-027 and VEN-044 carry no [BANNED marker in the corpus. Arithmetic against its own declared quantities: 1 Altar, 1 Renata, 1 Reluctant Leader; one 1-Might body and one +2 Might per turn; zero points. Trap check: no attack; no Energy banked across 167/316.3 (that is the reason Blood Rose is out); no [Repeat]; the Recruit is NOT [Temporary], so 816.1.b never touches it; no token is recycled (185, 186.1, 416.1); the battlefield starts uncontrolled (190.1). Depends on no unruled reading beyond R25, which was ruled A on 2026-09-04."
+    },
+    {
+      "id": "karma-lux-recycle-buff-army",
+      "name": "Karma, Channeler — every Recruit the recycle loop makes comes out at 2 Might",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-235",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E6 + 1 Order Power, M6. '[Vision] ... When you recycle one or more cards to your Main Deck, buff a friendly unit. (If it doesn't have a buff, it gets a +1 Might buff. Runes aren't cards.)' She sits on the board before the loop starts, so she costs the loop no draw and no Forge recycle slot. ONE copy: 103.2.b allows three, but two Karmas would only make four buff attempts against the same single new body per pass."
+        }
+      ],
+      "needs": [
+        "infinite-recycle",
+        "token-body-engine"
+      ],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order — the same four legends lux-infinite-energy already requires (OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity - Starter, SFD-201 Chem-Baroness, UNL-199 Deceiver). Karma is mono-Order, so 103.1.b.3 lets her in without touching the deck's Domain Identity."
+        ],
+        "notable": [
+          "KARMA MUST BE RESOLVED ONTO THE BOARD BEFORE THE LOOP STARTS, not merely drawn. The loop runs with an empty Main Deck, so she has to be drawn out and PAID FOR (6 Energy + 1 Order Power) during normal development; in hand she does nothing. Once she is on the board she consumes none of the loop's 4 draws per pass and none of the Forge's recycle slots, so the ledger of issue #21 is untouched.",
+          "TWO TRIGGERS PER PASS, NOT THREE. Karma reads 'recycle one or more cards to your MAIN DECK'. Step 1 (Forge's 'Kill this: Recycle up to 4 cards from trashes' returning Forge + Shadow's Call + Sacrifice) is ONE event of three cards — 416.1 defines Recycling as taking 'one or more cards' in one action and 416.5 puts them on the bottom simultaneously — so it fires her once. Step 6 (Ekko's Deathknell, 'Recycle me to ready your runes') fires her a second time; 416.1.a sends both to the Main Deck. Step 2 recycles an exhausted rune for Power and does NOT fire her: 416.1.b and 161.2.b send runes to the Rune Deck, which is exactly what her own reminder text ('Runes aren't cards') announces. Step 7 channels a rune, which is not a recycle.",
+          "ONE BUFF LANDS PER PASS, AND THAT IS THE CEILING. 702.3: 'There can only be one Buff on a Unit at a time.' 702.3.a: 'If a Buff is added, or instructed to be added, on a Unit that already has a Buff, it is not placed instead.' 703 gives each buff exactly +1 Might. The loop creates exactly ONE new body per pass (Forge's play trigger, step 8), so the second trigger of every pass has no unbuffed body to land on and is discarded. This is the whole reason the entry is worth writing: the tempting reading — two buffs a pass, unbounded passes, therefore unbounded Might — is false on its face.",
+          "THE BUFF ARRIVES ONE PASS LATE. Both triggers of a pass (steps 1 and 6) fire before step 8 creates that pass's Recruit, so the Recruit born in pass k is buffed by trigger 1 of pass k+1. N complete passes leave N Recruits of which N-1 carry the buff; one extra step 1 (activate the Forge again, recycle from the trash) buffs the last one for free.",
+          "THE RECRUITS SURVIVE, SO THE BUFFS DO. lux-infinite-energy deliberately points Shadow's Call at EKKO and kills him with Sacrifice's additional cost, so no Recruit is ever marked [Temporary] and 816.1.b never touches them; 705 only strips a buff when the unit leaves play. Karma is never marked either.",
+          "SACRIFICE'S COST CAN EAT KARMA IF YOU LET IT. UNL-173 pays 'kill a friendly [Mighty] unit' and Karma is M6 (M7 once buffed), so she is legal fodder every pass. Choose Ekko. This is a play error, not a rules problem, but it is the only way the entry breaks.",
+          "NO IN-DOMAIN WAY TO SPEND THE WASTED BUFF. All 14 'spend a buff' lines in the pool were read: seven are Body (103.1.b.1 excludes them), two are legends (OGN-269 The Boss, UNL-201 Voidreaver — you already have a Mind/Order legend), two spend XP to buff THEMSELVES and stop at 702.3, and the three that are legal here cost the loop a card per pass against a ledger with zero spare draws (OGN-207 Call to Glory, OGN-230 Albus Ferros) or fire once per conquer on a random battlefield (OGN-282 Monastery of Hirana, and 485.4.a makes it 1 of 3). Those last three are future entries with their own draw budget, not part of this one.",
+          "NOTHING HERE BECOMES MIGHTY. 708 sets Mighty at 5+ Might and 709 makes 'becomes Mighty' an event; a Recruit going 1 -> 2 is nowhere near it, so no Mighty payoff rides along.",
+          "HER OWN [Vision] FIRES HER ONCE MORE ON ENTRY. 817.1.c makes the Vision trigger 'the permanent entering the Board', so Karma is already on the board when the predict (436.1) resolves; recycling the looked-at card is a recycle to the Main Deck and buffs her to M7. With the deck already empty, 436.4.a and 431.1.c guarantee no Burn Out — she simply predicts nothing."
+        ]
+      },
+      "steps": [
+        "Before the loop: draw and PLAY Karma, Channeler for 6 Energy + 1 Order Power. Her [Vision] predicts 1 (436.1); if you recycle it, her own second ability fires and buffs her to 7 Might.",
+        "Run lux-infinite-energy's pass. Step 1, the Forge's 'Kill this: Recycle up to 4 cards from trashes', recycles Forge + Shadow's Call + Sacrifice to the Main Deck (416.1.a): Karma's trigger goes on the chain (383.3.c) and buffs the oldest unbuffed Recruit.",
+        "Step 2 pays Ekko's Power by recycling an exhausted rune. 416.1.b / 161.2.b send it to the Rune Deck, so Karma does not trigger.",
+        "Step 6, Ekko's Deathknell recycles Ekko to the Main Deck: Karma's trigger fires a second time. 340.1 resolves it before the still-pending Sacrifice, and since it only places a counter (704.1: buffs are not targeted) the loop is unaffected. With no unbuffed body left, 702.3.a simply does not place it.",
+        "Step 8 replays the Forge for 2 Energy and its play trigger makes a fresh 1 Might Recruit at your base. Repeat the pass: that Recruit is buffed by the next pass's step 1.",
+        "Stop whenever you like, then activate the Forge one last time to cash the trailing buff onto the final Recruit."
+      ],
+      "netPerIteration": "+1 Recruit token at your base and exactly 1 buff placed (+1 Might, rule 703), one pass behind. The second Karma trigger of every pass is discarded by 702.3.a. No Energy, Power, card or draw spent beyond what lux-infinite-energy already spends.",
+      "terminatesIn": "engine only — an unbounded army of 2 Might Recruits at the base instead of 1 Might Recruits, plus Karma herself at 7. Nothing here scores; the points still come from whatever moves the bodies to a battlefield.",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "702.3 There can only be one Buff on a Unit at a time. / 702.3.a If a Buff is added, or instructed to be added, on a Unit that already has a Buff, it is not placed instead. / 416.1.a Main Deck cards are Recycled to the Main Deck. / 416.1.b Runes are Recycled to the Rune Deck."
+        },
+        {
+          "title": "Riot gallery card text (data/corpus_flat.txt, 2026-09-04, errata applied)",
+          "kind": "riot",
+          "date": "2026-09-04",
+          "quote": "OGN-235 | Karma, Channeler | Unit | Order | E6 P1 M6 | [Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.) When you recycle one or more cards to your Main Deck, buff a friendly unit. (If it doesn't have a buff, it gets a +1 :rb_might: buff. Runes aren't cards.)"
+        },
+        {
+          "title": "Combat-keyword lens — issue #106 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/106",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-combat-keyword-lens.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-combat-keyword-lens.md), the single candidate of issue #106. The candidate's mechanism survives verbatim and its ARITHMETIC WAS REWRITTEN by the walk: 702.3 / 702.3.a cap a unit at one buff forever, and the loop makes exactly one new body per pass, so two Karma triggers per pass buy one buff, not two, and there is no accumulating Might. The measured product is therefore a quality change to a token engine already catalogued, not a new resource — which is why produces is empty and the shape matches azir-sovereign-token-gather. The issue's own step-by-step was checked against lux-infinite-energy's eight steps one by one and its trigger count (2) is right; what it did not do is measure the bodies against the triggers. Depends on no unruled reading. Card text verbatim from data/corpus_flat.txt; every rule quoted from data/Riftbound-Core-Rules-2026-07-16.txt."
     }
   ]
 }
