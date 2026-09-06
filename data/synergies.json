@@ -2426,6 +2426,309 @@
       "status": "rule-verified",
       "reviewed": "2026-09-06",
       "reviewedCount": 13
+    },
+    {
+      "id": "dark-child-off-turn-reaction-units",
+      "name": "Dark Child pays for a Reaction unit on the opponent's turn",
+      "anchor": "OGS-017",
+      "partner": {
+        "textMatches": "\\[Reaction\\] \\(Play any time",
+        "types": [
+          "unit"
+        ]
+      },
+      "why": "The same mechanism as dark-child-off-turn-reactions, for the other card type bare [Reaction] appears on. 813.1.b/813.1.c.1 do not distinguish a spell from a unit — either can be played during a Closed State on any player's turn — and playing a unit costs the same Energy/Power a spell does, which is exactly what Dark Child's two readied runes (164.2.a's Reaction-speed Seal abilities) pay for. Only 3 printings in the whole pool carry BARE [Reaction] on a unit (not [Ambush]'s different reminder, \"You may play me as a [Reaction] to a battlefield where you have units,\" and not a gear or legend's own exhaust-activated [Reaction] ability): Shen, Kinkou; Rengar, Pouncing; Janna, Savior. All three print the longer unit reminder — \"...including to a battlefield you control\" — which the predicate's exact-phrase match uses to stay off [Ambush] and off activated abilities entirely.",
+      "basis": {
+        "rules": [
+          "164.2.a",
+          "167",
+          "415.3.a",
+          "813.1.b",
+          "813.1.c.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 3
+    },
+    {
+      "id": "scrutinizing-sergeant-xp-producer",
+      "name": "Scrutinizing Sergeant is a flat XP tax nobody has to spend to trigger",
+      "anchor": "UNL-157",
+      "partner": {
+        "textMatches": "(?:[Ss]pend|pay) \\d+ XP|\\[Level \\d+\\]"
+      },
+      "why": "Scrutinizing Sergeant gains 1 XP per friendly unit on play with no [Hunt] and no [Level] of its own, so it falls outside both existing XP rules — gardens-of-becoming-xp is anchored on a SPENDER and hunts other spend/pay text, blood-rose-level hunts other [Level N] text — neither one's partner predicate reads a plain producer as a partner of itself, and this rule is the missing anchor-direction: a producer paired with anything that spends or checks XP. 730.1/730.2 make XP a trackable, spendable resource regardless of source, so what feeds a spend threshold does not have to be [Hunt] or [Level] text.",
+      "basis": {
+        "rules": [
+          "730.1",
+          "730.2"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 27
+    },
+    {
+      "id": "magma-wurm-mass-ready",
+      "name": "Magma Wurm lets a whole turn of token bodies attack the turn they land",
+      "anchor": "OGN-011",
+      "partner": {
+        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,90}?unit tokens?\\b|[Pp]lay that token"
+      },
+      "why": "143.4 defaults every unit that enters the board to exhausted; Magma Wurm's static \"Other friendly units enter ready\" overrides that default for everything you play while she is out, not just herself. Nothing in the pool pays this off one unit at a time — the payoff scales with how many bodies land in the same turn, which is exactly what a unit-token generator does (per #48's walk-to-the-battlefield finding, the bottleneck on a token swarm was never the count, it was getting them anywhere useful; Magma Wurm removes the other bottleneck, needing to wait a turn to attack). One-shot per token batch, no repeat step of its own, so this is a deckbuilding pairing rather than an engine.",
+      "basis": {
+        "rules": [
+          "143.4"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 50
+    },
+    {
+      "id": "weaponmaster-equip-discount",
+      "name": "Weaponmaster re-equips an Equipment you already control for a rune less",
+      "anchor": "SFD-008",
+      "partner": {
+        "textMatches": "\\[Equip\\]",
+        "types": [
+          "gear"
+        ]
+      },
+      "why": "[Weaponmaster]'s own reminder text — \"you may [Equip] one of your Equipment to me for a rune less, even if it's already attached\" — is a discount on the [Equip] Activated Ability (818.1), independent of aphelios-equipment-attach's per-attach mode choice: this is a second, independent equip-discount mechanism, not a rewording of the first. It cannot loop: 818.1 makes Equip an Activated Ability, so re-equipping is never Playing (818.1.b) and never re-fires a \"When you play this\" on the gear or a second copy of Weaponmaster's own \"When you play me\" trigger — \"even if it's already attached\" only changes WHERE the Equipment ends up, once, on the turn Weaponmaster enters.",
+      "basis": {
+        "rules": [
+          "818.1",
+          "818.1.a",
+          "818.1.b"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 39
+    },
+    {
+      "id": "oasis-raider-low-rune-family",
+      "name": "A deck that keeps its own rune count low turns on six payoffs at once",
+      "anchor": "VEN-006",
+      "partner": {
+        "textMatches": "fewer runes than an opponent|control 4 or fewer runes"
+      },
+      "why": "Six Vendetta cards share one of two clauses keyed to a LOW rune count: \"fewer runes than an opponent\" (Forsaken Baccai, Oasis Raider) or \"4 or fewer runes\" (Baccai Sandspinner, Eclipse Dragon, Renekton Rage Fueled, and the battlefield Protective Sands) — the opposite axis from every prior rune finding in this project (startipped-peak-rune-ramp, the free-2-Power floor of #44), which was about wanting MORE runes. 161.1.a keeps a rune on the board until it is Recycled, so a deck that recycles aggressively for Power stays light on runes as a side effect, turning all six on together. Protective Sands is a Battlefield: 485.5 has only 1 of the 3 you bring randomly selected for a Duel, so it is not guaranteed to be on the board even when it is in the deck — that caveat cannot be expressed by the predicate and belongs in a deck's own notes.",
+      "basis": {
+        "rules": [
+          "161.1.a",
+          "485.5"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 5
+    },
+    {
+      "id": "rell-magnetic-free-equip-attach",
+      "name": "Rell attaches a cheap Equipment for free every time she attacks",
+      "anchor": "SFD-024",
+      "partner": {
+        "textMatches": "\\[Equip\\]",
+        "types": [
+          "gear"
+        ]
+      },
+      "why": "\"When I attack, you may play an Equipment with Energy cost no more than 2, ignoring its cost, [and] attach it to me\" is a free PLAY-and-attach, not an Equip activation (818.1 does not apply to it — this is a Play Effect, 383.4.a, that happens to end in an attach), repeatable once per attack rather than once per game the way Weaponmaster's ETB is. Her own text caps the target at 2 Energy or less; the predicate cannot express a cost ceiling, so the list below is every [Equip] gear in the pool and a human has to read which ones clear her 2-Energy bar before valuing the pairing. 476.1's composition finding (#45) is what makes a cheap Equipment worth repeating here: attaching a second copy of the same effect text composes instead of stacking additively, so a Svellsongur-family target is worth more per attach than its Might bonus alone suggests.",
+      "basis": {
+        "rules": [
+          "383.4.a",
+          "476.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 39
+    },
+    {
+      "id": "karma-channeler-vision-recycle",
+      "name": "Karma buffs a unit every time a [Vision] card recycles",
+      "anchor": "OGN-235",
+      "partner": {
+        "textMatches": "\\[Vision\\]"
+      },
+      "why": "Karma, Channeler's \"When you recycle one or more cards to your Main Deck, buff a friendly unit\" fires on the Main-Deck half of 416.1 (Recycling puts a card on the bottom of the corresponding deck), and [Vision]'s own reminder — 817.1.b, \"functionally short for 'When this is played, predict'\" — is exactly a look-and-optionally-recycle-to-the-Main-Deck trigger, one instance per [Vision] source (817.2, multiple instances trigger separately). No existing rule's textMatches reads the literal \"[Vision]\" bracket, so all 8 pool-wide [Vision] printings besides Karma herself fell through every prior synergy sweep.",
+      "basis": {
+        "rules": [
+          "416.1",
+          "416.1.a",
+          "817.1",
+          "817.1.b",
+          "817.2"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 8
+    },
+    {
+      "id": "dauntless-vanguard-occupied-battlefield-assault",
+      "name": "Playing straight into an occupied enemy battlefield turns on Assault with no move",
+      "anchor": "SFD-093",
+      "partner": {
+        "textMatches": "\\[Assault"
+      },
+      "why": "\"You may play me to an occupied enemy battlefield\" (Dauntless Vanguard; Deadbloom Predator and Rengar, Trophy Hunter's extended [Ambush] print the same permission) sets Attacker the instant the unit lands — 190.3.a.1 (\"Units moving to or being played to a battlefield apply Contested status\") and 464.2.c.1 (\"The Attacker is the player whose unit(s) applied the Contested status\") do not care whether the unit arrived by a move or by being played, and the Core Rules' own worked example under 359.3.f.1/f.2 confirms it in prose for a move (\"A player moves Yasuo, Remorseful to an occupied enemy battlefield and initiates combat there\"). trapping-grounds-excess-damage already established that [Assault] only pays while an Attacker designation exists (383.4.e, 807.1.d) — this pairing is that designation for free, with no Standard Move exhaust (420.3.a) and no Ganking needed, since the unit was never anywhere else on the board.",
+      "basis": {
+        "rules": [
+          "190.3.a.1",
+          "464.2.c.1",
+          "359.3.f.1",
+          "359.3.f.2"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 41
+    },
+    {
+      "id": "profiteer-empower-relay",
+      "name": "Profiteer moves the Empowered status instead of spending a card to grant it",
+      "anchor": "VEN-082",
+      "partner": {
+        "textMatches": "When you empower something else"
+      },
+      "why": "\"You may disempower something you control to empower a legend, unit, or gear\" is Profiteer's own play effect, using \"empower\" as a plain verb rather than the [Empower] Activated Ability (827.1) — so sanction-empower-unit and hextech-formula-empower-gear, whose partner predicates require the card itself to carry [Empower], never reach the two legends that key off being empowered BY SOMEONE ELSE: Soul's Reflection and Matriarch of War, both \"When you empower something else, empower me.\" 441.2 makes becoming Empowered by ANY game action a referenceable event regardless of source, so Profiteer's relay counts. 441.1.b caps the value: an already-Empowered legend gains nothing from a second empower, so the pairing is worth one relay per legend per time it is disempowered.",
+      "basis": {
+        "rules": [
+          "441.1.b",
+          "441.2",
+          "827.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 2
+    },
+    {
+      "id": "wizened-elder-buffed-payoff",
+      "name": "Any single buff turns on a static bonus that never has to stack",
+      "anchor": "OGN-207",
+      "partner": {
+        "textMatches": "While I'm buffed"
+      },
+      "why": "Two cards in the whole pool key a static bonus on simply CARRYING a buff rather than on granting or spending one — Wizened Elder (\"an additional +1 Might\") and Bilgewater Bully (\"[Ganking]\") — which every existing buff-family rule misses, since blade-dancer-buff-is-choosing, irelia-fervent-buff-is-choosing, wallop-buff-spend, sett-kingpin-mass-buff, albus-ferros-buff-bank and call-to-glory-buff-bank are all anchored on the GRANTER's own payoff for placing or spending a buff, not on a beneficiary that only wants to hold one. 702.3 (\"There can only be one Buff on a Unit at a time\") is exactly why this is a static bonus and never a stacking engine: any buff source in the pool, mass or single-target, turns it on for the one unit it targets. Call to Glory is reused as the anchor here rather than a fresh one, the same way SFD-180 already anchors two rules in this file.",
+      "basis": {
+        "rules": [
+          "702.3"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 2
+    },
+    {
+      "id": "shadow-watcher-temporary-death-window",
+      "name": "A [Temporary] token's automatic death readies whatever watches the Beginning Phase",
+      "anchor": "UNL-048",
+      "partner": {
+        "textMatches": "during your Beginning Phase"
+      },
+      "why": "816.1.b makes [Temporary] functionally \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this\" — so every [Temporary] token's death happens inside that exact window. Shadow Watcher (\"If a friendly unit died during your Beginning Phase this turn, I enter ready\") and Shard of Undoing (\"The first time a friendly unit dies during your Beginning Phase each turn...\") are the only two cards in the pool that check specifically for a death IN that window rather than a death anywhere, and any of the pool's [Temporary]-token generators (Trevor Snoozebottom, Sprite Fountain, Sprite Mother, Bashful Bloom, plain Sprite tokens) supplies it for free every turn it is out. 383.1.b's own worked example is Shadow Watcher's neighbour Wraith of Echoes: if several [Temporary] deaths land at once, the controller of the checking ability picks one to serve as the trigger, which still satisfies Shadow Watcher's condition exactly once. LeBlanc, Everywhere at Once (\"Your [Temporary] effects at my battlefield don't trigger\") is the one card in the pool that turns this off — she suppresses the kill itself, so no death occurs for either payoff to see.",
+      "basis": {
+        "rules": [
+          "816.1.b",
+          "816.1.c",
+          "383.1.b"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 2
+    },
+    {
+      "id": "eager-apprentice-sky-splitter",
+      "name": "Two independent discounts on the same spell take it further than either alone",
+      "anchor": "OGN-084",
+      "partner": {
+        "textMatches": "This spell's Energy cost is reduced"
+      },
+      "why": "This is the Core Rules' own worked example, verbatim, at 356.4.e: \"Eager Apprentice says 'While I'm at a battlefield, the Energy costs for spells you play is reduced by 1, to a minimum of 1.' A player who controls Eager Apprentice and a unit with 7 Might plays Sky Splitter, a spell that costs 8 Energy and says 'This spell's Energy cost is reduced by the highest Might among units you control.' That player can choose to apply Eager Apprentice's discount first, reducing Sky Splitter's Energy cost to 7, then apply Sky Splitter's discount, reducing its Energy cost to 0. If they applied these discounts in the other order, Sky Splitter's Energy cost would be 1.\" Sky Splitter is the only other card in the pool with a self-referential cost reduction (grepped for \"this spell's ... cost is reduced\"), so the pairing has exactly one partner — thin by the project's own standard, but the strongest possible citation: the rulebook uses these two cards, and no others, to teach the rule.",
+      "basis": {
+        "rules": [
+          "356.4.e"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 1
+    },
+    {
+      "id": "soul-shepherd-token-buff",
+      "name": "Soul Shepherd buffs every token unit the moment it lands, not just the ones she names",
+      "anchor": "UNL-077",
+      "partner": {
+        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,90}?unit tokens?\\b|[Pp]lay that token"
+      },
+      "why": "\"Your token units have +1 Might\" is a static, always-on grant that reads any token unit already on the board or entering later — unlike renata-industrialist-tokens, grand-plaza-unit-tokens and malzahar-token-fodder, which are about the act of PLAYING a token, this is the first anchor in the file for BUFFING a token once it exists, so it stacks on top of any of those three rather than competing with them. 185.2.b/185.2.d make a token unit a full unit for Might purposes, so the +1 applies without exception across the whole token-generator family.",
+      "basis": {
+        "rules": [
+          "185.2.b",
+          "185.2.d"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 50
+    },
+    {
+      "id": "gemcraft-seer-vision-generalization",
+      "name": "Gemcraft Seer hands [Vision] to every friendly unit, not just Mechs",
+      "anchor": "OGN-100",
+      "partner": {
+        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,90}?unit tokens?\\b|[Pp]lay that token"
+      },
+      "why": "Forecaster (\"Your Mechs have [Vision]\") is the pool's narrow version of this static grant, restricted to a single tag; Gemcraft Seer's \"Other friendly units have [Vision]\" is the same mechanism (817.1's Triggered Ability keyword) generalized to ANY friendly unit entering the board, which is exactly what a unit-token generator produces in volume — every token that lands gets a free look-and-recycle (817.1.b) it would not otherwise carry. karma-channeler-vision-recycle is the downstream payoff for the [Vision] this creates; this rule is the upstream supply side.",
+      "basis": {
+        "rules": [
+          "817.1",
+          "817.1.b"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 50
+    },
+    {
+      "id": "malzahar-fanatic-friendly-death-payoff",
+      "name": "A free, repeatable self-sacrifice outlet feeds the whole friendly-unit-dies family",
+      "anchor": "OGN-113",
+      "partner": {
+        "textMatches": "friendly unit dies|unit you control dies"
+      },
+      "why": "Malzahar, Fanatic's \"Kill a friendly unit or gear, exhaust: Add [rainbow][rainbow]\" is a mono-Mind, no-Energy sacrifice outlet — 185.2.d makes a token unit a legal cost payment, so cheap disposable fodder (Recruit, Gold, Sprite and other token bodies) feeds it without spending a card. Seven cards in the pool observe a friendly death with a payoff and were never grouped: Wraith of Echoes (draw), Spectral Centaur (+2 Might), Vanguard Helm (relay a buff), Viktor, Leader (a Recruit token), Altar of Memories (draw), Vicious Snapjaws (XP) and Shard of Undoing (forces an opponent kill). Two authoring traps from the Core Rules' own worked examples on this exact family: 383.1.b (Wraith of Echoes) — if several deaths land simultaneously, the WATCHING card's controller picks one to serve as the trigger, so simultaneous deaths from one sacrifice never grant more than one instance per watcher; and 383.2.c.2 (Viktor, Leader) — a watcher that dies in the SAME game action as the fodder never sees the death, since its trigger condition needs it \"on the board immediately after\" the death, not simultaneously with it.",
+      "basis": {
+        "rules": [
+          "185.2.d",
+          "383.1.b",
+          "383.2.c.2"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 7
     }
   ]
 }
