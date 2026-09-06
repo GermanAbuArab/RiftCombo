@@ -14,6 +14,7 @@ import { gate, initAccount } from "./account.js";
 import { initDecks } from "./decks.js";
 import { accountsEnabled } from "./supabase.js";
 import type { SavedDeck } from "../src/saved.js";
+import { esc } from "../src/html.js";
 import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from "./graph.js";
 import { go, onRoute, route, startRouter } from "./router.js";
 
@@ -96,7 +97,6 @@ let dim = true;
 /** The saved deck Combos is showing, when My decks handed it over. Null for a list pasted here. */
 let analyzing: SavedDeck | null = null;
 
-const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 const name = (base: string) => cards.get(base)?.name ?? base;
 const fmt = () => document.querySelector<HTMLInputElement>("input[name=format]:checked")!.value as Format;
 const mode = () => document.querySelector<HTMLInputElement>("input[name=view]:checked")!.value as "network" | "suggestions";

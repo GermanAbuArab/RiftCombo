@@ -39,6 +39,7 @@ import { deckToText } from "../src/deck.js";
 import { thumb } from "./graph.js";
 import type { CardIndex } from "../src/cards.js";
 import type { Card, Deck, Domain, Format } from "../src/types.js";
+import { esc } from "../src/html.js";
 
 export interface BuilderEnv {
   cards(): CardIndex;
@@ -55,7 +56,6 @@ export interface BuilderEnv {
   say(message: string): void;
 }
 
-const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel);
 
 const DOMAINS: Domain[] = ["fury", "calm", "mind", "body", "chaos", "order"];

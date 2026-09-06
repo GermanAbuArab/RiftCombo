@@ -13,6 +13,7 @@ import { deckRestrictions, deckToText, encodeDeckCode, loadDeck, type DeckEntry 
 import { checkSave, sortSaved, MAX_NAME, type SavedDeck } from "../src/saved.js";
 import type { CardIndex } from "../src/cards.js";
 import type { Deck, Domain, Format } from "../src/types.js";
+import { esc } from "../src/html.js";
 import { accountsEnabled, createDeck, deleteDeck, listDecks, onAccount, updateDeck, type Account } from "./supabase.js";
 import { builderHtml, initBuilder, openImport, openList, refreshBuilder } from "./builder.js";
 import { go, onRoute, type Route } from "./router.js";
@@ -27,7 +28,6 @@ export interface DeckHooks {
 
 const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel)!;
 const maybe = <T extends Element>(sel: string) => document.querySelector<T>(sel);
-const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 
 let hooks: DeckHooks;
 let account: Account | null = null;
