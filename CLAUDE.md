@@ -48,6 +48,13 @@
   every card that writes the mechanic in prose: 8 cards say `empower`/`disempower` in lower case with
   no brackets and 4 of those are legends, so a `\[Empower\]` sweep silently skipped the legends of
   the family it was hunting (#34, 2026-09-05). Open wide with `-i`, then close by reading the list.
+- **A battlefield you provide starts UNCONTROLLED, so its text is off until you take it.** 190.1:
+  *"Control is established over Battlefields through the course of play."* 190.6.d closes it: *"If the
+  battlefield has no Controller, 'you' refers to no one, and all such instructions are ignored."* The
+  project had cited 190.6.d for R8 but never its second sentence. So a `While you control this
+  battlefield` discount is NOT a deckbuilding freebie — walking a body there and establishing Control
+  (466.5) is part of the entry's cost. Six battlefields print that wording; only SFD-211 Marai Spire
+  is in the catalogue, and `ezreal-marai-spire-free-repeat` says so in its own notable (2026-09-05).
 - **A battlefield is drawn at random, and only in some formats.** 485.4.a: a player provides three and
   only 1 is used; **485.5 and 487.5 say "randomly selects"**, while **486.5 says only "selects"**. So
   two of your battlefields never share a board (#33 fixes the synergy layer on this), and a
