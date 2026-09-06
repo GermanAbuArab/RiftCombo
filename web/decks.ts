@@ -216,8 +216,11 @@ async function importFromPiltover(): Promise<void> {
 function detailView(id: string): string {
   const saved = id === "new" ? null : decks.find((d) => d.id === id) ?? null;
   if (id !== "new" && !saved) {
-    // Deleted in another browser, or a stale link. Say so instead of drawing an empty editor.
-    if (loaded) { message = "That deck is not in your account any more."; queueMicrotask(() => go("#/decks")); }
+    // Deleted in another browser, or a stale link. Say so instead of drawing an empty editor. Before the
+    // first listDecks() answers we do not know which of the two it is, so we do not claim either.
+    if (!loaded) return `<p class="plan-note">Opening that deck…</p>`;
+    message = "That deck is not in your account any more.";
+    queueMicrotask(() => go("#/decks"));
     return "";
   }
   if (!draft || draft.id !== (saved?.id ?? null)) {
