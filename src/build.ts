@@ -34,7 +34,7 @@ export interface BuildReport {
 const total = (bag: Record<string, number>) => Object.values(bag).reduce((a, b) => a + b, 0);
 
 export function checkBuild(deck: Deck, cards: CardIndex, _format: Format): BuildReport {
-  const rules: BuildRule[] = [legendRule(deck, cards), sizeRule(deck)];
+  const rules: BuildRule[] = [legendRule(deck, cards), sizeRule(deck), copiesRule(deck, cards)];
   return { rules, legal: rules.every((r) => r.status !== "fail") };
 }
 
@@ -61,4 +61,45 @@ function sizeRule(deck: Deck): BuildRule {
   if (n === 40) return { ...base, status: "pass", detail: `40 cards, Chosen Champion included${tail}` };
   if (n < 40) return { ...base, status: "fail", detail: `${n} cards — a Main Deck is at least 40 (103.2)${tail}` };
   return { ...base, status: "fail", detail: `${n} cards — an event registers exactly 40 (Tournament Rules 402.1)${tail}` };
+}
+
+const COPY_CAP = 3;
+/**
+ * 002 — card text supersedes rules text. `VEN-097 Spiderling` prints "Your deck can have any number of
+ * cards named Spiderling", which is the whole of the exception today; matching the clause rather than
+ * keeping a list of codes means the next card printing it is exempt the day it ships.
+ */
+const ANY_NUMBER = /can have any number of cards named/i;
+
+/**
+ * The cap is on the MAIN DECK — "Your Main Deck can include up to 3 copies of the same named card" — and
+ * on nothing else. The Rune Deck is kept separate by 103.3.b and every real list runs 6 or 12 of one rune;
+ * battlefields have their own limit in 103.4.c. Counting either here would call every legal deck illegal.
+ *
+ * And the cap is per NAME, not per code: 103.2.b.2 says two cards of the same character are different
+ * names, and the corollary is that two printings of one name are the same card — `Lux, Crownguard` is both
+ * OGS-014 and VEN-SP6. The sideboard stays out, as it does everywhere else on this site.
+ */
+function copiesRule(deck: Deck, cards: CardIndex): BuildRule {
+  const base = { rule: "103.2.b", label: "Up to 3 of a name" };
+  const byName = new Map<string, { name: string; count: number; exempt: boolean }>();
+  for (const [code, n] of Object.entries(deck.main)) {
+    const card = cards.get(code);
+    if (!card) continue;
+    const prev = byName.get(card.name);
+    if (prev) prev.count += n;
+    else byName.set(card.name, { name: card.name, count: n, exempt: ANY_NUMBER.test(card.text ?? "") });
+  }
+  const over = [...byName.values()].filter((x) => !x.exempt && x.count > COPY_CAP).sort((a, b) => b.count - a.count);
+  if (over.length) {
+    return { ...base, status: "fail", detail: over.map((x) => `${x.count}× ${x.name}`).join(" · ") };
+  }
+  const exempt = [...byName.values()].filter((x) => x.exempt && x.count > COPY_CAP);
+  return {
+    ...base,
+    status: "pass",
+    detail: exempt.length
+      ? `No name over three, and ${exempt.map((x) => `${x.count}× ${x.name}`).join(" · ")} is past it only because its own text says so (002).`
+      : "No name appears more than three times.",
+  };
 }

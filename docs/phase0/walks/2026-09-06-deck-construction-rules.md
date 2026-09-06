@@ -105,10 +105,20 @@ tail would be a lie about which rule was broken.
 > 002.     Card text supersedes rules text. Whenever a card fundamentally contradicts the rules, the card's
 >          indication is what is true.
 
-The cap is per **name**, not per code. 103.2.b.2 says so from the other side — two cards of the same
+The cap is on the **Main Deck** and on nothing else — the rule's own first six words say so. Runes and
+battlefields are out:
+
+> 103.3.b.                       Must be shuffled and kept separate from the Main Deck.
+
+Every legal list runs 6 or 12 copies of one rune name, and battlefields have their own limit in 103.4.c, so
+a check that swept all three bags would call every legal deck illegal. It did, on the first run — the
+reference list in `test/build.test.ts` failed on `6× Mind Rune` before the loop was narrowed to
+`deck.main`. That is the test earning its place.
+
+The cap is also per **name**, not per code. 103.2.b.2 says so from the other side — two cards of the same
 character are different names — and the corollary is what matters here: two printings under different
-codes are the same name and count together. `Mind Rune` is `OGN-089` and `SFD-R03`; `Lux, Crownguard` is
-`OGS-014` and `VEN-SP6`. The check therefore keys on `Card.name`.
+codes are the same name and count together. `Lux, Crownguard` is both `OGS-014` and `VEN-SP6`. The check
+therefore keys on `Card.name`.
 
 `VEN-097 Spiderling` prints, in `data/corpus_flat.txt`:
 
