@@ -267,9 +267,10 @@ describe("generateVariants — class and status of a composed variant", () => {
 
 describe("generateVariants — the shape of the output", () => {
   it("unions the domains of every card in the merged multiset", () => {
+    // TST-011 is Mind/Order and TST-010 is Order: the shared domain is counted once.
     const feed = combo({ id: "feed", produces: ["infinite-energy"], uses: uses({ "TST-010": 1 }) });
-    const root = combo({ id: "root", needs: ["infinite-energy"], uses: uses({ "TST-001": 1, "TST-011": 1 }) });
-    expect(withCombo([root, feed], "root")[0]!.domains.sort()).toEqual(["fury", "mind", "order"]);
+    const root = combo({ id: "root", needs: ["infinite-energy"], uses: uses({ "TST-011": 1 }) });
+    expect(withCombo([root, feed], "root")[0]!.domains.sort()).toEqual(["mind", "order"]);
   });
 
   it("emits one variant per distinct card multiset and payoff, not one per combo", () => {
@@ -316,6 +317,55 @@ describe("generateVariants — the shape of the output", () => {
       id: "root", needs: ["infinite-energy"], uses: uses({ "TST-002": 1 }), legends: ["OGN-002"],
     });
     expect(withCombo([root, feed], "root")).toEqual([]);
+  });
+});
+
+describe("generateVariants — Domain Identity, 103.1.b (#64)", () => {
+  // A legend has exactly two domains and 103.1.b.4 only lets a card into an identity that holds
+  // all of its own, so a card pool spanning three domains is one no deck can assemble. The
+  // generator used to build those anyway and matchDeck threw them out one by one.
+  const payoff = combo({ id: "payoff", needs: ["infinite-energy"], uses: uses({ "TST-010": 1 }) });
+
+  it("composes two halves whose domains together fit inside one identity", () => {
+    const feed = combo({ id: "feed", produces: ["infinite-energy"], uses: uses({ "TST-011": 1 }) });
+    const [v] = withCombo([payoff, feed], "payoff");
+    expect(v!.id).toBe("payoff+feed");
+    expect(v!.domains.sort()).toEqual(["mind", "order"]);
+  });
+
+  it("generates nothing when the two halves together span three domains", () => {
+    const feed = combo({
+      id: "feed", produces: ["infinite-energy"], uses: uses({ "TST-001": 1, "TST-011": 1 }),
+    });
+    expect(withCombo([payoff, feed], "payoff")).toEqual([]);
+  });
+
+  it("drops an authored entry that spans three domains on its own", () => {
+    const wide = combo({ id: "wide", produces: ["infinite-energy"], uses: uses({ "TST-001": 1, "TST-011": 1 }) });
+    expect(variantsOf([wide])).toEqual([]);
+  });
+
+  it("prunes only the composition that overflows, keeping its siblings in order", () => {
+    const fits = combo({ id: "fits", produces: ["infinite-energy"], uses: uses({ "TST-011": 1 }) });
+    const also = combo({ id: "also", produces: ["infinite-energy"], uses: uses({ "TST-001": 1 }) });
+    const over = combo({
+      id: "over", produces: ["infinite-energy"], uses: uses({ "TST-001": 1, "TST-011": 1 }),
+    });
+    expect(withCombo([payoff, fits, also, over], "payoff").map((v) => v.id))
+      .toEqual(["payoff+fits", "payoff+also"]);
+  });
+
+  it("prunes a branch as soon as it overflows, leaving the tail that still fits", () => {
+    // root needs a, a needs b. root+a+b is three domains, so nothing headed by root survives —
+    // but a+b is two and is still generated on its own.
+    const root = combo({ id: "root", needs: ["infinite-energy"], uses: uses({ "TST-001": 1 }) });
+    const a = combo({
+      id: "a", needs: ["infinite-power"], produces: ["infinite-energy"], uses: uses({ "TST-010": 1 }),
+    });
+    const b = combo({ id: "b", produces: ["infinite-power"], uses: uses({ "TST-011": 1 }) });
+    const all = variantsOf([root, a, b]);
+    expect(all.map((v) => v.id)).toEqual(["a+b", "b"]);
+    expect(all[0]!.cards).toEqual({ "TST-010": 1, "TST-011": 1 });
   });
 });
 

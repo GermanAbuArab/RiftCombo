@@ -68,6 +68,22 @@
       "terminatesIn": "infinite energy (engine); infinite Recruits at base",
       "sources": [
         {
+          "title": "YouTube — LotharHS Riftbound, \"INFINITE LOOP EXPLAINED! - Guide to BROKEN Lux Combo from Chinese Regionals\" — el loop caminado carta por carta tras una corrida 7-1 en un regional chino",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=NJUiBSTEn5w&t=126",
+          "date": "2026-06-06",
+          "quote": "[0:00] We just had a player go seven wins and one loss in the Chinese regional qualifier with an infinite loop looks deck. ... [2:06] Now, we pay two energy for the Forge of the Future. Now, we're going to play Echo. Pay five energy for him and one power. So, now we're going to play Shadow's Call on Echo. We're going to pay two energy for that. This goes to the graveyard. We draw two cards. Now, we're going to pay one more energy to play Sacrifice on the Echo. The Sacrifice goes to the graveyard. Echo, before the Sacrifice resolves, recycles to put the Death Knell on the chain. [2:34] We're going to now draw two cards from the resolution of the Sacrifice and channel one rune. Everything gets now untapped because of Echo and we're going to use now Forge of the Future targeting the free cards in our graveyard and putting them back into the deck. And now the loop starts again. So, once this loop starts going, we created infinite amount of energy, we created infinite amount of recruits.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "YouTube — MoreThatMillGuy, \"The Lux Infinite Is Toxic - Winning WITHOUT The Combo!?\" — el loop ejecutado en partida",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=XtZxY-hFSTU&t=2101",
+          "date": "2026-08-19",
+          "quote": "[0:00] Deluxe [Lux] infinite is probably one of the most oppressive decks out there. Not in terms of power level because it is nowhere near the best deck in the meta game. It just has the most frustrating play pattern because it doesn't interact at all. It wants to play solitaire. ... [35:01] 1 2 3 4 5 6. Yeah. All right, player left. That is it. That is the salt. We got there with Lux infinite.",
+          "accessed": "2026-09-06"
+        },
+        {
           "title": "Analyzing Infinite Combo Lux — Riftbound's Hottest New Deck (Scott Mines, TCGplayer Infinite)",
           "kind": "tournament-report",
           "url": "https://www.tcgplayer.com/content/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
@@ -149,6 +165,14 @@
       "terminatesIn": "infinite power (engine)",
       "sources": [
         {
+          "title": "YouTube — LotharHS Riftbound, \"INFINITE LOOP EXPLAINED! - Guide to BROKEN Lux Combo from Chinese Regionals\" — la segunda pasada, la que convierte Recruits en Power",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=NJUiBSTEn5w&t=176",
+          "date": "2026-06-06",
+          "quote": "[2:54] We're going to stop playing Echo and instead of Echo, we're going to start playing Retreat. So, once we're going to start casting Retreat on the recruits, we're going to be recycling our mind runes to start floating power and then channeling the rune again with each of the Retreat. Since we have infinite amount of recruits and infinite energy, we can create create infinite power.",
+          "accessed": "2026-09-06"
+        },
+        {
           "title": "Analyzing Infinite Combo Lux (TCGplayer Infinite)",
           "kind": "tournament-report",
           "url": "https://www.tcgplayer.com/content/article/Analyzing-Infinite-Combo-Lux-Riftbound-s-Hottest-New-Deck/a9e37a44-4ae3-4708-8112-43b4d5389c17/",
@@ -222,6 +246,14 @@
       "netPerIteration": "1 point per ~10 Energy + 5 Power. Bounded only by the infinite engines feeding it.",
       "terminatesIn": "win the game (ability points)",
       "sources": [
+        {
+          "title": "YouTube — LotharHS Riftbound, \"INFINITE LOOP EXPLAINED! - Guide to BROKEN Lux Combo from Chinese Regionals\" — el remate: readear a Renata con Fiora y volver a puntuar",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=NJUiBSTEn5w&t=204",
+          "date": "2026-06-06",
+          "quote": "[3:24] We're going to play Fiora Warfield. We're going to play Rally the Troops, which we're going to buff the next unit, I mean, units in this turn overall. And we're going to play Renata Glasc on the battlefield. Renata says, \"Four energy and four power, tap it, score a point.\" Now, because she's got typically to like untap her, right? We need to make her mighty. Rally the Troops will give her the buff to create her mighty in which we can now use Fiora Warfield to use a power, yellow one in this case, to untap Renata Glasc. Then we just pay the four energy for power because we have infinite everything and we're scoring one point.",
+          "accessed": "2026-09-06"
+        },
         {
           "title": "Analyzing Infinite Combo Lux (TCGplayer Infinite), Stage 4.3",
           "kind": "tournament-report",
@@ -369,6 +401,14 @@
       "terminatesIn": "burst of ability points in one Hold",
       "sources": [
         {
+          "title": "YouTube — TempoKing Ash, \"My Ahri Deck Made Him RAGE QUIT\" — el par jugado y cobrado en partida",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=u9pgyt9Um5U&t=192",
+          "date": "2026-05-09",
+          "quote": "[3:12] this Ahri, this Ahri and this blue sentinel together is one of the craziest things I've ever seen ... [9:24] And then I'm going to tap four, recycle one to play the blue sentinel here. ... [9:55] And I might go I might win next turn unironically cuz I get three points here and one point here. So, he has to take both or he just loses.",
+          "accessed": "2026-09-06"
+        },
+        {
           "title": "Phase 0 hunt, entry A-01 (docs/phase0/hunt.md)",
           "kind": "agent",
           "date": "2026-09-02"
@@ -429,6 +469,14 @@
       ],
       "terminatesIn": "burst of ability points in one Conquer",
       "sources": [
+        {
+          "title": "YouTube — Pukha Riftbound, \"Bring the Storm! | Riftbound Budget Volibear Deck Tech\" — la mitad Tryndamere, con la aritmética del excess damage",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=MmjFOdo3PEU&t=421",
+          "date": "2026-01-14",
+          "quote": "[7:01] but he has the ability when I conquer after an attack if five or more excess damage was assigned to enemy units score an additional point. So the thought process here is with trendir we get him down we play we we we we move into a battlefield and we make sure that we're going to deal five or more excess based off the basic math. So like if my opponent has a three might unit defending and I have my trend ready to go. I move my trend in assuming no combat tricks or anything happen. my trend eats his guy, deals five excess damage, and instead of scoring one point, I score two points",
+          "accessed": "2026-09-06"
+        },
         {
           "title": "Phase 0 hunt, entry A-02 (docs/phase0/hunt.md)",
           "kind": "agent",
@@ -543,6 +591,14 @@
       ],
       "terminatesIn": "win the game",
       "sources": [
+        {
+          "title": "YouTube — Frodan Riftbound, \"This new Aurora color combo in Jayce is insane Ft. Villionaire\" — un mazo que lleva el Palace SIN ir por el 4-4",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=5__EMKuKkTE&t=365",
+          "date": "2026-08-08",
+          "quote": "[6:05] You also are playing a one-of gutter palace in the deck which lets you uh get your elders out of your hand. ... [6:19] the main purpose of the gutter is like if you get starcrossed your elders get stuck in your hand. You want to get rid of them, get them in the discard and then use the garbage grabber to put them back in and turn them back out with the Aurora all over again. [6:29] >> Okay, so this is not actually to combo for the win cuz this says if you do the 444 you win. There might be some world where you actually pull this off",
+          "accessed": "2026-09-06"
+        },
         {
           "title": "Phase 0 hunt, entry A-04 (docs/phase0/hunt.md)",
           "kind": "agent",
@@ -3169,6 +3225,14 @@
       "terminatesIn": "engine only — four spells of 4+ Energy convert into 4 ready runes and a card, but the runes are permanent ramp against a 12-rune ceiling (161.2.a): the lifetime output is at most the runes you had not already channelled, plus one card per 16+ Energy of spells",
       "sources": [
         {
+          "title": "YouTube — GrappLr, \"Art of Control… Playing a Jhin Deck is Beautiful\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=key-UU2gV4c&t=28",
+          "date": "2026-03-20",
+          "quote": "[0:14] The idea here is basically you have a lot of spells that all cost four or more. Uh Piercing Light may cost two, but it costs four when it is repeated. And you want to pop your Jin's ability as many times as possible as early as possible. So, whenever you play four four or more cost spells, you get to channel four runes, which by the way are not exhausted, and you draw a card.",
+          "accessed": "2026-09-06"
+        },
+        {
           "title": "Hunt v2 lens L3, entry L3-16 (docs/phase0/hunt2/L3-ready-resource.md)",
           "kind": "agent",
           "date": "2026-09-03"
@@ -3316,6 +3380,14 @@
       "terminatesIn": "engine only — a free unit every end of turn; when it hits Elder Dragon, one enemy unit dies at each location, up to three in a 1v1",
       "rulesVersion": "2026-07-16",
       "sources": [
+        {
+          "title": "YouTube — Riftlab, \"Learn MISS FORTUNE in Riftbound | Full Deck Guide & Combos\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=ml2KhQs7qmo&t=38",
+          "date": "2025-09-11",
+          "quote": "[0:38] The core strategy of Misfortune that we will focus on here is playing her with one major card, which is Dazzling Aurora. This card at the end of your turn allows you to reveal a card from the top of the deck until you find a unit. Then you are able to play that immediately with no cost. This means decks for misfortune usually play only high cost units and a ton of cards that allow you to draw in order to find this card.",
+          "accessed": "2026-09-06"
+        },
         {
           "title": "Tencent News, 「从苏州到悉尼：破限为符文战场带来了什么？」, saralolita, 2026-05-18 — Aurora decks at the Suzhou and Sydney regional opens, one player facing five in seven Swiss rounds",
           "kind": "article",
@@ -3961,6 +4033,14 @@
       "rulesVersion": "2026-07-16",
       "sources": [
         {
+          "title": "YouTube — gillygabyte, \"Handloop Ezreal Unleashed Deck Tech & Guide\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=MaJc2jKSrHg&t=364",
+          "date": "2026-05-26",
+          "quote": "[6:04] So, the headliner card we have Bewitching Spirit. It has such a simple effect of saying when you play me, choose a player, they discard one. So, you'll play Bewitching Spirit. You'll choose your opponent. They are forced to discard a card. They do get to choose the discard, but honestly we'll be replaying this card so very often that they're going to not really have many choices at the end of the game. So, we play three copies of this",
+          "accessed": "2026-09-06"
+        },
+        {
           "title": "Reddit r/riftboundtcg — \"How do i counter the pack of wonder and bewitching spirit combo\", TNTOM4 — 'you don't get to keep a single card in hand'",
           "kind": "article",
           "url": "https://old.reddit.com/r/riftboundtcg/comments/1uj028b/",
@@ -4039,6 +4119,22 @@
       "terminatesIn": "engine — exactly one point per turn ('the third time', not 'every third time'), for 3 Energy and zero cards spent; eight turns to the Victory Score on its own",
       "rulesVersion": "2026-07-16",
       "sources": [
+        {
+          "title": "YouTube — Mabi TCG, \"Riftbound TCG: Yasuo Unforgiven Deck Profile & How To Play (OGN)\" — plantea en voz alta la pregunta que esta entrada contesta",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=Z4zUuEOFXho&t=1141",
+          "date": "2025-11-03",
+          "quote": "[19:05] So 54 and one purple ganking. So move from a battlefield without the need of, you know, ganking on the field itself. The third time I move, you score one point. We talked about this. Every single card itself, moving one, use this. Oh, you use one of the spells to move it back. Use this cost two. Move it back. ... [19:21] So it says the move the third time I move in a turn. I move. I don't know if you can do it multiple times. So maybe someone can [tell me]",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "YouTube — Turn 'em Sideways!, \"How Yasuo Nearly Top 8 the Largest Riftbound Tournament Ever | Deck Tech w/ Boky\" — el triple move como amenaza real en torneo",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=095rnuDqnSs&t=694",
+          "date": "2026-04-22",
+          "quote": "[11:34] because if they fall back with everything trying to double score on next turn, they are likely going to lose to the double score plus plus wind rider triple move from you.",
+          "accessed": "2026-09-06"
+        },
         {
           "title": "Hunt L7 — Chaos (docs/phase0/hunt3/L7-chaos.md), candidate C1",
           "kind": "agent",
@@ -4350,6 +4446,14 @@
       "terminatesIn": "engine — one free Energy-cost-3-or-less spell per Pack per turn, at 3E and 1P each, spending no cards",
       "rulesVersion": "2026-07-16",
       "sources": [
+        {
+          "title": "YouTube — Zelonius - Riftbound, \"Pyke Control Is SECRETLY Insane! (Deck Guide + Gameplay)\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=LRutCZDpUf8&t=178",
+          "date": "2026-06-23",
+          "quote": "[2:58] Fizz allows you to repeat stuff and you can use them in Pack of Wonders just return them and keep spamming spells.",
+          "accessed": "2026-09-06"
+        },
         {
           "title": "Hunt L7 — Chaos (docs/phase0/hunt3/L7-chaos.md), candidate C6",
           "kind": "agent",
@@ -7418,6 +7522,22 @@
       "rulesVersion": "2026-07-16",
       "sources": [
         {
+          "title": "YouTube — Frobei - Riftbound, \"New Infinite Loop Deck with Akali\" — el loop de robo ejecutado en partida",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=HDnIw6NETTI&t=1151",
+          "date": "2026-07-17",
+          "quote": "[19:11] let's assume I have like infinite power and energy because I've been doing that for infinite times, right? Then, I don't necessarily need anymore to get more power. What I need now is to draw. ... [19:35] I do the other loop but with Stellacorn. So, how does it work? I go here. Ready this. I go here. And this time I will target this and this. Both ready. And then after go here, draw.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "YouTube — Frobei - Riftbound, mismo video — la pared de Burn Out, dicha por el autor mientras la sufre",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=HDnIw6NETTI&t=2020",
+          "date": "2026-07-17",
+          "quote": "[23:40] because I try to draw and I have no card and he goes to eight, I lose, right? So um yeah, that's the combo. Finally managed to do it. [23:49] And guys, this is the combo. Um again, I don't think, to be honest, after trying for like 2 hours around and with real players and against myself, like in the game I showed you, I think the combo is not consistent enough right now.",
+          "accessed": "2026-09-06"
+        },
+        {
           "title": "YouTube - Dokgebi, \"Infinite Card Draw, Energy, and Power in Akali\" - the full package walked on camera",
           "kind": "video",
           "url": "https://www.youtube.com/watch?v=Rxp5Gfl0fq8&t=472",
@@ -7498,6 +7618,14 @@
       "terminatesIn": "win the game",
       "rulesVersion": "2026-07-16",
       "sources": [
+        {
+          "title": "YouTube — AkeenaTV, \"Lillia Aggro Riftbound Deck\" — el mismo creador de la línea vieja, corrigiéndose en video",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=QKxuI8enzI0&t=0",
+          "date": "2026-04-07",
+          "quote": "[0:01] Well, they did some updates and some erratas and some cards got banned and alongside those bans, some rules got changed which means our Grand Plaza combo doesn't really work as well as it used to. ... [0:39] conditional triggers now only go on the stack if the uh following qualifier is active at the like point of the trigger. So, we need to have seven units before this whole trigger actually happens.",
+          "accessed": "2026-09-06"
+        },
         {
           "title": "YouTube - AkeenaTV, \"Sneaky Insta-Win Combo in a Control Deck?\" - the card and the four Birds; its SEQUENCE is refuted by this walk",
           "kind": "video",
@@ -9045,6 +9173,14 @@
       "terminatesIn": "engine only — it relocates bodies and conquers; the win comes from what the bodies then do, e.g. a Grand Plaza hold on the following turn",
       "sources": [
         {
+          "title": "YouTube — AliEldrazi Riftbound, \"The Emperor of Shurima Rises - Azir Deck Tech\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=Cnf-tbghNPU&t=224",
+          "date": "2026-02-16",
+          "quote": "[3:44] Azir sovereign Azir sovereign is a four cost no power but you can start for five pay one power um it says when he attacks you move any number of your tokens this battlefield [3:57] essentially when he attacks he can drag any number of soldiers with him to battlefield pretty sweet it's pretty sweet actually helps you clear any battlefield pretty pretty quickly",
+          "accessed": "2026-09-06"
+        },
+        {
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16"
@@ -9112,6 +9248,14 @@
       "netPerIteration": "+1 permanent Recruit at your base and +1 ready 3 Might Sprite per turn, for 0 Energy and 0 cards",
       "terminatesIn": "engine only — one free body a turn; the bodies still have to walk to a battlefield to be worth points",
       "sources": [
+        {
+          "title": "YouTube — GG Haven, \"Master Garen's Recruit Army | Demacia Strategy & Deck Breakdown\" — sólo la mitad Viktor; el video no nombra a Sprite Queen",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=Lx1YLkHhMGg&t=152",
+          "date": "2025-10-19",
+          "quote": "[2:32] we have Victor [Viktor, Leader]. When a non-recruit ally dies, create a recruit at your base. This gives you a recycling army. Nothing is wasted. Everything fuels board presence.",
+          "accessed": "2026-09-06"
+        },
         {
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",

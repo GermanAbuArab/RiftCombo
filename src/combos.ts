@@ -55,6 +55,21 @@ export function generateVariants(combos: Combo[], cards: CardIndex, maxDepth = 3
 
   interface Partial { comboIds: string[]; cards: Record<string, number>; produces: Set<string>; status: ComboStatus; cls: ComboClass; legends?: string[] }
 
+  const domainsOfPool = (pool: Record<string, number>) =>
+    [...new Set(Object.keys(pool).flatMap((b) => cards.domainsOf(b)))] as Domain[];
+
+  /**
+   * Domain Identity (103.1.b): a deck's identity is its Champion Legend's domains, and every legend
+   * in the pool has exactly two, while 103.1.b.4 only admits a card into an identity that contains
+   * all of that card's domains. So a card pool spanning three domains is one no deck can assemble.
+   *
+   * Composing merges card multisets with a union, so a pool's domains only ever grow: a partial
+   * that already overflows can never come back inside two, and the branch is dropped here rather
+   * than at the end. Before this, generateVariants built 280 variants over the 135-entry catalogue
+   * of 2026-09-06 and `matchDeck` discarded 134 of them one by one.
+   */
+  const runnable = (pool: Record<string, number>) => domainsOfPool(pool).length <= 2;
+
   const expand = (combo: Combo, depth: number, seen: Set<string>): Partial[] => {
     const self: Partial = {
       comboIds: [combo.id],
@@ -64,6 +79,7 @@ export function generateVariants(combos: Combo[], cards: CardIndex, maxDepth = 3
       cls: combo.class,
       legends: combo.legends,
     };
+    if (!runnable(self.cards)) return [];
     let partials: Partial[] = [self];
     for (const need of combo.needs) {
       const options = (producers.get(need) ?? []).filter((p) => !seen.has(p.id) && p.id !== combo.id);
@@ -77,6 +93,7 @@ export function generateVariants(combos: Combo[], cards: CardIndex, maxDepth = 3
             if (legends === null) continue; // the two halves need different legends
             const merged: Record<string, number> = { ...p.cards };
             for (const [k, v] of Object.entries(sub.cards)) merged[k] = Math.max(merged[k] ?? 0, v);
+            if (!runnable(merged)) continue; // no legend's two domains hold both halves
             next.push({
               comboIds: [...new Set([...p.comboIds, ...sub.comboIds])],
               cards: merged,
@@ -101,7 +118,7 @@ export function generateVariants(combos: Combo[], cards: CardIndex, maxDepth = 3
       const key = Object.entries(p.cards).sort().map(([k, v]) => `${k}x${v}`).join("+") + "|" + [...p.produces].sort().join(",");
       if (seenKeys.has(key)) continue;
       seenKeys.add(key);
-      const domains = [...new Set(Object.keys(p.cards).flatMap((b) => cards.domainsOf(b)))] as Domain[];
+      const domains = domainsOfPool(p.cards);
       variants.push({
         id: `${combo.id}${p.comboIds.length > 1 ? "+" + p.comboIds.slice(1).join("+") : ""}`,
         comboIds: p.comboIds,

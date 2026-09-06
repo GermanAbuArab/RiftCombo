@@ -32,6 +32,20 @@ describe("authored combos", () => {
     expect(kill.status).toBe("verified");
   });
 
+  it("never compose a variant no legend could run, so the matcher's guard cuts nothing (#64)", () => {
+    // Domain Identity, 103.1.b: every legend has exactly two domains, and 103.1.b.4 only lets a
+    // card into an identity that holds all of its own. Measured on the 2026-09-06 catalogue of
+    // 135 entries, generateVariants used to emit 280 variants and matchDeck threw away the 134
+    // whose card pool spanned three or more domains, leaving 146. The filter now runs while the
+    // variants are being composed, so the guard at src/matcher.ts:55 fires on nothing — that is
+    // what this asserts, and it is why the guard may stay as a cheap safety net.
+    expect(variants.filter((v) => v.domains.length > 2).map((v) => v.id)).toEqual([]);
+    // Every entry the catalogue authors is inside one identity, so no authored line was hidden:
+    // the 134 dropped were all compositions, never a variant standing on a single combo.
+    expect(combos.filter((c) => c.status !== "refuted")
+      .filter((c) => new Set(c.uses.flatMap((u) => cards.domainsOf(u.card))).size > 2)).toEqual([]);
+  });
+
   it("does not emit a variant for a combo whose needs cannot be satisfied", () => {
     const orphan = generateVariants(
       [{ ...combos.find((c) => c.id === "lux-infinite-power")! }],

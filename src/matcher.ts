@@ -52,6 +52,10 @@ export function matchDeck(deck: Deck, variants: Variant[], cards: CardIndex, opt
   const inIdentity = (base: string) => !legendDomains || cards.domainsOf(base).every((d) => legendDomains.has(d));
 
   for (const v of variants) {
+    // Safety net only: since #64 `generateVariants` refuses to compose a pool spanning more than
+    // one legend's two domains (103.1.b), so this cuts nothing — pinned by a test in
+    // test/matcher.test.ts over the whole catalogue. It stays because the matcher takes its
+    // variants as an argument and cannot assume the caller built them with that filter.
     if (v.domains.length > 2) continue; // no legend can run it
     const missing: Hit["missing"] = [];
     let missingCount = 0;
