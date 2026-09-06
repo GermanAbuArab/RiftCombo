@@ -26,11 +26,18 @@ export const baseOf = (code: string): string => code.replace(/[a-z*]$/i, "");
 const SET_ORDER = ["OGN", "OGS", "ARC", "SFD", "UNL", "VEN", "RAD"];
 const setOrder = (set: string) => { const i = SET_ORDER.indexOf(set); return i < 0 ? SET_ORDER.length : i; };
 
-// Piltover Archive encodes the Spiritforged rune reprints as SFD-R0x; Riot's gallery
-// lists runes under their Origins numbers (and VEN-R0x for Vendetta).
+// Piltover Archive encodes the Spiritforged rune reprints as SFD-R0x and riftbound.gg the Unleashed
+// ones as UNL-R0x; Riot's gallery lists runes under their Origins numbers and reprints them only in
+// Vendetta (VEN-R0x), so neither SFD-R0x nor UNL-R0x exists there. Without the Unleashed row a list
+// lost its whole Rune Deck: 696 of the 775 rune lines across 452 riftbound.gg tournament lists (#90).
+// The number is the same domain in all three sets — read off riftbound.gg's own 1427-card index on
+// 2026-09-06, where every R01 is a Fury Rune, every R02 a Calm Rune, and so on to R06 Order — not
+// inferred from the order of the Spiritforged row.
 const RUNE_ALIAS: Record<string, string> = {
   "SFD-R01": "OGN-007", "SFD-R02": "OGN-042", "SFD-R03": "OGN-089",
   "SFD-R04": "OGN-126", "SFD-R05": "OGN-166", "SFD-R06": "OGN-214",
+  "UNL-R01": "OGN-007", "UNL-R02": "OGN-042", "UNL-R03": "OGN-089",
+  "UNL-R04": "OGN-126", "UNL-R05": "OGN-166", "UNL-R06": "OGN-214",
 };
 
 export class CardIndex {

@@ -21,7 +21,38 @@ const SECTION_ALIASES: Record<string, string> = {
   sideboard: "sideboard", side: "sideboard",
 };
 
-const CODE_RE = /^([A-Z]{3})-([A-Z]*\d{1,3}[a-z*]?)(?:\/\d+)?(?:-(\d+))?$/i;
+/** Set, number and the gallery's variant marker: `OGN-212`, `OGN-007a`, `OGN-299*`, `UNL-T04`, `VEN-SP1`. */
+const CODE_CORE = String.raw`[A-Z]{3}-[A-Z]*\d{1,3}[a-z*]?`;
+
+/**
+ * What riftbound.gg (api.dotgg.gg) appends on top of that, measured 2026-09-06 over its whole
+ * 1427-card index (#90):
+ *   `-STAR`        the 45 alt-arts Riot's gallery spells with a trailing `*` — the same 45 printings.
+ *   `-P`           a promo (`promo: "1"` there): Nexus Night, Judge, Release Event, Summoner
+ *                  Skirmish. The gallery carries none of the 150, so it is the base printing.
+ *   `-P2`, `-P-Champion`  a second promo of the same card.
+ *   `-a`           the one id that hyphenates the variant letter (`OGN-263-a`).
+ * No code in the gallery has a hyphen before a letter, so this can only strip a dialect marker; the
+ * TTS copy suffix is `-1`, a digit, and stays out of it.
+ */
+const CODE_DIALECT = String.raw`(?:-STAR|-P(?:\d+|-Champion)?|-[a-z])?`;
+
+const CODE_RE = new RegExp(String.raw`^(${CODE_CORE}${CODE_DIALECT})(?:\/\d+)?(?:-(\d+))?$`, "i");
+
+/**
+ * A code in any dialect, spelled the way Riot's gallery spells it. Runs BEFORE `resolveCode`, since
+ * the index only knows the gallery's forms — the alias for a reprint the gallery never printed
+ * (`UNL-R05`) lives in `src/cards.ts` instead, because that one is a different printing, not a
+ * different spelling of the same one.
+ */
+export function normalizeCardCode(code: string): string {
+  return code
+    .trim()
+    .replace(/-P(?:\d+|-Champion)?$/i, "")
+    .replace(/-STAR$/i, "*")
+    .replace(/-([a-z])$/i, "$1")
+    .toUpperCase();
+}
 
 /** Parse the plaintext dialects seen on Piltover Archive, riftbound.gg, TTS exports and articles. */
 export function parseDeckText(text: string): DeckEntry[] {
@@ -42,10 +73,10 @@ export function parseDeckText(text: string): DeckEntry[] {
     // TTS token dump: "OGN-265-1 OGN-110-1 UNL-165-2 ...". The variant class must match CODE_RE's
     // ([a-z*], not [a-z]): 45 printings are alt-arts whose code ends in "*", and this guard is a
     // whole-line test, so one of them made every code on the line fall through as a bogus name.
-    if (/^(?:[A-Z]{3}-[A-Z]*\d{1,3}[a-z*]?-\d+\s*)+$/i.test(line)) {
+    if (new RegExp(String.raw`^(?:${CODE_CORE}-\d+\s*)+$`, "i").test(line)) {
       for (const tok of line.split(/\s+/)) {
         const m = tok.match(CODE_RE);
-        if (m) out.push({ code: `${m[1]}-${m[2]}`, count: 1, section });
+        if (m) out.push({ code: normalizeCardCode(m[1]!), count: 1, section });
       }
       continue;
     }
@@ -56,12 +87,12 @@ export function parseDeckText(text: string): DeckEntry[] {
     else if ((m = line.match(/^(.+?)\s+[xX×]\s*(\d+)$/))) { line = m[1]!.trim(); count = Number(m[2]); }
 
     // "Name (OGN-001)" or "Name [OGN-001]" or bare code
-    const trailing = line.match(/^(.*?)\s*[([]\s*([A-Z]{3}-[A-Z]*\d{1,3}[a-z*]?(?:\/\d+)?)\s*[)\]]\s*$/i);
+    const trailing = line.match(new RegExp(String.raw`^(.*?)\s*[([]\s*(${CODE_CORE}${CODE_DIALECT}(?:\/\d+)?)\s*[)\]]\s*$`, "i"));
     if (trailing) {
-      out.push({ code: trailing[2]!.toUpperCase(), name: trailing[1]!.trim() || undefined, count, section });
+      out.push({ code: normalizeCardCode(trailing[2]!), name: trailing[1]!.trim() || undefined, count, section });
     } else if (CODE_RE.test(line)) {
       const c = line.match(CODE_RE)!;
-      out.push({ code: `${c[1]}-${c[2]}`.toUpperCase(), count, section });
+      out.push({ code: normalizeCardCode(c[1]!), count, section });
     } else {
       out.push({ name: line, count, section });
     }

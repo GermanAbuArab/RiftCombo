@@ -86,6 +86,77 @@ describe("plaintext decklists", () => {
     expect(lost).toEqual([]);
   });
 
+  /**
+   * #90. riftbound.gg (api.dotgg.gg) writes two suffixes of its own on top of the gallery's spelling.
+   * Measured 2026-09-06 over that site's whole 1427-card index: `-STAR` marks the 45 alt-arts Riot's
+   * gallery spells with a trailing `*` — the same 45 printings, one for one — and `-P` marks a promo
+   * (`promo: "1"` in that index: Nexus Night, Judge, Release Event, Summoner Skirmish), of which the
+   * gallery carries none of the 150, so it can only resolve to the base printing. `-P2` and
+   * `-P-Champion` are a second promo of the same card, `SFD-178a-P` a promo of an alt-art, and
+   * `OGN-263-a` the one id that hyphenates the variant letter. Over 452 tournament lists (12,150
+   * lines) the two shapes were 309 and 149 dropped lines.
+   */
+  it("reads riftbound.gg's -STAR alt-art suffix and its -P promo suffix", () => {
+    const deck = loadDeck("1 OGN-299-STAR\n3 UNL-113-STAR\n2 VEN-038-P\n1 OGN-183-P\n1 SFD-139-P2\n1 UNL-058-P-Champion\n1 SFD-178a-P", cards);
+    expect(deck.unresolved).toEqual([]);
+    expect(deck.legend).toBe("OGN-299"); // Daughter of the Void, the alt-art the gallery writes `OGN-299*`
+    expect(deck.main["UNL-113"]).toBe(3); // Master Yi, Tempered
+    expect(deck.main["VEN-038"]).toBe(2); // Akali, Silent
+    expect(deck.main["OGN-183"]).toBe(1); // Stacked Deck, Origins Nexus Night promo
+    expect(deck.main["SFD-139"]).toBe(1); // Edge of Night, a second Summoner Skirmish promo
+    expect(deck.main["UNL-058"]).toBe(1); // Lillia, Protector of Dreams
+    expect(deck.main["SFD-178"]).toBe(1); // Blade of the Ruined King, promo of the `a` alt-art
+  });
+
+  it("reads the one dialect id that hyphenates the variant letter", () => {
+    const deck = loadDeck("1 OGN-263-a", cards);
+    expect(deck.unresolved).toEqual([]);
+    expect(deck.legend).toBe("OGN-263"); // Swift Scout
+  });
+
+  /**
+   * #90. Riot's gallery prints the six runes under their Origins numbers and reprints them only in
+   * Vendetta (`VEN-R01`…`VEN-R06`); it has no `SFD-R0x` and no `UNL-R0x` at all. Every list on
+   * riftbound.gg that ran the Unleashed printing therefore lost its whole Rune Deck: 696 of the 775
+   * rune lines across 452 tournament lists. The correspondence is read off that site's own index,
+   * where the number is the same domain in all three sets — R01 Fury, R02 Calm, R03 Mind, R04 Body,
+   * R05 Chaos, R06 Order — and not guessed from the order of the alias already there.
+   */
+  it("resolves the Unleashed rune reprints the gallery never printed", () => {
+    const deck = loadDeck("4 UNL-R05a\n4 UNL-R05\n4 UNL-R03A", cards);
+    expect(deck.unresolved).toEqual([]);
+    expect(deck.runes["OGN-166"]).toBe(8); // Chaos Rune
+    expect(deck.runes["OGN-089"]).toBe(4); // Mind Rune
+  });
+
+  it("gives every rune reprint the name Riot's gallery gives its Origins printing", () => {
+    const domains = ["Fury Rune", "Calm Rune", "Mind Rune", "Body Rune", "Chaos Rune", "Order Rune"];
+    for (const set of ["SFD", "UNL"]) {
+      for (let i = 0; i < domains.length; i++) {
+        const base = cards.resolveCode(`${set}-R0${i + 1}`);
+        expect(cards.get(base!)?.name).toBe(domains[i]);
+      }
+    }
+  });
+
+  it("resolves every printing in the pool through riftbound.gg's suffixes too", () => {
+    // The sweep of #87 (1189 codes in three spellings) extended to the two shapes of #90, through
+    // `parseDeckText` rather than `resolveCode` alone, because the suffix is normalised in the
+    // parser: a code the regex refuses never reaches the index at all, which is how `-STAR` and
+    // `-P` were being dropped as if they were card names.
+    const lost: string[] = [];
+    for (const card of cards.cards) {
+      const spellings = card.code.endsWith("*")
+        ? [card.code.replace("*", "-STAR"), card.code.replace("*", "-star")]
+        : [`${card.code}-P`, `${card.code}-p`];
+      for (const spelling of spellings) {
+        const [entry] = parseDeckText(`1 ${spelling}`);
+        if (!entry?.code || cards.resolveCode(entry.code) !== card.base) lost.push(spelling);
+      }
+    }
+    expect(lost).toEqual([]);
+  });
+
   it("reads the long champion head Riot's articles write for a short printed name", () => {
     // #86. Riot printed the same champion two ways — `OGS-009 Yi, Honed` in the starter set,
     // `UNL-113 Master Yi, Tempered` in Unleashed — and its own "<City>'s Top Decks" articles write
