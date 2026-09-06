@@ -155,3 +155,4 @@
   `npx vercel deploy --prod --yes </dev/null` uploaded the working tree, which twice shipped another
   session's uncommitted files. Keep that command only as a fallback when the Git build is broken.
 - `npm run dev` serves the app on http://127.0.0.1:8787. Kill the wrangler process when the session ends.
+- **Do not loop-poll the live bundle.** On 2026-09-06 repeated `curl https://riftcombo.app/app.js` (1.7 MB, from this IP, by several sessions at once) tripped Vercel's automatic mitigation: every request from this machine — curl, browser UA, headless Chromium — got `403` + `x-vercel-mitigated: challenge` ("Vercel Security Checkpoint") while `r.jina.ai/https://riftcombo.app/` from another network answered 200, and the project has no firewall config at all. So a 403 challenge from here is NOT an outage: confirm from another vantage before touching anything, check a deploy ONCE with `npx vercel ls riftcombo`, and read the live bundle at most once per deploy.
