@@ -10336,7 +10336,7 @@
         "notable": [
           "EVERY SWAP IS A MOVE AND THEREFORE FIRES HER. 446.1: 'A Permanent changing its position from any space on the Board to another space on the Board is a Move, unless it is caused by a corrective Recall or an Attached Permanent changing locations to or with its Top-Most Card.' 420.1 says the same from the other side, and 456 / 456.1 exclude only recalls ('Recalls are not Moves… They do not cause Triggered Abilities to trigger that are triggered by Move actions'). 'There' is the ORIGIN, read on execution (359.3.f.2), and 355.2.a makes it legal only because the origin is your base or a battlefield you control.",
           "THE ARITHMETIC WITH THE QUANTITIES DECLARED — FOUR SPRITES, BUT NOT TWELVE MIGHT IN ONE PLACE, WHICH IS THIS ENTRY'S CORRECTION TO ISSUE #58. Tracked position by position with 1 Lillia and the 3 copies 103.2.b allows: after her Standard Move base->B the board is base {S1} / B {Lillia}; after swap 1, base {Lillia} / B {S1,S2}; after swap 2, base {S1,S3} / B {S2,Lillia}; after swap 3, base {S3,Lillia} / B {S1,S2,S4}. Four Sprites and 12 Might in total, but every swap moves Lillia the other way, so after an odd number of swaps she is back at the base and AT MOST THREE SPRITES (9 Might) stand at the battlefield. Stop at two swaps and it is Lillia plus one Sprite there.",
-          "COSTS, WITH THE [Hidden] DISCOUNT PRICED HONESTLY. 3 Energy for Lillia, 1 Energy + 1 Mind Power for [Accelerate] (805.1.a), 2 Energy per copy: 10 Energy + 1 Power, and cards net minus one (three spent, three drawn). 811.1.b does let you hide a copy 'at a battlefield you control' for one rainbow Power and play it later for 0 Energy — but 811.1.d warns that 'Some choices made while playing a card from Hidden are restricted to the battlefield where it was hidden', and this spell is DEFINED by choosing two units at DIFFERENT locations, so one of its two choices is necessarily off that battlefield. The entry prices the copies at their base cost.",
+          "COSTS, WITH THE [Hidden] DISCOUNT PRICED ON THE RIGHT RULE (CORRECTED 2026-09-06). 3 Energy for Lillia, 1 Energy + 1 Mind Power for [Accelerate] (805.1.a), 2 Energy per copy: 10 Energy + 1 Power at base cost, and cards net minus one (three spent, three drawn). This entry used to say the discount was unavailable because the spell is defined by choosing two units at DIFFERENT locations, so one choice is necessarily off the battlefield it was hidden at. That is the opposite of what the rule says. 811.1.d.2 IS SETTLED BY THE RULE'S OWN WORKED EXAMPLES, WHICH NAME THESE CARDS. The clause is \"If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible\", and 811.1.d.2.a adds \"Each target is treated separately and individually when processing this rule.\" The exception is therefore PER TARGET, not per card, and the reglamento works both of these cards by name: Tideturner — \"Because its play effect has a targeting restriction that can never be fulfilled by a unit at its battlefield, its target may be chosen freely from among the available options\"; Smoke and Mirrors — \"the first unit chosen can be chosen at the battlefield Smoke and Mirrors was played from, so it must be. The second unit chosen explicitly restricts targeting in a way that makes this impossible, so it can be chosen from any location.\" So a hidden copy is LEGAL: its first chosen unit must be at that battlefield — satisfiable at every step of this relay, since one of the two swap partners is always standing there — and the second may be anywhere. The headline price stays at base cost anyway, for three reasons that are real: 811.1.b only lets you play it 'beginning on the next turn', it lets you hide one facedown per battlefield you control ('that doesn't already have a facedown card hidden there') and 485.4 puts only two battlefields on the board in a Duel, and 323.7 trashes a hidden card at a battlefield you stop controlling. ONE copy hidden a turn ahead makes the relay 8 Energy + 2 Power instead of 10 Energy + 1 Power.",
           "TRAP 4 BITES IN FULL AND IS DECLARED, NOT WORKED AROUND. 816.1 makes [Temporary] a Triggered Ability keyword and 816.1.b is 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this.' The Sprites NEVER Hold, so they never count for OGN-293 The Grand Plaza, whose condition 383.2.a.1 measures at the Scoring Step that 315.2.b.2 places in the Beginning Phase. They are one turn cycle of combat bodies and that is all this entry claims.",
           "THE LEGEND THAT BELONGS WITH IT. UNL-189 Bashful Bloom (Calm/Mind): '4 Energy, exhaust: Play a ready 3 Might Sprite unit token with [Temporary]. This ability costs 1 Energy less for each friendly unit with [Temporary].' With four Sprites out it costs 0, and its Sprite enters READY — the only ready body in the line. It also starts the relay without spending Lillia's Standard Move: play its Sprite at a battlefield you control and Lillia at the base is already 'at a different location'.",
           "[Action] IS WHY THE BODIES CAN APPEAR INSIDE A SHOWDOWN (806.1.c.1: 'This can be played during showdowns on any player's turn'), which is the difference between a relay and a sorcery-speed trick.",
@@ -10372,7 +10372,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 candidate 7, with ONE correction. The candidate's '4 Sprites -> 12 Might' is right as a total and wrong as a board: every swap moves Lillia the other way, so at most three Sprites (9 Might) end at the battlefield and she ends at the base after three swaps. The walk tracks the positions swap by swap. It also prices the [Hidden] discount against 811.1.d instead of quoting the reminder text, and adds UNL-189 Bashful Bloom as the legend that both discounts to 0 on four Sprites and starts the relay without spending her Standard Move. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 143.4, 144.2, 144.4.a, 315.2.b.2, 355.2.a, 359.3.f.2, 383.2.a.1, 420.1, 446.1, 456, 456.1, 805.1.a, 806.1.c.1, 811.1.b, 811.1.d, 816.1, 816.1.b. Ban check: UNL-082, UNL-083 and UNL-189 carry no [BANNED marker. Arithmetic against its own declared quantities: 1 Lillia + 3 Smoke and Mirrors = 4 Sprites for 10 Energy + 1 Power, cards net -1. Trap check: trap 4 applies in full and is declared (the Sprites never Hold); no attack; no [Repeat]; recalls are excluded by name (456.1); no Awaken Energy carried across a phase. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 candidate 7, with ONE correction. The candidate's '4 Sprites -> 12 Might' is right as a total and wrong as a board: every swap moves Lillia the other way, so at most three Sprites (9 Might) end at the battlefield and she ends at the base after three swaps. The walk tracks the positions swap by swap. It also prices the [Hidden] discount against 811.1.d instead of quoting the reminder text, and adds UNL-189 Bashful Bloom as the legend that both discounts to 0 on four Sprites and starts the relay without spending her Standard Move. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 143.4, 144.2, 144.4.a, 315.2.b.2, 355.2.a, 359.3.f.2, 383.2.a.1, 420.1, 446.1, 456, 456.1, 805.1.a, 806.1.c.1, 811.1.b, 811.1.d, 816.1, 816.1.b. Ban check: UNL-082, UNL-083 and UNL-189 carry no [BANNED marker. Arithmetic against its own declared quantities: 1 Lillia + 3 Smoke and Mirrors = 4 Sprites for 10 Energy + 1 Power, cards net -1. Trap check: trap 4 applies in full and is declared (the Sprites never Hold); no attack; no [Repeat]; recalls are excluded by name (456.1); no Awaken Energy carried across a phase. Depends on no unruled reading. 811.1.d.2 CORRECTED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md, issue #89's extra task). The cost notable cited 811.1.d to REJECT the [Hidden] discount for UNL-083 Smoke and Mirrors; 811.1.d.2.a works that exact card by name and grants it — the first chosen unit must be at the hiding battlefield, the second may be anywhere. The catalogue held three different readings of this clause (tideturner-mega-mech-swap took the exception, this entry rejected it, hwei-move-draw-ready-runes read it as covering both targets and priced expensive 'for consistency'); all three now state the per-target rule. The declared 10 Energy + 1 Power is unchanged, because the discount needs a turn of setup and one controlled battlefield per copy; the discounted figure (8 Energy + 2 Power for one hidden copy) is stated in the notable. No class and no quantity changed."
     },
     {
       "id": "bard-mercurial-mass-relocation",
@@ -13395,7 +13395,7 @@
         ],
         "notable": [
           "IT MOVES AN EXHAUSTED BODY, WHICH IS THE WHOLE POINT. 143.4 makes the Mega-Mech enter exhausted, and 420.3.a puts the exhaust cost only on the Standard Move - a move by effect has neither restriction, which is the fact the #58 movement lens established. So the 8 Might arrives at a battlefield the turn it would otherwise be a statue in your base.",
-          "811.1.d.2 HAS AN EXPLICIT ESCAPE AND THIS CARD USES IT. 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, UNLESS the ability explicitly restricts targeting in a way that makes this impossible.' Tideturner chooses 'a unit you control at ANOTHER location', which makes the battlefield restriction impossible to satisfy - so the clause's own exception applies and the swap can reach the base.",
+          "811.1.d.2 IS SETTLED BY THE RULE'S OWN WORKED EXAMPLES, WHICH NAME THESE CARDS. The clause is \"If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible\", and 811.1.d.2.a adds \"Each target is treated separately and individually when processing this rule.\" The exception is therefore PER TARGET, not per card, and the reglamento works both of these cards by name: Tideturner — \"Because its play effect has a targeting restriction that can never be fulfilled by a unit at its battlefield, its target may be chosen freely from among the available options\"; Smoke and Mirrors — \"the first unit chosen can be chosen at the battlefield Smoke and Mirrors was played from, so it must be. The second unit chosen explicitly restricts targeting in a way that makes this impossible, so it can be chosen from any location.\" For Tideturner that means the swap reaches the base, which is what this entry always claimed — but the evidence is now the rule's own example rather than a reading of the clause. Unified across the catalogue on 2026-09-06 (issue #89): lillia-smoke-mirrors-sprite-relay and hwei-move-draw-ready-runes carried two different readings of the same clause and both have been corrected to this one.",
           "THE HIDING IS THE COST AND IT TAKES A TURN. 811.1.b: 1 Power to hide facedown at a battlefield you control, and only 'beginning on the next turn' does it gain [Reaction] and become playable for 0 Energy. 811.1.d.1 then forces it to be played to that battlefield, which is where the Mega-Mech ends up.",
           "323.7 IS THE RISK: a hidden card at a battlefield you stop controlling is removed and put in its owner's trash at the next Cleanup.",
           "IT IS A +6 SWING, NOT A +8. You trade a 2 Might body at the battlefield for an 8 Might one, and the Tideturner goes to your base - the figure the source gives.",
@@ -13439,7 +13439,7 @@
           "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. Both OGN-199 Tideturner and OGN-088 Mega-Mech appeared in NO entry before this. The rules point worth having on record is 811.1.d.2's exception clause: a hidden card's targets are normally confined to the battlefield it was hidden at, and a card that explicitly says 'at ANOTHER location' escapes it by the rule's own wording. That is the second time in this issue that reading a clause to its end changed the answer - the first was 190.6.d's second sentence. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; a swap is a Move by effect and not a Recall, so 456 never applies; 143.4 is the very thing the line works around. Depends on no unruled reading. PRODUCES CORRECTED 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md, issue #59's extra task; the mislabel was recorded in section V of docs/phase0/walks/2026-09-06-issue63-payoff-lens.md and left for this walk). It carried 'token-body-engine' from an older display name, 'Repeatable ready bodies', and it makes NO token. What it produces is repeatable Conquers: 'conquer-engine' is the feature whose description was deliberately broadened in #64 to 'Conquers taken over and over, each carrying whatever rider the entry names — a draw, a ready, a relocation', and both riders are named there. For Tideturner the rider is the RELOCATION, the same shape as azir-sovereign-token-gather, whose own terminatesIn reads 'it relocates bodies and conquers'. OGN-088 Mega-Mech is a printed unit card, not a token."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. Both OGN-199 Tideturner and OGN-088 Mega-Mech appeared in NO entry before this. The rules point worth having on record is 811.1.d.2's exception clause: a hidden card's targets are normally confined to the battlefield it was hidden at, and a card that explicitly says 'at ANOTHER location' escapes it by the rule's own wording. That is the second time in this issue that reading a clause to its end changed the answer - the first was 190.6.d's second sentence. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; a swap is a Move by effect and not a Recall, so 456 never applies; 143.4 is the very thing the line works around. Depends on no unruled reading. PRODUCES CORRECTED 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md, issue #59's extra task; the mislabel was recorded in section V of docs/phase0/walks/2026-09-06-issue63-payoff-lens.md and left for this walk). It carried 'token-body-engine' from an older display name, 'Repeatable ready bodies', and it makes NO token. What it produces is repeatable Conquers: 'conquer-engine' is the feature whose description was deliberately broadened in #64 to 'Conquers taken over and over, each carrying whatever rider the entry names — a draw, a ready, a relocation', and both riders are named there. For Tideturner the rider is the RELOCATION, the same shape as azir-sovereign-token-gather, whose own terminatesIn reads 'it relocates bodies and conquers'. OGN-088 Mega-Mech is a printed unit card, not a token. 811.1.d.2 REVISITED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md, issue #89's extra task). This entry's reading was RIGHT and is now backed by the reglamento's own worked example, which names Tideturner. What changed is the two other entries that cited the same clause: lillia-smoke-mirrors-sprite-relay rejected the exception for UNL-083 Smoke and Mirrors and hwei-move-draw-ready-runes read it as applying to both of that card's targets; 811.1.d.2.a settles it per target, and its example names Smoke and Mirrors too. No class and no quantity changed in any of the three."
     },
     {
       "id": "azir-ascendant-stellacorn-draw",
@@ -14245,7 +14245,7 @@
           "THE SECOND MOVER IS MONO-MIND. UNL-083 Smoke and Mirrors swaps two of your units at different locations provided one carries [Temporary]. 446.1 makes that a Move ('A Permanent changing its position from any space on the Board to another space on the Board is a Move') and 456.1 excludes only Recalls, so Hwei's 'When I move' fires. Mind is the domain that prints [Temporary] bodies: UNL-078 Sprite Fountain (two per copy), OGN-094 Sprite Call, UNL-084 Sprite Queen, UNL-082 Lillia.",
           "WHAT A MOVE IS WORTH, ALL THREE MODES. Discard a SPELL: draw 1, discard 1, draw 1 = net +1 card in hand. Discard a GEAR: ready up to 2 runes, and 164.2.a makes each rune 1 Energy again = +2 Energy. Discard a UNIT: +3 Might this turn, a 5 to 8 body for one combat. The floor is therefore +1 card OR +2 Energy per turn for 0 Energy, and each Smoke and Mirrors buys one more move for 2 Energy while replacing itself, so an extra move is +1 net card for 2 Energy.",
           "THE CEILING, STATED. One free move a turn plus three Smoke and Mirrors (103.2.b). Nothing in mono-Mind readies Hwei repeatably: VEN-150 Acceleration Gate and OGN-162 Miss Fortune, Captain both reach him but are Mind/Body and are a one-shot and a once-a-turn respectively. Four moves in a turn is the honest maximum.",
-          "THE [Hidden] DISCOUNT IS PRICED AT ZERO HERE, ON PURPOSE, AND THE CATALOGUE IS INCONSISTENT ABOUT IT. 811.1.b would let a copy be hidden for 1 rainbow and played later for 0 Energy, and 811.1.d.2's exception ('unless the ability explicitly restricts targeting in a way that makes this impossible') applies on its face, since the spell is DEFINED by choosing units at different locations. But lillia-smoke-mirrors-sprite-relay prices the same three copies at base cost citing 811.1.d, while tideturner-mega-mech-swap takes the exception for OGN-199. This entry prices at base cost, matching the older entry and erring expensive; it changes no class.",
+          "THE [Hidden] DISCOUNT, NOW PRICED ON THE RULE INSTEAD OF ON THE OTHER ENTRY (CORRECTED 2026-09-06). This entry used to record that the catalogue was inconsistent about 811.1.d.2 and to price at base cost 'matching the older entry and erring expensive'. The clause decides it and needed no vote. 811.1.d.2 IS SETTLED BY THE RULE'S OWN WORKED EXAMPLES, WHICH NAME THESE CARDS. The clause is \"If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible\", and 811.1.d.2.a adds \"Each target is treated separately and individually when processing this rule.\" The exception is therefore PER TARGET, not per card, and the reglamento works both of these cards by name: Tideturner — \"Because its play effect has a targeting restriction that can never be fulfilled by a unit at its battlefield, its target may be chosen freely from among the available options\"; Smoke and Mirrors — \"the first unit chosen can be chosen at the battlefield Smoke and Mirrors was played from, so it must be. The second unit chosen explicitly restricts targeting in a way that makes this impossible, so it can be chosen from any location.\" So a hidden Smoke and Mirrors is legal, and its first chosen unit must be at the battlefield it was hidden at — which for this line means Hwei or the Sprite has to be standing there. The headline stays at 2 Energy per copy because 811.1.b makes the hidden copy playable only 'beginning on the next turn' and allows one facedown per battlefield you control, and 323.7 trashes it if you lose that battlefield; a copy hidden a turn ahead costs 1 rainbow Power and 0 Energy instead, which turns an extra move from '2 Energy' into '1 Power spent last turn'.",
           "OVERLAP DECLARED. lillia-smoke-mirrors-sprite-relay already uses Smoke and Mirrors as UNL-082 Lillia's mover, and both entries want the same three copies, so in one deck they are alternatives rather than additions. A swap that pairs Lillia with Hwei is illegal anyway: neither has [Temporary].",
           "THE SPRITES NEVER HOLD. 816.1.b kills a [Temporary] permanent 'at the start of this permanent's controller's Beginning Phase, before scoring', so they are the other half of a swap and nothing else — this entry claims no Hold and no Grand Plaza count from them."
         ]
@@ -14279,7 +14279,982 @@
           "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md), issue #59 candidate 6, which the hunt filed as CONDITIONAL on somebody finding the mover. UNL-080 and UNL-078 appeared in no entry with Hwei before this; UNL-083 is already lillia-smoke-mirrors-sprite-relay's, and the overlap is declared in the notables. Card text verbatim from data/corpus_flat.txt; 143.4, 144.2, 144.4, 164.2.a, 315.1.b, 415.1, 420.1, 420.2.a, 446.1, 456.1, 811.1.b, 811.1.d.2 and 816.1.b opened in the Core Rules. Ban check: none of the three carries a [BANNED marker. THE WALK'S ADDITION over the hunt: the hunt looked for a mover and missed the free one — the Standard Move, whose entire cost 144.2 makes the unit's own exhaust, readied every Awaken by 315.1.b. It also records the pricing inconsistency between two existing entries over 811.1.d.2 rather than silently picking a side. Trap check: no attack designation; no [Repeat]; the [Temporary] Sprites never Hold and the entry claims none (816.1.b); a swap is a Move and not a Recall (446.1, 456.1); no Gold; no battlefield of its own. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-draw-lens-candidates.md), issue #59 candidate 6, which the hunt filed as CONDITIONAL on somebody finding the mover. UNL-080 and UNL-078 appeared in no entry with Hwei before this; UNL-083 is already lillia-smoke-mirrors-sprite-relay's, and the overlap is declared in the notables. Card text verbatim from data/corpus_flat.txt; 143.4, 144.2, 144.4, 164.2.a, 315.1.b, 415.1, 420.1, 420.2.a, 446.1, 456.1, 811.1.b, 811.1.d.2 and 816.1.b opened in the Core Rules. Ban check: none of the three carries a [BANNED marker. THE WALK'S ADDITION over the hunt: the hunt looked for a mover and missed the free one — the Standard Move, whose entire cost 144.2 makes the unit's own exhaust, readied every Awaken by 315.1.b. It also records the pricing inconsistency between two existing entries over 811.1.d.2 rather than silently picking a side. Trap check: no attack designation; no [Repeat]; the [Temporary] Sprites never Hold and the entry claims none (816.1.b); a swap is a Move and not a Recall (446.1, 456.1); no Gold; no battlefield of its own. Depends on no unruled reading. 811.1.d.2 CORRECTED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md, issue #89's extra task). This entry recorded the inconsistency between tideturner-mega-mech-swap and lillia-smoke-mirrors-sprite-relay and declined to pick a side, which was the right instinct and the wrong conclusion: 811.1.d.2.a works Smoke and Mirrors by name and settles it per target. Its own phrasing — that the exception 'applies on its face, since the spell is DEFINED by choosing units at different locations' — was also too broad: only the SECOND target escapes, the first must be at the hiding battlefield. All three entries now state the same rule. The declared prices are unchanged; no class and no quantity moved."
+    },
+    {
+      "id": "void-rush-undertitan-accelerate",
+      "name": "Void Rush reveals the Undertitan, and the Undertitan pays for its own play — a ready 5 Might body that pumps the board",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-188",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury/Order spell, E2 P1. 'Reveal the top 2 cards of your Main Deck. You may banish one, then play it, reducing its cost by [E2]. Draw any you didn't banish.' The reveal and the play are one resolution, which is the whole point."
+        },
+        {
+          "card": "SFD-175",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "DECK",
+          "note": "Order unit, E6 P1 M5. 'When you play me, give your other units +2 [M] this turn. As I'm revealed from your deck, [Add] [E2].' The Add is the half that finances the play."
+        },
+        {
+          "card": "SFD-029",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Fury unit, E3 M3. '[Accelerate] [Assault] Friendly units played from anywhere other than a player's hand have [Accelerate].' The Undertitan is played from the banished zone, which is not a hand."
+        },
+        {
+          "card": "SFD-018",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Fury unit, E2 M2. 'If you would reveal cards from a deck, look at the top card first. You may recycle it. Then reveal those cards.' Filters ONE of the two cards Void Rush reveals, not both."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Fury and Order; eight legends do (Hand of Noxus, Piltover Enforcer, Void Burrower among them).",
+          "Nothing has to be on the board first except Rek'Sai, Breacher, and she is a 3 Energy 3 Might unit."
+        ],
+        "notable": [
+          "THE ADD LANDS BEFORE VOID RUSH FINISHES, WHICH IS THE QUESTION THE HUNT LEFT OPEN. 429.2: 'Triggered and activated abilities that Add resources resolve as soon as they are finalized.' 429.2.a goes further — 'Priority and Focus will not pass from Add abilities being finalized or resolving, and will resolve before any other outstanding items on the chain are finalized.' So the Undertitan's [Add] [E2] is in the Rune Pool at the instant of the reveal, several steps before Void Rush reaches 'then play it'. It does finance its own play. And 424.1.a.1 is what lets the revealed card speak at all: 'Other cards, including the card being revealed, can reference the act of being Revealed.'",
+          "THE BANISHED ZONE IS NOT A HAND, WHICH IS THE OTHER QUESTION. Rek'Sai, Breacher reads 'Friendly units played from anywhere other than a player's hand have [Accelerate]', and Void Rush banishes the card and then plays it from there. [Accelerate] is not free, though: 805.1.a makes it 'As you play me, you may pay [1][C] as an additional cost. If you do, I enter ready', and 805.1.a.1 restricts the Power portion to a domain of the unit — the Undertitan is Order, so it is 1 Energy and 1 ORDER Power, not a rainbow.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED, AND IT IS NOT THE '~4 ENERGY' THE HUNT PUBLISHED. Out: 2 Energy + 1 Power (Void Rush), 4 Energy + 1 Power (Undertitan at E6 reduced by E2; 356.6 never bites here), 1 Energy + 1 Order Power (Accelerate). In: 2 Energy from the Add. NET 5 ENERGY AND 3 POWER for a READY 5 Might body that gives your other units +2 Might this turn, plus the second revealed card drawn. The hunt counted the reduction and the Add and forgot both Power costs and the Accelerate.",
+          "VOID HATCHLING FILTERS ONE CARD, NOT TWO. 'Look at the top card first. You may recycle it. Then reveal those cards' — the top card, singular. Void Rush reveals two, so the Hatchling improves the odds of hitting an Undertitan, it does not guarantee it. Recycling puts the rejected card on the bottom of the Main Deck (416.1), which is a cost inside a deck that is being drawn through.",
+          "OVERLAP DECLARED. reksai-undertitan-reveal already runs three Undertitans, under SFD-170 Rek'Sai, Swarm Queen, revealed by her attack trigger. This is a different route to the same body — a spell instead of an attack, with the cost reduction and the Accelerate that Swarm Queen's line has neither of — and the two share only SFD-175. In one deck the three copies serve both.",
+          "THE CEILING IS THE COPY LIMIT, TWICE. 103.2.b caps Void Rush at 3 and the Undertitan at 3, and each Void Rush is spent. Three bodies, and the last ones cost more because the deck is thinner."
+        ]
+      },
+      "steps": [
+        "Have Rek'Sai, Breacher on the board (3 Energy) and, if you have it, Void Hatchling (2 Energy).",
+        "Play Void Rush for 2 Energy + 1 Power. Reveal the top 2 cards of your Main Deck.",
+        "If an Undertitan is among them its 'As I'm revealed' triggers; 429.2 resolves the [Add] [E2] on the spot, before Void Rush continues.",
+        "Banish the Undertitan and play it for 4 Energy + 1 Power (E6 reduced by E2), paying 1 Energy + 1 Order Power for the [Accelerate] Rek'Sai grants it, so it enters ready.",
+        "Its play trigger gives your other units +2 Might this turn. Draw the card you did not banish.",
+        "Net 5 Energy and 3 Power for a ready 5 Might body, a board-wide +2 for the turn, and a card."
+      ],
+      "netPerIteration": "one ready 5 Might body plus +2 Might to your other units and one card drawn, for a net 5 Energy and 3 Power",
+      "terminatesIn": "engine only — three Void Rush and three Undertitans, each spell consumed; nothing brings a Void Rush back, so the line runs at most three times per game",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Corpus de 8.307 listas de torneo — issue #89 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/89",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 1 (51 registered lists, 34 of them with Void Hatchling). SFD-188 Void Rush and SFD-018 Void Hatchling appeared in NO entry before this; SFD-029 is in reksai-sarcophagus-accelerated-recursion and SFD-175 in reksai-undertitan-reveal, and both overlaps are declared. THE WALK'S TWO ADDITIONS over the hunt, which filed both as open questions: 429.2 and 429.2.a settle the timing of the [Add] in the line's favour (an Add ability resolves before any other outstanding chain item is finalized), and 805.1.a.1 corrects the price — the hunt's '~4 Energy' counted neither the two Power costs nor the Accelerate, and the honest figure is 5 Energy and 3 Power. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 356.6, 416.1, 424.1.a.1, 429.2, 429.2.a, 805.1.a, 805.1.a.1. Ban check: none of the four carries a [BANNED marker. Trap check: no attack designation is claimed (the +2 Might is a play trigger, not a combat one); no [Repeat]; no [Temporary]; no token; no Gold; the Add is inside a Main Phase and is spent in the same resolution, so trap 167 (the Rune Pool emptying at the Main Phase start) never applies. Depends on no unruled reading."
+    },
+    {
+      "id": "the-boss-showstopper-redeploy",
+      "name": "The Boss buys a buffed unit back from death and Showstopper walks it out again — one save per conquer, one buff per body",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-269",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Body/Order legend. 'If a buffed unit you control would die, you may pay [R], exhaust me, and spend its buff to heal it, exhaust it, and recall it instead. (Send it to base. This isn't a move.) When you conquer, ready me.' The second sentence is what makes the first repeatable."
+        },
+        {
+          "card": "OGN-270",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body/Order spell, E1 P1. 'Buff a friendly unit in your base, then move it to a battlefield. (If it doesn't have a buff, it gets a +1 [M] buff.)' Re-buffs and re-deploys exactly what the shield sent home."
+        },
+        {
+          "card": "OGN-240",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 P1 M5. '[Tank] I get +1 [M] for each buffed friendly unit at my battlefield.' Turns the ammunition into Might."
+        },
+        {
+          "card": "OGN-139",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E2 M1. 'When you play another unit, buff me.' A one Energy-per-Might body whose only job is to be buffed — and 702.3 caps her at one buff, so she is a 2 Might unit, not a growing one."
+        },
+        {
+          "card": "OGN-124",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "Body gear, E3. '[exhaust]: Buff an exhausted friendly unit.' The shield returns the unit EXHAUSTED, so this is the card that re-arms it without spending a Showstopper."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are exactly The Boss's own, Body and Order; every other card here is Body or Order.",
+          "No battlefield of its own, so 485.4.a's random draw never enters the price."
+        ],
+        "notable": [
+          "702.3 IS THE RULE THE HUNT NEEDED AND DID NOT HAVE: 'There can only be one Buff on a Unit at a time.' So the ammunition is not a stack of buffs on one body, it is the NUMBER OF BUFFED BODIES. That resolves the tension the hunt raised ('the same resource pays both halves'): every save spends exactly one buff, so Sett, Kingpin loses exactly 1 Might per save, and no more. 703 fixes the rate at +1 Might per buff.",
+          "808.1.d.1 APPLIES IN FULL, AND HERE IT IS A CHOICE. 'If the Permanent with the effect is not sent to the Trash, for example because its \"killed\" event was replaced with a recall, the triggered ability will be removed from the chain', and its worked example is this exact shape (Draven, Audacious saved by a Zhonya's Hourglass). So saving a body switches off its Deathknell. Unlike soraka-fiora-loop-shield, The Boss says 'you MAY pay', so the Deathknell is a decision each time and not a tax the entry pays blind.",
+          "455 IS THE SECOND TRAP AND IT IS SEPARATE FROM THE FIRST. 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' The saved unit lands in your BASE, so any 'While I'm at a battlefield' text on it is off, and it also lands exhausted because The Boss says so outright. That is why Showstopper and Arena Bar are in the line at all.",
+          "WHAT MAKES IT REPEATABLE IS 'WHEN YOU CONQUER, READY ME', NOT A ONCE-PER-TURN CLAUSE. The exhaust is inside the shield's cost, so one save costs The Boss's readiness; 415.3.a gives it back once, 'during the Awakening Phase', and every Conquer after that gives it back again for free. Saves per turn cycle = 1 + the number of Conquers. A legend IS readied by this: 107.4.c makes the Champion Legend a Game Object on the board even though 107.4.b says the Legend Zone is not a location.",
+          "SHOWSTOPPER IS A MOVE BY EFFECT, WHICH IS WHY IT REACHES AN EXHAUSTED BODY. 420.3.a puts the exhaust cost only on the Standard Move and 144.4 only restricts its destinations, so 'move it to a battlefield' works on the exhausted unit the shield just sent home — the same fact #58 established, used here on the return leg. It also buffs it on the way, which re-arms the shield.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED. One full cycle: 1 rainbow Power + The Boss's exhaust + one spent buff (the save), then 1 Energy + 1 Power (Showstopper) to buff and redeploy. Two Power and one Energy per body saved and put back at a battlefield. With Cithria of Cloudfield, Sett, Kingpin and one more buffed body at his battlefield, Sett is a 5 + 3 = 8 Might [Tank]; each save drops him to 7 until the buff comes back.",
+          "THE CEILING IS THE SHOWSTOPPERS AND THE CONQUERS. 103.2.b caps Showstopper at 3 per turn, and Arena Bar's own exhaust caps its re-buff at one a turn. This is an engine, not a lock: nothing here readies The Boss without a Conquer."
+        ]
+      },
+      "steps": [
+        "Get a buffed unit to a battlefield — Showstopper does both halves for 1 Energy + 1 Power, or Cithria of Cloudfield buffs herself off any other unit you play.",
+        "When that unit would die, pay 1 rainbow Power, exhaust The Boss and spend the unit's buff: it is healed, exhausted and recalled to your base instead (455). Its Deathknell does not fire (808.1.d.1).",
+        "Conquer a battlefield: 'When you conquer, ready me' readies The Boss, so the shield is armed again this turn.",
+        "Re-arm the saved body: Showstopper buffs it in your base and moves it back to a battlefield (1 Energy + 1 Power), or exhaust Arena Bar to buff it where it stands for free.",
+        "Sett, Kingpin reads the buffed bodies at his battlefield and adds +1 Might for each.",
+        "At the next Awakening Phase 415.3.a readies The Boss again, so the floor is one save per turn cycle even with no conquer."
+      ],
+      "netPerIteration": "one buffed body saved from death and put back at a battlefield per cycle, for 1 rainbow Power + 1 Energy + 1 Power, plus one extra save for every Conquer in the turn",
+      "terminatesIn": "engine only — saves are bounded by Conquers plus one per turn, and redeploys by the three Showstoppers; nothing here scores a point by itself",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Corpus de 8.307 listas de torneo — issue #89 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/89",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 2 — the group with the most support in the whole 8.307-list corpus (258 lists, 250 of them with Cithria) that touched nothing in the catalogue. All five cards appeared in NO entry before this. THE WALK'S ADDITION: 702.3 ('There can only be one Buff on a Unit at a time') is the rule that answers the hunt's own open question about the two halves competing for one resource — a save costs exactly one buffed body, so Sett loses exactly 1 Might, and Cithria of Cloudfield caps at 2 Might rather than growing. It also names Arena Bar as the re-arm that costs nothing, which the hunt listed without connecting to the 'exhaust it' half of the shield. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 107.4.b, 107.4.c, 144.4, 415.3.a, 420.3.a, 455, 702.3, 703, 808.1.d.1. Ban check: none of the five carries a [BANNED marker. Trap check: 808.1.d.1 and 455 both bite and both are declared; the shield is a 'may', so unlike soraka-fiora-loop-shield it never erases a Deathknell against the player's will; no attack designation; no [Repeat]; no [Temporary]; no token; no Gold; no battlefield of its own. Depends on no unruled reading."
+    },
+    {
+      "id": "blade-dancer-irelia-defiant-dance",
+      "name": "Defiant Dance chooses Irelia, Blade Dancer readies her, and Irelia charges twice for one spell — an 8 Might ready body for 1 Energy",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-195",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Chaos legend. 'When you choose a friendly unit, you may exhaust me and pay [R] to ready it. When you conquer, you may pay [E1] to ready me.' The anchor blade-dancer-caitlyn-choose-ready already walks, with a different payoff."
+        },
+        {
+          "card": "SFD-057",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 M4. '[Deflect] When you choose or ready me, give me +1 [M] this turn.' The one partner in the pool that gets paid on BOTH halves of Blade Dancer's sentence."
+        },
+        {
+          "card": "SFD-196",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm/Chaos spell, E1 P1. '[Reaction] Give a unit +2 [M] this turn and another unit -2 [M] this turn.' The cheapest choose in the pool, and it chooses two units at once."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Blade Dancer's own, Calm and Chaos; Irelia is Calm and Defiant Dance is Calm/Chaos.",
+          "Irelia has to be on the board and Blade Dancer ready — 415.3.a hands the legend back every Awakening Phase."
+        ],
+        "notable": [
+          "THE 'CHOOSE' IS REAL BY RULE, NOT BY READING. 355.5: 'If a card requires you to specifically choose one or more Game Objects, that choice is made now', and its own example says 'Stun a unit at a battlefield' IS a Choice while 'Kill all gear' is not. Defiant Dance names two units one at a time, so both are Choices; 355.7 makes each of them a Target. Picking Irelia for the +2 is therefore a 'choose a friendly unit' for Blade Dancer and a 'choose me' for Irelia in the same instant.",
+          "IRELIA IS PAID TWICE PER SPELL, WHICH IS WHAT MAKES HER A DIFFERENT PARTNER FROM CAITLYN. Her text is 'When you choose OR READY me'. Defiant Dance chooses her (+1) and gives her +2; Blade Dancer's readying of her is a ready (+1). ARITHMETIC WITH THE QUANTITIES DECLARED: 4 base + 2 (Defiant Dance) + 1 (the choose) + 1 (the ready) = 8 MIGHT, and she is READY. Cost: 1 Energy + 1 Power for the spell, 1 rainbow Power for Blade Dancer. One Energy and two Power.",
+          "THE -2 GOES ON AN ENEMY, AND THE REASON IS ARITHMETIC. Defiant Dance's second half is compulsory ('and another unit -2 [M]'). Put on a friendly body it cancels most of what the first half bought; put on an enemy it is a second effect. It is also a second Choice, so a friendly target would trigger Blade Dancer again — but her exhaust is already spent, so that trigger has nothing to pay with.",
+          "WHAT CAPS IT IS BLADE DANCER'S OWN EXHAUST, NOT 415.3.a — THE HUNT CITED THE WRONG RULE. 415.3.a says 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn'; it gives nobody a free readying mid-turn. Blade Dancer's readying costs 'exhaust me and pay [R]', so it is once per turn plus once for every Conquer, since her own second sentence buys her back for 1 Energy. Two readyings in a turn with one conquer, three with two.",
+          "IRELIA'S [Deflect] IS FREE HERE. 'Opponents must pay [R] to choose me with a spell or ability' taxes the opponent only; your own Defiant Dance chooses her at no extra cost.",
+          "THE PUMP IS FOR THE TURN AND THE READY IS NOT. '+1 [M] this turn' expires at cleanup, so the 8 Might is a combat number, not a board state. What survives the turn is that Irelia stood up again.",
+          "OVERLAP DECLARED. blade-dancer-caitlyn-choose-ready runs the same legend with OGN-068 Caitlyn and SFD-052 Heart of Dark Ice, and turns the readying into repeated removal. This entry turns it into a body: the two want the same legend and the same single readying per turn, so in one deck they are alternatives, not additions."
+        ]
+      },
+      "steps": [
+        "Have Irelia, Fervent on the board and Blade Dancer ready (415.3.a gives her back each Awaken).",
+        "Play Defiant Dance for 1 Energy + 1 Power. Choose Irelia for the +2 Might and an enemy unit for the -2.",
+        "Choosing Irelia triggers her: +1 Might this turn. It also triggers Blade Dancer.",
+        "Pay 1 rainbow Power and exhaust Blade Dancer to ready Irelia. That readying triggers Irelia again: +1 Might this turn.",
+        "Irelia is ready at 8 Might for the turn, having spent 1 Energy and 2 Power.",
+        "Conquer a battlefield and pay 1 Energy to ready Blade Dancer, and the next Defiant Dance does it again."
+      ],
+      "netPerIteration": "one Defiant Dance turns Irelia into a ready 8 Might body for 1 Energy and 2 Power, and readies her a second time for every Conquer plus 1 Energy",
+      "terminatesIn": "engine only — one Blade Dancer readying per turn plus one per Conquer, and three Defiant Dance; the Might is 'this turn' and expires at cleanup",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Corpus de 8.307 listas de torneo — issue #89 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/89",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 3 (184 registered lists). SFD-057 Irelia, Fervent and SFD-196 Defiant Dance appeared in NO entry before this; SFD-195 Blade Dancer anchors blade-dancer-caitlyn-choose-ready and the overlap is declared. TWO CORRECTIONS TO THE ISSUE, both recorded in the walk: it writes the legend as 'SFD-246 Blade Dancer' when the card is SFD-195, and it says '415.3.a gives Blade Dancer one free readying per turn' when 415.3.a is the Awakening Phase rule and grants nothing mid-turn — what caps her is the exhaust inside her own cost. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 355.5, 355.5.a, 355.7, 415.3.a. Ban check: none of the three carries a [BANNED marker. Arithmetic against its own declared quantities: 4 + 2 + 1 + 1 = 8 Might for 1 Energy and 2 Power. Trap check: no attack designation is claimed; no [Repeat]; no [Temporary]; no token; no recall, so 455 and 808.1.d.1 never arise; the pump is 'this turn' and the entry says so. Depends on no unruled reading."
+    },
+    {
+      "id": "flame-chompers-discard-recursion",
+      "name": "422.1.b turns a discard cost into a 3 Might body — Flame Chompers is already in the trash when it tells you to play it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-006",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E3 M3. 'When you discard me, you may pay [R Fury] to play me.' No reminder text about paying its costs, unlike Last Rites — the one Fury Power IS the whole price."
+        },
+        {
+          "card": "OGN-003",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury unit, E2 M2. '[Assault 2] When you play me, discard 1.' The cheapest discard in the family; 422.1.a lets you choose which card goes."
+        },
+        {
+          "card": "OGN-030",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury unit, E3 P1 M4. '[Accelerate] [Assault 2] When you play me, discard 2.' Two discards from one play, so two Chompers if you hold two."
+        },
+        {
+          "card": "OGN-252",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury/Chaos spell, E4 P1. 'Deal 5 to a unit. When you conquer, you may discard 1 to return this from your trash to your hand.' The recursion: on a Conquer it discards a Chompers AND buys itself back."
+        },
+        {
+          "card": "OGN-251",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Chaos legend. 'At start of your Beginning Phase, draw 1 if you have one or fewer cards in your hand.' The line empties your hand on purpose, which is the condition this legend pays for."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Fury and Chaos; Loose Cannon is one of twelve, and it is the legend the line wants anyway.",
+          "No battlefield of its own."
+        ],
+        "notable": [
+          "422.1.b IS THE WHOLE ENTRY, QUOTED IN FULL: \"'When I am discarded' abilities or other Triggered Abilities that trigger on discarding are executed AFTER discarding has occurred.\" So Flame Chompers has already reached the Trash when its own trigger says 'play me'. The discard is not a cost the line pays, it is the delivery mechanism.",
+          "THE ONE FURY POWER IS THE WHOLE PRICE, AND THE POOL PROVES IT BY CONTRAST. Flame Chompers says 'you may pay [R Fury] to play me' and stops there. SFD-150 Last Rites, which also plays a unit out of the trash, spells out '(You still pay its costs.)'. Riot writes that clause when it means it, so a 3 Energy 3 Might unit arrives for one Fury Power.",
+          "422.1.a IS WHY THE DISCARD IS NEVER A LOSS AND NEVER FREE. 'The player who is performing the action chooses which cards to send to their Trash, and may use Private Information to do so.' Chemtech Enforcer's and Jinx's discards are yours to aim: with a Chompers in hand the discard is upside, and with none it is a real card. That is the honest cost of the line, and it is the reason Loose Cannon is in it.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Chemtech Enforcer: 2 Energy for a 2 Might [Assault 2] body, and the discard puts out a 3 Might body for 1 Fury Power. Two bodies, 5 Might, for 2 Energy and 1 Power. Jinx, Demolitionist: 3 Energy + 1 Power for a 4 Might [Assault 2] body and TWO discards, so up to two Chompers for 2 Fury Power — three bodies and 10 Might for 3 Energy and 3 Power.",
+          "THE ROCKET IS THE ONLY RECURSION, AND IT IS PER CONQUER. 'When you conquer, you may discard 1 to return this from your trash to your hand' — so one Conquer both deploys a Chompers for 1 Fury Power and refunds the 4 Energy spell. The spell still costs 4 Energy + 1 Power to cast again, so this is a card-for-card engine, not an Energy one.",
+          "THE CEILING IS THREE, AND IT IS HARD. 103.2.b caps Flame Chompers at 3, the trigger only fires from a DISCARD (which is from hand, 422.1), and nothing in this line returns a Chompers from the trash to hand. Once the third one is on the board the discards go back to costing real cards.",
+          "[Assault] NEEDS AN ATTACKER DESIGNATION AND THE ENTRY DOES NOT CLAIM ONE. Both discard bodies carry [Assault 2], which is '+2 [M] while I'm an attacker'; that only exists inside a Combat with an enemy garrison (807.1.d, 383.4.e, 461). The Might figures above are the printed ones."
+        ]
+      },
+      "steps": [
+        "Hold a Flame Chompers. Play Chemtech Enforcer for 2 Energy, or Jinx, Demolitionist for 3 Energy + 1 Power.",
+        "Its play trigger discards; 422.1.a lets you choose, so send Flame Chompers.",
+        "422.1.b executes the Chompers trigger after the discard has happened, from the trash: pay 1 Fury Power and it comes out as a 3 Might unit.",
+        "With Jinx, do it twice in one play if you hold two Chompers.",
+        "Cast Super Mega Death Rocket (4 Energy + 1 Power) to kill something; when you conquer, discard the next Chompers to return the Rocket to your hand — one Conquer buys a body and a spell.",
+        "Loose Cannon draws you back up at the start of your Beginning Phase whenever the line has emptied your hand."
+      ],
+      "netPerIteration": "a 3 Might body for 1 Fury Power on every discard that can find a Flame Chompers, plus the Rocket returning to hand on every Conquer",
+      "terminatesIn": "engine only — three Flame Chompers and no route back from the trash to hand, so the discount runs three times; after that the discards cost real cards again",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Corpus de 8.307 listas de torneo — issue #89 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/89",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 4 (130-156 registered lists). All five cards appeared in NO entry before this. The hunt is right that the discard/trash lens is not among the swept ones and that 422.1.b is what holds it up; THE WALK'S ADDITION is the price and the ceiling. The price: Flame Chompers prints no '(You still pay its costs.)' where SFD-150 Last Rites does, so one Fury Power is the whole cost of a 3 Energy body — the contrast inside the pool is the evidence. The ceiling: the trigger fires only on a DISCARD, which 422.1 defines as moving a card from HAND to trash, and nothing in the line returns a Chompers from the trash to hand, so 103.2.b's three copies are a hard stop. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 383.4.e, 422.1, 422.1.a, 422.1.b, 461, 807.1.d. Ban check: none of the five carries a [BANNED marker. Trap check: [Assault] needs an Attacker designation and no Might figure here assumes one; no [Repeat]; no [Temporary]; no token, so 185/186.1 never arise; no recall; no Gold; no battlefield of its own. Depends on no unruled reading."
+    },
+    {
+      "id": "sky-splitter-volibear-free-removal",
+      "name": "A nine Might body makes Sky Splitter cost zero — 356.6 is the floor, and the Power is the only thing left to pay",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-014",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury spell, E8 P1. '[Action] This spell's Energy cost is reduced by the highest Might among units you control. Deal 5 to a unit at a battlefield.' The reduction is read as the spell is played, so the big body has to be alive then."
+        },
+        {
+          "card": "OGN-041",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E10 P2 M9. '[Deflect 2] When I attack, deal 5 damage split among any number of enemy units here.' Nine Might is one more than Sky Splitter's printed Energy cost."
+        },
+        {
+          "card": "OGN-249",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Body legend. 'When you play a [Mighty] unit, you may exhaust me to channel 1 rune exhausted.' The Fury/Body twin of Grand Duelist, and it is in no other entry."
+        },
+        {
+          "card": "OGN-038",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury unit, E9 P2 M9. 'When you play me, draw 1 for each of your [Mighty] units.' The other nine Might body, and the one that pays a card rider for the same job."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Fury and Body; eleven legends do, and Relentless Storm is the one this line wants.",
+          "The whole line is gated on landing a 9 Might unit: 10 Energy + 2 Power for Volibear, 9 Energy + 2 Power for Kadregrin."
+        ],
+        "notable": [
+          "356.6 IS THE FLOOR AND IT IS THE ONLY REASON THIS IS NOT NEGATIVE: 'Energy and Power costs can't be reduced below 0.' With a 9 Might unit on the board, Sky Splitter's E8 is reduced by 9 and lands at 0. THE POWER IS UNTOUCHED: the reduction says 'this spell's ENERGY cost', so the 1 Power is still paid every time. A repeatable 5 damage for one Power.",
+          "THE REDUCTION IS READ WHEN THE SPELL IS PLAYED, WHICH IS THE RISK THE HUNT NAMED AND IT IS REAL. 'The highest Might among units you control' is a cost calculation, so it happens at the moment of playing; if the 9 Might body dies first, the next Sky Splitter costs 8 Energy again. The entry's price of 0 Energy is conditional on the body being alive, and that is stated rather than assumed.",
+          "IT KILLS EXACTLY WHAT IT SAYS. 'Deal 5 to a unit at a battlefield' — 710 evaluates units on the board by their CURRENT Might, so this kills anything at 5 Might or less standing at a battlefield, and nothing at the base.",
+          "RELENTLESS STORM CHANNELS EXHAUSTED, WHICH IS NEXT TURN'S POWER, NOT THIS TURN'S ENERGY. 'You may exhaust me to channel 1 rune exhausted' — the rune arrives already exhausted, so it adds nothing to the current Main Phase; what it adds is a permanent rune on the board. The exhaust is in the cost, so it is one rune per turn, and 415.3.a gives the legend back at the Awakening Phase.",
+          "MEASURE IT AGAINST THE FREE FLOOR, NOT AGAINST ZERO. Every deck already gets 2 Power a turn for nothing (164.2.b's 'Recycle this: [Reaction] — Add [C]' has no exhaust in its cost, 161.2.b sends the rune to the Rune Deck, and 315.3.b / 430.4.a channel 2 back each Channel Phase). So a Sky Splitter a turn is inside the floor: the line costs no Energy and no card the deck was not going to have.",
+          "KADREGRIN IS THE SAME BODY WITH A CARD RIDER. Both are M9; Kadregrin costs 1 Energy less and draws 1 for each of your [Mighty] units on the play, Volibear brings [Deflect 2] and a 5 damage split on the attack. Kadregrin is already in gemdragon-henge-vi-blind-fury and pridestalker-mighty-draw; Volibear, Sky Splitter and Relentless Storm are in no entry at all, which is why they are the named ingredients.",
+          "OGN-250 STORMBRINGER IS THE OTHER HALF OF THIS BOARD AND IT BELONGS TO ANOTHER ENTRY. 'Choose a friendly unit in your base. Deal damage equal to its Might to all enemy units at a battlefield, then move your unit there' — with a 9 Might body that is a wipe followed by a landing, and because both happen inside ONE resolution the enemies are gone before your unit arrives, so 323.9 ('Mark a Combat as Staged at each Battlefield … that have Units present controlled by OPPOSING players') never stages a Combat and 466.5.d / 348.2.a.1 give the Conquer with no damage step. That is #58's axis reached from the damage side. confront-vi-stormbringer already runs the spell, so this entry names it here instead of claiming it.",
+          "THE CEILING IS THREE SPELLS. 103.2.b caps Sky Splitter at 3 and each copy is consumed; nothing in the line returns a spell from the trash."
+        ]
+      },
+      "steps": [
+        "Land a 9 Might unit: Volibear, Furious for 10 Energy + 2 Power, or Kadregrin the Infernal for 9 Energy + 2 Power.",
+        "Relentless Storm sees a [Mighty] unit played: exhaust it to channel 1 rune exhausted, once per turn.",
+        "With that body alive, play Sky Splitter: its E8 is reduced by 9, and 356.6 stops the cost at 0. Pay the 1 Power.",
+        "Deal 5 to a unit at a battlefield — enough for anything at 5 Might or less (710).",
+        "Repeat next turn with the next copy while the big body lives. If it dies, Sky Splitter costs 8 Energy again."
+      ],
+      "netPerIteration": "5 damage to a unit at a battlefield for 0 Energy and 1 Power, once per copy, for as long as a 9 Might unit is on the board",
+      "terminatesIn": "engine only — three Sky Splitters, each consumed, and the discount dies with the body that grants it",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Corpus de 8.307 listas de torneo — issue #89 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/89",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 5 (84-93 registered lists). OGN-014 Sky Splitter, OGN-041 Volibear, Furious and OGN-249 Relentless Storm appeared in NO entry before this; OGN-038 Kadregrin is in two and OGN-250 Stormbringer in confront-vi-stormbringer, and both overlaps are declared. THE WALK'S ADDITIONS: 356.6 caps the reduction at 0 but says nothing about Power, so the 1 Power is paid on every copy and the entry prices it; the reduction is a cost calculation read at the moment of playing, so the '0 Energy' is conditional on the body surviving, which the entry states instead of assuming; and the Stormbringer question the hunt left open is answered — the wipe and the move are one resolution, so no units of two opposing players are ever present and 323.9 stages no Combat, which is why that half belongs to a Conquer entry and not to this one. The rate is also measured against the free floor of 2 Power a turn (164.2.b, 161.2.b, 315.3.b, 430.4.a) rather than against zero. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 161.2.b, 164.2.b, 315.3.b, 323.9, 348.2.a.1, 356.6, 415.3.a, 430.4.a, 466.5.d, 710. Ban check: none of the five carries a [BANNED marker. Trap check: no attack designation is claimed for Sky Splitter (Volibear's own 'when I attack' is named but not counted); no [Repeat]; no [Temporary]; no token; no recall; no Gold; no battlefield of its own. Depends on no unruled reading."
+    },
+    {
+      "id": "grand-duelist-fiora-mighty-crossings",
+      "name": "Exactly two cards in the pool pay for 'becomes Mighty', and only one of them has no exhaust — Fiora readies once per crossing, the Duelist once per turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-205",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Body/Order legend. 'When one of your units becomes [Mighty], you may exhaust me to channel 1 rune exhausted.' The exhaust is in the cost, so this half is once a turn."
+        },
+        {
+          "card": "SFD-180",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 M3. 'When a unit you control becomes [Mighty], you may pay [R Order] to ready it.' NO exhaust anywhere in the cost — this half is uncapped and priced only in Order Power."
+        },
+        {
+          "card": "SFD-206",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Body/Order spell, E2 P2. '[Reaction] Choose a friendly unit and a spell. Counter that spell and give that unit +[M] equal to that spell's Energy cost this turn.' A counterspell that also pushes a body over the line."
+        },
+        {
+          "card": "SFD-163",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Order spell, E2. '[Reaction] Kill a friendly unit. If you do, give +[M] equal to its Might to another friendly unit this turn. Draw 1.' Moves a whole Might total onto one body, which is the cheapest crossing in the pool."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Grand Duelist's own, Body and Order; Fiora and Deathgrip are Order and Riposte is Body/Order.",
+          "SFD-210 Hall of Legends ('When you conquer here, you may pay [E1] to ready your legend') is the battlefield that lifts the Duelist's once-a-turn cap — and 485.4.a makes it 1 of your 3, so it is not a given."
+        ],
+        "notable": [
+          "709 IS THE GATE AND ITS OWN EXAMPLE IS THE WARNING: 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater' — and 'A Unit with Might 5 that gets +1 [M] does NOT become Mighty, because it was already Mighty.' Pumping a body that is already at 5 pays nothing. Every crossing in this entry starts under 5.",
+          "'BECOMES [Mighty]' IS EXACTLY TWO CARDS IN THE WHOLE POOL, AND THE UNIQUENESS CLAIM WAS GREPPED, NOT REMEMBERED. `grep -i 'becomes \\[*mighty'` over all of data/corpus_flat.txt returns SFD-180 Fiora, Worthy and SFD-205 Grand Duelist and nothing else. The catalogue already had Fiora; the Duelist was in no entry.",
+          "THE ASYMMETRY IS THE FINDING. Fiora's cost is 'you may pay [R Order]' with no exhaust, so she pays out on EVERY crossing in a turn, bounded only by Order Power. The Duelist's is 'you may exhaust me', so it pays out once and then waits for 415.3.a's Awakening Phase — or for a Conquer at Hall of Legends. Two crossings in one turn is one channelled rune and TWO readyings.",
+          "THE CHEAPEST CROSSING IS DEATHGRIP, AND IT CAN CROSS TWO BODIES WITH ONE CARD. 'Kill a friendly unit. If you do, give +[M] equal to its Might to another friendly unit this turn. Draw 1.' Kill a 5 Might body and a 3 Might body goes to 8 — one crossing, one card drawn, 2 Energy. If the body you kill was itself pushed over the line first, that was a second crossing.",
+          "RIPOSTE PAYS BY THE COUNTERED SPELL'S COST. '+[M] equal to that spell's Energy cost' — countering a 3 Energy spell puts +3 on a friendly unit, so a 3 Might body crosses; countering a 1 Energy spell puts +1 and crosses nothing that was not already at 4. The size of the crossing is the opponent's choice, not yours, and the entry says so.",
+          "THE CHANNELLED RUNE IS EXHAUSTED, SO IT IS NOT THIS TURN'S ENERGY. 'Channel 1 rune exhausted' puts a rune on the board that cannot be exhausted again this turn; what it buys is a permanent rune, measured against the free floor of 2 Power a turn every deck already has (164.2.b, 161.2.b, 315.3.b, 430.4.a).",
+          "THE PUMPS ARE 'THIS TURN'. Riposte and Deathgrip both say so, so a body that crossed the line falls back under it at cleanup and can cross again next turn. That is what makes the engine repeat, and it is also why no board state is claimed.",
+          "OVERLAP DECLARED. world-atlas-fiora-worthy-ready runs Fiora with SFD-086 World Atlas, a gear that crosses the line by attaching; unsung-hero-sacrifice-double-draw runs SFD-167 Unsung Hero over the same line with B.F. Sword. This entry is the spell-speed half — two [Reaction] crossings that cost no attachment — and it names the Duelist, which neither of them has."
+        ]
+      },
+      "steps": [
+        "Have Fiora, Worthy on the board and Grand Duelist ready (415.3.a gives the legend back each Awakening Phase).",
+        "Push a friendly unit under 5 Might over the line: Riposte (2 Energy + 2 Power) counters a spell and adds its Energy cost, or Deathgrip (2 Energy) kills a friendly body and moves its whole Might onto another and draws 1.",
+        "709 fires both payoffs on that single crossing: exhaust Grand Duelist to channel 1 rune exhausted, and pay 1 Order Power to Fiora to ready the unit that crossed.",
+        "Cross a second body in the same turn and Fiora pays again for another Order Power; the Duelist does not, unless a Conquer at Hall of Legends bought it back for 1 Energy.",
+        "The pumps expire at cleanup, so the same bodies are back under the line for tomorrow's crossings."
+      ],
+      "netPerIteration": "per crossing: one unit readied for 1 Order Power, plus one rune channelled exhausted for the first crossing of the turn; Deathgrip adds a card on top",
+      "terminatesIn": "engine only — Fiora is bounded by Order Power and by how many bodies you can push over the line, the Duelist by one exhaust a turn; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Corpus de 8.307 listas de torneo — issue #89 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/89",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 6 (67 / 45 registered lists). SFD-205 Grand Duelist, SFD-206 Riposte and SFD-163 Deathgrip appeared in NO entry before this; SFD-180 Fiora is in six and SFD-167 Unsung Hero in one, and both overlaps are declared. THE WALK'S ADDITION over the hunt: the hunt treated the two 'becomes Mighty' cards as one payoff capped by the Duelist's exhaust, and they are not symmetric — Fiora's cost carries NO exhaust, so she pays on every crossing in the turn and only Order Power caps her, while the Duelist pays once. The uniqueness claim ('exactly two cards say becomes Mighty') was verified with grep -i over the whole corpus before being written, per this project's rule about uniqueness claims. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 161.2.b, 164.2.b, 315.3.b, 415.3.a, 430.4.a, 485.4.a, 709. Ban check: none of the four carries a [BANNED marker. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; Deathgrip's kill is an Active Kill and the entry claims no Deathknell from it, so 808.1.d.1 does not arise; the pumps are 'this turn' and the entry says so; Hall of Legends is named as a battlefield with 485.4.a's caveat rather than assumed. Depends on no unruled reading."
+    },
+    {
+      "id": "leona-zealot-stun-might-collapse",
+      "name": "Leona, Zealot turns a stun into one Might — 423.1.c says the kill threshold is the CURRENT number, and she drops it to 1",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-079",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E6 P1 M6. 'If an opponent's score is within 3 points of the Victory Score, I enter ready. Stunned enemy units here have -8 [M], to a minimum of 1 [M].' The card that makes #61's stun lens pay, and it is in no other entry."
+        },
+        {
+          "card": "OGN-051",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm unit, E3 M2. 'When you play me, stun a unit.' The cheapest stun in the pool, and it brings a body."
+        },
+        {
+          "card": "OGN-262",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm/Order spell, E3 P2. '[Action] Stun an enemy unit at a battlefield. You may move a friendly unit to that enemy unit's battlefield.' Stuns AND ships Leona to where the stun is, in one card."
+        },
+        {
+          "card": "OGN-238",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 P1 M4. '[Shield] When I attack, stun an enemy unit here.' A stun that repeats every attack instead of once per card."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Order; eleven legends do.",
+          "Leona, Zealot must STAND at the battlefield where the stun lands — her text says 'here' — and at 6 Energy + 1 Power she is the expensive half."
+        ],
+        "notable": [
+          "THE TWO STUN RULES DO DIFFERENT JOBS AND #61 BLURRED THEM. 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step' — that removes the enemy's OFFENCE and nothing else; it does not lower any number. 423.1.c is the one this entry stands on: 'A Stunned Unit must still have damage applied to it equal to, or greater than, its FULL MIGHT VALUE to be killed.' Stunning alone therefore makes an enemy harmless but no easier to kill. Leona, Zealot is the card that closes that gap, and she does it with printed text, not with a rule.",
+          "710 IS WHY THE -8 REACHES THE KILL THRESHOLD: 'Units on the board are evaluated according to their current Might.' Her -8 (to a minimum of 1) IS the unit's current Might, so 423.1.c's 'full might value' is 1. A stunned enemy standing with her dies to 1 damage and deals none.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Solari Shieldbearer (3 Energy) stuns one unit and leaves a 2 Might body. With Leona, Zealot at that battlefield, that enemy is at 1 Might for the turn: your summed Might in the damage step (465.2.c) needs 1 point of it to kill, and the enemy contributes 0 (423.1.b). A 6 Might enemy becomes a 1 Might enemy for 3 Energy.",
+          "ZENITH BLADE SOLVES THE POSITIONING PROBLEM THE CARD CREATES. Her -8 is 'here', so she has to be at the stunned unit's battlefield. Zenith Blade stuns an enemy at a battlefield AND lets you move a friendly unit to that unit's battlefield in the same 3 Energy + 2 Power — and 420.3.a puts the exhaust cost only on the Standard Move, so this move works even with Leona exhausted (#58's fact, used on the delivery leg).",
+          "IT IS A WINDOW OF ONE TURN, NOT A LOCK, AND #61 IS RIGHT ABOUT THAT. 423.1.a.2: 'Stunned Units lose the Stunned status during step 3d of the end of turn cleanup.' And 423.1.a.1 ('A Stunned Unit can not be Stunned again') means you cannot re-apply it while it is on; Leona, Determined's 'When I attack, stun an enemy unit here' is the way to get a fresh stun every turn without spending a card.",
+          "HER FIRST SENTENCE IS NOT A COST YOU CONTROL. 'If an opponent's score is within 3 points of the Victory Score, I enter ready' — that is a condition on the opponent's score (5 of 8 or more), so she normally enters exhausted under 143.4 and stands up at the next Awakening Phase (415.3.a). The entry does not price her as entering ready.",
+          "radiant-dawn-stun-buff IN data/synergies.json IS A DIFFERENT PATTERN. It models the cards that PAY you for stunning (OGN-261); this entry is about what the stun is worth once it has landed. They do not overlap."
+        ]
+      },
+      "steps": [
+        "Get Leona, Zealot to a battlefield (6 Energy + 1 Power). 143.4 makes her enter exhausted unless the opponent is already within 3 points of 8.",
+        "Stun an enemy unit at that battlefield: Solari Shieldbearer for 3 Energy, or Zenith Blade for 3 Energy + 2 Power, or Leona, Determined's attack trigger for free.",
+        "Zealot's second sentence applies: that stunned enemy is at 1 Might, to the minimum.",
+        "In the damage step it contributes nothing (423.1.b) and dies to 1 damage, because 423.1.c reads its current Might (710) and that is 1.",
+        "At step 3d of the end of turn cleanup the stun clears (423.1.a.2). Leona, Determined re-applies one next turn for nothing."
+      ],
+      "netPerIteration": "one enemy unit at Leona's battlefield reduced to 1 Might and contributing no combat damage, per stun, for as little as 3 Energy",
+      "terminatesIn": "engine only — the stun clears at cleanup (423.1.a.2) and 423.1.a.1 forbids re-stunning while it is on, so this is a one-turn window repeated, never a lock",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Corpus de 8.307 listas de torneo — issue #89 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/89",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 7 (64 registered lists). All four cards appeared in NO entry before this. THE WALK'S CORRECTION TO #61 IS SHARPER THAN THE ISSUE'S: #61 recorded that 'what removes Might is 423.1.b', and 423.1.b removes no Might at all — it removes the stunned unit's CONTRIBUTION to combat damage. The rule this entry stands on is 423.1.c, which fixes the kill threshold at the unit's 'full might value', read as its CURRENT Might by 710 — which is what Leona, Zealot's printed -8 changes. Everything else #61 concluded stands: 423.1.a.1 and 423.1.a.2 keep any stun line inside one turn, so no stun engine is INFINITE and this one is not either. Card text verbatim from data/corpus_flat.txt. Citations opened: 143.4, 415.3.a, 420.3.a, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 465.2.c, 710. Ban check: none of the four carries a [BANNED marker. Trap check: Leona, Determined's stun needs an Attacker designation and the entry says so (807.1.d, 383.4.e, 461); no [Repeat]; no [Temporary]; no token; no recall; no Gold; no battlefield of its own. Depends on no unruled reading."
+    },
+    {
+      "id": "last-rites-lunar-boon-trash-recursion",
+      "name": "'When I conquer or hold' is two triggers, and Lunar Boon is what puts the unit in the trash for them",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-150",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Chaos gear, E3 M+2, Equipment. '[Equip] — [R Chaos], Recycle 2 cards from your trash. [Effect] When I conquer or hold, you may play a unit from your trash. (You still pay its costs.)' Two windows a turn off one attach."
+        },
+        {
+          "card": "UNL-125",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Chaos spell, E3. '[Reaction] Discard 1, then draw 2.' Puts a unit in the trash and pays for it with a card, at Reaction speed."
+        },
+        {
+          "card": "UNL-136",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "Chaos gear, E1. 'This enters exhausted. Kill this, [E1], [exhaust]: [Predict 2], then draw 1. Gain 1 XP.' Recycles what it does not want off the top and becomes a card, and its own corpse is a card in the trash."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Every card here is mono-Chaos, so any Chaos legend runs the whole line — eleven Chaos/Mind legends alone.",
+          "Last Rites has to be attached to a unit that will conquer or hold, so the line needs a body at a battlefield."
+        ],
+        "notable": [
+          "'WHEN I CONQUER OR HOLD' IS BOTH CATEGORIES, BY THE RULES' OWN WORDING. 383.4.c.1 on Conquer Effects: 'These are commonly structured as “When I conquer…” and “When you conquer…”'. 383.4.d.1 on Hold Effects: 'These are commonly structured as “When I hold…” or “When you hold…”'. A card that prints both clauses in one sentence is therefore a trigger of each kind, so Last Rites has TWO windows in a turn: the Conquer when the battlefield is taken, and the Hold at the Scoring Step of the Beginning Phase (315.2.b.2). This is the same reading #45 used for Reckoner's Arena, applied to a card whose text is not [Hunt] — 823.1.b is the [Hunt] rule and is not the authority here.",
+          "'(YOU STILL PAY ITS COSTS.)' IS PRINTED, SO THIS IS A ROUTE, NOT A DISCOUNT. Compare OGN-006 Flame Chompers, which plays itself out of the trash for one Fury Power and prints no such clause. What Last Rites buys is access to the trash twice a turn, at full price.",
+          "THE [Equip] COST NEEDS TWO REAL CARDS IN THE TRASH, AND A TOKEN IS NEVER ONE. 416.1 defines Recycling over 'one or more CARDS'; 185 says 'Tokens are not cards'; and 186.1 makes a token cease to exist the moment it enters any Non-Board Zone, so no token ever REMAINS in a trash to be chosen. 416.3 requires a cost Recycle to be completable, so the attach is simply illegal with fewer than two cards in the trash. Lunar Boon is what guarantees them.",
+          "RECYCLING IS NOT A LOSS, AND IT IS NOT BURN OUT. 416.1 puts the two cards on the BOTTOM of the Main Deck. 431.1 defines Burning Out as what happens when a player 'attempt[s] to move one or more cards from their Main Deck to any other zone in excess of the number of cards remaining in their Main Deck' — the opposite direction. The cost is tempo, not cards.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED, AS A LEDGER OF THE TRASH. Per Lunar Boon: 3 Energy, one card into the trash, two cards into hand — net +1 card and +1 trash. Per attach: 1 Chaos Power and 2 cards out of the trash. Per conquer or hold: one unit out of the trash, at its printed cost. So the trash gains 1 per Lunar Boon and loses 2 per attach and 1 per window; three Lunar Boons cover one attach and one window, and after that the line runs on whatever combat and Scryer's Bloom put there.",
+          "SCRYER'S BLOOM IS THE SECOND FILL AND ITS OWN COST IS A CARD. 'Kill this, [E1], [exhaust]: [Predict 2], then draw 1' — the Predict recycles what it rejects (bottom of the deck), the draw is a card, and the killed gear is itself a card in the trash. 'This enters exhausted' is printed, so the first activation waits for the next Awakening Phase (415.3.a).",
+          "A NOTE ON THE HOLD HALF. 315.2.b.2 puts the Hold in the Scoring Step of the Beginning Phase, and 383.2.a.1 measures a trigger's condition when the trigger is placed, so the equipped unit has to survive the opponent's whole turn for the Hold window to arrive. The Conquer window has no such wait."
+        ]
+      },
+      "steps": [
+        "Play Lunar Boon at Reaction speed for 3 Energy: discard a unit you want back, draw 2. The trash now holds it.",
+        "Play Last Rites (3 Energy) and attach it for its [Equip] cost: 1 Chaos Power and Recycle 2 cards from your trash (416.1 sends them to the bottom of the Main Deck).",
+        "The equipped unit gets +2 Might and carries the [Effect].",
+        "Conquer a battlefield with it: 'When I conquer' fires, and you may play a unit from your trash, paying its costs.",
+        "Hold that battlefield into your next Beginning Phase: the same sentence fires again as a Hold Effect (383.4.d.1), for a second unit out of the trash.",
+        "Scryer's Bloom and further Lunar Boons keep the trash stocked; nothing here consumes the Last Rites."
+      ],
+      "netPerIteration": "two chances a turn to replay a unit from the trash at its printed cost, plus +1 card and +1 trashed unit per Lunar Boon",
+      "terminatesIn": "engine only — the two windows repeat for as long as the equipped unit conquers and holds, but every unit replayed costs full price, so the line is bounded by Energy and by what is in the trash",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Corpus de 8.307 listas de torneo — issue #89 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/89",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 8 (61 registered lists, 48 of them from riftbound.gg). All three cards appeared in NO entry before this. THE WALK'S ADDITIONS over the hunt: the hunt cited 823.1.b alongside 383.4.c.1/383.4.d.1, and 823.1.b is the [Hunt] rule — it says the right thing about the wrong card, so this entry stands on the two wording rules alone; and the [Equip] cost is checked against 185 / 186.1 / 416.1 / 416.3, which makes 'Recycle 2 cards from your trash' impossible to pay with tokens and impossible to pay at all with fewer than two cards there, a gate the hunt did not price. Card text verbatim from data/corpus_flat.txt. Citations opened: 185, 186.1, 315.2.b.2, 383.2.a.1, 383.4.c.1, 383.4.d.1, 415.3.a, 416.1, 416.3, 431.1. Ban check: none of the three carries a [BANNED marker. Trap check: the Hold half is measured at 383.2.a.1's instant and the entry says the body must survive the opponent's turn; no attack designation; no [Repeat]; no [Temporary]; no token is ever recycled; no recall; no Gold; no battlefield of its own. Depends on no unruled reading."
+    },
+    {
+      "id": "shurelya-requiem-ready-and-ganking",
+      "name": "Shurelya's Requiem is both halves of the Ganking pattern on one card — but 818.1 means only the PLAY readies, and [Unique] means once",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-192",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm/Mind gear, E4 P2 M+2, Equipment. '[Unique] [Equip] [R] When you play this, ready your units. [Effect] Your units here have [Ganking].' Two cards' worth of text on one card — and [Unique] caps the deck at one copy."
+        },
+        {
+          "card": "SFD-085",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E6 M4. '[Deflect 2] [Weaponmaster] I have +1 [M] for each friendly gear.' The body the Requiem wants to ride, and the one that turns a gear count into Might."
+        },
+        {
+          "card": "SFD-046",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "Calm gear, E1 P1. 'When you play this, draw 1. [E1][R Calm], [exhaust], Kill this: Draw 1.' A one Energy gear that draws twice and counts for Ornn while it lives."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Mind; eleven legends do.",
+          "The [Effect] only reaches units at the equipped unit's battlefield, so the line needs a garrison there, not a base full of bodies."
+        ],
+        "notable": [
+          "'READY YOUR UNITS' IS TWO CARDS IN THE WHOLE POOL, GREPPED AND NOT REMEMBERED. `grep -i 'ready your units'` over data/corpus_flat.txt returns SFD-192 Shurelya's Requiem and SFD-204 On the Hunt, and nothing else. On the Hunt is already the anchor of a synergy rule; the Requiem was in no entry and is anchor of nothing.",
+          "818.1 IS WHY THE READY DOES NOT REPEAT, AND IT KILLS THE OBVIOUS LOOP. 'Equip is an Activated Ability keyword', and 818.1.c.2 makes it 'functionally short for \"[Cost]: Attach this gear to a unit you control.\"' Attaching is activating an ability; it is not playing a card. So Ornn's [Weaponmaster] — 'when you play me, you may [Equip] one of your Equipment to me for [R] less, EVEN IF IT'S ALREADY ATTACHED' — re-attaches the Requiem without ever re-triggering 'When you play this, ready your units'. The hunt suspected this; 818.1 is the rule that settles it.",
+          "SO THE READY IS A ONE-SHOT AND THE ENTRY SAYS SO IN ITS OWN TERMS. '[Unique] (Your deck can have only 1 card with this name.)' caps the deck at one copy, and the ready fires on the play. What survives is the other half: '[Effect] Your units here have [Ganking]' is a continuous effect that rides on the attached gear for as long as it is attached, so every unit at that battlefield keeps the option forever.",
+          "AND [Ganking] IS NOT AN EXTRA MOVE. 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' What the Requiem's [Effect] buys is that your units at that battlefield may Standard-Move BATTLEFIELD TO BATTLEFIELD instead of only to and from base — one move each, still paid with their own exhaust (144.2). Combined with the one-shot mass ready, that is a whole garrison standing up and walking sideways once.",
+          "SFD-084 JAYCE, MAN OF PROGRESS IS THE ONLY RE-PLAY, AND IT IS STILL ONE SHOT. 'When you play me, you may kill a friendly gear. If you do, you may play a gear with Energy cost no more than [E7] from HAND this turn, ignoring its Energy cost. (You must still pay its Power cost.)' — from HAND. Once the Requiem is on the board, killing a gear does not put it back in your hand, and [Unique] means there is no second copy there. Jayce makes the FIRST Requiem free of its 4 Energy; he does not make it repeat.",
+          "ORNN'S OWN ARITHMETIC. 'I have +1 [M] for each friendly gear' counts gear you control anywhere, so the Requiem (+2 Might as attached Equipment on top) and a Poro Snax already put him at 4 + 2 + 2 = 8 Might, and Poro Snax has drawn a card doing it. Killing the Snax for its second draw costs him 1 Might.",
+          "on-the-hunt-ganking-second-move IN data/synergies.json MODELS THE PATTERN WITH TWO CARDS. Its own text names Shurelya's Requiem as a Ganking granter that On the Hunt does not ready. That is the observation this entry turns into an entry — and the correction is that the Requiem's ready is not repeatable, so it is not a strictly better On the Hunt."
+        ]
+      },
+      "steps": [
+        "Get Ornn, Forge God to a battlefield (6 Energy) with your other bodies.",
+        "Play Shurelya's Requiem for 4 Energy + 2 Power. 'When you play this, ready your units' fires once, on the play: your whole board stands up.",
+        "Attach it for its [Equip] cost of 1 rainbow Power (or free of Energy through Jayce, Man of Progress, whose Power cost you still pay).",
+        "The [Effect] now reads on the attached unit's battlefield: your units there have [Ganking], so their Standard Move may go battlefield to battlefield (810.1.c.3, 144.2).",
+        "Ornn counts every friendly gear for +1 Might each; Poro Snax is a 1 Energy gear that draws on the way in and draws again when killed.",
+        "Re-attaching the Requiem later — by Ornn's [Weaponmaster] or another [Equip] — moves the [Effect] to a new battlefield but never repeats the ready (818.1)."
+      ],
+      "netPerIteration": "one mass ready of your units on the play, then permanent [Ganking] for your units at the equipped unit's battlefield, plus +1 Might on Ornn per friendly gear",
+      "terminatesIn": "engine only — [Unique] allows one copy and 818.1 makes the ready a play trigger, so the ready happens once per game; the [Ganking] is continuous while attached",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Corpus de 8.307 listas de torneo — issue #89 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/89",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 9 (35 registered lists). SFD-192 Shurelya's Requiem and SFD-046 Poro Snax appeared in NO entry before this; SFD-085 Ornn is in tianna-guardian-angel-forge-god-lock and SFD-084 Jayce anchors jayce-progress-vanguard-armory, and both overlaps are declared. THE WALK'S ADDITION over the hunt: the hunt asked whether [Weaponmaster] re-triggers the ready and guessed no; 818.1 and 818.1.c.2 answer it — Equip is an ACTIVATED ABILITY, so attaching is never playing, and no re-attach reaches a 'when you play this' trigger. It also closes the Jayce follow-up the hunt left open: Jayce plays a gear FROM HAND, and [Unique] plus the card already being on the board means he discounts the first copy and cannot loop it. The 'ready your units' uniqueness claim was verified with grep over the whole corpus before being written. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 144.2, 810.1.c.3, 818.1, 818.1.c.2. Ban check: none of the four carries a [BANNED marker. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; no recall; no Gold; no battlefield of its own; the entry claims a one-shot ready and says so in its class, its netPerIteration and its terminatesIn rather than dressing it as repeatable. Depends on no unruled reading."
+    },
+    {
+      "id": "vex-star-crossed-rebound-stun",
+      "name": "Star-Crossed sends the threat home and Vex stuns it on the way back in — the bounce gets paid twice",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-150",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 M4. '[Deflect] When an opponent plays a unit while I'm at a battlefield, [Stun] it. They can't move it this turn.' No location restriction on the unit played: she only has to be standing at a battlefield herself."
+        },
+        {
+          "card": "UNL-128",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Chaos spell, E3 P1. '[Reaction] Return a friendly unit and an enemy unit to their owners' hands.' The bounce that forces the replay Vex is waiting for."
+        },
+        {
+          "card": "UNL-143",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 P1 M4. '[Ambush] When I attack or defend, if an enemy unit is alone here, give me +2 [M] this turn and gain 2 XP.' The bounce is what makes an enemy unit alone."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Every card here is mono-Chaos, so any Chaos legend runs the line.",
+          "Vex has to be AT A BATTLEFIELD, not at your base, for her trigger to exist at all."
+        ],
+        "notable": [
+          "THE RE-STUN IS LEGAL BECAUSE THE UNIT LEFT THE BOARD, AND THAT IS WHAT 423.1 SAYS. 'Stunning is the act of selecting one or more Units ON THE BOARD and rendering them Stunned', and 423.1.a.1 forbids stunning a unit that is already Stunned. A card returned to its owner's hand is not a Unit on the Board, so the state does not travel with it — the same shape as 705, which strips buffs from a unit that leaves play. When the opponent replays it, Vex stuns the thing that just arrived.",
+          "VEX'S TRIGGER HAS NO LOCATION CLAUSE ON THE PLAYED UNIT, WHICH IS THE POINT. 'When an opponent plays a unit WHILE I'M AT A BATTLEFIELD' — the location condition is on Vex, not on the unit. So a single Vex taxes every unit the opponent plays anywhere, for as long as she stands at a battlefield.",
+          "WHAT THE STUN IS WORTH, EXACTLY. 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' Plus Vex's own rider, 'They can't move it this turn'. So the replayed body cannot fight and cannot walk to a battlefield; combined with 143.4 ('Units enter the Board exhausted') it is inert for a full turn. 423.1.a.2 clears the stun at step 3d of cleanup.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED, AND THE COST IS THE HONEST PART. Per bounce: 3 Energy + 1 Power for Star-Crossed. In exchange the opponent loses the tempo of replaying the unit, the unit is stunned and immobile for the turn, and one of your own units comes home to be replayed too (that is the 'friendly unit' half — Star-Crossed is not one-sided). Three copies (103.2.b), so three bounces, and there is no recursion in this line.",
+          "KHA'ZIX IS PAID BY THE SHAPE THE BOUNCE LEAVES. 'When I attack or defend, if an enemy unit is ALONE here, give me +2 [M] this turn and gain 2 XP' — bouncing one of two defenders is exactly how a battlefield ends up with one enemy unit on it. His [Ambush] ('You may play me as a [Reaction] to a battlefield where you have units') means he can arrive after the bounce, inside the same window.",
+          "OVERLAP DECLARED, AND THE TRAP IS THE SAME ONE. annie-stubborn-star-crossed-lock already runs Star-Crossed, with OGS-010 Annie: there the friendly half of the bounce is a feature, because replaying Annie fetches the spell back, so the spell is never consumed. Here it IS consumed — three bounces and done. The two want the same three copies and are alternatives in one deck."
+        ]
+      },
+      "steps": [
+        "Have Vex, Apathetic standing at a battlefield (4 Energy). Her trigger only exists while she is there.",
+        "Play Star-Crossed at Reaction speed (3 Energy + 1 Power): return an enemy unit and one of your own to their owners' hands.",
+        "The returned enemy is no longer a Unit on the Board, so 423.1 lets it be stunned afresh when it comes back.",
+        "The opponent replays it. Vex triggers: stun it, and they can't move it this turn. 143.4 already made it enter exhausted.",
+        "The battlefield it left may now hold a single enemy unit; play Kha'Zix there with [Ambush] and his attack or defence trigger gives him +2 Might and 2 XP.",
+        "At step 3d of cleanup the stun clears (423.1.a.2); the next Star-Crossed does it again, up to three times a game."
+      ],
+      "netPerIteration": "one enemy unit bounced, then stunned and immobilised for a full turn on its way back in, for 3 Energy and 1 Power per bounce",
+      "terminatesIn": "engine only — three Star-Crossed with no recursion in this line, and the stun clears at cleanup every time",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Corpus de 8.307 listas de torneo — issue #89 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/89",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 10 (84 registered lists). UNL-150 Vex, Apathetic and UNL-143 Kha'Zix, Mutating Horror appeared in NO entry before this; UNL-128 Star-Crossed anchors annie-stubborn-star-crossed-lock and the overlap is declared, including the fact that Annie's version does NOT consume the spell while this one does. THE WALK'S ADDITION over the hunt: the hunt asserted that 423.1.a.1 'does not bother us here because the body re-enters new' without naming the rule that says so; the reason is in 423.1's own first sentence — Stunning selects Units ON THE BOARD, so a card in hand carries no Stunned state, the same way 705 strips buffs from a unit that leaves play. It also reads Vex's trigger to the end: the 'at a battlefield' clause is on VEX, not on the unit played, so one Vex taxes every unit the opponent plays anywhere. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 143.4, 423.1, 423.1.a.1, 423.1.a.2, 423.1.b, 705. Ban check: none of the three carries a [BANNED marker. Trap check: Kha'Zix's rider needs an attack or a defence and the entry says so; no [Repeat]; no [Temporary]; no token; the bounce is a return to hand, not a Recall, so 455 and 808.1.d.1 do not arise; no Gold; no battlefield of its own. Depends on no unruled reading."
+    },
+    {
+      "id": "ahri-foxfire-might-threshold",
+      "name": "Fox-Fire's threshold is a SUM, so lowering Might is how you widen the sweep — three cards turn a 4 Might cap into four bodies",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-256",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm/Mind spell, E3. '[Hidden] [Action] Kill any number of units at a battlefield with total Might 4 or less.' The only sweep in the pool priced on a SUM instead of a per-unit cap."
+        },
+        {
+          "card": "OGN-119",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E3 P1 M3. 'When I attack or defend, give an enemy unit here -2 [M] this turn, to a minimum of 1 [M].' Two Might off the sum, every combat, for free."
+        },
+        {
+          "card": "OGN-255",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Mind legend. 'When an enemy unit attacks a battlefield you control, give it -1 [M] this turn, to a minimum of 1 [M].' One more off the sum, for free, on every attacker."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Nine-Tailed Fox's own, Calm and Mind; Ahri, Inquisitive is Mind and Fox-Fire is Calm/Mind.",
+          "The reducers only fire in combat — Ahri on an attack or a defence, the legend on an enemy attack against a battlefield you control — so the sweep is a combat trick, not a Main Phase button."
+        ],
+        "notable": [
+          "THE MECHANIC IS THE THRESHOLD, AND NO LENS OF THIS PROJECT HAS SWEPT IT. Fox-Fire reads 'Kill any number of units at a battlefield with TOTAL Might 4 or less'. Every other removal in the catalogue is priced per unit; this one is priced on the sum of the group you name, so a card that lowers Might is not making the kill easier, it is making the GROUP BIGGER. 710 is the rule that makes the reduction count: 'Units on the board are evaluated according to their current Might.'",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED, WORKED ON A REAL BOARD. Two enemy 3 Might bodies sum to 6 and Fox-Fire cannot touch them. Ahri's -2 on one of them makes it 1 + 3 = 4: both die. Add the legend's -1 on an attacker and a 3/3/3 garrison becomes 1 + 3 + 3 = 7, still too much for one Fox-Fire — but 1 + 1 + 3 with two reducers is 5, and with both reducers on the two biggest it is 1 + 1 + 3 = 5. The honest ceiling is the floor: 'to a minimum of 1 [M]' on both cards means FOUR units at 1 Might sum to exactly 4, and that is the largest sweep this line can ever make.",
+          "THE FLOOR CLAUSE IS ON BOTH REDUCERS AND IT IS WHAT BOUNDS THE ENTRY. Ahri and the legend each say 'to a minimum of 1 [M]', so no amount of stacking takes a unit to 0 and the sum can never be driven below the number of units. That is why the answer is four bodies and not an arbitrary number.",
+          "[Hidden] CONFINES THE SWEEP TO THE BATTLEFIELD IT WAS HIDDEN AT, AND THE ESCAPE CLAUSE DOES NOT APPLY. 811.1.d.2: 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible.' Fox-Fire names no other location, so played from Hidden it must sweep the battlefield where it sits. Played normally (811.3: 'at its normal timing with no restrictions on targeting') it reaches any battlefield for its full 3 Energy.",
+          "THE PRICE OF HIDING IT, AND THE RISK. 811.1.b: 1 rainbow Power to hide it facedown at a battlefield you control, and only 'beginning on the next turn' does it gain [Reaction] and become playable for 0 Energy. 323.7 is the risk — a hidden card at a battlefield you stop controlling is removed and trashed at the next Cleanup. One facedown per battlefield, so at most one Fox-Fire is discounted at a time.",
+          "[Action] AND [Reaction] ARE WHY THE REDUCERS AND THE SWEEP MEET. Ahri's and the legend's triggers fire during combat; Fox-Fire is [Action], which 806.1.c.1 makes playable during showdowns, and [Hidden] gives it [Reaction] while facedown (811.6). So the -2 and the -1 are still on when the sweep resolves — both say 'this turn'."
+        ]
+      },
+      "steps": [
+        "Have Ahri, Inquisitive at a battlefield and Nine-Tailed Fox as your legend. Optionally hide a Fox-Fire there for 1 rainbow Power a turn ahead (811.1.b).",
+        "Combat starts. The legend gives each enemy attacking a battlefield you control -1 Might this turn, to a minimum of 1.",
+        "Ahri's attack-or-defend trigger gives one enemy unit there -2 Might this turn, to a minimum of 1.",
+        "Add up the enemy bodies you want gone at their CURRENT Might (710). If the sum is 4 or less, play Fox-Fire — for 0 Energy if it was hidden there, 3 Energy otherwise.",
+        "Kill all of them at once. The largest this line ever reaches is four units, because both reducers stop at 1 Might each."
+      ],
+      "netPerIteration": "one Fox-Fire kills every enemy body at a battlefield whose CURRENT Might sums to 4 or less — up to four units once the two reducers have run",
+      "terminatesIn": "engine only — three Fox-Fires, each consumed, and both reducers floor at 1 Might, so four bodies is the arithmetic ceiling of the sweep",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Corpus de 8.307 listas de torneo — issue #89 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/89",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89's first extra candidate (104 registered lists). All three cards appeared in NO entry before this. The hunt's observation is right and worth having: reducing Might to lower the THRESHOLD of a sum-priced sweep is a mechanic none of this project's lenses (XP/Empower/Flow/Mech, Hidden/Ambush, Equip, Reaction/Deflect, tokens, ready, movement, draw, stun, payoff) ever measured. THE WALK'S ADDITION is the ceiling and the targeting. The ceiling: both reducers print 'to a minimum of 1 [M]', so the sum can never fall below the number of units and FOUR bodies at 1 Might each is exactly 4 — the largest sweep the line can make, which the hunt did not compute. The targeting: 811.1.d.2's escape clause does NOT apply to Fox-Fire, because the card names no other location, so a hidden Fox-Fire must sweep the battlefield it was hidden at; 811.3 is the way out, at full price. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 323.7, 710, 806.1.c.1, 811.1.b, 811.1.d.2, 811.3, 811.6. Ban check: none of the three carries a [BANNED marker. Trap check: Ahri's trigger needs an attack or a defence and the entry says so (807.1.d, 383.4.e, 461); no [Repeat]; no [Temporary]; no token; no recall; no Gold; no battlefield of its own; 323.7 is named as the risk of hiding. Depends on no unruled reading."
+    },
+    {
+      "id": "kayn-back-alley-bar-double-move",
+      "name": "Kayn stops taking damage on his SECOND move, and 810.1.c.3 is why [Ganking] is not that second move",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-189",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E6 P1 M6. '[Ganking] If I have moved twice this turn, I don't take damage.' The pool's explicit payoff for a second move, and it is in no other entry."
+        },
+        {
+          "card": "OGN-173",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E2 P1. '[Action] Move a friendly unit and ready it.' The move that is not a Standard Move, and it hands the exhaust back in the same card."
+        },
+        {
+          "card": "OGN-277",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield. 'When a unit moves from here, give it +1 [M] this turn.' Pays on the LEAVING, so it pays on the first move and on the second only if the second also starts here."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Kayn and Ride the Wind are mono-Chaos and Back-Alley Bar is colourless, so any Chaos legend runs the whole line.",
+          "Back-Alley Bar is one of your three battlefields: 485.4.a says only 1 of the 3 is used, and it is random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5). 103.4.c and Tournament Rules 402.1 forbid bringing two copies."
+        ],
+        "notable": [
+          "810.1.c.3 IS WHY KAYN'S OWN KEYWORD DOES NOT FEED HIM: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' [Ganking] widens WHERE the Standard Move can go (battlefield to battlefield), it does not grant a second one. So the second move has to come from somewhere else, and this is the fact #58 established being spent on the card that was printed to reward it.",
+          "THE STANDARD MOVE IS ONE EXHAUST AND NOTHING ELSE. 144.2: 'Exhausting the Unit is the Cost for this action.' 420.3.a puts that exhaust ONLY on the Standard Move — a move by effect has no such cost and no such restriction — and 144.4 governs destinations. So the cheapest pair is: Standard-Move Kayn (his own exhaust), then Ride the Wind moves him again AND readies him, which puts the exhaust straight back.",
+          "BOTH ARE MOVES BY RULE. 446.1: 'A Permanent changing its position from any space on the Board to another space on the Board is a Move…', and 456 / 456.1 carve out only Recalls ('They do not cause Triggered Abilities to trigger that are triggered by Move actions'). Ride the Wind is neither a Recall nor an attached permanent following its host, so Kayn's counter reads two.",
+          "WHAT THE SECOND MOVE BUYS, EXACTLY. 'If I have moved twice this turn, I don't take damage.' It is not [Deflect] and it is not a Shield: nothing stops him being chosen, and nothing stops the opponent's units contributing Might — 465.2.c still has each player assign damage equal to their summed Might. What it means is that the damage assigned to Kayn does nothing, so a 6 (or 7) Might body wins its combat and comes out whole. It lasts the turn, and next turn he has to move twice again.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED, AND THE BAR PAYS ONCE PER DEPARTURE. 'When a unit moves FROM here' — the Bar pays on leaving, not on arriving. Standard-Move Kayn out of the Bar: +1 Might, so 7. Ride the Wind then moves him from a different battlefield, which is not 'here', so it pays nothing: 7 Might, ready, immune to damage, for 2 Energy and 1 Power on top of his 6 Energy and 1 Power. To collect twice he would have to return to the Bar first, which costs the second move he needs.",
+          "THE CEILING IS THREE RIDE THE WINDS. 103.2.b caps the spell at 3 and each is consumed; without one, [Ganking] alone never gives Kayn his second move (810.1.c.3), so the immunity is off.",
+          "OVERLAP DECLARED. OGN-173 Ride the Wind already runs in yasuo-windrider-ride-the-wind-chain and vi-ride-the-wind-double-conquer, where the ready is spent on a second Conquer. Here it is spent on a second MOVE by the same body, which is a different payoff on the same three copies — in one deck they compete for them."
+        ]
+      },
+      "steps": [
+        "Bring Back-Alley Bar as one of your three battlefields and take control of it; 485.5 makes it 1 of your 3 at random in a Duel.",
+        "Play Kayn, Unleashed (6 Energy + 1 Power). 143.4 makes him enter exhausted; the next Awakening Phase readies him (415.3.a).",
+        "Standard-Move him out of Back-Alley Bar, paying only his own exhaust (144.2). The Bar gives him +1 Might this turn: he is a 7.",
+        "Play Ride the Wind (2 Energy + 1 Power): move him again and ready him. That is his second move of the turn (446.1), and the exhaust from the first is back.",
+        "'If I have moved twice this turn, I don't take damage' is now on. He fights at 7 Might and the damage assigned to him does nothing.",
+        "The counter resets each turn, so the immunity costs a Ride the Wind every turn you want it."
+      ],
+      "netPerIteration": "a 7 Might body that takes no damage for the turn and is left ready, for 2 Energy and 1 Power on top of his own cost",
+      "terminatesIn": "engine only — three Ride the Winds, each consumed, and the 'moved twice this turn' counter resets every turn; [Ganking] never supplies the second move",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Corpus de 8.307 listas de torneo — issue #89 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/89",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89's second extra candidate (91 registered lists, Ride the Wind in 100 % of them). OGN-189 Kayn, Unleashed and OGN-277 Back-Alley Bar appeared in NO entry before this; OGN-173 Ride the Wind is in two and the overlap is declared. THE WALK'S ADDITIONS over the hunt: the hunt called the pair 'an explicit payoff for the second movement' without noticing that Kayn's own [Ganking] cannot BE that second movement (810.1.c.3), so the entry is really Kayn plus a mover and the mover is what it costs; and the Bar pays on 'moves FROM here', so it pays once, not twice — the hunt's implied +2 is a +1. It also states what the immunity is not: it is not [Deflect] and not a Shield, and 465.2.c still assigns the damage, it just does nothing. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 103.4.c, 143.4, 144.2, 144.4, 415.3.a, 420.3.a, 446.1, 456, 456.1, 465.2.c, 485.4.a, 485.5, 486.5, 487.5, 810.1.c.3, and Tournament Rules 402.1. Ban check: none of the three carries a [BANNED marker — OGN-277 Back-Alley Bar is not on the ban list, unlike five other Origins battlefields. Trap check: no attack designation is claimed (the immunity works on defence too); no [Repeat]; no [Temporary]; no token; a move by effect is not a Recall (456.1); no Gold; the battlefield dependency is stated in the first notable with the 485.4.a formula. Depends on no unruled reading."
     }
   ]
 }
