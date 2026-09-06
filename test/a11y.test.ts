@@ -37,7 +37,11 @@ describe("the palette against the backgrounds it is actually drawn on", () => {
   const grounds = ["bg", "panel", "panel-2"] as const;
 
   it("keeps every text token at AA (4.5:1) wherever it lands", () => {
-    for (const fg of ["text", "muted", "faint", "danger-text"]) {
+    // --ok is in here for the same reason --danger-text is (#96): it colours letters, not just the
+    // status dot and the left rule of "Already in this list" — the Legal badge on a deck card, the
+    // editor's verdict, and the PASS on each construction rule. Unlike the red it needed no split,
+    // it was already clear on all three; this is what keeps that true.
+    for (const fg of ["text", "muted", "faint", "danger-text", "ok"]) {
       for (const bg of grounds) {
         const r = contrast(token(fg), token(bg));
         expect(r, `--${fg} on --${bg} is ${r.toFixed(2)}:1`).toBeGreaterThanOrEqual(4.5);
