@@ -28,7 +28,8 @@ export interface GraphContext {
 }
 
 export interface GraphView {
-  fit: () => void;
+  /** False when the stage had no box to measure and the view was left as it was. See `fitBox`. */
+  fit: () => boolean;
   zoomBy: (k: number) => void;
   select: (comboId: string | null) => void;
   setDim: (on: boolean) => void;
@@ -97,6 +98,29 @@ function model(hits: Hit[], ctx: GraphContext): Model {
   const land = new Set(cards.filter((b) => ctx.card(b)?.orientation === "landscape"));
   return { combos, cards, outcomes, missing, need, lines, land };
 }
+
+export interface Box { x: number; y: number; w: number; h: number }
+
+/**
+ * The viewBox that shows all of `content` inside a `cw`x`ch` stage, never magnifying past 1:1 — a
+ * two-node diagram blown up looks broken.
+ *
+ * Null when the stage has no box. A container inside a `hidden` view measures 0 wide, and the scale
+ * drawn from it is 0, so `cw / scale` is `0 / 0` and `ch / scale` is `Infinity`: the viewBox came out
+ * `NaN -Infinity NaN Infinity`, the browser rejected the whole attribute, and the diagram was left
+ * with none at all — clipped and stuck at "NaN%" even after the view came back (#57). Nothing can be
+ * fitted to a box that is not there, so this says so instead of returning a number it invented.
+ */
+export const fitBox = (content: Box, cw: number, ch: number): Box | null => {
+  if (!(cw > 0) || !(ch > 0)) return null;
+  const scale = Math.min(1, cw / content.w, ch / content.h);
+  const w = cw / scale, h = ch / scale;
+  return { x: content.x + (content.w - w) / 2, y: content.y + (content.h - h) / 2, w, h };
+};
+
+/** 1:1, centred on the content. Clipping is fine — the fit button is right there. Null as `fitBox`. */
+export const actualBox = (content: Box, cw: number, ch: number): Box | null =>
+  !(cw > 0) || !(ch > 0) ? null : { x: content.x + (content.w - cw) / 2, y: content.y + (content.h - ch) / 2, w: cw, h: ch };
 
 interface Placed { id: string; x: number; y: number; w: number; h: number }
 interface Edge { from: string; to: string; dashed: boolean; comboId: string; kind: "card" | "result" | "needs" }
@@ -417,27 +441,20 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
   const pad = 64;
   const topPad = pad + (L.labels.length ? LANE_LABEL_H : 0);
   const content = { x: -pad, y: -topPad, w: L.width + 2 * pad, h: L.height + pad + topPad };
-  let vb = { ...content };
+  let vb: Box = { ...content };
   const apply = () => {
     svg.setAttribute("viewBox", `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
-    ctx.onZoom(Math.round((host.clientWidth / vb.w) * 100));
+    if (host.clientWidth > 0) ctx.onZoom(Math.round((host.clientWidth / vb.w) * 100));
   };
-  /** Show everything, but never magnify past 1:1 — a two-node diagram blown up looks broken. */
-  const fit = () => {
-    const cw = host.clientWidth, ch = Math.max(1, host.clientHeight);
-    const scale = Math.min(1, cw / content.w, ch / content.h);
-    const w = cw / scale, h = ch / scale;
-    vb = { x: content.x + (content.w - w) / 2, y: content.y + (content.h - h) / 2, w, h };
-    apply();
-  };
-  /** 1:1, centred on the content. Clipping is fine — the fit button is right there. */
-  const actualSize = () => {
-    const w = host.clientWidth, h = Math.max(1, host.clientHeight);
-    vb = { x: content.x + (content.w - w) / 2, y: content.y + (content.h - h) / 2, w, h };
-    apply();
-  };
+  /** Take a computed box, or report that there was no stage to measure it against. */
+  const show = (b: Box | null) => { if (!b) return false; vb = b; apply(); return true; };
+  const fit = () => show(fitBox(content, host.clientWidth, host.clientHeight));
+  const actualSize = () => show(actualBox(content, host.clientWidth, host.clientHeight));
   const zoomAt = (k: number, mx: number, my: number) => { vb = { x: mx - (mx - vb.x) * k, y: my - (my - vb.y) * k, w: vb.w * k, h: vb.h * k }; apply(); };
   svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+  // The whole content, before anything is measured: a diagram built off-screen still carries a viewBox
+  // that makes sense, rather than none.
+  apply();
   // Desktop opens at 1:1 like the reference. A phone-width stage at 1:1 shows one third of one
   // lane with no overview, so there the whole diagram comes first and pinch-zoom does the rest.
   if (host.clientWidth < 640) fit(); else actualSize();

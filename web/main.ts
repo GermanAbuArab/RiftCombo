@@ -739,6 +739,12 @@ $<HTMLButtonElement>("#zoom-out").addEventListener("click", () => view?.zoomBy(1
 dimToggle.addEventListener("click", () => { dim = !dim; dimToggle.classList.toggle("on", dim); dimToggle.setAttribute("aria-pressed", String(dim)); view?.setDim(dim); });
 $<HTMLButtonElement>("#fullscreen").addEventListener("click", () => { const st = $<HTMLElement>("#stage"); document.fullscreenElement ? void document.exitFullscreen() : void st.requestFullscreen(); });
 let resizeTimer = 0;
-window.addEventListener("resize", () => { window.clearTimeout(resizeTimer); resizeTimer = window.setTimeout(() => view?.fit(), 150); });
+// A resize that lands while another view is on screen finds the stage with no box to measure. The fit
+// is not skipped and forgotten — the diagram is still sized for the old window — so it is held and
+// replayed the moment Combos comes back (#57).
+let refitPending = false;
+const refit = () => { refitPending = view ? !view.fit() : false; };
+window.addEventListener("resize", () => { window.clearTimeout(resizeTimer); resizeTimer = window.setTimeout(refit, 150); });
+onRoute((r) => { if (r.view === "combos" && refitPending) refit(); });
 
 void boot();
