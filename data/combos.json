@@ -333,7 +333,7 @@
           "Points per Hold: 1 + N x (1 + K). The 1 is the Score itself, capped once per battlefield per turn by 470; the rest are ability Gains that 470 does not touch (R2 = A) and that Blue Sentinel multiplies (R1 = A). 103.2.b caps both at 3 copies, so the reachable values are 2,3,4,5 / 3,5,7,9 / 4,7,10,13. N=3, K=2 gives 10; the cheapest board that reaches 8 at all is five units either way (N=2, K=3 gives 9 for one Energy less).",
           "Nothing caps the total: 471.1.b restricts the Final Point only for a Conquer, and 471.1.a.1 says points Gained from non-Conquer sources are not beholden to those restrictions. The burst carries a player from 0 past 8 in one Hold.",
           "Fragile in exactly one way: at N=3, K=2 there is no slack. Losing one Ahri drops it to 7, and so does losing one Sentinel. Five specific units must survive the opponent's whole turn on one battlefield, with Blue Sentinel's [Shield 2] the only protection either card brings. Total cost 23 Energy + 5 Power, necessarily spread over several turns.",
-          "A cheaper board exists but is NOT what this entry is verified on. Svellsongur (SFD-059, Calm, 3 Energy) copies the text of the unit it is attached to into its Effect Text, which 718.3 appends to that unit — so a Svellsongur on an Ahri raises N and one on a Sentinel raises K, for less Energy than either body. AUDIT 2026-09-06: that reading is R6, ruled A on 2026-09-04, so it is no longer unruled - and the arithmetic in this notable was never updated for it. The board is 1 Ahri + 1 Sentinel + 3 Svellsongur, which `svellsongur-copy-hold` walks at ELEVEN points, not 10 (one Svellsongur on Ahri makes N = 2; two on the Sentinel make K = 4 because the second copies the Sentinel's CURRENT text under R6 = A; 1 + 2 x 5 = 11). It costs 21 Energy, not 18: Ahri 5 (OGN-066, E5 P1), Sentinel 4 (UNL-087, E4 P1) and 3 x (3 to play + 1 to Equip) for the Svellsongurs (SFD-059, E3 P1, [Equip] 1 Energy + 1 Calm). The 18 was the cost of the 2-Ahri + 2-Sentinel board this entry itself abandoned as worth 7 points. Against this entry's 23 Energy for 10 points it is cheaper and stronger, and it lifts the ceiling from 13 to 26. It still lives on `svellsongur-copy-hold`: this entry is verified on the board it declares, and folding Svellsongur into that board would be a walk, not an audit."
+          "A cheaper board exists but is NOT what this entry is verified on. Svellsongur (SFD-059, Calm, E3 P1) copies the text of the unit it is attached to into its Effect Text, which 718.3 appends to that unit, and 434.1.c gives the Top-Most Card ALL the Effect Text of ALL attached cards — so gears stacked on one body compound. That reading is R6, ruled A on 2026-09-04. CORRECTED 2026-09-06 by the #45 walk (docs/phase0/walks/2026-09-06-issue45-two-boards.md), which replaces the numbers this bullet carried in both its earlier versions: a unit wearing v Svellsongur holds 2^v instances of its trigger, not 1 + v, because 477.2.c puts the append in Layer 2, 479.1 finds no dependency, 480.3 falls back to attach order and 476.1 applies each effect exactly once. The board is 1 Ahri + 1 Sentinel + 3 Svellsongur with ALL THREE ON AHRI, which `svellsongur-copy-hold` now walks at SEVENTEEN points (N = 8, K = 1), not the 11 or the 10 published before. It costs 21 Energy AND 8 Power — Ahri 5 (E5 P1), Sentinel 4 (E4 P1) and 3 x (3E + 1P to play, plus [Equip] 1 Energy + 1 Calm Power). Against this entry's 23 Energy + 5 Power for 10 points it is cheaper in Energy and far stronger, and it lifts the ceiling from 13 to 41 — but it pays 3 more Power and puts 16 of its 17 points on a single unit, which is what keeps this five-body board in the catalogue beside it."
         ]
       },
       "steps": [
@@ -361,7 +361,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Load-bearing readings, both ruled 2026-09-03: R1 = A with stacking lets Blue Sentinel add a trigger instance per copy despite 471.2.c (card text supersedes rules text, Golden Rule 002; 471.2.c caps how often the battlefield triggers, not how many instances one trigger produces), and R2 = A makes Ahri's card-text \"you score 1 point\" an ability Gain under 194.1.c rather than a 469 Score, so 470 does not cap it. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-ahri-blue-sentinel-hold.md), promoted to verified WITH A CORRECTION: the entry asked for 2 Ahri and 2 Blue Sentinel, which its own printed formula resolves to 7 points — one short of the 8 that the BURST class requires, and nobody had checked the number against the class. Ahri raised to 3 for 10 points. 383.4.d.2.c is a bonus the entry never claimed: negating or replacing the Hold point does not stop the Ahri triggers. REFUTE 2026-09-03: SURVIVES."
+      "notes": "Load-bearing readings, both ruled 2026-09-03: R1 = A with stacking lets Blue Sentinel add a trigger instance per copy despite 471.2.c (card text supersedes rules text, Golden Rule 002; 471.2.c caps how often the battlefield triggers, not how many instances one trigger produces), and R2 = A makes Ahri's card-text \"you score 1 point\" an ability Gain under 194.1.c rather than a 469 Score, so 470 does not cap it. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-ahri-blue-sentinel-hold.md), promoted to verified WITH A CORRECTION: the entry asked for 2 Ahri and 2 Blue Sentinel, which its own printed formula resolves to 7 points — one short of the 8 that the BURST class requires, and nobody had checked the number against the class. Ahri raised to 3 for 10 points. 383.4.d.2.c is a bonus the entry never claimed: negating or replacing the Hold point does not stop the Ahri triggers. REFUTE 2026-09-03: SURVIVES. CROSS-REFERENCE CORRECTED 2026-09-06 by the #45 walk (docs/phase0/walks/2026-09-06-issue45-two-boards.md): notable[4] published an additive count of stacked Svellsongur that contradicted svellsongur-copy-hold's own steps. Layer order (477.2.c, 479.1, 480.3, 476.1) makes it multiplicative. This entry's own class, uses, quantities and arithmetic are UNCHANGED — only the cross-reference to the gear board was wrong."
     },
     {
       "id": "tryndamere-brambleback-conquer",
@@ -801,21 +801,21 @@
           "quantity": 3,
           "role": "engine",
           "zone": "BATTLEFIELD",
-          "note": "As this is attached to a unit, copy that unit's text to this Equipment's effect text. One on Ahri, two on the Sentinel."
+          "note": "As this is attached to a unit, copy that unit's text to this Equipment's effect text. ALL THREE ON AHRI: 434.1.c appends every attached card's Effect Text to the Top-Most Card, so each Svellsongur copies a text that already carries the previous ones — 1 -> 2 -> 4 -> 8 instances of her point trigger. Rewritten 2026-09-06 (#45): the entry used to split them 1 on Ahri / 2 on the Sentinel, which is the same five cards at the same price for 11 points instead of 17."
         },
         {
           "card": "OGN-066",
           "quantity": 1,
           "role": "payoff",
           "zone": "BATTLEFIELD",
-          "note": "When I hold, you score 1 point."
+          "note": "Calm unit, E5 P1 M4. 'When I hold, you score 1 point.' The multiplicand — this is the body the three Svellsongur go on."
         },
         {
           "card": "UNL-087",
           "quantity": 1,
           "role": "engine",
           "zone": "BATTLEFIELD",
-          "note": "Your hold effects for holding here trigger an additional time."
+          "note": "Mind unit, E4 P1 M4, [Shield 2]. 'Your hold effects for holding here trigger an additional time.' Naked here: K = 1."
         }
       ],
       "needs": [],
@@ -824,21 +824,25 @@
       ],
       "prerequisites": {
         "easy": [
-          "Legend domains cover Calm and Mind (Nine-Tailed Fox OGN-255, Fire Below the Mountain SFD-189)."
+          "Legend domains cover Calm and Mind (103.1.b.2). Four exist: OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom and VEN-145 Curator of the Sands."
         ],
         "notable": [
-          "Hold one battlefield with Ahri carrying one Svellsongur and Blue Sentinel carrying two.",
-          "Each Svellsongur on the Sentinel duplicates its multiplier passive, and under R6 = A the second one copies the first's appended text as well, so one Sentinel wearing two counts as K=4: 1 + 2 x (1 + 4) = 11 from two bodies. (This bullet published the pre-R6 number — K=3 for 9 — which the steps and notes below have contradicted since 2026-09-04; corrected 2026-09-05.)",
-          "Svellsongur also works on Ahri, which this entry never used: copying \"When I hold, you score 1 point\" onto a second slot raises N, not K. Enumerated over the 3-copy cap (103.2.b), the cheapest five-card board that reaches 8 is 1 Ahri + 1 Sentinel + 3 Svellsongur with two of them on Ahri — N=3, K=2, 10 points for 18 Energy, five Energy under the Svellsongur-free board. The ceiling with all three at three copies is 26 points (3 Ahri + 3 Sentinel + 3 Svellsongur, two on Ahri: N=5, K=4), against 13 without the gear."
+          "Hold one battlefield with Ahri carrying all three Svellsongur and Blue Sentinel carrying none. Any battlefield you can Hold works — this entry names none, so it is never a 1-in-3 draw.",
+          "How a Svellsongur stack compounds, and why it is arithmetic and not a reading: 477.2.c puts 'Abilities of Effect Text of Attached cards are appended' in Layer 2, 476.1 applies each effect 'only a single time across all sequences' (so there is no recursion), 479.1 finds NO dependency because each copy alters the other, and 480.3 therefore orders them by Timestamp — attach order. The first Svellsongur copies 1 instance, the second copies the resulting 2, the third copies 4. A unit wearing v Svellsongur carries 2^v instances of its trigger, not 1 + v.",
+          "Points per Hold: 1 + N x (1 + K). All three gears on Ahri gives N = 8, K = 1 -> 1 + 8 x 2 = 17. The other three splits of the SAME five cards at the SAME price are worse: 2 on Ahri / 1 on the Sentinel gives N=4, K=2 -> 13; 1 and 2 gives N=2, K=4 -> 11 (what this entry declared until 2026-09-06); 0 and 3 gives N=1, K=8 -> 10. N multiplies (1 + K), so compounding on the multiplicand wins.",
+          "Ceiling with the 3-copy cap (103.2.b): 3 Ahri + 3 Sentinel + 3 Svellsongur, all three gears on ONE Ahri -> N = 8 + 1 + 1 = 10, K = 3, so 1 + 10 x 4 = 41 points. All three on one Sentinel gives 34; two-and-one gives 31; one-and-two gives 29. The 26 this entry used to publish came from the additive count that Layer order refutes.",
+          "Cost, counted whole: 21 Energy and 8 Power. Ahri 5E + 1P, Sentinel 4E + 1P, and each Svellsongur is 3E + 1P to play PLUS its [Equip] of 1 Energy + 1 Calm Power. The '18 Energy' this entry and ahri-blue-sentinel-hold both used to publish left the three [Equip] payments out, and neither counted the Power at all.",
+          "Against ahri-blue-sentinel-hold, the same package without gear: that one is 23 Energy but only 5 Power, and it spreads its points over five bodies. This one is cheaper in Energy and much stronger, but it pays 8 Power (three of them Calm specifically) and stacks 16 of its 17 points on ONE unit — killing Ahri or stripping her gear collapses the whole board. Fewer Energy is not domination, and the catalogue keeps both."
         ]
       },
       "steps": [
-        "Attach one Svellsongur to Ahri. Its effect text copies 'When I hold, you score 1 point', and 136.2.d makes that 'I' mean Ahri, so the body carries two point sources: N = 2.",
-        "Attach Svellsongur B to Blue Sentinel: it copies 'Your hold effects for holding here trigger an additional time', taking the Sentinel to 2 extra triggers.",
-        "Attach Svellsongur C to the same Sentinel. Under R6 = A it copies the Sentinel's CURRENT text, which already carries B's copy, so it adds two more: K = 4.",
-        "Hold the battlefield at your Beginning Phase: 1 + N x (1 + K) = 1 + 2 x 5 = 11 points."
+        "Play Ahri and Blue Sentinel to the same battlefield. Ahri is the multiplicand (N), the Sentinel is the multiplier (K = 1).",
+        "Attach Svellsongur A to Ahri. 725.1 lets its attach-time passive run despite 718.2, and 136.2.c / 718.3 append the copied text to her Rules Text. 136.2.d makes the copied 'I' mean Ahri, so it fires as a Unit's Hold Ability under 383.4.d.2.a. Ahri now carries 2 point triggers.",
+        "Attach Svellsongur B to the same Ahri. 434.1.c gives the Top-Most Card ALL the Effect Text of ALL attached cards, so what B copies is the current 2 instances (R6 = A). Ahri carries 4.",
+        "Attach Svellsongur C to the same Ahri: it copies the current 4. Ahri carries 8. The order is not a choice you can lose — 479.1 establishes no dependency between the three appends, so 480.3 applies them in Timestamp (attach) order, and 476.1 applies each exactly once.",
+        "Hold the battlefield at your Beginning Phase (469.2): the Score is 1 point, capped by 470. Then N x (1 + K) = 8 x 2 = 16 ability Gains (194.1.c), which R2 = A keeps outside 470's cap and 471.1.a.1 exempts from the Final Point restriction. 17 points."
       ],
-      "terminatesIn": "burst of ability points in one Hold",
+      "terminatesIn": "burst of seventeen points in one Hold, sixteen of them ability Gains that 470 does not cap",
       "sources": [
         {
           "title": "Hunt v2 lens L4, entry L4-09 (docs/phase0/hunt2/L4-points-altwins.md)",
@@ -854,10 +858,16 @@
           "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md)",
           "kind": "manual-walk",
           "date": "2026-09-04"
+        },
+        {
+          "title": "Hand walk 2026-09-06, issue #45 (docs/phase0/walks/2026-09-06-issue45-two-boards.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06",
+          "quote": "476.1: 'Layers are applied in sequence. Each effect in them is applied as soon as able, and only a single time across all sequences.' 477.2.c: 'Abilities of Effect Text of Attached cards are appended in this layer.' 480.3: 'Effects are applied such that the earliest Timestamp within each Layer and Sublayer applies first.'"
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md). The existence chain: 718.2 deactivates only PRINTED Rules Text, but 725.1 carves out exactly an attach-time passive and Svellsongur reads 'As this is attached to a unit, copy ...'; 136.2.b/136.2.c/718.3 keep the Effect Text active and append it to the Top-Most Card; 136.2.d makes 'I' the unit, with Guardian Angel and Brutalizer as the rules' own worked examples. R6 = A settles the magnitude: the copy tracks current text, so Svellsongur C on the Sentinel copies B's copy too and the board is worth 11, not the 9 a snapshot reading would give. R1 = A keeps the Sentinel adding trigger instances to the single Score rather than creating a second one, so 471.2.c is not contradicted; R2 = A keeps 470 off the ability points, and 471.1.a.1 keeps the Final Point restriction off them."
+      "notes": "HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-r6-r10-r28-batch.md). The existence chain: 718.2 deactivates only PRINTED Rules Text, but 725.1 carves out exactly an attach-time passive and Svellsongur reads 'As this is attached to a unit, copy ...'; 136.2.b/136.2.c/718.3 keep the Effect Text active and append it to the Top-Most Card; 136.2.d makes 'I' the unit, with Guardian Angel and Brutalizer as the rules' own worked examples. R1 = A keeps the Sentinel adding trigger instances to the single Score rather than creating a second one, so 471.2.c is not contradicted; R2 = A keeps 470 off the ability points, and 471.1.a.1 keeps the Final Point restriction off them. REWRITTEN 2026-09-06 (docs/phase0/walks/2026-09-06-issue45-two-boards.md), issue #45, WITH A CORRECTION and WITHOUT changing a single quantity — the five cards are the same, only the attach targets moved. Two things were wrong. (1) The catalogue published two CONTRADICTORY arithmetics for the same situation: this entry's own notable[1] and steps compounded two gears on the Sentinel as K = 4, while its notable[2] (and the R6 comment on issue #11, and ahri-blue-sentinel-hold's notable[4]) added two gears on Ahri as N = 3. Both could not be true. The rules settle it without a new reading: 477.2.c puts the append in Layer 2, 479.1 establishes no dependency (each copy alters the other), 480.3 falls back to Timestamp order, and 476.1 applies each effect once — so a unit with v Svellsongur carries 2^v instances. R6 = A's 'current text, not a snapshot' does NOT open a recursion, because 476.1 forbids re-applying an effect. (2) With the composition right, the declared split was the second-worst of the four possible ones at an identical price: all three gears on Ahri give 17 points, not 11, and the ceiling is 41, not 26. Cost restated whole at 21 Energy + 8 Power; the old 18 Energy omitted the three [Equip] payments. Class unchanged: still BURST, and the 17 still land in ONE Hold. Sibling ahri-blue-sentinel-hold is left untouched on purpose — it costs 3 Power less and spreads its points over five bodies instead of one."
     },
     {
       "id": "skyfall-ahri-conquer",
@@ -1917,7 +1927,91 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "The Reckoner's Arena double-dip in the lens (OGN-286, 'When you hold here, activate the conquer effects of units here') is left out of the board this entry declares. AUDIT 2026-09-06: the question it was left out FOR - whether Blue Sentinel multiplies a BATTLEFIELD's own hold trigger - is R8, ruled A on 2026-09-04, so it is no longer UNRESOLVED. 190.6.a gives the Controller the battlefield's abilities, 190.6.c keeps that control unless the ability names another player, 190.6.d makes 'you' in a battlefield's abilities its Controller, and 383.4.d.2.b puts the Hold Ability of anything referencing the Holding player on the Chain for that player: four referents, one player. nasus-ascended-sentinel-arena-hold is a verified entry built on exactly Reckoner's Arena plus Blue Sentinel. The Arena stays out of THIS entry only because folding it in would change the declared board and its arithmetic, which is a walk and not an audit. Tag requirement is the real deckbuilding cost. Rests on the Blue Sentinel reading shared with every Hold line: 471.2.c limits score effects to a Score event, and Sentinel adds trigger instances of that one event rather than a second Score. That reading is R1, which the user ruled A with stacking on 2026-09-03. REFUTE 2026-09-03: SURVIVES. HAND-WALKED 2026-09-04, promoted to verified WITH A CORRECTION found by the BURST audit: the entry asked for 2 Ivern + 2 Blue Sentinel, which its own formula gives as 7 points — one short of the 8 its class claims. Ivern raised to 3 for 10 points, which also supplies three of the four tags his own condition needs."
+      "notes": "The Reckoner's Arena double-dip in the lens (OGN-286, 'When you hold here, activate the conquer effects of units here') is left out of the board this entry declares. AUDIT 2026-09-06: the question it was left out FOR - whether Blue Sentinel multiplies a BATTLEFIELD's own hold trigger - is R8, ruled A on 2026-09-04, so it is no longer UNRESOLVED. 190.6.a gives the Controller the battlefield's abilities, 190.6.c keeps that control unless the ability names another player, 190.6.d makes 'you' in a battlefield's abilities its Controller, and 383.4.d.2.b puts the Hold Ability of anything referencing the Holding player on the Chain for that player: four referents, one player. nasus-ascended-sentinel-arena-hold is a verified entry built on exactly Reckoner's Arena plus Blue Sentinel. The Arena stays out of THIS entry only because folding it in would change the declared board and its arithmetic, which is a walk and not an audit. Tag requirement is the real deckbuilding cost. Rests on the Blue Sentinel reading shared with every Hold line: 471.2.c limits score effects to a Score event, and Sentinel adds trigger instances of that one event rather than a second Score. That reading is R1, which the user ruled A with stacking on 2026-09-03. REFUTE 2026-09-03: SURVIVES. HAND-WALKED 2026-09-04, promoted to verified WITH A CORRECTION found by the BURST audit: the entry asked for 2 Ivern + 2 Blue Sentinel, which its own formula gives as 7 points — one short of the 8 its class claims. Ivern raised to 3 for 10 points, which also supplies three of the four tags his own condition needs. WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue45-two-boards.md), issue #45: the Arena version is now its own verified entry, `ivern-arena-sentinel-hold`, and THIS entry is deliberately left as the board that needs no battlefield of yours. Ivern's ability is a Conquer Effect as well as a Hold Effect (823.1.b, 823.1.c.1 for the identical 'When I conquer or hold' wording), so under the Arena it is cashed twice per Hold: 1 + 2 x N x (1 + K), which reaches 9 points with only 2 Ivern + 1 Sentinel for 20 Energy + 2 Power against this entry's 28 Energy + 2 Power for 10. What this board buys instead is certainty — a battlefield is a random 1 of 3 in Duel (485.5) and Skirmish (487.5), and 103.4.c forbids carrying a second copy of it."
+    },
+    {
+      "id": "ivern-arena-sentinel-hold",
+      "name": "Ivern under Reckoner's Arena — the four-tag point cashed twice per Hold",
+      "class": "BURST",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-177",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 M6, no Power. 'As you play me, choose Bird, Cat, Dog, or Poro. I gain that tag. When I conquer or hold, score 1 point if your units have all of the following tags among them — Bird, Cat, Dog, and Poro.' 823.1.b and 823.1.c.1 establish that the 'When I conquer or hold' form is BOTH a Conquer Effect and a Hold Effect, which is why the Arena can cash it a second time."
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M4, [Shield 2]. 'Your hold effects for holding here trigger an additional time.' R8 = A makes the Arena's own hold trigger one of them, so the single copy doubles both routes at once."
+        },
+        {
+          "card": "OGN-286",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "'When you hold here, activate the conquer effects of units here.' 383.4.g.1's worked example is this card BY NAME. Not the banned battlefield: OGN-290 The Arena's Greatest is the one on the ban list."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order (103.1.b.2). Reckoner's Arena is Colorless, so it costs no domain."
+        ],
+        "notable": [
+          "The battlefield must be the one in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5). Reckoner's Arena is one of YOUR three, and in a Duel only two battlefields are on the table (485.4).",
+          "The Arena you provide starts UNCONTROLLED (190.1), and 190.6.d's second sentence switches its whole text off until you take it: 'If the battlefield has no Controller, “you” refers to no one, and all such instructions are ignored.' Establishing Control is part of this entry's cost, not a freebie.",
+          "All four tags among your units — but Ivern says 'your units', NOT 'units here', so only the two Iverns and the Sentinel have to stand at the Arena. Each Ivern picks one tag as it is played, so the two of them cover Dog and Poro and two cheap bodies cover the rest anywhere on the board: OGN-216 Soaring Scout (E2 M1, Bird, Order) and VEN-132 Fallen Feline (E2 P1 M3, Cat, Order).",
+          "Points per Hold: 1 + 2 × N × (1 + K), N = Ivern present, K = Blue Sentinel present. The factor 2 is Ivern being paid on both of his faces — once as a hold effect (383.4.d.2.a) and once per Arena run as a conquer effect (383.4.g.1) — and it is the whole reason this board is cheaper than the Arena-free one. N=2, K=1 gives 9. Neighbours, written so nobody repeats the 2026-09-04 BURST audit's mistake: N=1, K=1 gives 5; N=1, K=2 gives 7; N=2, K=2 gives 13; the 3/3 ceiling is 25.",
+          "Cost is 20 Energy and 2 Power: two Ivern (12E, he carries no Power cost), one Blue Sentinel (4E + 1P), and the two outside taggers (4E + 1P). The Arena-free ivern-sentinel-hold needs 28E + 2P and six surviving bodies for one point more; this one needs THREE bodies at the battlefield, because the taggers stay home.",
+          "Against ivern-sentinel-hold, which is the same cards without the battlefield: that one is always online, this one is a 1-in-3 draw. The catalogue carries both faces for the same reason it carries nasus-ascended-sentinel-arena-hold beside nasus-ascended-brambleback-conquer."
+        ]
+      },
+      "steps": [
+        "Establish Control of Reckoner's Arena (190.1) and assemble two Ivern and one Blue Sentinel there, with the four tags spread across your units anywhere on the board.",
+        "At your Beginning Phase you Hold the Arena (469.2): that is the Score, worth 1 point, capped by 470.",
+        "Route A — each Ivern's own hold trigger goes on the Chain (383.4.d.2.a) with its four-tag condition met, and the Sentinel runs each hold effect 1 + K = 2 times: 4 ability Gains.",
+        "Route B — the Arena's 'When you hold here' references the Holding player, so 190.6.a/c/d plus 383.4.d.2.b make it one of YOUR hold effects (R8 = A) and the Sentinel runs it twice as well.",
+        "Each Arena run activates the conquer effects of the units there (383.4.g.1). Ivern's ability is a conquer effect too (823.1.b), and its non-conquer part — the tags — is fulfilled, so it is not filtered out: 4 more ability Gains.",
+        "Nine points in one Hold. Eight of them are ability Gains (194.1.c), which 470 does not cap (R2 = A) and 471.1.a.1 exempts from the Final Point restriction."
+      ],
+      "terminatesIn": "burst of nine points in one Hold, eight of them ability Gains that 470 does not cap",
+      "sources": [
+        {
+          "title": "Notes audit 2026-09-06 (docs/phase0/walks/2026-09-06-notes-audit.md), which found the discarded reading was already ruled",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "823.1.b: 'Hunt is both a Conquer and a Hold effect.' 823.1.c.1: 'Hunt is functionally short for: “When I Conquer or Hold, my controller gains X XP.”' — Riot's own writing that the 'conquer or hold' form belongs to both categories."
+        },
+        {
+          "title": "Hand walk 2026-09-06, issue #45 (docs/phase0/walks/2026-09-06-issue45-two-boards.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06",
+          "quote": "383.4.g.1's worked example names this card: 'Reckoner's Arena reads “When you hold here, activate the conquer effects of units here.” ... treating the conquer portion of the condition as having been fulfilled. If all of the conditions are fulfilled for a conquer effect, it is placed on the chain as if it had just triggered.'"
+        },
+        {
+          "title": "Issue #45 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/45",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue45-two-boards.md), issue #45. Card text verbatim from data/corpus_flat.txt; every rule opened in the Core Rules file. NO new rules reading: the entry stands on R1 = A with stacking, R2 = A and R8 = A, all ruled 2026-09-04 or earlier, plus 383.4.g.1 and 823.1.b/823.1.c.1. The one objection that looked like it needed a ruling — can one ability be put on the Chain twice for the same event, once as a hold trigger and once as an Arena-activated conquer effect — is answered by 823.1.b making the 'conquer or hold' form both categories, and the only rule that limits an ability to a single trigger (383.1.b) is specific to the 'the [Nth] time' wording, which Ivern does not use. Formula checked against its own declared quantities before authoring: 1 + 2 × 2 × 2 = 9. Trap check: a Hold needs no Attacker designation, so 807.1.d/383.4.e/461 cannot bite; no [Repeat]; no [Temporary]; no recall; no rune recycled for Power; nothing added in Awaken, so 167 does not bite; the Sentinel's [Shield 2] is a Might bonus while defending, not a would-die replacement, so 808.1.d.1 does not bite. Sibling entry: ivern-sentinel-hold walks the same cards WITHOUT the battlefield and is left untouched on purpose — a board that needs no battlefield of yours is always online, while this one is a 1-in-3 draw (485.5)."
     },
     {
       "id": "kharox-sanction-burn",
