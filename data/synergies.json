@@ -1692,7 +1692,7 @@
           "gear"
         ]
       },
-      "why": "\"When you play a gear, ready me\" is the pool's only free, uncapped ready with no cost of its own, and every gear in the list triggers it — there is nothing to read in the text, so the predicate is the card type. What the ready buys is a Standard Move: 420.3.a makes the cost of a move \"Exhausting one or more Units\", so an exhausted Pit Crew cannot move again until something readies it, and 415.1 is that ready. Pit Crew has no exhaust ability of its own, which is why the 2026-09-02 hunt refuted it as an engine — the ready is worth exactly one more move, and 144.4 leaves a body without [Ganking] only the round trip to its base. The gear that fixes that is itself a gear: Boots of Swiftness grants [Ganking] (144.4.c.1), and then each gear played is another battlefield-to-battlefield move, which is how a deck scores both battlefields in one turn and takes the Final Point (470, 471.1.b.1). Gold and other gear TOKENS trigger it too and are not in this list on purpose: 350.2 says \"Tokens are not cards, but can still be Played\", so they fire \"when you play a gear\" while never appearing in a decklist — and by 185 they would never fire a [Legion] or a \"played a card\" clause.",
+      "why": "\"When you play a gear, ready me\" is the pool's only free, uncapped ready with no cost of its own, and every gear in the list triggers it — there is nothing to read in the text, so the predicate is the card type. What the ready buys is a Standard Move: 420.3.a makes the cost of a move \"Exhausting one or more Units\", so an exhausted Pit Crew cannot move again until something readies it, and 415.1 is that ready. Pit Crew has no exhaust ability of its own, which is why the 2026-09-02 hunt refuted it as an engine — the ready is worth exactly one more move, and 144.4 leaves a body without [Ganking] only the round trip to its base. The gear that fixes that is itself a gear: Boots of Swiftness grants [Ganking] (144.4.c.1), and then each gear played is another battlefield-to-battlefield move, which is how a deck scores both battlefields in one turn and takes the Final Point (470, 471.1.b.1). Gold and other gear TOKENS trigger it too and are not in this list on purpose: 350.2 says \"Tokens are not cards, but can still be Played\", so they fire \"when you play a gear\" while never appearing in a decklist — and by 185 they would never fire a [Legion] or a \"played a card\" clause. Two independent competitive sources reached for this exact mechanism, opened directly (2026-09-06). TCGplayer, \"How Did Ornn Conquer Riftbound Regional Barcelona?\" (published 2026-09-02), https://www.tcgplayer.com/content/article/How-Did-Ornn-Conquer-Riftbound-Regional-Barcelona/323b4662-a8e7-4a5b-ac13-a255e339e8c2/ (read via r.jina.ai) — \"For five energy, you can play Pit Crew and Brutalizer, which readies the Pit Crew and has six might when we equip it (for free thanks to Ornn!) with the Brutalizer.\" Issue #121 flagged the six as a printing error against a math of 3 (Pit Crew) + 2 (Brutalizer's Effect) = 5, but the article is right and #121's own arithmetic is what was short: Brutalizer carries TWO separate Might sources at once, its printed Might Bonus (137.3/137.3.a: \"applied while Attached\"; 477.3.d puts it in its own layer; `mightBonus: 1` in cards.json) plus its [Effect] text's conditional \"additional +2 Might\" for the turn it was attached — 3 + 1 + 2 = 6, confirmed against data/corpus_flat.txt and cards.json rather than corrected by assumption. And YouTube, \"Riftbound | Mel Hyper Tempo!! | This List Is So Much Fun!\" (uploaded 2026-09-01), https://www.youtube.com/watch?v=AmHDJB7Qdrg (auto-sub read directly via yt-dlp) — \"I go first, Treasure Hunter, and Pit Crew, which is a great combo\" at 8:04, and \"tempoing them out with Pit Crew and Call\" at 45:20 (#121 placed the first quote at \"~3:40\"; the transcript puts it at 8:04). SFD-130 Treasure Hunter's \"When I move, play a Gold gear token exhausted\" is the token half of this rule's own why (350.2), played here under Mind/Chaos (Soul's Reflection) rather than Ornn's Calm/Mind — a second, independent domain pairing reaching for the same mechanism. Neither list runs Boots of Swiftness, so both stay inside the one-extra-move ceiling this why text already sets, not a bigger engine. `Synergy` carries no `sources` field (checked src/types.ts), so these two citations are recorded here rather than as structured data.",
       "basis": {
         "rules": [
           "383.4.a",
@@ -1703,7 +1703,10 @@
           "350.2",
           "185",
           "470",
-          "471.1.b.1"
+          "471.1.b.1",
+          "137.3",
+          "137.3.a",
+          "477.3.d"
         ],
         "combos": []
       },
@@ -2236,6 +2239,98 @@
       "status": "rule-verified",
       "reviewed": "2026-09-06",
       "reviewedCount": 54
+    },
+    {
+      "id": "grim-resolve-combat-win-removal-family",
+      "name": "Grim Resolve pays 2 XP off any of the [Action] spells that empty a Combat's other side",
+      "anchor": "UNL-095",
+      "partner": {
+        "textMatches": "\\[Action\\][\\s\\S]*?(unit at a battlefield|Mights? to each other|Deal \\d+ to an enemy|[Mm]ove .*? from a battlefield)",
+        "excludes": [
+          {
+            "card": "OGN-262",
+            "why": "Zenith Blade only stuns. 423.1.b removes a Stunned unit's contribution to Combat Damage, it does not remove the unit from the battlefield, so 465.1's 'if both Attacking and Defending units remain' gate is still met and the Damage Step still runs — this spell never empties a side the way a kill/banish/bounce/steal/move does."
+          },
+          {
+            "card": "OGN-168",
+            "why": "[BANNED constructed:banned, 2v2:banned]. Fight or Flight moves the targeted unit to its base, exactly the shape this rule is built on, but Riot has already banned it in both formats, so it can never actually pair with Grim Resolve in a legal deck."
+          }
+        ]
+      },
+      "why": "Grim Resolve's own payoff — \"Give a friendly unit +3 Might this turn. When it wins a combat this turn, gain 2 XP.\" — is a plain won-a-combat trigger, indifferent to how the other side emptied. Buff a unit on either side of a Combat, then clear the OTHER side's whole garrison with one of these [Action] spells (an outright Kill, lethal damage, a bounce, a banish, a steal-and-recall, a deck-return, or a move to base): 465.1's \"if both Attacking and Defending units remain at this battlefield\" gate fails, 465.3 skips the Damage Step, and 466.3.a hands the win — and the XP — to whoever is left standing. This fires whether the removal comes from the Attacker clearing the Defender (the shape sinister-poro-attack-evacuate walks, at 1 Energy with no spell at all) or from the Defender clearing the Attacker inside the Showdown the opponent's own attack opened, which only 806.1.b's off-turn permission reaches (possession-action-defender-flip). Two spells in the family price the buff's own domain out: Blast of Power (Order) and Keeper's Verdict/Zenith Blade's cousins in Body/Order/Calm are outside Grim Resolve's mono-Body identity unless the legend also carries that domain.",
+      "basis": {
+        "rules": [
+          "806.1.b",
+          "464.2.f.1",
+          "464.2.g",
+          "465.1",
+          "465.3",
+          "466.3.a"
+        ],
+        "combos": [
+          "possession-action-defender-flip",
+          "sinister-poro-attack-evacuate"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 28
+    },
+    {
+      "id": "pyke-returned-enemy-kill-removal-family",
+      "name": "Pyke, Returned only pays off the members of the family that actually kill",
+      "anchor": "UNL-145",
+      "partner": {
+        "textMatches": "\\[Action\\][\\s\\S]*?(unit at a battlefield|Mights? to each other|Deal \\d+ to an enemy|[Mm]ove .*? from a battlefield)",
+        "excludes": [
+          {
+            "card": "OGN-262",
+            "why": "Zenith Blade only stuns; the unit is never removed from the battlefield at all, let alone killed (423.1.b)."
+          },
+          {
+            "card": "OGN-168",
+            "why": "[BANNED constructed:banned, 2v2:banned]. Fight or Flight moves the unit to its base — never a Kill, so it would not pay Pyke even if it were legal."
+          },
+          {
+            "card": "OGN-172",
+            "why": "Rebuke returns the unit to its owner's hand. It never reaches the Trash, so 428.1's \"going to the trash from the board\" is never satisfied and the unit never dies."
+          },
+          {
+            "card": "OGN-203",
+            "why": "Possession takes control and Recalls the unit to the controller's own base (455/456). A Recall is explicitly not a Kill and the unit stays on the board the whole time, so it never dies."
+          },
+          {
+            "card": "UNL-007",
+            "why": "Smite's own text replaces the death outright — \"If it would die this turn, banish it instead\" — so whenever the damage would be lethal the unit is banished, never sent to the Trash, and it never dies."
+          },
+          {
+            "card": "UNL-204",
+            "why": "Keeper's Verdict places the unit on the top or bottom of its owner's Main Deck. It leaves the board without ever reaching the Trash, so it never dies."
+          },
+          {
+            "card": "VEN-106",
+            "why": "Wind and Ghosts either banishes (3 Might or less) or returns the unit to its owner's hand. Neither branch sends it to the Trash, so it never dies."
+          }
+        ]
+      },
+      "why": "\"Once each turn, when an enemy unit dies while I'm at a battlefield, play a Gold gear token exhausted\" keys on an actual death, and 428.1 defines Killing as a Permanent going to the Trash from the board. 808.1.d and 808.1.d.1 — written for Deathknell, but stating the same event — say outright that when a \"killed\" event is replaced by anything else (their own worked example is a recall), the death never happened and the trigger is stripped from the chain before it fires. So Pyke only pairs with the members of this family that actually put the enemy in the Trash: the damage-based removal spells (including the two mutual-damage spells, which can kill the enemy side of the exchange) and the two unconditional Kill instructions. The bounce, the steal-and-recall, the deck-return, the banish-or-bounce and the banish-that-replaces-death all empty the battlefield just as well for the ENGINE this family already stands on (possession-action-defender-flip, sinister-poro-attack-evacuate), but none of them ever pays Pyke.",
+      "basis": {
+        "rules": [
+          "428.1",
+          "808.1.d",
+          "808.1.d.1",
+          "465.1",
+          "465.3",
+          "466.3.a"
+        ],
+        "combos": [
+          "possession-action-defender-flip",
+          "sinister-poro-attack-evacuate"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 23
     }
   ]
 }
