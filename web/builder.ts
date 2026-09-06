@@ -13,6 +13,7 @@ import {
   addCard,
   autoRunes,
   builderText,
+  canonicalizeDeck,
   capOf,
   copiesOf,
   costCurve,
@@ -20,6 +21,7 @@ import {
   filterPool,
   inIdentity,
   isEmptyDeck,
+  otherBasesOf,
   removeCard,
   setChampion,
   zoneCounts,
@@ -93,7 +95,7 @@ const cards = () => env.cards();
 
 /** Load the list the editor opened on. Never writes back: see the note at the top of the file. */
 export function openList(text: string): void {
-  deck = text.trim() ? loadDeck(text, cards()) : emptyDeck();
+  deck = text.trim() ? canonicalizeDeck(loadDeck(text, cards()), cards()) : emptyDeck();
   filters = blankFilters();
   filters.legend = deck.legend;
   if (deck.legend) filters.domains = [...cards().domainsOf(deck.legend)];
@@ -105,7 +107,7 @@ export function openList(text: string): void {
 /** Every mutation goes through here, so the draft and the two columns never disagree. */
 function edit(next: Deck): void {
   const hadLegend = deck.legend;
-  deck = next;
+  deck = canonicalizeDeck(next, cards());
   // Picking a legend scopes the pool to its Domain Identity (103.1.b), which is the filter a player
   // would set by hand on the very next click. "All domains" is one press away.
   if (deck.legend && deck.legend !== hadLegend) {
@@ -232,8 +234,12 @@ function cellHtml(card: Card): string {
   const why = off ? `Outside ${identity().join(" + ")} — Domain Identity (103.1.b).` : cap.why;
   const blocked = off || cap.full;
   const setChamp = filters.zone === "champion";
-  const label = `${card.name}${stats ? `, ${stats}` : ""}, ${held} in deck.${blocked ? ` ${why}` : setChamp ? " Make this the Chosen Champion." : " Add a copy."}`;
-  return `<div class="pool-cell${off ? " off" : ""}${land ? " land" : ""}">
+  // #104: the cell is one NAME, and 101 of them reprint under a second (or third) base. The other
+  // bases ride only in the accessible name and a title — there is nothing to click differently.
+  const others = otherBasesOf(cards(), card.base);
+  const also = others.length ? `, also printed as ${others.join(", ")}` : "";
+  const label = `${card.name}${stats ? `, ${stats}` : ""}, ${held} in deck.${blocked ? ` ${why}` : setChamp ? " Make this the Chosen Champion." : " Add a copy."}${also}`;
+  return `<div class="pool-cell${off ? " off" : ""}${land ? " land" : ""}"${others.length ? ` title="${esc(`Also printed as ${others.join(", ")}`)}"` : ""}>
     <button type="button" class="pool-add" data-b="${setChamp ? "champion" : "add"}" data-base="${esc(card.base)}"
       aria-disabled="${blocked}" aria-label="${esc(label)}">
       ${src ? `<img src="${esc(src)}" alt="" loading="lazy">` : `<span class="pool-noart">${esc(card.name)}</span>`}

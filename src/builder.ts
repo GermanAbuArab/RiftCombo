@@ -85,21 +85,57 @@ export const isEmptyDeck = (deck: Deck): boolean => {
 /**
  * A decklist can never hold a token or one of the two typeless helpers (`UNL-T04 Buff`,
  * `UNL-T08 XP Tracker`), so the pool leaves them out — the same test the synergy lists use: no
- * domain indicated and not a battlefield. One cell per BASE, never per printing: 45 of the 1189
- * printings are alt-arts and another 102 carry an `a` suffix, and they are the same card to a deck.
+ * domain indicated and not a battlefield. One cell per NAME, never per base or per printing (#104):
+ * 101 playable names carry two or three bases — Riot reprints a card across sets (`Vi, Destructive`
+ * is OGN-036 and VEN-167) and even within one set (94 legend bases are only 49 names, a main-set
+ * printing plus a starter reissue) — and Core Rules 103.2.b counts copies by name, not by code. The
+ * canonical printing of a name is the earliest by release order (`SETS`) and then collector number;
+ * `otherBasesOf` hands back the rest for a "also VEN-167" mention.
  */
 const pools = new WeakMap<CardIndex, Card[]>();
+const nameBases = new WeakMap<CardIndex, Map<string, string[]>>();
+
+/** Every base a name prints, canonical (earliest) first. Computed once per `CardIndex`. */
+function basesByName(cards: CardIndex): Map<string, string[]> {
+  const cached = nameBases.get(cards);
+  if (cached) return cached;
+  const seen = new Map<string, Set<string>>();
+  for (const c of cards.cards) {
+    if (!c.domains.length && !c.type.includes("battlefield")) continue;
+    const card = cards.get(c.base);
+    if (!card) continue;
+    (seen.get(card.name) ?? seen.set(card.name, new Set()).get(card.name)!).add(card.base);
+  }
+  const rank = (base: string): number => {
+    const c = cards.get(base)!;
+    return setOrder(c.set) * 10000 + c.collectorNumber;
+  };
+  const map = new Map<string, string[]>();
+  for (const [name, bases] of seen) map.set(name, [...bases].sort((a, b) => rank(a) - rank(b)));
+  nameBases.set(cards, map);
+  return map;
+}
+
+/** The other bases that print this same name, canonical order, excluding `base` itself. */
+export function otherBasesOf(cards: CardIndex, base: string): string[] {
+  const card = cards.get(base);
+  if (!card) return [];
+  return (basesByName(cards).get(card.name) ?? []).filter((b) => b !== base);
+}
+
+/** The canonical base for whatever name `base` prints — itself, unless an earlier printing exists. */
+export function canonicalBase(cards: CardIndex, base: string): string {
+  const card = cards.get(base);
+  if (!card) return base;
+  return basesByName(cards).get(card.name)?.[0] ?? base;
+}
 
 export function poolOf(cards: CardIndex): Card[] {
   const cached = pools.get(cards);
   if (cached) return cached;
-  const byBase = new Map<string, Card>();
-  for (const c of cards.cards) {
-    if (!c.domains.length && !c.type.includes("battlefield")) continue;
-    const card = cards.get(c.base);
-    if (card) byBase.set(card.base, card);
-  }
-  const out = [...byBase.values()].sort((a, b) => setOrder(a.set) - setOrder(b.set) || a.collectorNumber - b.collectorNumber);
+  const out = [...basesByName(cards).values()]
+    .map((bases) => cards.get(bases[0]!)!)
+    .sort((a, b) => setOrder(a.set) - setOrder(b.set) || a.collectorNumber - b.collectorNumber);
   pools.set(cards, out);
   return out;
 }
@@ -272,6 +308,35 @@ export function setChampion(deck: Deck, base: string | null, cards: CardIndex): 
   if (!card || zoneOf(card) !== "main") return deck;
   const main = deck.main[base] ? deck.main : bump(deck.main, base, 1);
   return { ...deck, champion: base, main };
+}
+
+/**
+ * Fold every zone bag onto the canonical base of its name (#104). A list a player pastes can name
+ * either printing of a reprint (`loadDeck` resolves whatever code is written), so a Deck coming in
+ * from text can hold two bags of the same name side by side — three OGN-036 Vi and one VEN-167 Vi,
+ * both real entries. This is the one place that merges them, so the pool's single cell can read
+ * `copiesOf` correctly and the deck column draws one row instead of two. Nothing is lost: only the
+ * printing (never the count) is folded, and `deckToText` is free to write the canonical base back
+ * out — the issue's own words are "el texto guardado puede conservar la base canónica".
+ */
+export function canonicalizeDeck(deck: Deck, cards: CardIndex): Deck {
+  const fold = (bag: Record<string, number>): Record<string, number> => {
+    const out: Record<string, number> = {};
+    for (const [base, count] of Object.entries(bag)) {
+      const canon = canonicalBase(cards, base);
+      out[canon] = (out[canon] ?? 0) + count;
+    }
+    return out;
+  };
+  return {
+    ...deck,
+    legend: deck.legend ? canonicalBase(cards, deck.legend) : deck.legend,
+    champion: deck.champion ? canonicalBase(cards, deck.champion) : deck.champion,
+    battlefields: fold(deck.battlefields),
+    runes: fold(deck.runes),
+    main: fold(deck.main),
+    sideboard: fold(deck.sideboard),
+  };
 }
 
 // --- the Rune Deck --------------------------------------------------------------------

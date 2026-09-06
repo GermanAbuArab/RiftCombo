@@ -7,17 +7,21 @@ import {
   addCard,
   autoRunes,
   builderText,
+  canonicalBase,
+  canonicalizeDeck,
   capOf,
   copiesOf,
   costCurve,
   emptyDeck,
   filterPool,
   isEmptyDeck,
+  otherBasesOf,
   poolOf,
   removeCard,
   setChampion,
   zoneOf,
   zoneCounts,
+  zoneRows,
 } from "../src/builder.js";
 
 const cards = loadCardIndex();
@@ -30,13 +34,19 @@ const PLAZA = "OGN-293";       // The Grand Plaza, battlefield
 const MIND_RUNE = "OGN-089";
 const ORDER_RUNE = "OGN-214";
 const SPIDERLING = "VEN-097";  // "Your deck can have any number of cards named Spiderling"
+const VI = "OGN-036";          // Vi, Destructive
+const VI_VEN = "VEN-167";      // Vi, Destructive — the Vendetta reprint
 
 describe("the pool the builder draws from", () => {
   const pool = poolOf(cards);
 
-  it("holds one cell per base code, never one per printing", () => {
+  /**
+   * One cell per NAME, never per base or per printing (#104): 101 playable names carry two or three
+   * bases — `Vi, Destructive` is OGN-036 and VEN-167 — and the pool showed a cell for each until now.
+   */
+  it("holds one cell per name, and every cell's base is unique", () => {
     expect(new Set(pool.map((c) => c.base)).size).toBe(pool.length);
-    // 1189 printings collapse to 1042 bases; the alt-arts are not their own cell.
+    expect(new Set(pool.map((c) => c.name)).size).toBe(pool.length);
     expect(pool.length).toBeLessThan(cards.cards.length);
   });
 
@@ -45,15 +55,44 @@ describe("the pool the builder draws from", () => {
    * offering an illegal card. Same filter the synergy lists use: no domain and not a battlefield.
    */
   it("leaves out the tokens and the two typeless helpers", () => {
-    expect(pool.length).toBe(1030);
+    expect(pool.length).toBe(926);
     for (const c of pool) expect(c.domains.length > 0 || c.type.includes("battlefield"), c.base).toBe(true);
     expect(pool.find((c) => c.base === "UNL-T05")).toBeUndefined();  // Gold
     expect(pool.find((c) => c.base === "UNL-T08")).toBeUndefined();  // XP Tracker, no type at all
   });
 
-  it("carries all 94 legends and all 66 battlefields", () => {
-    expect(pool.filter((c) => c.type.includes("legend")).length).toBe(94);
+  // 94 legend bases are only 49 names — 45 of them print a main-set base AND a starter reissue.
+  it("carries 49 legend names and all 66 battlefields", () => {
+    expect(pool.filter((c) => c.type.includes("legend")).length).toBe(49);
     expect(pool.filter((c) => c.type.includes("battlefield")).length).toBe(66);
+  });
+
+  it("shows exactly one cell for Vi, Destructive: the canonical, earlier OGN-036", () => {
+    const hits = pool.filter((c) => c.name === "Vi, Destructive");
+    expect(hits.length).toBe(1);
+    expect(hits[0]!.base).toBe(VI);
+  });
+
+  // Runes are printed only under Origins and reprinted in Vendetta (VEN-R0x) — one name each.
+  it("shows six runes, not twelve", () => {
+    expect(pool.filter((c) => c.type.includes("rune")).length).toBe(6);
+  });
+});
+
+describe("a name's other printings (#104)", () => {
+  it("lists a reprint's other base, canonical order, excluding itself", () => {
+    expect(otherBasesOf(cards, VI)).toEqual([VI_VEN]);
+    expect(otherBasesOf(cards, VI_VEN)).toEqual([VI]);
+  });
+
+  it("returns nothing for a name with only one base", () => {
+    expect(otherBasesOf(cards, FORGE)).toEqual([]);
+  });
+
+  it("resolves the canonical base for any printing of a name", () => {
+    expect(canonicalBase(cards, VI)).toBe(VI);
+    expect(canonicalBase(cards, VI_VEN)).toBe(VI);
+    expect(canonicalBase(cards, FORGE)).toBe(FORGE);
   });
 });
 
@@ -90,9 +129,11 @@ describe("filtering the pool", () => {
     expect(filterPool(cards, { zone: "champion", legend: null })).toEqual([]);
   });
 
-  it("shows the six runes under the Runes zone, and only those printed in Origins and Vendetta", () => {
+  // Runes are printed only under Origins and reprinted in Vendetta — one cell per name, not one per
+  // base (#104): the zone showed twelve until the pool started grouping by name.
+  it("shows six runes under the Runes zone, not twelve", () => {
     const runes = filterPool(cards, { zone: "runes" });
-    expect(runes.length).toBe(12);
+    expect(runes.length).toBe(6);
     expect(new Set(runes.map((c) => c.name)).size).toBe(6);
   });
 
@@ -144,18 +185,18 @@ describe("the caps a click has to respect", () => {
   });
 
   /**
-   * 103.2.b counts NAMES, and Riot reprints a card under a second base code — `Lux, Crownguard` is
-   * both OGS-014 and VEN-SP6. Two cells, one cap between them, or the builder would happily offer
-   * six copies of one card.
+   * 103.2.b counts NAMES, and Riot reprints a card under a second base code — `Vi, Destructive` is
+   * both OGN-036 and VEN-167. The pool shows one cell (OGN-036, #104), but the cap has to hold even
+   * when a paste names three of one base and one of the other, or the builder would let six copies
+   * of one card through.
    */
-  it("counts the two printings of one name against the same three", () => {
-    const twins = poolOf(cards).filter((c) => c.name === "Lux, Crownguard");
-    expect(twins.length).toBe(2);
+  it("counts a reprint's other base against the same three (#104)", () => {
+    expect(otherBasesOf(cards, VI)).toEqual([VI_VEN]);
     let deck = emptyDeck();
-    for (let i = 0; i < 3; i++) deck = addCard(deck, twins[0]!.base, cards);
-    expect(capOf(deck, twins[1]!.base, cards).full).toBe(true);
-    deck = addCard(deck, twins[1]!.base, cards);
-    expect(copiesOf(deck, twins[1]!.base)).toBe(0);
+    for (let i = 0; i < 3; i++) deck = addCard(deck, VI, cards);
+    expect(capOf(deck, VI_VEN, cards).full).toBe(true);
+    deck = addCard(deck, VI_VEN, cards);
+    expect(copiesOf(deck, VI_VEN)).toBe(0);
   });
 
   it("lets a card past three when its own text says so (002)", () => {
@@ -209,6 +250,37 @@ describe("the caps a click has to respect", () => {
     const after = addCard(deck, FORGE, cards);
     expect(deck.main).toEqual({});
     expect(after).not.toBe(deck);
+  });
+});
+
+/**
+ * A list a player pastes can name either printing of a reprint — `loadDeck` resolves whatever code
+ * is written — so a Deck can arrive holding two bags of the same name side by side: two OGN-036 Vi
+ * and one VEN-167 Vi, both real entries neither `addCard` nor `removeCard` ever produced (#104).
+ * `canonicalizeDeck` is the one place that folds them back onto one base.
+ */
+describe("folding a reprint split across two bases (#104)", () => {
+  it("merges both bags onto the canonical base", () => {
+    const deck = canonicalizeDeck({ ...emptyDeck(), main: { [VI]: 2, [VI_VEN]: 1 } }, cards);
+    expect(deck.main).toEqual({ [VI]: 3 });
+  });
+
+  it("draws one Deck-column row for the merged split", () => {
+    const deck = canonicalizeDeck({ ...emptyDeck(), main: { [VI]: 2, [VI_VEN]: 1 } }, cards);
+    const rows = zoneRows(deck, cards, "main").filter((r) => r.card.name === "Vi, Destructive");
+    expect(rows.length).toBe(1);
+    expect(rows[0]!.count).toBe(3);
+  });
+
+  it("folds the legend and champion pointers too, so they still match a main-deck key", () => {
+    const deck = canonicalizeDeck({ ...emptyDeck(), champion: VI_VEN, main: { [VI]: 2, [VI_VEN]: 1 } }, cards);
+    expect(deck.champion).toBe(VI);
+  });
+
+  it("stays legal under 103.2.b whichever base the count is split across, even unfolded", () => {
+    const deck = { ...emptyDeck(), main: { [VI]: 2, [VI_VEN]: 1 } };
+    const copies = checkBuild(deck, cards, "constructed").rules.find((r) => r.rule === "103.2.b")!;
+    expect(copies.status).toBe("pass");
   });
 });
 
