@@ -259,6 +259,22 @@ describe("103.2.a.2 — the Chosen Champion carries the legend's tag", () => {
   });
 });
 
+/**
+ * #133: `championRule` checked the tag and the Signature flag and never the card's TYPE, so a Deck
+ * carrying a legend as its Chosen Champion was certified legal. `normalizeDeck` no longer builds
+ * such a deck, but `checkBuild` is the app's whole answer to "is this list legal" and must refuse it
+ * however the Deck was assembled — which is what `setChampion` does on the click path.
+ */
+describe("103.2.a.2 — the Chosen Champion is a unit, not a legend", () => {
+  it("refuses a Champion Legend card however well its tag matches", () => {
+    const deck = { ...loadDeck(LEGAL, cards), champion: "OGS-021" };  // Lady of Luminosity, the legend itself
+    const r = row(checkBuild(deck, cards, "constructed"), "103.2.a.2");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toContain("not a champion unit");
+    expect(r.detail).toContain("legend");
+  });
+});
+
 describe("103.2.d — the Signature cap, now computed (#103)", () => {
   it("carries exactly 51 Signature base cards, each with exactly one champion tag", () => {
     const signature = cards.cards.filter((c) => c.signature);

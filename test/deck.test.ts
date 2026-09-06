@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { getCodeFromDeck } from "@piltoverarchive/riftbound-deck-codes";
 import { loadCardIndex } from "../src/load.js";
+import { checkBuild } from "../src/build.js";
 import { deckCountLine, deckRestrictions, decodeDeckCode, deckToText, encodeDeckCode, isDeckCode, loadDeck, normalizeDeck, parseDeckText, type DeckEntry } from "../src/deck.js";
 
 const cards = loadCardIndex();
@@ -182,6 +183,65 @@ describe("plaintext decklists", () => {
     const deck = loadDeck("3 Totally Fake Card\n2 Retreat", cards);
     expect(deck.unresolved).toEqual([{ raw: "Totally Fake Card", count: 3 }]);
     expect(deck.main["OGN-104"]).toBe(2);
+  });
+});
+
+/**
+ * What a list is allowed to say (#132, #133). `parseDeckText` reads what a player pastes,
+ * `decodeDeckCode` reads a string from anywhere at all, and the Piltover route hands `normalizeDeck`
+ * a payload built by somebody else's server — so this is the boundary, and the rules are here rather
+ * than in the consumers, all of which trust a bag's KEYS to mean cards the list holds.
+ */
+describe("the counts and the sections a list arrives with", () => {
+  it("puts nothing in a bag for a line of zero copies, and leaves no key behind", () => {
+    const deck = loadDeck("Legend\n1 Daughter of the Void\nMain\n0 Clockwork Keeper\n", cards);
+    expect(deck.legend).toBe("OGN-247");
+    // The sums were always right — adding 0 changes nothing — so the damage was entirely in the key:
+    // Domain Identity failed on a Calm card the deck does not hold.
+    expect(deck.main).toEqual({});
+    expect(checkBuild(deck, cards, "constructed").rules.find((r) => r.rule === "103.1.b")!.status).toBe("pass");
+  });
+
+  it("does not report a banned card the list holds zero copies of", () => {
+    const deck = loadDeck("Main\n0 Stealthy Pursuer\n", cards);
+    expect(deckRestrictions(deck, cards, "constructed")).toEqual([]);
+  });
+
+  /**
+   * `parseDeckText` cannot write a negative — its counts are `\d+` — but `decodeDeckCode` and the
+   * `/api/deck-url` payload are not this project's code, and a negative used to cancel real copies:
+   * five of a name reported legal under 103.2.b.
+   */
+  it("cannot be talked out of copies it already counted", () => {
+    const deck = normalizeDeck([
+      { code: "OGN-247", count: 1, section: "legend" },
+      { code: "OGN-001", count: 5, section: "main" },
+      { code: "OGN-001", count: -2, section: "main" },
+    ], cards);
+    expect(deck.main["OGN-001"]).toBe(5);
+    expect(checkBuild(deck, cards, "constructed").rules.find((r) => r.rule === "103.2.b")!.status).toBe("fail");
+  });
+
+  /**
+   * 103.2.a.2 wants a champion UNIT, and the Legend Zone is not the Champion Zone (108.3). A legend
+   * written under "Champion" used to be designated Chosen Champion AND counted as an extra Main Deck
+   * card. The card's own type decides its zone now, before the header it was written under.
+   */
+  it("files a legend written under Champion as the legend, not as the Chosen Champion", () => {
+    const deck = loadDeck("Legend\n1 Nine-Tailed Fox\nChampion\n1 Nine-Tailed Fox\nMain\n3 Fox-Fire\n", cards);
+    expect(deck.legend).toBe("OGN-255");
+    expect(deck.champion).toBeNull();
+    expect(deck.main).toEqual({ "OGN-256": 3 });
+    const champ = checkBuild(deck, cards, "constructed").rules.find((r) => r.rule === "103.2.a.2")!;
+    expect(champ.status).toBe("fail");
+    expect(champ.detail).toContain("names no Chosen Champion");
+  });
+
+  it("still designates a champion unit written under Champion", () => {
+    const deck = loadDeck("Legend\n1 Nine-Tailed Fox\nChampion\n1 Ahri, Inquisitive\nMain\n2 Fox-Fire\n", cards);
+    expect(deck.champion).toBe("OGN-119");
+    expect(deck.main["OGN-119"]).toBe(1);
+    expect(checkBuild(deck, cards, "constructed").rules.find((r) => r.rule === "103.2.a.2")!.status).toBe("pass");
   });
 });
 

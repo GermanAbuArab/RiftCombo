@@ -114,7 +114,19 @@ export function isDeckCode(input: string): boolean {
   return /^[A-Z2-7]{20,}=*$/.test(input.trim());
 }
 
-const add = (bag: Record<string, number>, k: string, n: number) => { bag[k] = (bag[k] ?? 0) + n; };
+/**
+ * Put copies in a zone's bag. A count of zero or less puts nothing there and leaves no key behind
+ * (#132): every consumer downstream — `copiesRule`, `identityRule`, `deckRestrictions`, `zoneRows` —
+ * iterates the KEYS and trusts that a key means a card in the list, so `0 Clockwork Keeper` used to
+ * fail Domain Identity on a card the deck does not hold and made the Banned and restricted panel
+ * report a banned card that was not there. The sums stayed right the whole time, which is why no
+ * test noticed. `bump` in src/builder.ts has always had this guard; this is the same one on the
+ * text path, where a count arrives from a paste, a deck code or Piltover rather than from a click.
+ */
+const add = (bag: Record<string, number>, k: string, n: number) => {
+  if (!Number.isFinite(n) || n <= 0) return;
+  bag[k] = (bag[k] ?? 0) + n;
+};
 
 /** Resolve entries to base codes and classify by card type. */
 export function normalizeDeck(entries: DeckEntry[], cards: CardIndex): Deck {
@@ -122,12 +134,20 @@ export function normalizeDeck(entries: DeckEntry[], cards: CardIndex): Deck {
   for (const e of entries) {
     const base = (e.code && cards.resolveCode(e.code)) || (e.name && cards.resolveName(e.name)) || null;
     if (!base) { deck.unresolved.push({ raw: e.code ?? e.name ?? "?", count: e.count }); continue; }
+    // A line for no copies designates nothing either: `add` refuses the count, and the legend and
+    // the Chosen Champion are designations rather than counts, so they need saying here (#132).
+    if (!Number.isFinite(e.count) || e.count <= 0) continue;
     const card = cards.get(base)!;
     if (e.section === "sideboard") { add(deck.sideboard, base, e.count); continue; }
-    if (e.section === "champion") { deck.champion = base; add(deck.main, base, e.count); continue; }
+    // The card's own type decides its zone BEFORE the header it was written under, so a legend
+    // pasted beneath "Champion" is filed as the legend rather than designated Chosen Champion and
+    // counted as an extra Main Deck card (#133). 103.2.a.2 wants a champion unit, the Legend Zone
+    // and the Champion Zone are different zones (108.3), and no legend can ever fill that role —
+    // which is the same test `setChampion` makes in src/builder.ts, so both paths now agree.
     if (card.type.includes("legend")) { deck.legend = base; continue; }
     if (card.type.includes("battlefield")) { add(deck.battlefields, base, e.count); continue; }
     if (card.type.includes("rune")) { add(deck.runes, base, e.count); continue; }
+    if (e.section === "champion") deck.champion = base;
     add(deck.main, base, e.count);
   }
   return deck;

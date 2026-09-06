@@ -232,6 +232,17 @@ function championRule(deck: Deck, cards: CardIndex): BuildRule {
   }
   const champ = cards.get(deck.champion);
   if (!champ) return { ...base, status: "fail", detail: "The Chosen Champion line was not recognised as a card." };
+  // 103.2.a.2 asks for a champion UNIT. The Legend Zone and the Champion Zone are different zones
+  // (108.3), so a Champion Legend card can never fill the role however well its tag matches — and a
+  // list pasted with a legend under "Champion" used to be certified legal here (#133). The click
+  // path has always refused it (`setChampion` in src/builder.ts), so this makes the two agree.
+  if (!champ.type.includes("unit")) {
+    return {
+      ...base,
+      status: "fail",
+      detail: `${champ.name} is a ${champ.type.join("/") || "card"}, not a champion unit, so it cannot be your Chosen Champion.`,
+    };
+  }
   if (!champ.tags.includes(tag)) {
     return { ...base, status: "fail", detail: `${champ.name} is not tagged ${tag}, so it cannot be this legend's Chosen Champion.` };
   }
