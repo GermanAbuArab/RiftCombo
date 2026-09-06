@@ -11855,6 +11855,1641 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. UNL-203 Keeper of the Hammer had no entry. The obvious objection to this trio is that Confront and Poppy both ready her, so one is wasted; the walk checked it and they are not redundant - 383.2.a.1 makes Poppy's ready conditional on the opponent being within 3 points of winning, and Confront's is not conditional at all, so the pair covers both board states. That is also why #62's 'un turno grande, no un motor' is only half right: the big turn is real, and Blood Rose keeps producing a ready a turn afterwards on XP the legend feeds. Card text verbatim from data/corpus_flat.txt. Trap check: no attack trigger; no [Repeat]; no [Temporary]; no token; no recall; 143.4 is the very thing Confront is there to override. Depends on no unruled reading."
+    },
+    {
+      "id": "yasuo-windrider-ride-the-wind-chain",
+      "name": "Three moves, three points: the legend walks Yasuo in, Ganking takes the second, Ride the Wind is the third move",
+      "class": "CHAIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-259",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Chaos legend (Yasuo). '2 Energy, exhaust: Move a friendly unit to or from its base.' Move one, and the one that puts Yasuo on the board."
+        },
+        {
+          "card": "OGN-205",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Chaos unit, E5 P1 M4, [Ganking]. 'The third time I move in a turn, you score 1 point.' Move two is his own Standard Move across; move three is what pays."
+        },
+        {
+          "card": "OGN-173",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos spell, E2 P1, [Action]. 'Move a friendly unit and ready it.' It is move three, and the point it triggers is the eighth."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Calm and Chaos: OGN-259 Unforgiven IS the legend, and both other cards are Chaos."
+        ],
+        "notable": [
+          "IT IS A FINISHER FROM FIVE, NOT A COMBO FROM ZERO, and the source says so in those words. Three points in one turn: Conquer, Conquer, and Yasuo's ability. Below five it is three points and nothing else.",
+          "THE THIRD POINT IS BY ABILITY, WHICH IS WHY IT ADDS TO THE TWO CONQUERS. 194.1.c lists an ability that instructs you to gain points as a way to gain points distinct from the 469 Score, so 470's once-per-Battlefield cap does not touch it (R2 = A). Without R2 this line stops at seven.",
+          "'THE THIRD TIME I MOVE IN A TURN', NOT 'EVERY THIRD TIME'. A fourth and fifth move pay nothing. That is the same reading yasuo-syren-unforgiven-point already carries, and a source in that entry's own citations asks about it out loud without answering it.",
+          "ALL THREE MOVES ARE LEGAL IN ONE MAIN PHASE: 381 for the legend's Activated Ability, 144.1.a for the Standard Move, and Ride the Wind is an [Action] spell. 446.1 makes each of them a Move and 456 never applies, since none is a recall.",
+          "IT COSTS THE BOARD. Ride the Wind is played 'at the end to move yourself back to the base', so the two battlefields you just conquered are left empty and 323.6 strips your Control at the next Cleanup - which does not refund the points (471.1 already gained them) but does hand the board over. The source flags the same downside as the deck's general problem.",
+          "Different line from yasuo-syren-unforgiven-point, which is the same legend and the same Yasuo with The Syren instead: that one is an ENGINE worth one point a turn, this one is three points in one turn and wins from five."
+        ]
+      },
+      "steps": [
+        "Sit at 5 points holding one battlefield, with Yasuo ready in base and Ride the Wind in hand.",
+        "Legend ability (2 Energy, exhaust): move Yasuo from his base to a battlefield. MOVE ONE. Conquer it - 6 points.",
+        "Standard Move with [Ganking] (144.4.c.1) to the other battlefield, exhausting him. MOVE TWO. Conquer it - 7 points.",
+        "Play Ride the Wind (2 Energy + 1 Power): move Yasuo back to base and ready him. MOVE THREE.",
+        "'The third time I move in a turn, you score 1 point' - 8 points, and 472 wins the game at the next Cleanup."
+      ],
+      "netPerIteration": "+3 points in one turn: two Conquers and one ability point",
+      "terminatesIn": "wins the game from 5 points in a single turn, with no opponent turn in between",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Riftlab, \"Learn YASUO in Riftbound | Full Deck Guide & Combos\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=_3iGMGyKtrc&t=81",
+          "date": "2025-09-18",
+          "quote": "[1:23] You use Yasuo Wind Rider, who has the ability, the third time I move in a turn, you score one point. You hold one battlefield for majority of the game, and at five points, you do the following. You tap your legend ability to move Yasuo to the battlefield and conquer it, gaining one point. You then use the ganking ability and your standard move to gank the other battlefield and conquer it. You gain a second point. You are now on seven. Then you will play Ride the Wind at the end to move yourself back to the base and score a third point from your champion unit's ability. Now you've just scored three points in one turn and you go over to the eight mark, meaning that you won from five.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. CLASS IS CHAIN AND IT WAS CHECKED AGAINST THE DEFINITION RATHER THAN ASSUMED: CHAIN is 'reaches 8 across several scoring events, without the opponent taking a turn in between', which is exactly this - two Conquers and an ability point, one turn, from five. It is not a BURST, since no single scoring event reaches 8. It is the fourth CHAIN in the catalogue and the first that does not use Time Warp or a double Conquer alone. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation is needed anywhere, so 383.4.e and 461 cannot bite; no [Repeat]; no [Temporary]; no token; Ride the Wind is a Move and not a Recall (446.1, 456); the Energy is all Main Phase, so 167 never applies. Depends on R2 (ruled A)."
+    },
+    {
+      "id": "keeper-of-masks-flurry-plaza-window",
+      "name": "The [Temporary] trigger IS the window: a Sprite dying in the Beginning Phase lets you add seven bodies before the Plaza counts",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BOARD",
+          "note": "'When you hold here, if you have 7+ units here, you win the game.' 383.2.a.1 measures the count when the Hold trigger is placed, in the Scoring Step - which is AFTER the window this entry opens."
+        },
+        {
+          "card": "UNL-081",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind unit, E2 M1, [Hidden], [Temporary]. 'When you play me, play two Reflection unit tokens here. Then do this: They become copies of me.' Three bodies for 0 Energy out of Hidden, and 811.1.d.1 puts them at the battlefield it was hidden at."
+        },
+        {
+          "card": "UNL-044",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E4 P2, [Reaction]. 'Play four 1 Might Bird unit tokens with [Deflect].' Four more bodies, playable in a Closed State (813.1.c.1). 3 + 4 = 7."
+        },
+        {
+          "card": "UNL-189",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Mind legend (Lillia). '4 Energy, exhaust: Play a ready 3 Might Sprite unit token with [Temporary]. This ability costs 1 Energy less for each friendly unit with [Temporary].' The Sprite is not a body for the count - it is the alarm clock."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "UNL-189 Bashful Bloom IS the legend, and its Calm/Mind identity is exactly what Flurry of Feathers (Calm) and Keeper of Masks (Mind) need."
+        ],
+        "notable": [
+          "THE WHOLE ENTRY IS ONE TIMING FACT, AND IT IS THE OPPOSITE OF WHAT THE OTHER PLAZA LINES DO. 335 says that outside the Main Phase with an empty chain you simply 'proceed to the next substep' - nobody gets priority, which is why flurry-of-feathers-grand-plaza-win records that you cannot add bodies in response to the Plaza's trigger. But a [Temporary] permanent on the board changes that: 816.1.b fires 'At the start of this permanent's controller's Beginning Phase, before scoring', which puts a Chain Item up, closes the state, and 312.2.c/312.2.d hand out priority. 813.1.c.1 then says a [Reaction] card 'can be played during Closed States on any player's turn'. The window is real and it sits BEFORE the Scoring Step.",
+          "THE KEEPER'S OWN [Temporary] NEVER FIRES THE TURN IT WINS. 816.1.c: 'The Trigger Condition is the controller of the permanent's Beginning Phase starting.' That instant has already passed when you play it out of Hidden, so its condition is never fulfilled this turn and it and its two Reflections survive to the Scoring Step. This is why the line does not need LeBlanc, which is what leblanc-temporary-plaza and leblanc-bashful-bloom-trevor-plaza both spend a card on.",
+          "SEVEN EXACTLY, AND EVERY BODY HAS TO BE AT THE PLAZA. Keeper + 2 Reflections + 4 Birds = 7 against a bar of 7. 811.1.d.1 forces the hidden Keeper to be played to the battlefield it was hidden at, so hide it at the Plaza; its tokens say 'here'; and Flurry of Feathers prints no destination, so 355.2.a puts the Birds at a battlefield you control. Nothing may be spent elsewhere.",
+          "THE PLAZA IS RANDOM AND CANNOT BE DOUBLED UP: random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy by name. And you must control it before the Beginning Phase, since a Hold is maintaining Control (469.2).",
+          "THE SPRITE IS THE ALARM CLOCK AND NOTHING ELSE. Any [Temporary] permanent you control at the start of your Beginning Phase opens the window; the legend makes one for 4 Energy, less per Temporary unit you already have. The Sprite itself dies in that same window and is not part of the seven.",
+          "The Birds carry [Deflect], so an opponent must pay a rainbow to choose any of them - but they only exist for the instant between the window and the Scoring Step, and the state is Closed, so the real exposure is whatever they can do with priority in that same window."
+        ]
+      },
+      "steps": [
+        "Control The Grand Plaza. Keeper of Masks is hidden AT the Plaza (811.1.b, 811.1.d.1) and Flurry of Feathers is in hand. Have any [Temporary] permanent on the board - the legend makes a Sprite for 4 Energy or less.",
+        "Your Beginning Phase starts. The Sprite's [Temporary] triggers (816.1.b) and goes on the Chain: the state closes and priority exists (312.2.c).",
+        "In that window, play the hidden Keeper of Masks for 0 Energy - 811.1.b gives it [Reaction], and 813.1.c.1 allows a Reaction card in a Closed State. It arrives at the Plaza with two Reflection copies: three bodies.",
+        "Still in the window, play Flurry of Feathers as a [Reaction] (4 Energy + 2 Power) and choose the second mode: four 1 Might Bird tokens, played to the Plaza (355.2.a).",
+        "Let the chain resolve. The Sprite dies. The Keeper and its copies do not - their own [Temporary] condition (816.1.c) needed the start of the Beginning Phase, which has passed.",
+        "The Scoring Step arrives (315.2.b.2). The Plaza's hold trigger is placed with 7 units there, its condition is fulfilled (383.2.a.1), and you win the game (195)."
+      ],
+      "netPerIteration": "seven bodies at the Plaza inside a single Beginning Phase window, for 4 Energy + 2 Power plus the Sprite",
+      "terminatesIn": "win the game in the Scoring Step of that same Beginning Phase",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — AkeenaTV, \"Lillia Aggro Riftbound Deck\" — el mismo creador cuya línea anterior está registrada como refutada, con la versión corregida",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=QKxuI8enzI0&t=128",
+          "date": "2026-04-07",
+          "quote": "[2:08] it's going to be Keeper of Masks and Flurry of Feathers. So, Keeper of Masks when it can be hidden. When it's played, you make two reflections. So, this is essentially three units. And then we all know Flurry of Feathers is four units. So, these two by themselves have seven units... but thankfully we're in a deck where we can just create units at will. For four mana, we can get a sprite token, which will then give us the necessary temporary trigger to actually have the window to react to it with the hidden card and the reaction speed Flurry of Feathers to give us the seven units for the win.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. THIS IS THE SAME CREATOR CORRECTING HIMSELF, AND THE CATALOGUE HAS BOTH HALVES. flurry-of-feathers-grand-plaza-win records AkeenaTV's earlier line as refuted by 383.2.a.1 plus 335 - you cannot add bodies in response to the Plaza's own trigger, because in the Beginning Phase with an empty chain nobody has priority. In the same video where he says the rules changed under him (quoted in the section 5 walk), he rebuilds it around the one thing that DOES put a chain item up before scoring: a [Temporary] trigger. The walk verified every link - 816.1.b for the timing, 312.2.c for the priority, 813.1.c.1 for playing a Reaction in a Closed State, and 816.1.c for why the Keeper's own Temporary never fires that turn. It is the only Plaza line in the catalogue that uses [Temporary] as an enabler instead of paying a card to switch it off. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; the tokens are not recycled (185); nothing is recalled. Depends on no unruled reading."
+    },
+    {
+      "id": "gromp-arena-svellsongur-xp",
+      "name": "Hunt is both a conquer effect and a hold effect, so Reckoner's Arena pays it twice — and Svellsongur doubles the whole thing",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-100",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E5 M5. '[Hunt 3] (When I conquer or hold, gain 3 XP.)' The wording is what makes the Arena pay twice."
+        },
+        {
+          "card": "OGN-286",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BOARD",
+          "note": "Colorless battlefield. 'When you hold here, activate the conquer effects of units here.'"
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm Equipment. Copies the Gromp's text into its Effect Text, which 434.1.c appends back: two instances of [Hunt 3]. #45 settled that v Svellsongur give 2^v."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Calm and Body, and the source's is UNL-191 Wuju Master, whose '[Level 6] Your units have +1 Might' and '[Level 11] Your units enter ready' are fed by exactly this XP. The other Calm/Body legends are OGN-257 Blind Monk, SFD-193 Grandmaster at Arms, and OGS-019 Wuju Bladesman - Starter, which is RESTRICTED in 2v2."
+        ],
+        "notable": [
+          "12 XP OFF ONE HOLD, AND THE ARITHMETIC IS EXACT. [Hunt 3] is worded 'When I conquer or hold', which 823.1.b and 823.1.c.1 make BOTH a Conquer Effect and a Hold Effect - the fact the #45 walk established for ivern-arena-sentinel-hold. So on a Hold each instance pays twice: 3 for being a hold effect, 3 more because the Arena activates the conquer effects of units here. One Svellsongur gives two instances (2^1). 2 x (3 + 3) = 12.",
+          "THE SOURCE CONTRADICTS ITSELF EIGHTEEN SECONDS LATER AND THE ENTRY KEEPS THE FIGURE THAT CLOSES. It says '12 experience just for holding. It's insane' and then 'you get the 16', which no combination of these cards produces - two Svellsongur would give 2^2 x 6 = 24, not 16. #62 registered the discrepancy; the walk confirms 12 is the number that follows from the cards.",
+          "THE BATTLEFIELD IS RANDOM AND CANNOT BE DOUBLED UP: random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy by name.",
+          "XP IS NOT POINTS. Everything here buys is levels on the legend and whatever else spends XP; the Hold itself still Scores exactly one point (469.2, 470).",
+          "The Svellsongur has to be on the GROMP, not on another unit at the Arena: 434.1.c appends Effect Text to its own Top-Most Card only."
+        ]
+      },
+      "steps": [
+        "Equip Svellsongur to Voracious Gromp (1 Energy + 1 Calm Power) and take Reckoner's Arena with him.",
+        "Survive the opponent's turn.",
+        "Your Beginning Phase Holds the Arena (315.2.b.2). It Scores 1 point.",
+        "Both instances of [Hunt 3] fire as hold effects: 3 + 3 = 6 XP.",
+        "The Arena then activates the conquer effects of units there. [Hunt] is a conquer effect too (823.1.b), so both instances fire again: 6 more. Twelve XP.",
+        "Repeat every turn he holds."
+      ],
+      "netPerIteration": "+12 XP and +1 point per turn from one battlefield",
+      "terminatesIn": "engine only - 12 XP a turn, which is levels and not points",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — GrappLr, \"This Master Yi Deck Levels TOO FAST to Stop\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=y37WbJbqM44&t=19",
+          "date": "2026-04-02",
+          "quote": "[0:20] the beautiful part about this deck is we're playing triple S[v]ell[songur]. So, for example, if you have S[v]ell[songur] on Voracious G[r]omp and you're holding, let's say, on Reckoners' Arena, you're actually getting 12. I'm not making this up. You're getting 12 experience just for holding. It's insane. So, yep, you get the 16",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3, and it is one of the two entries that settles a contradiction #62 recorded in its section 5: the source says 12 and then says 16 within twenty seconds. Twelve is what the cards produce and the walk shows the multiplication; sixteen comes from nowhere and is not propagated. The rule that does the work - '[Hunt] is both a Conquer Effect and a Hold Effect' - was established by the #45 walk for ivern-arena-sentinel-hold and is applied here rather than re-derived, and so is #45's 2^v composition for Svellsongur. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; no recall. Depends on R6 (ruled A)."
+    },
+    {
+      "id": "anivia-svellsongur-double-burn",
+      "name": "Svellsongur on Anivia — the attack burns the battlefield for six instead of three",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-148",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Body unit, E7 P2 M8. 'When I attack, deal 3 to all enemy units here.' The damage is a sweep, not a choice, so doubling it is worth exactly twice as much."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm Equipment. Copies Anivia's text into its Effect Text; 434.1.c appends it back, so the attack trigger exists twice. #45's 2^v."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Calm and Body: the source plays UNL-191 Wuju Master, whose '[Level 11] Your units enter ready' is why Anivia can attack the turn she lands."
+        ],
+        "notable": [
+          "SIX IS THE NUMBER THE SOURCE GIVES AND IT IS THE NUMBER THE CARDS GIVE. Two instances of 'deal 3 to all enemy units here' is 6 to everything at that battlefield. 383.4.e.2.a says an attack trigger's condition is checked once per combat, so each of the two instances fires exactly once - there is no third.",
+          "IT NEEDS A REAL GARRISON TO FIRE AT ALL. 'When I attack' requires the Attacker designation (383.4.e, 464.2.c.3), which only exists inside a Combat, which only stages when units of opposing players are present (323.9). Walking Anivia into an empty enemy battlefield conquers it and deals nothing.",
+          "SHE ENTERS EXHAUSTED UNLESS THE LEGEND IS LEVELLED. 143.4 is the default; the source's answer is UNL-191's [Level 11] 'Your units enter ready', which the same deck's XP engine pays for - gromp-arena-svellsongur-xp is that engine.",
+          "9 Energy and 2 Power all in (Anivia 7+2, Svellsongur 3+1, plus its [Equip] of 1 Energy + 1 Calm), so this is a late-game card, not a curve play.",
+          "The Might Bonus is +0, so the Svellsongur adds no body - all it does is duplicate the text."
+        ]
+      },
+      "steps": [
+        "Equip Svellsongur to Anivia, Primal (1 Energy + 1 Calm Power).",
+        "Move her into an enemy battlefield that has a garrison. The Combat stages (323.9) and opens (323.13).",
+        "464.2.c.3 designates her the Attacker; 383.4.e puts BOTH instances of 'When I attack' on the chain.",
+        "Each deals 3 to all enemy units there: 6 total, before the damage step.",
+        "Whatever survives fights her 8 Might."
+      ],
+      "netPerIteration": "6 damage to every enemy unit at the battlefield per attack, instead of 3",
+      "terminatesIn": "engine only - one doubled sweep per attack, bounded by how often she can attack",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — GrappLr, \"This Master Yi Deck Levels TOO FAST to Stop\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=y37WbJbqM44&t=47",
+          "date": "2026-04-02",
+          "quote": "[0:47] And we have Anivia who combos really well with S[v]ell[songur] because Anivia hits everything for six. Anivia comes in ready because, well, once this is level 11, all your units enter ready. So, Anivia is diving deals six to everything.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. OGN-148 Anivia, Primal appeared in no entry before this. The source's figure matches the cards to the digit, which is worth saying because the same video's other claim (16 XP) does not - see gromp-arena-svellsongur-xp. Card text verbatim from data/corpus_flat.txt. Trap check: the empty-battlefield trap (383.4.e, 461, 807.1.d) is the one that matters here and it is stated in the prerequisites; no [Repeat]; no [Temporary]; no token; no recall; 143.4 is why the legend's level 11 is named. Depends on R6 (ruled A)."
+    },
+    {
+      "id": "kaisa-survivor-arena-draw",
+      "name": "Reckoner's Arena turns Kai'Sa's conquer draw into a hold draw — a card every turn she stands there",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-039",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 M4, [Accelerate] (1 Energy + 1 Fury to enter ready). 'When I conquer, draw 1.' On its own it pays only on the turn you take a battlefield."
+        },
+        {
+          "card": "OGN-286",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BOARD",
+          "note": "Colorless battlefield. 'When you hold here, activate the conquer effects of units here.' It converts the conquer trigger into a per-turn one."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "hold-card-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains need Fury; the source builds it under a Kai'Sa legend and the Arena is Colorless, so 103.1.b.1 never touches it."
+        ],
+        "notable": [
+          "THE ARENA IS WHAT MAKES A CONQUER TRIGGER REPEAT, and that is the whole entry. A Conquer happens once per battlefield you take (469.1); a Hold happens every turn you keep it (469.2, 315.2.b.2). 'Activate the conquer effects of units here' is the bridge.",
+          "THE BATTLEFIELD IS RANDOM AND CANNOT BE DOUBLED UP: random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy by name.",
+          "[Accelerate] IS WHY SHE CAN CONQUER THE TURN SHE LANDS. 143.4 makes units enter exhausted; 805 lets the additional cost of 1 Energy + 1 Fury override it. Without it the first draw waits a turn.",
+          "IT IS ONE CARD A TURN, WHICH IS THE HONEST FIGURE. The Arena activates conquer effects once per Hold, and 'When I conquer, draw 1' is one draw. The source's 'you get to draw every single turn that you hold' is exactly right and nothing multiplies it.",
+          "Cheapest Arena payload in the catalogue: 4 Energy and no Power against ivern-arena-sentinel-hold's board or kennen-stargazer-arena-flow's three cards."
+        ]
+      },
+      "steps": [
+        "Take Reckoner's Arena with Kai'Sa, Survivor, paying [Accelerate] (1 Energy + 1 Fury) so she enters ready and can conquer the same turn. 'When I conquer, draw 1' pays once.",
+        "Survive the opponent's turn.",
+        "Your Beginning Phase Holds the Arena (315.2.b.2): 1 point.",
+        "The Arena activates the conquer effects of units there - Kai'Sa's draw fires again.",
+        "Repeat every turn she holds."
+      ],
+      "netPerIteration": "+1 card and +1 point per turn from one battlefield, for a 4 Energy body",
+      "terminatesIn": "engine only - a card a turn while she holds",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Mabi TCG, \"Riftbound TCG: Kai'Sa Daughter of the Void Deck Profile & How To Play (OGN)\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=qiuK1lC2utk&t=806",
+          "date": "2025-11-06",
+          "quote": "[13:25] this character specifically works really well with the [Reckoner's] arena. When you hold, conquer the effects there, so every turn if this character is at this, you get to draw every single turn that you hold. That's hella powerful. So accelerate is really strong.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. OGN-039 Kai'Sa, Survivor appeared in no entry before this. It is the plainest use of Reckoner's Arena in the catalogue and it is worth having precisely because the other three Arena entries all pay for something else on top - this one measures what the battlefield is worth on its own. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation is needed, since a Conquer comes from Establishing Control (466.5.d) or a Showdown (348.2.a.1); no [Repeat]; no [Temporary]; no token; no recall. Depends on no unruled reading."
+    },
+    {
+      "id": "kaisa-evolutionary-arena-spell",
+      "name": "Every Hold at Reckoner's Arena replays a spell from the trash, and the spell budget is your own score",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-112",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E6 P1 M6, [Ganking]. 'When I conquer, you may play a spell from your trash with Energy cost less than your points without paying its Energy cost. Then recycle it.' The budget grows as you win."
+        },
+        {
+          "card": "OGN-286",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BOARD",
+          "note": "Colorless battlefield. 'When you hold here, activate the conquer effects of units here.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains need Mind; the source builds it under a Kai'Sa legend and the Arena is Colorless."
+        ],
+        "notable": [
+          "THE SPELL BUDGET IS YOUR SCORE, SO THE ENGINE ACCELERATES AS THE GAME GOES. 'Energy cost LESS THAN your points' - at 3 points it replays a 2-drop, at 7 it replays almost anything. The Arena's job is to make that happen every turn instead of once.",
+          "THE POWER COST IS NOT WAIVED. The card says 'without paying its Energy cost' and its reminder spells out 'You must still pay its Power cost'. That is the difference between this and a free spell every turn.",
+          "'THEN RECYCLE IT' IS NOT A DRAWBACK, IT IS THE FUEL. 416.1.a puts the spell on the bottom of your Main Deck rather than leaving it in the trash, so the same spell can come back around - and 185 means no token can ever be the card chosen.",
+          "THE BATTLEFIELD IS RANDOM AND CANNOT BE DOUBLED UP: random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy by name.",
+          "She enters exhausted (143.4) with no [Accelerate], so the first Conquer is a turn after she lands - the source says outright that this one is 'not to play anything ASAP'."
+        ]
+      },
+      "steps": [
+        "Take Reckoner's Arena with Kai'Sa, Evolutionary; the turn she can act, her Conquer replays a spell from the trash for its Power cost only.",
+        "Survive the opponent's turn.",
+        "Your Beginning Phase Holds the Arena: 1 point.",
+        "The Arena activates the conquer effects of units there - her trigger fires again, replaying another spell whose Energy cost is under your current score.",
+        "The spell is recycled to the bottom of your deck (416.1.a), so it can be drawn and used again.",
+        "Repeat every turn she holds, with a bigger budget each time you score."
+      ],
+      "netPerIteration": "+1 free-Energy spell from the trash and +1 point per turn; you still pay each spell's Power",
+      "terminatesIn": "engine only - one replayed spell a turn, with a budget that grows with your score",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Mabi TCG, \"Riftbound TCG: Kai'Sa Daughter of the Void Deck Profile & How To Play (OGN)\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=qiuK1lC2utk&t=946",
+          "date": "2025-11-06",
+          "quote": "[15:46] [with] points, you can play something five and lower. So, you get to pay the energy cost without paying the energy. So, you don't have to tap anything, but you can recycle it either by using your leader ability, a gear on the field, or just recycling a red or whatever you needed to do it. … [16:09] This is another great leader that works with the Reckoners Arena. Every time you hold, you can activate a conquer ability",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. OGN-112 Kai'Sa, Evolutionary appeared in no entry before this. The pairing is the same bridge as kaisa-survivor-arena-draw and the two are catalogued separately because the payloads are different kinds of resource and the two Kai'Sa are different cards in different domains - the source itself recommends one over the other for tempo reasons and plays them as alternatives. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; no recall; the Power cost is explicitly NOT waived, which is stated. Depends on no unruled reading."
+    },
+    {
+      "id": "karthus-black-rose-double-channel",
+      "name": "Karthus doubles every Deathknell — the Black Rose Dignitary dies for two runes instead of one",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-236",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 P1 M3. 'Your [Deathknell] effects trigger an additional time.' One card that upgrades every death trigger in the deck."
+        },
+        {
+          "card": "UNL-152",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 M2, [Assault]. '[Deathknell] Channel 1 rune exhausted.' A 3 Energy body that ramps twice when it dies."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are Order, so any legend with Order works; the source's is a LeBlanc legend."
+        ],
+        "notable": [
+          "THE RUNES ARRIVE EXHAUSTED, SO THEY ARE NEXT TURN'S ENERGY. 'Channel 1 rune exhausted' twice is two runes on the board and zero Energy now; 315.1.b readies them in your next Awaken. That is ramp, not a burst.",
+          "R1 = A IS THE RULE BEING USED AND IT IS ALREADY RULED. Karthus adds one extra instance of each Deathknell, and two Karthus add two - the same stacking the catalogue's other five Karthus entries stand on.",
+          "IT NEEDS THE DIGNITARY TO DIE, WHICH IS A COST AND NOT A PLAN. A 2 Might body with [Assault] dies readily in combat, which is the deck's way of cashing it, but nothing here kills it on demand - that is what karthus-honest-broker-blade-gold buys with the Blade of the Ruined King.",
+          "Karthus must be on the board when the Dignitary dies: 'Your Deathknell effects' is a static ability on him and 124 makes an object that changes zones a new object, so a Karthus in the trash does nothing.",
+          "This is the cheapest of the six Karthus entries - two 3-Energy bodies - and the only one whose payload is runes."
+        ]
+      },
+      "steps": [
+        "Karthus, Eternal on the board.",
+        "Play Black Rose Dignitary (3 Energy).",
+        "Let it die - in combat with [Assault], or to anything else.",
+        "Its [Deathknell] channels 1 rune exhausted, and Karthus's static ability triggers it an additional time: a second rune, also exhausted.",
+        "Both ready in your next Awaken (315.1.b)."
+      ],
+      "netPerIteration": "+2 runes channelled exhausted per Dignitary death, instead of 1",
+      "terminatesIn": "engine only - two runes per body that dies, ramp for next turn",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — GG Haven, \"Draw, Deceive and Destroy | LeBlanc Beginner Guide\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=WODDb_6Br9I&t=763",
+          "date": "2026-04-09",
+          "quote": "[12:43] let's look at our core combo first. So, this is the Death trigger combo. So, essentially, because your Karthus's Death trigger[s] twice, with Black Rose you're channeling two, with Glas[c] M[ix]ologist you can play two units with no more than three energy cost. With Honest Broker, you're playing two Gold Gear token[s] exhausted.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. UNL-152 Black Rose Dignitary appeared in no entry before this. The source quote is a single sentence that names FOUR Karthus payloads, two of which the catalogue already holds - karthus-glasc-mixologist-double-reanimate and karthus-honest-broker-blade-gold - so it is also external corroboration for those, and it is cited on this entry rather than duplicated onto them. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation is required for the Deathknell; no [Repeat]; no [Temporary]; no token; no recall; the channelled runes are exhausted, so 167 never applies. Depends on R1 (ruled A)."
+    },
+    {
+      "id": "karthus-rift-herald-double-play",
+      "name": "The Rift Herald's Deathknell twice: two units out of hand for their Power cost only",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-236",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 P1 M3. 'Your [Deathknell] effects trigger an additional time.'"
+        },
+        {
+          "card": "UNL-179",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E8 P1 M7. 'When I move to a battlefield, look at the top 3 of your Main Deck. You may reveal a unit from among them and draw it. Recycle the rest. [Deathknell] Play a unit from your hand to your base, ignoring its Energy cost.' Doubled, that is two free units."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are Order, so any legend with Order works; the source's is a LeBlanc legend."
+        ],
+        "notable": [
+          "TWO UNITS FOR THEIR POWER COST ONLY, WHICH IS THE BIGGEST DEATHKNELL PAYLOAD IN THE POOL. 'Ignoring its Energy cost' and the reminder 'You must still pay its Power cost' - so two 8-Energy bodies cost you two Power, and the source calls this 'the big one' for that reason.",
+          "THE HERALD IS 8 ENERGY AND HAS TO DIE, so the entry is a late-game trade and not a curve play. What makes the cost bearable is its other half: 'When I move to a battlefield, look at the top 3, reveal a unit and draw it, recycle the rest' - a dig that also happens to be safe on an empty deck, because 431.1.c says looking or revealing past the deck 'does not Burn Out'.",
+          "R1 = A, ALREADY RULED: Karthus adds one extra instance of each Deathknell.",
+          "THE FREE UNITS GO TO YOUR BASE, NOT TO A BATTLEFIELD, and they enter exhausted (143.4). Getting them where they matter is the same walk #48 measured, and nothing here shortens it.",
+          "Karthus has to be on the board when the Herald dies (124)."
+        ]
+      },
+      "steps": [
+        "Karthus, Eternal on the board; Rift Herald played and moved to a battlefield, which digs three deep for a unit.",
+        "Let the Herald die.",
+        "Its [Deathknell] plays a unit from your hand to your base ignoring its Energy cost; you pay only its Power cost.",
+        "Karthus triggers it an additional time: a second unit out of hand, same terms.",
+        "Both arrive exhausted at your base and walk out next turn."
+      ],
+      "netPerIteration": "+2 units from hand for their Power cost only, per Rift Herald death",
+      "terminatesIn": "engine only - two free bodies per Herald, once each time it dies",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — GG Haven, \"Draw, Deceive and Destroy | LeBlanc Beginner Guide\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=WODDb_6Br9I&t=786",
+          "date": "2026-04-09",
+          "quote": "[13:06] And this is the big one with Rift Herald, you're playing two units out for anything, right? Ignoring its cost, only paying the power cost. So, very very strong combination with the Death trigger here.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. UNL-179 Rift Herald appeared in no entry before this. One precision the walk adds over the source, which says 'ignoring its cost': the card says 'ignoring its ENERGY cost' and its own reminder text says 'You must still pay its Power cost'. Two 8-Energy units for two Power is still the largest Deathknell payload in the pool, so the correction costs the line nothing and keeps the entry honest. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; no recall; the dig is a look-and-reveal, which 431.1.c exempts from Burn Out. Depends on R1 (ruled A)."
+    },
+    {
+      "id": "bellows-breath-imperial-decree-wipe",
+      "name": "Imperial Decree makes any damage lethal, so one Energy of Bellows Breath kills three of anything",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-221",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, E5 P2, [Action]. 'When any unit takes damage this turn, kill it.' It does not deal damage; it changes what damage means for the rest of the turn."
+        },
+        {
+          "card": "SFD-080",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E1 P1, [Action], [Repeat] 1 Energy + 1 Mind. 'Deal 1 to up to three units at the same location.' One point of damage is all the Decree needs, and the Repeat makes it six units."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Mind and Order; the source builds it under a Viktor legend."
+        ],
+        "notable": [
+          "ONE DAMAGE IS LETHAL DAMAGE FOR THE WHOLE TURN, WHICH IS WHAT MAKES A 1-ENERGY SPELL A WIPE. The Decree's wording is 'ANY unit', so it also kills your own bodies that take damage - including in combat - and that is the real cost of casting it.",
+          "SIX UNITS, NOT THREE, IF YOU PAY THE REPEAT. 820.1.d.1 makes the paid Repeat execute the instruction a second time, and 820.1.c.3 caps it there: 'Each Repeat Cost can be paid only a single time.' Two batches of up to three at the same location.",
+          "'AT THE SAME LOCATION' BINDS EACH BATCH, not both - the second execution chooses its own targets, so two locations can be hit with one card if the Repeat is paid.",
+          "7 Energy and 3 Power for the pair, which is a whole turn. The Decree alone does nothing, and Bellows Breath alone kills 1 Might units.",
+          "ezreal-marai-spire-free-repeat already names Bellows Breath as the one Energy+Power Repeat that Marai Spire discounts - a deck holding that battlefield pays 1 Mind Power for the second batch instead of 1 Energy + 1 Mind."
+        ]
+      },
+      "steps": [
+        "Play Imperial Decree (5 Energy + 2 Power): for the rest of the turn, any unit that takes damage is killed.",
+        "Play Bellows Breath (1 Energy + 1 Mind Power) and pay its [Repeat] (1 Energy + 1 Mind Power).",
+        "First execution: deal 1 to up to three units at one location - all three die.",
+        "Second execution (820.1.d.1): deal 1 to up to three units at a location of your choice - all three die.",
+        "820.1.c.3 stops there; a third batch is not purchasable at any price."
+      ],
+      "netPerIteration": "up to six units killed for 7 Energy and 3 Power, regardless of their Might",
+      "terminatesIn": "one board wipe per pair of cards; the Decree's effect lasts the turn, so any further damage this turn also kills",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Riftbound Insider, \"This Viktor Deck Is INSANE – Riftbound Deck Tech\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=jaFwJrPxSdo&t=195",
+          "date": "2026-03-08",
+          "quote": "[3:15] First up for removal is bellow's breath. Bellow's breath can be really useful to take out small units. It can also be comboed with imperial decree which says when any unit takes damage, [this] turn kill it, to wipe out a board full of really strong units. Overall, this is one of the best combos in this deck.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. OGN-221 Imperial Decree appeared in no entry before this. The walk's additions over the source are the count and the catch: the Repeat makes it six units and not three (820.1.d.1), 820.1.c.3 caps it there so no amount of Energy buys a third batch, and the Decree says 'ANY unit', so it is a symmetric effect that will kill your own bodies in the same turn's combat. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; the [Repeat] is paid once, per 820.1.c.3, and the family it kills is not resurrected here; no [Temporary]; no token; no recall. Depends on no unruled reading."
+    },
+    {
+      "id": "aurora-elder-dragon-garbage-grabber",
+      "name": "Garbage Grabber recycles the dead Elder Dragon so Dazzling Aurora can free-cast it again",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-160",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Body gear, E9 P2. 'At the end of your turn, reveal cards from the top of your Main Deck until you reveal a unit and banish it. Play it, ignoring its cost, and recycle the rest.' The free-cast happens between turns, which is what this entry turns on."
+        },
+        {
+          "card": "UNL-118",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "DECK",
+          "note": "Body unit, E12 P4 M10. 'Any amount of your damage is enough to kill enemy units. When you play me, choose up to one enemy unit at each location. Deal 1 to them.' A 12-Energy card the Aurora plays for nothing."
+        },
+        {
+          "card": "OGN-099",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind gear, E2. 'Recycle 3 from your trash, 1 Energy, exhaust: Draw 1.' The point is not the draw - it is that three cards go from the trash to the bottom of the deck, and one of them can be the Dragon."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Body and Mind; the source builds it under a Jayce legend, and the Aurora and Dragon are Body while the Grabber is Mind."
+        ],
+        "notable": [
+          "#59 KILLED GARBAGE GRABBER INSIDE A LOOP AND THAT DOES NOT APPLY HERE. The draw lens declared OGN-099 dead because its cost carries an exhaust and every pass of a loop is the same turn. This use is BETWEEN turns: the Aurora fires 'at the end of your turn', the Grabber readies in your next Awaken (315.1.b), so one activation a turn is exactly what it needs. #62 flags this explicitly and the walk confirms it.",
+          "THE RECYCLE IS THREE CARDS AND YOU CHOOSE THEM. 416.6: 'take X cards of the instructed player's choice from the relevant zone'. So the Dragon goes back specifically, and 416.5 - random order at the bottom when two or more are recycled at once - is why the Aurora's dig matters more than the position.",
+          "THE AURORA NEVER BURNS OUT LOOKING. 431.1.c: an instruction to look at or reveal past the deck 'does not Burn Out'. That is the exact failure a citation audit found on dazzling-aurora-elder-dragon once, and it is cited correctly here.",
+          "IT IS ONE FREE UNIT A TURN AND NOT A LOOP. The Aurora fires once per end of turn and the Grabber once per turn, so the cycle is a turn long; the Dragon has to be drawn or revealed again after it is recycled, which 416.5's random bottom does not guarantee.",
+          "9 Energy + 2 Power for the Aurora and 12 + 4 for a hard-cast Dragon is why the free-cast is the whole point; the Grabber at 2 Energy is the cheap half.",
+          "Against dazzling-aurora-elder-dragon, which is the same Aurora and the same Dragon: that entry is the free-cast itself. This one is the recursion behind it, and the source names it as the answer to running out of Dragons."
+        ]
+      },
+      "steps": [
+        "Dazzling Aurora and Garbage Grabber on the board; an Elder Dragon has already been played and died.",
+        "During your turn, activate Garbage Grabber (recycle 3 from your trash, 1 Energy, exhaust): choose the Elder Dragon among the three (416.6). It goes to the bottom of your Main Deck; you also draw 1.",
+        "At the end of your turn, Dazzling Aurora reveals from the top until it hits a unit, banishes it and plays it ignoring its cost - looking past an empty deck is safe (431.1.c).",
+        "When that unit is the Dragon, it arrives for free with its 'deal 1 to one enemy unit at each location', which kills anything because 'any amount of your damage is enough'.",
+        "The Grabber readies in your next Awaken (315.1.b) and the cycle is available again."
+      ],
+      "netPerIteration": "one Elder Dragon returned from trash to deck per turn, for 1 Energy and a card drawn; the Aurora free-casts it later",
+      "terminatesIn": "engine only - one recursion a turn, and the Aurora still has to find the Dragon again",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Turn 'em Sideways!, \"The FIRST Jayce Deck You Should Build | Jayce First 40\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=aGADVvOq3Jc&t=710",
+          "date": "2026-08-24",
+          "quote": "[11:40] you want to ensure that you always [are] getting elder on board to synergize with your bellow's breath, your flurry of blades, and making sure your opponents cannot keep any units on board. And often another way to beat Aurora would be the fact that you run them out of units and only three units would be considered quite risky. But because of the addition of garbage grabber from blue being available to be here, you have a very easy way to [get them back]",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. OGN-099 Garbage Grabber appeared in no entry before this, and it very nearly did not appear at all: the #59 draw lens declared it dead because its cost carries an exhaust and a loop's passes are all the same turn. #62 flagged that this use is BETWEEN turns and therefore untouched by that finding, and the walk confirms it - one activation per turn is exactly the rate the Aurora runs at. That is a good example of why a lens verdict is scoped to the lens: 'dead inside a loop' is not 'dead'. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token is ever recycled (185); no recall; 431.1.c is cited for the reveal and it says what the entry says it says."
+    },
+    {
+      "id": "yasuo-stellacorn-svellsongur-draw",
+      "name": "Svellsongur on the Stellacorn Herder — two draws per move, and the legend is the second move",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-259",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Chaos legend (Yasuo). '2 Energy, exhaust: Move a friendly unit to or from its base.' The second move, and the only one that costs no exhaust from the unit."
+        },
+        {
+          "card": "SFD-048",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Calm unit, E4 M3. 'When I move, draw 1.'"
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm Equipment. Copies the Herder's text into its Effect Text; 434.1.c appends it back, so 'When I move, draw 1' exists twice. #45's 2^v."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "hold-card-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Calm and Chaos: OGN-259 Unforgiven IS the legend, and both other cards are Calm."
+        ],
+        "notable": [
+          "FOUR DRAWS, AND THE ARITHMETIC IS TWO MOVES TIMES TWO INSTANCES. Standard Move (144.1.a, cost is her exhaust) is move one; the legend's ability moves her back and costs 2 Energy and the LEGEND's exhaust, not hers, so it is move two. Two instances of the trigger fire on each: 4 cards for 2 Energy. That is the figure the source gives.",
+          "THE LEGEND'S ABILITY IS WHAT MAKES IT TWO AND NOT ONE. Without it she has one Standard Move a turn. 381 permits the activation in the Main Phase and 446.1 makes it a Move, so the trigger fires; 456 never applies because it is not a recall.",
+          "IT IS DRAWS, AND DRAWS ARE A LIABILITY AT THE BOTTOM. Four a turn empties a deck fast, and 431.1.a plus 194.1.d turn the fifth into a point for the opponent. This is the same ceiling that keeps twilight-reveler-svellsongur-stellacorn-draw an ENGINE.",
+          "SHE IS A 3 MIGHT BODY WITH NO PROTECTION standing at a battlefield every turn; the source's own framing is that she is the best card in the deck 'if she gets to live'.",
+          "Different line from twilight-reveler-svellsongur-stellacorn-draw, which readies her with attack triggers instead of moving her with a legend, and from yasuo-syren-unforgiven-point, which uses the same legend to move Yasuo for a point rather than the Herder for cards."
+        ]
+      },
+      "steps": [
+        "Equip Svellsongur to Stellacorn Herder (1 Energy + 1 Calm Power). She now has 'When I move, draw 1' twice.",
+        "Standard Move her from base to a battlefield (144.1.a, 144.4.a), exhausting her. Both instances fire: draw 2.",
+        "Activate the legend (2 Energy, exhaust the legend): move her back to her base. Both instances fire again: draw 2.",
+        "Four cards for 2 Energy. Repeat every turn - she readies in the Awaken (315.1.b) and so does the legend."
+      ],
+      "netPerIteration": "+4 cards per turn for 2 Energy, from two moves times two copies of the trigger",
+      "terminatesIn": "engine only - four cards a turn until the Main Deck runs out, at which point 431.1.a and 194.1.d take over",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — IcecreaamTCG, \"YASUO IN SPIRITFORGE?! Combo Purple Yasuo deck profile + Gameplay\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=5TYZL9hkxFw&t=126",
+          "date": "2026-03-05",
+          "quote": "[2:06] Then Stel[la]corn [Herder]. I think it's actually the best card of the deck by far. Like we'll see in the game play. There were so many games that I ended the game with like 15 cards easily, right? The moment that you put the S[v]ell[songur], you move her and then you use your ability to move her again, you draw four cards.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. The source's 'four cards' is exact and the walk shows where each comes from: two moves, two instances. What the entry adds is the ceiling - CLAUDE.md has carried 'infinite draw is a liability' since the first session, and this is the second entry after twilight-reveler-svellsongur-stellacorn-draw where it decides how the line is described rather than what class it gets. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; the legend's move is a Move and not a Recall (446.1, 456); 143.4 delays the first turn only. Depends on R6 (ruled A)."
+    },
+    {
+      "id": "pack-of-wonders-treasure-trove",
+      "name": "Pack of Wonders returns the Treasure Trove, and leaving the board is what the Trove pays for",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-181",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos gear, E2. 'exhaust: Return another friendly gear, unit, or facedown card to its owner's hand.' Once a turn, and it readies in the Awaken."
+        },
+        {
+          "card": "OGN-186",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Chaos gear, E2. 'When this leaves the board, draw 1 and channel 1 rune exhausted. 1 Chaos Power, exhaust: Kill this.' It pays on LEAVING, which is what makes a bounce a payoff instead of a tempo loss."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are Chaos, so any legend with Chaos works; the source's is Ezreal, Prodigal Explorer."
+        ],
+        "notable": [
+          "'WHEN THIS LEAVES THE BOARD' IS BROADER THAN A DEATH TRIGGER, AND THAT IS THE ENTIRE PAIRING. Returning the Trove to hand is a zone change off the board (124), so the trigger pays - a card and an exhausted rune - and then you replay it for 2 Energy. The Trove's own 'Kill this' costs 1 Chaos Power; the Pack costs an exhaust and nothing else.",
+          "IT IS ONE CYCLE A TURN. Pack of Wonders carries an exhaust in its cost, so 315.1.b readies it in your next Awaken and no amount of Energy buys a second bounce. The source is explicit and correct: 'not infinite, but it is an engine that continuously bring back units and grind the opponent out'.",
+          "THE RUNE ARRIVES EXHAUSTED, so the cycle is 2 Energy now for a card plus next turn's Energy, not a refund.",
+          "'ANOTHER friendly gear, unit, or facedown card' - the Pack cannot bounce itself, and the facedown clause is what makes it a Hidden-deck card as well; the catalogue already has two other Pack of Wonders entries, on Bewitching Spirit and on Fizz, and none of the three share a second card.",
+          "323.7 recalls unattached non-unit gear at battlefields at every Cleanup, so both of these live at your base and never travel."
+        ]
+      },
+      "steps": [
+        "Pack of Wonders and Treasure Trove both on the board.",
+        "Exhaust Pack of Wonders: return Treasure Trove to your hand.",
+        "The Trove leaves the board, so its trigger pays: draw 1 and channel 1 rune exhausted.",
+        "Replay Treasure Trove (2 Energy).",
+        "Both ready in your next Awaken (315.1.b) and the cycle repeats."
+      ],
+      "netPerIteration": "+1 card and +1 rune channelled exhausted per turn, for 2 Energy and one exhaust",
+      "terminatesIn": "engine only - one bounce a turn, capped by Pack of Wonders' own exhaust",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — AliEldrazi Riftbound, \"Is Ezreal, Prodigal Explorer the best Legend in Spiritforged?\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=j8dulEGp1qo&t=358",
+          "date": "2025-12-29",
+          "quote": "[5:58] [not] infinite, but it is a[n] engine that continuously bring back units and grind the opponent out. The best card to use a Pack of Wonders is going to be Treasure Trove. This is a gear that says when this leaves the board, draw one and channel one [rune] exhausted. You can pay one purple power to kill it and get its ability.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. OGN-186 Treasure Trove appeared in no entry before this. The source draws its own boundary - 'not infinite, but it is an engine' - and the walk agrees for a reason it does not give: Pack of Wonders carries an exhaust in its cost, so it is one bounce per turn no matter how much Energy is available. That is the same test that keeps several other entries out of INFINITE. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; a return to hand is not a Recall (455); the channelled rune is exhausted, so 167 never applies. Depends on no unruled reading."
+    },
+    {
+      "id": "jax-grandmaster-warmogs-buff",
+      "name": "The Grandmaster reattaches Warmog's for free, so one Equipment buffs a different unit every turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-193",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Body legend (Jax). 'exhaust: Attach an attached Equipment you control to a unit you control.' Note the second ability has NO Energy in its cost - moving an already-attached gear is free."
+        },
+        {
+          "card": "SFD-108",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Body gear, E1 M+1, [Equip] 1 Body. '[Effect] When I conquer, buff me.' A 1-Energy card that turns every conquer into a permanent +1 Might buff on whoever is holding it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Calm and Body: SFD-193 Grandmaster at Arms IS the legend, and Warmog's Armor is Body."
+        ],
+        "notable": [
+          "THE FREE HALF OF THE LEGEND IS THE ENGINE, AND IT IS EASY TO MISREAD. The Grandmaster prints two abilities: '1 Energy, exhaust: attach a DETACHED Equipment' and 'exhaust: attach an ATTACHED Equipment'. The second costs nothing but the exhaust, so once the armour is on somebody, moving it is free forever.",
+          "IN ANY OTHER DECK THE BUFF IS STUCK ON ONE UNIT. That is the source's point in its own words, and it is what makes this a combo rather than a good card: the buff Warmog's grants on a conquer stays on the unit that had it, and the armour moves on to buff the next one.",
+          "ONE MOVE A TURN. The legend's cost carries an exhaust, so 315.1.b readies it in your Awaken and there is no second reattachment however much Energy you have.",
+          "A BUFF IS A STATUS, NOT DAMAGE OR A COUNTER, AND IT STAYS. 124.2 lists Buffed among the statuses an object can carry, and 124.1 only clears them when the object changes zones to or from a Non-Board Zone - a unit that keeps standing there keeps its buff after the armour leaves.",
+          "It needs conquers, which is the throttle: 469.1 is one Conquer per battlefield you take, so a turn where you take nothing buffs nobody."
+        ]
+      },
+      "steps": [
+        "Equip Warmog's Armor to a unit (1 Body Power, or 1 Energy + exhaust through the legend's first ability).",
+        "Conquer with that unit: '[Effect] When I conquer, buff me' gives it a +1 Might buff.",
+        "Exhaust the legend - its second ability, no Energy - to attach the already-attached Warmog's to a DIFFERENT unit you control.",
+        "That unit conquers next turn and gets its own buff, while the first one keeps the buff it already has (124.1, 124.2).",
+        "Repeat every turn."
+      ],
+      "netPerIteration": "+1 permanent Might buff on a new unit per turn, for one exhaust of the legend and nothing else",
+      "terminatesIn": "engine only - one reattachment a turn, throttled by how often you conquer",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Treehouse TCG, \"Jax Deck Profile | Dalian and Bologna Regional decklists\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=99HJZfrIicE&t=100",
+          "date": "2026-03-02",
+          "quote": "[1:46] W[ar]mog's armor is a one-cost equipment that gives one might and gives the ability when I conquer buff me. W[ar]mog's has more or less replaced arena bar as the go-to buff engine. However, it synergizes with [Jax] particularly well. In most decks, the unit holding warmogs can get a buff, but you can't get a buff [elsewhere]",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3, and the source is a regional decklist rather than theorycraft. SFD-108 Warmog's Armor was in the catalogue only as a passenger in jhin-relentless-pursuit-wallop; this is the first entry about what it does. The distinction the walk insists on is between the legend's two abilities: the DETACHED one costs 1 Energy and the ATTACHED one costs only the exhaust, and it is the free one this engine runs on. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation is needed for a Conquer; no [Repeat]; no [Temporary]; no token; no recall; 434.1.f handles the detach half of a reattachment automatically. Depends on no unruled reading."
+    },
+    {
+      "id": "jax-grandmaster-brutalizer-refresh",
+      "name": "\"If this was attached to me THIS TURN\" — the Grandmaster re-attaches the Brutalizer every turn to renew it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-193",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Body legend (Jax). 'exhaust: Attach an attached Equipment you control to a unit you control.' No Energy, so the renewal is free every turn."
+        },
+        {
+          "card": "SFD-042",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Calm gear, E2 M+1, [Equip] 1 Calm. '[Effect] If this was attached to me this turn, I have an additional +2 Might.' A one-turn bonus that the legend can re-arm on demand."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Calm and Body: SFD-193 Grandmaster at Arms IS the legend, and the Brutalizer is Calm."
+        ],
+        "notable": [
+          "THE CARD IS WRITTEN AS A ONE-SHOT AND THE LEGEND MAKES IT A SUBSCRIPTION. 'If this was attached to me THIS TURN' is a condition on the turn, not on the unit; in a normal deck you pay 1 Calm Power once and the +2 lapses at the next turn. Reattaching it - to the same unit or another - satisfies the condition again, and the legend's attached-to-attached ability costs no Energy at all.",
+          "IT WORKS ON THE SAME UNIT. 434.1.f - 'Attaching a card to a new Top-Most Card will cause it to Detach from the card to which it is currently Attached' - describes the move; nothing requires the destination to be different, and the effect only asks whether the attachment happened this turn.",
+          "ONE RENEWAL A TURN. The legend's cost is an exhaust, so 315.1.b readies it once and there is no second activation this turn regardless of Energy.",
+          "THE +2 IS ON TOP OF THE +1 MIGHT BONUS the Equipment already gives (434.1.d), so a unit carrying it is +3 on the turns the legend re-arms it and +1 otherwise.",
+          "Its cousin jax-grandmaster-warmogs-buff runs on the same free ability with the opposite payload: that one moves a buff onto a NEW body permanently, this one refreshes a temporary bonus on the body you want big today. They stack in one deck and share only the legend."
+        ]
+      },
+      "steps": [
+        "Equip Brutalizer to a unit (1 Calm Power): +1 Might from the Might Bonus, plus +2 because it was attached this turn.",
+        "Next turn the +2 has lapsed and the unit is +1.",
+        "Exhaust the legend - the attached-to-attached ability, no Energy - and reattach the Brutalizer to the unit you want big, which may be the same one.",
+        "The condition 'if this was attached to me this turn' is satisfied again: +2 back on top of the +1.",
+        "Repeat every turn."
+      ],
+      "netPerIteration": "+2 Might renewed every turn for one exhaust of the legend and zero Energy",
+      "terminatesIn": "engine only - one renewal a turn, and the bonus lapses if you skip it",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — GG Haven, \"The \\\"Infinite\\\" Weapon Hack! | Jax Beginners Guide\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=d7WJvJf1wSM&t=482",
+          "date": "2026-01-23",
+          "quote": "[7:57] This is a Jax deck, so the gears are arguably more important than the units. First, the Brutalizer. It costs one [Calm] to equip. Its effect is if this was attached to me this turn, I have an additional plus two might. This was made for [Jax]. A normal deck equips this [once]",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. SFD-042 Brutalizer appeared in no entry before this. The video's own title calls it the 'infinite weapon hack' and the entry deliberately does not: the legend's cost carries an exhaust, so it is once a turn, which is an ENGINE and not an INFINITE by this catalogue's definition. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; no recall; 434.1.f is what makes a same-unit reattachment legal to describe. Depends on no unruled reading."
+    },
+    {
+      "id": "kharox-tornado-warrior-pack",
+      "name": "Pack of Wonders puts the facedown Tornado Warrior back in hand, so Kharox can be empowered again",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-114",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E6 M5. '[Empower] 6 Energy + 2 Chaos. When I become [Empowered], choose an opponent. They [Burn 3]. Then you may do this: Choose a unit in their trash and play it, ignoring its cost.' Paying the printed Empower costs 6 Energy; the Tornado Warrior does it for free."
+        },
+        {
+          "card": "VEN-099",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos unit, E3 M3, [Hidden]. 'When you play me from face down, you may empower something here. Disempower it at end of turn.' The free Empower, and the disempower at end of turn is what lets it be done again."
+        },
+        {
+          "card": "OGN-181",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos gear, E2. 'exhaust: Return another friendly gear, unit, or facedown card to its owner's hand.' The FACEDOWN clause is the one that matters: it buys the Tornado Warrior back before it is ever flipped."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All three cards are Chaos, so any legend with Chaos works; the source's is a Vex reanimator deck."
+        ],
+        "notable": [
+          "THE SOURCE NAMES THE PROBLEM AND THIS ENTRY IS THE ANSWER. It says 'you can do this over and over again. But you would have to do that with further copies of Tornado Warrior' - three copies, three Empowers, and then it stops. Pack of Wonders returns 'another friendly gear, unit, or FACEDOWN card to its owner's hand', so one copy can be hidden, flipped, and bought back, turn after turn.",
+          "THE DISEMPOWER IS NOT A DRAWBACK HERE, IT IS THE RESET. 'Disempower it at end of turn' means Kharox is not Empowered when your next turn starts, so 'Use only if not Empowered' is satisfied again and 'When I become [Empowered]' can fire again. A permanent Empower would end the engine after one use.",
+          "HIDING COSTS A RAINBOW AND A TURN. 811.1.b: you pay 1 Power to hide a card facedown at a battlefield you control, and 'Beginning on the NEXT turn' it gains [Reaction] and can be played ignoring its base cost. So the cycle is at least two turns per Empower, and 323.7 trashes hidden cards at battlefields whose controller changes - losing the battlefield loses the card.",
+          "'EMPOWER SOMETHING HERE' MEANS AT THAT BATTLEFIELD, and 811.1.d.1 forces the hidden Tornado Warrior to be played to the battlefield it was hidden at - so Kharox has to be standing there.",
+          "The catalogue already has kharox-sanction-burn on VEN-114 and tornado-warrior-matriarch-recursion on VEN-099; this is the pairing of the two, and Pack of Wonders is the piece neither of them has."
+        ]
+      },
+      "steps": [
+        "Kharox at a battlefield you control, not Empowered. Hide Tornado Warrior facedown at that same battlefield for 1 Power (811.1.b).",
+        "From your next turn on, the hidden card has [Reaction] and can be played for 0 Energy. Play it: 'When you play me from face down, you may empower something here' - Empower Kharox for free.",
+        "Kharox's trigger: the opponent [Burn 3], and you may play a unit from their trash ignoring its cost.",
+        "At end of turn Kharox is disempowered again.",
+        "Exhaust Pack of Wonders on a later turn to return the Tornado Warrior - or the next hidden copy - to your hand, and hide it again."
+      ],
+      "netPerIteration": "one free Empower of Kharox per cycle: 3 milled off the opponent and a unit stolen from their trash, for 1 Power to hide",
+      "terminatesIn": "engine only - roughly one Empower every two turns, throttled by the hide-then-flip timing and by Pack of Wonders' exhaust",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — MoreThatMillGuy, \"Riftbound's FIRST Mill Deck - Reanimator Vex Is *INSANE*!?\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=0guGfIXe8QM&t=193",
+          "date": "2026-08-18",
+          "quote": "[3:13] Tornado Warrior because it's hidden, so you can then mill them, play something from their trash, and it can already be in their trash. It doesn't have to be in the three that you milled. So, Tornado Warrior acts as an instant speed way to alongside [Kharox] to just enable it because you can play this on six, the [Kharox], hide this, flip it, and then it becomes disempowered at the end. So, you can do this over and over again. But, you would have to do that with further copies of Tornado Warrior.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. The source states the limitation itself - it needs further copies of Tornado Warrior - and the entry exists because Pack of Wonders answers exactly that, through the 'facedown card' clause that neither of the catalogue's two existing Pack of Wonders entries uses. Card text verbatim from data/corpus_flat.txt. Trap check: 323.7 is the live risk and it is stated (a hidden card at a battlefield you stop controlling goes to the trash); no [Repeat]; no [Temporary]; no token; a return to hand is not a Recall (455); 811.1.b's 'beginning on the next turn' is why the cycle is two turns and not one. Depends on no unruled reading."
+    },
+    {
+      "id": "tideturner-mega-mech-swap",
+      "name": "Tideturner flips out of Hidden and swaps places with the Mega-Mech — eight Might at a battlefield with no move",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-199",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos unit, E2 M2, [Hidden]. 'When you play me, you may choose a unit you control at another location. Move me to its location and it to my original location.' The swap is a play effect, so it costs no exhaust from either body."
+        },
+        {
+          "card": "OGN-088",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Mind unit, E7 M8, no rules text at all. The pool's plainest big body, and the thing this line teleports."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Mind and Chaos; the source builds it under Teemo, Swift Scout."
+        ],
+        "notable": [
+          "IT MOVES AN EXHAUSTED BODY, WHICH IS THE WHOLE POINT. 143.4 makes the Mega-Mech enter exhausted, and 420.3.a puts the exhaust cost only on the Standard Move - a move by effect has neither restriction, which is the fact the #58 movement lens established. So the 8 Might arrives at a battlefield the turn it would otherwise be a statue in your base.",
+          "811.1.d.2 HAS AN EXPLICIT ESCAPE AND THIS CARD USES IT. 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, UNLESS the ability explicitly restricts targeting in a way that makes this impossible.' Tideturner chooses 'a unit you control at ANOTHER location', which makes the battlefield restriction impossible to satisfy - so the clause's own exception applies and the swap can reach the base.",
+          "THE HIDING IS THE COST AND IT TAKES A TURN. 811.1.b: 1 Power to hide facedown at a battlefield you control, and only 'beginning on the next turn' does it gain [Reaction] and become playable for 0 Energy. 811.1.d.1 then forces it to be played to that battlefield, which is where the Mega-Mech ends up.",
+          "323.7 IS THE RISK: a hidden card at a battlefield you stop controlling is removed and put in its owner's trash at the next Cleanup.",
+          "IT IS A +6 SWING, NOT A +8. You trade a 2 Might body at the battlefield for an 8 Might one, and the Tideturner goes to your base - the figure the source gives.",
+          "The Mega-Mech has no text, so nothing is lost or gained by moving it; what it brings is raw Might and the Mech tag."
+        ]
+      },
+      "steps": [
+        "Hide Tideturner facedown at a battlefield you control (1 Power). Mega-Mech sits in your base, exhausted.",
+        "From the next turn on, the hidden Tideturner has [Reaction] and can be played for 0 Energy (811.1.b).",
+        "Play it: its play effect chooses the Mega-Mech at your base - another location, which 811.1.d.2's exception permits - and swaps them.",
+        "The Mega-Mech is now at the battlefield, still exhausted, and Tideturner is at your base.",
+        "Net +6 Might at that battlefield, for 1 Power and no exhaust from either unit."
+      ],
+      "netPerIteration": "an 8 Might body relocated to a battlefield for 1 Power, with no Standard Move and no exhaust",
+      "terminatesIn": "one swing per Tideturner; three copies, three swings, no recursion",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Mabi Table Time, \"Riftbound TCG: Teemo, Swift Scout Deck Profile & How To Play (OGN)\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=wNvUg3Jmy6E&t=826",
+          "date": "2025-07-26",
+          "quote": "[13:44] Also, this is one of your really amazing cards to combo with this tide turner, right? So, if this one is just sitting at your base, this one plays from hidden, swap this two with that eight, and then boom, you have a plus six swing on the board, and then your opponent will have to deal with it.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. Both OGN-199 Tideturner and OGN-088 Mega-Mech appeared in NO entry before this. The rules point worth having on record is 811.1.d.2's exception clause: a hidden card's targets are normally confined to the battlefield it was hidden at, and a card that explicitly says 'at ANOTHER location' escapes it by the rule's own wording. That is the second time in this issue that reading a clause to its end changed the answer - the first was 190.6.d's second sentence. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; a swap is a Move by effect and not a Recall, so 456 never applies; 143.4 is the very thing the line works around. Depends on no unruled reading."
+    },
+    {
+      "id": "azir-ascendant-stellacorn-draw",
+      "name": "Azir's swap moves the Stellacorn Herder too, so the swap is a draw and her own move is a second",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-050",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E6 P1 M6. '1 Calm Power: [Action] — Choose a unit you control. Move me to its location and it to my original location. If it's equipped, you may attach one of its Equipment to me. Use only once per turn.' The swap moves BOTH units, which is what makes it a draw."
+        },
+        {
+          "card": "SFD-048",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Calm unit, E4 M3. 'When I move, draw 1.' She is the unit Azir chooses."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "hold-card-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are Calm; the source's legend is OGN-255 Nine-Tailed Fox (Ahri), Calm/Mind."
+        ],
+        "notable": [
+          "TWO DRAWS A TURN, AND THE SECOND ONE IS FREE. The swap is a move for the Herder (446.1) and costs her no exhaust, because 420.3.a puts that only on the Standard Move - so she is still ready and can Standard Move as well. One rune for the swap, one exhaust for the walk, two cards. That is the source's figure exactly.",
+          "'USE ONLY ONCE PER TURN' IS WHAT CAPS IT AT TWO. Azir prints the restriction and it is the only card in the whole pool that does - a single hit across all 935. There is no way to buy a third swap with Energy.",
+          "A READING WAS LOOKED AT HERE AND DELIBERATELY NOT FILED. #62's section 6 asks whether a Svellsongur copy of Azir's ability would carry its own once-per-turn count. The question is real but it blocks nothing and there is a legal ordering that avoids it - 103.2.b allows three copies of Azir, and two Azir are unambiguously two swaps. The two readings and the evidence are written up in docs/phase0/walks/2026-09-06-issue62-r32-once-per-turn.md; this entry does not depend on either.",
+          "THE SWAP ALSO CARRIES EQUIPMENT: 'If it's equipped, you may attach one of its Equipment to me' - a second use the entry does not need but which is why the card exists in that deck.",
+          "SHE IS A 3 MIGHT BODY AND THE DRAWS ARE FINITE. The source's own framing is 'if she gets to live'; and 431.1.a plus 194.1.d are what waits at the bottom of the deck.",
+          "Different line from twilight-reveler-svellsongur-stellacorn-draw and yasuo-stellacorn-svellsongur-draw, which both double her trigger with an Equipment. This one doubles the MOVES instead and needs no gear at all."
+        ]
+      },
+      "steps": [
+        "Azir, Ascendant at a battlefield; Stellacorn Herder in your base, ready.",
+        "Activate Azir for 1 Calm Power: choose the Herder. Azir goes to her location and she goes to his. Her move triggers: draw 1.",
+        "She is still ready - the swap was a move by effect and cost her nothing (420.3.a).",
+        "Standard Move her (144.1.a), exhausting her: draw 1 again.",
+        "Next turn both are ready (315.1.b) and Azir's once-per-turn restriction has reset."
+      ],
+      "netPerIteration": "+2 cards per turn for 1 Calm Power and the Herder's own exhaust",
+      "terminatesIn": "engine only - exactly two draws a turn, capped by Azir's 'use only once per turn'",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Red Riot Games, \"[Vegas Regional Qualifier Best Of Deck] Ahri Deck Profile By KnightinGale\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=m4ivKG_9UYA&t=370",
+          "date": "2026-03-08",
+          "quote": "[6:13] Two Azir, three Stel[la]corn. … Stel[la]corn is one of the most insane units if she gets to live. When she moves, she draws a card. … [6:38] Azir also helps this as he reads, you can choose a unit and move Azir and that unit as well, meaning that with Azir you can usually draw two cards a turn with Stel[la]corn.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. The source is a Vegas Regional Qualifier deck profile, so this is a list somebody took to an event. SFD-050 Azir, Ascendant appeared in no entry before this, and it is the card #62's section 6 wanted a rules reading about - that reading was investigated and deliberately not filed, for reasons written up in docs/phase0/walks/2026-09-06-issue62-r32-once-per-turn.md. The entry stands entirely on the printed once-per-turn restriction, which is the conservative side of the question. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; the swap is a Move by effect and not a Recall (446.1, 456); 143.4 delays only the turn each lands. Depends on no unruled reading."
+    },
+    {
+      "id": "jayce-progress-vanguard-armory",
+      "name": "Jayce kills a gear to play the Vanguard Armory for its Power cost alone — three Recruits a turn from turn two",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-084",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind unit, E4 M4. 'When you play me, you may kill a friendly gear. If you do, you may play a gear with Energy cost no more than 7 from hand this turn, ignoring its Energy cost.' The Armory is exactly 7, at the top of the bracket."
+        },
+        {
+          "card": "SFD-168",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order gear, E7 P1. 'exhaust: Play three 1 Might Recruit unit tokens. (You may play them to different locations.)' Seven Energy is why it is normally a late-game card, and the whole point of the pairing."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Mind and Order; the source builds it under Renata Glasc, and names the Gold generation of the early game as what pays the Armory's Power."
+        ],
+        "notable": [
+          "SEVEN IS THE BRACKET AND THE ARMORY IS EXACTLY SEVEN. 'a gear with Energy cost no more than 7' against E7 - one point more and Jayce cannot cheat it. The Power cost is NOT waived: the card says 'ignoring its Energy cost' and its reminder says 'You must still pay its Power cost'.",
+          "IT COSTS A GEAR TO DO IT. 'You may kill a friendly gear' is a cost of the trigger, so the deck needs a spare gear on the board - which in the source's shell is the Gold tokens its early game makes, and a Gold token is a gear (187.5).",
+          "AFTER THE FIRST TURN IT IS THREE BODIES A TURN FOR NOTHING. The Armory's own cost is just its exhaust, so it readies in every Awaken (315.1.b) and pays three Recruits a turn thereafter.",
+          "THE RECRUITS ENTER EXHAUSTED (143.4) and 'you may play them to different locations' - 355.2.b makes those locations valid, so they can be placed at a battlefield you control rather than walked there. That is the same relief desert-call-vi-sand-soldier-plaza gets from 355.2.a.",
+          "THE SOURCE PULLED IT OUT OF ITS OWN DECK, and the entry says so: 'I more recently took it out because it felt inconsistent'. It needs Jayce, the Armory and a spare gear in hand at the same time.",
+          "The Armory is already in two entries - heimerdinger-vanguard-armory-recruits and plaza-armory-miss-fortune - and neither of them addresses its 7 Energy cost. This one is about paying for it."
+        ]
+      },
+      "steps": [
+        "Have a spare friendly gear on the board (a Gold token qualifies) and the Vanguard Armory in hand.",
+        "Play Jayce, Man of Progress (4 Energy). His play trigger: kill the spare gear.",
+        "This turn you may play a gear costing no more than 7 Energy from hand ignoring its Energy cost - play the Vanguard Armory for its 1 Power only.",
+        "From your next turn on, exhaust the Armory: three 1 Might Recruit tokens, placed at your base or at any battlefield you control (355.2.b).",
+        "It readies every Awaken (315.1.b), so that is three bodies a turn for free."
+      ],
+      "netPerIteration": "the Vanguard Armory in play for 4 Energy + 1 Power instead of 7 + 1, and three Recruits a turn thereafter",
+      "terminatesIn": "engine only - three tokens a turn once the Armory lands, and the discount is one-shot per Jayce",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Turn 'em Sideways!, \"Aggro Renata? Rethink how you build Renata Glasc | First 40\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=KKonjaZtt18&t=806",
+          "date": "2026-01-14",
+          "quote": "[13:26] I want to start with a combo that I played a lot of so far. Um and I more recently took it out because it felt inconsistent and that is the [Jayce] Man [of] Progress Vanguard Armory combo. It definitely adds a ton of power to the deck when you're able to get this out on turn two, which because you have so much gold generation in your early game.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. SFD-084 Jayce, Man of Progress appeared in no entry before this. The source's own caution is carried in the entry rather than smoothed away - the author removed it from his list for inconsistency - and the walk's addition is the arithmetic that makes it work at all: the Armory is exactly at the top of Jayce's 7 Energy bracket, and the Power cost is explicitly not part of what he waives. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; the Recruits are tokens but nothing here recycles one (185); no recall; 143.4 is respected - they enter exhausted. Depends on no unruled reading."
+    },
+    {
+      "id": "spectral-matron-vanguard-captain",
+      "name": "The Matron reanimates the Vanguard Captain, whose [Legion] pays two more Recruits on the way back",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-226",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order unit, E4 P2 M4. 'When you play me, you may play a unit costing no more than 3 Energy and no more than 1 rainbow Power from your trash, ignoring its cost.' Two bars, and the Captain fits both to the digit."
+        },
+        {
+          "card": "OGN-218",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "TRASH",
+          "note": "Order unit, E3 P1 M3. '[Legion] — When you play me, play two 1 Might Recruit unit tokens here. (Get the effect if you've played another card this turn.)' E3 P1 is exactly the Matron's ceiling, and [Legion] is already satisfied because the Matron IS the other card."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are Order, so any legend with Order works; the source builds it under a Viktor legend."
+        ],
+        "notable": [
+          "THE CAPTAIN FITS THE MATRON'S TWO BARS EXACTLY: 'no more than 3 Energy and no more than 1 rainbow Power' against E3 P1. One point more on either axis and he is not a legal choice.",
+          "[Legion] IS ALREADY PAID BY THE MATRON HERSELF. '(Get the effect if you've played another card this turn.)' - playing the Matron is that other card, and the Captain is played by her trigger afterwards, so the condition is fulfilled without spending anything extra. That is the part that makes it a combo instead of two cards.",
+          "FOUR BODIES FOR 4 ENERGY AND 2 POWER: the Matron, the Captain, and two Recruits. The Captain's cost is waived entirely - the Matron says 'ignoring its cost', not 'ignoring its Energy cost'.",
+          "THE RECRUITS ARRIVE 'HERE', which 359.3.f.2 reads at execution - so they appear wherever the Captain is played to, and the Matron plays him from the trash rather than specifying a location, so 355.2.a applies: your base, or a battlefield you control.",
+          "IT NEEDS THE CAPTAIN DEAD FIRST, which is what the source means by 'if it's dead' - a 3 Might body that has already traded is the natural setup, and the Captain's own [Legion] Recruits are what usually makes that trade happen.",
+          "All four bodies enter exhausted (143.4)."
+        ]
+      },
+      "steps": [
+        "Vanguard Captain in the trash - he has usually already been played once and died.",
+        "Play Spectral Matron (4 Energy + 2 Power). That is a card played this turn.",
+        "Her trigger: choose the Captain in your trash (E3, P1 - inside both bars) and play him ignoring his cost.",
+        "His [Legion] condition is met, because the Matron was another card played this turn: play two 1 Might Recruit tokens where he landed.",
+        "Four bodies on the board for one card's worth of Energy."
+      ],
+      "netPerIteration": "+4 bodies for 4 Energy and 2 Power, of which two are free tokens",
+      "terminatesIn": "one reanimation per Spectral Matron; three copies, three firings",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Riftlab, \"Learn VIKTOR in Riftbound | Full Deck Guide & Combos\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=1BE_ZY4wAQ4&t=354",
+          "date": "2025-10-07",
+          "quote": "[5:54] Vanguard Captain Legion, when you play me, play two one might recruit tokens. Spectral matron. When you play me, play a unit costing no more than three energy and one power from your trash. This combos amazingly with Vanguard Captain if it's dead.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. Both OGN-226 Spectral Matron and OGN-218 Vanguard Captain appeared in NO entry before this. The two things the walk checked and the source does not state are the exact fit against both of the Matron's bars, and that [Legion] is self-satisfying here because the Matron herself is the 'another card played this turn' - without that the reanimated Captain would be a bare 3 Might body. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token is recycled (185); no recall; 359.3.f.2 governs the 'here' the Recruits arrive at. Depends on no unruled reading."
+    },
+    {
+      "id": "convergent-mutation-might-transfer",
+      "name": "Convergent Mutation copies an inflated Might onto a second body, at Reaction speed",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-108",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind spell, E2 P1, [Reaction]. 'Choose a friendly unit. This turn, increase its Might to the Might of another friendly unit.' It reads current Might (710), so whatever you have inflated is what it copies."
+        },
+        {
+          "card": "OGN-109",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E8 P2 M6. 'My Might is increased by the number of cards in your trash. At the start of your Beginning Phase, recycle 3 from your trash.' A self-inflating number that grows all game."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are Mind, so any legend with Mind works; the source builds it under Teemo, Swift Scout, whose Chaos half also supports the Ember Monk variant below."
+        ],
+        "notable": [
+          "IT IS A REACTION, WHICH IS WHERE THE VALUE IS. 813.1.c.1 lets a [Reaction] card be played 'during Closed States on any player's turn', so the copy happens after blockers, after triggers, inside a showdown - the source's own framing is 'a really good combat trick', not a build-around.",
+          "IT READS CURRENT MIGHT, NOT PRINTED MIGHT. 710: 'Units on the board are evaluated according to their current Might.' So Mundo's trash-driven number, or any buff already applied, is what gets copied. 477.1.a.1 puts Might assignment in the layer that handles it, which is why 'increase its Might TO the Might of' is a set-to rather than an add.",
+          "MUNDO SPENDS THE VERY THING THAT MAKES HIM BIG. 'At the start of your Beginning Phase, recycle 3 from your trash' shrinks him by 3 every turn, so the number peaks during a turn and falls back at the start of the next. The Mutation is how you cash it before it drops.",
+          "IT IS 'THIS TURN'. Nothing here is permanent; the copied Might expires at end of turn, so it is removal-through-combat or a save, not a board.",
+          "THE SAME CARD DOES THE SAME JOB OFF A DIFFERENT INFLATION SOURCE, and the source names both in one breath: OGN-167 Ember Monk (Chaos, E4 M4, 'When you play a card from [Hidden], give me +2 Might this turn') in a deck that flips two or three hidden cards is the other half. #62 files those as two entries; they are one mechanism with two fuel tanks, and splitting them would duplicate a rule the way danger-zone-marai-spire would have.",
+          "8 Energy and 2 Power for Mundo makes this a late-game pairing; the Ember Monk version costs 4 and is the aggressive one."
+        ]
+      },
+      "steps": [
+        "Dr. Mundo on a battlefield, with a full trash behind him - his Might is 6 plus the number of cards there.",
+        "Have a second friendly unit wherever the fight is going to be.",
+        "During a showdown or combat, play Convergent Mutation as a [Reaction] (2 Energy + 1 Power): choose the second unit and set its Might to Mundo's.",
+        "Both are now that size for the rest of the turn. At the start of your next Beginning Phase Mundo recycles 3 and shrinks again.",
+        "Ember Monk variant: replace Mundo with OGN-167 in a Hidden deck - every card flipped from Hidden gives him +2 Might this turn, and the Mutation copies whatever he has reached."
+      ],
+      "netPerIteration": "a second body at the inflated unit's Might for the turn, for 2 Energy and 1 Power, at Reaction speed",
+      "terminatesIn": "one copy per Convergent Mutation, and it lasts the turn",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Clovis Cards, \"Teemo Swift Scout DECK TECH | Riftbound's Most Annoying Aggro?!\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=mg1bYos02mY&t=120",
+          "date": "2025-11-19",
+          "quote": "[2:00] two copies of Convergent Mutation. This card is super good um on showdowns where you have a Mundo out and you have a Teemo at your battlefield also or you flip over two or three hidden cards with an Ember Monk out and then you have a small unit at the same battlefield. You can make them both gigantic. So that's a really good combat trick.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. All three cards - OGN-108 Convergent Mutation, OGN-109 Dr. Mundo and OGN-167 Ember Monk - appeared in NO entry before this. #62 files this as two rows, convergent-mutation-mundo and convergent-mutation-ember-monk; the walk merges them, because the mechanism is one card reading current Might (710) and the two partners are interchangeable fuel. Splitting them would have duplicated a rule the way danger-zone-marai-spire would have in section 2.6, and the same test was applied. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; no recall; R27 is not engaged - this is not a copy effect on a Game Object, it is a Might assignment (477.1.a.1). Depends on no unruled reading."
+    },
+    {
+      "id": "world-atlas-fiora-worthy-ready",
+      "name": "World Atlas pushes a 3 Might unit over the Mighty line, and Fiora, Worthy readies it for a rainbow",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-086",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind gear, E3 M+2, [Equip] 1 Mind. '[Effect] When I hold, play two Gold gear tokens exhausted.' The +2 Might Bonus is what crosses the threshold, and the hold payoff is the second half."
+        },
+        {
+          "card": "SFD-180",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 M3. 'When a unit you control becomes [Mighty], you may pay 1 Order Power to ready it.' 709 defines the crossing exactly, and the Atlas is a clean way to cause it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Mind and Order; the source builds it under Renata Glasc."
+        ],
+        "notable": [
+          "709 IS THE RULE AND IT IS AN EVENT, NOT A STATE. 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater' - so the Atlas has to be attached to a unit BELOW 5, and 3 + 2 = 5 is the crossing. Attaching it to a 4 Might unit is 6 and also crosses; attaching it to a 5 Might unit does nothing, and the rule prints that exact example.",
+          "THE READY IS THE PAYOFF, WHICH MEANS THE UNIT GETS TO ACT TWICE. It is a 'you may pay 1 Order Power' on a trigger, so it costs a rainbow of Order per crossing and nothing else - no exhaust of Fiora, which is what separates this from the readying abilities that cap at once a turn.",
+          "THE ATLAS IS REUSABLE ON A JAX-STYLE BOARD but on its own it crosses once: 434.1.f detaches it when it is attached elsewhere, and re-attaching it to another sub-5 unit is another crossing. Every re-attachment costs its [Equip] of 1 Mind Power unless something else moves it.",
+          "THE HOLD HALF IS FREE MONEY AND IT IS WHY THE GEAR IS PLAYED AT ALL: two Gold gear tokens per Hold, exhausted - so next turn's Power, unless Renata Glasc, Industrialist is out, in which case they enter ready (R25 = A).",
+          "The catalogue already has world-atlas-sentinel-gold on the Gold half of this gear; this entry is about the Might Bonus half, and they share no second card.",
+          "Fiora, Worthy is the same card as in five existing entries; what is new is causing the crossing with a gear rather than with a buff spell."
+        ]
+      },
+      "steps": [
+        "Fiora, Worthy on the board. A friendly unit of 3 or 4 Might at a battlefield.",
+        "Attach World Atlas to it for 1 Mind Power: the Might Bonus (434.1.d) takes it to 5 or more.",
+        "'Becomes Mighty' fires (709). Pay 1 Order Power to Fiora's trigger: ready that unit.",
+        "It can now move, conquer or fight again this turn.",
+        "On any turn it holds, the Atlas plays two Gold gear tokens exhausted, which are next turn's Power."
+      ],
+      "netPerIteration": "one extra ready per Mighty crossing for 1 Order Power, plus two Gold tokens per Hold",
+      "terminatesIn": "engine only - one ready per attachment of the Atlas, and two Gold a turn while it holds",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — GG Haven, \"PAY TO WIN??! | Renata Glasc Beginners Guide\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=7rkoFB3s96A&t=501",
+          "date": "2026-01-09",
+          "quote": "[8:21] This deck runs World Atlas. It costs one mind power to equip it to a unit. It gives a unit plus two might and crucially when that unit holds at a location, you get two gold gear tokens. Remember Fiora? If you equip this to a three might unit, they become five mighty, triggering Fiora to ready them immediately. This is a nice sweet little combo.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. The source states the interaction precisely, down to the 3 + 2 = 5. The walk's addition is 709's worked example, which says in as many words that a unit already at 5 does NOT become Mighty when it grows - so the Atlas is only a Fiora trigger while it is going onto a body below the line, and a player who attaches it to their biggest unit gets the Gold and nothing else. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; the Gold tokens enter exhausted, which R25 = A only overrides under Renata Glasc, Industrialist; no recall; 434.1.f governs re-attachment. Depends on no unruled reading."
     }
   ]
 }
