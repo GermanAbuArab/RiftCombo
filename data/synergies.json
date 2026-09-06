@@ -1847,6 +1847,29 @@
       "status": "rule-verified",
       "reviewed": "2026-09-06",
       "reviewedCount": 29
+    },
+    {
+      "id": "startipped-peak-rune-ramp",
+      "name": "Startipped Peak channels a third rune, so an Empower priced per rune controlled arrives two turns early",
+      "anchor": "OGN-288",
+      "partner": {
+        "textMatches": "for each rune you control"
+      },
+      "why": "\"When you hold here, you may channel 1 rune exhausted\" — 430.2 / 430.2.a make channelling the action of moving a rune off the top of the Rune Deck, readied by default unless the effect says otherwise, and its own worked example is this exact phrase, \"Channel 1 rune exhausted\". 315.3.b already channels 2 every Channel Phase for the Turn Player, and the Hold runs earlier in the same turn (315.2.b.2), so holding this battlefield turns the baseline into 3 runes a turn. 161.2.a caps the Rune Deck at exactly 12 cards for the whole game, so this is a ramp with a floor, not an engine: 12 runes take 6 turns at 2/turn and only 4 at 3/turn, two turns sooner. Exactly two cards in the pool read a rune count off the board this way — Frostcoat Mother and Grumpy Rockbear, both \"[Empower] 12. This ability costs 1 Energy less for each rune you control\" — so the two extra runes this battlefield front-loads are worth 2 Energy off that Empower the moment they land, and the free Empower itself lands two turns early. Two things this is not: it is not a second engine on top of `ekko-deathknell-runes` (that entry recycles a rune already on the board; this one adds a new one from the Rune Deck) and it never restarts once the 12 are gone — 161.2.b sends a recycled rune back to the Rune Deck, but recycling is a separate action with its own cost that this Hold does not pay.",
+      "basis": {
+        "rules": [
+          "430.1",
+          "430.2",
+          "430.2.a",
+          "315.2.b.2",
+          "315.3.b",
+          "161.2.a"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 2
     }
   ]
 }
