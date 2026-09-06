@@ -9,6 +9,7 @@ import { build, context } from "esbuild";
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { siteConfig } from "./site-config.mjs";
 import { slimCard } from "./web-card-fields.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -26,6 +27,11 @@ const slim = {
 writeFileSync(join(OUT, "data", "cards.json"), JSON.stringify(slim));
 for (const f of ["index.html", "styles.css", "favicon.svg"]) copyFileSync(join(ROOT, "web", f), join(OUT, f));
 
+// Both values are public by design and are baked in rather than fetched, so the account layer is
+// either present in a build or absent from it — never half-configured at runtime. An empty pair
+// switches the whole thing off and leaves the anonymous app exactly as it was.
+const site = siteConfig(ROOT);
+
 const options = {
   entryPoints: [join(ROOT, "web", "main.ts")],
   bundle: true,
@@ -35,6 +41,10 @@ const options = {
   sourcemap: true,
   outfile: join(OUT, "app.js"),
   logLevel: "info",
+  define: {
+    __SUPABASE_URL__: JSON.stringify(site.url),
+    __SUPABASE_ANON_KEY__: JSON.stringify(site.anonKey),
+  },
 };
 
 if (watch) {
@@ -45,4 +55,5 @@ if (watch) {
   await build(options);
   const size = (f) => `${(readFileSync(join(OUT, f)).length / 1024).toFixed(0)} KB`;
   console.log(`public/app.js ${size("app.js")} · public/data/cards.json ${size("data/cards.json")}`);
+  console.log(site.url ? `accounts: ${site.url}` : "accounts: off (SUPABASE_URL / SUPABASE_ANON_KEY unset)");
 }

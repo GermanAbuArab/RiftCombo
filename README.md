@@ -12,7 +12,7 @@ Riftbound has no public combo database. This repository is one: every entry in `
 - Composes combos through a small dependency graph: a line that needs infinite Energy is shown together with the loop that produces it.
 - Shows near misses: combos within one to three cards, with the missing pieces outlined.
 - Reports legality per format from Riot's Rules Hub, and applies Riot's published errata as a dated overlay.
-- Runs entirely in the browser. Deck lists are never stored. A Piltover Archive link is fetched once through this site's own edge function and cached for ten minutes.
+- Matches entirely in the browser. A list is stored only if you sign in and press Save, and then only the text you pasted, so an old list is re-matched against today's catalogue rather than kept as a stale result. A Piltover Archive link is fetched once through this site's own edge function and cached for ten minutes.
 
 ## Running it
 
@@ -24,6 +24,35 @@ npm run dev          # build web/ into public/ and serve it with the Vercel CLI
 ```
 
 Deploys with `npm run deploy` (Vercel). `api/deck-url.ts` is the only server-side code.
+
+## Accounts and saved decks
+
+Optional, and off in any build that does not configure it — the app is fully usable signed out. Two
+public values switch it on, from `.env.local` locally and from Vercel's environment variables in
+production:
+
+```
+SUPABASE_URL=https://<ref>.supabase.co
+SUPABASE_ANON_KEY=<the project's anon key>
+```
+
+Both are public by design: the anon key ships in every browser bundle, and what keeps one player's
+rows away from another is row-level security in the database. `scripts/build-web.mjs` bakes them
+into the bundle, and `npm run headers` regenerates `vercel.json` so the same origin appears verbatim
+in `connect-src` — run it after changing `SUPABASE_URL` and commit the result, because Vercel reads
+`vercel.json` before the build runs.
+
+Sign-in is a full-page redirect, not a popup: the site sends `Cross-Origin-Opener-Policy:
+same-origin`, under which a popup is severed from the page that opened it and the flow never
+returns, with nothing in the console to say so.
+
+```
+supabase db push                    # apply supabase/migrations/ to the linked project
+npm run check:rls                   # two real users; each must be unable to touch the other's rows
+```
+
+`npm run check:rls` also needs `SUPABASE_SERVICE_ROLE_KEY`, which is a server key: it bypasses RLS,
+it is read by that one script and nothing else, and it never appears in `web/` or in a commit.
 
 ## Data
 

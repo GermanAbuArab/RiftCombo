@@ -1,0 +1,102 @@
+// The only file that talks to Supabase. Everything here needs a network and a signed-in user, which
+// is why the parts that can be decided without one live in `src/saved.ts` and have tests.
+//
+// Auth uses the REDIRECT flow, never a popup: `vercel.json` sends
+// `Cross-Origin-Opener-Policy: same-origin`, which severs a popup from the window that opened it, so
+// a popup sign-in would hang forever without printing an error. A redirect needs no header change.
+
+import { createClient, type Session, type SupabaseClient } from "@supabase/supabase-js";
+import { fromRow, type DeckRow, type SavedDeck } from "../src/saved.js";
+import type { Format } from "../src/types.js";
+
+// esbuild substitutes both at build time from the environment (see scripts/build-web.mjs). They are
+// public by design — the anon key ships inside every Supabase browser bundle — and what keeps one
+// player out of another's rows is RLS in the database, not the key being secret. Supabase's
+// privileged server key is a different thing entirely and never reaches this directory; a test
+// asserts as much, so do not name it here either.
+declare const __SUPABASE_URL__: string;
+declare const __SUPABASE_ANON_KEY__: string;
+
+const URL_ = typeof __SUPABASE_URL__ === "string" ? __SUPABASE_URL__ : "";
+const ANON = typeof __SUPABASE_ANON_KEY__ === "string" ? __SUPABASE_ANON_KEY__ : "";
+
+/** A build without the two variables set has no account layer at all, and the rest of the app is untouched. */
+export const accountsEnabled = Boolean(URL_ && ANON);
+
+let client: SupabaseClient | null = null;
+function db(): SupabaseClient {
+  client ??= createClient(URL_, ANON, {
+    auth: { flowType: "pkce", detectSessionInUrl: true, persistSession: true, autoRefreshToken: true },
+  });
+  return client;
+}
+
+export interface Account {
+  id: string;
+  /** What to call the player in the header. Google always gives us one of these. */
+  label: string;
+}
+
+export function accountOf(session: Session | null): Account | null {
+  if (!session) return null;
+  const meta = session.user.user_metadata as { full_name?: string; name?: string } | null;
+  return { id: session.user.id, label: meta?.full_name || meta?.name || session.user.email || "Signed in" };
+}
+
+/** Fires once with the session restored from storage, then on every sign-in and sign-out. */
+export function onAccount(cb: (account: Account | null) => void): void {
+  db().auth.onAuthStateChange((_event, session) => cb(accountOf(session)));
+}
+
+export async function signIn(): Promise<void> {
+  // Land back on the page itself with no hash: a `#deck=` left over from a deck code would be
+  // re-analysed on return, which is not what pressing sign-in asked for.
+  const { error } = await db().auth.signInWithOAuth({
+    provider: "google",
+    options: { redirectTo: `${location.origin}${location.pathname}` },
+  });
+  if (error) throw new Error(error.message);
+}
+
+export async function signOut(): Promise<void> {
+  const { error } = await db().auth.signOut();
+  if (error) throw new Error(error.message);
+}
+
+/** Postgres says 23505 when the (user_id, lower(name)) index rejects a second deck of that name. */
+const readable = (error: { code?: string; message: string }, name: string): Error =>
+  new Error(error.code === "23505" ? `You already have a deck called "${name}".` : error.message);
+
+export async function listDecks(): Promise<SavedDeck[]> {
+  const { data, error } = await db().from("decks")
+    .select("id,name,deck_text,format,created_at,updated_at")
+    .order("updated_at", { ascending: false });
+  if (error) throw new Error(error.message);
+  return (data as DeckRow[]).map(fromRow);
+}
+
+export async function createDeck(userId: string, name: string, deckText: string, format: Format): Promise<SavedDeck> {
+  // user_id is sent explicitly because the insert policy checks `auth.uid() = user_id`: a row
+  // claiming somebody else's id is refused by the database, not by this function.
+  const { data, error } = await db().from("decks")
+    .insert({ user_id: userId, name, deck_text: deckText, format })
+    .select("id,name,deck_text,format,created_at,updated_at").single();
+  if (error) throw readable(error, name);
+  return fromRow(data as DeckRow);
+}
+
+export async function updateDeck(id: string, patch: { name?: string; deckText?: string; format?: Format }): Promise<SavedDeck> {
+  const row: Record<string, string> = {};
+  if (patch.name !== undefined) row["name"] = patch.name;
+  if (patch.deckText !== undefined) row["deck_text"] = patch.deckText;
+  if (patch.format !== undefined) row["format"] = patch.format;
+  const { data, error } = await db().from("decks").update(row).eq("id", id)
+    .select("id,name,deck_text,format,created_at,updated_at").single();
+  if (error) throw readable(error, patch.name ?? "");
+  return fromRow(data as DeckRow);
+}
+
+export async function deleteDeck(id: string): Promise<void> {
+  const { error } = await db().from("decks").delete().eq("id", id);
+  if (error) throw new Error(error.message);
+}

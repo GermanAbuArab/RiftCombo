@@ -56,7 +56,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
 .topnav a { display: flex; align-items: center; padding: 0 14px; color: var(--muted); font-size: 14.5px; border-bottom: 2px solid transparent; }
 .topnav a.active { color: var(--text); border-bottom-color: var(--accent); }
 .topnav a:hover { color: var(--text); }
-.topbar-right { display: flex; justify-content: flex-end; }
+.topbar-right { display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
 
 /* Segmented controls — one rounded shell, rule-separated inside */
 .segmented { display: inline-flex; margin: 0; padding: 0; border: 1px solid var(--line-2); border-radius: 6px; background: transparent; overflow: hidden; }
@@ -372,3 +372,27 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .gap-rest { padding-top: 9px; }
 .syn-lab { font: 500 9.5px var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
 .syn-ref { font: 500 10px var(--mono); color: var(--muted); padding: 1px 5px; border: 1px solid var(--line); border-radius: 6px; }
+
+/* --- account (#31) ---------------------------------------------------------------------
+   Saved decks. Deliberately the quietest thing in the panel: it is plumbing, not an answer
+   about a deck, so it borrows the panel's own controls rather than introducing a new colour. */
+.acct-top { display: flex; align-items: center; gap: 10px; }
+.ghost.small { padding: 5px 11px; font-size: 12.5px; }
+.acct-who { display: flex; align-items: center; gap: 10px; }
+.acct-label { max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12.5px; color: var(--muted); }
+.acct-note { margin: 0; font-size: 12.5px; line-height: 1.6; color: var(--muted); }
+.acct-note strong { color: var(--text); font-weight: 600; }
+.acct-google { align-self: flex-start; }
+.acct-msg { margin: 0; font-size: 12px; line-height: 1.5; color: var(--accent); }
+.acct-msg:empty { display: none; }
+.acct-save { display: flex; gap: 8px; }
+.acct-save input, .acct-row input { flex: 1 1 auto; min-width: 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--text); font-size: 13px; }
+.acct-save input:focus-visible, .acct-row input:focus-visible { outline: none; border-color: var(--accent); }
+.acct-row { display: flex; gap: 9px; align-items: center; justify-content: space-between; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }
+.acct-row.on { border-left: 2px solid var(--accent); }
+.acct-meta { min-width: 0; }
+.acct-name { margin: 0; font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.acct-sum { margin: 2px 0 0; font-size: 11.5px; color: var(--muted); }
+.acct-acts { display: flex; flex: 0 0 auto; gap: 9px; }
+.acct-acts .linklike { font-size: 12px; }
+.acct-acts .linklike.danger { color: var(--danger); }

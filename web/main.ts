@@ -9,6 +9,7 @@ import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
 import { planDeck, type Route } from "../src/plan.js";
 import { matchSynergies, planSynergies, type SynergyGap, type SynergyHit } from "../src/synergies.js";
 import type { Card, Combo, Deck, Domain, Feature, Format, LegalityEntry, Synergy, Variant } from "../src/types.js";
+import { accountDeckChanged, initAccount } from "./account.js";
 import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from "./graph.js";
 
 const combos = (combosJson as { combos: Combo[] }).combos;
@@ -118,6 +119,18 @@ async function boot() {
   setStatus("Ready", "Paste a deck list to begin.");
   const hash = decodeURIComponent(location.hash.replace(/^#deck=/, ""));
   if (location.hash.startsWith("#deck=") && hash) { input.value = hash; void run(); }
+  initAccount({
+    deckText: () => input.value,
+    format: fmt,
+    cards: () => cards,
+    restore: (deckText, format) => {
+      $<HTMLInputElement>(`input[name=format][value="${format}"]`).checked = true;
+      input.value = deckText;
+      urlInput.value = "";
+      input.dispatchEvent(new Event("input"));
+      void run("text");
+    },
+  });
 }
 
 async function fromUrl(url: string): Promise<Deck> {
@@ -651,6 +664,7 @@ $<HTMLButtonElement>("#load-example").addEventListener("click", () => { input.va
 input.addEventListener("input", () => {
   const n = parseDeckText(input.value).reduce((a, e) => a + e.count, 0);
   $<HTMLElement>("#card-count").textContent = `${n} card${n === 1 ? "" : "s"}`;
+  accountDeckChanged();
 });
 // Collapsing changes the stage's aspect ratio, and the layered layout picks its column count from
 // that — so re-render rather than just refit.

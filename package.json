@@ -13,11 +13,14 @@
     "dev": "node scripts/build-web.mjs && vercel dev",
     "deploy": "vercel deploy --prod",
     "deploy:preview": "vercel deploy",
-    "synergies": "tsx src/cli-synergies.ts"
+    "synergies": "tsx src/cli-synergies.ts",
+    "headers": "node scripts/build-headers.mjs",
+    "check:rls": "node scripts/check-rls.mjs"
   },
   "license": "MIT",
   "dependencies": {
-    "@piltoverarchive/riftbound-deck-codes": "^1.4.0"
+    "@piltoverarchive/riftbound-deck-codes": "^1.4.0",
+    "@supabase/supabase-js": "^2.115.0"
   },
   "devDependencies": {
     "@types/node": "^26.4.1",
