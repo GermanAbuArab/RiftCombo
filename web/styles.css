@@ -116,7 +116,13 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
 .panel-head h2 { margin: 0; font-size: 17px; }
 .deck-panel form { display: flex; flex-direction: column; gap: 8px; }
 .field-label { font-size: 13.5px; font-weight: 500; color: var(--text); }
-.field-row { display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px; font-size: 13px; }
+/* The count grows to "40 main · 12 runes · 3 battlefields · 8 sideboard · legend" the moment a real
+   list is pasted — 300px of text in a 275px column. Without a gap and a label that refuses to break,
+   `space-between` wraps both children and interleaves them into "Paste40 main · 12 runes · 3 / a list
+   battlefields · …", which is what every 40-card list looked like at 1280px and at 390px. */
+.field-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-top: 8px; font-size: 13px; }
+.field-row .field-label { flex: none; white-space: nowrap; }
+.field-row #card-count { text-align: right; }
 .url-row { display: flex; gap: 6px; }
 .url-row input { flex: 1; min-width: 0; }
 input[type=url], textarea, select {

@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { deckCountLine } from "../src/deck.js";
 
 /**
  * The three things about accounts (#31) that break silently rather than loudly, pinned here because
@@ -171,5 +172,31 @@ describe("the tabs are reachable at every width (#49)", () => {
     const mobile = /@media \(max-width: 900px\) \{([\s\S]*?)\n\}/.exec(css)?.[1] ?? "";
     expect(mobile).toMatch(/grid-template-areas:\s*"brand acct" "nav format"/);
     expect(mobile).toMatch(/\.topnav\s*\{[^}]*overflow-x:\s*auto/);
+  });
+});
+
+describe("the paste label survives a real 40-card list (#88)", () => {
+  const css = readFileSync(new URL("../web/styles.css", import.meta.url), "utf8");
+  // One rule per line in this stylesheet, so the selector is whatever precedes the brace on its line.
+  const rule = (sel: string) =>
+    css.split("\n").find((l) => l.trim().startsWith(sel + " {"))?.replace(/^[^{]*\{|\}\s*$/g, "") ?? "";
+
+  // `#card-count` is empty-state-short ("0 cards") and grows to
+  // "40 main · 12 runes · 3 battlefields · 8 sideboard · legend" — 300px of text in a 275px column —
+  // the moment any of the 222 real tournament lists is pasted. With `space-between` and no gap both
+  // flex children wrapped and interleaved into "Paste40 main · 12 runes · 3 / a list battlefields ·",
+  // measured at 1280px and at 390px. The label must not be the one that breaks.
+  it("gives .field-row a gap and refuses to break the label", () => {
+    const row = rule(".field-row");
+    expect(row, ".field-row").toMatch(/gap:\s*\d/);
+    expect(rule(".field-row .field-label"), ".field-row .field-label").toMatch(/white-space:\s*nowrap/);
+  });
+
+  it("keeps the count line long enough to be worth the guard", () => {
+    // If deckCountLine ever gets short again this test is arguing about nothing — say so out loud.
+    expect(deckCountLine({
+      legend: "OGS-021", champion: null, battlefields: { a: 1, b: 1, c: 1 },
+      runes: { r: 12 }, main: { m: 40 }, sideboard: { s: 8 }, unresolved: [],
+    })).toBe("40 main · 12 runes · 3 battlefields · 8 sideboard · legend");
   });
 });
