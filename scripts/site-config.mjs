@@ -27,7 +27,11 @@ export function siteConfig(root) {
   loadEnvLocal(root);
   const url = (process.env.SUPABASE_URL ?? "").trim().replace(/\/+$/, "");
   const anonKey = (process.env.SUPABASE_ANON_KEY ?? "").trim();
-  if (url && !/^https:\/\/[a-z0-9-]+\.supabase\.(co|in)$/.test(url)) {
+  // A hosted project, or the loopback origin `supabase start` prints. Anything else is a typo, and
+  // a typo here would disable the account layer without saying so.
+  const hosted = /^https:\/\/[a-z0-9-]+\.supabase\.(co|in)$/;
+  const local = /^http:\/\/(127\.0\.0\.1|localhost):\d{2,5}$/;
+  if (url && !hosted.test(url) && !local.test(url)) {
     throw new Error(`SUPABASE_URL is not a Supabase project origin: ${url}`);
   }
   return { url, anonKey };

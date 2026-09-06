@@ -157,6 +157,9 @@ async function run(source: "text" | "url" = "text") {
     // The deck panel stays open after analysing. Collapsing it here used to hide the list the
     // user just pasted, and it widened the stage enough to make the diagram fit at ~54%.
     render();
+    // The list changed by a route that is not typing — Load example, a Piltover link, a saved deck
+    // being restored — and the account panel reads it for the suggested name and the drift line.
+    accountDeckChanged();
     if (source === "text") location.hash = isDeckCode(text) ? `deck=${encodeURIComponent(text)}` : "";
     const included = result.included.length;
     const near = Object.values(result).reduce((n, b) => n + b.length, 0) - included;

@@ -104,7 +104,11 @@ export async function updateDeck(id: string, patch: { name?: string; deckText?: 
 export async function deleteAccount(): Promise<void> {
   const { error } = await db().rpc("delete_account");
   if (error) throw new Error(error.message);
-  await db().auth.signOut();
+  // The account is already gone, so revoking its token server-side answers 403 and the browser logs
+  // that as a failed request. supabase-js treats 401/403/404 here as success and clears the stored
+  // session anyway, which is the part that matters: the app comes back signed out. Local scope
+  // because there are no other sessions left to end.
+  await db().auth.signOut({ scope: "local" });
 }
 
 export async function deleteDeck(id: string): Promise<void> {

@@ -28,6 +28,8 @@ let renaming: string | null = null;
 let confirming: string | null = null;
 /** Deleting the account is two clicks, like deleting a deck, and it is never the default one. */
 let closing = false;
+/** Once the player types a name of their own, the suggestion stops overwriting it. */
+let nameTouched = false;
 let message = "";
 
 export function initAccount(h: AccountHooks): void {
@@ -42,6 +44,9 @@ export function initAccount(h: AccountHooks): void {
     decks = []; loadedId = null;
   }));
   $<HTMLElement>("#account-body").addEventListener("click", onPanelClick);
+  $<HTMLElement>("#account-body").addEventListener("input", (ev) => {
+    if ((ev.target as HTMLElement).id === "acct-name") nameTouched = true;
+  });
   onAccount((next) => {
     account = next;
     if (account) void guard(async () => { decks = sortSaved(await listDecks()); });
@@ -98,6 +103,7 @@ async function save(): Promise<void> {
   const created = await createDeck(account.id, check.name, text, hooks.format());
   decks = sortSaved([created, ...decks]);
   loadedId = created.id;
+  nameTouched = false;
   message = `Saved "${created.name}".`;
 }
 
@@ -127,19 +133,34 @@ async function remove(id: string): Promise<void> {
 
 function render(): void {
   if (!accountsEnabled) return;
-  const panel = $<HTMLElement>("#account");
-  const body = $<HTMLElement>("#account-body");
   $<HTMLButtonElement>("#acct-signin").hidden = account !== null;
   $<HTMLElement>("#acct-who").hidden = account === null;
   $<HTMLElement>("#acct-label").textContent = account?.label ?? "";
-  panel.hidden = false;
+  $<HTMLElement>("#account").hidden = false;
 
-  body.innerHTML = account ? signedIn() : signedOut();
+  $<HTMLElement>("#account-body").innerHTML = account ? signedIn() : signedOut();
   $<HTMLElement>("#account-msg").textContent = message;
-  if (account && !renaming) {
-    const input = $<HTMLInputElement>("#acct-name");
-    if (!input.value) input.value = suggestName(hooks.deckText(), hooks.cards(), decks);
-  }
+  followDeck();
+}
+
+/**
+ * The parts that depend on the textarea rather than on the account. They are updated in place
+ * because a full rebuild would replace the name box, and replacing it while somebody is typing a
+ * name into it loses what they typed.
+ */
+function followDeck(): void {
+  if (!account || renaming) return;
+  const input = document.querySelector<HTMLInputElement>("#acct-name");
+  if (input && !nameTouched) input.value = suggestName(hooks.deckText(), hooks.cards(), decks);
+
+  const drift = document.querySelector<HTMLElement>("#acct-drift");
+  if (!drift) return;
+  const loaded = decks.find((d) => d.id === loadedId);
+  const changed = Boolean(loaded && loaded.deckText !== hooks.deckText());
+  drift.hidden = !changed;
+  drift.innerHTML = changed
+    ? `This list no longer matches <strong>${esc(loaded!.name)}</strong> as saved. <button type="button" class="linklike" data-act="overwrite" data-id="${esc(loaded!.id)}">Update it</button> or save the new one under its own name.`
+    : "";
 }
 
 function signedOut(): string {
@@ -148,13 +169,11 @@ function signedOut(): string {
 }
 
 function signedIn(): string {
-  const loaded = decks.find((d) => d.id === loadedId);
-  const changed = loaded && loaded.deckText !== hooks.deckText();
   return `<div class="acct-save">
       <input id="acct-name" type="text" maxlength="${MAX_NAME}" autocomplete="off" spellcheck="false" aria-label="Name for this deck" placeholder="Name this deck">
       <button type="button" class="ghost" data-act="save">Save</button>
     </div>
-    ${changed ? `<p class="acct-note">This list no longer matches <strong>${esc(loaded.name)}</strong> as saved. <button type="button" class="linklike" data-act="overwrite" data-id="${esc(loaded.id)}">Update it</button> or save the new one under its own name.</p>` : ""}
+    <p class="acct-note" id="acct-drift" hidden></p>
     ${decks.length ? decks.map(deckRow).join("") : `<p class="acct-note">No saved decks yet.</p>`}
     ${closing
       ? `<p class="acct-note">Deleting the account removes it and all ${decks.length} saved deck${decks.length === 1 ? "" : "s"} at once, with nothing kept. <button type="button" class="linklike danger" data-act="close-confirm">Delete for good</button> · <button type="button" class="linklike" data-act="close-cancel">Keep it</button></p>`
@@ -186,7 +205,7 @@ function deckRow(d: SavedDeck): string {
   </div>`;
 }
 
-/** The textarea changed under us, so the "this no longer matches" line has to be recomputed. */
+/** The textarea changed under us: refresh only what reads it, never the whole panel. */
 export function accountDeckChanged(): void {
-  if (accountsEnabled && account) render();
+  if (accountsEnabled && account) followDeck();
 }
