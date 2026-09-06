@@ -177,7 +177,19 @@ function resolveLegality(cards, src) {
 // Riot's own gallery ships no Signature marker (Core Rules 133.7.b / 103.2.d). Two independent
 // mirrors (Piltover Archive's `card.super`, dotgg's `supertype`) agree on the same 51 names, so
 // data/signature.src.json carries the names and this resolves each to exactly one base code —
-// zero or two-or-more is a build failure, the same discipline resolveLegality already applies.
+// zero or two-or-more is a build failure.
+//
+// resolveLegality does NOT apply that discipline, and must not: 104 names in this pool already span
+// two or more base codes (Vi, Destructive is OGN-036 + VEN-167; Ahri, Inquisitive is OGN-119 +
+// SFD-227 + VEN-SP3), and a ban is on the CARD, so it has to reach every printing family of it.
+// That is why it collects `bases` as a set instead of insisting on one. A 2026-09-06 review read the
+// sentence that used to be here — "the same discipline resolveLegality already applies" — and
+// proposed adding the throw; it would fail the build the first time a reprinted card is banned.
+//
+// The asymmetry is a live risk in the other direction: the day a Signature card is reprinted under a
+// second base, this throws and the build stops until someone decides whether Signature is a property
+// of the card (widen to a set, like legality) or of the printing (list both names). None of the 51
+// spans two bases today.
 
 function resolveSignature(cards, src) {
   const byName = new Map();
