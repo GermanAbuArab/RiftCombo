@@ -9,8 +9,18 @@ export const normalizeName = (s: string): string =>
     .replace(/\s*[-–—,]\s*starter$/, "")
     .replace(/[^a-z0-9]/g, "");
 
-/** "UNL-079a" -> "UNL-079"; "SFD-227*" -> "SFD-227"; "OGN-212" -> "OGN-212" */
-export const baseOf = (code: string): string => code.replace(/[a-z*]$/, "");
+/**
+ * "UNL-079a" -> "UNL-079"; "SFD-227*" -> "SFD-227"; "OGN-212" -> "OGN-212"
+ *
+ * The `i` is load-bearing (#87). `resolveCode` upper-cases the whole code before it gets here, so a
+ * case-sensitive match left "UNL-113a" as "UNL-113A" and found neither the printing (the gallery
+ * spells it lower-case) nor the base — 102 of the 1189 printings are alt-arts with an `a` suffix,
+ * and every one of them was dropped on the way through the parser. riftbound.gg writes the same
+ * suffix in upper case, which is how it was noticed. No code in the pool ends in a letter that is
+ * part of the code itself: over all 1189, the shapes are `###`, `###a`, `###*`, `T##`, `R##`
+ * and `SP#`, so upper or lower this can only strip a variant marker.
+ */
+export const baseOf = (code: string): string => code.replace(/[a-z*]$/i, "");
 
 // Release order, matching the deck codec's SET_MAP.
 const SET_ORDER = ["OGN", "OGS", "ARC", "SFD", "UNL", "VEN", "RAD"];
@@ -28,6 +38,8 @@ export class CardIndex {
   private readonly byCode = new Map<string, Card>();
   private readonly byBase = new Map<string, Card>();
   private readonly byName = new Map<string, Card[]>();
+  /** Every tag printed in the pool, normalised. Read by `resolveName` and nothing else. */
+  private readonly tags = new Set<string>();
   private readonly banned = new Map<Format, Map<string, LegalityEntry>>();
 
   constructor(cards: Card[], legality: LegalityEntry[]) {
@@ -40,6 +52,7 @@ export class CardIndex {
       const k = normalizeName(c.name);
       if (!this.byName.has(k)) this.byName.set(k, []);
       this.byName.get(k)!.push(c);
+      for (const t of c.tags) this.tags.add(normalizeName(t));
     }
     for (const e of legality) {
       if (!this.banned.has(e.format)) this.banned.set(e.format, new Map());
@@ -69,7 +82,22 @@ export class CardIndex {
     // Measured 2026-09-04: all 94 legends are bare epithets and no card name matches another card's
     // "X, Y" suffix, so this can only rescue a line that would otherwise be dropped entirely.
     const comma = name.indexOf(",");
-    return comma > 0 ? this.pickByName(name.slice(comma + 1)) : null;
+    if (comma <= 0) return null;
+    const epithet = name.slice(comma + 1);
+    const byEpithet = this.pickByName(epithet);
+    if (byEpithet) return byEpithet;
+    // The other direction (#86). Riot printed the same champion under two heads: `OGS-004 Yi,
+    // Meditative` and `OGS-009 Yi, Honed` in the starter set, `UNL-059 Master Yi, Unstoppable` and
+    // `UNL-113 Master Yi, Tempered` in Unleashed — and Riot's own "<City>'s Top Decks" articles
+    // write the long head for all four, so `Master Yi, Honed` matched nothing. Retry on the last
+    // word of the head, but only when the head is a tag the pool actually prints, which is what
+    // makes this a rescue and not a guess. Measured over the whole pool: eleven tags are more than
+    // one word, and `Master Yi` is the only one whose last word heads a card name at all, so for
+    // the other ten this branch looks up a name that does not exist and changes nothing.
+    const head = name.slice(0, comma).trim();
+    const words = head.split(/\s+/);
+    if (words.length < 2 || !this.tags.has(normalizeName(head))) return null;
+    return this.pickByName(`${words[words.length - 1]},${epithet}`);
   }
 
   private pickByName(name: string): string | null {

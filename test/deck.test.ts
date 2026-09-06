@@ -58,6 +58,55 @@ describe("plaintext decklists", () => {
     expect(deck.runes["VEN-R01"]).toBe(1);
   });
 
+  /**
+   * #87. `CODE_RE` was never the problem — it carries `/i`, so it matched `UNL-113A` all along.
+   * `resolveCode` upper-cases what it is given, and `baseOf` then refused to strip the upper-case
+   * suffix, so the code found neither a printing nor a base and the line was dropped. That took the
+   * gallery's OWN spelling down with it: 102 of the 1189 printings end in a lower-case `a`, and a
+   * list that named one lost the card. riftbound.gg's API writes the same suffix upper-case
+   * (`UNL-113A`, `VEN-038A`), which is how it surfaced, over 4548 of its lists.
+   */
+  it("reads an alt-art suffix in either case, and the gallery's own is lower case", () => {
+    const deck = loadDeck("3 UNL-113A\n3 UNL-113a\n2 VEN-038A\n1 UNL-113\n1 OGN-299*", cards);
+    expect(deck.unresolved).toEqual([]);
+    expect(deck.main["UNL-113"]).toBe(7); // Master Yi, Tempered — six alt-art plus one plain
+    expect(deck.main["VEN-038"]).toBe(2); // Akali, Silent
+    expect(deck.legend).toBe("OGN-299"); // Daughter of the Void, the `*` spelling of an alt-art
+  });
+
+  it("resolves every printing in the pool from its own printed code, in either case", () => {
+    // The sweep #14 ran over all 1189 codes, plus the upper-case dialect. A regression here means
+    // some shape of code stopped round-tripping, which is exactly how both halves of #87 hid.
+    const lost: string[] = [];
+    for (const card of cards.cards) {
+      for (const spelling of [card.code, card.code.toUpperCase(), card.code.toLowerCase()]) {
+        if (cards.resolveCode(spelling) !== card.base) lost.push(spelling);
+      }
+    }
+    expect(lost).toEqual([]);
+  });
+
+  it("reads the long champion head Riot's articles write for a short printed name", () => {
+    // #86. Riot printed the same champion two ways — `OGS-009 Yi, Honed` in the starter set,
+    // `UNL-113 Master Yi, Tempered` in Unleashed — and its own "<City>'s Top Decks" articles write
+    // the long head for both. The short head has to keep working, and so does the epithet-only
+    // retry that was already there for legends.
+    const deck = loadDeck("1 Master Yi, Honed\n1 Yi, Meditative\n1 Master Yi, Tempered\n1 LeBlanc, Deceiver", cards);
+    expect(deck.unresolved).toEqual([]);
+    expect(deck.main["OGS-009"]).toBe(1);
+    expect(deck.main["OGS-004"]).toBe(1);
+    expect(deck.main["UNL-113"]).toBe(1);
+    expect(deck.legend).toBe("UNL-199"); // Deceiver, named the way Riot's errata pages do
+  });
+
+  it("does not invent a card when the head is not a tag the pool prints", () => {
+    const deck = loadDeck("1 Grand Master Yi, Honed\n1 Master Yi, Nonexistent", cards);
+    expect(deck.unresolved).toEqual([
+      { raw: "Grand Master Yi, Honed", count: 1 },
+      { raw: "Master Yi, Nonexistent", count: 1 },
+    ]);
+  });
+
   it("reports unresolved lines instead of dropping them", () => {
     const deck = loadDeck("3 Totally Fake Card\n2 Retreat", cards);
     expect(deck.unresolved).toEqual([{ raw: "Totally Fake Card", count: 3 }]);
