@@ -101,6 +101,21 @@ describe("the viewBox geometry", () => {
      * (`web/graph.ts`), and Fit is the answer to it. What #69 fixes is that the crop now falls
      * entirely on the far side instead of taking a bite out of both.
      */
+    /**
+     * The circular layout is the case anchoring gets wrong, found by driving Radial in a browser after
+     * #69 shipped: it is a square built around a hub at its centre, so its top-left corner is empty by
+     * construction and 1:1 anchored there opened on a near-blank canvas with the hub off-screen. It
+     * asks for `centre`, and that is what `renderGraph` passes when the layout has a hub.
+     */
+    it("opens the circular layout on its hub, not on its empty corner", () => {
+      const square: Box = { x: -64, y: -64, w: 1500, h: 1500 };
+      const hub = { x: square.x + square.w / 2, y: square.y + square.h / 2 };
+      const b = actualBox(square, 960, 638, "centre")!;
+      expect(holds(b, hub.x, hub.y)).toBe(true);
+      // The default is the layered one, and for this square it would miss the hub entirely.
+      expect(holds(actualBox(square, 960, 638)!, hub.x, hub.y)).toBe(false);
+    });
+
     it("crops only the far edge, never the near one", () => {
       const b = actualBox(desktop, 960, 638)!;
       expect(b.x + b.w).toBeLessThan(desktop.x + desktop.w);

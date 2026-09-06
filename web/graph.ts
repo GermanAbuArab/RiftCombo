@@ -8,8 +8,9 @@
 //  - The number of grid columns is chosen from the stage's aspect ratio, so the diagram comes out
 //    roughly the shape of the space it has to live in. Without this the content is near-square,
 //    the stage is wide, and fitting it wastes half the width.
-//  - The initial view is 1:1 and centred. Fitting everything into view is what the fit button is
-//    for; it never magnifies past 100%.
+//  - The initial view is 1:1, opened at the corner the layered diagram is read from and at the middle
+//    of the circular one, which is where its hub is. Fitting everything into view is what the fit
+//    button is for; it never magnifies past 100%.
 import type { Hit } from "../src/matcher.js";
 import type { Card, Combo, Feature } from "../src/types.js";
 
@@ -119,21 +120,34 @@ export const fitBox = (content: Box, cw: number, ch: number): Box | null => {
 };
 
 /**
+ * Where a layout keeps its subject, and so what the opening 1:1 view must not crop away.
+ * "start" is the top-left: the layered diagram is read from there, and its lane headings live in the
+ * padding above and to the left of the content. "centre" is the middle: the circular layout is built
+ * around a hub and its corners are empty by construction.
+ */
+export type Opening = "start" | "centre";
+
+/**
  * 1:1. Clipping is fine — the fit button is right there — but WHERE it clips is not a free choice.
  *
- * Per axis: centred while the content fits, anchored to where the content starts once it does not.
- * Centring a diagram bigger than the stage splits the crop across both edges, and the near edges are
- * exactly where the diagram explains itself: the lane headings sit in `topPad` above the content and
- * the "Pieces" heading sits at x=0. At 1280 that put all three of "Pieces", "Combos" and "Payoff"
- * outside the opening view, so the three columns arrived unlabelled (#69). Anchoring keeps the reading
- * corner and throws the whole crop the way the diagram is dragged.
+ * A viewBox smaller than its content has to give up something on every axis. Centring splits that
+ * crop across both edges, which for the layered diagram takes a bite out of the two things that name
+ * it: the lane headings sit in `topPad` above the content, and "Pieces" starts at x=0. At 1280 all
+ * three of "Pieces", "Combos" and "Payoff" fell outside the opening view and the columns arrived
+ * unlabelled (#69). So a layout that reads from its corner is anchored there and the whole crop falls
+ * the way the diagram is dragged.
+ *
+ * The circular layout is the opposite case and asks for `centre`: its subject is the hub in the
+ * middle and the corners of its bounding square hold nothing, so anchoring to the start opens on
+ * empty canvas. An axis whose content already fits is centred either way — there is nothing to crop.
  *
  * Null as `fitBox` — see there for why a stage with no box has no answer.
  */
-export const actualBox = (content: Box, cw: number, ch: number): Box | null => {
+export const actualBox = (content: Box, cw: number, ch: number, opening: Opening = "start"): Box | null => {
   if (!(cw > 0) || !(ch > 0)) return null;
-  const start = (c: number, size: number, stage: number) => (size <= stage ? c + (size - stage) / 2 : c);
-  return { x: start(content.x, content.w, cw), y: start(content.y, content.h, ch), w: cw, h: ch };
+  const place = (c: number, size: number, stage: number) =>
+    size <= stage || opening === "centre" ? c + (size - stage) / 2 : c;
+  return { x: place(content.x, content.w, cw), y: place(content.y, content.h, ch), w: cw, h: ch };
 };
 
 interface Placed { id: string; x: number; y: number; w: number; h: number }
@@ -463,7 +477,7 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
   /** Take a computed box, or report that there was no stage to measure it against. */
   const show = (b: Box | null) => { if (!b) return false; vb = b; apply(); return true; };
   const fit = () => show(fitBox(content, host.clientWidth, host.clientHeight));
-  const actualSize = () => show(actualBox(content, host.clientWidth, host.clientHeight));
+  const actualSize = () => show(actualBox(content, host.clientWidth, host.clientHeight, L.hub ? "centre" : "start"));
   const zoomAt = (k: number, mx: number, my: number) => { vb = { x: mx - (mx - vb.x) * k, y: my - (my - vb.y) * k, w: vb.w * k, h: vb.h * k }; apply(); };
   svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
   // The whole content, before anything is measured: a diagram built off-screen still carries a viewBox
