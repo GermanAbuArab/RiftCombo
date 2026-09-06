@@ -159,6 +159,7 @@
 
 ## Verify
 - Run `npm test` and `npm run typecheck` before claiming anything works. Rebuild data with `npm run build:data`.
+- **Deploy quota (2026-09-07): sessions push to `work`, the orchestrator promotes to `master`.** Vercel's Hobby cap is "Deployments Created per Day: 100", scoped to the ACCOUNT (shared with the other projects on it) over a rolling 24 h window, and a build cancelled by the Ignored Build Step still counts as created; on 2026-09-06 this repo's 130 commits spent the whole quota and blocked another project's production deploys. So every session commits as usual and runs `git push origin HEAD:work` — `work` has deployments disabled in `vercel.json` (`git.deploymentEnabled`), so it is a backup, never a build — and only the orchestrator runs `git push origin HEAD:master`, in batches, at most a handful of times a day. Never push `master` from a child session. The `*/*` and `*/**` globs in that block switch off previews only for branches with a slash; an unslashed branch other than `work` would still deploy, and `"*": false` must never be used because it also matches `master` and kills production (recoverable only from the dashboard).
 - **Deploy is a push to master.** The Vercel project has been connected to `GermanAbuArab/RiftCombo`
   since 2026-09-05 (`vercel git connect`), so every push to master builds `npm run build:web` on
   Vercel from the COMMITTED tree and goes live; check it with `npx vercel ls riftcombo`. Before that,
