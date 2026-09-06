@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { loadCardIndex } from "../src/load.js";
 import { loadDeck } from "../src/deck.js";
+import { CardIndex } from "../src/cards.js";
 import { championTagOf, checkBuild, type BuildReport } from "../src/build.js";
 
 const cards = loadCardIndex();
@@ -220,6 +221,24 @@ describe("the champion tag, derived rather than flagged", () => {
 
   it("says a card with no champion tag has none", () => {
     expect(championTagOf("OGN-104", cards)).toBeNull(); // Retreat
+  });
+});
+
+/**
+ * #134: the tag set was cached in one module-level variable that ignored WHICH index asked, so the
+ * first CardIndex to reach `championTagOf` decided the answer for the whole process. A small or
+ * trimmed index answering first left an empty set behind and the real pool then reported no
+ * champion tag for any legend, degrading 103.2.a.2 and 103.2.d.2 with no error at all.
+ */
+describe("the champion-tag cache", () => {
+  it("answers per index, so a small pool cannot speak for the real one", () => {
+    const jinx = cards.cards.find((c) => c.tags.includes("Jinx"))!;
+    // A pool holding one card whose name carries no ", epithet" has no champion tags at all.
+    const tiny = new CardIndex([{ ...jinx, name: "Nothing In Particular" }], []);
+    expect(championTagOf(jinx.base, tiny)).toBeNull();
+    expect(championTagOf(jinx.base, cards)).toBe("Jinx");
+    // And the other way round: the real pool must not fill the small one's answer either.
+    expect(championTagOf(jinx.base, tiny)).toBeNull();
   });
 });
 

@@ -206,6 +206,23 @@ describe("filtering the pool", () => {
   });
 });
 
+/**
+ * #135: `Deck.unresolved` discarded the section its line was written under, and `deckEntries`
+ * re-emitted every one of them as "main" — so a misspelling in a sideboard silently moved into the
+ * Main Deck the first time the list was saved through the builder. No counted bag changes (an
+ * unresolved line never enters one), but it rewrites what the player typed.
+ */
+describe("a line the pool does not recognise", () => {
+  it("comes back under the header it was written under", () => {
+    const deck = loadDeck("Legend\n1 Nine-Tailed Fox\nMain Deck\n3 Fox-Fire\nSideboard\n2 Some Totally Unknown Card Name\n", cards);
+    expect(deck.unresolved).toEqual([{ raw: "Some Totally Unknown Card Name", count: 2, section: "sideboard" }]);
+    const text = builderText(deck, cards);
+    const [beforeSide, afterSide] = text.split(/^Sideboard$/m) as [string, string];
+    expect(afterSide, "the unrecognised line is not under Sideboard").toContain("2 Some Totally Unknown Card Name");
+    expect(beforeSide).not.toContain("Some Totally Unknown Card Name");
+  });
+});
+
 describe("the caps a click has to respect", () => {
   it("stops at three of a name in the Main Deck (103.2.b)", () => {
     let deck = emptyDeck();

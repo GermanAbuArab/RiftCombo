@@ -71,8 +71,11 @@ export function planDeck(deck: Deck, variants: Variant[], cards: CardIndex, opts
     if (!bases.every(inIdentity)) continue;
     // This view never proposes changing legend; the matcher's own buckets already cover that.
     if (v.legends && !v.legends.includes(deck.legend)) continue;
-    // Never recommend buying a card that cannot be played in the format being matched.
-    if (bases.some((b) => cards.legality(b, opts.format))) continue;
+    // Never recommend buying a card that cannot be PLAYED in the format being matched. A restricted
+    // card is a cap, not an illegal one (#135), and `cards.legality` answers for either: dropping the
+    // whole route on a restriction hid a line the player may legally build, which is stricter than
+    // `legalityRule`, than `matchDeck`, and than what CLAUDE.md says this panel does.
+    if (bases.some((b) => cards.legality(b, opts.format)?.status === "banned")) continue;
 
     for (const b of bases) if ((owned.get(b) ?? 0) > 0) pieces.add(b);
 

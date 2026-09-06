@@ -133,7 +133,7 @@ export function normalizeDeck(entries: DeckEntry[], cards: CardIndex): Deck {
   const deck: Deck = { legend: null, champion: null, battlefields: {}, runes: {}, main: {}, sideboard: {}, unresolved: [] };
   for (const e of entries) {
     const base = (e.code && cards.resolveCode(e.code)) || (e.name && cards.resolveName(e.name)) || null;
-    if (!base) { deck.unresolved.push({ raw: e.code ?? e.name ?? "?", count: e.count }); continue; }
+    if (!base) { deck.unresolved.push({ raw: e.code ?? e.name ?? "?", count: e.count, section: e.section }); continue; }
     // A line for no copies designates nothing either: `add` refuses the count, and the legend and
     // the Chosen Champion are designations rather than counts, so they need saying here (#132).
     if (!Number.isFinite(e.count) || e.count <= 0) continue;

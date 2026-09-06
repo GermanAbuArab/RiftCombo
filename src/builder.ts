@@ -462,8 +462,9 @@ export function deckEntries(deck: Deck, cards: CardIndex): DeckEntry[] {
     }
   }
   for (const row of zoneRows(deck, cards, "sideboard")) out.push({ code: row.card.base, count: row.count, section: "sideboard" });
-  // A line the card index never recognised is still the player's: it goes back out as it came in.
-  for (const u of deck.unresolved) out.push({ name: u.raw, count: u.count, section: "main" });
+  // A line the card index never recognised is still the player's: it goes back out as it came in,
+  // under the header it was written under (#135) — a sideboard misspelling used to come back main.
+  for (const u of deck.unresolved) out.push({ name: u.raw, count: u.count, section: u.section ?? "main" });
   return out;
 }
 

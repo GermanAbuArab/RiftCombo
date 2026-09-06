@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { CLASS_RANK, generateVariants } from "../src/combos.js";
 import { loadDeck } from "../src/deck.js";
+import { CardIndex } from "../src/cards.js";
 import { loadCardIndex, loadCombos } from "../src/load.js";
 import { planDeck } from "../src/plan.js";
 
@@ -105,5 +106,40 @@ describe("deck plan", () => {
     // Stealthy Pursuer (OGN-177) is banned in constructed, so the loop it anchors is not a
     // recommendation — even though the deck holds it and the matcher does report the hit.
     expect(ids).not.toContain("pursuer-herald-recruits");
+  });
+
+  /**
+   * #135: `cards.legality()` answers for banned AND restricted, and the guard was a bare truthiness
+   * test, so a merely restricted ingredient took the whole route off the panel. A restriction is a
+   * cap, not an illegal card — `legalityRule` keeps the two apart, `matchDeck` reports a restricted
+   * hit rather than hiding it, and CLAUDE.md says this panel drops BANNED ingredients. Nothing in
+   * the shipped data reaches it (the one restricted entry is a legend, and legends are not in
+   * `v.cards`), so the restriction is synthesised here on a card a real route uses.
+   */
+  it("keeps a route whose ingredient is merely restricted, and drops it when it is banned", () => {
+    const deck = loadDeck(fixture("lux.txt"), cards);
+    const target = "lux-infinite-energy";
+    const before = planDeck(deck, variants, cards, constructed);
+    const ingredient = [...before.have, ...before.routes]
+      .find((r) => r.variant.comboIds.includes(target))!;
+    const base = Object.keys(ingredient.variant.cards)[0]!;
+    const card = cards.get(base)!;
+
+    const entry = (status: "banned" | "restricted") => ({
+      format: "constructed" as const,
+      entity: card.type[0]!,
+      name: card.name,
+      codes: [base],
+      bases: [base],
+      status,
+      since: "2026-09-06",
+      source: "test",
+    });
+    const seen = (index: CardIndex) =>
+      [...planDeck(deck, variants, index, constructed).have, ...planDeck(deck, variants, index, constructed).routes]
+        .some((r) => r.variant.comboIds.includes(target));
+
+    expect(seen(new CardIndex(cards.cards, [entry("restricted")]))).toBe(true);
+    expect(seen(new CardIndex(cards.cards, [entry("banned")]))).toBe(false);
   });
 });

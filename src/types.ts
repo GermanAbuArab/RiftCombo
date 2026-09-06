@@ -135,7 +135,12 @@ export interface Deck {
   runes: Record<string, number>;
   main: Record<string, number>;
   sideboard: Record<string, number>;
-  unresolved: { raw: string; count: number }[];
+  /**
+   * Lines the card index did not recognise, kept as written so a save gives them back (#135). The
+   * `section` is the header they appeared under: without it every unrecognised line came back under
+   * "Main Deck", so a misspelling in a sideboard silently moved into the deck on save and reload.
+   */
+  unresolved: { raw: string; count: number; section?: string }[];
 }
 
 export type SynergyStatus = "rule-verified";

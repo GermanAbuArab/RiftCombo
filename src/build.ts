@@ -201,17 +201,25 @@ function identityRule(deck: Deck, cards: CardIndex): BuildRule {
  * is Kennen). test/build.test.ts re-measures that over the whole pool.
  * See docs/phase0/walks/2026-09-06-deck-construction-rules.md.
  */
-let championTags: Set<string> | null = null;
+// Keyed by the index that asked (#134). A single global cache let the FIRST CardIndex to reach
+// championTagOf decide the champion tags for the rest of the process: a small or slimmed index
+// answering first left an empty set behind, and every later question about the real 1189-card pool
+// came back null — 103.2.a.2 and 103.2.d.2 degrading in silence, with no error anywhere. The
+// browser builds one index per page load so nothing shipped was wrong, but test/web-payload.test.ts
+// already builds a trimmed index beside a full one. This is the pattern the pool caches in
+// src/builder.ts use, for the same reason.
+const championTagsByIndex = new WeakMap<CardIndex, Set<string>>();
 const tagKey = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
 
 function championTagSet(cards: CardIndex): Set<string> {
-  if (championTags) return championTags;
+  const cached = championTagsByIndex.get(cards);
+  if (cached) return cached;
   const named = new Set<string>();
   for (const c of cards.cards) {
     const m = /^([^,]+),\s/.exec(c.name);
     if (m) named.add(tagKey(m[1]!));
   }
-  championTags = named;
+  championTagsByIndex.set(cards, named);
   return named;
 }
 
