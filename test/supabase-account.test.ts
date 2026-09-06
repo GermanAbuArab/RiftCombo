@@ -17,19 +17,19 @@ describe("who is signed in", () => {
   it("prefers the full name, then the short one, then the email", () => {
     expect(accountOf(session({ id: "u1", email: "p@example.com", user_metadata: { full_name: "German Abu Arab", name: "German" } })))
       .toEqual({ id: "u1", label: "German Abu Arab" });
-    expect(accountOf(session({ id: "u1", email: "p@example.com", user_metadata: { name: "German" } })).label)
+    expect(accountOf(session({ id: "u1", email: "p@example.com", user_metadata: { name: "German" } }))!.label)
       .toBe("German");
-    expect(accountOf(session({ id: "u1", email: "p@example.com", user_metadata: {} })).label)
+    expect(accountOf(session({ id: "u1", email: "p@example.com", user_metadata: {} }))!.label)
       .toBe("p@example.com");
   });
 
   it("never leaves the header empty, whatever the provider sent", () => {
-    expect(accountOf(session({ id: "u1", user_metadata: null })).label).toBe("Signed in");
+    expect(accountOf(session({ id: "u1", user_metadata: null }))!.label).toBe("Signed in");
     // An empty string is not a name either: the || chain has to fall through it.
-    expect(accountOf(session({ id: "u1", email: "", user_metadata: { full_name: "" } })).label).toBe("Signed in");
+    expect(accountOf(session({ id: "u1", email: "", user_metadata: { full_name: "" } }))!.label).toBe("Signed in");
   });
 
   it("carries the id through, which is what a row is written against", () => {
-    expect(accountOf(session({ id: "abc", email: "p@example.com", user_metadata: {} })).id).toBe("abc");
+    expect(accountOf(session({ id: "abc", email: "p@example.com", user_metadata: {} }))!.id).toBe("abc");
   });
 });
