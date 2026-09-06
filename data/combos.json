@@ -8075,7 +8075,7 @@
         "notable": [
           "SIX A TURN, NOT NINE. #46 conjectured nine by adding Acceleration Gate to ready both — but the Gate is Mind/Body and this pairing is Mind/Order, so 103.1.b keeps it out of the deck. Three Recruits from the Armory's own exhaust and three from Heimerdinger's copy of it: six.",
           "IT IS REPEATABLE, WHICH IS THE POINT. OGS-015 Recruit the Vanguard makes four tokens once, for 6 Energy; the Armory makes three every turn, and Heimerdinger doubles that, for a one-time 7 Energy + 1 Power.",
-          "IT CROSSES DIRECTLY INTO THE PLAZA ROUTES. Seven units at The Grand Plaza when you hold is the game (OGN-293, rule 195), and this reaches seven in two turns from an empty board. See grand-plaza-recruit-vanguard and spiderling-swarm-grand-plaza. The Armory's reminder permits different locations, and 355.2.a already allows a battlefield you control.",
+          "IT CROSSES DIRECTLY INTO THE PLAZA ROUTES, AND IT REACHES SEVEN IN ONE TURN, NOT TWO. Seven units at The Grand Plaza when you hold is the game (OGN-293, rule 195). With OGN-265 Herald of the Arcane as the legend — already the first name in this entry's own prerequisite — the count is Armory 3 + Heimerdinger's copy of the Armory 3 + the legend's own '1 Energy, [exhaust]: Play a 1 Might Recruit unit token' 1 = SEVEN in a single Main Phase. Heimerdinger has all the [exhaust] abilities but only one exhaust to spend, so he takes the Armory's three and the legend still has its own; R30 = B does not bite, because neither the Armory nor the Herald prints a 'use only while' clause. heimerdinger-herald-legend-recruits states the same count from the other side. See grand-plaza-recruit-vanguard and spiderling-swarm-grand-plaza. The Armory's reminder permits different locations, and 355.2.a already allows a battlefield you control.",
           "143.4 — the Recruits enter exhausted, so they neither defend nor move the turn they appear.",
           "A two-turn build, not a turn-three kill: 7 Energy + 1 Power for the Armory and 3 Energy + 1 Power for Heimerdinger, and 143.4 means Heimerdinger cannot use the copied ability the turn he lands."
         ]
@@ -8107,7 +8107,7 @@
           "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 1. The candidate came from a Reddit thread that could not be opened on 2026-09-06 (Reddit now CAPTCHA-walls this machine even in a real browser with the project's own cookies), so it carries NO Reddit citation: the mechanism is read off the two cards' printed text and the rules instead, which is the stronger evidence anyway. The one correction to the candidate is the count — six, not nine, because Acceleration Gate is Mind/Body and cannot legally sit in a Mind/Order deck (103.1.b). This is the cleanest use of Heimerdinger in the catalogue, because the Armory carries no restriction clause and so R30 never comes up. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 1. The candidate came from a Reddit thread that could not be opened on 2026-09-06 (Reddit now CAPTCHA-walls this machine even in a real browser with the project's own cookies), so it carries NO Reddit citation: the mechanism is read off the two cards' printed text and the rules instead, which is the stronger evidence anyway. The one correction to the candidate is the count — six, not nine, because Acceleration Gate is Mind/Body and cannot legally sit in a Mind/Order deck (103.1.b). This is the cleanest use of Heimerdinger in the catalogue, because the Armory carries no restriction clause and so R30 never comes up. CORRECTED 2026-09-06 by the #48 walk (docs/phase0/walks/2026-09-06-token-lens-candidates.md): notable[2] said this line 'reaches seven in two turns from an empty board', which was measured without counting Herald of the Arcane's own exhaust — Armory 3 + Heimerdinger 3 + the legend 1 is seven in ONE turn. Class, uses, quantities and steps are UNCHANGED. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
     },
     {
       "id": "heimerdinger-malzahar-double-power",
@@ -8663,6 +8663,440 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md), issue #47 candidate 7, rewritten. #47 asked for the generic k to be redone against a real list rather than a symbol, and the line that came out needs three cards and one turn instead of a board built over several. Its second refutation point is deleted outright: the Sacrifice trap it feared is domain-illegal in Fury/Body. Trap check: no [Repeat]; no [Temporary]; the +1s are Might modifiers and not Buffs, so 702.3's one-buff-per-unit cap never engages; no attack designation is needed; no rune recycled; no Energy carried across a Main Phase boundary (167). Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
+    },
+    {
+      "id": "corina-svellsongur-plaza",
+      "name": "Corina Veraza × Svellsongur — the two-card Grand Plaza",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "When you hold here, if you have 7+ units here, you win the game. Rule 195 grants the win."
+        },
+        {
+          "card": "SFD-179",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E7 P1 M6. '[Accelerate] … When I move to a battlefield, play three 1 Might Recruit unit tokens here.' Three tokens on one event is the maximum in the pool; the 13 other cards that drop tokens 'here' drop one or two."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, [Equip] 1 Energy + 1 Calm Power. Copies Corina's text into its Effect Text; 434.1.c appends it to her Rules Text and 053.1 re-reads 'I' on her, so she carries the move trigger twice."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Order — Emperor of the Sands (SFD-247), Radiant Dawn (OGN-261), Green Father (UNL-195) or Eye of Twilight (VEN-147). None carries a ban marker."
+        ],
+        "notable": [
+          "The Grand Plaza must be the battlefield in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5).",
+          "EIGHT UNITS, NOT SEVEN — issue #48's own count was one body short, in this entry's favour. The Recruits are played 'here', and 355.2.a makes a battlefield valid only if you control it, so the Plaza must be conquered BEFORE Corina walks in: 190.3.a.1 Contested → 344.2 Showdown at the next Cleanup → 348.2.a Control → 348.2.a.1 Conquer. That conquering body is still standing (its Standard Move exhausted it this turn, 144.2) and 323.6 requires a unit to keep occupying the Plaza anyway. Board at the Hold: conqueror + Corina + 6 Recruits = 8, one over the bar. The catalogue counts pre-existing bodies the same way — flurry-of-feathers-grand-plaza-win counts three units already there plus four Birds to reach exactly 7.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. One Svellsongur gives Corina two instances of 'when I move to a battlefield, play three Recruits here' (434.1.c; and #45's composition result 2^v is 2 for v = 1, the same number the additive reading gives, so nothing here turns on which formula you use). One Standard Move, 2 instances × 3 = 6 Recruits, all at the Plaza because 359.3.f.2 reads 'here' on execution. Cost 12 Energy + 4 Power on two cards: Corina 7E + 1P, [Accelerate] 1E + 1 Order Power (she enters exhausted, 143.4, and the Standard Move costs exhausting her, 144.2), Svellsongur 3E + 1P and [Equip] 1E + 1 Calm Power. Against noxian-drummer-eye-svellsongur-plaza — 5 cards, 10 Energy + 5 Power, 10 units — this is three cards and one Power cheaper for two fewer bodies.",
+          "THE FORGOTTEN SIGNPOST DOES NOT STACK HER RECRUITS, and issue #58's reading of it as '2 moves × 6 = 12 at the Plaza' is wrong. UNL-045 Forgotten Signpost (Calm, E2, '[Action][>] Exhaust a unit you control, [exhaust]: Move a different unit you control to the location of the unit you exhausted') is a genuine effect move — 144.4 restricts destinations only for the Standard Move and 420.3.a puts the exhaust cost only there, so it moves an exhausted unit battlefield-to-battlefield. But Corina's tokens are played 'here', read at execution (359.3.f.2), so each landing drops its six at whatever battlefield she landed on; two landings are two different battlefields and the Plaza receives only the final six. What the Signpost genuinely buys: Corina no longer needs [Accelerate] (−1 Energy, −1 Order Power, +2 Energy for the gear), at the price of needing a READY friendly unit already at the destination to pay the cost — which means conquering the Plaza a turn earlier so the conqueror readies in your Awaken (315.1.b) — and it exhausts itself, so it is one extra move per turn cycle, not a loop.",
+          "THE UPGRADE THAT BUYS MARGIN. SFD-153 Eye of the Herald attached to Corina BEFORE Svellsongur makes each instance worth 3 + 1 = 4, so 2 × 4 = 8 Recruits, + Corina + conqueror = 10, for +1 Energy and +1 Order Power. Same shape as the Drummer entry, and the answer if the opponent holds a sweeper.",
+          "MARGIN 1 IS A MARGIN AGAINST SPOT REMOVAL, NOT AGAINST A SWEEPER. OGN-133 Flurry of Blades (Body, E1, '[Reaction] Deal 1 to all units at battlefields') kills all six 1 Might Recruits and a 1 Might conqueror for a single Energy. And there is no answer in the window: 315.2.b.2 puts the Hold in the Scoring Step of your Beginning Phase, 312.2.a gives Priority in a Neutral Open State only during the Main Phase, and 383.2.a.1 makes 'if you have 7+ units here' part of the Trigger Condition, measured when the trigger is placed. The eight must survive the opponent's whole turn.",
+          "The Recruits carry no [Temporary] (187.1), so 816.1.b never touches them, and they enter exhausted (143.4), which does not matter for Holding."
+        ]
+      },
+      "steps": [
+        "Play Svellsongur (3 Energy + 1 Power). Gear enters ready — 143.4 exhausts units only.",
+        "Play Corina Veraza for 7 Energy + 1 Power, paying [Accelerate]'s extra 1 Energy + 1 Order Power so she enters ready and can use her Standard Move this turn.",
+        "Attach Svellsongur to Corina: 1 Energy + 1 Calm Power. Her Rules Text now carries the move trigger twice (434.1.c, 053.1).",
+        "Still in the same Main Phase, walk any cheap body into The Grand Plaza while it is uncontrolled and take it: 190.3.a.1 → 344.2 → 348.2.a → 348.2.a.1. The Plaza is yours, with that body on it.",
+        "Standard-Move Corina from base to the Plaza (144.1.a, exhausting her as the cost, 144.2). Both instances resolve and six Recruits join her there — eight friendly units in total.",
+        "Survive one opponent turn with 7+ units there. At your next Beginning Phase you Hold the Plaza (315.2.b.2), its trigger finds eight units, and rule 195 gives you the game."
+      ],
+      "terminatesIn": "win the game at the next Hold",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Token lens — issue #48 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/48",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-token-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-token-lens-candidates.md), issue #48 candidate 1, with TWO corrections to the candidate. (1) Its arithmetic reached 'exactly 7, no margin' by forgetting the body that conquered the Plaza, which 355.2.a makes mandatory and 323.6 makes permanent — the real count is 8. (2) The Forgotten Signpost claim carried over from issue #58 ('2 moves × 6 = 12') does not concentrate at the Plaza, because 359.3.f.2 reads 'here' at execution and each landing is a different battlefield; the Signpost's real value is replacing [Accelerate] with an effect move, and that is what the notable now says. Depends on no unruled reading: R6 = A and the #45 composition both give 2 instances for one Svellsongur, and so does the plain additive count. Card text verbatim from data/corpus_flat.txt."
+    },
+    {
+      "id": "blood-money-bird-industrialist-power-spike",
+      "name": "Blood Money × Renata Glasc, Industrialist — a body into two Power, at [Action] speed",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-162",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order spell, E2. '[Action] Kill a unit at a battlefield with 2 Might or less. … If it was a friendly unit, play two Gold gear tokens exhausted.' The only card in the pool that converts a body into Power."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order UNIT (not a legend), E4 P1 M4. 'Your tokens enter ready.' R25 = A (ruled 2026-09-04) on this exact wording: she beats a token-maker's printed 'exhausted'. Without her, 187.5's exhaust cost makes the two Gold next-Awaken Power (315.1.b)."
+        },
+        {
+          "card": "UNL-033",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E4 M3. 'When you play me, play a 1 Might Bird unit token with [Deflect] here.' The Bird is the fuel; 'here' is where the Hunter is played, so he must be played to a battlefield you control (355.2.a) — a Bird at your base is not 'a unit at a battlefield'."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "gold-engine",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Order — SFD-247 Emperor of the Sands, OGN-261 Radiant Dawn, UNL-195 Green Father, VEN-147 Eye of Twilight. The same identity as corina-svellsongur-plaza, so the two share a deck."
+        ],
+        "notable": [
+          "TWO POWER FOR TWO ENERGY, THE SAME TURN, WITH ZERO POWER INVESTED. Blood Money kills your own 1 Might Bird (1 ≤ 2), pays two Gold, and Renata makes them enter ready under R25 = A, so 187.5's 'Kill this, [exhaust]: [Add] [A]' is payable immediately. This is the only body-to-Power converter in the catalogue.",
+          "MEASURED AGAINST THE TWO BENCHMARKS THE PROJECT ALREADY FIXED. A Seal (OGN-040/081/120/163/204/245, E0 P1) costs 1 Power to install and returns 1 Power per turn: it wins over a long game, and Blood Money wins on the turn you need the Power, because it installs for 0 Power and pays 2 at [Action] speed. And it does NOT move the ~9-Energy-per-Power loop rate of the #21 ledger — loops spend per PASS and this pays once per copy, three times per game at 103.2.b's cap.",
+          "THE FUEL HAS TO BE AT A BATTLEFIELD, WHICH IS THIS LENS'S WHOLE BOTTLENECK. Issue #48 measured that 18 of the 49 token makers put their tokens 'at your base', where Blood Money cannot reach them. Frisky Hunter is the cheapest self-contained answer in Calm/Order: 4 Energy for a 3 Might body plus a disposable 1 Might Bird at the battlefield, and under Renata the Bird enters ready too (187.7 also gives it [Deflect]).",
+          "323.6 IS THE TRAP: 'Players lose control of any controlled Battlefields without their Units occupying them.' Never kill the last friendly body at a battlefield you control — the Hunter himself is what keeps it. UNL-077 Soul Shepherd ('Your token units have +1 Might') is anti-synergistic: it pushes 2 Might Sand Soldiers to 3 and out of Blood Money's filter.",
+          "VIKTOR, LEADER (OGN-246) ADDS A REFUND BUT NOT AN ENGINE, which is why issue #48's candidate 3 is not a separate entry. Killing the Bird is 'another non-Recruit unit you control dies' and pays a Recruit — 383.2.c.2 is the rules' own worked example on this card. But the Recruit is played 'into your base', and Blood Money needs 'a unit at a battlefield', and it is a Recruit, so Viktor never fires on it. One base body per cast, no repetition.",
+          "It works on an enemy unit too, for half: 'If it was an enemy unit, play a Gold gear token exhausted' — one Gold instead of two, plus the removal."
+        ]
+      },
+      "steps": [
+        "Have Renata Glasc, Industrialist on the board (4 Energy + 1 Power).",
+        "Play Frisky Hunter to a battlefield you control (4 Energy): a 3 Might body, plus a 1 Might Bird with [Deflect] there, entering ready because of Renata.",
+        "Play Blood Money for 2 Energy and choose your own Bird (1 Might ≤ 2). Two Gold gear tokens are played; Renata makes them enter ready (R25 = A).",
+        "Kill each Gold and exhaust it (187.5): +2 rainbow Power, in the same Main Phase, with the Hunter still occupying the battlefield so 323.6 does not take it back."
+      ],
+      "netPerIteration": "+2 rainbow Power for 2 Energy and one disposable body, once per copy of Blood Money",
+      "terminatesIn": "engine only — Blood Money is a spell and pays once per copy; it fuels a turn, it does not loop",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Token lens — issue #48 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/48",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-token-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-token-lens-candidates.md), issue #48 candidate 2, and it absorbs candidate 3 (viktor-leader-blood-money-refill), which was REFUTED as a standalone entry in the same walk: Viktor's refund lands at the base, cannot be Blood Money fuel, and is a Recruit so it never re-triggers him — that is a notable here, not a mechanism. Stands on R25 = A only, already ruled. Distinct from treasure-hunter-industrialist-gold, black-market-broker-bandle-tree-gold and yeti-brambleback-renata-gold, which share Renata but make their Gold off a move, off a facedown flip and off a conquer; this one is the only line that pays Power for a body. Card text verbatim from data/corpus_flat.txt."
+    },
+    {
+      "id": "chemtech-cask-broker-double-gold",
+      "name": "Chemtech Cask × Black Market Broker under Swift Scout — one Energy in, two Power out",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-063",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind gear, E1. 'When you play a spell on an opponent's turn, you may exhaust me to play a Gold gear token exhausted.' The only card in the pool that charges for a spell on the opponent's turn, and the only Power source whose installation cost never touches Power."
+        },
+        {
+          "card": "SFD-121",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos unit, E3 M3. 'When you play a card from face down, play a Gold gear token exhausted.' 811.1.c.3 makes 'from facedown' and 'from Hidden' the same event."
+        },
+        {
+          "card": "OGN-094",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind spell, E3, [Hidden]. 'Play a ready 3 Might Sprite unit token with [Temporary].' It chooses no targets, so 811.1.d.2 never bites, and 811.1.d.3 puts the Sprite at the hiding battlefield. It is a SPELL, which is what the Cask requires."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "gold-engine",
+        "resource-engine"
+      ],
+      "legends": [
+        "OGN-263"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend is Swift Scout (OGN-263), Mind/Chaos — 'You may pay 1 Energy to hide a card with [Hidden] instead of 1 rainbow Power.' Three other Mind/Chaos legends exist (SFD-199, UNL-197, VEN-151) and the line runs under them too, but without the Energy-for-Power swap it only breaks even."
+        ],
+        "notable": [
+          "IT CANNOT BE FOLDED INTO black-market-broker-bandle-tree-gold, and issue #48 suggested exactly that. Chemtech Cask is MIND; that entry's identity is Order/Chaos, forced by its Order payload SFD-154 Guards! and its legend VEN-155 Heart of the Tempest, the only Order/Chaos legend. 103.1.b.1: 'Cards included in your deck must abide by your Domain Identity.' The Cask is illegal in that deck, so this is its own line on its own identity.",
+          "SWIFT SCOUT IS WHAT MAKES THE CASK PROFITABLE INSTEAD OF NEUTRAL. Issue #48 refuted the Cask on the grounds that hiding costs 1 rainbow Power (811.1.b) and the Cask hands back exactly 1 Gold. Under Swift Scout the hide is paid in ENERGY and the Cask still pays in POWER, so the cycle converts rather than breaking even.",
+          "THE CYCLE, WITH THE QUANTITIES DECLARED. Your turn: hide Sprite Call for 1 Energy. The opponent's turn: play it from facedown for 0 (811.1.b, and 811.6 gives it [Reaction] so the window exists). That one flip is 'a card played from face down' for the Broker (1 Gold) and 'a spell played on an opponent's turn' for the Cask (1 Gold), and Sprite Call itself leaves a ready 3 Might Sprite at that battlefield. Your Awaken (315.1.b) readies both Gold: +2 rainbow Power for 1 Energy and one card.",
+          "THE GOLD IS NEXT-TURN POWER HERE, and the entry does not pretend otherwise. Renata Glasc, Industrialist would make it immediate under R25 = A, but she is Order and cannot be in a Mind/Chaos deck. 187.5 makes the Gold's ability cost an exhaust, and an exhausted gear cannot pay it.",
+          "THE CASK IS ONCE PER TURN CYCLE. 'You may exhaust me' is the cost, and it readies in your Awaken (315.1.b), so a second flip in the same cycle collects only the Broker's Gold.",
+          "THE CEILING IS THE [Hidden] CARD, NOT THE SLOT — the same bound black-market-broker-bandle-tree-gold records. Each cycle burns one. OGN-264 Guerilla Warfare (Mind/Chaos, E2 P1, 'Return up to two cards with [Hidden] from your trash to your hand. You can hide cards ignoring costs this turn.') is the only recursion in the identity and buys two more cycles per cast; it is why this is an ENGINE and not a one-shot.",
+          "323.7 IS THE REAL PRICE OF HIDING: a Cleanup 'Remove[s] all Hidden cards from all Battlefields that are not controlled by the same player and place[s] them in their owner's Trash', and 466.5.c repeats it the instant somebody establishes Control. Losing the battlefield does not stall the engine — it eats the card. 811.1.b also only lets you hide at a battlefield you control at all, and 419.4.a.1 pays nothing for a countered flip.",
+          "THE CASK ALSO WORKS WITHOUT [Hidden]: any spell you play on the opponent's turn triggers it. Ten 1-Energy [Reaction] spells in the pool carry no Power in their cost, but only FOUR are legal beside the Cask under Mind/Chaos — OGN-095 Stupefy, OGN-104 Retreat, VEN-061 Decree of Insight (Mind) and OGN-169 Gust (Chaos). The other six are Calm, Body or Order."
+        ]
+      },
+      "steps": [
+        "Establish Control of a battlefield; 811.1.b only lets you hide at one you control.",
+        "Play Chemtech Cask (1 Energy, gear, enters ready under 143.4) and Black Market Broker (3 Energy).",
+        "On your turn, hide Sprite Call there: 1 Energy under Swift Scout instead of 1 rainbow Power.",
+        "On the opponent's turn, the moment a chain exists, play it from facedown for 0 (811.1.b, 811.6).",
+        "Collect: Broker 1 Gold, Cask 1 Gold (exhausting the Cask), plus a ready 3 Might Sprite at that battlefield.",
+        "At your Awaken (315.1.b) both Gold and the Cask ready. Kill and exhaust each Gold for 1 rainbow Power each (187.5)."
+      ],
+      "netPerIteration": "+2 rainbow Power and a 3 Might ready body per turn cycle, for 1 Energy and one card with [Hidden]",
+      "terminatesIn": "engine only — one flip per slot per turn (811.1.b) and one card with [Hidden] burned per cycle; Guerilla Warfare returns two per cast, so it runs for a stack of turns and then stops",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Token lens — issue #48 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/48",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-token-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-token-lens-candidates.md), issue #48 candidate 4, REWRITTEN twice over. (1) The candidate's headline proposal — fold the Cask into black-market-broker-bandle-tree-gold as a correction — is illegal under 103.1.b.1, because the Cask is Mind and that deck is Order/Chaos; the walk killed it rather than shipping it. (2) The candidate then refuted the Cask as neutral, because hiding costs 1 Power and the Cask returns 1 Gold; OGN-263 Swift Scout, a legend of the very identity the Cask forces, pays the hide in Energy instead, which the candidate never priced. Depends on no unruled reading. Card text verbatim from data/corpus_flat.txt."
+    },
+    {
+      "id": "eminent-benefactor-sentinel-gold",
+      "name": "Eminent Benefactor × Blue Sentinel — four Gold a Hold, and the body is the payload",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-152",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 M5. 'When I hold, play two Gold gear tokens exhausted.' 383.4.d.1 gives this as the standard Hold-trigger wording and 383.4.d.2.a requires the unit to be present at the battlefield during the Hold — which his 5 Might body is doing anyway, since 323.6 needs a unit occupying it."
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M4. 'Your hold effects for holding here trigger an additional time.' R1 = A with stacking. Its own 'When I hold, [Add] 1 rainbow at the start of your next Main Phase' is itself a hold effect and is doubled too."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "gold-engine",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order — OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-201 Chem-Baroness, UNL-199 Deceiver."
+        ],
+        "notable": [
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. K = 1 Sentinel, so each hold effect fires 1 + K = 2 times. The Benefactor's trigger: 2 × 2 Gold = 4 Gold per Hold. The Sentinel's own trigger: 2 × 1 rainbow = 2 Power at the start of your next Main Phase. Cost 10 Energy + 1 Power, on two cards.",
+          "THE GOLD IS NEXT-TURN POWER, WHICH ISSUE #48 DID NOT SAY. 315.1 Awaken comes BEFORE 315.2 Beginning Phase, so the Gold created by the Hold (315.2.b.2) enters exhausted and stays exhausted for the whole of that turn — 187.5 makes its ability cost an exhaust and an exhausted gear cannot pay it. In steady state the board does yield 4 Gold-Power plus 2 Sentinel-Power per turn, but the Gold half is offset by one turn and the first Hold pays nothing spendable. world-atlas-sentinel-gold carries the identical correction. Renata Glasc, Industrialist would remove the offset under R25 = A and she is Order, so she is legal here — at the price of a third card and 4 Energy + 1 Power.",
+          "DIFFERENT LINE FROM world-atlas-sentinel-gold, NOT A CHEAPER VERSION OF IT. That entry (2 × SFD-086 + this Sentinel) makes 8 Gold per Hold, but the Atlas is Equipment: it needs TWO more units to hang on and 2 Mind Power of [Equip], so it asks for three units at the battlefield and 3 Power. The Benefactor IS the body: two units, 1 Power, half the Gold.",
+          "IT PRODUCES PER TURN AND LOOPS SPEND PER PASS, so it does not touch the ~9-Energy-per-Power rate of the #21 loop ledger. Against the Seal benchmark (E0 P1, 1 Power to install for 1 Power a turn) it is 1 Power invested for 6 a turn, but only while you hold that battlefield.",
+          "SFD-201 Chem-Baroness is the best legend of the four: 'When you or an ally hold, you may exhaust me to play a Gold gear token exhausted' is itself a hold effect the Sentinel doubles, and 'While your score is within 3 points of the Victory Score, your Gold [Add] an additional 1 Energy'.",
+          "383.4.d.2.c is a bonus neither card claims: 'If the act of gaining one point from Holding is negated or replaced in any way, the Hold Effect will still trigger.'"
+        ]
+      },
+      "steps": [
+        "Get Eminent Benefactor (6 Energy) and Blue Sentinel (4 Energy + 1 Power) onto the same battlefield and establish Control of it.",
+        "Survive to your Beginning Phase. In the Scoring Step (315.2.b.2) you Hold it.",
+        "The Benefactor's hold trigger fires twice (R1 = A): four Gold gear tokens, exhausted.",
+        "The Sentinel's own hold trigger fires twice: 2 rainbow Power at the start of your next Main Phase.",
+        "The four Gold ready at your NEXT Awaken (315.1.b). From then on, kill and exhaust each for 1 rainbow Power (187.5) while the previous Hold banks four more."
+      ],
+      "netPerIteration": "+4 Gold per Hold (spendable from the following Awaken) and +2 rainbow Power at the start of your next Main Phase",
+      "terminatesIn": "engine only — Power and Gold, no points; it converts through Power Nexus (SFD-214) or any Power sink",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Token lens — issue #48 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/48",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-token-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-token-lens-candidates.md), issue #48 candidate 5, with ONE correction: the candidate published '6 Power por turno' without saying that four sixths of it is next-turn Power, because the Awaken (315.1) precedes the Hold (315.2.b) and the Gold enters exhausted. Stands on R1 = A, ruled 2026-09-03. Card text verbatim from data/corpus_flat.txt."
+    },
+    {
+      "id": "azir-sovereign-token-gather",
+      "name": "Azir, Sovereign — the only card that empties your base onto a battlefield",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-177",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 M4, [Accelerate] 1 Energy + 1 Order Power. 'When I attack, you may move any number of your token units to this battlefield.' Issue #48 measured the whole pool: this is the only card that relocates tokens in bulk."
+        }
+      ],
+      "needs": [
+        "token-body-engine"
+      ],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Order. Azir is mono-Order, so any legend with Order runs him."
+        ],
+        "notable": [
+          "THIS IS THE ANSWER TO THE BOTTLENECK OF THE WHOLE TOKEN LENS. Issue #48 read all 49 cards that create unit tokens: 18 say 'at your base' outright and can never reach a battlefield on their own, and points are scored at battlefields. Azir moves any number of them in one action.",
+          "THE MOVE IS AN EFFECT MOVE, WHICH IS WHY IT WORKS ON TOKENS THAT CANNOT WALK. 420.1 and 420.2.a make an effect move the primary kind of Move; 144.4 restricts destinations only 'with their Standard Move' and 420.3.a puts the exhaust cost only there. So the tokens move EXHAUSTED and they move battlefield-to-battlefield without [Ganking] (810.1.c.3: Ganking 'does not give additional abilities or activations of Movement, only new options for the Standard Move').",
+          "THE TRAP HOLDS AND IT SHAPES THE ENTRY. 'When I attack' is an Attack Trigger (383.4.e: it fires 'when a Unit or Player gains the Attacker designation for the first time during a combat'), 807.1.d defines being an attacker as having gained that designation during Combat, and 461 makes a Combat exist only when units of two opposing players are at a battlefield. Walking into an EMPTY enemy battlefield is not an attack and the ability never exists.",
+          "AND THE DESTINATION IS ALWAYS SOMEBODY ELSE'S BATTLEFIELD, SO THE RESULT IS A CONQUER, NOT A HOLD. 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield', and 190.3.a.1 applies Contested only when the mover does not already control it. Winning gives Control and 466.5.d makes that a Conquer.",
+          "THE REINFORCEMENTS DO JOIN THE FIGHT. 464.2.c.3.a: 'If a Unit controlled by the Attacker or Defender becomes present at this Battlefield after this moment, it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present.' So the tokens Azir drags in are Attackers by the damage step.",
+          "FOR A GRAND PLAZA FINISH IT IS A TWO-TURN ROUTE, NOT A REMATE. The Plaza has to be in the opponent's hands WITH a garrison; you conquer it with the swarm, and only at your next Beginning Phase does 315.2.b.2 Hold it with 7+ present — so the swarm must survive the opponent's whole turn (383.2.a.1 measures the count when the trigger is placed).",
+          "'You may' makes it optional (383.3.a), and it is once per combat: 383.4.e says the trigger fires when the designation is gained 'for the first time during a combat'."
+        ]
+      },
+      "steps": [
+        "Bank token units anywhere — at your base is fine, and 18 of the 49 token makers leave them nowhere else.",
+        "Play Azir, Sovereign (4 Energy), paying [Accelerate]'s 1 Energy + 1 Order Power if you want him to move the same turn (143.4, 144.2).",
+        "Standard-Move Azir into a battlefield you do not control that HAS enemy units. 190.3.a.1 applies Contested and 464.2.c.1 makes you the Attacker.",
+        "His attack trigger resolves: move any number of your token units there. They arrive exhausted and it costs nothing (420.3.a binds only the Standard Move).",
+        "464.2.c.3.a gives them the Attacker designation at the following Cleanup, so they fight; winning establishes Control, which 466.5.d makes a Conquer."
+      ],
+      "netPerIteration": "every banked token, moved onto one contested battlefield, for 0 Energy and 0 Power",
+      "terminatesIn": "engine only — it relocates bodies and conquers; the win comes from what the bodies then do, e.g. a Grand Plaza hold on the following turn",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Token lens — issue #48 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/48",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-token-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-token-lens-candidates.md), issue #48 candidate 6. The candidate's own framing survives intact and the walk adds the rule that makes it worth an entry: 464.2.c.3.a, which gives the late-arriving tokens the Attacker designation, so the drag is reinforcement and not just relocation. Trap 1 of the project's authoring traps is applied in full rather than worked around. Depends on no unruled reading. Card text verbatim from data/corpus_flat.txt."
+    },
+    {
+      "id": "viktor-leader-sprite-queen-free-bodies",
+      "name": "Viktor, Leader × Sprite Queen — a permanent body every turn, paid for by a token that dies on schedule",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-246",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order unit, E4 P1 M4. 'When another non-Recruit unit you control dies, play a 1 Might Recruit unit token into your base.' The Core Rules use this exact card as the worked example at 383.2.c.2."
+        },
+        {
+          "card": "UNL-084",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind unit, E7 P1 M6. 'When you play me or at the start of your Beginning Phase, play a ready 3 Might Sprite unit token with [Temporary] to your base.' 187.2: the Sprite token carries the Fae tag, not Recruit — which is the whole point."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order — OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-201 Chem-Baroness, UNL-199 Deceiver."
+        ],
+        "notable": [
+          "THE TAG IS THE MECHANISM. 187.2 makes the Sprite 'a domainless unit token with 3 Might, the Fae tag, and the Temporary keyword' — Fae, not Recruit — so its death is 'another non-Recruit unit you control dies' and Viktor pays. 383.2.c.2 is the rules' own worked example on Viktor and confirms the trigger fires as long as Viktor himself survives the same game action. 186.1 does not interfere: the token reaches the Trash and only then ceases to exist, so it did die.",
+          "THE CLOCK IS THE [Temporary] KEYWORD, WHICH IS NORMALLY THE DRAWBACK. 816.1.b reads '[Temporary]' as 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this' — the same instant at which Sprite Queen's own trigger plays the replacement. Both are yours, so 383.3.d lets you order them, and the order does not matter.",
+          "PER TURN, AFTER THE SETUP, FOR 0 ENERGY AND 0 CARDS: the old Sprite dies and Viktor pays a permanent 1 Might Recruit into your base, and Sprite Queen plays a fresh ready 3 Might Sprite. Setup is 11 Energy + 2 Power (Sprite Queen 7E + 1P, Viktor 4E + 1P), which is slow, and the entry is ENGINE and claims nothing more.",
+          "TRAP 4, APPLIED: the Sprites are [Temporary] and are killed BEFORE scoring (816.1.b), so they never Hold and never see a Main Phase start. Only the Recruits are permanent (187.1) and only they can Hold.",
+          "AND THE RECRUITS ARE BORN AT YOUR BASE, WHICH IS THIS LENS'S STRUCTURAL FINDING. Viktor's text says 'into your base' outright. A Grand Plaza finish therefore needs a Standard Move per body — one per turn each, exhausting each of them (144.2, 144.4.a) — or azir-sovereign-token-gather, the only bulk relocation in the pool.",
+          "The Sprite is played READY (the card says so, overriding 143.4), so it defends the turn it appears — a 3 Might blocker every turn for free is most of what this line does before the Recruits add up."
+        ]
+      },
+      "steps": [
+        "Play Viktor, Leader (4 Energy + 1 Power).",
+        "Play Sprite Queen (7 Energy + 1 Power). Her own play trigger gives the first ready 3 Might Sprite with [Temporary], at your base.",
+        "At the start of each of your Beginning Phases both triggers fire: the previous Sprite is killed (816.1.b) and a new one is played. Order them as you like (383.3.d).",
+        "The dead Sprite is a non-Recruit friendly unit, so Viktor plays a 1 Might Recruit into your base (383.2.c.2).",
+        "Walk the Recruits out to a battlefield one per turn each (144.4.a), or gather them in bulk with azir-sovereign-token-gather."
+      ],
+      "netPerIteration": "+1 permanent Recruit at your base and +1 ready 3 Might Sprite per turn, for 0 Energy and 0 cards",
+      "terminatesIn": "engine only — one free body a turn; the bodies still have to walk to a battlefield to be worth points",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Token lens — issue #48 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/48",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-token-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-token-lens-candidates.md), issue #48 candidate 7. The candidate's arithmetic and class both survive unchanged; the walk adds 187.2 (the Sprite carries the Fae tag, which is what makes it non-Recruit) and 383.2.c.2 (the Core Rules' own worked example on Viktor). Depends on no unruled reading. Card text verbatim from data/corpus_flat.txt."
     }
   ]
 }
