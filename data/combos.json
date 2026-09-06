@@ -10126,6 +10126,316 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-movement-lens-candidates.md), issue #58 refutation R3, OVERTURNED. The candidate was blocked on the undefined printed term 'open battlefield' (the project's reading R31). It never needed a vote: Riot's own Spiritforged errata rewrote the term as 'a battlefield that was uncontrolled' on Yone, Blademaster, and that errata is already transcribed in data/errata.json. R31 is retired, open = without a Controller, and the scope caveat (Yone is a conquer text; the five surviving cards are play/move texts Riot has not reworded) rides in the first notable rather than in the walk only. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.4.c, 107.4.c, 144.4, 190.1, 190.3.a.1, 312.2.a, 315.2.b.2, 323.6, 323.8, 323.9, 323.12, 348, 348.2.a, 348.2.a.1, 383.2.a.1, 414.1.b, 420.2, 420.2.a, 420.3.a, 450, 464.2.c.3, 471.1, 485.5, 486.5, 487.5, 810.1.c.3. Ban check: SFD-079, OGN-293 and SFD-177 carry no [BANNED marker. Arithmetic against its own declared quantity: one card, one activation, 4 Energy + 1 Mind Power, uncapped bodies; Bard plus six banked tokens is exactly the Plaza's seven. Trap check: no Combat is ever staged so no attack is claimed (trap 1); no [Repeat]; no [Temporary]; no recall used as a move; no Awaken Energy carried across a phase. Depends on no unruled reading — R31 is retired by rules evidence, not voted."
+    },
+    {
+      "id": "threshold-reveler-infinite-energy",
+      "name": "Threshold of the Gray pays every combat — two Revelers attack forever, 1 Energy a pass",
+      "class": "INFINITE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-166",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BOARD",
+          "note": "Colorless battlefield. 'When combat starts here, the attacker and defender each [Add] 1 Energy.' It fires in the Combat Showdown Step (464.2.b, 'Start of combat or showdown effects happen now'), so a fresh combat each pass is a fresh Energy. Its text names no 'you', so 190.6.d never blanks it: the opponent controls the ability (190.6.a) and still pays you."
+        },
+        {
+          "card": "VEN-020",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury unit, E3 M3. 'When I attack, ready another friendly unit.' The two alternate: the one that moves exhausts (144.2, 420.3.a), and the other's attack trigger readies it back. Exactly one is ready at any moment, and it is always the one that has to move next."
+        },
+        {
+          "card": "UNL-042",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Calm spell, E3. '[Stun] a unit. … If you played this from your hand, draw 1.' ONE copy covers the whole turn: 423.1.a.2 clears Stunned only 'during step 3d of the end of turn cleanup'."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "infinite-energy"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Fury and Calm, and the pool holds exactly ONE such legend: VEN-139 Rogue Assassin (Akali), which is the legend both sources play. Facebreaker cannot replace Back Off — it is Order and the deck would need three domains (103.1.b.1)."
+        ],
+        "notable": [
+          "THE BATTLEFIELD IS RANDOM AND CANNOT BE DOUBLED UP: random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 both forbid a second copy of a battlefield by name.",
+          "THE OPPONENT MUST ALREADY CONTROL THRESHOLD. 466.5 has the player with units remaining 'Establish Control if they didn't already control this Battlefield', and 466.5.d turns Establishing Control into a Conquer. If it was not already theirs, the recall leaves only their units there and every pass hands them a free point.",
+          "EXACTLY ONE ENEMY DEFENDER, OF 4+ MIGHT. 4+ because the only attacker each pass is one 3 Might Reveler and 465.2.c assigns 'an amount of damage equal to their summed Might', so 3 is never lethal against 4. Exactly one because Back Off stuns exactly one unit, and any un-stunned enemy Might there kills the 3 Might Reveler. This is a condition on the OPPONENT'S board and it is the entry's real fragility, the same shape twilight-reveler-eye-facebreaker-recruits carries.",
+          "BACK OFF CANNOT BE HIDDEN FOR THIS. Its [Hidden] route is 0 Energy but 811.1.b only lets you hide 'at a battlefield you control', and 811.1.d.2 restricts a hidden spell's targets to that battlefield. The defender stands at the OPPONENT'S Threshold, so the hidden line has no legal target and the stun has to be paid from hand: 3 Energy, which also draws 1.",
+          "THE BATTLEFIELD PAYS THE OPPONENT TOO, AND NO SOURCE WEIGHS IT. 'the attacker and defender each [Add] 1 Energy' is symmetric, so the loop floats the opponent unbounded Energy during your turn, spendable in the Combat Showdown every pass opens (464.2, 347.1). 167 empties their pool at the end of your turn, but not before it. Against a hand with Reaction removal this is the line's sharpest edge over twilight-reveler-eye-facebreaker-recruits, which pays the opponent nothing.",
+          "THE ENERGY DIES WITH THE TURN. 167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.' Everything the loop makes has to be spent in the same Main Phase."
+        ]
+      },
+      "steps": [
+        "First pass only: play Back Off from hand (3 Energy) on the enemy defender. It stays Stunned for the whole turn (423.1.a.2) and the play draws 1.",
+        "Standard Move a Reveler from base into Threshold (144.1.a, 144.4.a). 144.2 and 420.3.a make exhausting it the whole cost — no Energy, no card.",
+        "190.3.a.1 applies Contested; the Cleanup stages the Combat (323.9) and 323.13 opens it from the Neutral Open State.",
+        "464.2.b: Threshold's 'when combat starts here' resolves — +1 Energy to you (and +1 to the opponent).",
+        "464.2.c.3 gives the Reveler the Attacker designation and 383.4.e puts 'When I attack' on the chain: ready the other Reveler, which is the one sitting exhausted in base from its own last pass.",
+        "Damage: 3 assigned to the 4+ Might defender (465.2.c), 0 back, because 423.1.b says a Stunned Unit contributes no might in the damage step.",
+        "Combat Cleanup: 466.1.a.1 heals all units, so the 3 damage never accumulates across passes; 466.1.a.2 recalls the Attackers because Defenders are still present. 466.3.d is No Result and 466.3.d.1 does not re-stage, since only the opponent has units there.",
+        "The Reveler comes home exhausted — 458, a recall does not change state — and 456.1 means the trip home triggers nothing.",
+        "Repeat with the Reveler the attack trigger readied. Every pass is +1 Energy for 0 Energy, 0 Power and 0 cards."
+      ],
+      "netPerIteration": "+1 Energy per pass; 0 Energy, 0 Power and 0 cards spent",
+      "terminatesIn": "unbounded Energy this Main Phase; it empties at the end of the turn (167), so it has to be spent the same turn",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Ritualo, \"How To Combo And Master AKALI│Beginner's Guide│Riftbound Vendetta\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=kHqq9jrCOuE&t=124",
+          "date": "2026-07-22",
+          "quote": "[2:04] I've explained the infinite combo in a different video, but the premise of the combo is to have a stunned unit with at least four might on Threshold of Grey, and have two Twilight Revellers in base. You attack with the one Reveller and use her ability to ready the Reveller in base. Threshold of Grey will trigger and generate an energy, and because your opponent's unit is stunned, your Reveller goes to base. This creates an infinite energy loop. [2:28] Sve[llsongur] engine allow you to do this combo on any battlefield. Combined with Stellacorn Herder, you can draw out your entire deck.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-combat-loop.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-combat-loop.md), issue #62 section 1.2. Card text verbatim from data/corpus_flat.txt; every rule number opened in data/Riftbound-Core-Rules-2026-07-16.txt. THE CHEAPEST MEMBER OF THE RECALL FAMILY: three cards plus a battlefield, against four for twilight-reveler-eye-facebreaker-recruits and five for jhin-fiora-facebreaker-recall, and the only one whose payoff comes from the board rather than from a card. It is also the only one whose defender bar is 4 rather than 5, because nothing else of yours joins the attack — 465.2.c sums the attackers' Might, and here the sum is one 3 Might body. TWO THINGS THE SOURCE DOES NOT SAY AND THE WALK ADDS. (1) The recall that makes it repeat is combat cleanup, not a card: 466.1.a.2 sends the attacker home because defenders remain, which is why no source can name the effect that bounces the Reveler. (2) Threshold is symmetric and pays the opponent the same Energy, every pass, into windows the loop itself opens. That is recorded as the entry's edge, not hidden. Depends on no unruled reading."
+    },
+    {
+      "id": "reveler-svellsongur-jhin-infinite-power",
+      "name": "Svellsongur doubles the ready — Jhin moves on the spare one for Energy AND Power, with no deck to burn",
+      "class": "INFINITE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-020",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury unit, E3 M3. 'When I attack, ready another friendly unit.' One of the two carries the Svellsongur."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm Equipment, E3 P1, [Equip] 1 Energy + 1 Calm Power. Copies the Reveler's text into its own Effect Text, which 434.1.c appends back to the Reveler: TWO instances of the attack trigger, so that Reveler's attack readies two units instead of one. Settled by #45 — v Svellsongur give 2^v instances (477.2.c, 476.1, 479.1, 480.3)."
+        },
+        {
+          "card": "UNL-022",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Fury unit, E4 P1 M4, [Deflect] and [Ganking]. 'When I move, [Add] 1 Energy + 1 rainbow Power.' He spends the spare ready on a Standard Move and NEVER attacks — see the notable on why joining the attack breaks the loop."
+        },
+        {
+          "card": "UNL-042",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Calm spell, E3. '[Stun] a unit.' ONE copy covers the whole turn (423.1.a.2). It has to be this and not Facebreaker: Facebreaker is Order and the other four are Fury and Calm."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "infinite-energy",
+        "infinite-power"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Fury and Calm: VEN-139 Rogue Assassin (Akali), the pool's only one, and the legend the source plays."
+        ],
+        "notable": [
+          "JHIN MUST NOT JOIN THE ATTACK, AND THE SOURCE'S '5 MIGHT' IS WRONG FOR THE VERSION WHERE HE DOES. 465.2.c assigns 'an amount of damage equal to their summed Might' and 465.2.c.3 forces lethal damage onto one unit before any goes elsewhere, so a 3 Might Reveler attacking beside a 4 Might Jhin assigns 5 to a 5 Might defender and kills it. A dead defender means no recall (466.1.a.2 needs Defenders present), the attackers Establish Control (466.5) and the loop stops after one pass. Jhin attacking needs an 8+ Might stunned defender; Jhin bouncing elsewhere needs only 4+, which is the source's own first phrasing ('go to the other battlefield').",
+          "JHIN'S DESTINATION HAS TO STAY YOURS. He bounces base to battlefield and back (144.4.a, 144.4.b) — each leg is a Move (446.1) and each pays only an exhaust. But 323.6 strips your Control of a battlefield the moment none of your units occupy it, and re-entering an uncontrolled one applies Contested (190.3.a.1), which stages and opens a Showdown every single pass (323.8, 323.12) and hands the opponent a priority window each time. Keep any friendly body garrisoning that battlefield and 190.3.a.1 never fires, because you already control it.",
+          "SAME OPPONENT-BOARD CONDITIONS AS THE REST OF THE FAMILY: the attacked battlefield must already be the opponent's (466.5, 466.5.d), with exactly one defender, of 4+ Might, stunned once for the turn. Back Off has to come from hand for 3 Energy — 811.1.b only lets you hide at a battlefield you control and 811.1.d.2 confines a hidden spell's targets to it.",
+          "THE RATE, AND HOW TO DOUBLE IT. One Svellsongur gives three readies per two attacks: two go back to the Revelers and one is spare, so it is +1 Energy and +1 rainbow Power per two attacks. A second Svellsongur on the other Reveler makes it four readies per two attacks, two of them spare, and doubles the rate. One copy is all that unboundedness needs.",
+          "Nothing is drawn and nothing is spent, so Burn Out (431.1.a) has no grip here at all. That is the whole point of the entry."
+        ]
+      },
+      "steps": [
+        "Setup: attach Svellsongur to Reveler A (1 Energy + 1 Calm Power); Reveler B and Jhin in base; a spare friendly body garrisons the battlefield you control.",
+        "First pass only: Back Off from hand (3 Energy) on the enemy defender; it stays Stunned all turn (423.1.a.2) and draws 1.",
+        "A Standard Moves into the enemy battlefield, exhausting (144.2). The Combat stages and opens (323.9, 323.13); 464.2.c.3 designates A the Attacker and 383.4.e puts BOTH instances of 'When I attack' on the chain: ready Reveler B and ready Jhin.",
+        "Damage: 3 to the 4+ Might defender, 0 back (423.1.b). 466.1.a.1 heals, 466.1.a.2 recalls A because defenders remain, 466.3.d is No Result. A comes home exhausted (458).",
+        "Jhin Standard Moves base to your battlefield, exhausting: 'When I move, [Add] 1 Energy + 1 rainbow Power'. 446.1 makes it a Move; 456 keeps the Revelers' recalls from counting as one.",
+        "B attacks. It carries no Svellsongur, so its single trigger readies A.",
+        "A attacks again: ready B and ready Jhin. Jhin moves the other way, battlefield to base (144.4.b), for another Energy and Power. Repeat."
+      ],
+      "netPerIteration": "+1 Energy and +1 rainbow Power per two Reveler attacks; 0 Energy, 0 Power and 0 cards spent",
+      "terminatesIn": "unbounded Energy and unbounded Power this Main Phase, with no card cost and therefore no Burn Out ceiling; 167 empties both pools at the end of the turn",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Frobei - Riftbound, \"New Infinite Loop Deck with Akali\" — la variante con Jhin, con la advertencia del propio autor sobre el Might del defensor",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=HDnIw6NETTI&t=246",
+          "date": "2026-07-17",
+          "quote": "[4:06] So you're going to use J[h]in and go to the other battlefield or if the unit in that is standing on the battlefield has more than four mights, so at least five mights, then you can also go with J[h]in. It doesn't matter. But anyway, he moves. [4:23] And what because he moves, you get one energy and one power, right? Cool. That's the first part of the combo. Now that he moved, you remember that you have the Twilight Revealer that's ready. So she's going to attack to the same battlefield where the unit is standing. [4:44] ready the other revealer with the Sve[llsongur]. And then she goes back to base. Then this one, you repeat the same loop. [5:04] and you do that on repeat. So that's the first part of the loop. You have infinite power, infinite energy.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "YouTube — Ritualo, \"How To Combo And Master AKALI│Beginner's Guide│Riftbound Vendetta\"",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=kHqq9jrCOuE&t=124",
+          "date": "2026-07-22",
+          "quote": "[2:04] I've explained the infinite combo in a different video, but the premise of the combo is to have a stunned unit with at least four might on Threshold of Grey, and have two Twilight Revellers in base. You attack with the one Reveller and use her ability to ready the Reveller in base. Threshold of Grey will trigger and generate an energy, and because your opponent's unit is stunned, your Reveller goes to base. This creates an infinite energy loop. [2:28] Sve[llsongur] engine allow you to do this combo on any battlefield. Combined with Stellacorn Herder, you can draw out your entire deck.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-combat-loop.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-combat-loop.md), issue #62 section 1.3. THE SISTER OF twilight-reveler-svellsongur-stellacorn-draw, AND THE REASON THAT ONE IS ENGINE. Same four-card skeleton with Jhin where the Stellacorn Herder stands. The Stellacorn pays a card per pass, so its own entry hits the wall 431.1.a plus 194.1.d and is classed ENGINE - the source loses a game to exactly that on camera at [23:40] of the same video. Jhin pays nothing, so the ceiling is gone and this one is INFINITE. NOT THE SAME AS jhin-fiora-facebreaker-recall EITHER, and the difference is not cosmetic: that line is Fury plus Order (Facebreaker, Eye of the Herald, Fiora) and this one is Fury plus Calm, so 103.1.b.1 makes each unbuildable in the other's shell. There Jhin is the attacker and Fiora readies him off the Mighty crossing; here Jhin never attacks and the Revelers ready him. TWO CORRECTIONS TO THE SOURCE, both from 465.2.c and 465.2.c.3: its 'at least five mights' is only right while Jhin stays away from the fight, and it never mentions that the battlefield Jhin bounces to has to stay under your Control (323.6) or the loop opens a Showdown every pass. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading; the Svellsongur composition is #45's settled 2^v, not re-derived here."
+    },
+    {
+      "id": "desert-call-vi-sand-soldier-plaza",
+      "name": "Desert's Call recycled by Vi, drawn back by the Stellacorn — unbounded Sand Soldiers onto the Plaza",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-020",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury unit, E3 M3. The ready faucet the whole line runs on: every attack refunds an exhaust somewhere else."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm Equipment. Doubles one Reveler's attack trigger (434.1.c, #45's 2^v), which is what leaves a spare ready every second attack."
+        },
+        {
+          "card": "UNL-022",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BASE",
+          "note": "Fury unit. 'When I move, [Add] 1 Energy + 1 rainbow Power.' Four of his moves pay one Desert's Call."
+        },
+        {
+          "card": "SFD-048",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BASE",
+          "note": "Calm unit, E4 M3. 'When I move, draw 1.' Moved EXACTLY ONCE per pass, to draw back the one card Vi recycled — never twice."
+        },
+        {
+          "card": "OGN-036",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Fury unit, E2 P1 M3. 'Recycle 1 from your trash: Give me +1 Might this turn.' No exhaust in the cost, so 377/378 make it repeatable; 416.6 gives the CHOICE of which card, so the trash does not have to be empty - a correction to the source, which believed Desert's Call had to be the only card there."
+        },
+        {
+          "card": "SFD-031",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E2 with [Repeat] E2. Rule 820.1.d.1's worked example IS this card: paying the Repeat plays the token twice. Two Sand Soldiers for 4 Energy, and 820.1.c.3 caps it there - the Repeat cost is payable once."
+        },
+        {
+          "card": "UNL-042",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Calm spell, E3, from hand. The one stun that keeps the defender harmless for the whole turn (423.1.a.2)."
+        },
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BOARD",
+          "note": "'When you hold here, if you have 7+ units here, you win the game.' It has to be YOUR battlefield, because 355.2.a lets a token with no printed destination be played to a battlefield its controller controls - which is what removes the walk the Sand Soldiers would otherwise need."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game",
+        "infinite-energy",
+        "infinite-power"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains are Fury and Calm: VEN-139 Rogue Assassin (Akali). The Grand Plaza is Colorless, so 103.1.b.1 does not touch it."
+        ],
+        "notable": [
+          "THE PLAZA IS RANDOM AND CANNOT BE DOUBLED UP: random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy by name. Without it the line is still unbounded bodies, but it does not win by itself - 470 caps Scoring at once per battlefield per turn.",
+          "A BATTLEFIELD YOU BRING STARTS UNCONTROLLED (190.1), so taking the Plaza with a body is part of the cost, and that body is also what keeps 323.6 from stripping your Control when Jhin bounces off it.",
+          "MAIN DECK EMPTY, AND THE DRAW LEDGER HAS ZERO SLACK. Each pass recycles exactly one card (Desert's Call, by Vi) and draws exactly one (the Stellacorn's single move). A second Stellacorn move in the same pass draws on an empty deck: 431.1.a Burns Out and 194.1.d hands the opponent a point. The spare readies must go to Jhin, not to a second draw. This is the #59 wall respected, not widened.",
+          "SAME OPPONENT-BOARD CONDITIONS AS THE FAMILY: the attacked battlefield already the opponent's (466.5, 466.5.d), exactly one defender of 4+ Might, stunned once for the turn. Jhin never joins that attack (465.2.c, 465.2.c.3).",
+          "ONE PASS COSTS FIVE SPARE READIES: one for the Stellacorn's draw and four for the Jhin moves that pay Desert's Call's 4 Energy. At one spare ready per two Reveler attacks that is ten attacks per pass - unbounded is still unbounded, and a second Svellsongur halves it.",
+          "THE TOKENS NEED NO WALK, WHICH IS WHY THIS LINE ESCAPES #48's BOTTLENECK. Desert's Call prints no destination, so 355.2.a puts each Sand Soldier straight onto the Plaza. They enter exhausted (143.4) and it does not matter: the Plaza counts units present, not ready ones.",
+          "ONE TURN OF EXPOSURE, LIKE EVERY PLAZA LINE. 383.2.a.1 measures 'if you have 7+ units here' when the Hold trigger is placed, so the bodies must survive the opponent's whole turn. With the count unbounded rather than exactly seven, that is the cheapest version of that risk in the catalogue."
+        ]
+      },
+      "steps": [
+        "Run reveler-svellsongur-jhin-infinite-power first: Back Off from hand, the two Revelers alternating into the opponent's battlefield, Jhin on the spare ready. Take the Plaza with a body and leave it there.",
+        "Bank 4 Energy from four Jhin moves.",
+        "Play Desert's Call for 2 Energy and pay its [Repeat] for 2 more (820.1.d.1): two 2 Might Sand Soldier tokens, played straight to the Plaza (355.2.a). The spell resolves to the trash.",
+        "Activate Vi: 'Recycle 1 from your trash' — choose Desert's Call (416.6) and it goes to the bottom of the Main Deck (416.1.a). Her cost carries no exhaust, so it is repeatable (377, 378).",
+        "Spend ONE spare ready on the Stellacorn Herder and Standard Move it once: draw 1, which is Desert's Call. The Main Deck is empty again and nothing burns out.",
+        "Repeat. Every pass is +2 Sand Soldiers on the Plaza for 0 net cards.",
+        "Stop when the Plaza holds well past 7. Survive the opponent's turn; at your Beginning Phase the Plaza's hold trigger finds 7+ units there and you win the game (195)."
+      ],
+      "netPerIteration": "+2 Sand Soldiers on the Plaza per pass; 4 Energy in, 1 card recycled and 1 card drawn, net 0 cards",
+      "terminatesIn": "win the game at the next Hold",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "YouTube — Frobei - Riftbound, mismo video — la cola de Sand Soldiers, cerrada en partida, con la cautela del autor",
+          "kind": "video",
+          "url": "https://www.youtube.com/watch?v=HDnIw6NETTI&t=1330",
+          "date": "2026-07-17",
+          "quote": "[5:34] You play her [Vi] and you play Desert['s Call]. Desert['s Call] will allow you to have two Sand Soldiers, right? [5:42] Once you have Desert['s Call] played, you will trigger uh V[i] and you will pick Desert['s Call] and put back recycle to your deck. But, that's going to be the only card. [5:55] And since that is done, then you do one more loop with Stella[corn] to draw, and then you draw your Desert['s Call] and you play again. [6:03] And that's the second part of the loop. You can play Desert['s Call] infinitely because you have infinite energy and infinite draw uh with the Revealer stuff, right? [22:26] I have infinite Sand Soldiers, infinite power, infinite energy, and I don't need to draw anymore. [23:49] I think the combo is not consistent enough right now.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Minería por leyenda — issue #62 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/62",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-combat-loop.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-combat-loop.md), issue #62 section 1.3, the tail. WHAT IS THE SOURCE'S AND WHAT IS THE WALK'S, stated plainly: the source builds the token engine on camera and ends at 'infinite Sand Soldiers, infinite power, infinite energy' - it never names a win condition, and it closes with 'I think the combo is not consistent enough right now'. THE GRAND PLAZA FINISH IS THIS WALK'S, and it rests on a rule the source never uses: 355.2.a lets a token with no printed destination be played to a battlefield its controller controls, so the Sand Soldiers are born ON the Plaza and the token bottleneck #48 measured - one Standard Move per body - never arises. THE RECYCLE TARGET IS SAFE FOR A REASON THE SOURCE GUESSES AT AND THE RULES SETTLE: 186 and 186.1 make a token cease to exist the moment it enters any Non-Board Zone, so no Sand Soldier ever reaches the trash and Vi's 'Recycle 1 from your trash' can only ever find real cards; 416.6 then gives the choice to the player, so the trash need not hold Desert's Call alone as the source believes. Its 820.1.c.3 reasoning is right and worth keeping: infinite Energy does NOT let you repeat Desert's Call more than once per cast, which is exactly why the recycle-and-draw cycle is needed at all. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
     }
   ]
 }
