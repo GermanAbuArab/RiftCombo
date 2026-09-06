@@ -9,7 +9,10 @@ import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
 import { planDeck, type Route } from "../src/plan.js";
 import { matchSynergies, planSynergies, type SynergyGap, type SynergyHit } from "../src/synergies.js";
 import type { Card, Combo, Deck, Domain, Feature, Format, LegalityEntry, Synergy, Variant } from "../src/types.js";
-import { accountDeckChanged, gate, initAccount } from "./account.js";
+import { gate, initAccount } from "./account.js";
+import { initDecks } from "./decks.js";
+import { accountsEnabled } from "./supabase.js";
+import type { SavedDeck } from "../src/saved.js";
 import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from "./graph.js";
 import { go, route, startRouter } from "./router.js";
 
@@ -89,6 +92,8 @@ let deck: Deck | null = null;
 let result: MatchResult | null = null;
 let selected: string | null = null;
 let dim = true;
+/** The saved deck Combos is showing, when My decks handed it over. Null for a list pasted here. */
+let analyzing: SavedDeck | null = null;
 
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 const name = (base: string) => cards.get(base)?.name ?? base;
@@ -126,18 +131,21 @@ async function boot() {
   // A `#deck=<list>` link shared before the views existed still opens Combos with that list.
   const opened = route();
   if (opened.legacyDeck) { input.value = opened.legacyDeck; void run(); }
-  initAccount({
-    deckText: () => input.value,
-    format: fmt,
+  initAccount();
+  initDecks({
     cards: () => cards,
-    restore: (deckText, format) => {
-      $<HTMLInputElement>(`input[name=format][value="${format}"]`).checked = true;
-      input.value = deckText;
+    analyze: (saved) => {
+      $<HTMLInputElement>(`input[name=format][value="${saved.format}"]`).checked = true;
+      input.value = saved.deckText;
       urlInput.value = "";
+      analyzing = saved;
       input.dispatchEvent(new Event("input"));
+      go(saved.id ? `#/combos?deck=${encodeURIComponent(saved.id)}` : "#/combos");
       void run("text");
     },
   });
+  // Last, so every listener above is registered before the opening route is dispatched.
+  startRouter();
 }
 
 async function fromUrl(url: string): Promise<Deck> {
@@ -164,9 +172,6 @@ async function run(source: "text" | "url" = "text") {
     // The deck panel stays open after analysing. Collapsing it here used to hide the list the
     // user just pasted, and it widened the stage enough to make the diagram fit at ~54%.
     render();
-    // The list changed by a route that is not typing — Load example, a Piltover link, a saved deck
-    // being restored — and the account panel reads it for the suggested name and the drift line.
-    accountDeckChanged();
     if (source === "text") go(isDeckCode(text) ? `#deck=${encodeURIComponent(text)}` : "#/combos");
     const included = result.included.length;
     const near = Object.values(result).reduce((n, b) => n + b.length, 0) - included;
@@ -513,7 +518,26 @@ function render() {
   renderPlan();
   renderSynergies();
   renderGaps();
+  renderAnalyzing();
   showDetail(selected);
+}
+
+/**
+ * Which list is on screen and what can be done about it. A list opened from My decks names itself and
+ * links back to its detail; a list pasted here offers to become one — and offers it rather than doing it,
+ * because nothing about a list is stored until the player presses Save.
+ */
+function renderAnalyzing() {
+  const strip = $<HTMLElement>("#analyzing");
+  const save = $<HTMLElement>("#save-here");
+  const shown = analyzing !== null && analyzing.deckText === input.value;
+  strip.hidden = !shown;
+  if (shown && analyzing!.id) {
+    strip.innerHTML = `Analyzing <strong>${esc(analyzing!.name)}</strong> · <a href="#/decks/${esc(encodeURIComponent(analyzing!.id))}">edit it</a>`;
+  } else if (shown) {
+    strip.innerHTML = `Analyzing <strong>${esc(analyzing!.name)}</strong>, which is not saved yet.`;
+  }
+  save.hidden = shown || !accountsEnabled || !input.value.trim();
 }
 
 const outcomeColors = (hits: Hit[]) => {
@@ -670,11 +694,17 @@ graphHost.addEventListener("dblclick", (ev) => {
 // --- wiring ---------------------------------------------------------------------------
 form.addEventListener("submit", (ev) => { ev.preventDefault(); void run("text"); });
 $<HTMLButtonElement>("#load-url").addEventListener("click", () => void run("url"));
-$<HTMLButtonElement>("#load-example").addEventListener("click", () => { input.value = EXAMPLE; void run("text"); });
+$<HTMLButtonElement>("#load-example").addEventListener("click", () => { input.value = EXAMPLE; analyzing = null; void run("text"); });
+// A list pasted here becomes a new deck in the library, opened for naming rather than saved behind the
+// player's back: nothing is written until they press Save there.
+$<HTMLButtonElement>("#save-to-decks").addEventListener("click", () => {
+  sessionStorage.setItem("riftcombo:draft", input.value);
+  go("#/decks/new");
+});
 input.addEventListener("input", () => {
   const n = parseDeckText(input.value).reduce((a, e) => a + e.count, 0);
   $<HTMLElement>("#card-count").textContent = `${n} card${n === 1 ? "" : "s"}`;
-  accountDeckChanged();
+  renderAnalyzing();
 });
 // Collapsing changes the stage's aspect ratio, and the layered layout picks its column count from
 // that — so re-render rather than just refit.
@@ -696,5 +726,4 @@ $<HTMLButtonElement>("#fullscreen").addEventListener("click", () => { const st =
 let resizeTimer = 0;
 window.addEventListener("resize", () => { window.clearTimeout(resizeTimer); resizeTimer = window.setTimeout(() => view?.fit(), 150); });
 
-startRouter();
 void boot();

@@ -86,11 +86,10 @@
         <button type="submit" class="primary" id="analyze">Find combos <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
       </div>
     </form>
-    <section class="plan account" id="account" hidden>
-      <h3 class="plan-head">Your decks</h3>
-      <div id="account-body"></div>
-      <p class="acct-msg" id="account-msg"></p>
-    </section>
+    <p class="analyzing" id="analyzing" hidden></p>
+    <p class="save-here" id="save-here" hidden>
+      <button type="button" class="linklike" id="save-to-decks">Save this list to My decks</button>
+    </p>
     <section class="plan bans" id="bans" hidden>
       <h3 class="plan-head">Banned and restricted</h3>
       <div id="bans-body"></div>
@@ -113,6 +112,11 @@
       <h3 class="plan-head">One card away</h3>
       <p class="syn-guarantee">The same hand-walked rules. Which card would complete one is a text match over the whole card pool, so this is a shortlist to check against your own list, not a combo.</p>
       <div id="gaps-body"></div>
+    </section>
+    <section class="plan account" id="account" hidden>
+      <h3 class="plan-head">Account</h3>
+      <div id="account-body"></div>
+      <p class="acct-msg" id="account-msg"></p>
     </section>
     <p class="legal">RiftCombo was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.</p>
   </aside>
@@ -178,7 +182,8 @@
     <li><strong>Pairs in this deck</strong>, below that, is a different kind of claim and says so. A combo is walked by hand card by card; a pair is a <em>rule</em> walked by hand once — "Blue Sentinel doubles any hold effect" — whose instances are then found by matching card text. Open one to read the rule, the Core Rules paragraphs behind it, and the verified combo it was taken from.</li>
     <li>Click a combo or a card to isolate it. The side panel lists the pieces, what has to be true before it works, the steps, and where each claim comes from.</li>
     <li>Click a card's picture in the side panel, or double-click a card in the diagram, to read it at full size with its rules text.</li>
-    <li><strong>Your decks</strong>, under the list, holds your saved lists. Save keeps the list text itself, not the result of matching it, so an old list is re-matched against today's catalogue every time you load it. Until you press Save, nothing about a list leaves your browser.</li>
+    <li><strong>My decks</strong> is your own library. Press <strong>New deck</strong> to write a list out, or paste a public Piltover Archive link to import one. Nothing is written to your account until you press Save or Update — there is no auto-save, and until then nothing about a list leaves your browser.</li>
+    <li>Opening a deck shows the list on the left and <strong>Construction</strong> on the right: one row per deck-building rule, each citing the paragraph of Riot's Core Rules it stands on. A row marked <em>unchecked</em> is a rule this site can state but not verify from Riot's card data — the Signature cap is the one that matters, because the card gallery carries no Signature marker. <strong>Analyze combos</strong> hands the list to the Combos tab; <strong>Export deck code</strong> copies a code any Riftbound deck site reads.</li>
     <li data-when="candidates">Combos marked <strong>candidate</strong> were proposed by an automated sweep and have not been walked by a human yet. Treat them as leads, not facts.</li>
   </ol>
 </div>
@@ -188,6 +193,7 @@
 <footer class="doc colophon" id="data">
   <h2>Sources</h2>
   <p id="data-note">Card text and art come from Riot's official card gallery, with Riot's published errata applied. Legality follows the official Rules Hub. Combos are walked by hand against the Core Rules, card text and rule numbers cited.<span data-when="candidates"> Entries marked <em>candidate</em> were proposed by an automated sweep and not yet reviewed.</span> Pairs are a separate file with a weaker guarantee: the rule is walked once and cites its paragraphs, the instances are text matches, and every rule's whole match list was read card by card before it shipped.</p>
+  <p>Saving a deck stores the list text you typed, not the result of matching it, so an old list is read again against today's catalogue and today's ban list every time you open it. Only you can read your own rows.</p>
   <p>RiftCombo was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.</p>
   <p>No advertising, no donations, no play-rate or win-rate data. RiftCombo describes combos; it never plays them for you.</p>
   <p><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>

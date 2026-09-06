@@ -144,7 +144,7 @@ describe("the order of the deck panel", () => {
 
 describe("what the browser bundle is allowed to know", () => {
   it("never mentions the service_role key or the database password in web/", () => {
-    for (const f of ["main.ts", "account.ts", "router.ts", "supabase.ts", "graph.ts", "index.html"]) {
+    for (const f of ["main.ts", "account.ts", "decks.ts", "router.ts", "supabase.ts", "graph.ts", "index.html"]) {
       const src = readFileSync(new URL(`../web/${f}`, import.meta.url), "utf8");
       expect(src, f).not.toMatch(/service_role|SERVICE_ROLE|DB_PASSWORD/);
     }
