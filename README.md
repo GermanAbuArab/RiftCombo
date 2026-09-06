@@ -8,7 +8,7 @@ restringidas en el formato que elijas, dibujado como un mapa de piezas, combos y
 
 Riftbound no tiene una base pública de combos. Este repositorio es una: cada entrada de
 `data/combos.json` está escrita a mano contra el texto de carta de Riot y las Core Rules, con sus
-fuentes adjuntas. Las **156 entradas de hoy son `verified`**: alguien caminó el loop paso a paso y
+fuentes adjuntas. Las **245 entradas de hoy son `verified`**: alguien caminó el loop paso a paso y
 dejó el documento de la caminata en [`docs/phase0/walks/`](docs/phase0/walks/README.md).
 
 ## Qué hace
@@ -84,9 +84,9 @@ saltea RLS, la lee ese script y nada más, y no aparece en `web/` ni en un commi
 | `data/errata.json` | overlay fechado de find/replace; el build **falla** si un find-string deja de matchear | anuncios de errata de Riot |
 | `data/legality.src.json` | lista de bans por formato | Rules Hub de Riot, transcrita a mano |
 | `data/combos.json` | el catálogo, autorado | ver las `sources` de cada entrada |
-| `data/synergies.json` | 50 reglas de patrón: regla verificada a mano, instancias por texto | ver `basis` de cada regla |
+| `data/synergies.json` | 96 reglas de patrón: regla verificada a mano, instancias por texto | ver `basis` de cada regla |
 | `docs/status.md` | **el estado del proyecto** | medido |
-| `docs/phase0/walks/` | las 41 caminatas a mano, con su índice | — |
+| `docs/phase0/walks/` | las 62 caminatas a mano, con su índice | — |
 
 ## Aportar un combo
 

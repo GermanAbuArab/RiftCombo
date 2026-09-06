@@ -4,7 +4,7 @@ Este es el documento de orientación. `docs/plan.md` y `docs/phase0-findings.md`
 spike del 2026-09-02 y se conservan como historia: describen decisiones que ya se tomaron distinto.
 
 Todos los números de abajo llevan al lado el comando que los produce, y fueron medidos sobre el
-commit **`c6c17a1`** el 2026-09-06. El catálogo crece con cada caminata: si un número no coincide,
+commit **`d8e84f2`** el 2026-09-06. El catálogo crece con cada caminata: si un número no coincide,
 el comando es la verdad y esto es la foto.
 
 ---
@@ -29,10 +29,13 @@ Cuatro vistas, ruteadas por hash (`web/router.ts`, `VIEWS = ["combos","decks","g
   la status card, **What to add** (`src/plan.ts`, rankea por copias a agregar) y **Pairs in this
   deck** (las sinergias). El diagrama es SVG a mano, sin librería, con dos formas: `layered`
   (Pieces → Combos → Payoff en columnas) y `circular` (la leyenda como hub).
-- **My decks** (`#/decks`) — biblioteca de mazos guardados, editor con validación de construcción
-  (`src/build.ts` → `checkBuild`, que reporta `pass | fail | unknown` por regla y nunca inventa la
-  fila de Signature, que la galería de Riot no permite computar), importación desde Piltover Archive
-  y exportación a deck code.
+- **My decks** (`#/decks`) — biblioteca de mazos guardados, con un **editor visual** (`web/builder.ts`,
+  #101: a card search with filters and click-to-add, not the raw textarea the Combos view still uses
+  for pasting a list) y validación de construcción (`src/build.ts` → `checkBuild`, que reporta
+  `pass | fail | unknown` por regla). La fila de Signature ya no es `unknown`: Riot's gallery ships no
+  marker for it, but #103 resolved it from two independent mirrors that agree on 51 names
+  (`data/signature.src.json` → `Card.signature`), so 103.2.d and 103.2.a.2 now report `pass`/`fail`
+  like every other rule. Importación desde Piltover Archive y exportación a deck code.
 - **Guide** (`#/guide`) — qué significan las clases (INFINITE, BURST, CHAIN, ALT WIN, ENGINE) y cómo
   leer una entrada.
 - **Sources** (`#/sources`) — de dónde sale cada cosa: la API de galería de Riot, el Rules Hub, las
@@ -44,22 +47,22 @@ Cuatro vistas, ruteadas por hash (`web/router.ts`, `VIEWS = ["combos","decks","g
 
 | Qué | Valor | Comando |
 |---|---:|---|
-| Entradas en el catálogo | **156** | `node -pe 'require("./data/combos.json").combos.length'` |
+| Entradas en el catálogo | **245** | `node -pe 'require("./data/combos.json").combos.length'` |
 | No verificadas | **0** | `node -pe 'require("./data/combos.json").combos.filter(e=>e.status!=="verified").length'` |
-| Por clase | INFINITE 14 · BURST 11 · CHAIN 3 · ALT_WIN 14 · ENGINE 114 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.class]=(b[e.class]||0)+1;JSON.stringify(b)'` |
-| Cartas distintas usadas por alguna entrada | **258** | `node -pe 'const a=require("./data/combos.json").combos,s=new Set();for(const e of a)for(const u of e.uses)s.add(u.card);s.size'` |
-| Fuentes citadas | **535** | `node -pe 'require("./data/combos.json").combos.reduce((n,e)=>n+(e.sources\|\|[]).length,0)'` |
-| Reglas de sinergia | **50** | `node -pe 'require("./data/synergies.json").synergies.length'` |
-| Pares ancla–socio que producen | **1648** | `npm run synergies \| tail -1` |
+| Por clase | INFINITE 14 · BURST 12 · CHAIN 4 · ALT_WIN 17 · ENGINE 198 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.class]=(b[e.class]||0)+1;JSON.stringify(b)'` |
+| Cartas distintas usadas por alguna entrada | **386** | `node -pe 'const a=require("./data/combos.json").combos,s=new Set();for(const e of a)for(const u of e.uses)s.add(u.card);s.size'` |
+| Fuentes citadas | **862** | `node -pe 'require("./data/combos.json").combos.reduce((n,e)=>n+(e.sources\|\|[]).length,0)'` |
+| Reglas de sinergia | **96** | `node -pe 'require("./data/synergies.json").synergies.length'` |
+| Pares ancla–socio que producen | **2974** | `npm run synergies \| tail -1` |
 | Printings en el pool | **1189** | `node -pe 'require("./data/cards.json").cards.length'` |
 | Líneas del corpus plano | **947** | `wc -l < data/corpus_flat.txt` |
 | Reemplazos de errata | **52** | `node -pe 'require("./data/errata.json").entries.length'` |
 | Filas de legalidad (ban/restricted) | **21** | `node -pe 'require("./data/legality.json").entries.length'` |
-| Caminatas a mano archivadas | **41** | `ls docs/phase0/walks/*.md \| wc -l` |
-| Tests | **198 en 12 archivos** | `npm test` |
+| Caminatas a mano archivadas | **62** | `ls docs/phase0/walks/*.md \| grep -v README \| wc -l` |
+| Tests | **388 en 27 archivos** | `npm test` |
 | Typecheck | limpio | `npm run typecheck` |
 
-Las 156 entradas son `verified`: alguien caminó el loop a mano contra el texto de carta y las Core
+Las 245 entradas son `verified`: alguien caminó el loop a mano contra el texto de carta y las Core
 Rules, y dejó el documento de la caminata en `docs/phase0/walks/`. `candidate` sigue existiendo en
 el esquema para lo que sale de una caza y todavía no se caminó, pero hoy no hay ninguna.
 
@@ -87,26 +90,35 @@ el diagrama SVG a mano (dos layouts, trigonometría cerrada, sin simulación de 
 para las páginas de mazo de Piltover Archive, que el navegador no puede pedir por CORS. Lista blanca
 de hosts, User-Agent honesto, caché corta. Nada más corre en un servidor.
 
-**`data/` — tres archivos autorados y el resto generado o descargado.** Autorados: `combos.json`
-(el catálogo, cada entrada a mano con sus fuentes), `synergies.json` (50 reglas de patrón: la regla
-está verificada a mano, las instancias las encuentra un predicado de texto sobre el pool) y
+**`data/` — cuatro archivos autorados y el resto generado o descargado.** Autorados: `combos.json`
+(el catálogo, cada entrada a mano con sus fuentes), `synergies.json` (96 reglas de patrón: la regla
+está verificada a mano, las instancias las encuentra un predicado de texto sobre el pool),
 `legality.src.json` (la lista de bans transcrita del Rules Hub de Riot por nombre, resuelta a códigos
-en el build). Generados: `cards.json` y `corpus_flat.txt`. Descargados una vez y committeados:
+en el build) y `signature.src.json` (#103: las 51 cartas Signature, resueltas de dos espejos
+independientes que la galería de Riot no marca, y llevadas a `Card.signature` en el build). Generados:
+`cards.json` y `corpus_flat.txt`. Descargados una vez y committeados:
 `Riftbound-Core-Rules-2026-07-16.txt`, `Riftbound-Tournament-Rules-2026-07-16.txt`,
 `cards_full.json`. `errata.json` es un overlay fechado de find/replace cuyo build **falla** si un
 find-string deja de matchear exactamente una vez por printing — ese fallo es el único mecanismo que
 mantiene honesto el texto de carta.
 
 **`scripts/` — los builds.** `build-cards.mjs` baja las 6 páginas de la API de galería de Riot,
-aplica la errata y resuelve la legalidad → `cards.json` + `legality.json`; `build-corpus.mjs` →
+aplica la errata, resuelve la legalidad y resuelve `signature.src.json` → `cards.json` (con
+`Card.signature`) + `legality.json`; `build-corpus.mjs` →
 `corpus_flat.txt`; `build-web.mjs` compila `web/` a `public/` con esbuild, horneando `SUPABASE_URL` y
 `SUPABASE_ANON_KEY` con `define`; `build-headers.mjs` **genera `vercel.json`** (nunca se edita a
 mano, porque Vercel lo lee antes de correr el build, así que va committeado); `check-rls.mjs` prueba
 el aislamiento por fila con dos usuarios reales contra el proyecto hosteado.
 
-**`test/` — 198 tests en 12 archivos** con vitest. `headers.test.ts` es el que vigila la postura:
+**`test/` — 388 tests en 27 archivos** con vitest. `headers.test.ts` es el que vigila la postura:
 falla si el nombre del `service_role` o el password de la base aparecen en cualquier lado bajo
 `web/`, si hay más de un botón de sign-in, o si el default de `data-auth` deja de ser `pending`.
+**#138 (HIGH, ultrareview 2026-09-06)** found the whole DOM layer of that day's features untested —
+no DOM environment was installed at all, so nothing could mount `web/builder.ts`, the router, the
+gate or `web/decks.ts`. Fixed by adding `happy-dom` as a `devDependency` and a per-file
+`// @vitest-environment happy-dom` pragma, not a global config: six files under `test/dom/` opt in
+(`combos-format`, `builder`, `router`, `gate`, `decks`, `builder-bar`) while every other test still
+runs with no DOM and no per-test startup cost.
 
 **`supabase/` — Auth y mazos guardados.** `config.toml` es la fuente de verdad de Auth (site URL,
 lista de redirects permitidos, el proveedor Google con cliente y secreto como `env(...)`) y se aplica
@@ -122,6 +134,16 @@ Dos migraciones: `decks.sql` y `delete_account.sql`.
 en Vercel **sobre el árbol committeado** y sale a producción. Se comprueba con
 `npx vercel ls riftcombo`. `npx vercel deploy --prod` sigue existiendo pero sube el árbol de trabajo,
 que dos veces publicó archivos sin commitear de otra sesión: es fallback, no el camino normal.
+
+**Since 2026-09-06, sessions push to `work` and only the orchestrator pushes `master`** — see
+CLAUDE.md's "Deploy quota" bullet for the full rule (Vercel's Hobby cap is 100 deployments/day, scoped
+to the whole account, and today's 130 commits already spent it once). This is why **production
+currently lags master**: `npx vercel ls riftcombo` and `npx vercel inspect https://riftcombo.app --logs`
+(run 2026-09-06 for this refresh) show the live alias still on commit `55e24f3` (234 combos, built
+15:19 local time), while every deploy attempted since — up to master's current HEAD — fails at the
+build step with `fatal: bad object <sha>`, because `${VERCEL_GIT_PREVIOUS_SHA:-HEAD^}` (the #126 fix)
+points at a commit Vercel's shallow clone no longer holds. Production is expected to catch up to
+master by 2026-09-07 16:26.
 
 El dominio es **`riftcombo.app`**, comprado el 2026-09-05 vía Vercel (US$15/año, nameservers de
 Vercel). `www.riftcombo.app` y `riftcombo.vercel.app` responden 308 al ápex, y ese redirect es un
@@ -175,7 +197,7 @@ web/main.ts` cerró todo el #23. `tasks/todo.md` es borrador de la sesión, no e
 Un solo dueño de `data/combos.json` a la vez, porque todas las sesiones comparten un working tree y
 **un índice**: los commits se hacen con `git commit --only <rutas>`, nunca desde el área de staging.
 
-**Las lecturas de reglas se numeran R1–R31 y se registran en el issue #11**, que es el registro
+**Las lecturas de reglas se numeran R1–R33 y se registran en el issue #11**, que es el registro
 durable de cuál está ruleada, cuál sigue abierta y cuál se retiró por encontrar la regla en vez de
 preguntar. Una lectura ruleada nunca promueve una entrada por sí sola: `verified` sigue exigiendo que
 una persona camine el loop.
@@ -189,7 +211,7 @@ dice con sus propias palabras y nunca presenta un par como un combo.
 
 ---
 
-## 6. Las 41 caminatas
+## 6. Las 62 caminatas
 
 El índice completo — fecha, issue, entradas que dejó — está en
 [`docs/phase0/walks/README.md`](phase0/walks/README.md).
@@ -200,16 +222,11 @@ El índice completo — fecha, issue, entradas que dejó — está en
 
 | Issue | Qué |
 |---|---|
-| #59 | Lente del draw: 6 candidatas sin caminar, y las tres reglas del Burn Out |
-| #61 | Lente de stun y exhaust enemigo: 5 candidatas, 5 refutadas |
-| #62 | Minería por leyenda: 38 candidatas de 165 transcripciones (caminata en curso) |
-| #63 | Lente del payoff: los motores INFINITE medidos por costo de punto |
-| #64 | `needs`/`produces`: dos nombres para el mismo recurso, y variantes con más de dos dominios |
-| #74 | Un mazo importado por URL no llega al textarea |
+| #137 | LOW: 10 of 20 external citations across 12 verified combos still carry no `accessed` date (the other 10 were dated 2026-09-06 in `0cf876a`; the rest are CAPTCHA/login walls with no readable route yet) |
+| #143 | Combo hunt: the 145 uncatalogued spells — 22 dead, 121 already synergy-covered, 0 new candidates |
 
 `gh issue list --state open` es la lista viva; esta tabla es la foto del 2026-09-06.
 
-Las lentes por mecánica están todas barridas (Repeat/Accelerate/Add, Empower/Flow/Level, muerte y
-retorno, Hidden/Ambush, Equip, Reaction/Deflect, tokens, ready, movimiento, draw, stun) y las cazas
-por dominio y por leyenda también, así que lo que queda por caminar sale de los issues de arriba, no
-de una caza nueva.
+Las lentes por mecánica están todas barridas, y también las seis cazas por dominio de unidad
+(Order/Fury/Chaos/Body/Calm/Mind) y la caza por leyenda, así que lo que queda abierto es residual:
+un pendiente de fuentes y un hunt que no encontró nada nuevo.
