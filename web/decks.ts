@@ -176,6 +176,8 @@ function deckCard(d: SavedDeck): string {
   const deck = loadDeck(d.deckText, cards);
   const report = checkBuild(deck, cards, d.format);
   const legend = deck.legend ? cards.get(deck.legend)!.name.replace(/ - Starter$/, "") : "No legend";
+  // The legend has its own line with its domain dots, so the meta line does not repeat it.
+  const total = Object.values(deck.main).reduce((a, b) => a + b, 0);
   const dots = (deck.legend ? cards.domainsOf(deck.legend) : [])
     .slice()
     .sort((a, b) => DOMAIN_ORDER.indexOf(a) - DOMAIN_ORDER.indexOf(b))
@@ -187,7 +189,7 @@ function deckCard(d: SavedDeck): string {
       <span class="badge ${report.legal ? "ok" : "bad"}">${report.legal ? "Legal" : "Illegal"}</span>
     </span>
     <span class="deck-card-legend">${dots}${esc(legend)}</span>
-    <span class="deck-card-meta">${esc(savedSummary(d.deckText, cards))} · ${esc(d.format === "2v2" ? "2v2" : "Constructed")}</span>
+    <span class="deck-card-meta">${total} card${total === 1 ? "" : "s"} · ${esc(d.format === "2v2" ? "2v2" : "Constructed")}</span>
     <span class="deck-card-when">Edited ${esc(ago(d.updatedAt))}</span>
   </a>`;
 }
@@ -293,9 +295,12 @@ function checkPanel(): string {
   if (!draft) return "";
   const cards = hooks.cards();
   const report = checkBuild(loadDeck(draft.text, cards), cards, draft.format);
+  // Label, state, then the citation on its own line: inline, "Main Deck of 40" and
+  // "103.2 · Tournament Rules 402.1" broke across each other at every width worth having.
   const rows = report.rules.map((r) => `<div class="build-row ${r.status}">
-      <p class="build-label">${esc(r.label)}<span class="build-rule">${esc(r.rule)}</span></p>
+      <p class="build-label">${esc(r.label)}</p>
       <span class="build-state">${STATUS_WORD[r.status]}</span>
+      <p class="build-rule">${esc(r.rule)}</p>
       <p class="build-detail">${esc(r.detail)}</p>
     </div>`).join("");
   return `<p class="build-badge ${report.legal ? "ok" : "bad"}" id="build-badge">${report.legal ? "Legal" : "Illegal"}<span>${draft.format === "2v2" ? "2v2" : "Constructed"}</span></p>

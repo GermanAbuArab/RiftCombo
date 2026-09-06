@@ -459,7 +459,7 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .build-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 10px; padding: 9px 0; border-top: 1px solid var(--line); }
 .build-label { margin: 0; font-size: 13px; font-weight: 500; color: var(--muted); }
 .build-row.fail .build-label { color: var(--text); }
-.build-rule { margin-left: 8px; font: 400 10.5px var(--mono); color: var(--faint); }
+.build-rule { grid-column: 1 / -1; margin: 0; font: 400 10.5px/1.4 var(--mono); color: var(--faint); }
 .build-state { grid-column: 2; grid-row: 1; align-self: start; font: 500 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
 .build-row.pass .build-state { color: var(--ok); }
 .build-row.fail .build-state { color: var(--danger); }
@@ -472,3 +472,8 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .save-here { margin: 0; }
 
 @media (max-width: 900px) { .detail { grid-template-columns: minmax(0, 1fr); } }
+
+/* The format toggle scopes the combo matcher, so it is only on screen where it changes an answer. */
+body:not([data-view="combos"]) .topbar-right .segmented { display: none; }
+/* A disabled Save is not waiting on anything; the shared .primary:disabled cursor says it is. */
+.detail-acts .primary:disabled { cursor: not-allowed; }

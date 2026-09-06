@@ -37,16 +37,28 @@ export function parseHash(hash: string): Route {
 
 export const route = (): Route => parseHash(location.hash);
 
-/** Write a route into the hash. Pushing a new entry is what makes Back and Forward work. */
+/**
+ * Write a route into the hash and switch to it NOW. Setting `location.hash` alone is not enough: the
+ * browser fires `hashchange` on a later task, so code that runs on the next line would still be looking
+ * at the old view — which is how the combo diagram came to measure a hidden container and draw itself
+ * with a NaN viewBox. Assigning the hash is still what puts an entry in the history, so Back and Forward
+ * keep working; `applied` stops the later `hashchange` from doing the same work twice.
+ */
 export function go(hash: string): void {
-  if (location.hash === hash) { apply(); return; }
-  location.hash = hash;
+  if (location.hash !== hash) location.hash = hash;
+  apply(true);
 }
 
 const listeners: ((r: Route) => void)[] = [];
+let applied: string | null = null;
 
-function apply(): void {
+function apply(force = false): void {
+  if (!force && applied === location.hash) return;
+  applied = location.hash;
   const r = route();
+  // The page says which view it is on, so a control that only means something on one of them — the
+  // format toggle belongs to the combo matcher — can be hidden where it would do nothing.
+  document.body.dataset["view"] = r.view;
   for (const name of VIEWS) {
     const el = document.querySelector<HTMLElement>(`#view-${name}`);
     if (el) el.hidden = name !== r.view;
@@ -63,6 +75,6 @@ export function onRoute(cb: (r: Route) => void): void {
 }
 
 export function startRouter(): void {
-  window.addEventListener("hashchange", apply);
+  window.addEventListener("hashchange", () => apply());
   apply();
 }

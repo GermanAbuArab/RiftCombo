@@ -140,6 +140,9 @@ async function boot() {
       urlInput.value = "";
       analyzing = saved;
       input.dispatchEvent(new Event("input"));
+      // Switch tabs BEFORE matching: the diagram measures its own box to fit, and a hidden container
+      // measures zero, which renders the SVG with a NaN viewBox.
+      go(saved.id ? `#/combos?deck=${encodeURIComponent(saved.id)}` : "#/combos");
       void run("text");
     },
   });
