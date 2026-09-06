@@ -1966,6 +1966,276 @@
       "status": "rule-verified",
       "reviewed": "2026-09-06",
       "reviewedCount": 5
+    },
+    {
+      "id": "poro-herder-poro-tag",
+      "name": "Poro Herder buffs off any other Poro on the board",
+      "anchor": "OGN-061",
+      "partner": {
+        "tags": [
+          "Poro"
+        ]
+      },
+      "why": "\"When you play me, if you control a Poro, buff me and draw 1\" reads the tag alone (133.8: Tags carry no innate rules meaning of their own, only what a card's own text gives them; 133.8.a says the same). Poro Herder himself carries no Poro tag ([Tags: Freljord]), so the condition needs a second, real Poro already on the board when he is played — any of the pool's other 13 Poro-tagged printings qualifies, he does not count himself.",
+      "basis": {
+        "rules": [
+          "133.8",
+          "133.8.a"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 14
+    },
+    {
+      "id": "herald-of-scales-dragon-discount",
+      "name": "Herald of Scales discounts every Dragon in the list",
+      "anchor": "OGN-140",
+      "partner": {
+        "tags": [
+          "Dragon"
+        ]
+      },
+      "why": "\"Your Dragons' Energy costs are reduced by 2, to a minimum of 1\" reads the Dragon tag off every unit that carries it (133.8/133.8.a), with no further condition — Herald of Scales is itself Mount Targon, not Dragon, so he never discounts himself. `gemdragon-henge-vi-blind-fury` already runs him alongside Gentle Gemdragon for exactly this discount; this rule generalises the pairing to all 19 Dragon-tagged printings in the pool, most of which cost 7 or more Energy and feel the discount hardest.",
+      "basis": {
+        "rules": [
+          "133.8",
+          "133.8.a"
+        ],
+        "combos": [
+          "gemdragon-henge-vi-blind-fury"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 19
+    },
+    {
+      "id": "gentle-gemdragon-dragon-ready",
+      "name": "Gentle Gemdragon readies runes off every Dragon played after it",
+      "anchor": "UNL-104",
+      "partner": {
+        "tags": [
+          "Dragon"
+        ]
+      },
+      "why": "\"When you play me or another Dragon, ready up to 2 runes\" fires once for its own ETB and again every time a Dragon-tagged card is played afterward — the tag is read with no other condition (133.8/133.8.a). `gemdragon-henge-vi-blind-fury` already plays it alongside Herald of Scales' discount; this rule generalises the partner to all 19 Dragon-tagged printings, so any second Dragon played the same turn readies more runes on top of the one Gentle Gemdragon's own play already granted.",
+      "basis": {
+        "rules": [
+          "133.8",
+          "133.8.a"
+        ],
+        "combos": [
+          "gemdragon-henge-vi-blind-fury"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 18
+    },
+    {
+      "id": "direwing-dragon-ready",
+      "name": "Direwing enters ready off any other Dragon you already control",
+      "anchor": "SFD-094",
+      "partner": {
+        "tags": [
+          "Dragon"
+        ]
+      },
+      "why": "\"I enter ready if you control another Dragon\" is checked at the moment Direwing is played, and 143.4 (units otherwise enter the Board exhausted) is exactly the default this line overrides — an Attacker or Defender designation, or a Standard Move, needs a ready unit, so landing an already-ready 7 Might body needs one of the pool's other 18 Dragon-tagged printings on the board first. Direwing carries the Dragon tag himself, so a second copy of him also satisfies a third copy's condition, but the predicate reports every OTHER Dragon printing, not the second copy of himself.",
+      "basis": {
+        "rules": [
+          "133.8",
+          "133.8.a",
+          "143.4"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 18
+    },
+    {
+      "id": "friendship-four-tags",
+      "name": "Friendship buffs up to +4 Might off the Bird/Cat/Dog/Poro package",
+      "anchor": "UNL-046",
+      "partner": {
+        "tags": [
+          "Bird",
+          "Cat",
+          "Dog",
+          "Poro"
+        ]
+      },
+      "why": "\"Give it +1 Might this turn for each of the following tags among your units — Bird, Cat, Dog, and Poro\" counts DISTINCT TAGS present among your units, not copies, so it reads at most +4 no matter how many of the 59 tag-carrying printings are out — one of each of the four tags is already the cap. 133.8/133.8.a is why the tag alone (no other text) is what the card reads.",
+      "basis": {
+        "rules": [
+          "133.8",
+          "133.8.a"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 51
+    },
+    {
+      "id": "stalking-wolf-four-tags",
+      "name": "Stalking Wolf needs a Bird, Cat, Dog or Poro to sacrifice",
+      "anchor": "UNL-166",
+      "partner": {
+        "tags": [
+          "Bird",
+          "Cat",
+          "Dog",
+          "Poro"
+        ]
+      },
+      "why": "\"As an additional cost to play me, kill a Bird, Cat, Dog, or Poro you control\" carries no \"may\" — 356.2.a.1 makes this a MANDATORY additional cost, so Stalking Wolf is literally unplayable without one of the four tags already on the board. `stalking-wolf-bird-ambush` (verified) already checked this card by card against the corpus; this rule generalises the fuel to all 59 tag-carrying printings instead of the one engine piece that entry names.",
+      "basis": {
+        "rules": [
+          "133.8",
+          "133.8.a",
+          "356.2.a.1"
+        ],
+        "combos": [
+          "stalking-wolf-bird-ambush"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 50
+    },
+    {
+      "id": "starhound-four-tags",
+      "name": "Starhound returns a Bird, Cat, Dog or Poro from the trash",
+      "anchor": "UNL-167",
+      "partner": {
+        "tags": [
+          "Bird",
+          "Cat",
+          "Dog",
+          "Poro"
+        ]
+      },
+      "why": "\"When you play me, return a Bird, Cat, Dog, or Poro from your trash to your hand\" only ever finds a real printing there: 185 (\"Tokens are not cards\") plus 186.1 mean a token unit never remains in the trash to be chosen, so every one of the 59 tag-carrying candidates this rule lists is a genuine card the ability can actually retrieve, never a token from the family's own Bird/Deflect tokens.",
+      "basis": {
+        "rules": [
+          "133.8",
+          "133.8.a",
+          "185",
+          "186.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 50
+    },
+    {
+      "id": "undying-loyalty-four-tags",
+      "name": "Undying Loyalty discounts and fetches off the same four tags",
+      "anchor": "UNL-168",
+      "partner": {
+        "tags": [
+          "Bird",
+          "Cat",
+          "Dog",
+          "Poro"
+        ]
+      },
+      "why": "\"This costs 2 Energy less if you choose a Bird, Cat, Dog, or Poro. Play a unit with cost no more than 2 Energy and no more than 1 rainbow from your trash, ignoring its cost\" reads the tag for the discount off the 59-card list this rule matches, but the caveat the list cannot show: the chosen unit ALSO has to fit the printed cost cap to be the thing actually played from the trash, which narrows the real target list to the cheap end of it.",
+      "basis": {
+        "rules": [
+          "133.8",
+          "133.8.a"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 51
+    },
+    {
+      "id": "ivern-friend-to-all-four-tags",
+      "name": "Ivern, Friend to All scores off holding all four tags",
+      "anchor": "UNL-177",
+      "partner": {
+        "tags": [
+          "Bird",
+          "Cat",
+          "Dog",
+          "Poro"
+        ]
+      },
+      "why": "\"As you play me, choose Bird, Cat, Dog, or Poro. I gain that tag. When I conquer or hold, score 1 point if your units have all of the following tags among them\" supplies one of the four tags himself, so only the remaining three need to come from the 59-card list this rule matches. `ivern-sentinel-hold` and `ivern-arena-sentinel-hold` are both verified combos built on exactly this condition, multiplied by Blue Sentinel or Reckoner's Arena; this rule is the general pattern those two entries hand-walked one board each.",
+      "basis": {
+        "rules": [
+          "133.8",
+          "133.8.a",
+          "383.4.c.1",
+          "383.4.d.1"
+        ],
+        "combos": [
+          "ivern-sentinel-hold",
+          "ivern-arena-sentinel-hold"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 51
+    },
+    {
+      "id": "daisy-four-tags",
+      "name": "Daisy! gets cheaper and stuns off the same four tags",
+      "anchor": "UNL-196",
+      "partner": {
+        "tags": [
+          "Bird",
+          "Cat",
+          "Dog",
+          "Poro"
+        ]
+      },
+      "why": "\"I enter ready. Reduce my cost by 1 Energy for each of the following tags among your units — Bird, Cat, Dog, and Poro. When I attack while your units have all 4 tags, Stun an enemy unit here\" counts distinct tags the same way Friendship and Ivern, Friend to All do, off the same 59-card list, discounting up to 4 Energy off her printed 9 and unlocking the free Stun attack trigger only once all four are represented.",
+      "basis": {
+        "rules": [
+          "133.8",
+          "133.8.a"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 51
+    },
+    {
+      "id": "green-father-brush-four-tags",
+      "name": "Green Father turns a battlefield into a permanent Might bonus for the four-tag package",
+      "anchor": "UNL-195",
+      "partner": {
+        "tags": [
+          "Bird",
+          "Cat",
+          "Dog",
+          "Poro",
+          "Ivern"
+        ]
+      },
+      "why": "\"When you conquer or hold, you may exhaust me to replace that battlefield with a Brush battlefield token. Bird, Cat, Dog, Poro, and Ivern units have +1 Might in Brush\" is the standard conquer-or-hold wording (383.4.c.1, 383.4.d.1) gating a one-shot Effect that then grants a permanent, location-locked Might bonus to the same package Friendship and Ivern, Friend to All read, plus the Ivern champion tag itself — 133.8/133.8.a is why the tag alone drives it. The bonus is scoped to whichever battlefield became Brush, not the whole board.",
+      "basis": {
+        "rules": [
+          "133.8",
+          "133.8.a",
+          "383.4.c.1",
+          "383.4.d.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 54
     }
   ]
 }
