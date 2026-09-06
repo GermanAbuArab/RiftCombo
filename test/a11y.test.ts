@@ -37,7 +37,7 @@ describe("the palette against the backgrounds it is actually drawn on", () => {
   const grounds = ["bg", "panel", "panel-2"] as const;
 
   it("keeps every text token at AA (4.5:1) wherever it lands", () => {
-    for (const fg of ["text", "muted", "faint"]) {
+    for (const fg of ["text", "muted", "faint", "danger-text"]) {
       for (const bg of grounds) {
         const r = contrast(token(fg), token(bg));
         expect(r, `--${fg} on --${bg} is ${r.toFixed(2)}:1`).toBeGreaterThanOrEqual(4.5);
@@ -62,6 +62,30 @@ describe("the palette against the backgrounds it is actually drawn on", () => {
    * added since #81 that fails AA. This pins the choice rather than the hex: whatever token that line
    * ends up using has to clear 4.5:1 on the card it is drawn on.
    */
+  /**
+   * Red is semantic here, not decorative, and it comes in two tokens on purpose (#94): --danger is
+   * the border and the background (the error dot, the ban row's left rule), --danger-text is the one
+   * that carries letters. --danger itself measures 4.43 / 3.98 / 3.37 on --bg / --panel / --panel-2,
+   * so every red word in the app was under AA — .ban-tag worst of all at 10.5px on --panel. These
+   * two pin the split: the tag names itself, and nothing anywhere may paint text with --danger.
+   */
+  it("draws the BANNED tag in a token that clears AA on the row it sits on", () => {
+    const rule = css.split("\n").find((l) => l.trim().startsWith(".ban-tag {"));
+    expect(rule, ".ban-tag is gone — did the ban list change shape?").toBeDefined();
+    const used = /(?<![-a-z])color:\s*var\(--([a-z0-9-]+)\)/.exec(rule!)?.[1];
+    expect(used, `.ban-tag must colour itself from a token, got: ${rule}`).toBeDefined();
+    // .ban-row is background: var(--panel); the same tag also rides the cards, which stand on it too.
+    const r = contrast(token(used!), token("panel"));
+    expect(r, `--${used} on --panel is ${r.toFixed(2)}:1`).toBeGreaterThanOrEqual(4.5);
+  });
+
+  it("keeps --danger off text entirely, borders and fills only", () => {
+    const offenders = [...css.matchAll(/(?<![-a-z])color:\s*var\(--danger\)/g)].map(
+      (m) => css.slice(css.lastIndexOf("\n", m.index!) + 1, css.indexOf("\n", m.index!)).trim(),
+    );
+    expect(offenders, "--danger is a border/background token; text takes --danger-text").toEqual([]);
+  });
+
   it("draws the reason under the Illegal badge in a token that clears AA on --panel", () => {
     const rule = css.split("\n").find((l) => l.trim().startsWith(".deck-card-why {"));
     expect(rule, ".deck-card-why is gone — did the reason line move?").toBeDefined();

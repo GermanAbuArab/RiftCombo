@@ -24,7 +24,12 @@
   --accent: #ef7d00;         /* 6.41:1 on --bg; --accent-ink on --accent is 6.84:1 */
   --accent-ink: #1a0f00;
   --accent-dim: #a85700;
-  --danger: #d8552f;
+  --danger: #d8552f;      /* borders and fills only: 4.43 on --bg, 3.98 on --panel, 3.37 on --panel-2 */
+  /* Red carries letters too (#94: the BANNED tag is 10.5px uppercase on --panel), and --danger is
+     under AA on all three grounds. Same hue and the same saturation, lightness 51.6% → 61.7%, the
+     first step that clears 4.5:1 everywhere it lands: 5.94 on --bg, 5.34 on --panel, 4.52 on
+     --panel-2. Measured like #81, and test/a11y.test.ts keeps --danger off text for good. */
+  --danger-text: #e0795a;
   --ok: #6fa88b;
 
   /* Domain colours are reserved by Riot and must not be reused for anything else. */
@@ -232,7 +237,7 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .chip-outcome { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 7px; }
 .swatch { width: 8px; height: 8px; flex: 0 0 auto; border-radius: 50%; }
 .chip-meta { font: 500 11px var(--mono); color: var(--faint); }
-.chip-meta.illegal { color: var(--danger); }
+.chip-meta.illegal { color: var(--danger-text); }
 
 /* Drawer */
 .drawer {
@@ -357,12 +362,12 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 
 /* Ban list. Sits above the status card because a tournament list wants that answer first. The
    status is carried by the left rule and the tag's weight, not by a second accent colour. */
-.bans .plan-head { color: var(--danger); }
+.bans .plan-head { color: var(--danger-text); }
 .ban-row { padding: 8px 10px; border: 1px solid var(--line); border-left: 2px solid var(--danger); border-radius: 6px; background: var(--panel); }
 .ban-row + .ban-row { margin-top: 7px; }
 .ban-row.restricted { border-left-color: var(--accent-dim); }
 .ban-name { margin: 0; font: 600 13px/1.35 var(--font); color: var(--text); }
-.ban-tag { margin-left: 5px; font: 500 10.5px var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--danger); }
+.ban-tag { margin-left: 5px; font: 500 10.5px var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--danger-text); }
 .ban-row.restricted .ban-tag { color: var(--accent); }
 .ban-meta { margin: 3px 0 0; font-size: 11.5px; line-height: 1.5; color: var(--muted); }
 .ban-meta a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
@@ -464,7 +469,7 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .acct-sum { margin: 2px 0 0; font-size: 11.5px; color: var(--muted); }
 .acct-acts { display: flex; flex: 0 0 auto; gap: 9px; }
 .acct-acts .linklike { font-size: 12px; }
-.acct-acts .linklike.danger { color: var(--danger); }
+.acct-acts .linklike.danger { color: var(--danger-text); }
 .acct-foot { margin: 2px 0 0; font-size: 11.5px; color: var(--faint); }
 .acct-foot .linklike, .acct-foot a { font-size: 11.5px; color: var(--faint); }
 .acct-foot .linklike:hover, .acct-foot a:hover { color: var(--accent); }
@@ -512,7 +517,7 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .dom-chaos { background: var(--dom-chaos); } .dom-order { background: var(--dom-order); }
 .badge { flex: 0 0 auto; padding: 2px 8px; border: 1px solid var(--line-2); border-radius: 6px; font: 500 10.5px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .badge.ok { color: var(--ok); border-color: var(--ok); }
-.badge.bad { color: var(--danger); border-color: var(--danger); }
+.badge.bad { color: var(--danger-text); border-color: var(--danger); }
 
 .detail-back { font-size: 13px; }
 .detail-back a { color: var(--muted); }
@@ -526,7 +531,7 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .detail-check { display: flex; flex-direction: column; gap: 10px; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
 .build-badge { display: flex; justify-content: space-between; align-items: baseline; margin: 0; font: 600 15px var(--font); }
 .build-badge span { font: 500 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-.build-badge.ok { color: var(--ok); } .build-badge.bad { color: var(--danger); }
+.build-badge.ok { color: var(--ok); } .build-badge.bad { color: var(--danger-text); }
 .build-rows { display: flex; flex-direction: column; }
 .build-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 10px; padding: 9px 0; border-top: 1px solid var(--line); }
 .build-label { margin: 0; font-size: 13px; font-weight: 500; color: var(--muted); }
@@ -534,7 +539,7 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .build-rule { grid-column: 1 / -1; margin: 0; font: 400 10.5px/1.4 var(--mono); color: var(--faint); }
 .build-state { grid-column: 2; grid-row: 1; align-self: start; font: 500 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
 .build-row.pass .build-state { color: var(--ok); }
-.build-row.fail .build-state { color: var(--danger); }
+.build-row.fail .build-state { color: var(--danger-text); }
 .build-detail { grid-column: 1 / -1; margin: 0; font-size: 11.5px; line-height: 1.5; color: var(--muted); }
 
 /* The strip that names the saved list Combos is showing, and the way to save a pasted one. */
