@@ -90,6 +90,28 @@ describe("every page the site serves", () => {
   });
 });
 
+describe("the order of the deck panel", () => {
+  /**
+   * The user picked this order and it is not the account layer's to change: the ban list is what a
+   * list brought to a tournament wants first (#23), then the status card, then What to add (#18),
+   * then Pairs in this deck (#22). Saving and loading belongs with the deck input above all four,
+   * because it is about the list itself rather than an answer about it.
+   */
+  it("puts the account panel with the input and leaves the four result panels alone", () => {
+    const home = page("index.html");
+    const at = (id: string) => {
+      const i = home.indexOf(`id="${id}"`);
+      expect(i, `#${id} is missing from the deck panel`).toBeGreaterThan(-1);
+      return i;
+    };
+    expect(at("deck-form")).toBeLessThan(at("account"));
+    expect(at("account")).toBeLessThan(at("bans"));
+    expect(at("bans")).toBeLessThan(at("status-card"));
+    expect(at("status-card")).toBeLessThan(at("plan"));
+    expect(at("plan")).toBeLessThan(at("synergy"));
+  });
+});
+
 describe("what the browser bundle is allowed to know", () => {
   it("never mentions the service_role key or the database password in web/", () => {
     for (const f of ["main.ts", "account.ts", "supabase.ts", "graph.ts", "index.html"]) {
