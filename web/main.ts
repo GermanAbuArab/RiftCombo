@@ -116,7 +116,11 @@ async function boot() {
   cards = new CardIndex(data.cards, legality);
   variants = generateVariants(combos, cards);
   const verified = combos.filter((c) => c.status === "verified").length;
-  $<HTMLElement>("#data-note").insertAdjacentHTML("beforeend", ` Card data as of ${esc(data.resultsUpdatedAt.slice(0, 10))}: ${cards.cards.length} printings, ${combos.length} combos (${verified} verified).`);
+  // The word "candidate" only means something while the catalogue holds one; with every entry
+  // walked, the sentences explaining it would point at nothing, so they stay out of the page.
+  for (const el of document.querySelectorAll<HTMLElement>('[data-when="candidates"]')) el.hidden = verified === combos.length;
+  const tally = verified === combos.length ? `${combos.length} combos, every one walked by hand` : `${combos.length} combos (${verified} verified)`;
+  $<HTMLElement>("#data-note").insertAdjacentHTML("beforeend", ` Card data as of ${esc(data.resultsUpdatedAt.slice(0, 10))}: ${cards.cards.length} printings, ${tally}.`);
   setStatus("Ready", "Paste a deck list to begin.");
   const hash = decodeURIComponent(location.hash.replace(/^#deck=/, ""));
   if (location.hash.startsWith("#deck=") && hash) { input.value = hash; void run(); }
