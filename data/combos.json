@@ -18019,6 +18019,168 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue115-scoring-and-free-plays.md), issue #115 §5. The candidate is real and the class is ENGINE, but THE ISSUE GOT THE COST AND THE GATING RULES WRONG. It wrote the activation as a bare exhaust; the card charges 1 Energy + 1 Order Power + exhaust. It asked whether 185 / 416.1 / 416.3 / 203.3 stop a token paying the cost; they cannot, because 'Kill a friendly unit' sits AFTER the colon and is effect text, not cost — the Hook kills (428.1) and 185.2.d makes a token follow its type's rules. It also asked about 383.3.e.1 ('the first time each turn'), which this card does not print: the gate is the exhaust plus 315.1.b. THE WALK'S OWN CONTRIBUTION IS THE FUEL: the issue proposed 'a cheap 0/1-Might token', which caps the fetch at Might 2 and is close to worthless; UNL-084's [Temporary] Sprite is 3 Might (187.2), free, recurring, and already condemned by 816.1.b, so killing it early costs nothing and lifts the ceiling to Might 4 — which is exactly OGN-226 Spectral Matron (E4 P2) and UNL-087 Blue Sentinel (E4 P1). Card text verbatim from data/corpus_flat.txt; the Might ≤ 4 target list was computed over every unit in Mind ∪ Order in data/cards.json. Citations opened: 055, 103.1.b.1, 103.1.b.2, 103.1.b.3, 143.4, 185, 185.2.b, 185.2.d, 187.2, 203.3, 312.2.a, 315.1.b, 355.2.a, 359.2.c, 359.2.d, 383.3.d, 416.1, 416.1.a, 416.1.c, 416.3, 416.5, 427.1, 428.1, 431.1.c, 431.1.c.1, 816.1.b, 816.1.c. Ban check against data/legality.json: neither OGN-242 nor UNL-084 is banned or restricted in constructed or 2v2. Trap check: no attack designation; no [Repeat]; no recall; no Gold; the Sprite is KILLED, never recycled, so 185 / 186.1 / 416.1 never bite; no battlefield of its own, so 485.5 / 103.4.c never arise. Depends on no unruled reading."
+    },
+    {
+      "id": "voidreaver-khazix-xp-removal",
+      "name": "Two Kha'Zix on one board: the lone-enemy attack banks the XP, and the other one spends it as removal",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-201",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Body/Chaos legend, tag Kha'Zix. 'When you win a combat, gain 1 XP. Spend 1 XP, exhaust: [Buff] a unit. Spend 2 XP, exhaust: Move an exhausted friendly unit from a battlefield to its base.' The income line is free and uncapped; both paid lines share one exhaust, so one of the two per turn."
+        },
+        {
+          "card": "UNL-143",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "CHAMPION",
+          "note": "Mono-Chaos unit, E4 P1 M4, [Ambush]. 'When I attack or defend, if an enemy unit is alone here, give me +2 Might this turn and gain 2 XP.' The faucet. It sits in the Champion Zone as the Chosen Champion (103.2.a.2, tag Kha'Zix), so this half is never drawn for: 108.3.d plays it from there as normal."
+        },
+        {
+          "card": "UNL-119",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mono-Body unit, E5 P1 M5, [Hunt]. 'When I attack, you may spend 3 XP to deal damage equal to my Might to an enemy unit here.' The sink: 3 XP for 5 damage, 6 if it is carrying a Voidreaver Buff."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Voidreaver is the legend, so the Domain Identity is Body/Chaos (103.1.b.2). UNL-119 is mono-Body and UNL-143 is mono-Chaos, and 103.1.b.3 admits a single-domain card into any identity containing it.",
+          "Both Kha'Zix printings can sit in the same deck and on the board at once. 103.2.b.2: 'Cards have different names even if they represent the same character', with the worked example of 3 Yasuo, Remorseful beside 3 Yasuo, Windrider. So 3 + 3 copies, and nothing pairs them off.",
+          "One of them is the Chosen Champion. 103.2.a.2 asks for 'a champion unit with a champion tag that matches the tag on your Champion Legend' and Voidreaver's tag is Kha'Zix; neither card is signature: true, so 103.2.d.3 does not exclude them. The entry puts the cheaper faucet (UNL-143, E4) in the zone."
+        ],
+        "notable": [
+          "'AN ENEMY UNIT IS ALONE HERE' IS AN OWN-SIDE MEASUREMENT, AND THE POOL SAYS SO. Two cards print the reminder for the same word: SFD-036 Lonely Poro, '(I'm alone if there are no other friendly units here.)', and UNL-210 Forbidding Waste, '(It's alone if there are no other friendly units here.)'. So the clause means the OPPONENT has exactly one unit at this battlefield; your own garrison is unrestricted. No reading was needed.",
+          "THE CONDITION IS CHECKED ONCE, AT THE DESIGNATION, AND NOWHERE ELSE. 383.4.e.2.b: 'If the trigger condition contains other requirements besides attacking and if those requirements are not fulfilled when the unit gains the Attacker designation, it will not trigger in that combat.' The designation is handed out at 464.2.c.3. So the opponent cannot repair the lone-enemy clause afterwards, and neither can you — and 383.4.e.2.a ('only have their condition checked once per combat, despite a Unit being able to gain and lose the Attacker designation multiple times') closes any re-attack in the same combat.",
+          "THE REMOVAL IS RIOT'S OWN WORKED EXAMPLE. UNL-119's second sentence is the wording of Yasuo, Remorseful, which the Core Rules use three times under 359.3.f. Two consequences the entry stands on: 359.3.f.2 reads the Might AT EXECUTION ('it will deal damage equal to his current Might of 5'), so a Voidreaver Buff raises it to 6 and a -Might lowers it; and the same paragraph's first example gives the opponent a printed out — move UNL-119 home in reaction and 'here' is no longer the combat battlefield, so the trigger mistargets. 359.3.f.4 adds that a control steal does NOT blank it.",
+          "THE BUFF IS EXACTLY +1 MIGHT, ONCE. 703: 'Each Buff individually contributes +1 Might to a Unit.' 702.3: 'There can only be one Buff on a Unit at a time', and 702.3.a says a second is simply not placed — UNL-102 Crowd Favorite prints that rule on a card ('Give me a +1 Might buff if I don't have one'). 705 strips it if the unit leaves play, and 705.1 strips it even in the Champion Zone. Per the #106 rule the product of a repeatable buffer is min(triggers, new unbuffed bodies); here the trigger side is 1 per turn, so Voidreaver is the bound, not the board.",
+          "VOIDREAVER IS ONE ACTIVATION A TURN, AND ONLY IN THE MAIN PHASE. Both paid lines carry an exhaust and there is one exhaust state on one object, so the [Buff] and the Move are alternatives; 315.1.b readies him next Awaken (107.4.c makes a legend such a Game Object). Neither line carries [Reaction], and 813.1.c.2 defines Reaction on an Activated Ability as 'This can be activated during Closed States on any player's turn' — without it, Main Phase only (316.5.b). SO THE BUFF CANNOT ANSWER THE ATTACK TRIGGER: place it before the unit moves in.",
+          "WHAT THE BUFF BUYS, TO THE DIGIT. 465.2.c sums Might and 465.2.c.3 forces lethal onto one body in full. UNL-143 at 4+2 = 6 kills a lone defender of Might 5 or less and survives; at Might 6 both die and 466.3.d is No Result, so Voidreaver banks nothing. Carrying a Buff it is 7 and beats a lone Might 6. That single point is the difference between a won combat and a trade. 466.1.a.1 heals all units in the Combat Cleanup, so marked damage does not carry.",
+          "TWO COMBATS IN ONE MAIN PHASE, AND THE RULE IS 461.1, NOT 429.2. 461.1: 'If more than one Battlefield has Units controlled by opposing players at it at the same time, the Turn Player decides which Combat to resolve first.' The one-at-a-time route is 316.5 ('The Main Phase has no defined structure') with 316.6 ('one or more structured phases may occur'). Either way UNL-143's XP is banked before UNL-119 gains the Attacker designation.",
+          "VOIDREAVER'S SECOND LINE IS A MOVE, NOT A RECALL, AND IT COSTS YOU THE BATTLEFIELD. The card says 'Move an exhausted friendly unit from a battlefield to its base'; 455 defines a Recall as a relocation to the Base 'without it being a Move', so this is not one and the 808.1.d.1 Deathknell trap does not arise. 420.3.a puts the exhaust cost only on the STANDARD Move, which is why an already-exhausted body is a legal subject. The price is 323.6: if it was your last unit there you lose Control of that battlefield in the same Cleanup.",
+          "IT IS NOT INFINITE AND NOT CHAIN, AND THE REASON IS NOT THAT XP IS A RATCHET. 824.1.d makes a [Level N] ability Inactive 'as soon as the controlling player has less than [N] XP', and 730.2 says spending reduces the marked value, so XP is a balance you walk down yourself — already registered on wuju-master-blood-rose-level. The reason this lens yields ENGINE is simpler: NOTHING IN THE POOL CONVERTS XP TO POINTS. The combats and the battlefields are bounded too (485.4, 'Battlefield Count: 2').",
+          "THE LEVEL CARDS THIS ENGINE FIGHTS, IN ITS OWN DOMAINS. A full [Level sweep of the pool finds no Chaos entry and three in Body: UNL-094 Gemhand Hunter ([Level 6] +1 Might, continuous), UNL-098 Targonian Visionary ([Level 11] +4 Might, continuous) and UNL-091 Concentrate ([Level 6]/[Level 11] discount, read once at 356). Each UNL-119 removal costs 3 XP, so a board leaning on a continuous [Level 6] wants 9+ banked before firing.",
+          "THE REMOVAL TARGETS. 'An enemy unit here' is chosen by the controller, so 355.10.d (programmatically selected, not chosen) does not apply and 809.1.c / 809.1.d charge a [Deflect] body the extra Power.",
+          "IF THE CHOSEN CHAMPION DIES IT DOES NOT COME BACK. 108.3.c: 'The Chosen Champion cannot be returned to this zone by normal means.' The one exception in the whole pool is OGN-281 Hallowed Tomb, which is Colorless and so legal here, and 108.3.c.1 lets it fire only while the zone is empty. 485.4.a and 103.4.c mean you bring three differently-named battlefields and one is used, so it is not a plan.",
+          "UNL-143 ALSO APPEARS IN vex-star-crossed-rebound-stun, as the payoff of a mono-Chaos bounce line. That entry needs a Chaos legend and this one needs Voidreaver specifically, so the two cannot share a deck; the card is simply good in both."
+        ]
+      },
+      "steps": [
+        "Voidreaver in the Legend Zone. Kha'Zix, Mutating Horror is the Chosen Champion and starts in the Champion Zone (103.2.a.1); play it from there (108.3.d) for 4 Energy + 1 Chaos Power, to your base or, with [Ambush] (822.1.b), as a Reaction to a battlefield where you already have units.",
+        "Main Phase: if Voidreaver is ready and you hold 1+ XP, Spend 1 XP and exhaust him to [Buff] the body that will fight. That is his one activation this turn, and it has to happen now — his abilities have no [Reaction] (813.1.c.2), so they cannot answer a trigger later.",
+        "Standard Move Kha'Zix, Mutating Horror from your base to a battlefield where the opponent has exactly one unit (144.2 exhaust, 144.4.a). The Destination becomes Contested (450), a Combat is staged at the next Cleanup (323.9) and opened (323.13).",
+        "At 464.2.c.3 it gains the Attacker designation and its trigger's condition is checked there and only there (383.4.e.2.b). The trigger goes on the Combat Chain (464.2.e) and resolves: +2 Might this turn, gain 2 XP.",
+        "Combat damage: 465.2.c sums Might. At 6 (7 with the Buff) it kills the lone defender and survives. Being the only player with units there is a win under 466.3.a, so Voidreaver's free line adds 1 XP. Bank: 3 XP.",
+        "466.5 establishes Control and 466.5.d makes it a Conquer, scoring that battlefield (469.1, 470).",
+        "Back in the Main Phase (316.6), Standard Move Kha'Zix, Evolving Hunter to the second battlefield's garrison. If both units were moved before either combat, 461.1 lets you resolve the Mutating Horror combat first instead.",
+        "At 464.2.c.3 the Evolving Hunter gains the Attacker designation; its attack trigger finds the 3 XP already banked. Spend it (730.2) and deal damage equal to its current Might (359.3.f.2) — 5, or 6 if it is the body you buffed — to an enemy unit there.",
+        "Its [Hunt] (823.1.c.1, X omitted = 1 by 823.1.c.2) pays at the Conquer in 466.5 or at the next Hold in 315.2.b.2: after this attack's spend, in time for the next."
+      ],
+      "netPerIteration": "+1 XP per combat won on either side of the table, +2 per lone-enemy Mutating Horror attack or defence, +1 per Evolving Hunter conquer or hold; -3 per 5-or-6 damage removal and -1 or -2 for Voidreaver's single activation",
+      "terminatesIn": "engine only — one lone-enemy combat a turn funds one Evolving Hunter removal every turn and change; XP survives between turns (729, 733) so the bank carries, but nothing in the pool turns it into points",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Combo hunt: champion progression (Level/XP/Flow/Champion Zone) — issue #116 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/116",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue116-champion-progression.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue116-champion-progression.md), issue #116 candidate C1. UNL-201 Voidreaver and UNL-119 Kha'Zix, Evolving Hunter appeared in no entry's uses before this; UNL-143 anchors vex-star-crossed-rebound-stun and the overlap is declared. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.2.a.1, 103.2.a.2, 103.2.b.2, 103.2.d.3, 103.4.c, 107.4.c, 108.3.c, 108.3.c.1, 108.3.d, 144.2, 144.4.a, 315.1.b, 315.2.b.2, 316.5, 316.5.b, 316.6, 323.6, 323.9, 323.13, 355.10.d, 359.3.f.2, 359.3.f.4, 383.4.e, 383.4.e.2, 383.4.e.2.a, 383.4.e.2.b, 420.3.a, 450, 455, 461.1, 464.2.c.3, 464.2.e, 465.2.c, 465.2.c.3, 466.1.a.1, 466.3.a, 466.3.d, 466.5, 466.5.d, 469.1, 470, 485.4, 485.4.a, 702.3, 702.3.a, 703, 705, 705.1, 730.2, 809.1.c, 809.1.d, 813.1.c.2, 822.1.b, 823.1.c.1, 823.1.c.2, 824.1.d. Ban check: none of UNL-201, UNL-119, UNL-143 or OGN-281 carries a [BANNED marker. THREE CORRECTIONS TO THE ISSUE. (1) It cited 429.2 for the two-combat sequencing; the rule is 461.1, which lets the Turn Player choose which staged Combat resolves first, with 316.5/316.6 for the one-at-a-time route. (2) Its F1 says a crossed [Level N] threshold 'stays Active for the rest of the game by default'; 824.1.d plus 730.2 say the opposite, and wuju-master-blood-rose-level had already registered it on 2026-09-04 — the reason the lens yields no INFINITE is that nothing converts XP to points, which is a different argument. (3) It did not price 108.3.d: the Chosen Champion never has to be drawn, which is what makes the faucet reliable. The walk also settled 'alone' against the reminder text on SFD-036 and UNL-210 rather than guessing, and found that UNL-119's ability is the verbatim wording of the Core Rules' own Yasuo, Remorseful worked example at 359.3.f. Trap check: no [Repeat]; no [Temporary]; no token; no recall used as a move; no Awaken or Beginning-Phase Energy carried past 167; every attack here is against an occupied battlefield, so the 'entering an empty battlefield is not an attack' trap (807.1.d, 383.4.e, 461) is respected; no would-die shield, so 808.1.d.1 does not arise. Depends on no unruled reading."
+    },
+    {
+      "id": "keeper-hammer-hunt-draw",
+      "name": "Keeper of the Hammer draws off the Holds a Body board already takes — and one [Hunt 2] partner is what makes it a card a turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-203",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Body/Order legend, tag Poppy. 'When you hold, gain 1 XP. Spend 3 XP, exhaust: Draw 1.' The exhaust is the real cap: one draw per turn however much XP is banked."
+        },
+        {
+          "card": "UNL-117",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mono-Body unit, E6 P1 M6, [Hunt 2] (2 XP per conquer or hold). It also grants 355.2.b permission: 'I can be played to an occupied battlefield if an enemy unit is alone there. Friendly units can be played to an occupied battlefield if an enemy unit is alone there' — which is how the Hold it feeds survives to the next Beginning Phase."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Keeper of the Hammer is the legend, so the Domain Identity is Body/Order (103.1.b.2); UNL-117 is mono-Body and 103.1.b.3 admits it.",
+          "The engine needs a battlefield held at the Scoring Step, which is what a Body board does anyway. It needs no spell, no gear and no second colour."
+        ],
+        "notable": [
+          "THE LEGEND'S OWN CEILING IS 2 XP A TURN, NOT 1. 315.2.b.2 is '1. The Turn Player Holds all Battlefields they Control', 469.2 defines the Hold per battlefield and 470 caps Scoring at once per battlefield per turn; 383.4.d.2.b puts a player-referencing Hold ability on the chain per Hold performed. A Duel has two battlefields (485.4, 'Battlefield Count: 2'), so two Holds is two triggers. Against a 3-XP draw that is a card every OTHER turn from the legend alone — which is why the [Hunt] partner is in uses and not in notable.",
+          "THE ARITHMETIC, PER TURN. Legend on one battlefield = 1 XP; on two = 2. Arachnoid Horror holding as well ([Hunt 2], 823.1.b makes Hunt both a Conquer and a Hold effect, 823.1.c.1 gives the XP) adds 2. One battlefield with the Horror = 3 XP = exactly one draw. Two battlefields with the Horror on one = 4 XP = one draw and 1 banked.",
+          "THE XP ARRIVES BEFORE IT IS SPENT, IN THE SAME TURN. The Scoring Step (315.2.b.2) sits in the Beginning Phase, ahead of the Main Phase (316), and 315.1.b has already readied the legend in the Awaken Phase. So the turn's Holds pay for the turn's draw.",
+          "THE DRAW IS SAFE HERE, AND THE LOOP WALL DOES NOT APPLY. 431.1.a burns you out only if you must draw in excess of your Main Deck. The '0 spare draws' wall recorded for the Lux ledger is a property of a loop running with the deck EMPTY, where the draws per pass and the cards recycled back are balanced on purpose; nothing here recycles anything, the deck is a full 40+ (103.2), and the extra card is one per turn capped by the legend's exhaust. A Duel ends at 8 points long before the deck does.",
+          "EACH DRAW WALKS YOUR LEVEL DOWN 3, AND IN THIS DOMAIN PAIR THAT MATTERS. 824.1.b.1 makes [Level N] short for 'While you have [N] or more XP...' and 824.1.d makes the ability Inactive 'as soon as the controlling player has less than [N] XP'; 730.2 says spending reduces the marked value. The Body/Order [Level] cards are UNL-151 Bandle Soldier ([Level 3] 'I enter ready'), UNL-094 Gemhand Hunter ([Level 6] +1 Might, also [Hunt]), UNL-091 Concentrate ([Level 6]/[Level 11] discount) and UNL-098 Targonian Visionary ([Level 11] +4 Might).",
+          "AND THE TWO FAMILIES BEHAVE DIFFERENTLY. UNL-151's 'I enter ready' and UNL-091's discount are read ONCE, as the card is played (355, 356), so the rule is simply play first and draw after. UNL-094's and UNL-098's +Might are CONTINUOUS, so drawing from 6 XP shrinks a Gemhand Hunter mid-board and possibly mid-combat: the safe band is 9+ for a [Level 6] board and 14+ for [Level 11] — the same shape wuju-master-blood-rose-level already publishes as its 11-13 band.",
+          "IT COMPETES WITH THE OTHER KEEPER LINE ALREADY IN THE CATALOGUE. poppy-confront-blood-rose names UNL-203 in its prerequisites as the legend whose 'When you hold, gain 1 XP' feeds the pool UNL-109 Blood Rose spends. Both sinks cost 3 XP, so one Blood Rose ready is one Keeper draw forgone. They are the same faucet with two taps, not two engines that stack.",
+          "UNL-116 POPPY, PARAGON IS THE NATURAL CHOSEN CHAMPION AND IS WORTH EXACTLY ONE DRAW. It is a Champion unit with the tag Poppy, which 103.2.a.2 matches against the legend's tag, and its 'gain 3 XP' is one activation to the digit. It is named here rather than in uses because the engine does not need it.",
+          "WHAT THE GRANT IS FOR. 170.11.a defines an occupied battlefield as one with a unit present, and 355.2.a limits play locations to 'the controller's Base or a Battlefield the controller controls' unless 355.2.b grants more. Arachnoid Horror grants exactly that, for itself and for friends, whenever the opponent is down to one body there — so a contested battlefield can be reinforced straight from hand. 'Alone' is an own-side measurement, printed as reminder text on SFD-036 Lonely Poro and UNL-210 Forbidding Waste.",
+          "IT IS ENGINE, NOT BURST OR INFINITE. Nothing in the pool converts XP to points; the sweep of every XP row against point/score/win returns only UNL-116 (which gains XP off the opponent's score) and UNL-201 (which gains XP off a combat). The draw is one per turn by the legend's exhaust and the XP faucet is bounded by 485.4's two battlefields."
+        ]
+      },
+      "steps": [
+        "Keeper of the Hammer in the Legend Zone. Get Arachnoid Horror onto a battlefield you control — from your base by Standard Move (144.4.a), or straight in under its own 355.2.b grant when the opponent is down to a single body there.",
+        "Awaken Phase: 315.1.b readies the legend along with everything else you control.",
+        "Scoring Step (315.2.b.2): you Hold every battlefield you control. Each Hold is a separate Score (469.2, 470) and so a separate trigger — 'When you hold, gain 1 XP' fires per Hold under 383.4.d.2.b, and Arachnoid Horror's [Hunt 2] adds 2 more on the battlefield it stands on.",
+        "Main Phase (316): Spend 3 XP and exhaust the legend to Draw 1. That is the whole engine, and it is once per turn — the exhaust caps it, not the balance.",
+        "Sequencing rule, if the deck runs [Level] cards: play UNL-151 Bandle Soldier or UNL-091 Concentrate BEFORE drawing, because their thresholds are read once as the card is played; and keep 9+ XP before drawing if a [Level 6] +Might body is on the board, because 824.1.d switches that off the instant the balance falls.",
+        "Repeat every turn the board holds. XP that is not spent carries over (729, 733) and nothing the opponent controls can touch it (731, 731.1)."
+      ],
+      "netPerIteration": "+3 XP per turn holding one battlefield with Arachnoid Horror on it, +4 holding two; -3 for one extra card",
+      "terminatesIn": "engine only — one extra card per turn for the legend's exhaust, for as long as the board holds; no points and no loop, since nothing in the pool converts XP into Victory Points",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Combo hunt: champion progression (Level/XP/Flow/Champion Zone) — issue #116 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/116",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue116-champion-progression.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue116-champion-progression.md), issue #116 candidate C2. UNL-203 Keeper of the Hammer and UNL-117 Arachnoid Horror appeared in no entry's uses before this; UNL-203 was named in the prerequisites of poppy-confront-blood-rose and plaza-armory-miss-fortune, and the competition with the first is declared. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.2, 103.2.a.2, 144.4.a, 170.11.a, 315.1.b, 315.2.b.2, 316, 355, 355.2.a, 355.2.b, 356, 383.4.d.2.b, 431.1.a, 469.2, 470, 485.4, 729, 730.2, 731, 731.1, 733, 823.1.b, 823.1.c.1, 824.1.b.1, 824.1.d. Ban check: neither UNL-203 nor UNL-117 carries a [BANNED marker, and none of UNL-151, UNL-094, UNL-091, UNL-098 or UNL-116 does either. TWO CORRECTIONS TO THE ISSUE. (1) It counted the legend at 1 XP a turn ('banking 3 Holds' worth of XP (1 each)'); 315.2.b.2 Holds ALL battlefields you control and 485.4 gives a Duel two, so the ceiling is 2 — and at 2 the legend alone draws every other turn, which is why the [Hunt 2] partner is part of the entry rather than a footnote. (2) It treated XP as a ratchet; 824.1.d plus 730.2 make it a balance, and in Body/Order there are four [Level] cards whose thresholds each draw walks down by 3, split into a read-once family and a continuous one. The prompt's question about the Burn Out wall is answered in the entry: 431.1.a is not in play here and the Lux ledger's '0 spare draws' is a property of an empty-deck loop, not of a draw engine on a full deck. Trap check: no attack trigger; no [Repeat]; no [Temporary] (a [Temporary] body dies at 816.1.b before the Scoring Step and never Holds, which is why the [Hunt] partner is a printed unit); no token; no recall; no Gold; the Energy is spent in the Main Phase so 167 does not bite; the entry brings no battlefield of its own, so 190.6.d does not arise. Depends on no unruled reading."
     }
   ]
 }
