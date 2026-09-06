@@ -15255,6 +15255,413 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89's second extra candidate (91 registered lists, Ride the Wind in 100 % of them). OGN-189 Kayn, Unleashed and OGN-277 Back-Alley Bar appeared in NO entry before this; OGN-173 Ride the Wind is in two and the overlap is declared. THE WALK'S ADDITIONS over the hunt: the hunt called the pair 'an explicit payoff for the second movement' without noticing that Kayn's own [Ganking] cannot BE that second movement (810.1.c.3), so the entry is really Kayn plus a mover and the mover is what it costs; and the Bar pays on 'moves FROM here', so it pays once, not twice — the hunt's implied +2 is a +1. It also states what the immunity is not: it is not [Deflect] and not a Shield, and 465.2.c still assigns the damage, it just does nothing. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 103.4.c, 143.4, 144.2, 144.4, 415.3.a, 420.3.a, 446.1, 456, 456.1, 465.2.c, 485.4.a, 485.5, 486.5, 487.5, 810.1.c.3, and Tournament Rules 402.1. Ban check: none of the three carries a [BANNED marker — OGN-277 Back-Alley Bar is not on the ban list, unlike five other Origins battlefields. Trap check: no attack designation is claimed (the immunity works on defence too); no [Repeat]; no [Temporary]; no token; a move by effect is not a Recall (456.1); no Gold; the battlefield dependency is stated in the first notable with the 485.4.a formula. Depends on no unruled reading."
+    },
+    {
+      "id": "radiant-dawn-stun-buff-free-glory",
+      "name": "Every enemy stun pays for a Call to Glory, and 346.1 is why the buff is still there when you play it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-261",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Order legend. 'When you stun one or more enemy units, buff a friendly unit.' One trigger per stun RESOLUTION, not per unit stunned - the text says 'one or more'. In no entry before this."
+        },
+        {
+          "card": "OGN-207",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order spell, E3. '[Reaction] As you play this, you may spend a buff as an additional cost. If you do, ignore this spell's cost. Give a unit +3 [M] this turn.' Its whole cost is E3 and no Power, so the buff covers all of it. In no entry before this."
+        },
+        {
+          "card": "OGN-220",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, E2, 0 from Hidden. '[Hidden] [Action] Stun a friendly unit and an enemy unit at the same battlefield.' The 0-Energy stun. Also in jhin-fiora-facebreaker-recall, garen-fiora-malzahar-facebreaker-recruits and twilight-reveler-eye-facebreaker-recruits; the overlap is declared."
+        },
+        {
+          "card": "OGN-050",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E2 P1. '[Action] Stun a unit.' The paid stun, and by 308.1.a it is legal inside the opponent's combat - which is what makes the engine repeat within a turn where the Hidden half caps at one."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Radiant Dawn is Calm/Order and covers 21 of the pool's 29 stun lines (103.1.b); Facebreaker and Call to Glory are Order, Rune Prison is Calm.",
+          "Nothing here needs a specific battlefield of yours, but the Hidden half needs one you CONTROL - see the fourth notable."
+        ],
+        "notable": [
+          "[ACTION] ALREADY REACHES THE OPPONENT'S COMBAT, SO [HIDDEN] BUYS ENERGY AND NOT SPEED. This corrects issue #61's S8, which held that Reaction speed on the opponent's turn comes only from [Hidden] or [Ambush]. 308.1: 'If a Showdown OR COMBAT is in progress, the turn is in a Showdown State.' 308.1.a: 'Only cards and abilities with the ACTION or Reaction keywords can be played or activated in a Showdown State.' 310.3 names that state 'Showdown Open'. And rule 464 is titled 'Step 1: The Combat Showdown Step', with 464.2.d giving the Attacker Focus and 347.2.b passing it on, so 312.2.b reaches the defender. Only a CLOSED state - a chain in existence - is Reaction-only (309.1.a). So Rune Prison is playable inside their combat for 2 Energy + 1 Power, and the Facebreaker for 0.",
+          "346.1 IS WHY THE BUFF IS STILL THERE TO SPEND. 'Focus will not pass in this way if the chain opened as a result of a TRIGGERED ABILITY being added to the chain.' Radiant Dawn's buff is a Triggered Ability, so when its chain empties Focus stays with you and Call to Glory - [Reaction], which by 813.1.b also carries every permission of [Action] - is legal at once, with the buff already placed. Playing it in RESPONSE to the trigger would fail, because the buff would not exist yet.",
+          "ONE BUFF PER UNIT, AND IT IS A HARD STOP. 702.3: 'There can only be one Buff on a Unit at a time', with 702.3.a 'If a Buff is added, or instructed to be added, on a Unit that already has a Buff, it is not placed instead', and 426.1.b.1 saying the same. So each buff must be SPENT before the next stun lands, or aimed at a second body. With one friendly unit on the board the engine strictly alternates stun, spend, stun, spend. 702.2.b.2 ('A player can only spend buffs on units they control') is satisfied, since Radiant Dawn buffs a friendly unit.",
+          "THE HIDDEN CEILING IS ONE CARD, NOT TWO. 811.1.b lets you hide 'at a battlefield YOU CONTROL that doesn't already have a facedown card hidden there', and 'Beginning on the next turn, this gains [Reaction]'. 485.4 is 'Battlefield Count: 2' in a Duel, so two hidden cards at once means you control BOTH battlefields and the opponent controls none. On any board where this engine matters the ceiling is one; the rest of the stuns are paid for in Energy. 811.1.d.2 confines a hidden card's targets to that battlefield (811.1.d.2.a treats each target separately), and 323.7 with 466.5.c trash the hidden card if you lose the battlefield.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. One hidden Facebreaker (0 Energy) plus one Rune Prison (2 Energy + 1 Power) inside their combat = 2 enemy stuns = 2 Radiant Dawn triggers = 2 buffs = 2 Call to Glory at 0 Energy = +6 Might spread as you like, plus two attackers contributing nothing, since 423.1.b reads 'A Stunned Unit does not contribute its might to damage in the combat damage step'. Facebreaker also stuns a FRIENDLY body at that battlefield and 423.1.b bites it too - the entry counts it.",
+          "THE ENERGY ON THEIR TURN IS REAL AND IT IS NOT FREE. 164.2.a makes a rune's Energy ability '[E]: [Reaction] - Add [1]', so Energy IS payable on the opponent's turn, and 429.2 resolves the Add as soon as it is finalized. It comes out of runes you did NOT spend on your own turn: 167 empties the Rune Pool at each Main Phase start and 415.3.a readies them only in your own Awakening Phase."
+        ]
+      },
+      "steps": [
+        "On your turn, pay [A] to hide Facebreaker at a battlefield you control (811.1.b). It gains [Reaction] beginning next turn.",
+        "On the opponent's turn they attack that battlefield. Combat opens with the Combat Showdown Step (464.2); designations are set at 464.2.c.3, the Attacker takes Focus at 464.2.d and passes it to you (347.2.b, 312.2.b).",
+        "Play Facebreaker from Hidden for 0 Energy: stun one enemy and one friendly body at that battlefield (811.1.d.2 confines both to it).",
+        "Radiant Dawn triggers once and buffs a friendly unit (426.1.b; the buff is +1 Might by 703). Let the trigger resolve - by 346.1 Focus does not pass.",
+        "Play Call to Glory, spending that buff as the additional cost: 'ignore this spell's cost' covers all of E3. Give a unit +3 Might this turn.",
+        "Play Rune Prison for 2 Energy + 1 Power in the same window (legal by 308.1.a) to stun a second attacker, and repeat the buff-and-spend once more.",
+        "At step 3d of the end of turn cleanup the stuns clear (423.1.a.2) and the +3 Might expires. Nothing carries over; the engine is re-armed by hiding another card on your turn."
+      ],
+      "netPerIteration": "one free Call to Glory (+3 Might) and one enemy attacker contributing zero combat damage, per enemy stun - 0 Energy when the stun came from Hidden, 2 Energy + 1 Power when it came from Rune Prison",
+      "terminatesIn": "engine only - 423.1.a.1 forbids re-stunning a stunned body and 423.1.a.2 clears the state at cleanup 3d, so the ceiling is how many un-stunned enemy bodies are present; nothing in the line gains a point",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de stun y exhaust enemigo - issue #61 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/61",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-stun-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-stun-lens-candidates.md), issue #61 candidate 1, REWRITTEN. Filed by the hunt as 'radiant-dawn-hidden-stun-free-reactions'; the id changed with the mechanism. OGN-261 Radiant Dawn, OGN-207 Call to Glory and OGN-050 Rune Prison appeared in NO entry before this; OGN-220 Facebreaker is in three and the overlap is declared. THE WALK'S CORRECTION: #61's S8 said Reaction speed on the opponent's turn comes only from [Hidden] or [Ambush]. It does not - 308.1, 308.1.a and 310.3 put a COMBAT in a Showdown State, where [Action] is legal, and rule 464 is titled 'Step 1: The Combat Showdown Step'. None of 308.1, 308.1.a or 310.3 had been cited anywhere in this catalogue before. So [Hidden] buys 0 Energy, not speed, and the engine is not capped at the two hidden cards #61 counted - that ceiling is really ONE, since 811.1.b hides only at a battlefield you control and 485.4 gives a Duel two battlefields in total. The walk also supplies the timing proof #61 asserted without support (346.1) and the buff cap it never mentioned (702.3 / 702.3.a). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b, 164.2.a, 167, 308.1, 308.1.a, 309.1.a, 310.3, 312.2.b, 323.7, 346.1, 347.2.b, 415.3.a, 423.1.a.1, 423.1.a.2, 423.1.b, 426.1.b, 426.1.b.1, 429.2, 464.2, 464.2.c.3, 464.2.d, 466.5.c, 485.4, 702.2.b.2, 702.3, 702.3.a, 703, 811.1.b, 811.1.d.2, 811.1.d.2.a, 813.1.b. Ban check: none of the four carries a [BANNED marker in data/corpus_flat.txt. Trap check: no attack designation is claimed; the Awaken-Energy trap (167) is addressed and the runes are named; no [Repeat]; no [Temporary]; no token; no recall; no Gold; no battlefield of its own, though the Hidden half needs one you control and 323.7 trashes the card if you lose it. Depends on no unruled reading."
+    },
+    {
+      "id": "solari-chief-facebreaker-shrine-kill",
+      "name": "Solari Chief is removal that arrives as a body, and 428.1.a.1 is why a Kill Instruction ignores Might entirely",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-225",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E5 P1 M4. 'When you play me, choose an enemy unit. If it is stunned, kill it. Otherwise, stun it.' Self-priming: the first copy takes the stun branch, the second takes the kill branch. In no entry before this."
+        },
+        {
+          "card": "OGN-220",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, E2, 0 from Hidden. '[Hidden] [Action] Stun a friendly unit and an enemy unit at the same battlefield.' Primes the kill for 0 Energy. Also in three other entries; the overlap is declared."
+        },
+        {
+          "card": "OGN-072",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BOARD",
+          "note": "Calm gear, E3. 'When you kill a stunned enemy unit, you may exhaust this to draw 1.' The exhaust caps it at one draw per turn. In no entry before this."
+        },
+        {
+          "card": "OGN-261",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Order legend. 'When you stun one or more enemy units, buff a friendly unit.' It pays on the STUN branch only - see the third notable."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Radiant Dawn is Calm/Order: Solari Chief and Facebreaker are Order, Solari Shrine is Calm (103.1.b).",
+          "103.2.b allows three copies of Solari Chief, which is the version of this line that needs no stun spell at all."
+        ],
+        "notable": [
+          "SOLARI CHIEF IS NOT THE ONLY MIGHT-CAPLESS REMOVAL, AND ISSUE #61 SAID IT WAS. A grep of the whole corpus for 'kill' returns at least five others, four of them in Order and so inside Radiant Dawn's own identity: OGN-229 Vengeance (E4 P2, 'Kill a unit.', no condition at all), OGN-213 Hidden Blade (E2 P1 and 0 from Hidden, 'Kill a unit at a battlefield. Its controller draws 2.'), OGS-012 Blast of Power (E6 P1, 'Kill a unit at a battlefield.'), SFD-164 Drag Under (E5 P1, and 'costs [2] less to play from anywhere other than your hand') and UNL-186 Death from Below (Fury/Chaos E4 P1). Vengeance is cheaper in Energy than Solari Chief and needs no stun at all. What Solari Chief actually is: the only one of the six that ARRIVES AS A BODY (4 Might), and the only one that primes itself.",
+          "THE KILL IS NOT DAMAGE, WHICH IS THE POINT AGAINST A BIG BODY. 428.1.a.1: 'Active Kill is when the action is taken when instructed by a game effect or as a cost for a card or ability', and 428.2 places the permanent 'directly in the trash from its place of origin'. Might never enters the calculation, so 423.1.c - 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might value to be killed' - is bypassed and a 10 Might body dies to it exactly as a 1 Might body does. This is the honest form of #61's claim.",
+          "THE BUFF COMES FROM THE STUN BRANCH, NEVER THE KILL BRANCH. Radiant Dawn reads 'When you stun one or more enemy units'. Solari Chief's text is 'If it is stunned, kill it. OTHERWISE, stun it' - on the kill branch nothing is stunned, so nothing is buffed. The buff in this line is Facebreaker's, or the first Solari Chief's. Spend it on OGN-207 Call to Glory (see radiant-dawn-stun-buff-free-glory) or on OGN-282 Monastery of Hirana, 'When you conquer here, you may spend a buff to draw 1', which is colourless.",
+          "SOLARI SHRINE'S CONDITION IS MET, AND ITS CAP IS ONE PER TURN. 'When you KILL a STUNNED enemy unit' - Solari Chief's target is stunned at the moment it dies, and the kill is yours. 'You may exhaust this' is the cap: 414.1.b, 'A Game Object that is already Exhausted cannot be Exhausted again', and 415.3.a readies it only in your own Awakening Phase. None of the five cards in the pool that ready gear (VEN-149, VEN-150, SFD-221, OGN-162, VEN-068) is Calm or Order, so inside this identity it is one draw per turn and there is no way around it. The Shrine is gear, so 143.4 ('Units enter the Board exhausted') never touches it.",
+          "THE HIDDEN HALF IS CONFINED, THE UNIT HALF IS NOT. 811.1.d.2 makes Facebreaker's targets 'chosen from among options at that battlefield', so the priming stun lands where the card was hidden - and it also stuns a FRIENDLY body there, since the card says so. Solari Chief is played from hand and its text names no location ('choose an enemy unit'), so the kill reaches any battlefield.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. One [A] on the previous turn plus E5 + 1 Power removes ANY enemy unit whatever its Might, and leaves behind a 4 Might body, one card drawn and one buff. Without the Facebreaker the same line is two Solari Chiefs - E10 + 2 Power for the same removal plus a second body - which is why the entry declares three copies. The stun does not survive the turn (423.1.a.2), so both copies must be played in the same turn."
+        ]
+      },
+      "steps": [
+        "On your turn, pay [A] to hide Facebreaker at a battlefield you control (811.1.b); it gains [Reaction] beginning next turn.",
+        "Play Solari Shrine (3 Energy). It is gear, so it enters ready.",
+        "Play Facebreaker from Hidden for 0 Energy: stun the enemy unit you intend to remove, at the battlefield it was hidden at (811.1.d.2). It also stuns a friendly body there.",
+        "Radiant Dawn triggers on the enemy stun and buffs a friendly unit (426.1.b).",
+        "Play Solari Chief (5 Energy + 1 Power) and choose that stunned enemy: 'If it is stunned, kill it.' 428.1.a.1 makes it a Kill Instruction, so its Might is irrelevant.",
+        "Solari Shrine triggers: exhaust it, draw 1. Its cap is one per turn (414.1.b, 415.3.a).",
+        "Without a Facebreaker in hand the same line is two Solari Chiefs in one turn: the first stuns, the second kills."
+      ],
+      "netPerIteration": "one enemy unit of ANY Might removed for 5 Energy + 1 Power and one [A] spent the previous turn, leaving a 4 Might body, one card drawn and one buff",
+      "terminatesIn": "engine only - 103.2.b caps Solari Chief at three copies and each is a single 'When you play me'; nothing here gains a point and nothing repeats within a turn",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de stun y exhaust enemigo - issue #61 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/61",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-stun-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-stun-lens-candidates.md), issue #61 candidate 2, REWRITTEN. OGN-225 Solari Chief, OGN-072 Solari Shrine and OGN-261 Radiant Dawn appeared in NO entry before this; OGN-220 Facebreaker is in three and the overlap is declared. THE WALK'S CORRECTION: #61 called Solari Chief 'la unica remocion del pool sin tope de Might que cuesta menos que su target'. A grep of the whole corpus for 'kill' refutes it - OGN-229 Vengeance, OGN-213 Hidden Blade, OGS-012 Blast of Power, SFD-164 Drag Under and UNL-186 Death from Below all kill with no Might cap, and the first four are Order, inside Radiant Dawn's identity. The entry now stands on what IS true: Solari Chief is the only one that arrives as a body and the only one that primes itself, and 428.1.a.1 with 428.2 are why a Kill Instruction bypasses 423.1.c entirely. The walk also corrected the buff attribution - Radiant Dawn pays on the 'Otherwise, stun it' branch, never on the kill - and re-checked the gear-ready uniqueness claim with a bare -i grep over the whole pool, per the rule in CLAUDE.md. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b, 103.2.b, 143.4, 414.1.b, 415.3.a, 423.1.a.2, 423.1.c, 426.1.b, 428.1.a.1, 428.2, 811.1.b, 811.1.d.2. Ban check: none of the four carries a [BANNED marker in data/corpus_flat.txt. Trap check: no attack designation is claimed; no [Repeat]; no [Temporary]; no token; no recall; no Gold; no battlefield of its own, though the Hidden half needs one you control and 323.7 trashes the card if you lose it. Depends on no unruled reading."
+    },
+    {
+      "id": "leona-zealot-stun-lethal-spread",
+      "name": "Four stunned attackers at 1 Might cost four damage in total, because 465.2.c.4 forbids spending a fifth on any of them",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-079",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E6 P1 M6. 'If an opponent's score is within 3 points of the Victory Score, I enter ready. Stunned enemy units here have -8 [M], to a minimum of 1 [M].' Her second sentence is a PASSIVE ability, so 477.3.b's snapshotting does not apply to it. Also in leona-zealot-stun-might-collapse; the overlap is declared."
+        },
+        {
+          "card": "SFD-040",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E2 (+E2 [Repeat]). '[Action] [Repeat] [2] Stun an attacking unit.' Two stuns on two different targets (820.2.a) from one card, once (820.1.c.3). A defensive card by construction - on your own turn the attacking units are yours. In no entry before this."
+        },
+        {
+          "card": "OGN-050",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E2 P1. '[Action] Stun a unit.' Legal inside the opponent's combat by 308.1.a. In no entry before this."
+        },
+        {
+          "card": "OGN-220",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, E2, 0 from Hidden. The 0-Energy stun, and it is available here precisely because this is a battlefield you control - 811.1.b hides only there. Also in three other entries; the overlap is declared."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Leona, Zealot, Thwonk! and Rune Prison are Calm; Facebreaker is Order. A Calm legend runs the first three and a Calm/Order legend runs all four (103.1.b).",
+          "This is a DEFENSIVE line: Leona must stand at a battlefield YOU control when the opponent attacks it, which is also the only kind of battlefield 811.1.b lets you hide a card at."
+        ],
+        "notable": [
+          "THE ENTRY IS 465.2.c.3 AND 465.2.c.4, AND NEITHER APPEARS IN leona-zealot-stun-might-collapse. That entry establishes the single-body fact - a stunned enemy standing with Leona is at 1 Might and dies to 1 damage. This one is what happens once SEVERAL of them are. 465.2.c.3: 'Units must have lethal damage assigned to them in full before damage is assigned to a different Unit.' 465.2.c.4: 'Units cannot have more damage assigned to them than the minimum required to constitute lethal damage unless no further units remain to have damage assigned to them.' So a 1 Might body may be assigned exactly 1, and the remainder is FORCED onto the next body. A force of summed Might M kills M stunned enemies at Leona's battlefield.",
+          "HER -8 IS A PASSIVE ABILITY, SO IT DOES NOT SNAPSHOT. 477.3.b: 'When an arithmetic effect from a source that is NOT A PASSIVE ABILITY has a limitation that applies, it is limited at the time of its application, and is remembered at that limited level for the duration of its effect. This process is called snapshotting.' Its own second worked example is this exact shape: 'A unit reads Units you control here have their Might increased to 5 [M]. This is a passive ability, so it will not snapshot.' The floor is therefore evaluated live, on each body, as it becomes stunned and as it stops. 477.3.e.2.a applies decreases last, so an enemy pump cannot outrun it.",
+          "THE KILL THRESHOLD IS THE CURRENT NUMBER, WITH THE RULES' OWN WORKED EXAMPLE. 142.4.b: 'Lethal Damage for a Unit is a non-zero amount greater than or equal to that Unit's Might. Example: A unit has 5 [M] and 3 damage marked on it. Frigid Touch is played targeting that unit. When it resolves, the unit's Might becomes 3, and it will have lethal damage marked on it.' 710 says the same for board evaluation and 465.2.c.2 repeats it inside the damage step. 423.1.c fixes the bar at 'full might value'; Leona is what moves that value.",
+          "THWONK! WORKS, AND #61 DOUBTED IT. 'Stun an attacking unit' needs the Attacker designation, which 807.1.d grants only 'during Combat'. The window exists: rule 464 is 'Step 1: The Combat Showdown Step', 464.2.c.3 assigns the designations at task 2 and 464.2.d hands out Focus only at task 3, so by the time anyone may act there are attacking units to choose. And 308.1 with 308.1.a put a Combat in a Showdown State, where [Action] is legal. On your OWN turn the attackers are yours, which is the second reason this line is defensive.",
+          "[REPEAT] IS EXACTLY ONE EXTRA EXECUTION. 820.1.b makes it 'an optional cost that a player may pay to execute the effect of their spells and abilities a SECOND time', 820.1.c.3 'Each Repeat Cost can be paid only a single time', and 820.2.a lets the second execution name a different target. Thwonk! is two stuns, once - not an engine.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. The opponent attacks Leona's battlefield with four bodies. Hidden Facebreaker (0 Energy, one of theirs and one of yours) plus Rune Prison (2 Energy + 1 Power) plus Thwonk! with its Repeat (2 + 2 Energy, two targets) = all four attackers stunned. Each is at 1 Might, each contributes 0 (423.1.b), and your defenders' summed Might (465.2.b) needs FOUR damage in total to kill all four - Leona alone is a 6. Price: one [A] the previous turn, 7 Energy and 1 Power out of runes you left ready, since 164.2.a makes a rune's Energy a [Reaction] but 167 and 415.3.a mean the runes had to be left unspent. A 10 Might attacker floors at 2, not 1, because the minimum is 1 and 10 minus 8 is 2 - count it as 2.",
+          "SHE IS A TWO-TURN CARD UNLESS THE GAME IS ALREADY NEARLY LOST. 143.4 makes her enter exhausted, so she cannot pay the Standard Move's cost (144.2) the turn she lands, and 415.3.a readies her only in your next Awakening Phase. The one exception is her own first sentence, 'If an opponent's score is within 3 points of the Victory Score, I enter ready'. Her floor is worth nothing at your base: the text says 'here'."
+        ]
+      },
+      "steps": [
+        "Get Leona, Zealot to a battlefield you control (6 Energy + 1 Power). 143.4 makes her enter exhausted unless the opponent is already within 3 points of 8, so plan on the turn after.",
+        "On your turn, pay [A] to hide Facebreaker at that battlefield (811.1.b) and leave runes ready - 167 empties the pool at each Main Phase start, so the Energy for the opponent's turn is the Energy you did not spend.",
+        "The opponent attacks. Combat opens with the Combat Showdown Step (464.2); designations are assigned at 464.2.c.3 and Focus reaches you through 464.2.d then 347.2.b.",
+        "Stun the attackers: Facebreaker for 0, Rune Prison for 2 Energy + 1 Power, Thwonk! for 2 Energy plus 2 more for its Repeat on a second target. All are legal in this state by 308.1.a.",
+        "Each stunned attacker is now at 1 Might - 477.3.b exempts her passive ability from snapshotting, so it applies live, and 710 reads the current number.",
+        "In the damage step they contribute nothing (423.1.b) and your summed Might is assigned 1 per body, because 465.2.c.4 caps it at the minimum lethal and 465.2.c.3 forces the rest onto the next one.",
+        "At step 3d of the end of turn cleanup the stuns clear (423.1.a.2); 423.1.a.1 means the same bodies can be stunned again next turn, one card each."
+      ],
+      "netPerIteration": "every stunned attacker at Leona's battlefield costs exactly 1 damage to kill instead of its printed Might, and deals none back - so N stun cards convert N enemy bodies into N points of your defenders' summed Might",
+      "terminatesIn": "engine only - the stun clears at cleanup 3d (423.1.a.2), 423.1.a.1 forbids re-stunning while it is on, one card is needed per body since no card in the pool stuns two enemies in one resolution, and nothing here gains a point",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de stun y exhaust enemigo - issue #61 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/61",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-stun-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-stun-lens-candidates.md), issue #61 candidate 3, REWRITTEN. SFD-040 Thwonk! and OGN-050 Rune Prison appeared in NO entry before this; OGN-079 Leona, Zealot is in leona-zealot-stun-might-collapse and OGN-220 Facebreaker in three others, and both overlaps are declared. IT IS NOT A DUPLICATE OF leona-zealot-stun-might-collapse: that entry's netPerIteration is 'one enemy unit reduced to 1 Might' and it cites neither 465.2.c.3 nor 465.2.c.4; this one is the arithmetic of a battlefield full of 1 Might bodies, and the two share only Leona herself. THE WALK'S CORRECTIONS to #61: the line is DEFENSIVE, because 811.1.b hides only at a battlefield you control, so no Facebreaker can ever be waiting at a battlefield you are attacking; and Thwonk! does work, because rule 464 is 'The Combat Showdown Step' and 464.2.c.3 precedes 464.2.d, so attacking units exist before anyone holds Focus. It also adds 477.3.b, which the catalogue needed in order to know her floor is not snapshotted - the rule's own second worked example is a passive ability of exactly this shape. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b, 142.4.b, 143.4, 144.2, 164.2.a, 167, 308.1, 308.1.a, 347.2.b, 415.3.a, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 464.2, 464.2.c.3, 464.2.d, 465.2.b, 465.2.c.2, 465.2.c.3, 465.2.c.4, 477.3.b, 477.3.e.2.a, 710, 807.1.d, 811.1.b, 820.1.b, 820.1.c.3, 820.2.a. Ban check: none of the four carries a [BANNED marker in data/corpus_flat.txt. Trap check: no attack designation is claimed for Leona, who defends; no [Temporary]; no token; no recall; no Gold; no battlefield of its own, though the Hidden half needs one you control and 323.7 trashes the card if you lose it. Depends on no unruled reading."
+    },
+    {
+      "id": "vex-apathetic-gloomist-play-tax",
+      "name": "The only free repeatable stun in the pool, and Eclipse Herald's ready half is dead on the very turn it fires",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-150",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 M4. '[Deflect] When an opponent plays a unit while I'm at a battlefield, [Stun] it. They can't move it this turn.' The only stun in the pool with no cost, no per-turn cap and no attack requirement. Also in vex-star-crossed-rebound-stun; the overlap is declared."
+        },
+        {
+          "card": "OGN-059",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E7 P1 M7. 'When you stun an enemy unit, ready me and give me +1 [M] this turn.' 423.1.a.1's own worked example is this card. In no entry before this."
+        },
+        {
+          "card": "UNL-055",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Calm unit, E5 P1 M5. '[Shield] [Tank] When you [Stun] an enemy unit at a battlefield, you may move me to that battlefield.' Its trigger needs the stunned unit to be AT A BATTLEFIELD, which the opponent chooses. In no entry before this."
+        },
+        {
+          "card": "UNL-193",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Chaos legend, tag Vex. 'When you or an ally hold, you may exhaust me to draw 1.' The only legend whose identity covers both Vex plus Eclipse Herald. In no entry before this."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Gloomist is Calm/Chaos: Vex, Apathetic is Chaos, Vex, Mocking and Eclipse Herald are Calm. 103.1.b breaks on any other legend pairing here.",
+          "Vex, Apathetic must be AT A BATTLEFIELD, not at your base - the location clause is on her, and it is the whole trigger."
+        ],
+        "notable": [
+          "IT IS THE ONLY FREE REPEATABLE STUN, AND THE CHECK WAS THE WHOLE TABLE. Reading all 22 stun producers of issue #61: the spells are one-shot; UNL-133 Blast Cone and UNL-194 Shadow carry an exhaust in the cost; VEN-135 Kennen costs [2] and has two windows; OGN-051, OGN-225, UNL-052 and VEN-120 are 'when you play me' triggers; OGN-200, OGN-238, UNL-176 and UNL-196 are attack triggers. UNL-150 alone has no cost, no cap and no attack requirement. And its location clause is on VEX - 'When an opponent plays a unit WHILE I'M AT A BATTLEFIELD' - not on the unit played, so one Vex taxes every unit the opponent plays anywhere.",
+          "ECLIPSE HERALD'S 'READY ME' IS DEAD ON THE TURN IT FIRES, AND ONLY THE MIGHT IS LIVE. Vex's trigger fires on the OPPONENT'S turn. A ready buys nothing there: the Standard Move needs Priority, which 312.2.a gives only 'when the turn is in a Neutral Open State during their Main Phase'; 144.1.c forbids the action 'during a Showdown or Combat' in any case; and 415.3.a readies him in your own Awakening Phase regardless. What IS live is '+1 [M] this turn', and it is live on exactly the turn that matters, because 465.2.b sums Defending Might in the damage step of the attack he is standing in. N units played means he defends at 7+N. It does not carry to the next turn. This narrows issue #61's R2 rather than contradicting it.",
+          "VEX, MOCKING'S MOVE IS OPPONENT-DEPENDENT, AND TAKING IT CAN COST YOU. Her trigger needs 'an enemy unit AT A BATTLEFIELD', and 355.2.a makes the default play destination 'the controller's Base or a Battlefield the controller controls' - a unit played to their base gives her nothing. And if it was played to a battlefield THEY control and you take the move, 190.3.a applies Contested keyed on your unit's controller, so 464.2.c.1 makes YOU the Attacker on THEIR turn, and 814.1.d switches [Shield] off, since its '+1 while I'm a defender' needs the Defender designation. Take the move onto your own battlefields; decline it onto theirs.",
+          "[TANK] AND [DEFLECT] ARE NOT PROTECTION AND ARE NOT COUNTED AS SUCH. [Tank] ('I must be assigned combat damage first') only reorders 465.2.c's assignment; [Deflect] makes the opponent pay a rune to CHOOSE Vex, which does not touch combat damage at all. Neither is claimed as a payoff here.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Vex, Apathetic costs 4 Energy and by 143.4 her trigger starts the turn after she lands. From then, per unit the opponent plays: one stun, 0 Energy, 0 cards, no cap. Three units played on their turn gives Eclipse Herald +3 Might for that turn and three bodies that deal no combat damage (423.1.b), one of which also cannot walk ('They can't move it this turn'). Gloomist converts your Holds into cards at one per turn, since her ability costs her own exhaust (414.1.b, 415.3.a)."
+        ]
+      },
+      "steps": [
+        "Play Vex, Apathetic (4 Energy) and get her to a battlefield; 143.4 makes her enter exhausted, so the trigger is live from the following turn.",
+        "Play Eclipse Herald (7 Energy + 1 Power) at that same battlefield - his +1 Might only helps where he is standing when the damage step runs.",
+        "On the opponent's turn, every unit they play triggers Vex: stun it, and they cannot move it this turn.",
+        "Each of those stuns readies Eclipse Herald and gives him +1 Might this turn. The ready is dead now (312.2.a, 144.1.c, 415.3.a); the Might is what you keep for this turn's combat.",
+        "If the stunned unit landed at a battlefield you control, take Vex, Mocking's move to it; if it landed at one they control, decline - 190.3.a with 464.2.c.1 would make you the Attacker on their turn.",
+        "In the damage step the stunned bodies contribute nothing (423.1.b) and Eclipse Herald defends at 7 plus the number of stuns (465.2.b).",
+        "At step 3d of cleanup the stuns clear (423.1.a.2) and the Might expires. Next turn the tax runs again for nothing."
+      ],
+      "netPerIteration": "one free stun per unit the opponent plays, worth +1 Might on Eclipse Herald for that turn and one enemy body that neither fights nor walks - 0 Energy and 0 cards per stun",
+      "terminatesIn": "engine only - the ceiling is how many units the opponent chooses to play, 423.1.a.1 stops a body being stunned twice, 423.1.a.2 clears the state at cleanup 3d, and nothing in the line gains a point",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de stun y exhaust enemigo - issue #61 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/61",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-stun-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-stun-lens-candidates.md), issue #61 candidate 4, REWRITTEN. OGN-059 Eclipse Herald, UNL-055 Vex, Mocking and UNL-193 Gloomist appeared in NO entry before this; UNL-150 Vex, Apathetic is in vex-star-crossed-rebound-stun and the overlap is declared - that entry MANUFACTURES the replay Vex taxes and is mono-Chaos, while this one is the payoff side of the same trigger. THE WALK'S CORRECTIONS to #61: the hunt counted Eclipse Herald's 'ready me' as part of the payoff, and it is dead on the turn it fires (312.2.a, 144.1.c, 415.3.a) - only the '+1 [M] this turn' is live, and it is live in the right combat by 465.2.b; and it presented Vex, Mocking's move as free upside, when taking it onto a battlefield the opponent controls makes YOU the Attacker on THEIR turn (190.3.a, 464.2.c.1) and switches [Shield] off (814.1.d). The uniqueness claim was checked by reading all 22 stun producers of #61's own table rather than by grep. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b, 143.4, 144.1.c, 190.3.a, 312.2.a, 355.2.a, 414.1.b, 415.3.a, 423.1.a.1, 423.1.a.2, 423.1.b, 464.2.c.1, 465.2.b, 465.2.c, 814.1.d. Ban check: none of the four carries a [BANNED marker in data/corpus_flat.txt. Trap check: no attack designation is claimed as a payoff, and where one would arise the entry says to decline the move; no [Repeat]; no [Temporary]; no token; no recall; no Gold; no battlefield of its own. Depends on no unruled reading."
+    },
+    {
+      "id": "conscription-signpost-empty-garrison",
+      "name": "Conscription is a two-body swing that leaves the garrison empty, and 107.1.c is why the stolen unit lands in YOUR base",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-140",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E5 P2. 'You may spend 5 XP as an additional cost to play this. Choose an enemy unit at a battlefield with 3 [M] or less. If you paid the additional cost, choose any enemy unit at a battlefield instead. Take control of it, exhaust it, and recall it.' The pool's only effect that leaves an enemy body exhausted, and it steals it first. In no entry before this."
+        },
+        {
+          "card": "UNL-045",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Calm gear, E2. '[Action][>] Exhaust a unit you control, [exhaust this]: Move a different unit you control to the location of the unit you exhausted to pay for this ability.' Reinforcement, NOT the walk to the emptied battlefield - see the second notable. Also in signpost-corina-two-battlefields; the overlap is declared."
+        },
+        {
+          "card": "UNL-193",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Chaos legend. Conscription is Chaos and Forgotten Signpost is Calm, so 103.1.b needs a Calm/Chaos legend: OGN-259 Unforgiven, SFD-195 Blade Dancer or this one."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Conscription is Chaos, Forgotten Signpost is Calm: the legend must be Calm/Chaos (103.1.b). Three qualify - OGN-259 Unforgiven, SFD-195 Blade Dancer, UNL-193 Gloomist.",
+          "Conscription carries neither [Action] nor [Reaction], so by 155 it is playable only in your own Main Phase Open State."
+        ],
+        "notable": [
+          "THE STOLEN BODY LANDS IN YOUR BASE, AND 107.1.c IS THE RULE THAT SAYS SO. The card's three instructions run in printed order - 158.1, 'Spells have their rules text executed from top to bottom when they are Resolved' - so control changes FIRST. 455 then reads 'A Recall is when a Permanent is relocated from anywhere to ITS Base without it being a Move', and 107.1.c defines whose that is: 'Permanents and Runes controlled by a player reside in THAT PLAYER'S Base.' The 'exhaust it' is a separate printed instruction and not a consequence of the recall - 458 says 'Recalls do not affect the state of the Permanent being recalled' - so the CLAUDE.md recall trap is respected rather than leaned on.",
+          "THE SIGNPOST DOES NOT WALK THE STOLEN BODY INTO THE BATTLEFIELD YOU JUST EMPTIED, AND ISSUE #61 SAID IT DID. Read its cost to the end: 'EXHAUST A UNIT YOU CONTROL, [exhaust this]: Move a different unit you control TO THE LOCATION OF THE UNIT YOU EXHAUSTED'. The destination is wherever a body you already control is standing, so you must ALREADY have a unit at that battlefield - and if you do, you have already conquered it and the stolen body adds nothing to the conquer. What the Signpost is here is reinforcement: it puts an exhausted body into an existing garrison for 0 Energy and 0 Power at [Action] speed, which is the one thing a body that cannot pay 144.2's exhaust could not otherwise do.",
+          "EMPTYING THE GARRISON CONQUERS WITH NO DAMAGE AND NO ATTACKER. 323.6 strips their Control 'if the turn is in an Open State and there is no Showdown or Combat ongoing there' the moment their last body leaves. Your unit then walks in, 190.3.a applies Contested, 344.2 opens a Showdown because 'there aren't units controlled by different players there', 348.2.a establishes Control and 348.2.a.1 says outright 'This results in a Conquer if that player has not yet scored that Battlefield this turn.' No 'When I attack' trigger is claimed anywhere in the line, so the empty-battlefield trap (807.1.d, 383.4.e, 461) does not arise: this is a Conquer without an Attacker designation.",
+          "IT IS THE ONLY LINE IN THE STUN LENS THAT LEAVES AN ENEMY BODY EXHAUSTED, AND IT HAD TO STEAL IT TO DO SO. Issue #61's S1 inventoried all 32 uses of the verb 'exhaust' in the pool and found zero that exhaust a unit the opponent still controls. Conscription is the exception that proves it: 'Take control of it, exhaust it'. The exhaust is a penalty on the unit you now own, not an attack on theirs.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Small mode: E5 + 2 Power for an enemy of 3 Might or less. Large mode: E5 + 2 Power + 5 XP for any enemy at a battlefield. Either way it is a TWO-BODY swing on one card - their garrison shrinks by one and yours grows by one. Emptying a garrison of N defenders costs N Conscriptions, not one, and 103.2.b caps that at three copies, which is the honest ceiling of this line. Forgotten Signpost is E2 once and 0 per activation afterwards, but each activation costs the exhaust of a THIRD body at the destination, so the line is three units, not two."
+        ]
+      },
+      "steps": [
+        "Play Forgotten Signpost (2 Energy). It is gear, so 143.4 does not exhaust it.",
+        "In your Main Phase - 155, since Conscription has neither [Action] nor [Reaction] - play Conscription: 5 Energy + 2 Power for an enemy of 3 Might or less, or the same plus 5 XP for any enemy at a battlefield.",
+        "Take control of it, exhaust it, recall it: 158.1 runs those in printed order, so 455 with 107.1.c put it in YOUR base, exhausted.",
+        "If that was their last body at the battlefield, 323.6 strips their Control in the same Cleanup and the battlefield is open.",
+        "Move any ready unit of yours in. 190.3.a makes it Contested, 344.2 opens a Showdown with no opposing units present, 348.2.a gives you Control and 348.2.a.1 makes it a Conquer - no damage step, no Attacker.",
+        "The stolen body cannot pay its own Standard Move (144.2) while exhausted. Forgotten Signpost moves it to a battlefield where you already have a body to exhaust as the cost - reinforcement, not the conquer.",
+        "415.3.a readies the stolen unit in your next Awakening Phase, from which point it is an ordinary unit of yours."
+      ],
+      "netPerIteration": "one enemy unit removed from their garrison AND added to your board for 5 Energy + 2 Power, or for the same plus 5 XP at any Might, which opens the battlefield for a Conquer with no combat if it was their last body there",
+      "terminatesIn": "engine only - 103.2.b caps Conscription at three copies, emptying a garrison of N defenders needs N of them, and the Conquer it opens is one point per battlefield per turn (470)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Lente de stun y exhaust enemigo - issue #61 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/61",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-stun-lens-candidates.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-stun-lens-candidates.md), issue #61 candidate 5, REWRITTEN. UNL-140 Conscription and UNL-193 Gloomist appeared in NO entry before this; UNL-045 Forgotten Signpost is in signpost-corina-two-battlefields and the overlap is declared. THE WALK'S CORRECTION: #61 used Forgotten Signpost as the way to walk the stolen, exhausted body into the battlefield Conscription had just emptied. It cannot - its cost is 'Exhaust a unit you control' and it moves a different unit 'to the LOCATION OF THE UNIT YOU EXHAUSTED', so you must already have a body at the destination, and if you do you have already conquered it. The Signpost is reinforcement here and the entry says so. The walk also supplied the rule #61 asserted without one: 107.1.c ('Permanents and Runes controlled by a player reside in that player's Base') read with 158.1 is why 455's 'its Base' means yours, since the control change is printed first. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b, 103.2.b, 107.1.c, 143.4, 144.2, 155, 158.1, 190.3.a, 323.6, 344.2, 348.2.a, 348.2.a.1, 415.3.a, 455, 458, 470. Ban check: none of the three carries a [BANNED marker in data/corpus_flat.txt. Trap check: the empty-battlefield trap is respected - no 'When I attack' trigger is claimed and the Conquer comes from 348.2.a.1, not from combat; the recall is the one in 455 and 458 is cited; no [Repeat]; no [Temporary]; no token, so 185 and 186.1 never arise; no Gold; no battlefield of its own. Depends on no unruled reading."
     }
   ]
 }
