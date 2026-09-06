@@ -47,7 +47,16 @@ const config = {
   // match `feature/x` and `feature/a/b` but CANNOT match `master`, which is then enabled explicitly.
   // Never write `"*": false` or a bare `deploymentEnabled: false` here — both match master and would
   // switch production off.
-  git: { deploymentEnabled: { "*/*": false, "*/**": false, master: true } },
+  //
+  // `work` is named on its own because it has no slash for the globs to catch. It is the shared backup
+  // branch every session pushes to; master is promoted from it in batches, so that a day of commits
+  // costs one deployment instead of one each. The cap is "Deployments Created per Day: 100", scoped to
+  // the ACCOUNT over a rolling 86400s, and a build cancelled by the ignore step still counts against it
+  // — which is why the branch has to not deploy at all rather than deploy and skip.
+  //
+  // Any other unslashed branch name would still deploy: Vercel's default for an unmatched branch is
+  // enabled, and the only pattern that would catch them all is `"*": false`, which also catches master.
+  git: { deploymentEnabled: { "*/*": false, "*/**": false, work: false, master: true } },
   // /privacy and /terms rather than /privacy.html: Google's OAuth branding page wants both links,
   // and they are printed in the footer of every page.
   cleanUrls: true,
