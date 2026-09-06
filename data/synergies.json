@@ -1850,7 +1850,7 @@
     },
     {
       "id": "startipped-peak-rune-ramp",
-      "name": "Startipped Peak channels a third rune, so an Empower priced per rune controlled arrives two turns early",
+      "name": "Startipped Peak channels a third rune a turn — one turn sooner to twelve runes, but the Empower discount it feeds arrives no sooner",
       "anchor": "OGN-288",
       "partner": {
         "textMatches": "for each rune you control"
@@ -1870,6 +1870,102 @@
       "status": "rule-verified",
       "reviewed": "2026-09-06",
       "reviewedCount": 2
+    },
+    {
+      "id": "reckoners-arena-hunt-double-xp",
+      "name": "Reckoner's Arena pays every Hunt twice on a Hold, because 823.1.b makes it both effects at once",
+      "anchor": "OGN-286",
+      "partner": {
+        "textMatches": "\\[Hunt"
+      },
+      "why": "823.1.b — \"Hunt is both a Conquer and a Hold effect.\" — is why a Hunt keyword pays twice on the same Hold at this battlefield: once because 823.1.c.1 (\"Hunt is functionally short for: When I Conquer or Hold, my controller gains X XP\") already fires on any Hold, and a second time because the Arena's own text (\"When you hold here, activate the conquer effects of units here\") activates the SAME ability again under 383.4.g.1 — whose own worked example IS this card, reading a unit's conquer condition as fulfilled and putting the ability on the chain a second time if nothing else in its condition is unmet. `[Hunt]`, `[Hunt 2]` and `[Hunt 3]` all read the same way (823.1.c.2, c.3 — the number is just the XP value), so every one of the 13 printings in the pool doubles cleanly: the Hunt clause carries no other condition to fail 383.4.g.1's check, unlike the plain \"When I conquer\" cards this same anchor already excludes (Yone, Swain) on this battlefield's companion rule. `gromp-arena-svellsongur-xp` (verified) is the walked arithmetic: Voracious Gromp's [Hunt 3] pays 3 + 3 = 6 XP per Hold before Svellsongur doubles the whole thing again. One printing is not a unit at all — `UNL-096 Hunter's Machete` grants [Hunt] as Effect Text, and 434.1.c appends an Equipment's Effect Text to whatever it is attached to, so it doubles for its wearer exactly like a printed Hunt would.",
+      "basis": {
+        "rules": [
+          "823.1.a",
+          "823.1.b",
+          "823.1.c",
+          "823.1.c.1",
+          "823.1.c.2",
+          "383.4.g",
+          "383.4.g.1",
+          "434.1.c"
+        ],
+        "combos": [
+          "gromp-arena-svellsongur-xp"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 13
+    },
+    {
+      "id": "call-to-glory-buff-bank",
+      "name": "A mass buffer banks several free Calls to Glory in one shot",
+      "anchor": "OGN-207",
+      "partner": {
+        "textMatches": "[Bb]uff\\]? (all|up to (two|three|four)|every)"
+      },
+      "why": "Call to Glory only needs ONE buff — \"you may spend a buff as an additional cost. If you do, ignore this spell's cost\" — so any single buff already makes it free (702.2.b). What a mass buffer changes is the SUPPLY: 702.3 caps a unit at one buff, so an ability that buffs several distinct units in one resolution (Kinkou Monk up to two, Peak Guardian itself plus every other friendly unit at its battlefield, Overt Operation and Fae Dragon up to four/all) puts several spendable buffs on the board at once instead of the usual one-buff-at-a-time a card like `wallop-buff-spend` reads off the same list. 103.2.b caps Call to Glory at 3 copies, and a bank of 3+ buffs lets you cast all of them free across a turn instead of drawing into one buff per turn. 702.2.b.2 (\"a player can only spend buffs on units they control\") is why `Enthusiastic Promoter`'s \"[Buff] all units here\" — the one entry on this list with no \"friendly\" in its text — still banks a buff for you only from whichever of those units are yours; an enemy sharing the battlefield gets buffed too, but that buff is never yours to spend.",
+      "basis": {
+        "rules": [
+          "702.2.a",
+          "702.2.b",
+          "702.2.b.2",
+          "702.3",
+          "702.3.a",
+          "703"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 5
+    },
+    {
+      "id": "albus-ferros-buff-bank",
+      "name": "Albus Ferros turns a whole mass buff into channelled runes on one play",
+      "anchor": "OGN-230",
+      "partner": {
+        "textMatches": "[Bb]uff\\]? (all|up to (two|three|four)|every)"
+      },
+      "why": "\"When you play me, spend any number of buffs. For each buff spent, channel 1 rune exhausted.\" reads the board once, at the moment Albus enters, so its whole value is however many DIFFERENT units are already buffed then — and 702.3 (\"There can only be one Buff on a Unit at a time\") is exactly what makes \"number of buffed units\" and \"number of buffs\" the same count. A mass buffer played the same turn, before Albus, converts one activation into several buffed bodies and therefore several exhausted-rune channels off one ETB, instead of the one buff a turn a single-target buffer would have left on the board. 702.2.b.1 (\"a buff cannot be spent from a Unit that does not have a buff\") and 702.2.b.2 (only your own units) both cap the count at real, already-placed, controlled buffs — Enthusiastic Promoter's ungated \"[Buff] all units here\" only contributes the friendly units among them. None of the five needs sequencing beyond \"resolve before Albus enters\": nothing here is a Reaction that could jump the play trigger.",
+      "basis": {
+        "rules": [
+          "702.2.a",
+          "702.2.b",
+          "702.2.b.1",
+          "702.2.b.2",
+          "702.3",
+          "702.3.a",
+          "703"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 5
+    },
+    {
+      "id": "sett-kingpin-mass-buff",
+      "name": "Sett, Kingpin turns a mass buff at his own battlefield into that many Might",
+      "anchor": "OGN-240",
+      "partner": {
+        "textMatches": "[Bb]uff\\]? (all|up to (two|three|four)|every)"
+      },
+      "why": "\"[Tank] I get +1 Might for each buffed friendly unit at my battlefield\" is a continuous count, not a trigger, so it reads however many buffed bodies are standing with him at the moment combat or an ability checks it — and 702.3 (\"one Buff on a Unit at a time\") is the reason it never overshoots: a mass buffer run twice into the same board buys Sett nothing more, since 702.3.a refuses the second buff on a unit that already has one. Three of the five buff several units WITHOUT a location restriction (Kinkou Monk, Overt Operation, Fae Dragon), so you choose the ones standing with Sett; two are scoped to a location instead — Peak Guardian buffs \"all other friendly units\" only if it is itself at a battlefield, and Enthusiastic Promoter's Hold buffs only \"units here\" — so both of those only feed Sett when they land at HIS battlefield, not anywhere else on the board. And this does not turn into a free army: 355.2.a sends a newly created token to the controller's base or a battlefield the controller already holds, so stacking bodies specifically at Sett's battlefield is the walk measured in `docs/phase0/walks/2026-09-06-token-lens-candidates.md` (#48) — only `SFD-177 Azir, Sovereign` moves token units there in bulk, everything else is a Standard Move at a time.",
+      "basis": {
+        "rules": [
+          "702.2.a",
+          "702.3",
+          "702.3.a",
+          "703",
+          "355.2.a"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 5
     }
   ]
 }
