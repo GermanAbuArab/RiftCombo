@@ -4,6 +4,7 @@ import legalityJson from "../data/legality.json" with { type: "json" };
 import synergiesJson from "../data/synergies.json" with { type: "json" };
 import { CardIndex, readableCardText } from "../src/cards.js";
 import { generateVariants, sourceHref } from "../src/combos.js";
+import { sizeRule } from "../src/build.js";
 import { deckCountLine, deckRestrictions, isDeckCode, loadDeck, normalizeDeck, type DeckEntry, type DeckRestriction } from "../src/deck.js";
 import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
 import { planDeck, type Route } from "../src/plan.js";
@@ -189,19 +190,45 @@ async function run(source: "text" | "url" = "text") {
       if (isDeckCode(text)) go(`#deck=${encodeURIComponent(text)}`);
       else go(analyzing?.id ? `#/combos?deck=${encodeURIComponent(analyzing.id)}` : "#/combos");
     }
-    const included = result.included.length;
-    const near = Object.values(result).reduce((n, b) => n + b.length, 0) - included;
-    const total = Object.values(deck.main).reduce((a, b) => a + b, 0);
-    setStatus(
-      included ? `${included} combo${included === 1 ? "" : "s"} found` : "No complete combos",
-      `${total} in the main deck${deck.legend ? ` · ${name(deck.legend).replace(/ - Starter$/, "")}` : ""}${near ? ` · ${near} near miss${near === 1 ? "" : "es"}` : ""}${deck.unresolved.length ? ` · ${deck.unresolved.length} line${deck.unresolved.length === 1 ? "" : "s"} not recognised` : ""}`,
-      included || near ? "ok" : "",
-    );
   } catch (err) {
     setStatus("Could not read that", (err as Error).message, "error");
   } finally {
     analyze.disabled = false;
   }
+}
+
+/**
+ * The lines the card index could not place, named rather than counted. `parseDeck` keeps the raw text
+ * of each one (`src/deck.ts`) and the CLI has always printed it; the web used to show only how many
+ * there were, which left the player to diff a 40-line list by eye for their own typo (#67). Two names
+ * is where a status line stops being readable, so the rest are counted.
+ */
+const unresolvedLine = (d: Deck): string => {
+  if (!d.unresolved.length) return "";
+  const named = d.unresolved.slice(0, 2).map((u) => `${u.count}× ${u.raw}`).join(", ");
+  const rest = d.unresolved.length - Math.min(2, d.unresolved.length);
+  const what = `${named}${rest ? ` and ${rest} more` : ""}`;
+  return ` · ${d.unresolved.length === 1 ? "1 line" : `${d.unresolved.length} lines`} not recognised: ${what}`;
+};
+
+/**
+ * What the status card says about the list on screen. This lives here rather than in `run()` because
+ * the format toggle and the "cards away" selector both re-run the matcher without going through it:
+ * the card kept the numbers of the previous run, so "complete only" still claimed 11 near misses while
+ * the tab beside it said there were none (#66). Everything here is derived from `deck` and `result`,
+ * so it is correct wherever `render()` is reached from. The transient states — "Matching", and the
+ * errors — stay in `run()`, since they are not derivable from a result.
+ */
+function showStatus() {
+  if (!deck || !result) return;
+  const included = result.included.length;
+  const near = Object.values(result).reduce((n, b) => n + b.length, 0) - included;
+  const total = Object.values(deck.main).reduce((a, b) => a + b, 0);
+  setStatus(
+    included ? `${included} combo${included === 1 ? "" : "s"} found` : "No complete combos",
+    `${total} in the main deck${deck.legend ? ` · ${name(deck.legend).replace(/ - Starter$/, "")}` : ""}${near ? ` · ${near} near miss${near === 1 ? "" : "es"}` : ""}${unresolvedLine(deck)}`,
+    included || near ? "ok" : "",
+  );
 }
 
 const shownHits = (): Hit[] => {
@@ -326,11 +353,20 @@ const FORMAT_LABEL: Record<Format, string> = { constructed: "Constructed", "2v2"
 function renderBans() {
   if (!deck) { banPanel.hidden = true; return; }
   const found = deckRestrictions(deck, cards, fmt());
-  banBody.innerHTML = found.map(banRow).join("");
+  // A Main Deck that is not 40 is not a ban and does not render as one, but it belongs in the panel a
+  // player reads to find out whether this list can be brought (#71): the panel used to name a banned
+  // card to the copy while saying nothing about a 36-card list. `sizeRule` is the same row My decks
+  // shows in Construction, so both views answer with one sentence and one citation instead of two.
+  const size = sizeRule(deck);
+  const sizeRow = size.status === "pass" ? "" : `<div class="size-row">
+    <p class="ban-name">${esc(size.label)}</p>
+    <p class="ban-meta">${esc(size.detail)} · <span class="mono">${esc(size.rule)}</span></p>
+  </div>`;
+  banBody.innerHTML = sizeRow + found.map(banRow).join("");
   banFoot.textContent = found.length
     ? `Riot's ban list for ${FORMAT_LABEL[fmt()]}, transcribed from the Rules Hub on ${legalityRetrieved.slice(0, 10)}. Switch format above to check the other one.`
     : "";
-  banPanel.hidden = found.length === 0;
+  banPanel.hidden = found.length === 0 && !sizeRow;
 }
 
 function banRow(r: DeckRestriction): string {
@@ -510,6 +546,7 @@ function synergyRow(h: SynergyHit): string {
 
 function render() {
   if (!deck || !result) return;
+  showStatus();
   const hits = shownHits();
   routeCount.textContent = String(hits.length);
   empty.hidden = hits.length > 0;

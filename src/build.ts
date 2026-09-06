@@ -66,7 +66,7 @@ function legendRule(deck: Deck, cards: CardIndex): BuildRule {
  * both. Lines the card index did not recognise ride along: a list of 38 known cards plus 2 unknown ones
  * is not a 38-card deck, and saying "38" alone would misname the problem.
  */
-function sizeRule(deck: Deck): BuildRule {
+export function sizeRule(deck: Deck): BuildRule {
   const base = { rule: "103.2 · Tournament Rules 402.1", label: "Main Deck of 40" };
   const n = total(deck.main);
   const lost = deck.unresolved.length;

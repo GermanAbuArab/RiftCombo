@@ -118,9 +118,23 @@ export const fitBox = (content: Box, cw: number, ch: number): Box | null => {
   return { x: content.x + (content.w - w) / 2, y: content.y + (content.h - h) / 2, w, h };
 };
 
-/** 1:1, centred on the content. Clipping is fine — the fit button is right there. Null as `fitBox`. */
-export const actualBox = (content: Box, cw: number, ch: number): Box | null =>
-  !(cw > 0) || !(ch > 0) ? null : { x: content.x + (content.w - cw) / 2, y: content.y + (content.h - ch) / 2, w: cw, h: ch };
+/**
+ * 1:1. Clipping is fine — the fit button is right there — but WHERE it clips is not a free choice.
+ *
+ * Per axis: centred while the content fits, anchored to where the content starts once it does not.
+ * Centring a diagram bigger than the stage splits the crop across both edges, and the near edges are
+ * exactly where the diagram explains itself: the lane headings sit in `topPad` above the content and
+ * the "Pieces" heading sits at x=0. At 1280 that put all three of "Pieces", "Combos" and "Payoff"
+ * outside the opening view, so the three columns arrived unlabelled (#69). Anchoring keeps the reading
+ * corner and throws the whole crop the way the diagram is dragged.
+ *
+ * Null as `fitBox` — see there for why a stage with no box has no answer.
+ */
+export const actualBox = (content: Box, cw: number, ch: number): Box | null => {
+  if (!(cw > 0) || !(ch > 0)) return null;
+  const start = (c: number, size: number, stage: number) => (size <= stage ? c + (size - stage) / 2 : c);
+  return { x: start(content.x, content.w, cw), y: start(content.y, content.h, ch), w: cw, h: ch };
+};
 
 interface Placed { id: string; x: number; y: number; w: number; h: number }
 interface Edge { from: string; to: string; dashed: boolean; comboId: string; kind: "card" | "result" | "needs" }

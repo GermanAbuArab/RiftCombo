@@ -347,6 +347,10 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .ban-meta { margin: 3px 0 0; font-size: 11.5px; line-height: 1.5; color: var(--muted); }
 .ban-meta a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
 .ban-meta a:hover { color: var(--accent); }
+/* The deck-size row is in the same panel as the bans but is not one: a list of 36 is not illegal to
+   own, it is just not a deck yet. Neutral rule colour, no status tag. */
+.size-row { padding: 8px 10px; border: 1px solid var(--line); border-left: 2px solid var(--rule); border-radius: 6px; background: var(--panel); }
+.size-row + .ban-row { margin-top: 7px; }
 .bans-foot { margin: 0; font-size: 11.5px; line-height: 1.6; color: var(--faint); }
 .bans-foot:empty { display: none; }
 .plan-lab { font: 500 10.5px var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
