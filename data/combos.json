@@ -19802,7 +19802,7 @@
           "Calm + Order. The four tag bodies are mono-Order (103.1.b.3) and Daisy is Calm/Order, so 103.1.b.2 needs a Calm/Order legend."
         ],
         "notable": [
-          "THE LEGEND IS NOT A CHOICE. Daisy is a Signature card, and 103.2.d.2 says 'All of the Signature cards must have the Champion tag that corresponds to the Champion Legend of the deck.' Her tags are Ivern and Ionia, and UNL-195 Green Father is the ONLY Ivern legend in the pool — a grep of every legend printing for the Ivern tag returns one row. So a list that plays Daisy plays Green Father, and 103.2.d.1 ('a deck may only contain a sum total of 3 Signature cards') means three Daisy is the deck's entire Signature budget. 103.2.d.3 also forbids her being the Chosen Champion.",
+          "THE LEGEND IS NOT A CHOICE. Daisy is a Signature card, and 103.2.d.2 says 'All of the Signature cards must have the Champion tag that corresponds to the Champion Legend of the deck.' Her tags are Ivern and Ionia, and a sweep of every legend BASE code for the Ivern tag returns two — UNL-195 and UNL-233, three printings counting UNL-233*, all named Green Father, all Calm/Order, all the same text. 103.2.d.2 keys on the TAG, so either hosts her and the conclusion is the same: a Daisy list is a Green Father list. (Counted by base code, not by grep rows: 104 of the pool's 935 names carry 2 or more base codes.) So a list that plays Daisy plays Green Father, and 103.2.d.1 ('a deck may only contain a sum total of 3 Signature cards') means three Daisy is the deck's entire Signature budget. 103.2.d.3 also forbids her being the Chosen Champion.",
           "Her discount reads 'tags among your units', not 'units here', so the four cheap bodies can sit at your base while she attacks somewhere else. Four E2 bodies is E8 + 1 Power of setup that also builds the board Ivern, Friend to All wants.",
           "She beats 143.4 on her own — 'I enter ready' — so she moves to an enemy battlefield the turn she is played (144.2 takes her exhaust as the move's cost) and attacks on that same turn.",
           "The stun does NOT make the defender free to kill. 423.1.b only removes its Might from the combat damage step; 423.1.c read with 710 keeps its full CURRENT Might as the damage needed to kill it (the #89 correction to #61's coverage). So a stunned M8 defender still costs Daisy's whole M8. What the stun buys is that YOUR side takes nothing back.",
@@ -20147,6 +20147,369 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §15), issue #153, from the orphan rule dark-child-off-turn-reaction-units. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 164.2.a, 164.2.b, 167, 312.2.c, 319.6, 323.2.a, 465.2.c, 807.1, 807.1.d.1, 813.1.c.1. The walk narrowed the rule's own claim: Dark Child's readies are worth ENERGY off-turn and nothing at all in Power, because 164.2.b has no exhaust in its cost and an exhausted rune already pays Power on any turn (#44's free floor of 2). Trap check: no attack of your own and no Attacker designation on your side; no [Repeat]; no [Temporary]; no token; no recall; 167 is respected explicitly rather than assumed — the Energy is spent on the opponent's turn, before your own Main Phase empties the pool. Depends on no unruled reading."
+    },
+    {
+      "id": "eager-apprentice-sky-splitter-order-matters",
+      "name": "Eager Apprentice into Sky Splitter — the Core Rules' own worked example, ordered the right way",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-084",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E3 M3. 'While I'm at a battlefield, the Energy costs for spells you play is reduced by E1, to a minimum of E1.' He has to WALK to a battlefield first (144.4.a, 144.2 for the exhaust), so the discount is live a turn after he is played."
+        },
+        {
+          "card": "OGN-014",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury spell, E8 P1, [Action]. 'This spell's Energy cost is reduced by the highest Might among units you control. Deal 5 to a unit at a battlefield.' The Power half is never discounted by either card."
+        },
+        {
+          "card": "OGN-116",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind unit, E7 P1 M7, [Accelerate]. 'When you play me, give enemy units -3 Might this turn, to a minimum of 1 Might.' Might 7 exactly, which is the number that makes the ordering matter; his own ETB also drops the bar 5 damage has to clear (143.2.a)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Fury: OGN-247 Daughter of the Void (Kai'Sa) is the legend (103.1.b.2).",
+          "Eager Apprentice must be standing AT a battlefield, not at your base."
+        ],
+        "notable": [
+          "THE CORE RULES USE THESE TWO CARDS AS THEIR OWN WORKED EXAMPLE, and the example is about the order. 356.4.e: 'If a discount applies a minimum cost, that minimum applies only to that discount.' Its example: with Eager Apprentice and a 7-Might unit, applying the Apprentice first takes Sky Splitter from E8 to E7 and then its own discount takes it to E0 — 'If they applied these discounts in the other order, Sky Splitter's Energy cost would be 1.' 356.4.c.1 is the permission: 'Discounts that apply to a given component of a spell's cost may be applied in any order to that component.'",
+          "So the Apprentice is worth exactly one Energy on Sky Splitter and ONLY at Might 7. At Might 8 or more, Sky Splitter's own discount already reaches E0 in either order and the Apprentice adds nothing to it — the floor at E1 is not a floor on the total, it is a floor on how far THAT discount may reduce. Thousand-Tailed Watcher is in the line precisely because he is Might 7.",
+          "Neither discount touches the Power. Sky Splitter always costs its 1 Fury Power, so 'free' means free of Energy only.",
+          "The Watcher's ETB is the second half of the removal, and 477.3.b is why it is worth naming: '-3 Might this turn, to a minimum of 1 Might' is snapshotted when it applies, so a 4-Might body becomes 1 and Sky Splitter's 5 damage is lethal on anything the reduction touched (143.2.a needs damage equal to or exceeding Might).",
+          "Three Sky Splitters (103.2.b) and nothing returns them, so this is three castings a game, not a loop."
+        ]
+      },
+      "steps": [
+        "Play Eager Apprentice and, on a later turn, standard-move him to a battlefield (144.4.a; 144.2 takes his exhaust). His discount is live from then on.",
+        "Have a unit at exactly Might 7 on the board — Thousand-Tailed Watcher is one, and his own ETB gives enemy units -3 Might this turn to a minimum of 1.",
+        "Play Sky Splitter and apply Eager Apprentice's discount FIRST: E8 becomes E7 (the E1 floor is not reached).",
+        "Then apply Sky Splitter's own: E7 minus the highest Might you control, 7, is E0. 356.4.c.1 allows exactly this ordering and 356.4.e is why the floor does not follow the cost down.",
+        "Pay the 1 Fury Power and deal 5 to a unit at a battlefield, which is lethal on anything the Watcher shrank (143.2.a)."
+      ],
+      "terminatesIn": "engine only — three castings of a 5-damage [Action] removal for 1 Power each, and one Energy a turn off every other spell. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "356.4.e: 'If a discount applies a minimum cost, that minimum applies only to that discount. Example: Eager Apprentice says \"While I'm at a battlefield, the Energy costs for spells you play is reduced by [1], to a minimum of [1].\" A player who controls Eager Apprentice and a unit with 7 Might plays Sky Splitter ... That player can choose to apply Eager Apprentice's discount first, reducing Sky Splitter's Energy cost to 7, then apply Sky Splitter's discount, reducing its Energy cost to 0. If they applied these discounts in the other order, Sky Splitter's Energy cost would be 1.' 356.4.c.1: 'Discounts that apply to a given component of a spell's cost may be applied in any order to that component.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §16), issue #153, from the orphan rule eager-apprentice-sky-splitter. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 143.2.a, 144.2, 144.4.a, 356.4.c.1, 356.4.d, 356.4.e, 477.3.b. The entry narrows its own rule: the pairing is worth ONE Energy and only at Might exactly 7, which is why the Core Rules chose 7 for the example — at Might 8 or more the Apprentice adds nothing to Sky Splitter. No uniqueness claim is made; the sweep behind the Might-7 body was over base codes, per the correction recorded in the walk document §11a. Trap check: no attack and no Attacker designation; no [Repeat]; no [Temporary]; no token; no recall; 167 is not touched, since the spell is cast in the Main Phase it is paid in. Depends on no unruled reading."
+    },
+    {
+      "id": "soul-shepherd-sprite-queen-temporary-wall",
+      "name": "Soul Shepherd over the Sprite Queen — a wall that is priced in damage and rebuilds itself",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-077",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind unit, E5 M3. 'Your token units have +1 Might.' A sweep of all 935 base codes for a static +Might on token units returns this one row — it is the only card in the pool that does it."
+        },
+        {
+          "card": "UNL-084",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Mind unit, E7 P1 M6. 'When you play me or at the start of your Beginning Phase, play a ready 3 Might Sprite unit token with [Temporary] to your base.' With the Shepherd out each Sprite is 4 Might, and the [Temporary] kill and the next mint both happen in the same Beginning Step (816.1.b)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "temporary-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both mono-Mind (103.1.b.3), so any legend carrying Mind runs the pair.",
+          "Nothing has to be held and no battlefield of yours is needed."
+        ],
+        "notable": [
+          "A wall is priced in DAMAGE, not in bodies (#150). 143.2.a — 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed' — and 465.2.c.3, 'Units must have lethal damage assigned to them in full before damage is assigned to a different Unit', make the attacker's bill the SUM of each defender's minimum. The Shepherd's +1 raises every Sprite's minimum from 3 to 4, so a garrison of three Sprites costs 12 to clear instead of 9. That is the whole point of the pairing and it is arithmetic, not a keyword.",
+          "The Sprites are born READY, so they are not just a wall: 144.2's exhaust is payable the turn they appear and they can walk to a battlefield in the same Main Phase.",
+          "They also die on schedule and the entry does not pretend otherwise. 816.1.b kills every [Temporary] at the start of your Beginning Phase, before scoring, and the Queen's second trigger mints the replacement in the same step — so the wall is renewed but never accumulates past what one Beginning Phase makes.",
+          "185 and 186.1: the Sprites are tokens and never reach the trash, so nothing here can recycle or reanimate them, and no 'recycle another friendly unit' cost can be paid with one.",
+          "The Shepherd is +1 to EVERY token you control, not only Sprites — Recruits, Sand Soldiers, Golds' bodies where they exist, and the [Deflect] Bird of UNL-217 Trapping Grounds. That is why it is written as its own entry rather than folded into a Sprite line: it is the token layer's only static."
+        ]
+      },
+      "steps": [
+        "Play Soul Shepherd (E5). Every token unit you control is at +1 Might from that moment (703 is not involved — this is a continuous modifier, not a 702 buff counter, so 702.3's one-per-unit cap never applies).",
+        "Play Sprite Queen (E7 + 1 Power). Her play trigger mints a ready 3 Might [Temporary] Sprite at your base, which the Shepherd makes 4.",
+        "Walk the Sprite to a battlefield the same turn if you want the body there: it entered ready, so 144.2's exhaust is payable.",
+        "At the start of your next Beginning Phase, 816.1.b kills the Sprite before scoring, and the Queen's second trigger mints the next one in the same step.",
+        "Repeat every turn. An attacker facing three 4 Might Sprites has to assign 12, in full and one body at a time (465.2.c.3), before anything else at that battlefield takes a point of damage."
+      ],
+      "terminatesIn": "engine only — one 4 Might ready [Temporary] body a turn and a defensive bill of 4 per Sprite instead of 3. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 465.2.c.3: 'Units must have lethal damage assigned to them in full before damage is assigned to a different Unit.' 816.1.b: 'It is functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this.\"' 185: 'Tokens are not cards.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §17), issue #153, from the orphan rule soul-shepherd-token-buff. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 143.2.a, 144.2, 185, 186.1, 465.2.c.3, 702.3, 703, 816.1.b. The one uniqueness claim in this entry was swept over all 935 BASE codes, not grep rows, per the correction in walk document §11a: exactly one base code prints a static +Might on token units. Trap check: no attack of your own; no [Repeat]; the [Temporary] death is stated as a scheduled loss rather than hidden; 185 / 186.1 are applied to the tokens explicitly; no recall; nothing added in Awaken, so 167 does not bite; the Shepherd's +1 is a continuous modifier and NOT a 702 buff, so it never collides with 702.3 (the same distinction #102 drew for Lee Sin, Centered). Depends on no unruled reading."
+    },
+    {
+      "id": "profiteer-hextech-disc-empower-relay",
+      "name": "Profiteer — an Empower moved from the cheapest source to the dearest target",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-082",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body unit, E4 M4. 'When you play me, you may disempower something you control to empower a legend, unit, or gear.' A sweep of all 935 base codes for a disempower-to-empower relay returns this one row."
+        },
+        {
+          "card": "VEN-087",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BASE",
+          "note": "Body gear, E4 P1. '[Empower] — exhaust (Pay the cost: Empower this. Use only if not Empowered.)' Its Empower cost is an exhaust and nothing else, which makes it the cheapest place in Body to park an Empowered state until Profiteer moves it."
+        },
+        {
+          "card": "VEN-079",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E5 M5. '[Empower] E5 + 1 Body. [Empowered][>] When I attack or defend, choose a unit here. Increase my Might to its Might this turn, then give me +1 Might this turn.' The relay hands her the state for free instead of E5 + 1 Body Power."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Everything here is mono-Body (103.1.b.3), so any legend carrying Body runs it.",
+          "The Hextech Disc enters exhausted by its own text, so its Empower is available from the turn after it is played, once 315.1.b has readied it."
+        ],
+        "notable": [
+          "The saving is exact and it is what the entry is for. Dame the Despoiler's printed [Empower] cost is E5 + 1 Body Power. The Hextech Disc's is one exhaust. Profiteer moves the state across for the price of a body you were going to play anyway, three times a game (103.2.b).",
+          "441.1.a makes Empowered binary and 441.2 makes it a board state, so what is moved is a real, permanent thing, not a this-turn effect. 441.1.b ('An Empowered Game Object can not be Empowered') is not a problem: Profiteer's own wording disempowers the source first, in the same instruction.",
+          "827.1.c.3 is NOT the citation for any of this and must not be added later: that paragraph is about discounts on an Empower cost, and nothing here pays one. The relay performs 441.1's act directly.",
+          "What the relay COSTS you is the source's own Empowered payoff. The Hextech Disc's is 'Disempower this, E1, exhaust: Play a 3 Might Mech unit token to your base' — a Mech a turn you are giving up. That is the honest price and the entry states it rather than treating the source as free.",
+          "The relay is not restricted to gear: 'empower a legend, unit, or gear' reaches all three, and the three Vendetta legends that key on Empowered (VEN-151 Soul's Reflection, VEN-153 Matriarch of War, VEN-155 Heart of the Tempest) all read 'When you empower something else, empower me' — so a relay fires them as well as the target."
+        ]
+      },
+      "steps": [
+        "Play the Hextech Disc (E4 + 1 Power). It enters exhausted by its own text.",
+        "Next Awaken (315.1.b) readies it. Exhaust it to pay its own [Empower] cost: the Disc is Empowered for nothing but the exhaust.",
+        "Play Dame the Despoiler (E5) and get her onto a battlefield.",
+        "Play Profiteer (E4). His trigger disempowers the Disc and empowers Dame — the state she would have paid E5 + 1 Body Power for.",
+        "Her [Empowered] half is now live: when she attacks or defends, choose a unit here, raise her Might to match it and add 1. 710 evaluates the copy at the target's CURRENT Might.",
+        "Re-Empower the Disc next turn with its own exhaust and repeat with the second and third Profiteer."
+      ],
+      "terminatesIn": "engine only — three relays a game, each worth the difference between the source's Empower cost and the target's (here E5 + 1 Body Power), at the price of the source's own Empowered payoff. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "441.1: 'Empowering is the act of rendering one or more Game Objects Empowered.' 441.1.a: 'Empowered is a binary state.' 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' 710: 'Units on the board are evaluated according to their current Might.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §18), issue #153, from the orphan rule profiteer-empower-relay. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 315.1.b, 441.1, 441.1.a, 441.1.b, 441.2, 710. The uniqueness claim was swept over all 935 BASE codes, per walk document §11a. 827.1.c.3 is deliberately excluded, for the same reason as in hextech-formula-rage-amplifier-free-empower. Trap check: no attack of the entry's own and no Attacker designation claimed; no [Repeat]; no [Temporary]; no token is used as a cost, so 185 never arises; no recall; the gear enters exhausted by its own text, not by 143.4, which is a units rule; 167 is not touched."
+    },
+    {
+      "id": "scrutinizing-sergeant-blood-rose-xp-spike",
+      "name": "Scrutinizing Sergeant — the pool's only XP faucet that scales with the board",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-157",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order unit, E6 M6. 'When you play me, gain 1 XP for each friendly unit.' A sweep of all 935 base codes for 'gain N XP for each' returns this one row: every other XP source in the pool is a flat 1 or 2."
+        },
+        {
+          "card": "UNL-109",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Body gear, E1. 'When you play a unit, you may pay E1 to gain 1 XP. Spend 3 XP, exhaust: Ready a unit.' The sink: three XP is one extra activation of anything with an exhaust in its cost, once a turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Body + Order: UNL-203 Keeper of the Hammer (Poppy) and VEN-153 Matriarch of War (Ambessa) both hold it (103.1.b.2).",
+          "A wide board when the Sergeant lands — he counts friendly units, so a token line is what makes him worth E6."
+        ],
+        "notable": [
+          "He counts UNITS, and a token unit is one: 185.1 makes 'token' an intrinsic category of Game Objects 'in the same way “card” is', and 185.2.b says outright 'Token units have a Might.' So a Recruit or Sprite swarm is the payload. Six bodies on the board is 6 XP on one play, and he is himself the seventh — the count is taken as his trigger resolves, so he is already on the board (817.1.c's 'the permanent entering the Board' logic; his own trigger is a play trigger and 419.4.a fires it when the play completes).",
+          "SPENDING XP TURNS YOUR LEVEL ABILITIES OFF, and this is the trap that decides how the faucet may be used. 730.2: 'To Spend XP, reduce the value of XP marked on the Player spending it.' 824.1.d: 'The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP.' So a deck built on a [Level N] threshold must NOT spend, and a deck built on Blood Rose must not care about a threshold. The two uses are exclusive; that was registered on wuju-master-blood-rose-level in 2026-09-04 and it applies here in full.",
+          "Nothing in the pool converts XP into points, so no XP line is ever more than an ENGINE — CLAUDE.md's standing finding, unchanged by the size of this faucet.",
+          "Blood Rose's other half — 'When you play a unit, you may pay E1 to gain 1 XP' — makes the Sergeant's own play worth an extra XP, and a token is played without being a card — 350.2, 'Tokens are not cards, but can still be Played', with 185.2.a giving the steps — so 'When you play a unit' fires on tokens while any 'played a card' clause does not.",
+          "Three Sergeants (103.2.b), and no recursion of them in this identity, so this is three spikes a game."
+        ]
+      },
+      "steps": [
+        "Build a wide board of units — tokens count (185.1, 185.2.b).",
+        "Play Blood Rose for E1. From then on each unit you play may be turned into 1 XP for E1.",
+        "Play Scrutinizing Sergeant for E6. His trigger gains 1 XP for each friendly unit; with six bodies out that is 6 XP, plus 1 more if you pay Blood Rose's E1 on his own play.",
+        "Spend 3 XP and exhaust Blood Rose to ready a unit — a second Standard Move (144.2) or a second activation of any exhaust ability on the board.",
+        "315.1.b readies Blood Rose at the next Awaken, so the bank funds one ready a turn until it runs out."
+      ],
+      "terminatesIn": "engine only — about 7 XP on one play, which is two readies through Blood Rose, three times a game (103.2.b). Nothing in the pool converts XP into points, so this can never be more than an engine.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "730.2: 'To Spend XP, reduce the value of XP marked on the Player spending it.' 824.1.d: 'The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP.' 731: 'XP is not a Game Object.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §19), issue #153, from the orphan rule scrutinizing-sergeant-xp-producer. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 144.2, 185.1, 185.2.a, 185.2.b, 315.1.b, 350.2, 419.4.a, 730.2, 731, 824.1.d. The uniqueness claim was swept over all 935 BASE codes, per walk document §11a. Trap check: no attack; no [Repeat]; no [Temporary]; tokens are used only as things that are counted and played, never as cards, so 185 / 186.1 / 416.1 never arise; no recall; 167 is not touched. Deliberately NOT paired with UNL-203 Keeper of the Hammer as the sink, because keeper-hammer-hunt-draw already occupies that pairing; Blood Rose is the Body sink and forces the same Body/Order identity anyway. Depends on no unruled reading."
+    },
+    {
+      "id": "oasis-raider-eclipse-dragon-rune-dump",
+      "name": "Rune count is a variable, not a deckbuilding constraint — the low-rune payoffs turned on mid-turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-016",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E8 M8, [Accelerate]. 'When I move, if you control 4 or fewer runes, draw 1.' The condition is checked when the move resolves, in your Main Phase, which is a moment you control."
+        },
+        {
+          "card": "VEN-019",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E6 M6, [Accelerate]. 'When I attack, if you control 4 or fewer runes, deal 2 to all enemy units here.' Same window: the check happens at the Attacker designation in your own Main Phase."
+        },
+        {
+          "card": "VEN-006",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury unit, E4 M4. 'If you control fewer runes than an opponent at the start of your Beginning Phase, give me +2 Might and [Ganking] this turn.' A DIFFERENT clause with a different timing, and the entry keeps them apart on purpose."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine",
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All three mono-Fury (103.1.b.3), so any legend carrying Fury runs them.",
+          "Enough runes on the board at the start of the Main Phase to pay for the turn — the dump comes after the spending, not before."
+        ],
+        "notable": [
+          "THE FINDING: the '4 or fewer runes' clauses are not a deckbuilding constraint, they are a timing choice inside your own turn. 164.2.b is 'Recycle this: [Reaction] — Add [C]' with no exhaust in its cost, so an already-tapped rune still recycles, and 161.2.b sends it to the Rune Deck — off the board. So you tap ten runes for E10, spend the Energy, then recycle six of them for 6 Power and are at four runes with the Power still in your pool. Both payoffs then read four.",
+          "The two clauses in the six-card family are NOT interchangeable. 'If you control fewer runes than an opponent AT THE START OF YOUR BEGINNING PHASE' (VEN-005 Forsaken Baccai, VEN-006 Oasis Raider) is checked at 315.2.a, before the Channel Phase channels 2 more at 315.3.b — so it reads a board you cannot adjust that turn, and it is a state you must already be in. 'If you control 4 or fewer runes' (VEN-001 Baccai Sandspinner's Empower discount, VEN-016 Eclipse Dragon, VEN-019 Renekton Rage Fueled, VEN-162 Protective Sands) is checked when its own trigger resolves, in the Main Phase, and that IS adjustable.",
+          "The whole family is six base codes, swept: VEN-001, VEN-005, VEN-006, VEN-016, VEN-019 and the battlefield VEN-162. Five are Fury; VEN-162 Protective Sands is Colorless, and as a battlefield it is a 1-in-3 draw in a Duel (485.4.a, 485.5) rather than a card you can count on.",
+          "The Power is not wasted, which is what makes the dump affordable: 167 empties the Rune Pool at the start of your Main Phase, not at the end, so Power added mid-Main-Phase is spendable for the rest of that phase. Spend it on the [Accelerate] costs (E1 + 1 Fury each) that let these two bodies act the turn they land.",
+          "The runes are not gone for good — 430.4.a channels 2 back every Channel Phase — but they are gone for THIS turn's Energy, so the dump is paid in tempo. That is the real price and the entry does not hide it."
+        ]
+      },
+      "steps": [
+        "Start your Main Phase with the runes you need. Tap them for Energy (164.2.a) and play the turn: Eclipse Dragon and Renekton Rage Fueled, paying [Accelerate] so they enter ready.",
+        "Now recycle the exhausted runes down to four (164.2.b; 161.2.b puts them in the Rune Deck). The Power lands in your Rune Pool and 167 does not take it until your NEXT Main Phase.",
+        "Standard-move Eclipse Dragon to a battlefield (144.4.a). His trigger reads four runes and you draw 1.",
+        "Attack with Renekton Rage Fueled. His trigger reads four runes at the Attacker designation and deals 2 to all enemy units there.",
+        "430.4.a channels 2 runes back at your Channel Phase; Oasis Raider's separate clause reads the board at 315.2.a next turn, before that, and gives him +2 Might and [Ganking] if you are still behind."
+      ],
+      "terminatesIn": "engine only — one card and one 2-damage sweep per turn once the rune count is dumped below five, paid for in that turn's Energy. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "164.2.b: 'Recycle this: [Reaction] — Add [C].' 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.' 430.4.a: 'A player Channels two Runes during the Channel Phase on their turn.' 315.2.a / 315.3.b put the Beginning Phase before the Channel Phase."
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §20), issue #153, from the orphan rule oasis-raider-low-rune-family. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 144.4.a, 161.2.b, 164.2.a, 164.2.b, 167, 315.2.a, 315.3.b, 430.4.a, 485.4.a, 485.5. The six-card family was swept by BASE code, not by grep rows, per walk document §11a. The entry's contribution over the synergy rule is that it separates the two clauses by TIMING — the rule treats them as one axis, and the 'at the start of your Beginning Phase' half cannot be gamed mid-turn while the '4 or fewer' half can. Trap check: the attack is against a real garrison; no [Repeat]; no [Temporary]; no token; no recall; 167 is cited for what it does and does not empty, rather than assumed. Depends on no unruled reading."
     }
   ]
 }

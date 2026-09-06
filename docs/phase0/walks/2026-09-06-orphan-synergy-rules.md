@@ -366,9 +366,11 @@ all 4 tags, [Stun] an enemy unit here.`
 
 **The legend is not a choice, and that is the finding.** `data/cards.json` marks Daisy
 `signature: true`, and 103.2.d.2 says *"All of the Signature cards must have the Champion tag that
-corresponds to the Champion Legend of the deck."* Her tags are Ivern and Ionia, and a grep of every
-legend printing for the Ivern tag returns exactly one row — `UNL-195 Green Father`. So every list
-that plays Daisy is a Green Father list, 103.2.d.1 makes three Daisy the deck's entire Signature
+corresponds to the Champion Legend of the deck."* Her tags are Ivern and Ionia, and a sweep of every
+legend BASE code for the Ivern tag returns **two** — `UNL-195` and `UNL-233`, three printings once
+`UNL-233*` is counted, all named Green Father, all Calm/Order, all the same text. 103.2.d.2 keys on
+the TAG, so either hosts her and the conclusion is unchanged: every list that plays Daisy is a Green
+Father list, 103.2.d.1 makes three Daisy the deck's entire Signature
 budget, and 103.2.d.3 forbids her being the Chosen Champion. #141's walk warned that "a hunt that
 names a Signature card without naming the legend has an illegal shell"; Daisy is a live instance.
 
@@ -504,3 +506,166 @@ designation"* — and the entry does not count it.
 
 "Ready **up to** 2" has no cost and no downside, but nothing banks: this is 2 Energy per turn cycle,
 never an accumulating pool.
+
+
+### 11a. The correction that produced a general rule
+
+The first draft of §11 said "`UNL-195 Green Father` is the ONLY Ivern legend in the pool — a grep of
+every legend printing for the Ivern tag returns one row." **That is false**, and the manager caught
+it: the sweep returns two base codes, `UNL-195` and `UNL-233`, both named Green Father. The
+conclusion survived, the sentence did not.
+
+This is the second uniqueness claim in this catalogue to be refuted by a full sweep (the first was
+the "only card that readies gear" note). The measurement behind the rule, run over `data/cards.json`:
+
+```
+names with 2+ BASE codes: 104 of 935 names
+```
+
+So **11% of the pool's names are printed under two or more base codes** — Green Father, Daring Poro
+(`OGN-210` / `UNL-225`), Karma Channeler (`OGN-235` / `SFD-237`), Bloodharbor Ripper (`UNL-185` /
+`UNL-228`), Yone Blademaster, Emperor of the Sands, Veteran Poro, Riven Shattered, every Rune, every
+Seal. A `grep` of the corpus returns rows, not cards. **Count base codes, and never ship a
+uniqueness claim you did not sweep the whole pool for.**
+
+### 11b. A catalogue-wide consequence the walk found on the way — NOT this session's to fix
+
+`matchDeck` matches on base codes, which is correct (CLAUDE.md: "Match cards on base codes, never on
+names"). But 103.2.b's three-copy cap is by NAME, and 104 names have two or more base codes, so a
+list running `UNL-225 Daring Poro` does not complete an entry whose `uses[]` names `OGN-210 Daring
+Poro` — they are the same card to a player and two different rows to the matcher.
+
+Measured over the catalogue as it stands at 260 entries:
+
+```
+100 uses[] rows name a card that has another base code with the same name
+```
+
+That is a real blind spot in the matcher, worth its own issue. It is `src/` work and belongs to
+whoever owns the matcher; this walk records the measurement and leaves it.
+
+---
+
+## 16. `eager-apprentice-sky-splitter` -> `eager-apprentice-sky-splitter-order-matters` (ENTRY), and the rule narrowed to one Energy at one Might
+
+`OGN-084 | Eager Apprentice | Unit | Mind | E3 M3 | While I'm at a battlefield, the Energy costs for
+spells you play is reduced by E1, to a minimum of E1.`
+`OGN-014 | Sky Splitter | Spell | Fury | E8 P1 | [Action] ... This spell's Energy cost is reduced by
+the highest Might among units you control. Deal 5 to a unit at a battlefield.`
+
+**The Core Rules use these two cards as their own worked example, and the example is about the
+order.** 356.4.e:
+
+> If a discount applies a minimum cost, that minimum applies only to that discount. Example: Eager
+> Apprentice says "While I'm at a battlefield, the Energy costs for spells you play is reduced by
+> [1], to a minimum of [1]." A player who controls Eager Apprentice and a unit with 7 Might plays Sky
+> Splitter ... That player can choose to apply Eager Apprentice's discount first, reducing Sky
+> Splitter's Energy cost to 7, then apply Sky Splitter's discount, reducing its Energy cost to 0. **If
+> they applied these discounts in the other order, Sky Splitter's Energy cost would be 1.**
+
+356.4.c.1 is the permission: *"Discounts that apply to a given component of a spell's cost may be
+applied in any order to that component."*
+
+**So the pairing is worth exactly one Energy, and only at Might 7.** At Might 8 or more Sky
+Splitter's own discount reaches 0 in either order and the Apprentice adds nothing to it; at Might 6
+or less, neither order reaches 0. The entry therefore names a Might-7 body — `OGN-116
+Thousand-Tailed Watcher`, Mind, E7 P1 M7 — which is also the removal's second half, since its ETB
+gives enemy units −3 Might to a minimum of 1 (477.3.b snapshots it) and 143.2.a then makes Sky
+Splitter's 5 damage lethal on anything it touched. Neither discount ever touches the 1 Fury Power.
+
+---
+
+## 17. `soul-shepherd-token-buff` -> `soul-shepherd-sprite-queen-temporary-wall` (ENTRY)
+
+`UNL-077 | Soul Shepherd | Unit | Mind | E5 M3 | Your token units have +1 Might.`
+
+Swept over all 935 base codes: **one** row prints a static +Might on token units. (Swept by base
+code, per §11a.)
+
+The pairing is arithmetic, and it is #150's finding used defensively. 143.2.a — *"If a Unit ever has
+nonzero damage marked on it equalling or exceeding its Might, it is Killed"* — with 465.2.c.3 —
+*"Units must have lethal damage assigned to them in full before damage is assigned to a different
+Unit"* — makes the attacker's bill the **sum of each defender's minimum**. The Shepherd's +1 takes
+each `UNL-084 Sprite Queen` token from 3 to 4, so a garrison of three costs 12 to clear instead of 9.
+
+The +1 is a **continuous modifier, not a 702 buff counter**, so 702.3's one-buff-per-unit cap never
+applies and it stacks with an actual buff. That is the same distinction #102 drew for Lee Sin,
+Centered.
+
+The Sprites are born ready, so they can walk the same turn (144.2), and they die on schedule
+(816.1.b) with the Queen minting the replacement in the same Beginning Step. Recorded, not hidden:
+this wall renews, it never accumulates.
+
+---
+
+## 18. `profiteer-empower-relay` -> `profiteer-hextech-disc-empower-relay` (ENTRY)
+
+`VEN-082 | Profiteer | Unit | Body | E4 M4 | When you play me, you may disempower something you
+control to empower a legend, unit, or gear.`
+
+Swept over all 935 base codes: **one** row relays an Empowered state. The line is a price arbitrage
+between the cheapest Empower cost in Body and the dearest:
+
+- source `VEN-087 Hextech Disc` — `[Empower] — exhaust`, i.e. free but for the exhaust;
+- target `VEN-079 Dame the Despoiler` — `[Empower] E5 + 1 Body Power`.
+
+441.1.a makes Empowered binary and 441.2 makes it a board state, so what moves is permanent.
+441.1.b (*"An Empowered Game Object can not be Empowered"*) is not a problem, because Profiteer's own
+wording disempowers the source first in the same instruction.
+
+**827.1.c.3 is not the citation for any of this and must not be added later**, for the same reason as
+in §13: it governs discounts on an Empower COST, and nothing here pays one.
+
+The honest price is stated in the entry: the relay costs you the source's own [Empowered] payoff —
+the Disc's `Disempower this, E1, exhaust: Play a 3 Might Mech unit token` is a Mech a turn given up.
+
+---
+
+## 19. `scrutinizing-sergeant-xp-producer` -> `scrutinizing-sergeant-blood-rose-xp-spike` (ENTRY)
+
+`UNL-157 | Scrutinizing Sergeant | Unit | Order | E6 M6 | When you play me, gain 1 XP for each
+friendly unit.`
+
+Swept over all 935 base codes for `gain N XP for each`: **one** row. Every other XP source in the
+pool is a flat 1 or 2, so this is the only faucet that scales with the board — and 185.1 / 185.2.b
+make token units units, so a Recruit or Sprite swarm is the payload.
+
+**The trap that decides how the faucet may be used** is the one registered on
+`wuju-master-blood-rose-level` in 2026-09-04 and it applies here in full. 730.2: *"To Spend XP,
+reduce the value of XP marked on the Player spending it."* 824.1.d: *"The Dependent Ability will be
+Inactive as soon as the controlling player has less than [N] XP."* So a deck built on a [Level N]
+threshold must not spend, and a deck built on `UNL-109 Blood Rose` (`Spend 3 XP, exhaust: Ready a
+unit`) must not care about a threshold. The two uses are exclusive.
+
+And nothing in the pool converts XP into points, so no XP line is ever more than an ENGINE — that
+standing finding is unchanged by the size of this faucet.
+
+`UNL-203 Keeper of the Hammer` was deliberately NOT used as the sink: `keeper-hammer-hunt-draw`
+already occupies that pairing, and Blood Rose forces the same Body/Order identity anyway.
+
+---
+
+## 20. `oasis-raider-low-rune-family` -> `oasis-raider-eclipse-dragon-rune-dump` (ENTRY), with the family split in two by timing
+
+The six base codes, swept: `VEN-001 Baccai Sandspinner`, `VEN-005 Forsaken Baccai`, `VEN-006 Oasis
+Raider`, `VEN-016 Eclipse Dragon`, `VEN-019 Renekton, Rage Fueled`, `VEN-162 Protective Sands`. Five
+Fury, one Colorless battlefield.
+
+**The finding: "4 or fewer runes" is not a deckbuilding constraint, it is a timing choice inside your
+own turn.** 164.2.b is `Recycle this: [Reaction] — Add [C]` with **no exhaust in its cost**, so an
+already-tapped rune still recycles, and 161.2.b sends it to the Rune Deck — off the board. So the
+sequence is: tap ten runes for E10, spend the Energy, then recycle six of them for 6 Power and stand
+at four runes with the Power still in the pool. 167 empties the Rune Pool *"at the start of each
+player's Main Phase and the end of each player's turn"* — not in the middle — so that Power is
+spendable for the rest of the phase.
+
+**But the family's two clauses are not interchangeable, and the rule treats them as one axis.**
+
+- *"if you control fewer runes than an opponent **at the start of your Beginning Phase**"* —
+  VEN-005, VEN-006. Checked at 315.2.a, which is BEFORE the Channel Phase channels 2 more at
+  315.3.b. It reads a board you cannot adjust that turn: a state you must already be in.
+- *"if you control **4 or fewer runes**"* — VEN-001's Empower discount, VEN-016 on move, VEN-019 on
+  attack, VEN-162 on conquer. Checked when its own trigger resolves, in the Main Phase. Adjustable.
+
+The price is tempo, not cards: 430.4.a channels 2 back every Channel Phase, so the runes return, but
+they are gone for that turn's Energy.
