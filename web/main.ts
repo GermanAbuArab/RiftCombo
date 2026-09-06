@@ -3,8 +3,8 @@ import featuresJson from "../data/features.json" with { type: "json" };
 import legalityJson from "../data/legality.json" with { type: "json" };
 import synergiesJson from "../data/synergies.json" with { type: "json" };
 import { CardIndex, readableCardText } from "../src/cards.js";
-import { generateVariants } from "../src/combos.js";
-import { deckRestrictions, isDeckCode, loadDeck, normalizeDeck, parseDeckText, type DeckEntry, type DeckRestriction } from "../src/deck.js";
+import { generateVariants, sourceHref } from "../src/combos.js";
+import { deckCountLine, deckRestrictions, isDeckCode, loadDeck, normalizeDeck, type DeckEntry, type DeckRestriction } from "../src/deck.js";
 import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
 import { planDeck, type Route } from "../src/plan.js";
 import { matchSynergies, planSynergies, type SynergyGap, type SynergyHit } from "../src/synergies.js";
@@ -14,7 +14,7 @@ import { initDecks } from "./decks.js";
 import { accountsEnabled } from "./supabase.js";
 import type { SavedDeck } from "../src/saved.js";
 import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from "./graph.js";
-import { go, route, startRouter } from "./router.js";
+import { go, onRoute, route, startRouter } from "./router.js";
 
 const combos = (combosJson as { combos: Combo[] }).combos;
 const features = (featuresJson as { features: Feature[] }).features;
@@ -107,6 +107,14 @@ const own = (base: string) => {
   for (const eq of cards.equivalents(base)) n += (deck.main[eq] ?? 0) + (deck.battlefields[eq] ?? 0) + (deck.legend === eq ? 1 : 0);
   return n;
 };
+/**
+ * The live tally of what is in the box, by zone. Called from `run` as well as from the keystroke
+ * listener: "Load example" and "Load" assign `input.value` directly, which fires no `input` event,
+ * so the counter used to still read "0 cards" beside a full list.
+ */
+const showCount = () => {
+  $<HTMLElement>("#card-count").textContent = cards ? deckCountLine(loadDeck(input.value, cards)) : "0 cards";
+};
 const setStatus = (title: string, body: string, kind: "" | "ok" | "error" = "") => {
   $<HTMLElement>("#status-title").textContent = title;
   $<HTMLElement>("#status-body").textContent = body;
@@ -174,6 +182,7 @@ async function run(source: "text" | "url" = "text") {
     // The deck panel stays open after analysing. Collapsing it here used to hide the list the
     // user just pasted, and it widened the stage enough to make the diagram fit at ~54%.
     render();
+    showCount();
     // Keep the address honest: a deck code travels in the hash itself, a list opened from My decks
     // keeps its id there, and a list pasted here has nothing to put in a link.
     if (source === "text") {
@@ -185,7 +194,7 @@ async function run(source: "text" | "url" = "text") {
     const total = Object.values(deck.main).reduce((a, b) => a + b, 0);
     setStatus(
       included ? `${included} combo${included === 1 ? "" : "s"} found` : "No complete combos",
-      `${total} cards${deck.legend ? ` · ${name(deck.legend).replace(/ - Starter$/, "")}` : ""}${near ? ` · ${near} near miss${near === 1 ? "" : "es"}` : ""}${deck.unresolved.length ? ` · ${deck.unresolved.length} line${deck.unresolved.length === 1 ? "" : "s"} not recognised` : ""}`,
+      `${total} in the main deck${deck.legend ? ` · ${name(deck.legend).replace(/ - Starter$/, "")}` : ""}${near ? ` · ${near} near miss${near === 1 ? "" : "es"}` : ""}${deck.unresolved.length ? ` · ${deck.unresolved.length} line${deck.unresolved.length === 1 ? "" : "s"} not recognised` : ""}`,
       included || near ? "ok" : "",
     );
   } catch (err) {
@@ -617,7 +626,7 @@ function showDetail(id: string | null) {
     ${c.netPerIteration ? `<h3>Per iteration</h3><p class="net">${esc(c.netPerIteration)}</p>` : ""}
     <h3>Payoff</h3><div class="pills">${c.produces.map((f) => featuresById.get(f)).filter((f): f is Feature => !!f && f.status === "STANDALONE").map((f) => `<span class="pill" data-feature="${esc(f.id)}">${esc(f.name)}</span>`).join("")}</div>
     ${c.prerequisites.easy.length ? `<h3>Deck</h3><ul>${c.prerequisites.easy.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
-    <h3>Sources</h3><ul class="sources">${c.sources.map((s) => `<li>${s.url ? `<a href="${esc(s.url)}" rel="noopener" target="_blank">${esc(s.title)}</a>` : esc(s.title)}${s.date ? ` <span class="csub">${esc(s.date)}</span>` : ""}</li>`).join("")}</ul>
+    <h3>Sources</h3><ul class="sources">${c.sources.map((s) => { const href = sourceHref(s); return `<li>${href ? `<a href="${esc(href)}" rel="noopener" target="_blank">${esc(s.title)}</a>` : esc(s.title)}${s.date ? ` <span class="csub">${esc(s.date)}</span>` : ""}</li>`; }).join("")}</ul>
     ${c.notes ? `<h3>Notes</h3><p>${esc(c.notes)}</p>` : ""}
     <p class="rules-version">Walked against Core Rules ${esc(c.rulesVersion)}</p>`;
   for (const pill of detail.querySelectorAll<HTMLElement>(".pills .pill")) { const col = colors.get(pill.dataset.feature!) ?? "#8b93a4"; pill.style.color = col; pill.style.borderColor = col; }
@@ -669,6 +678,9 @@ preview.addEventListener("click", (ev) => {
   if (t === preview || t.closest(".cp-close")) hideCard();
 });
 document.addEventListener("keydown", (ev) => { if (ev.key === "Escape") hideCard(); });
+// An overlay belongs to the view that opened it. Left open across a tab switch it stays on top of the
+// next view and swallows every click there, with nothing on screen saying Esc is the way out.
+onRoute(hideCard);
 // The plan panel reuses the drawer for detail and the preview for card text: a route name opens
 // its steps and sources, a thumbnail opens the card.
 planBody.addEventListener("click", (ev) => {
@@ -708,11 +720,7 @@ $<HTMLButtonElement>("#save-to-decks").addEventListener("click", () => {
   sessionStorage.setItem("riftcombo:draft", input.value);
   go("#/decks/new");
 });
-input.addEventListener("input", () => {
-  const n = parseDeckText(input.value).reduce((a, e) => a + e.count, 0);
-  $<HTMLElement>("#card-count").textContent = `${n} card${n === 1 ? "" : "s"}`;
-  renderAnalyzing();
-});
+input.addEventListener("input", () => { showCount(); renderAnalyzing(); });
 // Collapsing changes the stage's aspect ratio, and the layered layout picks its column count from
 // that — so re-render rather than just refit.
 const setPanel = (open: boolean) => {

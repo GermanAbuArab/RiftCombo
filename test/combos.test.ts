@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { CardIndex } from "../src/cards.js";
-import { CLASS_RANK, generateVariants, validateCombos } from "../src/combos.js";
+import { CLASS_RANK, generateVariants, sourceHref, validateCombos } from "../src/combos.js";
 import { loadCombos } from "../src/load.js";
 import type { Card, Combo, ComboClass, ComboStatus, Domain, Ingredient } from "../src/types.js";
 
@@ -316,5 +316,23 @@ describe("generateVariants — the shape of the output", () => {
       id: "root", needs: ["infinite-energy"], uses: uses({ "TST-002": 1 }), legends: ["OGN-002"],
     });
     expect(withCombo([root, feed], "root")).toEqual([]);
+  });
+});
+
+describe("a cited walk is a link a reader can open (#55)", () => {
+  it("turns the repo path inside a source title into a GitHub url", () => {
+    expect(sourceHref({ title: "Phase 0 hunt, entry A-01 (docs/phase0/hunt.md)" }))
+      .toBe("https://github.com/GermanAbuArab/RiftCombo/blob/master/docs/phase0/hunt.md");
+  });
+
+  it("stops the path at the file, not at the note after it", () => {
+    expect(sourceHref({ title: "Hand walk against Core Rules 2026-07-16 (docs/phase0-findings.md Result 5)" }))
+      .toBe("https://github.com/GermanAbuArab/RiftCombo/blob/master/docs/phase0-findings.md");
+  });
+
+  it("leaves an external url alone and gives nothing for a title with no file", () => {
+    expect(sourceHref({ title: "TCGplayer article", url: "https://www.tcgplayer.com/content/article/x/" }))
+      .toBe("https://www.tcgplayer.com/content/article/x/");
+    expect(sourceHref({ title: "Equipment lens hunt, issue #41 candidate 1 (rc-huntE)" })).toBeNull();
   });
 });

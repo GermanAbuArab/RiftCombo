@@ -118,10 +118,22 @@ function guardUnsaved(next: Route): boolean {
   return true;
 }
 
+/**
+ * A dropped connection reaches here as the raw `TypeError: Failed to fetch` of `fetch` (Safari says
+ * "Load failed"), which tells a player nothing and — worse — not whether their list survived. Every
+ * write in this file is a single request that either happened or did not, so saying nothing changed
+ * is true for all of them.
+ */
+function readable(err: unknown): string {
+  const msg = (err as Error)?.message ?? String(err);
+  const offline = err instanceof TypeError || /failed to fetch|load failed|networkerror/i.test(msg);
+  return offline ? "Could not reach the server. Nothing was changed — check your connection and try again." : msg;
+}
+
 /** Every call that can fail says so in the view instead of only in the console. */
 async function guard(fn: () => Promise<void>): Promise<void> {
   try { message = ""; await fn(); }
-  catch (err) { message = (err as Error).message; }
+  catch (err) { message = readable(err); }
   render();
 }
 

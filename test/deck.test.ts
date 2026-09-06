@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { getCodeFromDeck } from "@piltoverarchive/riftbound-deck-codes";
 import { loadCardIndex } from "../src/load.js";
-import { deckRestrictions, decodeDeckCode, deckToText, encodeDeckCode, isDeckCode, loadDeck, normalizeDeck, parseDeckText, type DeckEntry } from "../src/deck.js";
+import { deckCountLine, deckRestrictions, decodeDeckCode, deckToText, encodeDeckCode, isDeckCode, loadDeck, normalizeDeck, parseDeckText, type DeckEntry } from "../src/deck.js";
 
 const cards = loadCardIndex();
 const fixture = (n: string) => readFileSync(new URL(`./fixtures/${n}`, import.meta.url), "utf8");
@@ -154,5 +154,21 @@ describe("writing a deck back out", () => {
     expect(back.main).toEqual(deck.main);
     expect(back.runes).toEqual(deck.runes);
     expect(back.battlefields).toEqual(deck.battlefields);
+  });
+});
+
+describe("what the live counter says it counted (#53)", () => {
+  it("names every zone instead of one bare total", () => {
+    // The counter used to add every parsed line into "56 cards" while the status card beside it called
+    // the same list "40 cards" — the Main Deck, which is what Tournament Rules 402.1 registers.
+    expect(deckCountLine(loadDeck(fixture("lux.txt"), cards))).toBe("40 main · 12 runes · 3 battlefields · legend");
+  });
+
+  it("says nothing about zones a list does not fill", () => {
+    expect(deckCountLine(loadDeck("3 Forge of the Future", cards))).toBe("3 main");
+  });
+
+  it("still reads as cards when there is nothing at all", () => {
+    expect(deckCountLine(loadDeck("", cards))).toBe("0 cards");
   });
 });

@@ -199,3 +199,26 @@ export function encodeDeckCode(deck: Deck): string {
   const side = Object.entries(deck.sideboard).map(([cardCode, count]) => ({ cardCode, count }));
   return getCodeFromDeck(main, side, deck.champion ?? undefined);
 }
+
+/**
+ * What the pasted list holds, zone by zone: `40 main · 12 runes · 3 battlefields · legend`.
+ *
+ * A bare number was the whole problem. The live counter used to add every parsed line together and
+ * call the result "56 cards", while the status card two inches below it called the same list
+ * "40 cards" — the Main Deck, which is what a player and Tournament Rules 402.1 both mean by the
+ * size of a deck. Neither figure was wrong and neither said of what, so one of them read as a bug.
+ */
+export function deckCountLine(deck: Deck): string {
+  const sum = (bag: Record<string, number>) => Object.values(bag).reduce((a, b) => a + b, 0);
+  const main = sum(deck.main);
+  const runes = sum(deck.runes);
+  const fields = sum(deck.battlefields);
+  const side = sum(deck.sideboard);
+  if (!main && !runes && !fields && !side && !deck.legend) return "0 cards";
+  const parts = [`${main} main`];
+  if (runes) parts.push(`${runes} rune${runes === 1 ? "" : "s"}`);
+  if (fields) parts.push(`${fields} battlefield${fields === 1 ? "" : "s"}`);
+  if (side) parts.push(`${side} sideboard`);
+  if (deck.legend) parts.push("legend");
+  return parts.join(" · ");
+}

@@ -116,3 +116,20 @@ export function generateVariants(combos: Combo[], cards: CardIndex, maxDepth = 3
   }
   return variants;
 }
+
+/** Where this repo is readable. The walks a combo cites are files in it. */
+const REPO_BLOB = "https://github.com/GermanAbuArab/RiftCombo/blob/master/";
+
+/**
+ * The hand walk behind an entry, as a link a reader can actually open.
+ *
+ * Most sources carry a `url`. The ones that do not name a file of this repo inside their own title —
+ * `Phase 0 hunt, entry A-01 (docs/phase0/hunt.md)` — and used to render as plain text, so the panel
+ * offered a source and then handed over a path that led nowhere. The repo is public, so the path is
+ * a URL; this turns it into one. Returns null when the title names no such file.
+ */
+export function sourceHref(source: { title: string; url?: string }): string | null {
+  if (source.url) return source.url;
+  const path = /\((docs\/[^\s)]+\.md)/.exec(source.title)?.[1];
+  return path ? REPO_BLOB + path : null;
+}

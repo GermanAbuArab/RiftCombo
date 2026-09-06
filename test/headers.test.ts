@@ -150,3 +150,26 @@ describe("what the browser bundle is allowed to know", () => {
     }
   });
 });
+
+describe("the tabs are reachable at every width (#49)", () => {
+  const css = readFileSync(new URL("../web/styles.css", import.meta.url), "utf8");
+
+  it("never hides .topnav at any breakpoint", () => {
+    // `.topnav { display: none }` under 900px is what left My decks, Guide and Sources unreachable on
+    // a phone: they used to be anchors that scrolled to sections of the same page, and #43 turned them
+    // into views that only the nav can open.
+    for (const rule of css.matchAll(/([^{}]*\.topnav[^{}]*)\{([^}]*)\}/g)) {
+      const [, selector = "", body = ""] = rule;
+      // The gate hides the whole chrome through [data-auth]; ::-webkit-scrollbar hides the scrollbar
+      // of the nav, not the nav. Neither takes the tabs away from a player who is signed in.
+      if (/data-auth/.test(selector) || /::/.test(selector)) continue;
+      expect(body.replace(/\s/g, ""), selector.trim()).not.toMatch(/display:none/);
+    }
+  });
+
+  it("gives the nav its own row and a sideways scroll below 900px", () => {
+    const mobile = /@media \(max-width: 900px\) \{([\s\S]*?)\n\}/.exec(css)?.[1] ?? "";
+    expect(mobile).toMatch(/grid-template-areas:\s*"brand acct" "nav format"/);
+    expect(mobile).toMatch(/\.topnav\s*\{[^}]*overflow-x:\s*auto/);
+  });
+});
