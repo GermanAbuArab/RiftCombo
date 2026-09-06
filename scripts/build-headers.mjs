@@ -23,9 +23,20 @@ const connect = ["'self'", url].filter(Boolean).join(" ");
 const config = {
   $schema: "https://openapi.vercel.sh/vercel.json",
   buildCommand: "npm run build:web",
-  // Vercel's Hobby plan caps builds at 100 a day, and on 2026-09-06 this repo spent it by 20:00: 130 commits, most
-  // of them CLAUDE.md and walk documents that change nothing the bundle reads. Exit 0 = skip the build, 1 = build.
-  ignoreCommand: "git diff --quiet HEAD^ HEAD -- web src data scripts package.json package-lock.json tsconfig.json vercel.json",
+  // Skip the build when a commit touches nothing the bundle reads — CLAUDE.md and walk documents were most of
+  // 2026-09-06's 130 commits. Exit 0 = skip the build, 1 = build.
+  //
+  // This saves build minutes and slot contention, NOT the Hobby plan's 100 deployments a day: Vercel counts a
+  // cancelled build as a full deployment ("any canceled builds initiated using the ignore build step will still
+  // count towards your deployment quotas"). Pushing less often is the only lever on that cap.
+  //
+  // The diff runs from VERCEL_GIT_PREVIOUS_SHA, "the git SHA of the last successful deployment for the project
+  // and branch", which Vercel exposes only when an Ignored Build Step is set. `HEAD^ HEAD` would read just the
+  // TIP of the push, so a push carrying a data/ commit behind a docs/ commit would cancel and never deploy the
+  // data (issue #126). Diffing from what was last deployed cannot miss anything still undeployed; `HEAD^` is
+  // the fallback for the very first deployment, when there is no previous SHA.
+  ignoreCommand:
+    "git diff --quiet ${VERCEL_GIT_PREVIOUS_SHA:-HEAD^} HEAD -- web src data scripts api package.json package-lock.json tsconfig.json vercel.json",
   outputDirectory: "public",
   framework: null,
   // /privacy and /terms rather than /privacy.html: Google's OAuth branding page wants both links,
