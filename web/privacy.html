@@ -30,11 +30,12 @@
   <h2>Privacy</h2>
   <p>Last changed 5 September 2026.</p>
 
-  <h3>If you do not sign in</h3>
-  <p>Your deck list is parsed and matched inside your browser. It is not uploaded, not logged and not stored. The only request that leaves your browser on your behalf is the one that loads a public Piltover Archive deck: the link you paste is sent to this site's own server, which fetches that page and caches the result for ten minutes. Nothing about you is attached to it.</p>
+  <h3>Before you sign in</h3>
+  <p>Without signing in you see only the entrance page. Nothing is collected there beyond what serving any page involves, which is described under "Other people's computers" below.</p>
 
-  <h3>If you sign in with Google</h3>
-  <p>Signing in gives this site, through Supabase Auth, the Google account identifier, email address, display name and profile picture URL that Google returns for your account. That is the whole of it: no contacts, no calendar, no Drive, nothing else.</p>
+  <h3>Signing in with Google</h3>
+  <p>Using the site requires signing in. Signing in gives this site, through Supabase Auth, the Google account identifier, email address, display name and profile picture URL that Google returns for your account. That is the whole of it: no contacts, no calendar, no Drive, nothing else.</p>
+  <p>Once signed in, your deck list is parsed and matched inside your browser. Matching alone uploads nothing, logs nothing and stores nothing. The only request that leaves your browser on your behalf while matching is the one that loads a public Piltover Archive deck: the link you paste is sent to this site's own server, which fetches that page and caches the result for ten minutes. Nothing about you is attached to it.</p>
   <p>Pressing <strong>Save</strong> stores one row: the deck list exactly as you pasted it, the name you gave it, which format you were matching against, and the times the row was created and last changed. Nothing derived from it is stored — the combos are recomputed in your browser each time you load a list, so a deck saved today is matched against tomorrow's catalogue rather than kept as a stale answer.</p>
   <p>Only you can read your rows. That is enforced in the database itself by row-level security, which checks the signed-in account against the owner of every row on every read, insert, change and delete.</p>
 

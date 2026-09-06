@@ -9,7 +9,7 @@ import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
 import { planDeck, type Route } from "../src/plan.js";
 import { matchSynergies, planSynergies, type SynergyGap, type SynergyHit } from "../src/synergies.js";
 import type { Card, Combo, Deck, Domain, Feature, Format, LegalityEntry, Synergy, Variant } from "../src/types.js";
-import { accountDeckChanged, initAccount } from "./account.js";
+import { accountDeckChanged, gate, initAccount } from "./account.js";
 import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from "./graph.js";
 
 const combos = (combosJson as { combos: Combo[] }).combos;
@@ -109,6 +109,7 @@ const setStatus = (title: string, body: string, kind: "" | "ok" | "error" = "") 
 };
 
 async function boot() {
+  gate();
   setStatus("Loading", "Fetching the card index…");
   const res = await fetch("/data/cards.json");
   const data = (await res.json()) as { cards: Card[]; resultsUpdatedAt: string };

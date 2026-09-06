@@ -1,6 +1,7 @@
-// The account layer of the deck panel (#31): sign in with Google, save the list you pasted, and
-// load one back. Everything here is additive — with no session, and in a build with no Supabase
-// project configured, the panel is hidden and the rest of the app behaves exactly as before.
+// The account layer (#31, #39): sign in with Google, save the list you pasted, and load one back.
+// Since #39 the whole app sits behind sign-in: `gate()` marks <body data-auth> as soon as the session
+// is known, and the stylesheet shows either the entrance or the app from that attribute. A build with
+// no Supabase project configured has no gate to open, so it marks the body "open" and behaves as before.
 
 import { checkSave, savedSummary, sortSaved, suggestName, MAX_NAME, type SavedDeck } from "../src/saved.js";
 import type { CardIndex } from "../src/cards.js";
@@ -32,11 +33,22 @@ let closing = false;
 let nameTouched = false;
 let message = "";
 
+/**
+ * Decide what the visitor sees, before anything else loads. "pending" (the HTML default) shows
+ * neither the app nor the entrance, so the page never flashes one and then swaps to the other;
+ * supabase-js reports the initial session — including the one it just exchanged a `?code=` for —
+ * through the same listener as later changes.
+ */
+export function gate(): void {
+  if (!accountsEnabled) { document.body.dataset["auth"] = "open"; return; }
+  $<HTMLButtonElement>("#gate-signin").addEventListener("click", () => void signIn());
+  onAccount((next) => { document.body.dataset["auth"] = next ? "in" : "out"; });
+}
+
 export function initAccount(h: AccountHooks): void {
   if (!accountsEnabled) return;
   hooks = h;
   $<HTMLElement>("#account-top").hidden = false;
-  $<HTMLButtonElement>("#acct-signin").addEventListener("click", () => void guard(signIn));
   $<HTMLButtonElement>("#acct-signout").addEventListener("click", () => void guard(async () => {
     await signOut();
     // Signing out empties the list in memory too. Leaving the rows on screen would show one
@@ -67,7 +79,6 @@ function onPanelClick(ev: Event): void {
   if (!el) return;
   const id = el.dataset["id"] ?? "";
   switch (el.dataset["act"]) {
-    case "signin": void guard(signIn); return;
     case "save": void guard(save); return;
     case "load": {
       const d = decks.find((x) => x.id === id);
@@ -133,12 +144,13 @@ async function remove(id: string): Promise<void> {
 
 function render(): void {
   if (!accountsEnabled) return;
-  $<HTMLButtonElement>("#acct-signin").hidden = account !== null;
   $<HTMLElement>("#acct-who").hidden = account === null;
   $<HTMLElement>("#acct-label").textContent = account?.label ?? "";
-  $<HTMLElement>("#account").hidden = false;
+  // Without a session the entrance is on screen and the deck panel is not, so there is nothing
+  // to draw here; the panel only ever renders signed in.
+  $<HTMLElement>("#account").hidden = account === null;
 
-  $<HTMLElement>("#account-body").innerHTML = account ? signedIn() : signedOut();
+  $<HTMLElement>("#account-body").innerHTML = account ? signedIn() : "";
   $<HTMLElement>("#account-msg").textContent = message;
   followDeck();
 }
@@ -161,11 +173,6 @@ function followDeck(): void {
   drift.innerHTML = changed
     ? `This list no longer matches <strong>${esc(loaded!.name)}</strong> as saved. <button type="button" class="linklike" data-act="overwrite" data-id="${esc(loaded!.id)}">Update it</button> or save the new one under its own name.`
     : "";
-}
-
-function signedOut(): string {
-  return `<p class="acct-note">Sign in to keep your lists and open them from any browser. Nothing is stored until you press Save.</p>
-    <button type="button" class="ghost acct-google" data-act="signin">Sign in with Google</button>`;
 }
 
 function signedIn(): string {

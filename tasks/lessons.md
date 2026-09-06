@@ -80,3 +80,9 @@ solo, o `<set>`, alcanza para eso (`sed -E 's/=.*/=<set>/'`). Y antes de devolve
 —`aria-label`, `title`, `value`— asumir que traen el secreto adentro y redactarlos con una regex
 ANTES del `return`, no despues de leerlos. Cuando haga falta mover un secreto de un browser a un
 archivo, que no toque el transcript: que lo escriba el proceso que ya lo tiene.
+
+## 2026-09-05 — `pkill -f` mata a quien lleve tu patrón en el prompt
+
+**What happened.** Levanté `python3 -m http.server 8788` para mirar la puerta de login y lo bajé con `pkill -f "http.server 8788"`. Los tres agentes hijos (rc-walk36, rc-huntD, rc-huntE) murieron en el acto: su prompt viaja en la línea de comando del proceso `claude`, y el prompt dice, textualmente, *"para ver la UI: `cd public && python3 -m http.server 8788`"*. `pkill -f` matcheó eso. rc-walk36 había terminado las 11 caminatas y estaba por commitear; el trabajo quedó en disco y las tres se recuperaron con `claude --resume <session-id>` en su misma tab, pero fueron veinte minutos de flota parada por un comando de una línea.
+
+**Rule.** Nunca `pkill -f`/`pgrep -f` con un patrón que pueda aparecer en un prompt. Para bajar un servidor propio: `lsof -ti :8788 | xargs kill`, o guardar el PID al lanzarlo (`python3 -m http.server 8788 & echo $! > /tmp/rc-http.pid`) y matar ese PID. Y antes de cualquier kill por patrón, `pgrep -fl <patrón>` y leer QUÉ procesos son.

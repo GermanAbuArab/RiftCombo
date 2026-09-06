@@ -112,6 +112,13 @@
   disable it. Rotating past that cap means deleting the whole client and creating a new one, which
   costs re-entering the redirect URI and updating the client id. Google keeps a deleted client
   restorable for 30 days.
+- **The whole app sits behind sign-in (#39, user decision 2026-09-05, reversing #31's "anonymous stays
+  identical").** `<body data-auth>` carries the state — `pending` (HTML default, shows neither side so
+  nothing flashes), `out` (the entrance only), `in` (the app), `open` (a build with no `SUPABASE_URL`,
+  which has no gate to open and behaves as before). `gate()` in `web/account.ts` sets it from the
+  same supabase-js listener that reports the exchanged `?code=` session, and `web/styles.css` does the
+  showing. The entrance carries the ONE sign-in button; the header shows only name + Sign out.
+  `test/headers.test.ts` pins the single button and the pending default.
 - Adding a redirect URI can take Google "5 minutes to a few hours" to apply. Do not debug it blind:
   `curl -sL "$(curl -s -o /dev/null -w '%{redirect_url}' 'https://<ref>.supabase.co/auth/v1/authorize?provider=google&redirect_to=https%3A%2F%2Friftcombo.vercel.app')"`
   answers `redirect_uri_mismatch` until it is live and the Google sign-in page after.

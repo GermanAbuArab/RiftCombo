@@ -57,7 +57,14 @@ describe("what the page promises about storing a list", () => {
   it("still says a list is matched in the browser and stored only on an explicit Save", () => {
     const notice = /<p class="notice">([\s\S]*?)<\/p>/.exec(html)?.[1] ?? "";
     expect(notice).toContain("matched in your browser");
-    expect(notice).toMatch(/[Nn]othing is stored unless you sign in and press Save/);
+    expect(notice).toMatch(/[Nn]othing about it is stored unless you press Save/);
+  });
+
+  it("has exactly one way in: the entrance button, and the page starts with the auth state pending (#39)", () => {
+    expect(html).toContain('<body data-auth="pending">');
+    expect(html.match(/Sign in with Google/g)?.length).toBe(1);
+    expect(html).toContain('id="gate-signin"');
+    expect(html).not.toContain('id="acct-signin"');
   });
 });
 
