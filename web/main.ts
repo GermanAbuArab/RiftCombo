@@ -341,12 +341,23 @@ const routeShort = (r: Route) => r.variant.comboIds.map((id) => combosById.get(i
 const routeOutcome = (r: Route) =>
   r.variant.produces.map((f) => featuresById.get(f)).find((f) => f?.status === "STANDALONE")?.name ?? null;
 
+/**
+ * The thumbnail that opens the card modal, as a real button (#128). It used to be a bare <img> with
+ * a click handler, so the only ways into the card text were a mouse click here and a double click on
+ * a graph node — the modal had no keyboard entry point anywhere in the app, on the two panels where
+ * a player asks what a card actually does before buying it. A <button> brings Enter and Space with
+ * it, so there is no keydown handler to keep in step, and it holds the grid column even with no art.
+ */
+const cardThumb = (base: string, name: string, src: string | null) =>
+  `<button type="button" class="card-thumb" data-view="${esc(base)}" aria-label="Read ${esc(name)}">${
+    src ? `<img src="${esc(src)}" alt="" loading="lazy">` : ""}</button>`;
+
 const addRow = (a: { card: string; quantity: number }) => {
   const card = cards.get(a.card)!;
   const src = thumb(card.image, 120);
   const sub = [card.code, card.type.join("/"), card.domains.join("/")].filter(Boolean).join(" · ");
-  return `<div class="card-row" data-base="${esc(a.card)}">
-    ${src ? `<img src="${esc(src)}" alt="" loading="lazy" title="Click to read the card">` : `<span></span>`}
+  return `<div class="card-row">
+    ${cardThumb(a.card, card.name, src)}
     <div><div class="cname">${esc(card.name)}</div><div class="csub">${esc(sub)}</div></div>
     <span class="have short">+${a.quantity}</span>
   </div>`;
@@ -658,8 +669,8 @@ function showDetail(id: string | null) {
     const card = cards.get(u.card)!;
     const have = own(u.card);
     const src = thumb(card.image, 120);
-    return `<div class="card-row${have < u.quantity ? " missing" : ""}" data-base="${esc(u.card)}">
-      ${src ? `<img src="${esc(src)}" alt="" loading="lazy" title="Click to read the card">` : `<span></span>`}
+    return `<div class="card-row${have < u.quantity ? " missing" : ""}">
+      ${cardThumb(u.card, card.name, src)}
       <div><div class="cname">${esc(card.name)}</div><div class="csub">${esc(card.code)} · ${esc(u.role)}${card.domains.length ? " · " + esc(card.domains.join("/")) : ""}</div></div>
       <span class="have${have < u.quantity ? " short" : ""}">${Math.min(have, u.quantity)}/${u.quantity}</span>
     </div>`;
@@ -779,8 +790,8 @@ onRoute(hideCard);
 // its steps and sources, a thumbnail opens the card.
 planBody.addEventListener("click", (ev) => {
   const t = ev.target as Element;
-  const row = t.closest<HTMLElement>(".card-row");
-  if (row?.dataset.base && t.closest("img")) { showCard(row.dataset.base); return; }
+  const art = t.closest<HTMLElement>(".card-thumb");
+  if (art?.dataset.view) { showCard(art.dataset.view); return; }
   const btn = t.closest<HTMLElement>("[data-combo]");
   if (btn?.dataset.combo) { selected = btn.dataset.combo; view?.select(selected); showDetail(selected); markChips(); }
 });
@@ -795,8 +806,8 @@ for (const host of [synergyBody, gapBody]) host.addEventListener("click", (ev) =
 });
 detail.addEventListener("click", (ev) => {
   const t = ev.target as Element;
-  const row = t.closest<HTMLElement>(".card-row");
-  if (row?.dataset.base && t.closest("img")) showCard(row.dataset.base);
+  const art = t.closest<HTMLElement>(".card-thumb");
+  if (art?.dataset.view) showCard(art.dataset.view);
 });
 // Single click on a node selects it (that is the map's own gesture); double click reads it.
 graphHost.addEventListener("dblclick", (ev) => {

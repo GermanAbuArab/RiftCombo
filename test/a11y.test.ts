@@ -194,6 +194,23 @@ describe("the two overlays and the keyboard", () => {
   it("gives the card back the focus that opened it", () => {
     expect(main).toContain("previewReturnFocus?.focus()");
   });
+
+  /**
+   * #128: the card modal had no keyboard entry point ANYWHERE. Its thumbnail in "Pieces" and in
+   * "What to add" was a bare <img> with a delegated click handler — no tabindex, no role, no
+   * keydown — and the only other route was a double click on a graph node, where Enter and Space
+   * select the node instead. Those two panels are where a player asks what a card does before
+   * buying it. The thumbnail is a real button now, which brings Enter and Space with it.
+   */
+  it("opens the card from the keyboard, because the thumbnail is a button and not an image", () => {
+    expect(main).toContain('<button type="button" class="card-thumb" data-view=');
+    expect(main).toContain('aria-label="Read ${esc(name)}"');
+    // Both delegated handlers read the button. An <img> is not focusable, so testing for one was
+    // the same as saying "mouse only", which the old title attribute said out loud.
+    expect(main.match(/closest<HTMLElement>\("\.card-thumb"\)/g) ?? []).toHaveLength(2);
+    expect(main).not.toContain('t.closest("img")');
+    expect(main).not.toContain("Click to read the card");
+  });
 });
 
 // --- the deckbuilder (#101) -------------------------------------------------------------
