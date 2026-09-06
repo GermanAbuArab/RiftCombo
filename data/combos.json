@@ -108,6 +108,30 @@
           "date": "2026-08-11",
           "quote": "[45:38] you go. Um, and so for the the loop to [45:40] happen, you need two sacrifices in your [45:43] trash. You need a forge in your trash. [45:45] Uh, and a sacri and a shadow's call in [45:47] your trash.",
           "accessed": "2026-09-06"
+        },
+        {
+          "title": "Regional Qualifier Utrecht — \"Utrecht's Top Decks\" (playriftbound.com)",
+          "kind": "tournament-report",
+          "url": "https://playriftbound.com/en-us/news/organizedplay/utrechts-top-decks/",
+          "date": "2026-06-17",
+          "quote": "Regional Qualifier Utrecht, published by Riot on 2026-06-17. A registered list under Lux, Lady of Luminosity carries 2 Forge of the Future, 3 Ekko Recurrent, 3 Shadow's Call and 3 Sacrifice, so the entry's four ingredients (1/1/2/2) are all present. The same list is published on Piltover Archive as deck 4f6e842b-f481-4439-ab39-ca3cd8261a62 and the two transcriptions agree card for card. No placing, record or player is recorded here.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Regional Qualifier Hartford — registered list (piltoverarchive.com)",
+          "kind": "tournament-report",
+          "url": "https://piltoverarchive.com/decks/view/5038bfbe-b0bc-430d-8bab-564fd5f3b69d",
+          "date": "2026-06-21",
+          "quote": "Regional Qualifier Hartford; list published on Piltover Archive on 2026-06-21. Under Lux, Lady of Luminosity: 3 Forge of the Future, 3 Ekko Recurrent, 3 Shadow's Call, 3 Sacrifice. Read through the site's own external API with the header Origin: https://piltoverarchive.com.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "RiftBound — $1,000 Prize Pool (riftbound.gg)",
+          "kind": "tournament-report",
+          "url": "https://riftbound.gg/tournaments/riftbound-1000-prize-pool/",
+          "date": "2026-06-14",
+          "quote": "RiftBound - $1,000 Prize Pool, 2026-06-14, 14 players, Constructed. A registered list carries 3 Forge of the Future, 3 Ekko Recurrent, 3 Shadow's Call and 3 Sacrifice. riftbound.gg publishes one combined board, so its lists do not separate sideboard.",
+          "accessed": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -179,6 +203,22 @@
           "date": "2026-06-10",
           "quote": "Recycle a rune to float one power … Play Retreat to return Lecturing Yordle to your hand and return the rune you recycled to play … Replay Lecturing Yordle to draw the remaining card",
           "accessed": "2026-09-04"
+        },
+        {
+          "title": "Regional Qualifier Utrecht — \"Utrecht's Top Decks\" (playriftbound.com)",
+          "kind": "tournament-report",
+          "url": "https://playriftbound.com/en-us/news/organizedplay/utrechts-top-decks/",
+          "date": "2026-06-17",
+          "quote": "Regional Qualifier Utrecht, published by Riot on 2026-06-17. The same registered list that carries lux-infinite-energy also carries 2 Forge of the Future, 2 Retreat and 1 Lecturing Yordle, the entry's three ingredients.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "RiftBound — $1,000 Prize Pool (riftbound.gg)",
+          "kind": "tournament-report",
+          "url": "https://riftbound.gg/tournaments/riftbound-1000-prize-pool/",
+          "date": "2026-06-14",
+          "quote": "RiftBound - $1,000 Prize Pool, 2026-06-14. A registered list carries 3 Forge of the Future, 3 Retreat and 1 Lecturing Yordle. One combined board, so sideboard is not separated.",
+          "accessed": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -261,6 +301,22 @@
           "date": "2026-06-10",
           "quote": "Play Renata Glasc - Mastermind to your conquered battlefield. Thanks to Rally the Troops, she will enter as a Mighty unit. … Spend four energy and four power. Exhaust Renata Glasc to score a point. … Use Retreat to return Renata to your hand. … Repeat ad infinitum",
           "accessed": "2026-09-04"
+        },
+        {
+          "title": "RiftBound — $1,000 Prize Pool (riftbound.gg)",
+          "kind": "tournament-report",
+          "url": "https://riftbound.gg/tournaments/riftbound-1000-prize-pool/",
+          "date": "2026-06-14",
+          "quote": "RiftBound - $1,000 Prize Pool, 2026-06-14, 14 players, Constructed. A registered list carries Renata Glasc Mastermind (written SFD-088A, the alt-art printing), 3 Retreat, Fiora Worthy (SFD-180A) and 1 Rally the Troops: the entry's four ingredients. One combined board, so sideboard is not separated.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Regional Qualifier Hartford — registered list (piltoverarchive.com)",
+          "kind": "tournament-report",
+          "url": "https://piltoverarchive.com/decks/view/86ad7734-a41f-45f7-97e9-4cd0d6a4c8de",
+          "date": "2026-06-25",
+          "quote": "Regional Qualifier Hartford; list published on Piltover Archive on 2026-06-25. Under the legend Renata Glasc, Chem-Baroness: Renata Glasc Mastermind as Chosen Champion, 2 Retreat, 1 Fiora Worthy and 1 Rally the Troops.",
+          "accessed": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -550,6 +606,14 @@
           "title": "Hand walk, 2026-09-04 — full pass against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-04-three-alt-win-and-burst.md)",
           "kind": "manual-walk",
           "date": "2026-09-04"
+        },
+        {
+          "title": "City Challenge Shenzhen Station — registered list (piltoverarchive.com)",
+          "kind": "tournament-report",
+          "url": "https://piltoverarchive.com/decks/view/5be5b9be-8975-43f2-af54-e2a7756a78ee",
+          "date": "2026-02-13",
+          "quote": "City Challenge Shenzhen Station; list published on Piltover Archive on 2026-02-13. Its three battlefields include 1 The Grand Plaza and its main deck carries 2 Recruit the Vanguard, which are the entry's two ingredients (1 and 2).",
+          "accessed": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -634,6 +698,22 @@
           "url": "https://www.youtube.com/watch?v=OML3sV9JnC4&t=1163",
           "date": "2026-06-25",
           "quote": "[19:23] that. This deck does not go infinite. [19:24] doesn't go infinite, right? [19:25] Yeah, it it just makes a lot. [19:28] people ask how to go infinite. You don't [19:29] go infinite in the deck. Um you just [19:31] take a max of four turns in a row.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Regional Qualifier Barcelona — \"Barcelona's Top Decks\" (playriftbound.com)",
+          "kind": "tournament-report",
+          "url": "https://playriftbound.com/en-us/news/organizedplay/barcelonas-top-decks/",
+          "date": "2026-08-26",
+          "quote": "Regional Qualifier Barcelona, published by Riot on 2026-08-26. A registered list under Jayce, Defender of Tomorrow carries 2 Gutter Palace.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Regional Qualifier Hartford — registered list (piltoverarchive.com)",
+          "kind": "tournament-report",
+          "url": "https://piltoverarchive.com/decks/view/c3155d8f-3d72-4dba-a900-e977e20a8e66",
+          "date": "2026-06-22",
+          "quote": "Regional Qualifier Hartford; list published on Piltover Archive on 2026-06-22. Under the legend Jhin, Virtuoso: 2 Gutter Palace.",
           "accessed": "2026-09-06"
         }
       ],
@@ -880,6 +960,22 @@
           "title": "Hand walk, 2026-09-04 — full pass against Core Rules 2026-07-16 (docs/phase0/walks/2026-09-04-skyfall-conquer-pair.md)",
           "kind": "manual-walk",
           "date": "2026-09-04"
+        },
+        {
+          "title": "Regional Qualifier Utrecht — \"Utrecht's Top Decks\" (playriftbound.com)",
+          "kind": "tournament-report",
+          "url": "https://playriftbound.com/en-us/news/organizedplay/utrechts-top-decks/",
+          "date": "2026-06-17",
+          "quote": "Regional Qualifier Utrecht, published by Riot on 2026-06-17. A registered list under Lucian, Purifier carries 2 Red Brambleback, 3 Trinity Force and 3 Skyfall of Areion, which are the entry's three ingredients (2/3/1).",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Weekly Riftbound CR — UNL (riftbound.gg)",
+          "kind": "tournament-report",
+          "url": "https://riftbound.gg/tournaments/weekly-riftbound-cr-unl-3561/",
+          "date": "2026-05-21",
+          "quote": "Weekly Riftbound CR - UNL, 2026-05-21, 9 players, Constructed. Of the eight lists it publishes, one carries Red Brambleback, Trinity Force and Skyfall of Areion in the entry's quantities. riftbound.gg publishes one combined board, so its lists do not separate sideboard.",
+          "accessed": "2026-09-06"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -2390,6 +2486,14 @@
           "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue63-payoff-lens.md)",
           "kind": "manual-walk",
           "date": "2026-09-06"
+        },
+        {
+          "title": "Season 2 Regional Open Fuzhou — registered list (piltoverarchive.com)",
+          "kind": "tournament-report",
+          "url": "https://piltoverarchive.com/decks/view/d39bccd9-350f-4182-828a-464b309c58c9",
+          "date": "2026-01-21",
+          "quote": "Season 2 Regional Open Fuzhou; list published on Piltover Archive on 2026-01-21. Renata Glasc, Industrialist is the Chosen Champion and The Grand Plaza is one of the three battlefields: the entry's two ingredients.",
+          "accessed": "2026-09-06"
         }
       ],
       "notes": "AUTHORED 2026-09-06 from issue #63, which measured that infinite-recruits had seven producers and zero consumers while the one consumer in the catalogue asked for token-body-engine — two names for one thing, with the unbounded side orphaned. The vocabulary was merged in the same commit (see the walk's section V) and this row is the consumer that side never had. It is deliberately generic: the feeder is named by feature, not by card, because the seven producers are the whole point. Domain Identity does the filtering for free — Industrialist is mono-Order, so an Order-inclusive feeder composes and a calm/body or chaos/mind one does not, and that is correct rather than something to work around. Trap check against CLAUDE.md: tokens are born at the base and the walk to the battlefield is the bottleneck (#48), which is exactly what this row pays for with 144.3; nothing here recycles a token (185, 416.1); no attack designation is needed; the Plaza count includes the conqueror. Depends on R25 = A (ruled 2026-09-04) and on no unruled reading."
@@ -7856,6 +7960,22 @@
           "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md)",
           "kind": "manual-walk",
           "date": "2026-09-06"
+        },
+        {
+          "title": "Regional Qualifier Sydney — \"Sydney's Top Decks\" (playriftbound.com)",
+          "kind": "tournament-report",
+          "url": "https://playriftbound.com/en-us/news/organizedplay/sydneys-top-decks/",
+          "date": "2026-05-21",
+          "quote": "Regional Qualifier Sydney, published by Riot on 2026-05-21. A registered list under Ahri, Nine-Tailed Fox carries 3 Flurry of Feathers and The Grand Plaza among its three battlefields.",
+          "accessed": "2026-09-06"
+        },
+        {
+          "title": "Riftbound: Unleashed Win-A-Case @ Nexus (riftbound.gg)",
+          "kind": "tournament-report",
+          "url": "https://riftbound.gg/tournaments/riftbound-unleashed-win-a-case-nexus/",
+          "date": "2026-05-09",
+          "quote": "Riftbound: Unleashed Win-A-Case @ Nexus, 2026-05-09, 15 players, Constructed. Of the eight lists it publishes, one carries Flurry of Feathers and The Grand Plaza. One combined board, so sideboard is not separated.",
+          "accessed": "2026-09-06"
         }
       ],
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md), issue #46 section 3. REWRITTEN FROM THE CANDIDATE: the source's own line is illegal. AkeenaTV plays three units, lets the Plaza's hold trigger go, and then adds the Birds 'in response to this battlefield trigger' - which 383.2.a.1 forbids, because the 7+ count is part of the Trigger Condition and an unfulfilled condition never puts the ability on the chain; and which 335 forbids a second time, because with an empty chain nobody has priority in the Beginning Phase. The entry survives on a different LEGAL ORDERING of the same two cards - deploy on the opponent's turn through [Reaction] (813.1.c.1 + 331.1) - which is exactly the move CLAUDE.md prescribes before filing a reading, and no reading was filed. The refutation #46 raised (Flurry does not say 'here', so where do the Birds go?) is answered by the default: 355.2.a already lists 'a Battlefield the controller controls'; OGS-015 spells it out in reminder text, not as an extra permission. Ninth Grand Plaza route in the catalogue and the first at Reaction speed. Card text verbatim from data/corpus_flat.txt. Depends on no unruled reading."
@@ -12136,6 +12256,14 @@
           "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md)",
           "kind": "manual-walk",
           "date": "2026-09-06"
+        },
+        {
+          "title": "Regional Qualifier Atlanta — \"Atlanta's Top Decks\" (playriftbound.com)",
+          "kind": "tournament-report",
+          "url": "https://playriftbound.com/en-us/news/organizedplay/atlantas-top-decks/",
+          "date": "2026-05-01",
+          "quote": "Regional Qualifier Atlanta, published by Riot on 2026-05-01. A registered list under the legend Unforgiven carries Yasuo Windrider and Ride the Wind, the entry's three ingredients. The same three appear in a registered list at Regional Qualifier Lille (2026-04-22) and one at Regional Qualifier Sydney (2026-05-21).",
+          "accessed": "2026-09-06"
         }
       ],
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. CLASS IS CHAIN AND IT WAS CHECKED AGAINST THE DEFINITION RATHER THAN ASSUMED: CHAIN is 'reaches 8 across several scoring events, without the opponent taking a turn in between', which is exactly this - two Conquers and an ability point, one turn, from five. It is not a BURST, since no single scoring event reaches 8. It is the fourth CHAIN in the catalogue and the first that does not use Time Warp or a double Conquer alone. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation is needed anywhere, so 383.4.e and 461 cannot bite; no [Repeat]; no [Temporary]; no token; Ride the Wind is a Move and not a Recall (446.1, 456); the Energy is all Main Phase, so 167 never applies. Depends on R2 (ruled A)."
