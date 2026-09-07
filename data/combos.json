@@ -40447,7 +40447,7 @@
           "Mageseeker Warden is mono-Calm and Vengeance mono-Order, so 103.1.b.1 needs a Calm/Order legend: OGN-261 / OGN-306 Radiant Dawn, SFD-197 / SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father, or VEN-147 / VEN-193 Eye of Twilight. Neither card is Signature."
         ],
         "notable": [
-          "THE SWEEP THAT MAKES THIS A PAIR AND NOT A COINCIDENCE. Every other 'kill a unit' spell in the pool prints the location: `OGN-213 Hidden Blade`, `OGS-012 Blast of Power`, `SFD-164 Drag Under` and `UNL-186 Death from Below` all say 'Kill a unit AT A BATTLEFIELD', and `UNL-159 Soul Harvest` adds a Might threshold on top. `OGN-229 Vengeance` says only 'Kill a unit'. The two unit-based kills that also omit the clause are `OGN-234 Harnessed Dragon` ('kill an enemy unit', E8 + 2 Power) and `SFD-158 Sandshifter` (Might 3 or less) — so Vengeance is the only unconditional, repeatable, spell-speed answer that reaches a base.",
+          "THE SWEEP THAT MAKES THIS A PAIR AND NOT A COINCIDENCE. Every other 'kill a unit' spell in the pool prints the location: `OGN-213 Hidden Blade`, `OGS-012 Blast of Power`, `SFD-164 Drag Under` and `UNL-186 Death from Below` all say 'Kill a unit AT A BATTLEFIELD', and `UNL-159 Soul Harvest` adds a Might threshold on top. `OGN-229 Vengeance` says only 'Kill a unit'. The two unit-based kills that also omit the clause are `OGN-234 Harnessed Dragon` ('kill an enemy unit', E8 + 2 Power) and `SFD-158 Sandshifter` (Might 3 or less) — so Vengeance is the only SINGLE-TARGET, UNGATED kill spell with no location clause. Two more cards also omit the clause and are named here because the first sweep missed them: UNL-180 The Ruination (\"Kill all units\", E9 + 3 Power) reaches the base too and clears the whole pile - a real alternative to this line, not a counterexample to it - and VEN-131 Decree of Unity omits it while gating on an enemy CHAOS unit or gear. Added 2026-09-07 after another lane refuted the first sweep in one grep.",
           "WHICH IS EXACTLY THE ZONE THE WARDEN CREATES. 'Opponents can only play units to their base' means every body they deploy while she stands arrives in a zone most of the format's removal cannot see. Three cards in the pool name that zone as a target at all (`SFD-077 Rocket Barrage`, `SFD-116 Yone, Blademaster`, `UNL-182 Curtain Call`), and none of them is an unconditional kill.",
           "THE WARDEN'S REAL DELTA IS THREE ROUTES CLOSED WITH ONE NAMED LEAK. 054.2 with 355.2.a / 355.2.b kills the 15 [Hidden] units outright, switches off the seven cards that grant a non-standard play location, and forbids reinforcing an own battlefield; the leak is the 26 [Accelerate] units, which enter ready at the base (805.1.a with 143.4.a) and can Standard-Move in the same turn.",
           "AND HER SECOND SENTENCE IS THE HALF PEOPLE FORGET: 'spells and abilities can't ready enemy units and gear', which is a separate lock on every readier in their deck and on every Gold token they make (187.5's ability needs an exhaust).",
@@ -40491,7 +40491,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-07, issue #170, from the Core-Rules-named sweep; OGN-229 Vengeance was in zero entries. Card text verbatim from data/corpus_flat.txt, and the 'kill a unit' family was swept over the corpus (OGN-213, OGS-012, SFD-164, UNL-159, UNL-186 all print 'at a battlefield' or a Might threshold; OGN-234 and SFD-158 are units, one at E8 + 2 Power and one gated at Might 3). The content is that the Warden manufactures the one zone most removal cannot see, and Vengeance is the only unconditional spell that sees it. Trap check: the sweep is stated with its members so the next reader can refute it in one grep; Vengeance is stated as Main-Phase only (155); the Warden's [Accelerate] leak is named rather than hidden; and the Recall trap on her own two clauses is cited, which is the same 455 fact the Counter Strike entry stands on."
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the Core-Rules-named sweep; OGN-229 Vengeance was in zero entries. Card text verbatim from data/corpus_flat.txt, and the 'kill a unit' family was swept over the corpus (OGN-213, OGS-012, SFD-164, UNL-159, UNL-186 all print 'at a battlefield' or a Might threshold; OGN-234 and SFD-158 are units, one at E8 + 2 Power and one gated at Might 3). The content is that the Warden manufactures the one zone most removal cannot see, and Vengeance is the only single-target ungated spell that sees it, with UNL-180 The Ruination as the sweeper alternative at E9 + 3 Power. Trap check: the sweep is stated with its members so the next reader can refute it in one grep; Vengeance is stated as Main-Phase only (155); the Warden's [Accelerate] leak is named rather than hidden; and the Recall trap on her own two clauses is cited, which is the same 455 fact the Counter Strike entry stands on."
     },
     {
       "id": "rocket-barrage-marai-spire-repeat-base-damage",
@@ -40847,6 +40847,326 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #180, batch 7). The first entry to use OGS-012 Blast of Power. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 155, 190.3.a.1, 323.9, 323.10, 323.11.a, 464.2.c.1, 464.2.c.3, 464.2.f.1, 464.2.g, 465.1, 466.5, 466.5.d, 466.5.e, 469.1, 469.1.b, 470, 485.4, 806.1.c.1. 155 and 466.5.e are cited here for the first time in this catalogue. The entry exists to make one comparison concrete: OGN-229 Vengeance is cheaper and wider and cannot take a battlefield, because 155 is the only timing permission a keyword-less spell has - which is also the paragraph that refuses Vengeance its own entry in this walk. Ban check: not banned or restricted, not a Signature card. No unruled reading."
+    },
+    {
+      "id": "tibbers-annie-fiery-dark-child-sweep",
+      "name": "Tibbers is an ABILITY, so Annie's Bonus Damage lifts the sweep to 4 on every target — and 715.2 pays it per target, individually",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-018",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury/Chaos unit, E8 P2 M7, and a SIGNATURE card tagged Annie. 'When you play me, deal 3 to all units at battlefields.' A play TRIGGER, therefore an ability — which is what puts it inside Annie, Fiery's clause and outside Ravenborn Tome's."
+        },
+        {
+          "card": "OGS-001",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury unit, E5 P1 M4. 'Your spells and abilities deal 1 Bonus Damage. (Each instance of damage the spell deals is increased by 1.)' Her static names no location, so she does this from your BASE — which is the whole reason she survives a sweep that would otherwise kill her at Might 4."
+        },
+        {
+          "card": "OGS-017",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Chaos legend. 'At the end of your turn, ready up to 2 runes.' 103.2.d.2 forces it (see below), and it happens to be the right legend anyway: 167 empties the POOL and not the runes, so two runes readied at end of turn are still ready on the opponent's."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "TIBBERS IS A SIGNATURE CARD tagged Annie, so 103.2.d.2 makes this a ONE-LEGEND line: OGS-017 Dark Child - Starter is the only Annie legend in the pool (Fury/Chaos). Annie, Fiery is mono-Fury, so 103.1.b.3 holds. Three Tibbers also spend the whole Signature budget, since 103.2.d.1 caps a deck at three Signature cards in total."
+        ],
+        "notable": [
+          "THE ARITHMETIC, AND WHY IT IS 4 AND NOT 3. 715.2: 'If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately.' Tibbers deals 3 to all units at battlefields; Annie, Fiery's +1 applies to each of them separately, so it is 4 to every body on every battlefield. 143.2.a then kills everything at Might 4 or less rather than everything at Might 3 or less — which is the difference between clearing a Recruit board and clearing a real garrison.",
+          "AND IT WORKS BECAUSE TIBBERS IS AN ABILITY, NOT A SPELL. Annie's clause reads 'your spells AND ABILITIES', and a play trigger is a Triggered Ability (383.1). The contrast is `OGN-032 Ravenborn Tome`, whose grant is written 'The next SPELL you play this turn' — it adds nothing to Tibbers. Two Bonus Damage cards, one of which reaches this and one of which does not.",
+          "ANNIE STAYS AT THE BASE, AND THAT IS DELIBERATE. Her static carries no location clause, so it applies from anywhere; Tibbers hits 'all units at battlefields', so a Might 4 Annie standing at a battlefield would die to her own upgrade. 355.2.a makes the base a valid play location, so nothing has to be spent to keep her there.",
+          "IT IS SYMMETRICAL AND THAT IS THE REAL COST. 'All units at battlefields' includes yours — Tibbers himself enters at a battlefield you control or your base (355.2.a), and at Might 7 he survives his own 4. Anything of yours below Might 5 does not, which is why this is a control shell and not a token shell.",
+          "THE PRICE IS 8 ENERGY AND 2 POWER, WHICH IS WHY THE LEGEND MATTERS. 164.2.a is '[E]: [Reaction] — Add [1]' and 167 empties the POOL at the start of your Main Phase and the end of your turn, not the runes — so Dark Child's end-of-turn readying of two runes is two Energy available on the OPPONENT's turn, and a rune readied then is still ready for your own next turn.",
+          "714 CAPS A SECOND BONUS DAMAGE SOURCE AT ADDITIVE: 'all instances are summed and applied once', so `VEN-010 Consuming Curse` or `OGN-296 Void Gate` would make it 5, never x2. And Void Gate is worded for the LOCATION rather than for a player, so it would arm the opponent's removal too.",
+          "IT DOES NOT SCORE. What a board wipe buys is an empty battlefield to walk into, and 323.6 with 348.2.a is what turns that into a Conquer — which belongs to whatever else the deck is doing."
+        ]
+      },
+      "steps": [
+        "Deck-build under OGS-017 Dark Child - Starter; 103.2.d.2 leaves no choice, since Tibbers is Annie's Signature card.",
+        "Play Annie, Fiery (E5 + 1 Fury Power) and leave her at your base. Her static applies from there and she is out of range of what comes next.",
+        "Bank Energy across turns: at the end of each of your turns Dark Child readies up to 2 runes, and 167 empties the Rune Pool but never the runes themselves, so those two are still ready on the opponent's turn and again on yours.",
+        "Play Tibbers (E8 + 2 Power) to your base or a battlefield you control.",
+        "His play trigger deals 3 to all units at battlefields; 715.2 applies Annie's +1 to each target individually, so every one of them takes 4.",
+        "143.2.a kills each body whose Might the 4 equals or exceeds. Tibbers at Might 7 survives; anything of yours below Might 5 does not.",
+        "143.3.b.1 heals the survivors at the end of the turn, so the sweep has to be enough on the turn it is cast."
+      ],
+      "terminatesIn": "engine only — 4 damage to every unit at every battlefield, three times a game (103.2.b), for E8 + 2 Power each; symmetrical, and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "715.2. \"If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "714. \"If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "167. \"Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the Core-Rules-named sweep; OGS-018 Tibbers was in zero entries and is 103.2.d.3's worked example. Card text verbatim from data/corpus_flat.txt. The content is that Tibbers' sweep is an ABILITY, so of the pool's six Bonus Damage cards the ones worded 'your spells and abilities' reach it and OGN-032 Ravenborn Tome ('the next SPELL you play') does not — and 715.2 pays per target, so +1 is +1 on every body. Trap check: the Signature lock is stated (one legend, and three copies spend the whole 103.2.d.1 budget); Annie is placed at the BASE with the reason (her static has no location clause, and at Might 4 she would die to her own upgrade); the symmetry is named as the real cost; 714 caps a second source; 143.3.b.1 is cited so nothing accumulates across turns."
+    },
+    {
+      "id": "spinning-axe-sentinel-adept-persistent-might-bonus",
+      "name": "A Might BONUS does not expire — Spinning Axe is +3 forever at [Reaction] speed, and [Weaponmaster] is the only legal way to move it afterwards",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-186",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Fury/Chaos Equipment, E2 P1, M+3, and a SIGNATURE card tagged Draven. '[Quick-Draw] (This has [Reaction]. When you play it, attach it to a unit you control.) [Equip] :rb_rune_rainbow: ... [Temporary] (If this is unattached, kill it at the start of its controller's Beginning Phase, before scoring.)' The largest Might Bonus in the pool, and the [Temporary] clause is conditional on being unattached."
+        },
+        {
+          "card": "SFD-008",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E3 M3. '[Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for :rb_rune_rainbow: less, even if it's already attached.)' The Axe's [Equip] is exactly one rainbow, so one rainbow less is nothing — and 'even if it's already attached' is the printed carve-out that makes this the only legal relocation."
+        },
+        {
+          "card": "SFD-185",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Chaos legend. 'When you win a combat, draw 1. (You win if only your units remain after combat.)' 103.2.d.2 forces it — it is the pool's only Draven legend — and it is the right payoff: +3 Might bought at Reaction speed is what turns a lost combat into a won one, and a won combat is a card."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "SPINNING AXE IS A SIGNATURE CARD tagged Draven, so 103.2.d.2 makes this a ONE-LEGEND line: SFD-185 / SFD-242 Glorious Executioner is the only Draven legend in the pool (Fury/Chaos). Sentinel Adept is mono-Fury, so 103.1.b.3 holds. Three Axes spend the whole Signature budget (103.2.d.1)."
+        ],
+        "notable": [
+          "A MIGHT BONUS IS NOT 'THIS TURN'. 137.3: 'A card's Might Bonus modulates the Might of the card to which the card that has the Might Bonus is Attached', and 137.3.a: it applies 'while Attached and stops applying as soon as the card with the Might Bonus is no longer Attached'. 317.2.c never touches it. So this is a permanent +3, where every Fury combat trick in the format is a +N that expires at the end-of-turn Cleanup.",
+          "AND IT IS BOUGHT AT REACTION SPEED. 819.1.d: '[Quick-Draw] is functionally short for \"[Reaction]\" and \"When you play this, attach it to a Unit you control.\"' So the +3 lands after the attack is declared and after 465.2.c's summed Might is countable, for E2 + 1 Power, with no [Equip] cost paid at all.",
+          "THE [TEMPORARY] CLAUSE IS CONDITIONAL AND ALMOST NEVER FIRES: 'If this is unattached, kill it at the start of its controller's Beginning Phase, before scoring.' Quick-Draw attaches it on the way in, so the only way it ever comes unattached is the carrier dying — and then it dies at your next Beginning Phase (816.1.b's window) unless something re-attaches it first.",
+          "WHICH IS WHERE [WEAPONMASTER] COMES IN, AND WHY IT IS IN uses[]. An ATTACHED Equipment cannot pay its own [Equip] to move: 718.2 makes an Attached card's printed Rules Text Inactive and 721.2 says an Inactive Ability 'cannot be activated'. [Weaponmaster]'s reminder text is the printed carve-out — 'even if it's already attached' — so Sentinel Adept is one of the few cards that can rescue an orphaned Axe or move a live one onto a better body, and the Axe's one-rune [Equip] minus one rainbow is free (356.6 floors at 0).",
+          "AND 818.1 KEEPS THAT ATTACH OFF THE PLAY TRACK: Equip is an Activated Ability, so a re-attach fires no 'when you play a gear' trigger and no second [Quick-Draw].",
+          "THE LEGEND'S CLAUSE IS EXACT: 'You win if only your units remain after combat.' So the card is drawn on a clean sweep of the opposing garrison, not on any favourable trade — which is precisely what a +3 bought after the assignment is countable buys.",
+          "434.1.d STACKS: two Axes on one body is +6, and 137.3.b covers the case where the carrier has no printed Might. Nothing here scores; Fury reaches points only through excess damage (R28), and a Might Bonus does feed that."
+        ]
+      },
+      "steps": [
+        "Deck-build under SFD-185 / SFD-242 Glorious Executioner; 103.2.d.2 leaves no choice, since Spinning Axe is Draven's Signature card.",
+        "Attack, or be attacked. 464.2.c.3 designates the sides and 465.2.c makes each side's summed Might countable.",
+        "In the Closed State, play Spinning Axe for E2 + 1 Power. 819.1.d gives it [Reaction] inherently and attaches it to a unit you control as it is played, with no [Equip] paid.",
+        "137.3 puts +3 on that body permanently, and 465.2.c reads the new value when damage is assigned.",
+        "If only your units remain after the combat, the legend draws you a card.",
+        "The Axe stays attached across turns (137.3.a), so the +3 is there again next combat; its [Temporary] clause only arms if the carrier dies and leaves it unattached.",
+        "If that happens, play a Sentinel Adept: its [Weaponmaster] re-equips the Axe for one rainbow less than its one-rainbow [Equip], i.e. for nothing (356.6), which is the only legal way to move an already-attached Equipment (718.2 with 721.2)."
+      ],
+      "terminatesIn": "engine only — a permanent +3 Might per Axe, bought at [Reaction] speed for E2 + 1 Power, three a game (103.2.b and the Signature budget); it draws a card on each combat it wins outright and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "137.3. \"A card's Might Bonus modulates the Might of the card to which the card that has the Might Bonus is Attached.\" 137.3.a. \"The Might Bonus is applied while Attached and stops applying as soon as the card with the Might Bonus is no longer Attached.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "819.1.d. \"Quick-Draw is functionally short for '[Reaction]' and 'When you play this, attach it to a Unit you control.'\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "718.2. \"While in this state, the card's printed Rules Text is Inactive.\" 721.2. \"Inactive Abilities do not trigger, do not apply, and cannot be activated.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the Core-Rules-named sweep; SFD-186 Spinning Axe was in zero entries. Card text verbatim from data/corpus_flat.txt. The content is that a Might BONUS is permanent (137.3.a) where every combat trick in the format expires at 317.2.c, and [Quick-Draw] buys it at Reaction speed — plus the batch-5 finding applied: an attached Equipment cannot pay its own [Equip], so [Weaponmaster]'s printed 'even if it's already attached' is what makes Sentinel Adept the rescue. Trap check: the Signature lock is stated (one legend; three Axes spend the whole 103.2.d.1 budget); the [Temporary] clause is stated as conditional and its window is cited (816.1.b); the legend's win condition is quoted exactly rather than treated as 'winning a fight'; 818.1 is cited so no play trigger is smuggled into the re-attach."
+    },
+    {
+      "id": "discipline-irelia-fervent-cantrip-choose",
+      "name": "Irelia fires on being CHOSEN, and a spell that targets her is a choosing — so Discipline is +3 and a card for two Energy",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-057",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 M4. '[Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) When you choose or ready me, give me +1 :rb_might: this turn.' Two separate triggers in one clause, and no once-a-turn wording on either."
+        },
+        {
+          "card": "OGN-058",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E2. '[Reaction] (Play any time, even before spells and abilities resolve.) Give a unit +2 :rb_might: this turn. Draw 1.' The cheapest Calm spell that chooses a friendly unit and replaces itself, which is what makes the choosing free."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.1 is satisfied by any legend with Calm as one of its two domains. Neither is Signature, so 103.2.d.2 imposes nothing."
+        ],
+        "notable": [
+          "THE TRIGGER IS ON THE CHOOSING, NOT ON THE BUFF. Irelia reads 'When you CHOOSE or READY me', so a spell that targets her fires it as surely as a 702 Buff counter does (702.2.a makes buffing a choosing). Discipline's +2 and Irelia's own +1 stack as continuous modifiers (477.3.e.1), so the card is worth +3 on her for 2 Energy — and it draws.",
+          "AND HER OWN [DEFLECT] DOES NOT TAX IT. 809.1.c is written for 'Spells and abilities AN OPPONENT controls'; your own spell chooses her for free. The keyword makes her expensive for the opponent to remove and free for you to pump — an asymmetry that is easy to read the wrong way round.",
+          "THE READY HALF IS THE FREE ONE, AND IT NEEDS HER EXHAUSTED. 415.1.b: 'A Unit that is already Ready cannot be Readied again', and 415.1.c makes an instruction to ready a ready unit do nothing — so no trigger. What DOES pay every turn is 315.1.b's Awakening, which readies her whenever she spent her exhaust the turn before: a free +1 on every turn she acted.",
+          "NO ONCE-A-TURN CLAUSE MEANS IT SCALES WITH CHOOSINGS, NOT WITH CARDS. Three Disciplines in one turn are +9 on her; and the modifiers expire together at 317.2.c's end-of-turn Cleanup, so none of it banks.",
+          "THE FALSE-POSITIVE SHAPES TO AVOID WHEN PICKING A DIFFERENT CHOOSER — all three are real and all three appear on her match list: a card that chooses in a HAND or a TRASH rather than a friendly unit on the board; a card that REMOVES what it chose before the payoff can land (`VEN-106 Wind and Ghosts` banishes or bounces it); and `SFD-142 Jae Medarda`'s narrower wording, 'when you choose me WITH A SPELL', which its unit and gear choosers never satisfy. Discipline is clean on all three: it is a spell, it chooses a unit on the board, and it leaves it there.",
+          "IT IS [REACTION], SO THE CHOOSING IS BOUGHT AFTER THE ATTACK IS DECLARED — 813.1.c.1 admits it 'during Closed States on any player's turn', and 465.2.c reads Might at assignment.",
+          "IT DOES NOT SCORE. Calm converts no Might into points; the product is a body that survives a damage step it should have lost, plus a card."
+        ]
+      },
+      "steps": [
+        "Play Irelia, Fervent (E5) and move her to a battlefield.",
+        "Every turn she acted the turn before, 315.1.b readies her at your Awakening — which is a choosing-free +1 Might this turn, for nothing.",
+        "Hold Discipline. It is [Reaction], so 813.1.c.1 lets it be played in any Closed State on either player's turn.",
+        "When damage is about to be assigned (465.2.c), play Discipline choosing Irelia. Its own effect gives her +2 this turn.",
+        "Her trigger sees the choosing and adds +1. Both are continuous modifiers (477.3.e.1), so she is at Might 7 for the turn — 8 if the Awakening ready already fired.",
+        "The spell draws a card, so nothing has been spent but the Energy.",
+        "317.2.c expires every modifier at the end-of-turn Cleanup; the trigger has no once-a-turn clause, so a second Discipline the same turn is another +3."
+      ],
+      "terminatesIn": "engine only — +3 Might on Irelia and a card per Discipline, three a game (103.2.b), plus a free +1 on every Awakening that readies her; everything expires at the Cleanup and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "415.1.b. \"A Unit that is already Ready cannot be Readied again.\" 415.1.c. \"If a Unit is instructed to be Readied while it is already Ready, nothing additional happens.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "809.1.c. \"It is functionally short for 'Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].'\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "813.1.c.1. \"On Cards: 'This can be played during Closed States on any player's turn.'\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `irelia-fervent-buff-is-choosing` and the Core-Rules-named sweep; OGN-058 Discipline was in zero entries. Card text verbatim from data/corpus_flat.txt. Trap check: [Deflect] is stated to tax only the OPPONENT (809.1.c says so in its own words), which is the asymmetry this pairing depends on; the ready half is priced against 415.1.b / 415.1.c so it is not claimed on an already-ready body, and the Awakening is named as the free repeat; the three 'choose' false-positive shapes are listed so a substitute chooser is not picked badly; everything is stated as a continuous modifier expiring at 317.2.c."
+    },
+    {
+      "id": "yi-honed-back-alley-bar-ganking-departure",
+      "name": "A departure rider only pays a body that can leave to somewhere worth being — 144.4 is why that means [Ganking], and Yi, Honed brings his own",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-009",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E7 P1 M6. '[Ganking] (I can move from battlefield to battlefield.) I enter ready.' Both halves matter: 144.4.c.1 lets his Standard Move go battlefield to battlefield, and 'I enter ready' beats 143.4 so he can pay 144.2's exhaust the turn he lands."
+        },
+        {
+          "card": "OGN-277",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When a unit moves from here, give it +1 :rb_might: this turn.' It pays on the DEPARTURE, and it says 'a unit', not 'you' — so 190.6.d never blanks it and it is live from turn one."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Yi, Honed is mono-Body and Back-Alley Bar is Colorless, so 103.1.b.1 is satisfied by any legend with Body as one of its two domains. Neither card is Signature.",
+          "The battlefield is not guaranteed: 485.4.a has each player provide three and 485.5 randomly selects one, and 103.4.c forbids duplicates of a name — so the Bar arrives one time in three."
+        ],
+        "notable": [
+          "WHY THE RIDER NEEDS [GANKING] AND NOT JUST A MOVER. 144.4 restricts the Standard Move to two shapes: 144.4.a 'Units may move from their Base to a Battlefield' and 144.4.b 'Units may move from a Battlefield to their Base'. So without [Ganking] the only way to leave the Bar is to go HOME, where a '+1 Might this turn' is worth nothing. 144.4.c.1 — 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield' — is what turns the departure into an arrival somewhere the Might matters.",
+          "AND [GANKING] IS NOT AN EXTRA MOVE. 810.1.c.3 is explicit that it 'does not give additional abilities or activations of Movement, only new options for the Standard Move'. This is one move a turn, paid for with 144.2's exhaust, that happens to end at the other battlefield instead of at the base.",
+          "'I ENTER READY' IS WHAT MAKES THE FIRST TURN COUNT. 143.4 has units enter the board exhausted, so an ordinary body played to the Bar cannot leave it until 315.1.b readies it next Awakening. Yi arrives ready, pays 144.2 immediately, and collects the +1 on the way out on the turn he was cast.",
+          "THE +1 IS A MODIFIER, NOT A BUFF, so 702.3's one-per-unit cap never touches it and it stacks with a real Buff counter — but 317.2.c expires it at the end-of-turn Cleanup, so it has to be spent in a combat that same turn.",
+          "THE BAR PAYS ANYONE, INCLUDING THE OPPONENT. It says 'When A UNIT moves from here', not 'a friendly unit' and not 'you', which is both why 190.6.d cannot blank it (it is live before anyone controls it) and why bringing it is a symmetric offer.",
+          "THE ARITHMETIC IS ONE MIGHT A TURN, AND THAT IS THE HONEST FIGURE. Yi attacks at 7 instead of 6 on any turn he moves off the Bar, forever, with no card spent — this is a rider on a move the deck was making anyway, not an engine that grows.",
+          "AND IT IS THE SHAPE THE CATALOGUE ALREADY PRICED FROM THE OTHER SIDE: `back-alley-bar-forgotten-signpost-reinforcement` buys the departure with an EFFECT mover, three copies a game; this buys it with a keyword the body was printed with, every turn. Neither scores."
+        ]
+      },
+      "steps": [
+        "Bring Back-Alley Bar as one of your three battlefields; 190.6.d never switches it off, so it is live from turn one.",
+        "Play Yi, Honed (E7 + 1 Body Power) to the Bar. 'I enter ready' overrides 143.4, so he is available the same turn.",
+        "In the same Main Phase, use his Standard Move: 144.4.c.1 lets him go battlefield to battlefield, paying 144.2's exhaust.",
+        "The Bar's trigger sees the departure and gives him +1 Might this turn (477.3.e.1, a continuous modifier).",
+        "He arrives at the other battlefield at Might 7. 190.3.a.1 applies Contested there, 323.9 stages the Combat and 465.2.c reads the modified Might at assignment.",
+        "317.2.c expires the +1 at the end-of-turn Cleanup; 315.1.b readies him at the next Awakening and the move — and the +1 — are available again."
+      ],
+      "terminatesIn": "engine only — +1 Might on every turn Yi leaves the Bar, forever, for no card; the modifier expires each Cleanup and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "144.4.a. \"Units may move from their Base to a Battlefield.\" 144.4.b. \"Units may move from a Battlefield to their Base.\" 144.4.c.1. \"Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "143.4. \"Units enter the Board exhausted.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "485.5. \"Setup: Each player randomly selects one (1) of their three (3) Battlefields. The other two are removed\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `back-alley-bar-any-mover` and the Core-Rules-named sweep; OGS-009 Yi, Honed was in zero entries. Card text verbatim from data/corpus_flat.txt. The content is 144.4 read against a departure rider: without [Ganking] the only legal departure from a battlefield is to the base, where a '+1 Might this turn' is worthless, so the rider is only worth anything to a Ganking body or an effect mover. Trap check: 810.1.c.3 is cited so [Ganking] is not claimed as a second move; 143.4 is cited so 'I enter ready' is priced rather than decorative; the +1 is stated as a modifier and not a Buff, expiring at 317.2.c; the battlefield's symmetry and its 485.5 randomness are both stated; the contrast with the existing effect-mover entry is named."
     }
   ]
 }
