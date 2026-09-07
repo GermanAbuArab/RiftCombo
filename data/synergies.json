@@ -44,11 +44,20 @@
           "ahri-blue-sentinel-hold",
           "blue-sentinel-trinity-force-hold",
           "ivern-sentinel-hold",
-          "world-atlas-sentinel-gold",
+          "last-rites-sentinel-trash-holds",
+          "power-nexus-atlas-sentinel-gold",
+          "power-nexus-atlas-sentinel-time-warp",
+          "power-nexus-benefactor-sentinel-time-warp",
           "power-nexus-sentinel",
-          "svellsongur-copy-hold",
+          "power-nexus-sentinel-renata-mastermind",
+          "rumble-scrapper-sentinel-mechs",
+          "sentinel-trinity-time-warp-chain",
+          "shadow-temple-sentinel-burn",
           "shen-kinkou-sentinel-hold",
-          "rumble-scrapper-sentinel-mechs"
+          "shen-sentinel-time-warp-chain",
+          "svellsongur-copy-hold",
+          "veteran-poro-weaponmaster-trinity-sentinel-hold",
+          "world-atlas-sentinel-gold"
         ]
       },
       "status": "rule-verified",
@@ -93,10 +102,11 @@
           "823.1.b"
         ],
         "combos": [
-          "tryndamere-brambleback-conquer",
           "brambleback-trinity-skyfall-conquer",
+          "cull-brambleback-gold",
+          "reveler-loop-nasus-brambleback-conquer",
           "skyfall-ahri-conquer",
-          "cull-brambleback-gold"
+          "tryndamere-brambleback-conquer"
         ]
       },
       "status": "rule-verified",
@@ -139,8 +149,9 @@
           "823.1.b"
         ],
         "combos": [
-          "skyfall-ahri-conquer",
-          "brambleback-trinity-skyfall-conquer"
+          "brambleback-trinity-skyfall-conquer",
+          "shen-skyfall-brambleback-conquer",
+          "skyfall-ahri-conquer"
         ]
       },
       "status": "rule-verified",
@@ -232,9 +243,27 @@
           "477.1"
         ],
         "combos": [
+          "guardian-passage-svellsongur",
+          "ivern-svellsongur-four-tags-hold",
+          "shen-kinkou-svellsongur-hold",
+          "svellsongur-apprentice-smith-gear-dig",
+          "svellsongur-ava-achiever-hidden-flood",
           "svellsongur-copy-hold",
+          "svellsongur-corrupt-enforcer-trash-fill",
+          "svellsongur-eminent-benefactor-gold",
+          "svellsongur-fae-porter-relay",
+          "svellsongur-faefolk-mass-evacuation",
+          "svellsongur-imposing-challenger-unstage",
+          "svellsongur-kato-the-arm-keyword-spread",
           "svellsongur-ornn-hold",
-          "guardian-passage-svellsongur"
+          "svellsongur-qiyana-victorious-modal",
+          "svellsongur-ribbon-dancer-fiora-mass-ready",
+          "svellsongur-rumble-scrapper-mechs",
+          "svellsongur-traveling-merchant-discard",
+          "svellsongur-treasure-hunter-gold",
+          "svellsongur-trevor-leblanc-plaza",
+          "svellsongur-yasuo-remorseful-sweep",
+          "yasuo-remorseful-svellsongur-nasus-conquer"
         ]
       },
       "status": "rule-verified",
@@ -260,11 +289,16 @@
           "375"
         ],
         "combos": [
+          "arise-renata-all-ready",
+          "chemtech-cask-renata-off-turn-power",
+          "fae-dragon-wallop-industrialist",
+          "ferrous-forerunner-karthus-mech-plaza",
+          "flurry-of-feathers-renata-instant-wall",
+          "grand-plaza-loop-time-warp",
+          "portal-rescue-trove-golem-industrialist",
           "pursuer-herald-recruits",
           "treasure-hunter-industrialist-gold",
-          "fae-dragon-wallop-industrialist",
-          "zed-clone-eye-recruits",
-          "grand-plaza-loop-time-warp"
+          "zed-clone-eye-recruits"
         ]
       },
       "status": "rule-verified",
@@ -286,10 +320,15 @@
           "471.2.b"
         ],
         "combos": [
-          "grand-plaza-recruit-vanguard",
-          "leblanc-temporary-plaza",
+          "ferrous-forerunner-karthus-mech-plaza",
           "grand-plaza-loop-time-warp",
+          "grand-plaza-recruit-vanguard",
+          "heimerdinger-armory-plaza",
           "heimerdinger-ultrasoft-poro-plaza",
+          "herald-heimerdinger-armory-plaza",
+          "leblanc-temporary-plaza",
+          "sprite-mother-burst-leblanc-plaza",
+          "svellsongur-trevor-leblanc-plaza",
           "vanguard-captain-manufactor-plaza"
         ]
       },
@@ -316,7 +355,10 @@
           "383"
         ],
         "combos": [
-          "leblanc-temporary-plaza"
+          "leblanc-temporary-plaza",
+          "sprite-mother-burst-leblanc-plaza",
+          "sprite-queen-leblanc-permanent-army",
+          "svellsongur-trevor-leblanc-plaza"
         ]
       },
       "status": "rule-verified",
@@ -357,10 +399,16 @@
           "702.2"
         ],
         "combos": [
-          "renata-mastermind-points",
+          "arena-bar-fiora-untap",
           "fiora-vault-breaker-jhin",
+          "friendship-fiora-worthy-mighty-ready",
+          "garen-fiora-malzahar-facebreaker-recruits",
           "jhin-fiora-facebreaker-recall",
-          "garen-fiora-malzahar-facebreaker-recruits"
+          "overt-operation-fiora-double-untap",
+          "peak-guardian-fiora-mass-ready",
+          "radiant-dawn-leona-fiora-stun-ready",
+          "renata-mastermind-points",
+          "svellsongur-ribbon-dancer-fiora-mass-ready"
         ]
       },
       "status": "rule-verified",
@@ -519,7 +567,9 @@
           "383.4.a.1",
           "383.4.a.2"
         ],
-        "combos": []
+        "combos": [
+          "retreat-sprite-mother-rebuy"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
@@ -618,10 +668,11 @@
           "383.3.b"
         ],
         "combos": [
-          "sprite-fountain-malzahar-jayce",
-          "jhin-virtuoso-ekko-malzahar-vi",
           "garen-fiora-malzahar-facebreaker-recruits",
-          "gutter-palace-keeper-time-warp"
+          "gutter-palace-keeper-time-warp",
+          "jhin-virtuoso-ekko-malzahar-vi",
+          "malzahar-wraith-centaur-sacrifice",
+          "sprite-fountain-malzahar-jayce"
         ]
       },
       "status": "rule-verified",
@@ -764,7 +815,8 @@
           "827.1.c.1"
         ],
         "combos": [
-          "kharox-sanction-burn"
+          "kharox-sanction-burn",
+          "mel-defiant-soul-sanction-banish-cycle"
         ]
       },
       "status": "rule-verified",
@@ -909,6 +961,8 @@
           "808.3"
         ],
         "combos": [
+          "blade-kogmaw-karthus-wipe",
+          "ferrous-forerunner-karthus-mech-plaza",
           "karthus-black-rose-double-channel",
           "karthus-rift-herald-double-play"
         ]
@@ -1060,6 +1114,7 @@
           "813.1.c.1"
         ],
         "combos": [
+          "dark-child-abandon-guaranteed-counter",
           "sona-viktor-opponent-turn"
         ]
       },
@@ -1415,8 +1470,10 @@
           "423.1.b"
         ],
         "combos": [
+          "radiant-dawn-leona-fiora-stun-ready",
           "radiant-dawn-stun-buff-free-glory",
-          "solari-chief-facebreaker-shrine-kill"
+          "solari-chief-facebreaker-shrine-kill",
+          "vex-radiant-dawn-stun-redeploy"
         ]
       },
       "status": "rule-verified",
@@ -1764,7 +1821,9 @@
         ],
         "combos": [
           "corrupted-dragon-mass-evacuate",
-          "faefolk-challenger-forced-attacker"
+          "faefolk-challenger-forced-attacker",
+          "moonlight-affliction-tricksy-tentacles-evacuation",
+          "moonlight-affliction-wind-and-ghosts-banish"
         ]
       },
       "status": "rule-verified",
@@ -2064,7 +2123,9 @@
           "703",
           "355.2.a"
         ],
-        "combos": []
+        "combos": [
+          "sett-kingpin-peak-guardian-mass-buff"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2085,7 +2146,9 @@
           "133.8",
           "133.8.a"
         ],
-        "combos": []
+        "combos": [
+          "poro-herder-stalking-wolf-poro-fodder"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2107,6 +2170,7 @@
           "133.8.a"
         ],
         "combos": [
+          "direwing-dune-drake-ready-attacker",
           "gemdragon-henge-vi-blind-fury"
         ]
       },
@@ -2207,6 +2271,7 @@
           "356.2.a.1"
         ],
         "combos": [
+          "poro-herder-stalking-wolf-poro-fodder",
           "stalking-wolf-bird-ambush"
         ]
       },
@@ -2289,8 +2354,9 @@
           "383.4.d.1"
         ],
         "combos": [
+          "ivern-arena-sentinel-hold",
           "ivern-sentinel-hold",
-          "ivern-arena-sentinel-hold"
+          "ivern-svellsongur-four-tags-hold"
         ]
       },
       "status": "rule-verified",
@@ -2895,11 +2961,14 @@
           "383.1"
         ],
         "combos": [
-          "heimerdinger-renata-remote-score",
-          "heimerdinger-vanguard-armory-recruits",
-          "heimerdinger-malzahar-double-power",
+          "armory-heimerdinger-bottled-constellation",
+          "heimerdinger-armory-plaza",
           "heimerdinger-herald-legend-recruits",
-          "heimerdinger-ultrasoft-poro-plaza"
+          "heimerdinger-malzahar-double-power",
+          "heimerdinger-renata-remote-score",
+          "heimerdinger-ultrasoft-poro-plaza",
+          "heimerdinger-vanguard-armory-recruits",
+          "herald-heimerdinger-armory-plaza"
         ]
       },
       "status": "rule-verified",
@@ -2930,10 +2999,12 @@
           "808.1.d.2"
         ],
         "combos": [
+          "blade-kogmaw-karthus-wipe",
+          "ferrous-forerunner-karthus-mech-plaza",
+          "karthus-glasc-mixologist-double-reanimate",
           "karthus-honest-broker-blade-gold",
-          "karthus-sacred-shears-blade-draw",
           "karthus-machine-evangel-renata-plaza",
-          "karthus-glasc-mixologist-double-reanimate"
+          "karthus-sacred-shears-blade-draw"
         ]
       },
       "status": "rule-verified",
@@ -2986,9 +3057,10 @@
           "456.1"
         ],
         "combos": [
+          "svellsongur-treasure-hunter-gold",
+          "yasuo-stellacorn-svellsongur-draw",
           "yasuo-syren-unforgiven-point",
-          "yasuo-windrider-ride-the-wind-chain",
-          "yasuo-stellacorn-svellsongur-draw"
+          "yasuo-windrider-ride-the-wind-chain"
         ]
       },
       "status": "rule-verified",
@@ -3449,9 +3521,10 @@
           "485.5"
         ],
         "combos": [
-          "ezreal-marai-spire-free-repeat",
           "daughter-void-marai-curtain-call",
-          "existential-dread-repeat-bounce"
+          "existential-dread-repeat-bounce",
+          "ezreal-marai-spire-free-repeat",
+          "marai-spire-temptation-evacuation"
         ]
       },
       "status": "rule-verified",
@@ -3594,7 +3667,12 @@
           "735",
           "737"
         ],
-        "combos": []
+        "combos": [
+          "power-nexus-atlas-sentinel-time-warp",
+          "power-nexus-benefactor-sentinel-time-warp",
+          "sentinel-trinity-time-warp-chain",
+          "shen-sentinel-time-warp-chain"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -3644,7 +3722,9 @@
           "419.3",
           "419.4.a"
         ],
-        "combos": []
+        "combos": [
+          "hall-of-legends-bloodharbor-double-ripper"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -3664,7 +3744,9 @@
           "816.1.b",
           "816.1.c"
         ],
-        "combos": []
+        "combos": [
+          "malzahar-wraith-centaur-sacrifice"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -3764,6 +3846,605 @@
       "status": "rule-verified",
       "reviewed": "2026-09-06",
       "reviewedCount": 8
+    },
+    {
+      "id": "karma-channeler-recycle-main",
+      "name": "Karma buffs a friendly unit on any recycle to the Main Deck, not just her own Vision",
+      "anchor": "OGN-235",
+      "partner": {
+        "textMatches": "[Rr]ecycle",
+        "excludes": [
+          {
+            "card": "OGN-200",
+            "why": "\"reveal the top rune of your rune deck, then recycle it\" — 416.1.b sends a recycled rune to the RUNE Deck, never the Main Deck Karma's trigger names."
+          },
+          {
+            "card": "OGN-287",
+            "why": "\"you must recycle one of your runes\" — the same 416.1.b mechanism; the forced rune recycle never reaches the Main Deck."
+          },
+          {
+            "card": "SFD-203",
+            "why": "\"When you recycle a rune, you may exhaust me...\" watches a rune recycle, it does not cause one, and even if it did 416.1.b sends it to the wrong deck."
+          },
+          {
+            "card": "OGN-156",
+            "why": "\"They reveal their hand... recycle that card\" recycles the CHOSEN OPPONENT's card to the opponent's own Main Deck (416.1.c: each player recycles to their own deck), never to Karma's controller's."
+          },
+          {
+            "card": "UNL-103",
+            "why": "\"Choose up to 3 cards from opponents' trashes. Their owners recycle them\" — same 416.1.c mechanism: each owner recycles to their own deck, not Karma's controller's."
+          },
+          {
+            "card": "VEN-085",
+            "why": "\"They recycle that card\" sends the chosen opponent's own hand card to the opponent's own Main Deck (416.1.c), never Karma's controller's."
+          },
+          {
+            "card": "OGN-025",
+            "why": "\"Each opponent reveals the top card... Then recycle the rest\" disposes of the OTHER opponents' own unchosen reveals to their own decks (416.1.c), never Karma's controller's."
+          }
+        ]
+      },
+      "why": "Karma, Channeler's second sentence — \"When you recycle one or more cards to your Main Deck, buff a friendly unit\" — watches ANY recycle-to-Main-Deck event, not only her own [Vision] look (the narrower Vision-only case is already karma-channeler-vision-recycle). 416.1.a sends Main Deck cards to the Main Deck and 416.1.b sends runes to the Rune Deck instead, and Karma's own printed reminder says so outright — \"(Runes aren't cards.)\" — so a rune activation or a \"recycle a rune\" cost never fires her. A second false-positive shape, caught only by reading the whole list: 416.1.c makes each player recycle cards to their OWN Main Deck, so an effect that forces an opponent to recycle their own hand or trash card never touches Karma's controller's deck at all.",
+      "basis": {
+        "rules": [
+          "416.1.a",
+          "416.1.b",
+          "416.1.c"
+        ],
+        "combos": [
+          "gemcraft-karma-herald-buff-faucet",
+          "karma-ornn-hold-recycle-buff"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 46
+    },
+    {
+      "id": "back-alley-bar-any-mover",
+      "name": "Back-Alley Bar buffs whatever moves off it — friendly, enemy, or nowhere useful",
+      "anchor": "OGN-277",
+      "partner": {
+        "textMatches": "[Mm]ove (a|an|another|up to|any number of|all)[^.]{0,30}(friendly )?unit|[Mm]ove me\\b|[Mm]ove it\\b",
+        "excludes": [
+          {
+            "card": "SFD-079",
+            "why": "\"move any number of your units to an open battlefield\" — 170.11.c defines open as unoccupied AND uncontrolled, so the units land where no combat exists to spend the +1 Might in on the turn they arrive."
+          }
+        ]
+      },
+      "why": "\"When a unit moves from here, give it +1 Might this turn\" names \"a unit\", not \"a friendly unit\", so any effect that moves a unit off this battlefield — friendly or an opponent's — is a genuine partner; moving an enemy unit off the Bar hands THEM the +1, an anti-synergy worth remembering rather than a reason to drop enemy-movers from the list. Bard, Mercurial is the one exclude with a real mechanical reason: his move always lands on an open battlefield (170.11.c), so the buff is spent on a body with no fight in front of it.",
+      "basis": {
+        "rules": [
+          "170.11.c"
+        ],
+        "combos": [
+          "kayn-back-alley-bar-double-move"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 46
+    },
+    {
+      "id": "lillia-protector-token-unit-tank",
+      "name": "Lillia grows and grants [Tank] off any token UNIT played — never a Gold or other token gear",
+      "anchor": "UNL-058",
+      "partner": {
+        "textMatches": "[Uu]nit tokens?",
+        "excludes": [
+          {
+            "card": "UNL-130",
+            "why": "\"Choose an opponent. They play a 1 Might Bird unit token\" — the OPPONENT plays it, never Lillia's own controller, so her \"when YOU play a token unit\" trigger never sees it."
+          }
+        ]
+      },
+      "why": "Lillia's trigger reads \"a token unit\", and every genuine token-unit maker in the pool prints the same compound noun the other way round — \"...unit token\" — which is also why the predicate stays clear of the pool's 25 \"gear token\" printings (Gold, mostly) that a loose \"token\" regex would catch instead. The one exclude, Walking Roost, makes the OPPONENT play the token, so it is never Lillia's own controller doing the playing. Her static grant — \"Your token units have [Tank]\" — is the assignment restriction of 815.1.b / 815.1.c.2 (a unit without Tank is an invalid assignment until every Tank body has lethal damage assigned), which is exactly why she is anti-synergic with the whole Grand Plaza family: those lines need seven token bodies to SURVIVE to the Beginning Phase, and Tank guarantees hers die first.",
+      "basis": {
+        "rules": [
+          "350.2",
+          "815.1.b",
+          "815.1.c.2"
+        ],
+        "combos": [
+          "lillia-flurry-of-feathers-tank-wall"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 48
+    },
+    {
+      "id": "viktor-leader-friendly-kill",
+      "name": "Viktor, Leader turns any friendly-unit kill into a Recruit — unless the kill was a Recruit",
+      "anchor": "OGN-246",
+      "partner": {
+        "textMatches": "[Kk]ill[^.]{0,30}friendly|[Kk]ill[^.]{0,30}you control|[Kk]ill me\\b|kill one of their units|must kill[^.]{0,20}unit",
+        "textExcludes": "friendly gear|before scoring",
+        "excludes": [
+          {
+            "card": "UNL-174",
+            "why": "\"each opponent must kill one of their units\" lands on the OPPONENT's own board, never on a unit Viktor's controller controls."
+          },
+          {
+            "card": "VEN-133",
+            "why": "\"kill this and deal 5 to all units you control\" kills the gear itself; \"units you control\" names the damage's targets, not what dies."
+          }
+        ]
+      },
+      "why": "\"When another non-Recruit unit you control dies, play a 1 Might Recruit unit token into your base\" is fed by any card in the pool that actively kills a friendly unit — 428.1's Active Kill, whether paid as a cost (428.1.a.1.a, the shape every one of the fourteen partners below uses) or cast as a standalone effect. The predicate is deliberately scoped to a chosen, active kill of a friendly body, which is why it excludes Shard of Undoing (its forced kill lands on the opponent's own unit) and Glowstone (its \"kill this\" is the gear itself). Viktor's own \"non-Recruit\" clause cannot be checked from card text at the pool level — every partner below lets the controller pick WHICH friendly unit dies, so a real deck just avoids feeding him a Recruit.",
+      "basis": {
+        "rules": [
+          "428.1",
+          "428.1.a.1.a"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 14
+    },
+    {
+      "id": "wraith-of-echoes-friendly-kill",
+      "name": "Wraith of Echoes draws once — the first friendly-unit death a turn, however many a kill effect takes at once",
+      "anchor": "OGN-118",
+      "partner": {
+        "textMatches": "[Kk]ill[^.]{0,30}friendly|[Kk]ill[^.]{0,30}you control|[Kk]ill me\\b|kill one of their units|must kill[^.]{0,20}unit",
+        "textExcludes": "friendly gear|before scoring",
+        "excludes": [
+          {
+            "card": "UNL-174",
+            "why": "\"each opponent must kill one of their units\" lands on the OPPONENT's own board, never on a unit Wraith of Echoes' controller controls."
+          },
+          {
+            "card": "VEN-133",
+            "why": "\"kill this and deal 5 to all units you control\" kills the gear itself; \"units you control\" names the damage's targets, not what dies."
+          }
+        ]
+      },
+      "why": "\"The first time a friendly unit dies each turn, draw 1\" is fed by the same fourteen-card active-kill family as viktor-leader-friendly-kill, capped by 383.3.e.1: a \"the [Nth] time... each turn\" trigger \"will only be performed the specified number of times each turn\" — its own worked example is this exact card — so Commander Ledros killing three friendly units under one cost, or three separate single-kill spells across the turn, both draw exactly one card. Excludes shared with the sibling rules on this family: Shard of Undoing kills the opponent's own unit, and Glowstone kills itself (a gear).",
+      "basis": {
+        "rules": [
+          "428.1",
+          "383.3.e.1"
+        ],
+        "combos": [
+          "malzahar-wraith-centaur-sacrifice"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 14
+    },
+    {
+      "id": "vanguard-helm-friendly-kill",
+      "name": "Vanguard Helm relays a buff off a friendly kill — but only a buffed body pays it",
+      "anchor": "OGN-228",
+      "partner": {
+        "textMatches": "[Kk]ill[^.]{0,30}friendly|[Kk]ill[^.]{0,30}you control|[Kk]ill me\\b|kill one of their units|must kill[^.]{0,20}unit",
+        "textExcludes": "friendly gear|before scoring",
+        "excludes": [
+          {
+            "card": "UNL-174",
+            "why": "\"each opponent must kill one of their units\" lands on the OPPONENT's own board, never on a unit Vanguard Helm's controller controls."
+          },
+          {
+            "card": "VEN-133",
+            "why": "\"kill this and deal 5 to all units you control\" kills the gear itself; \"units you control\" names the damage's targets, not what dies."
+          }
+        ]
+      },
+      "why": "\"When a buffed friendly unit dies, buff another friendly unit\" shares the same fourteen-card active-kill family as the sibling rules on this anchor group, but its own condition narrows the real partner set further than any text predicate can express: the dying unit has to carry a 702/703 Buff first, so the honest pairing is the intersection with a buff source, not the kill list alone — vanguard-helm-baited-hook-buff-ladder already prices exactly that intersection, where the Hook's own tutor ceiling reads off a BUFFED corpse's Might. Excludes shared with the sibling rules: Shard of Undoing kills the opponent's own unit, and Glowstone kills itself (a gear).",
+      "basis": {
+        "rules": [
+          "428.1",
+          "702.3",
+          "703"
+        ],
+        "combos": [
+          "vanguard-helm-baited-hook-buff-ladder"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 14
+    },
+    {
+      "id": "altar-of-memories-friendly-kill",
+      "name": "Altar of Memories loots off any friendly kill, once per ready",
+      "anchor": "SFD-169",
+      "partner": {
+        "textMatches": "[Kk]ill[^.]{0,30}friendly|[Kk]ill[^.]{0,30}you control|[Kk]ill me\\b|kill one of their units|must kill[^.]{0,20}unit",
+        "textExcludes": "friendly gear|before scoring",
+        "excludes": [
+          {
+            "card": "UNL-174",
+            "why": "\"each opponent must kill one of their units\" lands on the OPPONENT's own board, never on a unit Altar of Memories' controller controls."
+          },
+          {
+            "card": "VEN-133",
+            "why": "\"kill this and deal 5 to all units you control\" kills the gear itself; \"units you control\" names the damage's targets, not what dies."
+          }
+        ]
+      },
+      "why": "\"When a friendly unit dies, you may exhaust me to draw 1, then put a card from your hand on the top or bottom of your Main Deck\" is the plainest payoff on the fourteen-card active-kill family this catalogue also uses for viktor-leader-friendly-kill, wraith-of-echoes-friendly-kill and vanguard-helm-friendly-kill: no \"first time\" cap and no buff gate, just its own exhaust cost, which 315.1.b readies back every Awaken — so it pays once between your own Awakens rather than once a turn outright. Same two excludes as the sibling rules on this family, for the identical reason.",
+      "basis": {
+        "rules": [
+          "428.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 14
+    },
+    {
+      "id": "spectral-centaur-friendly-kill",
+      "name": "Spectral Centaur grows without a cap, once per friendly death this turn",
+      "anchor": "UNL-068",
+      "partner": {
+        "textMatches": "[Kk]ill[^.]{0,30}friendly|[Kk]ill[^.]{0,30}you control|[Kk]ill me\\b|kill one of their units|must kill[^.]{0,20}unit",
+        "textExcludes": "friendly gear|before scoring",
+        "excludes": [
+          {
+            "card": "UNL-174",
+            "why": "\"each opponent must kill one of their units\" lands on the OPPONENT's own board, never on a unit Spectral Centaur's controller controls."
+          },
+          {
+            "card": "VEN-133",
+            "why": "\"kill this and deal 5 to all units you control\" kills the gear itself; \"units you control\" names the damage's targets, not what dies."
+          }
+        ]
+      },
+      "why": "\"When another friendly unit dies, give me +2 Might this turn\" carries no \"first time\" qualifier — unlike Wraith of Echoes (383.3.e.1) — so each qualifying friendly-unit death this turn is its own trigger: Commander Ledros paying his additional cost by killing three friendly units at once is three separate deaths and three +2 instances, not one, on the same fourteen-card active-kill family as the sibling rules. The +2 is a plain continuous \"this turn\" modifier, not a 702 Buff, so nothing caps how many times it stacks in a turn. Same two excludes as the sibling rules, for the identical reason.",
+      "basis": {
+        "rules": [
+          "428.1"
+        ],
+        "combos": [
+          "malzahar-wraith-centaur-sacrifice"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 14
+    },
+    {
+      "id": "shard-of-undoing-temporary-death",
+      "name": "Shard of Undoing wants a scheduled friendly death — in practice, [Temporary]",
+      "anchor": "UNL-174",
+      "partner": {
+        "textMatches": "\\[Temporary\\]",
+        "excludes": [
+          {
+            "card": "SFD-104",
+            "why": "its own [Temporary] is on the GEAR (Petricite Monument itself), never on a friendly unit."
+          },
+          {
+            "card": "SFD-186",
+            "why": "\"[Temporary] (If this is unattached, kill it...)\" applies to the gear (Spinning Axe) itself, not to a unit."
+          },
+          {
+            "card": "UNL-070",
+            "why": "\"Give a gear [Temporary]\" names a gear as the target, never a unit."
+          },
+          {
+            "card": "UNL-076",
+            "why": "Petal Pixie only READS an existing [Temporary] state for its own Might bonus; it never grants the keyword to anything."
+          },
+          {
+            "card": "UNL-085",
+            "why": "its own [Temporary] is on the GEAR (Sumpworks Map itself), never on a friendly unit."
+          },
+          {
+            "card": "UNL-090",
+            "why": "\"Your [Temporary] effects at my battlefield don't trigger\" actively switches the mechanism OFF (R10 = A) — the one straight anti-synergy in the list, not a miscount."
+          },
+          {
+            "card": "UNL-208",
+            "why": "Black Flame Altar only grants [Shield] to units that already carry [Temporary]; it never grants the keyword itself."
+          },
+          {
+            "card": "UNL-083",
+            "why": "Smoke and Mirrors requires a unit to already have [Temporary] as its own precondition; it never grants the keyword."
+          }
+        ]
+      },
+      "why": "\"The first time a friendly unit dies during your Beginning Phase each turn, each opponent must kill one of their units\" needs the death to land in a narrow window: 315.1 Awaken precedes 315.2's Scoring Step, and 816.1.b's Trigger Condition is by definition \"the start of this permanent's controller's Beginning Phase, before scoring\" — so [Temporary] is the reliable way to land there, rather than hoping a kill effect gets cast in that exact window. The fourteen partners below either mint a token that already carries [Temporary] (the Sprite and Reflection families) or hand the keyword to an existing friendly body (Last Stand, Shadow's Call, Fading Memories — whose \"a unit at a battlefield\" can be pointed at your own). Keeper of Masks is worth two: 185.3.a.2 and 477.1.b.1.a make [Temporary] a copyable trait, so his two Reflection copies die alongside him. Eight excludes split three ways: four cards put [Temporary] on a GEAR rather than a unit; two only READ an existing [Temporary] state instead of granting it; and LeBlanc, Everywhere at Once actively disables the mechanism (R10 = A) — the one genuine anti-synergy in the raw list.",
+      "basis": {
+        "rules": [
+          "315.1",
+          "315.2",
+          "816.1.b",
+          "185.3.a.2",
+          "477.1.b.1.a"
+        ],
+        "combos": [
+          "sprite-fountain-shard-undoing-beginning-removal",
+          "shard-undoing-deceiver-reflection-removal"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 14
+    },
+    {
+      "id": "jinx-rebel-discard-family",
+      "name": "Jinx, Rebel readies and grows off any discard event, however many cards it moves",
+      "anchor": "OGN-202",
+      "partner": {
+        "textMatches": "[Dd]iscard \\d|[Yy]ou (may )?discard",
+        "excludes": [
+          {
+            "card": "VEN-094",
+            "why": "\"When you discard me...\" watches a discard of itself; it never causes one."
+          },
+          {
+            "card": "OGN-006",
+            "why": "\"When you discard me...\" watches a discard of itself, the same shape as Mask Mother; it never causes one."
+          }
+        ]
+      },
+      "why": "\"When you discard one or more cards, ready me and give me +1 Might this turn\" is worded as one trigger per discard INSTRUCTION, not per card — jinx-rebel-discard-event-ready already walks the arithmetic: a spell that discards two is one event, exactly like a spell that discards one. Same 24-card cause family as flame-chompers-discard-family, sharing both of its exclusions for the identical reason: Mask Mother and Flame Chompers each watch a discard of themselves rather than causing one. Worth adding here: a [Repeat] cost of \"Discard 1\" (Square Up) is itself the Additional Cost paid during the steps of playing the spell (820.1.c.1), so choosing to pay Repeat is a genuine discard event on its own, not a rider on some other discard the base cast never has.",
+      "basis": {
+        "rules": [
+          "383.2.c",
+          "820.1.c.1"
+        ],
+        "combos": [
+          "get-excited-flame-chompers-jinx",
+          "minah-ride-the-wind-mutual-discard",
+          "jinx-rebel-square-up"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 24
+    },
+    {
+      "id": "mask-mother-choice-discard-buff",
+      "name": "Mask Mother pays a friendly-unit buff off any discard that lets you choose the card",
+      "anchor": "VEN-094",
+      "partner": {
+        "textMatches": "[Dd]iscard \\d|[Yy]ou (may )?discard",
+        "excludes": [
+          {
+            "card": "OGN-202",
+            "why": "\"When you discard one or more cards, ready me...\" watches a discard; it never causes one."
+          },
+          {
+            "card": "OGN-006",
+            "why": "\"When you discard me...\" watches a discard of itself, the same shape as Jinx, Rebel; it never causes one."
+          }
+        ]
+      },
+      "why": "\"When you discard me, you may pay 1 Energy to give a friendly unit +2 Might this turn\" needs Mask Mother HERSELF to be the discarded card, so every partner below has to let the controller pick which card leaves hand — none of the 24 in the pool discards at random or off the top of the deck (a [Burn N] mill never uses the word \"discard\" at all; 431.1.b is a separate mechanism), so the whole cause family qualifies without a targeting exclude of its own. Same two exclusions as jinx-rebel-discard-family, for the identical reason: Jinx, Rebel and Flame Chompers both watch a discard of themselves rather than causing one.",
+      "basis": {
+        "rules": [
+          "383.2.c"
+        ],
+        "combos": [
+          "mask-mother-scrapyard-champion"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 24
+    },
+    {
+      "id": "vex-mocking-stun-relocate",
+      "name": "Vex, Mocking rides any stun that lands at a battlefield to a free relocation",
+      "anchor": "UNL-055",
+      "partner": {
+        "textMatches": "\\[Stun\\]|[Ss]tun (a|an|one|up to|all|the|each|that|target)",
+        "excludes": [
+          {
+            "card": "OGN-059",
+            "why": "\"When you stun an enemy unit, ready me...\" is a second payoff for a stun someone else supplies; it does not stun anything itself."
+          },
+          {
+            "card": "OGN-261",
+            "why": "\"When you stun one or more enemy units, buff a friendly unit\" pays for a stun rather than causing one."
+          },
+          {
+            "card": "OGN-072",
+            "why": "\"When you kill a stunned enemy unit...\" needs a stun and a kill from elsewhere; it never stuns anything itself."
+          }
+        ]
+      },
+      "why": "\"When you [Stun] an enemy unit at a battlefield, you may move me to that battlefield\" is fed by any card that actively stuns — the same 21-card family this catalogue already uses for radiant-dawn-stun-buff, leona-zealot-stun-might-collapse and solari-chief-stun-into-kill. Her own relocation is an effect move (420.2.a), not the Standard Move, so 144.1.b's Closed-State bar and 144.2's exhaust cost never apply — she can arrive mid-combat as a [Tank]/[Shield] body inside the fight the stun just weakened. Excludes shared with the sibling rules on this stun family: Eclipse Herald, Radiant Dawn and Solari Shrine each pay for a stun rather than causing one.",
+      "basis": {
+        "rules": [
+          "383.4.e",
+          "420.2.a",
+          "144.1.b",
+          "144.2"
+        ],
+        "combos": [
+          "vex-apathetic-gloomist-play-tax",
+          "vex-radiant-dawn-stun-redeploy",
+          "vex-mocking-thwonk-wall"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 21
+    },
+    {
+      "id": "eclipse-herald-stun-ready",
+      "name": "Eclipse Herald readies and grows off any stun someone else lands",
+      "anchor": "OGN-059",
+      "partner": {
+        "textMatches": "\\[Stun\\]|[Ss]tun (a|an|one|up to|all|the|each|that|target)",
+        "excludes": [
+          {
+            "card": "UNL-055",
+            "why": "\"When you [Stun] an enemy unit at a battlefield, you may move me...\" is a second payoff for a stun someone else supplies; it does not stun anything itself."
+          },
+          {
+            "card": "OGN-261",
+            "why": "\"When you stun one or more enemy units, buff a friendly unit\" pays for a stun rather than causing one."
+          },
+          {
+            "card": "OGN-072",
+            "why": "\"When you kill a stunned enemy unit...\" needs a stun and a kill from elsewhere; it never stuns anything itself."
+          }
+        ]
+      },
+      "why": "\"When you stun an enemy unit, ready me and give me +1 Might this turn\" is fed by the same 21-card stun family as vex-mocking-stun-relocate, with the same three sibling watchers excluded. The ready is worth exactly one extra Standard Move: an exhausted defender still fights at full Might (464.2.c.3 / 465.2.b never filter by state, #61), so a stun that lands on the OPPONENT's turn wastes the ready half even though the +1 Might still applies — the two halves of his own trigger are not always both live.",
+      "basis": {
+        "rules": [
+          "423.1.b",
+          "144.2"
+        ],
+        "combos": [
+          "vex-apathetic-gloomist-play-tax",
+          "eclipse-herald-zenith-blade"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 21
+    },
+    {
+      "id": "solari-shrine-stun-kill-draw",
+      "name": "Solari Shrine draws once a stun is followed by a kill of the same unit",
+      "anchor": "OGN-072",
+      "partner": {
+        "textMatches": "\\[Stun\\]|[Ss]tun (a|an|one|up to|all|the|each|that|target)",
+        "excludes": [
+          {
+            "card": "OGN-059",
+            "why": "\"When you stun an enemy unit, ready me...\" is a second payoff for a stun someone else supplies; it does not stun anything itself."
+          },
+          {
+            "card": "UNL-055",
+            "why": "\"When you [Stun] an enemy unit at a battlefield, you may move me...\" is a second payoff for a stun someone else supplies; it does not stun anything itself."
+          },
+          {
+            "card": "OGN-261",
+            "why": "\"When you stun one or more enemy units, buff a friendly unit\" pays for a stun rather than causing one."
+          }
+        ]
+      },
+      "why": "\"When you kill a stunned enemy unit, you may exhaust this to draw 1\" needs the same 21-card stun family below plus a kill of that body — which ordinary combat itself usually supplies: 423.1.c (not 423.1.b) is what actually costs a stunned unit, since it still needs damage equal to its full CURRENT Might to die, and nothing stops that damage from being plain combat damage (465.2.c.3 forces it in full before any spreads further). Same three sibling exclusions as vex-mocking-stun-relocate and eclipse-herald-stun-ready.",
+      "basis": {
+        "rules": [
+          "428.1",
+          "423.1.c",
+          "465.2.c.3"
+        ],
+        "combos": [
+          "solari-chief-facebreaker-shrine-kill",
+          "solari-shrine-leona-determined"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 21
+    },
+    {
+      "id": "katarina-reckless-hidden-package",
+      "name": "Katarina, Reckless pays twice, on two different turns, for any card that carries [Hidden]",
+      "anchor": "UNL-023",
+      "partner": {
+        "textMatches": "\\[?Hidden\\]? ?\\(Hide now for",
+        "excludes": [
+          {
+            "card": "OGN-107",
+            "why": "plays a [Hidden] card FROM HAND, ignoring its cost — 811.1.c.1 (\"Hide is not a subset of Play\") means that is neither half of Katarina's trigger."
+          },
+          {
+            "card": "OGN-167",
+            "why": "watches a card played from [Hidden]; it carries no [Hidden] of its own to be hidden or played."
+          },
+          {
+            "card": "OGN-264",
+            "why": "returns [Hidden] cards from the trash and discounts hiding; the legend itself carries no [Hidden]."
+          },
+          {
+            "card": "OGN-018",
+            "why": "\"Your opponents' [Hidden] cards can't be revealed here\" is about the OPPONENT's hidden cards; it carries none itself."
+          },
+          {
+            "card": "OGN-263",
+            "why": "discounts hiding a card; the legend itself carries no [Hidden] to hide or play."
+          }
+        ]
+      },
+      "why": "\"When you hide a card, ready me. When you play a card from face down, deal 2 to an enemy unit\" watches both halves of 811.1.b's cycle, so the same [Hidden]-carrying family this catalogue already uses for black-market-broker-hidden-family and ava-achiever-hidden-discount pays her twice on two different turns for one rainbow Power: hide now and she readies now, play it later from Hidden and she deals 2 then. Same five exclusions as those two sibling rules, for the identical reasons: four cards only mention Hidden without carrying it, and Ava Achiever plays a [Hidden] card from HAND (811.1.c.1), which is neither hiding nor a face-down play.",
+      "basis": {
+        "rules": [
+          "811.1.b",
+          "811.1.c.1"
+        ],
+        "combos": [
+          "katarina-reckless-hidden-blade"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 39
+    },
+    {
+      "id": "ember-monk-hidden-play-might",
+      "name": "Ember Monk grows off the exact same [Hidden]-carrying family Black Market Broker mints Gold from",
+      "anchor": "OGN-167",
+      "partner": {
+        "textMatches": "\\[?Hidden\\]? ?\\(Hide now for",
+        "excludes": [
+          {
+            "card": "OGN-107",
+            "why": "plays a [Hidden] card FROM HAND, ignoring its cost — 811.1.c.1 (\"Hide is not a subset of Play\") means that is not the face-down play Ember Monk watches for."
+          },
+          {
+            "card": "OGN-264",
+            "why": "returns [Hidden] cards from the trash and discounts hiding; the legend itself carries no [Hidden]."
+          },
+          {
+            "card": "OGN-018",
+            "why": "\"Your opponents' [Hidden] cards can't be revealed here\" is about the OPPONENT's hidden cards; it carries none itself."
+          },
+          {
+            "card": "OGN-263",
+            "why": "discounts hiding a card; the legend itself carries no [Hidden] to be played from face down."
+          }
+        ]
+      },
+      "why": "\"When you play a card from [Hidden], give me +2 Might this turn\" watches 811.1.c.3's chain-opening event, the same one black-market-broker-hidden-family already catalogues under its own anchor — so every card that carries [Hidden] is a genuine partner here too, sharing that rule's exact exclusions minus the anchor swap: four cards only mention Hidden without carrying it, and Ava Achiever's own play is from hand (811.1.c.1), never the face-down play his trigger names.",
+      "basis": {
+        "rules": [
+          "811.1.c.3",
+          "811.1.c.1"
+        ],
+        "combos": [
+          "ember-monk-edge-of-night"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 39
+    },
+    {
+      "id": "spirit-wheel-choose-friendly-draw",
+      "name": "Spirit Wheel draws once a turn off any spell that explicitly chooses a friendly unit",
+      "anchor": "SFD-144",
+      "partner": {
+        "textMatches": "[Cc]hoose a friendly unit"
+      },
+      "why": "\"When you choose a friendly unit, you may pay 1 Energy and exhaust this to draw 1\" is scoped here to the sixteen cards whose own printed text says \"Choose a friendly unit\" outright — 355.7 makes naming a specific Game Object this way a target, and 355.8 requires that choice to be valid before the card even goes on the chain. Deliberately narrower than the mass-buff family blade-dancer-buff-is-choosing already covers (a \"buff all\" effect chooses several units at once under 702.2.a but never prints the words \"choose a friendly unit\"), kept separate so each rule's match list stays one clean shape to read end to end rather than one blended list with two different textual signatures. Her own exhaust caps the payoff at once a turn however many of the sixteen get played.",
+      "basis": {
+        "rules": [
+          "355.7",
+          "355.8"
+        ],
+        "combos": [
+          "spirit-wheel-stare-down"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 16
     }
   ]
 }
