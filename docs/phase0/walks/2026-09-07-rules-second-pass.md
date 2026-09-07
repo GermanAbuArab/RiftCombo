@@ -705,7 +705,55 @@ Magma Wurm's static reads *"OTHER friendly units"*, so she never readies herself
 
 ---
 
-## 19. Back-links for `data/synergies.json` (`rule id -> entry id`)
+
+## 19. Two more proven rules, both of which the entry has to lead with the LIMIT
+
+### 19.1 `dark-child-off-turn-reactions` (OGS-017) — 62 partners, 61 uncovered
+
+415.3.a is the premise: *"A player Readies all non-spell Game Objects they Control during the
+Awakening Phase **on their turn**."* A rune exhausted on your own turn is dead for the whole of the
+opponent's, and 167 empties the **pool** rather than the runes, so nothing carries over either. Dark
+Child's *"At the end of your turn, ready up to 2 runes"* is the only fix in Fury/Chaos.
+
+`dark-child-abandon-guaranteed-counter` already banks the exact-fit case. What this entry adds is the
+case where the deck brings **more** than the legend gives: `SFD-136` Hard Bargain (Chaos, E2,
+[Reaction], **[Repeat] 2 Energy**, *"Counter a spell unless its controller pays 2 Energy"*, in zero
+entries) is the only card in the rule's Fury/Chaos partner list that can spend a third and fourth
+point of off-turn Energy. Two executions against one spell mean the controller keeps it only by
+paying **four**, on a turn their pool is already committed.
+
+The entry says what a soft counter actually is rather than overstating it: against a rich opponent it
+is a **tax**, converting your 2 Energy into their 2 at Reaction speed. And "ready **up to 2**" is a
+hard ceiling — every Power you paid on your own turn is a rune 161.2.b already sent back to the Rune
+Deck and therefore unreadyable. Entry: `dark-child-hard-bargain-repeat-tax`.
+
+### 19.2 `black-market-broker-hidden-family` (SFD-121) — 39 partners, 36 uncovered
+
+`VEN-097` Spiderling prints *"Your deck can have any number of cards named Spiderling"*, and rule 002
+makes card text beat 103.2.b — so the engine's SIZE is a deckbuilding choice. That invites exactly one
+wrong assumption, so the entry leads with the clause that kills it:
+
+> **811.1.b.** *…you may pay [rainbow] to hide this facedown at a battlefield you control **that
+> doesn't already have a facedown card hidden there** for as long as you control that battlefield.
+> Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.*
+
+**One facedown per battlefield at a time.** Any number in the deck is still one hide per controlled
+battlefield per turn, played a turn later.
+
+What survives that is a clean piece of cost accounting nobody had written down: hiding costs one
+rainbow, playing from Hidden costs **zero** Energy, and the Broker mints a Gold — which 187.5 makes
+worth exactly one rainbow. **The hide pays for itself and the body is free.** Five Spiderlings at one
+battlefield are M5 each (*"+1 Might for each other unit you control here with my name"*), and at two
+they are already out of `OGN-133` Flurry of Blades range (143.2.a) with no Soul Shepherd and no Brush.
+
+The Gold is next turn's Power, not this turn's (187.5's ability costs its own exhaust; 315.1.b), and
+the fix — `SFD-171` Renata Glasc, Industrialist — is Order, which a mono-Chaos shell can only reach
+under VEN-155 / VEN-197 Heart of the Tempest. The entry is priced without her. Entry:
+`black-market-broker-spiderling-hidden-gold`.
+
+---
+
+## 20. Back-links for `data/synergies.json` (`rule id -> entry id`)
 
 This walk does not edit `data/synergies.json`. The pairs below are for the synergies session.
 
@@ -744,6 +792,8 @@ dauntless-vanguard-occupied-battlefield-assault
                                       -> dauntless-vanguard-repair-specialist-gear-assault
 magma-wurm-mass-ready                 -> magma-wurm-illaoi-ready-tentacles
 soul-shepherd-token-buff              -> soul-shepherd-illaoi-tentacle-wall
+dark-child-off-turn-reactions         -> dark-child-hard-bargain-repeat-tax
+black-market-broker-hidden-family     -> black-market-broker-spiderling-hidden-gold
 ```
 
 Still with no entry after this pass, by decision:
@@ -757,7 +807,7 @@ sky-splitter-might-discount    NO ENTRY — all ten partners are the same arithm
 windswept-hillock-move-triggers NARROWED — 810.1.c.3; no partner supplies a second move. Section 15.
 ```
 
-## 20. Reported to the manager, not fixed here
+## 21. Reported to the manager, not fixed here
 
 - `master-of-shadows-banish-rummage` carries a **false uniqueness claim in its own name** — see §3.
   Three cards print the Shadow Clone token and its attack-triggered banish; one of them is the entry's
