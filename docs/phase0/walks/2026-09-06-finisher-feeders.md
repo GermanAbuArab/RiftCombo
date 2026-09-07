@@ -389,3 +389,120 @@ before writing anything.** Three separate walks reached Shen × Blue Sentinel on
 ```
 node /tmp/rc-walks/cardset.mjs <CODE> <CODE> ...
 ```
+
+---
+
+## 10. Green Father / the Brush — the deferral is RESOLVED from the rules text, and no R-number is needed
+
+§11 of the #153 walk deferred `green-father-brush-four-tags` because *"what 438 Replace does to
+Control, nor what a battlefield token is for 190.x purposes"* was open. **It is not open. Rule 438
+answers it, and the Core Rules use Green Father as their own worked example.**
+
+`UNL-195 | Green Father | Legend | Calm/Order | When you conquer or hold, you may exhaust me to
+replace that battlefield with a Brush battlefield token.`
+`UNL-T03 | Brush | Battlefield | Colorless | Bird, Cat, Dog, Poro, and Ivern units here have +1
+Might. When you score here, you may replace this with the battlefield it replaced.`
+
+**438.1** — *"Replacing is the act of Creating a token in the place of another card or token without
+playing it while **inheriting all effects or statuses of the game object it replaced**."*
+
+**438.1.a** — *"The replacing token is treated as the same Game Object as the card or token it
+replaced for the purposes of Game Effects that target or reference that game object."* Its worked
+example, verbatim:
+
+> Example: A player with **Green Father** as their legend conquers Navori Fighting Pit. They choose
+> to place the Green Father conquer effect on the chain after the Navori Fighting Pit conquer effect.
+> When the Green Father trigger resolves, Navori Fighting Pit is replaced with Brush. Although the
+> Navori Fighting Pit has been replaced, the "here" in its triggered ability still can have its
+> information referenced, because **the Brush inherited all statuses and conditions**.
+
+So Control — a status of the battlefield under 190.x — carries across, and 190.6.a (*"While a
+Battlefield is Controlled, its Controller controls its Abilities"*) then makes the Brush's own text
+yours. 190.6.d's blanking clause never fires, because the Brush is not uncontrolled.
+
+The swap back is equally explicit:
+
+- **438.5 / 438.5.a** — the replaced battlefield goes to Banishment and *"is considered to have been
+  Replaced and not Banished"*, so 108.6.c's "nothing returns from Banishment" does not bite;
+- **438.7** — *"Tokens that have been Created through a Replace action can be instructed to be
+  'Swapped back.' This may also appear as 'replace [the token] with the [Game Object] it replaced.'"*
+  — which is the Brush's own second sentence, word for word;
+- **438.7.b** — *"the token stops existing and the original card is returned to the space that the
+  token just occupied, **inheriting all current effects and statuses**"*, so Control carries back too.
+
+**This is CLAUDE.md's own standing lesson landing again:** before filing a reading over a printed
+term, grep the rules. `grep '^438\.'` returns Green Father by name. R31 was retired the same way when
+`170.11.c` turned out to define "open".
+
+### 10a. Why it is a NOTABLE and not an entry
+
+`UNL-T03` is a **token**. It can never appear in a decklist, so it can never be a `uses[]` row —
+0 of the 302 catalogued entries name a token code, and the synergy layer filters them out for the
+same reason. The Brush is a *consequence* of a legend ability, not a card in a line, and its natural
+home is `daisy-green-father-four-tag-attacker`, the entry that deferred it. Two things to record
+there:
+
+- **What it buys:** a static `+1 Might` for Bird / Cat / Dog / Poro / Ivern units at that battlefield.
+  It is a continuous modifier, not a 702 buff, so 702.3's one-per-unit cap never applies and it
+  stacks with a real buff. It raises the wall's bill under 143.2.a and 465.2.c.3, and it is the only
+  Might bonus in the pool that reaches Daisy (tagged Ivern) as well as the four tags.
+- **What it costs, and this is the honest half:** the replaced battlefield's own text, and the
+  legend's exhaust each turn. Nothing in the pool converts Might into points except `OGN-034`'s
+  excess-damage threshold, which is Fury and cannot share a legend with Green Father. So the Brush
+  yields an ENGINE ceiling — a wall, never a finisher.
+
+### 10b. The uncatalogued use nobody has stated: Green Father is a DENIAL tool
+
+Green Father replaces *"that battlefield"* — the one you just conquered or held, which in a Duel can
+be **the opponent's**. 438.5 puts their battlefield in Banishment and 438.1 hands you a Brush in its
+place. If they later retake the location they get the Brush's `+1 Might` for tags they probably do
+not run, **not their own battlefield's ability**, and only the Brush's controller may swap it back
+(438.7, and the Brush's text keys on *"when you score here"*).
+
+That is a permanent, one-sided strip of an opponent's battlefield text for one legend exhaust, and it
+is available on any turn you conquer or hold theirs. It is not a point and it is not a finisher, so
+it belongs in `notable`, but no entry in the catalogue says it.
+
+---
+
+## 11. The CHAIN sweep the manager asked for — no new entry, and why
+
+Every ENGINE whose `terminatesIn` mentions Time Warp, a second Conquer or an Additional Turn was
+opened:
+
+| entry | ceiling | verdict |
+|---|---|---|
+| `fiora-vault-breaker-jhin` | **2 points a turn** (two conquers) | six points short of a CHAIN; the moves generate Energy and Power, not points |
+| `jhin-relentless-pursuit-wallop` | **2 points a turn** (two conquers, six moves) | same ceiling; the fourth, fifth and sixth moves pay resources only, because 470 refuses a second Score at an already-scored battlefield |
+| `power-nexus-sentinel` | 1 + K a turn | already has two CHAIN children from rc-walk-payoff |
+| `applied-researchers-time-warp-discount` | nothing scores | already the feeder for three CHAINs |
+| `renata-time-warp-ekko-refresh` | — | reclass already REJECTED on 323.6 / 190.4.c; not reopened |
+
+**The two Jhin engines are the interesting negative.** Both reach exactly two conquers a turn, and
+neither can reach a third, because 470 (*"A player may only Score, from either method, once per
+Battlefield per turn"*) means the third and later moves in the same turn score nothing — a Duel has
+only two battlefields (485.4). **Two is the hard ceiling on conquers per turn in a Duel**, so any
+conquer-based CHAIN must get to 8 from two scoring events, which is exactly what
+`swain-shurelya-double-conquer` does with three payoff bodies (1 + 3 twice).
+
+### 11a. A phase-order fact for the fodder family
+
+`bottled-constellation-time-warp` is fed by killing three friendly bodies at the **start of your Main
+Phase**. A token engine looks like the obvious fodder, and the [Temporary] ones cannot do it:
+816.1.b kills every [Temporary] permanent *"at the start of this permanent's controller's Beginning
+Phase"*, which is **315.2 — before 316**. So a [Temporary] body minted on turn N is already dead when
+turn N+1's Main Phase starts. **[Temporary] fodder must be created and consumed inside the same Main
+Phase**, which is why `UNL-081 Keeper of Masks` (played from [Hidden] for E0, three bodies at once)
+is the only clean feed and why a Sprite engine is not.
+
+This is the third finding in this walk from the same source — the order 315.1 Awaken → 315.2
+Beginning → 316 Main. The other two: a delayed Add scheduled for the start of the Main Phase survives
+316.3 (§4), and a conquer effect bridged onto a Hold loses any "played this turn" condition (§7).
+
+### 11b. A note for anyone building a CHAIN that kills its own bodies
+
+Per the manager's rejection of the `renata-time-warp-ekko-refresh` reclass: **323.6 and 190.4.c hand
+a battlefield back at the Cleanup the moment your last unit there dies or leaves.** Any chain that
+kills a body mid-turn has to name who else is standing at that body's battlefield. In
+`bottled-constellation-time-warp` the fodder must not be the garrison holding the battlefield whose
+Hold is supplying the other point.
