@@ -38633,6 +38633,193 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #170, from the buff-supply synergy rules; OGN-056 Adaptatron was in ZERO entries. Card text verbatim from data/corpus_flat.txt. The content is the 205 / 383.3.b split read from the constructive side: this catalogue has repeatedly recorded that a same-event resource cannot pay a trigger's base cost, and 205 marks the family where it CAN, because the requirement sits at resolution and 383.3.d plus 340.1 let the controller order it there. Trap check: the ordering is derived from the two paragraphs rather than asserted; 205's second sentence is quoted so the failure mode (no gear, no buff, nothing lost) is stated; 702.3.a is named as the real ceiling and the spenders are listed in a notable rather than added to uses[]; 485.5 and 103.4.c are cited for the battlefield's randomness; `needs: conquer-engine` is declared."
+    },
+    {
+      "id": "poppy-hunt-xp-discount",
+      "name": "Poppy converts 3 XP into 3 Energy, Enthralling Protector's [Hunt] mints it every Score — and 824.1.d is the bill nobody counts",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-178",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order unit, E6 P1 M5. 'You may spend 3 XP as an additional cost to play me. If you do, I cost :rb_energy_3: less. [Ambush] (You may play me as a [Reaction] to a battlefield where you have units.) [Tank] (I must be assigned combat damage first.)' A published exchange rate: 3 XP buys 3 Energy. 730.2 is the spend — 'reduce the value of XP marked on the Player spending it' — and the additional cost is chosen at step 2 of playing (356.2.b.1)."
+        },
+        {
+          "card": "UNL-162",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E2 M2. '[Hunt] (When I conquer or hold, gain 1 XP.) Spend 2 XP: [Buff] me.' 823.1.b makes [Hunt] a conquer effect AND a hold effect, so it mints 1 XP at every Beginning Phase you hold its battlefield (315.2.b.2) and again on every Conquer — a faucet that needs no card and no mana once it is standing."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower."
+        ],
+        "notable": [
+          "THE RATE, AND THE FACT THAT IT IS A RATE AT ALL. An XP faucet is never an engine on its own — the project has measured the sinks as a bounded step function and none of them scores — so what makes this worth an entry is that Poppy publishes an exchange: three Scores' worth of [Hunt] becomes three Energy, once, per Poppy. Three copies is nine XP and nine Energy across a game.",
+          "824.1.d IS THE BILL NOBODY COUNTS, AND IT IS AN ANTI-SYNERGY WORTH STATING IN THE LIST. 'The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP.' So paying Poppy's 3 XP switches OFF every [Level N] clause you were sitting above — UNL-151 Bandle Soldier's [Level 3] ('I enter ready') is exactly on the line, and a deck that runs both is turning its own bodies off to discount another. The two should not share a list.",
+          "SHE ARRIVES AT REACTION SPEED AND AS A [TANK], WHICH IS WHAT THE THREE ENERGY IS ACTUALLY FOR. 822.1.b's [Ambush] is 'a battlefield where you have units', and 319.6 + 323.2.a give a body entering mid-combat the Defender designation before 465.2 resolves — so a discounted Poppy is a 5-Might Tank flashed into an attack for E3 + 1 Order Power, and 815.1.c.2 then makes every other body you control there an invalid damage assignment until she has taken five.",
+          "THE FAUCET AND THE SINK COMPETE FOR THE SAME COUNTER. Enthralling Protector's own 'Spend 2 XP: [Buff] me' is the other sink on the same card; 702.3 caps that at one buff, so after the first use the XP is better spent on Poppy.",
+          "[HUNT] IS PRINTED THREE WAYS — [Hunt], [Hunt 2], [Hunt 3] — so a sweep of the family has to open with the bare bracket-prefix. Enthralling Protector carries the plain one, which is 1 XP per Score.",
+          "IT DOES NOT SCORE. The XP buys Energy and a body; the points still come from a Hold or a Conquer, and 470 caps those at one per battlefield per turn."
+        ]
+      },
+      "steps": [
+        "Play Enthralling Protector (E2) and garrison a battlefield with it. 823.1.b makes its [Hunt] fire on a Hold as well as a Conquer, so it mints 1 XP at each of your Beginning Phases (315.2.b.2) while you hold there.",
+        "Bank three XP. Do not spend them on the Protector's own 'Spend 2 XP: [Buff] me' unless the buff is needed — 702.3 caps that at one anyway.",
+        "When an opponent attacks a battlefield where you have units, play Poppy as a [Reaction] under 822.1.b's [Ambush], choosing to pay the additional 3 XP at step 2 of playing (356.2.b.1).",
+        "730.2 reduces your marked XP by three and she costs E3 + 1 Order Power instead of E6 + 1.",
+        "319.6's Cleanup and 323.2.a give her the Defender designation before 465.2 resolves; 815.1.c.2 then makes every other unit you control there an invalid damage assignment until she has taken five (143.2.a).",
+        "Check 824.1.d before spending: if the deck runs any [Level N] clause, dropping below N switches it off for as long as you stay there."
+      ],
+      "netPerIteration": "3 Energy off a 5-Might [Tank] played at Reaction speed, for three Scores' worth of [Hunt]",
+      "terminatesIn": "engine only — 1 XP per Score from the faucet and three Poppies to spend it on (103.2.b); nothing here scores and the XP has no other use that pays",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "824.1.d. The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md), issue #180",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #180 — the first entry to use UNL-178. Card text verbatim from data/corpus_flat.txt. The entry is written against this project's standing verdict that an XP faucet is never an engine on its own: what is catalogued here is the published RATE and the anti-synergy, not a claim that XP is a resource engine. Trap check: 824.1.d is cited as a cost of the line and the specific card it turns off (UNL-151 Bandle Soldier, [Level 3]) is named so the two are never listed together; 822.1.b, 319.6 and 323.2.a are cited so the Reaction-speed arrival is a rule; 702.3 is cited so the Protector's own sink is priced once; the three printed forms of [Hunt] are named so a future sweep does not miss two thirds of the family."
+    },
+    {
+      "id": "keeper-of-law-royal-guard-exact-two",
+      "name": "Royal Guard lands as exactly two bodies, which is exactly what Keeper of Law's discount reads — E5 + 1 Power becomes E3 and nothing",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-119",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order unit, E5 P1 M5. 'I cost :rb_energy_2::rb_rune_order: less if you control a battlefield with exactly two units there.' The condition is read while the cost is determined (356), and the whole Power component goes with it — E5 + 1 Order Power becomes E3 and no Power at all, which on the project's own measure of Power as the scarce currency is the larger half of the discount."
+        },
+        {
+          "card": "SFD-157",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 M2. 'When you play me, play a 2 :rb_might: Sand Soldier unit token here.' Played to an empty battlefield you control, it makes the count EXACTLY TWO by itself — the Guard and its Sand Soldier — with no counting of the rest of your board. 359.3.f.2 reads 'here' at execution and 185.1 + 185.2.b make the token a unit for the count."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower."
+        ],
+        "notable": [
+          "'EXACTLY TWO' IS A CEILING AS WELL AS A FLOOR, WHICH IS WHY THE PAIR MATTERS MORE THAN THE COUNT. A third body at that battlefield switches the discount off, so the condition is not satisfied by playing more units — it is satisfied by playing a card that arrives as a self-contained pair. Royal Guard is the only mono-Order card that does that in one play.",
+          "IT BELONGS TO A FAMILY THE CALM/MIND WALK HAS ALREADY MAPPED: the 'exactly one other unit you control here' cards, of which VEN-117 Disciple of Shen is the only member that PAYS ITSELF for satisfying the condition and is therefore the correct second body for the rest. Keeper of Law is the 'exactly two units' sibling and is read the same way — count the bodies you are obliged to keep there, not the ones you would like to add. Cross-referenced rather than re-derived.",
+          "THE COUNT IS OF UNITS, NOT CARDS, so the Sand Soldier counts: 185.1 with 185.2.b ('Token units have a Might') is the pair for a token unit BEING a unit when something counts bodies, as distinct from 350.2 with 185.2.a for a token being played. The two pairs are different paragraphs and are easy to conflate.",
+          "AND THE DISCOUNT IS READ WHEN THE COST IS DETERMINED, so the pair has to be standing at the moment you play the Keeper — not when he resolves and not afterwards. Losing the Sand Soldier to a sweeper between turns simply puts the price back to E5 + 1 Order Power.",
+          "SIX BODIES AND THREE DISCOUNTS IS THE WHOLE CEILING: 103.2.b caps each card at three, and each Royal Guard sustains the condition at one battlefield only. A Duel has two battlefields (485.4), so two pairs is the most the board can hold.",
+          "IT DOES NOT SCORE. What it buys is one Order Power and two Energy per Keeper, on a 5-Might body — the points still come from a Hold or a Conquer."
+        ]
+      },
+      "steps": [
+        "Play Royal Guard (E4) to a battlefield you control that has no other units of yours on it. Its play trigger puts a 2-Might Sand Soldier unit token at the same battlefield (359.3.f.2).",
+        "That battlefield now has exactly two units you control — the Guard and the token — and 185.1 / 185.2.b make the token one of them.",
+        "In the same or a later Main Phase, play Keeper of Law. The condition is read while the cost is determined (356), so he costs E3 and no Power instead of E5 + 1 Order Power.",
+        "Do not reinforce that battlefield while a Keeper is still in hand: a third body makes the count three and the discount is gone.",
+        "Repeat at the other battlefield of the Duel with the second Royal Guard, and again with the third pair if the first has been broken."
+      ],
+      "netPerIteration": "2 Energy and a whole Order Power off each Keeper of Law, for a card that was already two bodies",
+      "terminatesIn": "engine only — three discounts at most (103.2.b), each needing a surviving pair at a battlefield; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "185.2.b. Token units have a Might."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md), issue #180",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #180 — the first entry to use VEN-119. Card text verbatim from data/corpus_flat.txt. The 'exactly N units here' family was mapped by the Calm/Mind walk and is cross-referenced rather than re-derived, per the manager's handover; this entry is the 'exactly two' sibling and the reading is the same — the number is a ceiling as well as a floor, so it is satisfied by a card that arrives as a pair rather than by adding bodies. Trap check: 185.1 + 185.2.b is the citation pair for a token COUNTING as a unit, deliberately kept distinct from 350.2 + 185.2.a for a token being PLAYED; the timing of the discount is stated (read when the cost is determined) so the pair is known to be needed at that instant; 485.4 bounds how many pairs a board can hold."
+    },
+    {
+      "id": "petty-officer-cleave-assault-four",
+      "name": "Riot's own worked example for 807.2 — Petty Officer prints [Assault], Cleave grants [Assault 3], and the values sum to 4",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-215",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E5 M5. '[Assault] (+1 :rb_might: while I'm an attacker.)' 807.1.b.3 makes a bare [Assault] worth 1. He is the pool's named example for the summing rule and the reason it matters is that he PRINTS the keyword: a granted instance stacks onto a printed one rather than replacing it."
+        },
+        {
+          "card": "OGN-004",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury spell, E1. '[Action] (Play on your turn or in showdowns.) Give a unit [Assault 3] this turn. (+3 :rb_might: while it's an attacker.)' The other half of Riot's example. [Action] speed means it can be played after 464.2.c.3 has designated the attackers, so the +3 is committed with the combat already visible."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Petty Officer is mono-Order and Cleave is mono-Fury, so 103.1.b.2 fixes the identity at exactly Fury/Order: OGN-253/OGN-302 Hand of Noxus, UNL-187/UNL-229 Piltover Enforcer, SFD-187/SFD-243 Void Burrower."
+        ],
+        "notable": [
+          "THIS IS RIOT'S OWN WORKED EXAMPLE, WHICH IS THE STRONGEST CITATION SHAPE THIS PROJECT RECOGNISES. 807.2: 'If a Unit has Assault or has been granted Assault and is granted Assault by an additional source, the Assault Value of all granted Assault keywords is summed. Example: Petty Officer has Assault. It is chosen as the target of Cleave, which says \"Give a unit [Assault 3] this turn.\" After Cleave resolves, Petty Officer has Assault 4 this turn.' The interaction is ruled on the card, not inferred.",
+          "SO HE ATTACKS AT MIGHT 9 FOR ONE ENERGY. 807.1.c reads Assault as '+X Might while I am an attacker' and 465.2.c sums each side's Might at the damage assignment: M5 + 4 = 9, for E1 on the turn it matters.",
+          "IT NEEDS A REAL COMBAT. 807.1.d — 'Being an attacker means the Unit has gained the Attacker designation during Combat' — which 464.2.c.3 grants only inside a Combat that 323.9 staged, and 323.9 stages one only where units of opposing players are present. Walking onto an empty battlefield is not an attack and the whole 4 is worth nothing there.",
+          "CLEAVE CHOOSES, SO IT PAYS THE DEFLECT TAX IF AIMED AT AN ENEMY — but it is aimed at your own body here, and 809.1.c charges only for choosing what an OPPONENT controls, so nothing is added.",
+          "IT IS ONE TURN, NOT A BOARD STATE: 'this turn' expires, and 807.2 sums GRANTED instances, so three Cleaves on one body in one turn is Assault 10 while it lasts and Assault 1 the moment the turn ends. Three copies (103.2.b) is the cap either way.",
+          "THE SAME SUMMING RULE IS WHY SFD-183 PURIFIER'S 'your Equipment EACH give [Assault]' stacks per Equipment — the two entries are the granted-source and the per-card readings of one paragraph, and neither is a duplicate of the other."
+        ]
+      },
+      "steps": [
+        "Play Petty Officer (E5). His [Assault] is printed and worth 1 (807.1.b.3).",
+        "Move him to a garrisoned battlefield. 190.3.a.1 applies Contested, 323.9 stages the Combat and 464.2.c.3 gives him the Attacker designation.",
+        "Inside the combat, play Cleave (E1) as an [Action] (806.1.b) choosing him: he is granted [Assault 3] this turn.",
+        "807.2 sums the granted value with what he already has — Riot's example ends 'Petty Officer has Assault 4 this turn' — and 807.1.c reads that as +4 Might while he is the attacker.",
+        "465.2.c sums him at Might 9 for the damage assignment; 465.2.c.3 forces lethal onto one defender at a time and 465.2.c.4 caps each at the minimum needed."
+      ],
+      "terminatesIn": "engine only — +4 attacking Might for one Energy, on the turn it is spent; three Cleaves (103.2.b) and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "807.2. If a Unit has Assault or has been granted Assault and is granted Assault by an additional source, the Assault Value of all granted Assault keywords is summed. Example: Petty Officer has Assault. It is chosen as the target of Cleave, which says \"Give a unit [Assault 3] this turn.\" After Cleave resolves, Petty Officer has Assault 4 this turn."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md), issue #180",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #180 — the first entry to use OGN-215 or OGN-004, and the pair Riot names in 807.2's own example. Card text verbatim from data/corpus_flat.txt. It is a small effect and is written as one: +4 attacking Might for one Energy, for one turn. It is catalogued because the citation is a printed ruling on these two cards and because it is the granted-source reading of the same paragraph that purifier-veteran-poro-blade-stack reads per-Equipment — the two are cross-referenced so neither is mistaken for the other. Trap check: 807.1.d is cited so the Assault is never claimed on an empty battlefield (807.1.d / 383.4.e / 461); 'this turn' is stated as an expiry; 809.1.c is checked and found not to apply because the choice is your own body."
     }
   ]
 }
