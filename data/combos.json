@@ -28912,6 +28912,537 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 32, buff x SFD-047). SFD-047 Simian Ancestor was in NO entry before this; the first matrix pass refused him under OGN-283 Navori Fighting Pit, correctly, because a Hold-triggered buff arrives after 315.1.b has already readied him. This entry is the inverse case and states why: the Arena Bar has no [Action] and no [Reaction], so it fires in the Main Phase after Simian spent his exhaust. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.2.b, 103.2.d.2, 144.2, 144.4, 315.1.b, 415.1.b, 415.1.c, 464.2.c.3, 465.2.b, 702.2.b, 702.3, 702.3.a, 703, 709. Legality: OGS-019 is restricted in 2v2 and that is stated in prerequisites.easy; nothing in uses[] is banned or restricted. Trap check: the ready is worthless outside the Main Phase and worthless on defence, both stated; 702.3 caps the buff, which is why the buff-spender is an ingredient and not a note; 415.1.b/c make the order inside the turn load-bearing; no token, no Recall, no Repeat, no unruled reading."
+    },
+    {
+      "id": "eclipse-herald-thwonk-repeat-two-stuns",
+      "name": "Thwonk!'s [Repeat] is two stuns and two Eclipse Herald triggers — the opposite use of the same keyword",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-059",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E7 P1 M7. 'When you stun an enemy unit, ready me and give me +1 [M] this turn.'"
+        },
+        {
+          "card": "SFD-040",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E2, [Action], '[Repeat] :rb_energy_2:'. 'Stun an attacking unit.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Calm among its two domains (103.1.b.3) — 16 names: Nine-Tailed Fox (OGN-255), Blind Monk (OGN-257), Unforgiven (OGN-259), Radiant Dawn (OGN-261), Wuju Bladesman - Starter (OGS-019), Fire Below the Mountain (SFD-189), Grandmaster at Arms (SFD-193), Blade Dancer (SFD-195), Emperor of the Sands (SFD-197), Bashful Bloom (UNL-189), Wuju Master (UNL-191), Gloomist (UNL-193), Green Father (UNL-195), Rogue Assassin (VEN-139), Curator of the Sands (VEN-145), Eye of Twilight (VEN-147).",
+          "Four runes left ready through your own turn — E2 for the spell and E2 for the [Repeat] — because both are paid on the opponent's turn.",
+          "The Herald standing as a defender where the attack lands; the +1s are only worth anything in a combat he is in."
+        ],
+        "notable": [
+          "TWO EXECUTIONS, TWO SEPARATE STUNS, TWO SEPARATE TRIGGERS. 820.1.b: '[Repeat] is an optional cost that a player may pay to execute the effect of their spells and abilities a second time' — exactly one extra execution, no more. 820.2.a: 'Choices made for the additional execution do not have to be the same as the choices made' for the first, and 423.1.a.1 ('A Stunned Unit can not be Stunned again') forces you to use that permission: the second Thwonk! must pick a different attacking unit. Two stuns is two Eclipse Herald triggers, so +2 Might for the turn.",
+          "THE WINDOW IS THE OPPONENT'S COMBAT, WHICH IS THE ONLY PLACE 'AN ATTACKING UNIT' EXISTS TO BE STUNNED. 464.2.c.3 hands out the Attacker designation inside a Combat, and 806.1.b lets an [Action] card be 'played or activated during Showdowns, even when it is not the Controlling player's turn'. So this is a defensive card, cast in the Combat Showdown the opponent's attack opens.",
+          "WHAT THE STUNS ARE WORTH, PRECISELY. 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step' — so two attackers are subtracted from 465.2.c's summed assignment. What they are NOT is removal: 423.1.c says a stunned unit 'must still have damage applied to it equal to, or greater than, its full might value to be killed', and 423.1.a.2 clears the status at step 3d of the end-of-turn cleanup. Nothing carries over to your turn.",
+          "BOTH READIES ARE DEAD, AND THE ENTRY SAYS SO. 144.1.b forbids the Standard Move in a Closed State; 381 pins Activated Abilities to 'the Controlling Player's Turn and during an Open State' and the Herald has none anyway; and combat does not read exhaustion at all (464.2.c.3 designates by presence, 465.2.b sums Might). The payoff is the +2 Might, which 465.2.b/465.2.c read when the defending damage is assigned — the Herald defends at 9 instead of 7.",
+          "The Energy is four runes held ready through your own turn, not four Energy from the pool: 167 empties every Rune Pool at the start of each player's Main Phase and 415.3.a readies your runes only in your own Awakening, so they are tapped at 164.2.a's Reaction speed on their turn.",
+          "The contrasting entry on the same trigger card is eclipse-herald-existential-dread-repeat-bounce, where the [Repeat] is deliberately aimed at the SAME unit and therefore yields ONE Herald trigger and a bounce. Same keyword, opposite use, and the choice is 820.2.a's to make. vex-mocking-thwonk-wall runs this same spell under a different trigger card, where it relocates a [Tank] rather than growing a defender."
+        ]
+      },
+      "steps": [
+        "Have Eclipse Herald at a battlefield and four runes still ready when you pass the turn.",
+        "The opponent attacks; a Combat Showdown opens and 464.2.c.3 designates their attackers.",
+        "Tap four ready runes (164.2.a) and play Thwonk! for 2 Energy, paying its [Repeat] cost of 2 more (820.1.c.1).",
+        "First execution: stun one attacking unit. The Herald readies (dead here) and takes +1 Might this turn.",
+        "Second execution: 820.2.a lets you choose a different attacking unit, and 423.1.a.1 requires it. Stun that one; the Herald takes a second +1.",
+        "Combat damage: 423.1.b removes both stunned attackers from the attacking sum, while 465.2.b sums your defenders with the Herald at 9."
+      ],
+      "terminatesIn": "engine — two attackers muted and a 9-Might defending Herald for one card and four Energy, three times a game (103.2.b); nothing here scores",
+      "netPerIteration": "-1 card, -4 Energy, two attacking units contribute no combat damage, +2 Might on the Herald this turn",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 820.2.a: 'Choices made for the additional execution do not have to be the same as the choices made' for the first. 423.1.a.1: 'A Stunned Unit can not be Stunned again.' 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' 423.1.c: 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might value to be killed.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 144.1.b: 'This action cannot be performed during a Closed State.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 7 (trigger card OGN-059 Eclipse Herald, 21 partners, 2 entries before this walk). Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 144.1.b, 164.2.a, 167, 381, 415.3.a, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 464.2.c.3, 465.2.b, 465.2.c, 806.1.b, 820.1.b, 820.1.c.1, 820.2.a opened in the Core Rules file. Both cards legal in both formats. Card set OGN-059 + SFD-040 is not an existing uses[] set (SFD-040 appears in vex-mocking-thwonk-wall with UNL-055). No unruled reading."
+    },
+    {
+      "id": "eclipse-herald-nami-headstrong-delayed-ready",
+      "name": "Nami, Headstrong is the pool's one Hold-triggered ready that is not a no-op — because it is delayed into the Main Phase",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-059",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E7 P1 M7. 'When you stun an enemy unit, ready me and give me +1 [M] this turn.'"
+        },
+        {
+          "card": "UNL-052",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M3. 'You may pay :rb_rune_calm: as an additional cost to play me. When you play me, if you paid the additional cost, [Stun] an enemy unit. When I hold, the next time you play a unit this turn, ready it and [Buff] it.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Calm among its two domains (103.1.b.3) — 16 names: Nine-Tailed Fox (OGN-255), Blind Monk (OGN-257), Unforgiven (OGN-259), Radiant Dawn (OGN-261), Wuju Bladesman - Starter (OGS-019), Fire Below the Mountain (SFD-189), Grandmaster at Arms (SFD-193), Blade Dancer (SFD-195), Emperor of the Sands (SFD-197), Bashful Bloom (UNL-189), Wuju Master (UNL-191), Gloomist (UNL-193), Green Father (UNL-195), Rogue Assassin (VEN-139), Curator of the Sands (VEN-145), Eye of Twilight (VEN-147).",
+          "A battlefield you control at your Scoring Step, so Nami Holds (315.2.b.2, 469.2).",
+          "1 Calm Power spare when Nami is played, for the optional additional cost that carries the stun."
+        ],
+        "notable": [
+          "THIS IS THE EXCEPTION TO A STANDING RULE OF THIS PROJECT, AND IT IS SWEPT. The rule is that a Hold-triggered ready is worth nothing, because 315.1 is the Awaken Phase and 315.1.b has 'The Turn Player readies all Game Objects they control that are able to be readied' BEFORE 315.2's Scoring Step ever fires the Hold. Nami escapes it because her Hold does not ready anything at the Hold: it arms a DELAYED effect, 'the next time you play a unit this turn, ready it and [Buff] it', and a unit is played in the Main Phase, which is 316 — after 315.2. Sweeping data/corpus_flat.txt for 'hold' intersected with 'ready' returns five rows and this is the only one that produces an actual ready: SFD-027 Dunebreaker and UNL-016 Scorchclaw say 'I enter ready' (a play-time property, never a ready — 415.1 marks a Game Object already on the Board), and UNL-048 Trevor Snoozebottom and UNL-199 Deceiver play tokens that are printed ready.",
+          "WHAT THAT BUYS: A UNIT THAT ACTS THE TURN IT LANDS. 143.4 — 'Units enter the Board exhausted' — is what normally costs a big body a turn. Play the Eclipse Herald to your base (355.2.a), let Nami's delayed effect ready him, and 144.2's exhaust cost is available again the same turn, so he Standard-Moves to a battlefield and is in the combat immediately. That is [Accelerate] on one unit a turn, for no card and no Energy.",
+          "AND THE BUFF IS A REAL 702 COUNTER, NOT A MODIFIER. 702.2.a: 'To Buff a Unit, a player chooses a Unit and then places a buff on it.' 702.3 caps it at one per unit ('There can only be one Buff on a Unit at a time', 702.3.a: a second is not placed), so Nami's buff is +1 Might permanently on one body a turn and cannot be stacked — but unlike a 'this turn' modifier it can be SPENT by the pool's buff-spenders (702.2.b).",
+          "THE STUN IS THE CHEAP HALF, AND IT IS ONCE PER COPY. 'You may pay :rb_rune_calm: as an additional cost' is paid during the playing steps, so it lands with the body: one stun, one Eclipse Herald trigger (ready + 1 Might), on the turn Nami arrives. Three copies (103.2.b) is three stuns a game. Her Hold half, by contrast, repeats every turn she keeps a battlefield.",
+          "The Herald's ready is worth something HERE, unlike in eclipse-herald-thwonk-repeat-two-stuns: this all happens in your own Main Phase, so 144.1.b does not bite and the ready is one more Standard Move (144.2).",
+          "Order of operations on the turn Nami Holds: 315.1 Awaken readies everything you control; 315.2.b.2 'The Turn Player Holds all Battlefields they Control' and Nami's delayed effect arms; 316 Main Phase — play the Herald, and the delayed effect readies and buffs him as he enters."
+        ]
+      },
+      "steps": [
+        "Play Nami, Headstrong (3 Energy) and pay the optional additional cost of 1 Calm Power. Her play trigger stuns an enemy unit; Eclipse Herald readies and takes +1 Might this turn.",
+        "Keep a battlefield with Nami on it through the opponent's turn.",
+        "Your Awakening (315.1) readies everything; your Scoring Step (315.2.b.2) Holds the battlefield and fires Nami's Hold trigger, which arms 'the next time you play a unit this turn'.",
+        "In your Main Phase (316), play Eclipse Herald (7 Energy + 1 Calm Power) to your base. 143.4 has him enter exhausted.",
+        "Nami's delayed effect readies him and places a +1 Might buff (702.2.a).",
+        "Standard-Move the Herald to a battlefield the same turn (144.2, 144.4): a 8-Might body attacking on the turn it was cast."
+      ],
+      "terminatesIn": "engine — one free ready-and-buff on a unit played each turn Nami Holds, plus one stun per copy of Nami; nothing here scores",
+      "netPerIteration": "one unit played each turn enters usable (readied) and carries a +1 Might buff, for 0 Energy",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "315.1.b: 'The Turn Player readies all Game Objects they control that are able to be readied.' 315.2.b.2: '1. The Turn Player Holds all Battlefields they Control.' 143.4: 'Units enter the Board exhausted.' 143.4.a: 'This can be altered by Accelerate or similar game effects.' 144.2: 'Exhausting the Unit is the Cost for this action.' 702.2.a: 'To Buff a Unit, a player chooses a Unit and then places a buff on it.' 702.3: 'There can only be one Buff on a Unit at a time.' 415.1 (readying marks a Game Object already on the board), 469.2: 'Hold: A player maintains Control of a Battlefield they did not yet Score this turn during their Beginning Phase.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 7. UNL-052 Nami, Headstrong was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 143.4, 143.4.a, 144.1.b, 144.2, 144.4, 315.1.b, 315.2.b.2, 355.2.a, 415.1, 423.1.b, 469.2, 702.2.a, 702.2.b, 702.3 opened in the Core Rules file. Both cards legal in both formats. Card set OGN-059 + UNL-052 is not an existing uses[] set. No unruled reading. The finding is a REFINEMENT of the project's standing 'a Hold-triggered ready is a no-op' line, not a contradiction of it: the no-op argument is about a ready that resolves inside 315.2, and Nami's resolves inside 316. The sweep behind the uniqueness claim is stated in the first notable so the next session does not have to redo it."
+    },
+    {
+      "id": "eclipse-herald-existential-dread-repeat-bounce",
+      "name": "Existential Dread's [Repeat] aimed at the SAME unit is a bounce — one Herald trigger, and hard removal for three Energy",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-059",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E7 P1 M7. 'When you stun an enemy unit, ready me and give me +1 [M] this turn.'"
+        },
+        {
+          "card": "UNL-134",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E1 P1, [Action], '[Repeat] :rb_energy_2:'. '[Stun] an attacking enemy unit. If it's already stunned, return it to its owner's hand instead.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Chaos, so three legend names (103.1.b.2): Unforgiven (OGN-259), Blade Dancer (SFD-195), Gloomist (UNL-193).",
+          "Three Energy and 1 Chaos Power off runes held ready through your own turn, since the whole line is cast on the opponent's turn."
+        ],
+        "notable": [
+          "THE CARD IS WRITTEN TO BE REPEATED ONTO ITS OWN TARGET, AND THAT IS THE FINDING. 820.2.a says choices for the additional execution 'do not have to be the same' — a permission, not a requirement — so you may choose the same attacking unit twice. Execution one stuns it. Execution two finds it stunned (423.1.a.1: 'A Stunned Unit can not be Stunned again') and takes the printed branch instead: 'return it to its owner's hand'. One card, 3 Energy and 1 Chaos Power, and an attacking body is gone.",
+          "IT IS THE MIRROR OF eclipse-herald-thwonk-repeat-two-stuns AND THE ARITHMETIC INVERTS. There the [Repeat] must pick a second target and yields TWO Herald triggers; here it deliberately picks the first target again and yields exactly ONE — a stun happened once, so 'When you stun an enemy unit' fired once, for one ready and +1 Might. You are trading the second trigger for hard removal, and that is the whole choice the entry documents.",
+          "WHY THE BOUNCE BEATS THE STUN OUTRIGHT. 423.1.a.2 clears the Stunned status 'during step 3d of the end of turn cleanup', so a stun is rented for one turn; a card returned to hand has to be paid for again and, for a body played from [Hidden] or with an additional cost, that price is paid in full a second time. It is also not a kill, so nothing that keys on a unit dying (Deathknells, `friendly-dies` payoffs) fires for either player.",
+          "The window is the opponent's Combat Showdown: 'an attacking enemy unit' exists only after 464.2.c.3 designates attackers, and 806.1.b puts [Action] inside Showdowns on any player's turn. On your own turn there is no legal target unless you are somehow the defender, which you are not.",
+          "The Herald's ready is dead here for the same reasons as in the Thwonk! entry — 144.1.b, 381, and combat's indifference to exhaustion (464.2.c.3, 465.2.b) — and the +1 Might is the half that lands.",
+          "Priced whole: 1 Energy + 1 Chaos Power for the spell, 2 Energy for the [Repeat] (820.1.c.1 makes it an Additional Cost paid during the steps of playing the spell), three copies a game (103.2.b). Compare a kill spell of the same domain: this one leaves no corpse and costs no Power beyond the first."
+        ]
+      },
+      "steps": [
+        "Have Eclipse Herald on the board and three Energy plus 1 Chaos Power available off runes held ready.",
+        "The opponent attacks; the Combat Showdown opens and their units gain the Attacker designation (464.2.c.3).",
+        "Play Existential Dread (1 Energy + 1 Chaos Power) and pay its [Repeat] cost of 2 Energy (820.1.c.1).",
+        "First execution: stun the attacking unit. The Herald's trigger fires once — ready (dead) and +1 Might this turn.",
+        "Second execution: choose the same unit (820.2.a). It is already stunned (423.1.a.1), so the printed alternative applies and it returns to its owner's hand.",
+        "Combat resolves without it; the Herald defends at 8."
+      ],
+      "terminatesIn": "engine — one attacking body bounced to hand for 3 Energy and 1 Power, plus +1 Might on the Herald, three times a game; nothing here scores",
+      "netPerIteration": "-1 card, -3 Energy -1 Chaos Power, one attacking enemy unit returned to its owner's hand, +1 Might on the Herald this turn",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "820.2.a: 'Choices made for the additional execution do not have to be the same as the choices made' for the first. 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or [ability].' 423.1.a.1: 'A Stunned Unit can not be Stunned again.' 423.1.a.2: 'Stunned Units lose the Stunned status during step 3d of the end of turn cleanup.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 7. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 144.1.b, 381, 423.1.a.1, 423.1.a.2, 423.1.b, 464.2.c.3, 465.2.b, 806.1.b, 820.1.b, 820.1.c.1, 820.2.a opened in the Core Rules file. Both cards legal in both formats. Card set OGN-059 + UNL-134 is not an existing uses[] set. No unruled reading — the whole entry is a legal ordering of choices the card itself anticipates, which is the discipline of preferring a sequencing answer to a filed reading."
+    },
+    {
+      "id": "vex-mocking-masa-free-tank-arrival",
+      "name": "Masa stuns anywhere, so Vex teleports into the attack for free — and 190.3.a.1 makes her the Attacker with no exhaust paid",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-055",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 P1 M5. '[Shield] [Tank] When you [Stun] an enemy unit at a battlefield, you may move me to that battlefield.' The move is by EFFECT, so 420.3.a's exhaust cost never applies to it."
+        },
+        {
+          "card": "VEN-120",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order unit, E4 M4. 'You may pay :rb_rune_order: as an additional cost to play me. When you play me, if you paid the additional cost, [Stun] an enemy unit at a battlefield.' In zero entries before this walk; the stun reaches ANY battlefield, wherever Masa himself is played."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Order, so four legend names (103.1.b.2): Radiant Dawn (OGN-261), Emperor of the Sands (SFD-197), Green Father (UNL-195), Eye of Twilight (VEN-147).",
+          "1 Order Power spare when Masa is played, for the optional additional cost that carries the stun.",
+          "Vex already on the board somewhere — her trigger relocates her, it does not deploy her."
+        ],
+        "notable": [
+          "THE MOVE IS FREE, AND THE RULE SAYS WHY. 420.3.a puts the cost of the Standard Move — 'Exhausting one or more Units' — on the Standard Move alone; Vex's relocation is an effect move, so nothing exhausts. 810.1.c.3 is the companion: '[Ganking] does not give additional abilities or activations of Movement, only new options for the Standard Move', which is why a move by effect never needed [Ganking] to go battlefield to battlefield in the first place.",
+          "AND ARRIVING IS ATTACKING. 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield', and 464.2.c.1 makes the Attacker 'the player whose unit(s) applied the Contested status'. So a 5-Might body enters an enemy battlefield as the Attacker on your turn without ever paying 144.2's exhaust — Masa's stun is the delivery mechanism.",
+          "IF THE COMBAT IS ALREADY OPEN SHE STILL JOINS IT. 464.2.c.3.a: a unit that 'becomes present at this Battlefield after this moment... will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present'; 319.8 makes a Cleanup Outstanding 'After a Move is completed' and 323.2.a hands out the designation there. So the Cleanup runs before the damage step and she is in it.",
+          "[TANK] IS THE REASON TO WANT HER THERE RATHER THAN A BIGGER BODY. 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' Every other unit of yours at that battlefield is an illegal target for the opponent's assignment until Vex has taken lethal, so a garrison of small bodies survives behind her. Note the asymmetry with her [Shield]: 814.1.c is 'While I am a defender, I have +X [M]', so the +1 is worth nothing on the attack this entry sets up — she is a 5-Might Tank here, not a 6-Might one.",
+          "The stunned defender pays twice: 423.1.b keeps its Might out of 465.2.c's damage assignment, and it is still in the way, so 465.2.c.3's lethal-first rule spends your damage on a body that cannot answer.",
+          "Priced whole: 4 Energy + 1 Order Power puts a 4-Might body on the board, stuns a defender at a battlefield across the table, and relocates Vex into that battlefield as a free Attacker. Three copies of Masa (103.2.b) is three such arrivals a game; Vex is reusable every time anything of yours stuns."
+        ]
+      },
+      "steps": [
+        "Have Vex, Mocking on the board — at your base or at another battlefield; the entry only needs her somewhere.",
+        "Play Masa, Crashing Thunder (4 Energy) and pay the optional additional cost of 1 Order Power.",
+        "His play trigger stuns an enemy unit at the battlefield you intend to take.",
+        "Vex's trigger fires: move her to that battlefield. 420.3.a charges nothing, because this is not a Standard Move.",
+        "190.3.a.1 applies Contested and 464.2.c.1 makes you the Attacker; 464.2.c.3.a plus 319.8 and 323.2.a give her the designation at the Cleanup that follows the move.",
+        "In the damage step, 423.1.b keeps the stunned defender's Might out of the assignment and 815.1.c.2 forces every point of theirs onto Vex before any other body of yours."
+      ],
+      "terminatesIn": "engine — a 4-Might body, a stun at any battlefield and a free 5-Might [Tank] attacker delivered there, for 4 Energy and 1 Power; nothing here scores",
+      "netPerIteration": "-4 Energy -1 Order Power, +1 body at 4 Might, one enemy defender muted, Vex relocated into the combat for free",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "420.3.a: 'The Cost is Exhausting one or more Units.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the [Battlefield].' 464.2.c.3.a: 'If a Unit controlled by the Attacker or Defender becomes present at this Battlefield after this moment, it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present.' 319.8: 'After a Move is completed.' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 814.1.c: 'While I am a defender, I have +X [M].'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 8 (trigger card UNL-055 Vex, Mocking, 21 partners, 3 entries before this walk). VEN-120 Masa, Crashing Thunder was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 144.2, 190.3.a.1, 319.8, 323.2.a, 420.3.a, 423.1.b, 464.2.c.1, 464.2.c.3.a, 465.2.c, 465.2.c.3, 810.1.c.3, 814.1.c, 815.1.c.2 opened in the Core Rules file. Both cards legal in both formats. Card set UNL-055 + VEN-120 is not an existing uses[] set. No unruled reading. The [Shield]-is-dead-on-offence note is stated because the card prints [Shield] and [Tank] side by side and only one of them is live in this line."
+    },
+    {
+      "id": "vex-mocking-blast-cone-drag-and-tank",
+      "name": "Blast Cone drags an enemy onto your battlefield and stuns it — they attack on your turn, and Vex arrives as the wall",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-055",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 P1 M5. '[Shield] [Tank] When you [Stun] an enemy unit at a battlefield, you may move me to that battlefield.' The move is by EFFECT, so 420.3.a's exhaust cost never applies to it."
+        },
+        {
+          "card": "UNL-133",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Chaos gear, E4 P1. 'When you play this, you may move an enemy unit. When you move an enemy unit, you may exhaust this to [Stun] it.' The play trigger supplies ONE enemy move; the stun half is a Triggered Ability that repeats only if some other card moves an enemy unit later."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Chaos, so three legend names (103.1.b.2): Unforgiven (OGN-259), Blade Dancer (SFD-195), Gloomist (UNL-193).",
+          "An enemy unit somewhere it can be moved from, and a battlefield of yours to drag it onto.",
+          "Vex already on the board; her trigger relocates her rather than deploying her."
+        ],
+        "notable": [
+          "DRAGGING AN ENEMY ONTO YOUR OWN BATTLEFIELD MAKES THEM THE ATTACKER ON YOUR TURN. 190.3.a and 190.3.a.1 key Contested on the moved unit's CONTROLLER — 'a Unit controlled by a Player who does not currently Control that Battlefield Moves or otherwise becomes present there' — and 464.2.c.1 makes the Attacker 'the player whose unit(s) applied the Contested status'. It says nothing about who caused the move. So one enemy body walks into your garrison and is designated the Attacker in your own Main Phase.",
+          "AND IT ARRIVES STUNNED. The Cone's second sentence exhausts it to stun the unit it just moved, so 423.1.b keeps that Might out of 465.2.c's attacking assignment while your whole garrison assigns into it. Vex then free-moves in on the stun trigger — and at YOUR battlefield she is a defender, so 814.1.c's [Shield] is live: she stands at 6, with 815.1.c.2 making every other body of yours an invalid assignment until she has lethal.",
+          "THE HONEST BOUND, WHICH THE CARD FACE HIDES. The Cone's two sentences are not one engine. 'When you play this, you may move an enemy unit' fires once, on the turn it lands. 'When you move an enemy unit, you may exhaust this to [Stun] it' is a Triggered Ability, so 383.3.c lets it fire on either player's turn and 415.3.a readies the gear each of your Awakenings — but it needs SOME OTHER card to move an enemy unit before it has anything to stun. On its own, the Cone is one drag plus one stun for 4 Energy and 1 Chaos Power, and thereafter a stun waiting for a mover.",
+          "447.2's invalid-destination list does not bite in a Duel: 447.2.a opens 'In Modes of Play with more than two players' and 447.2.b 'In Modes of Play with teammates', while 485.1 puts two players on the table. So a battlefield with a Staged Combat is a legal destination here.",
+          "The stun is rented, not bought: 423.1.a.2 clears it 'during step 3d of the end of turn cleanup', and 423.1.c keeps the body's full Might as the bar for killing it. What you are buying is one combat in which their unit is outnumbered and mute.",
+          "The gear's exhaust is inside a Triggered Ability, which is why 381 ('All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State') does not confine it — the contrast card is OGN-023 Unlicensed Armory, whose identical-looking exhaust sits in an Activated ability and is your-turn-only."
+        ]
+      },
+      "steps": [
+        "Have Vex, Mocking on the board and 4 Energy plus 1 Chaos Power available.",
+        "Play Blast Cone. Its play trigger moves an enemy unit onto a battlefield you control.",
+        "190.3.a.1 applies Contested for that unit's controller, so 464.2.c.1 designates THEM the Attacker on your turn.",
+        "The Cone's second trigger fires on that move: exhaust it to stun the unit it just moved.",
+        "Vex's trigger fires on the stun: move her to that battlefield for free (420.3.a). As a defender she is 6 Might (814.1.c) with [Tank].",
+        "Combat: 423.1.b silences the stunned attacker, 815.1.c.2 forces their assignment onto Vex, and your garrison assigns freely into a body that answers with nothing."
+      ],
+      "terminatesIn": "engine — one enemy body dragged into your garrison, stunned and outnumbered, with a 6-Might [Tank] in front of it; the drag is once per Cone, the stun repeats only behind another enemy-mover. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "190.3.a: 'Contested is a temporary status applied to the battlefield when a Unit controlled by a Player who does not currently Control that Battlefield Moves or otherwise becomes present there.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the [Battlefield].' 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' 423.1.a.2: 'Stunned Units lose the Stunned status during step 3d of the end of turn cleanup.' 814.1.c: 'While I am a defender, I have +X [M].' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 447.2.a: 'In Modes of Play with more than two players, Battlefields with Staged Combats or Combats in Progress are Invalid Destinations...' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 8. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 190.3.a, 190.3.a.1, 381, 383.3.c, 415.3.a, 420.3.a, 423.1.a.2, 423.1.b, 423.1.c, 447.2.a, 447.2.b, 464.2.c.1, 465.2.c, 485.1, 814.1.c, 815.1.c.2 opened in the Core Rules file. Both cards legal in both formats. Card set UNL-055 + UNL-133 is not an existing uses[] set. No unruled reading. The third notable is the entry's own shortfall stated up front: the Cone reads like a repeatable stun engine and is a one-shot drag plus a stun that needs a partner this entry does not name."
+    },
+    {
+      "id": "vex-mocking-shadow-gloomist-relay",
+      "name": "Shadow is Vex's Signature card, so this is a one-legend line — a stun at Showdown speed every turn, and a 6-Might Tank teleports onto it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-055",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 P1 M5. '[Shield] [Tank] When you [Stun] an enemy unit at a battlefield, you may move me to that battlefield.' The move is by EFFECT, so 420.3.a's exhaust cost never applies to it."
+        },
+        {
+          "card": "UNL-194",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm/Chaos unit, E3 M3, SIGNATURE (tags Vex, Shadow Isles). 'If you play me to a battlefield, I enter ready. [Action][>] :rb_energy_1::rb_rune_rainbow:, :rb_exhaust:: [Stun] an enemy unit attacking here.' Three copies is the whole Signature budget (103.2.d.1) and covers both battlefields."
+        },
+        {
+          "card": "UNL-193",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Chaos legend, the pool's ONLY Vex legend (swept over cards.json for legends carrying the Vex tag: UNL-193 / UNL-232 Gloomist and nothing else). 103.2.d.2 forces it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "ONE legend, not a domain list: UNL-194 Shadow is a Signature card tagged Vex, and 103.2.d.2 makes every Signature card carry the legend's champion tag, so the only legal legend is Gloomist (UNL-193, and its identically named second printing UNL-232). The Calm/Chaos domains happen to fit, but the domains are not what decides it.",
+          "1 Energy and 1 rainbow Power available on the opponent's turn, off runes held ready (167, 415.3.a, 164.2.a)."
+        ],
+        "notable": [
+          "THE LEGEND LINE IS FORCED BY A TAG, NOT BY DOMAINS. 103.2.d.2 makes every Signature card carry its legend's champion tag; Shadow is tagged Vex, and a sweep of every legend in data/cards.json for the Vex tag returns exactly one name, Gloomist (UNL-193 / UNL-232). A domain-correct list of the three Calm/Chaos legends would be wrong here — Unforgiven and Blade Dancer cannot run Shadow at all. 103.2.d.1 then caps Signature cards at three, which is why the entry runs three Shadows and nothing else signed.",
+          "SHADOW IS THE 381 EXCEPTION, AND THAT IS WHY THE STUN IS DEFENSIVE. 381 confines Activated Abilities to 'the Controlling Player's Turn and during an Open State'; Shadow's carries [Action], and 806.1.b grants exactly the missing permission: 'played or activated during Showdowns, even when it is not the Controlling player's turn'. So his stun fires inside the Combat Showdown the opponent's attack opens. 'An enemy unit attacking HERE' pins it to the battlefield he stands on, which is what three copies are for.",
+          "HE ACTS THE TURN HE LANDS. 'If you play me to a battlefield, I enter ready' is 143.4.a's 'or similar game effects' exception to 143.4 ('Units enter the Board exhausted'), so the exhaust his own ability needs is available immediately. After that, 415.3.a readies him in your Awakening, so the stun is once per turn per copy.",
+          "VEX ARRIVES TO PROTECT THE UNIT THAT DID THE STUNNING. Her trigger is an effect move, so 420.3.a's exhaust cost never applies, and she lands at YOUR battlefield as a defender: 814.1.c makes [Shield] live for +1, so she stands at 6, and 815.1.c.2 makes Shadow — and every other body of yours there — an invalid damage assignment until Vex has lethal. 464.2.c.3.a with 319.8 ('After a Move is completed') and 323.2.a give her the Defender designation at the Cleanup that follows the move, so she is in this combat's damage step.",
+          "The stunned attacker contributes nothing (423.1.b) but is not removed: 423.1.c keeps its full Might as the bar for killing it and 423.1.a.2 clears the status at step 3d of the end-of-turn cleanup. The line buys a combat, not a corpse.",
+          "Per turn: 1 Energy + 1 rainbow buys one attacker silenced and a 6-Might [Tank] moved to wherever the attack landed, with no card spent and nothing exhausted on Vex. The relay repeats every turn both bodies survive."
+        ]
+      },
+      "steps": [
+        "Run Gloomist (UNL-193) as the legend — 103.2.d.2 leaves no choice once Shadow is in the list.",
+        "Play a Shadow to each battlefield you hold; each enters ready (143.4.a).",
+        "On the opponent's turn they attack; the Combat Showdown opens and their units are designated Attackers (464.2.c.3).",
+        "Activate Shadow's [Action] ability (806.1.b) for 1 Energy + 1 rainbow off ready runes, exhausting him: stun an enemy unit attacking there.",
+        "Vex's trigger fires: move her to that battlefield for free (420.3.a). She gains the Defender designation at the Cleanup that follows the move (464.2.c.3.a, 319.8, 323.2.a).",
+        "Damage: the stunned attacker assigns nothing (423.1.b), Vex is 6 Might with [Shield] (814.1.c), and 815.1.c.2 forces the opponent's assignment onto her before Shadow or anything else."
+      ],
+      "terminatesIn": "engine — one attacker silenced and a 6-Might [Tank] delivered to the point of attack, every turn, for 1 Energy and 1 Power; nothing here scores",
+      "netPerIteration": "-1 Energy -1 rainbow Power, one attacking enemy unit contributes no combat damage, Vex relocated to that battlefield free as a 6-Might [Tank]",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "103.2.d.2 (a Signature card must share a champion tag with the Chosen Champion legend). 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 143.4: 'Units enter the Board exhausted.' 143.4.a: 'This can be altered by Accelerate or similar game effects.' 420.3.a: 'The Cost is Exhausting one or more Units.' 814.1.c: 'While I am a defender, I have +X [M].' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present.' 319.8: 'After a Move is completed.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 8. UNL-194 Shadow was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.2.d.1, 103.2.d.2, 143.4, 143.4.a, 319.8, 323.2.a, 381, 415.3.a, 420.3.a, 423.1.a.2, 423.1.b, 423.1.c, 464.2.c.3, 464.2.c.3.a, 806.1.b, 814.1.c, 815.1.c.2 opened in the Core Rules file. All three cards legal in both formats. Card set UNL-055 + UNL-194 + UNL-193 is not an existing uses[] set (vex-apathetic-gloomist-play-tax runs UNL-150 + OGN-059 + UNL-055 + UNL-193). The Signature check was run BEFORE the legend line was written, which is what caught it: the matrix ranks by event rarity and says nothing about legality, so a Signature card can reach a walk with a domain-shaped legend list already half written."
+    },
+    {
+      "id": "solari-shrine-vi-peacekeeper-attack-draw",
+      "name": "Vi, Peacekeeper is both halves of the Shrine's condition — she stuns on every attack and her own 5 Might does the killing",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-072",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Calm gear, E3. 'When you kill a stunned enemy unit, you may exhaust this to draw 1.' The exhaust sits inside a TRIGGERED ability, so 381 does not reach it and 383.3.c lets it fire on either player's turn."
+        },
+        {
+          "card": "UNL-176",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E5 P1 M5, [Ambush]. 'When I attack, [Stun] an enemy unit here.' The stun costs nothing and fires every combat she opens."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Order, so four legend names (103.1.b.2): Radiant Dawn (OGN-261), Emperor of the Sands (SFD-197), Green Father (UNL-195), Eye of Twilight (VEN-147).",
+          "An enemy garrison to attack: 807.1.d, 383.4.e and 461 all need opposing units present, so an empty enemy battlefield gives no Attacker designation and no trigger."
+        ],
+        "notable": [
+          "ONE CARD SUPPLIES BOTH HALVES OF A TWO-PART CONDITION, WHICH IS WHY IT IS ITS OWN ENTRY. Solari Shrine wants a stunned enemy unit AND a kill. Vi stuns on the attack for free, and then her own 5 Might is the damage that kills it: 423.1.b keeps the stunned body's Might out of 465.2.c's assignment so it answers with nothing, while 423.1.c keeps its full printed Might as the bar — so Vi alone clears any defender of 5 Might or less, every turn, with no card and no Energy spent after she is on the board.",
+          "THE SHRINE'S EXHAUST IS INSIDE A TRIGGERED ABILITY, AND THAT IS WHAT MAKES IT USABLE AT ALL. 381 confines Activated Abilities to 'the Controlling Player's Turn and during an Open State'; the Shrine's 'you may exhaust this to draw 1' hangs off 'When you kill a stunned enemy unit', so 383.3.c applies instead — 'Triggered Abilities can be put on the Chain during Closed States or Open States on any [player's] turn'. The draw therefore lands inside the combat, in a Closed State, and would land just as happily on the opponent's turn. 415.3.a readies the gear each of your Awakenings, so it is one draw per turn.",
+          "465.2.c.3 is why the kill is reliable rather than hopeful: lethal damage must be assigned to one unit before moving to the next, so Vi's five points are not spread across the garrison — they go into one body, and 143.2.a kills it the moment marked damage equals its Might.",
+          "[Ambush] is a second, separate use of the same card and it does NOT produce the stun: 822.1.b is 'I may be played to a battlefield where you control Units' plus the [Reaction] timing, so she can land on the opponent's turn as a defender — but 'When I attack' needs the Attacker designation (464.2.c.3), which only your own turn produces. Do not price the ambush as an off-turn stun.",
+          "383.2.a.1 measures a trigger's condition when the trigger is placed, and 464.2.c.3 places an attack trigger at the Attacker designation, so 'an enemy unit here' must already be at that battlefield when she is designated — a body that walks in later is not a legal choice for this combat.",
+          "Priced whole: 5 Energy + 1 Order Power once for Vi, 3 Energy once for the Shrine, and thereafter one enemy body of 5 Might or less dead and one card drawn every turn she attacks. Three copies of each (103.2.b), though the Shrine caps at one draw a turn whatever you own."
+        ]
+      },
+      "steps": [
+        "Play Solari Shrine (3 Energy) and Vi, Peacekeeper (5 Energy + 1 Order Power).",
+        "Standard-Move Vi into an occupied enemy battlefield (144.2, 144.4); 190.3.a.1 applies Contested and 464.2.c.1 makes you the Attacker.",
+        "464.2.c.3 designates her an Attacker and her trigger fires: stun an enemy unit there.",
+        "Combat damage: 423.1.b leaves the stunned body contributing nothing, and 465.2.c.3 forces Vi's five points into one unit — 143.2.a kills it if its Might is 5 or less.",
+        "The Shrine's trigger fires on that kill (383.3.c, in the Closed State of the combat): exhaust it and draw 1.",
+        "Repeat next turn; 415.3.a readies the Shrine in your Awakening."
+      ],
+      "terminatesIn": "engine — one stunned enemy unit of 5 Might or less killed and one card drawn per turn Vi attacks; nothing here scores",
+      "netPerIteration": "+1 card, one enemy unit of 5 Might or less killed, for no Energy after deployment",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' 423.1.c: 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might value to be killed.' 465.2.c.3 (lethal must be assigned to a unit before moving to the next). 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any [player's] turn.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 822.1.b: 'I may be played to a battlefield where you control Units.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 9 (trigger card OGN-072 Solari Shrine, 22 partners, 2 entries before this walk). Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 143.2.a, 144.2, 144.4, 190.3.a.1, 381, 383.2.a.1, 383.3.c, 383.4.e, 415.3.a, 423.1.b, 423.1.c, 461, 464.2.c.1, 464.2.c.3, 465.2.c, 465.2.c.3, 807.1.d, 822.1.b opened in the Core Rules file. Both cards legal in both formats. Card set OGN-072 + UNL-176 is not an existing uses[] set. No unruled reading. The 381-versus-383.3.c contrast is the reusable half: two gears can print the same 'exhaust this to draw 1' and only the one hanging off a trigger works inside a combat."
+    },
+    {
+      "id": "solari-shrine-kennen-hidden-defensive-draw",
+      "name": "811.1.b grants [Reaction] to every hidden card, so Kennen stuns the attacker for free on the opponent's turn — and the Shrine draws there",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-072",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Calm gear, E3. 'When you kill a stunned enemy unit, you may exhaust this to draw 1.' The exhaust sits inside a TRIGGERED ability, so 381 does not reach it and 383.3.c lets it fire on either player's turn."
+        },
+        {
+          "card": "VEN-135",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 M2, [Hidden]. 'When you play me or I attack, you may pay :rb_energy_2: to [Stun] a unit. While there's a stunned enemy unit here, I have +2 :rb_might:.' Hidden a turn earlier for 1 rainbow; played from face down he costs 0 Energy."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Order, so four legend names (103.1.b.2): Radiant Dawn (OGN-261), Emperor of the Sands (SFD-197), Green Father (UNL-195), Eye of Twilight (VEN-147).",
+          "A battlefield you control to hide him at (811.1.b), one turn before you want him.",
+          "2 Energy off runes held ready, for the trigger's base cost on the opponent's turn."
+        ],
+        "notable": [
+          "THE TAIL OF 811.1.b IS THE WHOLE ENTRY. The keyword is functionally short for '...you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there for as long as you control that battlefield. **Beginning on the next turn, this gains [Reaction]** and you may play this, ignoring its base cost.' So a hidden card — unit, gear or spell alike — is a [Reaction] card once it is face down, and 813.1.c.1 makes that 'This can be played during Closed States on any player's turn.' A 3-Energy body therefore enters the board mid-combat on the opponent's turn for zero Energy.",
+          "AND THE TARGETING RESTRICTION IS THE FEATURE, NOT THE COST. 811.1.d.2 confines a hidden card's choices to the battlefield it was hidden at, and 811.1.b says you hide 'at a battlefield you control' — so Kennen's play trigger can only stun a unit standing at YOUR battlefield. On the opponent's turn that is exactly their attacker. This is the mirror of the walk's refuse-bucket C, which kills a hidden removal on the ATTACKING side for the same reason: the battlefield you attack is by definition not one you control.",
+          "THE 2 ENERGY IS A BASE COST PAID BEFORE THE TRIGGER IS ON THE CHAIN. 383.3.b makes a cost written right after a Triggered Ability's opening 'you may' the ability's base cost and 383.3.b.1 requires it 'in order to finalize the Triggered Ability to the Chain'. With 167 emptying the pool at the start of each player's Main Phase and 415.3.a readying your runes only in your own Awakening, that is two runes deliberately held ready and tapped at 164.2.a's Reaction speed.",
+          "HE PAYS HIS OWN WAY IN THE COMBAT. 'While there's a stunned enemy unit here, I have +2 [M]' — his own stun makes him a 4-Might defender, which 465.2.b sums into the defending assignment, while 423.1.b keeps the stunned attacker's Might out of theirs. Kill it, and the Shrine's trigger fires; 383.3.c lets a Triggered Ability go on the Chain 'during Closed States or Open States on any [player's] turn', so you draw on the opponent's turn — something 381 would forbid if the same words sat in an Activated ability.",
+          "On your own turn the same card is a repeatable stun rather than an ambush: 'when you play me OR I attack' fires again on every attack he makes, and being played normally puts no 811.1.d.2 restriction on the target at all. Two different uses of one card, and the entry prices the defensive one.",
+          "Priced whole: 1 rainbow to hide, one turn earlier; 0 Energy to play from face down; 2 Energy for the stun; 3 Energy once for the Shrine. Three copies of Kennen (103.2.b), but 811.1.b allows only one facedown card per battlefield, so at most two are hidden at a time in a Duel (485.4)."
+        ]
+      },
+      "steps": [
+        "Play Solari Shrine (3 Energy). On an earlier turn, pay 1 rainbow to hide Kennen face down at a battlefield you control (811.1.b).",
+        "On the opponent's turn they attack that battlefield; the Combat Showdown opens and their units are designated Attackers (464.2.c.3).",
+        "Play Kennen from face down for 0 Energy — 811.1.b has granted him [Reaction] and 813.1.c.1 admits him to the Closed State.",
+        "His play trigger fires; tap two ready runes and pay the 2 Energy to finalize it (383.3.b.1). 811.1.d.2 confines the target to that battlefield, which is where their attacker is standing: stun it.",
+        "Kennen is now a 4-Might defender by his own static; 423.1.b silences the stunned attacker and 465.2.b sums your defence against it.",
+        "The stunned attacker dies in the damage step; the Shrine's trigger fires there (383.3.c) — exhaust it and draw 1, on the opponent's turn."
+      ],
+      "terminatesIn": "engine — a free 2-Might body, a stun on the attacker and a card drawn, all inside the opponent's combat, for 1 rainbow banked a turn earlier and 2 Energy; nothing here scores",
+      "netPerIteration": "+1 card, +1 body at 4 effective Might, one attacker silenced and killed, for 2 Energy and one hide",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "811.1.b: '...you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' 813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 811.1.d.2: 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible.' 383.3.b.1: 'The cost must be paid in order to finalize the Triggered Ability to the Chain.' 383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any [player's] turn.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 9. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 164.2.a, 167, 381, 383.3.b, 383.3.b.1, 383.3.c, 415.3.a, 423.1.b, 464.2.c.3, 465.2.b, 485.4, 806.1.b, 811.1.b, 811.1.d.2, 813.1.c.1 opened in the Core Rules file. Both cards legal in both formats. Card set OGN-072 + VEN-135 is not an existing uses[] set. No unruled reading. The [Reaction] grant in 811.1.b's own tail is the reusable finding: several entries in the catalogue treat a hidden play as a your-turn action, and the keyword says otherwise for every hidden card in the pool."
     }
   ]
 }
