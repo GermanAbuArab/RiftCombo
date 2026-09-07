@@ -23140,6 +23140,102 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md). VEN-089 Wild Claw was in ZERO entries; the sweep that found it was `grep -i empower data/corpus_flat.txt` with no brackets, per the project's own rule that a keyword lens opens on the bare word — the bracketed form misses every card that grants the state in prose, and Wild Claw's clause is 'Then you may do this: Empower it'. The #153 fact it stands on (an Empower granted by an ability skips the printed [Empower] cost) had been applied only to gear, through VEN-062 Hextech Formula; this is the same fact reaching a unit, and the unit it reaches is the one whose [Empower] cost is the highest in the pool. Card text verbatim from data/corpus_flat.txt; 103.2/103.2.a.1/103.2.b/103.1.b.1/103.1.b.4, 143.4, 144.2, 144.4, 161.2.a, 194.1.c, 315.1.b, 316.8.b.1, 348.2.a.1, 416.1.a, 431.1.c, 441.1/441.1.a/441.1.b/441.1.c/441.2, 469.1, 470, 809.1.c/809.1.d and 827.1.c.3 opened and read. The 34.5% figure is 1 - C(36,5)/C(39,5) computed for three copies in a 39-card deck. Ban check: neither VEN-089 nor VEN-046 carries a [BANNED marker, and neither is a Signature card. Trap check: no [Temporary]; no [Repeat]; no token; no recall; the banish is Wild Claw's own instruction and the card is PLAYED from banishment by the same clause, so 108.6.c never comes up; looking does not Burn Out (431.1.c). Depends on R2 = A and on no open reading."
+    },
+    {
+      "id": "swain-shurelya-double-conquer",
+      "name": "Shurelya's Requiem carries the Swains across — the double conquer off one ordinary turn",
+      "class": "CHAIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-065",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E6 P1 M6, [Vision]. 'When I conquer, if you've played a non-token unit, a non-token gear, and a spell this turn, you score 1 point.' Played on earlier turns; 315.1.b readies them at Awaken, which is what pays for the first move."
+        },
+        {
+          "card": "SFD-192",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "ATTACHED",
+          "note": "Calm/Mind Equipment, E4 P2, M+2, [Unique], [Equip] 1 rainbow. 'When you play this, ready your units. [Effect] Your units here have [Ganking].' Both halves are used: the play trigger is the mass ready after the first Conquer, the Effect is the battlefield-to-battlefield move that replaces the second and third."
+        },
+        {
+          "card": "SFD-064",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind Equipment, E1, [Quick-Draw]. The 'non-token gear' half of Swain's condition, played BEFORE the first Conquer — Shurelya's cannot serve that role, because its ready has to be saved for after."
+        },
+        {
+          "card": "VEN-061",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind spell, E1, [Reaction]. The 'spell' half of Swain's condition. Any Mind spell at E1 does; this is the cheapest."
+        },
+        {
+          "card": "OGN-096",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "Mind unit, E2. '[Deathknell] — Draw 1.' The 'non-token unit' half. It never moves and never has to; it only has to have been played this turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Mind: UNL-189 Bashful Bloom and SFD-189 Fire Below the Mountain both hold it (103.1.b.2). Every card here is Mind except Shurelya's, which is Calm/Mind.",
+          "Two battlefields on the table, which is what a Duel gives (485.4), and the Swains ready at Awaken."
+        ],
+        "notable": [
+          "THIS IS swain-double-conquer WITHOUT THE LOOP, AND THAT IS THE WHOLE POINT. That entry carries needs: ['infinite-energy','infinite-power'] and prices itself at 'about 40 Energy and 10 Power', because it buys six separate readies out of five Jayce, Brilliant Inventor plays so that each Swain can walk A -> base -> B. Shurelya's Requiem replaces every one of them with one card: 'When you play this, ready your units' is a MASS ready, and '[Effect] Your units here have [Ganking]' turns the two-leg walk into one leg (144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield').",
+          "The finishing turn, priced against the entry's own quantities: Cloth Armor E1, Decree of Insight E1, Watchful Sentry E2, Shurelya's Requiem E4 + 2 Power, and 1 rainbow to [Equip] it. **8 Energy and 3 Power** — an ordinary twelve-rune turn, against a line that could not be attempted outside an infinite-energy engine.",
+          "THE ORDER OF THE GEAR IS FORCED and it is the one thing that looks wrong until it is walked. Swain's condition needs a non-token gear played THIS TURN and it is checked on each Conquer, so a gear must be down before the first one — but Shurelya's own ready is only useful AFTER it, since the Swains are already ready at Awaken. Playing Shurelya's early wastes the ready and leaves nothing to stand the Swains up at A. Hence a second, throwaway E1 gear.",
+          "Points, checked against the declared quantities: Conquer A is 1 Score (469.1, capped at one per battlefield per turn by 470) plus 1 per Swain as an ability Gain (194.1.c, R2 = A, uncapped) = 4. Conquer B is the same 4, and 470's cap is per battlefield so B is untouched by A. 8 exactly, in two scoring events, with no opponent turn between them — CHAIN.",
+          "It is 8 EXACTLY, so nothing may be lost. Three Swains are required; two give 6. If a Swain dies in the combat at A the line stops at 6 or 7, which is the honest fragility and the reason the catalogued version buys redundancy with the loop instead.",
+          "Leaving A is legal and costs nothing that matters. 190.4.c takes Control of A away in the following cleanup once no units of yours remain there — but A was already Scored this turn, so 470 would have refused a second Score anyway.",
+          "In 2v2 it is three points short: 489.3 sets the Victory Score at 11 against 194.3's 8.",
+          "Shurelya's is [Unique] — one copy in the deck (Tournament Rules and the card's own reminder), which is all this needs, because one mass ready covers all three Swains at once where Jayce's readies one unit at a time."
+        ]
+      },
+      "steps": [
+        "Earlier turns: land three Swain, Visionary. Awaken (315.1.b) readies them on the finishing turn.",
+        "Main Phase: play Cloth Armor (E1, the non-token gear), Decree of Insight (E1, the spell) and Watchful Sentry (E2, the non-token unit). Swain's three-part condition is now satisfied for the rest of the turn.",
+        "Standard-Move all three Swains from base to battlefield A as ONE action (144.3, shared destination; 144.4.a). Each exhausts as its own cost (144.2).",
+        "Win at A and establish Control: that is a Conquer (466.5.d). 1 point from the Score, then each Swain's trigger scores 1 — four points.",
+        "Play Shurelya's Requiem (E4 + 2 Power). 'When you play this, ready your units' stands all three Swains back up.",
+        "[Equip] Shurelya's to one of the Swains at A for 1 rainbow. Its Effect now grants [Ganking] to your units there.",
+        "Standard-Move all three from A to B as one action — 144.4.c.1 allows battlefield to battlefield with [Ganking], and 190.4.c only costs you Control of A, which you had already Scored.",
+        "Conquer B: 1 Score plus 3 ability Gains. Eight points across two scoring events in one turn, and 194.2 wins it in the cleanup."
+      ],
+      "terminatesIn": "eight points in one turn across two Conquers, for 8 Energy and 3 Power on the finishing turn and no loop at all",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #161 — uncatalogued feeders of the 36 finishers (docs/phase0/walks/2026-09-06-finisher-feeders.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.' 144.3: 'Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units.' 190.4.c: 'If a player has no Units at a Battlefield and the turn is in an Open state, they lose Control of that Battlefield in the following cleanup unless there is a Combat or Showdown ongoing there.' 470: 'A player may only Score, from either method, once per Battlefield per turn.'"
+        },
+        {
+          "title": "Issue #161 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/161",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §6), issue #161, as the uncatalogued feeder for swain-double-conquer. Card set checked against the current data/combos.json before writing (VEN-065 + SFD-192: no exact match, and the only supersets are swain-double-conquer and shurelya-requiem-ready-and-ganking, which share one card each). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 144.2, 144.3, 144.4.a, 144.4.c, 144.4.c.1, 194.1.c, 194.2, 194.3, 315.1.b, 466.5.d, 469.1, 470, 485.4, 489.3, 818.1. Stands on R2 = A, ruled 2026-09-03. The sibling is left in place: it buys redundancy with an infinite-energy loop where this buys none, and at 8 exactly this line cannot afford to lose a Swain. Trap check: both Conquers are real Conquers with a garrison to beat, so the empty-battlefield trap (807.1.d, 383.4.e, 461) is respected — and if B is open instead, 344.2 / 348.2.a / 348.2.a.1 give the same Conquer without a Combat; no [Repeat]; no [Temporary]; no token, so 185 / 186.1 never arise; the Shurelya's ready is a real 415.1 ready of units already on the board, not an 'enters ready' (#56); nothing is added in Awaken, so 167 does not bite."
     }
   ]
 }
