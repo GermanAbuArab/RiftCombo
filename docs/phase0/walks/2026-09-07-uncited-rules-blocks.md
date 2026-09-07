@@ -988,3 +988,61 @@ which 713 grants to Deal **actions** and 417.3.a keeps off the assignment.
 a **partial** one does not — which is the precise reason 437.4 is a different mechanism from the
 heal/exhaust/recall shields. The pool's one card keyed on it is `OGN-221 Imperial Decree`
 (*"When any unit takes damage this turn, kill it"*), and 417.1.a means it reaches combat damage too.
+
+---
+
+# Batch 11 — mistargeting counts, and where the "you may" sits
+
+Batch 10's entry was merged (catalogue at 692). Both entries below are inside the 100–499 lane.
+
+| id | sub-rule opened | class |
+|---|---|---|
+| `repulse-heedless-resurrection-shrink-target-count` | **359.3.e.6 – .e.9.a** mistargeting | ENGINE |
+| `ornn-blacksmith-late-may-resolution` | **383.3.a – .a.3** where the "you may" sits | ENGINE |
+
+`validateCombos`: **0 errors, 694 entries.** `test/legend-lines.test.ts`: 13 legend base codes, **0 defects.**
+
+## 38. 359.3.e.9.a — a moved body is still counted, a killed one is not
+
+**359.3.e.9.a**: *"If another spell or ability attempts to reference the number of game objects, players,
+or zones that a Finalized Chain Item targets, it will include any **mistargeted** choices, but not any
+targets that have **changed to a non-board zone**."*
+
+So a **move** and a **kill** are not interchangeable answers to a multi-target chain item, and Riot works
+it with **four pool cards**: `OGN-041 Volibear, Furious`'s attack trigger choosing three of your units,
+answered with `OGS-011 Flash` — which fails, because moved units keep being counted — versus two
+`UNL-142 Heedless Resurrection`, whose additional cost sends bodies to the **trash**, which does shrink
+the count and lets `UNL-106 Repulse` (*"chooses it and no other friendly unit"*) counter the trigger.
+
+The companion pair decides whether it is worth it: **359.3.e.7** — if *all* targets go invalid the
+instruction does not execute — against **359.3.e.8**, whose example is `OGN-105 Singularity`: if only
+*some* do, *"the instruction will execute, with only the Targets available and valid being operated on."*
+Killing two of three does **not** blank the trigger; the counter is what blanks it.
+
+## 39. 383.3.a — a leading "you may" is a blind commitment, a later one is free information
+
+The project already carries the **cost** half of this (383.3.b: a cost right after a leading *"you may"*
+is the trigger's base cost, paid at finalization). **The decision half was uncited:**
+
+- **383.3.a**: a *"you may"* **as the first part of the effect** is chosen **during finalization** —
+  Riot's example is `OGN-199 Tideturner`.
+- **383.3.a.2**: declining means it *"is removed from the chain and **considered to have not
+  triggered**"* — stronger than merely leaving the chain, and it is why a once-per-turn is not spent.
+- **383.3.a.3**: a *"you may"* **anywhere later** is decided **on resolution**, and *"The ability is
+  always finalized to the chain."* Riot's example is `SFD-058 Ornn, Blacksmith`, who looks at four cards
+  and **then** chooses whether to draw one.
+
+**So when comparing two triggers that read alike, find the "you may" first.** A leading one is a single
+blind commitment covering both the cost and the effect; a later one buys the information first.
+
+## 40. A legend list I typed instead of measuring, caught before staging
+
+The first draft of `repulse-heedless-resurrection-shrink-target-count` named the Body/Chaos legends as
+*"OGN-259 / OGN-305 Grinning Fisherman and UNL-201 / UNL-238 Voidreaver"*. **Two of the three names and
+three of the four base codes were wrong.** Measured over `data/cards.json` the Body/Chaos legends are
+`OGN-267 / OGN-309 Bounty Hunter`, `SFD-203 / SFD-250 Battle Mistress` and `UNL-201 / UNL-236
+Voidreaver`. `test/legend-lines.test.ts` would **not** have caught it — it checks that a named legend
+*can hold* the entry's domains, and an invented Body/Chaos legend passes that test by construction if
+the base code happens to exist. The only thing that catches it is running the census. This is the
+project's standing rule meeting its own failure mode: **the entries whose legend list was RUN are right;
+the ones TYPED are wrong.**
