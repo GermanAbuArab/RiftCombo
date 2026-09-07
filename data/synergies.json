@@ -4445,6 +4445,337 @@
       "status": "rule-verified",
       "reviewed": "2026-09-06",
       "reviewedCount": 16
+    },
+    {
+      "id": "soul-reflection-empower-relay",
+      "name": "Soul's Reflection rides any [Empower] cost paid in the pool",
+      "anchor": "VEN-151",
+      "partner": {
+        "textMatches": "\\[Empower\\]",
+        "excludes": [
+          {
+            "card": "VEN-163",
+            "why": "\"[Empower] costs of your units here cost 1 Energy or rainbow less\" is a discount on OTHER units' Empower costs — Risen Altar never pays an [Empower] cost itself, so it never becomes Empowered and never triggers \"you empower something else\"."
+          }
+        ]
+      },
+      "why": "\"When you empower something else, empower me\" fires off ANY other card's own [Empower] cost — paying that cost is the controller empowering a game object that is not the legend, which 441.2 makes a referenceable event whatever caused it. Soul's Reflection carries no [Empower] cost of its own, so this trigger is the only route she has to becoming Empowered at all, unlocking \"Disempower me, exhaust: give a unit at a battlefield -2 Might this turn.\" 441.1.b caps the value per partner: an object can not be Empowered a second time, so a single-use [Empower] card feeds the legend exactly once per copy played. The verified engine (souls-reflection-questionable-tome-disempower-cycle) picks the one partner that can hand its Empowered state back — Questionable Tome's own payoff begins \"Disempower this\", so it re-arms every time it is exhausted again, turning a one-shot trigger into a two-turn cycle.",
+      "basis": {
+        "rules": [
+          "441.1",
+          "441.1.a",
+          "441.1.b",
+          "441.1.c",
+          "441.2",
+          "827.1.c.1"
+        ],
+        "combos": [
+          "souls-reflection-questionable-tome-disempower-cycle"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 38
+    },
+    {
+      "id": "matriarch-of-war-empower-relay",
+      "name": "Matriarch of War rides any [Empower] cost paid in the pool",
+      "anchor": "VEN-153",
+      "partner": {
+        "textMatches": "\\[Empower\\]",
+        "excludes": [
+          {
+            "card": "VEN-163",
+            "why": "\"[Empower] costs of your units here cost 1 Energy or rainbow less\" is a discount on OTHER units' Empower costs — Risen Altar never pays an [Empower] cost itself, so it never becomes Empowered and never triggers \"you empower something else\"."
+          }
+        ]
+      },
+      "why": "The same relay as Soul's Reflection, in Body/Order: \"When you empower something else, empower me\" fires off any other card's own [Empower] cost, since 441.2 makes becoming Empowered a referenceable event regardless of source and the legend has no [Empower] cost of her own to pay. 441.1.b limits a single-use partner to one free trigger per copy played, since an already-Empowered object can not be Empowered again. The verified engine (matriarch-of-war-empower-ready) is built on the one partner in this list that hands its own state back — Hextech Disc's second ability begins \"Disempower this\", so it re-Empowers on its own [Empower] cost every other Awaken, feeding the legend's \"Disempower me, 1 rainbow Power, exhaust: Ready a unit\" every turn once two are staggered out of phase.",
+      "basis": {
+        "rules": [
+          "441.1",
+          "441.1.a",
+          "441.1.b",
+          "441.1.c",
+          "441.2",
+          "827.1.c.1"
+        ],
+        "combos": [
+          "matriarch-of-war-empower-ready"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 38
+    },
+    {
+      "id": "rippers-bay-bounce-channel",
+      "name": "Ripper's Bay channels a rune off any unit bounced from its board — friendly or enemy",
+      "anchor": "UNL-214",
+      "partner": {
+        "textMatches": "[Rr]eturn (a|another|it|this|your|up to \\w+|two)[^.]*(owner'?s? hand|its hand|their hand|your hand)",
+        "textExcludes": "from (your|their|its owner'?s?) trash|Champion Zone",
+        "excludes": [
+          {
+            "card": "SFD-207",
+            "why": "\"return a unit you control HERE to its owner's hand\" is Emperor's Dais's own \"here\" — a different named battlefield. Only one battlefield is in play, so a bounce at Emperor's Dais never happens at Ripper's Bay."
+          },
+          {
+            "card": "SFD-044",
+            "why": "\"return a friendly gear to its owner's hand\" as an additional cost to play the unit — it moves gear, never a unit, so Ripper's Bay's \"a unit here\" never sees it."
+          },
+          {
+            "card": "SFD-135",
+            "why": "\"Return a gear to its owner's hand\" — gear, not a unit."
+          },
+          {
+            "card": "UNL-131",
+            "why": "\"Counter a spell. Return it to its owner's hand\" — the \"it\" is the countered SPELL, never a unit, and a countered spell was never \"here\" at any battlefield."
+          },
+          {
+            "card": "UNL-169",
+            "why": "\"Choose a card revealed this way and banish it. When they hold, return it to their hand\" moves a card from the opponent's HAND to Banishment and back — it never touches a battlefield, so it is never \"a unit here\"."
+          }
+        ]
+      },
+      "why": "\"When a unit here is returned to a player's hand, that player may pay 1 Energy to channel 1 rune exhausted\" says THAT PLAYER, not \"you\" — 190.6.d only blanks the word \"you\" on an uncontrolled battlefield, so the Bay pays from turn one and pays the opponent too on their own bounces (documented on the verified engine below). Any card that returns a unit to a hand is a partner if the returned unit could be standing at the Bay when it resolves; several in this list target \"a unit\" or \"it\" with no location restriction at all, so the pairing is opportunistic rather than guaranteed — a unit has to be at the Bay first. Retreat is the tightest partner: its own second sentence already channels 1 rune exhausted, so casting it at the Bay is two rune channels for one card and 1 Energy.",
+      "basis": {
+        "rules": [
+          "190.6.b",
+          "190.6.d",
+          "455"
+        ],
+        "combos": [
+          "rippers-bay-retreat-double-channel"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 13
+    },
+    {
+      "id": "pirates-haven-any-friendly-ready",
+      "name": "Pirate's Haven buffs every friendly unit any ready effect touches, including a self-ready",
+      "anchor": "OGN-143",
+      "partner": {
+        "textMatches": "[Rr]eady (a|another|this|me|it|your|itself|up to \\w+|two)\\b",
+        "textExcludes": "[Rr]eady (a|another|this|me|it|your|itself|up to \\w+|two)\\b[^.]*\\b(runes?|gear|legend)\\b|[Ww]hen (you|I)[^.]{0,20}ready",
+        "excludes": [
+          {
+            "card": "OGN-269",
+            "why": "\"When you conquer, ready me\" readies The Boss himself — a Legend, not a unit, so Pirate's Haven's \"a friendly unit\" never sees it."
+          },
+          {
+            "card": "SFD-203",
+            "why": "\"When one or more enemy units die, ready me\" readies Battle Mistress herself — a Legend, not a unit."
+          },
+          {
+            "card": "SFD-004",
+            "why": "\"Friendly units enter ready this turn\" is a replacement on how units ENTER, not a Readying action — 143.4 makes units enter exhausted by default and 415.1 defines Readying as marking a Game Object already on the board, so nothing here ever fires \"when you ready a friendly unit\"."
+          }
+        ]
+      },
+      "why": "\"When you ready a friendly unit, give it +1 Might this turn\" is worded on the READY, not on who caused it, so it fires on a self-ready (Darius, Trifarian reading himself) exactly as it fires on an external ready source (First Mate reading another unit). 315.1.b's Awaken already readies your whole exhausted board for free every turn, so the +1 Might is collected on the baseline case with no partner card at all; the list below is what buys a SECOND ready mid-turn on top of that, doubling the Might for whichever body it targets. Per-body, so a mass ready is one trigger per unit readied.",
+      "basis": {
+        "rules": [
+          "315.1.b",
+          "415.1.b"
+        ],
+        "combos": [
+          "awaken-ready-body-triple-trigger"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 30
+    },
+    {
+      "id": "jayce-hammer-second-ready",
+      "name": "A second ready gives Jayce, Hammer in Hand a second keyword choice",
+      "anchor": "VEN-088",
+      "partner": {
+        "textMatches": "[Rr]eady (a|another|it|your|up to \\w+|two)\\b",
+        "textExcludes": "[Rr]eady (a|another|it|your|up to \\w+|two)\\b[^.]*\\b(runes?|gear|legend)\\b|[Ww]hen (you|I)[^.]{0,20}ready",
+        "excludes": [
+          {
+            "card": "SFD-198",
+            "why": "\"Ready up to two of them\" only ever readies the Sand Soldier tokens Arise! just created — it can never target a pre-existing unit like Jayce or Fretful Feline."
+          },
+          {
+            "card": "SFD-154",
+            "why": "\"You may pay 1 Order to ready it\" only readies the Sand Soldier token Guards! just created, never a different unit already on the board."
+          },
+          {
+            "card": "SFD-202",
+            "why": "\"Take control of an enemy unit at a battlefield. Ready it.\" always readies the just-stolen enemy unit — never a friendly unit like Jayce or Fretful Feline, which are never legal targets of \"an enemy unit\"."
+          }
+        ]
+      },
+      "why": "\"When I become ready, choose one to give me this turn\" carries no \"you've not chosen this turn\" clause, so a second ready this turn is a second, independent choice among [Assault 2], [Deflect 2] and [Ganking] — he can pick a different one than the Awaken already gave him for free. The baseline (Awaken, 315.1.b) costs nothing; every card below buys a repeat mid-turn, targeting him specifically rather than reading its own name.",
+      "basis": {
+        "rules": [
+          "315.1.b",
+          "415.1.b"
+        ],
+        "combos": [
+          "awaken-ready-body-triple-trigger"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 15
+    },
+    {
+      "id": "fretful-feline-second-ready",
+      "name": "A second ready gives Fretful Feline a second +2 Might",
+      "anchor": "VEN-071",
+      "partner": {
+        "textMatches": "[Rr]eady (a|another|it|your|up to \\w+|two)\\b",
+        "textExcludes": "[Rr]eady (a|another|it|your|up to \\w+|two)\\b[^.]*\\b(runes?|gear|legend)\\b|[Ww]hen (you|I)[^.]{0,20}ready",
+        "excludes": [
+          {
+            "card": "SFD-198",
+            "why": "\"Ready up to two of them\" only ever readies the Sand Soldier tokens Arise! just created — it can never target a pre-existing unit like Jayce or Fretful Feline."
+          },
+          {
+            "card": "SFD-154",
+            "why": "\"You may pay 1 Order to ready it\" only readies the Sand Soldier token Guards! just created, never a different unit already on the board."
+          },
+          {
+            "card": "SFD-202",
+            "why": "\"Take control of an enemy unit at a battlefield. Ready it.\" always readies the just-stolen enemy unit — never a friendly unit like Jayce or Fretful Feline, which are never legal targets of \"an enemy unit\"."
+          }
+        ]
+      },
+      "why": "\"When I become ready, give me +2 Might this turn\" is a plain continuous modifier (not a 702 Buff), so 702.3's one-per-unit cap never applies and a second ready this turn stacks a second +2. The baseline Awaken (315.1.b) is free; the list below is what buys a repeat mid-turn, targeting her specifically.",
+      "basis": {
+        "rules": [
+          "315.1.b",
+          "415.1.b",
+          "702.3"
+        ],
+        "combos": [
+          "awaken-ready-body-triple-trigger"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 15
+    },
+    {
+      "id": "mistfall-buff-ready",
+      "name": "Mistfall readies any friendly unit a buff source touches",
+      "anchor": "OGN-152",
+      "partner": {
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)|[Gg]ive (me|it|a unit|a friendly unit|another friendly unit|your units)[^.]{0,60}\\+\\d+ :rb_might:",
+        "excludes": [
+          {
+            "card": "OGN-146",
+            "why": "\"spend a buff as an additional cost\" spends a buff as a cost; it consumes Might rather than granting it — same false match fiora-buff-ready already excludes."
+          },
+          {
+            "card": "OGN-207",
+            "why": "\"spend a buff as an additional cost\" spends a buff as a cost, same as Wallop — a consumer, not a source."
+          }
+        ]
+      },
+      "why": "\"When you buff a friendly unit, you may pay 1 Body Power and exhaust this to ready it\" watches ANY buff on ANY friendly unit — unlike Fiora, Worthy (fiora-buff-ready), it does not need the buff to cross 709's Mighty threshold, so it fires on every buff a partner grants, not just the ones that matter for Might. The verified engine (lee-sin-buff-bank) is the tight instance: Lee Sin, Ascetic can bank unlimited buffs (702.3's one printed exception) and Mistfall turns every one of them into a free ready.",
+      "basis": {
+        "rules": [
+          "702.2",
+          "702.3"
+        ],
+        "combos": [
+          "lee-sin-buff-bank"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 99
+    },
+    {
+      "id": "simian-ancestor-buff-ready",
+      "name": "Simian Ancestor readies himself off any buff that lands on him",
+      "anchor": "SFD-047",
+      "partner": {
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)|[Gg]ive (me|it|a unit|a friendly unit|another friendly unit|your units)[^.]{0,60}\\+\\d+ :rb_might:",
+        "excludes": [
+          {
+            "card": "OGN-146",
+            "why": "\"spend a buff as an additional cost\" spends a buff as a cost; it consumes Might rather than granting it — same false match fiora-buff-ready already excludes."
+          },
+          {
+            "card": "OGN-207",
+            "why": "\"spend a buff as an additional cost\" spends a buff as a cost, same as Wallop — a consumer, not a source."
+          }
+        ]
+      },
+      "why": "\"When you buff me, ready me\" is unconditional — it does not need the buff to cross 709's Mighty threshold the way Fiora, Worthy's does (fiora-buff-ready), so any buff source in the list below readies him for free the instant it touches him, at no cost and with no exhaust to pay.",
+      "basis": {
+        "rules": [
+          "702.2",
+          "702.3"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 99
+    },
+    {
+      "id": "prize-of-progress-gear-activation",
+      "name": "Prize of Progress grows off any gear ability your turn already uses",
+      "anchor": "SFD-075",
+      "partner": {
+        "types": [
+          "gear"
+        ],
+        "textMatches": ":rb_exhaust:"
+      },
+      "why": "\"When you use an activated ability of a gear, give me +1 Might this turn\" counts activations, not gear, and the verified engine (prize-of-progress-seal-gear-might) is deliberately the cheapest possible partner: Seal of Insight is the Mind deck's E0 Power base, so its exhaust is already being paid every turn regardless of Prize of Progress. Every gear in the list carries an exhaust cost of its own, but the honest ceiling is small — an exhaust cost allows one activation per copy per turn (315.1.b readies it at the next Awaken), so the real count is however many gear abilities a given turn actually uses, not the size of this list.",
+      "basis": {
+        "rules": [
+          "143.4",
+          "315.1.b",
+          "709"
+        ],
+        "combos": [
+          "prize-of-progress-seal-gear-might"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 39
+    },
+    {
+      "id": "vicious-snapjaws-friendly-kill",
+      "name": "Vicious Snapjaws gains XP off any active kill of a friendly unit",
+      "anchor": "UNL-129",
+      "partner": {
+        "textMatches": "[Kk]ill[^.]{0,30}friendly|[Kk]ill[^.]{0,30}you control|[Kk]ill me\\b|kill one of their units|must kill[^.]{0,20}unit",
+        "textExcludes": "friendly gear|before scoring",
+        "excludes": [
+          {
+            "card": "UNL-174",
+            "why": "\"each opponent must kill one of their units\" lands on the OPPONENT's own board, never on a unit Vicious Snapjaws's controller controls."
+          },
+          {
+            "card": "VEN-133",
+            "why": "\"kill this and deal 5 to all units you control\" kills the gear itself; \"units you control\" names the damage's targets, not what dies."
+          }
+        ]
+      },
+      "why": "\"When another friendly unit dies, gain 1 XP\" is fed by the same active-kill family viktor-leader-friendly-kill already catalogues (428.1's Active Kill, whether paid as a cost or cast as a standalone effect) — same predicate, same two exclusions, for the identical reasons. Unlike Viktor, Vicious Snapjaws has no clause that cares WHICH unit dies, so every partner below is unconditional value: XP with no downstream cost, banked toward whatever [Level N] ability the legend's board carries.",
+      "basis": {
+        "rules": [
+          "428.1",
+          "428.1.a.1.a"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 14
     }
   ]
 }
