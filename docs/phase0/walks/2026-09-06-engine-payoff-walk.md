@@ -1510,3 +1510,111 @@ me" anchor.
 27. **`702.3` gates every "buff" anchor on the buff being SPENT.** A buff instructed onto an
     already-buffed unit *"is not placed instead"* (702.3.a), so the limiting set for that family is the
     nine buff-spenders in the pool, not the buffers.
+
+---
+
+# 31. The Azir + Grand Plaza combat walk — REFUSED, and K was never the constraint
+
+This closes the open lead left in §26 and re-opened by §18. The question is narrow: **with an unbounded
+Recruit engine behind it, does `SFD-177 Azir, Sovereign` add anything on top of
+`ready-recruits-grand-plaza`?** The answer is no, for three reasons, and the first one is the one I had
+not seen.
+
+## 31.1 The two ways to take a battlefield are different rules, and Azir only exists on one of them
+
+> **344.2.** If Control of a Battlefield is Contested, **there aren't units controlled by different
+> players there**, and the turn is in a Neutral Open State, a **Showdown** is opened during the next
+> Cleanup.
+> **323.9.** 7. Mark a **Combat** as Staged at each Battlefield that Contested was applied to **that have
+> Units present controlled by opposing players**.
+
+`ready-recruits-grand-plaza` is written for the **344.2** path — its own notable says so: *"walking in
+makes it Contested (190.3.a), 344.2 opens the Showdown, 348.2.a gives Control and 348.2.a.1 makes it a
+Conquer."* An unoccupied Plaza is taken with **no combat and no losses at all**.
+
+Azir's trigger lives only on the **323.9** path. `383.4.e`: an Attack Trigger fires *"when a Unit or
+Player gains the Attacker designation for the first time during a combat"*, and `807.1.d` with `461`
+require opposing units for that designation to exist. **On the board the existing entry is written for,
+Azir's ability never triggers.** He is a 4-Energy 4-Might body and nothing else.
+
+So the comparison only exists on a strictly worse board — the Plaza **occupied by the opponent** — where
+both lines pay a combat tax the 344.2 line never pays.
+
+## 31.2 On that board, unbounded K does not help, because the wall is not per-body
+
+The combat itself is priced as in §18: the tokens Azir drags in are Attacking Units by the damage step
+(`464.2.c.3.a`), the defender assigns their summed Might `D` among them, `465.2.c.3` forces lethal in full
+before moving on and `465.2.c.4` caps each at the minimum, so `D` damage kills `D` one-Might Recruits.
+Survivors are `K − D` (`K − D + 1` counting Azir). With `K` unbounded that clears seven trivially.
+
+**Then the opponent takes a whole turn**, because the Plaza pays at *your* next Beginning Phase
+(`315.2.b.2`), and:
+
+> `OGN-133 | Flurry of Blades | Spell | Body | E1 | [Reaction] … Deal 1 to all units at battlefields.`
+
+One Energy, at Reaction speed, kills **every** 1-Might survivor **simultaneously**. Survivors = 0 for
+**any** value of K.
+
+| | requirement |
+|---|---|
+| §18's figure (combat losses only) | `K ≥ 6 + D` |
+| **this walk (combat + one opponent turn)** | **no K works** — the binding constraint is *Might per body*, not *number of bodies* |
+
+That is the correction to my own §18: I priced the combat and called the line expensive. The real wall is
+one turn later and is **independent of K**, which is exactly why an unbounded engine does not unlock it.
+
+The fix is `UNL-077 Soul Shepherd` (*"Your token units have +1 Might"*, a continuous modifier, so it
+applies to every token at once) — and that is a property of **the Plaza line**, not of Azir. It is
+already a notable on `ready-recruits-grand-plaza` and the four other 1-Might Plaza entries. With it, that
+entry wins **without Azir**; it is Mind, so it narrows the shell to Mind/Order, which fits
+`garen-fiora-malzahar-facebreaker-recruits` and not `jhin-fiora-facebreaker-recall` (fury/order, three
+domains — 103.1.b.4).
+
+## 31.3 And the card that does Azir's job is already in the entry
+
+Azir's only real service is moving tokens that cannot walk — `143.4` makes them enter exhausted and
+`144.2` makes the Standard Move cost that exhaust. But `SFD-171 Renata Glasc, Industrialist`, which
+`ready-recruits-grand-plaza` already uses, **strictly dominates him for it**:
+
+| | Renata Glasc, Industrialist | Azir, Sovereign |
+|---|---|---|
+| shape | **static** — *"Your tokens enter ready"* | **trigger** — *"When I attack…"* |
+| how often | every token, every turn, permanently | **once per combat** (383.4.e) |
+| needs | nothing | an enemy garrison to attack |
+| reaches | anywhere a token can Standard-move (144.4.a) | only the battlefield he is attacking |
+| cost | E4 + 1 Order Power, once | E4, plus 1 Energy + 1 Order Power of [Accelerate] to act the turn he lands |
+
+And `144.3` — *"Players may perform multiple Units standard move simultaneously. This is treated as one
+game action performed on multiple Units"* (144.3.a: shared destination) — means a **ready** swarm needs no
+bulk mover at all. Tokens banked on an earlier turn are readied by `315.1.b` anyway.
+
+**Azir's genuinely unique edge, recorded so it is not lost:** he moves **exhausted** tokens
+**battlefield → battlefield** with no `[Ganking]` (`420.3.a` puts the exhaust cost only on the Standard
+Move; `810.1.c.3` confirms Ganking only widens the Standard Move). That consolidates a board split across
+two battlefields. **A Grand Plaza line never needs it**, because `355.2.a` and `144.3` put everything in
+one place from the base to begin with. If a future line needs bodies moved *between* battlefields, Azir is
+still the only card in the pool that does it in bulk, and `azir-sovereign-token-gather` remains the right
+entry for that.
+
+**Verdict: no entry.** `azir-sovereign-token-gather`'s existing ENGINE classification and its own
+notable — *"FOR A GRAND PLAZA FINISH IT IS A TWO-TURN ROUTE, NOT A REMATE"* — stand, and are now backed
+by the count rather than by an estimate.
+
+## 32. Facts for `CLAUDE.md`, continued
+
+28. **An unbounded token engine does not beat a sweeper, because the sweeper is not per-body.**
+    `OGN-133 Flurry of Blades` (Body, **E1**, [Reaction], *"Deal 1 to all units at battlefields"*) kills
+    every 1-Might token simultaneously, so no value of K reaches a Grand Plaza Hold through one opponent
+    turn. The binding constraint on every 1-Might Plaza line is **Might per body**, not **number of
+    bodies**, and the only fix in the pool is `UNL-077 Soul Shepherd`.
+29. **`344.2` and `323.9` are two different ways to take a battlefield, and attack triggers exist on only
+    one of them.** With no opposing units present, Contested opens a **Showdown** (344.2) and the Conquer
+    costs nothing; with opposing units present, a **Combat** is staged (323.9). So an entry built on the
+    344.2 path can never use a *"When I attack"* card, and one built on the 323.9 path pays a damage step
+    the other never pays. Check which path an entry is on before pairing an attack trigger with it.
+30. **`SFD-171 Renata Glasc, Industrialist` strictly dominates `SFD-177 Azir, Sovereign` for getting
+    tokens to a battlefield**: a static that works every turn on every token against a trigger that fires
+    once per combat (383.4.e), needs an enemy garrison, and reaches only the battlefield it attacks — and
+    `144.3` moves a ready swarm as ONE action regardless. Azir's unique edge is narrower than it looks:
+    **exhausted tokens moved battlefield → battlefield without [Ganking]** (420.3.a, 810.1.c.3), i.e.
+    consolidating a split board, which no Plaza line needs.
