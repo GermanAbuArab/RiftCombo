@@ -33791,6 +33791,229 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-07, issue #173. UNL-011 Fresh Beans and SFD-025 Rengar, Pouncing were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 144.1.b, 144.2, 190.3.a.1, 319.6, 323.2.a, 355.2.a, 381, 383.3.c, 415.3.a, 464.2.c.1, 464.2.c.3.a, 807.1.c, 811.1.b, 822.1.b opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The uniqueness claim was swept over the corpus rather than asserted, and it matters because the project's refuse-bucket C ('no [Hidden] card can play the attacker-side role') has exactly this card as its one exception in the whole pool."
+    },
+    {
+      "id": "curator-needlessly-large-yordle-printed-ten",
+      "name": "206 at its widest: a body whose real cost falls to 6 still reads as a 10, so the legend refunds two runes for it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-145",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Mind legend. 'When you play a unit, gear, or activated ability with Energy cost 7 or more, you may exhaust me to ready up to 2 runes.'"
+        },
+        {
+          "card": "SFD-055",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm unit, E10 + 3 Calm Power, M5. '[Shield 5] [Tank] I cost 2 Energy + 1 Calm rune less for each point you scored from holding this turn.' In zero entries before this walk. Its printed cost is the highest in the domain and its real cost is the most variable."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "VEN-145 / VEN-192 Curator of the Sands IS the legend and IS the requirement; Needlessly Large Yordle is mono-Calm, so 103.1.b.3 admits him. Nothing here is Signature (103.2.d.2).",
+          "At least one Hold this turn for the Yordle's discount to be worth anything — and the discount is what makes the pairing legible, not what makes it legal."
+        ],
+        "notable": [
+          "206 IS THE ENTRY, AND THE YORDLE IS ITS WIDEST DEMONSTRATION IN THE POOL. 206 makes a cost-threshold trigger read the PRINTED or BASE cost, and its own worked examples are Lady of Luminosity and this legend's family. Needlessly Large Yordle prints TEN Energy and prices itself at '2 Energy + 1 Calm rune less for each point you scored from holding this turn'. In a Duel the ceiling is two Holds (485.4 puts two battlefields on the table, 470 allows one Score each), so the real cost bottoms out at 6 Energy + 1 Calm Power — and the Curator still reads 10 and still fires. No other card in Calm or Mind moves that far between its printed and its paid cost.",
+          "AND 206.1'S EXCEPTION DOES NOT REACH IT. 206.1 for abilities says 'unless otherwise specified', and the specification that exists is Empower's: 827.1.c.3 makes cost-altering text count 'when determining a card's Empower cost for any reason'. The Yordle's reduction is not an [Empower] cost, so nothing switches the Curator off. This is the same line the project drew in #47 to kill the 'Empower discounted to 0 that still triggers' family — the discount family that SURVIVES is the ordinary one, and this is it.",
+          "WHAT THE REBATE IS ACTUALLY WORTH, IN THE RIGHT CURRENCY. 164.2.a makes Energy the RUNE'S EXHAUST ability, so readying 2 runes is 2 Energy of access — not Power. 164.2.b, the recycle-for-Power ability, carries no exhaust, so an already-exhausted rune pays Power anyway and readying it buys nothing there (the free floor of 2 Power a turn from 315.3.b and 164.2.b is untouched by this line). The rebate is therefore exactly 2 Energy, once a turn, because the Curator's cost is her own exhaust and 315.1.b readies her only in your Awakening.",
+          "NET, WITH THE QUANTITIES DECLARED. Two Holds this turn: the Yordle costs 6 Energy + 1 Calm Power instead of 10 + 3. Play him, exhaust the Curator, ready 2 runes: 4 Energy net for a M5 body with [Shield 5] and [Tank]. Every other 7+ printed card you play that turn is worth nothing extra — the exhaust is spent.",
+          "WHAT YOU GET FOR THE 4 ENERGY IS A WALL, AND IT IS PRICED IN THE OPPONENT'S DAMAGE. 814.1.b/814.2 make [Shield 5] worth +5 Might while defending, so he defends at 10. 815.1.c.2 is the harder half: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them' — so the attacker MUST spend 10 of its summed Might on him before 465.2.c may touch anything else of yours. That is the whole garrison bought with one body.",
+          "AND THAT IS ALSO WHY HE IS ANTI-SYNERGIC WITH THE PLAZA FAMILY. The same 815.1.c.2 that protects a garrison forbids the attacker assigning damage anywhere else — which is a defensive gift when your other bodies are the ones that matter, and a liability in any line whose seven 1-Might tokens have to SURVIVE a sweeper rather than a combat, since a sweeper assigns nothing and [Tank] never sees it.",
+          "WHAT REFUTES IT. (a) The Yordle is never free: CLAUDE.md's own count stands — 485.4 caps a Duel at two Holds, so the floor is 6 Energy + 1 Calm Power. (b) The Curator's ready is a 'you may' with an exhaust, so exactly one trigger a turn is cashed however many big cards you play. (c) 3 Calm Power at full price is above the free floor of 2 that every deck has, so the rune deck has to carry the un-discounted case."
+        ]
+      },
+      "steps": [
+        "Hold one or two battlefields at your Beginning Phase (315.2.b.2). Each point scored from Holding cuts the Yordle by 2 Energy and 1 Calm rune.",
+        "Main Phase: play Needlessly Large Yordle. With two Holds he costs 6 Energy + 1 Calm Power instead of his printed 10 + 3.",
+        "The Curator's trigger fires anyway, because 206 reads the PRINTED Energy cost of 10 and not the 6 you paid.",
+        "Exhaust the Curator: ready up to 2 runes. 164.2.a makes each worth 1 Energy of access this turn.",
+        "Spend that Energy in the same Main Phase — 167 empties the Rune Pool at the start of your next one.",
+        "On the opponent's turn the Yordle defends at 10 (814.1.b, 814.2) and 815.1.c.2 forces every point of their assignment onto him before any other body of yours is a legal target."
+      ],
+      "netPerIteration": "a 10-Might [Tank] wall for a net 4 Energy and 1 Calm Power, with the legend's rebate paid on a printed cost the card no longer charges",
+      "terminatesIn": "engine only — the Curator's exhaust caps the rebate at one trigger a turn and nothing here scores; the Yordle is three copies (103.2.b)",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule curator-of-the-sands-printed-cost (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the proven rule curator-of-the-sands-printed-cost (54 partners, 53 uncovered, one entry). SFD-055 Needlessly Large Yordle was in zero entries and is the widest printed-versus-paid gap in the legend's own two domains: printed 10 Energy + 3 Calm Power, floor 6 + 1 after the two Holds a Duel allows. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.3, 103.2.b, 103.2.d.2, 164.2.a, 164.2.b, 167, 206, 206.1, 315.1.b, 315.2.b.2, 315.3.b, 465.2.c, 470, 485.4, 814.1.b, 814.2, 815.1.c.2, 827.1.c.3. Ban check: VEN-145 and SFD-055 carry no [BANNED marker. Arithmetic against its own declared quantities: printed 10 read by the trigger, 6 + 1 Calm Power paid, 2 Energy refunded, net 4 Energy. Trap check: the rebate is ENERGY and not Power (164.2.a versus 164.2.b), so it does not widen the free Power floor; the Curator's exhaust caps it at one a turn; [Tank] is named as an anti-synergy with any line whose small bodies must survive a SWEEPER, which assigns no damage and so never sees 815.1.c.2; no token, no [Temporary], no [Repeat], no buff. Depends on no unruled reading."
+    },
+    {
+      "id": "shadow-temple-dr-mundo-balanced-trash",
+      "name": "Two cards whose drawbacks cancel: Mundo recycles three out of the trash at the start of the phase and the Temple burns three back in at the Hold",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-165",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you hold here, [Burn 3]. (Put the top 3 cards of your Main Deck into your trash.)' The pool's only repeatable free trash filler — and, on its own, a fuse: 431.1.b makes burning past the deck a Burn Out."
+        },
+        {
+          "card": "OGN-109",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Mind unit, E8 + 2 Mind Power, M6. 'My Might is increased by the number of cards in your trash. At the start of your Beginning Phase, recycle 3 from your trash.' On its own he shrinks his own Might by 3 every turn. In one entry before this walk, and never with a filler."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Dr. Mundo is mono-Mind and the Shadow Temple is Colorless (103.4), so ANY legend whose two domains include Mind runs the line (103.1.b.1). Nothing here is Signature (103.2.d.2).",
+          "The Shadow Temple has to be the battlefield in play: 485.5 selects one of the three each player provides at random, and 103.4.c forbids more than one of a name."
+        ],
+        "notable": [
+          "EACH CARD IS A DRAWBACK AND THE PAIR IS NOT, WHICH IS THE ENTRY. Alone, Dr. Mundo is a body that eats its own stat line: 'My Might is increased by the number of cards in your trash' and 'At the start of your Beginning Phase, recycle 3 from your trash' — mandatory, no 'may' — so he shrinks by 3 every turn he stands. Alone, the Shadow Temple is a fuse: [Burn 3] every Hold, and 431.1.b makes putting cards from your Main Deck into the trash in excess of what remains a Burn Out, which 431.2.b then punishes by recycling YOUR WHOLE TRASH back into the Main Deck. Together the two are exactly balanced: 3 cards out of the trash and into the deck, then 3 out of the deck and into the trash, every turn, forever.",
+          "THE ORDER IS FIXED BY THE PHASE STRUCTURE AND IT IS THE RIGHT WAY ROUND. 315.2.a is the Beginning Step and 315.2.a.1 is 'At the start of Beginning Phase game effects take place'; 315.2.b is the Scoring Step and 315.2.b.2 is 'The Turn Player Holds all Battlefields they Control'. Mundo's recycle is a start-of-Beginning-Phase effect, so it resolves FIRST and the Temple's Burn refills behind it. That matters: the deck is never allowed to run down while a card sits waiting to go back into it.",
+          "SO MUNDO IS THE THING THAT DEFUSES THE TEMPLE. The catalogued Temple entry, shadow-temple-sentinel-burn, prices the battlefield as 'nine cards into your trash a turn, on a four-turn fuse'. The fuse exists because nothing puts cards BACK. Mundo puts three back every turn at no cost, so the Temple can be held indefinitely — and the trash it maintains is the currency of every trash line in the pool ([Flow] replays, Last Rites, Rhasa's discount, Heedless Resurrection).",
+          "AND THE TEMPLE IS THE THING THAT MAKES MUNDO STAND STILL. His Might is read continuously off the trash, so a trash held at N leaves him at 6 + N permanently rather than sliding to 6. He is E8 + 2 Mind Power for a body whose size is a number you control.",
+          "A BURN OUT WOULD ERASE BOTH HALVES AT ONCE, WHICH IS WHY THE BALANCE IS THE POINT AND NOT A NICETY. 431.2.b: on burning out you 'Recycle their trash into their Main Deck.' That is Mundo back to M6 and every trash payoff in the deck reset to zero, in one event, for the price of a point to the opponent (194.1.d). The pairing is not a value engine bolted onto a fuse; it is the fuse removed.",
+          "WHAT THE TRASH IS WORTH, STATED RATHER THAN IMPLIED. Nothing here scores and nothing here draws. The product is (a) a Mind body of 6 + N Might for a fixed price and (b) a trash of stable size for the rest of the deck to spend. An entry that claimed more would be pricing cards it does not name.",
+          "WHAT REFUTES IT. (a) 485.5 makes the Temple a 1-in-3 draw at best. (b) The Temple's trigger is a Hold, so a turn in which you control no battlefield burns nothing and Mundo loses 3 that turn with no refill. (c) Mundo's recycle is mandatory and the Temple's Burn is not optional either ('[Burn 3]', no may), so neither half can be switched off on a turn you would rather it did not fire. (d) 416.1.a recycles to the BOTTOM of the deck, so the three cards that go back are not the three that come out — the deck is stable in size, not in order."
+        ]
+      },
+      "steps": [
+        "Provide the Shadow Temple as one of your three battlefields (103.4.c); 485.5 decides whether it is in play.",
+        "Play Dr. Mundo, Expert (E8 + 2 Mind Power). 143.4 makes him enter exhausted.",
+        "Take and keep control of the Temple — a unit standing there and a Conquer (348.2.a / 348.2.a.1, or 466.5 / 466.5.d out of a combat).",
+        "Every turn, Beginning Step (315.2.a.1): Mundo's trigger recycles 3 cards from your trash to the bottom of your Main Deck (416.1.a). His Might drops by 3.",
+        "Same turn, Scoring Step (315.2.b.2): the Temple Holds and its trigger burns the top 3 of your Main Deck into your trash. His Might returns to where it was.",
+        "Net across the turn: trash size unchanged, Main Deck size unchanged, no Burn Out possible from this pair, and Mundo standing at 6 plus the trash you have built."
+      ],
+      "netPerIteration": "a trash held at a constant size with no fuse, and a Mind body whose Might is 6 plus that number, for no recurring cost at all",
+      "terminatesIn": "engine only — the two halves cancel exactly, so it neither grows nor decays; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule shadow-temple-trash-fuel (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the proven rule shadow-temple-trash-fuel (49 partners, 49 uncovered, one entry). The pairing is chosen for a property no other row of the list has: OGN-109 Dr. Mundo, Expert is the only partner that puts cards BACK into the Main Deck, and it does so at exactly the Temple's rate, so the two cards' drawbacks cancel. The phase order was checked rather than assumed: 315.2.a.1 'At the start of Beginning Phase game effects take place' precedes 315.2.b.2's Hold, so Mundo's recycle runs first and the Burn refills behind it. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.d.2, 103.4, 103.4.c, 143.4, 194.1.d, 315.2.a, 315.2.a.1, 315.2.b, 315.2.b.2, 348.2.a, 348.2.a.1, 416.1.a, 431.1.b, 431.2.b, 466.5, 466.5.d, 485.5. Ban check: VEN-165 and OGN-109 carry no [BANNED marker. Arithmetic against its own declared quantities: 3 recycled out, 3 burned in, per turn, net zero on both zones. Trap check: both triggers are mandatory, so neither can be declined on an awkward turn; the battlefield is chosen at random (485.5) and is named in prerequisites.easy; a Burn Out would recycle the whole trash (431.2.b) and erase both halves, which is exactly what the pairing prevents; no token, no [Temporary], no [Repeat], no buff. Depends on no unruled reading."
+    },
+    {
+      "id": "dauntless-vanguard-repair-specialist-gear-assault",
+      "name": "The Attacker designation for free, beside the pool's one unbounded [Assault] — and the gear that pays for it never has to be attached",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-093",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body unit, E4 + 1 Body Power, M4. 'You may play me to an occupied enemy battlefield.' The permission is for HIMSELF, which is the limit the entry is written around."
+        },
+        {
+          "card": "VEN-076",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E3 M3. 'I have [Assault] equal to the number of gear you control.' In zero entries before this walk, and the only [Assault] in the pool whose value is a number you build rather than a printed one."
+        },
+        {
+          "card": "SFD-108",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "Body Equipment, E1, Might Bonus +1. Bought here for its PRESENCE, not its text: Repair Specialist counts gear you CONTROL, and nothing says attached."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All three cards are mono-Body, so ANY legend whose two domains include Body runs the line (103.1.b.1). Nothing here is Signature (103.2.d.2).",
+          "An enemy battlefield with a garrison. The Vanguard's permission names an OCCUPIED enemy battlefield, and 807.1.d needs the Attacker designation, which only a real fight hands out."
+        ],
+        "notable": [
+          "THE ATTACKER DESIGNATION WITH NO MOVE AND NO EXHAUST. 190.3.a.1 reads 'Units moving to OR BEING PLAYED TO a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield', and 464.2.c.1 makes 'the Attacker … the player whose unit(s) applied the Contested status'. So the Vanguard is an attacker the instant he is played: 144.2's exhaust never comes up, and 143.4's 'Units enter the Board exhausted' costs nothing, because combat does not read exhaustion (464.2.c.3 and 465.2.b do not filter by state).",
+          "AND THE PERMISSION IS FOR HIM ALONE, WHICH IS WHY THE PARTNER HAS TO WALK. 'You may play ME to an occupied enemy battlefield' — 355.2.b lets a game effect grant new valid play locations and this one grants exactly one card's. Repair Specialist arrives the ordinary way, base to battlefield (144.4.a) with his own exhaust as the cost, and 144.3 lets him and any other body do it as ONE game action. The Vanguard's real contribution is a body the opponent could not see coming and a Contested status applied without spending a move.",
+          "THE ONLY [Assault] IN THE POOL THAT IS NOT A PRINTED NUMBER. 807.1.b formats the keyword as 'Assault [X]' with X 'referenced in the functional text', and every other carrier prints a fixed X. Repair Specialist's is 'equal to the number of gear you control' — a quantity you build. 807.2 then sums it with any other source: 'If a Unit has Assault or has been granted Assault and is granted Assault by an additional source, the Assault Value of all granted Assault keywords is summed.'",
+          "AND THE GEAR DOES NOT HAVE TO BE ATTACHED, WHICH IS THE CHEAP PART. The clause counts gear you CONTROL. 818.1 makes [Equip] an Activated Ability with its own cost, and nothing here pays it: three Warmog's Armor at 1 Energy each, left sitting unattached, are three points of [Assault]. 323.7's Cleanup recalls unattached non-unit gear at battlefields to their controller's base, which changes where they are and not who controls them.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Three gear on the board: Repair Specialist is M3 with [Assault 3], so M6 while attacking. Play the Vanguard straight in at M4. Summed attacking Might 10 (465.2.c), for 3 Energy of gear, 3 Energy for the Specialist, and 4 Energy + 1 Body Power for the Vanguard — and 465.2.c.4 caps the defenders' bill at their own minima, so most of that 10 is excess (R28 = A) for any excess-damage payoff a Body list wants to add.",
+          "807.1.d.1 IS WHY IT ALL EVAPORATES ON DEFENCE. 'Assault remains in effect as long as the Unit maintains the Attacker designation.' On the opponent's turn Repair Specialist is a M3 body and the gear counts for nothing. This package attacks; it does not hold.",
+          "WHAT REFUTES IT. (a) Walking into an EMPTY enemy battlefield conquers without an Attacker (323.9 stages no Combat with no opposing units), and then every point of [Assault] is worth zero — the exact trap the rule's own text warns about. (b) The Vanguard's play is a Main Phase action: 155 confines a spell without [Action] or [Reaction] to the Main Phase, and a unit's play has no Reaction speed here, so the surprise is against a garrison the opponent left standing, not a response to their attack. (c) Three Warmog's Armor left unattached are three dead cards outside this line."
+        ]
+      },
+      "steps": [
+        "Earlier turns: play up to three Warmog's Armor (1 Energy each) and leave them unattached, and play Repair Specialist (E3). 143.4 makes him enter exhausted; 315.1.b readies him.",
+        "Main Phase: Standard-Move Repair Specialist from your base into the enemy-held battlefield (144.4.a; his exhaust is the cost, 144.2 / 420.3.a). 190.3.a.1 and 450 apply Contested.",
+        "Play Dauntless Vanguard (E4 + 1 Body Power) directly to that same battlefield under his own permission (355.2.b). He needs no move and pays no exhaust.",
+        "The next Cleanup stages a Combat (323.9: units of opposing players are present) and 323.13 opens it. 464.2.c.1 makes you the Attacker and 464.2.c.3 designates your units.",
+        "807.1.d and 807.2: Repair Specialist has [Assault] equal to your gear count — 3 with three Warmog's on the board — so he fights at M6 beside the Vanguard's M4.",
+        "465.2.c assigns your summed 10 Might; 465.2.c.4 caps each defender at its minimum, so the remainder is excess damage. Winning empties their side, and 466.3.a / 466.5 / 466.5.d Conquer the battlefield."
+      ],
+      "netPerIteration": "ten points of attacking Might for seven Energy and one Power, with the last body arriving after the opponent has finished deciding",
+      "terminatesIn": "engine only — one Conquer per battlefield per turn (470), two battlefields in a Duel (485.4); the [Assault] is worth nothing on defence (807.1.d.1)",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule dauntless-vanguard-occupied-battlefield-assault (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Rules readings R28 = A, ruled 2026-09-04 (GitHub issue #11)",
+          "kind": "manual-walk",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/11",
+          "date": "2026-09-04"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the orphan synergy rule dauntless-vanguard-occupied-battlefield-assault (41 partners, 41 uncovered). Batch 1 back-linked the rule's MECHANISM to stare-down-arachnoid-horror-lone-survivor; this is the anchor-partner entry. VEN-076 Repair Specialist was in zero entries and is the only [Assault] carrier in the pool whose value is a quantity you build rather than a printed number — checked against 807.1.b's format, which every other carrier fills with a constant. The gear is bought for its presence: the clause counts gear you CONTROL and 818.1 makes attaching a separate activated ability nobody here pays. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.d.2, 143.4, 144.2, 144.3, 144.4.a, 155, 190.3.a.1, 315.1.b, 323.7, 323.9, 323.13, 355.2.b, 420.3.a, 450, 464.2.c.1, 464.2.c.3, 465.2.b, 465.2.c, 465.2.c.4, 466.3.a, 466.5, 466.5.d, 470, 485.4, 807.1.b, 807.1.d, 807.1.d.1, 807.2, 818.1. Stands on R28 = A only for the excess-damage remark. Ban check: SFD-093, VEN-076 and SFD-108 carry no [BANNED marker. Arithmetic against its own declared quantities: three gear give [Assault 3], so M3 becomes M6 attacking, plus the Vanguard's M4 = 10 summed. Trap check: an EMPTY enemy battlefield conquers with no Attacker and every point of Assault is then worth zero (323.9, 807.1.d); the Assault evaporates on defence (807.1.d.1); the Vanguard's permission covers only himself (355.2.b); no token, no [Temporary], no [Repeat], no buff. Depends on no unruled reading beyond R28."
     }
   ]
 }
