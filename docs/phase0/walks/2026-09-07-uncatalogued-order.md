@@ -141,3 +141,90 @@ command.
 5. **The pool's disempowerers are NINE, not the six the record names**: the sweep adds VEN-037
    Tomb-Raider Barbara, VEN-127 Lacerate and VEN-133 Glowstone, two of them Order. Members listed
    in §4.1.
+
+---
+
+# Batch 2 — four more Order cards
+
+| id | class | cards | what it is |
+|---|---|---|---|
+| `seal-of-unity-grand-strategem` | ENGINE | OGN-245, OGN-233 | the Order deck's E0 Power base, and what 3 Power buys |
+| `cull-the-weak-loyal-poro` | ENGINE | OGN-209, UNL-156 | 355.10.e's own worked example, made card-neutral |
+| `hungry-wolf-eye-of-herald-double-move` | ENGINE | VEN-125, SFD-153, VEN-127 | a second Standard Move for one Order Power |
+| `mageseeker-investigator-mass-move-tax` | ENGINE | UNL-163, VEN-118 | the only card in the pool that prices 144.3 |
+
+## 6. Cull the Weak is Riot's own example for 355.10.e
+
+> **355.10.e.** *"It is part of a set of objects chosen in whole or in part by other players. e.g.,
+> **"Each player kills a unit they control" does not target.** Each player, including the one who
+> played the spell, chooses a unit to kill as the spell or ability resolves."*
+
+**OGN-209 Cull the Weak** is *"Each player kills one of their units."* — the example almost verbatim.
+So it pays **no Deflect Value** (809.1.c charges only for choosing), fires no "when this is chosen"
+trigger, and reaches a unit sitting at their base that nothing else in Order can touch. The entry
+says plainly what it does *not* do: the opponent picks their own casualty, so this is a tax, not
+aimed removal.
+
+**UNL-156 Loyal Poro** makes your own half card-neutral. And the reminder it carries is a
+**paraphrase of a defined term** — 740.2.a: *"A unit is alone when there are no other friendly
+units at the same location."* The condition is on the **Poro's location**, so a second body has to
+be standing with it; that is stated as a `zone`/`state` requirement in `uses[]` rather than in prose,
+per the #165 discipline.
+
+**355.10.f** is the sibling clause and the two are easy to conflate: an instruction a player *"must"*
+complete also targets nothing — which is why OGN-287 Sigil of the Storm's forced rune recycle
+(refused in #171 batch 7) chooses nothing either.
+
+## 7. The only card in the pool that prices 144.3
+
+**UNL-163 Mageseeker Investigator**: *"Opponents must pay :rb_rune_rainbow: for each unit beyond the
+first to move multiple units to my battlefield at the same time."* That is **144.3** — *"Players may
+perform multiple Units' standard move simultaneously. This is treated as one game action performed
+on multiple Units"* — the paragraph this walk's own `might-of-demacia-four-body-conquer-draw` is
+built on, and 144.4.a.1's cap counts **other players** rather than units, so a Duel otherwise lets a
+swarm walk in whole for free. The two entries are the two sides of one rule.
+
+Stated in the entry rather than sold as a lock: it guards **only its own battlefield**, does nothing
+against a single arrival, does nothing against a unit *played* rather than moved, and splitting the
+move does not dodge the toll so much as reduce the attacker to one body a turn (144.2 + 315.1.b) —
+which is what 144.3 exists to avoid in the first place.
+
+## 8. A ready is worth exactly one Standard Move, so it is paired with a mover
+
+**VEN-125 Hungry Wolf** (*"1 Order Power: Ready me and give me +1 Might this turn. Use only if
+you've chosen an enemy unit this turn and only once each turn"*) is walked against this project's
+own refuse-by-rule bucket for readies: a ready buys **nothing** on defence (neither 464.2.c.3 nor
+465.2.b filters by state) and exactly **one extra Standard Move** on offence. So it is paired only
+with **SFD-153 Eye of the Herald** (*"When I move, play a 1 Might Recruit unit token here"*), and
+the destination restriction is stated rather than glossed: **144.4** allows base↔battlefield only,
+and battlefield-to-battlefield needs [Ganking] this deck does not grant — so the double move is
+**out and back**, and 359.3.f.2 reads *"here"* at execution, which honestly places the second Recruit
+at the base. One of the two is still born **at a battlefield**, which is the bottleneck 13 of the
+pool's 49 token-makers answer.
+
+The condition is a **choice**, not a kill: 355.10.d means a programmatically-selected mass effect
+satisfies it not at all, so Grand Strategem and its family are no help — **VEN-127 Lacerate**
+(E2 + 1 Power, the cheapest Order spell that chooses an enemy unit) is the enabler, and it does real
+work while satisfying the clause.
+
+## 9. Standing notes for CLAUDE.md (Order batch 2)
+
+6. **355.10.e's printed example is OGN-209 Cull the Weak's exact wording** — *"Each player kills a
+   unit they control" does not target* — so the whole "each player kills one of their units" family
+   pays no Deflect (809.1.c prices choosing) and fires no choose-triggers. 355.10.f is the sibling:
+   an instruction a player *"must"* complete also targets nothing (OGN-287's forced rune recycle).
+7. **740.2.a defines "alone"** — *"A unit is alone when there are no other friendly units at the
+   same location"* — so the project can stop sourcing it to the pool's reminder text (SFD-036 Lonely
+   Poro, UNL-210 Forbidding Waste). The consequence is unchanged and the citation is better.
+8. **UNL-163 Mageseeker Investigator is the only card in the pool that prices 144.3's simultaneous
+   move.** 144.3 + 144.4.a.1 (whose cap counts *other players*, 447.2.a) are why a Duel otherwise
+   lets a swarm arrive as one free game action; the Investigator charges a rainbow per body beyond
+   the first, at its own battlefield only, and only against a *move* — not against a unit played
+   there (355.2.b) and not against a single arrival.
+9. **OGN-245 / SFD-238 Seal of Unity is the Order deck's Power base**, the counterpart of the Mind
+   deck's Seal of Insight: E0 to play, 1 Order Power to make, so it breaks even in a turn and sits
+   **outside** 161.2.a's twelve-rune cap — and it is [Reaction] Power, which 415.3.a makes the
+   scarce half (a rune exhausted on your turn is dead for all of the opponent's).
+10. **A ready is worth one Standard Move and nothing on defence**, so a "ready me" card is only worth
+    running beside a payoff that reads *moving*. And 144.4 has no battlefield-to-battlefield leg
+    without [Ganking], so a double move is **out and back** unless the deck grants it.
