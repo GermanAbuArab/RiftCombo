@@ -34559,6 +34559,160 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #174, the uncatalogued Calm/Mind/Order lane). VEN-134 Kayle, Justified and VEN-130 Aurok General were both in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 103.2.d.2, 317.2.c, 410.2.a, 441.1.b, 441.1.c, 441.1.c.1, 441.2, 441.3, 702.3, 809.1.c, 810.1.c.3. TWO UNIQUENESS CLAIMS, BOTH SWEPT OVER THE WHOLE CORPUS RATHER THAN ASSUMED: Kayle is the only card carrying 441.1.c.1's multiple-Empower permission, and Aurok General is the only card whose payoff reads a board of Empowered units (`grep -inE \"units that are \\[?Empowered|your \\[?empowered\"`). The printed marker of the permission is the OMISSION of 'Use only if not Empowered' from Kayle's reminder text, which every other [Empower] card prints — worth noting because it is invisible to a keyword grep. Ban check: neither card is banned or restricted. Trap check: 441.3's 'Limited Action' is not a per-turn cap (410.2.a), so all three Empowers fit in one Main Phase; neither Might source is a Buff, so 702.3 does not cap them; 441.2 makes the state permanent so there is no upkeep and no growth; VEN-153 Matriarch of War is named as a deckbuilding lead and deliberately kept out of uses[]; no unruled reading."
+    },
+    {
+      "id": "magma-wurm-illaoi-ready-tentacles",
+      "name": "Speed, not size: Magma Wurm makes every Tentacle walk the turn it is minted, which is the bottleneck a token engine actually has",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-011",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury unit, E8 + 1 Fury Power, M8. 'Other friendly units enter ready.' A static that overrides 143.4 for EVERY friendly unit you play while she stands, not only for tokens — 143.4.a says the default 'can be altered by Accelerate or similar game effects'."
+        },
+        {
+          "card": "VEN-109",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Chaos unit, E6 M4. 'When you play me or when I score, play a 1 Might Tentacle unit token from Bilgewater. I have +1 Might for each token unit you control.' In zero entries before this walk. She is both a token source and the card that turns the count into Might."
+        },
+        {
+          "card": "VEN-100",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E3. 'Play two 1 Might Tentacle unit tokens from Bilgewater. [Flow] 3 Energy.' In zero entries before this walk. Two bodies a casting, and 829.1.b gives each copy a second casting out of the trash before 829.1.b.1 banishes it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Fury + Chaos. Computed over the 94 legend base codes in cards.json, that is five legend names: OGN-251 / OGN-301 Loose Cannon (Jinx), OGS-017 Dark Child - Starter (Annie), SFD-185 / SFD-242 Glorious Executioner (Draven), UNL-185 / UNL-228 Bloodharbor Ripper (Pyke), VEN-143 / VEN-191 Master of Shadows (Zed). Nothing here is Signature (103.2.d.2).",
+          "A battlefield worth walking into. This engine's product is bodies that can move on arrival; it does not itself score."
+        ],
+        "notable": [
+          "THE BOTTLENECK IS THE WALK, NOT THE COUNT, AND THAT IS WHY MAGMA WURM AND NOT A WIDER GENERATOR. The project's #48 token walk established it: of the 49 cards that create unit tokens, most put them at your base, and 143.4 makes every unit enter exhausted, so a swarm minted this turn cannot go anywhere until your next Awakening (315.1.b). Magma Wurm's 'Other friendly units enter ready' is the alteration 143.4.a permits, and it applies to every body, so two Tentacles minted in the Main Phase walk into a battlefield the same Main Phase (144.4.a) — and 144.3 moves them as ONE game action with a shared destination (144.3.a) and simultaneous exhausts (144.3.c).",
+          "'ENTERS READY' IS NOT A READY, AND THE DIFFERENCE IS EXACTLY ONE STANDARD MOVE. 415.1 defines Readying as marking a Game Object ALREADY on the board, so nothing here gives an exhaust back; what it buys is that 144.2's exhaust can be paid at all on the turn the body appears. On the opponent's turn it is worth nothing — 144.1.b forbids the Standard Move in a Closed State and combat does not read exhaustion (464.2.c.3, 465.2.b) — which is why this entry is written for tokens made in YOUR Main Phase.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Illaoi's play trigger is one Tentacle; each Up from the Deep is two, and [Flow] makes each copy two castings — 829.1.b is 'functionally short for \"You may play this from your trash for its flow cost. Then banish it\"' and 829.1.b.1's delayed replacement is the cap, so three copies are SIX castings and TWELVE Tentacles over a game. With five Tentacles standing, Illaoi is M9 ('+1 Might for each token unit you control'), and every one of them arrived able to move.",
+          "AND ILLAOI'S SECOND TRIGGER IS A SCORE, NOT A PLAY. 'When you play me OR WHEN I SCORE' — 469 defines Scoring as a Conquer or a Hold, so she mints another Tentacle every time she takes or keeps a battlefield, with 470 allowing one Score per battlefield per turn and 485.4 putting two on a Duel table. That is up to two extra bodies a turn for no card.",
+          "WHAT THE ENGINE IS NOT, SAID PLAINLY. A 1-Might token dies to one point of damage (143.2.a: 'nonzero damage marked on it equalling or exceeding its Might'), and OGN-133 Flurry of Blades is a 1-Energy [Reaction] that deals 1 to ALL units at battlefields — it kills every Tentacle simultaneously for any number of them. The pool's fix is UNL-077 Soul Shepherd's 'Your token units have +1 Might', and Soul Shepherd is MIND, which 103.1.b puts outside a Fury/Chaos identity. So this entry buys SPEED and cannot buy survival; soul-shepherd-illaoi-tentacle-wall is the same token engine in Mind/Chaos buying the opposite thing, and the two cannot be combined.",
+          "COST. Magma Wurm E8 + 1 Fury Power is a whole turn on its own and she must land before the tokens do, since her static is read as they enter. Illaoi E6. Up from the Deep E3 a casting, and its [Flow] cost is 3 Energy again.",
+          "WHAT REFUTES IT. (a) Magma Wurm says 'OTHER friendly units', so she never readies herself and enters exhausted like anything else. (b) Tokens are not cards: 185 and 186.1 keep every dead Tentacle out of the trash, so nothing here recycles or reanimates them. (c) The tokens are born at your base or a battlefield you control (355.2.a), never at the enemy's — walking in is still a move that applies Contested (190.3.a.1) and can open a Combat they are far too small to win."
+        ]
+      },
+      "steps": [
+        "An earlier turn: play Magma Wurm (E8 + 1 Fury Power). 143.4 makes HER enter exhausted — 'other friendly units' excludes her.",
+        "A later Main Phase: play Illaoi, Prophet of the Great Kraken (E6). Her play trigger mints a 1 Might Tentacle, and Magma Wurm's static has it enter READY (143.4.a).",
+        "Play Up from the Deep (E3): two more Tentacles, also ready.",
+        "Standard-Move the whole batch into a battlefield as ONE game action (144.3, 144.3.a, 144.3.c; 144.4.a). Each pays its own exhaust (144.2 / 420.3.a).",
+        "Later, play Up from the Deep again out of your trash for its [Flow] cost of 3 Energy (829.1.b); it is banished afterwards (829.1.b.1). Two more ready bodies.",
+        "Every time Illaoi scores — a Conquer or a Hold under 469, capped by 470 and 485.4 — she mints another Tentacle, and her own Might is 4 plus the number of token units you control."
+      ],
+      "netPerIteration": "two ready bodies per casting that can walk in the same turn, a third on every Illaoi score, and +1 Might on Illaoi for each of them",
+      "terminatesIn": "engine only — twelve Tentacles a game from three [Flow] copies (829.1.b.1 banishes each after its replay) plus one per Illaoi score; nothing here scores by itself",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule magma-wurm-mass-ready (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the proven rule magma-wurm-mass-ready (50 partners, 49 uncovered, one entry). VEN-109 Illaoi and VEN-100 Up from the Deep were both in zero entries. The pairing is chosen against the project's own #48 finding — the bottleneck of a token line is the walk to the battlefield, not the count — and Magma Wurm is the widest answer to it, since 143.4.a lets her static reach every friendly unit rather than only tokens. The entry states its own ceiling: 1-Might tokens die to OGN-133 Flurry of Blades whatever their number, and the pool's only fix (UNL-077 Soul Shepherd) is Mind and therefore illegal beside Fury/Chaos. Legend list computed from cards.json (fury + chaos over the 94 legend base codes), not typed. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b, 103.2.d.2, 143.2.a, 143.4, 143.4.a, 144.1.b, 144.2, 144.3, 144.3.a, 144.3.c, 144.4.a, 185, 186.1, 190.3.a.1, 315.1.b, 355.2.a, 415.1, 420.3.a, 464.2.c.3, 465.2.b, 469, 470, 485.4, 829.1.b, 829.1.b.1. Ban check: OGN-011, VEN-109 and VEN-100 carry no [BANNED marker. Arithmetic against its own declared quantities: three [Flow] copies are six castings and twelve Tentacles; five standing tokens put Illaoi at M9. Trap check: Magma Wurm excludes herself ('other friendly units'); 'enters ready' is not a ready (415.1) and buys exactly one Standard Move, worth nothing on the opponent's turn (144.1.b); tokens never reach the trash (185, 186.1); no [Temporary], no [Repeat], no buff. Depends on no unruled reading."
+    },
+    {
+      "id": "soul-shepherd-illaoi-tentacle-wall",
+      "name": "The same token engine buying the opposite thing: one static point of Might is the whole difference between a swarm and a sweep",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-077",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind unit, E5 M3. 'Your token units have +1 Might.' A continuous modifier, not a 702 Buff counter, so 702.3's one-per-unit cap never touches it and it reads every token already on the board and every one that enters later."
+        },
+        {
+          "card": "VEN-109",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Chaos unit, E6 M4. 'When you play me or when I score, play a 1 Might Tentacle unit token from Bilgewater. I have +1 Might for each token unit you control.'"
+        },
+        {
+          "card": "VEN-100",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E3. 'Play two 1 Might Tentacle unit tokens from Bilgewater. [Flow] 3 Energy.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Chaos. Computed over the 94 legend base codes in cards.json, that is four legend names: OGN-263 / OGN-307 Swift Scout (Teemo), SFD-199 / SFD-248 Prodigal Explorer (Ezreal), UNL-197 / UNL-234 Scorn of the Moon (Diana), VEN-151 / VEN-195 Soul's Reflection (Mel). Nothing here is Signature (103.2.d.2).",
+          "Nothing on the board first. Soul Shepherd's grant is a static that reads tokens as they enter, so the order of play does not matter."
+        ],
+        "notable": [
+          "ONE POINT OF MIGHT IS THE WHOLE DIFFERENCE, AND IT IS MEASURED AGAINST A NAMED CARD. 143.2.a kills a unit on 'nonzero damage marked on it equalling or exceeding its Might'. OGN-133 Flurry of Blades is a 1-Energy Body [Reaction] reading 'Deal 1 to all units at battlefields' — it kills EVERY 1-Might token simultaneously, for any number of them, which is why the project's #159 Azir refusal concluded that the binding constraint on a token line is Might PER BODY and not the number of bodies. Soul Shepherd's static takes every Tentacle to 2 and the sweeper does nothing at all.",
+          "IT IS A CONTINUOUS MODIFIER, NOT A BUFF, WHICH IS WHY IT NEVER COLLIDES WITH ANYTHING. 702.3 ('There can only be one Buff on a Unit at a time') and 702.3.a govern the 702 counter; 703 fixes each Buff at +1. Soul Shepherd places no counter, so her +1 stacks on top of a real buff, applies to every token at once, and cannot be spent away by any of the buff-spenders in the pool.",
+          "AND IT MAKES ILLAOI BIGGER TWICE OVER. 'I have +1 Might for each token unit you control' counts BODIES, not Might, so Soul Shepherd does not change that number — but 185.1 and 185.2.b make a token unit a full unit with a Might, so each Tentacle contributes 2 to the summed Might that 465.2.c assigns. Five Tentacles beside Illaoi are 10 from the tokens plus her own 9: nineteen, where the same board without the Shepherd is fourteen.",
+          "THE DELIBERATE CONTRAST WITH magma-wurm-illaoi-ready-tentacles. That entry runs the SAME token engine under OGN-011 Magma Wurm in Fury/Chaos and buys SPEED — every token can walk the turn it is minted (143.4.a), which is the #48 bottleneck. This one buys SURVIVAL. They cannot be combined: Soul Shepherd is Mind and Magma Wurm is Fury, and 103.1.b caps a deck at the legend's two domains, so Mind + Chaos + Fury is one domain too many. A deck picks the problem it has.",
+          "THE COST OF PICKING SURVIVAL IS THE WALK, AND IT IS REAL. Without Magma Wurm, 143.4 puts every Tentacle on the board exhausted and 315.1.b readies it only in your next Awakening, so a batch minted this turn sits at your base for a full turn — through the opponent's whole turn, which is exactly when a sweeper is cast. The Shepherd protects them there; she does not move them.",
+          "COST, WITH THE QUANTITIES DECLARED. Soul Shepherd E5, Illaoi E6, Up from the Deep E3 a casting with a [Flow] cost of 3 Energy for the second (829.1.b, banished after by 829.1.b.1). Three copies are six castings and twelve Tentacles over a game, each a 2-Might body.",
+          "WHAT REFUTES IT. (a) 2 Might is out of range of a 1-damage sweeper and squarely inside a 2-damage one; nothing here scales further. (b) Soul Shepherd is herself M3 and mono-Mind with no protection — remove her and every token drops back to 1 at once, since her grant is continuous and not a counter. (c) Tokens are not cards (185) and never reach the trash (186.1), so no part of this rebuilds itself from the graveyard."
+        ]
+      },
+      "steps": [
+        "Play Soul Shepherd (E5) at any point; her grant is a static that reads tokens as they enter, so she may come before or after them.",
+        "Play Illaoi, Prophet of the Great Kraken (E6). Her play trigger mints a Tentacle, which enters as a 2-Might body under the Shepherd's static.",
+        "Play Up from the Deep (E3): two more 2-Might Tentacles.",
+        "They enter exhausted (143.4) and are readied in your next Awakening (315.1.b) — they wait at your base through the opponent's turn, which is when a sweeper comes.",
+        "OGN-133 Flurry of Blades and every other 1-damage effect now does nothing to them (143.2.a).",
+        "Later, replay Up from the Deep from your trash for its [Flow] cost of 3 Energy (829.1.b; banished afterwards by 829.1.b.1) for two more, and take another Tentacle every time Illaoi scores (469, capped by 470 and 485.4)."
+      ],
+      "netPerIteration": "every Tentacle a 2-Might body instead of a 1, which puts the whole swarm outside the range of the pool's cheapest sweeper, plus 2 of summed Might apiece in a combat",
+      "terminatesIn": "engine only — the static is a flat +1 and nothing here scales it; twelve Tentacles a game from three [Flow] copies plus one per Illaoi score",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule soul-shepherd-token-buff (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the proven rule soul-shepherd-token-buff (50 partners, 49 uncovered, two entries). Written as the deliberate twin of magma-wurm-illaoi-ready-tentacles: the same token engine (VEN-109 + VEN-100, both in zero entries before this walk) under the two opposite anchors, one buying the walk and one buying survival, and 103.1.b makes them mutually exclusive because Soul Shepherd is Mind and Magma Wurm is Fury. Both entries cross-reference each other. The measurement that justifies the +1 is named rather than asserted: OGN-133 Flurry of Blades, 1 Energy, 'Deal 1 to all units at battlefields', against 143.2.a's 'nonzero damage … equalling or exceeding its Might'. Legend list computed from cards.json (mind + chaos over the 94 legend base codes), not typed. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b, 103.2.d.2, 143.2.a, 143.4, 185.1, 185.2.b, 186.1, 315.1.b, 465.2.c, 469, 470, 485.4, 702.3, 702.3.a, 703, 829.1.b, 829.1.b.1. Ban check: UNL-077, VEN-109 and VEN-100 carry no [BANNED marker. Arithmetic against its own declared quantities: five Tentacles at 2 Might plus Illaoi at 4 + 5 = 19 summed, against 14 without the Shepherd. Trap check: the grant is a continuous modifier and not a 702 buff, so it cannot be spent and does not collide; tokens never reach the trash (185, 186.1); the swarm still cannot move the turn it lands, which is the price of this half of the fork; no [Temporary], no [Repeat]. Depends on no unruled reading."
     }
   ]
 }
