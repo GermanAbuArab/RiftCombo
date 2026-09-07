@@ -120,3 +120,102 @@ Fresh Beans pays for him and works off-turn for §-1's reason: its exhaust hangs
   here have [Assault]"), `OGN-004 Cleave`, `SFD-003 Blood Rush`, `VEN-012 Perfect Execution`,
   `VEN-009 Baccai Reaper` — all key on 807.2's summing of granted [Assault]. One synergy rule, not
   five entries.
+
+## 2. Batch 2 — Body, six entries
+
+Two rules do most of the work in this domain, and both are rules the catalogue had never cited.
+
+**417.6.b.3 — "*When a spell or ability specifies a Unit as the source of the Damage for the Deal
+action, it is not in addition to the spell or ability that instructed it*", with Challenge as its
+worked example.** Body's removal suite is almost entirely of that shape ("they deal damage equal to
+their Mights to each other"), so it is **unit damage, not spell damage** — which decides 2.3 and 2.4
+outright.
+
+**740.2.a — "*A unit is alone when there are no other friendly units at the same location*."** #119
+had recorded that Fiora's Double needs one-on-one combat (740.2.b); 740.2.a is the half that was
+never spelled out, and it is the one that makes a *reset* rather than a bigger garrison the way to
+switch her on.
+
+### 2.1 `cataclysmic-duel-fiora-peerless-permanent-one-on-one` — VEN-090 + SFD-110 (both in zero entries)
+
+"One on one" needs BOTH sides reduced to a single body at that location, so `VEN-090 Cataclysmic
+Duel` ("Each player chooses a unit they control. Kill the rest") is the natural enabler: it sets that
+state for the whole board, permanently, and Fiora fights at double Might until somebody rebuilds.
+
+355.10.e makes the wipe target nothing — its worked example is literally this wording — so [Deflect]
+never charges and no "can't be chosen" clause survives it. **The entry's own risk is stated up
+front:** the opponent picks their survivor, so the duel is against their best body, and 465.2.c.3
+forbids splitting. It scales through 434.1.d, since a Might Bonus is added *before* the doubling.
+
+### 2.2 `call-to-battle-volibear-forced-move-draw` — UNL-101 + OGN-158 (both in zero entries)
+
+Forcing the opponent to move makes **them** the Attacker on **your** turn (190.3.a keys Contested on
+the moved unit's controller; 464.2.c.1 reads that, not who caused the move). And because *they*
+choose which body walks in, 355.10.e makes it a non-target: [Deflect] is free and "can't be moved by
+enemy spells and abilities" clauses do not bite.
+
+Volibear's parenthesis is load-bearing twice: "a battlefield **other than mine**" forces a two-
+battlefield board, and "(Bases are not battlefield.)" means a retreat pays him nothing.
+
+### 2.3 `unyielding-spirit-challenge-unit-damage` — OGN-145 + OGN-128 (both in zero entries)
+
+**A symmetric fog that is not symmetric.** `OGN-145 Unyielding Spirit` prevents "all spell and ability
+damage this turn" — and 437.4 makes that total, "*not considered to have been dealt to it at all*", so
+no kill event exists — while Challenge's damage is dealt by the **units** (417.6.b.3) and resolves
+normally. Combat is untouched for the same reason (417.6.b.1).
+
+That is a deckbuilding rule rather than a combo: build the removal suite out of the 417.6.b.3 family —
+`OGN-128 Challenge`, `OGS-008 Gentlemen's Duel`, `VEN-083 Rampage`, `UNL-110 Clash of Giants`,
+`SFD-114 Marching Orders`, `OGN-149 Carnivorous Snapvine`, `SFD-107 Strike Down` — and the fog costs
+you nothing.
+
+### 2.4 `strike-down-blighted-battleaxe-detach-before-it-bites` — SFD-107 + UNL-019 (both in zero entries)
+
+434.1.c appends an attachment's Effect Text to the **carrier**, so the Battleaxe's "unattach this and
+deal 4 to **me**" is 4 damage to your own body at the end of any turn it did not conquer. Strike
+Down's closing clause — "Then detach an Equipment from it" — removes the Battleaxe *before* that
+trigger can exist. One card's drawback line is the answer to the other's.
+
+The shot is the carrier's full Might including the +4 (434.1.d), it is one-way (417.6.b.3: the enemy
+does not deal back, unlike Challenge), and re-arming is 818.1's [Equip] for 1 Energy + 1 Fury Power,
+which 381 confines to your own Main Phase.
+
+### 2.5 `pit-rookie-lee-sin-centered-buffed-garrison` — OGN-136 + OGN-151 (both in zero entries)
+
+702.3 caps a unit at one buff, so **the bottleneck is bodies, not buffers**: three Pit Rookies arm
+three different units and a fourth buffer is dead. Lee Sin's +2 is a continuous modifier, not a
+counter, so it stacks on top of the +1 and 702.3 never touches it — but anything that **spends** the
+counter (702.2.b — `OGN-147 Wildclaw Shaman`, `OGN-157 Udyr, Wildman`, both Body, both one card away)
+switches his bonus off with it. Carry buffs or spend them; never both.
+
+### 2.6 `dragonsoul-sage-cannon-barrage-off-turn-sweep` — UNL-093 + OGN-127 (both in zero entries)
+
+**The hidden cost six of this session's entries all pay, and the Body answer to it.** 167 empties every
+Rune Pool and 415.3.a readies your runes only in your own Awakening, so every off-turn [Reaction] play
+is funded by runes deliberately left unexhausted — Energy you did not spend. The Sage moves that onto a
+2-Energy body (813.1.c.2). And the Power half is free even off a spent rune, because **164.2.b carries
+no exhaust in its cost**: two Sages plus one rune recycle pay Cannon Barrage's full 2 Energy + 1 Body
+Power with nothing held ready.
+
+"All enemy units in combat" targets nothing (355.10.d) and 740.2.c scopes it, so it is a clean token
+sweeper — and the entry says plainly that 2 damage clears 1- and 2-Might bodies and merely marks
+anything bigger.
+
+### 2.7 Refusals and leads from batch 2
+
+- **`OGN-147 Wildclaw Shaman` and `OGN-157 Udyr, Wildman` beside Lee Sin, Centered** — refused by
+  702.2.b: both pay by *spending* the buff counter, and Lee Sin's +2 reads the counter. Same shape as
+  #153's Wizened Elder / Bilgewater Bully finding.
+- **`SFD-105 Ruin Runner` ("I can't be chosen by enemy spells and abilities") as protection from
+  Cataclysmic Duel** — refused by 355.10.e: nothing is chosen by the *enemy*; each player chooses
+  their own survivor, and the rest die programmatically.
+- **A second buffer aimed at an already-buffed body** — refused by 702.3.a: the second counter is
+  simply not placed.
+- **Lead (not walked):** the whole 417.6.b.3 "they deal damage equal to their Mights" family is a
+  synergy rule waiting to be written — seven cards, one predicate, and the rule that they are unit
+  damage decides their interaction with every Prevent effect in the pool.
+- **Lead (not walked):** `VEN-075 Platewyrm Egg` is the Body **gear** version of the Dragonsoul Sage
+  ("[Reaction][>] exhaust: [Add] 1 Energy", doubled while [Empowered]). Off-turn Energy sources are a
+  rule, not an entry: `OGN-098 Energy Conduit`, `OGS-014 Lux, Crownguard`, `UNL-049 Honeyfruit`,
+  `UNL-197 Scorn of the Moon`, `VEN-141 Butcher of the Sands` and these two are the whole set, and
+  only the Sage and the Egg are unrestricted in Body.
