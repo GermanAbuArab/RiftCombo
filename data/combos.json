@@ -49954,6 +49954,289 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #193, part 1). The first entry to use UNL-202 Void Assault. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.2.b, 103.2.d.1, 103.2.d.2, 143.4, 144.4, 190.3.a.1, 319.6, 323.2.a, 420.3.a, 449, 449.1, 449.2, 450, 464.2.c.1, 464.2.c.2, 464.2.c.3, 465.2, 465.2.b, 466.1.a.2, 469, 485.1, 807.1.c, 807.1.d, 814.1.c, 815.1.c.2. This card was uncovered because it fell between lanes - Body-with-Chaos was fam1's by the partition while rc-walk-fc's lane was Fury/Chaos - and it is the single genuinely unwalked card the #193 census reconciliation turned up. Its parenthetical is a printed resolution of the both-players-applied-Contested case, so no reading is filed. Ban check: neither card is banned or restricted. No unruled reading."
+    },
+    {
+      "id": "hidden-blade-tactical-retreat-linked-instruction-draw",
+      "name": "359.3.e.14.b: a plain second sentence executes even when the first instruction's action was REPLACED - so save your own unit from your own Hidden Blade and still draw 2",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-213",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, E2 P1. '[Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) [Action] (Play on your turn or in showdowns.) Kill a unit at a battlefield. Its controller draws 2.' Riot uses this card for all three of 359.3.e.14's worked examples. The second sentence references the UNIT, never the kill action - which is the whole line."
+        },
+        {
+          "card": "UNL-175",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Order spell, E2. '[Reaction] (Play any time, even before spells and abilities resolve.) Choose a friendly unit. The next time it would die this turn, heal it, exhaust it, and recall it instead.' A replacement, not a removal - which is exactly the distinction 359.3.e.14.a and 359.3.e.14.b turn on."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both spells are mono-Order, so 103.1.b.3 admits them under any legend with Order among its two domains - measured over data/cards.json those include OGN-253 / OGN-302 Hand of Noxus (fury/order), OGN-261 / OGN-306 Radiant Dawn (calm/order), OGN-265 / OGN-308 Herald of the Arcane (mind/order), OGN-269 / OGN-310 The Boss (body/order), SFD-197 / SFD-247 Emperor of the Sands (calm/order), SFD-201 / SFD-249 Chem-Baroness (mind/order), SFD-205 / SFD-251 Grand Duelist (body/order), UNL-203 / UNL-237 Keeper of the Hammer (body/order) and VEN-153 / VEN-196 Matriarch of War (body/order).",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "Hidden Blade says 'a unit at a battlefield', so the body you aim at must be standing at one - not at your base."
+        ],
+        "notable": [
+          "THE RULE, AND RIOT WORKS IT ON THIS CARD THREE TIMES. 359.3.e.14 defines linked instructions - 'Hidden Blade reads \"Kill a unit at a battlefield. Its controller draws 2.\" The \"its\" in the second instruction references the unit in the first, so the two instructions of the spell are linked.' Then 359.3.e.14.b: 'If the Game Action performed in an earlier linked instruction is replaced, this will not affect the later linked instruction, unless the later linked instruction directly references the Game Action being performed', with 'The later linked instruction doesn't reference an action directly, so it will execute even if the kill action of the earlier linked action is replaced by some other event.' 359.3.e.13 through .e.14.c are cited by no entry and no synergy rule in this project.",
+          "SO THE LINE IS: AIM IT AT YOUR OWN SAVED BODY. Tactical Retreat replaces the death with heal-exhaust-recall; the kill action is replaced, not ignored; and 'Its controller draws 2' - you - executes anyway. Two Energy for two cards and a unit you keep. The [Hidden] mode makes it cheaper still: 811.1.b plays a hidden card 'ignoring its base cost', so from the turn after the hide, Hidden Blade is 0 Energy and the whole line costs the 2 Energy of Tactical Retreat.",
+          "AND 359.3.e.14.a IS THE TRAP THAT KILLS THE OBVIOUS VARIANT. 'In order for a later linked instruction to execute, its earlier linked instruction must have executed. If the earlier linked instruction is ignored for any reason, the later linked instruction will also be ignored', with Riot's own case: 'If the chosen unit changes zones or moves to base in reaction to Hidden Blade, the spell will mistarget and the first instruction will be ignored ... the unit's controller will not draw 2.' A bounce, a recall or a move in response gives you NOTHING. The save must REPLACE the death while the unit stays a legal target - which is what Tactical Retreat does and what a Recall-in-response does not.",
+          "THE PAIR RIOT CONTRASTS IS THE READING TO CARRY. Its second example at 359.3.e.14.b is Deathgrip: 'Kill a friendly unit. If you do, give +[M] equal to its Might to another friendly unit this turn.' - 'If the friendly unit in question is not killed by Deathgrip because its death is replaced with another event, the later linked instruction will not execute because \"if you do\" directly references the game action.' So 'X. Then Y.' survives a replacement and 'X. If you do, Y.' does not. That is a general split across the whole pool, decided by three words.",
+          "IT ALSO WORKS ON THE OPPONENT'S HIDDEN BLADE, AND THAT IS WORTH KNOWING BEFORE YOU SAVE. If they aim it at your unit and you replace the death, 'Its controller draws 2' still resolves - and the controller is YOU. Saving into their Hidden Blade is a two-card profit; bouncing out of it is zero, because 359.3.e.14.a ignores the whole spell.",
+          "THE COST IS THE POSITION. 455 sends the saved body to the BASE without a Move, so any 'While I'm at a battlefield' text switches off, 458.1 leaves its other statuses alone, and 315.1.b readies it only at your next Awakening. If it was the last body at a battlefield you controlled, 323.6 strips that battlefield at the next Cleanup. Two cards for a turn of tempo.",
+          "AND THE SAVE IS A ONE-SHOT PER CARD. Tactical Retreat says 'The next time it would die this turn', so one replacement per copy; three copies (103.2.b) are three uses. Zhonya's Hourglass and Guardian Angel are the Calm alternatives if the deck can afford a second domain."
+        ]
+      },
+      "steps": [
+        "Hide OGN-213 Hidden Blade face down at a battlefield you control for one rainbow (811.1.b). From the following turn it is playable for 0 Energy.",
+        "Have a friendly unit standing at a battlefield - Hidden Blade's clause is 'a unit at a battlefield'.",
+        "Play UNL-175 Tactical Retreat (2 Energy, [Reaction]) choosing that unit: the next time it would die this turn, it is healed, exhausted and recalled instead.",
+        "Play Hidden Blade, targeting your own saved unit. Its first instruction attempts to kill it.",
+        "Tactical Retreat REPLACES the death - the unit is a legal target throughout, so 359.3.e.14.a's mistarget case never arises and the first instruction executed.",
+        "359.3.e.14.b: the second instruction, 'Its controller draws 2', does not reference the kill action, so it executes. You draw 2.",
+        "The unit is at your base, exhausted (455, 458.1); 315.1.b readies it at your next Awakening. If it was your last body at that battlefield, 323.6 strips it at the next Cleanup.",
+        "Never substitute a bounce or a recall for the save: 359.3.e.14.a ignores the whole spell if the unit stops being a legal target, and you draw nothing."
+      ],
+      "netPerIteration": "two cards for 2 Energy and a turn of one unit's tempo, with the unit kept",
+      "terminatesIn": "engine only - nothing here scores. Three copies of each (103.2.b), one replacement per Tactical Retreat, and one facedown per battlefield with two battlefields on a Duel table (811.1.b, 485.4)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 359.3.e.14.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If the Game Action performed in an earlier linked instruction is replaced, this will not affect the later linked instruction, unless the later linked instruction directly references the Game Action being performed."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 359.3.e.14.b worked examples",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The later linked instruction doesn’t reference an action directly, so it will execute even if the kill action of the earlier linked action is replaced by some other event. Example: Deathgrip reads “Kill a friendly unit. If you do, give +[M] equal to its Might to another friendly unit this turn.” If the friendly unit in question is not killed by Deathgrip because its death is replaced with another event, the later linked instruction will not execute because “if you do” directly references the game action."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 359.3.e.14.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "In order for a later linked instruction to execute, its earlier linked instruction must have executed. If the earlier linked instruction is ignored for any reason, the later linked instruction will also be ignored."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, sub-rule lane 100-499; from the filtered probe). 359.3.e.13, 359.3.e.14, 359.3.e.14.a, 359.3.e.14.b and 359.3.e.14.c are cited by no entry and no synergy rule in this project, and all three of 359.3.e.14's worked examples name OGN-213 Hidden Blade, with the contrast case naming SFD-163 Deathgrip. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 315.1.b, 323.6, 359.3.e.14, 359.3.e.14.a, 359.3.e.14.b, 455, 458.1, 485.4, 811.1.b. REPORT TO THE MANAGER: the general split is three words wide - 'X. Then Y.' executes even when X's game action was REPLACED, while 'X. If you do, Y.' does not, because only the second directly references the action; and BOTH are switched off if the first instruction is IGNORED (a mistarget), which is 359.3.e.14.a. That reaches every save card in the pool from a direction the catalogue has not used. Distinct from renata-time-warp-ekko-refresh and katarina-reckless-hidden-blade, neither of which cites 359.3.e.14, and from spirit-wheel-tactical-retreat-reaction-draw. Trap check: a bounce or recall in response gives nothing (359.3.e.14.a); the save costs the position under 455 and 323.6 and the entry says so; one replacement per Tactical Retreat; no unruled reading."
+    },
+    {
+      "id": "volibear-furious-annie-fiery-split-more-targets",
+      "name": "Bonus Damage on a SPLIT raises the pool and the number of bodies it may be split among — Riot's own worked example, uncatalogued",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-041",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E5 P1 M5. '[Deflect 2] (Opponents must pay :rb_rune_rainbow::rb_rune_rainbow: to choose me with a spell or ability.) When I attack, deal 5 damage split among any number of enemy units here.' Named by Riot at 715.3."
+        },
+        {
+          "card": "OGS-001",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E5 P1 M4. 'Your spells and abilities deal 1 Bonus Damage.' Named in the same worked example."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Fury, so any of the sixteen legend names carrying Fury holds it (103.1.b.1): Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "Both bodies at the SAME battlefield: Volibear's trigger says 'here', and Annie's static is a Passive she carries anywhere, so only Volibear has to make the trip."
+        ],
+        "notable": [
+          "715.3 IS RIOT WRITING THIS EXACT PAIR DOWN, AND IT SAYS SOMETHING 715.1 AND 715.2 DO NOT: 'If the Deal action Splits damage, then the Bonus Damage applies to the amount of Damage that will be Split. THIS CAN ALTER THE NUMBER OF TARGETS ELIGIBLE TO BE CHOSEN.' The worked example is Volibear, Furious with Annie, Fiery: 'Volibear, Furious now deals 6 damage split among any number of enemy units at its location, and can choose to split that damage among up to 6 units rather than the usual 5.' So a +1 static on a SPLIT is not just +1 damage — it is +1 BODY the split can reach, which no other Bonus Damage shape gives.",
+          "AND THE THIRD SHAPE IS WHY THIS IS A SEPARATE ENTRY FROM THE OTHERS. 715.1 raises a single-target Deal by the Bonus Damage; 715.2 raises EACH target of a multi-target Deal individually and separately; 715.3 raises the POOL of a Split and widens the choice. `icathian-rain-annie-ravenborn-six-deal-actions` is the 715.2 case at the pool's maximum; this is the 715.3 case, and the numbers behave differently.",
+          "715.4 IS THE FLOOR AND IT IS WORTH KNOWING: 'If no damage was Dealt, then Bonus Damage will not apply.' Bonus Damage never CREATES a Deal action — its worked example is a Teemo, Strategist reveal that finds no [Hidden] cards, so the 3 Bonus Damage from an attached Rabadon's Deathcrown has nothing to attach to. A static is a multiplier on an event, not an event.",
+          "714 KEEPS A SECOND SOURCE ADDITIVE: 'If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.' Annie plus `OGN-032 Ravenborn Tome` is 7 damage split among up to 7 bodies, not 6 twice.",
+          "[DEFLECT 2] IS THE OTHER HALF OF WHY HE SURVIVES TO ATTACK. 809.1.b: '[Deflect] is formatted as \"Deflect [X]\"'; 809.1.b.2 names X the Deflect Value; 809.1.b.3: 'If X is omitted, it is presumed to be 1' — so his printed 2 is explicit and doubles the usual tax. 809.1.c charges it 'for each time they choose', and 809.1.c.1 lets the Power be any domain, so a choosing removal spell aimed at him costs two extra Power. A programmatic sweeper still pays nothing (355.10.d).",
+          "THE DAMAGE IS SPELL-AND-ABILITY DAMAGE, NOT UNIT DAMAGE, AND THAT IS WHY ANNIE REACHES IT AT ALL. 417.6.b.3 excludes a Deal whose source is specified as a Unit; Volibear's trigger instructs the Deal without naming a unit as its source, which is what 715.3's example confirms. Contrast `last-breath-beast-below-unforgiven-unit-damage-ready`, where the spell DOES source the damage to the unit and no Bonus Damage static applies — the two entries are the two sides of that paragraph and each names the other."
+        ]
+      },
+      "steps": [
+        "Play Annie, Fiery (5 Energy + 1 Fury Power) and keep her alive; her static works from anywhere.",
+        "Play Volibear, Furious (5 Energy + 1 Fury Power) and move him into an enemy battlefield (144.2, 144.4).",
+        "464.2.c.1 makes you the Attacker and 464.2.c.3 places his attack trigger.",
+        "The trigger's Deal is a Split of 5, which 715.3 raises to 6 — and the split may now be spread over up to SIX enemy units there instead of five.",
+        "Assign the 6 as you like: six 1-Might bodies dead, or 6 onto one target. 143.2.a resolves each kill on marked damage equalling or exceeding Might."
+      ],
+      "terminatesIn": "engine — 6 damage split among up to 6 enemy units at his battlefield every time Volibear attacks, for no further cards; nothing here scores beyond the Conquer the combat produces (466.5.d)",
+      "netPerIteration": "+1 damage AND +1 eligible body on every attack, for as long as Annie stands",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #191 — uncited Core Rules sub-rules 500-899 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "715.3: 'If the Deal action Splits damage, then the Bonus Damage applies to the amount of Damage that will be Split. This can alter the number of targets eligible to be chosen. Example: Volibear, Furious is a unit that says in part \"When I attack, deal 5 damage split among any number of enemy units here.\" A player attacks with Volibear, Furious while they also control Annie, Fiery, a unit that says \"Your spells and abilities deal 1 Bonus Damage.\" Volibear, Furious now deals 6 damage split among any number of enemy units at its location, and can choose to split that damage among up to 6 units rather than the usual 5.' 715.4: 'If no damage was Dealt, then Bonus Damage will not apply.' 715.1: 'If the Deal action has a single target, the amount of Damage to that target will be increased by the Bonus Damage granted to it.' 715.2: 'If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately.' 714: 'If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.' 809.1.b: 'It is formatted as \"Deflect [X]\".' 809.1.b.2: 'The X is referred to as the Deflect Value.' 809.1.b.3: 'If X is omitted, it is presumed to be 1.' 809.1.c.1: 'The Power used to pay this cost may always be of any Domain.' 417.6.b.3: 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it.' 355.10.d: 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might. 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #191, session rc-walk-fc. First entry of the uncited-sub-rules slice, and it is a paragraph Riot illustrates with BOTH of its cards by name. 715.3, 715.4, 809.1.b, 809.1.b.2, 809.1.b.3 were all uncited by data/combos.json and data/synergies.json before this entry. OGN-041 Volibear, Furious appears in one other entry (`sky-splitter-volibear-free-removal`) and OGS-001 Annie, Fiery in five, none of which is the Split case — 715.3's 'this can alter the number of targets eligible to be chosen' is a different number from 715.1's and 715.2's. Card text verbatim from data/corpus_flat.txt; every paragraph above opened in the Core Rules file. No unruled reading."
+    },
+    {
+      "id": "riven-shattered-svellsongur-weaponmaster-pull",
+      "name": "725.3 is the rule behind \"even if it's already attached\" — the Weaponmaster keyword may read an Equip ability that 718.2 has made Inactive",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-041",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E4 P1 M4. '[Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for :rb_rune_rainbow: less, even if it's already attached.) When I attack, choose an enemy unit here. Deal 2 to it for each Equipment attached to me.'"
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "ATTACHED",
+          "note": "Calm gear, E1, [Equip] :rb_energy_1::rb_rune_calm:. 'As this is attached to a unit, copy that unit's text to this Equipment's effect text for as long as this is attached to it.' Carrier-DEPENDENT, which is exactly the kind [Weaponmaster] cannot free but CAN relocate onto itself."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Calm, so any legend carrying Calm holds it (103.1.b.1) — for example Unforgiven (OGN-259), Blade Dancer (SFD-195), Gloomist (UNL-193), Rogue Assassin (VEN-139), Radiant Dawn (OGN-261).",
+          "The Svellsongur already attached to another body when Riven is played — that is the case the keyword's tail exists for."
+        ],
+        "notable": [
+          "725.3 IS THE PARAGRAPH THE PROJECT HAS BEEN DERIVING FROM REMINDER TEXT: 'If an Attached card has an Equip ability, the Weaponmaster keyword can reference that Equip ability and any abilities that passively modify that Equip ability.' That is why the keyword's printed tail — 'even if it's already attached' — is legal at all: 718.2 makes an attached card's printed Rules Text Inactive and 721.2 says Inactive abilities 'cannot be activated', so without 725.3 there would be no [Equip] left for the Weaponmaster to reference. It also confirms that a cost-modifier on that Equip still applies.",
+          "AND 722.1 IS THE COMPANION HALF, ALSO UNCITED: 'Cards with Inactive text still have keywords for the sake of Game Effects that want to reference or see if a card has a keyword', with 722.2 adding that 'Game Effects that parse or interpret text to determine target eligibility may still parse Inactive text'. So an attached Equipment is still findable and still countable by everything except its own activations.",
+          "IT RELOCATES ONTO ITSELF AND NOWHERE ELSE, WHICH IS THE LIMIT. The keyword equips 'to ME', so a Weaponmaster is a route for a carrier-DEPENDENT Equipment to change hands only when the Weaponmaster is the body that wants it — `SFD-208 Forge of the Fluft` remains the pool's only free attach that can place such an Equipment on a CHOSEN carrier. These are two different tools and the catalogue should not conflate them.",
+          "THE DISCOUNT DOES NOT COVER THIS ONE, AND THE ENTRY PRICES IT HONESTLY. Svellsongur's [Equip] is 1 Energy AND a Calm rune; 'for one rainbow less' removes the rune and leaves the Energy, so the pull costs 1 Energy. The 29 Equipment whose [Equip] is a single rune are the ones this keyword makes free; the six that also cost Energy are not.",
+          "WHAT THE PULL BUYS IS RIVEN'S OWN CLAUSE: 'Deal 2 to it for each Equipment ATTACHED TO ME' — so every Equipment dragged onto her is +2 damage on every attack, and Svellsongur additionally copies HER text onto its effect text (434.1.c then appends it back to her), which the catalogue's Svellsongur entries price in detail. Here the point is the number of attachments, and the Weaponmaster is how it grows without paying full [Equip] costs.",
+          "AND 719.5 IS THE RISK: 'When a Top-Most Card changes zones from a board zone to a non-board zone, all Attached cards Detach from it, remaining in their current zones.' If Riven dies, every Equipment she accumulated detaches at once — which for a [Temporary] gear such as `SFD-186 Spinning Axe` starts its own clock again (818.1, 816.1.b)."
+        ]
+      },
+      "steps": [
+        "Attach Svellsongur to any body in the ordinary way: 1 Energy + 1 Calm Power (818.1).",
+        "Later, play Riven, Shattered (4 Energy + 1 Calm Power). Her [Weaponmaster] trigger fires as she is played.",
+        "725.3 lets the keyword reference the Svellsongur's [Equip] even though 718.2 has made its printed Rules Text Inactive while attached.",
+        "Pay that [Equip] for one rainbow less — 1 Energy, since the rune half is what the discount removes — and the Svellsongur detaches from its old carrier (434.1.f) and attaches to Riven.",
+        "Attack: 'Deal 2 to an enemy unit here for each Equipment attached to me' now counts it, and Svellsongur copies Riven's own text onto itself for as long as it stays."
+      ],
+      "terminatesIn": "engine — +2 damage on every Riven attack per Equipment pulled onto her, at one rainbow less per pull; nothing here scores",
+      "netPerIteration": "one Equipment moved from another body onto Riven for 1 Energy instead of its full [Equip], and +2 damage on each of her attacks",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #191 — uncited Core Rules sub-rules 500-899 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "725.3: 'If an Attached card has an Equip ability, the Weaponmaster keyword can reference that Equip ability and any abilities that passively modify that Equip ability.' 722.1: 'Cards with Inactive text still have keywords for the sake of Game Effects that want to reference or see if a card has a keyword.' 722.2: 'Game Effects that parse or interpret text to determine target eligibility may still parse Inactive text for the sake of eligibility.' 718.2: 'While in this state, the card's printed Rules Text is Inactive.' 718.3: 'While in this state, Abilities in the card's Effect Text are appended to the Rules Text of the Top-Most card.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 724: 'Effect Text is Inactive unless the card with the Effect Text is Attached.' 719.5: 'When a Top-Most Card changes zones from a board zone to a non-board zone, all Attached cards Detach from it, remaining in their current zones.' 434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.' 434.1.f: 'Attaching a card to a new Top-Most Card will cause it to Detach from the card to which it is currently Attached.' 818.1: 'Equip is an Activated Ability keyword.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #191, session rc-walk-fc. 725.3, 722.1, 722.2, 724 and 719.5 were all uncited by data/combos.json and data/synergies.json before this entry. VEN-041 Riven, Shattered appears in one other entry and SFD-059 Svellsongur in three, none of which is the relocation case — this is the first entry to cite the rule that makes [Weaponmaster]'s 'even if it's already attached' function, and it states the limit (onto ITSELF only, so `SFD-208 Forge of the Fluft` remains the only free attach that chooses a carrier). Card text verbatim from data/corpus_flat.txt. No unruled reading."
+    },
+    {
+      "id": "spinning-axe-factory-recall-inactive-temporary",
+      "name": "An attached [Temporary] is asleep, not gone — 718.2 silences it, 722.2 still finds it, and 719.5 wakes it the moment its carrier leaves the board",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-186",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Fury/Chaos gear, E2 P1, M+3. '[Quick-Draw] (This has [Reaction]. When you play it, attach it to a unit you control.) [Equip] :rb_rune_rainbow: [Temporary] (If this is unattached, kill it at the start of its controller's Beginning Phase, before scoring.)' Riot's own worked example at 722.2."
+        },
+        {
+          "card": "SFD-135",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E1, [Action]. 'Return a gear to its owner's hand.' The card that puts a detached Axe back where its [Quick-Draw] can re-attach it for nothing."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "ONE LEGEND, not a domain field: Spinning Axe is a SIGNATURE card tagged Draven, so 103.2.d.2 forces the pool's one Draven legend - Glorious Executioner (SFD-185), Fury/Chaos, which is also exactly the spell's own two domains. Factory Recall is mono-Chaos and sits inside it by 103.1.b.1. 103.2.d.1 caps the deck at three Signature cards, and three Axes spend all of it.",
+          "A body worth carrying +3 Might, and a second one for after the first dies."
+        ],
+        "notable": [
+          "RIOT NAMES THIS CARD TO EXPLAIN THE RULE. 722.2: 'Game Effects that parse or interpret text to determine target eligibility may still parse Inactive text for the sake of eligibility. Example: Spinning Axe is a gear with [Temporary]. While it's attached and its rules text is inactive, its [Temporary] ability doesn't trigger. However, a spell that reads \"Destroy a gear with [Temporary]\" could still choose and destroy Spinning Axe.' So the drawback is SILENCED while attached (718.2 + 721.2) and still VISIBLE to anything that reads text.",
+          "AND THE AXE IS A SIGNATURE CARD, WHICH THE FIRST DRAFT OF THIS ENTRY MISSED. 103.2.d.2 puts the legend's champion tag on every Signature card, so one Axe in a list is a Glorious Executioner list and nothing else - a domain-shaped legend line would have admitted five names of which one is legal. The check that caught it is the second half of test/legend-lines.test.ts, run against the staging file before reporting; it is worth running on every draft that touches an Equipment, because a Signature Equipment reads like an ordinary one.",
+          "722.1 IS THE WIDER HALF: 'Cards with Inactive text still have keywords for the sake of Game Effects that want to reference or see if a card has a keyword.' An attached Equipment therefore still counts for every 'gear with [X]' clause, every keyword census and every targeting restriction — it simply cannot ACT. That is a distinction the catalogue has been making one card at a time and it has a paragraph.",
+          "AND 719.5 IS THE CLOCK RESTARTING: 'When a Top-Most Card changes zones from a board zone to a non-board zone, all Attached cards Detach from it, remaining in their current zones.' When the carrier dies, the Axe detaches, its printed Rules Text goes Active again, and 816.1.b — 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this' — is live. Losing the body is losing the gear one turn later, and that is the risk the entry is built to answer.",
+          "[QUICK-DRAW] IS WHY THE ANSWER IS CHEAP. 819.1.d: 'Quick-Draw is functionally short for \"[Reaction]\" and \"When you play this, attach it to a Unit you control.\"' No [Equip] cost is ever determined, so returning the Axe to hand and replaying it re-attaches it to a body of your choosing for its play cost alone — 2 Energy + 1 Power — and 718.2 silences the [Temporary] again the moment it lands.",
+          "FACTORY RECALL IS AN [ACTION], SO THE RESCUE CAN HAPPEN IN THE COMBAT THAT IS ABOUT TO KILL THE CARRIER (806.1.b), not only afterwards. Returning your own gear before the body dies skips the detached window entirely.",
+          "AND 724 IS THE SYMMETRIC FACT WORTH STATING BESIDE 718.2: 'Effect Text is Inactive unless the card with the Effect Text is Attached.' An Equipment in hand or on the board unattached has its printed text ACTIVE and its Effect Text INACTIVE; attached, exactly the reverse. The Axe is the clearest card in the pool for that inversion, because its printed text is a drawback and its Might Bonus (434.1.d, +3) is not text at all and applies either way it is attached."
+        ]
+      },
+      "steps": [
+        "Play Spinning Axe (2 Energy + 1 Power). [Quick-Draw] attaches it to a unit you control on the play, with no [Equip] cost determined (819.1.d).",
+        "While attached, 718.2 makes its printed Rules Text — including [Temporary] — Inactive, so 816.1.b never fires. The carrier is +3 Might (434.1.d).",
+        "If the carrier is about to die, play Factory Recall (1 Energy, [Action]) in that window and return the Axe to your hand.",
+        "If the carrier dies first, 719.5 detaches the Axe on the board and its [Temporary] goes live: Factory Recall it before your next Beginning Phase.",
+        "Replay it: [Quick-Draw] attaches it free to a new body, and the drawback goes back to sleep."
+      ],
+      "terminatesIn": "engine — a +3 Might Bonus that survives its carrier indefinitely, at 2 Energy + 1 Power to redeploy and 1 Energy to rescue; nothing here scores",
+      "netPerIteration": "the Axe moved to a new carrier for 1 Energy (the rescue) plus its replay, with its [Temporary] clock reset to never",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #191 — uncited Core Rules sub-rules 500-899 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "722: 'Inactive text is still present on cards.' 722.1: 'Cards with Inactive text still have keywords for the sake of Game Effects that want to reference or see if a card has a keyword.' 722.2: 'Game Effects that parse or interpret text to determine target eligibility may still parse Inactive text for the sake of eligibility. Example: Spinning Axe is a gear with [Temporary]. While it's attached and its rules text is inactive, its [Temporary] ability doesn't trigger. However, a spell that reads \"Destroy a gear with [Temporary]\" could still choose and destroy Spinning Axe.' 718.2: 'While in this state, the card's printed Rules Text is Inactive.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 723: 'Rules Text is never Inactive by default.' 724: 'Effect Text is Inactive unless the card with the Effect Text is Attached.' 719.5: 'When a Top-Most Card changes zones from a board zone to a non-board zone, all Attached cards Detach from it, remaining in their current zones.' 816.1.b: 'It is functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this.\"' 819.1.d: 'Quick-Draw is functionally short for \"[Reaction]\" and \"When you play this, attach it to a Unit you control.\"' 434.1.d: 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #191, session rc-walk-fc. 722, 722.1, 722.2, 723, 724 and 719.5 were all uncited by data/combos.json and data/synergies.json before this batch. SFD-186 Spinning Axe appears in one other entry (`spinning-axe-sentinel-adept-persistent-might-bonus`) and SFD-135 Factory Recall in one (`factory-recall-brittle-steel-gear-both-ways`, from this session's #173 work); neither is the Inactive-[Temporary] case, which is the different number here. Card text verbatim from data/corpus_flat.txt; every paragraph above opened in the Core Rules file. The first draft of this entry carried a DOMAIN legend line (five Fury/Chaos names); the replicated legend-lines check caught it before staging, because SFD-186 is a Signature card tagged Draven and 103.2.d.2 narrows the field to SFD-185 Glorious Executioner alone. Recorded rather than silently corrected. No unruled reading.",
+      "notable": [
+        "RIOT NAMES THIS CARD TO EXPLAIN THE RULE. 722.2: 'Game Effects that parse or interpret text to determine target eligibility may still parse Inactive text for the sake of eligibility. Example: Spinning Axe is a gear with [Temporary]. While it's attached and its rules text is inactive, its [Temporary] ability doesn't trigger. However, a spell that reads \"Destroy a gear with [Temporary]\" could still choose and destroy Spinning Axe.' So the drawback is SILENCED while attached (718.2 + 721.2) and still VISIBLE to anything that reads text.",
+        "AND THE AXE IS A SIGNATURE CARD, WHICH THE FIRST DRAFT OF THIS ENTRY MISSED. 103.2.d.2 puts the legend's champion tag on every Signature card, so one Axe in a list is a Glorious Executioner list and nothing else - a domain-shaped legend line would have admitted five names of which one is legal. The check that caught it is the second half of test/legend-lines.test.ts, run against the staging file before reporting; it is worth running on every draft that touches an Equipment, because a Signature Equipment reads like an ordinary one.",
+        "722.1 IS THE WIDER HALF: 'Cards with Inactive text still have keywords for the sake of Game Effects that want to reference or see if a card has a keyword.' An attached Equipment therefore still counts for every 'gear with [X]' clause, every keyword census and every targeting restriction — it simply cannot ACT. That is a distinction the catalogue has been making one card at a time and it has a paragraph.",
+        "AND 719.5 IS THE CLOCK RESTARTING: 'When a Top-Most Card changes zones from a board zone to a non-board zone, all Attached cards Detach from it, remaining in their current zones.' When the carrier dies, the Axe detaches, its printed Rules Text goes Active again, and 816.1.b — 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this' — is live. Losing the body is losing the gear one turn later, and that is the risk the entry is built to answer.",
+        "[QUICK-DRAW] IS WHY THE ANSWER IS CHEAP. 819.1.d: 'Quick-Draw is functionally short for \"[Reaction]\" and \"When you play this, attach it to a Unit you control.\"' No [Equip] cost is ever determined, so returning the Axe to hand and replaying it re-attaches it to a body of your choosing for its play cost alone — 2 Energy + 1 Power — and 718.2 silences the [Temporary] again the moment it lands.",
+        "FACTORY RECALL IS AN [ACTION], SO THE RESCUE CAN HAPPEN IN THE COMBAT THAT IS ABOUT TO KILL THE CARRIER (806.1.b), not only afterwards. Returning your own gear before the body dies skips the detached window entirely.",
+        "AND 724 IS THE SYMMETRIC FACT WORTH STATING BESIDE 718.2: 'Effect Text is Inactive unless the card with the Effect Text is Attached.' An Equipment in hand or on the board unattached has its printed text ACTIVE and its Effect Text INACTIVE; attached, exactly the reverse. The Axe is the clearest card in the pool for that inversion, because its printed text is a drawback and its Might Bonus (434.1.d, +3) is not text at all and applies either way it is attached."
+      ]
     }
   ]
 }
