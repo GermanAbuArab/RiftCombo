@@ -39947,6 +39947,324 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #180, batch 5). The first entry to use UNL-155 Heroic Charge. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 355.10.d, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 469, 806.1.b, 809.1.c, 809.1.c.1. The stun payoffs were swept with `grep -in stunned data/corpus_flat.txt`: OGN-072 Solari Shrine (Calm, a draw), OGN-079 Leona, Zealot (Calm, -8 Might to stunned units here), OGN-225 Solari Chief (Order, the kill), UNL-035 Monch (Calm, a discount) - Solari Chief is the only one in Order and the only one that removes. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "here-to-help-mountain-drake-showdown-unit",
+      "name": "Here to Help is how a UNIT reaches the board inside a Showdown — and from face down it is free, on the opponent's turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-111",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Body spell, E2 P1. '[Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) [Action] (Play on your turn or in showdowns.) You may play a unit from hand to a battlefield you control, reducing its cost by :rb_energy_3:.' The [Action] is the card: 381 and 155 otherwise keep a unit play to your own Main Phase in an Open State."
+        },
+        {
+          "card": "OGN-142",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E9 M10, no rules text at all. Chosen because the discount is flat Energy and this is the largest body in Body: 9 - 3 = 6, and every point of that Might is in 465.2.c's sum the moment it arrives."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Here to Help and Mountain Drake are both mono-Body, so 103.1.b.1 is satisfied by any legend with Body as one of its two domains. Neither is Signature, so 103.2.d.2 imposes nothing."
+        ],
+        "notable": [
+          "WHAT IT ACTUALLY BREAKS. A unit is a card with no [Action] and no [Reaction], and 155 bars such a card from a Showdown while 381 keeps activated abilities to your own turn in an Open State — so bodies normally cannot arrive once a combat has opened. Here to Help carries [Action], and 806.1.b is the permission, so the unit it plays arrives inside the Showdown.",
+          "AND THE BODY IS IN THAT COMBAT. 464.2.c.3.a: a unit of the Attacker's or Defender's that 'becomes present at this Battlefield after this moment ... will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present', with 323.2.a doing the assignment. So the Drake is a Defender before 465's damage step and its 10 Might is in 465.2.c's sum.",
+          "FROM FACE DOWN IT IS FREE AND IT IS ON THE OPPONENT'S TURN. 811.1.b's tail — 'Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost' — means a hidden Here to Help costs 0 and 813.1.c.1 admits it 'during Closed States on any player's turn'. 811.1.d.2 then confines its effect to the battlefield it was hidden at, which is 'a battlefield you control' — exactly where the card wanted to put the body anyway.",
+          "THE UNIT'S OWN COST IS STILL PAID, AND ON THE OPPONENT'S TURN THAT NEEDS RUNES HELD BACK. 167 empties every Rune Pool 'at the start of each player's Main Phase and the end of each player's turn', so the 6 Energy has to come from runes still ready when you act: 164.2.a is '[E]: [Reaction] — Add [1]', so six ready runes carried through your own turn pay for it in their Closed State.",
+          "356.6 FLOORS THE DISCOUNT AT ZERO, so the 3 Energy is worth its full value only on a unit printed at E3 or more; and the reduction is written on ENERGY, so a Power component is paid in full (the Drake has none, which is part of why it is the payload).",
+          "IT IS NOT A REINFORCEMENT OF THE BATTLEFIELD YOU ATTACK. 'A battlefield you control' is the card's own restriction, so this is the defensive half of the family; `OGN-107 Ava Achiever` and `SFD-025 Rengar, Pouncing` are the two routes that reach a battlefield you do not control.",
+          "AND IT IS ONE UNIT, NOT A HAND. The wording is 'a unit from hand', singular, once per copy; 103.2.b caps that at three a game.",
+          "IT DOES NOT SCORE. What arrives is a body that the opponent's damage assignment did not price in — 465.2.c.3 and 465.2.c.4 then force lethal onto it before anything else of yours, if it is the only sensible assignment."
+        ]
+      },
+      "steps": [
+        "Control a battlefield and, on an earlier turn, pay one rainbow Power to hide Here to Help face down there (811.1.b). Keep Mountain Drake in hand.",
+        "Hold six runes ready through your own turn; 167 empties the POOL, not the runes, so they are still available to tap on the opponent's turn.",
+        "The opponent attacks. 190.3.a.1 applies Contested, 323.9 stages the Combat and 323.13 opens it; 464.2.c.3 designates the sides.",
+        "In the Closed State, where 312.2.c gives you priority, play Here to Help from face down for 0 Energy (811.1.b's tail gives it [Reaction], and 813.1.c.1 admits it on their turn).",
+        "Its effect plays Mountain Drake from your hand to that battlefield, reducing its cost by 3: pay 6 Energy from the runes you held. 143.4 has it enter exhausted, which combat never reads.",
+        "323.2.a and 464.2.c.3.a give it the Defender designation at the next Cleanup, so 465.2.c sums a defence 10 Might heavier than the attacker committed to.",
+        "143.3.b.2 heals the marked damage at the Combat Cleanup and the Drake stays."
+      ],
+      "terminatesIn": "engine only — one 10 Might body dropped into a Showdown for 6 Energy, or 0 for the spell if it was hidden, three times a game (103.2.b); nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "811.1.b. \"you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "464.2.c.3.a. \"If a Unit controlled by the Attacker or Defender becomes present at this Battlefield after this moment, it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present, as appropriate for its controller.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "167. \"Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the sweep of cards NAMED IN THE CORE RULES that sit in no entry; SFD-111 Here to Help and OGN-142 Mountain Drake were both uncatalogued. Card text verbatim from data/corpus_flat.txt. The content is that a UNIT normally cannot arrive after a combat opens (155 + 381) and this spell's [Action] is the exception, with 464.2.c.3.a putting the body in that combat. Trap check: the unit's own cost is stated as still payable and priced against 167 plus 164.2.a rather than waved away; 356.6 is cited so the discount is not claimed below zero and the Energy-only wording is stated; the card is explicitly NOT claimed as reinforcement of an attacked battlefield, with the two cards that do that named; 103.2.b is the ceiling."
+    },
+    {
+      "id": "ravenborn-tome-falling-star-two-deal-actions",
+      "name": "Bonus Damage is paid per DEAL ACTION, so a spell that says 'Deal 3. Deal 3.' collects it twice — the Tome's +1 is worth +2",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-032",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Fury gear, E3. ':rb_exhaust:: The next spell you play this turn deals 1 Bonus Damage. (Each instance of damage the spell deals is increased by 1.)' Its own reminder says 'each instance', which is 715.2 written on the card; the cost is its own exhaust, so 415.3.a returns it every Awakening and it is free forever at one spell a turn."
+        },
+        {
+          "card": "OGN-029",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury spell, E2 P2. 'Deal 3 to a unit. Deal 3 to a unit.' Two sentences, therefore two separate Deal actions with independent choices — which is exactly the shape Bonus Damage is paid on twice."
+        },
+        {
+          "card": "OGS-001",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E5 P1 M4. 'Your spells and abilities deal 1 Bonus Damage.' A static second source; 714 sums it with the Tome rather than doubling, so the pair is +2 per Deal action, not x2."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All three cards are mono-Fury, so 103.1.b.1 is satisfied by any legend with Fury as one of its two domains. None of them is Signature, so 103.2.d.2 imposes nothing."
+        ],
+        "notable": [
+          "715.2 IS THE ARITHMETIC, AND ITS WORKED EXAMPLE IS IN THIS DOMAIN: 'If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately.' The example given is Singularity ('Deal 6 to each of up to two units') under Annie, Fiery, dealing 7 to each. So the payoff scales with how many Deal ACTIONS or targets a spell has, never with how big each one is.",
+          "AND FALLING STAR IS THE SHAPE THAT PAYS. 'Deal 3 to a unit. Deal 3 to a unit.' is two instructions, so the Tome's +1 lands on both: 4 and 4 for 2 Energy and 2 Fury Power. That kills two Might-4 bodies where the printed card kills two Might-3 bodies, and 465.2.c reads the survivors' Might at assignment.",
+          "714 IS WHY A SECOND SOURCE IS ADDITIVE AND NOT MULTIPLICATIVE: 'If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.' Tome plus Annie, Fiery is +2 per action — 5 and 5 — and a third source would be +3, never x3.",
+          "THE TOME IS ONE SPELL A TURN AND THAT IS ITS REAL CAP. 'The NEXT spell you play this turn', and its cost is an exhaust, which 415.3.a returns only at your own Awakening. Annie is the static half: it pays on every spell and ability you play, every turn, with no cost at all.",
+          "IT IS DISJOINT FROM EXCESS DAMAGE, WHICH IS WORTH SAYING BECAUSE THE TWO LOOK ALIKE. 713 scopes Bonus Damage to Deal actions and 417.6.c makes combat damage come from the units themselves, so none of this ever feeds `OGN-034 Tryndamere, Barbarian` or the rest of the excess-damage family.",
+          "AND IT NEVER TOUCHES THE CHALLENGE FAMILY EITHER: 417.6.b.3 makes damage a spell instructs UNITS to deal come from those units, not from the spell, so a Bonus Damage source adds nothing to it.",
+          "IT DOES NOT SCORE. Fury converts Might and damage into points only through excess damage, which this is not; what the line buys is removal at two bodies per card."
+        ]
+      },
+      "steps": [
+        "Play Ravenborn Tome (E3). It is gear, so it is usable the turn it lands.",
+        "If Annie, Fiery is also on the board (E5 + 1 Fury Power), her static already gives every spell you play 1 Bonus Damage.",
+        "In your Main Phase, exhaust the Tome. The next spell you play this turn deals 1 more Bonus Damage; 714 sums it with Annie's for +2 per Deal action.",
+        "Play Falling Star (E2 + 2 Fury Power). Its first instruction deals 3 + 2 = 5 to one unit; its second is a separate Deal action with its own choice and deals 3 + 2 = 5 to another.",
+        "143.2.a kills each body whose Might the damage equals or exceeds, and 143.3.b.1 heals whatever survives at the end of the turn.",
+        "415.3.a readies the Tome at your next Awakening, so the +1 is available for one spell every turn for the rest of the game."
+      ],
+      "terminatesIn": "engine only — +1 per Deal action from the Tome on one spell a turn forever, +2 with Annie, Fiery; on Falling Star that is 5 and 5 for E2 + 2 Fury Power, three castings a game (103.2.b). Nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "715.2. \"If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately.\" Example: \"Singularity is a spell that says 'Deal 6 to each of up to two units.' A player plays Singularity while they also control Annie, Fiery, a unit that says 'Your spells and abilities deal 1 Bonus Damage.' Singularity deals 1 Bonus Damage to both of its targets, dealing 7 to each.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "714. \"If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "415.3.a. \"A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the sweep of cards named in the Core Rules and in no entry; OGN-032 Ravenborn Tome and OGN-029 Falling Star were both uncatalogued, and the pool's whole Bonus Damage family is six rows (Ravenborn Tome, Void Gate, Annie Fiery, Rabadon's Deathcrown, Dancing Grenade, Consuming Curse). Card text verbatim from data/corpus_flat.txt. The content is 715.2 read constructively: the payoff is per Deal ACTION, so the right partner is a spell with two of them rather than a big one, and 714 caps a second source at additive. Trap check: the disjointness from excess damage (713 + 417.6.c) and from the Challenge family (417.6.b.3) is stated so the entry is not mistaken for a Tryndamere feeder; the Tome's one-spell-a-turn wording and its exhaust are named as the cap; 103.2.b bounds Falling Star."
+    },
+    {
+      "id": "iascylla-teemo-strategist-forced-defend",
+      "name": "Iascylla drags an enemy body onto your battlefield on YOUR turn, which makes THEM the attacker — the only way to fire a defend trigger on a schedule",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-050",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E7 P1 M6. 'When I hold, at the start of your next Main Phase, you may move an enemy unit to this battlefield.' The Hold arms a DELAYED effect that resolves at 316.4, in your own Main Phase — not inside 315.2 — so it is a real Main-Phase action and not the usual Hold-trigger no-op."
+        },
+        {
+          "card": "OGN-121",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E2 P1 M2. '[Hidden] ... When I defend, choose an enemy unit here and reveal the top 5 cards of your Main Deck. Deal 1 to that unit for each card with [Hidden] revealed this way, then recycle the revealed cards.' A defend trigger is normally at the opponent's discretion; this line schedules it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Iascylla is mono-Calm and Teemo, Strategist mono-Mind, so 103.1.b.1 needs a Calm/Mind legend: OGN-255 / OGN-303 Nine-Tailed Fox, SFD-189 / SFD-244 Fire Below the Mountain, UNL-189 / UNL-230 Bashful Bloom, or VEN-145 / VEN-192 Curator of the Sands. Neither card is Signature."
+        ],
+        "notable": [
+          "THE MOVED UNIT'S CONTROLLER IS THE ATTACKER, WHOEVER CAUSED THE MOVE. 190.3.a.1 applies Contested to units moving to a battlefield, and 464.2.c.1 makes the Attacker 'the player whose unit(s) applied the Contested status' — so dragging an ENEMY body onto a battlefield YOU control makes THEM the attacker on YOUR turn, and every unit of yours there takes the Defender designation (464.2.c.3).",
+          "WHICH IS THE ONLY WAY TO PUT A DEFEND TRIGGER ON A SCHEDULE. Teemo, Strategist's 'When I defend' otherwise fires when the opponent chooses to attack into him, which against a wall is never. Here it fires on your own turn, every turn, for no card and no Energy.",
+          "AND THE DEFENDER'S TRIGGERS RESOLVE FIRST. 464.2.e.1 places the Attacking player's triggers on the Combat Chain first and 'the Defending Player' last; 340.1 resolves the newest Finalized item first. So Teemo's reveal-and-burn resolves before anything the attacker put up.",
+          "THE REVEAL IS FREE OF BURN OUT. 431.1.c: an instruction to look at or reveal past the end of the Main Deck 'looks at or Reveals as many as possible, but does not Burn Out', and 431.1.c.1 extends that to the zone change that follows — so five reveals a turn are safe even in a deck run to empty, and 416.1 recycles them to the bottom.",
+          "THE DAMAGE SCALES WITH [HIDDEN] DENSITY, AND THAT IS A DECKBUILDING NUMBER, NOT A COMBO ONE: 1 damage per [Hidden] card among the five revealed. The pool has 15 [Hidden] units and 23 [Hidden] spells, so a list built for it reveals two or three on a good turn.",
+          "THE RISK IS THAT A COMBAT ACTUALLY HAPPENS. 323.9 stages a Combat wherever units of opposing players are present and 323.13 opens it, so the dragged body fights: 465.2.c has each side assign damage equal to their summed Might. Iascylla at Might 6 plus a Teemo at 2 is the floor of what has to be standing there, and 466.1.a.2 recalls the attacker home if defenders remain.",
+          "AND YOU GAIN NO POINT FROM IT. 464.2.c.2 with 323.11.a make you the player who already controls the battlefield, and 466.5 establishes Control only 'if they didn't already control this Battlefield' — a Defender never Conquers. What the line produces is a free trigger and a body pulled out of the opponent's own garrison.",
+          "IASCYLLA'S DELAY IS ALSO ITS PROTECTION: the drag resolves at 316.4, after 316.3 has emptied the Rune Pool, so nothing about it competes with your own Main-Phase mana."
+        ]
+      },
+      "steps": [
+        "Get Iascylla and Teemo, Strategist onto a battlefield you control and hold it.",
+        "At your Beginning Phase, 315.2.b.2 Holds the battlefield and Iascylla's trigger arms a delayed effect for the start of your next Main Phase.",
+        "At 316.4, that effect resolves: move an enemy unit to this battlefield. 190.3.a.1 applies Contested and 464.2.c.1 makes its controller the Attacker.",
+        "323.9 stages the Combat and 323.13 opens it. 464.2.c.3 designates your bodies as Defenders, so Teemo's trigger becomes Pending.",
+        "464.2.e.1 puts the Defending player's triggers on the Chain last, and 340.1 resolves the newest first — so Teemo resolves before the attacker's.",
+        "Choose the dragged unit, reveal the top 5 of your Main Deck and deal it 1 for each [Hidden] card revealed; 416.1 recycles all five to the bottom and 431.1.c means none of it can Burn you Out.",
+        "The damage step follows (465.2.c). Survivors are healed at the Combat Cleanup (143.3.b.2) and 466.1.a.2 sends the attacker home if your defenders are still there; next Beginning Phase the Hold arms the drag again."
+      ],
+      "terminatesIn": "engine only — one forced defend per turn, forever, worth five reveals and 1 damage per [Hidden] card among them; a Defender never Conquers (466.5), so nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "464.2.c.1. \"The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "464.2.e.1. \"The Attacking player, who has Focus, places Triggered Abilities on the Chain first, followed by all non-Defender players in Turn Order, followed by the Defending Player.\" 340.1. \"The newest Finalized Chain Item resolves.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "431.1.c. \"If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the Core-Rules-named sweep; UNL-050 Iascylla was in zero entries. Card text verbatim from data/corpus_flat.txt. The content is that a defend trigger is normally at the opponent's discretion and Iascylla is the pool's only free, repeating way to schedule one — the drag makes the opponent the Attacker on your own turn (190.3.a.1 + 464.2.c.1), which is the #58 finding used constructively rather than as a warning. Trap check: the delayed effect is placed at 316.4 and explicitly distinguished from the Hold-trigger no-op; the combat is stated to actually happen, with 465.2.c and the Might floor named as the risk; 466.5 with 464.2.c.2 is cited so no point is claimed; 431.1.c is cited so the five reveals are safe; the damage is stated as a deckbuilding number rather than a fixed figure."
+    },
+    {
+      "id": "battering-ram-undying-legion-cards-played",
+      "name": "'Cards you've played this turn' never counts a token — 185.2.a is why a token engine cannot pay either of these two Fury discounts",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-012",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E5 M5. 'I cost :rb_energy_1: less for each card you've played this turn, to a minimum of :rb_energy_1:.' A floored discount, and 356.4.e says the floor 'applies only to that discount' — so four cards played takes him to E1 and a fifth buys nothing."
+        },
+        {
+          "card": "UNL-025",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "TRASH",
+          "note": "Fury unit, E3 M3. '[Legion][>] You may play me from your trash for :rb_energy_3::rb_rune_fury:. (Get the effect if you've played another card this turn.)' The same currency read the other way: it needs one card already played this turn, and it is a recursion that costs no card from hand."
+        },
+        {
+          "card": "OGN-009",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury spell, E1 P1. '[Action] (Play on your turn or in showdowns.) Deal 3 to a unit at a battlefield.' The cheapest Fury card that does real work: each casting is removal AND one tick off the Battering Ram, and [Action] means it can be held for a Showdown without giving the tick up."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "All three cards are mono-Fury, so 103.1.b.1 is satisfied by any legend with Fury as one of its two domains. None is Signature, so 103.2.d.2 imposes nothing."
+        ],
+        "notable": [
+          "THE TRAP IS THE WORD 'CARDS'. 350.2 makes a token something that is PLAYED, and 185.2.a keeps it from being a card — so a token engine, however many bodies it puts on the board, moves neither of these counters. A Recruit, a Sprite, a Gold and a Mech token are all worth zero to 'each card you've played this turn' and zero to [Legion]. This is the negative half of the rule the catalogue already uses positively ('when you play a unit' does see a token).",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Battering Ram is E5 and floors at E1, so it takes exactly FOUR cards played earlier in the turn to reach the floor; 356.4.e ('If a discount applies a minimum cost, that minimum applies only to that discount') means the floor cannot be argued past, and a fifth card is wasted on him.",
+          "[LEGION] IS THE CHEAP HALF OF THE SAME COUNTER: one card, not four. So the natural order in a turn is Hextech Ray, then Undying Legion out of the trash, then more cards, then the Ram last.",
+          "AND UNDYING LEGION IS RECURSION THAT COSTS NO CARD. It plays itself from the trash for E3 + 1 Fury Power, so it is a body that keeps coming back and keeps ticking the Ram's counter on every turn it returns — but each copy can only be in the trash once at a time, so 103.2.b caps the loop at three bodies, not at three plays.",
+          "HEXTECH RAY IS THE TICK THAT PAYS FOR ITSELF: E1 + 1 Fury Power for 3 damage at [Action] speed (806.1.b), which 143.2.a turns into a dead Might-3 body. A card played purely to satisfy a counter is doing no work of its own, which is exactly the failure mode a filler card invites — this one is unconditionally castable at a battlefield and always has a legal target when there is anything to shoot.",
+          "AND IT IS ONE TURN, EVERY TURN. Nothing here banks: 'this turn' resets, so the Ram is cheap only on a turn you have already spent four cards, and the whole line is a curve-flattener rather than an engine that grows.",
+          "IT DOES NOT SCORE. Fury reaches points only through excess damage (R28), and none of this is combat damage."
+        ]
+      },
+      "steps": [
+        "Early in a turn, play Hextech Ray (E1 + 1 Fury Power) at a battlefield. That is card one, and 143.2.a kills any Might-3 body it hits.",
+        "With one card already played, [Legion] is satisfied: play Undying Legion from your trash for E3 + 1 Fury Power. That is card two, and it costs nothing from hand.",
+        "Play two more cards of any kind — but NOT tokens: 185.2.a keeps a token from being a card, so nothing a token engine produces moves the counter.",
+        "Play Battering Ram. Four cards played takes his E5 to the floor of E1 (356.4.e), for a Might 5 body.",
+        "143.4 has him enter exhausted, so he walks in next turn; 144.3 moves the accumulated pack as one action.",
+        "Everything resets at the end of the turn — 'this turn' is not banked — and Undying Legion is back in the trash to be replayed whenever a card has been played."
+      ],
+      "terminatesIn": "engine only — a Might 5 body for 1 Energy on any turn four cards precede it, plus a Might 3 body recurring from the trash for E3 + 1 Fury Power; 103.2.b caps each at three and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "356.4.e. \"If a discount applies a minimum cost, that minimum applies only to that discount.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "143.2.a. \"If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "143.4. \"Units enter the Board exhausted.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the Core-Rules-named sweep; SFD-012 Battering Ram, UNL-025 Undying Legion and OGN-009 Hextech Ray were all in zero entries, and CLAUDE.md lists 'cards played this turn' as a lens that was never swept. Card text verbatim from data/corpus_flat.txt. The content is the negative half of the token rule: 350.2 plays a token but 185.2.a keeps it from being a card, so no token engine can feed either counter — the failure this pairing invites. Trap check: the floor is derived from 356.4.e and the exact number of cards is stated (four, and a fifth is wasted); the filler card is chosen to be unconditionally castable and to do real work, which is the #166 lesson; nothing is claimed to bank across turns; 143.4 prices the Ram's arrival."
     }
   ]
 }
