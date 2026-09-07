@@ -635,8 +635,15 @@ The trade, stated honestly rather than as a strict improvement: each carrier is 
 Trinity Force's Might Bonus (718.4) = M4, against Lucian's M5, so the garrison's clearing bill under
 465.2.c.3 drops from 22 to 19. Lucian's *"The first time I conquer each turn, ready me"* is dead
 weight in a Hold line. **Recommendation: swap the carrier to Veteran Poro and note Lucian as the
-+1-Might-per-body alternative.** Reported for the manager to apply; the entry is merged and is not
-mine to edit.
++1-Might-per-body alternative.** **Written out in full** as `veteran-poro-weaponmaster-trinity-sentinel-hold` to
+`/tmp/rc-walks/rc-walk153b-replace.json`, because a card swap in `uses[]` alone would leave an
+entry whose id, name, steps and notes all still said Lucian. Re-running the walk on Veteran Poro's
+numbers also caught **two errors of my own** in the original: it claimed *eight bodies* (there are
+five — Trinity Force is gear, never a body) and priced the board's destruction at 22 damage, when in
+fact **any single loss** takes `T × (1 + K)` from 9 to 6 and the total from 10 to 7. What the spread
+genuinely buys is that no one removal takes a Trinity Force and a Sentinel together, which is exactly
+what happens to the sibling when the Sentinel carrying two of them dies (total 3). The version that
+survives a loss is K = 3, and the replacement says so.
 
 ### 13d. Two robustness notes, and two leads for the engine-side walk
 
@@ -664,3 +671,108 @@ Arena instead; nothing pairs it with the Sentinel.
 **No new BURST entry.** The payoffs are exhausted (13a), the multipliers are exhausted (§2's sweep),
 the [Equip] lever is taken and now bounded (13b), and every remaining idea is either a near-duplicate
 of a merged entry or a robustness note. The class is closed; the room is in CHAINs, as §9 said.
+
+---
+
+## 14. The CHAIN sweep — every N-points-per-turn ENGINE crossed with the Additional-Turn sources
+
+**First, the bound: Time Warp is the ONLY Additional-Turn source in the pool.** Swept over all 935
+base codes for *"take a turn"* / *"additional turn"* / *"extra turn"*, the result is one row:
+
+```
+OGN-122  Time Warp  spell  Mind  E10 P4  "Take a turn after this one. Banish this."
+```
+
+So **every chain of this shape must admit Mind (103.1.b)**, and any ENGINE whose identity excludes
+Mind cannot become one no matter how many points a turn it makes. That single fact does most of the
+refusing below.
+
+Second, a correction to the framing: `2N ≥ 8` is not the test. Time Warp is capped at three copies
+(103.2.b) and banishes itself rather than recycling, so up to **four** consecutive Beginning Phases
+are available — `N ≥ 3` suffices, at `3N ≥ 8` across three of them. That is what makes the Shen line
+below work at N = 3.
+
+Every ENGINE whose `terminatesIn` or `netPerIteration` states points per turn, with the three in
+range:
+
+| entry | N | identity | verdict |
+|---|---|---|---|
+| `lucian-skyfinity-double-conquer` | **4** | Fury/Body | **REFUSED on 103.1.b** — see below |
+| `heimerdinger-renata-remote-score` | 2–3 | Mind/Body | **REFUSED on the ledger** — see below |
+| `shen-kinkou-sentinel-hold` | 3 | Mind/Order | **WRITTEN** as `shen-sentinel-time-warp-chain` |
+
+### 14a. REFUSED — `lucian-skyfinity-double-conquer`, and it is the painful one
+
+Its own `terminatesIn` reads: *"four points a turn — eight across two turns, **with the opponent's
+turn in between, which is why it is not a CHAIN**."* That sentence is an invitation: remove the
+opponent's turn and it is a CHAIN at exactly 8, with no other change and no extra bodies.
+
+It cannot be done. The line is `SFD-113 Lucian` (Body) + `SFD-030 Skyfall` (Fury) + `SFD-115 Trinity
+Force` (Body) + `SFD-184 Relentless Pursuit` (Fury/Body), i.e. **Fury/Body**, and 103.1.b admits only
+the legend's two domains. Time Warp is Mind and is the pool's only extra-turn card. **The single best
+CHAIN candidate in the catalogue by arithmetic is killed by Domain Identity alone**, and nothing in
+the pool can rescue it.
+
+### 14b. REFUSED — `heimerdinger-renata-remote-score`, on the ledger rather than the domain
+
+Mind/Body, so it *does* admit Time Warp. It fails on what a point costs: its own `netPerIteration`
+is *"1 point per activation, at 4 Energy + 4 Mind Power, plus 3 Energy + 1 Power for each
+Acceleration Gate that buys the next one."* Three points in a turn is therefore about **18 Energy and
+14 Power**, before Time Warp's own 10 + 4. A twelve-rune board produces at most 12 Energy and a free
+floor of 2 Power a turn (#44). Not payable once, let alone on each of three consecutive turns.
+
+### 14c. WRITTEN — `shen-sentinel-time-warp-chain`
+
+`shen-kinkou-sentinel-hold` is 3 points a turn in Mind/Order, and its own notes name the weakness:
+the garrison *"is two units and cannot be three"*, because `VEN-138 Shen`'s condition is *"exactly one
+other unit you control here"* and 383.2.a.1 makes that part of the Trigger Condition. One token
+landing there, or one removal spell, takes the line to zero.
+
+**Inside a Time Warp chain that weakness costs nothing, and that is the whole entry.** The opponent
+never takes a turn, so they cannot move a body onto your battlefield and cannot remove one. The
+fragility that makes it a mediocre engine is irrelevant to the chain.
+
+3 + 3 + 3 = 9 across three uninterrupted Beginning Phases, crossing 8 on the third. The Blue Sentinel
+pays for both Time Warps by the 316.2 task order (§4): its delayed Add is a hold effect, so it runs
+twice and banks 2 rainbow, and 316.4 delivers that **after** 316.3 empties the pool. Two Applied
+Researchers put Time Warp at E8 + 2 Power; the 2 Power is exactly what was banked.
+
+Against `sentinel-trinity-time-warp-chain`, the same shape in Mind/Body: that one needs a Trinity
+Force and a 1-Body [Equip] and lives under `VEN-149 Defender of Tomorrow`, the pool's **only**
+Mind/Body legend. This one needs no [Equip] at all and runs under any of four Mind/Order legends.
+Both are kept; the difference is the identity, which is the deckbuilding fact that matters.
+
+K cannot be raised here — a second Sentinel is a second "other unit" and switches Shen off — so this
+is the one Sentinel line in the catalogue that is deliberately built at K = 1.
+
+---
+
+## 15. `last-rites-sentinel-trash-holds` (ENTRY) — and a correction to the lead that produced it
+
+The lead was *"1+K free bodies from the trash per Beginning Phase"*. **Last Rites does not give free
+bodies.** Its own reminder text:
+
+`SFD-150 | Last Rites | Gear | Chaos | E3 M+2 | [Equip] — 1 Chaos, Recycle 2 cards from your trash.
+[Effect] When I conquer or hold, you may play a unit from your trash. **(You still pay its costs.)**`
+
+What `UNL-087 Blue Sentinel` doubles is the **permission**, not the price: 1 + K plays out of the
+trash per Hold, each at the unit's full Energy and Power. The gain is card advantage, not tempo, and
+the entry says so in its first `notable`.
+
+Three things the walk pinned down:
+
+- **Where the resources come from.** 167 empties your Rune Pool at the end of your own turn, so at
+  the Scoring Step it is empty. 315.1.b readied your runes in the Awaken Phase and 164.2.a is a
+  [Reaction], so you tap them inside the Closed State the Hold trigger opens (312.2.c). 316.3 has not
+  run yet, so this spends the turn's Energy early rather than conjuring any.
+- **Where the body lands.** 355.2.a's default includes *"a Battlefield the controller controls"*, so
+  a unit played from the trash goes straight to the battlefield you are holding — reanimation has
+  none of the token bottleneck #48 measured.
+- **The [Equip] cost is self-limiting and [Weaponmaster] cannot fix it.** *"1 Chaos, Recycle 2 cards
+  from your trash"* — 416.6 lets you choose which two, but they leave the trash you are about to
+  reanimate from. And it is a rune **and an action**, not a single rune, so §13b's "one rainbow less"
+  removes only the Chaos.
+
+It pairs with the Sentinel where `last-rites-stack-arena-reanimator` pairs it with the Reckoner's
+Arena — the Arena reaches the same doubling from the conquer side, in a different identity. This one
+needs no battlefield of yours, so 485.5's 1-in-3 draw never applies.
