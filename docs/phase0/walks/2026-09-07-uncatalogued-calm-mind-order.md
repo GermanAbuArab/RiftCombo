@@ -876,3 +876,81 @@ ever determined**.
 5. **The *"within 3 points of the Victory Score"* threshold moves between formats**: 194.3 puts the
    Victory Score at 8 and 489.3 at 11, so the same clause reads an opponent at 5 in Constructed and
    at 8 in 2v2.
+
+---
+
+## 37. Batch 9 — five entries
+
+| id | class | cards | the names it clears |
+|---|---|---|---|
+| `monch-skyward-strike-stun-discount` | ENGINE | UNL-035, UNL-038 | Monch, Skyward Strike |
+| `en-garde-hand-hammer-alone-versus-pair` | ENGINE | OGN-046, VEN-027 | En Garde, Hand Hammer |
+| `meditation-playful-phantom-free-exhaust` | ENGINE | OGN-048, OGN-049 | Meditation, Playful Phantom |
+| `shock-blast-questionable-tome-empowered-discount` | ENGINE | VEN-059, VEN-054 | Shock Blast |
+| `wages-of-pain-jeweled-colossus-hidden-defence` | ENGINE | SFD-070, OGN-086 | Wages of Pain, Jeweled Colossus |
+
+## 38. Exhausting a friendly unit is free on the opponent's turn
+
+Three paragraphs, none of them on the card:
+
+- **144.1.b** forbids the Standard Move outside your own Main Phase, so a ready body has nothing to
+  spend its readiness on during theirs.
+- **464.2.c.3** and **465.2.b** do not filter by state — an exhausted defender is designated and
+  fights at its full Might.
+- **415.3.a** readies it again in your own Awakening.
+
+So `OGN-048 Meditation`'s optional *"exhaust a friendly unit"* costs **nothing** if the spell is cast
+on the opponent's turn (`[Reaction]`, 813.1.c.1), and costs one Standard Move if cast on yours
+(144.2, 420.3.a). And because the cost is **optional**, 203.3 never makes the card uncastable — the
+exact contrast with `SFD-044 Legion Quartermaster` in batch 8, whose additional cost has no *"you
+may"* and whose card cannot be played at all with no gear on the board.
+
+`OGN-049 Playful Phantom` has **no rules text at all**, which is precisely why it is in `uses[]`
+rather than refused: a body with no abilities has no opportunity cost when tapped.
+
+## 39. Two Calm cards that want opposite garrisons
+
+**740.2.a**: *"A unit is alone when there are no other **friendly** units at the same location."*
+`OGN-046 En Garde`'s second point needs a garrison of **one**; `VEN-027 Hand Hammer`'s *"+2 Might
+while I'm at a battlefield with exactly one OTHER unit you control"* needs a garrison of **two**.
+Nothing pays at three. They are one entry because a deck that runs both is paying full price for
+whichever is switched off — a **fork**, not a combination, and the entry says so rather than
+inventing an interaction.
+
+The Hammer's *"I"* is the **carrier** (053.1 with 136.2.d), so the condition reads where the carrier
+stands; its clause is a continuous `[Effect]`, re-read at every moment, so it can switch on mid-combat
+as bodies die and 465.2.c reads Might at assignment. En Garde is `[Reaction]` and buys its Might
+after the attacker's summed Might is countable, which the Hammer cannot do.
+
+## 40. A hidden removal spell can only ever answer at a battlefield you control
+
+**811.1.b** hides a card *"at a battlefield you control"*, and **811.1.d.2** confines a hidden spell's
+targets to that battlefield, with **811.1.d** making it unplayable if no valid target is there. So
+`SFD-070 Wages of Pain` hidden is **defence-only** — it can never answer a body you are attacking —
+while the same card played from hand at its printed 3 Energy has no such restriction. **The discount
+and the restriction arrive together.**
+
+And the hide is Control-dependent (the tail of 811.1.b, with 323.6 stripping Control when your last
+body leaves in an Open State), which is the same finding this session recorded in the Body lane on
+`pakaa-cub-determined-sentry-hidden-anchor` — there the answer was a body that cannot leave, here it
+is a 6 Might defender.
+
+## 41. Facts for CLAUDE.md from Calm/Mind batch 9
+
+1. **Exhausting a friendly unit costs nothing on the opponent's turn** — 144.1.b forbids the Standard
+   Move there, 464.2.c.3 and 465.2.b do not filter by state, and 415.3.a readies it at your own
+   Awakening. Any *"exhaust a friendly unit"* cost is therefore free at `[Reaction]` speed and worth
+   one Standard Move on your own turn.
+2. **740.2.a's *"alone"* (garrison of one) and the *"exactly one other unit you control"* clause
+   (garrison of two) are adjacent and mutually exclusive** — `OGN-046 En Garde` and `VEN-027 Hand
+   Hammer` are the pair, and nothing in the domain pays at a garrison of three.
+3. **A hidden spell's 811.1.d.2 restriction makes it defence-only**, because 811.1.b only hides at a
+   battlefield you control — so a hidden removal spell can never answer a body you are attacking,
+   and the same card from hand can.
+4. **423.1.a.2 clears a stun at the cleanup of the turn it was applied**, so a *"if an opponent
+   controls a stunned unit"* discount (`UNL-035 Monch`) must be cashed in the same Main Phase that
+   applied the stun; 423.1.a.1 stops a second application to the same body.
+5. **A *"something that's [Empowered]"* condition reads any Game Object**, so the cheapest `[Empower]`
+   cost in the pool satisfies it — `VEN-054 Questionable Tome`'s is a bare exhaust. Its own draw
+   ability begins *"Disempower this"*, so one Tome cannot both draw and hold a discount in the same
+   turn (441.1.b with 415.3.a).
