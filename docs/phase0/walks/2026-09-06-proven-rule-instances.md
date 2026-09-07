@@ -425,3 +425,103 @@ the base, so **816.1.b** kills it at the next Beginning Phase: the steady state 
 not a growing army. The entry above is the LeBlanc version for that reason, and `leblanc-temporary`'s
 own rule text states the general form — *"She only covers her own battlefield, so a token made at your
 base has to move there first."*
+
+---
+
+# Batch 4
+
+## 8. Entries authored
+
+### 8.1 `ivern-svellsongur-four-tags-hold` — BURST, 11 points
+Rules mined: `svellsongur-copy` × `ivern-friend-to-all-four-tags` (51 partners, 2 entries).
+
+Three Ivern each choose a different one of Bird/Cat/Dog/Poro at play time, so only the fourth tag has
+to come from elsewhere. **Stack all three Svellsongur on ONE Ivern**: 8 + 1 + 1 = **10 triggers**,
+where one gear per body would be 2 + 2 + 2 = 6. That is the same "compound on one multiplicand"
+lesson `svellsongur-copy-hold` records, and here it is worth 4 points.
+
+1 (Score) + 10 = **11**. Against the catalogued `ivern-sentinel-hold` — same three Ivern, two Blue
+Sentinels, 1 + 3 × 3 = 10 for 26 Energy in a **Mind/Order** shell. This is 11 for 30 + 5 Energy and
+6 Calm Power in a **Calm/Order** one. Both kept, as with `ahri-blue-sentinel-hold` beside
+`svellsongur-copy-hold`.
+
+All three Ivern must stand at the SAME battlefield: 383.4.d.2.a puts a unit's Hold Ability on the
+Chain only for a unit *"present at a Battlefield when a player maintains control of it"*.
+
+### 8.2 `shadow-temple-sentinel-burn` — ENGINE, and it is written around its own fuse
+Rules mined: `blue-sentinel-hold` × `shadow-temple-trash-fuel` (49 partners, 5 entries — and
+`VEN-165` appears in **no** entry's `uses`, because those five are the consumers, not the faucet).
+
+3 × `[Burn 3]` = **nine cards a turn**, the largest trash faucet available, by R8 = A (a battlefield's
+own Hold trigger is one of "your hold effects": 190.6.a, 190.6.d, 383.4.d.2.b) and R1 = A stacking.
+
+And nine a turn against a 39-card deck (103.2 with 103.2.a.1 removing the Chosen Champion) is about
+four Holds. Then **431.1.b** makes the excess a Burn Out and **431.2.b** *"Recycles their trash into
+their Main Deck"* — erasing everything the engine spent four turns putting there, on top of 194.1.d's
+point for the opponent. Filling the trash and emptying the deck are the same action.
+
+### 8.3 `svellsongur-faefolk-mass-evacuation` — ENGINE, a bloodless Conquer
+Rule mined: `svellsongur-copy`. Partner `UNL-112 Irresistible Faefolk` (catalogued twice, never with
+the copier).
+
+**One drag closes against a garrison of one; eight closes against any real board.** #102 measured that
+ceiling on `UNL-207 Amateur Recital`, and `faefolk-challenger-forced-attacker` runs this same Faefolk
+for exactly one drag. Eight independent instances empty a battlefield outright, and then:
+
+> **323.6.** Players lose control of any controlled Battlefields without their Units occupying them if
+> the turn is in an Open State and there is no Showdown or Combat ongoing there.
+
+with **170.11.c** (*"unoccupied and uncontrolled"* — **both**, the correction #146 had to make to two
+verified entries) it is now **open**, so a second body walks in for 190.3.a.1 → 344.2 → 348.2.a →
+348.2.a.1, a Conquer with no combat, no damage and no Attacker designation.
+
+### 8.4 `svellsongur-apprentice-smith-gear-dig` — ENGINE, the Burn-Out-safe one
+Rule mined: `svellsongur-copy`. Partner `SFD-041 Apprentice Smith`.
+
+> **431.1.c.** If an instruction directs a player to look at or reveal cards in excess to the number
+> of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but **does
+> not Burn Out**, then proceeds with the rest of the instruction.
+
+Every other Svellsongur draw line in the catalogue is capped by 431.1.a (`yasuo-stellacorn-svellsongur-draw`
+and `twilight-reveler-svellsongur-stellacorn-draw` both stop at four cards a turn). The Smith
+*reveals*; only the gear it finds is drawn, and a non-gear goes to the **bottom** (416.1.a / 416.5),
+so the engine can neither burn you out nor mill you. Mono-Calm.
+
+### 8.5 `svellsongur-traveling-merchant-discard` — ENGINE, deliberately the mirror of 8.4
+Rule mined: `svellsongur-copy`. Partner `OGN-185 Traveling Merchant`.
+
+Eight discard-and-draws a move — the largest repeatable discard outlet in the pool, against #95's
+finding that none of the lens's 31 outlets was *"free and repeatable within a turn"*. And eight
+**draws**: 431.1.a is a hard clock where 431.1.c was none, so a 39-card deck lasts about four moves.
+Authored beside 8.4 on purpose, same body count and same price, opposite rule.
+
+---
+
+## 9. Refusals, batch 4
+
+### 9.1 `SFD-177 Azir, Sovereign` under `svellsongur-copy` — doubling an "any number" is a no-op
+*"When I attack, you may move **any number** of your token units to this battlefield."* One instance
+already moves the whole army; eight move it again. Same shape as §7.2's uncapped converters, and the
+third time this walk has met it — **a multiplier is worth nothing on an effect with no per-execution
+cap.** Azir stays a one-instance card and `azir-sovereign-token-gather` remains its only entry.
+
+### 9.2 `OGN-140 Herald of Scales` × `UNL-104 Gentle Gemdragon` — a subset of an existing entry
+Looked like a clean Dragon ramp pair (a 2-Energy discount on every Dragon, plus two runes readied per
+Dragon played). The card-set check caught it: `gemdragon-henge-vi-blind-fury` already contains BOTH,
+inside an eleven-card line. A strict subset of a catalogued entry is not a new entry. Recorded because
+the id check alone would not have found it — this is the check the manager asked for after
+`rc-walk-payoff` collided by card set.
+
+### 9.3 `SFD-027 Dunebreaker` under `svellsongur-copy` — sixteen draws is a loss, not a payoff
+*"When I hold, draw 2."* × 8 instances = 16 cards on a single Hold. 431.1.a makes the overdraw a Burn
+Out, 194.1.d gives the opponent a point and 431.2.b recycles the trash back. A 39-card deck cannot
+absorb one activation, let alone a repeat. The partner is real and the arithmetic kills it.
+
+### 9.4 `SFD-193 Grandmaster at Arms` × `SFD-180 Fiora, Worthy` — Domain Identity
+The relay reads perfectly: Grandmaster's *"[exhaust]: Attach an attached Equipment you control to a
+unit you control"* moves a Might-Bonus gear to a fresh sub-5 body every turn, which 709 makes *become*
+Mighty, which Fiora readies. But Grandmaster at Arms is a **Calm/Body legend** and Fiora is **Order**:
+103.1.b is a subset test against the legend's two domains, and there is no legend that is both. The
+colourless `SFD-208 Forge of the Fluft` (*"friendly legends have '[exhaust]: Attach an Equipment you
+control to a unit you control'"*) is the only way to give an Order legend that ability, and it costs
+the battlefield slot (485.4.a).
