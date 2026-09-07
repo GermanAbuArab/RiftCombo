@@ -1360,3 +1360,33 @@ practice means `[Temporary]` (`816.1.b`) — both of its existing entries use ex
 24. **A ranked co-occurrence or matrix list is not legality-checked.** `OGN-177 Stealthy Pursuer` ranked
     second on partner count in rows 19–30 and is `[BANNED constructed:banned, 2v2:banned]`. Run the ban
     and Signature check on every trigger card before spending a walk on its family.
+
+### 27.4 Bucket D re-run against `data/legality.json` (the authoritative source)
+
+`rc-walk153b` reported that the matrix read legality wrongly — `data/legality.json`'s `bases` is an
+**array**, and a scalar read matches nothing. My §27 bucket D was run against the `[BANNED` markers in
+`data/corpus_flat.txt`, which is a different source, so I re-ran it properly. **The verdict is unchanged
+and the two sources agree**:
+
+- 21 legality entries, 11 distinct bases. Of my twelve trigger cards, exactly one is listed:
+  `OGN-177 Stealthy Pursuer` — `constructed:banned since 2026-07-24`, `2v2:banned since 2026-07-24`.
+- Every card in the three entries staged from these rows is legal in both formats.
+- Cross-checking the two sources against each other: no card is banned in `legality.json` and clean in
+  the corpus, and the only corpus-side extra is `OGS-019 Wuju Bladesman - Starter`, which is
+  **restricted in 2v2, not banned** — which is how §19.4 already described it.
+
+**The check, so it is not re-derived:**
+
+```
+node -e 'const leg=require("./data/legality.json"); const idx=new Map();
+ for (const e of leg.entries) for (const b of (Array.isArray(e.bases)?e.bases:[e.bases])) {
+   if (!idx.has(b)) idx.set(b, []); idx.get(b).push(e.format+":"+e.status); }
+ /* then look up each base */'
+```
+
+**Corroboration on the other two bugs.** `rc-walk153b`'s bug (1) — a `kill (a|an|…)` cause regex matching
+*"kill **all** gear"* — is the same class of error I found independently in my own lead E: `SFD-005
+Detonate`, `SFD-160 Zaun Punk` and `OGN-224 Salvage` kill **gear**, not units, and so fire none of the
+six `friendly-dies` anchors. Its bug (2) (a `\[hidden\]` cause regex matching cards that merely *mention*
+Hidden) does not touch rows 19–30, which carry no hide or play-facedown family. **Neither bug changes any
+verdict in §27**, and lead E's `excludes` list already carries the gear-killer family.
