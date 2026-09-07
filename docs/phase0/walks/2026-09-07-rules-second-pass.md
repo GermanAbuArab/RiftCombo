@@ -885,3 +885,218 @@ handoff). It is three short files and worth rebuilding rather than guessing:
 One trap in the probe itself, recorded because it produced a false claim in this document that had to
 be corrected an hour later: **`Card.type` is a string ARRAY.** A probe written as `c.type === "legend"`
 returns false for every card in the pool and reports zero. See the correction box in §1.5.
+
+---
+
+# PART TWO — the successor's slice (rc-walk-rules2), from 2026-09-07
+
+Continues the same document. Issue #170 stays open; commits say `Refs #170`.
+
+## 23. The measurement that reorders the whole remaining list
+
+§22.2 ranked what is left by `uncovered` and warned that the top five are warning flags. They are
+worse than that: **four of the top five share ONE predicate, and two thirds of what it matches is
+not a buff at all.**
+
+`simian-ancestor-buff-ready`, `mistfall-buff-ready`, `vanguard-helm-buff-supply` and
+`monastery-hirana-buff-supply` all carry the same partner regex, copied from `fiora-buff-ready`:
+
+```
+\[Buff\]|[Bb]uff (a|all|another|me|up to|your)|[Gg]ive (me|it|a unit|a friendly unit|another friendly unit|your units)[^.]{0,60}\+\d+ :rb_might:
+```
+
+The third alternative is the problem. Split against the corpus, the 99 cards it matches are:
+
+| | count |
+|---|---|
+| real 702 Buff sources (`[Buff]` or `buff a/all/another/me/up to/your`) | **33** |
+| `give … +N :rb_might: this turn` and nothing else | **65** |
+| not found | 1 |
+
+CLAUDE.md already states the distinction and #102 settled it: *a "buff" is the 702 counter and
+702.3 caps it at one per unit, while "+N Might this turn" is a plain modifier that 702.3 never
+touches.* `SFD-047 Simian Ancestor` reads **"When you **buff** me, ready me"**, `OGN-152 Mistfall`
+reads **"When you **buff** a friendly unit"**, `OGN-228 Vanguard Helm` **"When a **buffed** friendly
+unit dies"**, `OGN-282 Monastery of Hirana` **"you may spend a **buff**"** — none of the four fires
+off a Might modifier. So `UNL-149 Diana, No Longer Human`, `OGN-103 Ravenbloom Student`,
+`VEN-071 Fretful Feline`, `OGN-143 Pirate's Haven`, `UNL-001 Arena Kingpin` and 60 others are false
+positives on all four rules simultaneously.
+
+The predicate is CORRECT where it was written — `fiora-buff-ready` keys on 709 becoming [Mighty],
+which a "+N Might this turn" does cross. It was copied onto four rules that key on the word *buff*.
+
+**Reported to the manager, not fixed here** (this session owns no `data/synergies.json`). The four
+rules want the first two alternatives only; the excludes they already carry (`OGN-146 Wallop`,
+`OGN-207 Call to Glory`, and for two of them `OGN-152` / `SFD-047`) stay.
+
+The honest ranking, after that split, is that the buff vein is **33 partners wide, not 99** — and 10
+of the 33 were in zero entries when this section was written (2026-09-07): `OGN-053 Stand United`,
+`OGN-056 Adaptatron`, `OGN-063 Spirit's Refuge`, `OGN-147 Wildclaw Shaman`,
+`OGN-217 Trifarian Gloryseeker`, `OGN-283 Navori Fighting Pit`, `SFD-091 Buhru Captain`,
+`SFD-098 Sea Monkey`, `UNL-043 Enthusiastic Promoter`, `UNL-162 Enthralling Protector`.
+
+## 24. `royal-entourage-readies-your-legend` (SFD-039) — an anchor in ZERO entries, and a claim it refutes
+
+`SFD-039 Royal Entourage | Unit | Calm | E3 P1 M4 | When you play me, ready or exhaust a legend.`
+
+The rule has 24 partners (every legend with an exhaust in an ability's cost) and its anchor was in
+no entry at all. Three entries came out of it, and the finding that ties them together is a
+correction to an entry written the same day.
+
+### 24.1 The correction, and the half of it that does not hold
+
+`eye-of-twilight-zephyr-sage-tank-redirect` (#171, 2026-09-07) states in its own notables:
+
+> ONE GRANT PER TURN AND NO WAY TO DOUBLE IT. 815.2 makes multiple instances of Tank redundant, and
+> the cost is the legend's own exhaust, which 315.1.b returns only at your next Awakening — so a
+> second combat in the same turn goes ungranted.
+
+The cost half is exactly right and the conclusion is not: **five cards in the pool ready a legend**
+(CLAUDE.md's #56 census — SFD-039, SFD-210, OGN-162, VEN-068, and OGN-111 via Heimerdinger's copy),
+so the exhaust does come back inside a turn.
+
+But the correction only reaches **your own turn**, and that is the entry's real content. Royal
+Entourage is a UNIT with no [Action] and no [Reaction]; 155 bars a spell without them from a
+Showdown and **381** — *"All Activated Abilities can only be activated on the Controlling Player's
+Turn and during an Open State"* — is the general form. So on the OPPONENT's turn it can never be
+played, and 415.3.a had readied the legend at your Awakening anyway. The doubling therefore exists
+only where both activations can be spent on one turn, i.e. when YOU attack. `eye-of-twilight-
+zephyr-sage-tank-redirect` is a defensive entry, so on its own board its sentence stands.
+
+`royal-entourage-eye-of-twilight-double-tank` is the attacking-side entry: two Zephyr Sages granted
+[Tank], and 815.1.c.2 makes every other attacker of yours an invalid assignment until the defender
+has put lethal on **both** — 6 + 6 = 12 summed Might, with 465.2.c.4 forbidding overpayment on
+either. The Shield is deliberately not counted: 814.1.c reads *"While I am a defender"*, and here
+they attack.
+
+### 24.2 415.1.c forces the play order, on every entry in the vein
+
+> 415.1.c. *"If a Unit is instructed to be Readied while it is already Ready, nothing additional
+> happens."*
+
+The legend has to be **exhausted first**. Playing Royal Entourage before spending the legend's
+ability wastes the card entirely. (Its "ready **or exhaust**" is a genuine choice, so exhausting your
+own legend is legal — and pointless here.)
+
+### 24.3 `royal-entourage-grandmaster-warmogs-two-conquers` — the cap was always two
+
+`SFD-193 Grandmaster at Arms` prints a FREE reattach: *":rb_exhaust:: Attach an attached Equipment
+you control to a unit you control."* `jax-grandmaster-warmogs-buff` prices it as *"one reattachment
+a turn, throttled by how often you conquer"*, leaving the throttle open. It is not open: **469.1**
+defines a Conquer at a battlefield *"not yet Scored this turn"*, **470** caps Scoring once per
+battlefield per turn and **485.4** puts two battlefields on a Duel table. So a turn holds at most
+two Conquers, one Royal Entourage buys exactly the second reattach that a second Conquer can use,
+and a **third** activation has nothing left to attend.
+
+Two rules keep the shuttle honest: **434.1.g** (*"Attaching a card to its current Top-Most Card will
+not have any effect"*) means the two Conquers must be attended by two different carriers, and
+**702.3** is why a stationary Warmog's stops after one buff (702.3.a: a second Buff on a buffed unit
+*"is not placed"*).
+
+### 24.4 `royal-entourage-emperor-sands-two-sand-soldiers` — 187.3, and a claim narrowed
+
+`SFD-197 / SFD-247 Emperor of the Sands` was also in zero entries. **187.3**: *"A 2 [M] Sand Soldier
+token is a domainless unit token with 2 Might and the Shurima tag."*
+
+The project's token discussion is written around 1-Might Recruits and Birds, and #159 concluded that
+*"the binding constraint on every 1-Might Plaza line is Might PER BODY … and the only fix in the pool
+is `UNL-077 Soul Shepherd`"* (Mind, which is what forces a Mind/Order shell). That stands as written.
+What it does not cover is a faucet that never mints a 1-Might body: a Sand Soldier survives
+`OGN-133 Flurry of Blades` (*"Deal 1 to all units at battlefields"*) with no repair at all, and the
+Emperor is **Calm/Order**. A repair and a faucet that does not break are different objects.
+
+Two supporting facts the entry states rather than assumes:
+
+- **"you've played an Equipment this turn" is measured per TURN, not per activation**, so one
+  Equipment play arms both the base activation and the Royal Entourage one.
+- **[Weaponmaster] reaches the token by rule.** *"Sand Soldiers you play have [Weaponmaster]"* is a
+  static; 350.2 makes a token something that is played and 185.2.a keeps it from being a card;
+  383.2.c.1 has an ability active in a zone apply to an object entering that zone at the same time —
+  the same route that puts *"your Mechs have [Vision]"* onto a Mech token (#117). And because
+  [Weaponmaster] equips *"to me"*, only a carrier-INDEPENDENT Equipment can ride it:
+  `SFD-153 Eye of the Herald`'s *"When I move, play a 1 :rb_might: Recruit unit token here"* works on
+  any body, and its [Equip] is exactly one rune, which *"one rainbow less"* takes to 0 under **356.6**
+  (*"Energy and Power costs can't be reduced below 0"*).
+
+### 24.5 The rest of the vein is `notable` material, not entries
+
+The other Calm-inclusive legends the rule pairs with all give the same delta — one extra activation —
+without a second rule engaging, so they were **not** written as entries (the bar: same arithmetic on
+a different card is a note). For the record, with the second activation priced:
+
+| legend | ability | what the second activation is worth |
+|---|---|---|
+| `OGN-257 Blind Monk` (Calm/Body) | 1 Energy, exhaust: buff a friendly unit | a second 702 Buff counter, which 702.3 forces onto a **different** body |
+| `UNL-189 Bashful Bloom` (Calm/Mind) | 4 Energy, exhaust: ready 3 Might Sprite with [Temporary], −1 Energy per friendly [Temporary] | a second Sprite at 3 Energy, because the first is already on the board — but `leblanc-bashful-bloom-trevor-plaza` already ratchets that cost to zero, so the Entourage adds a body, not a discount |
+| `SFD-189 Fire Below the Mountain` (Calm/Mind) | exhaust: [Reaction] [Add] rainbow, gear only | one more rainbow for gear; note 103.2.d.2 — `SFD-191 Rabadon's Deathcrown` is Ornn's Signature and forces this legend, never the reverse |
+| `VEN-139 Rogue Assassin` (Fury/Calm) | [Action] exhaust: move a friendly unit in a showdown to base, ready it if [Empowered] | a second evacuation inside one showdown |
+| `OGN-259 Unforgiven` (Calm/Chaos) | 2 Energy, exhaust: move a friendly unit to or from its base | a second effect move — 420.3.a puts the exhaust cost only on the STANDARD move, so this moves an exhausted body |
+
+### 24.6 A refusal recorded: the "ready or **exhaust**" half is dead letter against an opponent
+
+Royal Entourage's other mode is *exhaust* a legend, and "a legend" carries no friendly qualifier, so
+it reaches the opponent's. It buys nothing. **381**: an Activated Ability *"can only be activated on
+the Controlling Player's Turn"* — so on your turn the opponent could not have used their legend's
+activated ability anyway, and by their Awakening 415.3.a has readied it. The only thing exhausting an
+opposing legend could deny is a TRIGGERED ability whose cost is that legend's exhaust (383.3.b makes
+such a cost the trigger's base cost, paid to finalize) — a genuinely narrow set, and none of the 24
+partners of this rule is in it, because the rule's predicate is built on activated abilities.
+
+## 25. Two buff-family entries that do not need Royal Entourage
+
+Both come out of the 33-card real-buff list of §23, and both anchors were in zero entries.
+
+### 25.1 `peak-guardian-spirits-refuge-mass-deflect` — the Buff counter read as a keyword
+
+`OGN-063 Spirit's Refuge` (Calm gear, E2 P1) prints *"Friendly buffed units have [Deflect] if they
+didn't already."* That is a static reading the 702 counter, so `OGN-223 Peak Guardian`'s single mass
+buff becomes a standing tax on the whole garrison. **702.3** is why a mass buffer is the right
+partner and a repeatable single-target one is not: one counter per body, so the currency is BODIES.
+
+The tax is **per choice, not per spell** — 809.1.c: *"Spells and abilities an opponent controls that
+target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost
+**for each time they choose** [me/this]"* — and 809.1.c.1 makes the Power any Domain. 809.1.d makes it
+a Mandatory Additional Cost **on playing**, so the keyword has to be in place before the opponent
+acts; granting it in response taxes nothing.
+
+The hole is the word *choose*: 355.10.d (programmatic selection), 355.10.e and 355.10.f (the opponent
+picks) all bypass it. `UNL-107 Stare Down` walks through; `OGN-234 Public Execution` pays. And combat
+damage is **assigned** (465.2.c), never chosen, so [Deflect] is silent in the damage step.
+
+### 25.2 `peak-guardian-stand-united-hidden-garrison-pump` — the pool's only buff AMPLIFIER
+
+`OGN-053 Stand United` (Calm spell, E3, [Hidden], [Action]): *"Buff a friendly unit. Buffs give an
+additional +1 :rb_might: to friendly units this turn."* **703** makes a Buff worth +1; this makes each
+one worth +2 for the turn.
+
+The reading is kept narrow on purpose. Because **702.3** allows a unit only one Buff at a time,
+"buffs give an additional +1" and "each buffed body gets +1" are the same number on every legal board,
+so the card can be priced without filing a reading. (`OGN-078 Lee Sin, Ascetic`, who prints *"I can
+have any number of buffs"* and is the one exception to 702.3, is the single board where the two
+readings would diverge — deliberately left out of the entry.)
+
+Three facts the entry stands on:
+
+- **Only the first sentence is confined.** 811.1.d.2 restricts the targets of a hidden spell's play
+  effect to the battlefield it was hidden at, so *"Buff a friendly unit"* must pick there. The
+  amplifier sentence chooses nothing and names no location, so it is unconfined — that is where the
+  value sits.
+- **The cost is paid a turn early and is then zero.** 811.1.b's tail: *"Beginning on the next turn,
+  this gains [Reaction] and you may play this, ignoring its base cost"*, with 813.1.c.1 admitting it
+  *"during Closed States on any player's turn"* — inside the opponent's attack, after 464.2.c.3 has
+  designated the attackers.
+- **The cap is the BOARD, not the deck.** 811.1.b hides *"at a battlefield you control that doesn't
+  already have a facedown card hidden there"*, and 485.4 puts two battlefields on a Duel table, so at
+  most two copies are ever live however many 103.2.b allows. `OGN-278 Bandle Tree` is the pool's only
+  lift on that limit.
+
+Anti-synergy stated in the entry: 702.2.b removes a counter when something SPENDS it, so a deck that
+also runs Wallop, Call to Glory or Monastery of Hirana is subtracting from Stand United's own count.
+A buff deck picks a side — the same fork #153 drew between carrying a buff and spending one.
+
+## 26. Batch 1 — staged
+
+Five entries, all ENGINE, in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos` clean over 509
+entries; both checks of `test/legend-lines.test.ts` run against the staging file, 9 legend codes
+checked, clean. Cards that were in **zero** entries before this batch: `SFD-039` Royal Entourage,
+`SFD-197`/`SFD-247` Emperor of the Sands, `OGN-063` Spirit's Refuge, `OGN-053` Stand United.
