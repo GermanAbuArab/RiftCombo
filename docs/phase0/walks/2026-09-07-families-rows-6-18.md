@@ -371,3 +371,102 @@ of yours.
   on both anchors in the synergy layer: she plays a [Hidden] card *from hand*, and 811.1.c.1 says
   "Hide is not a subset of Play", so neither "when you hide" nor "when you play a card from face down"
   ever sees her.
+
+## 5. Batch 4 — the choose-friendly family (rows 12, 13, 14), six entries
+
+This is the row where the matrix's false-positive rate is highest, and the reason is that "choose" is
+one word covering four different game actions. **Eleven of the twenty-seven partners across the three
+trigger cards do not fire them at all**, sorted into three kinds:
+
+- **Chooses a card in a HAND or a TRASH, not a friendly unit on the board** — `UNL-139 Bone Skewer`
+  ("You may choose a unit from it" — the opponent's revealed hand), `VEN-104 Tail-Cloaked Matriarch`
+  and `VEN-114 Kharox` (both "choose a unit in [a] trash").
+- **Chooses the wrong side, or removes what it chose before the payoff can land** — `VEN-106 Wind and
+  Ghosts` chooses "a unit at a battlefield" and then banishes or bounces it; a Blade Dancer ready
+  aimed at a unit that has left the board does nothing.
+- **Not a spell** (`SFD-142 Jae Medarda` only) — his text is "When you choose me **with a spell**", so
+  `SFD-195 Blade Dancer`, `SFD-144 Spirit Wheel`, `SFD-050 Azir, Ascendant`, `OGN-279 Fortified
+  Position`, `OGN-023 Unlicensed Armory`, `VEN-137 Shady Spectacles`, `VEN-079 Dame the Despoiler` and
+  `OGN-199 Tideturner` are all inert on him however friendly the unit they choose.
+
+### 5.1 `blade-dancer-tideturner-free-swap-and-ready` — SFD-195 + OGN-199
+
+`OGN-199 Tideturner` is **Riot's own worked example** under 811.1.d.2, quoted verbatim in the entry:
+"Because its play effect has a targeting restriction that can never be fulfilled by a unit at its
+battlefield, its target may be chosen freely from among the available options." It is the one hidden
+play effect in the pool that reaches the whole board. Two units swap places with nothing exhausted
+(420.3.a puts the cost on the Standard Move alone) and Blade Dancer readies the chosen one.
+
+Stated because it decides how the line is played: the ready is worth a Standard Move on **your** turn
+and nothing inside a Closed State (144.1.b, 381), so the Tideturner is played from face down on your
+own turn here. Her ceiling is three triggers a turn — one from the Awakening plus one per conquer, and
+470 with 485.4 caps a Duel at two conquers.
+
+### 5.2 `jae-medarda-dragon-form-flow-double-draw` — SFD-142 + VEN-116 (in zero entries)
+
+[Flow] is the only way in the pool to choose Jae twice with one card: 829.1.b is "You may play this
+from your trash for its flow cost. Then banish it", so three copies is **six castings and six draws**,
+and 108.6.c stops it there.
+
+The partner was chosen by the project's own filler test — a leg taken only to satisfy a trigger must be
+unconditionally castable — and Dragon Form passes twice over: "Choose a unit" always has a legal target
+while Jae is out, and "its base Might becomes 5 this turn" is a **no-op** on a printed 5-Might body.
+`VEN-127 Lacerate`, the other Order [Flow] spell in his row, fails the second half: "kill it if it has
+3 [M] or less" makes aiming it at a small friendly body a kill.
+
+Chaos/Order is one of the three single-name pairs in the legend census, so the identity admits exactly
+one legend: Heart of the Tempest (VEN-155 / VEN-197).
+
+### 5.3 `jae-medarda-marching-orders-repeat-two-draws` — SFD-142 + SFD-114 (in zero entries)
+
+820.2.a lets the additional execution choose differently, so here you choose the **same** unit twice
+and Jae fires twice. The word that makes the card safe to run is "anywhere": Jae fights from your
+**base**, with no move, no exhaust and no Attacker designation — damage outside combat entirely.
+
+The entry's shortfall is stated in its own arithmetic: marked damage accumulates within the turn
+(143.2.a), so two enemies of 3 Might each add to 6 and kill a 5-Might Jae. Two draws can cost the
+payoff.
+
+### 5.4 `jae-medarda-repulse-counter-that-pays-for-itself` — SFD-142 + UNL-106 (in zero entries)
+
+A hard counter to single-target removal that replaces its own card, for 1 Energy + 1 Body Power. The
+ordering is the part worth writing down: targets are chosen **while a spell is played** (355.6,
+355.7), so Jae's trigger is Finalized above Repulse and 340.1 resolves the draw *first* — you have the
+card banked before the counter is even attempted.
+
+"and no other friendly unit" is the real restriction: sweepers and two-target spells are outside it.
+
+### 5.5 `spirit-wheel-fortified-position-defend-draw` — SFD-144 + OGN-279 (in zero entries)
+
+The only chooser in the pool that costs nothing, repeats, and occupies no Main Deck slot (103.4.c). And
+the reason the draw lands on the **opponent's** turn is §1's split: the Wheel's "pay 1 Energy and
+exhaust this" hangs off a *trigger*, so 383.3.c applies and 381 does not.
+
+Its ceiling is its own exhaust — **one draw a turn**, 415.3.a readying it in your Awakening — which is
+the number a reader will otherwise assume scales with the number of choosers.
+
+### 5.6 `spirit-wheel-tactical-retreat-reaction-draw` — SFD-144 + UNL-175 (in zero entries)
+
+The [Reaction] chooser the Wheel is short of (813.1.c.1). The entry leads with the **cost** of the save
+rather than the save, because the card reads as pure upside and is a trade: 808.1.d.1 erases the saved
+body's Deathknell, and 455 recalls it *to its base*, switching off any "While I'm at a battlefield"
+text and, via 323.6, handing back the battlefield if it was your only body there. It also comes back
+exhausted (315.1.b readies it only next Awakening).
+
+### 5.7 Refusals from batch 4
+
+- **`VEN-106 Wind and Ghosts` under Blade Dancer** — refused on ordering: the spell banishes (≤3 Might)
+  or bounces the unit it chose, so by the time her ready would resolve there is nothing on the board to
+  ready.
+- **`UNL-139 Bone Skewer`, `VEN-104 Tail-Cloaked Matriarch`, `VEN-114 Kharox`** — refused on reading:
+  each chooses a card in a hand or a trash, not a friendly unit on the board.
+- **Every non-spell chooser under `SFD-142 Jae Medarda`** — refused on the word "spell", eight cards in
+  his row of nineteen. This is the trap the issue named in advance and it is the largest single block
+  of false positives in the slice.
+- **`VEN-040 Decree of Focus` as a Blade Dancer or Spirit Wheel enabler** — not refused outright, but
+  kept out of `uses`: it chooses "a friendly unit that's in combat with an enemy Fury unit or that's
+  being chosen by an enemy Fury spell", which fails the filler test (a leg picked to satisfy a trigger
+  must be unconditionally castable) against any opponent without Fury.
+- **`VEN-137 Shady Spectacles` under Blade Dancer** — refused on Domain Identity: the Spectacles are
+  Order and Blade Dancer's own two domains are Calm and Chaos, so 103.1.b.4 keeps it out of any deck she
+  can lead. (Under the Spirit Wheel it is legal but redundant, since the Wheel caps at one draw a turn.)
