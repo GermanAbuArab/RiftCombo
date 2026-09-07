@@ -1,0 +1,198 @@
+# Walk — the unwalked partners of the 66 proven synergy rules
+
+Issue [#160](https://github.com/GermanAbuArab/RiftCombo/issues/160). Session `rc-walk-instances`, 2026-09-06.
+Rules file `data/Riftbound-Core-Rules-2026-07-16.txt`; all card text grepped verbatim from `data/corpus_flat.txt`.
+
+## The material
+
+`data/synergies.json` holds 117 hand-verified patterns. 66 carry a non-empty `basis.combos`, i.e. the
+mechanism was extracted from an entry that was already hand-walked, so the pattern is proven to
+terminate in a combo for at least one partner. Those 66 rules cover 2,090 reviewed partner slots and
+only 180 (anchor, partner) pairs are in `data/combos.json`. This walk prices the remainder.
+
+Scope note: the 51 rules whose `basis.combos` is **empty** belong to `rc-walk153`
+(`2026-09-06-orphan-synergy-rules.md`) and are not touched here.
+
+Staging file: `/tmp/rc-walks/rc-walk-instances.json` (staging protocol — this session does not edit
+`data/combos.json`).
+
+---
+
+## 1. Entries authored
+
+### 1.1 `heimerdinger-ultrasoft-poro-plaza` — ALT_WIN
+Rules mined: `heimerdinger-inventor-exhaust-copy` (75 partners, 4 entries) ∩ `grand-plaza-unit-tokens`
+(47 partners, 3 entries). Partner `UNL-160 Ultrasoft Poro` was uncatalogued in both.
+
+`OGN-111 Heimerdinger, Inventor` — *"I have all :rb_exhaust: abilities of all friendly legends, units, and gear."*
+`UNL-160 Ultrasoft Poro` — *"[exhaust]: Play two 1 Might Bird unit tokens with [Deflect]. Use this ability only while I'm at a battlefield."*
+
+Two activations a turn = four Birds, played **straight onto the Plaza**: the ability names no
+destination, so **355.2.a** — *"By default, Valid locations include the controller's Base or a
+Battlefield the controller controls"* — puts them where you like. That is why this line needs neither
+`SFD-171 Renata Glasc, Industrialist` nor the walk of #48: nothing ever pays **144.2**'s exhaust.
+
+**R30 = B** is satisfied rather than dodged: **377.2.b** makes *"Use this ability only while I'm at a
+battlefield"* a condition of the Activated Ability and **053.1** re-reads *"I"* on the new holder, so
+Heimerdinger must stand at a battlefield — and here he stands on the Plaza anyway.
+
+8 Energy + 1 Mind Power, two cards, win on the fourth Hold. Mind/Order (four legends).
+
+### 1.2 `vanguard-captain-manufactor-plaza` — ALT_WIN
+Rule mined: `grand-plaza-unit-tokens`. Partners `OGN-218 Vanguard Captain` and `OGN-211 Faithful
+Manufactor`, both uncatalogued.
+
+Both print *"here"*, so all eight bodies land at the Plaza in ONE Main Phase for **9 Energy + 2 Order
+Power** — against the catalogued `grand-plaza-recruit-vanguard`, whose own REFUTE note records
+*"two Vanguards in one turn is 12 Energy, the whole Rune Deck"*.
+
+The ordering is free and load-bearing. **812.1.c**: *"As long as a card different than the one with
+the Legion ability has been Finalized by you on the same turn then the Dependent Ability is Active on
+the card with Legion."* Play the Manufactor first; **812.2** then satisfies both Captains with that one
+card. Play it last and Captain #1 is a bare 3-Might body.
+
+Body quality is the second difference: **465.2.c** sums the attacker's Might and **465.2.c.3** forces
+lethal onto one unit at a time, so 5 Recruits + a 2-Might + two 3-Might bodies cost 13 damage to
+clear, not 8.
+
+### 1.3 `shen-kinkou-sentinel-hold` — ENGINE
+Rule mined: `blue-sentinel-hold` (45 partners; 9 entries in the catalogue carry `UNL-087`).
+Partner `VEN-138 Shen, Leader of the Kinkou Order`, uncatalogued.
+
+*"When I hold, if there is exactly one other unit you control here, you score 1 point."*
+
+**This is the only Blue Sentinel line in the catalogue where a SECOND Sentinel is a downgrade.**
+**383.2.a.1**: *"Any additional conditional statement immediately after the Condition must be true in
+order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition
+and not the Effect."* With two Sentinels the battlefield holds three of your units, Shen sees two
+others, and the trigger never reaches the Chain: 3 points a turn becomes 1.
+
+3 points per Hold = 1 Score (**469.2** → **471.1**, capped by **470**) + 2 from Shen (R1 = A with
+stacking; R2 = A keeps them outside 470 as **194.1.c** Gains).
+
+### 1.4 `cull-brambleback-gold` — ENGINE
+Rule mined: `red-brambleback-conquer` (57 partners, 7 entries). Partner `SFD-134 Cull`, uncatalogued.
+
+Three Culls stack on one body — Cull prints no `[Unique]`, and **434.1.b.1** contemplates *"more than
+one card attached to the Top-Most card"* and adds that *"the order of the Attached cards has no
+bearing on the application of effects"*; **136.2.c** appends each Effect Text to the bearer's Rules
+Text and **136.2.d** makes *"I"* the bearer. Three Conquer Effects (**383.4.c.1**) × (1 + 2
+Bramblebacks) = **nine Gold**.
+
+Two things the entry states that the headline number hides: the Gold enter exhausted and ready only
+at the NEXT Awaken (**315.1.b**) — Renata Glasc, Industrialist would fix it but she is mono-Order and
+**103.1.b.1** bars her from a Fury/Chaos deck; and Red Brambleback's own `[Buff]` wastes two of its
+three executions under **702.3** / **702.3.a**.
+
+The distinguishing mechanic against the catalogued `yeti-brambleback-renata-gold`: Cull's trigger has
+no excess-damage condition, so it pays on a bloodless Showdown Conquer (**344.2** → **348.2.a** →
+**348.2.a.1**) with no Attacker designation at all.
+
+### 1.5 `rumble-scrapper-sentinel-mechs` — ENGINE
+Rule mined: `blue-sentinel-hold`. Partner `SFD-089 Rumble, Scrapper`, uncatalogued.
+
+Mono-Mind. Three Mech tokens per Hold at **4 Might** each — **187.4** gives the token the Mech tag by
+rule (*"A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag"*), so Rumble's
+static reaches every one of them for free.
+
+**And six rainbow Power a turn**, which nothing in the catalogue had priced: each Sentinel's own
+*"When I hold, [Add] rainbow at the start of your next Main Phase"* is itself one of your hold effects
+at that battlefield, so 2 Sentinels × 3 executions = 6.
+
+---
+
+## 2. The rule number the catalogue was missing: why Blue Sentinel's Power survives 167
+
+Every Blue Sentinel entry since `world-atlas-sentinel-gold` has treated its rainbow as spendable
+without saying why, while CLAUDE.md's own trap list says Energy added in the Beginning Phase is lost
+to **167**. The answer is the Main Phase's own task order, and it is explicit:
+
+> **316.2.** The following Tasks become Outstanding in the specified order:
+> **316.3.** 1. Each player's Rune Pool empties. Any unspent Energy and Power are lost.
+> **316.4.** 2. At the start of Main Phase game effects take place.
+
+The pool empties at 316.3; the Sentinel's delayed `[Add]` is a start-of-Main-Phase game effect and
+lands at 316.4, after it. Both entries in this batch cite it.
+
+---
+
+## 3. Refusals
+
+A refusal is worth as much as an entry: it stops the next session re-deriving it.
+
+### 3.1 Every *"you may exhaust me to …"* Hold/Conquer legend is NOT doubled — the second instance cannot pay
+Partners refused across `blue-sentinel-hold` and `red-brambleback-conquer`:
+`SFD-201 Chem-Baroness`, `UNL-193 Gloomist`, `UNL-199 Deceiver`, `UNL-195`/`UNL-233 Green Father`,
+`SFD-187 Void Burrower`, `UNL-187 Piltover Enforcer`.
+
+> **383.3.b.** If a Triggered Ability contains a cost within instructions at the beginning of the
+> effect or immediately following the "you may" or "they may" that appears as the first part of the
+> effect, that cost is treated as the base cost of the Triggered Ability.
+> **383.3.b.1.** The cost must be paid in order to finalize the Triggered Ability to the Chain.
+
+and
+
+> **312.2.c.** [A player receives Priority] when the turn is in a Closed State, **all pending chain
+> items finish being finalized**, and they control the next item on the Chain.
+
+Both instances are pending simultaneously and both must be finalized before ANY player gets priority,
+so the exhaust would have to be paid twice on one legend in a window where nothing can ready it.
+The second instance is simply declined. The multiplier is worth zero on this whole family — which
+confirms, with a rule number, the caveat `blue-sentinel-hold`'s own `why` states in prose.
+
+### 3.2 A doubled *"ready X"* is a no-op unless the ready is spent between the two RESOLUTIONS
+Partners: `SFD-210 Hall of Legends`, `SFD-195 Blade Dancer`, `UNL-187 Piltover Enforcer`.
+
+Not a flat refusal, and the distinction matters. **340.4**: *"If the Chain is not empty and there are
+no Pending Items, the controller of the newest item on the chain gains Priority. Return to Step 2:
+Execute."* So there IS a window between resolution #1 and resolution #2 — but there is none between
+the two *finalizations* (3.1). Consequence: a doubled ready pays only if you hold an ability that can
+exhaust the readied object at Reaction speed inside that window. No entry authored; recorded as a
+lead so the next session does not re-open it as either a free double or a dead one.
+
+### 3.3 A doubled `[Buff]` on a fixed target is a no-op
+Partners: `UNL-043 Enthusiastic Promoter` (*"When I hold, [Buff] all units here"*) under
+`blue-sentinel-hold`, and `OGN-164 Sett, Brawler` (*"When I'm played and when I conquer, buff me"*)
+under `red-brambleback-conquer`.
+
+> **702.3.** There can only be one Buff on a Unit at a time.
+> **702.3.a.** If a Buff is added, or instructed to be added, on a Unit that already has a Buff, it is
+> not placed instead.
+
+The extra executions find every named target already buffed. `OGN-283 Navori Fighting Pit` (*"buff **a**
+unit here"*) escapes, because each execution may choose a different unit — as does Red Brambleback's
+own *"[Buff] a friendly unit"*, which is why `cull-brambleback-gold` says three executions buff three
+bodies and never one body three times.
+
+**Recommendation to the manager (this session does not own `data/synergies.json`):** `UNL-043` and
+`OGN-164` are `excludes` candidates of the same shape as the three already recorded on
+`blue-sentinel-hold`, i.e. *"a second trigger that is a no-op"*.
+
+### 3.4 The `[Hunt]` half of `blue-sentinel-hold` and `red-brambleback-conquer` yields nothing
+Partners refused in bulk: `UNL-016`, `UNL-034`, `UNL-040`, `UNL-047`, `UNL-075`, `UNL-094`, `UNL-096`,
+`UNL-100`, `UNL-102`, `UNL-113`, `UNL-117`, `UNL-119`, `UNL-162`, `UNL-203`.
+
+`[Hunt]` is *"When I conquer or hold, gain N XP"* (**823.1.b**), so every one of them is a genuine
+partner of both rules and the multiplier really does double the XP. It buys nothing: #116 and #146
+already measured that the 11 Spend-N-XP costs and 20 `[Level N]` clauses are a bounded step function
+and **nothing in the pool converts XP into points**. Doubling a faucet with no sink is not a combo.
+
+### 3.5 Domain Identity kills the legend partners outside the anchor's domain
+`UNL-193 Gloomist` (Calm/Chaos) and `UNL-203 Keeper of the Hammer` (Body/Order) are real hold-effect
+partners, but `UNL-087 Blue Sentinel` is Mind and **103.1.b** is a subset test against the legend's two
+domains. Dead before the arithmetic starts. Recorded because both read as strong pairs in the
+synergy list, which is the list's job — it is a pattern layer, not a legality layer.
+
+### 3.6 `UNL-048 Trevor Snoozebottom` × Blue Sentinel is a LEAD on an existing entry, not a new one
+`leblanc-bashful-bloom-trevor-plaza` already runs Trevor + LeBlanc + Bashful Bloom + the Plaza and wins
+on the third Hold. A Blue Sentinel doubles Trevor's Sprite output and brings it to the **second** Hold
+for 4 more Energy and 1 Mind Power (Mind sits inside Bashful Bloom's Calm/Mind identity). Same
+mechanism, same shape, one card faster — so by the standing rule it is recorded here as a `notable`
+lead for that entry rather than authored as a separate row.
+
+### 3.7 Leads deliberately not authored because the arithmetic is the same shape at a smaller number
+- `SFD-069 Plundering Poro` (Mind, E2 M2, *"When I conquer, play a Gold gear token exhausted"*) and
+  `SFD-220 Treasure Hoard` (colourless battlefield, 1 Energy per Gold) under `red-brambleback-conquer`:
+  one Gold per trigger against Cull's three, identical mechanism. Leads for `cull-brambleback-gold`.
+- `SFD-152 Eminent Benefactor` is already `eminent-benefactor-sentinel-gold`; `OGN-275 Altar to Unity`
+  is the same Gold/token shape one step weaker.
