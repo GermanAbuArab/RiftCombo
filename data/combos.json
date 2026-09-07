@@ -45831,6 +45831,167 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use VEN-038 Akali, Silent or VEN-031 Twilight Shroud. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 054.1, 103.1.b.3, 103.2.b, 108.6.c, 144.2, 155, 355.10.d, 355.10.e, 420.3.a, 465.2.c, 469, 740.2.c, 809.1.c, 813.1.b, 813.1.c.1, 829.1.b, 829.1.b.1. The entry states the prohibition-versus-tax distinction with both paragraphs, since this catalogue has treated [Deflect] and 'can't be chosen' as the same thing in prose before. 740.2.c is the definition of 'in combat' and is what makes Akali's protection the inverse of a [Tank]'s. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "promising-future-time-warp-queue",
+      "name": "738 inserts every Additional Turn immediately after the current one, so the LAST created is taken FIRST - and Riot's own worked example is Promising Future handing out Time Warps",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-115",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind spell, E5 P1. 'Each player looks at the top 5 cards of their Main Deck, banishes one of them, then recycles the rest. Starting with the next player, each player plays those cards, ignoring Energy costs. (They must still pay Power costs.)' You choose which of YOUR five to banish; 419.3 / 419.3.a make the subsequent play a Limited Play Effect."
+        },
+        {
+          "card": "OGN-122",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "DECK",
+          "note": "Mind spell, E10 P4. 'Take a turn after this one. Banish this.' The pool's only extra-turn card (swept: 'take a turn' / 'additional turn' / 'extra turn' returns one row over all 935 base codes). Played through Promising Future its 10 Energy is ignored and only the 4 Mind Power is paid."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both spells are mono-Mind, so 103.1.b.3 admits them under any legend with Mind among its two domains - measured over data/cards.json, 31 legend base codes qualify, among them OGN-247 / OGN-299 Daughter of the Void (fury/mind), OGN-255 / OGN-303 Nine-Tailed Fox (calm/mind), OGN-263 / OGN-307 Swift Scout (mind/chaos), OGN-265 / OGN-308 Herald of the Arcane (mind/order), SFD-201 / SFD-249 Chem-Baroness (mind/order), UNL-199 / UNL-235 Deceiver (mind/order) and VEN-149 / VEN-194 Defender of Tomorrow (mind/body).",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "Time Warp has to be among your top five when Promising Future resolves. Three copies in the 39 cards a 40-card deck has after 103.2.a.1 puts the Chosen Champion in the Champion Zone; this is a discount you take when it is there, not a tutor."
+        ],
+        "notable": [
+          "RIOT'S OWN WORKED EXAMPLE IS THIS PAIR, AND IT IS AT 738 - A BLOCK CITED BY NOTHING. 'The First Player plays Promising Future during their turn, during the resolution of which the Second and Fourth Player choose, banish, and play one Time Warp each.' Both cards named, in the rules, in the paragraph that governs the queue. 734-738 is cited by no entry and no synergy rule in this project even though the whole Additional-Turn CHAIN theory rests on it.",
+          "THE RULE THAT MATTERS: EACH ADDITIONAL TURN IS INSERTED IMMEDIATELY AFTER THE CURRENT TURN, SO THE LAST ONE CREATED IS TAKEN FIRST. 738's second example works it out: the Fourth Player's Time Warp resolves first and the queue reads [> A > D* > B > C > D >]; the Second Player's resolves afterwards and the queue reads [> A > B* > D* > B > C > D >]. In a Duel, Promising Future's 'Starting with the next player' has the OPPONENT play their banished card first and you play yours second - so if you both banish a Time Warp, YOURS is inserted last and therefore taken FIRST. The card that looks like it hands the opponent a free extra turn hands you the tempo inside it.",
+          "AND 737 IS WHY IT COSTS THEM NOTHING ELSE. 'When an Additional Turn is inserted into this queue, it does not change the Turn Order of the game. The owner of the Additional Turn just has the next queued turn. After that turn is completed, it will be removed and the queue will proceed with its previously queued turns.' No player loses a turn; the queue simply grows.",
+          "738's FIRST EXAMPLE CONFIRMS THE FOUR-CONSECUTIVE-TURNS CEILING THIS PROJECT ASSERTS. 'The First Player plays, through some means, two Time Warps during their turn ... these Additional Turns will appear as [> A > A* > A* > B > C > D >].' Two in one turn are two consecutive extra turns, so three copies (103.2.b) give up to four consecutive Beginning Phases - which is the arithmetic every CHAIN in this catalogue is priced against, now with the rules' own example behind it.",
+          "THE DISCOUNT, WITH THE QUANTITIES DECLARED. Time Warp cast normally is 10 Energy + 4 Mind Power. Through Promising Future it is 5 Energy + 1 Power for the spell, and then Time Warp's Energy is ignored while its 4 Mind Power is still paid - Promising Future says so in its own reminder text, and 419.3.b keeps every other step of Play normal. Total 5 Energy + 5 Power against 10 Energy + 4 Power: five Energy cheaper for one extra Power, which is a real saving at the ~9-Energy-per-Power rate this project measures.",
+          "IT IS BANISHED FIRST AND PLAYED FROM BANISHMENT, WHICH COSTS TIME WARP NOTHING. Time Warp's own second sentence is 'Banish this' - a Delayed Replacement under 390.3.a, short for 'if it would leave the chain after becoming a finalized chain item, and leaving the chain wasn't instructed by its own execution, perform the specified game action instead' - so the card was always going to end in Banishment (108.6.c, one-way). Promising Future putting it there first loses nothing, unlike a card that wanted to be recycled.",
+          "THE PRICE IS THE OPPONENT'S CARD, AND IT IS SYMMETRIC. They also look at five, banish one, and play it ignoring its Energy cost, before you play yours. Against a deck with its own Time Warp this is a real gift; against most decks it is a five-Energy discount they did not ask for. Price it as a symmetric effect you are choosing to fire because your half is bigger, not as a free discount.",
+          "AND THE MILL IS NOT FREE OF 431. Looking at five and recycling four does not Burn Out - 431.1.c is explicit that looking and revealing never do, and 431.1.c.1 extends that to the zone change that follows - so this is safe in an empty-deck shell, unlike a draw (431.1.a) or a [Burn N] (431.1.b)."
+        ]
+      },
+      "steps": [
+        "Run a Mind legend and keep three Time Warp and three Promising Future in the 39-card deck.",
+        "In your Main Phase, play OGN-115 Promising Future (5 Energy + 1 Power).",
+        "Each player looks at their top five. You banish OGN-122 Time Warp; 431.1.c keeps the look and the recycle of the other four free of any Burn Out.",
+        "'Starting with the next player' - in a Duel the opponent plays their banished card first, ignoring its Energy cost. If it is their own Time Warp, their Additional Turn is inserted now: the queue reads [> you > them* > them >].",
+        "You then play Time Warp from banishment, ignoring its 10 Energy and paying its 4 Mind Power (419.3.b keeps the rest of Play normal). 735 creates your Additional Turn and 738 inserts it immediately after the current turn, i.e. AHEAD of theirs: [> you > you* > them* > them >].",
+        "Time Warp's own 'Banish this' is a Delayed Replacement (390.3.a) that has nothing to do, since the card is already in Banishment (108.6.c).",
+        "Take the extra turn. 737 leaves the underlying turn order untouched; when the Additional Turns are spent the queue resumes."
+      ],
+      "netPerIteration": "an extra turn for 5 Energy and 5 Power instead of 10 Energy and 4 Power, and it is queued ahead of any Additional Turn the same card gave the opponent",
+      "terminatesIn": "engine only - nothing here scores. Three Time Warp (103.2.b) and Time Warp banishes rather than recycles (108.6.c), so at most four consecutive Beginning Phases exist in a game; the discount only fires when Time Warp is among the top five",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 738 second worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The First Player plays Promising Future during their turn, during the resolution of which the Second and Fourth Player choose, banish, and play one Time Warp each. The Fourth Player’s Time Warp resolves first, inserting an Additional Turn for them in the queue as such: [> A > D* > B > C > D >]. The Second Player’s Time Warp resolves afterwards, inserting that turn: [> A > B* > D* > B > C > D >]."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 737",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "When an Additional Turn is inserted into this queue, it does not change the Turn Order of the game. The owner of the Additional Turn just has the next queued turn. After that turn is completed, it will be removed and the queue will proceed with its previously queued turns."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 390.3.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Some Delayed Replacements take the form “then recycle it,” or “then banish it,” in reference to chain items being played by linked abilities or instructions. These are short for “if it would leave the chain after becoming a finalized chain item, and leaving the chain wasn’t instructed by its own execution, perform the specified game action instead.”"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 734-738 Additional Turns, and 389-392 Delayed Abilities for 390.3.a). Rules 734 through 738 and 389 through 392 are cited by no entry and no synergy rule in this project, although the whole Time Warp CHAIN theory in CLAUDE.md rests on them. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.a.1, 103.2.b, 103.2.d.2, 108.6.c, 390.3.a, 419.3, 419.3.a, 419.3.b, 431.1.a, 431.1.b, 431.1.c, 431.1.c.1, 735, 737, 738. REPORT TO THE MANAGER: 738 is the rule behind the four-consecutive-turns ceiling and Riot's FIRST example works exactly that case ('two Time Warps during their turn' -> [> A > A* > A* > B > C > D >]); its SECOND example names Promising Future and Time Warp together, and shows that each Additional Turn is inserted immediately after the CURRENT turn, so the LAST one created is taken FIRST. In a Duel that means your Time Warp, played second under 'Starting with the next player', is queued AHEAD of the opponent's. And 390.3.a is the general rule for every 'then banish it' / 'then recycle it' rider in the pool, including [Flow]'s, which the project currently sources to 829.1.b.1 alone. Distinct from promising-future-force-deck (OGN-115 + OGN-104, a different payoff) and from every Time Warp entry in the catalogue, none of which cites 734-738. Trap check: the effect is symmetric and the entry prices the opponent's free card rather than hiding it; the discount fires only when Time Warp is in the top five and the entry says it is not a tutor; looking and recycling never Burn Out (431.1.c); no unruled reading."
+    },
+    {
+      "id": "here-to-help-warden-fizzle-still-played",
+      "name": "358.3.a: a prohibition does not make a card illegal to play, it makes the instruction fizzle - so a blanked spell is still a card played this turn, and Riot's example is Here to Help into a Mageseeker Warden",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-111",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E2 P1. '[Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) [Action] (Play on your turn or in showdowns.) You may play a unit from hand to a battlefield you control, reducing its cost by :rb_energy_3:.' Riot names it at 358.3.a as the card that is still legal to play into a Mageseeker Warden."
+        },
+        {
+          "card": "SFD-012",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E5 M5. 'I cost :rb_energy_1: less for each card you've played this turn, to a minimum of :rb_energy_1:.' 419.4.b makes this kind of non-triggered check read whether cards have been FINALIZED, not whether they did anything."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Here to Help is mono-Body and Battering Ram is mono-Fury, so the identity is Fury/Body and 103.1.b.2 needs a legend covering both. Measured over data/cards.json those are OGN-249 / OGN-300 Relentless Storm, SFD-183 / SFD-241 Purifier, UNL-183 / UNL-227 Pridestalker and VEN-141 / VEN-190 Butcher of the Sands.",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "The [Hidden] mode needs a battlefield you control with no facedown card already hidden there (811.1.b), and 485.4 puts at most two battlefields on a Duel table - so at most two hidden cards exist at once."
+        ],
+        "notable": [
+          "THE RULE, AND RIOT NAMES BOTH CARDS. 358.3.a: 'If a Game Effect prevents the performance of a game action, that effect doesn't prevent cards and abilities that instruct a player to perform that game action from being played or finalized. On resolution, that game action will be skipped as it is an impossible instruction.' Its worked example: 'A player plays Here to Help when their opponent controls a Mageseeker Warden at a battlefield. Here to Help is legal to play under these circumstances. On resolution, no unit will be played.' Rule 358 is cited by no entry and no synergy rule in this project.",
+          "SO A PROHIBITION IS NOT A COUNTERSPELL, AND THE DIFFERENCE IS WHERE IT BITES. The card is legal at the Check Legality step (358), it is FINALIZED onto the Chain, and only the instruction is skipped at resolution under 055. Everything that keys on the card having been played still happens - which is the constructive half and is why this is an entry rather than a note.",
+          "419.4.b IS THE PARAGRAPH THAT CASHES IT: 'Non-triggered abilities that check cards being played do so by means of referencing whether said cards have been Finalized', with its own worked example naming Battering Ram - 'A player plays a spell, which is countered by Defy. If that player plays Battering Ram and has played no other cards that turn, it will cost [4] Energy.' A COUNTERED spell still counts, so a merely fizzled one certainly does. Same paragraph, same card, from the other direction.",
+          "AND THE FIZZLED CARD IS FREE. 811.1.b plays a hidden card 'ignoring its base cost', so Here to Help from face down costs 0 Energy. Into a Mageseeker Warden it does nothing at all - and still takes Battering Ram from 5 Energy to 4 (356.6 floors nothing here; the card's own 'to a minimum of :rb_energy_1:' is the floor). Two zero-cost cards played this turn and the Ram is 3.",
+          "419.4.a IS THE OTHER HALF AND IT CUTS THE OTHER WAY. 'Any such triggered abilities trigger when the act of playing the card has been completed by the resolution of the card', and 419.4.a.1 adds that a COUNTERED card fires no play trigger at all. So a 'when you play a spell' payoff does NOT fire off a countered card, while [Legion] and every 'cards you've played this turn' count does. State the split: TRIGGERS need resolution, non-triggered CHECKS need only finalization.",
+          "THE FIZZLE IS NOT THE PLAN, IT IS THE FLOOR. In the ordinary case Here to Help does its job - a unit from hand to a battlefield you control at [Action] speed for 3 Energy less, which 464.2.c.3.a puts into an opened combat. What 358.3.a buys is that the card is never a brick: against the pool's biggest denial card it still pays Battering Ram, so the slot has no dead matchup.",
+          "AND THE WARDEN NEVER STOPS THE HIDE. 811.1.c.1 - 'Hide is not a subset of Play' - so the Warden's 'opponents can only play units to their base' cannot prevent hiding a card face down, and the whole [Hidden] package keeps functioning as a resource even while its payloads are blanked. That is the same asymmetry #100 recorded for the Warden and the Saboteur, reached from the legality step instead."
+        ]
+      },
+      "steps": [
+        "Hide SFD-111 Here to Help face down at a battlefield you control for one rainbow (811.1.b; one facedown per battlefield, so at most two in a Duel under 485.4).",
+        "From the following turn the hidden card has [Reaction] and can be played 'ignoring its base cost' - 0 Energy (811.1.b).",
+        "In the ordinary case, play it and put a unit from hand onto a battlefield you control for 3 Energy less; 464.2.c.3.a gives that body its designation at the next Cleanup if a combat is open there.",
+        "Against an opponent holding OGN-070 Mageseeker Warden at a battlefield, play it anyway. 358 finds it legal, it is finalized onto the Chain, and 358.3.a skips the instruction at resolution: no unit is played.",
+        "Either way, 419.4.b has the card counted as played this turn by every non-triggered check that reads finalization.",
+        "Play SFD-012 Battering Ram. It costs 1 Energy less for each card played this turn, floored by its own text at 1 Energy - two free hidden plays take it from 5 to 3.",
+        "Do not expect a 'when you play a spell' trigger from a countered card: 419.4.a.1 says those do not fire. Only the non-triggered counts survive."
+      ],
+      "netPerIteration": "a 0-Energy card that counts toward every 'cards played this turn' check whether or not its instruction can be performed",
+      "terminatesIn": "engine only - nothing here scores. Bounded by 103.2.b's three copies, by 811.1.b's one facedown per battlefield and by Battering Ram's own 1-Energy floor",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 358.3.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If a Game Effect prevents the performance of a game action, that effect doesn’t prevent cards and abilities that instruct a player to perform that game action from being played or finalized. On resolution, that game action will be skipped as it is an impossible instruction."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 358.3.a worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A player plays Here to Help when their opponent controls a Mageseeker Warden at a battlefield. Here to Help is legal to play under these circumstances. On resolution, no unit will be played."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 419.4.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Non-triggered abilities that check cards being played do so by means of referencing whether said cards have been Finalized."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 349-358 Playing Cards, specifically 358 Check Legality). Rule 358 is cited by no entry and no synergy rule in this project, and its worked example names two pool cards - SFD-111 Here to Help and OGN-070 Mageseeker Warden - by name. Card text verbatim from data/corpus_flat.txt. Citations opened: 055, 103.1.b.2, 103.2.b, 103.2.d.2, 356.6, 358, 358.3, 358.3.a, 419.4.a, 419.4.a.1, 419.4.b, 464.2.c.3.a, 485.4, 811.1.b, 811.1.c.1. REPORT TO THE MANAGER: 358.3.a is a real refinement to the #100 Mageseeker Warden theory - the Warden does not make a blocked card ILLEGAL, it makes the instruction fizzle at resolution, so the card is still finalized and still counts for [Legion] and every 'cards you've played this turn' check under 419.4.b (whose own worked example is Battering Ram, and which counts a COUNTERED spell too). The split worth carrying: a TRIGGER needs the card to resolve (419.4.a, 419.4.a.1 - a countered card fires no play trigger), a non-triggered CHECK needs only finalization (419.4.b). Distinct from here-to-help-mountain-drake-showdown-unit and from battering-ram-undying-legion-cards-played, neither of which cites 358 or 419.4.b. Trap check: the entry states plainly that the fizzle is the floor and not the plan; the hidden play is free only from the turn after the hide (811.1.b); 811.1.c.1 keeps the hide itself legal under the Warden; no unruled reading."
     }
   ]
 }
