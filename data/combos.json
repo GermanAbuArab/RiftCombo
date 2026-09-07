@@ -32922,6 +32922,229 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 26, friendly-dies x SFD-169, second partner). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 103.2.d.2, 143.4, 185, 185.2.b, 185.2.d, 186.1, 194.1.d, 310.1, 310.2, 315.1, 315.1.b, 315.2, 315.2.b.2, 315.3, 315.4.b, 319.5, 319.6, 323.6, 355.2.a, 383.3.b, 383.3.b.1, 416.1, 431.1.a, 485.4.a, 485.5. Distinct from trevor-altar-of-memories-beginning-draw, whose feeder is a Hold-gated [Temporary] Sprite (so it stops when you stop holding) and which has no second draw, and from altar-of-memories-overzealous-fan-off-turn-filter, which buys the OFF-turn activation: this is the mono-Order, Hold-independent version and it pairs the Altar's filter with the Lab's real card. Distinct from sprite-queen-dusk-rose-lab-shard-undoing, whose payoff on the same scheduled death is removal, not cards. Ban check: none of the three is banned or restricted. Trap check: the Altar is a filter and the entry refuses to double-count it; two Recruits go on the Lab because of 323.6, with the exact Cleanup chain given; the tokens need no walk because the Armory prints its own location permission; 186.1 keeps them out of the trash; the Lab's draw is the only thing shortening the deck and its kill is a 'you may'; no unruled reading."
+    },
+    {
+      "id": "jayce-sky-cruiser-double-strike",
+      "name": "Jayce buys a second activation once a turn, and the ability worth buying twice is the one with a hard cap per use",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-068",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind unit, E6 + 1 Mind Power, M6. 'When you play me or the first time you play a non-token gear each turn, you may ready something besides me that's exhausted.' 'Something', not 'a unit' — it reaches gear as well, which is why it appears in the pool's short list of gear-readiers."
+        },
+        {
+          "card": "VEN-060",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Mind unit, E4 + 1 Mind Power, M3. 'Discard a gear, 1 Energy, exhaust: Deal 4 to a unit at a battlefield.' In zero entries before this walk. Four damage is a hard cap per activation, which is exactly the shape a readier is worth something on."
+        },
+        {
+          "card": "OGN-120",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind gear, E0 + 1 Mind Power. 'exhaust: [Reaction] — [Add] 1 Mind Power.' The cheapest non-token gear in the domain, so the card that fires Jayce's trigger costs no Energy at all and gives the Power back the moment it lands."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All three cards are mono-Mind, so ANY legend whose two domains include Mind runs the line (103.1.b.1). Nothing here is Signature (103.2.d.2).",
+          "Two gear cards in hand per turn beyond the one you play — the Cruiser's cost discards one per activation, and 203.3 makes an unpayable cost unpayable."
+        ],
+        "notable": [
+          "WHY THIS PARTNER AND NOT ANOTHER OF THE SEVENTY-SIX. Jayce's rule matches every card in the pool with an exhaust in an ability cost, and the project has already established the filter: a multiplier is worth nothing on an effect with no per-execution cap — which is why the rule itself excludes SFD-117 Ancient Henge and SFD-083 Hextech Anomaly, both 'Pay any amount'. Sky Cruiser is the opposite shape: 'Deal 4' is fixed per use, so the second activation is worth a second full 4. That is the whole basis on which a partner earns an entry in this family.",
+          "THE ORDER IS FIXED BY 415.1.b. 'A Unit that is already Ready cannot be Readied again', and 415.1.c: 'If a Unit is instructed to be Readied while it is already Ready, nothing additional happens.' Jayce's trigger fires when the gear is PLAYED, so the Cruiser has to be exhausted before that: activate first, play the gear second, activate again. Playing the gear first wastes the trigger entirely.",
+          "AND IT IS THE FIRST GEAR ONLY. 'The first time you play a non-token gear each turn' is an ordinal trigger; 383.1.b covers 'the [Nth] time' and 383.3.e.1 covers 'N times each turn' — either way a second gear the same turn pays nothing. So the enabler wants to be the CHEAPEST gear in the domain, not the best one, and OGN-120 Seal of Insight at 0 Energy plus a Mind rune is it — and it refunds that rune the moment it is on the board, since its own ability is '[Add] 1 Mind Power'.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Per turn: activate the Cruiser (discard a gear, 1 Energy, exhaust) for 4 damage; play Seal of Insight (0 Energy + 1 Mind Power) and take Jayce's ready on the Cruiser; activate again (discard a gear, 1 Energy, exhaust) for 4 more. TOTAL 8 damage for 2 Energy, 1 Power, two gear discarded and one gear played — every turn, with no card drawn and nothing else on the board. Eight damage kills all but a handful of bodies in the pool outright (143.2.a: 'nonzero damage marked on it equalling or exceeding its Might').",
+          "THE DISCARD IS A COST, WHICH CUTS BOTH WAYS. 203.3 makes an action a cost asks for and cannot perform unpayable, so two activations need two gear in hand — this deck is built with gear as ammunition, and 422.1.b makes a 'When I am discarded' trigger execute AFTER the discard, from the trash, so gear with such text is free value here rather than a loss. Conversely a hand with one gear fires once, and the entry says so instead of assuming the second.",
+          "IT REACHES A UNIT AT A BATTLEFIELD, NOT A BASE. 'Deal 4 to a unit at a battlefield' is the ordinary restriction; the base is out of range. That is the one thing this package cannot do and it is why it sits beside, not instead of, the base-reaching removal the catalogue already holds.",
+          "WHAT REFUTES IT. (a) Jayce is E6 + 1 Power and the Cruiser E4 + 1 Power, so the package is two top-end bodies before it does anything. (b) Both enter exhausted (143.4), so the engine starts the turn after the second lands. (c) Jayce's trigger is a 'you may', so nothing is forced — but it is also once per turn, and no amount of extra gear widens it."
+        ]
+      },
+      "steps": [
+        "Earlier turns: play Jayce, Brilliant Inventor (E6 + 1 Mind Power) and Sky Cruiser (E4 + 1 Mind Power). Each enters exhausted (143.4) and is readied in your Awakening (315.1.b).",
+        "Main Phase. Activate Sky Cruiser: discard a gear from hand, pay 1 Energy, exhaust him. Deal 4 to a unit at a battlefield.",
+        "Play Seal of Insight (0 Energy + 1 Mind Power) — the first non-token gear you have played this turn. Jayce's trigger fires.",
+        "Ready something besides Jayce that is exhausted: the Sky Cruiser (415.1).",
+        "Activate him again: discard a second gear, pay 1 Energy, exhaust. Deal 4 more.",
+        "Exhaust the Seal at any Open State for 1 Mind Power back ('[Reaction] — [Add]'), which pays for its own play."
+      ],
+      "netPerIteration": "8 damage a turn for 2 Energy and a Power that the enabler refunds, at the price of two gear out of hand",
+      "terminatesIn": "engine only — Jayce's ready is once per turn whatever else you play, and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule jayce-readies-exhaust-abilities (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the proven rule jayce-readies-exhaust-abilities, whose 76-partner list had 74 partners never walked. VEN-060 Sky Cruiser was in zero entries. Chosen by the family's own filter, which the rule states in its excludes: a readier is worth a second full activation only on an ability with a HARD CAP per use, which is why the rule drops Ancient Henge and Hextech Anomaly ('Pay any amount') and why 'Deal 4' earns the entry. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.d.2, 143.2.a, 143.4, 203.3, 315.1.b, 383.1.b, 383.3.e.1, 415.1, 415.1.b, 415.1.c, 422.1.b. Ban check: VEN-068, VEN-060 and OGN-120 carry no [BANNED marker. Arithmetic against its own declared quantities: two activations at 4 damage each, 2 Energy, 2 gear discarded, 1 gear played. Trap check: the ready must come AFTER the first activation (415.1.b); the gear trigger is the FIRST gear only, so the enabler is chosen on price; the discard is a cost and 203.3 gates it; no token, no [Temporary], no [Repeat], no buff. Depends on no unruled reading."
+    },
+    {
+      "id": "svellsongur-ivern-nurturer-optional-draw",
+      "name": "Eight instances of a draw that says 'you may' — the one Svellsongur stack that cannot Burn Out, and eight buffs on eight different bodies",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm Equipment, E3 + 1 Calm Power, Might Bonus +0. '[Equip] 1 Energy + 1 Calm rune. As this is attached to a unit, copy that unit's text to this Equipment's effect text for as long as this is attached to it.'"
+        },
+        {
+          "card": "UNL-051",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 + 1 Calm Power, M4. 'When you play me or when I hold, look at the top 3 cards of your Main Deck. You may reveal a unit from among them and draw it. Recycle the rest. Then if you revealed a Bird, Cat, Dog, or Poro, do this: [Buff] a friendly unit.' Every clause is optional or self-limiting, which is why it survives eightfold multiplication."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so ANY legend whose two domains include Calm runs the line (103.1.b.1). Nothing here is Signature (103.2.d.2).",
+          "One battlefield Ivern holds — his trigger is 'when I hold', which 315.2.b.2 pays at every battlefield you control."
+        ],
+        "notable": [
+          "THE STACK IS 2^v, NOT 1+v, AND THE CATALOGUE ALREADY PROVED IT. 477.2.c puts 'Abilities of Effect Text of Attached cards are appended' in Layer 2; 476.1 applies each effect 'only a single time across all sequences', so there is no recursion; 479.1 finds no dependency because each copy alters the other; 480.3 orders them by Timestamp, i.e. attach order. Three Svellsongur on one body are EIGHT instances of its trigger. This entry's whole question is which trigger survives being multiplied eight times, and the answer is the one whose every clause is optional.",
+          "WHY EIGHT IVERNS DO NOT BURN YOU OUT, AND EIGHT OF THE OTHER DRAW BODIES DO. 431.1.a burns a player out on drawing past the deck, but 431.1.c says looking or revealing past it 'does not Burn Out', and 431.1.c.1 extends the protection to the zone change that follows. Ivern's own wording is 'look at the top 3 … YOU MAY reveal a unit from among them and draw it' — the draw is an option you decline, eight times if you like. Contrast the entries already in the catalogue: svellsongur-corrupt-enforcer-trash-fill runs 'When I win a combat, draw 1' with no may, and eight instances are a forced eight-card draw. UNL-060 Vilemaw ('When I hold, draw 1') and VEN-042 Shen, Scourge of Shadows ('when I hold … draw 1') are the same forced shape and are refused here for it.",
+          "AND THE DECK IS REFILLED WHILE YOU LOOK. 'Recycle the rest' sends every card you did not draw to the BOTTOM of the Main Deck (416.1.a), so eight instances see up to 24 cards and put back at least 16 of them. That is the opposite of a mill: the engine cannot run itself out, which is what makes the eightfold count safe rather than reckless.",
+          "THE BUFF HALF IS THE ONE PLACE WHERE 702.3 DOES NOT BITE. 702.3 allows one Buff per unit and 702.3.a says a second 'is not placed instead' — but Ivern's clause is '[Buff] A FRIENDLY UNIT', chosen anew each time. Eight instances therefore place up to EIGHT buffs, one each on eight different unbuffed bodies, for +1 Might apiece (703). Every 'multiplier is a no-op on a fixed target' trap in the project's ledger — Enthusiastic Promoter on blue-sentinel-hold, Sett Brawler on red-brambleback-conquer — turns on the buffer naming a FIXED body; this one does not.",
+          "THE BUFF IS CONDITIONAL AND THE CONDITION IS CHEAP. 'Then IF YOU REVEALED a Bird, Cat, Dog, or Poro' — one of the four tags the pool prints in quantity, and revealing is free of Burn Out either way. A deck built around this line wants those tags in it anyway, which is the same package the four-tag rules already read.",
+          "COST, WITH THE QUANTITIES DECLARED. Ivern E5 + 1 Calm Power. Three Svellsongur at E3 + 1 Calm Power each, plus their [Equip] of 1 Energy + 1 Calm rune each: 9 Energy, 3 Calm Power, 3 Energy of Equip and 3 more Calm runes. That is a real investment — 17 Energy and 6 Calm Power spread over several turns — and it is why the entry names the payoff in full: from then on, EVERY Hold looks at 24 cards, draws as many units as you want, and buffs up to eight bodies.",
+          "WHAT REFUTES IT. (a) Svellsongur must sit on the payoff body, so [Weaponmaster]'s 'equip one of your Equipment to ME for one rainbow less' can never discount these attaches — the same limit svellsongur-copy-hold and ivern-svellsongur-four-tags-hold already carry. (b) Ivern is M4 and the Might Bonus of Svellsongur is +0, so the stack makes him no harder to kill; a removal spell on him erases the whole investment at once. (c) ivern-nurturer-hold-tutor already runs three Ivern for three instances; this is the same card reaching eight from one body, which is the difference between three deck slots and one."
+        ]
+      },
+      "steps": [
+        "Play Ivern, Nurturer (E5 + 1 Calm Power) and walk him to a battlefield you control (144.4.a; his exhaust is the cost, 144.2 / 420.3.a).",
+        "Play the three Svellsongur (E3 + 1 Calm Power each) and [Equip] each to Ivern for 1 Energy + 1 Calm rune (818.1.b).",
+        "Each attach copies his CURRENT text (R6 = A), so the first Svellsongur carries 1 instance, the second copies the resulting 2, the third copies 4: eight instances of the trigger in total (477.2.c, 476.1, 479.1, 480.3).",
+        "At your Beginning Phase, 315.2.b.2 Holds every battlefield you control and all eight instances trigger.",
+        "Resolve them one at a time: look at the top 3 (431.1.c — no Burn Out), reveal and draw a unit only if you want it, recycle the rest to the bottom (416.1.a).",
+        "For each instance in which a Bird, Cat, Dog or Poro was revealed, buff a friendly unit — a DIFFERENT one each time, since 702.3.a skips any body that already carries a counter."
+      ],
+      "netPerIteration": "24 cards looked at every Hold, as many units drawn as you choose, and up to eight +1 Might buffs spread across eight bodies",
+      "terminatesIn": "engine only — 103.2.b caps Svellsongur at three copies, so eight instances is the ceiling, and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule svellsongur-copy (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Rules readings R6 = A, ruled 2026-09-04 (GitHub issue #11)",
+          "kind": "manual-walk",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/11",
+          "date": "2026-09-04"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the proven rule svellsongur-copy — 33 entries already, 73 of 102 partners uncovered, which the project's own #161 lesson says to read as a warning flag rather than a prize. The partner earns its entry on a trap the other Calm draw bodies fail: Ivern's draw is 'YOU MAY reveal a unit … and draw it', so eight instances are safe at an empty deck, while eight of UNL-060 Vilemaw or VEN-042 Shen, Scourge of Shadows ('draw 1', no may) are a forced Burn Out — the same defect svellsongur-corrupt-enforcer-trash-fill already documents. UNL-052 Nami, Headstrong is refused in the walk document for the opposite reason: eight delayed 'the next time you play a unit this turn' triggers all watch ONE event, and 415.1.c plus 702.3.a make seven of them do nothing. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.b, 103.2.d.2, 144.2, 144.4.a, 315.2.b.2, 416.1.a, 420.3.a, 431.1.a, 431.1.c, 431.1.c.1, 476.1, 477.2.c, 479.1, 480.3, 702.3, 702.3.a, 703, 818.1.b. Stands on R6 = A (ruled). Ban check: SFD-059 and UNL-051 carry no [BANNED marker. Arithmetic against its own declared quantities: three Svellsongur are 2^3 = 8 instances; 8 x 3 = 24 cards looked at. Trap check: the draw is optional so 431.1.a never fires; the buff names 'a friendly unit' rather than a fixed body, which is why 702.3 does not flatten it; Svellsongur is carrier-dependent, so [Weaponmaster] cannot discount the attach; no token, no [Temporary], no [Repeat]. Depends on no unruled reading beyond R6."
+    },
+    {
+      "id": "veiled-temple-temporal-portal-second-repeat",
+      "name": "The Temple pays per change of hands, not per turn — and the gear worth readying is the one whose grant is capped at a single spell",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-221",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you conquer here, you may ready a friendly gear. If it's an Equipment, you may detach it.'"
+        },
+        {
+          "card": "SFD-078",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Mind gear, E3. '1 rainbow, exhaust: Give the next spell you play this turn [Repeat] equal to its cost.' The grant is capped at exactly one spell per activation, which is the whole reason a second activation is worth a second full grant."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Temporal Portal is mono-Mind and the Veiled Temple is Colorless (103.4), so ANY legend whose two domains include Mind runs the line (103.1.b.1). Nothing here is Signature (103.2.d.2).",
+          "The Veiled Temple has to be the battlefield in play. 485.5 selects one of the three each player provides at random and 103.4.c forbids more than one of a name — the entry's largest caveat, stated here per the project's battlefield rule."
+        ],
+        "notable": [
+          "THE TEMPLE PAYS PER CHANGE OF HANDS, NOT PER TURN, AND THAT IS THE FIRST THING TO SAY. 466.5: 'If no Showdown or Combat is staged at this location, the player with Units remaining here Establishes Control IF THEY DIDN'T ALREADY CONTROL THIS BATTLEFIELD', and 466.5.d makes establishing Control a Conquer. 348.2.a carries the same 'does not already Control' clause for a Showdown. So holding the Temple pays nothing: it fires the turn you take it and again only after you have lost it and taken it back. Any pricing of this as a per-turn readier is wrong.",
+          "WHY THE PORTAL AND NOT ANOTHER GEAR. The rule's own excludes already remove the four gear whose ability kills or gives away its own source — 415.1 marks an object ON THE BOARD, so a gear in the trash cannot be readied. The filter this walk adds is the same one the Jayce family uses: a readier is worth a second FULL activation only where the effect has a hard cap per use. Temporal Portal's is as hard as they come — 'the NEXT spell you play this turn', exactly one — so two activations are two spells doubled, where Ancient Henge's 'Pay any amount' would give a second activation worth zero.",
+          "WHAT A DOUBLED SPELL IS ACTUALLY WORTH, IN TWO CURRENCIES. 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time', and 820.2.a lets the second execution make different choices. But 820.1.c.1 is the half that is easy to miss: 'The Cost is an Additional Cost to be paid during the steps of playing the spell' — it is SPENT. So a [Repeat] simultaneously doubles the effect and pushes the turn's spend up, which every 'if you spent N or more' clause in the pool reads and every 'costs N or more' clause ignores (206's second worked example is Defy against Rocket Barrage). Two Portal activations in one turn are two doubled spells and two spend-thresholds cleared.",
+          "THE COST IS A RAINBOW EACH TIME, AND THE REPEAT IS PAID ON TOP. The Portal charges 1 rainbow and its own exhaust to GRANT [Repeat]; the [Repeat] cost itself is 'equal to its cost' and is paid separately when the spell is played. So a doubled 4-Energy spell is 4 Energy for the spell, 4 more for the Repeat, and a rainbow for the grant. This is a value engine for a deck already casting expensive spells, not a discount.",
+          "THE DETACH CLAUSE IS FREE UPSIDE THE ENTRY DOES NOT LEAN ON. 'If it's an Equipment, you may detach it' — 818.1 makes attaching an Activated Ability with a cost, so a free detach is a real saving on a Svellsongur or a Skyfall you want to move. The Portal is not an Equipment, so this clause never applies to it, and the entry is priced without it.",
+          "COST AND RATE, WITH THE QUANTITIES DECLARED. Portal E3, three copies (103.2.b). Each Conquer at the Temple readies one, so a game in which the Temple changes hands twice is two extra grants — and the base rate, with no Temple at all, is one grant per Portal per turn, since 315.1.b readies each in your Awakening. Three Portals already give three grants a turn without the Temple; what the Temple adds is a FOURTH on the turn you retake it, at a moment you chose.",
+          "WHAT REFUTES IT. (a) The Temple is a 1-in-3 draw at best (485.5). (b) Losing the battlefield in order to retake it is a cost the opponent decides, not you. (c) 'The next spell you play this turn' expires with the turn: an unspent grant is wasted, so the ready has to come before the spell, in the same Main Phase."
+        ]
+      },
+      "steps": [
+        "Provide the Veiled Temple as one of your three battlefields (103.4.c); 485.5 decides whether it is in play.",
+        "Play Temporal Portal (E3). Gear enters ready, since 143.4 exhausts units only.",
+        "In a Main Phase, pay 1 rainbow and exhaust the Portal: the next spell you play this turn has [Repeat] equal to its cost.",
+        "Play that spell and pay the [Repeat] cost as an Additional Cost during the steps of playing it (820.1.c.1). Its effect executes a second time (820.1.b), with different choices if you want them (820.2.a).",
+        "Take the Veiled Temple — walk a unit in and Conquer it (348.2.a / 348.2.a.1 for a Showdown, or 466.5 / 466.5.d out of a Combat). The Temple's trigger fires: ready a friendly gear.",
+        "Ready the Portal and activate it again for a second grant, on a second spell, in the same turn."
+      ],
+      "netPerIteration": "one extra doubled spell on every turn the Veiled Temple changes hands into yours, on top of the one grant per Portal per turn the Awakening already pays",
+      "terminatesIn": "engine only — the Temple pays per change of hands (466.5), 103.2.b caps the Portal at three copies, and nothing here scores beyond the Conquer that fired it",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule veiled-temple-readies-gear (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the proven rule veiled-temple-readies-gear (34 partners, 32 uncovered, one entry). The entry leads with the limit rather than the payoff: 466.5's 'if they didn't already control this Battlefield' and 348.2.a's identical clause mean the Temple pays per CHANGE OF HANDS, never per turn, which is the mistake this pairing invites. SFD-078 Temporal Portal is chosen by the same filter the Jayce family uses — a readier is worth a second full activation only where the effect is capped per use, and 'the next spell you play this turn' is exactly one. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.b, 103.2.d.2, 103.4, 103.4.c, 143.4, 206, 315.1.b, 348.2.a, 348.2.a.1, 415.1, 466.5, 466.5.d, 485.5, 818.1, 820.1.b, 820.1.c.1, 820.2.a. Ban check: SFD-221 and SFD-078 carry no [BANNED marker. Trap check: the battlefield is chosen at random (485.5) and named in prerequisites.easy; the grant expires with the turn; [Repeat] gives exactly one extra execution (820.1.b) and its cost is SPENT (820.1.c.1), which a 'costs N' clause ignores (206); no token, no [Temporary], no buff. Depends on no unruled reading."
     }
   ]
 }
