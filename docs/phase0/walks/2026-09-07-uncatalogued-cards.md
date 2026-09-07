@@ -654,3 +654,116 @@ contributes nothing to the counter however many enemies it hits.
 23. **ALL 49 LEGEND NAMES ARE NOW CATALOGUED.** The legend sub-vein of #171 is closed; the remaining
     uncatalogued deckable cards are battlefields (25, of which 5 are banned in both formats) and
     units, spells, gear and runes.
+
+---
+
+# Batch 6 — back to the battlefields
+
+## 17. The name+type correction, measured on this lane
+
+rc-walk-fam2 found that coverage must be keyed on **name + type**, not on base code: 104 of the
+pool's 935 names carry two or more base codes, and `CardIndex.equivalents` (`src/cards.ts:124`)
+already resolves a base to every printing sharing normalised name and type, so a **reprint of a
+catalogued card is not uncatalogued**. Re-measured here (`/tmp/rc-walks/nametype.ts`):
+
+- **Whole deckable pool: 443 uncatalogued by base code, 358 by name+type — a 19.2% over-count**,
+  consistent with fam2's ~15% in its own lane.
+- **Battlefields: ZERO of the 64 non-token battlefields share a name with another base code.**
+  So the correction moves this lane's census by nothing at all: 64 non-token battlefields, 20 still
+  uncovered after batch 6 by either measure. Worth recording so the next session does not re-run it.
+- Exactly one card in batch 6 has a second printing — **VEN-109 Illaoi, Prophet of the Great Kraken
+  (VEN-109 / VEN-182)** — and `equivalents` already covers it, so the matcher needs nothing.
+
+A separate lesson from the same check: `data/combos.json` went **466 → 479** while batch 6 was being
+written, so three cards this walk had measured as free (OGN-128, VEN-109, VEN-100) were catalogued by
+another session in the interval. **They are partners, not anchors** — all five battlefield anchors
+are still uncovered by both measures — and the duplicate-card-set check was re-run against the
+current tree before staging. Re-validate immediately before reporting, not immediately after writing.
+
+## 18. Entries staged (batch 6, five)
+
+| id | class | cards | what it is |
+|---|---|---|---|
+| `abandoned-hall-stupefy-swing` | ENGINE | UNL-205, OGN-095 | +1 Might per spell, a modifier so 702.3 never caps it |
+| `valley-of-idols-buffed-statics` | ENGINE | UNL-218, OGN-065, OGN-125 | the only buff that arrives *as the unit is played* |
+| `minefield-last-rites-mill-reanimate` | ENGINE | SFD-212, SFD-150 | two triggers on one Conquer, ordered by 383.3.d |
+| `heisho-challenge-deflect-off` | ENGINE | VEN-158, OGN-128 | one of only two cards that ignore [Deflect] |
+| `trifarian-war-camp-illaoi-tentacles` | ENGINE | OGN-294, VEN-109, VEN-100 | tokens **born** at the battlefield, at 2 Might |
+
+## 19. Four things batch 6 established
+
+### 19.1 "+1 Might this turn" is a modifier; a [Buff] is a counter. 702.3 only caps the second.
+
+**UNL-205 Abandoned Hall**: *"When a player plays a spell, they may give a unit they control here
++1 :rb_might: this turn."* 702.2.a places a **counter** and 702.3/702.3.a allow only one per unit;
+the Hall grants a plain continuous modifier, so N spells give **+N**, uncapped. Three Stupefies
+(E1 each, [Reaction], each draws) are a **six-Might swing** — +3 onto your defender, −3 off their
+attacker — and three cards, played inside the combat under 813.1.c.1. Two traps stated in the entry:
+820.3.a means a [Repeat] spell is *"only Played once"* and pays the Hall once; 811.1.c.1 means
+hiding is not playing.
+
+### 19.2 The place-last-to-resolve-first rule, and when ordering is *not* enough
+
+**SFD-212 Minefield** and **SFD-150 Last Rites** both fire on the same Conquer. 383.3.d lets the
+controller order the placements and **340.1 resolves the newest first**, so Minefield must be placed
+**last** for its mill to land before Last Rites looks at the trash. That works here — and it did
+*not* work for `monastery-hirana-warmogs-conquer-draw`, because 383.3.b makes the Monastery's
+*"you may spend a buff"* a **base cost paid at finalization**, before anything in the batch resolves.
+The two entries now state the difference explicitly in each other's terms.
+
+Minefield's mill is mandatory and 431.1.b makes it a Burn Out risk; **431.2.b is what makes that
+fatal here rather than merely expensive**, because it recycles the whole trash back into the Main
+Deck — erasing the currency the line runs on.
+
+### 19.3 Exactly two cards in the pool ignore [Deflect]
+
+`grep -i "ignore \[deflect\]"` over the corpus returns **VEN-061 Decree of Insight** (*"Ignore
+[Deflect] while paying **this spell's** cost"*) and **VEN-158 Heisho, Shell of the World**
+(*"Players ignore [Deflect] while paying for spells and abilities choosing something here"*).
+Heisho is the only general, repeatable one and it covers abilities as well as spells. Members named
+so the count is refutable in one command.
+
+809.1.c is what makes it worth pricing: the tax is *"for each time they choose"*, so it scales with
+choices and not with spells — which is why a two-choice spell (OGN-128 Challenge) is the right
+measure, and why 355.10.d's programmatic-selection half of the removal pool gains nothing from
+Heisho at all. It is also **symmetric**, so it is actively wrong beside Flurry of Feathers' Birds,
+Hexdrinker, Jax Unmatched or Petricite Monument.
+
+### 19.4 A token born at the battlefield skips the bottleneck entirely
+
+Neither **VEN-109 Illaoi**'s clause nor **VEN-100 Up from the Deep** names a destination, so
+355.2.a applies — *"the controller's Base or a Battlefield the controller controls"* — and the
+Tentacles are **played straight to Trifarian War Camp**, with no Standard Move and no 144.2 exhaust.
+At the War Camp each is 2 Might, above the single point of damage that 143.2.a needs and that
+OGN-133 Flurry of Blades deals to every 1-Might body simultaneously.
+
+**OGN-294 Trifarian War Camp is the only COLORLESS answer to the 1-Might problem** (UNL-077 Soul
+Shepherd is Mind and narrows the shell; VEN-159 Kinkou Temple needs [Tank]) — and 485.4.a + 103.4.c
+mean it can never be combined with the Grand Plaza, which is a swarm's obvious payoff.
+
+Illaoi's *"when I score"* is unusual wording (469 makes Scoring something a **player** does, while
+471.2 triggers Score abilities *"at the Battlefield that Scored"*). The line stands her **at** the
+battlefield it scores, so both readings agree and no reading is filed — the same discipline used
+for `prodigal-explorer-two-choices-draw`.
+
+## 20. Standing notes for CLAUDE.md (batch 6)
+
+24. **Coverage is keyed on NAME+TYPE, and for battlefields that changes nothing**: zero of the 64
+    non-token battlefields share a name with another base code. Across the whole deckable pool the
+    base-code measure over-counts by **19.2%** (443 vs 358), so the correction is real everywhere
+    else. `CardIndex.equivalents` already does it.
+25. **"+N Might this turn" is a modifier and a [Buff] is a counter — 702.3 caps only the second.**
+    UNL-205 Abandoned Hall gives +1 per spell, uncapped, and 820.3.a means a [Repeat] spell pays it
+    once (*"only Played once"*), while 811.1.c.1 means hiding pays it not at all.
+26. **340.1 resolves the NEWEST chain item first, so a trigger you want to resolve FIRST must be
+    placed LAST** under 383.3.d — but that only works when the second trigger's cost is paid on
+    resolution. If the cost sits right after a leading "you may", 383.3.b makes it a base cost paid
+    at **finalization** and no ordering can help. Minefield + Last Rites is the first case;
+    Monastery of Hirana + Warmog's Armor is the second.
+27. **Exactly two cards in the pool ignore [Deflect]**: VEN-061 Decree of Insight (its own cost only)
+    and VEN-158 Heisho, Shell of the World (all spells and abilities choosing something there, both
+    players). 809.1.c charges *per choice*, so the tax scales with choices, and 355.10.d's
+    programmatically-selected half of the removal pool never pays it in the first place.
+28. **OGN-294 Trifarian War Camp is the only Colourless answer to the 1-Might-per-body problem**
+    (Soul Shepherd is Mind, Kinkou Temple needs [Tank]) — and 485.4.a + 103.4.c mean it can never
+    share a board with the Grand Plaza.
