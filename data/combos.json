@@ -44971,6 +44971,350 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use OGN-062 Reinforce or OGN-075 Tasty Faefolk. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 108.6.c, 143.4, 144.2, 161.2.a, 164.2.b, 356.6, 415.3.a, 416.1, 416.1.a, 430.3, 431.1.b, 431.1.c, 436.1.a, 469, 805.1.a, 805.1.a.1, 808.1.d.1. The target-selection rule is the entry's content: an Energy-only discount is worth the most on a card whose cost is Energy-only, which is not the same as the most expensive card. Cross-references clairvoyance-fate-weaver-predict-setup for the general form - any look at M cards is a certainty behind a [Predict N >= M] - and esteemed-hierophant-tomb-raider-seven-runes for what the Deathknell's two runes are worth. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "last-breath-beast-below-unforgiven-unit-damage-ready",
+      "name": "Last Breath readies first and then shoots for the body's Might — and 417.6.b.3 makes it UNIT damage, which no fog and no Bonus Damage touches",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-260",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm/Chaos spell, E3 P2, [Action]. 'Ready a friendly unit. It deals damage equal to its Might to an enemy unit at a battlefield.' SIGNATURE, tagged Yasuo. In zero entries before this walk."
+        },
+        {
+          "card": "SFD-132",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E7 P2 M8. 'When you play me, return another friendly unit and an enemy unit to their owners' hands.' The largest Might in mono-Chaos, and therefore the largest shot Last Breath can fire. In zero entries before this walk."
+        },
+        {
+          "card": "OGN-259",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Chaos legend. ':rb_energy_2:, :rb_exhaust:: Move a friendly unit to or from its base.' Forced by 103.2.d.2, and the repositioning that a re-readied 8-Might body wants."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "ONE LEGEND: Last Breath is a Signature card tagged Yasuo, so 103.2.d.2 forces the pool's one Yasuo legend, Unforgiven (OGN-259), Calm/Chaos — the spell's own two domains, a matched pair. Beast Below is mono-Chaos and sits inside it by 103.1.b.1.",
+          "103.2.d.1 caps the deck at three Signature cards, and three Last Breaths spend all of it."
+        ],
+        "notable": [
+          "IT IS UNIT DAMAGE, NOT SPELL DAMAGE, AND THAT DECIDES TWO THINGS AT ONCE. 417.6.b.3: 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it', with Challenge as its worked example. So `OGN-145 Unyielding Spirit` — the pool's only blanket 'prevent all spell and ability damage this turn' — leaves this working; and by the same paragraph a Bonus Damage static that reads 'your SPELLS AND ABILITIES deal 1 Bonus Damage' (Annie, Fiery; Ravenborn Tome) does NOT raise it. The card is immune to the fog and unimprovable by the pump, and both follow from one sentence.",
+          "THE READY COMES FIRST, WHICH IS THE WHOLE TEMPO OF THE CARD. 415.1 makes readying an act on a Game Object already on the board, so a body that has already spent its exhaust this turn — attacking (144.2) or paying an activated cost — gets it back AND fires. The correct sequence is attack, then Last Breath, not the other way round.",
+          "THE MIGHT IS READ AT EXECUTION. 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction', whose worked examples are exactly this shape (Yasuo, Remorseful resolving on 'his current Might of 5' after a Stupefy). So a pump added in response raises the shot, and a shrink lowers it — and if the chosen body leaves the board the referent returns null (359.3.f.2.a).",
+          "EIGHT IS THE CEILING IN THIS IDENTITY, and it is worth naming why: Beast Below at Might 8 is the largest body mono-Chaos prints, so this is an 8-damage [Action]-speed shot for 3 Energy + 2 Power on a turn the body has already attacked. It kills anything in the pool short of a buffed 9.",
+          "AND THE BEAST'S OWN ETB IS A DRAWBACK YOU MUST PLAN FOR: 'return ANOTHER friendly unit and an enemy unit to their owners' hands' is not optional. A bounce to hand is not a Recall (455 sends a Recall to the BASE), so your own body leaves the board entirely and has to be paid for again — play the Beast when the friendly you are giving back is one whose ETB you want to re-buy.",
+          "THE LEGEND IS THE FOLLOW-UP, NOT DECORATION: 2 Energy and its own exhaust move a friendly unit to or from its base, which is how an 8-Might body that has just been readied gets out of a losing combat or into the next one. 381 confines it to your own turn in an Open State."
+        ]
+      },
+      "steps": [
+        "Play Beast Below (7 Energy + 2 Chaos Power), accepting its ETB: return another friendly unit and an enemy unit to their owners' hands.",
+        "On a later turn, attack with it (144.2, 144.4): it fights at Might 8 and is now exhausted.",
+        "Play Last Breath (3 Energy + 2 Power) at [Action] speed, choosing the Beast: it is readied (415.1), then deals 8 to an enemy unit at a battlefield.",
+        "359.3.f.2 reads its Might on execution, so any pump you added in the same window is counted.",
+        "With the exhaust back, use it — a second Standard Move, or 2 Energy on Unforgiven to move it to or from its base."
+      ],
+      "terminatesIn": "engine — 8 damage at [Action] speed plus a refunded exhaust per Last Breath, three a game (103.2.b); nothing here scores",
+      "netPerIteration": "one enemy unit up to 8 Might killed, and the shooter readied, for 3 Energy + 2 Power",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the orphan dual-domain Signature spells (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "417.6.b.3: 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it.' 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction.' 359.3.f.2.a: 'When a referent checks information on execution of the instruction related to a target, and that target isn't legal, that referent will return \"null\" and all instructions related to it will be ignored.' 415.1 (Readying marks a Game Object already on the board). 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 144.2: 'Exhausting the Unit is the Cost for this action.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 713: 'Bonus Damage is an intrinsic property that can be granted to Deal actions.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. OGN-260 Last Breath and SFD-132 Beast Below were both in ZERO entries; OGN-259 Unforgiven is the forced legend. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.b, 103.2.d.1, 103.2.d.2, 144.2, 144.4, 359.3.f.2, 359.3.f.2.a, 381, 415.1, 417.6.b.3, 455, 713, 806.1.b opened in the Core Rules file. The 'largest Might in mono-Chaos' claim was checked against cards.json. No unruled reading."
+    },
+    {
+      "id": "dune-surfer-armed-assailant-ignore-tank",
+      "name": "764-766 is the paragraph behind every \"you ignore X\" card, and its own worked example is this sentence with Backline in it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-004",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E3 M3. 'You ignore [Tank] while assigning combat damage here.' The pool's only answer to a Tank wall; his clause says HERE, so he has to make the trip. In zero entries before this walk."
+        },
+        {
+          "card": "SFD-002",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E6 P1 M6. '[Accelerate] (You may pay :rb_energy_1::rb_rune_fury: as an additional cost to have me enter ready.) [Weaponmaster]'. The Might that the ignored Tank lets you aim. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Fury, so any of the sixteen legend names carrying Fury holds it (103.1.b.1): Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "Both bodies at the SAME battlefield: Dune Surfer's clause is scoped to 'here', so he attacks alongside. 144.3 moves them as one game action."
+        ],
+        "notable": [
+          "764 THROUGH 766 IS THE GENERAL PARAGRAPH FOR EVERY 'YOU IGNORE X' CARD, AND ITS SECOND WORKED EXAMPLE IS THIS SENTENCE. 765: 'Some Game Effects may instruct players to ignore abilities while performing a game action or procedure.' 766: 'Any abilities ignored in this way are treated as INACTIVE for the purposes of the game action or procedure', with the example 'A unit reads \"You ignore Backline while assigning combat damage here.\" … any instances of Backline on enemy units is treated as inactive.' Dune Surfer is the Tank-facing member of exactly that family, and 'inactive' is stronger than a bypass: 465.2.c.6's requirement ('A player must obey all requirements and restrictions on damage assignment if able') simply has nothing left to obey.",
+          "WHAT A TANK ACTUALLY COSTS YOU IS ORDER, NOT DAMAGE, AND THE ENTRY SAYS SO. 465.2.c.4 caps assignment at minimum lethal per body either way, so a wall does NOT make you overkill; 815.1.c.2 makes every non-Tank body an invalid assignment until the Tank has lethal, which forces you to spend your Might on the wall FIRST and leaves the real threats alive with whatever is left. Ignoring Tank does not give you more damage — it lets you choose which bodies the same damage kills. Anyone pricing Dune Surfer as an excess-damage enabler has it wrong: excess (R28 = A) is attacking Might never assigned, and the total lethal requirement of the garrison is unchanged.",
+          "465.2.c.6 IS THE RULE THE WALL STANDS ON AND 465.2.c.8 IS ITS EDGE CASE: a body carrying BOTH Tank and Backline cannot satisfy both, so the assigning player picks one requirement to fulfil (Riot's example is Caitlyn, Patrolling given Tank). Dune Surfer removes the Tank half of that choice at his battlefield.",
+          "[ACCELERATE] IS WHAT MAKES THE ANSWER SAME-TURN. 805.1.a: 'Accelerate is functionally short for \"As you play me, you may pay [1][C] as an additional cost. If you do, I enter ready.\"' So Armed Assailant lands and attacks in the same Main Phase for 7 Energy + 1 Fury Power + 1 Fury Power, instead of telegraphing itself a turn early against a defender who can rebuild the wall.",
+          "THE SUMMED MIGHT IS 9 AND IT IS SPENT WHERE YOU WANT IT. 465.2.c: 'Starting with the Attacker, each player assigns an amount of damage equal to their summed Might among the other's Units' — Dune Surfer's 3 plus Armed Assailant's 6 — and with Tank inactive that 9 can be spread as two lethal assignments on the bodies that matter rather than sunk into an 8-Might wall.",
+          "HIS [WEAPONMASTER] IS A FREE ATTACH, NOT A FREE EQUIPMENT: 'for :rb_rune_rainbow: less' covers the 29 Equipment whose [Equip] is a single rune, and it equips 'to me', so it can only ever pay for carrier-INDEPENDENT gear. It is a rider on this line, not part of it."
+        ]
+      },
+      "steps": [
+        "Play Dune Surfer (3 Energy) and walk him to the battlefield you intend to attack, or bring him with the attack.",
+        "Play Armed Assailant (6 Energy + 1 Fury Power), paying [Accelerate]'s extra 1 Energy + 1 Fury Power so he enters ready (805.1.a).",
+        "Move both to the enemy battlefield as one game action (144.3, 144.3.a), paying each unit's exhaust (144.2).",
+        "In the damage step, 766 treats every instance of [Tank] on their units as inactive while you assign here, so 465.2.c.6 has no requirement left to enforce.",
+        "Assign your summed 9 Might (465.2.c) as two full lethal assignments (465.2.c.3, 465.2.c.4) onto the bodies you actually want dead, leaving the wall untouched."
+      ],
+      "terminatesIn": "engine — the garrison's real threats die instead of its wall, every turn Dune Surfer stands at that battlefield; nothing here scores beyond whatever Conquer winning the combat produces (466.5.d)",
+      "netPerIteration": "the same summed Might, spent on chosen bodies rather than on a Tank",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "765: 'Some Game Effects may instruct players to ignore abilities while performing a game action or procedure.' 766: 'Any abilities ignored in this way are treated as inactive for the purposes of the game action or procedure. Example: A unit reads \"You ignore Backline while assigning combat damage here.\" While assigning combat damage in the combat damage step with this unit present, any instances of Backline on enemy units is treated as inactive. The unit's controller can assign damage to any units with Backline as if they didn't have it.' 465.2.c.6: 'A player must obey all requirements and restrictions on damage assignment if able. Example: A player is assigning damage to the following units: a unit with Tank (\"I must be assigned combat damage first.\"); a unit with Backline (\"I must be assigned combat damage last.\"); and another unit without any abilities. That player must assign combat damage first to the unit with Tank, then to the unit with no abilities, then to the unit with Backline.' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 465.2.c.4: 'Units cannot have more damage assigned to them than the minimum required to constitute lethal damage unless no further units remain to have damage assigned to them.' 805.1.a: 'Accelerate is functionally short for \"As you play me, you may pay [1][C] as an additional cost. If you do, I enter ready.\"' 144.3: 'Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. VEN-004 Dune Surfer and SFD-002 Armed Assailant were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 144.2, 144.3, 144.3.a, 144.4, 465.2.c, 465.2.c.3, 465.2.c.4, 465.2.c.6, 465.2.c.8, 466.5.d, 765, 766, 805.1.a, 815.1.c.2, 818.1 opened in the Core Rules file. The second notable REFUSES the obvious reading of this card (that ignoring Tank generates excess damage) with 465.2.c.4 and R28 = A — it changes which bodies die, not how much damage there is. No unruled reading."
+    },
+    {
+      "id": "pyke-returned-shakedown-off-turn-gold",
+      "name": "A hidden unit is a [Reaction] body with [Backline], and its Gold is minted on the opponent's turn by a kill you made at Reaction speed",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-145",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E3 M3. '[Hidden] [Backline] (I must be assigned combat damage last.) Once each turn, when an enemy unit dies while I'm at a battlefield, play a Gold gear token exhausted.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-033",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury spell, E2 P1, [Reaction]. 'Choose an enemy unit. Deal 6 to it unless its controller has you draw 2.' The kill that fires him on the opponent's turn. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "A battlefield you control with no facedown card already on it, if Pyke is deployed the cheap way (811.1.b)."
+        ],
+        "notable": [
+          "A HIDDEN UNIT IS A [REACTION] BODY, WHICH IS THE HALF OF 811.1.b THAT IS EASY TO MISS. The keyword is functionally short for hiding the card at a battlefield you control and then, 'beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost' — so Pyke enters mid-combat on the OPPONENT's turn for 0 Energy, already at the battlefield he was hidden at (811.1.d.1), and 319.6 with 323.2.a give him the Defender designation at the next Cleanup, inside that damage step.",
+          "[BACKLINE] IS THE MIRROR OF [TANK] AND THE RULES NAME BOTH IN ONE EXAMPLE. 465.2.c.6: 'A player must obey all requirements and restrictions on damage assignment if able. Example: … a unit with Tank (\"I must be assigned combat damage first.\"); a unit with Backline (\"I must be assigned combat damage last.\"); and another unit without any abilities. That player must assign combat damage first to the unit with Tank, then to the unit with no abilities, then to the unit with Backline.' So a 3-Might Pyke behind any other body is the LAST thing the attacker may legally kill, which is exactly what a permanent whose trigger needs him alive at a battlefield wants.",
+          "THE TRIGGER IS 'ONCE EACH TURN', NOT 'ONCE ON YOUR TURN', AND SHAKEDOWN IS HOW YOU CASH THE OTHER HALF. Shakedown carries [Reaction], so 813.1.c.1 admits it in any Closed State on any player's turn: an enemy unit dies at Pyke's battlefield during THEIR turn, and the Gold appears then. Over a round trip that is two Golds, not one — and nothing else in the entry costs a card.",
+          "BUT THE GOLD IS NEXT TURN'S POWER, NOT THIS TURN'S. 187.5: 'A Gold gear token is a domainless gear token with \"[Reaction][>] Kill this, [exhaust]: [Add] [rainbow].\"' Pyke's text plays it EXHAUSTED, and an exhausted Gold cannot pay its own cost, so 415.3.a readies it only in your own Awakening. The catalogue records `SFD-171 Renata Glasc, Industrialist` as the card that fixes this ('Your tokens enter ready', R25 = A) — she is mono-Order and 103.1.b.3 keeps her out of a Fury/Chaos list, so this line simply banks the Power a turn ahead and says so.",
+          "SHAKEDOWN IS A PUNISHER, SO PRICE BOTH HALVES. 'Deal 6 to it unless its controller has you draw 2' leaves the mode to them: against a body worth less than two cards they hand you the cards and Pyke gets nothing, and against a real threat they take the 6 and Pyke pays. It is never dead and it is never guaranteed — six damage kills all but the largest bodies in the pool, so a defended board usually pays the damage.",
+          "IT CHOOSES, SO IT IS TAXED. Unlike the programmatic sweepers this catalogue leans on (355.10.d), 'Choose an enemy unit' is a target: 809.1.c charges [Deflect] an extra Power per choice, and `SFD-105 Ruin Runner`'s absolute 'can't be chosen by enemy spells and abilities' stops it outright (054.1). State it, because the two are different kinds of thing.",
+          "185.2.d IS WHY THE GOLD IS REALLY GEAR: 'Tokens have a type. They follow all rules for their type unless otherwise specified.' That is a benefit here and a liability against a symmetric gear kill — see `acceptable-losses-ravenbloom-prefect-gearless-gear-hate`, which this entry is explicitly anti-synergic with."
+        ]
+      },
+      "steps": [
+        "Hide Pyke, Returned face down at a battlefield you control for one rainbow Power (811.1.b).",
+        "From the following turn he is a [Reaction] card: play him for 0 Energy, at that battlefield, at any moment a Closed State gives you priority — including inside the opponent's attack.",
+        "[Backline] then makes him the last legal damage assignment there (465.2.c.6), so he survives behind any other body of yours.",
+        "On either player's turn, play Shakedown (2 Energy + 1 Fury Power, [Reaction]) on an enemy unit at his battlefield. They choose: 6 damage, or two cards for you.",
+        "If it dies, Pyke's once-a-turn trigger plays a Gold gear token, exhausted.",
+        "415.3.a readies the Gold at your next Awakening; kill it then for one rainbow Power (187.5)."
+      ],
+      "terminatesIn": "engine — up to two Gold a round trip (once each turn, on either player's turn), each worth one rainbow Power a turn later, plus a punisher that is never a dead card; nothing here scores",
+      "netPerIteration": "one Gold token per enemy death at Pyke's battlefield, capped at one per turn, spendable from your next Awakening",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "465.2.c.6: 'A player must obey all requirements and restrictions on damage assignment if able. Example: A player is assigning damage to the following units: a unit with Tank (\"I must be assigned combat damage first.\"); a unit with Backline (\"I must be assigned combat damage last.\"); and another unit without any abilities. That player must assign combat damage first to the unit with Tank, then to the unit with no abilities, then to the unit with Backline.' 187.5: 'A Gold gear token is a domainless gear token with \"[Reaction][>] Kill this, [E]: [Add] [A].\"' 185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 811.1.d.1 (the hidden permanent enters at that battlefield). 809.1.c ([Deflect] is an additional cost to play, charged for each time they choose). 054.1 (a card that forbids beats a card that permits). 355.10.d (a Game Object programmatically selected rather than chosen is not a target)."
+        },
+        {
+          "title": "Rules readings R25, issue #11 (ruled 2026-09-04)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. UNL-145 Pyke, Returned and OGN-033 Shakedown were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 054.1, 103.1.b.2, 103.1.b.3, 185.2.d, 187.5, 319.6, 323.2.a, 355.10.d, 415.3.a, 465.2.c.6, 809.1.c, 811.1.b, 811.1.d.1, 813.1.c.1 opened in the Core Rules file. This entry is deliberately ANTI-synergic with `acceptable-losses-ravenbloom-prefect-gearless-gear-hate` from the same walk, and each says so: 185.2.d makes the Gold legal fodder for a symmetric gear kill, so the two lines cannot share a list."
+    },
+    {
+      "id": "irelia-graceful-perfect-execution-power-discount",
+      "name": "\"1 Energy or 1 rainbow less\" is a choice, and at nine Energy per Power the answer is always the Power",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-141",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 P1 M4. 'Your spells that choose me cost :rb_energy_1: or :rb_rune_rainbow: less.' In zero entries before this walk."
+        },
+        {
+          "card": "VEN-012",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury spell, E3 P1. 'Ready a unit and give it [Assault 3] this turn. [Flow] :rb_energy_3::rb_rune_fury:'. Chooses a unit, so Irelia discounts it. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "A DECKBUILDING CONSTRAINT: no 'if you spent N' card in the list. See the last notable."
+        ],
+        "notable": [
+          "THE DISCOUNT IS A CHOICE, AND THE PROJECT'S OWN EXCHANGE RATE DECIDES IT. Irelia reads 'cost :rb_energy_1: OR :rb_rune_rainbow: less', so you pick which component of the total cost comes down. The catalogue prices a Power at roughly NINE Energy inside a loop, and a Power is scarcer than an Energy at every stage of a normal game (315.3.b returns two runes a turn; 164.2.b spends one permanently to the Rune Deck, 161.2.b). Against Perfect Execution's printed 3 Energy + 1 Fury Power, taking the Power gives 3 Energy + 0 and taking the Energy gives 2 Energy + 1 Fury Power — the first is strictly better, and it is the choice a reader skips because both look like 'minus one'.",
+          "AND THE RAINBOW HALF IS ONLY EVER A DOMAIN RUNE. No card in the pool prints a rainbow Power COST, so an 'or one rainbow less' rebate always comes off a printed domain Power. There is no case where it is dead letter on a card that has any Power cost at all, and no case where it saves you a rainbow you were going to pay.",
+          "WHAT THE SPELL BUYS: 415.1 makes 'Ready a unit' a real ready, so a body that already attacked gets its exhaust back; 807.1.b.3 and 807.2 sum [Assault 3] with anything already on it and 807.1.c scopes it to being an attacker. On Irelia herself that is Might 4 + 3 = 7 attacking, twice in a turn, for 3 Energy.",
+          "SHE HAS TO BE THE CHOICE, WHICH IS THE COST OF THE DISCOUNT. 'Your spells that choose ME' — a Perfect Execution aimed at any other body is full price, so the discount and the payoff are pulling in the same direction only while Irelia is the one you want readied. That is a real constraint, not a formality.",
+          "THE ANTI-SYNERGY IS PRINTED IN THE SAME DOMAIN AND IS EASY TO BUILD BY ACCIDENT. A discount reduces what you SPEND (166.2, 203.1, 356.4.b), and `SFD-143 Sivir, Mercenary` (Chaos, 'If you've spent at least :rb_rune_rainbow::rb_rune_rainbow: this turn, I have +2 :rb_might: and [Ganking]') reads exactly that. Every rebate Irelia gives makes Sivir's clause harder to reach. 206 does not rescue her: that governs a 'COSTS N' check, which reads the printed cost — two different tests, and this list wants the first family and not the second.",
+          "356.4.e KEEPS A SECOND IRELIA HONEST: 'If a discount applies a minimum cost, that minimum applies only to that discount.' Irelia prints no floor, so two of her are two full reductions and 356.6 ('Energy and Power costs can't be reduced below 0') is the only stop — Perfect Execution at 3 Energy + 1 Power under two Irelias is 2 Energy + 0, and under three it is 1 Energy + 0.",
+          "[FLOW] IS PRICED AT FULL VALUE HERE ON PURPOSE. 829.1.b gives one replay per copy from the trash for 3 Energy + 1 Fury; whether Irelia's rebate reaches a Flow cost is not needed by this entry, so it is not claimed."
+        ]
+      },
+      "steps": [
+        "Play Irelia, Graceful (4 Energy + 1 Chaos Power) and walk her to a battlefield.",
+        "Attack with her (144.2): Might 4, and she is now exhausted.",
+        "Play Perfect Execution choosing Irelia. Her static takes the cost down by one component — take the Power: 3 Energy and no Fury Power.",
+        "She is readied (415.1) and has [Assault 3] this turn: Might 7 while attacking, with her exhaust available for a second Standard Move.",
+        "Later, replay Perfect Execution from the trash for its full [Flow] cost of 3 Energy + 1 Fury Power (829.1.b), which then banishes it."
+      ],
+      "terminatesIn": "engine — one Power saved on every spell that chooses Irelia, and a re-readied 7-Might attacker per Perfect Execution; nothing here scores",
+      "netPerIteration": "one Power (or one Energy, your choice) off each qualifying spell, plus a refunded exhaust and +3 Might while attacking",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "356.4.e: 'If a discount applies a minimum cost, that minimum applies only to that discount.' 356.6: 'Energy and Power costs can't be reduced below 0.' 166.2 / 203.1 / 356.4.b (a \"spent\" threshold reads what actually left the Rune Pool). 206 (a \"costs N\" check reads the printed cost). 415.1 (Readying marks a Game Object already on the board). 807.1.b.3: 'If X is omitted, it is presumed to be 1.' 807.1.c: 'It is functionally short for \"While I am an attacker, I have +X [M].\"' 807.2: 'the Assault Value of all granted Assault keywords is summed.' 144.2: 'Exhausting the Unit is the Cost for this action.' 161.2.b (a recycled rune returns to the Rune Deck). 315.3.b (two runes channelled each Channel Phase). 829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. SFD-141 Irelia, Graceful and VEN-012 Perfect Execution were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 144.2, 161.2.b, 166.2, 203.1, 206, 315.3.b, 356.4.b, 356.4.e, 356.6, 415.1, 807.1.b.3, 807.1.c, 807.2, 829.1.b opened in the Core Rules file. The entry deliberately does NOT claim that Irelia's rebate reaches a [Flow] cost — it is not needed, so it is not asserted. The Sivir anti-synergy is the same shape the batch-1 walk recorded for Raging Firebrand and is repeated here because the two cards share a domain and a deck slot."
+    },
+    {
+      "id": "danger-zone-dangerous-duo-mech-reaction-pump",
+      "name": "The pool's [Reaction] mass pump for a tribe, and the legend's [Shield] is worth nothing on offence",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-182",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury/Mind spell, E1 P1, [Reaction], [Repeat] :rb_energy_1::rb_rune_rainbow:. 'Give your Mechs +1 :rb_might: this turn.' SIGNATURE, tagged Rumble. In zero entries before this walk."
+        },
+        {
+          "card": "OGN-016",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E3 M3, tags Mech + Bandle City. '[Legion] - When you play me, give a unit +2 :rb_might: this turn.' A Mech body and a single-target pump, the contrast the entry is built on. In zero entries before this walk."
+        },
+        {
+          "card": "SFD-181",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Mind legend. 'Your Mechs have [Shield]. (+1 :rb_might: while they're defenders.)' Forced by 103.2.d.2."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "ONE LEGEND: Danger Zone is a Signature card tagged Rumble, so 103.2.d.2 forces Mechanized Menace (SFD-181), Fury/Mind — the spell's own two domains, a matched pair.",
+          "103.2.d.1 caps the deck at three Signature cards, and three Danger Zones spend all of it.",
+          "Enough Mechs for a mass pump to beat a single-target one — the entry's own arithmetic is the test, not a slogan."
+        ],
+        "notable": [
+          "THE LEGEND'S GRANT IS DEFENDERS-ONLY AND THE SPELL'S IS NOT, WHICH IS THE WHOLE SHAPE OF THE PAIR. 814.1.c: '[Shield] is functionally short for \"While I am a DEFENDER, I have +X [M]\"', with 814.1.b.3 making a bare [Shield] worth 1. So Mechanized Menace adds nothing whatever to an attack, and Danger Zone's 'give your Mechs +1 :rb_might: this turn' is unconditional. On defence they stack — a 3-Might Mech token defends at 3 + 1 + 2 = 6 — and on offence the same token attacks at 5.",
+          "187.4 IS WHY NO CARD HAS TO SAY 'TOKEN': 'A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag.' The tag is granted by RULE, so every 'your Mechs' static and every 'your Mechs' pump reaches every token the deck makes without a word of extra text.",
+          "[REPEAT] IS EXACTLY ONE EXTRA EXECUTION, SO DANGER ZONE IS +2 AND NOT MORE. 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' The one route to a third is `UNL-146 Syndra, Transcendent`, the only card in the pool that GRANTS a second [Repeat] instance (820.1.c.2: 'If a spell or ability has more than one instance of Repeat, each Cost may be paid or not paid individually'; 820.1.c.3: 'Each Repeat Cost can be paid only a single time'). She is mono-Mind and therefore legal under this legend — recorded as a lead, not folded in, because it would make this a four-card line.",
+          "THE COMPARISON THAT DECIDES WHEN TO PLAY IT: Danger Zone with its [Repeat] paid is 2 Energy + 1 rainbow + 1 rainbow for +2 on EVERY Mech; Dangerous Duo's [Legion] rider is +2 on ONE unit and comes free with a body. Below three Mechs the Duo's rider is the better rate; at three or more the spell is, and it is the only one of the two that can be bought at [Reaction] speed (813.1.c.1) after the opponent has committed.",
+          "812.2 MAKES THE [LEGION] RIDER ALMOST FREE: 'All instances of Legion on cards a player controls are satisfied by that player playing a single card', and 812.1.c needs that card merely FINALIZED — so any one earlier card this turn, including the Danger Zone itself, switches it on.",
+          "NONE OF IT IS A BUFF. Both effects are worded 'give … +N :rb_might: this turn', a continuous modifier, so 702.3's one-Buff-per-unit cap and 703's fixed +1 never apply and the two stack on the same body with a real Buff on top.",
+          "AND THE FLOOR IS STILL MIGHT PER BODY. A 3-Might Mech token survives `OGN-133 Flurry of Blades` without help; a 1-Might token does not, and neither pump is a permanent static, so nothing here is insurance across turns — 143.2.a is checked when the damage is marked, and both effects expire at cleanup."
+        ]
+      },
+      "steps": [
+        "Play Mechs. Any 3-Might Mech token counts by rule (187.4), and Dangerous Duo is itself one.",
+        "Play Dangerous Duo (3 Energy) after any other card this turn, so [Legion] is on (812.2, 812.1.c): its rider gives one unit +2 Might this turn.",
+        "Hold Danger Zone. It is a [Reaction], so 813.1.c.1 lets it be played in any Closed State on any player's turn.",
+        "When the opponent commits an attack or a removal spell, play it (1 Energy + 1 Power) and pay its [Repeat] (1 Energy + 1 rainbow): your Mechs get +1 and then +1 again, for +2 each (820.1.b).",
+        "On defence the legend's [Shield] adds another +1 to each (814.1.c), so a 3-Might Mech token is fighting at 6."
+      ],
+      "terminatesIn": "engine — +2 Might on every Mech you control at [Reaction] speed, three times a game (103.2.b), plus a permanent +1 on defence from the legend; nothing here scores",
+      "netPerIteration": "+2 Might per Mech per Danger Zone, and +3 per Mech while defending",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the orphan dual-domain Signature spells (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "814.1.b.3: 'If X is omitted, it is presumed to be 1.' 814.1.c: 'It is functionally short for \"While I am a defender, I have +X [M].\"' 814.2: 'If a Unit has Shield, or has been granted Shield, and is granted Shield by an additional source, the Shield Value of all granted Shield keywords is summed.' 187.4: 'A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag.' 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 820.1.c.2: 'If a spell or ability has more than one instance of Repeat, each Cost may be paid or not paid individually.' 820.1.c.3: 'Each Repeat Cost can be paid only a single time.' 812.2: 'All instances of Legion on cards a player controls are satisfied by that player playing a single card.' 702.3: 'There can only be one Buff on a Unit at a time.' 703: 'Each Buff individually contributes +1 Might to a Unit.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. SFD-182 Danger Zone and OGN-016 Dangerous Duo were both in ZERO entries; SFD-181 Mechanized Menace appears in `mechanized-menace-breakneck-mech-token-keywords` (SFD-181 + SFD-071 + SFD-021), which is about granting keywords to tokens — this entry is the pump side and states the number at which a mass pump beats a single-target one. Card text verbatim from data/corpus_flat.txt; 103.2.b, 103.2.d.1, 103.2.d.2, 143.2.a, 187.4, 702.3, 703, 812.1.c, 812.2, 813.1.c.1, 814.1.b.3, 814.1.c, 814.2, 820.1.b, 820.1.c.2, 820.1.c.3 opened in the Core Rules file. Syndra, Transcendent as a route to a third execution is recorded as a LEAD in a notable rather than folded into uses[], since it would make this a four-card line."
     }
   ]
 }
