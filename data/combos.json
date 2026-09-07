@@ -46314,6 +46314,350 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. OGN-040 Seal of Rage and VEN-009 Baccai Reaper were both in ZERO entries. Seal of Rage has TWO base codes (OGN-040 and SFD-222, same name and type), which CardIndex.equivalents already bridges. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 144.2, 144.4, 167, 204.3.a, 312.2.c, 377.1, 381, 415.3.a, 429.2, 429.2.a, 464.2.c.3, 807.1.c, 807.2, 813.1.c.2 opened in the Core Rules file. 204.3.a is used here in preference to 383.3.b, which says the same thing later — the catalogue's own note is that 204.3.a is the cleaner source and carries its own worked example. No unruled reading."
+    },
+    {
+      "id": "iterative-design-production-surge-mech",
+      "name": "187.4 gives a Mech token its tag by rule, so the first token pays for the second spell",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-051",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind spell, E4. 'Play a 3 :rb_might: Mech unit token. [Flow] :rb_energy_2::rb_rune_mind:.' It names NO destination, which 355.2.a resolves in your favour, and [Flow] gives each copy a second play."
+        },
+        {
+          "card": "SFD-076",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E4 P1. 'This costs :rb_energy_2: less if you control a Mech. Play a 3 :rb_might: Mech unit token TO YOUR BASE. Draw 1.' The discount reads a Mech, and a Mech token is one."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine",
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Mind, so 103.1.b.3 admits any legend with Mind in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A Mech on the board when Production Surge is played, for the discount. The first Iterative Design supplies it."
+        ],
+        "notable": [
+          "THE TAG COMES BY RULE, NOT FROM ANY CARD. 187.4: 'A 3 [M] Mech token is a domainless unit token with 3 Might and the MECH TAG', and 185.2.d puts a token inside the rules for its type. So the token Iterative Design makes satisfies Production Surge's 'if you control a Mech' with nothing else on the board - and 203.1 with 356.4.b price the spell as it is played, so a token minted earlier the same turn already counts.",
+          "AND THE TWO SPELLS DO NOT PUT THEIR TOKENS IN THE SAME PLACE. Production Surge says 'to your base'; Iterative Design names no destination at all, which 355.2.a resolves as 'the controller's Base OR A BATTLEFIELD THE CONTROLLER CONTROLS'. That is the difference between a body that has to walk (144.4, paying 144.2's exhaust, and 143.4 enters it exhausted so the walk is next turn) and one that arrives where you need it. Spend the cheap spell on the base and the flexible one on the battlefield, not the other way round.",
+          "[FLOW] IS SIX PLAYS AND NOT AN ENGINE. 829.1.b: 'You may play this from your trash for its flow cost. Then banish it', with 829.1.b.1 making the banish a delayed replacement and 108.6.c keeping it gone. Three Iterative Designs are SIX Mechs, and the replay is 2 Energy + 1 Mind Power - cheaper than the first cast, which is unusual for the keyword.",
+          "THE LEDGER, WITH THE QUANTITIES DECLARED. First Iterative Design 4 Energy for a 3 Might body. Every Production Surge afterwards is 2 Energy + 1 Power for a second 3 Might body AND a card. Each Iterative Design replays from the trash for 2 Energy + 1 Mind Power. Six Mechs from three copies, three more from three Surges, and three cards.",
+          "AND THE TOKENS ARE ALSO A GEAR-COUNT DECK'S BODIES, NOT ITS GEAR. 187.4 makes them UNIT tokens - the Gold of 187.5 is the gear one - so this engine feeds a body payoff and not the 'control N or more gear' thresholds that plundering-poro-patched-porobot-gold-gear-count is built on. The two Mind token engines are different resources and a deck can want both.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And 143.4 enters every token exhausted, so none of them moves on the turn it is made unless SFD-171 Renata Glasc, Industrialist is out (R25 = A), which is mono-Order and needs a Mind/Order legend."
+        ]
+      },
+      "steps": [
+        "Play Iterative Design (4 Energy). It names no destination, so 355.2.a lets the 3 Might Mech token appear at your base or at a battlefield you control.",
+        "You now control a Mech (187.4 gives the token the tag by rule), so Production Surge costs 2 Energy + 1 Power instead of 4 + 1.",
+        "Play it for a second 3 Might Mech at your base and draw 1. 203.1 and 356.4.b price it as it is played, so the token from step 1 already counts.",
+        "Later, replay Iterative Design from the trash for its [Flow] cost of 2 Energy + 1 Mind Power; 829.1.b banishes it afterwards.",
+        "Repeat with the other copies: three Iterative Designs are six Mechs, and every Production Surge after the first Mech is discounted."
+      ],
+      "netPerIteration": "one 3 Might Mech token per spell, and a card with every Production Surge, at 2 Energy + 1 Power once the first Mech is out",
+      "terminatesIn": "engine only - six Iterative Design plays and three Production Surges by 103.2.b with [Flow]; nothing here scores and every token enters exhausted",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 6)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use VEN-051 Iterative Design or SFD-076 Production Surge. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 108.6.c, 143.4, 144.2, 144.4, 185.2.d, 187.4, 187.5, 203.1, 355.2.a, 356.4.b, 469, 829.1.b, 829.1.b.1. The destination difference is the entry's practical content: one spell prints 'to your base' and the other prints nothing, which 355.2.a resolves in the controller's favour - a distinction that decides which token can be used this turn. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "mosstomper-wuju-apprentice-xp-calm-ladder",
+      "name": "A [Level] rider on a PLAY trigger is spent for good if the copy is played early - which is what [Hunt 2] is for",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-047",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 P1 M3. '[Hunt 2] (When I conquer or hold, gain 2 XP.) [Level 3][>] I have +1 :rb_might: and [Deflect].' The fastest faucet in the domain, and its own rung is the cheapest in the pool."
+        },
+        {
+          "card": "UNL-040",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm unit, E2 M2. '[Hunt] (When I conquer or hold, gain 1 XP.) [Level 6][>] When you play me, draw 1.' A threshold rider on a PLAY trigger, which is a different animal from a continuous one."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A deck that never SPENDS XP: 824.1.d switches both rungs off the moment the counter drops below the threshold, and 730.2 is what any spend does."
+        ],
+        "notable": [
+          "A THRESHOLD RIDER ON A PLAY TRIGGER IS SPENT FOR GOOD, WHICH A CONTINUOUS ONE IS NOT. Mosstomper's '[Level 3] I have +1 :rb_might: and [Deflect]' is continuous - 824.1.d makes the Dependent Ability Active or Inactive as the counter moves, so a Mosstomper played at 0 XP simply switches on later. Wuju Apprentice's '[Level 6] When you play me, draw 1' is a play trigger: if the ability is Inactive when the card is played, the trigger never happens and no later XP brings it back. **Hold the Apprentice until six.** That distinction is not on either card and it decides the whole sequencing.",
+          "AND [HUNT 2] IS WHY SIX IS REACHABLE AT ALL. 823.1.c.1: 'Hunt is functionally short for \"When I Conquer or Hold, my controller gains X XP\"', and 315.2.b.2 Holds every battlefield you control at your Beginning Phase, with 485.4 putting two on a Duel table. So a Mosstomper on each held battlefield is 4 XP in ONE Beginning Phase - the [Level 3] is live after the first, and six after the second. A [Hunt 1] card takes twice as long.",
+          "THE CHEAP RUNG PAYS WHILE THE EXPENSIVE ONE IS STILL COMING. [Level 3] is the lowest threshold in the pool, and what it buys is [Deflect] - which 809.1.c prices as extra Power on any spell or ability that CHOOSES the Mosstomper, in any Domain (809.1.c.1). 355.10.d is the hole: a sweeper selects programmatically and pays nothing.",
+          "THE FAMILY, NAMED, AND ITS FAUCETS RANKED. In Calm the XP cards are UNL-034 Herald of Spring ([Hunt], plus 2 XP on play - the biggest single jump), UNL-040 Wuju Apprentice ([Hunt], [Level 6] draw), UNL-047 Mosstomper ([Hunt 2], [Level 3]), UNL-031 Combat Experience ([Level 6] rider on a pump) and UNL-038 Skyward Strike ([Level 6] rider on a move). The Mosstomper is the fastest per turn and the Herald the fastest per card; a list that wants six quickly runs both.",
+          "AND THIS IS THE CALM CORNER OF A PATTERN THE PROJECT NOW HAS THREE OF. bandle-soldier-enthralling-protector-xp-floor (Order, [Level 3]) and concentrate-grim-resolve-level-ladder (Body, [Level 6] / [Level 11]) both need the counter BANKED, and wily-newtfish-gemhand-hunter-xp-turn (Body) reads a gain in the turn and is indifferent to spending. Every threshold entry in the catalogue is anti-synergic with every XP sink, and this one is no exception.",
+          "WHAT IT IS NOT. Nothing here scores. [Hunt] is PAID BY a Hold and does not cause one; 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Play Mosstomper (3 Energy + 1 Power) and take a battlefield with it; a second copy at your other battlefield doubles the rate.",
+        "At your Beginning Phase, 315.2.b.2 Holds every battlefield you control and [Hunt 2] pays 2 XP per Mosstomper that held.",
+        "At 3 XP the Mosstomper's own rung switches on: +1 Might and [Deflect], which taxes any targeted answer by a rainbow (809.1.c).",
+        "At 6 XP - the second such Beginning Phase with two Mosstompers - play Wuju Apprentice (2 Energy) and draw 1.",
+        "Do NOT play the Apprentice earlier: its rider hangs off a PLAY trigger, so a copy played below six draws nothing and never will.",
+        "Never spend the XP: 730.2 reduces the counter and 824.1.d switches both rungs off at once."
+      ],
+      "netPerIteration": "2 XP per Mosstomper per Hold, and one card per Wuju Apprentice played at or above six",
+      "terminatesIn": "engine only - three of each card by 103.2.b, and every rung goes dark the moment anything spends the XP (824.1.d + 730.2); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 6)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-047 Mosstomper or UNL-040 Wuju Apprentice. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 315.2.b.2, 355.10.d, 469, 485.4, 730.2, 809.1.c, 809.1.c.1, 823.1.c.1, 824.1.d. The load-bearing distinction is between a [Level] rider on a CONTINUOUS ability and one on a PLAY TRIGGER: 824.1.d re-evaluates the first as the counter moves, while the second is spent for good if the copy is played below the threshold. Completes the project's XP set with a Calm corner alongside the Order and Body entries, and all four name each other. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "scuttle-crab-mutated-mouser-zero-might-hold",
+      "name": "A 0 Might body can hold, and 143.2.a still charges the attacker a point of damage to remove it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-053",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E2 M0. '(Units with 0 :rb_might: can conquer and hold.) When you play me, draw 1. [Deathknell][>] Choose an opponent. They reveal their hand. You can look at their facedown cards this turn. Gain 1 XP.' Two Energy that draws on the way in and reads their whole hand on the way out."
+        },
+        {
+          "card": "UNL-036",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E2 M1. '[Shield 2] (+2 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.)' Two Energy for a body that reads 3 Might exactly when it is being attacked, and that every point of the attacker's assignment has to go through first."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Both bodies at the same battlefield - 815.1.b orders the assignment only among units the SAME player controls."
+        ],
+        "notable": [
+          "A 0 MIGHT BODY IS NOT A DEAD BODY, AND THE CARD PRINTS THE RULE. Its own parenthetical is '(Units with 0 :rb_might: can conquer and hold.)', so the Crab takes and keeps a battlefield exactly like any other unit - 469.1 gains the Conquer, 315.2.b.2 Holds it. And 143.2.a needs marked damage AT OR ABOVE Might to kill, which still means NONZERO damage: a 0 Might body costs the attacker one point of their assignment, and 465.2.c.4 caps that at the minimum lethal, so it is one point and no more. Two Energy to make an attacker spend a point and to keep a battlefield.",
+          "THE TANK IS WHAT KEEPS IT ALIVE, AND IT IS ONE MIGHT BIGGER THAN IT LOOKS. 815.1.b: the Mouser 'must be assigned LETHAL damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step', and 815.1.c.2 makes every non-Tank body an invalid assignment until it has. 814.1.c makes [Shield] '+X :rb_might: while I am a defender', so the printed 1 reads 3 on defence - the same designation-conditional Might this catalogue records in both directions. An attack summing less than 3 therefore kills NOTHING at that battlefield, and the Crab holds.",
+          "AND THE CRAB'S DEATHKNELL IS THE POOL'S ONLY LOOK AT A FACEDOWN CARD. Swept: `grep -in facedown data/corpus_flat.txt` returns four rows - OGN-101 Mushroom Pouch (draws if YOU control a facedown card), OGN-181 Pack of Wonders (returns a friendly facedown card to hand), UNL-014 Monster Harpoon (a condition on your own) and UNL-053 Scuttle Crab. Only the Crab reads the OPPONENT's. 811.1.b hides a card facedown 'for as long as you control that battlefield' and the whole [Hidden] package is priced on that information asymmetry; this is the one card in the pool that removes it, and it does so for the whole turn.",
+          "IT ALSO PAYS ON BOTH ENDS, WHICH IS RARE AT TWO ENERGY. 'When you play me, draw 1' on the way in, and on the way out a hand reveal plus 1 XP - and 808.1.c makes the Deathknell 'functionally short for \"When I die, [Effect]\"'. 808.1.d.1 is the one thing that switches it off: a heal / exhaust / recall shield means it never reaches the Trash and 'the triggered ability will be removed from the chain'. Do not protect this body; it is meant to die.",
+          "THE XP IS A RIDER, NOT A PLAN. One per Crab, three by 103.2.b - enough to switch on a [Level 3] such as UNL-047 Mosstomper's, and nowhere near the [Level 6] rungs in the same domain. mosstomper-wuju-apprentice-xp-calm-ladder is where that ladder is walked; this is a supplementary faucet and the entry says so rather than pretending otherwise.",
+          "WHAT IT IS NOT. The Crab's own Conquer or Hold scores by 469.1 and 471.1, but neither card in this entry causes one that would not have happened - what they buy is the ability to KEEP a battlefield cheaply."
+        ]
+      },
+      "steps": [
+        "Play Mutated Mouser (2 Energy) and Scuttle Crab (2 Energy); the Crab draws a card as it lands.",
+        "Send both to the same battlefield. 815.1.b orders the assignment among units you control, so they have to share a location.",
+        "The Crab can take and keep the battlefield despite having 0 Might - its own reminder text says so, and 469.1 with 315.2.b.2 do the rest.",
+        "On defence, 814.1.c makes the Mouser a 3 and 815.1.c.2 makes it the only legal assignment until it has lethal - an attack summing less than 3 kills nothing.",
+        "When the Crab does die, its Deathknell reveals the opponent's hand and lets you look at their facedown cards for the turn (808.1.c), plus 1 XP.",
+        "Do not shield the Crab: 808.1.d.1 removes the trigger from the chain if it never reaches the Trash."
+      ],
+      "netPerIteration": "a card on the way in, a full hand reveal plus every facedown card on the way out, and a battlefield held by two 2-Energy bodies",
+      "terminatesIn": "engine only - three of each card by 103.2.b, and the Mouser's wall is 3 damage tall; nothing here scores beyond the Conquer or Hold the Crab was making anyway",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 6)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-053 Scuttle Crab or UNL-036 Mutated Mouser. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.2.a, 315.2.b.2, 465.2.c.4, 469.1, 471.1, 808.1.c, 808.1.d.1, 811.1.b, 814.1.c, 815.1.b, 815.1.c.2. UNIQUENESS SWEPT, NOT ASSUMED: `grep -in facedown` returns four rows and only UNL-053 reads the OPPONENT's - the other three are OGN-101 Mushroom Pouch, OGN-181 Pack of Wonders and UNL-014 Monster Harpoon, all of which read your own. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "sumpworks-map-opponent-scores",
+      "name": "A [Temporary] permanent played on YOUR turn survives the whole of theirs - which is the only window this card has",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-085",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind gear, E2. '[Reaction] ... [Temporary] (Kill this at the start of its controller's Beginning Phase, before scoring.) When an opponent scores, draw 1.' Three keywords whose interaction is the entire card."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Mind, so 103.1.b.3 admits any legend with Mind in its pair.",
+          "Not banned or restricted in either format, and not a Signature card.",
+          "Nothing else - but the TIMING is the whole card, and it is the opposite of what [Reaction] suggests. See the notables."
+        ],
+        "notable": [
+          "THE [TEMPORARY] CLOCK RUNS ON YOUR TURN, NOT THEIRS. 816.1.b: 'At the start of THIS PERMANENT'S CONTROLLER'S Beginning Phase, before scoring, kill this', with 816.1.c making the Trigger Condition your own Beginning Phase starting. So a Sumpworks Map played in YOUR Main Phase lives through the rest of your turn AND the whole of the opponent's, and dies at the start of your next Beginning Phase - before your own scoring, which costs you nothing since the card only reads THEIR scores. That is a full opponent's turn of coverage for 2 Energy.",
+          "AND PLAYING IT REACTIVELY IS USUALLY WORSE, WHICH IS THE TRAP. 813.1.c.1 lets a [Reaction] card be played 'during Closed States on any player's turn' - but 312.2.a gives priority in a Neutral Open State only to the Turn Player, so on the opponent's turn you get a window only inside a Closed State or a Showdown. Their Hold at 315.2.b.2 happens in the Beginning Phase, where 335 gives nobody priority with an empty chain; unless one of their own triggers opens a Closed State first, there is no moment in which to answer a Hold with this card. Play it in advance.",
+          "WHAT IT ACTUALLY CATCHES, AND HOW MANY TIMES. 469 defines Scoring as a Conquer or a Hold, 470 caps Scoring at once per battlefield per turn and 485.4 puts two on a Duel table - so the ceiling is TWO draws per opponent turn, and only if they score at both. 471.1.a.1 is the reason a card-text point does not count for you here either way: it is a Gain and not a Score, and this card says 'scores'.",
+          "IT IS A GEAR, WHICH MATTERS FOR TWO THINGS. 143.4 makes only UNITS enter exhausted, so a gear is live the turn it lands; and it counts toward every 'control N or more gear' threshold while it is out - which in this domain is VEN-058 Patched Porobot (3 or more OTHER gear), SFD-072 Dropboarder (2 or more gear), VEN-064 Plaza Guardian (1 Energy less per gear) and VEN-076 Repair Specialist ([Assault] equal to the number of gear). A card you were playing for the draw is also a step on that count for one turn.",
+          "AND 816.2 CAPS THE OBVIOUS MISPLAY IN THE OTHER DIRECTION. 'Multiple instances of Temporary are redundant', so nothing you do to it shortens or lengthens the clock; the only way to keep the effect running is a second copy, and 103.2.b allows three.",
+          "WHY IT IS A SINGLE-CARD ENTRY. Nothing in the pool extends a [Temporary] permanent's life or makes an opponent score more often on your terms, and the card reads the opponent's action rather than yours - so there is no partner to price. Its value is the timing, which is a property of the card.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold, and this card is paid BY the opponent doing it."
+        ]
+      },
+      "steps": [
+        "Play Sumpworks Map (2 Energy) in your OWN Main Phase, not in response to anything. 143.4 exhausts units and not gear, so it is live at once.",
+        "816.1.b will kill it at the start of your NEXT Beginning Phase, before scoring - so it covers the rest of your turn and all of the opponent's.",
+        "Every time an opponent scores during that window, draw 1. 470 with 485.4 caps them at two Scores a turn, so the ceiling is two cards.",
+        "While it is out it also counts toward every gear-count clause in the deck.",
+        "Do not hold it for their Beginning Phase: 335 gives nobody priority there with an empty chain, and 312.2.a gives you none in a Neutral Open State on their turn."
+      ],
+      "netPerIteration": "up to two cards per copy, drawn off the opponent's own scoring during the turn after it is played",
+      "terminatesIn": "engine only - one opponent's turn per copy, three copies by 103.2.b, and a ceiling of two Scores a turn (470 with 485.4); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 6)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-085 Sumpworks Map. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.4, 312.2.a, 335, 469, 470, 471.1.a.1, 485.4, 813.1.c.1, 816.1.b, 816.1.c, 816.2. The entry exists because the card's three keywords point in opposite directions: [Reaction] invites you to hold it, and [Temporary]'s clock - which runs on YOUR Beginning Phase - means holding it is what wastes it. A single-card entry on the precedent of sinister-poro-attack-evacuate. Ban check: not banned or restricted, not a Signature card. No unruled reading."
+    },
+    {
+      "id": "forgefire-cape-riven-shattered-free-equip",
+      "name": "One rainbow is exactly what [Weaponmaster] refunds, and the Cape's 'I' is the carrier - so Riven swings twice",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-190",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Calm/Mind Equipment, E4 P2, M+3. '[Unique] ... [Equip] :rb_rune_rainbow: ... [Effect] When I attack or defend, deal 2 to all enemy units here.' A Signature card tagged Ornn, and [Unique] caps it at one copy."
+        },
+        {
+          "card": "VEN-041",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm unit, E3 P1 M3. '[Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for :rb_rune_rainbow: less, even if it's already attached.) When I attack, choose an enemy unit here. Deal 2 to it for each Equipment attached to me.' Her own payoff counts Equipment, and Weaponmaster is how she gets one for free."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "SFD-190 Forgefire Cape is a SIGNATURE card tagged Ornn, so 103.2.d.2 forces an Ornn legend whose two domains cover calm + mind - and the census prints exactly one such name: SFD-189 / SFD-244 Fire Below the Mountain. No other legend can hold this list.",
+          "Neither card is banned or restricted in either format. The Cape spends one of the three Signature slots 103.2.d.1 allows, and 825.3.a caps it at one copy by its own [Unique] keyword.",
+          "The Cape on the board before Riven is played, since [Weaponmaster] is a play trigger that chooses an Equipment you ALREADY control."
+        ],
+        "notable": [
+          "THE EQUIP COST IS EXACTLY WHAT THE KEYWORD REFUNDS. 821.1.c reads Weaponmaster as 'choose a Card you control with the Equipment tag ... Pay the cost of its Equip ability, REDUCED BY [A], to attach it to this unit', and 821.1.c.2 determines that cost as though the ability were being activated choosing the Weaponmaster unit. The Cape's [Equip] is one rainbow and nothing else, so the reduction takes it to zero - and 821.1.c.3 is the case that does not apply here ('If the chosen card's Equip cost does not contain [A], it can still be paid, but will not be reduced').",
+          "AND THE ATTACH FIRES NOTHING, WHICH IS WORTH KNOWING BEFORE BUILDING AROUND IT. 821.1.c.6: 'The Equip ability is not activated this way, and the unit with the Weaponmaster ability is not chosen.' So no 'when you use an activated ability of a gear' payoff and no 'when you choose me' payoff triggers off it, where a paid [Equip] would - 818.1.b.1 makes that choice a Target. 821.1.c also says the necessary portions of the Equipment's Rules Text 'are no longer Inactive if they are currently Inactive', which is what lets the keyword take the Cape off another of your bodies (434.1.f detaches it; 434.1.g makes re-attaching to the current host a no-op).",
+          "THE CAPE'S 'I' IS RIVEN, NOT THE CAPE. 136.2.b makes Effect Text Inactive unless attached, 136.2.c appends it to the Top-Most Card's Rules Text, and 053.1 with 136.2.d fix the referent: 'I' and 'me' in appended Effect Text are the CARRIER, while 'this' and the gear's own name stay with the gear - Riot's worked examples are Guardian Angel and Brutalizer. So 'When I attack or defend, deal 2 to all enemy units here' is RIVEN attacking or defending.",
+          "WHICH MAKES ONE ATTACK TWO SEPARATE DEALS. Riven's own clause is 'Deal 2 to it for each Equipment attached to me' - one Equipment, so 2 to a single chosen unit - and the Cape's appended clause is 2 to ALL enemy units there. Both fire on the same attack: a single body dies to 4 and the rest of the garrison takes 2. And because the Cape's half also reads 'or DEFEND', it pays on the opponent's turn as well, which Riven's half does not.",
+          "AND 434.1.d IS THE THIRD THing THE CAPE IS WORTH. 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it', so Riven is a 6 Might body for 3 Energy + 1 Power once the free attach has happened.",
+          "[UNIQUE] IS WHY THIS IS A ONE-OF AND THE BODY IS NOT. 825.3.a caps the Cape at a single copy in the deck; 103.2.b allows three Rivens, and each of them can take the same Cape off the previous carrier for free (434.1.f). The Cape is the scarce half and the Weaponmaster bodies are the redundant one.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And 807.1.d ties 'attacking' to the Attacker designation, which 323.9 stages only where opposing units are present - neither clause fires on a walk into an empty battlefield."
+        ]
+      },
+      "steps": [
+        "Play Forgefire Cape (4 Energy + 2 Power). It is [Unique], so this is the only copy the deck may hold (825.3.a).",
+        "Play Riven, Shattered (3 Energy + 1 Power). Her [Weaponmaster] trigger chooses the Cape and pays its Equip cost 'reduced by [A]' - one rainbow less than one rainbow is nothing (821.1.c, 821.1.c.2).",
+        "434.1.d gives her the Cape's +3, so she is a 6 Might body; 136.2.c appends its Effect Text to her Rules Text.",
+        "Attack. Riven's own clause deals 2 to one chosen enemy unit there, and the Cape's appended clause deals 2 to ALL enemy units there - 4 on the chosen one, 2 on the rest.",
+        "On the opponent's turn the Cape's half still fires when Riven DEFENDS; her own clause does not.",
+        "A second or third Riven can take the same Cape for free later - 434.1.f detaches it from the previous carrier, and 434.1.g is why you never point it at the body already wearing it."
+      ],
+      "netPerIteration": "4 damage to one enemy unit and 2 to every other at that battlefield, per Riven attack, with the Equipment attached for nothing",
+      "terminatesIn": "engine only - one Cape by [Unique] (825.3.a) and three Rivens by 103.2.b, and neither clause fires on an unoccupied battlefield (323.9 + 807.1.d); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 6)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use SFD-190 Forgefire Cape or VEN-041 Riven, Shattered. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 053.1, 103.2.b, 103.2.d.1, 103.2.d.2, 136.2.b, 136.2.c, 136.2.d, 323.9, 434.1.d, 434.1.f, 434.1.g, 469, 807.1.d, 818.1.b.1, 821.1.c, 821.1.c.2, 821.1.c.3, 821.1.c.6, 825.3.a. VEN-041 has a second printing, VEN-171, whose corpus row omits the [Weaponmaster] reminder text but is otherwise identical; CardIndex.equivalents folds them and there is no text difference to worry about - checked, because a multi-base name with different text would be a real matching hazard. The Signature card makes the legend line ONE name, which is the shape test/legend-lines.test.ts is safest with. Ban check: neither card is banned or restricted. No unruled reading."
     }
   ]
 }
