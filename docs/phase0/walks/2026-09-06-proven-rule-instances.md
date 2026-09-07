@@ -313,3 +313,115 @@ failing the first. Left as a lead, not authored.
 See §3.2. The window between the two *resolutions* exists (**340.4**); the window between the two
 *finalizations* does not (**312.2.c**). Unchanged by batch 2 — recorded again because both cards
 reappear in the `svellsongur-copy` partner list under exactly the same shape.
+
+---
+
+# Batch 3
+
+Method note added after the manager's warning: from batch 3 on, every candidate is checked against the
+CURRENT `data/combos.json` **by card set** (`uses[].card` sorted and joined), plus subsets and
+supersets, not only by id — several walk sessions are authoring at once and ids do not collide even
+when card sets do. Helper: `/tmp/rc-walks/cardset.mjs`.
+
+## 6. Entries authored
+
+### 6.1 `svellsongur-rumble-scrapper-mechs` — ENGINE, eight Mechs a Hold at ELEVEN Might
+Rule mined: `svellsongur-copy`. Partner `SFD-089 Rumble, Scrapper`, uncatalogued with the copier.
+
+**The finding no previous Svellsongur entry had raised: the copy carries a STATIC as well as a
+trigger.** Rumble's text is two sentences — *"Your Mechs have +1 Might (including me)"* and *"When I
+hold, play a 3 Might Mech unit token to your base"* — and Svellsongur copies *"that unit's text"*,
+both of them. **476.1** applies each of the eight composed instances exactly once, so the static
+stacks to **+8 Might on every Mech you control**. **187.4** gives the token *"3 Might and the Mech
+tag"* by rule, so each of the eight new tokens stands at 11 and Rumble himself at 12.
+
+It is a continuous modifier, not a 702 buff, so 702.3's one-per-unit cap never touches it — the same
+distinction CLAUDE.md already draws for Lee Sin, Centered and Soul Shepherd.
+
+### 6.2 `svellsongur-yasuo-remorseful-sweep` — ENGINE, 48 damage as eight aimed instructions
+Rule mined: `svellsongur-copy`. Partner `OGN-076 Yasuo, Remorseful` — uncatalogued with the copier
+even though it is the card Riot uses to *explain* 359.3.f.
+
+Eight instances, **eight independent choices** of *"an enemy unit here"*, 6 damage each. **359.3.f.2**
+(*"Information referenced in an instruction in this way will be checked on execution of the
+instruction"*) is quoted with Riot's own Yasuo example rather than argued.
+
+**MONO-CALM** — the widest identity of any Svellsongur line in the catalogue (five legend pairs).
+
+The trap is stated in full: an attack trigger needs the Attacker designation (383.4.e), and entering
+an **empty** enemy battlefield gives none (807.1.d, 461). And this is a Deal, not combat damage
+(713 / 417.6.c), so none of the 48 feeds the excess-damage family — R28 = A defines excess damage as
+attacking **Might** that never got assigned, created by 465.2.c.4.
+
+### 6.3 `svellsongur-trevor-leblanc-plaza` — ALT_WIN, win on the second Hold
+Rules mined: `svellsongur-copy` × `leblanc-temporary`.
+
+`leblanc-bashful-bloom-trevor-plaza` runs the same Trevor and the same LeBlanc for **one** Sprite a
+Hold and wins on the third. Three Svellsongur make it **eight**, so the first Hold puts ten bodies on
+the Plaza and the second wins. And **814.2** applies again: eight copies of Trevor's `[Shield]` make
+him **Shield 8**, an 11-Might defender guarding the position.
+
+Separate row rather than a rewrite: the catalogued line has Bashful Bloom as the LEGEND, this one
+leaves the legend slot open across four Calm/Mind legends and pays 6 Calm Power it does not.
+
+### 6.4 `sprite-mother-burst-leblanc-plaza` — ALT_WIN, mono-Mind, nine 3-Might bodies
+Rule mined: `leblanc-temporary` (13 partners, 1 entry). Partners `OGN-106 Sprite Mother` and
+`UNL-069 Sprite Burst`, both uncatalogued.
+
+Nine units and **none of them is a 0-Might Reflection**: `leblanc-temporary-plaza` reaches ten in one
+turn but six die to a single point of damage (477.1.b.1.a keeps Might off the copyable traits, as its
+own notable records). 465.2.c / 465.2.c.3 price this board at 21 damage minimum.
+
+Every body lands where it is needed with no walk: Sprite Mother says *"here"*, Sprite Burst names no
+destination and **355.2.a** allows a battlefield you control. So no Renata, and the identity stays
+**mono-Mind**.
+
+### 6.5 `sprite-queen-leblanc-permanent-army` — ENGINE, one permanent body a turn for free
+Rule mined: `leblanc-temporary`. Partner `UNL-084 Sprite Queen` — four entries in the catalogue, none
+with LeBlanc.
+
+The paragraph that makes it work, and the obvious first reading it refutes:
+
+> **816.1.c.** The Trigger Condition is the controller of the permanent's Beginning Phase **starting**.
+
+The Queen's *"at the start of your Beginning Phase"* trigger and every `[Temporary]` trigger fire at
+the same instant, so the Sprite she plays **enters after that condition has already been checked** —
+its own `[Temporary]` does not trigger that turn at all. 383.3.d would let you order the simultaneous
+triggers anyway, but you do not need to. The Sprite is printed **ready**, so 144.2's exhaust is
+payable at once and it walks to LeBlanc's battlefield in the same Main Phase, where 816.1.b never
+fires on it again.
+
+Stated honestly: one a turn is slow, and it does **not** feed `bottled-constellation-token-points`,
+which needs three bodies at each Main Phase start.
+
+---
+
+## 7. Refusals, batch 3
+
+### 7.1 `OGN-275 Altar to Unity` under `blue-sentinel-hold` — same arithmetic, weaker number
+*"When you hold here, play a 1 Might Recruit unit token in your base"* × (1 + K) is exactly
+`rumble-scrapper-sentinel-mechs` (batch 1) with 1-Might Recruits instead of 4-Might Mechs, and it
+costs a battlefield slot: **485.4.a** puts only one of your three into play, so it competes with The
+Grand Plaza and with Power Nexus. Lead, not an entry.
+
+### 7.2 `SFD-117 Ancient Henge` and `SFD-083 Hextech Anomaly` under any readier
+`defender-of-tomorrow-readies-gear`, `jayce-readies-exhaust-abilities` and
+`heimerdinger-inventor-exhaust-copy` all list them, and a second activation is worth **nothing**:
+both print *"Pay any amount"* with **no cap per activation** (which is why
+`ancient-henge-energy-surplus` and `hextech-anomaly-power-surplus` exist as rules at all). One
+activation already converts the entire Rune Pool. Doubling an uncapped converter is a no-op.
+
+### 7.3 `SFD-168 Vanguard Armory` under `jayce-readies-exhaust-abilities` — already occupied
+`jayce-progress-vanguard-armory` (SFD-084 + SFD-168) is the catalogued readier-plus-Armory row, and
+`heimerdinger-vanguard-armory-recruits`, `herald-heimerdinger-armory-plaza` and
+`armory-heimerdinger-bottled-constellation` cover the copier side. Jayce's own version differs only
+in needing a non-token gear played each turn to fire at all — strictly a worse clock for the same
+three Recruits. Not authored. (Note also that **VEN-149 Defender of Tomorrow**, the pool's dedicated
+gear-readier, is Mind/Body and the Armory is Order: **103.1.b** kills that pairing outright.)
+
+### 7.4 `UNL-084 Sprite Queen` WITHOUT LeBlanc is not an engine
+Worth recording because the card reads like one. Every Sprite she makes is `[Temporary]` and born at
+the base, so **816.1.b** kills it at the next Beginning Phase: the steady state is exactly one Sprite,
+not a growing army. The entry above is the LeBlanc version for that reason, and `leblanc-temporary`'s
+own rule text states the general form — *"She only covers her own battlefield, so a token made at your
+base has to move there first."*
