@@ -203,3 +203,169 @@ an additional cost. If [you do], I enter ready"*) with 805.1.a.1, against 143.4 
    replacement covers three removal shapes (stun, −Might, bounce) while **355.10.d** lets every
    programmatically-selected effect through; `VEN-084 Ambessa, The Wolf` covers non-combat damage
    absolutely by **054.1**. Four of the pool's eight removal shapes remain unanswered by both.
+
+---
+
+## 8. Batch 2 — five entries, and one keyword answered in two opposite directions
+
+Batch 1 merged (catalogue 573 at the time of writing). Batch 2 clears ten more names.
+
+| id | class | cards | the names it clears |
+|---|---|---|---|
+| `crackshot-corsair-warwick-attack-order` | ENGINE | OGN-159, OGN-130 | Crackshot Corsair |
+| `nidalee-towering-combatant-ambush-draw` | ENGINE | UNL-114, UNL-099 | Nidalee Cat Form, Towering Combatant |
+| `deadbloom-predator-primal-strength-attacker` | ENGINE | OGN-161, OGN-154 | Deadbloom Predator, Primal Strength |
+| `guttural-roar-tools-of-empire-brutal-hunter` | ENGINE | VEN-070, VEN-077, VEN-072 | Brutal Hunter, Tools of Empire, Guttural Roar |
+| `concentrate-grim-resolve-level-ladder` | ENGINE | UNL-091, UNL-095 | Concentrate, Grim Resolve |
+
+## 9. Two attack triggers on one event, ordered — and the reading the catalogue was one word short of
+
+`OGN-159 Warwick, Hunter` (*"When I attack, kill all damaged enemy units here"*) and `OGN-130
+Crackshot Corsair` (*"When I attack, deal 1 to an enemy unit here"*) fire on the **same** event —
+464.2.c.3, the Attacker designation. Two paragraphs make that a line rather than a race:
+
+> **383.3.d.** *"If more than one Triggered Ability is Triggered simultaneously, then the player that
+> controls the Abilities selects the order to place them on the Chain."*
+> **340.1.** *"The newest Finalized Chain Item resolves."*
+
+Place Warwick **first** and the Corsair **second**: the Corsair is newest, resolves first, marks the
+damage, and Warwick's kill then sees it. That is legal because Warwick's *"all damaged enemy units
+here"* is information in an **instruction**, not an extra condition on his trigger:
+
+> **359.3.f.2.** *"Information referenced in an instruction in this way will be checked on execution
+> of the instruction."* — its worked examples are Yasuo, Remorseful's attack trigger, whose *"here"*
+> mistargets if he is moved home in response and whose damage reads *"his current Might of 5"*.
+
+(383.2.a.1 governs the other case — an extra *condition* on an attack trigger, checked when the
+trigger is placed. Warwick has none.)
+
+**A phrasing to tighten, reported and not silently changed.** The catalogued sibling
+`warwick-hunter-iron-ballista-damage-marks-death` says in its fifth step that Warwick's trigger *"is
+placed at the Attacker designation (464.2.c.3) and reads the board then."* The placement is right;
+the reading is loose, because 359.3.f.2 checks the instruction on **execution**. That entry's line
+works either way — its Iron Ballista mark is applied in the Main Phase, before either — so this is
+not a wrong verdict, but the sentence would refuse the present entry if taken literally, and the
+manager owns `data/combos.json`.
+
+The clock is why doing it inside one combat is worth a card: **466.1.a.1** inserts *"3c. Heal all
+Units."* into the combat cleanup, so a mark made beforehand is spent every turn. And 144.3 brings
+the whole pack in one declaration, so three Corsairs mark three bodies and Warwick kills all three.
+
+## 10. `466.3.a` is stricter than the reminder text on the card
+
+`UNL-114 Nidalee, Cat Form` prints *"When I win a combat, draw 1. (I win if I remain after
+combat.)"* The rule is narrower:
+
+> **466.3.a.** *"A Player has won a combat if they received either the attacker or defender
+> designation and are **the only Player** that has units remaining at this battlefield during this
+> step."*
+> **466.3.d.** *"There is 'No Result' if units were recalled during step 3d of the Combat Cleanup,
+> if **both** Players have units present during this task, or if neither player has units present."*
+
+With **466.1.a.2** recalling surviving Attackers when Defenders remain, a defence in which the
+attackers live is **No Result** — so Nidalee draws only when your side wipes theirs, not merely when
+she survives. `UNL-095 Grim Resolve` (*"When it wins a combat this turn, gain 2 XP"*) is governed by
+the same paragraph, and both entries in this batch say so.
+
+The partner has to do **both** jobs, and one card does: `UNL-099 Towering Combatant`'s `[Tank]`
+(815.1.b, 815.1.c.2) forces every point of the attacker's assignment onto itself so Nidalee lives,
+while her own Might still counts toward 465.2.c and helps clear the attackers.
+
+**And that is the same keyword this walk already refused, in the opposite direction.** 814.1.c makes
+`[Shield]` *"+X :rb_might: while I am a defender"*, so the Towering Combatant is a printed 3 that
+reads 5 exactly here — while in `jaull-fish-garen-rugged-mighty-discount` (batch 1) the identical
+keyword contributes **nothing**, because that count happens in the Main Phase where no designation
+exists. One keyword, two entries, opposite answers; the question is always whether a designation is
+in play.
+
+`822.1.b` is also two permissions, not one: *"I may be played to a battlefield where you control
+Units"* **and** *"I have [Reaction] as long as I'm being played to a battlefield where you control
+Units."* The second is what lets her arrive after the attack is declared, and 319.6 + **323.2.a**
+(*"If there are Units present at the Battlefield the Combat is taking place at, but do not have a
+designation, they gain the same designation as their Controller now"*) put her in that damage step.
+
+## 11. Attacking without moving, and buying the pump after the count
+
+`OGN-161 Deadbloom Predator` (E8 P2 M8, `[Deflect]`, *"You may play me to an occupied enemy
+battlefield"*) is the big-body member of a family the catalogue already holds through `SFD-093
+Dauntless Vanguard`. Three paragraphs:
+
+> **355.2.b.** *"Some Game Effects may grant players permission to play Units to locations that are
+> not normally Valid. Such locations become Valid for the purposes of Playing the Unit."*
+> **190.3.a.1.** *"Units moving to **or being played to** a battlefield apply Contested status…"*
+> **464.2.c.1.** *"The Attacker is the player whose unit(s) applied the Contested status…"*
+
+So he attacks on the turn he is played, 144.2's exhaust never arises (it is the Standard Move's cost
+and only that), and 143.4's entering exhausted costs nothing. `OGN-154 Primal Strength` (+7,
+`[Action]`) is then bought **inside** the combat under 806.1.c.1 with 464.2.f.1 / 464.2.g, after
+465.2.c has fixed both sides' summed Might — an 8 becomes a 15 only if a 15 is needed.
+
+The excess damage that produces is stated as a **non-payoff**: 465.2.c.4 caps assignment at minimum
+lethal, so the surplus is real (R28 = A) and Body prints nothing that reads it — `OGN-034
+Tryndamere` is Fury, `UNL-187 Piltover Enforcer` Fury/Order, and only `UNL-217 Trapping Grounds` is
+reachable, at 485.5's random selection. Pricing a +7 as a feeder is the arithmetic error this
+project has recorded twice.
+
+## 12. One wording, two referents — `053.2` decides which "Empowered" a card is asking about
+
+Two Body cards print the same template and mean different things:
+
+- `VEN-077 Tools of Empire` (gear) — *"exhaust: Give a unit +2 :rb_might: this turn. If **this** is
+  [Empowered], give that unit +4 :rb_might: this turn instead."*
+- `VEN-072 Guttural Roar` (spell) — *"Give a unit +2 :rb_might: this turn. If **it's** [Empowered],
+  give it +4 :rb_might: this turn instead."*
+
+**053.2** (*"Gear and spells say 'this'"*) settles it: the gear's condition is on **itself**, bought
+once for 2 Energy and applying to every target forever; the spell's is on the **target**, so its
+doubling has to be bought on the body. A reader who Empowers the gear and expects the spell to
+double as well has paid for the wrong object.
+
+`VEN-070 Brutal Hunter` satisfies both sides: Empowered he is a 6 Might body with `[Ganking]`, so
+the gear gives him +4 and the spell another +4 — **14 Might** for the turn, off a 3 Energy + 1 Power
+body. Unempowered the same two cards give 4 + 2 + 2 = 8. And the gear is free every turn afterwards:
+its cost is an exhaust, 415.3.a readies it in the Awakening Phase, and 315.1 places that before both
+the Beginning Phase and 316.
+
+## 13. The word "instead" is what stops a `[Level]` ladder stacking
+
+`UNL-091 Concentrate` prints *"[Level 6] This costs :rb_energy_2: less"* and *"[Level 11] This costs
+:rb_energy_4: less **instead**"* — so at 11 XP the discount is **4, not 6**: the ladder is 5 Energy,
+then 3, then 1 (356.4.b for the discount, 356.6 for the floor). Five more XP for two more Energy is
+the honest trade, and a reader who adds the rungs prices the top at 0.
+
+`UNL-095 Grim Resolve` (E2, `[Action]`, +3 Might and *"When it wins a combat this turn, gain 2 XP"*)
+is the fastest faucet in the domain — double any `[Hunt]` here — and the pump is what makes the
+combat winnable, which 466.3.a then requires outright.
+
+**The XP triangle is now complete across two issues**, and all three entries name each other:
+
+| entry | clause | behaviour under 730.2 (spending) |
+|---|---|---|
+| `bandle-soldier-enthralling-protector-xp-floor` (#180) | `[Level 3]` threshold | switches OFF (824.1.d) |
+| `concentrate-grim-resolve-level-ladder` (#186) | `[Level 6]` / `[Level 11]` thresholds | switches OFF (824.1.d) |
+| `wily-newtfish-gemhand-hunter-xp-turn` (#186) | *"gained XP this turn"* | **indifferent** |
+
+## 14. Facts for CLAUDE.md from Body batch 2
+
+1. **Two attack triggers on one body's attack are ordered by their controller** — 383.3.d places
+   them, 340.1 resolves newest first — and a *"kill all **damaged**"* instruction is read at
+   **execution** (359.3.f.2, worked example Yasuo, Remorseful), not at placement. So a ping trigger
+   placed second marks the damage a kill trigger placed first will see, and no Main Phase activation
+   is needed. 383.2.a.1 governs only an extra *condition* on the trigger, which Warwick has none of.
+2. **`466.3.a` is stricter than every "when I win a combat" reminder in the pool**: winning requires
+   being *"the only Player that has units remaining"*, and 466.3.d makes it **No Result** when both
+   sides remain or when units were recalled in step 3d — which 466.1.a.2 does to surviving Attackers
+   whenever Defenders remain. A defence that merely survives pays nothing.
+3. **`[Shield]` Might is decisive inside a combat and invisible outside one** — 814.1.c is
+   conditional on the Defender designation, so the same printed-3 body reads 5 for 465.2.c and 3 for
+   a Main Phase Mighty count. The two entries that turn on this (`nidalee-towering-combatant-ambush-draw`,
+   `jaull-fish-garen-rugged-mighty-discount`) name each other.
+4. **`053.2` decides which object an "if [Empowered]" clause is asking about**: a gear or spell's
+   *"this"* is itself, so `VEN-077 Tools of Empire` doubles on ITS OWN Empowered state (bought once,
+   applies to every target) while `VEN-072 Guttural Roar` doubles on the TARGET's. Same wording,
+   opposite objects.
+5. **A second `[Level]` rung that says "instead" replaces the first rather than adding to it** —
+   `UNL-091 Concentrate` is 5 → 3 → 1 Energy, never 5 → 3 → 0.
+6. **`OGN-161 Deadbloom Predator` is the second card in the pool that attacks without moving**
+   (with `SFD-093 Dauntless Vanguard`, and `VEN-157 Dragon Roost` granting it to Dragons):
+   355.2.b + 190.3.a.1 + 464.2.c.1, so 144.2's exhaust and 143.4 both cost nothing.
