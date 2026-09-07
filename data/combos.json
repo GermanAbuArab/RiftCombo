@@ -33622,7 +33622,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "715.2: 'If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately. Example: Singularity ... A player plays Singularity while they also control Annie, Fiery ... dealing 7 to each.' 714: 'If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.' 713: 'Bonus Damage is an intrinsic property that can be granted to Deal actions...' 417.6.b.3: 'The damage that Challenge causes to be dealt is dealt by the chosen units, not by Challenge.' 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 820.2.a: 'Choices made for the additional execution do not have to be the same...' 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.'"
+          "quote": "715.2: 'If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately. Example: Singularity ... A player plays Singularity while they also control Annie, Fiery ... dealing 7 to each.' 714: 'If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.' 713: 'Bonus Damage is an intrinsic property that can be granted to Deal actions that influence the amount of Damage that the action is distributing.' 417.6.b.3: 'The damage that Challenge causes to be dealt is dealt by the chosen units, not by Challenge.' 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 820.2.a: 'Choices made for the additional execution do not have to be the same...' 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -43501,7 +43501,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "449: 'Spells, Abilities, or other effects may cause a Move to occur.' 449.1: 'The source of the Move will provide details on any restrictions on legality for Destination.' 420.2.b: 'The Standard Move inherent to Units may also cause Movement.' 420.3.a: 'The Cost is Exhausting one or more Units.' 144.2: 'Exhausting the Unit is the Cost for this action.' 144.4: 'The Destinations where Units can Move to with their Standard Move are restricted.' 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' 829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way.'"
+          "quote": "449: 'Spells, Abilities, or other effects may cause a Move to occur.' 449.1: 'The source of the Move will provide details on any restrictions on legality for Destination.' 420.2.b: 'The Standard Move inherent to Units may also cause Movement.' 420.3.a: 'The Cost is Exhausting one or more Units.' 144.2: 'Exhausting the Unit is the Cost for this action.' 144.4: 'The Destinations where Units can Move to with their Standard Move are restricted:' 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' 829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way, or a temporary space to hold cards while effects are being processed.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -43565,7 +43565,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "713: 'Bonus Damage is an intrinsic property that can be granted to Deal actions that influence the amount of Damage that the action is distributing.' 714: 'If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.' 715: 'Bonus Damage applies to the total damage Dealt by one instance of the action.' 715.1: 'If the Deal action has a single target, the amount of Damage to that target will be increased by the Bonus Damage granted to it.' 056: 'Cards are Owned by the player who included them in their deck.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might."
+          "quote": "713: 'Bonus Damage is an intrinsic property that can be granted to Deal actions that influence the amount of Damage that the action is distributing.' 714: 'If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.' 715: 'Bonus Damage applies to the total damage Dealt by one instance of the action.' 715.1: 'If the Deal action has a single target, the amount of Damage to that target will be increased by the Bonus Damage granted to it.' 056: 'Cards a player owns may never be placed into a non-Board zone belonging to another player.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might."
         },
         {
           "title": "Rules readings R15, issue #11 (voted 2026-09-06)",
@@ -43777,7 +43777,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 310.1: 'Neutral Open: There is no Showdown or Combat in progress and no Chain exists.' 310.2: 'Neutral Closed: There is no Showdown or Combat in progress and a Chain exists.' 340.1: 'The newest Finalized Chain Item resolves. Execute its game effects in their entirety.' 340.4: 'If the Chain is not empty and there are no Pending Items, the controller of the newest item on the chain gains Priority. Return to Step 2: Execute.' 383.3.d: 'If more than one Triggered Ability is Triggered simultaneously, then the player that controls the Abilities selects the order to place them on the Chain.' 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.1.c: 'If a Game Object is instructed to be Empowered when it is already Empowered, nothing additional happens.' 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way.'"
+          "quote": "381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 310.1: 'Neutral Open: There is no Showdown or Combat in progress and no Chain exists.' 310.2: 'Neutral Closed: There is no Showdown or Combat in progress and a Chain exists.' 340.1: 'The newest Finalized Chain Item resolves. Execute its game effects in their entirety.' 340.4: 'If the Chain is not empty and there are no Pending Items, the controller of the newest item on the chain gains Priority. Return to Step 2: Execute.' 383.3.d: 'If more than one Triggered Ability is Triggered simultaneously, then the player that controls the Abilities selects the order to place them on the Chain.' 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.1.c: 'If a Game Object is instructed to be Empowered when it is already Empowered, nothing additional happens.' 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way, or a temporary space to hold cards while effects are being processed.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -43850,7 +43850,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "356.1.b.2: 'If a card instructs a player to play a card \"ignoring its Energy cost\" or \"ignoring its Power cost,\" only the appropriate cost is set to zero, and the remaining cost still applies.' 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' 143.4: 'Units enter the Board exhausted.' 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way.'"
+          "quote": "356.1.b.2: 'If a card instructs a player to play a card \"ignoring its Energy cost\" or \"ignoring its Power cost,\" only the appropriate cost is set to zero, and the remaining cost still applies.' 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' 143.4: 'Units enter the Board exhausted.' 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way, or a temporary space to hold cards while effects are being processed.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -43914,7 +43914,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 431.1.c: 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction.' 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 807.1.b.3: 'If X is omitted, it is presumed to be 1.' 807.1.c: 'It is functionally short for \"While I am an attacker, I have +X [M].\"' 807.2: 'the Assault Value of all granted Assault keywords is summed.' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way.'"
+          "quote": "829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 431.1.c: 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction.' 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 807.1.b.3: 'If X is omitted, it is presumed to be 1.' 807.1.c: 'It is functionally short for \"While I am an attacker, I have +X [M].\"' 807.2: 'the Assault Value of all granted Assault keywords is summed.' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way, or a temporary space to hold cards while effects are being processed.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -45037,7 +45037,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "417.6.b.3: 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it.' 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction.' 359.3.f.2.a: 'When a referent checks information on execution of the instruction related to a target, and that target isn't legal, that referent will return \"null\" and all instructions related to it will be ignored.' 415.1 (Readying marks a Game Object already on the board). 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 144.2: 'Exhausting the Unit is the Cost for this action.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 713: 'Bonus Damage is an intrinsic property that can be granted to Deal actions.'"
+          "quote": "417.6.b.3: 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it.' 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction.' 359.3.f.2.a: 'When a referent checks information on execution of the instruction related to a target, and that target isn't legal, that referent will return \"null\" and all instructions related to it will be ignored.' 415.1 (Readying marks a Game Object already on the board). 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 144.2: 'Exhausting the Unit is the Cost for this action.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 713: 'Bonus Damage is an intrinsic property that can be granted to Deal actions that influence the amount of Damage that the action is distributing.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -46051,7 +46051,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' 809.1.c.1: 'The Power used to pay this cost may always be of any Domain.' 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or ability.' 166.2 / 203.1 / 356.4.b (a \"spent\" threshold reads what actually left the Rune Pool). 206 (a \"costs N\" check reads the printed cost). 477.3.b: 'When an arithmetic effect from a source that is not a passive ability has a limitation that applies, it is limited at the time of its application… Example: A unit reads \"Units you control here have their Might increased to 5 [M].\" This is a passive ability, so it will not snapshot.' 702.3: 'There can only be one Buff on a Unit at a time.' 144.2: 'Exhausting the Unit is the Cost for this action.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns.'"
+          "quote": "809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' 809.1.c.1: 'The Power used to pay this cost may always be of any Domain.' 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or ability.' 166.2 / 203.1 / 356.4.b (a \"spent\" threshold reads what actually left the Rune Pool). 206 (a \"costs N\" check reads the printed cost). 477.3.b: 'When an arithmetic effect from a source that is not a passive ability has a limitation that applies, it is limited at the time of its application… Example: A unit reads \"Units you control here have their Might increased to 5 [M].\" This is a passive ability, so it will not snapshot.' 702.3: 'There can only be one Buff on a Unit at a time.' 144.2: 'Exhausting the Unit is the Cost for this action.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player’s turn.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -46179,7 +46179,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "818.1: 'Equip is an Activated Ability keyword.' 818.1.b: 'Equip has a cost to activate and Attaches the card with Equip to a chosen Unit when the cost is paid.' 718.2: 'While in this state, the card's printed Rules Text is Inactive.' 718.3: 'While in this state, Abilities in the card's Effect Text are appended to the Rules Text of the Top-Most card.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 136.2.d: 'Effect Text may refer to \"this\" or to the name of the Attached game object that appended the Effect Text. Doing so refers to the Attached game object and not the Top-Most Card.' 434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.' 434.1.d: 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it.' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.' 055: 'When executing card text, do as much as you can, ignoring impossible instructions.'"
+          "quote": "818.1: 'Equip is an Activated Ability keyword.' 818.1.b: 'Equip has a cost to activate and Attaches the card with Equip to a chosen Unit when the cost is paid.' 718.2: 'While in this state, the card's printed Rules Text is Inactive.' 718.3: 'While in this state, Abilities in the card's Effect Text are appended to the Rules Text of the Top-Most card.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 136.2.d: 'Effect Text may refer to \"this\" or to the name of the Attached game object that appended the Effect Text. Doing so refers to the Attached game object and not the Top-Most Card, even if the Top-Most Card shares a name with the Attached game object.' 434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.' 434.1.d: 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it.' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.' 055: 'When executing card text, do as much as you can, ignoring impossible instructions.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -47777,7 +47777,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "449: 'Spells, Abilities, or other effects may cause a Move to occur.' 420.2.b: 'The Standard Move inherent to Units may also cause Movement.' 420.3.a: 'The Cost is Exhausting one or more Units.' 144.2: 'Exhausting the Unit is the Cost for this action.' 144.4: 'The Destinations where Units can Move to with their Standard Move are restricted.' 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction.' 431.1.b (milling past the deck Burns Out). 431.1.c: 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out.' 431.2.b: 'Recycles their trash into their Main Deck.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way.'"
+          "quote": "449: 'Spells, Abilities, or other effects may cause a Move to occur.' 420.2.b: 'The Standard Move inherent to Units may also cause Movement.' 420.3.a: 'The Cost is Exhausting one or more Units.' 144.2: 'Exhausting the Unit is the Cost for this action.' 144.4: 'The Destinations where Units can Move to with their Standard Move are restricted:' 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction.' 431.1.b (milling past the deck Burns Out). 431.1.c: 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out.' 431.2.b: 'Recycles their trash into their Main Deck.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way, or a temporary space to hold cards while effects are being processed.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -47839,7 +47839,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "718.2: 'While in this state, the card's printed Rules Text is Inactive.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 818.1: 'Equip is an Activated Ability keyword.' 818.1.b: 'Equip has a cost to activate and Attaches the card with Equip to a chosen Unit when the cost is paid.' 819.1.d: 'Quick-Draw is functionally short for \"[Reaction]\" and \"When you play this, attach it to a Unit you control.\"' 829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way.' 809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' 054.1 (a card that forbids beats a card that permits). 355.10.d: 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller.' 185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns.'"
+          "quote": "718.2: 'While in this state, the card's printed Rules Text is Inactive.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 818.1: 'Equip is an Activated Ability keyword.' 818.1.b: 'Equip has a cost to activate and Attaches the card with Equip to a chosen Unit when the cost is paid.' 819.1.d: 'Quick-Draw is functionally short for \"[Reaction]\" and \"When you play this, attach it to a Unit you control.\"' 829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way, or a temporary space to hold cards while effects are being processed.' 809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' 054.1 (a card that forbids beats a card that permits). 355.10.d: 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller.' 185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player’s turn.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -48889,7 +48889,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "441.1: 'Empowering is the act of rendering one or more Game Objects Empowered.' 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.1.c: 'If a Game Object is instructed to be Empowered when it is already Empowered, nothing additional happens.' 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' 144.4: 'The Destinations where Units can Move to with their Standard Move are restricted.' 144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 810.2: 'Multiple instances of Ganking are redundant.' 807.1.c: 'It is functionally short for \"While I am an attacker, I have +X [M].\"' 807.2: 'the Assault Value of all granted Assault keywords is summed.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might. 702.3: 'There can only be one Buff on a Unit at a time.' 703: 'Each Buff individually contributes +1 Might to a Unit.' 144.2: 'Exhausting the Unit is the Cost for this action.'"
+          "quote": "441.1: 'Empowering is the act of rendering one or more Game Objects Empowered.' 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.1.c: 'If a Game Object is instructed to be Empowered when it is already Empowered, nothing additional happens.' 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' 144.4: 'The Destinations where Units can Move to with their Standard Move are restricted:' 144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 810.2: 'Multiple instances of Ganking are redundant.' 807.1.c: 'It is functionally short for \"While I am an attacker, I have +X [M].\"' 807.2: 'the Assault Value of all granted Assault keywords is summed.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might. 702.3: 'There can only be one Buff on a Unit at a time.' 703: 'Each Buff individually contributes +1 Might to a Unit.' 144.2: 'Exhausting the Unit is the Cost for this action.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -48952,7 +48952,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "356.1.b.3: 'Further additional costs and/or cost increases applied in subsequent steps may raise the card's Total Cost above zero. Example: Legion Rearguard is a Fury unit that costs 2 Energy and 0 Power and has Accelerate. A player plays Legion Rearguard and is instructed to ignore its costs, but chooses to pay the Accelerate cost.' 055: 'When executing card text, do as much as you can, ignoring impossible instructions.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might. 143.4: 'Units enter the Board exhausted.' 466.1.a.1: 'Insert \"3c. Heal all Units.\"' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' 054.1 (a card that forbids beats a card that permits). 355.10.d: 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller.' 713: 'Bonus Damage is an intrinsic property that can be granted to Deal actions.' 417.6.b.3: 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it.'"
+          "quote": "356.1.b.3: 'Further additional costs and/or cost increases applied in subsequent steps may raise the card's Total Cost above zero. Example: Legion Rearguard is a Fury unit that costs 2 Energy and 0 Power and has Accelerate. A player plays Legion Rearguard and is instructed to ignore its costs, but chooses to pay the Accelerate cost.' 055: 'When executing card text, do as much as you can, ignoring impossible instructions.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might. 143.4: 'Units enter the Board exhausted.' 466.1.a.1: 'Insert \"3c. Heal all Units.\"' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' 054.1 (a card that forbids beats a card that permits). 355.10.d: 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller.' 713: 'Bonus Damage is an intrinsic property that can be granted to Deal actions that influence the amount of Damage that the action is distributing.' 417.6.b.3: 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -49019,7 +49019,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' 355.10.d: 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller.' 144.4: 'The Destinations where Units can Move to with their Standard Move are restricted.' 144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 810.2: 'Multiple instances of Ganking are redundant.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 323.9: 'Mark a Combat as Staged at each Battlefield that Contested was applied to that have Units present controlled by opposing players.' 344.2: 'If Control of a Battlefield is Contested, there aren't units controlled by different players there, and the turn is in a Neutral Open State, a Showdown is opened during the next Cleanup.' 348.2.a.1: 'This results in a Conquer if that player has not yet scored that Battlefield this turn.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 730.2: 'To Spend XP, reduce the value of XP marked on the Player spending it.' 824.1.d: 'The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP.' 144.2: 'Exhausting the Unit is the Cost for this action.'"
+          "quote": "809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' 355.10.d: 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller.' 144.4: 'The Destinations where Units can Move to with their Standard Move are restricted:' 144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 810.2: 'Multiple instances of Ganking are redundant.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 323.9: 'Mark a Combat as Staged at each Battlefield that Contested was applied to that have Units present controlled by opposing players.' 344.2: 'If Control of a Battlefield is Contested, there aren't units controlled by different players there, and the turn is in a Neutral Open State, a Showdown is opened during the next Cleanup.' 348.2.a.1: 'This results in a Conquer if that player has not yet scored that Battlefield this turn.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 730.2: 'To Spend XP, reduce the value of XP marked on the Player spending it.' 824.1.d: 'The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP.' 144.2: 'Exhausting the Unit is the Cost for this action.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -49088,6 +49088,431 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. OGS-011 Flash and SFD-007 Gem Jammer were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 054.1, 103.1.b.2, 103.2.b, 143.2.a, 143.4, 144.2, 144.4.a, 144.4.b, 144.4.c.1, 187.4, 315.2.b.2, 323.6, 381, 420.1, 449, 455, 456.3, 810.1.c.3, 810.2, 813.1.c.1 opened in the Core Rules file. The third notable is a deliberate cross-reference to `minotaur-reckoner-rengar-unseen-frozen-board`, the first entry written for this issue: Flash is one of the cards that entry switches off, and both now say so."
+    },
+    {
+      "id": "combat-experience-feral-strength-repeat-versus-level",
+      "name": "820.2.a lets the repeated execution pick a DIFFERENT unit - which is the whole difference between +4 on one body and +2 on two",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-034",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E2. '[Reaction] ... [Repeat] :rb_energy_2: ... Give a unit +2 :rb_might: this turn.' Four Energy for two separate +2s, and 820.2.a is why they need not land on the same body."
+        },
+        {
+          "card": "UNL-031",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E1. '[Reaction] ... Give a unit +1 :rb_might: this turn. [Level 6][>] Give it +3 :rb_might: this turn INSTEAD.' One Energy, one body, and a rung that replaces rather than adds."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "For Combat Experience's rung, 6 XP banked and never spent (824.1.d with 730.2). Feral Strength has no threshold at all."
+        ],
+        "notable": [
+          "820.2.a IS THE PARAGRAPH THAT SEPARATES THEM. 'Choices made for the additional execution do not have to be the same as the choices made for the initial execution' - Riot's worked example is Rocket Barrage, and it spells out that a repeated execution may pick a different mode and a different target. So a repeated Feral Strength is +2 on one body and +2 on ANOTHER, which no single-target pump in the domain can do. 820.1.d.1 is the mechanism ('the effect ... will be performed an additional time') and 820.1.c.1 makes the Repeat cost an Additional Cost paid during the steps of playing the spell.",
+          "AND THE REPEAT IS EXACTLY ONE EXTRA EXECUTION. 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a SECOND time', with 820.1.c.3: 'Each Repeat Cost can be paid only a single time.' 820.1.c.2 is the case that does not apply here - a card with more than one instance of Repeat gets one extra execution per instance, and Feral Strength prints one. So 4 Energy is the ceiling and there is no third +2.",
+          "THE OTHER CARD'S RUNG REPLACES RATHER THAN ADDS, WHICH IS THE OTHER HALF OF THE COMPARISON. Combat Experience's '[Level 6] Give it +3 :rb_might: this turn INSTEAD' means the ladder is +1, then +3 - never +4 - the same 'instead' this catalogue found on UNL-091 Concentrate's discount. And 824.1.d re-evaluates it continuously, so a copy drawn at 0 XP is not spoiled; it simply gives +1 until the counter reaches six.",
+          "SO THE CHOICE IS SHAPE, NOT SIZE. At six XP: 1 Energy for +3 on one body, or 4 Energy for +2 on each of two. 465.2.c assigns damage equal to each side's SUMMED Might, so for raw output the cheap card wins outright; the expensive one wins when the extra Might has to be in two places - keeping two bodies above a lethal threshold under 465.2.c.3, which forces lethal onto one unit in full before any damage goes elsewhere.",
+          "BOTH ARE [REACTION], WHICH IS THE PROPERTY THAT MAKES EITHER WORTH A SLOT. 813.1.c.1: 'This can be played during Closed States on any player's turn' - so both are bought after 464.2.c.3 has designated the attackers and 465.2.c has fixed the sums, which is exactly when a Might pump is worth its cost. A Main Phase pump has to guess.",
+          "NEITHER IS A BUFF. Both are '+N Might this turn' modifiers rather than 702 counters, so 702.3's one-per-unit cap is silent and they stack with each other and with a real buff.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Hold both. Their [Reaction] permission (813.1.c.1) means neither is committed until the attackers are designated and both sides' summed Might is known.",
+        "If one body needs to survive, play Combat Experience (1 Energy) - +1, or +3 at six XP, which 824.1.d keeps Active while the counter holds.",
+        "If TWO bodies need to survive, play Feral Strength (2 Energy) and pay its [Repeat] for 2 more: 820.1.d.1 executes the effect twice and 820.2.a lets the second +2 go on a different unit.",
+        "Do not expect a third execution: 820.1.c.3 allows each Repeat cost to be paid once, and the card prints one instance.",
+        "Remember which way 465.2.c.3 works - lethal is assigned to one body in full before any goes elsewhere, so spreading Might is what stops a second body dying."
+      ],
+      "netPerIteration": "+3 on one body for 1 Energy, or +2 on each of two for 4, both bought after the attack is declared",
+      "terminatesIn": "engine only - three of each by 103.2.b, one extra execution per Feral Strength (820.1.c.3), and Combat Experience's rung is dark below six XP; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 10)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use SFD-034 Feral Strength or UNL-031 Combat Experience. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 464.2.c.3, 465.2.c, 465.2.c.3, 469, 702.3, 730.2, 813.1.c.1, 820.1.b, 820.1.c.1, 820.1.c.2, 820.1.c.3, 820.1.d, 820.1.d.1, 820.2, 820.2.a, 824.1.d. The load-bearing paragraph is 820.2.a - a repeated execution may choose a different target - which is what makes a [Repeat] pump a spreading effect rather than a bigger one. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "crumbling-sands-decree-of-focus-conditional-reactions",
+      "name": "The cheapest answers in Calm are one Energy each and neither is castable on the first spell of a turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-039",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E1 P1. '[Reaction] ... Counter a spell if an opponent has played another spell this turn.' The cheapest counter in the domain, and dead against the first spell they cast."
+        },
+        {
+          "card": "VEN-040",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E1. '[Reaction] ... Choose a friendly unit that's in combat with an enemy Fury (:rb_rune_fury:) unit or that's being chosen by an enemy Fury spell. Give it +4 :rb_might: this turn.' The Calm member of the Decree cycle, and it hoses exactly one domain."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Power held open on the opponent's turn for Crumbling Sands: 164.2.b's cost is the recycle, so an already-exhausted rune still pays it, but 415.3.a means a rune tapped for ENERGY is gone until your Awakening."
+        ],
+        "notable": [
+          "THE CONDITION IS A SEQUENCING TAX, NOT A DECKBUILDING ONE. Crumbling Sands needs an opponent to have played ANOTHER spell this turn, so it can never answer the first spell of a turn - which is exactly the spell a player leads with when they suspect a counter. In practice it answers the second half of a two-spell turn, and against a deck that casts one big spell a turn it is blank. That is why the tiered suite matters: OGN-045 Defy (1 Energy + 1 Power, only against a spell costing no more than 4 Energy and no more than 1 rainbow, and 206 reads the PRINTED cost), SFD-045 Not So Fast (2 + 1, only against something that chooses a friendly unit or gear), OGN-064 Wind Wall (3 + 2, unconditional) and OGN-080 Mystic Reversal (4 + 3, unconditional and it keeps the spell). A list picks its conditions to cover each other, and this is the cheapest and narrowest of them.",
+          "AND COUNTERING REFUNDS NOTHING, WHICH IS WHY EVEN THE NARROW ONE IS WORTH A SLOT. 425.1.c: 'Countering does not refund any costs paid to play a card, activate an ability, or trigger an ability', 425.1.c.1 'This includes additional costs', and 425.1.b makes a countered card 'not considered to have been played', so its play triggers fail too. One Energy and one Power answering a spell they have already paid for is the best rate in the domain when the condition is met.",
+          "THE DECREE CYCLE IS SIX CARDS IN THREE MIRRORED PAIRS OF OPPOSED DOMAINS, AND THIS IS THE CALM ONE. VEN-015 Decree of Rage (Fury, names an enemy CALM unit), VEN-040 Decree of Focus (Calm, names an enemy FURY unit or spell), VEN-061 Decree of Insight (Mind, names an enemy BODY unit), VEN-085 Decree of Strength (Body, names a MIND card in their hand), VEN-107 Decree of Discord (Chaos, names enemy ORDER units), VEN-131 Decree of Unity (Order, names an enemy CHAOS unit or gear). Fury against Calm, Mind against Body, Chaos against Order - so what a Decree is worth is entirely a question of what the opponent is playing.",
+          "AND THE CALM ONE IS THE ONLY MEMBER THAT PROTECTS RATHER THAN REMOVES. Its +4 is the biggest single pump in the domain for one Energy, and its condition has two independent halves - 'in combat WITH an enemy Fury unit' (740.2.c defines being in combat as occupying a battlefield where combat is ongoing with a designation) or 'being CHOSEN by an enemy Fury spell'. The second half is what makes it a save: 813.1.c.1's Closed State is exactly when their removal spell is on the Chain, and +4 Might can take a body out of a damage threshold before it resolves.",
+          "465.2.c IS WHY THE +4 IS REAL. Each side assigns damage equal to their summed Might and it is read at assignment, so a pump bought at [Reaction] speed is in the sum. And it is a modifier, not a 702 buff, so 702.3's cap is silent and it stacks with everything else in this walk.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And neither card touches an ABILITY - Crumbling Sands says 'a spell'."
+        ]
+      },
+      "steps": [
+        "Leave 1 Energy and 1 Power open on the opponent's turn. 164.2.b pays the Power from a rune already tapped for Energy; 415.3.a is why the Energy itself has to be saved.",
+        "Let their first spell resolve - Crumbling Sands cannot answer it.",
+        "Counter the second (1 Energy + 1 Power). 425.1.c refunds them nothing and 425.1.b means its play triggers never happen.",
+        "Against a Fury deck, hold Decree of Focus instead: 1 Energy for +4 Might on a friendly unit in combat with an enemy Fury unit, or on one their Fury spell has just chosen.",
+        "Play the Decree while their spell is on the Chain (813.1.c.1) - 465.2.c and any damage threshold read the new Might."
+      ],
+      "netPerIteration": "one spell countered for 1 Energy + 1 Power once they have cast a second, or +4 Might for 1 Energy against a Fury deck",
+      "terminatesIn": "engine only - three of each by 103.2.b, and each is blank against the board it was not written for; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 10)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use VEN-039 Crumbling Sands or VEN-040 Decree of Focus. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 164.2.b, 206, 415.3.a, 425.1.b, 425.1.c, 425.1.c.1, 465.2.c, 469, 702.3, 740.2.c, 813.1.c.1. The Decree cycle was enumerated in issue #180 and is restated here with the Calm member walked; it is the only one of the six that protects rather than removes. Companion to mystic-reversal-defy-counter-tiers from batch 4, which argues the tiering; this entry is the bottom tier and states plainly when it is blank. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "disarming-rake-unconditional-gear-answer",
+      "name": "Three answers to a gear in this domain, at three prices, and only one of them has no condition at all",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-032",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm unit, E3 P1 M2. 'When you play me, you may kill a gear.' No cost gate, no Might gate, no delay - and 'you may', so the body lands either way."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Not banned or restricted in either format, and not a Signature card.",
+          "Nothing. The kill is optional, so 203.3 never makes it uncastable and an empty board leaves a 2 Might body."
+        ],
+        "notable": [
+          "THE THREE ANSWERS, AND WHAT EACH ONE CANNOT DO. `SFD-074 Pickpocket` (Mind, E3, 3 Might) kills 'a gear with Energy cost no more than :rb_energy_1:' and pays you a Gold - so it answers the Seal cycle (all six are Energy cost ZERO) and the E1 Equipment, and nothing above. `UNL-070 Turn to Dust` (Mind, E2) gives a gear [Temporary], which 816.1.b kills at the start of ITS CONTROLLER's Beginning Phase - so it answers anything at all, a full turn late. `SFD-032 Disarming Rake` (Calm, E3 + 1 Power, 2 Might) kills any gear immediately, with no condition. Three prices for three different limits, and the Rake's is the highest because it has none.",
+          "IT REACHES AN EQUIPPED GEAR. 718.5.b: 'Attached cards still can be chosen or targeted by game effects while Attached', so an Equipment sitting on a unit is a legal choice - and 719.5 detaches it from its carrier as it leaves the board, with 719.5.a letting that card's controller order the detaches. In a format where the Equipment BURSTs are built on a single copy of a [Unique] gear, an unconditional answer at 3 Energy is the whole point.",
+          "AND IT IS A KILL, NOT A BANISH OR A BOUNCE, WHICH CUTS BOTH WAYS. The gear reaches the Trash, so 808.1.a ('It is present on Permanents') lets any Deathknell on it fire and any 'from your trash' payoff can reach it later. Neither of the other two answers in the domain does better - both also kill - so against a gear whose death pays its owner, this domain has nothing.",
+          "THE OPTIONALITY IS WORTH SAYING, BECAUSE THE SAME LANE HAS THE COUNTER-EXAMPLE. 'You may kill a gear' means the trigger never fails for want of a target and 203.3 never bites; contrast SFD-044 Legion Quartermaster in this same lane, whose additional cost has no 'you may' and whose card cannot be played at all with no friendly gear on the board. Two Calm three-drops, one of which is always castable and one of which is not.",
+          "THE BODY IS THE PRICE. 2 Might for 3 Energy and 1 Power is below rate on purpose - compare SFD-037 Navori Scout at 4 Energy for 4 Might with [Deflect], or VEN-026 Field Musicians at 4 for 3 with a one-shot pump. What you are buying is the trigger; the body is what is left over.",
+          "WHY IT IS A SINGLE-CARD ENTRY. Nothing in the pool makes an unconditional kill better, and the card reads the opponent's board rather than yours - so there is no partner to price. The comparison with the other two answers IS the content.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Hold Disarming Rake until a gear worth 3 Energy and a Power appears - an Equipment carrying a BURST, a Seal that is paying for a counter suite, or a standing engine gear.",
+        "Play it (3 Energy + 1 Power) and take the kill. 718.5.b makes an attached Equipment a legal choice.",
+        "719.5 detaches it from any carrier as it leaves the board; 719.5.a lets that card's controller order the detaches.",
+        "Against nothing worth killing, play it anyway for the 2 Might body - the trigger is optional, so 203.3 never applies.",
+        "If the target is Energy cost 1 or less, SFD-074 Pickpocket does the same job for no Power and pays a Gold; if the answer can wait a full turn, UNL-070 Turn to Dust does it for 2 Energy."
+      ],
+      "netPerIteration": "one gear of any cost removed immediately, per copy, on a body that lands whether or not there is a target",
+      "terminatesIn": "engine only - three copies by 103.2.b, one gear each; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 10)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use SFD-032 Disarming Rake. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 203.3, 469, 718.5.b, 719.5, 719.5.a, 808.1.a, 816.1.b. A single-card entry on the precedent of sinister-poro-attack-evacuate: nothing improves it and its value is a property of the card. The three-answer comparison is the content, and all three are named with the limit each one carries. Ban check: not banned or restricted, not a Signature card. No unruled reading."
+    },
+    {
+      "id": "herald-of-spring-navori-scout-hold-rate",
+      "name": "[Hunt] pays per battlefield HELD, so the XP rate is a question of how many battlefields survive the opponent's turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-034",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E4 P1 M4. '[Hunt] (When I conquer or hold, gain 1 XP.) When you play me, gain 2 XP.' The biggest single XP jump in the domain, and then a body that keeps paying while it holds."
+        },
+        {
+          "card": "SFD-037",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E4 M4. '[Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.)' Nothing but a 4 Might body that costs an extra rainbow to answer - which is exactly what a second battlefield needs."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A deck that never SPENDS XP, if the XP is being banked for a [Level] rung: 824.1.d and 730.2. The Herald's own 2 XP is a gain and does not care."
+        ],
+        "notable": [
+          "THE RATE IS PER BATTLEFIELD, NOT PER CARD. 823.1.c.1: 'Hunt is functionally short for \"When I Conquer or Hold, my controller gains X XP\"'; 315.2.b.2: 'The Turn Player Holds all Battlefields they Control'; 485.4 puts Battlefield Count at 2 in a Duel. So [Hunt] pays once per battlefield you still control at your Beginning Phase - and the binding constraint is not how many Hunt bodies you drew but how many battlefields SURVIVED the opponent's turn. A second holder is worth as much as a second Hunt card.",
+          "WHICH IS WHY THE PARTNER IS A BODY WITH NO TEXT BUT ONE KEYWORD. Navori Scout is 4 Energy for 4 Might and [Deflect], which 809.1.c prices as extra Power 'for each time they choose' it, in any Domain (809.1.c.1). It does not draw, buff or trigger; what it does is make the cheap targeted answer to your second holder cost a rainbow more, which over a turn is often the whole difference between holding two battlefields and one. 355.10.d is the hole - a programmatically selected object is not chosen and pays nothing - so a sweeper still takes it.",
+          "THE HERALD'S JUMP IS THE BIGGEST IN THE DOMAIN AND IT IS A GAIN, NOT A THRESHOLD. 'When you play me, gain 2 XP' happens on the play and 730.1's counter simply goes up; nothing about it is a Dependent Ability, so 824.1.d has no say and spending later does not undo it. What spending DOES switch off is every [Level] rung the XP was banked for - UNL-031 Combat Experience's +3, UNL-038 Skyward Strike's stun, UNL-040 Wuju Apprentice's draw, UNL-047 Mosstomper's +1 and [Deflect] - which is the fork this catalogue has now recorded in four domains.",
+          "AND THE ARITHMETIC IS SHORT. A Herald played on turn three is 2 XP at once and 1 more at each of your Beginning Phases while it holds; two holders reach six on the third such phase, one holder on the fifth. Adding a Mosstomper ([Hunt 2]) halves that again - mosstomper-wuju-apprentice-xp-calm-ladder is where that pair is walked.",
+          "THE HERALD HAS TO SURVIVE TO KEEP PAYING, WHICH IS THE PART A LIST UNDER-PRICES. Its [Hunt] fires at 315.2.b.2, in YOUR Beginning Phase, so every payment is one the opponent had a whole turn to prevent - by killing the body, by taking the battlefield, or by 323.6 stripping your Control if your last body there leaves. Four Energy for a 4 Might body is not a lot of resilience; the Scout's [Deflect] is what the second battlefield is actually buying.",
+          "WHAT IT IS NOT. Nothing here scores; [Hunt] is PAID BY a Hold and does not cause one, and 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Play Herald of Spring (4 Energy + 1 Power): gain 2 XP immediately, then walk it to a battlefield.",
+        "Play Navori Scout (4 Energy) and send it to the OTHER battlefield - 485.4 gives a Duel two, and the Scout's [Deflect] taxes the cheap answer to it by a rainbow (809.1.c).",
+        "At your Beginning Phase, 315.2.b.2 Holds every battlefield you control and each [Hunt] body that held pays 1 XP.",
+        "Expect a sweeper to ignore the [Deflect] entirely (355.10.d), and expect 323.6 to take a battlefield back if your last body there leaves.",
+        "If the XP is being banked for a [Level] rung, never spend it: 824.1.d switches every rung off at once."
+      ],
+      "netPerIteration": "2 XP on the play and 1 more per Herald per battlefield held, with the second battlefield made cheaper to keep",
+      "terminatesIn": "engine only - one XP per Hunt body per Beginning Phase and at most two battlefields in a Duel (485.4), three of each card by 103.2.b; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 10)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-034 Herald of Spring or SFD-037 Navori Scout. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 315.2.b.2, 323.6, 355.10.d, 469, 485.4, 730.1, 730.2, 809.1.c, 809.1.c.1, 823.1.c.1, 824.1.d. The entry is about RATE rather than about a trigger: [Hunt] pays per battlefield held, so a near-vanilla body that makes a second battlefield survivable is worth as much as a second Hunt card - which is the honest reason to run SFD-037 rather than refusing it as vanilla. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "immortal-phoenix-falling-star-cleanup-attribution",
+      "name": "428.5.c: a unit that dies in the CLEANUP was killed by the spell that damaged it - which is the only reason a damage spell ever triggers \"when you kill a unit with a spell\"",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-037",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "TRASH",
+          "note": "Fury unit, E3 P1 M3. '[Assault 2] (+2 :rb_might: while I'm an attacker.) When you kill a unit with a spell, you may pay :rb_energy_1::rb_rune_fury: to play me from your trash.' Riot names him in 428.5.d's worked example. His recursion clause is a passive that works from the trash (366.1), so it needs no setup beyond his being there."
+        },
+        {
+          "card": "OGN-029",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury spell, E2 P2. 'Deal 3 to a unit. Deal 3 to a unit.' TWO separate Deal instructions, so one card can put lethal on two different bodies and be attributed both kills at the same Cleanup."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Fury, so 103.1.b.3 admits them under any legend with Fury among its two domains - measured over data/cards.json those include OGN-247 / OGN-299 Daughter of the Void (fury/mind), OGN-249 / OGN-300 Relentless Storm (fury/body), OGN-251 / OGN-301 Loose Cannon (fury/chaos), OGN-253 / OGN-302 Hand of Noxus (fury/order), SFD-181 / SFD-240 Mechanized Menace (fury/mind), UNL-181 / UNL-226 Virtuoso (fury/mind), UNL-185 / UNL-228 Bloodharbor Ripper (fury/chaos), VEN-139 / VEN-189 Rogue Assassin (calm/fury) and VEN-143 / VEN-191 Master of Shadows (fury/chaos).",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "Immortal Phoenix has to be in your trash for the clause to apply - 366.1 makes a passive of a card outside the board self-describe its context, and his says 'from your trash'."
+        ],
+        "notable": [
+          "THE RULE, AND WITHOUT IT THE CARD DOES NOTHING. 143.2.a kills by marked damage in a cleanup, so a damage spell never performs a Kill instruction and would never satisfy 'when you kill a unit with a spell'. 428.5.c is what closes that gap: 'When one or more Units is killed due to a Cleanup, that kill action is attributed to the spell or ability that resolved immediately prior to that Cleanup that dealt damage to the Unit or Units', and 428.5.c.1 adds 'The player responsible for the deal action is responsible for the kill action.' 428.5 and its sub-rules are cited by no entry and no synergy rule in this project.",
+          "AND 428.5.c.2 IS THE HALF THAT SWITCHES THE CARD OFF: 'If the Cleanup that caused the units to be killed was the Combat Cleanup, the sources of the Combat Damage are attributed the kill action, and their controller is responsible for the kill action.' Combat kills are attributed to the UNITS, not to any spell - so a body dying to your attackers never returns the Phoenix. He is a spell-damage payoff and nothing else, and the entry prices him that way.",
+          "428.5.d IS WHERE RIOT NAMES HIM, AND IT COMPOSES WITH THE REFLEXIVE-TRIGGER FINDING. 'Abilities originating from Game Objects that are attributed Kill Actions are attributed in addition to the Game Object that created them', with the example running a spell that reads 'Do this twice: Deal 3 to a unit' beside Immortal Phoenix: 'both the spell and its ability are considered sources of the damage, and so both the spell and its ability receive attribution for killing the unit. This means that the spell's controller killed a unit with a spell, so Immortal Phoenix's ability will trigger.' So a Reflexive Trigger (387.1) splitting a spell into separate chain items does NOT cost you the 'with a spell' attribution - the spell keeps it.",
+          "FALLING STAR IS TWO DEAL ACTIONS, NOT ONE SPLIT. 'Deal 3 to a unit. Deal 3 to a unit.' - two instructions, each choosing its own target, so it can put lethal on two different bodies. Both die at the same Cleanup and both kills are attributed to the same spell (428.5.c), and 'When you kill a unit with a spell' carries no 'the Nth time' wording, so 383.1.b's collapse does not apply: two kills are two triggers, ordered by 383.3.d.",
+          "THE PRICE IS PER RETURN AND IT IS CHEAP. Each trigger is 'you may pay :rb_energy_1::rb_rune_fury:' - 383.3.b makes a cost written right after 'you may' the trigger's BASE COST, paid at finalization (383.3.b.1, 204.3.a), so the Energy and the Fury Power must be banked when the trigger goes on the Chain, not found later. Two triggers off one Falling Star means two Phoenixes back for 2 Energy and 2 Fury Power, on top of the spell's own 2 Energy + 2 Power.",
+          "AND HE COMES BACK AS A REAL BODY. He is played, not recycled, so he enters exhausted at your base or a battlefield you control (143.4, 355.2.a) carrying [Assault 2]. 108.6.c is not in play - nothing here banishes - so the same copy can die and return as often as a spell kills something.",
+          "THE FLOOR IS THE OTHER HALF OF 428.5.c. Because the attribution follows the SPELL and not the caster's intent, any damage spell in the deck feeds him - Consuming Curse, Bellows Breath, Singularity - and the entry names Falling Star only because two Deal actions on one card is the cheapest way to buy two triggers."
+        ]
+      },
+      "steps": [
+        "Get OGN-037 Immortal Phoenix into your trash - played and killed, discarded, or milled. 366.1 makes his 'play me from your trash' clause active exactly there.",
+        "Bank 2 Energy and 2 Fury Power beyond the spell's cost: 383.3.b makes the 'you may pay' a base cost paid at FINALIZATION, so it cannot be found after the trigger is on the Chain.",
+        "Play OGN-029 Falling Star (2 Energy + 2 Power). Its two 'Deal 3' instructions each choose a target; put lethal on two enemy bodies.",
+        "Nothing dies yet - 143.2.a kills in a cleanup. At that Cleanup both units die and 428.5.c attributes both kills to Falling Star, with 428.5.c.1 making you responsible.",
+        "'When you kill a unit with a spell' triggers twice; the wording carries no 'the Nth time', so 383.1.b does not collapse them and 383.3.d lets you order them.",
+        "Pay 1 Energy + 1 Fury Power per trigger to finalize, and play Immortal Phoenix from your trash - twice if you have two copies there.",
+        "Do not expect this off combat: 428.5.c.2 attributes a Combat Cleanup's kills to the units that dealt the damage, so no spell is involved and the Phoenix stays down."
+      ],
+      "netPerIteration": "two enemy bodies dead and up to two Phoenixes back from the trash, for 2 Energy + 2 Power plus 1 Energy + 1 Fury Power per return",
+      "terminatesIn": "engine only - nothing here scores. Three Falling Star and three Phoenix (103.2.b); the returns are capped by how many copies are in the trash and by the banked Fury Power, and combat kills never feed it (428.5.c.2)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 428.5.c",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "When one or more Units is killed due to a Cleanup, that kill action is attributed to the spell or ability that resolved immediately prior to that Cleanup that dealt damage to the Unit or Units."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 428.5.c.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If the Cleanup that caused the units to be killed was the Combat Cleanup, the sources of the Combat Damage are attributed the kill action, and their controller is responsible for the kill action."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 428.5.d worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If one of these abilities deals lethal damage to a unit, both the spell and its ability are considered sources of the damage, and so both the spell and its ability receive attribution for killing the unit. This means that the spell’s controller killed a unit with a spell, so Immortal Phoenix’s ability will trigger."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187; found by the sub-rule probe for uncited sub-rules carrying a worked Example). 428.5, 428.5.a, 428.5.b, 428.5.c, 428.5.c.1, 428.5.c.2 and 428.5.d are cited by no entry and no synergy rule in this project, and 428.5.d's worked example names OGN-037 Immortal Phoenix. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 108.6.c, 143.2.a, 143.4, 204.3.a, 355.2.a, 366.1, 383.1.b, 383.3.b, 383.3.b.1, 383.3.d, 387.1, 428.5.c, 428.5.c.1, 428.5.c.2, 428.5.d. REPORT TO THE MANAGER: 428.5.c is what makes ANY damage spell count as 'killing' a unit - 143.2.a kills in a cleanup, so without it no burn spell would ever satisfy a 'kill with a spell' clause - and 428.5.c.2 is the exclusion that combat kills are attributed to the UNITS, never to a spell. 428.5.d composes with the batch-3 Reflexive Trigger finding: splitting a spell into separate chain items with 'Do this' does not cost the spell its attribution. Distinct from death-from-below-recurring-kill, the only other entry using OGN-037, and from ravenborn-tome-falling-star-two-deal-actions, which prices Falling Star's two Deal actions for Bonus Damage rather than for kill attribution. Trap check: the Fury Power must be banked before the trigger finalizes (383.3.b.1); combat kills do not feed it and the entry says so; the Phoenix returns exhausted; no unruled reading."
+    },
+    {
+      "id": "soraka-wanderer-vanguard-armory-simultaneous-save",
+      "name": "370.4: a Replacement Effect still applies to everything that dies SIMULTANEOUSLY with its source leaving the board - so Soraka saves the swarm out of the wipe that kills her",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-173",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 P1 M4. 'I must be assigned combat damage last. If another unit you control here would die, if it has less Might than me, instead heal it, exhaust it, and recall it.' Riot names her in 370.4's worked example. She also carries the bracket-less [Backline] sentence."
+        },
+        {
+          "card": "SFD-168",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order gear, E7 P1. ':rb_exhaust:: Play three 1 :rb_might: Recruit unit tokens. (You may play them to different locations.)' Three bodies a turn at Might 1, every one of them under Soraka's threshold of 4."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits them under any legend with Order among its two domains - measured over data/cards.json those include OGN-253 / OGN-302 Hand of Noxus (fury/order), OGN-261 / OGN-306 Radiant Dawn (calm/order), OGN-265 / OGN-308 Herald of the Arcane (mind/order), OGN-269 / OGN-310 The Boss (body/order), SFD-197 / SFD-247 Emperor of the Sands (calm/order), SFD-201 / SFD-249 Chem-Baroness (mind/order), SFD-205 / SFD-251 Grand Duelist (body/order), UNL-203 / UNL-237 Keeper of the Hammer (body/order) and VEN-153 / VEN-196 Matriarch of War (body/order).",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "Soraka and the bodies she covers must be at the SAME battlefield - her clause says 'here' - and each must have strictly less Might than her 4."
+        ],
+        "notable": [
+          "THE RULE, AND SORAKA IS ITS WORKED EXAMPLE BY NAME. 370.4: 'A Game Object can apply its Replacement Effects to any qualifying events that occur simultaneously with it leaving the zone that its Replacement Effect is active in.' Riot's example: 'Soraka, Wanderer has a Replacement Effect that reads, \"If another unit you control here would die, if it has less Might than me, instead heal it, exhaust it, and recall it.\" Soraka's replacement can be applied to any qualifying event that occurs simultaneously with her leaving the board, including to units that die simultaneously with her.' 368 through 375 are cited by no entry and no synergy rule in this project.",
+          "SO A BOARD WIPE DOES NOT BEAT HER, IT ONLY COSTS HER. UNL-180 The Ruination and every other 'kill all units' effect kills Soraka and the garrison in the same event - and 370.4 says her replacement still applies to all of them. She dies; every friendly unit at her battlefield under Might 4 is healed, exhausted and recalled to your base instead. Against a swarm that is the entire board saved for one card.",
+          "AND 370.3 IS THE NEGATIVE MIRROR, WHICH IS WHY THE TRASH VERSION DOES NOT WORK. 'If a Game Object has a Replacement Effect that is active in a specific zone, it is evaluated and subsequently applied if it enters that zone before an event occurs that it could replace', with the example of a unit whose save works 'from your trash': 'The first unit dies simultaneously with a 1 [M] Recruit token. It does not enter the trash before the Recruit dies, so it will not be able to replace its death.' A board-based replacement covers simultaneous deaths; a trash-based one does not, because it has not arrived yet. Same wipe, opposite outcome, and the difference is which zone the effect lives in.",
+          "THE ARMORY IS THE RIGHT PARTNER BECAUSE EVERY TOKEN IS UNDER THE THRESHOLD. Three 1-Might Recruits a turn, all below Soraka's 4, and 185.2.d makes each a unit for every purpose - so the replacement applies to them exactly as to a card. 186.1 would otherwise destroy them the instant they entered a non-board zone; the replacement stops them entering one at all, so the swarm survives intact rather than being rebuilt.",
+          "THE SAVE IS A RECALL, WITH EVERYTHING THAT COSTS. 455 sends them to the BASE without a Move, so any 'While I'm at a battlefield' text switches off and the battlefield itself is emptied - 323.6 then strips your Control at the next Cleanup. They also come back exhausted, so 315.1.b readies them only at your next Awakening and 144.4 walks them back the turn after. You keep the bodies and lose the position; the entry does not pretend otherwise.",
+          "AND SORAKA HERSELF IS NEVER SAVED. Her clause says 'another unit you control here', so she is the one thing her own replacement cannot cover - the same shape as Alpha Wildclaw's 'less Might than me'. Three copies (103.2.b) is how the effect survives its own use.",
+          "HER FIRST SENTENCE IS THE [Backline] EFFECT WITHOUT THE KEYWORD, AND THAT IS A DIFFERENT CLAIM. 'I must be assigned combat damage last' is exactly the reminder text UNL-043, UNL-090, UNL-141 and UNL-145 print as [Backline], written here in prose. 465.2.c.6 orders assignment by 'requirements and restrictions on damage assignment' and its worked example quotes the effect rather than the keyword, so all six bodies are assigned damage last - but only four HAVE the keyword, which is what a card reading keywords would see (722.1). Stated at the precision it was measured: SIX cards in the pool carry the Backline EFFECT (OGN-068 Caitlyn, Patrolling and SFD-173 Soraka, Wanderer in prose; UNL-043, UNL-090, UNL-141 and UNL-145 bracketed), and a bracketed grep finds four of them."
+        ]
+      },
+      "steps": [
+        "Play SFD-168 Vanguard Armory (7 Energy + 1 Power) and SFD-173 Soraka, Wanderer (4 Energy + 1 Power) to the same battlefield.",
+        "Exhaust the Armory each turn (381 confines it to your Main Phase; 315.1.b refills it) and put the three 1-Might Recruit tokens at Soraka's battlefield.",
+        "The opponent plays a sweeper. Every friendly unit there dies simultaneously, Soraka included.",
+        "370.4 applies her replacement to every qualifying event simultaneous with her leaving the board: each friendly unit there with less than 4 Might is healed, exhausted and recalled instead of dying.",
+        "Soraka herself dies - 'another unit you control here' excludes her - so play the next copy (103.2.b allows three).",
+        "The saved bodies are at your base, exhausted (455, 458.1 leaves other statuses alone). 315.1.b readies them at your next Awakening and 144.4 walks them back; 323.6 will have stripped the battlefield in the meantime.",
+        "Do not substitute a save that works 'from your trash': 370.3 says it does not enter the trash before the simultaneous deaths and so cannot replace them."
+      ],
+      "netPerIteration": "an entire garrison under Might 4 survives the wipe that killed Soraka, at the cost of the battlefield and a turn of exhaustion",
+      "terminatesIn": "engine only - nothing here scores. Three Soraka (103.2.b), one Armory activation a turn (381), and each save costs the battlefield under 323.6",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 370.4",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A Game Object can apply its Replacement Effects to any qualifying events that occur simultaneously with it leaving the zone that its Replacement Effect is active in."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 370.4 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Soraka, Wanderer has a Replacement Effect that reads, “If another unit you control here would die, if it has less Might than me, instead heal it, exhaust it, and recall it.” Soraka’s replacement can be applied to any qualifying event that occurs simultaneously with her leaving the board, including to units that die simultaneously with her."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 370.3 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The first unit dies simultaneously with a 1 [M] Recruit token. It does not enter the trash before the Recruit dies, so it will not be able to replace its death."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187; found by the sub-rule probe for uncited sub-rules carrying a worked Example). 368 through 375 are cited by no entry and no synergy rule in this project, and 370.4's worked example names SFD-173 Soraka, Wanderer. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 144.4, 185.2.d, 186.1, 315.1.b, 323.6, 370.3, 370.4, 381, 455, 458.1, 465.2.c.6. REPORT TO THE MANAGER: 370.4 and 370.3 are a matched pair worth carrying together - a BOARD-based replacement covers deaths simultaneous with its own source dying, and a TRASH-based one does not, because it has not entered the trash yet when the simultaneous deaths happen. And a correction to my own batch-2 count, stated at the precision it was measured: SIX cards in the pool carry the Backline EFFECT, not five - OGN-068 Caitlyn, Patrolling and SFD-173 Soraka, Wanderer print the sentence in prose, UNL-043, UNL-090, UNL-141 and UNL-145 print the keyword. 465.2.c.6 orders on 'requirements and restrictions' so all six are assigned last; only four HAVE the keyword for a card that reads keywords (722.1). Distinct from soraka-fiora-loop-shield, the only other entry using her, which uses the save on a loop rather than against a wipe and cites neither 370.3 nor 370.4. Trap check: Soraka never saves herself; the save is a Recall to the base, so the battlefield is lost under 323.6 and the entry says so; a trash-based substitute fails on 370.3; no unruled reading."
     }
   ]
 }
