@@ -27833,6 +27833,389 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07 (issue #170), from the orphan synergy rule on-the-hunt-ganking-second-move, whose 37-partner list had produced no entry. The rule's own 'why' already says the second move comes from the READY and not from [Ganking]; this entry is that observation taken to its conclusion — a ready that names no unit multiplies by COPIES, which is the one thing the two catalogued Yasuo lines (both per-unit effect movers under an Unforgiven legend) cannot do. The legend line was NOT typed from memory: SFD-204 is Signature with champion tag Sivir, and the only legends in cards.json carrying that tag are SFD-203 and SFD-250 Battle Mistress (Body/Chaos). Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.2, 103.2.b, 103.2.d.1, 103.2.d.2, 143.4, 144.1.a, 144.1.b, 144.1.c, 144.3, 144.3.a, 144.3.c, 144.4.a, 144.4.b, 144.4.c.1, 164.2.b, 190.3.a.1, 194.1.a, 194.1.b, 194.1.c, 194.3, 315.1.b, 315.3.b, 323.8, 323.9, 383.1.b, 415.1, 415.1.b, 450, 469, 470, 471.1.a.1, 485.4, 489.3, 810.1.c.3. Ban check: SFD-204 and OGN-205 carry no [BANNED marker. Arithmetic against its own declared quantities: 2 castings give each of 3 Yasuo the 2 extra readies its third move needs; a third casting adds no point (383.1.b). Trap check: no Conquer and no Hold, so 470 / 485.4 / 471.1.b do not bound it (471.1.a.1 says so outright); no token; no [Temporary]; no [Repeat]; the route never contests a battlefield, so 144.1.b and 144.1.c never bite. Depends on no unruled reading."
+    },
+    {
+      "id": "jinx-rebel-lunar-boon-reaction",
+      "name": "Lunar Boon is the pool's only Reaction discard, so it is the only way Jinx fires on the opponent's turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-202",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E5 P1 M5. 'When you discard one or more cards, ready me and give me +1 [M] this turn.' One trigger per discard EVENT, whatever the card count."
+        },
+        {
+          "card": "UNL-125",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E3. '[Reaction] Discard 1, then draw 2.' The ONLY [Reaction] discard in the pool — swept over data/corpus_flat.txt for 'discard' and '[Reaction]' on 2026-09-07: one row."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Chaos among its two domains (103.1.b.3) — 16 names: Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
+          "Three runes left ready through your own turn, because the 3 Energy has to be paid on the opponent's turn."
+        ],
+        "notable": [
+          "THE UNIQUENESS IS SWEPT, NOT ASSUMED. A grep of data/corpus_flat.txt for 'discard' intersected with '[Reaction]' returns exactly one card: UNL-125 Lunar Boon. Every other one of Jinx's 21 matrix partners is a play trigger, a move trigger, a conquer trigger, an [Action] spell or an activated ability, and 381 pins that last family to your own turn — 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' So the Boon is not merely the cheapest way to fire Jinx off-turn, it is the only one.",
+          "813.1.c.1 is the permission: on cards, [Reaction] is 'This can be played during Closed States on any player's turn.' Cast it in the Closed State the opponent's own spell or trigger opens, or in the Combat Showdown their attack opens (813.1.b gives Reaction every permission of Action, and 806.1.b puts Action inside Showdowns).",
+          "WHAT ACTUALLY LANDS, AND WHAT DOES NOT. The +1 Might lands: it is a continuous modifier for the turn, and 465.2.b/465.2.c sum the defending Might and assign that much damage, so a defending Jinx assigns one more. The READY lands on nothing — 144.1.b forbids the Standard Move in a Closed State, 381 keeps activated abilities on your own turn and Jinx has none anyway, and combat does not read exhaustion at all (464.2.c.3 designates by presence, 465.2.b sums Might, neither filters by state; #61). This is refuse-bucket E stated inside a live entry rather than used to kill it: half the trigger is dead off-turn and the other half is the whole point.",
+          "THE ENERGY IS THE REAL COST. 167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn', and 415.3.a readies your runes only 'during the Awakening Phase on their turn' — yours. So the 3 Energy for the Boon must come from three runes you deliberately left unexhausted through your own turn, tapped at 164.2.a's '[E]: [Reaction] — Add [1]'. Three ready runes is three Energy you did not spend on your own turn; price the trick at that, not at 'E3'.",
+          "Card economy: discard 1, draw 2 is +1 card, and you choose the card that goes. Against an empty Main Deck 431.1.a turns the second draw into a Burn Out, so this is a trick for a deck that still has cards, not a fixture of the empty-deck loop shells.",
+          "'One or more cards' is one event: the Boon discards one card and readies her once. Three copies (103.2.b) is three off-turn triggers a game. Companion entries on the same trigger card: jinx-rebel-discard-event-ready counts events on your own turn, jinx-rebel-square-up pays the [Repeat] cost as the discard, and mask-mother-lunar-boon-reaction-trick stacks a second payoff onto this very discard."
+        ]
+      },
+      "steps": [
+        "Have Jinx, Rebel at a battlefield and at least three runes still ready when you pass the turn.",
+        "On the opponent's turn, wait for a Closed State — their spell or trigger on the Chain, or the Combat Showdown their attack opens (813.1.c.1, 806.1.b).",
+        "Tap three ready runes for 1 Energy each (164.2.a) and play Lunar Boon.",
+        "Discard the card you least want, then draw 2.",
+        "Jinx's trigger fires on the discard: she readies (worth nothing here, 144.1.b) and gets +1 Might this turn, which 465.2.c reads when the defending damage is assigned."
+      ],
+      "terminatesIn": "engine — one net card and +1 Might on a defending Jinx, inside the opponent's turn, three times a game (103.2.b). Nothing here scores.",
+      "netPerIteration": "+1 card, +1 Might on Jinx this turn, for 3 Energy off three runes held ready",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 144.1.b: 'This action cannot be performed during a Closed State.' 465.2.c: 'Starting with the Attacker, each player assigns an amount of damage equal to their summed Might among the other's Units.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 6 (trigger card OGN-202 Jinx, Rebel, 21 partners, 4 entries before this walk). Card text verbatim from data/corpus_flat.txt. Citations opened in data/Riftbound-Core-Rules-2026-07-16.txt: 103.1.b.3, 103.2.b, 144.1.b, 164.2.a, 167, 381, 415.3.a, 431.1.a, 464.2.c.3, 465.2.b, 465.2.c, 806.1.b, 813.1.b, 813.1.c.1. Both cards checked against data/legality.json: legal in both formats. Card set checked against the whole catalogue first: OGN-202 + UNL-125 is not an existing uses[] set. No unruled reading. 381 had never been cited by any entry and is the paragraph that makes the uniqueness claim safe — without it, every gear with a discard in an activated-ability cost would look like an off-turn outlet."
+    },
+    {
+      "id": "jinx-rebel-unlicensed-armory-repeatable-shield",
+      "name": "Unlicensed Armory is Jinx's only permanent outlet — and 381 keeps the shield it buys inside your own turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-202",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E5 P1 M5. 'When you discard one or more cards, ready me and give me +1 [M] this turn.' One trigger per discard EVENT, whatever the card count."
+        },
+        {
+          "card": "OGN-023",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury gear, E2. 'Discard 1, :rb_exhaust:: Choose a friendly unit. The next time it would die this turn, you may pay :rb_rune_fury: to heal it, exhaust it, and recall it instead. (Send it to base. This isn't a move.)' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143).",
+          "One card in hand per turn to feed the cost, and 1 Fury Power in reserve for the turns the shield actually fires."
+        ],
+        "notable": [
+          "IT IS THE ONLY OUTLET OF THE TWENTY-ONE THAT NEVER LEAVES THE BOARD. Every other partner in Jinx's matrix row is a spell you cast once or a body whose play trigger discards once; the Armory is a 2-Energy gear whose discard sits in an activated ability's COST, so it produces one Jinx trigger every turn for as long as it lives, readied each Awakening by 415.3.a. What it does NOT save you is the card: 203.3 — 'If the game action associated with a Cost is impossible for any reason such that a player cannot' complete it, the cost cannot be paid — so an empty hand switches the whole gear off.",
+          "381 IS WHAT MAKES THIS A YOUR-TURN CARD, AND IT IS EASY TO MISREAD IN THE OPPOSITE DIRECTION. 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' The Armory carries neither [Action] nor [Reaction], so it can only be used in your own Main Phase — and its shield reads 'the next time it would die THIS TURN'. Put those together and the gear can never answer the opponent's removal on the opponent's turn: it is a shield for your own attack, armed before you attack, and it expires unused at the end of your turn. Compare jinx-rebel-lunar-boon-reaction, which is the mirror image.",
+          "THE SHIELD IS THE HEAL / EXHAUST / RECALL FAMILY, WITH BOTH OF ITS TRAPS. 808.1.d.1 removes a Deathknell's triggered ability from the chain when the permanent never reaches the Trash, so saving a body with a Deathknell ERASES that Deathknell. And 455 — 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move' — sends the saved unit home, which switches off any 'While I'm at a battlefield' text it carries and, by 323.6, hands the battlefield back at the next Cleanup if that unit was the only body standing there.",
+          "The exhaust in the Armory's cost is the gear's own, not the saved unit's; the saved unit is exhausted separately by the replacement when it fires. Neither exhaust touches Jinx: her ready comes from the discard, not from the gear.",
+          "Priced whole, per turn: one card out of hand and the gear's exhaust buy one Jinx ready plus +1 Might this turn, and a conditional save that costs a further 1 Fury Power only if something would actually die. The 2 Energy for the gear is paid once. Three copies (103.2.b) is three triggers a turn, at three cards a turn, which no hand sustains — one copy is the honest build.",
+          "Jinx's ready buys one extra Standard Move on your own turn (144.2 prices the move at the unit's exhaust), which is the one window in which a ready is worth anything to her; the +1 Might stacks per event and is a plain modifier, not a 702 buff, so 702.3's one-per-unit cap never applies."
+        ]
+      },
+      "steps": [
+        "Play Unlicensed Armory (2 Energy). It sits at your base as a gear.",
+        "On your own turn, in the Main Phase (381), pay its cost: discard 1 and exhaust it.",
+        "The discard is one event, so Jinx readies and takes +1 Might this turn.",
+        "The Armory's effect chooses a friendly unit; the next time that unit would die this turn you may pay 1 Fury Power to heal, exhaust and recall it instead (455 — to its base).",
+        "Move Jinx with the ready she just gained (144.2), and repeat next turn once 415.3.a has readied the gear in your Awakening."
+      ],
+      "terminatesIn": "engine — one Jinx ready, +1 Might and a same-turn save, every turn, for one card out of hand each time; nothing here scores",
+      "netPerIteration": "-1 card, +1 Might on Jinx, one Standard Move, one conditional recall (1 Fury Power)",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 203.3: 'If the game action associated with a Cost is impossible for any reason such that a player cannot [complete it]...' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 144.2: 'Exhausting the Unit is the Cost for this action.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 6. OGN-023 Unlicensed Armory was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 144.2, 203.3, 323.6, 381, 415.3.a, 455, 702.3, 808.1.d.1 opened in the Core Rules file. Both cards legal in both formats (data/legality.json). Card set OGN-202 + OGN-023 is not an existing uses[] set. No unruled reading. The entry exists because of 381: the naive read of a gear whose cost is 'discard 1, exhaust' is an outlet available whenever you need it, and the rule says otherwise."
+    },
+    {
+      "id": "jinx-rebel-zaun-warrens-free-outlet",
+      "name": "Zaun Warrens is the one discard outlet that costs no Main Deck slot — and the conquer establishes Control first",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-202",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E5 P1 M5. 'When you discard one or more cards, ready me and give me +1 [M] this turn.' One trigger per discard EVENT, whatever the card count."
+        },
+        {
+          "card": "OGN-298",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield. 'When you conquer here, discard 1, then draw 1.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Chaos among its two domains (103.1.b.3) — 16 names: Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
+          "One of the three battlefields in the deck is the Warrens; 485.5 selects one of the three at random, so it is on the table one time in three."
+        ],
+        "notable": [
+          "THE POINT IS WHERE THE CARD LIVES, NOT WHAT IT DOES. Battlefields are a separate three-card zone (103.4.c, and Tournament Rules 402.1 'exactly 3 battlefields each with a unique name'), so the Warrens is the only one of Jinx's twenty-one partners that produces a discard event without occupying a Main Deck slot. It is also card-neutral — 'discard 1, then draw 1' — so it feeds her for free, on an event a Jinx deck is already trying to cause.",
+          "THE 'YOU' QUESTION IS SETTLED BY THE ORDER OF 466.5, NOT BY A READING. 190.6.d blanks a battlefield's abilities only while it has no Controller. Here the trigger is 'When you conquer here', and 466.5 has the player with units remaining Establish Control FIRST, with 466.5.d then saying 'Establishing Control results in a Conquer if that player has not yet scored this Battlefield this turn' and 469.1.b confirming 'A player will gain control of a Battlefield after establishing Control'. So at the instant the trigger condition is checked you are already the Controller and 190.6.d never bites. A battlefield you bring starts switched off (190.1); this one switches itself on with the very event it pays for.",
+          "ONE TRIGGER PER TURN, MAXIMUM, AND THE CEILING IS A RULE NOT A HABIT. 470: 'A player may only Score, from either method, once per Battlefield per turn', and 485.4 puts two battlefields on a Duel table. The Warrens is one of those two, so it can produce at most one conquer and therefore one Jinx trigger per turn. Do not price it as a repeatable engine at two or three a turn.",
+          "103.4.c forbids stacking copies ('Cannot include more than one of a Battlefield of the same name'), so there is no way to raise the odds of drawing it beyond one in three, and 485.5's 'randomly selects' is what makes it odds rather than a choice — 486.5 says only 'selects', so the 1v1 Match format differs here and the entry states both.",
+          "What Jinx gets: one ready and +1 Might this turn, at the moment you conquer — which is inside your Main Phase, so the ready is live and buys a Standard Move (144.2). That is the opposite of jinx-rebel-lunar-boon-reaction, where the ready is dead and the Might is the payoff.",
+          "The Warrens is colourless, so it constrains nothing: the identity of the deck is Jinx's Chaos alone (103.1.b.3), the widest legend list either card admits."
+        ]
+      },
+      "steps": [
+        "Bring Zaun Warrens as one of your three battlefields; 485.5 selects one of the three at random at setup.",
+        "Put Jinx, Rebel on the board (5 Energy + 1 Chaos Power).",
+        "Take the Warrens: your units remain there at the end of a combat or showdown, 466.5 Establishes Control, and 466.5.d makes that a Conquer.",
+        "The Warrens' trigger fires with you as its Controller: discard 1, then draw 1.",
+        "Jinx's trigger fires on that discard: ready her and give her +1 Might this turn. Spend the ready on a Standard Move (144.2)."
+      ],
+      "terminatesIn": "engine — one card-neutral discard event, one Jinx ready and +1 Might per conquer, capped at one a turn by 470; nothing here scores",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "466.5: '1. If no Showdown or Combat is staged at this location, the player with Units remaining here Establishes Control if they didn't already control this Battlefield.' 466.5.d: 'Establishing Control results in a Conquer if that player has not yet scored this Battlefield this turn.' 469.1.b: 'A player will gain control of a Battlefield after establishing Control.' 190.6.d: '\"You\" in a battlefield's abilities refers to the battlefield's Controller...' 470: 'A player may only Score, from either method, once per Battlefield per turn.' 103.4.c: 'Cannot include more than one of a Battlefield of the same name when there are more than one required for the deck.' 485.5: 'Each player randomly selects one (1) of their three (3) Battlefields.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 6. OGN-298 Zaun Warrens was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.4.c, 144.2, 190.1, 190.6.d, 466.5, 466.5.d, 469.1.b, 470, 485.4, 485.5, 486.5 opened in the Core Rules file. Both cards legal in both formats. Card set OGN-202 + OGN-298 is not an existing uses[] set. No unruled reading: the 190.6.d worry is answered by the order inside 466.5, which is exactly the 'try a different legal ordering before filing a reading' discipline."
+    },
+    {
+      "id": "mask-mother-lunar-boon-reaction-trick",
+      "name": "Mask Mother off-turn — the Boon is the only Reaction discard, and 383.3.b makes her Energy a cost paid up front",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-094",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos unit, E3 M3. 'When you discard me, you may pay :rb_energy_1: to give a friendly unit +2 [M] this turn.' She is a card that lives in the hand waiting to be thrown away."
+        },
+        {
+          "card": "UNL-125",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E3. '[Reaction] Discard 1, then draw 2.' The ONLY [Reaction] discard in the pool — swept over data/corpus_flat.txt for 'discard' and '[Reaction]' on 2026-09-07: one row."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Chaos among its two domains (103.1.b.3) — 16 names: Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
+          "Four runes left ready through your own turn: three for the Boon and one for the Mother's own trigger cost."
+        ],
+        "notable": [
+          "HER +2 CAN ONLY REACH THE OPPONENT'S COMBAT THROUGH THIS ONE CARD. Mask Mother's twenty-three matrix partners are play triggers, move triggers, conquer triggers, [Action] spells and activated abilities; 381 pins the last family to your own turn, and a play trigger needs you to be playing something. UNL-125 Lunar Boon is the only [Reaction] discard in the pool (swept over data/corpus_flat.txt on 2026-09-07: one row), and 813.1.c.1 lets a [Reaction] card be played 'during Closed States on any player's turn'.",
+          "THE 1 ENERGY IS A BASE COST, NOT A PAYMENT ON RESOLUTION, AND THAT CHANGES WHEN YOU NEED IT. 383.3.b makes a cost written at the start of a Triggered Ability's effect or right after its opening 'you may' the ability's BASE COST, and 383.3.b.1 requires it to be paid 'in order to finalize the Triggered Ability to the Chain'. So you decide and pay before the trigger is even on the Chain — you cannot watch the damage assignment first and then decide. With 167 emptying every Rune Pool at the start of each player's Main Phase and 415.3.a readying your runes only in your own Awakening, that Energy has to come from a fourth rune held ready and tapped at 164.2.a's Reaction speed.",
+          "422.1.b is why she works at all from the trash: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred', and 385.2 lets a Triggered Ability outside the Board self-describe its context. Discarding her is not a cost — it is how she is cast.",
+          "The numbers, on a defender: 465.2.b sums the defending Might and 465.2.c assigns that much damage, so +2 Might is +2 damage assigned in the opponent's combat, and 465.2.c.3 forces lethal onto one unit before the next, which is where two extra points of assignment decide whether a second body dies. The card economy of the Boon is +1 (discard 1, draw 2) and you choose the card that goes.",
+          "This is the off-turn half of mask-mother-scrapyard-champion, which is the on-turn half: the Champion discards TWO Mothers in one instruction for +4 Might and draws two back, but only in your own Main Phase. Same payoff card, different window, different arithmetic. jinx-rebel-lunar-boon-reaction stacks on the very same discard if Jinx is also on the board — one Boon, three triggers.",
+          "'Give a friendly unit +2 Might this turn' is a plain continuous modifier, not a 702 buff counter, so 702.3's one-per-unit cap never applies and two Mothers discarded in one turn stack on one body; and nothing that spends a buff (OGN-146 Wallop, SFD-101 Fae Dragon) can be fed from it."
+        ]
+      },
+      "steps": [
+        "Keep a Mask Mother in hand and four runes ready when you pass the turn.",
+        "On the opponent's turn, in the Closed State their spell or their combat opens, tap three runes (164.2.a) and play Lunar Boon (813.1.c.1).",
+        "Discard Mask Mother to the Boon, then draw 2.",
+        "Her trigger fires from the trash (422.1.b, 385.2). Tap the fourth rune and pay the 1 Energy to finalize it (383.3.b.1).",
+        "Give a friendly unit +2 Might this turn — on a defender, 465.2.b and 465.2.c turn that into two more points of assigned damage."
+      ],
+      "terminatesIn": "engine — +2 Might on a defending body and one net card, inside the opponent's turn, for 4 Energy paid off runes held ready; nothing here scores",
+      "netPerIteration": "+1 card, +2 Might on one friendly unit this turn, for 4 Energy",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.' 385.2: 'Triggered Abilities outside of the Board will self-describe their context.' 383.3.b.1: 'The cost must be paid in order to finalize the Triggered Ability to the Chain.' 167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 465.2.b: 'Sum the Might of all Defending Units.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 10 (trigger card VEN-094 Mask Mother, 23 partners, 1 entry before this walk). Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 164.2.a, 167, 381, 383.3.b, 383.3.b.1, 385.2, 415.3.a, 422.1.b, 465.2.b, 465.2.c, 465.2.c.3, 702.3, 813.1.c.1 opened in the Core Rules file. Both cards legal in both formats. Card set VEN-094 + UNL-125 is not an existing uses[] set. No unruled reading. The 383.3.b half is the finding: read as pay-on-resolution the trick looks free to hold back, and it is not."
+    },
+    {
+      "id": "mask-mother-brazen-buccaneer-cost-discount",
+      "name": "Brazen Buccaneer turns Mask Mother into 2 Energy — and the body she pays for can never be her target",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-094",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos unit, E3 M3. 'When you discard me, you may pay :rb_energy_1: to give a friendly unit +2 [M] this turn.' She is a card that lives in the hand waiting to be thrown away."
+        },
+        {
+          "card": "OGN-002",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury unit, E6 M5. 'As you play me, you may discard 1 as an additional cost. If you do, reduce my cost by :rb_energy_2:.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143).",
+          "A friendly unit already on the board to receive the +2 Might — see the third notable."
+        ],
+        "notable": [
+          "THE DISCARD IS A COST HERE, WHICH IS WHY IT IS ITS OWN ENTRY. Every other catalogued Mask Mother line spends an effect to discard her and replaces the card: mask-mother-scrapyard-champion draws two back, mask-mother-lunar-boon-reaction-trick draws two back. The Buccaneer replaces nothing — it converts the card straight into 2 Energy of discount, so the Mother is a card you sell rather than a card you cycle. Priced whole: 6 - 2 = 4 Energy for a 5-Might Fury body, plus 1 Energy for her trigger, for 5 Energy and one card.",
+          "THE TRAP, AND IT IS THE REASON TO WRITE THIS ONE DOWN. The Buccaneer is NOT a legal target for the +2 Might he paid for. 'As you play me' puts the discard in the playing steps, so the Mother's trigger fires while the Buccaneer is still a Pending Chain Item; the trigger is Finalized above him and 340.1 resolves 'The newest Finalized Chain Item' first. Her +2 therefore resolves before he is ever on the Board. The +2 has to go on a unit that is already in play — a body in the combat you are about to open, not the body you are buying.",
+          "422.1.b and 385.2 are what let her fire at all: the trigger is executed after the discard has occurred, from the trash, and a Triggered Ability outside the Board self-describes its context.",
+          "REFUSED IN THE SAME BREATH: SFD-149 Ezreal, Prodigy does not make this cheaper. His text is 'Optional additional costs you pay cost :rb_energy_1: or :rb_rune_rainbow: less', and the Buccaneer's optional additional cost is 'discard 1' — it has no Energy and no rainbow component for the reduction to bite on, and 356.6 ('Energy and Power costs can't be reduced below 0') is a floor on resource costs, not a converter. Ezreal discounts the Power-flavoured optional costs in the pool (UNL-028 Pyke, Dockside Butcher's 1 Fury; UNL-052 Nami, Headstrong's 1 Calm; VEN-120 Masa, Crashing Thunder's 1 Order; OGN-030 Jinx, Demolitionist's [Accelerate]); he does nothing for a discard.",
+          "203.3 gates it from the other side: with no card in hand the optional cost cannot be paid, and the Buccaneer simply costs 6.",
+          "The +2 Might is a continuous modifier, not a 702 buff, so it stacks with a second Mother discarded the same turn and feeds nothing that spends a buff. Three Mothers and three Buccaneers is the 103.2.b ceiling."
+        ]
+      },
+      "steps": [
+        "Have a friendly unit already on the board — it will be the only legal target for the +2 (see the second notable).",
+        "Play Brazen Buccaneer and choose to pay the optional additional cost, discarding Mask Mother. His cost drops from 6 Energy to 4.",
+        "Her trigger fires from the trash (422.1.b, 385.2) and is Finalized above the still-pending Buccaneer.",
+        "Pay 1 Energy to finalize it (383.3.b.1) and give the unit already in play +2 Might this turn; 340.1 resolves this before the Buccaneer arrives.",
+        "The Buccaneer resolves and enters as a 5-Might Fury body for a net 4 Energy."
+      ],
+      "terminatesIn": "engine — a 5-Might body for 4 Energy and +2 Might this turn for 1 more, at the price of one card and no replacement; nothing here scores",
+      "netPerIteration": "-1 card, -5 Energy, +1 body at 5 Might, +2 Might this turn on a unit already in play",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "340.1: 'The newest Finalized Chain Item resolves. Execute its game effects in their entirety.' 337.1.b: 'Chain Items are Finalized in the order they were appended to the Chain.' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.' 356.6: 'Energy and Power costs can't be reduced below 0.' 203.3: 'If the game action associated with a Cost is impossible for any reason such that a player cannot [complete it]...' 383.3.b.1: 'The cost must be paid in order to finalize the Triggered Ability to the Chain.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 10. OGN-002 Brazen Buccaneer was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 203.3, 337.1.b, 340.1, 356.6, 383.3.b.1, 385.2, 422.1.b, 702.3 opened in the Core Rules file. Both cards legal in both formats. Card set VEN-094 + OGN-002 is not an existing uses[] set. No unruled reading. The chain-order finding generalises: a trigger that fires on a cost paid while playing a card resolves BEFORE that card arrives, so the card being paid for is never a legal target of what its own cost triggered."
+    },
+    {
+      "id": "mask-mother-ruthless-strike-doubled-payment",
+      "name": "Ruthless Strike pays twice for one Mask Mother — +2 damage from the spell and +2 Might from the trash",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-094",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos unit, E3 M3. 'When you discard me, you may pay :rb_energy_1: to give a friendly unit +2 [M] this turn.' She is a card that lives in the hand waiting to be thrown away."
+        },
+        {
+          "card": "VEN-008",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury spell, E3, [Action]. 'As an additional cost to play this, you may discard 1. Deal 3 to a unit at a battlefield. If you paid the additional cost, deal 5 to it instead.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143).",
+          "A friendly unit already on the board to take the +2 Might; the spell's own target is an enemy unit at a battlefield."
+        ],
+        "notable": [
+          "ONE CARD, TWO PAYMENTS. The discard is an optional additional cost that raises Ruthless Strike from 3 damage to 5, and the card discarded is a Mask Mother whose own trigger then buys +2 Might for 1 Energy. So a single card out of hand is worth +2 damage AND +2 Might — no other partner in her row of twenty-three converts the discard into removal.",
+          "[Action] IS A NARROWER WINDOW THAN [Reaction], AND THE DIFFERENCE IS THE POINT AGAINST mask-mother-lunar-boon-reaction-trick. 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' So Ruthless Strike reaches the opponent's turn only inside a Showdown — their attack's Combat Showdown — while Lunar Boon's [Reaction] (813.1.c.1) reaches any Closed State. On your own turn Ruthless Strike is simply a Main Phase spell.",
+          "THE ORDERING WORKS HERE, UNLIKE THE BUCCANEER. In mask-mother-brazen-buccaneer-cost-discount the +2 cannot land on the body being paid for, because 340.1 resolves the Mother's trigger before the pending card. Here the spell's target is an ENEMY unit and the +2 goes on a friendly body already in play, so the two halves never contend: her trigger resolves first (+2 Might on your unit), then Ruthless Strike resolves (5 damage on theirs).",
+          "5 damage is the whole removal range that matters: 143.2.a needs damage at least equal to a unit's Might to kill it, so 5 clears every body up to 5 Might outright, and against a defender the +2 Might you just added is +2 more assigned damage in the same combat (465.2.b, 465.2.c).",
+          "203.3 is the gate on the optional cost — no card in hand, no discard, and the spell deals 3 instead of 5. 383.3.b.1 is the gate on hers: the 1 Energy is a base cost paid to finalize the trigger, so bank it before you cast.",
+          "Priced whole: 3 Energy for the spell plus 1 for her trigger, one card, for 5 damage and +2 Might. Three copies of each (103.2.b)."
+        ]
+      },
+      "steps": [
+        "Have a friendly unit in play to receive the +2 Might, and 4 Energy available (3 for the spell, 1 for her trigger).",
+        "Play Ruthless Strike, on your turn or inside a Showdown on theirs (806.1.b), and pay the optional additional cost by discarding Mask Mother.",
+        "Her trigger fires from the trash (422.1.b, 385.2); pay 1 Energy to finalize it (383.3.b.1).",
+        "It resolves first (340.1): give the friendly unit +2 Might this turn.",
+        "Ruthless Strike resolves: 5 damage to an enemy unit at a battlefield instead of 3 (143.2.a kills anything up to 5 Might)."
+      ],
+      "terminatesIn": "engine — 5 damage and +2 Might for one card and 4 Energy, three times a game (103.2.b); nothing here scores",
+      "netPerIteration": "-1 card, -4 Energy, 5 damage to one enemy unit, +2 Might on one friendly unit this turn",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.' 340.1: 'The newest Finalized Chain Item resolves. Execute its game effects in their entirety.' 383.3.b.1: 'The cost must be paid in order to finalize the Triggered Ability to the Chain.' 203.3: 'If the game action associated with a Cost is impossible for any reason such that a player cannot [complete it]...' 465.2.b: 'Sum the Might of all Defending Units.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 10. VEN-008 Ruthless Strike was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 143.2.a, 203.3, 340.1, 383.3.b.1, 385.2, 422.1.b, 465.2.b, 465.2.c, 806.1.b, 813.1.c.1 opened in the Core Rules file. Both cards legal in both formats. Card set VEN-094 + VEN-008 is not an existing uses[] set. No unruled reading. The [Action]-versus-[Reaction] contrast is what separates this entry from the Lunar Boon one on the same trigger card."
     }
   ]
 }
