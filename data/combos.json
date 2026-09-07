@@ -868,7 +868,8 @@
           "Hold one battlefield through your Beginning Phase with the Sentinels present, carrying the Trinity Forces between them.",
           "Why the gear's line becomes the unit's line, and why it needs no unruled reading: 136.2.b keeps Effect Text active while attached, 136.2.c and 718.3 append it to the Rules Text of the card it is attached to, and 136.2.d makes \"I\"/\"me\" in Effect Text mean the Top-Most Card (the rules' own examples are Guardian Angel and Brutalizer). So the Sentinel carries \"When I hold, score 1 point\" as a Hold Ability of a Unit under 383.4.d.2.a. R2 = A takes it outside 470's cap; R1 = A adds an instance per Sentinel.",
           "Points per Hold: 1 + T x (1 + K), T = Trinity Forces on units present, K = Blue Sentinels. Trinity Force is not [Unique] (compare Forgefire Cape, which prints the keyword) and 434.1.b.1 contemplates more than one card attached to a Top-Most card, so T is not tied to the body count: three Trinity Forces stack across two Sentinels. T=3, K=2 gives 10 for 20 Energy + 5 Power (2 Mind for the Sentinels, 3 Body for the three [Equip] activations — the 20 was Energy alone; #161, 2026-09-06); T=2, K=3 gives 9 for the same 20; T=2, K=2 gives only 7.",
-          "Cheaper and smaller than the Ahri line, which needs 23 Energy and five bodies for the same 10 points. Each Sentinel defends at 4 +2 (Shield 2) +2 per Trinity Force attached. Same single point of failure though: lose one Sentinel and K drops to 1, taking the total to 7."
+          "Cheaper and smaller than the Ahri line, which needs 23 Energy and five bodies for the same 10 points. Each Sentinel defends at 4 +2 (Shield 2) +2 per Trinity Force attached. Same single point of failure though: lose one Sentinel and K drops to 1, taking the total to 7.",
+          "SFD-102 Hexdrinker (Body, E2, one-rune [Equip], \"[Effect] [Deflect]\") answers the single point of failure this line names — lose a Sentinel and K drops: 809.1.c taxes the opponent a rainbow to choose a [Deflect] unit, and being carrier-independent it attaches free under any [Weaponmaster] body. In no entry before this note (#161, 2026-09-06)."
         ]
       },
       "steps": [
@@ -22601,7 +22602,8 @@
           "Points per Hold: 1 + T x (1 + K), where T is Trinity Forces on units present and K is Sentinels. T=3, K=2 gives 1 + 9 = 10. The single Score is capped by 470 at one per battlefield per turn; the nine are ability Gains, which R2 = A puts under 194.1.c and outside that cap. Checked against this entry's own declared quantities before authoring.",
           "The gear's line becomes the unit's line by 136.2.b (Effect Text is active while attached), 718.3 (it is appended to the Top-Most Card's Rules Text) and 136.2.d (whose worked examples are Guardian Angel and Brutalizer), which makes it a Hold Ability of a Unit under 383.4.d.2.a.",
           "818.1 makes [Equip] an Activated Ability, so the attach is NOT a play and no 'When you play this' fires — irrelevant here, since Trinity Force prints none, but it is the reason a Weaponmaster body cannot substitute for SFD-024 Rell, Magnetic in the entries that need a play trigger.",
-          "Lucian's second sentence, 'The first time I conquer each turn, ready me', does nothing in this line: a Hold is not a Conquer (469.2 against 466.5.d). He is here for the Weaponmaster clause and the body."
+          "Lucian's second sentence, 'The first time I conquer each turn, ready me', does nothing in this line: a Hold is not a Conquer (469.2 against 466.5.d). He is here for the Weaponmaster clause and the body.",
+          "SFD-102 Hexdrinker (Body, E2, one-rune [Equip], \"[Effect] [Deflect]\") answers the single point of failure this line names — lose a Sentinel and K drops: 809.1.c taxes the opponent a rainbow to choose a [Deflect] unit, and being carrier-independent it attaches free under any [Weaponmaster] body. In no entry before this note (#161, 2026-09-06)."
         ]
       },
       "steps": [
@@ -22688,7 +22690,8 @@
           "Why this is not just 'add Time Warp to blue-sentinel-trinity-force-hold'. That entry is a BURST: T=3, K=2 for ten points in ONE Hold, at 20 Energy and 5 Power of board. This is T=1, K=1 — a quarter of the board — and it reaches nine by taking three Holds instead of one. The card list, the class, the Power ledger and the failure mode all differ: that line dies to removal on a Sentinel before the Hold, this one only has to survive to the FIRST Hold, because the opponent never gets a turn afterwards.",
           "The Ancient Henge is the Body alternative and it is not needed here. SFD-117 converts Energy to rainbow 1:1 with no cap and is legal in this identity, so it could pay the 2 Power instead of the Sentinel — but it costs E2 + 1 Power and an exhaust, and the Sentinel's Add is free and already in the line. Recorded so the next session does not add it as an improvement.",
           "One Applied Researcher instead of two leaves Time Warp at E9 + 3 Power, which the Sentinel's 2 rainbow cannot cover; three leave it at E7 + 1 Power, which is margin rather than speed. Two is the number that matches the Sentinel exactly.",
-          "Nothing is [Temporary] and nothing is a token, so 816.1.b and 185 never arise. The Trinity Force rides on the Sentinel, so losing the Sentinel loses both halves at once — that is the single point of failure, and it only has to survive until the first of the three Holds."
+          "Nothing is [Temporary] and nothing is a token, so 816.1.b and 185 never arise. The Trinity Force rides on the Sentinel, so losing the Sentinel loses both halves at once — that is the single point of failure, and it only has to survive until the first of the three Holds.",
+          "SFD-102 Hexdrinker (Body, E2, one-rune [Equip], \"[Effect] [Deflect]\") answers the single point of failure this line names — lose a Sentinel and K drops: 809.1.c taxes the opponent a rainbow to choose a [Deflect] unit, and being carrier-independent it attaches free under any [Weaponmaster] body. In no entry before this note (#161, 2026-09-06)."
         ]
       },
       "steps": [
@@ -23239,7 +23242,8 @@
           "It is 8 EXACTLY, so nothing may be lost. Three Swains are required; two give 6. If a Swain dies in the combat at A the line stops at 6 or 7, which is the honest fragility and the reason the catalogued version buys redundancy with the loop instead.",
           "Leaving A is legal and costs nothing that matters. 190.4.c takes Control of A away in the following cleanup once no units of yours remain there — but A was already Scored this turn, so 470 would have refused a second Score anyway.",
           "In 2v2 it is three points short: 489.3 sets the Victory Score at 11 against 194.3's 8.",
-          "Shurelya's is [Unique] — one copy in the deck (Tournament Rules and the card's own reminder), which is all this needs, because one mass ready covers all three Swains at once where Jayce's readies one unit at a time."
+          "Shurelya's is [Unique] — one copy in the deck (Tournament Rules and the card's own reminder), which is all this needs, because one mass ready covers all three Swains at once where Jayce's readies one unit at a time.",
+          "VEN-041 / VEN-171 Riven, Shattered (Calm, E3 P1 M3, [Weaponmaster]) is the Weaponmaster body for Calm/Mind: she attaches Shurelya’s Requiem (one rainbow) for nothing on the turn she is played, and her own \"When I attack, choose an enemy unit here. Deal 2 to it for each Equipment attached to me\" makes her the only Weaponmaster that pays for what it accumulates. In no entry before this note (#161, 2026-09-06)."
         ]
       },
       "steps": [
