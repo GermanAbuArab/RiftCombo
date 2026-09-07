@@ -506,3 +506,223 @@ a walker" rule.
   permission as the Ocean Drake for two Energy less and no Power, and `OGN-161 Deadbloom Predator`
   prints the opposite one ("You may play me to an occupied ENEMY battlefield"). 355.2.b plus the
   170.11 vocabulary is one synergy rule covering all of them.
+
+---
+
+# Continued by session `rc-walk-fc`, 2026-09-07 — the lane narrowed to Fury / Chaos
+
+`rc-walk-fam1` was archived at 61% of its context. This half of the document continues the same
+issue (#173) with the slice narrowed by the manager: **Body was split off to `rc-walk-order`**, so
+what follows is cards whose domains are a subset of **{Fury, Chaos}**, plus the **ten dual-domain
+Signature spells that fell between the three lanes**. Method, sources and standard of proof are
+unchanged: card text verbatim from `data/corpus_flat.txt` by grep, every rule number opened in
+`data/Riftbound-Core-Rules-2026-07-16.txt` and pasted, arithmetic checked against each entry's own
+`uses`.
+
+## 7. The census, and a correction to §3 that changes how every future census must be written
+
+| measure | Fury / Chaos, at 564 entries |
+|---|---|
+| slice population, non-battlefield / non-legend / non-rune, **by base code** | 273 |
+| uncatalogued **by base code** | 76 |
+| uncatalogued **by name+type** | 72 |
+| gap | **5.3%** |
+| banned in constructed | 4 — OGN-168, OGN-182, SFD-020, SFD-122 |
+| **walkable** | **68** |
+
+The four multi-base names in the uncatalogued set, written out so the next reader refutes this in one
+grep instead of inheriting it: `Pouty Poro [OGN-013, UNL-220]`, `Draven, Showboat [OGN-028, VEN-172]`,
+`Seal of Rage [OGN-040, SFD-222]`, `Mystic Poro [OGN-171, UNL-224]`.
+
+**§3 of this document reports a zero gap for Fury/Body/Chaos and concludes the name+type correction
+"makes no difference in this lane". That is wrong, and the cause is worth more than the number.**
+`.scratch/uncat-fbc.ts` builds its population from `poolOf(cards)`, and `poolOf`
+(`src/builder.ts:136`) is `[...basesByName(cards).values()].map((bases) => cards.get(bases[0]!)!)` —
+it **already collapses by name**. So both columns of that census were the name+type figure, its
+"naive base-code count" was never a base-code count, and its diagnostic line
+("uncatalogued name+type rows with 2+ base codes: none") was true of a population that had been
+deduped before it was measured. The general rule: **a census that wants to compare base codes with
+name+type must count over `data/cards.json` deduped by `base`, never over `poolOf`.**
+`.scratch/uncat-fc2.ts` does it that way; `.scratch/uncat-fbc.ts` is left in place unmodified, since
+it belongs to an archived session's walk.
+
+Six lanes have now measured this gap and it runs from **0% to 19.2%** — it is a per-lane
+measurement, and 15% is not a discount anybody may carry into a new lane.
+
+## 8. The partition, written down
+
+The ten dual-domain Signature spells that belong to no lane are taken here. Every uncatalogued
+dual-domain spell in the pool is Signature — sixteen of sixteen — so for all of them
+`prerequisites.easy` is a **one-legend field** under 103.2.d.2, and 103.2.d.1 caps the deck at three
+Signature cards in total.
+
+| card | domains | tag | forced legend |
+|---|---|---|---|
+| OGN-248 Icathian Rain | Fury/Mind | Kai'Sa | Daughter of the Void (OGN-247 / OGN-299) |
+| SFD-182 Danger Zone | Fury/Mind | Rumble | Mechanized Menace |
+| OGN-260 Last Breath | Calm/Chaos | Yasuo | Unforgiven |
+| OGN-266 Siphon Power | Mind/Order | Viktor | Herald of the Arcane |
+| OGS-022 Final Spark | Mind/Order | Lux | Lady of Luminosity - Starter |
+| SFD-200 Arcane Shift | Mind/Chaos | Ezreal | Prodigal Explorer |
+| VEN-152 Rebuttal | Mind/Chaos | Mel | Soul's Reflection |
+| VEN-140 Shuriken Flip | Fury/Calm | Akali | Rogue Assassin |
+| VEN-148 Shadow Dash | Calm/Order | Shen | Eye of Twilight |
+| VEN-156 Lightning Rush | Order/Chaos | Kennen | Heart of the Tempest |
+
+**Five, not four, contain Body** and belong to `rc-walk-order`: OGN-258 Dragon's Rage, OGS-020
+Highlander, OGS-024 Decisive Strike, UNL-202 Void Assault, UNL-204 Keeper's Verdict. And **one is in
+no lane at all and is not in the ten**: `VEN-146 Siphoning Strike` (Calm/Mind, tag Nasus, forced
+legend Curator of the Sands), flagged to the manager rather than taken, since Calm and Mind are
+unstaffed.
+
+## 9. Batch 6 — five entries
+
+### 9.1 `icathian-rain-annie-ravenborn-six-deal-actions` — OGN-248 + OGS-001 + OGN-032
+
+**The Bonus Damage family's ceiling, and the card that sets it.** 715: *"Bonus Damage applies to the
+total damage Dealt by one instance of the action."* `OGN-248 Icathian Rain` prints the sentence
+*"Deal 2 to a unit."* **six separate times**, so a +1 static is paid six times. The entry is written
+to be robust to the other reading — if the six sentences were one Deal action with six targets,
+715.2 gives the same six (*"the amount of Damage dealt to each target is increased by Bonus Damage
+individually and separately"*, whose worked example names Annie by name).
+
+**714 is the ceiling nobody expects**: *"If more than one instance of Bonus Damage is applied or
+granted to a Deal action, all instances are summed and applied once."* Annie plus `OGN-032 Ravenborn
+Tome` is **+2 per Deal action** — 6 × 4 = 24 — and not 2 × 18. A second static adds; it never doubles.
+
+**And it has no location clause, so it reaches a base.** Swept over the corpus: exactly six cards
+print damage to *"a unit"* with neither *"at a battlefield"* nor *"here"* — `OGN-029 Falling Star`,
+`OGN-248 Icathian Rain`, `OGN-252 Super Mega Death Rocket!`, `OGS-022 Final Spark`,
+`UNL-020 Dancing Grenade`, `UNL-026 Xerath, Freed`. The Rain is the only one of the six with more
+than two Deal actions, which is exactly what makes it the family's maximum; Falling Star's two are
+already catalogued as `ravenborn-tome-falling-star-two-deal-actions`, and this entry is a different
+number, not a restatement.
+
+### 9.2 `lucian-gunslinger-farron-blood-rush-assault-as-damage` — SFD-028 + OGN-015 + SFD-003
+
+**807.3 had never been cited by this catalogue** (0 hits in `data/combos.json`): *"Assault, and
+whether or not a unit has Assault, is a characteristic of the Unit and may be checked or referenced
+by other Game Effects."* That is the paragraph under `SFD-028 Lucian, Gunslinger`'s *"When I attack,
+deal damage equal to my [Assault] to an enemy unit here"*, and it is what turns the granted-[Assault]
+package from a **Might** package into a **removal** package.
+
+Arithmetic with the entry's own quantities: 807.1.b.3 (*"If X is omitted, it is presumed to be 1"*)
+gives Lucian 1 and Captain Farron's grant another 1; 807.2 sums them; Blood Rush is [Assault 2] and
+820.1.b buys exactly one extra execution, so its [Repeat] is a second [Assault 2]. **1 + 1 + 2 + 2 =
+6** — Lucian attacks at Might 8 and deals 6. The floor that repeats is Farron alone: [Assault] 2
+forever, 2 damage on every attack, no further cards.
+
+359.3.f.2 is why the pump can be bought late — the value is read *on execution*, and its worked
+example is the identically shaped Yasuo, Remorseful trigger resolving on *"his current Might of 5"*.
+Blood Rush carries [Action], so 806.1.b puts it inside the opened combat. The entry's steps use the
+Main Phase anyway, because that ordering needs no argument.
+
+**This is one entry, not the family.** OGN-004 Cleave, SFD-003 Blood Rush, VEN-009 Baccai Reaper,
+VEN-012 Perfect Execution, SFD-131 Ancient Warmonger, VEN-076 Repair Specialist and OGN-015 Captain
+Farron are one predicate on 807.2 and belong to `rc-walk-rules2` as a synergy rule.
+
+### 9.3 `bone-skewer-pairofant-stunned-attacker-execution` — UNL-139 + UNL-008 + SFD-001
+
+**190.3.a.1 reads *"moving to OR BEING PLAYED TO"***, and 464.2.c.1 makes the Attacker *"the player
+whose unit(s) applied the Contested status"* — so a card that makes the **opponent** play a unit at
+**your** battlefield makes **them** the attacker on **your** turn. `UNL-139 Bone Skewer` is the only
+card in the pool that does it out of their hand, for free, with the body arriving [Stun]ned.
+
+The two stun paragraphs cut in opposite directions and both matter: 423.1.b (*"A Stunned Unit does not
+contribute its might to damage in the combat damage step"*) makes their assignment under 465.2.c
+**zero**, so nothing of yours is scratched; 423.1.c (*"A Stunned Unit must still have damage applied
+to it equal to, or greater than, its full might value to be killed"*) means the stun is **not a
+discount**. Towering Pairofant at Might 6 plus Against the Odds' +2 for the one enemy unit there
+assigns 8: this executes anything in their hand **up to Might 8**, and nothing above it.
+
+It is a **defensive** payoff and the entry says so: 466.5 establishes Control only *"for a player if
+they didn't already control this Battlefield"*, and 811.1.b hides the card at a battlefield you
+already control, so there is no Conquer. What it buys is their best card, out of hand and into the
+trash, for 0 Energy. The risk, stated: 191.1 / 191.2 make **them** the player who plays it, so the
+pulled card's own play trigger fires for them — choose a big vanilla body over a small one with text.
+
+811.1.d.2 is what aims the spell: hidden, *"Choose a battlefield"* can only be the one you hid at.
+The hand choice escapes the same clause under its own tail (*"unless the ability explicitly restricts
+targeting in a way that makes this impossible"*, worked example Tideturner), because no card in a
+hand is at any battlefield.
+
+### 9.4 `harpoon-squad-pendulum-blade-boots-double-move-rider` — SFD-137 + VEN-011 + SFD-133
+
+**One [Ganking] move is both a departure and an arrival.** 144.4.c.1: *"Units with Ganking may use
+their Standard Move to Move from Battlefield to Battlefield."* A base-to-battlefield move is only an
+arrival and pays the Blade alone; a battlefield-to-base move is only a departure and pays the Squad
+alone. Only the Ganking move is both, and it pays **+4 for one exhaust**. That is the reason the
+Boots are in the line rather than a cheaper body — bought for the permission, since 810.2 says
+*"Multiple instances of Ganking are redundant"*.
+
+136.2.d decides whose Might rises: *"Effect Text may refer to 'this' or to the name of the Attached
+game object… Doing so refers to the Attached game object and not the Top-Most Card."* The Blade says
+**"I"** and **"me"**, not "this", so both are the carrier. Standing Might is 4 + 1 + 2 = 7 (434.1.d),
+attacking Might 11. Neither rider is a Buff counter, so 702.3's cap and 703's fixed +1 are silent.
+
+It repeats **exactly once a turn, forever**: 144.2 and 420.3.a put the exhaust on the Standard Move,
+415.3.a hands it back every Awakening. And the cost of leaving is real — 323.6 strips your Control of
+the battlefield he departs if he was its sole garrison.
+
+**A refusal was re-scoped rather than inherited.** `SFD-133 Boots of Swiftness` was refused in §5.7 of
+this document as a `UNL-144 Maduli` partner, correctly: a unit that can never be readied cannot pay
+144.2's exhaust, so granted [Ganking] is dead letter on it. That refusal is scoped to Maduli's own
+printed drawback and says nothing about a carrier that readies normally — the #59 Garbage Grabber
+lesson, applied inside the same walk document.
+
+### 9.5 `acceptable-losses-ravenbloom-prefect-gearless-gear-hate` — OGN-179 + VEN-102
+
+**055 is the whole card**: *"When executing card text, do as much as you can, ignoring impossible
+instructions."* A player who controls no gear ignores *"kill one of their gear"*, and 055.1 resolves
+the spell anyway. So in a list that runs **zero** gear, the pool's only symmetric gear wipe is a
+**one-sided** gear kill for 1 Energy at [Action] speed. Nothing in the card does this; the deck does.
+
+**And a Gold token would arm the half you dodged.** 185.2.d: *"Tokens have a type. They follow all
+rules for their type unless otherwise specified."* A Gold gear token is gear for this instruction, so
+`UNL-145 Pyke, Returned` — Chaos, mints a Gold on an enemy death — is **anti-synergic** with the
+entry. The positive half of the token rules, biting the player who normally benefits from it.
+
+355.10.e is why nothing is targeted (its printed example is this exact shape), so 809.1.c's [Deflect]
+tax never charges and `SFD-105 Ruin Runner`'s absolute *"can't be chosen by enemy spells and
+abilities"* never engages — at the price that the **opponent** picks which of their gear dies.
+
+`VEN-102 Ravenbloom Prefect` covers what the spell cannot. 383.3.b makes *"you may banish me to
+banish it"* the trigger's **base cost**, and 383.3.b.1 requires it *"in order to finalize the
+Triggered Ability to the Chain"*, so the Prefect is already gone when the trigger goes on. Under
+**R26 = B** it fires as the gear resolves, so it answers **persistent** gear (Equipment, Seals) and
+not gear whose value was its arrival — the entry does not depend on which way R26 falls, since the
+gear is banished either way.
+
+**A measurement lesson from this entry.** The project's earlier gear-removal inventory was built with
+a regex on the singular verb, and `grep -inE "kill (a|all|one)[^.]*gear"` **misses Acceptable Losses
+entirely**, because the card prints *"Each player **kills** one of their gear."* Swept correctly
+(`kills? [^.]*gear`), the pool's symmetric-kill rows are exactly two: `OGN-179 Acceptable Losses` and
+`OGN-209 Cull the Weak`.
+
+## 10. Refusals from batch 6, each with the paragraph that kills it
+
+- **`OGN-191 Maddened Marauder` + `OGN-174 Sai Scout` — evacuate with a play trigger, then play a body
+  to the opened battlefield.** Refused as a **duplicate mechanism at twice the price**. The chain is
+  sound (323.6 strips Control at the next Cleanup → 170.11.c makes the battlefield *open* →
+  355.2.b permits the play → 190.3.a.1 Contested → 344.2 opens a Showdown → 348.2.a.1 *"This results
+  in a Conquer"*), but it is card-for-card `isolate-deckhand-open-conquer` (UNL-124 Isolate + OGN-176
+  Sneaky Deckhand) for **11 Energy instead of 5**, and the catalogue already holds
+  `stare-down-buccaneer-open-battlefield-conquer` on the same shape. Same mechanism, same arithmetic,
+  worse numbers: a notable, not an entry. Recorded so the next session does not re-derive it.
+- **`UNL-130 Walking Roost` as a way to manufacture enemy bodies for `SFD-131 Ancient Warmonger`
+  ([Assault] equal to the number of enemy units here) or `SFD-001 Against the Odds` (+2 per enemy unit
+  there).** Refused by **355.2.a**: the Roost says *"They play a 1 Might Bird unit token"* and names
+  no destination, so the token goes to *the controller's Base or a battlefield the controller
+  controls* — **their** choice, and they will put it at their base. You cannot buy an enemy body at a
+  battlefield you have picked.
+- **`UNL-145 Pyke, Returned`'s Gold token as fodder for `OGN-179 Acceptable Losses`.** Refused by
+  185.2.d + 055: running the fodder is strictly worse than running none, because 055 already makes
+  your half of the instruction impossible when you own no gear. The "free sacrifice" instinct inverts
+  here.
+- **A second Bonus Damage source as a multiplier on Icathian Rain.** Refused by **714** — instances
+  are *"summed and applied once"* per Deal action. `OGN-032 Ravenborn Tome` beside Annie is +2 per
+  action, not ×2. (Recorded again because §1.6 refused it for Piercing Light and the arithmetic is
+  the one readers keep re-deriving.)
+- **A second [Ganking] grant on the Harpoon Squad.** Refused by **810.2** (*"Multiple instances of
+  Ganking are redundant"*) and 810.1.c.3 (*"It does not give additional abilities or activations of
+  Movement, only new options for the Standard Move"*).
