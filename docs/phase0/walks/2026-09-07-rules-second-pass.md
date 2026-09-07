@@ -1229,3 +1229,139 @@ both cost four separate cards. Recorded because it is the first thing anyone tri
 Four entries in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos` clean over 531 entries (batch 1
 was merged by the manager between the two batches); `test/legend-lines.test.ts` checks run against the
 staging file, clean. No duplicate id and no duplicate sorted card set.
+
+## 30. Batch 3 — four rules outside the buff vein
+
+### 30.1 `herald-of-scales-gemdragon-drakehound-net-positive` — a discount and a refund are different objects
+
+**356.4.e** is normally cited to stop two discounts stacking below a floor. Read the other way it says
+something constructive: a floor *"applies only to that discount"*, and a **refund is not a discount at
+all**, so no floor can reach it.
+
+- `OGN-140 Herald of Scales`: *"Your Dragons' Energy costs are reduced by 2, to a minimum of 1"* — a
+  floored discount.
+- `UNL-104 Gentle Gemdragon`: *"When you play me or another Dragon, ready up to 2 runes"* — a refund,
+  because **164.2.a** gives a rune *"[E]: [Reaction] — Add [1]"*, i.e. 2 Energy back after the cost
+  was paid.
+
+On `SFD-006 Eager Drakehound` (Fury, E3 + 1 Fury Power, and in ZERO entries) that is 1 Energy paid
+and 2 returned: **the body is Energy-positive**, and the only real cost is the Power. On every Dragon
+printed at E4 or more the pair is a flat 4 Energy (Elder Dragon E12 → 8 net; Mountain Drake E9 → 5
+net), because the floor never engages above E3. The Gemdragon refunds its own entry too, since its
+trigger reads *"when you play **me** or another Dragon"*.
+
+Bounded by **415.1.b** on the rune side — you cannot ready a rune that is already ready — and by
+**167**, which empties the Rune Pool at the start of your next Main Phase, so the refunded Energy has
+to be spent that turn.
+
+Companion fact: Eager Drakehound is tagged **Dog, Dragon and Noxus**, so an E1 body fills the Dog slot
+of the four-tag package (`UNL-046 Friendship`, `UNL-167 Starhound`, `UNL-168 Undying Loyalty`,
+`UNL-177 Ivern, Friend to All`) as well as every Dragon rule — and §28 measured that no card in the
+pool carries two of Bird/Cat/Dog/Poro, so the slot always costs a card.
+
+### 30.2 `master-yi-unstoppable-gardens-level-ladder` — the pool's only `[Level 16]`
+
+Swept over `data/corpus_flat.txt`: **6 × `[Level 3]`, 9 × `[Level 6]`, 4 × `[Level 11]`, 1 ×
+`[Level 16]`**. The one is `UNL-059 Master Yi, Unstoppable` (Calm, E12 P3 M12), and it was in **zero**
+entries.
+
+His four rungs are a cost ladder, and the word **"instead"** is load-bearing: the 6 and 11 rungs
+*replace* the previous reduction rather than adding to it. A reader who stacks them gets
+12 − 2 − 4 − 6 = 0 and is wrong by six Energy. The true ladder is
+
+| XP | cost |
+|---|---|
+| 0 | E12 + 3 Calm |
+| 3 | E10 + 2 Calm |
+| 6 | E8 + 1 Calm |
+| 11 | **E6 + no Power**, for a Might 12 body |
+| 16 | unchanged cost, plus *"I can't be chosen by enemy spells and abilities"* |
+
+`UNL-213 Gardens of Becoming` (*"Units here have ':rb_exhaust:: Gain 1 XP.'"*) is the faucet, and its
+price is stated rather than waved: **144.2** charges the Standard Move that same exhaust, so N XP a
+turn costs the whole garrison's mobility that turn, and **381** keeps the granted ability to your own
+turn in an Open State. It also **arms the opponent** — the text says *"Units here"*, not *"you"*, so
+190.6.d never blanks it and an opposing garrison there climbs at the same rate.
+
+And the deck must run **no XP sink at all**: 824.1.d makes the Dependent Ability *"Inactive as soon as
+the controlling player has less than [N] XP"* and 730.2 defines spending XP as reducing your own
+marked value, so one `Spend 2 XP` cost anywhere can knock a card in hand back a rung mid-turn. This is
+the exact opposite deck from §27.3.
+
+Two leads from the same balance, both in zero entries and both Body (which is why the Wuju Master
+shell is natural): `UNL-091 Concentrate` falls from E5 to **E1** for *"Draw 2"* at `[Level 11]`, and
+`UNL-098 Targonian Visionary` becomes Might 10 at the same threshold.
+
+### 30.3 `gemcraft-seer-flurry-of-feathers-bird-dig` — 817.2.b inverts the obvious reading
+
+> **817.2.b.** *"If the player does not recycle the top card and nothing else happens in between the
+> triggers resolving, each instance of Vision will see the same card."*
+
+No entry had cited it. Four Bird tokens entering under `OGN-100 Gemcraft Seer`'s *"Other friendly
+units have [Vision]"* are **not** four free peeks at four different cards. 817.2.a lets you choose
+separately for each instance, and 817.2.b guarantees that declining shows you the same card again — so
+what four Visions actually buy is **a four-deep dig with a stop button**: bury the top card (416.1
+sends it to the bottom), look at the next, stop the moment you like it.
+
+That is better than it sounds, because **431.1.c** makes it free of Burn Out — *"looks at or Reveals
+as many as possible, but does not Burn Out"*, extended by 431.1.c.1 to the zone change that follows.
+A dig that costs no card and cannot burn you out is the one card-selection effect that is safe inside
+an empty-deck shell, where every draw is 431.1.a.
+
+The static reaches the tokens by rule: 185.2.b makes a token unit a unit, 383.2.c.1 has an ability
+active in a zone apply to an object entering it at the same time, and 817.1.c's trigger is *"the
+permanent entering the Board"* rather than "when played" — so no argument about 350.2 is needed.
+`UNL-044 Flurry of Feathers` is the only card in the pool that puts four unit tokens down at
+[Reaction] speed, which is what makes this an instant-speed dig on either player's turn.
+
+### 30.4 `solari-chief-nami-headstrong-stun-into-kill` — the window is one Main Phase
+
+`OGN-225 Solari Chief`'s kill reads **no Might threshold at all**, which is what separates it from the
+22 Might gates in the pool: a stunned body dies at Might 12 exactly as at Might 1. The constraint is
+timing.
+
+- **423.1.a.2**: *"Stunned Units lose the Stunned status during step 3d of the end of turn cleanup."*
+  So the stun and the Chief must be cast in the **same** Main Phase; a stun applied on turn N is gone
+  before your turn N+1, and one applied on the opponent's turn is gone before you ever act.
+- **423.1.a.1**: *"A Stunned Unit can not be Stunned again."* So a second stun effect on the same body
+  is wasted — one cheap enabler per Chief, no more.
+- **423.1.b / 423.1.c** are why the enabler is not removal on its own: the stun only removes the
+  body's contribution to combat damage, and killing it by damage still costs its **full current
+  Might**.
+
+Both halves are unit plays with no [Action] and no [Reaction], so 381 and 155 keep the whole line in
+your own Main Phase — it can never be held up as an answer inside the opponent's combat.
+`UNL-052 Nami, Headstrong` is the cheap enabler (one Calm Power on top of a body you wanted anyway),
+and her second sentence is the one printed exception to the "a Hold-triggered ready is a no-op" rule:
+it arms a DELAYED effect that resolves in the Main Phase (316) rather than inside 315.2.
+
+## 31. Batch 3 refusals — the Pit Crew list is mostly dead, and here is the rule that kills it
+
+`pit-crew-gear-ready` (`OGN-091 Pit Crew`, Mind, *"When you play a gear, ready me"*) is the
+highest-`uncovered` rule in the file at 104 partners, and the predicate is `any gear` — a POPULATION,
+not a pairing. Reading it end to end, the honest filter is one sentence: **Pit Crew only cares about a
+gear played in YOUR Main Phase, after he has already exhausted.** Two named families fall to it:
+
+- **`SFD-086 World Atlas` — REFUSED.** *"When I hold, play two Gold gear tokens exhausted."* The Hold
+  fires at 315.2.b.2, and 315.1.b readied Pit Crew a whole phase earlier at 315.1; 415.1.c then says
+  *"If a Unit is instructed to be Readied while it is already Ready, nothing additional happens."*
+  Both gear plays are worth zero. This is the standing Awaken-order no-op reaching a *"when you play a
+  gear"* trigger rather than a buff trigger.
+- **`SFD-063 Chemtech Cask` — REFUSED.** *"When you play a spell on an opponent's turn, you may exhaust
+  me to play a Gold gear token exhausted."* The ready lands on the OPPONENT's turn, where 144.1.b
+  forbids the Standard Move, and 415.3.a readies Pit Crew again at your own Awakening regardless —
+  refuse-bucket E, a ready that buys nothing.
+
+What survives is a gear played in your own Main Phase, which includes a **Gold gear token**, since
+350.2 makes a token something that is played and 187.5 defines the Gold as a gear token — so a
+Main-Phase Gold source (a Conquer trigger such as `SFD-069 Plundering Poro`, or `SFD-220 Treasure
+Hoard`) is fuel that 103.2.b does not cap the way it caps three copies of a 1-Energy gear. That is a
+`notable` on `pit-crew-eye-herald-recruit-shuttle`, not a second entry: the payoff is the same Eye of
+the Herald Recruit, only the fuel changes.
+
+## 32. Batch 3 — staged
+
+Four entries in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos` clean over 538 entries;
+`test/legend-lines.test.ts` checks run against the staging file, 13 legend codes, clean.
+Cards in **zero** entries before this batch: `SFD-006` Eager Drakehound, `UNL-059` Master Yi,
+Unstoppable.
