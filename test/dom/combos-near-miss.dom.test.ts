@@ -99,10 +99,15 @@ describe("what the distance changes", () => {
     expect($("#route-count").textContent).toBe(String(counts[0]));
   });
 
+  /**
+   * Counted off `#route-count`, not off the chips. The tray caps at twelve and offers the rest
+   * (2026-09-07), so a chip count stopped being a measure of how many near misses there ARE — which
+   * is what this test is about — the moment the catalogue grew past that cap at every distance.
+   */
   it("widens the near misses monotonically", async () => {
     await setView("suggestions");
     const counts: number[] = [];
-    for (const d of ["1", "2", "3"]) { await setDistance(d); counts.push(chips()); }
+    for (const d of ["1", "2", "3"]) { await setDistance(d); counts.push(Number($("#route-count").textContent)); }
     expect(counts[0]).toBeLessThan(counts[1]!);
     expect(counts[1]).toBeLessThan(counts[2]!);
   });
@@ -116,9 +121,12 @@ describe("what the distance changes", () => {
     for (const d of ["1", "2", "3"]) {
       await setView("suggestions");
       await setDistance(d);
-      const shown = chips();
+      // The number the other view HOLDS, which since the tray cap is no longer the number of chips
+      // it draws. `#route-count` is the uncapped total and is what the status card must agree with.
+      const held = Number($("#route-count").textContent);
+      expect(document.querySelectorAll("#tray .chip").length, "the tray shows at most the cap").toBeLessThanOrEqual(Math.min(held, 12));
       await setView("network");
-      expect(status(), `at ${d}`).toContain(`${shown} near miss${shown === 1 ? "" : "es"} within ${d} card${d === "1" ? "" : "s"}`);
+      expect(status(), `at ${d}`).toContain(`${held} near miss${held === 1 ? "" : "es"} within ${d} card${d === "1" ? "" : "s"}`);
     }
   });
 

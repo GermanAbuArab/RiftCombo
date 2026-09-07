@@ -231,12 +231,24 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 
 /* Tray */
 .tray { display: flex; gap: 0; padding: 0; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; align-items: stretch; background: var(--bg); }
+/* The tray's overflow control (2026-09-07). It sits in the strip as the last item, so it is where
+   the chips run out rather than somewhere else on the page, and it is a real button: keyboard
+   reachable, aria-expanded, and its focus ring is drawn INSIDE it — see the rule below. */
+.tray-more { flex: 0 0 auto; align-self: stretch; width: 148px; padding: 13px 16px; border: 0; border-left: 1px solid var(--line); background: var(--bg); color: var(--muted); font: 500 0.78125rem var(--font); text-align: left; cursor: pointer; }
+.tray-more:hover { background: var(--panel); color: var(--text); }
 .tray-empty { margin: auto; color: var(--faint); font-size: 0.8125rem; background: var(--bg); width: 100%; text-align: center; padding: 40px 0; }
 .chip {
   flex: 0 0 auto; width: 268px; padding: 13px 16px 13px 14px; border: 0; border-left: 3px solid var(--line-2); border-right: 1px solid var(--line); border-radius: 0 10px 10px 0; background: var(--bg);
   text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 6px; color: var(--text);
 }
 .chip:hover { background: var(--panel); }
+/* The ring goes INSIDE, and this is a fix rather than a preference: `.tray` is `overflow-x: auto`
+   with `overflow-y: hidden`, a chip stretches to the tray's full height, and the pinned ring is 2px
+   at 2px offset — so every chip's ring was clipped top and bottom, measured in Chrome on 2026-09-07
+   (chip top and bottom both 0px from the tray's edges against an outline reaching 4px). CSS gives no
+   way out: with one axis clipped the other cannot be `visible`. Drawing it inside is what the
+   segmented control already does for the same reason (`.segmented input:focus-visible + span`). */
+.chip:focus-visible, .tray-more:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .chip.active { background: var(--panel-2); border-left-color: var(--accent); }
 .chip-head { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
 .chip-title { font-family: var(--font); font-weight: 600; font-size: 0.90625rem; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }

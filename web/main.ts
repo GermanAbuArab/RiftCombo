@@ -29,6 +29,19 @@ const combosById = new Map(combos.map((c) => [c.id, c]));
 const cataloguedCards = new Set(combos.filter((c) => c.status === "verified").flatMap((c) => c.uses.map((u) => u.card)));
 /** Rules the "One card away" panel shows before it becomes a list of the catalogue. */
 const GAP_LIMIT = 5;
+/**
+ * How many chips the tray draws before it offers the rest (2026-09-07). Measured over the 223
+ * registered lists in `test/fixtures/tournament-lists` at 631 entries: in near-miss mode the tray
+ * concatenates five buckets and drew a median of 24 chips, 38 at p90 and 51 at worst — 13,668px of
+ * SIDEWAYS scroll in a 1,082px tray, i.e. 12.6 screens. At 340 entries the p90 was 16, so this is
+ * catalogue growth and it will keep going.
+ *
+ * A count line alone is the wrong shape here: `renderGaps` and `renderPlan` cap lists that continue
+ * DOWN the panel, where "N more" is a signpost to something the player can still scroll to. A tray
+ * scrolls sideways, and this project's standing rule is that the count is the honest signal and
+ * hiding an answer hides a real answer — so the overflow expands IN PLACE instead.
+ */
+const TRAY_LIMIT = 12;
 const featuresById = new Map(features.map((f) => [f.id, f]));
 
 const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel)!;
@@ -190,6 +203,7 @@ async function run(source: "text" | "url" = "text") {
     deck = source === "url" ? await fromUrl(url) : /^https?:\/\//i.test(text) ? await fromUrl(text) : loadDeck(text, cards);
     result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() });
     selected = null;
+    trayExpanded = false;
     // The deck panel stays open after analysing. Collapsing it here used to hide the list the
     // user just pasted, and it widened the stage enough to make the diagram fit at ~54%.
     render();
@@ -634,11 +648,20 @@ const outcomeColors = (hits: Hit[]) => {
   return new Map(inOrder.map((f, i) => [f, OUTCOME_PALETTE[i % OUTCOME_PALETTE.length]!]));
 };
 
-function renderTray(hits: Hit[]) {
+/** Whether the tray is showing past TRAY_LIMIT. Reset with `selected`, so a new list starts capped. */
+let trayExpanded = false;
+
+function renderTray(all: Hit[]) {
   tray.innerHTML = "";
-  if (!hits.length) { tray.innerHTML = `<p class="tray-empty">${mode() === "network" ? "No complete combos to show." : "No near misses to show."}</p>`; return; }
+  if (!all.length) { tray.innerHTML = `<p class="tray-empty">${mode() === "network" ? "No complete combos to show." : "No near misses to show."}</p>`; return; }
+  // Closest first, so a cap can never hide the nearest miss. `missingCount` is not a new metric —
+  // it is the number the "Within N cards" control already compares against (src/matcher.ts:66), so
+  // the tray is ordered in the same units the player set the threshold in. The sort is stable, so
+  // the bucket order shownHits() builds survives as the tiebreak it already was.
+  const hits = [...all].sort((a, b) => a.missingCount - b.missingCount);
+  const shown = trayExpanded ? hits : hits.slice(0, TRAY_LIMIT);
   const colors = outcomeColors(hits);
-  for (const hit of hits) {
+  for (const hit of shown) {
     const v = hit.variant;
     const primary = combosById.get(v.comboIds[0]!)!;
     const outcome = v.produces.map((f) => featuresById.get(f)).find((f) => f?.status === "STANDALONE");
@@ -665,6 +688,23 @@ function renderTray(hits: Hit[]) {
     b.querySelector<HTMLElement>(".swatch")!.style.background = color;
     b.addEventListener("click", () => { selected = selected === primary.id ? null : primary.id; view?.select(selected); showDetail(selected); markChips(); });
     tray.append(b);
+  }
+  const rest = hits.length - TRAY_LIMIT;
+  if (rest > 0) {
+    const more = document.createElement("button");
+    more.type = "button";
+    more.className = "tray-more";
+    more.setAttribute("aria-expanded", String(trayExpanded));
+    // Named in the vocabulary of whichever list it is capping, the way the empty state above is.
+    const noun = mode() === "network" ? "combo" : "near miss";
+    more.textContent = trayExpanded ? "Show fewer" : `${rest} more ${rest === 1 ? noun : noun === "combo" ? "combos" : "near misses"}`;
+    more.addEventListener("click", () => {
+      trayExpanded = !trayExpanded;
+      renderTray(all);
+      // Keep the control under the hand that pressed it rather than scrolling back to the start.
+      tray.querySelector<HTMLElement>(".tray-more")?.focus();
+    });
+    tray.append(more);
   }
   markChips();
 }
@@ -938,7 +978,7 @@ $<HTMLButtonElement>("#enter-deck").addEventListener("click", () => setPanel(tru
  */
 const syncNearMiss = () => { $<HTMLElement>("#near-miss").hidden = mode() === "network"; };
 syncNearMiss();
-document.querySelectorAll("input[name=view], input[name=layout]").forEach((r) => r.addEventListener("change", () => { selected = null; syncNearMiss(); render(); }));
+document.querySelectorAll("input[name=view], input[name=layout]").forEach((r) => r.addEventListener("change", () => { selected = null; trayExpanded = false; syncNearMiss(); render(); }));
 document.querySelectorAll("input[name=format]").forEach((r) => r.addEventListener("change", () => { if (deck) { result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() }); render(); } }));
 $<HTMLSelectElement>("#max-missing").addEventListener("change", () => { if (deck) { result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() }); render(); } });
 $<HTMLButtonElement>("#fit").addEventListener("click", () => view?.fit());
