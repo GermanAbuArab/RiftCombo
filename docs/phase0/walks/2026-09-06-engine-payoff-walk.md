@@ -1149,3 +1149,84 @@ richest removal engine in the catalogue rather than argued from the payoff inven
     `token-body-engine` by #64, and the count of INFINITE engines with a connected domain-legal scoring
     route went 2/12 → 9/14 → 11/14. Re-run the measurement (`generateVariants`, then filter variants
     headed by BURST/CHAIN/ALT_WIN per engine) before citing that table again.
+
+---
+
+# 26. Session wrap — rc-walk-payoff, 2026-09-06
+
+Verified against `data/combos.json` at 340 entries: **all 16 entries authored here are merged**, and
+`renata-time-warp-ekko-refresh` is in the tree as `CHAIN` carrying `SFD-159`.
+
+## What shipped
+
+| | count |
+|---|---:|
+| Entries authored and merged | **16** (12 ENGINE, 2 CHAIN, 1 ALT_WIN, 1 BURST) |
+| Entries authored and **withdrawn** | 1 (`shen-blue-sentinel-exact-hold`, §11) |
+| Existing entries rewritten | 1 (`renata-time-warp-ekko-refresh`, ENGINE → CHAIN, §3 and §15) |
+| Refusals recorded with the paragraph that kills them | **11** |
+| Facts handed to `CLAUDE.md` | **20** |
+
+**The entries**, by the lens that produced them:
+
+- *#155 candidate 1, rebuilt* — `power-nexus-atlas-sentinel-gold`,
+  `power-nexus-atlas-sentinel-time-warp`, `power-nexus-benefactor-sentinel-time-warp`,
+  `power-nexus-sentinel-renata-mastermind`
+- *#155 candidate 2* — `herald-heimerdinger-armory-plaza`
+- *#155's under-rated payoff* — `armory-heimerdinger-bottled-constellation`
+- *#154 core 1* — `first-mate-lucian-merciless-double-conquer`
+- *#155's refused groups, reopened from the other side* — `tryndamere-hextech-gauntlets-enforcer`,
+  `wild-claw-nasus-ascended-empowered`
+- *the #118 `[Action]`-removal family* — `draven-rebuke-bloodless-combat`,
+  `wind-and-ghosts-nasus-bloodless-conquer`, `alpha-strike-wuju-master-garrison-clear`,
+  `noxian-guillotine-legion-bloodless-fork`
+- *the conquer-engine group* — `charm-nasus-evacuation-conquer`,
+  `yasuo-remorseful-svellsongur-nasus-conquer`
+- *the INFINITE × payoff lens* — `reveler-loop-nasus-brambleback-conquer`
+
+## The three findings that travel furthest
+
+1. **`316.2` orders the Main Phase's tasks — the sweep (316.3) is *first*, start-of-Main-Phase effects
+   (316.4) are *second*.** So `UNL-087 Blue Sentinel`'s `[Add]` survives `167`. Nine catalogued entries
+   used that card and none of them spent the Power. It is what pays for Time Warp in §1 and for Renata
+   in §4.
+2. **`"pay X **to** Y"` is a Triggered Ability's *base cost*, paid to finalize it onto the Chain
+   (383.3.b / 383.3.b.1); `"pay X. **If you do,** Y"` is a game action at resolution (205).** Riot gives a
+   worked example of each. Consequence: Power Nexus is paid at finalization, and since 383.3.d places every
+   simultaneous Hold trigger before any resolves, **Gold made by the same Hold can never pay it** — not
+   even under R25 = A.
+3. **A conquer taken without a damage step generates zero excess damage**, so it blanks all six
+   excess-damage cards. The removal-conquer family and the excess-damage family are mutually exclusive
+   *in principle*, not merely by domain — which is why `tryndamere-hextech-gauntlets-enforcer` and
+   `draven-rebuke-bloodless-combat` are opposite designs by the same author on the same night.
+
+## Corrections made, to others' work and to my own
+
+**To the hunts:** #155's master payoff inventory holds (I re-grepped all 79 lines), but it omitted four
+non-converters and under-rated `VEN-067 Bottled Constellation`; its refusal 7 named two entries as
+multi-domain that are **mono-Body**, so Time Warp is legal there (verdict survived, reason did not);
+#154's core-1 sequence had Lucian played and moved on the same turn, which 143.4 + 144.2 forbid; and
+#63's §3.1/§3.2 are **superseded** — 2/12 became 9/14 became 11/14.
+
+**To my own:** the first reclass draft lost a battlefield to its own Deathknell (323.6 fires on *your*
+Cleanup, not the opponent's) and needed `SFD-159` in `uses`; my flag against `heimerdinger-armory-plaza`
+was wrong, because 143.4 exhausts only units so the Armory fires the turn it lands; and a
+"`VEN-106` is in zero entries" claim went stale mid-batch and was rewritten before staging.
+
+## The process lesson, stated once
+
+**Three claims of the form "card X is in no entry" were overtaken by parallel walks inside one
+session** — `VEN-138 Shen` (whole entry withdrawn after `shen-kinkou-sentinel-hold` merged an hour
+earlier), `heimerdinger-armory-plaza`, and `VEN-106 Wind and Ghosts`. Facts 10 and 17 are the standing
+rule that came out of it: immediately before staging, re-run **both** the sorted-card-set duplicate check
+and the single-card coverage check against the *current* `data/combos.json`, not against the snapshot the
+walk opened with.
+
+## Open, deliberately not closed here
+
+- **`azir-sovereign-token-gather` + The Grand Plaza fed by an *unbounded* Recruit engine.** §18 refuses
+  it for a *bounded* token supply, and that refusal is scoped to its lens: with `jhin-fiora-facebreaker-recall`
+  or `garen-fiora-malzahar-facebreaker-recruits` behind it, `K ≥ 6 + D` stops binding. The DAG already
+  connects those engines to `ready-recruits-grand-plaza`; whether Azir adds anything on top is a combat
+  walk, not a Hold walk.
+- **`lady-luminosity-loop-comet`** stays at zero routes on purpose (§24.2), and should not be "fixed".
