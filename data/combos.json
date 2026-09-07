@@ -35914,6 +35914,277 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-07, issue #173. OGN-204 Seal of Discord and OGN-163 Seal of Strength were in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.2.b, 103.2.d.2, 135.2.e.5.b, 143.2.a, 164.2.b, 204.3.b, 315.3.b, 355.10.d, 415.3.a, 429.2, 740.4.a.1, 806.1.b, 809.1.c, 809.1.d opened in the Core Rules file. All three cards legal in both formats. THE SIGNATURE CHECK WAS RUN BEFORE THE LEGEND LINE WAS WRITTEN and caught it: Bullet Time is tagged Miss Fortune and the pool has exactly one Miss Fortune legend, so the field is one legend and not the three Body/Chaos names a domain-shaped answer would have given."
+    },
+    {
+      "id": "ornns-forge-jax-free-equipment",
+      "name": "Ornn's Forge pays the play cost and Jax's granted [Quick-Draw] pays the attach — a free Equipment onto a chosen body, at Reaction speed, every turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-213",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'While you control this battlefield, the first friendly non-token gear played each turn costs :rb_energy_1: less.' It says 'you control', so 190.6.d blanks it until the battlefield is taken (190.1) — this is one of the ones that has to be conquered. On an Equipment printed at E1 the discount is the whole cost; 356.6 floors it at 0."
+        },
+        {
+          "card": "SFD-054",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm unit, E5 P1 M5. '[Deflect] (…) Your Equipment everywhere have [Quick-Draw]. (Each gains [Reaction]. When you play it, attach it to a unit you control.)' 819.1.d spells the keyword out as '[Reaction]' plus 'When you play this, attach it to a Unit you control', and 819.1.c says outright that it 'allows cards to be played and Attached using Reaction timing'. So the attach costs nothing and happens inside a combat."
+        },
+        {
+          "card": "SFD-033",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm gear, E1, M+1. '[Equip] :rb_rune_calm: (…) [Effect] [Tank] (I must be assigned combat damage first.)' The E1 price is what Ornn's Forge zeroes and the [Effect] is why it is the right Equipment: 434.1.c appends it to the carrier, so the free attach hands a chosen body [Tank] at Reaction speed."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Jax, Unmatched and Doran's Shield are both mono-Calm and Ornn's Forge is Colorless, so 103.1.b.3 admits any legend with Calm in its pair: OGN-255/OGN-303 Nine-Tailed Fox, OGN-257/OGN-304 Blind Monk, OGN-259/OGN-305 Unforgiven, OGN-261/OGN-306 Radiant Dawn, SFD-189/SFD-244 Fire Below the Mountain, SFD-193/SFD-245 Grandmaster at Arms, SFD-195/SFD-246 Blade Dancer, SFD-197/SFD-247 Emperor of the Sands, UNL-189/UNL-230 Bashful Bloom, UNL-191/UNL-231 Wuju Master, UNL-193/UNL-232 Gloomist, UNL-195/UNL-233 Green Father, VEN-139/VEN-189 Rogue Assassin, VEN-145/VEN-192 Curator of the Sands, VEN-147/VEN-193 Eye of Twilight, OGS-019 Wuju Bladesman - Starter (restricted in 2v2)."
+        ],
+        "notable": [
+          "THE TWO HALVES PAY THE TWO DIFFERENT COSTS AN EQUIPMENT HAS, AND THAT IS THE ENTRY. 818.1 makes Equip a separate Activated Ability with its own cost, so an Equipment normally costs its Energy to PLAY and then its [Equip] cost to ATTACH. Ornn's Forge zeroes the first for one gear a turn; [Quick-Draw] deletes the second entirely, because 819.1.d's attach is part of the play trigger and not an Equip activation.",
+          "AND IT LANDS AT REACTION SPEED. 819.1.b gives the gear [Reaction] inherently and 819.1.c permits playing AND attaching at Reaction timing, so this happens inside the Closed State a combat opens (813.1.c.1), after 464.2.c.3 has designated the attackers.",
+          "WHICH MAKES IT A SECOND, CHEAPER ROUTE TO THE TANK REDIRECT. 815.1.c.2 — 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them' — so granting [Tank] to one body makes every other body of yours an illegal assignment. This walk's eye-of-twilight-zephyr-sage-tank-redirect buys the same effect with a legend's exhaust; this buys it with a card that also leaves +1 Might behind permanently. The two are alternatives, not a stack.",
+          "ONE GEAR A TURN, AND IT MUST BE THE FIRST. 'The FIRST friendly non-token gear played each turn' — playing anything else first spends the discount, and a Gold token is excluded by the word non-token anyway.",
+          "THE POOL HAS SIX EQUIPMENT AT E1, ONE PER DOMAIN, and a two-domain identity reaches two of them: SFD-009 Serrated Dirk (Fury), SFD-033 Doran's Shield (Calm), SFD-073 Experimental Hexplate (Mind), SFD-108 Warmog's Armor (Body), SFD-134 Cull (Chaos), SFD-153 Eye of the Herald (Order). Named so the count is refutable in one grep. Three copies each (103.2.b), so a Calm/X deck has six free plays across a game.",
+          "819.2 MAKES A SECOND INSTANCE OF QUICK-DRAW WORTHLESS ('do not trigger separately and have no effect beyond the first'), so a second Jax adds nothing and no multiplier reaches this.",
+          "ORNN'S FORGE HAS TO BE CONQUERED and is not guaranteed to be on the table: 190.1, 190.6.d, 485.4.a, 485.5, 486.5, 103.4.c."
+        ]
+      },
+      "steps": [
+        "Take Ornn's Forge and keep a body on it; until you control it 190.6.d ignores the discount entirely.",
+        "Play Jax, Unmatched (E5 + 1 Calm Power). His clause is a static over 'your Equipment everywhere', so every gear in hand, on the board and in the deck now has [Quick-Draw].",
+        "Wait for the opponent's attack. Inside the Combat's Closed State (312.2.c, 813.1.c.1), play Doran's Shield: it is the first non-token gear you have played this turn, so Ornn's Forge takes its E1 to 0 (356.6 floors it there).",
+        "819.1.d's play trigger attaches it to a unit you control for no cost at all — no [Equip] activation, so 818.1's cost is never determined.",
+        "434.1.c appends the Shield's [Effect] to that carrier: it now has [Tank] and, by 434.1.d, +1 Might.",
+        "815.1.c.2 makes every other unit you control in this Combat an invalid damage assignment until the carrier has lethal damage. Repeat next turn with the next E1 Equipment."
+      ],
+      "netPerIteration": "one E1 Equipment played and attached for zero Energy and zero Power, at Reaction speed, per turn",
+      "terminatesIn": "engine only — one free gear a turn for as long as you hold Ornn's Forge, bounded by how many E1 Equipment the identity contains (six per domain pair at three copies each, 103.2.b); nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "819.1.c. Quick-Draw allows cards to be played and Attached using Reaction timing. 819.1.d. Quick-Draw is functionally short for \"[Reaction]\" and \"When you play this, attach it to a Unit you control.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use SFD-213. Card text verbatim from data/corpus_flat.txt. The content is that an Equipment has TWO costs and these two cards pay one each, which is stated with 818.1 (Equip is a separate Activated Ability) against 819.1.d (the attach is part of the play trigger) rather than asserted. The six E1 Equipment are NAMED so the count is refutable in one grep, per the #175 correction. Trap check: 819.2 is cited so a second Jax is not counted; 'the FIRST gear each turn' is stated as an ordering constraint; 190.1 + 190.6.d are cited because this battlefield DOES say 'you control' and therefore has to be taken, unlike the six 'no you' battlefields found earlier in this walk; the relationship to eye-of-twilight-zephyr-sage-tank-redirect is named in both directions so the two are read as alternatives."
+    },
+    {
+      "id": "sunken-temple-mighty-conquer-draw",
+      "name": "Sunken Temple is a Monastery of Hirana gated on 5+ Might — and that gate is exactly what the catalogue's cheapest conquer engine cannot supply",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-218",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "conquered",
+          "note": "Colorless battlefield. 'When you conquer here with one or more [Mighty] units, you may pay :rb_energy_1: to draw 1. (A unit is Mighty while it has 5+ :rb_might:.)' One of the fourteen 'when you conquer here' battlefields. The gate is a state and not an event — 709's 'becomes Mighty' EVENT is a different thing, and its worked example says so ('A Unit with Might 5 that gets +1 does not become Mighty, because it was already Mighty') — so any body sitting at 5 or more qualifies, however it got there."
+        },
+        {
+          "card": "OGN-142",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Body unit, E9 M10, no rules text at all. The gate needs a 5+ Might body doing the conquering and this is the largest one in the pool per card, so it satisfies it with no conditions and no upkeep. Any 5+ Might body works; this one is named because it needs nothing to stay above the line."
+        }
+      ],
+      "needs": [
+        "conquer-engine"
+      ],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mountain Drake is mono-Body and Sunken Temple is Colorless, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, UNL-191/UNL-231 Wuju Master, OGS-019 Wuju Bladesman - Starter (restricted in 2v2)."
+        ],
+        "notable": [
+          "THE GATE IS THE REASON THIS IS A SEPARATE ENTRY AND NOT A COPY OF THE MONASTERY, AND IT EXPOSES A LIMIT OF `needs`. `needs: [conquer-engine]` composes this with every entry that produces that feature — but the feature cannot express 'and the conquering body must be 5+ Might'. The catalogue's cheapest repeatable conquer engine, sprite-queen-targon-peak-conquer-cycle, conquers with a 3-MIGHT Sprite and therefore does NOT satisfy Sunken Temple. Read the condition, not the feature tag.",
+          "WHAT DOES SATISFY IT: any conquer engine whose body is 5+ Might — might-of-demacia-four-body-conquer-draw's garrison if one of the four is large, an evacuation line that walks a real unit in, or simply retaking the battlefield each turn with a Mountain Drake under an effect mover. The vacate-and-retake cycle of sprite-queen-targon-peak-conquer-cycle works if the walker is a Mighty body rather than the Sprite.",
+          "THE DRAW IS OPTIONAL AND ITS COST IS PAID ON RESOLUTION, NOT AT FINALIZATION. 'You may pay :rb_energy_1: to draw 1' has the cost inside the effect after the condition rather than immediately following a leading 'you may' that opens the effect, so 383.3.b's base-cost rule does not apply and 205's game-action-at-resolution shape does — unlike OGN-282 Monastery of Hirana, whose 'you may spend a buff to draw 1' IS a base cost and forces its engine one event out of step.",
+          "ONE CARD PER CONQUER, AND 470 CAPS THE CONQUER AT ONE PER BATTLEFIELD PER TURN with 485.4 putting two battlefields on a Duel table. Burn Out (431.1.a) is the ceiling on running it hard.",
+          "SUNKEN TEMPLE IS NOT GUARANTEED TO BE ON THE TABLE: 485.4.a, 485.5, 486.5 and 103.4.c as for every battlefield entry."
+        ]
+      },
+      "steps": [
+        "Bring Sunken Temple as one of your three battlefields, in a deck whose conquering body is 5 Might or more.",
+        "Conquer it with that body — either the bloodless 344.2 route against an empty battlefield, or a real Combat that 323.9 stages against a garrison.",
+        "348.2.a establishes Control and 348.2.a.1 makes it a Conquer. The Temple's trigger checks its condition: at least one [Mighty] unit among those that conquered here.",
+        "Pay 1 Energy on resolution and draw 1.",
+        "Give the battlefield up and retake it to repeat — 315.2.b.2's mandatory Hold plus 470 mean a battlefield taken and kept fires its conquer clause exactly once."
+      ],
+      "netPerIteration": "one card for 1 Energy, per Conquer at Sunken Temple made with a 5+ Might body",
+      "terminatesIn": "engine only — one card per Conquer, at whatever rate the conquer engine supplies and only while the conquering body is 5+ Might; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "470. A player may only Score, from either method, once per Battlefield per turn."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use SFD-218. Card text verbatim from data/corpus_flat.txt. The entry exists to record a limit of the DAG as much as a line: a `needs` feature tag cannot carry an extra condition, so this walk's own Sprite Queen cycle satisfies the tag and fails the card. That is stated in the notable rather than left for a reader to discover. Trap check: 709 is cited so the Mighty STATE is not confused with the 'becomes Mighty' EVENT; 383.3.b and 205 are cited to place the cost on resolution, in explicit contrast with monastery-hirana-warmogs-conquer-draw; 470 + 315.2.b.2 are cited for why the needs declaration is there at all; exactly one battlefield is named, so 485.4.a is respected."
+    },
+    {
+      "id": "protective-sands-few-runes-fury",
+      "name": "Three Fury cards read the same 'four or fewer runes' clause, and 164.2.b makes emptying the board a profit rather than a cost",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-162",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "conquered",
+          "note": "Colorless battlefield. 'When you conquer here, if you control 4 or fewer runes, you may pay :rb_energy_1: to draw 1.' One of the fourteen 'when you conquer here' battlefields, and the only one whose condition is a rune count."
+        },
+        {
+          "card": "VEN-016",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Fury unit, E8 M8. '[Accelerate] (You may pay :rb_energy_1::rb_rune_fury: as an additional cost to have me enter ready.) When I move, if you control 4 or fewer runes, draw 1.' The same clause, on a body that draws every time it takes its Standard Move — and [Accelerate] means it can move the turn it lands."
+        },
+        {
+          "card": "VEN-001",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Fury unit, E6 M6. '[Empower] :rb_energy_5:. This ability costs :rb_energy_3: less if you control 4 or fewer runes. […] [Empowered][>] I have [Deflect] and [Assault 2].' The same clause a third time, worth 3 Energy off a one-time permanent upgrade (441.2)."
+        }
+      ],
+      "needs": [
+        "conquer-engine"
+      ],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Eclipse Dragon and Baccai Sandspinner are both mono-Fury and Protective Sands is Colorless, so 103.1.b.3 admits any legend with Fury in its pair: UNL-185/UNL-228 Bloodharbor Ripper, VEN-141/VEN-190 Butcher of the Sands, OGN-247/OGN-299 Daughter of the Void, OGS-017 Dark Child - Starter, SFD-185/SFD-242 Glorious Executioner, OGN-253/OGN-302 Hand of Noxus, OGN-251/OGN-301 Loose Cannon, VEN-143/VEN-191 Master of Shadows, SFD-181/SFD-240 Mechanized Menace, UNL-187/UNL-229 Piltover Enforcer, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, VEN-139/VEN-189 Rogue Assassin, UNL-181/UNL-226 Virtuoso, SFD-187/SFD-243 Void Burrower."
+        ],
+        "notable": [
+          "'FOUR OR FEWER RUNES' IS A TIMING CHOICE, NOT A DECKBUILDING CONSTRAINT, AND 164.2.b IS WHY IT IS FREE. A Basic Rune's second ability is 'Recycle this: [Reaction] — Add [C]' (164.2.b) and its cost is the RECYCLE, not an exhaust — so a rune you have already tapped for Energy this turn can still be dumped for a Power. 161.2.b sends it to the Rune Deck rather than the trash. So the sequence is: tap everything for Energy, spend it, then recycle down to four for Power, and the condition is true with all of that Power still live in the pool.",
+          "AND 315.3.b REBUILDS AT TWO A TURN, which is the honest cost: every rune dumped is two turns of Channel Phase to replace, and 430.3 channels 'as many as possible' from a Rune Deck that recycling has been refilling. In the opening the condition is free — you control 2 runes after turn one and 4 after turn two — so this package is at its best early and has to be paid for later.",
+          "THE SIBLING CLAUSE CANNOT BE GAMED THE SAME WAY, and it is worth not confusing them: VEN-005 Forsaken Baccai and VEN-006 Oasis Raider read 'fewer runes than an opponent AT THE START OF YOUR BEGINNING PHASE', which is 315.2.a — before 315.3.b channels two and before any Main Phase recycling. Those two are not in this entry for that reason.",
+          "THE FAMILY IS EXACTLY THREE CARDS PLUS THIS BATTLEFIELD, all Fury, named so the count is refutable in one grep: VEN-001 Baccai Sandspinner, VEN-016 Eclipse Dragon, VEN-162 Protective Sands (and VEN-005 / VEN-006 on the different, ungameable clause). One deckbuilding decision turns on three payoffs.",
+          "IT NEEDS A REPEATABLE CONQUER AT THIS BATTLEFIELD. 315.2.b.2's mandatory Hold plus 470 mean a conquer battlefield taken and kept fires exactly once; sprite-queen-targon-peak-conquer-cycle is the feed written for that, and unlike Sunken Temple this battlefield puts no Might condition on the conquering body, so a 3-Might Sprite satisfies it.",
+          "PROTECTIVE SANDS IS NOT GUARANTEED TO BE ON THE TABLE: 485.4.a, 485.5, 486.5 and 103.4.c as for every battlefield entry."
+        ]
+      },
+      "steps": [
+        "Bring Protective Sands as one of your three battlefields in a Fury shell running Eclipse Dragon and Baccai Sandspinner.",
+        "In the opening the condition is already true: 315.3.b channels two runes a turn, so you control 2 after turn one and 4 after turn two.",
+        "Later, in your Main Phase, tap the runes you need for Energy (164.2.a) and spend it; then recycle the surplus down to four with 164.2.b, whose cost is the recycle and not an exhaust, banking a Power for each.",
+        "Conquer Protective Sands. Its trigger checks the rune count, you pay 1 Energy and draw 1.",
+        "Standard-Move Eclipse Dragon in the same Main Phase for a second card, and pay Baccai Sandspinner's [Empower] at E2 instead of E5 — 441.2 makes that upgrade permanent, so it only has to be bought once while the condition holds.",
+        "315.3.b channels two back at your next Channel Phase; 430.3 takes as many as the Rune Deck holds, which 161.2.b has been refilling."
+      ],
+      "netPerIteration": "one card per Conquer and one per Eclipse Dragon move, plus a one-off 3 Energy off each Sandspinner's Empower, all off a single rune count",
+      "terminatesIn": "engine only — free while the rune count is naturally low in the opening, and thereafter costing two Channel Phases per rune dumped; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "164.2.b. Recycle this: [Reaction] — Add [C]. 164.2.b.1. The Power added this way corresponds to the Domain of the Rune that is being Recycled."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use VEN-162, VEN-016 or VEN-001. Card text verbatim from data/corpus_flat.txt. The three members of the gameable clause and the two members of the ungameable sibling are all NAMED so the family is refutable in one grep, per the #175 correction. The timing-choice reading is the project's own, restated here with the paragraph that carries it (164.2.b's cost is the recycle) and with the cost it glosses over stated explicitly: 315.3.b rebuilds at two a turn, so dumping is not free after the opening. Trap check: VEN-005 / VEN-006's 'at the start of your Beginning Phase' clause is 315.2.a and is excluded with the reason; 441.2 is cited so the Sandspinner rebate is counted once; the needs declaration is stated with 315.2.b.2 + 470 and contrasted with Sunken Temple's Might gate; exactly one battlefield is named, so 485.4.a is respected."
+    },
+    {
+      "id": "candlelit-sanctum-known-next-draw",
+      "name": "The Candlelit Sanctum chooses which of the top two you draw next, and 431.1.c makes it safe with the deck empty",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-291",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "conquered",
+          "note": "Colorless battlefield. 'When you conquer here, look at the top two cards of your Main Deck. You may recycle one or both of them. Put those you don't back in any order.' One of the fourteen 'when you conquer here' battlefields, and the only one whose clause lets you set the ORDER of what stays on top."
+        }
+      ],
+      "needs": [
+        "conquer-engine"
+      ],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The Candlelit Sanctum is Colorless and it is the only card in this entry, so 103.1.b puts no constraint on the legend at all — any of the 49 names can run it. The constraint comes from whatever conquer engine feeds it."
+        ],
+        "notable": [
+          "IT MAKES YOUR NEXT DRAW A KNOWN CARD, WHICH THE REST OF THE FAMILY DOES NOT. Recycle one of the two and the other goes back on top by your own choice of order, and 315.4.b then draws it in your Draw Phase. The project's deck-manipulation survey concluded that 'no deck-manipulation card in the pool turns a draw probability into a certainty' because 416.1.a and 416.5 send recycled cards to the BOTTOM — that holds for tutoring a NAMED card, and this is the one card that refines it: you cannot choose from the deck, but you can choose which of the top two you take.",
+          "AND IT IS SAFE WITH THE MAIN DECK EMPTY. 431.1.c: 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction.' Looking is free where drawing (431.1.a) and milling (431.1.b) are not, so this is one of the few selection effects an empty-deck shell can run.",
+          "IT IS LOOKING, NOT REVEALING, SO IT FIRES NOTHING. 424.1 makes revealing a public presentation; this clause says 'look at', so no 'as I'm revealed' payoff (SFD-175 Undertitan) and no opponent information is given up.",
+          "RECYCLING IS TO THE BOTTOM AND BOTH AT ONCE IS RANDOM. 416.1.a sends Main Deck cards to the Main Deck and 416.5 says that two or more recycled simultaneously 'are placed on the bottom of that deck in a random order' — so recycling both is a genuine shuffle-away of two dead cards, not a stack you can plan around.",
+          "IT NEEDS A REPEATABLE CONQUER AT THIS BATTLEFIELD, like every conquer battlefield: 315.2.b.2's mandatory Hold plus 470 mean one that is taken and kept fires exactly once. It puts no condition at all on the conquering body, so this walk's own sprite-queen-targon-peak-conquer-cycle satisfies it with a 3-Might Sprite — unlike sunken-temple-mighty-conquer-draw.",
+          "IT ADDS NO CARDS. This is selection, not advantage; the entry produces card-advantage-engine because that is the nearest term in the vocabulary, and the honest description is that it removes two dead draws per Conquer and fixes the next one.",
+          "THE CANDLELIT SANCTUM IS NOT GUARANTEED TO BE ON THE TABLE: 485.4.a, 485.5, 486.5 and 103.4.c as for every battlefield entry."
+        ]
+      },
+      "steps": [
+        "Bring The Candlelit Sanctum as one of your three battlefields.",
+        "Conquer it. 348.2.a.1 fires the trigger; look at the top two cards of your Main Deck.",
+        "Recycle whichever you do not want — 416.1.a puts it on the bottom of the Main Deck — and put the one you do want back on top, which the clause lets you choose ('in any order').",
+        "315.4.b draws that card in your Draw Phase, so the next draw is a card you picked rather than one you rolled.",
+        "If both are dead, recycle both: 416.5 puts them on the bottom in a random order, and the next two cards up are fresh.",
+        "Give the battlefield up and retake it to repeat — the conquer engine this entry needs."
+      ],
+      "netPerIteration": "two dead cards buried and the next draw chosen, per Conquer at this battlefield, for no Energy and no cards",
+      "terminatesIn": "engine only — pure selection at whatever rate the conquer engine supplies; it draws nothing, scores nothing, and 431.1.c means it never risks a Burn Out",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "431.1.c. If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use OGN-291, and a one-card entry on purpose: the battlefield is the whole line and the partner is whatever conquer engine feeds it, which `needs` expresses better than a named card would. Card text verbatim from data/corpus_flat.txt. It refines rather than contradicts the project's standing 'no card turns a draw probability into a certainty' finding, and the refinement is stated in those terms so the two records agree. Trap check: 416.1.a and 416.5 are quoted so recycling is not imagined to stack the bottom; 424.1 is cited so looking is not mistaken for revealing; 431.1.c is quoted because it is what makes this usable in an empty-deck shell where 431.1.a and 431.1.b are not; the needs declaration is contrasted with sunken-temple-mighty-conquer-draw's extra Might condition; exactly one battlefield is named, so 485.4.a is respected."
     }
   ]
 }
