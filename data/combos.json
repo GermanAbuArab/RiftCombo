@@ -21563,6 +21563,563 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-06 from issue #160. SFD-089 is an uncatalogued partner of blue-sentinel-hold. Card text verbatim from data/corpus_flat.txt; 187.4, 143.4, 144.2, 144.3, 144.3.a, 315.1.b, 315.2.b.2, 167 and 316.2-316.4 opened in the Core Rules file. Stands on R1 = A with stacking (ruled 2026-09-03); no new reading. Trap check against CLAUDE.md: a Hold needs no Attacker designation (807.1.d / 383.4.e / 461); the Mech tokens are never recycled and never asked to reach the trash (185 / 186.1 / 416.1); no [Temporary] (816.1.b); no [Repeat]; the Power is stated as next-Main-Phase Power with the 316.3/316.4 ordering that makes it survive 167, rather than asserted; the exhausted-token walk delay is priced instead of hidden."
+    },
+    {
+      "id": "power-nexus-atlas-sentinel-gold",
+      "name": "Power Nexus × Blue Sentinel × World Atlas — the Gold pays the Nexus",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-214",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you hold here, you may pay [A][A][A][A] to score 1 point.' Its own Hold trigger is one of YOUR hold effects for its Controller (R8 = A: 190.6.a, 190.6.c, 190.6.d and 383.4.d.2.b all land on the same player)."
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M4. 'Your hold effects for holding here trigger an additional time.' R1 = A with stacking: K = 2 makes every hold effect at the Nexus fire 1 + 2 = 3 times. Each Sentinel is also the body that wears a World Atlas."
+        },
+        {
+          "card": "SFD-086",
+          "quantity": 2,
+          "role": "resource",
+          "zone": "BATTLEFIELD",
+          "note": "Mind Equipment, E3 M+2, '[Equip] [Mind]'. '[Effect] When I hold, play two Gold gear tokens exhausted.' 136.2.b keeps Effect Text active while attached, 136.2.c and 718.3 append it to the Top-Most Card and 136.2.d makes 'I' the wearing unit — so one Atlas on each Blue Sentinel gives two Hold triggers of your own at the Nexus."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Mind legend: World Atlas, Blue Sentinel and Time Warp are all mono-Mind and Power Nexus is colorless (103.1.b.1, 103.1.b.3). All 15 two-domain pairs are printed as legends, so the only Domain Identity question is whether the union is at most two domains — here it is one."
+        ],
+        "notable": [
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. K = 2 Sentinels, so each hold effect at the Nexus fires 1 + 2 = 3 times. Atlas A: 3 firings × 2 Gold = 6. Atlas B: 6. TWELVE Gold per Hold, which is exactly the 12 Power the three Nexus firings ask for (3 × 4). Plus the base Hold's own point (469.2, 471.1) — 4 points per Beginning Phase, self-financing, with no rune spent at all.",
+          "THE GOLD IS ONE TURN BEHIND, AND THAT IS WHY THE ENGINE PRIMES RATHER THAN STARTS. 187.5 gives Gold '[Reaction][>] Kill this, [exhaust]: [Add] [A]' — an exhaust in the cost — and both Gold sources print 'exhausted'. 315.1 Awaken is a PHASE BEFORE 315.2 Beginning Phase, so Gold created by a Hold enters after the readying has already happened and is dead that turn. The first Hold scores 1 and banks 12; from the second Hold on it is 4 a turn. world-atlas-sentinel-gold and eminent-benefactor-sentinel-gold both carry this same correction.",
+          "RENATA GLASC, INDUSTRIALIST DOES NOT REMOVE THE ONE-TURN OFFSET HERE, WHICH IS THE FINDING THIS ENTRY ADDS. R25 = A makes 'Your tokens enter ready' beat the Gold's printed 'exhausted', so it is tempting to think this turn's Hold-Gold pays this turn's Nexus. It cannot. The Nexus reads 'you may pay [A][A][A][A] TO score 1 point' — a cost in the instructions immediately following the 'you may' that opens the effect — so 383.3.b makes it the BASE COST of the Triggered Ability and 383.3.b.1 requires it 'be paid in order to finalize the Triggered Ability to the Chain'. Every trigger of one Hold is simultaneous and 383.3.d has the controller place them all on the Chain before any resolves, so at the moment a Nexus trigger is finalized no Atlas has resolved and no Gold exists yet. (Contrast 205, whose worked example is 'you may pay [4][C]. If you do, kill a unit here' — that separate-sentence form IS a game action at resolution. 383.3.b's own example, Ekko's 'Recycle me TO ready your runes', is the infinitive form the Nexus uses.) She is also Order and this line is mono-Mind, so she would cost the identity too.",
+          "THE POWER IS MADE WITH NO PRIORITY, WHICH IS LEGAL. 167 empties the Rune Pool at the end of your turn, so the Beginning Phase starts empty, and 335 gives nobody priority there. 429.3 covers it anyway: 'Activated abilities that Add resources and have the Reaction tag can be activated at any time that spells or abilities require resources be paid', and its second worked example is explicitly a player with 'no window of priority' paying an applied cost; 429.3.a adds that such an ability 'immediately finalizes and resolves'. Gold's ability carries [Reaction]. power-nexus-sentinel already stands on the same paragraph for rune recycles.",
+          "THE SENTINELS' OWN POWER IS A SEPARATE, MAIN-PHASE BUDGET AND IT SURVIVES 167. Each Sentinel's 'When I hold, [Add] [A] at the start of your next Main Phase' is itself a hold effect and is multiplied too: 2 Sentinels × 3 firings = 6 rainbow. 316.2 orders the Main Phase's Outstanding Tasks: 316.3 'Each player's Rune Pool empties' is FIRST, 316.4 'At the start of Main Phase game effects take place' is SECOND — so the six arrive after the sweep and are spendable. 135.2.e.5.b lets [A] pay a Power cost of any Domain. This entry does not spend them; power-nexus-sentinel-renata-mastermind and power-nexus-atlas-sentinel-time-warp are the two entries that do.",
+          "R2 = A IS LOAD-BEARING. The Nexus says 'score 1 point', which 194.1.c makes a point Gain by Triggered Ability rather than a 469 Score, so 470's 'only Score once per Battlefield per turn' does not cap the three firings. 471.1.a.1 adds that 'points Gained from sources that are not Conquer are not beholden to' the Final Point restrictions of 471.1.b, so the eighth point lands from a Nexus firing without the 'Scored every Battlefield' clause biting.",
+          "THE BATTLEFIELD IS NOT GUARANTEED. Power Nexus must be the battlefield in play: 485.4 'Battlefield Count: 2' with 485.4.a (each player provides three, one is used) and 485.5 'randomly selects' in a Duel, 487.5 the same in Skirmish, 486.5 chosen in Match. 103.4.c and Tournament Rules 402.1 forbid bringing two of the same name, so copies are not a way around the draw. And 190.1 makes a battlefield you provide start UNCONTROLLED, with 190.6.d blanking its 'you' until you take it — establishing Control (466.5) is part of the cost.",
+          "THE EQUIP COSTS ARE REAL AND ARE COUNTED. Two Atlases are 6 Energy + 2 Mind Power to play and 2 more Mind Power to attach ('[Equip] [Mind]'), two Sentinels are 8 Energy + 2 Mind Power. 818.1 makes Equip an Activated Ability, so attaching is never playing and nothing triggers off it.",
+          "IT IS A DIFFERENT LINE FROM world-atlas-sentinel-gold, NOT A RESTATEMENT. That entry stops at the Gold and its own terminatesIn says 'it converts through Power Nexus (SFD-214: pay four runes on Hold to score 1) or through any Power sink' — the conversion was never authored. It also runs K = 1 (8 Gold, 2 payments); this entry runs K = 2 because 12 Gold is the exact fit for three firings. Its notable[4] had already spotted the pairing and priced it at K = 1."
+        ]
+      },
+      "steps": [
+        "Establish Control of Power Nexus (190.1 — a battlefield you provide starts uncontrolled) and stand both Blue Sentinels on it, each wearing a World Atlas.",
+        "First Beginning Phase holding it: 315.2.b.2 Holds it, the base Hold scores 1, the two Atlas triggers fire three times each for twelve Gold, and the Gold enters exhausted (315.1 Awaken has already run).",
+        "Next turn, Awaken readies the twelve Gold (315.1.b).",
+        "Beginning Phase: the Hold places three Nexus triggers, two Atlas triggers ×3 and two Sentinel triggers ×3 on the Chain. As each Nexus trigger is finalized, kill four Gold for four rainbow (429.3, 429.3.a) to pay its base cost (383.3.b.1).",
+        "Score 1 for the Hold and 1 for each of the three Nexus firings: four points, and the Atlas triggers have already banked twelve fresh Gold for the next turn."
+      ],
+      "terminatesIn": "engine — 4 points per Beginning Phase in steady state, financed entirely by the Gold the same Hold makes for the turn after; 8 points in two turns, but with an opponent turn in between",
+      "netPerIteration": "+4 points, +12 Gold, −12 Gold, +6 rainbow Power at the next Main Phase start; no rune spent",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Issue #155 — Engine × payoff: converting the 197 ENGINE streams into points (candidate 1's Power ledger, left open by the hunt)",
+          "kind": "agent",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "RiftJudge Q10155 — Blue Sentinel multiplies its own hold trigger (fan judge database, not official)",
+          "kind": "article",
+          "url": "https://app.riftjudge.com/questions/10155",
+          "date": "2026-05-08",
+          "quote": "Ruling: Yes. Blue Sentinel's passive ability states \"Your hold effects for holding here trigger an additional time.\" Since the card text does not specify \"other\" hold effects, it applies to the Sentinel's own \"When I hold, [Add] [A] at the start of your next Main Phase\" ability. When you hold the battlefield with Blue Sentinel, you will add 2 Power total at the start of your next Main Phase.",
+          "accessed": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md). Card text verbatim from data/corpus_flat.txt; 135.2.e.5.b, 136.2.b/c/d, 167, 187.5, 190.1, 190.6.d, 194.1.c, 205, 315.1/315.1.b/315.2.b.2, 316.2/316.3/316.4, 383.3.b/383.3.b.1/383.3.d, 383.4.d/383.4.d.1/383.4.d.2.a/383.4.d.2.b, 429.3/429.3.a, 469.2, 470, 471.1/471.1.a.1, 485.4/485.4.a/485.5, 718.3 and 818.1 were all opened and read in the walk. This entry closes a lead the catalogue carried in two places without ever following it: world-atlas-sentinel-gold and eminent-benefactor-sentinel-gold both end their terminatesIn at 'it converts through Power Nexus (SFD-214) or any Power sink', and power-nexus-sentinel's own REFUTE note names World Atlas Gold as the fix for its Power problem. What the walk adds is the exact quantity (K = 2 Sentinels makes 12 Gold, which is exactly three Nexus firings) and the exact timing rule (383.3.b, the Nexus payment is a BASE COST paid at finalization, which is why Renata Glasc, Industrialist cannot collapse the one-turn Gold offset). Trap check: no attack, so 807.1.d/383.4.e/461 never engage; no [Temporary] body, so 816.1.b never engages; no [Repeat]; no token is recycled or sent to the trash (185, 186.1 — the Gold are killed, which is what their own ability instructs); no recall; every point is an ability Gain under R2 = A, not a 469 Score. Depends on R1 = A, R2 = A and R8 = A, all ruled 2026-09-03/04, and on no open reading."
+    },
+    {
+      "id": "power-nexus-atlas-sentinel-time-warp",
+      "name": "Power Nexus × World Atlas × Time Warp — eight points across two uninterrupted Beginning Phases",
+      "class": "CHAIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-214",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "'When you hold here, you may pay [A][A][A][A] to score 1 point.' Three firings under two Blue Sentinels, twice — six ability points across the two Beginning Phases."
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "K = 2, so every hold effect at the Nexus fires 1 + 2 = 3 times (R1 = A with stacking). Their own '[Add] [A] at the start of your next Main Phase' fires 6 times across the two Holds and is what pays Time Warp's Power."
+        },
+        {
+          "card": "SFD-086",
+          "quantity": 2,
+          "role": "resource",
+          "zone": "BATTLEFIELD",
+          "note": "One on each Sentinel. Twelve Gold per Hold, which is exactly the 12 Power three Nexus firings ask for — so no rune is ever recycled and the twelve runes stay on the board to pay Time Warp's Energy."
+        },
+        {
+          "card": "OGN-122",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E10 P4. 'Take a turn after this one. Banish this.' 735 inserts the Additional Turn into the queue after the current turn and 737 gives it to its owner as the next queued turn, so the opponent never acts between the two Beginning Phases."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Mind legend — World Atlas, Blue Sentinel and Time Warp are mono-Mind and Power Nexus is colorless (103.1.b.1, 103.1.b.3)."
+        ],
+        "notable": [
+          "THE FULL LEDGER, TURN BY TURN, WITH TWELVE RUNES ON THE BOARD AND TWELVE GOLD BANKED FROM THE PREVIOUS HOLD. Turn 1 Awaken (315.1.b) readies the twelve runes and the twelve Gold. Beginning Phase: base Hold 1 point; three Nexus triggers finalize, each paid by killing four Gold (429.3, 429.3.a; 383.3.b.1) for +3; the two Atlas triggers bank twelve fresh Gold; the two Sentinel triggers queue six rainbow. FOUR POINTS. Channel Phase adds nothing once all twelve runes are already on the board (315.3.b with 430.3, 'channel as many as possible'). Main Phase: 316.3 empties the pool, then 316.4 delivers the six rainbow. Exhaust ten runes for 10 Energy (164.2.a) and pay Time Warp's four Power out of the six rainbow (135.2.e.5.b). No rune is recycled, so the board still holds twelve. Turn 2 is the Additional Turn: Awaken readies the twelve runes and the twelve new Gold; the Beginning Phase repeats exactly — base Hold 1 plus three Nexus firings. FOUR POINTS. EIGHT, with no opponent turn in between.",
+          "THIS IS WHY THE BARE THREE-CARD VERSION OF THE SAME IDEA DOES NOT WORK, AND THAT REFUTATION IS PART OF THE ENTRY. Power Nexus + 2 Blue Sentinel + Time Warp with no Gold source tops out at FIVE, not eight, and the arithmetic is forced. Nexus payments are Beginning-Phase Power, and without Gold the only Beginning-Phase Power is a rune recycle (164.2.b), which sends the rune to the Rune Deck (161.2.b) instead of leaving it to pay Energy. 161.2.a fixes the Rune Deck at exactly 12, so across the casting turn and the Additional Turn the whole Power budget is 12 runes plus the 2 that 315.3.b channels back — 14 Power, i.e. floor(14/4) = 3 Nexus firings whatever the split, plus 2 base Holds. And Time Warp needs 10 of those runes unrecycled for its Energy in the Main Phase, which caps turn 1 at one firing. Every split gives 5. The Gold is not an optimisation, it is the whole line.",
+          "TIME WARP'S POWER COMES FREE FROM THE SENTINELS, WHICH IS THE SECOND HALF OF THE FIX. 316.2 puts 316.3 ('Each player's Rune Pool empties') BEFORE 316.4 ('At the start of Main Phase game effects take place'), so the six rainbow the Sentinels queue during the Hold survive into the Main Phase, and 135.2.e.5.b lets [A] pay Time Warp's four Mind Power. Without that ordering the six would be swept and four runes would have to be recycled, dropping the Energy to eight and the line to seven points.",
+          "WHAT IT ASSUMES, STATED PLAINLY: Power Nexus is the battlefield in play (485.4, 485.4.a, 485.5; 103.4.c and Tournament Rules 402.1 forbid two copies) and already under your Control (190.1, 466.5); the previous turn's Hold already happened, which is what banks the first twelve Gold; twelve runes are on the board; and Time Warp is in hand — 427 banishes it, so it can never be recycled back.",
+          "IT IS CHAIN, NOT BURST. Eight points arrive as eight separate Gains across two Beginning Phases (194.1.c for the six Nexus firings, 471.1 for the two base Holds), not in one scoring event. 471.1.a.1 is what lets the eighth land: 'points Gained from sources that are not Conquer are not beholden to' 471.1.b's Final Point restrictions.",
+          "COMPARE time-warp-hold-burst, WHICH IS THE OTHER SHAPE OF THE SAME TRICK. That entry is three Time Warps riding the Lux infinite for Energy and Power, and takes both Duel battlefields to score 2 a turn. This one needs ONE Time Warp and no loop at all, because the Nexus turns a single battlefield into four points; the price is a specific colorless battlefield and a primed Gold bank. Neither is a version of the other and they share no card but OGN-122.",
+          "IT DOES NOT SURVIVE A BURN OUT SCARE. The Additional Turn takes its own Draw Phase (315.4.b); keep at least one card in the Main Deck at the end of the casting turn or 315.4.b.1 Burns Out and 194.1.d hands the opponent a point. Nothing in this line empties the deck, so this is a check, not a cost."
+        ]
+      },
+      "steps": [
+        "Have Power Nexus under Control with two Blue Sentinels on it, each wearing a World Atlas, twelve runes on the board, twelve Gold banked from the previous turn's Hold, and Time Warp in hand.",
+        "Awaken readies the runes, the Sentinels and the twelve Gold (315.1.b).",
+        "Beginning Phase: Hold the Nexus. Score 1. Pay four Gold for each of the three Nexus triggers as they finalize (383.3.b.1, 429.3.a) — three more points. The Atlases bank twelve fresh Gold; the Sentinels queue six rainbow.",
+        "Main Phase: 316.4 delivers the six rainbow after 316.3's sweep. Exhaust ten runes for Energy and cast Time Warp for 10 Energy + 4 rainbow. Recycle nothing.",
+        "The Additional Turn (735, 737): Awaken readies the twelve runes and the twelve new Gold. Hold the Nexus again — 469.2's 'did not yet Score this turn' resets — for a fourth base point and three more Nexus firings. Eight."
+      ],
+      "terminatesIn": "8 points across the casting turn's Beginning Phase and the Additional Turn's Beginning Phase, with no opponent turn in between",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Issue #155 — Engine × payoff, candidate 1 (Power Nexus × 2 Blue Sentinel × Time Warp), whose Power ledger the hunt explicitly left to a walk session",
+          "kind": "agent",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "RiftJudge Q10155 — Blue Sentinel multiplies its own hold trigger (fan judge database, not official)",
+          "kind": "article",
+          "url": "https://app.riftjudge.com/questions/10155",
+          "date": "2026-05-08",
+          "quote": "Ruling: Yes. Blue Sentinel's passive ability states \"Your hold effects for holding here trigger an additional time.\" Since the card text does not specify \"other\" hold effects, it applies to the Sentinel's own \"When I hold, [Add] [A] at the start of your next Main Phase\" ability. When you hold the battlefield with Blue Sentinel, you will add 2 Power total at the start of your next Main Phase.",
+          "accessed": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md). Issue #155 proposed this as three cards (Nexus + 2 Sentinel + Time Warp) and asked the walk to close the Power ledger honestly; the honest answer is that the three-card version reaches FIVE and the arithmetic is forced by 161.2.a's twelve-rune ceiling, 161.2.b's return-to-Rune-Deck and 315.3.b's two per turn. Adding the two World Atlases makes it eight, and the Sentinels' own [Add] — which survives 316.3 because 316.2 orders the sweep before 316.4's start-of-Main-Phase effects — pays Time Warp's Power for free. Both halves of that are new to the catalogue. Card text verbatim from data/corpus_flat.txt; 135.2.e.5.b, 161.2.a, 161.2.b, 164.2.a, 164.2.b, 167, 187.5, 190.1, 194.1.c, 194.1.d, 315.1.b, 315.2.b.2, 315.3.b, 315.4.b/315.4.b.1, 316.2/316.3/316.4, 383.3.b/383.3.b.1/383.3.d, 383.4.d, 427, 429.3/429.3.a, 430.3, 466.5, 469.2, 470, 471.1/471.1.a.1, 485.4/485.4.a/485.5, 735, 737 opened and read. Ban check: none of SFD-214, UNL-087, SFD-086 or OGN-122 carries a [BANNED marker in the corpus, and none is a Signature card. Trap check: no attack; no [Temporary]; no [Repeat]; no token recycled or reaching the trash (185, 186.1); no recall; the Additional Turn is 735/737, not a replayed turn. In 2v2 the Victory Score is 11 (489.3), so this line is three points short there and is written for Constructed. Depends on R1 = A, R2 = A and R8 = A, and on no open reading."
+    },
+    {
+      "id": "power-nexus-benefactor-sentinel-time-warp",
+      "name": "Power Nexus × Eminent Benefactor × Time Warp — the Mind/Order body that carries its own Gold",
+      "class": "CHAIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-214",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "'When you hold here, you may pay [A][A][A][A] to score 1 point.' Three firings per Hold under two Blue Sentinels."
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "K = 2: every hold effect at the Nexus fires 1 + 2 = 3 times (R1 = A with stacking), including each Benefactor's and each Sentinel's own."
+        },
+        {
+          "card": "SFD-152",
+          "quantity": 2,
+          "role": "resource",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 M5. 'When I hold, play two Gold gear tokens exhausted.' Two Benefactors × 3 firings × 2 Gold = twelve Gold per Hold, the exact price of three Nexus firings. 383.4.d.2.a requires the unit present at the battlefield during the Hold, which its own 5 Might body is doing anyway."
+        },
+        {
+          "card": "OGN-122",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E10 P4. 'Take a turn after this one. Banish this.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "A Mind/Order legend — Eminent Benefactor is Order, Blue Sentinel and Time Warp are Mind, Power Nexus is colorless (103.1.b.1, 103.1.b.3). Mind/Order is a printed legend pair."
+        ],
+        "notable": [
+          "SAME EIGHT POINTS, SAME TWO BEGINNING PHASES, DIFFERENT DECK. Turn 1 Beginning Phase: base Hold 1, three Nexus firings paid with the twelve Gold banked from last turn's Hold (+3), two Benefactor triggers ×3 bank twelve fresh Gold, two Sentinel triggers ×3 queue six rainbow. Main Phase: 316.4 delivers the six rainbow after 316.3's sweep; ten runes exhausted for Energy cast Time Warp with no rune recycled. The Additional Turn (735, 737) repeats the Beginning Phase for four more. Eight.",
+          "WHY IT IS A SEPARATE ENTRY AND NOT A SWAP INSIDE power-nexus-atlas-sentinel-time-warp. The two lines can never share a list: World Atlas is Mind and Eminent Benefactor is Order, so the Atlas version is mono-Mind and this one is Mind/Order, and adding both to one deck is still legal but pointless — twelve Gold is already the exact fit. The catalogue already keeps world-atlas-sentinel-gold and eminent-benefactor-sentinel-gold apart for the same reason, and that entry's own notable spells out the trade: 'The Benefactor IS the body: two units, 1 Power, half the Gold.'",
+          "THE HONEST COST COMPARISON. Two Benefactors are 12 Energy and no Power; two Atlases are 6 Energy + 2 Mind Power to play plus 2 Mind Power to attach, AND they need two bodies to hang on — which the Sentinels supply, so the Atlas version is cheaper in Energy and has two fewer permanents to lose. What this version buys is a garrison of four units (2 × M5 Benefactor, 2 × M4 Blue Sentinel with [Shield 2]) instead of two, which is what has to survive the opponent's turn between the priming Hold and the casting turn.",
+          "MIND/ORDER OPENS THE DOOR THE MONO-MIND VERSION CANNOT USE. SFD-201 Chem-Baroness is a Mind/Order legend whose 'When you or an ally hold, you may exhaust me to play a Gold gear token exhausted' is itself a hold effect the Sentinels multiply, and whose 'While your score is within 3 points of the Victory Score, your Gold [Add] an additional [1]' turns each Gold into 1 Power AND 1 Energy from five points up — which is reached at the end of the first Beginning Phase here. Deliberately not in uses: it is a legend choice, not an ingredient, and the eight points close without it.",
+          "EVERYTHING THE ATLAS VERSION SAYS ABOUT TIMING APPLIES UNCHANGED: the Gold is one turn behind because 315.1 Awaken precedes 315.2 and 187.5 puts an exhaust in its cost; the Nexus payment is the trigger's BASE COST paid at finalization (383.3.b, 383.3.b.1) with 383.3.d placing every simultaneous trigger before any resolves, so this turn's Gold can never pay this turn's Nexus even under Renata Glasc, Industrialist (R25 = A) — who IS legal in this identity, unlike in the mono-Mind version; the Power is made with no priority under 429.3/429.3.a; and R2 = A plus 471.1.a.1 let all six ability points, including the eighth, land.",
+          "THE BATTLEFIELD IS STILL 1 OF 3 AT RANDOM in a Duel (485.4, 485.4.a, 485.5) and starts uncontrolled (190.1, 190.6.d). In 2v2 the Victory Score is 11 (489.3) and this line is three short."
+        ]
+      },
+      "steps": [
+        "Establish Control of Power Nexus and stand two Blue Sentinels and two Eminent Benefactors on it.",
+        "The priming Hold scores 1 and banks twelve Gold, exhausted (315.1 Awaken has already run).",
+        "Casting turn, Awaken: the twelve Gold and the twelve runes ready (315.1.b).",
+        "Beginning Phase: Hold. Base point, then kill four Gold as each of the three Nexus triggers finalizes (383.3.b.1, 429.3.a) — four points. Twelve fresh Gold are banked and six rainbow are queued.",
+        "Main Phase: after 316.3 empties the pool, 316.4 delivers the six rainbow. Exhaust ten runes and cast Time Warp for 10 Energy + 4 rainbow; recycle nothing.",
+        "The Additional Turn: Awaken, then Hold the Nexus again for four more. Eight."
+      ],
+      "terminatesIn": "8 points across the casting turn's Beginning Phase and the Additional Turn's Beginning Phase, with no opponent turn in between",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Issue #155 — Engine × payoff: the resource-engine group's own verdict that every Gold entry 'is already pointing at' Power Nexus or Renata Mastermind, with no third route",
+          "kind": "agent",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "RiftJudge Q10155 — Blue Sentinel multiplies its own hold trigger (fan judge database, not official)",
+          "kind": "article",
+          "url": "https://app.riftjudge.com/questions/10155",
+          "date": "2026-05-08",
+          "quote": "Ruling: Yes. Blue Sentinel's passive ability states \"Your hold effects for holding here trigger an additional time.\" Since the card text does not specify \"other\" hold effects, it applies to the Sentinel's own \"When I hold, [Add] [A] at the start of your next Main Phase\" ability. When you hold the battlefield with Blue Sentinel, you will add 2 Power total at the start of your next Main Phase.",
+          "accessed": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md). The Mind/Order sibling of power-nexus-atlas-sentinel-time-warp, authored separately because the two identities are disjoint (World Atlas Mind, Eminent Benefactor Order) exactly as world-atlas-sentinel-gold and eminent-benefactor-sentinel-gold already are. Card text verbatim from data/corpus_flat.txt; the same paragraph list as the Atlas entry was opened, plus 383.4.d.2.a for the Benefactor's presence requirement and 489.3 for the 2v2 threshold. Ban check: none of SFD-214, UNL-087, SFD-152 or OGN-122 is banned or Signature. Trap check: no attack; no [Temporary]; no [Repeat]; the Gold are killed by their own ability, never recycled and never reaching the trash (185, 186.1). Depends on R1 = A, R2 = A and R8 = A, and on no open reading."
+    },
+    {
+      "id": "power-nexus-sentinel-renata-mastermind",
+      "name": "Blue Sentinel's own Power pays Renata, Mastermind — a Main-Phase point the Nexus turn wastes",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-214",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "'When you hold here, you may pay [A][A][A][A] to score 1 point.' The Beginning-Phase half of the line."
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "K = 2, so every hold effect fires 1 + 2 = 3 times — including each Sentinel's own 'When I hold, [Add] [A] at the start of your next Main Phase', which is 2 × 3 = SIX rainbow delivered by 316.4 after 316.3 has emptied the pool."
+        },
+        {
+          "card": "SFD-088",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E5 M4. '[4 Energy][Mind][Mind][Mind][Mind], [exhaust]: Score 1 point. Use my abilities only while I'm at a battlefield.' Four of the six rainbow pay her Power (135.2.e.5.b), so her point costs four runes' worth of Energy and nothing else."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Mind legend — Blue Sentinel and Renata Glasc, Mastermind are mono-Mind and Power Nexus is colorless (103.1.b.1, 103.1.b.3)."
+        ],
+        "notable": [
+          "WHAT IS NEW HERE IS THE POWER, NOT THE POINT. Nine entries use Blue Sentinel and six use Renata, Mastermind, and none of them spends the Sentinel's own [Add] on anything. It is easy to miss because 167 empties the Rune Pool 'at the start of each player's Main Phase' and the Sentinel's Power arrives 'at the start of your next Main Phase' — the two look like they cancel. They do not: 316.2 puts the Main Phase's Outstanding Tasks 'in the specified order', 316.3 'Each player's Rune Pool empties' FIRST and 316.4 'At the start of Main Phase game effects take place' SECOND. The six rainbow land after the sweep and are spendable, and 135.2.e.5.b lets [A] 'be spent to pay a Power cost of any Domain', so they cover Renata's four Mind Power exactly.",
+          "TWO POINTS A TURN WITH NO RUNE SPENT ON POWER AT ALL, WHICH IS THE STEADY STATE THAT MATTERS. Beginning Phase: base Hold, 1 point (469.2, 471.1). Main Phase: exhaust four runes for 4 Energy (164.2.a), pay Renata's four Mind Power out of the Sentinels' six rainbow, exhaust her — 1 point (194.1.c, R2 = A). Nothing is recycled, so 161.2.b never takes a rune off the board and the engine does not decay. Eight points in four turns from a two-card board plus the battlefield.",
+          "THE NEXUS FIRINGS ARE THE BURST HALF AND THEY ARE NOT SUSTAINABLE, WHICH THIS ENTRY STATES RATHER THAN HIDES. A Nexus payment is Beginning-Phase Power and the only Beginning-Phase Power without Gold is a rune recycle, which 161.2.b sends to the Rune Deck; 315.3.b channels only 2 back per turn and 161.2.a caps the deck at 12. So on a turn with twelve runes banked the honest maximum is: recycle eight for two firings (+2), leaving four runes plus the two channelled — six Energy, enough for Renata's four. FOUR POINTS in one turn, once. Recycle twelve for three firings and there is no Energy left for Renata: still four. The steady state is two.",
+          "SHE HAS TO STAND AT THE BATTLEFIELD, AND THAT IS THE COST. 'Use my abilities only while I'm at a battlefield' is a condition of the Activated Ability (377.2.b, whose own worked example quotes this wording inside the ability), so Renata is exposed at the Nexus alongside the Sentinels. heimerdinger-renata-remote-score is the entry that moves the exposure onto a 3-Energy body instead, under R30 = B; it is Body/Mind and cannot hold Blue Sentinel's Power source, so the two are alternatives.",
+          "IT IS NOT A FOURTH COPY OF power-nexus-sentinel. That entry is the Nexus and the Sentinels alone and its point count is '1 + K per turn' out of the Beginning Phase; its Power problem is the rune ceiling and its own REFUTE note says so. This entry adds a MAIN-PHASE point that the Beginning-Phase Power shortage cannot touch, paid by a resource that entry generates and discards. power-nexus-atlas-sentinel-gold is the other way to spend the shortage — Gold instead of a second point sink — and the two stack in a Mind deck without competing, since the Gold pays the Beginning Phase and the Sentinels' rainbow pays the Main Phase.",
+          "SFD-060 Tianna Crownguard switches both points off: 'While I'm at a battlefield, opponents can't gain points', and 194.1.c makes an ability score a Gain. She is catalogued as tianna-wildclaw-point-lock.",
+          "THE BATTLEFIELD IS 1 OF 3 AT RANDOM in a Duel (485.4, 485.4.a, 485.5), starts uncontrolled (190.1, 190.6.d), and cannot be doubled up (103.4.c, Tournament Rules 402.1)."
+        ]
+      },
+      "steps": [
+        "Establish Control of Power Nexus with two Blue Sentinels and Renata Glasc, Mastermind standing on it.",
+        "Beginning Phase: Hold. Score 1. The two Sentinels' own hold triggers fire three times each and queue six rainbow for the start of your Main Phase.",
+        "Main Phase: 316.3 empties the Rune Pool, then 316.4 delivers the six rainbow.",
+        "Exhaust four runes for 4 Energy, spend four of the six rainbow on Renata's Mind Power, exhaust her: score 1. Two points, no rune recycled.",
+        "On a turn with twelve runes banked, recycle eight of them first to pay two Nexus firings in the Beginning Phase — four points that turn, at the price of the rune board."
+      ],
+      "terminatesIn": "engine — 2 points a turn indefinitely with no Power spent from runes, spiking to 4 on a turn that cashes the twelve-rune board through the Nexus",
+      "netPerIteration": "+2 points per turn; −4 Energy from runes; the Sentinels' 6 rainbow cover Renata's 4 Power with 2 to spare",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Issue #155 — Engine × payoff: 'the only two cards in the pool that turn raw Energy/Power into a point are Power Nexus and Renata Glasc, Mastermind', re-verified against the corpus by this walk",
+          "kind": "agent",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "RiftJudge Q10155 — Blue Sentinel multiplies its own hold trigger (fan judge database, not official)",
+          "kind": "article",
+          "url": "https://app.riftjudge.com/questions/10155",
+          "date": "2026-05-08",
+          "quote": "Ruling: Yes. Blue Sentinel's passive ability states \"Your hold effects for holding here trigger an additional time.\" Since the card text does not specify \"other\" hold effects, it applies to the Sentinel's own \"When I hold, [Add] [A] at the start of your next Main Phase\" ability. When you hold the battlefield with Blue Sentinel, you will add 2 Power total at the start of your next Main Phase.",
+          "accessed": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md). The finding is a timing one and it is worth stating on its own: Blue Sentinel's '[Add] [A] at the start of your next Main Phase' is NOT swept by 167, because 316.2 orders the Main Phase's tasks and puts 316.3's sweep before 316.4's start-of-Main-Phase effects. Nine entries use Blue Sentinel and none spends that Power. Card text verbatim from data/corpus_flat.txt; 135.2.e.5.b, 161.2.a, 161.2.b, 164.2.a, 164.2.b, 167, 190.1, 190.6.d, 194.1.c, 315.2.b.2, 315.3.b, 316.2/316.3/316.4, 377.2.b, 383.4.d, 429.3, 469.2, 470, 471.1, 485.4/485.4.a/485.5 opened and read. Ban check: none of SFD-214, UNL-087 or SFD-088 is banned or Signature. Trap check: no attack; no [Temporary]; no [Repeat]; no token; no recall; both points are ability/Hold Gains, so 470's per-battlefield cap does not apply to Renata's (R2 = A). Depends on R1 = A, R2 = A and R8 = A, and on no open reading."
+    },
+    {
+      "id": "herald-heimerdinger-armory-plaza",
+      "name": "Herald of the Arcane + Heimerdinger + one Vanguard Armory — seven Recruits at the Grand Plaza for 1 Energy",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you hold here, if you have 7+ units here, you win the game.' Rule 195 grants the win."
+        },
+        {
+          "card": "OGN-265",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Mind/Order legend. '[1 Energy], [exhaust]: Play a 1 Might Recruit unit token.' The seventh body, and the reason the whole line is legal in one identity."
+        },
+        {
+          "card": "OGN-111",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind unit, E3 P1 M3. 'I have all [exhaust] abilities of all friendly legends, units, and gear.' He has one exhaust to spend and spends it on the Armory's ability, not the legend's — three Recruits instead of one."
+        },
+        {
+          "card": "SFD-168",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order gear, E7 P1. '[exhaust]: Play three 1 Might Recruit unit tokens. (You may play them to different locations.)' Gear enters ready (143.4 exhausts only units), so it can fire the turn it lands."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend IS Herald of the Arcane (Mind/Order). Heimerdinger is Mind and Vanguard Armory is Order — each a subset of the legend's two domains (103.1.b.1) — and The Grand Plaza is colorless (103.1.b.3)."
+        ],
+        "notable": [
+          "SEVEN IN ONE MAIN PHASE FOR ONE ENERGY, WHICH IS THE WHOLE POINT. Exhaust the Armory: three Recruits. Exhaust Heimerdinger, using his copy of the Armory's ability: three more. Pay 1 Energy and exhaust the legend: the seventh. The Armory's own reminder permits different locations and 355.2.a makes a battlefield you control a default destination anyway, so all seven land on the Plaza. The Armory's and Heimerdinger's abilities cost only an exhaust, so the finishing turn is 1 Energy and 0 Power.",
+          "IT IS AUTHORED BECAUSE TWO VERIFIED ENTRIES STATE THIS COUNT IN PROSE AND NEITHER CAN BE MATCHED AS A WIN. heimerdinger-vanguard-armory-recruits notable[2] says 'Armory 3 + Heimerdinger's copy of the Armory 3 + the legend's own ... 1 = SEVEN in a single Main Phase', and heimerdinger-herald-legend-recruits notable[3] says the same from the other side; both classify as ENGINE and both end their terminatesIn at 'it wins through a Grand Plaza hold at 7+ units, not on its own'. A deck holding all four cards therefore matches two ENGINEs today and no win at all.",
+          "NEAR-DUPLICATE CHECK, RUN EXPLICITLY (#152's criterion). The catalogue holds sixteen Grand Plaza entries. The two that use the same token source are grand-plaza-recruit-vanguard (OGN-293 + 2 × OGS-015, a spell, 12 Energy in one turn) and plaza-armory-miss-fortune (OGN-293 + 2 × SFD-168 + OGN-162, Body/Order, ten bodies). This line shares only the Plaza and one Armory with the second, uses a DIFFERENT identity — Mind/Order, which plaza-armory-miss-fortune's own notable says 'can never share a list' with the Body/Order route by 103.1.b.4 — and needs ONE Armory instead of two because Heimerdinger doubles it. Distinct on cards, on domain and on cost.",
+          "SEVEN IS EXACTLY THE BAR AND HEIMERDINGER IS THE MARGIN. The seven Recruits leave no room to lose one. Heimerdinger himself can be the eighth if he moved to the Plaza on an EARLIER turn — he cannot both move and copy in one turn, because 144.2 makes the Standard Move cost his exhaust and the copied ability costs the same exhaust, and 415.3.a readies him only once per Awakening. Standing him there is free upside and costs nothing but exposure; R30 = B does not bite, because neither the Armory nor the Herald prints a 'use only while' clause for him to inherit (377.2.b).",
+          "THE BODIES MUST SURVIVE THE OPPONENT'S WHOLE TURN. 315.2.b.2 puts the Hold in your Beginning Phase and 383.2.a.1 makes 'if you have 7+ units here' part of the Trigger Condition, measured when the trigger is placed; 312.2.a gives priority only in the Main Phase, so there is no window to top up. The Recruits are 187.1 tokens with no [Temporary], so 816.1.b never touches them, but they are 1 Might: OGN-133 Flurry of Blades (Body, E1, [Reaction], 'Deal 1 to all units at battlefields') sweeps all seven for one Energy, exactly as it answers plaza-armory-miss-fortune.",
+          "143.4 — the Recruits enter exhausted, so they neither defend nor move the turn they appear; that is irrelevant to a Hold, which needs only presence.",
+          "THE BUILD IS 10 ENERGY + 2 POWER ACROSS EARLIER TURNS (Armory 7 + 1, Heimerdinger 3 + 1) plus Control of the Plaza, which 190.1 does not give you for free — a battlefield you provide starts uncontrolled and 190.6.d blanks its 'you' until you take it (466.5). And it is 1 of 3 at random in a Duel (485.4.a, 485.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy.",
+          "SFD-210 Hall of Legends would ready the legend for an eighth Recruit, but it and The Grand Plaza can never share a table — 485.4.a uses only one battlefield per player and 103.4.c forbids two of the same name. The Plaza is the one that wins.",
+          "THE PLAZA IS SYMMETRIC: 'When YOU hold here' reads for whoever holds it (190.6.d), so an opponent parking seven units on it wins the same way."
+        ]
+      },
+      "steps": [
+        "Establish Control of The Grand Plaza (190.1, 466.5 — a battlefield you provide starts uncontrolled).",
+        "Land Vanguard Armory (7 Energy + 1 Power; gear enters ready) and Heimerdinger, Inventor (3 Energy + 1 Power; he enters exhausted, 143.4).",
+        "On the finishing turn, Awaken readies the Armory, Heimerdinger and the legend (315.1.b, 415.3.a).",
+        "Main Phase: exhaust the Armory for three Recruits at the Plaza. Exhaust Heimerdinger, using his copy of that same ability, for three more.",
+        "Pay 1 Energy and exhaust Herald of the Arcane for the seventh Recruit, played to the Plaza (355.2.a).",
+        "Survive the opponent's turn with seven or more still there, then Hold in your Beginning Phase (315.2.b.2): the condition is met when the trigger is placed (383.2.a.1) and rule 195 gives you the game."
+      ],
+      "terminatesIn": "win the game — seven units at The Grand Plaza on the next Hold, assembled in one Main Phase for 1 Energy",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Issue #155 — Engine × payoff, candidate 2 (Herald of the Arcane + Heimerdinger + Vanguard Armory -> The Grand Plaza), with the near-duplicate question the hunt asked the walk to rule on",
+          "kind": "agent",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06, issue #46 (docs/phase0/walks/2026-09-06-issue46-mining-walk.md) — the six-Recruit count and the Acceleration Gate domain refutation",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06, issue #47 (docs/phase0/walks/2026-09-06-legend-lens-candidates.md) — Heimerdinger reaching the Legend Zone through 355.9.a.4",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md). The near-duplicate question issue #155 asked the walk to settle is answered in prerequisites.notable[2]: distinct from grand-plaza-recruit-vanguard and plaza-armory-miss-fortune on cards, on domain identity and on cost, and it is the only Mind/Order route to the Plaza that needs a single Armory. Card text verbatim from data/corpus_flat.txt; 103.1.b.1/103.1.b.3/103.1.b.4, 103.4.c, 143.4, 144.2, 187.1, 190.1, 190.6.d, 195, 312.2.a, 315.1.b, 315.2.b.2, 355.2.a, 355.9.a.4, 377.2.b, 383.2.a.1, 415.3.a, 466.5, 485.4.a/485.5/486.5, 816.1.b and Tournament Rules 402.1 opened and read. Ban check: none of OGN-293, OGN-265, OGN-111 or SFD-168 carries a [BANNED marker, and none is a Signature card, so 103.2.d.2 forces no legend beyond the one this entry names. Trap check: no attack, so 807.1.d/383.4.e/461 never engage; no [Temporary], so 816.1.b never engages; no [Repeat]; no token recycled or reaching the trash (185, 186.1); no recall; a legend is not at a location (107.4.b), which is why its Recruit relies on 355.2.a rather than a 'here'. Depends on R30 = B being irrelevant rather than favourable, and on no open reading."
+    },
+    {
+      "id": "armory-heimerdinger-bottled-constellation",
+      "name": "Vanguard Armory feeds two Bottled Constellations — points from bodies without a battlefield",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-168",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order gear, E7 P1. '[exhaust]: Play three 1 Might Recruit unit tokens.' Three bodies a turn for no Energy."
+        },
+        {
+          "card": "OGN-111",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind unit, E3 P1 M3. 'I have all [exhaust] abilities of all friendly legends, units, and gear.' His own exhaust buys the Armory's ability a second time — six Recruits a turn."
+        },
+        {
+          "card": "VEN-067",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Mind gear, E10 P2. 'At the start of your Main Phase, you may kill 3 other friendly units and/or gear to score 1 point.' Two copies are two triggers at the same Main Phase start, eating the six Recruits made the turn before."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "A Mind/Order legend — Vanguard Armory is Order, Heimerdinger and Bottled Constellation are Mind (103.1.b.1). Herald of the Arcane (OGN-265) is the natural choice and adds a seventh Recruit a turn for 1 Energy."
+        ],
+        "notable": [
+          "THE CYCLE, AND WHY IT IS ONE TURN OFFSET. Turn N Main Phase: exhaust the Armory (three Recruits) and Heimerdinger's copy of it (three more). Turn N+1's Main Phase opens with both Constellations' triggers — 'At the start of your Main Phase' — and the six Recruits from turn N are still there, so each Constellation kills three for a point. TWO POINTS A TURN, and turn N+1's Main Phase then makes six more. Eight points in four turns.",
+          "THE RECRUITS SURVIVE THE GAP, WHICH IS WHAT MAKES THIS WORK AND WHAT KILLS THE OBVIOUS ALTERNATIVE. 187.1 Recruits carry no [Temporary], so 816.1.b never touches them and they are still on the board at the next Main Phase start. A [Temporary] token engine can never feed this: 816.1.b kills those 'at the start of the controller's Beginning Phase, before scoring', and 315.2 Beginning Phase precedes 316 Main Phase, so every Temporary body is already dead when the Constellation triggers. That refuses sprite-fountain-malzahar-jayce and sprite-fountain-aspiring-engineer as fodder even though both are Mind and domain-legal.",
+          "THE COST IS THE HONEST PROBLEM AND IT IS NOT HIDDEN. Two Constellations are 20 Energy + 4 Mind Power, the Armory 7 + 1 and Heimerdinger 3 + 1: THIRTY ENERGY AND SIX POWER before the first point. Against a Rune Deck of exactly 12 (161.2.a) that is three turns of build. What it buys is a point engine that needs no battlefield at all — no random 1-of-3 draw (485.5), no Control to establish (190.1), and nothing for the opponent to conquer away.",
+          "IT IS NOT bottled-constellation-time-warp. That entry is three Constellations plus three Time Warps and it declares needs ['infinite-energy','infinite-power'] — it only exists on top of the Lux loop, and its fodder is 'the loop's Recruits and Gold'. This one names its own fodder source, rides no loop, and its class is ENGINE rather than CHAIN. They share only VEN-067.",
+          "'3 OTHER FRIENDLY UNITS AND/OR GEAR' MEANS THE SECOND CONSTELLATION IS LEGAL FODDER, and so are the Armory and Heimerdinger. Do not: six Recruits is the exact meal for two Constellations, and eating the engine ends it. With Herald of the Arcane as the legend the turn's production is seven and one Recruit is spare.",
+          "A THIRD CONSTELLATION IS NOT WORTH IT AT SIX RECRUITS. 103.2.b allows three copies, but the third needs three more bodies at the same Main Phase start and the Armory line supplies six (seven with the legend). It becomes correct only alongside a second token source, and the entry does not claim one.",
+          "R2 = A IS LOAD-BEARING: 'score 1 point' on a card is a 194.1.c Gain by ability, not a 469 Score, so 470's once-per-battlefield cap never applies to a payoff that touches no battlefield at all. 471.1.a.1 lets the eighth point land the same way.",
+          "SFD-060 Tianna Crownguard switches it off ('opponents can't gain points'), as she does every ability-point line in the catalogue."
+        ]
+      },
+      "steps": [
+        "Land Vanguard Armory (7 Energy + 1 Power), Heimerdinger, Inventor (3 Energy + 1 Power) and two Bottled Constellations (10 Energy + 2 Mind Power each).",
+        "Each Main Phase, exhaust the Armory for three Recruits and Heimerdinger — using his copy of the Armory's ability — for three more.",
+        "At the start of the following Main Phase, both Constellations trigger. Each kills three of those Recruits to score 1 point.",
+        "Two points a turn, and the same Main Phase then rebuilds the six bodies."
+      ],
+      "terminatesIn": "engine — 2 points per turn once both Constellations are down, 8 in four turns; no battlefield involved at any point",
+      "netPerIteration": "+2 points, +6 Recruits, −6 Recruits per turn, for 0 Energy after the build",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Issue #155 — Engine × payoff: the master payoff inventory, which lists VEN-067 Bottled Constellation but files it as '(self-kill, not a removal payoff)' and never pairs it with the token-body-engine group",
+          "kind": "agent",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md). Issue #155's inventory named Bottled Constellation and then set it aside in a parenthetical; re-reading the corpus line makes it the pool's only card that converts BODIES into points without a battlefield, which is the missing payoff for the token-body-engine group the hunt sent entirely to The Grand Plaza. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.b, 161.2.a, 187.1, 190.1, 194.1.c, 315.2, 316, 469, 470, 471.1/471.1.a.1, 485.5 and 816.1.b opened and read. Ban check: none of SFD-168, OGN-111 or VEN-067 is banned or Signature. Trap check: the killed Recruits are tokens and 186.1 makes them cease to exist rather than reach the trash, which costs this line nothing because nothing here recycles or reanimates; no attack; no [Repeat]; no recall; no [Temporary] anywhere, and the entry states why a [Temporary] source could never substitute. Depends on R2 = A and on no open reading."
+    },
+    {
+      "id": "first-mate-lucian-merciless-double-conquer",
+      "name": "First Mate + Lucian, Merciless — two conquers off one body, with no [Ganking]",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-113",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E3 M3. '[Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for [A] less, even if it's already attached.) The first time I conquer each turn, ready me.' 383.3.e.1 caps HIS OWN ready at once per turn."
+        },
+        {
+          "card": "OGN-132",
+          "quantity": 1,
+          "role": "ready",
+          "zone": "HAND",
+          "note": "Body unit, E3 M3. 'When you play me, ready another unit.' A different ability on a different card, so 383.3.e.1's cap on Lucian's own trigger does not reach it — this is the second ready, and it is what buys the second sortie."
+        },
+        {
+          "card": "SFD-095",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Body Equipment, E2 M+2. '[Equip] [Body]'. Weaponmaster reduces the Equip cost by one rainbow and 356.6 floors it at 0, so the attach is free on the turn Lucian is played. Lucian attacks at 5 Might."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Body legend — all three cards are mono-Body (103.1.b.1), so this does not need Lucian's own Fury/Body print. No Signature card is in the line, so 103.2.d.2 forces no legend."
+        ],
+        "notable": [
+          "THE EXHAUST LEDGER IS THE ENTRY, AND IT BALANCES EXACTLY. Lucian needs THREE exhausts in the turn and has exactly three readies. Awaken readies him (315.1.b, 415.3.a) — exhaust 1 pays the Standard Move to the first battlefield (144.2). He conquers; his own trigger readies him — exhaust 2 pays the Standard Move home. Play First Mate; its 'ready another unit' readies him — exhaust 3 pays the Standard Move to the second battlefield. Two conquers, two points (469.1, 348.2.a.1), 3 Energy on the turn.",
+          "THE ROUND TRIP THROUGH THE BASE IS FORCED, NOT A CHOICE. 144.4 restricts the Standard Move to base <-> battlefield; battlefield to battlefield needs [Ganking] (810.1.c.3), which Lucian does not have. That is why the self-ready is spent going HOME rather than attacking again, and why a second, independent ready source is the whole requirement.",
+          "LUCIAN CANNOT DO THIS THE TURN HE IS PLAYED, AND ISSUE #154's SEQUENCE SAID HE COULD. 143.4 makes units enter the Board exhausted and 144.2 makes the Standard Move cost that exhaust, so the play turn buys only the free Doran's Blade attach; the double conquer starts from the Awakening after. First Mate, by contrast, is played ON the double-conquer turn — its ready is an ETB.",
+          "383.3.e.1 IS THE RULE THE PAIRING TURNS ON: 'Such a Triggered Ability will only be performed the specified number of times each turn. If its trigger condition would be fulfilled and it has already been performed that many times, it does not trigger.' It caps Lucian's 'the first time I conquer each turn'. It says nothing about First Mate, which is a different ability on a different permanent — so the two readies stack even though a second copy of Lucian's own trigger would not.",
+          "YOU GIVE THE FIRST BATTLEFIELD BACK. 323.6 strips Control of a battlefield with none of your units occupying it at the next Cleanup in an Open State, so walking Lucian home un-conquers the first battlefield. The point is already Gained and nothing undoes it (471.1), but you do not Hold it next Beginning Phase. Sending any cheap body along to garrison it is the fix and is deliberately NOT in uses — it is a fifth card and does not change the mechanism.",
+          "IN A DUEL THERE ARE EXACTLY TWO BATTLEFIELDS (485.4 'Battlefield Count: 2'), so the second conquer is the opponent's, and 470 allows it because it is a different battlefield. If it is unoccupied and uncontrolled the move opens a Non-Combat Showdown (316.8.b.1) and 348.2.a establishes Control with 348.2.a.1 calling it a Conquer — no attack, so the empty-battlefield trap (807.1.d, 383.4.e, 461) is respected. If it is garrisoned, Lucian has to win the combat: 465.2.c has each side assign damage equal to their SUMMED Might, so Doran's Blade's +2 is what takes a lone defender of 4 Might off the board and lets him survive.",
+          "DISTINCT FROM BOTH ENTRIES THAT ALREADY HOLD THESE CARDS. sett-first-mate-windswept-hillock spends First Mate's ready on Sett and needs OGN-297 Windswept Hillock to grant [Ganking]; lucian-skyfinity-double-conquer uses Lucian's OWN ready amplified by Skyfall and Trinity Force to convert Hold payoffs into Conquer payoffs. Neither pairs First Mate with Lucian, and this line needs no battlefield text and no Effect gear — which is why it shows up in registered tournament lists that complete no catalogued line at all.",
+          "IT IS ENGINE, NOT BURST OR CHAIN. Two points, once — First Mate is a one-shot ETB, not a loop, and there is no repeat step. Sustainably Lucian is one conquer a turn on his own."
+        ]
+      },
+      "steps": [
+        "On an earlier turn, play Lucian, Merciless (3 Energy). [Weaponmaster] attaches Doran's Blade for its [Body] Equip cost less one rainbow, which 356.6 floors at 0. He is a 5 Might body and enters exhausted (143.4).",
+        "Double-conquer turn, Awaken: 315.1.b readies him.",
+        "Standard-move him to a battlefield, paying his exhaust (144.2, 144.4). Take it — by combat, or by Non-Combat Showdown if it is empty and uncontrolled (316.8.b.1, 348.2.a). 348.2.a.1 makes it a Conquer: 1 point.",
+        "'The first time I conquer each turn, ready me' fires and readies him. Standard-move him back to base, spending that ready.",
+        "Play First Mate (3 Energy). 'When you play me, ready another unit' — ready Lucian.",
+        "Standard-move him to the OTHER battlefield and take it. A second Conquer, a second point (470 allows it: a different battlefield)."
+      ],
+      "terminatesIn": "engine — 2 conquer points in one turn off one body, for 8 Energy across two turns; 1 a turn thereafter",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Issue #154 — Inverse tournament lens, core 1: OGN-132 + SFD-113 (+ SFD-095) co-occur in 4 of the 45 registered lists that complete no catalogued line (lift 7.20), read with the repo's own loadDeck/matchDeck over 222 Riot-article fixtures and 39 dotgg tournament decks",
+          "kind": "agent",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md). Issue #154's proposed sequence had Lucian played and moved on the same turn, which 143.4 plus 144.2 forbid; the corrected line puts his play a turn earlier and keeps everything else. The exhaust ledger — three exhausts against Awaken + self-ready + First Mate — is the part a walk had to check and it balances with nothing to spare, which is why no fourth sortie exists and why the class is ENGINE. Card text verbatim from data/corpus_flat.txt; 143.4, 144.1.a, 144.2, 144.4, 315.1.b, 316.8.b.1, 323.6, 348.2.a/348.2.a.1, 356.6, 383.3.e.1, 415.3.a, 465.2.c, 469.1, 470, 471.1, 485.4 and 810.1.c.3 opened and read. Ban check: none of SFD-113, OGN-132 or SFD-095 carries a [BANNED marker, and none is a Signature card. Trap check: no [Temporary]; no [Repeat]; no token; a Standard Move is not a recall (455, 456); 818.1 makes the Weaponmaster attach an Activated Ability rather than a play, so nothing triggers off it; the empty-battlefield trap is respected because the Non-Combat Showdown route conquers without an Attacker designation. SFD-095 is in `uses` although the line's two conquers do not strictly require it — it is what makes Lucian a 5 Might attacker rather than a 3, which is the difference between conquering a garrisoned battlefield and only an open one, and it is the third card of the tournament co-occurrence this entry was walked from. Depends on no unruled reading."
     }
   ]
 }
