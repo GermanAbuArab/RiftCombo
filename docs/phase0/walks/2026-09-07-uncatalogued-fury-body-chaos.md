@@ -1158,3 +1158,87 @@ Add abilities *"resolve as soon as they are finalized"* and *"Priority and Focus
   Refused on the cards' own text: both return a unit to your **hand**, so the body still has to be
   paid for in full. The cost-cheating reanimators in this domain are `OGN-196 Soulgorger` and
   `OGN-198 The Harrowing`, already catalogued together by §4.4 of this walk.
+
+## 19. Batch 11 — five more from the Fury / Chaos remainder
+
+### 19.1 `whirlwind-cemetery-attendant-choose-last` — OGN-187 + OGN-165 (both in zero entries)
+
+**The turn-order clause is the card.** *"STARTING WITH THE NEXT PLAYER, each player may return a unit
+to its owner's hand"* — in a Duel the opponent chooses first and you choose second, and *"may"* lets
+you decline. A symmetric effect where you move last is not symmetric.
+
+355.10.e means nobody pays for it (no targets, so no [Deflect] tax and no "can't be chosen"), at the
+price that you cannot pick THEIR body. And a bounce to hand is not a Recall (455 goes to the **base**),
+so the body leaves the board entirely and 323.6 strips Control of any battlefield it was the last unit
+at — which is the second half of choosing last: decline when your own garrison is load-bearing.
+
+### 19.2 `ancient-warmonger-inviolus-vox-scaling-attacker` — SFD-131 + UNL-027 (both in zero entries)
+
+807.1.b.1 — *"The X is referenced in the functional text of the ability"* — is what makes an [Assault]
+whose value is **a count of the enemy garrison** legal: `SFD-131 Ancient Warmonger` is a 4-Might body
+against an empty battlefield and a 7-Might one against three defenders. He is priced against a stacked
+wall, which inverts the usual reading of an attacker.
+
+`UNL-027 Inviolus Vox` pays a Conquer **forward into the next combat** (461.1 leaves the order of
+combats to the Turn Player), and 470 with 485.4 caps the turn at two Conquers however large the bodies
+get — the entry says so rather than implying a finisher.
+
+**805.1.a.1 is the practical trap and it is a first citation here**: *"If the unit has one or more
+domains, the Power portion of the Accelerate cost can be paid ONLY with a Power that matches one of the
+domains of the unit."* The Warmonger's [Accelerate] needs a **Chaos** Power specifically.
+
+### 19.3 `punching-poro-morbid-return-free-empower` — VEN-007 + OGN-170 (both in zero entries)
+
+**Five [Empower] costs in the pool pay neither Energy nor Power, swept and named**: `VEN-007 Punching
+Poro` (Discard 1), `VEN-110 Mel, Defiant Soul` (Discard a spell), `VEN-054 Questionable Tome` and
+`VEN-087 Hextech Disc` (an exhaust each), `VEN-124 Escaped Grayback` (kill a friendly unit, free on a
+token by 185.2.d). The Poro is the cheapest body of the five.
+
+`OGN-170 Morbid Return` makes the discard **a loan rather than a loss** — 2 Energy at [Action] speed
+to bring the unit back to hand. 441.1.b / 441.1.c / 441.2 keep it honest: once per body, permanent,
+not an engine. The payoff is +1 Might; what is worth cataloguing is the **cost**.
+
+### 19.4 `sharkling-legion-rearguard-accelerate-domain-power` — UNL-006 + OGN-010 (both in zero entries)
+
+**Riot's own worked example at 356.1.b.3 is `OGN-010 Legion Rearguard`**, and it says an [Accelerate]
+survives a free play: *"They ignore Legion Rearguard's Base Cost of 2 Energy, but the optional
+additional cost of 1 Energy and 1 Fury Power is added to its Total Cost and must be paid."* That is
+why an [Accelerate] body is a better reanimation target than a vanilla one.
+
+805.1.a.1 with 805.1.a.2 locks the Power to one of the unit's own domains, rainbow only for a
+domainless unit — so two Fury bodies accelerated in one turn cost **two Fury Power**.
+
+`UNL-006 Sharkling` is a body with two sizes and the entry names both: Might 5 while attacking
+(807.1.c on its printed [Assault 4]) and Might **1** at every other moment, which 143.2.a and a
+1-Energy `OGN-133 Flurry of Blades` both punish.
+
+### 19.5 `right-of-conquest-sai-scout-ally-clause-draw` — UNL-015 + OGN-174 (both in zero entries)
+
+**Exactly four cards in the pool name an ally, swept and named**: `SFD-201 Chem-Baroness` (Mind/Order),
+`SFD-217 Seat of Power` (colourless battlefield), `UNL-015 Right of Conquest` (Fury), `UNL-193
+Gloomist` (Calm/Chaos). No card uses "teammate" or "partner". This **confirms** the catalogue's
+standing count of four rather than correcting it.
+
+So the card's ceiling moves by format: 1 to 3 in a Duel (485.4), up to 5 in 2v2 (489) — the rare card
+that is better in the format with the higher Victory Score.
+
+`OGN-174 Sai Scout` is the cheapest second battlefield because 355.2.b makes the play location valid
+and nothing is moved: 143.4's exhaustion costs nothing, 144.2 is never paid, and 344.2 with 348.2.a.1
+gives a Conquer with no damage. **But "open" is two conditions** (170.11.a/b/c) and the entry will not
+blur them: an evacuated battlefield is unoccupied at once and uncontrolled only at the next Cleanup
+(323.6), so evacuation and Scout are two steps, never one.
+
+## 20. Refusals from batch 11
+
+- **Using `OGN-187 Whirlwind` to remove an enemy body.** Refused by 355.10.e: each player chooses their
+  own, so it is never removal. Its value is the ordering and the re-buy, and the entry claims nothing
+  else.
+- **Paying `SFD-131 Ancient Warmonger`'s [Accelerate] with a spare Fury Power in a Fury-heavy list.**
+  Refused by 805.1.a.1: the Power must match one of the unit's own domains, and the Warmonger is Chaos.
+- **A second [Empower] on `VEN-007 Punching Poro`.** Refused by 441.1.b and 441.1.c: an Empowered
+  object cannot be Empowered and *"nothing additional happens"*. Three copies are three purchases, not
+  a repeatable engine.
+- **`UNL-006 Sharkling` as board presence.** Refused on its own stat line: Might 1 outside an attack,
+  so one point of damage kills it and the whole [Assault 4] never happens. It is a tempo card.
+- **Playing `OGN-174 Sai Scout` to a battlefield you merely evacuated this action.** Refused by
+  170.11.c with 323.6: unoccupied is not open until Control has also lapsed, which takes a Cleanup.
