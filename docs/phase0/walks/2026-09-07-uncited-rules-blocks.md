@@ -773,3 +773,81 @@ the Damage to be marked is the player who marked that Damage"*, and *"Game Effec
 player's Damage."* So **"your damage" is scoped to damage YOU marked** — and a mutual-damage exchange,
 where 417.6.b.4 makes the opponent responsible for what their own unit dealt, does **not** feed it.
 142.1 through 142.4 are cited by nothing.
+
+---
+
+# Batch 8 — the sub-rule probe, run properly; lane narrowed to sub-rules 100–499
+
+Batch 7's two entries were merged (catalogue at 676). **rc-manager4 split the probe on 2026-09-07: this
+lane keeps sub-rules 100–499, rc-walk-fc takes 500–899**, and fc is building the probe independently so
+that any disagreement between the two is itself a finding. Both entries below are inside 100–499.
+
+| id | sub-rule opened | class |
+|---|---|---|
+| `immortal-phoenix-falling-star-cleanup-attribution` | **428.5.c / .c.1 / .c.2 / .d** kill attribution | ENGINE |
+| `soraka-wanderer-vanguard-armory-simultaneous-save` | **370.3 / 370.4** Replacement Effects | ENGINE |
+
+`validateCombos` over the merged copy: **0 errors, 678 entries.** `test/legend-lines.test.ts`: 18 legend
+base codes checked, **0 defects.** No duplicate id, no duplicate card set.
+
+## 28. The probe, with the filter that makes it usable
+
+The raw probe (§24) returns 307 uncited sub-rules carrying a worked Example. Adding one filter —
+**keep only the rows whose example text contains a card NAME from `cards.json`** — cuts it to **153**,
+and every one of those is Riot pointing at a real card. That list is the working queue.
+
+```
+// uncited sub-rules whose worked example names a pool card
+cited   = /\b(\d{3}(?:\.[0-9a-z]+)+)/g over combos.json + synergies.json
+heading = /^\s*(\d{3}(?:\.[0-9a-z]+)+)\.\s+(\S.*)$/ over the rules file
+keep if !cited.has(id) && /Example:/.test(next 16 lines) && some card name appears in them
+```
+
+## 29. 428.5.c — a unit that dies in the CLEANUP was killed by the spell that damaged it
+
+Without this, no burn spell in the game would ever satisfy a *"kill a unit with a spell"* clause,
+because 143.2.a kills in a cleanup and a damage spell performs no Kill instruction. **428.5.c**:
+*"When one or more Units is killed due to a Cleanup, that kill action is attributed to the spell or
+ability that resolved immediately prior to that Cleanup that dealt damage to the Unit or Units"*, with
+**428.5.c.1** making the dealing player responsible.
+
+**428.5.c.2 is the exclusion:** *"If the Cleanup that caused the units to be killed was the Combat
+Cleanup, the sources of the Combat Damage are attributed the kill action"* — combat kills belong to the
+**units**, so no spell is involved and a "kill with a spell" payoff stays switched off.
+
+**428.5.d names `OGN-037 Immortal Phoenix`** and composes with batch 3's reflexive-trigger finding: a
+spell that splits into separate chain items with *"Do this"* keeps its attribution — *"both the spell
+and its ability receive attribution for killing the unit … so Immortal Phoenix's ability will trigger."*
+
+## 30. 370.4 — a replacement still covers what dies *with* its source
+
+**370.4**: *"A Game Object can apply its Replacement Effects to any qualifying events that occur
+simultaneously with it leaving the zone that its Replacement Effect is active in"*, and Riot's example
+names `SFD-173 Soraka, Wanderer`: her replacement *"can be applied to any qualifying event that occurs
+simultaneously with her leaving the board, including to units that die simultaneously with her."*
+
+**So a board wipe does not beat her — it only costs her.** Every friendly unit at her battlefield under
+Might 4 is healed, exhausted and recalled out of the sweeper that killed her.
+
+**370.3 is the negative mirror and it is the more useful half**: a replacement that lives *in the trash*
+does **not** cover simultaneous deaths, because *"It does not enter the trash before the Recruit dies."*
+Same wipe, opposite outcome, and the only difference is which zone the effect is active in.
+
+## 31. A correction to my own batch 2, at the precision it was measured
+
+Batch 2 reported *"the pool has FIVE [Backline] cards, not four."* Soraka makes it **six** — and the
+claim needs the distinction that batch 2 did not draw. **Six cards carry the Backline EFFECT**:
+`OGN-068 Caitlyn, Patrolling` and `SFD-173 Soraka, Wanderer` print the sentence in prose,
+`UNL-043`, `UNL-090`, `UNL-141` and `UNL-145` print the keyword. 465.2.c.6 orders assignment by
+*"requirements and restrictions"* and its example quotes the effect, so **all six** are assigned damage
+last; but only **four** *have the keyword*, which is what a card reading keywords would see (722.1).
+A bracketed grep finds four.
+
+## 32. 759–763 re-checked, and the batch-6 result stands
+
+The probe surfaced `SFD-112 Kato the Arm` under 761.2, which looked like it overturned batch 6's
+"Naming is dead letter". It does not: Kato appears only as Riot's **example of how to name a card**
+(*"If there is only one unit with Kato in their name, saying 'Kato' is sufficient"*), not as a card that
+instructs naming. The corpus sweep still returns zero rows. Two things worth keeping from the re-read:
+**762.2** (*"A player cannot choose the name of a token when instructed to name a card"*) and
+**763.1**, which prints the **complete list of every tag that exists in Riftbound**.
