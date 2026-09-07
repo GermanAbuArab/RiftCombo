@@ -881,3 +881,64 @@ is one card short.
   *"When you discard one or more cards"* fires once per discard **EVENT**, so three cards that
   discard one each beat one card that discards three. Same shape as 383.1.b's collapse of simultaneous
   instances, reached from the other direction.
+
+---
+
+## 17. The tight material is exhausted — the stopping condition, with the measurement
+
+The next slice was to be *"rows 31 onward, the next tight groups (1-5 partners) by rarity"*. **There
+are none left.** Measured over the 1522 unrefused candidates:
+
+```
+TRIGGER-side groups by partner count:  1-5: 4   6-10: 3   11-20: 4   21-40: 29   41+: 7
+```
+
+**Four tight groups exist in the whole matrix, and all four are assigned** — rows 1, 2 and 5 are
+mine (1 and 2 refused, 5 written as `vex-radiant-dawn-stun-redeploy`) and row 15 is with
+rc-walk-instances. The smallest FREE group is row 33, `VEN-151 Soul's Reflection` on `empower-other`,
+with **8 partners**; everything else free has 15 to 100. Walking those means walking families, which
+is what this slice was told not to do.
+
+### 17a. The cause-side view is not a second source, and here is why
+
+Before stopping I checked the same matrix from the other end — grouping by CAUSE card rather than by
+trigger card, on the theory that a cause with few trigger partners is equally tight. It is not a real
+signal:
+
+```
+CAUSE-side groups by partner count:  1-5: 785   6-10: 27   (812 groups total)
+```
+
+785 of 812 look "tight" only because **each event has between 2 and 9 trigger cards in the whole
+pool**, so almost every cause card has few trigger partners by construction. Every one of those
+groups belongs to a WIDE trigger family. Rarity has to be measured on the trigger side; the
+cause-side count is an artifact of the event's shape.
+
+### 17b. What the cause-side pass DID find: 702.3 has exactly one printed exception
+
+`OGN-078 | Lee Sin, Ascetic | Unit | Calm | E5 P1 M5 | [Shield] ... :rb_exhaust:: Buff me. (I get a
++1 Might buff.) **I can have any number of buffs.**`
+
+CLAUDE.md states 702.3 flatly in six places — *"702.3 caps a unit at one buff"*, *"702.3 — 'There can
+only be one Buff on a Unit at a time'"* — and this walk cited it flatly in five entries. **Rule 002
+(card text supersedes rules text) makes Lee Sin, Ascetic an exception**, and a sweep of all 935 base
+codes for *"any number of buffs"* / *"more than one buff"* / *"additional buff"* returns exactly one
+unit: him. (The corroborating row is the reminder token itself, `UNL-T04 Buff`: *"A unit may have no
+more than one buff at a time."*)
+
+No entry is wrong because of it — `lee-sin-buff-bank` already catalogues him, and none of the five
+entries that cite 702.3 uses him — but the rule as written in CLAUDE.md would mislead the next
+session into refusing a Lee Sin line on a cap he ignores. **702.3 should be stated with the
+exception attached.**
+
+### 17c. Standing state of the matrix
+
+```
+1620 candidates | 98 refused by rule | 1522 remainder | 47 trigger-groups
+tight (1-5 partners):  4, all assigned
+free groups:          rows 16, 17, 18 and 31-47, all families of 8+ partners
+```
+
+The matrix scripts stay in `.scratch/` so the families can be mined later without rebuilding:
+`matrix.ts` (classify + pair + filter), `buckets.mjs` and `bucketD.mjs` (the four refusal buckets),
+`top30b.mjs` and `tight.mjs` (ranking views).
