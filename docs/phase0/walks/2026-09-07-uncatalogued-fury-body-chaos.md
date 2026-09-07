@@ -726,3 +726,115 @@ entirely**, because the card prints *"Each player **kills** one of their gear."*
 - **A second [Ganking] grant on the Harpoon Squad.** Refused by **810.2** (*"Multiple instances of
   Ganking are redundant"*) and 810.1.c.3 (*"It does not give additional abilities or activations of
   Movement, only new options for the Standard Move"*).
+
+## 11. Batch 7 — five entries, three of them on the orphan Signature spells
+
+### 11.1 `shuriken-flip-akali-deadly-weapon-move-ping` — VEN-140 + VEN-021 (both in zero entries)
+
+A Signature spell whose **second clause exists to fire the champion's own trigger**. 449: *"Spells,
+Abilities, or other effects may cause a Move to occur"*, and 420.2.b makes the Standard Move merely
+one thing that *"may **also** cause Movement"* — so *"then move a friendly unit"* is a Move for every
+purpose, including `VEN-021 Akali, Deadly Weapon`'s *"When I move"*. One card is 2 damage from the
+spell plus 1 from her, or 2 while she is [Empowered]: **four damage for 1 Energy + 1 Power**.
+
+The move is free in both senses that matter: 420.3.a puts the exhaust on the Standard Move alone, so
+an already-exhausted Akali moves; and 144.4's base-to-battlefield restriction is written for the
+Standard Move, so the effect move goes battlefield to battlefield with no [Ganking]. Her clause reads
+*"a unit at a battlefield I moved **to or from**"*, so the two halves can land at two different
+battlefields — this is split removal, not a 4-point shot.
+
+The Empower is bought once and kept (441.1.b, 441.2), and [Flow] is **six plays a game, not an
+engine** (829.1.b + 103.2.b + 108.6.c).
+
+### 11.2 `consuming-curse-annie-self-scaling-bonus` — VEN-010 + OGS-001 (the Curse in zero entries)
+
+**The un-controversial cousin of R15.** `UNL-020 Dancing Grenade` counts *"each time this spell has
+dealt damage this turn"* — a history that had to be ruled. `VEN-010 Consuming Curse` counts *"each
+card with this name in your **trash**"*: a zone, read on resolution, nothing to track. Same escalating
+burn, ambiguity removed.
+
+714 sums the card's own scaling with Annie's static, and 103.2.b caps the deck at three **by name** —
+which is the same quantity the card reads. Cast in order: 2, 3, 4 = **nine**; under Annie 3, 4, 5 =
+**twelve**.
+
+**And the trap is that milling the copies loses you damage.** Putting two Curses in the trash without
+casting them makes the survivor a 4 (5 under Annie) — better per *card*, worse in *total* than the
+9 (12) from casting all three. The instinct to load the trash first is wrong on this card.
+
+### 11.3 `vicious-snapjaws-scorchclaw-xp-faucet-no-sink` — UNL-129 + UNL-016 (both in zero entries)
+
+**Domain Identity is a PAIR, and that is the whole reason this pairing exists.** Swept over the corpus
+for `[Level`: mono-Chaos prints no [Level] card at all, and `UNL-016 Scorchclaw` is the **only** one in
+Fury. So under any of the five Fury/Chaos legends, `UNL-129 Vicious Snapjaws` — the pool's only
+death-to-XP faucet — has exactly one outlet, and this is it.
+
+This narrows a line CLAUDE.md carries: *"Chaos prints no [Level] static at all, so UNL-129 Vicious
+Snapjaws … has no outlet in identity."* The first half is right; the conclusion is scoped to
+**mono**-Chaos, and 103.1.b makes an identity two domains. Reported to the manager rather than edited
+here, per the project rule.
+
+The mechanics: 824.1.d (*"The Dependent Ability will be Inactive as soon as the controlling player has
+less than [N] XP"*) with 730.2 (*"To Spend XP, reduce the value of XP marked on the Player spending
+it"*) mean a [Level] rung is **a threshold you hold, not a price you pay** — so the correct build runs
+a faucet and **nothing that spends**. `UNL-126 Megatusk` (Chaos, *"Spend 3 XP"*) is therefore the
+anti-synergy sitting in the same domain, and it is the obvious thing to do with a growing pile.
+
+Rate: 823.1.c.1 makes [Hunt 2] *"When I Conquer or Hold, my controller gains 2 XP"*, 315.2.b.2 Holds
+every battlefield you control and 485.4 gives a Duel two — up to 4 XP a turn from Scorchclaw alone.
+The payoff is honestly small: *"enter ready"* is a play-time property, not a ready (415.1), so the
+rung is +1 Might plus one free arrival per further copy.
+
+### 11.4 `draven-showboat-arena-kingpin-score-scaling-body` — OGN-028 + UNL-001 (both in zero entries)
+
+**Swept, with the members named**: exactly three cards in the pool read your point total —
+`OGN-028 Draven, Showboat` (*"My Might is increased by your points"*), `OGN-112 Kai'Sa, Evolutionary`
+(points as a cost ceiling) and `SFD-055 Needlessly Large Yordle` (points *scored from holding this
+turn*). Draven is the only one whose **body size** is your score.
+
+194.1 lists three separate kinds of point — Hold, Conquer, and *"Spells, Triggered Abilities and
+Activated Abilities that instruct them to gain one or more points"* — and Draven reads the total, so
+R2 = A's card-text points grow him exactly as a Conquer does, while 469 and 470 never see them.
+
+`UNL-001 Arena Kingpin`'s *"+3 :rb_might: this turn"* places no counter, so 702.3 (*"There can only be
+one Buff on a Unit at a time"*) and 703 (a Buff is exactly +1) are both silent and **three Kingpins
+stack for +9**. 143.4.a's *"I enter ready"* makes the first pump available the turn he lands, and
+415.3.a refunds the exhaust every Awakening.
+
+**The weakness is the opposite of what a reader assumes and the entry leads with it**: Draven is
+*smallest* when you are behind. He widens a lead; he never closes a gap.
+
+### 11.5 `rebuttal-mel-souls-reflection-offset-empower` — VEN-152 + VEN-110 + VEN-151
+
+**The obvious line does not work, and 381 is why.** Empowering `VEN-110 Mel, Defiant Soul` fires two
+triggers at once — her banish and the legend's *"When you empower something else, empower me"* — and
+383.3.d lets you order them so the legend is Empowered before the banish resolves. But the legend's
+answer (*"Disempower me, exhaust: Give a unit at a battlefield -2 Might this turn"*) is an **Activated
+Ability**, and 381 reads: *"All Activated Abilities can only be activated on the Controlling Player's
+Turn and **during an Open State**."* While Mel's banish sits on the Chain the state is Neutral Closed
+(310.2), so 340.4's priority window buys nothing — the ability carries neither [Action] nor [Reaction].
+
+**A different legal ordering was tried first, as the project requires before filing any reading, and
+it still fails — so no reading is filed.** The honest shape is an engine **offset by one event**:
+Empower something else on an earlier turn so the legend is Empowered, spend its -2 in your own Open
+State, then Empower Mel and let her banish take a body that was 5 Might. Ceiling 3 → 5.
+
+Two more from the same entry. 206 keeps Rebuttal's *"costs no more than 4"* window fixed on the
+**printed** cost, so no discount sneaks a big spell in and none of the pool's three cost-increases
+(`VEN-045 Helm of Suppression`, `VEN-160 Mystic Vortex`, `UNL-219 Vaults of Helia`) pushes one out —
+the mirror of the catalogue's existing note that a spell tax never widens your own counter's window.
+And 056 / 056.2 send a **stolen** spell to its OWNER's trash: the rainbow buys the effect, not the card.
+
+## 12. Refusals from batch 7
+
+- **`UNL-126 Megatusk` as the XP outlet for `UNL-129 Vicious Snapjaws`.** Refused by **824.1.d**: the
+  rung of the only [Level] card in the identity goes Inactive the moment you drop below 3 XP, and
+  730.2 makes spending your own reduction. A faucet plus a sink is worth less than a faucet alone here.
+- **Loading the trash with `VEN-010 Consuming Curse` before casting one.** Refused by arithmetic:
+  three casts total 9 (12 under Annie), a mill-two-cast-one line totals 4 (5). Better per card, worse
+  per game.
+- **`SFD-133 Boots of Swiftness` or any other [Ganking] source added to `shuriken-flip-akali-deadly-weapon-move-ping`.**
+  Refused as redundant: 449's effect move is not restricted by 144.4 at all, so the Flip already moves
+  Akali battlefield to battlefield, and 810.2 makes a second Ganking instance worth nothing regardless.
+- **Buying the legend's -2 Might inside the empower event that needs it.** Refused by 381 + 310.2, in
+  full, in §11.5. This is the reason the entry is written as an offset engine rather than a two-card
+  combo.
