@@ -220,3 +220,121 @@ instances: as of 2026-09-07 it was in **zero** combo entries.
 
 432.1, 432.1.a, 433.1, 433.1.a, 433.1.b, 433.1.c, 443.1, 443.1.a, 443.2.a, 418.1, 418.1.a, 451, 452,
 457.1, 476.2, 476.3, 718.1, 718.4, 719.5, 719.5.a.
+
+---
+
+# Batch 2 — the damage-assignment sub-block and the Ignoring Effects block
+
+Batch 1's four entries were merged by the manager (catalogue at 600). Staging pruned to this batch.
+
+| id | block opened | class |
+|---|---|---|
+| `caitlyn-taric-backline-last-assignment` | **465.2.c.6–c.10** (damage assignment order) | ENGINE |
+| `dune-surfer-ignore-tank-one-way` | **764–767 Ignoring Effects** | ENGINE |
+
+`validateCombos` over the merged copy: **0 errors, 602 entries.** `test/legend-lines.test.ts` re-run over
+these two: 16 legend base codes checked, **0 defects.** No duplicate id, no duplicate card set.
+
+## 6. The corrected probe, run over the whole file
+
+Requiring a sub-rule (`\d{3}\.[0-9a-z]`) and diffing against every `^\d{3}\. ` heading:
+**385 top-level headings, 234 uncited.** Most of the misses below 300 are structural (Setup, Game
+Objects, Privacy). The mechanics range is not, and this batch came from two blocks in it.
+
+## 7. `caitlyn-taric-backline-last-assignment` — 465.2.c.6 prints the whole assignment order
+
+The catalogue cites 465.2.c.2 through 465.2.c.5 in **210 places** and **none** of 465.2.c.6 through
+465.2.c.10. What is in them:
+
+- **465.2.c.6** — *"A player must obey all requirements and restrictions on damage assignment if
+  able"*, with the full order as its worked example: *"That player must assign combat damage first to
+  the unit with Tank, then to the unit with no abilities, then to the unit with Backline."*
+- **465.2.c.7** — units of equal priority may be assigned in any order.
+- **465.2.c.8** — *"If a Unit has one or more Abilities or effects applying to it that demand it be
+  assigned damage in a specific way that is exclusionary, then the assigning player chooses only one
+  of those abilities to apply."* Its worked example is **Caitlyn, Patrolling given [Tank]**: the
+  **attacker** chooses whether to honour Tank or Backline. So `OGN-057 Block` and `SFD-033 Doran's
+  Shield` are **anti-synergic** with every Backline body in the pool.
+- **465.2.c.10** — *"If a unit cannot be dealt damage, then no amount of damage can be considered
+  lethal. Such a unit is exempt from any considerations of mandatory assignment."* A Tank under a
+  full Prevent (437.4) stops being a mandatory assignment at all.
+
+**And the pool has FIVE [Backline] cards, not four.** `OGN-068 Caitlyn, Patrolling` prints the
+reminder sentence *"I must be assigned combat damage last."* **bracket-less**, where `UNL-043`,
+`UNL-090`, `UNL-141` and `UNL-145` print `[Backline]`. A sweep written `grep '\[Backline\]'` returns
+four and misses her — the same shape as `SFD-138 Windsinger` printing `Hidden` without brackets. She
+is also the card the Core Rules name, twice, at 465.2.c.8 and 465.2.c.9.
+
+[Backline] is the **self-protecting mirror of [Tank]**: 815.1.c.2 makes a Tank pay a toll on behalf of
+the rest of the garrison, while Backline makes its own body the last thing that can legally be
+assigned damage. That is what makes a repeatable exhaust ability worth putting on one.
+
+## 8. `dune-surfer-ignore-tank-one-way` — 767 makes every "ignore" card one-way and scoped
+
+`VEN-004 Dune Surfer` (*"You ignore [Tank] while assigning combat damage here."*) was in **zero
+entries**, and 764–767 is cited by nothing. Riot's worked examples at **766** and **767** are that
+exact sentence with `Backline` in place of `Tank`.
+
+- **766** scopes the ignore to the named game action: the keyword is *"treated as inactive for the
+  purposes of the game action or procedure."*
+- **767** — *"Ignored abilities are only treated as inactive for the specific game action or procedure
+  described, and only by the players directed by the ability"* — with *"Any other player assigning
+  combat damage at the same location as that unit will not be able to ignore Backline."*
+
+So the Surfer is **a key, not a dispel**: the same board stops walling you and keeps walling them.
+That generalises to `VEN-061 Decree of Insight` and `VEN-158 Heisho, Shell of the World`, whose
+scoping `CLAUDE.md` currently derives from the cards' own wording rather than from 767.
+
+## 9. Lead not yet built — 386–388 Reflexive Triggers, and it touches eight catalogued cards
+
+**387.1: *"Reflexive Triggers can be recognized by the phrase 'Do this:' or 'Do one of the following:'."***
+Eight cards in the pool print *"Then do this:"* — `OGN-258 Dragon's Rage`, `SFD-024 Rell, Magnetic`,
+`SFD-154 Guards!`, `SFD-198 Arise!`, `UNL-081 Keeper of Masks`, `UNL-139 Bone Skewer`,
+`UNL-199 Deceiver`, `UNL-200 Mirror Image` — and several are heavily catalogued. Rule 386–388 is
+cited by nothing.
+
+**388.1: *"A new ability is created and added to the chain as a Pending Item."*** So the second half is
+a **separate Chain Item**, not part of the first half's resolution. Following the chain rules from
+there: 336.1 puts it through the same FEPR process; **337.1** finalizes it (which is where its targets
+and any base cost under 204.3.a are locked in); **337.4** — *"If, after finalizing the Chain Item,
+there are no more items on the chain to be Finalized, the controller of the next item on the chain
+gains Priority. Move to step 2: Execute"* — and 338.1.a then admits a legally timed [Reaction].
+
+**So there is a full priority window between the two halves of every "Then do this:" card, and both
+players get it.** Two consequences worth walking next batch, stated here so they are not lost:
+
+- `UNL-081 Keeper of Masks` / `UNL-199 Deceiver` / `UNL-200 Mirror Image`: the Reflection tokens exist
+  on the board, and the source unit is still killable, in a window **before** *"They become copies"*
+  resolves. A response that removes the copy source leaves 055 to ignore the instruction.
+- `SFD-154 Guards!`: its reflexive half is *"You may pay one Order rune to ready it"*, which 204.3.a /
+  383.3.b make a **base cost paid at finalization** of the reflexive item — so the rune must already
+  be banked when the window opens, and 415.3.a means runes tapped on your own turn are dead on the
+  opponent's, which is exactly when this [Hidden] card is played for 0.
+
+**387.1.a is dead letter in this pool**: *"'Do this' can be followed by 'N times.'"* — no card prints
+it (all eight rows are a bare *"Then do this:"*).
+
+## 10. Results — two more blocks read and found empty
+
+### 10.1 478 / 479 Dependency — the worked examples describe a card the pool does not print
+
+478.1 establishes a Dependency when applying one same-layer effect *"alters the outcome when applying
+the other"*, and 479.2 then forces the depended-on effect first. Every worked example in 478–479 is
+built on a passive reading *"Units you control here have their Might increased to 5 [M]"* — an
+**arithmetic** raise-to-a-floor. Measured over the corpus, no card in the pool prints that shape:
+`VEN-116 Dragon Form` says *"Its base Might becomes 5 this turn"*, which is **assignment** and lands
+in a different layer (477.1.a.1). The pool's other same-layer Might effects are fixed modifiers whose
+amounts are baked in when the action is performed — 432.1.a for a Double, 433.1.a for a Swap — so no
+dependency arises from them either. **No entry.** Worth re-reading if a future set prints a
+"Might increased to N" passive, because 479.2 would then make the floor **anti-synergic** with a pump:
+Riot's own numbers are 4 + 1 + 2 = 7 under the naive order and 4 + 2 + 0 = **6** under the forced one.
+
+### 10.2 741–749 Counters — the general home of Buffs, and it changes nothing the catalogue says
+
+702 makes a Buff a counter, so this block governs it. Read in full: **745.2** (*"the spending player
+must control the Game Object the Counter is placed on"*) is the general form of 702.2.b.2, which the
+project already carries; **748** (*"Game Objects that change zones to a non-board zone lose all of
+their Counters"*) is the rule behind `OGN-228 Vanguard Helm` being the pool's only buff-recovery card,
+which the project already carries from 702.3; **747** and **749** have no card behind them; and
+**746** (moving a counter between two Game Objects) has no card in the pool that does it. **No entry**,
+but 745.2 and 748 are the correct citations for two claims currently sourced to 702.x.
