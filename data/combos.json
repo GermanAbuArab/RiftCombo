@@ -25236,13 +25236,6 @@
           "note": "Mind unit, E4 P1 M4, [Shield 2]. Both halves work: 'Your hold effects for holding here trigger an additional time' doubles Shen, and 'When I hold, [Add] 1 rainbow at the start of your next Main Phase' is itself a hold effect, so it also runs twice. One copy, and only one — a second Sentinel would be Shen's second 'other unit' and switch him off."
         },
         {
-          "card": "VEN-055",
-          "quantity": 2,
-          "role": "engine",
-          "zone": "BASE",
-          "note": "Mind unit, E4. '[Empower] E3. [Empowered] Your spells cost E1 + 1 rainbow less, to a minimum of E1.' Two Empowered copies take Time Warp from E10 + 4 Power to E8 + 2 Power; 356.4.e keeps each floor local to its own discount."
-        },
-        {
           "card": "OGN-122",
           "quantity": 2,
           "role": "payoff",
@@ -25267,15 +25260,16 @@
           "K CANNOT BE RAISED HERE, AND THAT IS THE POINT OF PAIRING SHEN WITH EXACTLY ONE SENTINEL. A second Blue Sentinel would make two 'other units' at Shen's battlefield and 383.2.a.1 would keep his ability off the Chain — the line would score 1 a turn instead of 3. Shen is the only hold payoff in the pool whose multiplier occupies the single companion slot his own condition allows.",
           "The sole-garrison trap is checked and does not bite: nothing in this line kills a friendly body, so 323.6 and 190.4.c never hand the battlefield back mid-chain. The two units simply stand there through all three Beginning Phases.",
           "Against sentinel-trinity-time-warp-chain, which is the same shape in Mind/Body: that line pays E4 + a 1-Body [Equip] for a Trinity Force on the Sentinel and lives under VEN-149 Defender of Tomorrow, the pool's ONLY Mind/Body legend. This one pays E6 + 2 Order Power for Shen, needs no [Equip] at all, and runs under any of four Mind/Order legends. Same nine points, same two Time Warps; the difference is the identity and the [Equip].",
-          "In 2v2 it is two points short: 489.3 sets the Victory Score at 11 against 194.3's 8, so the board needs a third Time Warp there — which 103.2.b allows, since Time Warp banishes itself rather than recycling."
+          "In 2v2 it is two points short: 489.3 sets the Victory Score at 11 against 194.3's 8, so the board needs a third Time Warp there — which 103.2.b allows, since Time Warp banishes itself rather than recycling.",
+          "THE LEDGER CLOSES ON THREE CARDS, NOT FOUR (corrected 2026-09-07). An earlier version of this entry ran two Empowered VEN-055 Applied Researchers to discount Time Warp from E10 + 4 Power to E8 + 2 Power, and priced them into uses[]. They are not needed: 161.2.a fixes the Rune Deck at twelve, 164.2.a taps a rune for 1 Energy, and 164.2.b prints 'Recycle this: [Reaction] - Add [C]' with the RECYCLE as its whole cost - no exhaust - so an already-exhausted rune still pays Power. Twelve runes are therefore E12 + 2 Power in one Main Phase, and the doubled Sentinel adds 2 rainbow at 316.4, for E12 + 4 Power against a cost of E10 + 4 Power. 161.2.b returns the recycled runes to the Rune Deck and 315.3.b channels two back each Channel Phase, so the second Time Warp turn has the same sum. Two Applied Researchers remain a legitimate accelerant (E4 + E3 each, and 356.4.e keeps each floor local to its own discount) - but they are a deckbuilding CHOICE and an optional card must never sit in uses[], which is what the matcher and planDeck price."
         ]
       },
       "steps": [
-        "Set up over earlier turns: Shen, Leader of the Kinkou Order (E6 + 2 Order Power) and one Blue Sentinel (E4 + 1 Mind Power) at a battlefield you control, with nothing else there; two Applied Researchers played and Empowered (E4 + E3 each).",
+        "Set up over earlier turns: Shen, Leader of the Kinkou Order (E6 + 2 Order Power) and one Blue Sentinel (E4 + 1 Mind Power) at a battlefield you control, with nothing else there. No third card is needed - the rune economy pays for the Time Warps by itself, see the ledger below.",
         "Turn 1, Scoring Step (315.2.b.2): you Hold. 1 point from the Score. Shen's trigger is placed and 383.2.a.1 finds exactly one other unit you control here — the Sentinel — so it resolves, doubled to two executions: 2 ability Gains. Three points. The Sentinel's own hold effect also runs twice and banks 2 rainbow.",
-        "Turn 1, Main Phase: 316.3 empties the Rune Pool, then 316.4 delivers the 2 rainbow. Cast Time Warp for E8 + 2 Power — Energy from runes, Power from the Sentinel.",
+        "Turn 1, Main Phase: 316.3 empties the Rune Pool, then 316.4 delivers the 2 rainbow the doubled Sentinel banked. Tap your twelve runes for 12 Energy (164.2.a), then recycle two of those ALREADY EXHAUSTED runes for 2 Power (164.2.b, whose cost is the Recycle and carries no exhaust). That is E12 + 4 Power against Time Warp at E10 + 4 Power, so it casts with 2 Energy to spare.",
         "Turn 2 arrives with no opponent turn in between. Its Scoring Step Holds the same battlefield (470's cap is per turn and this is a new turn): three more points, total six, and 2 more rainbow banked.",
-        "Turn 2 Main Phase: cast the second Time Warp on the same terms.",
+        "Turn 2 Main Phase: the same sum is available again. 161.2.b sent the two recycled runes to the Rune DECK, and 315.3.b channels 2 back every Channel Phase, so the board is twelve runes again; cast the second Time Warp on the same terms.",
         "Turn 3 Scoring Step: three more points, total nine. 194.2 wins the game in the cleanup."
       ],
       "terminatesIn": "nine points across three uninterrupted turns, crossing 8 on the third Hold — and the two-unit garrison Shen requires is safe for exactly as long as the opponent has no turn",
