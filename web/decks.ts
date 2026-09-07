@@ -16,6 +16,7 @@ import type { Deck, Domain, Format } from "../src/types.js";
 import { esc } from "../src/html.js";
 import { accountsEnabled, createDeck, deleteDeck, listDecks, onAccount, updateDeck, type Account } from "./supabase.js";
 import { builderHtml, initBuilder, openImport, openList, refreshBuilder } from "./builder.js";
+import { thumb } from "./graph.js";
 import { go, onRoute, type Route } from "./router.js";
 
 export interface DeckHooks {
@@ -158,6 +159,24 @@ function render(): void {
   // The library reads best in a column; the builder needs the width of two.
   host.classList.toggle("building", Boolean(account && current.deckId));
   host.innerHTML = !account ? "" : current.deckId ? detailView(current.deckId) : libraryView();
+  if (account && !current.deckId) wireArt(host);
+}
+
+/**
+ * The one failure `deckCard` cannot see (#177). `image` is in the payload, so the `<img>` is written;
+ * whether the CDN answers it is a different question, and a 404 draws the browser's own broken-image
+ * glyph — `alt=""` suppresses the alt TEXT, not the icon. The CSP forbids an inline `onerror=`, so
+ * the swap to the empty state is a real listener, attached to the images this render just drew.
+ */
+function wireArt(root: HTMLElement): void {
+  root.querySelectorAll<HTMLImageElement>(".deck-card-art img").forEach((img) => {
+    img.addEventListener("error", () => {
+      const box = img.parentElement;
+      if (!box) return;
+      box.classList.add("noart");
+      box.textContent = "—";
+    }, { once: true });
+  });
 }
 
 // --- the library ----------------------------------------------------------------------
@@ -201,11 +220,57 @@ function libraryView(): string {
         : `<p class="plan-note">Loading your decks…</p>`}`;
 }
 
+/**
+ * The window on a legend's art (#177).
+ *
+ * Riot serves FULL-CARD scans: frame, cost pips, name plate and the whole rules box. A square box
+ * with `object-fit: cover` trims only what the box has proportionally less of, and 744x1039 against
+ * 1:1 is 28% of the height — not enough to lose a name plate that starts at 64% of the scan. The
+ * crop is therefore asked of the image CDN, which takes a `rect=x,y,w,h` in SOURCE pixels, and the
+ * source's own size is in its filename (`…-744x1039.png`): a square of side 0.52H taken at 0.05H
+ * down is the illustration, measured on the scan rather than on whatever height a tile happens to be.
+ *
+ * A URL whose filename does not name its size — nothing in today's payload — comes through whole and
+ * `object-position` biases it upward. If the CDN ever stops honouring `rect` the answer is the same
+ * full card, not a broken tile, and a URL it refuses outright is caught by `wireArt`.
+ */
+function legendArt(image: string | null | undefined, px: number): string | null {
+  const src = thumb(image, px);
+  if (!src) return null;
+  const size = /-(\d+)x(\d+)\.[a-z]+/i.exec(src);
+  if (!size) return src;
+  const w = Number(size[1]);
+  const h = Number(size[2]);
+  const side = Math.round(h * 0.52);
+  if (side > w) return src;
+  return `${src}&rect=${Math.round((w - side) / 2)},${Math.round(h * 0.05)},${side},${side}`;
+}
+
+/**
+ * One saved list in the library (#177).
+ *
+ * It was five lines of the same text in the same shape, so a dozen lists read as one wall and nothing
+ * said which was which until you opened it. The legend is what a player calls a list by, so its art
+ * leads the tile as a square thumbnail: recognisable at a glance, and already in the payload —
+ * `image` is in `scripts/web-card-fields.mjs` and every other view draws it through the same `thumb`.
+ *
+ * The art is decorative (`alt=""`, and the strip is `aria-hidden`): the legend's name is on the line
+ * beside it, so a screen reader that announced the portrait would only repeat it. A deck with no
+ * legend, and a legend whose art never arrives, get the thumbnail's own empty state rather than a
+ * broken image frame — a dash, which is how this project already renders an empty value (a typeless
+ * card's type reads "-", never a blank column). `wireArt` extends that to a URL the CDN refuses.
+ *
+ * The tile stays ONE link and the thumbnail is not a second target inside it: the art is the same
+ * card the legend line names, so a click on either has the same one answer, opening the deck.
+ */
 function deckCard(d: SavedDeck): string {
   const cards = hooks.cards();
   const deck = loadDeck(d.deckText, cards);
   const report = checkBuild(deck, cards, d.format);
-  const legend = deck.legend ? cards.get(deck.legend)!.name.replace(/ - Starter$/, "") : "No legend";
+  const card = deck.legend ? cards.get(deck.legend)! : null;
+  const legend = card ? card.name.replace(/ - Starter$/, "") : "No legend";
+  // A 72px square, so 160 is the width that is sharp on a 2x screen and no wider.
+  const art = legendArt(card?.image, 160);
   // The legend has its own line with its domain dots, so the meta line does not repeat it.
   const total = Object.values(deck.main).reduce((a, b) => a + b, 0);
   const dots = (deck.legend ? cards.domainsOf(deck.legend) : [])
@@ -214,14 +279,17 @@ function deckCard(d: SavedDeck): string {
     .map((dm) => `<span class="dom-dot dom-${esc(dm)}" title="${esc(dm)}"></span>`)
     .join("");
   return `<a class="deck-card" href="#/decks/${encodeURIComponent(d.id)}">
-    <span class="deck-card-top">
-      <span class="deck-card-name">${esc(d.name)}</span>
-      <span class="badge ${report.legal ? "ok" : "bad"}">${report.legal ? "Legal" : "Illegal"}</span>
+    <span class="deck-card-art${art ? "" : " noart"}" aria-hidden="true">${art ? `<img src="${esc(art)}" alt="" loading="lazy">` : "—"}</span>
+    <span class="deck-card-body">
+      <span class="deck-card-top">
+        <span class="deck-card-name">${esc(d.name)}</span>
+        <span class="badge ${report.legal ? "ok" : "bad"}">${report.legal ? "Legal" : "Illegal"}</span>
+      </span>
+      <span class="deck-card-legend">${dots}${esc(legend)}</span>
+      <span class="deck-card-meta">${total} card${total === 1 ? "" : "s"} · ${esc(d.format === "2v2" ? "2v2" : "Constructed")}</span>
+      ${whyIllegal(report, deck, d.format)}
+      <span class="deck-card-when">Edited ${esc(ago(d.updatedAt))}</span>
     </span>
-    <span class="deck-card-legend">${dots}${esc(legend)}</span>
-    <span class="deck-card-meta">${total} card${total === 1 ? "" : "s"} · ${esc(d.format === "2v2" ? "2v2" : "Constructed")}</span>
-    ${whyIllegal(report, deck, d.format)}
-    <span class="deck-card-when">Edited ${esc(ago(d.updatedAt))}</span>
   </a>`;
 }
 
@@ -232,10 +300,14 @@ function deckCard(d: SavedDeck): string {
  * with the library meant opening 14 decks. The rows were right there: `checkBuild` returns nine of them
  * and this card was using `report.legal` alone. Nothing is reworded — the failing row's own `label` and
  * paragraph are what a player then reads again, identically, inside Construction.
+ *
+ * A legal list gets the row anyway, empty (#177). It used to return "" and the tile lost a line, so a
+ * row of the grid held three tiles of three heights and each art crop landed on a different window.
+ * The row is reserved in CSS (`.deck-card-why` has a min-height); an empty span announces nothing.
  */
 function whyIllegal(report: BuildReport, deck: Deck, format: Format): string {
   const broken = report.rules.filter((r) => r.status === "fail");
-  if (!broken.length) return "";
+  if (!broken.length) return `<span class="deck-card-why"></span>`;
   const first = broken[0]!;
   const more = broken.length > 1 ? ` · +${broken.length - 1} more` : "";
   // The ban row names its cards but not the date they went on the list, and that date is the whole

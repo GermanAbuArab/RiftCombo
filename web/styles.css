@@ -524,8 +524,27 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .decks-import { display: flex; flex-direction: column; gap: 7px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
 .decks-import .url-row { max-width: 560px; }
 .deck-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
-.deck-card { display: flex; flex-direction: column; gap: 6px; padding: 14px 15px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+/* #177: the legend's art leads the tile, so a library reads as a shelf of champions rather than a
+   wall of the same five lines. A SQUARE, and that is geometry rather than taste: `cover` crops the
+   axis the box has proportionally less of, and the scan is 744x1039 (ratio 0.716), so a box wider
+   than that ratio crops the height — which is the half that carries the frame and the rules box — and
+   a tall column would crop the sides and show the whole card instead. Both dimensions are set here,
+   so the box exists before any image arrives and nothing shifts when one does. Radius 6px and a
+   --line-2 border are the `.card-thumb` idiom the drawer, the graph and the pool already use; the
+   margin is what makes it read as an inset thumbnail rather than as a panel of its own. */
+.deck-card { display: grid; grid-template-columns: auto minmax(0, 1fr); padding: 14px 15px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
 .deck-card:hover { border-color: var(--accent); }
+.deck-card-art { align-self: start; width: 72px; height: 72px; margin-right: 13px; border: 1px solid var(--line-2); border-radius: 6px; background: var(--panel-2); overflow: hidden; }
+/* `legendArt` asks the CDN for the illustration alone, so the file that arrives is already the square
+   window and `cover` has nothing left to trim; the top bias is there for a scan whose size the URL
+   does not name, which comes through whole. NOT `.empty`: that class is taken — line 178 makes it an
+   absolutely positioned page-wide empty state, and using it here threw the box to the top of the
+   viewport. `.pool-noart` is the name this project already gives a card with no picture. */
+.deck-card-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+/* No legend, no art URL, or a URL the CDN answers 404 to (`wireArt` swaps the class in): a dash, the
+   way an empty value is written everywhere else here. A box with nothing in it read as broken art. */
+.deck-card-art.noart { display: flex; align-items: center; justify-content: center; color: var(--faint); font-size: 15px; }
+.deck-card-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .deck-card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
 .deck-card-name { min-width: 0; font-weight: 600; font-size: 14.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .deck-card-legend { display: flex; align-items: center; gap: 6px; font-size: 13px; }
@@ -534,8 +553,10 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 /* Why the badge says Illegal (#93). NOT --danger: it measures 3.98:1 on --panel, under AA, and the
    grey scale here is measured rather than chosen (#81). The badge beside it already carries the red,
    so the reason is --muted at 6.32:1. Clipped rather than wrapped, so one long detail does not make
-   its card taller than the rest of the row. */
-.deck-card-why { font-size: 11.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+   its card taller than the rest of the row — and `min-height` reserves the row on a LEGAL list, in
+   `em` so it is exactly the line box body's 1.5 line-height gives a filled one, which is what keeps
+   every tile in the grid the same height and every art crop the same window (#177). */
+.deck-card-why { min-height: 1.5em; font-size: 11.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dom-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex: 0 0 auto; }
 .dom-fury { background: var(--dom-fury); } .dom-calm { background: var(--dom-calm); }
 .dom-mind { background: var(--dom-mind); } .dom-body { background: var(--dom-body); }

@@ -106,6 +106,82 @@ describe("the library", () => {
     expect(card.querySelectorAll(".dom-dot")).toHaveLength(2);
   });
 
+  /**
+   * #177: the tile leads with the legend's art. The URL is the card's own — the same `image` field
+   * every other view draws — so the assertion is that this tile carries THAT legend's art, not that
+   * some image is present.
+   */
+  it("leads the tile with the legend's own art, inside the one link", async () => {
+    api.decks = [row()];
+    await boot();
+    const card = host().querySelector<HTMLAnchorElement>("a.deck-card")!;
+    const img = card.querySelector<HTMLImageElement>(".deck-card-art img")!;
+    expect(img).not.toBeNull();
+    const src = img.getAttribute("src")!;
+    expect(src).toContain(cards.get(cards.resolveName("Lady of Luminosity")!)!.image!);
+    // The crop is geometry, not a class: Lady of Luminosity's scan is 744x1039, so the square window
+    // on the illustration is 0.52 x 1039 = 540 a side, taken 0.05 x 1039 = 52 down and centred
+    // across (744 - 540) / 2 = 102. Asking the CDN for it is what keeps the name plate and the rules
+    // box out of a 72px box, which `object-fit: cover` alone cannot do on a 0.716 scan.
+    expect(src).toContain("&rect=102,52,540,540");
+    // Decorative: the legend's name is already on the line beside it.
+    expect(img.getAttribute("alt")).toBe("");
+    expect(img.getAttribute("loading")).toBe("lazy");
+    // The whole tile is still one link, and the badge and the text moved into the body beside the art.
+    expect(host().querySelectorAll("a.deck-card")).toHaveLength(1);
+    expect(card.querySelector(".deck-card-body .deck-card-name")!.textContent).toBe("Lux engine");
+    expect(card.querySelector(".deck-card-body .badge")!.textContent).toBe("Legal");
+  });
+
+  /** A list with no legend gets the strip's empty state, never a broken image frame. */
+  it("marks the strip empty, with a dash, when the list has no legend", async () => {
+    api.decks = [row({ deckText: "3 Forge of the Future\n3 Shadow's Call\n" })];
+    await boot();
+    const card = host().querySelector<HTMLAnchorElement>("a.deck-card")!;
+    const art = card.querySelector<HTMLElement>(".deck-card-art")!;
+    expect(art.classList.contains("noart")).toBe(true);
+    expect(art.querySelector("img")).toBeNull();
+    expect(art.textContent).toBe("—");
+    // The dash is the strip saying nothing is there; "No legend" beside it is what is announced.
+    expect(art.getAttribute("aria-hidden")).toBe("true");
+    expect(card.querySelector(".deck-card-legend")!.textContent).toContain("No legend");
+  });
+
+  /**
+   * The CDN answering 404 is the one failure the markup cannot see, and `alt=""` hides the alt text
+   * while leaving the browser's broken-image glyph. The listener is real because the CSP forbids an
+   * inline `onerror=`.
+   */
+  it("falls back to the empty thumbnail when the art fails to load", async () => {
+    api.decks = [row()];
+    await boot();
+    const img = host().querySelector<HTMLImageElement>(".deck-card-art img")!;
+    const box = img.parentElement!;
+    expect(box.classList.contains("noart")).toBe(false);
+    img.dispatchEvent(new Event("error"));
+    expect(box.classList.contains("noart")).toBe(true);
+    expect(box.querySelector("img")).toBeNull();
+    expect(box.textContent).toBe("—");
+  });
+
+  /**
+   * #177: the reason line is reserved on a legal list too. Without it a row of the grid held tiles of
+   * two heights, the strip stretched to each, and no two art crops were the same window.
+   */
+  it("reserves the reason row on a legal list, so every tile has the same rows", async () => {
+    api.decks = [row({ id: "legal" }), row({ id: "illegal", name: "Broken", deckText: "3 Forge of the Future\n" })];
+    await boot();
+    const tiles = [...host().querySelectorAll<HTMLElement>("a.deck-card")];
+    expect(tiles).toHaveLength(2);
+    const rows = (t: HTMLElement) => [...t.querySelectorAll(".deck-card-body > *")].map((e) => e.className);
+    expect(rows(tiles[0]!)).toEqual(rows(tiles[1]!));
+    const legal = tiles.find((t) => t.querySelector(".badge")!.textContent === "Legal")!;
+    expect(legal.querySelector(".deck-card-why")).not.toBeNull();
+    expect(legal.querySelector(".deck-card-why")!.textContent).toBe("");
+    const illegal = tiles.find((t) => t.querySelector(".badge")!.textContent === "Illegal")!;
+    expect(illegal.querySelector(".deck-card-why")!.textContent!.length).toBeGreaterThan(0);
+  });
+
   it("opens the editor on a saved list, with the builder inside it", async () => {
     api.decks = [row()];
     const router = await boot();
