@@ -506,3 +506,69 @@ a battlefield back at the Cleanup the moment your last unit there dies or leaves
 kills a body mid-turn has to name who else is standing at that body's battlefield. In
 `bottled-constellation-time-warp` the fodder must not be the garrison holding the battlefield whose
 Hold is supplying the other point.
+
+---
+
+## 12. The ALT_WINs outside the Plaza family — the class is exhaustively three cards
+
+**The sweep first, because it bounds the class.** Over all 935 base codes, exactly **three** cards
+in the pool touch winning the game:
+
+```
+OGN-293  The Grand Plaza    battlefield  "When you hold here, if you have 7+ units here, you win the game."
+UNL-088  Gutter Palace      gear   Mind  "At the start of your Beginning Phase, if you have exactly 4 cards
+                                          in hand and exactly 4 units at battlefields, you win the game."
+OGN-276  Aspirant's Climb   battlefield  "Increase the points needed to win the game by 1."   [BANNED both formats]
+```
+
+So "the ALT_WINs outside the Plaza family" is the Gutter Palace family, and it is two entries:
+`gutter-palace` (one card) and `gutter-palace-keeper-time-warp` (six).
+
+### 12a. REFUSED — Aspirant's Climb as a one-sided lockout
+
+The idea is good and I want it on record because it will occur to the next reader. 195 (*"A player
+also wins the game if an effect instructs them to do so"*) is a **different clause** from 194.2's
+*"points greater than or equal to the Victory Score"*. Aspirant's Climb raises the Victory Score;
+it does not touch 195. So an ALT_WIN deck is unaffected by it while every opponent's BURST and CHAIN
+needs one more point — and a Gutter Palace deck can afford to bring it, because the Palace is a GEAR
+and counts *"units at battlefields"* rather than battlefields you control, so it never competes for
+the one battlefield slot 485.4.a allows.
+
+**It is banned in both formats.** `data/cards.json` carries
+`[BANNED constructed:banned, 2v2:banned]` on OGN-276, and CLAUDE.md's own rule is that an anchor
+banned in every format fails validation. Dead — but the 195-versus-194.2 distinction it rests on is
+real and is the reason the whole ALT_WIN class is robust in a way the point classes are not.
+
+### 12b. `gutter-palace-reaction-dials` (ENTRY) — both counters moved on the opponent's turn
+
+`gutter-palace` is one card and its weakness is stated in its own steps: *"Pass at 4/4."* The
+Palace's adjust ability is an Activated Ability with **no [Reaction]**, so between the end of your
+Main Phase and the check at 315.2.a you cannot touch either counter, and a single removal spell takes
+you to three units and fails the check.
+
+Mono-Mind supplies a complete set of Reaction-speed dials, and the unit-count one had never been
+used in the catalogue at all:
+
+| card | hand Δ | units-at-battlefields Δ | speed |
+|---|---|---|---|
+| `OGN-104 Retreat` (E1) | −1 on the play, +1 on the return = **0** | **−1** | [Reaction] |
+| `UNL-071 Chakram Dancer` (E3) | **−1** | **+1** | [Ambush] = [Reaction] (822.1.b) |
+| `SFD-087 Premonition` (E2 + 3P) | −1 on the play, +3 on the draw = **+2** | 0 | [Reaction] |
+| Gutter Palace's own ability | −1 | +1 | **Main Phase only** |
+
+`UNL-071 Chakram Dancer` appears in **no** catalogued entry, and it is the load-bearing card: nothing
+else in mono-Mind adds a unit at a battlefield at Reaction speed.
+
+**The finding that makes it work: the removal opens the window the correction needs.** 316.5.b gives
+you nothing in the opponent's Neutral Open State — *"only the Turn Player has the ability to play
+spells or activate abilities"* — but 813.1.c.1 admits a [Reaction] card *"during Closed States on any
+player's turn"*, and 312.2.c hands out priority in a Closed State, which is precisely what their spell
+creates when it goes on the Chain. So the answer must be played **in response**, and the count is
+done **forward**: they aim removal at one of your four, you go to five with Chakram Dancer, their
+spell resolves and you are back at four.
+
+Two supporting facts the entry states rather than assumes. Runes must be **banked through your own
+turn** — 167 empties the Rune Pool, not the runes, and 164.2.a / 164.2.b are both [Reaction], so
+Premonition's 3 Power is three banked runes recycled (161.2.b sends them to the Rune Deck). And the
+Draw Step is **315.4, after the check at 315.2.a**, which is what makes a fixed hand size holdable
+at all.
