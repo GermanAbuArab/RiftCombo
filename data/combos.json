@@ -36195,7 +36195,7 @@
         "Play Warwick, Hunter (6 Energy + 1 Body Power). 'I enter ready' means he can act the turn he lands (143.4.a).",
         "In your Main Phase, exhaust the Ballista: 2 damage to an enemy unit at the battlefield you intend to attack. Its Might is irrelevant.",
         "Move Warwick there (144.2, 144.4). 190.3.a.1 applies Contested and 464.2.c.1 makes you the Attacker.",
-        "His attack trigger is placed at the Attacker designation (464.2.c.3) and reads the board then: kill all damaged enemy units there.",
+        "His attack trigger is PLACED at the Attacker designation (464.2.c.3) but READS the board when it EXECUTES (359.3.f.2, whose worked examples are Yasuo, Remorseful mistargeting after his target moves home and reading his current Might). Nothing here turns on the difference, because the Iron Ballista mark is applied back in the Main Phase - but the distinction is load-bearing elsewhere: a ping trigger placed SECOND under 383.3.d resolves FIRST under 340.1 and can mark damage this kill then sees. Phrasing corrected 2026-09-07 after a later walk showed the loose reading would have refused a legal line.",
         "The combat cleanup then heals everything still standing (466.1.a.1), so next turn's mark has to be applied fresh."
       ],
       "terminatesIn": "engine — one enemy unit of ANY Might killed per Iron Ballista activation, once a turn, as long as Warwick attacks that battlefield; nothing here scores",
@@ -41827,6 +41827,361 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #170, from the Core-Rules-named sweep; OGN-010 Legion Rearguard was in zero entries and is 356.1.b.3's worked example, which names this exact interaction. Card text verbatim from data/corpus_flat.txt. The content is the general rule the example carries: 'ignoring its cost' zeroes only the BASE cost (356.1.b.1) and leaves every optional additional cost payable, which is how a reanimated or free-played body beats 143.4. Trap check: the cost comparison is sourced to 206 (printed costs) and the token halves are closed by 185 and 186.1; 203.3 is named as the gate that makes the spell uncastable on an empty board; the additional-cost kill is stated to fire a Deathknell (808.1.c / 808.1.d) rather than being treated as a neutral price; the returned body's combat designation is sourced to 464.2.c.3.a."
+    },
+    {
+      "id": "crackshot-corsair-warwick-attack-order",
+      "name": "Two attack triggers, ordered - the ping and the kill happen in the same combat, so no Main Phase is spent marking",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-159",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E6 P1 M5. 'I enter ready. When I attack, kill all damaged enemy units here.' A kill BY EFFECT keyed on the word 'damaged', so the target's Might never enters it."
+        },
+        {
+          "card": "OGN-130",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E3 M3. 'When I attack, deal 1 to an enemy unit here.' The mark, delivered by a trigger that fires on the SAME event as Warwick's, so it needs no separate turn and no gear."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Both bodies attacking the same battlefield, which 144.3 makes one game action."
+        ],
+        "notable": [
+          "THE ORDERING IS THE ENTRY, AND TWO PARAGRAPHS DECIDE IT. 464.2.c.3 hands out the Attacker designation, and both triggers fire on that one event. 383.3.d: 'If more than one Triggered Ability is Triggered simultaneously, then the player that controls the Abilities selects the order to place them on the Chain.' 340.1: 'The newest Finalized Chain Item resolves.' So place WARWICK FIRST and the Corsair SECOND - the Corsair is newest, resolves first, marks the damage, and Warwick's kill then sees it.",
+          "AND WHY THAT IS LEGAL RATHER THAN A RACE. 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction' - its worked examples are Yasuo, Remorseful's attack trigger reading 'here' and his Might at resolution. 'All damaged enemy units here' is information referenced in Warwick's INSTRUCTION, not an extra condition on his trigger, so it is read when his ability executes and not when it was placed. (383.2.a.1 governs the other case - an extra CONDITION on an attack trigger - and Warwick has none.)",
+          "WHAT 'DAMAGED' IS WORTH. 143.2.a kills a unit when marked damage reaches its Might; 'damaged' is just the marker. One point off a Corsair therefore makes a Might-10 body a legal target for Warwick's kill, and no Might gate, Deflect tax or Tank ordering applies to it - the kill is an effect, not damage.",
+          "THE CLOCK, WHICH IS WHY DOING IT INSIDE ONE COMBAT MATTERS. 466.1.a.1 inserts '3c. Heal all Units.' into the combat cleanup and 143.3.b.2 heals during a Combat Cleanup, so a mark made before the attack survives only until that cleanup. The catalogued sibling warwick-hunter-iron-ballista-damage-marks-death spends a Main Phase activation to make the mark and must remake it every turn; this pairing makes it inside the combat itself, for free, on a body that also attacks.",
+          "THE RATE. 144.3 ('Players may perform multiple Units' standard move simultaneously. This is treated as one game action') brings the whole pack in one declaration, so three Corsairs (103.2.b) attacking beside Warwick mark three different enemy units and Warwick kills all three at once. Warwick also 'enters ready', which 143.4.a permits, so he can attack the turn he lands.",
+          "THE LIMIT. The Corsair's damage is 'to an enemy unit HERE', so both cards want the same battlefield, and 807.1.d's Attacker designation only exists where opposing units are present (323.9) - neither trigger fires on a bloodless walk into an empty battlefield.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Have Warwick, Hunter (6 Energy + 1 Power) and one or more Crackshot Corsairs (3 Energy each) on the board or in hand.",
+        "Declare one Standard Move for all of them to the same enemy-held battlefield (144.3, 144.3.a).",
+        "323.9 stages the Combat and 464.2.c.3 designates the attackers; every attack trigger fires on that one event.",
+        "Order them with 383.3.d: place Warwick's on the Chain FIRST and each Corsair's after it. 340.1 resolves the newest first, so each Corsair deals its 1 damage before Warwick's ability executes.",
+        "Warwick's instruction is read on execution (359.3.f.2): every enemy unit here that now carries damage dies, whatever its Might.",
+        "466.1.a.1 heals the survivors at the combat cleanup, so the marks are spent - which costs nothing, because the next attack makes new ones."
+      ],
+      "netPerIteration": "one enemy unit of any Might removed per Crackshot Corsair in the attack, with no Main Phase activation spent",
+      "terminatesIn": "engine only - one kill per Corsair per attack, three of each by 103.2.b, and nothing fires on an unoccupied battlefield (323.9 + 807.1.d); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 2)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 2). The first entry to use OGN-130 Crackshot Corsair. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.2.a, 143.3.b.2, 143.4.a, 144.3, 144.3.a, 323.9, 340.1, 359.3.f.2, 383.2.a.1, 383.3.d, 464.2.c.3, 466.1.a.1, 469, 807.1.d. Distinct from warwick-hunter-iron-ballista-damage-marks-death, which marks with a gear in the Main Phase and must remake the mark every turn: this pairing makes the mark inside the same combat off a second attack trigger, which is only legal because 359.3.f.2 reads Warwick's instruction at EXECUTION. NOTE FOR THE MANAGER, not a wrong verdict: that sibling entry's fifth step says Warwick's trigger 'is placed at the Attacker designation (464.2.c.3) and reads the board then' - the placement is right and the reading is loose, since 359.3.f.2 checks the instruction on execution; its line works either way, but the phrasing should be tightened before someone builds on it. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "nidalee-towering-combatant-ambush-draw",
+      "name": "466.3.a is stricter than Nidalee's own reminder text - she draws only when your side is the ONLY side left",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-114",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body unit, E3 P1 M4. '[Ambush] (You may play me as a [Reaction] to a battlefield where you have units.) When I win a combat, draw 1. (I win if I remain after combat.)' The reminder is a simplification - see the notables."
+        },
+        {
+          "card": "UNL-099",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E4 M3. '[Shield 2] (+2 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.)' Printed Might 3, but Might 5 exactly when it matters - and 815.1.c.2 makes it the only legal assignment while it lives."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Units already at the battlefield, because [Ambush] is 'I may be played to a battlefield where you control Units' (822.1.b) - the Towering Combatant standing there is what makes the flash-in legal."
+        ],
+        "notable": [
+          "THE REMINDER TEXT IS A SIMPLIFICATION, AND THE RULE IS STRICTER. Nidalee says '(I win if I remain after combat.)' 466.3.a: 'A Player has won a combat if they received either the attacker or defender designation and are THE ONLY PLAYER that has units remaining at this battlefield during this step', with 466.3.c passing the result to their units. And 466.3.d: 'There is \"No Result\" if units were recalled during step 3d of the Combat Cleanup, if BOTH Players have units present during this task, or if neither player has units present.' Since 466.1.a.2 recalls surviving Attackers when Defenders remain, a defence in which the attackers live is No Result - so Nidalee draws only when your side WIPES theirs, not merely when she survives.",
+          "WHICH IS WHY THE PARTNER HAS TO DO BOTH JOBS. 815.1.b: '[the Tank] must be assigned LETHAL damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step', and 815.1.c.2 makes every non-Tank body an invalid assignment until it has. So the Towering Combatant keeps Nidalee alive; and her own Might still counts toward 465.2.c ('Starting with the Attacker, each player assigns an amount of damage equal to their summed Might'), which is what kills the attackers and turns 'remaining' into 'winning'.",
+          "AND THE SHIELD IS EXACTLY THE MIGHT THAT COUNTS HERE. 814.1.c makes [Shield] '+X :rb_might: while I am a defender', so the Towering Combatant is a printed 3 that reads 5 in precisely the situation this entry is about. That is the mirror of this walk's jaull-fish-garen-rugged-mighty-discount, where the same keyword contributes NOTHING because the count happens in the Main Phase with no designation in play. One keyword, two entries, opposite answers - the question is always whether a designation exists.",
+          "822.1.b IS TWO PERMISSIONS, NOT ONE. '[Ambush] is functionally short for \"I may be played to a battlefield where you control Units\" AND \"I have [Reaction] as long as I'm being played to a battlefield where you control Units.\"' The [Reaction] half is what lets her arrive after the attack is declared, and 822.1.c makes the location an added option during the Make Relevant Choices step of playing the card.",
+          "SHE IS IN THAT COMBAT'S DAMAGE STEP. 319.6 runs after Game Objects enter the Board and 323.2.a says: 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now.' So a body flashed in mid-combat is a Defender before 465.2 resolves, and 143.4's entering exhausted costs nothing, because neither 464.2.c.3 nor 465.2.b filters by state.",
+          "THE ARITHMETIC. Towering Combatant 4 Energy for a body that soaks 5 (3 printed + [Shield 2]) and forces every point onto itself; Nidalee 3 Energy + 1 Power for a 4 Might body played at Reaction speed. Their summed 9 is assigned to the attackers under 465.2.c; if that clears the attacking side, 466.3.a gives you the combat and Nidalee draws. Three of each by 103.2.b.",
+          "WHAT IT IS NOT. Nothing here scores, and a defended battlefield is one you already control - 466.5 establishes Control only 'if they didn't already control this Battlefield', so no Conquer follows."
+        ]
+      },
+      "steps": [
+        "Have Towering Combatant (4 Energy) standing at a battlefield you control. Its [Tank] and [Shield 2] do nothing until somebody attacks it.",
+        "The opponent attacks. 464.2.c.3 designates, and 465.2.c fixes each side's summed Might.",
+        "Play Nidalee, Cat Form (3 Energy + 1 Power) with [Ambush] as a [Reaction] to that battlefield (822.1.b). 319.6 and 323.2.a give her the Defender designation before 465.2 resolves.",
+        "Damage is assigned. 815.1.c.2 forces the attacker's whole assignment onto the Towering Combatant until it has lethal, so Nidalee survives; your side's summed 9 is assigned back at the attackers.",
+        "If no attacking unit remains, 466.3.a gives you the combat, 466.3.c passes the result to Nidalee, and she draws 1. If any attacker survives, 466.1.a.2 recalls them and 466.3.d makes it No Result - no draw."
+      ],
+      "netPerIteration": "one card per combat your side wins outright, on a body flashed in for 3 Energy + 1 Power after the attack was declared",
+      "terminatesIn": "engine only - one card per Nidalee per won combat, three of each by 103.2.b, and nothing at all when the attackers survive (466.3.d); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 2)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 2). The first entry to use UNL-114 Nidalee, Cat Form or UNL-099 Towering Combatant. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.4, 319.6, 323.2.a, 464.2.c.3, 465.2.b, 465.2.c, 466.1.a.2, 466.3.a, 466.3.c, 466.3.d, 466.5, 469, 814.1.c, 815.1.b, 815.1.c.2, 822.1.b, 822.1.c. The entry is written against its own card's reminder text: '(I win if I remain after combat.)' is a simplification of 466.3.a, which requires you to be the ONLY player with units left, and 466.3.d makes a survived-but-not-won defence No Result. Deliberate mirror of jaull-fish-garen-rugged-mighty-discount from batch 1: [Shield] Might is invisible to a Main Phase count and decisive inside a combat, and the two entries name each other. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "deadbloom-predator-primal-strength-attacker",
+      "name": "An 8 Might body that attacks without moving, and a +7 bought after the defenders are counted",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-161",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body unit, E8 P2 M8. '[Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) You may play me to an occupied enemy battlefield.' 355.2.b grants the location; 190.3.a.1 makes the play itself apply Contested."
+        },
+        {
+          "card": "OGN-154",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E4 P1. '[Action] (Play on your turn or in showdowns.) Give a unit +7 :rb_might: this turn.' The biggest single pump in the domain, and it is [Action], so it is bought inside the combat."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "An OCCUPIED enemy battlefield. The Predator's permission names one, and 323.9 stages no Combat without opposing units - against an empty battlefield he is an 8 Might body that walked in and nothing else."
+        ],
+        "notable": [
+          "THE ATTACKER DESIGNATION WITHOUT A MOVE, IN THREE PARAGRAPHS. 355.2.b: 'Some Game Effects may grant players permission to play Units to locations that are not normally Valid. Such locations become Valid for the purposes of Playing the Unit.' 190.3.a.1: 'Units moving to OR BEING PLAYED TO a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status.' So the Predator attacks on the turn he is played, and 144.2's exhaust - which is the Standard Move's cost and only that - never comes up, which is also why 143.4 ('Units enter the Board exhausted') costs him nothing.",
+          "THE PUMP IS BOUGHT WITH INFORMATION. 806.1.c.1 gives an [Action] card 'This can be played during showdowns on any player's turn', and 464.2.f.1 / 464.2.g leave the window open inside a combat that has already opened. 465.2.c fixes each side's summed Might at assignment, so Primal Strength's +7 is spent only once you know what the garrison is: an 8 Might body becomes 15, or the spell is kept.",
+          "WHAT THE EXTRA MIGHT ACTUALLY BUYS, AND WHAT IT DOES NOT. 465.2.c.4 caps assignment at 'the minimum required to constitute lethal damage', so Might beyond the garrison's total lethal is excess damage (R28 = A) - real, but with no payoff in this domain: OGN-034 Tryndamere is Fury, UNL-187 Piltover Enforcer is Fury/Order, and only UNL-217 Trapping Grounds (Colorless, 3 or more excess for a Bird) is reachable, and 485.5 selects one of your three battlefields at random. Price the +7 as a way to WIN the combat, not as a feeder.",
+          "[DEFLECT] IS WHY THE ANSWER IS EXPENSIVE, AND WHERE IT LEAKS. 809.1.c prices it as extra Power 'for each time they choose' and 809.1.c.1 lets that Power be any Domain, so removing him before the damage step costs a rainbow on top. 355.10.d is the leak - an object 'programmatically selected based on its characteristics rather than chosen' is not a target and pays nothing, so a sweeper goes straight through.",
+          "THE SECOND CARD IN THE POOL THAT DOES THIS, NAMED. SFD-093 Dauntless Vanguard ('You may play me to an occupied enemy battlefield') is the catalogued one - dauntless-vanguard-long-sword-surprise-attack and dauntless-vanguard-repair-specialist-gear-assault - and VEN-157 Dragon Roost grants the same permission to every Dragon for 2 rainbow Power. The Predator is the big-body version: 8 printed Might and [Deflect], where the Vanguard is a cheap body that arrives with a trick.",
+          "THE LEDGER. 8 Energy + 2 Power for the body, 4 Energy + 1 Power for the pump: 12 Energy + 3 Power for a 15 Might attacker on the turn it is played. Three of each by 103.2.b.",
+          "WHAT IT IS NOT. Nothing here scores directly - winning the combat gives Control through 466.5 and 466.5.d makes THAT a Conquer, so the point comes from the battlefield and not from either card."
+        ]
+      },
+      "steps": [
+        "Play Deadbloom Predator (8 Energy + 2 Power) directly to an occupied enemy battlefield, using the permission 355.2.b describes.",
+        "190.3.a.1 applies Contested from the play itself, and 464.2.c.1 makes you the Attacker. 323.9 stages the Combat because opposing units are present; 464.2.c.3 designates.",
+        "Read the garrison. 465.2.c fixes their summed Might, and 465.2.c.3 forces lethal onto one body at a time.",
+        "If the 8 is not enough, play Primal Strength (4 Energy + 1 Power) inside the combat under its [Action] permission (806.1.c.1, 464.2.f.1, 464.2.g): the Predator is 15 for the turn.",
+        "If you win, 466.5 establishes Control and 466.5.d makes it a Conquer - the point comes from the battlefield.",
+        "Do not run this at an empty battlefield: 323.9 stages no Combat, so there is no Attacker designation and nothing to pump."
+      ],
+      "netPerIteration": "one 8 Might attacker deployed with no move, optionally pumped to 15 after the garrison is known",
+      "terminatesIn": "engine only - three Predators and three Primal Strengths by 103.2.b, and the excess damage the +7 generates has no payoff in this domain; nothing here scores, the Conquer comes from the battlefield",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 2)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 2). The first entry to use OGN-161 Deadbloom Predator or OGN-154 Primal Strength. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.4, 144.2, 190.3.a.1, 323.9, 355.2.b, 355.10.d, 464.2.c.1, 464.2.c.3, 464.2.f.1, 464.2.g, 465.2.c, 465.2.c.3, 465.2.c.4, 466.5, 466.5.d, 485.5, 806.1.c.1, 809.1.c, 809.1.c.1. The excess-damage half is stated as a NON-payoff on purpose: the domain has no card that reads it, and pricing a +7 as a feeder is the arithmetic error this project has recorded twice. Distinct from the two Dauntless Vanguard entries, which use the cheap body and a trick; this is the big-body version and each names the other. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "guttural-roar-tools-of-empire-brutal-hunter",
+      "name": "Two cards print '+2, or +4 if Empowered' - one reads the target and one reads itself, and one body satisfies both",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-070",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E3 P1 M4. '[Empower] :rb_energy_3: ... [Empowered][>] I have +2 :rb_might: and [Ganking].' Empowered he is a 6 Might body that moves battlefield to battlefield - and he is the body the other two cards are looking for."
+        },
+        {
+          "card": "VEN-077",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Body gear, E4. '[Empower] :rb_energy_2: ... :rb_exhaust:: Give a unit +2 :rb_might: this turn. If THIS is [Empowered], give that unit +4 :rb_might: this turn instead.' The condition is on the GEAR, not on the target."
+        },
+        {
+          "card": "VEN-072",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E2. '[Action] ... Give a unit +2 :rb_might: this turn. If IT'S [Empowered], give it +4 :rb_might: this turn instead.' Same template, and the condition is on the TARGET."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "None of the three is banned or restricted in either format, and none is a Signature card.",
+          "Three separate Empower payments, each made once and never again: 441.1.b, 'An Empowered Game Object can not be Empowered', with 441.2 making the state permanent."
+        ],
+        "notable": [
+          "THE TEMPLATE IS SHARED AND THE REFERENT IS NOT, WHICH IS THE ENTRY. Tools of Empire reads 'If THIS is [Empowered]' - 053.2 makes 'this' the gear itself - so its doubling is bought once, on the gear, and applies to every target forever. Guttural Roar reads 'If IT'S [Empowered]', where 'it' is the unit just chosen, so its doubling has to be bought on the BODY. Two cards, one wording, opposite objects; a reader who Empowers the gear and expects the spell to double as well has paid for the wrong thing.",
+          "AND ONE BODY SATISFIES BOTH SIDES AT ONCE. Brutal Hunter Empowered is a 6 Might body with [Ganking]. Point an Empowered Tools of Empire at him for +4, and a Guttural Roar at him for another +4 because HE is Empowered: 6 + 4 + 4 = 14 Might for the turn, off a 3 Energy + 1 Power body. Without the Empowers the same two cards give 4 + 2 + 2 = 8.",
+          "441.2 IS WHY THE SPEND IS A PURCHASE AND NOT A COST. '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference', and 441.1.b forbids re-Empowering. So the three payments - 3 Energy for the Hunter, 2 Energy for the gear, and nothing further - are made once and every activation afterwards is at the doubled rate.",
+          "THE GEAR IS FREE EVERY TURN, AND THE PHASE ORDER IS WHY. Its cost is ':rb_exhaust:' and nothing else, and 415.3.a readies all non-spell Game Objects a player controls during their Awakening Phase - which 315.1 places BEFORE the Beginning Phase and 316, the Main Phase. So +4 Might a turn costs zero resources after the 4 Energy that put the gear down. 143.4 exhausts units and not gear, so it is live the turn it lands.",
+          "AND [GANKING] IS THE OTHER HALF OF WHAT THE EMPOWER BUYS. 144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.' 810.1.c.3 is the limit - 'It does not give additional abilities or activations of Movement, only new options for the Standard Move' - so it is not an extra move, it is the one move reaching a battlefield the base-and-back walk of 144.4 cannot.",
+          "WHERE THE 14 GOES. 465.2.c reads Might at assignment and 465.2.c.4 caps each assignment at minimum lethal, so a 14 Might attacker into a small garrison is mostly excess damage (R28 = A) with no payoff in this domain - the Might is for winning combats and for surviving them, not for feeding anything. Both pumps say 'this turn' and expire at cleanup.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold and none of the three touches either."
+        ]
+      },
+      "steps": [
+        "Play Brutal Hunter (3 Energy + 1 Power) and Empower him for 3 Energy. 441.2 makes it permanent: he is a 6 Might body with [Ganking] from now on.",
+        "Play Tools of Empire (4 Energy) and Empower it for 2 Energy. Its doubling is on the GEAR, so every future activation is +4.",
+        "Each turn, exhaust the Tools for +4 Might on any unit - free, because 415.3.a readies it every Awakening.",
+        "When you want the big number, add Guttural Roar (2 Energy) targeting the Hunter: he is Empowered, so it is +4 rather than +2. 6 + 4 + 4 = 14 for the turn.",
+        "Its [Action] permission (806.1.c.1) means the Roar can be held until the garrison is known and played inside the combat."
+      ],
+      "netPerIteration": "+4 Might a turn from the gear for no resources, and +8 on an Empowered body when the spell is added",
+      "terminatesIn": "engine only - one free +4 a turn from the gear plus three Guttural Roars by 103.2.b; every Empower is a one-time purchase (441.1.b) and both pumps expire at cleanup; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 2)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 2). The first entry to use VEN-070 Brutal Hunter, VEN-072 Guttural Roar or VEN-077 Tools of Empire. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 053.2, 103.1.b.3, 103.2.b, 143.4, 144.4, 144.4.c.1, 315.1, 316, 415.3.a, 441.1.b, 441.2, 465.2.c, 465.2.c.4, 469, 806.1.c.1, 810.1.c.3. The entry exists for the referent split: the two cards share a wording and differ in what 'Empowered' is being asked about, which 053.2 settles ('Gear and spells say \"this\"'). The excess-damage half is stated as a NON-payoff, since Body prints no card that reads it. Ban check: none of the three is banned or restricted; none is a Signature card. No unruled reading."
+    },
+    {
+      "id": "concentrate-grim-resolve-level-ladder",
+      "name": "The word 'instead' is what stops a Level ladder stacking - and Grim Resolve is the fastest XP in the domain",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-091",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E5. 'Draw 2. [Level 6][>] This costs :rb_energy_2: less. [Level 11][>] This costs :rb_energy_4: less INSTEAD.' Two rungs on one card, and the second replaces the first rather than adding to it."
+        },
+        {
+          "card": "UNL-095",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E2. '[Action] ... Give a friendly unit +3 :rb_might: this turn. When it wins a combat this turn, gain 2 XP.' Two XP off one 2-Energy card is the fastest gain in the domain, and the pump is what makes the combat winnable in the first place."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A deck that never SPENDS XP. 824.1.d switches both rungs off the moment the counter drops below the threshold."
+        ],
+        "notable": [
+          "'INSTEAD' IS THE WHOLE PRICE OF THE SECOND RUNG. Concentrate prints '[Level 6] This costs 2 less' and '[Level 11] This costs 4 less INSTEAD' - so at 11 XP the discount is 4, not 6. 356.4.b covers a card that 'costs [amount] less' and 356.6 floors it ('Energy and Power costs can't be reduced below 0'), so the ladder is 5 Energy, then 3, then 1. Five more XP for two more Energy is the honest trade, and it is worth stating because a reader adding the rungs would price the top of the ladder at 0.",
+          "824.1.d IS WHY THE COUNTER HAS TO BE BANKED. 'The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP', with 730.2 ('To Spend XP, reduce the value of XP marked on the Player spending it'). So a list running this ladder cannot also run an XP sink - the same fork this project recorded on bandle-soldier-enthralling-protector-xp-floor (issue #180), and the exact opposite of wily-newtfish-gemhand-hunter-xp-turn from batch 1 of this walk, whose clause reads a turn rather than a threshold and does not care.",
+          "WHY GRIM RESOLVE IS THE FAUCET AND NOT A COMBAT TRICK. 2 XP is double what any [Hunt] card in the domain pays, and the +3 Might is the thing that MAKES the combat win: 465.2.c reads Might at assignment, and its [Action] permission (806.1.c.1) means it is bought inside the combat once both sides' summed Might is known. Three copies (103.2.b) are 6 XP if all three combats are won.",
+          "AND 'WINS A COMBAT' IS STRICTER THAN IT SOUNDS. 466.3.a: 'A Player has won a combat if they received either the attacker or defender designation and are THE ONLY PLAYER that has units remaining at this battlefield during this step', 466.3.c passes the result to their units, and 466.3.d makes it 'No Result' if units were recalled in step 3d or if both players still have units present. Since 466.1.a.2 recalls surviving Attackers when Defenders remain, an attack that trades without clearing the garrison pays NO XP. The same paragraph governs nidalee-towering-combatant-ambush-draw in this walk, and both entries state it.",
+          "THE LADDER, PRICED. 11 XP at 2 per won combat is six won combats, or fewer with the domain's other faucets (UNL-092 Demacian Diplomat, 1 XP on play; UNL-094 Gemhand Hunter, 1 XP per Hold). Until then the card is a 5-Energy Draw 2 and the deck is paying for a payoff it has not reached - which is why the entry is an ENGINE with its threshold named and not a plan.",
+          "WHAT IT IS NOT. Nothing here scores. 469 defines Scoring as Conquer or Hold, and neither card touches either; the XP is spent on nothing in this entry by design, because spending it is what switches the payoff off."
+        ]
+      },
+      "steps": [
+        "Play Grim Resolve (2 Energy) inside a combat you intend to win, under its [Action] permission (806.1.c.1), giving a friendly unit +3 Might.",
+        "Win the combat outright - 466.3.a needs you to be the ONLY player with units remaining there - and gain 2 XP.",
+        "Repeat with the second and third copies (103.2.b), and add UNL-092 Demacian Diplomat or UNL-094 Gemhand Hunter for 1 XP each if the ladder is slow.",
+        "At 6 XP, Concentrate costs 3 Energy for Draw 2 (824.1.d keeps the Dependent Ability Active while the counter holds).",
+        "At 11 XP it costs 1 - four less, not six, because the second rung says 'instead'.",
+        "Never spend the XP: 730.2 reduces the counter and 824.1.d switches both rungs off the moment it drops below the threshold."
+      ],
+      "netPerIteration": "2 XP per combat won outright, and Draw 2 for 3 Energy at 6 XP or 1 Energy at 11",
+      "terminatesIn": "engine only - three of each card by 103.2.b, a ceiling of 1 Energy for Draw 2, and the whole ladder goes dark the moment anything spends the XP (824.1.d + 730.2); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 2)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 2). The first entry to use UNL-091 Concentrate or UNL-095 Grim Resolve. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 356.4.b, 356.6, 465.2.c, 466.1.a.2, 466.3.a, 466.3.c, 466.3.d, 469, 730.2, 806.1.c.1, 824.1.d. The entry is written around the word 'instead': the two rungs do NOT stack, so the top of the ladder is 1 Energy and not 0, and pricing it at 0 is exactly the kind of arithmetic error this project has recorded before. It is deliberately the third corner of an XP triangle with bandle-soldier-enthralling-protector-xp-floor (#180, threshold, needs banking) and wily-newtfish-gemhand-hunter-xp-turn (batch 1, per-turn gain, indifferent to spending); all three name each other. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
     }
   ]
 }
