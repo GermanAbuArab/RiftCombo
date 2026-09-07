@@ -38319,6 +38319,320 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #180 — the first entry to use OGN-241 or VEN-123. Card text verbatim from data/corpus_flat.txt. This is the third route to the 815.1.c.2 damage redirect this session has walked — after a legend's exhaust (eye-of-twilight-zephyr-sage-tank-redirect) and a free Quick-Draw attach (ornns-forge-jax-free-equipment) — and the differences are stated rather than the three being written as one: this one is a whole extra body rather than a grant, it needs no set-up on the board, and it costs a card. Trap check: 319.6 + 323.2.a are cited so 'arrives in time to defend' is a rule and not an assumption; 143.4 with 464.2.c.3 / 465.2.b is cited so entering exhausted is priced at zero on defence; the toll is stated as an exact number from 814.1.c + 815.1.c.1 + 465.2.c.4; 822.1.b and Shen's own clause are contrasted so the two cards are read as complements rather than redundant."
+    },
+    {
+      "id": "wildclaw-shaman-fae-dragon-buff-launder",
+      "name": "Wildclaw Shaman spends a buff to buy back the same buff and a ready body — Fae Dragon charges the spend a Gold on the way through",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-147",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body unit, E4 M3. 'When you play me, you may spend a buff to buff me and ready me. (If I don't have a buff, I get a +1 :rb_might: buff.)' Three separate things in one sentence: a buff is SPENT off some other body (702.2.b), a buff is placed on him, and he is readied — 415.1 marks him available the turn he lands, which 143.4 otherwise forbids."
+        },
+        {
+          "card": "SFD-101",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E7 P1 M7. 'When you play me, buff up to four friendly units. ... When you spend a buff, play a Gold gear token exhausted.' The first sentence stocks the counters this line launders; the second is what makes the spend profitable instead of neutral."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 P1 M4. 'Your tokens enter ready.' 187.5 makes a Gold '[Reaction][>] Kill this, [E]: [Add] [A]', an ability whose cost is its own exhaust — so a Gold played exhausted is dead until your next Awakening, and this static is what makes it live Power in the turn it appeared (R25 = A)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Wildclaw Shaman and Fae Dragon are mono-Body and Renata Glasc, Industrialist is mono-Order, so 103.1.b.1 needs a Body/Order legend: OGN-269 The Boss, UNL-203 Keeper of the Hammer or VEN-153 / VEN-196 Matriarch of War. None of the three cards is Signature, so 103.2.d.2 imposes nothing."
+        ],
+        "notable": [
+          "THE BUFF LEDGER IS NET ZERO, WHICH IS THE POINT. 702.2.b removes one counter when Wildclaw Shaman's play effect spends it, and the same sentence places one back on himself. So the board finishes with the same number of Buff counters it started with, one of them relocated — and Fae Dragon has been paid for the spend.",
+          "702.3 IS WHY RELOCATION IS WORTH ANYTHING. 'There can only be one Buff on a Unit at a time', and 702.3.a: a Buff added to an already-buffed unit 'is not placed'. Fae Dragon's own play trigger buffs up to four bodies and can then never buff them again; Wildclaw Shaman is how a counter gets off a body that has stopped caring about it.",
+          "THE READY IS THE OTHER HALF, AND IT IS AN [ACCELERATE] THE CARD DOES NOT PRINT. 143.4: 'Units enter the Board exhausted.' A body played to your base normally cannot pay 144.2's exhaust for a Standard Move until 315.1.b readies it next Awakening. Wildclaw Shaman readies himself as he lands, so he walks to a battlefield the same turn — the same delay that #48's token bottleneck is made of, paid off with a buff counter.",
+          "THE SPEND IS AN EFFECT, NOT A COST, SO NOTHING HAS TO BE BANKED. The wording is 'you MAY spend a buff TO buff me' — but read 205 against 383.3.b before pricing it: 383.3.b makes a cost at the start of a trigger's effect the trigger's BASE cost, while this is a play effect of a unit being played, not a Triggered Ability's opening cost. Either way the buff has to be on the board when the effect resolves, which Fae Dragon's play trigger guarantees a turn earlier.",
+          "IF THERE IS NO BUFF TO SPEND, THE CARD IS A 4-ENERGY 3-MIGHT BODY. The 'you may' makes the whole clause optional, so it is never a dead card — but nothing happens: no Gold, no ready, and 702.3 leaves him unbuffed.",
+          "WHAT A GOLD IS WORTH HERE. 187.5's ability has an exhaust in its cost, so without Renata Glasc, Industrialist the Gold is a rainbow Power on your NEXT turn; with her it is a rainbow Power in this Main Phase, which is what turns a body played for tempo into a body that partly pays for itself.",
+          "THE CEILING IS THE DECK, NOT THE BOARD. 103.2.b allows three Wildclaw Shamans and each is consumed on play, so this is three launderings a game; Fae Dragon's four counters are the supply and 702.3 is why they cannot be re-stocked onto the same bodies."
+        ]
+      },
+      "steps": [
+        "Play Fae Dragon (E7 + 1 Body Power). Its play trigger buffs up to four friendly units — 702.3.a silently skips any that already carry a counter, so aim at unbuffed bodies.",
+        "Have Renata Glasc, Industrialist on the board before the spend; her static is what R25 = A makes beat a token's printed 'exhausted'.",
+        "Play Wildclaw Shaman for 4 Energy to your base.",
+        "Its play effect: spend a buff off one of the bodies Fae Dragon buffed. 702.2.b removes that counter.",
+        "Fae Dragon's second sentence sees the spend and plays a Gold gear token. Renata's static overrides the printed 'exhausted', so it arrives ready and 187.5's ability — '[Reaction][>] Kill this, [E]: [Add] [A]' — can be paid this turn for one rainbow Power.",
+        "Wildclaw Shaman's own effect then buffs him and readies him. 415.1 marks him available; 144.2's exhaust is now payable, so he walks to a battlefield in the same Main Phase.",
+        "Net for the turn: one buff counter moved, one rainbow Power gained, one 3 Might body standing at a battlefield the turn it was cast."
+      ],
+      "terminatesIn": "engine only — three launderings a game (103.2.b), each worth one rainbow Power plus a body that arrives ready instead of a turn late; nothing here scores and the buff count never grows",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "702.3. \"There can only be one Buff on a Unit at a time.\" 702.3.a. \"If a Buff is added, or instructed to be added, on a Unit that already has a Buff, it is not placed\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "143.4. \"Units enter the Board exhausted.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "187.5. \"A Gold gear token is a domainless gear token with '[Reaction][>] Kill this, [E]: [Add] [A].'\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the buff-supply synergy rules; OGN-147 Wildclaw Shaman was in ZERO entries and is the pool's only card that spends a buff and immediately replaces it on itself. Card text verbatim from data/corpus_flat.txt. Trap check: the ready is priced against 143.4 rather than described as 'value'; 702.3.a is cited as the reason a stationary counter is worth nothing, which is what makes relocation the product; the Gold is explicitly dead without Renata (187.5's exhaust) and R25 = A is named; the 'you may' is stated so the card is never claimed as a dead draw; 103.2.b caps the copies. Distinguished from `fae-dragon-wallop-industrialist`, whose spender is a SPELL that readies someone else and returns no counter, and from `overt-operation-fae-dragon-industrialist`, which spends and refills every counter at once."
+    },
+    {
+      "id": "enthusiastic-promoter-monastery-hirana-hold-refill",
+      "name": "The Promoter banks the buff a whole PHASE before the Monastery has to pay it — which is the finalization problem Warmog's has to sit out a Conquer to solve",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-043",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M2. '[Backline] (I must be assigned combat damage last.) When I hold, [Buff] all units here. (Give each a +1 :rb_might: buff if it doesn't have one.)' The Hold fires at 315.2.b.2, in the Beginning Phase — a whole phase before the Main Phase in which any Conquer can happen."
+        },
+        {
+          "card": "OGN-282",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you conquer here, you may spend a buff to draw 1.' The wording is 'pay X to Y', so 383.3.b makes the spend the trigger's BASE COST and 383.3.b.1 has it paid to FINALIZE the trigger onto the Chain — the buff has to already exist at that instant."
+        }
+      ],
+      "needs": [
+        "conquer-engine"
+      ],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Enthusiastic Promoter is mono-Calm and Monastery of Hirana is Colorless, so 103.1.b.1 is satisfied by any legend with Calm as one of its two domains. Neither card is Signature."
+        ],
+        "notable": [
+          "THE PHASE ORDER IS THE ENTRY. 315.1 Awaken, then 315.2 Beginning Phase (315.2.b.2 is the Hold), then 316 Main Phase. A Conquer is a Main Phase event, so the Promoter's buff has been sitting on the board for a whole phase by the time the Monastery's trigger has to be finalized. `monastery-hirana-warmogs-conquer-draw` cannot do that: Warmog's places its buff ON the Conquer, so 383.3.b.1 has already demanded payment before that buff exists, and the entry has to sit out the first Conquer and start paying from the second. This line pays from the first.",
+          "AND THAT IS THE GENERAL SHAPE, NOT A QUIRK OF ONE CARD. A resource produced by another trigger of the SAME event can never fund a 383.3.b base cost, whatever order 383.3.d puts the triggers in. A resource produced in an EARLIER PHASE always can.",
+          "THE PROMOTER IS A REFILL, NOT A RAMP. 702.3 allows one Buff per unit and 702.3.a does not place a second, so 'Buff all units here' restores whatever the Monastery spent last turn and does nothing else. That is exactly the rate this line wants: one buff spent per Conquer, one buff replaced per Hold.",
+          "IT REFILLS THE WHOLE GARRISON, WHICH IS WHY THE PROMOTER BEATS A SINGLE-TARGET BUFFER HERE. Any other buff spender in the deck (Wallop, Call to Glory, Fae Dragon's Gold clause) draws on the same pool and is topped up by the same trigger.",
+          "'ALL UNITS HERE' IS NOT 'ALL FRIENDLY UNITS', and the entry survives that only because of when it fires. 315.2.b.2 Holds a battlefield you CONTROL, and 323.6 with 190.3.a.1 means a battlefield with opposing units present is Contested rather than held — so at the instant the Promoter's trigger fires there are no enemy bodies there to buff.",
+          "[BACKLINE] IS WHY HE SURVIVES TO KEEP DOING IT: 'I must be assigned combat damage last', so 465.2.c.3's forced-lethal ordering reaches him only after the rest of the garrison, and at Might 2 he is otherwise the first thing that dies.",
+          "THE LINE CONSUMES CONQUERS IT DOES NOT PRODUCE, hence `needs: conquer-engine`. 470 refuses a second Score at the Monastery in one turn and 485.4 puts two battlefields on a Duel table, so the ceiling is one card a turn from this battlefield however the Conquers are generated. And 348.2.a refuses Control to a player who already has it, so re-conquering the Monastery you are holding needs a garrison that leaves — the [Temporary] route of #171."
+        ]
+      },
+      "steps": [
+        "Bring Monastery of Hirana as one of your three battlefields (485.4.a, and 485.5 randomly selects one of them, which is stated as a real cost of the line).",
+        "Take Control of it and garrison it with Enthusiastic Promoter and whatever else the deck wants there.",
+        "At your Beginning Phase, 315.2.b.2 Holds the battlefield. The Promoter's trigger buffs every unit there that does not already carry a counter (702.3.a).",
+        "In the Main Phase, conquer the Monastery. 466.5 establishes Control and 466.5.d makes it a Conquer.",
+        "The battlefield's trigger wants a buff spent to finalize (383.3.b.1). The counter placed a phase ago is there to be spent — 702.2.b removes it — and the trigger goes on the Chain and draws you a card.",
+        "Next Beginning Phase, the Hold replaces the counter and the cycle repeats. Nothing is banked across turns except the garrison itself."
+      ],
+      "terminatesIn": "engine only — one card per Conquer at the Monastery, available from the FIRST Conquer instead of the second, at whatever rate the conquer engine supplies; 470 caps it at one a turn and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "383.3.b. \"If a Triggered Ability contains a cost within instructions at the beginning of the effect or immediately following the 'you may' or 'they may' that appears as the first part of the effect, that cost is treated as the base cost of the Triggered Ability.\" 383.3.b.1. \"The cost must be paid in order to finalize the Triggered Ability to the Chain.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "702.3. \"There can only be one Buff on a Unit at a time.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "340.1. \"The newest Finalized Chain Item resolves. Execute its game effects in their entirety.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the buff-supply synergy rules; UNL-043 Enthusiastic Promoter was in ZERO entries. Card text verbatim from data/corpus_flat.txt. The content is the contrast with `monastery-hirana-warmogs-conquer-draw`, whose whole difficulty is that 383.3.b.1 demands the buff before Warmog's has placed it; a buff banked in the Beginning Phase sidesteps that entirely. Trap check: the Hold-triggered buff is NOT claimed to ready anything (315.1.b has already readied everything, the standing no-op); 'all units here' is checked against the possibility of buffing enemy bodies and shown to be impossible at that instant; the battlefield is declared random per 485.5; `needs: conquer-engine` is declared and 348.2.a is named as why re-conquering a held battlefield is not free."
+    },
+    {
+      "id": "enthralling-protector-call-to-glory-xp-buff-spend",
+      "name": "XP into a Buff into a free spell — and 702.3 is exactly why the sink needs a spender to repeat",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-162",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E2 M2. '[Hunt] (When I conquer or hold, gain 1 XP.) Spend 2 XP: [Buff] me. (Give me a +1 :rb_might: buff if I don't have one.)' 823.1.c.1 spells out Hunt as 'When I Conquer or Hold, my controller gains X XP' and 823.1.c.2 makes an omitted X equal to 1, so he is a 2-Energy body that both prints the XP and spends it."
+        },
+        {
+          "card": "OGN-207",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order spell, E3. '[Reaction] ... As you play this, you may spend a buff as an additional cost. If you do, ignore this spell's cost. Give a unit +3 :rb_might: this turn.' The spender: it removes the counter (702.2.b) and pays nothing for the spell, at Reaction speed on any player's turn (813.1.c.1)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.1 is satisfied by any legend with Order as one of its two domains. Neither is Signature, so 103.2.d.2 imposes nothing."
+        ],
+        "notable": [
+          "702.3 IS THE WHOLE REASON THIS NEEDS TWO CARDS. 'There can only be one Buff on a Unit at a time', and the Protector's sink only ever buffs HIMSELF. So 'Spend 2 XP: [Buff] me' is worth exactly 2 XP ONCE, forever, unless something takes the counter back off him — 702.3.a would refuse to place the second. The standing project claim that every XP sink in the pool is bounded is right, and this names the bound: it is 702.3, not the XP.",
+          "THE RATE, EXACTLY. 315.2.b.2 Holds EVERY battlefield you control, and a Duel puts two on the table (485.4), so a board holding both pays 2 XP a turn from [Hunt] — precisely the price of one buff. One buff is one free Call to Glory. Holding one battlefield halves it to a buff every other turn.",
+          "AND THE SPELL IS GENUINELY FREE, NOT DISCOUNTED. 'If you do, ignore this spell's cost' removes the 3 Energy outright; the buff is an ADDITIONAL cost, so what is being converted is 2 XP into an E3 [Reaction] spell, not into a discount.",
+          "THE CEILING IS 103.2.b, AND IT IS THE HONEST NUMBER: three Call to Glory in a deck, each consumed on play, so three free spells a game. The unbounded spender for the same counter is `OGN-282 Monastery of Hirana` ('you may spend a buff to draw 1'), which never runs out but needs a Conquer at a specific battlefield — a different entry with a different dependency.",
+          "DO NOT PAIR THIS WITH A `While I'm buffed` STATIC. `OGN-065 Wizened Elder` and `OGN-125 Bilgewater Bully` are the pool's only two, and this line's whole product is removing the counter — the same fork between carrying a buff and spending one that the catalogue already draws elsewhere.",
+          "824.1.d AND 730.2 ARE THE COLLATERAL COST. A [Level N] ability is 'Inactive as soon as the controlling player has less than [N] XP' and 730.2 makes spending XP your own reduction, so every 2 XP spent here switches off any Level threshold the deck is sitting above. A deck that runs both is choosing between them turn by turn.",
+          "IT DOES NOT SCORE. +3 Might at Reaction speed on the defender's side is a body saved (465.2.c reads current Might); on the attacker's side it is excess damage under R28, which only OGN-034 and SFD-120 convert."
+        ]
+      },
+      "steps": [
+        "Play Enthralling Protector (E2) and get him to a battlefield you control.",
+        "Each Beginning Phase, 315.2.b.2 Holds every battlefield you control; his [Hunt] pays 1 XP per Hold, so a two-battlefield board banks 2 XP a turn (823.1.c.1).",
+        "In your Main Phase, activate 'Spend 2 XP: [Buff] me'. 381 allows the activation on your own turn in an Open State. He now carries one 702 Buff counter and, by 702.3.a, cannot be given a second.",
+        "At any later point — including inside the opponent's combat, since 813.1.c.1 admits a [Reaction] card 'during Closed States on any player's turn' — play Call to Glory and spend that counter as its additional cost.",
+        "The spell's own cost is ignored and a unit gets +3 Might this turn. 702.2.b has removed the counter, so the Protector's sink is live again.",
+        "Two more Holds refill the 2 XP and the cycle repeats, bounded only by the three copies of Call to Glory."
+      ],
+      "terminatesIn": "engine only — one free E3 [Reaction] spell per two XP, three times a game (103.2.b); the XP faucet keeps running afterwards but 702.3 leaves it with nowhere to put the buff, and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "823.1.c.1. \"Hunt is functionally short for: 'When I Conquer or Hold, my controller gains X XP.'\" 823.1.c.2. \"If X is omitted, it is presumed to be 1.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "702.3. \"There can only be one Buff on a Unit at a time.\" 702.3.a. \"If a Buff is added, or instructed to be added, on a Unit that already has a Buff, it is not placed\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "813.1.c.1. \"On Cards: 'This can be played during Closed States on any player's turn.'\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the buff-supply synergy rules; UNL-162 Enthralling Protector was in ZERO entries. Card text verbatim from data/corpus_flat.txt. The content is a refinement of the standing 'every XP sink in the pool is bounded' claim: for the two Hunt-and-buff bodies (UNL-162, UNL-102 Crowd Favorite) the bound is 702.3 rather than the XP arithmetic, and a buff SPENDER lifts it. Trap check: the Hold rate is derived from 315.2.b.2 plus 485.4 rather than assumed; the spell is stated as free rather than discounted, with the 'additional cost' wording quoted; 103.2.b is named as the real ceiling and the unbounded alternative is named rather than smuggled into uses[]; the anti-synergy with both `While I'm buffed` statics and with every [Level N] threshold (824.1.d + 730.2) is stated."
+    },
+    {
+      "id": "adaptatron-treasure-hoard-conquer-buff-faucet",
+      "name": "Adaptatron eats the Gold the same Conquer made it, because 205 puts his kill at RESOLUTION and 340.1 lets you order it second",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-056",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E4 M3. 'When I conquer, you may kill a gear. If you do, buff me. (If I don't have a buff, I get a +1 :rb_might: buff.)' The wording is 'you may X. If you do, Y', which 205's worked example makes a game action performed at RESOLUTION and explicitly not a cost — so the gear only has to exist when this trigger resolves, not when it is finalized."
+        },
+        {
+          "card": "SFD-220",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you conquer here, you may pay :rb_energy_1: to play a Gold gear token exhausted.' Written 'pay X to Y', so 383.3.b makes the 1 Energy the trigger's base cost, paid to finalize — but the Gold itself is played when the trigger RESOLVES, which is what has to happen first."
+        }
+      ],
+      "needs": [
+        "conquer-engine"
+      ],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Adaptatron is mono-Calm and Treasure Hoard is Colorless, so 103.1.b.1 is satisfied by any legend with Calm as one of its two domains. Neither card is Signature."
+        ],
+        "notable": [
+          "THE ORDERING IS THE ENTRY, AND IT IS LEGAL RATHER THAN CLEVER. Both triggers fire off the same Conquer. 383.3.d: 'If more than one Triggered Ability is Triggered simultaneously, then the player that controls the Abilities selects the order to place them on the Chain.' 340.1: 'The newest Finalized Chain Item resolves.' So place Adaptatron's trigger FIRST and Treasure Hoard's SECOND, and the Hoard's resolves first, putting the Gold on the board before Adaptatron looks for a gear.",
+          "AND IT IS THE POSITIVE MIRROR OF A TRAP THIS CATALOGUE ALREADY RECORDS. A resource produced by one trigger can never fund another trigger's 383.3.b BASE COST from the same event, because 383.3.b.1 demands payment at finalization — which is why `monastery-hirana-warmogs-conquer-draw` has to sit out its first Conquer. Adaptatron's kill is not a base cost (205), it is a linked game action at resolution, so the same event CAN feed it.",
+          "205 CUTS THE OTHER WAY TOO, AND THE ENTRY DEPENDS ON IT: 'the later instruction checks whether the game action was performed, not whether a cost was paid'. If the kill is not performed — no gear on the board — the buff simply does not happen and nothing is lost. The 'you may' makes the whole clause optional, so a Conquer with no Gold is never a misplay.",
+          "WHAT THE FODDER COSTS. 1 Energy per Conquer for a Gold that is killed rather than cashed. That is deliberately the cheap side of the trade: 187.5's Gold ability has an exhaust in its cost, so a Gold played EXHAUSTED cannot be cashed until your next Awakening anyway — this line spends a token that was going to be idle for a turn and converts it into a permanent 702 Buff counter now.",
+          "702.3 IS THE CEILING AND IT IS LOW ON ITS OWN. Adaptatron only ever buffs himself, so the second Conquer places nothing (702.3.a). The line is worth one counter per SPEND, not one per Conquer — pair it with a buff spender (Monastery of Hirana, Wallop, Call to Glory, Fae Dragon's Gold clause) or with a payoff that reads the counter without removing it (`OGN-063 Spirit's Refuge`, `OGN-053 Stand United`).",
+          "THE BATTLEFIELD IS NOT GUARANTEED. 485.4.a has each player provide three battlefields and 485.5 randomly selects one, and 103.4.c forbids running duplicates of a name, so Treasure Hoard shows up one time in three.",
+          "AND THE LINE CONSUMES CONQUERS IT DOES NOT PRODUCE. 470 caps Scoring once per battlefield per turn and 348.2.a refuses Control to a player who already has it, so re-conquering the Hoard you hold needs a garrison that leaves."
+        ]
+      },
+      "steps": [
+        "Bring Treasure Hoard as one of your three battlefields and get Adaptatron standing where he will take part in the Conquer.",
+        "Conquer the Treasure Hoard. 466.5 establishes Control and 466.5.d makes it a Conquer, so both triggers fire simultaneously.",
+        "Order them under 383.3.d: place Adaptatron's on the Chain first, Treasure Hoard's second. Pay Treasure Hoard's 1 Energy to finalize it (383.3.b.1).",
+        "340.1 resolves the newest item — Treasure Hoard's — and a Gold gear token is played exhausted.",
+        "340.1 then resolves Adaptatron's. The optional game action is available: kill the Gold. 205 checks that the action was performed, and it was, so the linked instruction executes and Adaptatron gets a +1 Might Buff counter.",
+        "Spend that counter on whatever the deck reads it with, and the next Conquer can place another one; leave it in place and 702.3.a refuses the second."
+      ],
+      "terminatesIn": "engine only — one 702 Buff counter per Conquer at the Treasure Hoard for 1 Energy, capped at one at a time by 702.3 unless the deck also spends it; 470 caps the Conquers at one there per turn and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "205. \"An instruction that requires a player to pay resources or spend counters or XP that does not also have a linked Effect, is not a Cost.\" Example: \"When I attack, you may pay [4][C]. If you do, kill a unit here.\" \"Paying [4][C] in this way is not a cost of the ability, base or otherwise, but a game action being performed by a player. The later instruction checks whether the game action was performed, not whether a cost was paid\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "383.3.d. \"If more than one Triggered Ability is Triggered simultaneously, then the player that controls the Abilities selects the order to place them on the Chain.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "340.1. \"The newest Finalized Chain Item resolves. Execute its game effects in their entirety.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the buff-supply synergy rules; OGN-056 Adaptatron was in ZERO entries. Card text verbatim from data/corpus_flat.txt. The content is the 205 / 383.3.b split read from the constructive side: this catalogue has repeatedly recorded that a same-event resource cannot pay a trigger's base cost, and 205 marks the family where it CAN, because the requirement sits at resolution and 383.3.d plus 340.1 let the controller order it there. Trap check: the ordering is derived from the two paragraphs rather than asserted; 205's second sentence is quoted so the failure mode (no gear, no buff, nothing lost) is stated; 702.3.a is named as the real ceiling and the spenders are listed in a notable rather than added to uses[]; 485.5 and 103.4.c are cited for the battlefield's randomness; `needs: conquer-engine` is declared."
     }
   ]
 }
