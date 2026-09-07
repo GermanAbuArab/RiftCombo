@@ -499,3 +499,58 @@ apply to each row: *does this engine's payoff need an enemy garrison?* If yes, i
    Power, 161.2.b removing the recycled rune), so any line paying for Time Warp's `:rb_energy_10:` +
    4 Power out of runes alone is **short by two** unless the engine itself produces Power. The Seal
    cycle covers exactly that gap at Energy cost zero, at the price of two more cards.
+
+---
+
+# PAUSE STATE — 2026-09-07, work resumes Wednesday 2026-09-09
+
+The durable half of this session's handoff, kept **in git** because `/tmp` is not guaranteed to
+survive a reboot. The volatile half (scripts, staging file) is at
+`/tmp/rc-walks/rc-walk-order-handoff.md`.
+
+## Where everything stands
+
+**Nothing is in flight.** The staging file `/tmp/rc-walks/rc-walk-uncat.json` is **empty** — every
+entry this session authored is merged into `data/combos.json` (700 entries at the pause). All four
+walk documents are committed and pushed to `work`.
+
+| issue | lane | opened → closed | entries | refusals |
+|---|---|---|---|---|
+| [#180](https://github.com/GermanAbuArab/RiftCombo/issues/180) | mono-Order | 20 / 19 handed over → **9 / 8, all refused** | 11 | 8 |
+| [#186](https://github.com/GermanAbuArab/RiftCombo/issues/186) | mono-Body | 38 / 36 → **5 / 4, all refused** | 18 | 4 |
+| [#188](https://github.com/GermanAbuArab/RiftCombo/issues/188) | Calm/Mind | 85 / 79 → **7 / 5, all refused** | 43 | 5 |
+| [#193](https://github.com/GermanAbuArab/RiftCombo/issues/193) | the orphan remainder | 3 parts → **all closed** | 7 | 11 |
+
+Walk documents: `2026-09-07-uncatalogued-order.md` (LEDGER §28),
+`2026-09-07-uncatalogued-body.md` (§26), `2026-09-07-uncatalogued-calm-mind-order.md` (§47),
+and this one. **Every refusal in all four carries its SCOPE**, because a refusal is scoped to the
+reason it was given and a successor cannot re-scope what was never written down — two refusals were
+correctly re-opened on that basis in §4 above, and one of mine (`OGN-219 Vanguard Sergeant`) was
+correctly re-scoped by another lane.
+
+## The exact next step on Wednesday
+
+The `ability-points` bucket of the finisher pass is **closed** by §§6–11: three families already hold
+their CHAIN, five cannot reach a rate that matters, and the two live leads are both refused with
+their arithmetic written out (`power-nexus-sentinel-renata-mastermind` reaches 5, §7;
+`yasuo-remorseful-svellsongur-nasus-conquer` reaches 4, §10).
+
+**So this lane has no open slice.** Wednesday's manager should assign a new one. The two things most
+worth acting on first, both already derived here so nobody re-derives them:
+
+1. **The cheap test that bounds `rc-walk-chain`'s 31-row `conquer-engine` bucket from above** (§10.3):
+   *does this engine's payoff need an enemy garrison?* If yes it cannot chain, because a Time Warp
+   chain gives the opponent no turn in which to present one, and 323.9 stages no Combat without
+   opposing units. Only the engines that take **uncontrolled** battlefields through 344.2 survive.
+2. **Both subset-blindness findings should become checks, not lore** (§6 and the
+   `blast-of-power-*` note): the merge duplicate check compares sorted card sets and is blind to
+   **subset** relationships, and a "does this engine feed a finisher" filter built on
+   `generateVariants` is blind to an engine whose **cards** are already inside a standalone finisher
+   entry. The second one ate the four best leads on this session's own list.
+
+## The one sentence
+
+**Read the catalogue before writing, especially on the lead you are most confident in** — this
+session's strongest finisher lead turned out to be already walked, and the only reason that was
+caught before an entry was written is that the first act after the go-ahead was to open the file
+rather than the editor.
