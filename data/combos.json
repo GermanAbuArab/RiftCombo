@@ -24896,6 +24896,86 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-06 from issue #160. SFD-123 was an uncatalogued partner of svellsongur-copy and of the three move rules. Card text verbatim from data/corpus_flat.txt; 103.1.b, 103.2, 103.2.a.1, 144.1.a, 144.2, 144.4, 144.4.a, 190.3.a.1, 194.1.d, 385.1, 385.2, 422.1.b, 431.1.a, 431.2.b, 434.1.c, 476.1, 477.2.c, 479.1, 480.3 and 829.1.b opened in the Core Rules file. Stands on R6 = A and R9; no new reading. The walk deliberately copied BOTH of the Enforcer's sentences rather than only the useful one — the same check svellsongur-rumble-scrapper-mechs turned up on the static side — and the second one is a drawback, which is why it is in the second notable rather than a footnote."
+    },
+    {
+      "id": "yasuo-remorseful-svellsongur-nasus-conquer",
+      "name": "Yasuo's attack trigger clears the garrison before the damage step — and Nasus is standing there",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-076",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E6 P2 M6. 'When I attack, deal damage equal to my Might to an enemy unit here.' Riot's own worked example of an attack trigger at 359.3.f, and 359.3.f.2 reads the Might at execution."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm Equipment, E3 P1, M+0, '[Equip] 1 Energy + 1 Calm'. 'As this is attached to a unit, copy that unit's text to this Equipment's effect text for as long as this is attached to it.' A second instance of the attack trigger, and M+0 so Yasuo's Might — the damage each instance deals — does not change."
+        },
+        {
+          "card": "VEN-046",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E8 P1 M8, [Deflect 2]. '[Empowered][>] When I conquer, you score 1 point.' He rides along in the same Standard Move so that he is present when Control is established — the payoff the source entry's own terminatesIn asks for and never names."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "conquer-engine",
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Calm legend — Yasuo Remorseful, Svellsongur and Nasus are all mono-Calm (103.1.b.1). This is the cheapest identity of the four Nasus routes in the catalogue."
+        ],
+        "notable": [
+          "IT IS THE REPEATABLE VERSION OF THE BLOODLESS CONQUER, AND THAT IS THE WHOLE ADVANTAGE. The three [Action]-removal entries (draven-rebuke-bloodless-combat, wind-and-ghosts-nasus-bloodless-conquer, noxian-guillotine-legion-bloodless-fork) each spend a CARD per attack and 103.2.b caps them at three a game. Here the removal is a permanent that fires every time Yasuo attacks, for no Energy and no card — so the two points repeat for as long as there is a garrison to take.",
+          "THE TRIGGER RESOLVES BEFORE THE DAMAGE STEP, WHICH IS WHY NOTHING OF YOURS IS EVER ASSIGNED DAMAGE. 383.4.e makes an Attack Trigger fire when a unit 'gains the Attacker designation for the first time during a combat', and 464.2.c.3 places that designation in step 1 of the Combat Showdown. 465.1 is step 2 and reads 'If both Attacking and Defending units remain at this battlefield, the following Tasks become Outstanding' — so if Yasuo's damage has already killed the garrison, no damage is ever assigned in either direction. 466.3.a then gives you the combat and 466.5 with 466.5.d makes Control a Conquer.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Svellsongur COMPOSES rather than adds (issue #45): 434.1.c gives the Top-Most Card all the Effect Text of all its attached cards, 477.2.c appends it in Layer 2 and 476.1 applies each effect only once across all sequences, so v Svellsongur yield 2^v instances of the attack trigger — ONE copy is TWO instances, two copies are FOUR. Each instance deals damage equal to Yasuo's Might, which Svellsongur's M+0 leaves at 6, and each picks 'an enemy unit here' independently (359.3.f.2 reads 'here' and the Might at execution). So one Svellsongur kills two defenders of 6 Might or less before the damage step; a garrison of three needs a second copy. R6 = A is what makes the copy track Yasuo's CURRENT text rather than a snapshot.",
+          "NASUS HAS TO BE PRESENT, WHICH COSTS NOTHING BECAUSE AN ARMY WALKS IN ONE ACTION. 144.3: 'Players may perform multiple Units standard move simultaneously. This is treated as one game action performed on multiple Units', with 144.3.a requiring a shared destination and 144.3.c paying the exhausts simultaneously. 464.2.c.3 then gives the Attacker designation to every unit of yours at the battlefield, and 144.4.a.1's arrivals cap is unsatisfiable in a two-player game (#111). So Yasuo and Nasus enter together and both conquer.",
+          "TWO POINTS PER ATTACK: the Conquer is a 469.1 Score capped by 470 at one per battlefield per turn, and Nasus's 'you score 1 point' is a 194.1.c Gain under R2 = A, which 470 does not touch. 471.1.a.1 lets the eighth point land, since points Gained from sources that are not Conquer are outside 471.1.b's Final Point restrictions.",
+          "AND IT BLANKS THE EXCESS-DAMAGE FAMILY, WHICH IS WHY THE PAYOFF IS NASUS AND NOT TRYNDAMERE. R28 = A makes excess damage attacking Might that was never ASSIGNED, and 465.1 means nothing is assigned at all — so OGN-034 Tryndamere, SFD-120 Sivir, UNL-018 Yeti Brawler, UNL-187 Piltover Enforcer, UNL-188 Hextech Gauntlets and UNL-217 Trapping Grounds all read false here. Nasus's trigger is bare 'When I conquer', with no threshold and no 'after an attack' clause.",
+          "IT STILL NEEDS A GARRISON. 461 stages a Combat only where units of two players meet and 807.1.d with 383.4.e make an empty battlefield no attack at all, so against an open battlefield Yasuo's trigger never exists — the ordinary Non-Combat Showdown Conquer applies (316.8.b.1, 348.2.a.1) and Nasus still scores, but the removal does nothing. And a defender above 6 Might survives an instance: two instances on one body is 12, which 465.2.c.4's assignment cap does not govern because this is a Deal, not combat damage.",
+          "ONE CONQUER PER BATTLEFIELD PER TURN (469.1, 470), and neither body has [Ganking], so 144.4 keeps the pair to one battlefield a turn. To repeat it you have to give the battlefield back — 323.6 does that the moment you walk off — or take the other one (485.4, 'Battlefield Count: 2').",
+          "SVELLSONGUR'S EQUIP IS 1 ENERGY + 1 CALM POWER AND 818.1 MAKES IT AN ACTIVATED ABILITY, so attaching is never playing and no [Weaponmaster] or 'when you play a gear' trigger fires off it."
+        ]
+      },
+      "steps": [
+        "Land Yasuo, Remorseful (6 Energy + 2 Calm Power), Svellsongur (3 Energy + 1 Calm Power) and Nasus, Ascended (8 Energy + 1 Calm Power), and attach Svellsongur to Yasuo for 1 Energy + 1 Calm Power. Empower Nasus — his own 8-Energy [Empower], permanent by 441.2, or VEN-035 Sanction for the turn.",
+        "From the next Awakening, Standard-move Yasuo and Nasus together to an enemy-garrisoned battlefield: 144.3 makes that one game action with a shared destination, and each pays its own exhaust (144.2, 144.3.c).",
+        "464.2.c.3 gives both the Attacker designation. Yasuo's attack trigger fires twice — his own and Svellsongur's copy — each dealing 6 to an enemy unit there.",
+        "With the garrison dead, 465.1 finds no Defending units and the damage step never becomes Outstanding. Neither Yasuo nor Nasus is assigned anything.",
+        "466.3.a: you are the only player with units there. 466.5 and 466.5.d establish Control as a Conquer — 1 point — and Nasus's '[Empowered][>] When I conquer, you score 1 point' adds the second.",
+        "Repeat every turn there is a garrison to take: the removal is a permanent, so no card is spent."
+      ],
+      "terminatesIn": "engine — 2 points per attack, repeatable every turn for no cards and no Energy once the board is set; one conquer per battlefield per turn, so eight points is four attacks",
+      "netPerIteration": "+2 points and the enemy garrison cleared per attack, with no damage assigned to either side and no card spent",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 23)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Issue #155 — Engine × payoff: the repeatable-removal group, refused wholesale on the grounds that the only Might-to-point bridge is a threshold",
+          "kind": "agent",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06, issue #118 (docs/phase0/walks/2026-09-06-2v2-showdown-action-lens.md) — the removal-inside-the-combat window",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 23). svellsongur-yasuo-remorseful-sweep's own terminatesIn is 'engine — repeatable removal; it scores nothing except by clearing a garrison so the Conquer happens', and the card that pays for that Conquer was never named. It is Nasus, and mono-Calm, so the pairing costs one card. This is also the answer to issue #155's refusal 2, which refused the whole repeatable-removal group because OGN-034 Tryndamere is a threshold rather than a scale: that is true, and it is beside the point — a removal engine converts through the CONQUER, not through Might, and the bloodless conquer it produces is precisely what switches Tryndamere off (465.1 assigns nothing, so R28 = A yields zero excess). Quantities: one Svellsongur is chosen deliberately over the source entry's three, because 2^v instances at 6 damage each clear a garrison of two, which is what a Duel garrison usually is; the scaling is stated rather than bought. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.b, 144.2, 144.3/144.3.a/144.3.c, 144.4/144.4.a.1, 194.1.c, 316.8.b.1, 348.2.a.1, 359.3.f/359.3.f.2, 383.4.e, 434.1.c, 441.2, 461, 464.2.c.3, 465.1, 465.2.c.4, 466.3.a, 466.5/466.5.d, 469.1, 470, 471.1/471.1.a.1, 476.1, 477.2.c, 485.4, 807.1.d and 818.1 opened and read. Ban check: none of OGN-076, SFD-059 or VEN-046 carries a [BANNED marker, and none is a Signature card. Trap check: the attack is real, so 807.1.d/383.4.e/461 are satisfied rather than dodged; no [Temporary]; no [Repeat]; no token; no recall; no rune recycled; Svellsongur is M+0 so 709's 'becomes Mighty' event never fires from the attach. Depends on R2 = A, R6 = A and R28 = A, and on no open reading."
     }
   ]
 }
