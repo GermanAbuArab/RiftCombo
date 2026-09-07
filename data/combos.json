@@ -15260,7 +15260,7 @@
         "Attach it for its [Equip] cost of 1 rainbow Power (or free of Energy through Jayce, Man of Progress, whose Power cost you still pay).",
         "The [Effect] now reads on the attached unit's battlefield: your units there have [Ganking], so their Standard Move may go battlefield to battlefield (810.1.c.3, 144.2).",
         "Ornn counts every friendly gear for +1 Might each; Poro Snax is a 1 Energy gear that draws on the way in and draws again when killed.",
-        "Re-attaching the Requiem later — by Ornn's [Weaponmaster] or another [Equip] — moves the [Effect] to a new battlefield but never repeats the ready (818.1)."
+        "Re-attaching the Requiem later — by Ornn's [Weaponmaster] alone - and NOT by paying [Equip] again, because 718.2 makes an attached Equipment's printed Rules Text Inactive and 721.2 says an Inactive ability cannot be activated, which is exactly why [Weaponmaster] has to print \"even if it's already attached\" (corrected 2026-09-07) — moves the [Effect] to a new battlefield but never repeats the ready (818.1)."
       ],
       "netPerIteration": "one mass ready of your units on the play, then permanent [Ganking] for your units at the equipped unit's battlefield, plus +1 Might on Ornn per friendly gear",
       "terminatesIn": "engine only — [Unique] allows one copy and 818.1 makes the ready a play trigger, so the ready happens once per game; the [Ganking] is continuous while attached",
@@ -30039,69 +30039,6 @@
       "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 44, draw-second x UNL-074). UNL-074 Frigid Jewel was in NO entry before this; the first matrix pass refused the whole row as a bare-regex artifact, which is right about the 100 partners and wrong about the card — the fix is a partner whose draw lands BEFORE the Draw Phase, and the pool has exactly one. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.a.1, 103.2.d.2, 194.1.d, 315.1, 315.2.a, 315.3, 315.4.b, 317.2.c, 323.7, 431.1.a, 702.3, 709, 811.1.b. Ban check: neither card is banned or restricted. Trap check: the Jewel pays once per turn on the SECOND card and every further draw is wasted, stated first; it never fires on the opponent's turn; the +2 is a modifier and not a Buff; the Pouch's draw is mandatory, so 431.1.a is a liability and the entry says how to switch it off; no unruled reading."
     },
     {
-      "id": "prize-of-progress-hexplate-equip-shuttle",
-      "name": "[Equip] is an activated ability of a gear with no exhaust in its cost — Prize of Progress converts Power into Might one rune at a time",
-      "class": "ENGINE",
-      "status": "verified",
-      "uses": [
-        {
-          "card": "SFD-075",
-          "quantity": 1,
-          "role": "payoff",
-          "zone": "BOARD",
-          "note": "Mind unit, E4 P1 M3, tagged Mech. 'When you use an activated ability of a gear, give me +1 :rb_might: this turn.' No exhaust and no once-a-turn clause on the trigger, so it pays per activation."
-        },
-        {
-          "card": "SFD-073",
-          "quantity": 1,
-          "role": "engine",
-          "zone": "BOARD",
-          "note": "Mind Equipment, E1, M+1. '[Equip] :rb_rune_mind: — Attach this to a unit you control. [Effect] I am a Mech.' The cheapest Mind Equipment in the pool and the cheapest repeatable gear activation: one Mind rune, no exhaust."
-        }
-      ],
-      "needs": [],
-      "produces": [],
-      "prerequisites": {
-        "easy": [
-          "Any Mind legend: both cards are mono-Mind (103.1.b.3) and neither is a Signature card, so 103.2.d.2 forces nothing.",
-          "Neither card is banned or restricted in either format.",
-          "You need TWO units to shuttle the Hexplate between — 434.1.g makes an attach to its current host a no-op, so a second body is what turns one Equipment into an unlimited number of activations. Prize of Progress can be one of the two."
-        ],
-        "notable": [
-          "818.1 IS WHY THE TRIGGER FIRES AT ALL. 'Equip is an Activated Ability keyword', 818.1.a 'present on Gear with the tag Equipment', 818.1.b 'Equip has a cost to activate and Attaches the card with Equip to a chosen Unit when the cost is paid'. So every [Equip] payment is exactly what Prize of Progress watches: the use of an activated ability of a gear. And the Hexplate's cost is one Mind rune with NO exhaust, so nothing caps how many times a turn you pay it.",
-          "434.1.g IS WHY IT NEEDS TWO HOSTS. 'Attaching a card to its current Top-Most Card will not have any effect', and 434.1.h says an instruction to do so does nothing additional. So the Hexplate has to alternate between two of your units; 434.1.f detaches it from the old host automatically. Each leg of the shuttle is a paid activation and a +1.",
-          "ARITHMETIC WITH THE QUANTITIES DECLARED. +1 Might on Prize of Progress per Mind Power spent, on demand, in your Main Phase. A turn in which you can spend six Mind Power is a Might 9 Prize; the ceiling is your rune count, not your gear count — 161.2.a fixes the Rune Deck at 'Exactly 12 Rune cards chosen during Deck Construction', 161.2.b sends every rune you recycle for Power back to the Rune Deck rather than the Main Deck, and 315.3.b channels 2 back every turn. That is the whole budget.",
-          "AND THAT IS A DIFFERENT RESOURCE FROM THE EXISTING ENTRY. prize-of-progress-seal-gear-might counts activations you were making anyway — 'about +3 on a turn that uses three Seals' — and is bounded by how many distinct gears with abilities you run. This line is bounded by POWER and needs exactly one gear, so it converts spare Power into Might at 1:1 with nothing else in the deck built around it.",
-          "THE MIGHT BONUS AND THE MECH CLAUSE RIDE ALONG. 137.3 makes the Hexplate's printed M+1 a Might Bonus on whichever host it is attached to at the time, so the shuttle also moves a +1 around; and its [Effect] text 'I am a Mech' makes the carrier a Mech, which matters beside SFD-089 Rumble, Scrapper's static 'Your Mechs have +1 :rb_might: (including me)'. Prize of Progress is already tagged Mech, so the Hexplate is redundant on him and worth a point of Might on anyone else.",
-          "IT IS MAIN-PHASE ONLY, AND THE MIGHT EXPIRES. The Hexplate's [Equip] carries neither [Action] nor [Reaction] and it is not a [Quick-Draw] Equipment, so no leg of the shuttle can be paid inside a Showdown; and 317.2.c expires every 'this turn' effect at the end-of-turn Cleanup, so the Might has to be re-bought each turn. That makes this a way to spend surplus Power on your own attack, not a defensive trick."
-        ]
-      },
-      "steps": [
-        "Play Prize of Progress (4 Energy + 1 Mind Power) and Experimental Hexplate (1 Energy), and keep a second unit on the board.",
-        "In your Main Phase, pay the Hexplate's [Equip] cost of one Mind rune and attach it to Prize of Progress.",
-        "That is the use of an activated ability of a gear (818.1), so Prize of Progress gets +1 Might this turn.",
-        "Pay the [Equip] cost again and attach the Hexplate to the other unit — 434.1.f detaches it from Prize, and this is a second activation, so another +1.",
-        "Alternate for as long as the Mind Power lasts; each rune spent is one point of Might on Prize of Progress.",
-        "Attack or defend with the raised Might (465.2.c reads it at assignment). Everything expires at the end-of-turn Cleanup (317.2.c) and is re-bought next turn out of the 2 runes 315.3.b channels."
-      ],
-      "netPerIteration": "+1 Might on Prize of Progress per Mind Power spent, with no per-turn cap other than the Power itself",
-      "terminatesIn": "engine only — bounded by the Rune Deck (161.2.a's twelve runes, 315.3.b's two a turn) and expiring every end-of-turn Cleanup (317.2.c); Mind converts no Might into points, so nothing here scores",
-      "rulesVersion": "2026-07-16",
-      "sources": [
-        {
-          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
-          "kind": "riot",
-          "date": "2026-07-16"
-        },
-        {
-          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
-          "kind": "manual-walk",
-          "date": "2026-09-07"
-        }
-      ],
-      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 43, gear-ability x SFD-075). SFD-073 Experimental Hexplate was in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.d.2, 137.3, 161.2.a, 161.2.b, 315.3.b, 317.2.c, 434.1.f, 434.1.g, 434.1.h, 465.2.c, 818.1, 818.1.a, 818.1.b. Distinct from prize-of-progress-seal-gear-might on the resource: that entry counts activations of gears you were using anyway and is bounded by how many such gears the deck runs; this one is bounded by POWER and needs exactly one gear. It is also the second entry in this walk to turn on 434.1.g, which is the rule that makes an Equipment shuttle cost one activation per leg. Ban check: neither card is banned or restricted. Trap check: no [Action] or [Reaction] on the [Equip], so it is Main-Phase only; the Might expires (317.2.c); Mind has no Might-to-points converter, so ENGINE and not BURST; no token, no Recall, no Repeat, no unruled reading."
-    },
-    {
       "id": "jayce-hammer-wallop-showdown-keyword",
       "name": "Jayce picks his keyword at Showdown speed instead of blind at the Awaken — and [Deflect 2] is the one option that has to be chosen early",
       "class": "ENGINE",
@@ -39487,6 +39424,172 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #170, from `rippers-bay-bounce-channel`. Card text verbatim from data/corpus_flat.txt. The content is the rate: the existing Ripper's Bay entry pairs it with a spell capped at three copies, and an exhaust-cost gear is the same effect once a turn forever (415.3.a), for half the Energy. Trap check: the channel is stated as a REFILL against 161.2.a / 430.3 / 315.3.b rather than as ramp; the rune's exhausted state is priced against 164.2.a versus 164.2.b so no Energy is claimed this turn; the battlefield's symmetry ('that player') is stated as a real cost; 455 is cited so a bounce to hand is never confused with a Recall; 485.5 and 103.4.c are cited for the battlefield's randomness."
+    },
+    {
+      "id": "prize-of-progress-gold-tokens-reaction-might",
+      "name": "718.2 makes an attached Equipment's [Equip] Inactive — so the only repeatable gear activation is one that is never attached, and the Gold token is it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-075",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M3, tagged Mech. 'When you use an activated ability of a gear, give me +1 :rb_might: this turn.' No exhaust and no once-a-turn clause on the trigger, so it pays once per activation — the question is only which gear ability can honestly be used more than once."
+        },
+        {
+          "card": "SFD-086",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "ATTACHED",
+          "note": "Mind Equipment, E3, M+2. '[Equip] :rb_rune_mind: ... [Effect] When I hold, play two Gold gear tokens exhausted.' Its [Equip] is paid ONCE on the way in; 718.3 appends its Effect Text to the carrier's Rules Text, which is the half that keeps working."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 P1 M4. 'Your tokens enter ready.' 187.5 gives a Gold '[Reaction][>] Kill this, [E]: [Add] [A]' — an ability whose cost is its own exhaust — so an exhausted Gold is dead until your next Awakening, and this static is what makes each one usable in the window it was created (R25 = A)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Prize of Progress and World Atlas are mono-Mind and Renata Glasc, Industrialist is mono-Order, so 103.1.b.1 needs a Mind/Order legend, and the census gives four names: OGN-265 / OGN-308 Herald of the Arcane, OGS-021 Lady of Luminosity - Starter, SFD-201 / SFD-249 Chem-Baroness, or UNL-199 / UNL-235 Deceiver. None of the three cards is Signature."
+        ],
+        "notable": [
+          "718.2 IS THE PARAGRAPH THIS ENTRY EXISTS FOR: 'While in this state, the card's printed Rules Text is Inactive', with 721.2 — 'Inactive Abilities do not trigger, do not apply, and cannot be activated.' 818.1.a puts [Equip] on the gear's printed Rules Text, and 718.3 appends only the EFFECT text to the carrier. So an Equipment that is already attached CANNOT activate its own [Equip] to move to another unit: [Equip] is a one-way door, payable once, on the way in.",
+          "WHICH IS WHY THE REPEATABLE ACTIVATION HAS TO COME FROM A GEAR THAT IS NEVER ATTACHED. 187.5 defines the Gold as 'a domainless gear token with \"[Reaction][>] Kill this, [E]: [Add] [A]\"' — a gear, an activated ability, and one that no card ever attaches. Every Gold you cash is exactly one use of an activated ability of a gear, so it is exactly one +1 Might on Prize of Progress, on top of the rainbow Power it was always going to give you.",
+          "AND IT IS THE ONLY VERSION OF THIS PAYOFF THAT WORKS ON THE OPPONENT'S TURN. The Gold's ability carries [Reaction], which 813.1.c.2 admits in any Closed State on any player's turn; an [Equip] carries neither [Action] nor [Reaction], so no attach is ever payable inside a Showdown. Prize of Progress can therefore grow inside the opponent's combat, when 465.2.c is about to read Might.",
+          "THE SUPPLY: two Golds per Hold from World Atlas, which is a Hold and therefore repeats every Beginning Phase you hold a battlefield (315.2.b.2). 434.1.d also puts the Atlas's printed M+2 on its carrier.",
+          "DO NOT CASH THEM AT THE HOLD. 167 empties every player's Rune Pool 'at the start of each player's Main Phase', so Power added during the Beginning Phase is gone before you can spend it. Bank the Golds as gear tokens and cash them in your Main Phase or in a Closed State; nothing forces the Gold to be used the turn it appears.",
+          "AND [WEAPONMASTER] IS THE PRINTED CARVE-OUT THAT PROVES THE RULE. Its reminder text reads '[Equip] one of your Equipment to me for one rainbow less, EVEN IF IT'S ALREADY ATTACHED' — Riot had to write that clause precisely because an attached Equipment cannot do it on its own. The other legal relocations are effects that ATTACH (SFD-193 Grandmaster at Arms, SFD-208 Forge of the Fluft, SFD-024 Rell, Magnetic), and none of them is 'an activated ability of a GEAR', so none of them feeds this trigger.",
+          "THE MIGHT EXPIRES AND NOTHING SCORES. 317.2.c ends every 'this turn' effect at the end-of-turn Cleanup, and Mind converts no Might into points."
+        ]
+      },
+      "steps": [
+        "Play Prize of Progress (E4 + 1 Mind Power) and Renata Glasc, Industrialist (E4 + 1 Order Power).",
+        "Play World Atlas (E3) and pay its [Equip] of one Mind rune once, attaching it to a body you keep at a battlefield. 718.2 makes its printed text Inactive from now on; 718.3 keeps its [Effect] working on the carrier.",
+        "At each Beginning Phase in which you hold that battlefield (315.2.b.2), the Atlas plays two Gold gear tokens. Renata's static overrides their printed 'exhausted', so they arrive ready.",
+        "Do NOT cash them yet: 167 empties the Rune Pool at the start of your Main Phase, so Beginning-Phase Power is lost. Leave them on the board.",
+        "In your Main Phase, or in any Closed State on either turn (813.1.c.2 admits the Gold's [Reaction]), kill a Gold and exhaust it for one rainbow Power.",
+        "That is one use of an activated ability of a gear, so Prize of Progress gets +1 Might this turn. Repeat per Gold.",
+        "465.2.c reads the raised Might at assignment; 317.2.c expires it at the end-of-turn Cleanup and the next Hold restocks the Golds."
+      ],
+      "terminatesIn": "engine only — two Golds per Hold, each worth one rainbow Power and +1 Might on Prize of Progress at [Reaction] speed; the Might expires every Cleanup (317.2.c) and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "718.2. \"While in this state, the card's printed Rules Text is Inactive.\" 721.2. \"Inactive Abilities do not trigger, do not apply, and cannot be activated.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "187.5. \"A Gold gear token is a domainless gear token with '[Reaction][>] Kill this, [E]: [Add] [A].'\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "167. \"Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `prize-of-progress-gear-activation`. Card text verbatim from data/corpus_flat.txt. The content is 718.2 read with 721.2 and 818.1.a: an ATTACHED Equipment's [Equip] is Inactive and cannot be activated, so an Equipment can never [Equip] itself off its own carrier — which means the repeatable 'activated ability of a gear' this trigger wants must belong to a gear that is never attached. The Gold token is that gear, and its [Reaction] makes the payoff work on the opponent's turn, which no [Equip] can. Trap check: 167 is cited so no Beginning-Phase Power is claimed; the Golds are explicitly stated to be banked rather than cashed on creation; R25 = A is named for the Industrialist override; 317.2.c is cited so the Might is not banked across turns; [Weaponmaster]'s printed 'even if it's already attached' is quoted as the carve-out that confirms rather than contradicts the reading."
+    },
+    {
+      "id": "rell-magnetic-purifier-assault-stack",
+      "name": "Rell attaches by EFFECT, never by [Equip] — so she is the one body that keeps stacking Equipment, and the Purifier turns each of them into summed [Assault]",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-024",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 M4. '[Tank] (I must be assigned combat damage first.) When I attack, you may play an Equipment with Energy cost no more than :rb_energy_2:, ignoring its cost. If you do, then do this: Attach it to me.' Two free things per attack: the card is played for nothing, and the attach is an EFFECT, so no [Equip] cost is paid and 718.2 never gets a chance to lock the Equipment down."
+        },
+        {
+          "card": "SFD-183",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Body legend. 'Your Equipment each give [Assault]. (+1 :rb_might: while equipped unit is an attacker.)' Per EQUIPMENT, not per unit — which is what makes a stack on one body scale."
+        },
+        {
+          "card": "SFD-009",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Fury Equipment, E1, M+0. '[Equip] :rb_rune_fury: ... [Effect] [Assault 2] (+2 :rb_might: while I'm an attacker.)' E1 is inside Rell's 'no more than :rb_energy_2:' window, and its own [Assault 2] is Effect Text, which 718.3 appends to whatever carries it."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Purifier IS the legend, SFD-183 or SFD-241 (Fury/Body), so this is a one-legend line by construction. Rell, Magnetic and Serrated Dirk are both mono-Fury, so 103.1.b.3 holds and the Body half is free for the rest of the deck."
+        ],
+        "notable": [
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. 807.2: 'If a Unit has Assault or has been granted Assault and is granted Assault by an additional source, the Assault Value of all granted Assault keywords is summed', with Riot's own worked example (Petty Officer + Cleave = Assault 4). Three Serrated Dirks on Rell are three granted [Assault 2] from their Effect Text plus three [Assault 1] from the Purifier — Assault 9. Rell attacks at Might 4 + 9 = 13, from three 1-Energy cards she never paid for.",
+          "AND SHE IS THE RIGHT CARRIER FOR A REASON THAT IS EASY TO MISS. 718.2 makes an ATTACHED card's printed Rules Text Inactive and 721.2 says an Inactive ability 'cannot be activated', so an Equipment already attached can never pay its own [Equip] to move. Rell does not use [Equip] at all: her trigger PLAYS the card and then attaches it by effect. Every Equipment she picks up is being attached for the first time, which is the only way this stack is legal.",
+          "THE FREE PLAY IS ALSO A PLAY, so 'when you play a gear' triggers fire off it — unlike an [Equip], which 818.1 makes an Activated Ability and never a play.",
+          "IT COSTS ONE CARD PER ATTACK OUT OF HAND, AND THAT IS THE REAL CEILING. Rell plays an Equipment 'from your hand'; 103.2.b caps each name at three, so a hand can only feed her as long as it holds a legal Equipment at E2 or less. The line is at its best on the third or fourth attack, not the first.",
+          "434.1.d STACKS MIGHT BONUSES ON TOP, so an Equipment printed with M+1 or M+2 adds outside the [Assault] sum. The Serrated Dirk is M+0 on purpose: it is chosen for the largest printed Assault Value at the lowest Energy, and a deck can mix in `SFD-022 Long Sword` (E2 P1, M+2) for the other half.",
+          "[TANK] IS A TOLL BOOTH FOR THE REST OF THE PACK, NOT ARMOUR FOR HER: 815.1.c.2 makes every other unit you control an invalid damage assignment until Rell has lethal damage — so the bigger she gets, the more of the defender's summed Might is spent before anyone else of yours is touched.",
+          "THE ASSAULT IS OFFENCE ONLY. 807.1's reminder is '+1 Might while equipped unit is an attacker', so none of this shows up on defence; and nothing in Fury or Body converts Might into points, so the line ends at winning combats.",
+          "AND THE TRIGGER IS ONCE PER ATTACK, NOT ONCE PER COMBAT PER TURN — 383.4.e places it at the Attacker designation (464.2.c.3), so a turn with two attacks at two battlefields feeds her twice."
+        ]
+      },
+      "steps": [
+        "Deck-build under a Purifier legend (SFD-183 or SFD-241) and keep Serrated Dirks in hand rather than equipping them the normal way.",
+        "Attack with Rell, Magnetic. 190.3.a.1 applies Contested, 323.9 stages the Combat and 464.2.c.3 designates her an Attacker, which is when her trigger fires.",
+        "Play a Serrated Dirk from hand, ignoring its cost, and attach it to her by the trigger's own instruction — no [Equip] is paid, so 718.2 never blocks anything.",
+        "718.3 appends the Dirk's [Effect] text to Rell: [Assault 2]. The Purifier's static adds [Assault] for that Equipment as well, and 807.2 sums every granted instance.",
+        "Repeat on later attacks. After three Dirks she carries Assault 9 and attacks at Might 13.",
+        "465.2.c reads that Might when damage is assigned, and 815.1.c.2 forces the defender's lethal onto her before any other attacker of yours is a legal assignment."
+      ],
+      "terminatesIn": "engine only — one free Equipment per attack out of hand, reaching Assault 9 and Might 13 on three Serrated Dirks; bounded by the hand and by 103.2.b, offence-only, and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "807.2. \"If a Unit has Assault or has been granted Assault and is granted Assault by an additional source, the Assault Value of all granted Assault keywords is summed.\" Example: \"Petty Officer has Assault. It is chosen as the target of Cleave, which says 'Give a unit [Assault 3] this turn.' After Cleave resolves, Petty Officer has Assault 4 this turn.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "718.2. \"While in this state, the card's printed Rules Text is Inactive.\" 718.3. \"While in this state, Abilities in the card's Effect Text are appended to the Rules Text of the Top-Most Card.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "815.1.c.2. \"If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `rell-magnetic-free-equip-attach` and `weaponmaster-equip-discount`. Card text verbatim from data/corpus_flat.txt. Two things are the content: 807.2's summing read per EQUIPMENT under the Purifier, which turns a stack on one body into a single large Assault Value with Riot's own worked example behind it; and the reason Rell is the legal carrier at all — 718.2 with 721.2 makes an attached Equipment's [Equip] Inactive, so a body that accumulates Equipment must be fed by an ATTACH effect, which is exactly what her trigger is. Trap check: the free play is stated to be a play (unlike [Equip], 818.1) so 'when you play a gear' triggers are not silently excluded; the hand is named as the real ceiling rather than the board; [Assault] is stated as offence-only per 807.1's reminder; [Tank] is priced as a toll on the defender's assignment (815.1.c.2) and not as protection for Rell."
     }
   ]
 }
