@@ -888,3 +888,108 @@ the seven states.
 Recruit is made during the opponent's turn, and by §18 that is exactly the case where "enters ready"
 buys nothing: 144.1.b forbids the move, combat ignores exhaustion, and 315.1.b readies it at your own
 Awaken before you could act. A genuine partner of the rule and a dead pairing for the entry.
+
+---
+
+# Batch 9 — the middle of the list
+
+## 21. Entries authored
+
+### 21.1 `skyfall-cull-hold-gold` — ENGINE, and the "vice versa" is the better half
+Rule mined: `skyfall-hold-conquer-bridge` (26 partners, 2 entries). Partner `SFD-134 Cull`.
+
+Every catalogued Skyfall entry runs the bridge **hold → conquer**, turning a per-turn payoff into a
+one-off. Run it the other way and a **conquer payoff becomes a hold payoff** — the difference between
+paying once per battlefield you take and paying every Beginning Phase you keep it. You cannot conquer
+a battlefield you already control; you Hold it forever.
+
+Three Culls on the bearer (136.2.c, 136.2.d, 434.1.b.1; neither gear is `[Unique]`) = three Gold every
+Hold, at no recurring cost.
+
+**The refusal rides inside the entry:** a conquer payoff whose condition only a combat can meet does
+not survive the conversion. `UNL-018 Yeti Brawler` and `OGN-034 Tryndamere` both key on assigned
+excess damage and a Hold assigns none, which 383.2.a.1 makes part of the Trigger Condition. Cull has
+no condition, which is why it is the partner that works.
+
+### 21.2 `blade-kogmaw-karthus-wipe` — ENGINE, twelve damage fired at will
+Rules mined: `blade-of-ruined-king-deathknell-ondemand` × `karthus-deathknell-double`. Partner
+`OGN-190 Kog'Maw, Caustic`, uncatalogued in both.
+
+The Blade's `[Equip]` cost is *"1 Order Power, Kill a friendly unit"* — 428.1 with 428.1.a.1 admits a
+kill *"as a cost for a card or ability"* — so *"Deal 4 to all units at my battlefield"* fires when you
+choose, three times over under two Karthus. Twelve clears every printed body in the pool (largest is
+12 Might) unless it wears a Might Bonus.
+
+### 21.3 `marai-spire-temptation-evacuation` — ENGINE, a 3-Energy bloodless Conquer
+Rule mined: `marai-spire-repeat-discount` (20 partners, 3 entries). Partner `SFD-129 Temptation`.
+
+**820.1.b**: *"Repeat is an optional cost that a player may pay to execute the effect of their spells
+and abilities a second time."* A second time, not repeatedly — #97's correction applied, so two
+relocations per cast and six a game, never an uncapped engine. The Spire takes the Repeat from 2 to 1
+(820.1.c.1 makes it an Additional Cost paid during the steps of playing the spell).
+
+### 21.4 `shen-skyfall-brambleback-conquer` — ENGINE, and one card is both halves
+Rules mined: `skyfall-hold-conquer-bridge` × `red-brambleback-conquer` × `blue-sentinel-hold`.
+
+**One Red Brambleback is simultaneously the multiplier and the condition.** Shen needs *"exactly one
+other unit you control here"* (383.2.a.1, part of the Trigger Condition) and Brambleback is exactly
+that one unit while also doubling conquer effects; Skyfall is a gear (137) so it never enters the
+count. A *second* Brambleback would raise the multiplier and break the condition to zero in the same
+motion.
+
+3 points on the Conquer, 2 on every Hold after — both numbers published, not the better one. Third
+Shen row of this walk, and the only one that pays on the turn the battlefield changes hands.
+
+---
+
+## 22. A second wrong ceiling of my own, caught the same way
+
+The first draft of 21.2 said *"VEN-155 Heart of the Tempest is the pool's ONLY Order/Chaos legend."*
+A census of `data/cards.json` says **one NAME and two BASE CODES** — `VEN-155` and `VEN-197`. Same
+shape as the Green Father case CLAUDE.md already records, and the second time in this walk that a
+ceiling was asserted instead of measured (the first was Moonlight Affliction, §11).
+
+The census is worth keeping, because every legend list this walk wrote leans on it. **94 legend base
+codes, 49 names, 15 domain pairs.** Every legend name carries exactly **two** base codes except the
+four Starters, which carry one:
+
+| pair | names |
+|---|---|
+| body/calm | 4 — Blind Monk, Wuju Bladesman ‑ Starter, Grandmaster at Arms, Wuju Master |
+| body/chaos | 3 — Bounty Hunter, Battle Mistress, Voidreaver |
+| body/fury | 4 — Relentless Storm, Purifier, Pridestalker, Butcher of the Sands |
+| **body/mind** | **1 — Defender of Tomorrow** |
+| body/order | 5 — The Boss, Might of Demacia ‑ Starter, Grand Duelist, Keeper of the Hammer, Matriarch of War |
+| calm/chaos | 3 — Unforgiven, Blade Dancer, Gloomist |
+| **calm/fury** | **1 — Rogue Assassin** |
+| calm/mind | 4 — Nine-Tailed Fox, Fire Below the Mountain, Bashful Bloom, Curator of the Sands |
+| calm/order | 4 — Radiant Dawn, Emperor of the Sands, Green Father, Eye of Twilight |
+| chaos/fury | 5 — Loose Cannon, Dark Child ‑ Starter, Glorious Executioner, Bloodharbor Ripper, Master of Shadows |
+| chaos/mind | 4 — Swift Scout, Prodigal Explorer, Scorn of the Moon, Soul's Reflection |
+| **chaos/order** | **1 — Heart of the Tempest** |
+| fury/mind | 3 — Daughter of the Void, Mechanized Menace, Virtuoso |
+| fury/order | 3 — Hand of Noxus, Void Burrower, Piltover Enforcer |
+| mind/order | 4 — Herald of the Arcane, Lady of Luminosity ‑ Starter, Chem-Baroness, Deceiver |
+
+CLAUDE.md already records *"VEN-149 Defender of Tomorrow is the ONLY Mind/Body legend of the 49"*.
+There are **two more** pairs with a single name: **calm/fury (Rogue Assassin)** and **chaos/order
+(Heart of the Tempest)**. Every `prerequisites.easy` line this walk wrote was checked against this
+table and all fifteen of them are correct as NAME lists.
+
+---
+
+## 23. Closing note on the vein
+
+Nine batches, **43 entries**, and the refusals in §§3, 5, 7, 9, 12, 14, 17, 20 and inside the entries
+themselves. The eight richest proven rules are opened and their strong material is spent; what remains
+in `svellsongur-copy`'s ~90 unwalked partners and in the price-list rules
+(`get-excited-expensive-discard`, `curator-of-the-sands-printed-cost`,
+`lady-of-luminosity-expensive-spells`, whose predicate is `[\s\S]`) is variation on shapes now
+catalogued rather than new mechanism.
+
+Two rules of thumb this walk produced that apply to any future multiplier hunt:
+1. **Check whether the effect has a per-execution cap at all.** *Any number*, *all*, *pay any amount*
+   — a multiplier on those is worth zero. Four instances found (§7.2, §12.1).
+2. **Read every sentence of the card you are copying, not the one you are copying it for.** It cut
+   both ways: a static that stacks (`svellsongur-rumble-scrapper-mechs`, +8 Might) and a drawback that
+   stacks (`svellsongur-corrupt-enforcer-trash-fill`, a forced 8-card draw).
