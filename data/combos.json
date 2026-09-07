@@ -48321,6 +48321,516 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use SFD-044 Legion Quartermaster. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.2, 103.1.b.3, 103.2.b, 203.3, 323.7, 381, 434.1.f, 434.1.g, 469, 719.5, 818.1, 819.1.d. The mandatory-cost reading is stated first because a reader who assumes 'you may' will build a list in which the card is sometimes uncastable; 203.3 is the paragraph. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "card-sharp-renata-industrialist-gold-asymmetry",
+      "name": "182 lets an effect name a DIFFERENT player as a token's controller - Card Sharp is symmetric on paper, and Renata's \"Your tokens\" is what breaks the symmetry",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-081",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind unit, E3 M3. 'When you play me, you and each opponent may play a Gold gear token exhausted. For each opponent who did, you play a Gold gear token exhausted.' In ZERO entries before this one. The clause that gives the opponent a token is 182's exception in card form."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 P1 M4. 'Your tokens enter ready.' The word is YOUR - 182 makes the opponent the controller of the Gold they took, so Renata never touches it."
+        },
+        {
+          "card": "SFD-201",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Mind/Order legend. 'When you or an ally hold, you may exhaust me to play a Gold gear token exhausted. While your score is within 3 points of the Victory Score, your Gold [Add] an additional :rb_energy_1:.' Again YOUR Gold, so the bonus is one-sided for the same reason."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Card Sharp is mono-Mind and Renata Glasc, Industrialist is mono-Order, so the identity is Mind/Order and 103.1.b.2 needs a legend covering both. SFD-201 Chem-Baroness is named in uses[] and is Mind/Order; her alt printing is SFD-249. The other Mind/Order legends measured over data/cards.json are OGN-265 / OGN-308 Herald of the Arcane, OGS-021 Lady of Luminosity - Starter and UNL-199 / UNL-235 Deceiver, but only the Chem-Baroness pays the Gold a second time.",
+          "None of the three is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes nothing beyond the legend already being named, and none is banned or restricted in either format.",
+          "Renata Glasc, Industrialist has to be on the board when Card Sharp resolves; 143.4 has her enter exhausted, so she is played a turn earlier."
+        ],
+        "notable": [
+          "182 IS THE PARAGRAPH AND IT IS CITED BY NOTHING: 'A token's controller is the controller of the spell or ability that created it, unless the token's type innately determines control or that spell or ability specifies that a different player is the token's controller.' Card Sharp specifies exactly that - the opponent plays a Gold they control. Measured over the corpus, only TWO cards in the pool use that exception: SFD-081 Card Sharp and UNL-130 Walking Roost (whose Bird is a pure drawback).",
+          "THE CARD IS SYMMETRIC ON PAPER AND THE ASYMMETRY IS BOUGHT ELSEWHERE. In a Duel the opponent will take the free Gold, which is what turns your one Gold into two - 'For each opponent who did, you play a Gold gear token exhausted.' So the honest baseline is 2 Gold for you against 1 for them, a net +1, for a 3-Energy 3-Might body. Everything above that comes from the two cards that say YOUR.",
+          "187.5 IS WHY 'ENTERS EXHAUSTED' IS NOT A COSMETIC. The Gold token prints '[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:' - its own cost includes an exhaust, so an EXHAUSTED Gold cannot pay it and is dead until its controller's next Awakening (315.1.b, 415.3.a). 184.1 is the rule that lets an effect override the default: 'The effect may state that the token enters ready or exhausted, if that state is contrary to the default for the token's type.' Card Sharp says exhausted; Renata's static says your tokens enter ready, and R25 = A settles that the static wins.",
+          "SO RENATA CONVERTS YOUR TWO GOLD INTO LIVE POWER AND LEAVES THEIRS DEAD FOR A TURN. Your two enter ready and can be killed for 2 rainbow Power in the window they were created - which is the whole tempo of the card. Theirs entered exhausted and stays that way until their Awaken, so it never answers anything you do this turn. 182 is the reason Renata cannot help them: she says 'Your tokens', and the Gold they took is theirs.",
+          "AND THE CHEM-BARONESS TAXES THE SAME WORD AGAIN. 'While your score is within 3 points of the Victory Score, your Gold [Add] an additional :rb_energy_1:' - so late in the game each of your two Gold is 1 Power AND 1 Energy while theirs is still 1 Power. The threshold is format-sensitive: 5 of 8 under 194.3, 8 of 11 under 489.3.",
+          "THE GOLD IS GEAR, NOT A UNIT, AND THAT MATTERS TWICE. 143.4 exhausts only units, so the 'exhausted' on a Gold is entirely the creating effect's doing (184.1) rather than the default; and 457.1 recalls an un-attached non-Unit Gear at a battlefield to its controller's base at the next Cleanup, so a Gold made at a battlefield does not stay there. Neither changes the arithmetic, but both are why the token behaves unlike the Recruit tokens Renata is usually paired with.",
+          "IT IS ALSO A BODY. Card Sharp is a Might 3 unit, so the 3 Energy is not paid purely for the ramp - which is the difference between this and every Gold-producing gear in the pool."
+        ]
+      },
+      "steps": [
+        "Run SFD-201 (or SFD-249) Chem-Baroness as your legend and play SFD-171 Renata Glasc, Industrialist (4 Energy + 1 Power). 143.4 has her enter exhausted; her static does not care.",
+        "On a later turn play SFD-081 Card Sharp (3 Energy). Its play trigger offers each player a Gold gear token, entering exhausted (184.1).",
+        "The opponent takes theirs - it is free mana and they control it under 182. That satisfies 'For each opponent who did', so you play a SECOND Gold.",
+        "Renata's static applies to your two Gold and not to theirs: yours enter ready (R25 = A), theirs entered exhausted and 415.3.a will not ready it until their own Awakening.",
+        "Kill your two Gold for 2 rainbow Power at [Reaction] speed the same turn (187.5). Late in the game the Chem-Baroness adds 1 Energy to each.",
+        "Three copies of Card Sharp (103.2.b) are three such turns; the Chem-Baroness's own Hold trigger adds one more Gold a turn on top."
+      ],
+      "netPerIteration": "two ready Gold for you and one exhausted Gold for the opponent, off a 3-Energy Might 3 body",
+      "terminatesIn": "engine only - nothing here scores. Three Card Sharp (103.2.b), one Gold a turn from the legend's own exhaust, and every Gold is a one-shot because 187.5's cost kills it",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 182",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A token's controller is the controller of the spell or ability that created it, unless the token's type innately determines control or that spell or ability specifies that a different player is the token's controller."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 184.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The effect may state that the token enters ready or exhausted, if that state is contrary to the default for the token's type."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 457.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "When an un-attached non-Unit Gear is created or played at a battlefield, or is at a battlefield for any other reason, it is Recalled to its controller's base during the next Cleanup."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 179-184 Tokens). 180, 181, 182 and 183 are cited by no entry and no synergy rule in this project, and SFD-081 Card Sharp was in ZERO entries. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.2, 143.4, 182, 184.1, 187.5, 194.3, 315.1.b, 415.3.a, 457.1, 489.3. MEMBERS NAMED: exactly TWO cards in the pool use 182's trailing exception to give an opponent a token, swept on the corpus - SFD-081 Card Sharp (a Gold, which is the point) and UNL-130 Walking Roost (a 1-Might Bird, a pure drawback). R25 = A is the ruling that Renata's static beats the creating effect's 'exhausted'. Distinct from chem-baroness-gold-banked-across-the-threshold (the legend's own Hold Gold, no Card Sharp and no Renata) and from every Renata Industrialist entry, all of which pair her with unit tokens rather than a gear token whose own cost is an exhaust. Trap check: the card is symmetric and the entry prices the opponent's Gold rather than hiding it; 182 is why Renata cannot ready theirs; the Chem-Baroness threshold is format-sensitive and stated for both; no unruled reading."
+    },
+    {
+      "id": "bellows-breath-frigid-touch-shrink-into-damage",
+      "name": "142.4.b: lethal is measured against CURRENT Might and re-checked, so a -Might turns damage already marked into a kill - and Riot's worked example is Frigid Touch",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-080",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind spell, E1 P1. '[Action] (Play on your turn or in showdowns.) [Repeat] :rb_energy_1::rb_rune_mind: (You may pay the additional cost to repeat this spell's effect.) Deal 1 to up to three units at the same location.' The cheapest way in the pool to put a MARK on several bodies at once."
+        },
+        {
+          "card": "SFD-066",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E2. '[Reaction] (Play any time, even before spells and abilities resolve.) [Repeat] :rb_energy_2: (You may pay the additional cost to repeat this spell's effect.) Give a unit -2 :rb_might: this turn.' No floor, which is what lets it drop a body under the damage already on it - and 142.4.b's own worked example names this card."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both spells are mono-Mind, so 103.1.b.3 admits them under any legend with Mind among its two domains - measured over data/cards.json, 31 legend base codes qualify, among them OGN-247 / OGN-299 Daughter of the Void (fury/mind), OGN-255 / OGN-303 Nine-Tailed Fox (calm/mind), OGN-263 / OGN-307 Swift Scout (mind/chaos), OGN-265 / OGN-308 Herald of the Arcane (mind/order), SFD-201 / SFD-249 Chem-Baroness (mind/order), UNL-181 / UNL-226 Virtuoso (fury/mind) and VEN-149 / VEN-194 Defender of Tomorrow (mind/body).",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "Both halves must land in the SAME turn: 143.3.b.1 heals all damage 'At the end of each player's turn' and 317.2.c expires the -Might at the same Cleanup."
+        ],
+        "notable": [
+          "THE RULE, AND RIOT'S WORKED EXAMPLE IS ONE OF THESE TWO CARDS. 142.4.a: 'Lethal Damage is the amount of marked Damage that will cause a unit to die in a cleanup.' 142.4.b: 'Lethal Damage for a Unit is a non-zero amount greater than or equal to that Unit's Might', with the example 'A unit has 5 [M] and 3 damage marked on it. Frigid Touch is played targeting that unit. When it resolves, the unit's Might becomes 3, and it will have lethal damage marked on it.' So lethal is measured against CURRENT Might and re-checked continuously - the damage does not have to be enough when it is dealt. 142.1 through 142.4 are cited by no entry and no synergy rule in this project.",
+          "WHICH INVERTS HOW REMOVAL IS PRICED. The usual question is 'how much damage do I need for that body' - here the answer is 'how far do I have to shrink it', and shrinking is cheaper. A Might 6 body needs 6 damage; it needs 2 damage and -4 Might, which is 2 Energy + 1 Power + 1 Mind Power for the marks and 4 Energy for the shrink. This is the complement of the standing finding that a kill keyed on the word 'damaged' reads a MARKER and not a threshold: here the marker is turned lethal instead of being read.",
+          "FRIGID TOUCH IS UNFLOORED, WHICH IS THE WHOLE REASON IT IS THE PAYOFF. 477.3.b caps a floored REDUCTION rather than the result, so a '-3, to a minimum of 1' clause can never take a body below 1 and can never make 1 marked damage lethal on a Might 6 unit. Frigid Touch prints no floor. Of the Might reductions in the pool the nine from Origins carry a floor and the ones from SFD, UNL and VEN do not - check the printed clause before substituting a reducer here.",
+          "[REPEAT] IS EXACTLY ONE EXTRA EXECUTION, AND IT MAY RE-TARGET. 820.1.b gives one extra execution and 820.1.c.3 lets each Repeat cost be paid only once, while 820.2.a says 'Choices made for the additional execution do not have to be the same as the choices made for the initial execution.' So Bellows Breath repeated is 2 marks on each of three bodies OR 1 mark on six, and Frigid Touch repeated is -4 on one body or -2 on two. Neither is an engine; both are one extra execution.",
+          "AND 142.4.b's SECOND EXAMPLE IS THE 0-MIGHT WALL RULE, STATED AT ITS SOURCE: 'A unit has 0 [M]. In order to have lethal damage marked on it, it must have at least 1 damage marked on it.' That is why this project prices a wall of 0-Might Reflections in DAMAGE and not in Might - and it is also why Bellows Breath, which deals exactly 1, clears such a wall three bodies at a time for 1 Energy.",
+          "THE WINDOW IS ONE TURN AND BOTH HALVES END AT THE SAME CLEANUP. 143.3.b.1 heals all damage at the end of each player's turn and 317.2.c expires every 'this turn' effect in the same step, so nothing carries. And 466.1.a.1 - 'Insert \"3c. Heal all Units.\"' - wipes marked damage at a Combat Cleanup too, which is why this is a Main-Phase line and not a combat trick.",
+          "BOTH ARE INSTANT ENOUGH TO BE HELD. Bellows Breath is [Action] (806.1.b, so it reaches a Showdown) and Frigid Touch is [Reaction] (813.1.c.1, any Closed State on any player's turn), so the shrink can be bought after the opponent has committed - the same reason #170 preferred Frigid Touch to a play-trigger reducer."
+        ]
+      },
+      "steps": [
+        "In your Main Phase play SFD-080 Bellows Breath (1 Energy + 1 Power) and pay its [Repeat] (1 Energy + 1 Mind Power): deal 1 to up to three enemy units at one location, twice, for 2 marked damage on each.",
+        "142.3 marks that damage on the units; nothing dies yet, because 142.4.b measures lethal against their current Might.",
+        "Play SFD-066 Frigid Touch (2 Energy) on the body you want dead and pay its [Repeat] (2 Energy): -2 twice, i.e. -4 Might this turn, with no floor.",
+        "A Might 6 body is now Might 2 with 2 damage marked. 142.4.b: 'Lethal Damage for a Unit is a non-zero amount greater than or equal to that Unit's Might' - the mark is lethal now, and 142.4.a kills it in the cleanup.",
+        "Alternatively spend the Repeat on a second target (820.2.a) and kill two Might 4 bodies instead of one Might 6.",
+        "Do not split the two halves across turns: 143.3.b.1 heals the marks at the end of the turn and 317.2.c expires the -Might in the same Cleanup.",
+        "Three copies of each (103.2.b)."
+      ],
+      "netPerIteration": "a Might 6 body killed for 2 damage instead of 6, by moving the threshold instead of the damage",
+      "terminatesIn": "engine only - nothing here scores. Both halves expire at the end-of-turn Cleanup (143.3.b.1, 317.2.c), [Repeat] is exactly one extra execution (820.1.b), and three copies of each spell (103.2.b) bound it",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 142.4.b worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A unit has 5 [M] and 3 damage marked on it. Frigid Touch is played targeting that unit. When it resolves, the unit’s Might becomes 3, and it will have lethal damage marked on it."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 142.4.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Lethal Damage for a Unit is a non-zero amount greater than or equal to that Unit’s Might."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 820.2.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Choices made for the additional execution do not have to be the same as the choices made for the initial execution."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 142 Damage, found by a sub-rule probe for uncited sub-rules carrying a worked Example). 142.1, 142.2, 142.3, 142.3.a, 142.3.b, 142.4, 142.4.a, 142.4.b and 142.4.c are cited by no entry and no synergy rule in this project, and 142.4.b's own worked example names SFD-066 Frigid Touch. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 142.3, 142.4.a, 142.4.b, 143.3.b.1, 317.2.c, 466.1.a.1, 477.3.b, 806.1.b, 813.1.c.1, 820.1.b, 820.1.c.3, 820.2.a. REPORT TO THE MANAGER: 142.4.b makes Lethal Damage a CURRENT-Might measurement that is re-checked, so a -Might turns damage already marked into a kill - the complement of the standing finding that a kill keyed on 'damaged' reads a marker rather than a threshold. And 142.4.c is the paragraph for UNL-118 Elder Dragon's 'Any amount of your damage is enough to kill enemy units', with 142.3.a / 142.3.b scoping 'your damage' to damage YOU marked - which means a mutual-damage exchange, where 417.6.b.4 makes the opponent responsible for what their own unit dealt, does NOT feed it. Distinct from foxfire-unfloored-reduction-sweep and sivir-ambitious-frigid-touch-excess (both use the reduction for a sweep or for excess damage, neither for marked damage) and from the three Bellows Breath entries. Trap check: both halves must land in one turn and the entry says so; a floored reducer cannot substitute (477.3.b); [Repeat] is one extra execution, not an engine; no unruled reading."
+    },
+    {
+      "id": "monch-skyward-strike-stun-discount",
+      "name": "A stun you applied on your own turn is cleared at your own cleanup - so the discount and the body are the same turn or nothing",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-035",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm unit, E6 M6. 'If an opponent controls a stunned unit, I cost :rb_energy_2: less and enter ready.' Six Might for four Energy AND a Standard Move on arrival, on a condition you can manufacture."
+        },
+        {
+          "card": "UNL-038",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E2 P1. 'Move an enemy unit. [Level 6][>] [Stun] an enemy unit.' The move half always works; the stun half is what turns the Monch on, and it needs six XP banked."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "6 XP banked and never spent, for Skyward Strike's stun half: 824.1.d makes the Dependent Ability Inactive as soon as the counter drops below six, and 730.2 is what any spend does."
+        ],
+        "notable": [
+          "THE WINDOW IS ONE TURN AND THE RULE SAYS WHICH ONE. 423.1.a.2: 'Stunned Units lose the Stunned status during step 3d of the end of turn cleanup' - the cleanup of the turn in which they were stunned. So a stun you apply in your own Main Phase is gone by your next turn, and the Monch has to be played in the SAME Main Phase to see it. 423.1.a.1 ('A Stunned Unit can not be Stunned again') is the other half: a second Skyward Strike aimed at the same body does nothing.",
+          "WHAT THE DISCOUNT IS ACTUALLY WORTH, AND IT IS TWO THINGS. 'Costs 2 Energy less' takes a six-drop to four - 356.4.b covers a card that 'costs [amount] less' and 356.6 floors it - and 'enter ready' overrides 143.4 ('Units enter the Board exhausted') so 144.2's Standard Move cost is available at once. A 6 Might body that contests a battlefield on the turn it lands is worth more than the two Energy; 415.1 is why it is worth exactly one turn and no more, since 'enters ready' is a play-time property and never hands an exhaust back later.",
+          "THE STUN ITSELF BUYS ALMOST NOTHING, WHICH IS WHY THIS ENTRY IS ABOUT THE DISCOUNT. 423.1.b removes a stunned unit's contribution to the combat damage step but 423.1.c keeps its full Might as the price to kill it - so a stun never cheapens removal. Read Skyward Strike's stun as the KEY to the Monch, not as a combat trick; its own always-on half is the move, which 449 makes an effect Move with only the source's restrictions.",
+          "AND THE MOVE HALF IS THE ONE THAT IS ALWAYS LIVE. 'Move an enemy unit' with no destination named is 449 and 449.1; note that dragging an enemy body onto a battlefield you control makes THEM the Attacker on your own turn, because 190.3.a.1 and 450 key Contested on the moved unit's CONTROLLER and 464.2.c.1 makes that player the Attacker - the trick blitzcrank-ezreal-dashing-forced-defence is built on. Skyward Strike is a second, cheaper way to set it up.",
+          "THE XP GATE IS THE SAME FORK THIS CATALOGUE KEEPS FINDING. 824.1.d re-evaluates continuously, so a Skyward Strike drawn at 0 XP simply has no stun half that turn and gains one later - unlike a [Level] rider on a play trigger, which is spent for good. mosstomper-wuju-apprentice-xp-calm-ladder is where the Calm ladder is walked, and [Hunt 2] on two held battlefields reaches six in two Beginning Phases.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the Monch's condition reads 'an opponent CONTROLS a stunned unit', so an opponent who simply has none - because you have no stun, or theirs died - leaves it a six-drop that enters exhausted."
+        ]
+      },
+      "steps": [
+        "Bank 6 XP and do not spend it (824.1.d, 730.2).",
+        "In your Main Phase, play Skyward Strike (2 Energy + 1 Power): move an enemy unit, and at six XP also stun one.",
+        "In the SAME Main Phase, play Monch. Its condition is satisfied, so it costs 4 Energy and enters ready.",
+        "Move it to a battlefield at once, paying 144.2's exhaust it still has.",
+        "Do not wait a turn: 423.1.a.2 clears the stun at the end-of-turn cleanup, and 423.1.a.1 stops you re-applying it to the same body."
+      ],
+      "netPerIteration": "2 Energy off a six-drop and a free Standard Move on arrival, bought with a stun that lasts exactly one turn",
+      "terminatesIn": "engine only - three of each card by 103.2.b, one turn of stun each, and the whole thing is dark below six XP; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 9)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-035 Monch or UNL-038 Skyward Strike. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.4, 144.2, 190.3.a.1, 356.4.b, 356.6, 415.1, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 449, 449.1, 450, 464.2.c.1, 469, 730.2, 824.1.d. The load-bearing timing is 423.1.a.2 - a stun applied on your own turn is cleared at your own cleanup - which forces both cards into one Main Phase. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "en-garde-hand-hammer-alone-versus-pair",
+      "name": "Two Calm cards on the same battlefield want opposite garrisons - one pays for ALONE and the other for exactly one companion",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-046",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E1. '[Reaction] ... Give a friendly unit +1 :rb_might: this turn, then an additional +1 :rb_might: this turn if it is the only unit you control there.' The second point is the ALONE clause."
+        },
+        {
+          "card": "VEN-027",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Calm Equipment, E2, M+1. '[Equip] :rb_rune_calm: ... [Effect] I have +2 :rb_might: while I'm at a battlefield with exactly one OTHER unit you control.' The exact opposite condition, on a permanent."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A decision about garrison size that the two cards make FOR you - see the notables. They are in one entry because a deck that runs both has to choose, not because they combine."
+        ],
+        "notable": [
+          "740.2.a IS THE DEFINITION AND IT COUNTS YOUR OWN SIDE. 'A unit is alone when there are no other FRIENDLY units at the same location' - so En Garde's second point needs a garrison of exactly ONE, and the enemy's size is irrelevant. Hand Hammer's clause is the neighbouring case in the same words: 'at a battlefield with exactly one OTHER unit you control' - a garrison of exactly TWO. One card pays at one body, the other at two, and nothing pays at three.",
+          "SO THIS IS A DECKBUILDING FORK, NOT A COMBINATION, AND THE ENTRY SAYS SO. On a garrison of one, En Garde is +2 and the Hammer's [Effect] is +0 (its Might Bonus of +1 still applies - 434.1.d - but the conditional +2 does not). On a garrison of two, the Hammer is +2 and En Garde is +1. A list that wants both is paying full price for whichever one is switched off, and the honest version of this entry is that the two cards TELL you what size garrison the deck wants.",
+          "THE HAMMER'S 'I' IS THE CARRIER, WHICH IS WHY THE CONDITION READS THE CARRIER'S LOCATION. 136.2.b makes Effect Text Inactive unless attached, 136.2.c appends it to the Top-Most Card's Rules Text, and 053.1 with 136.2.d fix the referent - 'I' and 'me' in appended Effect Text are the CARRIER, while 'this' and the gear's own name stay with the gear (Riot's examples are Guardian Angel and Brutalizer). So 'I have +2 :rb_might: while I'M at a battlefield with exactly one other unit you control' is about where the CARRIER stands.",
+          "AND THE HAMMER'S CONDITION IS CONTINUOUS, WHICH MAKES IT FRAGILE IN A GOOD WAY. It is an [Effect] on a permanent, re-read at every moment rather than checked once, so it switches off the instant a third body arrives and back on when one dies - unlike En Garde, whose 'this turn' modifier is fixed when the spell resolves. In a combat where bodies are dying, the Hammer's +2 can appear mid-step; 465.2.c reads Might at assignment, so it matters exactly then.",
+          "NEITHER IS A BUFF. Both are Might modifiers rather than 702 counters, so 702.3's one-per-unit cap and 703's fixed +1 are silent and a real buff still lands on top; and 434.1.d's Might Bonus is a third, separate source. Three different mechanisms that all read as '+Might' on the card face.",
+          "AND EN GARDE IS [REACTION], WHICH IS THE ONE THING THE HAMMER CANNOT DO. 813.1.c.1 lets it be played 'during Closed States on any player's turn', so it is bought after the attacker's summed Might is countable (464.2.c.3, 465.2.c). The Hammer is a permanent and commits in advance.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And 807.1.d ties nothing here to an Attacker designation, so both work on defence."
+        ]
+      },
+      "steps": [
+        "Decide the garrison size first: these two cards are the decision, not a combination.",
+        "For a deck that keeps ONE body per battlefield, run En Garde: +2 Might for 1 Energy at [Reaction] speed, bought after the attack is declared (813.1.c.1).",
+        "For a deck that keeps TWO, run Hand Hammer: [Equip] for one Calm Power, +1 from its Might Bonus (434.1.d) and +2 more while exactly one other unit of yours is there.",
+        "The Hammer's condition is continuous, so it can switch on mid-combat as bodies die - 465.2.c reads Might at assignment.",
+        "Do not expect either to pay on a garrison of three: 740.2.a's 'alone' is one and the Hammer's clause is exactly two."
+      ],
+      "netPerIteration": "+2 Might for 1 Energy on a lone body, or +3 on a carrier standing with exactly one companion - never both",
+      "terminatesIn": "engine only - three of each by 103.2.b, and each is dead on the board size the other wants; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 9)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use OGN-046 En Garde or VEN-027 Hand Hammer. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 053.1, 103.1.b.3, 103.2.b, 136.2.b, 136.2.c, 136.2.d, 434.1.d, 464.2.c.3, 465.2.c, 469, 702.3, 703, 740.2.a, 807.1.d, 813.1.c.1. The entry is deliberately a FORK rather than a combination - the two cards want garrisons of one and of two respectively - because pairing them as if they stacked would be inventing an interaction. Companion to wielder-of-water-mask-foresight-alone from batch 4, which walks the 'alone' half. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "meditation-playful-phantom-free-exhaust",
+      "name": "Exhausting a friendly unit costs nothing on the opponent's turn, because 144.1.b forbids the move and combat never reads the state",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-048",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E2. '[Reaction] ... As an additional cost to play this, you may exhaust a friendly unit. If you do, draw 2. Otherwise, draw 1.' Optional, so 203.3 never makes it uncastable - the only question is what the exhaust costs."
+        },
+        {
+          "card": "OGN-049",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 M5. No rules text at all. Five Might for five Energy and nothing else - which is exactly the body whose exhaust is worth nothing to anybody."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A READY friendly unit when the spell is played - exhausting requires one, and an already-exhausted body cannot pay."
+        ],
+        "notable": [
+          "THE ADDITIONAL COST IS FREE ON THE OPPONENT'S TURN, AND THREE PARAGRAPHS SAY WHY. 144.1.b forbids the Standard Move outside your own Main Phase, so a ready body has nothing to spend its readiness on during their turn. Combat does not read the state either: neither 464.2.c.3, which hands out the designations, nor 465.2.b, which assigns damage, filters by exhaustion - an exhausted defender fights at its full Might. And 415.3.a readies it again in your own Awakening. So on their turn the exhaust is a cost you pay with nothing, and Meditation is a flat Draw 2 for 2 Energy at [Reaction] speed (813.1.c.1).",
+          "ON YOUR OWN TURN IT IS NOT FREE, WHICH IS THE OTHER HALF. 144.2 makes exhausting the unit the Cost of a Standard Move and 420.3.a repeats it, so a body you tap for Meditation is a body that does not walk this turn. The rule is simple: cast it on their turn, or on yours only after every move you meant to make.",
+          "203.3 NEVER BITES, BECAUSE THE COST IS OPTIONAL. 'If the game action associated with a Cost is impossible ... they cannot pay the Cost and they will not execute the linked Effect' - but the card reads 'you MAY exhaust a friendly unit ... Otherwise, draw 1', so an empty board makes it a 2-Energy cantrip rather than an uncastable card. Contrast SFD-044 Legion Quartermaster in this same lane, whose additional cost has no 'may' and whose card is therefore uncastable with no gear out.",
+          "AND A VANILLA BODY IS THE PERFECT FUEL, WHICH TURNS A BLANK CARD INTO A USE. OGN-049 Playful Phantom has no rules text at all - swept, it is one of the very few printed blanks in the domain - so its exhaust has no opportunity cost beyond the Standard Move it was not going to make on the opponent's turn anyway. A 5 Might body that also converts one card into two every time you hold Meditation up is doing more than its stat line.",
+          "THE RATE, WITH THE QUANTITIES DECLARED. 2 Energy for two cards, three times a game (103.2.b), on any turn where a friendly unit is ready - which is every opponent's turn on which your board survived. Against the alternative of casting it on your own turn, the price is one Standard Move.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And Meditation draws, so 431.1.a applies with an empty deck - two cards is two chances to Burn Out."
+        ]
+      },
+      "steps": [
+        "Keep a ready body on the board at the end of your turn - a Playful Phantom that has already reached its battlefield is ideal.",
+        "On the opponent's turn, in any Closed State, play Meditation (2 Energy) under its [Reaction] permission (813.1.c.1).",
+        "Pay the optional additional cost by exhausting that body: 144.1.b means it had no legal move to make anyway, and neither 464.2.c.3 nor 465.2.b cares about the state in combat.",
+        "Draw 2. 415.3.a readies the body again at your own Awakening.",
+        "On your own turn, only tap a unit you have already finished moving - 144.2 makes the exhaust the Standard Move's cost."
+      ],
+      "netPerIteration": "two cards for 2 Energy on any opponent's turn, at no cost beyond a Standard Move that was illegal anyway",
+      "terminatesIn": "engine only - three Meditations by 103.2.b; nothing here scores, and with an empty deck the second card is a Burn Out (431.1.a)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 9)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use OGN-048 Meditation or OGN-049 Playful Phantom. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 144.1.b, 144.2, 203.3, 415.3.a, 420.3.a, 431.1.a, 464.2.c.3, 465.2.b, 469, 813.1.c.1. The entry rescues a printed blank: OGN-049 has no rules text, and the reason it is in uses[] rather than refused is that a body with no abilities has no opportunity cost when tapped. The optional-versus-mandatory contrast with SFD-044 Legion Quartermaster (same lane, batch 8) is stated in both entries. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "shock-blast-questionable-tome-empowered-discount",
+      "name": "The cheapest [Empower] cost in the pool is an exhaust, and a discount that reads 'something Empowered' does not care which thing",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-059",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E3 P1. '[Action] ... This costs :rb_energy_2: less if you control something that's [Empowered]. Deal 4 to a unit.' The condition names no card type - anything Empowered you control satisfies it."
+        },
+        {
+          "card": "VEN-054",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind gear, E3. '[Empower] - :rb_exhaust: (Pay the cost: Empower me. Use only if not Empowered.) Disempower this, :rb_energy_1:, :rb_exhaust:: Draw 1.' Its [Empower] cost is an exhaust and nothing else."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Mind, so 103.1.b.3 admits any legend with Mind in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "The Tome left EMPOWERED. Its own draw ability begins 'Disempower this', so using it switches the discount off until you re-Empower - which its exhaust cost lets you do, but only once per turn."
+        ],
+        "notable": [
+          "THE CONDITION READS 'SOMETHING', NOT 'A UNIT'. Shock Blast asks only that you control something that is [Empowered], and 441.2 makes Empowered 'a state for GAME OBJECTS on the board' - so a gear satisfies it exactly as a unit does. That is why the cheapest Empower in the pool is the right enabler rather than the biggest one.",
+          "AND THE CHEAPEST IS AN EXHAUST. The Questionable Tome's [Empower] cost is ':rb_exhaust:' with no Energy and no Power at all, and 441.1 makes Empowering 'the act of rendering one or more Game Objects Empowered' with 441.2 making the state permanent once reached. So 3 Energy for the gear, then one exhaust, and every Shock Blast afterwards costs 1 Energy + 1 Power for Deal 4 - which 356.4.b prices as it is played and 356.6 floors at zero.",
+          "THE TENSION IS ON THE TOME ITSELF, AND IT IS THE ENTRY'S REAL CONTENT. Its draw ability is 'DISEMPOWER this, 1 Energy, exhaust: Draw 1' - so cashing the card switches the discount off, and 441.1.b ('An Empowered Game Object can not be Empowered') means re-Empowering needs the exhaust back, which 415.3.a only returns at your own Awakening. One turn you draw, the next you discount; you cannot do both with one Tome. Three copies (103.2.b) are how a deck has it both ways, and that is a deckbuilding answer rather than a play one.",
+          "WHAT THE DISCOUNTED SPELL ACTUALLY KILLS. 143.2.a kills on marked damage at or above Might, so Deal 4 removes any body of 4 Might or less for 1 Energy + 1 Power - and it is [Action] (806.1.c.1: 'This can be played during showdowns on any player's turn'), so it can be held until a combat has opened and the board is known. Against a bigger body, this lane's unfloored reducers bring it into range: SFD-067 Frostcoat Cub at -2 and UNL-065 Icevale Archer at -1, both walked in this walk.",
+          "AND THE DAMAGE IS ABILITY DAMAGE, NOT UNIT DAMAGE. 417.6.b.3's Challenge exception applies only where a spell names a UNIT as the source; here the spell deals it, so a blanket 'prevent all spell and ability damage' answer stops it and a [Tank] does not order it (815.1.b is scoped to the combat damage step). The mutual-damage family walked in the Body lane is the opposite case.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the discount is Energy-only - 356.6 never touches the 1 Power, so the floor of this spell is 1 Energy + 1 Power and not free."
+        ]
+      },
+      "steps": [
+        "Play Questionable Tome (3 Energy). 143.4 exhausts units and not gear, so it is live at once.",
+        "Activate its [Empower] by exhausting it - no Energy, no Power - and 441.2 makes the state permanent until something disempowers it.",
+        "Every Shock Blast from now on costs 1 Energy + 1 Power (356.4.b, floored by 356.6) for Deal 4, at [Action] speed.",
+        "If you want the Tome's card instead, pay 'Disempower this, 1 Energy, exhaust' - and accept that the discount is off until your next Awakening lets you re-Empower (441.1.b, 415.3.a).",
+        "Against a body above 4 Might, spend an unfloored reduction first: Frostcoat Cub at -2 or Icevale Archer at -1."
+      ],
+      "netPerIteration": "Deal 4 for 1 Energy + 1 Power, for as long as one Tome is left Empowered",
+      "terminatesIn": "engine only - three Shock Blasts by 103.2.b, and a single Tome cannot both draw and hold the discount in the same turn; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 9)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use VEN-059 Shock Blast. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.2.a, 143.4, 356.4.b, 356.6, 415.3.a, 417.6.b.3, 441.1, 441.1.b, 441.2, 469, 806.1.c.1, 815.1.b. This project had already recorded that VEN-054's [Empower] cost IS the exhaust its own draw needs, so unaided it Empowers or draws in a turn and never both; this entry is what makes that trade worth taking, because the discount reads 'something' rather than a unit. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "wages-of-pain-jeweled-colossus-hidden-defence",
+      "name": "A hidden removal spell can only ever answer at a battlefield you control - so the body that holds the hide is half the card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-070",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E3. '[Hidden] ... [Action] ... Deal 3 to a unit at a battlefield. Play a Gold gear token exhausted.' Hidden for one rainbow, played for nothing, and it leaves a gear behind."
+        },
+        {
+          "card": "OGN-086",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E5 M5. '[Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.) [Shield] (+1 :rb_might: while I'm a defender.)' A 6 Might defender whose job here is to keep the battlefield, because the hide dies with it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Mind, so 103.1.b.3 admits any legend with Mind in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Control of the battlefield the spell is hidden at, maintained: 811.1.b hides it there 'for as long as you control that battlefield', and 323.6 takes that away the moment your last body leaves in an Open State."
+        ],
+        "notable": [
+          "THE HIDE PINS THE TARGET, WHICH MAKES THIS A DEFENSIVE CARD ONLY. 811.1.d: 'Some choices made while playing a card from Hidden are restricted to the battlefield where it was hidden. A card cannot be played from Hidden if it is a spell with no valid targets under these restrictions', with 811.1.d.2 confining a hidden spell's targets to that battlefield. And 811.1.b only lets you hide 'at a battlefield you CONTROL'. So a hidden Wages of Pain can only ever kill something standing at a battlefield of yours - it can never answer a body you are attacking. Played from hand at its printed 3 Energy it has no such restriction; the discount and the restriction come together.",
+          "AND THE HIDE IS CONTROL-DEPENDENT, WHICH IS THE OTHER HALF OF THE PARTNER'S JOB. The tail of 811.1.b is 'for as long as you control that battlefield', and 323.6 - 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there' - is how that Control goes away with no fight at all. A 6 Might defender standing there is what stops it.",
+          "WHAT IT COSTS AND WHAT IT KILLS. One rainbow Power to hide and zero to play (the tail of 811.1.b), at [Action] speed on any player's turn (806.1.c.1) - so 3 damage lands inside the combat, after the attackers are declared. 143.2.a kills on marked damage at or above Might, so it removes an attacker of 3 Might or less; this lane's unfloored reducers (SFD-067 Frostcoat Cub at -2, UNL-065 Icevale Archer at -1) bring bigger ones into range.",
+          "AND IT LEAVES A GEAR, WHICH IS THE FOURTH GOLD-MAKER IN THE DOMAIN. 187.5 makes a Gold 'a domainless GEAR token' and 185.2.d puts it inside the rules for its type, so it counts for SFD-072 Dropboarder, VEN-058 Patched Porobot, VEN-064 Plaza Guardian and VEN-076 Repair Specialist. It arrives EXHAUSTED, so 415.3.a is when it becomes 1 Power of any domain. The Mind Gold-makers, named: SFD-063 Chemtech Cask, SFD-069 Plundering Poro, SFD-070 Wages of Pain, SFD-074 Pickpocket, SFD-081 Card Sharp, SFD-086 World Atlas and UNL-073 Deadly Flourish.",
+          "THE COLOSSUS'S OWN TEXT IS TWO SMALL THINGS AND BOTH ARE HONEST. [Vision] is 817.1.b's look-at-one, which 431.1.c keeps free of Burn Out and 416.1.a recycles to the BOTTOM - a filter, not a tutor. [Shield] is 814.1.c's '+X :rb_might: while I am a defender', so the printed 5 reads 6 exactly when it is holding the battlefield the hide depends on, and nothing at all on your own attacks.",
+          "ONE FACEDOWN PER BATTLEFIELD. 811.1.b allows a single facedown card per battlefield and 485.4 puts two on a Duel table, so at most two hidden answers are armed at once however many the deck runs.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the damage is dealt by the spell, so a [Tank] does not order it (815.1.b is scoped to the combat damage step) and a blanket spell-and-ability fog does stop it."
+        ]
+      },
+      "steps": [
+        "Play Jeweled Colossus (5 Energy) and hold a battlefield with it; [Vision] filters your top card on the way in.",
+        "On your turn in an Open State, pay 1 rainbow Power to hide Wages of Pain facedown there (811.1.b).",
+        "323.6 cannot strip your Control while the Colossus stands, so the hide survives.",
+        "From the next turn the spell has [Reaction] and costs nothing to play; its [Action] permission (806.1.c.1) also lets it land inside a showdown.",
+        "Kill an attacker of 3 Might or less AT THAT BATTLEFIELD - 811.1.d.2 confines the target there - and take a Gold gear token exhausted.",
+        "The Gold is 1 Power of any domain from your next Awakening, and a gear for every count clause in the meantime."
+      ],
+      "netPerIteration": "one attacker of up to 3 Might removed for 1 rainbow Power in total, plus a Gold gear token, once per hidden copy",
+      "terminatesIn": "engine only - one facedown per battlefield and two battlefields in a Duel (811.1.b, 485.4), three copies by 103.2.b, and the answer only ever reaches a battlefield you control; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 9)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use SFD-070 Wages of Pain or OGN-086 Jeweled Colossus. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.2.a, 185.2.d, 187.5, 323.6, 415.3.a, 416.1.a, 431.1.c, 469, 485.4, 806.1.c.1, 811.1.b, 811.1.d, 811.1.d.2, 814.1.c, 815.1.b, 817.1.b. The Control-dependence of a hide is the same finding this session recorded in the Body lane on pakaa-cub-determined-sentry-hidden-anchor, applied to a spell whose 811.1.d.2 restriction makes it defence-only; the two entries name each other. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
     }
   ]
 }
