@@ -36765,6 +36765,1115 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #180 — the first entry to use VEN-133. Card text verbatim from data/corpus_flat.txt. The load-bearing reading is that the delayed clause follows the card rather than its original controller, which stands on 191.1 (playing establishes the Controller) plus the ability's own 'They gain control of this' — the card is worded as a hot potato and is unplayable on any other reading, which is the R28 argument. Trap check: 441.1 and 441.2 are cited so the Formula's help is priced as one-per-Glowstone rather than assumed repeatable, and 441.1.b so the Empower is not claimed twice; 355.10.d and 809.1.c are cited so neither half of the card is imagined to pay a Deflect tax; 455 and 456 are cited for the recall; the sweep's reach is stated as 'anywhere' because the clause says 'all units you control' and not 'here'. The disempowerer sweep in the last notable corrects a counted set the project had recorded short by two."
+    },
+    {
+      "id": "akshan-mischievous-hexdrinker-stolen-gear",
+      "name": "Akshan takes their gear and equips yours for free — and 056.2 is why the stolen card still dies to its owner's trash",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-109",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body unit, E4 M4, [Weaponmaster]. 'You may pay :rb_rune_body::rb_rune_body: as an additional cost to play me. When you play me, if you paid the additional cost, move an enemy gear to your base. You control it until I leave the board. If it's an Equipment, attach it to me.' In zero entries before this walk."
+        },
+        {
+          "card": "SFD-102",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Body gear, E2, Might Bonus +1, [Equip] :rb_rune_body:. '[Effect] [Deflect]'. A one-rune Equip, so [Weaponmaster] discounts it to nothing. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Body among its two domains (103.1.b.3) — 17 names: Relentless Storm (OGN-249), Blind Monk (OGN-257), Bounty Hunter (OGN-267), The Boss (OGN-269), Wuju Bladesman - Starter (OGS-019), Might of Demacia - Starter (OGS-023), Purifier (SFD-183), Grandmaster at Arms (SFD-193), Battle Mistress (SFD-203), Grand Duelist (SFD-205), Pridestalker (UNL-183), Wuju Master (UNL-191), Voidreaver (UNL-201), Keeper of the Hammer (UNL-203), Butcher of the Sands (VEN-141), Defender of Tomorrow (VEN-149), Matriarch of War (VEN-153).",
+          "2 Body Power spare when Akshan is played, for the optional additional cost that carries the steal — the [Weaponmaster] equip is free either way."
+        ],
+        "notable": [
+          "[Weaponmaster] EQUIPS 'TO ME', SO IT ONLY EVER PAYS FOR CARRIER-INDEPENDENT GEAR — AND THE HEXDRINKER IS EXACTLY THAT. The keyword is 'When you play me, you may [Equip] one of your Equipment to me for :rb_rune_rainbow: less, even if it's already attached', and 818.1 makes [Equip] an Activated Ability with a cost. The Hexdrinker's cost is a single Body rune, so the discount takes it to nothing (356.6 floors at zero) and Akshan lands wearing it: +1 Might (434.1.d) and [Deflect] (434.1.c appends the Effect Text). An Equipment whose text depends on its carrier — one that copies the unit, or reads 'my hold effects' — gains nothing from being attached to the Weaponmaster himself.",
+          "THE STEAL IS A CONTROL CHANGE AND IT IS NOT PERMANENT OWNERSHIP. 191.1 establishes a Controller when a player plays, hides or creates an object; here Akshan's trigger grants control by effect, 'until I leave the board' — so removal aimed at Akshan hands the gear straight back. And 056 is the rule that keeps the card theirs whatever happens to it: 'Cards a player owns may never be placed into a non-Board zone belonging to another player', with 056.2 sending it 'to its owner's corresponding zone instead'. Destroy the stolen gear and it goes to THEIR trash, where their own recursion can find it.",
+          "AN EQUIPMENT STOLEN THIS WAY ATTACHES WITHOUT PAYING ITS [Equip] COST. 'If it's an Equipment, attach it to me' is effect text on the trigger, not an activation, so 818.1's cost never comes up — the same distinction that separates `SFD-024 Rell, Magnetic` from a [Weaponmaster] body. Akshan can therefore end the turn wearing both his own Hexdrinker and their best Equipment.",
+          "355.10.d does not apply and 809.1.c might: 'move an enemy gear' is a choice, so a gear with [Deflect] costs an extra Power to take (809.1.c, 809.1.c.1: any domain). That is the one place the steal can be taxed.",
+          "The Hexdrinker's [Deflect] is a TAX and not a shield — 809.1.c charges the opponent one extra Power per choice, and a programmatically selected effect (355.10.d) ignores it entirely. Against `OGN-022 Thermo Beam` ('Kill all gear') both the Hexdrinker and the stolen gear die at once.",
+          "Priced whole: 4 Energy + 2 Body Power for a 5-Might [Deflect] body that also carries away the opponent's best gear. Three copies (103.2.b), and each steal lasts only as long as its Akshan."
+        ]
+      },
+      "steps": [
+        "Play Hexdrinker (2 Energy) and leave it unattached at your base.",
+        "Play Akshan, Mischievous (4 Energy) and pay the optional additional cost of 2 Body Power.",
+        "[Weaponmaster] fires on the play: [Equip] the Hexdrinker to him for one rainbow less — its whole cost — so he is 5 Might with [Deflect] (434.1.c, 434.1.d).",
+        "His paid-cost trigger fires: move an enemy gear to your base. You control it while he lives (191.1).",
+        "If it is an Equipment, it attaches to him with no [Equip] cost paid (818.1 never applies to effect text).",
+        "Remember 056.2: if the stolen card ever leaves the board it goes to its OWNER's zone, not yours."
+      ],
+      "terminatesIn": "engine — a 5-Might [Deflect] body carrying a free Hexdrinker and the opponent's best gear, for 4 Energy and 2 Body Power; the steal ends when Akshan does. Nothing here scores.",
+      "netPerIteration": "-2 cards, -4 Energy -2 Body Power, +1 body at 5 Might with [Deflect], one enemy gear under your control",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "818.1: 'Equip is an Activated Ability keyword.' 818.1.c.2: 'Equip is functionally short for \"[Cost]: Attach this gear to a unit you control.\"' 434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.' 434.1.d: 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it.' 356.6: 'Energy and Power costs can't be reduced below 0.' 191.1: 'When a player Plays, Hides, or Creates a Card or other Game Object, they are established as that Game Object's Controller.' 056: 'Cards a player owns may never be placed into a non-Board zone belonging to another player.' 056.2: 'If a card would enter such a zone, it goes to its owner's corresponding zone instead.' 809.1.c / 809.1.c.1 ([Deflect] is a Power tax, payable in any domain). 355.10.d (a programmatically selected set is not a target)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. SFD-109 Akshan, Mischievous and SFD-102 Hexdrinker were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 056, 056.2, 103.1.b.3, 103.2.b, 191.1, 355.10.d, 356.6, 434.1.c, 434.1.d, 809.1.c, 809.1.c.1, 818.1, 818.1.c.2 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. CLAUDE.md already records that [Weaponmaster] equips 'to me' and so only pays for carrier-independent Equipment, and names the Hexdrinker as the carrier-independent answer to a single point of failure; this is the entry that uses it."
+    },
+    {
+      "id": "monster-harpoon-bushwhack-facedown-enabler",
+      "name": "One rainbow, paid once, doubles every Monster Harpoon — and cashing the hidden card is what switches it off",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-014",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury spell, E1 P1, [Action]. 'Deal 2 to a unit at a battlefield. If you control a facedown card, deal 4 to it instead.' In zero entries before this walk."
+        },
+        {
+          "card": "SFD-004",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury spell, E2 P1, [Hidden]. 'Friendly units enter ready this turn. Play a Gold gear token exhausted.' Hidden for 1 rainbow, it is the facedown card the Harpoon reads — and a tempo burst you can cash whenever you decide the Harpoon no longer matters. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Fury among its two domains (103.1.b.3) — 16 names: Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "A battlefield you control with no facedown card already on it (811.1.b), and the discipline to LEAVE the card there."
+        ],
+        "notable": [
+          "THE ENABLER IS A STATE, NOT AN EVENT, WHICH IS UNUSUAL IN THIS FAMILY. Every other [Hidden] payoff in the catalogue fires on the hide or on the face-down PLAY; the Harpoon reads 'if you CONTROL a facedown card'. 811.1.b hides a card 'at a battlefield you control that doesn't already have a facedown card hidden there FOR AS LONG AS YOU CONTROL THAT BATTLEFIELD' — so one rainbow, paid once, doubles every Harpoon you cast for the rest of the game, and the hidden card is never spent.",
+          "AND CASHING IT IS THE COST. Play the hidden card and the Harpoon drops back to 2 damage until you hide another. That is the whole tension of the pair, and it is why `SFD-004 Bushwhack` is the right card to leave face down: its effect ('Friendly units enter ready this turn') is a one-shot tempo burst you were always going to hold for a committing turn, so the turn you cash it is a turn you were spending anyway.",
+          "811.1.b ALSO CAPS IT, WHICH IS WHY A SECOND HIDDEN CARD BUYS NOTHING HERE. One facedown per battlefield you control, and 485.4 puts two battlefields on a Duel table — but the Harpoon asks only whether you control ONE. The second facedown card is worth exactly its own effect and not a point of damage.",
+          "FOUR DAMAGE FOR 1 ENERGY AND 1 FURY POWER, AT SHOWDOWN SPEED. 806.1.b puts [Action] inside Showdowns on either player's turn, and 143.2.a kills at Might, so this clears any body up to 4 in the middle of a combat. Three copies (103.2.b) is three such shots off one hide.",
+          "The clause is 'you control a facedown card', not 'at this battlefield', so the hidden card and the Harpoon's target need not be in the same place — unlike the play effects of a hidden card, which 811.1.d.2 pins to the battlefield it was hidden at. This is the Harpoon's own text reading the board, so nothing in 811.1.d touches it.",
+          "The one way to lose the enabler without spending it is to lose the battlefield: 811.1.b's 'for as long as you control that battlefield' means an evacuation or a lost combat takes the facedown card with it, and 466.5.c removes hidden cards that do not share a controller with the battlefield."
+        ]
+      },
+      "steps": [
+        "On your turn, pay 1 rainbow to hide Bushwhack face down at a battlefield you control (811.1.b).",
+        "Leave it there. You now permanently 'control a facedown card'.",
+        "Cast Monster Harpoon for 1 Energy + 1 Fury Power, on your turn or inside a Showdown on theirs (806.1.b).",
+        "Its condition is met, so it deals 4 instead of 2 — enough to kill any body up to 4 Might (143.2.a).",
+        "Repeat with the other copies. The hidden card is not consumed.",
+        "Cash Bushwhack only on a turn you are committing anyway; from then the Harpoon deals 2 until you hide another card."
+      ],
+      "terminatesIn": "engine — 4 damage for 1 Energy and 1 Fury Power, as many times as you have Harpoons, off a single rainbow paid once; nothing here scores",
+      "netPerIteration": "-1 card, -1 Energy -1 Fury Power, 4 damage to one unit at a battlefield",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "811.1.b: '...you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' 811.1.d.2 (a hidden card's PLAY EFFECT targets are confined to that battlefield). 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 466.5.c: 'Remove all Hidden cards from this Battlefield that do not share a controller with the Battlefield.' 485.4: 'Battlefield Count: 2.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. UNL-014 Monster Harpoon and SFD-004 Bushwhack were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 143.2.a, 466.5.c, 485.4, 806.1.b, 811.1.b, 811.1.d.2 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The finding is the shape of the enabler: the [Hidden] family in this catalogue is written around the hide EVENT and the face-down PLAY, and this is the one card that reads the resulting STATE — which makes the hidden card an asset you deliberately never spend."
+    },
+    {
+      "id": "vex-cheerless-void-seeker-combat-discount",
+      "name": "Vex swings spell costs by two in both directions, and 155 is why only an [Action] can use the window",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-146",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E5 P1 M5. 'While I'm in combat, friendly spells cost :rb_energy_1::rb_rune_rainbow: less to a minimum of :rb_energy_1:, and enemy spells cost :rb_energy_1::rb_rune_rainbow: more.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-024",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury spell, E3 P1, [Action]. 'Deal 4 to a unit at a battlefield. Draw 1.' Under Vex it is 2 Energy and no Power. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143).",
+          "Vex actually IN a combat — 740.2.c requires her to occupy a battlefield where combat is ongoing AND to have a combat designation, so a Vex sitting at your base does nothing."
+        ],
+        "notable": [
+          "155 IS THE SELECTION RULE FOR EVERY PARTNER SHE CAN HAVE. 'A spell can be played during an Open State outside of Showdowns on its controller's turn' — that is the whole permission a plain spell gets, so a spell without [Action] or [Reaction] can never be cast in the window Vex's own text creates. Her partners are exactly the [Action] and [Reaction] spells in the identity, and `OGN-024 Void Seeker` is the biggest Energy-plus-Power one available to a Chaos/Fury legend.",
+          "THE DISCOUNT IS TWO RESOURCES AND THE FLOOR ONLY BINDS ONE. 'costs :rb_energy_1::rb_rune_rainbow: less to a minimum of :rb_energy_1:' takes Void Seeker from 3 Energy + 1 Power to 2 Energy and nothing else. 356.4.e is why the floor does not leak into anything else — 'If a discount applies a minimum cost, that minimum applies only to that discount' — and 356.6 is why the rainbow half is simply wasted on a spell with no Power cost, rather than becoming Energy.",
+          "AND THE OTHER HALF IS A TAX ON THEM IN THE SAME WINDOW. 'enemy spells cost :rb_energy_1::rb_rune_rainbow: more' is a cost increase applied inside the Showdown their attack opened — where their Energy is already coming off runes they had to leave ready (167, 415.3.a). A two-resource swing in each direction is four resources of tempo per exchange, and it exists only while she is in the fight.",
+          "SHE IS ALSO A LIABILITY, AND THE ENTRY SAYS SO. Being 'in combat' means being a legal damage assignment: 465.2.b sums her 5 Might into the defence and 465.2.c.3 lets the opponent spend lethal on her first to switch the discount off mid-combat. The card asks you to keep a 5-Might body in every fight you want cheap spells in.",
+          "THE DISCOUNT HAS THE USUAL SIDE EFFECT. 166.2, 203.1 and 356.4.b mean you SPEND less, so every 'if you spent N or more' clause reads the smaller number — `SFD-143 Sivir, Mercenary`'s 'if you've spent at least :rb_rune_rainbow::rb_rune_rainbow: this turn' is a Chaos card one slot away and is switched off by exactly this. `UNL-004 Prepared Neophyte` is the Fury version of the same trap.",
+          "Void Seeker replaces itself, which is what makes the discount compound: 2 Energy for 4 damage and a card, at Showdown speed (806.1.b), and 143.2.a kills any body up to 4."
+        ]
+      },
+      "steps": [
+        "Play Vex, Cheerless (5 Energy + 1 Chaos Power) at a battlefield that will be fought over.",
+        "When combat opens there, she gains a combat designation and is 'in combat' (740.2.c).",
+        "Cast Void Seeker inside that Showdown (806.1.b, and 155 is why a spell without [Action] could not be here at all).",
+        "Vex's discount applies: 3 Energy + 1 Power becomes 2 Energy and no Power (356.4.e, 356.6).",
+        "Deal 4 to a unit at a battlefield and draw 1. 143.2.a kills anything up to 4 Might.",
+        "Any spell the opponent answers with, in that same window, costs them 1 Energy and 1 rainbow more."
+      ],
+      "terminatesIn": "engine — a two-resource discount on every [Action] spell you cast in a combat Vex is in, and a two-resource tax on theirs, for as long as she survives it; nothing here scores",
+      "netPerIteration": "-1 card, -2 Energy, 4 damage and +1 card; the opponent's answer in the same window costs 1 Energy + 1 Power more",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "155: 'A spell can be played during an Open State outside of Showdowns on its controller's turn.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 740.2.c: 'A unit is in combat if it is occupying a battlefield where combat is ongoing and has a combat designation.' 356.4.e: 'If a discount applies a minimum cost, that minimum applies only to that discount.' 356.6: 'Energy and Power costs can't be reduced below 0.' 166.2, 203.1, 356.4.b (a discount reduces what is spent). 465.2.b: 'Sum the Might of all Defending Units.' 465.2.c.3 (lethal must be assigned to a unit before moving to the next). 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. SFD-146 Vex, Cheerless and OGN-024 Void Seeker were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 143.2.a, 155, 166.2, 167, 203.1, 356.4.b, 356.4.e, 356.6, 415.3.a, 465.2.b, 465.2.c.3, 740.2.c, 806.1.b opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. 155 is the reusable half: it is the paragraph that decides which spells can exist in a Showdown at all, and it silently rules out most of the partner list any 'while I'm in combat, spells cost less' card appears to have."
+    },
+    {
+      "id": "mindsplitter-insightful-investigator-hand-attack",
+      "name": "One of them strips a card and the other swaps it — and the Investigator's price is XP, which 824.1.d then reads",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-192",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos unit, E7 P2 M7. 'When you play me, choose an opponent. They reveal their hand. Choose a card from it, and they discard that card.' A true strip: no replacement. In zero entries before this walk."
+        },
+        {
+          "card": "UNL-135",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos unit, E3 M3. 'When you play me, choose an opponent. They reveal their hand. You may pay 2 XP to choose a card from their hand. If you do, they discard that card and draw 1.' A swap, not a strip — and the XP is a real cost. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "strip-opponent-hand"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Chaos among its two domains (103.1.b.3) — 16 names: Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
+          "2 XP banked before the Investigator is played, if you intend to use his second half at all."
+        ],
+        "notable": [
+          "THEY LOOK LIKE THE SAME CARD AT TWO PRICES AND THEY ARE NOT. Mindsplitter's 'they discard that card' is card advantage: their hand shrinks by one. The Investigator's 'they discard that card AND DRAW 1' is a swap — their hand size is unchanged and they trade a known card for an unknown one. Against a specific answer that is still worth doing; as a way to run them out of cards it does nothing at all, and the entry exists to keep those two effects apart.",
+          "THE XP IS PAID OUT OF THE SAME POOL EVERY LEVEL ABILITY READS. 730.2: 'To Spend XP, reduce the value of XP marked on the Player spending it', and 824.1.d makes a [Level N] ability 'Inactive as soon as the controlling player has less than [N] XP'. So spending 2 XP on the Investigator can switch off a Level ability you already had online — the Body XP package is full of them — which makes his mode expensive in exactly the decks most able to afford it.",
+          "THE REVEAL IS FREE AND HAPPENS EITHER WAY. 424.1: 'Revealing is the act of presenting a card to all players from a zone that one or more players do not have access to the information of', and 424.1.a makes Revealed 'a temporary state and is not a zone' — so declining the Investigator's paid half still buys you their whole hand as information, for a 3-Energy 3-Might body. That is the half of the card worth building around.",
+          "AND THE STRIPPED CARD LANDS IN THEIR TRASH, NOT YOURS. 056 with 056.2 keeps every card in its owner's zones, so a discard feeds THEIR recursion — `OGN-165 Cemetery Attendant`, `OGN-170 Morbid Return`, `OGN-198 The Harrowing` and the whole [Flow] family all read the trash. Against a Chaos or Fury opponent a hand attack can be a favour; 422.1.b is worse still, since a 'when I am discarded' ability executes after the discard has occurred.",
+          "Mindsplitter at 7 Energy + 2 Chaos Power is a late-game card that also leaves a 7-Might body, which is what justifies the price; the Investigator at 3 Energy is the one you actually cast on curve.",
+          "Neither is repeatable: both triggers are 'when you play me', so the ceiling is three of each (103.2.b) and the hand attack is a tempo plan rather than an engine."
+        ]
+      },
+      "steps": [
+        "Play Insightful Investigator (3 Energy). His trigger makes an opponent reveal their hand — free information whatever you do next.",
+        "If a specific card must go and you can spare it, pay 2 XP (730.2) to make them discard it. They draw 1, so this is a swap.",
+        "Check what the 2 XP costs you first: 824.1.d switches off any [Level N] ability the moment you drop below N.",
+        "Later, play Mindsplitter (7 Energy + 2 Chaos Power) for the true strip: they reveal, you choose, they discard, and nothing replaces it.",
+        "Remember where the card went: 056.2 puts it in THEIR trash, so a recursion deck may thank you for it."
+      ],
+      "terminatesIn": "engine — their whole hand as information twice, one card genuinely stripped and one swapped, plus two bodies; nothing here scores",
+      "netPerIteration": "one opponent hand revealed; -1 card from their hand (Mindsplitter) or a known card swapped for an unknown one (Investigator, 2 XP)",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "730.2: 'To Spend XP, reduce the value of XP marked on the Player spending it.' 824.1.d (a Level ability is Inactive as soon as the controlling player has less than N XP). 424.1: 'Revealing is the act of presenting a card to all players from a zone that one or more players do not have access to the information of.' 424.1.a: 'Revealed is a temporary state and is not a zone.' 056: 'Cards a player owns may never be placed into a non-Board zone belonging to another player.' 056.2: 'If a card would enter such a zone, it goes to its owner's corresponding zone instead.' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. OGN-192 Mindsplitter and UNL-135 Insightful Investigator were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 056, 056.2, 103.1.b.3, 103.2.b, 422.1.b, 424.1, 424.1.a, 730.2, 824.1.d opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The entry is a distinction rather than a combo: 'discard that card' and 'discard that card and draw 1' are printed three words apart and are different effects, and the second one's XP price is paid out of the pool every Level ability reads."
+    },
+    {
+      "id": "loyal-pup-jagged-cutlass-free-defensive-relay",
+      "name": "The cheapest free relocation in the pool — no stun, no cost, every defence, and the Cutlass stops them moving it away",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-126",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E3 M3. 'When you defend at a battlefield, you may move me there.' No cost, no condition beyond defending. In zero entries before this walk."
+        },
+        {
+          "card": "VEN-073",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Body gear, E3, Might Bonus +2, [Equip] :rb_rune_body:. '[Effect] I can't be moved by enemy spells and abilities.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Body + Chaos, so three legend names (103.1.b.2): Bounty Hunter (OGN-267), Battle Mistress (SFD-203), Voidreaver (UNL-201).",
+          "1 Body Power for the [Equip], paid once; after that the relay is free every turn."
+        ],
+        "notable": [
+          "IT IS THE SAME MECHANISM AS THE VEX RELAY AND IT COSTS NOTHING TO ARM. `UNL-055 Vex, Mocking` relocates on a stun you have to supply; the Loyal Pup relocates on 'when you defend at a battlefield', which the opponent supplies by attacking. 420.3.a puts the exhaust cost on the Standard Move alone, so the effect move is free and needs no [Ganking] (810.1.c.3), and there is no Energy, no Power and no card in the trigger at all.",
+          "AND HE ARRIVES IN TIME TO FIGHT. 464.2.c.3.a defers the designation of a body that becomes present after the Attacker/Defender step to 'the Cleanup phase following the action that caused it to become present'; 319.8 makes a Cleanup Outstanding 'After a Move is completed' and 323.2.a hands out the designation there. So a Pup sitting at your base joins whichever battlefield is attacked, in that combat's damage step, every turn.",
+          "THE CUTLASS ANSWERS THE OBVIOUS COUNTERPLAY, AND THE WORDING IS EXACT. 'I can't be moved by ENEMY spells and abilities' is a prohibition, and 054.1 makes a card that forbids beat a card that permits — so the whole enemy-mover family (`OGN-043 Charm`, `UNL-202 Void Assault`, `UNL-101 Call to Battle`, `UNL-133 Blast Cone`) cannot drag him off the point. It says ENEMY, so it never interferes with the Pup's own relay or with any mover of yours.",
+          "434.1.d makes him a 5-Might defender (Might Bonus +2), which is the difference between a body that absorbs an attack and a body that dies to it — and 434.1.c is what appends the Cutlass's own protection clause to him in the first place.",
+          "The relay is per combat, not per turn: 'when you defend at a battlefield' fires each time you are the Defender somewhere, so on a board with two battlefields under attack he goes to whichever one you choose, one per trigger. He cannot be in both.",
+          "The counterplay the Cutlass does NOT answer is removal: 355.10.d's programmatic effects and any single-target kill still work, and 818.1's [Equip] has to be paid again if the Pup dies and a second one arrives."
+        ]
+      },
+      "steps": [
+        "Play Loyal Pup (3 Energy) and leave him at your base.",
+        "Play Jagged Cutlass (3 Energy) and [Equip] it to him for 1 Body Power (818.1). He is 5 Might (434.1.d) and cannot be moved by enemy spells or abilities (434.1.c, 054.1).",
+        "On the opponent's turn they attack a battlefield you hold; you are the Defender there (464.2.c.2).",
+        "The Pup's trigger fires: move him to that battlefield, free (420.3.a).",
+        "The Cleanup that follows the move designates him a Defender (464.2.c.3.a, 319.8, 323.2.a), so he fights in that damage step at 5 Might.",
+        "Repeat every combat; nothing is exhausted and nothing is spent."
+      ],
+      "terminatesIn": "engine — a 5-Might defender delivered to whichever battlefield is attacked, every combat, for no ongoing cost; nothing here scores",
+      "netPerIteration": "one 5-Might body relocated into the defence for free, and immune to enemy movement",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "420.3.a: 'The Cost is Exhausting one or more Units.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present.' 319.8: 'After a Move is completed.' 323.2.a: 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now.' 054.1: 'Cards that forbid actions or effects, as a broad method of determination, supersede cards that allow or permit that same action or effect.' 434.1.c and 434.1.d (Effect Text and Might Bonus are appended to the carrier). 464.2.c.2: 'The Defender is the player who did not apply the Contested status to the Battlefield.' 818.1: 'Equip is an Activated Ability keyword.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. SFD-126 Loyal Pup and VEN-073 Jagged Cutlass were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 054.1, 103.1.b.2, 319.8, 323.2.a, 355.10.d, 420.3.a, 434.1.c, 434.1.d, 464.2.c.2, 464.2.c.3.a, 810.1.c.3, 818.1 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The comparison with the Vex, Mocking relay is the reason the entry is worth having: the same relocation for no enabler at all, at a third of the Energy, on a smaller body — and the Cutlass is what makes the smaller body hold."
+    },
+    {
+      "id": "angler-beast-ocean-drake-open-and-take",
+      "name": "Emptying a battlefield opens it, and 344.2 gives the next body a Conquer with no combat — but the Drake cannot open his own landing spot",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-132",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos unit, E5 P1 M5. 'When you play me, return all units with 2 :rb_might: or less to their owners' hands.' Symmetric, and 355.10.d makes it target nothing. In zero entries before this walk."
+        },
+        {
+          "card": "VEN-115",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos unit, E8 P2 M7. 'You may play me to an open battlefield. When you play me, you may return a non-Dragon unit to its owner's hand.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Chaos among its two domains (103.1.b.3) — 16 names: Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
+          "An enemy garrison made of 2-Might-or-less bodies — tokens, Recruits, Sprites, Birds, Tentacles. Against real bodies the Angler Beast opens nothing."
+        ],
+        "notable": [
+          "'OPEN' IS TWO CONDITIONS AND THE ANGLER BEAST ONLY SUPPLIES ONE DIRECTLY. 170.11.a: 'Battlefields can be \"occupied.\" This means they have a Unit present'; 170.11.b: '\"uncontrolled.\" This means no player controls them'; 170.11.c: '\"open.\" This means they are unoccupied AND uncontrolled.' Returning the garrison to hand makes it unoccupied at once; it becomes uncontrolled at the next Cleanup, when 323.6 and 190.4.c strip the Control of a player with no units there. Only then is it open, and only then may the Drake be played to it.",
+          "355.2.b IS THE PERMISSION AND 344.2 IS THE PAYOFF. 355.2.b: 'Some Game Effects may grant players permission to play Units to locations that are not normally Valid.' So the Drake lands at a battlefield you do not control; 190.3.a.1 applies Contested; 323.9 stages no Combat, because it needs 'Units present controlled by opposing players' and there are none; and 344.2 opens a Showdown at the next Cleanup instead, with 348.2.a establishing Control and 348.2.a.1 saying 'This results in a Conquer'. A point, with no damage step, no Attacker designation and no attack trigger.",
+          "THE DRAKE CANNOT CLEAR HIS OWN LANDING SPOT, AND THIS IS THE TRAP. His 'return a non-Dragon unit to its owner's hand' is a play trigger, and 355.2 fixes the play location during the play STEPS — before any trigger resolves. So if a body is still standing there, the battlefield is occupied (170.11.a), it is not open (170.11.c), and the permission in 355.2.b never applies. The bounce is for a body somewhere else. This is the same shape as the project's 'an evacuator is never a walker' finding: the card that opens the ground and the card that takes it cannot be the same play.",
+          "THE ANGLER BEAST IS SYMMETRIC AND TARGETS NOTHING. 355.10.d makes 'all units with 2 Might or less' a programmatic selection, so [Deflect] never charges (809.1.c, 809.1.d) and no 'can't be chosen' clause survives it — and your own small bodies go to hand as well. Keep the Beast, and anything you care about, off the 2-Might line before you cast it.",
+          "PRICED WHOLE, ACROSS TWO TURNS: 5 Energy + 1 Chaos Power to clear, then 8 Energy + 2 Chaos Power to take. It is a Duel-ending price for one point, and what it actually buys is a battlefield taken without ever winning a combat — against a token board that no combat could win.",
+          "`OGN-174 Sai Scout` (Chaos, E6 M5, [Vision]) prints the same 'You may play me to an open battlefield' permission for two Energy less and no Power, so the second copy of this plan is cheaper; the Drake is in `uses` because his bounce also answers the one body the Angler Beast could not reach."
+        ]
+      },
+      "steps": [
+        "Wait for the opponent's battlefield to be garrisoned by bodies of 2 Might or less.",
+        "Play Angler Beast (5 Energy + 1 Chaos Power) somewhere else. All units of 2 Might or less — theirs and yours — return to their owners' hands (355.10.d: nothing is targeted).",
+        "At the next Cleanup, 323.6 and 190.4.c strip their Control of the now-empty battlefield. It is unoccupied and uncontrolled: open (170.11.c).",
+        "Play Ocean Drake (8 Energy + 2 Chaos Power) directly to that open battlefield (355.2.b).",
+        "His play trigger may bounce a non-Dragon unit ELSEWHERE — it cannot have cleared this spot, because 355.2 fixed the location first.",
+        "190.3.a.1 applies Contested with no opposing units present, so 323.9 stages no Combat; 344.2 opens a Showdown at the next Cleanup and 348.2.a.1 makes the resulting Control a Conquer."
+      ],
+      "terminatesIn": "engine — a token garrison returned to hand and the battlefield taken by deployment for a Conquer, with no combat; one point, across two turns and 13 Energy",
+      "netPerIteration": "-2 cards, -13 Energy -3 Chaos Power, an enemy token garrison bounced and one battlefield conquered without a damage step",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "170.11.a: 'Battlefields can be \"occupied.\" This means they have a Unit present.' 170.11.b: 'Battlefields can be \"uncontrolled.\" This means no player controls them.' 170.11.c: 'Battlefields can be \"open.\" This means they are unoccupied and uncontrolled.' 355.2.b: 'Some Game Effects may grant players permission to play Units to locations that are not normally Valid. Such locations become Valid for the purposes of Playing the Unit.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 190.4.c (Control is lost in the following cleanup unless a Combat or Showdown is ongoing there). 323.9: 'Mark a Combat as Staged at each Battlefield that Contested was applied to that have Units present controlled by opposing players.' 344.2 (a Showdown opens at the next Cleanup when Control is Contested with no opposing units there). 348.2.a and 348.2.a.1: 'This results in a Conquer.' 355.10.d (a programmatically selected set is not a target). 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status...'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. UNL-132 Angler Beast and VEN-115 Ocean Drake were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 170.11.a, 170.11.b, 170.11.c, 190.3.a.1, 190.4.c, 323.6, 323.9, 344.2, 348.2.a, 348.2.a.1, 355.2, 355.2.b, 355.10.d, 809.1.c, 809.1.d opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The third notable is the finding: a 'play me to an open battlefield' card cannot use its own play trigger to make the battlefield open, because 355.2 fixes the location during the play steps — the general form of the project's 'an evacuator is never a walker' rule."
+    },
+    {
+      "id": "zero-drive-riptide-rex-banish-recursion",
+      "name": "The Zero Drive is the pool's one route out of Banishment — it banishes every carrier that dies and replays them all at once, ignoring their costs",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-090",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind Equipment, E3, M+2. '[Equip] :rb_energy_1::rb_rune_mind: … :rb_energy_3::rb_rune_mind:, Banish this: Play all units banished with this, ignoring their costs. (Use only if unattached.) [Effect] [Deathknell] — Banish me.' In no entry before this."
+        },
+        {
+          "card": "OGN-092",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Mind unit, E6 P2 M6. 'When you play me, deal 6 to an enemy unit at a battlefield.' The play trigger is what makes a free replay worth more than a free body. In no entry before this."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Mind legend: both cards are mono-Mind (103.1.b.1) and neither is a Signature card, so 103.2.d.2 forces nothing.",
+          "Neither card is banned or restricted in either format.",
+          "The carriers have to actually die. Combat does it for free; so does any sacrifice outlet, and so does your own board wipe."
+        ],
+        "notable": [
+          "108.6.c IS WHY THIS IS UNUSUAL. Banishment 'represents cards that have been removed from play in a more difficult-to-recover way', and the project's standing measurement is that nothing in the pool returns a card from it. The Zero Drive is its own exception: it banishes what it kills and then buys all of it back at once, ignoring costs. That is the mechanism, and it is worth more than the Might Bonus printed on the card.",
+          "719.5 IS WHY THE DRIVE SURVIVES ITS CARRIER, AND 718.2 IS WHY THE CARD SAYS 'IF UNATTACHED'. 719.5: 'When a Top-Most Card changes zones from a board zone to a non-board zone, all Attached cards Detach from it, remaining in their current zones.' So the carrier dying leaves the Drive on the board, unattached and ready to be re-equipped or cashed. And 718.2 — 'While in this state, the card's printed Rules Text is Inactive' — is the actual reason the banish ability cannot be used while attached; the printed '(Use only if unattached.)' is a reminder of a rule, not an extra restriction.",
+          "323.4 IS WHY THE DEATHKNELL STILL FIRES ALTHOUGH THE DRIVE DETACHES. The granted '[Deathknell] — Banish me' lives in the Drive's Effect Text and is appended to the carrier's Rules Text only while attached (718.3, 719.1). The Cleanup step that handles deaths notes the ability first: 323.4, 'All Units that have Lethal Damage marked on them and that have Deathknell or other abilities that trigger on their own death will trigger such abilities now, making note of their current location, attributes, and other information relevant to add the trigger as a Pending Item', and only then does 323.5 send the body to the trash. The trigger is taken while the Drive is still on, and 719.5.a lets the controller order the detaches.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Riptide Rex is 6 Energy + 2 Mind Power and deals 6 on the way in. Attach the Drive for 1 Energy + 1 Mind Power; when the Rex dies it banishes itself instead of resting in the trash. Re-attach the Drive to the next body (1 Energy + 1 Mind each time) and repeat. Then, with the Drive unattached, pay 3 Energy + 1 Mind Power and banish it: every unit banished with it comes back at once, ignoring its costs, and every play trigger fires again. Two Rexes cashed together is 12 damage and twelve Energy plus four Power of bodies, for 3 Energy + 1 Power.",
+          "THE DRIVE IS SPENT WHEN YOU CASH IT, SO THE CEILING IS THREE CYCLES. 'Banish this' is the cost, so each Drive pays once; 103.2.b allows three copies, and each one can accumulate as many carriers as you are willing to lose before cashing. The honest question is never how many bodies you can bank but how many turns you can afford to wait.",
+          "808.1.d.1 IS THE ANTI-SYNERGY, AND IT IS THE ONE TO WATCH. 'If the Permanent with the effect is not sent to the Trash, for example because its \"killed\" event was replaced with a recall, the triggered ability will be removed from the chain.' So any heal / exhaust / recall shield — OGN-077 Zhonya's Hourglass is the rules' own example — SAVES the carrier and thereby cancels the banish, which is the whole point of attaching the Drive. The two cards do not belong in the same deck.",
+          "AND THE DRIVE'S OWN MIGHT BONUS IS REAL WHILE IT WAITS. 718.4: 'While in this state, the card's Might Bonus modulates the Top-Most Card's Might by the value listed' — M+2 on whoever is carrying it, applied in 477.3.d's layer. The Rex attacks at 8 while it is waiting to die."
+        ]
+      },
+      "steps": [
+        "Play The Zero Drive (3 Energy) and Riptide Rex (6 Energy + 2 Mind Power); the Rex's play trigger deals 6 to an enemy unit at a battlefield.",
+        "Pay the Drive's [Equip] cost, 1 Energy + 1 Mind Power, and attach it to the Rex. The Rex is now Might 8 (718.4) and carries '[Deathknell] — Banish me'.",
+        "Let the Rex die. 323.4 takes the Deathknell while the Drive is still attached, 323.5 sends the body to the trash, and the ability banishes it from there.",
+        "719.5 leaves the Drive on the board, unattached. Attach it to the next body for 1 Energy + 1 Mind Power and repeat for as many carriers as you want to bank.",
+        "When you want them back, with the Drive unattached, pay 3 Energy + 1 Mind Power and banish it: every unit banished with it is played at once, ignoring its costs.",
+        "Each returning Riptide Rex fires its play trigger again — 6 more damage per copy — and the Drive is spent. Three copies (103.2.b) is three cycles."
+      ],
+      "netPerIteration": "every carrier that died comes back at once for 3 Energy + 1 Mind Power, with its play trigger re-firing",
+      "terminatesIn": "engine only — one cash-out per Zero Drive, three copies by 103.2.b, and each cycle costs a turn of bodies dying first; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #174, the Calm/Mind lane). SFD-090 The Zero Drive and OGN-092 Riptide Rex were both in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 103.2.b, 103.2.d.2, 108.6.c, 323.4, 323.5, 477.3.d, 718.2, 718.3, 718.4, 719.1, 719.5, 719.5.a, 808.1.d.1. THREE PARAGRAPHS THIS ENTRY IS THE FIRST TO CITE: 719.5 (an attached card detaches and stays on the board when its carrier leaves), 718.2 (an attached card's printed Rules Text is Inactive — which is what the Drive's '(Use only if unattached.)' is really restating) and 323.4 (the Deathknell is noted before 323.5 sends the body to the trash, which is why the granted trigger survives the detach). Ban check: neither card is banned or restricted. Trap check: the Drive is spent when cashed, so the ceiling is three cycles; a heal/exhaust/recall shield CANCELS the banish (808.1.d.1) and the two cards are named as belonging in different decks; the Might Bonus is priced while the carrier waits; no unruled reading."
+    },
+    {
+      "id": "hextech-anomaly-wind-wall-off-turn-counter",
+      "name": "415.3.a leaves your runes dead on the opponent's turn — the Anomaly turns the Power they can still pay into the Energy a hard counter needs",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-083",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind gear, E3 P1. ':rb_exhaust:: [Reaction] — Pay any amount of :rb_rune_rainbow: to [Add] that much Energy.' The pool's Power-to-Energy converter, with no cap per activation. In no entry before this."
+        },
+        {
+          "card": "OGN-064",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E3 P2. '[Reaction] Counter a spell.' The only unconditional counter in Calm, and the reason the off-turn Energy is worth buying. In no entry before this."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Mind: Wind Wall is mono-Calm and Hextech Anomaly mono-Mind (103.1.b.3), so the legend must hold both and the pool prints exactly four names — OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom and VEN-145 Curator of the Sands (103.1.b.2).",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "The Anomaly must be READY when you want it on the opponent's turn, so it cannot also have been used on yours — 415.3.a readies it only in your own Awakening Phase."
+        ],
+        "notable": [
+          "THE PROBLEM THE ENTRY SOLVES, IN THREE PARAGRAPHS. 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn' — so a rune you exhausted on your own turn is dead for the whole of the opponent's. 164.2.a is the exhaust-for-Energy ability; 164.2.b is 'Recycle this: [Reaction] — [Add] one Power', which carries NO exhaust, so an already-exhausted rune can still pay POWER on their turn. And 167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn', so nothing can be banked across the gap. The net effect is that after a turn where you tapped out, you have Power available on the opponent's turn and no Energy at all — and most counters cost both.",
+          "THE ANOMALY IS THE CONVERSION, AND 429.3 IS WHY IT ARRIVES IN TIME. 'Pay any amount of :rb_rune_rainbow: to [Add] that much Energy', at Reaction speed and with no cap per activation. 429.3: 'Activated abilities that Add resources and have the Reaction tag can be activated at any time that spells or abilities require resources be paid', with the worked example spelling out that this may be done inside the Pay Costs step. 429.2 makes it resolve as soon as it is finalized and 429.2.a keeps priority from passing, so the opponent cannot respond to the conversion itself.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Wind Wall is 3 Energy + 2 Power. On the opponent's turn with every rune already exhausted: recycle 5 runes for 5 Power (164.2.b), spend 2 on Wind Wall's Power cost, feed 3 into the Anomaly for 3 Energy, and cast it. Five runes for one hard counter. 161.2.b sends each recycled rune to the Rune Deck rather than the Main Deck, and 315.3.b channels 2 back every Channel Phase, so the real price is roughly two and a half turns of ramp — this is a card you hold up on a turn that matters, not every turn.",
+          "AND IT IS THE GENERAL FIX, NOT A ONE-CARD TRICK. The project has two other answers to the same problem — OGS-017 Dark Child handing runes back at 1 Energy each, and a Gold token under Renata Glasc, Industrialist — and both give you a fixed amount. The Anomaly converts whatever Power you can raise, at a 1:1 rate, into Energy for anything: a [Reaction] unit, an [Ambush] body, an [Empower] cost paid on their turn. Wind Wall is the sharpest use, not the only one.",
+          "WHAT THE COUNTER SUITE COSTS AND WHY WIND WALL IS THE ONE PRICED HERE. Calm prints five counters and every one of them needs Energy on a turn you have none: OGN-045 Defy (E1 + 1 Power, and only against a spell costing no more than 4 Energy and 1 Power), VEN-039 Crumbling Sands (E1 + 1 Power, only if the opponent has already played another spell this turn), SFD-045 Not So Fast (E2 + 1 Power, only against something that chooses a friendly unit or gear), UNL-190 Lilting Lullaby (Calm/Mind, E2 + 2 Power) and OGN-064 Wind Wall (E3 + 2 Power, unconditional). The Anomaly makes the unconditional one castable, which is the whole point of paying for the conversion.",
+          "THE ANOMALY'S OWN EXHAUST IS THE REAL CAP. One conversion per round trip: used on the opponent's turn it is exhausted until your Awaken, and used on your own turn it is not there when they act. It is also a 3 Energy + 1 Mind Power gear that does nothing on the board, so it is a slot you pay for."
+        ]
+      },
+      "steps": [
+        "Play Hextech Anomaly (3 Energy + 1 Mind Power) on an early turn and leave it READY at the end of yours.",
+        "Take your turn normally — the runes you exhaust for Energy are dead until your next Awaken (415.3.a), and 167 empties whatever is left in the pool at end of turn.",
+        "On the opponent's turn, when the spell you want to answer goes on the Chain, begin playing Wind Wall.",
+        "In the Pay Costs step (429.3), recycle runes for Power (164.2.b — no exhaust needed) and exhaust the Anomaly, paying 3 of that Power into it to Add 3 Energy.",
+        "429.2 resolves the Add immediately and 429.2.a keeps priority from passing, so the Energy is there.",
+        "Pay Wind Wall's 3 Energy + 2 Power and counter the spell. 425.1.c means the opponent gets nothing back."
+      ],
+      "netPerIteration": "one hard counter cast on the opponent's turn for five recycled runes, on a turn you had already tapped out",
+      "terminatesIn": "engine only — one conversion per round trip, capped by the Anomaly's own exhaust and by the Rune Deck (161.2.a's twelve, 315.3.b's two a turn); three Wind Walls by 103.2.b, and nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #174, the Calm/Mind lane). SFD-083 Hextech Anomaly and OGN-064 Wind Wall were both in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.2.b, 103.2.d.2, 161.2.a, 161.2.b, 164.2.a, 164.2.b, 167, 315.3.b, 415.3.a, 425.1.c, 429.2, 429.2.a, 429.3. The Anomaly is the general form of a problem the project has only ever solved with two specific cards (Dark Child's rune readies, and a Gold token under Renata Glasc, Industrialist): it converts whatever Power you can still raise on the opponent's turn into Energy at 1:1, with no cap per activation, and 429.3 lets it happen inside the Pay Costs step. Ban check: neither card is banned or restricted. Trap check: the Anomaly's own exhaust caps it at one conversion per round trip and it must be saved for the opponent's turn; the five recycled runes are a real cost, priced against 161.2.a's twelve and 315.3.b's two a turn; the other four Calm counters are listed with their conditions so the choice of Wind Wall is argued rather than assumed; no unruled reading."
+    },
+    {
+      "id": "gearhead-steraks-gage-double-bonus",
+      "name": "Gearhead doubles the BASE Might Bonus, so the right Equipment is the biggest printed one — and Quick-Draw lands it mid-combat",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-068",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E5 M3. '[Accelerate] … Each Equipment attached to me gives double its base Might bonus.' The pool's only Might-Bonus doubler. In no entry before this."
+        },
+        {
+          "card": "SFD-056",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm Equipment, E3 P2, M+3. '[Quick-Draw] (This has [Reaction]. When you play it, attach it to a unit you control.) [Equip] :rb_rune_calm:'. The largest printed Might Bonus in Calm or Mind, and the only one that attaches at Reaction speed with no [Equip] payment. In no entry before this."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Calm + Mind: Sterak's Gage is mono-Calm and Gearhead mono-Mind (103.1.b.3), so the legend must hold both and the pool prints exactly four names — OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom and VEN-145 Curator of the Sands (103.1.b.2).",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Gearhead has to be on the board when the Gage lands; the doubling is his static, not the Equipment's."
+        ],
+        "notable": [
+          "'BASE MIGHT BONUS' IS THE PRINTED NUMBER, WHICH IS WHY THE BIGGEST ONE WINS. 137.3: 'A card's Might Bonus modulates the Might of the card to which the card that has the Might Bonus is Attached', and 477.3.d applies it in the Might layer. Gearhead doubles the BASE value, so nothing that modifies the bonus afterwards is doubled with it — the way to make him bigger is a larger printed M+, not a stack of modifiers. Sterak's Gage's M+3 is the largest in Calm or Mind, so Gearhead stands at 3 + 6 = 9.",
+          "[Quick-Draw] IS WHY IT COSTS NO ATTACH. 'This has [Reaction]. When you play it, attach it to a unit you control.' The attach is part of PLAYING the card, not an [Equip] activation, so the one Calm rune printed on its [Equip] line is never paid on the first landing — and 434.1.g ('Attaching a card to its current Top-Most Card will not have any effect') never comes up, because the Gage is arriving from hand rather than being shuffled between hosts.",
+          "AND IT LANDS AFTER THE OPPONENT HAS COMMITTED. 813.1.c.1: on cards, Reaction is 'This can be played during Closed States on any player's turn.' 465.2.c reads Might when damage is assigned, so a Gearhead who looked like a 3 while they were choosing their attack is a 9 when the bill is calculated. On your own turn the same play makes an unimpressive body into a real attacker for one card.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Gearhead is 5 Energy for a Might 3 body, or 6 Energy + 1 Mind Power with [Accelerate] to enter ready (143.4.a). Sterak's Gage is 3 Energy + 2 Calm Power and attaches itself on play: Gearhead becomes 9. A second Equipment is doubled too — SFD-073 Experimental Hexplate is M+1 for 1 Energy and one Mind rune, so it is +2, taking him to 11; the ceiling is how much Equipment you can afford, not a cap on the card.",
+          "718.4 KEEPS IT HONEST ABOUT WHERE THE MIGHT LIVES. 'While in this state, the card's Might Bonus modulates the Top-Most Card's Might by the value listed' — the bonus is a property of the attachment, so moving the Gage to another body takes all six points with it and leaves Gearhead at 3. It is not a buff (702.3 never applies) and it is not a 'this turn' effect (317.2.c never expires it), which makes it the rare Might in Calm or Mind that survives to the next turn.",
+          "THE DOUBLER IS UNIQUE AND THAT IS THE REASON TO BUILD AROUND IT. Swept for the wording: Gearhead is the only card in the pool that doubles a Might Bonus. Every other way of turning Equipment into Might in these two domains adds the printed value once."
+        ]
+      },
+      "steps": [
+        "Play Gearhead for 5 Energy — or 6 Energy + 1 Mind Power to use [Accelerate] and have him enter ready (143.4.a).",
+        "Hold Sterak's Gage in hand.",
+        "When the fight is open — your own attack, or the opponent's, since [Quick-Draw] carries [Reaction] (813.1.c.1) — play the Gage for 3 Energy + 2 Calm Power. Its own text attaches it to a unit you control as it is played, so choose Gearhead and pay no [Equip] cost.",
+        "Gearhead's static doubles the Gage's base Might Bonus of 3: he is Might 9 (137.3, 477.3.d).",
+        "Assign combat damage with the raised Might (465.2.c). Nothing here expires — 718.4 keeps the bonus for as long as the Gage stays attached.",
+        "Add further Equipment for double their printed bonuses; moving the Gage elsewhere takes all six points with it."
+      ],
+      "netPerIteration": "+6 Might on Gearhead from one 3-Energy Equipment, at Reaction speed and with no attach cost, and it does not expire",
+      "terminatesIn": "engine only — the Might is bounded by how much Equipment you own, and it moves with the Equipment rather than expiring; Calm and Mind convert none of it into points, so nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #174, the Calm/Mind lane). SFD-068 Gearhead and SFD-056 Sterak's Gage were both in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.2.d.2, 137.3, 143.4.a, 317.2.c, 434.1.g, 465.2.c, 477.3.d, 702.3, 718.4, 813.1.c.1. Uniqueness swept, not assumed: Gearhead is the only card in the pool that doubles a Might Bonus. Ban check: neither card is banned or restricted. Trap check: 'base' Might Bonus means the printed number, so the way to scale is a bigger M+ and not a stack of modifiers, stated first; [Quick-Draw]'s attach is part of playing the card, so the [Equip] cost is not paid and 434.1.g never bites; the bonus travels with the Equipment (718.4) rather than staying on the body; it is neither a Buff nor a 'this turn' effect; no unruled reading."
+    },
+    {
+      "id": "not-so-fast-allay-deflect-tax-denial",
+      "name": "425.1.c does not refund the [Deflect] tax — Allay makes every removal pay it and Not So Fast is the only card in Calm or Mind that also counters an ABILITY",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-045",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E2 P1. '[Reaction] Counter an enemy spell or ability that chooses a friendly unit or gear.' Swept: one of only two cards in the pool that counter an ABILITY, and the only one inside a Calm/Mind identity. In no entry before this."
+        },
+        {
+          "card": "UNL-041",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M3. '[Deflect] … While I'm at a battlefield, your other units here have [Deflect].' Board-wide at its battlefield, which is what makes the tax certain rather than occasional. In no entry before this."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Any Calm legend: both cards are mono-Calm (103.1.b.1) and neither is a Signature card, so 103.2.d.2 forces nothing.",
+          "Neither card is banned or restricted in either format.",
+          "Allay has to be AT the battlefield you are protecting — her grant reads 'While I'm at a battlefield, your OTHER units HERE'. She never covers your base."
+        ],
+        "notable": [
+          "THE TWO PARAGRAPHS THAT MAKE THIS A PAIR RATHER THAN TWO CARDS. 809.1.c: [Deflect] 'is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this]\"' — an additional cost, paid up front, as the card is played. 425.1.c: 'Countering does not refund any costs paid to play a card, activate an ability, or trigger an ability', and 425.1.c.1: 'This includes additional costs.' So the opponent pays a rainbow more for the privilege of aiming at your garrison, and then loses the card anyway. The tax is not a deterrent you hope works; it is a price they have already paid when the counter lands.",
+          "AND 425.1.b TAKES THE REST. 'A card that is Countered is not considered to have been played for abilities that trigger on cards being played.' So a countered spell also fails to feed their own 'when you play a spell' payoffs — the whole card does nothing (425.1.a) and goes to the trash (425.1.a.1).",
+          "NOT SO FAST REACHES AN ABILITY, WHICH ALMOST NOTHING DOES. Swept over the whole corpus for `counter (a|an|enemy|target)`: nine counters exist, and exactly two of them say 'or ability' — SFD-045 Not So Fast and UNL-106 Repulse, which is mono-Body and out of this identity. Every other counter in the pool answers a SPELL only, which means an activated or triggered ability aimed at your board is otherwise unanswerable in Calm or Mind.",
+          "THE LIMIT IS THE SAME CLAUSE ON BOTH CARDS, AND IT IS A REAL HOLE. Not So Fast answers what 'CHOOSES a friendly unit or gear'; [Deflect] taxes what CHOOSES the Deflecting object. 355.10.d: an object 'programmatically selected based on its characteristics rather than chosen' is not targeted, and its own example is 'Kill all units at battlefields'. So a sweeper — OGN-133 Flurry of Blades for 1 Energy, OGN-123 Unchecked Power, a mass damage spell — pays no tax AND cannot be countered by this card. The pair answers aimed removal and nothing else. Say it out loud rather than discovering it in a game.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Allay is 3 Energy for a Might 3 body that gives every other unit at her battlefield [Deflect]; each enemy spell or ability that chooses one of them costs one rainbow Power more (809.1.c.1: that Power may be of any Domain, so the tax is not a colour screw). Not So Fast is 2 Energy + 1 Calm Power at Reaction speed (813.1.c.1). Three copies (103.2.b) is three answers, each of which also burns a rainbow of theirs.",
+          "SHE DOES NOT PROTECT HERSELF TWICE. Allay's grant is for 'your OTHER units here'; her own [Deflect] is printed separately, so it is one instance, not two. 814.2's summing rule is for [Shield] and has no counterpart for Deflect — a second grant of [Deflect] on the same body does nothing."
+        ]
+      },
+      "steps": [
+        "Play Allay, Eager Admirer (3 Energy) to the battlefield you intend to hold, and garrison it.",
+        "Every unit you control there now has [Deflect]; an opponent's spell or ability that chooses one of them costs a rainbow Power more as an additional cost (809.1.c).",
+        "Hold Not So Fast (2 Energy + 1 Calm Power).",
+        "When they pay the tax and aim a spell — or an activated or triggered ability, which is the half only this card reaches — play Not So Fast at Reaction speed (813.1.c.1) and counter it.",
+        "425.1.a clears it from the chain doing nothing, 425.1.a.1 puts it in their trash, 425.1.b denies their play triggers, and 425.1.c keeps the rainbow they paid.",
+        "Repeat with the remaining copies; three by 103.2.b. Against a sweeper that chooses nothing (355.10.d) neither half of this does anything, so keep a different answer for that."
+      ],
+      "netPerIteration": "one aimed spell or ability answered for 2 Energy + 1 Calm Power, with a rainbow of theirs already spent and unrefunded",
+      "terminatesIn": "engine only — three Not So Fasts a game, each consumed, and the tax lasts as long as Allay stands there; nothing here scores and neither half touches a sweeper",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #174, the Calm/Mind lane). SFD-045 Not So Fast and UNL-041 Allay, Eager Admirer were both in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 103.2.b, 103.2.d.2, 355.10.d, 425.1.a, 425.1.a.1, 425.1.b, 425.1.c, 425.1.c.1, 809.1.c, 809.1.c.1, 813.1.c.1, 814.2. Uniqueness swept, not assumed: `grep -inE \"counter (a|an|enemy|target)\"` returns nine counters, of which exactly two say 'or ability' — SFD-045 and UNL-106 Repulse (mono-Body, out of identity). Ban check: neither card is banned or restricted. Trap check: the hole is named in its own notable — 355.10.d means a sweeper chooses nothing, so it pays no Deflect tax and cannot be countered by this card; Allay does not double her own Deflect and there is no summing rule for it as there is for Shield (814.2); her grant never covers your base; no unruled reading."
+    },
+    {
+      "id": "unchecked-power-whiteflame-one-sided-wipe",
+      "name": "The end-of-turn Cleanup heals at 3c and expires at 3d, so a body pumped over twelve survives your own wipe AND survives losing the pump",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-123",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E7 P2. 'Exhaust all friendly units, then deal 12 to ALL units at battlefields.' The largest sweeper in the pool, and symmetric unless something of yours is over twelve or is standing at your base. In no entry before this."
+        },
+        {
+          "card": "OGN-082",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E8 P2 M8. 'When you play me, give a unit +8 :rb_might: this turn.' Aimed at itself it is a 16 Might body for the turn, which is the cheapest way in Calm or Mind to be above the wipe."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Mind: Whiteflame Protector is mono-Calm and Unchecked Power mono-Mind (103.1.b.3), so the legend must hold both and the pool prints exactly four names — OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom and VEN-145 Curator of the Sands (103.1.b.2).",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Both have to be paid in the same Main Phase: the +8 is 'this turn', so the Protector must be played on the turn you wipe. That is 15 Energy and 4 Power in one turn — the line is a late-game reset, not a tempo play."
+        ],
+        "notable": [
+          "THE SEQUENCE INSIDE THE END-OF-TURN CLEANUP IS WHAT MAKES THIS SURVIVABLE, AND IT IS EASY TO GET BACKWARDS. 317.2.b inserts '3c. Heal all Units' and 317.2.c inserts '3d. All \"this turn\" effects expire simultaneously' — heal FIRST, expire SECOND. So at end of turn the Protector still has 12 damage marked and Might 16 (not lethal by 143.2.a, 'nonzero damage marked on it equalling or exceeding its Might'), 3b kills nothing, 3c wipes the damage off, and only then does 3d take the +8 away and leave a clean 8 Might body. Reverse those two steps and the Protector dies at the end of your own turn — which is exactly what 142.4.b's worked example describes for a body whose Might drops while damage is marked.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Play Whiteflame Protector for 8 Energy + 2 Calm Power and aim its trigger at ITSELF ('give a unit' has no restriction): Might 16 this turn. Play Unchecked Power for 7 Energy + 2 Mind Power: every unit at every battlefield takes 12. Anything at 12 Might or less dies — which is every unit in the pool except a Master Yi, Unstoppable at exactly 12, who also dies (142.4.b: lethal is 'greater than or EQUAL to that Unit's Might'). The Protector is at 16 and lives.",
+          "AND EVERYTHING AT A BASE IS UNTOUCHED, WHICH IS THE OTHER HALF OF THE ASYMMETRY. The spell says 'ALL units at battlefields'. 355.2.a makes a player's base a default play location, so a board you have deliberately kept home takes nothing — and so does theirs. The one-sided version of this card is played on a turn when their board is committed and yours is not.",
+          "THE EXHAUST IS THE PRICE, AND IT COSTS YOU THE TURN RATHER THAN THE COMBAT. 'Exhaust all friendly units' hits everything you control. 144.2 makes exhausting the cost of the Standard Move, so nothing of yours can walk afterwards; but 464.2.c.3 and 465.2.b do not filter by ready or exhausted state, so an exhausted body still fights at full Might on defence. And Unchecked Power carries neither [Action] nor [Reaction], so 155 confines it to 'an Open State outside of Showdowns on its controller's turn' — you cannot cast it inside a combat to blow one open. Wipe on your turn, attack on the next after 315.1.b readies everything.",
+          "IT CHOOSES NOTHING, WHICH IS WHY IT GOES THROUGH EVERYTHING. 355.10.d: an object 'programmatically selected based on its characteristics rather than chosen' is not targeted, and the rule's own example is 'Kill all units at battlefields'. So [Deflect] never taxes this (809.1.c charges only for choosing), and SFD-045 Not So Fast — which answers what 'chooses a friendly unit or gear' — cannot counter it. Only a general counter such as OGN-064 Wind Wall stops it.",
+          "THE PROTECTOR'S TRIGGER IS BETTER SPENT ELSEWHERE ON ANY OTHER TURN. '+8 :rb_might: this turn' on an attacker is eight more damage assigned (465.2.c); aiming it at itself is worth doing only on the turn you are wiping, and it is the entry's whole cost of admission. On a turn without Unchecked Power, point it at whatever is fighting."
+        ]
+      },
+      "steps": [
+        "Wait for a turn when the opponent's board is committed to battlefields and yours is not — or when you are willing to lose it.",
+        "In your Main Phase, play Whiteflame Protector for 8 Energy + 2 Calm Power to a battlefield and aim its play trigger at ITSELF: +8 Might this turn, so it stands at 16.",
+        "Play Unchecked Power for 7 Energy + 2 Mind Power. All your units are exhausted, then every unit at every battlefield takes 12.",
+        "Everything at 12 Might or less dies (142.4.b). The Protector has 12 damage marked against Might 16 and survives; anything either player left at a base is untouched.",
+        "At the end-of-turn Cleanup, 3b kills nothing of yours, 3c heals the 12 off (317.2.b), and only then does 3d expire the +8 (317.2.c). The Protector ends the turn a clean 8 Might body.",
+        "Your next Awakening Phase readies everything (315.1.b) and you attack into an empty board."
+      ],
+      "netPerIteration": "every enemy unit at a battlefield of 12 Might or less killed, with one 8 Might body of yours left standing, for 15 Energy and 4 Power in a single turn",
+      "terminatesIn": "engine only — one wipe per Unchecked Power, three copies by 103.2.b, and it costs you the turn's attack because it exhausts your whole board; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #174, the Calm/Mind lane). OGN-123 Unchecked Power was in NO entry before this; OGN-082 Whiteflame Protector entered the catalogue earlier in this same walk (whiteflame-last-stand-zhonyas-double-might), where its Might is doubled rather than used to clear a self-inflicted wipe. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.2.b, 103.2.d.2, 142.4.b, 143.2.a, 144.2, 155, 315.1.b, 317.2.b, 317.2.c, 355.2.a, 355.10.d, 464.2.c.3, 465.2.b, 465.2.c, 809.1.c. THE LOAD-BEARING SEQUENCE IS THE CLEANUP ORDER: 317.2.b's '3c. Heal all Units' runs BEFORE 317.2.c's '3d. All \"this turn\" effects expire simultaneously', which is the only reason a body pumped over the wipe does not die at the end of its own turn when the pump goes away — 142.4.b's worked example is exactly that failure mode. Ban check: neither card is banned or restricted. Trap check: the wipe is symmetric at battlefields and misses both bases (355.2.a); it exhausts your own board, so the attack is next turn; 155 keeps it out of a Showdown; it chooses nothing (355.10.d), so [Deflect] does not tax it and Not So Fast cannot counter it — only a general counter can; no unruled reading."
+    },
+    {
+      "id": "royal-entourage-eye-of-twilight-double-tank",
+      "name": "Royal Entourage readies the legend, so Eye of Twilight grants [Tank] twice — but only on YOUR turn, and that is the whole card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-039",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Calm unit, E3 P1 M4. 'When you play me, ready or exhaust a legend.' 107.4.c makes the Champion Legend a Game Object on the board and 415.1 defines Readying as marking such an object, so this reaches the Legend Zone. It is a UNIT play with no [Action] and no [Reaction], which is what pins the whole line to your own Main Phase."
+        },
+        {
+          "card": "VEN-147",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Order legend. '[Action][>] :rb_exhaust:: Give a friendly unit [Tank] this turn. (It must be assigned combat damage first.)' The cost is its own exhaust, which is exactly what Royal Entourage refunds."
+        },
+        {
+          "card": "OGS-005",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E6 P1 M6, '[Shield] (+1 :rb_might: while I'm a defender.)'. Two of them, because the point of the second grant is a SECOND body that the opposing assignment has to clear first. On your own attack the Shield is worth nothing (814.1.c reads 'while I am a defender'), so each is Might 6 here, not 7."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Eye of Twilight IS the legend (VEN-147 or VEN-193, Calm/Order), so this is a one-legend line by construction. Royal Entourage and Zephyr Sage are both mono-Calm, so 103.1.b.3 is satisfied and the Order half of the identity is free for the rest of the deck."
+        ],
+        "notable": [
+          "THIS CORRECTS A CLAIM MADE IN THIS CATALOGUE. `eye-of-twilight-zephyr-sage-tank-redirect` states 'ONE GRANT PER TURN AND NO WAY TO DOUBLE IT... the cost is the legend's own exhaust, which 315.1.b returns only at your next Awakening'. The cost half is right and the conclusion is not: SFD-039 Royal Entourage, SFD-210 Hall of Legends and OGN-162 Miss Fortune, Captain all ready a legend, so the exhaust comes back inside the turn.",
+          "AND THE CORRECTION ONLY REACHES YOUR OWN TURN, WHICH IS THE REAL FINDING. Royal Entourage is a unit with no [Action] and no [Reaction], so 155 and 381 keep it to your Main Phase in an Open State. On the OPPONENT's turn you can therefore never play it, and the legend was readied by 415.3.a at your Awakening anyway — so on defence the grant is still once, exactly as the older entry says. The doubling exists only where both grants can be spent on the same turn: your own attack.",
+          "ORDER MATTERS AND 415.1.c IS WHY. 'If a Unit is instructed to be Readied while it is already Ready, nothing additional happens.' So the legend must be EXHAUSTED for the first grant BEFORE Royal Entourage is played; playing the Entourage first wastes it. (Its 'ready or exhaust' is a choice, so exhausting the legend yourself is legal but pointless here.)",
+          "WHAT TWO TANKS BUY, IN DAMAGE. 815.1.c.2: 'If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' With both Sages granted, the defender must find 6 + 6 = 12 summed Might before any other attacker of yours can legally be assigned a point, and 465.2.c.4 forbids overpaying either one.",
+          "815.2 IS WHY IT IS TWO BODIES AND NOT ONE. 'Multiple instances of Tank are redundant.' A second grant on the same Sage is worth zero, so the second Royal Entourage activation has to find a second body.",
+          "THE CEILING IS THE DECK. 103.2.b caps Royal Entourage at three copies, each consumed on play, so this is three doubled turns a game and not an engine that runs forever.",
+          "IT DOES NOT SCORE. The line buys survival for the rest of an attacking pack; converting that into points is the job of whatever else the pack is carrying."
+        ]
+      },
+      "steps": [
+        "Deck-build under an Eye of Twilight legend (VEN-147 or VEN-193) and put both Zephyr Sages into the pack you intend to attack with.",
+        "In your Main Phase, before the attack, activate the legend: exhaust it and give the first Zephyr Sage [Tank] this turn. 381 allows the activation (your turn, Open State) and 806.1.b would also allow it later inside the combat.",
+        "Play Royal Entourage and choose 'ready a legend'. 107.4.c makes the legend a Game Object and 415.1 marks it ready again; 415.1.c is why this had to come after the first activation.",
+        "Activate the legend a second time and give the second Zephyr Sage [Tank] this turn.",
+        "Move the pack in. 190.3.a.1 applies Contested, 323.9 stages the Combat, 464.2.c.3 designates your attackers and 464.2.e.1 designates the defenders.",
+        "In the damage step, 465.2.c has the defender assign damage equal to their summed Might, and 815.1.c.1 plus 815.1.c.2 force lethal onto both Sages — 6 and then 6 — before any other attacker of yours is a legal assignment.",
+        "143.3.b.2 heals the marked damage at the Combat Cleanup and 317.2.c expires 'this turn'; 315.1.b readies the legend at your next Awakening, so the single grant is available again next turn and the doubled one costs another Royal Entourage."
+      ],
+      "terminatesIn": "engine only — twelve summed Might of the defender's assignment absorbed on one attacking turn, three times a game (103.2.b); on defence it stays at one grant, and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "415.1.c. \"If a Unit is instructed to be Readied while it is already Ready, nothing additional happens.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "815.1.c.2. \"If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "381. \"All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the synergy rule `royal-entourage-readies-your-legend`, whose anchor SFD-039 was in ZERO entries. Card text verbatim from data/corpus_flat.txt. Two things are the content: the correction of `eye-of-twilight-zephyr-sage-tank-redirect`'s 'no way to double it', and the reason the correction is only half a correction — Royal Entourage has no [Action] and no [Reaction], so it never reaches the opponent's turn, where that entry's line actually lives. Trap check: 415.1.c is cited so the play order is forced rather than assumed; 815.2 is cited so the second grant is put on a second body; the Shield is explicitly NOT counted, because 814.1.c gives it only to a defender and here the Sages attack; 103.2.b caps the copies; produces is empty (issue #157)."
+    },
+    {
+      "id": "royal-entourage-grandmaster-warmogs-two-conquers",
+      "name": "The Grandmaster's free reattach is once a turn — Royal Entourage makes it twice, which is exactly the number of Conquers a Duel allows",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-039",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Calm unit, E3 P1 M4. 'When you play me, ready or exhaust a legend.' The ready half refunds the legend's exhaust inside your Main Phase, which is the only window this line needs."
+        },
+        {
+          "card": "SFD-193",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Body legend. ':rb_energy_1:, :rb_exhaust:: Attach a detached Equipment you control to a unit you control. :rb_exhaust:: Attach an attached Equipment you control to a unit you control.' The second ability costs nothing but the exhaust, and 818.1 keeps the whole thing an Activated Ability, so no [Equip] cost and no play trigger are ever paid."
+        },
+        {
+          "card": "SFD-108",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Body Equipment, E1, M+1. '[Equip] :rb_rune_body: ... [Effect] When I conquer, buff me. (If I don't have a buff, I get a +1 :rb_might: buff.)' 434.1.c appends its Effect Text to whatever carries it, so 'me' is the carrier — the buff lands on the body it is attached to at the moment of the Conquer."
+        }
+      ],
+      "needs": [
+        "conquer-engine"
+      ],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Grandmaster at Arms IS the legend, SFD-193 or SFD-245 (Calm/Body), so this is a one-legend line by construction. Royal Entourage is mono-Calm and Warmog's Armor mono-Body, so 103.1.b.3 holds with nothing to spare."
+        ],
+        "notable": [
+          "WHAT THE SECOND REATTACH IS WORTH, AND WHY IT IS NOT A THIRD. 469.1 defines a Conquer at a battlefield 'not yet Scored this turn', 470 caps Scoring at once per battlefield per turn and 485.4 puts two battlefields on a Duel table — so a turn holds at most TWO Conquers. One free reattach lets Warmog's buff the carrier at one of them; the second lets it buff a different carrier at the other. A third reattach has no Conquer left to attend, so a second Royal Entourage on the same turn is worth nothing.",
+          "THIS SHARPENS `jax-grandmaster-warmogs-buff`, which says 'one reattachment a turn, throttled by how often you conquer'. The throttle is not open-ended: 470 plus 485.4 name the number, and it is two.",
+          "415.1.c FORCES THE ORDER. The legend must be exhausted for the first reattach before Royal Entourage is played, because readying an already-ready object does nothing.",
+          "THE ATTACH IS FREE AND IS NEVER A PLAY. 818.1: 'Equip is an Activated Ability keyword.' The Grandmaster's second ability attaches directly, so the Equipment's own [Equip] cost (one Body rune) is paid once, on the way in, and never again; and because attaching is not playing, no 'when you play a gear' or [Weaponmaster] trigger fires off the shuttle.",
+          "AND IT CAN NEVER GO BACK ONTO THE SAME BODY. 434.1.g: 'Attaching a card to its current Top-Most Card will not have any effect.' So the two Conquers must be attended by two different carriers; on a one-battlefield board the second activation is dead.",
+          "702.3 IS WHY THE SHUTTLE EXISTS AT ALL. 'There can only be one Buff on a Unit at a time.' Left on one carrier, Warmog's second Conquer places nothing (702.3.a). Moving it is the only way one Equipment buffs a second body.",
+          "103.2.b caps Royal Entourage at three copies, each consumed on play, so the doubled turn happens three times a game."
+        ]
+      },
+      "steps": [
+        "Deck-build under a Grandmaster at Arms legend (SFD-193 or SFD-245) and pay Warmog's Armor's [Equip] of one Body rune once, onto a body headed for the first battlefield.",
+        "Conquer the first battlefield. 466.5 establishes Control and 466.5.d makes it a Conquer, so Warmog's '[Effect] When I conquer, buff me' places a +1 Might buff on its current carrier (434.1.c is why 'me' is the carrier).",
+        "In the same Main Phase, activate the legend's free ability: exhaust it and attach Warmog's to a body standing at the second battlefield. 434.1.f detaches it from the first carrier in the same action, and 434.1.g is why the destination has to be a different unit.",
+        "Play Royal Entourage and ready the legend. 415.1.c is why this comes after the exhaust, not before.",
+        "Conquer the second battlefield. Warmog's buffs its new carrier — a second body carrying a real 702 Buff counter, on the same turn, off one Equipment.",
+        "The legend is now ready again from the Entourage and its free ability is spent; 470 refuses a third Score at either battlefield this turn, so the turn is closed. 315.1.b readies the legend at the next Awakening."
+      ],
+      "terminatesIn": "engine only — two buffed carriers a turn instead of one, capped at two by 470 plus 485.4 and at three doubled turns a game by 103.2.b; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "434.1.g. \"Attaching a card to its current Top-Most Card will not have any effect.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "818.1. \"Equip is an Activated Ability keyword.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "702.3. \"There can only be one Buff on a Unit at a time.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `royal-entourage-readies-your-legend` (anchor SFD-039, ZERO entries before this batch). Card text verbatim from data/corpus_flat.txt. The content is the CAP, not the doubling: `jax-grandmaster-warmogs-buff` left 'how often you conquer' open, and 470 with 485.4 closes it at two, which is exactly what one Royal Entourage buys and why a second on the same turn buys nothing. Trap check: 434.1.g is quoted so the shuttle is never claimed onto the same host; 818.1 is cited so no play trigger is smuggled in; 702.3 is cited as the reason a stationary Warmog's stops after one buff; `needs: conquer-engine` is declared because the entry consumes Conquers it does not produce."
+    },
+    {
+      "id": "royal-entourage-emperor-sands-two-sand-soldiers",
+      "name": "Emperor of the Sands mints TWO Might bodies, not one — the token faucet that needs no Soul Shepherd, and Royal Entourage makes it two a turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-039",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Calm unit, E3 P1 M4. 'When you play me, ready or exhaust a legend.' Readying the Emperor inside your Main Phase is a second Sand Soldier that turn."
+        },
+        {
+          "card": "SFD-197",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Order legend. 'Sand Soldiers you play have [Weaponmaster]. ... :rb_energy_1:, :rb_exhaust:: Play a 2 :rb_might: Sand Soldier unit token to your base. Use only if you've played an Equipment this turn.' The Equipment condition is per TURN, not per activation, so one Equipment play arms both activations."
+        },
+        {
+          "card": "SFD-153",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "ATTACHED",
+          "note": "Order Equipment, E1, M+0. '[Equip] :rb_rune_order: ... [Effect] When I move, play a 1 :rb_might: Recruit unit token here.' Two jobs: playing it satisfies the Emperor's 'you've played an Equipment this turn', and its [Equip] cost is exactly one rune, which [Weaponmaster]'s 'for one rainbow less' reduces to nothing (356.6 floors a cost at 0, it never goes negative)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Emperor of the Sands IS the legend, SFD-197 or SFD-247 (Calm/Order), so this is a one-legend line by construction. Royal Entourage is mono-Calm and Eye of the Herald mono-Order, so 103.1.b.3 is satisfied exactly."
+        ],
+        "notable": [
+          "TWO MIGHT IS THE ENTRY'S REAL CONTENT. 187.3: 'A 2 [M] Sand Soldier token is a domainless unit token with 2 Might and the Shurima tag.' 143.2.a kills on damage equal to a unit's Might, and the pool's mass answer to a token swarm is `OGN-133 Flurry of Blades` (Body, E1, [Reaction], 'Deal 1 to all units at battlefields'), which kills any number of 1-Might bodies simultaneously. A Sand Soldier is not a 1-Might body, so it survives that spell with no help at all.",
+          "WHICH NARROWS A STANDING CLAIM RATHER THAN CONTRADICTING IT. `UNL-077 Soul Shepherd` ('Your token units have +1 :rb_might:') is the only card that FIXES 1-Might tokens, and it is Mind, which is what forces a Mind/Order shell on every Recruit and Bird swarm. Emperor of the Sands does not need fixing: he never mints a 1-Might body, and he is Calm/Order. The two facts do not collide — one is a repair, the other is a faucet that does not break.",
+          "THE RATE, EXACTLY. The Emperor's own exhaust is the cap, so one Sand Soldier a turn for 1 Energy; Royal Entourage refunds the exhaust once, so two for 2 Energy on that turn, three times a game (103.2.b). 415.1.c forces the order: activate first, then play the Entourage.",
+          "THE BODIES ARE BORN AT THE BASE AND EXHAUSTED, so the walk is the bottleneck, exactly as it is for every other token line. 143.4 ('Units enter the Board exhausted') and the ability's own 'to your base' mean the pair moves in on the FOLLOWING turn — but 144.3 moves the whole accumulated swarm as ONE game action to a shared destination (144.3.a), so the delay is one turn once, not one turn per body.",
+          "[WEAPONMASTER] REACHES THE TOKEN BY RULE. 'Sand Soldiers you play have [Weaponmaster]' is a static, 350.2 makes a token something that is played and 185.2.a keeps it from being a card, and 383.2.c.1 has an ability active in a zone apply to an object entering that zone at the same time — the same route that puts 'your Mechs have [Vision]' onto a Mech token. So each Sand Soldier may [Equip] one of your Equipment to ITSELF as it arrives.",
+          "AND [WEAPONMASTER] SAYS 'TO ME', so it only ever frees an Equipment whose text does not depend on its carrier. Eye of the Herald qualifies: 'When I move, play a 1 Might Recruit unit token here' works on any body, so the free attach rides the Sand Soldier and its walk to the battlefield also mints a Recruit there. A carrier-dependent Equipment (Svellsongur, Skyfall) can never be placed this way.",
+          "ONE EQUIPMENT, ONE ATTACHMENT AT A TIME. 434.1.f detaches Eye of the Herald from its previous carrier every time a new Sand Soldier claims it, so the Recruit rider follows the newest body and does not multiply."
+        ]
+      },
+      "steps": [
+        "Deck-build under an Emperor of the Sands legend (SFD-197 or SFD-247) and play Eye of the Herald at some point in the turn — that alone satisfies 'Use only if you've played an Equipment this turn' for every activation that turn.",
+        "Activate the legend: 1 Energy and its exhaust, playing a 2 Might Sand Soldier token to your base. 143.4 has it enter exhausted.",
+        "As it is played, its granted [Weaponmaster] offers an [Equip] of one of your Equipment to itself for one rainbow less; Eye of the Herald's [Equip] is exactly one Order rune, so 356.6 takes it to 0 and the attach is free.",
+        "Play Royal Entourage and choose 'ready a legend'. 415.1.c is why this follows the activation instead of preceding it.",
+        "Activate the legend again for a second Sand Soldier, 1 more Energy. The Equipment condition is still satisfied — it is measured on the turn, not on the activation.",
+        "On your next turn the accumulated Sand Soldiers are readied by 315.1.b and walk in together: 144.3 makes multiple Standard Moves one game action and 144.3.a fixes a shared destination. The body carrying Eye of the Herald mints a 1 Might Recruit at that battlefield as it arrives.",
+        "`OGN-133 Flurry of Blades` clears the Recruit and leaves every Sand Soldier alive at 1 damage marked, which 143.3.b.1 heals at the end of the turn."
+      ],
+      "terminatesIn": "engine only — one 2 Might body a turn for 1 Energy, two on each of the three turns a Royal Entourage is spent, all born at the base and walking in as one action the turn after; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "187.3. \"A 2 [M] Sand Soldier token is a domainless unit token with 2 Might and the Shurima tag.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "144.3. \"Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units.\" 144.3.a. \"When a Move like this is declared by a player, the units' Destination must be the same.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "356.6. \"Energy and Power costs can't be reduced below 0.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `royal-entourage-readies-your-legend`. Both SFD-039 and SFD-197/SFD-247 were in ZERO entries. Card text verbatim from data/corpus_flat.txt; SFD-197 and SFD-247 are two printings of one legend name, and corpus_flat.txt carries the text under SFD-247. The content is 187.3: the pool's token discussion is written around 1-Might Recruits and Birds and the Soul Shepherd repair, and the Sand Soldier simply is not in that class. Trap check: the bodies are stated as born at the base and exhausted (143.4) with the walk priced by 144.3 rather than waved away; [Weaponmaster]'s 'to me' is cited so no carrier-dependent Equipment is claimed; 356.6 is cited for the free attach rather than assumed; 434.1.f is cited so the Recruit rider is not multiplied; the Emperor's exhaust is named as the real cap and 103.2.b caps the Entourages."
+    },
+    {
+      "id": "peak-guardian-spirits-refuge-mass-deflect",
+      "name": "One mass buff, read as a keyword: Spirit's Refuge turns Peak Guardian's whole garrison into a Deflect tax",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-223",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P1 M5. 'When you play me, buff me. Then, if I am at a battlefield, buff all other friendly units there. (To buff a unit, give it a +1 :rb_might: buff if it doesn't already have one.)' The pool's widest single buff: it names no number and reaches the whole garrison including itself."
+        },
+        {
+          "card": "OGN-063",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Calm gear, E2 P1. 'When you play this, buff a friendly unit. ... Friendly buffed units have [Deflect] if they didn't already. (Opponents must pay :rb_rune_rainbow: to choose those units with a spell or ability.)' The second sentence is a static that reads the buff counter, so it converts a one-off mass buff into a standing tax."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Peak Guardian is mono-Order and Spirit's Refuge mono-Calm, so 103.1.b.1 needs a Calm/Order legend: SFD-197 / SFD-247 Emperor of the Sands, VEN-147 / VEN-193 Eye of Twilight, or UNL-195 / UNL-233 Green Father. Neither card is Signature, so 103.2.d.2 imposes nothing and all three names are open."
+        ],
+        "notable": [
+          "702.3 IS WHY A MASS BUFF IS THE RIGHT SHAPE. 'There can only be one Buff on a Unit at a time', and 702.3.a: a second Buff on a unit that already has one 'is not placed'. So the currency here is BODIES, not repetitions — Peak Guardian buying six counters in one play is worth six single-target buffers, and a seventh buff on the same garrison is worth nothing.",
+          "WHAT THE TAX ACTUALLY IS. 809.1.c: [Deflect] is 'functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this]\"'. So it is PER CHOICE, not per spell — a spell choosing two of the garrison pays twice — and 809.1.c.1 makes the extra Power any Domain, so it is never dodged by domain.",
+          "AND IT IS PAID ON PLAY, WHICH IS THE TIMING TRAP. 809.1.d makes it 'a Mandatory Additional Cost on Spells and Abilities that choose' the object, so the keyword has to be on the board BEFORE the opponent acts; granting Deflect in response to a spell already on the Chain taxes nothing.",
+          "THE HOLE IS THE WORD 'CHOOSE'. 355.10.d exempts a Game Object 'programmatically selected based on its characteristics rather than chosen', and 355.10.e / 355.10.f exempt objects picked by the OPPONENT's own instruction — so an effect that moves or kills a whole garrison by description, or that makes you choose, pays nothing. `UNL-107 Stare Down` walks straight through this; `OGN-234 Public Execution` pays.",
+          "809.2 IS THE UPGRADE PATH: 'the Deflect Value of all granted Deflect keywords is summed', so a second granted source stacks. Spirit's Refuge's own grant is written 'if they didn't already', which does not stack with a printed [Deflect] but does not stop a second GRANT.",
+          "ORDER OF PLAY. Spirit's Refuge first, Peak Guardian second, or the Refuge's static simply catches up — the static reads the board continuously, so a body buffed later is covered the moment it is buffed. What is NOT recoverable is Peak Guardian's own play trigger: it fires once, and 355.2.a means he has to be played to a battlefield you control for the 'if I am at a battlefield' clause to be true.",
+          "IT DOES NOT SCORE AND IT DOES NOT PROTECT AGAINST COMBAT. Combat damage is assigned, not chosen (465.2.c), so [Deflect] is silent in the damage step."
+        ]
+      },
+      "steps": [
+        "Establish Control of a battlefield and stand a garrison there.",
+        "Play Spirit's Refuge for 2 Energy and 1 Calm Power. Its play trigger buffs one friendly unit; its second sentence is a static that from now on reads every buffed friendly unit.",
+        "Play Peak Guardian to that battlefield — 355.2.a makes 'the controller's Base or a battlefield the controller controls' a valid play location, and the 'if I am at a battlefield' clause needs the battlefield half.",
+        "His trigger buffs him, then buffs all other friendly units there. 702.3.a silently skips any body that already carries a buff, so the count is the number of UNBUFFED bodies plus himself.",
+        "Every one of those bodies now has [Deflect] from Spirit's Refuge. 809.1.d makes one rainbow Power an additional cost on any opposing spell or ability for each time it chooses one of them, and 809.1.c.1 lets the opponent pay it in any Domain.",
+        "The tax stands for as long as the buffs do. 702.2.b removes a counter only when something SPENDS it, so any buff spender in your own deck (Wallop, Call to Glory, Monastery of Hirana) is switching your own Deflect off one body at a time."
+      ],
+      "terminatesIn": "engine only — one rainbow Power of tax per opposing choice, across as many bodies as the garrison had unbuffed when Peak Guardian landed; it lapses only when a buff is spent, and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "809.1.c. \"It is functionally short for 'Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].'\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "702.3. \"There can only be one Buff on a Unit at a time.\" 702.3.a. \"If a Buff is added, or instructed to be added, on a Unit that already has a Buff, it is not placed\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "809.1.d. \"It is an effect that imposes a Mandatory Additional Cost on Spells and Abilities that choose the Game Object that has this ability.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the buff-supply synergy rules; OGN-063 Spirit's Refuge was in ZERO entries. Card text verbatim from data/corpus_flat.txt. The content is that a 702 Buff counter is a READABLE currency and not only Might: three different payoffs read it, and this is the one that turns a single play into a standing tax. Trap check: 809.1.d is cited so the keyword is stated as pay-on-play and never as a response; 355.10.d / 355.10.e / 355.10.f are named as the hole, with the pool's actual walk-through card; 702.3.a is cited so the count is unbuffed bodies rather than 'the garrison'; combat damage is explicitly excluded (465.2.c assigns, it does not choose); produces is empty (issue #157)."
+    },
+    {
+      "id": "peak-guardian-stand-united-hidden-garrison-pump",
+      "name": "Stand United is a buff AMPLIFIER hidden for one rainbow — every buffed body is +2 instead of +1, at Reaction speed for zero Energy",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-223",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P1 M5. 'When you play me, buff me. Then, if I am at a battlefield, buff all other friendly units there.' The buff counters he places are the thing Stand United reads; 702.3 caps each body at one, so the count is bodies, not buffs."
+        },
+        {
+          "card": "OGN-053",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E3. '[Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) [Action] ... Buff a friendly unit. Buffs give an additional +1 :rb_might: to friendly units this turn.' The second sentence is the card: 703 makes a Buff worth +1, and this makes each one worth +2 for the turn."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Peak Guardian is mono-Order and Stand United mono-Calm, so 103.1.b.1 needs a Calm/Order legend: SFD-197 / SFD-247 Emperor of the Sands, VEN-147 / VEN-193 Eye of Twilight, or UNL-195 / UNL-233 Green Father. Neither card is Signature, so 103.2.d.2 imposes nothing."
+        ],
+        "notable": [
+          "THE ARITHMETIC, WITH 702.3 DOING THE WORK. 703: 'Each Buff individually contributes +1 Might to a Unit.' 702.3 allows a unit only one Buff at a time, so on any ordinary board 'buffs give an additional +1 Might to friendly units' resolves to exactly +1 per BUFFED BODY. Peak Guardian landing on a garrison of six unbuffed bodies therefore turns Stand United into +6 Might spread across six bodies for the turn.",
+          "THE COST IS PAID A TURN EARLY AND THEN IT IS FREE. 811.1.b: 'you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there ... Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' So one rainbow Power on an earlier turn buys a 0-Energy [Reaction] spell, and 813.1.c.1 lets it be played 'during Closed States on any player's turn' — inside the opponent's attack, after 464.2.c.3 has designated the attackers and their summed Might is countable.",
+          "ONLY THE FIRST SENTENCE IS CONFINED. 811.1.d.2 restricts the targets of 'a hidden spell or a play effect of a hidden permanent' to the battlefield it was hidden at, so 'Buff a friendly unit' has to pick there. The amplifier sentence chooses nothing and names no location — it reads 'friendly units', full stop — so it is unconfined, and this is where the whole value sits.",
+          "THE HARD CAP IS THE BOARD, NOT THE DECK. 811.1.b allows one facedown per battlefield and 485.4 puts two battlefields on a Duel table, so however many copies of Stand United the deck runs (103.2.b allows three), at most two can be hidden at once and only one at each battlefield you control. `OGN-278 Bandle Tree` ('You may hide an additional card here') is the pool's only lift on that limit.",
+          "IT IS A MODIFIER AND NOT A BUFF. The +1 it grants is a continuous modifier applied at 477.3.e.1 that 317.2.c expires at the end-of-turn Cleanup; 702.3's one-per-unit cap never touches it, and it stacks with the Buff counter it is reading rather than replacing it.",
+          "AND IT DIES WITH THE COUNTER. 702.2.b removes a Buff counter when something SPENDS it, so a deck that also runs Wallop, Call to Glory or Monastery of Hirana is subtracting from Stand United's count every time it cashes one in. Pick a side.",
+          "IT DOES NOT SCORE. Nothing in Calm or Order converts Might into points; what +6 across a garrison buys is surviving a damage step (465.2.c reads current Might on both sides) or clearing one."
+        ]
+      },
+      "steps": [
+        "Establish Control of a battlefield. On an earlier turn, in your own Open State, pay one rainbow Power to hide Stand United face down there (811.1.b).",
+        "On a later turn, play Peak Guardian to that battlefield. His trigger buffs him and then every other friendly unit there that does not already carry a buff (702.3.a).",
+        "Wait. The opponent attacks: 190.3.a.1 applies Contested, 323.9 stages the Combat, 464.2.c.3 designates the attackers and 465.2.c will have each side assign damage equal to their summed Might.",
+        "In the Closed State the attack opens, where 312.2.c hands out priority, play Stand United from face down for 0 Energy — 811.1.b's tail has given it [Reaction] and 813.1.c.1 admits it on the opponent's turn.",
+        "Its first sentence buffs one more friendly unit, chosen at that battlefield (811.1.d.2). Its second sentence gives every buffed friendly unit an additional +1 Might for the turn.",
+        "465.2.c.3 and 465.2.c.4 now read the higher Might: each body needs one more damage to kill and 465.2.c.4 forbids overpaying, so an attacking pack that had exactly lethal on the garrison no longer does.",
+        "317.2.c expires the modifier at the end-of-turn Cleanup; the Buff counters stay, so a second hidden copy on the other battlefield does the same thing next turn."
+      ],
+      "terminatesIn": "engine only — +1 Might per buffed friendly body for one turn, for 0 Energy at Reaction speed, at most twice over (one facedown per battlefield, two battlefields in a Duel); nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "811.1.b. \"you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "811.1.d.2. \"If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "703. \"Each Buff individually contributes +1 Might to a Unit.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the buff-supply synergy rules; OGN-053 Stand United was in ZERO entries and is the pool's only buff AMPLIFIER. Card text verbatim from data/corpus_flat.txt. The reading is kept deliberately narrow: because 702.3 allows one Buff per unit, 'buffs give an additional +1' and 'each buffed body gets +1' are the same number on every legal board, so no rules reading has to be filed to price the card. Trap check: 811.1.d.2 is quoted and applied to the FIRST sentence only, with the reason the second escapes it; the one-facedown-per-battlefield half of 811.1.b is quoted as the real cap, which is the board and not 103.2.b; the +1 is stated as a continuous modifier (477.3.e.1, expiring at 317.2.c) and explicitly not a 702 counter; 702.2.b is named as the anti-synergy with the deck's own buff spenders."
     }
   ]
 }
