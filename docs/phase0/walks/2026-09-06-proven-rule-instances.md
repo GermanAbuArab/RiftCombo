@@ -978,18 +978,107 @@ table and all fifteen of them are correct as NAME lists.
 
 ---
 
-## 23. Closing note on the vein
+## 23. Wrap
 
-Nine batches, **43 entries**, and the refusals in §§3, 5, 7, 9, 12, 14, 17, 20 and inside the entries
-themselves. The eight richest proven rules are opened and their strong material is spent; what remains
-in `svellsongur-copy`'s ~90 unwalked partners and in the price-list rules
-(`get-excited-expensive-discard`, `curator-of-the-sands-printed-cost`,
-`lady-of-luminosity-expensive-spells`, whose predicate is `[\s\S]`) is variation on shapes now
-catalogued rather than new mechanism.
+Nine batches, **43 entries**, all merged into `data/combos.json` (catalogue at 340 when this section
+was written). Every one carries `status: "verified"`: card text grepped verbatim from
+`data/corpus_flat.txt`, every rules citation opened in
+`data/Riftbound-Core-Rules-2026-07-16.txt` and quoted, arithmetic checked against the entry's own
+`uses` before authoring, and Domain Identity named as a legend.
 
-Two rules of thumb this walk produced that apply to any future multiplier hunt:
-1. **Check whether the effect has a per-execution cap at all.** *Any number*, *all*, *pay any amount*
-   — a multiplier on those is worth zero. Four instances found (§7.2, §12.1).
-2. **Read every sentence of the card you are copying, not the one you are copying it for.** It cut
-   both ways: a static that stacks (`svellsongur-rumble-scrapper-mechs`, +8 Might) and a drawback that
-   stacks (`svellsongur-corrupt-enforcer-trash-fill`, a forced 8-card draw).
+### 23.1 The 43, by batch
+
+| batch | rule(s) mined | entries |
+|---|---|---|
+| 1 | `heimerdinger-inventor-exhaust-copy`, `grand-plaza-unit-tokens`, `blue-sentinel-hold`, `red-brambleback-conquer` | `heimerdinger-ultrasoft-poro-plaza` (ALT_WIN) · `vanguard-captain-manufactor-plaza` (ALT_WIN) · `shen-kinkou-sentinel-hold` · `cull-brambleback-gold` · `rumble-scrapper-sentinel-mechs` |
+| 2 | `svellsongur-copy`, `karthus-deathknell-double`, `renata-industrialist-tokens` | `shen-kinkou-svellsongur-hold` (**BURST**, 9) · `svellsongur-treasure-hunter-gold` · `svellsongur-eminent-benefactor-gold` · `ferrous-forerunner-karthus-mech-plaza` (ALT_WIN) · `bottled-constellation-token-points` |
+| 3 | `svellsongur-copy`, `leblanc-temporary` | `svellsongur-rumble-scrapper-mechs` · `svellsongur-yasuo-remorseful-sweep` · `svellsongur-trevor-leblanc-plaza` (ALT_WIN) · `sprite-mother-burst-leblanc-plaza` (ALT_WIN) · `sprite-queen-leblanc-permanent-army` |
+| 4 | `svellsongur-copy`, `ivern-friend-to-all-four-tags`, `shadow-temple-trash-fuel` | `ivern-svellsongur-four-tags-hold` (**BURST**, 11) · `shadow-temple-sentinel-burn` · `svellsongur-faefolk-mass-evacuation` · `svellsongur-apprentice-smith-gear-dig` · `svellsongur-traveling-merchant-discard` |
+| 5 | `svellsongur-copy`, `fiora-buff-ready`, `moonlight-affliction-might-gate` | `svellsongur-fae-porter-relay` · `svellsongur-ribbon-dancer-fiora-mass-ready` · `moonlight-affliction-wind-and-ghosts-banish` · `moonlight-affliction-tricksy-tentacles-evacuation` · `svellsongur-qiyana-victorious-modal` |
+| 6 | `fiora-buff-ready`, `black-market-broker-hidden-family`, `ava-achiever-hidden-discount` | `peak-guardian-fiora-mass-ready` · `arena-bar-fiora-untap` · `black-market-broker-ember-monk-hidden` · `svellsongur-ava-achiever-hidden-flood` · `overt-operation-fiora-double-untap` |
+| 7 | `svellsongur-copy`, `radiant-dawn-stun-buff`, `teemo-strategist-lures-the-attacker` | `svellsongur-kato-the-arm-keyword-spread` · `svellsongur-imposing-challenger-unstage` · `radiant-dawn-leona-fiora-stun-ready` · `svellsongur-teemo-strategist-defend-burst` · `svellsongur-corrupt-enforcer-trash-fill` |
+| 8 | `renata-industrialist-tokens`, `dark-child-off-turn-reactions` | `arise-renata-all-ready` · `flurry-of-feathers-renata-instant-wall` · `chemtech-cask-renata-off-turn-power` · `dark-child-abandon-guaranteed-counter` |
+| 9 | `skyfall-hold-conquer-bridge`, `blade-of-ruined-king-deathknell-ondemand`, `marai-spire-repeat-discount` | `skyfall-cull-hold-gold` · `blade-kogmaw-karthus-wipe` · `marai-spire-temptation-evacuation` · `shen-skyfall-brambleback-conquer` |
+
+**Classes, measured from the merged file rather than counted by hand: 5 ALT_WIN, 2 BURST, 36 ENGINE.**
+An interim report of this walk said "4 ALT_WIN … 37 ENGINE"; that was a miscount and the merged file is
+the authority — `svellsongur-trevor-leblanc-plaza` is the fifth ALT_WIN.
+
+Three Shen rows exist on purpose and the difference between them is stated in each:
+`shen-kinkou-sentinel-hold` (body multiplier, pinned at K = 1 by 383.2.a.1, 3 a turn),
+`shen-kinkou-svellsongur-hold` (gear multiplier, unconstrained, 9 in one Hold behind a Shield 8), and
+`shen-skyfall-brambleback-conquer` (one Brambleback is both multiplier and condition, 3 on the
+Conquer and 2 a turn after).
+
+### 23.2 Refusal index
+
+A refusal is a deliverable: it stops the next session re-deriving it. Nine sections, plus the ones
+written inside entries where they belong to a specific line.
+
+| § | refusal |
+|---|---|
+| 3.1 | Every *"you may exhaust me to…"* Hold/Conquer legend is un-doublable — 383.3.b + 383.3.b.1 + 312.2.c |
+| 3.2 | A doubled *"ready X"* is a no-op unless spent between the two RESOLUTIONS (340.4), not the finalizations |
+| 3.3 | A doubled `[Buff]` on a fixed target is a no-op — 702.3 / 702.3.a |
+| 3.4 | The whole `[Hunt]` half of two rules: XP has no point sink |
+| 3.5, 5.4, 12.4, 17.2 | Domain Identity (103.1.b) kills a partner that reads perfectly |
+| 5.1, 5.2 | Heimerdinger copies the ability, not the sentence beside it, and *"this"* does not re-read |
+| 7.2, 12.1 | **No per-execution cap → a multiplier is worth zero.** Ancient Henge, Hextech Anomaly, Azir Sovereign, Warwick Hunter |
+| 7.4 | Sprite Queen without LeBlanc is a steady state of one, not an army |
+| 9.2, 17.1, 20.1 | The card-set check: a strict subset or superset of an existing entry is not a new entry |
+| 9.3 | Sixteen draws is a loss — 431.1.a |
+| 14.1 | **A Hold-triggered ready is a no-op by phase order** — 315.1 Awaken precedes 315.2 |
+| 14.2 | Hand is not face down — 811.1.c.1 |
+| 14.3 | Lee Sin, Ascetic is printed Might 5, so 709 can never fire for Fiora |
+| 14.4 | Pirate's Haven × Fiora reads as a loop and closes twice over |
+| 20.2 | "Enters ready" adds nothing to a unit token made on the opponent's turn |
+| 21.1 | A conquer payoff gated on assigned damage does not survive the conversion to a Hold |
+
+### 23.3 Two claims of my own that were wrong
+
+Both were caught by measuring instead of asserting, and both are recorded rather than quietly fixed:
+§11 (the pool's largest printed unit is **12** Might, not 10 — the margin on Moonlight Affliction is
+2, not 7, and a +4 Might Bonus beats it) and §22 (Heart of the Tempest is one **name** under **two**
+base codes). The second produced the legend census in §22, which every `prerequisites.easy` line in
+this walk was then rechecked against.
+
+### 23.4 The vein did NOT stay closed, and the reason is worth recording
+
+An earlier draft of this section said the material was spent. Measured at the end instead of assumed:
+
+- **`data/synergies.json` held 66 proven rules when this walk opened and holds 102 now** — the
+  synergies session kept mining while this one walked, so the denominator grew by 36 underneath it.
+- **27 proven rules have ≥ 20 reviewed partners and ≤ 1 catalogued entry carrying their anchor.**
+  The richest are `pit-crew-gear-ready` (OGN-091, 106 partners), `yordle-explorer-power-two`
+  (SFD-100, 82), `get-excited-expensive-discard` (OGN-008, 67), `curator-of-the-sands-printed-cost`
+  (VEN-145, 54), the four four-tag rules (`friendship`, `starhound`, `undying-loyalty`, `daisy`, 50–51
+  each), `magma-wurm-mass-ready` (OGN-011, 50), `soul-shepherd-token-buff` (UNL-077, 50),
+  `gemcraft-seer-vision-generalization` (OGN-100, 50), `shadow-temple-trash-fuel` (VEN-165, 49),
+  `weaponmaster-equip-discount` (SFD-008, 39), `rell-magnetic-free-equip-attach` (SFD-024, 39),
+  `jax-unrelenting-attach-draw` (SFD-119, 39).
+
+What IS spent is the eight rules this walk actually opened. The correct closing statement is that
+this walk exhausted its own eight, not the vein.
+
+### 23.5 Handoff — the two-card measurement
+
+The next task is small two-card combos. Measured from the merged file so the next session starts from
+a number rather than an impression:
+
+- **147 of the catalogue's 340 entries use exactly two distinct cards** (43%). The distribution is
+  1 card: 19 · **2 cards: 147** · 3: 106 · 4: 46 · 5: 14 · 6: 5 · 8: 2 · 11: 1.
+- **31 of this walk's 43 are two-card entries**, so the small-pair shape is already the dominant
+  output of a partner-walk and not a separate discipline: pick an anchor whose mechanism is walked,
+  read its partner list, price the partner's own numbers.
+
+Two method notes that transfer directly:
+1. **`/tmp/rc-walks/cardset.mjs`** checks a candidate by `uses[].card` sorted-and-joined against the
+   live file and reports exact matches **and subsets/supersets**. Ids do not collide when card sets
+   do, and it caught three would-be duplicates here (§9.2, §17.1, §20.1) that an id check would have
+   missed.
+2. Two rules of thumb from the multiplier work that apply to any pair hunt:
+   **check whether the effect has a per-execution cap at all** (*any number*, *all*, *pay any amount*
+   — a multiplier on those is worth zero, four instances found), and **read every sentence of the card
+   you are copying, not the one you are copying it for** — it cut both ways, a static that stacks
+   (`svellsongur-rumble-scrapper-mechs`, +8 Might) and a drawback that stacks
+   (`svellsongur-corrupt-enforcer-trash-fill`, a forced 8-card draw).
