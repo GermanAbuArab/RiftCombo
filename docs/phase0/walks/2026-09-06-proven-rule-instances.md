@@ -525,3 +525,114 @@ Mighty, which Fiora readies. But Grandmaster at Arms is a **Calm/Body legend** a
 colourless `SFD-208 Forge of the Fluft` (*"friendly legends have '[exhaust]: Attach an Equipment you
 control to a unit you control'"*) is the only way to give an Order legend that ability, and it costs
 the battlefield slot (485.4.a).
+
+---
+
+# Batch 5
+
+## 10. Entries authored
+
+### 10.1 `svellsongur-fae-porter-relay` — ENGINE, the Calm/Chaos answer to the exhausted-token walk
+Rule mined: `svellsongur-copy`. Partner `SFD-125 Fae Porter`.
+
+#48 measured that *"exactly ONE card in the pool relocates tokens in bulk — `SFD-177 Azir, Sovereign`"*,
+and Azir needs an enemy garrison to attack (807.1.d, 383.4.e). Fae Porter needs only a **move**, moves
+**any** unit you control rather than only tokens, and eight instances relocate eight of them. It moves
+**exhausted** bodies, because 420.3.a puts the exhaust cost only on the Standard Move — which is what
+`SFD-171 Renata Glasc, Industrialist` normally solves, and she is mono-Order and illegal here
+(103.1.b.1).
+
+**The cap is the Power, not the instances**, and it is in the front of the entry: each instance is
+*"you may pay 1 Chaos Power"*, so eight is eight Chaos Power against #44's measured free floor of 2 a
+turn.
+
+### 10.2 `svellsongur-ribbon-dancer-fiora-mass-ready` — ENGINE, mass untap
+Rules mined: `svellsongur-copy` × `fiora-buff-ready` (98 partners, 4 entries) — the file's two richest
+rules meeting on one card, `SFD-038 Ribbon Dancer`.
+
+709's worked example *is* this card's effect: *"A Unit with Might 4 that gets +1 becomes Mighty."*
+Eight instances, each choosing its own friendly unit, so up to eight bodies cross the line and Fiora
+readies each for 1 Order Power.
+
+Honoured rather than glossed, because `fiora-buff-ready`'s own `why` says it: the ceiling is **how
+many 4-Might bodies you control**, not eight. And the +1 is a continuous modifier, not a 702 buff — so
+it stacks on one body, and it feeds no "spend a buff" cost.
+
+### 10.3 `moonlight-affliction-wind-and-ghosts-banish` — ENGINE, permanent removal
+Rule mined: `moonlight-affliction-might-gate` (16 partners, 2 entries; #97 recorded 22 Might gates in
+the pool with 5 catalogued).
+
+`VEN-106 Wind and Ghosts`' two halves are not equivalent — below the gate it **banishes**, above it
+merely bounces — and **108.6.c** means nothing in the pool returns a card from Banishment. So the
+Affliction converts a tempo card into the only permanent answer in the lens.
+
+Ordering needs no reading: **813.1.b** gives `[Reaction]` every permission of `[Action]`, so the
+Affliction is simply resolved first on your own Main Phase.
+
+### 10.4 `moonlight-affliction-tricksy-tentacles-evacuation` — ENGINE, a bloodless Conquer
+Rule mined: `moonlight-affliction-might-gate`. Partner `UNL-054 Tricksy Tentacles`.
+
+The gate is a **sum** (*"a total Might of 8 or less"*), so one Affliction is worth the biggest body's
+whole Might: 143.2.b makes the negative read as 0 in the total. And **143.2.b.1** is why a second copy
+on the *same* body adds nothing to the sum — aim each at a different defender.
+
+Two earlier corrections applied rather than re-derived: #102's (evacuating is not yet a Conquer —
+**323.6** only *strips*, nobody gains, so a body of yours still has to walk in) and #146's
+(**170.11.c** requires *both* unoccupied and uncontrolled).
+
+### 10.5 `svellsongur-qiyana-victorious-modal` — ENGINE, and the mode is the safety valve
+Rule mined: `svellsongur-copy`. Partner `OGN-155 Qiyana, Victorious`.
+
+Third member of a deliberate set with 8.4 and 8.5 — same multiplier, same price, three different
+relationships to Burn Out. Qiyana's *"draw 1 **or** channel 1 rune exhausted"* is resolved eight
+separate times, so you take exactly as many cards as the deck can spare (431.1.a) and channel the
+rest. The channel half is a **refill, not a ramp** (430.1, 430.3, 161.2.b — #153's correction), and
+430.2.a's default *"runes are channeled readied"* is overridden by the card.
+
+---
+
+## 11. A claim of my own that was wrong, caught before shipping
+
+The first draft of 10.3 and 10.4 said Moonlight Affliction's `-10` clears the pool **because the pool
+tops out at 10 Might** (`VEN-091 Corrupted Dragon`). Measured against `data/cards.json` instead of
+asserted: the largest printed unit Might is **12** — `UNL-059 Master Yi, Unstoppable` and
+`UNL-147` / `UNL-238 Baron Nashor`.
+
+The conclusion survives (12 − 10 = 2, and a *"3 Might or less"* gate is satisfied by anything up to
+13), but the **margin is 2, not 7**, and that changes what beats the line: 137.3 applies a Might Bonus
+to the bearer, the largest in the pool is **+4** (`SFD-178 Blade of the Ruined King`), and
+**477.3.e.2.a** applies increases before decreases — so a 12-Might body wearing the Blade stands at 16
+and one Affliction leaves 6, over the gate. Both entries now say so, and 10.4's ceiling is stated as a
+formula (*8 plus the afflicted body's Might*) instead of a number.
+
+Recorded here rather than quietly fixed: the same shape of error — a ceiling asserted from memory
+instead of grepped — is what CLAUDE.md records twice under "count base codes, not grep rows".
+
+---
+
+## 12. Refusals, batch 5
+
+### 12.1 `OGN-159 Warwick, Hunter` under `svellsongur-copy` — the third "no per-execution cap" case
+*"When I attack, kill all damaged enemy units here."* One instance kills **all** of them; the other
+seven find none. Same verdict as `SFD-117 Ancient Henge`, `SFD-083 Hextech Anomaly` and
+`SFD-177 Azir, Sovereign`'s *"any number"*, and by now it is a rule of thumb worth stating before any
+doubler is priced: **check whether the effect has a per-execution cap at all.**
+
+### 12.2 `UNL-127 Mister Root` under the three move rules — 16 XP buys nothing
+*"When I move to a battlefield, gain 2 XP"* × 8 = 16 XP a move. #116 and #146 already measured that
+the 11 Spend-N-XP costs and 20 `[Level N]` clauses are a bounded step function topping at `[Level 16]`
+and that **nothing in the pool converts XP into points**. An XP faucet is never an engine on its own,
+however large.
+
+### 12.3 `OGN-056 Adaptatron` under `svellsongur-copy` — a doubled buff on a fixed target, again
+*"When I conquer, you may kill a gear. If you do, buff me."* 702.3 / 702.3.a make every execution after
+the first a no-op on the buff half, and the cost half is killing your own gear. Same shape as §3.3.
+
+### 12.4 `OGN-131 Dune Drake` × the excess-damage payoffs — Domain Identity
+*"When I attack, give me +2 Might this turn if there is a ready enemy unit here"* × 8 = a 21-Might
+attacker, which is enormous excess damage under R28 = A (465.2.c.4 forbids assigning more than the
+minimum needed to kill). But the only card in the pool that turns excess damage into a **point** is
+`OGN-034 Tryndamere, Barbarian`, which is **Fury**, and Dune Drake is Body with Svellsongur in Calm:
+103.1.b is a subset test against the legend's two domains and no legend covers all three. The Body
+payoff `SFD-120 Sivir, Ambitious` is legal and deals the excess as damage, which is removal, not
+points. Left as a lead on the removal side.
