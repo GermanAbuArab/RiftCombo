@@ -41778,7 +41778,7 @@
       "produces": [],
       "prerequisites": {
         "easy": [
-          "Heedless Resurrection is mono-Chaos and Legion Rearguard mono-Fury, so 103.1.b.1 needs a Fury/Chaos legend: OGS-017 Dark Child - Starter, SFD-185 / SFD-242 Glorious Executioner, UNL-185 / UNL-228 Bloodharbor Ripper, or VEN-143 / VEN-191 Master of Shadows. Neither card is Signature."
+          "Heedless Resurrection is mono-Chaos and Legion Rearguard mono-Fury, so 103.1.b.1 needs a Fury/Chaos legend: OGS-017 Dark Child - Starter, OGN-251 / OGN-301 Loose Cannon, SFD-185 / SFD-242 Glorious Executioner, UNL-185 / UNL-228 Bloodharbor Ripper, or VEN-143 / VEN-191 Master of Shadows. Neither card is Signature."
         ],
         "notable": [
           "THE WORKED EXAMPLE, VERBATIM, BECAUSE IT IS THE ENTRY. 356.1.b.3: 'Further additional costs and/or cost increases applied in subsequent steps may raise the card's Total Cost above zero. Example: Legion Rearguard is a Fury unit that costs 2 Energy and 0 Power and has Accelerate. A player plays Legion Rearguard and is instructed to ignore its costs, but chooses to pay the Accelerate cost. They ignore Legion Rearguard's Base Cost of 2 Energy, but the optional additional cost of 1 Energy and 1 Fury Power is added to its Total Cost and must be paid.' So the reanimated body costs 1 Energy and 1 Fury Power and beats 143.4: it enters READY and can pay 144.2's exhaust the same turn.",
@@ -42362,7 +42362,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143).",
           "A battlefield you control with no facedown card already on it, hidden a turn earlier (811.1.b), and the Pairofant standing there."
         ],
         "notable": [
@@ -42436,7 +42436,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143).",
           "Two battlefields on the board, which 485.4 gives a Duel by default, and the Harpoon Squad standing at the one you control."
         ],
         "notable": [
@@ -42502,7 +42502,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155). OGS-017 is restricted in 2v2.",
+          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
           "A DECKBUILDING CONSTRAINT, NOT A BOARD ONE: the list must run no gear of its own, including anything that mints a gear TOKEN."
         ],
         "notable": [
@@ -42757,7 +42757,7 @@
     },
     {
       "id": "nilah-targonian-visionary-move-xp-ladder",
-      "name": "The only XP faucet in the pool that needs no battlefield - Nilah is paid for moving, and [Ganking] is what she moves with",
+      "name": "The only repeatable per-turn movement XP faucet in mono-Body that needs no battlefield (UNL-127 Mister Root is the pool’s other movement faucet, in Chaos, and pays 2) - Nilah is paid for moving, and [Ganking] is what she moves with",
       "class": "ENGINE",
       "status": "verified",
       "uses": [
@@ -43058,7 +43058,7 @@
           "And it must be a battlefield you CONTROL with the unit standing there. 190.1 makes a battlefield you provide start uncontrolled, and 190.6.d ignores every instruction of an uncontrolled battlefield's abilities that refers to 'you'."
         ],
         "notable": [
-          "TWO DISJUNCTIONS THAT LINE UP, AND BOTH WERE SWEPT. `grep -in \"\\[Empower\\]\" data/corpus_flat.txt | grep -i \" or \"` returns fourteen rows; thirteen match on reminder text, and exactly ONE prints a disjunctive COST - VEN-074's ':rb_energy_1: or :rb_rune_body: (Pay either cost)'. The same grep is what surfaces VEN-163 Risen Altar, whose rebate is the mirror image: ':rb_energy_1: or :rb_rune_rainbow: less'. Whichever half of the Marauder's cost you elect, the Altar's matching half cancels it, and 356.6 ('Energy and Power costs can't be reduced below 0') holds it at zero rather than owing anything back.",
+          "TWO DISJUNCTIONS THAT LINE UP, AND BOTH WERE SWEPT. `grep -in \"\\[Empower\\]\" data/corpus_flat.txt | grep -i \" or \"` returns thirteen rows; twelve match on reminder text, and exactly ONE prints a disjunctive COST - VEN-074's ':rb_energy_1: or :rb_rune_body: (Pay either cost)'. The same grep is what surfaces VEN-163 Risen Altar, whose rebate is the mirror image: ':rb_energy_1: or :rb_rune_rainbow: less'. Whichever half of the Marauder's cost you elect, the Altar's matching half cancels it, and 356.6 ('Energy and Power costs can't be reduced below 0') holds it at zero rather than owing anything back.",
           "WHY THE DISJUNCTION IS WORTH MORE THAN THE ONE ENERGY. 167 empties every player's Rune Pool at the start of each Main Phase, so what you actually have late in a turn is whichever of Energy or Power you did not spend. A cost that accepts either is payable on a turn a fixed cost is not - which is the whole practical difference on a 1-Energy ability, and it is the reason to notice the wording at all.",
           "WHAT THE EMPOWER IS FOR, HONESTLY. The Marauder's own [Empowered] clause is '+1 :rb_might:' and that is not worth a card. What the free payment buys is the EVENT: 441.2.a, 'When a Game Object becomes Empowered as a result of the Empower game action, that is an event that can similarly be referenced by game effects and abilities.' Every 'when you empower something' payoff in the pool reads that event, and this is the cheapest way to produce one - free, at the Altar.",
           "AND THE CEILING IS ALREADY ON RECORD, SO THIS IS A RATE AND NOT A MOTOR. 441.1.b: 'An Empowered Game Object can not be Empowered', with 441.1.c ('nothing additional happens') and 441.2 making the state permanent. So each Marauder is ONE event and three copies are three; the catalogued matriarch-of-war-empower-ready refused exactly this card as an engine for that reason - 'both are one Empower per copy, six in a whole game, which is not a motor' - and that verdict stands. Making the payment free changes the price of the events, never their number.",
@@ -43603,7 +43603,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143).",
           "A deck with NO XP sink in it at all — see the second notable; this is a deckbuilding constraint, not a board one."
         ],
         "notable": [
@@ -43670,7 +43670,7 @@
           "Mono-Fury, so any of the sixteen legend names carrying Fury holds it (103.1.b.1): Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143)."
         ],
         "notable": [
-          "SWEPT, WITH THE MEMBERS NAMED. Exactly three cards in the pool read your point total: `OGN-028 Draven, Showboat` ('My Might is increased by your points'), `OGN-112 Kai'Sa, Evolutionary` (points as a cost CEILING for a spell replayed from the trash) and `SFD-055 Needlessly Large Yordle` (a discount for each point SCORED FROM HOLDING THIS TURN). Draven is the only one whose body size is your score, and the only one that reads the running total rather than a turn's worth.",
+          "SWEPT, WITH THE MEMBERS NAMED. Five cards in the pool read your point total, three of them arithmetically and two as a proximity check (SFD-201 Chem-Baroness and VEN-091 Corrupted Dragon read whether your score is within 3 of the Victory Score): `OGN-028 Draven, Showboat` ('My Might is increased by your points'), `OGN-112 Kai'Sa, Evolutionary` (points as a cost CEILING for a spell replayed from the trash) and `SFD-055 Needlessly Large Yordle` (a discount for each point SCORED FROM HOLDING THIS TURN). Draven is the only one whose body size is your score, and the only one that reads the running total rather than a turn's worth.",
           "AND HE COUNTS ALL THREE KINDS OF POINT. 194.1 lists them separately — 194.1.a a Hold, 194.1.b a Conquer, 194.1.c 'Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more points' — so a card-text 'score 1 point' grows him exactly as a Conquer does. This is R2 = A read from the useful side: 469 and 470 never see the third kind, and neither does Draven's clause, which just reads the total.",
           "THE KINGPIN'S +3 IS A MODIFIER, NOT A BUFF, WHICH IS WHY THREE OF HIM STACK. 702.3: 'There can only be one Buff on a Unit at a time', and 703 fixes a Buff at exactly +1. 'Give a unit +3 :rb_might: this turn' places no counter, so 702.3 is silent and three Kingpins exhausting on the same body is +9 — the same distinction the catalogue draws for Lee Sin, Centered and Soul Shepherd.",
           "AND HE PAYS EVERY TURN FROM THE TURN HE LANDS. 'I enter ready' is 143.4.a's exception to 143.4 ('Units enter the Board exhausted'), so the exhaust is available immediately; 415.3.a ('A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn') hands it back each Awakening. It is a permanent faucet, not a one-shot.",
@@ -44726,7 +44726,7 @@
           "SO THE COST IS YOUR OWN BOARD, AND IT IS PAID IN THE DAMAGE STEP. 465.2.c: 'Starting with the Attacker, each player assigns an amount of damage equal to their summed Might among the other's Units.' A lone attacker's summed Might is one body's, against a whole garrison's; 465.2.c.3 then forces lethal onto one body at a time, so a lone raider kills at most one thing and eats everything. These cards pay +3 for a position that costs far more than 3 - which is why they belong in a deck built around a single large body, not spread across a curve.",
           "NEITHER BONUS IS A BUFF, WHICH MATTERS FOR STACKING. The Wielder's is a continuous 'While I'm...' modifier and the Mask's is '+1 :rb_might: this turn', so 702.3's one-buff-per-unit cap and 703's fixed +1 are silent and both apply on top of a real buff. On a lone Wielder the total is 2 + 2 + 1 = 5 Might, which crosses 709's Mighty threshold and switches on anything reading it.",
           "AND THE MASK PAYS FOR ANY LONE BODY, NOT ONLY THIS ONE. Its trigger says 'a friendly unit', so in a two-battlefield Duel (485.4) with one body at each, it fires twice a combat round - once for the attacker and once for the defender. It has no exhaust in its cost, so nothing caps it but the number of lone bodies.",
-          "THE FAMILY, NAMED. The pool's 'alone' cards are OGN-055 Wielder of Water, OGN-060 Mask of Foresight, SFD-036 Lonely Poro, OGS-019 Wuju Bladesman - Starter, UNL-117, UNL-124, UNL-143 and UNL-210 Forbidding Waste. The two walked here were both uncatalogued and are the two that PAY a lone body rather than reading someone else's.",
+          "THE FAMILY, NAMED. The pool's 'alone' cards are OGN-055 Wielder of Water, OGN-060 Mask of Foresight, SFD-036 Lonely Poro, OGS-019 Wuju Bladesman - Starter, UNL-117, UNL-124, UNL-143, UNL-156 Loyal Poro (the mirror of Lonely Poro: 'If I didn't die alone, draw 1') and UNL-210 Forbidding Waste - nine in all. The two walked here were both uncatalogued and are the two that PAY a lone body rather than reading someone else's.",
           "AND THE DESIGNATION IS STILL REQUIRED. 807.1.d ties 'attacking' to the Attacker designation and 323.9 stages a Combat only where opposing units are present, so neither bonus exists on a walk into an empty battlefield - the same trap the [Assault] family carries.",
           "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold."
         ]
@@ -45013,7 +45013,7 @@
           "IT IS UNIT DAMAGE, NOT SPELL DAMAGE, AND THAT DECIDES TWO THINGS AT ONCE. 417.6.b.3: 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it', with Challenge as its worked example. So `OGN-145 Unyielding Spirit` — the pool's only blanket 'prevent all spell and ability damage this turn' — leaves this working; and by the same paragraph a Bonus Damage static that reads 'your SPELLS AND ABILITIES deal 1 Bonus Damage' (Annie, Fiery; Ravenborn Tome) does NOT raise it. The card is immune to the fog and unimprovable by the pump, and both follow from one sentence.",
           "THE READY COMES FIRST, WHICH IS THE WHOLE TEMPO OF THE CARD. 415.1 makes readying an act on a Game Object already on the board, so a body that has already spent its exhaust this turn — attacking (144.2) or paying an activated cost — gets it back AND fires. The correct sequence is attack, then Last Breath, not the other way round.",
           "THE MIGHT IS READ AT EXECUTION. 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction', whose worked examples are exactly this shape (Yasuo, Remorseful resolving on 'his current Might of 5' after a Stupefy). So a pump added in response raises the shot, and a shrink lowers it — and if the chosen body leaves the board the referent returns null (359.3.f.2.a).",
-          "EIGHT IS THE CEILING IN THIS IDENTITY, and it is worth naming why: Beast Below at Might 8 is the largest body mono-Chaos prints, so this is an 8-damage [Action]-speed shot for 3 Energy + 2 Power on a turn the body has already attacked. It kills anything in the pool short of a buffed 9.",
+          "EIGHT IS THE CEILING IN THIS IDENTITY, and it is worth naming why: Beast Below at Might 8 is the the body chosen here for its cost, not the biggest mono-Chaos prints (UNL-147 Baron Nashor is Might 12 at E10 + 3 Power), so this is an 8-damage [Action]-speed shot for 3 Energy + 2 Power on a turn the body has already attacked. It kills anything in the pool short of a buffed 9.",
           "AND THE BEAST'S OWN ETB IS A DRAWBACK YOU MUST PLAN FOR: 'return ANOTHER friendly unit and an enemy unit to their owners' hands' is not optional. A bounce to hand is not a Recall (455 sends a Recall to the BASE), so your own body leaves the board entirely and has to be paid for again — play the Beast when the friendly you are giving back is one whose ETB you want to re-buy.",
           "THE LEGEND IS THE FOLLOW-UP, NOT DECORATION: 2 Energy and its own exhaust move a friendly unit to or from its base, which is how an 8-Might body that has just been readied gets out of a losing combat or into the next one. 381 confines it to your own turn in an Open State."
         ]
@@ -45134,7 +45134,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143).",
           "A battlefield you control with no facedown card already on it, if Pyke is deployed the cheap way (811.1.b)."
         ],
         "notable": [
@@ -45205,7 +45205,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143).",
           "A DECKBUILDING CONSTRAINT: no 'if you spent N' card in the list. See the last notable."
         ],
         "notable": [
@@ -45520,7 +45520,7 @@
         "notable": [
           "THE GOLD TOKEN IS A GEAR BY RULE, WHICH IS THE WHOLE ENTRY. 187.5: 'A Gold gear token is a domainless GEAR token with \"[Reaction][>] Kill this, [E]: [Add] [A].\"' And 185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified.' So every Gold on your board counts toward any 'control N or more gear' threshold, and a Conquer engine in Mind is also a gear engine at no extra cost.",
           "AND THE THRESHOLD IS READ ON EXECUTION. 359.3.f.2 - 'Information referenced in an instruction in this way will be checked on execution of the instruction' - so the Porobot counts the board as its play trigger resolves, and a Gold minted earlier the same turn counts. Hold the Porobot until the Conquer has happened.",
-          "THE OTHER CARDS THAT READ THE SAME COUNT, NAMED. Swept over the corpus for gear-count clauses: VEN-058 Patched Porobot (3 or more other gear, draw 1), SFD-072 Dropboarder (2 or more gear, ready me), VEN-064 Plaza Guardian (costs 1 Energy less for each gear you control) and VEN-076 Repair Specialist ([Assault] equal to the number of gear you control). A Gold engine turns on all four, and only the first two are in this domain pair.",
+          "THE OTHER CARDS THAT READ THE SAME COUNT, NAMED. Swept over the corpus for gear-count clauses: VEN-058 Patched Porobot (3 or more other gear, draw 1), SFD-072 Dropboarder (2 or more gear, ready me), VEN-064 Plaza Guardian (costs 1 Energy less for each gear you control) and VEN-076 Repair Specialist ([Assault] equal to the number of gear you control). A Gold engine turns on all four, and the first three are in this domain pair - VEN-064 Plaza Guardian is mono-Mind as well - and only VEN-076 needs a different identity.",
           "THE GOLD ITSELF IS NOT FREE MANA, AND THE REASON IS THE WORD 'EXHAUSTED'. Both sources print 'play a Gold gear token EXHAUSTED', and 187.5's ability costs the token's own exhaust - so a Gold made this way cannot pay for anything until your next Awakening readies it (415.3.a). The one card in the pool that overrides that is SFD-171 Renata Glasc, Industrialist ('Your tokens enter ready', ruled R25 = A), which is mono-Order and therefore needs a Mind/Order legend; without her, treat the Gold as a gear COUNT that becomes a Power next turn, not as ramp now.",
           "THE CONQUER IS THE COST, AND IT IS CAPPED. 469.1 defines a Conquer on a battlefield 'not yet Scored this turn', 470 caps Scoring at once per battlefield per turn and 485.4 puts two on a Duel table - so at most two Golds a turn from Poros however many you run. Three Poros on one battlefield produce ONE Gold between them per Conquer, since the trigger is on each Poro but only one Conquer happens there.",
           "AND THE PORO IS ALSO THE CHEAPEST BODY THAT WANTS TO CONQUER. 2 Energy and 2 Might, so it is the body you send at an empty or lightly held battlefield - which 344.2 takes with a Showdown and no combat at all, no Attacker designation and no damage.",
@@ -46084,7 +46084,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155). OGS-017 is restricted in 2v2.",
+          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
           "A battlefield the opponent controls with a garrison of exactly one — that is the board this line answers, and it does nothing against two."
         ],
         "notable": [
@@ -46148,7 +46148,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155). OGS-017 is restricted in 2v2.",
+          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
           "The Ring on the board before Bingwen is played — [Weaponmaster] equips 'one of your Equipment', so it must already be yours."
         ],
         "notable": [
@@ -46212,7 +46212,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2 — and note that VEN-143 Master of Shadows is himself a discard outlet, so the mirror of this package sits in your own identity."
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). Note that VEN-143 Master of Shadows is himself a discard outlet, so the mirror of this package sits in your own identity."
         ],
         "notable": [
           "THE REPLACEMENT ERASES THE DEATHKNELL, AND 808.1.d.1 SAYS SO IN THE SAME BREATH AS THE RECALL CASE: 'If the Permanent with the effect is not sent to the Trash, for example because its \"killed\" event was replaced with a recall, the triggered ability will be removed from the chain.' Smite's 'banish it instead' is that replacement — the body never reaches the Trash, so its [Deathknell] never resolves, and it is not there afterwards for [Flow] (829.1.b needs the card in the trash), for a reanimator, or for any 'from your trash' clause.",
@@ -46855,7 +46855,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155). OGS-017 is restricted in 2v2.",
+          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
           "A unit already in your trash for the Attendant's ETB to fetch — combat losses supply this without a card."
         ],
         "notable": [
@@ -46919,7 +46919,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143).",
           "Two battlefields, which 485.4 gives a Duel by default — the whole line is Vox conquering one and the Warmonger taking the other in the same turn."
         ],
         "notable": [
@@ -46984,7 +46984,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2, and VEN-143 Master of Shadows is himself a discard outlet, so the theme is native to the identity.",
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). VEN-143 Master of Shadows is himself a discard outlet, so the theme is native to the identity.",
           "A UNIT in hand to discard — Morbid Return only fetches units, so discarding a spell to the Poro is a real loss."
         ],
         "notable": [
@@ -47113,7 +47113,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143).",
           "An OPEN battlefield for the Scout — 170.11.c requires BOTH conditions, unoccupied and uncontrolled, so an evacuated-but-still-controlled battlefield is not one."
         ],
         "notable": [
@@ -47681,7 +47681,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143).",
           "A DECKBUILDING CONSTRAINT: no cost reduction in the list. A discount lowers what you SPENT, which is the number Sivir reads."
         ],
         "notable": [
@@ -47745,7 +47745,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155). OGS-017 is restricted in 2v2.",
+          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
           "A Main Deck with cards left in it — every Burn is a mill (431.1.b) and the deck is the clock."
         ],
         "notable": [
@@ -47810,7 +47810,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2."
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143)."
         ],
         "notable": [
           "THE BOUNCE IS ALSO A TOOL FOR YOUR OWN EQUIPMENT, AND THIS IS THE HALF WORTH KNOWING. 718.2 makes an attached card's printed Rules Text Inactive 'while in this state', and 721.2 says Inactive abilities 'cannot be activated' — so an attached Equipment can never pay its own [Equip] again, and the catalogue's standing rule is that the only relocations are ATTACH effects. `SFD-135 Factory Recall` is the other door: return it to your hand, the card is no longer attached, its printed Rules Text is Active again, and replaying it lets you pay the [Equip] for a NEW carrier. One Energy, at [Action] speed.",
@@ -47872,7 +47872,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2."
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143)."
         ],
         "notable": [
           "[DEFLECT] IS A TAX AND A SWEEP DOES NOT PAY IT. 809.1.c prices Deflect as extra Power 'for each time they CHOOSE' the unit, but 355.10.d exempts an object 'programmatically selected based on its characteristics rather than chosen by the spell or ability's controller' — with 'Kill all units at a battlefield' as its own worked example. Firestorm's 'all enemy units at a battlefield' is exactly that shape, so it kills a [Deflect] body without paying a rainbow, and 054.1's absolute 'can't be chosen' clauses never engage either.",
@@ -47935,7 +47935,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155). OGS-017 is restricted in 2v2.",
+          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
           "Two units of YOUR OWN in the trash when the spell resolves — see the first notable."
         ],
         "notable": [
@@ -48859,7 +48859,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2."
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143)."
         ],
         "notable": [
           "BOTH ARE BOUGHT ONCE AND KEPT, WHICH IS WHAT MAKES THEM A PACKAGE RATHER THAN A COMBO. 441.1.b: 'An Empowered Game Object can not be Empowered'; 441.1.c: 'If a Game Object is instructed to be Empowered when it is already Empowered, nothing additional happens'; 441.2 makes Empowered 'a state for Game Objects on the board'. So each body pays once and is upgraded for the rest of the game — there is no engine here and the entry does not claim one.",
@@ -48985,7 +48985,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155). OGS-017 is restricted in 2v2.",
+          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
           "AN XP FAUCET, and the identity has exactly one: `UNL-129 Vicious Snapjaws` ('When another friendly unit dies, gain 1 XP'). Megatusk's cost is a SPEND, so see the last notable before putting it in a [Level] list.",
           "An opponent playing ORDER units. The spell is a domain hoser and is dead letter against the other five domains."
         ],
@@ -49052,7 +49052,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2."
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143)."
         ],
         "notable": [
           "THE TWO HALVES LIVE IN DIFFERENT WINDOWS, AND THAT IS THE WHOLE PAIR. Gem Jammer's grant is a play trigger, so it happens on your own turn in an Open State; Flash carries [Reaction], and 813.1.c.1 admits a [Reaction] card 'during Closed States on any player's turn'. Compare `UNL-126 Megatusk`, whose mass [Ganking] is an ACTIVATED ability and therefore locked to your turn by 381 ('All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State'). Outward movement is a your-turn thing; retreat is not.",
