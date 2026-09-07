@@ -177,3 +177,133 @@ running on every draft that touches an Equipment: a Signature Equipment reads li
 - **[Weaponmaster] used to place a carrier-dependent Equipment on a body other than itself.** Refused
   by the keyword's own wording (*"to me"*), which 725.3 does not widen — it only makes the Inactive
   [Equip] referenceable.
+
+## 5. Batch 2 — five entries (session rc-walk-fc, successor; 2026-09-07)
+
+Staged to `/tmp/rc-walks/rc-walk-fam1.json` after the manager confirmed batch 1 merged at `39d3c25`.
+`validateCombos` clean, `legendcheck-fc.ts` PASS, `audit-fc.ts` clean over 2,173 rule references.
+
+### 5.1 `noxian-emissary-matriarch-of-war-chained-dependent-keywords` — VEN-128 + VEN-153
+
+**727.1.b.3** was the row the batch-1 handoff pointed at and it is the paragraph the whole
+`[Empowered][>][>>][Deathknell][>]` family stands on: *"If an ability has multiple Dependent Keywords,
+all of them must have their Condition met in order for the ability to be active."* Riot's worked
+example is a unit reading `[Level 11][>>][Legion][>] When you conquer, gain 1 point` — 11 XP **and**
+another card finalized that turn. 727.1.b keeps the text on the card until then, and 727.1.b.1 says it
+is present *"for the sake of reference or evaluation"*.
+
+**The counted set was wrong in the batch-1 document and is corrected here.** A grep for the chain
+marker `[>>]` over `data/corpus_flat.txt` returns **three** rows, not two (measured 2026-09-07):
+
+| row | chain | governed by |
+|---|---|---|
+| `VEN-078 Baccai Witherclaw` | `[Empowered][>][>>][Deathknell][>]` | 727.1.b.3 |
+| `VEN-128 Noxian Emissary` | `[Empowered][>][>>][Deathknell][>]` | 727.1.b.3 |
+| `UNL-049 Honeyfruit` | `[Level 6][>] [>>][Reaction][>] :rb_exhaust:: [Add] …` | **727.1.c.3**, not 727.1.b.3 |
+
+Only the first two chain two **Dependent** keywords. **813.1: *"Reaction is a Permissive keyword."***
+So Honeyfruit hangs a Permissive keyword off a Dependent one and 727.1.b.3's *"all of them"* never
+engages; the paragraph that governs it is 727.1.c.3 — *"Activated Abilities that become Active from
+Dependent Keywords can be activated at their associated timing after that ability has been granted"*.
+
+The partner is the legend, because the Emissary's Empower payment is a free ride for
+`VEN-153 Matriarch of War` (*"When you empower something else, empower me"*), whose own payoff opens
+*"Disempower me"* and so re-arms her for the next one. 415.3.a caps her at one activation a turn
+whatever you empower.
+
+### 5.2 `rengar-trophy-hunter-poppy-ambush-verb-attack` — UNL-120 + UNL-178
+
+**822.1.d** — *"Ambush can also appear as a verb on a card. In such a case, the verb is taken to mean
+'play with the permissions of the Ambush keyword.'"* — was cited by nothing even though its worked
+example quotes `UNL-120 Rengar, Trophy Hunter` **by name**.
+
+**The reading this entry adds: the verb widens the DESTINATION and never the SPEED.** 822.1.b is two
+clauses joined by *"and"* — *"I may be played to a battlefield where you control Units"* and *"I have
+[Reaction] as long as I'm being played to a battlefield where you control Units."* Rengar's own text
+lifts the first at an enemy-only battlefield; the **second carries its own condition**, unmet there.
+So his signature play is a **Main Phase** play. `UNL-166 Stalking Wolf` loses the Reaction half for the
+same reason, which this project had explained from card text alone — the rule generalises it.
+
+Counted set: fourteen cards print `[Ambush]`, **exactly two use it as a verb** — UNL-120 and UNL-166.
+822.1.d's *second* worked example (a card restricting opponents' Ambush) has **no card in the pool**.
+
+Rengar is the pool's third card that attacks without moving (190.3.a.1 + 464.2.c.1), beside
+`SFD-093 Dauntless Vanguard` and `OGN-161 Deadbloom Predator`, and the only one that reaches a
+battlefield where you control nothing. Once he is there, 822.1.b's ordinary condition is satisfied and
+the whole Ambush package can follow at Reaction speed — Poppy's `[Tank]` (815.1.b, 815.1.c.2) then
+makes Rengar an invalid damage assignment until she has taken lethal five.
+
+### 5.3 `the-list-mel-defiant-soul-named-tag-banish-gate` — UNL-138 + VEN-110
+
+**763 / 763.1 were uncited, and the closed list is exactly the pool.** Measured 2026-09-07 against
+`data/cards.json`: **763.1 names 127 tags and the pool prints 127, and the two sets are identical in
+both directions.** So the rule never binds `UNL-138 The List`; only foresight does, because 752.2
+freezes an *"as you play this"* choice. Transcription caveat for the next reader: the rules text wraps
+the line mid-name and the extracted text reads `Miss, Fortune`; read as two tags it produces a false
+mismatch.
+
+**Naming a tag is not naming a card, and that is why it reaches tokens.** 762.2 forbids naming a
+token's NAME; 763 asks only that the tag exist *"on cards or tokens"*, and 187.3 / 187.4 / 187.7 hand
+Sand Soldier, Mech and Bird tokens their tags by rule.
+
+**761.1 / 761.2 / 762 / 762.1 — the card-naming half of the same block — have no user in the pool.**
+A grep for `name a card|name a unit|guess|name a tag` over `data/corpus_flat.txt` returns exactly one
+row, and it names a tag. Recorded so nobody spends a walk hunting the card.
+
+### 5.4 `allay-petricite-monument-deflect-value-sums` — UNL-041 + SFD-104
+
+809.1.b / .b.2 / **.b.3** (*"If X is omitted, it is presumed to be 1."*) with **809.2** (*"…the Deflect
+Value of all granted Deflect keywords is summed"*): two bare grants are **Deflect 2** on the garrison,
+and 809.1.c charges that **per choice**, in any Domain (809.1.c.1), as a Mandatory Additional Cost
+(809.1.d).
+
+**The granter census, with its members and its one printed opt-out** (measured 2026-09-07 over
+`data/corpus_flat.txt`): four cards grant `[Deflect]` to units other than themselves by a static —
+`OGN-063 Spirit's Refuge`, `SFD-071 Breakneck Mech`, `SFD-104 Petricite Monument`, `UNL-041 Allay,
+Eager Admirer`. Two more grant it by a different mechanism: `SFD-102 Hexdrinker` through attached
+`[Effect]` text, and `UNL-044 Flurry of Feathers` by minting Birds that carry it under 187.7. And
+**Spirit's Refuge alone prints a clause opting out of the summing** — *"Friendly buffed units have
+[Deflect] **if they didn't already**"* — so it can be a first source and never a second.
+
+The Monument's `[Temporary]` is a feature: 816.1.b kills it at **your** 315.2.a, so it taxes the whole
+of the opponent's turn and is gone before 315.2.b.2 asks what you hold.
+
+### 5.5 `bushwhack-ferrous-forerunner-mechs-enter-ready` — SFD-004 + SFD-021
+
+**811.2** — *"Abilities and instructions of hidden cards other than the choices listed above function
+as normal."* — was uncited, and **its worked example is `OGN-053 Stand United` by name**. Bushwhack has
+the same shape with no confined part at all: it chooses nothing (811.1.d.2 silent), it is a spell
+(811.1.d.1 silent), and the only thing it plays is a **gear** token, which 811.1.d.3 does not reach
+because that clause says *"unit"*. So *"Friendly units enter ready this turn"* reaches your base.
+
+811.6 is what makes it fast: *"A card that is Hidden gains Reaction while facedown or played from
+facedown…"* — a card printing **no** timing keyword becomes a 0-Energy Reaction. 811.3 keeps the
+ordinary 2 Energy + 1 Power line open.
+
+It is also the **widest** alteration of 143.4 in the pool for the turn it covers: `SFD-171 Renata
+Glasc, Industrialist` reaches only tokens and `OGN-011 Magma Wurm` only *other* friendly units, while
+this reaches everything you play that turn — the Forerunner's own base-born Mechs included, which is
+the walk-to-the-battlefield bottleneck answered for one turn.
+
+## 6. Findings that belong to OTHER entries, not to a new one
+
+- **`peak-guardian-stand-united-hidden-garrison-pump` should cite 811.2.** It reasons the hidden-card
+  split out of 811.1.d.2 by argument (*"the amplifier sentence chooses nothing and names no
+  location"*) — and **811.2 states it outright, with Stand United as its worked example, by name**.
+  A citation upgrade, deliberately not a second entry on the same card set.
+- **`audit-quotes-fc.ts` flags 7 of 340 quoted passages across the #173 set as not verbatim.** Six are
+  parenthetical paraphrases the auditor catches by quote shape. One looks substantive and is left for
+  a successor: `dune-surfer-armed-assailant-ignore-tank` quotes 766 correctly but appends an
+  **Example** — 766 carries exactly one example in the rules file, and it is about **Deflect**, not
+  Backline. Check before re-quoting.
+
+## 7. Refusals from batch 2, each with the scope of the refusal
+
+| refused | the paragraph that refuses it | scope |
+|---|---|---|
+| **761.1 / 761.2 / 762 / 762.1** (naming a CARD) | no card — the pool's only naming effect (`UNL-138 The List`) names a **tag**, so 763 applies and 761/762 never do | want of a card; reopen if a set prints a "name a card" effect |
+| **725.4** (a Dependent Ability that is a Triggered Ability whose condition coincides with the keyword's) | no card — all five `[Legion] — When you play me…` rows (`OGN-016`, `OGN-020`, `OGN-217`, `OGN-218`, `OGN-243`) need **another** card played first, so the keyword's condition is necessarily met strictly *before* the trigger | want of a card; `727.1.c.1.a` is its twin and dies the same way, since no `[Level N][>]` conquer/hold trigger exists |
+| **714.2** (negative Bonus Damage) | no card — all seven Bonus Damage sources (`OGN-032`, `OGN-296`, `OGS-001`, `SFD-191`, `UNL-020`, `VEN-010`, and Void Gate's location-worded row) are positive | want of a card |
+| **719.4 / 719.4.a**, Stunned half | no card — 423 defines Stunned on **Units** and an attached card is gear, so a Top-Most Card's stun has no attached-card status to be independent *of* | both halves now refused: batch 1 refused the Empowered half for want of an Equipment with `[Empowered]` in its Effect Text |
+| **822.1.d's second worked example** (a card restricting opponents' Ambush) | no card — fourteen `[Ambush]` rows, two verb uses, both **widening** | the restricting half only; the widening half is entry 5.2 |
+| **811.1.d.3 as a headline** | already cited in six places | as a headline rule; it is used as supporting text in 5.5 |
