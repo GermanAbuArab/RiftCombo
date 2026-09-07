@@ -250,3 +250,167 @@ will have lethal damage marked on it"*).
 
 `validateCombos` over the merged copy: **0 errors / 506 entries**. Legend-line checks over the staged entries:
 12 legend base codes, clean. No duplicate id, no duplicate sorted `uses[]` card set.
+
+---
+
+# Continuation — session `rc-walk-order`, issue [#188](https://github.com/GermanAbuArab/RiftCombo/issues/188)
+
+`rc-walk-fam2` was archived without a ledger after batch 2. This section continues the same document
+under a new issue, with the same scope the header states after the Order split: **Calm and Mind, plus
+any multi-domain card that mixes Order with Calm or Mind.** Order-only cards closed as #180
+(139/139), and mono-Body closed as #186 (137/137).
+
+## 5. The census, re-measured — and the method trap that produced a bogus zero
+
+`rc-walk-fam2`'s last reported figure was **99 walkable at catalogue 495**. Measured now, at
+catalogue 600:
+
+```
+lane deckable base codes: 308
+uncatalogued by BASE CODE: 85 | by NAME+TYPE: 79 | gap: 7.1%
+by domain: calm 48, mind 32, mind/order 2, calm/mind 2, calm/order 1
+by type:   unit 44, spell 28, gear 9, rune 4
+multi-base names (6): Calm Rune (OGN-042/VEN-R02), Mind Rune (OGN-089/VEN-R03),
+  Seal of Focus (OGN-081/SFD-226), Plundering Poro (SFD-069/UNL-222),
+  Riven Shattered (VEN-041/VEN-171), Nasus Guardian of Knowledge (VEN-063/VEN-178)
+```
+
+> **Count over `data/cards.json` deduped by BASE, never over `poolOf()`.** `src/builder.ts:136` maps
+> `basesByName().values()` to `bases[0]`, so it has *already* collapsed by name — a census built on
+> it reports the name+type figure in **both** columns and the gap reads as a spurious zero. That is
+> what produced one lane's bogus zero-gap number today, and the script for this lane carries the
+> reason in a comment.
+
+Seven lanes have now measured the gap: **19.2%** pool-wide, 15.7% Order, 15% (this lane before the
+split), **7.1%** here, 6.6%, 5.3% Body, 5.3%. No two the same.
+
+## 6. Batch 3 — five entries
+
+| id | class | cards | the names it clears |
+|---|---|---|---|
+| `siphoning-strike-nasus-guardian-rune-threshold` | ENGINE | VEN-146, VEN-063 | Siphoning Strike, Nasus Guardian of Knowledge |
+| `esteemed-hierophant-tomb-raider-seven-runes` | ENGINE | VEN-025, VEN-037 | Esteemed Hierophant, Tomb-Raider Barbara |
+| `ruined-rex-karthus-doubled-deathknell` | ENGINE | UNL-067, OGN-236 | Ruined Rex |
+| `clairvoyance-fate-weaver-predict-setup` | ENGINE | VEN-056, UNL-064 | Clairvoyance, Fate Weaver |
+| `turn-to-dust-attached-gear` | ENGINE | UNL-070 | Turn to Dust |
+
+## 7. The seven-rune clock is exactly three cards, and one of them was the card waiting for this lane
+
+`grep -in "7 or more runes" data/corpus_flat.txt` returns **three rows and nothing else**:
+
+| card | domain | what the threshold buys |
+|---|---|---|
+| `VEN-025 Esteemed Hierophant` | Calm | *"prevent all damage that enemy spells and abilities would deal to me"* |
+| `VEN-037 Tomb-Raider Barbara` | Calm | disempower an enemy gear if Empowered, otherwise kill it |
+| `VEN-146 Siphoning Strike` | Calm/Mind | *"deal 7 to it instead"* |
+
+All three were uncatalogued. `VEN-146` is the sixteenth uncatalogued dual-domain Signature spell and
+was in no lane until this issue.
+
+**An exhausted rune counts.** 164.2 gives a Basic Rune two abilities and only 164.2.a costs the
+rune's own exhaust; **164.2.b**'s cost is the **recycle**, so a rune tapped for Energy this turn is
+still a rune you control, and 415.3.a hands it back at your own Awakening. The threshold is a board
+count, never a mana count. 161.2.a caps the Rune Deck at *"Exactly 12 Rune cards"* and 315.3.b
+channels two free every Channel Phase, so seven arrives on its own around turn four.
+
+**Two sevens, two meanings — and this is the trap the shell creates.** `VEN-146` is a Signature card
+tagged **Nasus**, so 103.2.d.2 forces `VEN-145 / VEN-192 Curator of the Sands`, the only Nasus
+legend, whose own clause is *"When you play a unit, gear, or activated ability with **Energy cost**
+:rb_energy_7: or more…"*. That seven is a **cost**; the family's is a **count**. Neither card in the
+entry costs 7, and a **spell** would not trigger her even if it did — her clause names a unit, gear
+or activated ability. She is forced by the Signature rule and contributes nothing.
+
+**And the kill pays twice.** Siphoning Strike's rider is *"When it dies this turn, channel 1 rune
+exhausted"*; `VEN-063 Nasus, Guardian of Knowledge` reads *"Once each turn, when an enemy unit
+**here** dies, channel 1 rune exhausted."* Both trigger on the same death, so 383.3.d lets their
+controller order them and both resolve: one 4-Energy spell aimed at his battlefield is a kill plus
+**two** runes.
+
+## 8. "Prevent all damage" is not immunity, and the paragraph that says so is the scope of the clause
+
+`VEN-025 Esteemed Hierophant` reads *"prevent all damage that enemy **spells and abilities** would
+deal to me."* **437.4** makes the prevention total — *"Damage dealt to a Unit that has all of that
+damage Prevented is not considered to have been dealt to it at all"* — so no kill event is generated
+and a would-die replacement is not even involved. But **417.6.c** says *"Damage Dealt as a result of
+being assigned during Combat has the **Units** as its source"*, so combat damage is not spell or
+ability damage and goes straight through.
+
+**And neither is the Challenge family.** 417.6.b.3 — worked example Challenge — makes *"they deal
+damage equal to their Mights to each other"* damage dealt **by the chosen units**, not by the spell.
+Seven cards print it and six are Body; `carnivorous-snapvine-rampage-tank-bypass` (#186) walks the
+mechanism. A card that reads "prevent all spell and ability damage" is answered by the whole family.
+
+## 9. A Predict followed by a narrower look is the exception to a standing claim
+
+This project records that *"no deck-manipulation card in the pool turns a draw probability into a
+certainty"* — true of any **single** card, because 416.1 and 416.1.a recycle to the bottom and
+nothing tutors by name. It is **not** true of a `[Predict N]` followed by a look at M cards with
+M ≤ N:
+
+> **436.1.a.** *"When more than one card is Predicted, the Predicting player looks at that many cards
+> and Recycles any number of them before putting the rest back on top of their Main Deck **in any
+> order**."*
+
+`VEN-056 Clairvoyance` is `[Predict 5]` **and** `[Reaction]`, so the arrangement can be made on the
+opponent's turn and nothing shuffles before yours; `UNL-064 Fate Weaver` then looks at the top **4**,
+strictly inside that window, and its *"reveal a spell with Energy cost 4 or more and draw it"* is a
+certainty rather than a probability.
+
+Neither half can Burn Out on the look: 431.1.c covers looking and revealing, and **436.4.a** is
+explicit — *"The Player will not perform a Burn Out as a result of Predicting with too few cards in
+their deck."* The Weaver's *"Recycle the rest"* is a recycle and not a mill, so 431.1.b never fires.
+The only risk in the pair is Clairvoyance's own **Draw 2** (431.1.a) with an empty deck.
+
+Two acts that are easy to conflate: **436.1** defines Predicting as *"the act of **looking** at a
+single card"*, while **424.1** makes Revealing *"the act of presenting a card to all players from a
+zone that one or more players do not have access to the information of."* A Predict is private; the
+Weaver's find is public.
+
+## 10. The word "printed" in 434.1.e is what lets a granted keyword reach an attached Equipment
+
+`UNL-070 Turn to Dust` (*"Give a gear [Temporary]"*) is the only card in the pool scoped to a gear
+alone. The four cards that grant the keyword to something else, swept: `OGN-069 Last Stand` (Calm,
+a friendly unit), `OGN-180 Fading Memories` (Chaos, *"a unit at a battlefield or a gear"*),
+`UNL-070` (Mind, a gear) and `UNL-165 Shadow's Call` (Order, *"a friendly unit without
+[Temporary]"*). At 2 Energy and no Power it is the cheapest.
+
+Two paragraphs make it reach an **equipped** gear:
+
+> **718.5.b.** *"Attached cards still can be chosen or targeted by game effects while Attached."*
+> **434.1.e.** *"Attaching one or more cards will cause those cards' **printed** Rules Text to become
+> Inactive for as long as they remain Attached."* (repeated at 718.2)
+
+A **granted** keyword is not printed Rules Text, so nothing switches it off: 816.1 makes `[Temporary]`
+a Triggered Ability keyword the object now has, and 816.1.b kills it. **The word "printed" is the
+whole reason this answers an attached Trinity Force or Svellsongur** rather than only a standing gear.
+
+The price is the delay: **816.1.c** makes the Trigger Condition *"the controller of the permanent's
+Beginning Phase starting"* — **theirs**, so the gear works through the rest of your turn and all of
+theirs. It answers a standing engine, never a combat trick. **816.2** (*"Multiple instances of
+Temporary are redundant"*) caps the obvious misplay.
+
+## 11. Facts for CLAUDE.md from Calm/Mind batch 3
+
+1. **The "7 or more runes" family is exactly three cards** — `VEN-025 Esteemed Hierophant`,
+   `VEN-037 Tomb-Raider Barbara`, `VEN-146 Siphoning Strike` — and **an exhausted rune counts toward
+   it**, because 164.2.b's cost is the recycle and not the rune's exhaust. The clock is 315.3.b's two
+   per Channel Phase against 161.2.a's cap of twelve, so seven arrives around turn four unaided.
+2. **Two sevens that are not the same seven**: `VEN-145 Curator of the Sands` triggers on an
+   **Energy cost** of 7 or more *on a unit, gear or activated ability* — a **spell** never triggers
+   her, so `VEN-056 Clairvoyance` at E7 does not. She is forced onto every Siphoning Strike list by
+   103.2.d.2 and contributes nothing to it.
+3. **"Prevent all damage that enemy spells and abilities would deal to me" is not immunity**: 437.4
+   makes the prevention total, but 417.6.c makes combat damage come from the **units**, and 417.6.b.3
+   does the same for the whole Challenge family — both go straight through.
+4. **A `[Predict N]` followed by a look at M ≤ N cards turns a draw probability into a CERTAINTY**
+   (436.1.a, *"putting the rest back on top of their Main Deck in any order"*), which is the exception
+   to this project's standing claim about deck manipulation. 436.4.a is explicit that predicting with
+   too few cards never Burns Out.
+5. **434.1.e makes only the PRINTED Rules Text of an attached card Inactive**, so a granted keyword —
+   `[Temporary]` from `UNL-070 Turn to Dust`, for instance — still applies to an equipped Equipment,
+   which 718.5.b already made a legal choice.
+6. **The Karthus × damage-Deathknell shape exists in two domain pairs and they are not equivalent**:
+   `OGN-190 Kog'Maw, Caustic` is Chaos, so that line has exactly ONE legal legend name
+   (`Heart of the Tempest`) and its sweep hits your own units; `UNL-067 Ruined Rex` is Mind, so
+   Mind/Order gives four legend names and *"an ENEMY unit"* is one-sided. 715.2 pays a Bonus Damage
+   source **per Deal action**, so a doubled Deathknell is two actions rather than one bigger one.
