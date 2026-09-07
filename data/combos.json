@@ -47653,6 +47653,674 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 341-348 Showdowns). 341, 342 and 345 are cited by no entry and no synergy rule in this project; 343.1, 346.1, 347.1 and 347.2.b already are. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 143.4, 159.2.a.1, 159.2.b.1, 190.3.a.1, 206, 323.6, 323.9, 323.13, 343.1.a, 343.1.b, 345, 346.1, 347.1.b, 347.2.a, 347.2.b, 355.2.a, 366.2.a, 464.2.c.1, 464.2.c.3, 465.1, 466.3.a, 466.5, 466.5.d, 469.1.b, 470, 485.4. REPORT TO THE MANAGER: 345 settles who acts first in a combat showdown - the ATTACKER, because 464.2.c.1 makes the player who applied Contested the Attacker and 345 gives that player Focus - and no entry in the catalogue states it. Companion citation upgrade: 159.2.a.1 and 159.2.b.1 are the cleanest statements in the file of what [Action] and [Reaction] grant ('Grants all cases and rules of Action'), which the project sources to 806.1.b and 813.1.b. Distinct from void-burrower-play-from-deck, the only other entry using SFD-164. Trap check: the defender can still refill with a [Reaction] body under 355.2.a and the entry names Shen, Kinkou as the case; the Drummer is in uses[] because 323.6 would otherwise take the battlefield back; the discount on Drag Under is priced as not applying from hand; no unruled reading."
+    },
+    {
+      "id": "sivir-mercenary-decree-of-rage-two-rainbow",
+      "name": "Two rainbow spent is two cards, not one big one — and the cheapest second half is one of the pool's two uncounterable spells",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-143",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 P1 M4. '[Accelerate] (You may pay :rb_energy_1::rb_rune_chaos: as an additional cost to have me enter ready.) If you've spent at least :rb_rune_rainbow::rb_rune_rainbow: this turn, I have +2 :rb_might: and [Ganking].' In zero entries before this walk."
+        },
+        {
+          "card": "VEN-015",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury spell, E1 P1, [Action]. 'This can't be countered. Deal 4 to an enemy Calm (:rb_rune_calm:) unit.' The cheapest card in the identity that spends a Power. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "A DECKBUILDING CONSTRAINT: no cost reduction in the list. A discount lowers what you SPENT, which is the number Sivir reads."
+        ],
+        "notable": [
+          "HER CLAUSE READS THE RUNE POOL, NOT A PRINTED COST, WHICH IS THE WHOLE DIFFERENCE. 166.2, 203.1 and 356.4.b make 'if you've SPENT at least two rainbow this turn' a measurement of what actually left the Rune Pool — so two one-Power cards satisfy it and one two-Power card discounted to one does not. This is the half of the costs-versus-spent split that a builder gets wrong in the constructive direction: you do not need an expensive card, you need a SECOND card.",
+          "AND SIVIR'S OWN PLAY IS THE FIRST HALF. She costs 1 Chaos Power, so playing her on the turn you want the clause satisfied leaves you needing exactly one more Power out of the pool — `VEN-015 Decree of Rage` at 1 Energy + 1 Fury Power is the cheapest card in the identity that supplies it, and it does something on the way.",
+          "IT IS ONE OF EXACTLY TWO CARDS IN THE POOL THAT SAY 'CAN'T BE COUNTERED', SWEPT AND NAMED: `VEN-015 Decree of Rage` (Fury) and `VEN-069 Mel, Newly Awakened` (Mind). So the enabler cannot be denied — which matters, because a counter aimed at it would leave Sivir a plain 4-Might body for the turn.",
+          "THE DECREE IS NARROW AND THE ENTRY SAYS SO: 'Deal 4 to an enemy CALM unit'. Against a board with no Calm unit it has no legal target and 055 leaves you with nothing but the spend — which is still the point, but it is a spend of 1 Energy + 1 Power for a Might and a keyword rather than for removal. Build it as insurance, not as the plan.",
+          "WHAT THE CLAUSE BUYS IS A KEYWORD, NOT JUST MIGHT. [Ganking] is what 144.4.c.1 needs for a battlefield-to-battlefield Standard Move, so a satisfied Sivir can leave one battlefield for another in a single action; 810.1.c.3 keeps it honest — 'It does not give additional abilities or activations of Movement, only new options for the Standard Move' — and 810.2 makes a second grant redundant.",
+          "HER [ACCELERATE] IS DOMAIN-LOCKED TOO. 805.1.a.1: the Power portion must match one of the unit's own domains, so accelerating Sivir costs a CHAOS Power specifically — and that Power also counts toward her own two-rainbow threshold, which is the cheapest way to satisfy it on the turn she lands."
+        ]
+      },
+      "steps": [
+        "Play Sivir, Mercenary (4 Energy + 1 Chaos Power). That is one rainbow spent.",
+        "If you want her active the same turn, pay [Accelerate] as well: 1 Energy + 1 CHAOS Power (805.1.a.1). That is the second rainbow, and she enters ready.",
+        "Otherwise, play Decree of Rage (1 Energy + 1 Fury Power) for the second: it cannot be countered, and it deals 4 to an enemy Calm unit if there is one.",
+        "Her clause now reads true: +2 Might and [Ganking] for the rest of the turn.",
+        "Move her battlefield to battlefield (144.4.c.1) at Might 6."
+      ],
+      "terminatesIn": "engine — +2 Might and [Ganking] on any turn you spend two Power, which her own play plus one cheap card supplies; nothing here scores",
+      "netPerIteration": "a 6-Might body with battlefield-to-battlefield movement, for one extra Power over her printed cost",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "166.2 / 203.1 / 356.4.b (a \"spent\" threshold reads what actually left the Rune Pool). 206 (a \"costs N\" check reads the printed cost). 805.1.a: 'Accelerate is functionally short for \"As you play me, you may pay [1][C] as an additional cost. If you do, I enter ready.\"' 805.1.a.1: 'If the unit has one or more domains, the Power portion of the Accelerate cost can be paid only with a Power that matches one of the domains of the unit.' 144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 810.2: 'Multiple instances of Ganking are redundant.' 055: 'When executing card text, do as much as you can, ignoring impossible instructions.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. SFD-143 Sivir, Mercenary and VEN-015 Decree of Rage were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 055, 103.1.b.2, 144.4.c.1, 166.2, 203.1, 206, 356.4.b, 805.1.a, 805.1.a.1, 806.1.b, 810.1.c.3, 810.2 opened in the Core Rules file. The 'can't be countered' sweep was run over the whole corpus and returns exactly two rows, both named. Sivir was named in §1.2 and §15.4 of this walk as the card a DISCOUNT switches off; this entry is the constructive side of the same clause and repeats the constraint in its prerequisites."
+    },
+    {
+      "id": "twilight-step-shadow-order-disciple-move-burn",
+      "name": "A Might gate read at execution that the payoff's own trigger climbs out of, on a mover that pays no exhaust and needs no [Ganking]",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-105",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E2 P1. 'Move a unit with 3 :rb_might: or less. [Flow] :rb_energy_4::rb_rune_chaos:'. A bare 'a unit', so it reaches an enemy. In zero entries before this walk."
+        },
+        {
+          "card": "VEN-095",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E2 M2. 'When I move, you may [Burn 1] to give me +1 :rb_might: this turn. (To Burn 1, put the top card of your Main Deck into your trash.)' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155). OGS-017 is restricted in 2v2.",
+          "A Main Deck with cards left in it — every Burn is a mill (431.1.b) and the deck is the clock."
+        ],
+        "notable": [
+          "THE MOVE IS AN EFFECT MOVE, WHICH IS WHY IT COSTS NOTHING AND GOES ANYWHERE. 449: 'Spells, Abilities, or other effects may cause a Move to occur', and 420.2.b makes the Standard Move merely one thing that 'may ALSO cause Movement'. 420.3.a puts the exhaust on the Standard Move alone (144.2), and 144.4's base-to-battlefield restriction is written for it too — so Twilight Step moves an already-exhausted body, battlefield to battlefield, with no [Ganking].",
+          "THE GATE IS READ AT EXECUTION AND THE PAYOFF CLIMBS OUT OF IT. 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction.' The Disciple is Might 2, so the first Step is legal; his own trigger then puts him at 3, which is still 'or less'; a second Burn puts him at 4 and NO further Twilight Step can move him this turn. The engine has a printed stop at two uses per turn, and it is the payoff that closes it, not the spell.",
+          "'A UNIT' IS BARE, SO IT REACHES AN ENEMY, AND THE PRECEDENT IS A BANNED CARD. `OGN-168 Fight or Flight` prints the same unqualified 'a unit' in a move instruction and is banned in both formats — evidence that the wording is not read as friendly-only. So Twilight Step doubles as an evacuation of any enemy body at 3 Might or less, which 323.6 then turns into a lost battlefield for them if it was their last unit there.",
+          "THE BURN IS OPTIONAL AND IT IS A REAL MILL. 431.1.b puts '[Burn N]' and every 'put cards from your Main Deck' effect on the Burn Out side of the line, unlike looking and revealing (431.1.c) — so each +1 Might costs a card off the top and, past the last card, a point to the opponent (194.1.d). And 431.2.b is the perverse relief: a Burn Out 'Recycles their trash into their Main Deck', which hands back everything you milled and erases whatever trash payoff you were building.",
+          "SO IT IS A CONTROLLED SELF-MILL, NOT A COST YOU MUST PAY: 'you may [Burn 1]' — decline it whenever the deck matters more than the Might, which is most turns in a list that is not built to use the trash.",
+          "[FLOW] IS SIX PLAYS A GAME, NOT AN ENGINE. 829.1.b: 'You may play this from your trash for its flow cost. Then banish it.' Three copies plus one replay each, and 108.6.c makes each replay final — and the Disciple's own Burn is one of the things that puts a Twilight Step in the trash to be replayed from."
+        ]
+      },
+      "steps": [
+        "Play Shadow Order Disciple (2 Energy).",
+        "Play Twilight Step (2 Energy + 1 Chaos Power) naming the Disciple — Might 2, inside the gate.",
+        "He moves for free: no exhaust (420.3.a), any battlefield including one a Standard Move could not reach (144.4).",
+        "His trigger offers a Burn: put the top card of your Main Deck into your trash for +1 Might this turn. He is now Might 3.",
+        "A second Twilight Step still finds him inside the gate at 3 (359.3.f.2). A second Burn puts him at 4 and closes it for the turn.",
+        "Later, replay a Twilight Step from the trash for its [Flow] cost of 4 Energy + 1 Chaos Power; 829.1.b banishes it."
+      ],
+      "terminatesIn": "engine — two free repositionings a turn and up to +2 Might on the Disciple, at one milled card each; six Twilight Steps a game across three copies and their [Flow] replays. Nothing here scores.",
+      "netPerIteration": "one free move of any unit at 3 Might or less, friendly or enemy, plus an optional card off your deck for +1 Might",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "449: 'Spells, Abilities, or other effects may cause a Move to occur.' 420.2.b: 'The Standard Move inherent to Units may also cause Movement.' 420.3.a: 'The Cost is Exhausting one or more Units.' 144.2: 'Exhausting the Unit is the Cost for this action.' 144.4: 'The Destinations where Units can Move to with their Standard Move are restricted.' 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction.' 431.1.b (milling past the deck Burns Out). 431.1.c: 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out.' 431.2.b: 'Recycles their trash into their Main Deck.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. VEN-105 Twilight Step and VEN-095 Shadow Order Disciple were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.b, 108.6.c, 144.2, 144.4, 194.1.d, 323.6, 359.3.f.2, 420.2.b, 420.3.a, 431.1.b, 431.1.c, 431.2.b, 449, 829.1.b opened in the Core Rules file. The second notable is the entry's own cap and is stated as such: the payoff's Burn raises it out of the spell's Might gate after two uses in a turn. No unruled reading."
+    },
+    {
+      "id": "factory-recall-brittle-steel-gear-both-ways",
+      "name": "718.2 makes an [Equip] Inactive only WHILE attached, so a bounce to hand is the legal way to move Equipment to a new carrier",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-135",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E1, [Action]. 'Return a gear to its owner's hand.' Either side's gear, at Showdown speed, for one Energy. In zero entries before this walk."
+        },
+        {
+          "card": "VEN-003",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury spell, E2 P1. 'Kill a gear. [Flow] :rb_energy_4::rb_rune_fury:'. The permanent half of the answer, six times a game. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2."
+        ],
+        "notable": [
+          "THE BOUNCE IS ALSO A TOOL FOR YOUR OWN EQUIPMENT, AND THIS IS THE HALF WORTH KNOWING. 718.2 makes an attached card's printed Rules Text Inactive 'while in this state', and 721.2 says Inactive abilities 'cannot be activated' — so an attached Equipment can never pay its own [Equip] again, and the catalogue's standing rule is that the only relocations are ATTACH effects. `SFD-135 Factory Recall` is the other door: return it to your hand, the card is no longer attached, its printed Rules Text is Active again, and replaying it lets you pay the [Equip] for a NEW carrier. One Energy, at [Action] speed.",
+          "AND ON A [QUICK-DRAW] EQUIPMENT IT COSTS NOTHING AT ALL. 819.1.d: 'Quick-Draw is functionally short for \"[Reaction]\" and \"When you play this, attach it to a Unit you control.\"' No [Equip] cost is ever determined, so bounce-and-replay moves such a gear to a new body for its play cost alone — `SFD-186 Spinning Axe` (Fury/Chaos, E2 P1, M+3) is the in-identity instance.",
+          "USED ON THEIR GEAR IT IS TEMPO AND USED ON YOURS IT IS RESCUE. At [Action] speed (806.1.b) it answers a `VEN-003 Brittle Steel` or an `OGN-179 Acceptable Losses` aimed at your own Equipment by removing the object before the kill resolves — and 434.1.f/434.4 are not needed, because a bounce is not an attach.",
+          "BRITTLE STEEL IS THE PERMANENT HALF AND ITS COUNT IS SIX. 829.1.b: 'You may play this from your trash for its flow cost. Then banish it', so three copies (103.2.b) plus one replay each is six gear kills a game, and 108.6.c makes each replay final. Killing sends the card to the trash rather than banishing it, so a reanimator on their side still reaches it — Factory Recall's bounce does not, since a hand is not a trash.",
+          "NEITHER IS PROGRAMMATIC, SO BOTH PAY THE TAX. 'Kill a gear' and 'Return a gear' both choose, so 809.1.c charges [Deflect] an extra Power per choice and 054.1 makes an absolute 'can't be chosen' clause stop them outright. Contrast `OGN-022 Thermo Beam`'s 'Kill all gear' and `OGN-179 Acceptable Losses`, which 355.10.d and 355.10.e keep off the tax entirely — a Fury/Chaos list has both kinds and should know which it is holding.",
+          "185.2.d IS WHY A GOLD TOKEN COUNTS AS A TARGET: 'Tokens have a type. They follow all rules for their type unless otherwise specified.' Killing an opponent's Gold with Brittle Steel is legal and is usually a waste of a card — the entry names it so it is a choice, not a surprise."
+        ]
+      },
+      "steps": [
+        "Against their Equipment: play Brittle Steel (2 Energy + 1 Fury Power) to kill it, and later replay it from the trash for its [Flow] cost of 4 Energy + 1 Fury Power.",
+        "Against a removal spell aimed at YOUR Equipment: play Factory Recall (1 Energy, [Action]) in response and return your own gear to hand.",
+        "To move an Equipment to a different carrier: Factory Recall it to hand — 718.2's Inactive state ends the moment it is no longer attached — then replay it and pay its [Equip] for the new body (818.1).",
+        "On a [Quick-Draw] Equipment, skip the [Equip] entirely: 819.1.d attaches it on the play, to a unit you choose."
+      ],
+      "terminatesIn": "engine — six gear kills a game from Brittle Steel and one bounce per Factory Recall, plus a legal route for your own Equipment to change carriers; nothing here scores",
+      "netPerIteration": "one enemy gear destroyed for 2 Energy + 1 Power, or one gear relocated / rescued for 1 Energy",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "718.2: 'While in this state, the card's printed Rules Text is Inactive.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 818.1: 'Equip is an Activated Ability keyword.' 818.1.b: 'Equip has a cost to activate and Attaches the card with Equip to a chosen Unit when the cost is paid.' 819.1.d: 'Quick-Draw is functionally short for \"[Reaction]\" and \"When you play this, attach it to a Unit you control.\"' 829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way.' 809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' 054.1 (a card that forbids beats a card that permits). 355.10.d: 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller.' 185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. SFD-135 Factory Recall and VEN-003 Brittle Steel were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 054.1, 103.1.b.2, 103.2.b, 108.6.c, 185.2.d, 355.10.d, 355.10.e, 718.2, 721.2, 806.1.b, 809.1.c, 818.1, 818.1.b, 819.1.d, 829.1.b opened in the Core Rules file. The first notable is a CONSEQUENCE of the catalogue's #170 correction (an already-attached Equipment can never pay its own [Equip] again) rather than a challenge to it: 718.2 scopes the Inactive state to WHILE ATTACHED, so removing the attachment restores the printed text, and a bounce to hand is therefore a legal — and cheap — way to change carriers. No unruled reading."
+    },
+    {
+      "id": "firestorm-walking-roost-deflect-is-a-tax",
+      "name": "A programmatic sweep never consults [Deflect], so the Bird the Roost hands the opponent is free to kill and their Deflect body is not free to touch",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-002",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury spell, E6 P1. 'Deal 3 to all enemy units at a battlefield.' Programmatic, so 355.10.d keeps it off the [Deflect] tax entirely. In zero entries before this walk."
+        },
+        {
+          "card": "UNL-130",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E5 M6. '[Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) When you play me, choose an opponent. They play a 1 :rb_might: Bird unit token with [Deflect].' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2."
+        ],
+        "notable": [
+          "[DEFLECT] IS A TAX AND A SWEEP DOES NOT PAY IT. 809.1.c prices Deflect as extra Power 'for each time they CHOOSE' the unit, but 355.10.d exempts an object 'programmatically selected based on its characteristics rather than chosen by the spell or ability's controller' — with 'Kill all units at a battlefield' as its own worked example. Firestorm's 'all enemy units at a battlefield' is exactly that shape, so it kills a [Deflect] body without paying a rainbow, and 054.1's absolute 'can't be chosen' clauses never engage either.",
+          "WHICH IS WHY THE ROOST'S DRAWBACK IS CHEAP IN THIS LIST AND EXPENSIVE IN OTHERS. The Bird it hands the opponent is 1 Might with [Deflect] (187.7: 'A 1 [M] Bird token is a domainless unit token with 1 Might, the Bird tag, and the Deflect keyword'). A deck whose removal CHOOSES pays a rainbow to answer it; a deck holding Firestorm deletes it as collateral for nothing. The drawback is not a fixed cost — it is a cost your own removal suite decides.",
+          "AND YOU DO NOT GET TO PLACE IT. 355.2.a: a play goes to 'the controller's Base or a Battlefield the controller controls' — THEIR choice — so the Bird cannot be manufactured onto a battlefield you want it at. Any line that counts on the Bird arriving somewhere specific, to feed an 'enemy units here' count or a Might scaler, is refused by this paragraph.",
+          "THE ROOST'S OWN [DEFLECT] IS THE HALF THAT PAYS. It is a 6-Might body for 5 Energy that taxes every CHOOSING removal spell they hold — and the asymmetry is the point of the pairing: their answer to it costs a Power, your answer to the Bird costs nothing.",
+          "THREE DAMAGE IS THE SIZE, AND IT IS AN HONEST SIZE. 143.2.a kills on marked damage equalling or exceeding Might, so Firestorm clears 1-, 2- and 3-Might bodies and merely marks anything bigger — and 466.1.a.1's combat cleanup ('Insert \"3c. Heal all Units.\"') wipes those marks, so a partial sweep buys nothing across a combat.",
+          "IT IS NOT AN [ACTION] OR A [REACTION]: 155 keeps Firestorm in your own Main Phase in an Open State, which means it cannot be used as a defensive answer to their attack. Six Energy and one Power is also most of a turn — price the board, not the trick."
+        ]
+      },
+      "steps": [
+        "Play Walking Roost (5 Energy). Its ETB makes the opponent play a 1-Might Bird token with [Deflect], to their base or a battlefield they control — their choice (355.2.a).",
+        "The Roost stands as a 6-Might [Deflect] body: every choosing removal spell they aim at it costs them an extra Power (809.1.c).",
+        "When their garrison is worth it, play Firestorm (6 Energy + 1 Fury Power) in your Main Phase: 3 damage to all enemy units at that battlefield.",
+        "355.10.d makes none of them chosen, so no [Deflect] is paid — the Bird and any other Deflect body die for free.",
+        "143.2.a resolves the kills; anything above 3 Might is only marked, and 466.1.a.1 will heal it at the next combat cleanup."
+      ],
+      "terminatesIn": "engine — a 6-Might body that taxes their removal, and a sweep that ignores theirs; three Firestorms a game (103.2.b). Nothing here scores.",
+      "netPerIteration": "every enemy unit of 3 Might or less at one battlefield killed for 6 Energy + 1 Power, with no [Deflect] tax paid",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "355.10.d: 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller. e.g., \"Kill all units at a battlefield\" targets a battlefield, but does not target any units.' 809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' 809.1.c.1: 'The Power used to pay this cost may always be of any Domain.' 187.7: 'A 1 [M] Bird token is a domainless unit token with 1 Might, the Bird tag, and the Deflect keyword.' 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might. 466.1.a.1: 'Insert \"3c. Heal all Units.\"' 054.1 (a card that forbids beats a card that permits). 155 (a spell without [Action] or [Reaction] is played during an Open State outside Showdowns on its controller's turn)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. OGS-002 Firestorm and UNL-130 Walking Roost were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 054.1, 103.1.b.2, 103.2.b, 143.2.a, 155, 187.7, 355.2.a, 355.10.d, 466.1.a.1, 809.1.c, 809.1.c.1 opened in the Core Rules file. The Roost was REFUSED in §10 of this walk as a way to MANUFACTURE an enemy body at a battlefield of your choosing (355.2.a leaves the placement to them); that refusal stands and is restated in the third notable. What this entry uses is the other half — that a programmatic sweeper makes the Bird's [Deflect], and the Bird itself, cost nothing to answer."
+    },
+    {
+      "id": "shadows-of-the-past-evershade-stalker-stock-the-trash",
+      "name": "\"Trashes\" is plural and \"their owners' hands\" is the catch — picking from theirs is a gift, so the value has to be stocked by you",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-103",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos spell, E3 P1. 'Return up to 2 units from trashes to their owners' hands.' In zero entries before this walk. NOTE: the corpus renders a dangling '[Effect] 1' on this card; that is a registered DATA anomaly (docs/data-anomalies.md), not card text, and nothing here leans on it."
+        },
+        {
+          "card": "UNL-123",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E3 M3. 'When you play me, discard 1, then draw 1.' The mandatory loot that puts a unit where the spell can reach it. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155). OGS-017 is restricted in 2v2.",
+          "Two units of YOUR OWN in the trash when the spell resolves — see the first notable."
+        ],
+        "notable": [
+          "THE PLURAL IS A TRAP, NOT A REACH. 'Return up to 2 units from TRASHES to THEIR OWNERS' hands' lets you pick out of the opponent's trash, and 056 with 056.2 then sends the card to its OWNER's hand — so choosing one of theirs is a gift, not theft. The plural buys nothing; the value has to be stocked by you, which is exactly what the Stalker is for.",
+          "AND IT RETURNS TO HAND, SO NOTHING IS CHEATED. The bodies still have to be paid for in full. This is card advantage at 3 Energy + 1 Power for two cards, not a cost reduction — the cost-cheating reanimators in this domain are `OGN-196 Soulgorger` and `OGN-198 The Harrowing`, and the catalogue already pairs those two.",
+          "THE LOOT IS MANDATORY AND THE ORDER MATTERS. 'Discard 1, THEN draw 1' — you lose the card before you see the replacement, so it is a genuine cost when the hand is good and a genuine gain when it is not. 055 is the floor: with an empty hand you discard nothing and still draw ('do as much as you can, ignoring impossible instructions'). And 422.1.b — '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed AFTER discarding has occurred' — means a discarded card with its own trigger fires from the trash, which 385.1 and 385.2 permit.",
+          "SO THE ENGINE IS: DISCARD SOMETHING EXPENSIVE, GET IT BACK. The Stalker is the cheapest way in mono-Chaos to put a specific big unit in the trash on purpose, and Shadows of the Past is the card that turns two such deliberate discards into two cards in hand — with a body left on the board either way.",
+          "431.2.b IS THE CLOCK AND IT RUNS THE WRONG WAY. A Burn Out 'Recycles their trash into their Main Deck', so an over-drawn deck randomises everything you carefully stocked back into the library. A list built on this pair has to respect 431.1.a: drawing past the deck costs a point (194.1.d) AND erases the currency.",
+          "THE PRINTED '[Effect] 1' IS A DATA ANOMALY, AND THE PROJECT REGISTERS RATHER THAN NORMALISES IT. Riot's gallery ships this spell with the Equipment-only `effect` field containing the single character '1', which the corpus renders as a dangling '[Effect] 1'. It is recorded in docs/data-anomalies.md and must never enter data/errata.json, since that overlay's find-string failure is the only mechanism keeping the card text honest. The entry claims nothing from it."
+        ]
+      },
+      "steps": [
+        "Play Evershade Stalker (3 Energy). Its ETB is mandatory: discard 1, then draw 1 — discard the expensive unit you intend to recover.",
+        "Play a second Stalker, or take a combat loss, so that two of your own units are in the trash.",
+        "Play Shadows of the Past (3 Energy + 1 Chaos Power): return up to 2 units from trashes to their owners' hands. Choose only your own — 056.2 sends anything of theirs to THEIR hand.",
+        "Replay the bodies at full cost; nothing here reduces it.",
+        "Watch the deck: 431.1.b and 431.1.a both end in a Burn Out, and 431.2.b then shuffles the trash back into the library."
+      ],
+      "terminatesIn": "engine — two cards recovered per Shadows of the Past, three a game (103.2.b), on top of a 3-Might body and a filtered card per Stalker; nothing here scores",
+      "netPerIteration": "two units out of your own trash and into your hand for 3 Energy + 1 Power, with the discard that stocked them costing a card and returning one",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "055: 'When executing card text, do as much as you can, ignoring impossible instructions.' 055.1: 'If all of a card's instructions are impossible, it is still played and resolved, but nothing happens.' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.' 385.1: 'Triggered Abilities on cards outside of the Board rely on the Information Level of the zone they are in.' 385.2: 'Triggered Abilities outside of the Board will self-describe their context.' 431.2.b: 'Recycles their trash into their Main Deck.' 056: cards are owned by the player who included them in their deck, and a card entering a zone goes to its owner's corresponding zone."
+        },
+        {
+          "title": "Registered data anomalies (docs/data-anomalies.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. VEN-103 Shadows of the Past and UNL-123 Evershade Stalker were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 055, 055.1, 056, 056.2, 103.1.b.1, 103.2.b, 194.1.d, 385.1, 385.2, 422.1.b, 431.1.a, 431.1.b, 431.2.b opened in the Core Rules file. VEN-103's dangling '[Effect] 1' is checked against docs/data-anomalies.md and named as a registered anomaly in both the use note and a notable; the entry does not rely on it and it must not be moved into data/errata.json. No unruled reading."
+    },
+    {
+      "id": "energy-conduit-honeyfruit-off-turn-energy",
+      "name": "Power is payable on the opponent's turn and Energy is not - these are the two permanents in the domain that fix it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-098",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind gear, E3. ':rb_exhaust:: [Reaction] - [Add] :rb_energy_1:.' Unconditional, and the only permanent in the domain that adds Energy at Reaction speed with no gate at all."
+        },
+        {
+          "card": "UNL-049",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm gear, E2. 'This enters exhausted. [Reaction][>] :rb_exhaust:: [Add] :rb_rune_rainbow:. [Level 6][>][>>][Reaction][>] :rb_exhaust:: [Add] :rb_energy_1::rb_rune_rainbow:.' A rainbow Power now and, past six XP, a Power AND an Energy from the same exhaust."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Mind: Honeyfruit is mono-Calm and Energy Conduit mono-Mind (103.1.b.3), so 103.1.b.2 needs a legend covering both - OGN-255/OGN-303 Nine-Tailed Fox, SFD-189/SFD-244 Fire Below the Mountain, UNL-189/UNL-230 Bashful Bloom or VEN-145/VEN-192 Curator of the Sands.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "For Honeyfruit's upgraded mode, 6 XP banked and never spent: 824.1.d makes the Dependent Ability Inactive the moment the counter drops below six."
+        ],
+        "notable": [
+          "THE PROBLEM THESE TWO CARDS EXIST TO SOLVE, IN THREE PARAGRAPHS. 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on THEIR turn', so a rune exhausted on your turn is dead for the whole of the opponent's. 164.2.a is the exhaust-for-Energy ability and 164.2.b is the recycle-for-Power one, which carries NO exhaust - so an already-tapped rune still pays Power on their turn and can never pay Energy. And 167 empties every Rune Pool at the start of each Main Phase and the end of each turn, so nothing is banked across the gap. The result is the position every reactive Calm/Mind deck is actually in: Power on the opponent's turn, and no Energy.",
+          "WHICH MATTERS BECAUSE THE COUNTER SUITE NEEDS BOTH. OGN-045 Defy is 1 Energy + 1 Power, VEN-039 Crumbling Sands 1 + 1, SFD-045 Not So Fast 2 + 1, OGN-064 Wind Wall 3 + 2, OGN-080 Mystic Reversal 4 + 3 - every one of them wants Energy on a turn that cannot produce it. These two gear are the fix, and they are permanents, so the Energy is available every one of the opponent's turns rather than once.",
+          "429.3 IS WHY IT ARRIVES IN TIME. 'Activated abilities that Add resources and have the Reaction tag can be activated at any time that spells or abilities require resources be paid', with Riot's own example spelling out that this includes the Pay Costs step after you have begun playing the spell. 429.2 resolves such an ability as soon as it is finalized and 429.2.a stops Priority and Focus passing while it does - which is the reminder text 'Abilities that add resources can't be reacted to' is pointing at.",
+          "THE SWEEP, WITH ITS MEMBERS NAMED. Cards that add ENERGY at [Reaction] speed, over the whole pool: OGN-098 Energy Conduit (Mind gear, unconditional), UNL-049 Honeyfruit's [Level 6] mode (Calm gear), UNL-093 Dragonsoul Sage (Body unit), OGS-014 Lux, Crownguard (Order unit, and only to play spells), OGN-253 Hand of Noxus (Fury/Order legend, [Legion]-gated), UNL-197 Scorn of the Moon (Mind/Chaos legend), VEN-141 Butcher of the Sands (Fury/Body legend, costs 2 rainbow) and SFD-083 Hextech Anomaly (Mind gear, the general Power-to-Energy converter, already catalogued in this lane as hextech-anomaly-wind-wall-off-turn-counter). In Calm/Mind the unconditional permanents are exactly these two.",
+          "HONEYFRUIT'S RIDER IS A CONTINUOUS DEPENDENT ABILITY, NOT A PLAY TRIGGER. 824.1.d makes it Active or Inactive as the counter moves, so a Honeyfruit played at 0 XP simply improves when you reach six - unlike a [Level] rider on a play trigger, which is spent for good if the copy is played early. Below six it is 1 rainbow Power; at six it is 1 Power AND 1 Energy off the same exhaust, which is the best rate in the domain.",
+          "AND BOTH ARE GEAR, WHICH PAYS TWICE. 143.4 exhausts only UNITS, so the Conduit is live the turn it lands (Honeyfruit prints its own 'This enters exhausted' and is not); and while they are out they count toward every 'control N or more gear' clause - SFD-072 Dropboarder, VEN-058 Patched Porobot, VEN-064 Plaza Guardian, VEN-076 Repair Specialist.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And one exhaust each per turn is the cap - 415.3.a readies them only in your own Awakening, so three of each (103.2.b) is the only way to hold more than two answers open."
+        ]
+      },
+      "steps": [
+        "Play Energy Conduit (3 Energy); 143.4 exhausts units and not gear, so it is live at once. Play Honeyfruit (2 Energy), which prints its own 'This enters exhausted' and comes online at your next Awakening (415.3.a).",
+        "Leave them ready at the end of your turn. 167 empties the Rune Pool, but an exhaust-cost ability is not a pool.",
+        "On the opponent's turn, when a spell you want to answer goes on the Chain, begin playing your counter.",
+        "In the Pay Costs step, activate the Conduit for 1 Energy and Honeyfruit for 1 rainbow Power (429.3), and 429.2.a keeps priority from passing while they resolve.",
+        "Past 6 XP, Honeyfruit's upgraded mode pays 1 Energy AND 1 rainbow off the same exhaust - enough for Defy or Crumbling Sands on its own.",
+        "Never spend the XP: 824.1.d switches the upgraded mode off the moment the counter drops below six."
+      ],
+      "netPerIteration": "1 Energy and 1 Power available on each of the opponent's turns, rising to 2 Energy and 1 Power past six XP",
+      "terminatesIn": "engine only - one exhaust per gear per turn (415.3.a readies them in your own Awakening), three of each by 103.2.b; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 8)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use OGN-098 Energy Conduit or UNL-049 Honeyfruit. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.2, 103.1.b.3, 103.2.b, 143.4, 164.2.a, 164.2.b, 167, 415.3.a, 429.2, 429.2.a, 429.3, 469, 824.1.d. UNIQUENESS SWEPT, NOT ASSUMED: every card in the pool that adds Energy at [Reaction] speed is named, and in Calm/Mind the unconditional permanents are exactly these two. Extends this lane's batch 2 entry hextech-anomaly-wind-wall-off-turn-counter, which solves the same problem with a Power-to-Energy converter rather than a flat source; both are named. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "find-your-center-leona-zealot-catch-up",
+      "name": "Five cards read 'within 3 points of the Victory Score' and they do not all read the same player's score",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-047",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E3. '[Action] ... If an opponent's score is within 3 points of the Victory Score, this costs :rb_energy_2: less. Draw 1 and channel 1 rune exhausted.' One Energy for a card and a rune once you are behind."
+        },
+        {
+          "card": "OGN-079",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm unit, E6 P1 M6. 'If an opponent's score is within 3 points of the Victory Score, I enter ready. Stunned enemy units here have -8 :rb_might:, to a minimum of 1 :rb_might:.' The same clause on a body, buying a turn of tempo exactly when a turn matters."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "An opponent at 5 or more points under 194.3's Victory Score of 8, or 8 or more under 489.3's 11 in 2v2. Both cards are blank before that."
+        ],
+        "notable": [
+          "THE CLAUSE IS A FAMILY OF FIVE AND IT SPLITS BY WHOSE SCORE. Swept: `grep -in \"within 3 points\"` returns OGN-047 Find Your Center and OGN-079 Leona, Zealot (both Calm, both reading an OPPONENT's score - a comeback clause), SFD-201 Chem-Baroness (reading YOURS - a closing clause), UNL-116 Poppy, Paragon and VEN-091 Corrupted Dragon. Same six words, opposite meanings; a deck that mixes them is running half its cards for the wrong half of the game.",
+          "AND THE THRESHOLD MOVES BETWEEN FORMATS. 194.3 puts the Victory Score at 8, so 'within 3' is an opponent at 5. 489.3 puts it at 11 in 2v2, so the same clause reads an opponent at 8 - three points later in a longer game. Every entry in this catalogue that quotes a point total states which format it means, and this pair is a case where the CONDITION itself moves.",
+          "WHAT THE DISCOUNT ACTUALLY BUYS. Find Your Center at 1 Energy for 'Draw 1 and channel 1 rune exhausted' is two resources for one, and the rune half is not dead late: 164.2.b's cost is the RECYCLE and not the rune's exhaust, so a rune channelled exhausted is 1 Power of its domain at [Reaction] speed immediately and 1 Energy from your next Awakening (415.3.a). 161.2.a caps the Rune Deck at exactly twelve and 430.3 channels 'as many as possible', so late in a game the channel half is the part that stops paying, not the draw.",
+          "AND WHAT 'I ENTER READY' IS WORTH ON A SIX-DROP. 143.4 makes units enter exhausted and 144.2 makes that exhaust the Standard Move's cost, so Leona lands and walks in the same turn - which on a 6 Might body is the difference between contesting a battlefield this turn and next. 415.1 is why it is worth exactly one turn: 'enters ready' is a play-time property and never hands an exhaust back later.",
+          "HER SECOND CLAUSE IS A DIFFERENT CARD AND IS ALREADY CATALOGUED. 'Stunned enemy units here have -8 :rb_might:, to a minimum of 1' is walked as leona-zealot-stun-might-collapse and leona-zealot-stun-lethal-spread; this entry is about the FIRST clause, which those two do not use, and the two axes want different decks - one wants stun effects, this one wants to be losing.",
+          "THE FLOOR ON THAT SECOND CLAUSE IS WORTH KNOWING EVEN HERE. 477.3.b snapshots a floored reduction at the size it is applied to, so -8 to a minimum of 1 aimed at a 3 Might body generates -2 and is remembered at -2 for the turn even if that body grows. It is an enormous number that behaves like a small one against small targets.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. These are cards that make losing cheaper, not cards that win."
+        ]
+      },
+      "steps": [
+        "Run both only in a deck that expects to be behind - both clauses are blank while the opponent is under 5 points (194.3), or under 8 in 2v2 (489.3).",
+        "Once an opponent is within 3 of the Victory Score, Find Your Center costs 1 Energy: draw 1 and channel 1 rune exhausted.",
+        "That rune is 1 Power of its domain at once (164.2.b, whose cost is the recycle) and 1 Energy from your next Awakening (415.3.a).",
+        "Leona, Zealot (6 Energy + 1 Power) now enters ready, so she can pay 144.2's exhaust and contest a battlefield the turn she lands.",
+        "Do not build the deck around her second clause here - the stun axis is a different pair of entries and a different shell."
+      ],
+      "netPerIteration": "a card and a rune for 1 Energy, and a 6 Might body that moves the turn it lands - both only while an opponent is within 3 of the Victory Score",
+      "terminatesIn": "engine only - three of each by 103.2.b, and both cards are blank until the opponent is at 5 points (194.3) or 8 in 2v2 (489.3); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 8)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use OGN-047 Find Your Center. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.4, 144.2, 161.2.a, 164.2.b, 194.3, 415.1, 415.3.a, 430.3, 469, 477.3.b, 489.3. UNIQUENESS SWEPT, NOT ASSUMED: the 'within 3 points' family is five cards, all named, and they do not all read the same player's score - two read an opponent's, one reads yours, which is the trap. Distinct from the two catalogued Leona entries, which use her SECOND clause; this one uses the first, and the two axes want different decks. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "card-sharp-dropboarder-gold-ready",
+      "name": "355.10.e is why a symmetric offer costs the opponent nothing to refuse - and taking it is what pays you",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-081",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind unit, E3 M3. 'When you play me, you and each opponent may play a Gold gear token exhausted. For each opponent who did, you play a Gold gear token exhausted.' You always get one; you get a second for every opponent who takes theirs."
+        },
+        {
+          "card": "SFD-072",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind unit, E4 M4. 'When you play me, if you control two or more gear, ready me.' Two gear is one Card Sharp's worth, and 415.1 makes the ready real because it marks a Game Object already on the board."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Mind, so 103.1.b.3 admits any legend with Mind in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Two gear on the board when the Dropboarder's trigger executes - 359.3.f.2 reads it on execution, so Golds minted earlier the same turn count."
+        ],
+        "notable": [
+          "THE OFFER IS NOT A TARGET, AND THAT IS WHY IT IS SAFE TO MAKE. 355.10.e: an object 'chosen in whole or in part by other players' is not a target - Riot's printed example is a spell reading 'Each player kills a unit they control', and it spells out that such an effect does not target. So Card Sharp charges no [Deflect] tax (809.1.c and 809.1.d only bite on choosing) and cannot be answered as a targeted effect. It also means the DECISION is theirs, which is the honest cost of the card.",
+          "AND THE DECISION IS NOT OBVIOUS FOR THEM, WHICH IS THE POINT. Their Gold is real mana - 187.5 gives it '[Reaction][>] Kill this, [E]: [Add] [A]' - but it arrives EXHAUSTED and 415.3.a readies it only in their own Awakening, so it is a Power on a later turn rather than now. Refusing keeps you to one Gold; accepting gives you two. In a Duel (485.1's two players) the range is exactly one or two Golds for 3 Energy and a 3 Might body.",
+          "TWO GOLDS IS EXACTLY THE DROPBOARDER'S THRESHOLD, AND 187.5 IS WHY THEY COUNT. 'A Gold gear token is a domainless GEAR token', and 185.2.d puts a token inside the rules for its type - so two Golds satisfy 'if you control two or more gear' with no real gear in the deck at all. 359.3.f.2 checks that on execution of the trigger, so the Card Sharp played earlier in the same turn already counts.",
+          "AND THE READY IS A REAL READY, NOT AN 'ENTERS READY'. 415.1 defines Readying as marking a non-spell Game Object ALREADY on the board, and 143.4 had just entered the Dropboarder exhausted - so the trigger undoes that and 144.2's Standard Move cost is available on the turn it lands. 415.1.c is the failure case: 'If a Unit is instructed to be Readied while it is already Ready, nothing additional happens', which is why this is worth nothing on a body that was already ready.",
+          "THE OTHER THREE GEAR-COUNT CARDS, NAMED. VEN-058 Patched Porobot (3 or more OTHER gear, draw 1), VEN-064 Plaza Guardian (1 Energy less per gear) and VEN-076 Repair Specialist ([Assault] equal to the number of gear) read the same board. SFD-076 Production Surge does NOT - its discount reads a MECH, which 187.4 supplies as a UNIT token. A Gold engine turns on three of the four.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And a Gold is never mana on the turn it appears unless SFD-171 Renata Glasc, Industrialist is out (R25 = A), which is mono-Order and needs a Mind/Order legend."
+        ]
+      },
+      "steps": [
+        "Play Card Sharp (3 Energy). You play a Gold gear token exhausted; each opponent may do the same, and for each who does you play another.",
+        "355.10.e makes their decision a choice by another player rather than a target, so nothing about it can be taxed or answered.",
+        "You now control one or two gear - 187.5 makes each Gold a gear and 185.2.d puts it inside the rules for its type.",
+        "Play Dropboarder (4 Energy). If two or more gear are out, its trigger readies it (415.1) and it can move the turn it lands.",
+        "Each Gold becomes 1 Power of any domain from your next Awakening (415.3.a).",
+        "The same two gear also feed VEN-058 Patched Porobot's draw at three, if the deck runs it."
+      ],
+      "netPerIteration": "one or two Gold gear tokens and a 3 Might body per Card Sharp, and a 4 Might body that moves on arrival per Dropboarder",
+      "terminatesIn": "engine only - three of each card by 103.2.b, one or two Golds each depending on a decision that is not yours; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 8)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use SFD-081 Card Sharp or SFD-072 Dropboarder. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.4, 144.2, 185.2.d, 187.4, 187.5, 355.10.e, 359.3.f.2, 415.1, 415.1.c, 415.3.a, 469, 485.1, 809.1.c, 809.1.d. Continues the Gold-is-a-gear lens enumerated in section 24, and repeats the SFD-076 exclusion because a reader counting 'gear-count cards' will otherwise include it. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "otterpus-ol-poro-early-game-concession",
+      "name": "Two cards that are blank early and pay for it - one replaces the opponent's first point, the other is a four-drop body at two",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-053",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E2 M2. 'If a player would score 1 point from conquering or holding during their first or second turn, they draw 1 instead.' A replacement, and symmetric - which is only a cost to a deck that meant to score early."
+        },
+        {
+          "card": "VEN-029",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm unit, E2 M4. 'I can't be played on your first, second, or third turns.' Four Might for two Energy, at a price a deck that is not racing pays anyway."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Calm + Mind: Ol' Poro is mono-Calm and Otterpus mono-Mind (103.1.b.3), so 103.1.b.2 needs a legend covering both - OGN-255/OGN-303 Nine-Tailed Fox, SFD-189/SFD-244 Fire Below the Mountain, UNL-189/UNL-230 Bashful Bloom or VEN-145/VEN-192 Curator of the Sands.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A deck that genuinely does not score on turns one and two. Otterpus is symmetric, and against a list that races it costs you as much as them."
+        ],
+        "notable": [
+          "THE OTTERPUS IS A REPLACEMENT, NOT A PROHIBITION, AND THE DIFFERENCE IS WHAT IT LEAVES BEHIND. 'If a player WOULD score 1 point ... they draw 1 INSTEAD' is the shape 367 covers, so the Score never happens - the point is not gained and then removed. 469 defines Scoring as a Conquer or a Hold, and 470 caps each battlefield at one Score a turn, so on turn one or two the whole of a normal board's output is two points and this card converts every one of them into a card.",
+          "AND IT DOES NOT TOUCH A CARD-TEXT POINT. 194.1 lists three separate ways to gain points and 194.1.c is 'Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more points' - a GAIN, not a Score. 471.1.a.1 says the same from the other side. So an early point from a card's text goes through untouched; only a Conquer or a Hold is replaced, which is what the card says.",
+          "THE SYMMETRY IS THE HONEST COST AND IT IS NOT NEUTRAL. Both players are covered, so this is only an advantage to a deck whose own first two turns score nothing - which is exactly the deck that wants Ol' Poro. 190.1 helps: 'Control is established over Battlefields through the course of play', so both battlefields start uncontrolled and an early Score means walking a body out early, which a control shell was not going to do.",
+          "OL' PORO IS THE BEST MIGHT-PER-ENERGY BODY IN THE DOMAIN AND THE RESTRICTION IS PRICED, NOT FREE. Four Might for two Energy is a rate nothing else in Calm matches at that cost; what it gives up is turns one to three, which are exactly the turns 315.3.b's two-runes-a-turn curve has not yet paid for a four-drop anyway. The cards are a matched pair not because they interact - they do not - but because they are priced for the same deck, and an entry that pretends otherwise would be inventing an interaction.",
+          "AND THE OTTERPUS IS A BODY, WHICH IS THE OTHER HALF OF ITS COST. 2 Energy for 2 Might is a poor rate; the clause is the card. It has to be on the board during the opponent's first or second turn to do anything, which means playing it on YOUR first turn - and 143.4 enters it exhausted, so it holds nothing that turn either.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold and one of these two cards exists to stop it happening. This is a denial-and-curve pair, and the entry says so rather than dressing it as an engine."
+        ]
+      },
+      "steps": [
+        "Play Otterpus (2 Energy) on your first turn, so it is on the board for the opponent's first and second.",
+        "Any Score they would take from a Conquer or a Hold in that window becomes a card for them instead - 367's replacement, so no point is ever gained.",
+        "Accept the symmetry: your own early Conquer or Hold is replaced too, which is free only if the deck was not going to make one.",
+        "From your fourth turn, Ol' Poro (2 Energy) is a 4 Might body - the best rate in the domain at that cost, and the restriction has already expired.",
+        "Note that a card-text point (194.1.c) is a Gain and not a Score, so the Otterpus does not stop one."
+      ],
+      "netPerIteration": "every early Conquer or Hold in the game converted to a card, and a 4 Might body for 2 Energy from turn four",
+      "terminatesIn": "engine only - the Otterpus is blank from the opponent's third turn onward, and three of each card by 103.2.b; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 8)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use VEN-053 Otterpus or VEN-029 Ol' Poro. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.2, 103.1.b.3, 103.2.b, 143.4, 190.1, 194.1, 194.1.c, 315.3.b, 367, 469, 470, 471.1.a.1. The entry states plainly that the two cards do NOT interact - they are priced for the same deck - because inventing an interaction between two cards that share only a timing assumption is the failure mode a cross-audit catches. The Score-versus-Gain distinction is the load-bearing rules point: a card-text point is 194.1.c and the Otterpus does not touch it. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "legion-quartermaster-cloth-armor-bounce-value",
+      "name": "An additional cost that returns a gear to hand is a discount when the gear re-attaches for free on the way back",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-044",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm unit, E3 M4. 'As an additional cost to play me, return a friendly gear to its owner's hand.' Four Might for three Energy, which is above rate - the gear is what pays the difference."
+        },
+        {
+          "card": "SFD-064",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind Equipment, E1, M+0. '[Quick-Draw] (This has [Reaction]. When you play it, attach it to a unit you control.) [Equip] :rb_rune_mind: ... [Effect] [Shield 2].' The gear that costs nothing to put back, because [Quick-Draw] re-attaches it on the play."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Calm + Mind: Legion Quartermaster is mono-Calm and Cloth Armor mono-Mind (103.1.b.3), so 103.1.b.2 needs a legend covering both - OGN-255/OGN-303 Nine-Tailed Fox, SFD-189/SFD-244 Fire Below the Mountain, UNL-189/UNL-230 Bashful Bloom or VEN-145/VEN-192 Curator of the Sands.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A friendly gear on the board. The Quartermaster's additional cost is NOT optional - 203.3 means a board with no gear cannot pay it, and the card cannot be played at all."
+        ],
+        "notable": [
+          "THE COST IS MANDATORY, WHICH IS THE FIRST THING TO GET RIGHT. The clause reads 'AS AN ADDITIONAL COST to play me, return a friendly gear' with no 'you may', so 203.3 applies: 'If the game action associated with a Cost is impossible for any reason such that a player cannot perform it, then they cannot pay the Cost and they will not execute the linked Effect.' With no gear on the board the Quartermaster is uncastable - which is a real deckbuilding constraint and not a drawback you can decline.",
+          "AND [QUICK-DRAW] IS WHY THE COST IS NEARLY FREE. 819.1.d makes Quick-Draw functionally short for '[Reaction]' plus 'When you play this, attach it to a Unit you control' - so replaying Cloth Armor costs 1 Energy and NO [Equip] cost is ever determined, because the attach happens on the play rather than through 818.1's Activated Ability. The gear goes to hand and comes back attached, to a unit of your choosing, at [Reaction] speed. Net cost of the Quartermaster's additional cost: one Energy and a card that was already in play.",
+          "WHICH ALSO MAKES IT A FREE RE-ASSIGNMENT. 434.1.f detaches an Equipment from its current carrier when it attaches to a new one, and 434.1.g makes attaching to the CURRENT carrier a no-op - so the ordinary way to move an Equipment is to pay its [Equip] again. This route moves it for the price of replaying the card, and it moves it at Reaction speed, which an [Equip] cannot do (381 confines an Activated Ability to your turn in an Open State unless it carries [Action] or [Reaction]).",
+          "THE OTHER THING THE BOUNCE SAVES. 719.5: 'When a Top-Most Card changes zones from a board zone to a non-board zone, all Attached cards Detach from it, remaining in their current zones' - so an Equipment on a body that is about to die is lost to nothing but time; returning it to hand first is a way to keep it. And 323.7's Cleanup recalls unattached gear at battlefields to base, which the hand does not.",
+          "WHAT THE BODY IS WORTH. 4 Might for 3 Energy is above the domain's rate - compare OGN-049 Playful Phantom at 5 Energy for 5 Might, or SFD-037 Navori Scout at 4 for 4 with [Deflect]. The extra Might is exactly what the mandatory cost is paying for, which is why the pairing has to make that cost cheap rather than merely survivable.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And this is a value pairing, not a loop: the Quartermaster is three copies (103.2.b) and each one bounces a gear once."
+        ]
+      },
+      "steps": [
+        "Have Cloth Armor attached to a unit - it got there for free on the play, since [Quick-Draw] (819.1.d) attaches on play rather than through an [Equip] cost.",
+        "Play Legion Quartermaster (3 Energy). Its additional cost is mandatory (203.3), so return Cloth Armor to your hand to pay it.",
+        "You have a 4 Might body for 3 Energy and a 1-Energy gear in hand.",
+        "Replay Cloth Armor (1 Energy) - at [Reaction] speed if you like - and attach it to whichever unit now needs the [Shield 2], with no [Equip] cost paid.",
+        "Use the same route to move the Armor off a body that is about to die: 719.5 would otherwise leave it detached on the board."
+      ],
+      "netPerIteration": "a 4 Might body for 3 Energy, with the mandatory cost refunded for 1 Energy and the Equipment re-placed on a unit of your choice",
+      "terminatesIn": "engine only - three Quartermasters by 103.2.b, one bounce each; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 8)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use SFD-044 Legion Quartermaster. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.2, 103.1.b.3, 103.2.b, 203.3, 323.7, 381, 434.1.f, 434.1.g, 469, 719.5, 818.1, 819.1.d. The mandatory-cost reading is stated first because a reader who assumes 'you may' will build a list in which the card is sometimes uncastable; 203.3 is the paragraph. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
     }
   ]
 }
