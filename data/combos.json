@@ -45992,6 +45992,328 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 349-358 Playing Cards, specifically 358 Check Legality). Rule 358 is cited by no entry and no synergy rule in this project, and its worked example names two pool cards - SFD-111 Here to Help and OGN-070 Mageseeker Warden - by name. Card text verbatim from data/corpus_flat.txt. Citations opened: 055, 103.1.b.2, 103.2.b, 103.2.d.2, 356.6, 358, 358.3, 358.3.a, 419.4.a, 419.4.a.1, 419.4.b, 464.2.c.3.a, 485.4, 811.1.b, 811.1.c.1. REPORT TO THE MANAGER: 358.3.a is a real refinement to the #100 Mageseeker Warden theory - the Warden does not make a blocked card ILLEGAL, it makes the instruction fizzle at resolution, so the card is still finalized and still counts for [Legion] and every 'cards you've played this turn' check under 419.4.b (whose own worked example is Battering Ram, and which counts a COUNTERED spell too). The split worth carrying: a TRIGGER needs the card to resolve (419.4.a, 419.4.a.1 - a countered card fires no play trigger), a non-triggered CHECK needs only finalization (419.4.b). Distinct from here-to-help-mountain-drake-showdown-unit and from battering-ram-undying-legion-cards-played, neither of which cites 358 or 419.4.b. Trap check: the entry states plainly that the fizzle is the floor and not the plan; the hidden play is free only from the turn after the hide (811.1.b); 811.1.c.1 keeps the hide itself legal under the Warden; no unruled reading."
+    },
+    {
+      "id": "prepared-neophyte-disintegrate-spent-threshold",
+      "name": "A [Deflect] tax RAISES what you spent, so the opponent's protection turns a 1-Might body into a 5-Might one",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-004",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E3 M1. 'If you've spent :rb_energy_4: or more to play a spell this turn, I have +4 :rb_might:.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-005",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury spell, E4, [Action]. 'Deal 3 to a unit at a battlefield. If this kills it, do this: draw 1.' Exactly the threshold, with nothing to spare. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Fury, so any of the sixteen legend names carrying Fury holds it (103.1.b.1): Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "A DECKBUILDING CONSTRAINT: no cost reduction anywhere in the list. See the second notable."
+        ],
+        "notable": [
+          "THE OPPONENT'S [DEFLECT] PAYS FOR THIS CARD, WHICH IS THE INVERSION WORTH KNOWING. 809.1.c: '[Deflect] is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an ADDITIONAL COST for each time they choose [me/this]\"', and 809.1.c.1 lets that Power be any domain. An additional cost is spent, and 166.2 / 203.1 / 356.4.b make 'spent' mean what actually left the Rune Pool — so aiming Disintegrate at a [Deflect] body costs you a Power AND pushes you further past the Neophyte's threshold. The card the opponent played to protect their unit is the card that makes your 1-Might body a 5.",
+          "AND A [REPEAT] COST IS SPENT TOO, WHICH IS THE CHEAP WAY OVER THE LINE. 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or ability.' So a 1-Energy spell with a 3-Energy [Repeat] crosses a 'spent 4 or more' threshold that a 6-Energy spell discounted to 3 fails — the constructive half of the split this catalogue records between 'costs N' (206, printed) and 'spent N' (166.2, actual).",
+          "SO EVERY DISCOUNT IN THE DECK IS AN ANTI-SYNERGY, AND FURY PRINTS SEVERAL. `OGN-031 Raging Firebrand` ('the next spell you play this turn costs 5 Energy less') is the extreme case — it takes Disintegrate to 0 and switches the Neophyte off entirely. `SFD-141 Irelia, Graceful` does the same one component at a time. A list built on 'spent' cards and a list built on discounts are different lists.",
+          "THE THRESHOLD IS EXACTLY MET AND NOT EXCEEDED, WHICH IS WHY THIS PAIR AND NOT ANOTHER: Disintegrate's printed 4 Energy is the cheapest spell in mono-Fury that reaches 'spent 4 or more' with no help at all, and it carries a conditional cantrip on top ('If this kills it, do this: draw 1'). The Neophyte is Might 1 without it and Might 5 with it, from a 3-Energy body.",
+          "IT IS A PASSIVE, SO IT IS NOT SNAPSHOTTED AND IT IS NOT A BUFF. 'I have +4 :rb_might:' is a continuous, conditional modifier, so 477.3.b's snapshotting rule (which is written for non-passive arithmetic effects) does not apply, 702.3's one-Buff cap is silent, and the +4 switches on and off with the condition rather than being fixed at the moment the spell was cast.",
+          "AND IT LASTS THE TURN, NOT THE COMBAT. The condition is 'this turn', so the Neophyte is a 5-Might body for every combat that turn once the spell is cast — cast the spell BEFORE you move him (144.2), not in response to the damage step."
+        ]
+      },
+      "steps": [
+        "Play Prepared Neophyte (3 Energy). He is a 1-Might body until a spell is cast.",
+        "In the same Main Phase, play Disintegrate (4 Energy) at a unit at a battlefield: 3 damage, and a card if it dies.",
+        "You have now spent 4 Energy to play a spell this turn, so the Neophyte is Might 5 for the rest of the turn.",
+        "If the target carries [Deflect], pay the extra Power (809.1.c): the tax is spent, so it only widens the margin.",
+        "Move the Neophyte in (144.2, 144.4) and fight at 5."
+      ],
+      "terminatesIn": "engine — a 3-Energy body that is Might 5 on every turn you cast a 4-Energy spell, plus removal and a conditional card; nothing here scores",
+      "netPerIteration": "3 damage, a conditional draw, and +4 Might on a 1-Might body, for 4 Energy",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' 809.1.c.1: 'The Power used to pay this cost may always be of any Domain.' 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or ability.' 166.2 / 203.1 / 356.4.b (a \"spent\" threshold reads what actually left the Rune Pool). 206 (a \"costs N\" check reads the printed cost). 477.3.b: 'When an arithmetic effect from a source that is not a passive ability has a limitation that applies, it is limited at the time of its application… Example: A unit reads \"Units you control here have their Might increased to 5 [M].\" This is a passive ability, so it will not snapshot.' 702.3: 'There can only be one Buff on a Unit at a time.' 144.2: 'Exhausting the Unit is the Cost for this action.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. UNL-004 Prepared Neophyte and OGN-005 Disintegrate were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 144.2, 144.4, 166.2, 203.1, 206, 356.4.b, 477.3.b, 702.3, 806.1.b, 809.1.c, 809.1.c.1, 820.1.c.1 opened in the Core Rules file. The first notable is the constructive inversion of a refusal this walk already recorded in §1.6 (a discount switches a 'spent' threshold off): the same paragraphs say that an ADDITIONAL cost switches it on, and an opponent's [Deflect] is exactly that. No unruled reading."
+    },
+    {
+      "id": "fading-memories-maddened-marauder-hold-denial",
+      "name": "816.1.b is the only effect that lands inside the OPPONENT's Beginning Phase before their Scoring Step — the mirror of the pool's lock problem",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-180",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos spell, E4 P1. 'Give a unit at a battlefield or a gear [Temporary]. (Kill it at the start of its controller's Beginning Phase, before scoring.)' One of six cards in the pool that grant [Temporary], and the only one in Chaos. In zero entries before this walk."
+        },
+        {
+          "card": "OGN-191",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E5 M4. '[Tank] (I must be assigned combat damage first.) When you play me, move a unit from a battlefield to its base.' The same denial on the other clock, in your own Main Phase. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155). OGS-017 is restricted in 2v2.",
+          "A battlefield the opponent controls with a garrison of exactly one — that is the board this line answers, and it does nothing against two."
+        ],
+        "notable": [
+          "THIS IS THE MIRROR OF THE LOCK PROBLEM THE CATALOGUE ALREADY RECORDS. The denial lens found that nothing protects YOUR Hold, because every lock in the pool says 'this turn' and is Main-Phase only, which is 316 and comes after 315.2's Scoring Step. Fading Memories is the reverse: 816.1.b is 'functionally short for \"At the start of this permanent's controller's Beginning Phase, BEFORE SCORING, kill this\"' — so a card played in YOUR Main Phase lands inside THEIR Beginning Phase, ahead of 315.2.b.2's Hold. It is the only shape in the pool that reaches that window from outside.",
+          "AND IT TAKES THE BATTLEFIELD, NOT JUST THE POINT. With the garrison dead at 315.2.a, 319.6 and 323.6 strip their Control in the Neutral Open State that follows — 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there' — before 315.2.b.2 asks which battlefields they hold. This is the same mechanism the catalogue's `[Temporary]`-garrison conquer cycles use to hand a battlefield back, pointed at the opponent instead.",
+          "SIX CARDS GRANT [TEMPORARY] AND THE MEMBERS ARE NAMED: `OGN-069 Last Stand` (Calm), `OGN-180 Fading Memories` (Chaos), `UNL-070 Turn to Dust` (Mind), `UNL-165 Shadow's Call` (Order), `UNL-199 Deceiver` and `UNL-200 Mirror Image` (both Mind/Order). Fading Memories is the only one in Chaos, and the only one whose text also reaches a GEAR.",
+          "THE MARAUDER IS THE SAME DENIAL ON A DIFFERENT CLOCK, WHICH IS WHY THEY ARE ONE ENTRY. His play trigger moves a unit from a battlefield to its base in YOUR Main Phase, so 323.6 opens the battlefield at the next Cleanup and you may walk in the same turn; the spell denies at the START of their turn and cannot be answered, but gives them their whole Main Phase to rebuild. Two clocks, one effect, and a list wants both because the opponent can only play around one at a time.",
+          "'A UNIT' REACHES AN ENEMY, AND THE PRECEDENT IS A BANNED CARD. `OGN-168 Fight or Flight` prints the same bare 'a unit' in the same sentence shape and is banned in both formats — evidence that the wording is not read as friendly-only.",
+          "THE MARAUDER IS ALSO A WALL, AND THAT IS NOT FREE. [Tank] means 815.1.c.2 makes every OTHER body of yours an invalid assignment until he has lethal — a toll booth for the opponent, and a liability if you wanted your damage spread. He is Might 4, so he buys four points of assignment and no more."
+        ]
+      },
+      "steps": [
+        "Identify a battlefield the opponent controls with exactly one unit on it.",
+        "In your Main Phase, play Fading Memories (4 Energy + 1 Chaos Power) giving that unit [Temporary].",
+        "At the start of their Beginning Phase, before scoring, 816.1.b kills it.",
+        "319.6 and 323.6 then strip their Control of the battlefield in the Open State that follows, so 315.2.b.2 finds nothing to Hold: they lose the point AND the ground.",
+        "On the other clock, play Maddened Marauder (5 Energy) and use his trigger to walk a garrison home in your own Main Phase; the next Cleanup opens that battlefield too, and he stands as a [Tank] while you take it."
+      ],
+      "terminatesIn": "engine — one Hold and one battlefield denied per Fading Memories, three a game (103.2.b), plus one evacuation per Maddened Marauder; nothing here scores, so the whole line is tempo",
+      "netPerIteration": "one enemy Hold cancelled and one battlefield opened, for 4 Energy + 1 Power",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "816.1.b: 'It is functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this.\"' 816.1.c: 'The Trigger Condition is the controller of the permanent's Beginning Phase starting.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 310.1: 'Neutral Open: There is no Showdown or Combat in progress and no Chain exists.' 170.11.c: 'Battlefields can be \"open.\" This means they are unoccupied and uncontrolled.' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 155 (a spell without [Action] or [Reaction] is played in an Open State on its controller's turn)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. OGN-180 Fading Memories and OGN-191 Maddened Marauder were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.b, 155, 170.11.c, 310.1, 315.2.a, 315.2.b.2, 319.6, 323.6, 815.1.c.2, 816.1.b, 816.1.c opened in the Core Rules file. The six [Temporary] granters were swept over the whole corpus and are named. The Marauder was REFUSED earlier in this same walk (§10) as an `isolate-deckhand-open-conquer` duplicate when paired with Sai Scout to take the emptied battlefield; that refusal was scoped to the CONQUER use, and the denial use — where nobody walks in and the point is simply that the opponent lost one — is a different job on a different clock, which is why he appears here."
+    },
+    {
+      "id": "doran-ring-master-bingwen-weaponmaster-conquer-loot",
+      "name": "[Weaponmaster] equips \"to me\", so the only Equipment it can ever free is one whose text does not care who carries it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-124",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Chaos gear, E1, M+1, [Equip] :rb_rune_chaos:. '[Effect] When I conquer, discard 1, then draw 1.' Carrier-INDEPENDENT: any body that conquers pays it. In zero entries before this walk."
+        },
+        {
+          "card": "SFD-127",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E6 M6. '[Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for :rb_rune_rainbow: less, even if it's already attached.)' The cheapest way to get the Ring onto a body that will actually conquer. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155). OGS-017 is restricted in 2v2.",
+          "The Ring on the board before Bingwen is played — [Weaponmaster] equips 'one of your Equipment', so it must already be yours."
+        ],
+        "notable": [
+          "THE KEYWORD SAYS 'TO ME', WHICH IS THE WHOLE SELECTION RULE FOR IT. [Weaponmaster] attaches the Equipment to the Weaponmaster body, so it can only ever pay for gear whose text does not depend on WHO carries it. Doran's Ring qualifies exactly: 'When I conquer, discard 1, then draw 1' pays whichever body conquers, and Bingwen at Might 6 (7 with the Ring's +1, 434.1.d) is a body that will. A carrier-dependent Equipment cannot be freed this way at all.",
+          "AND THE DISCOUNT IS EXACTLY THE SIZE OF THIS COST. The Ring's [Equip] is a single Chaos rune and the keyword is 'for :rb_rune_rainbow: less', so the attach is FREE. That is the whole reason the pair is worth a card: measured over the pool, an [Equip] cost printed as one rune is the family this keyword zeroes, and any [Equip] carrying Energy as well is only partly discounted.",
+          "THE ATTACH IS NOT A PLAY, SO NOTHING ELSE TRIGGERS. 818.1: 'Equip is an Activated Ability keyword', with 818.1.b making it a cost that attaches — so no 'when you play a gear' trigger of yours or theirs sees it, and `VEN-102 Ravenbloom Prefect`, which watches an opponent PLAY a gear, is blank against a Weaponmaster attach.",
+          "AND ONCE IT IS ON, ITS [EQUIP] IS GONE. 718.2 ('While in this state, the card's printed Rules Text is Inactive') with 721.2 ('Inactive Abilities do not trigger, do not apply, and cannot be activated') means an already-attached Equipment can never pay its own [Equip] again. The keyword's own tail — 'even if it's already attached' — is a permission to take it off ANOTHER unit, not a second activation of the gear.",
+          "'I' IN THE APPENDED TEXT IS THE CARRIER. 136.2.d: Effect Text that says 'this' or names the attached object refers to the attachment; the Ring says 'I', so 'When I conquer' is Bingwen conquering. 434.1.c is what appended it in the first place.",
+          "THE LOOT IS MANDATORY AND THAT IS A REAL COST. 'Discard 1, then draw 1' has no 'may', so every conquer spends a card from hand — good when the hand holds a dead card, bad when it does not. 055 is the floor: with an empty hand you discard nothing and still draw. And 422.1.b ('\"When I am discarded\" abilities … are executed after discarding has occurred') is what makes the discarded card's own trigger, if it has one, fire from the trash."
+        ]
+      },
+      "steps": [
+        "Play Doran's Ring (1 Energy). Leave it unattached — the [Equip] you would otherwise pay is what Bingwen is for.",
+        "Play Master Bingwen (6 Energy). His [Weaponmaster] trigger offers to [Equip] one of your Equipment to him for one rainbow less.",
+        "Equip the Ring: its cost is a single Chaos rune, so the discount takes it to nothing. Bingwen is now Might 7 (434.1.d).",
+        "Attack and win the combat: 466.5 establishes Control and 466.5.d makes it a Conquer.",
+        "The Ring's appended text fires on the carrier: discard 1, then draw 1 — every conquer, for as long as it stays attached."
+      ],
+      "terminatesIn": "engine — one loot per Conquer, forever, on a 7-Might body, for a free attach; nothing here scores beyond the Conquer the combat itself produces",
+      "netPerIteration": "one card filtered per Conquer, and +1 Might permanently, at no attach cost",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "818.1: 'Equip is an Activated Ability keyword.' 818.1.b: 'Equip has a cost to activate and Attaches the card with Equip to a chosen Unit when the cost is paid.' 718.2: 'While in this state, the card's printed Rules Text is Inactive.' 718.3: 'While in this state, Abilities in the card's Effect Text are appended to the Rules Text of the Top-Most card.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 136.2.d: 'Effect Text may refer to \"this\" or to the name of the Attached game object that appended the Effect Text. Doing so refers to the Attached game object and not the Top-Most Card.' 434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.' 434.1.d: 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it.' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.' 055: 'When executing card text, do as much as you can, ignoring impossible instructions.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. SFD-124 Doran's Ring and SFD-127 Master Bingwen were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 055, 103.1.b.1, 136.2.d, 422.1.b, 434.1.c, 434.1.d, 466.5, 466.5.d, 718.2, 718.3, 721.2, 818.1, 818.1.b opened in the Core Rules file. The first notable applies the catalogue's standing [Weaponmaster] rule — it equips 'to me', so it frees only carrier-independent gear — to a pair that satisfies it, rather than restating the refusals it generates elsewhere. No unruled reading."
+    },
+    {
+      "id": "smite-gust-monk-banish-not-trash",
+      "name": "A would-die replacement erases the Deathknell, a Burn Out recycles the trash, and banishment is the only answer that stays answered",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-007",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury spell, E2 P1, [Action]. 'Deal 3 to a unit at a battlefield. If it would die this turn, banish it instead.' The replacement applies to ANY death of that unit that turn, not only to the 3. In zero entries before this walk."
+        },
+        {
+          "card": "VEN-101",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E2 M2. 'You may pay :rb_energy_1: as an additional cost to play me. When you play me, if you paid the additional cost, banish a card from any trash to give a unit [Assault 2] this turn.' Answers what is already in a trash, including theirs. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2 — and note that VEN-143 Master of Shadows is himself a discard outlet, so the mirror of this package sits in your own identity."
+        ],
+        "notable": [
+          "THE REPLACEMENT ERASES THE DEATHKNELL, AND 808.1.d.1 SAYS SO IN THE SAME BREATH AS THE RECALL CASE: 'If the Permanent with the effect is not sent to the Trash, for example because its \"killed\" event was replaced with a recall, the triggered ability will be removed from the chain.' Smite's 'banish it instead' is that replacement — the body never reaches the Trash, so its [Deathknell] never resolves, and it is not there afterwards for [Flow] (829.1.b needs the card in the trash), for a reanimator, or for any 'from your trash' clause.",
+          "AND THE CLAUSE IS WIDER THAN THE THREE DAMAGE. 'If it would die THIS TURN, banish it instead' applies to any death of that unit for the rest of the turn — combat damage, another spell, a sacrifice cost. Aiming Smite at a body you intend to kill in combat is a legitimate use with none of the 3 wasted.",
+          "BANISHING IS THE ONLY PERMANENT ANSWER, BECAUSE RECYCLING IS NOT ONE. 431.2.b: a Burn Out 'Recycles their trash into their Main Deck' — so a trash that has been emptied by damage comes straight back the first time somebody over-draws, while 108.6.c keeps a banished card out for good. `VEN-101 Gust Monk` banishes 'a card from ANY trash', so it reaches the opponent's, and the [Assault 2] is a rider on a 2-Might body rather than the reason to run it.",
+          "THE MONK'S COST IS OPTIONAL AND THAT MATTERS ON A FREE PLAY. 'You may pay :rb_energy_1: as an additional cost to play me' — 356.1.b.3 makes an optional additional cost payable even when a card is played ignoring its base cost, with Legion Rearguard as its worked example, so a Monk cheated into play still buys its banish for 1 Energy.",
+          "AND 807.2 SUMS THE RIDER: 'the Assault Value of all granted Assault keywords is summed', so the Monk's [Assault 2] stacks with any other grant on the chosen body; 807.1.c scopes it to being an attacker, so it is worth nothing on defence.",
+          "TWO CARDS IN THE POOL SAY 'CAN'T BE COUNTERED', AND NEITHER IS THIS ONE. Swept: `VEN-015 Decree of Rage` (Fury) and `VEN-069 Mel, Newly Awakened` (Mind) are the whole set — so Smite is answerable in the ordinary way and the entry does not claim otherwise. Its protection is against what happens AFTER the kill, not against the kill being stopped.",
+          "IT IS AN [ACTION], so 806.1.b lets it be played inside a Showdown, which is where a 'would die this turn' replacement wants to be: applied before the damage step, not after it."
+        ]
+      },
+      "steps": [
+        "Hold Smite. It is an [Action], so it can be played on your turn or inside any Showdown (806.1.b).",
+        "When a body with a [Deathknell], a trash payoff or a reanimation target is about to die, play Smite (2 Energy + 1 Fury Power) on it: 3 damage now, and 'banish it instead' covering any death of it this turn.",
+        "808.1.d.1 removes its Deathknell from the chain, and 108.6.c keeps the card out of every 'from your trash' clause for the rest of the game.",
+        "For what is already in a trash, play Gust Monk (2 Energy) and pay its optional additional 1 Energy: banish a card from any trash, and give a unit [Assault 2] this turn.",
+        "Repeat with the other copies (103.2.b)."
+      ],
+      "terminatesIn": "engine — up to three bodies banished rather than killed and three cards banished out of trashes, which between them switch off a recursion deck; nothing here scores",
+      "netPerIteration": "one unit removed with its Deathknell and its trash value cancelled, for 2 Energy + 1 Power; one card permanently out of any trash for 3 Energy on a 2-Might body",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "808.1.d.1: 'If the Permanent with the effect is not sent to the Trash, for example because its \"killed\" event was replaced with a recall, the triggered ability will be removed from the chain.' 431.2.b: 'Recycles their trash into their Main Deck.' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way, or a temporary space to hold cards while effects are being processed.' 829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 356.1.b.3: 'Further additional costs and/or cost increases applied in subsequent steps may raise the card's Total Cost above zero. Example: Legion Rearguard is a Fury unit that costs 2 Energy and 0 Power and has Accelerate…' 807.1.c: 'It is functionally short for \"While I am an attacker, I have +X [M].\"' 807.2: 'the Assault Value of all granted Assault keywords is summed.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. UNL-007 Smite and VEN-101 Gust Monk were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 108.6.c, 356.1.b.3, 431.2.b, 806.1.b, 807.1.c, 807.2, 808.1.d.1, 829.1.b opened in the Core Rules file. The 'can't be countered' sweep was run over the whole corpus and returns exactly two rows, neither of them Smite — recorded so the entry cannot be read as claiming protection it does not have. No unruled reading."
+    },
+    {
+      "id": "seal-of-rage-baccai-reaper-finalization-power",
+      "name": "204.3.a makes the Reaper's Fury a FINALIZATION cost, and 312.2.c leaves no window to find it — so a 0-Energy Seal is the whole answer",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-040",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BASE",
+          "note": "Fury gear, E0 P1. ':rb_exhaust:: [Reaction] - [Add] :rb_rune_fury:. (Abilities that add resources can't be reacted to.)' Zero Energy, so it costs a deck slot and one Power once, and repays a Power every turn. In zero entries before this walk."
+        },
+        {
+          "card": "VEN-009",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E3 P1 M4. 'When I attack, you may pay :rb_rune_fury: to give me [Assault 2] this turn.' The cost sits at the start of the trigger's effect, which is what makes it a base cost. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Fury, so any of the sixteen legend names carrying Fury holds it (103.1.b.1): Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "The Seal played a turn early, since its ability costs its own exhaust and 415.3.a only readies it in your Awakening."
+        ],
+        "notable": [
+          "THE FURY IS A BASE COST, NOT A DECISION YOU MAKE LATER, AND 204.3.a IS THE CLEAN CITATION: 'When Costs within Instructions appear as the first part of the effect in triggered abilities, the cost is taken to be the base cost of the triggered ability. It must be paid to FINALIZE the triggered ability', with Overzealous Fan as its worked example. So the Reaper's Power has to exist at the instant the attack trigger is placed (464.2.c.3), not when it resolves.",
+          "AND THERE IS NO WINDOW TO GO AND GET IT. 312.2.c: 'When the turn is in a Closed State, all pending chain items finish being finalized, and they control the next item on the Chain' — nobody receives priority between the trigger being placed and being finalized. A player who plans to 'tap for it in response' has misread the card; the Power must already be in the Rune Pool when the attack is declared.",
+          "WHICH IS EXACTLY WHAT A 0-ENERGY POWER SOURCE IS FOR. The Seal costs no Energy at all, so it takes a deck slot and one Fury Power once and returns one every turn thereafter (415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn'). Against a Reaper that wants one Fury every combat, that is a one-card answer that never competes with the turn's Energy.",
+          "THE SEAL'S [REACTION] IS THE HALF THAT MATTERS ELSEWHERE. 381 confines Activated Abilities to 'the Controlling Player's Turn and during an Open State' unless the ability carries [Action] or [Reaction]; 813.1.c.2 spells the exception out — 'On Activated Abilities: \"This can be activated during Closed States on any player's turn.\"' So the same Seal banks Fury Power for off-turn [Reaction] cards, which is a second job the Reaper does not need and a deck does.",
+          "AND THE PRINTED REMINDER IS 429.2. 'Triggered and activated abilities that Add resources resolve as soon as they are finalized', with 429.2.a: 'Priority and Focus will not pass from Add abilities being finalized or resolving, and will resolve before any other outstanding items on the chain are finalized.' That is why the card says 'Abilities that add resources can't be reacted to' — the Power is in your pool before anyone can respond to the activation.",
+          "167 IS THE ONLY CLOCK ON IT, AND IT DOES NOT BITE HERE: the Rune Pool empties at the START of your Main Phase and at the END of your turn, and the attack happens inside the Main Phase — so a Seal tapped before you move keeps its Power live through the combat.",
+          "THE ARITHMETIC IS SMALL AND SAYS SO: Might 4 becomes 6 while attacking (807.1.c, and 807.2 sums it with any other grant). It is a per-turn rider paid for by a card that costs no Energy, not a scaling engine."
+        ]
+      },
+      "steps": [
+        "Play Seal of Rage (0 Energy + 1 Fury Power). It is live from your next Awakening (415.3.a).",
+        "Play Baccai Reaper (3 Energy + 1 Fury Power).",
+        "On a later turn, in your Main Phase and BEFORE declaring the attack, exhaust the Seal: [Add] one Fury Power (429.2, resolved immediately and unreactable).",
+        "Move the Reaper in (144.2, 144.4). 464.2.c.3 designates him the Attacker and places his trigger.",
+        "204.3.a requires the Fury Power to finalize that trigger, and 312.2.c gives nobody a window in between — the Power you banked in step 3 pays it.",
+        "He fights at Might 6 (807.1.c). 415.3.a readies the Seal at your next Awakening and the whole thing repeats."
+      ],
+      "terminatesIn": "engine — one Fury Power a turn from a 0-Energy card, and a 6-Might attacker every turn instead of a 4-Might one; nothing here scores",
+      "netPerIteration": "one Fury Power generated and spent per turn, for +2 Might while attacking and no Energy at all",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "204.3.a: 'When Costs within Instructions appear as the first part of the effect in triggered abilities, the cost is taken to be the base cost of the triggered ability. It must be paid to finalize the triggered ability.' 312.2.c: 'When the turn is in a Closed State, all pending chain items finish being finalized, and they control the next item on the Chain.' 429.2: 'Triggered and activated abilities that Add resources resolve as soon as they are finalized.' 429.2.a: 'Priority and Focus will not pass from Add abilities being finalized or resolving, and will resolve before any other outstanding items on the chain are finalized.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 813.1.c.2: 'On Activated Abilities: \"This can be activated during Closed States on any player's turn.\"' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 377.1: 'Activated Abilities are recognized by the presence of a \":\" in the text of the card, preceded by a cost and succeeded by an effect.' 807.1.c: 'It is functionally short for \"While I am an attacker, I have +X [M].\"' 807.2: 'the Assault Value of all granted Assault keywords is summed.' 144.2: 'Exhausting the Unit is the Cost for this action.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. OGN-040 Seal of Rage and VEN-009 Baccai Reaper were both in ZERO entries. Seal of Rage has TWO base codes (OGN-040 and SFD-222, same name and type), which CardIndex.equivalents already bridges. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 144.2, 144.4, 167, 204.3.a, 312.2.c, 377.1, 381, 415.3.a, 429.2, 429.2.a, 464.2.c.3, 807.1.c, 807.2, 813.1.c.2 opened in the Core Rules file. 204.3.a is used here in preference to 383.3.b, which says the same thing later — the catalogue's own note is that 204.3.a is the cleaner source and carries its own worked example. No unruled reading."
     }
   ]
 }
