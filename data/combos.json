@@ -50237,6 +50237,375 @@
         "FACTORY RECALL IS AN [ACTION], SO THE RESCUE CAN HAPPEN IN THE COMBAT THAT IS ABOUT TO KILL THE CARRIER (806.1.b), not only afterwards. Returning your own gear before the body dies skips the detached window entirely.",
         "AND 724 IS THE SYMMETRIC FACT WORTH STATING BESIDE 718.2: 'Effect Text is Inactive unless the card with the Effect Text is Attached.' An Equipment in hand or on the board unattached has its printed text ACTIVE and its Effect Text INACTIVE; attached, exactly the reverse. The Axe is the clearest card in the pool for that inversion, because its printed text is a drawback and its Might Bonus (434.1.d, +3) is not text at all and applies either way it is attached."
       ]
+    },
+    {
+      "id": "navori-fighting-pit-vanguard-helm-free-buffed-corpse",
+      "name": "The Helm is short of BUFFED BODIES, never of deaths - and a battlefield that buffs on every Hold supplies them for nothing",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-283",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you hold here, buff a unit here. (If it doesn't have a buff, it gets a +1 :rb_might: buff.)' A free buff placement every Beginning Phase you hold it, on a unit you choose."
+        },
+        {
+          "card": "OGN-228",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order gear, E2. 'When a buffed friendly unit dies, buff another friendly unit.' Swept over the whole corpus: the only card whose trigger turns a death back into a buff."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Vanguard Helm is mono-Order and the battlefield is Colorless, so 103.1.b.3 admits any legend with Order in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card. OGN-269/OGN-310 The Boss is a legal Body/Order legend and is the one name to avoid - see the notables.",
+          "The battlefield is not guaranteed: 485.4.a has each player provide three and 485.5 selects randomly, and 103.4.c forbids a second copy of the same name. State it in any list that depends on it. 190.1 also makes a battlefield you provide start UNCONTROLLED, and 190.6.d ignores every instruction of an uncontrolled battlefield's abilities that refers to 'you'."
+        ],
+        "notable": [
+          "THIS RE-OPENS A REFUSAL, AND ONLY BECAUSE THE REASON IT WAS GIVEN DOES NOT COVER THIS PAIRING. OGN-283 Navori Fighting Pit was refused as a partner for READY-ON-BUFF payoffs: 315.1 Awaken precedes 315.2's Beginning Phase, so everything you control has already been readied when the Hold fires and a 'when you buff, ready it' trigger is a no-op. That reasoning is correct and untouched. It says nothing about a payoff that wants a buffed BODY rather than a ready one, which is what OGN-228 Vanguard Helm is.",
+          "WHY A BUFFED BODY IS THE SCARCE THING. 702.2.a: 'To Buff a Unit, a player chooses a Unit and then places a buff on it.' 702.3: 'There can only be one Buff on a Unit at a time', with 702.3.a - a buff added to a unit that already has one 'is not placed instead' - and 703 fixing each buff at exactly +1 Might. So a buffer is a one-time placement per body, and this catalogue's measurement is that the Helm is always short of buffed bodies, never of deaths. The Pit places one free buff every Beginning Phase you hold it, on a unit you choose - which is a supply of buffed corpses that costs no card at all.",
+          "AND THE RATE IS EXACTLY ONE A TURN, BY THE SAME PHASE ORDER. 315.2.b.2 Holds every battlefield you control, so the Pit fires once per Beginning Phase; 470 caps Scoring at once per battlefield per turn and 103.4.c forbids a second copy of the Pit, so there is no second placement. One buff in, one buff recycled per buffed casualty out.",
+          "THE PIT'S BUFF NAMES 'A UNIT HERE', WHICH IS WHY IT IS NOT WASTED. 702.3.a would throw away a placement aimed at an already-buffed body, so the choice matters: put it on a body that will trade, not on the one that already carries a buff. The Helm's own text is 'buff ANOTHER friendly unit', a single placement with the same constraint.",
+          "THE LEGEND THAT SWITCHES THE PAYOFF OFF, BY NAME. OGN-269 The Boss reads 'If a buffed unit you control would die, you may pay :rb_rune_rainbow:, exhaust me, and SPEND ITS BUFF to heal it, exhaust it, and recall it instead.' 808.1.d.1 removes the Helm's trigger from the chain when the body never reaches the Trash, and 702.2.b's spend takes the buff as well - The Boss takes both halves. A mono-Order legend avoids the fork.",
+          "WHAT IT IS NOT. Nothing here scores; the Hold that fires the Pit scores by 469.1 and 471.1, but neither card causes a Hold that would not have happened. And 190.6.d is worth checking on any battlefield entry: the Pit says 'when YOU hold here', so it is dead until you control it (190.1)."
+        ]
+      },
+      "steps": [
+        "Play Vanguard Helm (2 Energy) and take control of the Navori Fighting Pit by walking a body in (190.1, 466.5).",
+        "At your Beginning Phase, 315.2.b.2 Holds it and the Pit places a free buff on a unit there - choose one that will trade, since 702.3.a wastes a placement on an already-buffed body.",
+        "Let that body die. The Helm triggers and moves the buff onto another friendly unit that had none.",
+        "Repeat every turn you hold the Pit: one free placement in, one recovery out per buffed casualty.",
+        "Do not run OGN-269 The Boss as the legend - 808.1.d.1 and 702.2.b together take both halves."
+      ],
+      "netPerIteration": "one free buff placed per Hold, and one recycled onto a fresh body per buffed casualty, with no card spent on either",
+      "terminatesIn": "engine only - one Pit buff per Beginning Phase (470 with 103.4.c) and one Helm recovery per buffed death, wasted once every remaining body is buffed (702.3.a); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-orphan-remainder.md, part 3)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #193, part 3). The first entry to use OGN-283 Navori Fighting Pit. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.4.c, 190.1, 190.6.d, 315.1, 315.2.b.2, 466.5, 469.1, 470, 471.1, 485.4.a, 485.5, 702.2.a, 702.2.b, 702.3, 702.3.a, 703, 808.1.d.1. RE-OPENS A REFUSAL WITH ITS SCOPE STATED: the Pit was refused as a READY-ON-BUFF partner because 315.1's Awaken precedes 315.2's Hold, which is correct and untouched; it says nothing about a payoff that wants a buffed BODY, and the Vanguard Helm is exactly that. Companion to trifarian-gloryseeker-vanguard-helm-legion-buff (#180), vanguard-helm-kinkou-monk-buff-conservation and vanguard-helm-baited-hook-buff-ladder - four Helm entries now, each bounded by a different scarcity, and this is the one whose supply costs no card. Ban check: neither card is banned or restricted. No unruled reading."
+    },
+    {
+      "id": "papertree-esteemed-hierophant-rune-count",
+      "name": "An exhausted rune is bad mana and a full unit of COUNT - which is the half the refusal was not scoped to",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-219",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you hold here, each player channels 1 rune exhausted.' One extra rune a turn toward a COUNT, on top of 315.3.b's free two - and symmetric, which costs almost nothing against a deck that reads no rune count."
+        },
+        {
+          "card": "VEN-025",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 M5. 'While you control 7 or more runes, prevent all damage that enemy spells and abilities would deal to me.' A threshold on a COUNT, which is exactly what an exhausted rune supplies."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The Hierophant is mono-Calm and the battlefield is Colorless, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "The battlefield is not guaranteed: 485.4.a has each player provide three and 485.5 selects randomly, and 103.4.c forbids a second copy of the same name. State it in any list that depends on it. 190.1 also makes a battlefield you provide start UNCONTROLLED, and 190.6.d ignores every instruction of an uncontrolled battlefield's abilities that refers to 'you'."
+        ],
+        "notable": [
+          "THIS RE-OPENS A REFUSAL, AND THE SCOPE IS THE WHOLE POINT. SFD-219 The Papertree was refused on two strikes, both about MANA: the rune arrives EXHAUSTED and the Hold is at 315.2.b, after 315.1's Awaken has already run, so 315.1.b will not ready it until your next turn; and any Power it could pay in the Beginning Phase is emptied by 167 at the start of your Main Phase. Both are true and neither is touched here. What they do not cover is a payoff that reads a rune COUNT rather than mana - and this project has already re-opened OGN-288 Startipped Peak for exactly that reason, twice refused on mana grounds while its real partners (VEN-032 Frostcoat Mother, VEN-050 Grumpy Rockbear) price an [Empower] by 'each rune you CONTROL'.",
+          "AND AN EXHAUSTED RUNE IS A RUNE YOU CONTROL. 164.2 gives a Basic Rune two abilities and only 164.2.a costs its own exhaust; 164.2.b's cost is the RECYCLE, so an exhausted rune is still on the board, still yours, and still counted. 430.2.a is the default the Papertree overrides ('runes are channeled readied' unless the effect says exhausted), and 415.3.a is when it becomes mana - none of which the threshold asks about.",
+          "THE FAMILY THAT READS THE COUNT, WITH ITS MEMBERS NAMED. Seven or more runes: VEN-025 Esteemed Hierophant, VEN-037 Tomb-Raider Barbara, VEN-146 Siphoning Strike (swept, `grep -in \"7 or more runes\"`, three rows and no others). Eight or more: OGS-004 Yi, Meditative. And priced per rune: VEN-032 Frostcoat Mother and VEN-050 Grumpy Rockbear ('[Empower] 12 Energy. This ability costs 1 Energy less for each rune you control'). The Papertree accelerates every one of them by one rune a turn.",
+          "THE ARITHMETIC, AND WHY ONE RUNE A TURN IS A LOT HERE. 161.2.a fixes the Rune Deck at 'Exactly 12 Rune cards' and 315.3.b channels two free every Channel Phase, so an untouched curve reaches seven late on turn four; the Papertree's extra rune brings that forward by a full turn, and it brings twelve forward by two. 430.3 ('channel as many as possible') is what stops it once the deck is empty, at which point the battlefield does nothing for either player.",
+          "THE SYMMETRY IS THE HONEST COST AND IT IS SMALL - WITH ONE NAMED EXCEPTION. 'Each player' means the opponent's curve accelerates too, which matters only if they read a rune count. It is genuinely ANTI-SYNERGIC with one line this catalogue holds: sandstone-chimera-yi-meditative-rune-prison wants the opponent's channel HALVED, and the Papertree hands them back exactly the rune the Chimera took. Do not run both.",
+          "WHAT THE HIEROPHANT'S THRESHOLD BUYS, AND WHAT IT DOES NOT. 437.4 makes the prevention total - 'Damage dealt to a Unit that has all of that damage Prevented is not considered to have been dealt to it at all' - so no kill event is generated. But the clause is scoped to 'enemy SPELLS AND ABILITIES', and 417.6.c makes combat damage come from the UNITS, while 417.6.b.3 does the same for the whole Challenge family. Both go straight through.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold, and the Hold that fires the Papertree scores by 469.1 whether or not the battlefield is this one."
+        ]
+      },
+      "steps": [
+        "Take control of The Papertree by walking a body in (190.1, 466.5); 190.6.d is why its text does nothing before that.",
+        "At each of your Beginning Phases, 315.2.b.2 Holds it and every player channels 1 rune exhausted.",
+        "That rune is not mana this turn - 315.1's Awaken has already run and 167 empties the pool at your Main Phase - but it IS a rune you control from the moment it arrives (164.2, 164.2.b).",
+        "Play Esteemed Hierophant (5 Energy). Past seven runes, 437.4 means no enemy spell or ability can deal it damage at all.",
+        "Expect it to die in combat anyway (417.6.c) and to the Challenge family (417.6.b.3).",
+        "Stop expecting the battlefield to pay once the Rune Deck is empty: 430.3 channels as many as possible, which is then none.",
+        "Do not run this beside sandstone-chimera-yi-meditative-rune-prison - the Papertree hands the opponent back the rune the Chimera took."
+      ],
+      "netPerIteration": "one extra rune of COUNT per Hold, bringing every rune threshold in the deck forward by a turn",
+      "terminatesIn": "engine only - one rune a turn until the Rune Deck's twelve are out (161.2.a with 430.3), and the acceleration is symmetric; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-orphan-remainder.md, part 3)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #193, part 3). The first entry to use SFD-219 The Papertree. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.4.c, 161.2.a, 164.2, 164.2.a, 164.2.b, 167, 190.1, 190.6.d, 315.1, 315.1.b, 315.2.b, 315.2.b.2, 315.3.b, 415.3.a, 417.6.b.3, 417.6.c, 430.2.a, 430.3, 437.4, 466.5, 469, 469.1, 485.4.a, 485.5. RE-OPENS A REFUSAL WITH ITS SCOPE STATED: #171 refused the Papertree on two MANA strikes, both correct and both untouched; its real partners read a rune COUNT, which an exhausted rune supplies in full. That is the same re-scope this project already applied to OGN-288 Startipped Peak. The one anti-synergy is named rather than hidden. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "emperors-dais-sprite-queen-conquer-cycle",
+      "name": "A 'when you conquer here' battlefield fires once a game unless a [Temporary] garrison hands it back - and this one leaves its own replacement body",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-207",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you conquer here, you may pay :rb_energy_1: and return a unit you control here to its owner's hand to play a 2 :rb_might: Sand Soldier unit token here.' A bounce and a body, on a trigger that only fires on a change of hands."
+        },
+        {
+          "card": "UNL-084",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E7 P1 M6. 'When you play me or at the start of your Beginning Phase, play a ready 3 :rb_might: Sprite unit token with [Temporary] to your base.' The [Temporary] body whose scheduled death is what re-opens the Conquer."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine",
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Sprite Queen is mono-Mind and the battlefield is Colorless, so 103.1.b.3 admits any legend with Mind in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "The battlefield is not guaranteed: 485.4.a has each player provide three and 485.5 selects randomly, and 103.4.c forbids a second copy of the same name. State it in any list that depends on it. 190.1 also makes a battlefield you provide start UNCONTROLLED, and 190.6.d ignores every instruction of an uncontrolled battlefield's abilities that refers to 'you'."
+        ],
+        "notable": [
+          "A CONQUER TRIGGER FIRES ONCE A GAME UNLESS YOU GIVE THE BATTLEFIELD BACK, AND THAT IS THE FIRST THING TO PRICE. 469.1 defines a Conquer on a battlefield 'not yet Scored this turn', 470 caps Scoring at once per battlefield per turn, and 466.5 establishes Control only 'if they didn't already control this Battlefield' - so once you hold it, holding it again is a HOLD and never a Conquer. This project's fix is a [Temporary] garrison: 816.1.b kills it at 315.2.a before scoring, 319.6 then 323.6 strip Control in an Open State, and the battlefield is open to be conquered again. The precedents are sprite-queen-targon-peak-conquer-cycle and treasure-hoard-renata-conquer-gold, and this entry is the third.",
+          "AND 816.1.c IS WHY THE SPRITE DOES NOT DIE ON THE TURN IT IS MADE. 'The Trigger Condition is the controller of the permanent's Beginning Phase starting' - so a [Temporary] body created BY a trigger that fires at that same instant enters AFTER the condition was checked and survives that turn. Sprite Queen makes one 'at the start of your Beginning Phase', printed READY, so it walks in the same Main Phase and dies at the NEXT Beginning Phase. That is a one-turn garrison on a schedule, which is exactly what the cycle needs.",
+          "WHAT THE DAIS PAYS, AND WHY THE BOUNCE IS THE VALUABLE HALF. 'Return a unit you control HERE to its owner's hand to play a 2 :rb_might: Sand Soldier unit token HERE' - so a body with a play trigger goes back to hand to be replayed later, and the battlefield does not empty, because the Sand Soldier replaces it on the spot. Compare a bare bounce, which would hand the battlefield straight back under 323.6. The Energy is 1 and the whole clause is optional ('you MAY pay'), so the Conquer is never worse for having the Dais.",
+          "THE SAND SOLDIER ENTERS EXHAUSTED AND THAT IS FINE HERE. 143.4 exhausts every unit as it enters, but the body's job is to OCCUPY - 323.6 only strips Control from a battlefield without your units on it, and neither 464.2.c.3 nor 465.2.b filters by state, so an exhausted body defends at its full 2 Might.",
+          "THE ORDER TO RUN IT IN. Conquer the Dais with the Sprite (a 3 Might [Temporary] body walking in the turn it is made), take the trigger, bounce a unit with a play trigger you want back, and take the Sand Soldier. At your next Beginning Phase 816.1.b kills the Sprite before scoring, 323.6 strips your Control if the Sand Soldier is not there - so keep the Soldier if you want to HOLD, and let the battlefield go if you want to conquer it again next turn. The card gives you the choice, which is unusual for this family.",
+          "WHAT IT IS NOT. The Conquer scores by 469.1 and 471.1; the Dais itself scores nothing, and its Sand Soldier is 2 Might, so this is a value trigger on a point you were taking anyway."
+        ]
+      },
+      "steps": [
+        "Play Sprite Queen (7 Energy + 1 Power). Her trigger makes a ready 3 Might [Temporary] Sprite at your base now and again at the start of every Beginning Phase.",
+        "816.1.c checks the Trigger Condition as the Beginning Phase starts, so a Sprite made by that same trigger is not killed that turn.",
+        "Walk the Sprite to the Emperor's Dais and take it: 190.3.a.1 applies Contested, 466.5 establishes Control and 466.5.d makes it a Conquer.",
+        "Take the Dais trigger: pay 1 Energy, return a unit you control there to hand - a body whose play trigger you want again - and play a 2 Might Sand Soldier there in its place.",
+        "At your next Beginning Phase 816.1.b kills the Sprite before scoring. Keep the Sand Soldier there to HOLD, or move it off to let the battlefield go and conquer it again.",
+        "Repeat. 470 with 103.4.c means one Conquer of this battlefield per turn and no more."
+      ],
+      "netPerIteration": "one Conquer trigger per cycle - a unit bounced back to hand and a 2 Might Sand Soldier left in its place - for 1 Energy",
+      "terminatesIn": "engine only - one Conquer of this battlefield per turn (470), one Sprite per Beginning Phase, and the Dais pays a body and a bounce rather than a point; nothing here scores beyond the Conquer itself",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-orphan-remainder.md, part 3)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #193, part 3). The first entry to use SFD-207 Emperor's Dais. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.4.c, 143.4, 190.1, 190.3.a.1, 190.6.d, 315.2.a, 319.6, 323.6, 464.2.c.3, 465.2.b, 466.5, 466.5.d, 469.1, 470, 471.1, 485.4.a, 485.5, 816.1.b, 816.1.c. Third entry in the conquer-cycle family after sprite-queen-targon-peak-conquer-cycle and treasure-hoard-renata-conquer-gold, and the one whose battlefield leaves its OWN replacement body - which is why it can choose between holding and re-conquering, where a bare bounce would hand the battlefield back under 323.6. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "repulse-heedless-resurrection-shrink-target-count",
+      "name": "359.3.e.9.a: moving your other bodies away does NOT shrink a trigger's target count, but killing them does - which is the difference between Repulse fizzling and countering",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-106",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E1 P1. '[Reaction] (Play any time, even before spells and abilities resolve.) Choose a friendly unit at a battlefield. Counter an enemy spell or ability that chooses it and no other friendly unit.' The words 'and no other friendly unit' are a COUNT over the finalized chain item, which is exactly what 359.3.e.9.a governs."
+        },
+        {
+          "card": "UNL-142",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E2 P1. '[Reaction] ... As an additional cost to play this, kill a friendly unit. Play a unit from your trash that costs no more Energy and no more Power than the killed unit, ignoring its cost.' Riot's own example at 359.3.e.9.a uses this card, twice, to shrink the count - because its cost sends a body to a NON-BOARD zone."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Repulse is mono-Body and Heedless Resurrection is mono-Chaos, so the identity is Body/Chaos and 103.1.b.2 needs a legend covering both. Measured over data/cards.json those are OGN-267 / OGN-309 Bounty Hunter, SFD-203 / SFD-250 Battle Mistress and UNL-201 / UNL-236 Voidreaver.",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "Heedless Resurrection's additional cost needs a friendly unit to kill and its effect needs a unit in your trash costing no more than the one killed - 206 reads the PRINTED cost of both, so a token killed as the cost has cost 0 (185.3.a.1) and returns nothing."
+        ],
+        "notable": [
+          "THE RULE, AND IT SPLITS TWO ANSWERS THAT LOOK IDENTICAL. 359.3.e.9.a: 'If another spell or ability attempts to reference the number of game objects, players, or zones that a Finalized Chain Item targets, it will include any mistargeted choices, but not any targets that have changed to a non-board zone.' So a body of yours that was chosen and then MOVED is still counted - it merely mistargets (359.3.e.9) - while a body of yours that was chosen and then KILLED is not counted at all. 359.3.e.6 through .e.9.a are cited by no entry and no synergy rule in this project.",
+          "RIOT WORKS IT WITH FOUR POOL CARDS. 'When a player moves their Volibear, Furious to an occupied enemy battlefield and combat initiates, Volibear's attack trigger goes on the chain targeting three of the units at that battlefield. In reaction, the defending player plays Flash moving two of the three units back. That player cannot then target the attack trigger with Repulse ... If the defending player instead played Heedless Resurrection twice, killing the two units,' the count falls to one and Repulse becomes legal. OGN-041 Volibear, Furious, OGS-011 Flash, UNL-106 Repulse and UNL-142 Heedless Resurrection, all four in the pool.",
+          "SO THE CHEAP ANSWER IS THE WRONG ONE. Flash (Chaos, E2, [Reaction], 'Move up to 2 friendly units to base') looks like the way to strip a multi-target trigger down to one body, and it is not: the moved units keep being counted. Heedless Resurrection costs a body but removes it from the count AND replaces it from your trash, so the same 2 Energy buys the counter and a body back.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. An enemy trigger chooses three of your units. Repulse alone does nothing - it needs 'it and no other friendly unit'. Two Heedless Resurrections kill two of the three as their additional costs and return two bodies from your trash; the finalized item now counts one friendly target; Repulse (1 Energy + 1 Power) counters it. Total 5 Energy and 3 Power to counter a trigger and reanimate two units, at [Reaction] speed.",
+          "AND THE ORDER IS FORCED. All three cards are [Reaction] (813.1.c.1: any Closed State on any player's turn), and every kill must resolve BEFORE Repulse is finalized, because 359.3.e.9.a reads the count at the moment the referencing item looks. Play the Heedless Resurrections first and let them resolve; Repulse last.",
+          "359.3.e.7 AND 359.3.e.8 ARE THE COMPANION PAIR AND THEY DECIDE WHETHER THIS IS EVEN WORTH IT. 359.3.e.7: if ALL of an instruction's targets go invalid, the instruction does not execute. 359.3.e.8: 'If an instruction has more than one Target and fewer than all of the Targets become Invalid or Unavailable ... the instruction will execute, with only the Targets available and valid being operated on', with OGN-105 Singularity as the example. So killing two of three targets does NOT blank the trigger by itself - it still resolves on the survivor. The counter is what blanks it, and that is why Repulse is the payoff and the kills are the engine.",
+          "THE COST OF THE ENGINE IS REAL AND IT IS PRICED ON 206. Heedless Resurrection returns 'a unit from your trash that costs no more Energy and no more Power than the killed unit' - and 206 makes both readings the PRINTED cost, so killing a token buys nothing (185.3.a.1 puts a token's cost at 0 for all purposes) and killing a cheap body buys a cheap body. Kill the expensive one of the two if you want the return to matter."
+        ]
+      },
+      "steps": [
+        "Hold UNL-106 Repulse and two UNL-142 Heedless Resurrection, all [Reaction], with 5 Energy and 3 Power banked on the opponent's turn (415.3.a readies runes only at your own Awakening).",
+        "The opponent finalizes a trigger or spell that chooses three of your units - Volibear, Furious's attack trigger is Riot's case.",
+        "Play the first Heedless Resurrection: its additional cost kills one of the three chosen units, sending it to the trash - a NON-BOARD zone. Its effect returns a unit from your trash costing no more than the killed one (206 reads printed costs).",
+        "Play the second Heedless Resurrection the same way on a second chosen unit. Let both resolve.",
+        "359.3.e.9.a now counts the finalized item's friendly targets: the two killed bodies are in a non-board zone and are NOT counted; only the survivor is.",
+        "Play UNL-106 Repulse (1 Energy + 1 Power) choosing the survivor. The enemy item now 'chooses it and no other friendly unit', so Repulse counters it.",
+        "Never use a MOVE for this: 359.3.e.9.a keeps a moved body in the count, so Flash leaves Repulse illegal - and 359.3.e.8 means killing two of three does not blank the trigger on its own."
+      ],
+      "netPerIteration": "one multi-target enemy trigger countered and two units reanimated, for 5 Energy and 3 Power at Reaction speed",
+      "terminatesIn": "engine only - nothing here scores. Three copies of each (103.2.b), and each Heedless Resurrection costs a body on the board to remove one from the count",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 359.3.e.9.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If another spell or ability attempts to reference the number of game objects, players, or zones that a Finalized Chain Item targets, it will include any mistargeted choices, but not any targets that have changed to a non-board zone."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 359.3.e.9.a worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "In reaction, the defending player plays Flash moving two of the three units back. That player cannot then target the attack trigger with Repulse, which reads “Choose a friendly unit at a battlefield. Counter an enemy spell or ability that chooses it and no other friendly unit.”"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 359.3.e.8",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If an instruction has more than one Target and fewer than all of the Targets become Invalid or Unavailable by the time the spell begins resolving, the instruction will execute, with only the Targets available and valid being operated on."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, sub-rule lane 100-499; from the filtered probe). 359.3.e.6, .e.7, .e.8, .e.9 and .e.9.a are cited by no entry and no synergy rule in this project, and 359.3.e.9.a's worked example names four pool cards together - OGN-041 Volibear, Furious, OGS-011 Flash, UNL-106 Repulse and UNL-142 Heedless Resurrection. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.2, 185.3.a.1, 206, 359.3.e.7, 359.3.e.8, 359.3.e.9, 359.3.e.9.a, 415.3.a, 813.1.c.1. REPORT TO THE MANAGER: the general fact is that a MOVE and a KILL are not interchangeable answers to a multi-target chain item - a mistargeted choice is still counted, a choice that left the board is not - and it reaches every 'chooses it and no other' or 'that targets N' clause in the pool. Distinct from jae-medarda-repulse-counter-that-pays-for-itself and from the three existing Heedless Resurrection entries, none of which cites 359.3.e.9.a. Trap check: 359.3.e.8 means killing some targets does not blank the instruction, so the counter is still required; the kills must resolve before Repulse is finalized; 206 prices the reanimation on printed costs and a token is worth 0 (185.3.a.1); no unruled reading."
+    },
+    {
+      "id": "ornn-blacksmith-late-may-resolution",
+      "name": "383.3.a.3: a \"you may\" later in a trigger's effect is decided ON RESOLUTION and the ability is always finalized - so Ornn looks at four cards before choosing, and a leading \"you may\" never does",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-058",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 P1 M5. 'When you play me or when I hold, look at the top 4 cards of your Main Deck. You may reveal a gear from among them and draw it. Then recycle the rest.' Riot's worked example for 383.3.a.3 is this card, by name - the 'you may' is not the first part of the effect, so it is decided after you have seen the four."
+        },
+        {
+          "card": "SFD-033",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "DECK",
+          "note": "Calm Equipment, E1, Might Bonus +1. '[Equip] :rb_rune_calm: ... [Effect] [Tank] (I must be assigned combat damage first.)' The cheapest gear in Calm, so the dig has something to find at a price the turn can absorb - and it puts [Tank] on Ornn himself, who is the body the Hold depends on."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits them under any legend with Calm among its two domains - measured over data/cards.json those include OGN-255 / OGN-303 Nine-Tailed Fox (calm/mind), OGN-257 / OGN-304 Blind Monk (calm/body), OGN-261 / OGN-306 Radiant Dawn (calm/order), SFD-189 / SFD-244 Fire Below the Mountain (calm/mind), SFD-197 / SFD-247 Emperor of the Sands (calm/order), UNL-189 / UNL-230 Bashful Bloom (calm/mind), UNL-195 / UNL-233 Green Father (calm/order), VEN-139 / VEN-189 Rogue Assassin (calm/fury), VEN-145 / VEN-192 Curator of the Sands (calm/mind) and VEN-147 / VEN-193 Eye of Twilight (calm/order).",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "The Hold half needs Ornn alive at a battlefield you control at 315.2.b.2, which is why the [Tank] from Doran's Shield is worth more on him than on anything else in the deck."
+        ],
+        "notable": [
+          "THE SPLIT, AND IT IS DECIDED BY WHERE THE WORDS SIT. 383.3.a: 'If a Triggered Ability says \"you may\" or \"they may\" as the first part of its Effect, the controller of its source will choose whether or not to perform the Triggered Ability during finalization', and 383.3.a.2 makes declining severe - 'it is removed from the chain and considered to have NOT TRIGGERED.' Against that, 383.3.a.3: 'If \"you may\" or \"they may\" appears in any later part of the Effect of a triggered ability, it is decided on resolution', with Ornn as the example and the sentence that matters: 'The ability is always finalized to the chain.' 383.3.a, .a.1, .a.2 and .a.3 are cited by no entry and no synergy rule in this project.",
+          "SO A LATE \"YOU MAY\" IS FREE INFORMATION AND A LEADING ONE IS A BLIND COMMITMENT. Ornn looks at four cards and THEN decides whether to reveal a gear and draw it. A card whose 'you may' opens the effect - OGN-199 Tideturner is Riot's example at 383.3.a - has to be committed at finalization, before anyone responds and before anything is seen. When comparing two triggers that read alike, find the 'you may' first.",
+          "AND 383.3.a.2 IS THE HALF WITH TEETH. 'Considered to have not triggered' is stronger than merely leaving the chain: nothing that watches triggers sees it, and a 'once each turn' clause on such an ability is not spent. This is the same window 383.3.b puts a base cost in - a cost written right after a leading 'you may' is paid to finalize - so a leading 'you may' is one decision about both the cost and the effect, taken blind.",
+          "THE ENGINE IS THE HOLD, NOT THE PLAY. 'When you play me OR WHEN I HOLD' - 315.2.b.2 Holds every battlefield you control, and 485.4 puts two on a Duel table, so Ornn digs four cards deep EVERY Beginning Phase he survives at a battlefield you hold, and each dig is a fresh 383.3.a.3 decision. That is what makes a 5-Energy body a card-advantage engine rather than a one-shot.",
+          "AND THE DIG IS FREE OF BURN OUT, WHICH MATTERS IN A THIN DECK. 431.1.c is explicit that looking and revealing never Burn Out, and 431.1.c.1 extends that to the zone change that follows - so 'look at the top 4 ... reveal ... and draw it. Then recycle the rest' is safe with the deck nearly empty, where a plain draw would be 431.1.a and a point for the opponent (194.1.d). The DRAW itself is the one part that is not free, and it is the part 383.3.a.3 lets you decline after looking.",
+          "416.5 IS THE PRICE OF THE RECYCLE. 'If 2 or more cards are Recycled to the Main Deck simultaneously, they are placed on the bottom of that deck in a random order' - so the three or four cards Ornn puts back go to the bottom unordered. The dig never sets up a future draw; it only converts this turn's top four into one card of your choice.",
+          "DORAN'S SHIELD IS IN uses[] FOR TWO REASONS AND BOTH ARE ARITHMETIC. It is the cheapest gear in Calm at 1 Energy, so the reveal has a target the turn can actually cast; and its [Effect] [Tank] on Ornn makes 815.1.c.2 forbid assigning combat damage to any other body of yours until he has lethal, which is what keeps the Hold engine alive to dig again."
+        ]
+      },
+      "steps": [
+        "Play SFD-058 Ornn, Blacksmith (5 Energy + 1 Power) to a battlefield you control. His play trigger fires: look at the top 4 cards of your Main Deck.",
+        "383.3.a.3 puts the decision at RESOLUTION, after you have seen all four - reveal a gear from among them and draw it, or decline. The ability was finalized either way.",
+        "Recycle the rest; 416.5 puts them on the bottom in random order, so nothing is set up for later.",
+        "Attach SFD-033 Doran's Shield to Ornn for one Calm rune: +1 Might Bonus (137.3, 477.3.d) and [Tank], so 815.1.c.2 makes every other friendly body an invalid combat-damage assignment until he has lethal.",
+        "At each of your Beginning Phases, 315.2.b.2 Holds every battlefield you control and Ornn's Hold trigger digs four again - a fresh decision each time, and 431.1.c keeps the look and the recycle free of any Burn Out.",
+        "Three copies of each (103.2.b). Compare against any trigger whose 'you may' opens its effect - 383.3.a makes that one a blind commitment at finalization, and 383.3.a.2 treats a decline as never having triggered."
+      ],
+      "netPerIteration": "one card of your choice out of the top four, every Beginning Phase Ornn survives a battlefield you hold, decided after you have looked",
+      "terminatesIn": "engine only - nothing here scores. One dig per Ornn per Hold, three copies (103.2.b), and 416.5 makes the recycle random so it never compounds",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 383.3.a.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If “you may” or “they may” appears in any later part of the Effect of a triggered ability, it is decided on resolution."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 383.3.a.3 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Ornn, Blacksmith reads “When you play me or when I hold, look at the top 4 cards of your Main Deck. You may reveal a gear from among them and draw it. Then recycle the rest.” This “you may” does not appear as the first part of its effect, so the choice is made on resolution. The ability is always finalized to the chain."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 383.3.a.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If the controller of the Triggered Ability chooses not to perform that Triggered Ability during finalization, it is removed from the chain and considered to have not triggered."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, sub-rule lane 100-499). 383.3.a, 383.3.a.1, 383.3.a.2 and 383.3.a.3 are cited by no entry and no synergy rule in this project, and 383.3.a.3's worked example names SFD-058 Ornn, Blacksmith while 383.3.a's names OGN-199 Tideturner. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 137.3, 194.1.d, 315.2.b.2, 383.3.a, 383.3.a.2, 383.3.a.3, 383.3.b, 416.5, 431.1.a, 431.1.c, 431.1.c.1, 477.3.d, 485.4, 815.1.c.2. REPORT TO THE MANAGER: this is the DECISION half of a split the project has only carried the COST half of. A LEADING 'you may' is decided at finalization and declining makes the ability 'considered to have not triggered' (383.3.a.2) - the same window 383.3.b pays a base cost in, so it is one blind commitment covering both. A LATER 'you may' is decided on resolution and the ability is ALWAYS finalized (383.3.a.3), so you buy information first. When comparing two triggers that read alike, find the 'you may' first. Distinct from svellsongur-ornn-hold, teemo-strategist-rabadons-deathcrown-bonus-kill and karma-ornn-hold-recycle-buff, none of which cites 383.3.a.x. Trap check: 416.5 makes the recycle random so the dig never compounds; the Hold half needs Ornn alive at a battlefield you control, which is why the [Tank] is in uses[]; no unruled reading."
     }
   ]
 }
