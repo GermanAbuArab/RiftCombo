@@ -57,6 +57,13 @@ Two further points the entry records:
 **R30 is not engaged.** That ruling was about Heimerdinger copying an ability that carries its own
 *"Use my abilities only while I'm at a battlefield"* clause. The Armory prints no such sentence.
 
+**Cross-reference, added after the merge:** `herald-heimerdinger-armory-plaza` (staged the same
+night by rc-walk-payoff) is the same three cards plus `OGN-265 Herald of the Arcane`, whose
+`E1, exhaust: Play a 1 Might Recruit unit token` Heimerdinger also copies — a fourth and fifth body
+a turn for one Energy each. That entry is the wider board; this one is the three-card floor, and
+the tempo differs because the legend's Recruits arrive one at a time while the Armory's arrive
+three at a time. Both are kept.
+
 ### 1a. Refusals in the Plaza family
 
 **REFUSED — `SFD-154 Guards!` hidden at the Plaza, played in the Beginning-Phase window.** The idea:
@@ -143,7 +150,7 @@ Reported, not edited; that entry belongs to whoever owns it.
 
 ---
 
-## 3. `shen-leader-blue-sentinel-hold` (ENTRY) — the payoff the Sentinel cannot scale
+## 3. Shen, Leader × Blue Sentinel — WITHDRAWN as a duplicate; the finding stands
 
 `VEN-138 | Shen, Leader of the Kinkou Order | Unit | Order | E6 P2 M7 | [Shield] When I hold, if
 there is exactly one other unit you control here, you score 1 point.`
@@ -155,6 +162,19 @@ so his ability never reaches the Chain and the line scores nothing at all. Shen 
 payoff in the pool whose multiplier occupies the only companion slot he allows.
 
 Ceiling: `1 + 1 × (1 + 1)` = **3 points a turn**, plus 2 rainbow Power, forever, and it never grows.
+
+**The entry was WITHDRAWN before merge.** `shen-kinkou-sentinel-hold` (`UNL-087` + `VEN-138`) had
+already been merged from rc-walk-instances two hours earlier — the same two cards. Three separate
+walks reached this line the same night, which is evidence for the line and an indictment of my
+process: **check the current `data/combos.json` by CARD SET before writing, not by anchor.** The
+check is one command and it is now the first step of every candidate:
+
+```
+node /tmp/rc-walks/cardset.mjs <CODE> <CODE> ...
+```
+
+The two findings in this section are not duplicated by that entry and are kept here: the self-cap
+(a second Sentinel takes the line to zero) and the Domain Identity refusal below.
 
 **REFUTED — adding a Trinity Force to raise T.** Gear is not a unit, so it would not break Shen's
 count, and the idea is mechanically sound. It dies on Domain Identity alone: Trinity Force is Body,
@@ -221,3 +241,151 @@ The remaining Sentinel BURSTs (`ahri-blue-sentinel-hold`, `ivern-sentinel-hold`,
 `ivern-arena-sentinel-hold`, `nasus-ascended-sentinel-arena-hold`, `svellsongur-copy-hold`,
 `ahri-trinity-svellsongur-hold`), the conquer BURSTs on `UNL-029 Red Brambleback`, and the two
 remaining CHAINs (`swain-double-conquer`, `yasuo-windrider-ride-the-wind-chain`).
+
+---
+
+## 6. `swain-double-conquer` -> `swain-shurelya-double-conquer` (ENTRY) — the CHAIN without the loop
+
+`swain-double-conquer` is the most expensive finisher in the catalogue. It carries
+`needs: ["infinite-energy","infinite-power"]` and prices itself at *"about 40 Energy and 10 Power"*,
+because `VEN-065 Swain, Visionary` has no [Ganking] — so 144.4.c rules out A → B as one Standard
+Move and each Swain must walk **A → base → B**, two moves and therefore two readies each, six in
+all, bought out of five `VEN-068 Jayce, Brilliant Inventor` plays at one ready apiece.
+
+**One card replaces all six.**
+
+`SFD-192 | Shurelya's Requiem | Gear | Calm/Mind | E4 P2 M+2 | [Unique] [Equip] 1 rainbow. When you
+play this, **ready your units**. [Effect] **Your units here have [Ganking]**.`
+
+Both halves are load-bearing and they do different jobs:
+
+- the play trigger is a **mass** ready — all three Swains stand up at once, where Jayce readies one
+  unit per play;
+- the Effect makes the second leg unnecessary at all. 144.4.c.1: *"Units with Ganking may use their
+  Standard Move to Move from Battlefield to Battlefield."* Two moves become one.
+
+Finishing turn, priced against the entry's own quantities: Cloth Armor E1 + Decree of Insight E1 +
+Watchful Sentry E2 + Shurelya's E4 + 2 Power + 1 rainbow to [Equip] = **8 Energy and 3 Power.** An
+ordinary twelve-rune turn, for a line that previously could not be attempted outside an
+infinite-energy engine.
+
+**The gear order is forced, and it looks wrong until it is walked.** Swain's condition needs a
+non-token gear played *this turn* and it is re-checked on each Conquer, so a gear must be down before
+the FIRST one — but Shurelya's own ready is worthless before it, because the Swains are already ready
+at Awaken (315.1.b). Playing Shurelya's early wastes the ready and leaves nothing to stand the Swains
+back up at A. Hence a separate, throwaway E1 gear.
+
+Points: 4 at A (1 Score + 3 ability Gains), 4 at B — 470's cap is per battlefield, so B is untouched
+by A. **Eight exactly**, which is also the fragility: lose one Swain in the combat at A and the line
+stops at 6 or 7. That is what the catalogued version buys redundancy against with the loop, and both
+entries are kept for that reason.
+
+---
+
+## 7. The Skyfall bridge — four payoffs, four different deaths
+
+`SFD-030 | Skyfall of Areion | Gear | Fury | E3 M+2 | [Equip] 1 Energy + 1 Fury. [Effect] My hold
+effects are also conquer effects, **and vice versa**.`
+
+The catalogue uses one direction: hold payoffs become conquer effects, multiplied by `UNL-029 Red
+Brambleback` (`brambleback-trinity-skyfall-conquer`, `skyfall-ahri-conquer`,
+`lucian-skyfinity-double-conquer`, `dragonstorm-brambleback-trinity-conquer`).
+
+**The other direction looks like a free repeatable finisher and it is not.** Bridging a
+conquer-scoring payoff into a hold effect would let `UNL-087 Blue Sentinel` multiply it every
+Beginning Phase with no attack at all. A sweep of the whole pool returns **five** cards that score on
+a Conquer, and every one of them dies, each for a different reason:
+
+| card | why the bridge fails |
+|---|---|
+| `OGN-034 Tryndamere, Barbarian` | *"When I conquer **after an attack**, if you assigned 5 or more excess damage"* — a Hold has no attack and no damage assignment, so 383.2.a.1 keeps it off the Chain |
+| `VEN-046 Nasus, Ascended` | Calm + Skyfall (Fury) + Sentinel (Mind) is **three domains** (103.1.b). `nasus-ascended-sentinel-arena-hold` gets there instead through `OGN-286 Reckoner's Arena`, which is Colorless and dodges the problem — the contrast is the lesson |
+| `VEN-065 Swain, Visionary` | domains are fine (Mind + Fury), but his condition is *"if you've played … **this turn**"* and the Scoring Step is **315.2**, which precedes the Main Phase at **316** — on a Hold you have not played anything yet this turn |
+| `UNL-177 Ivern, Friend to All` | already reads *"When I conquer **or hold**"*, so the bridge adds nothing; `ivern-sentinel-hold` is the entry |
+| `OGN-112 Kai'Sa, Evolutionary` | conquers into a free spell, not a point |
+
+The Swain row is the generalisable one and it is new: **a conquer effect bridged onto a Hold loses
+any condition that depends on the Main Phase**, because 315.2 comes before 316. Recorded so nobody
+re-derives the family.
+
+### 7a. Trinity Force + Skyfall + Reckoner's Arena — refused on arithmetic, one point short
+
+The Arena reads *"When you hold here, activate the conquer effects of units here"* (383.4.g.1's own
+worked example). Skyfall makes each Trinity Force's hold effect a conquer effect too, so on a Hold
+each Trinity Force fires **twice**: once natively, once through the Arena. Domains work — Trinity is
+Body, Skyfall Fury, the Arena Colorless, so Body/Fury under `VEN-141 Butcher of the Sands`.
+
+`1 + 3 × 2 = 7`. **One short of 8**, and 103.2.b caps Trinity Force at three copies. Adding
+`OGN-066 Ahri` would fix it and is Calm — three domains. Adding a Brambleback would need
+383.4.g.1's Arena-activated effect to count as *"conquering here"* for `UNL-029`, which is an unruled
+reading and is exactly what this project files R-numbers for; the walk declines it, since the line is
+one point short even if the reading went the friendly way.
+
+### 7b. Shen, Leader is self-capped on the conquer side too
+
+`VEN-138` + Skyfall + one Brambleback is a legal Fury/Order board (`OGN-253 Hand of Noxus`) and
+reaches `1 + 1 × 2 = 3`. A second Brambleback is a second *"other unit you control here"* and
+switches Shen off entirely — the same self-cap §3 found with the Blue Sentinel, from the other
+direction. No entry: `shen-kinkou-sentinel-hold` and `shen-kinkou-svellsongur-hold` already hold that
+ground.
+
+---
+
+## 8. Refusals and notables in the remaining families
+
+**REFUSED — Shurelya's Requiem as the Plaza walk-in enabler.** `ready-recruits-grand-plaza` carries
+`SFD-171 Renata Glasc, Industrialist` so that base-born tokens enter ready and can walk in as one
+action (144.3). Shurelya's mass ready does the same job in Calm/Mind instead of Order, and the
+substitution looks free. It is not: sweeping Calm and Mind for base token engines returns
+`OGN-094 Sprite Call`, `OGN-106 Sprite Mother`, `UNL-069 Sprite Burst`, `UNL-078 Sprite Fountain`,
+`UNL-081 Keeper of Masks`, `UNL-084 Sprite Queen` — **all [Temporary]**, all killed by 816.1.b before
+scoring — plus `SFD-076 Production Surge`, `VEN-051 Iterative Design` and `SFD-089 Rumble, Scrapper`
+at roughly one Mech per E4. The ready was never the binding constraint; the token supply is, and the
+fast engines are Order.
+
+**NOTABLE — `UNL-045 Forgotten Signpost` as a third mover for `yasuo-syren-unforgiven-point`.** That
+entry buys Yasuo's three moves a turn from the legend (E2 + exhaust) and `OGN-184 The Syren`
+(E1 + exhaust). The Signpost is Calm, costs **no Energy**, and moves a unit by effect (420.1/420.2.a,
+and R9 was retired precisely because ordinary effect moves DO trigger move abilities) — one Energy a
+turn cheaper. Its cost exhausts a *different* friendly unit, and 420.1's *"between two Locations"*
+means that unit must stand somewhere Yasuo is not. Same three moves, same one point a turn: a
+`notable`, not an entry.
+
+**NOTABLE — [Weaponmaster] on `brambleback-trinity-skyfall-conquer`.** Trinity Force's [Equip] is one
+Body rune and Skyfall's is 1 Energy + 1 Fury, so a Weaponmaster body attaches either for one rainbow
+less — three Trinity Forces and a Skyfall for 3 Body Power and 1 Fury Power saved. Largely occupied
+already: `lucian-skyfinity-double-conquer` runs `SFD-113 Lucian, Merciless` with Skyfall and Trinity
+Force for exactly this reason. Reported against the Brambleback entry as a cost note.
+
+**NOTABLE — `OGN-153 Overt Operation` + `SFD-101 Fae Dragon` as a mass ready for `swain-double-conquer`.**
+*"For each friendly unit, you may spend its buff to ready it. Then buff all friendly units."* Two
+castings ready three Swains twice and re-buff the board in between, so only the first needs an
+external buffer. Mind/Body, so it is legal beside Swain. It is strictly worse than §6's Shurelya's
+line — E17 + 5 Power against E4 + 3 Power, and it still walks A → base → B — but it is the Mind/Body
+answer where §6 is the Calm/Mind one.
+
+---
+
+## 9. Standing verdict on the finisher families
+
+Four families have now been swept from the feeder side and **three of them are saturated**:
+
+- **Grand Plaza (18 entries).** The two floors written on 2026-09-06 are near the real floor; the
+  only improvement found was §1, and every other idea died on 485.4.a (two of your battlefields never
+  coexist), on the [Temporary] deadline, or on being strictly worse than
+  `keeper-of-masks-flurry-plaza-window`, which exposes nothing at all.
+- **Blue Sentinel BURSTs.** Bounded by a sweep: **exactly three** *"trigger an additional time"* cards
+  exist in the pool and all are catalogued. Improvement is only available on cost (§2) or on turn
+  count (§4).
+- **Red Brambleback conquer BURSTs.** The Skyfall bridge is one-directional in practice (§7), and the
+  Arena variant is one point short (§7a).
+- **CHAINs — NOT saturated.** Two of the four were improved outright: §4 turns a Sentinel hold board
+  into a three-turn chain that pays for its own Time Warps, and §6 removes an infinite-energy
+  requirement from `swain-double-conquer` with a single card.
+
+The lesson for the next pass: **check the current `data/combos.json` by CARD SET, not by anchor,
+before writing anything.** Three separate walks reached Shen × Blue Sentinel on the same night (§3).
+
+```
+node /tmp/rc-walks/cardset.mjs <CODE> <CODE> ...
+```
