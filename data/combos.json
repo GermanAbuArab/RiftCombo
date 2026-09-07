@@ -21986,7 +21986,8 @@
           "THE BUILD IS 10 ENERGY + 2 POWER ACROSS EARLIER TURNS (Armory 7 + 1, Heimerdinger 3 + 1) plus Control of the Plaza, which 190.1 does not give you for free — a battlefield you provide starts uncontrolled and 190.6.d blanks its 'you' until you take it (466.5). And it is 1 of 3 at random in a Duel (485.4.a, 485.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy.",
           "SFD-210 Hall of Legends would ready the legend for an eighth Recruit, but it and The Grand Plaza can never share a table — 485.4.a uses only one battlefield per player and 103.4.c forbids two of the same name. The Plaza is the one that wins.",
           "THE PLAZA IS SYMMETRIC: 'When YOU hold here' reads for whoever holds it (190.6.d), so an opponent parking seven units on it wins the same way.",
-          "UNL-077 Soul Shepherd (Mind, \"Your token units have +1 Might\") is a CONTINUOUS MODIFIER, not a 702 buff, so it applies to every token at once: 143.2.a + 465.2.c.3 make seven 1-Might Recruits cost 7 damage to clear and seven 2-Might Recruits cost 14, and it makes the whole 1-Might Plaza family immune to OGN-133 Flurry of Blades (\"Deal 1 to all units at battlefields\"). He is Mind, so he narrows an all-Order line to Mind/Order (#159, 2026-09-06)."
+          "UNL-077 Soul Shepherd (Mind, \"Your token units have +1 Might\") is a CONTINUOUS MODIFIER, not a 702 buff, so it applies to every token at once: 143.2.a + 465.2.c.3 make seven 1-Might Recruits cost 7 damage to clear and seven 2-Might Recruits cost 14, and it makes the whole 1-Might Plaza family immune to OGN-133 Flurry of Blades (\"Deal 1 to all units at battlefields\"). He is Mind, so he narrows an all-Order line to Mind/Order (#159, 2026-09-06).",
+          "CROSS-REFERENCE: heimerdinger-armory-plaza is the three-card, two-turn version of this line (no Herald: the Armory fires the turn it lands and again beside Heimerdinger's copy the next turn, ten bodies); this four-card row fixes the legend to Herald of the Arcane and wins a Hold sooner (#166, 2026-09-07)."
         ]
       },
       "steps": [
@@ -21997,7 +21998,7 @@
         "Pay 1 Energy and exhaust Herald of the Arcane for the seventh Recruit, played to the Plaza (355.2.a).",
         "Survive the opponent's turn with seven or more still there, then Hold in your Beginning Phase (315.2.b.2): the condition is met when the trigger is placed (383.2.a.1) and rule 195 gives you the game."
       ],
-      "terminatesIn": "win the game — seven units at The Grand Plaza on the next Hold, assembled in one Main Phase for 1 Energy",
+      "terminatesIn": "win the game — seven units at The Grand Plaza on the next Hold, assembled in one Main Phase for 1 Energy — the 1 Energy is the finishing turn on a board already holding the Armory (E7 + 1 Order Power) and Heimerdinger (E3 + 1 Mind Power): 11 Energy + 2 Power for the whole board",
       "sources": [
         {
           "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md)",
@@ -22409,7 +22410,8 @@
           "The Mechs are born at your BASE and enter ready under Renata, which is the whole reason she is in uses: 143.4 makes units enter exhausted, 143.4.a admits the alteration, and 144.2 charges the Standard Move an exhaust they could not otherwise pay on the turn they appear. R25 = A, ruled 2026-09-04.",
           "The count is measured AT THE HOLD (383.2.a.1 puts 'if you have 7+ units here' in the Trigger Condition), so the nine have to survive the opponent's whole turn and nothing can be topped up at that instant. Nothing here is [Temporary], so 816.1.b never fires.",
           "The Grand Plaza must be the battlefield in play — 485.4.a puts only 1 of your 3 into the game, randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid three copies. It is symmetric, so an opponent parking seven units on it wins the same way.",
-          "Cost, counted whole: Forerunner 6 Energy + 1 Fury Power, two Karthus 6 Energy + 2 Order Power, Renata 4 Energy + 1 Order Power, the Blade 3 Energy + 1 Power to play and 1 Order Power to [Equip]. 19 Energy and 6 Power, spread over several turns. A second Forerunner doubles the Mechs to twelve and removes the need to walk any support body in."
+          "Cost, counted whole: Forerunner 6 Energy + 1 Fury Power, two Karthus 6 Energy + 2 Order Power, Renata 4 Energy + 1 Order Power, the Blade 3 Energy + 1 Power to play and 1 Order Power to [Equip]. 19 Energy and 6 Power, spread over several turns. A second Forerunner doubles the Mechs to twelve and removes the need to walk any support body in.",
+          "CROSS-REFERENCE: this is the Fury/Order, 3-Might-body instance of ready-recruits-grand-plaza, the generic token-consumer row; that row is a strict subset of this one by design (#166 shape, 2026-09-07)."
         ]
       },
       "steps": [
@@ -22530,7 +22532,8 @@
           "Three spare bodies is the margin, and it is the point of preferring this to a seven-exactly line. 465.2.c.3 forces the attacker to assign lethal damage in full to one unit before moving to the next, so clearing ten bodies (nine 1-Might Recruits plus Heimerdinger at 3) costs 12 damage, not 10.",
           "R30 = B is not engaged. That ruling was about Heimerdinger copying an ability that carries its own 'Use my abilities only while I'm at a battlefield' clause (Renata Glasc, Mastermind). The Vanguard Armory prints no such sentence, so the copy carries no location condition — Heimerdinger could stand at your base. He stands at the Plaza anyway, because there he is one of the seven.",
           "The Grand Plaza must be the battlefield in play: each player provides three and only 1 is used (485.4.a), randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy by name. And it is symmetric — an opponent who parks seven units on it wins the same way.",
-          "UNL-077 Soul Shepherd (Mind, \"Your token units have +1 Might\") is a CONTINUOUS MODIFIER, not a 702 buff, so it applies to every token at once: 143.2.a + 465.2.c.3 make seven 1-Might Recruits cost 7 damage to clear and seven 2-Might Recruits cost 14, and it makes the whole 1-Might Plaza family immune to OGN-133 Flurry of Blades (\"Deal 1 to all units at battlefields\"). He is Mind, so he narrows an all-Order line to Mind/Order (#159, 2026-09-06)."
+          "UNL-077 Soul Shepherd (Mind, \"Your token units have +1 Might\") is a CONTINUOUS MODIFIER, not a 702 buff, so it applies to every token at once: 143.2.a + 465.2.c.3 make seven 1-Might Recruits cost 7 damage to clear and seven 2-Might Recruits cost 14, and it makes the whole 1-Might Plaza family immune to OGN-133 Flurry of Blades (\"Deal 1 to all units at battlefields\"). He is Mind, so he narrows an all-Order line to Mind/Order (#159, 2026-09-06).",
+          "CROSS-REFERENCE: herald-heimerdinger-armory-plaza is the one-turn version of this line under Herald of the Arcane (seven Recruits in a single Main Phase); this three-card row is the version for the other Mind/Order legends and takes two turns (#166, 2026-09-07)."
         ]
       },
       "steps": [
