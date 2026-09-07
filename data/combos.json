@@ -40265,6 +40265,310 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #170, from the Core-Rules-named sweep; SFD-012 Battering Ram, UNL-025 Undying Legion and OGN-009 Hextech Ray were all in zero entries, and CLAUDE.md lists 'cards played this turn' as a lens that was never swept. Card text verbatim from data/corpus_flat.txt. The content is the negative half of the token rule: 350.2 plays a token but 185.2.a keeps it from being a card, so no token engine can feed either counter — the failure this pairing invites. Trap check: the floor is derived from 356.4.e and the exact number of cards is stated (four, and a fifth is wasted); the filler card is chosen to be unconditionally castable and to do real work, which is the #166 lesson; nothing is claimed to bank across turns; 143.4 prices the Ram's arrival."
+    },
+    {
+      "id": "counter-strike-tianna-crownguard-in-place-save",
+      "name": "The one save that leaves the body where it stands — 437.4 prevents the damage, so Tianna's point lock never blinks",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-194",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Calm/Body spell, E2 P1, and a SIGNATURE card tagged Jax. '[Reaction] (Play any time, even before spells and abilities resolve.) Choose a unit. The next time that unit would be dealt damage this turn, prevent it. Draw 1.' Two things at once: a save that changes nothing about where the unit is, and a cantrip, so it is never a dead card."
+        },
+        {
+          "card": "SFD-060",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E7 P2 M4. '[Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) While I'm at a battlefield, opponents can't gain points.' Might 4 on a card that costs 9 resources — the lock is the whole card, and it is written on WHERE she is."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "COUNTER STRIKE IS A SIGNATURE CARD (tagged Jax), so 103.2.d.2 makes this a ONE-LEGEND line: the only Jax legend in the pool is SFD-193 / SFD-245 Grandmaster at Arms (Calm/Body), and Tianna Crownguard is mono-Calm, so 103.1.b.3 holds. Three copies also spend the whole Signature budget, since 103.2.d.1 caps a deck at three Signature cards in total."
+        ],
+        "notable": [
+          "THE CONTRAST IS THE ENTRY, AND IT IS A TRAP THIS CATALOGUE ALREADY RECORDS. A heal / exhaust / recall replacement (the Guardian Angel family) saves a body by RECALLING it, and 455 defines a Recall as relocation 'from anywhere to its Base' — so it switches off every 'While I'm at a battlefield' clause on what it saves, and 456.3 means no movement lock can stop that. Tianna Crownguard saved that way stops locking points for a full turn, and comes back exhausted besides.",
+          "437.4 IS THE OTHER MECHANISM ENTIRELY: 'Damage dealt to a Unit that has all of that damage Prevented is not considered to have been dealt to it at all.' Nothing is relocated, nothing is exhausted, no kill event is generated — the body simply stays where it is with its static running. For a unit whose whole value is a location-dependent clause, that is the only correct save in the pool.",
+          "AND IT WORKS INSIDE THE DAMAGE STEP. 437.5: 'Damage can still be assigned to Units in combat that are affected by Prevent', and 437.5.a lets the attacker assign up to lethal counting the Prevent Value — so the assignment is made and then eaten. Combined with [Reaction] (813.1.c.1, 'during Closed States on any player's turn'), the save is bought after the attack is declared, not on a guess.",
+          "IT IS ONE INSTANCE, NOT A SHIELD. 'The NEXT time that unit would be dealt damage this turn' — one instance, this turn only. Against a second source in the same combat it does nothing, and 103.2.b caps the copies at three.",
+          "103.2.d IS PART OF THE COST. Counter Strike carries the Jax champion tag, so 103.2.d.2 forces SFD-193 / SFD-245 Grandmaster at Arms as the legend and 103.2.d.1 spends all three Signature slots on it. The legend is not wasted — its free reattach ability is live in the same Calm/Body shell — but no other Signature card can share the deck.",
+          "[DEFLECT] AND PREVENT COVER DIFFERENT ATTACKS. 809.1.c taxes an opponent's spell or ability for CHOOSING her, and 465.2.c assigns combat damage without choosing — so her printed [Deflect] answers removal and Counter Strike answers the damage step. Neither substitutes for the other.",
+          "THE LOCK ITSELF IS NOT A SCORE AND IS NOT A WIN. 194.1 lists three separate ways to gain a point, and Tianna's clause blanks all of them while she stands at a battlefield; what the deck still needs is its own route to eight.",
+          "AND THE CANTRIP IS WHY IT MAKES THE DECK. A save you never get to use is a dead card; 'Draw 1' means the worst case is a 2-Energy, 1-Power cycler held up for a Showdown."
+        ]
+      },
+      "steps": [
+        "Get Tianna Crownguard to a battlefield you control. From that moment 'While I'm at a battlefield, opponents can't gain points' is live.",
+        "Hold Counter Strike. It is [Reaction], so 813.1.c.1 lets it be played in any Closed State on any player's turn.",
+        "The opponent attacks or aims removal at her. If it is a spell or ability, her printed [Deflect] already taxes them one rainbow Power for choosing her (809.1.c).",
+        "In the damage step, 465.2.c has the attacker assign damage equal to their summed Might; 437.5.a lets them assign up to lethal on her counting the Prevent, so the assignment happens.",
+        "Play Counter Strike, choosing Tianna. The next instance of damage to her this turn is prevented, and 437.4 makes it 'not considered to have been dealt to it at all' — no kill, no marked damage, and crucially no relocation.",
+        "She is still at the battlefield when the Cleanup resolves, so the point lock never lapsed; and the spell drew you a card on the way through."
+      ],
+      "terminatesIn": "engine only — one instance of damage prevented per copy, three a game (103.2.b), each replacing itself with a card; the value is that the point lock never lapses, and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "437.4. \"Damage dealt to a Unit that has that all of that damage Prevented is not considered to have been dealt to it at all.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "437.5. \"Damage can still be assigned to Units in combat that are affected by Prevent. The damage dealt as a result of that assignment will be affected by the Prevent action.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "455. \"A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the sweep of cards named in the Core Rules and in no entry; SFD-194 Counter Strike was uncatalogued. Card text verbatim from data/corpus_flat.txt. The content is a contrast the catalogue already half-records: the heal/exhaust/recall shield family relocates what it saves (455) and therefore switches off a 'While I'm at a battlefield' clause, while Prevent (437.4) generates no event at all and moves nothing. Trap check: the save is stated as ONE instance rather than a shield; 437.5 and 437.5.a are cited so the assignment is described correctly (it happens, then is eaten) rather than as a redirect; [Deflect] and Prevent are separated by what they answer; 103.2.b is the ceiling and the cantrip is named as the reason it is safe to run."
+    },
+    {
+      "id": "lux-illuminated-singularity-printed-cost",
+      "name": "206 reads the PRINTED cost, so a discounted Singularity still pumps Lux — and 715.2 makes it two targets, individually",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-006",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E6 P1 M5. 'When you play a spell that costs :rb_energy_5: or more, give me +3 :rb_might: this turn.' A 'costs N' check, which 206 answers with the card's printed cost — this is the Core Rules' own worked example for that paragraph."
+        },
+        {
+          "card": "OGN-105",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind spell, E6 P2. 'Deal 6 to each of up to two units.' Printed at E6, so it clears the threshold with a point to spare however it is discounted; and it is 715.2's own worked example for Bonus Damage being applied per target."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Mind, so 103.1.b.1 is satisfied by any legend with Mind as one of its two domains. Neither is Signature, so 103.2.d.2 imposes nothing."
+        ],
+        "notable": [
+          "206 IS WHY A DISCOUNT NEVER SWITCHES THE TRIGGER OFF: 'Effects that need to determine a card's cost for any purpose always use its printed or copied cost, even if that cost has been altered.' So Singularity remains a 'spell that costs 6' after any reduction, and every Energy saved is Energy spent elsewhere on the same turn. Riot's own worked example for the paragraph is Lux, Illuminated.",
+          "AND THAT IS THE HALF OF THE 'THIS TURN' LENS THAT SURVIVES DISCOUNTS. Its sibling family — 'if you SPENT N or more' — reads what actually left the Rune Pool (166.2, 203.1, 356.4.b) and is switched off by exactly the same discount. Do not mix the two when building the shell.",
+          "715.2 IS WHY SINGULARITY IS THE RIGHT SPELL AND NOT JUST AN EXPENSIVE ONE: 'If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately', and the paragraph's example IS Singularity, dealing 7 to each under a Bonus Damage source. Even with no such source in Mind, the shape matters: it is 6 to each of two units for one card, and 143.2.a kills anything at Might 6 or less on both sides of the board.",
+          "THE PUMP IS A MODIFIER AND NOT A BUFF. '+3 :rb_might: this turn' is applied at 477.3.e.1 and expires at 317.2.c's end-of-turn Cleanup, so 702.3's one-per-unit cap never touches it and two spells in one turn are +6 on a Might 5 body — Lux attacks at 11 on a two-spell turn.",
+          "THE TRIGGER HAS NO 'ONCE EACH TURN' CLAUSE, so every qualifying spell pays. Mind prints eight spells at E5 or more (Falling Comet E5, Promising Future E5, Sprite Burst E5, Progress Day E6, Singularity E6, Unchecked Power E7, Moonlight Affliction E7, Clairvoyance E7, plus Time Warp at E10), so the density is real without warping the deck.",
+          "THE REFUSAL WORTH RECORDING BESIDE IT: the attractive line is a [Hidden] spell, since 811.1.b plays it 'ignoring its base cost' while 206 still reads the printed cost — a free spell that still pumps. Swept: of the pool's [Hidden] spells exactly ONE is printed at E5 or more, `SFD-202 Hostile Takeover`, and it is a Signature card, so 103.2.d.2 forces its champion's legend. The mechanism is real and the pool has no card for it.",
+          "IT DOES NOT SCORE. Mind converts no Might into points; what the pump buys is a combat, and what Singularity buys is two dead bodies."
+        ]
+      },
+      "steps": [
+        "Play Lux, Illuminated (E6 + 1 Mind Power) and move her to a battlefield.",
+        "In a later Main Phase, play Singularity (E6 + 2 Mind Power), discounted or not — 206 reads its printed 6 either way.",
+        "Lux's trigger fires: +3 Might this turn, applied as a continuous modifier at 477.3.e.1.",
+        "Singularity's effect deals 6 to each of up to two units. 715.2 treats the two targets individually, and 143.2.a kills each one whose Might the 6 equals or exceeds.",
+        "Attack or defend with Lux at Might 8; 465.2.c reads the modified value when damage is assigned, and a second qualifying spell the same turn makes it 11.",
+        "317.2.c expires the pump at the end-of-turn Cleanup; the trigger is available again next turn with no cost and no cap."
+      ],
+      "terminatesIn": "engine only — +3 Might per E5-or-more spell, with no once-a-turn clause, plus two bodies at Might 6 or less removed per Singularity (three a game, 103.2.b); nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "206. \"Effects that need to determine a card's cost for any purpose always use its printed or copied cost, even if that cost has been altered.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "715.2. \"If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately.\" Example: \"Singularity is a spell that says 'Deal 6 to each of up to two units.'\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "143.2.a. \"If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the Core-Rules-named sweep; OGS-006 Lux, Illuminated and OGN-105 Singularity were both uncatalogued, and both are worked examples in the rules text (206 and 715.2 respectively). Card text verbatim from data/corpus_flat.txt. Trap check: the pump is stated as a continuous modifier and not a 702 Buff, with 317.2.c expiring it; the 'costs N' / 'spent N' split is named so the shell is not built on the wrong half; the [Hidden] line is recorded as a REFUSAL with the sweep behind it (one [Hidden] spell at E5+, and it is Signature) rather than left as an unexplored lead; the Mind spell density is counted rather than asserted."
+    },
+    {
+      "id": "mageseeker-warden-vengeance-base-kill",
+      "name": "The Warden herds every enemy unit into their base, and Vengeance is the only SINGLE-TARGET kill in the pool with neither a location clause nor any other gate (swept 2026-09-07 at merge: UNL-180 The Ruination also omits 'at a battlefield' but is a sweeper, 'Kill all units', and VEN-131 Decree of Unity omits it but gates on an enemy CHAOS unit or gear)",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-070",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E6 P1 M5. 'While I'm at a battlefield, opponents can only play units to their base. While I'm at a battlefield, spells and abilities can't ready enemy units and gear.' 054.1 makes a card that forbids beat one that permits, so this bites through 355.2.a and 355.2.b alike."
+        },
+        {
+          "card": "OGN-229",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order spell, E4 P2. 'Kill a unit.' Four words and no qualifier: no Might threshold, no 'enemy', and — uniquely among the pool's kill spells — no 'at a battlefield'."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mageseeker Warden is mono-Calm and Vengeance mono-Order, so 103.1.b.1 needs a Calm/Order legend: OGN-261 / OGN-306 Radiant Dawn, SFD-197 / SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father, or VEN-147 / VEN-193 Eye of Twilight. Neither card is Signature."
+        ],
+        "notable": [
+          "THE SWEEP THAT MAKES THIS A PAIR AND NOT A COINCIDENCE. Every other 'kill a unit' spell in the pool prints the location: `OGN-213 Hidden Blade`, `OGS-012 Blast of Power`, `SFD-164 Drag Under` and `UNL-186 Death from Below` all say 'Kill a unit AT A BATTLEFIELD', and `UNL-159 Soul Harvest` adds a Might threshold on top. `OGN-229 Vengeance` says only 'Kill a unit'. The two unit-based kills that also omit the clause are `OGN-234 Harnessed Dragon` ('kill an enemy unit', E8 + 2 Power) and `SFD-158 Sandshifter` (Might 3 or less) — so Vengeance is the only unconditional, repeatable, spell-speed answer that reaches a base.",
+          "WHICH IS EXACTLY THE ZONE THE WARDEN CREATES. 'Opponents can only play units to their base' means every body they deploy while she stands arrives in a zone most of the format's removal cannot see. Three cards in the pool name that zone as a target at all (`SFD-077 Rocket Barrage`, `SFD-116 Yone, Blademaster`, `UNL-182 Curtain Call`), and none of them is an unconditional kill.",
+          "THE WARDEN'S REAL DELTA IS THREE ROUTES CLOSED WITH ONE NAMED LEAK. 054.2 with 355.2.a / 355.2.b kills the 15 [Hidden] units outright, switches off the seven cards that grant a non-standard play location, and forbids reinforcing an own battlefield; the leak is the 26 [Accelerate] units, which enter ready at the base (805.1.a with 143.4.a) and can Standard-Move in the same turn.",
+          "AND HER SECOND SENTENCE IS THE HALF PEOPLE FORGET: 'spells and abilities can't ready enemy units and gear', which is a separate lock on every readier in their deck and on every Gold token they make (187.5's ability needs an exhaust).",
+          "VENGEANCE IS MAIN-PHASE ONLY. It carries neither [Action] nor [Reaction], so 155 bars it from a Showdown — this is a proactive answer played on your own turn into the pile the Warden has built, not a response.",
+          "SHE HAS TO STAND AT A BATTLEFIELD FOR ANY OF IT. Both clauses open 'While I'm at a battlefield', so 323.6 taking your Control away, or her death, ends the lock at once; and a heal / exhaust / RECALL save switches it off for a turn as well (455 sends her to base), which is the same trap `counter-strike-tianna-crownguard-in-place-save` is built around.",
+          "IT DOES NOT SCORE. What the pair buys is a board the opponent cannot deploy onto usefully and a kill that follows them into the one zone they are allowed."
+        ]
+      },
+      "steps": [
+        "Play Mageseeker Warden (E6 + 1 Calm Power) and move her to a battlefield you control. Both of her clauses go live.",
+        "From now on the opponent's units can only be played to their base (054.1 makes the prohibition beat every permission), and no spell or ability of theirs can ready a unit or gear.",
+        "They accumulate bodies at the base, where most of the format's removal — every 'kill a unit at a battlefield' — cannot reach.",
+        "In your Main Phase, play Vengeance (E4 + 2 Order Power) and kill any one of them. No Might threshold and no location clause applies.",
+        "Repeat with the other copies; 103.2.b caps it at three, which is why the Warden's lock rather than the removal is what wins the exchange.",
+        "Keep her alive AT the battlefield: both clauses read 'While I'm at a battlefield', and a Recall-based save (455) would switch them off for a turn."
+      ],
+      "terminatesIn": "engine only — the opponent's deployment confined to their base for as long as the Warden stands, plus three unconditional kills that reach it (103.2.b); nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "054.1. \"Cards that forbid actions or effects, as a broad method of determination, supersede cards that allow or permit that same action or effect.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "355.2.b. \"Some Game Effects may grant players permission to play Units to locations that are not normally Valid. Such locations become Valid for the purposes of Playing the Unit.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "155. \"A spell can be played during an Open State outside of Showdowns on its controller's turn.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the Core-Rules-named sweep; OGN-229 Vengeance was in zero entries. Card text verbatim from data/corpus_flat.txt, and the 'kill a unit' family was swept over the corpus (OGN-213, OGS-012, SFD-164, UNL-159, UNL-186 all print 'at a battlefield' or a Might threshold; OGN-234 and SFD-158 are units, one at E8 + 2 Power and one gated at Might 3). The content is that the Warden manufactures the one zone most removal cannot see, and Vengeance is the only unconditional spell that sees it. Trap check: the sweep is stated with its members so the next reader can refute it in one grep; Vengeance is stated as Main-Phase only (155); the Warden's [Accelerate] leak is named rather than hidden; and the Recall trap on her own two clauses is cited, which is the same 455 fact the Counter Strike entry stands on."
+    },
+    {
+      "id": "rocket-barrage-marai-spire-repeat-base-damage",
+      "name": "One [Repeat] is exactly one extra execution and it may choose differently — Rocket Barrage is a modal spell that gets both modes for one card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-077",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E4 P1. '[Repeat] :rb_energy_4::rb_rune_mind: (You may pay the additional cost to repeat this spell's effect, and may make different choices.) Choose one — • Deal 4 to a unit in a base. • Kill a gear.' One of only three cards in the pool that name a unit IN A BASE as a target."
+        },
+        {
+          "card": "SFD-211",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'While you control this battlefield, friendly [Repeat] costs cost :rb_energy_1: less.' Note the opening clause: 190.1 says Control 'is established over Battlefields through the course of play', so this is off until you take it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Rocket Barrage is mono-Mind and Marai Spire is Colorless, so 103.1.b.1 is satisfied by any legend with Mind as one of its two domains. Neither is Signature.",
+          "The battlefield is not guaranteed: 485.4.a has each player provide three and 485.5 randomly selects one, and 103.4.c forbids duplicates of a name — so the Spire arrives one time in three, and the entry's arithmetic is stated both with and without it."
+        ],
+        "notable": [
+          "[REPEAT] IS EXACTLY ONE EXTRA EXECUTION, NOT AN ENGINE. 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' There is no way to pay it twice, so the four [Repeat] spells the catalogue has looked at are all bounded at two executions.",
+          "AND THE SECOND EXECUTION MAY CHOOSE DIFFERENTLY. 820.2.a: 'Choices made for the additional execution do not have to be the same as the choices made for the initial execution.' On a modal spell that is the whole value — one card buys BOTH modes: deal 4 to a unit in a base AND kill a gear, or two different base targets.",
+          "THE ARITHMETIC. Base cost E4 + 1 Mind Power; the [Repeat] is another E4 + 1 Mind Power, which Marai Spire reduces to E3 + 1 Mind. So the full double execution is E7 + 2 Mind Power with the Spire and E8 + 2 without it — and the Spire is worth exactly 1 Energy here, which is the honest number for a battlefield that only arrives a third of the time.",
+          "THE [REPEAT] COST IS SPENT BUT INVISIBLE TO A 'COSTS N' CHECK. 820.1.c.1 makes it 'an Additional Cost to be paid during the steps of playing the spell', so it counts toward every 'if you spent N or more' threshold (166.2, 203.1, 356.4.b); and 206's second worked example — Defy against Rocket Barrage, this very card — says a 'costs N' check IGNORES it. That is the cheapest way in the pool to cross a spend threshold, and the reason a discounted expensive spell fails one that a cheap spell with [Repeat] passes.",
+          "'A UNIT IN A BASE' IS A ZONE ALMOST NOTHING REACHES. Swept over the corpus, three cards name it: this, `SFD-116 Yone, Blademaster` and `UNL-182 Curtain Call`. That is why the mode is worth running even though 4 damage is modest — it is the answer to a body parked out of reach, including one the opponent has been forced to park there.",
+          "AND THE SPIRE'S CLAUSE HAS TO BE EARNED. 'While you control this battlefield' with 190.1 means a battlefield you brought starts uncontrolled and its text does nothing until you walk a body in and take it (466.5); the discount is not a deckbuilding freebie.",
+          "IT DOES NOT SCORE, AND IT IS MAIN-PHASE ONLY: Rocket Barrage carries neither [Action] nor [Reaction], so 155 — 'A spell can be played during an Open State outside of Showdowns on its controller's turn' — keeps it out of a Showdown."
+        ]
+      },
+      "steps": [
+        "Bring Marai Spire as one of your three battlefields and, if it is the one 485.5 selects, take Control of it — 190.1 means its clause is dead until you do.",
+        "In your Main Phase, play Rocket Barrage for E4 + 1 Mind Power and choose the first mode.",
+        "Pay the [Repeat] cost as part of playing the spell (820.1.c.1) — E4 + 1 Mind Power, reduced by 1 Energy while you control the Spire.",
+        "Resolve the first execution: deal 4 to a unit in a base, or kill a gear.",
+        "Resolve the second. 820.2.a lets you choose the other mode, or the same mode against a different target.",
+        "143.2.a kills any body the 4 damage equals or exceeds; 143.3.b.1 heals the rest at the end of the turn. 820.1.b means there is no third execution to buy."
+      ],
+      "terminatesIn": "engine only — two executions per casting, both modes available, for E7 + 2 Mind Power with the Spire and E8 + 2 without; three castings a game (103.2.b) and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "820.1.b. \"Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "820.2.a. \"Choices made for the additional execution do not have to be the same as the choices made for the initial execution.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "820.1.c.1. \"The Cost is an Additional Cost to be paid during the steps of playing the spell or ability.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `marai-spire-repeat-discount` and the Core-Rules-named sweep; SFD-077 Rocket Barrage was in zero entries and is 206's second worked example. Card text verbatim from data/corpus_flat.txt; the 'in a base' family was swept over the corpus and is three cards. Trap check: [Repeat] is stated as exactly one extra execution (820.1.b) so nothing is claimed as an engine; the Spire's 'While you control this battlefield' is priced against 190.1 as a cost rather than a freebie, and the ledger is given both with and without it; 485.5 and 103.4.c are cited for the battlefield's randomness; 155 keeps the spell out of a Showdown."
     }
   ]
 }
