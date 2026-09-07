@@ -475,3 +475,352 @@ here so a successor does not spend a batch on it.
 7. **`needs: [conquer-engine]` cannot carry an extra condition** (from #171): a payoff that also
    demands, say, a 5+ Might conqueror must state it in `prerequisites`, because the feature tag
    composes with engines that fail the card.
+
+---
+
+# CONTINUATION — session `rc-walk-order` (successor), batch 5
+
+Same issue ([#180](https://github.com/GermanAbuArab/RiftCombo/issues/180)), same slice, same rules
+version. Census re-measured by NAME+TYPE through `CardIndex.equivalents` against the merged
+catalogue of 534 at the time the batch opened: **20 base codes = 19 distinct names**, exactly what the LEDGER handed over
+(script `/tmp/rc-walks/order-cen2.ts`). Batch 5 is **5 entries and 3 refusals**, and it takes five
+of the nineteen names: VEN-128, VEN-122, UNL-151, OGN-217, UNL-155.
+
+| id | class | cards | the name it clears |
+|---|---|---|---|
+| `empowered-deathknell-blade-ruined-king` | ENGINE | SFD-178, VEN-128, VEN-078 | Noxian Emissary |
+| `solari-sunhawk-eye-of-herald-deflect-carrier` | ENGINE | VEN-122, SFD-153 | Solari Sunhawk |
+| `bandle-soldier-enthralling-protector-xp-floor` | ENGINE | UNL-151, UNL-162 | Bandle Soldier |
+| `trifarian-gloryseeker-vanguard-helm-legion-buff` | ENGINE | OGN-217, OGN-228 | Trifarian Gloryseeker |
+| `heroic-charge-solari-chief-stun-kill` | ENGINE | UNL-155, OGN-225 | Heroic Charge |
+
+## 16. The pronoun rule — "I" in an appended Effect Text is the CARRIER, and it is the finding of this batch
+
+The batch opened on the LEDGER's Group 4 lead: *"Zaun Punk + Salvage + a gear you want in the trash
+is the one untried line here."* The obvious fuel is **`SFD-172 Sacred Shears`** (Order Equipment,
+E2 P1, M+1): *"[Equip] :rb_rune_order: … [Effect] [Deathknell] — Draw 1. (When I die, get the
+effect.)"* — a gear that pays you for dying, and `SFD-160 Zaun Punk` kills a friendly gear as an
+additional cost while `OGN-224 Salvage` kills one at [Action] speed with a cantrip attached.
+
+**It does not work, and the reason is a rule this project had applied correctly once and never
+stated.** Three paragraphs in sequence:
+
+> **136.2.b.** *"Effect Text is inactive unless the card with the Effect Text is Attached to another
+> card."* (repeated at **724**)
+>
+> **434.1.e.** *"Attaching one or more cards will cause those cards' printed Rules Text to become
+> Inactive for as long as they remain Attached."*
+>
+> **136.2.c / 434.1.c / 718.3.** The Effect Text is *appended to the Rules Text of the Top-Most
+> Card*.
+
+So the Shears' Deathknell is never the Shears'. Unattached, its Effect Text is Inactive; attached,
+the ability sits on the **carrier**. Which one does *"When I die"* name? **053** settles it and
+**136.2.d** supplies Riot's own worked examples:
+
+> **053.1.** *"Units and legends say 'I,' 'me,' etc."*
+> **053.2.** *"Gear and spells say 'this.'"*
+> **136.2.d.** *"Effect Text may refer to 'this' or to the name of the Attached game object that
+> appended the Effect Text. Doing so refers to the Attached game object and not the Top-Most Card,
+> even if the Top-Most Card shares a name with the Attached game object."*
+> — **Example:** *"Guardian Angel's effect text reads 'If I would die, kill Guardian Angel instead.
+> Heal me, exhaust me, and recall me.'"*
+> — **Example:** *"Brutalizer's effect text reads 'If this was attached to me this turn, I have an
+> additional +2 [M].'"*
+
+Both examples print the split in one sentence: **"I"/"me" is the carrier, "this" and the gear's own
+name are the attached gear.** Guardian Angel is the sharpest case — the same sentence uses "I" for
+the unit being saved and the gear's *name* for the gear being destroyed.
+
+Consequences, in order of how much they change:
+
+1. **No gear-kill line in the pool can cash an `[Effect]` Deathknell.** Killing the Shears draws
+   nothing (its Deathknell belongs to the carrier); killing the carrier draws (the ability is
+   there). This closes Group 4's lead by rule.
+2. `SFD-153 Eye of the Herald`'s *"[Effect] When I move…"* is the **carrier's** move — which is
+   what `hungry-wolf-eye-of-herald-double-move` already assumed and what
+   `solari-sunhawk-eye-of-herald-deflect-carrier` now states with its citation.
+3. `SFD-102 Hexdrinker`'s *"[Deflect] … to choose **me**"* protects the **carrier**, not the gear.
+4. The catalogue was already right: `karthus-sacred-shears-blade-draw`'s note reads *"434.1.c
+   appends an Equipment's Effect Text to the carrier's Rules Text, so ANY unit you control gains
+   '[Deathknell] — Draw 1'."* No defect to fix — but the rule now has its paragraphs and its two
+   worked examples attached to it, which is what stops the next session reading it the other way.
+
+**053.2 is cited for the first time in this catalogue** (0 prior hits in `data/combos.json`).
+
+## 17. Refusal — the whole Group 4 gear-kill lead, because every Order gear that wants to die kills itself
+
+Beyond §16, the lead dies a second time on the inventory. Swept `grep -E "\| Gear \| Order \|"` over
+`data/corpus_flat.txt` — 16 Order gear. The three whose text wants them dead all pay for it
+themselves, with no external outlet:
+
+- `OGN-212 Forge of the Future` — *"**Kill this**: Recycle up to 4 cards from trashes."*
+- `UNL-161 Divining Shells` — *"[Action][>] **Kill this**, :rb_exhaust:: Give a unit +2 :rb_might: this turn."*
+- `VEN-133 Glowstone` — *"**Disempower this**, :rb_exhaust:: Choose a player…"* (walked in batch 1)
+
+So `SFD-160 Zaun Punk`'s *"You may kill a friendly gear as an additional cost to play me"* is a real
+**cost**, not a discount, and `OGN-224 Salvage`'s *"You may kill up to one gear"* is aimed at the
+opponent. Both remain good cards; neither is a combo. Two facts worth keeping about them:
+
+- **718.5.b.** *"Attached cards still can be chosen or targeted by game effects while Attached."*
+  So both reach an attached enemy Equipment — Salvage at [Action] speed is the Order answer to a
+  Trinity Force or a Svellsongur inside the combat it was played for.
+- Salvage is **unconditionally castable** (*"up to one"* + *"Draw 1"*), which is the property #166
+  found missing in a spell chosen as filler for a *"you've played a spell this turn"* condition.
+  It is Order and Swain, Visionary is Mind, so it cannot fill that particular hole — but it is the
+  shape to reach for in an Order shell.
+
+Handed to `rc-walk-rules2` as a synergy-rule lead with Group 1's Might-gate ladder, not walked here.
+
+## 18. Refusal — `OGN-214` / `VEN-R06` Order Rune, confirming the LEDGER's advance refusal
+
+164.2 gives every Basic Rune the same two abilities (164.2.a an exhaust for Energy, 164.2.b a
+recycle for Power) and 161.2.a fixes the Rune Deck at *"Exactly 12 Rune cards"*. Every deck runs
+runes; there is no pairing to walk. One distinct name, refused as the LEDGER instructed.
+
+## 19. A candidate refuted by the catalogue before it was written — read the entry that already owns the mechanism
+
+The first line drafted for `VEN-128 Noxian Emissary` was **Matriarch of War as an Empower → ready
+converter**: pay the Emissary's [Empower], and `VEN-153 Matriarch of War`'s *"When you empower
+something else, empower me"* fires, then *"Disempower me, :rb_rune_rainbow:, :rb_exhaust:: Ready a
+unit"* cashes it. It is legal and it works, and it is **already refuted** by
+`matriarch-of-war-empower-ready`, whose own notes say: *"the issue armed the Matriarch with Legion
+Marauder and Escaped Grayback, and both are one Empower per copy — six in a whole game, which is
+not a motor."* 441.1.b (*"An Empowered Game Object can not be Empowered"*) is why: an Empowerable
+body is one event, and the entry's sustainable source is `VEN-087 Hextech Disc`, whose own ability
+disempowers it.
+
+The lesson is the LEDGER's re-validation rule pointed at the catalogue rather than at the census:
+**before walking an anchor, read every entry that already uses the partner you are reaching for.**
+This cost one draft and no merge.
+
+## 20. What batch 5 stands on, paragraph by paragraph
+
+### 20.1 `empowered-deathknell-blade-ruined-king`
+
+`SFD-178 Blade of the Ruined King` (Order Equipment, E3 P1, M+4) — *"[Equip] — :rb_rune_order:,
+Kill a friendly unit"*. **818.1** makes Equip an Activated Ability, **818.1.c.2** reads it as
+*"[Cost]: Attach this gear to a unit you control"*, **818.1.c.3** allows non-resource costs, and
+there is **no exhaust** in it — so it is a repeatable sacrifice outlet at one Order Power and one
+body per activation, walled only by **381** (*"All Activated Abilities can only be activated on the
+Controlling Player's Turn and during an Open State"*).
+
+The sweep that makes the entry: `grep -in "Deathknell" data/corpus_flat.txt | grep -i "Empowered"`
+returns **exactly two rows**, and they are the only bodies in the pool that pay you for being that
+cost —
+
+- `VEN-078 Baccai Witherclaw` (Body, E4 M4): [Empower] E1 + 2 rainbow; *"[Empowered][>][>>][Deathknell][>] Channel 2 runes exhausted."*
+- `VEN-128 Noxian Emissary` (Order, E2 M2): [Empower] E1 + 1 Order; *"[Empowered][>][>>][Deathknell][>] Play two 1 :rb_might: Recruit unit tokens to your base."*
+
+Three paragraphs carry the rest:
+
+> **808.1.d.3.** *"Before the card is moved to the Trash, note its location, its attributes, and any
+> other details related to the effect of its triggered ability to process the trigger after it has
+> been Finalized."*
+
+That is what lets an `[Empowered]`-gated Deathknell fire at all, since **441.2** scopes Empowered to
+*"Game Objects **on the board**"*.
+
+> **818.1.c.1.** *"If paying costs or making choices for this ability causes triggered abilities to
+> trigger, they will be placed on the chain **above this ability** in a Pending state."*
+
+So the Deathknell resolves before the attach (340.1). But **818.1.b.1** — *"Equip's choice is a
+Target"* — is chosen when the ability is activated, so the two Recruits can never carry *this*
+attach; they are fuel for the next. **First cite in this catalogue** (0 prior hits).
+
+> **185.2.d.** *"Tokens have a type. They follow all rules for their type unless otherwise specified."*
+
+A Recruit is a unit, so it pays *"Kill a friendly unit"* and **203.3** never bites — one Empowered
+Emissary converts **one** sacrifice into **three**. The opposite side of the line from 416.1
+(Recycling is over CARDS) and 186.1 (a dead token never reaches the trash).
+
+The Witherclaw's refund is honest but capped: **164.2.b** has no exhaust in its cost so an exhausted
+rune still pays 1 Power at Reaction speed, **415.3.a** makes it Energy only from your own Awakening,
+and **161.2.a** + **430.3** (*"channel as many as possible"*) make the Deathknell a **refill**, worth
+nothing once twelve runes are out.
+
+**Domain check, run against `data/cards.json` and not from memory: `OGN-236 Karthus, Eternal` is
+mono-ORDER.** A Deathknell multiplier reads as Fury and it is not. He would make the Emissary four
+Recruits and the Witherclaw four runes — and that family is already six entries deep
+(`blade-kogmaw-karthus-wipe`, `karthus-honest-broker-blade-gold`, `karthus-sacred-shears-blade-draw`,
+`karthus-machine-evangel-renata-plaza`, `karthus-glasc-mixologist-double-reanimate`,
+`ferrous-forerunner-karthus-mech-plaza`), so he is a notable here and not a `uses[]` row: this entry
+is the half that needs no multiplier.
+
+### 20.2 `solari-sunhawk-eye-of-herald-deflect-carrier`
+
+**809.2** — *"If a Game Object has Deflect, or has been granted Deflect, and is granted Deflect by an
+additional source, the Deflect Value of all granted Deflect keywords is summed"* — **completes a
+three-member family this project had recorded only two thirds of**: **807.2** sums granted
+[Assault] (Riot's example: Petty Officer + Cleave = Assault 4), **814.2** sums granted [Shield]
+(Stalwart Poro + Block = Shield 4), and **809.2** sums granted [Deflect]. Deflect is the only one of
+the three that taxes the **opponent** instead of adding Might.
+
+What it is worth, measured rather than asserted: **809.1.c** prices it as extra Power *"for each
+time they choose"*, **809.1.c.1** lets that Power be any Domain, and this project's own free-Power
+floor is 2 a turn — so an Empowered Sunhawk's **Deflect 2 consumes an opponent's entire free Power
+for one choose**, and a spell that chooses it twice pays 4. **441.2** makes the Empowered state
+permanent, so the 2 Energy is paid once.
+
+What it is **not** worth: **355.10.d** keeps a programmatically-selected object off the target list
+and **809.1.d** only taxes effects that CHOOSE, so every sweeper walks through it; and exactly two
+cards ignore it outright (`VEN-061 Decree of Insight`, `VEN-158 Heisho, Shell of the World`).
+
+The payoff half is the token: **359.3.f.2** reads *"here"* at execution, so the Eye of the Herald's
+Recruit is born at the battlefield the carrier moved to — **not** at the base, which is the
+difference between this entry and §20.1, whose Recruits are printed *"to your base"* and still owe a
+walk (144.4 + 144.2 + 143.4).
+
+### 20.3 `bandle-soldier-enthralling-protector-xp-floor`
+
+The sweep: `grep -in "enter ready\|enters ready" data/corpus_flat.txt | grep -i level` returns
+**exactly three cards** — `UNL-016 Scorchclaw` (Fury, [Level 3]), `UNL-151 Bandle Soldier` (Order,
+[Level 3]) and `UNL-191 Wuju Master` (Calm/Body legend, [Level 11]).
+
+Why "enters ready" is worth a card: **143.4** *"Units enter the Board exhausted"* (143.4.a: alterable)
+against **144.2** *"Exhausting the Unit is the Cost for this action"* — the body walks in the turn it
+lands. **415.1** defines Readying as marking something **already on the board**, so it is a play-time
+property and can never hand an exhaust back later; it buys a tempo turn and nothing else.
+
+And the rule that makes this the **inverse of every other XP line in the catalogue**: **824.1.d**
+*"The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP"*
+with **730.2** *"To Spend XP, reduce the value of XP marked on the Player spending it."* The counter
+has to be **banked**. `poppy-hunt-xp-discount` (spend 3) and `shepherds-heirloom-xp-equip` (spend 1)
+run the same faucet and spend it; all three entries now name each other and a list has to choose.
+Even the Protector's own sink is a bad deal on this side: *"Spend 2 XP: [Buff] me"* buys **+1 Might
+once** (702.3 caps a unit at one buff, 703 fixes it at +1) and costs every [Level 3] in the deck.
+
+Rate, derived: **823.1.c.1** *"Hunt is functionally short for 'When I Conquer or Hold, my controller
+gains X XP'"* (X = 1), **315.2.b.2** *"The Turn Player Holds all Battlefields they Control"*, and
+**485.4** *"Battlefield Count: 2"* — two Protectors on two held battlefields reach the floor of 3 in
+the **second** Beginning Phase.
+
+### 20.4 `trifarian-gloryseeker-vanguard-helm-legion-buff`
+
+**812.2** — *"All instances of Legion on cards a player controls are satisfied by that player playing
+a single card"* — is a **first cite** (0 prior hits), and **812.1.c** is sharper than the reminder
+text: the enabling card must have been *"**Finalized** by you on the same turn"*, so a spell that is
+later countered still switches [Legion] on. Playing the Helm (E2) first satisfies the gate on the
+package's own first turn.
+
+The point of the pairing is 702.3 read from the supply side. `OGN-228 Vanguard Helm` needs a
+**buffed** friendly unit to die, and **702.3 / 702.3.a** mean a buffer is a one-time placement per
+body — so the Helm is always short of *buffed bodies*, never of deaths. `OGN-217 Trifarian
+Gloryseeker` is a 2-Energy body that arrives buffed **with no buffer spent**, which is a different
+scarcity from both existing Helm entries: `vanguard-helm-kinkou-monk-buff-conservation` is bounded
+by unbuffed bodies, `vanguard-helm-baited-hook-buff-ladder` by the sacrifice rate, and this one by
+nothing but 103.2.b. Note that a second Gloryseeker is **not** a legal recipient of the Helm's
+recovery — it already carries its own buff (702.3.a).
+
+`OGN-269 The Boss` (Body/Order) is a legal legend that switches the whole thing off, by **808.1.d.1**
+(the would-die replacement removes the trigger from the chain) *and* by spending the buff (702.2.b).
+A mono-Order legend avoids the fork.
+
+### 20.5 `heroic-charge-solari-chief-stun-kill`
+
+`OGN-225 Solari Chief` (Order, E5 P1 M4) — *"When you play me, choose an enemy unit. If it is
+stunned, kill it. Otherwise, stun it."* — is a kill **by effect keyed on a status**, so Might never
+enters the calculation. Every other Order removal is priced by Might (`SFD-158 Sandshifter`,
+`VEN-127 Lacerate`: 3 or less) or by cost (`OGN-229 Vengeance` E4 + 2 Power, `OGS-012 Blast of
+Power` E6 + 1 Power).
+
+The stun contributes nothing to killing it — **423.1.b** removes only its contribution to the
+combat damage step and **423.1.c** *"must still have damage applied to it equal to, or greater than,
+its full might value to be killed"* — which is precisely why the payoff has to be a kill by effect.
+**423.1.a.2** clears the status *"during step 3d of the end of turn cleanup"*, so stun and kill are
+the **same turn**; **423.1.a.1** *"A Stunned Unit can not be Stunned again"* is why **two Solari
+Chiefs** are also a complete kill (the second finds it stunned and takes the kill branch), at
+E10 + 2 Power against the pairing's E8 + 1 Power. A third does nothing.
+
+Both halves **choose**, so **809.1.c** taxes both against a [Deflect] body — 4 extra Power against an
+Empowered Solari Sunhawk from §20.2. `OGN-262 Zenith Blade` (Calm/Order, E3 + 2 Power, [Action]) is
+the alternative enabler that also solves Heroic Charge's *"at its location"* restriction by moving a
+friendly unit in; it is a notable, not a sixth card.
+
+Stun payoffs swept (`grep -in stunned`): `OGN-072 Solari Shrine` (Calm, a draw), `OGN-079 Leona,
+Zealot` (Calm, −8 Might), `OGN-225 Solari Chief` (Order, the kill), `UNL-035 Monch` (Calm, a
+discount). **Solari Chief is the only one in Order and the only one that removes.**
+
+## 21. LEDGER, updated after batch 5
+
+```
+mono-Order deckable base codes: 139
+uncovered by NAME+TYPE: 15 base codes = 14 distinct names
+(opened at 43/41 at catalogue 495; handed over at 20/19 at 534; now 15/14, measured
+against a catalogue of 543 plus this batch's five - the tree moved under the walk, which is why
+the census is re-run immediately before reporting rather than immediately after writing)
+```
+
+**Walked — 18 entries across 5 batches.** Batch 5 adds `empowered-deathknell-blade-ruined-king`,
+`solari-sunhawk-eye-of-herald-deflect-carrier`, `bandle-soldier-enthralling-protector-xp-floor`,
+`trifarian-gloryseeker-vanguard-helm-legion-buff`, `heroic-charge-solari-chief-stun-kill`.
+
+**Refused — 4, with the paragraph.** `OGN-237 King's Edict` (§13); the Sacred Shears gear-kill
+fuel (§16, 136.2.b + 434.1.e + 136.2.d); the whole Group 4 gear-kill lead (§17, the Order gear
+inventory); the two Order Runes (§18, 164.2 + 161.2.a).
+
+**What is left — 14 distinct names.**
+
+- **Group 1, targeted removal (4)** — `OGN-229 Vengeance`, `OGS-012 Blast of Power`,
+  `VEN-131 Decree of Unity`, `SFD-158 Sandshifter`. Unchanged: hand to `rc-walk-rules2` as a
+  Might-gate ladder. Batch 5 adds one lever the LEDGER did not have — §20.5 shows the domain's
+  Might-independent removal already exists (`OGN-225 Solari Chief`), so the ladder is a **ranking**
+  of four priced kills against one unpriced one, not an open question.
+- **Group 2, vanilla or near-vanilla bodies (5)** — `OGN-219 Vanguard Sergeant`,
+  `SFD-156 Laurent Duelist`, `OGS-016 Vanguard Attendant`, `UNL-154 Crimson Pigeons`,
+  `OGN-217 Trifarian Gloryseeker` **is now walked**, so this group is **4**. The one lead still
+  worth an hour is Crimson Pigeons (*"+2 :rb_might: while I'm attacking with another unit"*) under
+  **144.3** (*"Players may perform multiple Units standard move simultaneously. This is treated as
+  one game action"*), which makes the condition nearly free — and then against
+  `UNL-187 Piltover Enforcer`, a Fury/Order **legend** that pays for 3+ excess damage. Note before
+  walking it: a stun does **not** create excess damage (423.1.c leaves the kill price at full Might)
+  while a **+Might** pump does (465.2.c.4 caps assignment at minimum lethal, R28 = A), so
+  `OGN-206 Back to Back` (E3, [Reaction], **+4 summed Might**, the cheapest such in Order —
+  `SFD-151 Bonds of Strength` needs E4 with its [Repeat] for the same +4, `OGN-207 Call to Glory` is
+  +3 on one body) is the enabler and Heroic Charge is not. That is a fully scoped entry waiting to
+  be written; it was left out of batch 5 only because `gauntlets-enforcer-conquer` and
+  `tryndamere-hextech-gauntlets-enforcer` already own the Enforcer and the difference has to be
+  argued ([Reaction] after the defenders are known, versus an [Equip] committed in the Main Phase).
+- **Group 3, the remaining Empower units (1)** — `VEN-128 Noxian Emissary` **is now walked** (§20.1).
+  `VEN-122 Solari Sunhawk` **is now walked** (§20.2). Group 3 is empty; the disempowerer census
+  stands at nine (§4.1) and §19 records that the Matriarch converter is already owned.
+- **Group 4, XP and one-offs (3)** — `UNL-151 Bandle Soldier` **is now walked** (§20.3). The
+  gear-kill half is **refused** (§16, §17), so `SFD-160 Zaun Punk`, `OGN-224 Salvage` and
+  `UNL-161 Divining Shells` go to `rc-walk-rules2` as a denial lead with 718.5.b attached.
+- **Group 5, mass pumps (1)** — `UNL-155 Heroic Charge` **is now walked** (§20.5). `OGN-206 Back to
+  Back` is the Group 2 lead above.
+- **Group 6, the Order Runes** — **refused** (§18).
+
+Net: of the fourteen names left, **four are Group 1 removal and three are the Group 4 gear-kill
+trio, all seven better served by a synergy rule than by an entry**; four are Group 2 bodies with one
+real lead (Crimson Pigeons); one is `OGN-206 Back to Back`, fully scoped above; and two are the
+Order Runes, refused. A successor should expect **two or three more entries and a hand-off of the
+rest**, not another five-entry batch.
+
+## 22. Facts for CLAUDE.md from batch 5 (the manager writes them, not this session)
+
+1. **In an appended `[Effect]` text, "I"/"me" is the CARRIER and "this"/the gear's own name is the
+   attached gear** — 053.1 + 053.2 + 136.2.d, with Riot's own two worked examples (Guardian Angel,
+   Brutalizer). With 136.2.b (Effect Text Inactive unless attached) and 434.1.e (the gear's printed
+   Rules Text Inactive while attached), **no gear-kill line in the pool can ever cash an `[Effect]`
+   Deathknell** — `SFD-172 Sacred Shears` draws for its carrier's death, never its own.
+2. **Three keywords sum when granted, and 809.2 is the third**: [Assault] 807.2, [Deflect] 809.2,
+   [Shield] 814.2. Deflect is the only one that taxes the opponent rather than adding Might, and
+   809.1.c charges *per choose*, so Deflect 2 eats a whole turn's free Power floor for one spell.
+3. **818.1.c.1**: costs and choices paid for an `[Equip]` put triggered abilities *"on the chain
+   above this ability in a Pending state"* — so a kill-as-Equip-cost Deathknell resolves **before**
+   the attach; and 818.1.b.1 makes the carrier a Target chosen at activation, so a body created by
+   that Deathknell can never carry *that* attach.
+4. **812.2**: all instances of `[Legion]` a player controls are satisfied by **one** card, and
+   812.1.c needs that card merely **Finalized**, not resolved.
+5. **The `[Empowered]`-gated Deathknell is exactly two cards** — `VEN-078 Baccai Witherclaw` (Body),
+   `VEN-128 Noxian Emissary` (Order) — and **808.1.d.3** (*"note its location, its attributes …
+   before the card is moved to the Trash"*) is what lets the state be read after the body has left
+   the board, against 441.2's *"on the board"*.
+6. **`[Level N]` "enter ready" is exactly three cards**: `UNL-016 Scorchclaw` (Fury),
+   `UNL-151 Bandle Soldier` (Order), `UNL-191 Wuju Master` (Calm/Body legend, [Level 11]). And
+   824.1.d + 730.2 make the whole family **anti-synergic with every XP sink**: the counter is banked
+   or it is spent, never both.
+7. **`OGN-236 Karthus, Eternal` is mono-ORDER**, not Fury — checked against `data/cards.json`. A
+   Deathknell multiplier reads Fury and is not one, which changes which decks the six Karthus
+   entries are legal in.
