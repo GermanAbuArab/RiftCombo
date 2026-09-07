@@ -26658,6 +26658,300 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-06 from rc-walk153b's cause/trigger matrix, trigger card SFD-144 Spirit Wheel (27 candidate partners). Card text verbatim from data/corpus_flat.txt; 103.1.b, 144.4.a, 170.11.c, 190.3.a.1, 315.1.b, 323.6, 344.2, 348.2.a, 348.2.a.1, 355.10.d, 702.2.a, 809.1.c and 809.1.d opened in the Core Rules file. Both cards checked against data/legality.json by base code: legal in both formats. No unruled reading. Stare Down was chosen out of the 27 because it is the only partner whose choose is simultaneously a board sweep, so the draw is a rider on a play you wanted to make rather than a reason to make it. #97's [Deflect]-free finding and #102's 'evacuating is not yet a Conquer' correction are applied rather than re-derived."
+    },
+    {
+      "id": "awaken-ready-body-triple-trigger",
+      "name": "Three ready-triggers on one Body board — the Awaken pays all three for nothing",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-088",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E4 P1 M5. 'When I become ready, choose one to give me this turn — [Assault 2] / [Deflect 2] / [Ganking].' No 'you've not chosen this turn' clause, so two readies in a turn are two separate choices and they may differ."
+        },
+        {
+          "card": "OGN-143",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Body gear, E3. 'When you ready a friendly unit, give it +1 Might this turn.' Per unit readied, so a mass ready is one trigger per body — this is the card that scales with the width of the board."
+        },
+        {
+          "card": "VEN-071",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E6 M5. 'When I become ready, give me +2 Might this turn.'"
+        },
+        {
+          "card": "OGN-153",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E5 P2, [Action]. 'For each friendly unit, you may spend its buff to ready it. Then buff all friendly units.' The mid-turn second round: it re-buffs at the end, so the first casting arms the second."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Everything is mono-Body (103.1.b.3), so any legend carrying Body runs the whole board.",
+          "Nothing has to be held and no battlefield of yours is needed."
+        ],
+        "notable": [
+          "THE ENGINE IS THE AWAKEN PHASE, AND IT COSTS NOTHING. 315.1.b: 'The Turn Player readies all Game Objects they control that are able to be readied.' 415.1.b keeps that to the EXHAUSTED ones, which is every unit that moved or activated last turn. So every one of these three triggers fires on your own Awaken, every turn, with no card spent — the pairing is not 'find a readier', it is 'the game readies for you and nobody was collecting'.",
+          "What one Awaken buys on the declared board: Pirate's Haven gives +1 Might to each unit readied; Jayce picks a keyword for the turn; Fretful Feline takes +2. Jayce stands at M5 + 1 = 6 with [Ganking] or [Deflect 2] or [Assault 2] of your choosing, and Fretful Feline at M5 + 1 + 2 = 8. Every turn, for the one-off E13 + 1 Power the three cards cost.",
+          "'This turn' is measured from the Awaken, which is 315.1 — the phase BEFORE the Beginning Phase (315.2) and the Main Phase (316) — so the bonus covers the whole of your turn, including the Scoring Step and the combat. That is the same phase order that makes 167 eat Energy banked in Awaken; it does not touch a Might modifier, which is not a resource.",
+          "The second round is what the Overt Operations are for. Each casting readies every buffed friendly unit — so Pirate's Haven fires once per body again, Fretful Feline takes another +2, and Jayce makes a SECOND keyword choice which may differ from the first, giving him two of the three at once. Its 'Then buff all friendly units' re-arms the next casting, so the first one only has to find buffs for itself.",
+          "The +1 and the +2 are plain continuous modifiers, NOT 702 buff counters, so 702.3's one-per-unit cap never applies to them and they stack with the buffs Overt Operation places. (702.3 does have one printed exception in the pool — OGN-078 Lee Sin, Ascetic's 'I can have any number of buffs' — but it is not in this line.)",
+          "This is written as ONE entry rather than three because Jayce, Pirate's Haven and Fretful Feline are three triggers on the SAME event in the SAME domain: a single ready fires all three, so three separate entries would describe one board three times."
+        ]
+      },
+      "steps": [
+        "Land the three payoffs over a few turns: Jayce, Hammer in Hand (E4 + 1 Power), Pirate's Haven (E3), Fretful Feline (E6).",
+        "Use them normally — move them, attack, activate. They end your turn exhausted.",
+        "Your Awaken (315.1.b) readies every exhausted Game Object you control. Each ready is a trigger: Pirate's Haven gives that unit +1 Might this turn, Jayce chooses a keyword, Fretful Feline takes +2.",
+        "In the Main Phase, cast Overt Operation (E5 + 2 Power). Spend each buffed unit's buff to ready it — every body that has acted this turn stands up again, and all three triggers fire a second time.",
+        "Overt Operation then buffs all friendly units, which arms the second copy for the following turn.",
+        "Jayce ends the turn with two of his three keywords and Fretful Feline at M10."
+      ],
+      "terminatesIn": "engine only — a free +1 Might per readied body, a keyword of choice on Jayce and +2 on Fretful Feline EVERY Awaken for no cards, doubled on any turn an Overt Operation is cast. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #161 — the CAUSE/TRIGGER matrix, family slice rows 40-47 (docs/phase0/walks/2026-09-06-finisher-feeders.md §18)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "315.1.b: '1. The Turn Player readies all Game Objects they control that are able to be readied.' 415.1.b: 'A Unit that is already Ready cannot be Readied again.' 702.3: 'There can only be one Buff on a Unit at a time.' 703: 'Each Buff individually contributes +1 Might to a Unit.'"
+        },
+        {
+          "title": "Issue #161 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/161",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §18), issue #161, from the CAUSE/TRIGGER matrix rows 40-42. Card set checked against the current data/combos.json before writing (VEN-088 + OGN-143 + VEN-071 + OGN-153: no exact match; the first three appear in NO catalogued entry at all). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 167, 315.1, 315.1.b, 315.2, 316, 415.1, 415.1.b, 702.2.a, 702.3, 703. The three trigger cards were deliberately written as ONE entry — they are three triggers on the same event in the same domain, so a single ready fires all three, and three entries would be the near-duplicates the one-entry-per-trigger-card rule exists to prevent. Trap check: no attack of the entry's own and no Attacker designation; no [Repeat]; no [Temporary]; no token; no recall; the Might bonuses are continuous modifiers and not 702 buffs, so 702.3 does not cap them; 167 is named only to say it does NOT reach a Might modifier."
+    },
+    {
+      "id": "prize-of-progress-seal-gear-might",
+      "name": "Prize of Progress — your Power base was already paying it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-075",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M3. 'When you use an activated ability of a gear, give me +1 Might this turn.' It counts ACTIVATIONS, not gear, so three activations of one gear would be three — except that an exhaust cost allows only one a turn per copy."
+        },
+        {
+          "card": "OGN-120",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind gear, E0 P1. 'exhaust: [Reaction] — Add 1 Mind.' A Seal is played for no Energy and is the Mind deck's Power base; every activation is one it was going to make anyway."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both mono-Mind (103.1.b.1), so any Mind legend runs the pair.",
+          "The Seals must be ready — 315.1.b readies them every Awaken."
+        ],
+        "notable": [
+          "THE POINT IS THAT THE TRIGGERS ARE ALREADY BEING PAID FOR. A Seal of Insight costs E0 and 1 Power to play and exists to add Mind Power; a Mind deck taps them regardless of what else is on the board. Prize of Progress collects +1 Might from each of those activations at no additional cost, so three Seals put it at M3 + 3 = M6 on any turn you use your Power base — and 709 makes M6 [Mighty], which it was not at M3.",
+          "The honest ceiling, and it is small. Each Seal's ability carries its own exhaust, so it is one activation per copy per turn (315.1.b readies them at the next Awaken); 103.2.b caps the Seals at three. Every other gear in the deck adds its own activation, and the matrix counted 62 'partners' for this trigger only because the cause regex is a bare exhaust symbol — most of those are gear you would never activate on the same turn. The real number is however many gear abilities your turn actually uses.",
+          "The bonus is 'this turn', so it is a combat and defence number, not a permanent one, and it is a continuous modifier rather than a 702 buff — 702.3 never caps it and it stacks with a real buff.",
+          "What it does NOT do: nothing in mono-Mind converts Might into points (#97 measured that only OGN-034's excess-damage threshold does, and that is Fury), so this is a body that defends better on the turns you spend Power, and no more. The entry claims exactly that.",
+          "SFD-075 appears in no catalogued entry, and neither does the pairing; the Seal is in the deck of nearly every Mind list already, which is what makes the marginal cost of the trigger zero."
+        ]
+      },
+      "steps": [
+        "Play the Seals of Insight (E0 + 1 Power each) as your ordinary Mind Power base.",
+        "Play Prize of Progress (E4 + 1 Power).",
+        "On any turn you tap a Seal for Mind Power, its activated ability fires Prize of Progress: +1 Might this turn.",
+        "Three Seals tapped is +3, putting it at M6 — over 709's threshold of 5, so it is [Mighty] for that turn.",
+        "315.1.b readies the Seals at the next Awaken and the cycle repeats for free."
+      ],
+      "terminatesIn": "engine only — +1 Might per gear activation you were making anyway, so about +3 on a turn that uses three Seals, and it lasts only that turn. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #161 — the CAUSE/TRIGGER matrix, family slice rows 40-47 (docs/phase0/walks/2026-09-06-finisher-feeders.md §18)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "315.1.b: '1. The Turn Player readies all Game Objects they control that are able to be readied.' 709: 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater.' 702.3: 'There can only be one Buff on a Unit at a time.'"
+        },
+        {
+          "title": "Issue #161 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/161",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §18), issue #161, from the CAUSE/TRIGGER matrix row 43. Card set checked first (SFD-075 + OGN-120: no exact match; SFD-075 appears in NO catalogued entry). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 103.2.b, 315.1.b, 702.3, 709. The manager's warning that this row's 62 'partners' are a noise count from a bare-exhaust cause regex is correct and is stated in the entry's own notable rather than hidden — the real partner count is the number of gear activations a turn actually makes. Trap check: no attack; no [Repeat]; no [Temporary]; no token; no recall; the Might bonus is a continuous modifier, not a 702 buff; 167 is not touched, since the Power the Seals add is spent in the phase it is added."
+    },
+    {
+      "id": "grand-duelist-arena-bar-mighty-channel",
+      "name": "Grand Duelist off the Arena Bar — a free rune for pushing one body over five",
+      "class": "ENGINE",
+      "status": "verified",
+      "legends": [
+        "SFD-205"
+      ],
+      "uses": [
+        {
+          "card": "SFD-205",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "LEGEND",
+          "note": "Body/Order legend (Fiora). 'When one of your units becomes [Mighty], you may exhaust me to channel 1 rune exhausted.' One activation a turn; 315.1.b readies the legend every Awaken."
+        },
+        {
+          "card": "OGN-124",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Body gear, E3. 'exhaust: Buff an exhausted friendly unit.' Free after it lands, once a turn, and it targets an EXHAUSTED body — which is exactly the body that just moved or attacked."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Body + Order: Grand Duelist is itself the legend and the Arena Bar is mono-Body (103.1.b.3).",
+          "A friendly unit at Might 4 that does not already carry a buff."
+        ],
+        "notable": [
+          "709 IS AN EVENT AND IT IS THE WHOLE CONSTRAINT. 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater', and its own second example says a Might-5 unit that gets +1 does not become Mighty. So the Arena Bar's buff only pays the Duelist when it lands on a body at exactly Might 4 — and 702.2.a keeps the buff there, so that body can never trigger it again.",
+          "The ceiling is therefore the number of DIFFERENT unbuffed Might-4 bodies you can present, one a turn, not the number of turns. 702.3 caps a unit at one buff, so the Arena Bar cannot re-cross a body it has already buffed. This is the same shape as friendship-fiora-worthy-mighty-ready's cap, reached from the Duelist's side instead of Fiora's.",
+          "The rune arrives EXHAUSTED, so it is not that turn's Energy: 315.1.b readies it at the next Awaken. It is worth 1 Power immediately if you want it, because 164.2.b is 'Recycle this: [Reaction] — Add [C]' with no exhaust in its cost — at the price of sending it to the Rune Deck (161.2.b). And 430.3 caps the whole line at what the Rune Deck still holds.",
+          "Different from the catalogued pairing on purpose. grand-duelist-fiora-mighty-crossings runs this legend with SFD-180 Fiora, Worthy and two more cards, where Fiora converts the same crossing into a READY and the Duelist into a rune. This entry is the two-card floor: no Fiora, no Order Power per crossing, and the Arena Bar's buff is free where Fiora's ready costs 1 Order Power each time.",
+          "arena-bar-fiora-untap already pairs the Arena Bar with Fiora; this is the Arena Bar with the LEGEND, which costs no card slot at all."
+        ]
+      },
+      "steps": [
+        "Play the Arena Bar (E3). It is gear, so 143.4 does not exhaust it and it can fire the turn it lands.",
+        "Have a friendly unit at Might 4 with no buff on it — a body that has moved this turn is the natural target, since the Arena Bar requires an exhausted one.",
+        "Exhaust the Arena Bar: buff that unit. 703 gives +1 Might, taking it from 4 to 5.",
+        "709's event fires — it has become [Mighty]. Exhaust Grand Duelist and channel 1 rune exhausted.",
+        "315.1.b readies both the Arena Bar and the legend at your next Awaken. Repeat on a DIFFERENT unbuffed Might-4 body, since the first one keeps its buff (702.2.a) and can never cross again."
+      ],
+      "terminatesIn": "engine only — one channelled rune per turn while you still have unbuffed Might-4 bodies to cross, bounded by 702.3, by 709's event and by the Rune Deck (430.3). Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #161 — the CAUSE/TRIGGER matrix, family slice rows 40-47 (docs/phase0/walks/2026-09-06-finisher-feeders.md §18)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "709: 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater. Example: A Unit with Might 5 that gets +1 [M] does not become Mighty, because it was already Mighty.' 702.2.a: 'To Buff a Unit, a player chooses a Unit and then places a buff on it. That Unit is Buffed for as long as the buff remains on it.' 430.3: 'If there aren't sufficient runes in the Rune Deck, channel as many as possible.'"
+        },
+        {
+          "title": "Issue #161 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/161",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §18), issue #161, from the CAUSE/TRIGGER matrix row 45. Card set checked first (SFD-205 + OGN-124: no exact match; the Duelist is in grand-duelist-fiora-mighty-crossings and the Arena Bar in the-boss-showstopper-redeploy and arena-bar-fiora-untap, none of which pairs the two). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 143.4, 161.2.b, 164.2.b, 315.1.b, 430.3, 702.2.a, 702.3, 703, 709. Trap check: no attack; no [Repeat]; no [Temporary]; no token; no recall; the channelled rune is stated as exhausted rather than assumed to be Energy, so 167 is not misread; 107.4.b does not bite, since nothing asks the legend to be at a location — only that it is a Game Object (107.4.c) for 415.1 to ready."
+    },
+    {
+      "id": "relentless-storm-grimwyrm-mighty-ramp",
+      "name": "Relentless Storm — a rune for a body you were playing anyway",
+      "class": "ENGINE",
+      "status": "verified",
+      "legends": [
+        "OGN-249"
+      ],
+      "uses": [
+        {
+          "card": "OGN-249",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "LEGEND",
+          "note": "Fury/Body legend (Volibear). 'When you play a [Mighty] unit, you may exhaust me to channel 1 rune exhausted.' Note the wording: 'when you PLAY a Mighty unit', not 'becomes Mighty' — the body must already be at 5+ as it is played, so 709's crossing event is not involved at all."
+        },
+        {
+          "card": "SFD-015",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury unit, E4 M5. The cheapest 5-Might unit in the identity that prints no Power cost — a sweep of every Fury and Body unit at Might 5 or more puts OGN-150 Kraken Hunter first at E3 but with 2 Power, and this second at E4 flat."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Fury + Body: Relentless Storm is itself the legend and the Grimwyrm is mono-Fury (103.1.b.3).",
+          "A Mighty unit in hand on the turn you want the rune — one activation a turn, since the legend's cost is its own exhaust."
+        ],
+        "notable": [
+          "THE TRIGGER IS 'PLAY', NOT 'BECOMES', AND THAT IS THE WHOLE DIFFERENCE FROM THE OTHER MIGHTY LEGEND. SFD-205 Grand Duelist reads 'When one of your units becomes [Mighty]' and is therefore governed by 709's crossing event — it pays only when a sub-5 body is pushed over the line, once per body forever. Relentless Storm reads 'When you PLAY a [Mighty] unit', so it pays on any body that is already 5 or more as it enters, every time, with no crossing and no buff needed. Two legends, one keyword, opposite requirements.",
+          "The rune is free in the strict sense: you were playing the body regardless, and the legend's only cost is its own exhaust, which 315.1.b refunds every Awaken. One a turn.",
+          "It arrives EXHAUSTED, so it is next turn's Energy rather than this turn's — or 1 Power now, since 164.2.b's 'Recycle this: [Reaction] — Add [C]' carries no exhaust in its cost (161.2.b then sends it to the Rune Deck). 430.3 caps the line at what the Rune Deck still holds, which is the real ceiling on any channel engine.",
+          "The identity is wide: a sweep of Fury and Body units at Might 5 or more returns twelve at E5 or less, so a Fury/Body deck triggers this most turns without building for it. The Grimwyrm is named as the cheapest with no Power cost; OGN-150 Kraken Hunter is E3 but demands 2 Body Power, which is the scarcer currency (#21).",
+          "Different from the catalogued pairing: sky-splitter-volibear-free-removal runs this legend with OGN-014 Sky Splitter, where the Might on the board is a DISCOUNT on a removal spell. This is the legend's other half — the ramp — and neither entry needs the other."
+        ]
+      },
+      "steps": [
+        "Play Perched Grimwyrm (E4). It enters at Might 5, which is [Mighty] by 709's threshold.",
+        "Relentless Storm's trigger fires on the play. Exhaust the legend and channel 1 rune exhausted.",
+        "315.1.b readies the legend at your next Awaken.",
+        "Repeat on any turn you play a unit at Might 5 or more — twelve such bodies cost E5 or less in this identity, so most turns qualify without building for it.",
+        "Each channelled rune is next turn's Energy after the Awaken readies it, or 1 Power at once through 164.2.b at the price of the rune."
+      ],
+      "terminatesIn": "engine only — one channelled rune on any turn you play a Might-5 body, once a turn, bounded by the Rune Deck (430.3). Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #161 — the CAUSE/TRIGGER matrix, family slice rows 40-47 (docs/phase0/walks/2026-09-06-finisher-feeders.md §18)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "709: 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater.' 315.1.b: '1. The Turn Player readies all Game Objects they control that are able to be readied.' 164.2.b: 'Recycle this: [Reaction] — Add [C].' 430.3: 'If there aren't sufficient runes in the Rune Deck, channel as many as possible.'"
+        },
+        {
+          "title": "Issue #161 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/161",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §18), issue #161, from the CAUSE/TRIGGER matrix row 46. Card set checked first (OGN-249 + SFD-015: no exact match; the legend is in sky-splitter-volibear-free-removal, which uses neither this body nor this mechanism). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 161.2.b, 164.2.b, 315.1.b, 430.3, 709. The entry's contribution over the matrix row is the distinction between the two Mighty legends: 'when you PLAY a Mighty unit' needs no crossing, while 'when one of your units BECOMES Mighty' is 709's event and pays once per body forever — so the two legends want opposite decks, and only the Duelist is capped by 702.3. Trap check: no attack; no [Repeat]; no [Temporary]; no token; no recall; the channelled rune is stated as exhausted; 107.4.b does not bite, since only 107.4.c is needed."
     }
   ]
 }
