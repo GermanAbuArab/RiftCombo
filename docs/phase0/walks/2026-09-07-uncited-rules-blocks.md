@@ -1219,3 +1219,94 @@ Ability triggered or was played from, or whatever zone the affected Game Object 
 affected."* Riot's examples are `OGN-032 Ravenborn Tome` and `OGN-254 Noxian Guillotine`. Structural —
 it decides where a delayed effect is *active*, and no line in the catalogue turns on it today, but it is
 the rule to reach for if one ever does.
+
+---
+
+# HANDOFF — rc-walk-blocks, paused 2026-09-07, resumes Wednesday 2026-09-09
+
+`/tmp` is not guaranteed to survive a reboot, so this section is the durable copy. The `/tmp` twin is
+`/tmp/rc-walks/rc-walk-blocks-handoff.md`.
+
+## H1. Lane, issue, staging
+
+- **Issue #187.** Lane: **uncited Core Rules sub-rules 100–499** (rc-manager4 split the probe on
+  2026-09-07; rc-walk-fc has 500–899 and built its probe independently so the two can be diffed).
+- **Staging file `/tmp/rc-walks/rc-walk-rules.json` is EMPTY.** All 25 entries are merged. Nothing of
+  mine is unlanded, in `/tmp` only, or in context only.
+- Walk document: this file. Committed and pushed to `work` through batch 14.
+
+## H2. Numbers, opened and closed at
+
+- Opened at **catalogue 583**, 14 batches later the catalogue stands at **700**; **25 entries** are mine,
+  all ENGINE, every one validated (`validateCombos` 0 errors, `test/legend-lines.test.ts` 0 defects).
+- **Block-level probe** (my predecessor's): 385 top-level rule numbers, 234 uncited when I started. Its
+  mechanics range is now roughly two-thirds mined.
+- **Sub-rule probe** (mine, §24 and §28): 307 uncited sub-rules carrying a worked Example; filtered to
+  those whose example **names a card from `cards.json`**, 153. Restricted to my 100–499 lane and
+  re-measured after batch 13: **101 rows**, of which about a dozen are the structural ones §37, §44 and
+  §48 already dispose of.
+
+## H3. Refusals, each WITH THE SCOPE IT WAS MADE IN
+
+A refusal is only as wide as the reason given. These are mine, scoped:
+
+| block | refused because | scope of the refusal |
+|---|---|---|
+| 443 Skip | one card prints "Skip" (`VEN-022`), and no card triggers on the Draw Phase | scoped to **this pool**; the rules anticipate point-denial (443.1.a's third example) and a future set could print it |
+| 418 Heal | no card in the pool *watches* a heal | scoped to **watchers**; 418.1.a still explains why every save card says "heal" (458.1 preserves damage through a Recall) |
+| 451/452/453 | one-line headings cross-referencing 341 and 459 | scoped to **new mechanics**; they remain the source headings for the 344.2-vs-323.9 split |
+| 478/479 Dependency | no card prints the *"Might increased to N"* passive its examples need | scoped to **the current pool**. If a set prints one, 479.2 makes the floor **anti-synergic** with a pump (Riot's numbers: 7 naive, **6** forced) |
+| 741–749 Counters | 746, 747, 749 have no card; 745.2 and 748 duplicate claims already sourced to 702.x | scoped to **new lines**; 745.2 and 748 are still the *better citations* for two existing claims |
+| 324 Special Cleanups | 324.2 only confirms what #62 already assumed | scoped to **new lines**; it is the missing citation for that finding |
+| 413/440 Draw and Burn | a Burn Out is a step *inside* the action, not a failure of it | scoped to **the mechanism**; it refines "a fifth draw is a point for the opponent" rather than refuting it |
+| 759–763 Naming | corpus sweep for name/names/guess/naming returns **zero** rows | scoped to **cards that instruct naming**. Re-checked in batch 8 after the probe surfaced Kato the Arm — he is only Riot's example of *how* to name. 763.1 is still a complete printed tag list |
+| 725 Inactive carve-out | every attach/detach trigger in the pool is on a **unit or legend**, none on Equipment | scoped to **Equipment**; 725.3 is still the rule behind [Weaponmaster]'s re-equip |
+| 178.2/178.3 multi-type | **zero** cards have more than one type (histogram in §37.1) | scoped to **the current pool** |
+| 383.3.e.2 once-per-turn | none of the four `Once each turn` cards has a leading "you may" | scoped to **that shape**; 383.3.a.2's "considered to have not triggered" is still live and general |
+| 416.5.a rune ordering | no card recycles 2+ runes in one action | scoped to **simultaneity**; the asymmetry itself (Rune Deck ordered, Main Deck random) stands |
+| 429.2.b Add spells | **29 `[Add]` rows, none a spell that Adds** | scoped to **this pool**; its complement is the useful universal — every Add here is uninterruptible |
+| 390.5.c | decides a delayed ability's *zone*; no line turns on it | scoped to **today's catalogue** |
+
+## H4. The exact next step
+
+Run the filtered sub-rule probe (§28 has the recipe), restrict to 100–499, and work the rows §46–§48
+name as unread. In priority order, with the pool card Riot's example names:
+
+1. **357.2 / 357.2.a** — paying non-standard costs — `OGN-208 Cruel Patron`
+2. **370.1.b / 370.1.b.1** — how a Replacement Effect substitutes a game action — `SFD-175 Undertitan`
+3. **383.1.a / 383.2 / 383.2.b** — what is Condition and what is Effect — `OGN-118 Wraith of Echoes`,
+   `VEN-SP2 Sona, Harmonious`, `OGN-037 Immortal Phoenix`, `OGN-246 Viktor, Leader`
+4. **136.2 / 136.2.a / 137.2** — Effect Text, and a Might Bonus of **+0** — `SFD-051 Guardian Angel`,
+   `SFD-042 Brutalizer`, `OGN-024 Void Seeker`
+5. **135.2.e.6.a–c** — the `[C]` shorthand, including *"A [C] shorthand on a card with no Domain is
+   processed as [A] instead"* — `OGS-018 Tibbers`, `SFD-196 Defiant Dance`
+6. **355.11.b**, **356.3**, **204.1.b**, **423.1.a** — read but not yet walked
+
+## H5. Corrections owed to other entries — NOT applied, because this lane does not own `data/combos.json`
+
+1. **`mageseeker-investigator-mass-move-tax`** should cite **204.4** (Applied Costs) and **429.3**, whose
+   own worked example names that card and shows the cost is payable **with no window of priority** via
+   Add Reactions. The entry's verdict stands; it is under-cited.
+2. **The four Undertitan entries** — `reksai-undertitan-reveal`, `void-rush-undertitan-accelerate`,
+   `diana-lunari-showdown-scry`, `teemo-strategist-undertitan-mind-order-reveal` — should cite **369.1**:
+   *"As I'm revealed"* is a **Replacement Effect**, so the Add does not use the chain and cannot be
+   responded to.
+3. **`zero-drive-riptide-rex-banish-recursion`** (issue #174) should carry **395** and **397**: *"play all
+   units banished with this"* reaches only what its **own linked ability** banished, and each copy is its
+   own Game Object, so three Zero Drives do not share a pool.
+
+## H6. Two habits that paid, and one that cost
+
+- **Re-validate immediately before REPORTING, not after writing.** The shared tree moves: two of my
+  card-count claims went stale inside the hour (§40 and the batch-9 correction).
+- **A legend list is RUN against `cards.json` or it is wrong.** Batch 11 caught two of three Body/Chaos
+  names typed from memory, and **`test/legend-lines.test.ts` cannot catch that** — it checks that a named
+  legend *can hold* the domains, which an invented-but-existing base code passes by construction.
+- **The cost:** `/tmp/rc-walks/` is shared and `noclobber` is on in this shell. A silent `cat >` failure
+  once folded **another session's five entries** into my staging file. Always `set +o noclobber`, use a
+  session-prefixed temp name, and re-read the staging id list after every write.
+
+## H7. The one sentence for Wednesday
+
+**The card populations are spent and the rules file is not — the filtered sub-rule probe is the vein, and
+the rows whose worked example names a pool card are Riot telling you the interaction is real.**
