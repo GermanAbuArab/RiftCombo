@@ -22558,8 +22558,8 @@
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §1), issue #161. Card text verbatim from data/corpus_flat.txt. Citations opened: 053.1, 103.1.b.2, 103.4.c, 143.4, 144.2, 190.1, 190.3.a.1, 195, 315.1.b, 315.2.b.2, 344.2, 348.2.a, 348.2.a.1, 355.2.a, 383.2.a.1, 465.2.c.3, 469.2, 485.4.a, 485.5, 486.5, 487.5. This is the ALT_WIN written out of a catalogued ENGINE that already pointed at it: heimerdinger-vanguard-armory-recruits says in its own terminatesIn that it wins through a Grand Plaza hold. It supersedes nothing — plaza-armory-miss-fortune stays, because Miss Fortune's ready is a third activation in ONE turn where this is two activations every turn — but it reaches the same ten bodies for 10 Energy and 2 Power against that entry's 19 and 3. Trap check: no attack beyond the ordinary Showdown Conquer that takes the Plaza, so the empty-battlefield trap does not arise (344.2 opens a Showdown, not a Combat); no [Repeat]; nothing is [Temporary], so 816.1.b never fires; the Recruits are tokens and nothing recycles them (185, 186.1); no recall; 167 is not touched. Depends on no unruled reading, and explicitly NOT on R30, which the Armory's text does not engage."
     },
     {
-      "id": "lucian-weaponmaster-trinity-sentinel-hold",
-      "name": "Trinity Force attached for nothing — the Weaponmaster half of the Sentinel burst",
+      "id": "veteran-poro-weaponmaster-trinity-sentinel-hold",
+      "name": "Trinity Force attached for nothing, and carried off the Sentinels",
       "class": "BURST",
       "status": "verified",
       "uses": [
@@ -22575,14 +22575,14 @@
           "quantity": 3,
           "role": "payoff",
           "zone": "ATTACHED",
-          "note": "Body Equipment, E4, M+2. '[Equip] 1 Body. [Effect] When I hold, score 1 point.' Not [Unique], so three may be spread across the bodies present."
+          "note": "Body Equipment, E4, M+2. '[Equip] 1 Body. [Effect] When I hold, score 1 point.' Not [Unique], so three may be spread across the bodies present — and here they are spread OFF the Sentinels on purpose."
         },
         {
-          "card": "SFD-113",
+          "card": "SFD-099",
           "quantity": 3,
           "role": "engine",
           "zone": "BATTLEFIELD",
-          "note": "Body unit, E3 M3. '[Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for 1 rainbow less, even if it's already attached.)' Trinity Force's [Equip] cost is exactly one rune, so the discount pays all of it — the attach is free."
+          "note": "Body unit, E2 M2, [Weaponmaster]. 'When you play me, you may [Equip] one of your Equipment to me for 1 rainbow less, even if it's already attached.' Trinity Force's [Equip] cost is exactly one rune, so the discount pays all of it. Swept over all 935 base codes: this and its reprint UNL-223 are the CHEAPEST [Weaponmaster] bodies in the pool at E2."
         }
       ],
       "needs": [],
@@ -22596,29 +22596,30 @@
           "Everything must stand at ONE battlefield you hold: the Sentinels' doubling is scoped to 'holding here'."
         ],
         "notable": [
-          "THE FEEDER IS THE FREE ATTACH, AND IT IS EXACT ARITHMETIC. Trinity Force's [Equip] cost is one Body rune. [Weaponmaster] attaches 'for 1 rainbow less'. One minus one is nothing, so each Lucian arrives with a Trinity Force already on him at no Power cost at all. Three Lucians carry the three Trinity Forces and blue-sentinel-trinity-force-hold's three [Equip] payments disappear.",
-          "Priced honestly, both ways, because this is a trade and not a free win. This line: 2 Sentinels (E8 + 2 Mind Power) + 3 Trinity Forces (E12) + 3 Lucians (E9) = 29 Energy and 2 Power. The sibling: 2 Sentinels (E8 + 2 Mind Power) + 3 Trinity Forces (E12) + 3 Body Power of [Equip] = 20 Energy and 5 Power. Against the catalogue's standing rate of about 9 Energy per Power (#21) this is the cheaper board; against a real game's free floor of 2 Power a turn (#44) the sibling is easier to assemble. What is NOT a matter of opinion is the body count.",
-          "Eight bodies instead of two, which answers the sibling's own stated weakness. blue-sentinel-trinity-force-hold ends its notes with 'lose one Sentinel and K drops to 1, taking the total to 7' — the whole burst hangs on two units. Here the garrison is 2 Sentinels + 3 Lucians, each Lucian at 3 + 2 for the Trinity Force's Might Bonus (718.4) = M5, and each Sentinel at M4 + 2 while defending. 465.2.c.3 makes the attacker assign lethal in full one body at a time, so clearing enough of this board to drop the total below 8 costs 22 damage.",
-          "Points per Hold: 1 + T x (1 + K), where T is Trinity Forces on units present and K is Sentinels. T=3, K=2 gives 1 + 9 = 10. The single Score is capped by 470 at one per battlefield per turn; the nine are ability Gains, which R2 = A puts under 194.1.c and outside that cap. Checked against this entry's own declared quantities before authoring.",
+          "THE FREE ATTACH IS EXACT ARITHMETIC. Trinity Force's [Equip] cost is one Body rune; [Weaponmaster] attaches 'for 1 rainbow less'; one minus one is nothing. Each Veteran Poro arrives with a Trinity Force already on it at no Power cost, and blue-sentinel-trinity-force-hold's three [Equip] payments disappear. The rule that decides which Equipment this is worth doing to: [Weaponmaster] equips 'to ME', so it only pays for CARRIER-INDEPENDENT Equipment. Trinity Force scores on whoever holds it, so the free attach is pure profit; SFD-059 Svellsongur copies the carrier's text and SFD-030 Skyfall bridges the carrier's own effects, so neither can ever be freed this way.",
+          "Priced against the sibling, both directions. This line: 2 Sentinels (E8 + 2 Mind Power) + 3 Trinity Forces (E12) + 3 Veteran Poro (E6) = 26 Energy and 2 Power. blue-sentinel-trinity-force-hold: the same Sentinels and Trinity Forces plus 3 Body Power of [Equip] = 20 Energy and 5 Power. Six more Energy for three fewer Power, and against the catalogue's ~9 Energy per Power (#21) that is the cheaper board; against a real game's free floor of 2 Power a turn (#44) the sibling is easier to assemble.",
+          "WHAT THE SPREAD ACTUALLY BUYS IS GRACEFUL FAILURE, NOT SURVIVAL, and the honest arithmetic is this. The burst needs T x (1 + K) >= 7. At T=3, K=2 it is 9, so the total is 10 — but ANY single body lost drops it below 8: killing a Sentinel gives 3 x 2 = 6 (total 7), killing a carrier gives 2 x 3 = 6 (total 7). What the spread prevents is the TWO-FOR-ONE. In the sibling all three Trinity Forces ride the two Sentinels, so one removal spell on the Sentinel carrying two of them takes T from 3 to 1 AND K from 2 to 1 at once: 1 x 2 = 2, total 3. Here no single card can take a Trinity Force and a Sentinel together.",
+          "The version that actually survives a removal is K=3: T=3, K=3 is 1 + 12 = 13, and after any one loss it is still 1 + 3 x 3 = 10 or 1 + 2 x 4 = 9. That is one more Blue Sentinel, E4 + 1 Mind Power, and it is the upgrade to buy before a fourth Trinity Force (103.2.b caps T at 3 anyway).",
+          "Five bodies, not eight: 2 Sentinels and 3 Veteran Poro. Trinity Force is gear and is never a body. Each Poro is M2 + 2 from the Trinity Force's Might Bonus (718.4) = M4; each Sentinel is M4 + 2 while defending. So the cheapest break in combat is 4 damage onto a carrier, and 465.2.c.3 forces that lethal damage to be assigned in full before anything else is touched.",
+          "SFD-113 Lucian, Merciless is the +1-Might-per-body alternative at E3 instead of E2: M3 + 2 = M5 carriers, so the cheapest break rises from 4 damage to 5, for 3 more Energy across the three. His second sentence, 'The first time I conquer each turn, ready me', is dead weight in a Hold line (a Hold is not a Conquer — 469.2 against 466.5.d), so the Might is the whole difference.",
+          "Points per Hold: 1 + T x (1 + K). T=3, K=2 gives 1 + 9 = 10. The single Score is capped by 470 at one per battlefield per turn; the nine are ability Gains, which R2 = A puts under 194.1.c and outside that cap. Checked against this entry's own declared quantities before authoring.",
           "The gear's line becomes the unit's line by 136.2.b (Effect Text is active while attached), 718.3 (it is appended to the Top-Most Card's Rules Text) and 136.2.d (whose worked examples are Guardian Angel and Brutalizer), which makes it a Hold Ability of a Unit under 383.4.d.2.a.",
-          "818.1 makes [Equip] an Activated Ability, so the attach is NOT a play and no 'When you play this' fires — irrelevant here, since Trinity Force prints none, but it is the reason a Weaponmaster body cannot substitute for SFD-024 Rell, Magnetic in the entries that need a play trigger.",
-          "Lucian's second sentence, 'The first time I conquer each turn, ready me', does nothing in this line: a Hold is not a Conquer (469.2 against 466.5.d). He is here for the Weaponmaster clause and the body.",
-          "SFD-102 Hexdrinker (Body, E2, one-rune [Equip], \"[Effect] [Deflect]\") answers the single point of failure this line names — lose a Sentinel and K drops: 809.1.c taxes the opponent a rainbow to choose a [Deflect] unit, and being carrier-independent it attaches free under any [Weaponmaster] body. In no entry before this note (#161, 2026-09-06)."
+          "818.1 makes [Equip] an Activated Ability, so the attach is NOT a play and no 'When you play this' fires — irrelevant here, since Trinity Force prints none, but it is why a Weaponmaster body cannot substitute for SFD-024 Rell, Magnetic in the entries that need a play trigger."
         ]
       },
       "steps": [
         "Establish Control of a battlefield and keep it: 469.2 makes a Hold the maintenance of Control you have not yet Scored this turn.",
         "Play the two Blue Sentinels there (E4 + 1 Mind Power each).",
-        "Play each Lucian, Merciless (E3) to that battlefield with a Trinity Force already on the board. His [Weaponmaster] trigger attaches it for one rainbow less than its one-rune [Equip] cost — nothing.",
-        "Three Lucians carry three Trinity Forces. 718.3 appends 'When I hold, score 1 point' to each of them as a Hold Ability of a Unit (383.4.d.2.a).",
+        "Play each Veteran Poro (E2) to that battlefield with a Trinity Force already on the board. Its [Weaponmaster] trigger attaches one for a rainbow less than the one-rune [Equip] cost — nothing.",
+        "Three Veteran Poro carry the three Trinity Forces, and none of them is a Sentinel. 718.3 appends 'When I hold, score 1 point' to each carrier as a Hold Ability of a Unit (383.4.d.2.a).",
         "Beginning Phase, Scoring Step (315.2.b.2): you Hold. That is the Score, 1 point, capped by 470.",
         "Each Trinity Force's hold effect goes on the Chain and the two Sentinels make every hold effect fire 1 + 2 = 3 times: nine ability Gains (194.1.c, R2 = A, uncapped by 470).",
-        "Ten points in one Hold."
+        "Ten points in one Hold, off five bodies and no [Equip] Power at all."
       ],
-      "terminatesIn": "burst of ten points in one Hold — one Score and nine ability Gains — off a garrison of eight bodies and no [Equip] Power at all",
+      "terminatesIn": "burst of ten points in one Hold — one Score and nine ability Gains — for 26 Energy and 2 Power, with the three Trinity Forces carried off the Sentinels so no single removal takes T and K together",
       "sources": [
         {
-          "title": "Hand walk 2026-09-06, issue #161 — uncatalogued feeders of the 36 finishers (docs/phase0/walks/2026-09-06-finisher-feeders.md)",
+          "title": "Hand walk 2026-09-06, issue #161 — uncatalogued feeders of the finishers (docs/phase0/walks/2026-09-06-finisher-feeders.md)",
           "kind": "manual-walk",
           "date": "2026-09-06"
         },
@@ -22636,7 +22637,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §2), issue #161, as the Weaponmaster feeder for blue-sentinel-trinity-force-hold. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 136.2.b, 136.2.d, 194.1.c, 383.4.d.2.a, 465.2.c.3, 466.5.d, 469.2, 470, 718.3, 718.4, 818.1, 818.1.b. Stands on R1 = A with stacking and R2 = A, both ruled 2026-09-04. Formula checked against its own declared quantities: 1 + 3 x (1 + 2) = 10. The sibling is left untouched on purpose and the trade is stated in both directions in notable rather than claimed as a strict improvement — the Energy is worse, the Power and the body count are better. Trap check: a Hold needs no Attacker designation, so 807.1.d / 383.4.e / 461 cannot bite; no [Repeat]; no [Temporary]; no token; no recall, and the Sentinel's [Shield 2] is a Might bonus while defending rather than a would-die replacement, so 808.1.d.1 does not bite; nothing is added in Awaken, so 167 does not bite."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §13c), issue #161. REPLACES lucian-weaponmaster-trinity-sentinel-hold, which this session wrote earlier the same night, and the replacement corrects TWO errors of its own making rather than merely swapping a card. (1) The carrier: SFD-099 / UNL-223 Veteran Poro is Body, E2, plain [Weaponmaster], and a sweep of all 935 base codes makes it the cheapest such body in the pool — three are E6 against Lucian's E9 in the same identity for the same three free attaches, so the board is 26 Energy and 2 Power instead of 29 and 2. (2) The robustness claim: the old entry said 'eight bodies' and priced clearing the board at 22 damage. Both are wrong. There are FIVE bodies (Trinity Force is gear), and the burst does not have to be cleared at all — any single loss takes T x (1 + K) from 9 to 6 and the total from 10 to 7. What the spread genuinely buys is that no single removal can take a Trinity Force and a Sentinel together, which is exactly what happens to blue-sentinel-trinity-force-hold when the Sentinel carrying two of them dies (total 3). The version that survives a loss is K=3, and the entry says so. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 136.2.b, 136.2.d, 194.1.c, 383.4.d.2.a, 465.2.c.3, 466.5.d, 469.2, 470, 718.3, 718.4, 818.1, 818.1.b. Stands on R1 = A with stacking and R2 = A. Formula checked against its own declared quantities: 1 + 3 x (1 + 2) = 10. Trap check: a Hold needs no Attacker designation, so 807.1.d / 383.4.e / 461 cannot bite; no [Repeat]; no [Temporary]; no token; no recall, and [Shield 2] is a Might bonus while defending rather than a would-die replacement, so 808.1.d.1 does not bite; nothing is added in Awaken, so 167 does not bite."
     },
     {
       "id": "sentinel-trinity-time-warp-chain",
@@ -25202,6 +25203,162 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-06 from issue #160. UNL-131 was an uncatalogued partner of dark-child-off-turn-reactions (62 partners, 1 entry). Card text verbatim from data/corpus_flat.txt; 103.2.b, 164.2.a, 164.2.b, 167, 415.3.a, 431.1.c.1, 436.1, 436.4.a and 829.1.b opened in the Core Rules file. No unruled reading. The entry is deliberately modest about its own claim — three copies, not an infinite lock — because dark-child-off-turn-reactions' predicate matches every [Reaction] in the pool and the temptation is to publish 'a free counter every turn forever'."
+    },
+    {
+      "id": "shen-sentinel-time-warp-chain",
+      "name": "Shen's fragility is free inside a Time Warp — nine points across three uninterrupted turns",
+      "class": "CHAIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-138",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P2 M7, [Shield]. 'When I hold, if there is exactly one other unit you control here, you score 1 point.' 383.2.a.1 makes the count part of the Trigger Condition, so a third body at this battlefield keeps the ability off the Chain entirely."
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M4, [Shield 2]. Both halves work: 'Your hold effects for holding here trigger an additional time' doubles Shen, and 'When I hold, [Add] 1 rainbow at the start of your next Main Phase' is itself a hold effect, so it also runs twice. One copy, and only one — a second Sentinel would be Shen's second 'other unit' and switch him off."
+        },
+        {
+          "card": "VEN-055",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind unit, E4. '[Empower] E3. [Empowered] Your spells cost E1 + 1 rainbow less, to a minimum of E1.' Two Empowered copies take Time Warp from E10 + 4 Power to E8 + 2 Power; 356.4.e keeps each floor local to its own discount."
+        },
+        {
+          "card": "OGN-122",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E10 P4. 'Take a turn after this one. Banish this.' A sweep of all 935 base codes for an Additional Turn returns THIS CARD AND NOTHING ELSE — it is the pool's only extra-turn source, which is why every CHAIN of this shape is Mind or splashes Mind."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Order: OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-201 Chem-Baroness and UNL-199 Deceiver all hold it (103.1.b.2).",
+          "Control one battlefield with EXACTLY Shen and the Blue Sentinel on it, and nothing else."
+        ],
+        "notable": [
+          "THE ENTRY EXISTS BECAUSE THE TIME WARP CANCELS SHEN'S ONLY WEAKNESS. shen-kinkou-sentinel-hold is 3 points a turn and its own notes say the garrison 'is two units and cannot be three' — one token landing there, or one removal spell, takes the line to zero. Inside a Time Warp chain the opponent NEVER TAKES A TURN, so they cannot add a body to your battlefield (which needs a move, and a move needs their turn) and cannot remove one. The fragility that makes it a bad engine makes no difference at all to the chain.",
+          "The arithmetic against this entry's own quantities. Per Hold: 1 Score (469.2, capped by 470 at one per battlefield per turn) + Shen x (1 + K) with K = 1, which is 2 ability Gains (194.1.c, R2 = A, uncapped) = 3. Turn 1 Scoring Step: 3. Turn 2: 6. Turn 3: 9, which crosses the Victory Score, and 194.2 wins it in the cleanup. Three scoring events, no opponent turn between them.",
+          "THE SENTINEL PAYS FOR THE TIME WARP AND 316.2 IS WHY. Its delayed Add is a hold effect, so it runs 1 + K = 2 times and banks 2 rainbow. 316.2 says the Main Phase Tasks become outstanding 'in the specified order', 316.3 is '1. Each player's Rune Pool empties' and 316.4 is '2. At the start of Main Phase game effects take place' — so the Add resolves AFTER the emptying and 167 never touches it. Two Applied Researchers put Time Warp at E8 + 2 Power, and those 2 Power are exactly what was just banked: the spell costs 8 Energy out of pocket and no Power at all.",
+          "K CANNOT BE RAISED HERE, AND THAT IS THE POINT OF PAIRING SHEN WITH EXACTLY ONE SENTINEL. A second Blue Sentinel would make two 'other units' at Shen's battlefield and 383.2.a.1 would keep his ability off the Chain — the line would score 1 a turn instead of 3. Shen is the only hold payoff in the pool whose multiplier occupies the single companion slot his own condition allows.",
+          "The sole-garrison trap is checked and does not bite: nothing in this line kills a friendly body, so 323.6 and 190.4.c never hand the battlefield back mid-chain. The two units simply stand there through all three Beginning Phases.",
+          "Against sentinel-trinity-time-warp-chain, which is the same shape in Mind/Body: that line pays E4 + a 1-Body [Equip] for a Trinity Force on the Sentinel and lives under VEN-149 Defender of Tomorrow, the pool's ONLY Mind/Body legend. This one pays E6 + 2 Order Power for Shen, needs no [Equip] at all, and runs under any of four Mind/Order legends. Same nine points, same two Time Warps; the difference is the identity and the [Equip].",
+          "In 2v2 it is two points short: 489.3 sets the Victory Score at 11 against 194.3's 8, so the board needs a third Time Warp there — which 103.2.b allows, since Time Warp banishes itself rather than recycling."
+        ]
+      },
+      "steps": [
+        "Set up over earlier turns: Shen, Leader of the Kinkou Order (E6 + 2 Order Power) and one Blue Sentinel (E4 + 1 Mind Power) at a battlefield you control, with nothing else there; two Applied Researchers played and Empowered (E4 + E3 each).",
+        "Turn 1, Scoring Step (315.2.b.2): you Hold. 1 point from the Score. Shen's trigger is placed and 383.2.a.1 finds exactly one other unit you control here — the Sentinel — so it resolves, doubled to two executions: 2 ability Gains. Three points. The Sentinel's own hold effect also runs twice and banks 2 rainbow.",
+        "Turn 1, Main Phase: 316.3 empties the Rune Pool, then 316.4 delivers the 2 rainbow. Cast Time Warp for E8 + 2 Power — Energy from runes, Power from the Sentinel.",
+        "Turn 2 arrives with no opponent turn in between. Its Scoring Step Holds the same battlefield (470's cap is per turn and this is a new turn): three more points, total six, and 2 more rainbow banked.",
+        "Turn 2 Main Phase: cast the second Time Warp on the same terms.",
+        "Turn 3 Scoring Step: three more points, total nine. 194.2 wins the game in the cleanup."
+      ],
+      "terminatesIn": "nine points across three uninterrupted turns, crossing 8 on the third Hold — and the two-unit garrison Shen requires is safe for exactly as long as the opponent has no turn",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #161 — uncatalogued feeders of the finishers (docs/phase0/walks/2026-09-06-finisher-feeders.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "383.2.a.1: 'Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the Effect.' 316.2: 'The following Tasks become Outstanding in the specified order:' 316.3: '1. Each player's Rune Pool empties.' 316.4: '2. At the start of Main Phase game effects take place.' 194.2: 'A player wins the game if, in a cleanup, they have points greater than or equal to the Victory Score and more points than any other player.'"
+        },
+        {
+          "title": "Issue #161 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/161",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §14), issue #161, from the CHAIN sweep: every ENGINE stating 3-7 points a turn, crossed with the pool's Additional-Turn sources. Card set checked against the current data/combos.json first (VEN-138 + UNL-087 + OGN-122 + VEN-055: no exact match). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 167, 190.4.c, 194.1.c, 194.2, 194.3, 315.2.b.2, 316.2, 316.3, 316.4, 323.6, 356.4.e, 383.2.a.1, 469.2, 470, 489.3. Stands on R1 = A with stacking and R2 = A. The Power-symbol reading (Time Warp's Power cost is [C], its own domain, 135.2.e.6, which is why a rainbow discount reaches it) is the one applied-researchers-time-warp-discount already walked. Trap check: a Hold needs no Attacker designation, so 807.1.d / 383.4.e / 461 cannot bite; no [Repeat]; no [Temporary]; no token — and a token landing at Shen's battlefield would switch him off, which is a live risk beside any Recruit engine and is stated; no body is killed, so the 323.6 sole-garrison trap does not arise; the Sentinel's Add is walked against 167 with 316.2's task order quoted rather than assumed."
+    },
+    {
+      "id": "last-rites-sentinel-trash-holds",
+      "name": "Last Rites doubled on the Hold — two plays out of the trash every Beginning Phase",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-150",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Chaos Equipment, E3, M+2. '[Equip] — 1 Chaos, Recycle 2 cards from your trash. [Effect] When I conquer or hold, you may play a unit from your trash. (You still pay its costs.)' Carrier-independent and a hold effect, which is the pair of properties the Sentinel needs."
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M4, [Shield 2]. 'Your hold effects for holding here trigger an additional time.' The Last Rites carrier and the Sentinel must stand at the SAME battlefield: the doubling is scoped to 'holding here'."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Chaos: OGN-263 Swift Scout, SFD-199 Prodigal Explorer, UNL-197 Scorn of the Moon and VEN-151 Soul's Reflection all hold it (103.1.b.2).",
+          "A unit at the held battlefield to carry Last Rites, and units in your trash to play."
+        ],
+        "notable": [
+          "THE CORRECTION FIRST, BECAUSE THE LEAD THAT PRODUCED THIS ENTRY OVERSTATED IT. Last Rites does NOT give free bodies: its own reminder text is '(You still pay its costs.)' What the Sentinel doubles is the PERMISSION, not the price — 1 + K plays out of the trash per Hold, each at the unit's full Energy and Power. The gain is card advantage, not tempo.",
+          "Where the resources come from, and it is not free. 167 empties your Rune Pool at the end of your own turn, so at the Scoring Step your pool is empty. 315.1.b has readied your runes in the Awaken Phase, and 164.2.a is a [Reaction], so you tap them inside the Closed State the Hold trigger opens (312.2.c gives priority there). That Energy would have been available in your Main Phase anyway — 316.3 has not run yet — so this spends the turn's Energy early rather than conjuring any.",
+          "The reanimated unit lands where you want it. 355.2.a's default is 'the controller's Base or a Battlefield the controller controls', so a unit played from the trash may go straight to the battlefield you are holding — reanimation has none of the walk-to-the-battlefield bottleneck #48 measured for tokens.",
+          "The [Equip] cost is the real price and it is self-limiting: '1 Chaos, Recycle 2 cards from your trash'. 416.6 lets you choose which two, but they leave the trash you are about to reanimate from, so attaching Last Rites costs two of the targets it exists to fetch. [Weaponmaster] cannot make it free either — the cost is a rune AND an action, not a single rune, so 'for 1 rainbow less' removes only the Chaos.",
+          "It also fires on a Conquer, which is why last-rites-stack-arena-reanimator pairs it with OGN-286 Reckoner's Arena instead: the Arena activates conquer effects on a Hold, so that line reaches the same doubling from the other direction and in a different identity. This one needs no battlefield of yours at all, so nothing here is the 1-in-3 draw 485.5 imposes.",
+          "K can be raised: a second Blue Sentinel makes it three plays a Hold for E4 + 1 Mind Power. Nothing in this line caps K the way VEN-138 Shen's 'exactly one other unit' does.",
+          "Nothing here scores. The bodies it returns are what score, and the entry claims no more than that."
+        ]
+      },
+      "steps": [
+        "Get a Blue Sentinel and a second unit to a battlefield you control, and fill your trash by ordinary play.",
+        "Attach Last Rites to the second unit: pay 1 Chaos Power and recycle 2 cards from your trash (416.6 — you choose which).",
+        "Beginning Phase, Scoring Step (315.2.b.2): you Hold. 718.3 has appended Last Rites' effect to its carrier, so 'When I conquer or hold, you may play a unit from your trash' is a Hold Ability of a Unit (383.4.d.2.a).",
+        "The Sentinel makes it fire 1 + 1 = 2 times. In the Closed State those triggers open (312.2.c), tap runes readied at Awaken (164.2.a is a [Reaction]) to pay each reanimated unit's full cost.",
+        "Play the units to the battlefield you are holding (355.2.a). Repeat every turn for as long as the trash holds targets."
+      ],
+      "terminatesIn": "engine only — 1 + K plays out of your trash every Hold, each at the unit's full cost, so card advantage rather than tempo. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #161 — uncatalogued feeders of the finishers (docs/phase0/walks/2026-09-06-finisher-feeders.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "718.3: 'While in this state, Abilities in the card's Effect Text are appended to the Rules Text of the Top-Most Card.' 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' 416.6: the recycling player chooses which cards a Recycle takes. 167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.'"
+        },
+        {
+          "title": "Issue #161 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/161",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §15), issue #161, from the lead handed over after the BURST sweep. Card set checked against the current data/combos.json first (SFD-150 + UNL-087: no exact match; the two catalogued Last Rites entries pair it with the Arena and with Lunar Boon). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 164.2.a, 167, 312.2.c, 315.1.b, 315.2.b.2, 316.3, 355.2.a, 383.4.d.2.a, 416.6, 485.5, 718.3, 818.1. Stands on R1 = A with stacking. The entry opens by CORRECTING the lead it came from: '(You still pay its costs.)' is printed on the card, so the Sentinel doubles a permission and not a price — these are not free bodies. Trap check: a Hold needs no Attacker designation; no [Repeat]; no [Temporary]; the reanimated units are CARDS, so 185 / 186.1 never arise — and a token in the trash is exactly what those paragraphs forbid, which is why the trash must be filled with real cards; no recall; the Energy is walked against 167 and 316.3 rather than assumed."
     }
   ]
 }
