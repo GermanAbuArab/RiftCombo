@@ -1365,3 +1365,104 @@ Four entries in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos` clean over 
 `test/legend-lines.test.ts` checks run against the staging file, 13 legend codes, clean.
 Cards in **zero** entries before this batch: `SFD-006` Eager Drakehound, `UNL-059` Master Yi,
 Unstoppable.
+
+## 33. Batch 4 — four more rules, and a uniqueness claim narrowed
+
+### 33.1 `ava-achiever-mischievous-marai-attacking-reinforcement` — the second route into refuse-bucket C
+
+`fresh-beans-rengar-pouncing-attacking-reinforcement` (written this week) says `SFD-025 Rengar,
+Pouncing` is *"the only card that may be played to a battlefield you are attacking"*. That is true of
+a card's **own text** and it is not the whole picture.
+
+**355.2.b**: *"Some Game Effects may grant players permission to play Units to locations that are not
+normally Valid. Such locations become Valid for the purposes of Playing the Unit."*
+
+`OGN-107 Ava Achiever` (*"When I attack, you may pay :rb_rune_mind: to play a card with [Hidden] from
+your hand, ignoring its cost. **If it's a unit, play it here.**"*) is exactly such an effect, and it
+places a **different** card. 359.3.f.2 reads *"here"* at execution, and at that instant she is
+standing at the enemy battlefield she moved to. **Rengar walks himself in; Ava throws someone else
+in.**
+
+And the body is in that combat — **464.2.c.3.a**: *"If a Unit controlled by the Attacker or Defender
+becomes present at this Battlefield after this moment, it will gain the Attacker or Defender
+designation during the Cleanup phase following the action that caused it to become present"*, with
+323.2.a doing the assignment.
+
+The payload matters less than the route, but `UNL-003 Mischievous Marai` is the clean one: its own
+play effect is already written *"deal 2 to an enemy unit **here**"*, so nothing about 811.1.d.2 has to
+be argued. Two damage lands before the damage step, so a 2 Might defender is out of 465.2.c's sum
+before it is computed.
+
+**811.1.c.1 cuts both ways here.** *"Hide is not a subset of Play."* Ava plays FROM HAND, so (a)
+811.1.d.2's confinement never engages, and (b) `UNL-023 Katarina, Reckless`, `OGN-167 Ember Monk` and
+`SFD-121 Black Market Broker` — all of which read *"when you play a card from face down"* — never see
+it. Do not price an Ava deck as if it also fed that package.
+
+### 33.2 `thousand-tailed-watcher-portal-rescue-double-shrink` — and 356.1.b.3 on a free play
+
+`tryndamere-thousand-tailed-watcher-shrink` prices `OGN-116` at *"one card spent per turn"*.
+`OGN-102 Portal Rescue` (Mind, E3 P1, **[Action]**) is *"Banish a friendly unit, then its owner plays
+it to their base, ignoring its cost"* — a second board-wide −3 in the same turn, at combat speed.
+
+Priced honestly against **477.3.b**, which caps the REDUCTION and not the result: *"−3, to a minimum
+of 1"* sends each body from M to max(1, M − 3), so two applications are 8 → 5 → 2 but only 4 → 1 → 1.
+The pair is worth a full 6 **only against bodies of Might 7 or more**.
+
+The fact most readers will miss is **356.1.b.3**, whose worked example says an optional additional
+cost survives a free play: *"They ignore Legion Rearguard's Base Cost of 2 Energy, but the optional
+additional cost of 1 Energy and 1 Fury Power is added to its Total Cost and must be paid."* So the
+re-played Watcher can still buy its own **[Accelerate]** rider and enter ready, which 143.4 would
+otherwise forbid. That generalises to every *"ignoring its cost"* effect in the pool.
+
+The cost the pairing hides, and which the entry states: Portal Rescue plays him *"to their base"*, so
+if he was standing in the combat he is **removed from it** and his 7 Might leaves your sum.
+
+### 33.3 `rumble-scrapper-hotheaded-mech-stack` — two statics on one token, and the fuel that is not there
+
+`SFD-089 Rumble, Scrapper` (Mind) and `SFD-026 Rumble, Hotheaded` (Fury) had never been walked
+together; the census gives exactly one Fury/Mind legend, `OGN-247 Daughter of the Void`.
+
+**187.4** gives the token its tag by rule (*"A 3 [M] Mech token is a domainless unit token with 3
+Might and the Mech tag"*), so both statics reach it with no extra text: 3 printed, +1 from the
+Scrapper's continuous modifier (which 702.3 never caps, because it is not a Buff counter), +1 from
+[Assault] while attacking (807.1.b, and 807.2 sums a second granted instance) = **five attacking
+Might per free body**.
+
+**The trap the pairing invites is refuted twice.** Hotheaded's recursion says *"recycle another
+friendly unit"* and *"play a Mech from your trash"* — and a Mech TOKEN can do neither: **185**
+(*"Tokens are not cards"*) with 416.1 and 416.3 stops it being recycled as a cost, and **186.1**
+stops it ever remaining in the trash to be replayed. Both halves need real cards.
+
+The two triggers also sit in different phases — the Scrapper's is a Hold (315.2.b.2) and Hotheaded's
+a Conquer (Main Phase) — so they do not compete, and 470 with 485.4 caps the Conquers at two.
+
+### 33.4 `pack-of-wonders-rippers-bay-permanent-channel` — three a game against one a turn forever
+
+`rippers-bay-retreat-double-channel` is honest about its ceiling: `OGN-104 Retreat` is a spell,
+*"three casts a game (103.2.b)"*. `OGN-181 Pack of Wonders` (Chaos gear, E2, *":rb_exhaust:: Return
+another friendly gear, unit, or facedown card to its owner's hand"*) does the same job for an
+**exhaust**, and **415.3.a** — *"A player Readies all non-spell Game Objects they Control during the
+Awakening Phase on their turn"* — hands it back every turn. It is also cheaper: the bounce is free,
+so the whole transaction is the Bay's 1 Energy.
+
+Stated as a **refill and not a ramp**: 161.2.a fixes the Rune Deck at *"Exactly 12 Rune cards"*, 430.3
+channels *"as many as possible"*, and 315.3.b already gives two free a turn — so the extra channel
+returns what 164.2.b's Power recycles put back (161.2.b sends a recycled rune to the Rune Deck). What
+it buys is a rune you CONTROL, which is the currency §11's Startipped Peak partners are priced in.
+
+Two clauses worth carrying: the rune arrives **exhausted**, so 164.2.a's Energy is unavailable this
+turn while 164.2.b's Power is not; and the Bay says *"**that player** may pay 1 Energy"*, never *"you"*
+— so 190.6.d cannot blank it (it is live from turn one with no Control) and it pays the **opponent**
+for their own bounces too.
+
+Last, a vocabulary check the entry makes explicitly: a bounce to HAND is **not** a Recall. 455 defines
+a Recall as relocation *"from anywhere to its Base"*, so nothing here is protected by 456.3 and no
+movement-lock claim is made.
+
+## 34. Batch 4 — staged
+
+Four entries in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos` clean over 542 entries;
+`test/legend-lines.test.ts` checks run against the staging file, clean. Two citations were corrected
+before staging: 442.1 is **Disempowering**, not Banishment (108.6.b / 108.6.c are the right
+paragraphs), and 465.2.c.4's sentence was quoted to its end (*"...unless no further units remain to
+have damage assigned to them"*).
