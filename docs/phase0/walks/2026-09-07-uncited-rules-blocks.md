@@ -338,3 +338,114 @@ their Counters"*) is the rule behind `OGN-228 Vanguard Helm` being the pool's on
 which the project already carries from 702.3; **747** and **749** have no card behind them; and
 **746** (moving a counter between two Game Objects) has no card in the pool that does it. **No entry**,
 but 745.2 and 748 are the correct citations for two claims currently sourced to 702.x.
+
+---
+
+# Batch 3 — Reflexive Triggers, and Making New Choices
+
+Batch 2's two entries were merged (catalogue at 617). Staging pruned to this batch.
+
+| id | block opened | class |
+|---|---|---|
+| `dragons-rage-discipline-reflexive-double-kill` | **386–388 Reflexive Triggers** | ENGINE |
+| `mystic-reversal-charm-free-reaim` | **750–755 Making New Choices** | ENGINE |
+
+`validateCombos` over the merged copy: **0 errors, 619 entries.** `test/legend-lines.test.ts` re-run over
+these two: 7 legend base codes checked, **0 defects.** No duplicate id, no duplicate card set.
+
+## 11. 386–388 — "Then do this:" is two chain items with a priority window between them
+
+**387.1: *"Reflexive Triggers can be recognized by the phrase 'Do this:' or 'Do one of the following:'."***
+**388.1: *"A new ability is created and added to the chain as a Pending Item."***
+
+Eight cards in the pool print *"Then do this:"* and rules 386–388 were cited by nothing:
+
+| card | domain | the two halves |
+|---|---|---|
+| `OGN-258 Dragon's Rage` | Calm/Body (Signature, Lee Sin) | move an enemy unit \| pair it with another and they kill each other |
+| `SFD-024 Rell, Magnetic` | Fury | play a free Equipment \| attach it to me |
+| `SFD-154 Guards!` | Order | play a Sand Soldier \| pay a rune to ready it |
+| `SFD-198 Arise!` | Calm/Order | play N Sand Soldiers \| ready up to two |
+| `UNL-081 Keeper of Masks` | Mind | play two Reflections \| they become copies of me |
+| `UNL-139 Bone Skewer` | Chaos | they play a unit from hand \| stun it |
+| `UNL-199 Deceiver` | Mind/Order | play a Reflection there \| it copies another unit there |
+| `UNL-200 Mirror Image` | Mind/Order | play a Reflection to your base \| it copies the chosen unit |
+
+Following the chain rules from 388.1: **336.1** puts the new item through the same FEPR process;
+**337.1** finalizes it, which is where its targets and any 204.3.a base cost lock in; and **337.4** —
+*"If, after finalizing the Chain Item, there are no more items on the chain to be Finalized, the
+controller of the next item on the chain gains Priority. Move to step 2: Execute"* — with **338.1.a**
+admitting a legally timed [Reaction] there.
+
+**So both players get a full priority window between the two halves of all eight cards.** The
+constructive half is the entry: `OGN-258 Dragon's Rage` (in zero entries) chooses its second victim
+when the reflexive item finalizes, i.e. after the move has resolved, and the pump that equalises the
+two Mights goes in the window — after the pair is locked in and cannot be un-chosen. `OGN-058
+Discipline` says *"a unit"*, not *"a friendly unit"*, so it legally pumps an enemy body.
+
+**387.1.a is dead letter in this pool.** *"'Do this' can be followed by 'N times.' The Reflexive
+Trigger will thus be added to the chain N times when its condition is met."* No card prints it — all
+eight rows are a bare *"Then do this:"*. There is no reflexive multiplier to hunt for.
+
+Two consequences for cards already in the catalogue, recorded but not walked here:
+
+- The Reflection tokens of `UNL-081`, `UNL-199` and `UNL-200` are on the board, and the **copy source
+  is still killable**, in the window before *"becomes a copy"* resolves.
+- `SFD-154 Guards!`'s reflexive half is *"You may pay one Order rune to ready it"*, which 204.3.a /
+  383.3.b make a **base cost paid at finalization** — so the rune must already be banked when the
+  window opens, and 415.3.a means runes tapped on your own turn are dead on the opponent's, which is
+  exactly when this [Hidden] card is played for 0.
+
+## 12. 750–755 — a re-aim ignores every cost it incurs, and that is the opposite of the obvious reading
+
+**755: *"Any costs 'to play' the spell or ability that are incurred as a result of new choices made in
+this way are ignored."*** 755.1 gives the reason: *"The spell or ability is already played and its
+costs paid."* So re-aiming a spell at a **[Deflect]** body costs nothing — 809.1.c prices Deflect as
+an additional cost *to play*, charged per choice, and a new choice is not a play.
+
+**753.1 is where a tax and a prohibition separate: *"A player may not make new choices this way that
+would be illegal or that would lead to an illegal state, even if there are no other options."*** So
+`SFD-105 Ruin Runner`'s *"can't be chosen by enemy spells and abilities"* (absolute under 054.1) still
+holds. This is the third independent place the project's Deflect-tax-versus-prohibition split shows up,
+and it is the cleanest: **755 erases the tax and leaves the prohibition standing.**
+
+Two more paragraphs worth carrying:
+
+- **752.1** — *"The relevant choices that can be remade for these Game Effects are locations to be
+  played to, modes, destinations, and targets."* A closed list, and it includes **modes**.
+- **752.2** — *"This does not refer to any choices made 'as you play this' or 'as I am played,' or any
+  choices made for Optional Additional Costs."* So a **[Repeat] cost's choices and an [Empower]
+  payment can never be remade**, nor any "as you play this" rider.
+- **751.1** requires the new choice to be one *"previously not being chosen"* — something must change.
+- **754** keeps a Targeting Effect on the new victim firing.
+
+The pool has exactly **two** cards with the clause, swept on the corpus: `OGN-080 Mystic Reversal`
+(Calm, E4 P3, unconditional, and in **zero entries**) and `VEN-152 Rebuttal` (Mind/Chaos, Signature,
+tagged Mel, which charges a rainbow for the same clause).
+
+## 13. Two more blocks read
+
+### 13.1 194.2 / 472 — reaching the Victory Score is not enough, and the catalogue's shorthand drops the clause
+
+**194.2: *"A player wins the game if, in a cleanup, they have points greater than or equal to the
+Victory Score **and more points than any other player**."*** **472** restates it. And **194.2.b**,
+cited by nothing: *"If those players have the same number of points, play continues until one player
+has more."*
+
+`CLAUDE.md` summarises this as *"194.2 (points ≥ Victory Score)"* and drops the second clause. It is
+load-bearing for the finisher classes: **a BURST that takes you from 0 to exactly 8 against an
+opponent already on 8 does not win** — play continues. Every BURST and CHAIN in the catalogue is
+priced against the Victory Score alone. (195 is untouched by this: an ALT_WIN card instructs you to
+win outright and never reads points, which is a second reason that class is the robust one.)
+
+### 13.2 413 Draw and 440 Burn — the Burn Out is a step inside the action, not a failure of it
+
+**413.4**: drawing past the deck is *"Draw as many as possible / Perform a Burn Out / Draw the
+remaining cards needed to complete the Draw action."* **440.4**: *"If instructed to burn more cards
+than they have in their main deck, they burn that many cards, burn out and then burn the rest."*
+
+Read with 431.2.b, which recycles the whole trash into the Main Deck at a Burn Out, this refines the
+project's *"a fifth draw is a point for the opponent"*: the draw **still completes**, out of a deck
+refilled from your trash. The cost is exactly one point (194.1.d) plus the trash re-entering the deck
+— which is what erases every trash payoff, and is already recorded. No entry; the citations 413.4 and
+440.4 are the precise ones for a claim currently sourced to 431 alone.
