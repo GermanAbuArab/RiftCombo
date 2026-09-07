@@ -132,11 +132,14 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
 .field-row #card-count { text-align: right; }
 .url-row { display: flex; gap: 6px; }
 .url-row input { flex: 1; min-width: 0; }
-input[type=url], textarea, select {
+/* `.field-input` is here because this rule was written when the only text field on the page was a
+   URL, and a bare `input[type=text]` would have out-specified `.detail-name` and changed the
+   deckbuilder's name field. A class says the same thing and stays out of that fight (#178). */
+input[type=url], .field-input, textarea, select {
   width: 100%; padding: 9px 11px; background: var(--panel); border: 1px solid var(--line-2); border-radius: 6px; color: var(--text);
 }
-input[type=url] { font-size: 13.5px; }
-input[type=url]:focus, textarea:focus, select:focus { border-color: var(--accent); }
+input[type=url], .field-input { font-size: 13.5px; }
+input[type=url]:focus, .field-input:focus, textarea:focus, select:focus { border-color: var(--accent); }
 textarea { resize: vertical; font-family: var(--mono); font-size: 13px; line-height: 1.65; min-height: 190px; }
 textarea::placeholder, input::placeholder { color: var(--faint); }
 .fine { margin: 0; font-size: 12px; color: var(--faint); line-height: 1.45; }
@@ -495,6 +498,11 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .acct-meta { min-width: 0; }
 .acct-name { margin: 0; font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .acct-sum { margin: 2px 0 0; font-size: 11.5px; color: var(--muted); }
+/* The rename field (#178). It borrows the deck-import form's shape — label, one row, one fine print
+   line — rather than inventing a second form idiom for two controls. */
+.acct-name-form { display: flex; flex-direction: column; gap: 7px; }
+.acct-name-form .fine .linklike { font-size: 12px; color: var(--muted); }
+.acct-name-form .fine .linklike:hover { color: var(--accent); }
 .acct-foot { margin: 2px 0 0; font-size: 11.5px; color: var(--faint); }
 .acct-foot .linklike, .acct-foot a { font-size: 11.5px; color: var(--faint); }
 .acct-foot .linklike:hover, .acct-foot a:hover { color: var(--accent); }
@@ -523,7 +531,10 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .decks-sub { margin: 4px 0 0; font-size: 13.5px; color: var(--muted); }
 .decks-import { display: flex; flex-direction: column; gap: 7px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
 .decks-import .url-row { max-width: 560px; }
-.deck-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+/* `1fr` rows in an auto-height grid all take the height of the tallest tile, which is what makes the
+   library one rhythm now that the reason line may wrap: the slack lands at the bottom of the shorter
+   tiles instead of as a hole between their rows (#177). */
+.deck-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); grid-auto-rows: 1fr; gap: 12px; }
 /* #177: the legend's art leads the tile, so a library reads as a shelf of champions rather than a
    wall of the same five lines. A SQUARE, and that is geometry rather than taste: `cover` crops the
    axis the box has proportionally less of, and the scan is 744x1039 (ratio 0.716), so a box wider
@@ -545,18 +556,22 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
    way an empty value is written everywhere else here. A box with nothing in it read as broken art. */
 .deck-card-art.noart { display: flex; align-items: center; justify-content: center; color: var(--faint); font-size: 15px; }
 .deck-card-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.deck-card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+/* The name has the row to itself: the thumbnail costs this column ~98px, and with the badge beside
+   it a twenty-character deck name was clipped. The badge moved down to the verdict row, where it
+   sits next to the reason it belongs to and holds that row open on a legal list. */
 .deck-card-name { min-width: 0; font-weight: 600; font-size: 14.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.deck-card-verdict { display: flex; align-items: flex-start; gap: 8px; min-width: 0; }
 .deck-card-legend { display: flex; align-items: center; gap: 6px; font-size: 13px; }
 .deck-card-meta { font-size: 11.5px; color: var(--muted); }
 .deck-card-when { font-size: 11.5px; color: var(--faint); }
 /* Why the badge says Illegal (#93). NOT --danger: it measures 3.98:1 on --panel, under AA, and the
    grey scale here is measured rather than chosen (#81). The badge beside it already carries the red,
    so the reason is --muted at 6.32:1. Clipped rather than wrapped, so one long detail does not make
-   its card taller than the rest of the row — and `min-height` reserves the row on a LEGAL list, in
-   `em` so it is exactly the line box body's 1.5 line-height gives a filled one, which is what keeps
-   every tile in the grid the same height and every art crop the same window (#177). */
-.deck-card-why { min-height: 1.5em; font-size: 11.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+   its card taller than the rest of the row. It WRAPS to two lines rather than clipping to one (#177):
+   the thumbnail costs this column ~98px and the badge another ~68, and on one line the reason read
+   "This list names no …", which is not a reason. Two lines carry the sentence. The badge beside it is
+   what holds the row open on a LEGAL list, so nothing is reserved and left empty. */
+.deck-card-why { flex: 1 1 auto; min-width: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; font-size: 11.5px; line-height: 1.4; color: var(--muted); }
 .dom-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex: 0 0 auto; }
 .dom-fury { background: var(--dom-fury); } .dom-calm { background: var(--dom-calm); }
 .dom-mind { background: var(--dom-mind); } .dom-body { background: var(--dom-body); }

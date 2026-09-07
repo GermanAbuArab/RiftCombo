@@ -262,6 +262,12 @@ function legendArt(image: string | null | undefined, px: number): string | null 
  *
  * The tile stays ONE link and the thumbnail is not a second target inside it: the art is the same
  * card the legend line names, so a click on either has the same one answer, opening the deck.
+ *
+ * The badge shares a row with the reason rather than the name. The art costs the text column ~98px
+ * and the name is the IDENTIFIER — it is what the player typed — so it gets the row to itself: with
+ * the badge beside it a name of twenty characters was being clipped at the current grid width. The
+ * badge lands next to the sentence that explains it, which is what #93 wanted them read as anyway,
+ * and it is what holds that row open on a legal list instead of an empty reserved gap.
  */
 function deckCard(d: SavedDeck): string {
   const cards = hooks.cards();
@@ -281,13 +287,13 @@ function deckCard(d: SavedDeck): string {
   return `<a class="deck-card" href="#/decks/${encodeURIComponent(d.id)}">
     <span class="deck-card-art${art ? "" : " noart"}" aria-hidden="true">${art ? `<img src="${esc(art)}" alt="" loading="lazy">` : "—"}</span>
     <span class="deck-card-body">
-      <span class="deck-card-top">
-        <span class="deck-card-name">${esc(d.name)}</span>
-        <span class="badge ${report.legal ? "ok" : "bad"}">${report.legal ? "Legal" : "Illegal"}</span>
-      </span>
+      <span class="deck-card-name">${esc(d.name)}</span>
       <span class="deck-card-legend">${dots}${esc(legend)}</span>
       <span class="deck-card-meta">${total} card${total === 1 ? "" : "s"} · ${esc(d.format === "2v2" ? "2v2" : "Constructed")}</span>
-      ${whyIllegal(report, deck, d.format)}
+      <span class="deck-card-verdict">
+        <span class="badge ${report.legal ? "ok" : "bad"}">${report.legal ? "Legal" : "Illegal"}</span>
+        ${whyIllegal(report, deck, d.format)}
+      </span>
       <span class="deck-card-when">Edited ${esc(ago(d.updatedAt))}</span>
     </span>
   </a>`;
@@ -301,9 +307,9 @@ function deckCard(d: SavedDeck): string {
  * and this card was using `report.legal` alone. Nothing is reworded — the failing row's own `label` and
  * paragraph are what a player then reads again, identically, inside Construction.
  *
- * A legal list gets the row anyway, empty (#177). It used to return "" and the tile lost a line, so a
- * row of the grid held three tiles of three heights and each art crop landed on a different window.
- * The row is reserved in CSS (`.deck-card-why` has a min-height); an empty span announces nothing.
+ * A legal list gets the span anyway, empty (#177). It used to return "" and the tile lost a line, so
+ * a row of the grid held three tiles of three heights. It shares `.deck-card-verdict` with the badge,
+ * which is always drawn and is therefore what holds the row open; an empty span announces nothing.
  */
 function whyIllegal(report: BuildReport, deck: Deck, format: Format): string {
   const broken = report.rules.filter((r) => r.status === "fail");
