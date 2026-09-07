@@ -597,7 +597,75 @@ Entry: `veiled-temple-temporal-portal-second-repeat`.
 
 ---
 
-## 17. Back-links for `data/synergies.json` (`rule id -> entry id`)
+
+## 17. Three more proven rules, and a shape worth naming: **two drawbacks that cancel**
+
+### 17.1 `curator-of-the-sands-printed-cost` (VEN-145) — 54 partners, 53 uncovered
+
+206 makes a cost-threshold trigger read the **printed** cost, so the best partner is the card whose
+printed and paid costs are furthest apart. In the legend's own two domains that is `SFD-055`
+Needlessly Large Yordle (Calm, in zero entries): printed **E10 + 3 Calm Power**, and *"I cost 2 Energy
++ 1 Calm rune less for each point you scored from holding this turn"* takes it to **E6 + 1 Calm
+Power** at the Duel ceiling of two Holds (470 with 485.4). The Curator still reads 10 and still fires.
+
+206.1's *"unless otherwise specified"* does not reach it: the specification that exists is Empower's
+(827.1.c.3), and this is an ordinary discount. Same line the project drew in #47 to kill the
+"Empower discounted to 0" family — this is the family on the other side of it.
+
+**The rebate is ENERGY, not Power**, and that is worth pinning: 164.2.a makes Energy the rune's
+*exhaust* ability, while 164.2.b (recycle for Power) carries no exhaust, so an already-exhausted rune
+pays Power anyway. Readying 2 runes is 2 Energy and does nothing to the free Power floor of #44.
+
+Net: **4 Energy and 1 Calm Power for a body that defends at 10** (814.1.b, 814.2 for [Shield 5]) and
+that 815.1.c.2 forces the attacker to kill before it may assign damage to anything else of yours.
+The same clause makes him **anti-synergic with any 1-Might-token line**, because a sweeper assigns no
+damage at all and [Tank] never sees it. Entry: `curator-needlessly-large-yordle-printed-ten`.
+
+### 17.2 `shadow-temple-trash-fuel` (VEN-165) — 49 partners, 49 uncovered
+
+**A shape the catalogue has not named before: two cards whose drawbacks cancel exactly.**
+
+- Alone, `OGN-109` Dr. Mundo, Expert eats his own stat line: *"My Might is increased by the number of
+  cards in your trash"* and *"At the start of your Beginning Phase, recycle 3 from your trash"* —
+  mandatory, no *may* — so he shrinks by 3 a turn.
+- Alone, the Shadow Temple is a fuse: `[Burn 3]` every Hold, and 431.1.b makes burning past the deck a
+  Burn Out, which 431.2.b punishes by *"Recycl[ing] their trash into their Main Deck"* — every trash
+  payoff in the deck reset in one event. `shadow-temple-sentinel-burn` prices it as *"a four-turn
+  fuse"* for exactly this reason.
+
+Together: 3 out of the trash and into the deck, then 3 out of the deck and into the trash, every turn,
+**net zero on both zones**. Mundo is the only partner in the rule's whole list that puts cards BACK.
+
+The phase order was checked, not assumed: 315.2.a.1 (*"At the start of Beginning Phase game effects
+take place"*) precedes 315.2.b.2's Hold, so the recycle runs **first** and the Burn refills behind it
+— the deck is never allowed to run down while a card is waiting to go back in.
+
+Entry: `shadow-temple-dr-mundo-balanced-trash`, mono-Mind.
+
+### 17.3 `dauntless-vanguard-occupied-battlefield-assault` (SFD-093) — the anchor-partner entry
+
+Batch 1 back-linked this rule's **mechanism** (a PLAYED unit takes the Attacker designation:
+190.3.a.1 + 464.2.c.1) to `stare-down-arachnoid-horror-lone-survivor`. This is the pairing itself.
+
+`VEN-076` Repair Specialist (Body, E3 M3, in zero entries): *"I have [Assault] equal to the number of
+gear you control."* 807.1.b formats the keyword as *"Assault [X]"* with X *"referenced in the
+functional text"*, and every other carrier in the pool fills that X with a **constant** — this is the
+only one whose value is a quantity you build. 807.2 sums it with any other source.
+
+**And the gear never has to be attached.** The clause counts gear you CONTROL; 818.1 makes [Equip] a
+separate Activated Ability with its own cost, which nothing here pays. Three `SFD-108` Warmog's Armor
+at 1 Energy each, left sitting unattached, are three points of [Assault]. 323.7's Cleanup recalls
+unattached gear at battlefields to the base — it changes where they are, not who controls them.
+
+The limit the entry is written around: the Vanguard's permission is *"You may play **me**"*, so the
+partner still walks (144.4.a), and 807.1.d.1 (*"Assault remains in effect as long as the Unit
+maintains the Attacker designation"*) means the whole package is worth nothing on defence.
+
+Entry: `dauntless-vanguard-repair-specialist-gear-assault`, mono-Body.
+
+---
+
+## 18. Back-links for `data/synergies.json` (`rule id -> entry id`)
 
 This walk does not edit `data/synergies.json`. The pairs below are for the synergies session.
 
@@ -630,6 +698,10 @@ shadow-watcher-temporary-death-window -> trevor-shadow-watcher-scheduled-death-r
 jayce-readies-exhaust-abilities       -> jayce-sky-cruiser-double-strike
 svellsongur-copy                      -> svellsongur-ivern-nurturer-optional-draw
 veiled-temple-readies-gear            -> veiled-temple-temporal-portal-second-repeat
+curator-of-the-sands-printed-cost     -> curator-needlessly-large-yordle-printed-ten
+shadow-temple-trash-fuel              -> shadow-temple-dr-mundo-balanced-trash
+dauntless-vanguard-occupied-battlefield-assault
+                                      -> dauntless-vanguard-repair-specialist-gear-assault
 ```
 
 Still with no entry after this pass, by decision:
@@ -643,7 +715,7 @@ sky-splitter-might-discount    NO ENTRY — all ten partners are the same arithm
 windswept-hillock-move-triggers NARROWED — 810.1.c.3; no partner supplies a second move. Section 15.
 ```
 
-## 18. Reported to the manager, not fixed here
+## 19. Reported to the manager, not fixed here
 
 - `master-of-shadows-banish-rummage` carries a **false uniqueness claim in its own name** — see §3.
   Three cards print the Shadow Clone token and its attack-triggered banish; one of them is the entry's
