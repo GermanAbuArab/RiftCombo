@@ -38848,6 +38848,336 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #180 — the first entry to use OGN-215 or OGN-004, and the pair Riot names in 807.2's own example. Card text verbatim from data/corpus_flat.txt. It is a small effect and is written as one: +4 attacking Might for one Energy, for one turn. It is catalogued because the citation is a printed ruling on these two cards and because it is the granted-source reading of the same paragraph that purifier-veteran-poro-blade-stack reads per-Equipment — the two are cross-referenced so neither is mistaken for the other. Trap check: 807.1.d is cited so the Assault is never claimed on an empty battlefield (807.1.d / 383.4.e / 461); 'this turn' is stated as an expiry; 809.1.c is checked and found not to apply because the choice is your own body."
+    },
+    {
+      "id": "herald-of-scales-gemdragon-drakehound-net-positive",
+      "name": "A floored DISCOUNT and an unfloored REFUND are different objects — together they make the pool's cheapest Dragon pay you to cast it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-140",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E4 M3. 'Your Dragons' Energy costs are reduced by :rb_energy_2:, to a minimum of :rb_energy_1:.' A DISCOUNT with a floor, and 356.4.e is explicit that the floor 'applies only to that discount'. It is also a Dragon-cost reducer that touches nothing else in the deck, so it is only as good as the Dragon count."
+        },
+        {
+          "card": "UNL-104",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E8 M8, itself a Dragon. 'When you play me or another Dragon, ready up to 2 runes.' This is a REFUND, not a discount: 164.2.a gives a rune '[E]: [Reaction] — Add [1]', so two readied runes are two Energy back AFTER the cost was paid. No floor can reach it and 356.6 has nothing to floor."
+        },
+        {
+          "card": "SFD-006",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E3 P1 M3, tagged Dog, Dragon and Noxus. 'I enter ready.' The cheapest Dragon in the pool, so it is the one the floored discount takes all the way down — and its own body dodges 143.4, so it can pay 144.2's exhaust and walk the turn it lands."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Herald of Scales and Gentle Gemdragon are mono-Body and Eager Drakehound is mono-Fury, so 103.1.b.1 needs a Fury/Body legend: OGN-249 / OGN-300 Relentless Storm, SFD-183 / SFD-241 Purifier, UNL-183 / UNL-227 Pridestalker, or VEN-141 / VEN-190 Butcher of the Sands. None of the three cards is Signature, so 103.2.d.2 imposes nothing and all four names are open."
+        ],
+        "notable": [
+          "THE ARITHMETIC, ON EAGER DRAKEHOUND. Printed E3 + 1 Fury Power. Herald of Scales takes the Energy to max(1, 3 − 2) = 1. Gentle Gemdragon's trigger then readies two runes, which 164.2.a turns back into 2 Energy. Net: you pay 1 Energy and 1 Fury Power, and you get 2 Energy back — the body is Energy-POSITIVE, and the only real cost is the Power.",
+          "AND THE FLOOR IS EXACTLY WHY THE TWO CARDS ARE NOT REDUNDANT. 356.4.e: 'If a discount applies a minimum cost, that minimum applies only to that discount.' A second Herald of Scales would floor at 1 again and buy nothing on a 3-Energy body; the Gemdragon's refund is not a discount at all, so no minimum can see it and it is worth a flat 2 Energy on every Dragon in the deck, cheap or expensive.",
+          "THE REFUND FIRES ON THE GEMDRAGON ITSELF. 'When you play me or another Dragon' — so its own E8, taken to E6 by the Herald, is refunded 2 the moment it lands: net E4 for an 8 Might body.",
+          "AND ON THE EXPENSIVE END IT IS A FLAT 4. `UNL-118 Elder Dragon` at E12 + 4 Power becomes E10 paid and 2 back, i.e. E8; `OGN-142 Mountain Drake` at E9 becomes E7 paid and 2 back, i.e. E5 for a 10 Might body. The floor never engages above E3, so the pair is worth exactly 4 Energy on every Dragon printed at E4 or more.",
+          "'READY UP TO 2 RUNES' IS BOUNDED BY WHAT YOU EXHAUSTED. 415.1.b: 'A Unit that is already Ready cannot be Readied again', and the same is true of a rune — a turn in which you have spent fewer than two runes gets less than the full refund. On a curve where the Dragon itself is the turn's big play, the runes are exhausted, so the refund is real.",
+          "EAGER DRAKEHOUND IS ALSO A DOG. Its tags are Dog, Dragon and Noxus, so a single E1 body counts for `UNL-046 Friendship`, `UNL-167 Starhound`, `UNL-168 Undying Loyalty` and `UNL-177 Ivern, Friend to All` as well as for every Dragon rule — and no card in the pool carries two of Bird/Cat/Dog/Poro, so it is the cheapest way to fill the Dog slot in any deck that also wants Dragons.",
+          "AND IT IS WHAT TURNS `SFD-094 Direwing` ON: 'I enter ready if you control another Dragon' costs E1 here to satisfy. This entry is the ramp; `direwing-dune-drake-ready-attacker` is one of the things the ramp pays for.",
+          "IT DOES NOT SCORE. Nothing in Fury or Body converts a rune refund into points; the product is bodies on the board a turn or two earlier than the curve allows."
+        ]
+      },
+      "steps": [
+        "Play Herald of Scales (E4). From now on every Dragon in the deck costs 2 Energy less, floored at 1 by its own clause.",
+        "Play a Dragon. Pay max(1, printed − 2) Energy plus its printed Power in full — the discount is written on Energy only.",
+        "If Gentle Gemdragon is already on the board, its trigger fires on that play: ready up to 2 runes. 164.2.a lets each of them pay 1 Energy again this turn.",
+        "For Gentle Gemdragon's own entry, the order is the other way round and still works: the Herald takes it from E8 to E6, and its own 'when you play me' trigger refunds 2 of that.",
+        "On Eager Drakehound the net is +1 Energy for the turn: 1 paid, 2 returned, and a 3 Might body that entered ready and can pay 144.2's exhaust to walk to a battlefield immediately.",
+        "The refund does not carry: 167 empties the Rune Pool at the start of your next Main Phase, so the returned Energy has to be spent this turn."
+      ],
+      "terminatesIn": "engine only — a flat 4 Energy off every Dragon printed at E4 or more, and a net gain of 1 Energy on Eager Drakehound; bounded per turn by how many runes were exhausted to ready back, and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "356.4.e. \"If a discount applies a minimum cost, that minimum applies only to that discount.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "164.2.a. \"[E]: [Reaction] — Add [1].\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "415.1.b. \"A Unit that is already Ready cannot be Readied again.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `herald-of-scales-dragon-discount` and `gentle-gemdragon-dragon-ready`; SFD-006 Eager Drakehound was in ZERO entries and is the cheapest Dragon in the pool. Card text verbatim from data/corpus_flat.txt; the Dragon population (19 names) was enumerated from data/cards.json by tag. The content is the discount/refund distinction: 356.4.e is usually cited to stop two discounts stacking below a floor, and the constructive reading is that a REFUND is not a discount and no floor reaches it. Trap check: the Power component is stated as unreduced (the Herald's clause says Energy); the refund is bounded by 415.1.b on already-ready runes; 167 is cited so the Energy is not claimed to bank; the Dog tag is checked against the measured fact that no pool card carries two of the four tags."
+    },
+    {
+      "id": "master-yi-unstoppable-gardens-level-ladder",
+      "name": "The pool's only [Level 16] — Gardens of Becoming buys a four-step cost ladder that ends in a Might 12 body no spell can choose",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-213",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'Units here have \":rb_exhaust:: Gain 1 XP.\"' It GRANTS an activated ability to the bodies standing there, so the faucet's rate is the size of the garrison; 315.1.b readies them every Awakening, so it runs every turn."
+        },
+        {
+          "card": "UNL-059",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm unit, E12 P3 M12. '[Level 3][>] I cost :rb_energy_2::rb_rune_calm: less. [Level 6][>] I cost :rb_energy_4::rb_rune_calm::rb_rune_calm: less instead. [Level 11][>] I cost :rb_energy_6::rb_rune_calm::rb_rune_calm::rb_rune_calm: less instead. [Level 16][>] I can't be chosen by enemy spells and abilities.' The word 'instead' on the middle two rungs is what makes this a ladder and not a stack."
+        },
+        {
+          "card": "UNL-191",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Body legend. '[Level 6][>] Your units have +1 :rb_might:. [Level 11][>] Your units enter ready.' It shares the same XP balance, so every rung this line climbs is paid for once and read twice — and its [Level 11] is what lets a body played to the Gardens exhaust for XP the turn it arrives."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Master Yi, Unstoppable is mono-Calm and Gardens of Becoming is Colorless, so 103.1.b.1 is satisfied by any legend with Calm as one of its two domains; UNL-191 / UNL-231 Wuju Master (Calm/Body) is named because it reads the same XP. Neither UNL-059 nor UNL-213 is Signature, so 103.2.d.2 imposes nothing and the legend is a real choice.",
+          "The battlefield is not guaranteed: 485.4.a has each player provide three battlefields and 485.5 randomly selects one of them, and 103.4.c forbids running duplicates of a name, so the Gardens arrives one time in three."
+        ],
+        "notable": [
+          "THE LADDER, IN NUMBERS. Printed E12 + 3 Calm Power. At 3 XP: E10 + 2 Calm. At 6 XP: E8 + 1 Calm. At 11 XP: E6 + 0 Calm — a Might 12 body for six Energy and no Power. At 16 XP the rungs stop moving and he gains 'I can't be chosen by enemy spells and abilities', which is the ONLY [Level 16] clause printed in the whole pool (swept: 6 × [Level 3], 9 × [Level 6], 4 × [Level 11], 1 × [Level 16]).",
+          "'INSTEAD' IS LOAD-BEARING. The 6 and 11 rungs say 'less instead', so they REPLACE the previous reduction rather than adding to it; a reader who stacks them gets E12 − 2 − 4 − 6 = 0 and is wrong by six Energy.",
+          "THE FAUCET'S RATE IS THE GARRISON, AND ITS PRICE IS MOBILITY. Gardens of Becoming grants each body there ':rb_exhaust:: Gain 1 XP', and 144.2 charges the Standard Move that same exhaust — so N XP a turn costs the whole garrison's movement that turn. 315.1.b readies them at each Awakening, so the rate is N per turn, forever, and reaching 16 from zero with a garrison of four takes four turns.",
+          "AND IT ARMS THE OPPONENT TOO. The battlefield says 'Units HERE', not 'your units' and not 'you', so 190.6.d never blanks it and an opposing garrison at the Gardens gains XP at the same rate. That is a real cost of bringing it, and it is why the entry is written around a body you play once you are already ahead on the ladder.",
+          "XP IS A RATCHET ONLY IF YOU NEVER SPEND. 824.1.d makes the Dependent Ability of a [Level N] clause 'Inactive as soon as the controlling player has less than [N] XP' and 730.2 defines spending XP as reducing your own marked value — so a single 'Spend 2 XP' cost anywhere in the deck can knock Master Yi back a rung mid-turn and re-price a card already in hand. This deck runs NO XP sinks.",
+          "381 IS WHY THE FAUCET IS A YOUR-TURN ENGINE. The granted ability is an Activated Ability with no [Action] and no [Reaction], so it can 'only be activated on the Controlling Player's Turn and during an Open State'.",
+          "THE SAME BALANCE PAYS TWO OTHER CARDS THAT ARE IN NO ENTRY. `UNL-091 Concentrate` (Body, E5, 'Draw 2') falls to E1 at [Level 11], and `UNL-098 Targonian Visionary` (Body, E6 M6) becomes Might 10 at the same threshold; both are Body, which is why the Wuju Master pair is the natural shell. They are leads, not part of this line's cost.",
+          "IT DOES NOT SCORE. XP is not a point, and 194.1 lists no XP route; what the ladder buys is a body on the board several turns early and, at the top, one that removal cannot choose."
+        ]
+      },
+      "steps": [
+        "Bring Gardens of Becoming as one of your three battlefields and take Control of it, then garrison it.",
+        "Each Main Phase, exhaust each body there for 1 XP. 381 permits it on your turn in an Open State; 144.2 is the cost you are giving up, since an exhausted body cannot Standard Move.",
+        "315.1.b readies the whole garrison at your next Awakening, so the faucet runs again at the same rate.",
+        "At 6 XP, Wuju Master's first rung gives your units +1 Might, and Master Yi, Unstoppable is priced at E8 + 1 Calm Power.",
+        "At 11 XP, Wuju Master's second rung — 'Your units enter ready' — means a body played to the Gardens can exhaust for XP the same turn, and Master Yi is priced at E6 with no Power at all. Cast him.",
+        "Keep climbing to 16 without spending any XP; at that point 'I can't be chosen by enemy spells and abilities' switches on and stays on for as long as the balance holds (824.1.d)."
+      ],
+      "terminatesIn": "engine only — one XP per body at the Gardens per turn, converted into a four-rung cost ladder that tops out at a Might 12 body for six Energy and no Power, plus untargetability at 16; the balance falls the instant anything spends XP, and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "381. \"All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "824.1.d. \"The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "485.5. \"Setup: Each player randomly selects one (1) of their three (3) Battlefields. The other two are removed\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `gardens-of-becoming-xp`; UNL-059 Master Yi, Unstoppable was in ZERO entries and carries the pool's ONLY [Level 16] clause (measured: grep for '[Level N]' over data/corpus_flat.txt returns 6 / 9 / 4 / 1 at thresholds 3 / 6 / 11 / 16). Card text verbatim from data/corpus_flat.txt. Trap check: 'instead' is read as replacement and the wrong stacked figure is named so the next reader does not repeat it; the faucet's price is stated as 144.2's exhaust, i.e. the garrison's mobility, rather than as free; the battlefield is declared random per 485.5 and 103.4.c; the 'Units here' wording is checked against 190.6.d and shown to arm the opponent as well; 824.1.d + 730.2 are cited as the reason this deck runs no XP sink, which is the opposite of `enthralling-protector-call-to-glory-xp-buff-spend`."
+    },
+    {
+      "id": "gemcraft-seer-flurry-of-feathers-bird-dig",
+      "name": "Four Birds, four Visions, and 817.2.b says they all see the SAME card unless you recycle — which is what makes it a four-deep dig instead of four looks",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-100",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E3 P1 M3. '[Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.) Other friendly units have [Vision].' The static is the card: 817.1.c makes the trigger 'the permanent entering the Board', which is wider than being played, so it reaches every token that arrives."
+        },
+        {
+          "card": "UNL-044",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E4 P2. '[Reaction] Choose one — • Counter a spell. • Play four 1 :rb_might: Bird unit tokens with [Deflect].' The only card in the pool that puts four unit tokens on the board at [Reaction] speed, which is what turns the Seer's static into a four-instance trigger."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Gemcraft Seer is mono-Mind and Flurry of Feathers mono-Calm, so 103.1.b.1 needs a Calm/Mind legend: OGN-255 / OGN-303 Nine-Tailed Fox, SFD-189 / SFD-244 Fire Below the Mountain, UNL-189 / UNL-230 Bashful Bloom, or VEN-145 / VEN-192 Curator of the Sands. Neither card is Signature, so 103.2.d.2 imposes nothing and all four names are open."
+        ],
+        "notable": [
+          "817.2.b IS THE ENTRY, AND IT IS THE OPPOSITE OF THE OBVIOUS READING. 'If the player does not recycle the top card and nothing else happens in between the triggers resolving, each instance of Vision will see the same card.' So four simultaneous Visions are NOT four free peeks at four different cards. They are four chances to say 'bury this one' — 817.2.a lets you choose separately for each instance — and the moment you decline, every remaining instance shows you the same card again.",
+          "WHICH IS EXACTLY WHY IT IS GOOD. The product is: look at the top card; recycle it and look at the next; repeat up to four times; stop the instant you like what is there. That is a four-card dig with a stop button, for no card and no extra Energy, and 416.1 puts everything you buried on the BOTTOM of the Main Deck rather than in the trash.",
+          "AND IT NEVER BURNS YOU OUT. 431.1.c: 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out', with 431.1.c.1 extending that to the zone change that follows. So the dig is safe even in a deck run to empty, unlike any draw.",
+          "THE STATIC REACHES A TOKEN BY RULE. 'Other friendly units have [Vision]' is a continuous ability; 185.2.b makes a token unit a unit, and 383.2.c.1 has an ability active in a zone apply to an object entering that zone at the same time — the same route that puts 'your Mechs have [Vision]' onto a Mech token. 817.1.c's trigger is 'the permanent entering the Board', not 'when played', so a token qualifies without any argument about 350.2.",
+          "IT IS INSTANT-SPEED ON EITHER TURN. Flurry of Feathers is [Reaction], so 813.1.c.1 admits it 'during Closed States on any player's turn' — the dig can be taken inside the opponent's combat, after you know what you need.",
+          "THE BIRDS ARE NOT THE POINT HERE, AND ONE OF THEM CAN BE. Four 1 Might bodies with [Deflect] die to `OGN-133 Flurry of Blades` simultaneously (143.2.a), so they are not a garrison; what they reliably are is four Vision instances. `UNL-077 Soul Shepherd` (Mind, 'Your token units have +1 :rb_might:') is the repair if the same deck wants them to survive, and it is in domain here.",
+          "THE OTHER MODE IS A COUNTERSPELL, so the card is never dead — but choosing it gives no Visions. 103.2.b caps the copies at three, i.e. three digs a game.",
+          "IT DOES NOT SCORE. Deck sculpting is card SELECTION, not card advantage; 416.1.a sends the buried cards to the bottom and no card in the pool turns that into a point."
+        ]
+      },
+      "steps": [
+        "Play Gemcraft Seer (E3 + 1 Mind Power). Its own [Vision] triggers once on the way in.",
+        "Hold Flurry of Feathers until you need a card. 813.1.c.1 lets it be played in any Closed State on either player's turn.",
+        "Choose the second mode: four 1 Might Bird tokens with [Deflect] enter the board. Gemcraft Seer's static has already given each of them [Vision] (383.2.c.1), and 817.1.c fires on each one entering.",
+        "383.3.d lets you order the four triggers on the Chain and 340.1 resolves them one at a time.",
+        "On the first: look at the top card of your Main Deck. Recycle it (416.1 sends it to the bottom) and the next trigger sees a new top card; decline and 817.2.b guarantees the next trigger sees the same one.",
+        "Stop as soon as the top card is what you want. Nothing has been drawn, so 431.1.a is never in play, and 431.1.c means even an empty deck costs nothing.",
+        "The Birds remain as four [Deflect] bodies, worth one damage each to an attacker (143.2.a with 465.2.c.4)."
+      ],
+      "terminatesIn": "engine only — up to four cards buried and a stop button, at [Reaction] speed, three times a game (103.2.b); it selects rather than draws, so nothing is gained in raw cards and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "817.2.b. \"If the player does not recycle the top card and nothing else happens in between the triggers resolving, each instance of Vision will see the same card.\" 817.2.a. \"The player may choose to recycle or not recycle for each instance of Vision separately.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "817.1.c. \"The trigger is the permanent entering the Board.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "431.1.c. \"If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `gemcraft-seer-vision-generalization`. Card text verbatim from data/corpus_flat.txt. The content is 817.2.b, which no entry had cited: mass Vision is not N looks, it is one look with up to N re-rolls, and that distinction is the whole difference between 'four free cards seen' (wrong) and 'a four-deep dig with a stop button' (right). Trap check: 431.1.c is quoted so the dig is stated as Burn-Out-safe rather than assumed; the tokens' Vision is sourced to 383.2.c.1 + 817.1.c rather than to 350.2; the Birds are explicitly NOT claimed as a garrison, with the Flurry of Blades sweep and the in-domain repair named; the counterspell mode is noted so the card is never called dead; produces is card-advantage-engine because the dig is what feeds a combo piece, and the notable says plainly that it is selection and not raw cards."
+    },
+    {
+      "id": "solari-chief-nami-headstrong-stun-into-kill",
+      "name": "Stun and kill have to happen on the SAME turn — 423.1.a.2 clears the stun at cleanup, which is why Solari Chief is a two-card, one-turn answer to any Might",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-225",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order unit, E5 P1 M4. 'When you play me, choose an enemy unit. If it is stunned, kill it. Otherwise, stun it.' The kill is unconditional and reads no Might threshold at all, which is what separates it from the 22 Might gates in the pool."
+        },
+        {
+          "card": "UNL-052",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Calm unit, E3 M3. 'You may pay :rb_rune_calm: as an additional cost to play me. When you play me, if you paid the additional cost, [Stun] an enemy unit. ... When I hold, the next time you play a unit this turn, ready it and [Buff] it.' The stun costs one Calm Power on top of a body you were casting anyway."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Solari Chief is mono-Order and Nami, Headstrong mono-Calm, so 103.1.b.1 needs a Calm/Order legend: OGN-261 / OGN-306 Radiant Dawn, SFD-197 / SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father, or VEN-147 / VEN-193 Eye of Twilight. Neither card is Signature."
+        ],
+        "notable": [
+          "THE WHOLE LINE FITS INSIDE ONE TURN OR IT DOES NOT HAPPEN. 423.1.a.2 clears a stun at the end-of-turn cleanup (step 3d), so a body stunned on turn N is unstunned before your turn N+1 — Nami and the Chief must both be cast in the same Main Phase. Stunning on the opponent's turn is worse still: it is gone before you ever act.",
+          "AND A SECOND STUNNER IS WASTED. 423.1.a.1: 'A Stunned Unit can not be Stunned again.' So the enabler is needed exactly once per kill; doubling up on stun effects buys nothing, and any deck running this wants one cheap stun per Solari Chief and no more.",
+          "WHAT IT IS WORTH: THE POOL'S 22 MIGHT GATES ALL PRICE REMOVAL BY A THRESHOLD, and this does not. A stunned body dies to the Chief at Might 12 exactly as at Might 1 — 423.1.c is irrelevant here, because the Chief kills rather than assigning damage. That is the answer to the biggest thing on the board, for E8 + 2 Power across two cards.",
+          "THE STUN IS NOT REMOVAL ON ITS OWN, WHICH IS WHY THE PAIR IS THE UNIT. 423.1.b only stops the stunned unit contributing Might in the combat damage step, and 423.1.c keeps its full current Might as the price of killing it by damage — so without the Chief the enabler has bought one turn of quiet and nothing more.",
+          "NAMI'S SECOND SENTENCE IS FREE VALUE AND IS NOT PART OF THE LINE. 'When I hold, the next time you play a unit this turn, ready it and [Buff] it' arms a DELAYED effect that resolves in the Main Phase (316), which is why it escapes the standing rule that a Hold-triggered ready is a no-op — 315.1.b has readied everything before 315.2 fires, but this one does not resolve there. On a turn she holds, the Solari Chief she is enabling is the unit that arrives ready and buffed.",
+          "TIMING WITHIN THE TURN. Both are unit plays with no [Action] and no [Reaction], so 381 and 155 keep both to your Main Phase in an Open State; there is no way to hold this up as an answer inside the opponent's combat.",
+          "STUN IS CALM AND ORDER (21 of the pool's 29 stun lines), so this pair sits in the middle of its own colour pair rather than straining the identity; 103.2.b caps it at three kills a game.",
+          "IT DOES NOT SCORE. Killing the garrison is how a Conquer becomes available, not a point in itself."
+        ]
+      },
+      "steps": [
+        "In your Main Phase, play Nami, Headstrong and pay the additional Calm Power. Her play trigger stuns an enemy unit.",
+        "423.1.a.1 now protects that body from being stunned again, so no second stun effect is spent on it.",
+        "In the same Main Phase, play Solari Chief. Its play trigger chooses the same enemy unit; because it is stunned, the branch taken is 'kill it', with no Might threshold to satisfy.",
+        "If the Chief is played on a turn Nami held a battlefield, her delayed effect readies and buffs him as he arrives (316, after 315.2's Hold has already resolved), so he can pay 144.2's exhaust and move.",
+        "If the Chief cannot be cast this turn, do not stun: 423.1.a.2 clears it at cleanup step 3d and the enabler is spent for nothing.",
+        "With the garrison one body lighter, the attack that follows assigns less damage back (465.2.c reads summed Might on both sides)."
+      ],
+      "terminatesIn": "engine only — one unconditional kill per Solari Chief, at any Might, three times a game (103.2.b), and only on a turn both halves are cast; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "423.1.a.1. \"A Stunned Unit can not be Stunned again.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "423.1.a.2. \"Stunned Units lose the Stunned status during step 3d of the end of turn cleanup.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "423.1.b. \"A Stunned Unit does not contribute its might to damage in the combat damage step.\" 423.1.c. \"A Stunned Unit must still have damage applied to it equal to, or greater than, its full might value to be killed.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "381. \"All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `solari-chief-stun-into-kill`. Card text verbatim from data/corpus_flat.txt. The content is the one-turn window: 423.1.a.2 clears a stun at cleanup step 3d, so the pair is an all-in-one-Main-Phase play and never a two-turn plan, and 423.1.a.1 is why a second stunner is dead weight. Trap check: the stun is explicitly stated NOT to reduce the cost of killing by damage (423.1.c), so nothing is claimed for it beyond enabling the Chief's branch; both halves are checked against 381 / 155 and confirmed Main-Phase only; Nami's Hold clause is included as the one printed exception to the Hold-triggered-ready no-op, with the reason (it resolves in 316, not in 315.2); 103.2.b is named as the ceiling."
     }
   ]
 }
