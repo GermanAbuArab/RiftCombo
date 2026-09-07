@@ -1466,3 +1466,100 @@ Four entries in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos` clean over 
 before staging: 442.1 is **Disempowering**, not Banishment (108.6.b / 108.6.c are the right
 paragraphs), and 465.2.c.4's sentence was quoted to its end (*"...unless no further units remain to
 have damage assigned to them"*).
+
+## 35. Batch 5 — a DEFECT in a merged entry, and the paragraph that causes it
+
+### 35.1 `[Equip]` is a one-way door: 718.2 + 721.2 + 818.1.a
+
+Three paragraphs, none of which the catalogue had put together:
+
+> **718.2.** *"While in this state [Attached], the card's printed Rules Text is Inactive."*
+> **718.3.** *"While in this state, Abilities in the card's Effect Text are appended to the Rules Text
+> of the Top-Most Card."*
+> **721.2.** *"Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive
+> instructions are not processed."*
+> **818.1.a.** *"Equip is present on Gear with the tag Equipment."*
+
+An Equipment card is printed as `[Equip] <cost> (reminder) [Effect] <effect text>`. The `[Effect]`
+marker delimits the Effect Text; the `[Equip]` keyword ability sits in the **printed Rules Text**
+above it. So once the card is Attached, 718.3 moves only the Effect Text onto the carrier, 718.2
+renders the rest Inactive, and 721.2 says an Inactive Ability **cannot be activated**.
+
+**An Equipment that is already attached can never pay its own [Equip] to move to another unit.**
+[Equip] is payable once, on the way in, and never again.
+
+The printed carve-out proves the rule rather than contradicting it: **[Weaponmaster]** reads
+*"you may [Equip] one of your Equipment to me for one rainbow less, **even if it's already
+attached**"*. Riot had to write that clause. The other legal relocations are effects that ATTACH —
+`SFD-193 Grandmaster at Arms`, `SFD-208 Forge of the Fluft`, `SFD-024 Rell, Magnetic`,
+`SFD-049 Aphelios, Exalted`'s trigger — and 434.1.f detaches from the old carrier as part of the same
+action.
+
+### 35.2 The defect this creates, reported and not fixed here
+
+**`prize-of-progress-hexplate-equip-shuttle` does not work.** Its step 4 reads *"Pay the [Equip] cost
+again and attach the Hexplate to the other unit"*, and its whole ledger — *"+1 Might on Prize of
+Progress per Mind Power spent... the ceiling is your rune count, not your gear count"* — stands on
+repeating that payment. By 718.2 with 721.2 the Hexplate's [Equip] is Inactive from the moment of the
+first attach, so the second leg is illegal and the engine is worth exactly **one** activation.
+
+Scanned the whole catalogue for the same shape: **that is the only entry that depends on it.** One
+smaller slip, in a notable rather than a ledger: `shurelya-requiem-ready-and-ganking` says the Requiem
+can be re-attached *"by Ornn's [Weaponmaster] or another [Equip]"* — the second half is wrong for the
+same reason; the [Weaponmaster] half, and everything the entry concludes, stands.
+
+(And, checked the other way: `royal-entourage-grandmaster-warmogs-two-conquers`, staged in batch 1 of
+this walk, already says the Equipment's [Equip] is *"paid once, on the way in, and never again"* —
+which is now sourced rather than incidental.)
+
+### 35.3 `prize-of-progress-gold-tokens-reaction-might` — the replacement
+
+If the repeatable *"activated ability of a gear"* cannot be an [Equip], it has to belong to a gear
+that is **never attached**. 187.5 names one: *"A Gold gear token is a domainless gear token with
+'[Reaction][>] Kill this, [E]: [Add] [A].'"* — a gear, an activated ability, and one no card in the
+pool ever attaches. Every Gold cashed is one +1 Might on Prize of Progress on top of the rainbow it
+was always going to give.
+
+It is also the only version that works **on the opponent's turn**: the Gold's ability carries
+[Reaction] (813.1.c.2), while no [Equip] carries [Action] or [Reaction] at all, so no attach is ever
+payable inside a Showdown. `SFD-086 World Atlas` supplies two Golds per Hold and
+`SFD-171 Renata Glasc, Industrialist` makes them enter ready (R25 = A).
+
+One timing trap the entry states: **do not cash a Gold at the Hold.** 167 empties every Rune Pool
+*"at the start of each player's Main Phase"*, so Beginning-Phase Power is gone before you can spend
+it. Bank the tokens; nothing forces them to be used the turn they appear.
+
+### 35.4 `rell-magnetic-purifier-assault-stack` — the same rule, read forwards
+
+`SFD-024 Rell, Magnetic` never uses [Equip]: her trigger **plays** an Equipment and then attaches it
+*by effect*. Every Equipment she picks up is being attached for the first time, which is precisely
+why she is the one body in the pool that keeps accumulating them.
+
+`SFD-183 Purifier` says *"Your Equipment **each** give [Assault]"* — per Equipment, not per unit — and
+**807.2** sums: *"If a Unit has Assault or has been granted Assault and is granted Assault by an
+additional source, the Assault Value of all granted Assault keywords is summed"* (Riot's example:
+Petty Officer + Cleave = Assault 4). Three `SFD-009 Serrated Dirk` on Rell are three granted
+[Assault 2] from their Effect Text plus three [Assault 1] from the Purifier = **Assault 9**, so she
+attacks at Might 13 off three 1-Energy cards she never paid for.
+
+The ceiling is the hand, not the board: she plays the Equipment *"from your hand"*, and 103.2.b caps
+each name at three.
+
+## 36. Batch 5 — staged
+
+Two entries in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos` clean over 544 entries;
+`test/legend-lines.test.ts` caught a real defect on the first run — `UNL-181 Jhin, Meticulous` is
+**Fury/Mind**, not Mind/Order, and had been typed into a Mind/Order legend list. Rebuilt from the
+census (OGN-265 / OGN-308 Herald of the Arcane, OGS-021 Lady of Luminosity - Starter, SFD-201 /
+SFD-249 Chem-Baroness, UNL-199 / UNL-235 Deceiver) and re-run clean. That is the #166 failure class
+exactly, and the test caught it exactly as designed.
+
+### 36.1 One refusal from the same batch
+
+**`OGS-021 Lady of Luminosity` + a [Hidden] spell — REFUSED, and the reason is 103.2.d.2.** The
+attractive line is that 206 reads a card's PRINTED cost while 811.1.b plays a hidden card *"ignoring
+its base cost"*, so a free [Hidden] spell printed at E5 or more would still draw off *"When you play
+a spell that costs :rb_energy_5: or more, draw 1"*. Swept the pool: of the 23 [Hidden] spells,
+**exactly one is printed at E5 or more** — `SFD-202 Hostile Takeover` (Mind/Order, E5 P2) — and it is
+a **Signature** card, so 103.2.d.2 forces its champion's legend and it can never sit under Lady of
+Luminosity. The mechanism is real and the pool has no card for it.
