@@ -28569,6 +28569,349 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use either card, and the first of the ten uncatalogued legend names to be walked. Card text verbatim from data/corpus_flat.txt. The obvious first reading of Vilemaw's Lair is that it strands a failed attack; 456.3 refutes that in one sentence and it was checked before the entry was written, which is why the notable leads with it. Trap check: no attack is claimed, so 807.1.d / 383.4.e / 461 never come up; 190.6.d is cited for what it does NOT do here, which is the #161 Ripper's Bay reading applied a second time; 810.1.c.3 is cited so [Ganking] is not mistaken for an extra move; exactly one battlefield is named, so 485.4.a is respected; produces is deliberately empty, as it is on the twenty-six other lock and shield entries the vocabulary does not yet cover (issue #157)."
+    },
+    {
+      "id": "aphelios-forge-of-the-fluft-attach-cycle",
+      "name": "Forge of the Fluft gives your legend a free attach every turn — and 434.1.g is why the Equipment has to leave Aphelios first",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-049",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Calm unit, E4 P1 M4. 'When you attach an Equipment to me, choose one that hasn't been chosen this turn — • Ready 2 runes. • Channel 1 rune exhausted. • Buff a friendly unit.' Three modes a turn, each once."
+        },
+        {
+          "card": "SFD-208",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield. 'While you control this battlefield, friendly legends have \":rb_exhaust:: Attach an Equipment you control to a unit you control.\"' One free attach every turn, refunded by the Awaken. In no entry before."
+        },
+        {
+          "card": "UNL-039",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BOARD",
+          "note": "Calm Equipment, E1, M+1. '[Equip] :rb_rune_calm: — Attach this to a unit you control.' The cheapest Calm Equipment in the pool to play, and its own [Equip] is the paid half of the shuttle."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Calm legend: Aphelios, Exalted and Soul Sword are both mono-Calm (103.1.b.3) and Forge of the Fluft is colourless. Neither card is a Signature card, so 103.2.d.2 forces no legend.",
+          "None of the three is banned or restricted in either format.",
+          "Forge of the Fluft is one of your three battlefields (485.4.a: three provided, 1 used; 485.5 makes it random in a Duel), AND you must CONTROL it — 190.1, 'Control is established over Battlefields through the course of play', so a body has to walk there first. The Forge's grant is explicitly 'While you control this battlefield'."
+        ],
+        "notable": [
+          "434.1.g IS THE WHOLE ENTRY. 'Attaching a card to its current Top-Most Card will not have any effect', and 434.1.h: 'If a Game Effect instructs a player to Attach a card to its current Top-Most Card, nothing additional happens.' So an Equipment already sitting on Aphelios can never be re-attached to him for a second trigger — the shuttle has to take it OFF first, and 434.1.f does that automatically ('Attaching a card to a new Top-Most Card will cause it to Detach from the card to which it is currently Attached'). Every 'attach it to him again' line in this family dies on 434.1.g; this one works because it uses two different hosts.",
+          "THE STEADY STATE IS ONE TRIGGER A TURN FOR ONE CALM POWER, AND THE ARITHMETIC IS FORCED. At the start of a turn the Sword is on Aphelios (that is where the previous turn left it). Spend the free legend attach to move it to a spare body — no trigger, the Sword lands on someone else — then pay the Sword's own [Equip] cost of one Calm rune to bring it back to Aphelios, which IS a trigger. To land on him twice you would need two paid attaches (2 Power), and Aphelios's own 'choose one that hasn't been chosen this turn' caps the whole thing at three modes a turn whatever you spend.",
+          "AND THE FIRST MODE PAYS FOR IT. 'Ready 2 runes' hands back two exhausted runes, i.e. two more Energy taps at 164.2.a. The one Calm Power the shuttle costs is a rune recycle — 161.2.b sends it to the Rune Deck, not the Main Deck — and 315.3.b channels 2 runes back every Channel Phase, so one Power a turn sits inside the free floor the project measured in #44. The cycle is Energy-positive and Power-neutral.",
+          "THE FREE ATTACH IS THE LEGEND'S ONLY EXHAUST, SO IT COMPETES. 107.4.c ('The Champion Legend here is a Game Object') is why the granted ability works at all, and 315.1.b readies it every Awaken. But a legend that already has an exhaust ability of its own — a Renata, a Deceiver — cannot do both in one turn. The cheapest legends for this line are the ones whose own exhaust you were not using.",
+          "818.1 MAKES THE ATTACH AN ACTIVATED ABILITY, NOT A PLAY. Equip 'has a cost to activate and Attaches the card with Equip to a chosen Unit when the cost is paid' (818.1.b), so nothing here fires a 'when you play a gear' trigger, and the Forge's granted ability is an Activated Ability too — it is not a [Reaction], so both halves of the shuttle are Main-Phase only.",
+          "WHAT IT IS NOT. This is not the Weaponmaster discount: [Weaponmaster] equips 'to ME' and only on the play (818.1), so it is one attach per body played. The Forge is one attach per TURN, forever, to any unit — which is why it is the first repeatable attach source in the catalogue that costs no card."
+        ]
+      },
+      "steps": [
+        "Bring Forge of the Fluft as one of your three battlefields and walk a body there to establish Control (190.1).",
+        "Play Soul Sword (1 Energy) and Aphelios, Exalted (4 Energy + 1 Calm Power); attach the Sword to any unit you control.",
+        "Each turn, exhaust your legend for the Forge's granted ability and attach the Sword to a spare unit — this takes it off Aphelios (434.1.f) and fires nothing.",
+        "Pay the Sword's own [Equip] cost of one Calm rune and attach it to Aphelios. This time the attach lands on him, so his trigger fires.",
+        "Choose 'Ready 2 runes' — two exhausted runes come back, which is two more Energy for the turn.",
+        "The legend readies at your next Awakening Phase (315.1.b) and the cycle repeats for one Calm Power a turn, forever."
+      ],
+      "netPerIteration": "one Aphelios mode per turn (2 runes readied, or a rune channelled, or a buff) for one Calm Power and no cards",
+      "terminatesIn": "engine only — one trigger a turn in the steady state, at most three in a turn by Aphelios's own once-each-turn clause, bounded by the Power you can spend on extra attaches and by the legend's single exhaust; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 21, attach-equip x SFD-049). SFD-208 Forge of the Fluft was in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.d.2, 107.4.c, 161.2.b, 164.2.a, 190.1, 315.1.b, 315.3.b, 434.1.f, 434.1.g, 434.1.h, 485.4.a, 485.5, 818.1, 818.1.b. Distinct from azir-aphelios-attach (Azir's once-a-turn swap, which also moves the unit) and aphelios-jax-quickdraw-attach (Quick-Draw's Reaction-speed play, one attach per Equipment card): this is the first attach source in the catalogue that repeats every turn and costs no card. NEW RULES FACT FOR THE FAMILY: 434.1.g / 434.1.h make a re-attach to the same host a no-op, so every 'when you attach an Equipment to me' payoff needs a second host to shuttle through. Ban check: none of the three is banned or restricted. Trap check: the Forge's grant needs CONTROL of the battlefield (190.1), which is stated as a cost; the legend's exhaust competes with its own ability; the attach is an Activated Ability and fires no play trigger (818.1.b); no [Weaponmaster] discount is claimed; no unruled reading."
+    },
+    {
+      "id": "jax-unrelenting-forge-of-the-fluft-draw",
+      "name": "Jax, Unrelenting draws a card a turn off the Forge's free attach — one Energy and one Body Power, no cards spent",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-119",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Body unit, E4 P1 M3. '[Weaponmaster] … When you attach an Equipment to me, you may pay :rb_energy_1: to draw 1.' The draw has no exhaust and no once-a-turn clause, so the only cap is how many attaches you can buy."
+        },
+        {
+          "card": "SFD-208",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield. 'While you control this battlefield, friendly legends have \":rb_exhaust:: Attach an Equipment you control to a unit you control.\"' One free attach a turn, refunded every Awaken."
+        },
+        {
+          "card": "SFD-108",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BOARD",
+          "note": "Body Equipment, E1, M+1. '[Equip] :rb_rune_body: — Attach this to a unit you control.' The cheapest Body Equipment to play, and its own [Equip] is the paid leg of the shuttle."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Body legend: Jax, Unrelenting and Warmog's Armor are both mono-Body (103.1.b.3) and Forge of the Fluft is colourless. Neither is a Signature card, so 103.2.d.2 forces no legend.",
+          "None of the three is banned or restricted in either format.",
+          "Forge of the Fluft is one of your three battlefields (485.4.a, 485.5) and you must CONTROL it — 190.1 — because the grant reads 'While you control this battlefield'."
+        ],
+        "notable": [
+          "THE SHUTTLE, AND WHY IT NEEDS TWO HOSTS. 434.1.g: 'Attaching a card to its current Top-Most Card will not have any effect', with 434.1.h saying the same for an instruction. So Warmog's cannot be re-attached to Jax for a second draw; 434.1.f ('Attaching a card to a new Top-Most Card will cause it to Detach') is what takes it off him when you attach it elsewhere. Steady state per turn: the free legend attach moves it to a spare body, then Warmog's own [Equip] (one Body rune) brings it back onto Jax and the draw trigger fires.",
+          "THE DRAW IS UNCAPPED PER ATTACH, WHICH IS THE DIFFERENCE FROM APHELIOS. Aphelios's payoff is 'choose one that hasn't been chosen this turn' — three modes and no more. Jax's is 'you may pay :rb_energy_1: to draw 1' with no such clause and no exhaust, so every attach that lands on him is another card for 1 Energy. The ceiling is the Power for extra [Equip] activations, not the card.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Steady state: 1 Body Power (the paid leg) + 1 Energy (the draw) = one card a turn, forever, with no card spent. A second card in the same turn costs another 1 Power + 1 Energy, and so on; 315.3.b's two free channels a turn plus 164.2.b's no-exhaust recycle are what those Power payments come out of (the free floor of #44).",
+          "BURN OUT IS THE REAL CEILING, AND IT IS FAR AWAY BUT REAL. 431.1.a: drawing past the last card of the Main Deck is a Burn Out and a point for the opponent (194.1.d). Two cards a turn (the Draw Phase plus this) through a 39-card deck (103.2.a.1) is roughly twenty turns; the draw is a 'you may', so it can be declined.",
+          "JAX'S OWN [Weaponmaster] IS A SEPARATE, ONE-OFF DISCOUNT. 'When you play me, you may [Equip] one of your Equipment to me for :rb_rune_rainbow: less, even if it's already attached.' That is one free attach at the moment he is played — and it does fire his own draw trigger, because it lands on a new host. It is not the engine; the Forge is.",
+          "THE LEGEND'S EXHAUST IS THE SCARCE PART. 107.4.c makes the legend a Game Object so the granted ability exists; 315.1.b readies it each Awaken. One free attach a turn, and a legend whose own exhaust ability you wanted to use cannot do both."
+        ]
+      },
+      "steps": [
+        "Bring Forge of the Fluft as one of your three battlefields and walk a body there to establish Control (190.1).",
+        "Play Warmog's Armor (1 Energy) and Jax, Unrelenting (4 Energy + 1 Body Power); his [Weaponmaster] attaches the Armor to him for one rainbow less as he enters, which is already one draw.",
+        "Each turn, exhaust your legend for the Forge's ability and attach the Armor to a spare unit — 434.1.f detaches it from Jax, and no trigger fires.",
+        "Pay Warmog's own [Equip] cost of one Body rune and attach it back to Jax. The attach lands on him, so his trigger fires.",
+        "Pay 1 Energy and draw 1.",
+        "The legend readies at the next Awakening Phase (315.1.b); repeat every turn, and buy extra draws in the same turn with extra [Equip] payments if the Power is spare."
+      ],
+      "netPerIteration": "one card a turn for 1 Energy and 1 Body Power, with no card spent",
+      "terminatesIn": "engine only — one card a turn in the steady state, more only for more Power; the ceiling is Burn Out (431.1.a) at roughly twenty turns, and nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 22, attach-equip x SFD-119). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.a.1, 103.2.d.2, 107.4.c, 164.2.b, 190.1, 194.1.d, 315.1.b, 315.3.b, 431.1.a, 434.1.f, 434.1.g, 434.1.h, 485.4.a, 485.5, 818.1. Distinct from jax-angle-shot-attach-draw, whose attach source is a spell and therefore bounded at three copies: this repeats every turn for no card, and the entry states the ceiling (Burn Out) rather than claiming an unbounded draw. Companion to aphelios-forge-of-the-fluft-attach-cycle, which uses the same Forge shuttle on a payoff that IS capped per turn. Ban check: none of the three is banned or restricted. Trap check: 434.1.g stops a re-attach to the same host; the Forge needs Control of the battlefield; the attach is an Activated Ability, not a play (818.1); the draw's ceiling is 431.1.a and it is a 'you may'; no unruled reading."
+    },
+    {
+      "id": "lillia-vanguard-armory-renewing-tank-wall",
+      "name": "Vanguard Armory renews Lillia's wall every turn — three Tank bodies and +3 Might, and 815.1.c.2 is why nothing else of yours can be assigned damage",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-058",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 M4. 'When you play a token unit, give me +1 :rb_might: this turn. Your token units have [Tank].' The +1 is per TOKEN played, so a producer that makes three at once pays three times."
+        },
+        {
+          "card": "SFD-168",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order gear, E7 P1. ':rb_exhaust:: Play three 1 :rb_might: Recruit unit tokens. (You may play them to different locations.)' Repeatable every turn — the exhaust is refunded at your Awaken (315.1.b)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Order: Lillia is mono-Calm and Vanguard Armory mono-Order (103.1.b.3 admits each alone), so the legend must hold both and the pool prints exactly four names — OGN-261 Radiant Dawn, SFD-197 Emperor of the Sands, UNL-195 Green Father and VEN-147 Eye of Twilight (103.1.b.2).",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Lillia has to stand where the tokens are wanted; her grant is 'Your token units have [Tank]', which is board-wide, but the +1 Might is on her and expires at the end-of-turn Cleanup (317.2.c)."
+        ],
+        "notable": [
+          "WHAT [Tank] ACTUALLY DOES, AND WHY IT IS A DOUBLE-EDGED GRANT. 815.1.c.2: 'If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' Three 1-Might Recruits therefore soak exactly 3 of the attacker's summed Might (465.2.c, 465.2.c.4 forbidding more than the minimum needed) and NOTHING else of yours may legally be assigned a point of damage until they are all dead. That is the wall — and it is also why every one of them dies every combat.",
+          "ANTI-SYNERGY, STATED SO IT IS NOT REDISCOVERED. Because the tokens must be killed first, Lillia is anti-synergic with the whole Grand Plaza family, whose seven bodies have to SURVIVE the opponent's turn. Do not put her in a Plaza list. Same finding the #159 pass recorded for Flurry of Feathers under Lillia; it applies to any token faucet under her.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. One Armory activation is three tokens played, so Lillia's trigger fires three times: +3 Might on her this turn (a 7-Might body), three [Tank] Recruits, and the Armory's own exhaust is handed back at your next Awaken (315.1.b). Cost per turn after setup: zero cards, zero Energy, zero Power. Setup is 5 Energy for Lillia and 7 Energy + 1 Order Power for the Armory.",
+          "WHY THIS IS NOT THE FLURRY OF FEATHERS ENTRY AGAIN. lillia-flurry-of-feathers-tank-wall is three one-shot spells at [Reaction] speed making four [Deflect] Birds; the wall exists on the turn you cast it and never again, and the +4 Might is a single spike. This is a permanent per-turn faucet: fewer bodies (three, not four), no [Deflect], but it renews itself every turn for the rest of the game and the tokens can be split across locations, which the Armory says outright.",
+          "THE TOKENS ARE UNITS AND THEY ENTER EXHAUSTED. 185.2.b ('Token units have a Might') and 185.2.d ('Tokens have a type. They follow all rules for their type') make them real bodies for combat; 143.4 makes them enter exhausted, so a Recruit played to a battlefield cannot move again that turn and one played to your base cannot walk until your next turn. Place them where they are needed as they are played.",
+          "AND THEY NEVER COME BACK. 186.1: a token put into any Non-Board Zone besides the Chain ceases to exist. So nothing reanimates a dead Recruit, and 185 with 416.1 keeps them out of every 'recycle a card' cost. The wall is rebuilt by the Armory, never recovered."
+        ]
+      },
+      "steps": [
+        "Play Lillia, Protector of Dreams (5 Energy) and walk her to the battlefield you intend to defend.",
+        "Play Vanguard Armory (7 Energy + 1 Order Power).",
+        "Each turn, exhaust the Armory and play three 1 Might Recruit tokens, placing them at the battlefield Lillia is defending.",
+        "Lillia's trigger fires once per token played: +3 Might on her this turn, and all three Recruits have [Tank] from her static.",
+        "In the opponent's combat, 815.1.c.2 forces every point of their assigned damage onto the three Recruits until all three have lethal damage; Lillia and anything else of yours there cannot legally be assigned damage before that.",
+        "The Recruits die; the Armory readies at your next Awaken (315.1.b) and rebuilds the wall for nothing."
+      ],
+      "netPerIteration": "three [Tank] bodies and +3 Might on Lillia every turn, for zero cards and zero mana after setup",
+      "terminatesIn": "engine only — three tokens and +3 Might a turn, unbounded in turns, and the Might expires every end-of-turn Cleanup (317.2.c); nothing here scores, and the wall costs the opponent 3 damage a combat and no more",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 20, play-token-unit x UNL-058). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 143.4, 185, 185.2.b, 185.2.d, 186.1, 315.1.b, 317.2.c, 416.1, 465.2.c, 465.2.c.4, 815.1.c.2. Distinct from lillia-flurry-of-feathers-tank-wall on both numbers and shape: three one-shot Reaction spells versus a permanent per-turn faucet, four [Deflect] Birds versus three splittable Recruits. The anti-synergy with the Grand Plaza family is restated here so a deckbuilder meets it on Lillia's own row. Ban check: neither card is banned or restricted. Trap check: [Tank] is priced as a cost (the tokens die every combat) as well as a benefit; the tokens enter exhausted (143.4); 186.1 keeps them out of the trash; the Might expires (317.2.c); no unruled reading."
+    },
+    {
+      "id": "back-alley-bar-forgotten-signpost-reinforcement",
+      "name": "The Bar pays on the DEPARTURE, so the Signpost delivers a +1 Might reinforcement into a showdown every turn, for nothing",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-277",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield. 'When a unit moves from here, give it +1 :rb_might: this turn.' It pays on LEAVING, never on arriving — which is why it belongs on the staging side of a delivery, not on the target."
+        },
+        {
+          "card": "UNL-045",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm gear, E2. '[Action][>] Exhaust a unit you control, :rb_exhaust:: Move a different unit you control to the location of the unit you exhausted to pay for this ability.' A battlefield-to-battlefield move with no [Ganking], at Showdown speed, once a turn."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Any Calm legend: Forgotten Signpost is mono-Calm (103.1.b.3) and Back-Alley Bar is colourless. Neither is a Signature card, so 103.2.d.2 forces no legend.",
+          "Neither card is banned or restricted in either format.",
+          "Back-Alley Bar is one of your three battlefields (485.4.a: three provided, 1 used; 485.5 makes it random in a Duel), and you want to CONTROL it and garrison it, because the units that pay are the ones LEAVING it.",
+          "You need a second unit standing at the destination, because the Signpost's cost is exhausting a unit and its effect moves 'a different unit' to that unit's location — 420.1 defines Moving 'between two Locations', so the fuel has to be somewhere the mover is not."
+        ],
+        "notable": [
+          "THE BAR PAYS ON DEPARTURE, WHICH IS THE ONLY THING THAT MAKES IT USEFUL HERE. 'When a unit moves FROM here.' A body walked INTO the Bar gets nothing; a body sent OUT of it arrives at its destination one Might larger for that turn. So the Bar is a staging post: park bodies there, and every one you ship out is a 'this turn' +1.",
+          "THE SIGNPOST IS A MOVE BY EFFECT, AND THAT IS THREE SEPARATE PERMISSIONS. 420.3.a puts the exhaust cost on the STANDARD move only ('The Cost is Exhausting one or more Units'), so a unit moved by the Signpost pays nothing and may already be exhausted; 144.4 restricts only the Standard Move to base-to-battlefield, so the Signpost goes battlefield to battlefield; and 810.1.c.3 ('It does not give additional abilities or activations of Movement, only new options for the Standard Move') is why [Ganking] is not an alternative route — it widens the Standard Move, it does not grant one. This is the same fact #58 established, spent on the battlefield that was printed to reward moving.",
+          "[Action] IS WHY THE +1 LANDS WHERE IT MATTERS. 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' So the reinforcement can be shipped into a Showdown or a Combat that is already open, and 465.2.c reads Might at assignment — the +1 is counted. On your own turn it is a free extra body at the fight.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Per turn: one body moved from the Bar to the destination with +1 Might this turn, at Showdown speed, for 0 Energy and 0 Power. The cost is the exhaust of the unit standing at the destination (which is the price of the Signpost's own ability, not of the move) and the Signpost's own exhaust — both refunded at your Awaken (315.1.b). Setup is 2 Energy, once.",
+          "ONE A TURN, AND THE +1 EXPIRES. The Signpost exhausts itself, so a second delivery in the same turn needs a second copy (103.2.b allows three), and 317.2.c expires every 'this turn' effect at the end-of-turn Cleanup, so the +1 has to be re-earned by another departure.",
+          "IT DOES NOT STACK ON ONE BODY. To collect the Bar's +1 twice on the same unit it would have to return to the Bar and leave again — two moves, and the Signpost only supplies one a turn. kayn-back-alley-bar-double-move is the entry for the case where a single body's SECOND move is the payoff; this one is about a different body every turn."
+        ]
+      },
+      "steps": [
+        "Bring Back-Alley Bar as one of your three battlefields (485.4.a) and take control of it; keep a body or two garrisoned there.",
+        "Play Forgotten Signpost (2 Energy) and keep a unit standing at the battlefield you intend to reinforce.",
+        "When the fight opens there — your own attack, or a Showdown on either player's turn (806.1.b) — activate the Signpost: exhaust the unit at the destination, exhaust the Signpost.",
+        "Move a unit from Back-Alley Bar to that unit's location. The move is by effect, so it pays no exhaust of its own (420.3.a) and needs no [Ganking] (810.1.c.3).",
+        "The Bar sees a unit move from here and gives it +1 Might this turn; it arrives at the fight one Might larger, and 465.2.c reads that Might when damage is assigned.",
+        "The Signpost and the exhausted unit both ready at your next Awakening Phase (315.1.b); repeat every turn."
+      ],
+      "netPerIteration": "one body delivered battlefield-to-battlefield at Showdown speed with +1 Might, every turn, for no cards and no mana",
+      "terminatesIn": "engine only — one delivery a turn per Signpost (three copies by 103.2.b), and the +1 Might expires at the end-of-turn Cleanup (317.2.c); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 19, friendly-moves x OGN-277). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 144.4, 315.1.b, 317.2.c, 420.1, 420.3.a, 465.2.c, 485.4.a, 485.5, 806.1.b, 810.1.c.3. Distinct from kayn-back-alley-bar-double-move, which spends the Bar on a single body's SECOND move to switch on damage immunity and collects the +1 once: here the Bar is a staging post that pays a different body every turn, and the delivery is at Showdown speed. The Signpost's three other entries (signpost-corina-two-battlefields, conscription-signpost-empty-garrison, covert-informant-signpost-move-draw) spend the move on a garrison trick, an evacuation and a draw; none of them collects a Might rider. Ban check: neither card is banned or restricted. Trap check: the Bar pays on departure only and the entry says so twice; the move is by effect and therefore free of 420.3.a's exhaust; [Ganking] is explicitly NOT the route (810.1.c.3); the Signpost's fuel unit must stand elsewhere (420.1); the +1 expires (317.2.c); no unruled reading."
+    },
+    {
+      "id": "simian-ancestor-arena-bar-wallop-ready",
+      "name": "The Arena Bar is the only buff source that names an exhausted unit — and 702.3 is why Simian Ancestor needs Wallop to spend the buff back off him",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-047",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Calm unit, E5 P1 M5. 'When you buff me, ready me.' In no entry before this. The trigger is worth an action only in the Main Phase, after he has already spent his exhaust."
+        },
+        {
+          "card": "OGN-124",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Body gear, E3. ':rb_exhaust:: Buff an exhausted friendly unit.' Swept across the pool: the ONLY buff source whose target clause names an exhausted unit, which is exactly the state Simian has to be in for his ready to be worth anything."
+        },
+        {
+          "card": "OGN-146",
+          "quantity": 3,
+          "role": "resource",
+          "zone": "HAND",
+          "note": "Body spell, E2. '[Action] As you play this, you may spend a buff as an additional cost. If you do, ignore this spell's cost. Ready a unit.' Spending Simian's buff is what lets the Arena Bar buff him again next turn, and the spell readies a second unit for free while doing it."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Calm + Body: Simian Ancestor is mono-Calm, Arena Bar and Wallop mono-Body (103.1.b.3), so the legend must hold both and the pool prints exactly four names — OGN-257 Blind Monk, OGS-019 Wuju Bladesman - Starter, SFD-193 Grandmaster at Arms and UNL-191 Wuju Master (103.1.b.2).",
+          "OGS-019 Wuju Bladesman - Starter is RESTRICTED in 2v2 (data/legality.json), a cap and not a ban; the other three legends are unrestricted. None of the three cards in uses[] is banned or restricted in either format, and none is a Signature card.",
+          "Simian Ancestor must already be exhausted when the Arena Bar buffs him, or the ready is worth nothing."
+        ],
+        "notable": [
+          "A READY IS ONLY WORTH SOMETHING IN THE MAIN PHASE, AND THIS IS THE CASE THAT SATISFIES IT. 315.1.b readies everything you control at your own Awaken, so a ready trigger that fires in the Beginning Phase or on a Hold is a no-op — the refuse-by-rule bucket the first matrix pass wrote down. The Arena Bar is an Activated Ability with no [Action] and no [Reaction], so it fires in your Main Phase, AFTER Simian has paid 144.2's exhaust for his Standard Move. That is the one window where 'ready me' buys a second action.",
+          "702.3 IS THE CAP, AND IT IS WHY WALLOP IS IN uses[] RATHER THAN IN A NOTE. 'There can only be one Buff on a Unit at a time' (702.3), and 702.3.a: 'If a Buff is added, or instructed to be added, on a Unit that already has a Buff, it is not placed instead.' So the Arena Bar can buff Simian exactly ONCE, ever, unless something removes the buff — and with no buff placed there is no 'when you buff me', so no ready. 702.2.b defines Spending a Buff as removing the counter; Wallop spends it as an additional cost and, having done so, costs nothing ('ignore this spell's cost') and readies a unit anyway. Without a buff-spender this is a one-shot, not an engine.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Per turn, once the pieces are down: Simian standard-moves or otherwise exhausts; the Arena Bar exhausts to buff him (0 Energy, 0 Power); his trigger readies him, so he acts a second time; later in the turn Wallop spends that buff for free and readies a second unit as well. Net per turn: TWO readies for zero mana, on the turns you have a Wallop. Three Wallops (103.2.b) means three such turns; after that the Arena Bar's buff sits on Simian and the cycle stops.",
+          "THE BUFF IS ALSO +1 MIGHT WHILE IT SITS THERE. 703 makes a Buff exactly +1 Might, so a buffed Simian is a 6, and spending it takes him back to 5. If he is a Might-4 body's neighbour in a Grand Duelist deck the crossing matters (709 is an EVENT), but Simian is printed at 5, so he is Mighty already and 709's second worked example applies to him verbatim: a unit already Mighty does not 'become' Mighty.",
+          "READYING A READY UNIT DOES NOTHING. 415.1.b: 'A Unit that is already Ready cannot be Readied again', and 415.1.c: 'If a Unit is instructed to be Readied while it is already Ready, nothing additional happens.' So the order inside the turn is load-bearing — exhaust Simian FIRST, then buff him. Buffing him while ready throws the ready away and still consumes the Arena Bar's exhaust and the 702.3 slot.",
+          "WHAT THE SECOND ACTION IS ACTUALLY FOR. Simian has no printed activated ability, so his ready buys exactly one thing: another Standard Move (144.2, 144.4). Combat does not read exhaustion — 464.2.c.3 and 465.2.b do not filter by state — so readying him adds nothing on defence. Price it as mobility for a 5-Might body, not as extra damage."
+        ]
+      },
+      "steps": [
+        "Play Simian Ancestor (5 Energy + 1 Calm Power) and Arena Bar (3 Energy) on earlier turns.",
+        "In your Main Phase, exhaust Simian for whatever you need him to do — usually a Standard Move (144.2).",
+        "Exhaust the Arena Bar and buff Simian, who is now an exhausted friendly unit and therefore a legal choice for it.",
+        "His trigger fires: 'When you buff me, ready me.' He is ready again and takes a second Standard Move the same turn.",
+        "Later in the turn, play Wallop and spend Simian's buff as its additional cost: the spell costs nothing and readies a unit of your choice.",
+        "Simian is unbuffed again, so the Arena Bar can buff him next turn and the cycle repeats — three times, once per Wallop (103.2.b)."
+      ],
+      "netPerIteration": "two readies a turn for zero Energy and zero Power — a second Standard Move for Simian, plus a free ready from Wallop",
+      "terminatesIn": "engine only — three Wallops a game, each consumed, and without one the Arena Bar's buff is stuck on Simian by 702.3 and the ready never repeats; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 32, buff x SFD-047). SFD-047 Simian Ancestor was in NO entry before this; the first matrix pass refused him under OGN-283 Navori Fighting Pit, correctly, because a Hold-triggered buff arrives after 315.1.b has already readied him. This entry is the inverse case and states why: the Arena Bar has no [Action] and no [Reaction], so it fires in the Main Phase after Simian spent his exhaust. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.2.b, 103.2.d.2, 144.2, 144.4, 315.1.b, 415.1.b, 415.1.c, 464.2.c.3, 465.2.b, 702.2.b, 702.3, 702.3.a, 703, 709. Legality: OGS-019 is restricted in 2v2 and that is stated in prerequisites.easy; nothing in uses[] is banned or restricted. Trap check: the ready is worthless outside the Main Phase and worthless on defence, both stated; 702.3 caps the buff, which is why the buff-spender is an ingredient and not a note; 415.1.b/c make the order inside the turn load-bearing; no token, no Recall, no Repeat, no unruled reading."
     }
   ]
 }
