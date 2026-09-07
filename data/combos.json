@@ -30835,6 +30835,330 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-07, issue #169, matrix row 15 — the only row in the slice whose partner list has a single entry, and the pair had never been written despite SFD-121 appearing in five entries. SFD-138 Windsinger was in ZERO entries. Card text verbatim from data/corpus_flat.txt (the bracket-less 'Hidden' is reproduced as printed). 103.1.b.3, 103.1.b.4, 187.5, 415.3.a, 485.4, 811.1.b, 811.1.d.1, 811.1.d.2, 813.1.c.1 opened in the Core Rules file. Both cards legal in both formats. Card set SFD-121 + SFD-138 is not an existing uses[] set. No unruled reading. R25 = A is cited only to say why it does NOT apply: Renata Glasc, Industrialist is mono-Order and cannot share an identity with two mono-Chaos cards."
+    },
+    {
+      "id": "wraith-of-echoes-cruel-patron-sacrifice-body",
+      "name": "383.1.b's worked example IS Wraith of Echoes — one card a turn however many die, so the right partner kills exactly one and buys a Might 6 body for it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-118",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Mind unit, E6 P1 M5. 'The first time a friendly unit dies each turn, draw 1.' Note the printed wording carries NO 'another' — the rules' own example paraphrases it with one."
+        },
+        {
+          "card": "OGN-208",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order unit, E4 M6. 'As an additional cost to play me, kill a friendly unit.' Might 6 for 4 Energy and no Power — the best raw Might-per-Energy rate in the pool, and the cost is exactly one death. In no entry before this."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Order: Wraith of Echoes is mono-Mind and Cruel Patron mono-Order (103.1.b.3), so the legend must hold both and the pool prints exactly four names — OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-201 Chem-Baroness and UNL-199 Deceiver (103.1.b.2).",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "You need a friendly unit to kill. 203.3 makes an impossible cost unpayable, so with no other body on the board Cruel Patron cannot be played at all."
+        ],
+        "notable": [
+          "383.1.b USES THIS CARD AS ITS OWN WORKED EXAMPLE, WHICH DECIDES THE WHOLE PARTNER SET. 'If an ability triggers \"the [Nth] time\" something happens and that trigger condition is met multiple times simultaneously, the ability's controller picks one of those instances to serve as the trigger condition. The ability triggers only once… Example: Wraith of Echoes reads \"The first time another friendly unit dies each turn, draw 1.\" … Two other friendly units die simultaneously (say, due to combat damage). The Wraith's controller chooses one of those deaths to trigger Wraith's ability.' So a partner that kills THREE bodies at once is worth exactly the same one card as a partner that kills one. The right partner is therefore the one that gets the most out of a SINGLE death — and that is Cruel Patron, whose single death buys a 6 Might body for 4 Energy and no Power.",
+          "THE PRINTED TEXT HAS NO 'ANOTHER', AND THAT IS NOT A TYPO TO NORMALISE. data/corpus_flat.txt reads 'The first time a friendly unit dies each turn, draw 1'; the Core Rules example quotes it with 'another'. The printed text is what the game runs on (rule 002), so the WRAITH'S OWN DEATH pays for a card. Registered here rather than in data/errata.json, which is reserved for dated Riot errata.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Per Cruel Patron: 4 Energy, no Power, one friendly body killed, one 6 Might body played and one card drawn (the Wraith's first-death-of-the-turn trigger). Three copies (103.2.b) is three such turns. The Wraith himself is 6 Energy + 1 Mind Power of setup and a 5 Might body who also draws you a card on any turn something of yours dies in combat — which is most turns.",
+          "FEED IT SOMETHING THAT WAS ALREADY DYING, AND MIND THE PHASE. A [Temporary] body is not available: 816.1.b kills it 'At the start of this permanent's controller's Beginning Phase, before scoring', and Cruel Patron is played in your Main Phase (316), which is after. The honest fuel is a spent body — one that has already moved and attacked — or a 1-Might token that has done its job. Killing a token is a legal kill, and 186.1 simply makes it cease to exist in the trash.",
+          "THE DEATH IS A COST, NOT AN EFFECT, WHICH MATTERS FOR TWO THINGS. It is paid as the card is played, so nothing can respond between the kill and Cruel Patron arriving; and because it is a cost, 203.3 ('if the action a cost asks for is impossible, the cost cannot be paid') means an empty board makes him uncastable rather than free.",
+          "THE DRAW IS ONE A TURN AND THE CEILING IS BURN OUT. 431.1.a makes a draw past the last card of the Main Deck a Burn Out and a point for the opponent (194.1.d); the Wraith's draw is not a 'you may', so on a thin deck the trigger is a liability."
+        ]
+      },
+      "steps": [
+        "Play Wraith of Echoes (6 Energy + 1 Mind Power) on an earlier turn.",
+        "Keep a spent body on the board — one that has already moved or attacked, or a token that has done its job.",
+        "Play Cruel Patron for 4 Energy, paying its additional cost by killing that body (203.3: the cost must be payable).",
+        "That death is the first friendly death of your turn, so Wraith of Echoes draws you 1.",
+        "You now have a 6 Might body for 4 Energy and no Power, and the card. Repeat with the second and third copies on later turns (103.2.b)."
+      ],
+      "netPerIteration": "a 6 Might body for 4 Energy and a spent body, plus one card",
+      "terminatesIn": "engine only — three Cruel Patrons a game, each consumed, and the Wraith draws at most one card a turn by 383.1.b whatever else dies; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 24, friendly-dies x OGN-118). OGN-208 Cruel Patron was in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 002, 103.1.b.2, 103.1.b.3, 103.2.b, 186.1, 194.1.d, 203.3, 316, 383.1.b, 431.1.a, 816.1.b. Distinct from malzahar-wraith-centaur-sacrifice, which spends the Wraith's draw alongside a Power engine and a Might payoff on Malzahar's exhaust-gated sacrifice: the finding here is that 383.1.b caps the Wraith at ONE card however many bodies die at once — the rules use this very card as the worked example — so the correct partner is the one that extracts the most from a SINGLE death. Also registers that the printed text carries no 'another', unlike the rules' paraphrase, so the Wraith's own death pays. Ban check: neither card is banned or restricted. Trap check: the death is a COST (203.3) so an empty board makes Cruel Patron uncastable; a [Temporary] body is not available because 816.1.b fires in the Beginning Phase and the play is in the Main Phase; the draw is mandatory, so 431.1.a is a liability on a thin deck; no unruled reading."
+    },
+    {
+      "id": "spectral-centaur-bottled-constellation-triple-death",
+      "name": "The Centaur's clause is NOT an Nth-time clause, so three simultaneous deaths are three triggers — the exact opposite of Wraith of Echoes under 383.1.b",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-068",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Mind unit, E6 M5. 'When another friendly unit dies, give me +2 :rb_might: this turn.' A plain When clause with no 'first time' and no once-a-turn limit, so it fires once per death."
+        },
+        {
+          "card": "VEN-067",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind gear, E10 P2. 'At the start of your Main Phase, you may kill 3 other friendly units and/or gear to score 1 point.' Three simultaneous friendly deaths, every turn, and a point on top."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Mind legend: both cards are mono-Mind (103.1.b.3) and neither is a Signature card, so 103.2.d.2 forces nothing. This is the mono-domain version of the same pairing family — spectral-centaur-deathgrip-reaction-spike needs Mind AND Order.",
+          "Neither card is banned or restricted in either format.",
+          "You need three friendly units and/or gear to feed the Constellation, and the Centaur must not be among them ('other friendly units' on the Constellation, 'another friendly unit' on the Centaur)."
+        ],
+        "notable": [
+          "THE CONTRAST WITH 383.1.b IS THE ENTRY. 383.1.b applies only to an ability that 'triggers \"the [Nth] time\" something happens', and its worked example is Wraith of Echoes' 'The first time … each turn' — that one collapses to a single execution when several deaths land at once. Spectral Centaur's clause has no such wording, so 383.3.d applies instead: 'If more than one Triggered Ability is Triggered simultaneously, then the player that controls the Abilities selects the order to place them on the Chain.' Three deaths, three triggers, +6 Might. The two cards read the same event and behave in exactly opposite ways.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. At the start of your Main Phase the Constellation kills three of your bodies: the Centaur goes from 5 to 11 for the turn, and you gain 1 point. Feeding it gear instead of units costs you the trigger — 'another friendly UNIT dies' — so a Centaur turn wants three units, not two units and a spent Seal.",
+          "THE +2s ARE MODIFIERS, NOT BUFFS. 702.3 ('There can only be one Buff on a Unit at a time') and 702.3.a never touch '+2 :rb_might: this turn', which is a plain continuous modifier — the same distinction the project drew for Lee Sin, Centered and Soul Shepherd. That is why three instances stack to +6 rather than being capped at one.",
+          "AND IT ALL EXPIRES. 317.2.c inserts '3d. All \"this turn\" effects expire simultaneously' into the end-of-turn Cleanup, so an 11 Might Centaur is an 11 Might Centaur for exactly one turn — and the Constellation's timing is the start of your MAIN PHASE (316.4), which is after 315.2.b's Hold, so the Might is available for your own attack and for nothing else.",
+          "THE POINT IS A GAIN AND LANDS UNCONDITIONALLY. R2 = A on issue #11: 194.1.c covers 'Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more points', so 470's once-per-battlefield cap does not apply and 471.1.a.1 keeps the Final Point restriction off it.",
+          "PRICE THE BODIES. Three bodies a turn is the Constellation's real cost, and nothing here replaces them — see viktor-leader-bottled-constellation-refund for the half-refund. What this entry adds on top of the point is a turn's worth of Might on a body that was already there, at no extra cost."
+        ]
+      },
+      "steps": [
+        "Play Spectral Centaur (6 Energy) and Bottled Constellation (10 Energy + 2 Mind Power) on earlier turns.",
+        "Present three friendly units you are willing to spend, none of them the Centaur.",
+        "At the start of your Main Phase, take the Constellation's option and kill all three; you gain 1 point (194.1.c).",
+        "The Centaur's trigger is not an Nth-time clause, so it fires once per death (383.3.d orders them): +2, +2, +2.",
+        "Attack with an 11 Might Centaur the same turn; 465.2.c reads the Might at assignment.",
+        "Everything expires at the end-of-turn Cleanup (317.2.c); repeat next turn with three more bodies."
+      ],
+      "netPerIteration": "1 point and +6 Might on the Centaur for three friendly bodies, every turn",
+      "terminatesIn": "engine only — one point a turn from the Constellation and +6 Might that expires the same turn; the rate is bounded by how many bodies you can present, and nothing here is unbounded",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Rules readings R1-R33 — issue #11 (GitHub), R2 = A",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/11",
+          "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 27, friendly-dies x UNL-068, second partner). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.d.2, 194.1.c, 316.4, 317.2.c, 383.1.b, 383.3.d, 465.2.c, 470, 471.1.a.1, 702.3, 702.3.a. Distinct from spectral-centaur-deathgrip-reaction-spike on speed, identity and shape: that one is Mind/Order, Reaction speed, one death paying the killed body's whole Might; this one is mono-Mind, Main Phase, three simultaneous deaths paying +6 flat, and it comes with a point. Written as the deliberate counterpart to wraith-of-echoes-cruel-patron-sacrifice-body: the same event, and 383.1.b collapses one card's trigger and not the other's. Ban check: neither card is banned or restricted. Trap check: gear fed to the Constellation gives the Centaur nothing; the Centaur cannot be one of the three; the +2s are modifiers and not Buffs, so 702.3 does not cap them; the Might expires (317.2.c); the point is a 194.1.c Gain (R2 = A); no unruled reading."
+    },
+    {
+      "id": "vanguard-helm-kinkou-monk-buff-conservation",
+      "name": "Vanguard Helm is the only card in the pool that recovers a buff from a corpse — and 702.3 is why that is worth a card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-228",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order gear, E2. 'When a buffed friendly unit dies, buff another friendly unit.' Swept over the whole corpus: the ONLY card whose trigger turns a death into a buff."
+        },
+        {
+          "card": "OGN-141",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body unit, E4 P1 M4. 'When you play me, buff up to two other friendly units.' Two buffs on one card is the widest single placement in Body, and 702.3 means each has to land on a DIFFERENT unbuffed body."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Body + Order: Kinkou Monk is mono-Body and Vanguard Helm mono-Order (103.1.b.3), so the legend must hold both and the pool prints exactly five names — OGN-269 The Boss, OGS-023 Might of Demacia - Starter, SFD-205 Grand Duelist, UNL-203 Keeper of the Hammer and VEN-153 Matriarch of War (103.1.b.2).",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "The buffs have to be on bodies that will actually die — combat casualties, or fodder for a sacrifice outlet. A buffed body that survives keeps its buff and the Helm never fires."
+        ],
+        "notable": [
+          "WHY A BUFF IS SCARCE, WHICH IS WHY RECOVERING ONE IS AN ENGINE. 702.3: 'There can only be one Buff on a Unit at a time', and 702.3.a: 'If a Buff is added, or instructed to be added, on a Unit that already has a Buff, it is not placed instead.' 703 makes each buff exactly +1 Might. So a buffer is not a repeatable pump — it is a one-time placement per body, and once every body you own is buffed, every further buffer in the deck is a blank. Vanguard Helm is the only card in the pool that puts a buff back into circulation when its host dies. This was swept with `grep -inE \"dies.*buff|buff.*dies\"` over data/corpus_flat.txt: one hit, and it is the Helm.",
+          "702.2.a IS WHY IT IS A CHOOSING, AND 355.10 IS WHY THAT MATTERS. 'To Buff a Unit, a player chooses a Unit and then places a buff on it.' So the Helm's buff and the Monk's both CHOOSE — which fires every 'when you choose me' payoff in the deck (SFD-057 Irelia, Fervent, SFD-195 Blade Dancer) and which is what makes a mass buffer valuable beyond its Might.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Kinkou Monk is 4 Energy + 1 Body Power for a 4 Might body and two buffs, i.e. +2 Might spread over two other bodies. When either buffed body dies, the Helm places its buff on a third body — so the Monk's two buffs are worth two placements plus one recovery per death, for as long as unbuffed bodies remain. Three Monks (103.2.b) is six initial placements. The Helm itself is 2 Energy, once.",
+          "IT NEVER CHAINS TWICE OFF ONE DEATH, AND IT NEVER DOUBLES A BODY. The Helm's own text is 'buff ANOTHER friendly unit' — a single placement — and 702.3.a means that placement is wasted if the chosen body already carries a buff. So the honest bound is min(deaths of buffed bodies, unbuffed bodies remaining), the same shape the #106 walk found for Karma, Channeler on a token engine.",
+          "THE ONE LEGEND THAT SWITCHES IT OFF. OGN-269 The Boss is Body/Order and therefore a legal legend for this line, but its replacement — 'If a buffed unit you control would die, you may pay :rb_rune_rainbow:, exhaust me, and spend its buff to heal it, exhaust it, and recall it instead' — replaces the death, so no death event occurs and the Helm does not trigger; it also spends the buff. That is the 808.1.d.1 shape (a would-die replacement erasing a death trigger) applied to a buff. Using both is a choice per body, never a combination.",
+          "THE BUFF IS NOT A '+N THIS TURN'. It persists (702.2), so a body the Helm buffs stays a point of Might larger until something spends it (702.2.b). That is what separates this from every 'this turn' pump in the catalogue, and it is also why the crossing it causes is a one-time 709 event."
+        ]
+      },
+      "steps": [
+        "Play Vanguard Helm (2 Energy).",
+        "Play Kinkou Monk (4 Energy + 1 Body Power) and buff up to two other friendly units — 702.3 means each buff has to go on a different unbuffed body.",
+        "Let a buffed body die: in combat, or to any sacrifice outlet you run.",
+        "The Helm triggers and buffs another friendly unit — the buff is back in circulation on a body that did not have one.",
+        "Repeat for every buffed body that dies, while unbuffed bodies remain; the bound is min(deaths of buffed bodies, unbuffed bodies left).",
+        "Play the second and third Monks on later turns for two more placements each (103.2.b)."
+      ],
+      "netPerIteration": "one buff recovered onto a fresh body per buffed casualty, on top of the Monk's two placements per card",
+      "terminatesIn": "engine only — bounded by min(deaths of buffed bodies, unbuffed bodies remaining) and by three Kinkou Monks; nothing here scores, and a body that survives keeps its buff and pays nothing",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix groups 25 and 31, friendly-dies and buff x OGN-228). OGN-141 Kinkou Monk was in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.2.b, 103.2.d.2, 355.10, 702.2, 702.2.a, 702.2.b, 702.3, 702.3.a, 703, 709, 808.1.d.1. UNIQUENESS SWEPT, NOT ASSUMED: `grep -inE \"dies.*buff|buff.*dies\"` over the whole corpus returns exactly one card, OGN-228. Distinct from vanguard-helm-baited-hook-buff-ladder, whose partner is a repeatable one-body-a-turn sacrifice engine and whose point is the tutor ceiling climbing two Might a turn: this is the mass-placement side, and its bound is the supply of UNBUFFED bodies rather than the sacrifice rate. Ban check: neither card is banned or restricted. Trap check: 702.3.a wastes a recovered buff aimed at a buffed body; the Helm places one buff per death and never chains; OGN-269 The Boss is a legal legend that switches the whole thing off (a would-die replacement is not a death), stated by name; no unruled reading."
+    },
+    {
+      "id": "irelia-fervent-forgotten-signpost-choose",
+      "name": "Irelia's trigger reads CHOOSE, and the Signpost chooses a unit every turn for free — a +1 and a battlefield-to-battlefield move at Showdown speed",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-057",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 M4. '[Deflect] … When you choose or ready me, give me +1 :rb_might: this turn.' CHOOSE is the widest trigger word on any card in the pool: 702.2.a makes buffing a choosing, and 355.10 makes most targeting one."
+        },
+        {
+          "card": "UNL-045",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm gear, E2. '[Action][>] Exhaust a unit you control, :rb_exhaust:: Move a different unit you control to the location of the unit you exhausted to pay for this ability.' It chooses two of your units per activation, and it is free and repeatable every turn."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Any Calm legend: both cards are mono-Calm (103.1.b.3) and neither is a Signature card, so 103.2.d.2 forces nothing.",
+          "Neither card is banned or restricted in either format.",
+          "You need a third unit somewhere else on the board, because the Signpost's cost exhausts one unit and its effect moves 'a different unit' to that unit's location — 420.1 defines Moving 'between two Locations', so payer and mover cannot be the same body and cannot be in the same place."
+        ],
+        "notable": [
+          "ONE +1 PER ACTIVATION, NEVER TWO. The Signpost chooses twice — the unit exhausted to pay the cost, and the unit moved — but the effect says 'a DIFFERENT unit', so Irelia can be one of them and not both. Whether she pays or she moves, her trigger fires once. Do not price this as +2.",
+          "HER [Deflect] TAXES ONLY THE OPPONENT. 809.1.c: Deflect is short for 'Spells and abilities AN OPPONENT CONTROLS that target [me/this] cost an amount of Power equal to [Deflect Value] more'. Your own Signpost activation choosing her is free, which is what makes a repeatable self-chooser a clean fit for her: every one of your own interactions with her is a +1 and none of them pays her own tax.",
+          "[Action] IS WHERE THE VALUE IS. 806.1.b: Action grants permission 'to be played or activated during Showdowns, even when it is not the Controlling player's turn'. So the +1 and the relocation both land inside a Showdown or an open Combat, on either player's turn, and 465.2.c reads Might at assignment. On the opponent's turn this is a free point of Might on a [Deflect] defender they cannot cheaply answer.",
+          "THE MOVE IS BY EFFECT, WHICH IS THREE SEPARATE PERMISSIONS. 420.3.a puts the exhaust cost on the STANDARD move only, so a unit the Signpost moves pays nothing and may already be exhausted; 144.4 restricts only the Standard Move to base-to-battlefield, so this goes battlefield to battlefield; and 810.1.c.3 is why [Ganking] is not an alternative — it widens the Standard Move, it does not grant one.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Per turn, once both are down: +1 Might on Irelia (5 while it lasts) and one unit relocated battlefield-to-battlefield, at Showdown speed, for 0 Energy and 0 Power. Setup is 5 Energy for Irelia and 2 for the Signpost. The Signpost's own exhaust caps it at one activation a turn, refunded at your Awaken (315.1.b), and 317.2.c expires the +1 every end-of-turn Cleanup.",
+          "THE BIGGER CHOOSERS ARE OUT OF DOMAIN, AND SAYING SO IS USEFUL. OGN-124 Arena Bar would pay her twice in one activation — 702.2.a makes buffing a choosing, so the buff is +1 from 703 and the trigger is another +1 — but the Bar is mono-Body, so it needs a Calm/Body legend (OGN-257 Blind Monk, OGS-019 Wuju Bladesman - Starter, SFD-193 Grandmaster at Arms, UNL-191 Wuju Master) and it is capped at one buff per body by 702.3. The Signpost is the mono-Calm answer that repeats forever."
+        ]
+      },
+      "steps": [
+        "Play Irelia, Fervent (5 Energy) to a battlefield and Forgotten Signpost (2 Energy).",
+        "Keep a third unit at a different location, so the Signpost has a payer and a destination.",
+        "When a Showdown or Combat is open on either player's turn (806.1.b), activate the Signpost: exhaust the Signpost and exhaust one of your units.",
+        "Move Irelia to that unit's location — that is a choosing, so her trigger gives her +1 Might this turn — or, if she should stay put, exhaust HER to pay the cost instead and move somebody else; either way she gets the +1 once.",
+        "Fight with the raised Might (465.2.c reads it at assignment).",
+        "The Signpost readies at your Awakening Phase (315.1.b) and the +1 expires at the end-of-turn Cleanup (317.2.c); repeat every turn."
+      ],
+      "netPerIteration": "+1 Might on Irelia and one battlefield-to-battlefield relocation, at Showdown speed, every turn for nothing",
+      "terminatesIn": "engine only — one activation a turn per Signpost (three copies by 103.2.b) and the Might expires every Cleanup; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 39, ready-friendly x SFD-057). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 144.4, 315.1.b, 317.2.c, 355.10, 420.1, 420.3.a, 465.2.c, 702.2.a, 702.3, 703, 806.1.b, 809.1.c, 810.1.c.3. Distinct from blade-dancer-irelia-defiant-dance, which reaches her through the READY half of her clause and spends a Conquer-gated readier plus three spells: this reaches her through the CHOOSE half, costs nothing per turn, and repeats forever. Ban check: neither card is banned or restricted. Trap check: one +1 per activation and never two, stated first; her [Deflect] taxes opponents only, so your own chooser is free; the Signpost needs a payer at a different location (420.1); the move is by effect and free of 420.3.a's exhaust; the Might expires (317.2.c); no unruled reading."
+    },
+    {
+      "id": "apprentice-mage-sanction-empower-reset",
+      "name": "441.1.b makes every 'when I become Empowered' payoff a once-per-copy event — so the partner set of the whole family is the DISEMPOWERERS, and Sanction is the cheapest",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-047",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Mind unit, E3 M3. '[Empower] :rb_energy_2: … When I become [Empowered], [Predict 2]. [Empowered][>] I have +1 :rb_might:.' The cheapest [Empower] cost in the pool that is pure Energy — 2 Energy, no Power, no exhaust, no discard. In no entry before this."
+        },
+        {
+          "card": "VEN-035",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E3 P1. '[Reaction] Choose one — • Empower a unit. Disempower it at end of turn. • Disempower a unit that's [Empowered]. Empower it at end of turn.' Both modes are a reset; the first also supplies the Empower itself."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Calm + Mind: Sanction is mono-Calm and Apprentice Mage mono-Mind (103.1.b.3), so the legend must hold both and the pool prints exactly four names — OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom and VEN-145 Curator of the Sands (103.1.b.2).",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Nothing else is required: the Mage can pay his own [Empower] cost out of 2 Energy on any turn."
+        ],
+        "notable": [
+          "THE RULE THAT DEFINES THE WHOLE EMPOWER FAMILY. 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.1.c: 'If a Game Object is instructed to be Empowered when it is already Empowered, nothing additional happens.' 441.2 makes Empowered 'a state for Game Objects on the board' — permanent once reached — and 441.2.a is what a 'When I become [Empowered]' clause keys on: 'When a Game Object becomes Empowered as a result of the Empower game action, that is an event.' So every such payoff in the pool fires ONCE per copy per game unless something takes the state away. The partner set of the family is not the empowerers; it is the DISEMPOWERERS, and the pool prints few of them.",
+          "SANCTION IS THE CHEAPEST OF THEM AND IT DOES BOTH JOBS. Mode 1, 'Empower a unit. Disempower it at end of turn', performs the Empower act directly — 441.1 is 'the act of rendering one or more Game Objects Empowered' — so the Mage's printed 2-Energy [Empower] cost is never determined or paid, and the auto-disempower at end of turn leaves him free to be Empowered again next turn for that 2 Energy. Mode 2, 'Disempower a unit that's [Empowered]. Empower it at end of turn', is the reset for a Mage who is already Empowered, and the re-Empower at end of turn is itself a fresh 441.2.a event, so it pays a Predict on the way through.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. One Sanction is worth TWO Predict 2s: one from the Empower it causes, and one from the Empower you pay for next turn after it wears off. Three Sanctions (103.2.b) is six, plus the one the Mage's own first [Empower] pays for — seven Predict 2s over a game for 3 Energy and 9 Energy + 3 Calm Power in spells. That is a deck-sculpting engine and nothing more; say so rather than dressing it up.",
+          "WHAT A PREDICT 2 ACTUALLY IS, AND WHY IT IS SAFE. 436.1: 'Predicting a card is the act of looking at a single card from the top of the Main Deck and choosing whether or not to Recycle it', and 436.1.a for the plural: look at that many, recycle any number, put the rest back in any order. Recycled cards go to the BOTTOM — 416.1: “Recycling cards is the action in which a player takes one or more cards from a specific zone and then puts it on the bottom of the corresponding deck”, with 416.1.a sending Main Deck cards to the Main Deck and 416.5 randomising the order of several, so this is filtering, not tutoring. Crucially 436.4.a: 'The Player will not perform a Burn Out as a result of Predicting with too few cards in their deck', so it is one of the very few card-selection effects that is safe inside an empty-deck shell.",
+          "THE +1 MIGHT IS A CONDITIONAL STATIC, NOT A BUFF, AND IT SWITCHES OFF WITH THE STATE. '[Empowered][>] I have +1 :rb_might:' is live only while the state is, so every disempower in this cycle takes the Mage from 4 back to 3. 702.3 never touches it — it is not a Buff counter — but it is also not permanent, unlike one.",
+          "SANCTION IS [Reaction], WHICH IS THE ONE THING THAT MAKES THE TIMING FLEXIBLE. 813.1.c.1: 'This can be played during Closed States on any player's turn.' So the Empower and its Predict can be taken on the opponent's turn, and the end-of-turn disempower then lands in THEIR end-of-turn Cleanup, leaving the Mage free to be re-Empowered on your own turn — which is how the two Predicts fit into one round trip rather than two."
+        ]
+      },
+      "steps": [
+        "Play Apprentice Mage (3 Energy).",
+        "On the opponent's turn, play Sanction at Reaction speed (813.1.c.1) and take mode 1: Empower the Mage. 441.1 performs the act directly, so his printed 2-Energy [Empower] cost is never paid.",
+        "His trigger fires on the 441.2.a event: [Predict 2] — look at the top 2, recycle any, put the rest back in any order.",
+        "At the end of that turn Sanction's own rider disempowers him, so 441.1.b no longer blocks him.",
+        "On your turn, pay his [Empower] cost of 2 Energy yourself. He becomes Empowered again: a second [Predict 2], and +1 Might while the state lasts.",
+        "Repeat with the second and third Sanctions (103.2.b); each one is worth two Predicts."
+      ],
+      "netPerIteration": "two [Predict 2]s per Sanction — one free on the opponent's turn, one for 2 Energy on yours — and a conditional +1 Might",
+      "terminatesIn": "engine only — three Sanctions a game, each consumed, and 441.1.b makes the Mage's trigger dead the moment he is Empowered with no reset left; nothing here scores and nothing here draws a card",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 38, empower-other x VEN-047). VEN-047 Apprentice Mage was in NO entry before this; it was the only one of the six empower-family anchors in rows 33-38 with no entry at all. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.2.b, 103.2.d.2, 416.1, 416.1.a, 416.5, 436.1, 436.1.a, 436.4.a, 441.1, 441.1.b, 441.1.c, 441.2, 441.2.a, 702.3, 813.1.c.1. Distinct from the two Sanction entries already in the catalogue (kharox-sanction-burn, mel-defiant-soul-sanction-banish-cycle), whose payoffs are a mill-and-reanimate and a banish: this is the cheapest [Empower] cost in the pool paired with the cheapest reset, and the entry's real content is the family-wide bound — 441.1.b makes every 'when I become Empowered' payoff a once-per-copy event, so the partner set is the disempowerers. The product is deck sculpting only, and the entry says so. Ban check: neither card is banned or restricted. Trap check: the Mage's own [Empower] is never paid on the Sanction route (441.1); the +1 Might is a conditional static that switches off with the state, not a Buff; a Predict is filtering to the BOTTOM (416.1.a) and never a tutor; 436.4.a keeps it Burn-Out-safe; no unruled reading."
     }
   ]
 }
