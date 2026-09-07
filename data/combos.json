@@ -32164,6 +32164,269 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use OGN-282. Card text verbatim from data/corpus_flat.txt. The one-Conquer offset is the whole content and it was found by checking 383.3.b before writing the steps rather than after: the obvious reading is 'order Warmog's first with 383.3.d and spend the buff it just placed', and that is wrong, because 383.3.b.1 pays the Monastery's cost at FINALIZATION and every trigger of a simultaneous batch is finalized before any of them resolves. This is the family CLAUDE.md warns is priced wrong when read as pay-on-resolution. Trap check: 702.3 / 702.3.a are cited so the refill is not assumed; 703 is cited so the buff is not treated as free to spend; the needs declaration is stated with 315.2.b.2 + 470 rather than assumed; no attack is claimed here (the Conquer comes from the feed); exactly one battlefield is named, so 485.4.a is respected."
+    },
+    {
+      "id": "karma-forgotten-library-spell-buff",
+      "name": "Forgotten Library is Karma's only repeatable trigger that costs no card and no deck slot — and 'spent' is what a discount switches off",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-235",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P1 M6. '[Vision] ... When you recycle one or more cards to your Main Deck, buff a friendly unit. (If it doesn't have a buff, it gets a +1 :rb_might: buff. Runes aren't cards.)' The parenthesis is printed on the card and is load-bearing: a rune recycle never fires her."
+        },
+        {
+          "card": "UNL-211",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield. 'While you control this battlefield, when you play a spell, if you spent :rb_energy_4: or more, [Predict].' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Order among its two domains (103.1.b.3) — 17 names: Hand of Noxus (OGN-253), Radiant Dawn (OGN-261), Herald of the Arcane (OGN-265), The Boss (OGN-269), Lady of Luminosity - Starter (OGS-021), Might of Demacia - Starter (OGS-023), Void Burrower (SFD-187), Emperor of the Sands (SFD-197), Chem-Baroness (SFD-201), Grand Duelist (SFD-205), Piltover Enforcer (UNL-187), Green Father (UNL-195), Deceiver (UNL-199), Keeper of the Hammer (UNL-203), Eye of Twilight (VEN-147), Matriarch of War (VEN-153), Heart of the Tempest (VEN-155).",
+          "CONTROL of the Library — 190.1 establishes Control through the course of play, and the card says 'While you control this battlefield', so it is switched off until you take it.",
+          "One of your three battlefields is the Library; 485.5 selects one of the three at random."
+        ],
+        "notable": [
+          "THE ONLY ONE OF KARMA'S THIRTY-FIVE PARTNERS THAT REPEATS FOR FREE. Every other recycler in her matrix row is a card you cast or a permanent you paid for; the Library is in the battlefield zone, which 103.4.c and Tournament Rules 402.1 keep out of the Main Deck entirely, and it fires on an event an Order deck causes anyway — playing a spell.",
+          "'IF YOU SPENT 4 OR MORE' READS THE RUNE POOL, NOT THE CARD, AND A DISCOUNT SWITCHES IT OFF. 166.2 makes players 'add Energy and Power to their Rune Pool in order to be able to spend it to play cards', 203.1 defines paying a cost as performing that action, and 356.4.b lets a discount reduce what the card costs — so a 6-Energy spell discounted to 3 SPENT 3 and does not arm the Library. The mirror is 820.1.c.1, which makes a [Repeat] cost 'an Additional Cost to be paid during the steps of playing the spell': a 2-Energy spell with a 2-Energy [Repeat] plus a 1-Energy rider crosses 4 where the discounted big spell does not. This is the 'spent' half of the split 206 draws for the 'costs' family, and it points the deck at cheap spells with additional costs rather than at expensive ones.",
+          "PREDICT IS A LOOK, AND LOOKING NEVER BURNS OUT. 436.1: 'Predicting a card is the act of looking at a single card from the top of the Main Deck and choosing whether or not to Recycle it.' 431.1.c protects the look ('looks at or Reveals as many as possible, but does not Burn Out') and 436.4.a says it outright for Predict, so the Library is safe in an empty-deck shell where a draw would cost a point (431.1.a, 194.1.d).",
+          "AND THE RECYCLE IS OPTIONAL, WHICH IS THE ENTRY'S ONE REAL TENSION. 'You may recycle it' — keeping a good top card means no recycle, and no recycle means no Karma trigger. The Library is a buff engine only on the turns you do not want what is on top.",
+          "THE PAYOFF IS CAPPED BY 702.3, NOT BY THE TRIGGER COUNT. 'There can only be one Buff on a Unit at a time' (702.3.a: a second is not placed), so the product is min(triggers, NEW UNBUFFED BODIES). Three spells in a turn into a static board buy one buff. The Library scales with how many fresh units you play, not with how many spells you cast — the same shape #106 measured for the Recruit loop.",
+          "The buff is a real 702 counter, not a 'this turn' modifier, so it is permanent and can be SPENT by the pool's buff-spenders (702.2.b) — and it collides with any other buffer aimed at the same body.",
+          "A rune recycle never fires her: her own printed reminder says 'Runes aren't cards' and 161.2.b sends a recycled rune to the Rune Deck rather than the Main Deck, so 164.2.b's '[Recycle this]: [Reaction] — Add [C]' — which every deck does several times a game — is invisible to her."
+        ]
+      },
+      "steps": [
+        "Bring Forgotten Library as one of your three battlefields (485.5 selects at random) and establish Control of it in play (190.1).",
+        "Play Karma, Channeler (6 Energy + 1 Order Power). Her [Vision] gives one Predict on arrival, which is itself a possible first trigger.",
+        "Cast a spell and SPEND 4 or more doing it — count what leaves the Rune Pool, including any [Repeat] cost (820.1.c.1), not the number printed on the card (356.4.b).",
+        "The Library's trigger fires: [Predict] — look at the top card of your Main Deck (436.1).",
+        "Choose to recycle it. That is one recycle to your Main Deck (416.1.a).",
+        "Karma's trigger fires: buff a friendly unit that does not already have a buff (702.3)."
+      ],
+      "terminatesIn": "engine — one +1 Might buff per expensive spell, bounded by the number of unbuffed bodies rather than by the number of spells (702.3); nothing here scores",
+      "netPerIteration": "one card recycled to the bottom, one +1 Might buff placed, for no card and no extra Energy",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "166.2: 'Players must add Energy and Power to their Rune Pool in order to be able to spend it to play cards or pay for Abilities with costs.' 203.1: 'Paying a Cost requires a player to perform the appropriate game action: pay resources, spend counters or XP, kill units, etc.' 356.4.b: 'Discounts may say that cards \"cost [amount] less\" or that one or more of their costs are \"reduced by [amount].\"' 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or [ability].' 436.1: 'Predicting a card is the act of looking at a single card from the top of the Main Deck and choosing whether or not to Recycle it.' 436.4.a: 'The Player will not perform a Burn Out as a result of Predicting with too few cards in their deck.' 431.1.c: '...that player looks at or Reveals as many as possible, but does not Burn Out.' 702.3: 'There can only be one Buff on a Unit at a time.' 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 190.1: 'Control is established over Battlefields through the course of play.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 18 (trigger card OGN-235 Karma, Channeler, 35 partners, 4 entries before this walk). UNL-211 Forgotten Library was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.4.c, 161.2.b, 164.2.b, 166.2, 190.1, 194.1.d, 203.1, 356.4.b, 416.1.a, 431.1.a, 431.1.c, 436.1, 436.4.a, 485.5, 702.2.b, 702.3, 820.1.c.1 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. Card set OGN-235 + UNL-211 is not an existing uses[] set. No unruled reading. The second notable is the reusable half: 'spent' and 'costs' are two different tests and a deck built for one is built wrong for the other."
+    },
+    {
+      "id": "karma-ravenbloom-defend-buff",
+      "name": "Ravenbloom Conservatory is Karma's only trigger on the opponent's turn — and the deck's spell density is the dial between a card and a buff",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-235",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P1 M6. '[Vision] ... When you recycle one or more cards to your Main Deck, buff a friendly unit. (If it doesn't have a buff, it gets a +1 :rb_might: buff. Runes aren't cards.)' The parenthesis is printed on the card and is load-bearing: a rune recycle never fires her."
+        },
+        {
+          "card": "SFD-215",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield. 'When you defend here, reveal the top card of your Main Deck. If it's a spell, put it in your hand. Otherwise, recycle it.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Order among its two domains (103.1.b.3) — 17 names: Hand of Noxus (OGN-253), Radiant Dawn (OGN-261), Herald of the Arcane (OGN-265), The Boss (OGN-269), Lady of Luminosity - Starter (OGS-021), Might of Demacia - Starter (OGS-023), Void Burrower (SFD-187), Emperor of the Sands (SFD-197), Chem-Baroness (SFD-201), Grand Duelist (SFD-205), Piltover Enforcer (UNL-187), Green Father (UNL-195), Deceiver (UNL-199), Keeper of the Hammer (UNL-203), Eye of Twilight (VEN-147), Matriarch of War (VEN-153), Heart of the Tempest (VEN-155).",
+          "One of your three battlefields is the Conservatory (485.5 selects one at random), and you are defending there — which means you control it."
+        ],
+        "notable": [
+          "IT FIRES ON THE OPPONENT'S TURN, WHICH NOTHING ELSE IN KARMA'S ROW DOES FOR FREE. 'When you defend here' happens inside their attack, and Karma's payoff is a TRIGGERED ability, so 383.3.c puts it on the Chain 'during Closed States or Open States on any [player's] turn'. No card is spent, no Energy is spent, and it repeats every combat you defend there.",
+          "THE TWO OUTCOMES ARE EXCLUSIVE, AND THE DECK CHOOSES WHICH ONE IT WANTS BEFORE THE GAME STARTS. 'If it's a spell, put it in your hand. Otherwise, recycle it' — a spell is a free card and NO Karma trigger; anything else is a recycle and a buff. You do not choose in the moment; your spell density does. A spell-heavy list turns the Conservatory into a card faucet that never buffs, a unit-heavy one into a buff faucet that never draws. State the ratio you are building for.",
+          "REVEALING NEVER BURNS OUT, EVEN AT AN EMPTY DECK. 424.1 defines Revealing as 'the act of presenting a card to all players from a zone that one or more players do not have access to the information of', and 431.1.c says a player who is instructed to look at or reveal in excess 'looks at or Reveals as many as possible, but does not Burn Out'; 431.1.c.1 extends that to the zone change that follows. So the Conservatory is safe in a shell where a draw would cost a point (431.1.a, 194.1.d).",
+          "190.6.d never bites here for the same reason it does not bite on a conquer trigger: 464.2.c.2 makes the Defender 'the player who did not apply the Contested status to the Battlefield', i.e. the one who already controls it, so 'when YOU defend here' presupposes you as its Controller.",
+          "The payoff is 702.3-capped like every Karma line: one buff per unit ever, so the product is min(triggers, new unbuffed bodies). A wall that defends the same battlefield four turns running with no new units buys one buff and three dead triggers.",
+          "And the standing predicate trap, printed on Karma herself: 'Runes aren't cards'. With 161.2.b ('When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck'), every 164.2.b rune recycle in the game is invisible to her — which is why a 'when you recycle' predicate that does not exclude runes is wrong about this card."
+        ]
+      },
+      "steps": [
+        "Bring Ravenbloom Conservatory as one of your three battlefields (485.5) and hold it with a garrison.",
+        "Play Karma, Channeler (6 Energy + 1 Order Power).",
+        "The opponent attacks the Conservatory. You are the Defender there (464.2.c.2).",
+        "Its trigger fires: reveal the top card of your Main Deck (424.1; 431.1.c means no Burn Out even at an empty deck).",
+        "If it is a spell, take it into hand and stop — no recycle, no Karma trigger.",
+        "Otherwise recycle it (416.1.a, to the bottom), and Karma's trigger buffs a friendly unit without a buff (702.3), on the opponent's turn (383.3.c)."
+      ],
+      "terminatesIn": "engine — either one free card or one +1 Might buff every combat you defend there, never both, decided by the deck's spell density; nothing here scores",
+      "netPerIteration": "one reveal: +1 card if it is a spell, otherwise one recycle and one +1 Might buff — for no card and no Energy",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any [player's] turn.' 424.1: 'Revealing is the act of presenting a card to all players from a zone that one or more players do not have access to the information of.' 431.1.c: '...that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction.' 431.1.c.1: 'This does not cause a Burn Out, even if those instructions would cause those cards to change zones.' 464.2.c.2: 'The Defender is the player who did not apply the Contested status to the Battlefield.' 702.3: 'There can only be one Buff on a Unit at a time.' 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 416.1.a: 'Main Deck cards are Recycled to the Main Deck.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 18. SFD-215 Ravenbloom Conservatory was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.4.c, 161.2.b, 194.1.d, 383.3.c, 416.1.a, 424.1, 431.1.a, 431.1.c, 431.1.c.1, 464.2.c.2, 485.5, 702.3 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. Card set OGN-235 + SFD-215 is not an existing uses[] set. No unruled reading. The second notable is the entry's own shortfall: the card looks like 'a card OR a buff, your choice' and the choice was made at deckbuilding."
+    },
+    {
+      "id": "karma-double-trouble-repeat-two-buffs",
+      "name": "Double Trouble is two recycle EVENTS from one card — Karma counts events, so two small recycles beat one big one",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-235",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P1 M6. '[Vision] ... When you recycle one or more cards to your Main Deck, buff a friendly unit. (If it doesn't have a buff, it gets a +1 :rb_might: buff. Runes aren't cards.)' The parenthesis is printed on the card and is load-bearing: a rune recycle never fires her."
+        },
+        {
+          "card": "UNL-032",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E2, '[Repeat] :rb_energy_2:'. 'Look at the top 3 cards of your Main Deck. You may reveal a unit from among them and draw it. Recycle the rest.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Order, so four legend names (103.1.b.2): Radiant Dawn (OGN-261), Emperor of the Sands (SFD-197), Green Father (UNL-195), Eye of Twilight (VEN-147).",
+          "Four Energy for both executions, and TWO friendly units without a buff — 702.3 means the second trigger is wasted on a board with one unbuffed body."
+        ],
+        "notable": [
+          "KARMA COUNTS EVENTS, NOT CARDS, AND THAT INVERTS THE OBVIOUS BUILD. Her text is 'When you recycle one or more cards to your Main Deck', so a single instruction that recycles three cards fires her ONCE. Double Trouble's [Repeat] gives a second, separate execution (820.1.b: 'to execute the effect of their spells and abilities a second time'), and each execution ends in its own 'Recycle the rest' — two instructions, two events, TWO buffs. A deck built for Karma wants many small recycles, not one big one, which is the opposite of what a deck-manipulation package usually wants.",
+          "AND THE SECOND BUFF NEEDS A SECOND BODY. 702.3: 'There can only be one Buff on a Unit at a time', 702.3.a: a second is not placed. So the two triggers are worth two buffs only if two friendly units are unbuffed when they resolve. This is where the entry's arithmetic actually lives — the payoff is min(triggers, new unbuffed bodies), and the [Repeat] raises the first half only.",
+          "IT IS ALSO THE DIGGING, WHICH IS WHY IT IS NOT PURE FILLER. Each execution looks at three and may draw a unit from among them, so 4 Energy buys up to two units out of the top six cards AND two buffs. 431.1.c protects the look at an empty deck ('looks at or Reveals as many as possible, but does not Burn Out'), and drawing the revealed unit is a draw from the looked-at cards, so 431.1.c.1 covers the zone change too.",
+          "416.5 is worth stating so nobody prices this as deck-stacking: 'If 2 or more cards are Recycled to the Main Deck simultaneously, they are placed on the bottom of that deck in a random order.' You choose what to keep, never what order the rest come back in.",
+          "820.1.c.1 makes the [Repeat] cost 'an Additional Cost to be paid during the steps of playing the spell', so all 4 Energy is SPENT — which is invisible to a 'costs N or more' clause (206) and counts in full for a 'spent N or more' one, including UNL-211 Forgotten Library if it is also on the table.",
+          "A rune recycle is not a card recycle: Karma's own printed reminder says 'Runes aren't cards' and 161.2.b sends them to the Rune Deck, so this spell's recycles are the only ones on the table that count."
+        ]
+      },
+      "steps": [
+        "Play Karma, Channeler (6 Energy + 1 Order Power) and have a second friendly unit without a buff.",
+        "Cast Double Trouble for 2 Energy and pay its [Repeat] cost of 2 more (820.1.c.1).",
+        "First execution: look at the top 3, optionally reveal a unit and draw it, recycle the rest (416.1.a, 416.5 — random order to the bottom).",
+        "Karma's trigger fires once for that instruction: buff a friendly unit without a buff.",
+        "Second execution: look at the next 3, optionally draw a unit, recycle the rest.",
+        "Karma fires again: buff the SECOND unbuffed friendly unit (702.3 forbids stacking on the first)."
+      ],
+      "terminatesIn": "engine — up to two units drawn out of the top six cards and two +1 Might buffs for one card and 4 Energy, three times a game (103.2.b); nothing here scores",
+      "netPerIteration": "-1 card, -4 Energy, up to +2 cards, two +1 Might buffs on two different bodies",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or [ability].' 702.3: 'There can only be one Buff on a Unit at a time.' 702.3.a (a buff instructed onto a unit that already has one is not placed). 416.5: 'If 2 or more cards are Recycled to the Main Deck simultaneously, they are placed on the bottom of that deck in a random order.' 416.1.a: 'Main Deck cards are Recycled to the Main Deck.' 431.1.c: '...looks at or Reveals as many as possible, but does not Burn Out.' 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 206 (a 'costs N' check reads the printed cost)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 18. UNL-032 Double Trouble was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 161.2.b, 206, 416.1.a, 416.5, 431.1.c, 431.1.c.1, 702.3, 702.3.a, 820.1.b, 820.1.c.1 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. Card set OGN-235 + UNL-032 is not an existing uses[] set. No unruled reading. The per-EVENT counting is the same shape as jinx-rebel-discard-event-ready on the discard side, reached independently on the recycle side; both come from a 'one or more' wording."
+    },
+    {
+      "id": "karma-divine-judgment-wipe-buff",
+      "name": "Divine Judgment is one Karma trigger, not two — 416.1.c sends the opponent's cards to the opponent's deck",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-235",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P1 M6. '[Vision] ... When you recycle one or more cards to your Main Deck, buff a friendly unit. (If it doesn't have a buff, it gets a +1 :rb_might: buff. Runes aren't cards.)' The parenthesis is printed on the card and is load-bearing: a rune recycle never fires her."
+        },
+        {
+          "card": "OGN-244",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, E7 P2. 'Each player chooses 2 units, 2 gear, 2 runes, and 2 cards in their hands. Recycle the rest.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Order among its two domains (103.1.b.3) — 17 names: Hand of Noxus (OGN-253), Radiant Dawn (OGN-261), Herald of the Arcane (OGN-265), The Boss (OGN-269), Lady of Luminosity - Starter (OGS-021), Might of Demacia - Starter (OGS-023), Void Burrower (SFD-187), Emperor of the Sands (SFD-197), Chem-Baroness (SFD-201), Grand Duelist (SFD-205), Piltover Enforcer (UNL-187), Green Father (UNL-195), Deceiver (UNL-199), Keeper of the Hammer (UNL-203), Eye of Twilight (VEN-147), Matriarch of War (VEN-153), Heart of the Tempest (VEN-155).",
+          "Karma must be one of the TWO units you keep, or she is recycled with the rest and never buffs anything.",
+          "Seven Energy and 2 Order Power — the most expensive card in Karma's whole partner row."
+        ],
+        "notable": [
+          "IT IS ONE TRIGGER, AND THE RULE THAT DECIDES IT IS EASY TO READ THE WRONG WAY. 416.1.c: 'Each player Recycles cards to their own Main Deck and Rune Deck, regardless of which player is instructed to perform the Recycle action.' Karma watches 'when YOU recycle one or more cards to YOUR Main Deck' — the opponent's cards go to the opponent's Main Deck, so their half of the wipe is invisible to her. A symmetric instruction is not a symmetric trigger.",
+          "THE SAME PARAGRAPH REFUSES THE OTHER 'RECYCLE THE OPPONENT' CARDS IN HER ROW OUTRIGHT. `UNL-103 Disposal Order` ('Choose up to 3 cards from opponents' trashes. Their owners recycle them') recycles nothing to YOUR Main Deck and therefore never fires Karma at all. `OGN-212 Forge of the Future` ('Kill this: Recycle up to 4 cards from trashes') fires her only if at least one of the four is your own card.",
+          "KEEP HER, OR THE CARD DOES NOTHING FOR THIS ENTRY. The wipe recycles every unit beyond the two each player chooses; Karma is a unit. She has to be one of your two, which means the wipe costs you your board down to Karma plus one — and the buff lands on that one survivor. One buff is the whole payoff, so 702.3's cap is not even reached here.",
+          "The rune half is a red herring for her: 161.2.b sends recycled runes to the Rune Deck, and Karma's own printed reminder says 'Runes aren't cards'. Her trigger comes from the Main Deck cards — the excess gear and the excess hand — and 416.5 puts them on the bottom 'in a random order', so this is not deck-stacking either.",
+          "WHAT THE ENTRY IS ACTUALLY FOR. Divine Judgment is a symmetric reset that leaves you a 6-Might Karma, one other unit, two gear, two runes and two cards; the Karma buff is a consolation on top, not a reason to play it. Priced honestly: 7 Energy + 2 Order Power for a wipe you survive marginally better than the opponent because your survivor comes out buffed, and because you knew it was coming and they did not.",
+          "Mono-Order, which is the widest identity either card admits and the reason the wipe is buildable at all: 103.1.b.3 puts a single-domain card in every identity containing that domain, so seventeen legend names can hold this pair."
+        ]
+      },
+      "steps": [
+        "Play Karma, Channeler (6 Energy + 1 Order Power) and let the board develop.",
+        "Cast Divine Judgment (7 Energy + 2 Order Power).",
+        "Choose your two units — Karma must be one of them — plus two gear, two runes and two cards in hand.",
+        "Recycle the rest. 416.1.c sends your cards to your Main Deck and the opponent's to theirs; 416.5 puts them on the bottom in a random order, and 161.2.b routes the runes to the Rune Deck.",
+        "Karma's trigger fires ONCE, for your own recycle only.",
+        "Buff your surviving friendly unit (702.3): it is the one body on the board that comes out of the reset bigger."
+      ],
+      "terminatesIn": "engine — a symmetric board reset that leaves your survivor with a +1 Might buff; one Karma trigger, never two. Nothing here scores.",
+      "netPerIteration": "-1 card, -7 Energy -2 Order Power, both boards cut to two units and two gear, one +1 Might buff on your survivor",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "416.1.c: 'Each player Recycles cards to their own Main Deck and Rune Deck, regardless of which player is instructed to perform the Recycle action.' 416.5: 'If 2 or more cards are Recycled to the Main Deck simultaneously, they are placed on the bottom of that deck in a random order.' 416.1.a: 'Main Deck cards are Recycled to the Main Deck.' 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 702.3: 'There can only be one Buff on a Unit at a time.' 103.1.b.3: 'If a card has a single Domain, then that card is permitted in the Domain Identity that corresponds to the same Domain.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 18, and the last entry of the slice. OGN-244 Divine Judgment was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 161.2.b, 416.1.a, 416.1.c, 416.5, 702.3 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. Card set OGN-235 + OGN-244 is not an existing uses[] set. No unruled reading. 416.1.c is the reusable finding and it cuts two ways: it is why a symmetric wipe is one trigger, and why UNL-103 Disposal Order — which the matrix lists as a Karma partner — is a false positive that fires her never."
     }
   ]
 }
