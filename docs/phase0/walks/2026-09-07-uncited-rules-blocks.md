@@ -851,3 +851,64 @@ The probe surfaced `SFD-112 Kato the Arm` under 761.2, which looked like it over
 instructs naming. The corpus sweep still returns zero rows. Two things worth keeping from the re-read:
 **762.2** (*"A player cannot choose the name of a token when instructed to name a card"*) and
 **763.1**, which prints the **complete list of every tag that exists in Riftbound**.
+
+---
+
+# Batch 9 — Splitting (355.14) and Replacement sequencing (373)
+
+Batch 8's two entries were merged (catalogue at 682). Both entries below are inside the 100–499 lane.
+
+| id | sub-rule opened | class |
+|---|---|---|
+| `feral-strength-frigid-touch-split-floor` | **355.14.a–i** Splitting | ENGINE |
+| `soraka-guardian-angel-replacement-sequence` | **373 / 373.1 / 373.1.a / 373.2** | ENGINE |
+
+`validateCombos` over the merged copy: **0 errors, 684 entries.** `test/legend-lines.test.ts`: 8 legend
+base codes checked, **0 defects.** No duplicate id, no duplicate card set.
+
+## 33. 355.14 — the targets are locked early and the arithmetic is settled late
+
+Every sub-rule of 355.14 is uncited, and together they describe a window worth two cards:
+
+- **355.14.b**: targets are chosen at finalization. **355.14.c**: their number is capped by the damage
+  available *when the spell is played*.
+- **355.14.e**: *"The choice of how much damage is divided across the split is not decided until the
+  resolution of the spell or ability."*
+- **355.14.f / .g**: every target must receive a positive integer, at least 1.
+- **355.14.h**: if the damage has shrunk below the target count, the controller drops targets —
+- **355.14.h.1**: *"That player cannot choose to have fewer Targets than they have damage to split when
+  choosing which Targets cease being Targets."* **They may not concentrate the remainder.**
+- **355.14.i**: costs already paid and effects already triggered by the targeting **stay** paid and
+  triggered. Dropping a target is not un-targeting it.
+
+Riot's worked example is the defence, with both answer cards named: *"their opponent plays Feral
+Strength targeting one of their recruits, and Frigid Touch targeting the 5 [M] unit … They can only
+choose at most 2 of the targets to cease being targets."* `SFD-034 Feral Strength` was in **zero
+entries** and is one of the three cards the rules-named-card vein had left.
+
+## 34. 373.2 — a replacement is applied ONCE PER SEQUENCE, and that is the limit 370.4 omits
+
+**373.2**: *"When applying Replacement Effects to events that occur simultaneously, each Replacement
+Effect may only be applied in one sequence, to any number of events that are qualified to be
+replaced."* And **373** gives the ordering to the controller when both effects are theirs.
+
+Riot's worked example is `SFD-173 Soraka, Wanderer` carrying a `SFD-051 Guardian Angel`, dying beside
+two Recruits at her battlefield and two at base — and the two orders save **different halves of the
+board**. Guardian-Angel-first keeps Soraka and saves the base; Soraka-first saves the garrison and
+spends her effect. **373.1.a** performs the saves before the unsaved bodies finish dying; **373.1**
+resolves cross-table replacements by turn order rather than by choice.
+
+## 35. A correction that missed its merge — patch staged, not applied
+
+**`soraka-wanderer-vanguard-armory-simultaneous-save` (batch 8) was merged before this correction
+landed.** It stands on 370.4 and does not state 373.2's once-per-sequence limit. The fix is one extra
+notable and three citations, and because this lane does not own `data/combos.json` it is staged as an
+**idempotent script** the manager can run:
+
+```
+node /tmp/rc-walks/rc-walk-rules-patch.mjs
+```
+
+It no-ops if the entry already mentions 373.2. The entry's verdict is unchanged — 370.4 is still why a
+wipe does not beat her; what was missing is that she gets **one** application, so a second replacement
+stacked on her is a **fork between two halves of the board, not a doubling**.
