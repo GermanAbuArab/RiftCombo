@@ -30496,6 +30496,345 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #171 — the second of the ten uncatalogued legend names, and the first entry to use either OGS-019 or UNL-210. Card text verbatim from data/corpus_flat.txt. The two statics were checked against each other rather than assumed to cancel: both are plain continuous modifiers with no floor, so 477.3.b never applies and 477.3.e.2.a's ordering does not change the sum. Trap check: the attack is a real Combat with an enemy garrison present, so 807.1.d / 383.4.e / 461 are respected and 'an empty battlefield is not an attack' does not apply; the reach is stated as an arithmetic ceiling (a lone defender of 3 Might or less) rather than as a general removal claim; the format caveat on OGS-019 is stated because restricted and banned are not the same thing; exactly one battlefield is named, so 485.4.a is respected."
+    },
+    {
+      "id": "katarina-mischievous-marai-facedown-four-damage",
+      "name": "Four damage and a body for zero Energy, inside the opponent's combat — 811.1.b gives every hidden card [Reaction]",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-023",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E5 P1 M5. 'When you hide a card, ready me. When you play a card from face down, deal 2 to an enemy unit.' Both triggers are HER abilities, not a hidden card's play effect, so 811.1.d.2 never confines the 2 damage."
+        },
+        {
+          "card": "UNL-003",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E2 M2, [Hidden]. 'When you play me to a battlefield, deal 2 to an enemy unit here.' In zero entries before this walk; hidden a turn earlier for 1 rainbow, played from face down for 0 Energy."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Fury among its two domains (103.1.b.3) — 16 names: Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "A battlefield you control with no facedown card already on it, one turn before you want the Marai (811.1.b).",
+          "Katarina on the board when the facedown card is played — her trigger, not the Marai's, is the second 2 damage."
+        ],
+        "notable": [
+          "THE TAIL OF 811.1.b IS WHY THIS HAPPENS ON THE OPPONENT'S TURN. The keyword ends '...Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost', and 813.1.c.1 makes [Reaction] on a card 'This can be played during Closed States on any player's turn.' So a 2-Energy body enters mid-combat for nothing, and Katarina's trigger fires there.",
+          "FOUR DAMAGE, FROM TWO DIFFERENT SOURCES WITH DIFFERENT RESTRICTIONS — and that asymmetry is the entry. The Marai's own 'deal 2 to an enemy unit here' is a PLAY EFFECT of a hidden permanent, so 811.1.d.2 confines it to the battlefield the card was hidden at, and 811.1.d.1 puts the Marai itself there ('A hidden permanent must be played to that battlefield'). Katarina's 'deal 2 to an enemy unit' is HER OWN Triggered Ability watching an event, not a play effect of the hidden card, so nothing in 811.1.d touches it: that 2 may be aimed at any enemy unit on the board.",
+          "The restriction is a feature on the defensive turn. You hide at a battlefield you control (811.1.b), so on the opponent's turn the enemy units 'here' are their attackers — exactly what you want the Marai's 2 pointed at. It is the same clause that makes a hidden removal useless on the ATTACKING side, where the battlefield is by definition not one you control.",
+          "AND THE BODY IS IN THE COMBAT. 464.2.c.3.a defers the designation of a unit that 'becomes present at this Battlefield after this moment' to 'the Cleanup phase following the action that caused it to become present'; 319.6 makes a Cleanup Outstanding 'After any number of Game Objects enter or leave the Board' and 323.2.a hands out the designation there. So the Marai defends in the same damage step it arrived for.",
+          "143.2.a is the yardstick: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' Four damage from one free play kills any attacker up to 4 Might outright, or splits 2 + 2 across two of them.",
+          "Katarina's OTHER trigger is paid on your own turn: hiding costs 1 rainbow, and 'When you hide a card, ready me' fires in an Open State on your turn (811.1.b), so that ready is live and buys one Standard Move (144.2) — unlike the ready in the facedown-play half, which lands in a Closed State where 144.1.b forbids moving.",
+          "The ceiling is the board, not the deck: 811.1.b allows one facedown card per battlefield you control, and 485.4 puts two battlefields on a Duel table. Three Marai (103.2.b) do not raise it."
+        ]
+      },
+      "steps": [
+        "Have Katarina, Reckless on the board and a battlefield you control with no facedown card on it.",
+        "On your turn, in an Open State, pay 1 rainbow to hide Mischievous Marai there (811.1.b). Katarina's first trigger readies her; spend it on a Standard Move (144.2).",
+        "On the opponent's turn they attack that battlefield and a Combat Showdown opens.",
+        "Play the Marai from face down for 0 Energy (811.1.b's [Reaction] grant, 813.1.c.1). 811.1.d.1 puts him at that battlefield.",
+        "His play trigger deals 2 to an enemy unit there (811.1.d.2 confines it to that battlefield — which is where their attackers are).",
+        "Katarina's trigger deals a further 2 to any enemy unit on the board, unrestricted. 143.2.a kills a 4-Might attacker outright if both are pointed at it.",
+        "The Marai gains the Defender designation at the Cleanup that follows his arrival (464.2.c.3.a, 319.6, 323.2.a) and fights in the damage step."
+      ],
+      "terminatesIn": "engine — 4 damage and a 2-Might defender delivered inside the opponent's combat for 1 rainbow banked a turn earlier and no Energy; capped at one facedown card per battlefield (811.1.b). Nothing here scores.",
+      "netPerIteration": "-1 card, -1 rainbow, 4 damage split as you like, +1 body at 2 Might in the combat",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "811.1.b: '...Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' 813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 811.1.d.1: 'A hidden permanent must be played to that battlefield.' 811.1.d.2: 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible.' 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present.' 319.6: 'After any number of Game Objects enter or leave the Board.' 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 144.1.b: 'This action cannot be performed during a Closed State.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix rows 11 and 17 (trigger card UNL-023 Katarina, Reckless, 36 partners in each of two events, 2 entries before this walk). UNL-003 Mischievous Marai was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 143.2.a, 144.1.b, 144.2, 319.6, 323.2.a, 464.2.c.3.a, 485.4, 811.1.b, 811.1.d.1, 811.1.d.2, 813.1.c.1 opened in the Core Rules file. Both cards legal in both formats. Card set UNL-023 + UNL-003 is not an existing uses[] set. No unruled reading. The reusable half is the asymmetry in the second notable: 811.1.d.2 binds the hidden card's own play effect and NOT the watching card's trigger, which is what lets a free defensive play reach across the board."
+    },
+    {
+      "id": "katarina-lotus-trap-sudden-storm-board-cap",
+      "name": "Katarina's ceiling is the board, not the deck — 811.1.b allows one facedown card per battlefield, and the Trap doubles only her SECOND trigger",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-023",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E5 P1 M5. 'When you hide a card, ready me. When you play a card from face down, deal 2 to an enemy unit.' Both triggers are HER abilities, not a hidden card's play effect, so 811.1.d.2 never confines the 2 damage."
+        },
+        {
+          "card": "UNL-013",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury spell, E2, [Hidden], [Reaction]. 'Choose a unit. Double all damage that would be dealt to it this turn.' In zero entries before this walk."
+        },
+        {
+          "card": "SFD-017",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury spell, E3, [Hidden], [Action]. 'Deal 2 to a unit at a battlefield. If it's attacking, deal 4 to it instead.' In zero entries before this walk; here it is the SECOND facedown play, which is what the Trap is waiting for."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Fury among its two domains (103.1.b.3) — 16 names: Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "Control of BOTH battlefields (485.4), because 811.1.b allows only one facedown card per battlefield — with one battlefield the line cannot exist.",
+          "Two turns of setup: 1 rainbow to hide each card, one at each battlefield."
+        ],
+        "notable": [
+          "THE CEILING IS PRINTED IN THE KEYWORD AND IT IS EASY TO MISS. 811.1.b: you may hide a card 'at a battlefield you control **that doesn't already have a facedown card hidden there** for as long as you control that battlefield.' One facedown card per battlefield, and 485.4 puts two battlefields on a Duel table. So Katarina's 'When you play a card from face down' fires AT MOST TWICE A TURN however many [Hidden] cards the deck holds, and only if you control both battlefields — with one battlefield she is worth 2 damage a turn, full stop. Three copies of anything (103.2.b) does not move that number.",
+          "THE TRAP CANNOT DOUBLE ITS OWN ARRIVAL, AND THE CHAIN SAYS WHY. Playing Lotus Trap from face down is the event Katarina watches, so her trigger is Finalized above the still-pending spell and 340.1 ('The newest Finalized Chain Item resolves') runs her 2 damage BEFORE the doubling is in place. The Trap therefore pays on the SECOND facedown play of the turn and on nothing else: that second trigger's 2 becomes 4. Total from Katarina in one turn: 2 + 4 = 6, for zero Energy. (R26 on issue #11 was ruled the other way for a 'when you play a spell' trigger, on 359.3.e.10's example; if that reading were extended to 'when you play a card from face down' the first 2 would also double and the total would be 8. The entry stands on the floor of 6 and does not need the reading.)",
+          "AND THE TWO HALVES CANNOT SHARE A TARGET, WHICH IS THE REAL LIMIT. 811.1.d.2 confines a hidden spell's targets to the battlefield it was hidden at, so the Trap's 'Choose a unit' is stuck at battlefield A and Sudden Storm's 'a unit at a battlefield' is stuck at B. Sudden Storm's own 4 damage can never be doubled by this Trap. What CAN cross is Katarina's own 2 — her trigger is not a hidden card's play effect, so 811.1.d does not reach it, and it may be aimed at the Trap's chosen unit at A even though the card that triggered it was played at B.",
+          "So the turn reads: 6 damage into one enemy unit at A (2 undoubled + 4 doubled) and 4 into an attacking enemy unit at B, for zero Energy and two rainbow paid on earlier turns. 143.2.a kills at Might, so that clears a 6-Might body and a 4-Might attacker in one Closed State.",
+          "Both cards reach the opponent's turn, by different routes: 811.1.b grants [Reaction] to every hidden card once face down (813.1.c.1, any Closed State), and Sudden Storm additionally prints [Action] (806.1.b, Showdowns) — but it is 811.1.b that is doing the work here, since the cards are being played FROM face down.",
+          "'Double all damage that would be dealt to it this turn' is not restricted to your damage: the opponent's combat damage into that unit doubles too, which is irrelevant when the unit is theirs and a real hazard if you ever choose one of your own.",
+          "Order of play matters and is not obvious: the Trap must be the FIRST facedown play of the turn. Played second, its doubling arrives after both of Katarina's triggers have resolved and the entry is worth 4 instead of 10."
+        ]
+      },
+      "steps": [
+        "Control both battlefields. On separate turns, pay 1 rainbow each to hide Lotus Trap at battlefield A and Sudden Storm at battlefield B (811.1.b — one facedown per battlefield).",
+        "On the opponent's turn, in the Closed State their attack opens, play Lotus Trap from face down for 0 Energy.",
+        "Katarina's trigger is Finalized above it and resolves first (340.1): 2 damage to an enemy unit, undoubled. Aim it at the unit you are about to choose with the Trap.",
+        "The Trap resolves: choose that enemy unit at A (811.1.d.2 confines it there). All damage dealt to it this turn is now doubled.",
+        "Play Sudden Storm from face down for 0 Energy. Katarina's trigger fires again: 2 damage aimed at the same unit at A, doubled to 4 — her ability is not confined by 811.1.d.",
+        "Sudden Storm resolves at its own battlefield: 4 damage to an attacking enemy unit at B (2 doubled by the card's own attacking clause, not by the Trap)."
+      ],
+      "terminatesIn": "engine — 6 damage into one unit and 4 into another, for zero Energy on the turn, twice a turn at most (811.1.b's one facedown per battlefield); nothing here scores",
+      "netPerIteration": "-2 cards, -2 rainbow paid on earlier turns, 6 damage at one battlefield and 4 at the other",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "811.1.b: '...you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' 811.1.d.2: 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible.' 340.1: 'The newest Finalized Chain Item resolves. Execute its game effects in their entirety.' 485.4: 'Battlefield Count: 2.' 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix rows 11 and 17. UNL-013 Lotus Trap and SFD-017 Sudden Storm were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.2.b, 143.2.a, 340.1, 485.4, 806.1.b, 811.1.b, 811.1.d.2, 813.1.c.1 opened in the Core Rules file. All three cards legal in both formats. Card set is not an existing uses[] set. No unruled reading is required: the entry's arithmetic is stated at the floor that holds under the literal chain order, with the R26-shaped alternative named but not used. The headline is the entry's own bound — Katarina reads like an engine that scales with [Hidden] density and 811.1.b caps her at one play per battlefield you control."
+    },
+    {
+      "id": "katarina-pyke-dockside-additional-cost-survives",
+      "name": "356.1.b.3 — playing from face down ignores the BASE cost only, so Pyke still buys his ready and +2 for one Fury Power",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-023",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E5 P1 M5. 'When you hide a card, ready me. When you play a card from face down, deal 2 to an enemy unit.' Both triggers are HER abilities, not a hidden card's play effect, so 811.1.d.2 never confines the 2 damage."
+        },
+        {
+          "card": "UNL-028",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E3 M2, [Hidden], [Ganking]. 'You may pay :rb_rune_fury: as an additional cost to play me. When you play me, if you paid the additional cost, ready me and give me +2 :rb_might: this turn.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Fury among its two domains (103.1.b.3) — 16 names: Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "1 Fury Power available at the moment the facedown card is played — on the opponent's turn that means a rune held ready and tapped at 164.2.b's Reaction speed.",
+          "A battlefield you control with no facedown card on it, one turn earlier."
+        ],
+        "notable": [
+          "RIOT'S OWN WORKED EXAMPLE SETTLES IT, AND IT IS THE POINT OF THE ENTRY. 811.1.b lets you 'play this, ignoring its base cost', and 356.1.b sets 'the appropriate Base Cost(s) of the card to zero'. 356.1.b.3 then says outright: 'Further additional costs and/or cost increases applied in subsequent steps may raise the card's Total Cost above zero', with the example 'Legion Rearguard ... A player plays Legion Rearguard and is instructed to ignore its costs, but chooses to pay the Accelerate cost. They ignore Legion Rearguard's Base Cost of 2 Energy, but the optional additional cost of 1 Energy and 1 Fury Power is added to its Total Cost and must be paid.' 204.1.a puts the Base Cost 'in the upper left corner of the card' and 204.2 makes an Additional Cost something else entirely. So a free facedown play does NOT switch off an optional additional cost — it leaves it available at full price, which for Pyke is the whole reason to run him.",
+          "WHAT THE 1 FURY BUYS. 'Ready me and give me +2 [M] this turn' turns a 2-Might body that entered exhausted (143.4) into a ready 4-Might body. Readying him is a real ready — 415.1 marks a Game Object already on the Board, unlike the 'I enter ready' wording that is only a play-time property — so his exhaust is available for the Standard Move (144.2), and [Ganking] widens where that move may go: 810.1.c.3, 'It does not give additional abilities or activations of Movement, only new options for the Standard Move', i.e. battlefield to battlefield.",
+          "THE MOVE IS A YOUR-TURN OPTION ONLY. 144.1.b forbids the Standard Move during a Closed State, so playing Pyke from face down inside the opponent's combat gives you a ready 4-Might defender and nothing else until your own Main Phase. Played from face down on YOUR turn, in a Neutral Open State, he arrives at the hidden battlefield (811.1.d.1) and immediately ganks to the other one — a free body that attacks the turn it appears.",
+          "Katarina's own 2 damage rides along on the facedown play, unrestricted by 811.1.d (it is her trigger, not Pyke's play effect), so the package is: a ready 4-Might mobile body and 2 damage anywhere, for 1 rainbow banked a turn earlier plus 1 Fury Power.",
+          "The 'if you paid the additional cost' clause is checked by the trigger, so paying is not optional-in-effect: without the Fury Power Pyke is a bare 2-Might body that entered exhausted and the entry is worth only Katarina's 2.",
+          "811.1.b's cap applies as it does to every [Hidden] line: one facedown card per battlefield you control, two battlefields in a Duel (485.4)."
+        ]
+      },
+      "steps": [
+        "On your turn, pay 1 rainbow to hide Pyke, Dockside Butcher at a battlefield you control (811.1.b). Katarina readies on the hide.",
+        "On a later turn, play him from face down. 356.1.b sets his base cost to zero; 811.1.d.1 puts him at that battlefield.",
+        "Choose to pay the optional additional cost of 1 Fury Power — 356.1.b.3 keeps it payable and its worked example is exactly this shape.",
+        "His play trigger fires because the cost was paid: ready him (415.1) and give him +2 Might this turn. He is a ready 4-Might body.",
+        "Katarina's trigger deals 2 to any enemy unit on the board.",
+        "On your own turn, spend his exhaust on a Standard Move; [Ganking] lets it go battlefield to battlefield (810.1.c.3)."
+      ],
+      "terminatesIn": "engine — a ready, mobile 4-Might body plus 2 damage for 1 rainbow and 1 Fury Power, three times a game (103.2.b); nothing here scores",
+      "netPerIteration": "-1 card, -1 rainbow, -1 Fury Power, +1 ready body at 4 Might with [Ganking], 2 damage anywhere",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "356.1.b: 'If an ability or instruction allows you to \"ignore\" one or more of a card's costs, set the appropriate Base Cost(s) of the card to zero.' 356.1.b.3: 'Further additional costs and/or cost increases applied in subsequent steps may raise the card's Total Cost above zero. Example: Legion Rearguard ... They ignore Legion Rearguard's Base Cost of 2 Energy, but the optional additional cost of 1 Energy and 1 Fury Power is added to its Total Cost and must be paid.' 204.1.a: 'On cards, the Base Cost is found in the upper left corner of the card.' 204.2: 'Additional Costs: These Costs are in addition to the base cost of the spell or ability and will include \"as an additional cost.\"' 811.1.b: '...you may play this, ignoring its base cost.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 143.4: 'Units enter the Board exhausted.' 144.1.b: 'This action cannot be performed during a Closed State.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix rows 11 and 17. UNL-028 Pyke, Dockside Butcher was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.2.b, 143.4, 144.1.b, 144.2, 164.2.b, 204.1.a, 204.2, 356.1.b, 356.1.b.3, 415.1, 485.4, 810.1.c.3, 811.1.b, 811.1.d.1 opened in the Core Rules file. Both cards legal in both formats. Card set UNL-023 + UNL-028 is not an existing uses[] set. No unruled reading — 356.1.b.3 carries Riot's own worked example of the exact interaction. The finding generalises to every [Hidden] card in the pool that prints an optional additional cost, and to every other 'ignoring its cost' effect."
+    },
+    {
+      "id": "ember-monk-teemo-scout-facedown-wall",
+      "name": "Ember Monk and Teemo, Scout — seven Might of defence for zero Energy, and the body is in the damage step it arrived for",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-167",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 M4. 'When you play a card from [Hidden], give me +2 :rb_might: this turn.'"
+        },
+        {
+          "card": "OGN-197",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E2 M1, [Hidden]. 'When you play me, give me +3 :rb_might: this turn.' Played from face down he costs 0 Energy and stands at 4 for the turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Chaos among its two domains (103.1.b.3) — 16 names: Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
+          "The Ember Monk standing at the battlefield you hid Teemo at — 811.1.d.1 puts Teemo there and nowhere else.",
+          "A battlefield you control with no facedown card on it, one turn earlier (811.1.b)."
+        ],
+        "notable": [
+          "SEVEN MIGHT FOR NOTHING, AND EVERY POINT OF IT ARRIVES IN THE CLOSED STATE. 811.1.b's tail gives every hidden card [Reaction] once it is face down, and 813.1.c.1 admits a [Reaction] card to 'Closed States on any player's turn'. So on the opponent's attack you play Teemo from face down for 0 Energy: his own trigger puts him at 4 (1 printed + 3), and the Ember Monk's trigger puts him at 6 (4 + 2). Seven points of Might appear in the defence for one rainbow paid on an earlier turn.",
+          "AND TEEMO IS IN THAT DAMAGE STEP, NOT THE NEXT ONE. 464.2.c.3.a defers the designation of a unit that becomes present after the Attacker/Defender step to 'the Cleanup phase following the action that caused it to become present'; 319.6 makes a Cleanup Outstanding 'After any number of Game Objects enter or leave the Board', and 323.2.a gives units present without a designation 'the same designation as their Controller now'. The Cleanup runs before 465.2 resolves, so both bodies are counted when 465.2.b sums the defending Might.",
+          "BOTH BONUSES ARE MODIFIERS, NOT BUFFS. '+3 [M] this turn' and '+2 [M] this turn' are continuous modifiers, so 702.3's 'There can only be one Buff on a Unit at a time' never applies and they stack with a real buff; equally, neither can be SPENT by a buff-spender (702.2.b) and neither survives the turn.",
+          "ONE PLAY IS ONE TRIGGER, WHICH IS WHY A MULTI-BODY HIDDEN CARD IS NOT BETTER HERE. The Ember Monk pays per card played from [Hidden], not per body: UNL-081 Keeper of Masks makes three bodies on one play and still gives the Monk a single +2. Teemo is the opposite shape — a small card whose own play trigger triples its own Might — which is why he is the partner and the Keeper is not.",
+          "The ceiling is the keyword's, not the deck's: 811.1.b allows one facedown card per battlefield you control and 485.4 puts two on a Duel table, so the Monk can be fed at most twice a turn (+4) whatever the [Hidden] density of the list.",
+          "Teemo lands where he was hidden (811.1.d.1: 'A hidden permanent must be played to that battlefield'), so the Monk has to be standing there for the +2 to matter — the Monk's trigger fires wherever he is, but a +2 on a body at the wrong battlefield buys nothing."
+        ]
+      },
+      "steps": [
+        "Play Ember Monk (4 Energy) and keep him at a battlefield you control.",
+        "On your turn, pay 1 rainbow to hide Teemo, Scout at that same battlefield (811.1.b).",
+        "On the opponent's turn they attack it; the Combat Showdown opens.",
+        "Play Teemo from face down for 0 Energy (811.1.b's [Reaction] grant, 813.1.c.1). 811.1.d.1 puts him at that battlefield.",
+        "His own trigger gives him +3 Might this turn (4 total); the Ember Monk's trigger gives the Monk +2 (6 total).",
+        "The Cleanup that follows his arrival designates him a Defender (464.2.c.3.a, 319.6, 323.2.a), and 465.2.b sums 4 + 6 into the defending assignment."
+      ],
+      "terminatesIn": "engine — +7 Might of defence and a second body for one rainbow and no Energy, at most twice a turn (811.1.b); nothing here scores",
+      "netPerIteration": "-1 card, -1 rainbow, +1 body at 4 Might and +2 Might on the Ember Monk, all inside the opponent's combat",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "811.1.b: '...Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' 813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 811.1.d.1: 'A hidden permanent must be played to that battlefield.' 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present.' 319.6: 'After any number of Game Objects enter or leave the Board.' 323.2.a: 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now.' 465.2.b: 'Sum the Might of all Defending Units.' 702.3: 'There can only be one Buff on a Unit at a time.' 485.4: 'Battlefield Count: 2.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 16 (trigger card OGN-167 Ember Monk, 36 partners, 2 entries before this walk). OGN-197 Teemo, Scout was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 319.6, 323.2.a, 464.2.c.3.a, 465.2.b, 485.4, 702.2.b, 702.3, 811.1.b, 811.1.d.1, 813.1.c.1 opened in the Core Rules file. Both cards legal in both formats. Card set OGN-167 + OGN-197 is not an existing uses[] set. No unruled reading. The fourth notable is the refusal that made Teemo the right partner: the Monk pays per CARD played from Hidden, so UNL-081 Keeper of Masks' three bodies are still one +2."
+    },
+    {
+      "id": "black-market-broker-windsinger-free-bounce",
+      "name": "The Broker's only [Hidden] partner in the pool — a free bounce, a free body, and a Gold that is next turn's Power",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-121",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E3 M3. 'When you play a card from face down, play a Gold gear token exhausted.'"
+        },
+        {
+          "card": "SFD-138",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E2 M1. Prints 'Hidden' WITHOUT brackets — a registered anomaly in docs/data-anomalies.md, never normalised. 'When you play me, you may return another unit at a battlefield with 3 :rb_might: or less to its owner's hand.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Chaos among its two domains (103.1.b.3) — 16 names: Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
+          "A battlefield you control with no facedown card on it, one turn before you want the Windsinger (811.1.b)."
+        ],
+        "notable": [
+          "THIS IS THE WHOLE OF THE BROKER'S MATRIX ROW: ONE PARTNER. The cause/trigger matrix gives `SFD-121 Black Market Broker` exactly one uncovered partner, `SFD-138 Windsinger`, and the reason is a spelling: the Windsinger prints `Hidden` with no brackets, which is a registered anomaly in docs/data-anomalies.md and the reason the project's [Hidden] predicates are written as the reminder-anchored form rather than `\\[Hidden\\]`. The card is a fully normal hidden unit despite the printing.",
+          "THE GOLD IS NEXT TURN'S POWER, NOT THIS TURN'S, AND THE ENTRY REFUSES TO PRETEND OTHERWISE. 187.5: 'A Gold gear token is a domainless gear token with \"[Reaction][>] Kill this, [E]: [Add] [A].\"' The Broker plays it EXHAUSTED, and its ability's cost includes that exhaust — so it cannot pay for itself and is dead until 415.3.a readies it in your next Awakening. The one exception in the pool is `SFD-171 Renata Glasc, Industrialist` ('Your tokens enter ready', R25 = A on issue #11), and she is mono-Order, so she cannot join this mono-Chaos pair under any legend (103.1.b.4). Price the Gold as one rainbow next turn.",
+          "THE BOUNCE IS CONFINED, AND THAT IS WHAT MAKES IT DEFENSIVE. 811.1.d.2 keeps a hidden permanent's play-effect targets at the battlefield it was hidden at, and 811.1.b hides only 'at a battlefield you control' — so 'another unit at a battlefield with 3 Might or less' means a unit at YOUR battlefield. On the opponent's turn that is one of their attackers of 3 Might or less, removed from the combat before damage without a kill; on your turn it can equally be one of YOUR OWN bodies ('another unit', not 'an enemy unit'), rescued from a losing combat or rebought for a second play trigger.",
+          "AND IT ALL HAPPENS IN A CLOSED STATE FOR ZERO ENERGY. 811.1.b's tail grants [Reaction] to the hidden card and 813.1.c.1 admits it to 'Closed States on any player's turn', so the Windsinger, the bounce, the Broker's Gold and a 1-Might body all arrive inside the opponent's combat for one rainbow paid a turn earlier.",
+          "A bounce is not a kill: nothing that keys on a unit dying fires for either player, the opponent keeps the card, and 431's Burn Out rules never come into it. What it buys is one combat and one re-payment of the card's cost.",
+          "The ceiling is 811.1.b's, as everywhere in this family: one facedown card per battlefield you control, two battlefields in a Duel (485.4), so the Broker's trigger fires at most twice a turn and mints at most two Gold."
+        ]
+      },
+      "steps": [
+        "Play Black Market Broker (3 Energy) and keep him on the board.",
+        "On your turn, pay 1 rainbow to hide the Windsinger at a battlefield you control (811.1.b).",
+        "On a later turn — including the opponent's, in any Closed State (811.1.b's [Reaction] grant, 813.1.c.1) — play the Windsinger from face down for 0 Energy. 811.1.d.1 puts her at that battlefield.",
+        "Her play trigger returns another unit at that battlefield with 3 Might or less to its owner's hand (811.1.d.2 confines the choice there).",
+        "The Broker's trigger fires on the facedown play: play a Gold gear token, exhausted.",
+        "The Gold is Power on your NEXT turn, once 415.3.a readies it — 187.5 puts an exhaust in its own cost, so it cannot pay for itself the turn it appears."
+      ],
+      "terminatesIn": "engine — a free 1-Might body, a bounce of any 3-Might-or-less unit at your battlefield, and one rainbow of Power next turn, for one rainbow banked earlier; nothing here scores",
+      "netPerIteration": "-1 card, -1 rainbow now, +1 body at 1 Might, one unit of 3 Might or less returned to hand, +1 rainbow Power next turn",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #169 — matrix families rows 6-18, second pass (docs/phase0/walks/2026-09-07-families-rows-6-18.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "187.5: 'A Gold gear token is a domainless gear token with \"[Reaction][>] Kill this, [E]: [Add] [A].\"' 811.1.b: '...you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there... Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' 811.1.d.1: 'A hidden permanent must be played to that battlefield.' 811.1.d.2: 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield...' 813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 485.4: 'Battlefield Count: 2.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #169, matrix row 15 — the only row in the slice whose partner list has a single entry, and the pair had never been written despite SFD-121 appearing in five entries. SFD-138 Windsinger was in ZERO entries. Card text verbatim from data/corpus_flat.txt (the bracket-less 'Hidden' is reproduced as printed). 103.1.b.3, 103.1.b.4, 187.5, 415.3.a, 485.4, 811.1.b, 811.1.d.1, 811.1.d.2, 813.1.c.1 opened in the Core Rules file. Both cards legal in both formats. Card set SFD-121 + SFD-138 is not an existing uses[] set. No unruled reading. R25 = A is cited only to say why it does NOT apply: Renata Glasc, Industrialist is mono-Order and cannot share an identity with two mono-Chaos cards."
     }
   ]
 }
