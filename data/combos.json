@@ -31934,7 +31934,7 @@
       "produces": [],
       "prerequisites": {
         "easy": [
-          "Helm of Suppression is mono-Calm and Mystic Vortex is Colorless, so 103.1.b.3 admits any legend with Calm in its pair: OGN-255/OGN-303 Nine-Tailed Fox, OGN-257/OGN-304 Blind Monk, OGN-259/OGN-305 Unforgiven, OGN-261/OGN-306 Radiant Dawn, SFD-189/SFD-244 Fire Below the Mountain, SFD-193/SFD-245 Grandmaster at Arms, SFD-195/SFD-246 Blade Dancer, SFD-197/SFD-247 Emperor of the Sands, UNL-189/UNL-230 Bashful Bloom, UNL-191/UNL-231 Wuju Master, UNL-193/UNL-232 Gloomist, UNL-195/UNL-233 Green Father, VEN-139/VEN-189 Rogue Assassin, VEN-145/VEN-192 Curator of the Sands, VEN-147/VEN-193 Eye of Twilight."
+          "Helm of Suppression is mono-Calm and Mystic Vortex is Colorless, so 103.1.b.3 admits any legend with Calm in its pair: OGS-019 Wuju Bladesman - Starter, OGN-255/OGN-303 Nine-Tailed Fox, OGN-257/OGN-304 Blind Monk, OGN-259/OGN-305 Unforgiven, OGN-261/OGN-306 Radiant Dawn, SFD-189/SFD-244 Fire Below the Mountain, SFD-193/SFD-245 Grandmaster at Arms, SFD-195/SFD-246 Blade Dancer, SFD-197/SFD-247 Emperor of the Sands, UNL-189/UNL-230 Bashful Bloom, UNL-191/UNL-231 Wuju Master, UNL-193/UNL-232 Gloomist, UNL-195/UNL-233 Green Father, VEN-139/VEN-189 Rogue Assassin, VEN-145/VEN-192 Curator of the Sands, VEN-147/VEN-193 Eye of Twilight."
         ],
         "notable": [
           "THE TWO CARDS COVER THE TWO WINDOWS AND THERE IS NO THIRD. 312.2.a gives the non-turn player priority only in Closed States and Showdowns — on your turn in a Neutral Open State they never hold it — so everything an opponent can do on your turn is either a spell (the Helm's clause) or a [Reaction] card in a Showdown (the Vortex's). Together they price both.",
@@ -35309,7 +35309,7 @@
     },
     {
       "id": "valley-of-idols-buffed-statics",
-      "name": "Valley of Idols is the only card that buffs a unit as it is played — which is the only way the pool's two 'While I'm buffed' statics come online the same turn",
+      "name": "Valley of Idols buffs the whole garrison as each body lands, which is how the pool's two 'While I'm buffed' statics come online the same turn",
       "class": "ENGINE",
       "status": "verified",
       "uses": [
@@ -35346,7 +35346,7 @@
           "THESE ARE THE POOL'S ONLY TWO 'WHILE I'M BUFFED' STATICS, swept: a case-insensitive grep of data/corpus_flat.txt for 'buffed' returns seven rows, and the other five are cards that BUFF or that react to a buffed body dying (OGN-228 Vanguard Helm, OGN-269 The Boss) rather than cards that read their own buffed state. Naming the members here so the next grep can refute the count in one command.",
           "CARRYING A BUFF AND SPENDING A BUFF ARE OPPOSITE USES OF ONE COUNTER, and this line picks the carrying side. 702.2.b — 'Spending a Buff removes a single Buff counter from a Unit' — so Call to Glory, Albus Ferros, Fae Dragon and OGN-282 Monastery of Hirana all switch these two statics OFF by paying with the very counter they read. A deck runs one side or the other.",
           "702.3 CAPS EACH BODY AT ONE BUFF, so the Valley's offer is worth exactly 1 Energy per NEW unit played there and nothing on a body that already carries one (702.3.a: 'it is not placed instead'). That also means the Valley never jams: it simply declines on an already-buffed body.",
-          "THE VALLEY IS THE ONLY SOURCE THAT ARRIVES AT THE MOMENT OF PLAY. Every other buffer in the pool is a separate card or trigger that has to find the body afterwards — which for a unit that enters exhausted (143.4) means at best the following turn. Here the Elder is Might 6 and the Bully has [Ganking] before the opponent's turn begins.",
+          "THE VALLEY BUFFS AT THE MOMENT OF PLAY, AND IT IS NOT THE ONLY CARD THAT DOES (corrected by the #181 cross-audit, 2026-09-07; the first draft of this entry claimed it was, in its own name and here). A grep of the corpus finds sixteen on-play buffers, and the clearest counterexample is OGN-223 Peak Guardian - \"When you play me, buff me. Then, if I am at a battlefield, buff all other friendly units there\" - which is the engine of peak-guardian-bilgewater-bully-ganking-buff, an entry written the same day on the identical payoff card. What the Valley actually buys is that it is a BATTLEFIELD: it buffs every body as it lands, for the rest of the game, with no card spent per body, so a unit that enters exhausted (143.4) is already buffed rather than waiting for a buffer to find it next turn. The Elder is Might 6 and the Bully has [Ganking] before the opponent takes a turn.",
           "IT IS SYMMETRIC AND IT SAYS 'A PLAYER': the opponent buys the same buff for their units played at this battlefield. But 355.2.a means they can only play units there while THEY control it, so in practice only the holder benefits.",
           "VALLEY OF IDOLS IS NOT GUARANTEED TO BE ON THE TABLE, and unlike the six 'no you' battlefields of this walk it also has to be held: 485.4.a, 485.5, 486.5, 103.4.c, plus 190.1 and 466.5."
         ]
@@ -37874,6 +37874,266 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #170, from the buff-supply synergy rules; OGN-053 Stand United was in ZERO entries and is the pool's only buff AMPLIFIER. Card text verbatim from data/corpus_flat.txt. The reading is kept deliberately narrow: because 702.3 allows one Buff per unit, 'buffs give an additional +1' and 'each buffed body gets +1' are the same number on every legal board, so no rules reading has to be filed to price the card. Trap check: 811.1.d.2 is quoted and applied to the FIRST sentence only, with the reason the second escapes it; the one-facedown-per-battlefield half of 811.1.b is quoted as the real cap, which is the board and not 103.2.b; the +1 is stated as a continuous modifier (477.3.e.1, expiring at 317.2.c) and explicitly not a 702 counter; 702.2.b is named as the anti-synergy with the deck's own buff spenders."
+    },
+    {
+      "id": "seal-of-unity-grand-strategem",
+      "name": "Seal of Unity is the Order deck's Power base at E0, and Grand Strategem is what three Power buys — a mass pump that pays no Deflect",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-245",
+          "quantity": 3,
+          "role": "resource",
+          "zone": "BOARD",
+          "note": "Order gear, E0 + 1 Order Power. ':rb_exhaust:: [Reaction] — [Add] :rb_rune_order:. (Abilities that add resources can't be reacted to.)' It costs a Power to make a Power, so it breaks even the turn after it lands and profits every turn thereafter — 315.1.b readies it every Awaken. Its reminder is 429.2 printed on the card: 'Triggered and activated abilities that Add resources resolve as soon as they are finalized', with 429.2.a keeping priority from passing. The zero Energy is the point: it competes with nothing else in the turn it is played. Same shape as the Mind deck's Seal of Insight, which the project already treats as that deck's Power base."
+        },
+        {
+          "card": "OGN-233",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order spell, E6 P3. '[Action] (Play on your turn or in showdowns.) Give friendly units +5 :rb_might: this turn.' Three Power is the heaviest Order Power cost in the pool for a spell, which is exactly what a Power base is for. And it selects PROGRAMMATICALLY — 'friendly units', not 'choose' — so 355.10.d exempts every one of them from being a target and no [Deflect] Value is ever paid, however many bodies it touches."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower."
+        ],
+        "notable": [
+          "THE SEAL IS A SECOND SOURCE OF POWER, NOT A SECOND RUNE, AND THAT IS WHY IT MATTERS. 161.2.a caps the board at twelve runes and 315.3.b channels only two a turn, so a rune-based Power curve is fixed. The Seal sits outside that cap entirely: it is a gear, it costs no Energy, and it adds an Order Power every turn from the moment it has paid for itself.",
+          "AND IT IS [REACTION] POWER, WHICH IS THE HALF THE PROJECT HAS MEASURED AS SCARCE. 415.3.a readies a player's Game Objects only 'during the Awakening Phase on their turn', so a rune exhausted on your turn is dead for all of the opponent's; the Seal is exhausted when you choose, including inside a showdown on their turn (813.1.b gives [Reaction] all of Action's permissions). Three Seals are three Order Power available at Reaction speed with no rune held back.",
+          "GRAND STRATEGEM PAYS NO DEFLECT TAX AND THAT IS WORTH STATING, because the pool's other mass effects are the reason: 809.1.c charges 'for each time they choose' a [Deflect] permanent, and 355.10.d exempts anything 'programmatically selected based on its characteristics rather than chosen'. 'Give friendly units +5 Might' chooses nothing, so a board of five bodies costs exactly E6 + 3 Order Power and not a rainbow more.",
+          "+5 MIGHT ON EVERY BODY IS A COMBAT NUMBER, NOT A SCORING ONE: 465.2.c sums each side's Might for the damage assignment, so five bodies is +25 to the sum, and 143.2.a then kills on nonzero damage equalling or exceeding Might. Nothing in the pool converts Might size into points except OGN-034 Tryndamere's excess-damage threshold, so this entry produces resources and combat, never a score.",
+          "IT IS A MODIFIER AND NOT A BUFF, so 702.3's one-buff-per-unit cap does not touch it and it stacks with an actual buff on the same body — the same distinction the project draws for Soul Shepherd's static and Lee Sin, Centered.",
+          "167 EMPTIES THE RUNE POOL at the start of each Main Phase and the end of each turn, so the Seal's Power is added in the window it is spent in and never banked across a phase."
+        ]
+      },
+      "steps": [
+        "Play Seal of Unity (E0 + 1 Order Power). It costs no Energy, so it can land on any turn without competing with the rest of the curve.",
+        "From your next turn it is ahead: exhaust it for an Order Power (429.2 resolves the Add as soon as it is finalized, and 429.2.a means nobody can respond), and 315.1.b readies it every Awakening.",
+        "Play the second and third copies. Three Seals are three Order Power a turn on top of whatever the runes provide, and none of them counts against 161.2.a's twelve-rune cap.",
+        "Cast Grand Strategem (E6 + 3 Order Power) — the three Power the Seals supply — as an [Action], which 806.1.b lets you do inside a showdown as well as in your Main Phase.",
+        "Every friendly unit gets +5 Might this turn. Nothing is chosen, so 355.10.d means no Deflect Value is paid on any of them, and 465.2.c sums the result for the combat damage assignment."
+      ],
+      "netPerIteration": "one Order Power per Seal per turn, at Reaction speed, outside the twelve-rune cap",
+      "terminatesIn": "engine only — three Power a turn from three Seals, and three castings of Grand Strategem (103.2.b); it scores nothing, and 167 means the Power is spent in the window it is made",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "355.10.d. A Game Object that is programmatically selected based on its characteristics rather than chosen is not a target."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md), issue #180",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #180 — the first entry to use OGN-245 or OGN-233. Card text verbatim from data/corpus_flat.txt. The Seal is the Order counterpart of a card the project already treats as the Mind deck's Power base, and it had never been catalogued. Trap check: 161.2.a is cited so the Seal is not confused with a rune and not counted against the cap; 415.3.a and 813.1.b are cited so the Reaction-speed claim is real; 355.10.d and 809.1.c are cited so the mass pump's freedom from the Deflect tax is a rule and not an assumption; 702.3 is cited so the +5 is not mistaken for a buff; 167 is cited so nothing is banked; the entry states plainly that Might does not convert to points."
+    },
+    {
+      "id": "cull-the-weak-loyal-poro",
+      "name": "Cull the Weak is 355.10.e's own worked example, so it cannot be Deflected — and Loyal Poro makes the half you pay draw you a card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-209",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order spell, E2 P1. 'Each player kills one of their units.' This wording is 355.10.e's printed example almost verbatim — 'Each player kills a unit they control' — which is why it TARGETS NOTHING: 'It is part of a set of objects chosen in whole or in part by other players.' No [Deflect] Value is ever paid (809.1.c charges only for choosing), and no 'when this is chosen' trigger fires on either side."
+        },
+        {
+          "card": "UNL-156",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "state": "with at least one other friendly unit at its battlefield",
+          "note": "Order unit, E3 M3. '[Deathknell][>] If I didn't die alone, draw 1. (When I die, get the effect. I wasn't alone if there were other friendly units here.)' The unit you feed to your own half of the spell. 740.2.a defines the term the reminder paraphrases — 'A unit is alone when there are no other friendly units at the same location' — so the condition is on the Poro's LOCATION, not on your board, and a second body has to be standing with it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal",
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower."
+        ],
+        "notable": [
+          "WHAT YOU BUY AND WHAT YOU DO NOT. The opponent chooses their own casualty, so this is not removal you can aim — they will give up their worst body. What it IS: two Energy and a Power that no [Deflect] can tax, that no counter keyed on choosing can see, and that reaches a unit which is otherwise untouchable at their base. Against a board of one it is a clean answer; against a wide board it is a tax.",
+          "AND YOUR HALF IS NOT A COST — IT IS THE OTHER HALF OF THE ENGINE. Loyal Poro's Deathknell turns the unit you were obliged to kill into a card, so the spell reads 'each player loses a unit, and you draw 1'. 808.1.a puts the Deathknell on the permanent and the Poro reaches the Trash normally here (nothing replaces its death), so 808.1.d.1's shield trap does not apply.",
+          "740.2.a IS THE PARAGRAPH, NOT THE REMINDER TEXT: 'A unit is alone when there are no other friendly units at the same location.' The project had been reading 'alone' off the pool's own reminder lines; it is defined in the glossary. The practical consequence is that the Poro must be standing WITH somebody — at your base or at a battlefield — and a Poro alone at a battlefield draws nothing.",
+          "IT IS SYMMETRIC IN FORM AND ASYMMETRIC IN PRICE, which is the whole reason to run it: you have paid E3 for a body that replaces itself when it dies; they have paid full price for whatever they give up.",
+          "THREE CASTINGS (103.2.b) AND THREE POROS, so the pairing is bounded at three even before the deck runs out of second bodies. Nothing here loops.",
+          "355.10.f IS THE SIBLING CLAUSE and worth keeping straight: an instruction a player 'must' complete also targets nothing, which is why OGN-287 Sigil of the Storm's forced rune recycle chooses nothing either. Both are in this domain."
+        ]
+      },
+      "steps": [
+        "Play Loyal Poro (E3) and keep it standing with at least one other friendly unit — 740.2.a measures 'alone' at its location, so a lone Poro at a battlefield does not qualify.",
+        "Cast Cull the Weak (E2 + 1 Order Power). It targets nothing (355.10.e), so no Deflect Value is added to its cost however protected their board is.",
+        "On resolution each player chooses one of their own units and kills it. You choose the Poro; they choose whatever they can spare.",
+        "The Poro's Deathknell resolves from the Trash: it did not die alone, so you draw 1.",
+        "Repeat with the second and third copy. 103.2.b caps both halves at three."
+      ],
+      "netPerIteration": "one enemy unit dead anywhere on their board and one card drawn, for E2 + 1 Order Power and a body that replaced itself",
+      "terminatesIn": "engine only — three castings (103.2.b), each costing the opponent a unit of their choice and costing you a card-neutral Poro; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "355.10.e. It is part of a set of objects chosen in whole or in part by other players. e.g., \"Each player kills a unit they control\" does not target. Each player, including the one who played the spell, chooses a unit to kill as the spell or ability resolves."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md), issue #180",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #180 — the first entry to use OGN-209 or UNL-156. Card text verbatim from data/corpus_flat.txt. Cull the Weak's wording is Riot's own worked example for 355.10.e, which is the strongest citation shape this project recognises. Trap check: the entry states plainly that the opponent picks their own casualty, so it is not sold as aimed removal; 740.2.a is cited for 'alone' in place of the reminder text the project had been reading it off, and the second body it implies is stated as a requirement on the Poro's zone rather than left in prose; 808.1.a and 808.1.d.1 are checked so the Deathknell is known to fire (nothing replaces this death); 355.10.f is named as the sibling clause so the two are not conflated."
+    },
+    {
+      "id": "hungry-wolf-eye-of-herald-double-move",
+      "name": "Hungry Wolf buys a second Standard Move for one Order Power, and the Eye of the Herald is what a second move is worth",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-125",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order unit, E4 M4. ':rb_rune_order:: Ready me and give me +1 :rb_might: this turn. Use only if you've chosen an enemy unit this turn and only once each turn.' 377.2.b makes both trailing sentences conditions of the Activated Ability rather than flavour. A ready is worth exactly one extra Standard Move (415.1 marks an object already on the board as available; 144.2's exhaust is what it pays for) and nothing on defence, since neither 464.2.c.3 nor 465.2.b filters by state — so it is only worth running beside a card that pays for MOVING."
+        },
+        {
+          "card": "SFD-153",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "state": "attached to Hungry Wolf",
+          "note": "Order gear, E1, M+0. '[Equip] :rb_rune_order: (…) [Effect] When I move, play a 1 :rb_might: Recruit unit token here.' 434.1.c appends the [Effect] to the carrier, so 'I' is the Wolf. The token is born at the destination — 'here' is read at execution (359.3.f.2) — which is the walk-to-the-battlefield bottleneck answered for free, twice a turn."
+        },
+        {
+          "card": "VEN-127",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Order spell, E2 P1. 'Choose a unit. If it's [Empowered], disempower it. Then kill it if it has 3 :rb_might: or less. [Flow] :rb_energy_4::rb_rune_order::rb_rune_order:'. The cheapest Order spell that CHOOSES an enemy unit, which is the Wolf's condition — and it does real work while satisfying it. 829.1.b gives each copy one replay from the trash before banishing it, so three copies are six castings."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All three are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower."
+        ],
+        "notable": [
+          "TWO MOVES A TURN, AND THE DESTINATIONS ARE CONSTRAINED. 144.4 allows base-to-battlefield and battlefield-to-base only; battlefield-to-battlefield needs [Ganking], which nothing here grants. So the honest shape of the double move is out and back, or in and in — the Wolf goes base to battlefield, readies for one Order Power, and can go battlefield to base again, dropping a Recruit at each end. 'Here' is read at execution (359.3.f.2), so the second Recruit is born at the base.",
+          "WHICH IS STILL WORTH IT, BECAUSE ONE OF THE TWO IS AT A BATTLEFIELD. The project has measured the walk to the battlefield as the bottleneck of every token line: of the 49 cards that create unit tokens, only 13 say 'here'. This is a repeatable one that costs a Power rather than a card.",
+          "THE CONDITION IS A CHOICE, NOT A KILL. 'If you've chosen an enemy unit this turn' — Lacerate satisfies it even when its own kill clause does nothing, because the choosing happens on resolution regardless of the target's Might. 355.10.d is the other side: a spell that selects programmatically chooses nothing and would NOT satisfy the Wolf, so Grand Strategem and its family are no help here.",
+          "AND THE READY IS ONCE A TURN BY ITS OWN TEXT, so no multiplier reaches it: 'only once each turn' is a condition of the ability under 377.2.b, and 383.3.e.1's per-turn cap is the same shape. A second Hungry Wolf is a second body with its own once-a-turn ready, not a second activation.",
+          "LACERATE IS ALSO ONE OF THE POOL'S NINE DISEMPOWERERS and the record names only six; it and VEN-133 Glowstone are the two Order members that were missing. Against an [Empowered] body its first clause strips the state (441.2 makes Empowered permanent otherwise), which is a second, separate use of the same card.",
+          "IT DOES NOT SCORE. The Recruits are 1 Might, so 143.2.a kills them to a single point of damage and OGN-133 Flurry of Blades clears any number simultaneously; this produces bodies and position, and the points have to come from a Hold or a Conquer elsewhere."
+        ]
+      },
+      "steps": [
+        "Play Hungry Wolf (E4) and attach Eye of the Herald to it for one Order Power (818.1.b). 434.1.c gives the Wolf 'When I move, play a 1 Might Recruit unit token here'.",
+        "In your Main Phase, cast Lacerate (E2 + 1 Order Power) choosing an enemy unit. The choice is what the Wolf reads; the kill clause is a bonus when the body is 3 Might or less.",
+        "Standard-Move the Wolf from your base to a battlefield, paying 144.2's exhaust. The Herald's trigger fires and a 1-Might Recruit is born at that battlefield — 359.3.f.2 reads 'here' at execution.",
+        "Pay one Order Power for the Wolf's ability: it readies and takes +1 Might this turn. 415.1 marks it available again.",
+        "Move it once more — 144.4.b back to your base, since 144.4.c.1's battlefield-to-battlefield leg needs [Ganking] the deck has not granted — and the Herald makes a second Recruit there.",
+        "Repeat next turn. The ability is once each turn by its own text and the enabling spell is capped at six castings by 103.2.b plus 829.1.b's single Flow replay."
+      ],
+      "netPerIteration": "two Recruit tokens a turn, one of them born at a battlefield, for one Order Power plus whatever the enemy-choosing spell already cost you",
+      "terminatesIn": "engine only — one extra move per turn per Wolf and two tokens with it; the ability is once each turn by its own text and the enabler runs out at six castings; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "144.4.a. Units may move from their Base to a Battlefield. 144.4.b. Units may move from a Battlefield to their Base. 144.4.c.1. Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md), issue #180",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #180 — the first entry to use VEN-125 or VEN-127. Card text verbatim from data/corpus_flat.txt. The entry is written against this project's own refuse-by-rule bucket for readies ('a ready that buys nothing'): a ready IS worth nothing on defence and worth exactly one Standard Move on offence, so it is paired only with a card that pays for moving, and the destination restriction of 144.4 is stated rather than glossed — the double move is out and back, not battlefield to battlefield. Trap check: 377.2.b is cited so both trailing sentences are read as conditions; 355.10.d is cited so a programmatic spell is known NOT to satisfy the condition; 359.3.f.2 is cited so 'here' is read at execution and the second token is honestly placed at the base; 185 / 186.1 / 416.1 apply to the Recruits as ever; the disempowerer count correction is carried on Lacerate's own note."
+    },
+    {
+      "id": "mageseeker-investigator-mass-move-tax",
+      "name": "Mageseeker Investigator is the only card in the pool that prices 144.3 — the simultaneous move a swarm uses to arrive as one action",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-163",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 M4. 'Opponents must pay :rb_rune_rainbow: for each unit beyond the first to move multiple units to my battlefield at the same time.' It keys on 144.3 — 'Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units', with 144.3.a requiring a shared destination and 144.3.c paying the exhausts together. Swept: no other card in the pool refers to moving multiple units at the same time."
+        },
+        {
+          "card": "VEN-118",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 M6. '[Tank] (I must be assigned combat damage first.)' The second half of the fortress: whatever gets through the toll still has to pay 815.1.c.2 — 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them' — so six damage lands on this body before anything else of yours can be assigned a point."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower."
+        ],
+        "notable": [
+          "IT TAXES THE EXACT ACTION A SWARM NEEDS, AND THERE IS NO WAY ROUND IT WITHIN ONE MAIN PHASE. 144.3 is what lets any number of bodies arrive as ONE game action, and 144.4.a.1's cap counts OTHER PLAYERS rather than units (447.2.a opens 'In Modes of Play with more than two players'), so in a Duel a swarm is otherwise free to walk in whole. Against the Investigator, six bodies cost five rainbow Power.",
+          "SPLITTING THE MOVE DOES NOT DODGE IT, IT DELAYS IT: each unit's Standard Move costs its own exhaust (144.2) and 315.1.b readies it only at the attacker's next Awakening, so moving them one at a time means one body per turn, which is the whole point of 144.3 in the first place.",
+          "IT ONLY GUARDS THE BATTLEFIELD IT STANDS AT — 'to MY battlefield' — so it is a fortress piece and not a global lock, and it does nothing against a single unit arriving alone, against a unit PLAYED to the battlefield (190.3.a.1 covers 'moving to or being played to', but the Investigator's clause says move), or against 355.2.b's 'play me to an open battlefield' cards.",
+          "THE TOLL IS POWER AND POWER IS THE SCARCE CURRENCY, which is what makes a rainbow per body a real price rather than a speed bump; 809.1.c.1's principle applies here too in that the payment is not domain-locked, so any Power they hold will do.",
+          "THREE INVESTIGATORS DO NOT STACK USEFULLY ON ONE BATTLEFIELD — the clause is a cost added by each of them, so in principle it doubles, but 465.2.c makes three 4-Might bodies a better wall than one, and 103.2.b caps them at three anyway. The entry prices one.",
+          "IT DOES NOT SCORE AND IT DOES NOT LOCK: an opponent with the Power pays and walks in, and 054.1's 'can't beats can' is not engaged anywhere here."
+        ]
+      },
+      "steps": [
+        "Play Mageseeker Investigator (E4) and garrison the battlefield you intend to keep.",
+        "Play Horns of the Dragon (E6) to the same battlefield. Its [Tank] is a static and needs nothing further.",
+        "An opponent who wants to take that battlefield with more than one body at once must use 144.3's simultaneous move, and the Investigator adds a rainbow Power for each unit beyond the first.",
+        "If they pay and attack anyway, 815.1.c.2 makes every unit you control there an invalid damage assignment until Horns of the Dragon has taken lethal — six damage (143.2.a) before the Investigator can be touched.",
+        "If instead they walk bodies in one at a time to dodge the toll, 144.2's exhaust and 315.1.b's once-a-turn ready mean one arrival per turn, and the garrison you are building outpaces it."
+      ],
+      "terminatesIn": "engine only — a standing Power toll on mass arrivals at one battlefield plus a 6-Might Tank behind it; nothing here scores and an opponent with spare Power still pays and comes in",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "144.3. Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units. 144.3.a. When a Move like this is declared by a player, the units' Destination must be the same."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md), issue #180",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #180 — the first entry to use UNL-163 or VEN-118. Card text verbatim from data/corpus_flat.txt. 144.3 is the paragraph this walk's own might-of-demacia-four-body-conquer-draw is built on, and the Investigator is the only card in the pool that prices it — the two entries are the two sides of one rule and each names the other's shape. Trap check: the entry states what the tax does NOT catch (a single arrival, a unit played rather than moved, 355.2.b's open-battlefield cards) rather than selling it as a lock; 144.2 and 315.1.b are cited so the split-the-move counterplay is priced honestly; 815.1.c.2 is cited for the Tank half; produces is empty, as on the other denial entries the vocabulary does not yet cover (issue #157)."
     }
   ]
 }
