@@ -1190,3 +1190,73 @@ Verified from `data/legality.json` by base code rather than from the text marker
 Not walked. The full banned list checked at the same time, so no later row trips on it:
 `OGN-168`, `OGN-177`, `OGN-182`, `OGN-276`, `OGN-284`, `OGN-285`, `OGN-290`, `OGN-292`, `SFD-020`,
 `SFD-122` — banned in both formats; `OGS-019` — restricted in 2v2 only.
+
+## 28. Entries authored, batch 2
+
+### 28.1 `katarina-reckless-hidden-blade`
+`UNL-023 Katarina, Reckless` is the only card in the pool that watches **both** halves of the
+`[Hidden]` cycle: *"When you hide a card, ready me. When you play a card from face down, deal 2 to an
+enemy unit."* **811.1.b** separates them by a turn — hide now for `[A]`, *"beginning on the next turn
+… play this, ignoring its base cost"* — so one card pays her twice on two different turns, for one
+rainbow Power total.
+
+**811.1.d.2 decides where you hide it:** a hidden spell's targets *"must be chosen from among options
+at that battlefield"*, and Hidden Blade's *"Kill a unit at a battlefield"* carries no impossibility
+clause. Katarina's own 2 damage is her ability, not the hidden card's, and is unrestricted.
+
+### 28.2 `ember-monk-edge-of-night`
+`SFD-139 Edge of Night` is the only `[Hidden]` card in the pool that **attaches itself** on the
+face-down play. 818.1 makes Equip an Activated Ability with a cost; its play trigger is an effect, so
+the `[Equip] 1 Chaos Power` is never paid and the whole card costs the 1 rainbow Power of the hide.
+The Monk ends at 4 + 2 (Might Bonus, 137.3) + 2 (his own trigger) = 8.
+
+### 28.3 `blade-dancer-azir-ascendant-ready`
+Every other partner in Blade Dancer's nine-card list is a **spell** — three chooses a game (103.2.b).
+`SFD-050 Azir, Ascendant`'s swap is an *ability* at 1 Calm Power, *"Use only once per turn"*, so it is
+a choose **every turn for the rest of the game** and does something on its own.
+
+### 28.4 `jae-medarda-ki-barrier`
+**437.4**: *"Damage dealt to a Unit that has that all of that damage Prevented is not considered to
+have been dealt to it at all"* — no damage marked, so no kill event, a different mechanism from the
+would-die replacements (#119). **437.5** is the caveat the card prints itself: an attacker may still
+assign more than 7.
+
+### 28.5 `spirit-wheel-stare-down`
+**355.10.d** — an object *"programmatically selected based on its characteristics rather than chosen"*
+is not a target — so *"move ALL enemy units … with less Might"* pays no `[Deflect]` tax (809.1.c /
+809.1.d charge only for targeting or choosing). #97's Stare Down / Public Execution contrast, used.
+And #102's correction is applied: 323.6 strips Control, grants none; a body still has to walk in.
+
+## 29. Family leads — one per trigger card, for the synergies session
+
+This session does not own `data/synergies.json`. Each of the ten walked trigger cards is a candidate
+**anchor**; the cause event is the partner predicate; the false positives are `excludes` reasons.
+
+| anchor | predicate (cause) | basis rules | false positives seen |
+|---|---|---|---|
+| `OGN-202` Jinx, Rebel | you discard one or more cards | 820.1.c.1, 807.2, 144.2 | *"discard 2"* in ONE instruction is ONE event, not two |
+| `VEN-094` Mask Mother | you discard a card **of your choosing** | 422.1.b, 385.1, 385.2 | outlets that discard at RANDOM or from the deck (`[Burn N]`) never reach her |
+| `UNL-055` Vex, Mocking | you `[Stun]` an enemy unit **at a battlefield** | 420.2.a, 323.2.a, 319.6, 815.1.b | a stun with no battlefield referent (a unit in hand/base) gives her nowhere to go |
+| `OGN-059` Eclipse Herald | you stun an enemy unit | 423.1.b, 420.3.a | stuns that only fire on the OPPONENT's turn waste the ready half (bucket E) |
+| `OGN-072` Solari Shrine | stun **and** kill the same unit | 428.1, 423.1.c, 465.2.c.3 | pure stun spells (Rune Prison, Thwonk!, Existential Dread — which BOUNCES rather than kills) |
+| `UNL-023` Katarina, Reckless | a card printed with `[Hidden]` | 811.1.b, 811.1.c.1, 811.1.c.3, 811.1.d.2 | cards that merely MENTION `[Hidden]` (Noxus Saboteur is denial); `OGN-107` Ava Achiever plays from HAND |
+| `OGN-167` Ember Monk | a card **played from face down** | 811.1.c.3, 811.1.c.1 | the same two; the hide itself pays nothing here |
+| `SFD-195` Blade Dancer | you choose a friendly unit (buffs included) | 702.2.a, 144.2 | one-shot spells look identical to repeatable abilities in the list |
+| `SFD-142` Jae Medarda | a **SPELL** chooses him | 702.2.a | **the units and gear in his list are all false positives** — his clause says *with a spell* |
+| `SFD-144` Spirit Wheel | you choose a friendly unit | 702.2.a, 355.10.d | its own exhaust caps it at one draw a turn however many chooses |
+
+## 30. Three matrix classification bugs, and what they did to this slice
+
+Reported by `rc-walk153b` and re-checked here against the corrected `.scratch/cands.json`:
+
+1. **`/kill (a|an|…)/` as a friendly-death cause** also matches *"kill ALL gear"* — Thermo Beam is not
+   a friendly-death cause. Did not touch this slice (no `friendly-dies` rows in rows 6–15).
+2. **`/\[hidden\]/` as a cause** matches cards that merely *mention* Hidden. This one is live for my
+   two `[Hidden]` triggers, and the fix is the same clause the rules use: a real cause prints the
+   reminder *"(Hide now for [A] to react with later for [0])"*. `OGN-107` Ava Achiever is the
+   instructive near-miss — it plays a `[Hidden]` card *from your hand*, and **811.1.c.1** (*"Hide is
+   not a subset of Play"*) means neither Katarina nor the Ember Monk ever sees it. Recorded in §29 as
+   an `excludes` for both anchors.
+3. **`data/legality.json` stores `bases` as an ARRAY**; a scalar read matches nothing, which is how
+   the banned rows reached the top 30. Every card in all ten entries of this slice was re-checked by
+   base code against that array — no hits — and the full banned list is written out at §27.
