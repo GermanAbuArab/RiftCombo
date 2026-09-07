@@ -33145,6 +33145,333 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07 (issue #170), from the proven rule veiled-temple-readies-gear (34 partners, 32 uncovered, one entry). The entry leads with the limit rather than the payoff: 466.5's 'if they didn't already control this Battlefield' and 348.2.a's identical clause mean the Temple pays per CHANGE OF HANDS, never per turn, which is the mistake this pairing invites. SFD-078 Temporal Portal is chosen by the same filter the Jayce family uses — a readier is worth a second full activation only where the effect is capped per use, and 'the next spell you play this turn' is exactly one. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.b, 103.2.d.2, 103.4, 103.4.c, 143.4, 206, 315.1.b, 348.2.a, 348.2.a.1, 415.1, 466.5, 466.5.d, 485.5, 818.1, 820.1.b, 820.1.c.1, 820.2.a. Ban check: SFD-221 and SFD-078 carry no [BANNED marker. Trap check: the battlefield is chosen at random (485.5) and named in prerequisites.easy; the grant expires with the turn; [Repeat] gives exactly one extra execution (820.1.b) and its cost is SPENT (820.1.c.1), which a 'costs N' clause ignores (206); no token, no [Temporary], no buff. Depends on no unruled reading."
+    },
+    {
+      "id": "void-gate-bellows-breath",
+      "name": "Void Gate is a seventh Bonus Damage source and the only one on a battlefield — 715.2 pays it per target, so Bellows Breath deals six",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-296",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "no Control needed",
+          "note": "Colorless battlefield. 'Spells and abilities deal 1 Bonus Damage to units here. (Each instance of damage the spell deals to a unit here is increased by 1.)' No 'you' in the sentence, so 190.6.d never blanks it — the sixth battlefield of this walk found to be live from turn one. Every other Bonus Damage card in the pool is worded 'your spells and abilities deal N'; this one is worded for the location and therefore also arms the opponent."
+        },
+        {
+          "card": "SFD-080",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E1 P1. '[Action] (Play on your turn or in showdowns.) [Repeat] :rb_energy_1::rb_rune_mind: (You may pay the additional cost to repeat this spell's effect.) Deal 1 to up to three units at the same location.' Three targets, so 715.2 applies the Bonus Damage to each of them, and the printed [Repeat] doubles the whole thing — the widest multi-target Deal in the pool at one Energy."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Bellows Breath is mono-Mind and Void Gate is Colorless, so 103.1.b.3 admits any legend with Mind in its pair: UNL-189/UNL-230 Bashful Bloom, SFD-201/SFD-249 Chem-Baroness, VEN-145/VEN-192 Curator of the Sands, OGN-247/OGN-299 Daughter of the Void, UNL-199/UNL-235 Deceiver, VEN-149/VEN-194 Defender of Tomorrow, SFD-189/SFD-244 Fire Below the Mountain, OGN-265/OGN-308 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-181/SFD-240 Mechanized Menace, OGN-255/OGN-303 Nine-Tailed Fox, SFD-199/SFD-248 Prodigal Explorer, UNL-197/UNL-234 Scorn of the Moon, VEN-151/VEN-195 Soul's Reflection, OGN-263/OGN-307 Swift Scout, UNL-181/UNL-226 Virtuoso."
+        ],
+        "notable": [
+          "THE ARITHMETIC, WITH THE QUANTITIES THIS ENTRY DECLARES. 715.2: 'If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by' the Bonus Damage. Bellows Breath at Void Gate deals 2 to each of three units — SIX damage for 1 Energy and 1 Mind Power, against the 3 it deals anywhere else. Paying its own [Repeat] (1 Energy + 1 Mind Power) executes the whole thing again for another six, and 820.2.a lets the second execution choose different units. Twelve damage for 2 Energy and 2 Mind Power.",
+          "714 SUMS INSTANCES, so Void Gate stacks with the six printed 'your spells and abilities deal N Bonus Damage' cards rather than overlapping them. 714.1 keeps Bonus Damage positive.",
+          "715.4 IS THE LIMIT AND IT MATTERS HERE: 'If no damage was Dealt, then Bonus Damage will not apply.' The Gate augments a Deal, it never creates one, and it does nothing at all for a kill, a banish or combat damage.",
+          "IT IS DISJOINT FROM THE EXCESS-DAMAGE FAMILY, WHICH IS THE TRAP THIS BATTLEFIELD INVITES. 713 scopes Bonus Damage to Deal actions and 417.6.c makes combat damage come from the units themselves, so nothing here feeds OGN-034 Tryndamere's 'excess damage' threshold or SFD-120's. The project measured that separation on the six printed sources; Void Gate is the seventh and it is on the same side of the line.",
+          "IT IS SYMMETRIC AND YOUR OWN GARRISON STANDS IN IT. 'Spells and abilities deal 1 Bonus Damage to units HERE' — the opponent's removal is a point better against your bodies at this battlefield too. This is a battlefield for a deck whose own units are large or absent.",
+          "VOID GATE IS NOT GUARANTEED TO BE ON THE TABLE: 485.4.a, 485.5, 486.5 and 103.4.c as for every battlefield entry."
+        ]
+      },
+      "steps": [
+        "Bring Void Gate as one of your three battlefields. It needs no Control: there is no 'you' in its text.",
+        "Play Bellows Breath (E1 + 1 Mind Power) and choose up to three units at Void Gate. [Action] speed means this can be done inside a showdown as well as in your Main Phase (806.1.b).",
+        "Each of the three takes 1 from the spell and 1 more from the Gate (715.2), so each takes 2 — six damage from one Energy and one Power.",
+        "Optionally pay the printed [Repeat] cost (1 Energy + 1 Mind Power) at step 2 of playing (356.2.b.1). 820.1.d.1 executes the instructions again and 820.2.a lets the second execution pick different units, for another six.",
+        "143.3.b.1 heals all marked damage at the end of the turn, so the damage has to be lethal in the turn it is dealt (143.2.a)."
+      ],
+      "netPerIteration": "6 damage spread over up to three units for 1 Energy + 1 Mind Power, or 12 for 2 Energy + 2 Mind Power with the Repeat",
+      "terminatesIn": "engine only — 820.1.b gives exactly one extra execution per casting and 820.1.c.3 forbids paying the Repeat cost twice, so three copies are six executions in a game; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "715.2. If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by the amount of Bonus Damage."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use OGN-296. Card text verbatim from data/corpus_flat.txt. The project's Bonus Damage sweep had recorded six sources, all worded 'your spells and abilities deal N'; Void Gate is a seventh, worded for the location, and it is the reason the count was worth re-running. Trap check: 713 + 417.6.c are cited so the Gate is not mistaken for a feed to the excess-damage family, which is the trap this card invites; 715.4 is cited so it is not read as creating damage; 143.3.b.1 is cited so the damage is not banked across turns; the symmetry is stated as a cost; exactly one battlefield is named, so 485.4.a is respected."
+    },
+    {
+      "id": "purifier-veteran-poro-blade-stack",
+      "name": "Purifier reads EACH Equipment, and 807.2 sums granted Assault — three blades on one body is +3 on top of +6",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-183",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Body legend. 'Your Equipment each give [Assault]. (+1 :rb_might: while equipped unit is an attacker.)' The load-bearing word is EACH: it is a grant per Equipment, not a grant per unit, so stacking Equipment on one body stacks the keyword. 807.2 then does the arithmetic — 'If a Unit has Assault or has been granted Assault and is granted Assault by an additional source, the Assault Value of all granted Assault keywords is summed' — with Riot's own worked example being Petty Officer plus Cleave reaching Assault 4."
+        },
+        {
+          "card": "SFD-095",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "state": "all three attached to one unit",
+          "note": "Body gear, E2, M+2. '[Equip] :rb_rune_body: (:rb_rune_body:: Attach this to a unit you control.) [Tags: Equipment]' — the cheapest vanilla Might bonus in the pool per rune, and vanilla is what this line wants: 434.1.c appends every attached card's Effect Text to the carrier, and Doran's Blade has none, so three of them carry no drawback to read. 434.1.b.1 contemplates more than one card attached to a Top-Most Card and 434.1.d modulates its Might by the Might Bonus of all of them."
+        },
+        {
+          "card": "SFD-099",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Body unit, E2 M2. '[Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for :rb_rune_rainbow: less, even if it's already attached.)' The cheapest Weaponmaster body in the pool, and the keyword says 'to ME' — which is exactly right here, because he IS the carrier. It frees ONE attach, on the turn he is played, and only if an Equipment is already on the board."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Purifier IS the legend, SFD-183 or SFD-241 (Fury/Body), so this is a one-legend line by construction. Doran's Blade and Veteran Poro are both mono-Body, so 103.1.b.3 is satisfied and the Fury half of the identity is free for the rest of the deck."
+        ],
+        "notable": [
+          "THE LEDGER, COUNTING THE [EQUIP] COSTS AND THE POWER, WHICH IS THE PART TWO PUBLISHED FIGURES IN THIS PROJECT ONCE FORGOT. Three Doran's Blades cost E2 each. Veteran Poro costs E2. Play the three Blades first, then the Poro: [Weaponmaster] attaches one of them for one rainbow less, i.e. for nothing, and the other two cost one Body rune each. Total E8 plus 2 Body Power. The result is Might 2 + 6 (434.1.d, three M+2 bonuses) = 8 standing, and Assault 3 from Purifier on top of that while he is the attacker (807.1.c) — MIGHT 11 ATTACKING.",
+          "[WEAPONMASTER] FIRES ONCE, ON PLAY, AND ATTACHING IS NEVER PLAYING. 818.1 makes Equip an Activated Ability with a cost, so the two attaches you pay for fire no 'when you play this' trigger, and the Weaponmaster discount is not available again on a later turn.",
+          "IT NEEDS A REAL COMBAT. 807.1.d: 'Being an attacker means the Unit has gained the Attacker designation during Combat', which 464.2.c.3 grants only inside a Combat that 323.9 staged — and 323.9 stages one only where units of opposing players are present. Walking onto an empty battlefield is not an attack and the Assault is worth nothing there.",
+          "AND THE WHOLE STACK IS ONE BODY, WHICH IS THE RISK. 465.2.c.3 forces lethal onto one unit at a time, so a single answer that kills or bounces the carrier costs you eleven Might and four cards at once. SFD-102 Hexdrinker ([Deflect], [Equip] one Body rune) is the carrier-independent insurance and is deliberately not in uses[] — it is a fourth Equipment and would change the count.",
+          "THE OTHER DIRECTION PURIFIER OPENS, not costed here: the grant is per Equipment across your whole board, so spreading one Equipment onto each of several attackers gives each of them +1 while attacking, and 144.3 moves the whole group as a single game action. That is a wider, flatter use of the same legend and belongs in its own entry rather than in this one's arithmetic.",
+          "103.2.b CAPS DORAN'S BLADE AT THREE, which is exactly what this line spends, so there is no fourth instance to add."
+        ]
+      },
+      "steps": [
+        "Deck-build under a Purifier legend (SFD-183 or SFD-241). 'Your Equipment each give [Assault]' is a static and needs no set-up.",
+        "Play three Doran's Blades (E2 each). Playing an Equipment is not attaching it — 818.1 makes Equip a separate Activated Ability — so all three sit on the board unattached.",
+        "Play Veteran Poro (E2). His [Weaponmaster] trigger attaches one Blade to him for one rainbow less, which on a one-rune Equip cost is nothing (356.6 floors it at 0).",
+        "Activate [Equip] on the other two Blades, one Body rune each (818.1.b), choosing the Poro. 434.1.f is not engaged since neither was attached elsewhere.",
+        "434.1.d modulates his Might by all three Might Bonuses: 2 + 6 = 8. Purifier grants [Assault] once per Equipment and 807.2 sums the three instances into Assault 3.",
+        "Attack a garrisoned battlefield. 190.3.a.1 applies Contested, 323.9 stages the Combat and 464.2.c.3 gives him the Attacker designation; 807.1.c then reads him at Might 11 for 465.2.c's damage assignment."
+      ],
+      "terminatesIn": "engine only — an 11-Might attacker for E8 and 2 Body Power, capped at three Blades by 103.2.b and at one free attach by [Weaponmaster] firing on play; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "807.2. If a Unit has Assault or has been granted Assault and is granted Assault by an additional source, the Assault Value of all granted Assault keywords is summed. Example: Petty Officer has Assault. It is chosen as the target of Cleave, which says \"Give a unit [Assault 3] this turn.\" After Cleave resolves, Petty Officer has Assault 4 this turn."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the third of the ten uncatalogued legend names, and the first entry to use SFD-183. Card text verbatim from data/corpus_flat.txt. The [Equip] costs and the Power are counted in the entry's own terminatesIn, per the project's standing correction that two published figures had counted neither. Trap check: 807.1.d is cited so the Assault is not claimed on an empty battlefield (807.1.d / 383.4.e / 461 — the attack needs a garrison); 818.1 is cited so attaching is not mistaken for playing and [Weaponmaster] is not claimed on later turns; the single-point-of-failure risk is stated with 465.2.c.3 rather than hidden; the wider one-Equipment-per-attacker use of the same legend is flagged as a separate entry rather than folded into this ledger; Doran's Blade is vanilla on purpose, because 434.1.c would append any drawback text to the carrier."
+    },
+    {
+      "id": "mechanized-menace-breakneck-mech-token-keywords",
+      "name": "Two statics turn every Mech token into a Shield-Deflect-Ganking body — and [Ganking] is the answer to the token walk bottleneck",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-181",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Mind legend. 'Your Mechs have [Shield]. (+1 :rb_might: while they're defenders.)' 814.1.b.3 makes a bare [Shield] worth 1, and 187.4 — 'A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag' — gives every Mech token the tag by rule, so the grant reaches tokens with no extra text needed."
+        },
+        {
+          "card": "SFD-071",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind unit, E8 P2 M7. 'Your Mechs have [Deflect] and [Ganking]. (Opponents must pay :rb_rune_rainbow: to choose us with a spell or ability. We can move from battlefield to battlefield.) I enter ready if you control another Mech.' The [Ganking] half is what makes this more than a wall: 144.4.c.1 lets a Mech take its Standard Move from battlefield to battlefield, which is the leg the project has measured as the bottleneck of every token line."
+        },
+        {
+          "card": "SFD-021",
+          "quantity": 3,
+          "role": "resource",
+          "zone": "BOARD",
+          "note": "Fury unit, E6 P1 M6. '[Deathknell] — Play two 3 :rb_might: Mech unit tokens to your base. (When I die, get the effect.)' The token source. Note where they land: 'to your base', which is why the [Ganking] above is worth what it is — without it, a token born at the base can only ever reach one battlefield and never move between them (144.4.a, 144.4.b)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mechanized Menace IS the legend, SFD-181 or SFD-240 (Fury/Mind), so this is a one-legend line by construction. Breakneck Mech is mono-Mind and Ferrous Forerunner is mono-Fury, so 103.1.b.3 is satisfied exactly and there is no room for a third domain."
+        ],
+        "notable": [
+          "WHAT A 3-MIGHT MECH TOKEN IS WORTH UNDER BOTH STATICS: 3 Might standing, 4 defending (814.1.c), 1 rainbow Power for an opponent to choose it with a spell or ability (809.1.c, and 809.1.c.1 lets that Power be any Domain), and a Standard Move from battlefield to battlefield (144.4.c.1). Two Forerunners' worth is four such bodies for the price of two deaths.",
+          "[GANKING] IS AN OPTION, NOT AN EXTRA MOVE. 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move', and 810.2 makes a second instance redundant. So each token still moves once a turn and still pays 144.2's exhaust — what changes is that the second battlefield of a Duel is now reachable without walking home first.",
+          "THE TOKENS ARE STILL TOKENS. 185 keeps them out of every 'cards' count, 186.1 makes them cease to exist the moment they enter any Non-Board Zone, and 416.1 can never recycle one. They are bodies and mobility, and nothing else.",
+          "THEY ENTER EXHAUSTED (143.4), SO THE FIRST MOVE IS NEXT TURN unless something alters it — 143.4.a names Accelerate 'or similar game effects', and SFD-171 Renata Glasc, Industrialist ('Your tokens enter ready') and OGN-011 Magma Wurm are the two sources in the pool. Neither is in uses[] because neither is in this identity: Renata is Order and Magma Wurm is Fury but the shell has no room to spare. This is the honest delay in the line.",
+          "BREAKNECK MECH'S OWN 'I enter ready if you control another Mech' IS A REAL CLAUSE AND A REAL ORDERING: play a Forerunner (or any Mech) first and the E8 + 2 Power body arrives able to move the same turn.",
+          "IT DOES NOT SCORE. Every one of these keywords is defensive or positional; the points still have to come from a Hold or a Conquer somewhere else, which is why this produces token-body-engine and nothing more."
+        ]
+      },
+      "steps": [
+        "Deck-build under a Mechanized Menace legend (SFD-181 or SFD-240). 'Your Mechs have [Shield]' is a static from turn one.",
+        "Play Ferrous Forerunner (E6 + 1 Fury Power). When it dies — in combat, or to any of your own kill costs — its Deathknell plays two 3-Might Mech unit tokens to your base.",
+        "187.4 gives each token the Mech tag by rule, so both statics reach them: [Shield] from the legend, [Deflect] and [Ganking] from Breakneck Mech.",
+        "Play Breakneck Mech (E8 + 2 Power) with another Mech already on the board, so its own clause lets it enter ready.",
+        "Standard-Move the tokens. 144.4.a takes them from your base to a battlefield; 144.4.c.1 — the [Ganking] permission — then lets them cross from that battlefield to the other one without returning home, paying 144.2's exhaust once each. 144.3 moves any number of them as a single game action to a shared destination."
+      ],
+      "terminatesIn": "engine only — two 3-Might tokens per Forerunner death (six on three copies, 103.2.b), each defending at 4, each costing an opponent a rainbow to target, each able to cross between battlefields; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "187.4. A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the fourth of the ten uncatalogued legend names, and the first entry to use SFD-181 or SFD-071. Card text verbatim from data/corpus_flat.txt. 187.4 is the citation that makes the whole line work and it is quoted rather than paraphrased: the tokens get the Mech tag BY RULE, so neither static needs the token to say anything. Trap check: 810.1.c.3 and 810.2 are cited so [Ganking] is not mistaken for an extra move or stacked; 143.4 and 143.4.a are cited so the entering-exhausted delay is stated rather than glossed, and the two cards that would fix it are named together with the reason neither fits this identity (103.1.b, two domains); 185 / 186.1 / 416.1 are cited so the tokens are never counted as cards or recycled; no attack is claimed anywhere."
+    },
+    {
+      "id": "eye-of-twilight-zephyr-sage-tank-redirect",
+      "name": "Eye of Twilight grants [Tank] at [Action] speed after the attack is declared — 815.1.c.2 then makes every other body of yours an illegal target",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-147",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Order legend. '[Action][>] :rb_exhaust:: Give a friendly unit [Tank] this turn. (It must be assigned combat damage first.)' Two words carry it: [Action], which 806.1.c.2 spells out as 'This can be activated during showdowns on any player's turn', so the grant is made AFTER you have seen the attack; and the exhaust, which 315.1.b readies every Awaken, so it is free and recurs forever."
+        },
+        {
+          "card": "OGS-005",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E6 P1 M6. '[Shield] (+1 :rb_might: while I'm a defender.)' A vanilla body chosen for its size: 814.1.c puts it at Might 7 the moment it takes the Defender designation, and the whole point of the grant is that the attacker has to find seven damage for this one card before 815.1.c.2 will let them assign anything to the rest of your garrison."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Eye of Twilight IS the legend, VEN-147 or VEN-193 (Calm/Order), so this is a one-legend line by construction. Zephyr Sage is mono-Calm, so 103.1.b.3 is satisfied and the Order half is free for the rest of the deck."
+        ],
+        "notable": [
+          "WHY THE GRANT IS WORTH MORE THAN THE KEYWORD. 815.1.c.2: 'If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' Granting [Tank] to exactly ONE body therefore does not protect that body — it protects every OTHER body you have there, by making them illegal assignments until the Sage is dead.",
+          "AND WHAT SURVIVING BODIES BUY IS THE BATTLEFIELD. 323.6 takes Control from a player 'without their Units occupying them' at the next Cleanup, so an attack that kills the Sage and nothing else leaves you still holding the battlefield, and 315.2.b.2 still Holds it at your next Beginning Phase.",
+          "THE TIMING IS THE CARD. Grant it inside the Combat, after 464.2.c.3 has designated the attackers and you can count their summed Might (465.2.c), not in your Main Phase on a guess. 806.1.b is the permission and 312.2.c is what gives you priority in the Closed State to use it.",
+          "SEVEN IS THE NUMBER, AND IT IS EXACT. 814.1.c reads the Sage at Might 6 + 1 = 7 while she is a defender, 815.1.c.1 forces lethal onto her before the next unit, and 465.2.c.4 forbids assigning her more than the minimum needed to kill. So the toll is exactly 7 summed attacking Might, no more and no less.",
+          "ONE GRANT PER TURN AND NO WAY TO DOUBLE IT. 815.2 makes multiple instances of Tank redundant, and the cost is the legend's own exhaust, which 315.1.b returns only at your next Awakening — so a second combat in the same turn goes ungranted.",
+          "IT DOES NOT SCORE AND IT IS NOT A LOCK: an attacker with 7 or more summed Might pays the toll and proceeds to the rest of your garrison in the same damage step."
+        ]
+      },
+      "steps": [
+        "Deck-build under an Eye of Twilight legend (VEN-147 or VEN-193) and garrison a battlefield with Zephyr Sage alongside whatever the deck actually wants to keep alive there.",
+        "The opponent attacks. 190.3.a.1 applies Contested, 323.9 stages the Combat, 464.2.c.3 designates the attackers and 464.2.e gives your bodies the Defender designation.",
+        "In the Combat's Closed State, where 312.2.c gives you priority, activate the legend: exhaust it and give Zephyr Sage [Tank] this turn. 806.1.c.2 is the permission to do it on the opponent's turn.",
+        "814.1.c reads the Sage at Might 7 as a defender. 815.1.c.2 now makes every other unit you control in this Combat an invalid damage assignment until she has lethal damage.",
+        "465.2.c.3 and 465.2.c.4 make the attacker spend exactly 7 of their summed Might on her before anything else of yours can be assigned a point.",
+        "143.3.b.1 heals the marked damage at the end of the turn and 315.1.b readies the legend at your next Awakening, so the grant is available again every turn."
+      ],
+      "terminatesIn": "engine only — one damage redirect per turn, costing an attacker exactly 7 summed Might to get past; nothing here scores and 815.2 makes a second grant on the same body redundant",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "806.1.c.2. On Activated Abilities: \"This can be activated during showdowns on any player's turn.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the fifth of the ten uncatalogued legend names, and the first entry to use VEN-147 or OGS-005. Card text verbatim from data/corpus_flat.txt. The inversion is the content: granting [Tank] to one body is a protection for every OTHER body, which is the opposite of how the keyword reads, and 815.1.c.2 is quoted so the claim stands on the paragraph. Trap check: the toll is stated as an exact number derived from 814.1.c + 815.1.c.1 + 465.2.c.4 rather than as a general 'wall' claim; 815.2 and the legend's own exhaust are cited so the grant is not doubled or reused within a turn; 143.3.b.1 is cited so nothing is banked across turns; no attack is claimed on your side, so 807.1.d / 383.4.e / 461 never come up; produces is empty, as on the other defensive entries the vocabulary does not yet cover (issue #157)."
+    },
+    {
+      "id": "scorn-of-the-moon-showdown-energy",
+      "name": "Scorn of the Moon is Reaction-speed Energy that costs no rune held ready — 415.3.a is why that is worth a whole legend",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-197",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Mind/Chaos legend. '[Reaction][>] :rb_exhaust:: [Add] :rb_energy_1:. Spend this Energy only during showdowns. (Abilities that add resources can't be reacted to.)' The parenthesis is 429.2 printed on the card — 'Triggered and activated abilities that Add resources resolve as soon as they are finalized' — with 429.2.a keeping priority from passing, so the Energy is guaranteed once activated and cannot be countered in response."
+        },
+        {
+          "card": "OGN-095",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E1. '[Reaction] (Play any time, even before spells and abilities resolve.) Give a unit -1 :rb_might: this turn, to a minimum of 1 :rb_might:. Draw 1.' Its whole cost is the one Energy the legend adds, so it is castable in a showdown out of a completely empty Rune Pool — and it replaces itself, so the tempo is free as well as the mana."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Scorn of the Moon IS the legend, UNL-197 or UNL-234 (Mind/Chaos), so this is a one-legend line by construction. Stupefy is mono-Mind, so 103.1.b.3 is satisfied and the Chaos half is free for the rest of the deck."
+        ],
+        "notable": [
+          "415.3.a IS WHY THIS IS A LEGEND'S WHOLE TEXT AND NOT A ROUNDING ERROR. 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' So holding a rune back for Reaction mana costs you that rune for the whole of your own turn AND the whole of the opponent's — the project measured that as the thing OGS-017 Dark Child sells. Scorn's Energy needs no rune held: 315.1.b readies the legend every Awaken and the ability is [Reaction], so the mana is created at the moment it is spent.",
+          "AND 167 IS WHY IT CANNOT BE BANKED: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.' Add it inside the showdown you intend to spend it in, never before.",
+          "THE RESTRICTION IS REAL AND NARROW: 'Spend this Energy only during showdowns.' A Showdown or Combat is exactly where 312.2.a gives the non-turn player priority at all (with Closed States), so the restriction costs nothing that the [Reaction] wording had not already cost — but it does mean the Energy is dead in your own Neutral Open Main Phase.",
+          "ONE ENERGY PER TURN, AND NO MULTIPLIER REACHES IT. The cost is the legend's own exhaust; 107.4.b keeps the legend out of every 'here' clause, so Reckoner's Arena and Blue Sentinel cannot see it, and 107.4.c is what lets it be exhausted at all. The five cards in the pool that ready a legend are the only way to activate it twice in a turn.",
+          "WHAT IT BUYS, PRICED HONESTLY: every 1-Energy [Reaction] spell in Mind and Chaos becomes castable with an empty pool. Stupefy is the one named here because it also replaces itself; OGN-104 Retreat and OGN-169 Gust are the other two at that price.",
+          "IT IS THE OPPOSITE DECK TO mystic-vortex-helm-suppression-tax, which prices [Reaction] cards in showdowns UP. The two should never be built together."
+        ]
+      },
+      "steps": [
+        "Deck-build under a Scorn of the Moon legend (UNL-197 or UNL-234) with cheap [Reaction] spells in Mind and Chaos.",
+        "Play your turn out normally, spending every rune. 415.3.a means nothing you exhaust comes back until your own Awakening, and this line does not need it to.",
+        "On the opponent's turn, when a Showdown or Combat opens, 312.2.a gives you priority in that state.",
+        "Exhaust the legend for its [Reaction] ability: [Add] 1 Energy. 429.2 resolves it as soon as it is finalized and 429.2.a keeps priority from passing, so nobody can respond to it.",
+        "Spend that Energy inside the showdown on Stupefy (E1): a unit gets -1 Might this turn and you draw 1. 167 would have emptied the pool at the end of the turn anyway, so nothing is wasted.",
+        "315.1.b readies the legend at your next Awakening and the ability is available every turn thereafter."
+      ],
+      "netPerIteration": "1 Energy at Reaction speed inside any showdown, every turn, with no rune held back for it",
+      "terminatesIn": "engine only — one Energy per turn, spendable only in showdowns; it scores nothing and 103.2.b caps the named payoff at three copies",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "429.2. Triggered and activated abilities that Add resources resolve as soon as they are finalized. 429.2.a. Priority and Focus will not pass from Add abilities being finalized or resolving, and will resolve before any other outstanding items on the chain are finalized."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the sixth of the ten uncatalogued legend names, and the first entry to use UNL-197. Card text verbatim from data/corpus_flat.txt. The card's own parenthesis ('Abilities that add resources can't be reacted to') is 429.2/429.2.a printed on a card, and it is cited to the rule rather than taken on the card's word. Trap check: 167 is cited so the Energy is not banked across a phase; 415.3.a is cited because it is the entire reason the effect has value; 107.4.b and 107.4.c are cited so the legend is neither claimed to be at a location nor denied Game Object status; the anti-synergy with this walk's own mystic-vortex-helm-suppression-tax is named so the two are never built together."
     }
   ]
 }
