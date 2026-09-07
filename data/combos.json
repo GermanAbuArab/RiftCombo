@@ -50608,6 +50608,169 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #187, sub-rule lane 100-499). 383.3.a, 383.3.a.1, 383.3.a.2 and 383.3.a.3 are cited by no entry and no synergy rule in this project, and 383.3.a.3's worked example names SFD-058 Ornn, Blacksmith while 383.3.a's names OGN-199 Tideturner. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 137.3, 194.1.d, 315.2.b.2, 383.3.a, 383.3.a.2, 383.3.a.3, 383.3.b, 416.5, 431.1.a, 431.1.c, 431.1.c.1, 477.3.d, 485.4, 815.1.c.2. REPORT TO THE MANAGER: this is the DECISION half of a split the project has only carried the COST half of. A LEADING 'you may' is decided at finalization and declining makes the ability 'considered to have not triggered' (383.3.a.2) - the same window 383.3.b pays a base cost in, so it is one blind commitment covering both. A LATER 'you may' is decided on resolution and the ability is ALWAYS finalized (383.3.a.3), so you buy information first. When comparing two triggers that read alike, find the 'you may' first. Distinct from svellsongur-ornn-hold, teemo-strategist-rabadons-deathcrown-bonus-kill and karma-ornn-hold-recycle-buff, none of which cites 383.3.a.x. Trap check: 416.5 makes the recycle random so the dig never compounds; the Hold half needs Ornn alive at a battlefield you control, which is why the [Tank] is in uses[]; no unruled reading."
+    },
+    {
+      "id": "targons-peak-defy-delayed-ready",
+      "name": "359.3.e.16: a delayed ability whose duration has already ended is never generated - and Targon's Peak's end-of-turn ready is the pool's one free source of off-turn Energy on a battlefield",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-289",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield. 'When you conquer here, ready up to 2 runes at the end of this turn.' A DELAYED trigger, which is the whole point: it resolves after your Main Phase, so the runes are still ready when the opponent's turn begins. Riot uses this card as the worked example for 359.3.e.16."
+        },
+        {
+          "card": "OGN-045",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E1 P1. '[Reaction] (Play any time, even before spells and abilities resolve.) Counter a spell that costs no more than :rb_energy_4: and no more than :rb_rune_rainbow:.' One Energy and one Power is exactly what the Peak's two readied runes and the free Power floor cover, with nothing held back."
+        }
+      ],
+      "needs": [
+        "conquer-engine"
+      ],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Targon's Peak is Colourless, so it constrains no identity; Defy is mono-Calm, so 103.1.b.3 needs a legend with Calm among its two domains - measured over data/cards.json those include OGN-255 / OGN-303 Nine-Tailed Fox (calm/mind), OGN-257 / OGN-304 Blind Monk (calm/body), OGN-261 / OGN-306 Radiant Dawn (calm/order), SFD-189 / SFD-244 Fire Below the Mountain (calm/mind), SFD-197 / SFD-247 Emperor of the Sands (calm/order), UNL-189 / UNL-230 Bashful Bloom (calm/mind), UNL-195 / UNL-233 Green Father (calm/order), VEN-139 / VEN-189 Rogue Assassin (calm/fury), VEN-145 / VEN-192 Curator of the Sands (calm/mind) and VEN-147 / VEN-193 Eye of Twilight (calm/order).",
+          "Neither is a Signature card (checked against data/cards.json), and neither is banned or restricted in either format - OGN-289 is not among the five battlefields banned in both formats (OGN-276, OGN-284, OGN-285, OGN-290, OGN-292).",
+          "A battlefield is not guaranteed to be in play: 485.4.a has each player provide three and only one is used, 485.5 selects it randomly, and 103.4.c forbids two of the same name - so this is a line the deck can draw into, not one it can assemble.",
+          "The Peak pays on a CONQUER, so the deck needs something that takes a battlefield; the entry declares needs: conquer-engine rather than pretending the trigger is free."
+        ],
+        "notable": [
+          "415.3.a IS THE PROBLEM AND A DELAYED TRIGGER IS THE ANSWER. 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn' - so a rune tapped on your turn is dead for the whole of the opponent's, which is why holding up a [Reaction] normally costs you the runes for a full turn cycle. Targon's Peak readies 2 'at the end of this turn', i.e. after 167 has emptied your Rune Pool and after your Main Phase is over, so those two runes are still ready when the opponent acts. It is a refund, not a ramp, and the refund is the part that matters.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Two readied runes are 2 Energy on the opponent's turn (164.2.a taps a ready rune for 1 Energy). The Power half is already free: 164.2.b's cost is the RECYCLE and carries no exhaust, so runes you already tapped this turn still pay Power - the free floor of 2 Power a turn this project measures. Defy at 1 Energy + 1 Power is therefore held up with NOTHING kept back, and one Energy to spare. OGN-064 Wind Wall is the tier above at 3 Energy + 2 Power, which the Peak covers only if you also hold one rune ready through your own turn.",
+          "AND 359.3.e.16 IS THE TRAP, WITH THIS CARD AS RIOT'S OWN EXAMPLE. 'If a Delayed Ability's duration has ended before it was generated, the Delayed Ability is not generated and any instructions related to it are ignored', and the example is 'If Targon's Peak is conquered during the Ending Phase after the beginning of the ending step ... the delayed trigger will not be generated.' So a Conquer bought late - inside the Ending Phase - pays nothing at all. Conquer in the Main Phase or the payoff silently does not exist. 359.3.e.15 and .e.16 are cited by no entry and no synergy rule in this project.",
+          "THE SECOND WORKED EXAMPLE AT 359.3.e.16 IS WORTH CARRYING SEPARATELY. 'Akshan, Mischievous reads in part \"When you play me, if you paid the additional cost, move an enemy gear to your base. You control it until I leave the board.\" If Akshan leaves the board in reaction to his play effect, the delayed passive ability \"You control it until I leave the board,\" will not be generated. You will not gain control of the targeted gear even for a moment.' Removing SFD-109 Akshan in response to his own play trigger denies the theft entirely rather than merely undoing it - a general answer to every 'you control it until I leave' clause.",
+          "'UP TO 2' MEANS THE PEAK NEVER MISFIRES. There is no cost and no minimum, so a Conquer with no exhausted runes simply readies fewer. That is what makes it worth a battlefield slot in a deck that was going to conquer anyway.",
+          "AND THE OPPONENT CANNOT PLAY AROUND IT THE WAY THEY PLAY AROUND HELD RUNES. Runes readied at end of turn are indistinguishable from runes never tapped, but you spent them in your own Main Phase - so the Peak buys the tempo of using your mana AND the option of answering with it.",
+          "IT IS A NEEDS ENTRY, NOT A SELF-CONTAINED ONE. 469.1 defines Conquer on a battlefield not yet Scored this turn and 470 caps Scoring at one per battlefield per turn, so the Peak fires at most once a turn and only when something of yours takes it. The catalogue's conquer engines are what feed it; this entry prices the payoff."
+        ]
+      },
+      "steps": [
+        "Bring OGN-289 Targon's Peak as one of your three battlefields (485.4.a); 485.5 selects one at random, so this is a line you draw into.",
+        "Spend your runes normally in your Main Phase - the Peak's payoff does not require holding any back.",
+        "Conquer Targon's Peak during your Main Phase. Its trigger creates a DELAYED ability set to resolve at the end of this turn.",
+        "Do not conquer it inside the Ending Phase: 359.3.e.16 means a delayed ability whose duration has already ended is never generated, and Riot's own example is this card.",
+        "At the end of your turn the delayed ability resolves and readies up to 2 runes. 167 has already emptied your Rune Pool; the RUNES are ready.",
+        "On the opponent's turn, tap those two for 2 Energy (164.2.a) and recycle two already-exhausted runes for 2 Power (164.2.b, no exhaust in its cost).",
+        "Play OGN-045 Defy (1 Energy + 1 Power) in reaction, with an Energy to spare. Three copies (103.2.b)."
+      ],
+      "netPerIteration": "two Energy on the opponent's turn per Conquer, at no cost in tempo, from runes you had already spent",
+      "terminatesIn": "engine only - nothing here scores. One firing per turn (469.1 and 470 cap the Conquer), 'up to 2' runes, and 485.5 makes the battlefield itself a draw rather than an assembly",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 359.3.e.16",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If a Delayed Ability’s duration has ended before it was generated, the Delayed Ability is not generated and any instructions related to it are ignored."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 359.3.e.16 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Targon’s Peak is a battlefield that reads in part “When you conquer here, ready up to 2 runes at the end of this turn.” If Targon’s Peak is conquered during the Ending Phase after the beginning of the ending step, such as via an effect like thrill of the Hunt, the delayed trigger will not be generated."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 415.3.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, sub-rule lane 100-499). 359.3.e.15 and 359.3.e.16 are cited by no entry and no synergy rule in this project, and 359.3.e.16's two worked examples name OGN-289 Targon's Peak and SFD-109 Akshan, Mischievous. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.4.c, 164.2.a, 164.2.b, 167, 359.3.e.16, 415.3.a, 469.1, 470, 485.4.a, 485.5. REPORT TO THE MANAGER: two facts. (a) A DELAYED trigger that resolves 'at the end of this turn' is the only way in the pool to have runes ready on the opponent's turn without holding them back through your own, because 415.3.a otherwise readies nothing until your next Awakening - Targon's Peak is a free, Colourless source of it on a Conquer. (b) 359.3.e.16 kills a delayed ability whose duration ended before it was generated, and its second example is the general answer to every 'you control it until I leave the board' clause: remove SFD-109 Akshan in response to his own play trigger and the theft never happens at all, rather than being undone. Distinct from sprite-queen-targon-peak-conquer-cycle, which uses the Peak's Conquer trigger for a cycle and never prices the rune refund, and from hextech-anomaly-wind-wall-off-turn-counter, which buys off-turn mana from a gear. Trap check: the Conquer must be in the Main Phase or the delayed ability is never generated; the battlefield is randomly selected (485.5) and the entry says so; needs: conquer-engine is declared rather than assumed; no unruled reading."
+    },
+    {
+      "id": "lillia-fae-fawn-signpost-sprite-at-the-origin",
+      "name": "359.3.f.3: a trigger's information is read when its CONDITION is fulfilled, so Lillia's Sprite lands at the battlefield she left even if she is gone by the time it resolves",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-082",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E3 M3. '[Accelerate] ... When I move from a location, play a 3 :rb_might: Sprite unit token with [Temporary] there.' Riot's worked example for 359.3.f.3 is this card: the location is noted when the trigger is placed on the chain."
+        },
+        {
+          "card": "UNL-045",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E2. '[Action][>] Exhaust a unit you control, :rb_exhaust:: Move a different unit you control to the location of the unit you exhausted to pay for this ability.' A move by EFFECT, so 420.3.a's exhaust on the Standard Move never applies and Lillia keeps hers."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Lillia is mono-Mind and the Signpost is mono-Calm, so the identity is Calm/Mind and 103.1.b.2 needs a legend covering both. Measured over data/cards.json those are OGN-255 / OGN-303 Nine-Tailed Fox, SFD-189 / SFD-244 Fire Below the Mountain, UNL-189 / UNL-230 Bashful Bloom and VEN-145 / VEN-192 Curator of the Sands.",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "The Signpost's cost exhausts a DIFFERENT unit you control plus itself, so the line needs a third body standing at your base as the anchor Lillia is moved to."
+        ],
+        "notable": [
+          "THE RULE, AND RIOT'S EXAMPLE IS THIS CARD. 359.3.f.3: 'Some information used by triggered abilities is referenced from the trigger condition of the ability. This information is checked when the trigger condition is fulfilled', with 'Lillia, Fae Fawn reads \"when I move from a location, play a 3 [M] Sprite token with Temporary there.\" If Lillia moves to a battlefield, her triggered ability will be placed on the chain and it will note the location she moved from when it does so. If she moves to a non-board zone in reaction to the triggered ability on the chain, it will not affect where the Sprite token will be played when the triggered ability resolves.' 359.3.f.3, .f.3.a and .f.3.b are cited by no entry and no synergy rule in this project.",
+          "SO THE SPRITE IS DELIVERED TO A BATTLEFIELD WITHOUT ANYTHING WALKING THERE. Move Lillia FROM a battlefield to your base and the Sprite is played at the battlefield she left - 'there' is the origin, locked when the trigger was placed. That is a 3-Might body arriving at a battlefield with no Standard Move, which is the bottleneck this project measures on every token line (144.4 confines the Standard Move to base and battlefield, and a base-born token needs a whole turn to walk).",
+          "AND IT SURVIVES REMOVAL AIMED AT LILLIA. Because the location was read at the trigger CONDITION, killing or bouncing her in response does not move, redirect or cancel the Sprite. Compare 359.3.f.4, where 'enemy' and 'friendly' status is checked on EXECUTION - the two sub-rules pull in opposite directions and the difference is where the information comes from, not when the ability resolves.",
+          "THE SIGNPOST IS THE FREE MOVER AND IT COSTS LILLIA NOTHING. 420.3.a puts the exhaust on the STANDARD Move only, and the Signpost is an effect move (449), so Lillia is moved while still ready and can Standard-move back to the battlefield in the same Main Phase - which fires the trigger a SECOND time, from the base this time, putting a Sprite at your base. One round trip a turn is two Sprites, one of them where you want it.",
+          "THE SPRITE IS [Temporary] AND THAT IS THE CEILING. 816.1.b kills it 'At the start of this permanent's controller's Beginning Phase, before scoring', so it never Holds and never sees a Main Phase start - it is a blocker for exactly one opponent turn and a body for exactly one of your combats. Do not price it as a garrison; price it as a 3-Might wall delivered where you need it, free, every turn.",
+          "AND ITS 3 MIGHT IS THE PART THAT MATTERS AGAINST A SWEEPER. 143.2.a kills on damage equal to Might, so a 3-Might Sprite ignores the 1-damage sweepers that clear every Recruit and Bird line in the format - the constraint this project measures as 'Might per body, not number of bodies'.",
+          "ONE ACTIVATION A TURN. The Signpost's cost is its own exhaust plus another unit's, and 315.1.b readies both at your Awakening; 381 confines the [Action] ability to an Open State, though its [Action] marker (806.1.b) does let it fire inside a Showdown on your own turn."
+        ]
+      },
+      "steps": [
+        "Play UNL-082 Lillia, Fae Fawn (3 Energy, or pay the [Accelerate] cost to have her enter ready) and UNL-045 Forgotten Signpost (2 Energy). Keep a third body at your base as the Signpost's anchor.",
+        "Standard-move Lillia from your base to a battlefield. Her trigger fires on leaving the base and puts a Sprite at your base - the location she moved FROM.",
+        "In the same Main Phase, activate the Signpost: exhaust the base anchor and the Signpost itself, and move Lillia to the anchor's location, i.e. your base.",
+        "The move is by effect (449), so 420.3.a's Standard-Move exhaust never applies and Lillia stays ready. Her trigger fires again, and 359.3.f.3 notes the BATTLEFIELD she just left.",
+        "A 3-Might Sprite with [Temporary] is played at that battlefield, with nothing having walked there. Removal aimed at Lillia in response changes nothing - the location was read at the trigger condition.",
+        "The Sprite blocks for the opponent's turn and dies at your next Beginning Phase (816.1.b), before scoring. Your Awakening readies the Signpost and the anchor and the cycle repeats.",
+        "Three copies of each (103.2.b); one Signpost activation a turn."
+      ],
+      "netPerIteration": "one 3-Might body delivered to a battlefield per turn without any unit walking there, plus one at your base, for no Energy after setup",
+      "terminatesIn": "engine only - nothing here scores. The Sprites are [Temporary] and die at your next Beginning Phase before scoring (816.1.b), and the Signpost is one activation a turn",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 359.3.f.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Some information used by triggered abilities is referenced from the trigger condition of the ability. This information is checked when the trigger condition is fulfilled."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 359.3.f.3 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Lillia, Fae Fawn reads “when I move from a location, play a 3 [M] Sprite token with Temporary there.” If Lillia moves to a battlefield, her triggered ability will be placed on the chain and it will note the location she moved from when it does so. If she moves to a non-board zone in reaction to the triggered ability on the chain, it will not affect where the Sprite token will be played when the triggered ability resolves."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 816.1.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "At the start of this permanent's controller's Beginning Phase, before scoring"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, sub-rule lane 100-499). 359.3.f.3, 359.3.f.3.a and 359.3.f.3.b are cited by no entry and no synergy rule in this project, and 359.3.f.3's worked example names UNL-082 Lillia, Fae Fawn while 359.3.f.3.b's names UNL-050 Iascylla. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.2, 143.2.a, 144.4, 315.1.b, 359.3.f.3, 359.3.f.4, 381, 420.3.a, 449, 806.1.b, 816.1.b. REPORT TO THE MANAGER: 359.3.f.3 and 359.3.f.4 pull in OPPOSITE directions and the difference is where the information comes from, not when the ability resolves - information from the TRIGGER CONDITION is read when the condition is fulfilled (so Lillia's origin is locked and removal aimed at her changes nothing), while information from the ABILITY ITSELF such as 'enemy' and 'friendly' is read on EXECUTION (359.3.f.4, the Yasuo case this project already carries). And 359.3.f.3.b settles Iascylla's 'this battlefield': it refers to the battlefield she HELD, referenced from the trigger condition. Distinct from lillia-smoke-mirrors-sprite-relay (UNL-082 + UNL-083, four Sprites out of spells) and from the three Forgotten Signpost entries. Trap check: the Sprite is [Temporary] and never Holds; the Signpost needs a third body as its anchor and that is stated in prerequisites rather than hidden; one activation a turn; no unruled reading."
     }
   ]
 }
