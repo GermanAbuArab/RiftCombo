@@ -7,7 +7,7 @@
       "name": "Blue Sentinel doubles any hold effect",
       "anchor": "UNL-087",
       "partner": {
-        "textMatches": "When (I|you)( or an ally)? (hold|conquer or hold)\\b",
+        "textMatches": "[Ww]hen (I|you)( or an ally)? (hold|conquer or hold)\\b",
         "excludes": [
           {
             "card": "OGN-067",
@@ -20,6 +20,10 @@
           {
             "card": "UNL-219",
             "why": "makes your own non-token units cost 1 more; triggering it twice doubles a drawback."
+          },
+          {
+            "card": "UNL-043",
+            "why": "\"When I hold, [Buff] all units here\" — the second trigger buffs the same fixed group a second time, and 702.3 (\"There can only be one Buff on a Unit at a time\") means none of them receives a second buff; it is a no-op, not a bigger one."
           }
         ]
       },
@@ -42,19 +46,21 @@
           "ivern-sentinel-hold",
           "world-atlas-sentinel-gold",
           "power-nexus-sentinel",
-          "svellsongur-copy-hold"
+          "svellsongur-copy-hold",
+          "shen-kinkou-sentinel-hold",
+          "rumble-scrapper-sentinel-mechs"
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 45
+      "reviewed": "2026-09-06",
+      "reviewedCount": 46
     },
     {
       "id": "red-brambleback-conquer",
       "name": "Red Brambleback doubles any conquer effect",
       "anchor": "UNL-029",
       "partner": {
-        "textMatches": "When (I|you)( or an ally)? (conquer|hold or conquer)\\b",
+        "textMatches": "[Ww]hen (I|you)( or an ally)? (conquer|hold or conquer)\\b",
         "excludes": [
           {
             "card": "OGN-252",
@@ -67,6 +73,10 @@
           {
             "card": "SFD-184",
             "why": "the conquer text is quoted inside the spell and granted to the moved unit; it moves that unit to its base, so a second move does nothing."
+          },
+          {
+            "card": "OGN-164",
+            "why": "\"When I'm played and when I conquer, buff me\" — a fixed self-target, and 702.3 (\"There can only be one Buff on a Unit at a time\") means the second execution of the same conquer finds him already buffed and does nothing."
           }
         ]
       },
@@ -85,7 +95,8 @@
         "combos": [
           "tryndamere-brambleback-conquer",
           "brambleback-trinity-skyfall-conquer",
-          "skyfall-ahri-conquer"
+          "skyfall-ahri-conquer",
+          "cull-brambleback-gold"
         ]
       },
       "status": "rule-verified",
@@ -97,7 +108,7 @@
       "name": "Skyfall of Areion pays a unit's hold effects out on conquer, and back",
       "anchor": "SFD-030",
       "partner": {
-        "textMatches": "When I (hold|conquer)\\b",
+        "textMatches": "[Ww]hen I (hold|conquer)\\b",
         "textExcludes": "When I conquer or hold|When I hold or conquer|\\[Hunt|after an attack|excess damage",
         "types": [
           "unit"
@@ -133,15 +144,15 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 26
+      "reviewed": "2026-09-06",
+      "reviewedCount": 29
     },
     {
       "id": "reckoners-arena-conquer-on-hold",
       "name": "Reckoner's Arena fires your conquer effects on a hold",
       "anchor": "OGN-286",
       "partner": {
-        "textMatches": "When I conquer\\b",
+        "textMatches": "[Ww]hen I conquer\\b",
         "textExcludes": "after an attack|excess damage",
         "types": [
           "unit"
@@ -165,18 +176,25 @@
           "383.4.c",
           "383.4.d"
         ],
-        "combos": []
+        "combos": [
+          "ivern-arena-sentinel-hold",
+          "kennen-stargazer-arena-flow",
+          "nasus-ascended-sentinel-arena-hold",
+          "gromp-arena-svellsongur-xp",
+          "kaisa-survivor-arena-draw",
+          "kaisa-evolutionary-arena-spell"
+        ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 26
+      "reviewed": "2026-09-06",
+      "reviewedCount": 27
     },
     {
       "id": "svellsongur-copy",
       "name": "Svellsongur gives a unit its own recurring trigger twice",
       "anchor": "SFD-059",
       "partner": {
-        "textMatches": "When I (hold|conquer|move|attack|win a combat)\\b",
+        "textMatches": "[Ww]hen I (hold|conquer|move|attack|win a combat)\\b",
         "types": [
           "unit"
         ],
@@ -192,6 +210,14 @@
           {
             "card": "VEN-023",
             "why": "the \"When I attack\" text the predicate caught belongs to the Shadow Clone token quoted inside his card, not to Zed."
+          },
+          {
+            "card": "OGN-164",
+            "why": "\"When I'm played and when I conquer, buff me\" — the copied trigger targets the same fixed body a second time, and 702.3 caps him at one buff, so the copy is a no-op."
+          },
+          {
+            "card": "SFD-177",
+            "why": "\"you may move any number of your token units to this battlefield\" has no per-execution cap — one instance already moves the whole army, so a second copy of the same trigger has nothing left to move."
           }
         ]
       },
@@ -212,8 +238,8 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 101
+      "reviewed": "2026-09-06",
+      "reviewedCount": 102
     },
     {
       "id": "renata-industrialist-tokens",
@@ -262,7 +288,9 @@
         "combos": [
           "grand-plaza-recruit-vanguard",
           "leblanc-temporary-plaza",
-          "grand-plaza-loop-time-warp"
+          "grand-plaza-loop-time-warp",
+          "heimerdinger-ultrasoft-poro-plaza",
+          "vanguard-captain-manufactor-plaza"
         ]
       },
       "status": "rule-verified",
@@ -372,7 +400,17 @@
       "name": "Jayce, Brilliant Inventor buys back an exhaust ability every turn",
       "anchor": "VEN-068",
       "partner": {
-        "textMatches": ":rb_exhaust::"
+        "textMatches": ":rb_exhaust::",
+        "excludes": [
+          {
+            "card": "SFD-117",
+            "why": "\"exhaust: Pay any amount of Energy to Add that much rainbow\" has no cap per activation (per CLAUDE.md's own Ancient Henge note), so a second activation from the same instant is worth exactly zero — anything the second copy could convert, the first could have converted at once."
+          },
+          {
+            "card": "SFD-083",
+            "why": "\"exhaust: Pay any amount of rainbow to Add that much Energy\" has no cap per activation, so a second simultaneous activation converts nothing a bigger single payment couldn't already."
+          }
+        ]
       },
       "why": "The first non-token gear you play each turn readies something else that is exhausted, so an ability whose cost includes exhausting its own source runs a second time that turn. He also un-taps an attacker, which no predicate over card text can find.",
       "basis": {
@@ -387,15 +425,15 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 78
+      "reviewed": "2026-09-06",
+      "reviewedCount": 76
     },
     {
       "id": "ride-the-wind-move-triggers",
       "name": "Ride the Wind fires a move trigger and leaves the unit ready",
       "anchor": "OGN-173",
       "partner": {
-        "textMatches": "When I move\\b"
+        "textMatches": "[Ww]hen I move\\b"
       },
       "why": "An effect moving a unit is a Move (420.1), so it sets off that unit's move triggers, and the triggers of any Equipment attached to it. Ride the Wind readies the unit as well, so the body is still available afterwards. A recall is not a Move (456.1) and would not do this.",
       "basis": {
@@ -418,7 +456,7 @@
       "name": "Relentless Pursuit moves a unit and hands it an Equipment on the way",
       "anchor": "SFD-184",
       "partner": {
-        "textMatches": "When I move\\b"
+        "textMatches": "[Ww]hen I move\\b"
       },
       "why": "The same Move as Ride the Wind, but it can attach an Equipment in the same breath, so the move trigger you want can be bolted on to whichever unit is going.",
       "basis": {
@@ -441,7 +479,7 @@
       "name": "Windswept Hillock lets a move trigger fire on your own terms",
       "anchor": "OGN-297",
       "partner": {
-        "textMatches": "When I move\\b"
+        "textMatches": "[Ww]hen I move\\b"
       },
       "why": "Units at the Hillock have [Ganking], which is short for \"I may move to a battlefield from another battlefield\" (810.1.b), and that move is a Move (420.1) — so it fires the unit's move triggers and those of any Equipment attached to it, on your turn, without spending a card. The Hillock has no domain, so any legend can run it.",
       "basis": {
@@ -463,7 +501,7 @@
       "name": "Retreat replays a unit that brings another body with it",
       "anchor": "OGN-104",
       "partner": {
-        "textMatches": "When you play me[^.]{0,110}?[Pp]lay (a|an|two|three|four)\\b",
+        "textMatches": "[Ww]hen you play me[^.]{0,110}?[Pp]lay (a|an|two|three|four)\\b",
         "types": [
           "unit"
         ],
@@ -492,7 +530,7 @@
       "name": "Pack of Wonders replays a body every turn with no card spent",
       "anchor": "OGN-181",
       "partner": {
-        "textMatches": "When (you play me|you play this|I'm played)[^.]{0,110}?[Pp]lay (a|an|two|three|four)\\b",
+        "textMatches": "[Ww]hen (you play me|you play this|I'm played)[^.]{0,110}?[Pp]lay (a|an|two|three|four)\\b",
         "types": [
           "unit",
           "gear"
@@ -667,7 +705,9 @@
           "730.1",
           "730.2"
         ],
-        "combos": []
+        "combos": [
+          "gardens-becoming-wuju-xp-faucet"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
@@ -689,7 +729,10 @@
           "824.1.c",
           "824.1.d"
         ],
-        "combos": []
+        "combos": [
+          "wuju-master-blood-rose-level",
+          "gardens-becoming-wuju-xp-faucet"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
@@ -720,7 +763,9 @@
           "442.1",
           "827.1.c.1"
         ],
-        "combos": []
+        "combos": [
+          "kharox-sanction-burn"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
@@ -745,7 +790,9 @@
           "442.1",
           "827.1.c.1"
         ],
-        "combos": []
+        "combos": [
+          "hextech-formula-rage-amplifier-free-empower"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
@@ -769,7 +816,9 @@
           "829.1.b.1",
           "829.1.c.1"
         ],
-        "combos": []
+        "combos": [
+          "master-of-shadows-banish-rummage"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
@@ -792,7 +841,9 @@
           "143.1",
           "185.1"
         ],
-        "combos": []
+        "combos": [
+          "forecaster-rumble-mech-vision-scry"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
@@ -818,7 +869,9 @@
           "807.1.d",
           "807.1.d.1"
         ],
-        "combos": []
+        "combos": [
+          "rumble-forerunner-mech-recursion"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
@@ -884,7 +937,9 @@
           "811.1.c",
           "811.6"
         ],
-        "combos": []
+        "combos": [
+          "black-market-broker-bandle-tree-gold"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
@@ -971,7 +1026,9 @@
           "805.3",
           "805.4"
         ],
-        "combos": []
+        "combos": [
+          "ezreal-double-free-accelerate"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
@@ -1124,6 +1181,14 @@
           {
             "card": "VEN-133",
             "why": "its exhaust ability hands the gear to a player of your choice and recalls it; a second use is not yours to have, and it is no longer a friendly gear."
+          },
+          {
+            "card": "SFD-117",
+            "why": "\"exhaust: Pay any amount of Energy to Add that much rainbow\" has no cap per activation (per CLAUDE.md's own Ancient Henge note), so a second activation from the same instant is worth exactly zero — anything the second copy could convert, the first could have converted at once."
+          },
+          {
+            "card": "SFD-083",
+            "why": "\"exhaust: Pay any amount of rainbow to Add that much Energy\" has no cap per activation, so a second simultaneous activation converts nothing a bigger single payment couldn't already."
           }
         ]
       },
@@ -1140,7 +1205,7 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 34
+      "reviewedCount": 32
     },
     {
       "id": "veiled-temple-readies-gear",
@@ -1178,7 +1243,9 @@
           "466.5",
           "466.5.d"
         ],
-        "combos": []
+        "combos": [
+          "hextech-formula-rage-amplifier-free-empower"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -1228,7 +1295,9 @@
           "466.5.d",
           "485.4.a"
         ],
-        "combos": []
+        "combos": [
+          "hall-of-legends-bloodharbor-double-ripper"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -1252,7 +1321,9 @@
           "144.2",
           "415.1"
         ],
-        "combos": []
+        "combos": [
+          "miss-fortune-defender-hextech-double"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -1263,7 +1334,7 @@
       "name": "Stare Down empties the garrison and the battlefield is conquered without damage",
       "anchor": "UNL-107",
       "partner": {
-        "textMatches": "When (I|you)( or an ally)? (conquer|hold or conquer)\\b",
+        "textMatches": "[Ww]hen (I|you)( or an ally)? (conquer|hold or conquer)\\b",
         "textExcludes": "after an attack|excess damage",
         "excludes": [
           {
@@ -1292,7 +1363,7 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 53
+      "reviewedCount": 54
     },
     {
       "id": "blast-cone-enemy-move",
@@ -1310,7 +1381,9 @@
           "423.1.a.2",
           "423.1.b"
         ],
-        "combos": []
+        "combos": [
+          "blast-cone-moonfall-forced-attacker"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -1724,7 +1797,9 @@
           "137.3.a",
           "477.3.d"
         ],
-        "combos": []
+        "combos": [
+          "pit-crew-eye-herald-recruit-shuttle"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -1770,7 +1845,9 @@
           "350.2",
           "811.1.b"
         ],
-        "combos": []
+        "combos": [
+          "yordle-explorer-power-cantrips"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -1861,7 +1938,10 @@
           "431.2.b",
           "416.1.a"
         ],
-        "combos": []
+        "combos": [
+          "get-excited-flame-chompers-jinx",
+          "rhasa-shadowblade-trash-discount"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -1934,7 +2014,9 @@
           "702.3.a",
           "703"
         ],
-        "combos": []
+        "combos": [
+          "tryndamere-call-to-glory-trapping-grounds"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -1958,7 +2040,9 @@
           "702.3.a",
           "703"
         ],
-        "combos": []
+        "combos": [
+          "peak-guardian-albus-ferros-rune-refill"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2069,7 +2153,9 @@
           "133.8.a",
           "143.4"
         ],
-        "combos": []
+        "combos": [
+          "direwing-dune-drake-ready-attacker"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2093,7 +2179,9 @@
           "133.8",
           "133.8.a"
         ],
-        "combos": []
+        "combos": [
+          "friendship-fiora-worthy-mighty-ready"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2146,7 +2234,9 @@
           "185",
           "186.1"
         ],
-        "combos": []
+        "combos": [
+          "starhound-undying-loyalty-four-tag-recursion"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2170,7 +2260,9 @@
           "133.8",
           "133.8.a"
         ],
-        "combos": []
+        "combos": [
+          "starhound-undying-loyalty-four-tag-recursion"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2223,7 +2315,9 @@
           "133.8",
           "133.8.a"
         ],
-        "combos": []
+        "combos": [
+          "daisy-green-father-four-tag-attacker"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2353,7 +2447,7 @@
       "name": "Portal Rescue replays a body for free, off the board instead of out of hand",
       "anchor": "OGN-102",
       "partner": {
-        "textMatches": "When (you play me|you play this|I'm played)[^.]{0,110}?[Pp]lay (a|an|two|three|four)\\b",
+        "textMatches": "[Ww]hen (you play me|you play this|I'm played)[^.]{0,110}?[Pp]lay (a|an|two|three|four)\\b",
         "types": [
           "unit",
           "gear"
@@ -2376,7 +2470,9 @@
           "383.4.a",
           "383.4.a.1"
         ],
-        "combos": []
+        "combos": [
+          "portal-rescue-trove-golem-industrialist"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2448,7 +2544,7 @@
       "name": "Dark Child pays for a Reaction unit on the opponent's turn",
       "anchor": "OGS-017",
       "partner": {
-        "textMatches": "\\[Reaction\\] \\(Play any time",
+        "textMatches": "\\[Reaction\\] \\(Play any time|\\[Ambush\\]",
         "types": [
           "unit"
         ]
@@ -2462,11 +2558,13 @@
           "813.1.b",
           "813.1.c.1"
         ],
-        "combos": []
+        "combos": [
+          "dark-child-inferna-off-turn-ambush"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 3
+      "reviewedCount": 17
     },
     {
       "id": "scrutinizing-sergeant-xp-producer",
@@ -2481,7 +2579,9 @@
           "730.1",
           "730.2"
         ],
-        "combos": []
+        "combos": [
+          "scrutinizing-sergeant-blood-rose-xp-spike"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2499,7 +2599,9 @@
         "rules": [
           "143.4"
         ],
-        "combos": []
+        "combos": [
+          "magma-wurm-assembly-rig-walk-in"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2522,7 +2624,9 @@
           "818.1.a",
           "818.1.b"
         ],
-        "combos": []
+        "combos": [
+          "sentinel-adept-weaponmaster-free-attach"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2541,7 +2645,9 @@
           "161.1.a",
           "485.5"
         ],
-        "combos": []
+        "combos": [
+          "oasis-raider-eclipse-dragon-rune-dump"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2563,7 +2669,9 @@
           "383.4.a",
           "476.1"
         ],
-        "combos": []
+        "combos": [
+          "rell-magnetic-recurve-bow-per-attack"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2585,7 +2693,9 @@
           "817.1.b",
           "817.2"
         ],
-        "combos": []
+        "combos": [
+          "gemcraft-karma-herald-buff-faucet"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2617,7 +2727,7 @@
       "name": "Profiteer moves the Empowered status instead of spending a card to grant it",
       "anchor": "VEN-082",
       "partner": {
-        "textMatches": "When you empower something else"
+        "textMatches": "[Ww]hen you empower something else"
       },
       "why": "\"You may disempower something you control to empower a legend, unit, or gear\" is Profiteer's own play effect, using \"empower\" as a plain verb rather than the [Empower] Activated Ability (827.1) — so sanction-empower-unit and hextech-formula-empower-gear, whose partner predicates require the card itself to carry [Empower], never reach the two legends that key off being empowered BY SOMEONE ELSE: Soul's Reflection and Matriarch of War, both \"When you empower something else, empower me.\" 441.2 makes becoming Empowered by ANY game action a referenceable event regardless of source, so Profiteer's relay counts. 441.1.b caps the value: an already-Empowered legend gains nothing from a second empower, so the pairing is worth one relay per legend per time it is disempowered.",
       "basis": {
@@ -2682,7 +2792,9 @@
         "rules": [
           "356.4.e"
         ],
-        "combos": []
+        "combos": [
+          "eager-apprentice-sky-splitter-order-matters"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2701,7 +2813,9 @@
           "185.2.b",
           "185.2.d"
         ],
-        "combos": []
+        "combos": [
+          "soul-shepherd-sprite-queen-temporary-wall"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2720,7 +2834,9 @@
           "817.1",
           "817.1.b"
         ],
-        "combos": []
+        "combos": [
+          "gemcraft-karma-herald-buff-faucet"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2740,7 +2856,9 @@
           "383.1.b",
           "383.2.c.2"
         ],
-        "combos": []
+        "combos": [
+          "malzahar-wraith-centaur-sacrifice"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2756,6 +2874,16 @@
           "unit",
           "gear",
           "legend"
+        ],
+        "excludes": [
+          {
+            "card": "SFD-117",
+            "why": "\"exhaust: Pay any amount of Energy to Add that much rainbow\" has no cap per activation (per CLAUDE.md's own Ancient Henge note), so a second activation from the same instant is worth exactly zero — anything the second copy could convert, the first could have converted at once."
+          },
+          {
+            "card": "SFD-083",
+            "why": "\"exhaust: Pay any amount of rainbow to Add that much Energy\" has no cap per activation, so a second simultaneous activation converts nothing a bigger single payment couldn't already."
+          }
         ]
       },
       "why": "\"I have all exhaust abilities of all friendly legends, units, and gear\" makes 377.1's colon syntax the whole predicate: any Activated Ability on a friendly legend, unit or gear becomes Heimerdinger's own, usable off his own exhaust and whatever else the cost asks for, without owning the source card or even having it on the board (Malzahar's kill-cost Power, Renata Mastermind's scoring exhaust, Vanguard Armory's three Recruits). Two things the list cannot show. 053.1 re-reads every \"I\"/\"me\" in the borrowed text as Heimerdinger, so a condition worded \"while I'm at a battlefield\" (377.2.b's own worked example is Ultrasoft Poro) becomes a condition on HIM, not on the card he copied it from (R30) — he must stand at a battlefield to use Renata's, Caitlyn's or Xerath's line even though they need not. And 383.1 is why this predicate stays clean of the readying family's traps: a \"you may exhaust me to …\" clause is a Triggered Ability (it fires off a trigger condition, not off being activated) and carries no colon, so it never matches and is never copied — only genuine Activated Abilities are.",
@@ -2770,12 +2898,13 @@
           "heimerdinger-renata-remote-score",
           "heimerdinger-vanguard-armory-recruits",
           "heimerdinger-malzahar-double-power",
-          "heimerdinger-herald-legend-recruits"
+          "heimerdinger-herald-legend-recruits",
+          "heimerdinger-ultrasoft-poro-plaza"
         ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 75
+      "reviewedCount": 73
     },
     {
       "id": "blade-of-ruined-king-deathknell-ondemand",
@@ -2847,7 +2976,7 @@
       "name": "Unforgiven's exhaust move fires a move trigger every turn for free",
       "anchor": "OGN-259",
       "partner": {
-        "textMatches": "When I move\\b"
+        "textMatches": "[Ww]hen I move\\b"
       },
       "why": "Unforgiven's legend ability — \"2 Energy, exhaust: Move a friendly unit to or from its base\" — is an effect Move (420.1), so it fires that unit's own move triggers and those of any Equipment attached to it (420.2.a), exactly like Ride the Wind and the other two move-effect anchors. The legend's cost carries an exhaust, so 315.1.b readies it once every Awaken: one free move trigger a turn for as long as Unforgiven is out, with no card spent. A recall is not a Move (456.1) and would not do this.",
       "basis": {
@@ -3376,6 +3505,265 @@
       "status": "rule-verified",
       "reviewed": "2026-09-06",
       "reviewedCount": 7
+    },
+    {
+      "id": "chem-baroness-gold-ramp",
+      "name": "Chem-Baroness stacks Gold producers into a resource package, independent of Industrialist",
+      "anchor": "SFD-201",
+      "partner": {
+        "textMatches": "[Pp]lay (a|an|two|three|four)\\b[^.]{0,60}?Gold gear tokens?\\b",
+        "types": [
+          "unit",
+          "spell",
+          "gear",
+          "battlefield",
+          "rune"
+        ]
+      },
+      "why": "Chem-Baroness is herself a Gold producer (\"you may exhaust me to play a Gold gear token exhausted\"), so stacking her with the pool's other Gold producers is additive ramp rather than an amplifying interaction the way `renata-industrialist-tokens` reads the SAME partner list for a different reason (making the tokens usable the turn they land). 184.1 lets a token's own text override the default it would otherwise get; a Gold gear token's default under 149.1 (\"Gear enter play Ready\") is overridden to exhausted by every producer's own printed wording, and it readies on its controller's own next Awaken (315.1.b). Each Gold is worth exactly 1 rainbow Power when sacrificed (`UNL-T05 Gold`'s own \"Kill this, exhaust: Add rainbow\"), so N producers in one turn is N delayed Power a turn later — no card in the pool reads \"for each Gold gear token you control,\" so the stack never scales beyond that flat sum. Chem-Baroness's own second clause is the one thing that changes the arithmetic: \"While your score is within 3 points of the Victory Score, your Gold [Add] an additional 1 Energy\" turns every Gold made from that point on into 1 Power AND 1 Energy at once, so the value of stacking producers rises specifically in the turns right before Victory Score, not before.",
+      "basis": {
+        "rules": [
+          "149.1",
+          "184.1",
+          "315.1.b"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 20
+    },
+    {
+      "id": "ravenbloom-student-spell-replay",
+      "name": "A spell replayed from the trash doubles a \"when you play a spell\" payoff for free",
+      "anchor": "OGN-103",
+      "partner": {
+        "textMatches": "[Pp]lay a spell from your trash|\\[Flow\\]",
+        "excludes": [
+          {
+            "card": "VEN-098",
+            "why": "her own text only discounts OTHER [Flow] spells you replay (\"Spells with [Flow] you play from your trash cost 2 Energy less\") — she carries no [Flow] herself and replays nothing on her own, so she does not create the second \"you play a spell\" event this rule is about; she only makes one cheaper once it already exists."
+          }
+        ]
+      },
+      "why": "Ravenbloom Student's \"+1 Might this turn\" is a plain continuous modifier, not a 702 Buff counter (settled by the #106 walk: \"'+N Might this turn' is a plain modifier that 702.3 never touches\"), so it stacks once per spell PLAYED with no cap of its own. No rule in the pool currently anchors on \"when you play a spell\" at all — this is the first. `SFD-140 Fizz, Trickster` and `OGN-112 Kai'Sa, Evolutionary` both let you play a spell straight out of the trash, ignoring its Energy cost, which is a second \"you play a spell\" event off a single card already spent — Ravenbloom grows twice off one casting instead of needing a second copy in hand. A [Flow] spell does the same thing to itself: 829.1.b lets its owner \"play this from your trash for its flow cost,\" so every [Flow] spell in the list is a second trigger waiting in the graveyard once it is there, though on its own timeline rather than guaranteed the same turn. 829.1.b.1 banishes it after that replay, so this is one extra trigger per copy, never a loop.",
+      "basis": {
+        "rules": [
+          "702.3",
+          "829.1.b",
+          "829.1.b.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 18
+    },
+    {
+      "id": "time-warp-hold-effects",
+      "name": "Time Warp gives every hold effect a second Beginning Phase to fire in",
+      "anchor": "OGN-122",
+      "partner": {
+        "textMatches": "[Ww]hen (I|you)( or an ally)? (hold|conquer or hold)\\b",
+        "excludes": [
+          {
+            "card": "OGN-067",
+            "why": "\"When I hold, return me to my owner's hand\" — the first hold already took him off the board, so the Additional Turn's Beginning Phase finds nothing there to trigger again."
+          },
+          {
+            "card": "OGN-281",
+            "why": "returns your Chosen Champion only if the Champion Zone is empty, which the first turn's trigger already made false."
+          },
+          {
+            "card": "UNL-219",
+            "why": "makes your own non-token units cost 1 more; a second Beginning Phase just doubles a drawback you are paying, not a payoff."
+          },
+          {
+            "card": "UNL-043",
+            "why": "\"[Buff] all units here\" — 702.3 caps every one of them at one buff, so unless a buff was deliberately spent between the two Beginning Phases the second one lands on already-buffed bodies and does nothing."
+          }
+        ]
+      },
+      "why": "734–738 insert the Additional Turn immediately after the current one, with no opponent turn between, so its own Beginning Phase (315.2) Holds your battlefields again (469.2's \"did not yet Score this turn\" resets on the new turn) and every Hold Effect on them fires a second time — this is issue #155's Candidate 1 (`power-nexus-sentinel` + Time Warp): the entry's own `terminatesIn` already named the extra turn as the missing piece before this rule existed to say so structurally. `time-warp-once-per-turn` (same anchor) catches a different trigger shape — cards worded \"At the start of your Beginning Phase\" or \"at the end of your turn\" — while this rule catches the separately-defined Hold Trigger category (383.4.d) blue-sentinel-hold already reads the pool for; the two lists do not overlap. Unlike Blue Sentinel's simultaneous double, the two firings sit on different turns, so a fixed-target trigger is only a no-op when nothing changed the board state in between — most of the excludes below are one-shot cards that leave the board on their first firing, not universal no-ops.",
+      "basis": {
+        "rules": [
+          "315.2",
+          "383.4.d",
+          "469.2",
+          "734",
+          "735",
+          "737"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 47
+    },
+    {
+      "id": "peak-guardian-buffed-payoff",
+      "name": "Peak Guardian turns on every \"while I'm buffed\" static in one play",
+      "anchor": "OGN-223",
+      "partner": {
+        "textMatches": "While I'm buffed"
+      },
+      "why": "Peak Guardian's own trigger — \"buff me. Then, if I am at a battlefield, buff all other friendly units there\" — hands out a buff to every body standing with him for one card, no Energy sink or spell needed. The two cards that key a static bonus on simply CARRYING a buff (`OGN-065 Wizened Elder`, \"an additional +1 Might\"; `OGN-125 Bilgewater Bully`, \"[Ganking]\") turn on the instant they are at his battlefield when he lands — cheaper than `call-to-glory-buff-bank`'s route, which needs a spell in hand for each activation. 702.3 (\"There can only be one Buff on a Unit at a time\") is why this is a flat one-time switch, not a stacking engine: Peak Guardian's own mass buff and any later Call to Glory compete for the same single buff slot on each body, they do not add.",
+      "basis": {
+        "rules": [
+          "702.2.a",
+          "702.3"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 2
+    },
+    {
+      "id": "bloodharbor-ripper-etb-replay",
+      "name": "Bloodharbor Ripper replays a unit's play effect every turn for one Energy, no card spent",
+      "anchor": "UNL-185",
+      "partner": {
+        "textMatches": "[Ww]hen you play me[^.]{0,110}?[Pp]lay (a|an|two|three|four)\\b",
+        "types": [
+          "unit"
+        ],
+        "excludes": [
+          {
+            "card": "VEN-068",
+            "why": "the predicate caught \"play a non-token gear\" in his trigger condition; his play effect readies something, it puts nothing on the board."
+          }
+        ]
+      },
+      "why": "\"1 Energy, exhaust: Return a friendly unit at a battlefield to its owner's hand. Play a Gold gear token exhausted.\" is an ACTIVATED ability, not a spent card, so unlike `retreat-replays-a-body` (one bounce per copy, 3 copies a game by 103.2.b) this is a bounce-and-replay every turn 315.1.b readies him — the same body's play effect fires again for a flat 1 Energy, plus a Gold on top. The one restriction Retreat does not share: the target must already be AT A BATTLEFIELD, so the bounced unit has to walk there again after replaying (144.4.a), which the entry states as the cost this line pays that Retreat's does not.",
+      "basis": {
+        "rules": [
+          "144.4.a",
+          "315.1.b",
+          "383.4.a.1",
+          "419.3",
+          "419.4.a"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 14
+    },
+    {
+      "id": "sprite-queen-friendly-death-feeder",
+      "name": "Sprite Queen feeds any \"friendly unit dies\" payoff for free, every Beginning Phase",
+      "anchor": "UNL-084",
+      "partner": {
+        "textMatches": "friendly unit dies|unit you control dies"
+      },
+      "why": "\"When you play me or at the start of your Beginning Phase, play a ready 3 Might Sprite unit token with [Temporary] to your base\" mints a body that 816.1.b guarantees dies before scoring THAT SAME turn — a repeatable friendly death with no cost, no card spent past the one copy, and no activation to remember. `malzahar-fanatic-friendly-death-payoff` (same partner list) is anchored on an ACTIVATED kill outlet that costs a card in hand to feed each time; Sprite Queen is the free, automatic alternative — the death happens whether or not you want it to, on schedule, every turn she is on the board. 185 / 186.1 still apply: the Sprite is a token, so nothing that recycles or reanimates from the trash ever sees it.",
+      "basis": {
+        "rules": [
+          "185.2.b",
+          "816.1.b",
+          "816.1.c"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 7
+    },
+    {
+      "id": "tryndamere-excess-damage-might-reduction",
+      "name": "Shrinking the defender is the other route to excess damage",
+      "anchor": "OGN-034",
+      "partner": {
+        "textMatches": "-\\d+ :rb_might:",
+        "excludes": [
+          {
+            "card": "OGN-255",
+            "why": "its trigger is the ENEMY attacking a battlefield you control, i.e. you are defending, and the -1 Might lasts only that turn; Tryndamere's own threshold checks a conquer after YOUR attack, on your own turn — the two events are never the same combat, and the debuff has already expired by the time you attack back."
+          }
+        ]
+      },
+      "why": "`trapping-grounds-excess-damage` (same excess-damage family: OGN-034, SFD-120, UNL-018, UNL-187, UNL-188, UNL-217) already reads the pool for the OTHER lever — raising the attacker's own Might with [Assault]. This is the mirror: 465.2.c.4 forbids assigning a unit more damage than the minimum needed to kill it, and that minimum is the defender's CURRENT Might (143.2.a, 143.2.b), so lowering the defender's Might by any amount lowers the bill and raises the same attacker's excess by the same amount. `UNL-198 Moonfall` drags the target onto the attacker's battlefield and shrinks it in the same card; `OGN-116 Thousand-Tailed Watcher` shrinks every enemy unit present for the rest of the turn on an ETB. 477.3.b caps a FLOORED reduction (\"to a minimum of 1\") at the floor, so the bill only drops to 1, never to 0 — 143.2.a still needs nonzero damage to kill, so a 1-Might body still costs 1.",
+      "basis": {
+        "rules": [
+          "143.2.a",
+          "143.2.b",
+          "465.2.c.3",
+          "465.2.c.4",
+          "477.3.b"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 22
+    },
+    {
+      "id": "sky-splitter-might-discount",
+      "name": "A big flat Might boost is the cheapest way to discount Sky Splitter",
+      "anchor": "OGN-014",
+      "partner": {
+        "textMatches": "\\+([5-9]|1[0-9]) :rb_might:|[Mm]ight becomes"
+      },
+      "why": "\"This spell's Energy cost is reduced by the highest Might among units you control\" reads the board at the moment it is cast (356's discount timing), not a snapshot from earlier — so a body already sitting at high Might is worth less than a body a same-turn buff has just pushed there, since the buff itself does not cost the spell anything. `eager-apprentice-sky-splitter-order-matters` already reads OGN-116's -3 (a REMOVAL setup, cheapening the KILL, not the CAST); this rule is the other half — cheapening the CAST itself with a body already at 5+ Might. 356.4.c.1 lets a player apply this discount whenever it is most favorable relative to any other cost reduction on the same spell.",
+      "basis": {
+        "rules": [
+          "356.4.c.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 10
+    },
+    {
+      "id": "master-of-shadows-banish-empower",
+      "name": "Master of Shadows empowers off any card that banishes one of your own",
+      "anchor": "VEN-143",
+      "partner": {
+        "textMatches": "[Bb]anish (a|this|me)|\\[Flow\\]",
+        "excludes": [
+          {
+            "card": "VEN-098",
+            "why": "her own text only discounts OTHER [Flow] spells you replay — she carries no [Flow] herself and banishes nothing, so she never fires the trigger, only makes someone else's replay cheaper."
+          },
+          {
+            "card": "VEN-110",
+            "why": "\"banish an enemy unit\" — the predicate's \"a\" matched inside \"an\", but the card it names is never one you own; this banish is never yours."
+          }
+        ]
+      },
+      "why": "\"When you banish a card you own, empower me\" is unconditional and untargeted — it does not care which of your cards left play or why, so every one of the pool's several banish-and-replay spells (Portal Rescue, Thrill of the Hunt, Temporal Breach, Arcane Shift) and every self-banishing card (Time Warp's own \"Banish this\"; every [Flow] spell's own 829.1.b.1 banish after its trash replay) turns him on for free. 441.1.a/441.2 make Empowered a binary board state, so the source of the trigger never has to repeat — one banish anywhere in the game and his loot ability (\"Disempower me, exhaust: Discard 1, then draw 1\") is live that turn.",
+      "basis": {
+        "rules": [
+          "441.1.a",
+          "441.2",
+          "829.1.b.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 31
+    },
+    {
+      "id": "undertitan-reveal-payoff",
+      "name": "Undertitan cashes in any card that reveals your own deck",
+      "anchor": "SFD-175",
+      "partner": {
+        "textMatches": "[Rr]eveal the top \\d* ?cards? of your Main Deck"
+      },
+      "why": "\"As I'm revealed from your deck, [Add] 2 Energy\" fires off ANY effect that reveals cards from your Main Deck, not only a draw or a Predict — 424.1 defines Reveal as public presentation, and Undertitan's trigger names no source. `OGN-121 Teemo, Strategist` is the sharpest pairing found: his own defend trigger reveals 5 cards looking for [Hidden] copies, and if Undertitan is among them the Energy lands with no play, no cost and no risk of a Burn Out (431.1.c: looking or revealing never burns). The same applies to every other card in the pool that reveals its owner's OWN Main Deck; a card that reveals an OPPONENT's deck (`OGN-025 Blind Fury`) never triggers your own copy.",
+      "basis": {
+        "rules": [
+          "424.1",
+          "431.1.c"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-06",
+      "reviewedCount": 8
     }
   ]
 }
