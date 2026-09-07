@@ -236,7 +236,9 @@ function showStatus() {
   const total = Object.values(deck.main).reduce((a, b) => a + b, 0);
   setStatus(
     included ? `${included} combo${included === 1 ? "" : "s"} found` : "No complete combos",
-    `${total} in the main deck${deck.legend ? ` · ${name(deck.legend).replace(/ - Starter$/, "")}` : ""}${near ? ` · ${near} near miss${near === 1 ? "" : "es"}` : ""}${unresolvedLine(deck)}`,
+    // The near count is what the other view holds, and it is counted at a distance whose control is
+    // only on screen there — so it says which distance, rather than leaving a number nothing explains.
+    `${total} in the main deck${deck.legend ? ` · ${name(deck.legend).replace(/ - Starter$/, "")}` : ""}${near ? ` · ${near} near miss${near === 1 ? "" : "es"} within ${maxMissing()} card${maxMissing() === 1 ? "" : "s"}` : ""}${unresolvedLine(deck)}`,
     included || near ? "ok" : "",
   );
 }
@@ -315,7 +317,7 @@ function showEmptyState() {
 
   if (mode() !== "network") {
     title.textContent = "Nothing within reach";
-    body.textContent = `No known combo is within ${maxMissing()} card${maxMissing() === 1 ? "" : "s"} of this list. Raising that distance in the panel will widen the search.`;
+    body.textContent = `No known combo is within ${maxMissing()} card${maxMissing() === 1 ? "" : "s"} of this list. Raising that distance, beside the view switch above, will widen the search.`;
     $<HTMLElement>("#empty-coverage").hidden = true;
   } else if (legalHere === 0 && legend) {
     title.textContent = "No catalogued combos for this legend yet";
@@ -927,7 +929,16 @@ const setPanel = (open: boolean) => {
 };
 $<HTMLButtonElement>("#close-panel").addEventListener("click", () => setPanel(false));
 $<HTMLButtonElement>("#enter-deck").addEventListener("click", () => setPanel(true));
-document.querySelectorAll("input[name=view], input[name=layout]").forEach((r) => r.addEventListener("change", () => { selected = null; render(); }));
+/**
+ * The distance selector belongs to one view. Under "Complete" it drove nothing a player could see —
+ * `result.included` is the bucket with `missingCount === 0` (`src/matcher.ts`), so a distance cap can
+ * never filter it, and the diagram, the tray, the count pill, "What to add", "Banned and restricted"
+ * and both synergy panels all read either that bucket or the format alone (#163). So it is on screen
+ * exactly while the near misses it measures are.
+ */
+const syncNearMiss = () => { $<HTMLElement>("#near-miss").hidden = mode() === "network"; };
+syncNearMiss();
+document.querySelectorAll("input[name=view], input[name=layout]").forEach((r) => r.addEventListener("change", () => { selected = null; syncNearMiss(); render(); }));
 document.querySelectorAll("input[name=format]").forEach((r) => r.addEventListener("change", () => { if (deck) { result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() }); render(); } }));
 $<HTMLSelectElement>("#max-missing").addEventListener("change", () => { if (deck) { result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() }); render(); } });
 $<HTMLButtonElement>("#fit").addEventListener("click", () => view?.fit());

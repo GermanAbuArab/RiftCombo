@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { actualBox, fitBox, layoutCircular, type Box, type Model } from "../web/graph.js";
+import { actualBox, fitBox, layoutCircular, ringCost, ringOrder, type Box, type Model } from "../web/graph.js";
 import type { Combo, Feature, Ingredient } from "../src/types.js";
 
 /**
@@ -126,18 +126,24 @@ describe("the viewBox geometry", () => {
 });
 
 /**
- * The circular ("Radial") layout puts pieces on an inner ring and outcomes on an outer one, each
- * outcome angled toward the mean direction of the cards that feed it, then nudged apart from its
- * sorted neighbour by a minimum angular gap. That gap used to be sized from `RESULT_H` alone (82),
- * which is only the right dimension for two outcomes stacked along the LEFT or RIGHT of the ring,
- * where the tangent runs roughly vertical. At the TOP or BOTTOM the tangent runs roughly horizontal
- * and the box's WIDTH (168 — more than twice its height) is what actually separates two neighbours,
- * so an `RESULT_H`-only gap let two outcomes 20° apart at the bottom of the ring overlap by 0.4px of
- * width and 52px of height (found 2026-09-06 on the Lady of Luminosity list `utrecht-27`, whose four
- * matched combos put "Infinite Power" at 90° and "Pressure on the opponent's deck" at 110°). The fix
- * gates the gap on the box's diagonal instead: two same-size axis-aligned boxes whose centres are at
- * least a full diagonal apart can never overlap on either axis at once, whatever the direction between
- * them, so a diagonal-sized gap is safe at every point on the ring, not only at the sides.
+ * The circular ("Radial") layout puts pieces on an inner ring and payoffs on an outer one, each payoff
+ * angled toward the mean direction of the pieces that feed it, then nudged apart from its sorted
+ * neighbour by a minimum angular gap. That gap used to be sized from `RESULT_H` alone (82), which is
+ * only the right dimension for two payoffs stacked along the LEFT or RIGHT of the ring, where the
+ * tangent runs roughly vertical. At the top and bottom the tangent runs roughly horizontal and the
+ * box's WIDTH (168 — more than twice its height) is what actually separates two neighbours, so an
+ * `RESULT_H`-only gap let two payoffs 20° apart at the bottom of the ring overlap by 0.4px of width
+ * and 52px of height (found 2026-09-06 on the Lady of Luminosity list `utrecht-27`, whose four matched
+ * combos put "Infinite Power" at 90° and "Pressure on the opponent's deck" at 110°). The fix gates the
+ * gap on the box's diagonal instead: two same-size axis-aligned boxes whose centres are at least a full
+ * diagonal apart can never overlap on either axis at once, whatever the direction between them, so a
+ * diagonal-sized gap is safe at every point on the ring, not only at the sides.
+ *
+ * #163 reordered the ring by adjacency, which moved where these fixtures land: two payoffs fed by one
+ * piece each now sit at the TOP of the ring rather than the bottom, since their pieces are the first
+ * two placed. The tangent at the top runs horizontal exactly as it does at the bottom, so it is the
+ * same failure mode mirrored, and the 20°-apart case is rebuilt below out of a shared piece rather
+ * than out of two card indexes.
  */
 describe("the circular layout's outcome ring", () => {
   const ingredient = (card: string): Ingredient => ({ card, quantity: 1, role: "payoff" });
@@ -157,40 +163,51 @@ describe("the circular layout's outcome ring", () => {
     rulesVersion: "",
   });
 
-  /** n cards evenly spaced on the ring; combos each pin one outcome to one card's angle. */
-  const modelFor = (n: number, outcomeCardIndexes: number[]): Model => {
+  /** A model over `n` pieces, from a list of "this combo uses these piece indexes" groups. */
+  const modelOf = (n: number, groups: number[][]): Model => {
     const cards = Array.from({ length: n }, (_, i) => `c${i}`);
-    const outcomeIds = outcomeCardIndexes.map((_, k) => `f${k}`);
-    const combos = outcomeCardIndexes.map((i, k) => combo(`combo${k}`, [cards[i]!], [outcomeIds[k]!]));
-    const outcomes = outcomeIds.map(feature);
+    const outcomeIds = groups.map((_, k) => `f${k}`);
+    const combos = groups.map((g, k) => combo(`combo${k}`, g.map((i) => cards[i]!), [outcomeIds[k]!]));
     const need = new Map(cards.map((c) => [c, 1]));
-    return { combos, cards, outcomes, missing: new Set(), need, lines: new Map(), land: new Set() };
+    return { combos, cards, outcomes: outcomeIds.map(feature), missing: new Set(), need, lines: new Map(), land: new Set() };
   };
+  /** n pieces; each listed piece is the sole ingredient of a combo pinning one payoff. */
+  const modelFor = (n: number, outcomeCardIndexes: number[]): Model =>
+    modelOf(n, outcomeCardIndexes.map((i) => [i]));
 
   const overlaps = (a: { x: number; y: number; w: number; h: number }, b: { x: number; y: number; w: number; h: number }) =>
     a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
 
-  it("never overlaps two outcomes that land at the bottom of the ring 20° apart (the exact regression)", () => {
-    // 9 cards, indexes 4 and 5 sit at -90+4*40=70° and -90+5*40=110° respectively; picking a single
-    // card each keeps the pre-adjustment centroid angle exactly at the card's own angle, reproducing
-    // the utrecht-27 case (90° and 110°) closely enough to hit the same failure mode.
-    const m = modelFor(9, [4, 5]);
+  it("never overlaps two outcomes that land 20° apart on a 490-unit ring (the exact regression)", () => {
+    // Nine pieces put the outer ring at r2 = 490 and the slots 40° apart. `combo1` uses c0 AND c1, so
+    // its payoff wants the mean of their two directions — 20° after `combo0`'s, which wants c0's own.
+    // That is the utrecht-27 geometry: 20° apart at r2 = 490.
+    const m = modelOf(9, [[0], [0, 1]]);
     const L = layoutCircular(m);
     const boxes = m.outcomes.map((f) => L.pos.get(f.id)!);
+    const apart = Math.hypot(boxes[0]!.x - boxes[1]!.x, boxes[0]!.y - boxes[1]!.y);
+    // The gap the two boxes were actually given, and what the H-only rule would have allowed instead:
+    // 116/490 rad = 13.6°, under the 20° the payoffs asked for, so it would have pushed them not at
+    // all — and at 20° on this ring the centres are 167.6 apart on x, half a pixel inside RESULT_W.
+    expect(2 * 490 * Math.sin((20 * Math.PI) / 180 / 2)).toBeLessThan(Math.hypot(168, 82));
+    expect(apart).toBeGreaterThanOrEqual(Math.hypot(168, 82));
     expect(overlaps(boxes[0]!, boxes[1]!)).toBe(false);
   });
 
-  it("never overlaps any pair of outcomes, for every outcome count up to the full STANDALONE vocabulary", () => {
-    // Force outcomes onto adjacent card indexes (the tightest pre-adjustment spacing) at every count
-    // from 2 to 13, the ceiling `data/features.json` documents for STANDALONE features.
+  it("never overlaps any pair of outcomes, at every outcome count and every ring size", () => {
+    // Every count from 2 to 13 (the ceiling `data/features.json` documents for STANDALONE features),
+    // over ring sizes from 9 pieces to 30 — the small ones are the tight case, since r2 grows with the
+    // piece count while the angular gap the payoffs ask for does not.
     for (let k = 2; k <= 13; k++) {
-      const n = Math.max(k, 9);
-      const m = modelFor(n, Array.from({ length: k }, (_, i) => i));
-      const L = layoutCircular(m);
-      const boxes = m.outcomes.map((f) => L.pos.get(f.id)!);
-      for (let i = 0; i < boxes.length; i++) {
-        for (let j = i + 1; j < boxes.length; j++) {
-          expect(overlaps(boxes[i]!, boxes[j]!)).toBe(false);
+      for (const n of [9, 14, 18, 24, 30]) {
+        if (n < k) continue;
+        const m = modelFor(n, Array.from({ length: k }, (_, i) => i));
+        const L = layoutCircular(m);
+        const boxes = m.outcomes.map((f) => L.pos.get(f.id)!);
+        for (let i = 0; i < boxes.length; i++) {
+          for (let j = i + 1; j < boxes.length; j++) {
+            expect(overlaps(boxes[i]!, boxes[j]!), `${k} outcomes on ${n} pieces`).toBe(false);
+          }
         }
       }
     }
@@ -205,5 +222,106 @@ describe("the circular layout's outcome ring", () => {
       expect(p.w).toBeGreaterThan(0);
       expect(p.h).toBeGreaterThan(0);
     }
+  });
+
+  /**
+   * #163. A player's report: *"this is wrong — a card from a combo should be near the combo card."*
+   *
+   * The ring used to space the pieces by their index in `m.cards`, which is the order the combos
+   * happen to introduce them and nothing else, while the payoff went to the mean direction of a set
+   * that order had already scattered. Edges run piece → payoff through the middle of the diagram, so
+   * a piece opposite its payoff drew a line straight over the hub: measured over the 13 fixture lists
+   * in both views, 283,601 units of edge and 495 crossing pairs.
+   *
+   * What is pinned here is the property, not the arrangement: the ring order is the output of a search
+   * and will move again if the cost changes, but a piece must land by the payoff it feeds, a shared
+   * piece must land between the payoffs that share it, and the search may never return a ring longer
+   * than the one it replaced.
+   */
+  describe("where a piece sits", () => {
+    const centre = (L: ReturnType<typeof layoutCircular>, id: string) => {
+      const p = L.pos.get(id)!;
+      return { x: p.x + p.w / 2, y: p.y + p.h / 2 };
+    };
+    const dist = (a: { x: number; y: number }, b: { x: number; y: number }) => Math.hypot(a.x - b.x, a.y - b.y);
+    const bearing = (L: ReturnType<typeof layoutCircular>, id: string) => {
+      const c = centre(L, id), hub = L.width / 2;
+      return Math.atan2(c.y - hub, c.x - hub);
+    };
+    /** Angular distance between two bearings, the short way round. */
+    const between = (a: number, b: number) => {
+      const d = Math.abs(a - b) % (2 * Math.PI);
+      return d > Math.PI ? 2 * Math.PI - d : d;
+    };
+
+    it("puts a combo's pieces nearer its own payoff than any other, however they were introduced", () => {
+      // The worst case for the old order: two combos whose pieces interleave, so the order the ring
+      // is handed alternates between them and neither group is contiguous anywhere in it.
+      const m = modelOf(6, [[0, 2, 4], [1, 3, 5]]);
+      const L = layoutCircular(m);
+      for (const [k, own] of [["f0", [0, 2, 4]], ["f1", [1, 3, 5]]] as const) {
+        const other = k === "f0" ? "f1" : "f0";
+        for (const i of own) {
+          const c = centre(L, `c${i}`);
+          expect(dist(c, centre(L, k)), `c${i} → ${k}`).toBeLessThan(dist(c, centre(L, other)));
+        }
+      }
+    });
+
+    it("gives each payoff one unbroken arc of pieces, not a scatter", () => {
+      const m = modelOf(6, [[0, 2, 4], [1, 3, 5]]);
+      const order = ringOrder(m);
+      for (const own of [[0, 2, 4], [1, 3, 5]]) {
+        const at = own.map((i) => order.indexOf(`c${i}`)).sort((a, b) => a - b);
+        expect(at[at.length - 1]! - at[0]!, `${own} sit at ${at}`).toBe(at.length - 1);
+      }
+    });
+
+    it("puts a piece two combos share between the two payoffs that share it", () => {
+      // c0 feeds both. It cannot be nearer to one payoff than the other by much: what it must not do
+      // is sit inside one cluster with a line across the ring to the other.
+      const m = modelOf(7, [[0, 1, 2], [0, 3, 4]]);
+      const L = layoutCircular(m);
+      const shared = bearing(L, "c0"), a = bearing(L, "f0"), b = bearing(L, "f1");
+      expect(between(shared, a)).toBeLessThanOrEqual(between(a, b) + 1e-9);
+      expect(between(shared, b)).toBeLessThanOrEqual(between(a, b) + 1e-9);
+      // And it is nearer to both of them than the pieces at the far end of either cluster.
+      for (const far of ["c2", "c4"]) {
+        expect(between(bearing(L, "c0"), a) + between(bearing(L, "c0"), b))
+          .toBeLessThan(between(bearing(L, far), a) + between(bearing(L, far), b));
+      }
+    });
+
+    /**
+     * The monotonicity guarantee, and the reason `ringOrder` searches from the old insertion order as
+     * well as from its own adjacency seed. Grouping by payoff alone improved 18 of the 22 fixture
+     * diagrams and made 4 worse (`atlanta-01` and `atlanta-04` in the near-miss view), because
+     * contiguity is a proxy and edge length is the thing a reader sees.
+     */
+    it("never returns a ring longer than the order it replaced", () => {
+      const shapes: number[][][] = [
+        [[0, 2, 4], [1, 3, 5]],
+        [[0], [0, 1]],
+        [[0, 1], [2, 3], [4, 5], [6, 7]],
+        [[0, 3, 6], [1, 4, 7], [2, 5, 8]],
+        [[0, 1, 2, 3], [3, 4, 5], [5, 6, 0]],
+        [[7], [3], [11], [0], [5]],
+      ];
+      for (const groups of shapes) {
+        const n = Math.max(12, ...groups.flat().map((i) => i + 1));
+        const m = modelOf(n, groups);
+        expect(ringCost(m, ringOrder(m)), JSON.stringify(groups)).toBeLessThanOrEqual(ringCost(m, m.cards) + 1e-6);
+      }
+    });
+
+    it("returns every piece exactly once, and the same answer every time", () => {
+      // A search that dropped or duplicated a piece would take a card out of the diagram silently.
+      const m = modelOf(9, [[0, 4, 8], [1, 5], [2, 6, 7]]);
+      const first = ringOrder(m);
+      expect([...first].sort()).toEqual([...m.cards].sort());
+      expect(ringOrder(m)).toEqual(first);
+      const L = layoutCircular(m);
+      for (const b of m.cards) expect(L.pos.get(b), b).toBeDefined();
+    });
   });
 });

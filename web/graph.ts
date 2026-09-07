@@ -239,37 +239,204 @@ function layoutLayered(m: Model, aspect: number) {
   return { pos, edges, width: resultX + RESULT_W, height: H, labels, hub: null as null | { x: number; y: number } };
 }
 
+// --- the circular layout ---------------------------------------------------------------
+// Pieces sit on an inner ring, payoffs on an outer one, the legend at the hub, and every edge runs
+// from a piece to the payoff it feeds. The two rings are functions of the piece count alone.
+const TOP = -Math.PI / 2;
+/** Any angle expressed in the frame the ring is laid out in: from the top, forwards, once round. */
+const onRing = (a: number) => TOP + ((((a - TOP) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI));
+const ringRadii = (n: number) => {
+  const r1 = Math.max(260, (n * (CELL_W + 40)) / (2 * Math.PI));
+  return { r1, r2: r1 + 230 };
+};
+const chord = (r1: number, a1: number, r2: number, a2: number) =>
+  Math.hypot(r1 * Math.cos(a1) - r2 * Math.cos(a2), r1 * Math.sin(a1) - r2 * Math.sin(a2));
+
+/**
+ * Where each payoff lands, given where the pieces are: the mean direction of the pieces feeding it,
+ * then nudged apart from its neighbour so two boxes can never overlap.
+ *
+ * Two same-size axis-aligned boxes never overlap once their centres are at least a full diagonal
+ * apart, whatever direction separates them (if centres are `diag` apart, one box would need both
+ * dx < RESULT_W and dy < RESULT_H at once, which needs dx²+dy² < RESULT_W²+RESULT_H² = diag² — a
+ * contradiction). Using only RESULT_H here under-measured the gap needed at the top and bottom of
+ * the ring, where the boxes sit wide-side-on to their neighbour and RESULT_W is what matters: two
+ * outcomes 20° apart at the bottom of the ring overlapped by 0.4px width and 52px height even
+ * though the (H-only) minGap said they had room. The diagonal is the dimension-agnostic bound.
+ *
+ * `Math.atan2` answers in (-π, π] while the ring runs from -π/2 upwards, so a payoff whose pieces sit
+ * near the end of the ring used to come back as a small negative number and sort to the FRONT of the
+ * chain — the seam cut a cluster in half and the nudging pass then dragged the rest around it. Both
+ * frames are `onRing` now.
+ */
+function payoffAngles(m: Model, angle: (base: string) => number, r2: number): Map<string, number> {
+  const want = m.outcomes.map((f) => {
+    const cards = m.combos.filter((c) => c.produces.includes(f.id)).flatMap((c) => c.uses.map((u) => u.card));
+    const sx = cards.reduce((s, b) => s + Math.cos(angle(b)), 0), sy = cards.reduce((s, b) => s + Math.sin(angle(b)), 0);
+    return { f, want: cards.length ? onRing(Math.atan2(sy, sx)) : TOP, a: 0 };
+  }).sort((p, q) => p.want - q.want);
+  for (const o of want) o.a = o.want;
+  const minGap = (Math.hypot(RESULT_W, RESULT_H) + 34) / r2;
+  for (let i = 1; i < want.length; i++) if (want[i]!.a - want[i - 1]!.a < minGap) want[i]!.a = want[i - 1]!.a + minGap;
+  // The pass above only ever pushes forwards, so a run of payoffs that all want the same angle — the
+  // normal case, since several payoffs can come out of one combo and so out of one arc of pieces —
+  // ends up entirely on one side of the pieces that feed it. Sliding the whole set back by its mean
+  // displacement re-centres it on what it asked for; a constant subtracted from every angle leaves
+  // every pairwise gap exactly as it was, so this cannot cost the no-overlap guarantee above.
+  if (want.length) {
+    const drift = want.reduce((s, o) => s + (o.a - o.want), 0) / want.length;
+    for (const o of want) o.a -= drift;
+  }
+  return new Map(want.map((o) => [o.f.id, o.a]));
+}
+
+/** The total length of every piece → payoff edge if the pieces sat in this order. The thing to minimise. */
+export function ringCost(m: Model, order: string[]): number {
+  const n = Math.max(1, order.length);
+  const { r1, r2 } = ringRadii(n);
+  const at = new Map(order.map((b, i) => [b, TOP + (i * 2 * Math.PI) / n]));
+  const angle = (b: string) => at.get(b) ?? TOP;
+  const payoff = payoffAngles(m, angle, r2);
+  let total = 0;
+  for (const c of m.combos) for (const f of c.produces) {
+    const a = payoff.get(f);
+    if (a === undefined) continue;
+    for (const u of c.uses) total += chord(r1, angle(u.card), r2, a);
+  }
+  return total;
+}
+
+/**
+ * The order the pieces sit in around the ring, and the whole reason this layout stopped drawing a
+ * piece on one side of the hub and its payoff on the other (#163).
+ *
+ * `m.cards` arrives as `[...need.keys()]` — the order the combos happen to introduce it — and the
+ * ring used to space the pieces by that index alone, so a piece's angle had nothing to do with the
+ * payoff it feeds. Measured over the 13 fixture lists in both views: 283,601 units of edge and 495
+ * crossing pairs, with `Retreat → Infinite Power` running 711 units across a diagram 1,405 wide,
+ * straight over the hub.
+ *
+ * The seed is adjacency order: combos grouped by the payoff they produce, in the order the outer ring
+ * already lists the payoffs, so every payoff's pieces start as one contiguous arc, and a piece used by
+ * several combos starts at the mean of their positions rather than at the first one that introduced
+ * it. That alone is not enough — it improved 18 of the 22 fixture diagrams and made 4 of them worse,
+ * because grouping optimises a proxy (contiguity) and not the thing a reader sees (edge length).
+ *
+ * So the seed is then refined against the real quantity. Each round places the payoffs, gives every
+ * piece the mean direction of the payoffs it feeds, re-sorts the ring by that, and tries all n
+ * rotations of the result against the n slots, keeping the cheapest by `ringCost`. A round that does
+ * not beat the round before it ends the search.
+ *
+ * The search runs from the old insertion order as well, and the best order any of it ever produced is
+ * the one returned. That is what makes this monotone: whatever `m.cards` arrives in, the ring it gets
+ * can never be longer than the ring it used to get — which grouping alone could not promise, and did
+ * not deliver on `atlanta-01` and `atlanta-04`.
+ */
+export function ringOrder(m: Model): string[] {
+  const seed = seedOrder(m);
+  if (seed.length < 3 || !m.outcomes.length) return seed;
+  let best = seed, bestCost = ringCost(m, seed);
+  for (const start of [seed, [...m.cards]]) {
+    let current = start, currentCost = ringCost(m, start);
+    if (currentCost < bestCost - 1e-6) { bestCost = currentCost; best = current; }
+    for (let round = 0; round < 4; round++) {
+      const next = rotateToFit(m, pullToPayoffs(m, current));
+      const cost = ringCost(m, next);
+      current = next;
+      if (cost >= currentCost - 1e-6) break;
+      currentCost = cost;
+      if (cost < bestCost - 1e-6) { bestCost = cost; best = next; }
+    }
+  }
+  return best;
+}
+
+/** Pieces grouped by the payoff they feed, then by the combo, with a shared piece at the mean of the combos using it. */
+function seedOrder(m: Model): string[] {
+  const ordered: Combo[] = [];
+  const placed = new Set<string>();
+  const take = (c: Combo) => { if (!placed.has(c.id)) { placed.add(c.id); ordered.push(c); } };
+  for (const f of m.outcomes) for (const c of m.combos) if (c.produces.includes(f.id)) take(c);
+  // A combo with no STANDALONE payoff draws no edge in this layout at all, so its pieces go last
+  // rather than splitting an arc that does carry one.
+  for (const c of m.combos) take(c);
+
+  const using = new Map<string, number[]>();
+  ordered.forEach((c, i) => {
+    for (const u of c.uses) {
+      if (!using.has(u.card)) using.set(u.card, []);
+      using.get(u.card)!.push(i);
+    }
+  });
+  // The mean is taken over positions on a LINE, not around the circle, so a piece shared between the
+  // first group and the last lands in the middle of the ring rather than across the seam behind the
+  // hub. The refinement above is what recovers that case.
+  const key = (base: string) => {
+    const xs = using.get(base);
+    return xs?.length ? xs.reduce((a, b) => a + b, 0) / xs.length : ordered.length;
+  };
+  // A piece in no combo at all cannot be pulled anywhere: it keeps its place, after everything that
+  // has a payoff to sit under.
+  const given = new Map(m.cards.map((b, i) => [b, i]));
+  return [...m.cards].sort((a, b) => key(a) - key(b) || (using.get(a)?.[0] ?? 0) - (using.get(b)?.[0] ?? 0) || given.get(a)! - given.get(b)!);
+}
+
+/** Re-sort the ring so each piece sits where the payoffs it feeds are, breaking ties on the order it had. */
+function pullToPayoffs(m: Model, order: string[]): string[] {
+  const n = Math.max(1, order.length);
+  const { r2 } = ringRadii(n);
+  const at = new Map(order.map((b, i) => [b, TOP + (i * 2 * Math.PI) / n]));
+  const payoff = payoffAngles(m, (b) => at.get(b) ?? TOP, r2);
+  const want = new Map<string, number>();
+  for (const base of order) {
+    let sx = 0, sy = 0, k = 0;
+    for (const c of m.combos) {
+      if (!c.uses.some((u) => u.card === base)) continue;
+      for (const f of c.produces) {
+        const a = payoff.get(f);
+        if (a === undefined) continue;
+        sx += Math.cos(a); sy += Math.sin(a); k++;
+      }
+    }
+    want.set(base, k ? onRing(Math.atan2(sy, sx)) : at.get(base)!);
+  }
+  const was = new Map(order.map((b, i) => [b, i]));
+  return [...order].sort((a, b) => want.get(a)! - want.get(b)! || was.get(a)! - was.get(b)!);
+}
+
+/**
+ * A sorted ring still has to be cut somewhere, and the cut is a free choice: rotating the whole order
+ * moves every piece to a different slot without changing who neighbours whom. All n cuts are priced
+ * and the cheapest wins, ties going to the one that leaves the order alone.
+ */
+function rotateToFit(m: Model, order: string[]): string[] {
+  let best = order, bestCost = ringCost(m, order);
+  for (let k = 1; k < order.length; k++) {
+    const cand = [...order.slice(k), ...order.slice(0, k)];
+    const cost = ringCost(m, cand);
+    if (cost < bestCost - 1e-6) { bestCost = cost; best = cand; }
+  }
+  return best;
+}
+
 /** Circular: legend hub in the middle, pieces on a ring, payoffs on an outer ring. */
 export function layoutCircular(m: Model) {
   const pos = new Map<string, Placed>();
   const edges: Edge[] = [];
   const n = Math.max(1, m.cards.length);
-  const r1 = Math.max(260, (n * (CELL_W + 40)) / (2 * Math.PI));
-  const r2 = r1 + 230;
+  const { r1, r2 } = ringRadii(n);
   const size = 2 * (r2 + RESULT_W);
   const cx = size / 2, cy = size / 2;
   const angle = new Map<string, number>();
-  m.cards.forEach((base, i) => {
-    const a = -Math.PI / 2 + (i * 2 * Math.PI) / n;
+  ringOrder(m).forEach((base, i) => {
+    const a = TOP + (i * 2 * Math.PI) / n;
     angle.set(base, a);
     const b = boxOf(m, base);
     pos.set(base, { id: base, x: cx + r1 * Math.cos(a) - b.w / 2, y: cy + r1 * Math.sin(a) - b.h / 2, w: b.w, h: b.h });
   });
-  const outcomeAngle = m.outcomes.map((f) => {
-    const cards = m.combos.filter((c) => c.produces.includes(f.id)).flatMap((c) => c.uses.map((u) => u.card));
-    const sx = cards.reduce((s, b) => s + Math.cos(angle.get(b) ?? 0), 0), sy = cards.reduce((s, b) => s + Math.sin(angle.get(b) ?? 0), 0);
-    return { f, a: cards.length ? Math.atan2(sy, sx) : 0 };
-  }).sort((p, q) => p.a - q.a);
-  // Two same-size axis-aligned boxes never overlap once their centres are at least a full diagonal
-  // apart, whatever direction separates them (if centres are `diag` apart, one box would need both
-  // dx < RESULT_W and dy < RESULT_H at once, which needs dx²+dy² < RESULT_W²+RESULT_H² = diag² — a
-  // contradiction). Using only RESULT_H here under-measured the gap needed at the top and bottom of
-  // the ring, where the boxes sit wide-side-on to their neighbour and RESULT_W is what matters: two
-  // outcomes 20° apart at the bottom of the ring overlapped by 0.4px width and 52px height even
-  // though the (H-only) minGap said they had room. The diagonal is the dimension-agnostic bound.
-  const minGap = (Math.hypot(RESULT_W, RESULT_H) + 34) / r2;
-  for (let i = 1; i < outcomeAngle.length; i++) if (outcomeAngle[i]!.a - outcomeAngle[i - 1]!.a < minGap) outcomeAngle[i]!.a = outcomeAngle[i - 1]!.a + minGap;
-  for (const { f, a } of outcomeAngle) pos.set(f.id, { id: f.id, x: cx + r2 * Math.cos(a) - RESULT_W / 2, y: cy + r2 * Math.sin(a) - RESULT_H / 2, w: RESULT_W, h: RESULT_H });
+  for (const [id, a] of payoffAngles(m, (b) => angle.get(b) ?? TOP, r2)) {
+    pos.set(id, { id, x: cx + r2 * Math.cos(a) - RESULT_W / 2, y: cy + r2 * Math.sin(a) - RESULT_H / 2, w: RESULT_W, h: RESULT_H });
+  }
   for (const c of m.combos) {
     for (const f of c.produces) if (m.outcomes.some((o) => o.id === f)) for (const u of c.uses) edges.push({ from: u.card, to: f, dashed: m.missing.has(u.card), comboId: c.id, kind: "card" });
   }

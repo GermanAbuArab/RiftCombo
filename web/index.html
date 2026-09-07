@@ -72,14 +72,6 @@
       <textarea id="deck-input" rows="10" spellcheck="false" autocomplete="off"
         placeholder="1 Lady of Luminosity&#10;3 Forge of the Future&#10;3 Ekko, Recurrent&#10;3 Shadow's Call&#10;3 Sacrifice&#10;…&#10;&#10;or a deck code: CMAAAAAAAAAACAQAABM5MAIA…"></textarea>
       <p class="fine">Plain lists, Piltover Archive exports, TTS dumps and deck codes all work</p>
-      <label class="near-miss">Also show combos you are
-        <select id="max-missing" aria-label="How many missing cards a near-miss combo may have">
-          <option value="0">complete only</option>
-          <option value="1">1 card away</option>
-          <option value="2" selected>2 cards away</option>
-          <option value="3">3 cards away</option>
-        </select>
-      </label>
       <p class="notice">Your list is matched in your browser. Nothing about it is stored unless you press Save, which copies the list text to your account, where only you can read it. A Piltover Archive link is fetched once through this site's own server and cached for ten minutes.</p>
       <div class="actions">
         <button type="button" class="linklike" id="load-example">Load example</button>
@@ -134,6 +126,16 @@
           <label><input type="radio" name="view" value="network" checked><span>Complete</span></label>
           <label><input type="radio" name="view" value="suggestions"><span>Near misses</span></label>
         </fieldset>
+        <!-- The distance qualifies "Near misses" and nothing else, so it lives beside it and is not
+             on screen while "Complete" is: under Complete it changed two words of a status card on
+             the far side of the window and nothing else at all (#163). -->
+        <label class="near-miss" id="near-miss" hidden>Within
+          <select id="max-missing" aria-label="How many cards a near-miss combo may be missing">
+            <option value="1">1 card</option>
+            <option value="2" selected>2 cards</option>
+            <option value="3">3 cards</option>
+          </select>
+        </label>
         <fieldset class="segmented" aria-label="Diagram shape">
           <label><input type="radio" name="layout" value="layered" checked><span>Columns</span></label>
           <label><input type="radio" name="layout" value="circular"><span>Radial</span></label>
