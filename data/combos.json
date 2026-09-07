@@ -34220,6 +34220,345 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #171 — the ninth of the ten uncatalogued legend names, and the first entry to use VEN-141 or OGN-158. Card text verbatim from data/corpus_flat.txt. The uniqueness claim was swept by listing every corpus row containing '[Add] :rb_energy' and reading each one's cost, and the members are NAMED in the uses[] note so the next grep can refute the claim cheaply — the discipline the #175 cross-audit asked for after a counted set turned out to have members a wording could not see. Trap check: the exchange rate is stated AGAINST the project's own nine-Energy-per-Power figure rather than quietly ignoring it, so the entry is not read as a ramp; 167 is cited so the Energy is not banked; 145.2 is cited so the off-turn use is narrowed honestly instead of assumed; 107.4.b is cited so no multiplier is claimed; 161.2.b + 315.3.b are cited so the two runes are shown to return rather than asserted to."
+    },
+    {
+      "id": "sacred-protector-disciple-of-shen-pair",
+      "name": "Two cards that each switch the other on — 'exactly one other unit you control here' is a condition a garrison of exactly two satisfies twice",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-129",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 P1 M6. 'I don't deal combat damage unless I'm at a battlefield with exactly one other unit you control.' The biggest body in the pool with that clause, and it is a drawback until the pair exists. In no entry before this."
+        },
+        {
+          "card": "VEN-117",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E2 M1. '[Hidden] … I have [Shield 3] while I'm at a battlefield with exactly one other unit you control.' The one companion that is itself PAID by the condition it satisfies, and [Hidden] makes it free to deploy at the battlefield. In no entry before this."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Any Order legend: both cards are mono-Order (103.1.b.1) and neither is a Signature card, so 103.2.d.2 forces nothing.",
+          "Neither card is banned or restricted in either format.",
+          "The garrison has to be EXACTLY two. A third friendly body at that battlefield switches both cards off at once — this is a line that punishes reinforcement."
+        ],
+        "notable": [
+          "THE CONDITION IS SYMMETRIC, AND THAT IS THE WHOLE ENTRY. 'Exactly one other unit you control here' is true for the Protector when only the Disciple stands beside him, and true for the Disciple when only the Protector does. Each IS the other's one other unit, so two cards buy two switches. Every other companion in the pool satisfies the Protector's clause and gets nothing back.",
+          "WHAT THE PAIR IS WORTH ON DEFENCE, WITH THE RULES BEHIND EACH NUMBER. 814.1.c makes Shield 'functionally short for \"While I am a defender, I have +X [M]\"', so the Disciple defends at 1 + 3 = 4 and the Protector at 6; 465.2.b sums the Defending units' Might, so the garrison assigns 10. Against them, 465.2.c.3 forces the attacker to put lethal damage on one body before moving to the next and 465.2.c.4 forbids more than the minimum, so clearing this pair costs 4 + 6 = 10 attacking Might — for 6 Energy and 1 Order Power, one of which is a 1-Might body.",
+          "AND WHAT IT IS WORTH ON OFFENCE, WHICH IS WHERE THE PROTECTOR'S CLAUSE BITES. 'I don't deal combat damage' is not a Might reduction — 465.2.c still has the ATTACKER assign damage equal to their summed Might, and the Protector's 6 is simply not part of that sum while the clause is live. So attacking with the Protector plus two other bodies is attacking with two bodies; attacking with the Protector plus exactly the Disciple is 6 + 1 = 7. The pair is not a tax on the third body, it is a prohibition on it.",
+          "[Hidden] IS WHY THE DISCIPLE COSTS NOTHING TO PLACE. 811.1.b hides the card face down at a battlefield you control for one rainbow Power and lets you play it later 'ignoring its base cost', so the second body of the pair arrives for 0 Energy at Reaction speed, at the exact moment the Protector needs a companion — including inside the opponent's combat, where 464.2.c.3.a gives it the Defender designation at the next Cleanup, before 465.2 resolves.",
+          "THE SAME CONDITION IS PRINTED ON FOUR MORE CARDS, AND ONLY ONE OF THEM SCORES. VEN-138 Shen, Leader of the Kinkou Order ('When I hold, if there is exactly one other unit you control here, you score 1 point'), VEN-042 Shen, Scourge of Shadows (draw 1, Calm), VEN-119 Keeper of Law (a 2 Energy + 1 Order Power discount for controlling a battlefield with exactly two units) and VEN-027 Hand Hammer (Calm Equipment, +2 Might under the same clause). The Disciple is the correct SECOND BODY for every one of them for the same reason it is correct here — it is the only one that pays itself — and shen-duo-mutual-hold already walks the two Shens as the scoring version.",
+          "THREE BODIES BREAK IT, AND SO DOES A TOKEN. 185.2.d ('Tokens have a type. They follow all rules for their type') makes a token unit count towards 'exactly one other unit', so a Recruit or a Sprite wandering onto the battlefield switches both cards off. Do not run this beside a token faucet."
+        ]
+      },
+      "steps": [
+        "Hide Disciple of Shen face down at a battlefield you control for one rainbow Power (811.1.b).",
+        "Play Sacred Protector (4 Energy + 1 Order Power) to that battlefield.",
+        "Play the Disciple from face down for 0 Energy — at Reaction speed, so it can be done inside the opponent's attack.",
+        "The garrison is now exactly two. The Protector's clause is satisfied, so his 6 Might joins the combat sums (465.2.b, 465.2.c); the Disciple's clause is satisfied, so it has [Shield 3] and defends at 4.",
+        "Hold the pair at exactly two bodies. Reinforcing the battlefield with a third unit — or letting a token arrive there — switches both clauses off at once."
+      ],
+      "netPerIteration": "a 6 Might attacker that was dealing no damage, and a 4 Might defender that costs 2 Energy, for a garrison of exactly two",
+      "terminatesIn": "engine only — a standing garrison, not a clock; nothing here scores, and the whole thing switches off the moment a third friendly body reaches the battlefield",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #174, the uncatalogued Calm/Mind/Order lane). VEN-129 Sacred Protector and VEN-117 Disciple of Shen were both in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 103.2.d.2, 185.2.d, 464.2.c.3.a, 465.2, 465.2.b, 465.2.c, 465.2.c.3, 465.2.c.4, 811.1.b, 814.1.c. Distinct from shen-duo-mutual-hold, which walks the two Shens as the SCORING version of the same clause: this is the defensive half of the archetype, and its finding is that the Disciple is the only companion in the pool that is itself paid by the condition it satisfies — which makes it the correct second body for every card in the family, Shen included. Ban check: neither card is banned or restricted. Trap check: a token counts towards 'exactly one other unit' (185.2.d), so the line is anti-synergic with every token faucet, stated; the Protector's clause removes his Might from the ATTACKER's sum rather than reducing his Might; [Hidden] is priced at one rainbow Power in the steps; no unruled reading."
+    },
+    {
+      "id": "whiteflame-last-stand-zhonyas-double-might",
+      "name": "477.3.e.1 puts both increases first, so Last Stand doubles a Might that has already been pumped — and Zhonya's Hourglass is the card the rules themselves use to answer the drawback",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-082",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E8 P2 M8. 'When you play me, give a unit +8 :rb_might: this turn.' The clause says 'a unit', so it may choose itself: a 16 Might body on the turn it lands. In no entry before this."
+        },
+        {
+          "card": "OGN-069",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E3 P1. '[Action] Double a friendly unit's Might this turn. Give it [Temporary].' 477.3.c calls the doubling an increase 'by its current amount', which is why the order of the two pumps matters."
+        },
+        {
+          "card": "OGN-077",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Calm gear, E2. '[Hidden] … If a friendly unit would die, kill this instead. Heal that unit, exhaust it, and recall it.' The Core Rules' own worked example of a would-die replacement (808.1.d.1 names it by name). In no entry before this."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Any Calm legend: all three cards are mono-Calm (103.1.b.1) and none is a Signature card, so 103.2.d.2 forces nothing.",
+          "None of the three is banned or restricted in either format.",
+          "Last Stand is [Action] and Zhonya's Hourglass is a replacement that needs no priority, but the Whiteflame Protector is a plain unit play — 155 keeps it in an Open State on your own turn, so the whole sequence starts in your Main Phase."
+        ],
+        "notable": [
+          "THE ARITHMETIC, AND THE LAYER RULE THAT PRODUCES IT. 477.3.e.1.a: 'Positive values, or increases, to Might are applied first', and 480.3 orders effects inside a layer by timestamp. Whiteflame Protector enters at Might 8 and its own play trigger gives it +8 this turn: 16. Last Stand then 'instructs its controller to increase the unit's Might by its current amount' (477.3.c's own wording), and the current amount is 16, so the unit ends at 32 for the turn. Playing Last Stand FIRST would double 8 to 16 and then add 8 for 24 — the order is worth eight Might and it is free to get right.",
+          "477.3.c IS ALSO THE WARNING. Its worked example is Last Stand answered by Eclipse: 'the unit is -2 [M]. Last Stand instructs its controller to increase the unit's Might by its current amount, -2 … This is not possible, so the unit's Might is increased by 0 instead.' Last Stand is [Action], so it can be held for the Showdown — but any Mind deck holding UNL-063 Eclipse (Reaction, −4 with no floor) can blank it entirely in response. The safe line is to cast it when the opponent's Reaction window is already spent.",
+          "WHAT 32 MIGHT ACTUALLY BUYS, HONESTLY. 465.2.c.4 forbids assigning a unit more damage than the minimum needed to kill it, so the excess is wasted on offence and R28 = A makes it excess damage that only a Fury payoff could cash — and this line is mono-Calm. The real product is SURVIVAL: a 32 Might body needs 32 damage to die (143.2.a, 710), which no board in the pool assigns. It is an unkillable attacker for one turn.",
+          "THE DRAWBACK IS A SCHEDULED DEATH, AND THE ANSWER IS THE RULES' OWN EXAMPLE. 816.1.b: [Temporary] is 'functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this\"'. 808.1.d.1's worked example is a would-die replacement performed by a Zhonya's Hourglass, and the Hourglass's own text is the same shape: 'If a friendly unit would die, kill this instead. Heal that unit, exhaust it, and recall it.' So the Protector survives the Beginning Phase; the Hourglass does not.",
+          "THE SAVE COSTS THREE THINGS, AND THE ENTRY PRICES ALL THREE. (1) The Hourglass dies, so it is one save per copy — three by 103.2.b. (2) 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move', so the saved body goes to your BASE and any 'while I'm at a battlefield' text on it switches off; if it was your only garrison there, 323.6 hands the battlefield back at the next Cleanup, before 315.2.b.2 Holds. (3) It comes back EXHAUSTED, and 315.1.b has already run, so it cannot act until your next Awaken.",
+          "AND THE [Temporary] IS NOT REMOVED. Last Stand grants the keyword with no duration clause — only the doubling is 'this turn' — so the Protector carries [Temporary] for the rest of the game and needs a fresh save at the start of every one of your Beginning Phases. Three Hourglasses buy three turns. Treat Last Stand as renting a body, not buying one.",
+          "THE GENERAL TRAP THE HOURGLASS CARRIES INTO ANY DECK. 808.1.d.1: 'If the Permanent with the effect is not sent to the Trash … the triggered ability will be removed from the chain.' So the Hourglass ERASES the Deathknell of whatever it saves. It is the wrong shield for a body whose value is its death."
+        ]
+      },
+      "steps": [
+        "Play Zhonya's Hourglass — 2 Energy, or hide it for one rainbow Power and play it later for 0 (811.1.b).",
+        "In your Main Phase, play Whiteflame Protector (8 Energy + 2 Calm Power) and aim its play trigger at ITSELF: +8 Might this turn, so it stands at 16.",
+        "Play Last Stand (3 Energy + 1 Calm Power) on the Protector. 477.3.c doubles its CURRENT Might, 16, so it is 32 this turn, and it gains [Temporary].",
+        "Attack. 32 Might needs 32 damage to kill (143.2.a), which no board assigns, so it survives its own combat.",
+        "At the start of your next Beginning Phase, 816.1.b tries to kill it. Zhonya's Hourglass replaces the death: the Hourglass is killed instead, the Protector is healed, exhausted and recalled to your base (455).",
+        "The Protector still carries [Temporary], so it needs another Hourglass next turn; three copies (103.2.b) buy three turns."
+      ],
+      "netPerIteration": "a 32 Might body for one turn, and one Hourglass per further turn it survives",
+      "terminatesIn": "engine only — one blown-out combat per Last Stand (three copies), and one extra turn of life per Zhonya's Hourglass (three copies); mono-Calm converts none of the Might into points",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Rules readings R1-R33 — issue #11 (GitHub), R28 = A",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/11",
+          "date": "2026-09-04"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #174, the uncatalogued Calm/Mind/Order lane). OGN-082 Whiteflame Protector, OGN-069 Last Stand and OGN-077 Zhonya's Hourglass were ALL in no entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 103.2.b, 103.2.d.2, 143.2.a, 155, 315.1.b, 315.2.b.2, 323.6, 455, 465.2.c.4, 477.3.c, 477.3.e.1.a, 480.3, 710, 808.1.d.1, 811.1.b, 816.1.b. The two rules paragraphs that name these cards are quoted: 477.3.c's worked example IS Last Stand answered by Eclipse, and 808.1.d.1's IS a Zhonya's Hourglass save. Ban check: none of the three is banned or restricted. Trap check: the ORDER of the two pumps is worth eight Might and is stated; the excess is wasted on offence (465.2.c.4, R28 = A) so the product is priced as survival, not damage; Eclipse blanks Last Stand at Reaction speed and that is stated as the counterplay; the [Temporary] is NOT removed by the save, so the body is rented; the recall goes to the base (455) and can cost a battlefield (323.6); the Hourglass erases a Deathknell (808.1.d.1); no unruled reading."
+    },
+    {
+      "id": "taric-block-stalwart-poro-shield-stack",
+      "name": "814.2 sums granted Shields, and Stalwart Poro under Block is the rules' own worked example — Taric makes it a third instance",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-074",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E4 P1 M4. '[Shield] [Tank] Other friendly units here have [Shield].' A board-wide granted Shield, which 814.2 makes summable with any other instance. In no entry before this."
+        },
+        {
+          "card": "OGN-052",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E2 M2. '[Shield]' and nothing else — the cheapest printed Shield in the pool, and the unit the Core Rules use in 814.2's own worked example. In no entry before this."
+        },
+        {
+          "card": "OGN-057",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Calm spell, E2. '[Hidden] [Action] Give a unit [Shield 3] and [Tank] this turn.' The other half of 814.2's worked example, and it can be played from face down for 0 inside a Showdown. In no entry before this."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Any Calm legend: all three cards are mono-Calm (103.1.b.1) and none is a Signature card, so 103.2.d.2 forces nothing.",
+          "None of the three is banned or restricted in either format.",
+          "Taric must be AT the same battlefield as the bodies he is paying — his grant reads 'Other friendly units HERE'."
+        ],
+        "notable": [
+          "814.2 IS THE RULE AND STALWART PORO IS ITS OWN EXAMPLE. 'If a Unit has Shield, or has been granted Shield, and is granted Shield by an additional source, the Shield Value of all granted Shield keywords is summed.' The Core Rules illustrate it with 'Stalwart Poro has Shield. It is chosen as the target of Block, which says \"Give a unit [Shield 3]\"' — i.e. Shield 4. Taric adds a third instance for free, and 814.1.b.3 ('If X is omitted, it is presumed to be 1') is what makes each bare [Shield] worth exactly 1.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. A Stalwart Poro standing beside Taric has its own [Shield] 1 and Taric's granted [Shield] 1: Shield 2, so it defends at 2 + 2 = 4 for two Energy. Cast Block on it and 814.2 sums all three: Shield 5, defending at 7. Three Poros beside Taric are three 4 Might defenders (12 summed) before any Block; with a Block on each they are 7, 7 and 7 — 21 summed Might for 6 Energy in bodies, 6 Energy in spells and Taric's 4 Energy + 1 Calm Power. 814.1.c is why none of it applies on offence: Shield is 'functionally short for \"While I am a defender, I have +X [M]\"'.",
+          "[Tank] IS ON BOTH HALVES AND IT IS A COST AS WELL AS A BENEFIT. 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' Taric has printed [Tank] and Block grants it, so the bodies you have inflated are ALSO the bodies the attacker is forced to kill first — which is the point on defence, and which makes this package anti-synergic with any line whose bodies have to survive the opponent's turn (the Grand Plaza family).",
+          "BLOCK IS FREE AT THE RIGHT MOMENT. 811.1.b hides it face down at a battlefield you control for one rainbow Power and lets it be played later 'ignoring its base cost'; it is also [Action], so 806.1.b lets it be played inside a Showdown on either player's turn. The Shield therefore lands AFTER the attacker has committed, which 465.2.b and 465.2.c read when they sum Might and assign damage.",
+          "IT ALL EXPIRES EXCEPT TARIC'S HALF. Block says 'this turn', so 317.2.c takes its Shield 3 and its [Tank] away at the end-of-turn Cleanup; Taric's grant is a passive ability with no duration and lasts as long as he stands there. Three Blocks (103.2.b) is three combats.",
+          "UNL-041 Allay, Eager Admirer IS THE SAME SHAPE FOR THE OTHER KEYWORD, AND IT IS NOT IN uses[] ON PURPOSE. 'While I'm at a battlefield, your other units here have [Deflect]' grants an opponent-only tax (809.1.c) rather than Might, so it does not sum with anything here and it does not change a single number in this entry — it is a deckbuilding companion, not an ingredient."
+        ]
+      },
+      "steps": [
+        "Play Taric, Protector (4 Energy + 1 Calm Power) to the battlefield you intend to defend.",
+        "Play Stalwart Poros (2 Energy each) to the same battlefield. Each has its own [Shield] and Taric's granted [Shield]: 814.2 sums them to Shield 2, so each defends at 4.",
+        "Hide Block face down at that battlefield for one rainbow Power (811.1.b), or hold it in hand.",
+        "When the opponent attacks and has committed, play Block for 0 from face down — it is [Action], so 806.1.b admits it in the Showdown.",
+        "814.2 sums all three instances on the chosen Poro: Shield 5, defending at 7, with [Tank] on top of Taric's.",
+        "815.1.c.2 forces every point of the attacker's damage onto the [Tank] bodies first, and 465.2.b/465.2.c read the raised Might when the sums are taken."
+      ],
+      "netPerIteration": "a 2 Energy body defending at 4 beside Taric, and at 7 with a Block, with [Tank] forcing the damage onto it",
+      "terminatesIn": "engine only — Taric's grant lasts while he stands there, Block is three copies and expires at the end-of-turn Cleanup (317.2.c); nothing here scores and none of it applies on offence (814.1.c)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #174, the uncatalogued Calm/Mind/Order lane). OGN-074 Taric Protector, OGN-052 Stalwart Poro and OGN-057 Block were ALL in no entry before this, and 814.2's worked example names two of the three. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 103.2.b, 103.2.d.2, 317.2.c, 465.2.b, 465.2.c, 806.1.b, 809.1.c, 811.1.b, 814.1.b.3, 814.1.c, 814.2, 815.1.c.2. Ban check: none of the three is banned or restricted. Trap check: Shield applies only on defence (814.1.c), stated in the terminatesIn as well as a notable; [Tank] is priced as a cost — it forces the attacker onto exactly the bodies you inflated, which makes the package anti-synergic with the Grand Plaza family; Block's half expires (317.2.c); UNL-041 Allay is named as a companion and deliberately kept OUT of uses[] because it changes no number here; no unruled reading."
+    },
+    {
+      "id": "eclipse-soul-harvest-unfloored-gate",
+      "name": "Eclipse turns a three-Might gate into a seven-Might gate — and the floor the Origins reductions carry only bites below five",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-063",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind spell, E3. '[Reaction] Give a unit -4 :rb_might: this turn. [Predict].' No 'to a minimum of 1' clause — one of the fourteen reductions from SFD/UNL/VEN that carry no floor. In no entry before this."
+        },
+        {
+          "card": "UNL-159",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order spell, E2 P1. 'Kill a unit at a battlefield with 3 :rb_might: or less.' The cheapest Might gate in the pool, and the number the reduction is aimed at. In no entry before this."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Order: Eclipse is mono-Mind and Soul Harvest mono-Order (103.1.b.3), so the legend must hold both and the pool prints exactly four names — OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-201 Chem-Baroness and UNL-199 Deceiver (103.1.b.2).",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "The target has to be AT a battlefield: Soul Harvest says so, and nothing in this pair reaches a body at the opponent's base."
+        ],
+        "notable": [
+          "THE GATE, WITH THE NUMBERS. Soul Harvest kills a unit 'with 3 :rb_might: or less'; Eclipse's −4 takes anything at 7 or below into that window, and 143.2.b handles the rest: 'If a unit's Might is ever less than 0, it is treated as 0 when referenced by spells and abilities'. Two Eclipses reach 11. Total price for a 7-Might body: 3 Energy plus 2 Energy and 1 Order Power — cheaper than every unconditional kill in the pool (OGN-229 Vengeance is E4 + 2 Power, OGS-012 Blast of Power E6 + 1).",
+          "THE FLOOR IS NOT THE DIFFERENCE PEOPLE THINK IT IS, AND THIS ENTRY SAYS SO EXACTLY. A floored reduction sends M to max(1, M − 4); an unfloored one sends it to M − 4. For the KILL GATE the two are identical whenever M is 5 or more, because max(1, M−4) = M−4 there — OGN-093 Smoke Screen's floored −4 opens the same 7-Might window Eclipse does. The floor bites only at M ≤ 4, and where it really matters is COMBAT: 465.2.c sums the Might of each side, and a floored −4 leaves a 4-Might body contributing 1 while Eclipse leaves it contributing 0 (143.2.b). Use Eclipse to erase a body from a combat sum; use either to open the gate.",
+          "143.2.b.1 IS THE COMPANION AND IT CUTS THE OTHER WAY. 'Although the unit's Might is treated as 0, it is not 0. Effects that calculate Might increases and decreases use the actual value of the unit's Might.' So a body Eclipsed to −1 needs FIVE Might of pumping to get back to 4, not one — and 477.3.c's own worked example is Eclipse blanking a Last Stand for exactly this reason.",
+          "477.3.e.2.a MEANS THE REDUCTION ALWAYS WINS THE RACE. 'Negative values, or decreases, to Might are applied last.' So an opponent who responds to Eclipse with a pump does not save the body from the gate — the +N is applied in the increase sublayer and the −4 after it. The only real answer is to move the unit off the battlefield before Soul Harvest resolves, or to pay Soul Harvest's [Deflect] tax back at you (809.1.c: both spells CHOOSE their target, so a [Deflect] body costs a rainbow more each time).",
+          "THE TIMING IS THE CONSTRAINT, AND IT IS ASYMMETRIC. Eclipse is [Reaction] and 813.1.b gives Reaction 'all abilities and permissions of Action', so it can be cast in a Showdown on either turn. Soul Harvest carries NEITHER keyword, so 155 confines it to 'an Open State outside of Showdowns on its controller's turn'. The pair therefore executes in YOUR Main Phase: Eclipse first, Soul Harvest second, both inside the same turn while the −4 is still live (317.2.c expires it at the end-of-turn Cleanup). You cannot Eclipse inside the opponent's attack and finish the kill there.",
+          "THE SAME GATE IS PRINTED TWICE MORE, AT DIFFERENT PRICES. VEN-127 Lacerate (Order, E2 + 1 Power, 'Choose a unit. If it's [Empowered], disempower it. Then kill it if it has 3 :rb_might: or less', plus [Flow] for a second play out of the trash) and SFD-158 Sandshifter (Order, E5 + 2 Power, the same gate stapled to a 6 Might body). They are the same mechanism at a different cost, so they are the family behind this row rather than three separate entries.",
+          "AND THE PREDICT RIDES ALONG FOR FREE. Eclipse's '[Predict]' is 436.1 — look at the top card and choose whether to recycle it — and 436.4.a keeps it Burn-Out-safe on an empty deck; 416.1 sends what it recycles to the bottom, so it filters and never tutors."
+        ]
+      },
+      "steps": [
+        "In your Main Phase, pick the enemy unit you want dead. It must be at a battlefield.",
+        "Play Eclipse for 3 Energy: give it −4 Might this turn. 477.3.e.2.a applies the decrease last, so any pump the opponent answers with does not save it.",
+        "A body at 7 or less now reads 3 or less (143.2.b treats a negative as 0).",
+        "Play Soul Harvest for 2 Energy + 1 Order Power and kill it.",
+        "Repeat with the remaining copies; 103.2.b caps each at three, so the pair answers three bodies a game.",
+        "If the target carries [Deflect], budget one extra rainbow Power per spell (809.1.c) — both of them choose it."
+      ],
+      "netPerIteration": "one enemy body of up to 7 Might killed for 5 Energy and 1 Order Power, plus a Predict",
+      "terminatesIn": "engine only — three Eclipses and three Soul Harvests, each consumed, so three answers a game; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #174, the uncatalogued Calm/Mind/Order lane). UNL-063 Eclipse and UNL-159 Soul Harvest were both in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.2.b, 103.2.d.2, 143.2.b, 143.2.b.1, 155, 317.2.c, 416.1, 436.1, 436.4.a, 465.2.c, 477.3.c, 477.3.e.2.a, 809.1.c, 813.1.b. CORRECTION THE WALK MADE TO ITS OWN FIRST READING: the project's note that the Origins reductions carry a floor and the later ones do not is true, but the floor does NOT change the kill gate — max(1, M−4) = M−4 for every M of 5 or more, so a floored Smoke Screen opens the same 7-Might window. The floor matters in a COMBAT SUM (465.2.c), where it leaves 1 Might behind, and in 143.2.b.1's arithmetic for anything that later pumps the body. Stated on the row so the next session does not re-derive the wrong distinction. Ban check: neither card is banned or restricted. Trap check: the timing is asymmetric — Eclipse is [Reaction] and Soul Harvest is neither [Action] nor [Reaction], so 155 confines the pair to your own Main Phase; [Deflect] taxes both halves; VEN-127 Lacerate and SFD-158 Sandshifter are named as the same gate at other prices rather than written as separate rows; no unruled reading."
+    },
+    {
+      "id": "kayle-justified-aurok-general-triple-empower",
+      "name": "441.1.c.1 has exactly one user in the pool — Kayle, Justified is the only Game Object that may be Empowered more than once, and Aurok General is the only card that pays for a board of Empowered units",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-134",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 M3. '[Empower] :rb_energy_3: (:rb_energy_3:: Empower me.) I can be [Empowered] up to three times. I have +2 :rb_might: for each time I'm [Empowered]. While I'm [Empowered] three times, I have [Deflect 3] and [Ganking].' Note the reminder text OMITS the 'Use only if not Empowered' clause every other [Empower] card prints — that omission is 441.1.c.1 on the card. In no entry before this."
+        },
+        {
+          "card": "VEN-130",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E5 M5. '[Empower] :rb_energy_3::rb_rune_order: … [Empowered][>] Your units that are [Empowered] have +2 :rb_might: (including me).' Swept: the only card in the pool that pays for a board of Empowered units. In no entry before this."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Any Order legend: both cards are mono-Order (103.1.b.1) and neither is a Signature card, so 103.2.d.2 forces nothing.",
+          "Neither card is banned or restricted in either format.",
+          "The line is paid entirely in Energy except for one Order Power (Aurok General's [Empower] cost), so it wants a turn with a large Rune Pool rather than a wide board."
+        ],
+        "notable": [
+          "441.1.c.1 IS THE RULE AND KAYLE IS ITS ONLY USER. 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.1.c: 'If a Game Object is instructed to be Empowered when it is already Empowered, nothing additional happens.' 441.1.c.1: 'Some effects may grant a Game Object permission to be Empowered multiple times. Such an effect ignores this restriction.' Swept over the whole corpus for that permission — `grep -inE \"empowered (up to|more than|any number|multiple)|can be \\[?empowered\\]? \"` — and it returns ONE row, VEN-134 Kayle, Justified. Every other 'When I become [Empowered]' payoff in the pool is a once-per-copy-per-game event with no reset short of a disempowerer.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Kayle enters at Might 3. Each Empower is 3 Energy and she may take three: 9 Energy for +6, so she stands at 9 with [Deflect 3] and [Ganking]. Aurok General is 5 Energy for a 5 Might body and 3 Energy + 1 Order Power to Empower itself; its static then gives +2 to every Empowered unit including itself, so Kayle is 11 and the General is 7. Total: 20 Energy and 1 Order Power for eighteen Might across two bodies, spread over as many turns as you like.",
+          "441.2 IS WHY NONE OF IT HAS AN UPKEEP. '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference' — a permanent state, not a 'this turn' effect, so 317.2.c never takes it back and the Energy is spent once. That is the difference between this and every Might package in Calm: the numbers stay up between turns.",
+          "AND NONE OF IT IS A BUFF. Kayle's '+2 for each time I'm [Empowered]' and the General's '+2' are continuous modifiers keyed to a state, so 702.3 ('There can only be one Buff on a Unit at a time') never applies and they stack freely — the same distinction the project drew for Lee Sin, Centered and Soul Shepherd.",
+          "EMPOWERING IS A LIMITED ACTION, WHICH IS NOT A PER-TURN CAP. 441.3 makes it one, and 410.2.a defines a Limited Action as 'a game action that a spell, ability, or circumstance of the turn's progression causes the player to perform. A player cannot perform these actions at-will' — i.e. it must be instructed, not that it is once a turn. Kayle can take all three Empowers in one Main Phase if you have the 9 Energy.",
+          "THE THIRD EMPOWER IS WHERE THE KEYWORDS LAND, AND THEY ARE WORTH MORE THAN THE MIGHT. [Deflect 3] is 809.1.c — 'Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play' — three rainbow Power per choosing, which prices most removal out of the game; and [Ganking] is 810.1.c.3's widened Standard Move, battlefield to battlefield, which a 9 Might body with Deflect 3 is exactly the card for.",
+          "KAYLE IS ALSO THE CHEAPEST REPEATABLE 'YOU EMPOWERED SOMETHING ELSE' EVENT IN THE POOL, AND THAT IS A DECKBUILDING LEAD RATHER THAN AN INGREDIENT. VEN-153 Matriarch of War (Body/Order) reads 'When you empower something else, empower me' — three Kayle Empowers are three such events, where every other card in the pool offers one. It is not in uses[] because the Matriarch is a LEGEND and only pays once per turn anyway (441.1.b leaves her Empowered until her own 'Disempower me, rainbow, exhaust' ability spends the state)."
+        ]
+      },
+      "steps": [
+        "Play Kayle, Justified for 3 Energy — a plain Might 3 body with nothing on.",
+        "Pay her [Empower] cost of 3 Energy. She becomes Empowered once: +2 Might, so 5.",
+        "Pay it a second and a third time (3 Energy each). 441.1.c.1 is the permission that lets the second and third payments do anything at all; at three she is Might 9 with [Deflect 3] and [Ganking].",
+        "Play Aurok General for 5 Energy and Empower it for 3 Energy + 1 Order Power.",
+        "Its static now gives +2 to every Empowered unit you control including itself: Kayle is 11, the General is 7, and 441.2 keeps all of it up between turns with no upkeep.",
+        "Move Kayle battlefield to battlefield with [Ganking] (810.1.c.3) and make the opponent pay three rainbow Power for every spell that chooses her (809.1.c)."
+      ],
+      "netPerIteration": "an 11 Might body with [Deflect 3] and [Ganking] and a 7 Might body beside it, permanently, for 20 Energy and 1 Order Power",
+      "terminatesIn": "engine only — Kayle's three Empowers are her printed ceiling and the General's static has no further scaling; the state is permanent (441.2) so there is no per-turn cost and no growth either. Nothing here scores.",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #174, the uncatalogued Calm/Mind/Order lane). VEN-134 Kayle, Justified and VEN-130 Aurok General were both in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 103.2.d.2, 317.2.c, 410.2.a, 441.1.b, 441.1.c, 441.1.c.1, 441.2, 441.3, 702.3, 809.1.c, 810.1.c.3. TWO UNIQUENESS CLAIMS, BOTH SWEPT OVER THE WHOLE CORPUS RATHER THAN ASSUMED: Kayle is the only card carrying 441.1.c.1's multiple-Empower permission, and Aurok General is the only card whose payoff reads a board of Empowered units (`grep -inE \"units that are \\[?Empowered|your \\[?empowered\"`). The printed marker of the permission is the OMISSION of 'Use only if not Empowered' from Kayle's reminder text, which every other [Empower] card prints — worth noting because it is invisible to a keyword grep. Ban check: neither card is banned or restricted. Trap check: 441.3's 'Limited Action' is not a per-turn cap (410.2.a), so all three Empowers fit in one Main Phase; neither Might source is a Buff, so 702.3 does not cap them; 441.2 makes the state permanent so there is no upkeep and no growth; VEN-153 Matriarch of War is named as a deckbuilding lead and deliberately kept out of uses[]; no unruled reading."
     }
   ]
 }
