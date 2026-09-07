@@ -838,3 +838,108 @@ And 056 / 056.2 send a **stolen** spell to its OWNER's trash: the rainbow buys t
 - **Buying the legend's -2 Might inside the empower event that needs it.** Refused by 381 + 310.2, in
   full, in §11.5. This is the reason the entry is written as an offset engine rather than a two-card
   combo.
+
+## 13. Batch 8 — the orphan Signature spells, five entries
+
+All five are Signature cards, so all five `prerequisites.easy` lines are **one legend name**. The
+partition note in §8 records the invariant that makes this safe, verified independently here and by
+`rc-walk-order`: **each of the nine spells forces exactly one legend name, and that legend's two
+domains are exactly the spell's two.** They are matched pairs, which removes the whole class of
+legend-list arithmetic error `test/legend-lines.test.ts` exists to catch.
+
+### 13.1 `arcane-shift-zaunite-bouncer-two-choices-one-card` — SFD-200 + OGN-188 + SFD-199
+
+**One card pays a two-card condition.** `SFD-199 Prodigal Explorer` asks that you have *"chosen enemy
+units and/or gear twice this turn"*; the catalogue's existing `prodigal-explorer-two-choices-draw`
+spends two separate cards on it. `SFD-200 Arcane Shift` supplies both in printed order — the replayed
+`OGN-188 Zaunite Bouncer`'s ETB chooses a unit at a battlefield, and the spell's own *"Deal 3 to an
+enemy unit at a battlefield"* chooses another.
+
+**The blink is free but it costs you your position.** *"Ignoring its cost"* is wider than 356.1.b.2's
+Energy-only carve-out, so nothing is paid — but 355.2.a still sends the body to *"the controller's
+Base or a Battlefield the controller controls"* and 143.4 makes it enter exhausted. A unit blinked out
+of a **contested** battlefield does not come back to it.
+
+### 13.2 `lightning-rush-heart-of-the-tempest-flow-fires-its-own-legend` — VEN-156 + VEN-155
+
+**A Signature spell built to fire its own legend.** 829.1.b makes [Flow] short for *"You may play this
+from your **trash** for its flow cost"*, and `VEN-155 Heart of the Tempest` reads *"When you play a
+card from anywhere other than your hand, empower me"*. The spell's own first half fills the trash it
+will be replayed from.
+
+It is the pool's only Burn-Out-safe trash filler and 431.1.c is why: *"…that player looks at or
+Reveals as many as possible, but **does not Burn Out**, then proceeds with the rest of the
+instruction"*, with 431.1.c.1 extending the protection to the zone change that follows.
+
+**The honest cap is one [Assault 2] a turn.** The legend's payoff costs its own exhaust, so 415.3.a
+returns it only at your Awakening: six Flow plays across three copies still buy one pump a turn.
+441.1.b is why *"Disempower me"* is in the cost at all — it is what makes the cycle repeatable.
+The identity's whole Flow pool is seven cards and they all empower it: `VEN-098 Stargazer`,
+`VEN-100 Up from the Deep`, `VEN-105 Twilight Step`, `VEN-113 Kennen, Storm of Shuriken`,
+`VEN-116 Dragon Form`, `VEN-127 Lacerate`, and Lightning Rush itself.
+
+### 13.3 `shadow-dash-eye-of-twilight-dragged-attacker-tank` — VEN-148 + VEN-147
+
+**A fourth route to a mechanism the catalogue already has three of, and the entry says how it
+differs.** 450 is the clean citation — *"The Destination becomes Contested if it is an Uncontested
+Battlefield not controlled by the controller of the Unit or Units that moved"* — so 464.2.c.1 makes
+**them** the Attacker on **your** turn. `UNL-050 Iascylla` does it free and repeating; `OGN-043 Charm`
+does it in Calm/Mind; `UNL-139 Bone Skewer` (§9.3, this walk) pulls the body out of their **hand** in
+Fury/Chaos. Shadow Dash is the only one that picks a body already on their board **and** pumps your
+garrison with the same card, and the only one in Calm/Order.
+
+815.1.c.2 is the payoff — *"Units without Tank are invalid assignments until all units with Tank have
+lethal damage assigned to them"* — and the legend's [Action] means the grant is bought **after** the
+attackers are declared (806.1.b).
+
+**"Exactly two" is a condition, not a minimum**: a third body switches the +1/+1 off. And the dragged
+unit **goes home, not to you** — 466.1.a.2 recalls surviving attackers and 455 sends a Recall to its
+Base. This is tempo, never theft.
+
+### 13.4 `final-spark-lady-luminosity-eight-to-a-base` — OGS-022 + OGS-021
+
+**Two sweeps, both with their members named.** Every single-target Deal instruction in the corpus
+prints 2, 3, 4, 5, 6 or **8**, and the 8 is `OGS-022 Final Spark` alone. And six cards print damage to
+*"a unit"* with **neither** *"at a battlefield"* **nor** *"here"* — `OGN-029 Falling Star`,
+`OGN-248 Icathian Rain`, `OGN-252 Super Mega Death Rocket!`, `OGS-022 Final Spark`,
+`UNL-020 Dancing Grenade`, `UNL-026 Xerath, Freed`.
+
+**That second sweep reshapes a claim the project carries.** The catalogue records that exactly three
+cards NAME a unit *"in a base"* as a target, which is why `OGN-070 Mageseeker Warden` manufactures a
+zone the format's removal cannot see. Naming is not the only route: an unrestricted *"a unit"* reaches
+a base as surely as a clause that says so, so that zone is answerable by **nine** cards, not three.
+
+206 keeps the legend's draw attached to the **printed** cost, so every discount in the deck lowers
+what you pay and leaves the threshold satisfied — the exact opposite of the *"if you SPENT N or more"*
+family (166.2, 203.1, 356.4.b), which a discount silently disarms.
+
+### 13.5 `siphon-power-herald-recruit-sweeper-insurance` — OGN-266 + OGN-265
+
+**The problem is Might per body, not number of bodies.** `OGN-133 Flurry of Blades` (Body, 1 Energy,
+[Reaction], *"Deal 1 to all units at battlefields"*) kills every 1-Might token simultaneously for any
+number of them (143.2.a), so a Recruit faucet is not made safe by running faster. The project records
+`UNL-077 Soul Shepherd` as *the* fix; `OGN-266 Siphon Power` is a **second** one in the same identity,
+and the difference is the point: the Shepherd is a permanent static over every token you own, Siphon
+Power is one turn at one battlefield bought at [Reaction] speed **in response to the sweeper already
+on the Chain** (813.1.c.1). Reported to the manager as a narrowing — Soul Shepherd is the only
+*permanent* fix.
+
+477.3.b is why the -1 half is small and honest: the floor is **snapshotted**, and its own worked
+example is this shape (*"-4 [M] to a min of 1"* on a 2-Might body generates -1). 477.3.e.2.a then
+applies decreases last, so the two halves of the card never race each other.
+
+## 14. Refusals from batch 8
+
+- **Treating `VEN-148 Shadow Dash` as a steal.** Refused by **466.1.a.2** (*"Insert '3d. Recall
+  Attackers present at the Battlefield if Defenders are still present.'"*) with 455: a surviving
+  dragged unit is recalled to **its own** Base. The card buys a fight, not a body.
+- **A third friendly body at the Shadow Dash battlefield.** Refused by the card's own text: *"if you
+  have **exactly** two units there"*. A bigger garrison is strictly worse for the bonus.
+- **`SFD-200 Arcane Shift` blinking a unit that is holding a contested battlefield.** Refused by
+  355.2.a + 143.4: it returns to your base or a battlefield you control, exhausted, and 323.6 then
+  strips whatever it was holding. The blink is for an ETB you want, never for a body you need standing.
+- **Reading `OGN-266 Siphon Power`'s -1 as removal.** Refused by 143.2.a (a kill by damage needs
+  marked damage; a Might reduction marks none) and 477.3.b (the floor is snapshotted, so it is worth
+  0 against a body already at 1).
+- **Scaling `VEN-155 Heart of the Tempest`'s payoff with more [Flow] plays.** Refused by 415.3.a: the
+  ability costs the legend's own exhaust, so six empowers a game still buy one [Assault 2] a turn.
