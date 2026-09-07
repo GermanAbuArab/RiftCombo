@@ -414,3 +414,109 @@ Temporary are redundant"*) caps the obvious misplay.
    (`Heart of the Tempest`) and its sweep hits your own units; `UNL-067 Ruined Rex` is Mind, so
    Mind/Order gives four legend names and *"an ENEMY unit"* is one-sided. 715.2 pays a Bonus Damage
    source **per Deal action**, so a doubled Deathknell is two actions rather than one bigger one.
+
+---
+
+## 12. Batch 4 — five entries
+
+Batch 3 merged (catalogue 612 at the time of writing).
+
+| id | class | cards | the names it clears |
+|---|---|---|---|
+| `mystic-reversal-defy-counter-tiers` | ENGINE | OGN-080, OGN-045 | Mystic Reversal, Defy |
+| `wielder-of-water-mask-foresight-alone` | ENGINE | OGN-055, OGN-060 | Wielder of Water, Mask of Foresight |
+| `blitzcrank-ezreal-dashing-forced-defence` | ENGINE | OGN-067, SFD-082 | Blitzcrank Impassive, Ezreal Dashing |
+| `orb-of-regret-smoke-screen-floored-reduction` | ENGINE | OGN-090, OGN-093 | Orb of Regret, Smoke Screen |
+| `reinforce-tasty-faefolk-cheat-into-play` | ENGINE | OGN-062, OGN-075 | Reinforce, Tasty Faefolk |
+
+## 13. `740.2.a` — "alone" counts YOUR side, which is the opposite of the obvious reading
+
+> **740.2.a.** *"A unit is alone when there are no other **friendly** units at the same location."*
+> **740.2.b.** *"A unit is one on one when it and the enemy unit at the same location are both alone."*
+
+So the enemy garrison's size is irrelevant to whether your body is alone, and a card that says
+"alone" requires nothing of the opponent — only a card that says **one on one** does. That inverts
+what "attacking alone" sounds like, and it means the cost of the whole family is **your own board**:
+465.2.c assigns damage equal to each side's *summed* Might, so a lone raider brings one body's worth
+and receives a garrison's. `OGN-055 Wielder of Water` and `OGN-060 Mask of Foresight` are the two
+uncatalogued members that **pay** a lone body rather than reading someone else's, and neither bonus
+is a buff — both are modifiers, so 702.3 and 703 are silent and a real buff still lands on top.
+
+## 14. Dragging an enemy body in makes THEM the attacker on YOUR turn — and that is when a defend trigger fires
+
+Two paragraphs say the same thing from opposite sides, and both key on the **moved unit's**
+controller rather than on whoever caused the move:
+
+> **190.3.a.1.** *"Units moving to or being played to a battlefield apply Contested status if that
+> battlefield is not already Contested and that **Unit's controller** does not already control that
+> battlefield."*
+> **450.** *"The Destination becomes Contested if it is an Uncontested Battlefield **not controlled by
+> the controller of the Unit or Units that moved**."*
+
+**464.2.c.1** then makes the Attacker *"the player whose unit(s) applied the Contested status"* — the
+opponent — and 464.2.c.2 makes you the Defender at a battlefield you already control. This project
+had recorded two enemy-movers that fire a Defend trigger on your own turn (`UNL-141 Evelynn,
+Entrancing` in Chaos, `OGN-043 Charm` in Calm/Mind); **`OGN-067 Blitzcrank, Impassive` is a third
+and it is Calm**, which puts the trick in a Calm/Mind shell alongside a defend payoff that was itself
+uncatalogued — `SFD-082 Ezreal, Dashing`, *"When I attack or **defend**, deal damage equal to my
+Might to an enemy unit here."*
+
+**And Blitzcrank's printed drawback is the engine.** *"When I hold, return me to my owner's hand"* is
+filed by the synergy layer as a self-returning no-op; here it is a **rebuy**. 315.2.b.2 Holds every
+battlefield you control, 469.1 with 471.1 gains the point at the Hold, and only then does the trigger
+send him home to be replayed for another drag. Check 323.6 first if he is the lone garrison.
+
+## 15. `477.3.b` snapshots a floored reduction at the size of the body you aim it at
+
+> **477.3.b.** *"When an arithmetic effect from a source that is not a passive ability has a
+> limitation that applies, it is limited at the time of its application, and is 'remembered' at that
+> limited level for the duration of its effect. This process is called 'snapshotting.'
+> **Example:** If an effect gives a unit '-4 [M] to a min of 1 this turn' choosing a unit with 2 [M],
+> then the effect will generate -1 [M] this turn."*
+
+Riot's example is `OGN-093 Smoke Screen`'s exact wording. The play instruction follows directly:
+**aim a floored reduction at the biggest version of the target**, which means after the opponent's
+pumps — and `[Reaction]` (813.1.c.1) is the permission that lets you. **477.3.e.2.a** (*"Negative
+values, or decreases, to Might are applied last"*) reaches the same conclusion from the other side.
+
+Neither card can kill — 143.2.a needs marked damage at or above Might and both floor at 1, and
+143.2.b keeps a reduction from being damage at all. What they buy is a target under **somebody
+else's** threshold: a Might gate, or a cheaper combat assignment under 465.2.c.4 with the remainder
+as excess damage. `OGN-090 Orb of Regret` is the repeatable half at 1 Energy, since its cost is an
+exhaust and 415.3.a readies it every Awakening.
+
+## 16. An Energy-only discount is worth the most on a card whose cost is Energy-only
+
+`OGN-062 Reinforce` reduces a found unit's cost *"by :rb_energy_5:"*, and **356.6** floors that half
+at zero while leaving any Power component untouched. So the right target is **not** the most
+expensive unit in the deck but the most expensive one with **no Power in its cost** — `OGN-075 Tasty
+Faefolk` at 7 Energy and no Power comes down to 2, where a 6-Energy-plus-2-Power body would still owe
+the Power. `[Accelerate]`'s 1 Energy + 1 Calm Power (805.1.a) is then affordable on the change.
+
+Nothing in the card can Burn Out: 431.1.c covers the look, and *"Recycle the remaining cards"* is a
+recycle to the bottom (416.1, 416.1.a) and not a mill, so 431.1.b never fires.
+
+**And the dig becomes a certainty behind a Predict.** 436.1.a lets a `[Predict N]` put the top N back
+*"in any order"*, so a `[Predict 5]` resolved first makes Reinforce's look at five exact. That is the
+general form of §9's finding: **any look at M cards is certain behind a `[Predict N]` with N ≥ M.**
+
+## 17. Facts for CLAUDE.md from Calm/Mind batch 4
+
+1. **740.2.a: *"A unit is alone when there are no other FRIENDLY units at the same location."*** The
+   enemy garrison is irrelevant; 740.2.b's *"one on one"* is the stricter term that needs both sides
+   down to one. The cost of the whole "alone" family is your own board, because 465.2.c assigns each
+   side's **summed** Might.
+2. **`OGN-067 Blitzcrank, Impassive` is a THIRD enemy-mover that fires a Defend trigger on your own
+   turn**, and it is Calm — 190.3.a.1 and 450 both key Contested on the **moved unit's controller**,
+   so 464.2.c.1 makes the opponent the Attacker at a battlefield you control. Its *"When I hold,
+   return me to my owner's hand"* is a **rebuy**, not the no-op the synergy layer files it as: the
+   Hold scores at 315.2.b.2 before the trigger sends him back.
+3. **477.3.b snapshots a floored reduction at the moment of application** — Riot's worked example is a
+   *"-4 to a min of 1"* aimed at a 2 Might body generating **-1 for the whole turn** — so a floored
+   reducer must be aimed AFTER the opponent's pumps, which is what `[Reaction]` buys.
+4. **An Energy-only discount should be aimed at an Energy-only cost.** 356.6 floors the Energy half
+   at zero and never touches Power, so the best target for `OGN-062 Reinforce` is the most expensive
+   unit with **no Power**, not the most expensive unit.
+5. **Any look at M cards is a certainty behind a `[Predict N]` with N ≥ M** (436.1.a, *"in any
+   order"*) — the general form of the exception recorded in batch 3, and it now covers Reinforce's
+   five as well as Fate Weaver's four.
