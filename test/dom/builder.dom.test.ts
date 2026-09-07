@@ -147,14 +147,61 @@ describe("what the pool refuses, and what it says", () => {
     expect(document.querySelector(".drow.champ")).not.toBeNull();
   });
 
-  it("dims a card outside the legend's domains instead of hiding it", async () => {
+  it("dims a card outside the legend's domains instead of hiding it, and paints nothing over the art", async () => {
     await mount("Legend\n1 Nine-Tailed Fox\n");  // calm + mind
     setZone("main");
     const off = cells().find((c) => c.classList.contains("off"))!;
-    expect(off.querySelector(".pool-full")!.textContent).toBe("Off domain");
-    expect(off.querySelector(".pool-add")!.getAttribute("aria-label")).toContain("Domain Identity (103.1.b)");
+    // User decision 2026-09-06: the "Off domain" bar across the artwork went. The card stays, dimmed,
+    // the button refuses, and the reason is in the accessible label and the title -- the cap and
+    // Signature badges are a different thing (they mark a full zone) and stay.
+    expect(off.querySelector(".pool-full")).toBeNull();
+    const add = off.querySelector<HTMLButtonElement>(".pool-add")!;
+    expect(add.getAttribute("aria-disabled")).toBe("true");
+    expect(add.getAttribute("aria-label")).toContain("Domain Identity (103.1.b)");
+    expect(add.getAttribute("title")).toContain("Domain Identity (103.1.b)");
     // And a battlefield indicates no domain at all, so the zone is never empty (#112).
     setZone("battlefields");
     expect(cells().length).toBeGreaterThan(40);
+  });
+});
+
+describe("the sideboard (Tournament Rules 403, 601.1.c)", () => {
+  beforeEach(() => { document.body.innerHTML = ""; });
+
+  it("is a zone of the pool that adds to the sideboard, with its own count and controls", async () => {
+    await mount("Legend\n1 Lady of Luminosity - Starter\n");  // mind + order
+    // Nothing arrived with the list, so the section is not drawn until the zone is chosen.
+    expect(zoneCount("Sideboard")).toBeUndefined();
+    setZone("sideboard");
+    expect(zoneCount("Sideboard")).toBe("0/10");
+    const cell = cells().find((c) => !c.classList.contains("off") && c.querySelector(".pool-add")?.getAttribute("aria-disabled") === "false")!;
+    const add = cell.querySelector<HTMLButtonElement>(".pool-add")!;
+    expect(add.dataset.b).toBe("side-add");
+    expect(add.getAttribute("aria-label")).toContain("to the sideboard");
+    add.click();
+    expect(zoneCount("Sideboard")).toBe("1/10");
+    // The Main Deck did not move: the pool's target was the sideboard.
+    expect(zoneCount("Main Deck") ?? zoneCount("Main")).toMatch(/^0\//);
+    // The row takes it back.
+    document.querySelector<HTMLButtonElement>('.drow [data-b="side-minus"]')!.click();
+    expect(zoneCount("Sideboard")).toBe("0/10");
+  });
+
+  it("only offers Main Deck cards there (601.1.c.2)", async () => {
+    await mount("Legend\n1 Lady of Luminosity - Starter\n");
+    setZone("sideboard");
+    const kinds = cells().map((c) => c.querySelector(".pool-name-txt")!.textContent!);
+    expect(kinds.some((n) => /Rune$/.test(n))).toBe(false);
+    expect(kinds).not.toContain("The Grand Plaza");
+  });
+
+  it("draws every row control as a stroke, not a glyph, so it sits centred in its box", async () => {
+    await mount(fixture("lux.txt"));
+    const tiny = [...document.querySelectorAll<HTMLElement>(".icon-btn.tiny")];
+    expect(tiny.length).toBeGreaterThan(0);
+    for (const b of tiny) {
+      expect(b.querySelector("svg")).not.toBeNull();
+      expect(b.textContent!.trim()).toBe("");
+    }
   });
 });

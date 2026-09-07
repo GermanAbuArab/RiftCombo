@@ -10,7 +10,7 @@
 // else is a class.
 
 import {
-  addCard,
+  addCard, addToSideboard, removeFromSideboard, sideboardCapOf,
   autoRunes,
   builderText,
   canonicalizeDeck,
@@ -61,8 +61,15 @@ const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel);
 const DOMAINS: Domain[] = ["fury", "calm", "mind", "body", "chaos", "order"];
 const ZONES: [PoolZone, string][] = [
   ["all", "All"], ["legend", "Legend"], ["champion", "Champion"],
-  ["main", "Main"], ["battlefields", "Battlefields"], ["runes", "Runes"],
+  ["main", "Main"], ["battlefields", "Battlefields"], ["runes", "Runes"], ["sideboard", "Sideboard"],
 ];
+/**
+ * The two row controls as strokes, not glyphs. "\u2212" and "+" sit on the type's baseline, so in a
+ * 22px box they read a pixel or two high whatever the line-height; a path in a square viewBox is
+ * centred by geometry, which is what `place-items: center` was promising.
+ */
+const MINUS_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9"/></svg>';
+const PLUS_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9"/></svg>';
 const TYPES: [PoolType, string][] = [["unit", "Unit"], ["spell", "Spell"], ["gear", "Gear"], ["equipment", "Equipment"]];
 const SORTS: [SortKey, string][] = [["name", "Name"], ["cost", "Cost"], ["code", "Code"]];
 /** The Energy filter as a segmented control: `Any` is an option, not the absence of one. */
@@ -242,7 +249,9 @@ function gridHtml(): string {
 const identity = (): Domain[] => (deck.legend ? cards().domainsOf(deck.legend) : []);
 
 function cellHtml(card: Card): string {
-  const cap = capOf(deck, card.base, cards());
+  // The Sideboard zone of the pool adds to the sideboard, under its own three caps (601.1.c, 403.3).
+  const toSide = filters.zone === "sideboard";
+  const cap = toSide ? sideboardCapOf(deck, card.base, cards()) : capOf(deck, card.base, cards());
   const held = copiesOf(deck, card.base);
   const off = deck.legend !== null && !inIdentity(card, identity());
   const land = card.orientation === "landscape";
@@ -259,7 +268,9 @@ function cellHtml(card: Card): string {
   const setChamp = filters.zone === "champion";
   const noSignatureChampion = setChamp && card.signature;
   // Domain Identity is a mark, not a filter: hiding a card is hiding the answer, so an out-of-domain
-  // card stays in the grid, dimmed, with the reason on the button that will not take it.
+  // card stays in the grid, dimmed, with the reason on the button that will not take it -- in its
+  // accessible label and its title, never as a bar painted across the art (user decision, 2026-09-06:
+  // the "Off domain" badge went; the cap and Signature badges stay, since they mark a full zone).
   const why = off
     ? `Outside ${identity().join(" + ")} — Domain Identity (103.1.b).`
     : noSignatureChampion
@@ -270,13 +281,13 @@ function cellHtml(card: Card): string {
   // bases ride only in the accessible name and a title — there is nothing to click differently.
   const others = otherBasesOf(cards(), card.base);
   const also = others.length ? `, also printed as ${others.join(", ")}` : "";
-  const label = `${card.name}${stats ? `, ${stats}` : ""}, ${held} in deck.${blocked ? ` ${why}` : setChamp ? " Make this the Chosen Champion." : " Add a copy."}${also}`;
+  const label = `${card.name}${stats ? `, ${stats}` : ""}, ${held} in deck.${blocked ? ` ${why}` : setChamp ? " Make this the Chosen Champion." : toSide ? " Add a copy to the sideboard." : " Add a copy."}${also}`;
   return `<div class="pool-cell${off ? " off" : ""}${land ? " land" : ""}"${others.length ? ` title="${esc(`Also printed as ${others.join(", ")}`)}"` : ""}>
-    <button type="button" class="pool-add" data-b="${setChamp ? "champion" : "add"}" data-base="${esc(card.base)}"
-      aria-disabled="${blocked}" aria-label="${esc(label)}">
+    <button type="button" class="pool-add" data-b="${setChamp ? "champion" : toSide ? "side-add" : "add"}" data-base="${esc(card.base)}"
+      aria-disabled="${blocked}" aria-label="${esc(label)}"${blocked ? ` title="${esc(why)}"` : ""}>
       ${src ? `<img src="${esc(src)}" alt="" loading="lazy">` : `<span class="pool-noart">${esc(card.name)}</span>`}
       ${held ? `<span class="pool-n mono">${held}×</span>` : ""}
-      ${blocked ? `<span class="pool-full">${esc(off ? "Off domain" : noSignatureChampion ? "Signature" : cap.badge)}</span>` : ""}
+      ${blocked && !off ? `<span class="pool-full">${esc(noSignatureChampion ? "Signature" : cap.badge)}</span>` : ""}
     </button>
     <p class="pool-name"><span class="pool-name-txt">${esc(card.name)}</span>${card.signature ? `<span class="sig-tag" title="Signature card">S</span>` : ""}${legality ? `<span class="ban-tag${legality.status === "restricted" ? " restricted" : ""}">${legality.status}</span>` : ""}</p>
     <button type="button" class="linklike pool-view" data-b="view" data-base="${esc(card.base)}">View<span class="sr-only"> ${esc(card.name)}</span></button>
@@ -346,24 +357,31 @@ function deckHtml(): string {
 }
 
 /**
- * A sideboard the list arrived with. There is no zone to build one from — the pool adds to the Main
- * Deck, the rules count 40 there and nothing here — but a list that HAS one must show it: those
+ * The sideboard. Tournament Rules 403 make it ten or fewer Main Deck cards (601.1.c), exchanged one
+ * for one between games (403.4), with the copy limit counted across Main Deck and sideboard together
+ * (403.3). The pool's Sideboard zone adds here; the rows take a copy away or add one, under the same
+ * three caps. A list that ARRIVED with a sideboard shows it whether or not the zone is selected: those
  * cards ride through every save, and a zone that is silently invisible is a zone that is silently
- * lost. Rows only, with the one control that cannot be wrong.
+ * lost.
  */
 function sideboardHtml(): string {
   const rows = zoneRows(deck, cards(), "sideboard");
-  if (!rows.length) return "";
+  if (!rows.length && filters.zone !== "sideboard") return "";
   const n = zoneCounts(deck).sideboard;
   return `<section class="dzone">
-    <h3 class="dzone-head">Sideboard<span class="dzone-n mono">${n}</span></h3>
-    ${rows.map((r) => `<div class="drow" data-base="${esc(r.card.base)}">
+    <h3 class="dzone-head">Sideboard<span class="dzone-n mono">${n}/10</span></h3>
+    ${rows.length ? rows.map((r) => {
+      const cap = sideboardCapOf(deck, r.card.base, cards());
+      return `<div class="drow" data-base="${esc(r.card.base)}">
       ${rowLead(r.card)}
       <button type="button" class="drow-name" data-b="view" data-base="${esc(r.card.base)}" title="${esc(r.card.name)}">${esc(r.card.name)}</button>
       ${mightHtml(r.card)}
+      ${r.card.signature ? `<span class="sig-tag" title="Signature card">S</span>` : ""}
       <span class="drow-n mono">${r.count}×</span>
-    </div>`).join("")}
-    <p class="dzone-empty">Came in with the list and is saved with it. Nothing in the pool adds here.</p>
+      <button type="button" class="icon-btn tiny" data-b="side-minus" data-base="${esc(r.card.base)}" aria-label="One less ${esc(r.card.name)} in the sideboard">${MINUS_ICON}</button>
+      <button type="button" class="icon-btn tiny" data-b="side-add" data-base="${esc(r.card.base)}" aria-label="One more ${esc(r.card.name)} in the sideboard"${cap.full ? ` aria-disabled="true" title="${esc(cap.why)}"` : ""}>${PLUS_ICON}</button>
+    </div>`;
+    }).join("") : `<p class="dzone-empty">Up to ten Main Deck cards, swapped one for one between games (Tournament Rules 403, 601.1.c). Add from the pool's Sideboard zone.</p>`}
   </section>`;
 }
 
@@ -448,10 +466,10 @@ function rowHtml(card: Card, count: number, zone: "legend" | "battlefields" | "r
     ${champ ? `<span class="drow-tag">Champion</span>` : ""}
     ${eligible ? `<button type="button" class="linklike drow-champ" data-b="champion" data-base="${esc(card.base)}">Champion</button>` : ""}
     ${zone === "legend"
-      ? `<button type="button" class="icon-btn tiny" data-b="minus" data-base="${esc(card.base)}" aria-label="Remove ${esc(card.name)} as the legend">−</button>`
+      ? `<button type="button" class="icon-btn tiny" data-b="minus" data-base="${esc(card.base)}" aria-label="Remove ${esc(card.name)} as the legend">${MINUS_ICON}</button>`
       : `<span class="drow-n mono">${count}×</span>
-         <button type="button" class="icon-btn tiny" data-b="minus" data-base="${esc(card.base)}" aria-label="One less ${esc(card.name)}">−</button>
-         <button type="button" class="icon-btn tiny" data-b="add" data-base="${esc(card.base)}" aria-label="One more ${esc(card.name)}"${cap.full ? ` aria-disabled="true" title="${esc(cap.why)}"` : ""}>+</button>`}
+         <button type="button" class="icon-btn tiny" data-b="minus" data-base="${esc(card.base)}" aria-label="One less ${esc(card.name)}">${MINUS_ICON}</button>
+         <button type="button" class="icon-btn tiny" data-b="add" data-base="${esc(card.base)}" aria-label="One more ${esc(card.name)}"${cap.full ? ` aria-disabled="true" title="${esc(cap.why)}"` : ""}>${PLUS_ICON}</button>`}
   </div>`;
 }
 
@@ -708,6 +726,12 @@ function onClick(ev: Event): void {
       edit(addCard(deck, base, cards()));
       return;
     case "minus": ev.preventDefault(); edit(removeCard(deck, base, cards())); return;
+    case "side-add":
+      ev.preventDefault();
+      if (el.getAttribute("aria-disabled") === "true") return;
+      edit(addToSideboard(deck, base, cards()));
+      return;
+    case "side-minus": ev.preventDefault(); edit(removeFromSideboard(deck, base)); return;
     case "champion":
       ev.preventDefault();
       if (el.getAttribute("aria-disabled") === "true") return;
@@ -750,7 +774,14 @@ function onInput(ev: Event): void {
 
 function onChange(ev: Event): void {
   const t = ev.target as HTMLInputElement | HTMLSelectElement;
-  if (t.name === "bld-zone") { filters.zone = t.value as PoolZone; renderPool(); return; }
+  if (t.name === "bld-zone") {
+    // The Sideboard section of the deck column appears with its zone and goes with it (when empty),
+    // so crossing that boundary redraws both columns; every other zone change touches the pool only.
+    const was = filters.zone;
+    filters.zone = t.value as PoolZone;
+    if (was === "sideboard" || filters.zone === "sideboard") render(); else renderPool();
+    return;
+  }
   if (t.name === "bld-cost") { filters.cost = t.value === "" ? null : Number(t.value); renderPool(); return; }
   if (t.name === "bld-tab") {
     tab = t.value as "pool" | "deck";

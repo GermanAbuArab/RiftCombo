@@ -5,6 +5,7 @@ import { checkBuild } from "../src/build.js";
 import { loadDeck } from "../src/deck.js";
 import {
   addCard,
+  addToSideboard,
   autoRunes,
   builderText,
   canonicalBase,
@@ -18,7 +19,9 @@ import {
   otherBasesOf,
   poolOf,
   removeCard,
+  removeFromSideboard,
   setChampion,
+  sideboardCapOf,
   zoneOf,
   zoneCounts,
   zoneRows,
@@ -478,5 +481,49 @@ describe("what the builder writes out", () => {
     expect(isEmptyDeck(emptyDeck())).toBe(true);
     expect(isEmptyDeck(addCard(emptyDeck(), FORGE, cards))).toBe(false);
     expect(isEmptyDeck(addCard(emptyDeck(), LADY, cards))).toBe(false);
+  });
+});
+
+describe("the sideboard (Tournament Rules 403, 601.1.c)", () => {
+  const legend = loadDeck("Legend\n1 Lady of Luminosity - Starter\n", cards);
+  // A Main Deck unit legal under Mind + Order, read out of the pool rather than remembered.
+  const unit = poolOf(cards).find((c) => zoneOf(c) === "main" && c.domains.every((d) => ["mind", "order"].includes(d)) && c.domains.length === 1 && !/any number/i.test(c.text ?? ""))!;
+
+  it("caps at ten cards (601.1.c.1)", () => {
+    let deck = legend;
+    const tens = poolOf(cards).filter((c) => zoneOf(c) === "main").slice(0, 10);
+    for (const c of tens) deck = addToSideboard(deck, c.base, cards);
+    expect(zoneCounts(deck).sideboard).toBe(10);
+    const eleventh = poolOf(cards).filter((c) => zoneOf(c) === "main")[10]!;
+    const cap = sideboardCapOf(deck, eleventh.base, cards);
+    expect(cap.full).toBe(true);
+    expect(cap.why).toContain("601.1.c.1");
+    expect(addToSideboard(deck, eleventh.base, cards)).toBe(deck);
+  });
+
+  it("counts the copy limit across Main Deck and sideboard together (403.3)", () => {
+    let deck = addCard(addCard(legend, unit.base, cards), unit.base, cards);   // 2 in main
+    deck = addToSideboard(deck, unit.base, cards);                              // 1 in side -> 3 named
+    expect(zoneCounts(deck).sideboard).toBe(1);
+    expect(sideboardCapOf(deck, unit.base, cards).full).toBe(true);
+    expect(sideboardCapOf(deck, unit.base, cards).why).toContain("403.3");
+    // And the main is full too, from the same count.
+    expect(capOf(deck, unit.base, cards).full).toBe(true);
+    expect(addCard(deck, unit.base, cards).main[unit.base]).toBe(2);
+  });
+
+  it("admits Main Deck cards only (601.1.c.2), and the pool's Sideboard zone shows only those", () => {
+    const rune = poolOf(cards).find((c) => c.type.includes("rune"))!;
+    expect(sideboardCapOf(legend, rune.base, cards).full).toBe(true);
+    expect(addToSideboard(legend, rune.base, cards)).toBe(legend);
+    const shown = filterPool(cards, { zone: "sideboard" });
+    expect(shown.length).toBeGreaterThan(0);
+    expect(shown.every((c) => zoneOf(c) === "main")).toBe(true);
+  });
+
+  it("takes a copy back, and an empty bag stays empty", () => {
+    const deck = addToSideboard(legend, unit.base, cards);
+    expect(removeFromSideboard(deck, unit.base).sideboard[unit.base]).toBeUndefined();
+    expect(zoneCounts(removeFromSideboard(legend, unit.base)).sideboard).toBe(0);
   });
 });

@@ -19,7 +19,7 @@ import type { Card, CardType, Deck, Domain } from "./types.js";
 /** Where a card goes when it is clicked. The Chosen Champion is a designation on a Main Deck card. */
 export type DeckZone = "legend" | "battlefields" | "runes" | "main";
 /** What the pool is scoped to. `champion` is the only one that needs a legend to mean anything. */
-export type PoolZone = "all" | "legend" | "champion" | "main" | "battlefields" | "runes";
+export type PoolZone = "all" | "legend" | "champion" | "main" | "battlefields" | "runes" | "sideboard";
 /** Equipment is NOT a card type: it is gear carrying the Equipment tag, so it is its own option. */
 export type PoolType = "unit" | "spell" | "gear" | "equipment";
 export type SortKey = "name" | "cost" | "code";
@@ -191,6 +191,8 @@ export function filterPool(cards: CardIndex, filters: Partial<PoolFilters> = {})
     if (zone === "battlefields" && !card.type.includes("battlefield")) return false;
     if (zone === "runes" && !card.type.includes("rune")) return false;
     if (zone === "main" && zoneOf(card) !== "main") return false;
+    // 601.1.c.2: "A sideboard can consist only of valid Main Deck cards."
+    if (zone === "sideboard" && zoneOf(card) !== "main") return false;
     if (zone === "champion" && !(card.type.includes("unit") && card.tags.includes(tag!))) return false;
     // A card that indicates NO domain passes every domain filter (#112). All 66 battlefields are
     // domainless, so a `some` test dropped the whole zone the moment a legend preselected its two
@@ -221,6 +223,8 @@ export function filterPool(cards: CardIndex, filters: Partial<PoolFilters> = {})
 const MAIN_COPIES = 3;
 const BATTLEFIELDS = 3;
 const RUNES = 12;
+/** Tournament Rules 601.1.c.1: "A player's sideboard can include 10 or fewer cards." */
+const SIDEBOARD = 10;
 
 /** Copies of this exact card the list holds, in whichever zone the card belongs to. */
 export function copiesOf(deck: Deck, base: string): number {
@@ -232,9 +236,14 @@ export function copiesOf(deck: Deck, base: string): number {
  * Copies of a NAME the Main Deck holds. 103.2.b caps names, not codes, and Riot reprints a card
  * under a second base — `Lux, Crownguard` is OGS-014 and VEN-SP6 — so the two cells share one cap.
  */
+/**
+ * Copies of a NAME across the Main Deck and the sideboard together. Tournament Rules 403.3: "Limits
+ * on copies of named cards as defined by competition format apply to the combination of Main Deck
+ * and sideboard" -- so three in the sideboard leave no room in the main, and the other way round.
+ */
 function mainCopiesOfName(deck: Deck, cards: CardIndex, name: string): number {
   let n = 0;
-  for (const [base, count] of Object.entries(deck.main)) if (cards.get(base)?.name === name) n += count;
+  for (const bag of [deck.main, deck.sideboard]) for (const [base, count] of Object.entries(bag)) if (cards.get(base)?.name === name) n += count;
   return n;
 }
 
@@ -309,6 +318,33 @@ export function addCard(deck: Deck, base: string, cards: CardIndex): Deck {
   if (zone === "battlefields") return { ...deck, battlefields: bump(deck.battlefields, base, 1) };
   if (zone === "runes") return { ...deck, runes: bump(deck.runes, base, 1) };
   return { ...deck, main: bump(deck.main, base, 1) };
+}
+
+/**
+ * What stops a card going into the sideboard: 601.1.c.1 caps it at ten, 601.1.c.2 admits only Main
+ * Deck cards, and 403.3 counts the copy limit across Main Deck and sideboard together -- the same
+ * `mainCopiesOfName` the main cap reads, which is what keeps the two zones from adding up to six.
+ */
+export function sideboardCapOf(deck: Deck, base: string, cards: CardIndex): Cap {
+  const card = cards.get(base);
+  if (!card) return { held: 0, max: 0, full: true, why: "Not a card in this pool.", badge: "Not in the pool" };
+  if (zoneOf(card) !== "main") return { held: 0, max: 0, full: true, why: "A sideboard holds Main Deck cards only (Tournament Rules 601.1.c.2).", badge: "Main Deck only" };
+  const total = sum(deck.sideboard);
+  const held = deck.sideboard[base] ?? 0;
+  if (total >= SIDEBOARD) return { held, max: SIDEBOARD, full: true, why: `${total} of ${SIDEBOARD} in the sideboard (Tournament Rules 601.1.c.1).`, badge: `${total} of ${SIDEBOARD}` };
+  const max = ANY_NUMBER.test(card.text ?? "") ? Infinity : MAIN_COPIES;
+  const named = mainCopiesOfName(deck, cards, card.name);
+  if (named >= max) return { held, max, full: true, why: `${named} of ${max} across Main Deck and sideboard (Tournament Rules 403.3).`, badge: `${named} of ${max}` };
+  return { held, max, full: false, why: "", badge: "" };
+}
+
+export function addToSideboard(deck: Deck, base: string, cards: CardIndex): Deck {
+  if (sideboardCapOf(deck, base, cards).full) return deck;
+  return { ...deck, sideboard: bump(deck.sideboard, base, 1) };
+}
+
+export function removeFromSideboard(deck: Deck, base: string): Deck {
+  return { ...deck, sideboard: bump(deck.sideboard, base, -1) };
 }
 
 /** Take one copy away. The last copy of the Chosen Champion takes the designation with it. */
