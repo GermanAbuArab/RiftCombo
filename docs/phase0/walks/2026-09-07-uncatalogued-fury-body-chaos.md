@@ -422,3 +422,87 @@ the four turns it takes to refill.
   `UNL-108 Wily Newtfish`, `UNL-115 Nilah` — bounded by 824.1.d (a Level ability goes Inactive as soon
   as you drop below its threshold) and 730.2 (spending XP is your own reduction), so it is an ENGINE
   ceiling and a synergy rule rather than a set of entries.
+
+## 6. Batch 5 — six more, across Body, Fury, Chaos, Body/Chaos and Chaos/Fury
+
+### 6.1 `akshan-mischievous-hexdrinker-stolen-gear` — SFD-109 + SFD-102 (both in zero entries)
+
+[Weaponmaster] equips "to me", so it only ever pays for **carrier-independent** Equipment, and
+`SFD-102 Hexdrinker`'s single-rune [Equip] is discounted to nothing. Two rules keep the steal honest:
+191.1 makes it a *control* change that ends when Akshan does, and **056 with 056.2** keeps the card in
+its owner's zones — destroy the stolen gear and it goes to **their** trash. The stolen Equipment
+attaches with no [Equip] cost paid, because "attach it to me" is effect text and 818.1 governs
+activations.
+
+### 6.2 `monster-harpoon-bushwhack-facedown-enabler` — UNL-014 + SFD-004 (both in zero entries)
+
+**The [Hidden] family in this catalogue is written around the hide EVENT and the face-down PLAY; this
+is the one card that reads the resulting STATE.** "If you *control* a facedown card" plus 811.1.b's
+"for as long as you control that battlefield" means one rainbow, paid once, doubles every Harpoon for
+the rest of the game — and *cashing* the hidden card is what switches it off. `SFD-004 Bushwhack` is
+the right card to leave down because its own effect is a one-shot tempo burst you were holding anyway.
+
+Because the clause is the Harpoon's own text and not a hidden card's play effect, 811.1.d.2 does not
+confine the target.
+
+### 6.3 `vex-cheerless-void-seeker-combat-discount` — SFD-146 + OGN-024 (both in zero entries)
+
+**155 is the selection rule for every partner a "while I'm in combat, spells cost less" card can
+have**: "*A spell can be played during an Open State outside of Showdowns on its controller's turn*",
+so only [Action] and [Reaction] spells can exist in the window Vex creates. Her discount is two
+resources and 356.4.e keeps its floor local; 356.6 is why the rainbow half is simply wasted on a spell
+with no Power cost. The mirror half taxes their answer by the same two.
+
+She is also a liability: being "in combat" (740.2.c) means being a legal damage assignment, and
+465.2.c.3 lets the opponent spend lethal on her first to switch the discount off mid-combat.
+
+### 6.4 `mindsplitter-insightful-investigator-hand-attack` — OGN-192 + UNL-135 (both in zero entries)
+
+Three printed words apart and two different effects: "they discard that card" is card advantage,
+"they discard that card **and draw 1**" is a swap. The Investigator's price is **XP**, and 730.2 takes
+it out of the same pool 824.1.d reads — so it can switch off a [Level N] ability you already had
+online. The reveal is free either way (424.1, 424.1.a), which is the half worth building around.
+
+And 056.2 means the stripped card lands in **their** trash, where their own recursion reads it.
+
+### 6.5 `loyal-pup-jagged-cutlass-free-defensive-relay` — SFD-126 + VEN-073 (both in zero entries)
+
+The same relocation as the Vex, Mocking relay **with no enabler at all**: "when you defend at a
+battlefield" is supplied by the opponent attacking, 420.3.a charges nothing for an effect move, and
+464.2.c.3.a with 319.8 and 323.2.a put him in that damage step. `VEN-073 Jagged Cutlass` answers the
+counterplay exactly — "I can't be moved by **enemy** spells and abilities" is a prohibition (054.1)
+against the whole enemy-mover family, and the word *enemy* is why it never interferes with the Pup's
+own relay.
+
+### 6.6 `angler-beast-ocean-drake-open-and-take` — UNL-132 + VEN-115 (both in zero entries)
+
+"Open" is two conditions (170.11.a/b/c) and emptying a garrison only supplies one directly: the
+battlefield becomes unoccupied at once and uncontrolled at the **next Cleanup** (323.6, 190.4.c).
+Then 355.2.b lets the Drake be played there, 323.9 stages no Combat, and 344.2 with 348.2.a.1 gives a
+**Conquer with no damage step**.
+
+**The finding, and it generalises:** a "play me to an open battlefield" card can never use its own
+play trigger to make the battlefield open, because **355.2 fixes the play location during the play
+steps**, before any trigger resolves. That is the general form of the project's "an evacuator is never
+a walker" rule.
+
+### 6.7 Refusals and leads from batch 5
+
+- **`VEN-115 Ocean Drake`'s bounce as its own enabler** — refused, see 6.6. 355.2 fixes the location
+  first.
+- **Any spell without [Action] or [Reaction] as a `SFD-146 Vex, Cheerless` partner** — refused by 155.
+  Her discount exists only inside a combat and a plain spell cannot be cast there at all; this silently
+  removes most of the partner list she appears to have.
+- **`UNL-135 Insightful Investigator` as a way to run an opponent out of cards** — refused on the
+  card's own text: they draw 1, so the hand size is unchanged. It is a swap.
+- **A second hidden card as a `UNL-014 Monster Harpoon` enabler** — refused: the clause asks whether
+  you control *a* facedown card, so the second one is worth its own effect and not a point of damage.
+- **Lead (not walked):** the bounce family in Chaos is wide and mostly uncatalogued —
+  `OGN-187 Whirlwind` and `SFD-132 Beast Below` (both symmetric), `OGN-188 Zaunite Bouncer`,
+  `VEN-105 Twilight Step`, `VEN-107 Decree of Discord`, `SFD-138 Windsinger`. 355.10.e is the rule
+  that separates them: a bounce each player chooses for themselves targets nothing and [Deflect] never
+  charges, while one you choose does.
+- **Lead (not walked):** `OGN-174 Sai Scout` prints the same "play me to an open battlefield"
+  permission as the Ocean Drake for two Energy less and no Power, and `OGN-161 Deadbloom Predator`
+  prints the opposite one ("You may play me to an occupied ENEMY battlefield"). 355.2.b plus the
+  170.11 vocabulary is one synergy rule covering all of them.
