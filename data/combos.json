@@ -44116,6 +44116,356 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. OGN-266 Siphon Power was in ZERO entries; OGN-265 Herald of the Arcane appears in three others (`heimerdinger-herald-legend-recruits`, `gemcraft-karma-herald-buff-faucet`, `herald-heimerdinger-armory-plaza`), none of which addresses the sweeper that ends every 1-Might token line — that is the different number here. Card text verbatim from data/corpus_flat.txt; 103.2.b, 103.2.d.1, 103.2.d.2, 143.2.a, 185.1, 185.2.b, 185.2.d, 415.3.a, 477.3.b, 477.3.e.2.a, 702.3, 703, 813.1.c.1 opened in the Core Rules file. NOTE FOR THE MANAGER, not changed by this session: CLAUDE.md records that `UNL-077 Soul Shepherd` is 'the only fix in the pool' for 1-Might tokens (already narrowed once, by #170 batch 3, for the Brush at a Navori board). Soul Shepherd remains the only PERMANENT fix; OGN-266 Siphon Power is a one-turn, one-battlefield [Reaction] answer in the same identity, so the claim wants 'permanent' in it."
+    },
+    {
+      "id": "siphoning-strike-nasus-guardian-rune-threshold",
+      "name": "One kill channels two runes, and the spell that made it gets bigger at seven",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-146",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm/Mind spell, E4. 'Deal 4 to a unit at a battlefield. If you control 7 or more runes, deal 7 to it instead. When it dies this turn, channel 1 rune exhausted.' A Signature card tagged Nasus, so 103.2.d.2 forces the legend."
+        },
+        {
+          "card": "VEN-063",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E5 P1 M6. 'Once each turn, when an enemy unit here dies, channel 1 rune exhausted.' Aim the spell at HIS battlefield and one death pays two runes."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine",
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "VEN-146 Siphoning Strike is a SIGNATURE card tagged Nasus, so 103.2.d.2 forces a Nasus legend whose two domains cover calm + mind - and the census prints exactly one such name: VEN-145 / VEN-192 Curator of the Sands. No other legend can hold this list.",
+          "Neither card is banned or restricted in either format. VEN-063 is not a Signature card; VEN-146 is, and it spends one of the three Signature slots 103.2.d.1 allows.",
+          "The target must be AT A BATTLEFIELD, and the second rune only arrives if that battlefield is Nasus's."
+        ],
+        "notable": [
+          "THE INTERLOCK, AND WHY IT IS TWO RUNES AND NOT ONE. Siphoning Strike's own rider is 'When it dies this turn, channel 1 rune exhausted'; Nasus, Guardian of Knowledge reads 'Once each turn, when an enemy unit HERE dies, channel 1 rune exhausted.' Both trigger on the same death, so 383.3.d lets their controller order them on the Chain and both resolve. One 4-Energy spell aimed at Nasus's battlefield is a kill plus two runes.",
+          "AND AN EXHAUSTED RUNE STILL COUNTS TOWARD THE THRESHOLD. 164.2 gives a Basic Rune two abilities and only 164.2.a costs the rune's own exhaust; 164.2.b's cost is the RECYCLE, so a rune channelled exhausted pays 1 Power of its domain at [Reaction] speed immediately, and 415.3.a readies it in your own Awakening Phase for its Energy. Nothing about 'control 7 or more runes' asks whether it is ready - which is what makes a channel-exhausted rider a real step toward the threshold rather than a delayed one.",
+          "THE THRESHOLD FAMILY IS EXACTLY THREE CARDS, AND THIS SPELL IS ONE OF THEM. `grep -in \"7 or more runes\" data/corpus_flat.txt` returns three rows: VEN-025 Esteemed Hierophant, VEN-037 Tomb-Raider Barbara and VEN-146 Siphoning Strike. All three are Calm or Calm/Mind and all three were uncatalogued before this walk; the other two are walked as esteemed-hierophant-tomb-raider-seven-runes, and the two entries name each other.",
+          "WHAT THE CLOCK ACTUALLY IS. 161.2.a fixes the Rune Deck at 'Exactly 12 Rune cards' and 315.3.b channels two free every Channel Phase, so seven arrives on its own around turn four; 430.3 channels 'as many as possible' when the deck is short, and 161.2.b returns a recycled rune to the Rune Deck rather than the Main Deck. Each Strike that kills brings the threshold forward by one turn's worth of channelling, and a Strike that kills at Nasus's battlefield by a full turn.",
+          "BELOW SEVEN IT IS STILL REMOVAL, AND ABOVE SEVEN IT IS DIFFERENT REMOVAL. 4 damage kills a body of Might 4 or less (143.2.a: marked damage at or above Might); 7 kills all but the largest bodies in the pool. The rider fires either way, so the spell is never worse than a 4-Energy kill plus a rune.",
+          "THE LEGEND IS A SHELL REQUIREMENT AND NOT A SYNERGY, WHICH IS WORTH SAYING OUT LOUD. Curator of the Sands reads 'When you play a unit, gear, or activated ability with Energy cost :rb_energy_7: or more, you may exhaust me to ready up to 2 runes.' Two sevens, two different meanings: hers is an Energy COST and the family's is a rune COUNT. Neither card in this entry costs 7, and a SPELL would not trigger her even if it did - her clause names a unit, gear or activated ability. She is forced by 103.2.d.2 and contributes nothing here.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold and neither card touches either."
+        ]
+      },
+      "steps": [
+        "Play Nasus, Guardian of Knowledge (5 Energy + 1 Power) and move him to a battlefield.",
+        "Play Siphoning Strike (4 Energy) at an enemy unit standing at THAT battlefield.",
+        "It takes 4 damage, or 7 if you already control seven or more runes (a rune exhausted for Power still counts).",
+        "If it dies, both riders trigger on the same death: the Strike channels 1 rune exhausted and Nasus channels another (383.3.d orders them).",
+        "Each of those runes is 1 Power of its domain immediately (164.2.b, whose cost is the recycle and not an exhaust) and 1 Energy from your next Awakening (415.3.a).",
+        "Repeat. Nasus's half is once each turn; 161.2.a stops the whole thing at twelve runes."
+      ],
+      "netPerIteration": "one enemy unit of up to 4 Might removed (7 past the threshold) and up to two runes channelled, per Strike",
+      "terminatesIn": "engine only - three Strikes by 103.2.b, Nasus's half is once each turn, and the Rune Deck holds exactly 12 (161.2.a); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 3)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188, batch 3 of docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md). The first entry to use VEN-146 Siphoning Strike or VEN-063 Nasus, Guardian of Knowledge. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.2.d.1, 103.2.d.2, 103.2.b, 143.2.a, 161.2.a, 161.2.b, 164.2, 164.2.a, 164.2.b, 315.3.b, 383.3.d, 415.3.a, 430.3, 469. UNIQUENESS SWEPT: the '7 or more runes' family is exactly three cards, named. The legend is stated as a SHELL REQUIREMENT rather than a synergy, with the two different sevens spelled out, because a reader who sees 'Nasus' on both the spell and the legend will assume they interact and they do not. VEN-063 has a second printing, VEN-178; CardIndex.equivalents folds them. Ban check: neither card is banned or restricted. No unruled reading."
+    },
+    {
+      "id": "esteemed-hierophant-tomb-raider-seven-runes",
+      "name": "The other two cards on the seven-rune clock - one is immune to spells and not to combat, the other answers a gear either way",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-025",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 M5. 'While you control 7 or more runes, prevent all damage that enemy spells and abilities would deal to me.' A prevention, not a shield - and scoped to spells and abilities, which is the whole limit."
+        },
+        {
+          "card": "VEN-037",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm unit, E4 M4. 'When you play me, if you control 7 or more runes, choose an enemy gear. If it's [Empowered], disempower it. Otherwise, kill it.' The only card in the pool that answers an Empowered gear without killing it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair. If the deck also runs VEN-146 Siphoning Strike - the third card on this clock - 103.2.d.2 forces VEN-145 / VEN-192 Curator of the Sands, the only Nasus legend, and that is the shell the family is usually built in.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Seven runes controlled. 315.3.b channels two free every Channel Phase, so the threshold arrives on its own around turn four; 161.2.a caps the Rune Deck at exactly twelve."
+        ],
+        "notable": [
+          "THE FAMILY IS EXACTLY THREE CARDS AND THEY SHARE ONE CLOCK. `grep -in \"7 or more runes\" data/corpus_flat.txt` returns VEN-025 Esteemed Hierophant, VEN-037 Tomb-Raider Barbara and VEN-146 Siphoning Strike, and nothing else. A deck that pays the rune curve for one of them is paid three times, which is the only reason a threshold this high is worth building toward. The Strike is walked as siphoning-strike-nasus-guardian-rune-threshold.",
+          "AND AN EXHAUSTED RUNE COUNTS. 164.2.b's cost is the RECYCLE and not the rune's exhaust, so a rune tapped for Energy this turn is still a rune you control, and 415.3.a hands it back at your own Awakening. The threshold is a board count, never a mana count.",
+          "WHAT 'PREVENT' MEANS, AND WHY THE HIEROPHANT IS NOT A WALL. 437.4: 'Damage dealt to a Unit that has all of that damage Prevented is not considered to have been dealt to it at all' - so a burn spell aimed at him generates no damage and therefore no kill event, which is a different mechanism from a would-die replacement (808.1.d.1) and cannot be answered the same way. But the clause is scoped to 'enemy SPELLS AND ABILITIES', and 417.6.c says 'Damage Dealt as a result of being assigned during Combat has the UNITS as its source' - so combat damage is not spell or ability damage and goes straight through. He is immune to removal and ordinary in a fight.",
+          "AND HE IS ALSO NOT IMMUNE TO THE CHALLENGE FAMILY. 417.6.b.3 makes 'they deal damage equal to their Mights to each other' UNIT damage dealt by the chosen units rather than by the spell - Riot's worked example is Challenge - so every card in that family reaches him. Seven cards print it and six are Body; the entry pairing that mechanism with a [Tank] wall is carnivorous-snapvine-rampage-tank-bypass.",
+          "THE BARBARA IS THE POOL'S ONE ANSWER TO AN EMPOWERED GEAR THAT DOES NOT NEED TO KILL IT. 441.2 makes Empowered 'a state for Game Objects on the board' and 441.1.b forbids re-Empowering, so stripping the state is permanent unless the opponent has another Empower source pointed at that gear. Every other answer in the pool destroys the gear instead, which a would-die replacement or a Deathknell can profit from; this one does not generate a death at all. Against an unempowered gear it simply kills.",
+          "THE THRESHOLD IS CHECKED AT DIFFERENT TIMES ON THE TWO CARDS, AND THAT MATTERS. The Hierophant's is a continuous 'While you control...', re-read at every moment; the Barbara's is inside a play trigger, so 359.3.f.2 checks it on execution of that trigger and a rune channelled earlier the same turn counts. A Barbara played at six runes does nothing at all - 055's 'do as much as you can' does not manufacture the condition - so hold her.",
+          "THE ARITHMETIC. 5 Energy for a 5 Might body that no removal spell in the pool can touch past the threshold, and 4 Energy for a body that answers a gear. Three of each by 103.2.b. Neither is worth a slot before turn four, which is the honest cost of the clock.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Channel the curve. 315.3.b gives two runes every Channel Phase and 161.2.a caps the deck at twelve, so seven arrives around turn four without any card being spent on it.",
+        "Play Esteemed Hierophant (5 Energy). Past the threshold, 437.4 means no enemy spell or ability can deal him damage at all.",
+        "Expect him to die in combat anyway if he is outmatched: 417.6.c makes combat damage come from the units, not from a spell or ability.",
+        "Hold Tomb-Raider Barbara until the count is at seven - her check is inside her play trigger and is read on execution (359.3.f.2).",
+        "Play her (4 Energy) and choose an enemy gear: Empowered, it is disempowered permanently (441.1.b); otherwise it dies.",
+        "If the deck also runs Siphoning Strike, every rune the Strike's rider channels moves all three cards forward together."
+      ],
+      "netPerIteration": "one enemy gear answered per Barbara, and a body immune to spell and ability damage for as long as the count holds",
+      "terminatesIn": "engine only - three of each card by 103.2.b, nothing before the threshold, and the Hierophant's protection stops at combat damage (417.6.c); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 3)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use VEN-025 Esteemed Hierophant or VEN-037 Tomb-Raider Barbara. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 055, 103.1.b.3, 103.2.b, 103.2.d.2, 161.2.a, 164.2.b, 315.3.b, 359.3.f.2, 415.3.a, 417.6.b.3, 417.6.c, 437.4, 441.1.b, 441.2, 469, 808.1.d.1. UNIQUENESS SWEPT, NOT ASSUMED: the '7 or more runes' family is exactly three cards, all three named and all three uncatalogued before this walk. The Hierophant's limit is stated twice on purpose - combat damage and the Challenge family both go through - because 'prevent all damage' reads as immunity and is not. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "ruined-rex-karthus-doubled-deathknell",
+      "name": "The same doubled Deathknell as the Chaos version, one-sided and in a domain pair with four legends instead of one",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-067",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E6 P1 M6. '[Deathknell][>] Deal 4 to an enemy unit.' Single-target and explicitly ENEMY, so it never touches your own garrison."
+        },
+        {
+          "card": "OGN-236",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 P1 M3. 'Your [Deathknell] effects trigger an additional time.' One of exactly three cards in the pool that make a trigger fire again."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Order: Ruined Rex is mono-Mind and Karthus mono-Order (103.1.b.3), so 103.1.b.2 needs a legend covering both, and the census prints four such names - SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, OGN-265/OGN-308 Herald of the Arcane, OGS-021 Lady of Luminosity - Starter.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A way for the Rex to die on your terms. Combat does it for free; a sacrifice outlet does it on schedule."
+        ],
+        "notable": [
+          "WHAT A DEATHKNELL IS, IN ONE PARAGRAPH. 808.1.c: 'It is functionally short for \"When I die, [Effect].\"' 808.1.d: 'The Trigger for this and similar effects that trigger on their source's death is the Permanent being Killed and sent to the Trash.' 808.2: 'Each instance of Deathknell a Permanent may have will trigger separately', with 808.2.a giving the controller the order. Karthus adds an instance, so one death is two separate 'Deal 4' executions - and each one chooses its own target, so it is 4 and 4 on two bodies or 8 on one.",
+          "AND WHY IT IS TWO DEAL ACTIONS RATHER THAN ONE BIG ONE. 715.2: 'If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately.' Two executions are two Deal actions, so a Bonus Damage source pays each of them - which is the opposite of a single 'deal 8', where it pays once. That is the same arithmetic that makes a six-Deal spell the pool's maximum for the family.",
+          "THE COMPARISON THAT JUSTIFIES THE ENTRY, STATED RATHER THAN IMPLIED. blade-kogmaw-karthus-wipe already walks Karthus with a damage Deathknell - OGN-190 Kog'Maw, Caustic, 'Deal 4 to ALL units at my battlefield', 3 Energy + 1 Power for a 1 Might body. It is cheaper and it is a sweeper. Two things separate this entry from it and both are checkable: Kog'Maw is CHAOS, so that line needs Chaos + Order and the census prints exactly ONE such legend name (VEN-155 / VEN-197 Heart of the Tempest), where Mind + Order prints four; and Kog'Maw's sweep says 'all units', which includes yours, while the Rex says 'an ENEMY unit'. You pay 3 more Energy for a one-sided effect and a shell with four legends.",
+          "THE ANTI-SYNERGY IS EXACT AND IT IS EASY TO BUILD BY ACCIDENT. 808.1.d.1: 'If the Permanent with the effect is not sent to the Trash, for example because its \"killed\" event was replaced with a recall, the triggered ability will be removed from the chain' - and Riot's worked example is a Zhonya's Hourglass save. So every heal/exhaust/recall shield in the deck switches this off, including OGN-269 The Boss as a legend and OGN-077 Zhonya's Hourglass as a gear. A Deathknell deck cannot also be a protection deck.",
+          "KARTHUS IS ONE OF THREE, AND THE OTHER TWO DO NOT REACH THIS. The pool's trigger multipliers are OGN-236 Karthus, Eternal (Deathknell), UNL-029 Red Brambleback (conquer here) and UNL-087 Blue Sentinel (hold here) - swept over all base codes for 'trigger an additional time'. Neither of the other two touches a death, so this family scales by Karthus copies and by nothing else. Two Karthus make it three executions, not four: each adds one instance to the same ability (808.2).",
+          "THE LEDGER, WITH THE QUANTITIES DECLARED. Karthus 3 Energy + 1 Power, Ruined Rex 6 Energy + 1 Power. One Rex death under one Karthus is 8 damage, split as you like; under two Karthus it is 12. 143.2.a kills on marked damage at or above Might, so 4 removes a Might-4 body and 8 removes almost anything in the pool. Three of each by 103.2.b.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the damage is dealt by the ability, not by a unit, so 417.6.b.3's Challenge exception does not apply and a blanket spell-and-ability fog DOES stop it."
+        ]
+      },
+      "steps": [
+        "Play Karthus, Eternal (3 Energy + 1 Power) and Ruined Rex (6 Energy + 1 Power).",
+        "Let the Rex die - in combat, or to a sacrifice outlet you already run.",
+        "808.1.d makes the death the Trigger; Karthus adds a second instance and 808.2.a lets you order them.",
+        "Each execution deals 4 to an enemy unit of its own choosing: 4 and 4 on two bodies, or 8 on one.",
+        "Do NOT run a heal/exhaust/recall shield on the Rex - 808.1.d.1 removes the trigger from the chain if he never reaches the Trash.",
+        "A second Karthus makes it three executions (808.2 adds one instance each), not four."
+      ],
+      "netPerIteration": "8 damage split freely across enemy units per Ruined Rex death under one Karthus, 12 under two",
+      "terminatesIn": "engine only - three of each card by 103.2.b, and every execution needs a fresh Rex death; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 3)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-067 Ruined Rex. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.2, 103.1.b.3, 103.2.b, 143.2.a, 417.6.b.3, 469, 715.2, 808.1.c, 808.1.d, 808.1.d.1, 808.2, 808.2.a. The comparison with blade-kogmaw-karthus-wipe is stated in full rather than left implicit, because that entry already holds the Karthus x damage-Deathknell slot: the differences are the domain pair (Chaos/Order has exactly one legend name, Mind/Order has four) and one-sidedness (Kog'Maw's sweep includes your own units). Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "clairvoyance-fate-weaver-predict-setup",
+      "name": "A Predict followed by a narrower look is the one thing in the pool that turns a draw probability into a certainty",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-056",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind spell, E7. '[Reaction] ... [Predict 5]. (Look at the top 5 cards of your Main Deck. Recycle any of them and put the rest back in any order.) Draw 2.' The ordering is the point; the two cards are the rebate."
+        },
+        {
+          "card": "UNL-064",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind unit, E5 M4. 'When you play me, look at the top 4 cards of your Main Deck. You may reveal a spell with Energy cost :rb_energy_4: or more from among them and draw it. Recycle the rest.' A conditional tutor whose condition you can guarantee."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Mind, so 103.1.b.3 admits any legend with Mind in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "At least one spell of Energy cost 4 or more left in the Main Deck for the Weaver to find - the Predict can put it on top, but it cannot create it."
+        ],
+        "notable": [
+          "THE STANDING CLAIM THIS ENTRY REFINES. This project has recorded that 'no deck-manipulation card in the pool turns a draw probability into a certainty', because 416.1 and 416.1.a recycle to the BOTTOM and nothing tutors a named card. That is true of any single card. It is not true of a [Predict N] followed by a look at M cards with M <= N: 436.1.a says the predicting player 'looks at that many cards and Recycles any number of them before putting the rest back on top of their Main Deck IN ANY ORDER', so after [Predict 5] you know and control the top five - and Fate Weaver's look at the top 4 is strictly inside that window. The find is certain, not likely.",
+          "AND THE ORDER OF THE TWO CARDS IS WHAT MAKES IT WORK. Clairvoyance is [Reaction] (813.1.c.1: 'This can be played during Closed States on any player's turn'), so the Predict can be done on the OPPONENT's turn and the arrangement survives into your Main Phase - nothing shuffles between. The Weaver is a unit and a Main Phase play, so it always comes second.",
+          "NEITHER CARD CAN BURN YOU OUT ON THE LOOK. 431.1.c keeps looking and revealing free of Burn Out, and 436.4 with 436.4.a is explicit for this action: 'If a player attempts to Predict more cards than are available in their Main Deck, they will Predict as many as possible instead. The Player will not perform a Burn Out as a result of Predicting with too few cards in their deck.' The Weaver's 'Recycle the rest' is a recycle and not a mill, so 431.1.b never fires either. The only Burn Out risk in the pair is Clairvoyance's own 'Draw 2' (431.1.a) with an empty deck.",
+          "PREDICT IS LOOKING AND THE WEAVER'S FIND IS A REVEAL, WHICH ARE DIFFERENT ACTS. 436.1 defines Predicting as 'the act of LOOKING at a single card from the top of the Main Deck and choosing whether or not to Recycle it', while 424.1 makes Revealing 'the act of presenting a card to all players from a zone that one or more players do not have access to the information of'. So the Weaver's reveal is public and a Predict is not - which matters only if something in the deck reads a reveal, and is stated here so the two are not conflated.",
+          "THE COST, HONESTLY. 7 Energy for the Predict and 5 more for the Weaver is twelve Energy across two turns for one guaranteed spell and three cards. Clairvoyance pays two of those back on its own, so the marginal price of the guarantee is the Weaver's body - a 4 Might unit you were going to play anyway. Three of each by 103.2.b.",
+          "AND A TRAP ON THE LEGEND SIDE IF THE SHELL IS CALM/MIND. VEN-145 Curator of the Sands reads 'When you play a unit, gear, or ACTIVATED ABILITY with Energy cost :rb_energy_7: or more, you may exhaust me to ready up to 2 runes.' Clairvoyance costs exactly 7 and does NOT trigger her, because it is a spell and her clause names a unit, gear or activated ability. Fate Weaver at 5 does not reach the threshold either.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the guarantee is only as good as what is left in the deck - the Predict arranges, it never creates."
+        ]
+      },
+      "steps": [
+        "Hold Clairvoyance. Its [Reaction] permission (813.1.c.1) lets you cast it on the opponent's turn, so the arrangement is already made when your Main Phase starts.",
+        "Cast it (7 Energy): [Predict 5] - look at the top five, recycle what you do not want, and put the rest back IN ANY ORDER (436.1.a). Leave a spell of Energy cost 4 or more on top. Then draw 2.",
+        "On your turn play Fate Weaver (5 Energy). Its trigger looks at the top 4 - a subset of the five you just ordered.",
+        "Reveal the spell you left there and draw it. The rest are recycled to the bottom (416.1.a), which costs nothing you did not already choose.",
+        "Neither half can Burn Out on the look (436.4.a, 431.1.c); only Clairvoyance's own Draw 2 can, and only with an empty deck (431.1.a)."
+      ],
+      "netPerIteration": "three cards and one GUARANTEED spell of Energy cost 4 or more, for 12 Energy across two turns",
+      "terminatesIn": "engine only - three of each card by 103.2.b, and the guarantee needs a qualifying spell still in the deck; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 3)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use VEN-056 Clairvoyance or UNL-064 Fate Weaver. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 416.1, 416.1.a, 424.1, 431.1.a, 431.1.b, 431.1.c, 436.1, 436.1.a, 436.4, 436.4.a, 469, 813.1.c.1. It REFINES a standing project claim rather than contradicting it: no single deck-manipulation card makes a draw certain, but a [Predict N] followed by a look at M <= N cards does, and the citation is 436.1.a's 'in any order'. The Curator of the Sands trap is stated for the Calm/Mind shell, since a 7-Energy spell looks like it should trigger her E7 clause and does not. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "turn-to-dust-attached-gear",
+      "name": "The word 'printed' in 434.1.e is why a granted [Temporary] still kills an attached Equipment",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-070",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E2. 'Give a gear [Temporary]. (Kill it at the start of its controller's Beginning Phase, before scoring.)' The only card in the pool that grants [Temporary] to a gear and nothing else, and the cheapest of the four that grant it at all."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Mind, so 103.1.b.3 admits any legend with Mind in its pair.",
+          "Not banned or restricted in either format, and not a Signature card.",
+          "Nothing else. It has no condition and no threshold; the only question is whether the delay is acceptable."
+        ],
+        "notable": [
+          "THE SWEEP, WITH ITS MEMBERS NAMED. `grep -in \"\\[Temporary\\]\" data/corpus_flat.txt` over the grant clauses returns four cards that hand the keyword to something else: OGN-069 Last Stand (Calm, E3 + 1 Power, a friendly unit, alongside doubling its Might), OGN-180 Fading Memories (Chaos, E4 + 1 Power, 'a unit at a battlefield OR a gear'), UNL-070 Turn to Dust (Mind, E2, a gear) and UNL-165 Shadow's Call (Order, E2, 'a friendly unit without [Temporary]', with Draw 2). Turn to Dust is the only one scoped to a gear, and at 2 Energy with no Power it is the cheapest.",
+          "IT REACHES AN EQUIPPED GEAR, AND THE PARAGRAPH IS ONE WORD WIDE. 718.5.b: 'Attached cards still can be chosen or targeted by game effects while Attached', so an Equipment sitting on a unit is a legal choice. And 434.1.e - repeated at 718.2 - says 'Attaching one or more cards will cause those cards' PRINTED Rules Text to become Inactive for as long as they remain Attached.' A granted keyword is not printed Rules Text, so nothing switches it off: 816.1 makes [Temporary] a Triggered Ability keyword the object now has, and 816.1.b executes 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this.' The word 'printed' is what makes this card an answer to an attached Trinity Force or Svellsongur rather than only to a standing gear.",
+          "THE DELAY IS THE PRICE, AND IT IS NOT SMALL. 816.1.c: 'The Trigger Condition is the controller of the permanent's Beginning Phase starting' - THEIR Beginning Phase, not yours. So an enemy gear cast under this spell keeps working for the rest of your turn and the whole of theirs up to 315.2, and only then dies. This answers a standing engine, never a combat trick, and it cannot save a combat that is happening now.",
+          "AND IT DOES KILL, WHICH CUTS BOTH WAYS. The gear reaches the Trash, so 808.1.a ('It is present on Permanents') lets any Deathknell on it fire; and 719.5 detaches it from its carrier first if it was attached, with 719.5.a letting the controller of the Top-Most Card order the detaches. Against a gear whose death pays its owner, a bounce or a banish would be better - this pool has neither in Mind at 2 Energy.",
+          "816.2 CAPS THE OBVIOUS MISPLAY. 'Multiple instances of Temporary are redundant', so a second copy aimed at the same gear does nothing at all. Three copies (103.2.b) answer three different gears.",
+          "AND IT IS ALSO A SCHEDULED DEATH FOR YOUR OWN GEAR, WHICH IS A REAL USE. 315.1's Awakening Phase precedes 315.2's Beginning Phase, so everything you control is already READY when a [Temporary] permanent dies - which makes any payoff whose cost is its own exhaust free against that death. Pointed at a gear of yours that has already done its job, this is 2 Energy for a guaranteed death on a schedule you chose.",
+          "WHY IT IS A SINGLE-CARD ENTRY. Nothing in the pool makes it bigger: it is not a recycle, it has no threshold, and 816.2 forbids stacking it. Its value is the scope of one word in 434.1.e, which is a property of the card and not of a pairing.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Choose the gear. 718.5.b means an Equipment attached to a unit is a legal choice, and 434.1.e's 'printed' is why the granted keyword still applies to it.",
+        "Play Turn to Dust (2 Energy). The gear now has [Temporary].",
+        "816.1.b kills it at the start of ITS CONTROLLER's Beginning Phase, before scoring - so an enemy gear survives the rest of your turn and all of theirs until 315.2.",
+        "719.5 detaches it from any carrier as it leaves the board, and 719.5.a lets that card's controller order the detaches.",
+        "Do not aim a second copy at the same gear: 816.2 makes multiple instances redundant.",
+        "Used on your OWN spent gear it is a scheduled death, and 315.1 has readied everything before 315.2 fires it."
+      ],
+      "netPerIteration": "one gear killed, on its controller's next Beginning Phase, for 2 Energy and no Power",
+      "terminatesIn": "engine only - three copies by 103.2.b, one gear each, and 816.2 forbids stacking; nothing here scores and the kill is always a turn late",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 3)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-070 Turn to Dust. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 315.1, 315.2, 434.1.e, 469, 718.2, 718.5.b, 719.5, 719.5.a, 808.1.a, 816.1, 816.1.b, 816.1.c, 816.2. The load-bearing reading is the SCOPE of 434.1.e - it makes an attached card's PRINTED Rules Text Inactive, and a granted keyword is not printed Rules Text - which is what lets this reach an equipped gear. Stated with the quote rather than filed as a numbered reading, because the word is in the paragraph. UNIQUENESS SWEPT: four cards grant [Temporary] to something else, all named, and this is the only gear-only one. Ban check: not banned or restricted, not a Signature card. No unruled reading."
     }
   ]
 }
