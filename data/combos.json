@@ -41320,6 +41320,352 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #170, from a lead routed by rc-manager3 out of rc-walk-order's mono-Order slice; OGS-012 Blast of Power and OGN-219 Vanguard Sergeant were both in zero entries. Card text verbatim from data/corpus_flat.txt. The content is the ladder's spine: 155 makes a plain spell your-turn-and-Open-State-only, so the CHEAPER and WIDER removal (OGN-229 Vengeance, four words and no gate) is the one that cannot take a battlefield, while the expensive narrow one can. Trap check: the attacker body is in uses[] rather than in a notable, because 466.3.a needs units remaining and the matcher and planner must price it; the excess-damage disjointness is stated so the line is not mistaken for a Tryndamere feeder; 470 with 485.4 is named as the hard cap so three copies are not read as three Conquers; the two banned members of the family are named; the other rungs of the ladder are priced with their gates."
+    },
+    {
+      "id": "udyr-wildman-pit-rookie-modes",
+      "name": "Udyr's four modes are priced in buffs, and 702.3 is why each one needs a separate placement",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-157",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E6 P1 M6. 'Spend my buff: Choose one you've not chosen this turn - Deal 2 to a unit at a battlefield. Stun a unit at a battlefield. Ready me. Give me [Ganking] this turn.' Four different modes, each costing one buff off his own body."
+        },
+        {
+          "card": "OGN-136",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body unit, E2 M2. 'When you play me, buff another friendly unit.' The cheapest way to place a buff on somebody else, and three copies are three placements in one turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "6 Energy + 1 Power for Udyr, then 2 Energy per placement. Every mode is your own Main Phase only - see the notables."
+        ],
+        "notable": [
+          "THE COST IS A BUFF, AND A BUFF IS SCARCE BY RULE. 702.2.b: 'Spending a Buff removes a single Buff counter from a Unit', with 702.2.b.1 ('A buff cannot be spent from a Unit that does not have a buff') and 702.2.b.2 (only from units you control). 702.3: 'There can only be one Buff on a Unit at a time', and 702.3.a: a second buff on a buffed unit 'is not placed instead'. So Udyr can never be stocked up - each mode needs its own placement, made after the previous buff was spent, and the number of modes you get in a turn is exactly the number of times you can place a buff ON HIM.",
+          "WHICH MAKES A MASS BUFFER THE WRONG PARTNER. SFD-101 Fae Dragon buffs up to four friendly units and OGN-141 Kinkou Monk up to two - and each gives Udyr exactly ONE, because 702.3.a discards the rest onto a body that already has one. What he wants is a cheap SINGLE placement repeated: OGN-136 Pit Rookie at 2 Energy, three copies by 103.2.b, is three modes in one turn for 6 Energy and leaves three 2 Might bodies behind. OGN-124 Arena Bar adds a fourth, but only onto an EXHAUSTED friendly unit, so it fits after Udyr has moved.",
+          "THE CEILING IS FOUR, AND IT IS PRINTED. 'Choose one you've not chosen this turn' - the four modes are one each per turn, so a fifth placement buys nothing. Three Pit Rookies plus an Arena Bar is exactly the ceiling.",
+          "381 IS WHY NONE OF THIS IS A DEFENSIVE TRICK. 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State', and 'Spend my buff:' is a colon, i.e. an Activated Ability under 377.1. Udyr carries neither [Action] (806.1.b) nor [Reaction] (813.1.c.1), so the Deal 2 and the Stun can never answer the opponent's attack - they are proactive removal on your own turn only.",
+          "THE TWO MODES THAT ARE WORTH MORE TOGETHER THAN APART. 'Ready me' is worth exactly one extra Standard Move (144.2: 'Exhausting the Unit is the Cost for this action') and nothing on defence, which is normally why a ready trigger is refused. Here it is paired with 'Give me [Ganking] this turn': 144.4.c.1 - 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield' - so the second move is to a DIFFERENT battlefield, which the first one could not reach. 810.1.c.3 is the limit ('It does not give additional abilities or activations of Movement, only new options for the Standard Move'), so Ganking alone is worth nothing without the ready.",
+          "AND THE STUN IS BOUNDED BY ITS OWN RULE. 423.1.a.1: 'A Stunned Unit can not be Stunned again', so the mode is one body per turn; 423.1.a.2 clears the status at the end-of-turn cleanup; 423.1.b removes only the contribution to the combat damage step while 423.1.c keeps the full Might as the price to kill it. It buys a combat, never a removal.",
+          "703 MAKES THE BUFF WORTH SOMETHING WHILE IT WAITS. 'Each Buff individually contributes +1 Might to a Unit', so a buff sitting on Udyr is a 7 Might body until you spend it - the placement is never dead, only converted.",
+          "WHAT IT IS NOT. Nothing here scores. 469 defines Scoring as Conquer or Hold and no mode touches either."
+        ]
+      },
+      "steps": [
+        "Play Udyr, Wildman (6 Energy + 1 Power).",
+        "Play a Pit Rookie (2 Energy) and buff Udyr with its play trigger (702.2.a: buffing is choosing a unit and placing a buff).",
+        "Activate 'Spend my buff' and pick a mode not yet chosen this turn (702.2.b removes the counter).",
+        "Play the second and third Pit Rookies, each placing a fresh buff on Udyr - 702.3.a means the previous one has to have been spent first - and take a second and third mode.",
+        "The pairing to want is 'Ready me' followed by 'Give me [Ganking] this turn': the ready refunds 144.2's exhaust and Ganking makes the second Standard Move a battlefield-to-battlefield one (144.4.c.1).",
+        "Stop at four: the printed clause allows one of each mode per turn."
+      ],
+      "netPerIteration": "one mode per buff placed on Udyr, capped at four a turn by his own text",
+      "terminatesIn": "engine only - up to four modes a turn, in practice three from three Pit Rookies (103.2.b) plus an Arena Bar, and every one of them is your own Main Phase only (381); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 1)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 1). The first entry to use OGN-157 Udyr, Wildman. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 144.2, 144.4.c.1, 377.1, 381, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 469, 702.2.a, 702.2.b, 702.2.b.1, 702.2.b.2, 702.3, 702.3.a, 703, 806.1.b, 810.1.c.3, 813.1.c.1. The partner was chosen against 702.3.a rather than for raw buff count: a mass buffer gives Udyr exactly one buff however many bodies it names, which is the same shape this catalogue recorded for a mass buffer behind Vanguard Helm. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "wily-newtfish-gemhand-hunter-xp-turn",
+      "name": "The only XP clause in the pool that reads a TURN instead of a threshold - so spending never switches it off",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-108",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E4 M4. 'If you've gained XP this turn, I have +1 :rb_might: and [Ganking].' Swept over the whole corpus: the ONLY card whose XP clause reads an event in the turn rather than a [Level N] threshold."
+        },
+        {
+          "card": "UNL-094",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E2 M2. '[Hunt] (When I conquer or hold, gain 1 XP.) [Level 6][>] I have +1 :rb_might:.' The faucet - and the one card that carries BOTH kinds of XP clause, which behave differently."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A battlefield you hold, because [Hunt] pays on a Conquer or a Hold and on nothing else."
+        ],
+        "notable": [
+          "THE SWEEP THAT IS THE ENTRY. `grep -in \"gained.*XP\" data/corpus_flat.txt | grep -i \"this turn\"` over the whole pool returns exactly ONE row, UNL-108. Every other XP payoff in the game is a [Level N] Dependent Ability, and 824.1.d governs those: 'The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP.' With 730.2 ('To Spend XP, reduce the value of XP marked on the Player spending it'), that makes the whole [Level N] family anti-synergic with every XP sink. The Newtfish is not in that family: it reads whether XP was GAINED this turn, so spending it afterwards changes nothing and one XP is as good as twenty.",
+          "THE SAME CARD CARRIES BOTH CLAUSES, WHICH IS WHY THE PARTNER IS ALSO THE EXHIBIT. UNL-094 Gemhand Hunter's [Hunt] is a gain and its [Level 6] '+1 Might' is a threshold. Run it in a list that spends XP and the [Hunt] half keeps paying the Newtfish every turn while the [Level 6] half goes dark - one card, two behaviours, and 824.1.d is the only paragraph that separates them.",
+          "THE TIMING IS FREE, AND IT IS THE PHASE ORDER THAT MAKES IT SO. 823.1.c.1: 'Hunt is functionally short for \"When I Conquer or Hold, my controller gains X XP\"'. 315.2.b.2 Holds every battlefield you control during the Beginning Phase, and 315.2 precedes 316, the Main Phase. So on any turn you hold a battlefield the XP is already gained BEFORE your Main Phase starts, and the Newtfish carries +1 Might and [Ganking] for the whole of it, every turn, for no additional cost.",
+          "WHAT [GANKING] IS ACTUALLY WORTH. 144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.' 810.1.c.3 is the limit: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' So it is not an extra move - it is the ONE move going somewhere the base-and-back walk of 144.4 cannot reach, which is what lets a garrison redeploy between two battlefields in a Duel without going home and losing a turn.",
+          "THE DELIBERATE MIRROR. bandle-soldier-enthralling-protector-xp-floor (issue #180) is the opposite entry: it needs the counter BANKED at 3 and any spend switches it off. This one needs a single gain per turn and does not care what happens to the counter afterwards. A list that wants both an XP sink and an XP payoff runs the Newtfish; a list that never spends can run either. The two entries name each other on purpose.",
+          "THE ARITHMETIC. 2 Energy for the Hunter, 4 Energy for the Newtfish, no Power on either, three of each by 103.2.b. From the first turn you hold, every Newtfish on the board is a 5 Might body with [Ganking] for the whole Main Phase.",
+          "WHAT IT IS NOT. Nothing here scores. [Hunt] is PAID BY a Hold, it does not cause one, and 469 defines Scoring as Conquer or Hold only."
+        ]
+      },
+      "steps": [
+        "Play Gemhand Hunter (2 Energy) and walk it to a battlefield you can hold.",
+        "At your Beginning Phase, 315.2.b.2 Holds every battlefield you control and [Hunt] gains 1 XP (823.1.c.1). The gain happens before 316, your Main Phase.",
+        "Play or already have Wily Newtfish (4 Energy). Its condition - 'If you've gained XP this turn' - is satisfied for the rest of the turn.",
+        "It is a 5 Might body with [Ganking], so its Standard Move may go battlefield to battlefield (144.4.c.1) instead of through the base.",
+        "Spend the XP on anything you like: 730.2 reduces the counter and the Newtfish's clause never reads it. Repeat every turn you hold a battlefield."
+      ],
+      "netPerIteration": "+1 Might and [Ganking] on every Newtfish, every turn you hold a battlefield, for no cost beyond the bodies",
+      "terminatesIn": "engine only - a per-turn Might and movement bonus that costs nothing after deployment, three of each card by 103.2.b; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 1)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 1). The first entry to use UNL-108 Wily Newtfish or UNL-094 Gemhand Hunter. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 144.4, 144.4.c.1, 315.2.b.2, 316, 469, 730.2, 810.1.c.3, 823.1.c.1, 824.1.d. UNIQUENESS SWEPT, NOT ASSUMED: the 'gained XP this turn' clause is one card in the pool, and the grep is written into the notable so the next reader can refute it in one line. Deliberate mirror of bandle-soldier-enthralling-protector-xp-floor (#180), which requires the counter banked; both entries name each other. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "carnivorous-snapvine-rampage-tank-bypass",
+      "name": "Challenge damage is UNIT damage, so it walks past a [Tank] wall and past a spell-damage fog alike",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-149",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body unit, E5 P2 M6. 'When you play me, choose an enemy unit at a battlefield. We deal damage equal to our Mights to each other.' A 6 Might body that removes anything up to 6 Might as it lands and survives anything under 6."
+        },
+        {
+          "card": "VEN-083",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E3. 'As you play this, you may pay :rb_rune_body: as an additional cost. Choose a friendly unit and an enemy unit. If you paid the additional cost, give the friendly unit +2 :rb_might: this turn. They deal damage equal to their Mights to each other.' The repeatable half: it re-uses a body already on the board and pays it +2 first."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "An enemy unit AT A BATTLEFIELD for the Snapvine (its clause says so); Rampage names no location and reaches the base."
+        ],
+        "notable": [
+          "417.6.b.3 IS THE WHOLE ENTRY, AND ITS WORKED EXAMPLE IS THIS EXACT WORDING. 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it. Example: Challenge is a spell that reads \"Choose a friendly unit and an enemy unit. They deal damage equal to their Mights to each other.\" The damage that Challenge causes to be dealt is dealt by the chosen units, not by Challenge.' Two consequences follow and neither is obvious from the card.",
+          "FIRST: IT WALKS PAST A [TANK] WALL. 815.1.b is scoped by its own words - 'I must be assigned lethal damage before any other unit with the same controller as me that does not have [Tank] DURING THE COMBAT DAMAGE STEP' - and 815.1.c.2 the same. This damage is not assigned in a combat damage step at all, so a Tank orders nothing and the Snapvine picks whichever body it wants. That is the direct answer to galio-back-to-back-divining-shells-toll (issue #180), which builds a toll no attacker can afford: the toll only exists in the damage step, and this family never enters it.",
+          "SECOND: IT WALKS PAST A SPELL-DAMAGE FOG. A blanket 'prevent all spell and ability damage this turn' does not touch it, because the damage is dealt by the units and not by the spell - and 437.4 makes prevention total only for the damage it actually covers.",
+          "417.6.b.4, CITED HERE FOR THE FIRST TIME IN THIS CATALOGUE, SPLITS THE RESPONSIBILITY. 'The controller of the source of a Deal action is responsible for that Deal action unless the player performing the Deal action is otherwise specified. Example: If a player plays Challenge targeting a friendly unit and an enemy unit, the controller of the enemy unit is responsible for the damage dealt by their unit. Any effects that trigger \"when you deal damage\" that that player controls will trigger.' So half of this exchange fires the OPPONENT's 'when you deal damage' triggers. It is a cost of the family, and it is printed nowhere on the cards.",
+          "AND THE MINIMUM-LETHAL CAP DOES NOT APPLY, WHICH CUTS BOTH WAYS. 465.2.c.4 ('Units cannot have more damage assigned to them than the minimum required to constitute lethal damage') is a combat-assignment rule. Here an 8 Might body dealing 8 to a 3 Might body simply wastes 5 - and because 417.6.c scopes excess damage to combat, no excess-damage payoff in the pool reads any of it. This family is removal, never a feeder.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED. Snapvine is 5 Energy + 2 Power for a 6 Might body: on landing it kills any enemy of 6 Might or less and survives anything under 6 (143.2.a needs marked damage at or above Might to kill). Rampage is 3 Energy plus one optional Body rune; paid, it makes an existing 6 Might Snapvine an 8 for the exchange, so it kills an 8 and survives a 7. Unpaid it is 3 Energy for a bare trade. 143.3.b.1 heals marked damage only 'at the end of each player's turn', so damage from a first Rampage is still on the body for a second one in the same turn.",
+          "THE FAMILY, NAMED. Seven cards in the pool print 'deal damage equal to their Mights to each other': OGN-128 Challenge (Body, E2 P1, [Action]), OGN-149 Carnivorous Snapvine, OGN-258 Dragon's Rage (Calm/Body, and it MOVES the enemy unit first), OGS-008 Gentlemen's Duel (Body, E6 P1, [Action], +3 first), SFD-114 Marching Orders (Body, E3, [Action], with [Repeat] 3 Energy), UNL-110 Clash of Giants (Body, E6 P2) and VEN-083 Rampage. UNL-110 is the odd one out and worth knowing: it says 'Choose two units' with no friendly-or-enemy restriction, so it can point two of the OPPONENT's bodies at each other.",
+          "THE ONE CARD IN THE DOMAIN THAT BLANKS IT. VEN-084 Ambessa, The Wolf, while [Empowered], 'can't be dealt damage unless I'm in combat' - and 054.1 makes a card that forbids beat one that permits. A Challenge cast outside a combat cannot touch her; one cast inside a combat she is part of can. She is mono-Body too, so this is a mirror match note, not a domain accident.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Play Carnivorous Snapvine (5 Energy + 2 Power) and choose an enemy unit at a battlefield. Both deal damage equal to their Mights to each other: the Snapvine's 6 kills anything up to 6 Might and it survives anything under 6.",
+        "417.6.b.3 makes that unit damage rather than spell damage, so a [Tank] in the enemy garrison orders nothing (815.1.b is scoped to the combat damage step) and a spell-and-ability fog does not stop it.",
+        "Later, or the same turn, cast Rampage (3 Energy) and pay the extra Body rune: the Snapvine is +2 for the turn and the exchange is at 8.",
+        "Expect the opponent's 'when you deal damage' triggers to fire for their half of the exchange - 417.6.b.4 makes them responsible for it.",
+        "143.3.b.1 heals marked damage at the end of each player's turn, so a second Rampage in the SAME turn finishes anything the first one left alive."
+      ],
+      "netPerIteration": "one enemy unit of up to 6 Might removed per Snapvine, and up to 8 per Rampage on a Snapvine already in play",
+      "terminatesIn": "engine only - three Snapvines and three Rampages by 103.2.b, and the exchange is mutual so each use costs the friendly body real damage; nothing here scores and 417.6.c keeps every point of it out of the excess-damage family",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 1)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 1). The first entry to use OGN-149 Carnivorous Snapvine or VEN-083 Rampage. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 054.1, 103.1.b.3, 103.2.b, 143.2.a, 143.3.b.1, 417.6.b.3, 417.6.b.4, 417.6.c, 437.4, 465.2.c.4, 469, 815.1.b, 815.1.c.2. FIRST CITE IN THIS CATALOGUE: 417.6.b.4 (0 prior hits in data/combos.json), and it is a cost of the family rather than a benefit - the opponent's 'when you deal damage' triggers fire for their half. UNIQUENESS SWEPT: the mutual-damage family is seven cards, all named, with UNL-110 Clash of Giants flagged as the only one with no friendly-or-enemy restriction. Deliberately cross-referenced against galio-back-to-back-divining-shells-toll (#180): that entry builds a [Tank] toll and this family is the reason a toll is not a wall. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "gangplank-ambessa-empowered-removal-split",
+      "name": "Two Empowered bodies that blank disjoint halves of the removal pool - and neither one stops a kill",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-086",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E6 M6. '[Empower] :rb_rune_body::rb_rune_body: ... [Empowered][>] If a spell or ability that chooses me would stun me, give me -:rb_might:, or return me to hand, give me +3 :rb_might: this turn instead.' Its [Empower] cost is TWO Body Power and no Energy."
+        },
+        {
+          "card": "VEN-084",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E4 M4. '[Empower] :rb_energy_3::rb_rune_body: ... [Empowered][>] I have +3 :rb_might: and can't be dealt damage unless I'm in combat.' The other half of the removal pool, and the reason 054.1 is cited."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "The Empowers are paid once each and never again: 441.1.b, 'An Empowered Game Object can not be Empowered', with 441.2 making the state permanent on the board."
+        ],
+        "notable": [
+          "THE POINT IS THE TAXONOMY, NOT THE PAIRING. Soft removal in this pool comes in eight shapes - kill by effect, damage, stun, -Might, bounce to hand, banish, a forced move, and a return to the deck. Gangplank, Naval covers THREE of them (stun, -Might, bounce) and turns each attempt into '+3 :rb_might: this turn', so the opponent's removal spell pays you. Ambessa, The Wolf covers the fourth (damage) outright. Between them, four of the eight are answered by two bodies with no card spent in response - and the other four are not answered at all. State that before building on it: neither body stops a kill by effect, a banish, a move, or a return to the Main Deck.",
+          "054.1 IS WHAT MAKES AMBESSA'S CLAUSE ABSOLUTE. 'Cards that forbid actions or effects, as a broad method of determination, supersede cards that allow or permit that same action or effect.' So 'can't be dealt damage unless I'm in combat' is not a shield with a value - it is a prohibition, and no amount of damage gets through outside a combat. It is also why she is the answer to this walk's own carnivorous-snapvine-rampage-tank-bypass: the mutual-damage family deals its damage OUTSIDE a combat, so it cannot touch her, while the same spell cast inside a combat she is part of can.",
+          "GANGPLANK'S IS A REPLACEMENT, WHICH IS A DIFFERENT MECHANISM AND A DIFFERENT LIMIT. His clause reads 'would ... instead', so it replaces the effect rather than preventing it - and it is gated on 'a spell or ability that CHOOSES me'. An effect that selects him programmatically rather than choosing him (355.10.d: 'programmatically selected based on its characteristics rather than chosen by the spell or ability') is not covered, which is the same gap that makes [Deflect] worthless against a sweeper.",
+          "441.2 MAKES BOTH PURCHASES PERMANENT, AND 441.1.b MAKES THEM ONE-TIME. 'Empowered is a state for Game Objects on the board that other game effects and abilities can reference', and 'An Empowered Game Object can not be Empowered.' So Gangplank costs 2 Body Power once - no Energy at all, which is unusual - and Ambessa 3 Energy + 1 Body Power once, and both bodies carry the effect for the rest of the game.",
+          "THE ARITHMETIC. Gangplank: 6 Energy for the body, then 2 Body Power, for a 6 Might body that answers three removal shapes and grows to 9 for the turn each time one is tried. Ambessa: 4 Energy for the body, then 3 Energy + 1 Body Power, for a 7 Might body ('+3 :rb_might:' from the Empowered clause) that no non-combat damage can touch. Three of each by 103.2.b.",
+          "WHY THIS IS AN ENGINE AND NOT A COMBO. Neither body reads the other and neither scores; what they do is make the Might you have paid for reliable, which is the resource every entry in the domain's pump family assumes. 469 defines Scoring as Conquer or Hold and neither card touches either."
+        ]
+      },
+      "steps": [
+        "Play Gangplank, Naval (6 Energy) and Ambessa, The Wolf (4 Energy) - the order does not matter.",
+        "Empower Gangplank for 2 Body Power. 441.2 makes the state permanent, so from now on a spell or ability that chooses him and would stun him, shrink him, or bounce him instead gives him +3 Might for the turn.",
+        "Empower Ambessa for 3 Energy + 1 Body Power. She is a 7 Might body and 054.1 makes 'can't be dealt damage unless I'm in combat' absolute outside combat.",
+        "Do not expect either to survive a kill by effect, a banish, a forced move, or a return to the Main Deck - none of those is on the list.",
+        "Note the interaction with this walk's own mutual-damage entry: Ambessa cannot be touched by a Challenge cast outside a combat, and can be by one cast inside a combat she is in."
+      ],
+      "netPerIteration": "one permanent purchase per body; three removal shapes converted into +3 Might on Gangplank, and all non-combat damage refused on Ambessa",
+      "terminatesIn": "engine only - a one-time Empower per body (441.1.b) and three of each by 103.2.b; nothing here scores, and four of the pool's eight removal shapes go straight through both",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 1)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 1). The first entry to use VEN-086 Gangplank, Naval or VEN-084 Ambessa, The Wolf. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 054.1, 103.1.b.3, 103.2.b, 355.10.d, 441.1.b, 441.2, 469. VEN-086 has a second printing, VEN-181, whose corpus row abbreviates the reminder text; CardIndex.equivalents folds them, so the entry covers both. The entry is deliberately written as a taxonomy with its GAPS stated first - four of eight shapes answered, four not - because a partial anti-removal package read as a full one is how an entry ends up promising a body will survive. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "jaull-fish-garen-rugged-mighty-discount",
+      "name": "A discount counted in Mighty bodies - and [Shield] is exactly the kind of Might that does not count",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-103",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body unit, E7 P2 M6. '[Accelerate] (You may pay :rb_energy_1::rb_rune_body: as an additional cost to have me enter ready.) I cost :rb_energy_2: less for each of your [Mighty] units. (A unit is Mighty while it has 5+ :rb_might:.)' Four Mighty bodies take the Energy to 0 and 356.6 holds it there; the 2 Power is untouched."
+        },
+        {
+          "card": "OGS-007",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E6 P1 M5. '[Assault 2], [Shield 2] (+2 :rb_might: while I'm an attacker or defender.)' PRINTED Might 5, so he is Mighty standing still - which is the property the discount reads and which his own two keywords do not supply."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Mighty bodies ON THE BOARD when the Jaull-Fish's cost is determined, not later: 203.1 and 356.4.b price a card as it is played."
+        ],
+        "notable": [
+          "THE TRAP THE ENTRY IS BUILT ON, AND IT IS ON THE PARTNER'S OWN CARD. 814.1.c makes [Shield] '+X :rb_might: while I am a defender' and 807.1.c makes [Assault] 'While I am an attacker, I have +X [M].' Both are conditional on a designation you only hold inside a combat (807.1.d, 464.2.c.3) - and you play the Jaull-Fish in your own Main Phase, where nobody is an attacker or a defender. So UNL-099 Towering Combatant (Body, E4, PRINTED Might 3, [Shield 2], [Tank]) reads Might 3 when the discount is counted and contributes NOTHING, even though the card looks like a 5. Garen, Rugged works because his printed Might is already 5; his own [Assault 2] and [Shield 2] are irrelevant to the discount. Count printed and current Might, never keyword Might.",
+          "WHAT 'MIGHTY' IS. 709 defines the EVENT - 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater' - and the reminder text on the card gives the STATE: 'A unit is Mighty while it has 5+ :rb_might:.' The Jaull-Fish reads the state, so a temporary pump counts as long as it is live at the instant the cost is determined (203.1: 'Paying a Cost requires a player to perform the appropriate game action'; 356.4.b covers 'cost [amount] less'). VEN-077 Tools of Empire, Empowered, gives +4 Might this turn for an exhaust and can push one sub-5 body over the line just before you play him.",
+          "356.6 IS THE FLOOR, AND IT IS ENERGY-ONLY. 'Energy and Power costs can't be reduced below 0.' The Jaull-Fish's discount says 'costs :rb_energy_2: less', so it never touches the 2 Power: four Mighty bodies make him 0 Energy + 2 Power, and a fifth is wasted. Three Garens (103.2.b) are three Mighty bodies for a 1 Energy + 2 Power Jaull-Fish.",
+          "AND THEN [ACCELERATE] IS AFFORDABLE, WHICH IS THE POINT OF DISCOUNTING HIM AT ALL. 805.1.a: 'Accelerate is functionally short for \"As you play me, you may pay [1][C] as an additional cost. If [you do], I enter ready\"', with 805.1.a.1 letting the Power portion be paid in the unit's own domain. 143.4 makes units enter exhausted and 144.2 makes exhausting the unit the Cost of a Standard Move, so a Jaull-Fish played for 1 Energy + 2 Power plus 1 Energy + 1 Body Power arrives READY and reaches a battlefield on the turn it lands - a 6 Might body deployed for 2 Energy and 3 Power.",
+          "THE ONE-CARD LEDGER, HONESTLY. Garen is not cheap: 6 Energy + 1 Power each, so paying for three of them to save 6 Energy on one Jaull-Fish is not the trade. The trade is that a Body deck's curve ALREADY ends in 5-plus Might bodies, and this card converts that board into tempo instead of asking for a new one - so read the discount as a rebate on a board you were going to have, and read Garen as the cheapest way to be certain of it (printed 5, no condition, no pump needed).",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold and neither card touches either."
+        ]
+      },
+      "steps": [
+        "Develop the Body curve as normal. What matters is how many units you control with CURRENT Might 5 or more when the Jaull-Fish is played - Garen, Rugged at printed 5 is the cheapest guaranteed one.",
+        "If you are one body short, an Empowered VEN-077 Tools of Empire gives +4 Might this turn for an exhaust, which pushes a sub-5 body over the line before the cost is determined (203.1, 356.4.b).",
+        "Play Jaull-Fish. Its cost is 7 Energy + 2 Power less 2 Energy per Mighty unit; 356.6 floors the Energy at 0 and never touches the Power.",
+        "Pay [Accelerate]'s 1 Energy + 1 Body Power as an additional cost (805.1.a, 805.1.a.1) so it enters ready, overriding 143.4.",
+        "Move it to a battlefield the same turn, paying 144.2's exhaust it still has."
+      ],
+      "netPerIteration": "2 Energy off the Jaull-Fish per Mighty body you already control, floored at 0 by 356.6, with the 2 Power always payable",
+      "terminatesIn": "engine only - a deployment discount, capped at four Mighty bodies by 356.6 and at three copies by 103.2.b; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 1)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 1). The first entry to use SFD-103 Jaull-Fish or OGS-007 Garen, Rugged. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.4, 144.2, 203.1, 356.4.b, 356.6, 464.2.c.3, 469, 709, 805.1.a, 805.1.a.1, 807.1.c, 807.1.d, 814.1.c. The entry exists for its trap: [Shield] and [Assault] are designation-conditional, so a UNL-099 Towering Combatant that reads as a 5 counts as a 3 when a Mighty-counting discount is priced. The ledger states plainly that three Garens are not bought to discount one Jaull-Fish - the discount is a rebate on a board the deck already wants - because a 'six might' style arithmetic error in this project has come from pricing the enabler as if it were bought for the payoff. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
     }
   ]
 }
