@@ -47,7 +47,16 @@ export const OUTCOME_PALETTE = [ACCENT];
 const CARD_W = 96, CARD_H = 134, IMG_W = 86, IMG_H = 118;
 const LAND_W = 134, LAND_H = 94, LAND_IMG_W = 124, LAND_IMG_H = 78;
 const CELL_W = LAND_W, CELL_H = CARD_H;
-const CARD_GAP_X = 26, CARD_GAP_Y = 34;   // gap_y > 0 guarantees plates never reach the next row
+// gap_y > 0 guarantees plates never reach the next row. gap_x > gap_y is #190: the lane is filled
+// COLUMN-major, so a column carries the ordering and a row is an artifact — but proximity groups
+// along whichever axis is tighter, and at 26 vs 34 that was the row. Measured before the change on
+// lille-18 in near-miss mode: 13px horizontal against 17px vertical at the 0.51 fit scale, and the
+// worst case is two battlefields, which fill the 134-wide cell and so sat a bare 26 apart while
+// every vertical neighbour had 34 plus a name plate between them. 44 puts the horizontal air above
+// the vertical for every card shape: 44 between two battlefields, 82 between two portrait cards
+// (each is 96 in a 134 cell), against 34 down. Nothing here says what the axes MEAN; it stops the
+// drawing from asserting a grouping the data does not have.
+const CARD_GAP_X = 44, CARD_GAP_Y = 34;
 const ROUTE_W = 168, ROUTE_MIN_H = 96;
 const RESULT_W = 168, RESULT_H = 82;
 const LANE_GAP = 128;                      // horizontal air between lanes
