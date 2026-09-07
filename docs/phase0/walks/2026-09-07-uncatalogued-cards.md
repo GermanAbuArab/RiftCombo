@@ -354,3 +354,93 @@ Carried forward from §3; none re-opened.
 10. **R27 makes a Reflection 0 Might, and 143.2.a + 465.2.c.4 mean a 0-Might body already costs an
     attacker one damage** — so granting [Shield 1] to a Reflection wall adds nothing. Price a wall
     in damage, not in Might.
+
+---
+
+# Batch 3 — five more battlefields
+
+## 9. Entries staged (batch 3, five)
+
+| id | class | cards | what it is |
+|---|---|---|---|
+| `kinkou-temple-lillia-bird-tank-wall` | ENGINE | VEN-159, UNL-058, UNL-044 | +1 Might on a Tank wall doubles the damage bill, 4 → 8 |
+| `mystic-vortex-helm-suppression-tax` | ENGINE | VEN-160, VEN-045 | the two windows 312.2.a gives an opponent, both priced |
+| `risen-altar-ambessa-empower-power-rebate` | ENGINE | VEN-163, VEN-136 | a POWER off an [Empower] cost, permanent after one payment |
+| `forgotten-library-jhin-spent-four` | ENGINE | UNL-211, UNL-089 | one 4-Energy spell pays both halves of the "if you spent" family |
+| `monastery-hirana-warmogs-conquer-draw` | ENGINE | OGN-282, SFD-108 | a card per Conquer — offset by one, and 383.3.b is why |
+
+### 9.1 The Monastery walk is the one worth reading twice
+
+**OGN-282 Monastery of Hirana**: *"When you conquer here, you may spend a buff to draw 1."*
+**SFD-108 Warmog's Armor** ([Effect]): *"When I conquer, buff me."*
+
+The obvious walk is "both trigger on the same Conquer; 383.3.d lets me order them, so put Warmog's
+first and spend the buff it just placed." **That is wrong.** The Monastery's cost sits immediately
+after the "you may" that opens its effect, and **383.3.b** makes such a cost the Triggered Ability's
+**base cost** — Riot's own worked example for the paragraph is Ekko, Recurrent's *"Recycle me to
+ready your runes"* — with **383.3.b.1**: *"The cost must be paid in order to finalize the Triggered
+Ability to the Chain."* Every trigger of a simultaneous batch is finalized before any of them
+resolves, so on the first Conquer there is no buff and the Monastery's ability is simply never
+finalized (203.3).
+
+From the **second** Conquer on it works, permanently, and **702.3 is what keeps it unjammed**:
+the Monastery spends the buff at finalization (702.2.b), so the carrier is unbuffed by the time
+Warmog's resolves and 702.3.a does not block the replacement. One card per Conquer, forever, for no
+Energy and no Power — offset by exactly one Conquer, stated in the entry rather than glossed.
+
+This is the family CLAUDE.md already warns is priced wrong when read as pay-on-resolution. It is
+worth checking 383.3.b **before** writing the steps, not after.
+
+### 9.2 A "one rainbow less" discount has to reach a domain rune
+
+**VEN-163 Risen Altar**: *"[Empower] costs of your units here cost :rb_energy_1: or
+:rb_rune_rainbow: less."* No card in the pool prints a rainbow Power **cost** — the icon appears
+only as a Deflect payment and as an [Add] output — so under rule 002 the rainbow half has to come
+off a domain rune or the clause is dead letter. That is the same argument the project used for R28.
+It makes the Altar worth most on the heaviest **Power** Empower cost among units, which
+(extracting and sorting every `[Empower]` cost string in the corpus) is **VEN-136 Ambessa,
+Respected and Feared**, E1 + two Order runes — the only unit Empower cost with two domain runes.
+
+441.1.b (*"An Empowered Game Object can not be Empowered"*) and 441.2 make the rebate **once per
+body and permanent**. And the Altar says "units", so the four gear with [Empower] costs get nothing.
+
+### 9.3 Kinkou Temple is the only card in the pool that keys on [Tank]
+
+*"Units here with [Tank] have +1 :rb_might:."* — the fifth battlefield of this walk whose text never
+says "you". **815.1.c.2**: *"Units without Tank are invalid assignments until all units with Tank
+have lethal damage assigned to them"*, with 815.1.c.1 and 465.2.c.4 pinning each to the minimum.
+The project had already measured four 1-Might Tank Birds as exactly **4** damage; at Kinkou Temple
+they are 2 Might and the bill is **8**. A wall is priced in damage, so +1 per body **doubles** it.
+Lillia has no Tank herself, so 815.1.c.2 puts her behind them: 8 + 8 on the turn the Birds land
+(her M4 plus +4 from four tokens played), 8 + 4 afterwards.
+
+### 9.4 A note on `sprite-queen-dusk-rose-lab-shard-undoing` (not a defect)
+
+Batch 2 offered Sprite Queen × Shard of Undoing as a lead; the manager pointed out it is already
+catalogued, and the existing entry's claim ("unbounded in turns", one forced kill per Beginning
+Phase) matches what this walk found. **One refinement, offered rather than asserted:**
+UNL-209 Dusk Rose Lab is *not load-bearing for the Shard half*. The Sprite carries [Temporary], and
+**816.1.b** kills it *"at the start of this permanent's controller's Beginning Phase, before
+scoring"* on its own — which is already inside the Shard's window. The Lab's contribution is the
+*"draw 1"* on its optional kill, and it costs the deck its one battlefield slot (485.4.a). Worth
+saying in that entry's notable so a future reader does not treat the Lab as a requirement.
+
+## 10. Standing notes for CLAUDE.md (batch 3)
+
+11. **Check 383.3.b before writing the steps of any trigger worded `you may <cost> to <effect>`.**
+    The cost is the trigger's BASE COST and 383.3.b.1 pays it to **finalize**, so it is paid before
+    anything in the simultaneous batch resolves — a buff, a token or a resource produced by another
+    trigger of the same event **cannot** pay it, whatever order 383.3.d puts them in. The honest
+    shape of such an engine is offset by one event (`monastery-hirana-warmogs-conquer-draw`).
+12. **A "one rainbow less" discount has to come off a domain rune** — no card in the pool prints a
+    rainbow Power cost — so measure such a discount against the heaviest **Power** component, not
+    the Energy. VEN-136 Ambessa, Respected and Feared has the only unit [Empower] cost with two
+    domain runes.
+13. **VEN-159 Kinkou Temple is the only card in the pool that keys on [Tank]**, and because a wall
+    is priced in damage (815.1.c.1/c.2 + 465.2.c.4) a flat +1 Might per body **doubles** it. The
+    project's four-Birds-absorb-four measurement becomes eight there.
+14. **VEN-160 Mystic Vortex is the only card in the pool that makes a [Hidden] card cost anything.**
+    811.1.b plays it "ignoring its base cost"; the Vortex's own reminder ("Hidden cards have
+    [Reaction]") is why it catches the fifteen hidden units that a spell tax cannot. The pool has
+    exactly three cost-increase rows: VEN-045 Helm of Suppression (the only asymmetric one),
+    VEN-160, and UNL-219 Vaults of Helia (which taxes its own controller).
