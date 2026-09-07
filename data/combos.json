@@ -27139,7 +27139,8 @@
           "THE SHARD FIRES ONCE, WHICHEVER DEATH GETS THERE FIRST. 383.3.e.1: 'Such a Triggered Ability will only be performed the specified number of times each turn.' 'The first time a friendly unit dies during your Beginning Phase each turn' is one execution a turn, so the Lab route and the [Temporary] route are alternatives, not a doubling — which is exactly why the Lab is worth a card and not a second kill.",
           "THE OPPONENT PICKS WHICH OF THEIR UNITS DIES, AND [Deflect] NEVER CHARGES. 355.10.e: an object 'chosen in whole or in part by other players' is not a target, and its worked example is verbatim 'Each player kills a unit they control'. 809.1.c and 809.1.d charge only for spells and abilities that target or choose the Deflecting object. So the Shard is guaranteed, cheap removal of the opponent's WORST body — never of their best. Price it as attrition, not as an answer.",
           "KILLING YOUR ONLY BODY AT THE LAB HANDS THE LAB BACK, BEFORE YOU HOLD IT. Same finding as dusk-rose-lab-leblanc-beginning-draw, reached with a shorter chain because a Sprite has no Deathknell: the death makes a Cleanup Outstanding (319.6, 'After any number of Game Objects enter or leave the Board'), the Shard's trigger holds the state Neutral Closed (310.2) so 323.6's 'if the turn is in an Open State' is false at that Cleanup; the Shard resolves, the Chain empties, 319.5 makes another Cleanup, and THAT one is Neutral Open (310.1) and strips 'control of any controlled Battlefields without their Units occupying them'. 315.2.b.2 then Holds only what you still control. So the Sprite is never a garrison — it dies in that window whether the Lab eats it or not — and if you want the Lab's point you need a second body standing there. That is a deckbuilding choice, not a requirement of the line.",
-          "BURN OUT IS THE ONLY CEILING ON THE DRAW. The Lab's card is a real draw, so 431.1.a applies: past the last card of the Main Deck the draw is a Burn Out and a point for the opponent (194.1.d). One card a turn on top of your Draw Phase is a two-cards-a-turn clock through a 39-card deck (103.2.a.1 puts the Chosen Champion in the Champion Zone before play), and the Lab's kill is a 'you may', so it can simply be declined once the deck is thin."
+          "BURN OUT IS THE ONLY CEILING ON THE DRAW. The Lab's card is a real draw, so 431.1.a applies: past the last card of the Main Deck the draw is a Burn Out and a point for the opponent (194.1.d). One card a turn on top of your Draw Phase is a two-cards-a-turn clock through a 39-card deck (103.2.a.1 puts the Chosen Champion in the Champion Zone before play), and the Lab's kill is a 'you may', so it can simply be declined once the deck is thin.",
+          "THE LAB IS NOT LOAD-BEARING FOR THE KILL, AND IT COSTS THE ONE BATTLEFIELD SLOT (485.4.a). The Sprite carries [Temporary] and 816.1.b kills it \"at the start of this permanent's controller's Beginning Phase, before scoring\" on its own, already inside the Shard's window - so the forced kill runs with no battlefield at all. UNL-209 Dusk Rose Lab adds the \"draw 1\" on its optional kill and nothing else; read it as an upgrade, never as a requirement (noted by the #171 walk, 2026-09-07)."
         ]
       },
       "steps": [
@@ -31838,6 +31839,331 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 14. UNL-175 Tactical Retreat was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 164.2.a, 167, 204.3.a, 315.1.b, 323.6, 383.3.c, 415.3.a, 455, 808.1.d.1, 813.1.c.1 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. Card set SFD-144 + UNL-175 is not an existing uses[] set. No unruled reading. The entry deliberately leads with the cost of the save rather than the save, because the card reads as pure upside and 455 plus 808.1.d.1 make it a trade."
+    },
+    {
+      "id": "kinkou-temple-lillia-bird-tank-wall",
+      "name": "Kinkou Temple doubles the bill for a Tank wall — four 1-Might Birds absorb four damage, four 2-Might ones absorb eight",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-159",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "no Control needed",
+          "note": "Colorless battlefield. 'Units here with [Tank] have +1 :rb_might:.' No 'you' in the sentence, so 190.6.d never blanks it and it is live from turn one — the fourth battlefield found to survive that check. It is also the only card in the pool that keys on [Tank] at all, which is why it sat uncatalogued: nothing prints Tank widely except the card below."
+        },
+        {
+          "card": "UNL-058",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Calm unit, E5 M4. 'When you play a token unit, give me +1 :rb_might: this turn. Your token units have [Tank]. (They must be assigned combat damage first.)' The Tank grant is a static over every token you own, so it is what turns the Temple's clause from dead letter into a wall. Her own +1 is 'this turn' and per token PLAYED, so she is M8 on the turn the four Birds land and M4 afterwards."
+        },
+        {
+          "card": "UNL-044",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E4 P2. '[Reaction] Choose one — • Counter a spell. • Play four 1 :rb_might: Bird unit tokens with [Deflect]. (Opponents must pay :rb_rune_rainbow: to choose them with a spell or ability.)' The only card in the pool that plays four token units at [Reaction] speed, which is what lets the wall appear inside the combat that is already open (813.1.c.1)."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "The line is mono-Calm (Lillia and Flurry of Feathers; Kinkou Temple is Colorless), so 103.1.b.3 admits any legend with Calm in its pair: OGN-255/OGN-303 Nine-Tailed Fox, OGN-257/OGN-304 Blind Monk, OGN-259/OGN-305 Unforgiven, OGN-261/OGN-306 Radiant Dawn, SFD-189/SFD-244 Fire Below the Mountain, SFD-193/SFD-245 Grandmaster at Arms, SFD-195/SFD-246 Blade Dancer, SFD-197/SFD-247 Emperor of the Sands, UNL-189/UNL-230 Bashful Bloom, UNL-191/UNL-231 Wuju Master, UNL-193/UNL-232 Gloomist, UNL-195/UNL-233 Green Father, VEN-139/VEN-189 Rogue Assassin, VEN-145/VEN-192 Curator of the Sands, VEN-147/VEN-193 Eye of Twilight, OGS-019 Wuju Bladesman - Starter (restricted in 2v2)."
+        ],
+        "notable": [
+          "THE ARITHMETIC, AND WHY THE +1 IS WORTH DOUBLE ITS SIZE. 815.1.c.2: 'If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 815.1.c.1 forces lethal onto one before moving to the next, and 465.2.c.4 forbids assigning more than the minimum needed. Four 1-Might Birds are therefore exactly 4 damage and the project has already measured that; at Kinkou Temple they are 2 Might each and the bill is 8. The +1 per body doubles the wall because the wall is priced in DAMAGE, not in Might.",
+          "AND LILLIA IS BEHIND THEM. She has no Tank herself, so 815.1.c.2 makes her an invalid assignment until all four Birds have lethal. Clearing the whole garrison on the turn the Birds land is 8 + 8 = 16 (her M4 plus +4 from four tokens played this turn); on later turns it is 8 + 4 = 12.",
+          "THE [DEFLECT] ON THE BIRDS TAXES THE OTHER ROUTE. 809.1.c / 809.1.d charge for targeting or choosing, so removing the wall with spells instead of damage costs 1 rainbow Power per Bird — four Power to answer a wall that cost E4 + 2 Power.",
+          "LILLIA IS ANTI-SYNERGIC WITH THE GRAND PLAZA FAMILY and this entry does not touch it. Her Tank grant makes every other body of yours an invalid damage assignment (815.1.c.2), which is the opposite of what a seven-body Plaza line needs — the project recorded that on the Plaza side and it is restated here so the two are never combined.",
+          "IT DOES NOT SCORE AND IT IS NOT A LOCK. The Birds are ordinary units; 470 and 315.2.b.2 apply to the battlefield exactly as they would without them. What this buys is that a garrison at Kinkou Temple costs twice as much to remove.",
+          "KINKOU TEMPLE IS NOT GUARANTEED TO BE ON THE TABLE: 485.4.a puts one of your three into a Duel, 485.5 picks it at random, 486.5 lets you choose in 1v1 Match play, and 103.4.c forbids a second copy of the name."
+        ]
+      },
+      "steps": [
+        "Bring Kinkou Temple as one of your three battlefields. It needs no Control: there is no 'you' in its text.",
+        "Play Lillia, Protector of Dreams (E5) and garrison Kinkou Temple with her. Her 'Your token units have [Tank]' is a static and needs nothing further.",
+        "When the opponent attacks, play Flurry of Feathers (E4 + 2 Power) inside the Combat's Closed State — 813.1.c.1 lets a [Reaction] card be played there — and choose the second mode: four 1-Might Bird tokens with [Deflect].",
+        "The Birds are tokens, so Lillia's static gives each of them [Tank], and Kinkou Temple's static gives each Tank unit here +1 Might. They stand at 2.",
+        "815.1.c.2 makes every non-Tank body of yours an invalid damage assignment until all four Birds have lethal damage; 815.1.c.1 and 465.2.c.4 make that exactly 2 each. The attacker needs 8 summed Might to get through the Birds and another 8 that turn to reach Lillia."
+      ],
+      "terminatesIn": "engine only — a garrison that costs 8 damage to clear before the attacker may touch anything else, and 4 rainbow Power to answer with spells instead; three castings of Flurry of Feathers a game (103.2.b), and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "815.1.c.2. If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171. Card text verbatim from data/corpus_flat.txt. VEN-159 Kinkou Temple is the only card in the pool that keys on [Tank] other than the cards that grant it, which is checked by grepping the corpus for the bracketed keyword and reading every row. The four-Birds-absorb-four measurement is the project's own, from the Lillia refusal on the Plaza side; this entry is the constructive half of it and restates the Plaza incompatibility so the two are never merged. Trap check: the wall is priced in DAMAGE (143.2.a needs nonzero damage equalling or exceeding Might, 465.2.c.4 forbids over-assigning), which is the same discipline that refused Black Flame Altar on a 0-Might Reflection earlier in this walk; the Birds are tokens, so 185 / 186.1 / 416.1 apply and none of them is ever recycled or counted as a card; no attack is claimed on your side; exactly one battlefield is named, so 485.4.a is respected."
+    },
+    {
+      "id": "mystic-vortex-helm-suppression-tax",
+      "name": "The Helm taxes the Main Phase and Mystic Vortex taxes the only other window the opponent has — including the [Hidden] card that is otherwise free",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-160",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "no Control needed",
+          "note": "Colorless battlefield. 'During showdowns here, cards with [Reaction] cost :rb_rune_rainbow: more to play. (Hidden cards have [Reaction].)' No 'you' in the sentence, so 190.6.d never blanks it and it is live from turn one. Riot's own parenthesis is the load-bearing half: 811.1.b plays a hidden card 'ignoring its base cost', and this is the only card in the pool that puts a price back on one."
+        },
+        {
+          "card": "VEN-045",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Calm gear, E4 P1. '[Empower] :rb_energy_4::rb_rune_calm: (…Empower this. Use only if not Empowered.) Opponents' spells cost :rb_energy_1: more. If this is [Empowered], they cost :rb_energy_1::rb_rune_rainbow: more instead.' Swept: it is the pool's ONLY asymmetric spell tax — a case-insensitive grep of the corpus for cost increases returns this, Mystic Vortex, and UNL-219 Vaults of Helia, which taxes its own controller. 441.2 makes Empowered a permanent state, so the upgrade is bought once and kept."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Helm of Suppression is mono-Calm and Mystic Vortex is Colorless, so 103.1.b.3 admits any legend with Calm in its pair: OGN-255/OGN-303 Nine-Tailed Fox, OGN-257/OGN-304 Blind Monk, OGN-259/OGN-305 Unforgiven, OGN-261/OGN-306 Radiant Dawn, SFD-189/SFD-244 Fire Below the Mountain, SFD-193/SFD-245 Grandmaster at Arms, SFD-195/SFD-246 Blade Dancer, SFD-197/SFD-247 Emperor of the Sands, UNL-189/UNL-230 Bashful Bloom, UNL-191/UNL-231 Wuju Master, UNL-193/UNL-232 Gloomist, UNL-195/UNL-233 Green Father, VEN-139/VEN-189 Rogue Assassin, VEN-145/VEN-192 Curator of the Sands, VEN-147/VEN-193 Eye of Twilight."
+        ],
+        "notable": [
+          "THE TWO CARDS COVER THE TWO WINDOWS AND THERE IS NO THIRD. 312.2.a gives the non-turn player priority only in Closed States and Showdowns — on your turn in a Neutral Open State they never hold it — so everything an opponent can do on your turn is either a spell (the Helm's clause) or a [Reaction] card in a Showdown (the Vortex's). Together they price both.",
+          "THE HIDDEN PACKAGE IS THE REAL TARGET, AND ONLY THE VORTEX REACHES ALL OF IT. 811.1.b: a hidden card is played 'ignoring its base cost', which is why the project measured the [Hidden] package as paying ZERO to every 'costs N or more' threshold in the pool. The Helm catches a hidden SPELL, because a hidden spell is still a spell; it does not catch the fifteen hidden UNITS. The Vortex catches both, because 811.1.b grants the card [Reaction] and the Vortex keys on that.",
+          "STACKED, AT THIS BATTLEFIELD, AN EMPOWERED HELM PLUS THE VORTEX MAKE AN OPPONENT'S REACTION SPELL COST 1 ENERGY + 2 RAINBOW POWER MORE than printed. On a hidden card that is the difference between free and unplayable, and 356.6 only floors a cost at 0 — it never caps an increase.",
+          "THE VORTEX IS SYMMETRIC AND THAT IS ITS WHOLE COST: your own [Reaction] cards cost a rainbow more in showdowns there too. This is a deck that answers in its Main Phase, not one that holds up tricks. The Helm is not symmetric — it says 'Opponents' spells'.",
+          "IT SCORES NOTHING AND LOCKS NOTHING PERMANENTLY. 054.1's 'can't beats can' is not engaged anywhere here; a tax is a price, not a prohibition, and an opponent with the Power pays it.",
+          "MYSTIC VORTEX IS NOT GUARANTEED TO BE ON THE TABLE: 485.4.a, 485.5, 486.5 and 103.4.c as for every battlefield entry."
+        ]
+      },
+      "steps": [
+        "Bring Mystic Vortex as one of your three battlefields. It needs no Control: there is no 'you' in its text.",
+        "Play Helm of Suppression (E4 + 1 Calm Power). Its base clause is already live: opponents' spells cost 1 Energy more, everywhere.",
+        "When you can afford it, pay the [Empower] cost (E4 + 1 Calm Power) once. 441.1 makes Empowering the act of rendering the object Empowered and 441.2 makes that a permanent state of the object, so the upgraded tax — 1 Energy + 1 rainbow — never has to be paid for again.",
+        "Fight over Mystic Vortex. Inside any Showdown there, every [Reaction] card costs a further rainbow Power to play, and 811.1.b's free hidden card is no longer free.",
+        "Play your own answers in your Main Phase rather than at Reaction speed, since the Vortex charges you the same rainbow it charges them."
+      ],
+      "terminatesIn": "engine only — a permanent price on both of the windows 312.2.a gives an opponent on your turn; nothing here scores, nothing here is unbounded, and an opponent with spare Power still pays and acts",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "811.1.b. It is functionally short for \"While this card is in your hand or in your Champion Zone on your turn during an Open State, you may pay [A] to hide this facedown at a battlefield you control … Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use VEN-160, and the first to state that Mystic Vortex is the only card in the pool that makes a [Hidden] card cost anything. The uniqueness claim on the Helm was swept over the corpus (three cost-increase rows in the whole pool: VEN-045, VEN-160 and UNL-219 Vaults of Helia, the last of which taxes its own controller and was refused earlier in this walk). Trap check: no attack, no token, no [Temporary]; the symmetry of the Vortex is stated as a cost rather than buried; 356.6 is cited to make clear it floors costs at 0 and does not cap increases; exactly one battlefield is named, so 485.4.a is respected; produces is empty, as on the other denial entries the vocabulary does not yet cover (issue #157)."
+    },
+    {
+      "id": "risen-altar-ambessa-empower-power-rebate",
+      "name": "Risen Altar takes a POWER off an [Empower] cost, and 441.2 makes the discount permanent after one payment",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-163",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. '[Empower] costs of your units here cost :rb_energy_1: or :rb_rune_rainbow: less.' It says 'YOUR units', so 190.6.d does blank it while the battlefield is uncontrolled (190.1) — unlike Sandswept Tomb, Frozen Fortress, Dragon Roost, Forbidding Waste and Kinkou Temple, this one has to be taken. The 'or' is a component choice in the player's hands, exactly like Ezreal, Prodigy's, which is what makes it worth more than an Energy."
+        },
+        {
+          "card": "VEN-136",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E5 M5. '[Empower] :rb_energy_1::rb_rune_order::rb_rune_order: (…Empower me. Use only if not Empowered.) [Empowered][>] I have [Assault 2]. (+2 :rb_might: while I'm an attacker.) [Empowered][>] When I attack, kill an enemy unit here with less Might than me.' Her Empower cost is the heaviest in POWER among units — one Energy and two domain runes — which is exactly the shape the Altar reduces best: the rebate is a whole Order rune, not one Energy."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Ambessa, Respected and Feared is mono-Order and Risen Altar is Colorless, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity, VEN-153/VEN-196 Matriarch of War, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower, OGS-023 Might of Demacia - Starter. She is NOT a Signature card (cards.json: signature false), so this is a domain line and not a one-legend one."
+        ],
+        "notable": [
+          "A 'ONE RAINBOW LESS' DISCOUNT REMOVES A DOMAIN POWER OR IT IS DEAD LETTER. No card in the pool prints a rainbow Power COST — the rainbow icon appears only as a Deflect payment and as an [Add] output — so under rule 002 the Altar's rainbow component has to reach a domain rune. On Ambessa that turns E1 + 2 Order Power into E1 + 1 Order Power; taking the Energy instead would leave E0 + 2 Order and 356.6 floors nothing further.",
+          "IT IS ONE DISCOUNT PER BODY, FOREVER, AND THAT IS 441 NOT A DRAWBACK. 441.1.b: 'An Empowered Game Object can not be Empowered', and 441.2 makes Empowered a permanent state of the object. So the Altar pays once per unit — but it pays on every Empower unit the deck ever plays, and what it buys never wears off. Three copies of Ambessa is three rebates.",
+          "SHE HAS TO BE STANDING AT RISEN ALTAR WHEN YOU PAY, AND NOWHERE AFTER. 'Your units HERE' is read when the cost is determined; 441.2 then keeps her Empowered wherever she goes, so the battlefield is a toll booth and not a leash.",
+          "WHAT THE EMPOWER BUYS IS REMOVAL, WHICH IS WHY THE CLASS IS repeatable-removal: 'When I attack, kill an enemy unit here with less Might than me' fires on every attack, and [Assault 2] raises the Might the comparison uses while she is the attacker — an Empowered Ambessa attacks at 7 and kills anything below that at her battlefield. 383.4.e and 464.2.c.3 require a real Attacker designation, so this needs an enemy garrison; an empty battlefield is not an attack.",
+          "THE ALTAR SAYS 'UNITS', SO GEAR IS OUT. VEN-045 Helm of Suppression, VEN-054 Questionable Tome, VEN-062 Hextech Formula and VEN-018 Rage Amplifier all carry [Empower] costs and none of them is discounted here. Count units only.",
+          "RISEN ALTAR IS NOT GUARANTEED TO BE ON THE TABLE, and unlike the five 'no you' battlefields of this walk it also has to be CONQUERED before it does anything: 485.4.a, 485.5, 486.5, 103.4.c, plus 190.1 and 466.5."
+        ]
+      },
+      "steps": [
+        "Take Risen Altar and hold it. 190.1 makes a battlefield you provide uncontrolled at setup and 190.6.d ignores 'your units here' until somebody controls it.",
+        "Play Ambessa, Respected and Feared (E5) and walk her to Risen Altar.",
+        "Pay her [Empower] cost while she stands there. The printed cost is 1 Energy + 2 Order Power; the Altar's component discount removes one rainbow, which under rule 002 has to come off a domain rune, so you pay 1 Energy + 1 Order Power.",
+        "441.1 performs the act and 441.2 makes Empowered a permanent state: [Assault 2] and 'When I attack, kill an enemy unit here with less Might than me' are hers for the rest of the game, wherever she stands.",
+        "Attack a garrisoned battlefield. 190.3.a.1 applies Contested, 323.9 stages the Combat and 464.2.c.1 makes you the Attacker; her trigger kills an enemy unit there with less Might than her 7."
+      ],
+      "netPerIteration": "one Order Power saved per Empower unit, once each, permanently",
+      "terminatesIn": "engine only — one rebate per unit (441.1.b allows no second Empower) and one kill per attack thereafter; nothing here scores and 103.2.b caps the named payoff at three copies",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "441.1.b. An Empowered Game Object can not be Empowered."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use either card. Card text verbatim from data/corpus_flat.txt; the 'heaviest Empower cost in Power among units' claim was checked by extracting every [Empower] cost string in the corpus and sorting them, and Ambessa's one-Energy-two-runes is the only unit cost with two DOMAIN runes. The rainbow-removes-a-domain-Power reading is the project's own R28-shaped argument (rule 002: a discount that cannot apply is dead letter), already recorded for the #85 walk. Trap check: 190.6.d is cited for what it DOES do here — this battlefield says 'your' and therefore has to be conquered, unlike the five found earlier in this walk; the attack half is stated with 383.4.e / 464.2.c.1 and needs a real garrison; 441.1.b is cited so the rebate is not counted twice; gear is excluded explicitly; exactly one battlefield is named, so 485.4.a is respected."
+    },
+    {
+      "id": "forgotten-library-jhin-spent-four",
+      "name": "One 4-Energy spell turns on both halves of the 'if you spent' family — a free [Predict] and a 4-Energy body for one Power",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-211",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'While you control this battlefield, when you play a spell, if you spent :rb_energy_4: or more, [Predict]. (Look at the top card of your Main Deck. You may recycle it.)' It is in the 'if you SPENT' half of the family, not the 'costs N or more' half — 166.2, 203.1 and 356.4.b read what actually left the Rune Pool, so any discount switches it off, and a card played from [Hidden] pays it nothing at all (811.1.b, 'ignoring its base cost')."
+        },
+        {
+          "card": "UNL-089",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind unit, E4 M4. '[Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.) If you've spent :rb_energy_4: or more to play a spell this turn, you may play me for :rb_rune_mind:.' The same condition, worded the same way, on the same turn — so the spell that pays the Library also drops a 4-Energy 4-Might body to one Mind Power. He also carries [Vision], which 817.1.b makes a second Predict on the way in."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Jhin, Meticulous Killer is mono-Mind and Forgotten Library is Colorless, so 103.1.b.3 admits any legend with Mind in its pair: UNL-189/UNL-230 Bashful Bloom, SFD-201/SFD-249 Chem-Baroness, VEN-145/VEN-192 Curator of the Sands, OGN-247/OGN-299 Daughter of the Void, UNL-199/UNL-235 Deceiver, VEN-149/VEN-194 Defender of Tomorrow, SFD-189/SFD-244 Fire Below the Mountain, OGN-265/OGN-308 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-181/SFD-240 Mechanized Menace, OGN-255/OGN-303 Nine-Tailed Fox, SFD-199/SFD-248 Prodigal Explorer, UNL-197/UNL-234 Scorn of the Moon, VEN-151/VEN-195 Soul's Reflection, OGN-263/OGN-307 Swift Scout, UNL-181/UNL-226 Virtuoso."
+        ],
+        "notable": [
+          "THE WHOLE POINT IS THAT ONE SPELL PAYS BOTH, AND THE ONE WORD THAT DECIDES IT IS 'SPENT'. A 'costs N or more' clause reads the PRINTED cost and no discount touches it; an 'if you spent N or more' clause reads what left the Rune Pool (166.2, 203.1, 356.4.b). Both cards here are in the second family, so they fail together and succeed together — a discount that makes your 5-Energy spell cost 3 switches off the Library AND Jhin at once. Do not mix a cost-reduction package into this deck.",
+          "AND THE [HIDDEN] PACKAGE PAYS NOTHING TO EITHER. 811.1.b plays a hidden card 'ignoring its base cost', so a hidden spell spends 0 and neither clause fires. The project measured this for the whole 'this turn' lens; the Library is a third member of the list.",
+          "TWO PREDICTS PER JHIN, AND NEITHER OF THEM BURNS OUT. 436.4.a: predicting with too few cards in the deck does not Burn Out, and 431.1.c makes looking and revealing safe past the deck outright — 'does not Burn Out' — so the Library is the one card-selection engine that is safe to run with an empty Main Deck. 817.2 also stacks separate instances of [Vision], each choosing independently (817.2.a).",
+          "PREDICT IS SELECTION, NOT ADVANTAGE. 436.1 is defined with 'look at', never 'reveal' (424.1 is public presentation), so it fires no 'as I'm revealed' payoff, and 416.1.a / 416.5 send a recycled card to the BOTTOM. This smooths draws; it does not add cards.",
+          "THE LIBRARY HAS TO BE CONQUERED. 'While you control this battlefield' is the wording 190.6.d governs and 190.1 starts it uncontrolled. And 485.4.a / 485.5 / 486.5 / 103.4.c as for every battlefield entry.",
+          "THE CHEAPEST WAY TO SPEND FOUR IS A SPELL THAT PAYS FOR ITSELF: any 4-Energy spell in the deck does the job, and the entry deliberately names none, because the condition is on the SPEND and not on the card. UNL-004 Prepared Neophyte (+4 Might on the same condition) is the third card in the family and a lead rather than a requirement."
+        ]
+      },
+      "steps": [
+        "Take Forgotten Library and hold it. 190.1 starts it uncontrolled and 190.6.d ignores 'while you control this battlefield' until you do.",
+        "In your Main Phase, play any spell paying 4 Energy or more out of the Rune Pool — spent, not printed (166.2, 203.1, 356.4.b).",
+        "The Library triggers on that play and gives you a free [Predict]: look at the top card of your Main Deck and recycle it or leave it. 436.4.a keeps this safe even with almost nothing left in the deck.",
+        "The same condition is now true for the turn, so play Jhin, Meticulous Killer for a single Mind Power instead of his 4 Energy.",
+        "His [Vision] resolves as he enters (817.1.b, 817.1.c) for a second Predict, chosen independently of the first (817.2.a).",
+        "Repeat any turn you cast a spell for 4 or more; the Library's half is unbounded, and Jhin's is capped at three copies (103.2.b)."
+      ],
+      "netPerIteration": "one free Predict per qualifying spell, plus a 4-Energy 4-Might body for one Mind Power on the turn the condition is met",
+      "terminatesIn": "engine only — deck smoothing and a discount, neither of which scores; the Library repeats forever, Jhin three times (103.2.b)",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "431.1.c. Looking at or revealing cards past the number of cards in the Main Deck does not Burn Out."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use either card. Card text verbatim from data/corpus_flat.txt. Both cards were checked against the project's own split of the 'this turn' lens before they were paired: they are in the same half of it ('if you SPENT', which a discount switches off), which is what makes them fail and succeed together and is stated as a deckbuilding constraint rather than left implicit. Trap check: 436.4.a and 431.1.c are cited so the Predict is not mistaken for a Burn Out risk; 436.1 and 424.1 are cited so it is not mistaken for a reveal; 416.1.a / 416.5 are cited so recycling is not mistaken for card advantage; 190.1 + 190.6.d are cited because this battlefield DOES say 'you' and therefore has to be taken; exactly one battlefield is named, so 485.4.a is respected."
+    },
+    {
+      "id": "monastery-hirana-warmogs-conquer-draw",
+      "name": "Monastery of Hirana spends a buff at FINALIZATION, so Warmog's Armor has to have placed it a Conquer earlier — then it is a card every Conquer, forever",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-282",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "conquered",
+          "note": "Colorless battlefield. 'When you conquer here, you may spend a buff to draw 1.' The cost sits immediately after the 'you may' that opens the effect, which 383.3.b makes the Triggered Ability's BASE COST — Riot's own worked example for that paragraph is Ekko, Recurrent's 'Recycle me to ready your runes' — and 383.3.b.1 requires it to be paid in order to FINALIZE the ability onto the Chain, not on resolution."
+        },
+        {
+          "card": "SFD-108",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "state": "attached to the conquering unit",
+          "note": "Body gear, E1, M+1. '[Equip] :rb_rune_body: (:rb_rune_body:: Attach this to a unit you control.) [Effect] When I conquer, buff me. (If I don't have a buff, it gets a +1 :rb_might: buff.)' 434.1.c appends an Equipment's [Effect] to the carrier's rules text, so 'I' is the equipped unit and this is a conquer trigger on a body. It is the buff faucet the Monastery needs, and it costs one Body rune to attach."
+        }
+      ],
+      "needs": [
+        "conquer-engine"
+      ],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Warmog's Armor is mono-Body and the Monastery is Colorless, so 103.1.b.3 admits any legend with Body in its pair: OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, SFD-203/SFD-250 Battle Mistress, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, UNL-191/UNL-231 Wuju Master, OGS-023 Might of Demacia - Starter, OGS-019 Wuju Bladesman - Starter (restricted in 2v2)."
+        ],
+        "notable": [
+          "THE ENGINE IS OFFSET BY EXACTLY ONE CONQUER, AND 383.3.b IS WHY. Both triggers fire on the same Conquer. 383.3.d lets you order them onto the Chain and 340.1 resolves the newest first, so Warmog's can be made to resolve before the Monastery — but 383.3.b.1 pays the Monastery's cost to FINALIZE it, which happens before anything resolves. So on the first Conquer there is no buff to spend and the Monastery's ability is simply not finalized (203.3: a cost whose action is impossible cannot be paid). Warmog's places the buff. From the SECOND Conquer onward the buff from last time is there to spend, and Warmog's — resolving after, onto a now-unbuffed carrier — replaces it. One card per Conquer, forever, from the second one.",
+          "702.3 IS WHAT MAKES THE CYCLE SELF-CLEARING RATHER THAN A JAM. 'There can only be one Buff on a Unit at a time', and 702.3.a says a second buff 'is not placed instead'. Because the Monastery spends the buff at finalization (702.2.b: 'Spending a Buff removes a single Buff counter from a Unit'), the carrier is unbuffed by the time Warmog's resolves, so the new buff lands. Without the spend, Warmog's second Conquer would do nothing at all.",
+          "IT NEEDS A REPEATABLE CONQUER AT THIS BATTLEFIELD, WHICH IS WHY IT DECLARES needs. 315.2.b.2 makes the Hold mandatory and 470 caps Scoring at once per battlefield per turn, so a battlefield you take and keep fires its conquer clause exactly once. sprite-queen-targon-peak-conquer-cycle is the feed written for it; swap Targon's Peak for the Monastery there.",
+          "THE BUFF IS ALSO +1 MIGHT WHILE IT SITS THERE (703: 'Each Buff individually contributes +1 Might to a Unit'), so between Conquers the carrier is a 1-Might-larger body, and the Monastery is spending something that was doing work.",
+          "THE MONASTERY DOES NOT CARE WHOSE BUFF IT IS — 702.2.b.2 only requires that you control the unit — so any other buff on your board can pay for the draw on the first Conquer and start the cycle a turn earlier. Warmog's is in uses[] because it is the only source that refills itself off the same event.",
+          "MONASTERY OF HIRANA IS NOT GUARANTEED TO BE ON THE TABLE: 485.4.a, 485.5, 486.5 and 103.4.c as for every battlefield entry."
+        ]
+      },
+      "steps": [
+        "Attach Warmog's Armor to the body that will be doing the conquering, for one Body rune (818.1.b). 434.1.c gives that unit 'When I conquer, buff me'.",
+        "Conquer Monastery of Hirana with that unit. Both triggers fire; the Monastery's has no buff to spend, so 383.3.b.1 and 203.3 leave it unfinalized. Warmog's resolves and places a +1 Might buff on the carrier (702.2.a).",
+        "Give the battlefield up and retake it — the conquer engine this entry needs. 315.2.b.2 would otherwise Hold it and 470 would refuse the second Score.",
+        "On the second Conquer, the Monastery's ability finalizes by spending the buff placed last time (702.2.b) and you draw 1.",
+        "Warmog's resolves afterwards onto a carrier that no longer has a buff, so 702.3.a does not block it and a fresh buff is placed for next time. Repeat every Conquer."
+      ],
+      "netPerIteration": "one card per Conquer at Monastery of Hirana, from the second Conquer onward, for no Energy and no Power",
+      "terminatesIn": "engine only — one card per Conquer, at whatever rate the conquer engine feeding it supplies; with the Sprite Queen cycle that is one a turn, forever. Burn Out (431.1.a) is the only ceiling and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "383.3.b. If a Triggered Ability contains a cost within instructions at the beginning of the effect or immediately following the \"you may\" or \"they may\" that appears as the first part of the effect, that cost is treated as the base cost of the Triggered Ability. … 383.3.b.1. The cost must be paid in order to finalize the Triggered Ability to the Chain."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use OGN-282. Card text verbatim from data/corpus_flat.txt. The one-Conquer offset is the whole content and it was found by checking 383.3.b before writing the steps rather than after: the obvious reading is 'order Warmog's first with 383.3.d and spend the buff it just placed', and that is wrong, because 383.3.b.1 pays the Monastery's cost at FINALIZATION and every trigger of a simultaneous batch is finalized before any of them resolves. This is the family CLAUDE.md warns is priced wrong when read as pay-on-resolution. Trap check: 702.3 / 702.3.a are cited so the refill is not assumed; 703 is cited so the buff is not treated as free to spend; the needs declaration is stated with 315.2.b.2 + 470 rather than assumed; no attack is claimed here (the Conquer comes from the feed); exactly one battlefield is named, so 485.4.a is respected."
     }
   ]
 }
