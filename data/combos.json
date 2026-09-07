@@ -29483,7 +29483,7 @@
           "An enemy garrison to attack into. The clone's banish is an attack trigger, so an empty enemy battlefield never fires it."
         ],
         "notable": [
-          "THE CORRECTION THIS ENTRY EXISTS FOR. `master-of-shadows-banish-rummage` says in its own name that *Kennen is the only renewable banish in his own domains*. That is false, and its own card set is the counterexample: it runs three VEN-144 Death Mark, which prints the Shadow Clone token whose text is *\"When I attack, you may banish a unit from your trash\"* — a banish that repeats every attack, for free, with no conquer required. Two further cards print the same token in Master of Shadows's own domains: VEN-112 Zed, Without a Sound (Chaos) and VEN-023 Zed, From the Shadows (Fury). Counted over data/corpus_flat.txt on 2026-09-07, three cards in the pool make a Shadow Clone and all three are legal here.",
+          "THE CORRECTION THIS ENTRY EXISTS FOR. `master-of-shadows-banish-rummage` USED TO SAY in its own name that *Kennen is the only renewable banish in his own domains* - the claim was refuted by this walk and the entry was rewritten on 2026-09-07, so read this note as the record of the correction and not as an open defect. Its own card set was the counterexample: it runs three VEN-144 Death Mark, which prints the Shadow Clone token whose text is *\"When I attack, you may banish a unit from your trash\"* — a banish that repeats every attack, for free, with no conquer required. Two further cards print the same token in Master of Shadows's own domains: VEN-112 Zed, Without a Sound (Chaos) and VEN-023 Zed, From the Shadows (Fury). Counted over data/corpus_flat.txt on 2026-09-07, three cards in the pool make a Shadow Clone and all three are legal here.",
           "AND THE RENEWABLE BANISH IS WORTH EXACTLY ONE A TURN, WHICH IS THE MORE USEFUL HALF. The loot is *\"Disempower me, exhaust: Discard 1, then draw 1\"* — an exhaust in the cost, and 315.1.b readies the legend only in your own Awakening. So the sequence per turn is: banish once, 441.1 empowers him, pay the disempower plus the exhaust, loot. A SECOND banish the same turn re-empowers him (441.1.b: 'An Empowered Game Object can not be Empowered', so it only lands because the loot disempowered him first) and buys nothing, because the exhaust is already spent. The value of a repeatable source is therefore not more loots, it is a loot on EVERY turn instead of only the turns you happen to hold a banisher — Kennen's needs a conquer, Death Mark's costs a card.",
           "THE CLONE IS A REAL ATTACKER, AND ITS OWN BANISH PAYS FOR IT. Printed at 0 Might, it gives itself [Assault 4] when it banishes: 807.1.d — 'Being an attacker means the Unit has gained the Attacker designation during Combat' — and 464.2.c.3 places the 'when I attack' trigger at that designation, before the damage assignment of 465.2. So a 0-Might token attacks as a 4. 807.2 sums Assault from several sources if you have more.",
           "WHY IT MUST BE AN ATTACK. 461 and 807.1.d need the Attacker designation, and 383.4.e needs the same for an attack trigger. Walking into an EMPTY enemy battlefield stages no Combat (323.9 requires 'Units present controlled by opposing players'), so it is a Conquer with no Attacker and the clone's banish never fires. This line wants a garrison, which is the opposite of the Stare Down family.",
@@ -35099,6 +35099,147 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-07, issue #173. UNL-093 Dragonsoul Sage and OGN-127 Cannon Barrage were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 143.2.a, 161.2.a, 161.2.b, 164.2.b, 167, 355.10.d, 415.3.a, 429.2, 464.2.c.3, 740.2.c, 809.1.c, 809.1.d, 813.1.c.1, 813.1.c.2 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The entry exists because six entries written by this session in the last two days all pay the same hidden cost — runes held ready through your own turn — and this is the pool's Body answer to it; the second notable is the half that is genuinely free, since 164.2.b needs no exhaust."
+    },
+    {
+      "id": "dark-child-hard-bargain-repeat-tax",
+      "name": "Two runes handed back is exactly the base cost and not a penny more — so the [Repeat] that doubles the tax is the deck's problem, not the legend's",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-017",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Chaos legend. 'At the end of your turn, ready up to 2 runes.' The only source of off-turn resources in these two domains, because 415.3.a readies your objects in YOUR Awakening and nowhere else."
+        },
+        {
+          "card": "SFD-136",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos spell, E2. '[Reaction] [Repeat] 2 Energy. Counter a spell unless its controller pays 2 Energy.' In zero entries before this walk. A soft counter whose price the opponent can meet — and whose [Repeat] is what makes that price hurt."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "OGS-017 Dark Child - Starter IS the legend and IS the requirement; Hard Bargain is mono-Chaos, so 103.1.b.3 admits it. Nothing here is Signature (103.2.d.2).",
+          "Two runes left unexhausted going into the end of your turn — the legend readies 'up to 2', so the ceiling is what she gives, not what you saved."
+        ],
+        "notable": [
+          "WHY OFF-TURN ENERGY IS SCARCE AT ALL, WHICH IS THE PREMISE. 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase ON THEIR TURN.' So a rune you exhausted on your own turn is dead for the whole of the opponent's, and 167 empties the POOL rather than the runes, so nothing carries over either. Dark Child's end-of-turn ready is the one card in Fury/Chaos that fixes it, and 164.2.a's '[exhaust]: [Reaction] — [Add] 1 Energy' is what turns each readied rune into a resource at the right speed.",
+          "AND THE ARITHMETIC IS EXACT, WHICH IS THE ENTRY. Two runes are two Energy. Hard Bargain's base cost is two Energy. The legend pays for the spell and for nothing else — the [Repeat] cost of a further 2 Energy has to come from runes you deliberately did not spend on your own turn. `dark-child-abandon-guaranteed-counter` already banks the exact-fit half of this with a hard counter; what this entry adds is the case where the deck brings MORE than the legend gives, and what that extra 2 Energy buys.",
+          "WHAT THE [Repeat] ACTUALLY BUYS, READ CAREFULLY. 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time', 820.1.c.1 makes the cost an Additional Cost paid while playing, and 820.2.a lets the second execution make different choices. Against ONE spell, two executions ask the controller for 2 Energy twice — they keep it only by paying FOUR, on a turn they have already committed their mana. Against two spells on the chain, it is two soft counters from one card. Either way it is one card and 4 Energy.",
+          "IT IS A [Reaction], AND THAT IS THE ONLY WINDOW THAT EXISTS. 813.1.c.1 makes a [Reaction] card playable 'during Closed States on any player's turn' and 312.2.c hands out priority there; 312.2.a gives the opponent no priority in a Neutral Open State on your turn, so the mirror of this never happens to you in your own Main Phase.",
+          "A SOFT COUNTER IS NOT A DEAD CARD AGAINST A RICH OPPONENT, AND THE ENTRY SAYS SO. 'Unless its controller pays 2 Energy' means a player holding mana simply pays. What the card does then is TAX — it converts your 2 Energy into their 2, at Reaction speed, on a turn when their Rune Pool is already committed and 167 will empty whatever is left. That is a real effect, and it is the honest description; calling it a counterspell overstates it.",
+          "COST, WITH THE QUANTITIES DECLARED. Legend free. Hard Bargain 2 Energy base and 2 more for the [Repeat], three copies (103.2.b), all of it paid on the opponent's turn out of runes the legend readied at the end of yours. A turn in which you cast the base spell only is exactly the legend's two runes and nothing of your own.",
+          "WHAT REFUTES IT. (a) 'Ready UP TO 2 runes' means the legend never gives more, so scaling the [Repeat] is entirely on the rune deck — every Power you paid on your own turn is a rune 161.2.b sent back to the Rune Deck and cannot be readied. (b) Countering is not removal: nothing here touches a permanent already on the board. (c) 820.1.b gives exactly ONE extra execution — there is no third."
+        ]
+      },
+      "steps": [
+        "During your own turn, deliberately leave runes unexhausted, or accept that the legend's two are all you will have.",
+        "At the end of your turn, Dark Child readies up to 2 runes. 167 empties the Rune Pool at the end of your turn, but the RUNES themselves stay ready (161.2 keeps them on the board).",
+        "On the opponent's turn, they play a spell. That opens a Closed State and 312.2.c gives you priority.",
+        "Play Hard Bargain as a [Reaction] (813.1.c.1) for 2 Energy, tapping the runes the legend handed back (164.2.a).",
+        "Pay the [Repeat] cost of 2 more Energy as an Additional Cost while playing it (820.1.c.1) if you have it.",
+        "First execution: counter their spell unless they pay 2. Second execution (820.1.b): the same spell again, or a different one (820.2.a). To keep one spell through both, they must find 4 Energy on a turn they have already spent."
+      ],
+      "netPerIteration": "one soft counter a turn paid entirely by the legend, and a second execution that doubles the tax if the rune deck brought 2 more Energy of its own",
+      "terminatesIn": "engine only — the legend readies up to 2 runes and no more, 820.1.b allows exactly one extra execution, and three copies is three turns of interaction (103.2.b)",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule dark-child-off-turn-reactions (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the proven rule dark-child-off-turn-reactions (62 partners, 61 uncovered, two entries). SFD-136 Hard Bargain was in zero entries. It is kept separate from dark-child-abandon-guaranteed-counter because that entry banks the exact-fit case — two runes, one hard counter — while this one is about what happens when the deck brings more than the legend gives: the [Repeat] is the only clause in the rule's whole Fury/Chaos partner list that can spend a THIRD and FOURTH point of off-turn Energy, and it converts a soft counter into a 4-Energy tax. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.3, 103.2.b, 103.2.d.2, 161.2, 161.2.b, 164.2.a, 167, 312.2.a, 312.2.c, 415.3.a, 813.1.c.1, 820.1.b, 820.1.c.1, 820.2.a. Ban check: OGS-017 and SFD-136 carry no [BANNED marker. Arithmetic against its own declared quantities: the legend's two runes are exactly the 2 Energy base cost; the [Repeat] is 2 more and is not covered by her. Trap check: a soft counter is a TAX and the entry says so rather than calling it a counterspell; [Repeat] gives exactly one extra execution (820.1.b); every Power paid on your own turn is a rune 161.2.b removed from the board and so cannot be readied; no token, no [Temporary], no buff. Depends on no unruled reading."
+    },
+    {
+      "id": "black-market-broker-spiderling-hidden-gold",
+      "name": "The hide pays for itself: one rainbow down, a Gold back next turn, a free body — and 811.1.b's one-per-battlefield clause is the whole rate limit",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-121",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Chaos unit, E3 M3. 'When you play a card from face down, play a Gold gear token exhausted.' 811.1.c.3 makes playing from face down a distinct event, and this is the only card that watches it."
+        },
+        {
+          "card": "VEN-097",
+          "quantity": 6,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos unit, E3 M1. '[Hidden] (Hide now for one rainbow to react with later for 0 Energy.) I have +1 Might for each other unit you control here with my name. Your deck can have ANY NUMBER of cards named Spiderling.' Rule 002 makes that last sentence beat 103.2.b — the quantity here is a deckbuilding choice, not a cap."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine",
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Chaos, so ANY legend whose two domains include Chaos runs the line (103.1.b.1). Nothing here is Signature (103.2.d.2).",
+          "A battlefield you control to hide at, and it must not already have a facedown card on it — that clause is the entire rate limit and it is quoted in the notables."
+        ],
+        "notable": [
+          "THE RATE LIMIT IS ONE HIDE PER BATTLEFIELD, AND IT IS THE FIRST THING TO SAY BECAUSE THE CARD INVITES THE OPPOSITE ASSUMPTION. 811.1.b in full: '[Hidden] is functionally short for \"While this card is in your hand or in your Champion Zone on your turn during an Open State, you may pay [rainbow] to hide this facedown at a battlefield you control THAT DOESN'T ALREADY HAVE A FACEDOWN CARD HIDDEN THERE for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.\"' One facedown per battlefield at a time, and a Duel puts two battlefields on the table (485.4) of which you control what you have taken. Any number of Spiderlings in the deck does NOT become any number of hides a turn.",
+          "AND THE HIDE AND THE PLAY ARE A TURN APART. 'Beginning on the NEXT turn' — so the rainbow is paid now and the body and the Gold arrive at the earliest next turn. 811.1.c.1 is the companion: 'Hide is not a subset of Play', so hiding fires nothing, and only the later play is the event the Broker watches (811.1.c.3).",
+          "THE PAYMENT IS A LOAN, NOT A COST, AND THAT IS THE ENTRY. Hiding costs one rainbow Power. Playing from Hidden costs ZERO Energy (811.1.b, 'ignoring its base cost'), and the Broker mints a Gold gear token — 187.5: 'A Gold gear token is a domainless gear token with \"[Reaction][>] Kill this, [exhaust]: [Add] [rainbow]\"'. That Gold is exactly one rainbow Power. So a Spiderling that would have cost 3 Energy costs one rainbow, hands the rainbow back, and arrives as a free body. Every other card in the Broker's [Hidden] list pays its own rainbow the same way; what makes Spiderling the one to build on is that rule 002 lets you run any number of them.",
+          "THE GOLD IS NEXT TURN'S POWER, NOT THIS TURN'S. Every producer prints it exhausted and 187.5's ability costs its own exhaust, so an exhausted Gold cannot pay for itself; 315.1.b readies it in your following Awakening. SFD-171 Renata Glasc, Industrialist ('Your tokens enter ready') is the fix and is mono-Order, which 103.1.b puts outside a mono-Chaos shell unless the legend is Order/Chaos — VEN-155 / VEN-197 Heart of the Tempest, the only such pair in the census. The entry is priced WITHOUT her.",
+          "WHAT THE SWARM IS WORTH, WITH THE QUANTITIES DECLARED. 'I have +1 Might for each other unit you control HERE with my name' — the count is per battlefield, so five Spiderlings standing together are M5 each and 465.2.c sums them to 25. Two of them are already M2 apiece, which is the step 143.2.a needs to put them outside the range of OGN-133 Flurry of Blades ('Deal 1 to all units at battlefields'). The swarm protects itself as it grows, with no Soul Shepherd and no Brush.",
+          "AND IT IS SLOW, WHICH IS THE PRICE OF BEING FREE. One hide per controlled battlefield per turn, played a turn later, and a body that enters exhausted (143.4) and is readied only in your next Awakening (315.1.b). Getting five Spiderlings onto one battlefield is several turns of hiding, and 811.1.b keeps the facedown card there only 'for as long as you control that battlefield' — lose it and the hidden card is removed (323.7 puts Hidden cards not sharing a controller with the battlefield into their owner's trash).",
+          "WHAT REFUTES IT. (a) The Broker is a M3 body with no protection and every Gold in the line depends on him being alive when the flip happens. (b) 185 and 186.1 keep the Gold tokens out of every recycle and reanimation line, and they are gear an opponent can kill. (c) Spiderling is M1 alone: the first one hidden at a fresh battlefield is the most fragile card in the deck."
+        ]
+      },
+      "steps": [
+        "Play Black Market Broker (E3). 143.4 makes him enter exhausted; nothing in this line asks him to act.",
+        "On your turn, in an Open State, pay one rainbow to hide a Spiderling facedown at a battlefield you control that has no facedown card on it (811.1.b).",
+        "Beginning on your NEXT turn the hidden card gains [Reaction]. Play it from face down for 0 Energy (811.1.b, 'ignoring its base cost').",
+        "811.1.c.3 makes that a play from face down, so the Broker's trigger fires: play a Gold gear token exhausted.",
+        "The Spiderling arrives as a body at the battlefield it was hidden at; the Gold is readied in your next Awakening (315.1.b) and is then worth one rainbow Power (187.5) — the exact cost of the hide.",
+        "Repeat, one hide per controlled battlefield per turn. Each Spiderling standing at the same battlefield gives every other one +1 Might."
+      ],
+      "netPerIteration": "one free body a turn per controlled battlefield, the rainbow it cost handed back as a Gold, and every Spiderling already there one Might larger",
+      "terminatesIn": "engine only — 811.1.b allows one facedown per battlefield at a time, so the rate is the number of battlefields you control and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule black-market-broker-hidden-family (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the proven rule black-market-broker-hidden-family (39 partners, 36 uncovered, six entries). The pairing is chosen for a property no other row of the [Hidden] list has: VEN-097 Spiderling prints 'Your deck can have any number of cards named Spiderling', and rule 002 makes card text beat 103.2.b, so the engine's size is a deckbuilding choice. The entry LEADS with the rate limit rather than the payoff, because the card invites the opposite assumption: 811.1.b hides 'at a battlefield you control THAT DOESN'T ALREADY HAVE A FACEDOWN CARD HIDDEN THERE', so any number in the deck is still one hide per battlefield per turn. It is kept separate from black-market-broker-bandle-tree-gold, which buys extra FLIPS with a battlefield and Renata Glasc, and from spiderling-swarm-grand-plaza, which spends the swarm on a win condition; this one is the cost accounting — one rainbow out, one rainbow back, a free body. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 002, 103.1.b, 103.1.b.1, 103.2.b, 103.2.d.2, 143.2.a, 143.4, 185, 186.1, 187.5, 315.1.b, 323.7, 465.2.c, 485.4, 811.1.b, 811.1.c.1, 811.1.c.3. Ban check: SFD-121 and VEN-097 carry no [BANNED marker. Arithmetic against its own declared quantities: five Spiderlings at one battlefield are M5 each, 25 summed; each hide costs 1 rainbow and returns 1 rainbow as a Gold. Trap check: the Gold enters exhausted and its own ability costs an exhaust, so it is next turn's Power (187.5, 315.1.b) and the fix (SFD-171) is Order and priced out here; the hide and the play are a turn apart (811.1.b); a hidden card is lost with the battlefield (811.1.b, 323.7); tokens never reach the trash (185, 186.1). Depends on no unruled reading."
     }
   ]
 }
