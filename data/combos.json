@@ -26952,6 +26952,133 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §18), issue #161, from the CAUSE/TRIGGER matrix row 46. Card set checked first (OGN-249 + SFD-015: no exact match; the legend is in sky-splitter-volibear-free-removal, which uses neither this body nor this mechanism). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 161.2.b, 164.2.b, 315.1.b, 430.3, 709. The entry's contribution over the matrix row is the distinction between the two Mighty legends: 'when you PLAY a Mighty unit' needs no crossing, while 'when one of your units BECOMES Mighty' is 709's event and pays once per body forever — so the two legends want opposite decks, and only the Duelist is capped by 702.3. Trap check: no attack; no [Repeat]; no [Temporary]; no token; no recall; the channelled rune is stated as exhausted; 107.4.b does not bite, since only 107.4.c is needed."
+    },
+    {
+      "id": "souls-reflection-questionable-tome-disempower-cycle",
+      "name": "Soul's Reflection rides every Empower — the Tome disempowers itself, so the legend can be refilled",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-151",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "LEGEND",
+          "note": "Mind/Chaos legend. 'When you empower something else, empower me. (I become Empowered if I'm not already.) Disempower me, [exhaust]: Give a unit at a battlefield -2 Might this turn.' It spends its own Empowered state, which is why it can be refilled at all."
+        },
+        {
+          "card": "VEN-054",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind gear, E3. '[Empower] — [exhaust] (Pay the cost: Empower me. Use only if not Empowered.) Disempower this, [1 Energy], [exhaust]: Draw 1.' The only Mind card whose Empowered state is BOTH self-applied and self-spent, so it is a renewable source of the 'you empower something else' event."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal",
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend IS Soul's Reflection (Mind/Chaos), and Questionable Tome is mono-Mind (103.1.b.1)."
+        ],
+        "notable": [
+          "441 IS WHY THIS FAMILY NEEDS A SELF-DISEMPOWERING PARTNER AT ALL, AND IT IS THE POINT OF THE ENTRY. 441.1.a: 'Empowered is a binary state. A Game Object is Empowered or it isn't.' 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.1.c: 'If a Game Object is instructed to be Empowered when it is already Empowered, nothing additional happens.' And 441.2 makes the state permanent. So 'when you empower something ELSE' is a ONCE-PER-OBJECT event: a board full of Empowered permanents feeds the legend exactly nothing. The partner has to hand its own state back.",
+          "THE TOME IS THE ONLY MIND CARD THAT DOES. Its [Empower] cost is a bare exhaust and its payoff cost begins 'Disempower this' — so it applies the state to itself for free and then spends it for a card. Every time it comes back un-Empowered it is a fresh 'empower something else' for the legend. VEN-087 Hextech Disc is the Body twin and is already the partner of matriarch-of-war-empower-ready, which is this entry's Body/Order mirror; the two can never share a list (103.1.b.4).",
+          "THE HONEST RATE IS EVERY OTHER TURN ON TWO CARDS. CLAUDE.md already records that the Tome 'unaided Empowers or draws in a turn, never both', because its [Empower] cost IS the exhaust its draw needs. So: turn N, exhaust the Tome to Empower it — the legend Empowers, then disempowers and exhausts for -2 Might. Turn N+1, the Tome disempowers itself and exhausts to draw 1, and the legend gets nothing. Turn N+2 repeats. One -2 Might and one card per two turns, for 1 Energy.",
+          "VEN-062 HEXTECH FORMULA MAKES IT EVERY TURN, AND IT IS DELIBERATELY NOT IN uses. 'This enters exhausted. [exhaust]: Empower another gear.' On the draw turn, after the Tome has disempowered itself, the Formula re-Empowers it — a second 'empower something else' — so the legend fires on that turn too. Both cards are already together in hextech-formula-rage-amplifier-free-empower, whose value is a PRICE comparison on Rage Amplifier's E6 + 1 Fury Power; this entry's value is the legend riding the same cycle, which that entry does not have. Adding the Formula here would be a third card and would duplicate that entry's engine.",
+          "WHAT THE -2 MIGHT IS WORTH. It is 'this turn', it is a plain continuous modifier rather than a 702 Buff, and 143.2.b lets Might go negative while reading as 0 for spells, abilities and combat damage. Its real use is the 22 MIGHT GATES the #97 walk inventoried — the kill/banish/bounce/steal clauses priced at a Might threshold — where two Might is the difference between a body being a legal target and not. Note it has no 'to a minimum of' clause, which 477.3.b makes the difference between a floored and an unfloored reduction.",
+          "THE LEGEND MUST BE READY TO SPEND ITS STATE. 'Disempower me, [exhaust]' is a cost, so 315.1.b's Awakening is the only thing that gives it back — one activation per turn, whatever else happens, exactly as matriarch-of-war-empower-ready is 'hard-capped at one ready by the Matriarch's own exhaust'.",
+          "NOTHING HERE SCORES. It is a card and a Might reduction on a two-turn cycle for two cards and 5 Energy of setup."
+        ]
+      },
+      "steps": [
+        "Play Questionable Tome (3 Energy). Gear enters ready (143.4 exhausts only units).",
+        "Exhaust the Tome to pay its own [Empower] cost. It becomes Empowered — which is 'you empower something else' for the legend, so Soul's Reflection becomes Empowered too (441.1).",
+        "Disempower the legend and exhaust it: give a unit at a battlefield -2 Might this turn.",
+        "Next turn, Awaken readies both (315.1.b). Pay 1 Energy, disempower the Tome and exhaust it: draw 1. The Tome is now un-Empowered again.",
+        "The turn after, exhaust the Tome to Empower it once more and repeat. One -2 Might and one card every two turns."
+      ],
+      "terminatesIn": "engine — one -2 Might and one card per two turns off a legend and one gear; every turn if VEN-062 Hextech Formula is added. Nothing here scores",
+      "netPerIteration": "+1 card and one -2 Might per two-turn cycle, for 1 Energy",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 29)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Cause/trigger matrix over the pool, group 33 (empower-other, 8 partners), built by rc-walk153b — .scratch/matrix.ts and .scratch/cands.json",
+          "kind": "agent",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 29). VEN-151 Soul's Reflection was in ZERO entries and is the tightest of the six empower-other anchors in groups 31-39 (8 partners against 35-38 for the rest), which is what made it walkable: the 8 are the cards that can actually hand their Empowered state back. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.1.b.4, 143.2.b, 143.4, 315.1.b, 441.1/441.1.a/441.1.b/441.1.c, 441.2, 477.3.b and 702.3 opened and read. Ban check against data/legality.json reading bases as an array: neither VEN-151 nor VEN-054 is listed in either format, and neither is a Signature card. Trap check: no attack; no [Temporary]; no [Repeat]; no token; no recall; the -2 Might is a continuous modifier and not a 702 Buff, so 702.3 never touches it. Depends on no unruled reading."
+    },
+    {
+      "id": "mel-defiant-soul-sanction-banish-cycle",
+      "name": "Mel's Empower costs a spell, not Energy — Sanction re-fires the banish three more times",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-110",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E5 M4. '[Empower] — Discard a spell (Pay the cost: Empower me. Use only if not Empowered.) When I become [Empowered], banish an enemy unit at a battlefield with 3 Might or less.' Her [Empower] cost is a CARD, not Energy and not Power — the cheapest Empower cost in the pool by resources."
+        },
+        {
+          "card": "VEN-035",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E3 P1, [Reaction]. 'Choose one — • Empower a unit. Disempower it at end of turn. • Disempower a unit that's [Empowered]. Empower it at end of turn.' Mode two is the re-trigger: it takes Mel's state away now and gives it back at end of turn, which fires 'When I become [Empowered]' again."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "A Calm/Chaos legend — Mel is Chaos and Sanction is Calm (103.1.b.1). Calm/Chaos is a printed legend pair."
+        ],
+        "notable": [
+          "FOUR PERMANENT REMOVALS FOR ONE DISCARDED SPELL AND NINE ENERGY. Mel's own [Empower] cost fires the first banish for a card out of hand and nothing else. Each Sanction in mode two disempowers her now and re-Empowers her at end of turn, and 441.1.c ('If a Game Object is instructed to be Empowered when it is already Empowered, nothing additional happens') is exactly why the disempower half is mandatory rather than decorative. Three copies (103.2.b) is three more banishes, at 3 Energy + 1 Calm Power each.",
+          "IT IS BANISH, NOT KILL, AND THAT IS THE WHOLE DIFFERENCE FROM A DAMAGE ANSWER. 108.6.c returns nothing from Banishment, so a body removed this way is gone for the game — no Deathknell fires (808.1.d.1 needs the permanent to reach the Trash), no reanimation reaches it, and a [Temporary] or token body is not merely returned to nothing. Against the 1-Might token swarms the catalogue is full of it is one-for-one rather than a sweep, but it is final.",
+          "THE RE-FIRED BANISH LANDS AT END OF TURN, NOT AT INSTANT SPEED. Sanction is a [Reaction] and can be cast in a Closed State, but the clause it uses is 'Empower it AT END OF TURN' — so the banish resolves in the Ending Phase, after combat is over. It removes a body before the opponent's turn; it does NOT answer an attacker mid-combat. Casting Sanction in mode two during the opponent's combat buys nothing that casting it in your own Main Phase would not.",
+          "IT IS NOT kharox-sanction-burn WITH A CARD SWAPPED. That entry pairs the same three Sanctions with VEN-114 Kharox, whose [Empower] cost is 6 Energy + 2 Chaos Power and whose payoff is [Burn 3] plus a free unit from the opponent's trash — deck pressure, and its own terminatesIn says it is 'not a kill (Burn Out recycles their trash before the point, 431.2.b)'. Mel costs a DISCARDED SPELL and removes a body permanently. Same enabler, opposite currency and opposite output; the two can share a list, since both are Chaos, and then three Sanctions have to be split between them.",
+          "THE TARGET RESTRICTION IS THE REAL CEILING: 'an enemy unit AT A BATTLEFIELD with 3 Might or less'. It cannot reach a body at the opponent's base, and it cannot reach anything of 4 Might or more. Pair it with a Might reduction and the gate opens — the #97 walk inventoried 22 such gates and measured that an unfloored reduction is what clears a big body; souls-reflection-questionable-tome-disempower-cycle is a Mind/Chaos source of exactly that and cannot share this list (103.1.b.4, Calm against Mind).",
+          "MEL HAS TO SURVIVE AT 4 MIGHT and she is the only body in the line; killing her ends it, and 441.2 means her Empowered state is permanent only until a Sanction takes it, so a removed Mel cannot be replaced mid-cycle by a second copy already Empowered.",
+          "NOTHING HERE SCORES. It is four permanent removals; the points come from what the cleared battlefield then allows."
+        ]
+      },
+      "steps": [
+        "Play Mel, Defiant Soul (5 Energy) at a battlefield.",
+        "Pay her [Empower] cost by discarding a spell. She becomes Empowered and her trigger banishes an enemy unit at a battlefield with 3 Might or less.",
+        "Cast Sanction (3 Energy + 1 Calm Power) choosing mode two: disempower Mel now, and she is re-Empowered at end of turn.",
+        "At end of turn she becomes Empowered again (441.1.c is satisfied because the disempower cleared the state first), and the trigger banishes a second body.",
+        "Repeat with the second and third Sanction: four permanent removals in all, for one discarded spell and 9 Energy + 3 Calm Power."
+      ],
+      "terminatesIn": "engine — four permanent banishes of enemy units of 3 Might or less, bounded by the 3 copies of Sanction (103.2.b); nothing here scores",
+      "netPerIteration": "one enemy unit of 3 Might or less banished per Sanction, for 3 Energy + 1 Calm Power",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 29)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Cause/trigger matrix over the pool, group 37 (empower-other, 37 partners), built by rc-walk153b — .scratch/matrix.ts and .scratch/cands.json",
+          "kind": "agent",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 29). VEN-110 Mel, Defiant Soul was in ZERO entries. Of her 37 matrix partners, VEN-035 Sanction is the best on its own numbers and it is the only one that re-fires the trigger without a second body: 441.1.b forbids Empowering an already-Empowered object and 441.1.c makes the instruction a no-op, so the disempower half of Sanction's mode two is load-bearing rather than a drawback. Authored alongside kharox-sanction-burn rather than instead of it because the numbers differ on both sides — a discarded spell against 6 Energy + 2 Chaos Power, and a permanent banish against deck pressure that the existing entry's own terminatesIn says is 'not a kill'. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.1.b.4, 103.2.b, 108.6.c, 441.1.b/441.1.c, 441.2 and 808.1.d.1 opened and read. Ban check against data/legality.json reading bases as an array: neither VEN-110 nor VEN-035 is listed in either format, and neither is a Signature card. Trap check: no attack; no [Temporary]; no [Repeat]; no token of ours; no recall; the end-of-turn timing of the re-Empower is stated in a notable because a [Reaction] enabler makes it look like instant-speed removal and it is not. Depends on no unruled reading."
     }
   ]
 }
