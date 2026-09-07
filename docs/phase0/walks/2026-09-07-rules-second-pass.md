@@ -298,7 +298,116 @@ Entry: **`ravenbloom-diana-fizz-spell-stack`**.
 
 ---
 
-## 7. Back-links for `data/synergies.json` (`rule id -> entry id`)
+
+## 7. `shurelyas-requiem-ganking-second-move` (SFD-192) — 36 partners, 36 uncovered
+
+The Requiem is **[Unique]** (825.3.a: *"A deck can contain only one card of a given name if the card
+has Unique"*) and its mass ready is on the **play**, not on the [Equip] (818.1 makes Equip an
+Activated Ability), so *"When you play this, ready your units"* fires **once per game**. Every
+existing line therefore prices it as one explosive turn.
+
+`UNL-075 Gustwalker` (Mind, E3 + 1 Power, M3, in zero entries) inverts that:
+
+> `[Hunt 2]` (When I conquer or hold, gain 2 XP.) `[Level 3][>]` I have +1 Might and `[Ganking]`.
+
+A double-Conquer turn under the Requiem pays **4 XP**, which crosses `[Level 3]` — so the borrowed
+keyword is replaced by his own, permanently, for every later turn in which you do not spend XP
+(824.1.d, 730.2). **The one-shot buys a permanent.** Entry:
+`shurelya-gustwalker-hunt-bootstrap`.
+
+The other Calm/Mind partners and why they are not this entry: `OGN-112` Kai'Sa, Evolutionary is
+already carried by `kaisa-evolutionary-arena-spell` (which DOUBLES her conquer trigger instead of
+buying a second Conquer); `SFD-071` Breakneck Mech grants [Ganking] to your Mechs as a static, so the
+Requiem's grant is redundant on it; `OGN-297` Windswept Hillock is a battlefield, and 485.5 selects
+battlefields at random.
+
+---
+
+## 8. `chem-baroness-gold-ramp` (SFD-201) — 20 partners, 20 uncovered
+
+The rule already names the clause that matters — *"While your score is within 3 points of the Victory
+Score, your Gold [Add] an additional 1 Energy"* — and the walk adds the two things that make it a
+line rather than a note.
+
+1. **The clause reads the token when it is KILLED, not when it is made.** 187.5 prints the Gold in
+   full: *"A Gold gear token is a domainless gear token with '[Reaction][>] Kill this, [exhaust]:
+   [Add] [rainbow]'."* Nothing forces you to cash it. A Gold made on turn three and still standing at
+   five points pays **1 rainbow Power AND 1 Energy**. So the correct play under this legend is to
+   **hoard** — the opposite of every other ramp engine in the catalogue.
+2. **The threshold moves between formats.** 194.3 sets the Victory Score at 8, so the clause switches
+   on at **5**; 489.3 sets it at 11 in 2v2, so there it switches on at **8**. No other Gold entry has
+   to say this, because no other Gold source is score-gated.
+
+Entry: `chem-baroness-gold-banked-across-the-threshold` (legend + `SFD-086` World Atlas + `SFD-174`
+Trove Golem). Its own stated cost is the one the hoard creates: a Gold standing on the board is a
+gear, and the pool has eight cards that kill gear.
+
+---
+
+## 9. `green-father-brush-four-tags` (UNL-195) — the DEFERRAL is closed, and not by a vote
+
+#153 deferred this rule rather than guess, on the ground that 438 Replace against 190.x Control was
+unruled. **It is ruled, and the rules use this legend as their own worked example:**
+
+> **438.1.** *Replacing is the act of Creating a token in the place of another card or token without
+> playing it while inheriting all effects or statuses of the game object it replaced.*
+>
+> **438.1.a.** … *Example: A player with Green Father as their legend conquers Navori Fighting Pit.*
+> … *because the Brush inherited all statuses and conditions.*
+
+Control is a status, so it carries; 190.6.a gives the Brush's abilities to its Controller and
+190.6.d's blanking of *"you"* never fires. 438.5 / 438.5.a put the replaced battlefield in Banishment
+but keep it *"Replaced and not Banished"*, so 438.7.b can swap it back and 108.6.c does not bite.
+187.8 prints the Brush token in full. **No R-number was needed.**
+
+### 9.1 What the +1 is worth, and the extension that does NOT work
+
+187.7: a Bird token is *"a domainless unit token with 1 Might, the Bird tag, and the Deflect
+keyword"*. 143.2.a kills on *"nonzero damage marked on it equalling or exceeding its Might"*, so a
+1-Might Bird dies to `OGN-133 Flurry of Blades` (Body, E1, *"[Reaction] Deal 1 to all units at
+battlefields"*) and a 2-Might Bird does not. **In Calm/Order the Brush is a second answer to the
+problem the catalogue records only in Mind** (`UNL-077 Soul Shepherd`, from the #159 Azir refusal).
+
+**But it cannot rescue a Grand Plaza line**, and this is worth stating because it is the obvious next
+thought: replacing REMOVES the battlefield whose text the line needs (438.5). A deck that wants
+`OGN-293 The Grand Plaza`'s own win text cannot be standing on a Brush instead of it.
+
+### 9.2 The denial half, in no entry
+
+127.1 and 485.4.a mean both players provided battlefields. Replace one the **opponent** brought and
+its text is off the board for as long as the Brush stands, because 187.8's swap-back reads *"When you
+score **here**"* and 190.6.a makes that *"you"* the Brush's Controller. 438.7.c is the warning in the
+other direction: *"If there is nothing in Banishment to swap back to then this object can never swap
+back."*
+
+Entry: `green-father-brush-ultrasoft-poro-birds` (legend + `UNL-160` Ultrasoft Poro, whose body and
+whose Bird tokens are both tribes the Brush buffs).
+
+---
+
+## 10. `jae-medarda-chosen-by-spell` (SFD-142) — 34 partners, 34 uncovered
+
+The entry exists for a trap, which is the useful half. *"Give **two friendly units** each +1 Might
+this turn"* looks like two choosings and two draws off one casting. **It is not** — the two are
+distinct Game Objects, so Jae is chosen once per execution however the plural is filled.
+
+The doubling has to come from `[Repeat]`, and reading the rule's own 34-row match list end to end
+(2026-09-07) there are **exactly two** [Repeat] spells in it that choose a friendly unit:
+
+| card | domain | shape | legend field it forces |
+|---|---|---|---|
+| `SFD-151` Bonds of Strength | Order | E2 + [Repeat] 2, two units +1 each | Order/Chaos — **one name**, VEN-155 / VEN-197 Heart of the Tempest |
+| `SFD-034` Feral Strength | Calm | E2 + [Repeat] 2, one unit +2 | Calm/Chaos — three names (Unforgiven, Blade Dancer, Gloomist) |
+
+820.1.b gives *"a second time"* and 820.2.a lets the second execution make different choices, so one
+copy is **two draws**. Against `jae-medarda-choose-draw`, which runs Stupefy at 1 Energy a card, the
+[Repeat] spell loses on price and wins on **deck slots**: three copies are six cards, not three.
+Entry: `jae-medarda-repeat-double-choose`. `SFD-151` was in zero entries; Feral Strength is the same
+arithmetic in a wider legend field and is recorded as a note inside the entry, not as a second one.
+
+---
+
+## 11. Back-links for `data/synergies.json` (`rule id -> entry id`)
 
 This walk does not edit `data/synergies.json`. The pairs below are for the synergies session.
 
@@ -321,9 +430,13 @@ tryndamere-excess-damage-might-reduction
 undertitan-reveal-payoff              -> undertitan-pakaa-signpost-move-reveal
 forgotten-signpost-carries-exhausted  -> undertitan-pakaa-signpost-move-reveal
 ravenbloom-student-spell-replay       -> ravenbloom-diana-fizz-spell-stack
+shurelyas-requiem-ganking-second-move -> shurelya-gustwalker-hunt-bootstrap
+chem-baroness-gold-ramp               -> chem-baroness-gold-banked-across-the-threshold
+green-father-brush-four-tags          -> green-father-brush-ultrasoft-poro-birds
+jae-medarda-chosen-by-spell           -> jae-medarda-repeat-double-choose
 ```
 
-## 8. Reported to the manager, not fixed here
+## 12. Reported to the manager, not fixed here
 
 - `master-of-shadows-banish-rummage` carries a **false uniqueness claim in its own name** — see §3.
   Three cards print the Shadow Clone token and its attack-triggered banish; one of them is the entry's
