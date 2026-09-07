@@ -307,6 +307,25 @@ const shownHits = (): Hit[] => {
 };
 
 /**
+ * The hits the diagram and the tray actually draw (2026-09-07).
+ *
+ * They are two views of ONE list, so they take it from one place. Before this, the tray capped at
+ * twelve and the diagram beside it drew all 51 — two surfaces disagreeing about the same answer,
+ * which is worse than either being long. Sorted closest-first by `missingCount`, the same number the
+ * "Within N cards" control compares against, so the twelve kept are the twelve nearest.
+ *
+ * The cap never touches what the app CLAIMS: `#route-count` and the status card both count the
+ * UNCAPPED list, and the expander reaches the rest. In Complete mode it is inert in practice — the
+ * most complete combos any of the 222 registered fixture lists reaches is 6, against a cap of 12 —
+ * but it is applied there too, because the moment the two surfaces cap differently they can disagree
+ * again, and that is the defect this exists to prevent.
+ */
+const cappedHits = (all: Hit[]): Hit[] => {
+  const sorted = [...all].sort((a, b) => a.missingCount - b.missingCount);
+  return trayExpanded ? sorted : sorted.slice(0, TRAY_LIMIT);
+};
+
+/**
  * How many known combos are even legal under this deck's legend, in the format being matched.
  * Domain Identity (103.1.b) means every card in a combo must sit inside the legend's two domains,
  * and a combo holding a banned card cannot be built at all — pursuer-herald-recruits is Mind + Order
@@ -633,14 +652,16 @@ function synergyRow(h: SynergyHit): string {
 function render() {
   if (!deck || !result) return;
   showStatus();
-  const hits = shownHits();
-  routeCount.textContent = String(hits.length);
-  empty.hidden = hits.length > 0;
+  // `all` is what the deck HOLDS and is what the counts speak for; `hits` is what fits on screen.
+  const all = shownHits();
+  const hits = cappedHits(all);
+  routeCount.textContent = String(all.length);
+  empty.hidden = all.length > 0;
   const legalHere = playableUnderLegend(fmt());
   $<HTMLElement>("#ws-sub").textContent = legalHere === null
     ? `${combos.length} combos catalogued`
     : `${legalHere} of ${combos.length} catalogued combos are legal in this legend's domains`;
-  if (hits.length === 0) {
+  if (all.length === 0) {
     view?.destroy(); view = null;
     showEmptyState();
   } else {
@@ -652,7 +673,7 @@ function render() {
     }, dim);
     if (selected) view.select(selected);
   }
-  renderTray(hits);
+  renderTray(all, hits);
   renderBans();
   renderPlan();
   renderSynergies();
@@ -691,16 +712,12 @@ const outcomeColors = (hits: Hit[]) => {
 /** Whether the tray is showing past TRAY_LIMIT. Reset with `selected`, so a new list starts capped. */
 let trayExpanded = false;
 
-function renderTray(all: Hit[]) {
+/** `all` is the whole list, `shown` the part that fits — both come from `render()` so the diagram
+ *  and the tray can never be drawn from different slices of the same answer. */
+function renderTray(all: Hit[], shown: Hit[]) {
   tray.innerHTML = "";
   if (!all.length) { tray.innerHTML = `<p class="tray-empty">${mode() === "network" ? "No complete combos to show." : "No near misses to show."}</p>`; return; }
-  // Closest first, so a cap can never hide the nearest miss. `missingCount` is not a new metric —
-  // it is the number the "Within N cards" control already compares against (src/matcher.ts:66), so
-  // the tray is ordered in the same units the player set the threshold in. The sort is stable, so
-  // the bucket order shownHits() builds survives as the tiebreak it already was.
-  const hits = [...all].sort((a, b) => a.missingCount - b.missingCount);
-  const shown = trayExpanded ? hits : hits.slice(0, TRAY_LIMIT);
-  const colors = outcomeColors(hits);
+  const colors = outcomeColors(all);
   for (const hit of shown) {
     const v = hit.variant;
     const primary = combosById.get(v.comboIds[0]!)!;
@@ -729,7 +746,7 @@ function renderTray(all: Hit[]) {
     b.addEventListener("click", () => { selected = selected === primary.id ? null : primary.id; view?.select(selected); showDetail(selected); markChips(); });
     tray.append(b);
   }
-  const rest = hits.length - TRAY_LIMIT;
+  const rest = all.length - TRAY_LIMIT;
   if (rest > 0) {
     const more = document.createElement("button");
     more.type = "button";
@@ -740,7 +757,14 @@ function renderTray(all: Hit[]) {
     more.textContent = trayExpanded ? "Show fewer" : `${rest} more ${rest === 1 ? noun : noun === "combo" ? "combos" : "near misses"}`;
     more.addEventListener("click", () => {
       trayExpanded = !trayExpanded;
-      renderTray(all);
+      // The whole view, not just this strip: the diagram is drawn from the same slice, so folding
+      // back with only the tray redrawn would put the two out of step again.
+      if (!trayExpanded && selected && !cappedHits(all).some((h) => h.variant.comboIds[0] === selected)) {
+        // The open route is one of the ones being folded away; leaving it selected would highlight
+        // a node that is no longer drawn.
+        selected = null;
+      }
+      render();
       // Keep the control under the hand that pressed it rather than scrolling back to the start.
       tray.querySelector<HTMLElement>(".tray-more")?.focus();
     });

@@ -94,6 +94,34 @@ describe("the near-miss tray's cap", () => {
     expect(more()!.getAttribute("aria-expanded")).toBe("false");
   });
 
+  /**
+   * The point of the cap, and the reason it is twelve rather than a number chosen for the diagram:
+   * the tray and the diagram are two views of ONE list. Before this they disagreed — the tray drew
+   * 12 of 51 while the diagram beside it drew all 51.
+   *
+   * They are compared through the ROUTE/ENTRY distinction rather than by counting nodes: a chip is
+   * a route (`Variant.comboIds`) and a diagram node is an entry, so 12 chips legitimately draw more
+   * than 12 nodes when a route has `needs`. What must hold is that the diagram draws the entries of
+   * the shown routes and NOTHING ELSE.
+   */
+  it("draws the diagram from the same twelve routes the tray shows", async () => {
+    await setView("suggestions");
+    const shownNames = new Set(chips().flatMap((c) =>
+      (c.querySelector(".chip-title")?.textContent ?? "").split(" + ").map((n) => n.trim())));
+    const svg = document.querySelector("#graph-host svg");
+    expect(svg, "the diagram is drawn").not.toBeNull();
+    const drawn = [...svg!.querySelectorAll("g.node.combo, g.node.route")];
+    expect(drawn.length, "an entry per route leg, never the whole uncapped list").toBeGreaterThan(0);
+    expect(drawn.length).toBeLessThanOrEqual(Number($("#route-count").textContent));
+    // Every entry the diagram draws belongs to a route the tray is showing.
+    for (const node of drawn) {
+      const label = (node.textContent ?? "").trim();
+      if (!label) continue;
+      const belongs = [...shownNames].some((n) => n.length > 3 && label.includes(n.slice(0, 12)));
+      expect(belongs, `the diagram drew "${label.slice(0, 40)}", which no shown chip names`).toBe(true);
+    }
+  });
+
   it("leaves a tray that fits alone — no control where there is no overflow", async () => {
     await setView("network");
     // Complete lines are few (measured 2 at the median, 6 at most over 223 lists), so this is the
