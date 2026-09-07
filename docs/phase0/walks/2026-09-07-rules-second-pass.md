@@ -1574,7 +1574,9 @@ Re-measured today with the name+type fold, over `data/Riftbound-Core-Rules-2026-
 - **32** of those are in no entry — of which 6 are Runes, 3 are tokens, and one
   (`OGN-168 Fight or Flight`) is banned in both formats.
 - That leaves **22 real, playable, uncatalogued cards the Core Rules point at by name.** The probe is
-  `.scratch-rules/rulesnames.mjs`; it folds printings by name+type first, per the #173 lesson.
+  `.scratch-rules/rulesnames.mjs`, which is UNTRACKED scratch (this session commits only this
+  document) and rebuilds in twenty lines from the description above; it folds printings by name+type
+  first, per the #173 lesson.
 
 Four of them became entries this batch.
 
