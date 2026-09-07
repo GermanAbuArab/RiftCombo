@@ -22681,6 +22681,323 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §4), issue #161, as the uncatalogued feeder for the Time Warp CHAINs. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 167, 194.1.c, 194.2, 194.3, 315.2.b.2, 316.2, 316.3, 316.4, 356.4.e, 383.4.d.2.a, 470, 489.3, 718.3, 718.4. Stands on R1 = A with stacking and R2 = A, both ruled 2026-09-04, and on the Power-symbol reading applied-researchers-time-warp-discount already walked (Time Warp's Power cost is [C], its own domain, 135.2.e.6, which is why a rainbow discount reaches it). The new connection is 316.2's task ORDER: a delayed Add scheduled for the start of the Main Phase resolves after 316.3 empties the pool, so the Sentinel's rainbow is real Power and not the Awaken-banked Energy that 167 eats. Trap check: a Hold needs no Attacker designation, so 807.1.d / 383.4.e / 461 cannot bite; no [Repeat]; no [Temporary]; no token; no recall; 2v2's 489.3 threshold of 11 is stated rather than ignored; the Time Warps are banished by their own text, so 103.2.b's three copies are three turns and this entry declares two."
+    },
+    {
+      "id": "svellsongur-rumble-scrapper-mechs",
+      "name": "Rumble, Scrapper × three Svellsongur — eight Mechs a Hold, at eleven Might each",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-089",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E5 P1 M4, tags Mech/Yordle/Rumble/Bandle City. 'Your Mechs have +1 Might (including me). When I hold, play a 3 Might Mech unit token to your base.' BOTH sentences are copied."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. Three on Rumble compose to 2^3 = 8 instances of his whole text."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Mind — OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom, VEN-145 Curator of the Sands."
+        ],
+        "notable": [
+          "SVELLSONGUR COPIES THE WHOLE TEXT, AND RUMBLE'S OTHER SENTENCE IS A STATIC. This is the entry's real content: the eight instances are eight copies of 'Your Mechs have +1 Might (including me)' as well as eight copies of the hold trigger. 476.1 applies each of the eight exactly once (there is no recursion), so the static stacks to +8 Might on every Mech you control. 187.4 gives the token 'the Mech tag' by rule, so it reaches all of them with no play trigger and no cost, and Rumble carries the Mech tag himself.",
+          "The board it produces: eight 3-Might Mech tokens per Hold, each standing at 3 + 8 = 11 Might, with Rumble himself at 4 + 8 = 12. Against rumble-scrapper-sentinel-mechs, which is the same card under the OTHER multiplier — Blue Sentinel gives 1 + K executions and its static is nothing, so two Sentinels make three Mechs at 4 Might and add 6 rainbow Power. This gives eight at 11 and no Power. Neither dominates; the identities are different (mono-Mind there, Calm/Mind here) and so are the products.",
+          "It is a continuous modifier, NOT a buff, so 702.3's one-per-unit cap never touches it — the same distinction CLAUDE.md draws for Lee Sin, Centered and for UNL-077 Soul Shepherd's 'Your token units have +1 Might'. A real buff can still be placed on top of it.",
+          "The Mechs are born at your BASE and enter exhausted (143.4), so they cannot pay 144.2's exhaust to walk on the turn they appear; they move at the NEXT Main Phase, all at once as one game action (144.3, shared destination 144.3.a). SFD-171 Renata Glasc, Industrialist would remove that delay (R25 = A) but she is mono-Order and 103.1.b.1 bars her from a Calm/Mind deck. The delay is priced, not hidden.",
+          "Rumble is the single point of failure and he is standing on a battlefield to Hold it. He defends at 12, which is not nothing — but 137.3.a detaches every Svellsongur the moment he dies, and the +8 goes with them: the Mechs already on the board drop from 11 Might to 3 in the same instant.",
+          "Cost, counted whole: Rumble 5 Energy + 1 Mind Power; each Svellsongur is 3 Energy + 1 Calm Power to play PLUS its [Equip] of 1 Energy + 1 Calm Power. 17 Energy and 7 Power, once."
+        ]
+      },
+      "steps": [
+        "Play Rumble, Scrapper (5 Energy + 1 Mind Power) to a battlefield and establish Control of it.",
+        "Attach Svellsongur A, B and C to him in that order. 136.2.c appends each copied text to his Rules Text, 136.2.d makes the copied 'I' and 'me' mean Rumble, and 434.1.c gives him ALL the Effect Text of ALL three; 477.2.c places the appends in Layer 2, 479.1 finds no dependency, 480.3 orders them by Timestamp. Two instances, then four, then eight.",
+        "Every friendly Mech is now at +8 Might from the eight statics, Rumble included (12).",
+        "Survive to your Beginning Phase. Scoring Step (315.2.b.2): you Hold, scoring the ordinary 1 point (471.1, capped by 470).",
+        "The hold trigger fires eight times: eight 3-Might Mech unit tokens to your base, each standing at 11 Might.",
+        "They ready at your next Awaken (315.1.b) and walk wherever you need them as one action (144.3). Repeat every Hold."
+      ],
+      "netPerIteration": "+8 Mech unit tokens at 11 Might per Hold",
+      "terminatesIn": "engine — an unbounded army of 11-Might bodies; it scores nothing beyond the ordinary Hold point",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule svellsongur-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-089 was an uncatalogued partner of svellsongur-copy. Card text verbatim from data/corpus_flat.txt; 136.2.c, 136.2.d, 143.4, 144.2, 144.3, 144.3.a, 187.4, 315.1.b, 315.2.b.2, 434.1.c, 476.1, 477.2.c, 479.1, 480.3, 702.3, 137.3.a and 103.1.b.1 opened in the Core Rules file. Stands on R6 = A (ruled 2026-09-04); no new reading. The point the walk had to check and that no previous Svellsongur entry raised: the copy carries a STATIC as well as a trigger, and 476.1 makes eight statics eight applications rather than one. Trap check: a Hold needs no Attacker designation (807.1.d / 383.4.e / 461); no token recycled (185 / 416.1) and none asked to reach the trash (186.1); no [Temporary]; no [Repeat]; nothing added in Awaken so 167 does not bite; the [Equip] costs are counted."
+    },
+    {
+      "id": "svellsongur-yasuo-remorseful-sweep",
+      "name": "Yasuo, Remorseful × three Svellsongur — eight separate 6-damage attack triggers",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-076",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E6 P2 M6. 'When I attack, deal damage equal to my Might to an enemy unit here.' Riot's own worked example at 359.3.f.2."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. Three on Yasuo compose to 2^3 = 8 instances."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "MONO-CALM. Yasuo, Remorseful and Svellsongur are both Calm, so every legend with Calm in its pair can run this — Calm/Body, Calm/Chaos, Calm/Mind, Calm/Order and Fury/Calm. That is the widest identity of any Svellsongur line in the catalogue."
+        ],
+        "notable": [
+          "EIGHT INSTANCES, EIGHT SEPARATE CHOICES. Each copy reads 'an enemy unit here' independently, so the 48 damage is not one lump: it is eight instructions of 6, aimed one at a time, and 143.2.a only needs the damage to reach a unit's Might for it to die. A garrison of five 6-Might defenders is gone before combat damage is ever assigned.",
+          "The Might is read AT EXECUTION, and Riot says so with this exact card. 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction', and the worked example is a player moving Yasuo, Remorseful to an occupied enemy battlefield and the opponent answering the attack trigger with Fight or Flight. So the eight instances all read whatever Yasuo's Might is at the moment each resolves — and Svellsongur's Might Bonus is +0 (137.3), so the number stays 6 unless something else moves it.",
+          "IT NEEDS A REAL COMBAT. An attack trigger fires when a unit gains the Attacker designation (383.4.e), and entering an EMPTY enemy battlefield gives no such designation (807.1.d, 461): there is no Attacker without a garrison to contest. This engine is worth nothing against an opponent who keeps no bodies on their battlefield, and that is not a hypothetical — it is the same trap the catalogue records for Assault and every 'When I attack' line.",
+          "Once per combat, and 383.4.e.2.a checks any extra condition only at the instant of the Attacker designation. Yasuo has no extra condition, so all eight fire; but a second attack in the same turn needs a second combat, and a Standard Move costs his exhaust (144.2). Realistically this is one 48-damage volley per turn.",
+          "This is a DEAL, not combat damage. 713 scopes Bonus Damage to Deal actions and 417.6.c makes combat damage come from the units themselves, so none of the 48 counts toward the 'excess damage' thresholds of OGN-034 Tryndamere or SFD-120 Sivir — R28 = A defines excess damage as attacking MIGHT that never got assigned, and 465.2.c.4 is what creates it. Do not compose this with that family expecting points.",
+          "Cost, counted whole: Yasuo 6 Energy + 2 Calm Power; each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 18 Energy and 8 Calm Power, all of the Power in one domain — which is the real constraint, not the Energy."
+        ]
+      },
+      "steps": [
+        "Play Yasuo, Remorseful (6 Energy + 2 Calm Power).",
+        "Attach Svellsongur A, B and C to him in that order: 2, then 4, then 8 instances of 'When I attack, deal damage equal to my Might to an enemy unit here' (434.1.c, 476.1, 477.2.c, 479.1, 480.3; R6 = A).",
+        "Move him to an OCCUPIED enemy battlefield. 190.3.a.1 applies Contested, and the Combat opens with him designated Attacker (464.2.c.1) — an empty battlefield would give no designation at all (807.1.d, 461).",
+        "All eight attack triggers are placed at the designation (464.2.c.3). Resolve them one at a time, each choosing its own enemy unit here and dealing 6 (359.3.f.2 reads his Might on execution).",
+        "Whatever survives fights the ordinary combat. Repeat next turn, once he has readied at Awaken (315.1.b) and a garrison exists to attack."
+      ],
+      "netPerIteration": "48 damage per combat, aimed as eight independent 6-damage instructions",
+      "terminatesIn": "engine — repeatable removal; it scores nothing except by clearing a garrison so the Conquer happens",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule svellsongur-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. OGN-076 was an uncatalogued partner of svellsongur-copy even though it is the card Riot uses to explain 359.3.f. Card text verbatim from data/corpus_flat.txt; 143.2.a, 359.3.f.1, 359.3.f.2, 383.4.e, 383.4.e.2.a, 434.1.c, 461, 464.2.c.1, 464.2.c.3, 476.1, 477.2.c, 479.1, 480.3, 137.3, 190.3.a.1 and 807.1.d opened in the Core Rules file. Stands on R6 = A and R28 = A (the latter only to say what this engine does NOT feed); no new reading. Trap check: the empty-battlefield trap is stated in full rather than assumed; no token; nothing recycled; no [Temporary]; no [Repeat]; no recall; the [Equip] costs and all 8 Calm Power are counted."
+    },
+    {
+      "id": "svellsongur-trevor-leblanc-plaza",
+      "name": "Trevor Snoozebottom × three Svellsongur under LeBlanc — eight permanent Sprites on the first Hold",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-048",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M3, [Shield]. 'When I hold, play a ready 3 Might Sprite unit token with [Temporary] here.'"
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, [Equip] 1 Energy + 1 Calm Power. Three on Trevor compose to 2^3 = 8 instances of his whole text — the hold trigger AND [Shield]."
+        },
+        {
+          "card": "UNL-090",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 M4, [Backline]. 'Your [Temporary] effects at my battlefield don't trigger.' R10 = A: the 816.1.b kill never fires at the Plaza."
+        },
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'When you hold here, if you have 7+ units here, you win the game.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm (Trevor, Svellsongur) and Mind (LeBlanc) — OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom, VEN-145 Curator of the Sands. The Plaza is colourless."
+        ],
+        "notable": [
+          "EIGHT SPRITES ON THE FIRST HOLD, not one. leblanc-bashful-bloom-trevor-plaza runs the same Trevor and the same LeBlanc and gets ONE Sprite a Hold, reaching seven bodies on the third; three Svellsongur make Trevor's line fire 2^3 = 8 times (434.1.c, 476.1, 477.2.c, 479.1, 480.3; R6 = A), so the first Hold puts ten units on the Plaza and the SECOND Hold wins.",
+          "Trevor's Sprites say 'here', which is wherever he Holds — the Plaza — and LeBlanc is standing there, so 816.1.b never triggers on them (R10 = A, ruled 2026-09-04). They are permanent 3-Might bodies, not the 0-Might Reflections of leblanc-temporary-plaza, whose own notable records that 'any single point of damage removes one' (477.1.b.1.a keeps Might off the copyable traits).",
+          "AND TREVOR BECOMES A SHIELD 8 WALL, which is the half a body-count line most needs. Svellsongur copies his whole text, [Shield] included, and 814.2 says outright that 'the Shield Value of all granted Shield keywords is summed' (814.1.b.3 makes a bare [Shield] worth 1). Eight instances make him Shield 8: 3 + 8 = 11 Might while defending. The Plaza's whole requirement is surviving one opponent turn.",
+          "The count is measured AT THE HOLD — 383.2.a.1 puts 'if you have 7+ units here' in the Trigger Condition — and the Sprites Trevor plays on that same Hold do NOT count toward it, because 383.2.c evaluates the Condition once the inciting event is processed. That is why the win is the second Hold and not the first, and it is exactly the recount leblanc-bashful-bloom-trevor-plaza had to make in 2026-09-05.",
+          "Do not also bring UNL-208 Black Flame Altar or any second battlefield of your own: 485.4.a puts only ONE of your three into play, randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5), and 103.4.c plus Tournament Rules 402.1 forbid three copies of the Plaza to force it. That is the mistake #33 fixed in the synergy layer.",
+          "LeBlanc is the load-bearing card and she is a 4-Might [Backline] body: killing her un-suppresses every [Temporary] at once and the whole army dies at your next Beginning Phase. Trevor at Shield 8 protects the position, not her.",
+          "Cost, counted whole: LeBlanc 4 Energy, Trevor 3 Energy, and each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 19 Energy and 6 Calm Power, spread over two Main Phases."
+        ]
+      },
+      "steps": [
+        "Control The Grand Plaza (190.1 → 190.3.a.1 → 344.2 → 348.2.a → 348.2.a.1).",
+        "Play LeBlanc, Everywhere at Once (4 Energy) and Trevor Snoozebottom (3 Energy) to the Plaza. 355.2.a makes a battlefield you control a default play location, so neither needs [Ambush].",
+        "Attach Svellsongur A, B and C to Trevor in that order: 2, then 4, then 8 instances of his text. He is now Shield 8 (814.2) and carries eight copies of his hold trigger.",
+        "First Beginning Phase: 315.2.b.2 Holds the Plaza. The Plaza's condition finds 2 units and does not fire. Trevor's hold effect runs eight times: eight ready 3-Might Sprites, here. Ten units on the Plaza, and none of them dies, because LeBlanc's clause plus R10 = A stops 816.1.b from triggering at her battlefield.",
+        "Survive the opponent's turn with seven of the ten still standing — Trevor defends at 11, LeBlanc is [Backline], and the eight Sprites are 3 Might each.",
+        "Second Beginning Phase: you Hold with 10 units here, the Trigger Condition is met (383.2.a.1) and rule 195 wins the game."
+      ],
+      "terminatesIn": "win the game on the second Hold after setup, for 19 Energy and 6 Calm Power",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rules svellsongur-copy and leblanc-temporary (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. UNL-048 Trevor Snoozebottom was an uncatalogued partner of svellsongur-copy; it is catalogued with LeBlanc and Bashful Bloom, never with the copier. Card text verbatim from data/corpus_flat.txt; 355.2.a, 383.2.a.1, 383.2.c, 434.1.c, 476.1, 477.2.c, 479.1, 480.3, 485.4.a, 195, 814.1.b.3, 814.2 and 816.1.b opened in the Core Rules file. Stands on R6 = A and R10 = A, both ruled 2026-09-04; no new reading. Deliberately a separate row from leblanc-bashful-bloom-trevor-plaza rather than a rewrite of it: that line has Bashful Bloom as the LEGEND and reaches seven on the third Hold with 1-per-Hold Sprites; this one leaves the legend slot open across four Calm/Mind legends, pays 6 Calm Power it does not, and wins a Hold sooner. Trap check: a Hold needs no Attacker designation (807.1.d / 383.4.e / 461); no token recycled (185 / 416.1); [Temporary] is used FORWARDS — the point is that the kill never fires; no [Repeat]; nothing added in Awaken so 167 does not bite; the [Equip] costs are counted."
+    },
+    {
+      "id": "sprite-mother-burst-leblanc-plaza",
+      "name": "Sprite Mother and Sprite Burst under LeBlanc — nine 3-Might bodies on the Plaza, mono-Mind",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-106",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M3. 'When you play me, play a ready 3 Might Sprite unit token with [Temporary] here.' Two bodies per card, both at the battlefield."
+        },
+        {
+          "card": "UNL-069",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind spell, E5. 'Play two ready 3 Might Sprite unit tokens with [Temporary].' No destination named, so 355.2.a puts them at a battlefield you control."
+        },
+        {
+          "card": "UNL-090",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 M4, [Backline]. 'Your [Temporary] effects at my battlefield don't trigger.' R10 = A."
+        },
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'When you hold here, if you have 7+ units here, you win the game.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "MONO-MIND. Every legend with Mind in its pair can run all four cards (103.1.b.3), and the Plaza is colourless — the widest identity of any LeBlanc Plaza line in the catalogue."
+        ],
+        "notable": [
+          "NINE BODIES AND NONE OF THEM IS A 0-MIGHT REFLECTION. Three Sprite Mothers are 3 + 3 = six units and Sprite Burst is two more, plus LeBlanc: nine, of which eight are 3 Might and LeBlanc is 4 with [Backline]. 465.2.c makes an attacker assign summed Might and 465.2.c.3 forces lethal onto one unit at a time, so clearing seven of them costs at least 21 damage. leblanc-temporary-plaza reaches TEN units in one turn but six are 0-Might Reflections, and its own notable says any single point of damage removes one (477.1.b.1.a keeps Might off the copyable traits).",
+          "Every body lands where it is needed with no walk. Sprite Mother says 'here', which is the location she was played to; Sprite Burst names no destination, so 355.2.a — 'By default, Valid locations include the controller's Base or a Battlefield the controller controls' — lets both Sprites go straight to the Plaza. #48's walk-to-the-battlefield bottleneck never arises and SFD-171 Renata Glasc, Industrialist is not needed, which is what keeps the identity mono-Mind.",
+          "LeBlanc is what makes the [Temporary] harmless: 816.1.b would kill every Sprite 'at the start of this permanent's controller's Beginning Phase, before scoring', and R10 = A (ruled 2026-09-04) switches that trigger off at her battlefield. She must be ON the Plaza, not merely on the board.",
+          "The count is measured AT THE HOLD (383.2.a.1 puts 'if you have 7+ units here' in the Trigger Condition, 383.2.c evaluates it once the Hold is processed), so nothing can be topped up at that instant and two of the nine may die during the opponent's turn.",
+          "Twenty-one Energy and 3 Mind Power is more than one Main Phase can bear, so this is a two-turn assembly: LeBlanc plus one Mother is 8 Energy + 1 Power, the rest is 13 Energy + 2 Power. Against svellsongur-trevor-leblanc-plaza, which is the other half of this walk: that one is 19 Energy and 6 CALM Power, needs a Hold to produce anything, and wins on the second Hold; this one produces on the Main Phase it is cast and wins on the first Hold after the board is complete, at the cost of four cards instead of two.",
+          "The Grand Plaza must be the battlefield in play — 485.4.a puts only 1 of your 3 into the game, randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid three copies. It is symmetric, so an opponent parking seven units on it wins the same way."
+        ]
+      },
+      "steps": [
+        "Control The Grand Plaza (190.1 → 190.3.a.1 → 344.2 → 348.2.a → 348.2.a.1).",
+        "Play LeBlanc, Everywhere at Once (4 Energy) to the Plaza. Her clause covers her battlefield from here on.",
+        "Play Sprite Mother to the Plaza three times (4 Energy + 1 Mind Power each). Each play trigger adds a ready 3-Might Sprite 'here': six units, plus LeBlanc.",
+        "Cast Sprite Burst (5 Energy) and put both Sprites at the Plaza under 355.2.a. Nine units.",
+        "Survive the opponent's turn with seven of the nine still there — 21 damage minimum, not 7.",
+        "Your Beginning Phase: 315.2.b.2 Holds the Plaza. 816.1.b does not fire at LeBlanc's battlefield (R10 = A), the Trigger Condition finds 7+ units here, and rule 195 wins the game."
+      ],
+      "terminatesIn": "win the game on the first Hold after the board is complete, for 21 Energy and 3 Mind Power",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule leblanc-temporary (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. OGN-106 Sprite Mother and UNL-069 Sprite Burst were both uncatalogued partners of leblanc-temporary (13 partners, 1 entry). Card text verbatim from data/corpus_flat.txt; 195, 355.2.a, 383.2.a.1, 383.2.c, 465.2.c, 465.2.c.3, 477.1.b.1.a, 485.4.a, 103.1.b.3, 103.4.c and 816.1.b opened in the Core Rules file. Stands on R10 = A (ruled 2026-09-04); no new reading and R25 is not needed. Trap check: a Hold needs no Attacker designation (807.1.d / 383.4.e / 461); no token recycled (185 / 416.1) and none asked to reach the trash (186.1); [Temporary] is used forwards; no [Repeat]; nothing added in Awaken so 167 does not bite; only ONE battlefield of yours is in play, which is why no second battlefield is named."
+    },
+    {
+      "id": "sprite-queen-leblanc-permanent-army",
+      "name": "Sprite Queen under LeBlanc — a permanent 3-Might body every Beginning Phase, for free",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-084",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind unit, E7 P1 M6. 'When you play me or at the start of your Beginning Phase, play a ready 3 Might Sprite unit token with [Temporary] to your base.'"
+        },
+        {
+          "card": "UNL-090",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 M4, [Backline]. 'Your [Temporary] effects at my battlefield don't trigger.' R10 = A."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "MONO-MIND. Any legend with Mind in its pair (103.1.b.3), and no battlefield of yours is required — LeBlanc simply has to be standing on whichever one you control."
+        ],
+        "notable": [
+          "THE NEW SPRITE SURVIVES ITS OWN BIRTH TURN, AND THE RULE SAYS SO WITHOUT ANY ORDERING ARGUMENT. 816.1.c: 'The Trigger Condition is the controller of the permanent's Beginning Phase starting.' The Queen's trigger and every [Temporary] trigger fire at the same instant, so the Sprite she plays ENTERS after that condition has already been checked — its own [Temporary] simply does not trigger this turn. 383.3.d would let you order the simultaneous triggers anyway, but you do not need to.",
+          "So the whole engine is one walk. The Sprite is printed READY, so 144.2's exhaust cost is payable the moment it appears: standard-move it to LeBlanc's battlefield in your Main Phase (144.1.a, 144.4.a) and 816.1.b never triggers on it again (R10 = A). One permanent 3-Might body per turn, at zero recurring cost, forever.",
+          "LeBlanc covers HER battlefield only. A Sprite left at your base dies at your next Beginning Phase like any other [Temporary] permanent — the walk is not optional, it is the engine. This is exactly the caveat leblanc-temporary's rule text states and the reason a base-born token faucet is not automatically a LeBlanc engine.",
+          "One a turn is slow, and the entry says so rather than dressing it up: it does NOT feed bottled-constellation-token-points, which needs three bodies at each Main Phase start. What it does feed is any consumer that wants a growing wall — the bodies are 3 Might, they never expire, and they cost nothing after the two cards are down.",
+          "816.2 / 816.2.a ('Multiple instances of Temporary are redundant... the ability will only trigger once') means nothing here can make a Sprite die twice, and 816.3 keeps [Temporary] readable as a characteristic — which is what UNL-189 Bashful Bloom's discount and UNL-076 Petal Pixie's '+1 Might for each of your units with [Temporary] at my battlefield' count, so a surviving Sprite still pays them.",
+          "Eleven Energy and 1 Mind Power for the pair, and the Queen's own play trigger gives the first Sprite immediately. She is a 6-Might body and LeBlanc a 4-Might [Backline] one; losing LeBlanc kills every accumulated Sprite at the next Beginning Phase in one stroke."
+        ]
+      },
+      "steps": [
+        "Play LeBlanc, Everywhere at Once (4 Energy) to a battlefield you control.",
+        "Play Sprite Queen (7 Energy + 1 Mind Power). Her play trigger gives the first ready Sprite at your base.",
+        "Same Main Phase: standard-move that Sprite to LeBlanc's battlefield (144.1.a, 144.2, 144.4.a). It is now permanent.",
+        "Each of your Beginning Phases: the Queen's trigger plays a new ready Sprite at your base. Its [Temporary] does not trigger this turn, because 816.1.c already checked the Beginning Phase starting before it entered.",
+        "Main Phase: walk the new Sprite to LeBlanc's battlefield. Repeat every turn; the army only grows."
+      ],
+      "netPerIteration": "+1 permanent 3-Might Sprite per turn, at no recurring cost",
+      "terminatesIn": "engine — an unbounded but slow wall of 3-Might bodies; it scores nothing by itself",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule leblanc-temporary (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. UNL-084 Sprite Queen has four entries in the catalogue and none of them is with UNL-090; it was an uncatalogued partner of leblanc-temporary. Card text verbatim from data/corpus_flat.txt; 144.1.a, 144.2, 144.4.a, 383.3.d, 816.1.b, 816.1.c, 816.2, 816.2.a and 816.3 opened in the Core Rules file. Stands on R10 = A (ruled 2026-09-04); no new reading. 816.1.c is the paragraph that makes this work and the walk states it explicitly, because the obvious first reading — 'the Sprite is born at the start of the Beginning Phase, so it dies at the start of the Beginning Phase' — is wrong and would kill the entry. Trap check: no attack; nothing recycled; no [Repeat]; no recall; the base-versus-battlefield scope of LeBlanc's clause is stated rather than assumed; nothing added in Awaken so 167 does not bite."
     }
   ]
 }
