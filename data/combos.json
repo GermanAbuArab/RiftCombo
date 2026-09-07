@@ -37716,7 +37716,7 @@
       "produces": [],
       "prerequisites": {
         "easy": [
-          "Peak Guardian is mono-Order and Spirit's Refuge mono-Calm, so 103.1.b.1 needs a Calm/Order legend: SFD-197 / SFD-247 Emperor of the Sands, VEN-147 / VEN-193 Eye of Twilight, or UNL-195 / UNL-233 Green Father. Neither card is Signature, so 103.2.d.2 imposes nothing and all three names are open."
+          "Peak Guardian is mono-Order and Spirit's Refuge mono-Calm, so 103.1.b.1 needs a Calm/Order legend, and the census gives four names: OGN-261 / OGN-306 Radiant Dawn, SFD-197 / SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father, VEN-147 / VEN-193 Eye of Twilight. Neither card is Signature, so 103.2.d.2 imposes nothing and all four names are open."
         ],
         "notable": [
           "702.3 IS WHY A MASS BUFF IS THE RIGHT SHAPE. 'There can only be one Buff on a Unit at a time', and 702.3.a: a second Buff on a unit that already has one 'is not placed'. So the currency here is BODIES, not repetitions — Peak Guardian buying six counters in one play is worth six single-target buffers, and a seventh buff on the same garrison is worth nothing.",
@@ -37790,7 +37790,7 @@
       "produces": [],
       "prerequisites": {
         "easy": [
-          "Peak Guardian is mono-Order and Stand United mono-Calm, so 103.1.b.1 needs a Calm/Order legend: SFD-197 / SFD-247 Emperor of the Sands, VEN-147 / VEN-193 Eye of Twilight, or UNL-195 / UNL-233 Green Father. Neither card is Signature, so 103.2.d.2 imposes nothing."
+          "Peak Guardian is mono-Order and Stand United mono-Calm, so 103.1.b.1 needs a Calm/Order legend, and the census gives four names: OGN-261 / OGN-306 Radiant Dawn, SFD-197 / SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father, VEN-147 / VEN-193 Eye of Twilight. Neither card is Signature, so 103.2.d.2 imposes nothing."
         ],
         "notable": [
           "THE ARITHMETIC, WITH 702.3 DOING THE WORK. 703: 'Each Buff individually contributes +1 Might to a Unit.' 702.3 allows a unit only one Buff at a time, so on any ordinary board 'buffs give an additional +1 Might to friendly units' resolves to exactly +1 per BUFFED BODY. Peak Guardian landing on a garrison of six unbuffed bodies therefore turns Stand United into +6 Might spread across six bodies for the turn.",
@@ -38319,7 +38319,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Wildclaw Shaman and Fae Dragon are mono-Body and Renata Glasc, Industrialist is mono-Order, so 103.1.b.1 needs a Body/Order legend: OGN-269 The Boss, UNL-203 Keeper of the Hammer or VEN-153 / VEN-196 Matriarch of War. None of the three cards is Signature, so 103.2.d.2 imposes nothing."
+          "Wildclaw Shaman and Fae Dragon are mono-Body and Renata Glasc, Industrialist is mono-Order, so 103.1.b.1 needs a Body/Order legend, and the census gives five names: OGN-269 / OGN-310 The Boss, OGS-023 Might of Demacia - Starter, SFD-205 / SFD-251 Grand Duelist, UNL-203 / UNL-237 Keeper of the Hammer, VEN-153 / VEN-196 Matriarch of War. None of the three cards is Signature, so 103.2.d.2 imposes nothing."
         ],
         "notable": [
           "THE BUFF LEDGER IS NET ZERO, WHICH IS THE POINT. 702.2.b removes one counter when Wildclaw Shaman's play effect spends it, and the same sentence places one back on himself. So the board finishes with the same number of Buff counters it started with, one of them relocated — and Fae Dragon has been paid for the spend.",
@@ -39143,7 +39143,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Ava Achiever is mono-Mind and Mischievous Marai mono-Fury, so 103.1.b.1 needs a Fury/Mind legend, and the census has exactly one name: OGN-247 Daughter of the Void. Neither card is Signature, so 103.2.d.2 imposes nothing on top of that."
+          "Ava Achiever is mono-Mind and Mischievous Marai mono-Fury, so 103.1.b.1 needs a Fury/Mind legend, and the census gives three names: OGN-247 Daughter of the Void, SFD-181 / SFD-240 Mechanized Menace, UNL-181 / UNL-226 Virtuoso. Neither card is Signature, so 103.2.d.2 imposes nothing on top of that."
         ],
         "notable": [
           "THIS NARROWS A CLAIM MADE IN THIS CATALOGUE THE SAME WEEK. `fresh-beans-rengar-pouncing-attacking-reinforcement` says `SFD-025 Rengar, Pouncing` is 'the only card that may be played to a battlefield you are attacking'. That is true of a card's OWN text — Rengar prints the permission on himself — and it is not the whole story: 355.2.b says 'Some Game Effects may grant players permission to play Units to locations that are not normally Valid', and Ava Achiever's attack trigger is such an effect, aimed at a DIFFERENT card. Rengar walks himself in; Ava throws someone else in.",
@@ -39298,7 +39298,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Rumble, Scrapper is mono-Mind and Rumble, Hotheaded mono-Fury, so 103.1.b.1 needs a Fury/Mind legend, and the census has exactly one name: OGN-247 Daughter of the Void. Neither card is Signature, so 103.2.d.2 imposes nothing on top of that."
+          "Rumble, Scrapper is mono-Mind and Rumble, Hotheaded mono-Fury, so 103.1.b.1 needs a Fury/Mind legend, and the census gives three names: OGN-247 Daughter of the Void, SFD-181 / SFD-240 Mechanized Menace, UNL-181 / UNL-226 Virtuoso. Neither card is Signature, so 103.2.d.2 imposes nothing on top of that."
         ],
         "notable": [
           "187.4 IS WHY THE TOKENS GET BOTH STATICS FOR FREE: 'A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag.' The tag comes by rule, so 'Your Mechs have +1 Might' and 'Your Mechs each have [Assault]' both reach a token with no extra text, via 383.2.c.1 (an ability active in a zone applies to an object entering it at the same time).",
@@ -39638,7 +39638,7 @@
           "434.1.g IS THE ONE MISPLAY. 'Attaching a card to its current Top-Most Card will not have any effect', and 434.1.h says nothing additional happens - so every activation must name a DIFFERENT carrier, and 434.1.f detaches it from the previous one. 434.4.a keeps that relocation from being a Move, so no exhaust and no 144.4 destination check applies to the sword itself.",
           "381 IS THE TIMING WALL. 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' The Blade carries neither [Action] (806.1.b) nor [Reaction] (813.1.c.1), so every attach is your own Main Phase: this is a sacrifice outlet you schedule, never a response.",
           "THE RECRUITS ARE BORN AT THE BASE, AND THAT IS THE BOTTLENECK. The Emissary's own text says 'to your base', so 355.2.a's default never comes up and the two bodies still have to walk (144.4, base to battlefield, paying 144.2's exhaust) - and 143.4 makes them enter exhausted, so the walk is next turn. Contrast solari-sunhawk-eye-of-herald-deflect-carrier, whose Recruit is born 'here' at the carrier's destination and needs no walk at all.",
-          "THE FORK THIS ENTRY DELIBERATELY DOES NOT TAKE. OGN-236 Karthus, Eternal is mono-ORDER (not Fury), and 'Your [Deathknell] effects trigger an additional time' would make the Emissary four Recruits and the Witherclaw four runes. That family is already six entries deep - blade-kogmaw-karthus-wipe, karthus-honest-broker-blade-gold, karthus-sacred-shears-blade-draw, karthus-machine-evangel-renata-plaza, karthus-glasc-mixologist-double-reanimate, ferrous-forerunner-karthus-mech-plaza - and every one of them is about what Karthus doubles. This entry is the other half: what makes the Blade's cost profitable with no multiplier at all, which is the pre-paid Empower. Add Karthus to this list and both halves are true at once.",
+          "THE FORK THIS ENTRY DELIBERATELY DOES NOT TAKE. OGN-236 Karthus, Eternal is mono-ORDER (not Fury), and 'Your [Deathknell] effects trigger an additional time' would make the Emissary four Recruits and the Witherclaw four runes. That family was six entries deep as of 2026-09-07 and is ten by the end of that day - blade-kogmaw-karthus-wipe, karthus-honest-broker-blade-gold, karthus-sacred-shears-blade-draw, karthus-machine-evangel-renata-plaza, karthus-glasc-mixologist-double-reanimate, ferrous-forerunner-karthus-mech-plaza - and every one of them is about what Karthus doubles. This entry is the other half: what makes the Blade's cost profitable with no multiplier at all, which is the pre-paid Empower. Add Karthus to this list and both halves are true at once.",
           "WHAT IT IS NOT. Nothing here scores. 469 defines Scoring as Conquer or Hold only, and none of these three cards touches either."
         ]
       },
@@ -47494,6 +47494,165 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-072 Crescent Strike or SFD-067 Frostcoat Cub. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.2.a, 143.2.b, 417.6.b.3, 469, 477.3.b, 477.3.e.2.a, 806.1.c.1. Companion to icevale-archer-deadly-flourish-damage-threshold from batch 5 and the deliberate opposite of orb-of-regret-smoke-screen-floored-reduction from batch 4: an unfloored reduction can complete a kill and a floored one cannot, and all three entries name each other. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "alpha-wildclaw-discipline-mistarget",
+      "name": "Untargetability is checked at RESOLUTION, so a 2-Energy cantrip played in response makes an enemy removal spell mistarget - and 758.2.a works this exact pair",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-057",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E6 P2 M7. '[Tank] (I must be assigned combat damage first.) Your units here with less Might than me can't be chosen by enemy spells and abilities.' A conditional untargetability grant whose threshold is his own Might - which is what makes it movable in response."
+        },
+        {
+          "card": "OGN-058",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E2. '[Reaction] (Play any time, even before spells and abilities resolve.) Give a unit +2 :rb_might: this turn. Draw 1.' Riot's worked example at 758.2.a uses Discipline on Alpha Wildclaw for exactly this purpose, and it cantrips, so the answer costs no card."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits them under any legend with Calm among its two domains - measured over data/cards.json those include OGN-255 / OGN-303 Nine-Tailed Fox (calm/mind), OGN-257 / OGN-304 Blind Monk (calm/body), OGN-261 / OGN-306 Radiant Dawn (calm/order), SFD-189 / SFD-244 Fire Below the Mountain (calm/mind), SFD-197 / SFD-247 Emperor of the Sands (calm/order), UNL-189 / UNL-230 Bashful Bloom (calm/mind), UNL-195 / UNL-233 Green Father (calm/order), VEN-139 / VEN-189 Rogue Assassin (calm/fury), VEN-145 / VEN-192 Curator of the Sands (calm/mind) and VEN-147 / VEN-193 Eye of Twilight (calm/order).",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "Alpha Wildclaw protects only units at HIS battlefield and only those with strictly less Might than him, so the body you want covered must stand there and must be under his number after the pump."
+        ],
+        "notable": [
+          "THE FINDING: UNTARGETABILITY IS A RESOLUTION-TIME CHECK. 758.1, cited by no entry in this project: 'If a Game Object becomes untargetable for a spell or ability after becoming its target and before it resolves, the spell or ability will mistarget on resolution. Any instructions related to that Game Object will be ignored as the spell resolves.' So the question is not whether the unit was a legal target when the spell was cast - it is whether it is still targetable when the spell resolves.",
+          "AND RIOT WORKS THIS EXACT PAIR AT 758.2.a. 'Alpha Wildclaw and Vilemaw are controlled by the same player and located at a battlefield. An opponent targets Vilemaw with Rebuke. Before Rebuke resolves, Vilemaw's controller plays Discipline targeting Alpha Wildclaw, making Vilemaw no longer a legal target.' Vilemaw is Might 8 and the Wildclaw Might 7, so Vilemaw is NOT covered; Discipline's +2 takes the Wildclaw to 9 and Vilemaw slides under his umbrella while the removal is still on the Chain. Two Calm cards, both in the pool, named in the rules.",
+          "SO THE THRESHOLD IS THE POINT, NOT THE GRANT. Every other untargetability card in the pool is a fixed statement - SFD-105 Ruin Runner, UNL-147 Baron Nashor, UNL-059 Master Yi, Unstoppable at [Level 16], VEN-038 Akali, Silent (unless in combat) and VEN-031 Twilight Shroud (one unit, this turn). Alpha Wildclaw is the only one whose protected SET is defined by a number you can move at [Reaction] speed, which is the whole reason a 2-Energy cantrip can save a Might 8 body from a spell already on the Chain.",
+          "IT IS A PROHIBITION, NOT A TAX, AND THAT IS WHY IT BEATS PAYING. 054.1 makes a card that forbids beat a card that permits, so this is the SFD-105 Ruin Runner family and not the 809.1.c [Deflect] family: the opponent cannot buy through it with a rainbow. 355.10.d is the leak to know about - a Game Object 'programmatically selected based on its characteristics rather than chosen' is not a target at all, so a sweeper such as OGN-133 Flurry of Blades goes straight through both.",
+          "THE COUNTERPLAY IS PRINTED IN THE SAME EXAMPLE, AND IT IS WORTH STATING. 758.2.a continues: 'Rebuke's controller then targets Alpha Wildclaw with Star-Crossed. When Star-Crossed resolves, Alpha Wildclaw's passive ability no longer applies to Vilemaw, making it a legal target for Rebuke.' Removing or bouncing the Wildclaw in response re-opens every body he was covering, because the same 758.1 check runs the other way. He is a single point of failure and the entry says so.",
+          "AND HE NEVER COVERS HIMSELF. 'Your units here with LESS Might than me' excludes him by arithmetic, so the Wildclaw is always a legal target - which is exactly what Star-Crossed exploits. His own [Tank] is the compensation: 815.1.c.2 makes every other body of yours an invalid combat-damage assignment until he has lethal, so he is hard to remove IN COMBAT and easy to remove with a spell.",
+          "THE CANTRIP IS WHY THIS IS AN ENGINE. Discipline draws 1, so answering a removal spell costs 2 Energy and no card; three copies (103.2.b) are three answers a game and three cards back. 813.1.c.1 puts it in any Closed State on any player's turn, which is where the enemy spell will be sitting."
+        ]
+      },
+      "steps": [
+        "Play UNL-057 Alpha Wildclaw (6 Energy + 2 Power) to the battlefield your important bodies stand on. Every friendly unit there with less than 7 Might is now untargetable by enemy spells and abilities.",
+        "The opponent targets a friendly body of 7 or more Might - one the Wildclaw does not yet cover - with a removal spell.",
+        "In response, play OGN-058 Discipline (2 Energy) on ALPHA WILDCLAW, not on the threatened body: +2 Might takes him to 9, so anything up to Might 8 at that battlefield is now covered. Draw 1.",
+        "758.1 checks targetability again as the enemy spell resolves: the body is untargetable now, so the spell mistargets and 'Any instructions related to that Game Object will be ignored as the spell resolves.'",
+        "Watch for the printed counterplay: an answer aimed at the Wildclaw himself - he is never among the units he covers - re-opens everything he was protecting under the same rule.",
+        "Three copies of each (103.2.b). The pump lasts the turn (317.2.c), so the umbrella narrows again at the end-of-turn Cleanup."
+      ],
+      "netPerIteration": "one enemy removal spell blanked for 2 Energy and no card, at [Reaction] speed, after it is already on the Chain",
+      "terminatesIn": "engine only - nothing here scores. Three Discipline (103.2.b) are three answers a game, the pump expires at the end-of-turn Cleanup (317.2.c), and the Wildclaw himself is always a legal target",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 758.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If a Game Object becomes untargetable for a spell or ability after becoming its target and before it resolves, the spell or ability will mistarget on resolution. Any instructions related to that Game Object will be ignored as the spell resolves."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 758.2.a worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Alpha Wildclaw and Vilemaw are controlled by the same player and located at a battlefield. An opponent targets Vilemaw with Rebuke. Before Rebuke resolves, Vilemaw’s controller plays Discipline targeting Alpha Wildclaw, making Vilemaw no longer a legal target. Rebuke’s controller then targets Alpha Wildclaw with Star-Crossed. When Star-Crossed resolves, Alpha Wildclaw’s passive ability no longer applies to Vilemaw, making it a legal target for Rebuke."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 757.1 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Ruin Runner’s passive ability reads “I can’t be chosen by enemy spells and abilities.”"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 756-758 Untargetability). 756, 757 and 758 are cited by no entry and no synergy rule in this project, and 758.2.a's worked example names UNL-057 Alpha Wildclaw, UNL-060 Vilemaw, OGN-058 Discipline, OGN-172 Rebuke and UNL-128 Star-Crossed - all five in the pool. Card text verbatim from data/corpus_flat.txt. Citations opened: 054.1, 103.1.b.3, 103.2.b, 103.2.d.2, 317.2.c, 355.10.d, 757.1, 758.1, 758.2, 758.2.a, 809.1.c, 813.1.c.1, 815.1.c.2. MEMBERS NAMED: the pool's untargetability cards, swept on the corpus for \"can't be chosen by enemy spells\", are SFD-105 Ruin Runner, UNL-057 Alpha Wildclaw, UNL-059 Master Yi Unstoppable ([Level 16]), UNL-147 Baron Nashor, VEN-031 Twilight Shroud and VEN-038 Akali Silent - and Alpha Wildclaw is the ONLY one whose protected set is defined by a number that can be moved at [Reaction] speed. REPORT TO THE MANAGER: 758.1 makes untargetability a RESOLUTION-time check, not a targeting-time one, which is a general fact about every prohibition in the pool and is cited nowhere. Distinct from tianna-wildclaw-point-lock (SFD-060 + UNL-057 + UNL-171, a scoring lock that never mentions targeting) and from akali-silent-twilight-shroud-cant-be-chosen. Trap check: 758.2's FIRST worked example describes a card the pool does not print (\"can't be chosen by enemy spells or abilities with Energy cost less than my Might\"), so only the second example is load-bearing here; the Wildclaw never covers himself; a programmatic sweeper ignores the whole family (355.10.d); no unruled reading."
+    },
+    {
+      "id": "drag-under-attacker-focus-first-conquer",
+      "name": "345: the ATTACKER gains Focus as the Showdown begins, so the [Action] removal that empties the garrison resolves before the defender may answer",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-164",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order spell, E5 P1. '[Action] (Play on your turn or in showdowns.) I cost :rb_energy_2: less to play from anywhere other than your hand. Kill a unit at a battlefield.' The [Action] keyword is what lets it be played inside the Showdown at all (343.1.a)."
+        },
+        {
+          "card": "OGN-222",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 M3. 'When I move to a battlefield, play a 1 :rb_might: Recruit unit token here. (It is also at the battlefield.)' The attacker who arrives with a second body, so the battlefield is held after the bloodless conquer and 323.6 cannot strip it back."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits them under any legend with Order among its two domains - measured over data/cards.json those include OGN-253 / OGN-302 Hand of Noxus (fury/order), OGN-261 / OGN-306 Radiant Dawn (calm/order), OGN-265 / OGN-308 Herald of the Arcane (mind/order), OGN-269 / OGN-310 The Boss (body/order), SFD-197 / SFD-247 Emperor of the Sands (calm/order), SFD-201 / SFD-249 Chem-Baroness (mind/order), SFD-205 / SFD-251 Grand Duelist (body/order), UNL-203 / UNL-237 Keeper of the Hammer (body/order) and VEN-153 / VEN-196 Matriarch of War (body/order).",
+          "Neither card is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "The line needs a garrison small enough that Drag Under empties it - one defender, or two with a second copy."
+        ],
+        "notable": [
+          "THE UNCITED PARAGRAPH IS 345, AND IT SETTLES WHO ACTS FIRST. 'As a Showdown begins, the player who applied Contested status to the Battlefield gains Focus.' 464.2.c.1 makes that same player the Attacker, so in every combat showdown in this catalogue the ATTACKER holds the first window and the defender's answer comes second. 341, 342 and 345 are cited by no entry and no synergy rule in this project, although several entries price an exchange inside a combat.",
+          "AND 343.1.a IS WHY THE KEYWORD EXISTS AT ALL. 'Cards of all Categories, by default, cannot be played during a Showdown State', with 343.1.b saying the same for card abilities. 159.2.a.1 then grants [Action] the Showdown window and 159.2.b.1 gives [Reaction] 'all cases and rules of Action' - which is the cleanest citation in the file for a permission this project usually sources to 806.1.b and 813.1.b.",
+          "FOCUS PASSES ONLY WHEN YOU ACTUALLY PLAY SOMETHING. 347.1.b: 'When that Chain closes, Focus passes to the next Player in Turn Order', and 347.2.b passes it if you decline; 347.2.a ends the Showdown once 'all Players have passed once in sequence'. But 346.1 carves out the chain that opened from a triggered ability or an Add ability - 'Focus will not pass in this way' - so the combat's own attack triggers resolving does NOT cost the attacker the first window, and neither does topping up with an Add ability.",
+          "WHAT THAT BUYS IS THE #118 CHAIN, ONE WINDOW EARLIER. 465.1 gates the damage tasks on both Attacking and Defending units being present, so emptying the defender's side inside the opened Combat wins it with no damage step at all; 466.3.a resolves it and 466.5 / 466.5.d establish Control and make it a Conquer (469.1.b). Drag Under is an [Action] kill with no location clause beyond 'at a battlefield', and the attacker plays it first.",
+          "THE DEFENDER IS NOT HELPLESS AND THE ENTRY SAYS SO. 355.2.a lets them play to a battlefield they control, so a [Reaction] body - OGN-241 Shen, Kinkou is the pool's clearest, and his own parenthetical says 'including to a battlefield you control' - refills the garrison after your removal resolves. What 345 buys is the ORDER: you commit first with full information and they must have the answer in hand, rather than the reverse.",
+          "THE DRUMMER IS IN uses[] BECAUSE THE BATTLEFIELD HAS TO BE HELD. 'When I move to a battlefield, play a 1 :rb_might: Recruit unit token here' - so the attack arrives as two bodies, and 323.6 ('Players lose control of any controlled Battlefields without their Units occupying them') cannot take the battlefield back if the Drummer later leaves or dies. A lone attacker Conquers and then hands it over at the next Cleanup.",
+          "DRAG UNDER'S OWN DISCOUNT IS REAL BUT NOT ON THIS LINE. 'I cost :rb_energy_2: less to play from anywhere other than your hand' is a passive that 366.2.a keeps live 'in any zone from which the card with the ability can be played' - so it is 3 Energy out of the trash or Banishment and 5 from hand, which is what this line pays. And 206 keeps every cost GATE reading the printed 5, so the discount never squeezes it under one."
+        ]
+      },
+      "steps": [
+        "Play OGN-222 Noxian Drummer (3 Energy); 143.4 has him enter exhausted, so he moves from the following turn.",
+        "Standard-move him to the enemy battlefield. His trigger plays a 1 Might Recruit token there, so you arrive with two bodies. Contested applies (190.3.a.1), the Combat is staged (323.9) and opens (323.13), and 464.2.c.3 designates the attackers.",
+        "345 gives Focus to the player who applied Contested - you. 343.1.a would otherwise forbid playing anything here; 159.2.a.1 is what [Action] grants.",
+        "Play SFD-164 Drag Under (5 Energy + 1 Power) and kill the last defender. If the combat's own attack triggers went on the Chain first, 346.1 means resolving them did not cost you this window.",
+        "With no Defending units present, 465.1's damage tasks never run; 466.3.a resolves the combat, and 466.5 / 466.5.d establish your Control and make it a Conquer (469.1.b). You score, subject to 470's one Score per battlefield per turn.",
+        "The Drummer and the Recruit occupy the battlefield afterwards, so 323.6 cannot strip it back at the next Cleanup.",
+        "Expect a [Reaction] refill - OGN-241 Shen, Kinkou lands a Might 5 [Tank] after the attackers are declared. Focus order does not stop that; it only means you moved first."
+      ],
+      "netPerIteration": "one bloodless Conquer per turn, with the removal committed in the first window of the Showdown rather than in answer to theirs",
+      "terminatesIn": "engine only in itself - 470 caps Scoring at one per battlefield per turn and 485.4 puts two on a Duel table, so this is at most two points a turn and three Drag Under (103.2.b) is three such removals",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 345",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "As a Showdown begins, the player who applied Contested status to the Battlefield gains Focus."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 343.1.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Cards of all Categories, by default, cannot be played during a Showdown State."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 346.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Focus will not pass in this way if the chain opened as a result of a triggered ability being added to the chain, nor if it opened as a result of an Add ability being added to the chain."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 341-348 Showdowns). 341, 342 and 345 are cited by no entry and no synergy rule in this project; 343.1, 346.1, 347.1 and 347.2.b already are. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 143.4, 159.2.a.1, 159.2.b.1, 190.3.a.1, 206, 323.6, 323.9, 323.13, 343.1.a, 343.1.b, 345, 346.1, 347.1.b, 347.2.a, 347.2.b, 355.2.a, 366.2.a, 464.2.c.1, 464.2.c.3, 465.1, 466.3.a, 466.5, 466.5.d, 469.1.b, 470, 485.4. REPORT TO THE MANAGER: 345 settles who acts first in a combat showdown - the ATTACKER, because 464.2.c.1 makes the player who applied Contested the Attacker and 345 gives that player Focus - and no entry in the catalogue states it. Companion citation upgrade: 159.2.a.1 and 159.2.b.1 are the cleanest statements in the file of what [Action] and [Reaction] grant ('Grants all cases and rules of Action'), which the project sources to 806.1.b and 813.1.b. Distinct from void-burrower-play-from-deck, the only other entry using SFD-164. Trap check: the defender can still refill with a [Reaction] body under 355.2.a and the entry names Shen, Kinkou as the case; the Drummer is in uses[] because 323.6 would otherwise take the battlefield back; the discount on Drag Under is priced as not applying from hand; no unruled reading."
     }
   ]
 }
