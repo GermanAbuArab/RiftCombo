@@ -22120,6 +22120,319 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md). Issue #154's proposed sequence had Lucian played and moved on the same turn, which 143.4 plus 144.2 forbid; the corrected line puts his play a turn earlier and keeps everything else. The exhaust ledger — three exhausts against Awaken + self-ready + First Mate — is the part a walk had to check and it balances with nothing to spare, which is why no fourth sortie exists and why the class is ENGINE. Card text verbatim from data/corpus_flat.txt; 143.4, 144.1.a, 144.2, 144.4, 315.1.b, 316.8.b.1, 323.6, 348.2.a/348.2.a.1, 356.6, 383.3.e.1, 415.3.a, 465.2.c, 469.1, 470, 471.1, 485.4 and 810.1.c.3 opened and read. Ban check: none of SFD-113, OGN-132 or SFD-095 carries a [BANNED marker, and none is a Signature card. Trap check: no [Temporary]; no [Repeat]; no token; a Standard Move is not a recall (455, 456); 818.1 makes the Weaponmaster attach an Activated Ability rather than a play, so nothing triggers off it; the empty-battlefield trap is respected because the Non-Combat Showdown route conquers without an Attacker designation. SFD-095 is in `uses` although the line's two conquers do not strictly require it — it is what makes Lucian a 5 Might attacker rather than a 3, which is the difference between conquering a garrisoned battlefield and only an open one, and it is the third card of the tournament co-occurrence this entry was walked from. Depends on no unruled reading."
+    },
+    {
+      "id": "shen-kinkou-svellsongur-hold",
+      "name": "Shen, Leader of the Kinkou Order × three Svellsongur — nine points behind a Shield 8",
+      "class": "BURST",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-138",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P2 M7. '[Shield] (+1 Might while I'm a defender.) When I hold, if there is exactly one other unit you control here, you score 1 point.'"
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. 'As this is attached to a unit, copy that unit's text to this Equipment's effect text for as long as this is attached to it.' All three on Shen; they are GEAR, so they never disturb his unit count."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Order — OGN-261 Radiant Dawn, SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father (two base codes, one name), VEN-147 Eye of Twilight."
+        ],
+        "notable": [
+          "SVELLSONGUR IS THE ONE MULTIPLIER SHEN'S CONDITION CANNOT SEE, and that is the whole point of the entry. 'If there is exactly one other unit you control here' counts UNITS; a Svellsongur is an Equipment (137 / 434), so three of them stack on Shen without ever entering the count. Every other way of multiplying a Hold effect puts a body on the battlefield — which is exactly why shen-kinkou-sentinel-hold is pinned at K = 1 and stops at 3 points.",
+          "Eight instances, not four: 477.2.c puts 'Abilities of Effect Text of Attached cards are appended' in Layer 2, 476.1 applies each effect only a single time across all sequences (so there is no recursion), 479.1 finds no dependency because each copy alters the other, and 480.3 therefore orders them by Timestamp — attach order. Svellsongur A copies 1 instance, B copies the resulting 2, C copies 4. 2^3 = 8. R6 = A (ruled 2026-09-04) is what makes each copy read Shen's CURRENT text rather than a snapshot.",
+          "Points at the Hold: 1 from the Score itself (469.2 → 471.1, capped by 470 at one per battlefield per turn) plus 8 ability Gains, which R2 = A keeps outside 470 as 194.1.c Gains and 471.1.a.1 exempts from the Final Point restriction. Nine, in one scoring event.",
+          "AND HE DEFENDS AT 15. This is the fact the catalogue had not used: 814.2 — 'If a Unit has Shield, or has been granted Shield, and is granted Shield by an additional source, the Shield Value of all granted Shield keywords is summed' — and 814.1.b.3 makes a bare [Shield] worth 1. The eight instances of Shen's text carry eight [Shield], so he is Shield 8 and stands at 7 + 8 = 15 Might while defending. 465.2.c makes an attacker assign summed Might and 465.2.c.3 forces lethal onto one unit first, so clearing him costs 15 damage in one combat.",
+          "It is 9 points for the same 8 that Ahri, Alluring (OGN-066) reaches on the same three gears, and the trade is stated rather than hidden: Ahri is Calm — so she fits five legend pairs against Shen's one — costs 1 Energy and 1 Power less, and needs no companion. What Shen buys is survival. Ahri wearing three Svellsongur is a 4-Might body that any 4-damage attack removes before your Beginning Phase; Shen is a 15-Might defender. A BURST that has to live through the opponent's turn is priced on that number, not on the point count.",
+          "EXACTLY ONE COMPANION UNIT, and it is not optional in either direction. 383.2.a.1 makes 'if there is exactly one other unit you control here' part of the Trigger Condition — checked when the trigger is placed, at the Hold — so a lone Shen scores nothing and a third body scores nothing. Nothing may be played to that battlefield either: 355.2.a makes a battlefield you control a default play location, so a token or a unit landing there silently switches the whole line off.",
+          "Cost, counted whole: Shen 6 Energy + 2 Order Power; each Svellsongur is 3 Energy + 1 Calm Power to play PLUS its [Equip] of 1 Energy + 1 Calm Power. 18 Energy and 8 Power, plus whatever the companion body costs. The [Equip] payments are counted here because CLAUDE.md records two published figures that left them out."
+        ]
+      },
+      "steps": [
+        "Play Shen, Leader of the Kinkou Order (6 Energy + 2 Order Power) and exactly one other unit to a battlefield, and establish Control of it.",
+        "Attach Svellsongur A to Shen (3 Energy + 1 Calm Power to play, 1 Energy + 1 Calm Power to [Equip]). 136.2.c appends the copied text to his Rules Text and 136.2.d makes the copied 'I' mean Shen. He now carries 2 instances of his line.",
+        "Attach Svellsongur B to the same Shen: 434.1.c gives the Top-Most Card ALL the Effect Text of ALL attached cards, so B copies the current 2. Four instances.",
+        "Attach Svellsongur C: it copies the current 4. Eight instances — of the hold trigger AND of [Shield], which 814.2 sums to Shield 8.",
+        "Survive the opponent's turn. Shen defends at 15; the companion is the only other body they can pick off, and removing it is what actually beats this line.",
+        "Your Beginning Phase, Scoring Step (315.2.b.2): you Hold. 1 point from the Score, then eight ability Gains whose condition found exactly one other friendly unit here. Nine points in one Hold."
+      ],
+      "terminatesIn": "burst of 9 points in a single Hold, for 18 Energy and 8 Power",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule svellsongur-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. VEN-138 is an uncatalogued partner of svellsongur-copy (101 partners, 3 entries in its basis; 14 entries in the catalogue carry SFD-059). Card text verbatim from data/corpus_flat.txt; 383.2.a.1, 469.2, 470, 471.1, 471.1.a.1, 194.1.c, 476.1, 477.2.c, 479.1, 480.3, 814.1.b.3, 814.2, 465.2.c and 465.2.c.3 opened in the Core Rules file. Stands on R6 = A and R2 = A, both ruled 2026-09-04 or earlier; no new reading. The formula was checked against its own declared quantities before authoring: 1 + 2^3 = 9, which clears the Victory Score of 8 (194.3) in one scoring event and so is BURST — but NOT in 2v2, where 489.3 sets it at 11. Trap check: a Hold needs no Attacker designation (807.1.d / 383.4.e / 461); no [Temporary]; no [Repeat]; no recall; no token; nothing recycled; nothing added in Awaken, so 167 does not bite; the [Equip] costs and the Power are counted."
+    },
+    {
+      "id": "svellsongur-treasure-hunter-gold",
+      "name": "Treasure Hunter × three Svellsongur — sixteen Gold a turn, from the base",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-130",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Chaos unit, E2 M1. 'When I move, play a Gold gear token exhausted.'"
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Calm gear, E3 P1, [Equip] 1 Energy + 1 Calm Power. Copies the bearer's text; three of them compose to 2^3 = 8 instances."
+        },
+        {
+          "card": "OGN-259",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Chaos legend. '2 Energy, exhaust: Move a friendly unit to or from its base.' The second move of the turn, and the one that walks the Hunter home."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Unforgiven (OGN-259) IS the legend, and its Calm/Chaos identity is exactly what Svellsongur (Calm) and Treasure Hunter (Chaos) need (103.1.b)."
+        ],
+        "notable": [
+          "TWO MOVES A TURN, EIGHT INSTANCES EACH: 16 Gold. The Standard Move is move one and its cost is the Hunter's own exhaust (144.1.a, 144.2); the legend's ability is move two and its cost is 2 Energy and the LEGEND's exhaust, not the Hunter's — 420.3.a puts the exhaust price only on the Standard Move, so an effect move works on an already-exhausted body. Both are Moves under 446.1 and 420.2.a, so 'When I move' fires on each. This is the same two-move structure yasuo-stellacorn-svellsongur-draw walks with one Svellsongur; here the stack is three, and the payoff is Power rather than cards.",
+          "WHICH MATTERS, because the draw version has a ceiling this one does not. #59's rule: 431.1.a turns the draw past an empty deck into a Burn Out and 194.1.d hands the opponent a point. Gold has no such wall — 187.5 makes each token '[Reaction][>] Kill this, [exhaust]: [Add] [rainbow]', so sixteen a turn simply accumulate on the board.",
+          "The Power is next turn's. The Gold are printed exhausted and 315.1 Awaken has already run by your Main Phase, so they ready at your NEXT Awaken (315.1.b). SFD-171 Renata Glasc, Industrialist would make them enter ready (R25 = A) but she is mono-Order and 103.1.b.1 bars her from a Calm/Chaos deck — this line simply banks a turn behind, and against #44's measured free floor of 2 Power a turn that is still a transformation.",
+          "MOVE HIM TO A BATTLEFIELD YOU ALREADY CONTROL. 190.3.a.1 applies Contested only to units moving to or being played to a battlefield whose control is in question; arriving at one that is already yours opens nothing. Moving him to an enemy-held battlefield would make him the Attacker (464.2.c.1) and he is a 1-Might body — Svellsongur's Might Bonus is +0 (137.3), so three of them add nothing to his survival.",
+          "He ends every turn back at his base, which is the point: the only exposure is base removal (SFD-158 and the like), never combat. The engine's real fragility is that all three Svellsongur ride one 1-Might body, and 137.3.a detaches every Might Bonus and every copied instance the moment he dies.",
+          "Cost, counted whole: Treasure Hunter 2 Energy; each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 14 Energy and 6 Calm Power to assemble, then 2 Energy a turn for the legend's move.",
+          "Rider outside uses: OGN-173 Ride the Wind (Chaos, 2 Energy + 1 Power, 'Move a friendly unit and ready it') is a third move AND re-enables the Standard Move, so each copy is worth 16 more Gold in the turn it is cast. It is a card spent, not an engine, which is why it sits here rather than in uses."
+        ]
+      },
+      "steps": [
+        "Play Treasure Hunter (2 Energy) to your base.",
+        "Attach Svellsongur A, B and C to him, in that order (3 Energy + 1 Calm Power each to play, 1 Energy + 1 Calm Power each to [Equip]). 434.1.c gives him ALL the Effect Text of ALL three, and 476.1 / 479.1 / 480.3 compose them in attach order: 2, then 4, then 8 instances of 'When I move, play a Gold gear token exhausted'.",
+        "Main Phase: Standard-Move him from his base to a battlefield you already control (144.1.a, 144.4.a), exhausting him. Eight instances fire: eight Gold gear tokens, exhausted.",
+        "Activate Unforgiven (2 Energy, exhaust the legend): move him from that battlefield back to his base. Eight more Gold. Sixteen this turn.",
+        "Your next Awaken readies all sixteen Gold, the Hunter and the legend (315.1.b). Repeat every turn."
+      ],
+      "netPerIteration": "+16 Gold gear tokens per turn, for 2 Energy, spendable as 16 rainbow Power from the following Awaken",
+      "terminatesIn": "engine — an unbounded Power bank; it scores nothing by itself",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule svellsongur-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-130 is an uncatalogued partner of svellsongur-copy — it is catalogued with Renata and Ride the Wind (treasure-hunter-industrialist-gold), never with the copier. Card text verbatim from data/corpus_flat.txt; 144.1.a, 144.2, 144.4.a, 190.3.a.1, 187.5, 315.1.b, 137.3, 137.3.a, 420.2.a, 420.3.a, 446.1, 476.1, 479.1, 480.3 and 103.1.b.1 opened in the Core Rules file. Stands on R6 = A and R9 (retired 2026-09-04 by finding 420.1 / 420.2.a and the Yasuo example rather than by ruling); no new reading. Trap check: no attack, and the entry says outright to move to a battlefield you already control so that 190.3.a.1 opens nothing; no token is recycled (185 / 416.1); no [Temporary]; no [Repeat]; a Move is not a Recall, so 455 / 456 / 458 do not apply; nothing is added in Awaken so 167 does not bite; the [Equip] costs are counted."
+    },
+    {
+      "id": "svellsongur-eminent-benefactor-gold",
+      "name": "Eminent Benefactor × three Svellsongur — sixteen Gold every Hold, at no recurring cost",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-152",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 M5. 'When I hold, play two Gold gear tokens exhausted.'"
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, [Equip] 1 Energy + 1 Calm Power. Three on the Benefactor compose to 2^3 = 8 instances of his line."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Order — OGN-261 Radiant Dawn, SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father, VEN-147 Eye of Twilight."
+        ],
+        "notable": [
+          "Sixteen Gold per Hold: 8 instances (2^3, by the Layer-2 composition of 477.2.c / 476.1 / 479.1 / 480.3 that svellsongur-copy-hold walks) times the two Gold his line makes. And it costs NOTHING per turn — no activation, no Energy, no move. That is the difference from svellsongur-treasure-hunter-gold, which pays 2 Energy a turn for the same 16 and in exchange never has to stand on a battlefield.",
+          "Against the catalogued eminent-benefactor-sentinel-gold, which is the same card under the OTHER multiplier: Blue Sentinel is Mind and gives 1 + K executions, so one Sentinel is 4 Gold and the identity is Mind/Order. Svellsongur is Calm and gives 2^v, so three gears are 16 Gold and the identity is Calm/Order. Neither dominates — the Sentinel is a 4-Might body that also defends and adds its own rainbow, the gears add nothing to the board (Svellsongur is M+0, 137.3).",
+          "The Power is next turn's, and this line cannot fix it: the Gold are printed exhausted, 315.1 Awaken precedes 315.2's Beginning Phase, so a Gold made by a Hold enters after the readying and waits for the next Awaken (315.1.b). SFD-171 Renata Glasc, Industrialist is mono-Order and IS legal here (103.1.b.3) — she would make all sixteen enter ready, at the cost of a fifth card and 4 Energy + 1 Order Power. That is a real upgrade and is deliberately left out of uses, because the entry's claim is the 16, not the timing.",
+          "It banks rather than spikes: 187.5 makes each Gold '[Reaction][>] Kill this, [exhaust]: [Add] [rainbow]', so sixteen a Hold accumulate turn on turn and are spendable on either player's turn. Against #44's measured free floor of 2 Power a turn, one Hold is eight turns of ordinary rune income.",
+          "The Benefactor is a 5-Might body with no [Shield] and no Might Bonus from the gears, so 465.2.c prices him at 5 damage — this engine is far easier to remove than shen-kinkou-svellsongur-hold, which puts the same three gears on a 15-Might defender. Losing him detaches all three Svellsongur (137.3.a) and the instances go with them.",
+          "Cost, counted whole: 6 Energy for the Benefactor, and each Svellsongur is 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 18 Energy and 6 Calm Power, once."
+        ]
+      },
+      "steps": [
+        "Play Eminent Benefactor (6 Energy) to a battlefield and establish Control of it.",
+        "Attach Svellsongur A, B and C to him in that order. 136.2.c appends each copied text to his Rules Text and 136.2.d makes the copied 'I' mean him; 434.1.c gives him ALL the Effect Text of ALL three, composing to 2, 4, then 8 instances.",
+        "Survive to your Beginning Phase. Scoring Step (315.2.b.2): you Hold, scoring the ordinary 1 point (471.1, capped by 470).",
+        "His hold effect fires eight times: sixteen Gold gear tokens, exhausted.",
+        "They ready at your NEXT Awaken (315.1.b) and are 16 rainbow Power on demand (187.5). Repeat every Hold."
+      ],
+      "netPerIteration": "+16 Gold gear tokens per Hold, at zero recurring cost",
+      "terminatesIn": "engine — an unbounded Power bank; the ordinary Hold point is the only point it makes",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule svellsongur-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-152 is catalogued under blue-sentinel-hold (eminent-benefactor-sentinel-gold) and was an uncatalogued partner of svellsongur-copy. Card text verbatim from data/corpus_flat.txt; 136.2.c, 136.2.d, 434.1.c, 476.1, 477.2.c, 479.1, 480.3, 187.5, 315.1, 315.1.b, 315.2.b.2, 137.3, 137.3.a, 465.2.c and 103.1.b.3 opened in the Core Rules file. Stands on R6 = A (ruled 2026-09-04); no new reading. Trap check: a Hold needs no Attacker designation (807.1.d / 383.4.e / 461); no token is recycled (185 / 416.1) and none is asked to reach the trash (186.1); no [Temporary]; no [Repeat]; nothing added in Awaken so 167 does not bite; the [Equip] costs are counted."
+    },
+    {
+      "id": "ferrous-forerunner-karthus-mech-plaza",
+      "name": "Ferrous Forerunner × two Karthus — six 3-Might Mechs onto The Grand Plaza",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-021",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Fury unit, E6 P1 M6. '[Deathknell] — Play two 3 Might Mech unit tokens to your base. (When I die, get the effect.)'"
+        },
+        {
+          "card": "OGN-236",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order unit, E3 P1 M3. 'Your [Deathknell] effects trigger an additional time.' Two copies take the Deathknell to three executions."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order unit, E4 P1 M4. 'Your tokens enter ready.' R25 = A — without her the Mechs enter exhausted (143.4) and cannot pay 144.2 to walk this turn."
+        },
+        {
+          "card": "SFD-178",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order gear, E3 P1, M+4. '[Equip] — 1 Order Power, Kill a friendly unit.' The kill half of the [Equip] cost is the on-demand Deathknell trigger."
+        },
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'When you hold here, if you have 7+ units here, you win the game.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Fury (Ferrous Forerunner) and Order (Karthus, Renata, the Blade) — OGN-253 Hand of Noxus, SFD-187 Void Burrower, UNL-187 Piltover Enforcer. The Plaza is colourless."
+        ],
+        "notable": [
+          "SIX IS ONE SHORT OF SEVEN, AND THAT IS THE ENTRY'S REAL CONTENT. 1 Deathknell + 2 Karthus = 3 executions × 2 Mechs = 6 bodies. The catalogued karthus-machine-evangel-renata-plaza gets 9 from OGN-239 Machine Evangel and wins on the Mechs' arrival alone; this line has to walk a support body in with them. 144.3 makes that free — 'Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units' — and 144.3.a only requires a shared destination, so the six Mechs plus Renata plus both Karthus arrive together as ONE action: nine units at the Plaza.",
+          "WHAT THE ENTRY BUYS FOR THAT EXTRA STEP IS 3-MIGHT BODIES. 187.4 defines the token as '3 Might and the Mech tag'. 465.2.c makes the attacker assign damage equal to summed Might and 465.2.c.3 forces lethal onto one unit at a time, so clearing six Mechs plus a 4-Might Renata and two 3-Might Karthus costs 28 damage; the nine 1-Might Recruits of the Machine Evangel line cost 9. Surviving the opponent's turn is the only thing a Plaza line has to do, so that is not a footnote.",
+          "The kill is on demand and costs no card: SFD-178's [Equip] cost is '1 Order Power, Kill a friendly unit', so attaching it to any body you keep pays the Forerunner's Deathknell whenever you choose. 428.1 is the definition — 'Killing is the action of a Permanent going to the trash from the board' — and 428.1.a.1 admits it 'as a cost for a card or ability'. This is the same trigger blade-of-ruined-king-deathknell-ondemand records, applied to a partner it had not been applied to.",
+          "The Mechs are born at your BASE and enter ready under Renata, which is the whole reason she is in uses: 143.4 makes units enter exhausted, 143.4.a admits the alteration, and 144.2 charges the Standard Move an exhaust they could not otherwise pay on the turn they appear. R25 = A, ruled 2026-09-04.",
+          "The count is measured AT THE HOLD (383.2.a.1 puts 'if you have 7+ units here' in the Trigger Condition), so the nine have to survive the opponent's whole turn and nothing can be topped up at that instant. Nothing here is [Temporary], so 816.1.b never fires.",
+          "The Grand Plaza must be the battlefield in play — 485.4.a puts only 1 of your 3 into the game, randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid three copies. It is symmetric, so an opponent parking seven units on it wins the same way.",
+          "Cost, counted whole: Forerunner 6 Energy + 1 Fury Power, two Karthus 6 Energy + 2 Order Power, Renata 4 Energy + 1 Order Power, the Blade 3 Energy + 1 Power to play and 1 Order Power to [Equip]. 19 Energy and 6 Power, spread over several turns. A second Forerunner doubles the Mechs to twelve and removes the need to walk any support body in."
+        ]
+      },
+      "steps": [
+        "Control The Grand Plaza. Board over the preceding turns: two Karthus, Eternal, Renata Glasc Industrialist, Ferrous Forerunner at your base, and Blade of the Ruined King in hand.",
+        "Main Phase: activate the Blade's [Equip] for 1 Order Power, attaching it to any body you intend to keep, and pay the kill half with Ferrous Forerunner.",
+        "His [Deathknell] runs three times — his own plus one per Karthus (R1 = A with stacking): six 3-Might Mech unit tokens to your base, entering ready (Renata, R25 = A).",
+        "Standard-Move the six Mechs and every ready support body you want at the Plaza in ONE declaration (144.1.a, 144.3, 144.3.a, 144.4.a). No Energy is paid (144.2 charges only their exhaust), and 190.3.a.1 opens nothing because you already control the battlefield.",
+        "Survive the opponent's turn with seven of them still there — 28 damage of bodies rather than 9.",
+        "Your Beginning Phase: 315.2.b.2 Holds the Plaza, the Trigger Condition finds 7+ units here (383.2.a.1) and rule 195 wins the game."
+      ],
+      "terminatesIn": "win the game on the Hold after the Forerunner dies, for 19 Energy and 6 Power",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule karthus-deathknell-double (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-021 is an uncatalogued partner of karthus-deathknell-double (23 partners, 7 entries carrying OGN-236). Card text verbatim from data/corpus_flat.txt; 187.4, 143.4, 143.4.a, 144.1.a, 144.2, 144.3, 144.3.a, 144.4.a, 190.3.a.1, 195, 383.2.a.1, 428.1, 428.1.a.1, 465.2.c, 465.2.c.3, 485.4.a and 103.4.c opened in the Core Rules file. Stands on R1 = A with stacking and R25 = A, both already ruled; no new reading. Deliberately NOT authored as a strictly-better sibling: it makes six bodies where karthus-machine-evangel-renata-plaza makes nine, and the entry says so — what differs is the Might of the bodies and the Fury/Order identity, which is the only reason it is a separate row. Trap check: no attack (807.1.d / 383.4.e / 461 do not apply to a Hold); no token is recycled (185 / 416.1) and none is asked to reach the trash (186.1); no [Temporary]; no [Repeat]; nothing added in Awaken, so 167 does not bite."
+    },
+    {
+      "id": "bottled-constellation-token-points",
+      "name": "Bottled Constellation on a token faucet — a point a turn with no battlefield at all",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-067",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Mind gear, E10 P2. 'At the start of your Main Phase, you may kill 3 other friendly units and/or gear to score 1 point.'"
+        }
+      ],
+      "needs": [
+        "token-body-engine"
+      ],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Bottled Constellation is mono-Mind, so the identity is whatever the token faucet brings plus Mind. rumble-scrapper-sentinel-mechs is itself mono-Mind and makes exactly three bodies a Hold, which is exactly one firing."
+        ],
+        "notable": [
+          "THIS IS THE ONLY POINT SOURCE IN THE CATALOGUE THAT NEEDS NO BATTLEFIELD. R2 = A makes card-text 'score 1 point' a Gain by ability under 194.1.c rather than a 469 Score, so 470's 'once per Battlefield per turn' has nothing to attach to and 471.2 never comes up: the point arrives at your own Main Phase with no Hold, no Conquer, no garrison and no Contested status. Every other repeatable point engine in the catalogue is anchored to a battlefield somebody can take from you.",
+          "The three kills are the trigger's BASE COST, not its effect. 383.3.b: a cost 'immediately following the \"you may\"' is treated as the base cost of the Triggered Ability, and 383.3.b.1 says it 'must be paid in order to finalize the Triggered Ability to the Chain'. So the three bodies must be on the board at the instant the trigger goes up, and 203.3 (if the action a cost asks for is impossible, the cost cannot be paid) simply declines it otherwise. There is no partial firing.",
+          "TOKENS ARE LEGAL FODDER, and this is the half that has to be checked every time. 185 bars them from being RECYCLED because 416.1 is defined over cards — but killing is 428.1, 'the action of a Permanent going to the trash from the board', and 428.1.a.1 admits it 'as a cost for a card or ability'; 185.2.d says outright that 'a token unit is a unit' and follows all rules for its type. 186.1 (a token ceases to exist on entering a Non-Board Zone) is harmless here, because nothing in this line ever wants it in the trash.",
+          "The timing is exact and it is free of 167. 316.2 lists the Main Phase tasks in order: 316.3 empties every Rune Pool, THEN 316.4 is where 'at the start of Main Phase game effects take place'. The Constellation is one of those, so it fires with an empty pool and needs none — its cost is bodies, not mana.",
+          "One point per Constellation per turn. 103.2.b allows three, which is 3 points a turn for nine fodder permanents and 30 Energy + 6 Power of gear; the entry declares one, because the honest unit is one Constellation matched to one faucet. 'other friendly' excludes the Constellation itself but not another Constellation, and gear counts as fodder too — a spent Gold token is not eligible, because killing it is how you spend it.",
+          "The faucet has to produce THREE bodies a turn or it stalls, and it must not mark them [Temporary]: 816.1.b kills those at the start of the Beginning Phase, a whole phase before 316.4, so a Sprite made this turn is gone before the Constellation ever sees it. That is the same trap grand-plaza-loop-time-warp and ready-recruits-grand-plaza record, on a different clock.",
+          "Ten Energy and 2 Mind Power is the most expensive single card in this walk, and it does nothing on the turn it lands."
+        ]
+      },
+      "steps": [
+        "Have a token faucet on the board that makes three or more non-[Temporary] bodies a turn, and play Bottled Constellation (10 Energy + 2 Mind Power).",
+        "Start of your Main Phase (316.4, after 316.3 has emptied the Rune Pool): the Constellation's ability triggers.",
+        "Pay its base cost by killing three other friendly units and/or gear — token units qualify under 185.2.d and 428.1 / 428.1.a.1 — to finalize it (383.3.b.1).",
+        "It resolves: you gain 1 point (194.1.c, R2 = A), with no battlefield involved and no Score performed.",
+        "Repeat every turn the faucet has refilled three bodies."
+      ],
+      "netPerIteration": "+1 point per turn per Constellation, for three token bodies and no mana",
+      "terminatesIn": "engine — a point a turn off the board, independent of every battlefield",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rules renata-industrialist-tokens and blue-sentinel-hold (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. VEN-067 appears in the catalogue only inside bottled-constellation-time-warp, which needs infinite-energy AND infinite-power; the plain token-fed version had never been written, and #63's audit had already recorded that token-body-engine has many producers and almost no consumers. Written generically on purpose — the faucet is named by feature, not by card — following the shape of ready-recruits-grand-plaza. Card text verbatim from data/corpus_flat.txt; 185, 185.2.d, 186.1, 194.1.c, 203.3, 316.2, 316.3, 316.4, 383.3.b, 383.3.b.1, 416.1, 428.1, 428.1.a.1, 470, 471.2 and 816.1.b opened in the Core Rules file. Stands on R2 = A (ruled 2026-09-03); no new reading. Trap check: no attack; nothing recycled; no [Repeat]; no recall; the [Temporary] exclusion is stated because it is the one faucet family that silently fails here; 167 is answered by the 316.3/316.4 ordering."
     }
   ]
 }
