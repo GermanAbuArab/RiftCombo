@@ -49469,6 +49469,7 @@
           "THE RULE, AND SORAKA IS ITS WORKED EXAMPLE BY NAME. 370.4: 'A Game Object can apply its Replacement Effects to any qualifying events that occur simultaneously with it leaving the zone that its Replacement Effect is active in.' Riot's example: 'Soraka, Wanderer has a Replacement Effect that reads, \"If another unit you control here would die, if it has less Might than me, instead heal it, exhaust it, and recall it.\" Soraka's replacement can be applied to any qualifying event that occurs simultaneously with her leaving the board, including to units that die simultaneously with her.' 368 through 375 are cited by no entry and no synergy rule in this project.",
           "SO A BOARD WIPE DOES NOT BEAT HER, IT ONLY COSTS HER. UNL-180 The Ruination and every other 'kill all units' effect kills Soraka and the garrison in the same event - and 370.4 says her replacement still applies to all of them. She dies; every friendly unit at her battlefield under Might 4 is healed, exhausted and recalled to your base instead. Against a swarm that is the entire board saved for one card.",
           "AND 370.3 IS THE NEGATIVE MIRROR, WHICH IS WHY THE TRASH VERSION DOES NOT WORK. 'If a Game Object has a Replacement Effect that is active in a specific zone, it is evaluated and subsequently applied if it enters that zone before an event occurs that it could replace', with the example of a unit whose save works 'from your trash': 'The first unit dies simultaneously with a 1 [M] Recruit token. It does not enter the trash before the Recruit dies, so it will not be able to replace its death.' A board-based replacement covers simultaneous deaths; a trash-based one does not, because it has not arrived yet. Same wipe, opposite outcome, and the difference is which zone the effect lives in.",
+          "AND 373.2 CAPS IT AT ONE APPLICATION PER SEQUENCE, WHICH IS THE LIMIT 370.4 ON ITS OWN DOES NOT STATE: 'When applying Replacement Effects to events that occur simultaneously, each Replacement Effect may only be applied in one sequence, to any number of events that are qualified to be replaced.' So Soraka saves EVERY qualifying body in one application - the Armory's whole swarm at her battlefield - but she gets that application once, and Riot's worked example shows the ordering cost: with a Guardian Angel attached to her, saving her FIRST means her own effect can then only reach the bodies at your BASE, and saving the battlefield bodies first means Guardian Angel's save of her comes after her effect is spent. 373.1.a is the companion: 'the Game Actions that comprise their instructions are performed before any simultaneous unmodified events', so the saved bodies are healed and recalled before the rest of the board finishes dying.",
           "THE ARMORY IS THE RIGHT PARTNER BECAUSE EVERY TOKEN IS UNDER THE THRESHOLD. Three 1-Might Recruits a turn, all below Soraka's 4, and 185.2.d makes each a unit for every purpose - so the replacement applies to them exactly as to a card. 186.1 would otherwise destroy them the instant they entered a non-board zone; the replacement stops them entering one at all, so the swarm survives intact rather than being rebuilt.",
           "THE SAVE IS A RECALL, WITH EVERYTHING THAT COSTS. 455 sends them to the BASE without a Move, so any 'While I'm at a battlefield' text switches off and the battlefield itself is emptied - 323.6 then strips your Control at the next Cleanup. They also come back exhausted, so 315.1.b readies them only at your next Awakening and 144.4 walks them back the turn after. You keep the bodies and lose the position; the entry does not pretend otherwise.",
           "AND SORAKA HERSELF IS NEVER SAVED. Her clause says 'another unit you control here', so she is the one thing her own replacement cannot cover - the same shape as Alpha Wildclaw's 'less Might than me'. Three copies (103.2.b) is how the effect survives its own use.",
@@ -49512,7 +49513,167 @@
           "date": "2026-09-07"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-07 (issue #187; found by the sub-rule probe for uncited sub-rules carrying a worked Example). 368 through 375 are cited by no entry and no synergy rule in this project, and 370.4's worked example names SFD-173 Soraka, Wanderer. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 144.4, 185.2.d, 186.1, 315.1.b, 323.6, 370.3, 370.4, 381, 455, 458.1, 465.2.c.6. REPORT TO THE MANAGER: 370.4 and 370.3 are a matched pair worth carrying together - a BOARD-based replacement covers deaths simultaneous with its own source dying, and a TRASH-based one does not, because it has not entered the trash yet when the simultaneous deaths happen. And a correction to my own batch-2 count, stated at the precision it was measured: SIX cards in the pool carry the Backline EFFECT, not five - OGN-068 Caitlyn, Patrolling and SFD-173 Soraka, Wanderer print the sentence in prose, UNL-043, UNL-090, UNL-141 and UNL-145 print the keyword. 465.2.c.6 orders on 'requirements and restrictions' so all six are assigned last; only four HAVE the keyword for a card that reads keywords (722.1). Distinct from soraka-fiora-loop-shield, the only other entry using her, which uses the save on a loop rather than against a wipe and cites neither 370.3 nor 370.4. Trap check: Soraka never saves herself; the save is a Recall to the base, so the battlefield is lost under 323.6 and the entry says so; a trash-based substitute fails on 370.3; no unruled reading."
+      "notes": "HAND-WALKED 2026-09-07 (issue #187; found by the sub-rule probe for uncited sub-rules carrying a worked Example). 368 through 375 are cited by no entry and no synergy rule in this project, and 370.4's worked example names SFD-173 Soraka, Wanderer. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 373, 373.1.a, 373.2, 103.2.b, 103.2.d.2, 144.4, 185.2.d, 186.1, 315.1.b, 323.6, 370.3, 370.4, 381, 455, 458.1, 465.2.c.6. REPORT TO THE MANAGER: 370.4 and 370.3 are a matched pair worth carrying together - a BOARD-based replacement covers deaths simultaneous with its own source dying, and a TRASH-based one does not, because it has not entered the trash yet when the simultaneous deaths happen. And a correction to my own batch-2 count, stated at the precision it was measured: SIX cards in the pool carry the Backline EFFECT, not five - OGN-068 Caitlyn, Patrolling and SFD-173 Soraka, Wanderer print the sentence in prose, UNL-043, UNL-090, UNL-141 and UNL-145 print the keyword. 465.2.c.6 orders on 'requirements and restrictions' so all six are assigned last; only four HAVE the keyword for a card that reads keywords (722.1). Distinct from soraka-fiora-loop-shield, the only other entry using her, which uses the save on a loop rather than against a wipe and cites neither 370.3 nor 370.4. Trap check: Soraka never saves herself; the save is a Recall to the base, so the battlefield is lost under 323.6 and the entry says so; a trash-based substitute fails on 370.3; no unruled reading."
+    },
+    {
+      "id": "feral-strength-frigid-touch-split-floor",
+      "name": "355.14.h.1 stops a shrunken split from being concentrated - pump one body and shrink the source, and the attacker must still spread 1 damage per target",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-034",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E2. '[Reaction] (Play any time, even before spells and abilities resolve.) [Repeat] :rb_energy_2: (You may pay the additional cost to repeat this spell's effect.) Give a unit +2 :rb_might: this turn.' In ZERO entries before this one, and named in 355.14.h.1's worked example on the defending side."
+        },
+        {
+          "card": "SFD-066",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind spell, E2. '[Reaction] ... [Repeat] :rb_energy_2: ... Give a unit -2 :rb_might: this turn.' Unfloored, and named in the same worked example. It shrinks the SOURCE, which is what shrinks the damage pool."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Feral Strength is mono-Calm and Frigid Touch is mono-Mind, so the identity is Calm/Mind and 103.1.b.2 needs a legend covering both. Measured over data/cards.json those are OGN-255 / OGN-303 Nine-Tailed Fox, SFD-189 / SFD-244 Fire Below the Mountain, UNL-189 / UNL-230 Bashful Bloom and VEN-145 / VEN-192 Curator of the Sands.",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "Both say 'a unit' with no further condition, so both are unconditionally castable - there is no board on which either is a dead card."
+        ],
+        "notable": [
+          "THE SHAPE OF A SPLIT, AND EVERY STEP OF IT IS UNCITED. 355.14.b: 'The Targets are chosen when the spell or ability is finalized on the chain.' 355.14.c caps the number of targets at the damage available WHEN PLAYED. 355.14.e: 'The choice of how much damage is divided across the split is not decided until the resolution of the spell or ability.' 355.14.f and 355.14.g: every target must receive a positive integer, at least 1. So the targets are locked early and the arithmetic is settled late - which is the window this entry buys.",
+          "AND 355.14.h.1 IS THE PARAGRAPH THAT MAKES IT AN ANSWER. 355.14.h lets the controller drop targets when the damage has shrunk below the target count, but 355.14.h.1 says 'That player cannot choose to have fewer Targets than they have damage to split when choosing which Targets cease being Targets.' They may not concentrate the remainder on the body that matters - if 3 damage is left, at least 3 targets survive the cull and each gets at least 1.",
+          "RIOT WORKS THIS EXACT PAIR OF CARDS, ON THIS SIDE OF THE TABLE. 355.14.h.1's example: a 5 Might source splitting among five 1-Might Recruits, answered by 'Feral Strength targeting one of their recruits, and Frigid Touch targeting the 5 [M] unit. When Alpha Strike resolves, they have 3 damage to split ... They can only choose at most 2 of the targets to cease being targets.' Two 2-Energy [Reaction] spells blank a 3-Energy Signature spell that was going to clear five bodies.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Frigid Touch takes the source from 5 to 3, so the pool is 3. Feral Strength takes one body from 1 to 3, so 1 damage no longer kills it. At resolution the attacker has 3 damage and 5 targets: 355.14.h.1 forces at least 3 targets to remain, each receiving at least 1 (355.14.g), so no body takes more than 1 and the pumped body survives at 3 Might with 1 marked. Four Energy, at [Reaction] speed, after they have committed.",
+          "SHRINKING THE SOURCE IS WORTH MORE THAN PUMPING A BODY, AND BOTH ARE WORTH BUYING. Each -2 on the source removes 2 damage from the pool; each +2 on a body removes it from the kill list only if the split would have reached it. Frigid Touch is the primary and Feral Strength the finisher, and both carry [Repeat] - 820.1.b gives exactly one extra execution and 820.2.a lets it choose a different target, so one card is -4 on the source or -2 on two sources.",
+          "355.14.i IS THE CONSOLATION THE ATTACKER KEEPS: 'Any costs that were paid, or effects that were triggered as a result of those Game Objects being chosen as Targets remain in effect, paid, or otherwise triggered.' A [Deflect] tax already paid for choosing your bodies is not refunded when they cease being targets, and a Targeting Effect that already fired stays fired. Dropping a target is not un-targeting it.",
+          "AND THE TIMING IS THE WHOLE POINT. Both spells are [Reaction] (813.1.c.1: playable in any Closed State on any player's turn), so they are bought AFTER the split is finalized and its targets are locked (355.14.b) but BEFORE the division is decided (355.14.e). A pump or a shrink played earlier would only change which targets they picked."
+        ]
+      },
+      "steps": [
+        "Hold SFD-034 Feral Strength and SFD-066 Frigid Touch, both [Reaction], with 4 Energy available on the opponent's turn - 415.3.a readies runes only at your own Awakening, so the Energy must be banked.",
+        "The opponent plays a split-damage spell and finalizes it, locking its targets (355.14.b) and capping their number at the damage available then (355.14.c).",
+        "In response, play SFD-066 Frigid Touch on the SOURCE unit: -2 Might, unfloored. The damage pool for the split shrinks by 2.",
+        "In response, play SFD-034 Feral Strength on the friendly body you most want alive: +2 Might, so a single point of the thinned split no longer kills it.",
+        "At resolution 355.14.e settles the division. With fewer damage than targets, 355.14.h lets the attacker drop targets - but 355.14.h.1 stops them dropping more than the damage allows, so the remainder is spread at 355.14.g's minimum of 1 apiece.",
+        "The pumped body survives. 355.14.i keeps any cost the attacker already paid for targeting it paid.",
+        "Three copies of each (103.2.b), and each carries a [Repeat] worth exactly one extra execution (820.1.b) that may pick a different target (820.2.a)."
+      ],
+      "netPerIteration": "a split that was clearing a board is reduced to one damage per surviving target, for 4 Energy at Reaction speed",
+      "terminatesIn": "engine only - nothing here scores. Three copies of each spell (103.2.b), both expire at the end-of-turn Cleanup (317.2.c), and the answer only exists against effects that SPLIT damage rather than dealing it in fixed amounts",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 355.14.h.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "That player cannot choose to have fewer Targets than they have damage to split when choosing which Targets cease being Targets."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 355.14.h.1 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "In reaction, their opponent plays Feral Strength targeting one of their recruits, and Frigid Touch targeting the 5 [M] unit. When Alpha Strike resolves, they have 3 damage to split, and must choose which targets cease being targets. They can’t choose for 4 of the units to cease being targets so that they can deal 3 to the 3 [M] recruit. They can only choose at most 2 of the targets to cease being targets."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 355.14.e",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The choice of how much damage is divided across the split is not decided until the resolution of the spell or ability."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, sub-rule lane 100-499; found by the filtered probe for uncited sub-rules whose worked example names a pool card). 355.14.a through 355.14.i are cited by no entry and no synergy rule in this project, and 355.14.h.1's worked example names SFD-034 Feral Strength, SFD-066 Frigid Touch and UNL-192 Alpha Strike. SFD-034 Feral Strength was in ZERO entries and is one of the three cards the rules-named-card vein had left. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.2, 317.2.c, 355.14.b, 355.14.c, 355.14.e, 355.14.f, 355.14.g, 355.14.h, 355.14.h.1, 355.14.i, 415.3.a, 813.1.c.1, 820.1.b, 820.2.a. UNL-192 Alpha Strike is deliberately NOT in uses[]: it is the opponent's card, and this entry prices only the answer. Distinct from foxfire-unfloored-reduction-sweep, sivir-ambitious-frigid-touch-excess and bellows-breath-frigid-touch-shrink-into-damage, none of which touches splitting. Trap check: both spells are unconditionally castable; the Energy must be banked because 415.3.a refunds exhausts only at your own Awakening; 355.14.i keeps the attacker's already-paid costs paid and the entry says so; no unruled reading."
+    },
+    {
+      "id": "soraka-guardian-angel-replacement-sequence",
+      "name": "373.2: a Replacement Effect is applied ONCE per sequence, to any number of qualifying events - so stacking Guardian Angel on Soraka is a choice of which half of the board to save",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-173",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 P1 M4. 'I must be assigned combat damage last. If another unit you control here would die, if it has less Might than me, instead heal it, exhaust it, and recall it.' Riot names her in both 370.4's and 373.2's worked examples."
+        },
+        {
+          "card": "SFD-051",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Calm Equipment, E2, Might Bonus +1. '[Equip] :rb_rune_calm: ... [Effect] If I would die, kill Guardian Angel instead. Heal me, exhaust me, and recall me.' 136.2.d makes 'me' in appended Effect Text the CARRIER, so attached to Soraka it is a second replacement on the same body."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Soraka is mono-Order and Guardian Angel is mono-Calm, so the identity is Calm/Order and 103.1.b.2 needs a legend covering both. Measured over data/cards.json those are OGN-261 / OGN-306 Radiant Dawn, SFD-197 / SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father and VEN-147 / VEN-193 Eye of Twilight.",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "Guardian Angel's Might Bonus is +1, which raises Soraka to 5 and therefore raises her save threshold from 'less than 4' to 'less than 5' (137.3, 477.3.d) - a real upside the ordering question is separate from."
+        ],
+        "notable": [
+          "THE RULE, AND RIOT WORKS THIS EXACT PAIR. 373.2: 'When applying Replacement Effects to events that occur simultaneously, each Replacement Effect may only be applied in one sequence, to any number of events that are qualified to be replaced.' So Soraka's save is not once per body and not once per game - it is ONCE PER SEQUENCE, covering every qualifying event in that one application. 373 through 375 are cited by no entry and no synergy rule in this project.",
+          "AND STACKING A SECOND REPLACEMENT ON HER TURNS THAT INTO A FORK. Riot's example at 373.2, with Soraka dying beside two Recruits at her battlefield and two at your base while carrying a Guardian Angel: 'If Soraka's Replacement Effect is applied first, it saves the Recruits at the same battlefield as her but not the Recruits in base. If the Replacement Effect appended by Guardian Angel then saves Soraka, she cannot apply her Replacement Effect to the Recruits in base as her Replacement Effect has already been applied to an event simultaneous with it dying. If the Replacement Effect appended by Guardian Angel is applied first, it saves Soraka and recalls her - then when Soraka's Replacement Effect is applied, it can only save the Recruits in base.' Two orders, two different halves of the board saved, and 373 gives the choice to their common controller.",
+          "SO THE ORDER IS A REAL DECISION AND IT IS YOURS. 373: 'each event is treated separately and individually for the purposes of Replacement Effects, and Replacement Effects with the same controller are applied in the order of their controller's choosing.' Guardian-Angel-first keeps Soraka (and her +1 threshold) and saves the BASE; Soraka-first saves the GARRISON and lets her die. Count the bodies in each place before choosing - that is the whole play, and it is invisible if you only read 370.4.",
+          "WHY GUARDIAN-ANGEL-FIRST IS USUALLY RIGHT ANYWAY. Soraka recalled is Soraka alive for the next wipe, and 103.2.b only gives you three; the garrison she would have saved is recalled to base by 455 regardless of which order you choose, so the position is lost either way (323.6 strips the battlefield at the next Cleanup). What differs is which set of bodies survives and whether the replacement engine survives with them.",
+          "136.2.d IS WHY GUARDIAN ANGEL SAVES THE CARRIER AND NOT ITSELF: 'Effect Text may refer to \"this\" or to the name of the Attached game object that appended the Effect Text. Doing so refers to the Attached game object and not the Top-Most Card.' Its text says 'kill Guardian Angel instead. Heal ME' - the Angel by name is what dies, and 'me' is Soraka. That is also why it is a genuine second replacement on her rather than a duplicate of her own.",
+          "373.1.a ORDERS THE SAVES AGAINST THE DEATHS: 'When executing Replacement Effects, the Game Actions that comprise their instructions are performed before any simultaneous unmodified events.' The healing, exhausting and recalling happen before the unsaved bodies finish dying - which matters for anything watching a death, since the saved bodies never generate one at all.",
+          "AND 373.1 SETTLES THE CROSS-TABLE CASE: 'If multiple applied Replacement Effects with different controllers would execute simultaneously, they execute in turn order.' Your choice is only over your own; an opponent's save resolves against yours by turn order, not by choice."
+        ]
+      },
+      "steps": [
+        "Play SFD-173 Soraka, Wanderer (4 Energy + 1 Power) and attach SFD-051 Guardian Angel (2 Energy, [Equip] one Calm rune) to her. Her Might is now 5 (137.3, 477.3.d), so her save covers friendly units there under 5 rather than under 4.",
+        "The opponent wipes the board. Soraka, the garrison at her battlefield and any bodies at your base die simultaneously.",
+        "373 gives you the order, because both replacements are yours. Count the qualifying bodies at her battlefield against those at your base.",
+        "Guardian-Angel-first: it kills the Angel instead, and heals, exhausts and recalls SORAKA. Her own replacement then applies once (373.2) and can only reach the bodies at your base.",
+        "Soraka-first: her replacement applies once and saves the qualifying bodies at her battlefield; the Angel then saves her, but her effect is spent and the base bodies die.",
+        "Either way 373.1.a performs the saves before the unsaved bodies finish dying, and 455 puts every saved body at your base, exhausted, with 315.1.b readying them at your next Awakening.",
+        "Three copies of each (103.2.b): the Angel is consumed on each use, and Soraka survives only on the Angel-first line."
+      ],
+      "netPerIteration": "one wipe answered on one of two halves of the board, with the choice of which half, and Soraka kept on the line that takes the base",
+      "terminatesIn": "engine only - nothing here scores. Each Guardian Angel is consumed when it fires, three copies of each card (103.2.b), and the battlefield is lost under 323.6 whichever order you pick",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 373.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "When applying Replacement Effects to events that occur simultaneously, each Replacement Effect may only be applied in one sequence, to any number of events that are qualified to be replaced."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 373.2 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If Soraka’s Replacement Effect is applied first, it saves the Recruits at the same battlefield as her but not the Recruits in base. If the Replacement Effect appended by Guardian Angel then saves Soraka, she cannot apply her Replacement Effect to the Recruits in base as her Replacement Effect has already been applied to an event simultaneous with it dying. If the Replacement Effect appended by Guardian Angel is applied first, it saves Soraka and recalls her - then when Soraka’s Replacement Effect is applied, it can only save the Recruits in base."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 373.1.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "When executing Replacement Effects, the Game Actions that comprise their instructions are performed before any simultaneous unmodified events."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, sub-rule lane 100-499). 373, 373.1, 373.1.a, 373.2 and 373.2.a are cited by no entry and no synergy rule in this project, and 373.2's worked example names SFD-173 Soraka, Wanderer and SFD-051 Guardian Angel together. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.2, 136.2.d, 137.3, 315.1.b, 323.6, 370.4, 373, 373.1, 373.1.a, 373.2, 455, 477.3.d. THIS IS THE LIMIT THAT 370.4 ALONE DOES NOT STATE, and it refines my own soraka-wanderer-vanguard-armory-simultaneous-save from the same night: 370.4 says the replacement reaches simultaneous deaths, 373.2 says it reaches them ONCE PER SEQUENCE - so a second replacement on the same body is a fork between two halves of the board, not a doubling. That entry was patched with a notable citing 373.2 before it was merged. Distinct from soraka-fiora-loop-shield and from tianna-guardian-angel-forge-god-lock, neither of which cites 373. Trap check: the ordering choice is yours only because both replacements share a controller (373); across controllers 373.1 uses turn order; the Angel is consumed on use; the battlefield is lost either way; no unruled reading."
     }
   ]
 }
