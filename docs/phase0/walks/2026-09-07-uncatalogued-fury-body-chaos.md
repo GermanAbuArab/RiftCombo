@@ -1414,18 +1414,28 @@ last entry written for this issue, now cross-referenced in both directions.
 
 ## 25. Lane closed — the census, opened and closed
 
+**This section was committed once with wrong numbers and is corrected here rather than quietly
+rewritten**, because a count is a perishable claim and this project's rule is to name the members.
+The first version read "2 by base code, 2 by name+type, 0 walkable"; it conflated *walkable* (the
+census script's term: not banned) with *not refused*, and it forgot that `Mystic Poro` has two base
+codes. Measured over `data/cards.json` deduped by `base`, with batch 13's staging file folded into
+coverage:
+
 | measure | at the start of this half (564 entries) | at close |
 |---|---|---|
-| uncatalogued **by base code** | 76 | **2** |
-| uncatalogued **by name+type** | 72 | **2** |
-| banned in constructed | 4 | 4 |
-| **walkable** | **68** | **0** |
+| uncatalogued **by base code** | 76 | **7** |
+| uncatalogued **by name+type** | 72 | **6** |
+| of those, banned in constructed | 4 | **4** |
+| not banned, i.e. "walkable" by the script's definition | 68 | **3 base codes / 2 name+type rows** |
+| **left with any work in them** | 68 | **0** |
 
-The two remaining base codes are `OGN-171 Mystic Poro` and `OGN-175 Shipyard Skulker`, both refused by
-rule in §24 above, so **the Fury / Chaos slice of issue #173 is closed**: 39 entries and 39 refusals
-across batches 6–13, plus the ten orphan dual-domain Signature spells, which closed at §15.
+All seven, named: `OGN-168 Fight or Flight` (banned), `OGN-182 Scrapheap` (banned), `SFD-020 Draven,
+Vanquisher` (banned), `SFD-122 Called Shot` (banned), `OGN-171 Mystic Poro` and its reprint
+`UNL-224 Mystic Poro`, and `OGN-175 Shipyard Skulker`. The last three are refused by rule in §24.
+
+So **the Fury / Chaos slice of issue #173 is closed**: 39 entries across batches 6–13, plus the ten
+orphan dual-domain Signature spells, which closed at §15.
 
 Note for whoever re-measures: `Mystic Poro` is the last multi-base name in the slice
-(`OGN-171` / `UNL-224`), so a base-code census will keep reading 2 where a name+type census reads 1
-walkable-shaped row plus its reprint. Count over `data/cards.json` deduped by `base`, never over
-`poolOf` — see §7.
+(`OGN-171` / `UNL-224`), which is why the base-code column reads one higher than the name+type one.
+Count over `data/cards.json` deduped by `base`, never over `poolOf` — see §7.
