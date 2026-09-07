@@ -683,3 +683,93 @@ combat's own attack triggers resolving does not cost the attacker that first win
 **759–763** (naming or guessing a card, type or tag) is cited by nothing, and a corpus sweep for
 *name a card*, *names a card*, *guess* and *naming* returns **zero rows**. The block is dead letter in
 this pool. No entry, and nothing to look for.
+
+---
+
+# Batch 7 — Tokens, Damage, and a new probe that replaces this slice's
+
+Batch 6's two entries were merged (catalogue at 665). Staging pruned to this batch.
+
+| id | block opened | class |
+|---|---|---|
+| `card-sharp-renata-industrialist-gold-asymmetry` | **179–184 Tokens** (182, 184.1) | ENGINE |
+| `bellows-breath-frigid-touch-shrink-into-damage` | **142 Damage** (142.3.a/b, 142.4.a/b/c) | ENGINE |
+
+`validateCombos` over the merged copy: **0 errors, 667 entries.** `test/legend-lines.test.ts` re-run over
+these two: 11 legend base codes checked, **0 defects.** No duplicate id, no duplicate card set.
+
+## 24. THE NEXT PROBE, AND IT IS BETTER THAN THIS SLICE'S
+
+The block-level probe that opened this slice is close to spent — the mechanics range of the rules file
+is roughly two thirds mined after seven batches. **The probe that replaces it is one level down**: find
+**sub-rules** that are cited by nothing **and carry a worked Example**, because a worked example is
+Riot telling you the case is real and usually naming a card.
+
+```
+node -e '
+const t = combos.json + synergies.json;
+const cited = new Set([...t.matchAll(/\b(\d{3}(?:\.[0-9a-z]+)+)/g)].map(m => m[1]));
+// for each "NNN.x.y." heading in the rules file, keep it if !cited and the next ~14 lines contain "Example:"
+'
+```
+
+It returns **307 uncited sub-rules carrying a worked example.** Both entries in this batch came from its
+first page, and it immediately surfaced a paragraph that looked like it **refuted a merged entry of
+mine** — see §25, which is the reason to trust the probe.
+
+## 25. A self-check that came out the right way, and the fact it produced
+
+The probe surfaced **185.3.a: *"Tokens do not have costs"*** and **185.3.a.1: *"Although tokens do not
+have costs, their cost is treated as being 0 for all purposes."*** That reads as a direct refutation of
+`mirror-image-reflection-atakhan-printed-cost` (batch 5), which prices Atakhan's discount off a
+Reflection's **copied** cost. It is not, and **185.3.a.2** is why:
+
+> Tokens can have costs appended to them via applied Layer effects.
+> Example: Deceiver's conquer effect creates a 0 [M] Reflection unit token and applies a copy effect to
+> that token. The copy effect will append all copyable traits, **including the cost of the unit to be
+> copied**. This appends a cost to the Reflection token.
+
+So the entry stands and is now better sourced — but the **negative half is new and belongs beside it**:
+**every ordinary token in the pool has cost 0 for all purposes (185.3.a.1)**, so a Reflection is the
+*only* token that is worth anything to Atakhan, to `UNL-142 Heedless Resurrection`'s
+*"costs no more Energy … than the killed unit"*, or to any other cost-counting effect. Companion:
+**185.3.b / 185.3.b.1** do the same for domains, which is the rule behind the synergy layer's
+`domains.length === 0` token filter.
+
+## 26. 182 — an effect may name a DIFFERENT player as a token's controller
+
+**182**, cited by nothing: *"A token's controller is the controller of the spell or ability that created
+it, **unless** the token's type innately determines control or that spell or ability specifies that a
+different player is the token's controller."* **Members named:** exactly **two** cards in the pool use
+that exception, swept on the corpus — `SFD-081 Card Sharp` (a Gold each, which is the point) and
+`UNL-130 Walking Roost` (a 1-Might Bird to an opponent, a pure drawback). Both were in **zero entries**.
+
+Card Sharp is symmetric on paper, and the asymmetry is bought elsewhere: `SFD-171 Renata Glasc,
+Industrialist` says *"**Your** tokens enter ready"* and `SFD-201 Chem-Baroness` says *"**your** Gold
+[Add] an additional 1 Energy"* — and 182 is the reason neither reaches the Gold the opponent took.
+**184.1** is the companion: *"The effect may state that the token enters ready or exhausted, if that
+state is contrary to the default for the token's type"* — which is the rule R25 = A was ruled over.
+
+## 27. 142.4.b — lethal is a CURRENT-Might measurement, re-checked
+
+**142.4.a**: *"Lethal Damage is the amount of marked Damage that will cause a unit to die in a
+cleanup."* **142.4.b**: *"Lethal Damage for a Unit is a non-zero amount greater than or equal to that
+Unit's Might"*, with the worked example naming a pool card:
+
+> A unit has 5 [M] and 3 damage marked on it. Frigid Touch is played targeting that unit. When it
+> resolves, the unit's Might becomes 3, and it will have lethal damage marked on it.
+
+So **a −Might turns damage already marked into a kill** — the complement of this project's finding that
+a kill keyed on the word *"damaged"* reads a marker rather than a threshold. It inverts how removal is
+priced: a Might 6 body needs 6 damage, or 2 damage and −4 Might. A floored reducer cannot substitute
+(477.3.b caps the reduction, not the result), which is exactly why `SFD-066 Frigid Touch` is the payoff.
+
+142.4.b's **second** example is the 0-Might wall rule at its source: *"A unit has 0 [M]. In order to have
+lethal damage marked on it, it must have at least 1 damage marked on it."*
+
+And **142.4.c** with **142.3.a / 142.3.b** is the paragraph for `UNL-118 Elder Dragon` (*"Any amount of
+your damage is enough to kill enemy units"*): *"The player responsible for the Deal action that caused
+the Damage to be marked is the player who marked that Damage"*, and *"Game Effects may refer to that
+player's Damage."* So **"your damage" is scoped to damage YOU marked** — and a mutual-damage exchange,
+where 417.6.b.4 makes the opponent responsible for what their own unit dealt, does **not** feed it.
+142.1 through 142.4 are cited by nothing.
