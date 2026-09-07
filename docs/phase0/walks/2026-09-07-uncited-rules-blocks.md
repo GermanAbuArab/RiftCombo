@@ -449,3 +449,94 @@ project's *"a fifth draw is a point for the opponent"*: the draw **still complet
 refilled from your trash. The cost is exactly one point (194.1.d) plus the trash re-entering the deck
 — which is what erases every trash payoff, and is already recorded. No entry; the citations 413.4 and
 440.4 are the precise ones for a claim currently sourced to 431 alone.
+
+---
+
+# Batch 4 — Additional Turns, and the Check Legality step
+
+Batch 3's two entries were merged (catalogue at 629). Staging pruned to this batch.
+
+| id | block opened | class |
+|---|---|---|
+| `promising-future-time-warp-queue` | **734–738 Additional Turns** (+ **390.3.a** Delayed Replacements) | ENGINE |
+| `here-to-help-warden-fizzle-still-played` | **358 Check Legality** | ENGINE |
+
+`validateCombos` over the merged copy: **0 errors, 631 entries.** `test/legend-lines.test.ts` re-run over
+these two: 11 legend base codes checked, **0 defects.** No duplicate id, no duplicate card set.
+
+## 14. 734–738 — the queue rule behind a CHAIN theory that never cited it
+
+`CLAUDE.md` prices every Additional-Turn CHAIN on "up to FOUR consecutive Beginning Phases" and cites
+nothing for it. **738's first worked example is that case, exactly:** *"The First Player plays, through
+some means, two Time Warps during their turn … these Additional Turns will appear as
+`[> A > A* > A* > B > C > D >]`."* Two in one turn are two consecutive extra turns; three copies
+(103.2.b) give four consecutive Beginning Phases. The assertion now has Riot's own arithmetic behind it.
+
+**738's second worked example names `OGN-115 Promising Future` and `OGN-122 Time Warp` together** and
+carries the rule that matters: each Additional Turn is inserted **immediately after the current turn**,
+so the **last one created is taken first**. Riot works it out — the Fourth Player's Time Warp resolves
+first and the queue is `[> A > D* > B > C > D >]`; the Second Player's resolves afterwards and the queue
+is `[> A > B* > D* > B > C > D >]`.
+
+In a Duel that inverts the obvious fear about Promising Future. Its *"Starting with the next player"*
+has the **opponent** play their banished card first and **you** play yours second — so if you both
+banish a Time Warp, **yours is inserted last and therefore taken first**. And **737** confirms nobody
+loses a turn: *"it does not change the Turn Order of the game … the queue will proceed with its
+previously queued turns."*
+
+The line itself is a discount: Time Warp is E10 + 4 Mind Power, and through Promising Future it is
+E5 + 1 Power for the spell plus Time Warp's 4 Power with its Energy ignored — **five Energy cheaper for
+one extra Power**. It is not a tutor and the entry says so; and it is symmetric, which the entry prices
+rather than hides.
+
+**390.3.a is the companion, and it is the general rule the project has been sourcing to 829.1.b.1
+alone**: *"Some Delayed Replacements take the form 'then recycle it,' or 'then banish it,' … short for
+'if it would leave the chain after becoming a finalized chain item, and leaving the chain wasn't
+instructed by its own execution, perform the specified game action instead.'"* Time Warp's *"Banish
+this"* is one; so is [Flow]'s. 389–392 is cited by nothing.
+
+## 15. 358 — a prohibition does not make a card illegal, it makes the instruction fizzle
+
+**358.3.a**: *"If a Game Effect prevents the performance of a game action, that effect doesn't prevent
+cards and abilities that instruct a player to perform that game action from being played or finalized.
+On resolution, that game action will be skipped as it is an impossible instruction."* And its worked
+example names two pool cards: *"A player plays Here to Help when their opponent controls a Mageseeker
+Warden at a battlefield. Here to Help is legal to play under these circumstances. On resolution, no
+unit will be played."* Rule 358 is cited by nothing.
+
+This refines the #100 Mageseeker Warden theory. The Warden does not brick the card — the card is legal,
+it is **finalized**, and only the instruction is skipped (055). **419.4.b** then cashes it: *"Non-triggered
+abilities that check cards being played do so by means of referencing whether said cards have been
+Finalized"*, and its own worked example is `SFD-012 Battering Ram` counting a **countered** spell.
+
+**The split worth carrying:** a **trigger** needs the card to resolve (419.4.a, and 419.4.a.1 says a
+countered card fires no play trigger at all); a **non-triggered check** — [Legion], "cards you've played
+this turn", a cost reduction — needs only finalization. Since 811.1.b plays a hidden card *"ignoring its
+base cost"*, a fizzled `SFD-111 Here to Help` is a **0-Energy card played this turn** even into the
+pool's biggest denial card. And 811.1.c.1 (*"Hide is not a subset of Play"*) means the Warden never
+stops the hide either.
+
+## 16. Two more blocks read, one finding each
+
+### 16.1 393–397 Linked Abilities — 397 makes "banished with this" exclusive, and Riot's example is a pool card
+
+**395**: a set of abilities is Linked only if they are *"present in the printed Effect or Rules Text of
+the same Game Object, or … granted by the same source."* **397**: *"A component Linked Ability that
+references a Game Object affected by another Ability in the set may only interact with Game Objects
+affected by the Abilities it is Linked with"*, with the worked example — **`SFD-090 The Zero Drive`**,
+named in the rules — *"Any units banished by effects other than component Linked Abilities in the same
+set as the activated ability cannot be played when resolving the activated ability."*
+
+So the Zero Drive's *"Play all units banished with this"* **cannot be fed by any other banisher**, and
+by 395 each copy is its own Game Object, so **three Zero Drives do not share a pool**. Same for
+`UNL-148 Cursed Sarcophagus`, the pool's only other *"banished with this"* card. `SFD-090` is already
+walked by `zero-drive-riptide-rex-banish-recursion` (issue #174), which cites 719.5 and 718.2 but not
+393–397 — **that entry should carry 395 and 397**; no new entry here, the card set is taken.
+
+### 16.2 324 Special Cleanups — a Combat Cleanup never repeats itself
+
+**324.2**: *"If events during a Special Cleanup require another Cleanup, a normal Cleanup is invoked,
+not another iteration of the Special Cleanup."* So the Combat Cleanup's added steps — 466.1.a.1's
+*"Insert '3c. Heal all Units.'"* and 466.1.a.2's attacker recall — happen **once** per combat, however
+many deaths that cleanup causes. The project's recall-family finding (#62) assumes exactly this and
+never had the paragraph. No entry; 324.2 is the citation.
