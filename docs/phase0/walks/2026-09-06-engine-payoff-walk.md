@@ -484,3 +484,180 @@ first. That is a combat walk, not a Hold walk, and it deserves its own pass.
 6. **`VEN-067 Bottled Constellation` is the pool's only bodies → points converter that needs no
    battlefield**, and `OGN-293 The Grand Plaza` is the only other body payoff. A `token-body-engine`
    entry has exactly these two outlets.
+
+---
+
+## 11. Correction to §5 — the Shen entry was a genuine duplicate and was withdrawn
+
+`shen-blue-sentinel-exact-hold` was authored, validated, and then **dropped before merge**. While this
+walk was running, the parallel session `rc-walk-instances` merged
+**`shen-kinkou-sentinel-hold`** (commit `d44ff0e`) — the same two cards (`VEN-138` + `UNL-087` ×1),
+the same 3-points-a-turn arithmetic, the same "a second Sentinel breaks the condition" finding, and
+even the same 316.2/316.3/316.4 citation for the Sentinel's Power surviving 167. Two walks reached
+the same line independently within an hour; `VEN-138` was in zero entries when this one started.
+
+**Process lesson, and it is the reason the staging protocol exists:** a near-duplicate check run once
+at the start of a walk is a check against a *snapshot*. Re-run it against the **current**
+`data/combos.json` immediately before staging, keyed on the sorted card set rather than on the id:
+
+```
+node -e 'const db=require("./data/combos.json"), mine=require("/tmp/rc-walks/<you>.json");
+ const key=c=>[...new Set(c.uses.map(u=>u.card))].sort().join("+");
+ const m=new Map(); for(const c of db.combos){const k=key(c); (m.get(k)||m.set(k,[]).get(k)).push(c.id);}
+ for(const e of mine) console.log(e.id, m.get(key(e))||"none");'
+```
+
+Two things this walk found that the merged entry does not carry, handed to the manager as notes
+rather than re-authored:
+
+1. **Which "other units" the condition counts.** `185.1` with `185.2.b` ("Token units have a Might")
+   makes a Recruit or a Sprite one of the "other units you control here", so the line cannot share a
+   battlefield with any token producer. Equipment is the exception and is safe: `818.1` makes Equip an
+   Activated Ability and an attached card is not a unit, so Shen or the Sentinel may wear gear freely.
+   The merged entry says "any friendly unit that walks to that battlefield switches Shen off" without
+   naming either half.
+2. **Time Warp was walked and does not close it.** `OGN-122` is Mind and legal in the Mind/Order
+   identity, but one Additional Turn is 3 + 3 = **6**, not 8. It reaches 8 only at 4 + 4, i.e. holding
+   the **second** Duel battlefield through both Beginning Phases (485.4 "Battlefield Count: 2";
+   315.2.b.2 Holds all you control) — an assumption about the board rather than about these two cards,
+   which is why no CHAIN was authored.
+
+---
+
+## 12. Batch 2 — two more entries from the groups #155 refused wholesale
+
+### 12.1 `tryndamere-hextech-gauntlets-enforcer` (ENGINE, Fury/Order)
+
+#155 refused the whole `repeatable-removal` group on the grounds that `OGN-034 Tryndamere` is the only
+Might/damage-to-point bridge and that it is a **threshold, not a scale**. Both halves are true. The
+question the refusal did not ask is the reverse one: of the five *other* cards in the excess-damage
+family, which can share an identity with the one that scores?
+
+`UNL-188 Hextech Gauntlets` and `UNL-187 Piltover Enforcer` are **Fury/Order**; Tryndamere is Fury. The
+whole package is one legend's two domains, and the entry that already holds the other two —
+`gauntlets-enforcer-conquer` — has the words *"engine only"* as its **entire** `terminatesIn` and a
+single-sentence notable.
+
+The interaction is the pricing, and it is unusually clean:
+
+> `UNL-188` — "[Equip] :rb_energy_3::rb_rune_rainbow:. **This ability's Energy cost is reduced by the
+> Might of the unit you choose.** … [Effect] When I conquer, if you assigned 3 or more excess damage, draw 1."
+> **356.6.** Energy and Power costs can't be reduced below 0.
+
+On Tryndamere's printed 8 Might the Equip's Energy component is `3 − 8 → 0`, so attaching costs **one
+rainbow**. And the +3 Might it gives back is +3 **excess damage** under R28 = A — the exact currency
+Tryndamere's threshold is priced in. *The bigger the body, the cheaper the gear, and the biggest body
+is the one with the 5-excess bar to clear.*
+
+Where the +3 actually matters, computed rather than asserted:
+
+> **465.2.c.** Starting with the Attacker, each player assigns an amount of damage equal to their
+> summed Might among the other's Units.
+> **465.2.c.4.** Units cannot have more damage assigned to them than the minimum required to [kill them].
+
+M8 Tryndamere clears his own 5-excess bar only against a garrison summing **3 or less**. At M11 he
+clears it against a garrison summing **6** — the difference between answering one 3-Might body and
+answering two, or one 6-Might body.
+
+**One attack pays three times:** 1 point (Tryndamere), 1 card (the Gauntlets, `136.2.b` keeping the
+Effect Text active while attached and `136.2.d` making "I" the wearing unit), 1 ready (the legend).
+
+**A first application of §1.3(b)'s new rule to a card that is not the Nexus.** The Enforcer reads
+*"you may **exhaust me** to ready a unit"* — a cost immediately after the trigger's opening "you may",
+so `383.3.b` makes it the **base cost** and `383.3.b.1` requires the legend **ready when the trigger
+finalizes**. 315.1.b readies it every Awakening and nothing else in the line spends it; spend it
+earlier in the turn on anything else and the ready is silently lost.
+
+**The live trap is the attack.** Tryndamere says *"When I conquer **after an attack**"*, and there is
+no attack against an empty battlefield (807.1.d, 383.4.e, 461). A Non-Combat Showdown conquer
+(316.8.b.1, 348.2.a.1) scores the ordinary point but fires **none** of the three triggers, because no
+damage is assigned and therefore none is excess.
+
+ENGINE at one point a turn: 469.1 conquers a battlefield once per turn, 485.4 puts two on a Duel
+table, and Tryndamere has no [Ganking], so 144.4's base ↔ battlefield restriction makes the second
+cost two exhausts the legend's single ready cannot cover.
+
+### 12.2 `wild-claw-nasus-ascended-empowered` (ENGINE, Body/Calm)
+
+`#155`'s inventory lists `VEN-046 Nasus, Ascended` with the parenthetical *"(needs 8 Energy to Empower
+first)"* and never asks what pays it. The catalogue's two Nasus entries both assume an Empowered Nasus
+already on the board and neither prices the setup.
+
+The sweep that answered it was `grep -i empower data/corpus_flat.txt` **without brackets**, per the
+project's own rule that a keyword lens opens on the bare word. `VEN-089 Wild Claw` (Body, E7 P1) was in
+**zero** entries:
+
+> *"Look at the top 5 cards of your Main Deck. You may banish a unit or gear from among them and play
+> it, reducing its Energy cost by :rb_energy_5:. Recycle the rest. **Then you may do this: Empower it.**"*
+
+That last clause is an ability performing the act directly:
+
+> **441.1.** Empowering is the act of rendering one or more Game Objects Empowered.
+> **441.1.a.** Empowered is a binary state. A Game Object is Empowered or it isn't.
+
+so `827.1.c.3` — which governs *"determining a card's Empower cost"* — has nothing to say about a route
+that never determines one. This is the #153 walk's fact (previously applied only to **gear**, through
+`VEN-062 Hextech Formula` → `VEN-018 Rage Amplifier`) reaching a **unit**, and the unit it reaches is
+the one carrying the pool's most expensive [Empower] cost.
+
+**The arithmetic against the honest alternative.** The hard way is Nasus at 8 Energy + 1 Calm Power and
+then his own [Empower] at 8 Energy: **16 Energy** and a Power, which against a 12-rune deck (161.2.a) is
+two turns. Wild Claw is 7 Energy + 1 Body Power and plays him at `8 − 5 = 3` Energy + 1 Calm Power,
+Empowered, in one Main Phase: **10 Energy and two Power**, from a card still in the deck. The Empower
+is permanent — 441.2 — because Wild Claw attaches no "disempower at end of turn" clause, unlike
+`VEN-035 Sanction`, which does.
+
+**The randomness is the cost, measured rather than waved at.** The look samples a **39**-card deck
+(103.2 counts the Chosen Champion inside the 40 and 103.2.a.1 puts it in the Champion Zone before
+play). `1 − C(39−k, 5)/C(39, 5)` for k copies of Nasus:
+
+| copies | P(in the top five) |
+|---:|---:|
+| 1 | 12.8 % |
+| 2 | 24.3 % |
+| 3 | **34.5 %** |
+
+Three copies of Wild Claw give three looks, and a failed look costs the spell and nothing else:
+
+> **431.1.c.** If an instruction directs a player to look at or reveal cards in excess to the number of
+> cards in a player's Main Deck, that player looks at or Reveals as many as possible, but **does not
+> Burn Out**, then proceeds with the rest of the instruction.
+
+Two related cards checked and **not** used, with the reason: `VEN-163 Risen Altar` (in zero entries)
+discounts the printed [Empower] cost this line never pays; `VEN-035 Sanction` (mono-Calm, 3 Energy + 1
+Power, [Reaction], *"Empower a unit. Disempower it at end of turn"*) is the right tool on a turn you
+want the point **now** and cannot afford ten Energy, but it is a different, temporary route to the same
+state and so is a notable rather than an ingredient.
+
+---
+
+## 13. Two further refusals from batch 2
+
+| # | Candidate | Killed by |
+|---|---|---|
+| R7 | **`world-atlas-sentinel-gold` bolted onto `heimerdinger-renata-remote-score`** to lift its self-declared ceiling ("The Power runs out first") | It moves the bottleneck without raising the number. Body/Mind is legal (Atlas Mind, Sentinel Mind, Heimerdinger Mind, Renata Mind, Acceleration Gate Mind/Body), and twelve Gold really does cover the Power. But the **Energy** then binds: 12 runes are 12 Energy, and one Acceleration Gate (3) plus two Renata activations (8) is already 11. Four activations would need 25 Energy. Two to three points a turn — **exactly** what the existing entry already claims. A notable at best, not an entry. |
+| R8 | **`UNL-018 Yeti Brawler` + Power Nexus** as a Gold feed | Two Gold per conquer against a Nexus firing that costs four Power is one firing every second turn, and the Gold arrives exhausted (187.5 + 315.1 preceding 315.2). `yeti-brambleback-renata-gold` already holds the Yeti's Gold line. Folded into `tryndamere-hextech-gauntlets-enforcer` as a notable second attacker instead. |
+
+## 14. Further facts for `CLAUDE.md`
+
+7. **`356.6` ("Energy and Power costs can't be reduced below 0") makes `UNL-188 Hextech Gauntlets`
+   free on any body of 3 Might or more**, because its Equip Energy is "reduced by the Might of the unit
+   you choose". The gear's own payoff is +3 Might = +3 excess damage under R28 = A, so the cheapest
+   place to put it is the biggest body — which is also the body with the highest excess threshold to
+   clear. `OGN-034 Tryndamere` at M8 goes to M11 for one rainbow.
+8. **An ability that Empowers reaches units, not only gear, and `VEN-089 Wild Claw` is the case that
+   matters.** The #153 fact (441.1: Empowering is the *act*; the printed [Empower] cost is never
+   determined, so 827.1.c.3 is silent) had only ever been applied to `VEN-062 Hextech Formula` →
+   `VEN-018 Rage Amplifier`. Wild Claw tutors from the top five, plays for E−5 **and** Empowers,
+   permanently (441.2, no "disempower at end of turn" clause — `VEN-035 Sanction` is the card that has
+   one). It collapses `VEN-046 Nasus, Ascended` from 16 Energy across two turns to 10 in one Main Phase.
+   `VEN-089` and `VEN-163 Risen Altar` were both in zero entries; the Altar is the wrong tool, since it
+   discounts a cost this route never pays.
+9. **A reveal or look samples a 39-card deck, not 40.** 103.2 counts the Chosen Champion inside the 40
+   and 103.2.a.1 puts it in the Champion Zone before play. For k copies in the top five,
+   `1 − C(39−k,5)/C(39,5)` = 12.8 % / 24.3 % / 34.5 % for k = 1 / 2 / 3.
+10. **Re-run the near-duplicate check against the CURRENT `data/combos.json` immediately before
+    staging, keyed on the sorted card set, not on the id.** Parallel walks merge while you write:
+    `shen-blue-sentinel-exact-hold` was authored, validated and withdrawn because
+    `shen-kinkou-sentinel-hold` (same two cards, same finding) landed an hour earlier. §11 has the
+    one-liner.
