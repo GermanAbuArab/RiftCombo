@@ -728,3 +728,73 @@ usually no window in which to answer their Hold with it.
    Calm/Mind. Its `[Equip]` is one rainbow, which is exactly what `[Weaponmaster]` refunds
    (821.1.c, 821.1.c.2), and 053.1 with 136.2.d make its *"When I attack or defend"* the CARRIER's —
    so one Riven attack is two separate Deals.
+
+---
+
+## 29. Batch 7 — five entries
+
+| id | class | cards | the names it clears |
+|---|---|---|---|
+| `yuumi-affectionate-poro-designated-tank` | ENGINE | UNL-056, VEN-024 | Yuumi Magical Cat, Affectionate Poro |
+| `resonating-strike-sunlit-guardian-hidden-reinforcement` | ENGINE | VEN-034, OGN-054 | Resonating Strike, Sunlit Guardian |
+| `mournful-witness-serene-ascetic-free-empower` | ENGINE | VEN-028, VEN-030 | Mournful Witness, Serene Ascetic |
+| `dredge-up-dramatic-visionary-predict-draw` | ENGINE | UNL-062, VEN-049 | Dramatic Visionary, Dredge Up |
+| `crescent-strike-frostcoat-cub-sweep-threshold` | ENGINE | UNL-072, SFD-067 | Crescent Strike, Frostcoat Cub |
+
+## 30. You cannot PLAY a unit into a contested battlefield, but you can MOVE one there
+
+**355.2.a** makes a played unit's valid locations *"the controller's Base or a battlefield the
+controller controls"*, which is why nothing in the pool reinforces a battlefield you are **attacking**
+except the one card that says so. A **move** is a different action:
+
+> **449.** *"Spells, Abilities, or other effects may cause a Move to occur."*
+> **449.1.** *"The source of the Move will provide details on any restrictions on legality for
+> Destination."*
+
+And **420.3.a** puts the exhaust cost on the **Standard** Move alone, so an effect move relocates an
+already-exhausted body and never consults 144.4's base-to-battlefield restriction. **319.6** with
+**323.2.a** then give the arriving body the Defender designation before 465.2 resolves.
+
+`VEN-034 Resonating Strike` is that card at `[Hidden]` prices — one rainbow to hide, **zero** to play
+(the tail of 811.1.b), at `[Reaction]` speed. And it is the rare hidden spell whose own restriction
+agrees with the hide: **811.1.d.2** confines its choices to the battlefield it was hidden at, and its
+first choice is *"a battlefield you control"* — exactly where 811.1.b made you hide it.
+
+## 31. Two swept sets
+
+**Cards that Empower themselves with no `[Empower]` cost — six, and four are legends.** `VEN-143
+Master of Shadows`, `VEN-151 Soul's Reflection`, `VEN-153 Matriarch of War`, `VEN-155 Heart of the
+Tempest` (legends), plus `VEN-092 Renekton, Brute` (gated on reaching Might 10, bought at 1 Energy a
+point) and `VEN-028 Mournful Witness`. **The Witness is the only unit in the pool that becomes
+Empowered for no resources at all** — 441.1 makes Empowering *"the act of rendering one or more Game
+Objects Empowered"*, so an effect that Empowers never pays the target's printed cost; 441.2 makes the
+state permanent and 441.1.b caps it at one firing.
+
+**Cards that read *"an opponent's score is within 3 points of the Victory Score"* — five**, and they
+split by whose score: `OGN-047 Find Your Center` and `OGN-079 Leona, Zealot` (Calm) read the
+**opponent's**; `SFD-201 Chem-Baroness` reads **yours**; `UNL-116 Poppy, Paragon` and `VEN-091
+Corrupted Dragon` are the other two. A catch-up clause and a closing clause use the same words and
+mean opposite things — check whose score before pairing them.
+
+## 32. Facts for CLAUDE.md from Calm/Mind batch 7
+
+1. **A move by EFFECT reinforces a battlefield mid-combat where a PLAY cannot.** 355.2.a restricts a
+   played unit to your base or a battlefield you control; **449** lets a spell cause a Move with only
+   the source's own restrictions, and **420.3.a** puts the exhaust on the Standard Move alone — so an
+   exhausted body goes battlefield to battlefield with no `[Ganking]`, and 319.6 + 323.2.a put it in
+   that combat's damage step.
+2. **`VEN-034 Resonating Strike` is the rare hidden spell whose 811.1.d.2 restriction coincides with
+   811.1.b's hide** — its own first choice is *"a battlefield you control"*, which is where the hide
+   had to be. Most hidden spells fight that clause; this one does not.
+3. **Six cards Empower themselves without an `[Empower]` cost and four are legends**; of the two
+   units, `VEN-092 Renekton, Brute` must reach Might 10 first, so **`VEN-028 Mournful Witness` is the
+   only unit in the pool that becomes Empowered for free** (441.1 performs the act, 441.2 makes it
+   permanent, 441.1.b caps it at one).
+4. **Five cards read *"within 3 points of the Victory Score"* and they do not all read the same
+   score**: `OGN-047` and `OGN-079` read the opponent's (a comeback clause), `SFD-201` reads yours (a
+   closing clause), with `UNL-116` and `VEN-091` making up the five.
+5. **Granting `[Tank]` to a body that is NOT the payoff is the mechanism, not a side effect** —
+   815.1.c.2 makes every other unit you control an invalid assignment, which is how a *"if I haven't
+   been dealt damage"* payoff is guaranteed. And that payoff's clause reads *"this turn"*, not *"this
+   combat"*, so a single earlier ping switches it off (143.3.b.2's combat-cleanup heal does not undo
+   the fact that damage was dealt).
