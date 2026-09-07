@@ -1852,3 +1852,84 @@ Four entries in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos` clean over 
 Draven → Glorious Executioner). Cards in **zero** entries before this batch: `OGS-018` Tibbers,
 `SFD-186` Spinning Axe, `OGN-058` Discipline, `OGS-009` Yi Honed — four, leaving **9** of the
 rules-named list.
+
+## 43. Batch 9 — the two leads rc-manager3 routed from rc-walk-order
+
+Both were handed over as **synergy-rule** leads. This session owns no `data/synergies.json`, so both
+were walked into ENTRIES instead, with the rule content stated where the synergies owner can lift it.
+
+### 43.1 `salvage-zaun-punk-gear-kill-reaches-attached-equipment` — 718.2 and 718.5.b point opposite ways
+
+The lead asked for 718.5.b to be checked against the correction found earlier this afternoon (§35.1).
+They do not conflict; they are the two halves of one state:
+
+> **718.2.** *"While in this state, the card's printed Rules Text is Inactive."* (with 721.2: an
+> Inactive Ability *"cannot be activated"*)
+> **718.5.b.** *"Attached cards still can be chosen or targeted by game effects while Attached."*
+
+**An Equipment on a body is text you cannot use and a card the opponent can still kill.** That is the
+sentence both facts belong in.
+
+And killing it takes back everything it was lending in one action: **137.3.a** stops the Might Bonus
+*"as soon as the card with the Might Bonus is no longer Attached"*, and 718.3 / 719.1 append the Effect
+Text only *"for as long as they remain Attached"*.
+
+`OGN-224 Salvage` (Order, E2 P1, **[Action]**, *"You may kill up to one gear. Draw 1."*) is therefore
+the answer to the Equipment scoring family that arrives **in time**: 806.1.b puts it inside the opened
+Combat, before 465.2.c reads Might and before `SFD-115 Trinity Force`'s *"When I hold, score 1 point"*
+can be placed. *"Up to one"* means it is never a dead card, and it replaces itself.
+`SFD-160 Zaun Punk` is the Main-Phase two-for-one, gated by **203.3** — with no gear of your own the
+additional cost cannot be paid and the kill clause fails.
+
+One distinction the entry makes explicitly, because the batch-8 walk needed it: an **unattached**
+Equipment is a different object on a different clock — `SFD-186 Spinning Axe` prints *"[Temporary] (If
+this is unattached...)"*, so killing the carrier and letting 816.1.b finish is free.
+
+### 43.2 `blast-of-power-action-removal-bloodless-conquer` — 155 is the ladder's spine
+
+The lead's spine is right, and the sharp form is a contrast rather than a synergy:
+
+> **155.** *"A spell can be played during an Open State outside of Showdowns on its controller's
+> turn."* — the default. **806.1.b** is the exception: [Action] *"grants the corresponding card or
+> effect permission to be played or activated during Showdowns, even when it is not the Controlling
+> player's turn."*
+
+So `OGN-229 Vengeance` (E4 + 2 Power, *"Kill a unit."*, no location clause and no gate) is **cheaper
+and strictly wider in what it can kill, and can never take a battlefield**, because the #118 chain
+needs the spell inside an opened Combat. `OGS-012 Blast of Power` (E6 + 1 Power, *"Kill a unit at a
+battlefield"*, [Action]) is worse at everything except the one thing that scores.
+
+The chain, quoted end to end: 465.1 — *"If both Attacking and Defending units remain at this
+battlefield, the following Tasks become Outstanding"* — so with the defence empty **no damage is
+assigned at all**; 466.3.a — *"A Player has won a combat if they received either the attacker or
+defender designation and are the only Player that has units remaining at this battlefield during this
+step"*; 466.5 establishes Control and 466.5.d — *"Establishing Control results in a Conquer if that
+player has not yet scored this Battlefield this turn."*
+
+Three things the entry pins down: a bloodless Conquer generates **zero** excess damage (465.1's tasks
+never become Outstanding), so this family and the six excess-damage cards are mutually exclusive in
+principle; the ceiling is **two Conquers a turn** (469.1 + 470 + 485.4) whatever you spend, so three
+copies are not three Conquers; and an ATTACKER has to be standing there when the last defender dies
+(466.3.a asks who *"has units remaining"*), which is why `OGN-219 Vanguard Sergeant` is in `uses[]`
+and not in a notable.
+
+### 43.3 The narrowing rc-walk-order sent, applied to a claim from batch 7
+
+`mageseeker-warden-vengeance-base-kill` (§39.3, already merged) said Vengeance is *"the only
+unconditional, repeatable, spell-speed kill that reaches a base"* and listed the family it swept. The
+sweep was **too narrow**: two more Order cards omit *"at a battlefield"* — `UNL-180 The Ruination`
+(*"Kill all units"*, E9 P3) and `VEN-131 Decree of Unity` (*"Kill an enemy Chaos unit or gear"*,
+E2 P1). The honest headline is rc-walk-order's: **Vengeance is the only SINGLE-TARGET, UNGATED kill
+spell with no location clause.** The entry's conclusion survives; the substantive miss is that The
+Ruination also reaches a base and clears the whole pile for E9 + 3 Power, which belonged in that
+entry as a named alternative. Reported to the manager for the edit.
+
+This is the standing rule working as designed: the claim named its members, and another lane refuted
+it with one grep inside the hour. **Write the base codes into a card-count claim** — it is the only
+way a wrong one dies quickly.
+
+## 44. Batch 9 — staged
+
+Two entries in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos` clean over 566 entries;
+`test/legend-lines.test.ts` clean. Cards in **zero** entries before this batch: `OGN-224` Salvage,
+`SFD-160` Zaun Punk, `OGS-012` Blast of Power, `OGN-219` Vanguard Sergeant.
