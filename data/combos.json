@@ -32427,6 +32427,228 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 18, and the last entry of the slice. OGN-244 Divine Judgment was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 161.2.b, 416.1.a, 416.1.c, 416.5, 702.3 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. Card set OGN-235 + OGN-244 is not an existing uses[] set. No unruled reading. 416.1.c is the reusable finding and it cuts two ways: it is why a symmetric wipe is one trigger, and why UNL-103 Disposal Order — which the matrix lists as a Karma partner — is a false positive that fires her never."
+    },
+    {
+      "id": "startipped-peak-rune-count-empower",
+      "name": "The refusal is reversed by the partner: an [Empower] priced in runes you CONTROL never needs the rune to be ready",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-288",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When you hold here, you may channel 1 rune exhausted.' In zero entries before this walk — it was refused twice, in #102 and again in the #153 walk, on the ground that the rune is neither ready nor spendable that turn."
+        },
+        {
+          "card": "VEN-032",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Calm unit, E3 M3. '[Empower] 12 Energy. This ability costs 1 Energy less for each rune you control. [Empowered][>] I have +3 Might.' In zero entries before this walk."
+        },
+        {
+          "card": "VEN-050",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Mind unit, E4 M4. '[Empower] 12 Energy. This ability costs 1 Energy less for each rune you control. [Empowered][>] I have [Deflect] and [Shield 3].' In zero entries before this walk. Same discount clause, a different Empowered body."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Mind, which the census gives four legend names and eight base codes: OGN-255 / OGN-303 Nine-Tailed Fox (Ahri), SFD-189 / SFD-244 Fire Below the Mountain (Ornn), UNL-189 / UNL-230 Bashful Bloom (Lillia), VEN-145 / VEN-192 Curator of the Sands (Nasus). Startipped Peak is Colorless and costs no domain (103.4). Nothing here is Signature.",
+          "Startipped Peak has to be the battlefield in play, and 485.5 selects one of the three at random — the entry's own biggest caveat, stated in prerequisites.notable per the project's battlefield rule."
+        ],
+        "notable": [
+          "WHY THE TWICE-RECORDED REFUSAL DOES NOT APPLY HERE, AND THIS IS THE ENTRY. #102 and the #153 orphan-rules walk both refused Startipped Peak with the same argument: the Hold fires in the Scoring Step (315.2.b.2), Awaken (315.1) has already finished so 315.1.b cannot ready the channelled rune, and 164.2.b's Power would land in the Beginning Phase only for 167 to empty the pool at the start of the Main Phase. Every word of that is true and none of it bites on these two partners, because their discount clause does not ask the rune to be READY or to be SPENT. It reads *'for each rune you CONTROL'*. An exhausted rune on the board is a rune you control. The extra rune is worth 1 Energy off the [Empower] cost the instant it is channelled, on the same turn, with nothing readied and nothing spent.",
+          "THE CEILING AND THE SHAPE OF THE CURVE. 161.2.a fixes the Rune Deck at 'Exactly 12 Rune cards', so 'runes you control' tops out at 12 and the [Empower] cost bottoms out at 0. 315.3.b channels 2 a turn (430.4.a) and 430.3 channels as many as possible when the deck runs short, so an untouched deck reaches 12 runes on turn six and both partners Empower for free from then on. Startipped Peak moves that forward by one rune per Hold — held from turn three, it is a turn earlier; and, far more importantly, it is what keeps the number there.",
+          "THE REAL WORK IS THE REFILL, BECAUSE POWER EATS THE DISCOUNT. 164.2.b lets a rune be recycled for Power and 161.2.b sends it 'to the Rune Deck, not the Main Deck' — so every Power you pay REMOVES a rune from the board and adds 1 Energy back onto the [Empower] cost. A deck that pays 3 Power in a turn has undone 3 Energy of its own discount. The Peak's Hold is the only repeating refill in the pool that costs nothing at all, and that tension — Power spent against runes controlled — is what makes it a line rather than a rounding error.",
+          "441.2 IS WHY THE PAYMENT IS WORTH MAKING ONCE. 'Empowered is a state for Game Objects on the board that other game effects and abilities can reference', and 441.1.a makes it binary. So the Empower is permanent: pay it at the moment the rune count is highest and the +3 Might, or the [Deflect] and [Shield 3], stay for the rest of the game. 441.1.b ('An Empowered Game Object can not be Empowered') is also why three copies of each is three separate payments, not one cheaper one.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. On the turn you control 8 runes, either [Empower] costs 12 - 8 = 4 Energy. Frostcoat Mother then stands at M6 for a total of E3 + 4; Grumpy Rockbear at M4 with [Deflect] and [Shield 3] — 814.1's granted Shield making him a M7 defender — for E4 + 4. With the Peak held from turn three you are at 8 runes a full turn earlier than a deck without it, and at 12 while a Power-hungry deck is sliding back to 9.",
+          "THE RUNE ARRIVES EXHAUSTED AND THAT IS FINE, BUT SAY WHAT IT COSTS. 430.2.a's default is that runes are channelled ready unless the effect says otherwise, and the Peak says 'exhausted'. So the extra rune pays no Energy this turn and no Power this turn; it is a COUNTER for the discount now and a resource from your next Awakening (315.1.b). An entry that priced it as mana would be the refusal the walks already made.",
+          "WHAT REFUTES IT. (a) 485.5 selects the battlefield at random from the three each player provides, and 103.4.c forbids more than one battlefield of a name, so the Peak is not guaranteed to be on the table. (b) The Peak's trigger is a Hold, so it pays nothing on a turn you control no battlefield. (c) Neither partner scores; this is a resource engine whose product is a permanently Empowered body, and 441.2 is the only reason that product does not expire."
+        ]
+      },
+      "steps": [
+        "Provide Startipped Peak as one of your three battlefields (103.4.c); 485.5 decides whether it is the one in play.",
+        "Play Frostcoat Mother (E3) and/or Grumpy Rockbear (E4). 143.4 makes each enter exhausted; nothing in this line asks them to move.",
+        "Every turn, 315.3.b channels 2 runes in your Channel Phase (430.4.a).",
+        "Every Beginning Phase you control the Peak, 315.2.b.2 Holds it and its trigger offers 'channel 1 rune exhausted'. Take it: the rune is a rune you CONTROL from that instant, exhausted or not.",
+        "In the Main Phase, count the runes on the board and pay the [Empower]: 12 Energy minus that count (356.6 floors it at 0). At 8 runes it is 4 Energy; at 12 it is free.",
+        "441.1.a and 441.2 make Empowered a permanent board state: the +3 Might, or the [Deflect] and [Shield 3], never expire and never have to be paid again."
+      ],
+      "netPerIteration": "one extra rune on the board per Hold, which is 1 Energy off every rune-priced [Empower] in the deck, permanently and with nothing readied or spent",
+      "terminatesIn": "engine only — 161.2.a caps the board at 12 runes and 356.6 floors the cost at 0; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule startipped-peak-rune-ramp (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06, orphan synergy rules (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md) — the refusal this entry reverses",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170). startipped-peak-rune-ramp was REFUSED twice — by #102 and again by the #153 orphan-rules walk, both on the ground that the channelled rune is neither readied that turn (315.1 precedes 315.2.b.2) nor spendable before 167 empties the pool. This entry reverses the verdict by reading the rule's own two partners, which #153 never opened: VEN-032 Frostcoat Mother and VEN-050 Grumpy Rockbear price their [Empower] at '1 Energy less for each rune you CONTROL', a count and not a payment, so an exhausted rune is worth its full discount immediately. All three cards were in zero entries. The legend list was computed from cards.json (calm + mind over the 94 legend base codes), not typed. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.4, 103.4.c, 143.4, 161.2.a, 161.2.b, 164.2.b, 167, 315.1, 315.1.b, 315.2.b.2, 315.3.b, 356.6, 430.2.a, 430.3, 430.4.a, 441.1.a, 441.1.b, 441.2, 485.5, 814.1. Ban check: OGN-288, VEN-032 and VEN-050 carry no [BANNED marker. Arithmetic against its own declared quantities: 12 minus runes controlled; 4 Energy at 8 runes, 0 at 12. Trap check: the rune is channelled EXHAUSTED and pays no mana that turn — the entry says so rather than pricing it as ramp; the battlefield is chosen at random (485.5) and is named in prerequisites.notable; no token, no [Temporary], no [Repeat], no buff. Depends on no unruled reading."
+    },
+    {
+      "id": "peak-guardian-bilgewater-bully-ganking-buff",
+      "name": "One play turns a buff into a permanent keyword — and 702.3 is why it can only ever happen once per body",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-223",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order unit, E6 + 1 Order Power, M5. 'When you play me, buff me. Then, if I am at a battlefield, buff all other friendly units there.' The pool's mass buff that costs no card beyond the body itself."
+        },
+        {
+          "card": "OGN-125",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E6 M6. 'While I'm buffed, I have [Ganking].' One of only two cards in the pool that want to CARRY a buff rather than spend one; the buff is a counter, so the keyword lasts as long as it is not spent."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Body + Order. Computed over the 94 legend base codes in cards.json, that is five legend names and nine base codes: OGN-269 / OGN-310 The Boss (Sett), OGS-023 Might of Demacia - Starter (Garen), SFD-205 / SFD-251 Grand Duelist (Fiora), UNL-203 / UNL-237 Keeper of the Hammer (Poppy), VEN-153 / VEN-196 Matriarch of War (Ambessa). Nothing here is Signature (103.2.d.2).",
+          "A battlefield you already control, because Peak Guardian's second sentence is conditional on where he lands and 355.2.a's default play locations are 'the controller's Base or a Battlefield the controller controls'."
+        ],
+        "notable": [
+          "CARRYING A BUFF AND SPENDING ONE ARE OPPOSITE USES OF THE SAME COUNTER, AND THIS ENTRY IS THE CARRY SIDE. 702.2.a: 'To Buff a Unit, a player chooses a Unit and then places a buff on it. That Unit is Buffed for as long as the buff remains on it.' 702.2.b: 'Spending a Buff removes a single Buff counter from a Unit.' Bilgewater Bully's [Ganking] lasts exactly as long as the counter does, so every buff-spender in the pool — Call to Glory, Albus Ferros, Fae Dragon, Sett Brawler's own +4 — switches it back off. A deck picks one side, and this one never spends.",
+          "702.3 IS BOTH THE CEILING AND THE REASON PEAK GUARDIAN IS THE RIGHT BUFFER. 'There can only be one Buff on a Unit at a time', and 702.3.a: 'If a Buff is added, or instructed to be added, on a Unit that already has a Buff, it is not placed instead.' So a second Peak Guardian buffs nobody who is already buffed, and no amount of buffing makes the Bully more than M7 with [Ganking]. What Peak Guardian gives that a single-target buffer does not is BREADTH: one play buffs him AND every other friendly unit standing there, in one trigger, for no extra card.",
+          "THE ONE PRINTED EXCEPTION IS NOT IN THIS LIST. OGN-078 Lee Sin, Ascetic prints 'I can have any number of buffs' and rule 002 makes card text beat rules text, so he ignores 702.3 — he is Calm, outside this identity, and is named here only so the cap is never restated without its exception.",
+          "WHAT THE KEYWORD IS ACTUALLY WORTH. 810.1.c.3: '[Ganking] does not give additional abilities or activations of Movement, only new options for the Standard Move', and 144.4.c.1 is that option — battlefield to battlefield. So the Bully does not move twice; he moves ONCE, to a destination 144.4.a and 144.4.b would not have allowed, without the detour through his base. In a Duel (485.4) that is one alternative destination per turn, every turn, permanently, for a counter that was placed for free.",
+          "WHERE PEAK GUARDIAN LANDS DECIDES WHETHER HE DOES ANYTHING. 'Then, IF I AM AT A BATTLEFIELD' is a condition on the second sentence: played to your base he buffs only himself. 355.2.a's defaults are the base or a battlefield you control, and 822.1.b's [Ambush] — which he does not have — is the keyword that would grant a battlefield where you have units but do not control it. So the Bully has to be standing at a battlefield you already control when the Guardian is played.",
+          "COST, WITH THE QUANTITIES DECLARED. Peak Guardian E6 + 1 Order Power, Bilgewater Bully E6 — both are top-end bodies, and the entry's product is a permanent keyword and a garrison-wide +1 Might, not tempo. 143.4 makes each enter exhausted, so the Bully has to have been played a turn earlier to be standing where the Guardian needs him.",
+          "WHAT REFUTES IT, AND THE CONTRAST WITH THE CATALOGUED LINE. (a) blind-monk-wizened-elder-bilgewater-bully already runs the Bully, but under OGN-257 Blind Monk (Calm/Body), whose legend hands out a buff every turn and whose identity admits BOTH 'While I'm buffed' statics. This entry cannot: OGN-065 Wizened Elder is Calm, and Calm + Body + Order is three domains (103.1.b). What it buys instead is the Body/Order identity, where the Blind Monk line is illegal. (b) One removal spell on the Bully undoes the whole payment. (c) The Guardian's trigger is 'when you play me', so 818.1's separation of playing from attaching is not in question here — but neither is there any way to fire it twice."
+        ]
+      },
+      "steps": [
+        "An earlier turn: play Bilgewater Bully (E6) and walk him to a battlefield you control (144.4.a; his exhaust is the cost, 144.2 / 420.3.a). He is M6 with no keyword.",
+        "A later Main Phase: play Peak Guardian (E6 + 1 Order Power) to that same battlefield — a valid location by 355.2.a because you control it.",
+        "His trigger resolves: buff himself (M5 to M6), then, because he is at a battlefield, buff every other friendly unit there. 702.2.a places one counter on each unbuffed body, and 702.3.a skips any that already carries one.",
+        "Bilgewater Bully is now buffed: M7 by 703, and 'While I'm buffed, I have [Ganking]' is live for as long as the counter sits.",
+        "From this turn on, his Standard Move may go battlefield to battlefield (144.4.c.1) instead of only to and from his base — one move a turn, to a destination he could not otherwise reach.",
+        "Never spend the buff. 702.2.b removes the counter and the keyword with it."
+      ],
+      "netPerIteration": "a permanent +1 Might and [Ganking] on the Bully, plus a +1 Might buff on every other body standing there, for one play and no card spent afterwards",
+      "terminatesIn": "engine only — 702.3 allows one buff per unit ever, so this is a single placement per body; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule peak-guardian-buffed-payoff (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the orphan synergy rule peak-guardian-buffed-payoff, whose two partners are the pool's only two 'While I'm buffed' statics. The catalogued Bully line runs under OGN-257 Blind Monk (Calm/Body) and takes both statics; this one takes only OGN-125 and opens the Body/Order identity instead, where that line is illegal by 103.1.b. The companion rule wizened-elder-buffed-payoff, anchored on OGN-207 Call to Glory, is REFUSED in the walk document: Call to Glory's free mode spends a buff (702.2.b), which is precisely what switches both statics off. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 002, 103.1.b, 103.1.b.2, 103.2.d.2, 143.4, 144.2, 144.4.a, 144.4.b, 144.4.c.1, 355.2.a, 420.3.a, 485.4, 702.2.a, 702.2.b, 702.3, 702.3.a, 703, 810.1.c.3, 818.1, 822.1.b. Ban check: OGN-223 and OGN-125 carry no [BANNED marker. Trap check: 702.3 caps a unit at one buff, with OGN-078 Lee Sin, Ascetic named as the one printed exception (out of identity here); [Ganking] adds a destination, not a move (810.1.c.3); the Guardian's second sentence is conditional on landing at a battlefield; no token, no [Temporary], no [Repeat]. Depends on no unruled reading."
+    },
+    {
+      "id": "trevor-shadow-watcher-scheduled-death-ready",
+      "name": "A [Temporary] Sprite is a death you can put in the calendar, and it is the only way to make 'I enter ready' fire every single turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-048",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M3, [Shield]. 'When I hold, play a ready 3 Might Sprite unit token with [Temporary] here. (Kill it at the start of its controller's next Beginning Phase, before scoring.)' The Sprite's death is scheduled by the token itself."
+        },
+        {
+          "card": "UNL-037",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm unit, E4 + 1 Calm Power, M5. 'If a friendly unit died during your Beginning Phase this turn, I enter ready.' In zero entries before this walk. Its condition is otherwise a coincidence; here it is a schedule."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so ANY legend whose two domains include Calm runs the line (103.1.b.1). Nothing here is Signature (103.2.d.2).",
+          "One battlefield Trevor holds. The first Sprite arrives on the first Hold, and the schedule starts from the Beginning Phase after that."
+        ],
+        "notable": [
+          "THE SCHEDULE, PARAGRAPH BY PARAGRAPH. 816.1.b: [Temporary] is 'functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this\"', and 816.1.c makes the Trigger Condition 'the controller of the permanent's Beginning Phase starting'. So last turn's Sprite dies INSIDE your Beginning Phase, before 315.2.b.2's Hold — which is exactly the window Shadow Watcher reads: 'If a friendly unit died during your Beginning Phase this turn.' The Hold then makes a fresh Sprite, and the cycle repeats for as long as Trevor holds.",
+          "WITHOUT THE SPRITE THE CONDITION IS A COINCIDENCE. A friendly unit dying inside YOUR OWN Beginning Phase is not something ordinary play produces: 315.1 Awaken and 315.2 Beginning Phase come before 316's Main Phase, so nothing you cast that turn can cause it, and combat is a Main Phase event. The only repeatable causes in the pool are [Temporary] bodies, whose whole definition is a death at that instant. Trevor is the one that makes a NEW one every turn at no cost.",
+          "WHAT 'I ENTER READY' IS AND IS NOT. 143.4: 'Units enter the Board exhausted.' 143.4.a allows that to be altered, and this is such an alteration. It is NOT a ready — 415.1 defines Readying as marking a Game Object already on the board, and #56's sweep of the pool established that the 48 'enters ready' cards can never give an exhaust back. What it buys is precisely one thing: Shadow Watcher can pay 144.2's exhaust for a Standard Move on the turn he lands, so a M5 body can be played and walked into an open battlefield in the same Main Phase (144.4.a) and Conquer it that turn (323.8, 323.12, 348.2.a, 348.2.a.1).",
+          "THE SPRITE IS A TOKEN, AND IT STILL DIES. 185 — 'Tokens are not cards' — and 186.1 makes it cease to exist the moment it enters a Non-Board Zone, so it never reaches the trash and can never be recycled or reanimated. But the DEATH event happens, which is all Shadow Watcher's clause asks for; the same fact is what makes UNL-199 Deceiver's [Temporary] Reflection a feed for 'when a friendly unit dies' payoffs elsewhere in the catalogue.",
+          "THE SPRITE IS PRINTED READY AND ARRIVES AT TREVOR'S BATTLEFIELD. 'Play a READY 3 Might Sprite unit token with [Temporary] HERE' — so it is a 3-Might body that can move or fight the turn it appears, standing where the Hold happened rather than at your base, which is the walk-to-the-battlefield bottleneck this project has recorded since #48. It also means the garrison is one body wider every turn, at the price of it evaporating each Beginning Phase.",
+          "COST AND RATE, WITH THE QUANTITIES DECLARED. Trevor E3, Shadow Watcher E4 + 1 Calm Power. From the second Hold onward the schedule is unbroken, so each of three Shadow Watchers enters ready on any turn you choose. Three copies is three same-turn Conquers over a game (103.2.b), and 470 with 485.4 caps any one turn at two.",
+          "WHAT REFUTES IT. (a) Break the chain and the payoff is gone: if Trevor stops holding — he dies, or you lose the battlefield — no Sprite is made, so nothing dies next Beginning Phase and Shadow Watcher enters exhausted like anything else. (b) Trevor is M3 with [Shield] (+1 while defending), so he is a soft link. (c) The Sprite cannot be saved: 816.2 makes further instances of [Temporary] redundant and nothing in the pool removes the keyword; UNL-199 Deceiver's 'Your [Temporary] effects at my battlefield don't trigger' (R10 = A) would switch the schedule OFF, not preserve the body."
+        ]
+      },
+      "steps": [
+        "Play Trevor Snoozebottom (E3) and walk him to a battlefield you control (144.4.a, 144.2).",
+        "At your next Beginning Phase, 315.2.b.2 Holds it. Trevor's trigger plays a ready 3 Might Sprite unit token with [Temporary] at that battlefield.",
+        "At the Beginning Phase after that, 816.1.b kills the Sprite 'before scoring' — a friendly unit has died during your Beginning Phase this turn — and then the Hold makes a fresh one.",
+        "In that turn's Main Phase, play Shadow Watcher (E4 + 1 Calm Power). His condition is met, so he enters READY rather than exhausted (143.4.a).",
+        "Standard-Move him straight into an open battlefield the same turn (144.4.a; his own exhaust is the cost, 144.2 / 420.3.a). Contested applies (190.3.a.1, 450).",
+        "The next Cleanup stages a Showdown and no Combat (323.8, 323.9); 323.12 opens it; 348.2.a and 348.2.a.1 Conquer it and 471.1 pays a point — on the turn he was cast."
+      ],
+      "netPerIteration": "a 3 Might body at your battlefield every turn, and a scheduled death that lets a 5 Might unit be played and take a battlefield in the same Main Phase",
+      "terminatesIn": "engine only — the Sprite evaporates each Beginning Phase and three Shadow Watchers is three same-turn Conquers a game (103.2.b); nothing here scores beyond the Conquer",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule shadow-watcher-temporary-death-window (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the orphan synergy rule shadow-watcher-temporary-death-window. UNL-037 Shadow Watcher was in zero entries. The contribution is that its condition — a friendly unit dying inside YOUR OWN Beginning Phase — is unreachable by ordinary play, since 315.1 and 315.2 both precede 316's Main Phase and combat is a Main Phase event; the only repeatable cause in the pool is a [Temporary] body, whose 816.1.b death happens at exactly that instant, and Trevor Snoozebottom makes a fresh one every Hold. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.b, 103.2.d.2, 143.4, 143.4.a, 144.2, 144.4.a, 185, 186.1, 190.3.a.1, 315.1, 315.2, 315.2.b.2, 316, 323.8, 323.9, 323.12, 348.2.a, 348.2.a.1, 415.1, 420.3.a, 450, 470, 471.1, 485.4, 816.1.b, 816.1.c, 816.2. Stands on R10 = A only in a refutation note, not in the line. Ban check: UNL-048 and UNL-037 carry no [BANNED marker. Trap check: the Sprite is a token, so 185 and 186.1 keep it out of every trash, recycle and reanimation line — but the death event still happens, which is all the payoff reads; 'enters ready' is not a ready (415.1) and buys exactly one Standard Move; the Conquer is a Showdown, so no Attacker designation exists and no [Assault] belongs here; no [Repeat]; no buff. Depends on no unruled reading."
     }
   ]
 }
