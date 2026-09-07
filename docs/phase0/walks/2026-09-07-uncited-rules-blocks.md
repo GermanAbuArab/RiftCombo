@@ -540,3 +540,83 @@ not another iteration of the Special Cleanup."* So the Combat Cleanup's added st
 *"Insert '3c. Heal all Units.'"* and 466.1.a.2's attacker recall — happen **once** per combat, however
 many deaths that cleanup causes. The project's recall-family finding (#62) assumes exactly this and
 never had the paragraph. No entry; 324.2 is the citation.
+
+---
+
+# Batch 5 — Passive Abilities outside the board, and 206's third worked example
+
+Batch 4's two entries were merged (catalogue at 641). Staging pruned to this batch.
+
+| id | block opened | class |
+|---|---|---|
+| `mirror-image-reflection-atakhan-printed-cost` | **206's third worked example** (printed *or copied* cost) | ENGINE |
+| `void-drone-sarcophagus-zone-discount` | **363–366 Passive Abilities** (+ 393–397) | ENGINE |
+
+`validateCombos` over the merged copy: **0 errors, 643 entries.** `test/legend-lines.test.ts` re-run over
+these two: 6 legend base codes checked, **0 defects.** No duplicate id, no duplicate card set.
+
+## 17. 206 says "printed **or copied**", and Riot works Atakhan + a Reflection to show it
+
+The project cites 206 in dozens of places for one half of it — a cost gate reads the printed cost. The
+**other word in the same sentence has never been used**: *"Effects that need to determine a card's cost
+for any purpose always use its printed **or copied** cost."* And 206's **third** worked example is a
+buildable line:
+
+> Atakhan is a unit that reads in part "You may kill a friendly unit as an additional cost to play me.
+> If you do, I cost [1] less for each Energy it costs and [Y] less for each Power it costs." If a player
+> plays Atakhan and chooses to kill a Reflection token that is currently a copy of Noxus Hopeful,
+> Atakhan will cost [4] less.
+
+`UNL-T06 Reflection` is printed **Might 0** and R27 = A keeps it there, because Might is not copyable —
+but **Cost is** (477.1.b.1.a; 185.3.a.2's example appends *"all copyable traits, including the cost"*).
+So a Reflection is fodder worth its original's price, 185.2.d makes it a legal *"kill a friendly unit"*
+payment, and 816.1.b was going to kill it at your next Beginning Phase anyway. `UNL-200 Mirror Image`
+says *"Choose a unit"* with no controller restriction, so the copied cost may be the **opponent's**
+biggest body — 103.1.b constrains your deck, never what you may choose on the table.
+
+The in-domain fallback is `VEN-064 Plaza Guardian`, printed at 10 Energy and 0 Power, whose own
+*"I cost 1 less for each gear you control"* 206 ignores. 356.6 then floors Atakhan at 0 Energy.
+
+## 18. 363–366 — a cost-altering passive is live in every zone the card can be played from
+
+**366.2 / 366.2.a**: *"Passive Abilities can alter the costs of cards as they are played. These apply at
+all times in any zone from which the card with the ability can be played."* **366.1**'s worked example
+names a pool card: *"Undying Legion has a passive ability that reads '[Legion][>] You may play me from
+your trash for [3][C].' That passive ability only applies when Undying Legion is in the trash."*
+363, 364 and 366 were cited by nothing.
+
+**Members named.** Exactly **two** cards in the pool carry the *"cost less to play from anywhere other
+than your hand"* passive, swept on the corpus: `SFD-010 Void Drone` (Fury, E3) and `SFD-164 Drag Under`
+(Order, E5). And the discount is worth nothing on the five trash/banishment routes that **ignore the
+Energy cost outright** — `OGN-198 The Harrowing`, `OGN-196 Soulgorger`, `UNL-142 Heedless Resurrection`,
+`UNL-179 Rift Herald`'s Deathknell and `SFD-090 The Zero Drive`. The one card that makes it pay is
+`UNL-148 Cursed Sarcophagus`, which prints *"(You must pay its costs.)"*.
+
+**And 206 refuses the obvious upgrade.** The discount is real for **paying** and invisible to any
+**cost gate**: `SFD-140 Fizz, Trickster`'s *"a spell from your trash with Energy cost no more than 3"*
+still reads Drag Under's printed 5, and Heedless Resurrection's *"costs no more Energy … than the killed
+unit"* still reads Void Drone's printed 3. Recorded as a refusal so nobody re-derives it.
+
+## 19. The Showdown block — 342 and 345 are uncited, and 345 is the one worth carrying
+
+341, 342 and 345 are cited by nothing; 343.1, 346.1, 347.1 and 347.2.b already are (5, 17 and 7 uses).
+The unused paragraph with content is **345: *"As a Showdown begins, the player who applied Contested
+status to the Battlefield gains Focus."*** — with 464.2.c.1 making that player the **Attacker**, so in
+every combat showdown in this catalogue the attacker acts first and the defender's [Action] answer comes
+second. No entry in the catalogue states who holds Focus first.
+
+Its companions, for completeness: **342** makes a Showdown a Window of Opportunity where players play
+spells *"in an alternating fashion"*; **343.1.a / 343.1.b** are why [Action] and [Reaction] exist at all
+(*"Cards of all Categories, by default, cannot be played during a Showdown State"*, and the same for
+card abilities); **347.2.a** ends the Showdown when *"all Players have passed once in sequence"*.
+
+## 20. Running tally of this slice
+
+Entries: **10** across five batches, all ENGINE, all merged or staged. Blocks opened that the project had
+never cited: 432 Double, 433 Swap, 476.2/476.3 Layers, 719.5 / 718.1 / 718.4 / 457.1 Attachment and
+Recalls, 465.2.c.6–c.10 damage assignment, 764–767 Ignoring Effects, 386–388 Reflexive Triggers,
+750–755 Making New Choices, 734–738 Additional Turns, 389–392 Delayed Abilities, 358 Check Legality,
+393–397 Linked Abilities, 363–366 Passive Abilities, and the *"or copied"* half of 206.
+
+Blocks read and returned empty, with the reason: 443 Skip, 418 Heal, 451/452/453, 478/479 Dependency,
+741–749 Counters, 324 Special Cleanups, 413/440 Draw and Burn, and the already-cited half of 341–348.
