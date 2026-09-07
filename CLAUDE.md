@@ -139,6 +139,7 @@
   unique name") both forbid it. Issue #35 (2026-09-05) was opened believing the Core Rules were silent on this;
   they are not — 103.2.b is the Main Deck cap, the battlefield cap is three paragraphs further down. Every entry
   that needs a specific battlefield states this in `prerequisites.notable`, per format.
+- **`basis.combos` means "the verified entries this rule was extracted from", which is NOT the same as "entries whose `uses[]` contain the anchor" — and the file holds both kinds.** Measured 2026-09-07 over 386 references: 27 point at an entry that does not run the anchor card, because the entry demonstrates the same MECHANISM with a different payoff (`tryndamere-excess-damage-might-reduction` -> `sivir-ambitious-frigid-touch-excess`, `dauntless-vanguard-occupied-battlefield-assault` -> `stare-down-arachnoid-horror-lone-survivor`). Both readings are legitimate and neither is a defect; what is a defect is a batch claiming it verified the anchor is present when two of its 77 new references are of the other kind. State which kind you are adding, and do not "fix" the existing ones.
 - A rule that matches most of the pool is a fact about the pool, not a pairing. "Retreat replays any play effect" measured 132 and was narrowed to play effects that leave another permanent behind (14).
 - UI lives in the deck panel **below** "What to add", so #18 keeps the placement the user chose.
 
