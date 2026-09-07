@@ -41167,6 +41167,159 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #170, from `back-alley-bar-any-mover` and the Core-Rules-named sweep; OGS-009 Yi, Honed was in zero entries. Card text verbatim from data/corpus_flat.txt. The content is 144.4 read against a departure rider: without [Ganking] the only legal departure from a battlefield is to the base, where a '+1 Might this turn' is worthless, so the rider is only worth anything to a Ganking body or an effect mover. Trap check: 810.1.c.3 is cited so [Ganking] is not claimed as a second move; 143.4 is cited so 'I enter ready' is priced rather than decorative; the +1 is stated as a modifier and not a Buff, expiring at 317.2.c; the battlefield's symmetry and its 485.5 randomness are both stated; the contrast with the existing effect-mover entry is named."
+    },
+    {
+      "id": "salvage-zaun-punk-gear-kill-reaches-attached-equipment",
+      "name": "718.2 makes an attached Equipment's text unusable and 718.5.b keeps the card KILLABLE — which is why an [Action] gear kill answers an Equipment BURST inside its own combat",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-224",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order spell, E2 P1. '[Action] (Play on your turn or in showdowns.) You may kill up to one gear. Draw 1.' The [Action] is what puts it inside an opened Combat (806.1.b), the 'up to' means it is never a dead card, and the draw means it replaces itself."
+        },
+        {
+          "card": "SFD-160",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order unit, E3 M3. 'You may kill a friendly gear as an additional cost to play me. When you play me, if you paid the additional cost, kill a gear.' The Main-Phase, two-for-one version: a gear of yours that has done its job pays for killing one of theirs, and a 3 Might body comes with it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.1 is satisfied by any legend with Order as one of its two domains. Neither is Signature, so 103.2.d.2 imposes nothing."
+        ],
+        "notable": [
+          "THE TWO HALVES OF ATTACHMENT, AND THEY POINT OPPOSITE WAYS. 718.2: 'While in this state, the card's printed Rules Text is Inactive', and 721.2 adds that an Inactive Ability 'cannot be activated' — so an attached Equipment can never pay its own [Equip] to escape. 718.5.b: 'Attached cards still can be chosen or targeted by game effects while Attached' — so it is still a legal target for a gear kill. An Equipment on a body is text you cannot use and a card the opponent can still take away.",
+          "AND KILLING IT TAKES BACK EVERYTHING IT WAS LENDING. 137.3.a: a Might Bonus 'is applied while Attached and stops applying as soon as the card with the Might Bonus is no longer Attached'; 718.3 and 719.1 append the Effect Text only 'for as long as they remain Attached'. So one kill removes the Might Bonus AND the appended trigger in the same action.",
+          "WHICH IS THE ANSWER TO THE EQUIPMENT SCORING FAMILY, AND [ACTION] IS WHY IT ARRIVES IN TIME. 806.1.b: '[Action] grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' So Salvage kills `SFD-115 Trinity Force` before its 'When I hold, score 1 point' can be placed, or kills `SFD-059 Svellsongur` before the copies it was lending are counted — and 465.2.c reads Might at assignment, after the Bonus is already gone.",
+          "IT REACHES AN UNATTACHED GEAR TOO, AND THE DISTINCTION MATTERS FOR ONE CARD. `SFD-186 Spinning Axe` prints '[Temporary] (If this is unattached, kill it at the start of its controller's Beginning Phase...)', so an Axe knocked loose by the carrier's death is already on a clock; killing the carrier and letting 816.1.b finish the job costs nothing at all.",
+          "SALVAGE IS NEVER A DEAD CARD. 'You may kill UP TO one gear. Draw 1.' — with no gear on the board it is a 2-Energy cantrip, which is what makes it maindeckable against a field where only some decks carry Equipment. 055's 'ignore impossible instructions' is not even needed; the card says 'up to'.",
+          "ZAUN PUNK IS THE MAIN-PHASE HALF AND ITS COST IS 203.3-GATED. 'You may kill a friendly gear as an additional cost' — if you control no gear the additional cost cannot be paid (203.3: an impossible cost cannot be paid), the 'if you paid' clause fails, and you are left with a vanilla E3 3 Might body. Run it beside cheap gear you were spending anyway (a cashed Gold is not available — 187.5's ability kills it as its own cost — but `OGN-120 Seal of Insight` and a spent `UNL-161 Divining Shells` are).",
+          "IT DOES NOT SCORE. Removing an Equipment is denial; the points still come from whatever the deck does with the board it clears."
+        ]
+      },
+      "steps": [
+        "Keep Salvage in hand rather than casting it on sight; its value is the timing, not the effect.",
+        "The opponent attacks or holds with an Equipment carrier. 464.2.c.3 designates the sides and 465.2.c will read each side's summed Might.",
+        "In the Closed State, where 312.2.c gives priority, play Salvage (E2 + 1 Order Power). 806.1.b is the permission to do it in a Showdown on their turn.",
+        "Kill the Equipment. 718.5.b is why it is a legal target even though 718.2 has made its own text Inactive.",
+        "137.3.a removes its Might Bonus at once and 719.1 stops appending its Effect Text, so the carrier shrinks and loses whatever trigger it was borrowing — before 465.2.c reads Might.",
+        "Draw the card the spell replaces itself with.",
+        "On your own Main Phase, Zaun Punk does the same job proactively: pay a spent gear of yours as the additional cost and kill one of theirs, keeping a 3 Might body."
+      ],
+      "terminatesIn": "engine only — one gear killed per Salvage at Showdown speed and one per Zaun Punk in your Main Phase, three of each a game (103.2.b); Salvage replaces itself either way and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "718.5.b. \"Attached cards still can be chosen or targeted by game effects while Attached.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "718.2. \"While in this state, the card's printed Rules Text is Inactive.\" 721.2. \"Inactive Abilities do not trigger, do not apply, and cannot be activated.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "137.3.a. \"The Might Bonus is applied while Attached and stops applying as soon as the card with the Might Bonus is no longer Attached.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from a lead routed by rc-manager3 out of rc-walk-order's mono-Order slice; OGN-224 Salvage and SFD-160 Zaun Punk were both in zero entries. Card text verbatim from data/corpus_flat.txt. The content is that 718.2 and 718.5.b are complementary rather than contradictory — the abilities of an attached Equipment are Inactive, the card itself stays targetable — which is exactly what makes a gear kill the answer to the Equipment scoring family, and [Action] is what makes it arrive before 465.2.c reads Might. Trap check: 'up to one' is quoted so the card is never claimed as a dead draw; Zaun Punk's additional cost is gated by 203.3 and the fodder is named (a cashed Gold is NOT available, since 187.5 kills it as its own cost); the Spinning Axe case is called out because an unattached Equipment is a different object on a different clock (816.1.b)."
+    },
+    {
+      "id": "blast-of-power-action-removal-bloodless-conquer",
+      "name": "155 is what separates the Order removal ladder — Vengeance is cheaper and wider and can never take a battlefield, because the Conquer happens inside the Showdown",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-012",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order spell, E6 P1. '[Action] (Play on your turn or in showdowns.) Kill a unit at a battlefield.' More expensive and narrower than Vengeance in every way except the one that matters here: 806.1.b lets it be played inside an opened Combat."
+        },
+        {
+          "card": "OGN-219",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 M4, and the pool's only mono-Order card with no rules text at all. It is in uses[] because the chain needs an ATTACKER standing there when the last defender dies — 466.3.a asks who has units remaining, and a spell cannot answer that on its own."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.1 is satisfied by any legend with Order as one of its two domains. Neither is Signature, so 103.2.d.2 imposes nothing."
+        ],
+        "notable": [
+          "155 IS THE WHOLE LADDER: 'A spell can be played during an Open State outside of Showdowns on its controller's turn.' That is the default, and [Action] is the exception (806.1.b: 'permission to be played or activated during Showdowns, even when it is not the Controlling player's turn'). So `OGN-229 Vengeance` — E4 + 2 Power, 'Kill a unit', no location clause and no gate — is cheaper and strictly wider in WHAT it can kill, and it can never do this job, because it cannot be played once the Combat has opened.",
+          "THE CHAIN, IN ORDER. Move in (190.3.a.1 applies Contested), 323.9 stages the Combat, 323.13 opens it; inside the Showdown, kill the last defending unit; 465.1 makes the damage tasks Outstanding only 'If both Attacking and Defending units remain at this battlefield', so with the defence empty no damage is assigned at all; 466.3.a: 'A Player has won a combat if they received either the attacker or defender designation and are the only Player that has units remaining at this battlefield during this step'; 466.5 establishes Control and 466.5.d — 'Establishing Control results in a Conquer if that player has not yet scored this Battlefield this turn.'",
+          "A BLOODLESS CONQUER GENERATES ZERO EXCESS DAMAGE. 465.1's tasks never become Outstanding, so nothing is assigned and R28's 'attacking Might that never got assigned' has nothing to measure — the removal-conquer family and the six excess-damage cards are mutually exclusive in principle, not merely by domain.",
+          "AND IT IS CAPPED AT TWO A TURN WHATEVER YOU SPEND. 469.1 defines a Conquer at a battlefield 'not yet Scored this turn', 470 caps Scoring once per battlefield per turn and 485.4 puts two battlefields on a Duel table. Three Blasts of Power do not buy three Conquers.",
+          "THE ATTACKER HAS TO SURVIVE TO THE STEP, WHICH IS WHY A BODY IS IN uses[] AND NOT IN A NOTABLE. 466.3.a asks who 'has units remaining'; if the defender's removal answers yours first there is no winner and 466.3.d is No Result. Vanguard Sergeant is chosen for being the cheapest mono-Order body with no text to lose — the line wants a garrison, not a payoff.",
+          "TWO NAMED MEMBERS OF THE SAME FAMILY ARE BANNED IN BOTH FORMATS (`OGN-168 Fight or Flight` and `SFD-122 Called Shot`, both marked `[BANNED constructed:banned, 2v2:banned]` in `data/corpus_flat.txt`), which is worth knowing before a list is built on the shape.",
+          "AND THE LADDER'S OTHER RUNGS ARE PRICED THE SAME WAY: `SFD-158 Sandshifter` is a body and gated at Might 3; `VEN-131 Decree of Unity` is E2 + 1 Power and gated on an enemy Chaos unit or gear; `OGN-225 Solari Chief` kills at any Might but needs the target already stunned, and 423.1.a.2 clears a stun at cleanup step 3d so both halves must be cast the same turn. Blast of Power is the only rung that is both ungated and playable in a Showdown."
+        ]
+      },
+      "steps": [
+        "Garrison a battlefield of yours and keep Blast of Power in hand; the line is played on YOUR turn, into a battlefield the opponent holds with a small garrison.",
+        "Move Vanguard Sergeant (and whatever else) in. 190.3.a.1 applies Contested and 464.2.c.1 makes you the Attacker; 323.9 stages the Combat and 323.13 opens it.",
+        "In the Showdown, play Blast of Power (E6 + 1 Order Power) and kill the last defending unit. 806.1.b is the permission; 155 is why Vengeance could not have been held for this window.",
+        "The Showdown closes. 465.1's damage tasks require both Attacking and Defending units to remain, and they do not, so no damage is assigned and nothing of yours dies.",
+        "466.3.a gives you the combat: you are the only player with units remaining. 466.5 establishes Control and 466.5.d makes it a Conquer.",
+        "Any 'when you conquer' text on the bodies standing there fires (383.4.c.2.a puts a unit's Conquer ability on the Chain for the units present when control is gained), and 470 refuses a second Score at that battlefield this turn."
+      ],
+      "terminatesIn": "engine only — one Conquer with no damage per Blast of Power, hard-capped at two Conquers a turn by 470 with 485.4; three copies a game (103.2.b) and the entry supplies the Conquer rather than the point",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "155. \"A spell can be played during an Open State outside of Showdowns on its controller's turn.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "465.1. \"If both Attacking and Defending units remain at this battlefield, the following Tasks become Outstanding, in the specified order:\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "466.3.a. \"A Player has won a combat if they received either the attacker or defender designation and are the only Player that has units remaining at this battlefield during this step.\" 466.5.d. \"Establishing Control results in a Conquer if that player has not yet scored this Battlefield this turn.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from a lead routed by rc-manager3 out of rc-walk-order's mono-Order slice; OGS-012 Blast of Power and OGN-219 Vanguard Sergeant were both in zero entries. Card text verbatim from data/corpus_flat.txt. The content is the ladder's spine: 155 makes a plain spell your-turn-and-Open-State-only, so the CHEAPER and WIDER removal (OGN-229 Vengeance, four words and no gate) is the one that cannot take a battlefield, while the expensive narrow one can. Trap check: the attacker body is in uses[] rather than in a notable, because 466.3.a needs units remaining and the matcher and planner must price it; the excess-damage disjointness is stated so the line is not mistaken for a Tryndamere feeder; 470 with 485.4 is named as the hard cap so three copies are not read as three Conquers; the two banned members of the family are named; the other rungs of the ladder are priced with their gates."
     }
   ]
 }
