@@ -620,3 +620,66 @@ Recalls, 465.2.c.6–c.10 damage assignment, 764–767 Ignoring Effects, 386–3
 
 Blocks read and returned empty, with the reason: 443 Skip, 418 Heal, 451/452/453, 478/479 Dependency,
 741–749 Counters, 324 Special Cleanups, 413/440 Draw and Burn, and the already-cited half of 341–348.
+
+---
+
+# Batch 6 — Untargetability, and who holds Focus in a Showdown
+
+Batch 5's two entries were merged (catalogue at 648). Staging pruned to this batch.
+
+| id | block opened | class |
+|---|---|---|
+| `alpha-wildclaw-discipline-mistarget` | **756–758 Untargetability** | ENGINE |
+| `drag-under-attacker-focus-first-conquer` | **341–348 Showdowns** (345, 343.1.a/b, 159.2) | ENGINE |
+
+`validateCombos` over the merged copy: **0 errors, 650 entries.** `test/legend-lines.test.ts` re-run over
+these two: 19 legend base codes checked, **0 defects.** No duplicate id, no duplicate card set.
+
+## 21. 758.1 — untargetability is checked at RESOLUTION, not at targeting
+
+**758.1**, cited by nothing: *"If a Game Object becomes untargetable for a spell or ability after
+becoming its target and before it resolves, the spell or ability will mistarget on resolution. Any
+instructions related to that Game Object will be ignored as the spell resolves."*
+
+This is a general fact about **every prohibition in the pool** and it has never been stated here. And
+**758.2.a works a pool pair by name**:
+
+> Alpha Wildclaw and Vilemaw are controlled by the same player and located at a battlefield. An
+> opponent targets Vilemaw with Rebuke. Before Rebuke resolves, Vilemaw's controller plays Discipline
+> targeting Alpha Wildclaw, making Vilemaw no longer a legal target. Rebuke's controller then targets
+> Alpha Wildclaw with Star-Crossed. When Star-Crossed resolves, Alpha Wildclaw's passive ability no
+> longer applies to Vilemaw, making it a legal target for Rebuke.
+
+All five cards are in the pool: `UNL-057 Alpha Wildclaw`, `UNL-060 Vilemaw`, `OGN-058 Discipline`,
+`OGN-172 Rebuke`, `UNL-128 Star-Crossed`.
+
+**Members named.** The pool's untargetability cards, swept for *"can't be chosen by enemy spells"*:
+`SFD-105 Ruin Runner`, `UNL-057 Alpha Wildclaw`, `UNL-059 Master Yi, Unstoppable` (at [Level 16]),
+`UNL-147 Baron Nashor`, `VEN-031 Twilight Shroud` and `VEN-038 Akali, Silent`. **Alpha Wildclaw is the
+only one whose protected SET is defined by a number you can move at [Reaction] speed** — which is why a
+2-Energy cantrip can pull a Might 8 body under his umbrella while the removal sits on the Chain.
+
+**758.2's FIRST worked example describes a card the pool does not print** (*"I can't be chosen by enemy
+spells or abilities with Energy cost less than my Might"*), so only the second is load-bearing here.
+
+## 22. 345 — the ATTACKER gains Focus, and no entry says so
+
+**345**: *"As a Showdown begins, the player who applied Contested status to the Battlefield gains
+Focus."* With **464.2.c.1** making that player the Attacker, the attacker holds the **first window** in
+every combat showdown and the defender's [Action] answer comes second. 341, 342 and 345 are cited by
+nothing; 343.1, 346.1, 347.1 and 347.2.b already are (3, 5, 17 and 7 uses).
+
+The rest of the order, for completeness: **343.1.a / 343.1.b** are why the keywords exist
+(*"Cards of all Categories, by default, cannot be played during a Showdown State"*, and the same for
+card abilities); **159.2.a.1** grants [Action] the Showdown window and **159.2.b.1** gives [Reaction]
+*"all cases and rules of Action"* — **the cleanest statements in the file** of what this project usually
+sources to 806.1.b and 813.1.b; **347.1.b** passes Focus when your chain closes, **347.2.b** when you
+decline, and **347.2.a** ends the Showdown once *"all Players have passed once in sequence"*; and
+**346.1** keeps Focus with you when the chain opened from a triggered ability or an Add ability, so the
+combat's own attack triggers resolving does not cost the attacker that first window.
+
+## 23. 759–763 Naming Cards — zero cards, recorded
+
+**759–763** (naming or guessing a card, type or tag) is cited by nothing, and a corpus sweep for
+*name a card*, *names a card*, *guess* and *naming* returns **zero rows**. The block is dead letter in
+this pool. No entry, and nothing to look for.
