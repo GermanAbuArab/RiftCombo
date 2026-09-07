@@ -3503,30 +3503,37 @@
     },
     {
       "id": "renata-time-warp-ekko-refresh",
-      "name": "Renata, Mastermind with Time Warp — Ekko's Deathknell readies the runes for the point",
-      "class": "ENGINE",
+      "name": "Renata, Mastermind with two Time Warps — Ekko readies the runes, and a second body keeps his battlefield",
+      "class": "CHAIN",
       "status": "verified",
       "uses": [
         {
           "card": "OGN-122",
           "quantity": 2,
-          "role": "engine",
+          "role": "payoff",
           "zone": "HAND",
-          "note": "10 Energy + 4 Mind Power: Take a turn after this one. Banish this. There is no once-per-turn clause on the card and none in the errata — two copies can be cast in the same turn if the resources are there, which they are on the Ekko turn at the price of that turn's Renata point. Two copies is what buys two extra turns."
+          "note": "Mind spell, E10 P4: 'Take a turn after this one. Banish this.' There is no once-per-turn clause on the card and none in the errata. 738's own worked example queues two Additional Turns as [> A > A* > A* > B >]; here the second copy is cast DURING the first Additional Turn, and 735 inserts it 'after the current turn', so the queue is the same and the opponent still never acts. Two copies are what buy the two extra turns and the eighth point."
         },
         {
           "card": "SFD-088",
           "quantity": 1,
           "role": "payoff",
           "zone": "BATTLEFIELD",
-          "note": "4 Energy + 4 Mind Power, exhaust: Score 1 point (a Gain, R2). Once per turn per ready; on every extra turn it readies again in the Awaken."
+          "note": "Mind unit, E5 M4. '[4 Energy][Mind][Mind][Mind][Mind], [exhaust]: Score 1 point' (a Gain, R2 = A). Once per turn per ready; on every extra turn she readies again in the Awaken (315.1.b). 'Use my abilities only while I'm at a battlefield' both keeps her exposed and makes her the permanent garrison of the first battlefield."
         },
         {
           "card": "OGN-110",
           "quantity": 1,
           "role": "engine",
           "zone": "BATTLEFIELD",
-          "note": "[Deathknell] — Recycle me to ready your runes. Killed after Time Warp is paid, he readies the runes exhausted for Energy so Renata's 8 resources are still there this turn."
+          "note": "Mind unit, E5 P1 M5. '[Deathknell] — Recycle me to ready your runes.' Killed after Time Warp is paid, he readies the runes exhausted for Energy so Renata's 8 resources are still there on the casting turn. He stands at the SECOND battlefield, which is why the line needs a body to survive him there."
+        },
+        {
+          "card": "SFD-159",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E2 M2. 'While you have another unit here, I have +1 Might.' Its only job is to stand beside Ekko so that killing him does not hand the battlefield back — 190.4.a maintains Control 'for as long as they have Units at that Battlefield'. Its own clause is +1 Might exactly while Ekko is next to it. Cheapest in-domain body that does the job: 2 Energy, no Power."
         },
         {
           "card": "OGN-213",
@@ -3534,14 +3541,14 @@
           "role": "enabler",
           "zone": "BATTLEFIELD",
           "state": "hidden",
-          "note": "[Hidden] for 1 rainbow earlier, played from hidden for 0: Kill a unit at a battlefield. Its controller draws 2. Kills Ekko on demand; Deathgrip (SFD-163, 2 Energy Reaction) does the same job from hand."
+          "note": "Order spell, E2 P1. [Hidden] for 1 rainbow on an earlier turn, played from hidden for 0: 'Kill a unit at a battlefield. Its controller draws 2.' It must be hidden at EKKO's battlefield — 811.1.d.2 confines a hidden card's targets there — and it can only ever reach a unit at a battlefield, which is why Ekko cannot simply be parked at the base. SFD-163 Deathgrip (Order, 2 Energy, [Reaction], 'Kill a friendly unit') has no location clause and is the alternative that does reach the base."
         },
         {
           "card": "SFD-201",
           "quantity": 1,
           "role": "legend",
           "zone": "LEGEND",
-          "note": "Legend, Mind/Order. When you or an ally hold, exhaust: play a Gold gear token. While your score is within 3 points of the Victory Score, your Gold [Add] an additional Energy: each Gold is 2 resources from 5 points up."
+          "note": "Legend, Mind/Order. 'When you or an ally hold, you may exhaust me to play a Gold gear token exhausted. While your score is within 3 points of the Victory Score, your Gold [Add] an additional [1].' One Gold per turn banked on earlier turns; from five points up each is 1 rainbow AND 1 Energy, which is what pays for the second Time Warp."
         }
       ],
       "needs": [],
@@ -3553,19 +3560,34 @@
           "Legend is Chem-Baroness (SFD-201, Mind/Order) — the Gold doubling from 5 points up is what closes the resource count."
         ],
         "notable": [
-          "Corrected requirement for the Time Warp turn: 12 runes on the board of which at least 8 produce Mind Power, Ekko, Recurrent on the board (at a battlefield if you are killing him with Hidden Blade), Renata Glasc, Mastermind ready at a battlefield, and either a Hidden Blade hidden on an earlier turn for 1 rainbow or a Deathgrip in hand. No Gold is needed for that turn: exhausting every rune, readying them all through Ekko and recycling eight Mind runes makes 20 Energy and 8 Mind Power against 14 Energy and 8 Power spent, ending the turn with 4 runes on the board. Gold matters on the turn after: each is Kill this, exhaust: Add 1 rainbow, plus 1 Energy while your score is 5 or higher, it enters exhausted so it is usable only from the following turn, and Chem-Baroness makes at most one per turn. The deck-tech's own requirement line (12 runes, at least 1 Gold, Ekko, Hidden Blade or Deathgrip) is quoted for the record.",
-          "RULES the count stands on: Power paid by recycling runes returns those runes to the Rune Deck (161.2.b), so Ekko readies only the runes still on the board — pay Time Warp's Power from Gold instead of rune recycles and the board stays at 12 through his Deathknell, ending the turn with 8 runes rather than 4. On the extra turn, Awaken readies everything (315.1.b), the Beginning Phase holds every battlefield you control (capped at one Score per battlefield per turn by 470, two battlefields in Duel, 485.4), the Channel Phase adds 2 runes and the Draw Phase 1. Ekko is in the Main Deck by then, so there is no second rune-ready: six runes pay for either a second Renata point or a second Time Warp, not both.",
-          "323.7 — THE HIDDEN BLADE DIES WITH THE BATTLEFIELD. Hidden Blade (OGN-213) is hidden a turn early so the kill on Ekko costs 1 rainbow instead of 2 Energy. If the battlefield it sits on changes hands first, 323.7 (\"place them in their owner's Trash\") and 466.5.c remove it outright, and the Time Warp turn falls back on the Deathgrip line.",
-          "THE \"OR AN ALLY\" HALF OF SFD-201 IS 2V2 ONLY (issue #118, walked 2026-09-06). Chem-Baroness reads \"When you or an ally hold, you may exhaust me to play a Gold gear token exhausted\", and this entry uses only the \"you hold\" half. An ally exists only in 489, 2v2 (Magma Chamber): 489.1 four players, 489.5.c.1 alternating teams, 489.3 \"Victory Score: 11\" against 194.3's default 8, 489.8.d \"Points are shared by a team\". 489.8.c says outright \"Control is not shared\", and 469.2 defines Hold as maintaining Control of a battlefield \"during their Beginning Phase\", so the ally's Hold is theirs, fired on their turn by 315.2.b.2. IT DOES NOT DOUBLE THE TRIGGER, WHICH IS THE CORRECTION TO ISSUE #118's FINDING E. The cost is \"you may EXHAUST me\", and 315.1.b readies your legend only in YOUR Awakening — nothing readies it in between — so across a full team round-trip you get exactly ONE activation whether it comes from your own Hold or your ally's. What the clause actually buys is a CHOICE of window (decline your own Hold in your Beginning Phase and take the ally's later in the round) and an insurance policy for the turn you control no battlefield at all and therefore never Hold. 2v2 also brings 489.8.b and 469.1.a, which disqualify from your team's scoring any battlefield your teammate controlled during your Beginning Phase. In the Duel (485) this entry is written for, the clause is dead text. Nothing about this entry's class, quantities or steps changes."
+          "REQUIREMENT, NOT AN ASSUMPTION: BOTH DUEL BATTLEFIELDS MUST BE HELD THROUGH ALL THREE BEGINNING PHASES. 485.4 is 'Battlefield Count: 2', 315.2.b.2 'The Turn Player Holds all Battlefields they Control' and 470 caps Scoring at once per Battlefield per turn — so two Hold points a turn is the ceiling and it is also the floor this line needs. On ONE battlefield the three turns total 1 + 1 + 1 + 1 + 1 = FIVE, which is the count the 2026-09-04 audit measured and the reason the entry was reclassed BURST -> ENGINE that day.",
+          "AND THE BATTLEFIELD THIS LINE MOST NEARLY LOSES IS ONE IT KILLS ITSELF. This is the correction that added SFD-159 Trusty Ramhound to uses. Ekko has to die on the casting turn for his Deathknell, and if he is the sole garrison of his battlefield the next Cleanup takes it: 323.6 '4. Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there'; 190.4.c 'If a player has no Units at a Battlefield and the turn is in an Open state, they lose Control of that Battlefield in the following cleanup unless there is a Combat or Showdown ongoing there.' Hidden Blade resolves in a Main Phase Open State with no combat anywhere, so the Cleanup fires. Without a second body the first Additional Turn Holds ONE battlefield instead of two, the running total is 4 rather than 5 going into its Main Phase, the Chem-Baroness bonus never switches on, and the chain dies at 5 or 6. 190.4.a is the rule the fix stands on: 'If a player controls Units at a Battlefield, outside of Combat, they maintain Control of that Battlefield for as long as they have Units at that Battlefield.' A 2-Energy body is the whole price.",
+          "THE GARRISONS, NAMED. Battlefield A: Renata Glasc, Mastermind, who has to stand at one anyway ('Use my abilities only while I'm at a battlefield'). Battlefield B: Ekko plus the Ramhound, and after the kill the Ramhound alone. Nothing has to survive a combat between the three turns, because 735 and 737 mean the opponent never acts once the first Time Warp resolves — the garrisons only have to survive the opponent's turn BEFORE the casting turn.",
+          "THE LEDGER, TURN BY TURN. CASTING TURN — Beginning Phase: Hold both, +2 (running total 2). Main Phase: exhaust all twelve runes for 12 Energy (164.2.a) and recycle four Mind runes for 4 Mind Power (164.2.b, no exhaust in that cost, so a rune already exhausted for Energy still pays Power; 161.2.b sends them to the Rune Deck, leaving eight on the board). Cast TIME WARP #1 (10 Energy + 4 Mind Power). Play Hidden Blade from hidden for 0 and kill Ekko: his Deathknell readies the eight surviving runes, and the Ramhound keeps the battlefield. Exhaust the eight for 8 more Energy (20 generated) and recycle four more Mind for 4 more Mind Power (8 generated), leaving FOUR runes on the board. RENATA: 4 Energy + 4 Mind Power, exhaust — +1 (running total 3). 14 Energy and 8 Power spent against 20 and 8 made, plus 2 Energy for the Ramhound if it was not already down.",
+          "SECOND TURN (the first Additional Turn). Awaken readies the four runes, Renata, the Ramhound, the legend and the four banked Gold (315.1.b). Beginning Phase: Hold both, +2 — RUNNING TOTAL 5, and that is exactly where Chem-Baroness's 'While your score is within 3 points of the Victory Score' switches on (8 - 3 = 5). Channel Phase adds 2 runes (315.3.b) from the eight the recycles put back, for six on the board. Main Phase: six runes are 6 Energy; the four Gold are now 4 Energy AND 4 rainbow instead of 4 rainbow alone, so 6 + 4 = 10 Energy and 4 rainbow, which 135.2.e.5.b lets pay a Mind Power cost. Cast TIME WARP #2. No Renata point this turn — every resource is spent, which is the trade the 2026-09-03 refutation identified and it still holds.",
+          "THIRD TURN (the second Additional Turn). Awaken readies six runes and Renata. Beginning Phase: Hold both, +2 — running total 7. Channel adds 2 for eight runes. Main Phase: exhaust four for 4 Energy and recycle four Mind for 4 Mind Power. RENATA: +1. EIGHT. 471.1.a.1 is what lets it land — 'points Gained from sources that are not Conquer are not beholden to these restrictions' — so 471.1.b's Final Point clause never touches Renata's ability Gain, and it never touches a Hold either, since 471.1.b is written for Conquer.",
+          "THE CHEM-BARONESS THRESHOLD HAS NO SLACK AND THAT IS WORTH KNOWING BEFORE YOU CAST. The bonus Energy is live at exactly 5 points, reached in the second turn's Beginning Phase. Score 4 going into that Beginning Phase — one battlefield lost, whether to the opponent or to Ekko's own death — and the second Time Warp is 4 Energy short with no way to make it up. Ekko is in the Main Deck by then, so there is no second rune-ready to fall back on, and the line stops at 5 or 6.",
+          "Requirements for the casting turn: 12 runes on the board of which at least 8 produce Mind Power, Ekko, Recurrent at a battlefield with the Ramhound beside him, Renata Glasc, Mastermind ready at the other battlefield, either a Hidden Blade hidden at Ekko's battlefield for 1 rainbow or a Deathgrip in hand, and FOUR Gold banked. No Gold is needed for the casting turn itself: exhausting every rune, readying them all through Ekko and recycling eight Mind runes makes 20 Energy and 8 Mind Power against 14 Energy and 8 Power spent. Gold matters on the turn after: each is Kill this, exhaust: Add 1 rainbow, plus 1 Energy while your score is 5 or higher, it enters exhausted so it is usable only from the following turn, and Chem-Baroness makes at most one per turn — which is why four of them is four earlier turns of Holding, not something the combo turn can manufacture. The deck-tech's own requirement line (12 runes, at least 1 Gold, Ekko, Hidden Blade or Deathgrip) is quoted for the record; four is what the three-turn line needs.",
+          "RULES the count stands on: Power paid by recycling runes returns those runes to the Rune Deck (161.2.b), so Ekko readies only the runes still on the board — pay Time Warp's Power from Gold instead of rune recycles and the board stays at 12 through his Deathknell, ending the casting turn with 8 runes rather than 4. 161.2.a fixes the Rune Deck at exactly 12, so 12 is also the board ceiling and 315.3.b's two per turn is the only refill; 430.3 channels 'as many as possible' when the Rune Deck is short. On each extra turn Awaken readies everything (315.1.b), the Beginning Phase holds every battlefield you control (470, 485.4), the Channel Phase adds 2 runes and the Draw Phase 1.",
+          "BURN OUT IS A COST, NOT A LOSS, AND IT IS FIVE DRAWS NOW RATHER THAN THREE. 315.4.b draws on each of the three turns and Hidden Blade's own 'its controller draws 2' resolves on the casting turn into a near-empty deck — five cards in all. 431.2 is the sequence: 431.2.b recycles your whole trash into your Main Deck and 431.2.c has an opponent gain 1 point. That does not stop the eighth point landing, since 196 ends the game when a player wins, but it can hand the opponent the tempo if the line stalls.",
+          "323.7 — THE HIDDEN BLADE DIES WITH THE BATTLEFIELD. Hidden Blade (OGN-213) is hidden a turn early so the kill on Ekko costs 1 rainbow instead of 2 Energy, and 811.1.d.2 means it must be hidden at Ekko's own battlefield. If that battlefield changes hands first, 323.7 ('place them in their owner's Trash') and 466.5.c remove it outright, and the line falls back on the Deathgrip.",
+          "THE 'OR AN ALLY' HALF OF SFD-201 IS 2V2 ONLY (issue #118, walked 2026-09-06). Chem-Baroness reads 'When you or an ally hold, you may exhaust me to play a Gold gear token exhausted', and this entry uses only the 'you hold' half. An ally exists only in 489, 2v2 (Magma Chamber): 489.1 four players, 489.5.c.1 alternating teams, 489.3 'Victory Score: 11' against 194.3's default 8, 489.8.d 'Points are shared by a team'. 489.8.c says outright 'Control is not shared', and 469.2 defines Hold as maintaining Control of a battlefield 'during their Beginning Phase', so the ally's Hold is theirs, fired on their turn by 315.2.b.2. IT DOES NOT DOUBLE THE TRIGGER, WHICH IS THE CORRECTION TO ISSUE #118's FINDING E. The cost is 'you may EXHAUST me', and 315.1.b readies your legend only in YOUR Awakening — nothing readies it in between — so across a full team round-trip you get exactly ONE activation whether it comes from your own Hold or your ally's. What the clause actually buys is a CHOICE of window (decline your own Hold in your Beginning Phase and take the ally's later in the round) and an insurance policy for the turn you control no battlefield at all and therefore never Hold. 2v2 also brings 489.8.b and 469.1.a, which disqualify from your team's scoring any battlefield your teammate controlled during your Beginning Phase, and 489.3's Victory Score of 11 puts this line three points short there. In the Duel (485) this entry is written for, the clause is dead text.",
+          "IT IS CHAIN, NOT BURST. Eight points arrive as eight separate Gains across three Beginning Phases and two Main Phases, never in one scoring event — which is exactly the distinction the 2026-09-04 audit applied when it took the entry off BURST. CHAIN is the class for 'reaches 8 across several scoring events with no opponent turn in between', and 735 and 737 are what guarantee the second half of that: 'the owner of the Additional Turn just has the next queued turn'."
         ]
       },
       "steps": [
-        "Main Phase with 12 runes and Gold in base: Time Warp (10 Energy + 4 Mind Power).",
-        "Hidden Blade from hidden (0) or Deathgrip (2 Energy) kills Ekko: his Deathknell recycles him and readies your runes.",
-        "Renata, Mastermind: 4 Energy + 4 Mind Power, exhaust — score 1.",
-        "Extra turn: Awaken readies everything and the Beginning Phase holds every battlefield you control (up to two in a Duel). Ekko is now in the Main Deck, so there is no second rune-ready — the six runes you have (four left over plus two from the Channel Phase) pay for either a second Renata point or, with four Gold banked from earlier turns, a second Time Warp. Not both."
+        "Earlier turns: bank four Gold through Chem-Baroness's Hold trigger (one a turn, entering exhausted), hide a Hidden Blade for 1 rainbow at Ekko's battlefield, and take Control of BOTH Duel battlefields — Renata Glasc, Mastermind at one, Ekko, Recurrent AND Trusty Ramhound at the other.",
+        "Casting turn, Beginning Phase: Hold both battlefields — 2 points.",
+        "Main Phase with 12 runes: exhaust all twelve for 12 Energy and recycle four Mind runes for 4 Mind Power. Cast Time Warp #1 (10 Energy + 4 Mind Power).",
+        "Play Hidden Blade from hidden for 0 (or Deathgrip for 2 Energy) to kill Ekko: his Deathknell recycles him and readies the eight runes still on the board. The Ramhound is still standing there, so 190.4.a keeps the battlefield and 323.6's Cleanup takes nothing.",
+        "Exhaust the eight readied runes for 8 more Energy and recycle four more Mind runes for 4 more Mind Power.",
+        "Renata, Mastermind: 4 Energy + 4 Mind Power, exhaust — score 1. Three points, four runes left on the board.",
+        "First Additional Turn: Awaken readies everything; Hold BOTH battlefields for 2 — the running total is now 5, which is exactly where Chem-Baroness's Gold bonus switches on. The Channel Phase brings the board to six runes.",
+        "Main Phase: six runes are 6 Energy, and the four banked Gold are 4 Energy + 4 rainbow. Cast Time Warp #2 (10 Energy + 4 rainbow, which 135.2.e.5.b lets pay the Mind Power). No Renata point this turn.",
+        "Second Additional Turn: Awaken readies six runes and Renata; Hold both battlefields for 2 — seven. The Channel Phase brings the board to eight runes.",
+        "Main Phase: exhaust four runes for 4 Energy, recycle four Mind runes for 4 Mind Power, exhaust Renata — the eighth point. The opponent has not taken a turn since before Time Warp #1."
       ],
-      "terminatesIn": "burst of points across two consecutive extra turns — holds plus a Renata point per turn",
+      "terminatesIn": "8 points across three consecutive Beginning Phases and two Main Phases, bought by two Time Warps with no opponent turn in between — provided both Duel battlefields are held throughout, which is why Ekko needs a second body beside him, and provided the score reaches 5 by the second Beginning Phase, which is where Chem-Baroness's Gold bonus has to be live to pay for the second Time Warp",
       "rulesVersion": "2026-07-16",
       "sources": [
         {
@@ -3585,9 +3607,19 @@
           "title": "Hand walk 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md)",
           "kind": "manual-walk",
           "date": "2026-09-04"
+        },
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md) — the third turn priced, the two-battlefield requirement, and the 323.6 Cleanup that Ekko's own death used to trigger",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Issue #155 — Engine × payoff, candidate 3: the unexplored branch that spends the second Time Warp instead of a second Renata activation",
+          "kind": "agent",
+          "date": "2026-09-06"
         }
       ],
-      "notes": "Community-documented deck, not a loop: it needs no infinite engine, which separates it from time-warp-hold-burst and bottled-constellation-time-warp (both ride the Lux loop). The article states the requirements but not the action-by-action sequence; the steps above are the reconstruction from card text and are the part a human must walk, especially the Power count after Ekko's ready (161.2.b). Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the Time Warp turn is payable with zero Gold if eight of the twelve runes make Mind, the Gold's job is the turn after and it arrives exhausted, the extra turn buys a Renata point or a second Time Warp but not both, and the 'one Time Warp per turn' clause the first write-up assumed does not exist. AUDIT 2026-09-04: reclassed BURST -> ENGINE. BURST means one scoring event reaches 8; this entry's own terminates-in line says \"burst of points across two consecutive extra turns\" and its own count is about 5. It is a strong extra-turn engine, not a burst. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md, appendix). It was swept into issue #21 by mistake - its needs is empty and it rides no loop. The rune arithmetic checks out: a rune already exhausted for Energy can still be recycled for Power, because 164.2.b prices the Power ability as \"Recycle this\" with no exhaust, so 12 runes are 12 Energy and then 4 Mind Power, which pays Time Warp with 2 Energy to spare; Ekko readies the surviving 8; and 4 more exhaust-then-recycle runes pay Renata. Zero Gold needed on that turn, provided eight of the twelve runes make Mind. 735 confirms two copies buy two Additional Turns - the effect inserts one into the turn queue and nothing limits it per turn. Two constraints added: Hidden Blade kills a unit AT A BATTLEFIELD, so Ekko cannot sit at base, and its \"draws 2\" resolves after the Deathknell into a near-empty deck. REFINED 2026-09-06 (issue #118, docs/phase0/walks/2026-09-06-2v2-showdown-action-lens.md): one notable added for the uncatalogued \"or an ally hold\" half of the legend, with 489.1, 489.3, 489.5.c.1, 489.8.b, 489.8.c, 489.8.d, 469.1.a, 469.2, 315.1.b and 315.2.b.2 opened. The walk corrects the issue's claim that the clause doubles the trigger's frequency: the exhaust cost plus 315.1.b cap it at one activation per team round-trip. No change to class, quantities or steps."
+      "notes": "Community-documented deck, not a loop: it needs no infinite engine, which separates it from time-warp-hold-burst and bottled-constellation-time-warp (both ride the Lux loop). The article states the requirements but not the action-by-action sequence; the steps above are the reconstruction from card text. Card text verified against the corpus. REFUTE 2 (2026-09-03): WOUNDED — the Time Warp turn is payable with zero Gold if eight of the twelve runes make Mind, the Gold's job is the turn after and it arrives exhausted, the extra turn buys a Renata point or a second Time Warp but not both, and the 'one Time Warp per turn' clause the first write-up assumed does not exist. AUDIT 2026-09-04: reclassed BURST -> ENGINE, because the entry's own count was 'about 5' across TWO turns while its terminatesIn claimed a burst. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-loop-budget-ledger.md, appendix). RECLASSED ENGINE -> CHAIN 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md sections 3 and 15), and the reversal is honest rather than a change of mind: the 2026-09-04 count stopped at two turns by design, and the entry's own uses already declared TWO copies of Time Warp without anyone pricing what the second one buys. The third turn is 2 Hold points plus a second Renata activation, which takes 5 to 8. THREE things had to be added to make that true rather than optimistic, and all three are stated as requirements rather than assumptions. (1) BOTH Duel battlefields held through all three Beginning Phases; on one battlefield the line totals 5, which is precisely the number the 2026-09-04 audit measured. (2) SFD-159 Trusty Ramhound, a 2-Energy Order body standing beside Ekko — WITHOUT IT THE LINE BREAKS ITSELF, because killing Ekko empties his battlefield and 323.6 with 190.4.c takes it back in the very next Cleanup (Hidden Blade resolves in an Open State with no combat anywhere), leaving 4 rather than 5 going into the second Beginning Phase. This was caught in review of the first draft of the reclass; the earlier walks all considered losing a battlefield to the OPPONENT and none considered losing one to the entry's own Deathknell. THE SAME HOLE IS IN THE PRE-RECLASS ENTRY: its two-turn 'about 5' assumed the extra turn Holds 'up to two in a Duel' while Ekko was one of only two garrisons, so the honest ENGINE figure was 4, not 5 — the Ramhound repairs both counts. (3) Four Gold banked from earlier turns so the second Time Warp is payable at the moment Chem-Baroness's 'within 3 points of the Victory Score' clause goes live, which happens at exactly 5 with no slack. The rune arithmetic checks out: a rune already exhausted for Energy can still be recycled for Power, because 164.2.b prices the Power ability as 'Recycle this' with no exhaust, so 12 runes are 12 Energy and then 4 Mind Power, which pays Time Warp with 2 Energy to spare; Ekko readies the surviving 8; and 4 more exhaust-then-recycle runes pay Renata. 735 and 738 confirm two copies buy two Additional Turns and that casting the second one DURING the first inserts it after the current turn, so 737's 'the owner of the Additional Turn just has the next queued turn' holds for both. Hidden Blade kills a unit AT A BATTLEFIELD and 811.1.d.2 confines it to the battlefield it was hidden at, so Ekko cannot sit at base while it is the killer; SFD-163 Deathgrip prints no location clause and is the alternative that reaches the base, at the price of 2 Energy on the casting turn and a second new body for the battlefield Ekko would then not be garrisoning. With three Draw Phases and Hidden Blade's two, 431.2's Burn Out sequence (431.2.b recycles the trash into the Main Deck, 431.2.c hands an opponent a point) is a real cost, though 196 ends the game before it matters on the winning turn. REFINED 2026-09-06 (issue #118, docs/phase0/walks/2026-09-06-2v2-showdown-action-lens.md): the notable for the uncatalogued 'or an ally hold' half of the legend, with 489.1, 489.3, 489.5.c.1, 489.8.b, 489.8.c, 489.8.d, 469.1.a, 469.2, 315.1.b and 315.2.b.2 opened; the exhaust cost plus 315.1.b cap it at one activation per team round-trip, and 489.3's Victory Score of 11 puts this line three short in 2v2. Depends on R2 = A and on no open reading."
     },
     {
       "id": "dazzling-aurora-elder-dragon",
@@ -23529,6 +23561,85 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-06 from issue #160. OGN-185 was an uncatalogued partner of svellsongur-copy and of three move rules. Card text verbatim from data/corpus_flat.txt; 103.1.b, 103.2, 103.2.a.1, 137.3, 137.3.a, 144.1.a, 144.2, 144.4.a, 194.1.d, 385.1, 385.2, 422.1.b, 431.1.a, 431.2.b, 434.1.c, 476.1, 477.2.c, 479.1, 480.3 and 829.1.b opened in the Core Rules file. Stands on R6 = A and R9; no new reading. Deliberately authored beside svellsongur-apprentice-smith-gear-dig as its mirror: the Smith REVEALS (431.1.c, no Burn Out at any deck size) and the Merchant DRAWS (431.1.a, a hard clock), on the same body count and the same price. Trap check: no attack; no token; nothing recycled as a cost; no [Temporary]; no [Repeat]; a Move is not a Recall (455); the [Equip] costs are counted."
+    },
+    {
+      "id": "draven-rebuke-bloodless-combat",
+      "name": "Rebuke inside the opened combat — Draven wins it without a damage step",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-148",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E6 P1 M6, [Deflect]. 'The first time I win a combat each turn, you score 1 point. When I die in combat, choose an opponent. They score 1 point.' 466.3.a defines winning: the only player with units remaining at the battlefield during the Determine Combat Result step."
+        },
+        {
+          "card": "OGN-172",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Chaos spell, E2 P2. '[Action] (Play on your turn or in showdowns.) Return a unit at a battlefield to its owner's hand.' Played inside the Combat Showdown the attack opened, it empties the defending side before 465.1 checks it. Three copies (103.2.b) is three turns of the trick."
+        },
+        {
+          "card": "SFD-185",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Chaos legend. 'When you win a combat, draw 1. (You win if only your units remain after combat.)' Its reminder text is the pool's own gloss on 466.3.a, and it carries no once-per-turn clause."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "conquer-engine",
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend IS Glorious Executioner (Fury/Chaos). Draven and Rebuke are both mono-Chaos (103.1.b.1)."
+        ],
+        "notable": [
+          "IT ANSWERS THE TWO WEAKNESSES draven-glorious-executioner-point STATES ABOUT ITSELF, WHICH IS WHY IT IS A SEPARATE ENTRY. That entry's notable[0] says 'This engine DEPENDS ON THE OPPONENT ... Against a board that never garrisons, Draven scores zero', and its notable[2] says 'he dies to a bigger garrison and hands the point over'. Rebuke answers both: you attack on YOUR turn instead of waiting to be attacked, and 465.1 skips the damage step entirely, so Draven cannot die and the 'they score 1 point' clause never fires. OGN-172 is in zero entries.",
+          "THE WINDOW IS INSIDE THE COMBAT, NOT BEFORE IT, AND THAT IS THE POINT. 464.2.f.1: 'Otherwise the Combat Showdown continues, with the State Open as normal', and 464.2.g: 'Players proceed with any play on the Chain as normal.' Rebuke's own reminder permits a Showdown. Then 465.1 gates the whole damage step — 'IF BOTH Attacking and Defending units remain at this battlefield, the following Tasks become Outstanding' — so with the garrison in its owner's hand there is no 465.2 damage at all. This window is wider than the pre-open evacuation window of the #58 walk: there the spell had to be cast BEFORE the entering move, here it is cast after the Attacker designation has already been made, which is exactly what Draven's trigger needs.",
+          "TWO POINTS AND A CARD PER ATTACK. 466.3.a: 'A Player has won a combat if they received either the attacker or defender designation and are the only Player that has units remaining at this battlefield during this step' — Draven's first win of the turn scores 1 (a 194.1.c Gain under R2 = A, outside 470's cap). Then 466.5: 'the player with Units remaining here Establishes Control if they didn't already control this Battlefield', and 466.5.d: 'Establishing Control results in a Conquer if that player has not yet scored this Battlefield' — a second point, this one a 469.1 Score. The legend draws 1 on top, with no once-per-turn clause of its own.",
+          "IT NEEDS A GARRISON OF EXACTLY ONE, AND THAT IS THE HONEST LIMIT. Rebuke returns ONE unit. Against two defenders the damage step happens after all: 465.2.c has each side assign its summed Might and 465.2.c.3 forces lethal onto one body first, so a 6 Might Draven against a garrison summing 6 or more dies and hands over a point. Two Rebukes in one turn clears two defenders for 4 Energy + FOUR Chaos Power, which is most of a turn's Power against the 12-rune ceiling (161.2.a). VEN-106 Wind and Ghosts (Chaos, E3 P1, [Action], 'Choose a unit at a battlefield. If it has 3 Might or less, banish it. Otherwise, return it to its owner's hand') is the same effect at 1 Power instead of 2 and banishes the small ones so they cannot be replayed — also in zero entries, and the better card whenever the Power is tighter than the Energy. Deliberately not in uses: it is an alternative, not an addition.",
+          "IT STILL NEEDS THEM TO GARRISON SOMETHING, just not to attack you. 461 stages a combat only where units of two players meet, and 807.1.d with 383.4.e make an empty battlefield no attack at all — so against a board with nothing on it there is no combat to win, and you simply Conquer the open battlefield for the ordinary point (316.8.b.1, 348.2.a.1) with Draven's ability idle. The dependency is softened, not removed, and this entry says so rather than claiming otherwise.",
+          "ONE POINT OF DRAVEN'S PER TURN WHATEVER YOU DO. 383.3.e.1 — 'Such a Triggered Ability will only be performed the specified number of times each turn' — caps 'the first time I win a combat each turn'. The Conquer half is capped separately by 470 at one Score per battlefield per turn, and 485.4 puts two battlefields on a Duel table, so the ceiling with a second attacker is 3 points a turn: Draven's one, plus a Conquer at each battlefield.",
+          "[Deflect] IS NOT WHAT KEEPS HIM ALIVE HERE. 809.1.c and 809.1.d charge an opponent one rainbow only to CHOOSE him with a spell or ability; combat damage chooses nothing. What keeps him alive is 465.1 never opening the damage step — a different mechanism from the heal/exhaust/recall shields of 808.1.d.1, and one that leaves no Deathknell question to answer because nothing dies."
+        ]
+      },
+      "steps": [
+        "Draven, Audacious on the board and ready, with Rebuke in hand and 2 Energy + 2 Chaos Power available.",
+        "Standard-move Draven to an enemy battlefield garrisoned by a single unit, paying his exhaust (144.2, 144.4). The Contested status stages a Combat and he takes the Attacker designation (464.2.c.1, 464.2.c.3).",
+        "The Combat opens into its Showdown. 464.2.f.1 leaves the State Open and 464.2.g lets players play on the Chain.",
+        "Cast Rebuke ([Action], legal in a Showdown): return the lone defender to its owner's hand.",
+        "465.1 asks whether both Attacking AND Defending units remain. They do not, so the damage step never becomes Outstanding and Draven takes nothing.",
+        "466.3.a: you are the only player with units remaining, so you WON the combat. Draven's first win of the turn scores 1 point and the legend draws 1.",
+        "466.5 and 466.5.d: you establish Control and that is a Conquer — a second point."
+      ],
+      "terminatesIn": "engine — 2 points and a card per attack, three times a game on three copies of Rebuke; Draven never takes combat damage, so his own 'they score 1 point' drawback never fires",
+      "netPerIteration": "+2 points (one ability Gain, one Conquer Score) and +1 card per attack, for 2 Energy + 2 Chaos Power",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06, issue #118 (docs/phase0/walks/2026-09-06-2v2-showdown-action-lens.md) — the 18-card '[Action] spell that removes a unit at a battlefield' family, recorded there as a synergy shape with 464.2.f.1 / 464.2.g / 465.1 / 466.3.a / 466.5.d",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Issue #155 — Engine × payoff: the master payoff inventory naming SFD-148 Draven, Audacious as one of the twelve direct point converters",
+          "kind": "agent",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md). The #118 walk recorded the in-combat [Action] removal window as a SYNERGY SHAPE and named no combo for it; this is the attacker-side instance, and the payoff it reaches was already in the catalogue with its own weaknesses written into its prerequisites. OGN-172 Rebuke and VEN-106 Wind and Ghosts were both in zero entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.b, 144.2, 144.4, 161.2.a, 194.1.c, 316.8.b.1, 348.2.a.1, 383.3.e.1, 383.4.e, 461, 464.2.c.1/464.2.c.3/464.2.f.1/464.2.g, 465.1/465.2/465.2.c/465.2.c.3, 466.3.a/466.3.c, 466.5/466.5.d, 469.1, 470, 471.1, 485.4, 807.1.d, 808.1.d.1 and 809.1.c/809.1.d opened and read. Ban check: none of SFD-148, OGN-172 or SFD-185 carries a [BANNED marker, and none is a Signature card. Trap check: the empty-battlefield trap is live and is stated — no garrison, no combat, no Draven point; no [Temporary]; no [Repeat]; no token; a bounce to hand is not a recall (455) and takes the card off the board entirely, so no 'While I'm at a battlefield' question arises on the defender; nothing dies, so 808.1.d.1 and every Deathknell are simply absent. Depends on R2 = A and on no open reading."
     }
   ]
 }
