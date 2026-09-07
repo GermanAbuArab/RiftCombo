@@ -549,3 +549,108 @@ It is the **opposite deck** to this walk's own `mystic-vortex-helm-suppression-t
     turn is dead for the whole of the opponent's. UNL-197 Scorn of the Moon and VEN-141 Butcher of
     the Sands both sell Reaction-speed Energy that needs no rune held ready; 167 is why it must be
     added inside the showdown it is spent in.
+
+---
+
+# Batch 5 — the last three legends. The legend sub-vein is CLOSED.
+
+After batch 5 merges, **0 of the 49 legend names are uncatalogued.** The walk opened with ten;
+Green Father was taken by a parallel session, and the other nine were walked here:
+Bounty Hunter (batch 1), Wuju Bladesman - Starter (batch 2), Purifier / Mechanized Menace /
+Eye of Twilight / Scorn of the Moon (batch 4), and the three below.
+
+| id | class | cards | what it is |
+|---|---|---|---|
+| `might-of-demacia-four-body-conquer-draw` | ENGINE | OGS-023, OGS-015, SFD-171 | four bodies walked in as ONE action, 2 cards per Conquer |
+| `prodigal-explorer-two-choices-draw` | ENGINE | SFD-199, OGN-095, OGN-169 | two separate choices, never one doubled spell |
+| `butcher-of-the-sands-spent-rune-refund` | ENGINE | VEN-141, OGN-158 | the pool's only Power → Energy conversion |
+
+`might-of-demacia-four-body-conquer-draw` produces `conquer-engine`, so it now feeds this walk's own
+`treasure-hoard-renata-conquer-gold` and `monastery-hirana-warmogs-conquer-draw`.
+
+## 14. A correction to §1 of this document, from the #175 cross-audit
+
+> **The "when you conquer here" battlefields are FOURTEEN, not twelve, and four of them were already
+> catalogued when this walk started.**
+
+`grep -i "conquer here" data/corpus_flat.txt` returns fourteen rows: OGN-282 Monastery of Hirana,
+OGN-287 Sigil of the Storm, OGN-289 Targon's Peak, OGN-291 The Candlelit Sanctum, OGN-298 Zaun
+Warrens, SFD-207 Emperor's Dais, **SFD-210 Hall of Legends**, SFD-212 Minefield, SFD-217 Seat of
+Power, SFD-218 Sunken Temple, SFD-220 Treasure Hoard, **SFD-221 Veiled Temple**, **UNL-217 Trapping
+Grounds**, VEN-162 Protective Sands.
+
+**How the miscount happened, because the shape matters more than the number:** §1 built the count
+from this walk's own *free-battlefield* list rather than from the pool, so the three already
+catalogued rows were invisible to it. That is the same failure the manager identified in the Bonus
+Damage sweep the same night — a counted set whose membership was determined by an assumption
+(there, a wording: "all six say *your* spells and abilities", which a battlefield worded for the
+LOCATION could not match; here, a filter). **The standing response is to NAME the members of any
+counted set, so the next grep refutes it cheaply.** Every uniqueness and cardinality claim in
+batches 4 and 5 is written that way — the eleven `[Add] :rb_energy` rows are listed inside
+`butcher-of-the-sands-spent-rune-refund`'s own note for exactly this reason.
+
+The conclusion of §1 is unaffected: whatever the count, a `when you conquer here` clause fires once
+per game unless the battlefield is deliberately vacated.
+
+## 15. Three rules facts from batch 5
+
+### 15.1 164.2 — a Basic Rune has exactly two abilities, and only one of them costs an exhaust
+
+> *"164.2. A Basic Rune always has the following two Abilities: **164.2.a.** [E]: [Reaction] — Add
+> [1]. **164.2.b.** Recycle this: [Reaction] — Add [C]."*
+
+164.2.a's cost is an exhaust; 164.2.b's cost is the **recycle**, and carries none. So a rune already
+tapped for Energy this turn can still be recycled for a Power. **VEN-141 Butcher of the Sands** is
+the only card in the pool whose [Add] Energy ability costs Power (swept: eleven corpus rows contain
+`[Add] :rb_energy`, and its cost is the only one with a rune in it) — so it turns spent runes into
+Energy. 161.2.b returns them to the Rune Deck and 315.3.b channels two back every Channel Phase, so
+recycling two a turn is a steady state.
+
+The honest verdict is stated **against** the project's own figure rather than around it: a Power
+inside a loop is worth roughly nine Energy, so this is the wrong direction as an exchange. What it
+sells is that the Power came out of runes with no second use.
+
+### 15.2 144.3 is what makes a "4+ units here" threshold reachable
+
+**OGS-023 Might of Demacia**: *"When you conquer, if you have 4+ units at that battlefield, draw 2."*
+It says *"when you conquer"*, not *"here"* — so it is **not** one of the fourteen, and it pays at
+every battlefield. 383.2.a.1 makes the 4+ part of the Trigger Condition, measured when the trigger
+is placed. 144.3 (*"one game action performed on multiple Units"*, 144.3.a shared destination,
+144.3.c simultaneous exhausts) walks four in at once, and 144.4.a.1's cap counts **other players**
+(447.2.a: *"In Modes of Play with more than two players"*), so a Duel has no limit. On the bloodless
+344.2 route no damage is ever assigned, so all four are still standing to be counted.
+
+OGS-015 Recruit the Vanguard's own parenthesis is 355.2.a restated (*"They can be played to your
+base or to battlefields you control"*), which is why the four **must** walk — and why SFD-171 Renata
+Glasc, Industrialist is load-bearing rather than a luxury here: R25 = A beats 143.4, and the project
+has separately measured that "enters ready" is worth *nothing* on a token made on the opponent's
+turn. These are made in your own Main Phase and must move in the same one.
+
+### 15.3 Build the line to avoid an unruled question, not to test it
+
+**SFD-199 Prodigal Explorer**: *"Use only if you've chosen enemy units and/or gear twice this turn
+with spells or unit abilities."* Whether one [Repeat] spell's two executions count as two choices is
+unruled (820.3.a: the spell *"is only Played once"*, against 820.2's two sets of choices), and
+`ezreal-marai-spire-free-repeat` had already flagged it. This entry uses **two different 1-Energy
+spells** — same cost, no reading filed. 355.10.d is the companion: a Game Object *"programmatically
+selected based on its characteristics rather than chosen"* is not chosen, so a mass effect
+contributes nothing to the counter however many enemies it hits.
+
+## 16. Standing notes for CLAUDE.md (batch 5)
+
+20. **The "when you conquer here" battlefields are FOURTEEN** (named in §14), not twelve — and the
+    miscount came from counting a filtered list instead of the pool. **Name the members of any
+    counted set** so the next grep refutes it cheaply; that is the second time in one night a
+    counted set was wrong because its membership rested on an assumption.
+21. **164.2.b's cost is the RECYCLE and carries no exhaust**, so a rune already tapped for Energy
+    still recycles for a Power the same turn. **VEN-141 Butcher of the Sands is the pool's only
+    Power → Energy conversion** (eleven `[Add] :rb_energy` rows; its cost is the only one containing
+    a rune) and it is the mirror of SFD-117 Ancient Henge. By the project's own ~9-Energy-per-Power
+    figure the exchange is the wrong direction; what it sells is that the Power came from spent runes.
+22. **144.3 + 144.4.a.1 mean a Duel puts no cap on how many of your own bodies enter one battlefield
+    in one Main Phase**, as one game action with one shared destination — which is what makes
+    OGS-023 Might of Demacia's "4+ units at that battlefield" threshold reachable at all. Note it
+    says *"when you conquer"*, not *"here"*, so it pays at every battlefield.
+23. **ALL 49 LEGEND NAMES ARE NOW CATALOGUED.** The legend sub-vein of #171 is closed; the remaining
+    uncatalogued deckable cards are battlefields (25, of which 5 are banned in both formats) and
+    units, spells, gear and runes.
