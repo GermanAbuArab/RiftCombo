@@ -30920,6 +30920,13 @@
           "role": "engine",
           "zone": "BOARD",
           "note": "Mind gear, E10 P2. 'At the start of your Main Phase, you may kill 3 other friendly units and/or gear to score 1 point.' Three simultaneous friendly deaths, every turn, and a point on top."
+        },
+        {
+          "card": "OGN-096",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Mind unit, E2 M1, three copies (103.2.b). The fuel the whole entry is built on: Bottled Constellation kills THREE 'other friendly units and/or gear' to score, and the Centaur must not be among them. Without these rows the declared scoring event - the point and the Centaur's +6 Might - is unreachable from uses[] alone, which the #181 cross-audit called the worst instance of the pattern. Any three cheap in-identity bodies serve; three Watchful Sentries are the cheapest Mind option that is not itself a payoff."
         }
       ],
       "needs": [],
@@ -31054,6 +31061,13 @@
           "role": "engine",
           "zone": "BOARD",
           "note": "Calm gear, E2. '[Action][>] Exhaust a unit you control, :rb_exhaust:: Move a different unit you control to the location of the unit you exhausted to pay for this ability.' It chooses two of your units per activation, and it is free and repeatable every turn."
+        },
+        {
+          "card": "OGN-044",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Calm unit, E2 M2. The third body 420.1 requires: the Signpost's cost exhausts one unit and its effect moves 'a DIFFERENT unit you control' to that unit's location, and Moving is defined between two Locations - so payer and mover can be neither the same body nor at the same place. Any cheap in-identity body does this job; Clockwork Keeper is the cheapest Calm one that is not a Poro. Added by the #181 cross-audit, 2026-09-07: the requirement was stated in prerequisites.easy and in the steps but had no uses[] row, so matchDeck priced a line that cannot be activated and planDeck could never suggest the missing card."
         }
       ],
       "needs": [],
@@ -31399,6 +31413,13 @@
           "role": "engine",
           "zone": "HAND",
           "note": "Order spell, E2. '[Reaction] [Repeat] 2 Energy. Give two friendly units each +1 Might this turn.' In zero entries before this walk. Two executions, two separate choosings of Jae, two cards — from one deck slot."
+        },
+        {
+          "card": "OGN-210",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order unit, E2 M2. Bonds of Strength gives 'two friendly units each +1 Might' and they cannot be the same body, so with one unit on board the spell has no legal second choice and 203.3 makes it uncastable. Any cheap body in the Order/Chaos identity serves. Added by the #181 cross-audit, 2026-09-07."
         }
       ],
       "needs": [],
@@ -32031,7 +32052,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use either card. Card text verbatim from data/corpus_flat.txt; the 'heaviest Empower cost in Power among units' claim was checked by extracting every [Empower] cost string in the corpus and sorting them, and Ambessa's one-Energy-two-runes is the only unit cost with two DOMAIN runes. The rainbow-removes-a-domain-Power reading is the project's own R28-shaped argument (rule 002: a discount that cannot apply is dead letter), already recorded for the #85 walk. Trap check: 190.6.d is cited for what it DOES do here — this battlefield says 'your' and therefore has to be conquered, unlike the five found earlier in this walk; the attack half is stated with 383.4.e / 464.2.c.1 and needs a real garrison; 441.1.b is cited so the rebate is not counted twice; gear is excluded explicitly; exactly one battlefield is named, so 485.4.a is respected."
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use either card. Card text verbatim from data/corpus_flat.txt; the 'heaviest Empower cost in Power among units' claim was checked by extracting every [Empower] cost string in the corpus and sorting them, and Ambessa's one-Energy-two-runes is one of three unit [Empower] costs with two DOMAIN runes (with VEN-086 Gangplank, Naval at two Body runes and no Energy, and VEN-114 Kharox at E6 + two Chaos), corrected by the #181 cross-audit on 2026-09-07 - Ambessa is the only one of the three that pairs a domain-rune pair with a single Energy, and Gangplank is outright lighter. The rainbow-removes-a-domain-Power reading is the project's own R28-shaped argument (rule 002: a discount that cannot apply is dead letter), already recorded for the #85 walk. Trap check: 190.6.d is cited for what it DOES do here — this battlefield says 'your' and therefore has to be conquered, unlike the five found earlier in this walk; the attack half is stated with 383.4.e / 464.2.c.1 and needs a real garrison; 441.1.b is cited so the rebate is not counted twice; gear is excluded explicitly; exactly one battlefield is named, so 485.4.a is respected."
     },
     {
       "id": "forgotten-library-jhin-spent-four",
@@ -32316,6 +32337,13 @@
           "role": "engine",
           "zone": "HAND",
           "note": "Calm spell, E2, '[Repeat] :rb_energy_2:'. 'Look at the top 3 cards of your Main Deck. You may reveal a unit from among them and draw it. Recycle the rest.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-216",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order unit, E2 M1. The second [Repeat] execution needs a SECOND UNBUFFED body or 702.3 wastes it - one buff per unit, and Karma's is already placed. Any cheap in-identity body serves. Added by the #181 cross-audit, 2026-09-07."
         }
       ],
       "needs": [],
@@ -34013,7 +34041,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the orphan synergy rule dauntless-vanguard-occupied-battlefield-assault (41 partners, 41 uncovered). Batch 1 back-linked the rule's MECHANISM to stare-down-arachnoid-horror-lone-survivor; this is the anchor-partner entry. VEN-076 Repair Specialist was in zero entries and is the only [Assault] carrier in the pool whose value is a quantity you build rather than a printed number — checked against 807.1.b's format, which every other carrier fills with a constant. The gear is bought for its presence: the clause counts gear you CONTROL and 818.1 makes attaching a separate activated ability nobody here pays. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.d.2, 143.4, 144.2, 144.3, 144.4.a, 155, 190.3.a.1, 315.1.b, 323.7, 323.9, 323.13, 355.2.b, 420.3.a, 450, 464.2.c.1, 464.2.c.3, 465.2.b, 465.2.c, 465.2.c.4, 466.3.a, 466.5, 466.5.d, 470, 485.4, 807.1.b, 807.1.d, 807.1.d.1, 807.2, 818.1. Stands on R28 = A only for the excess-damage remark. Ban check: SFD-093, VEN-076 and SFD-108 carry no [BANNED marker. Arithmetic against its own declared quantities: three gear give [Assault 3], so M3 becomes M6 attacking, plus the Vanguard's M4 = 10 summed. Trap check: an EMPTY enemy battlefield conquers with no Attacker and every point of Assault is then worth zero (323.9, 807.1.d); the Assault evaporates on defence (807.1.d.1); the Vanguard's permission covers only himself (355.2.b); no token, no [Temporary], no [Repeat], no buff. Depends on no unruled reading beyond R28."
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the orphan synergy rule dauntless-vanguard-occupied-battlefield-assault (41 partners, 41 uncovered). Batch 1 back-linked the rule's MECHANISM to stare-down-arachnoid-horror-lone-survivor; this is the anchor-partner entry. VEN-076 Repair Specialist was in zero entries and is one of TWO [Assault] carriers in the pool whose value is a quantity you build rather than a printed number (the other is SFD-131 Ancient Warmonger, \"[Assault] equal to the number of enemy units here\", a defender-side count this line does not use; the entry first said \"the only\" and was corrected by the #181 cross-audit on 2026-09-07) — checked against 807.1.b's format, which every other carrier fills with a constant. The gear is bought for its presence: the clause counts gear you CONTROL and 818.1 makes attaching a separate activated ability nobody here pays. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.d.2, 143.4, 144.2, 144.3, 144.4.a, 155, 190.3.a.1, 315.1.b, 323.7, 323.9, 323.13, 355.2.b, 420.3.a, 450, 464.2.c.1, 464.2.c.3, 465.2.b, 465.2.c, 465.2.c.4, 466.3.a, 466.5, 466.5.d, 470, 485.4, 807.1.b, 807.1.d, 807.1.d.1, 807.2, 818.1. Stands on R28 = A only for the excess-damage remark. Ban check: SFD-093, VEN-076 and SFD-108 carry no [BANNED marker. Arithmetic against its own declared quantities: three gear give [Assault 3], so M3 becomes M6 attacking, plus the Vanguard's M4 = 10 summed. Trap check: an EMPTY enemy battlefield conquers with no Attacker and every point of Assault is then worth zero (323.9, 807.1.d); the Assault evaporates on defence (807.1.d.1); the Vanguard's permission covers only himself (355.2.b); no token, no [Temporary], no [Repeat], no buff. Depends on no unruled reading beyond R28."
     },
     {
       "id": "might-of-demacia-four-body-conquer-draw",
@@ -34255,7 +34283,7 @@
           "WHAT THE PAIR IS WORTH ON DEFENCE, WITH THE RULES BEHIND EACH NUMBER. 814.1.c makes Shield 'functionally short for \"While I am a defender, I have +X [M]\"', so the Disciple defends at 1 + 3 = 4 and the Protector at 6; 465.2.b sums the Defending units' Might, so the garrison assigns 10. Against them, 465.2.c.3 forces the attacker to put lethal damage on one body before moving to the next and 465.2.c.4 forbids more than the minimum, so clearing this pair costs 4 + 6 = 10 attacking Might — for 6 Energy and 1 Order Power, one of which is a 1-Might body.",
           "AND WHAT IT IS WORTH ON OFFENCE, WHICH IS WHERE THE PROTECTOR'S CLAUSE BITES. 'I don't deal combat damage' is not a Might reduction — 465.2.c still has the ATTACKER assign damage equal to their summed Might, and the Protector's 6 is simply not part of that sum while the clause is live. So attacking with the Protector plus two other bodies is attacking with two bodies; attacking with the Protector plus exactly the Disciple is 6 + 1 = 7. The pair is not a tax on the third body, it is a prohibition on it.",
           "[Hidden] IS WHY THE DISCIPLE COSTS NOTHING TO PLACE. 811.1.b hides the card face down at a battlefield you control for one rainbow Power and lets you play it later 'ignoring its base cost', so the second body of the pair arrives for 0 Energy at Reaction speed, at the exact moment the Protector needs a companion — including inside the opponent's combat, where 464.2.c.3.a gives it the Defender designation at the next Cleanup, before 465.2 resolves.",
-          "THE SAME CONDITION IS PRINTED ON FOUR MORE CARDS, AND ONLY ONE OF THEM SCORES. VEN-138 Shen, Leader of the Kinkou Order ('When I hold, if there is exactly one other unit you control here, you score 1 point'), VEN-042 Shen, Scourge of Shadows (draw 1, Calm), VEN-119 Keeper of Law (a 2 Energy + 1 Order Power discount for controlling a battlefield with exactly two units) and VEN-027 Hand Hammer (Calm Equipment, +2 Might under the same clause). The Disciple is the correct SECOND BODY for every one of them for the same reason it is correct here — it is the only one that pays itself — and shen-duo-mutual-hold already walks the two Shens as the scoring version.",
+          "THE SAME CONDITION IS PRINTED ON THREE MORE CARDS, AND ONLY ONE OF THEM SCORES (a fourth card prints a related but DIFFERENT one - see the end of this note). VEN-138 Shen, Leader of the Kinkou Order ('When I hold, if there is exactly one other unit you control here, you score 1 point'), VEN-042 Shen, Scourge of Shadows (draw 1, Calm), and VEN-027 Hand Hammer (Calm Equipment, +2 Might under the same clause). The Disciple is the correct SECOND BODY for every one of them for the same reason it is correct here — it is the only one that pays itself — and shen-duo-mutual-hold already walks the two Shens as the scoring version. NOT A FOURTH INSTANCE OF THE CLAUSE: VEN-119 Keeper of Law prints a discount \"if you control a battlefield with exactly two units there\" - a count of TOTAL units present, which says nothing about who controls the second one, against \"exactly one other unit YOU CONTROL\". grep -in \"exactly one other unit\" returns five rows (VEN-027, VEN-042, VEN-117, VEN-129, VEN-138) and the Keeper is not among them; corrected by the #181 cross-audit, 2026-09-07.",
           "THREE BODIES BREAK IT, AND SO DOES A TOKEN. 185.2.d ('Tokens have a type. They follow all rules for their type') makes a token unit count towards 'exactly one other unit', so a Recruit or a Sprite wandering onto the battlefield switches both cards off. Do not run this beside a token faucet."
         ]
       },
