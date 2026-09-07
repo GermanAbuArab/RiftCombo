@@ -219,3 +219,107 @@ anything bigger.
   rule, not an entry: `OGN-098 Energy Conduit`, `OGS-014 Lux, Crownguard`, `UNL-049 Honeyfruit`,
   `UNL-197 Scorn of the Moon`, `VEN-141 Butcher of the Sands` and these two are the whole set, and
   only the Sage and the Egg are unrestricted in Body.
+
+## 3. Census correction, re-measured on name+type
+
+`rc-walk-fam2` found that coverage keyed on **base code** over-states the uncatalogued population by
+~15% in its lane, because 104 of the pool's 935 names carry two or more base codes and
+`CardIndex.equivalents` (`src/cards.ts:124`) already resolves a base to every printing sharing its
+normalised name and type — so a *reprint of a catalogued card* is already covered by `matchDeck`.
+
+Re-measured here with `.scratch/uncat-fbc.ts`, at 479 entries:
+
+| measure | Fury / Body / Chaos |
+|---|---|
+| slice population (non-battlefield, non-legend) | 392 |
+| uncatalogued, naive base-code count | 158 |
+| uncatalogued, after `equivalents()` | **158** |
+| uncatalogued, one row per name+type | **158** |
+| of which basic runes / banned | 3 / 4 |
+| **walkable** | **151** |
+
+**The correction makes no difference in this lane, and the diagnostics say why**: "in naive but not
+after `equivalents()`: none", and "uncatalogued name+type rows with 2+ base codes: none". The 104
+multi-base names are concentrated in runes, Seals, promos and legends — three of the six basic runes
+in this slice are already covered *through* `equivalents()`, which is the mechanism working — and the
+Fury / Body / Chaos spell-unit-gear population has essentially no reprints. fam2's ~15% is real and
+lane-specific; it is not a general discount to apply to every census.
+
+## 4. Batch 3 — Chaos, five entries
+
+### 4.1 `syndra-transcendent-existential-dread-three-executions` — UNL-146 + UNL-134 (Syndra in zero entries)
+
+**820.1.c.2 + 820.1.c.3: two instances of [Repeat] are THREE executions.** "*If a spell or ability has
+more than one instance of Repeat, each Cost may be paid or not paid individually*" and "*Each Repeat
+Cost can be paid only a single time*". The project's standing line — "[Repeat] gives exactly one extra
+execution" (820.1.b) — is per **instance**, not per spell, and `UNL-146 Syndra, Transcendent` is the
+only card in the pool that grants a second one.
+
+**No reading is filed.** 740.2 defines "alone", "one on one" and "in combat" for a unit and says
+nothing about being "in a showdown" (343.1 defines a Showdown *state* for the turn). The entry
+assumes the *demanding* reading — Syndra at the battlefield where the Showdown is in progress —
+because an entry that stands on the narrow reading survives either ruling.
+
+### 4.2 `maduli-the-list-might-gate` — UNL-144 + UNL-138 (both in zero entries)
+
+**A printed "I can't be readied" only costs a unit what its EXHAUST would have bought.** Maduli's move
+is an Activated ability whose cost is one Chaos Power and no exhaust (144.2 and 420.3.a put the
+exhaust on the *Standard* Move), and combat does not read exhaustion at all (#61). So a permanently
+exhausted 6-Might body moves battlefield to battlefield at will and arrives as the Attacker
+(190.3.a.1, 464.2.c.1).
+
+His gate is the enemy garrison's **total** Might, which is why a −2 is worth more than a +2:
+477.3.e.2.a applies increases first and decreases **last**, so The List's reduction always wins the
+race. And winning the gate is winning the combat, since 465.2.b/465.2.c read the same inequality.
+
+### 4.3 `downwell-crescent-guardian-reset-and-redeploy` — SFD-147 + UNL-122 (both in zero entries)
+
+An empty board is a **free Conquer**, and the two paragraphs are different ones: 323.9 stages a Combat
+only where opposing units are present, so after Downwell nothing opens; **344.2** covers it instead and
+348.2.a.1 says outright "This results in a Conquer". 323.6 / 190.4.c are what make the battlefields
+unoccupied *and* uncontrolled — 170.11.c's both conditions.
+
+**Twelve runes pay for the turn exactly.** 161.2.a caps the Rune Deck at "Exactly 12 Rune cards":
+exhaust all twelve for the 12 Energy the two cards cost (164.2.a), then recycle three of the *already
+exhausted* ones for the 3 Power (164.2.b carries no exhaust). The line is affordable on the turn the
+twelfth rune lands and not before.
+
+### 4.4 `the-harrowing-soulgorger-double-reanimation` — OGN-198 + OGN-196 (both in zero entries)
+
+356.1.b.2 makes "ignoring its Energy cost" zero **only** the Energy, which both cards print as a
+parenthesis. The pairing exists because Soulgorger's own play trigger is a second copy of the spell:
+one Harrowing is two bodies out of the trash, each paying only its Power. 355.2.a is why reanimation
+has no walk problem, and 185 / 186.1 are why no token is ever a legal choice.
+
+The entry refuses its own premise for every other target: The Harrowing aimed at anything but
+Soulgorger returns roughly what it cost.
+
+### 4.5 `bullet-time-seals-scaling-sweep` — OGN-268 + OGN-204 + OGN-163 (both Seals in zero entries)
+
+**204.3.b names Bullet Time**, and 740.4.a.1 spells out the consequence: "*For spells, costs within
+instructions are paid on RESOLUTION of the spell*". So the Power is committed *after* the opponent has
+responded — nothing else in the pool lets you size a sweeper that late. 355.10.d makes the units
+non-targets, so [Deflect] never charges.
+
+**The Signature check was run before the legend line was written and caught it**: Bullet Time is
+tagged Miss Fortune, and the pool has exactly one Miss Fortune legend, `OGN-267 / OGN-309 Bounty
+Hunter`. The field is one legend, not the three Body/Chaos names a domain-shaped answer would give.
+
+The Seals are the size of the sweep: 0 Energy and 1 Power to play, 1 Power a turn thereafter
+(415.3.a), and 135.2.e.5.b lets domain Power pay a rainbow cost. Being uncapped per activation, it is
+dead under every multiplier — the same shape as Ancient Henge and Hextech Anomaly.
+
+### 4.6 Refusals and leads from batch 3
+
+- **Any multiplier, copier or [Repeat] grant on `OGN-268 Bullet Time`** — refused: "Pay any amount"
+  already does the whole job in one execution, so a second buys nothing. Power is the only scaling.
+- **`SFD-133 Boots of Swiftness` on Maduli** — refused by half: its Might Bonus (434.1.d) does raise
+  his gate, but its granted [Ganking] is dead letter on a unit that can never be readied to pay
+  144.2's exhaust. A partner that is half dead is a worse partner than one that is wholly live.
+- **`VEN-109 Illaoi` + `VEN-100 Up from the Deep`** — dropped from this batch, not refused:
+  `rc-walk-rules` merged it while batch 3 was being written, as the twins
+  `magma-wurm-illaoi-ready-tentacles` and `soul-shepherd-illaoi-tentacle-wall`. Recorded here because
+  the re-census caught it and the collision is the reason to re-census every batch.
+- **Lead (not walked):** Syndra's grant is a static over EVERY spell you play in that window, so every
+  printed-[Repeat] spell in the pool is a partner — `SFD-136 Hard Bargain` becomes a counter that
+  taxes six. One anchor, one predicate: a synergy rule, not five entries.
