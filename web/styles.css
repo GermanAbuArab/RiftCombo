@@ -563,7 +563,10 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
    sits next to the reason it belongs to and holds that row open on a legal list. */
 .deck-card-name { min-width: 0; font-weight: 600; font-size: 0.90625rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .deck-card-verdict { display: flex; align-items: flex-start; gap: 8px; min-width: 0; }
-.deck-card-legend { display: flex; align-items: center; gap: 6px; font-size: 0.8125rem; }
+/* `flex-start`, not `center`: once the text can grow (#184) the legend's name wraps, and centred
+   dots float against the whole two-line block, reading as though they belong to the second line
+   rather than to the name. Aligned to the start they stay with the line they label. */
+.deck-card-legend { display: flex; align-items: flex-start; gap: 6px; font-size: 0.8125rem; }
 .deck-card-meta { font-size: 0.71875rem; color: var(--muted); }
 .deck-card-when { font-size: 0.71875rem; color: var(--faint); }
 /* Why the badge says Illegal (#93). NOT --danger: it measures 3.98:1 on --panel, under AA, and the
@@ -574,7 +577,10 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
    "This list names no …", which is not a reason. Two lines carry the sentence. The badge beside it is
    what holds the row open on a LEGAL list, so nothing is reserved and left empty. */
 .deck-card-why { flex: 1 1 auto; min-width: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; font-size: 0.71875rem; line-height: 1.4; color: var(--muted); }
-.dom-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex: 0 0 auto; }
+/* Centred on the FIRST line rather than on the whole flex row: the line box is 1.5em (the inherited
+   line-height) and the dot is 8px, so half the difference puts it on the line it labels at any font
+   size the reader has set. `flex-start` alone left it hugging the top of a 29px line box. */
+.dom-dot { width: 8px; height: 8px; margin-top: calc((1.5em - 8px) / 2); border-radius: 50%; display: inline-block; flex: 0 0 auto; }
 .dom-fury { background: var(--dom-fury); } .dom-calm { background: var(--dom-calm); }
 .dom-mind { background: var(--dom-mind); } .dom-body { background: var(--dom-body); }
 .dom-chaos { background: var(--dom-chaos); } .dom-order { background: var(--dom-order); }
