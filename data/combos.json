@@ -34713,6 +34713,392 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07 (issue #170), from the proven rule soul-shepherd-token-buff (50 partners, 49 uncovered, two entries). Written as the deliberate twin of magma-wurm-illaoi-ready-tentacles: the same token engine (VEN-109 + VEN-100, both in zero entries before this walk) under the two opposite anchors, one buying the walk and one buying survival, and 103.1.b makes them mutually exclusive because Soul Shepherd is Mind and Magma Wurm is Fury. Both entries cross-reference each other. The measurement that justifies the +1 is named rather than asserted: OGN-133 Flurry of Blades, 1 Energy, 'Deal 1 to all units at battlefields', against 143.2.a's 'nonzero damage … equalling or exceeding its Might'. Legend list computed from cards.json (mind + chaos over the 94 legend base codes), not typed. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b, 103.2.d.2, 143.2.a, 143.4, 185.1, 185.2.b, 186.1, 315.1.b, 465.2.c, 469, 470, 485.4, 702.3, 702.3.a, 703, 829.1.b, 829.1.b.1. Ban check: UNL-077, VEN-109 and VEN-100 carry no [BANNED marker. Arithmetic against its own declared quantities: five Tentacles at 2 Might plus Illaoi at 4 + 5 = 19 summed, against 14 without the Shepherd. Trap check: the grant is a continuous modifier and not a 702 buff, so it cannot be spent and does not collide; tokens never reach the trash (185, 186.1); the swarm still cannot move the turn it lands, which is the price of this half of the fork; no [Temporary], no [Repeat]. Depends on no unruled reading."
+    },
+    {
+      "id": "cataclysmic-duel-fiora-peerless-permanent-one-on-one",
+      "name": "740.2.b needs both units alone — Cataclysmic Duel makes that the whole board, and Fiora doubles for the rest of the game",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-090",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E8 P3. 'Each player chooses a unit they control. Kill the rest.' In zero entries before this walk."
+        },
+        {
+          "card": "SFD-110",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E3 P1 M3. 'When I attack or defend one on one, double my Might this combat.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Body among its two domains (103.1.b.3) — 17 names: Relentless Storm (OGN-249), Blind Monk (OGN-257), Bounty Hunter (OGN-267), The Boss (OGN-269), Wuju Bladesman - Starter (OGS-019), Might of Demacia - Starter (OGS-023), Purifier (SFD-183), Grandmaster at Arms (SFD-193), Battle Mistress (SFD-203), Grand Duelist (SFD-205), Pridestalker (UNL-183), Wuju Master (UNL-191), Voidreaver (UNL-201), Keeper of the Hammer (UNL-203), Butcher of the Sands (VEN-141), Defender of Tomorrow (VEN-149), Matriarch of War (VEN-153).",
+          "8 Energy and 3 Body Power, which is the most expensive spell in the Body population — see the last notable before building for it."
+        ],
+        "notable": [
+          "'ONE ON ONE' IS DEFINED, AND THE DEFINITION IS TWO CONDITIONS, NOT ONE. 740.2.b: 'A unit is one on one when it and the enemy unit at the same location are both alone', with 740.2.a: 'A unit is alone when there are no other friendly units at the same location.' So Fiora needs BOTH sides reduced to a single body at that location — a garrison of two of yours breaks her clause just as surely as a garrison of two of theirs. That is why she is hard to switch on and why a board-wide reset is the natural enabler rather than a combat trick.",
+          "CATACLYSMIC DUEL SETS EXACTLY THAT STATE, AND PERMANENTLY. 'Each player chooses a unit they control. Kill the rest' leaves one unit per player on the whole board, so every combat that happens afterwards is one on one until somebody rebuilds. Fiora at 3 Might fights at 6, attacking or defending, from that moment on.",
+          "AND THE SPELL TARGETS NOTHING. 355.10.e: an object 'part of a set of objects chosen in whole or in part by other players' is not a target, and its worked example is exactly this wording — '\"Each player kills a unit they control\" does not target. Each player, including the one who played the spell, chooses a unit to kill as the spell or ability resolves.' So [Deflect] never charges (809.1.c and 809.1.d pay only for targeting or choosing) and no 'can't be chosen by enemy spells and abilities' clause — `SFD-105 Ruin Runner`'s, for instance — keeps a body alive through it.",
+          "THE OPPONENT PICKS THEIR SURVIVOR, WHICH IS THE ENTRY'S REAL RISK. They keep their best body, so the duel Fiora inherits is against the largest thing they had. At 6 Might she beats a 5 and loses to a 7; 465.2.c.3 forces lethal onto one unit before the next, so there is no splitting. Price the line as 'my 6 against their best', not as 'my 6 against a leftover'.",
+          "Gear survives the wipe — the spell kills units — so an Equipment already attached to Fiora is still on her afterwards, and 434.1.d modulates her Might by its Might Bonus BEFORE the doubling, which is where the line actually scales: `SFD-102 Hexdrinker` (M+1) or `VEN-073 Jagged Cutlass` (M+2) make her 4 or 5 base and so 8 or 10 in the duel.",
+          "Priced whole: 8 Energy + 3 Body Power for the reset, on a 3 Energy + 1 Body Power Fiora already in play. It is a reset you cast when behind on board, and the doubling is what stops the rebuild being symmetric."
+        ]
+      },
+      "steps": [
+        "Play Fiora, Peerless (3 Energy + 1 Body Power).",
+        "When the board is crowded — ideally when you are behind on bodies — cast Cataclysmic Duel (8 Energy + 3 Body Power).",
+        "Each player chooses one unit they control; choose Fiora. Everything else dies. 355.10.e means nothing was targeted, so [Deflect] and 'can't be chosen' clauses do not intervene.",
+        "The board now holds one unit per player, so 740.2.a makes each of them alone and 740.2.b makes any combat between them one on one.",
+        "Attack or defend with Fiora: her Might doubles for that combat (3 becomes 6, or 8/10 if she is carrying a Might Bonus, 434.1.d)."
+      ],
+      "terminatesIn": "engine — a board reset to one unit a side, after which Fiora fights at double Might in every combat until somebody rebuilds; nothing here scores",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "740.2.b: 'A unit is one on one when it and the enemy unit at the same location are both alone.' 740.2.a: 'A unit is alone when there are no other friendly units at the same location.' 355.10.e: 'It is part of a set of objects chosen in whole or in part by other players. e.g., \"Each player kills a unit they control\" does not target.' 465.2.c.3 (lethal must be assigned to a unit before moving to the next). 434.1.d: 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it.' 809.1.c / 809.1.d ([Deflect] charges only for targeting or choosing)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, from the uncatalogued Body population. VEN-090 Cataclysmic Duel and SFD-110 Fiora, Peerless were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 355.10.e, 434.1.d, 465.2.c.3, 740.2.a, 740.2.b, 809.1.c, 809.1.d opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. #119 had noted that Fiora's Double 'needs one-on-one combat (740.2.b), which forbids Sivir beside her'; 740.2.a is the half that was not spelled out, and it is the one that makes a reset — rather than a bigger garrison — the way to switch her on."
+    },
+    {
+      "id": "call-to-battle-volibear-forced-move-draw",
+      "name": "Call to Battle makes the opponent move, so they become the Attacker on your turn — and Volibear draws for it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-101",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E3. 'Move a unit you control to a battlefield you control. Then, choose an opponent. They move a unit they control to the same battlefield.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-158",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E12 P2 M10, [Shield 3], [Tank]. 'When an opponent moves to a battlefield other than mine, draw 1. (Bases are not battlefield.)' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Body among its two domains (103.1.b.3) — 17 names: Relentless Storm (OGN-249), Blind Monk (OGN-257), Bounty Hunter (OGN-267), The Boss (OGN-269), Wuju Bladesman - Starter (OGS-019), Might of Demacia - Starter (OGS-023), Purifier (SFD-183), Grandmaster at Arms (SFD-193), Battle Mistress (SFD-203), Grand Duelist (SFD-205), Pridestalker (UNL-183), Wuju Master (UNL-191), Voidreaver (UNL-201), Keeper of the Hammer (UNL-203), Butcher of the Sands (VEN-141), Defender of Tomorrow (VEN-149), Matriarch of War (VEN-153).",
+          "Two battlefields under your control: Volibear stands at one, the forced move happens at the OTHER — his clause says 'other than mine'.",
+          "12 Energy and 2 Body Power for Volibear, which is the most expensive card in the population."
+        ],
+        "notable": [
+          "FORCING THEM TO MOVE MAKES THEM THE ATTACKER ON YOUR OWN TURN. 190.3.a keys Contested on the moved unit's controller — 'a Unit controlled by a Player who does not currently Control that Battlefield Moves or otherwise becomes present there' — and 464.2.c.1 makes the Attacker 'the player whose unit(s) applied the Contested status'. Neither says anything about who caused the move. So one enemy body walks into a battlefield you control, in your Main Phase, wearing the Attacker designation, and your garrison plus 465.2.b's summed defence answers it.",
+          "AND THE SPELL TARGETS NOTHING ON THEIR SIDE. 355.10.e: an object 'part of a set of objects chosen in whole or in part by other players' is not a target. 'They move a unit they control' is their choice, made as the spell resolves — so [Deflect] never charges (809.1.c, 809.1.d) and 'can't be moved by enemy spells and abilities' clauses such as `VEN-073 Jagged Cutlass`' do not bite, because the mover is its own controller. The cost is that they choose WHICH body walks in, and it will be the one they least mind losing.",
+          "VOLIBEAR'S PARENTHESIS IS LOAD-BEARING TWICE OVER. 'When an opponent moves to a battlefield other than mine, draw 1. (Bases are not battlefield.)' — so the forced move must land somewhere Volibear is NOT, which means two battlefields under your control, and a move to base pays nothing. That parenthesis is also why he never draws off an opponent retreating.",
+          "He is the board on his own while he does it: 10 Might, [Shield 3] making him 13 defending (814.1.c), and [Tank] making every other body of yours an invalid damage assignment until he has lethal (815.1.c.2). At 12 Energy + 2 Body Power he is the most expensive card in the Body population and this entry does not pretend otherwise — the pairing is what makes the twelfth Energy do something on the turns nobody attacks him.",
+          "Three copies of Call to Battle (103.2.b) is three cards and three forced attacks; Volibear's trigger has no once-per-turn clause, so any other source of enemy movement pays him too — `UNL-202 Void Assault` and `OGN-043 Charm` among them. That is a synergy-rule shape, and this entry names the one partner that also hands you the combat.",
+          "144.1.b is not in the way: the spell moves both units by EFFECT, and 420.3.a puts the exhaust cost on the Standard Move alone, so nothing is exhausted on either side."
+        ]
+      },
+      "steps": [
+        "Control two battlefields. Play Volibear, Imposing (12 Energy + 2 Body Power) at one of them.",
+        "Cast Call to Battle (3 Energy). Move one of your units to the OTHER battlefield you control — the one Volibear is not at.",
+        "Choose an opponent. They must move a unit they control to that same battlefield.",
+        "Volibear's trigger fires: an opponent moved to a battlefield other than his. Draw 1.",
+        "Their arrival applies Contested (190.3.a, 190.3.a.1), so 464.2.c.1 designates THEM the Attacker in your own Main Phase, and the combat resolves with your garrison defending."
+      ],
+      "terminatesIn": "engine — one card and one forced enemy attack into your own garrison per Call to Battle, three times a game (103.2.b); nothing here scores",
+      "netPerIteration": "-1 card, -3 Energy, +1 card drawn, one enemy unit dragged into a battlefield you control as the Attacker",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "190.3.a: 'Contested is a temporary status applied to the battlefield when a Unit controlled by a Player who does not currently Control that Battlefield Moves or otherwise becomes present there.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the [Battlefield].' 355.10.e: 'It is part of a set of objects chosen in whole or in part by other players.' 814.1.c: 'While I am a defender, I have +X [M].' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 420.3.a: 'The Cost is Exhausting one or more Units.' 465.2.b: 'Sum the Might of all Defending Units.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. UNL-101 Call to Battle and OGN-158 Volibear, Imposing were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 144.1.b, 190.3.a, 190.3.a.1, 355.10.e, 420.3.a, 464.2.c.1, 465.2.b, 809.1.c, 809.1.d, 814.1.c, 815.1.c.2 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The contrast with the other forced-move card in the slice is deliberate: here the OPPONENT chooses which body moves (355.10.e, so [Deflect] is free), whereas a mover that chooses for them pays 809.1.c."
+    },
+    {
+      "id": "unyielding-spirit-challenge-unit-damage",
+      "name": "417.6.b.3 names Challenge — its damage is dealt by the units, so a blanket 'prevent all spell and ability damage' leaves your own removal working",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-145",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E1 P1, [Reaction]. 'Prevent all spell and ability damage this turn.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-128",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E2 P1, [Action]. 'Choose a friendly unit and an enemy unit. They deal damage equal to their Mights to each other.' Riot's own worked example under 417.6.b.3. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Body among its two domains (103.1.b.3) — 17 names: Relentless Storm (OGN-249), Blind Monk (OGN-257), Bounty Hunter (OGN-267), The Boss (OGN-269), Wuju Bladesman - Starter (OGS-019), Might of Demacia - Starter (OGS-023), Purifier (SFD-183), Grandmaster at Arms (SFD-193), Battle Mistress (SFD-203), Grand Duelist (SFD-205), Pridestalker (UNL-183), Wuju Master (UNL-191), Voidreaver (UNL-201), Keeper of the Hammer (UNL-203), Butcher of the Sands (VEN-141), Defender of Tomorrow (VEN-149), Matriarch of War (VEN-153).",
+          "A friendly unit big enough to trade up — Challenge's damage is its Might, so the entry is only as good as the body you point with."
+        ],
+        "notable": [
+          "RIOT SETTLES THIS BY NAME, AND IT IS THE WHOLE ENTRY. 417.6.b.3: 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it. Example: Challenge is a spell that reads \"Choose a friendly unit and an enemy unit. They deal damage equal to their Mights to each other.\" The damage that Challenge causes to be dealt is dealt by the chosen units, not by Challenge.' So Challenge's damage is UNIT damage. Unyielding Spirit prevents 'all spell and ability damage this turn' and never touches it.",
+          "WHAT THAT BUYS: A SYMMETRIC FOG THAT IS NOT SYMMETRIC. Every burn spell in the opponent's deck — every 'Deal N to a unit' — is blanked for the turn, and 437.4 makes the blanking total: 'Damage dealt to a Unit that has all of that damage Prevented is not considered to have been dealt to it at all', so no kill event is generated and nothing that keys on a unit dying fires either. Meanwhile your own removal, built out of the Challenge family, resolves normally. Combat is untouched for the same reason (417.6.b.1: units are a source of damage in their own right).",
+          "437.5 is the half that keeps it honest in combat: 'Damage can still be assigned to Units in combat that are affected by Prevent. The damage dealt as a result of that assignment will be affected by the Prevent action.' The fog does not stop assignment, and it is not a Prevent on combat damage anyway — the source there is the units.",
+          "[Reaction] IS WHY IT IS A FOG AND NOT A PLAN. 813.1.c.1 puts Unyielding Spirit in 'Closed States on any player's turn', so it is played in response to the removal spell, after the opponent has committed. 1 Energy + 1 Body Power off runes held ready (167, 415.3.a, 164.2.a) is the price — or off `UNL-093 Dragonsoul Sage`, which is the companion entry.",
+          "THE FAMILY IS WIDER THAN THIS ONE SPELL AND IT IS A DECKBUILDING RULE, NOT A COMBO. Every card in the pool whose removal reads 'they deal damage equal to their Mights to each other' is unit damage by 417.6.b.3: `OGN-128 Challenge`, `OGS-008 Gentlemen's Duel`, `VEN-083 Rampage`, `UNL-110 Clash of Giants`, `SFD-114 Marching Orders`, `OGN-149 Carnivorous Snapvine`, and `SFD-107 Strike Down`. Build the removal suite out of those and Unyielding Spirit costs you nothing at all.",
+          "The trade is still a trade: 143.2.a kills at Might and both bodies take the damage, so Challenge on a 3-Might friend into a 3-Might enemy kills both. The fog does not protect the friendly half, because that damage is unit damage too."
+        ]
+      },
+      "steps": [
+        "Build the removal suite out of the 417.6.b.3 family — spells whose damage is dealt by the chosen units.",
+        "On your turn, cast Challenge (2 Energy + 1 Body Power): choose one of your units and an enemy unit; they deal damage equal to their Mights to each other (143.2.a kills at Might).",
+        "Keep 1 Energy and 1 Body Power available for the opponent's turn.",
+        "When they aim a burn spell or a damaging ability at anything of yours, play Unyielding Spirit in that Closed State (813.1.c.1).",
+        "All spell and ability damage is prevented for the turn; 437.4 means it was never dealt, so no kill event exists — while your own Challenge-family removal, being unit damage, is untouched."
+      ],
+      "terminatesIn": "engine — a one-Energy answer to every damage-based removal spell in the format, on a turn your own removal still works; nothing here scores",
+      "netPerIteration": "-1 Energy -1 Body Power, all enemy spell and ability damage that turn erased",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "417.6.b.3: 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it. Example: Challenge ... The damage that Challenge causes to be dealt is dealt by the chosen units, not by Challenge.' 437.4: 'Damage dealt to a Unit that has that all of that damage Prevented is not considered to have been dealt to it at all.' 437.5: 'Damage can still be assigned to Units in combat that are affected by Prevent.' 417.6.b.1: 'Units and Spells can be the source of Damage for Deal actions.' 813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. OGN-145 Unyielding Spirit and OGN-128 Challenge were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 143.2.a, 164.2.a, 167, 415.3.a, 417.6.b.1, 417.6.b.3, 437.4, 437.5, 813.1.c.1 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading — 417.6.b.3 names the card. #119 recorded that Prevent generates no kill event and that no repeatable Prevent exists; the source-of-damage split is what turns the one blanket Prevent in the pool from a symmetric fog into a one-sided one."
+    },
+    {
+      "id": "strike-down-blighted-battleaxe-detach-before-it-bites",
+      "name": "Strike Down spends the Battleaxe's Might and then detaches it — which is exactly how you dodge the Battleaxe's own end-of-turn bill",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-107",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E3 P1. 'Choose an equipped friendly unit. It deals damage equal to its Might to an enemy unit. Then detach an Equipment from it.' In zero entries before this walk."
+        },
+        {
+          "card": "UNL-019",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Fury gear, E4, Might Bonus +4, [Equip] :rb_energy_1::rb_rune_fury:. '[Effect] At the end of your turn, if I didn't conquer this turn, unattach this and deal 4 to me.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Body + Fury, so four legend names (103.1.b.2): Relentless Storm (OGN-249), Purifier (SFD-183), Pridestalker (UNL-183), Butcher of the Sands (VEN-141).",
+          "A unit to carry the Battleaxe — the bigger it is, the bigger the shot, since 434.1.d adds the Might Bonus to the carrier."
+        ],
+        "notable": [
+          "THE DETACH IS THE POINT, NOT THE COST. The Battleaxe's [Effect] is appended to the CARRIER — 434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text' — so 'unattach this and deal 4 to me' is 4 damage to YOUR OWN unit at the end of any turn it did not conquer. Strike Down's last clause, 'Then detach an Equipment from it', removes the Battleaxe before that end-of-turn trigger exists: no attachment, no appended text, no bill. A spell whose drawback line is the answer to the other card's drawback line.",
+          "THE SHOT IS THE CARRIER'S FULL MIGHT INCLUDING THE BONUS. 434.1.d: 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it', so a 3-Might body wearing the Battleaxe is 7 and deals SEVEN to an enemy unit — 143.2.a kills at Might, so that clears almost anything in the pool for 3 Energy and 1 Body Power.",
+          "AND IT IS UNIT DAMAGE, NOT SPELL DAMAGE. 417.6.b.3 — whose worked example is Challenge — makes damage dealt by a specified unit come from the unit, not from the spell that instructed it. So Strike Down is in the same family as `unyielding-spirit-challenge-unit-damage` and survives a blanket 'prevent all spell and ability damage'. It also means the shot is one-way: the enemy unit does NOT deal damage back, unlike Challenge.",
+          "RE-ARMING IS CHEAP AND IS AN ACTIVATED ABILITY. 818.1 makes [Equip] an Activated Ability with a cost, and the Battleaxe's is 1 Energy + 1 Fury Power, so the detached gear goes back on next turn for that price — and 818.1 also means attaching is never PLAYING, so no 'when you play a gear' trigger fires on the re-equip.",
+          "381 confines that re-equip to your own Main Phase in an Open State, since [Equip] carries neither [Action] nor [Reaction]. Strike Down itself has no timing keyword either, so the whole line is a Main Phase line.",
+          "The Battleaxe's conquer clause is still worth knowing on the turns you do not cast Strike Down: conquer with the carrier and the bill is waived entirely. The pairing is for the turns you cannot conquer, which is most of them."
+        ]
+      },
+      "steps": [
+        "Play the Blighted Battleaxe (4 Energy) and [Equip] it to a unit for 1 Energy + 1 Fury Power (818.1). The carrier's Might rises by 4 (434.1.d) and inherits the Battleaxe's end-of-turn clause (434.1.c).",
+        "In your Main Phase, cast Strike Down (3 Energy + 1 Body Power) choosing that unit.",
+        "It deals damage equal to its full Might — printed plus the +4 — to an enemy unit. 417.6.b.3 makes that unit damage, and nothing is dealt back.",
+        "Then detach an Equipment from it: take the Battleaxe off.",
+        "At the end of your turn the Battleaxe is no longer attached, so the 'deal 4 to me' clause is not on your unit at all.",
+        "Re-equip next turn for 1 Energy + 1 Fury Power (381 confines it to your own Main Phase)."
+      ],
+      "terminatesIn": "engine — a one-way shot equal to a boosted body's Might, and the Battleaxe's own end-of-turn bill dodged, once per Strike Down; nothing here scores",
+      "netPerIteration": "-1 card, -3 Energy -1 Body Power, damage equal to the carrier's boosted Might to one enemy unit, and 4 damage to your own body avoided",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.' 434.1.d: 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it.' 417.6.b.3: 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it.' 818.1: 'Equip is an Activated Ability keyword.' 818.1.c.2: 'Equip is functionally short for \"[Cost]: Attach this gear to a unit you control.\"' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. SFD-107 Strike Down and UNL-019 Blighted Battleaxe were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 143.2.a, 381, 417.6.b.3, 434.1.c, 434.1.d, 818.1, 818.1.c.2 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. 434.1.c is what decides who 'me' refers to in the Battleaxe's clause — the carrier, because the Effect Text is appended to the carrier's Rules Text — and that is the reading the entry stands on."
+    },
+    {
+      "id": "pit-rookie-lee-sin-centered-buffed-garrison",
+      "name": "Lee Sin, Centered pays per buffed BODY, and 702.3 caps a body at one buff — so the Pit Rookies are the engine, not the buffs",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-136",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body unit, E2 M2. 'When you play me, buff another friendly unit.' Three copies buff three DIFFERENT bodies, because 702.3 refuses a second buff on the same one. In zero entries before this walk."
+        },
+        {
+          "card": "OGN-151",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E6 M6, [Accelerate]. 'Other buffed friendly units at my battlefield have +2 :rb_might:.' A continuous modifier, not a buff counter. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Body among its two domains (103.1.b.3) — 17 names: Relentless Storm (OGN-249), Blind Monk (OGN-257), Bounty Hunter (OGN-267), The Boss (OGN-269), Wuju Bladesman - Starter (OGS-019), Might of Demacia - Starter (OGS-023), Purifier (SFD-183), Grandmaster at Arms (SFD-193), Battle Mistress (SFD-203), Grand Duelist (SFD-205), Pridestalker (UNL-183), Wuju Master (UNL-191), Voidreaver (UNL-201), Keeper of the Hammer (UNL-203), Butcher of the Sands (VEN-141), Defender of Tomorrow (VEN-149), Matriarch of War (VEN-153).",
+          "The buffed bodies must stand at LEE SIN'S battlefield — his clause says 'at my battlefield', so buffing a unit at your base pays nothing."
+        ],
+        "notable": [
+          "THE BOTTLENECK IS BODIES, NOT BUFFS, AND 702.3 IS WHY. 'There can only be one Buff on a Unit at a time' (702.3.a: a second is not placed), so three Pit Rookies buff three DIFFERENT units and a fourth buffer aimed at the same board buys nothing. Each Pit Rookie is a 2-Energy 2-Might body that also arms another body for Lee Sin, so the pair scales with how many separate units you can field, exactly the min(triggers, unbuffed bodies) shape #106 measured for the Recruit loop.",
+          "LEE SIN'S +2 IS A CONTINUOUS MODIFIER, NOT A BUFF, AND THE DIFFERENCE MATTERS TWICE. 702.2.a defines buffing as choosing a unit and placing a buff on it; Lee Sin places nothing — his text is a static that reads the counter. So 702.3 never applies to his +2 (it stacks on top of the +1 buff, and would stack with a second Lee Sin), and nothing that SPENDS a buff can spend it. The arithmetic per buffed body is 1 (the buff, 703) + 2 (Lee Sin) = +3 Might, and 'Other' excludes him.",
+          "THE ANTI-SYNERGY IS ONE CARD AWAY IN THE SAME DOMAIN. 702.2.b: 'Spending a Buff removes a single Buff counter from a Unit.' `OGN-147 Wildclaw Shaman` ('you may spend a buff to buff me and ready me') and `OGN-157 Udyr, Wildman` ('Spend my buff: …') both pay by removing the counter — and the moment the counter goes, Lee Sin's +2 goes with it. A deck picks a side: carry buffs or spend them, never both, which is the distinction #153 drew for `OGN-065 Wizened Elder` and `OGN-125 Bilgewater Bully`.",
+          "Three Pit Rookies is 6 Energy for six Might of bodies and three armed carriers; Lee Sin is 6 Energy with [Accelerate] (143.4.a) available for 1 Energy + 1 Body Power if you want him moving the turn he lands. On a garrison of three buffed bodies he is worth +6 Might spread across them, plus his own 6.",
+          "Every buffed body is also a live target for the pool's other buff-readers, which is the synergy-rule shape rather than this entry's business: `OGN-065 Wizened Elder` and `OGN-125 Bilgewater Bully` are the only two `While I'm buffed` statics, and `OGN-228 Vanguard Helm` and `SFD-101 Fae Dragon` react to buffs from the other side.",
+          "The buff itself is 703's +1 Might and is permanent, unlike a 'this turn' modifier — which is what makes the garrison keep its size across turns while Lee Sin lives."
+        ]
+      },
+      "steps": [
+        "Play Lee Sin, Centered (6 Energy), optionally paying [Accelerate]'s 1 Energy + 1 Body Power so he enters ready (143.4.a), and station him at a battlefield.",
+        "Play a Pit Rookie (2 Energy) at that battlefield. Its play trigger buffs ANOTHER friendly unit there: +1 Might counter (702.2.a, 703).",
+        "Play the second and third Pit Rookie. Each must buff a different body, because 702.3 refuses a second counter on a unit that already has one.",
+        "Every buffed body at Lee Sin's battlefield now has +2 more from his static — a continuous modifier that 702.3 does not cap.",
+        "Keep the counters: any card that SPENDS a buff (702.2.b) switches Lee Sin's bonus off for that body."
+      ],
+      "terminatesIn": "engine — +3 Might on each separately buffed body at Lee Sin's battlefield, bounded by how many different bodies you can field; nothing here scores",
+      "netPerIteration": "-2 Energy per Pit Rookie, +1 body at 2 Might, and one more friendly unit at +3 effective Might",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "702.3: 'There can only be one Buff on a Unit at a time.' 702.3.a (a buff instructed onto a unit that already has one is not placed). 702.2.a: 'To Buff a Unit, a player chooses a Unit and then places a buff on it.' 702.2.b: 'Spending a Buff removes a single Buff counter from a Unit.' 703 (a buff is +1 Might). 143.4.a: 'This can be altered by Accelerate or similar game effects.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. OGN-136 Pit Rookie and OGN-151 Lee Sin, Centered were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 143.4.a, 702.2.a, 702.2.b, 702.3, 702.3.a, 703 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. CLAUDE.md already records that Lee Sin, Centered's +2 is a continuous modifier and not a 702 buff; what this entry adds is the consequence — his payoff counts BODIES carrying a counter, so the buffers are the engine and a second buffer on the same body is dead."
+    },
+    {
+      "id": "dragonsoul-sage-cannon-barrage-off-turn-sweep",
+      "name": "The rune tax on every off-turn play, paid by a body instead — and 164.2.b makes the Power half free even from an exhausted rune",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-093",
+          "quantity": 2,
+          "role": "resource",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E2 M1. '[Reaction][>] :rb_exhaust:: [Add] :rb_energy_1:.' Two copies cover Cannon Barrage's whole Energy cost on the opponent's turn. In zero entries before this walk."
+        },
+        {
+          "card": "OGN-127",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E2 P1, [Reaction]. 'Deal 2 to all enemy units in combat.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Body among its two domains (103.1.b.3) — 17 names: Relentless Storm (OGN-249), Blind Monk (OGN-257), Bounty Hunter (OGN-267), The Boss (OGN-269), Wuju Bladesman - Starter (OGS-019), Might of Demacia - Starter (OGS-023), Purifier (SFD-183), Grandmaster at Arms (SFD-193), Battle Mistress (SFD-203), Grand Duelist (SFD-205), Pridestalker (UNL-183), Wuju Master (UNL-191), Voidreaver (UNL-201), Keeper of the Hammer (UNL-203), Butcher of the Sands (VEN-141), Defender of Tomorrow (VEN-149), Matriarch of War (VEN-153).",
+          "The two Sages must be READY when you pass the turn — 415.3.a readies them only in your own Awakening, so an activation on their turn is an activation you did not spend on yours."
+        ],
+        "notable": [
+          "THIS IS THE TAX EVERY OFF-TURN LINE IN THE CATALOGUE PAYS, AND THE SAGE IS THE WAY OUT. 167 empties every Rune Pool 'at the start of each player's Main Phase and the end of each player's turn', and 415.3.a readies your runes only 'during the Awakening Phase on their turn' — yours. So a [Reaction] card on the opponent's turn is normally funded by runes you deliberately left unexhausted on your own, which is Energy you did not spend. `UNL-093 Dragonsoul Sage` moves that cost onto a 2-Energy body: '[Reaction][>] exhaust: [Add] 1 Energy', and 813.1.c.2 is the permission — 'On Activated Abilities: \"This can be activated during Closed States on any player's turn.\"'",
+          "AND THE POWER HALF IS FREE EVEN OFF A SPENT RUNE. 164.2.b is 'Recycle this: [Reaction] — [Add] [C]' with NO exhaust in its cost, so a rune already tapped for Energy on your own turn still pays one Power of its domain on theirs; 161.2.b sends it to the Rune Deck rather than the Main Deck, and 161.2.a caps the deck at twelve, so the real price is one rune off the board. Two Sages plus one rune recycle therefore pay Cannon Barrage's full 2 Energy + 1 Body Power with NOTHING held ready.",
+          "'ALL ENEMY UNITS IN COMBAT' TARGETS NOTHING. 355.10.d makes an object 'programmatically selected based on its characteristics rather than chosen' a non-target, with the worked example '\"Kill all units at a battlefield\" targets a battlefield, but does not target any units'. So [Deflect] never charges (809.1.c, 809.1.d) and no 'can't be chosen by enemy spells and abilities' clause protects an attacker from it. 740.2.c is the scope: 'A unit is in combat if it is occupying a battlefield where combat is ongoing and has a combat designation' — so your own defenders are NOT hit, because the spell says ENEMY units.",
+          "TWO DAMAGE IS A TOKEN SWEEPER AND THE ENTRY SAYS SO. 143.2.a kills at Might, so this clears 1- and 2-Might bodies and merely marks anything larger. Against the Recruit, Sprite, Bird and Tentacle engines in this catalogue it is a whole attack erased for 2 Energy; against a garrison of real bodies it is a rounding error.",
+          "The Sages are 1-Might bodies, so they die to exactly the sweeper they are paying for. Keep them at your base: 355.2.a lets a unit be played there, they need no battlefield to activate, and 740.2.c keeps them out of combat entirely.",
+          "429.2 is why the Add resolves cleanly mid-chain: an ability that Adds resolves as soon as it is finalized, before any other outstanding chain item — which is also what the reminder text on the card ('Abilities that add resources can't be reacted to') is telling you."
+        ]
+      },
+      "steps": [
+        "Play two Dragonsoul Sages (2 Energy each) and leave them at your base.",
+        "Pass the turn with both Sages ready. No runes need to be held.",
+        "The opponent attacks; a combat opens and their units gain the Attacker designation (464.2.c.3, 740.2.c).",
+        "In that Closed State, exhaust both Sages for 1 Energy each (813.1.c.2, 429.2), and recycle any rune — even one already exhausted — for 1 Body Power (164.2.b).",
+        "Play Cannon Barrage (813.1.c.1): 2 damage to all enemy units in combat, targeting nothing (355.10.d).",
+        "143.2.a kills every attacker of 2 Might or less outright."
+      ],
+      "terminatesIn": "engine — a 2-damage sweep of the attacking garrison every turn you can spare the card, funded entirely off-board so no runes are held ready; nothing here scores",
+      "netPerIteration": "-1 card, two Sage activations and one rune recycled, 2 damage to every enemy unit in combat",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 813.1.c.2: 'On Activated Abilities: \"This can be activated during Closed States on any player's turn.\"' 164.2.b (Recycle this: [Reaction] — Add [C], with no exhaust in the cost). 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 161.2.a: 'Exactly 12 Rune cards chosen during Deck Construction.' 355.10.d: 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller.' 740.2.c: 'A unit is in combat if it is occupying a battlefield where combat is ongoing and has a combat designation.' 429.2 (an ability that Adds resolves as soon as it is finalized). 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. UNL-093 Dragonsoul Sage and OGN-127 Cannon Barrage were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 143.2.a, 161.2.a, 161.2.b, 164.2.b, 167, 355.10.d, 415.3.a, 429.2, 464.2.c.3, 740.2.c, 809.1.c, 809.1.d, 813.1.c.1, 813.1.c.2 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The entry exists because six entries written by this session in the last two days all pay the same hidden cost — runes held ready through your own turn — and this is the pool's Body answer to it; the second notable is the half that is genuinely free, since 164.2.b needs no exhaust."
     }
   ]
 }
