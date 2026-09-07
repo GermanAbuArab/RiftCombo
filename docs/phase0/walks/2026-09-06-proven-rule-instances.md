@@ -636,3 +636,98 @@ minimum needed to kill). But the only card in the pool that turns excess damage 
 103.1.b is a subset test against the legend's two domains and no legend covers all three. The Body
 payoff `SFD-120 Sivir, Ambitious` is legal and deals the excess as damage, which is removal, not
 points. Left as a lead on the removal side.
+
+---
+
+# Batch 6 — `fiora-buff-ready` and the hidden family
+
+## 13. Entries authored
+
+### 13.1 `peak-guardian-fiora-mass-ready` — ENGINE, mono-Order, the whole garrison at once
+Rule mined: `fiora-buff-ready` (98 partners; **eight** entries in the catalogue carry `SFD-180` and
+every one of them readies a *single* body). Partner `OGN-223 Peak Guardian`.
+
+*"When you play me, buff me. Then, if I am at a battlefield, buff all other friendly units there."*
+703 makes each buff +1, 709's worked example is *"A Unit with Might 4 that gets +1 becomes Mighty"* —
+so every unbuffed 4-Might friend there crosses simultaneously and Fiora readies each for 1 Order Power.
+
+The #100 walk's correction is applied rather than re-derived: **355.2.a** makes a battlefield you
+control a default play location, so his second sentence is live and he is not dead letter.
+
+The ceiling is **unbuffed** 4-Might bodies, not body count: 702.3.a skips anything that already
+carries a buff, so it never becomes Mighty and never readies.
+
+### 13.2 `arena-bar-fiora-untap` — ENGINE, one free ready a turn, forever
+Rule mined: `fiora-buff-ready`. Partner `OGN-124 Arena Bar`.
+
+**Grepped, not asserted:** `grep -i "exhausted friendly"` over the whole corpus returns Arena Bar and
+`UNL-201 Voidreaver` — and Voidreaver's exhausted clause is a *move*, its buff clause is a plain
+*"[Buff] a unit"*. So Arena Bar is the only buff source in the pool whose **target clause** names an
+exhausted unit, which is exactly the target Fiora wants (415.1: readying a ready unit does nothing).
+
+Its cost is its own exhaust alone — no Energy, no Power — and 315.1.b readies it every Awaken.
+702.3 is the cap and it is **permanent, not per turn**: the Bar must find a different unbuffed
+4-Might body each turn.
+
+Deliberately authored beside 13.1 as its opposite: three uses a game across a whole garrison, versus
+one a turn forever.
+
+### 13.3 `black-market-broker-ember-monk-hidden` — ENGINE, mono-Chaos
+Rule mined: `black-market-broker-hidden-family` (38 partners, 4 entries). Partner `OGN-167 Ember
+Monk` — the only other card in the pool that watches the same event.
+
+> **811.1.c.3.** Playing a card from facedown (or "from Hidden") does open a chain.
+
+Both triggers key on it with no further condition. And 811.1.b spells out the economics: the hide is
+1 rainbow Power, the play is free *"ignoring its base cost"*, and it is capped at **one face-down per
+battlefield you control** — one or two a turn in a Duel (485.4), not one per Hidden card in hand.
+
+### 13.4 `svellsongur-ava-achiever-hidden-flood` — ENGINE, eight free Hidden plays on one attack
+Rules mined: `svellsongur-copy` × `ava-achiever-hidden-discount` (35 partners, 2 entries).
+
+811.1.a scopes `[Hidden]` to Spells, Units and Gear, so Ava flattens every printed cost to 1 Mind
+Power — and eight instances make one attack into eight free plays. It also sidesteps **811.1.d.2**
+(a card played from *hand* carries no "target only at the battlefield it was hidden at" restriction).
+
+### 13.5 `overt-operation-fiora-double-untap` — ENGINE, two disjoint sets readied by one spell
+Rule mined: `fiora-buff-ready`. Partner `OGN-153 Overt Operation`.
+
+The point the walk had to check: **do the spell's two halves overlap?** They cannot. Half one readies
+every already-buffed friend by spending its buff; half two then buffs *"all friendly units"*, and
+**702.3.a** places a buff only on those with none — which after half one is exactly the set half one
+could not touch. Disjoint by construction, so Fiora doubles the spell rather than overlapping it.
+
+---
+
+## 14. Refusals, batch 6
+
+### 14.1 `UNL-043 Enthusiastic Promoter` under `fiora-buff-ready` — the ready lands a phase too late
+*"When I hold, [Buff] all units here."* It is a genuine mass buff and every unbuffed 4-Might body
+there becomes Mighty, so Fiora's trigger really does fire. It buys **nothing**: 315 orders the start
+of turn as **315.1 Awaken → 315.2 Beginning Phase**, and 315.1.b already *"readies all Game Objects
+they control that are able to be readied"* before the Hold in 315.2.b happens. Everything Fiora would
+ready is already ready. A Hold-triggered ready is a no-op by phase order, and the same applies to
+`OGN-283 Navori Fighting Pit`.
+
+(This is the same 315.1-precedes-315.2 fact CLAUDE.md records for `[Temporary]` deaths and for Gold
+made by a Hold — a third consequence of it.)
+
+### 14.2 `OGN-107 Ava Achiever` under `black-market-broker-hidden-family` — hand is not face down
+> **811.1.c.1.** Hide is not a subset of Play.
+
+Ava plays a `[Hidden]` card *"from your hand"*. The Broker and the Ember Monk both watch a card played
+**from face down** (811.1.c.3). Routing the Hidden package through Ava switches both payoffs off, and
+the two families are mutually exclusive — stated in both entries so nobody composes them by mistake.
+
+### 14.3 `OGN-078 Lee Sin, Ascetic` under `fiora-buff-ready` — the buff is his own and it caps him
+*"[exhaust]: Buff me. I can have any number of buffs."* He is Might 5 printed, so 709's second worked
+example applies directly — *"A Unit with Might 5 that gets +1 does not become Mighty, because it was
+already Mighty"* — and Fiora never fires at all. The card that reads as the perfect buff engine is
+the one partner in the list that can never trigger the payoff.
+
+### 14.4 `OGN-143 Pirate's Haven` under `fiora-buff-ready` — it looks like a loop and is not
+*"When you ready a friendly unit, give it +1 Might this turn."* Read together with Fiora it seems to
+close: ready → +1 → becomes Mighty → ready. It does not, twice over. A unit Fiora readies was already
+Mighty when she fired (that is her condition), so 709 cannot fire again on the +1; and readying an
+already-ready unit performs no ready at all (415.1 marks a Game Object), so the Haven's trigger has no
+event to watch. No loop, and no reading needed to say so.
