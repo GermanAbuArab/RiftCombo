@@ -812,3 +812,76 @@ windswept-hillock-move-triggers NARROWED — 810.1.c.3; no partner supplies a se
 - `master-of-shadows-banish-rummage` carries a **false uniqueness claim in its own name** — see §3.
   Three cards print the Shadow Clone token and its attack-triggered banish; one of them is the entry's
   own `VEN-144 Death Mark ×3`.
+
+---
+
+## 22. Handoff — what is left of this slice, and the tooling to pick it up
+
+Written at the 60% context handoff, 2026-09-07. **Every count below is as of that date**; parallel
+walks move them within the hour, so re-measure before trusting any of them.
+
+### 22.1 Done
+
+- **All 19 orphan rules in scope are dispositioned**: 16 entries (sections 1–15) and 3 refusals with
+  the killing paragraph quoted — `wizened-elder-buffed-payoff` on 702.2.b, `sky-splitter-might-discount`
+  as arithmetic already priced by `sky-splitter-volibear-free-removal`, `windswept-hillock-move-triggers`
+  on 810.1.c.3. One of them, `startipped-peak-rune-ramp`, was a **reversal** of a twice-recorded
+  refusal (§11) and one, `green-father-brush-four-tags`, was a **deferral closed by the rules' own
+  worked example** (§9).
+- **10 proven rules opened** (sections 16–19): `jayce-readies-exhaust-abilities`, `svellsongur-copy`,
+  `veiled-temple-readies-gear`, `curator-of-the-sands-printed-cost`, `shadow-temple-trash-fuel`,
+  `dauntless-vanguard-occupied-battlefield-assault`, `magma-wurm-mass-ready`,
+  `soul-shepherd-token-buff`, `dark-child-off-turn-reactions`, `black-market-broker-hidden-family`.
+- **25 entries** staged across eight batches, all ENGINE. **20 cards that were in zero entries now
+  carry one.**
+
+### 22.2 Not done, in the order a successor should take them
+
+The measurement that ranks them is `uncovered` — partners the anchor has never shared an entry with:
+
+```
+pit-crew-gear-ready            OGN-091  104 uncovered / 1 entry
+simian-ancestor-buff-ready     SFD-047   98 / 1
+mistfall-buff-ready            OGN-152   97 / 1
+vanguard-helm-buff-supply      OGN-228   96 / 2
+monastery-hirana-buff-supply   OGN-282   93 / 1
+yordle-explorer-power-two      SFD-100   81 / 1
+get-excited-expensive-discard  OGN-008   66 / 1
+renata-industrialist-tokens    SFD-171   55 / 20
+ivern-friend-to-all-four-tags  UNL-177   50 / 3
+friendship / starhound / undying-loyalty / daisy / stalking-wolf four-tag rules  ~48 each / 1–2
+trapping-grounds-excess-damage UNL-217   41 / 1
+prize-of-progress-gear-activation SFD-075 38 / 2
+```
+
+**Read the top five as warning flags, not prizes.** Four of them (`simian-ancestor`, `mistfall`,
+`vanguard-helm`, `monastery-hirana`) are buff-supply rules whose predicates match ~95 cards each; that
+is the same bare-regex artefact #161 found on `UNL-074 Frigid Jewel` (100 "partners") and `SFD-075
+Prize of Progress` (62). `pit-crew-gear-ready` at 104 is the same shape on gear. Before spending a
+walk on any of them, print the list with `npm run synergies -- <id> -- --match` and read what the
+predicate actually caught.
+
+Two families are already saturated and should not be re-opened for finishers: the Ivern four-tag
+BURSTs (`ivern-sentinel-hold`, `ivern-arena-sentinel-hold`, `ivern-svellsongur-four-tags-hold`) and
+the Get Excited! 10-damage ceiling (`get-excited-flame-chompers-jinx` already prices it at Rhasa's
+printed 10, and `UNL-147` Baron Nashor reaches the same 10).
+
+### 22.3 The tooling
+
+The coverage probe this walk used lives in `.scratch-rules/` in the shared tree (untracked, deleted at
+handoff). It is three short files and worth rebuilding rather than guessing:
+
+- **coverage** — for each rule, `partnersOf(rule, cards)` intersected with the `uses[]` of every entry
+  that already contains the anchor, printed as
+  `=== <id> anchor <code> <name> [domains] partners N uncovered M entriesWithAnchor K`.
+- **validate** — merge the staging file into a COPY of `data/combos.json`, check for duplicate ids AND
+  for a duplicate sorted card set (three walks independently found `UNL-087` + `VEN-138` on separate
+  nights), then run `validateCombos(combos, features, cards)`. Note the signature: it takes
+  **three** arguments and `features` comes from `loadCombos()`.
+- **legend check** — the two checks of `test/legend-lines.test.ts` run against the staging file before
+  reporting. It caught a defect in this walk's own batch 4 (a Fury/Order legend typed into a Body/Order
+  line) before anything was staged. **Run it every batch.**
+
+One trap in the probe itself, recorded because it produced a false claim in this document that had to
+be corrected an hour later: **`Card.type` is a string ARRAY.** A probe written as `c.type === "legend"`
+returns false for every card in the pool and reports zero. See the correction box in §1.5.
