@@ -530,3 +530,151 @@ unconditionally castable, and in Body this is the card that is.**
 6. **`UNL-103 Disposal Order` is Body's unconditionally-castable filler** — a modal spell whose
    second mode is *"Draw 1"*, which is the property #166 found missing when a targeting spell was
    used as filler for a *"played a spell this turn"* condition.
+
+---
+
+## 22. Batch 4 — three entries and four refusals, and the mono-Body slice closes
+
+| id | class | cards | the names it clears |
+|---|---|---|---|
+| `pakaa-cub-determined-sentry-hidden-anchor` | ENGINE | OGN-135, UNL-111 | Pakaa Cub, Determined Sentry |
+| `buhru-captain-kinkou-initiate-modal-cantrips` | ENGINE | SFD-091, UNL-097 | Buhru Captain, Kinkou Initiate |
+| `legion-marauder-risen-altar-free-empower` | ENGINE | VEN-074, VEN-163 | Legion Marauder |
+
+## 23. A hide lasts only for as long as you control the battlefield
+
+The reminder text on every `[Hidden]` card is *"(Hide now for :rb_rune_rainbow: to react with later
+for :rb_energy_0:.)"* The rule is longer, and the clause that matters is in the middle:
+
+> **811.1.b.** *"While this card is in your hand or in your Champion Zone on your turn during an Open
+> State, you may pay [A] to hide this facedown at a battlefield you control that doesn't already have
+> a facedown card hidden there **for as long as you control that battlefield**. Beginning on the next
+> turn, this gains [Reaction] and you may play this, ignoring its base cost."*
+
+So a hide is a **Control-dependent investment**, and **323.6** is how that Control is lost with no
+fight at all: *"Players lose control of any controlled Battlefields without their Units occupying
+them if the turn is in an Open State and there is no Showdown or Combat ongoing there."* Walking
+your garrison off to attack elsewhere costs the hide, and nothing on the hidden card says so.
+
+`UNL-111 Determined Sentry` (E1 M1, *"I can't move to base"*) is the answer, and its printed drawback
+is the mechanism: **144.4** confines the Standard Move to base ↔ battlefield without `[Ganking]`, so
+a body that cannot move to base and has no `[Ganking]` **has nowhere to go**. One Energy for a
+permanent hide slot. The honest gap is **456.3** (*"A Recall cannot be prevented by actions and Game
+Effects that restrict or block Movement"*) — but 466.1.a.2 recalls **Attackers** when Defenders
+remain, and 323.7's Cleanup recall is for unattached gear and runes, so neither reaches a defending
+Sentry. Removal by kill or banish is the real answer.
+
+And a **vanilla** body is the right thing to hide: 811.1.d.2 confines the targets of a hidden card's
+play effects to that battlefield, and 811.1.d makes a hidden spell unplayable if it has no valid
+targets there. `OGN-135 Pakaa Cub` has no play effect at all, so it can never be a dead facedown —
+1 rainbow Power in total for a 3 Might body that arrives inside the opponent's attack.
+
+## 24. Two disjunctions that line up
+
+`grep -in "\[Empower\]" data/corpus_flat.txt | grep -i " or "` returns fourteen rows. Thirteen match
+on reminder text; **exactly one prints a disjunctive cost** — `VEN-074 Legion Marauder`, *"[Empower]
+— :rb_energy_1: **or** :rb_rune_body: (Pay either cost)"*. The same grep surfaces the mirror image:
+`VEN-163 Risen Altar`, *"[Empower] costs of your units here cost :rb_energy_1: **or**
+:rb_rune_rainbow: less"* — the only battlefield in the pool that discounts `[Empower]` costs.
+
+Whichever half you elect, the Altar's matching half cancels it, and 356.6 holds it at zero. The
+practical value of the disjunction is bigger than the one Energy: **167** empties every Rune Pool at
+the start of each Main Phase, so what you have late in a turn is whichever currency you did not
+spend, and a cost that accepts either is payable when a fixed one is not.
+
+**The entry states the standing refusal rather than working around it.** `matriarch-of-war-empower-ready`
+already refused this exact card as a motor — *"both are one Empower per copy, six in a whole game,
+which is not a motor"* — and 441.1.b is why. Making the payment free changes the **price** of the
+events, never their **number**.
+
+## 25. Refusals that close the slice
+
+### 25.1 `OGN-126` / `VEN-R04` Body Rune — one distinct name
+
+164.2 gives every Basic Rune the same two abilities and 161.2.a fixes the Rune Deck at *"Exactly 12
+Rune cards"*. Every deck runs runes; there is no pairing to walk. Same refusal as the Order Rune in
+issue #180 §18.
+
+### 25.2 `SFD-096 Laurent Bladekeeper` — a vanilla `[Ganking]` body
+
+E3 M3 and nothing but the keyword. **810.1.c.3**: *"It does not give additional abilities or
+activations of Movement, only new options for the Standard Move"* — so the card is one destination
+option and no card reads it. Both `[Ganking]` slots in the domain are already held by bodies that
+are **paid** for the movement (`UNL-115 Nilah, Joyful Ascetic`, 1 XP per move) or that get the
+keyword as part of a purchase (`VEN-070 Brutal Hunter`, from its `[Empower]`).
+
+Registered anomaly, not errata: this card prints `Ganking` **without brackets**, which
+`docs/data-anomalies.md` line 23 records (API body `<p>Ganking (I can move from battlefield to
+battlefield.)</p>`). It stays an anomaly and never enters `data/errata.json`.
+
+### 25.3 `SFD-098 Sea Monkey` — a self-buff that feeds nothing
+
+E2 M2, with an optional 1 Energy to buff itself. **702.3** caps it at one buff and **703** fixes that
+at +1 Might, so the card is a 3 Energy 3 Might body. The buff feeds nothing in the domain: the pool's
+two *"While I'm buffed"* statics are `OGN-065 Wizened Elder` (Calm) and `OGN-125 Bilgewater Bully`
+(Body), and the Bully's clause reads *"While **I'm** buffed"* — it needs a buff on **itself**, which
+a card that buffs only itself can never give it. `OGN-228 Vanguard Helm`'s recovery needs a buffed
+body to **die**, which is the Order entry `trifarian-gloryseeker-vanguard-helm-legion-buff` (#180)
+and does not need this card. Curve slot, not a line.
+
+### 25.4 `UNL-092 Demacian Diplomat` — a one-shot faucet already named in two entries
+
+E2 M2, *"When you play me, gain 1 XP"* — one XP, once, per copy. It is strictly dominated as a
+ladder engine by `UNL-115 Nilah, Joyful Ascetic` (1 XP **every turn**, needing no battlefield and no
+combat) and by `UNL-094 Gemhand Hunter` (1 XP per Hold), and it is already named as a supplementary
+faucet inside `concentrate-grim-resolve-level-ladder` and `nilah-targonian-visionary-move-xp-ladder`.
+Refused as an entry; it is a deckbuilding option in two existing ones.
+
+## 26. FINAL LEDGER — the mono-Body slice is closed
+
+```
+mono-Body deckable base codes: 137
+uncovered by NAME+TYPE: 5 base codes = 4 distinct names
+  - and all 4 are refused by rule in §25
+(opened at 38 base / 36 names at catalogue 564; closed at 5 / 4)
+```
+
+**Walked — 18 entries across 4 batches**, clearing 32 of the 36 names.
+**Refused — 4, each with the paragraph quoted.**
+
+The base-code-vs-name+type gap for this lane, measured at the open: **5.3%** (38 → 36), against
+19.2% pool-wide, 15.7% Order, 15% Calm/Mind, 0% for Fury/Body/Chaos as a block and 0% for
+battlefields. Six lanes, six different numbers.
+
+### A process note worth passing on
+
+Between batch 3 and batch 4 the staging file was **overwritten** rather than appended, which would
+have dropped five finished entries the manager had not yet merged. Nothing reached the repo and
+nothing was reported, because the **census run immediately before reporting** showed four spells
+reappearing as uncovered — a number that can only go down. Two rules follow, and the second is the
+one this project already had:
+
+1. A batch script must **append** to the staging file, never rewrite it: the previous batch may not
+   have been merged yet, and the staging file is the only copy.
+2. **Re-validate immediately before REPORTING, not immediately after writing.** That is what caught
+   it.
+
+## 27. Facts for CLAUDE.md from Body batch 4
+
+1. **A `[Hidden]` card's hide lasts only *"for as long as you control that battlefield"*** (811.1.b,
+   a clause the reminder text omits), and **323.6** strips Control the moment your last body leaves
+   in an Open State with no Combat there — so attacking elsewhere with your whole garrison throws the
+   facedown card away. `UNL-111 Determined Sentry` (*"I can't move to base"*, E1 M1) is the pool's
+   cheapest permanent answer, because 144.4 leaves a body with no `[Ganking]` and no base access
+   nowhere to go; 456.3 is the gap, but 466.1.a.2 recalls Attackers only and 323.7 only unattached
+   gear.
+2. **A vanilla body is the best thing to hide**: 811.1.d.2 restricts the targets of a hidden card's
+   play effects to that battlefield and 811.1.d makes a hidden spell with no valid target there
+   unplayable — a card with no play effect is immune to both.
+3. **`VEN-074 Legion Marauder` prints the pool's only disjunctive `[Empower]` cost** (*"1 Energy or 1
+   Body rune"*) and **`VEN-163 Risen Altar` the only disjunctive `[Empower]` discount** (*"1 Energy or
+   1 rainbow less"*); together they cancel term for term (356.6). The value of a disjunctive cost is
+   that **167** empties the Rune Pool each Main Phase, so it is payable in whichever currency
+   survived the turn.
+4. **`SFD-096 Laurent Bladekeeper` prints `Ganking` with no brackets** — a registered anomaly
+   (`docs/data-anomalies.md`), never errata.
+5. **A card that buffs only itself feeds no buff payoff in the pool**: `OGN-125 Bilgewater Bully`'s
+   *"While **I'm** buffed"* needs a buff on itself, and 702.3 caps every body at one buff.
+6. **Process**: a staging script must APPEND, because the manager may not have merged the previous
+   batch; and the census run before reporting is what catches it, since an uncovered count can only
+   go down.
