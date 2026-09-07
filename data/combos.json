@@ -31159,6 +31159,294 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 38, empower-other x VEN-047). VEN-047 Apprentice Mage was in NO entry before this; it was the only one of the six empower-family anchors in rows 33-38 with no entry at all. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.1.b.3, 103.2.b, 103.2.d.2, 416.1, 416.1.a, 416.5, 436.1, 436.1.a, 436.4.a, 441.1, 441.1.b, 441.1.c, 441.2, 441.2.a, 702.3, 813.1.c.1. Distinct from the two Sanction entries already in the catalogue (kharox-sanction-burn, mel-defiant-soul-sanction-banish-cycle), whose payoffs are a mill-and-reanimate and a banish: this is the cheapest [Empower] cost in the pool paired with the cheapest reset, and the entry's real content is the family-wide bound — 441.1.b makes every 'when I become Empowered' payoff a once-per-copy event, so the partner set is the disempowerers. The product is deck sculpting only, and the entry says so. Ban check: neither card is banned or restricted. Trap check: the Mage's own [Empower] is never paid on the Sanction route (441.1); the +1 Might is a conditional static that switches off with the state, not a Buff; a Predict is filtering to the BOTTOM (416.1.a) and never a tutor; 436.4.a keeps it Burn-Out-safe; no unruled reading."
+    },
+    {
+      "id": "shurelya-gustwalker-hunt-bootstrap",
+      "name": "A one-shot card buys a permanent keyword: Shurelya lends the ready and the [Ganking], and the two Conquers pay the XP that turns Gustwalker's own on for good",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-192",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm/Mind SIGNATURE, [Unique] gear, E4 + 2 Power, Might Bonus +2. '[Equip] one rainbow. When you play this, ready your units. [Effect] Your units here have [Ganking].' 825.3.a allows exactly one copy, and 818.1 means only the PLAY readies — so the mass ready happens once per game."
+        },
+        {
+          "card": "UNL-075",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Mind unit, E3 + 1 Mind Power, M3. '[Hunt 2] (When I conquer or hold, gain 2 XP.) [Level 3][>] I have +1 Might and [Ganking].' In zero entries before this walk. The only card in the Requiem's partner list whose own text becomes the Requiem once it has enough XP."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "SFD-192 Shurelya's Requiem is a Signature card tagged Ornn, so 103.2.d.2 makes the legend line a one-name field: SFD-189 / SFD-244 Fire Below the Mountain (Calm/Mind) are the only legends in cards.json carrying the Ornn champion tag. Gustwalker is mono-Mind, so 103.1.b.3 admits him.",
+          "Two battlefields you can take in one turn — one open when Gustwalker walks in, and a second reachable from the first. 470 allows one Score per battlefield per turn and 485.4 puts two on a Duel table."
+        ],
+        "notable": [
+          "THE POINT OF THE ENTRY IS WHAT THE ONE-SHOT BUYS. 825.3.a — 'A deck can contain only one card of a given name if the card has Unique' — and 818.1 makes [Equip] an Activated Ability rather than a play, so 'When you play this, ready your units' fires exactly once in a game. Every other Requiem line therefore prices it as a single explosive turn. Gustwalker inverts that: [Hunt 2] pays 2 XP per Conquer (823.1.c.1: 'When I Conquer or Hold, my controller gains X XP'), the double-Conquer turn pays FOUR, and his own [Level 3] — '+1 Might and [Ganking]' — is live from 3 XP onward. The card that was borrowed for one turn is replaced by his own text for the rest of the game.",
+          "THE XP IS NOT A RATCHET, SO THE BOOTSTRAP IS CONDITIONAL ON NOT SPENDING. 824.1.d: 'The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP', and 730.2 defines spending as reducing your own marked XP. A single XP sink drops him back under 3 and takes the keyword away. This deck banks XP and never spends it — which is also why no [Level] cost and no Spend-N-XP card belongs beside it.",
+          "'HERE' IS THE CARRIER'S BATTLEFIELD, WHICH FIXES THE ORDER. 434.1.c appends an Equipment's [Effect] text to the Top-Most Card, so 'Your units here have [Ganking]' is read at whatever location the carrier stands. Attach the Requiem to Gustwalker AFTER he has taken the first battlefield and the grant covers him where he is; attach it at your base and it grants nothing that matters. 359.3.f.2 reads 'here' at execution.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Gustwalker M3 walks base to battlefield A (144.4.a; his own exhaust is the cost, 144.2 / 420.3.a); the Cleanup stages a Showdown and no Combat if A is open (323.8, 323.9), 348.2.a / 348.2.a.1 Conquer it: 1 point and 2 XP. Play the Requiem for 4 Energy and 2 Power — 'ready your units' readies him (415.1) — then [Equip] it to him for one rainbow (818.1.b); 434.1.d puts its +2 Might Bonus on him, so he is M5. He now has [Ganking] and moves A to B (144.4.c.1): a second Conquer, a second point, 2 more XP. Total for the turn: 2 points, 4 XP, and Level 3 switched on permanently. Total spend: 4 Energy, 2 Power and one rainbow.",
+          "[Ganking] IS A DESTINATION, NOT A MOVE — WHICH IS WHY THE READY IS THE HALF THAT MATTERS. 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 144.4.c.1 is that option, battlefield to battlefield. Without the ready the second move never happens, because 144.2 already spent his exhaust on the first.",
+          "WHAT ELSE IS IN THE REQUIEM'S PARTNER LIST AND WHY IT IS NOT THIS ENTRY. Filtered to Calm/Mind, the [Ganking] partners are OGN-112 Kai'Sa, Evolutionary (already carried by kaisa-evolutionary-arena-spell, which doubles her conquer trigger instead of giving her a second Conquer), SFD-071 Breakneck Mech (E8 + 2 Power, and its [Ganking] is a static on your Mechs, so the Requiem's grant is redundant) and OGN-297 Windswept Hillock (a battlefield, and 485.5 chooses battlefields at random). Gustwalker is the one whose own card takes over afterwards.",
+          "WHAT REFUTES IT. (a) The second Conquer needs a second takeable battlefield: if B is garrisoned, 323.9 stages a Combat and a M5 Gustwalker has to win it. (b) 825.3.b lets a deck hold any combination of three Signature cards but still only one of each Unique name, so a second Requiem is illegal, not merely expensive. (c) The Requiem's ready is 'your units', which is generous — but 415.1.b makes readying an already-ready unit nothing, so cast it after the first move, never before."
+        ]
+      },
+      "steps": [
+        "Earlier turns: play Gustwalker (E3 + 1 Mind Power). 143.4 makes him enter exhausted; 315.1.b readies him in your Awakening.",
+        "Main Phase, Neutral Open State. Standard-Move Gustwalker from your base to an open battlefield (144.4.a; exhaust is the cost, 144.2 / 420.3.a). Contested applies (190.3.a.1, 450).",
+        "The next Cleanup stages a Showdown and no Combat (323.8, 323.9); 323.12 opens it; 348.2.a and 348.2.a.1 Conquer it. 471.1 pays a point and [Hunt 2] pays 2 XP.",
+        "Play Shurelya's Requiem for 4 Energy and 2 Power. 'When you play this, ready your units' readies Gustwalker where he stands (415.1).",
+        "Activate its [Equip] for one rainbow and attach it to Gustwalker (818.1, 818.1.b). 434.1.c appends 'Your units here have [Ganking]' to him and 434.1.d makes him M5.",
+        "Standard-Move him battlefield to battlefield (144.4.c.1) into the second battlefield. A second Conquer: another point and another 2 XP.",
+        "He now has 4 XP, so [Level 3] is active — '+1 Might and [Ganking]' — for every later turn in which you do not spend XP (824.1.d, 730.2)."
+      ],
+      "netPerIteration": "two points and 4 XP on the turn the Requiem is played, and from then on a M4 body that moves battlefield to battlefield on its own with no card spent",
+      "terminatesIn": "engine only — the Requiem's mass ready is once per game (825.3.a, 818.1), and afterwards Gustwalker takes at most one Conquer a turn on his own (470, 485.4)",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule shurelyas-requiem-ganking-second-move (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the orphan synergy rule shurelyas-requiem-ganking-second-move (36 partners, 36 uncovered). UNL-075 Gustwalker was in zero entries. The contribution is that a [Unique] one-shot is worth more when its partner's own card takes the loan over: 4 XP from two Hunt 2 Conquers crosses [Level 3] and hands Gustwalker the same keyword permanently. The legend line was computed, not typed: SFD-192 is Signature with champion tag Ornn, and the only legends in cards.json carrying it are SFD-189 and SFD-244 Fire Below the Mountain (Calm/Mind). Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.3, 103.2.d.2, 143.4, 144.2, 144.4.a, 144.4.c.1, 190.3.a.1, 315.1.b, 323.8, 323.9, 323.12, 348.2.a, 348.2.a.1, 359.3.f.2, 415.1, 415.1.b, 420.3.a, 434.1.c, 434.1.d, 450, 470, 471.1, 485.4, 485.5, 730.2, 810.1.c.3, 818.1, 818.1.b, 823.1.c.1, 824.1.d, 825.3.a, 825.3.b. Ban check: SFD-192 and UNL-075 carry no [BANNED marker. Arithmetic against its own declared quantities: 2 Conquers x 2 XP = 4, against a [Level 3] threshold. Trap check: the second Conquer is a Showdown, so no Attacker designation exists and no [Assault] belongs here; XP is spent by nothing in the line, because 824.1.d would switch the Level off; no token; no [Temporary]; no [Repeat]; the Might Bonus is not a buff, so 702.3 is silent. Depends on no unruled reading."
+    },
+    {
+      "id": "chem-baroness-gold-banked-across-the-threshold",
+      "name": "Chem-Baroness's second clause is an ENDGAME multiplier, and a Gold token is bankable — so the stack is worth double if you do not spend it early",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-201",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Mind/Order legend. 'When you or an ally hold, you may exhaust me to play a Gold gear token exhausted. While your score is within 3 points of the Victory Score, your Gold [Add] an additional 1 Energy.' The second sentence is the entry."
+        },
+        {
+          "card": "SFD-086",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind Equipment, E3, Might Bonus +2. '[Equip] one Mind rune. [Effect] When I hold, play two Gold gear tokens exhausted.' Two Gold every Beginning Phase its carrier holds."
+        },
+        {
+          "card": "SFD-174",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order unit, E8 + 2 Power, M9. 'When you play me, play four Gold gear tokens exhausted.' The single biggest Gold event in the pool, and it is a PLAY trigger, so it can be timed for the turn you cross the threshold."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "SFD-201 / SFD-249 Chem-Baroness IS the legend and IS the requirement: Mind/Order covers World Atlas (Mind) and Trove Golem (Order) exactly (103.1.b.1, 103.1.b.2). Nothing here is Signature.",
+          "At least one battlefield held at your Beginning Phase, which is what both Hold triggers read (315.2.b.2: 'The Turn Player Holds all Battlefields they Control')."
+        ],
+        "notable": [
+          "THE CLAUSE NOBODY HAS PRICED, AND IT IS FORMAT-SENSITIVE. 'While your score is within 3 points of the Victory Score, your Gold [Add] an additional 1 Energy.' 194.3 sets the Victory Score at 8 in Constructed, so the clause switches on at FIVE points; 489.3 sets it at 11 in 2v2, so there it switches on at EIGHT. The same deck therefore turns its multiplier on three points later in team play — a difference no other Gold entry in the catalogue has to state, because no other Gold source is score-gated.",
+          "AND A GOLD TOKEN IS BANKABLE, WHICH IS THE PLAY. 187.5 prints the token in full: 'A Gold gear token is a domainless gear token with \"[Reaction][>] Kill this, [exhaust]: [Add] [rainbow].\"' Nothing forces you to kill it. A Gold made on turn three and still standing when you reach five points pays 1 rainbow Power AND 1 Energy, where the same token spent on turn three paid 1 Power. So the correct line under this legend is to accumulate the stack and cash it in the turn the score crosses the threshold — the opposite of every other ramp engine, which wants its resources spent as they arrive.",
+          "THE PER-TURN RATE, WITH THE QUANTITIES DECLARED. 315.2.b.2 Holds every battlefield you control, but the two sources cap differently: World Atlas's 'When I hold' is read on its CARRIER, so it fires once for the battlefield that unit stands at, and the legend's own clause costs her exhaust, so 415.1 with 315.1.b readying her only in your Awakening allows one activation a turn. Three Gold per turn, then, plus four more the turn Trove Golem lands. Cashed after the threshold, that is 3 Power AND 3 Energy a turn, and 7 of each on the Golem turn.",
+          "THE GOLD ARRIVES EXHAUSTED AND ITS OWN ABILITY COSTS AN EXHAUST, SO IT IS ALWAYS NEXT TURN'S RESOURCE. Every producer here prints 'exhausted', and 187.5's ability is 'Kill this, [exhaust]: [Add]'. An exhausted Gold cannot pay its own cost, and 315.1.b readies it in your next Awakening. SFD-171 Renata Glasc, Industrialist ('Your tokens enter ready', mono-Order, legal here under 103.1.b.3) is the one card that fixes it, at the price of a deck slot — and it is worth noting that under the banking plan the delay costs nothing at all, since the tokens were being saved anyway.",
+          "THE ENERGY HALF DIES AT THE END OF THE TURN IT IS ADDED. 167 empties every player's Rune Pool 'at the start of each player's Main Phase and the end of each player's turn', so the bonus Energy has to be spent in the same Main Phase the Gold is killed. The Power half does not: it is added as rainbow, and 135.2.e.5.b lets rainbow pay a Power cost of any Domain.",
+          "WHERE THE POINTS COME FROM IS DELIBERATELY NOT IN uses[]. This entry produces resources, not points, and its multiplier only turns on once something else has taken the score to 5. It is a `produces: resource-engine` row for a deck whose finisher lives elsewhere in the catalogue — which is exactly why the legend's clause was worth measuring rather than assuming.",
+          "WHAT REFUTES IT. (a) The Golem is E8 + 2 Power, which is a whole turn; if the game is decided before you can cast it, the four Gold never exist. (b) A Gold standing on the board is a gear an opponent can kill: SFD-005 Detonate, VEN-003 Brittle Steel and six other cards in the pool remove gear, and banking hands them targets. That is the real cost of the plan, and it is why the World Atlas's steady drip matters more than the Golem's lump. (c) 185 keeps the tokens out of every recycle and reanimation line, and 186.1 makes them cease to exist the moment they leave the board."
+        ]
+      },
+      "steps": [
+        "Early turns: play World Atlas (E3) and [Equip] it to a unit that will stand at a battlefield you hold (one Mind rune, 818.1.b). It gives that carrier +2 Might (434.1.d) and the Hold trigger (434.1.c).",
+        "Every Beginning Phase you hold: 315.2.b.2 Holds all battlefields you control. World Atlas plays two Gold gear tokens exhausted, and you may exhaust Chem-Baroness for a third.",
+        "Do NOT kill them. They stand as gear, and 315.1.b readies each in your following Awakening.",
+        "When your score reaches 5 (Constructed; 8 in 2v2 by 489.3), the legend's second clause is live: every Gold now adds 1 rainbow Power AND 1 Energy when killed.",
+        "On that turn, play Trove Golem for 8 Energy and 2 Power if you have it: four more Gold, exhausted, for the turn after.",
+        "Cash the stack inside one Main Phase — each Gold is '[Reaction] Kill this, exhaust: [Add] rainbow' (187.5) plus the legend's extra Energy. 167 will empty the pool at the start of your next Main Phase, so spend it now."
+      ],
+      "netPerIteration": "three Gold a turn that each pay 1 rainbow Power, and 1 Power AND 1 Energy each once the score is within 3 of the Victory Score",
+      "terminatesIn": "engine only — the legend's exhaust caps her at one Gold a turn, the Atlas at two, and nothing here scores a point; the multiplier is a reward for a score reached elsewhere",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule chem-baroness-gold-ramp (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the orphan synergy rule chem-baroness-gold-ramp (20 partners, 20 uncovered). The rule's own text notes that the second clause 'turns every Gold made from that point on into 1 Power AND 1 Energy at once'; the walk's addition is that the clause reads the token at the moment it is KILLED, not when it is made, so a Gold is bankable across the threshold and the correct line is to hoard rather than spend — and that the threshold itself moves from 5 points to 8 between 194.3's Victory Score of 8 and 489.3's of 11. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.1.b.2, 103.1.b.3, 135.2.e.5.b, 167, 185, 186.1, 187.5, 194.3, 315.1.b, 315.2.b.2, 415.1, 434.1.c, 434.1.d, 489.3, 818.1.b. Ban check: SFD-201, SFD-086 and SFD-174 carry no [BANNED marker. Signature check: none is Signature; the legend is in uses[] because its own text is the payoff, following the 73 legend rows already in the catalogue. Trap check: Gold enters exhausted and 187.5's ability costs its own exhaust, so it is next turn's resource (315.1.b) unless SFD-171 is added; the Energy half dies to 167; 185 and 186.1 keep the tokens out of every recycle line; no [Temporary]; no [Repeat]; no buff. Depends on no unruled reading."
+    },
+    {
+      "id": "green-father-brush-ultrasoft-poro-birds",
+      "name": "The Brush question is answered by the rules' own worked example, and the +1 is exactly what takes a Bird token out of Flurry of Blades range",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-195",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Order legend. 'When you conquer or hold, you may exhaust me to replace that battlefield with a Brush battlefield token.' Note there are TWO Green Father base codes, UNL-195 and UNL-233, identically named and identically texted — a uniqueness claim here has to count base codes."
+        },
+        {
+          "card": "UNL-160",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Order unit, E5 M5, tagged Poro. 'exhaust: Play two 1 Might Bird unit tokens with [Deflect]. Use this ability only while I'm at a battlefield.' Both the body and everything it makes are tribes the Brush buffs."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "UNL-195 / UNL-233 Green Father IS the legend and IS the requirement: Calm/Order covers Ultrasoft Poro (Order) under 103.1.b.3. Nothing here is Signature, so no further constraint applies.",
+          "One battlefield conquered or held, which is what the legend's trigger reads."
+        ],
+        "notable": [
+          "THE DEFERRAL IS CLOSED BY THE RULES' OWN WORKED EXAMPLE, WHICH NAMES THIS LEGEND. 438.1: 'Replacing is the act of Creating a token in the place of another card or token without playing it while INHERITING ALL EFFECTS OR STATUSES of the game object it replaced', and 438.1.a's example opens 'A player with Green Father as their legend conquers Navori Fighting Pit' and ends 'because the Brush inherited all statuses and conditions'. Control is a status, so it carries; 190.6.a then gives the Brush's abilities to its Controller and 190.6.d's blanking of 'you' never fires. No reading is needed and none is filed.",
+          "THE BRUSH IS A TOKEN, SO IT IS NEVER A uses[] ROW. 187.8 prints it in full: 'A Brush battlefield token is a domainless battlefield token with \"Bird, Cat, Dog, Poro, and Ivern units here have +1 Might\" and \"When you score here, you may replace this with the battlefield it replaced.\"' 185 keeps tokens out of any decklist, so the legend's line is where it belongs.",
+          "WHAT THE +1 IS ACTUALLY WORTH, MEASURED AGAINST THE POOL'S CHEAPEST SWEEPER. 187.7 makes a Bird token 'a domainless unit token with 1 Might, the Bird tag, and the Deflect keyword'. 143.2.a kills a unit on 'nonzero damage marked on it equalling or exceeding its Might', so a 1-Might Bird dies to OGN-133 Flurry of Blades (Body, E1, '[Reaction] Deal 1 to all units at battlefields') and a 2-Might Bird does not. In the Brush every Bird is a 2 and Ultrasoft Poro himself is a 6. That is a SECOND answer, in Calm/Order, to the problem the catalogue records only in Mind — UNL-077 Soul Shepherd's 'Your token units have +1 Might'.",
+          "AND HERE IS THE LIMIT, BECAUSE THE OBVIOUS EXTENSION IS WRONG. The Brush cannot rescue a Grand Plaza line. Replacing is exactly that — 438.5 puts the replaced battlefield in Banishment and 438.5.a keeps it 'Replaced and not Banished' — so the battlefield whose text you wanted is no longer on the board while the Brush stands there. A line that needs OGN-293 The Grand Plaza's own win text cannot also be standing on a Brush. The Brush protects tokens on a BRUSH; it is not a general +1 for token bodies.",
+          "THE DENIAL HALF, WHICH IS IN NO ENTRY. 127.1 and 485.4.a mean the battlefields on the table were provided by both players. Replace one the OPPONENT brought and its text is off the board for as long as the Brush stands, and only the Brush's Controller can undo it: 187.8's second sentence is 'When you score HERE, you may replace this with the battlefield it replaced', and 190.6.a makes that 'you' the Controller. 438.7.b returns the original 'inheriting all current effects and statuses', and 438.7.c warns the other way — 'If there is nothing in Banishment to swap back to then this object can never swap back.' So the swap is a one-way option held by whoever holds the Brush.",
+          "THE COST IS THE LEGEND'S EXHAUST, ONCE A TURN. 415.1 with 315.1.b readying her only in your own Awakening caps the replace at one per turn, and the trigger is 'when you conquer or hold' — 823.1.b's phrasing for the same pair of events — so any Beginning Phase in which you hold offers it for free, with no card spent.",
+          "WHAT REFUTES IT. (a) Ultrasoft Poro's ability is 'Use this ability only while I'm at a battlefield', and its exhaust caps it at two Birds a turn (415.1, 315.1.b). (b) The tokens are born at your base or a battlefield you control (355.2.a: 'the controller's Base or a Battlefield the controller controls'), not necessarily at the Brush — they still have to walk, which is the token bottleneck this project has recorded since #48. (c) A +1 Might on a token is not a buff counter: it is a continuous modifier from the battlefield's text, so 702.3 is silent and it stacks with an actual buff — but it also vanishes the moment the body leaves the Brush."
+        ]
+      },
+      "steps": [
+        "Play Ultrasoft Poro (E5). 143.4 makes him enter exhausted; 315.1.b readies him.",
+        "Move him to a battlefield you control (144.4.a, exhausting him as the cost), or hold one he already stands at.",
+        "At your Beginning Phase, 315.2.b.2 Holds every battlefield you control. The legend's trigger fires: exhaust Green Father to replace that battlefield with a Brush battlefield token (438.1; Control carries by 438.1.a).",
+        "From now on every Bird, Cat, Dog, Poro and Ivern unit standing there has +1 Might (187.8) — Ultrasoft Poro is M6.",
+        "On a later Main Phase, exhaust Ultrasoft Poro to play two 1 Might Bird tokens with [Deflect] (187.7). Walk them onto the Brush (355.2.a, 144.4.a): each is a 2-Might [Deflect] body, outside the range of the pool's cheapest sweeper.",
+        "When you next score at the Brush you may swap the original battlefield back (187.8, 438.7.b) — or leave the Brush standing if the battlefield you replaced was the opponent's."
+      ],
+      "netPerIteration": "two 2-Might [Deflect] Bird tokens a turn on a battlefield whose own text you chose, and one enemy-provided battlefield switched off for as long as you hold the Brush",
+      "terminatesIn": "engine only — one replace a turn (the legend's exhaust) and two Birds a turn (the Poro's); nothing here scores beyond the Conquer or Hold that triggered it",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule green-father-brush-four-tags (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170). green-father-brush-four-tags was the one rule the #153 walk DEFERRED rather than refused, on the ground that 438 Replace against 190.x Control was unruled. It is not: 438.1.a's worked example is Green Father conquering Navori Fighting Pit and says outright that the Brush 'inherited all statuses and conditions'. The entry adds two measured facts — the +1 is exactly the step that takes a 1 Might Bird token out of range of OGN-133 Flurry of Blades (143.2.a), and the Brush CANNOT be used to protect a Grand Plaza line, because replacing removes the battlefield whose text the line needs (438.5, 438.5.a). Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.3, 127.1, 143.2.a, 143.4, 144.4.a, 185, 187.5, 187.7, 187.8, 190.6.a, 190.6.d, 315.1.b, 315.2.b.2, 355.2.a, 415.1, 438.1, 438.1.a, 438.5, 438.5.a, 438.7.b, 438.7.c, 485.4.a, 702.3, 823.1.b. Ban check: UNL-195 and UNL-160 carry no [BANNED marker. Uniqueness discipline: Green Father is TWO base codes, UNL-195 and UNL-233, identically named — counted, not assumed. Trap check: the Brush is a token, so 185 keeps it out of uses[] and out of any decklist; the tokens are born at the base or a battlefield you control (355.2.a) and still have to walk; the +1 is a continuous modifier and not a 702 buff; no [Temporary]; no [Repeat]. Depends on no unruled reading — the deferral is closed by 438.1.a, not by a vote."
+    },
+    {
+      "id": "jae-medarda-repeat-double-choose",
+      "name": "Only a [Repeat] pays Jae twice from one card — a spell that chooses TWO friendly units cannot choose him twice",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-142",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Chaos unit, E5 + 2 Power, M5. 'When you choose me with a spell, draw 1.' 355.7 makes choosing a specific Game Object a target, so any spell that can be pointed at a friendly unit pays him."
+        },
+        {
+          "card": "SFD-151",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, E2. '[Reaction] [Repeat] 2 Energy. Give two friendly units each +1 Might this turn.' In zero entries before this walk. Two executions, two separate choosings of Jae, two cards — from one deck slot."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Order + Chaos, and the census makes that a ONE-NAME field: VEN-155 / VEN-197 Heart of the Tempest is the only Order/Chaos legend among the 94 legend base codes in cards.json. Neither card is Signature (103.2.d.2), so the constraint is the domains alone (103.1.b.2).",
+          "A second friendly unit for the spell's other half, since it gives 'two friendly units each +1 Might' and they cannot be the same body."
+        ],
+        "notable": [
+          "THE TRAP FIRST, BECAUSE IT IS THE ENTRY'S CONTENT. 'Give TWO friendly units each +1 Might this turn' looks like two choosings and therefore two draws off one casting. It is not: the two are distinct Game Objects, so Jae is chosen once per execution however the plural is filled. The doubling has to come from somewhere else, and the only somewhere in his whole partner list is [Repeat] — 820.1.b, 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time', with 820.1.c.1 making the cost an Additional Cost paid while playing the spell and 820.2.a allowing different choices on the second execution. Two executions, two choosings of Jae, two cards.",
+          "TWO CARDS PER DECK SLOT, WHICH IS WHAT SEPARATES THIS FROM jae-medarda-choose-draw. That entry runs OGN-095 Stupefy at 1 Energy a card, which is cheaper per card and cannot be beaten on price. What it cannot do is draw twice off one copy: three Stupefies are three cards, three Bonds of Strength with their [Repeat] paid are SIX. In a deck where the 103.2.b limit of three copies is the binding constraint rather than Energy, the [Repeat] spell is the better slot.",
+          "EXACTLY TWO CARDS IN HIS PARTNER LIST CAN DO IT, AND THEY SIT IN DIFFERENT IDENTITIES. Reading the rule's 34-partner list end to end as of 2026-09-07, the [Repeat] spells that choose a friendly unit are SFD-151 Bonds of Strength (Order, E2 + [Repeat] 2 Energy, two units for +1 each) and SFD-034 Feral Strength (Calm, E2 + [Repeat] 2 Energy, one unit for +2). Bonds sends the deck to Order/Chaos, which is a one-legend identity; Feral Strength sends it to Calm/Chaos, which the census gives three names (Unforgiven, Blade Dancer, Gloomist) — the same arithmetic, a wider legend field and a narrower spell, so it is a note here rather than a second entry.",
+          "IT DRAWS ON THE OPPONENT'S TURN. Bonds of Strength is a [Reaction], and 813.1.c.1 lets a [Reaction] card be played 'during Closed States on any player's turn' with 312.2.c handing out priority there. So the two cards arrive when the opponent commits removal or opens a Combat — and the +1 Might they carry is a real combat trick rather than a tax you paid for the draws.",
+          "THE MIGHT IS NOT A BUFF. '+1 Might this turn' is a continuous modifier applied in 477.3.e.1's increase step, not a 702 Buff counter, so 702.3's one-per-unit cap is silent and both executions apply to the same body if you want them to.",
+          "COST, WITH THE QUANTITIES DECLARED. Jae is E5 and TWO Chaos Power, which is the real price of the package — above the free floor of 2 Power a turn that 315.3.b and 164.2.b give every deck, so he is a turn of your rune deck. Each Bonds with its Repeat is 4 Energy for 2 cards and +1 Might on four unit-slots. Three copies is six cards over a game (103.2.b).",
+          "WHAT REFUTES IT. (a) Jae has to be on the board and alive: he is M5 with no protection, and every draw depends on him. (b) 203.3 makes an unpayable cost unpayable — with only one friendly unit on the board, 'two friendly units' cannot be completed, so the spell needs a second body. (c) The trigger reads SPELLS: an ability that buffs him, a battlefield's Hold trigger, and an Equipment's [Effect] all pay nothing."
+        ]
+      },
+      "steps": [
+        "Earlier turn: play Jae Medarda (E5 + 2 Chaos Power). 143.4 makes him enter exhausted; nothing in this line asks him to move.",
+        "At any Closed State on either player's turn — the opponent's removal spell, an opening Combat — play Bonds of Strength as a [Reaction] (813.1.c.1, 312.2.c) and pay its [Repeat] cost of 2 Energy as an Additional Cost (820.1.c.1).",
+        "First execution: choose Jae and one other friendly unit, each +1 Might this turn. 355.7 makes both choices targets, so Jae's trigger fires: draw 1.",
+        "Second execution (820.1.b), which may make different choices (820.2.a): choose Jae again and any friendly unit. His trigger fires again: draw 1.",
+        "Two cards and +1 Might on four unit-slots, from one card and 4 Energy, at a moment you chose rather than one you committed to in your Main Phase."
+      ],
+      "netPerIteration": "two cards and four points of Might, at Reaction speed, from a single deck slot",
+      "terminatesIn": "engine only — 820.1.b gives exactly one extra execution, 103.2.b caps the spell at three copies, and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule jae-medarda-chosen-by-spell (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the orphan synergy rule jae-medarda-chosen-by-spell (34 partners, 34 uncovered). SFD-151 Bonds of Strength was in zero entries. The entry exists for the trap — a spell that chooses TWO friendly units still chooses Jae only once, because the two are distinct Game Objects — and for the consequence: the only cards in his whole partner list that pay him twice from one copy are the two [Repeat] spells, SFD-151 (Order) and SFD-034 (Calm), and they send the deck to different legend fields. Counted over the rule's own printed match list as of 2026-09-07. The legend line was computed from cards.json: filtering the 94 legend base codes for order + chaos returns only VEN-155 and VEN-197 Heart of the Tempest. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.2, 103.2.b, 103.2.d.2, 143.4, 164.2.b, 203.3, 312.2.c, 315.3.b, 355.7, 355.8, 477.3.e.1, 702.3, 813.1.c.1, 820.1.b, 820.1.c.1, 820.2.a. Ban check: SFD-142 and SFD-151 carry no [BANNED marker. Arithmetic against its own declared quantities: one copy with its Repeat paid is 4 Energy for 2 cards; three copies is 6 cards a game. Trap check: [Repeat] gives exactly one extra execution and is not an engine (820.1.b); the +1 Might is a modifier and not a 702 buff; the spell needs a second friendly body or 203.3 makes it uncastable; no token, no [Temporary]. Depends on no unruled reading."
     }
   ]
 }
