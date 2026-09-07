@@ -25359,6 +25359,318 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §15), issue #161, from the lead handed over after the BURST sweep. Card set checked against the current data/combos.json first (SFD-150 + UNL-087: no exact match; the two catalogued Last Rites entries pair it with the Arena and with Lunar Boon). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 164.2.a, 167, 312.2.c, 315.1.b, 315.2.b.2, 316.3, 355.2.a, 383.4.d.2.a, 416.6, 485.5, 718.3, 818.1. Stands on R1 = A with stacking. The entry opens by CORRECTING the lead it came from: '(You still pay its costs.)' is printed on the card, so the Sentinel doubles a permission and not a price — these are not free bodies. Trap check: a Hold needs no Attacker designation; no [Repeat]; no [Temporary]; the reanimated units are CARDS, so 185 / 186.1 never arise — and a token in the trash is exactly what those paragraphs forbid, which is why the trash must be filled with real cards; no recall; the Energy is walked against 167 and 316.3 rather than assumed."
+    },
+    {
+      "id": "skyfall-cull-hold-gold",
+      "name": "Skyfall of Areion under three Culls — a conquer payoff that pays every Hold instead",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-030",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury gear, E3, M+2, [Equip] 1 Energy + 1 Fury Power. '[Effect] My hold effects are also conquer effects, and vice versa.'"
+        },
+        {
+          "card": "SFD-134",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos gear, E1, M+1, [Equip] 1 Chaos Power. '[Effect] When I conquer, play a Gold gear token exhausted.' Not [Unique], so all three stack on the same bearer."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Fury and Chaos — OGN-251 Loose Cannon, OGS-017 Dark Child, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows."
+        ],
+        "notable": [
+          "THE 'AND VICE VERSA' IS THE HALF NOBODY USES, AND IT IS THE BETTER HALF. Every catalogued Skyfall entry (brambleback-trinity-skyfall-conquer, dragonstorm-brambleback-trinity-conquer, skyfall-ahri-conquer) runs it in the hold-to-conquer direction, turning a Hold payoff into a one-off Conquer payoff. Run it the other way and a CONQUER payoff becomes a HOLD payoff — which is the difference between paying once per battlefield you take and paying every single turn you keep it. You cannot conquer a battlefield you already control; you Hold it every Beginning Phase.",
+          "How all four gears sit on one body: 136.2.c appends each Effect Text to the Rules Text of the card it is attached to and 136.2.d makes 'I' mean that card, so the bearer carries Skyfall's rewriting clause AND three copies of 'When I conquer, play a Gold gear token exhausted'. 434.1.b.1 contemplates 'more than one card attached to the Top-Most card' and adds that 'the order of the Attached cards has no bearing on the application of effects'; neither gear prints [Unique].",
+          "Three Gold every Hold, forever, with no activation and no Energy after setup. 187.5 defines the token — '[Reaction][>] Kill this, [exhaust]: [Add] [rainbow]' — and they ready at your next Awaken (315.1.b), so the Power accumulates. SFD-171 Renata Glasc, Industrialist would make them enter ready (R25 = A) but she is mono-Order and 103.1.b.1 bars her from a Fury/Chaos deck.",
+          "IT ALSO STILL PAYS ON THE CONQUER, because 'and vice versa' does not replace the original category — 383.4.c.1 and 383.4.d.1 give the two standard wordings and Skyfall adds membership rather than moving it. So the turn you take the battlefield you get three Gold, and every Hold after it you get three more.",
+          "WHAT DOES NOT SURVIVE THE CONVERSION IS A CONDITION THAT ONLY A COMBAT CAN MEET. UNL-018 Yeti Brawler ('if you assigned 3 or more excess damage') and OGN-034 Tryndamere ('When I conquer after an attack, if you assigned 5 or more excess damage') are both in this rule's partner list and both are dead on a Hold: 383.2.a.1 makes the extra clause part of the Trigger Condition and a Hold assigns no damage at all. Cull has no condition, which is exactly why it is the partner that works.",
+          "The bearer ends at Might +2 (Skyfall) +3 (three Culls) over its printed value, by 137.3, and 137.3.a strips all four the moment it dies. Cost, counted whole: Skyfall 3 Energy to play plus 1 Energy + 1 Fury Power to [Equip]; each Cull 1 Energy plus 1 Chaos Power to [Equip]. 7 Energy, 1 Fury Power and 3 Chaos Power."
+        ]
+      },
+      "steps": [
+        "Put a unit at a battlefield you intend to hold, and attach Skyfall of Areion to it (3 Energy, then 1 Energy + 1 Fury Power to [Equip]).",
+        "Attach all three Cull to the same body (1 Energy each, then 1 Chaos Power each to [Equip]). 136.2.c gives the bearer three copies of 'When I conquer, play a Gold gear token exhausted'.",
+        "Skyfall's clause makes those three conquer effects ALSO hold effects.",
+        "Establish Control. On the Conquer, the three fire as conquer effects: three Gold.",
+        "Every Beginning Phase you Hold that battlefield (315.2.b.2), the same three fire as hold effects: three more Gold, for nothing.",
+        "They ready at your next Awaken (315.1.b) and are 1 rainbow Power each on demand (187.5)."
+      ],
+      "netPerIteration": "+3 Gold gear tokens per Hold, at no recurring cost",
+      "terminatesIn": "engine — a Power bank that fills every turn; the ordinary Hold point is the only point it makes",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule skyfall-hold-conquer-bridge (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-134 was an uncatalogued partner of skyfall-hold-conquer-bridge (26 partners, 2 entries), and every catalogued Skyfall entry runs the bridge in the hold-to-conquer direction only. Card text verbatim from data/corpus_flat.txt; 136.2.c, 136.2.d, 137.3, 137.3.a, 187.5, 315.1.b, 315.2.b.2, 383.2.a.1, 383.4.c.1, 383.4.d.1, 434.1.b.1 and 103.1.b.1 opened in the Core Rules file. No unruled reading. The refusal that came with it is in the fifth notable rather than a separate row: a conquer payoff whose condition only a combat can satisfy does not survive the conversion, which kills Yeti Brawler and Tryndamere as partners in this direction."
+    },
+    {
+      "id": "blade-kogmaw-karthus-wipe",
+      "name": "Blade of the Ruined King kills Kog'Maw under two Karthus — twelve damage on demand",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-190",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E3 P1 M1. '[Deathknell] — Deal 4 to all units at my battlefield. (When I die, get the effect.)'"
+        },
+        {
+          "card": "SFD-178",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order gear, E3 P1, M+4. '[Equip] — 1 Order Power, Kill a friendly unit.' The kill half of the cost is the on-demand trigger."
+        },
+        {
+          "card": "OGN-236",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order unit, E3 P1 M3. 'Your [Deathknell] effects trigger an additional time.' Two copies take the Deathknell to three executions."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Chaos (Kog'Maw) and Order (the Blade, both Karthus). There is exactly ONE Order/Chaos legend NAME in the pool — Heart of the Tempest — printed under TWO base codes, VEN-155 and VEN-197. Counted from data/cards.json by base code and by name, not from a grep row: this is the tightest identity of any entry in this walk and it means the shell is fixed before the first card is chosen."
+        ],
+        "notable": [
+          "TWELVE DAMAGE, FIRED WHEN YOU CHOOSE. 1 Deathknell + 2 Karthus = 3 executions of 'Deal 4 to all units at my battlefield' (R1 = A with stacking), and the kill is the Blade's own [Equip] cost — 428.1 defines Killing as 'the action of a Permanent going to the trash from the board' and 428.1.a.1 admits it 'as a cost for a card or ability'. No combat, no attack, no timing window to be denied.",
+          "IT IS SYMMETRIC AND KOG'MAW IS THE ONLY BODY YOU SHOULD HAVE THERE. 'All units at my battlefield' includes yours. He is Might 1, so walk him alone to the battlefield you want cleared — 144.4.a moves him base-to-battlefield for his own exhaust (144.2), and at 1 Might he survives nothing anyway. The Blade's bearer must be a DIFFERENT body you keep, since the cost kills one friendly unit and the gear attaches to another.",
+          "Twelve clears almost the whole pool in one instruction: the largest printed unit Might is 12 (UNL-059 Master Yi, Unstoppable, UNL-147 / UNL-238 Baron Nashor) and 143.2.a needs damage equal to a unit's Might to kill it, so a garrison of anything smaller dies entire. A body wearing a Might Bonus (137.3, largest +4) can survive.",
+          "ONE SHOT PER KOG'MAW AND PER BLADE. The Blade's [Equip] is what pays the kill, so each copy of the gear buys one firing; 103.2.b caps both at three, giving three wipes a game. It is repeatable-removal in the vocabulary sense, not an engine that ticks — and the entry says so rather than implying a loop.",
+          "The Karthus pair is the same doubling karthus-machine-evangel-renata-plaza and karthus-honest-broker-blade-gold already run, pointed at damage instead of tokens; with one Karthus it is 8 and with none 4, which kills far less. Both Karthus are 3-Might bodies that need to survive, and they may stand anywhere — his ability has no location clause.",
+          "Cost, counted whole: Kog'Maw 3 Energy + 1 Chaos Power, the Blade 3 Energy + 1 Power to play and 1 Order Power to [Equip], two Karthus 6 Energy + 2 Order Power. 12 Energy and 5 Power, spread over turns.",
+          "Rider outside uses: UNL-145 Pyke, Returned ('Once each turn, when an enemy unit dies while I'm at a battlefield, play a Gold gear token exhausted') is Chaos and on identity, so a wipe at his battlefield also pays a Gold — once, because of his own 'once each turn'."
+        ]
+      },
+      "steps": [
+        "Board over the preceding turns: two Karthus, Eternal, a body to carry the Blade, and Blade of the Ruined King in hand.",
+        "Walk Kog'Maw, Caustic alone to the battlefield you want cleared (144.1.a, 144.2, 144.4.a).",
+        "Activate the Blade's [Equip] for 1 Order Power, attaching it to the body you are keeping and paying the kill half with Kog'Maw (428.1, 428.1.a.1).",
+        "His [Deathknell] runs three times — his own plus one per Karthus: 4 damage to all units at that battlefield, three times over.",
+        "Twelve damage is marked on each of them (143.3); anything with Might 12 or less dies (143.2.a).",
+        "The Blade stays attached at +4 Might on its bearer (137.3). Repeat with the next copy of each."
+      ],
+      "terminatesIn": "engine — a twelve-damage sweep of one battlefield, three times a game, at a time of your choosing",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rules blade-of-ruined-king-deathknell-ondemand and karthus-deathknell-double (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. OGN-190 Kog'Maw, Caustic was an uncatalogued partner of BOTH blade-of-ruined-king-deathknell-ondemand (22 partners, 4 entries) and karthus-deathknell-double (23 partners, 7 entries). Card text verbatim from data/corpus_flat.txt; 103.2.b, 137.3, 143.2.a, 143.3, 144.1.a, 144.2, 144.4.a, 428.1 and 428.1.a.1 opened in the Core Rules file. Stands on R1 = A with stacking; no new reading. CORRECTION MADE BEFORE SHIPPING: the first draft said VEN-155 Heart of the Tempest is the pool's only Order/Chaos legend. A census of data/cards.json says one NAME and TWO base codes (VEN-155 and VEN-197) — the same shape as the Green Father case CLAUDE.md records, and the second time this walk caught itself asserting a ceiling instead of measuring it. The conclusion survives: the shell is fixed, and it is the tightest identity of any entry here."
+    },
+    {
+      "id": "marai-spire-temptation-evacuation",
+      "name": "Temptation under Marai Spire — two enemy units relocated for three Energy",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-129",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos spell, E2. '[Repeat] 2 Energy. Move an enemy unit to a location where there's a unit with the same controller.'"
+        },
+        {
+          "card": "SFD-211",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'While you control this battlefield, friendly [Repeat] costs cost 1 Energy less.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Chaos in its pair (103.1.b.3) — Marai Spire is colourless."
+        ],
+        "notable": [
+          "EXACTLY ONE EXTRA EXECUTION, AND THE ENTRY WILL NOT PRETEND OTHERWISE. 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' A second time, not repeatedly. So Temptation moves at most two enemy units per cast, and 820.2.a lets the second choice differ from the first — three copies (103.2.b) is six relocations a game.",
+          "The Spire takes the Repeat from 2 Energy to 1 (820.1.c.1 makes it an Additional Cost paid during the steps of playing the spell), so two relocations cost 3 Energy rather than 4. That is a 25% discount on the whole line, which matters because the line's job is to be affordable in the same Main Phase as the body that walks in afterwards.",
+          "THE DESTINATION CLAUSE IS A REAL RESTRICTION: 'a location where there's a unit with the same controller' means you may only move an enemy body to somewhere that opponent ALREADY has a unit. You are consolidating their army, never scattering it — so this empties a battlefield only when their remaining bodies elsewhere give you a legal destination.",
+          "AND EVACUATING IS NOT YET A CONQUER, which #102 had to correct. 323.6 only STRIPS their Control when their last body leaves; nobody gains it, and 170.11.c then makes the battlefield open — 'unoccupied AND uncontrolled', both conditions. The point needs a body of yours walking in during the Main Phase (144.4.a) → Contested (190.3.a.1) → Showdown (344.2) → 348.2.a → 348.2.a.1, and it does score that same turn.",
+          "It is cheap enough to be the follow-up rather than the whole turn: 3 Energy for the evacuation leaves the Main Phase free for the walk-in and for whatever garrisons the battlefield afterwards, which is the difference between this and moonlight-affliction-tricksy-tentacles-evacuation at 11 Energy.",
+          "A battlefield you bring starts UNCONTROLLED (190.1) and its 'you' is blanked until you take it (190.6.d), so the discount is not free — walking a body onto the Spire and establishing Control is part of the cost. 485.4.a puts only one of your three into play, randomly in Duel (485.5) and Skirmish (487.5), and 103.4.c plus Tournament Rules 402.1 forbid three copies to force it."
+        ]
+      },
+      "steps": [
+        "Control Marai Spire (190.1: walk a body on and take it, 190.6.d blanks its text until you do).",
+        "Pick the battlefield you intend to take, and check the opponent has a unit somewhere else — Temptation needs a destination where they already have a body.",
+        "Cast Temptation for 2 Energy and pay the [Repeat] for 1 (2 less the Spire's discount, 820.1.c.1): two enemy units move, and 820.2.a lets the second choice differ.",
+        "If that was their last body there, the Cleanup strips their Control (323.6) and 170.11.c makes the battlefield open.",
+        "Walk a friendly unit in the same Main Phase (144.4.a). 190.3.a.1 Contests it, 344.2 opens the Showdown at the next Cleanup, 348.2.a establishes Control and 348.2.a.1 makes it a Conquer — no combat, no damage, no Attacker designation."
+      ],
+      "terminatesIn": "engine — a bloodless Conquer for 3 Energy, six relocations a game",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule marai-spire-repeat-discount (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-129 was an uncatalogued partner of marai-spire-repeat-discount (20 partners, 3 entries). Card text verbatim from data/corpus_flat.txt; 103.2.b, 103.4.c, 144.4.a, 170.11.c, 190.1, 190.3.a.1, 190.6.d, 323.6, 344.2, 348.2.a, 348.2.a.1, 485.4.a, 820.1.b, 820.1.c.1 and 820.2.a opened in the Core Rules file. No unruled reading. Two corrections from earlier walks are applied rather than re-derived: #97's ([Repeat] gives EXACTLY one extra execution, so these are not uncapped engines) and #102's plus #146's (evacuating strips Control but grants none, and 170.11.c requires both conditions)."
+    },
+    {
+      "id": "shen-skyfall-brambleback-conquer",
+      "name": "Shen, Leader of the Kinkou Order under Skyfall — the point arrives on the Conquer too",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-138",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P2 M7, [Shield]. 'When I hold, if there is exactly one other unit you control here, you score 1 point.'"
+        },
+        {
+          "card": "SFD-030",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury gear, E3, M+2, [Equip] 1 Energy + 1 Fury Power. '[Effect] My hold effects are also conquer effects, and vice versa.' A gear, so it never disturbs Shen's unit count."
+        },
+        {
+          "card": "UNL-029",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 P1 M4, [Accelerate]. 'Your conquer effects for conquering here trigger an additional time.' EXACTLY one copy — and it is also the one other unit Shen's condition requires."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Fury (Skyfall, Brambleback) and Order (Shen) — OGN-253 Hand of Noxus, SFD-187 Void Burrower, UNL-187 Piltover Enforcer."
+        ],
+        "notable": [
+          "ONE RED BRAMBLEBACK IS BOTH THE MULTIPLIER AND THE CONDITION, WHICH IS WHY THE COUNT IS FIXED AT TWO BODIES. Shen needs 'exactly one other unit you control here' — 383.2.a.1 makes that part of the Trigger Condition, checked when the trigger is placed — and Brambleback is exactly that one unit while also doubling conquer effects. A SECOND Brambleback would raise the multiplier to 3 and simultaneously break Shen's condition to zero. Skyfall is a gear (137), so it never enters the count.",
+          "THREE POINTS ON THE TURN YOU TAKE THE BATTLEFIELD. Skyfall makes Shen's hold effect also a conquer effect, and Brambleback's 'Your conquer effects for conquering here trigger an additional time' then applies to it: 1 + 1 = 2 executions of 'you score 1 point' (194.1.c Gains under R2 = A, outside 470's cap), plus the Conquer's own Score of 1. Three.",
+          "AND TWO EVERY HOLD AFTER IT. On a Hold nobody is conquering, so Brambleback's clause does not apply — its condition is the act of conquering here, not the category of the effect. Shen's trigger fires once: 1 point plus the Hold's own Score. The entry publishes both numbers rather than the better one.",
+          "Against shen-kinkou-sentinel-hold (3 a turn, Mind/Order, two bodies) this is 3 on turn one and 2 a turn after, in a Fury/Order shell — worse on rate, better on tempo, and it is the only Shen line that pays on the turn the battlefield changes hands. Against shen-kinkou-svellsongur-hold (9 in one Hold) it is not close; that one is the BURST and this is the cheap version.",
+          "Shen defends at 7 + 1 ([Shield]) + 2 (Skyfall's Might Bonus, 137.3) = 10, and Brambleback at 4 with [Accelerate] to arrive ready. Killing Brambleback costs Shen his condition as well as the multiplier, so the opponent has one clean answer and it is the cheaper body.",
+          "Cost, counted whole: Shen 6 Energy + 2 Order Power, Brambleback 4 Energy + 1 Fury Power (plus 1 Energy + 1 Fury Power if you pay [Accelerate]), Skyfall 3 Energy to play and 1 Energy + 1 Fury Power to [Equip]. 14 Energy and 4 Power.",
+          "The Conquer itself may be bloodless: 348.2.a.1 makes the Showdown at an open battlefield a Conquer with no combat and no Attacker designation, so 807.1.d / 383.4.e / 461 never bite and neither body has to fight."
+        ]
+      },
+      "steps": [
+        "Attach Skyfall of Areion to Shen (3 Energy, then 1 Energy + 1 Fury Power to [Equip]). His hold effect is now also a conquer effect.",
+        "Walk Shen and exactly one Red Brambleback to the battlefield you intend to take — no third body, or Shen's condition fails.",
+        "Conquer it: win the Combat there (466.5.d), or with no enemy garrison take the Showdown at the next Cleanup (344.2, 348.2.a, 348.2.a.1).",
+        "Shen's trigger is now a conquer effect for conquering here, so Brambleback makes it fire 1 + 1 = 2 times: 2 points, on top of the Conquer's own Score. Three this turn.",
+        "Every Beginning Phase after, you Hold it (315.2.b.2): the Score is 1 and Shen's hold effect fires once for 1 more. Two a turn, for as long as the garrison stays at exactly two units."
+      ],
+      "netPerIteration": "+3 points on the Conquer, +2 points per Hold thereafter",
+      "terminatesIn": "engine — 3 the turn the battlefield changes hands, 2 a turn after; it never reaches 8 in one event",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rules skyfall-hold-conquer-bridge, red-brambleback-conquer and blue-sentinel-hold (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160, and it is the third Shen row this walk produced — the other two are shen-kinkou-sentinel-hold (body multiplier, pinned at K = 1, 3 a turn) and shen-kinkou-svellsongur-hold (gear multiplier, 9 in one Hold). Card text verbatim from data/corpus_flat.txt; 137, 137.3, 194.1.c, 315.2.b.2, 344.2, 348.2.a, 348.2.a.1, 383.2.a.1, 383.4.e, 461, 466.5.d, 470 and 807.1.d opened in the Core Rules file. Stands on R1 = A with stacking and R2 = A; no new reading. The formula was checked against its own declared quantities before authoring: 1 + 1 x (1 + 1) = 3 on the Conquer and 1 + 1 = 2 on each Hold, which never reaches 8 in one event and is therefore ENGINE, not BURST."
+    },
+    {
+      "id": "reveler-loop-nasus-brambleback-conquer",
+      "name": "The Calm/Fury loop finally buys something — nine points in one Conquer",
+      "class": "BURST",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-046",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E8 P1 M8, [Deflect 2]. '[Empower] [8] ([8]: Empower me. Use only if not Empowered.) [Empowered][>] When I conquer, you score 1 point.' Two Empowered Nasus present at the conquer are the N of the formula."
+        },
+        {
+          "card": "UNL-029",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 P1 M4, [Accelerate] 1 Energy + 1 Fury Power. 'Your conquer effects for conquering here trigger an additional time.' R1 = A with stacking: three copies make every conquer effect fire 1 + 3 = 4 times. [Accelerate] is what lets them enter ready and move in on the combo turn (143.4.a)."
+        }
+      ],
+      "needs": [
+        "infinite-energy"
+      ],
+      "produces": [
+        "burst-points",
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "A Calm/Fury legend — Nasus is Calm and Red Brambleback is Fury (103.1.b.1). Calm/Fury is a printed legend pair, and it is the identity of both loops below."
+        ],
+        "notable": [
+          "THIS IS THE FIRST POINT ROUTE EITHER CALM/FURY INFINITE ENGINE HAS EVER HAD, AND THAT IS THE WHOLE REASON IT IS AUTHORED. Measured over the current catalogue by running generateVariants and counting, for each of the 14 INFINITE engines, the domain-legal variants headed by a BURST, CHAIN or ALT_WIN: threshold-reveler-infinite-energy and reveler-svellsongur-jhin-infinite-power both scored ZERO. Both are Calm/Fury, and Calm/Fury is the one identity with no in-turn repeatable point ability — SFD-088 Renata Glasc, Mastermind is Mind, OGN-122 Time Warp is Mind, VEN-067 Bottled Constellation is Mind. Everything else in the pool hangs on a Hold or a Conquer, and 315.2.b.2 puts the Hold in the Beginning Phase, which is BEFORE the Main Phase where the loop's Energy exists (167 empties both pools at the end of the turn). So the Conquer is the only window a Calm/Fury loop can spend into, and this is the card that pays for it.",
+          "SAME CARDS AS nasus-ascended-brambleback-conquer, DIFFERENT needs, AND THE CATALOGUE ALREADY DOES THIS. dragonstorm-brambleback-trinity-conquer and brambleback-trinity-skyfall-conquer carry the identical uses (UNL-029 x2, SFD-115 x3, SFD-030 x1) and are two entries because one declares needs ['infinite-energy','infinite-power'] and the other declares none. The distinction is real rather than bookkeeping: the standalone entry is a 44-Energy investment spread over several turns that the opponent can see coming, and this one is the same nine points paid for in a single Main Phase out of a loop.",
+          "THE LEDGER FOR THE COMBO TURN, ITEM BY ITEM. Two Nasus are already on the board from an earlier turn — 143.4 makes units enter exhausted and 144.2 makes the Standard Move cost that exhaust, and Nasus has no [Accelerate], so he cannot be played and moved the same turn. Empower both: 8 Energy each, 16 Energy, and the [Empower] cost carries no exhaust, so an exhausted Nasus can still pay it; 441.2 makes the state permanent. Play three Red Bramblebacks with [Accelerate]: 3 x (4 + 1) = 15 Energy and 3 x (1 + 1) = 6 Fury Power. Move all five in together — 144.3 makes multiple Standard Moves ONE game action with a shared destination (144.3.a) and simultaneous exhaust costs (144.3.c). TOTAL ON THE COMBO TURN: 31 Energy and 6 Fury Power, plus the 2 Calm Power the Nasus cost on their earlier turn.",
+          "WHY needs IS infinite-energy ALONE AND NOT infinite-power TOO. The 6 Fury Power is inside the 12-rune ceiling (161.2.a) — eight recycles at 164.2.b cover it with room, and 164.2.b carries no exhaust so a rune already tapped for Energy still pays. That matters because it connects the entry to BOTH Calm/Fury loops: reveler-svellsongur-jhin-infinite-power produces Energy and Power, while threshold-reveler-infinite-energy produces Energy only. Declaring infinite-power would have left the second one with zero routes again.",
+          "THE FORMULA, CHECKED AGAINST THIS ENTRY'S OWN QUANTITIES. Points on the Conquer are 1 + N x (1 + K), where N is Empowered Nasus present and K is Red Bramblebacks present. N = 2, K = 3 gives 1 + 2 x 4 = NINE, and 194.3's Victory Score is 8, so 194.2 ends the game there. 383.4.c.2.a is the rule that requires every one of the five bodies to be present: 'The Conquer Abilities of Units are put on the Chain as Pending Items after the Unit(s) these effects correspond to are present at a Battlefield when a player gains control of it and gains 1 Victory Point from Conquering.' R1 = A with stacking gives the 1 + K multiplier; R2 = A keeps the eight ability Gains outside 470's one-Score-per-battlefield cap (194.1.c), and 471.1.a.1 lets the eighth land because points Gained from sources that are not Conquer are outside 471.1.b.",
+          "IT MUST WIN THE COMBAT, AND IT DOES SO ON MIGHT RATHER THAN ON A TRICK. Two 8-Might Nasus and three 4-Might Bramblebacks sum to 28 attacking Might (465.2.a), against a Duel garrison that is rarely half that. This is deliberately NOT one of the bloodless-conquer lines: those clear the garrison with removal so no damage is assigned, which is fine here too, but the excess-damage family is irrelevant either way because nothing in this entry reads 'excess'.",
+          "IN 2V2 IT IS STILL SHORT. 489.3 sets the Victory Score at 11 against 194.3's 8, so nine points does not end a Magma Chamber game. The entry is authored for Constructed.",
+          "THE THREE PAYOFF BATTLEFIELDS ARE IRRELEVANT HERE, WHICH IS AN ADVANTAGE WORTH NAMING. 485.4.a gives each player three battlefields and uses only one, chosen at random by 485.5, so OGN-293 The Grand Plaza, SFD-214 Power Nexus and OGN-286 Reckoner's Arena can never be relied on together — issue #63 measured that constraint across the whole payoff lens. This line needs no particular battlefield at all: any battlefield you do not control, with a garrison you can beat, is the target."
+        ]
+      },
+      "steps": [
+        "Earlier turns: land two Nasus, Ascended (8 Energy + 1 Calm Power each).",
+        "Combo turn, Main Phase: start the loop and bank unbounded Energy (167 empties it at end of turn, so everything below happens now).",
+        "Empower both Nasus for 8 Energy each. The [Empower] cost carries no exhaust, so it works on an exhausted body, and 441.2 makes the state permanent.",
+        "Play three Red Bramblebacks paying [Accelerate] (1 Energy + 1 Fury Power each on top of their 4 Energy + 1 Fury Power) so they enter ready and can move this turn (143.4.a).",
+        "Standard-move all five bodies to an enemy-garrisoned battlefield in one action (144.3, 144.3.a, 144.3.c) and win the combat on 28 summed Might (465.2.a).",
+        "466.5 establishes Control and 466.5.d makes it a Conquer. Each Nasus's '[Empowered][>] When I conquer, you score 1 point' fires 1 + 3 = 4 times: 1 + 2 x 4 = nine points, and 194.2 ends the game."
+      ],
+      "terminatesIn": "9 points in a single Conquer, which is the game (194.2, Victory Score 8 by 194.3) — the whole 31 Energy paid out of the loop in one Main Phase",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 24)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Issue #63 — the payoff lens: the 12 INFINITE engines priced, and the finding that the three payoff battlefields compete for one slot",
+          "kind": "agent",
+          "date": "2026-09-05"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 24). Found by re-running issue #63's measurement over the CURRENT catalogue rather than trusting its table: #63 reported that only 2 of 12 INFINITE engines had a connected legal point route, and after the feature merge of #64 that is now 9 of 14 — but threshold-reveler-infinite-energy and reveler-svellsongur-jhin-infinite-power still scored zero, and both are Calm/Fury. The reason is structural and is stated in notable[0]: every in-turn repeatable point ability in the pool is Mind, and every other payoff hangs on a Hold or a Conquer, of which only the Conquer happens in the Main Phase where a loop's Energy exists (167). Authored as a second entry over nasus-ascended-brambleback-conquer's card set on the precedent the catalogue already set with dragonstorm-brambleback-trinity-conquer against brambleback-trinity-skyfall-conquer: identical uses, different needs, two entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 143.4/143.4.a, 144.2, 144.3/144.3.a/144.3.c, 161.2.a, 164.2.b, 167, 194.1.c, 194.2, 194.3, 383.4.c.2.a, 441.2, 465.2.a, 466.5/466.5.d, 470, 471.1/471.1.a.1, 485.4.a, 485.5 and 489.3 opened and read. Ban check: neither VEN-046 nor UNL-029 carries a [BANNED marker, and neither is a Signature card. Trap check: the Bramblebacks must be PRESENT, not merely owned (383.4.c.2.a); no [Temporary]; no [Repeat]; no token; no recall; the attack is real so 807.1.d/383.4.e/461 are satisfied. Depends on R1 = A with stacking and R2 = A, and on no open reading."
     }
   ]
 }
