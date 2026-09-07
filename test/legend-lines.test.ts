@@ -70,4 +70,60 @@ describe("the legends an entry names can actually hold its cards (103.1.b)", () 
     expect(checked, "no entry with a Signature card names a legend base code in prerequisites.easy").toBeGreaterThan(0);
     expect(bad, bad.join("\n")).toEqual([]);
   });
+
+  /**
+   * #187 batch 11, 2026-09-07: a walk caught itself naming the Body/Chaos legends as "OGN-259 /
+   * OGN-305 Grinning Fisherman and UNL-201 / UNL-238 Voidreaver" — typed from memory, with two of
+   * three names and three of four base codes wrong. Neither check above can see that: an
+   * invented-but-existing base code of the right domain pair passes the first by construction, and
+   * the second only fires on Signature cards. What IS checkable is the pairing itself — this
+   * catalogue writes a legend as `CODE Name` or `Name (CODE)`, so whenever a base code sits
+   * immediately beside a legend name, they must be the same legend. Measured 2026-09-07: 2,515 such
+   * pairs across the catalogue, all correct.
+   */
+  it("never writes a legend base code beside the name of a different legend", () => {
+    const legends = poolOf(cards).filter((c) => c.type.includes("legend"));
+    const nameOf = new Map(legends.map((c) => [c.base, c.name]));
+    const basesByName = new Map<string, Set<string>>();
+    for (const c of legends) {
+      const set = basesByName.get(c.name) ?? new Set<string>();
+      for (const e of cards.equivalents(c.base)) set.add(e);
+      set.add(c.base);
+      basesByName.set(c.name, set);
+    }
+    const CODES = "[A-Z]{3}-(?:\\d{3}|SP\\d|R0\\d|T0\\d)";
+    const NAME = "[A-Z][A-Za-z'\u2019-]*(?:[ -][A-Za-z'\u2019][A-Za-z'\u2019-]*){0,4}";
+    const codeThenName = new RegExp(`((?:${CODES})(?:\\s*/\\s*(?:${CODES}))*)\\s+(${NAME})`, "g");
+    const nameThenCode = new RegExp(`(${NAME})\\s*\\(((?:${CODES})(?:\\s*/\\s*(?:${CODES}))*)\\)`, "g");
+    const known = new Set(basesByName.keys());
+    const resolve = (raw: string): string | null => {
+      let s = raw.trim().replace(/[,.;:]$/, "");
+      while (s) {
+        if (known.has(s)) return s;
+        if (known.has(`${s} - Starter`)) return `${s} - Starter`;
+        const i = s.lastIndexOf(" ");
+        if (i < 0) return null;
+        s = s.slice(0, i);
+      }
+      return null;
+    };
+    const bad: string[] = [];
+    let checked = 0;
+    const check = (id: string, name: string | null, codes: string) => {
+      if (!name) return;
+      for (const code of codes.match(new RegExp(CODES, "g")) ?? []) {
+        if (!nameOf.has(code)) continue;
+        checked++;
+        if (!basesByName.get(name)!.has(code)) bad.push(`${id}: "${name}" is written beside ${code}, which is ${nameOf.get(code)}`);
+      }
+    };
+    for (const combo of combos) {
+      for (const line of combo.prerequisites.easy) {
+        for (const m of line.matchAll(codeThenName)) check(combo.id, resolve(m[2]!), m[1]!);
+        for (const m of line.matchAll(nameThenCode)) check(combo.id, resolve(m[1]!), m[2]!);
+      }
+    }
+    expect(checked, "no legend name sits beside a base code — the writing convention or the regex changed").toBeGreaterThan(500);
+    expect(bad, bad.join("\n")).toEqual([]);
+  });
 });
