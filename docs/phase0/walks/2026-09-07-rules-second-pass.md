@@ -1772,3 +1772,83 @@ verbatim before staging (054.1, 155, and 143.2.a in the previous batch).
 Cards in **zero** entries before this batch: `SFD-194` Counter Strike, `OGS-006` Lux Illuminated,
 `OGN-105` Singularity, `OGN-229` Vengeance, `SFD-077` Rocket Barrage — five, leaving **13** of the
 rules-named list.
+
+## 41. Batch 8 — four more, two of them Signature-locked
+
+### 41.1 `tibbers-annie-fiery-dark-child-sweep` — the sweep is an ABILITY, which decides which Bonus Damage card reaches it
+
+`OGS-018 Tibbers` (*"When you play me, deal 3 to all units at battlefields"*) is a play TRIGGER, i.e. a
+Triggered Ability (383.1). Of the pool's six Bonus Damage cards, `OGS-001 Annie, Fiery` says *"your
+spells **and abilities**"* and therefore reaches it, while `OGN-032 Ravenborn Tome` says *"The next
+**spell** you play this turn"* and does not. Same keyword, opposite answers.
+
+**715.2** then pays it per target: *"the amount of Damage dealt to each target is increased by Bonus
+Damage individually and separately"* — so the sweep is **4 to every unit at every battlefield**, which
+is the difference between clearing Recruits and clearing a garrison (143.2.a).
+
+Annie stays at the BASE on purpose: her static carries no location clause, and at Might 4 she would
+die to her own upgrade. The line is symmetrical — *"all units at battlefields"* includes yours — so it
+is a control shell, not a token shell.
+
+Tibbers is Signature (Annie), so 103.2.d.2 forces `OGS-017 Dark Child - Starter`, the pool's only Annie
+legend. That happens to be the right legend for an E8 + 2 Power card: *"At the end of your turn, ready
+up to 2 runes"*, and 167 empties the POOL and not the runes, so those two are live on the opponent's
+turn and again on yours.
+
+### 41.2 `spinning-axe-sentinel-adept-persistent-might-bonus` — a Might Bonus is not "this turn"
+
+**137.3.a**: a Might Bonus *"is applied while Attached and stops applying as soon as the card with the
+Might Bonus is no longer Attached."* 317.2.c never touches it. So `SFD-186 Spinning Axe` is a
+**permanent +3**, where every combat trick in the format expires at the end-of-turn Cleanup — and
+**819.1.d** (*"Quick-Draw is functionally short for '[Reaction]' and 'When you play this, attach it to
+a Unit you control'"*) buys it after the attack is declared, with no [Equip] paid at all.
+
+Its `[Temporary]` clause is conditional — *"If this is unattached"* — so it only arms when the carrier
+dies. And the rescue is the batch-5 finding used forwards: an attached Equipment cannot pay its own
+[Equip] (718.2 with 721.2), so **[Weaponmaster]**'s printed *"even if it's already attached"* is what
+makes `SFD-008 Sentinel Adept` able to move it, for free (the Axe's [Equip] is one rainbow, minus one
+rainbow, floored at 0 by 356.6).
+
+Spinning Axe is Signature (Draven), so 103.2.d.2 forces `SFD-185 / SFD-242 Glorious Executioner` —
+whose *"When you win a combat, draw 1. (You win if only your units remain after combat.)"* is exactly
+what a +3 bought after the assignment is countable turns into a card.
+
+### 41.3 `discipline-irelia-fervent-cantrip-choose` — the trigger is on the choosing
+
+`SFD-057 Irelia, Fervent` reads *"When you **choose** or ready me"*, so a spell that targets her fires
+it as surely as a Buff does (702.2.a). `OGN-058 Discipline` (Calm, E2, [Reaction], *"Give a unit +2
+Might this turn. Draw 1."*) is +2 from the spell and +1 from her trigger, and it replaces itself.
+
+Her own **[Deflect] does not tax it**: 809.1.c is written for *"Spells and abilities an **opponent**
+controls"*. The keyword makes her expensive for them and free for you — an asymmetry that is easy to
+read the wrong way round.
+
+The ready half is the free one and it needs her exhausted (415.1.b / 415.1.c); what pays every turn is
+315.1.b's Awakening on a body that acted the turn before.
+
+The entry also carries the three "choose" false-positive shapes from §the #169 work, because they all
+appear on her match list: a card that chooses in a hand or trash, a card that removes what it chose
+before the payoff lands (`VEN-106 Wind and Ghosts`), and `SFD-142 Jae Medarda`'s narrower *"when you
+choose me **with a spell**"*.
+
+### 41.4 `yi-honed-back-alley-bar-ganking-departure` — 144.4 is why a departure rider needs [Ganking]
+
+**144.4.a** *"Units may move from their Base to a Battlefield"*, **144.4.b** *"Units may move from a
+Battlefield to their Base"*, **144.4.c.1** *"Units with Ganking may use their Standard Move to Move
+from Battlefield to Battlefield."*
+
+So without [Ganking] the only legal way to leave `OGN-277 Back-Alley Bar` is to go **home**, where its
+*"+1 Might this turn"* is worth nothing. `OGS-009 Yi, Honed` brings the keyword and *"I enter ready"*
+besides, which beats 143.4 and lets him collect the rider on the turn he is cast. 810.1.c.3 is cited
+so the keyword is not mistaken for a second move — it is one move a turn that ends somewhere useful.
+
+The Bar says *"When **a unit** moves from here"*, not *"you"*: 190.6.d never blanks it, so it is live
+from turn one, and it pays the opponent's departures too.
+
+## 42. Batch 8 — staged
+
+Four entries in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos` clean over 564 entries;
+`test/legend-lines.test.ts` clean, including both Signature champion-tag checks (Annie → Dark Child,
+Draven → Glorious Executioner). Cards in **zero** entries before this batch: `OGS-018` Tibbers,
+`SFD-186` Spinning Axe, `OGN-058` Discipline, `OGS-009` Yi Honed — four, leaving **9** of the
+rules-named list.
