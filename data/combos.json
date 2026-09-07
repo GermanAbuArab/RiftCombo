@@ -49674,6 +49674,286 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #187, sub-rule lane 100-499). 373, 373.1, 373.1.a, 373.2 and 373.2.a are cited by no entry and no synergy rule in this project, and 373.2's worked example names SFD-173 Soraka, Wanderer and SFD-051 Guardian Angel together. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.2, 136.2.d, 137.3, 315.1.b, 323.6, 370.4, 373, 373.1, 373.1.a, 373.2, 455, 477.3.d. THIS IS THE LIMIT THAT 370.4 ALONE DOES NOT STATE, and it refines my own soraka-wanderer-vanguard-armory-simultaneous-save from the same night: 370.4 says the replacement reaches simultaneous deaths, 373.2 says it reaches them ONCE PER SEQUENCE - so a second replacement on the same body is a fork between two halves of the board, not a doubling. That entry was patched with a notable citing 373.2 before it was merged. Distinct from soraka-fiora-loop-shield and from tianna-guardian-angel-forge-god-lock, neither of which cites 373. Trap check: the ordering choice is yours only because both replacements share a controller (373); across controllers 373.1 uses turn order; the Angel is consumed on use; the battlefield is lost either way; no unruled reading."
+    },
+    {
+      "id": "highlander-towering-combatant-spell-shield",
+      "name": "The heal/exhaust/recall shield printed as a SPELL - it erases a Deathknell and it sends the body home, and both traps are on the card it saves",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-020",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm/Body spell, E4. '[Reaction] (Play any time, even before spells and abilities resolve.) Choose a friendly unit. The next time it would die this turn, heal it, exhaust it, and recall it instead. (Send it to base. This isn't a move.)' A Signature card tagged Master Yi."
+        },
+        {
+          "card": "UNL-099",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E4 M3. '[Shield 2] (+2 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.)' The right body to save, precisely because it has no Deathknell and no 'while I'm at a battlefield' text for the recall to switch off."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "OGS-020 Highlander is a SIGNATURE card tagged Master Yi, so 103.2.d.2 forces a Master Yi legend whose two domains cover calm + body - and the census prints TWO such names, not one: OGS-019 Wuju Bladesman - Starter and UNL-191 / UNL-231 Wuju Master. Both are Calm/Body and both are legal here.",
+          "Neither card is banned or restricted in either format. The Highlander spends one of the three Signature slots 103.2.d.1 allows; UNL-099 is not a Signature card.",
+          "4 Energy held open on the opponent's turn - it is a [Reaction], and 415.3.a is why the runes have to have been left ready."
+        ],
+        "notable": [
+          "THE TWO TRAPS ARE ON THE BODY, NOT ON THE SPELL, WHICH IS WHY THE PARTNER IS PART OF THE ENTRY. 808.1.d.1: 'If the Permanent with the effect is not sent to the Trash, for example because its \"killed\" event was replaced with a recall, the triggered ability will be removed from the chain' - and Riot's worked example is exactly this replacement, a Zhonya's Hourglass save on Draven, Audacious. So saving a body with a Deathknell DESTROYS the Deathknell. And 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move' - so the body goes HOME, which switches off any 'While I'm at a battlefield' text it carried and hands back the battlefield if it was the last unit there (323.6). A Towering Combatant has neither, which is what makes it the right thing to save.",
+          "AND IT COMES BACK EXHAUSTED, SO THE SAVE COSTS A TURN. The spell says so - 'heal it, EXHAUST it, and recall it' - and 315.1.b readies it only at your next Awakening. 456.3 is the companion: 'A Recall cannot be prevented by actions and Game Effects that restrict or block Movement', so nothing on either side can keep the body where it was.",
+          "A SPELL VERSION OF THIS SHIELD PLAYS DIFFERENTLY FROM A GEAR ONE, AND THAT IS THE ENTRY'S POINT. OGN-077 Zhonya's Hourglass sits on the board announcing itself and can be answered before the combat; the Highlander is a card in hand at [Reaction] speed (813.1.c.1: 'This can be played during Closed States on any player's turn'), so the opponent has to commit their removal or their damage without knowing. Against that, it costs 4 Energy every time where the gear costs its Energy once - so the spell is the better BLUFF and the worse ENGINE.",
+          "WHAT 'THE NEXT TIME IT WOULD DIE THIS TURN' ACTUALLY COVERS. It is a replacement of the death event, so it works against combat damage, against a burn spell and against a kill BY EFFECT alike - anything whose result is the unit dying. It does not cover a BANISH (108.6.c, which is not a death), a bounce to hand, or a return to the Main Deck; UNL-204 Keeper's Verdict in this same batch is exactly the removal it cannot answer.",
+          "AND IT PAIRS BADLY WITH THE THING IT LOOKS LIKE IT SHOULD PAIR WITH. Every Deathknell body in the pool is anti-synergic with it by 808.1.d.1, and this catalogue has recorded that pairing failing twice before - once on a Zero Drive line and once on a Ruined Rex one. If the deck's plan is deaths, do not run the shield.",
+          "TWO LEGENDS, NOT ONE, AND THAT IS A CORRECTION TO A FACT THIS SESSION ITSELF REPORTED. The invariant reported earlier today - that every uncatalogued dual-domain Signature spell forces exactly ONE legend name - holds for eight of the nine and fails here: the Master Yi tag is carried by both OGS-019 Wuju Bladesman - Starter and UNL-191 / UNL-231 Wuju Master, which is the same double-printing this project already records for Master Yi's unit cards. State the invariant as 'the legends carrying that champion tag whose domains equal the spell's', which is usually one name and here is two.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Have Towering Combatant (4 Energy) at a battlefield. Its [Tank] means 815.1.c.2 forces the attacker's whole assignment onto it, so it is the body that will die.",
+        "Hold Highlander. Its [Reaction] permission (813.1.c.1) means you commit nothing until the opponent has.",
+        "When the Combatant would die - in combat, to a burn spell, or to a kill by effect - play Highlander (4 Energy) and replace the death: heal, exhaust, recall.",
+        "455 sends it to your BASE, so the battlefield is now short a body; 323.6 hands it back at the next Cleanup if that was your last unit there.",
+        "It is exhausted until your next Awakening (315.1.b). 456.3 means nothing can stop the recall.",
+        "Do NOT aim this at a body with a Deathknell or with 'while I'm at a battlefield' text - 808.1.d.1 and 455 destroy exactly what you were saving."
+      ],
+      "netPerIteration": "one body saved from any death, returned to base exhausted, per casting",
+      "terminatesIn": "engine only - three copies by 103.2.b, one save each, and the saved body is out of position for a turn; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-orphan-remainder.md, part 1)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #193, part 1). The first entry to use OGS-020 Highlander. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.2.b, 103.2.d.1, 103.2.d.2, 108.6.c, 315.1.b, 323.6, 415.3.a, 455, 456.3, 469, 808.1.d.1, 813.1.c.1, 815.1.c.2. CORRECTION TO A FACT THIS SESSION REPORTED EARLIER TODAY AND THE MANAGER VERIFIED: the matched-pair invariant said every uncatalogued dual-domain Signature spell forces exactly ONE legend name; OGS-020 forces TWO, because the Master Yi tag is on both OGS-019 Wuju Bladesman - Starter and UNL-191/UNL-231 Wuju Master. The invariant should read 'the legends carrying that champion tag whose domains equal the spell's'. Ban check: neither card is banned or restricted. No unruled reading."
+    },
+    {
+      "id": "keepers-verdict-poppy-deck-bounce",
+      "name": "The only card in the pool that puts an ENEMY unit into their own deck - removal with no death, no trash and no trigger",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-204",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body/Order spell, E2 P2. '[Action] (Play on your turn or in showdowns.) Choose an enemy unit at a battlefield. Its owner places it on the top or bottom of their Main Deck.' A Signature card tagged Poppy."
+        },
+        {
+          "card": "UNL-178",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order unit, E6 P1 M5. 'You may spend 3 XP as an additional cost to play me. If you do, I cost :rb_energy_3: less. [Ambush] ... [Tank] ...' The other Poppy card, and the body that holds the battlefield the Verdict just emptied."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "UNL-204 Keeper's Verdict is a SIGNATURE card tagged Poppy, so 103.2.d.2 forces a Poppy legend whose two domains cover body + order - and the census prints exactly one such name: UNL-203 / UNL-237 Keeper of the Hammer. No other legend can hold this list.",
+          "Neither card is banned or restricted in either format. The Verdict spends one of the three Signature slots 103.2.d.1 allows; UNL-178 is not a Signature card.",
+          "The target must be AT A BATTLEFIELD - the clause says so, so a body at their base is out of reach."
+        ],
+        "notable": [
+          "IT IS THE ONLY ONE, AND THE SWEEP IS ONE LINE. `grep -inE \"top or bottom of (their|your) Main Deck\"` over the whole corpus returns TWO rows: SFD-169 Altar of Memories, which puts a card from YOUR OWN HAND back, and UNL-204 Keeper's Verdict. Nothing else in the pool sends an enemy PERMANENT to a deck.",
+          "AND THAT MEANS NO DEATH EVENT AT ALL, WHICH ANSWERS THINGS A KILL CANNOT. There is no Trash, so 808.1.a's Deathknells never fire and no 'from your trash' payoff can ever reach the card; there is no damage, so 437.4's prevention and every 'prevent all spell and ability damage' answer are irrelevant; and there is no would-die event, so 808.1.d.1's heal/exhaust/recall shields - including OGS-020 Highlander in this same batch - cannot replace anything. It is the removal that the pool's protection suite is not built against.",
+          "THE CHOICE OF TOP OR BOTTOM IS THEIRS, WHICH IS THE HONEST COST. 'Its OWNER places it' - so the opponent decides, and against a body they want back they will put it on top. That is still a tempo win of a full card: their next draw is a card they already had, and 431.1.a's Burn Out clock is unchanged. Against a body they do not want, they bury it. Read this as an answer that always works and never gets to choose how well.",
+          "AND 355.10.e IS WHY IT PAYS NO TAX FOR THAT. An object 'chosen in whole or in part by other players' is not a target - and while the Verdict itself CHOOSES the unit (so 809.1.c's [Deflect] tax does apply to that choice), the placement decision is theirs and adds nothing. Do not confuse the two halves.",
+          "IT IS [ACTION], WHICH IS WHERE THE VALUE IS. 806.1.c.1: 'This can be played during showdowns on any player's turn.' So it removes an attacker after 464.2.c.3 has designated it and before 465.2 assigns damage - and because the removal is not a kill, nothing the body carried triggers on the way out.",
+          "THE PARTNER IS THE OTHER POPPY CARD, AND IT IS NOT A COINCIDENCE. UNL-178 Poppy, Defender of the Meek shares the champion the Signature card forces, and its [Ambush] (822.1.b: 'I may be played to a battlefield where you control Units' plus '[Reaction] as long as I'm being played to a battlefield where you control Units') plus [Tank] make it the body that walks into the space the Verdict just cleared - at Reaction speed, on the same turn, in the same combat.",
+          "TWO BODY/ORDER SIGNATURE SPELLS THAT CAN NEVER SHARE A LIST. OGS-024 Decisive Strike is also Body/Order and also a Signature card, tagged Garen, which 103.2.d.2 forces to OGS-023 Might of Demacia - Starter. Two cards of the same domain pair, both walked in this batch, mutually exclusive by the Signature rule alone - which is the failure class test/legend-lines.test.ts exists for.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And it removes ONE body from a battlefield - it is an answer, not a sweeper."
+        ]
+      },
+      "steps": [
+        "Hold Keeper's Verdict. Its [Action] permission (806.1.c.1) lets it land inside a combat on either player's turn.",
+        "When an enemy unit at a battlefield needs to be gone - especially one with a Deathknell, or one a kill would feed - play it (2 Energy + 2 Power).",
+        "Its owner places it on the top or bottom of their Main Deck. No Trash, no damage, no death event: nothing it carried triggers.",
+        "Expect them to choose the top if they want it back; that is still a full card of tempo and their next draw is spent.",
+        "Follow with Poppy, Defender of the Meek via [Ambush] (822.1.b) to occupy the space at Reaction speed, and 815.1.c.2 then makes her the only legal assignment while she lives."
+      ],
+      "netPerIteration": "one enemy unit removed from a battlefield with no death event, per casting",
+      "terminatesIn": "engine only - three copies by 103.2.b, one body each, and the opponent chooses top or bottom; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-orphan-remainder.md, part 1)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #193, part 1). The first entry to use UNL-204 Keeper's Verdict. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.2.b, 103.2.d.1, 103.2.d.2, 355.10.e, 431.1.a, 437.4, 464.2.c.3, 465.2, 469, 806.1.c.1, 808.1.a, 808.1.d.1, 809.1.c, 815.1.c.2, 822.1.b. UNIQUENESS SWEPT, NOT ASSUMED: two corpus rows match 'top or bottom of ... Main Deck' and the other is SFD-169 Altar of Memories, which moves a card from your own hand. The mutual exclusivity with OGS-024 Decisive Strike - same domain pair, different forced legend - is stated in both entries. Ban check: neither card is banned or restricted. No unruled reading."
+    },
+    {
+      "id": "decisive-strike-vanguard-armory-mass-pump",
+      "name": "Three 1 Might tokens are a sweeper's dinner until a mass pump makes them 3 - and the domain's only Action-speed one is a Signature card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-024",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body/Order spell, E5 P1. '[Action] (Play on your turn or in showdowns.) Give friendly units +2 :rb_might: this turn.' No 'up to', no target count - every friendly unit, at Action speed. A Signature card tagged Garen."
+        },
+        {
+          "card": "SFD-168",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order gear, E7 P1. ':rb_exhaust:: Play three 1 :rb_might: Recruit unit tokens. (You may play them to different locations.)' Three bodies a turn for one exhaust, and the parenthetical is what lets them cover two battlefields."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "OGS-024 Decisive Strike is a SIGNATURE card tagged Garen, so 103.2.d.2 forces a Garen legend whose two domains cover body + order - and the census prints exactly one such name: OGS-023 Might of Demacia - Starter. No other legend can hold this list.",
+          "Neither card is banned or restricted in either format. The Strike spends one of the three Signature slots 103.2.d.1 allows; SFD-168 is not a Signature card.",
+          "The Armory on the board and ready - its cost is an exhaust, so 415.3.a gives one activation per turn."
+        ],
+        "notable": [
+          "THE PROBLEM THIS SOLVES IS THE ONE THIS PROJECT HAS MEASURED ON EVERY TOKEN LINE. A 1 Might token dies to any single point of damage (143.2.a kills on marked damage at or above Might), and a simultaneous 1 to every body at a battlefield removes ANY number of them at once - which is why the binding constraint on a token board is Might PER BODY and not the number of bodies. A mass +2 makes every Recruit a 3 and takes the whole board out of that range for the turn.",
+          "AND IT IS THE ONLY ONE IN THIS DOMAIN PAIR AT [ACTION] SPEED. 806.1.c.1 gives it 'This can be played during showdowns on any player's turn', so it is bought AFTER 464.2.c.3 has designated the attackers and 465.2.c has fixed both sides' summed Might - the sweeper is already on the Chain when you decide. Compare OGN-233 Grand Strategem (Order, 6 Energy + 3 Power, +5 to friendly units, also [Action]): bigger and far more expensive. The Strike is 5 Energy + 1 Power for +2, which on a board of six bodies is +12 summed Might.",
+          "'FRIENDLY UNITS' MEANS ALL OF THEM, EVERYWHERE. There is no 'up to' and no location clause, so bodies at both battlefields and at your base are all covered - which matters because the Armory's own parenthetical, '(You may play them to different locations.)', is what puts Recruits at two battlefields in one activation. 485.4 gives a Duel two, and 355.2.a would otherwise put a token at your base or one battlefield you control.",
+          "THE ARMORY IS ONE ACTIVATION A TURN AND THAT IS THE RATE. Its cost is an exhaust and nothing else, so it is free after the 7 Energy + 1 Power that put it down, and 415.3.a readies it in your own Awakening; 143.4 exhausts only units, so it is live the turn it lands. Three tokens a turn forever, and 187.x makes each a domainless unit token with 1 Might.",
+          "THE TOKENS ENTER EXHAUSTED, WHICH IS THE OTHER HALF OF THE PRICE. 143.4: 'Units enter the Board exhausted', so a Recruit played to a battlefield holds it but cannot move again this turn, and one played to the base walks next turn (144.2, 144.4). The only card in the pool that overrides that for tokens is SFD-171 Renata Glasc, Industrialist (R25 = A), which is mono-Order and therefore legal beside both of these under 103.1.b.3 - though NOT beside the Garen legend this Signature card forces, which is Body/Order and admits her fine.",
+          "AND ITS TWIN IN THE SAME DOMAIN PAIR CAN NEVER SHARE THE LIST. UNL-204 Keeper's Verdict is also Body/Order and also a Signature card, tagged Poppy, which 103.2.d.2 forces to UNL-203 / UNL-237 Keeper of the Hammer. Both are walked in this batch and they are mutually exclusive by the Signature rule alone.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold, and a board of 3 Might Recruits still has to walk in and win a combat to convert. The pump is 'this turn' and expires at cleanup."
+        ]
+      },
+      "steps": [
+        "Play Vanguard Armory (7 Energy + 1 Power). 143.4 exhausts units and not gear, so it is live at once.",
+        "Each turn, exhaust it for three 1 Might Recruit tokens - and use the parenthetical to split them across your two battlefields (485.4).",
+        "Hold Decisive Strike. Its [Action] permission (806.1.c.1) means you do not commit until a sweeper is on the Chain or a combat has opened.",
+        "Play it (5 Energy + 1 Power): every friendly unit is +2 this turn, so every Recruit is a 3 and out of one-damage range (143.2.a).",
+        "465.2.c reads Might at assignment, so the same +2 is real damage in the combat as well as survival.",
+        "Remember the tokens entered exhausted (143.4) - they hold this turn and move next, unless SFD-171 Renata Glasc, Industrialist is out."
+      ],
+      "netPerIteration": "three 1 Might Recruits per turn from the Armory, and +2 to every friendly unit for one card when it matters",
+      "terminatesIn": "engine only - one Armory activation per turn and three Strikes by 103.2.b; the pump expires at cleanup and nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-orphan-remainder.md, part 1)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #193, part 1). The first entry to use OGS-024 Decisive Strike. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 103.2.d.1, 103.2.d.2, 143.2.a, 143.4, 144.2, 144.4, 355.2.a, 415.3.a, 464.2.c.3, 465.2.c, 469, 485.4, 806.1.c.1. The comparison with OGN-233 Grand Strategem is given with both prices so the reader can see what the Signature slot is buying. Mutual exclusivity with UNL-204 Keeper's Verdict - same domain pair, different forced legend - is stated in both entries. Ban check: neither card is banned or restricted. No unruled reading."
+    },
+    {
+      "id": "void-assault-voidreaver-both-attacker-directions",
+      "name": "One card moves both bodies, and its own parenthetical settles which player the Contested rules make the attacker",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-202",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body/Chaos spell, E2 P1. 'Move a friendly unit, then move an enemy unit. (If they both move to a battlefield you don't control, you're the attacker.)' A Signature card tagged Kha'Zix, and the parenthetical is a printed answer to a Contested question."
+        },
+        {
+          "card": "UNL-099",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E4 M3. '[Shield 2] (+2 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.)' The body you want standing when the spell hands the ATTACKER designation to the opponent on your own turn."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "UNL-202 Void Assault is a SIGNATURE card tagged Kha'Zix, so 103.2.d.2 forces a Kha'Zix legend whose two domains cover body + chaos - and the census prints exactly one such name: UNL-201 / UNL-236 Voidreaver. No other legend can hold this list.",
+          "Neither card is banned or restricted in either format. The spell spends one of the three Signature slots 103.2.d.1 allows; UNL-099 is not a Signature card.",
+          "Two bodies to move, one of them theirs. Both halves are effect moves under 449, so 420.3.a's exhaust and 144.4's destination limits do not apply."
+        ],
+        "notable": [
+          "THE PARENTHETICAL IS A PRINTED ANSWER TO A RULES QUESTION, AND IT IS WORTH READING TWICE. 190.3.a.1 applies Contested to a battlefield when a unit moves there whose CONTROLLER does not already control it, and 450 says the same from the destination's side; 464.2.c.1 then makes the Attacker 'the player whose unit(s) applied the Contested status'. If BOTH players' units move to a battlefield neither controls, both applied it - and the card resolves the tie itself: '(If they both move to a battlefield you don't control, you're the attacker.)' No reading was needed and none is filed.",
+          "AND THE OTHER DIRECTION IS THE ONE THE CARD DOES NOT SPELL OUT. Move the enemy unit to a battlefield YOU control and the same paragraphs run the other way: THEIR unit applied Contested to a battlefield they do not control, so THEY are the Attacker and you are the Defender (464.2.c.2) - on your own turn. That is the trick this catalogue records on OGN-067 Blitzcrank, Impassive, and Void Assault is a second, cheaper way to set it up, with the added half that your own body can be moved into the same fight in the same card.",
+          "SO ONE SPELL CHOOSES WHICH SIDE OF THE COMBAT YOU ARE ON, WHICH NOTHING ELSE IN THE POOL DOES. Attacking matters for every 'when I attack' trigger and for [Assault] (807.1.c, 807.1.d); defending matters for [Shield] (814.1.c) and for every 'when I defend' trigger. Two Energy and a Power buys the designation you want, and the parenthetical is how you know which you are getting.",
+          "BOTH HALVES ARE EFFECT MOVES, WHICH IS WHY EXHAUSTED BODIES ARE FINE. 449: 'Spells, Abilities, or other effects may cause a Move to occur', with 449.1 leaving the restrictions to the source; 420.3.a puts the exhaust cost on the STANDARD Move alone, so a body that has already acted this turn can still be moved, and 144.4's base-to-battlefield restriction never comes up - this goes battlefield to battlefield with no [Ganking]. 449.2 is the one limit: 'Units cannot Move to a Battlefield that already has units from 2 other players present by any means', which in a Duel (485.1) never applies.",
+          "AND THE ARRIVING BODIES ARE IN THAT COMBAT. 319.6 runs after Game Objects enter or leave the Board, and 323.2.a: 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now.' 143.4's entering exhausted is irrelevant on defence, because neither 464.2.c.3 nor 465.2.b filters by state.",
+          "THE PARTNER IS A [TANK] BECAUSE THE DEFENSIVE DIRECTION IS THE STRONGER ONE. Dragging one enemy body onto a battlefield you hold makes them the Attacker with a garrison of exactly one, and 815.1.c.2 then makes every other body of yours an invalid assignment until the Towering Combatant - a 3 that reads 5 on defence by 814.1.c - has lethal. 466.1.a.2 recalls the dragged body to their base if it survives, so price this as forced damage and a tempo tax rather than as removal.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And it moves ONE body of each - it sets up a fight, it does not win one."
+        ]
+      },
+      "steps": [
+        "Decide which designation you want before casting - the card gives you either.",
+        "TO ATTACK: move your unit and their unit to a battlefield NEITHER of you controls. Both applied Contested, and the card's own parenthetical makes YOU the attacker.",
+        "TO DEFEND ON YOUR OWN TURN: move their unit to a battlefield YOU control. 190.3.a.1 with 450 keys Contested on the MOVED unit's controller, so 464.2.c.1 makes them the Attacker and 464.2.c.2 makes you the Defender.",
+        "Move your own Towering Combatant in alongside if it is not already there - 449 allows it and 420.3.a means an exhausted body is fine.",
+        "319.6 with 323.2.a give both arrivals their designations before 465.2 resolves; 815.1.c.2 then forces the whole assignment onto the [Tank].",
+        "Expect the dragged body to go home if it lives: 466.1.a.2 recalls Attackers when Defenders remain."
+      ],
+      "netPerIteration": "one combat created on the side of your choosing, for 2 Energy and 1 Power, moving one body of each",
+      "terminatesIn": "engine only - three copies by 103.2.b, one fight each, and a dragged body that survives is recalled to their base (466.1.a.2); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-orphan-remainder.md, part 1)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #193, part 1). The first entry to use UNL-202 Void Assault. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.2.b, 103.2.d.1, 103.2.d.2, 143.4, 144.4, 190.3.a.1, 319.6, 323.2.a, 420.3.a, 449, 449.1, 449.2, 450, 464.2.c.1, 464.2.c.2, 464.2.c.3, 465.2, 465.2.b, 466.1.a.2, 469, 485.1, 807.1.c, 807.1.d, 814.1.c, 815.1.c.2. This card was uncovered because it fell between lanes - Body-with-Chaos was fam1's by the partition while rc-walk-fc's lane was Fury/Chaos - and it is the single genuinely unwalked card the #193 census reconciliation turned up. Its parenthetical is a printed resolution of the both-players-applied-Contested case, so no reading is filed. Ban check: neither card is banned or restricted. No unruled reading."
     }
   ]
 }
