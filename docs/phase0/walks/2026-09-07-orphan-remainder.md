@@ -421,3 +421,81 @@ repeatable, free, and ≥ 2.
    finalization, so Gold made by the same Hold can never pay it.
 4. **The Bottled Constellation family is closed**: `bottled-constellation-time-warp` reaches 9 with
    TWO cards, so every other Constellation engine adds cards to a line that already crosses 8.
+
+---
+
+## 10. The one live lead, walked and REFUSED — and the refusal generalises to the whole conquer bucket
+
+`yasuo-remorseful-svellsongur-nasus-conquer` × Time Warp was the only survivor of §7 whose rate is
+repeatable, free and ≥ 2. Walked, and it **does not reach 8**. Three reasons, in the order they bite,
+and the third is the one that matters beyond this entry.
+
+### 10.1 `VEN-046 Nasus, Ascended` has no `[Ganking]`, so the base is a waypoint
+
+Verbatim: *"[Deflect 2] … [Empower] :rb_energy_8: … [Empowered][>] When I conquer, you score 1
+point."* No `[Ganking]`, and **144.4** confines the Standard Move to base ↔ battlefield without it.
+A Conquer needs a battlefield you do **not** already control (466.5: Control is established *"if
+they didn't already control this Battlefield"*), so after taking A the next Conquer must be at B —
+and reaching B costs **two** Standard Moves, A → base and base → B, i.e. two turns.
+
+Inside the chain that is **2 points every two turns**: turn 1 conquer A (2), turn 2 walk home (0),
+turn 3 conquer B (2), turn 4 walk home (0). Three Time Warps buy four consecutive turns and the line
+scores **4**, not 8.
+
+### 10.2 Granting `[Ganking]` fixes the rate and breaks the card count and the mana
+
+`SFD-192 Shurelya's Requiem` is the one Calm/Mind source (*"[Effect] Your units here have
+[Ganking]"*), and 144.4.c.1 would then let Nasus go battlefield to battlefield, giving
+2 · 2 · 2 · 2 = 8 across four turns. It costs two things the line cannot pay:
+
+- **Card count.** Yasuo + Svellsongur + Nasus + Requiem + Time Warp is already five, and this
+  project's rule is that a sixth card goes in `notable`, never in `uses`.
+- **Mana, and it is short by exactly two.** Time Warp is `:rb_energy_10:` + 4 Power on three of the
+  four turns. A twelve-rune board yields **at most twelve rune-units** — 164.2.a taps one for
+  1 Energy, 164.2.b recycles one for 1 Power, and 161.2.b takes the recycled one off the board — and
+  this engine's own `terminatesIn` says it runs *"for no cards and no Energy once the board is set"*,
+  so it contributes **nothing**. Fourteen wanted against twelve available; the fix is the Seal cycle
+  (`OGN-081 Seal of Focus`, `OGN-120 Seal of Insight`, Energy cost **zero**, one domain Power each at
+  `[Reaction]` speed without costing a rune), which takes the line to **seven cards**.
+
+### 10.3 The reason that generalises — a Time Warp chain STARVES a combat-based conquer engine
+
+This is the finding, and it is not about Nasus.
+
+The engine's advertised rate is *"2 points per attack"*, and the attack is what `OGN-076 Yasuo,
+Remorseful` and `SFD-059 Svellsongur` are for: the doubled attack trigger clears the garrison so
+465.1 finds no Defending units and the damage step never becomes Outstanding. **But 323.9 stages a
+Combat only *"at each Battlefield that Contested was applied to that have units present controlled by
+opposing players"*, and 807.1.d ties every attack trigger to the Attacker designation, which
+464.2.c.3 hands out inside that Combat.**
+
+Inside a Time-Warped chain **the opponent never takes a turn**, so after the first garrison dies no
+new one is ever presented. From the second turn onward every battlefield the engine can reach is
+**uncontrolled**, 344.2 takes it through a Showdown with no Combat at all, and **Yasuo and
+Svellsongur — two of the three cards — are completely inert.** What is left is a Nasus shuttle worth
+one point a turn, which is §10.1's number arrived at from the other direction.
+
+**So: a conquer engine whose payoff depends on COMBAT cannot be chained with Time Warp, because
+consecutive extra turns remove the opponent's ability to feed it a garrison.** The conquer engines
+that CAN be chained are the ones that take **uncontrolled** battlefields — the 344.2 route rather
+than the 323.9 one — and they are bounded instead by 470 with 485.4 at two Conquers a turn and by
+144.4's base waypoint unless something grants `[Ganking]`.
+
+**This bounds `rc-walk-chain`'s 31-row `conquer-engine` bucket from above**, and it is a cheap test to
+apply to each row: *does this engine's payoff need an enemy garrison?* If yes, it cannot chain.
+
+## 11. Facts for CLAUDE.md from the live lead's refusal
+
+1. **A Time Warp chain starves any conquer engine whose payoff needs COMBAT.** 323.9 stages a Combat
+   only where opposing units are present and 807.1.d ties attack triggers to the Attacker designation
+   — so with the opponent taking no turn, no new garrison appears and every attack-trigger card in
+   the line goes inert from the second turn onward. The chainable conquer engines are the ones that
+   take **uncontrolled** battlefields via 344.2. **Cheap test for the whole bucket: does the payoff
+   need an enemy garrison?**
+2. **Without `[Ganking]`, 144.4 makes the base a waypoint between two battlefields**, so a conquer
+   engine that must alternate battlefields scores at most **one point a turn**, not two — 466.5 will
+   not give Control to a player who already has it, and 323.6 is what hands the abandoned one back.
+3. **A twelve-rune board is twelve resource-units and no more** (164.2.a for Energy, 164.2.b for
+   Power, 161.2.b removing the recycled rune), so any line paying for Time Warp's `:rb_energy_10:` +
+   4 Power out of runes alone is **short by two** unless the engine itself produces Power. The Seal
+   cycle covers exactly that gap at Energy cost zero, at the price of two more cards.
