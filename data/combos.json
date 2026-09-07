@@ -36185,6 +36185,392 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use OGN-291, and a one-card entry on purpose: the battlefield is the whole line and the partner is whatever conquer engine feeds it, which `needs` expresses better than a named card would. Card text verbatim from data/corpus_flat.txt. It refines rather than contradicts the project's standing 'no card turns a draw probability into a certainty' finding, and the refinement is stated in those terms so the two records agree. Trap check: 416.1.a and 416.5 are quoted so recycling is not imagined to stack the bottom; 424.1 is cited so looking is not mistaken for revealing; 431.1.c is quoted because it is what makes this usable in an empty-deck shell where 431.1.a and 431.1.b are not; the needs declaration is contrasted with sunken-temple-mighty-conquer-draw's extra Might condition; exactly one battlefield is named, so 485.4.a is respected."
+    },
+    {
+      "id": "warwick-hunter-iron-ballista-damage-marks-death",
+      "name": "Warwick kills what is DAMAGED, not what is dying — so one point off an Iron Ballista is lethal to any Might",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-159",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E6 P1 M5. 'I enter ready. When I attack, kill all damaged enemy units here.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-017",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury gear, E3. 'This enters exhausted. :rb_exhaust:: Deal 2 to a unit at a battlefield.' Riot's worked example at 417.6.b.2.a. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Body + Fury, so four legend names (103.1.b.2): Relentless Storm (OGN-249), Purifier (SFD-183), Pridestalker (UNL-183), Butcher of the Sands (VEN-141).",
+          "The Ballista played a turn early — it enters exhausted and 415.3.a only readies it in your next Awakening."
+        ],
+        "notable": [
+          "THE KILL IS BY EFFECT AND IGNORES MIGHT ENTIRELY, WHICH IS THE WHOLE CARD. 143.2.a kills a unit when 'nonzero damage marked on it equalling or exceeding its Might' — that is death BY DAMAGE. Warwick's 'kill all damaged enemy units here' is a kill instruction that reads only whether damage is marked, so two points from a 3-Energy gear kill a 10-Might body exactly as dead as a 2-Might one. The Ballista is not chipping toward lethal; it is applying a marker.",
+          "AND THE MARKER HAS A SHELF LIFE OF ONE COMBAT. 466.1.a.1 inserts '3c. Heal all Units.' into the combat cleanup, so every combat wipes the marked damage off the board. The ping and the attack therefore have to happen in the SAME Main Phase, in that order: exhaust the Ballista first, move Warwick second. A ping applied on the opponent's turn is healed away before you ever swing.",
+          "WARWICK ARRIVES ABLE TO DO IT. 'I enter ready' is 143.4.a's exception to 143.4 ('Units enter the Board exhausted'), so 144.2's exhaust is available the turn he lands and he can move into the attack immediately — but note it is a play-time property, not a ready (415.1 marks a Game Object already on the Board), so nothing else can be readied by it.",
+          "383.2.a.1 and 464.2.c.3 fix WHEN the sweep is measured: an attack trigger is placed at the Attacker designation, and its condition is checked then. So the Ballista's damage must already be marked when Warwick is designated — a ping in response to the designation is too late for this combat.",
+          "The Ballista is once a turn (its own exhaust, 415.3.a) and 381 confines it to your Main Phase in an Open State, which is exactly where you want it anyway. Three copies (103.2.b) is three marks a turn and therefore three bodies of any size dead to one attack.",
+          "417.6.b.2.a names the Ballista as its own worked example — 'This damage is dealt both by a gear and by an ability' — so it is spell-and-ability damage for anything that cares (a blanket Prevent stops it; `unyielding-spirit-challenge-unit-damage` is the entry on the other side of that line), and Bonus Damage raises it, since 713 scopes Bonus Damage to Deal actions and Annie's static reads 'spells and abilities'."
+        ]
+      },
+      "steps": [
+        "Play Iron Ballista (3 Energy). It enters exhausted, so it is live from your next Awakening (415.3.a).",
+        "Play Warwick, Hunter (6 Energy + 1 Body Power). 'I enter ready' means he can act the turn he lands (143.4.a).",
+        "In your Main Phase, exhaust the Ballista: 2 damage to an enemy unit at the battlefield you intend to attack. Its Might is irrelevant.",
+        "Move Warwick there (144.2, 144.4). 190.3.a.1 applies Contested and 464.2.c.1 makes you the Attacker.",
+        "His attack trigger is placed at the Attacker designation (464.2.c.3) and reads the board then: kill all damaged enemy units there.",
+        "The combat cleanup then heals everything still standing (466.1.a.1), so next turn's mark has to be applied fresh."
+      ],
+      "terminatesIn": "engine — one enemy unit of ANY Might killed per Iron Ballista activation, once a turn, as long as Warwick attacks that battlefield; nothing here scores",
+      "netPerIteration": "one enemy unit dead regardless of its Might, for the Ballista's exhaust and Warwick's move",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 466.1.a.1: 'Insert \"3c. Heal all Units.\"' 143.4: 'Units enter the Board exhausted.' 143.4.a: 'This can be altered by Accelerate or similar game effects.' 415.1 (readying marks a Game Object already on the board). 383.2.a.1 (a trigger's condition is checked when the trigger is placed). 464.2.c.3: 'The attacker and defender gain the Attacker or Defender designation now, as appropriate.' 417.6.b.2.a: 'When an Ability is the source of Damage for a Deal action, it is in addition to the Spell or Unit that created that Ability. Example: Iron Ballista...' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. OGN-159 Warwick, Hunter and OGN-017 Iron Ballista were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 143.2.a, 143.4, 143.4.a, 144.2, 144.4, 190.3.a.1, 381, 383.2.a.1, 415.1, 415.3.a, 417.6.b.2.a, 464.2.c.1, 464.2.c.3, 466.1.a.1 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The reusable half is the first notable: 'kill all DAMAGED units' is a kill by effect and reads a marker, not a threshold, which makes any pinger a universal removal enabler — and 466.1.a.1 is the clock that keeps it honest."
+    },
+    {
+      "id": "clash-of-giants-spoils-of-war-free-removal",
+      "name": "Clash of Giants says 'two units', not 'a friendly and an enemy' — so both of them can be theirs",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-110",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E6 P2. 'Choose two units. They deal damage equal to their Mights to each other.' Neither has to be yours. In zero entries before this walk."
+        },
+        {
+          "card": "OGN-144",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E4 P1, [Reaction]. 'If an enemy unit has died this turn, this costs :rb_energy_2: less. Draw 2.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Body among its two domains (103.1.b.3) — 17 names: Relentless Storm (OGN-249), Blind Monk (OGN-257), Bounty Hunter (OGN-267), The Boss (OGN-269), Wuju Bladesman - Starter (OGS-019), Might of Demacia - Starter (OGS-023), Purifier (SFD-183), Grandmaster at Arms (SFD-193), Battle Mistress (SFD-203), Grand Duelist (SFD-205), Pridestalker (UNL-183), Wuju Master (UNL-191), Voidreaver (UNL-201), Keeper of the Hammer (UNL-203), Butcher of the Sands (VEN-141), Defender of Tomorrow (VEN-149), Matriarch of War (VEN-153).",
+          "Two enemy units of similar Might at the same time — the trade is only free if both die, and 143.2.a settles that by comparing each Might to the other's."
+        ],
+        "notable": [
+          "READ THE WORDING AGAINST ITS SIBLINGS AND THE CARD CHANGES SHAPE. `OGN-128 Challenge` says 'Choose a friendly unit AND an enemy unit'; `VEN-083 Rampage` and `SFD-114 Marching Orders` say the same. Clash of Giants says 'Choose two units' — no side restriction at all. So it can point two ENEMY bodies at each other and risk nothing of yours, which no other card in that family does.",
+          "IT IS UNIT DAMAGE, NOT SPELL DAMAGE, AND THAT IS RIOT'S OWN RULING ON THE FAMILY. 417.6.b.3: 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it', with Challenge as the worked example. So a blanket Prevent (`OGN-145 Unyielding Spirit`) does not stop it, and nothing that keys on spell damage sees it.",
+          "THE ARITHMETIC IS MUTUAL AND UNFORGIVING. Each deals damage equal to its OWN Might to the other, so 143.2.a kills both only when each Might is at least the other's — two 4s trade, a 6 and a 3 leaves the 6 alive at 3 damage marked. Against unequal bodies this is a one-for-none rather than a two-for-none, and 466.1.a.1 heals the survivor at the next combat cleanup, so the marked damage is not banked.",
+          "SPOILS OF WAR PAYS FOR THE TURN AND IS WRITTEN FOR THIS. 'If an enemy unit has died this turn, this costs :rb_energy_2: less' — the Clash supplies the corpse, so the draw costs 2 Energy + 1 Body Power instead of 4 + 1. It is a [Reaction] (813.1.c.1), so it can also be held for the opponent's turn once their own combat has killed something.",
+          "The discount is a discount, with everything that implies: 166.2, 203.1 and 356.4.b mean you SPEND 2 rather than 4, so any 'if you spent N or more' clause in the deck reads the smaller number. That is the same trap as `raging-firebrand-thermo-beam-free-gear-wipe`, from the other direction.",
+          "Priced whole: 6 Energy + 2 Body Power to kill two enemy bodies with none of yours involved, then 2 Energy + 1 Body Power to draw two. Expensive, and the entry does not pretend otherwise — what it buys is removal that costs no board."
+        ]
+      },
+      "steps": [
+        "Wait for two enemy units of comparable Might to be on the board.",
+        "Cast Clash of Giants (6 Energy + 2 Body Power) and choose BOTH of them — the card places no restriction on sides.",
+        "They deal damage equal to their Mights to each other (417.6.b.3: unit damage). 143.2.a kills each one whose Might the other's damage reaches.",
+        "With an enemy unit now dead this turn, cast Spoils of War for 2 Energy + 1 Body Power instead of 4 + 1.",
+        "Draw 2."
+      ],
+      "terminatesIn": "engine — two enemy bodies traded against each other and two cards drawn, for 8 Energy and 3 Body Power across two cards; nothing here scores",
+      "netPerIteration": "-2 cards, -8 Energy -3 Body Power, +2 cards, up to two enemy units dead and none of yours involved",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "417.6.b.3: 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it. Example: Challenge...' 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 466.1.a.1: 'Insert \"3c. Heal all Units.\"' 813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 166.2, 203.1 and 356.4.b (a discount reduces what is spent)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. UNL-110 Clash of Giants and OGN-144 Spoils of War were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 143.2.a, 166.2, 203.1, 356.4.b, 417.6.b.3, 466.1.a.1, 813.1.c.1 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The finding is a wording comparison across the 417.6.b.3 family rather than a rule: five of its six members name a friendly unit and this one does not."
+    },
+    {
+      "id": "petricite-monument-ruin-runner-tax-versus-prohibition",
+      "name": "[Deflect] is a tax and 'can't be chosen' is a prohibition — and the Monument's [Temporary] covers exactly the opponent's turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-104",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Body gear, E2, [Temporary]. 'Friendly units have [Deflect].' In zero entries before this walk."
+        },
+        {
+          "card": "SFD-105",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E6 M5. 'I can't be chosen by enemy spells and abilities.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Body among its two domains (103.1.b.3) — 17 names: Relentless Storm (OGN-249), Blind Monk (OGN-257), Bounty Hunter (OGN-267), The Boss (OGN-269), Wuju Bladesman - Starter (OGS-019), Might of Demacia - Starter (OGS-023), Purifier (SFD-183), Grandmaster at Arms (SFD-193), Battle Mistress (SFD-203), Grand Duelist (SFD-205), Pridestalker (UNL-183), Wuju Master (UNL-191), Voidreaver (UNL-201), Keeper of the Hammer (UNL-203), Butcher of the Sands (VEN-141), Defender of Tomorrow (VEN-149), Matriarch of War (VEN-153).",
+          "Play the Monument on the turn you want it: 816.1.b kills it at the start of your NEXT Beginning Phase, so it is a one-round-trip card."
+        ],
+        "notable": [
+          "TWO PROTECTIONS THAT LOOK ALIKE AND ARE NOT THE SAME KIND OF THING. 809.1.c makes [Deflect] a TAX: 'Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this]', and 809.1.c.1 lets that Power be any Domain. A player with the Power simply pays it. `SFD-105 Ruin Runner`'s 'I can't be chosen by enemy spells and abilities' is a PROHIBITION, and 054.1 — 'Cards that forbid actions or effects, as a broad method of determination, supersede cards that allow or permit that same action or effect' — makes it absolute: no amount of Power buys through it.",
+          "NEITHER STOPS A PROGRAMMATIC EFFECT, WHICH IS WHERE BOTH DECKS DIE. 355.10.d: an object 'programmatically selected based on its characteristics rather than chosen' is not a target, with the worked example '\"Kill all units at a battlefield\" targets a battlefield, but does not target any units'. So a sweeper — `OGN-022 Thermo Beam`, `OGN-127 Cannon Barrage`, `OGN-268 Bullet Time`, `VEN-090 Cataclysmic Duel` — goes through the Monument and through Ruin Runner alike. Build for the removal you expect: single-target answers, or mass ones, not both.",
+          "THE MONUMENT'S [Temporary] IS A WINDOW, NOT A DRAWBACK. 816.1.b is 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this' — so a Monument played in your Main Phase covers the rest of your turn AND the whole of the opponent's turn, and dies before your own Scoring Step. It is a two-Energy shield over exactly the window in which the opponent acts, and it cannot get in the way of anything that happens at 315.2.",
+          "816.1.c is worth knowing beside it: 'The Trigger Condition is the controller of the permanent's Beginning Phase starting', so a Monument that ARRIVES during that same instant is not killed by it — which is why the card is played on your own turn, deliberately, and not left around.",
+          "Ruin Runner is the anchor the Monument cannot replace: at 6 Energy and 5 Might he is a body the opponent's single-target removal simply cannot address, so he holds a battlefield through 469.2's Hold check without needing the gear at all. The Monument is what extends that immunity — as a tax rather than a prohibition — to the rest of the garrison for one round trip.",
+          "The Monument is gear, so 143.4 (units enter exhausted) never applies to it and it is live the moment it lands; and it grants [Deflect] to friendly UNITS, not to itself, so `OGN-022 Thermo Beam` and `SFD-135 Factory Recall` answer the Monument at full price."
+        ]
+      },
+      "steps": [
+        "Play Ruin Runner (6 Energy) and station him at a battlefield. Enemy single-target spells and abilities cannot choose him at all (054.1).",
+        "On a turn when you expect targeted removal, play Petricite Monument (2 Energy) in your Main Phase.",
+        "Every friendly unit now has [Deflect]: the opponent pays one extra Power per choice (809.1.c), in any domain (809.1.c.1).",
+        "The Monument covers the rest of your turn and the whole of the opponent's turn.",
+        "At the start of your next Beginning Phase, before scoring, 816.1.b kills it — after the window it was bought for and before your Scoring Step."
+      ],
+      "terminatesIn": "engine — one unit permanently untargetable and the rest of the garrison taxed for one round trip, for 8 Energy across the two cards; nothing here scores",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "809.1.c: 'Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].' 809.1.c.1: 'The Power used to pay this cost may always be of any Domain.' 054.1: 'Cards that forbid actions or effects, as a broad method of determination, supersede cards that allow or permit that same action or effect.' 355.10.d: 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller.' 816.1.b: 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this.' 816.1.c: 'The Trigger Condition is the controller of the permanent's Beginning Phase starting.' 469.2: 'Hold: A player maintains Control of a Battlefield they did not yet Score this turn during their Beginning Phase.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. SFD-104 Petricite Monument and SFD-105 Ruin Runner were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 054.1, 143.4, 355.10.d, 469.2, 809.1.c, 809.1.c.1, 816.1.b, 816.1.c opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The entry is a contrast rather than a combo, and it is written because the catalogue treats [Deflect] and 'can't be chosen' interchangeably in several notables: one is priced in Power and the other is not purchasable at all, and 355.10.d beats both."
+    },
+    {
+      "id": "catalyst-of-aeons-stormclaw-refill-or-cantrip",
+      "name": "A 'channel N runes' card is a refill, not a ramp — and 430.3 is what turns Catalyst of Aeons into a cantrip instead",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-138",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E4. 'Channel 2 runes exhausted. If you couldn't channel 2 runes this way, draw 1.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-137",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E7 M6, [Tank]. 'When you play me, channel 1 rune exhausted.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Body among its two domains (103.1.b.3) — 17 names: Relentless Storm (OGN-249), Blind Monk (OGN-257), Bounty Hunter (OGN-267), The Boss (OGN-269), Wuju Bladesman - Starter (OGS-019), Might of Demacia - Starter (OGS-023), Purifier (SFD-183), Grandmaster at Arms (SFD-193), Battle Mistress (SFD-203), Grand Duelist (SFD-205), Pridestalker (UNL-183), Wuju Master (UNL-191), Voidreaver (UNL-201), Keeper of the Hammer (UNL-203), Butcher of the Sands (VEN-141), Defender of Tomorrow (VEN-149), Matriarch of War (VEN-153).",
+          "Runes still in the Rune Deck — 430.3 is what decides which half of Catalyst of Aeons you get."
+        ],
+        "notable": [
+          "AN EXHAUSTED RUNE IS POWER NOW AND ENERGY NEXT TURN, AND THE TWO HALVES ARE DIFFERENT RULES. 430.2.a: 'By default, runes are channeled readied' — both these cards override it and channel exhausted. 164.2.a's Energy ability costs the rune's exhaust, so an exhausted rune gives no Energy until 415.3.a readies it in your next Awakening. But 164.2.b — 'Recycle this: [Reaction] — [Add] [C]' — has NO exhaust in its cost, so the same rune pays one Power of its domain immediately, at Reaction speed, on either player's turn. A 'channel N exhausted' card is therefore N Power now and N Energy from your next turn.",
+          "AND IT IS A REFILL, NOT A RAMP. 161.2.a caps the Rune Deck at 'Exactly 12 Rune cards chosen during Deck Construction', 315.3.b channels two free every Channel Phase, and 161.2.b returns every recycled rune to the Rune Deck rather than the Main Deck. So by the time a 4-Energy spell is castable the deck is mostly on the board already, and what these cards do is put back what recycling took — which is exactly why the Power half above is the real payoff and the Energy half is usually a wash.",
+          "430.3 IS THE CLAUSE THAT MAKES THE CARD PLAYABLE ANYWAY. 'If there aren't sufficient runes in the Rune Deck, channel as many as possible' — so Catalyst of Aeons does not fizzle; it channels what it can, and its own second sentence pays you a card when it could not channel two. A ramp card with a printed late-game mode, and 430.3 is the rule that decides which mode you get.",
+          "THE URSINE STAPLES THE SAME EFFECT ONTO A BODY. 'When you play me, channel 1 rune exhausted' rides on a 6-Might [Tank] — 815.1.c.2 makes every other unit of yours an invalid damage assignment until he has lethal — so the rune is free on a card you were playing for the board anyway. That is the honest reason to run the pair: the Catalyst is the flexible half and the Ursine is the half that costs nothing extra.",
+          "167 is the discipline the Power half needs: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn', so the Power from a 164.2.b recycle has to be spent in the window you take it, and recycling the rune costs you the rune (161.2.b sends it back to the Rune Deck, off the board).",
+          "Neither card is a Power source in the way a Seal is: a Seal (`OGN-163`, `OGN-204`, `OGN-040`) pays every turn for one exhaust, whereas a recycled rune pays once and leaves the board. Do not price these as mana rocks."
+        ]
+      },
+      "steps": [
+        "Play Stormclaw Ursine (7 Energy). His play trigger channels 1 rune exhausted (430.2 overriding 430.2.a's default).",
+        "That rune gives no Energy this turn — 164.2.a needs its exhaust, which is already spent — but it will after your next Awakening (415.3.a).",
+        "It does pay 1 Power of its domain immediately if you recycle it (164.2.b, no exhaust in the cost), at Reaction speed on either turn.",
+        "Cast Catalyst of Aeons (4 Energy) when you want two more: 430.3 channels as many as the Rune Deck holds.",
+        "If it could not channel two, its own second sentence draws you a card instead — the printed late-game mode."
+      ],
+      "terminatesIn": "engine — up to three runes back on the board as immediate Power and next turn's Energy, with a cantrip mode once the Rune Deck runs dry; nothing here scores",
+      "netPerIteration": "+N runes on the board exhausted: N Power available at once through 164.2.b, N Energy from your next Awakening",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "430.2.a: 'By default, runes are channeled readied.' 430.3: 'If there aren't sufficient runes in the Rune Deck, channel as many as possible.' 164.2.a: '[E]: [Reaction] — Add [1].' 164.2.b (Recycle this: [Reaction] — Add [C], with no exhaust in the cost). 161.2.a: 'Exactly 12 Rune cards chosen during Deck Construction.' 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. OGN-138 Catalyst of Aeons and OGN-137 Stormclaw Ursine were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 161.2.a, 161.2.b, 164.2.a, 164.2.b, 167, 315.3.b, 415.3.a, 430.2, 430.2.a, 430.3, 815.1.c.2 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. CLAUDE.md already records that a 'channel N runes' payoff is a refill rather than a ramp (#153); what this entry adds is the split inside 'exhausted' — Power immediately through 164.2.b, Energy only from the next Awakening — and 430.3 as the rule behind the printed cantrip mode."
+    },
+    {
+      "id": "vayne-hunter-sun-disc-two-conquers",
+      "name": "Vayne banks the point and goes home — and the Sun Disc replays her ready, which is the two-Conquer ceiling on one card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-035",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E4 P1 M2, [Assault 3]. 'If an opponent controls a battlefield, I enter ready. When I conquer, you may pay :rb_energy_1: to return me to my owner's hand.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-021",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury gear, E2 P1. ':rb_exhaust:: [Legion] — The next unit you play this turn enters ready.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Fury among its two domains (103.1.b.3) — 16 names: Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "The opponent controlling a battlefield, which is what switches Vayne's 'I enter ready' on — she is built for a board you are behind on.",
+          "About 10 Energy and 2 Fury Power to run the full two-Conquer turn; see the last notable."
+        ],
+        "notable": [
+          "THE POINT IS BANKED BEFORE SHE LEAVES, AND THAT IS THE TRICK. 469.1 makes a Conquer 'A player gains Control of a Battlefield they did not yet Score this turn' and 471.1 has the player Gain the point at the Score. Returning her to hand afterwards costs you the battlefield at the next Cleanup — 323.6 strips Control from a player with no units there — but it does not unbank the point. So the line trades the ground for the score and takes the body out of range of the counterattack in the same motion.",
+          "AND SHE COMES BACK READY. 'If an opponent controls a battlefield, I enter ready' is 143.4.a's exception to 143.4, and it is conditional on exactly the board this deck expects. The Sun Disc is the second copy of that: ':rb_exhaust:: [Legion] — The next unit you play this turn enters ready', so even on a turn the condition fails she still moves the turn she lands. 812.1.c is the [Legion] gate — 'As long as a card different than the one with the Legion ability has been Finalized by you on the same turn' — and Vayne herself satisfies it for the second cast, since she is played first.",
+          "TWO CONQUERS IS THE CEILING AND THIS REACHES IT WITH ONE UNIT CARD. 470: 'A player may only Score, from either method, once per Battlefield per turn', and 485.4 puts two battlefields on a Duel table. Vayne conquers the first, returns to hand, is replayed ready, and conquers the second. There is no third.",
+          "HER POINTS ARE CONQUER POINTS, SO THE LAST ONE IS THE RESTRICTED ONE. 471.1.a.1: 'points Gained from sources that are not Conquer are not beholden to these restrictions', which means the converse — 471.1.b's Final Point clause DOES apply to everything this line produces. A deck that plans to finish on Vayne has to clear that condition; a deck that uses her to reach seven does not care.",
+          "[Assault 3] is what makes a 2-Might body able to take ground at all: 807.1.c is 'While I am an attacker, I have +X [M]', so she fights at 5 — and 807.1.d ties that to the Attacker designation, which an empty enemy battlefield never grants (383.4.e, 461). Against an unoccupied battlefield she takes it by the 344.2 route instead, with no combat and no [Assault].",
+          "PRICED WHOLE, PER TURN: 4 Energy + 1 Fury Power to play her, 1 Energy to bounce her, then the Sun Disc's exhaust and another 4 Energy + 1 Fury Power to replay her, plus a second 1 Energy if you want her home again — about 10 Energy and 2 Fury Power for two points. The Sun Disc itself is 2 Energy + 1 Fury Power once, and 415.3.a readies it every Awakening."
+        ]
+      },
+      "steps": [
+        "Play Sun Disc (2 Energy + 1 Fury Power) a turn early; 415.3.a readies it each Awakening.",
+        "With an opponent controlling a battlefield, play Vayne, Hunter (4 Energy + 1 Fury Power). She enters ready (143.4.a).",
+        "Move her to a battlefield and take it — in combat she is 5 Might with [Assault 3] (807.1.c), or by 344.2's Showdown route if it is unoccupied.",
+        "Her conquer trigger fires: pay 1 Energy to return her to your owner's hand. The point is already Gained (471.1); 323.6 takes the battlefield back at the next Cleanup.",
+        "Exhaust the Sun Disc — [Legion] is satisfied because Vayne was Finalized this turn (812.1.c) — so the next unit you play enters ready.",
+        "Replay Vayne (4 Energy + 1 Fury Power) and conquer the OTHER battlefield. 470 forbids a third Score at either one."
+      ],
+      "terminatesIn": "engine — two Conquers in one turn, the Duel ceiling (470 + 485.4), from a single unit card replayed; the ground is given back each time, so it scores without holding",
+      "netPerIteration": "-10 Energy -2 Fury Power across the turn, two points Gained by Conquer, no battlefield retained",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "469.1: 'Conquer: A player gains Control of a Battlefield they did not yet Score this turn.' 471.1: 'The player Gains up to one Point, depending on their current score.' 471.1.a.1: 'points Gained from sources that are not Conquer are not beholden to these restrictions.' 470: 'A player may only Score, from either method, once per Battlefield per turn.' 485.4: 'Battlefield Count: 2.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 143.4.a: 'This can be altered by Accelerate or similar game effects.' 812.1.c: 'As long as a card different than the one with the Legion ability has been Finalized by you on the same turn then the Dependent Ability is Active on the card with Legion.' 807.1.c ([Assault] is 'While I am an attacker, I have +X [M]'). 344.2 (a Showdown opens at the next Cleanup when Control is Contested with no opposing units present)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. OGN-035 Vayne, Hunter and OGN-021 Sun Disc were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 143.4, 143.4.a, 323.6, 344.2, 383.4.e, 415.3.a, 461, 469.1, 470, 471.1, 471.1.a.1, 471.1.b, 485.4, 807.1.c, 807.1.d, 812.1.c opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The fourth notable is stated because it is the kind of thing a reader assumes the other way round: 471.1.a.1 exempts NON-Conquer points from the Final Point restriction, so a Conquer engine is exactly the sort that can stall at seven."
+    },
+    {
+      "id": "baccai-sandspinner-forsaken-baccai-rune-count",
+      "name": "Two rune-count clauses, one gameable and one not — and the difference is 315.2.a against the Main Phase",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-001",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E6 M6. '[Empower] :rb_energy_5:. This ability costs :rb_energy_3: less if you control 4 or fewer runes. [Empowered][>] I have [Deflect] and [Assault 2].' In zero entries before this walk."
+        },
+        {
+          "card": "VEN-005",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E2 M2. 'If you control fewer runes than an opponent at the start of your Beginning Phase, give me +1 :rb_might: this turn.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Fury among its two domains (103.1.b.3) — 16 names: Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "A turn on which you were going to convert runes into Power anyway — the discount is a rebate, not a reason. See the third notable."
+        ],
+        "notable": [
+          "THE SANDSPINNER'S CLAUSE IS A TIMING CHOICE AND THE FORSAKEN BACCAI'S IS NOT, WHICH IS THE ENTRY. 'if you control 4 or fewer runes' is checked when the [Empower] cost is determined, in your Main Phase, and 827.1.c.3 makes cost-altering text 'taken into account when determining a card's Empower cost for any reason' — so you can act first and be checked afterwards. 'if you control fewer runes than an opponent AT THE START OF YOUR BEGINNING PHASE' is read at 315.2.a, before 315.3.b's Channel Phase and long before you may do anything, so nothing you do can game it. Same printed idea, two different windows.",
+          "GETTING TO FOUR RUNES COSTS EIGHT RUNES, AND THE RULE THAT LETS YOU IS 164.2.b. 161.2.a caps the Rune Deck at twelve; recycling a rune is 'Recycle this: [Reaction] — [Add] [C]' with no exhaust in the cost, so even runes already tapped for Energy can go, each paying one Power of its domain. Dumping eight leaves you at four and hands you eight Power — but 161.2.b sends all eight to the Rune Deck (off the board), and 315.3.b channels only two back a turn.",
+          "SO THE DISCOUNT IS A REBATE, NOT A PLAN. Three Energy off an [Empower] is not worth eight runes on its own; it is worth taking on a turn you were converting runes into Power for something else, and the Sandspinner is then Empowered for 2 Energy instead of 5. 441.2 makes Empowered a permanent state of the object, so the [Deflect] and [Assault 2] are bought once and kept — and 441.1.b ('An Empowered Game Object can not be Empowered') means there is no second time to be cheap about.",
+          "AND THE SAME TURN SWITCHES THE OTHER CLAUSE ON FOR GOOD. Having dumped to four runes against an opponent's ten or twelve, the Forsaken Baccai's condition is true at the start of every subsequent Beginning Phase until 315.3.b refills you — two runes a turn, so four turns of +1 Might. It is small, it is free, and it is the only card in the pool that pays you for the position the Sandspinner's rebate leaves you in.",
+          "[Deflect] is a tax, not a shield: 809.1.c charges the opponent one extra Power per choice, in any domain (809.1.c.1), and 355.10.d's programmatic effects ignore it entirely. [Assault 2] is 807.1.c's 'While I am an attacker', so it is worth nothing on defence and nothing at all against an empty enemy battlefield (807.1.d, 383.4.e, 461).",
+          "167 is the discipline on the eight Power: the Rune Pool empties at the start of each player's Main Phase and at the end of each player's turn, so the whole dump has to be spent in the window you take it."
+        ]
+      },
+      "steps": [
+        "Play Forsaken Baccai (2 Energy) and Baccai Sandspinner (6 Energy) on earlier turns.",
+        "On a turn you intend to spend a large amount of Power, exhaust your runes for Energy as usual (164.2.a).",
+        "Recycle eight of them — 164.2.b needs no exhaust, so spent runes still count — taking 1 Power each and leaving you at four runes (161.2.b sends them to the Rune Deck).",
+        "With four or fewer runes controlled, pay the Sandspinner's [Empower] cost of 5 - 3 = 2 Energy (827.1.c.3). He is Empowered permanently (441.2) with [Deflect] and [Assault 2].",
+        "Spend the rest of that Power before 167 empties the pool.",
+        "From your next Beginning Phase on, the Forsaken Baccai's condition is read at 315.2.a and is true while you are behind on runes: +1 Might each turn until 315.3.b refills you."
+      ],
+      "terminatesIn": "engine — a permanent [Deflect] + [Assault 2] bought for 2 Energy instead of 5, on a turn you were dumping runes anyway, plus a small recurring bonus while you are behind on runes; nothing here scores",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "827.1.c.3 (cost-altering text is taken into account when determining a card's Empower cost for any reason). 315.2.a (the Beginning Step, before 315.3's Channel Phase). 315.3.b (two runes channelled every Channel Phase). 161.2.a: 'Exactly 12 Rune cards chosen during Deck Construction.' 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 164.2.a and 164.2.b (the rune's two abilities; only the Energy one costs an exhaust). 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.2 (Empowered is a permanent state of a Game Object on the board). 809.1.c / 809.1.c.1 ([Deflect] is a Power tax, payable in any domain). 807.1.c ([Assault] applies while attacking). 167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. VEN-001 Baccai Sandspinner and VEN-005 Forsaken Baccai were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 161.2.a, 161.2.b, 164.2.a, 164.2.b, 167, 315.2.a, 315.3.b, 355.10.d, 383.4.e, 441.1.b, 441.2, 461, 807.1.c, 807.1.d, 809.1.c, 809.1.c.1, 827.1.c.3 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. CLAUDE.md records the two clauses and their windows from #153; this entry is the pair of cards that carry them, with the cost of reaching four runes stated as arithmetic — eight runes off the board for three Energy — so that nobody prices the discount as free."
     }
   ]
 }
