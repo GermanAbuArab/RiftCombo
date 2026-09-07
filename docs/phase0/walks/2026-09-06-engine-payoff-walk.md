@@ -954,3 +954,77 @@ base; and the forced legend's own `[Legion]` Add is live on exactly the turns th
     E5 M3, *"Your token units have +1 Might"*) is a **continuous modifier, not a 702 Buff**, so it
     applies to every token at once, halves those losses, and makes the whole 1-Might Plaza family immune
     to `OGN-133 Flurry of Blades` — a notable worth adding to every Plaza entry whose bodies are Recruits.
+
+---
+
+## 21. The `conquer-engine` group — #155's other unpaired half
+
+Issue #155 sent the whole `conquer-engine` group (7 entries at the time, 24 now) to The Grand Plaza and
+never asked the simpler question: **what pays for the conquer itself?** Every entry in the group ends at
+some version of *"it relocates bodies and conquers"* and none of them names a card that converts that
+conquer into more than the baseline 469.1 Score.
+
+Crossing the group against the four conquer payoffs in the master inventory
+(`OGN-034 Tryndamere`, `UNL-177 Ivern`, `VEN-046 Nasus`, `VEN-065 Swain`, plus the multiplier
+`UNL-029 Red Brambleback`) by Domain Identity gives a wide table, but **most of it is a mirage**, and
+§19.2 is why: an evacuation conquer, like a bloodless combat conquer, **assigns no damage at all**.
+
+| payoff | fires on an evacuation conquer? | why |
+|---|---|---|
+| `VEN-046 Nasus, Ascended` (Calm) | **yes** | *"When I conquer"*, no threshold, no combat required |
+| `UNL-177 Ivern` (Order) | yes, but | needs all four of Bird/Cat/Dog/Poro among your units — a package, not a card |
+| `VEN-065 Swain` (Mind) | yes, but | needs a non-token unit, a non-token gear **and** a spell played that turn |
+| `OGN-034 Tryndamere` (Fury) | **no** | *"after an attack"* and *"if you assigned 5 or more excess damage"* — no attack, nothing assigned |
+| `SFD-148 Draven, Audacious` (Chaos) | **no** | *"the first time I win a combat"*, and 466.3.a needs a combat to have happened |
+
+So the group has exactly **one** clean payoff, and it is Nasus.
+
+### `charm-nasus-evacuation-conquer` (ENGINE, mono-Calm)
+
+`charm-evacuate-conquer` is the cheapest entry in the group — one Calm spell, `OGN-043 Charm`
+(E1 P1, *"Move an enemy unit"*) — and its own `terminatesIn` is *"one point per casting, bounded by the
+3 copies of 103.2.b and by 470"*. Nasus is mono-Calm, so the pairing costs **one card** and doubles the
+rate: every casting becomes the Conquer (a 469.1 Score) **plus** Nasus's `[Empowered][>] When I conquer,
+you score 1 point` (a 194.1.c Gain, which R2 = A keeps outside 470's cap). Three Charms is six points
+rather than three, and a Hold point each Beginning Phase he keeps the battlefield.
+
+The second half of the mechanism is the one #102 had to establish and it is quoted on the entry:
+evacuating **is not yet a Conquer**. 323.6 only strips the opponent's Control; the point needs Nasus to
+walk in during the Main Phase (144.4.a), apply Contested (190.3.a.1), open a Showdown (344.2) and take
+Control at its close (348.2.a), where 348.2.a.1 says outright *"This results in a Conquer."*
+
+**No combat happens at any point**, which is worth three separate things and is why Nasus rather than
+Tryndamere: he is never assigned damage, no Attacker designation is ever created so the
+empty-battlefield trap is *respected* rather than worked around, and the zero-excess consequence of
+§19.2 applies in its strongest form.
+
+Charm moves **one** unit, so the line closes only against a garrison of one — the same limit
+`charm-evacuate-conquer` already carries, restated rather than hidden.
+
+### Correction applied before staging
+
+`VEN-106 Wind and Ghosts` was in zero entries when §19.3 was walked. While this batch was being
+written, a parallel session merged **`moonlight-affliction-wind-and-ghosts-banish`** (`UNL-066` +
+`VEN-106`), which uses the same spell as *permanent removal* behind an unfloored −10 Might reduction.
+Different mechanism, different card set, different domain pair, and it never enters a combat — the two
+coexist, but the "zero entries" claim was stale by the time it would have been merged and is now
+corrected on the entry, with a notable naming the other line. **This is the third time in one session a
+parallel walk has moved the ground under a claim of the form "card X is in no entry."** Fact 10 in §14
+already says to re-run the card-set check immediately before staging; it should say to re-run the
+*single-card* coverage check too.
+
+## 22. Facts for `CLAUDE.md`, continued
+
+16. **An evacuation conquer and a bloodless combat conquer both assign zero damage, which leaves
+    `VEN-046 Nasus, Ascended` as the only clean payoff for the whole `conquer-engine` group.**
+    `OGN-034 Tryndamere` needs an attack *and* 5 excess damage; `SFD-148 Draven, Audacious` needs a
+    combat to have been won (466.3.a); `UNL-177 Ivern` needs the four-tag package and `VEN-065 Swain`
+    needs three card types played the same turn. Nasus's trigger is bare *"When I conquer"*, which is why
+    he appears in three different removal/evacuation shells (Body/Calm, Calm/Chaos and mono-Calm) that
+    can never share a list.
+17. **A "card X is in zero entries" claim goes stale within the hour when walks run in parallel.**
+    Re-run *both* checks immediately before staging: the sorted-card-set duplicate check (fact 10) and
+    the single-card coverage check for every card you claim is uncatalogued. Three claims in this session
+    were overtaken — `VEN-138 Shen` (whole entry withdrawn), `SFD-168 + OGN-111 + OGN-293`
+    (`heimerdinger-armory-plaza` landed as a subset of a merged entry) and `VEN-106 Wind and Ghosts`
+    (corrected in place).
