@@ -954,3 +954,120 @@ is a 6 Might defender.
    cost in the pool satisfies it — `VEN-054 Questionable Tome`'s is a bare exhaust. Its own draw
    ability begins *"Disempower this"*, so one Tome cannot both draw and hold a discount in the same
    turn (441.1.b with 415.3.a).
+
+---
+
+## 42. Batch 10 — four entries and five refusals, and the Calm/Mind lane closes
+
+| id | class | cards | the names it clears |
+|---|---|---|---|
+| `combat-experience-feral-strength-repeat-versus-level` | ENGINE | SFD-034, UNL-031 | Feral Strength, Combat Experience |
+| `crumbling-sands-decree-of-focus-conditional-reactions` | ENGINE | VEN-039, VEN-040 | Crumbling Sands, Decree of Focus |
+| `disarming-rake-unconditional-gear-answer` | ENGINE | SFD-032 | Disarming Rake |
+| `herald-of-spring-navori-scout-hold-rate` | ENGINE | UNL-034, SFD-037 | Herald of Spring, Navori Scout |
+
+## 43. `820.2.a` — a repeated execution may pick a different target
+
+> **820.1.b.** *"Repeat is an optional cost that a player may pay to execute the effect of their
+> spells and abilities a **second** time."*
+> **820.1.c.3.** *"Each Repeat Cost can be paid only a single time."*
+> **820.2.a.** *"Choices made for the additional execution do not have to be the same as the choices
+> made for the initial execution."*
+
+That last one is what makes a `[Repeat]` pump a **spreading** effect rather than a bigger one:
+`SFD-034 Feral Strength` at 4 Energy is +2 on one body and +2 on **another**, which no single-target
+pump in the domain can do. Against it, `UNL-031 Combat Experience` is 1 Energy for +3 on one body at
+six XP — and its rung says *"instead"*, so the ladder is +1 then +3, never +4, the same word this
+walk found on `UNL-091 Concentrate`'s discount.
+
+**465.2.c.3** is why spreading is worth paying for: lethal is assigned to one body **in full** before
+any damage goes elsewhere, so Might in two places is what stops a second body dying.
+
+## 44. The three gear answers in this domain, at three prices
+
+| card | domain | cost | what it cannot do |
+|---|---|---|---|
+| `SFD-074 Pickpocket` | Mind | E3, 3 Might, pays a Gold | only a gear of Energy cost **1 or less** |
+| `UNL-070 Turn to Dust` | Mind | E2 | kills a **full turn late** (816.1.b, their Beginning Phase) |
+| `SFD-032 Disarming Rake` | Calm | E3 + 1 Power, 2 Might | nothing — no condition, no delay |
+
+All three **kill**, so none of them beats a gear whose death pays its owner; and all three reach an
+attached Equipment (718.5.b, with 719.5 detaching it as it leaves the board). The Rake's body is
+below rate on purpose — you are buying the trigger.
+
+## 45. `[Hunt]` pays per battlefield HELD, so a near-vanilla body can be worth a second Hunt card
+
+**823.1.c.1** with **315.2.b.2** (*"The Turn Player Holds all Battlefields they Control"*) and
+**485.4** (Battlefield Count 2) means the XP rate is *how many battlefields survived the opponent's
+turn*, not how many Hunt bodies you drew. That is the honest reason to run `SFD-037 Navori Scout` —
+4 Energy, 4 Might and nothing but `[Deflect]`, which 809.1.c prices as an extra rainbow on any
+targeted answer — rather than refusing it as vanilla. 355.10.d is its hole and 323.6 is the other one.
+
+## 46. Refusals that close the lane
+
+### 46.1 `OGN-042` / `VEN-R02` Calm Rune and `OGN-089` / `VEN-R03` Mind Rune — two distinct names
+
+164.2 gives every Basic Rune the same two abilities (164.2.a an exhaust for Energy, 164.2.b a recycle
+for Power) and 161.2.a fixes the Rune Deck at *"Exactly 12 Rune cards"*. Every deck runs runes; there
+is no pairing to walk. Same refusal as the Order Rune (#180 §18) and the Body Rune (#186 §25.1).
+
+### 46.2 `OGN-071 Party Favors` — the choice is theirs, and the scaling is a format this matcher cannot represent
+
+*"Each other player chooses Cards or Runes. For each player that chooses Cards, you and that player
+each draw 1. For each player that chooses Runes, you and that player each channel 1 rune exhausted."*
+**485.1** puts two players at a Duel table, so *"each other player"* is exactly one — 3 Energy for a
+**symmetric** draw-1 or channel-1, with **355.10.e** leaving the choice of which entirely with the
+opponent (an object *"chosen in whole or in part by other players"* is not a target, and the decision
+is not yours). Its scaling clause only bites in 2v2 (489.1), where 489.8 puts a team line outside what
+`matchDeck` can represent. Same refusal shape as `OGN-237 King's Edict` (#180 §13).
+
+### 46.3 `VEN-026 Field Musicians` — strictly worse than a card already walked in this lane
+
+E4, 3 Might, *"When you play me, give a unit +3 :rb_might: this turn."* A one-shot pump committed in
+the **Main Phase** on a below-rate body. `SFD-034 Feral Strength` gives +2 for 2 Energy and +2 more
+for 2 more at **`[Reaction]`** speed with 820.2.a letting the second land on a different unit, and
+`UNL-031 Combat Experience` gives +3 for **1 Energy** at six XP. The Musicians' body is the only
+thing it adds, and 3 Might for 4 Energy is under the curve. Refused; it is a curve slot.
+
+### 46.4 `VEN-048 Cloud Drake` — a cantrip body at six Energy
+
+E6, 5 Might, *"When you play me, draw 1."* The domain already prints that trigger far cheaper —
+`UNL-053 Scuttle Crab` at E2 (which also has a Deathknell), `SFD-091 Buhru Captain` at E3 + 1 Power
+(modal), `OGN-086 Jeweled Colossus` at E5 with `[Vision]` and `[Shield]`. Nothing reads the Drake and
+nothing it does reads another card. Refused; it is a curve slot.
+
+## 47. FINAL LEDGER — the Calm/Mind lane is closed
+
+```
+lane deckable base codes: 308  (Calm, Mind, and any card mixing Order with Calm or Mind)
+uncovered by NAME+TYPE: 7 base codes = 5 distinct names
+  - and all 5 are refused by rule in section 46
+(opened at 85 base / 79 names at catalogue 599; closed at 7 / 5)
+```
+
+**Walked — 40 entries across batches 3 to 10** (batches 1 and 2 were `rc-walk-fam2`'s, 10 entries),
+clearing 74 of the 79 names this session opened at.
+**Refused — 5, each with the paragraph quoted**, in §46.
+
+The base-code-vs-name+type gap for this lane, measured at the open: **7.1%** (85 → 79), against
+19.2% pool-wide, 15.7% Order, 15% (this lane before the Order split), 6.6%, 5.3% Body and 5.3%.
+Seven lanes, seven different numbers — measured per lane, never assumed. The census script is
+`/tmp/rc-walks/cm-cen.ts` and it carries a comment saying why it dedupes by **BASE** over
+`data/cards.json` and never over `poolOf()`.
+
+## 48. Facts for CLAUDE.md from Calm/Mind batch 10
+
+1. **`820.2.a`: a `[Repeat]` execution may choose a DIFFERENT target** — so a Repeat pump spreads
+   Might rather than concentrating it, which 465.2.c.3 (lethal assigned to one body in full first)
+   is what makes valuable. 820.1.c.3 caps each Repeat cost at one payment.
+2. **The three gear answers in Calm/Mind, with each one's limit**: `SFD-074 Pickpocket` (Energy cost
+   1 or less, pays a Gold), `UNL-070 Turn to Dust` (any gear, a full turn late), `SFD-032 Disarming
+   Rake` (any gear, immediately, no condition). All three kill, so none beats a gear whose death pays
+   its owner.
+3. **`[Hunt]` pays per battlefield HELD** (823.1.c.1 with 315.2.b.2 and 485.4), so the XP rate is set
+   by how many battlefields survive the opponent's turn — which is why a body whose only text is
+   `[Deflect]` can be worth as much as a second Hunt card.
+4. **`OGN-071 Party Favors` is a Duel-symmetric card whose choice belongs to the opponent** (485.1
+   makes *"each other player"* exactly one; 355.10.e leaves the decision with them), and its scaling
+   only exists in 2v2, which `matchDeck` cannot represent — the same refusal shape as `OGN-237 King's
+   Edict`.
