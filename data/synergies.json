@@ -4742,7 +4742,7 @@
       "name": "Mistfall readies any friendly unit a buff source touches",
       "anchor": "OGN-152",
       "partner": {
-        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)|[Gg]ive (me|it|a unit|a friendly unit|another friendly unit|your units)[^.]{0,60}\\+\\d+ :rb_might:",
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)",
         "excludes": [
           {
             "card": "OGN-146",
@@ -4754,7 +4754,7 @@
           }
         ]
       },
-      "why": "\"When you buff a friendly unit, you may pay 1 Body Power and exhaust this to ready it\" watches ANY buff on ANY friendly unit — unlike Fiora, Worthy (fiora-buff-ready), it does not need the buff to cross 709's Mighty threshold, so it fires on every buff a partner grants, not just the ones that matter for Might. The verified engine (lee-sin-buff-bank) is the tight instance: Lee Sin, Ascetic can bank unlimited buffs (702.3's one printed exception) and Mistfall turns every one of them into a free ready.",
+      "why": "\"When you buff a friendly unit, you may pay 1 Body Power and exhaust this to ready it\" watches ANY buff on ANY friendly unit — unlike Fiora, Worthy (fiora-buff-ready), it does not need the buff to cross 709's Mighty threshold, so it fires on every buff a partner grants, not just the ones that matter for Might. The verified engine (lee-sin-buff-bank) is the tight instance: Lee Sin, Ascetic can bank unlimited buffs (702.3's one printed exception) and Mistfall turns every one of them into a free ready. Predicate narrowed 2026-09-07 (#182): it had inherited fiora-buff-ready's third alternative, which matches \"give X +N Might this turn\" - a CONTINUOUS MODIFIER, not a 702 buff counter. This anchor keys on the word BUFF, so a modifier never fires it; the alternative is correct on Fiora alone, whose trigger is 709 becoming Mighty. Of 99 matches, 65 were modifier false positives.",
       "basis": {
         "rules": [
           "702.2",
@@ -4766,14 +4766,14 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 99
+      "reviewedCount": 34
     },
     {
       "id": "simian-ancestor-buff-ready",
       "name": "Simian Ancestor readies himself off any buff that lands on him",
       "anchor": "SFD-047",
       "partner": {
-        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)|[Gg]ive (me|it|a unit|a friendly unit|another friendly unit|your units)[^.]{0,60}\\+\\d+ :rb_might:",
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)",
         "excludes": [
           {
             "card": "OGN-146",
@@ -4785,7 +4785,7 @@
           }
         ]
       },
-      "why": "\"When you buff me, ready me\" is unconditional — it does not need the buff to cross 709's Mighty threshold the way Fiora, Worthy's does (fiora-buff-ready), so any buff source in the list below readies him for free the instant it touches him, at no cost and with no exhaust to pay.",
+      "why": "\"When you buff me, ready me\" is unconditional — it does not need the buff to cross 709's Mighty threshold the way Fiora, Worthy's does (fiora-buff-ready), so any buff source in the list below readies him for free the instant it touches him, at no cost and with no exhaust to pay. Predicate narrowed 2026-09-07 (#182): it had inherited fiora-buff-ready's third alternative, which matches \"give X +N Might this turn\" - a CONTINUOUS MODIFIER, not a 702 buff counter. This anchor keys on the word BUFF, so a modifier never fires it; the alternative is correct on Fiora alone, whose trigger is 709 becoming Mighty. Of 99 matches, 65 were modifier false positives.",
       "basis": {
         "rules": [
           "702.2",
@@ -4797,7 +4797,7 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 99
+      "reviewedCount": 34
     },
     {
       "id": "prize-of-progress-gear-activation",
@@ -4917,7 +4917,7 @@
       "name": "Vanguard Helm needs a buff SOURCE, not a kill enabler — the sibling rule already owns the active-kill half",
       "anchor": "OGN-228",
       "partner": {
-        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)|[Gg]ive (me|it|a unit|a friendly unit|another friendly unit|your units)[^.]{0,60}\\+\\d+ :rb_might:",
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)",
         "excludes": [
           {
             "card": "OGN-146",
@@ -4937,7 +4937,7 @@
           }
         ]
       },
-      "why": "\"When a buffed friendly unit dies, buff another friendly unit\" needs a body that carries a 702/703 Buff before it can die and relay one — the sibling rule `vanguard-helm-friendly-kill` reads the pool for active KILL enablers, but combat alone kills buffed bodies over a game, so the scarce half is BUFF SUPPLY: a source that keeps placing the one-per-unit counter (702.3, 702.3.a) faster than the Helm spends it. `OGN-141 Kinkou Monk` buffs two other friendly units on one play, which is the entry's whole point.",
+      "why": "\"When a buffed friendly unit dies, buff another friendly unit\" needs a body that carries a 702/703 Buff before it can die and relay one — the sibling rule `vanguard-helm-friendly-kill` reads the pool for active KILL enablers, but combat alone kills buffed bodies over a game, so the scarce half is BUFF SUPPLY: a source that keeps placing the one-per-unit counter (702.3, 702.3.a) faster than the Helm spends it. `OGN-141 Kinkou Monk` buffs two other friendly units on one play, which is the entry's whole point. Predicate narrowed 2026-09-07 (#182): it had inherited fiora-buff-ready's third alternative, which matches \"give X +N Might this turn\" - a CONTINUOUS MODIFIER, not a 702 buff counter. This anchor keys on the word BUFF, so a modifier never fires it; the alternative is correct on Fiora alone, whose trigger is 709 becoming Mighty. Of 99 matches, 65 were modifier false positives.",
       "basis": {
         "rules": [
           "702.2.a",
@@ -4952,14 +4952,14 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 97
+      "reviewedCount": 32
     },
     {
       "id": "monastery-hirana-buff-supply",
       "name": "Monastery of Hirana spends a buff for a card, so it wants the same buff-source partner as every other buff spender",
       "anchor": "OGN-282",
       "partner": {
-        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)|[Gg]ive (me|it|a unit|a friendly unit|another friendly unit|your units)[^.]{0,60}\\+\\d+ :rb_might:",
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)",
         "excludes": [
           {
             "card": "OGN-146",
@@ -4979,7 +4979,7 @@
           }
         ]
       },
-      "why": "\"When you conquer here, you may spend a buff to draw 1\" is a buff SPENDER, the same shape as Wallop (`wallop-buff-spend`) and Call to Glory — it pays for a card with a counter it does not place itself, so its honest partner is a buff SOURCE. `SFD-108 Warmog's Armor` (\"When I conquer, buff me\") supplies exactly one on the same Conquer that spends it, which is why the entry pairs them rather than treating the Monastery as self-sufficient.",
+      "why": "\"When you conquer here, you may spend a buff to draw 1\" is a buff SPENDER, the same shape as Wallop (`wallop-buff-spend`) and Call to Glory — it pays for a card with a counter it does not place itself, so its honest partner is a buff SOURCE. `SFD-108 Warmog's Armor` (\"When I conquer, buff me\") supplies exactly one on the same Conquer that spends it, which is why the entry pairs them rather than treating the Monastery as self-sufficient. Predicate narrowed 2026-09-07 (#182): it had inherited fiora-buff-ready's third alternative, which matches \"give X +N Might this turn\" - a CONTINUOUS MODIFIER, not a 702 buff counter. This anchor keys on the word BUFF, so a modifier never fires it; the alternative is correct on Fiora alone, whose trigger is 709 becoming Mighty. Of 99 matches, 65 were modifier false positives.",
       "basis": {
         "rules": [
           "702.2.a",
@@ -4992,7 +4992,7 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 94
+      "reviewedCount": 31
     },
     {
       "id": "irelia-fervent-choose-cost",
