@@ -798,3 +798,81 @@ mean opposite things — check whose score before pairing them.
    been dealt damage"* payoff is guaranteed. And that payoff's clause reads *"this turn"*, not *"this
    combat"*, so a single earlier ping switches it off (143.3.b.2's combat-cleanup heal does not undo
    the fact that damage was dealt).
+
+---
+
+## 33. Batch 8 — five entries
+
+| id | class | cards | the names it clears |
+|---|---|---|---|
+| `energy-conduit-honeyfruit-off-turn-energy` | ENGINE | OGN-098, UNL-049 | Energy Conduit, Honeyfruit |
+| `find-your-center-leona-zealot-catch-up` | ENGINE | OGN-047, OGN-079 | Find Your Center |
+| `card-sharp-dropboarder-gold-ready` | ENGINE | SFD-081, SFD-072 | Card Sharp, Dropboarder |
+| `otterpus-ol-poro-early-game-concession` | ENGINE | VEN-053, VEN-029 | Otterpus, Ol' Poro |
+| `legion-quartermaster-cloth-armor-bounce-value` | ENGINE | SFD-044, SFD-064 | Legion Quartermaster |
+
+## 34. Every card that adds ENERGY at `[Reaction]` speed, named
+
+This lane's batch 2 established the problem — **415.3.a** readies your runes only in *your* Awakening,
+**164.2.b**'s cost is the recycle so an exhausted rune still pays **Power** on their turn, and **167**
+banks nothing across the gap — so a reactive deck has Power on the opponent's turn and no Energy,
+while every counter in the suite wants both. Swept now:
+
+| card | domain | condition |
+|---|---|---|
+| `OGN-098 Energy Conduit` | Mind, gear | none |
+| `UNL-049 Honeyfruit` | Calm, gear | `[Level 6]` mode (1 Energy **and** 1 rainbow off one exhaust) |
+| `SFD-083 Hextech Anomaly` | Mind, gear | converts Power (already catalogued in this lane) |
+| `UNL-093 Dragonsoul Sage` | Body, unit | none |
+| `OGS-014 Lux, Crownguard` | Order, unit | only to play spells |
+| `OGN-253 Hand of Noxus` | Fury/Order, legend | `[Legion]` |
+| `UNL-197 Scorn of the Moon` | Mind/Chaos, legend | none |
+| `VEN-141 Butcher of the Sands` | Fury/Body, legend | costs 2 rainbow |
+
+**In Calm/Mind the unconditional permanents are exactly `OGN-098` and `UNL-049`.** **429.3** is why
+they arrive in time — *"Activated abilities that Add resources and have the Reaction tag can be
+activated at any time that spells or abilities require resources be paid"*, with Riot's example
+naming the Pay Costs step — and 429.2 with 429.2.a is the reminder text *"Abilities that add
+resources can't be reacted to"*.
+
+## 35. Three clause-level facts
+
+**`355.10.e` makes a symmetric offer un-targetable and un-taxable.** *"Each player kills a unit they
+control"* is its printed example, and it says outright that such an effect does not target — so
+`SFD-081 Card Sharp`'s offer pays no `[Deflect]` tax (809.1.c and 809.1.d bite only on choosing) and
+cannot be answered as a targeted effect. The price is that the decision is theirs.
+
+**A "would ... instead" clause is a replacement, and it does not touch a card-text point.** `VEN-053
+Otterpus` replaces a **Score** — 469 defines that as a Conquer or a Hold — while **194.1.c** covers
+*"Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more
+points"*, which is a **Gain** and goes through untouched. 471.1.a.1 says the same from the other side.
+
+**An additional cost with no "you may" can make a card uncastable.** `SFD-044 Legion Quartermaster`
+reads *"As an additional cost to play me, return a friendly gear to its owner's hand"* and **203.3**
+is the paragraph: *"If the game action associated with a Cost is impossible for any reason such that
+a player cannot perform it, then they cannot pay the Cost and they will not execute the linked
+Effect."* With no gear on the board the card cannot be played at all. `[Quick-Draw]` (819.1.d — short
+for `[Reaction]` plus *"When you play this, attach it to a Unit you control"*) is what makes paying
+it nearly free: the gear comes back attached, to a carrier of your choosing, with **no `[Equip]` cost
+ever determined**.
+
+## 36. Facts for CLAUDE.md from Calm/Mind batch 8
+
+1. **The Energy-at-`[Reaction]` set is eight cards** (§34), and in Calm/Mind the unconditional
+   permanents are exactly `OGN-098 Energy Conduit` and `UNL-049 Honeyfruit`'s `[Level 6]` mode.
+   **429.3** lets them be activated inside the Pay Costs step, which is what makes a counter suite
+   that wants Energy playable on a turn 415.3.a leaves you none.
+2. **`355.10.e` is why a symmetric offer costs nothing to make**: an object chosen in whole or in
+   part by other players is not a target, so no `[Deflect]` tax and no targeted answer — at the price
+   of the decision being theirs.
+3. **A replacement of a SCORE does not touch a card-text point**: 469 scopes Scoring to Conquer and
+   Hold, while 194.1.c's Gain is a separate item (471.1.a.1 repeats it). `VEN-053 Otterpus` stops the
+   first and never the second.
+4. **`203.3` can make a card uncastable, not merely worse**: an additional cost with no *"you may"*
+   that cannot be paid means the card cannot be played — `SFD-044 Legion Quartermaster` with no
+   friendly gear on the board. `[Quick-Draw]` (819.1.d) is the cheapest way to pay such a cost, since
+   the gear re-attaches on the play with no `[Equip]` cost determined and at `[Reaction]` speed,
+   which 381 would otherwise forbid.
+5. **The *"within 3 points of the Victory Score"* threshold moves between formats**: 194.3 puts the
+   Victory Score at 8 and 489.3 at 11, so the same clause reads an opponent at 5 in Constructed and
+   at 8 in 2v2.
