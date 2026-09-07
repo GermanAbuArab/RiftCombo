@@ -22183,6 +22183,13 @@
           "role": "engine",
           "zone": "BATTLEFIELD",
           "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. 'As this is attached to a unit, copy that unit's text to this Equipment's effect text for as long as this is attached to it.' All three on Shen; they are GEAR, so they never disturb his unit count."
+        },
+        {
+          "card": "SFD-159",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "The \"exactly one other unit you control here\" Shen's condition needs (383.2.a.1 makes the count part of the Trigger Condition; a lone Shen places nothing on the Chain, and a THIRD body switches him off). Trusty Ramhound is the cheapest Order body that wants exactly this seat: \"While you have another unit here, I have +1 Might\". Svellsongur is Equipment and can never fill the slot. Added by the #165 cross-audit, 2026-09-07."
         }
       ],
       "needs": [],
@@ -22211,7 +22218,7 @@
         "Survive the opponent's turn. Shen defends at 15; the companion is the only other body they can pick off, and removing it is what actually beats this line.",
         "Your Beginning Phase, Scoring Step (315.2.b.2): you Hold. 1 point from the Score, then eight ability Gains whose condition found exactly one other friendly unit here. Nine points in one Hold."
       ],
-      "terminatesIn": "burst of 9 points in a single Hold, for 18 Energy and 8 Power",
+      "terminatesIn": "burst of 9 points in a single Hold, for 20 Energy and 8 Power (18 + 8 for Shen and the three Svellsongur with their Equips, plus E2 for the companion body the condition requires)",
       "sources": [
         {
           "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule svellsongur-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
@@ -22220,7 +22227,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "AUTHORED 2026-09-06 from issue #160. VEN-138 is an uncatalogued partner of svellsongur-copy (101 partners, 3 entries in its basis; 14 entries in the catalogue carry SFD-059). Card text verbatim from data/corpus_flat.txt; 383.2.a.1, 469.2, 470, 471.1, 471.1.a.1, 194.1.c, 476.1, 477.2.c, 479.1, 480.3, 814.1.b.3, 814.2, 465.2.c and 465.2.c.3 opened in the Core Rules file. Stands on R6 = A and R2 = A, both ruled 2026-09-04 or earlier; no new reading. The formula was checked against its own declared quantities before authoring: 1 + 2^3 = 9, which clears the Victory Score of 8 (194.3) in one scoring event and so is BURST — but NOT in 2v2, where 489.3 sets it at 11. Trap check: a Hold needs no Attacker designation (807.1.d / 383.4.e / 461); no [Temporary]; no [Repeat]; no recall; no token; nothing recycled; nothing added in Awaken, so 167 does not bite; the [Equip] costs and the Power are counted."
+      "notes": "AUTHORED 2026-09-06 from issue #160. VEN-138 is an uncatalogued partner of svellsongur-copy (101 partners, 3 entries in its basis; 14 entries in the catalogue carry SFD-059). Card text verbatim from data/corpus_flat.txt; 383.2.a.1, 469.2, 470, 471.1, 471.1.a.1, 194.1.c, 476.1, 477.2.c, 479.1, 480.3, 814.1.b.3, 814.2, 465.2.c and 465.2.c.3 opened in the Core Rules file. Stands on R6 = A and R2 = A, both ruled 2026-09-04 or earlier; no new reading. The formula was checked against its own declared quantities before authoring: 1 + 2^3 = 9, which clears the Victory Score of 8 (194.3) in one scoring event and so is BURST — but NOT in 2v2, where 489.3 sets it at 11. Trap check: a Hold needs no Attacker designation (807.1.d / 383.4.e / 461); no [Temporary]; no [Repeat]; no recall; no token; nothing recycled; nothing added in Awaken, so 167 does not bite; the [Equip] costs and the Power are counted. [2026-09-07, #165 cross-audit: the companion unit the entry always required was missing from uses[], so matchDeck reported a 9-point BURST complete for a board that scores zero; SFD-159 Trusty Ramhound added at quantity 1 and the cost restated.]"
     },
     {
       "id": "svellsongur-treasure-hunter-gold",
@@ -26125,7 +26132,7 @@
         "Both executions of Square Up resolve, each granting [Assault 4]; 807.2 sums them to [Assault 8] on her.",
         "She fights the combat at 5 + 1 + 8 = 14 Might (807.1.c applies the 8 only while she is an attacker), and the ready leaves her a Standard Move afterwards."
       ],
-      "terminatesIn": "engine — a 14-Might attacker for one card and 4 Energy, three times a game",
+      "terminatesIn": "engine — a 14-Might attacker for one card and 4 Energy on the turn, three times a game, on a Jinx, Rebel already in play (E5 + 1 Chaos Power, paid once)",
       "sources": [
         {
           "title": "Two-card pair walk, cause/trigger matrix rows 6-15 (docs/phase0/walks/2026-09-06-proven-rule-instances.md §24)",
