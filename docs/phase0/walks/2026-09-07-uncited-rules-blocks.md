@@ -1098,3 +1098,53 @@ The line: move Lillia **from** a battlefield and the 3-Might Sprite is played **
 having walked — the bottleneck every token line in this catalogue runs into (144.4). `UNL-045 Forgotten
 Signpost` moves by **effect**, so 420.3.a's Standard-Move exhaust never applies and she can walk back in
 the same Main Phase to fire it a second time.
+
+---
+
+# Batch 13 — Active vs Passive Kill, and the last structural rows
+
+Batch 12's two entries were merged (catalogue at 699). One entry this batch; the remaining filtered rows
+in the 100–499 lane turned out to be definitions.
+
+| id | sub-rule opened | class |
+|---|---|---|
+| `loyal-poro-deathgrip-kill-instruction-snapshot` | **428.1.a – .a.2** Kill, Active and Passive | ENGINE |
+
+`validateCombos`: **0 errors, 700 entries.** `test/legend-lines.test.ts`: 9 legend base codes, **0 defects.**
+
+## 43. 428.1.a.1.b — the snapshot, and the paragraph this project has been sourcing elsewhere
+
+*"When a unit with a Deathknell or other ability that triggers on its own death is to be put in the Trash
+due to a Kill Instruction, it first has any such ability added to the chain as a Pending Item. **Note the
+unit's location, attributes, and other relevant information** to process those abilities when finalized
+before completing this Kill Instruction."* Riot's example is `SFD-148 Draven, Audacious`.
+
+This is the precise rule for what the catalogue currently attributes to 808.1.d.3 — **a Deathknell reads
+where the body was and what stood beside it, because that is noted before the body leaves.**
+
+**And 428.1.a splits killing in two, which the catalogue uses constantly and has never stated:**
+
+- **428.1.a.1 Active Kill** — *"when the action is taken when instructed by a game effect **or as a cost**
+  for a card or ability."* This is a **Kill Instruction** and it gets the snapshot.
+- **428.1.a.2 Passive Kill** — *"as a result of Lethal Damage or as a consequence for any other state."*
+  Combat deaths and 143.2.a cleanup deaths are **not** Kill Instructions.
+
+The line follows from the pair: `SFD-163 Deathgrip`'s effect **requires** another friendly unit, and the
+snapshot is taken while that unit is still standing, so `UNL-156 Loyal Poro`'s *"If I didn't die alone"*
+is satisfied **by construction**. Two cards and +3 Might for 2 Energy at [Reaction] speed. The mirror
+card, `SFD-036 Lonely Poro` (*"If I died **alone**"*), is switched **off** by the same board.
+
+## 44. Results — the rest of the lane's filtered rows are definitions
+
+- **410.2.a / 410.2.b Limited Actions** — *"A player cannot perform these actions at-will … only be
+  taken when a player is instructed to do so."* The definition behind every "you may only X when
+  directed" line the catalogue already cites individually (416.2, 422.2, 437.6, 440.3, 443.3). No card
+  content of its own.
+- **416.2 / 416.2.a**, **422.2 / 422.2.a** — Recycling and Discarding are Limited Actions and are
+  **mandatory** when instructed. The mandatory half is already carried through 416.6; the rest is the
+  410.2 definition applied.
+- **359.3.e.12.a** — information about a still-legal target is accessible. Structural.
+- **431.5 — *"Burning Out is a Replacement Effect."*** Real and uncited, and it means 367–375 govern it:
+  if a Burn Out is simultaneous with another replacement their controller orders them (373), and it
+  could in principle be replaced. **No card in the pool replaces a Burn Out**, so it is a fact without a
+  line — recorded so nobody re-reads the block looking for one.
