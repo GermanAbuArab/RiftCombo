@@ -278,3 +278,96 @@ permits and 381 would have forbidden had the same words sat in an Activated abil
   prices the stun as muting (423.1.b), never as softening.
 - **A stun applied on the opponent's turn carried into your own attack** — refused: 423.1.a.2 clears
   the status "during step 3d of the end of turn cleanup", so nothing survives the turn boundary.
+
+## 4. Batch 3 — the hide / play-facedown family (rows 11, 15, 16, 17), five entries
+
+Four facts about [Hidden] do all the work in this family, and three of them are in the keyword's own
+paragraph, which no entry had quoted in full:
+
+1. **811.1.b's tail grants [Reaction].** "…Beginning on the next turn, this gains [Reaction] and you
+   may play this, ignoring its base cost." With 813.1.c.1 ("This can be played during Closed States on
+   any player's turn") that makes every hidden card — **unit, gear or spell** — playable inside the
+   opponent's combat, for zero Energy.
+2. **811.1.b caps the family by BOARD, not by deck.** You may hide "at a battlefield you control **that
+   doesn't already have a facedown card hidden there**". One facedown per battlefield, and 485.4 puts
+   two battlefields on a Duel table. So a "when you play a card from face down" trigger fires **at most
+   twice a turn** however many [Hidden] cards the list runs — and only once if you control one
+   battlefield. Katarina and the Ember Monk both read like engines that scale with [Hidden] density and
+   neither does.
+3. **811.1.d binds the hidden card, never the watcher.** 811.1.d.1 puts a hidden permanent at that
+   battlefield; 811.1.d.2 confines a hidden card's play-effect targets there. Katarina's "deal 2 to an
+   enemy unit" and the Ember Monk's "+2 [M]" are their OWN Triggered Abilities, not play effects of the
+   hidden card, so 811.1.d reaches neither. Half of the value in this family comes from that asymmetry.
+4. **356.1.b.3: "ignoring its base cost" leaves an optional ADDITIONAL cost intact**, with Riot's own
+   worked example (Legion Rearguard + Accelerate).
+
+### 4.1 `katarina-mischievous-marai-facedown-four-damage` — UNL-023 + UNL-003 (in zero entries)
+
+Mono-Fury. 4 damage and a 2-Might body for one rainbow and no Energy, inside the opponent's combat.
+The Marai's own 2 is confined to the hidden battlefield (811.1.d.2) — which is where their attackers
+are, so the restriction is the feature — while Katarina's 2 goes anywhere. 464.2.c.3.a + 319.6 +
+323.2.a put the body in the damage step it arrived for.
+
+### 4.2 `katarina-lotus-trap-sudden-storm-board-cap` — UNL-023 + UNL-013 + SFD-017 (both in zero entries)
+
+The entry's headline is its own bound (fact 2 above). The constructive half is a chain-order finding:
+**Lotus Trap cannot double its own arrival.** Playing it is the event Katarina watches, so her trigger
+is Finalized above the still-pending spell and 340.1 runs her 2 damage *before* the doubling exists.
+The Trap therefore pays on the **second** facedown play of the turn, and only on Katarina's own damage
+— 811.1.d.2 keeps the Trap's choice at battlefield A and Sudden Storm's at B, so the Storm's own 4 can
+never be doubled. Total 2 + 4 = 6 at A, plus 4 at B, for zero Energy.
+
+R26 (issue #11) was ruled the other way for a "when you play a **spell**" trigger, on 359.3.e.10's
+example. Extended to "when you play a card from face down" the first 2 would double too and the total
+would be 8. **The entry stands on the floor of 6 and does not need the reading**, which is the
+project's standing preference for sequencing over interpretation.
+
+### 4.3 `katarina-pyke-dockside-additional-cost-survives` — UNL-023 + UNL-028 (in zero entries)
+
+356.1.b sets the *Base* Cost to zero and 356.1.b.3 says outright that "Further additional costs and/or
+cost increases applied in subsequent steps may raise the card's Total Cost above zero", with the Legion
+Rearguard + Accelerate example. 204.1.a puts the Base Cost "in the upper left corner of the card";
+204.2 makes an Additional Cost something else. So Pyke played free from face down can still pay his
+1 Fury Power and collect "ready me and give me +2 [M]" — a ready 4-Might body with [Ganking].
+
+Two smaller facts stated because they are easy to invert: the ready is a **real** ready (415.1 marks a
+Game Object already on the Board), unlike "I enter ready" wording; and 144.1.b means the Standard Move
+his ready pays for is unavailable in the Closed State he arrived in, so the aggressive line is a
+your-turn facedown play and the defensive line just gets a bigger body.
+
+### 4.4 `ember-monk-teemo-scout-facedown-wall` — OGN-167 + OGN-197 (Teemo in zero entries)
+
+Mono-Chaos, +7 Might of defence for zero Energy. The refusal that chose the partner is in the entry:
+**the Ember Monk pays per CARD played from [Hidden], not per body**, so `UNL-081 Keeper of Masks`'
+three bodies are one +2, and a small card whose own play trigger triples its own Might is worth more
+than a card that makes three of them.
+
+### 4.5 `black-market-broker-windsinger-free-bounce` — SFD-121 + SFD-138 (Windsinger in zero entries)
+
+Row 15's whole partner list is one card, and the reason is a spelling: `SFD-138 Windsinger` prints
+`Hidden` **without brackets** (registered in `docs/data-anomalies.md`, never normalised), which is why
+the project's [Hidden] predicates are reminder-anchored rather than `\[Hidden\]`.
+
+The entry refuses to overprice the Gold: 187.5 makes it "[Reaction][>] Kill this, **[exhaust]**: [Add]
+[A]" and the Broker plays it **exhausted**, so it cannot pay for itself and is Power on your *next*
+turn (415.3.a). The one card that fixes that, `SFD-171 Renata Glasc, Industrialist` (R25 = A), is
+mono-Order and cannot share an identity with two mono-Chaos cards (103.1.b.4). And "another unit …
+with 3 [M] or less" is not restricted to enemies, so on your own turn the bounce rescues or rebuys one
+of yours.
+
+### 4.6 Refusals from batch 3
+
+- **Any [Hidden] card as an attacking-side trick** (refuse-bucket C, re-confirmed here) — 811.1.b hides
+  only "at a battlefield you control" and 811.1.d.2 pins the play effect's targets there, so a hidden
+  removal can never reach the battlefield you are attacking. The bucket's mirror image is what makes
+  4.1 and 4.5 good: on defence, "a unit at the battlefield you control" *is* the attacker.
+- **`UNL-081 Keeper of Masks` as an Ember Monk or Katarina partner** — refused on counting: three
+  bodies arrive on ONE play, so the Monk gets +2 once and Katarina deals 2 once. The Keeper is a
+  wall card, not a multiplier for these two.
+- **Stacking [Hidden] density to scale either trigger card** — refused by 811.1.b: one facedown per
+  battlefield you control. Three copies (103.2.b) of anything changes nothing; two battlefields is the
+  ceiling and one battlefield halves it.
+- **`OGN-107 Ava Achiever` with either trigger card** — refused, and already recorded as an `excludes`
+  on both anchors in the synergy layer: she plays a [Hidden] card *from hand*, and 811.1.c.1 says
+  "Hide is not a subset of Play", so neither "when you hide" nor "when you play a card from face down"
+  ever sees her.
