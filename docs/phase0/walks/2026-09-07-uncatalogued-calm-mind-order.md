@@ -628,3 +628,103 @@ combat opens, never in response.
 5. **"Can't be chosen" (054.1) is a prohibition and `[Deflect]` (809.1.c) is a tax** — different in
    kind, same hole at 355.10.d / 355.10.e. And **740.2.c** defines *"in combat"*, which is what makes
    `VEN-038 Akali, Silent`'s protection the inverse of a `[Tank]`'s.
+
+---
+
+## 24. The Gold-is-a-gear lens, with every member of every set named
+
+Batch 5 stated this finding without enumerating it. Swept now, so the next session can refute or
+extend it in one grep:
+
+**Gold-token makers — `grep -in "Gold gear token"` returns 23 rows across all six domains.** The
+seven in Mind are `SFD-063 Chemtech Cask`, `SFD-069 Plundering Poro`, `SFD-070 Wages of Pain`,
+`SFD-074 Pickpocket`, `SFD-081 Card Sharp`, `SFD-086 World Atlas` and `UNL-073 Deadly Flourish`. The
+rest: Fury `SFD-004 Bushwhack`, `SFD-020 Draven, Vanquisher` (banned in both formats), `UNL-018 Yeti
+Brawler`; Body `SFD-101 Fae Dragon`; Chaos `SFD-121 Black Market Broker`, `SFD-130 Treasure Hunter`,
+`SFD-134 Cull`, `UNL-145 Pyke, Returned`; Order `SFD-152 Eminent Benefactor`, `SFD-155 Honest
+Broker`, `SFD-162 Blood Money`, `SFD-174 Trove Golem`; legends `SFD-201 Chem-Baroness`, `SFD-203
+Battle Mistress`, `UNL-185 Bloodharbor Ripper`; and the battlefield `SFD-220 Treasure Hoard`.
+
+**Cards that read a gear COUNT — exactly four.** `SFD-072 Dropboarder` (*"if you control two or more
+gear, ready me"*), `VEN-058 Patched Porobot` (*"if you control 3 or more other gear, draw 1"*),
+`VEN-064 Plaza Guardian` (*"I cost 1 Energy less for each gear you control"*), `VEN-076 Repair
+Specialist` (*"[Assault] equal to the number of gear you control"*). Three are Mind and one is Body.
+**`SFD-076 Production Surge` is NOT in this set** — its discount reads *"if you control a **Mech**"*,
+which 187.4 supplies from a **unit** token, not a gear one. That distinction is the reason batch 5's
+list of four was right and is worth keeping explicit.
+
+**The Seals — exactly six, one per domain, every one Energy cost ZERO and 1 Power.** `OGN-040 Seal of
+Rage` (Fury), `OGN-081 Seal of Focus` (Calm), `OGN-120 Seal of Insight` (Mind), `OGN-163 Seal of
+Strength` (Body), `OGN-204 Seal of Discord` (Chaos), `OGN-245 Seal of Unity` (Order), plus the
+reprints `SFD-226` and `SFD-238`. All six sit inside `SFD-074 Pickpocket`'s *"Energy cost no more
+than 1"* window with room to spare, which is what makes that card a mana-base answer rather than an
+Equipment answer.
+
+**And the two token types are different resources.** 187.4 (*"A 3 [M] Mech token is a domainless
+**unit** token with 3 Might and the Mech tag"*) against 187.5 (*"A Gold gear token is a domainless
+**gear** token"*) — a Mech engine feeds body payoffs and a Gold engine feeds the gear count. A deck
+can want both and they never overlap.
+
+## 25. Batch 6 — five entries
+
+| id | class | cards | the names it clears |
+|---|---|---|---|
+| `iterative-design-production-surge-mech` | ENGINE | VEN-051, SFD-076 | Iterative Design, Production Surge |
+| `mosstomper-wuju-apprentice-xp-calm-ladder` | ENGINE | UNL-047, UNL-040 | Mosstomper, Wuju Apprentice |
+| `scuttle-crab-mutated-mouser-zero-might-hold` | ENGINE | UNL-053, UNL-036 | Scuttle Crab, Mutated Mouser |
+| `sumpworks-map-opponent-scores` | ENGINE | UNL-085 | Sumpworks Map |
+| `forgefire-cape-riven-shattered-free-equip` | ENGINE | SFD-190, VEN-041 | Forgefire Cape, Riven Shattered |
+
+## 26. A `[Level]` rider on a PLAY trigger is spent for good; one on a continuous ability is not
+
+`UNL-047 Mosstomper`'s *"[Level 3] I have +1 :rb_might: and [Deflect]"* is continuous, so **824.1.d**
+switches it on and off as the counter moves and a copy played at 0 XP simply improves later.
+`UNL-040 Wuju Apprentice`'s *"[Level 6] When you play me, draw 1"* hangs off a **play trigger**: if
+the Dependent Ability is Inactive when the card is played, the trigger never happens and no later XP
+brings it back. **Hold the Apprentice until six.** That is on neither card.
+
+`[Hunt 2]` is why six is reachable: 823.1.c.1 with 315.2.b.2 and 485.4 means a Mosstomper on each of
+a Duel's two battlefields is **4 XP in one Beginning Phase**. The Calm XP cards, named:
+`UNL-034 Herald of Spring` (`[Hunt]`, plus 2 XP on play — the biggest single jump), `UNL-040 Wuju
+Apprentice`, `UNL-047 Mosstomper`, `UNL-031 Combat Experience` and `UNL-038 Skyward Strike` (both
+`[Level 6]` riders on a trick).
+
+## 27. Two things that look like drawbacks and are not
+
+**A 0 Might body can hold, and it still costs a point to remove.** `UNL-053 Scuttle Crab` prints its
+own rule — *"(Units with 0 :rb_might: can conquer and hold.)"* — and 143.2.a needs marked damage at
+or above Might, which still means **nonzero**: the attacker spends one point of their assignment on
+it and 465.2.c.4 caps that at exactly one. And its Deathknell is the pool's only look at an
+opponent's facedown cards: `grep -in facedown` returns four rows, and `OGN-101 Mushroom Pouch`,
+`OGN-181 Pack of Wonders` and `UNL-014 Monster Harpoon` all read **your own**. Against a `[Hidden]`
+deck whose whole package is priced on 811.1.b's information asymmetry, that is the answer.
+
+**`[Temporary]` on a card you play yourself is a full opponent's turn, not a short leash.** 816.1.b
+kills it *"at the start of THIS PERMANENT'S CONTROLLER'S Beginning Phase"* — **yours** — so
+`UNL-085 Sumpworks Map` played in your own Main Phase covers the rest of your turn and all of
+theirs, and dies before your own scoring, which costs nothing because it only reads *their* Scores.
+Holding it for its `[Reaction]` is the trap: 312.2.a gives priority in a Neutral Open State only to
+the Turn Player, and 335 gives nobody priority in a Beginning Phase with an empty chain, so there is
+usually no window in which to answer their Hold with it.
+
+## 28. Facts for CLAUDE.md from Calm/Mind batch 6
+
+1. **The Gold-is-a-gear lens, with members** (§24): 23 Gold-makers pool-wide and seven in Mind;
+   exactly **four** cards read a gear COUNT (`SFD-072`, `VEN-058`, `VEN-064`, `VEN-076`) and
+   `SFD-076 Production Surge` is **not** one of them, because it reads a **Mech**, which 187.4
+   supplies as a **unit** token; the six Seals are all Energy cost **zero**.
+2. **A `[Level]` rider on a PLAY trigger is spent for good if the copy is played below the
+   threshold**, while one on a continuous ability is re-evaluated by 824.1.d as the counter moves.
+   `UNL-040 Wuju Apprentice` versus `UNL-047 Mosstomper` is the pair that shows it.
+3. **A 0 Might unit can conquer and hold, and still costs an attacker one point** (143.2.a needs
+   nonzero damage, 465.2.c.4 caps it at the minimum). `UNL-053 Scuttle Crab` is also the **only card
+   in the pool that looks at an opponent's facedown cards** — swept, four `facedown` rows and the
+   other three read your own.
+4. **`[Temporary]` on your own permanent buys the opponent's WHOLE turn**, because 816.1.b's clock is
+   *your* Beginning Phase — so a card that pays off on their turn should be played in advance, not
+   held for its `[Reaction]` (312.2.a and 335 usually leave no window to hold it for).
+5. **`SFD-190 Forgefire Cape` extends the matched-pair invariant to a Signature EQUIPMENT**: tagged
+   Ornn, Calm/Mind, and the only Ornn legend is `SFD-189 / SFD-244 Fire Below the Mountain`, also
+   Calm/Mind. Its `[Equip]` is one rainbow, which is exactly what `[Weaponmaster]` refunds
+   (821.1.c, 821.1.c.2), and 053.1 with 136.2.d make its *"When I attack or defend"* the CARRIER's —
+   so one Riven attack is two separate Deals.
