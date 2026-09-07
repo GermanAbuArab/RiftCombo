@@ -665,7 +665,47 @@ Entry: `dauntless-vanguard-repair-specialist-gear-assault`, mono-Body.
 
 ---
 
-## 18. Back-links for `data/synergies.json` (`rule id -> entry id`)
+
+## 18. `magma-wurm-mass-ready` (OGN-011) and `soul-shepherd-token-buff` (UNL-077) — one token engine, two anchors, and 103.1.b makes them exclusive
+
+Both rules read the same partner list — cards that play unit tokens — and both were nearly unwalked
+(49 of 50 and 49 of 50 uncovered). Walking them together produced the clearest fork in this document.
+
+The engine, in two cards that were both in **zero** entries: `VEN-109` Illaoi, Prophet of the Great
+Kraken (Chaos, E6 M4) — *"When you play me or when I score, play a 1 Might Tentacle unit token …
+I have +1 Might for each token unit you control"* — and `VEN-100` Up from the Deep (Chaos, E3) —
+*"Play two 1 Might Tentacle unit tokens … [Flow] 3 Energy"*, so three copies are **six castings and
+twelve Tentacles** before 829.1.b.1's banish closes each one.
+
+A token swarm has exactly two problems, and each anchor solves one:
+
+| problem | rule | anchor | why it works |
+|---|---|---|---|
+| the bodies **cannot move** the turn they are minted (#48's bottleneck) | `magma-wurm-mass-ready` | `OGN-011` Magma Wurm (Fury) | 143.4 makes units enter exhausted and 143.4.a allows the alteration; *"Other friendly units enter ready"* is it, and 144.3 walks the whole batch in as one game action |
+| the bodies **die to one point of damage** | `soul-shepherd-token-buff` | `UNL-077` Soul Shepherd (Mind) | 143.2.a kills on damage *"equalling or exceeding its Might"*, and `OGN-133` Flurry of Blades (Body, E1, *"Deal 1 to all units at battlefields"*) kills every 1-Might token for ANY number of them; a 2 is out of range |
+
+**And you cannot have both.** Soul Shepherd is Mind, Magma Wurm is Fury, and 103.1.b caps a deck at
+the legend's two domains — Mind + Chaos + Fury is one too many. The two entries are written as twins
+and cross-reference each other: `magma-wurm-illaoi-ready-tentacles` (Fury/Chaos) buys the walk,
+`soul-shepherd-illaoi-tentacle-wall` (Mind/Chaos) buys the survival, and each states the cost of the
+half it did not take.
+
+Two smaller facts the entries pin down:
+
+- *"Enters ready"* is **not** a ready (415.1 marks an object already on the board), so what Magma Wurm
+  buys is precisely that 144.2's exhaust can be paid at all on the turn the body appears — and it is
+  worth **nothing** on the opponent's turn, where 144.1.b forbids the Standard Move and combat does
+  not read exhaustion (464.2.c.3, 465.2.b).
+- Soul Shepherd's +1 is a **continuous modifier, not a 702 Buff counter**, so 702.3's one-per-unit cap
+  never applies, it stacks on top of a real buff, and no buff-spender can take it away. It also does
+  **not** change Illaoi's own number, which counts BODIES — but 185.1 / 185.2.b make each token a full
+  unit with a Might, so the summed Might 465.2.c assigns goes from 14 to 19 on a five-Tentacle board.
+
+Magma Wurm's static reads *"OTHER friendly units"*, so she never readies herself.
+
+---
+
+## 19. Back-links for `data/synergies.json` (`rule id -> entry id`)
 
 This walk does not edit `data/synergies.json`. The pairs below are for the synergies session.
 
@@ -702,6 +742,8 @@ curator-of-the-sands-printed-cost     -> curator-needlessly-large-yordle-printed
 shadow-temple-trash-fuel              -> shadow-temple-dr-mundo-balanced-trash
 dauntless-vanguard-occupied-battlefield-assault
                                       -> dauntless-vanguard-repair-specialist-gear-assault
+magma-wurm-mass-ready                 -> magma-wurm-illaoi-ready-tentacles
+soul-shepherd-token-buff              -> soul-shepherd-illaoi-tentacle-wall
 ```
 
 Still with no entry after this pass, by decision:
@@ -715,7 +757,7 @@ sky-splitter-might-discount    NO ENTRY — all ten partners are the same arithm
 windswept-hillock-move-triggers NARROWED — 810.1.c.3; no partner supplies a second move. Section 15.
 ```
 
-## 19. Reported to the manager, not fixed here
+## 20. Reported to the manager, not fixed here
 
 - `master-of-shadows-banish-rummage` carries a **false uniqueness claim in its own name** — see §3.
   Three cards print the Shadow Clone token and its attack-triggered banish; one of them is the entry's
