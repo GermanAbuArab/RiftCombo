@@ -1100,3 +1100,132 @@ Five entries, all ENGINE, in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos
 entries; both checks of `test/legend-lines.test.ts` run against the staging file, 9 legend codes
 checked, clean. Cards that were in **zero** entries before this batch: `SFD-039` Royal Entourage,
 `SFD-197`/`SFD-247` Emperor of the Sands, `OGN-063` Spirit's Refuge, `OGN-053` Stand United.
+
+## 27. Batch 2 — the buff vein walked from the 33-card list of §23
+
+Four entries, all ENGINE, and every anchor was in **zero** entries: `OGN-147` Wildclaw Shaman,
+`UNL-043` Enthusiastic Promoter, `UNL-162` Enthralling Protector, `OGN-056` Adaptatron.
+
+### 27.1 `wildclaw-shaman-fae-dragon-buff-launder` — a net-zero buff ledger is the product
+
+`OGN-147 Wildclaw Shaman | Unit | Body | E4 M3 | When you play me, you may spend a buff to buff me
+and ready me.`
+
+Three things in one sentence, and the interesting one is the third. **143.4**: *"Units enter the
+Board exhausted"* — a body played to your base cannot pay 144.2's exhaust for a Standard Move until
+315.1.b readies it next Awakening. Wildclaw Shaman readies himself as he lands, so he walks the same
+turn. That is an [Accelerate] he does not print, bought with a Buff counter he immediately replaces.
+
+The ledger: **702.2.b** removes one counter, the same sentence places one back on him, so the board
+finishes with the same number of counters, one of them relocated. **702.3.a** is why relocation is
+worth anything at all — Fae Dragon buffs up to four bodies on entry and can then never buff them
+again, so a counter stuck on a body that has stopped caring is dead weight until something moves it.
+`SFD-101 Fae Dragon`'s second sentence charges the spend a Gold on the way through, and
+`SFD-171 Renata Glasc, Industrialist` is what makes that Gold live Power this turn rather than next
+(187.5's ability has an exhaust in its cost; R25 = A).
+
+Distinguished from the two existing Fae Dragon spend entries: `fae-dragon-wallop-industrialist`
+spends with a SPELL that readies someone else and returns no counter;
+`overt-operation-fae-dragon-industrialist` spends and refills every counter at once.
+
+### 27.2 `enthusiastic-promoter-monastery-hirana-hold-refill` — a phase early is the whole difference
+
+`monastery-hirana-warmogs-conquer-draw` (#171) is built around a difficulty:
+**383.3.b** makes *"you may spend a buff to draw 1"* the trigger's BASE COST and **383.3.b.1** has it
+*"paid in order to finalize the Triggered Ability to the Chain"*, so a buff produced by another
+trigger of the **same Conquer** can never pay it, and Warmog's has to sit out the first Conquer.
+
+`UNL-043 Enthusiastic Promoter` prints *"When I hold, [Buff] all units here"*, and 315.2.b.2 puts the
+Hold in the **Beginning Phase** — a whole phase before the Main Phase in which any Conquer happens.
+So the counter is already on the board when the Monastery's trigger is finalized, and the line pays
+from the FIRST Conquer.
+
+**Generalisation worth carrying:** a resource produced by another trigger of the same event can never
+fund a 383.3.b base cost; a resource produced in an **earlier phase** always can. The catalogue has
+recorded the negative half three times; this is the positive one.
+
+Two checks the entry states rather than assumes: the Promoter buffs *"all units **here**"*, not "all
+friendly units", and that is safe only because 315.2.b.2 Holds a battlefield you CONTROL — a
+battlefield with opposing units present is Contested (190.3.a.1 / 323.6), not held, so no enemy body
+is there at that instant. And **[Backline]** (*"I must be assigned combat damage last"*) is why a
+Might-2 body survives to keep doing it: 465.2.c.3's forced-lethal ordering reaches him last.
+
+### 27.3 `enthralling-protector-call-to-glory-xp-buff-spend` — the bound on an XP sink is 702.3, not the XP
+
+`UNL-162 Enthralling Protector | Unit | Order | E2 M2 | [Hunt] ... Spend 2 XP: [Buff] me.`
+
+The project's standing claim is that every XP sink in the pool is bounded and an XP faucet is never
+an engine on its own. True — and for the two Hunt-and-buff bodies (`UNL-162`, `UNL-102 Crowd
+Favorite`) the bound is nameable: they only ever buff **themselves**, so **702.3** allows exactly one
+counter and 702.3.a refuses the second. The sink is worth 2 XP once, forever, unless something takes
+the counter back off.
+
+`OGN-207 Call to Glory` is the free spender: *"As you play this, you may spend a buff as an
+additional cost. If you do, ignore this spell's cost."* — the spell becomes genuinely free, not
+discounted, and 813.1.c.1 admits it *"during Closed States on any player's turn"*.
+
+The rate is derived, not guessed: **315.2.b.2** Holds EVERY battlefield you control and **485.4** puts
+two on a Duel table, so a board holding both banks 2 XP a turn from [Hunt] (823.1.c.1 / 823.1.c.2) —
+exactly one buff a turn, exactly one free spell a turn, capped at three by 103.2.b. The unbounded
+spender for the same counter is the Monastery, which needs a Conquer; it is named in a notable rather
+than added to `uses[]`.
+
+Collateral cost stated in the entry: **824.1.d** makes a `[Level N]` ability *"Inactive as soon as the
+controlling player has less than [N] XP"* and **730.2** makes spending XP your own reduction, so every
+2 XP spent here switches off any Level threshold the deck was sitting above.
+
+### 27.4 `adaptatron-treasure-hoard-conquer-buff-faucet` — 205 is where a same-event resource DOES work
+
+`OGN-056 Adaptatron | Unit | Calm | E4 M3 | When I conquer, you may kill a gear. If you do, buff me.`
+
+This is the constructive mirror of §27.2. **205** — *"An instruction that requires a player to pay
+resources or spend counters or XP that does not also have a linked Effect, is not a Cost"* — carries
+the worked example *"When I attack, you may pay [4][C]. If you do, kill a unit here"*, and says the
+payment is *"a game action being performed by a player"*, with *"the later instruction check[ing]
+whether the game action was performed, not whether a cost was paid"*. So Adaptatron's kill happens at
+**resolution**, and the gear only has to exist then.
+
+`SFD-220 Treasure Hoard` fires on the same Conquer and plays a Gold. **383.3.d** lets the controller
+choose the order the two triggers go on the Chain and **340.1** resolves the newest first, so placing
+Adaptatron's FIRST and the Hoard's SECOND has the Gold on the board before Adaptatron looks for a
+gear. Legal ordering, not a reading — the standing project rule about trying a different legal
+ordering before filing anything.
+
+Why the fodder is cheap: 187.5's Gold ability has an exhaust in its cost, so a Gold played
+**exhausted** could not be cashed until your next Awakening anyway. The line spends a token that was
+going to be idle and converts it into a permanent Buff counter now, for 1 Energy.
+
+And the ceiling is stated: Adaptatron only ever buffs himself, so 702.3.a refuses the second counter —
+this is one counter per SPEND, not per Conquer.
+
+## 28. Batch 2 refusals — three, each with the paragraph that kills it
+
+**`royal-entourage` + `simian-ancestor-buff-ready` — REFUSED on 702.3.** `SFD-047 Simian Ancestor`
+reads *"When you buff me, ready me"*, so the obvious line is to double a buff source with Royal
+Entourage and ready him twice. It does not work: **702.3** allows him one Buff at a time and
+**702.3.a** says a second *"is not placed"* — no placement, no trigger. The second buff is wasted
+unless the first was SPENT in between, at which point the spender is doing the work and the readier
+is not. `simian-ancestor-arena-bar-wallop-ready` already walks that shape with the spender in
+`uses[]`.
+
+**`peak-guardian` + `vanguard-helm-buff-supply` — REFUSED, and it is ANTI-synergic.** `OGN-228
+Vanguard Helm` reads *"When a buffed friendly unit dies, buff **another** friendly unit"*. Under
+`OGN-223 Peak Guardian`'s mass buff every body in the garrison already carries a counter, so 702.3.a
+does not place the Helm's replacement and the trigger is a no-op for as long as the garrison is
+intact. The Helm wants a board where some bodies are buffed and others are not — which is exactly
+why `vanguard-helm-kinkou-monk-buff-conservation` pairs it with `OGN-141 Kinkou Monk` (*"buff up to
+TWO other friendly units"*) and not with a mass buffer. **A mass buffer and a buff-recovery card are
+opposites.**
+
+**A four-tag board needs four DISTINCT bodies — measured, not assumed.** `UNL-046 Friendship` pays
+*"+1 :rb_might: this turn for each of the following tags among your units — Bird, Cat, Dog, and
+Poro"*, and `UNL-177 Ivern, Friend to All` scores off holding all four. A sweep of `data/cards.json`
+for cards carrying two or more of those four tags returns **zero** over the whole pool (61 cards
+carry at least one). So there is no two-for-one body and no shortcut: the +4 and the four-tag Hold
+both cost four separate cards. Recorded because it is the first thing anyone tries.
+
+## 29. Batch 2 — staged
+
+Four entries in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos` clean over 531 entries (batch 1
+was merged by the manager between the two batches); `test/legend-lines.test.ts` checks run against the
+staging file, clean. No duplicate id and no duplicate sorted card set.
