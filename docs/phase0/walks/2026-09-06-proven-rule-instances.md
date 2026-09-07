@@ -731,3 +731,84 @@ close: ready → +1 → becomes Mighty → ready. It does not, twice over. A uni
 Mighty when she fired (that is her condition), so 709 cannot fire again on the +1; and readying an
 already-ready unit performs no ready at all (415.1 marks a Game Object), so the Haven's trigger has no
 event to watch. No loop, and no reading needed to say so.
+
+---
+
+# Batch 7
+
+## 15. Entries authored
+
+### 15.1 `svellsongur-kato-the-arm-keyword-spread` — ENGINE, two products from one set of instances
+Rule mined: `svellsongur-copy`. Partner `SFD-112 Kato the Arm`.
+
+*"When I move to a battlefield, give another friendly unit my keywords and +Might equal to my Might
+this turn."* Eight instances, each choosing its own recipient — so **+24 on one body, or `[Deflect]`
+and +3 on eight**, decided per instance on resolution. The keyword half is the one that survives the
+opponent's turn: 809.1.c taxes every removal spell aimed at a `[Deflect]` body.
+
+### 15.2 `svellsongur-imposing-challenger-unstage` — ENGINE, #58's third evacuation route at scale
+Rule mined: `svellsongur-copy`. Partner `UNL-105 Imposing Challenger`.
+
+> **323.10.** If Units of two opposing players are no longer present at a Battlefield that has a
+> Combat Staged **before it has opened**, the Combat will cease being Staged.
+
+Only a **Triggered Ability** reaches that window: while the eight move triggers sit on the Chain the
+state is Neutral Closed (310.2) and 323.13 needs a Neutral *Open* State to begin the Combat. Clear the
+garrison there and the Combat un-stages itself, leaving the Showdown — 348.2.a, 348.2.a.1, a Conquer
+with no damage and no Attacker designation.
+
+Boundary stated rather than implied: he is Might 5 and Svellsongur is M+0, so each instance catches
+only a defender at **4 or less**, and no Calm/Body card reduces enemy Might (Moonlight Affliction is
+Mind, 103.1.b).
+
+### 15.3 `radiant-dawn-leona-fiora-stun-ready` — ENGINE, three cards and three rules
+Rules mined: `radiant-dawn-stun-buff` (21 partners, 2 entries) × `fiora-buff-ready`.
+
+stun (383.4.e) → buff (Radiant Dawn) → Mighty (703 + 709) → ready (Fiora). Every attack, for 1 Order
+Power. #61's correction applied: what makes a stunned unit pay is **423.1.c read with 710**, not
+423.1.b — so the stun alone stops the defender hitting back and nothing more.
+
+### 15.4 `svellsongur-teemo-strategist-defend-burst` — ENGINE, up to 40 damage, no Burn Out
+Rules mined: `svellsongur-copy` × `teemo-strategist-lures-the-attacker`. Takes up the lead #117's walk
+left open (*"Teemo, Strategist reveals the top FIVE cards on defend — a removal scaled by the [Hidden]
+package"*).
+
+8 × *"reveal the top 5"* = 40 cards through the top of the deck in one combat, and **431.1.c** plus
+**431.1.c.1** mean none of it can Burn you Out; 416.1.a recycles them to the bottom, so it cannot mill
+you either. Fourth member of the Burn Out set, and the only one that turns reveals into damage.
+
+464.2.e.1 puts the Defender's triggers on the Chain last, so 340.1 resolves them **first** — before
+combat damage.
+
+### 15.5 `svellsongur-corrupt-enforcer-trash-fill` — ENGINE, and the drawback is copied too
+Rule mined: `svellsongur-copy`. Partner `SFD-123 Corrupt Enforcer`.
+
+*"When I move to a battlefield, discard 1. When I win a combat, draw 1."* — **both** sentences copied,
+the same check `svellsongur-rumble-scrapper-mechs` turned up on the static side. Eight discards with
+no draws attached is the pool's largest **deck-safe** outlet (against #95's finding that none of the
+lens's 31 outlets was free and repeatable within a turn); eight forced draws on a combat win is
+431.1.a, and it is not optional. Both are in the entry, the drawback in its own notable.
+
+---
+
+## 16. Note on batching order
+
+Batch 7 was already written and validated against `svellsongur-copy`, the stun rules and
+`fiora-buff-ready` when the manager asked for `malzahar-token-fodder`,
+`renata-industrialist-tokens` and `dark-child-off-turn-reactions` next. It ships as written rather
+than being rebuilt; those three rules are batch 8.
+
+## 17. Refusals, batch 7
+
+### 17.1 `OGS-017 Dark Child` × `UNL-142 Heedless Resurrection` — a proper superset of an existing entry
+The line is real: Dark Child's *"At the end of your turn, ready up to 2 runes"* funds a `[Reaction]`
+on the opponent's turn, 167 empties the POOL and not the runes (#153), and Heedless Resurrection kills
+a friendly unit mid-combat to reanimate a bigger one. But the card-set check returned
+`heedless-resurrection-removal-blank` `[UNL-142]` as a **subset**: the catalogued entry is that card
+alone, and adding a legend that pays for it is not a new line. Not authored.
+
+### 17.2 `SFD-112 Kato the Arm` → Fiora, without Svellsongur — three domains
+Kato's +3 crosses a 4-Might friend and 709 fires, so Fiora would ready it. Kato is **Body**, Fiora is
+**Order**, Svellsongur is **Calm**: 103.1.b is a subset test against the legend's two domains and no
+legend covers three. Kato + Fiora alone (Body/Order) is legal but is one ready per move, strictly
+worse than `arena-bar-fiora-untap`, which costs no Energy and no movement. Lead, not an entry.
