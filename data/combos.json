@@ -33758,7 +33758,7 @@
     },
     {
       "id": "fresh-beans-rengar-pouncing-attacking-reinforcement",
-      "name": "Rengar, Pouncing is the only card that may be played to a battlefield you are attacking — and Fresh Beans draws for it",
+      "name": "Rengar, Pouncing is the only card whose OWN TEXT says so (a second route exists through 355.2.b: OGN-107 Ava Achiever, \"When I attack, you may pay 1 Mind to play a card with [Hidden] from your hand, ignoring its cost. If it's a unit, play it HERE\" - 359.3.f.2 reads \"here\" at execution, where she is standing; noted by the #170 walk, 2026-09-07) — and Fresh Beans draws for it",
       "class": "ENGINE",
       "status": "verified",
       "uses": [
@@ -39178,6 +39178,315 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #170, from `solari-chief-stun-into-kill`. Card text verbatim from data/corpus_flat.txt. The content is the one-turn window: 423.1.a.2 clears a stun at cleanup step 3d, so the pair is an all-in-one-Main-Phase play and never a two-turn plan, and 423.1.a.1 is why a second stunner is dead weight. Trap check: the stun is explicitly stated NOT to reduce the cost of killing by damage (423.1.c), so nothing is claimed for it beyond enabling the Chief's branch; both halves are checked against 381 / 155 and confirmed Main-Phase only; Nami's Hold clause is included as the one printed exception to the Hold-triggered-ready no-op, with the reason (it resolves in 316, not in 315.2); 103.2.b is named as the ceiling."
+    },
+    {
+      "id": "ava-achiever-mischievous-marai-attacking-reinforcement",
+      "name": "Ava Achiever is the SECOND route into the battlefield you are attacking — and she puts a different card there, free, after the defender has committed",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-107",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E5 M4. 'When I attack, you may pay :rb_rune_mind: to play a card with [Hidden] from your hand, ignoring its cost. If it's a unit, play it here.' Two separate things: the card is free, and its LOCATION is 'here' — which 359.3.f.2 reads at execution, and at that instant she is standing at the enemy battlefield she moved to."
+        },
+        {
+          "card": "UNL-003",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E2 M2. '[Hidden] ... When you play me to a battlefield, deal 2 to an enemy unit here.' Chosen because its own play effect is already location-locked to 'here', so nothing about 811.1.d.2 has to be argued: it lands at the battlefield under attack and shoots something standing there."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Ava Achiever is mono-Mind and Mischievous Marai mono-Fury, so 103.1.b.1 needs a Fury/Mind legend, and the census has exactly one name: OGN-247 Daughter of the Void. Neither card is Signature, so 103.2.d.2 imposes nothing on top of that."
+        ],
+        "notable": [
+          "THIS NARROWS A CLAIM MADE IN THIS CATALOGUE THE SAME WEEK. `fresh-beans-rengar-pouncing-attacking-reinforcement` says `SFD-025 Rengar, Pouncing` is 'the only card that may be played to a battlefield you are attacking'. That is true of a card's OWN text — Rengar prints the permission on himself — and it is not the whole story: 355.2.b says 'Some Game Effects may grant players permission to play Units to locations that are not normally Valid', and Ava Achiever's attack trigger is such an effect, aimed at a DIFFERENT card. Rengar walks himself in; Ava throws someone else in.",
+          "AND THE BODY IS IN THAT COMBAT. 464.2.c.3.a: 'If a Unit controlled by the Attacker or Defender becomes present at this Battlefield after this moment, it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present, as appropriate for its controller', with 323.2.a doing the assignment. So the Marai is an Attacker before 465's damage step and its Might counts in 465.2.c's sum.",
+          "THE DAMAGE LANDS EVEN EARLIER. Ava's trigger fires at the Attacker designation (464.2.c.3), so the Marai's 'deal 2 to an enemy unit here' resolves before the damage step — a 2 Might defender is dead and gone from the defender's summed Might before 465.2.c is computed.",
+          "811.1.c.1 IS WHY NOTHING IS CONFINED. 'Hide is not a subset of Play.' Ava plays the card FROM HAND, not from face down, so 811.1.d.2's restriction on where a hidden card's play effects may target never engages — the Marai's own 'here' is the only restriction, and it is the one you wanted.",
+          "AND IT IS WHY THE [HIDDEN] WATCHERS NEVER FIRE. `UNL-023 Katarina, Reckless`, `OGN-167 Ember Monk` and `SFD-121 Black Market Broker` all read 'when you play a card from face down'; Ava's play is from hand, so none of them sees it. Do not price this line as if it also fed that package.",
+          "ONE MIND POWER PER ATTACK, AND THE CARD IS FREE. Ava's cost is the rune, not the card, so a 2-Energy body plus 2 damage costs a single Mind Power on a turn she was attacking anyway. 103.2.b caps the Marai at three copies, which is the real ceiling: three free reinforcements a game unless the deck runs other [Hidden] cards.",
+          "THE PAYLOAD IS INTERCHANGEABLE, AND THAT IS THE RULE'S CONTENT. Any [Hidden] card in hand works; a unit lands 'here', anything else simply resolves. `VEN-135 Kennen, Keeper of Balance` (Order) stuns a defender for 2 Energy from the same slot, and `OGN-097 Blastcone Fae` shrinks one. Those are different domain pairs and different entries, not a wider `uses[]` here.",
+          "IT DOES NOT SCORE. Killing part of the garrison is what makes the Conquer available; 466.5.d is the point, and it belongs to whatever else is attacking."
+        ]
+      },
+      "steps": [
+        "Deck-build under OGN-247 Daughter of the Void (Fury/Mind) and keep a Mischievous Marai in hand rather than hiding it — this line wants it in HAND, since Ava plays from there.",
+        "Move Ava Achiever to an occupied enemy battlefield. 190.3.a.1 applies Contested, 323.9 stages the Combat, and 464.2.c.3 designates her an Attacker.",
+        "Her trigger fires. Pay one Mind Power and play Mischievous Marai from hand, ignoring its cost. 'If it's a unit, play it here' — 359.3.f.2 reads 'here' at execution, which is the battlefield she is attacking, and 355.2.b makes that a valid play location for this effect.",
+        "The Marai's own play trigger resolves: deal 2 to an enemy unit here. 143.2.a kills any defender at Might 2 or less outright, before any damage is assigned.",
+        "323.2.a and 464.2.c.3.a give the Marai the Attacker designation at the Cleanup following the play, so it is in the combat.",
+        "465.2.c now sums a defence one body lighter and an attack two Might heavier than the opponent committed to."
+      ],
+      "terminatesIn": "engine only — one free [Hidden] body plus 2 damage at the attacked battlefield per attack, for one Mind Power, three times a game on this payload (103.2.b); nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "464.2.c.3.a. \"If a Unit controlled by the Attacker or Defender becomes present at this Battlefield after this moment, it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present, as appropriate for its controller.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "355.2.b. \"Some Game Effects may grant players permission to play Units to locations that are not normally Valid. Such locations become Valid for the purposes of Playing the Unit.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "811.1.c.1. \"Hide is not a subset of Play.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `ava-achiever-hidden-discount`. Card text verbatim from data/corpus_flat.txt. The content is a narrowing of `fresh-beans-rengar-pouncing-attacking-reinforcement`'s uniqueness claim: Rengar is the only card whose OWN text permits it, and 355.2.b makes Ava's attack trigger a second, different route that places another card. Trap check: 464.2.c.3.a is quoted rather than paraphrased, so the body is shown to be in the combat and not merely adjacent; 811.1.c.1 is cited both for why nothing is confined and for why the three face-down watchers never fire, which is the mistake this pairing invites; the payload is stated as interchangeable and the alternatives are left out of uses[] because they change the domain pair; the Fury/Mind census is named as a single legend."
+    },
+    {
+      "id": "thousand-tailed-watcher-portal-rescue-double-shrink",
+      "name": "Portal Rescue re-plays the Watcher inside the showdown — a second board-wide -3, and 356.1.b.3 says the [Accelerate] rider is still payable on a free play",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-116",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E7 P1 M7. '[Accelerate] (You may pay :rb_energy_1::rb_rune_mind: as an additional cost to have me enter ready.) When you play me, give enemy units -3 :rb_might: this turn, to a minimum of 1 :rb_might:.' The reduction names no location, so it is the whole enemy board, and it is a play trigger — which is the hook."
+        },
+        {
+          "card": "OGN-102",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind spell, E3 P1. '[Action] Banish a friendly unit, then its owner plays it to their base, ignoring its cost.' [Action] is what makes it a combat-speed re-play (806.1.b), and 'ignoring its cost' is what makes the second Watcher free."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Mind, so 103.1.b.1 is satisfied by any legend with Mind as one of its two domains. Neither is Signature, so 103.2.d.2 imposes nothing."
+        ],
+        "notable": [
+          "THE SECOND -3 IS THE ENTRY, AND IT SHARPENS A RATE ALREADY IN THE CATALOGUE. `tryndamere-thousand-tailed-watcher-shrink` prices the Watcher at 'one card spent per turn'. Portal Rescue makes it two applications in one turn off the same card, and three times a game (103.2.b).",
+          "THE ARITHMETIC OF TWO FLOORED REDUCTIONS. 477.3.b caps the REDUCTION, not the result, so '-3, to a minimum of 1' sends each enemy body from M to max(1, M - 3). Applied twice: an 8 Might defender goes 8 -> 5 -> 2, and a 4 Might defender goes 4 -> 1 -> 1, where the floor bites. So the pair is worth a full 6 only against bodies of Might 7 or more, and the entry does not claim otherwise.",
+          "WHY IT MATTERS IN A COMBAT: 465.2.c has each player assign damage equal to their SUMMED Might, and 465.2.c.4 forbids assigning a unit more than the minimum needed to kill it. Shrinking every defender cuts the damage coming back AND cuts the price of killing them, and it is the cheap lever compared with growing your own attackers.",
+          "356.1.b.3 IS THE FACT MOST READERS WILL MISS. Its worked example: 'They ignore Legion Rearguard's Base Cost of 2 Energy, but the optional additional cost of 1 Energy and 1 Fury Power is added to its Total Cost and must be paid.' So the Watcher re-played 'ignoring its cost' can still buy its own [Accelerate] rider for 1 Energy and 1 Mind Power and enter READY, which 143.4 would otherwise forbid.",
+          "THE COST IS THAT HE LEAVES THE FIGHT. Portal Rescue plays him 'to their base', so if he was standing in the combat he is removed from it before 465 resolves and his 7 Might is not in your sum. On the turn you do this he is a spell, not a body.",
+          "AND THE BANISH IS NOT A DEATH. 108.6.b puts him in your Banishment, which 108.6.c describes as \"a temporary space to hold cards while effects are being processed\", and the same sentence brings him straight back; nothing about it is a kill, so no Deathknell and no 'when a friendly unit dies' trigger fires — the mirror of the 808.1.d.1 shield family, and worth knowing because it also means the Watcher can be saved from lethal damage this way at [Action] speed.",
+          "THE REPLAY IS A PLAY, so any 'when you play a unit' trigger you control fires again; and because it is a play and not a Move, no [Ganking] question and no 144.2 exhaust arises.",
+          "IT DOES NOT SCORE. Nothing in Mind converts Might reduction into points; what this buys is a combat won or survived, and #97's sweep already found that the lens yields ENGINE and never BURST."
+        ]
+      },
+      "steps": [
+        "Play Thousand-Tailed Watcher in your Main Phase (E7 + 1 Mind Power, plus 1 Energy and 1 Mind for [Accelerate] if you want him ready). Every enemy unit takes -3 Might this turn, floored at 1 each.",
+        "Attack, or wait for the opponent's attack. Either way the combat opens and 464.2.c.3 designates the sides.",
+        "In the Closed State, where 312.2.c gives priority, play Portal Rescue (E3 + 1 Mind Power). 806.1.b is the [Action] permission.",
+        "Banish the Watcher. He leaves the battlefield, so his own Might drops out of 465.2.c's sum for this combat.",
+        "The same spell plays him to your base, ignoring his cost. 356.1.b.3 lets you still pay the optional [Accelerate] rider so he enters ready.",
+        "His play trigger fires a second time: every enemy unit takes another -3, floored at 1 each, on the same turn.",
+        "465.2.c now reads a garrison at max(1, M - 6) for bodies of 7+ Might, and 465.2.c.4 makes each of them correspondingly cheap to kill. 317.2.c expires both reductions at the end-of-turn Cleanup."
+      ],
+      "terminatesIn": "engine only — a second board-wide -3 in the same turn, three times a game (103.2.b), worth a full 6 only against Might 7 or more because 477.3.b floors each application at 1; nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "356.1.b.3. \"They ignore Legion Rearguard's Base Cost of 2 Energy, but the optional additional cost of 1 Energy and 1 Fury Power is added to its Total Cost and must be paid.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "465.2.c.4. \"Units cannot have more damage assigned to them than the minimum required to constitute lethal damage unless no further units remain to have damage assigned to them.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "143.4. \"Units enter the Board exhausted.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `portal-rescue-replays-a-body` and `moonlight-affliction-might-gate`'s reduction family. Card text verbatim from data/corpus_flat.txt. Two things are the content: the second application of a board-wide floored reduction inside one turn, priced honestly against 477.3.b so the '6' is only claimed where the floor does not bite; and 356.1.b.3, which says an optional additional cost survives a free play — the [Accelerate] rider is payable on the re-play. Trap check: the Watcher is explicitly stated to LEAVE the combat, which is the cost the pairing hides; the banish is stated not to be a death, so no Deathknell is claimed either way; 317.2.c is cited so nothing is banked across turns; produces is repeatable-removal because the reduction is what makes the kill affordable, never a kill on its own."
+    },
+    {
+      "id": "rumble-scrapper-hotheaded-mech-stack",
+      "name": "Two Rumbles are two statics on the same tokens — but 185 and 186.1 mean a Mech TOKEN can never be the fuel the second one recycles",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-089",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E5 P1 M4. 'Your Mechs have +1 :rb_might: (including me). When I hold, play a 3 :rb_might: Mech unit token to your base.' A continuous modifier, which 702.3 never caps, plus a free body every Beginning Phase you hold."
+        },
+        {
+          "card": "SFD-026",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 M4. 'Your Mechs each have [Assault]. (+1 :rb_might: while we're attackers.) When I conquer, you may recycle another friendly unit to play a Mech from your trash. Reduce its Energy cost by the Might of the unit you recycled.' A second static on the same bodies, and a recursion whose discount scales with what you feed it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Rumble, Scrapper is mono-Mind and Rumble, Hotheaded mono-Fury, so 103.1.b.1 needs a Fury/Mind legend, and the census has exactly one name: OGN-247 Daughter of the Void. Neither card is Signature, so 103.2.d.2 imposes nothing on top of that."
+        ],
+        "notable": [
+          "187.4 IS WHY THE TOKENS GET BOTH STATICS FOR FREE: 'A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag.' The tag comes by rule, so 'Your Mechs have +1 Might' and 'Your Mechs each have [Assault]' both reach a token with no extra text, via 383.2.c.1 (an ability active in a zone applies to an object entering it at the same time).",
+          "THE ATTACKING NUMBER, EXACTLY: a Mech token is 3 printed, +1 from the Scrapper (a continuous modifier, not a 702 Buff — 702.3's one-per-unit cap never touches it and it stacks with a real Buff counter), and +1 more from [Assault] while it is an attacker (807.1.b's Assault Value, and 807.2 would sum a second granted instance). Five attacking Might per free token.",
+          "A MECH TOKEN CAN NEVER BE THE RECURSION'S FUEL, AND THIS IS THE PAIRING'S OWN TRAP. Hotheaded says 'recycle another friendly unit'; 185 says 'Tokens are not cards' and 416.1 defines Recycling over cards only, so the cost cannot be paid with a token at all (416.3 requires a cost Recycle to be completable). 186.1 closes the other door: a token ceases to exist on entering any Non-Board Zone, so no dead Mech token is ever in the trash for 'play a Mech from your trash' to find either. Both halves need real CARDS.",
+          "THE DISCOUNT IS READ AFTER THE STATIC. 'Reduce its Energy cost by the Might of the unit you recycled' — the Scrapper's +1 is a continuous modifier applied at 477.3.e.1, so a Mech card you recycle is worth its printed Might plus one, and any friendly unit qualifies as fuel, not only Mechs.",
+          "THE TWO TRIGGERS FIRE IN DIFFERENT PHASES, WHICH IS WHY THEY DO NOT COMPETE. The Scrapper's is a Hold (315.2.b.2, Beginning Phase) and Hotheaded's is a Conquer (a Main Phase event), so a turn that both holds one battlefield and conquers another gets both — and 470 with 485.4 caps the Conquers at two.",
+          "THE FREE TOKEN IS BORN AT YOUR BASE AND EXHAUSTED (143.4, and the ability says 'to your base'), so it walks in on the FOLLOWING turn; 144.3 moves the accumulated pack as one game action to a shared destination, so the delay is one turn once and not one per body.",
+          "AND A HOLD-MADE TOKEN IS NOT A HOLD-MADE READY. 315.1 Awaken has finished before 315.2.b.2 fires, so nothing about the Scrapper's trigger readies anything; the token is simply a body for next turn.",
+          "IT DOES NOT SCORE. Five attacking Might per token is a combat, not a point; the Conquer that Hotheaded needs has to come from somewhere, and this line supplies the bodies for it rather than the points."
+        ]
+      },
+      "steps": [
+        "Deck-build under OGN-247 Daughter of the Void (Fury/Mind) and land both Rumbles; each is a static that reads every Mech you control, tokens included.",
+        "At each Beginning Phase in which you hold a battlefield, Rumble, Scrapper plays a free 3 Might Mech token to your base (187.4 gives it the Mech tag by rule, so both statics are already on it).",
+        "On a following turn, 315.1.b readies the accumulated tokens and 144.3 walks them in together to one destination.",
+        "In combat each of them is 3 + 1 (Scrapper) + 1 ([Assault] while attacking) = 5 Might in 465.2.c's sum.",
+        "When you conquer, Rumble, Hotheaded offers its recursion. Recycle a real CARD — never a token (185, 416.1, 416.3) — and play a Mech from your trash with its Energy cost reduced by that card's current Might, the Scrapper's +1 included.",
+        "The recycled card goes to the bottom of the Main Deck (416.1), so the fuel is card selection as well as a discount."
+      ],
+      "terminatesIn": "engine only — one free 3 Might Mech token per Hold, each worth 5 attacking Might under both statics, plus one discounted Mech recursion per Conquer (capped at two a turn by 470 and 485.4); nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "187.4. \"A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "185. \"Tokens are not cards.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "807.2. \"If a Unit has Assault or has been granted Assault and is granted Assault by an additional source, the Assault Value of all granted Assault keywords is summed.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `rumble-scrapper-mech` and `rumble-hotheaded-mech`, which had never been walked together. Card text verbatim from data/corpus_flat.txt. The content is the trap the pairing invites: the Scrapper mints Mech TOKENS and Hotheaded's recursion is written over CARDS, so the obvious 'feed the tokens to the recursion' line is refuted twice over by 185 (tokens are not cards, so 416.1 cannot recycle one) and 186.1 (a token never remains in the trash). Trap check: the +1 is stated as a continuous modifier and explicitly not a 702 Buff; the token's tag is sourced to 187.4 rather than assumed; the two triggers are separated by phase so neither is claimed twice; the base-born token's one-turn delay is priced by 143.4 and 144.3; the Fury/Mind census is named as a single legend."
+    },
+    {
+      "id": "pack-of-wonders-rippers-bay-permanent-channel",
+      "name": "Ripper's Bay pays whoever bounces a unit off it — and Pack of Wonders is the bouncer that comes back every Awakening instead of three times a game",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-181",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos gear, E2. ':rb_exhaust:: Return another friendly gear, unit, or facedown card to its owner's hand.' The cost is its own exhaust and nothing else, and 415.3.a readies it every Awakening — so this is one bounce a turn, forever, for zero resources."
+        },
+        {
+          "card": "UNL-214",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'When a unit here is returned to a player's hand, that player may pay :rb_energy_1: to channel 1 rune exhausted.' It says 'that player', never 'you', so 190.6.d cannot blank it and it works from turn one with no Control established."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Pack of Wonders is mono-Chaos and Ripper's Bay is Colorless, so 103.1.b.1 is satisfied by any legend with Chaos as one of its two domains. Neither card is Signature.",
+          "The battlefield is not guaranteed: 485.4.a has each player provide three and 485.5 randomly selects one, and 103.4.c forbids duplicates of a name, so the Bay arrives one time in three."
+        ],
+        "notable": [
+          "THE RATE IS THE ENTRY. `rippers-bay-retreat-double-channel` uses `OGN-104 Retreat` and is honest about its ceiling: 'three casts a game (103.2.b)'. Pack of Wonders' cost is an exhaust, and 415.3.a — 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn' — hands it back every turn. One bounce a turn, forever, against three a game.",
+          "AND THE PRICE IS ONE ENERGY, NOT TWO. Retreat costs 1 Energy and then the Bay asks for 1 more; the Pack's bounce is free, so the whole transaction is the Bay's 1 Energy for one exhausted rune.",
+          "IT IS A REFILL, NOT A RAMP, AND THAT IS THE HONEST FRAME. 161.2.a fixes the Rune Deck at 'Exactly 12 Rune cards' and 430.3 channels 'as many as possible' when it runs low, while 315.3.b already channels two free every Channel Phase — so by the turn this matters the Rune Deck is thin and the extra channel is returning what 164.2.b's Power recycles put back (161.2.b sends a recycled rune to the Rune Deck, not the Main Deck). What it buys is a rune you CONTROL, which is the currency `OGN-288 Startipped Peak`'s partners are priced in, not raw mana.",
+          "THE RUNE ARRIVES EXHAUSTED, so 164.2.a's '[E]: [Reaction] — Add [1]' cannot be paid from it this turn; 415.3.a readies it at your next Awakening. 164.2.b's recycle-for-Power has no exhaust in its cost, so the rune IS live as Power immediately.",
+          "THE BOUNCE IS THE OTHER HALF OF THE VALUE. 'Another friendly gear, unit, or facedown card' — returning your own unit re-buys its play trigger, and returning a FACEDOWN card takes a hidden card back to hand, which frees the battlefield's single facedown slot (811.1.b allows one per battlefield). The unit has to be standing at the Bay for the Bay's trigger to see it.",
+          "IT PAYS THE OPPONENT TOO. 'That player may pay 1 Energy' — so an opposing unit bounced off the Bay channels for THEM. Bringing this battlefield is a symmetric offer, and the asymmetry has to come from you having the repeatable bouncer.",
+          "IT DOES NOT SCORE, AND A BOUNCE IS NOT A RECALL: 455 defines a Recall as relocation to the BASE, while this returns the card to HAND — so nothing here is protected by 456.3 and nothing is claimed about movement locks."
+        ]
+      },
+      "steps": [
+        "Bring Ripper's Bay as one of your three battlefields; 190.6.d never switches it off, so it is live from turn one whether or not anyone controls it.",
+        "Play Pack of Wonders (E2). It is gear, so 143.4 does not apply and its exhaust ability is available the turn it lands.",
+        "Each of your Main Phases, exhaust it to return one of your own units standing at the Bay to your hand.",
+        "The Bay's trigger fires on that return. Pay 1 Energy and channel 1 rune exhausted (430.2.a's default is overridden by the card's own wording).",
+        "164.2.b's 'Recycle this: [Reaction] — Add [C]' carries no exhaust, so the new rune is live Power at once; 415.3.a readies it, and the Pack, at your next Awakening.",
+        "Re-play the bounced unit when you want its entry trigger again, or hold it as a card in hand the sweeper cannot reach."
+      ],
+      "terminatesIn": "engine only — one rune channelled and one unit re-bought per turn for 1 Energy, forever, bounded by the 12-card Rune Deck (161.2.a, 430.3) and by the battlefield arriving at all (485.5); nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "415.3.a. \"A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "161.2.a. \"Exactly 12 Rune cards chosen during Deck Construction.\" 430.3. \"If there aren't sufficient runes in the Rune Deck, channel as many as possible.\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "455. \"A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.\""
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from `rippers-bay-bounce-channel`. Card text verbatim from data/corpus_flat.txt. The content is the rate: the existing Ripper's Bay entry pairs it with a spell capped at three copies, and an exhaust-cost gear is the same effect once a turn forever (415.3.a), for half the Energy. Trap check: the channel is stated as a REFILL against 161.2.a / 430.3 / 315.3.b rather than as ramp; the rune's exhausted state is priced against 164.2.a versus 164.2.b so no Energy is claimed this turn; the battlefield's symmetry ('that player') is stated as a real cost; 455 is cited so a bounce to hand is never confused with a Recall; 485.5 and 103.4.c are cited for the battlefield's randomness."
     }
   ]
 }
