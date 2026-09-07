@@ -942,3 +942,89 @@ free groups:          rows 16, 17, 18 and 31-47, all families of 8+ partners
 The matrix scripts stay in `.scratch/` so the families can be mined later without rebuilding:
 `matrix.ts` (classify + pair + filter), `buckets.mjs` and `bucketD.mjs` (the four refusal buckets),
 `top30b.mjs` and `tight.mjs` (ranking views).
+
+---
+
+## 18. The family slice, rows 40-47 — four entries, two refusals
+
+Eight trigger groups, all legal (checked against `data/legality.json`, not the card text — §16c bug 3).
+
+### 18a. Rows 40-42 written as ONE entry: `awaken-ready-body-triple-trigger`
+
+`VEN-088 Jayce, Hammer in Hand`, `OGN-143 Pirate's Haven` and `VEN-071 Fretful Feline` are three
+triggers on **the same event, in the same domain, on the same board** — a single ready fires all
+three. Three entries would have been the near-duplicates the one-entry-per-trigger-card rule exists
+to prevent, so they are one, and none of the three had ever appeared in a catalogued entry.
+
+**The engine is the Awaken Phase and it costs nothing.** 315.1.b: *"The Turn Player readies all Game
+Objects they control that are able to be readied"*, and 415.1.b keeps that to the exhausted ones —
+which is every unit that acted last turn. So all three triggers fire on your own upkeep, every turn,
+with no card spent. The pairing was never "find a readier"; it is **the game readies for you and
+nobody was collecting**.
+
+One Awaken on the declared board: +1 Might per readied body (Pirate's Haven), a keyword of your
+choice on Jayce, +2 on Fretful Feline — Jayce at M6 with [Ganking] or [Deflect 2] or [Assault 2],
+Fretful Feline at M8, for the one-off E13 + 1 Power the three cards cost. `OGN-153 Overt Operation`
+is the mid-turn second round, and because Jayce's clause carries no *"you've not chosen this turn"*,
+two readies are two DIFFERENT keywords.
+
+### 18b. Row 43 `prize-of-progress-seal-gear-might`, with the noise count admitted
+
+The manager's warning was right: this row's 62 "partners" come from a cause regex that is a bare
+exhaust symbol. The entry says so in its own `notable` and prices the real number — **the gear
+activations your turn actually makes.** What makes it worth writing anyway is that `OGN-120 Seal of
+Insight` is E0 and is the Mind deck's Power base, so the triggers are already being paid for:
+three Seals tapped is +3, taking `SFD-075` from M3 to M6 and over 709's threshold. Nothing in
+mono-Mind converts Might into points (#97), and the entry claims no more than a body that defends
+better on the turns you spend Power.
+
+### 18c. Rows 45 and 46 — two Mighty legends that want opposite decks
+
+This is the finding of the slice. Both legends key on the same keyword and they are not
+interchangeable:
+
+- `SFD-205 Grand Duelist` — *"When one of your units **becomes** [Mighty]"* — is governed by **709's
+  crossing event**, so it pays only when a sub-5 body is pushed over the line, and 702.2.a keeps the
+  buff there, so each body pays **once, forever**. `grand-duelist-arena-bar-mighty-channel` is the
+  two-card floor: `OGN-124 Arena Bar` buffs an exhausted friendly unit for free once a turn, and the
+  ceiling is the number of DIFFERENT unbuffed Might-4 bodies you can present.
+- `OGN-249 Relentless Storm` — *"When you **play** a [Mighty] unit"* — needs no crossing at all. Any
+  body already at 5+ as it enters pays, every time. `relentless-storm-grimwyrm-mighty-ramp` prices it
+  on `SFD-015 Perched Grimwyrm`, the cheapest Might-5 unit in the identity with no Power cost (a
+  sweep puts `OGN-150 Kraken Hunter` first at E3, but it demands 2 Body Power, the scarcer currency).
+
+So the Duelist wants a deck full of Might-4 bodies and a buffer; the Storm wants a deck full of
+Might-5 bodies and nothing else. Same keyword, opposite builds, and only the Duelist is capped by
+702.3.
+
+### 18d. Row 44 REFUSED — `UNL-074 Frigid Jewel`, on arithmetic
+
+*"When you draw your second card each turn, give a friendly unit +2 Might this turn."* The trigger is
+**once per turn** by its own wording — the SECOND card, not every card after the first — and your
+Draw Step (315.4) supplies the first, so one extra draw arms it and every further draw is wasted on
+it. The product is **+2 Might, for one turn, once a turn**, for E2 plus whatever the extra draw
+costs. Nothing in the pool converts Might into points except OGN-034's excess-damage threshold
+(#97), which needs Fury; and +2 excess is less than a single `SFD-009 Serrated Dirk` ([Assault 2],
+E1, one rune to attach) gives for good. Its 100 "partners" are the same bare-regex artifact as
+§18b — every draw in the pool. **No entry.** The family is a synergy lead at best.
+
+### 18e. Row 47 REFUSED — `SFD-180 Fiora, Worthy` is saturated, and the count is a coverage artifact
+
+Fiora shows **117 uncovered partners**, the most of any trigger card in the matrix. She is also in
+**thirteen** catalogued entries —
+
+```
+renata-mastermind-points, fiora-vault-breaker-jhin, jhin-fiora-facebreaker-recall,
+garen-fiora-malzahar-facebreaker-recruits, soraka-fiora-loop-shield, world-atlas-fiora-worthy-ready,
+grand-duelist-fiora-mighty-crossings, friendship-fiora-worthy-mighty-ready,
+svellsongur-ribbon-dancer-fiora-mass-ready, peak-guardian-fiora-mass-ready, arena-bar-fiora-untap,
+overt-operation-fiora-double-untap, radiant-dawn-leona-fiora-stun-ready
+```
+
+— and carries **two synergy rules of her own**, `fiora-buff-ready` and `fiora-equipment-ready`.
+
+**The 117 is an artifact of a pairwise coverage test.** My filter removes a pair only if those two
+cards appear together in one entry or as an anchor-partner pair of one rule. Every MECHANISM Fiora
+has is catalogued; only these particular partners are not. A fourteenth entry would differ from the
+thirteen in neither cards nor numbers in any way that matters. **No entry** — and the lesson is that
+a high uncovered-partner count is evidence of a well-mined card, not an unmined one.
