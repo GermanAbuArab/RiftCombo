@@ -39590,6 +39590,363 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #170, from `rell-magnetic-free-equip-attach` and `weaponmaster-equip-discount`. Card text verbatim from data/corpus_flat.txt. Two things are the content: 807.2's summing read per EQUIPMENT under the Purifier, which turns a stack on one body into a single large Assault Value with Riot's own worked example behind it; and the reason Rell is the legal carrier at all — 718.2 with 721.2 makes an attached Equipment's [Equip] Inactive, so a body that accumulates Equipment must be fed by an ATTACH effect, which is exactly what her trigger is. Trap check: the free play is stated to be a play (unlike [Equip], 818.1) so 'when you play a gear' triggers are not silently excluded; the hand is named as the real ceiling rather than the board; [Assault] is stated as offence-only per 807.1's reminder; [Tank] is priced as a toll on the defender's assignment (815.1.c.2) and not as protection for Rell."
+    },
+    {
+      "id": "empowered-deathknell-blade-ruined-king",
+      "name": "The Blade's cost is a friendly corpse, and the pool prints exactly two bodies that pay you for being it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-178",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order Equipment, E3 P1, M+4. '[Equip] - :rb_rune_order:, Kill a friendly unit (Pay the cost: Attach this to a unit you control.)' 818.1 makes Equip an Activated Ability and 818.1.c.3 allows non-resource costs; there is NO exhaust in it, so it is the pool's repeatable sacrifice outlet, priced at one Order Power and one friendly body per activation."
+        },
+        {
+          "card": "VEN-128",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E2 M2. '[Empower] :rb_energy_1::rb_rune_order: ... [Empowered][>][>>][Deathknell][>] Play two 1 :rb_might: Recruit unit tokens to your base. (When I die while Empowered, get the effect.)' Pre-pay 1 Energy + 1 Order Power once and the body pays two more bodies when it is spent as the Blade's cost."
+        },
+        {
+          "card": "VEN-078",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Body unit, E4 M4. '[Empower] :rb_energy_1::rb_rune_rainbow::rb_rune_rainbow: ... [Empowered][>] I have +2 :rb_might:. [Empowered][>][>>][Deathknell][>] Channel 2 runes exhausted.' The second of the pool's two [Empowered]-gated Deathknells, and the one that refunds the Power its own Empower cost."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Body + Order: Blade of the Ruined King and Noxian Emissary are mono-Order and Baccai Witherclaw is mono-Body (103.1.b.3), so 103.1.b.2 requires a legend whose two domains cover both, and the pool prints exactly five such names - OGN-269/OGN-310 The Boss, OGS-023 Might of Demacia - Starter, SFD-205/SFD-251 Grand Duelist, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War.",
+          "Drop VEN-078 Baccai Witherclaw and the line is mono-Order, legal under any legend whose pair includes Order (103.1.b.3) - seventeen names in the census, listed in full on the sibling entries solari-sunhawk-eye-of-herald-deflect-carrier and trifarian-gloryseeker-vanguard-helm-legion-buff. They are deliberately not spelled out as base codes here, because with the Witherclaw in uses[] the identity of THIS entry is Body/Order and a reader must not take a code off this line and build to it.",
+          "One Order Power per activation, plus a body to spend. The Blade itself is E3 + 1 Power, once."
+        ],
+        "notable": [
+          "THE SWEEP, WITH ITS MEMBERS NAMED. `grep -in \"Deathknell\" data/corpus_flat.txt | grep -i \"Empowered\"` over the whole pool returns exactly TWO rows: VEN-078 Baccai Witherclaw and VEN-128 Noxian Emissary. Those are the only two bodies whose death payoff has to be BOUGHT in advance, and they are the only two the Blade's cost can be aimed at for profit rather than for loss. One is Body and one is Order, so a Body/Order legend runs both.",
+          "WHY THE [EMPOWERED] STATE SURVIVES THE DEATH. 441.2 scopes Empowered to 'Game Objects ON THE BOARD', which on a naive read would switch the Deathknell off at the moment the body leaves it. 808.1.d.3 is the paragraph that answers it: 'Before the card is moved to the Trash, note its location, its attributes, and any other details related to the effect of its triggered ability to process the trigger after it has been Finalized.' The Empowered state is one of those attributes, read before the move.",
+          "818.1.c.1 ORDERS THE CHAIN, AND IT IS CITED HERE FOR THE FIRST TIME IN THIS CATALOGUE. 'If paying costs or making choices for this ability causes triggered abilities to trigger, they will be placed on the chain above this ability in a Pending state.' So the Deathknell sits ABOVE the Equip and 340.1 resolves it first: the two Recruits are on the board before the sword finishes attaching. They still cannot be THIS attach's carrier, because 818.1.b.1 makes Equip's choice a Target picked when the ability is activated - they are fuel for the NEXT one.",
+          "185.2.d IS WHY THE TOKENS PAY THE NEXT TWO ATTACHES. 'Tokens have a type. They follow all rules for their type unless otherwise specified.' A 1 Might Recruit is a unit, so it satisfies 'Kill a friendly unit' and 203.3 ('If the game action associated with a Cost is impossible ... they cannot pay the Cost') never bites. This is the opposite side of the line from 416.1, which defines Recycling over CARDS only, and from 186.1, which keeps a dead token out of the trash. Net: one Empowered Emissary turns ONE sacrifice into THREE - itself and its two Recruits - for 1 Energy + 1 Order Power on top of its E2 body.",
+          "THE WITHERCLAW REFUNDS ITS OWN EMPOWER, AND IT IS A REFILL RATHER THAN A RAMP. Its [Empower] is 1 Energy + 2 rainbow Power; its Deathknell channels 2 runes exhausted. 164.2.b gives a Basic Rune 'Recycle this: [Reaction] - [Add] [C]' with NO exhaust in the cost, so an exhausted rune still pays 1 Power of its domain at Reaction speed; 415.3.a readies it only in your own Awakening, so as ENERGY it is next turn's. But 161.2.a fixes the Rune Deck at 'Exactly 12 Rune cards' and 430.3 channels 'as many as possible', so once twelve runes are out the Deathknell is worth nothing - it returns what recycling put back, it does not add.",
+          "434.1.g IS THE ONE MISPLAY. 'Attaching a card to its current Top-Most Card will not have any effect', and 434.1.h says nothing additional happens - so every activation must name a DIFFERENT carrier, and 434.1.f detaches it from the previous one. 434.4.a keeps that relocation from being a Move, so no exhaust and no 144.4 destination check applies to the sword itself.",
+          "381 IS THE TIMING WALL. 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' The Blade carries neither [Action] (806.1.b) nor [Reaction] (813.1.c.1), so every attach is your own Main Phase: this is a sacrifice outlet you schedule, never a response.",
+          "THE RECRUITS ARE BORN AT THE BASE, AND THAT IS THE BOTTLENECK. The Emissary's own text says 'to your base', so 355.2.a's default never comes up and the two bodies still have to walk (144.4, base to battlefield, paying 144.2's exhaust) - and 143.4 makes them enter exhausted, so the walk is next turn. Contrast solari-sunhawk-eye-of-herald-deflect-carrier, whose Recruit is born 'here' at the carrier's destination and needs no walk at all.",
+          "THE FORK THIS ENTRY DELIBERATELY DOES NOT TAKE. OGN-236 Karthus, Eternal is mono-ORDER (not Fury), and 'Your [Deathknell] effects trigger an additional time' would make the Emissary four Recruits and the Witherclaw four runes. That family is already six entries deep - blade-kogmaw-karthus-wipe, karthus-honest-broker-blade-gold, karthus-sacred-shears-blade-draw, karthus-machine-evangel-renata-plaza, karthus-glasc-mixologist-double-reanimate, ferrous-forerunner-karthus-mech-plaza - and every one of them is about what Karthus doubles. This entry is the other half: what makes the Blade's cost profitable with no multiplier at all, which is the pre-paid Empower. Add Karthus to this list and both halves are true at once.",
+          "WHAT IT IS NOT. Nothing here scores. 469 defines Scoring as Conquer or Hold only, and none of these three cards touches either."
+        ]
+      },
+      "steps": [
+        "Play Blade of the Ruined King (3 Energy + 1 Power) and Noxian Emissary (2 Energy).",
+        "Empower the Emissary for 1 Energy + 1 Order Power. 441.2 makes Empowered a permanent board state, so this is paid once and never again for that body.",
+        "When you want the sacrifice: activate the Blade's [Equip], paying 1 Order Power and killing the Empowered Emissary, and choose a different unit as the carrier (434.1.g).",
+        "818.1.c.1 puts the Deathknell on the chain above the Equip; 340.1 resolves it first and two 1 Might Recruit tokens arrive at your base. 808.1.d.3 is what let the trigger read the Empowered state after the body left the board.",
+        "Activate the Blade twice more, paying 1 Order Power each time and killing a Recruit for the cost (185.2.d). One pre-paid Emissary has bought three activations.",
+        "With a Body/Order legend, do the same with Baccai Witherclaw: Empower it for 1 Energy + 2 rainbow Power, kill it to the Blade, and channel 2 runes exhausted - which 164.2.b turns straight back into 2 Power, refunding the Empower."
+      ],
+      "netPerIteration": "one Order Power and one body per attach; an Empowered Emissary converts one body into three, and an Empowered Witherclaw returns the Power its own Empower cost",
+      "terminatesIn": "engine only - three attaches per Empowered Emissary, and a Power refund per Empowered Witherclaw that stops paying once twelve runes are out (161.2.a, 430.3); bounded by 103.2.b at three copies each and by 381, which confines every attach to your own Main Phase. Nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md, batch 5)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #180, batch 5). The first entry to use VEN-128 Noxian Emissary or VEN-078 Baccai Witherclaw. Card text verbatim from data/corpus_flat.txt; every paragraph opened in data/Riftbound-Core-Rules-2026-07-16.txt. Citations opened and quoted: 103.1.b.2, 103.1.b.3, 103.2.b, 143.4, 144.2, 144.4, 161.2.a, 164.2.b, 185.2.d, 186.1, 203.3, 340.1, 355.2.a, 381, 415.3.a, 416.1, 430.3, 434.1.f, 434.1.g, 434.1.h, 434.4.a, 441.2, 469, 806.1.b, 808.1.d.3, 813.1.c.1, 818.1, 818.1.b.1, 818.1.c.1, 818.1.c.3. FIRST CITE IN THIS CATALOGUE: 818.1.c.1 (0 prior hits in data/combos.json). UNIQUENESS SWEPT, NOT ASSUMED: the [Empowered]-gated Deathknell is exactly two cards, named. DOMAIN CHECKED against data/cards.json, not from memory: OGN-236 Karthus, Eternal is mono-ORDER, which is the opposite of what a Deathknell-multiplier's reputation suggests, and it is stated in a notable rather than folded into uses[] because the six Karthus x Blade entries already own that half. Ban check: none of the three is banned or restricted; none is a Signature card, so 103.2.d.2 imposes no legend. No unruled reading."
+    },
+    {
+      "id": "solari-sunhawk-eye-of-herald-deflect-carrier",
+      "name": "A token factory the opponent has to overpay to answer - and the pronoun rule that says whose move makes the token",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-122",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order unit, E3 M3. '[Empower] :rb_energy_2: ... [Empowered][>] I have +1 :rb_might: and [Deflect 2]. (Opponents must pay :rb_rune_rainbow::rb_rune_rainbow: to choose me with a spell or ability.)' 441.2 makes Empowered a permanent board state, so 2 Energy once buys Deflect 2 for the rest of the game."
+        },
+        {
+          "card": "SFD-153",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order Equipment, E1, M+0. '[Equip] :rb_rune_order: ... [Effect] When I move, play a 1 :rb_might: Recruit unit token here.' The 'I' of an appended Effect Text is the CARRIER (053.1 + 136.2.d), so this is the Sunhawk's move that mints the token."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity - Starter, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "2 Energy for the Empower and 1 Order Power for the [Equip], both once per carrier."
+        ],
+        "notable": [
+          "THE PRONOUN RULE, WHICH DECIDES WHOSE MOVE THIS IS. 136.2.b: 'Effect Text is inactive unless the card with the Effect Text is Attached to another card.' 136.2.c and 434.1.c append it to the carrier's Rules Text, and 434.1.e makes the gear's own printed Rules Text Inactive while attached. Then 053.1 ('Units and legends say \"I,\" \"me,\" etc.') and 053.2 ('Gear and spells say \"this\"') split the two, and 136.2.d makes the split explicit with Riot's own two worked examples: Guardian Angel's effect text 'If I would die, kill Guardian Angel instead. Heal me, exhaust me, and recall me' - where 'I'/'me' is the CARRIER and the NAME is the attached gear - and Brutalizer's 'If this was attached to me this turn, I have an additional +2 [M]'. So 'When I move' on the Eye of the Herald is the Sunhawk moving, and the same reading is why SFD-102 Hexdrinker's '[Deflect] ... to choose me' protects the carrier and not the gear. 053.2 is cited here for the first time in this catalogue.",
+          "WHAT DEFLECT 2 IS ACTUALLY WORTH, MEASURED AGAINST THE FREE POWER FLOOR. 809.1.c: Deflect is 'functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost FOR EACH TIME they choose [me/this]\"', and 809.1.c.1 lets that Power be any Domain. This project measured the free floor at 2 Power a turn (164.2.b recycles an already-exhausted rune with no exhaust in the cost, and 315.3.b channels two back every Channel Phase), so Deflect 2 consumes an opponent's entire free Power for ONE choose - and a spell that chooses the carrier twice pays 4.",
+          "AND WHAT IT IS NOT WORTH: 355.10.d. 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability' - such an object is not a target, and 809.1.d only imposes the cost on effects that CHOOSE. So every sweeper in the pool goes straight through Deflect, and exactly two cards ignore it outright: VEN-061 Decree of Insight ('Ignore [Deflect] while paying this spell's cost') and VEN-158 Heisho, Shell of the World. Deflect buys you protection from targeted removal and nothing else; do not price it as evasion.",
+          "809.2 SUMS, WHICH MAKES IT THE THIRD MEMBER OF A FAMILY. 'If a Game Object has Deflect, or has been granted Deflect, and is granted Deflect by an additional source, the Deflect Value of all granted Deflect keywords is summed' - the same shape as 814.2 for [Shield] (Riot's example: Stalwart Poro + Block = Shield 4) and 807.2 for [Assault] (Petty Officer + Cleave = Assault 4). So SFD-102 Hexdrinker's granted [Deflect] on an Empowered Sunhawk is Deflect 3, at the price of a Body rune and a Body/Order legend.",
+          "THE TOKEN IS BORN 'HERE', WHICH IS THE WHOLE POINT. 359.3.f.2 reads 'here' at execution, so the Recruit appears at whatever battlefield the Sunhawk moved to - never at the base. That is the answer to the walk-to-the-battlefield bottleneck this project measured on token engines, and it is exactly what empowered-deathknell-blade-ruined-king does NOT have, since the Noxian Emissary's Recruits are printed 'to your base'.",
+          "THE RATE, HONESTLY. 144.2 makes exhausting the unit the Cost of a Standard Move and 144.4 confines it to base-to-battlefield without [Ganking], so one move - one Recruit - per carrier per turn, with 415.3.a readying it at your own Awakening. Three Eyes on three Sunhawks is three Recruits a turn, and 103.2.b caps both at three copies.",
+          "DISTINCT FROM hungry-wolf-eye-of-herald-double-move, which pairs the same Equipment with VEN-125 Hungry Wolf to buy a SECOND move per turn. That entry raises the rate; this one raises the carrier's survivability, and the two stack - a Hungry Wolf carrying the Eye is not Empowered and dies to any targeted removal, which is the failure mode this line is written against."
+        ]
+      },
+      "steps": [
+        "Play Solari Sunhawk (3 Energy) and Empower it for 2 Energy. 441.1.b makes that a one-time purchase and 441.2 makes the [Deflect 2] permanent.",
+        "Play the Eye of the Herald (1 Energy) and [Equip] it to the Sunhawk for 1 Order Power. 818.1.b.2 makes the Sunhawk the Top-Most Card, and 136.2.c appends 'When I move, play a 1 Might Recruit unit token here' to its Rules Text.",
+        "Standard-move the Sunhawk from base to a battlefield, paying 144.2's exhaust. The trigger fires and a 1 Might Recruit is played at that battlefield - 'here' read at execution (359.3.f.2), so no walk is needed.",
+        "The opponent who wants the factory gone must pay 2 Power of any domain on top of their removal spell's own cost (809.1.c, 809.1.c.1), which is their whole free Power floor for the turn.",
+        "415.3.a readies the Sunhawk at your next Awakening; move it home or out again for another Recruit. Repeat every turn, one token per carrier."
+      ],
+      "netPerIteration": "one 1 Might Recruit token per carrier per turn, born at the battlefield rather than the base",
+      "terminatesIn": "engine only - one Recruit per Standard Move, so one per carrier per turn without [Ganking] (144.4), capped at three Sunhawks and three Eyes by 103.2.b; nothing here scores, and Deflect stops targeted removal only, never a sweeper (355.10.d)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md, batch 5)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #180, batch 5). The first entry to use VEN-122 Solari Sunhawk. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 053.1, 053.2, 103.1.b.3, 103.2.b, 136.2.b, 136.2.c, 136.2.d, 144.2, 144.4, 164.2.b, 315.3.b, 355.10.d, 359.3.f.2, 415.3.a, 434.1.c, 434.1.e, 441.1.b, 441.2, 809.1.c, 809.1.c.1, 809.1.d, 809.2, 814.2, 818.1.b.2. FIRST CITE IN THIS CATALOGUE: 053.2 (0 prior hits). The pronoun split was the load-bearing check of this walk: an [Effect] Deathknell or move trigger on an Equipment belongs to the CARRIER, not to the gear, and the same reading is what refuses SFD-172 Sacred Shears as fuel for a kill-your-own-gear line (recorded as a refusal in the walk document). Distinct from peak-guardian-spirits-refuge-mass-deflect, which grants Deflect 1 to a whole garrison from a buff, and from hungry-wolf-eye-of-herald-double-move, which buys a second move instead of protecting the carrier. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "bandle-soldier-enthralling-protector-xp-floor",
+      "name": "The one XP line that wants the counter BANKED - a 5 Might body that walks in the turn it lands",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-151",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order unit, E4 P1 M5. '[Level 3][>] I enter ready. (While you have 3+ XP, get the effect.)' One of exactly three [Level N] 'enter ready' cards in the pool and the only mono-Order one."
+        },
+        {
+          "card": "UNL-162",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E2 M2. '[Hunt] (When I conquer or hold, gain 1 XP.) Spend 2 XP: [Buff] me.' The faucet. Its own sink is the thing this entry tells you never to use."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity - Starter, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A battlefield you actually hold, since [Hunt] pays on a Conquer or a Hold and nothing else."
+        ],
+        "notable": [
+          "THE SWEEP, WITH ITS MEMBERS NAMED. `grep -in \"enter ready\\|enters ready\" data/corpus_flat.txt | grep -i level` returns exactly THREE cards: UNL-016 Scorchclaw (Fury, [Level 3], '+1 Might and enter ready'), UNL-151 Bandle Soldier (Order, [Level 3]) and UNL-191 Wuju Master (Calm/Body legend, [Level 11], 'Your units enter ready'). Bandle Soldier is the Order one and the cheapest to switch on.",
+          "WHY 'ENTERS READY' IS WORTH ANYTHING AT ALL. 143.4: 'Units enter the Board exhausted', with 143.4.a saying that can be altered. 144.2: 'Exhausting the Unit is the Cost for this action' - the Standard Move. So a body that enters ready walks to a battlefield on the turn it is played, which is the whole value; 415.1 defines Readying as marking a Game Object ALREADY on the board, so 'enters ready' is a play-time property and can never hand an exhaust back later. It is worth a tempo turn, never a second activation.",
+          "THE RULE THAT MAKES THIS LINE THE OPPOSITE OF EVERY OTHER XP LINE. 824.1.d: 'The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP', and 730.2: 'To Spend XP, reduce the value of XP marked on the Player spending it.' So the XP has to be BANKED and never spent. That is a deckbuilding constraint, not a play decision: the two catalogued entries that share this faucet - poppy-hunt-xp-discount (UNL-178 Poppy spends 3 XP as an additional cost) and shepherds-heirloom-xp-equip (UNL-158's [Equip] spends 1 XP) - both take you back under the threshold and switch every [Level 3] in the deck off. Pick a side; a list cannot run both halves.",
+          "THE PROTECTOR'S OWN SINK IS PART OF THE SAME TRAP, AND IT IS ALSO A BAD DEAL. 'Spend 2 XP: [Buff] me' takes 3 XP to 1. And what it buys is capped anyway: 702.3, 'There can only be one Buff on a Unit at a time', with 703 fixing each buff at exactly +1 Might - so the sink is worth +1 Might ONCE, forever, and costs you the [Level 3] of every Bandle Soldier in the deck to get it.",
+          "THE RATE, DERIVED RATHER THAN ASSERTED. 823.1.c.1: 'Hunt is functionally short for \"When I Conquer or Hold, my controller gains X XP\"', X = 1 here. 315.2.b.2: 'The Turn Player Holds all Battlefields they Control', and 485.4 puts Battlefield Count at 2 in a Duel - so two Protectors standing on two held battlefields pay 2 XP per Beginning Phase and the floor of 3 is reached in the second one. One Protector alone takes three turns.",
+          "THE FLOOR IS A STATE, NOT A ONE-TIME UNLOCK. 824.1.c.1 re-evaluates on a change of controller and 824.1.d re-evaluates continuously, so every Bandle Soldier drawn later also enters ready for as long as the counter stays at 3 - the faucet is paid for once and every copy after that is free.",
+          "WHAT IT IS NOT. Nothing here scores. The Protector's [Hunt] is paid BY a Hold, it does not cause one, and 469 defines Scoring as Conquer or Hold only."
+        ]
+      },
+      "steps": [
+        "Play Enthralling Protector (2 Energy) and walk it to a battlefield you can hold.",
+        "At your Beginning Phase, 315.2.b.2 Holds every battlefield you control and [Hunt] pays 1 XP per Protector that held (823.1.c.1).",
+        "Repeat until the counter reads 3. With two Protectors on the two battlefields of a Duel (485.4) that is the second Beginning Phase.",
+        "From then on every Bandle Soldier you play enters ready (824.1.d keeps the Dependent Ability Active while the counter stays at 3) and can pay 144.2's exhaust to walk to a battlefield the same turn.",
+        "Never spend the XP: 730.2 reduces the marked value and 824.1.d switches every [Level 3] off the instant it drops below 3."
+      ],
+      "netPerIteration": "1 XP per Protector per Hold until the floor of 3, then a 5 Might body that reaches a battlefield a turn earlier, per copy played",
+      "terminatesIn": "engine only - a tempo turn per Bandle Soldier, capped at three copies by 103.2.b, and the whole thing switches off the moment anything spends the XP (824.1.d + 730.2); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md, batch 5)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #180, batch 5). The first entry to use UNL-151 Bandle Soldier. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.4, 143.4.a, 144.2, 415.1, 469, 702.3, 703, 730.2, 823.1.c.1, 824.1.c.1, 824.1.d, 315.2.b.2, 485.4. UNIQUENESS SWEPT, NOT ASSUMED: the [Level N] 'enter ready' family is exactly three cards, named. This entry is deliberately the MIRROR of poppy-hunt-xp-discount and shepherds-heirloom-xp-equip, which run the same faucet and spend it; all three name each other, and a list has to choose. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "trifarian-gloryseeker-vanguard-helm-legion-buff",
+      "name": "The cheapest body in Order that arrives already buffed, which is the only thing Vanguard Helm is short of",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-228",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order gear, E2. 'When a buffed friendly unit dies, buff another friendly unit.' Swept over the whole corpus: the only card whose trigger turns a death back into a buff."
+        },
+        {
+          "card": "OGN-217",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order unit, E2 M2. '[Legion] - When you play me, buff me. (If I don't have a buff, I get a +1 :rb_might: buff. Get the effect if you've played another card this turn.)' A 3 Might body for 2 Energy that needs no buffer, because it buffs itself as it lands."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity - Starter, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower. OGN-269/OGN-310 The Boss is legal and is the one name to avoid - see the notables.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Any other card finalized earlier in the same turn, which is what [Legion] asks for; the Helm itself at 2 Energy does it on turn one of the package."
+        ],
+        "notable": [
+          "WHY A BUFF IS THE SCARCE THING. 702.2.a: 'To Buff a Unit, a player chooses a Unit and then places a buff on it.' 703: 'Each Buff individually contributes +1 Might to a Unit.' 702.3: 'There can only be one Buff on a Unit at a time', and 702.3.a: a buff added to a unit that already has one 'is not placed instead'. So a buffer is a one-time placement per body, and the Helm - which needs a BUFFED body to die - is always short of buffed bodies rather than of deaths. Trifarian Gloryseeker is the answer that costs no second card: it arrives buffed for 2 Energy.",
+          "812 IS WHY THE [LEGION] GATE IS FREE HERE, AND 812.2 IS CITED FOR THE FIRST TIME IN THIS CATALOGUE. 812.1.b.1: 'Legion is functionally short for \"If you have played another card this turn, this card gains [Text].\"' 812.1.c: 'As long as a card different than the one with the Legion ability has been FINALIZED by you on the same turn then the Dependent Ability is Active' - finalized, so a spell that is later countered still switches it on. And 812.2: 'All instances of Legion on cards a player controls are satisfied by that player playing a single card.' Playing the Helm (2 Energy) first satisfies the gate on the same turn, and from turn two onward any card does.",
+          "THE HELM PLACES ONE BUFF AND WASTES IT ON A BUFFED BODY. Its text is 'buff ANOTHER friendly unit' - a single placement - and 702.3.a means it is thrown away if the chosen body already carries a buff. So the honest bound is min(deaths of buffed bodies, unbuffed bodies remaining), and a second Gloryseeker on the board is NOT a legal recipient: it already has its own buff. The recipients are the rest of your board.",
+          "THE LEGEND THAT SWITCHES IT OFF, BY NAME. OGN-269 The Boss (Body/Order) reads 'If a buffed unit you control would die, you may pay :rb_rune_rainbow:, exhaust me, and spend its buff to heal it, exhaust it, and recall it instead.' 808.1.d.1: 'If the Permanent with the effect is not sent to the Trash, for example because its \"killed\" event was replaced with a recall, the triggered ability will be removed from the chain.' The save is exactly that replacement, and it also SPENDS the buff (702.2.b), so The Boss takes both halves. A mono-Order legend avoids the fork entirely.",
+          "DISTINCT FROM THE TWO EXISTING HELM ENTRIES, AND THE DIFFERENCE IS WHICH SIDE IS SCARCE. vanguard-helm-kinkou-monk-buff-conservation pairs the Helm with a Body mass-placer (OGN-141, two buffs on one card) and is bounded by unbuffed bodies; vanguard-helm-baited-hook-buff-ladder pairs it with a repeatable sacrifice engine and is bounded by the sacrifice rate. This is the third case: the buff and the corpse are THE SAME CARD, so nothing has to be spent placing it and nothing has to be spent killing it - a Gloryseeker that trades in combat has already done the whole job.",
+          "THE ARITHMETIC WITH THE QUANTITIES DECLARED. Helm 2 Energy once. Three Gloryseekers at 2 Energy each (103.2.b) are three buffed 3 Might bodies for 6 Energy total and three guaranteed Helm triggers when they die, each moving a +1 onto a body that had none. Nothing in the package pays Power.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold only, and neither card touches either."
+        ]
+      },
+      "steps": [
+        "Play Vanguard Helm (2 Energy). It is a standing permanent with no exhaust in its trigger, so it fires on every qualifying death.",
+        "Play Trifarian Gloryseeker (2 Energy). 812.1.c is already satisfied by the Helm finalized earlier this turn, so [Legion] is Active and the play trigger buffs the Gloryseeker itself.",
+        "Send it to a battlefield and let it trade. 465.2.c reads its Might at assignment, so the buff is +1 in the damage step as well.",
+        "When it dies the Helm triggers and places a buff on another friendly unit - one that does not already have one, since 702.3.a would otherwise waste it.",
+        "Repeat with the second and third Gloryseekers (103.2.b). Each is a self-contained buffed corpse; no buffer is ever spent on them."
+      ],
+      "netPerIteration": "one buff moved onto a fresh body per Gloryseeker that dies, with no second card spent placing it",
+      "terminatesIn": "engine only - three Gloryseekers by 103.2.b, and each recovery is wasted once every remaining body is buffed (702.3.a); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md, batch 5)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #180, batch 5). The first entry to use OGN-217 Trifarian Gloryseeker. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 465.2.c, 469, 702.2.a, 702.2.b, 702.3, 702.3.a, 703, 808.1.d.1, 812.1.b.1, 812.1.c, 812.2. FIRST CITE IN THIS CATALOGUE: 812.2 (0 prior hits in data/combos.json). The Helm's uniqueness claim is inherited from the sweep recorded in vanguard-helm-kinkou-monk-buff-conservation (`grep -inE \"dies.*buff|buff.*dies\"`, one hit) and re-run for this walk. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "heroic-charge-solari-chief-stun-kill",
+      "name": "Order's only removal that ignores Might entirely - it is priced in a status, and the status lasts one turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-225",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order unit, E5 P1 M4. 'When you play me, choose an enemy unit. If it is stunned, kill it. Otherwise, stun it.' A kill BY EFFECT keyed on a status: it removes a 10 Might body exactly as readily as a 1 Might one."
+        },
+        {
+          "card": "UNL-155",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Order spell, E3, [Action]. 'Give a friendly unit +1 :rb_might: this turn and [Stun] an enemy unit at its location.' The cheap way to arm the Chief without spending a second Chief on the stun half."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity - Starter, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A friendly unit standing at the target's battlefield, because Heroic Charge stuns 'an enemy unit at ITS location' - the location of the friendly unit it pumped. Solari Chief's own choose carries no such restriction."
+        ],
+        "notable": [
+          "WHY THIS IS DIFFERENT FROM EVERY OTHER REMOVAL IN THE DOMAIN. Order's other kills are priced by Might or by cost - SFD-158 Sandshifter kills at '3 :rb_might: or less', VEN-127 Lacerate the same, OGN-229 Vengeance is E4 + 2 Power for an untargeted-in-name-only 'Kill a unit', OGS-012 Blast of Power E6 + 1 Power at a battlefield. Solari Chief's kill reads a STATUS, so the target's Might never enters the calculation. It is the same shape as a kill keyed on the word 'damaged': the threshold is in the enabler, not in the kill.",
+          "THE STUN DOES NOT MAKE THE BODY EASIER TO KILL, AND THAT IS THE POINT OF PAIRING IT WITH A KILL BY EFFECT. 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' 423.1.c: 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might value to be killed.' So a stun buys survival in combat and never cheapens removal by damage - which is exactly why the payoff has to be an effect that kills outright.",
+          "THE ONE-TURN WINDOW, AND WHY A SECOND CHIEF ALSO WORKS. 423.1.a.2: 'Stunned Units lose the Stunned status during step 3d of the end of turn cleanup', so the stun and the kill are the SAME turn - Heroic Charge is [Action] (806.1.b: 'permission to be played or activated during' your turn or a showdown) and the Chief is a Main Phase play. 423.1.a.1: 'A Stunned Unit can not be Stunned again', so a second Solari Chief aimed at an already-stunned body takes the kill branch of its own text - two Chiefs are a complete kill with no spell at all, for E10 + 2 Power against the pairing's E8 + 1 Power. A third Chief on the same target does nothing.",
+          "BOTH HALVES CHOOSE, SO BOTH PAY THE DEFLECT TAX. 809.1.c prices [Deflect] as extra Power 'for each time they choose', and 809.1.c.1 lets the defender's Power be any Domain - so an Empowered VEN-122 Solari Sunhawk (see solari-sunhawk-eye-of-herald-deflect-carrier) costs 2 more on the Heroic Charge AND 2 more on the Chief. This line goes through a big body and stalls against a Deflect one; that is the honest trade against a Might-gated removal, which usually does not choose at all (355.10.d).",
+          "A THIRD ROUTE, AND WHY IT IS NOT IN uses[]. OGN-262 Zenith Blade (Calm/Order, E3 + 2 Power, [Action]) reads 'Stun an enemy unit at a battlefield. You may move a friendly unit to that enemy unit's battlefield' - it solves Heroic Charge's 'at its location' problem by bringing the body along, at the price of 2 Power and a Calm/Order legend. It is an alternative enabler, not a sixth card in this line, so it is stated here rather than priced by the matcher.",
+          "THE LEDGER. 3 Energy for Heroic Charge, 5 Energy + 1 Power for Solari Chief: 8 Energy + 1 Power for an unconditional kill of any single unit, plus a 4 Might body left on the board and +1 Might on one of yours for the turn. Three of each by 103.2.b, so three such kills a game before you are down to the two-Chief version.",
+          "WHAT IT IS NOT. Nothing here scores, and no stun engine in this pool is unbounded: 423.1.a.1 forbids re-stunning and 423.1.a.2 clears the status every cleanup, so the ceiling is copies."
+        ]
+      },
+      "steps": [
+        "Have a friendly unit at the battlefield holding the body you want gone - Heroic Charge stuns 'at its location', which is the location of the unit you pump.",
+        "Play Heroic Charge (3 Energy). Its [Action] permission (806.1.b) lets you do this in your Main Phase or inside a showdown; the target is stunned and one of yours gets +1 Might for the turn.",
+        "In the same turn - 423.1.a.2 clears the status at the end-of-turn cleanup - play Solari Chief (5 Energy + 1 Power) and choose the stunned body. Its own text takes the kill branch, whatever the body's Might.",
+        "If you have no Heroic Charge, two Solari Chiefs do the same job: the first finds the target unstunned and stuns it, the second finds it stunned and kills it (423.1.a.1 means the second cannot re-stun, so the kill branch is the only one left).",
+        "Repeat up to three times a game (103.2.b)."
+      ],
+      "netPerIteration": "one enemy unit of any Might removed for 8 Energy + 1 Power, leaving a 4 Might body behind",
+      "terminatesIn": "engine only - three removals by 103.2.b and no more, since 423.1.a.1 forbids re-stunning and 423.1.a.2 clears the status at every end-of-turn cleanup; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md, batch 5)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #180, batch 5). The first entry to use UNL-155 Heroic Charge. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 355.10.d, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 469, 806.1.b, 809.1.c, 809.1.c.1. The stun payoffs were swept with `grep -in stunned data/corpus_flat.txt`: OGN-072 Solari Shrine (Calm, a draw), OGN-079 Leona, Zealot (Calm, -8 Might to stunned units here), OGN-225 Solari Chief (Order, the kill), UNL-035 Monch (Calm, a discount) - Solari Chief is the only one in Order and the only one that removes. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
     }
   ]
 }
