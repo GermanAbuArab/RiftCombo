@@ -33472,6 +33472,325 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #171 — the sixth of the ten uncatalogued legend names, and the first entry to use UNL-197. Card text verbatim from data/corpus_flat.txt. The card's own parenthesis ('Abilities that add resources can't be reacted to') is 429.2/429.2.a printed on a card, and it is cited to the rule rather than taken on the card's word. Trap check: 167 is cited so the Energy is not banked across a phase; 415.3.a is cited because it is the entire reason the effect has value; 107.4.b and 107.4.c are cited so the legend is neither claimed to be at a location nor denied Game Object status; the anti-synergy with this walk's own mystic-vortex-helm-suppression-tax is named so the two are never built together."
+    },
+    {
+      "id": "minotaur-reckoner-rengar-unseen-frozen-board",
+      "name": "Minotaur Reckoner freezes every unit at its battlefield — and the combat recall still works, because 455 says a Recall is not a Move",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-014",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury unit, E5 M5. 'Units can't move to base.' The ONLY global one in the pool — swept data/corpus_flat.txt for 'move to base': two rows, this and UNL-111 Determined Sentry, which restricts only itself."
+        },
+        {
+          "card": "UNL-024",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 P1 M4. '[Accelerate] [Assault 2] [Deflect] [Ganking]'. The body the lock does not bind: [Ganking] is printed on him, so he is one of the few units that can still leave a battlefield while the Reckoner is out."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Fury among its two domains (103.1.b.3) — 16 names: Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "Keep the Reckoner at your BASE. He is a unit too: walk him to a battlefield and he can never come home."
+        ],
+        "notable": [
+          "144.4 IS WHY THIS IS A BOARD LOCK AND NOT A MINOR TAX. The Standard Move is base to battlefield or battlefield to base; battlefield to battlefield needs [Ganking], and 810.1.c.3 says [Ganking] 'does not give additional abilities or activations of Movement, only new options for the Standard Move'. Remove the base as a destination and a unit standing at a battlefield WITHOUT [Ganking] can never move again by the Standard Move at all. It is not a delay; it is a permanent freeze, on both sides of the table.",
+          "AND IT STOPS EVERY ROUTE HOME EXCEPT ONE. 420.1 defines Moving as \"the act of a Game Object moving between two Locations on The Board\" and 420.2.b makes the Standard Move merely one thing that \"may ALSO cause Movement\", while 449 has spells and abilities cause Moves too — so an EFFECT move to base is still a move, and 054.1 (\"Cards that forbid actions or effects, as a broad method of determination, supersede cards that allow or permit that same action or effect\") makes the Reckoner beat every card that offers one. `OGS-011 Flash` (\"Move up to 2 friendly units to base\") and `OGN-191 Maddened Marauder` (\"move a unit from a battlefield to its base\") are both switched off, for whoever holds them. That is what kills the evacuation family: 323.6 opens a battlefield when its garrison leaves, and with the Reckoner out there is no legal way for a garrison to leave for base.",
+          "THE ONE THING IT DOES NOT STOP IS THE COMBAT CLEANUP, AND THE RULE IS EXPLICIT. 466.1.a.2 inserts 'Recall Attackers present at the Battlefield if Defenders are still present', and 455 defines a Recall as 'when a Permanent is relocated from anywhere to its Base WITHOUT IT BEING A MOVE'. A prohibition on moving therefore never touches it: a failed attack still sends your attackers home. Read the two together before assuming the Reckoner strands your own attackers.",
+          "[Ganking] IS THE KEY AND IT IS SCARCE, WHICH IS WHY THE PARTNER IS A BODY AND NOT A SPELL. Rengar, Unseen prints it, so he moves battlefield to battlefield under the lock while everything else of yours is stuck where it stands. He also carries [Accelerate] (805, 143.4.a), so he can land ready and move the same turn, and [Deflect], so the obvious answer — removing your one mobile body — costs the opponent an extra rainbow (809.1.c, 809.1.d).",
+          "The Reckoner is symmetric and the deck is built around that asymmetry: you bring mobility, they do not. Against a deck that already runs [Ganking] the card is close to blank, which is the honest weakness.",
+          "144.1.b still applies on top: no Standard Move in a Closed State, so even Rengar's [Ganking] is a Main Phase option."
+        ]
+      },
+      "steps": [
+        "Play Minotaur Reckoner (5 Energy) and leave him at your base — moving him out is one-way.",
+        "From this point 144.4 leaves only battlefield-to-battlefield movement, which 810.1.c.3 gates behind [Ganking].",
+        "Play Rengar, Unseen (4 Energy + 1 Fury Power), optionally paying [Accelerate]'s 1 Energy + 1 Fury so he enters ready.",
+        "Move Rengar between battlefields at will in your Main Phase; every enemy body without [Ganking] is fixed where it stands.",
+        "If an attack of yours fails, 466.1.a.2 recalls your attackers anyway — 455 makes that a Recall, not a Move, so the Reckoner does not strand them."
+      ],
+      "terminatesIn": "engine — a permanent one-sided freeze on repositioning for as long as the Reckoner lives; nothing here scores",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "144.4 (the Standard Move is base to battlefield or battlefield to base). 420.1: \"Moving is the act of a Game Object moving between two Locations on The Board.\" 420.2.b: \"The Standard Move inherent to Units may also cause Movement.\" 449: \"Spells, Abilities, or other effects may cause a Move to occur.\" 054.1: \"Cards that forbid actions or effects, as a broad method of determination, supersede cards that allow or permit that same action or effect.\" 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 466.1.a.2: 'Recall Attackers present at the Battlefield if Defenders are still present.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 144.1.b: 'This action cannot be performed during a Closed State.' 143.4.a: 'This can be altered by Accelerate or similar game effects.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, from the uncatalogued Fury population. SFD-014 Minotaur Reckoner and UNL-024 Rengar, Unseen were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 143.4.a, 144.1.b, 144.4, 323.6, 455, 466.1.a.2, 809.1.c, 809.1.d, 810.1.c.3 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No existing entry uses either card. No unruled reading. The second notable was corrected during the walk: the first draft said an EFFECT move to base still worked, and 420.1 with 420.2.b, 449 and 054.1 say it does not — only a Recall escapes, because 455 excludes itself from being a Move by name. The uniqueness claim was swept by grep over the whole corpus ('move to base': two rows) rather than asserted, and the third notable is the correction a reader needs: the lock reads as though it strands your own attackers and 455 says it does not."
+    },
+    {
+      "id": "raging-firebrand-thermo-beam-free-gear-wipe",
+      "name": "Raging Firebrand pays for a whole gear wipe — and the same discount switches off every 'if you spent' card in the deck",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-031",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury unit, E6 P1 M4. 'When you play me, the next spell you play this turn costs :rb_energy_5: less.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-022",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury spell, E5 P2, [Action]. 'Kill all gear.' In zero entries before this walk; the discount takes its Energy to zero and leaves the 2 Fury Power."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Fury among its two domains (103.1.b.3) — 16 names: Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "2 Fury Power for the Beam — the discount is Energy only and 356.1.b.2's principle applies: the remaining cost still applies."
+        ],
+        "notable": [
+          "THE DISCOUNT IS AN ENERGY DISCOUNT AND THE FLOOR IS ZERO, NOT NEGATIVE. 356.6: 'Energy and Power costs can't be reduced below 0.' Thermo Beam at E5 goes to E0; its 2 Fury Power is untouched, because the Firebrand's text says 'costs :rb_energy_5: less'. So the pair is a 4-Might body for 6 Energy + 1 Fury Power, and then a total gear wipe for 2 Fury Power and nothing else.",
+          "'KILL ALL GEAR' TARGETS NOTHING, WHICH IS THE HALF THAT MAKES IT REMOVAL RATHER THAN A GAMBLE. 355.10.d: an object 'programmatically selected based on its characteristics rather than chosen by the spell or ability's controller' is not a target, with the worked example '\"Kill all units at a battlefield\" targets a battlefield, but does not target any units.' So [Deflect] never charges (809.1.c and 809.1.d pay only for targeting or choosing), and no 'can't be chosen by enemy spells and abilities' clause protects a gear from it.",
+          "IT IS SYMMETRIC, AND THAT IS THE COST. Every Gold token, every Seal, every Equipment on the table dies, including yours — 434 attachments go with the gear. A deck that plays this wants few gear of its own, which rules out the Equipment packages and the Seal manabase in the same list.",
+          "THE ANTI-SYNERGY IS IN THE SAME DOMAIN AND IS EASY TO BUILD BY ACCIDENT. A discount reduces what you SPEND — 166.2 makes players 'add Energy and Power to their Rune Pool in order to be able to spend it to play cards', 203.1 defines paying as performing that action, and 356.4.b is the discount itself. So `UNL-004 Prepared Neophyte` ('If you've spent :rb_energy_4: or more to play a spell this turn, I have +4 :rb_might:') is switched OFF by the very card that makes the Beam free, and so is `SFD-143 Sivir, Mercenary`'s 'if you've spent at least two rainbow this turn'. The Firebrand and the Neophyte are both Fury, both cheap, and read as though they belong together; they do not.",
+          "'The NEXT spell you play this turn' is exactly one spell, and the Firebrand's own trigger fires on play, so the sequencing is fixed: body first, spell second, same turn. Three copies (103.2.b) is three such turns.",
+          "206 does not rescue the Neophyte here and it is worth saying why: 206 governs a 'costs N or more' check, which reads the printed cost; the Neophyte's clause is a 'spent' check, which reads the Rune Pool. Two different tests, and only one of them ignores discounts."
+        ]
+      },
+      "steps": [
+        "Play Raging Firebrand (6 Energy + 1 Fury Power). Its play trigger makes the next spell you play this turn cost 5 Energy less.",
+        "Play Thermo Beam as that spell: 5 - 5 = 0 Energy (356.6 floors it there), plus its printed 2 Fury Power.",
+        "'Kill all gear' resolves. 355.10.d makes it target nothing, so [Deflect] and 'can't be chosen' clauses do not apply.",
+        "Every gear on both sides dies, attachments included."
+      ],
+      "terminatesIn": "engine — a 4-Might body and a total gear wipe for 6 Energy and 3 Fury Power, three times a game (103.2.b); nothing here scores",
+      "netPerIteration": "-2 cards, -6 Energy -3 Fury Power, +1 body at 4 Might, all gear on the table destroyed",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "356.6: 'Energy and Power costs can't be reduced below 0.' 355.10.d: 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller. e.g., \"Kill all units at a battlefield\" targets a battlefield, but does not target any units.' 166.2: 'Players must add Energy and Power to their Rune Pool in order to be able to spend it to play cards or pay for Abilities with costs.' 203.1: 'Paying a Cost requires a player to perform the appropriate game action: pay resources, spend counters or XP, kill units, etc.' 356.4.b: 'Discounts may say that cards \"cost [amount] less\" or that one or more of their costs are \"reduced by [amount].\"' 356.1.b.2 (only the named cost is set to zero; the remaining cost still applies)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. OGN-031 Raging Firebrand and OGN-022 Thermo Beam were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 166.2, 203.1, 206, 355.10.d, 356.1.b.2, 356.4.b, 356.6, 434, 809.1.c, 809.1.d opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The fourth notable is a refusal carried inside the entry rather than filed separately, because the two cards it warns about are the ones a builder reaches for next."
+    },
+    {
+      "id": "annie-fiery-piercing-light-bonus-per-instance",
+      "name": "Bonus Damage is paid per Deal action, so the pool's multi-target spells are its only real payoff — twelve damage from one card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-001",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E5 P1 M4. 'Your spells and abilities deal 1 Bonus Damage. (Each instance of damage the spell deals is increased by 1.)' She is Riot's own worked example under 715.2. In zero entries before this walk."
+        },
+        {
+          "card": "SFD-023",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury spell, E2 P1, '[Repeat] :rb_energy_2::rb_rune_fury:'. 'Deal 2 to a unit at a battlefield, then deal 2 to up to one other unit.' In zero entries before this walk; four Deal actions once the [Repeat] is paid."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Fury among its two domains (103.1.b.3) — 16 names: Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "4 Energy and 2 Fury Power for the spell plus its [Repeat] cost, on a turn Annie is already on the board (E5 + 1 Fury Power, paid earlier)."
+        ],
+        "notable": [
+          "RIOT NAMES ANNIE IN THE RULE, AND THE EXAMPLE IS THE ARITHMETIC. 715.2: 'If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately. Example: Singularity is a spell that says \"Deal 6 to each of up to two units.\" A player plays Singularity while they also control Annie, Fiery... Singularity deals 1 Bonus Damage to both of its targets, dealing 7 to each.' So the payoff of a Bonus Damage source is the NUMBER OF DEAL ACTIONS a spell performs, not its size.",
+          "PIERCING LIGHT IS THE DENSEST SUCH SPELL IN THE POOL ONCE ITS [Repeat] IS PAID. 'Deal 2 to a unit at a battlefield, then deal 2 to up to one other unit' is two, and 820.1.b gives 'a second time' for its cost — four Deal actions of 2, each raised to 3 by Annie: TWELVE damage for 4 Energy and 2 Fury Power. 820.2.a lets the second execution choose differently, so it is 12 spread over up to four bodies, or 6 stacked on one and 6 on another.",
+          "714 IS THE CEILING NOBODY EXPECTS: 'If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.' A second source — `OGN-032 Ravenborn Tome`'s '+1 Bonus Damage to the next spell' — makes it +2 per Deal action, not +1 applied twice. Bonus Damage scales with the number of ACTIONS, and only additively with the number of SOURCES.",
+          "AND IT NEVER TOUCHES COMBAT. 713 scopes Bonus Damage to 'Deal actions', and 417.6.b.3 sources combat damage to the units themselves — its worked example is Challenge, 'The damage that Challenge causes to be dealt is dealt by the chosen units, not by Challenge.' So none of this feeds the excess-damage family (R28 = A), and the six printed Bonus Damage cards and `OGN-034 Tryndamere` are separate systems, as #119 measured.",
+          "143.2.a is the yardstick: 3 damage kills a 3-Might body outright and 6 kills a 6-Might one, so a single Piercing Light under Annie clears two mid-sized bodies or one large one plus a token.",
+          "The Bonus Damage also rides Annie's word 'and abilities' — `OGN-017 Iron Ballista`'s 'exhaust: Deal 2 to a unit at a battlefield' becomes 3, and 417.6.b.2.a names the Ballista as its own worked example for damage dealt 'both by a gear and by an ability'. That is a lead, not part of this entry's `uses`."
+        ]
+      },
+      "steps": [
+        "Play Annie, Fiery (5 Energy + 1 Fury Power) and keep her on the board.",
+        "Play Piercing Light for 2 Energy + 1 Fury Power and pay its [Repeat] cost of 2 Energy + 1 Fury Power (820.1.c.1).",
+        "First execution: deal 2 to a unit at a battlefield, raised to 3 by Annie (715.2); then deal 2 to up to one other unit, also raised to 3.",
+        "Second execution (820.1.b), choosing freely again (820.2.a): another 3 and another 3.",
+        "Twelve damage in total across up to four bodies; 143.2.a kills each one whose Might it reaches."
+      ],
+      "terminatesIn": "engine — twelve damage from one card for 4 Energy and 2 Fury Power, three times a game (103.2.b), on an Annie already in play; nothing here scores",
+      "netPerIteration": "-1 card, -4 Energy -2 Fury Power, 12 damage spread over up to four enemy units",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "715.2: 'If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately. Example: Singularity ... A player plays Singularity while they also control Annie, Fiery ... dealing 7 to each.' 714: 'If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.' 713: 'Bonus Damage is an intrinsic property that can be granted to Deal actions...' 417.6.b.3: 'The damage that Challenge causes to be dealt is dealt by the chosen units, not by Challenge.' 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 820.2.a: 'Choices made for the additional execution do not have to be the same...' 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. OGS-001 Annie, Fiery and SFD-023 Piercing Light were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 143.2.a, 417.6.b.2.a, 417.6.b.3, 713, 714, 715.2, 820.1.b, 820.1.c.1, 820.2.a opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. #119 had already measured that Bonus Damage and combat excess damage are disjoint; what this entry adds is the constructive half — the payoff scales with Deal ACTIONS (715.2) and only additively with sources (714), which is what picks the partner."
+    },
+    {
+      "id": "endless-riches-blade-twirler-trash-as-hand",
+      "name": "Endless Riches makes the trash your hand — and a Burn Out recycles that hand back into the deck",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-022",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury gear, E5 P1. 'When you play this, banish your hand and trash, then [Burn 7]. Skip your Draw Phase. You may play cards from your trash. If a card would go to your trash from anywhere other than your Main Deck, banish it instead.' In zero entries before this walk."
+        },
+        {
+          "card": "VEN-002",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 M4. 'The first time I move each turn, choose a player. They [Burn 1].' Choose YOURSELF: under Endless Riches a self-mill is a draw. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Fury among its two domains (103.1.b.3) — 16 names: Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "A Main Deck with cards left in it — the whole engine dies to a Burn Out, see the third notable.",
+          "Somewhere for the Blade Twirler to move to and from each turn; 144.2 charges his own exhaust for the Standard Move."
+        ],
+        "notable": [
+          "IT REPLACES THE HAND WITH THE TRASH, AND THE TRASH IS PUBLIC. 'Banish your hand and trash, then [Burn 7]' costs you everything you were holding and hands you seven cards off the top instead; 'You may play cards from your trash' is what makes them playable and 'Skip your Draw Phase' (315.4) is what stops you rebuilding a real hand. Everything you can play is now visible to the opponent, which is a real cost the card does not print.",
+          "THE BLADE TWIRLER IS THE REFILL AND HE COSTS NOTHING. 'The first time I move each turn, choose a player. They [Burn 1]' — choose yourself and one more card of yours arrives in the playable zone every turn, paid for with a Standard Move you were making anyway (144.2's exhaust). Under any other shell that is self-mill; under Endless Riches it is a draw that dodges the skipped Draw Phase.",
+          "AND A BURN OUT ERASES THE WHOLE THING. 431.1.b handles milling past the deck and 431.2.b then RECYCLES YOUR WHOLE TRASH INTO YOUR MAIN DECK — which under Endless Riches is your hand. Every turn the Twirler burns you one closer to that, so the engine has a clock and the clock is the deck. 194.1.d also gives the opponent a point for it. Count the deck before pointing his trigger at yourself.",
+          "ONE USE PER CARD, BECAUSE THE LAST SENTENCE IS A BANISH. 'If a card would go to your trash from anywhere other than your Main Deck, banish it instead' — so a spell you play from the trash is banished on resolution rather than returning, and a unit that dies is banished. That also erases every [Deathknell] in the deck by removing 808.1.d's condition (the permanent never reaches the Trash), erases [Flow] (829.1.b needs the card in the trash), and leaves 422.1's discard triggers with nowhere to fire from. The list has to be built with none of those.",
+          "ONLY CARDS FROM THE MAIN DECK STILL REACH THE TRASH, WHICH IS EXACTLY WHY THE TWIRLER WORKS. The banish clause exempts the Main Deck by name, so [Burn N] is the one route that still stocks the zone. That makes the Twirler's own text — a mill — the engine's only renewable input.",
+          "VEN-002 is one of only two cards in the pool that can mill an OPPONENT, and 431.2.b is why that half is a trap rather than a win condition: the first Burn Out refills their deck out of their own trash. Aim him at yourself and treat the opponent-facing mode as a rounding error."
+        ]
+      },
+      "steps": [
+        "Play Blade Twirler (4 Energy) first, while you still have a hand worth keeping.",
+        "Play Endless Riches (5 Energy + 1 Fury Power). Your hand and trash are banished; [Burn 7] puts seven cards from the top of your Main Deck into the trash.",
+        "From now on you play cards out of your trash, and you skip your Draw Phase (315.4).",
+        "Each turn, make the Blade Twirler's first move (144.2) and choose YOURSELF for the [Burn 1]: one more card into the playable zone, free.",
+        "Watch the Main Deck. 431.1.b plus 431.2.b turn an over-burn into a Burn Out that recycles the trash — your hand — back into the deck, and hands the opponent a point (194.1.d)."
+      ],
+      "terminatesIn": "engine — a seven-card public hand plus one free card a turn, for as long as the Main Deck lasts; nothing here scores",
+      "netPerIteration": "+1 playable card per turn from the Blade Twirler's first move, at the cost of one card of Main Deck life",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "431.1.b: 'If a player must put one or more cards from their Main Deck in any other zone, such as the Trash, in excess of the number of cards in their deck they will do so as much as possible, perform this action, and then complete the remaining number required by the instruction.' 431.2.b (a Burn Out recycles the player's trash into their Main Deck). 194.1.d (the opponent gains a point on a Burn Out). 144.2: 'Exhausting the Unit is the Cost for this action.' 808.1.d (a Deathknell needs the permanent to reach the Trash). 829.1.b: 'You may play this from your trash for its flow cost. Then banish it.' 422.1 (discard triggers). 315.4 (the Draw Phase)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. VEN-022 Endless Riches and VEN-002 Blade Twirler were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 144.2, 194.1.d, 315.4, 422.1, 431.1.b, 431.2.b, 808.1.d, 829.1.b opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. CLAUDE.md already records that Endless Riches is anti-synergic with its own discard lens (#95); this entry is the constructive read of the same card — the banish clause exempts the Main Deck, which is what makes a self-mill its only renewable input."
+    },
+    {
+      "id": "fresh-beans-rengar-pouncing-attacking-reinforcement",
+      "name": "Rengar, Pouncing is the only card that may be played to a battlefield you are attacking — and Fresh Beans draws for it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-011",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Fury gear, E2. 'When you play a unit during a showdown, you may exhaust this to draw 1.' A Triggered ability, so 381 does not confine it and it fires on either player's turn. In zero entries before this walk."
+        },
+        {
+          "card": "SFD-025",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury unit, E3 P1 M3. '[Reaction] (including to a battlefield you control.) [Assault 2] I can be played to a battlefield you're attacking.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Fury among its two domains (103.1.b.3) — 16 names: Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "An attack of your own already open, so that there is a Combat Showdown to play him into and a battlefield you are attacking."
+        ],
+        "notable": [
+          "HE IS THE ONLY REINFORCEMENT THAT CAN REACH THE BATTLEFIELD YOU ARE ATTACKING. 355.2.a limits where a unit may be played to 'the controller's Base or a battlefield the controller controls', and the battlefield you are attacking is by definition neither — that is the same clause that makes a hidden card useless on the attacking side (811.1.b hides only at a battlefield you control). Sweeping data/corpus_flat.txt for cards that mention playing and attacking returns one unit with the permission: `SFD-025 Rengar, Pouncing`, 'I can be played to a battlefield you're attacking.'",
+          "AND HE ARRIVES IN TIME TO FIGHT. 464.2.c.3.a defers the designation of a body that becomes present after the Attacker/Defender step to 'the Cleanup phase following the action that caused it to become present'; 319.6 makes a Cleanup Outstanding 'After any number of Game Objects enter or leave the Board' and 323.2.a hands out the designation there. So he is an Attacker in the same damage step, and [Assault 2] — 807.1.c, 'functionally short for While I am an attacker, I have +X [M]' — puts him in at 5 Might.",
+          "THE BEANS PAY FOR IT, AND THE REASON THEY WORK OFF-TURN IS THE 381 SPLIT. 381 confines Activated Abilities to 'the Controlling Player's Turn and during an Open State'; Fresh Beans' 'you may exhaust this to draw 1' hangs off 'When you play a unit during a showdown', so it is a Triggered Ability and 383.3.c puts it on the Chain 'during Closed States or Open States on any [player's] turn'. Its cap is its own exhaust — one draw per turn, readied at 415.3.a.",
+          "THE BEANS' POOL IS WIDER THAN THIS PAIR AND WORTH KNOWING. Any unit playable in a showdown fires them: a [Reaction] unit like Rengar, an [Ambush] unit (822.1.b grants the [Reaction] timing), and every hidden unit, because 811.1.b's tail gives a face-down card [Reaction] 'beginning on the next turn'. Rengar is in `uses` because he is the only one that reaches the ATTACKING side; the rest are defensive.",
+          "Priced whole: 2 Energy once for the gear, then 3 Energy + 1 Fury Power per Rengar for a 5-Might attacker that appears after the opponent has committed their blocks, plus a card. Three copies (103.2.b), one draw a turn.",
+          "144.1.b is not in the way: he is PLAYED, not moved, so the Closed-State prohibition on the Standard Move never applies — and 144.2's exhaust is never paid either, which is the same shape as `SFD-093 Dauntless Vanguard` taking the Attacker designation with no move at all."
+        ]
+      },
+      "steps": [
+        "Play Fresh Beans (2 Energy) at your base.",
+        "On your turn, attack a battlefield: move a unit in, 190.3.a.1 applies Contested and 464.2.c.1 makes you the Attacker. A Combat Showdown opens.",
+        "Inside that Showdown, play Rengar, Pouncing (3 Energy + 1 Fury Power) directly to the battlefield you are attacking.",
+        "Fresh Beans' trigger fires — a unit was played during a showdown. Exhaust it and draw 1 (383.3.c).",
+        "The Cleanup following his arrival designates him an Attacker (464.2.c.3.a, 319.6, 323.2.a); [Assault 2] has him fight at 5 Might (807.1.c)."
+      ],
+      "terminatesIn": "engine — a 5-Might attacker added after blocks are committed, plus one card, for 3 Energy and 1 Fury Power; one draw a turn (415.3.a). Nothing here scores.",
+      "netPerIteration": "-1 card, -3 Energy -1 Fury Power, +1 card drawn, +1 attacking body at 5 Might inside an open combat",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "355.2.a (a unit is played to the controller's Base or a battlefield the controller controls). 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present.' 319.6: 'After any number of Game Objects enter or leave the Board.' 323.2.a: 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now.' 807.1.c ([Assault] is functionally short for 'While I am an attacker, I have +X [M]'). 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any [player's] turn.' 811.1.b: '...Beginning on the next turn, this gains [Reaction]...' 822.1.b: 'I may be played to a battlefield where you control Units.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. UNL-011 Fresh Beans and SFD-025 Rengar, Pouncing were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 144.1.b, 144.2, 190.3.a.1, 319.6, 323.2.a, 355.2.a, 381, 383.3.c, 415.3.a, 464.2.c.1, 464.2.c.3.a, 807.1.c, 811.1.b, 822.1.b opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The uniqueness claim was swept over the corpus rather than asserted, and it matters because the project's refuse-bucket C ('no [Hidden] card can play the attacker-side role') has exactly this card as its one exception in the whole pool."
     }
   ]
 }
