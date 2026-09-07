@@ -26079,6 +26079,585 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 27). Chosen from the 35 matrix partners of OGN-235 because it is the only one whose recycle costs nothing and repeats without a loop: Ornn's 'when I hold' half is a 383.4.d Hold Effect fired by 315.2.b.2. The 'Runes aren't cards' parenthetical is recorded as the false-positive family for the synergy rule, since the matrix's cause regex catches every rune recycler and 161.2.b sends those to the Rune Deck rather than the Main Deck. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 161.2.b, 315.2.b.2, 323.6, 383.4.d/383.4.d.1, 431.1.c, 469.2, 702.3/702.3.a and 703 opened and read. Ban check: neither OGN-235 nor SFD-058 carries a [BANNED marker and neither is a Signature card. Trap check: no attack; no [Temporary]; no [Repeat]; no token; no recall; the recycle goes to the bottom of the Main Deck (416.1.a) and looking never Burns Out. Depends on no unruled reading."
+    },
+    {
+      "id": "jinx-rebel-square-up",
+      "name": "Jinx, Rebel × Square Up — the [Repeat] cost is the discard that readies her",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-202",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E5 P1 M5. 'When you discard one or more cards, ready me and give me +1 Might this turn.'"
+        },
+        {
+          "card": "UNL-017",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury spell, E4. '[Repeat] — Discard 1. Give a unit [Assault 4] this turn.' The Repeat cost IS a discard."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Chaos (Jinx) and Fury (Square Up) — Loose Cannon, Dark Child ‑ Starter, Glorious Executioner, Bloodharbor Ripper, Master of Shadows. Five names, the widest pair available to either card."
+        ],
+        "notable": [
+          "ONE CARD DOES BOTH HALVES, AND THAT IS THE WHOLE PAIR. Square Up's additional cost is *Discard 1* — 820.1.c.1 makes a [Repeat] cost 'an Additional Cost to be paid during the steps of playing the spell', so paying it discards a card while the spell is being played, which is exactly the event Jinx watches. No discard outlet card is needed; the spell is its own outlet.",
+          "The arithmetic on Jinx as an attacker: 5 printed, +1 from her own trigger, and [Assault 8] if both executions of Square Up are pointed at her — 807.2 says outright that 'the Assault Value of all granted Assault keywords is summed', with a worked example of exactly this stacking. 5 + 1 + 8 = 14 Might while attacking, for 4 Energy and one card discarded.",
+          "820.1.b caps it: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' A SECOND time, not repeatedly — so one cast is at most two executions and one discard event, and three copies (103.2.b) is three turns of this.",
+          "807.1.c is why the 8 only exists in the attack: '[Assault] is functionally short for While I am an attacker, I have +X [M]', and 807.1.d ties that to the Attacker designation. Entering an EMPTY enemy battlefield gives no designation at all (807.1.d, 383.4.e, 461), so the whole 14 evaporates against an opponent with no garrison.",
+          "WHAT THE READY IS ACTUALLY FOR, stated because it is easy to overrate. Jinx has no exhaust ability, and readying a unit buys nothing on defence — combat does not read exhaustion (464.2.c.3 and 465.2.b do not filter by state, #61). It buys one extra Standard Move (144.2 charges the exhaust), which in practice is walking her home after the attack or out again the following turn. The +1 Might, by contrast, is a continuous modifier and stacks with every separate discard event that turn.",
+          "'One or more cards' means a single instruction that discards two is ONE event: OGN-020 Scrapyard Champion's 'discard 2, then draw 2' readies her once, not twice. Two readies need two separate discards."
+        ]
+      },
+      "steps": [
+        "Play Jinx, Rebel (5 Energy + 1 Chaos Power) and move her to an occupied enemy battlefield so she gains the Attacker designation (464.2.c.1, 464.2.c.3).",
+        "Cast Square Up (4 Energy) choosing Jinx, and pay the [Repeat] cost by discarding a card (820.1.c.1).",
+        "The discard resolves as part of playing the spell: Jinx's trigger fires once — she readies and gets +1 Might this turn.",
+        "Both executions of Square Up resolve, each granting [Assault 4]; 807.2 sums them to [Assault 8] on her.",
+        "She fights the combat at 5 + 1 + 8 = 14 Might (807.1.c applies the 8 only while she is an attacker), and the ready leaves her a Standard Move afterwards."
+      ],
+      "terminatesIn": "engine — a 14-Might attacker for one card and 4 Energy, three times a game",
+      "sources": [
+        {
+          "title": "Two-card pair walk, cause/trigger matrix rows 6-15 (docs/phase0/walks/2026-09-06-proven-rule-instances.md §24)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from rc-walk153b's cause/trigger matrix, trigger card OGN-202 Jinx, Rebel (21 candidate partners, none refused by rule). Card text verbatim from data/corpus_flat.txt; 103.2.b, 144.2, 383.4.e, 461, 464.2.c.1, 464.2.c.3, 465.2.b, 807.1.c, 807.1.d, 807.2, 820.1.b and 820.1.c.1 opened in the Core Rules file. Both cards checked against data/legality.json: legal in both formats. No unruled reading. The fifth notable states what the ready is NOT worth, because Jinx reads like an untap engine and is a Might engine — #61's finding that combat ignores exhaustion is what settles it."
+    },
+    {
+      "id": "mask-mother-scrapyard-champion",
+      "name": "Mask Mother × Scrapyard Champion — a card you want in the trash, discarded twice at once",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-094",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos unit, E3 M3. 'When you discard me, you may pay 1 Energy to give a friendly unit +2 Might this turn.'"
+        },
+        {
+          "card": "OGN-020",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury unit, E5 P1 M5, [Legion]. 'When you play me, discard 2, then draw 2. (Get the effect if you've played another card this turn.)'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Chaos (Mask Mother) and Fury (Scrapyard Champion) — Loose Cannon, Dark Child ‑ Starter, Glorious Executioner, Bloodharbor Ripper, Master of Shadows."
+        ],
+        "notable": [
+          "THE TRIGGER FIRES FROM THE TRASH, AND THAT IS THE RULE THE PAIR STANDS ON. 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed AFTER discarding has occurred' — so Mask Mother is already in the trash when her ability runs, and 385.1 / 385.2 let a Triggered Ability outside the board self-describe its context. Discarding her is not a cost you pay, it is how you cast her.",
+          "TWO IN ONE INSTRUCTION. Scrapyard Champion's 'discard 2, then draw 2' lets you choose both cards, so two Mask Mothers go at once for two separate triggers: 2 Energy for +4 Might this turn, aimed at one unit or split across two. And the 'then draw 2' makes the whole exchange CARD-NEUTRAL — you spend two cards you wanted to spend and replace them.",
+          "It is exactly one discard EVENT, which matters if Jinx, Rebel is also in the deck (see jinx-rebel-square-up): 'when you discard one or more cards' fires once here, not twice. Mask Mother's own trigger is per copy discarded, because each copy has its own ability.",
+          "[Legion] is free to satisfy and easy to forget: 812.1.c makes the dependent ability active 'as long as a card different than the one with the Legion ability has been Finalized by you on the same turn', and 812.2 says one card satisfies every instance. Play anything first — a rune does not count, it must be a card played. Play the Champion as your first card of the turn and he is a bare 5-Might body with no discard at all.",
+          "The +2 is a continuous modifier and not a 702 buff, so 702.3's one-per-unit cap never applies and two triggers stack on one body. It also feeds nothing that spends a buff (OGN-146 Wallop, SFD-101 Fae Dragon) — those need a real buff counter.",
+          "Priced whole: the Champion is 5 Energy + 1 Fury Power and the two Mask Mothers are cards you were going to discard, plus 1 Energy each to fire. Eight Energy for a 5-Might body, +4 Might this turn and no card lost. The ceiling is 103.2.b — three Mask Mothers, three Champions.",
+          "Mask Mother is a 3-Might Chaos body if you ever draw her with nothing to discard her to; the entry treats her as a spell that lives in the hand, which is what she is."
+        ]
+      },
+      "steps": [
+        "Play any card first, so [Legion] is active on the Champion (812.1.c, 812.2).",
+        "Play Scrapyard Champion (5 Energy + 1 Fury Power). Its play trigger instructs you to discard 2, then draw 2.",
+        "Discard both Mask Mothers. 422.1.b executes their triggers after the discard has occurred, from the trash.",
+        "Pay 1 Energy for each trigger you want: give a friendly unit +2 Might this turn, twice — the same unit for +4, or two units for +2 each.",
+        "Draw 2 from the Champion's own instruction: the exchange costs no cards."
+      ],
+      "netPerIteration": "+4 Might this turn for 2 Energy, card-neutral, plus a 5-Might body",
+      "terminatesIn": "engine — a combat trick paid for out of cards you wanted in the trash",
+      "sources": [
+        {
+          "title": "Two-card pair walk, cause/trigger matrix rows 6-15 (docs/phase0/walks/2026-09-06-proven-rule-instances.md §24)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from rc-walk153b's cause/trigger matrix, trigger card VEN-094 Mask Mother (23 candidate partners, none refused by rule). Card text verbatim from data/corpus_flat.txt; 103.2.b, 385.1, 385.2, 422.1.b, 702.3, 812.1.c and 812.2 opened in the Core Rules file. Both cards checked against data/legality.json: legal in both formats. No unruled reading. Scrapyard Champion was chosen over the cheaper outlets in the list (OGN-023 Unlicensed Armory, UNL-125 Lunar Boon, OGN-008 Get Excited!) because it is the only one that discards TWO cards of your choosing in a single instruction and replaces them, which doubles the payoff and costs nothing in cards."
+    },
+    {
+      "id": "vex-mocking-thwonk-wall",
+      "name": "Vex, Mocking × Thwonk! — a Tank that teleports into the combat as it opens",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-055",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Calm unit, E5 P1 M5, [Shield], [Tank]. 'When you [Stun] an enemy unit at a battlefield, you may move me to that battlefield.'"
+        },
+        {
+          "card": "SFD-040",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E2, [Action]. '[Repeat] 2 Energy. Stun an attacking unit.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "MONO-CALM. Every legend with Calm in its pair can run both cards (103.1.b.3) — Blind Monk, Wuju Bladesman, Grandmaster at Arms, Wuju Master, Unforgiven, Blade Dancer, Gloomist, Rogue Assassin, Nine-Tailed Fox, Fire Below the Mountain, Bashful Bloom, Curator of the Sands, Radiant Dawn, Emperor of the Sands, Green Father, Eye of Twilight."
+        ],
+        "notable": [
+          "HER MOVE IS AN EFFECT MOVE, WHICH IS WHY IT WORKS ON THE OPPONENT'S TURN. 144.1.b forbids the Standard Move during a Closed State and 144.2 charges it the unit's exhaust; Vex's relocation is neither — 420.2.a covers moves 'when instructed to do so by Game Effects', and 420.3.a puts the exhaust cost only on the Standard Move. So an exhausted Vex, on the opponent's turn, still arrives.",
+          "AND SHE ARRIVES IN TIME TO BE A DEFENDER. 323.2.a: 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now', and 319.6 runs a Cleanup after any Game Object enters or leaves the Board — so a body that lands mid-combat is designated before 465.2 resolves damage. That is the same window #150 recorded for a hidden Keeper of Masks, used here on purpose.",
+          "WHAT SHE IS WORTH ONCE SHE LANDS: [Tank] is 815.1.b, 'I must be assigned lethal damage before any other unit with the same controller as me that does not have [Tank]', and 465.2.c.3 forces lethal in full onto one unit before any goes to the next. At 5 Might plus [Shield]'s +1 while defending (814.1.c) she eats 6 damage off the top of the attack, and every point spent on her is a point not spent on the garrison she just joined.",
+          "Thwonk! is the partner rather than the cheaper OGN-050 Rune Prison because of when it can be cast: 806.1.b gives [Action] permission 'to be played or activated during Showdowns, even when it is not the Controlling player's turn', and Thwonk! reads 'Stun an ATTACKING unit' — a clause that only has a referent on the opponent's turn. Rune Prison stuns anything but is worth nothing to Vex defensively, because the stun and the move both have to happen while the attack is live.",
+          "Two stuns per cast, not more: 820.1.b gives exactly one extra execution, and 820.2.a lets the second choice differ. So 4 Energy blanks two attackers (423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step') and moves Vex once — the second stun does not move her again to anywhere useful.",
+          "The stun does NOT make the attackers easier to kill. 423.1.c: 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might' — #61's correction, and the reason this entry is a defensive one rather than a removal one. What it removes is their damage, not their bodies.",
+          "423.1.a.1 forbids stunning an already-stunned unit and 423.1.a.2 clears the stun at the end-of-turn cleanup, so this is a per-combat answer and never a lock — the whole stun lens yields ENGINE for that reason."
+        ]
+      },
+      "steps": [
+        "Have Vex, Mocking on the board (5 Energy + 1 Calm Power) — anywhere, including your base — and hold Thwonk! with 4 Energy available.",
+        "The opponent attacks one of your battlefields. Inside the Combat Showdown (806.1.b), cast Thwonk! for 2 Energy and pay the [Repeat] for 2 more.",
+        "Each execution stuns one attacking unit: 423.1.b takes its Might out of the combat damage step entirely.",
+        "Vex's trigger fires on the stun. Move her to that battlefield — an effect move (420.2.a), so her exhausted state and the Closed State do not stop it.",
+        "319.6's Cleanup runs and 323.2.a designates her a Defender before damage resolves. [Tank] (815.1.b) then forces the attackers to assign lethal to her first, at 5 + 1 = 6 (814.1.c).",
+        "Repeat next combat; 423.1.a.2 has cleared the stuns by then."
+      ],
+      "terminatesIn": "engine — two attackers blanked and a 6-Might Tank inserted into the combat, three times a game",
+      "sources": [
+        {
+          "title": "Two-card pair walk, cause/trigger matrix rows 6-15 (docs/phase0/walks/2026-09-06-proven-rule-instances.md §24)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from rc-walk153b's cause/trigger matrix, trigger card UNL-055 Vex, Mocking (21 candidate partners; the Radiant Dawn pair belongs to rc-walk153b and is not touched here). Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 144.1.b, 144.2, 319.6, 323.2.a, 420.2.a, 420.3.a, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 465.2, 465.2.c.3, 806.1.b, 814.1.c, 815.1.b, 820.1.b and 820.2.a opened in the Core Rules file. Both cards checked against data/legality.json: legal in both formats. No unruled reading. #61's correction is applied rather than re-derived — a stun removes the defender's damage, not its durability — which is why this is filed as a defensive engine and not as removal."
+    },
+    {
+      "id": "eclipse-herald-zenith-blade",
+      "name": "Eclipse Herald × Zenith Blade — one spell stuns, readies him and walks him into the fight",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-059",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Calm unit, E7 P1 M7. 'When you stun an enemy unit, ready me and give me +1 Might this turn.'"
+        },
+        {
+          "card": "OGN-262",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm/Order spell, E3 P2, [Action]. 'Stun an enemy unit at a battlefield. You may move a friendly unit to that enemy unit's battlefield.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Zenith Blade is a Calm/Order card and Eclipse Herald is mono-Calm, so the identity is Calm/Order — Radiant Dawn, Emperor of the Sands, Green Father, Eye of Twilight."
+        ],
+        "notable": [
+          "ONE CARD PAYS ALL THREE HALVES, WHICH IS WHY IT BEATS THE CHEAPER STUNS IN THE LIST. Zenith Blade stuns (so the Herald readies and grows), and then moves a friendly unit to that enemy unit's battlefield — and that friendly unit may be the Herald himself. OGN-050 Rune Prison stuns for 1 Energy less and does nothing else; OGN-238 Leona, Determined stuns for free but only on a battlefield she is already attacking.",
+          "THE ORDER INSIDE THE SPELL IS WHAT MAKES IT FREE. The stun resolves first, so the Herald's trigger has already readied him when the move half resolves; the move is an effect move (420.2.a) and 420.3.a puts the exhaust cost only on the Standard Move, so it costs him nothing either way. He arrives at 7 + 1 = 8 Might, unexhausted, at a battlefield whose biggest threat has just been blanked.",
+          "Moving him there makes him the Attacker: 190.3.a.1 applies Contested status to units moving to a battlefield whose control is not already yours, and 464.2.c.1 makes 'the player whose unit(s) applied the Contested status' the Attacker. That is the point — but it also means the ordinary trap applies, and an EMPTY enemy battlefield gives no Attacker designation at all (807.1.d, 383.4.e, 461), so there must be a garrison for the stun to have a target in the first place.",
+          "423.1.b is the whole defensive value: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' 423.1.c is the limit — it still needs damage equal to its full Might to die (#61's correction) — so the Blade buys the Herald a safe attack, not a kill.",
+          "The ready is worth one extra Standard Move and nothing on defence, since combat does not read exhaustion (464.2.c.3, 465.2.b). Stated because a card that says 'ready me' reads like an untap engine and is not one: the +1 Might is a continuous modifier that stacks per stun event, and that is the half that compounds.",
+          "Three copies (103.2.b) and 3 Energy + 2 Power each — the Power is the real cost, two of it in one spell against #44's measured free floor of 2 Power a turn.",
+          "423.1.a.1 forbids stunning an already-stunned unit and 423.1.a.2 clears the stun at the end-of-turn cleanup, so nothing here locks anything down."
+        ]
+      },
+      "steps": [
+        "Have Eclipse Herald on the board (7 Energy + 1 Calm Power), at your base or anywhere.",
+        "Cast Zenith Blade (3 Energy + 2 Power) on your Main Phase, choosing an enemy unit at the battlefield you want to take.",
+        "The stun resolves: 423.1.b takes that unit's Might out of the coming combat damage step, and Eclipse Herald's trigger fires — he readies and gets +1 Might this turn.",
+        "Resolve the spell's second half: move Eclipse Herald to that battlefield. It is an effect move (420.2.a), so no exhaust is charged (420.3.a).",
+        "190.3.a.1 applies Contested and 464.2.c.1 makes you the Attacker. He fights at 8 Might against a garrison whose stunned member deals no damage back."
+      ],
+      "terminatesIn": "engine — a stun, a free ready and a free relocation into the attack, three times a game",
+      "sources": [
+        {
+          "title": "Two-card pair walk, cause/trigger matrix rows 6-15 (docs/phase0/walks/2026-09-06-proven-rule-instances.md §24)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from rc-walk153b's cause/trigger matrix, trigger card OGN-059 Eclipse Herald (21 candidate partners, none refused by rule). Card text verbatim from data/corpus_flat.txt; 103.2.b, 190.3.a.1, 383.4.e, 420.2.a, 420.3.a, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 461, 464.2.c.1, 464.2.c.3, 465.2.b and 807.1.d opened in the Core Rules file. Both cards checked against data/legality.json: legal in both formats. No unruled reading. Zenith Blade was chosen over the cheaper Rune Prison and the free Leona, Determined because it is the only partner in the list that pays the stun, the ready and the relocation out of one card."
+    },
+    {
+      "id": "solari-shrine-leona-determined",
+      "name": "Solari Shrine × Leona, Determined — the attack that stuns is the attack that kills",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-072",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Calm gear, E3. 'When you kill a stunned enemy unit, you may exhaust this to draw 1.'"
+        },
+        {
+          "card": "OGN-238",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 P1 M4, [Shield]. 'When I attack, stun an enemy unit here.' Free, repeatable, and on your own turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm (the Shrine) and Order (Leona) — Radiant Dawn, Emperor of the Sands, Green Father, Eye of Twilight."
+        ],
+        "notable": [
+          "THE SHRINE NEEDS TWO EVENTS AND LEONA SUPPLIES BOTH IN ONE ATTACK. 'When you kill a stunned enemy unit' is a kill of a unit that is already stunned; Leona's attack trigger stuns a defender at the battlefield she is attacking (383.4.e places it at the Attacker designation), and the combat damage step then kills that same defender. 428.1 defines Killing as 'the action of a Permanent going to the trash from the board', which combat damage performs.",
+          "WHY THE STUN DOES NOT MAKE THE KILL HARDER OR EASIER. 423.1.c: 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might' — #61's correction, so the stun changes nothing about the damage needed. What it changes is 423.1.b: the stunned defender contributes no Might to the damage coming back, so your attackers survive to make the kill. The two clauses pull in opposite directions and only the second one matters here.",
+          "AIM THE DAMAGE AT THE STUNNED BODY, because 465.2.c.3 forces lethal in full onto one unit before any goes to the next: if the garrison has other defenders you may be obliged to overkill the stunned one first anyway, which is what you want, or the assignment may never reach it, which is what kills the entry's payoff. Against a garrison of one, it always connects.",
+          "It is a draw a turn, capped by the Shrine's own exhaust and free otherwise — no Energy, no Power, and 315.1.b readies the gear every Awaken. Leona costs nothing per attack either, so the recurring price of the pair is zero.",
+          "Leona is a 4-Might body with [Shield] (814.1.c, +1 while defending) walking into a garrison; she is the fragile half, and losing her ends the engine. The Shrine survives her, which is why it is the payoff rather than the engine in the roles.",
+          "423.1.a.1 forbids stunning an already-stunned unit and 423.1.a.2 clears stuns at the end-of-turn cleanup, so each combat gets one stun and the same defender is a legal target again next turn.",
+          "Sibling: solari-chief-facebreaker-shrine-kill already runs the Shrine with OGN-225 Solari Chief, whose play trigger kills an ALREADY-stunned unit outright — that row buys the kill with a card, this one buys it with a combat that was happening anyway."
+        ]
+      },
+      "steps": [
+        "Play Solari Shrine (3 Energy) and Leona, Determined (4 Energy + 1 Order Power).",
+        "Move Leona to an occupied enemy battlefield. She gains the Attacker designation (464.2.c.1, 464.2.c.3) — an empty one gives none (807.1.d, 461).",
+        "Her attack trigger stuns an enemy unit there (383.4.e). 423.1.b removes that unit's Might from the combat damage step.",
+        "Combat damage resolves. Assign lethal to the stunned defender (465.2.c.3 forces it in full onto one unit at a time): it dies, which is a kill under 428.1.",
+        "The Shrine's trigger fires: exhaust it to draw 1. It readies at your next Awaken (315.1.b) and Leona attacks again."
+      ],
+      "netPerIteration": "+1 card per combat in which a stunned defender dies, at no Energy and no Power",
+      "terminatesIn": "engine — a free draw a turn off an attack you were making anyway",
+      "sources": [
+        {
+          "title": "Two-card pair walk, cause/trigger matrix rows 6-15 (docs/phase0/walks/2026-09-06-proven-rule-instances.md §24)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from rc-walk153b's cause/trigger matrix, trigger card OGN-072 Solari Shrine (22 candidate partners, none refused by rule). Card text verbatim from data/corpus_flat.txt; 315.1.b, 383.4.e, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 428.1, 461, 464.2.c.1, 464.2.c.3, 465.2.c.3, 807.1.d and 814.1.c opened in the Core Rules file. Both cards checked against data/legality.json: legal in both formats. No unruled reading. Leona, Determined was chosen over the spell stuns in the list (OGN-050 Rune Prison, SFD-040 Thwonk!, UNL-134 Existential Dread) because the Shrine needs a KILL as well as a stun, and she is the only partner that supplies the stun for free on the same attack that supplies the damage."
+    },
+    {
+      "id": "katarina-reckless-hidden-blade",
+      "name": "Katarina, Reckless × Hidden Blade — one rainbow Power buys a kill, two damage and a ready",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-023",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Fury unit, E5 P1 M5. 'When you hide a card, ready me. When you play a card from face down, deal 2 to an enemy unit.' Two triggers, and one [Hidden] card fires both — on different turns."
+        },
+        {
+          "card": "OGN-213",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, E2 P1, [Hidden], [Action]. 'Kill a unit at a battlefield. Its controller draws 2.' The only unconditional kill in the [Hidden] package."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Fury (Katarina) and Order (Hidden Blade) — Hand of Noxus, Void Burrower, Piltover Enforcer."
+        ],
+        "notable": [
+          "KATARINA IS PAID TWICE BY ONE CARD, ON TWO DIFFERENT TURNS, and 811.1.b is why: 'you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there … BEGINNING ON THE NEXT TURN, this gains [Reaction] and you may play this, ignoring its base cost.' Hiding is turn one and readies her; playing is turn two and deals 2. 811.1.c.1 — 'Hide is not a subset of Play' — is what keeps them separate events rather than one.",
+          "The whole package costs ONE rainbow Power. The Blade's printed 2 Energy + 1 Power is ignored when it is played from face down, so a kill of any unit at a battlefield, plus 2 damage anywhere from Katarina, plus a ready, is bought for the hide alone.",
+          "811.1.d.2 IS THE CONSTRAINT AND IT DECIDES WHERE YOU HIDE. 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible.' Hidden Blade reads 'Kill a unit at a battlefield' — no such impossibility — so it kills at the battlefield you hid it at. Hide it where you expect to fight, a turn ahead. Katarina's own 'deal 2 to an enemy unit' is HER ability, not the hidden card's, so it is unrestricted.",
+          "The drawback is real and is on the Blade: 'Its controller draws 2.' You are trading two cards of theirs for one of yours plus one Power, which is a good rate against a body that matters and a bad one against chaff.",
+          "One hide per battlefield you control per turn (811.1.b), so in a Duel (485.4) this is one or two cycles a turn, not one per [Hidden] card in hand. That cap, not the card count, is the throughput.",
+          "Katarina's ready falls under the same limit every ready in this slice does: it buys one extra Standard Move (144.2 charges the exhaust) and nothing on defence, since combat does not read exhaustion (464.2.c.3, 465.2.b, #61). But the hide happens on YOUR turn in an Open State (811.1.b), so unlike a defensive stun trigger the move is actually available.",
+          "Sibling: katarina-reckless-hidden-burn already runs her with Black Market Broker for the Gold; this row is the removal half and needs no third card."
+        ]
+      },
+      "steps": [
+        "Play Katarina, Reckless (5 Energy + 1 Fury Power) and control a battlefield with no facedown card on it.",
+        "Turn one, in an Open State on your turn: pay 1 rainbow Power to hide Hidden Blade face down at that battlefield (811.1.b). Hiding opens no chain (811.1.c.2).",
+        "Katarina's first trigger fires: she readies. Spend the extra Standard Move now or leave her where she is.",
+        "Turn two: play Hidden Blade from face down, ignoring its base cost. 811.1.c.3 makes that a play from face down.",
+        "The Blade kills a unit at the battlefield it was hidden at (811.1.d.2); its controller draws 2.",
+        "Katarina's second trigger fires: deal 2 to an enemy unit — hers is unrestricted, so aim it anywhere. Repeat next turn with the next hidden card."
+      ],
+      "netPerIteration": "one unit killed, 2 damage and one ready, for 1 rainbow Power per cycle",
+      "terminatesIn": "engine — removal paid for in Power rather than Energy, one cycle per controlled battlefield per turn",
+      "sources": [
+        {
+          "title": "Two-card pair walk, cause/trigger matrix rows 6-15 (docs/phase0/walks/2026-09-06-proven-rule-instances.md §24)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from rc-walk153b's cause/trigger matrix, trigger card UNL-023 Katarina, Reckless (37 hide partners and 37 play-facedown partners — she is the only card in the pool that watches BOTH events). Card text verbatim from data/corpus_flat.txt; 144.2, 464.2.c.3, 465.2.b, 485.4, 811.1.b, 811.1.c.1, 811.1.c.2, 811.1.c.3 and 811.1.d.2 opened in the Core Rules file. Both cards checked against data/legality.json by base code: legal in both formats — the matrix's first pass read that field as a scalar and let banned rows through, so it was re-checked here. No unruled reading. Hidden Blade was chosen over the cheaper mono-Fury SFD-017 Sudden Storm (deal 2, or 4 to an attacker) because it is the only unconditional KILL in the package; Sudden Storm is recorded as the cheap alternative in the family lead."
+    },
+    {
+      "id": "ember-monk-edge-of-night",
+      "name": "Ember Monk × Edge of Night — an Equipment that attaches itself for free, and pays the Monk",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-167",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 M4. 'When you play a card from [Hidden], give me +2 Might this turn.'"
+        },
+        {
+          "card": "SFD-139",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos gear, E3, M+2, Equipment. '[Hidden]. When you play this from face down, attach it to a unit you control (here). [Equip] 1 Chaos Power.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "MONO-CHAOS. Every legend with Chaos in its pair can run both (103.1.b.3), and Chaos is where the [Hidden] package lives."
+        ],
+        "notable": [
+          "IT SKIPS THE [Equip] COST ENTIRELY, WHICH IS THE POINT. 818.1 makes Equip an Activated Ability with a cost to pay — Edge of Night prints '[Equip] 1 Chaos Power' like any other Equipment — but its own play trigger reads 'When you play this from face down, attach it to a unit you control (here)', which is an effect, not an activation. Played from face down under 811.1.b it costs 0 Energy and attaches for nothing: the whole card is bought with the 1 rainbow Power of the hide.",
+          "Its '(here)' is the card writing 811.1.d.2 into itself: a hidden card's play effect must choose from among options at the battlefield it was hidden at. So the unit that gets the +2 Might Bonus (137.3) is one standing where you hid the gear, and Ember Monk should be that unit — he ends the turn at 4 + 2 (Might Bonus) + 2 (his own trigger) = 8.",
+          "The two payoffs stack because they are different kinds. The Might Bonus is permanent while attached (137.3.a takes it away the moment it detaches); the Monk's +2 is 'this turn' and is a continuous modifier, not a 702 buff, so 702.3's one-per-unit cap never touches it and a second hidden card played the same turn adds another +2.",
+          "One hide per battlefield you control per turn (811.1.b), so the Monk's ceiling is +2 per controlled battlefield per turn — in a Duel (485.4) that is +4, not +2 per card in hand. That cap is the honest throughput of every [Hidden] payoff in the pool.",
+          "Both triggers key on the same event and the rules name it: 811.1.c.3, 'Playing a card from facedown (or \"from Hidden\") does open a chain.' 811.1.c.1 keeps hiding out of it — 'Hide is not a subset of Play' — so nothing here fires on the hide.",
+          "Sibling: black-market-broker-ember-monk-hidden runs the Monk with SFD-121 Black Market Broker, which watches the same event for a Gold token. That row is about a second PAYOFF on one event; this one is about the cheapest CAUSE, and the three compose."
+        ]
+      },
+      "steps": [
+        "Play Ember Monk (4 Energy) to a battlefield you control.",
+        "In an Open State on your turn, pay 1 rainbow Power to hide Edge of Night face down at that same battlefield (811.1.b).",
+        "From the next turn, play it from face down for 0 Energy. 811.1.c.3 makes that a play from face down.",
+        "Its own play trigger attaches it to a unit you control here — the Monk — with no [Equip] cost paid (818.1 is bypassed, because this is an effect and not the activation).",
+        "The Monk is now 4 + 2 from the Might Bonus (137.3), and his own trigger adds +2 this turn: 8 Might.",
+        "Repeat with the next hidden card; the Might Bonus stays, the +2 does not."
+      ],
+      "netPerIteration": "a free Equipment attach and +2 Might on the Monk per card played from face down",
+      "terminatesIn": "engine — the [Hidden] package's hide cost bought back as board presence; it scores nothing",
+      "sources": [
+        {
+          "title": "Two-card pair walk, cause/trigger matrix rows 6-15 (docs/phase0/walks/2026-09-06-proven-rule-instances.md §24)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from rc-walk153b's cause/trigger matrix, trigger card OGN-167 Ember Monk (37 play-facedown partners). Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 137.3, 137.3.a, 485.4, 702.3, 811.1.b, 811.1.c.1, 811.1.c.3, 811.1.d.2 and 818.1 opened in the Core Rules file. Both cards checked against data/legality.json by base code: legal in both formats. No unruled reading. Edge of Night was chosen out of the 37 because it is the only [Hidden] card in the pool that ATTACHES ITSELF on the face-down play, which turns the hide's 1 rainbow Power into a permanent Might Bonus as well as the Monk's temporary +2."
+    },
+    {
+      "id": "blade-dancer-azir-ascendant-ready",
+      "name": "Blade Dancer × Azir, Ascendant — a choose you can make every turn without spending a card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-195",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Chaos legend. 'When you choose a friendly unit, you may exhaust me and pay 1 rainbow Power to ready it. When you conquer, you may pay 1 Energy to ready me.'"
+        },
+        {
+          "card": "SFD-050",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E6 P1 M6. '1 Calm Power: [Action] — Choose a unit you control. Move me to its location and it to my original location. If it's equipped, you may attach one of its Equipment to me. Use only once per turn.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Blade Dancer (SFD-195) IS the legend, and its Calm/Chaos identity covers mono-Calm Azir by construction (103.1.b)."
+        ],
+        "notable": [
+          "THE POINT IS THAT THE CHOOSE COSTS NO CARD. Blade Dancer fires on any choose of a friendly unit, and every other partner in her nine-card list is a SPELL — one choose per copy, three per game (103.2.b). Azir's swap is an activated ability with '1 Calm Power' and 'Use only once per turn', so it is a choose every turn for the rest of the game, and it does something useful on its own: it teleports a 6-Might body to wherever the chosen unit stands and sends that unit back.",
+          "702.2.a is not needed here and that is worth saying, because it is how most of her list qualifies: 'To Buff a Unit, a player CHOOSES a Unit and then places a buff on it', so every buff is a choose. Azir chooses outright, in his own words, with no buff involved.",
+          "WHAT THE READY IS FOR, and it is narrower than it reads. Readying a unit buys one extra Standard Move (144.2) and nothing on defence — combat does not read exhaustion (464.2.c.3, 465.2.b, #61) — so its real use is a SECOND activation of an exhaust-cost ability. Point it at a body with one: a gear-carrier, a token maker, or Azir himself, whose swap is once per turn by its own text and so cannot be doubled.",
+          "Her second sentence is the rebuy and it is conditional: 'When you conquer, you may pay 1 Energy to ready me.' On a turn you take a battlefield, the pair fires twice; on a turn you do not, once. 315.1.b readies her anyway at your next Awaken.",
+          "The per-turn price is 1 Calm Power (Azir) plus 1 rainbow Power (her cost), against #44's measured free floor of 2 Power a turn — so it runs itself and nothing else does.",
+          "Azir is a 6-Might body that ends each swap somewhere new; his 'if it's equipped, you may attach one of its Equipment to me' half is a free Equipment relay (818.1 would otherwise charge the [Equip] cost) and is a lead rather than a use, because this row's claim is the ready.",
+          "R32 was looked at and NOT filed on this card's 'Use only once per turn' clause (docs/phase0/walks/2026-09-06-issue62-r32-once-per-turn.md); nothing here copies the ability, so the question does not arise."
+        ]
+      },
+      "steps": [
+        "Blade Dancer is your legend. Play Azir, Ascendant (6 Energy + 1 Calm Power).",
+        "Any turn, in your Main Phase or a Showdown (his ability is [Action], 806.1.b): pay 1 Calm Power and choose a unit you control.",
+        "Blade Dancer's trigger fires on the choose: exhaust her and pay 1 rainbow Power to ready that unit.",
+        "Azir's own effect resolves: he moves to the chosen unit's location and it to his, and you may relay one of its Equipment onto him.",
+        "The readied unit takes a second Standard Move or pays a second exhaust-cost ability.",
+        "If you conquer this turn, pay 1 Energy to ready Blade Dancer and do it again; otherwise she readies at your next Awaken (315.1.b)."
+      ],
+      "netPerIteration": "+1 unit readied per turn (twice on a turn you conquer), for 1 Calm Power and 1 rainbow Power, spending no cards",
+      "terminatesIn": "engine — a repeatable untap with a free position swap attached; it scores nothing by itself",
+      "sources": [
+        {
+          "title": "Two-card pair walk, cause/trigger matrix rows 6-15 (docs/phase0/walks/2026-09-06-proven-rule-instances.md §24)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from rc-walk153b's cause/trigger matrix, trigger card SFD-195 Blade Dancer (9 candidate partners, the smallest list in this slice). Card text verbatim from data/corpus_flat.txt; 103.2.b, 144.2, 315.1.b, 464.2.c.3, 465.2.b, 702.2.a, 806.1.b and 818.1 opened in the Core Rules file. Both cards checked against data/legality.json by base code: legal in both formats. No unruled reading. Azir was chosen over the cheaper UNL-046 Friendship (1 Energy) because every other partner in the list is a spell capped at three uses a game, and this one is an ability that repeats for the rest of it."
+    },
+    {
+      "id": "jae-medarda-ki-barrier",
+      "name": "Jae Medarda × Ki Barrier — the spell that saves him replaces itself",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-142",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E5 P2 M5. 'When you choose me with a spell, draw 1.' A SPELL specifically — an ability that chooses him does nothing."
+        },
+        {
+          "card": "VEN-126",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, E2 P1, [Reaction]. 'Choose a unit. Prevent the next 7 damage that would be dealt to it this turn. (Opponents can assign it extra combat damage to kill it.)'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Chaos (Jae) and Order (Ki Barrier) — Heart of the Tempest is the only Order/Chaos legend NAME in the pool, printed under two base codes, VEN-155 and VEN-197. Counted from data/cards.json by base code; this is the tightest identity available and it fixes the shell before the first card is chosen."
+        ],
+        "notable": [
+          "PREVENT IS NOT A SHIELD AND NOT A HEAL, AND THE DIFFERENCE MATTERS. 437.4: 'Damage dealt to a Unit that has that all of that damage Prevented is not considered to have been dealt to it at all.' No damage is marked, so no kill event is ever generated — which means nothing that keys on a friendly unit dying fires, and the heal/exhaust/recall family's 808.1.d.1 problem never arises. It is a different mechanism from the would-die replacements (#119).",
+          "437.5 is the caveat the card prints in its own reminder: 'Damage can still be assigned to Units in combat that are affected by Prevent', so an attacker with enough Might simply assigns 8 or more and kills Jae anyway. Seven buys a turn against a normal board, not immunity.",
+          "AND THE CARD REPLACES ITSELF. Jae's 'When you choose me with a spell, draw 1' fires on the choose, before the prevention matters, so the protection is card-neutral: 2 Energy + 1 Order Power for a draw and a 7-damage shield on a 5-Might body.",
+          "READ 'WITH A SPELL' STRICTLY. His trigger is narrower than Blade Dancer's or Spirit Wheel's — those fire on any choose, including a buff (702.2.a). Jae needs a SPELL, so a gear's activated ability that chooses him, or a unit's play trigger, does nothing at all. Of the nineteen candidate partners the matrix found, the units and the gear among them are false positives on this clause; the entry names a spell for that reason.",
+          "It is a [Reaction] (813.1.c.1), so it can be held through the opponent's turn and spent in the middle of their attack, drawing the card then rather than on your own turn — the draw and the save happen in the same window.",
+          "Three copies each (103.2.b), and 5 Energy + 2 Chaos Power for Jae himself, which is the real cost: he is a 5-Might body with no keywords and the pair does nothing until he is on the board."
+        ]
+      },
+      "steps": [
+        "Play Jae Medarda (5 Energy + 2 Chaos Power) to a battlefield, and hold Ki Barrier with 2 Energy and 1 Order Power available.",
+        "When something threatens him — a removal spell, or the combat damage step of an attack — cast Ki Barrier as a [Reaction] (813.1.c.1), choosing Jae.",
+        "The choose resolves his trigger first: draw 1. The spell has replaced itself.",
+        "Ki Barrier's effect prevents the next 7 damage to him this turn. 437.4 means that damage is 'not considered to have been dealt to it at all' — nothing is marked and no kill happens.",
+        "437.5 still lets an attacker assign more than 7 in combat, so count their summed Might (465.2.c) before relying on it."
+      ],
+      "netPerIteration": "+1 card and a 7-damage prevention per Ki Barrier, three times a game",
+      "terminatesIn": "engine — protection that costs no cards; it scores nothing by itself",
+      "sources": [
+        {
+          "title": "Two-card pair walk, cause/trigger matrix rows 6-15 (docs/phase0/walks/2026-09-06-proven-rule-instances.md §24)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from rc-walk153b's cause/trigger matrix, trigger card SFD-142 Jae Medarda (19 candidate partners). Card text verbatim from data/corpus_flat.txt; 103.2.b, 437.4, 437.5, 465.2.c, 702.2.a and 813.1.c.1 opened in the Core Rules file. Both cards checked against data/legality.json by base code: legal in both formats. No unruled reading. The fourth notable records a false-positive class the matrix cannot see: Jae's clause says 'with a SPELL', so the units and gear among his nineteen candidates never trigger him, unlike the other two choose-friendly triggers in this slice."
+    },
+    {
+      "id": "spirit-wheel-stare-down",
+      "name": "Spirit Wheel × Stare Down — a garrison swept, and the sweep draws a card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-144",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Chaos gear, E2. 'When you choose a friendly unit, you may pay 1 Energy and exhaust this to draw 1.' Any choose, once a turn."
+        },
+        {
+          "card": "UNL-107",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E2. 'Choose a friendly unit and a battlefield. Move all enemy units at that battlefield with less Might than the chosen unit to their base. Gain 1 XP.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Chaos (Spirit Wheel) and Body (Stare Down) — Bounty Hunter, Battle Mistress, Voidreaver."
+        ],
+        "notable": [
+          "THE SWEEP IS FREE OF [Deflect], AND 355.10.d IS WHY. 'Move ALL enemy units at that battlefield with less Might than the chosen unit' selects them programmatically: 355.10.d says a Game Object 'programmatically selected based on its characteristics rather than chosen by the spell or ability's controller' is not a target, with 'Kill all units at a battlefield' as its worked example. 809.1.c and 809.1.d charge an opponent only for TARGETING or CHOOSING, so a whole garrison of [Deflect] bodies moves for nothing — #97 recorded this contrast between Stare Down and Public Execution.",
+          "ONE FRIENDLY UNIT IS CHOSEN, AND THAT IS THE SPIRIT WHEEL'S TRIGGER. The chosen friendly unit sets the Might bar AND fires the Wheel: 1 Energy and its exhaust for a card. So the sweep replaces itself, and the Wheel's own exhaust (readied every Awaken, 315.1.b) caps it at one draw a turn however many chooses you make.",
+          "AND THE EMPTIED BATTLEFIELD IS NOT YET YOURS. #102's correction: 323.6 only STRIPS the opponent's Control when their last body leaves — 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there' — and 170.11.c then makes it open, 'unoccupied AND uncontrolled', both conditions. A body of yours still has to walk in during the Main Phase (144.4.a) for 190.3.a.1 → 344.2 → 348.2.a → 348.2.a.1, which scores that same turn.",
+          "It sweeps to their BASE, not to another battlefield, so unlike svellsongur-faefolk-mass-evacuation or marai-spire-temptation-evacuation nothing arrives anywhere inconvenient and no enemy unit is handed the Attacker designation on your turn (190.3.a.1 keys Contested on the moved unit's controller).",
+          "The bar is the chosen unit's Might, strictly greater: a 6-Might friend clears everything at 5 or less and leaves a 6 standing. Nothing in a Chaos/Body shell reduces enemy Might to help — UNL-066 Moonlight Affliction is Mind and 103.1.b keeps it out — so the honest boundary is that this beats wide, small garrisons and loses to tall ones.",
+          "Four Energy for the pair and 1 Energy per draw; the XP is a rider that buys nothing on its own (#116 and #146 measured that nothing in the pool converts XP into points).",
+          "Spirit Wheel fires on ANY choose of a friendly unit, buffs included (702.2.a) — Stare Down is simply the partner whose choose is also a board sweep. Any other choose in the deck feeds the same draw."
+        ]
+      },
+      "steps": [
+        "Play Spirit Wheel (2 Energy) and keep 1 Energy available for it each turn.",
+        "Cast Stare Down (2 Energy), choosing your biggest friendly unit and the battlefield you want emptied.",
+        "The choose fires Spirit Wheel: pay 1 Energy and exhaust it to draw 1.",
+        "Stare Down resolves: every enemy unit at that battlefield with less Might than the chosen unit moves to their base, without being targeted or chosen (355.10.d), so no [Deflect] tax is paid.",
+        "If that was their whole garrison, the Cleanup strips their Control (323.6) and 170.11.c makes the battlefield open.",
+        "Walk a friendly unit in the same Main Phase (144.4.a): 190.3.a.1 Contests it, 344.2 opens the Showdown at the next Cleanup, 348.2.a gives Control and 348.2.a.1 makes it a Conquer — no combat, no damage, no Attacker designation."
+      ],
+      "netPerIteration": "a garrison of smaller bodies swept to base, a free Conquer behind it, and +1 card",
+      "terminatesIn": "engine — a bloodless Conquer that replaces the card that made it, three times a game",
+      "sources": [
+        {
+          "title": "Two-card pair walk, cause/trigger matrix rows 6-15 (docs/phase0/walks/2026-09-06-proven-rule-instances.md §24)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from rc-walk153b's cause/trigger matrix, trigger card SFD-144 Spirit Wheel (27 candidate partners). Card text verbatim from data/corpus_flat.txt; 103.1.b, 144.4.a, 170.11.c, 190.3.a.1, 315.1.b, 323.6, 344.2, 348.2.a, 348.2.a.1, 355.10.d, 702.2.a, 809.1.c and 809.1.d opened in the Core Rules file. Both cards checked against data/legality.json by base code: legal in both formats. No unruled reading. Stare Down was chosen out of the 27 because it is the only partner whose choose is simultaneously a board sweep, so the draw is a rider on a play you wanted to make rather than a reason to make it. #97's [Deflect]-free finding and #102's 'evacuating is not yet a Conquer' correction are applied rather than re-derived."
     }
   ]
 }
