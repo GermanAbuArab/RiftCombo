@@ -283,16 +283,26 @@ function deckCard(d: SavedDeck): string {
   const art = legendArt(card?.image, 160);
   // The legend has its own line with its domain dots, so the meta line does not repeat it.
   const total = Object.values(deck.main).reduce((a, b) => a + b, 0);
-  const dots = (deck.legend ? cards.domainsOf(deck.legend) : [])
+  const domains = (deck.legend ? cards.domainsOf(deck.legend) : [])
     .slice()
-    .sort((a, b) => DOMAIN_ORDER.indexOf(a) - DOMAIN_ORDER.indexOf(b))
-    .map((dm) => `<span class="dom-dot dom-${esc(dm)}" title="${esc(dm)}"></span>`)
+    .sort((a, b) => DOMAIN_ORDER.indexOf(a) - DOMAIN_ORDER.indexOf(b));
+  // #185: a `title` on each dot was being concatenated into the link's accessible name, so the tile
+  // announced "Lux infinite energy mind order Lady of Luminosity" and the domains read as a prefix
+  // to the legend's name. The dots leave the accessibility tree — the tooltip still works for a
+  // mouse, since `title` on an aria-hidden element is not exposed but is still shown — and the
+  // domains follow the legend's name as their own phrase instead. This is the pattern the
+  // deckbuilder's domain chips already use: an `aria-hidden` dot beside real text.
+  const dots = domains
+    .map((dm) => `<span class="dom-dot dom-${esc(dm)}" title="${esc(dm)}" aria-hidden="true"></span>`)
     .join("");
+  const saidDomains = domains.length
+    ? `<span class="sr-only">, ${esc(domains.map((dm) => dm[0]!.toUpperCase() + dm.slice(1)).join(" and "))}</span>`
+    : "";
   return `<a class="deck-card" href="#/decks/${encodeURIComponent(d.id)}">
     <span class="deck-card-art${art ? "" : " noart"}" aria-hidden="true">${art ? `<img src="${esc(art)}" alt="" loading="lazy">` : "—"}</span>
     <span class="deck-card-body">
       <span class="deck-card-name">${esc(d.name)}</span>
-      <span class="deck-card-legend">${dots}${esc(legend)}</span>
+      <span class="deck-card-legend">${dots}${esc(legend)}${saidDomains}</span>
       <span class="deck-card-meta">${total} card${total === 1 ? "" : "s"} · ${esc(d.format === "2v2" ? "2v2" : "Constructed")}</span>
       <span class="deck-card-verdict">
         <span class="badge ${report.legal ? "ok" : "bad"}">${report.legal ? "Legal" : "Illegal"}</span>

@@ -127,6 +127,35 @@ describe("the library", () => {
   });
 
   /**
+   * #185: the dots carried a `title` each, which the accessible name concatenated, so the tile
+   * announced "…energy mind order Lady of Luminosity" and the domains read as part of the legend's
+   * name. They are out of the tree now and the domains follow the name as their own phrase.
+   */
+  it("keeps the domain dots out of the accessible name and says the domains after the legend", async () => {
+    api.decks = [row()];
+    await boot();
+    const line = host().querySelector<HTMLElement>(".deck-card-legend")!;
+    [...line.querySelectorAll(".dom-dot")].forEach((dot) => {
+      expect(dot.getAttribute("aria-hidden")).toBe("true");
+      // The tooltip stays: `title` on an aria-hidden element is shown but not announced.
+      expect(dot.getAttribute("title")).toMatch(/^(fury|calm|mind|body|chaos|order)$/);
+    });
+    const said = line.querySelector(".sr-only")!;
+    expect(said.textContent).toBe(", Mind and Order");
+    // It follows the legend's name in DOM order, which is announcement order.
+    expect(said.previousSibling!.textContent).toContain("Lady of Luminosity");
+  });
+
+  it("says no domains at all when the list has no legend", async () => {
+    api.decks = [row({ deckText: "3 Forge of the Future\n" })];
+    await boot();
+    const line = host().querySelector<HTMLElement>(".deck-card-legend")!;
+    expect(line.querySelectorAll(".dom-dot")).toHaveLength(0);
+    expect(line.querySelector(".sr-only")).toBeNull();
+    expect(line.textContent).toBe("No legend");
+  });
+
+  /**
    * #177: the tile leads with the legend's art. The URL is the card's own — the same `image` field
    * every other view draws — so the assertion is that this tile carries THAT legend's art, not that
    * some image is present.
