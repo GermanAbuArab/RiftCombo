@@ -1148,3 +1148,74 @@ card, `SFD-036 Lonely Poro` (*"If I died **alone**"*), is switched **off** by th
   if a Burn Out is simultaneous with another replacement their controller orders them (373), and it
   could in principle be replaced. **No card in the pool replaces a Burn Out**, so it is a fact without a
   line — recorded so nobody re-reads the block looking for one.
+
+---
+
+# Batch 14 — no entry, four citation upgrades and one dead letter
+
+Batch 13's entry was staged; this batch produced **no new entry**. Every promising row I read either
+lands on a card another lane has already walked, or turns out to be a universal with nothing to build
+on. Recording it as a result rather than stretching for a duplicate.
+
+## 45. 204.4 Applied Costs — an uncited COST CATEGORY, and 204.4.c is the teeth
+
+**204.4**: *"Applied Costs: These Costs are applied to one or more Game Actions, and typically take the
+form of a passive ability with a Cost within Instructions preceded by 'must.'"* Riot's example is
+`UNL-163 Mageseeker Investigator` — *"Opponents must pay [A] for each unit beyond the first to move
+multiple units to my battlefield at the same time."*
+
+- **204.4.b**: *"Applied Costs are paid as the Game Action is performed. They do not use the chain and
+  cannot be reacted to."*
+- **204.4.c**: *"If a player can't pay or chooses not to pay the Applied Cost, they cannot perform the
+  associated Game Action."* — so it is a **prohibition when unpaid**, not a toll you may decline and
+  still move.
+
+**But 429.3's second worked example narrows it, and it names the same card**: *"A player moves two units
+to a battlefield where their opponent controls a Mageseeker Investigator. Although they have no window
+of priority, they may activate Add Reactions to pay for the applied cost from Mageseeker Investigator,
+and those abilities finalize and resolve immediately."* With 204.4.b.1 saying the same thing.
+
+**So the Investigator stops only an opponent who lacks the Power, never one who lacks a window.** The
+catalogue's `mageseeker-investigator-mass-move-tax` is correct and cites neither 204.4 nor 429.3.
+
+## 46. 429.2 — every Add in this pool is uninterruptible, and 429.2.b is dead letter
+
+**429.2**: *"Triggered and activated abilities that Add resources resolve as soon as they are
+finalized."* **429.2.a**: *"Priority and Focus will not pass from Add abilities being finalized or
+resolving, and will resolve before any other outstanding items on the chain are finalized."*
+**429.2.b**: *"Spells that Add resources will linger on the chain as normal when they are finalized."*
+
+**Measured on the corpus: 29 `[Add]` rows, and not one of them is a spell that Adds.** The single spell
+row, `UNL-073 Deadly Flourish`, creates a **Gold token** whose own ability Adds. So **429.2.b has no card
+behind it**, and the useful universal is its complement: **every Add in the pool is an ability, so every
+Add resolves immediately, passes no Priority or Focus, and cannot be reacted to** — which is exactly what
+the reminder text on Ancient Henge, the Gold token, Malzahar, Jhin and Lux, Crownguard all print.
+
+That also closes a question left open in batch 5: **ramping inside a Showdown costs you no Focus**, and
+429.2.a is the citation to pair with 346.1.
+
+## 47. 369.1 — "As I'm revealed" is a REPLACEMENT EFFECT, not a trigger
+
+**369.1**: *"A Replacement Effect can usually be identified by the presence of the terms 'as,' 'would,'
+or 'instead.'"* Its second worked example: *"Undertitan is a unit that reads in part 'As I'm revealed
+from your deck, [Add] [2].' This is a replacement effect that alters the execution of any Game Effect
+that reveals Undertitan from your deck."*
+
+`SFD-175 Undertitan` is the pool's **only** *"as I'm revealed"* card (swept: one row), and it sits in
+**four** entries — `reksai-undertitan-reveal`, `void-rush-undertitan-accelerate`,
+`diana-lunari-showdown-scry` and `teemo-strategist-undertitan-mind-order-reveal` — **none of which cites
+369.1**. It matters because a replacement does not use the chain: the Add is not a triggered ability that
+could be ordered or responded to, it alters the reveal as it happens.
+
+Companion, and already cited here for R25: **369.3** does the same for units entering the board —
+`OGS-009 Yi, Honed`'s *"I enter ready"* **replaces** 143.4, and `UNL-147 Baron Nashor`'s *"I enter
+there"* replaces the entering location.
+
+## 48. 390.5.c — the zone a Delayed Linked Ability lives in
+
+**390.5.c.1**: if the linked ability moves the affected object to a **non-board zone**, the delayed
+ability's zone is **the zone it moved to**. **390.5.c.2**: otherwise it is *"whatever zone the Linked
+Ability triggered or was played from, or whatever zone the affected Game Object is located in when it is
+affected."* Riot's examples are `OGN-032 Ravenborn Tome` and `OGN-254 Noxian Guillotine`. Structural —
+it decides where a delayed effect is *active*, and no line in the catalogue turns on it today, but it is
+the rule to reach for if one ever does.
