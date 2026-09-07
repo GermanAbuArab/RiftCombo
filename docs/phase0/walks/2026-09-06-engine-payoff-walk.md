@@ -778,3 +778,179 @@ not an addition, so it is a notable.
     no "when I die" drawback and no `808.1.d.1` question ever arises. This window is strictly wider
     than the #58 pre-open evacuation window, which required the spell to be cast *before* the entering
     move. `OGN-172 Rebuke` and `VEN-106 Wind and Ghosts` were both in zero entries.
+
+---
+
+## 18. `SFD-177 Azir, Sovereign` + The Grand Plaza — REFUSED, with the arithmetic
+
+My own open lead from §9, walked as a combat rather than as a Hold. **It does not become an
+ALT_WIN entry**, and the reason is arithmetic rather than a rules block.
+
+The existing `azir-sovereign-token-gather` (ENGINE) already carries the two rules that matter — it
+cites `464.2.c.3.a` for the dragged tokens becoming Attackers, and its notable[5] already says *"FOR A
+GRAND PLAZA FINISH IT IS A TWO-TURN ROUTE, NOT A REMATE."* What no walk had done is **count**.
+
+> **464.2.c.3.a.** If a Unit controlled by the Attacker or Defender becomes present at this Battlefield
+> after this moment, it will gain the Attacker or Defender designation during the Cleanup phase
+> following the action that caused it to become present, as appropriate for its controller.
+> **465.2.c.** Starting with the Attacker, each player assigns an amount of damage equal to their
+> summed Might among the other's Units.
+> **465.2.c.3.** Units must have lethal damage assigned to them in full before damage is assigned to a
+> different Unit.
+
+So the tokens Azir drags in are **Attacking Units by the damage step**, and the defender assigns their
+summed Might `D` among them. A 1-Might Recruit dies to 1 damage (465.2.c.4 caps assignment at the
+minimum needed), so **`D` damage removes `D` bodies**. With `K` tokens dragged in, the survivors at the
+Plaza are `1 + K − D` (Azir plus the rest), and the Plaza wants **seven**:
+
+> **K ≥ 6 + D**
+
+and those survivors then have to live through the opponent's whole turn, because the Plaza pays on your
+**next** Beginning Phase (315.2.b.2), not on the Conquer. Against a single 4-Might defender that is
+**ten** token units dragged in, every one of which `OGN-133 Flurry of Blades` (Body, E1, [Reaction],
+*"Deal 1 to all units at battlefields"*) then sweeps for one Energy.
+
+**Two more findings that shrink Azir's niche further, and neither was written down before:**
+
+1. **His unique value is not "base-bound tokens" but "EXHAUSTED tokens."** `143.4` makes units enter the
+   Board exhausted, and `144.2` makes the Standard Move cost that exhaust — but `315.1.b` readies
+   everything each Awakening, so tokens banked on an *earlier* turn are ready and can walk in
+   themselves. And `144.3` makes a mass Standard Move **one game action** with a shared destination
+   (144.3.a), while `144.4.a.1`'s arrivals cap is unsatisfiable in a two-player game (#111). So a ready
+   token army needs no Azir at all. He is worth exactly the tokens made *this* turn.
+2. **`UNL-077 Soul Shepherd` is the card that would fix the arithmetic, and it is not an Azir card.**
+   Mind, E5 M3, *"Your token units have +1 Might"* — a continuous modifier, not a 702 Buff, so 702.3's
+   one-per-unit cap never touches it and it applies to every token at once. At 2 Might the swarm needs
+   `2` damage per body (465.2.c.3), halving the combat losses to `⌊D/2⌋`, **and it is immune to Flurry
+   of Blades.** That is a fix for the *entire* 1-Might Plaza family — `grand-plaza-recruit-vanguard`,
+   `plaza-armory-miss-fortune`, `heimerdinger-armory-plaza`, `herald-heimerdinger-armory-plaza`,
+   `ready-recruits-grand-plaza` — every one of which names Flurry of Blades or is silently exposed to
+   it. **Handed to the manager as a notable for those entries rather than authored as a 24th Plaza
+   entry**, since it differs from each of them by one protective card.
+
+**Verdict:** Azir + Grand Plaza is strictly worse than the twenty-three catalogued Plaza lines whenever
+you can control the Plaza yourself (355.2.a lets you play tokens straight to it, for free), and it is
+the only route when the opponent holds it — at a price of `6 + D` tokens plus an opponent turn. The
+existing ENGINE entry's verdict stands and is now backed by the count.
+
+---
+
+## 19. The rest of the #118 `[Action]`-removal family — one refutation and three entries
+
+`draven-rebuke-bloodless-combat` (§16) was the first attacker-side instance. Walking the rest of the
+family produced one refutation that removes a third of it outright, and three entries whose numbers
+genuinely differ.
+
+### 19.1 REFUTED: **no `[Hidden]` removal can ever play the attacker-side role**
+
+This looked like the best half of the family — `OGN-256 Fox-Fire` kills *multiple* units and costs
+**zero** from hidden. It cannot work, and the rule is the definition of the keyword itself:
+
+> **811.1.b.** It is functionally short for *"While this card is in your hand or in your Champion Zone
+> on your turn during an Open State, you may pay [A] to hide this facedown **at a battlefield you
+> control** that doesn't already have a facedown card hidden there for as long as you control that
+> battlefield…"*
+> **811.1.d.2.** If a hidden spell or a play effect of a hidden permanent chooses any targets, those
+> targets must be chosen from among options **at that battlefield**, unless the ability explicitly
+> restricts targeting in a way that makes this impossible.
+
+A hidden card lives at a battlefield **you control** and its targets are pinned there. The battlefield
+you are *attacking* is by definition not one you control (190.3.a.1, 464.2.c.1), so a hidden removal can
+never reach the garrison you are trying to clear. That refuses `OGN-256 Fox-Fire`, `OGN-213 Hidden
+Blade` and `OGN-094 Sprite Call` from the attacker side.
+
+The **defender-side** version does work — the opponent attacks a battlefield you control, Fox-Fire is
+hidden right there, and clearing their force for 0 Energy means 465.1 never opens the damage step. But
+per the #118 walk that is *"a DEFENSIVE payoff, not a point"*: you keep the battlefield you already had,
+and `466.5` only establishes Control *"if they didn't already control this Battlefield"*. No entry.
+
+### 19.2 The one trap the whole shape hides: **a bloodless conquer generates ZERO excess damage**
+
+R28 = A makes excess damage *attacking Might that was never assigned*, and `465.1` means **nothing is
+assigned at all**. So every card reading *"if you assigned N or more excess damage"* is switched off by
+the very removal that wins the combat: `OGN-034 Tryndamere`, `SFD-120 Sivir`, `UNL-018 Yeti Brawler`,
+`UNL-187 Piltover Enforcer`, `UNL-188 Hextech Gauntlets`, `UNL-217 Trapping Grounds`. The
+bloodless-conquer family and the excess-damage family are **mutually exclusive in principle**, not
+merely by domain — which is why §12.1's Tryndamere entry and §16's Draven entry are opposite designs.
+
+### 19.3 `wind-and-ghosts-nasus-bloodless-conquer` (ENGINE, Calm/Chaos)
+
+`VEN-106 Wind and Ghosts` (Chaos, E3 P1) was in zero entries: *"Choose a unit at a battlefield. If it
+has 3 Might or less, banish it. Otherwise, return it to its owner's hand."* Unconditional either way, at
+**one** Power against Rebuke's two, and the banish half is permanent (108.6.c returns nothing from
+Banishment).
+
+Paired with the **conquer** half of the payoff inventory rather than the win-combat half:
+`VEN-046 Nasus, Ascended`'s `[Empowered][>] When I conquer, you score 1 point` has no once-per-turn
+clause and no threshold, so it is the payoff that *survives* §19.2's trap. Two points per attack, and an
+8-Energy `[Deflect 2]` body is never assigned damage — 809.1.c/809.1.d already taxed spell removal, and
+465.1 closes the combat route too. Empower routes in this shell: his own 8 Energy (permanent, 441.2) or
+`VEN-035 Sanction` (Calm, E3 P1) for the turn; `wild-claw-nasus-ascended-empowered` is Body/Calm and
+cannot share it (103.1.b.4).
+
+### 19.4 `alpha-strike-wuju-master-garrison-clear` (ENGINE, Calm/Body)
+
+`UNL-192 Alpha Strike` (Calm/Body, E3 P1) was in zero entries and is the **only multi-kill in the
+family**: *"Choose a friendly unit. It deals damage equal to its Might split among enemy units at
+battlefields. Then for each unit this kills, do this: Gain 1 XP."* Every other member takes exactly one
+unit. Two facts a reader would otherwise re-derive:
+
+- **The damage source has no location restriction** — only the *targets* are "at battlefields". So a big
+  body at your base is the gun and a cheap unit takes the Attacker designation, which inverts every
+  other line in the family, where the attacker has to be the payoff too.
+- **`enemy units at battlefields` is plural**, so leftover Might spills onto the other Duel battlefield
+  (485.4) while a combat is resolving — something no single-target removal can do.
+
+It is a **Signature** card tagged Master Yi, so 103.2.d.2 forces `UNL-191`/`UNL-231 Wuju Master`
+(Calm/Body; the third Master Yi legend, `OGS-019 Wuju Bladesman - Starter`, is `[BANNED 2v2:restricted]`),
+and three copies spend the whole 103.2.d.1 budget of three Signature cards. The XP it makes is a pure
+faucet into that same legend's `[Level 6]` and `[Level 11]` — safe, because 824.1.d turns a Level
+ability off the moment you hold less than N XP and 730.2 makes *spending* XP your own reduction.
+
+### 19.5 `noxian-guillotine-legion-bloodless-fork` (ENGINE, Fury/Order)
+
+`OGN-254 Noxian Guillotine` (Fury/Order, E4 P1, Signature/Darius) was in zero entries and is authored as
+a **fork**, because its two printed modes point in opposite directions once §19.2 is understood:
+
+| mode | what happens | points |
+|---|---|---:|
+| `[Legion]` — *"Kill it now instead"* | defender gone before 465.1; no damage assigned either way | **1** (the Conquer), body intact |
+| decline `[Legion]` — *"Kill it the next time it takes damage this turn"* | damage step runs; Tryndamere assigns his 8 Might; the remainder is excess | **2** (Conquer + Tryndamere), body exposed |
+
+The slow mode is also what kills a defender Tryndamere *cannot* kill outright, since *"the next time it
+takes damage"* needs only non-zero damage (143.2.a), not lethal damage. Rule of thumb printed by the
+arithmetic: garrison summing 3 or less → decline `[Legion]`, take 2; garrison summing 8 or more → take
+`[Legion]`, keep the body.
+
+It **can never share a list with `tryndamere-hextech-gauntlets-enforcer`** even though both are
+Fury/Order and both run `OGN-034` — 103.2.d.2 makes the Guillotine force a **Darius** legend
+(`OGN-253`/`OGN-302 Hand of Noxus`, two base codes and one name) while that entry forces `UNL-187
+Piltover Enforcer`, a Vi legend. One legend per deck; they are alternatives.
+
+Two smaller number differences recorded on the entry: the Guillotine says *"Choose a unit"* with **no
+"at a battlefield" clause**, unlike Rebuke, Blast of Power and Drag Under, so it also reaches a unit at a
+base; and the forced legend's own `[Legion]` Add is live on exactly the turns the Guillotine's is
+(429.2, 429.3).
+
+## 20. Facts for `CLAUDE.md`, continued
+
+13. **No `[Hidden]` card can remove a garrison you are attacking.** `811.1.b` hides a card *"at a
+    battlefield you control"* and `811.1.d.2` pins its targets there; the battlefield you attack is by
+    definition not one you control. That refuses `OGN-256 Fox-Fire`, `OGN-213 Hidden Blade` and
+    `OGN-094 Sprite Call` from the attacker side of the #118 removal family, however cheap they look
+    (Fox-Fire is 0 Energy from hidden and kills *several* units). The defender-side use is real but is a
+    defensive payoff, not a point — `466.5` establishes Control only *"if they didn't already control
+    this Battlefield"*.
+14. **A bloodless conquer generates ZERO excess damage, so it blanks the whole excess-damage family.**
+    `465.1` gates the damage step on both sides still being present; R28 = A defines excess as attacking
+    Might that was never *assigned*. `OGN-034`, `SFD-120`, `UNL-018`, `UNL-187`, `UNL-188` and `UNL-217`
+    all read *"if you assigned N or more excess damage"* and none of them fires. The removal-conquer and
+    excess-damage families are mutually exclusive in principle, not only by domain.
+15. **Azir, Sovereign's real niche is EXHAUSTED tokens, not base-bound ones**, and the Plaza arithmetic
+    is `K ≥ 6 + D`. `315.1.b` readies tokens banked on an earlier turn and `144.3`/`144.3.a` let a whole
+    army take one Standard Move to a shared destination, so a ready swarm needs no Azir; and
+    `464.2.c.3.a` makes the tokens he drags in *Attacking Units*, so the defender's summed Might `D`
+    kills `D` of them at 1 Might each (465.2.c, 465.2.c.3, 465.2.c.4). `UNL-077 Soul Shepherd` (Mind,
+    E5 M3, *"Your token units have +1 Might"*) is a **continuous modifier, not a 702 Buff**, so it
+    applies to every token at once, halves those losses, and makes the whole 1-Might Plaza family immune
+    to `OGN-133 Flurry of Blades` — a notable worth adding to every Plaza entry whose bodies are Recruits.
