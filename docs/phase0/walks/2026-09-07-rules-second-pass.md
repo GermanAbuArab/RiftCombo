@@ -104,15 +104,22 @@ where it already is (`jhin-relentless-pursuit-wallop`, `jax-grandmaster-warmogs-
 `SFD-118 Boneshiver` — *"channel 1 rune exhausted"*, no counter, no cap — that repeats. The contrast
 is why Boneshiver and not Warmog's is in two of the four entries above.
 
-**`OGS-023 Might of Demacia - Starter` and `OGN-269 The Boss` — NOT REFUSED, but not entries.** Both
-are legends (*"When you conquer, if you have 4+ units at that battlefield, draw 2"*; *"When you
+**`OGS-023 Might of Demacia - Starter` and `OGN-269 The Boss` — NOT REFUSED, deferred to a later batch.**
+Both are legends (*"When you conquer, if you have 4+ units at that battlefield, draw 2"*; *"When you
 conquer, ready me"*) and 383.4.c.2.b covers them: *"The Conquer Abilities of anything that references
 the player Conquering is put on the Chain as a Pending Item…"*. They pay this line exactly as
-described. But **no entry in the catalogue puts a legend in `uses[]`** (measured: 0 legend rows over
-all 362 entries) — a legend belongs in `prerequisites.easy` — and an entry whose only new content is
-its legend line would have a `uses[]` of Stare Down and nothing else, which is not a card set the
-matcher or `planDeck` can price. Recorded here as a **deckbuilding lead**: under a Body/Order legend,
-the four-body walk-in of 144.3 that `stare-down-hunt-pack-xp` already performs draws 2 as well.
+described.
+
+> **CORRECTION, made the same day by the walk that wrote it.** The first version of this paragraph
+> said a legend cannot be an entry's payoff *"because no entry in the catalogue puts a legend in
+> `uses[]` (measured: 0 legend rows over all 362 entries)"*. **That measurement was wrong** and the
+> reason is worth keeping: `Card.type` is a string ARRAY (`["legend"]`), and the probe compared it
+> with `=== "legend"`, which is false for every card in the pool. Re-run correctly, the catalogue has
+> **73 legend rows across 48 distinct legends**, with `role: "legend"` and `zone: "LEGEND"` — and
+> `master-of-shadows-banish-rummage`, an entry this same walk read an hour later, is one of them. The
+> lesson is the project's own: a claim of the form *"nothing in the catalogue does X"* is a
+> measurement, and a measurement written against the wrong field silently returns zero. Both legends
+> are therefore live entry material and are carried to a later batch, not refused.
 
 ---
 
@@ -162,7 +169,136 @@ reads *"The third time"*; moves four and five pay nothing. The third copy is def
 
 ---
 
-## 3. Back-links for `data/synergies.json` (`rule id -> entry id`)
+
+## 3. `master-of-shadows-banish-empower` (VEN-143) — 31 partners, 29 uncovered, and a uniqueness claim that its own card set refutes
+
+The catalogue's one Master of Shadows entry, `master-of-shadows-banish-rummage`, says in its **name**
+that *"Kennen is the only renewable banish in his own domains"*. It is not.
+
+`grep -i "Shadow Clone" data/corpus_flat.txt` returns three cards, all inside Fury/Chaos:
+
+| code | domain | how the clone arrives |
+|---|---|---|
+| `VEN-144` Death Mark | Fury/Chaos | on the spell resolving — **and this entry already runs three copies of it** |
+| `VEN-023` Zed, From the Shadows | Fury | on play, if you paid the discard as an additional cost |
+| `VEN-112` Zed, Without a Sound | Chaos | on every conquer, to your base |
+
+Every one of them prints the same token text: *"When I attack, you may banish a unit from your trash.
+If you do, give me [Assault 4] this turn."* That is a banish of a card you own **every combat**, with
+no conquer required and no card spent — strictly more renewable than Kennen, whose banish-enabler is a
+conquer trigger. So the claim is refuted by the entry's own three Death Marks. Reported to the
+manager; the fix belongs to whoever owns `data/combos.json`.
+
+### 3.1 The more useful half: a repeatable source is worth **one** activation a turn
+
+Master of Shadows's payoff is *"[Action][>] Disempower me, exhaust: Discard 1, then draw 1."* The
+**exhaust is in the cost**, and 315.1.b readies him only in your own Awakening, so:
+
+- banish once → 441.1 empowers him → disempower + exhaust → loot;
+- banish twice → the second empower lands (441.1.b bars empowering an *already* Empowered object, and
+  the loot has just disempowered him) but buys nothing, because the exhaust is spent.
+
+**So the value of a renewable banish is not more loots, it is a loot on EVERY turn** instead of only
+the turns you hold a banisher. This is the same shape the #160 walk found on the doubled
+`you may exhaust me to…` Hold triggers, reached from the other side: a multiplier on the TRIGGER side
+is worth nothing when the payoff's cost is an exhaust.
+
+Entry: **`zed-shadow-clone-renewable-banish-loot`** (ENGINE; VEN-143 legend + VEN-112 + VEN-023 ×3).
+`VEN-112` and `VEN-023` were both in zero entries.
+
+---
+
+## 4. `tryndamere-excess-damage-might-reduction` (OGN-034) — 22 partners, 22 uncovered
+
+The rule states the gap and the catalogue confirms it: every excess-damage entry pulls the
+**attacker** lever (buffs in `tryndamere-call-to-glory-trapping-grounds`, a Might Bonus in
+`tryndamere-hextech-gauntlets-enforcer`, [Assault] in `trapping-grounds-excess-damage`). Nothing pulls
+the **defender** lever, which 465.2.c.4 makes exactly as good:
+
+> **465.2.c.4.** *Units cannot have more damage assigned to them than the minimum required to
+> constitute lethal damage unless no further units remain to have damage assigned to them.*
+
+A buff is +1 (703). One `OGN-116 Thousand-Tailed Watcher` is −3 on **every** enemy unit.
+
+### 4.1 The four-point swing, with the quantities declared
+
+M8 Tryndamere into a garrison of M4 + M3: assign 4 and 3, excess **1**, threshold 5, **miss**.
+Play the Watcher first — 477.3.b snapshots each floored reduction at application, so both bodies sit
+at 1 — assign 1 and 1, excess **6**, **hit**. One card, four points of margin. And 465.2.c reads
+current Might for both sides, so the garrison swings back for 2 instead of 7.
+
+### 4.2 The split into two entries
+
+| entry | payoff | identity | reducer |
+|---|---|---|---|
+| `tryndamere-thousand-tailed-watcher-shrink` | a fixed **point** (194.1.c) | Fury/Mind — three legend names, six base codes | `OGN-116`, floored at 1, hits the whole garrison |
+| `sivir-ambitious-frigid-touch-excess` | *"deal that much"* — the **margin is the payout** | Mind/Body — **one** legend name (VEN-149 / VEN-194 Defender of Tomorrow) | `SFD-066` Frigid Touch, **unfloored**, one body |
+
+`SFD-120 Sivir, Ambitious` was in zero entries. The two are separate because the payoff is a
+different currency and the domains land at opposite ends of the census — three legend names against
+one. `SFD-066` with its [Repeat] paid is −4 with **no floor**: 143.2.b treats the result as 0 while
+143.2.b.1 insists *"Although the unit's Might is treated as 0, it is not 0"*, and 143.2.a still needs
+nonzero damage, so the bill is 1 either way — the unfloored reducer simply never wastes its second
+execution on a body already near the floor. It is also a [Reaction], so it is bought **after** seeing
+the garrison, inside the Combat's Closed State (813.1.c.1, 312.2.c), where the Watcher must be
+committed in the Main Phase.
+
+---
+
+## 5. `undertitan-reveal-payoff` (SFD-175) and `forgotten-signpost-carries-exhausted` (UNL-045) — closed together
+
+`SFD-175 Undertitan` already had four entries. What none of them has is a reveal that **keeps** it:
+Rek'Sai's and Teemo's both end in *"recycle the revealed cards"*, Diana's is a Predict, and Void Rush
+banishes-and-plays. `VEN-033 Pakaa Protector` — *"When I move, reveal the top card of your Main Deck.
+If it's a unit, **draw it**. Otherwise, put it in your trash and give me +2 Might this turn"* — is the
+only mover-reveal in the rule's list whose unit branch draws, and an Undertitan is a unit. The 2
+Energy (424.1: revealing is public presentation; the Undertitan's trigger names no source) and the
+5-Might body arrive on the same event.
+
+**And the engine has no blank face**, which is the honest reason it is an entry rather than a lottery:
+a unit is card advantage, anything else is a filtered mill plus +2 Might. The jackpot rate is stated
+in the entry rather than hidden — three copies in a 39-card deck (103.2 counts the Chosen Champion
+inside the 40, 103.2.a.1 sets it aside) is about one reveal in thirteen.
+
+`UNL-045 Forgotten Signpost` supplies the **second** reveal of the turn, and closes the second orphan
+rule: its cost is exhausting *another* unit plus its own exhaust, so it fires once a turn, and
+420.3.a puts the exhaust of a move on the **Standard Move only**, so the body it moves is not spent.
+Two moves, two reveals, and 431.1.c means the reveal half can never Burn Out.
+
+Entry: **`undertitan-pakaa-signpost-move-reveal`** (ENGINE, Calm/Order). `VEN-033` was in zero
+entries.
+
+---
+
+## 6. `ravenbloom-student-spell-replay` (OGN-103) — 18 partners, and the anchor was in **no** entry at all
+
+`grep -i "when you play a spell" data/corpus_flat.txt` returns **eight** cards as of 2026-09-07.
+Five gate on a cost or spend threshold (`OGS-006` and `OGS-021` on *"costs 5 or more"*; `UNL-005`,
+`UNL-181`, `UNL-211` on *"if you spent 4 or more"*), one gates on the opponent's turn (`SFD-063`),
+and **exactly two are unconditional**: `OGN-103 Ravenbloom Student` (+1 Might) and `UNL-149 Diana, No
+Longer Human` (+2 Might). Both were in zero entries. They share Mind/Chaos, so they stack.
+
+**Why they stack at all** is the fact worth carrying: *"give me +N Might this turn"* is a plain
+continuous modifier applied in 477.3.e.1's increase step, **not** a 702 Buff counter, so 702.3's
+one-per-unit cap and 703's fixed +1 are both silent and there is no ceiling of any kind. Four spell
+events on an ordinary turn take M2 → M6 and M3 → M11.
+
+The rule's own claim — a replay from the trash is a second *play* off a card already spent — is
+carried by `SFD-140 Fizz, Trickster` (*"play a spell from your trash … ignoring its Energy cost"*)
+and by the 17 [Flow] cards, where 829.1.b is *"functionally short for 'You may play this from your
+trash for its flow cost. Then banish it'"* and 829.1.b.1's delayed replacement banish caps each copy
+at exactly **two** events per game.
+
+The entry says its own shortfall out loud: **nothing in Mind/Chaos converts Might into points.** The
+excess-damage family is Fury and Body (`OGN-034`, `SFD-120`, `UNL-187`, `UNL-188`, `UNL-217`), and
+reaching it would need a third domain (103.1.b). So the product is a combat won, and the class is
+ENGINE.
+
+Entry: **`ravenbloom-diana-fizz-spell-stack`**.
+
+---
+
+## 7. Back-links for `data/synergies.json` (`rule id -> entry id`)
 
 This walk does not edit `data/synergies.json`. The pairs below are for the synergies session.
 
@@ -178,4 +314,17 @@ dauntless-vanguard-occupied-battlefield-assault
                                           rule's whole subject; Arachnoid Horror grants the
                                           permission under 355.2.b instead of printing it on itself)
 on-the-hunt-ganking-second-move       -> on-the-hunt-yasuo-triple-third-move
+master-of-shadows-banish-empower      -> zed-shadow-clone-renewable-banish-loot
+tryndamere-excess-damage-might-reduction
+                                      -> tryndamere-thousand-tailed-watcher-shrink,
+                                         sivir-ambitious-frigid-touch-excess
+undertitan-reveal-payoff              -> undertitan-pakaa-signpost-move-reveal
+forgotten-signpost-carries-exhausted  -> undertitan-pakaa-signpost-move-reveal
+ravenbloom-student-spell-replay       -> ravenbloom-diana-fizz-spell-stack
 ```
+
+## 8. Reported to the manager, not fixed here
+
+- `master-of-shadows-banish-rummage` carries a **false uniqueness claim in its own name** — see §3.
+  Three cards print the Shadow Clone token and its attack-triggered banish; one of them is the entry's
+  own `VEN-144 Death Mark ×3`.
