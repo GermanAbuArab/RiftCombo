@@ -1242,3 +1242,88 @@ blur them: an evacuated battlefield is unoccupied at once and uncontrolled only 
   so one point of damage kills it and the whole [Assault 4] never happens. It is a tempo card.
 - **Playing `OGN-174 Sai Scout` to a battlefield you merely evacuated this action.** Refused by
   170.11.c with 323.6: unoccupied is not open until Control has also lapsed, which takes a Cleanup.
+
+## 21. Batch 12 — five more, and the lane is down to single figures
+
+### 21.1 `sivir-mercenary-decree-of-rage-two-rainbow` — SFD-143 + VEN-015 (both in zero entries)
+
+**Two rainbow spent is two CARDS, not one big one.** 166.2 / 203.1 / 356.4.b make *"if you've SPENT at
+least two rainbow this turn"* a measurement of what left the Rune Pool, so two one-Power cards satisfy
+it and one two-Power card discounted to one does not. Sivir's own play is the first half; `VEN-015
+Decree of Rage` at 1 Energy + 1 Fury Power is the cheapest second half in the identity — and it is one
+of **exactly two** cards in the pool that print *"can't be countered"* (the other is `VEN-069 Mel,
+Newly Awakened`), so the enabler cannot be denied.
+
+Her [Accelerate] is domain-locked by 805.1.a.1, and that is the cheapest route of all on the turn she
+lands: the Chaos Power it demands also counts toward her own threshold.
+
+### 21.2 `twilight-step-shadow-order-disciple-move-burn` — VEN-105 + VEN-095 (both in zero entries)
+
+**A Might gate read at execution that the payoff's own trigger climbs out of.** 359.3.f.2 checks
+*"Move a unit with 3 Might or less"* on execution: the Disciple is 2, his Burn puts him at 3 (still
+inside), and a second Burn puts him at 4 and closes the gate for the turn. **The engine's stop is
+printed on the payoff, not on the spell** — two uses a turn.
+
+The move is an effect move (449 with 420.2.b), so 420.3.a's exhaust is never paid and 144.4's
+geography does not apply. And *"a unit"* is bare, so it reaches an **enemy** at 3 Might or less — the
+`OGN-168 Fight or Flight` precedent again — which makes it an evacuation tool as well as a mover.
+
+The Burn is a real mill (431.1.b, not the protected 431.1.c), and 431.2.b is the perverse relief: a
+Burn Out shuffles everything you milled back into the deck.
+
+### 21.3 `factory-recall-brittle-steel-gear-both-ways` — SFD-135 + VEN-003 (both in zero entries)
+
+**718.2 scopes the Inactive state to WHILE ATTACHED, which is the door the catalogue's #170 correction
+leaves open.** An attached Equipment can never pay its own [Equip] again (718.2 + 721.2), and the
+recorded relocations are attach EFFECTS — but `SFD-135 Factory Recall` returns the gear to **hand**,
+where it is no longer attached, its printed Rules Text is Active again, and replaying it lets you pay
+the [Equip] for a new carrier. One Energy, at [Action] speed. On a [Quick-Draw] Equipment it costs
+nothing at all (819.1.d determines no [Equip] cost); `SFD-186 Spinning Axe` is the in-identity case.
+
+Both halves CHOOSE, so both pay the [Deflect] tax (809.1.c) and both stop dead against an absolute
+*"can't be chosen"* (054.1) — unlike `OGN-022 Thermo Beam` and `OGN-179 Acceptable Losses`, which
+355.10.d and 355.10.e keep off it. A Fury/Chaos list holds both kinds and should know which is in hand.
+
+### 21.4 `firestorm-walking-roost-deflect-is-a-tax` — OGS-002 + UNL-130 (both in zero entries)
+
+**A programmatic sweep never consults [Deflect].** 355.10.d exempts an object *"programmatically
+selected based on its characteristics rather than chosen"*, with *"Kill all units at a battlefield"* as
+its own example — so Firestorm's *"all enemy units at a battlefield"* kills a Deflect body without
+paying a rainbow.
+
+Which is why `UNL-130 Walking Roost`'s drawback is **cheap in this list and expensive in others**: the
+1-Might Bird it hands the opponent carries [Deflect] by rule (187.7), so a choosing removal suite pays
+a Power to answer it and a sweeper deletes it for nothing. The drawback is not a fixed cost — your own
+removal suite sets it.
+
+The §10 refusal stands and is restated: **you do not get to place the Bird**. 355.2.a leaves it at
+their base or a battlefield they control, so no line may count on it arriving where you want.
+
+### 21.5 `shadows-of-the-past-evershade-stalker-stock-the-trash` — VEN-103 + UNL-123 (both in zero entries)
+
+**The plural is a trap, not a reach.** *"Return up to 2 units from TRASHES to THEIR OWNERS' hands"* —
+056 with 056.2 sends anything of theirs to **their** hand, so picking out of the opponent's trash is a
+gift. The value has to be stocked by you, which is what `UNL-123 Evershade Stalker`'s mandatory
+*"discard 1, then draw 1"* is for. It returns to **hand**, so nothing is cost-cheated.
+
+**And the card carries a registered DATA anomaly**: the corpus renders a dangling *"[Effect] 1"*
+because Riot's gallery ships this spell with the Equipment-only `effect` field holding the single
+character `1`. It is recorded in `docs/data-anomalies.md`, it must never enter `data/errata.json`, and
+the entry claims nothing from it.
+
+## 22. Refusals from batch 12
+
+- **Discounting anything in a `SFD-143 Sivir, Mercenary` list.** Refused by 166.2 / 203.1 / 356.4.b —
+  the third time this walk has recorded it, because the Fury/Chaos pool prints both the discounts
+  (`OGN-031 Raging Firebrand`, `SFD-141 Irelia, Graceful`) and the payoffs (`UNL-004 Prepared
+  Neophyte`, Sivir) and they cannot share a list.
+- **A third Burn on `VEN-095 Shadow Order Disciple` in one turn.** Refused by 359.3.f.2 with the
+  spell's own gate: at Might 4 he is outside *"3 Might or less"* and no further Twilight Step can move
+  him that turn.
+- **Choosing an opponent's unit with `VEN-103 Shadows of the Past`.** Refused by 056 / 056.2: it goes
+  to their hand. The plural in "trashes" is flavour, not reach.
+- **Counting on the `UNL-130 Walking Roost` Bird arriving at a battlefield you chose.** Refused by
+  355.2.a, as in §10 — restated here because the entry uses the Roost for a different reason.
+- **`SFD-135 Factory Recall` or `VEN-003 Brittle Steel` against a protected gear.** Refused by 809.1.c
+  and 054.1: both CHOOSE, so both pay the tax and both stop against an absolute prohibition. The
+  programmatic answers in this identity are Thermo Beam and Acceptable Losses.
