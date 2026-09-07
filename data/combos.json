@@ -47149,6 +47149,351 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. UNL-015 Right of Conquest and OGN-174 Sai Scout were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 143.4, 144.2, 170.11.a, 170.11.b, 170.11.c, 190.3.a.1, 194.1.d, 323.6, 323.9, 344.2, 348.2.a, 348.2.a.1, 355.2.b, 416.1, 431.1.a, 431.1.c, 485.4, 489.8, 489.8.c opened in the Core Rules file. The four ally-naming cards were swept over the whole corpus and are named; this CONFIRMS rather than corrects the catalogue's standing count of four. Sai Scout was refused in §10 of this walk as half of a duplicate CONQUER line behind an evacuator; here it is the walker on a battlefield that is already open, which is the job 355.2.b actually gives it. No unruled reading."
+    },
+    {
+      "id": "yuumi-affectionate-poro-designated-tank",
+      "name": "Granting [Tank] to somebody ELSE is what keeps the body that only pays when it takes no damage",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-056",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 P1 M1. 'When I attack or defend, give one of your OTHER units here +3 :rb_might: and [Tank] this turn.' A 1 Might body whose whole job is to nominate the target of the opponent's assignment."
+        },
+        {
+          "card": "VEN-024",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M3. 'When a combat that I was in ends, if I haven't been dealt damage this turn, draw 1.' A card per combat, conditional on taking nothing - which is exactly what a designated Tank arranges."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A THIRD body at the same battlefield to wear the [Tank]. Yuumi's clause says 'one of your OTHER units', so she cannot grant it to herself, and granting it to the Poro would defeat the entry."
+        ],
+        "notable": [
+          "GRANTING [TANK] IS A TOLL BOOTH FOR EVERY OTHER BODY, WHICH IS THE POINT. 815.1.b: the unit 'must be assigned LETHAL damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step', and 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' So the Poro cannot legally be assigned a single point until the nominated body has taken lethal - and if the attacker's summed Might is short of that, the Poro takes NOTHING and draws.",
+          "AND THE +3 IS WHAT MAKES THE TOLL EXPENSIVE ENOUGH. A 3 Might body wearing Yuumi's grant is a 6, so an attack summing 5 or less kills nobody at all (465.2.c.3 forces lethal onto one body in full before any goes elsewhere). The two halves of Yuumi's trigger are one effect for a reason: the keyword decides WHO is hit and the Might decides WHETHER anyone is.",
+          "IT FIRES ON BOTH SIDES OF THE COMBAT, WHICH IS RARE. 'When I attack or DEFEND' - so the grant is available on the opponent's turn as well as yours, and 464.2.c.3 hands out both designations at the same moment. The Poro's own trigger is 'When a combat that I WAS IN ends', which is equally side-agnostic; 740.2.c defines being in combat as occupying a battlefield where combat is ongoing and having a designation.",
+          "THE CONDITION IS 'THIS TURN', NOT 'THIS COMBAT', AND THAT IS A REAL LIMIT. The Poro reads 'if I haven't been dealt damage THIS TURN', so a ping earlier in the turn switches it off even if the combat itself was clean - and 143.3.b.2 heals during a Combat Cleanup, which does NOT undo the fact that damage was dealt. Against a pinger, this pair stops paying.",
+          "YUUMI IS A 1 MIGHT BODY AND THAT IS THE PRICE. She contributes almost nothing to 465.2.c's summed Might, and 143.2.a means one point of the attacker's assignment removes her - after which the grant is gone for that turn but the ones already given stand ('this turn'). Keep her behind the Tank she nominated, which 815.1.c.2 does for free.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And 815.2 makes a second [Tank] grant on the same body redundant, so a garrison that already contains a printed Tank wants Yuumi's grant elsewhere or not at all."
+        ]
+      },
+      "steps": [
+        "Have Yuumi, Magical Cat (3 Energy + 1 Power), Affectionate Poro (3 Energy) and one other body at the same battlefield.",
+        "When a combat starts - either side - Yuumi's trigger gives the OTHER body +3 Might and [Tank] for the turn.",
+        "815.1.c.2 makes every other unit you control there an invalid assignment until that body has lethal damage, so the Poro is untouchable while it lives.",
+        "465.2.c.3 forces the attacker to put lethal on it in full first; an attack summing less than its new Might kills nobody.",
+        "When the combat ends, the Poro has taken no damage and draws 1.",
+        "Do not let anything ping the Poro earlier in the turn: its condition reads 'this turn', not 'this combat'."
+      ],
+      "netPerIteration": "one card per combat the Poro survives untouched, bought by nominating a different body to absorb everything",
+      "terminatesIn": "engine only - one card per Poro per combat, three of each by 103.2.b, and it stops paying against any source of incidental damage; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 7)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-056 Yuumi, Magical Cat or VEN-024 Affectionate Poro. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.2.a, 143.3.b.2, 464.2.c.3, 465.2.c, 465.2.c.3, 469, 740.2.c, 815.1.b, 815.1.c.2, 815.2. The entry turns on granting [Tank] to a body that is NOT the payoff - this project has recorded that granting Tank protects every OTHER body, and here that is the whole mechanism rather than a side effect. The 'this turn' versus 'this combat' distinction on the Poro is stated because it is the difference between a reliable card and one a single ping switches off. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "resonating-strike-sunlit-guardian-hidden-reinforcement",
+      "name": "You cannot PLAY a unit into a battlefield mid-combat, but you can MOVE one there - and a hidden [Reaction] costs nothing to do it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-034",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E2 P1. '[Hidden] ... [Reaction] ... Choose a battlefield you control and a unit you control at a different location. Move that unit to that battlefield and give it +2 :rb_might: this turn.' Hidden for one rainbow, played for nothing, at Reaction speed."
+        },
+        {
+          "card": "OGN-054",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M3. '[Shield] (+1 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.)' The body worth teleporting: it arrives as a 6 and takes the whole assignment."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "The spell hidden at the battlefield you intend to defend: 811.1.d.2 confines a hidden card's choices to the battlefield it was hidden at, and this spell's first choice is 'a battlefield you control'."
+        ],
+        "notable": [
+          "A MOVE IS NOT A PLAY, WHICH IS WHY THIS WORKS AT ALL. 355.2.a makes a played unit's valid locations 'the controller's Base or a battlefield the controller controls', which is why nothing in the pool can reinforce a battlefield you are ATTACKING and why only one card is an exception. This spell does not play a unit - 449: 'Spells, Abilities, or other effects may cause a Move to occur', with 449.1 leaving the restrictions to the source. And 420.3.a puts the exhaust cost on the STANDARD Move alone, so an effect move relocates an already-exhausted body and 144.4's base-to-battlefield restriction never applies: this goes battlefield to battlefield with no [Ganking].",
+          "AND THE ARRIVING BODY IS IN THAT COMBAT. 319.6 runs after Game Objects enter or leave the Board, and 323.2.a: 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now.' So a body moved in mid-combat is a Defender before 465.2 resolves, and 143.4's entering exhausted is irrelevant because neither 464.2.c.3 nor 465.2.b filters by state.",
+          "WHAT IT COSTS, WHICH IS ALMOST NOTHING. 811.1.b in full: '... you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' One rainbow Power to hide, zero to play, and 813.1.c.1 lets the [Reaction] land in any Closed State on any player's turn. Against its printed 2 Energy + 1 Power that is a genuine discount as well as a genuine surprise.",
+          "AND THE HIDING RESTRICTION COSTS NOTHING HERE. 811.1.d.2 confines a hidden card's choices to the battlefield it was hidden at, and 811.1.d makes a hidden spell unplayable if it has no valid target under that restriction - but this spell's battlefield choice is 'a battlefield YOU CONTROL', which is exactly where 811.1.b made you hide it. The restriction and the card agree, which is not true of most hidden spells.",
+          "THE BODY TO TELEPORT IS A [TANK], BECAUSE THE GRANT IS THE POINT. Sunlit Guardian arrives at 3 + 1 ([Shield], 814.1.c, while defending) + 2 (the spell) = 6 Might, and 815.1.c.2 makes every other unit you control there an invalid assignment until it has lethal. An attack that was sized against your garrison a moment ago is now short by six.",
+          "ONE FACEDOWN PER BATTLEFIELD, AND THE HIDE IS CONTROL-DEPENDENT. 811.1.b allows one facedown card per battlefield and 485.4 puts two on a Duel table, so at most two of these are armed at once; and the hide lasts only 'for as long as you control that battlefield', which 323.6 takes away the moment your last body there leaves in an Open State.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the spell moves ONE unit, so it answers a combat you were losing narrowly, not a board you were losing badly."
+        ]
+      },
+      "steps": [
+        "On your turn in an Open State, pay 1 rainbow Power to hide Resonating Strike facedown at a battlefield you control (811.1.b).",
+        "From the next turn it has [Reaction] and costs nothing to play (the tail of 811.1.b with 813.1.c.1).",
+        "When that battlefield is attacked, play it inside the combat: choose that battlefield and a Sunlit Guardian standing somewhere else.",
+        "449 moves the Guardian there - an effect move, so 420.3.a's exhaust and 144.4's destination limits do not apply - and gives it +2 Might.",
+        "319.6 with 323.2.a make it a Defender before damage is assigned; 814.1.c adds its [Shield] on top, so it arrives as a 6.",
+        "815.1.c.2 then forces the attacker's whole assignment onto it before anything else of yours can be touched."
+      ],
+      "netPerIteration": "one body teleported into a combat at Reaction speed for 1 rainbow Power total, arriving three Might larger than it left",
+      "terminatesIn": "engine only - one facedown per battlefield and two battlefields in a Duel (811.1.b, 485.4), three copies by 103.2.b, and it moves a single unit; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 7)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use VEN-034 Resonating Strike or OGN-054 Sunlit Guardian. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.4, 144.4, 319.6, 323.2.a, 323.6, 355.2.a, 420.3.a, 449, 449.1, 464.2.c.3, 465.2, 465.2.b, 469, 485.4, 811.1.b, 811.1.d, 811.1.d.2, 813.1.c.1, 814.1.c, 815.1.c.2. The entry's content is the PLAY-versus-MOVE distinction: 355.2.a is why a unit cannot be played into a battlefield you do not control, and 449 with 420.3.a is why one can be MOVED into a battlefield you do control, exhausted, from anywhere. It is also the rare hidden spell whose own choice restriction (811.1.d.2) coincides exactly with where 811.1.b made you hide it. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "mournful-witness-serene-ascetic-free-empower",
+      "name": "Of the six cards that Empower themselves without an [Empower] cost, four are legends - and one of the two units does it for free",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-028",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E2 M2. 'When a combat that I was in ends, empower me. (I become Empowered if I'm not already.) [Empowered][>] I have +2 :rb_might:.' No [Empower] cost anywhere on the card - the state arrives on a trigger."
+        },
+        {
+          "card": "VEN-030",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M3. '[Empower] :rb_energy_3: ... [Empowered][>] I have [Deflect] and [Shield 3].' What an Empower is worth when you do pay for one: permanent evasion tax plus 3 Might on defence."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "For the Witness, a combat it is in - which 740.2.c defines as occupying a battlefield where combat is ongoing with a combat designation. Surviving it is not required by the wording, but a dead body cannot be Empowered."
+        ],
+        "notable": [
+          "THE SWEEP, WITH ITS MEMBERS NAMED. `grep -in \"empower me\\|empower this\"` filtered to rows WITHOUT an [Empower] keyword cost returns six cards: four legends - VEN-143 Master of Shadows, VEN-151 Soul's Reflection, VEN-153 Matriarch of War, VEN-155 Heart of the Tempest - and two units, VEN-028 Mournful Witness and VEN-092 Renekton, Brute. Renekton's is conditional on his Might reaching 10, which he buys at 1 Energy per point; the Witness's is a plain combat trigger. **It is the only unit in the pool that becomes Empowered for no resources at all.**",
+          "AND 441.1 IS WHY THAT IS A REAL SAVING RATHER THAN A REWORDING. 441.1: 'Empowering is the act of rendering one or more Game Objects Empowered' - an effect that Empowers performs the ACT and never pays the target's printed [Empower] cost, which is the same reading this project applied to a gear Empowering another gear. 441.2 then makes the state permanent ('a state for Game Objects on the board') and 441.1.b forbids re-Empowering, so the Witness's trigger is worth exactly one firing and every later combat adds nothing.",
+          "WHAT THE TWO EMPOWERS ARE WORTH, SIDE BY SIDE. The Witness is 2 Energy for a body that becomes a 4 Might after its first combat, free. The Ascetic is 3 Energy for the body and 3 more for the state, and what that buys is [Deflect] - extra Power on any spell or ability that CHOOSES it, in any Domain (809.1.c, 809.1.c.1) - plus [Shield 3], which 814.1.c makes '+3 :rb_might: while I am a defender', so a 3 Might body defends as a 6 and cannot be answered cheaply. Six Energy for a permanent defensive anchor is the honest price.",
+          "AND THE HOLE IS THE SAME ONE [DEFLECT] ALWAYS HAS. 355.10.d keeps a programmatically selected object off the target list, so every sweeper in the pool goes through the Ascetic untaxed; and 054.1's 'can't beats can' is the stronger protection this domain also prints, which akali-silent-twilight-shroud-cant-be-chosen walks.",
+          "NEITHER TRIGGERS A 'WHEN YOU EMPOWER' LEGEND IN THIS DOMAIN, AND THAT IS WORTH KNOWING BEFORE BUILDING. 441.2.a makes becoming Empowered an event that other effects can reference, and the pool's payoffs for it are VEN-151 Soul's Reflection (Mind/Chaos) and VEN-153 Matriarch of War (Body/Order) - neither of which a Calm/Mind list can run. In Calm the Empower is worth what the card itself says and nothing more.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And 441.1.b caps each body at one Empower, so this is a pair of one-time purchases and not a rate."
+        ]
+      },
+      "steps": [
+        "Play Mournful Witness (2 Energy) and put it into a combat - either side; 740.2.c is what 'in combat' means.",
+        "When that combat ends, its trigger Empowers it for nothing (441.1 performs the act; no [Empower] cost is ever determined) and it is a 4 Might body from then on.",
+        "441.1.b means the second combat adds nothing - the state is permanent (441.2) and one firing is all it is worth.",
+        "Play Serene Ascetic (3 Energy) and pay its [Empower] of 3 Energy when you can afford it.",
+        "It now carries [Deflect] - a rainbow tax on anything that chooses it (809.1.c) - and [Shield 3], so it defends as a 6 (814.1.c).",
+        "Expect a sweeper to ignore the [Deflect] entirely (355.10.d)."
+      ],
+      "netPerIteration": "one free Empower per Mournful Witness after its first combat, and a permanent defensive anchor for 6 Energy on the Ascetic",
+      "terminatesIn": "engine only - 441.1.b caps each body at one Empower, so this is three one-time purchases per card (103.2.b) rather than a rate; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 7)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use VEN-028 Mournful Witness or VEN-030 Serene Ascetic. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 054.1, 103.1.b.3, 103.2.b, 355.10.d, 441.1, 441.1.b, 441.2, 441.2.a, 469, 740.2.c, 809.1.c, 809.1.c.1, 814.1.c. UNIQUENESS SWEPT, NOT ASSUMED: the six cards that Empower themselves with no [Empower] cost are named, four are legends, and of the two units Renekton's is gated on reaching Might 10 - so the Witness is the only unit that does it for no resources. The entry states plainly that neither Empower feeds a 'when you empower' payoff in this domain pair, since both such legends are out of identity. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "dredge-up-dramatic-visionary-predict-draw",
+      "name": "[Predict 2] then Draw 1 is a certainty, and [Flow] is what makes the draw available twice",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-062",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 M4. '[Deathknell][>] [Predict 2]. (When I die, look at the top two cards of your Main Deck. Recycle any of them and put the rest back in any order.)' The arrangement, paid for by a body that was going to trade anyway."
+        },
+        {
+          "card": "VEN-049",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E2. 'Draw 1. [Flow] :rb_energy_2: (You may play this from your trash for its Flow cost. Then banish it.)' A draw that costs the same from the trash as from hand, which is unusual for the keyword."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Mind, so 103.1.b.3 admits any legend with Mind in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "The Visionary has to DIE for its Predict, so do not shield it - 808.1.d.1 removes the trigger from the chain if it never reaches the Trash."
+        ],
+        "notable": [
+          "THE CERTAINTY IS THE GENERAL RULE THIS LANE FOUND, AT ITS SMALLEST. 436.1.a: 'When more than one card is Predicted, the Predicting player looks at that many cards and Recycles any number of them before putting the rest back on top of their Main Deck IN ANY ORDER.' So after a [Predict 2] you know and control the top two, and a Draw 1 is exact rather than random. The general form recorded in this walk is that any look at M cards is certain behind a [Predict N] with N >= M; clairvoyance-fate-weaver-predict-setup is the five-card version and reinforce-tasty-faefolk-cheat-into-play is the other, and this is the cheap one.",
+          "AND THE ARRANGEMENT COMES FROM A BODY THAT WAS TRADING ANYWAY. 808.1.c makes a Deathknell 'functionally short for \"When I die, [Effect]\"', so the Visionary's Predict is free in the sense that matters: it is paid for by a 4 Might body doing its job. 808.1.d.1 is the anti-synergy and it is easy to build by accident - a heal/exhaust/recall shield saves the body and the Predict never happens.",
+          "[FLOW] HERE IS FLAT, WHICH IS UNUSUAL. 829.1.b: 'You may play this from your trash for its flow cost. Then banish it', with 829.1.b.1 making that banish a delayed replacement and 108.6.c keeping it gone. Dredge Up's Flow cost is 2 Energy - the SAME as its printed cost - so each copy is genuinely two cards for four Energy across two turns, and three copies are SIX draws. Most Flow costs in the pool are a premium; this one is not.",
+          "NOTHING HERE CAN BURN YOU OUT ON THE LOOK. 431.1.c keeps looking and revealing free of Burn Out and 436.4.a says it outright for this action: 'The Player will not perform a Burn Out as a result of Predicting with too few cards in their deck.' The Draw 1 is the only risk (431.1.a), and only with an empty deck.",
+          "THE RECYCLE HALF IS AS USEFUL AS THE DRAW HALF. 416.1 with 416.1.a put a recycled card on the BOTTOM of the deck, so the Predict's real work on a bad top two is removing them - a Draw 1 afterwards then finds the third card, which you have not seen. Read the pair as 'draw the better of two, or dig past both', not only as a tutor.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the certainty is only as good as what is in the top two - the Predict arranges, it never creates."
+        ]
+      },
+      "steps": [
+        "Play Dramatic Visionary (4 Energy) and let it trade in combat.",
+        "Its Deathknell fires: look at the top two, recycle what you do not want to the bottom (416.1.a), and order what remains (436.1.a).",
+        "Play Dredge Up (2 Energy) and draw the card you left on top - exact, not random.",
+        "Later, replay Dredge Up from the trash for its [Flow] cost of 2 Energy and draw again; 829.1.b banishes it afterwards.",
+        "Do not protect the Visionary: 808.1.d.1 removes the Deathknell from the chain if it never reaches the Trash."
+      ],
+      "netPerIteration": "one chosen card per Deathknell-plus-draw, and six draws a game from three Dredge Ups",
+      "terminatesIn": "engine only - six Dredge Up plays by 103.2.b with [Flow] and three Visionary deaths; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 7)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-062 Dramatic Visionary or VEN-049 Dredge Up. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 108.6.c, 416.1, 416.1.a, 431.1.a, 431.1.c, 436.1.a, 436.4.a, 469, 808.1.c, 808.1.d.1, 829.1.b, 829.1.b.1. It is the cheapest instance of this walk's Predict-then-look rule and names the other two. The flat [Flow] cost is stated because most of the keyword's costs in the pool are a premium and this one is not. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "crescent-strike-frostcoat-cub-sweep-threshold",
+      "name": "One damage to everything else is a token sweeper, and an unfloored -2 is how the main target gets inside the four",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-072",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E3 P1. '[Action] ... Choose a battlefield and an enemy unit there. Deal 4 to that unit and 1 to each other enemy unit there.' Two fixed numbers, so the only lever is the targets' Might."
+        },
+        {
+          "card": "SFD-067",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind unit, E3 M3. 'You may pay :rb_rune_mind: as an additional cost to play me. When you play me, if you paid the additional cost, give a unit -2 :rb_might: this turn.' No floor in the clause, which is what lets it complete a kill."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Mind, so 103.1.b.3 admits any legend with Mind in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "One Mind Power spare for the Cub's optional additional cost - without it the body lands and the reduction does not."
+        ],
+        "notable": [
+          "THE SPELL IS TWO DIFFERENT REMOVALS IN ONE CARD. 'Deal 4 to that unit' answers a mid-sized body; '1 to each OTHER enemy unit there' answers a garrison of 1 Might tokens - and this project has measured that a simultaneous 1 damage to every body at a battlefield kills any number of 1 Might tokens at once, which is the standing weakness of every token line in the pool. 143.2.a kills on marked damage at or above Might, so the sweep half is exact: everything at 1 Might dies, everything above it does not.",
+          "AND THE REDUCTION IS UNFLOORED, WHICH IS THE WHOLE REASON IT IS THE PARTNER. The Cub's clause carries no 'to a minimum of 1', so it can take a 6 Might body to 4 and put it inside the spell's fixed 4 - where a floored reducer never could, since a floored effect is snapshotted by 477.3.b at the size it was aimed at and can never reduce a body below 1 anyway. The pool splits by set: nine Origins reductions are floored, the fourteen from Spiritforged, Unleashed and Vendetta are not, and this is one of the fourteen. 477.3.e.2.a applies decreases last, so the target cannot be pumped out of it within one evaluation.",
+          "THE ORDER IS FORCED BY THE CARD TYPES, NOT BY CHOICE. The Cub is a unit and a Main Phase play; the spell is [Action] (806.1.c.1: 'This can be played during showdowns on any player's turn'). So the reduction is committed first and the spell is held - which is the right way round anyway, since the spell wants to see the final board.",
+          "AND 143.2.b IS WHY THE CUB NEVER KILLS ANYTHING BY ITSELF. Negative Might READS as 0 for spells, abilities and combat damage but IS NOT 0, so a reduction generates no kill event: the spell has to finish it, and the entry is the division of labour.",
+          "THE CEILING, WITH THE QUANTITIES DECLARED. 3 Energy for the Cub plus 1 Mind Power, and 3 Energy + 1 Power for the spell: the pair removes a body of up to 6 Might and sweeps every 1 Might token beside it, for 6 Energy and 2 Power. Two Cubs reach 8. Three of each by 103.2.b.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the damage comes from the spell, not from a unit - so 417.6.b.3's Challenge exception does not apply and a blanket spell-and-ability fog DOES stop it, unlike the mutual-damage family."
+        ]
+      },
+      "steps": [
+        "Play Frostcoat Cub (3 Energy) and pay the extra Mind Power so its trigger fires: give the intended target -2 Might this turn, with no floor.",
+        "477.3.e.2.a applies decreases last, so a pump in the same evaluation does not undo it.",
+        "Play Crescent Strike (3 Energy + 1 Power) under its [Action] permission, choosing that battlefield and that unit.",
+        "It takes 4 - lethal on anything now at 4 Might or less (143.2.a) - and every OTHER enemy unit there takes 1, which clears a garrison of 1 Might tokens simultaneously.",
+        "With a second Cub the reach is 8 Might; without the extra Power the Cub is simply a 3 Energy 3 Might body."
+      ],
+      "netPerIteration": "one enemy unit of up to 6 Might removed and every 1 Might body beside it swept, for 6 Energy and 2 Power",
+      "terminatesIn": "engine only - three of each card by 103.2.b, and the numbers are fixed at 4 and 1 so the only scaling is more reductions; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 7)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-072 Crescent Strike or SFD-067 Frostcoat Cub. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.2.a, 143.2.b, 417.6.b.3, 469, 477.3.b, 477.3.e.2.a, 806.1.c.1. Companion to icevale-archer-deadly-flourish-damage-threshold from batch 5 and the deliberate opposite of orb-of-regret-smoke-screen-floored-reduction from batch 4: an unfloored reduction can complete a kill and a floored one cannot, and all three entries name each other. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
     }
   ]
 }
