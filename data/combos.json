@@ -30162,6 +30162,340 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 40, ready-friendly x VEN-088). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 144.2, 315.1.b, 317.2.c, 415.1.b, 415.1.c, 464.2.c.3, 465.2.b, 465.2.c, 702.2.b, 806.1.b, 809.1.c, 810.1.c.3, 814.2. Distinct from awaken-ready-body-triple-trigger, which collects the same trigger for free at the Awaken: the finding is that the Awaken's choice is made blind, and that exactly one of Jayce's three options — [Deflect 2] — has to be made blind anyway, because 809.1.c is an additional cost on PLAYING and cannot tax a spell already on the Chain. Ban check: neither card is banned or restricted. Trap check: Jayce must be exhausted or the ready and the trigger are both thrown away (415.1.b/c); the ready buys nothing on defence (464.2.c.3, 465.2.b); the same option twice is worth nothing; Wallop is free only with a buff to spend; no unruled reading."
+    },
+    {
+      "id": "academy-ezreal-gust-double-bounce",
+      "name": "The Academy grants [Repeat] to a spell that has none — Ezreal makes it free, and a doubled Gust empties a garrison",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-216",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'When you hold here, give your next spell this turn [Repeat] equal to its base cost. (You may pay the additional cost to repeat the spell's effect.)' The whole point is the word GIVE: SFD-211 Marai Spire only discounts spells that already print [Repeat] — fourteen of them — while The Academy hands the keyword to any spell in the pool, one per turn, off a Hold that costs nothing."
+        },
+        {
+          "card": "SFD-149",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Chaos unit, E3 P1 M3. 'When you play me, discard 1, then draw 2. Optional additional costs you pay cost :rb_energy_1: or :rb_rune_rainbow: less.' 820.1 makes [Repeat] an Optional Additional Cost, and 356.4.c's own worked example is this card applied to a [Repeat] spell — Riot ruled the interaction on the card. He replaces himself on the way in."
+        },
+        {
+          "card": "OGN-169",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos spell, E1. '[Reaction] (Play any time, even before spells and abilities resolve.) Return a unit at a battlefield with 3 :rb_might: or less to its owner's hand.' Base cost 1 Energy, so the granted [Repeat] costs 1 Energy and Ezreal takes it to 0. It says 'a unit', not 'a friendly unit', so both executions can take enemy bodies — and 820.2.a lets the second execution choose a different one."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The line is mono-Chaos (Ezreal and Gust; The Academy is Colorless), so 103.1.b.3 admits any legend with Chaos in its pair — sixteen names, among them SFD-195/SFD-246 Blade Dancer, UNL-185/UNL-228 Bloodharbor Ripper, OGN-267/OGN-309 Bounty Hunter, UNL-193/UNL-232 Gloomist, SFD-185/SFD-242 Glorious Executioner, VEN-155/VEN-197 Heart of the Tempest, OGN-251/OGN-301 Loose Cannon, VEN-143/VEN-191 Master of Shadows, SFD-199/SFD-248 Prodigal Explorer, UNL-197/UNL-234 Scorn of the Moon, VEN-151/VEN-195 Soul's Reflection, OGN-263/OGN-307 Swift Scout, OGN-259/OGN-305 Unforgiven, UNL-201/UNL-236 Voidreaver."
+        ],
+        "notable": [
+          "IT IS THE TWIN OF ezreal-marai-spire-free-repeat AND THE TWO CANNOT SHARE A BOARD. Both stand on Ezreal and on 356.4.c's worked example, but 485.4.a puts exactly one of your three battlefields into a Duel and 103.4.c forbids two of a name, so Marai Spire and The Academy are alternatives, never a stack. Marai Spire is the better card in a deck built around the fourteen printed [Repeat] spells; The Academy is the better card in a deck whose best spell has no [Repeat] at all, which is most of the pool.",
+          "THE REPEAT COST REACHES EXACTLY 0 AND STILL COUNTS AS PAID. 356.6 floors a cost at 0, 356.4.f allows a cost of 0 and 356.4.f.1 keeps it 'paid' because the decision to pay it was made, so 820.1.d.1 executes the spell's instructions a second time. This is the same mechanism the Marai Spire entry walked, on a spell that never printed the keyword.",
+          "ORDER MATTERS INSIDE THE TURN: the Academy says 'your NEXT spell this turn', so the doubled spell has to be the first one you play after the Hold. Playing anything else first spends the grant.",
+          "ONE EXTRA EXECUTION, NEVER TWO. 820.1.b gives exactly one, and 820.1.c.3 — 'Each Repeat Cost can be paid only a single time' — closes the loop. This is an engine, not an INFINITE.",
+          "TWO BOUNCES IS AN EVACUATION, WHICH IS WHY THE CLASS IS worth more than the card text suggests: a garrison of two bodies at 3 Might or less leaves the battlefield entirely, and with no units of opposing players present 323.9 marks no Combat, so the walk-in that follows is the bloodless 344.2 route rather than an attack. Cast Gust BEFORE the entering move, never after — 323.13 needs a Neutral Open State and after a plain move the very next Cleanup stages and opens the Combat with no gap.",
+          "THE ACADEMY MUST BE HELD, WHICH MEANS CONTROLLED. 'When you hold here' is the wording 190.6.d governs; a battlefield you provide starts uncontrolled (190.1) and 315.2.b.2 Holds only battlefields you Control, so a body has to be standing there every Beginning Phase. And 485.5 picks one of your three at random in a Duel; 486.5 lets you choose in 1v1 Match play."
+        ]
+      },
+      "steps": [
+        "Take The Academy and keep a body on it. 315.2.b.2 Holds only battlefields you Control and 323.6 takes Control back at the next Cleanup if the battlefield is empty.",
+        "Play Ezreal, Prodigy (E3 + 1 Chaos Power). His play effect discards 1 and draws 2, so he costs no cards.",
+        "Your Beginning Phase, Scoring Step (315.2.b.2): you Hold The Academy and it gives your next spell this turn [Repeat] equal to its base cost.",
+        "Main Phase: play Gust (E1) as the first spell of the turn and choose to pay the additional cost at step 2 of playing (356.2.b.1). The [Repeat] cost is 1 Energy; Ezreal's discount is applied to the additional cost as soon as it is added (356.4.c), taking it to 0, and 356.6 floors it there.",
+        "820.1.d.1 executes Gust's instructions a second time and 820.2.a lets the second execution pick a different unit: two bodies of 3 Might or less at battlefields return to their owners' hands for one Energy.",
+        "Repeat next turn — the Hold is free and recurs every Beginning Phase for as long as you keep the battlefield."
+      ],
+      "netPerIteration": "one free extra execution of the turn's first spell — with Gust, a second bounce for 0 additional cost",
+      "terminatesIn": "engine only — one doubled spell per turn for as long as you hold The Academy; 820.1.b gives exactly one extra execution and 820.1.c.3 forbids paying the same Repeat cost twice, so nothing here loops and nothing here scores",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "820.1.c.3. Each Repeat Cost can be paid only a single time."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171. Card text verbatim from data/corpus_flat.txt. The Academy was in no entry; the mechanism it shares with ezreal-marai-spire-free-repeat is deliberately cross-referenced in both directions rather than duplicated, and the two are stated as mutually exclusive on 485.4.a + 103.4.c. Trap check: 820.1.b and 820.1.c.3 are cited so [Repeat] is not mistaken for an engine; the evacuation half cites 323.9 and the cast-before-the-move rule of #58 rather than claiming an attack, so 807.1.d / 383.4.e / 461 never come up; 190.6.d and 190.1 are cited for the Hold, which is a real cost; exactly one battlefield is named, so 485.4.a is respected."
+    },
+    {
+      "id": "sandswept-tomb-public-execution",
+      "name": "Sandswept Tomb is switched on from turn one and takes a Power off all twenty-four spells that choose a friendly unit",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-164",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "no Control needed",
+          "note": "Colorless battlefield. 'Each spell that chooses one or more units here that are friendly to it costs :rb_rune_rainbow: less.' THE SENTENCE CONTAINS NO 'YOU'. 190.6.d blanks a battlefield's instructions only through that word — 'If the battlefield has no Controller, \"you\" refers to no one, and all such instructions are ignored' — and the Tomb instead says 'friendly to it', keying on the spell's own controller. So unlike every 'While you control this battlefield' discount it is live from turn one, before anybody walks anywhere."
+        },
+        {
+          "card": "VEN-154",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body/Order spell, E2 P1. 'Choose a friendly unit. Kill an enemy unit with less Might than it. [Flow] :rb_energy_5::rb_rune_rainbow::rb_rune_rainbow: (You may play this from your trash for its Flow cost. Then banish it.)' With the chosen friendly unit standing at the Tomb it costs E2 and no Power at all, and the Flow replay drops from E5 + 2 rainbow to E5 + 1. It is the pool's worked contrast to Stare Down: 355.10.d exempts a Game Object 'programmatically selected based on its characteristics rather than chosen' from being a target, and Public Execution CHOOSES, which is exactly why the Tomb sees it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "PUBLIC EXECUTION IS A SIGNATURE CARD TAGGED AMBESSA, so this is a ONE-LEGEND line and not a domain line: 103.2.d.2 makes every Signature card carry the legend's champion tag, and the only legend in the pool carrying Ambessa is VEN-153 / VEN-196 Matriarch of War (Body/Order). A Body/Order domain check would have admitted Grand Duelist, Keeper of the Hammer, The Boss and Might of Demacia; every one of them is illegal here. 103.2.d.1 also spends one of the three Signature slots on it."
+        ],
+        "notable": [
+          "THE DISCOUNTED SET IS TWENTY-FOUR SPELLS, MEASURED. Filtering data/corpus_flat.txt to spells with a Power component whose text chooses a single friendly unit returns OGN-069, OGN-102, OGN-108, OGN-128, OGN-173, OGN-250, OGN-260, OGN-262, OGN-270, OGS-008, SFD-045, SFD-107, SFD-184, SFD-200, SFD-206, UNL-106, UNL-128, UNL-142, UNL-184, UNL-192, UNL-202, VEN-052, VEN-140, VEN-154. The Tomb is a flat 1 Power off every one of them, unbounded in uses — one named payoff is what an entry can price, but the class is what the battlefield is worth.",
+          "A MASS PUMP GETS NOTHING, AND THAT IS 355.10.d, NOT AN OVERSIGHT. 'Give friendly units +5 :rb_might:' (OGN-233 Grand Strategem) and 'Give friendly units +2 :rb_might:' (OGS-024 Decisive Strike) select programmatically and therefore choose nothing, so the Tomb never discounts them. Check the verb before counting a spell into the set.",
+          "THE CHOSEN UNIT HAS TO BE STANDING AT THE TOMB when the cost is determined — 'one or more units HERE that are friendly to it'. That makes the discount a reason to garrison this battlefield rather than the other one, and it is the whole cost of the line.",
+          "IT PAYS THE OPPONENT TOO. 'Friendly to it' is friendly to the spell, so their spells choosing their own units at the Tomb are equally cheap. In practice that only bites while both sides have bodies there, i.e. during a contest — which is also when your removal matters most.",
+          "POWER IS THE SCARCE CURRENCY, WHICH IS WHY A FLAT ONE MATTERS. 356.6 floors the cost at 0, and 135.2.e.5.b makes a rainbow spendable on any domain, so the discount is worth a whole domain rune on a two-domain spell. Public Execution goes from E2 + 1 Power to E2 flat.",
+          "SANDSWEPT TOMB IS NOT GUARANTEED TO BE ON THE TABLE: 485.4.a puts one of your three into a Duel, 485.5 picks it at random, 486.5 lets you choose in 1v1 Match play, and 103.4.c forbids a second copy of the name.",
+          "103.2.d.1 CAPS THE LIST AT THREE SIGNATURE CARDS and three copies of Public Execution spend all three slots. Two copies leave one slot for another Ambessa Signature card; the entry prices three because 829.1.b's Flow replay is what makes the third copy worth the slot."
+        ]
+      },
+      "steps": [
+        "Bring Sandswept Tomb as one of your three battlefields. It needs no Control and no set-up: there is no 'you' in its text for 190.6.d to blank.",
+        "Garrison it with the body you intend to choose — for Public Execution, the biggest Might you own, since the kill is capped by 'an enemy unit with less Might than it'.",
+        "Play Public Execution choosing that body. The Tomb's discount is a component discount applied while the cost is determined (356.4), taking the 1 Power to nothing; 356.6 floors it at 0.",
+        "Kill any enemy unit with less Might than the chosen one. Repeat with the other two copies, and again from the trash: 829.1.b lets each copy be played once more for its Flow cost — also a Power cheaper — and then banishes it, so three copies are six castings in a game."
+      ],
+      "netPerIteration": "1 rainbow Power saved on every spell that chooses a friendly unit standing at the Tomb — with Public Execution, a kill for E2 and no Power",
+      "terminatesIn": "engine only — an unbounded discount that never scores; the named payoff is bounded at six castings by 103.2.b plus 829.1.b's one Flow replay per copy",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "190.6.d. \"You\" in a battlefield's abilities refers to the battlefield's Controller, as does the implied \"you\" in instructions that don't specify a player like \"draw 1.\" If the battlefield has no Controller, \"you\" refers to no one, and all such instructions are ignored."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171. Card text verbatim from data/corpus_flat.txt; the twenty-four-spell set was filtered out of the corpus rather than recalled. This is the second battlefield in the catalogue whose text survives 190.6.d because it never says 'you' (UNL-214 Ripper's Bay was the first, #161) — the check is on the WORD, not on the sentiment, and it is worth running on every battlefield before assuming it needs Control. THE FIRST DRAFT OF THIS ENTRY NAMED FIVE BODY/ORDER LEGENDS AND FOUR OF THEM WERE ILLEGAL — test/legend-lines.test.ts caught it before the entry was staged, which is exactly the #167 failure class: a Signature card in uses[] makes prerequisites.easy a one-legend field. Trap check: 355.10.d is cited so a mass pump is not counted into the discounted set; no attack, no token, no [Temporary]; 829.1.b bounds the Flow half at one replay per copy (108.6.c: nothing returns from Banishment); exactly one battlefield is named, so 485.4.a is respected.",
+      "legends": [
+        "VEN-153",
+        "VEN-196"
+      ]
+    },
+    {
+      "id": "frozen-fortress-soul-shepherd-asymmetric-sweep",
+      "name": "Frozen Fortress sweeps every 1-Might body twice a round, and Soul Shepherd is what makes the sweep one-sided",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-212",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "no Control needed",
+          "note": "Colorless battlefield. 'At the start of each player's Beginning Phase, deal 1 to each unit here. (This happens before scoring.)' No 'you' anywhere in it, so 190.6.d never blanks it and it is live from turn one whoever controls the battlefield. It fires TWICE per round — once in each player's Beginning Phase — and the parenthesis pins it before 315.2.b's Scoring Step."
+        },
+        {
+          "card": "UNL-077",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Mind unit, E5 M3. 'Your token units have +1 :rb_might:.' A CONTINUOUS MODIFIER, not a 702 buff counter, so 702.3's one-buff-per-unit cap never touches it and it stacks with a real buff. That is the whole asymmetry: it lifts every Recruit, Bird, Sprite and Mech you own out of the Fortress's range while leaving the opponent's at 1."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "The line is mono-Mind (Soul Shepherd; the Fortress is Colorless), so 103.1.b.3 admits any legend with Mind in its pair: UNL-189/UNL-230 Bashful Bloom, SFD-201/SFD-249 Chem-Baroness, VEN-145/VEN-192 Curator of the Sands, OGN-247/OGN-299 Daughter of the Void, UNL-199/UNL-235 Deceiver, VEN-149/VEN-194 Defender of Tomorrow, SFD-189/SFD-244 Fire Below the Mountain, OGN-265/OGN-308 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-181/SFD-240 Mechanized Menace, OGN-255/OGN-303 Nine-Tailed Fox, SFD-199/SFD-248 Prodigal Explorer, UNL-197/UNL-234 Scorn of the Moon, VEN-151/VEN-195 Soul's Reflection, OGN-263/OGN-307 Swift Scout, UNL-181/UNL-226 Virtuoso."
+        ],
+        "notable": [
+          "ONE DAMAGE IS LETHAL TO A 1-MIGHT BODY AND TO NOTHING ELSE, BECAUSE DAMAGE NEVER ACCUMULATES ACROSS TURNS. 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 143.3.b.1: 'Damage is Healed from Units at two specific times: At the end of each player's turn.' So the Fortress is a permanent 1-Might FILTER, never a clock — a 2-Might body standing there forever is never in danger.",
+          "AND IT DENIES THE BATTLEFIELD TO A TOKEN GARRISON OUTRIGHT. The kill lands at 315.2.a, before 315.2.b's Scoring Step; the deaths make a Cleanup Outstanding (319.6) and 323.6 then strips Control from a player 'without their Units occupying them'. An opponent who takes Frozen Fortress with 1-Might tokens loses it again in their own Beginning Phase and never Holds it once.",
+          "THIS IS THE PERMANENT, FREE VERSION OF OGN-133 FLURRY OF BLADES, scoped to one battlefield. It is the same mechanism CLAUDE.md records as the binding constraint on every 1-Might Grand Plaza line — Might per body, not number of bodies — and an unbounded token engine does not beat it.",
+          "REFUSED HERE, AND THE PARAGRAPH THAT KILLS IT: Frozen Fortress cannot feed UNL-174 Shard of Undoing ('The first time a friendly unit dies during your Beginning Phase each turn, each opponent must kill one of their units'). Any 1-Might body you send there in your Main Phase is killed at the OPPONENT's Beginning Phase, which comes first, so it is never alive for yours; and 143.3.b.1 heals the damage at the end of every turn, so a 2-Might body cannot die on a second tick either. The Fortress can only ever kill a friendly body in the opponent's window.",
+          "IT IS SYMMETRIC ON YOUR OWN NON-TOKEN 1-MIGHT CARDS — Watchful Sentry, Carrion Dredger, Soaring Scout and every other M1 printed body die there too. Soul Shepherd only says 'your TOKEN units'.",
+          "FROZEN FORTRESS IS NOT GUARANTEED TO BE ON THE TABLE: 485.4.a, 485.5, 486.5 and 103.4.c as for every battlefield entry."
+        ]
+      },
+      "steps": [
+        "Bring Frozen Fortress as one of your three battlefields. It needs no Control: there is no 'you' in its text.",
+        "Play Soul Shepherd (E5). His clause is a static continuous modifier and needs nothing further; every token you own is now 2 Might or more.",
+        "Garrison Frozen Fortress with tokens. At each player's Beginning Phase the battlefield deals 1 to each unit there; 143.2.a leaves your 2-Might tokens alive and kills every 1-Might body the opponent has walked in.",
+        "Their deaths make a Cleanup Outstanding (319.6); in the Neutral Open State of 310.1, 323.6 takes their Control of the battlefield away before 315.2.b's Scoring Step, so they never Hold it.",
+        "143.3.b.1 heals all marked damage at the end of each turn, so the filter resets and repeats forever with no upkeep."
+      ],
+      "terminatesIn": "engine only — a permanent, free, one-sided 1-Might filter at one battlefield, firing twice per round; nothing here scores and nothing about it is unbounded",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "143.3.b. Damage is Healed from Units at two specific times: 143.3.b.1. At the end of each player's turn. 143.3.b.2. During a Combat Cleanup."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171. Card text verbatim from data/corpus_flat.txt. 143.3.b.1 had never been cited in this project and it is the paragraph that decides what every repeating damage source is worth: damage is healed at the end of EACH player's turn, so nothing in the pool accumulates it across a round and a 1-damage tick is a filter rather than a clock. The Shard of Undoing pairing was walked before this entry was written and is refused inside it rather than left for the next session to re-derive. Trap check: 190.6.d is cited for what it does NOT do here (the text never says 'you'); no attack, no [Temporary]; 702.3 is cited so the static is not mistaken for a buff counter; exactly one battlefield is named, so 485.4.a is respected; produces is empty, as on the other denial entries the vocabulary does not yet cover (issue #157)."
+    },
+    {
+      "id": "dragon-roost-mountain-drake-instant-garrison",
+      "name": "Dragon Roost plays a Dragon straight onto the battlefield — the walk 143.4 and 144.2 normally charge a whole turn for",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-157",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "no Control needed",
+          "note": "Colorless battlefield. 'Any player may pay :rb_rune_rainbow::rb_rune_rainbow: as an additional cost to play a Dragon. If they do, they play it to this battlefield.' It says 'any player', never 'you', so 190.6.d never blanks it and it is live from turn one. 355.2.b is the paragraph that makes it legal — 'Some Game Effects may grant players permission to play Units to locations that are not normally Valid. Such locations become Valid for the purposes of Playing the Unit' — against 355.2.a's default of your base or a battlefield you control."
+        },
+        {
+          "card": "OGN-142",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body unit, E9 M10, tag Dragon, no rules text at all. The biggest Might in the pool per card, and the body the Roost helps most: a 10-Might Dragon normally enters exhausted at your base (143.4) and cannot reach a battlefield until the following turn, after 315.1.b readies it and it pays 144.2's exhaust for the Standard Move. The Roost deletes that turn."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Mountain Drake is mono-Body and the Roost is Colorless, so 103.1.b.3 admits any legend with Body in its pair: OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, SFD-203/SFD-250 Battle Mistress, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master."
+        ],
+        "notable": [
+          "AND IF THE OPPONENT IS STANDING THERE, THE DRAGON IS THE ATTACKER WITH NO MOVE AT ALL. 190.3.a.1 — 'Units moving to OR BEING PLAYED TO a battlefield apply Contested status' — with 464.2.c.1, which makes the Attacker 'the player whose unit(s) applied the Contested status'. So 144.2's exhaust never comes up, and 143.4's entering exhausted costs nothing, because 464.2.c.3 and 465.2.b do not filter by state. This is the SFD-093 Dauntless Vanguard trick printed on a battlefield instead of on one body, and it applies to every Dragon in the deck.",
+          "THE PRICE IS TWO RAINBOW POWER, PAID AS AN ADDITIONAL COST, and it is not small: on Mountain Drake the real line is E9 plus 2 Power. What it buys is a turn, and against an opponent who wins the battlefield on their turn a turn is the whole game.",
+          "IT IS SYMMETRIC AND THAT IS A REAL COST. 'Any player may pay' — the opponent's Dragons get the same door onto this battlefield, and it is a battlefield you brought.",
+          "SFD-015 PERCHED GRIMWYRM IS THE ONE DRAGON THIS CANNOT CARRY: 'Play me only to a battlefield you conquered this turn. (You can't play me anywhere else.)' 054.2 — 'If a card specifies that an action can \"only\" be performed under certain circumstances, it cannot be performed under any other circumstances' — beats the Roost's permission unless the Roost itself was conquered this turn, in which case the Roost adds nothing the Grimwyrm did not already have.",
+          "TWO DRAGONS THAT MAKE THE SECOND LANDING BETTER: SFD-094 Direwing ('I enter ready if you control another Dragon') lands ready and can still take its Standard Move the same turn, and UNL-104 Gentle Gemdragon ('When you play me or another Dragon, ready up to 2 runes') refunds part of the toll in Energy on every Dragon after it. Both are catalogued elsewhere; neither is required here and neither is in uses[] for that reason.",
+          "DRAGON ROOST IS NOT GUARANTEED TO BE ON THE TABLE: 485.4.a, 485.5, 486.5 and 103.4.c as for every battlefield entry."
+        ]
+      },
+      "steps": [
+        "Bring Dragon Roost as one of your three battlefields. It needs no Control: it says 'any player', never 'you'.",
+        "Play Mountain Drake (E9) and choose to pay the additional 2 rainbow Power at step 2 of playing (356.2.b.1).",
+        "355.2 asks for a valid location; 355.2.b makes this battlefield valid because the Roost grants the permission, and the Roost's own text fixes the destination — 'they play it to this battlefield'.",
+        "The Dragon enters exhausted (143.4) and garrisons the battlefield immediately. An exhausted defender fights at its full Might: 465.2.c sums Might at assignment and neither 464.2.c.3 nor 465.2.b filters by state.",
+        "If the opponent already had units there, 190.3.a.1 applied Contested as the Dragon was played and 464.2.c.1 makes you the Attacker in the Combat that 323.9 stages — an attack made on the turn the body was bought, with no Standard Move spent."
+      ],
+      "terminatesIn": "engine only — one turn of tempo per Dragon, bought for 2 rainbow Power; it scores nothing by itself and 103.2.b caps the named payoff at three copies",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "355.2.b. Some Game Effects may grant players permission to play Units to locations that are not normally Valid. Such locations become Valid for the purposes of Playing the Unit."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171. Card text verbatim from data/corpus_flat.txt. This is the third battlefield in the catalogue whose text survives 190.6.d by never saying 'you' — Ripper's Bay (#161), Sandswept Tomb and Frozen Fortress (this walk) are the others found so far, and the check is worth running on every battlefield before assuming it needs Control. Trap check: the attack half is stated with 190.3.a.1 + 464.2.c.1 rather than assumed, so the 'empty battlefield is not an attack' trap (807.1.d / 383.4.e / 461) is respected — with no enemy garrison this is a garrison, not an attack; 054.2 is cited for the one Dragon the permission cannot carry; no token, no [Temporary], no rune recycled; exactly one battlefield is named, so 485.4.a is respected."
+    },
+    {
+      "id": "forbidding-waste-wuju-bladesman-lone-defender",
+      "name": "Forbidding Waste takes 2 Might off a lone defender and Wuju Bladesman gives your own it back — one damage then clears their garrison",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-210",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "no Control needed",
+          "note": "Colorless battlefield. 'While a unit here is defending alone, it has -2 :rb_might:. (It's alone if there are no other friendly units here.)' No 'you' in the sentence, so 190.6.d never blanks it and it is live from turn one for both players. The pool's own reminder text settles what 'alone' means and it is an OWN-SIDE measurement: no other units FRIENDLY TO THAT UNIT at the battlefield, which SFD-036 Lonely Poro prints in the same words."
+        },
+        {
+          "card": "OGS-019",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Body legend. 'While a friendly unit defends alone, it gets +2 :rb_might:.' The two statics are the same size and opposite signs, and 'friendly' means friendly to you — so your lone defender at the Waste stands at net +0 while theirs stands at -2. This is what makes the battlefield safe to bring; without it the Waste is symmetric and you pay it every time you defend with one body."
+        },
+        {
+          "card": "OGN-133",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E1. '[Reaction] (Play any time, even before spells and abilities resolve.) Deal 1 to all units at battlefields.' 813.1.c.1 lets a [Reaction] be played in the Closed States a combat opens, so it lands after the Defender designation has already applied the -2. Against a lone defender of 2 Might or less that is lethal: 143.2.b treats a Might below 0 as 0, and 143.2.a kills on 'nonzero damage marked on it equalling or exceeding its Might'."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal",
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Wuju Bladesman - Starter IS the legend, OGS-019 (Calm/Body), so this is a one-legend line and not a domain line. Flurry of Blades is mono-Body and the Waste is Colorless, so 103.1.b.3 is satisfied. NOTE THE FORMAT: OGS-019 is RESTRICTED in 2v2 and legal in constructed — restricted is a cap, not a ban, and the entry is written for constructed."
+        ],
+        "notable": [
+          "THE -2 ONLY EXISTS INSIDE A COMBAT. 'Defending' is the Defender designation of 464.2.e, so the Waste does nothing to a body merely standing there; the line is an attack on their garrison, not a passive kill. Which is also why it never touches your own units on your own turn — they are attacking.",
+          "AND IT ONLY BITES A GARRISON OF ONE. The reminder is explicit — 'no other friendly units here' — so the moment they add a second body the -2 is gone. That is the honest ceiling: this clears a one-body garrison, cheaply and repeatedly, and does nothing against two.",
+          "THE ARITHMETIC, WITH THE QUANTITIES THIS ENTRY DECLARES: their lone defender at Might 2 goes to 0 and dies to Flurry of Blades' single point of damage; at Might 3 it goes to 1 and also dies; at Might 4 it goes to 2 and survives. So the reach is a lone defender of 3 Might or less, for 1 Energy, three times a game (103.2.b). Your own attackers take the same 1 damage and need 2 Might to survive it — Flurry of Blades says 'all units at battlefields', not 'enemy units'.",
+          "AN EMPTIED GARRISON IS A CONQUER WITH NO DAMAGE STEP. 465.1 needs both Attacking and Defending units for the damage tasks and 466.3.a resolves the combat with the attacker alone remaining, so 466.5 establishes Control and 466.5.d makes it a Conquer if you have not yet Scored that battlefield this turn.",
+          "INCREASES APPLY BEFORE DECREASES (477.3.e.2.a), which does not change the sum here — +2 and -2 cancel either way — but is why the legend cannot be read as 'floored first'. Neither static carries a floor.",
+          "FORBIDDING WASTE IS NOT GUARANTEED TO BE ON THE TABLE: 485.4.a, 485.5, 486.5 and 103.4.c as for every battlefield entry."
+        ]
+      },
+      "steps": [
+        "Bring Forbidding Waste as one of your three battlefields under a Wuju Bladesman - Starter legend. Neither needs any set-up: the Waste has no 'you' for 190.6.d to blank and the legend's clause is a static.",
+        "Wait for the opponent to garrison the Waste with a single body — or attack their lone garrison at it after they conquer it.",
+        "Attack with a unit of 2 Might or more. 190.3.a.1 applies Contested, 323.9 stages the Combat, and 464.2.c.1 makes you the Attacker; their body takes the Defender designation (464.2.e) and the Waste's -2 applies to it at that moment.",
+        "Inside the Combat's Closed State, play Flurry of Blades (E1, [Reaction], 813.1.c.1): 1 damage to all units at battlefields. Their reduced defender dies (143.2.a with 143.2.b's floor at 0); your 2-Might-or-more attacker survives.",
+        "With no defending units left, 465.1 assigns no damage and 466.3.a resolves the combat; 466.5 establishes your Control and 466.5.d makes it a Conquer.",
+        "143.3.b.1 heals the marked damage at the end of the turn, so nothing carries over and the next copy of Flurry of Blades does the same job."
+      ],
+      "terminatesIn": "engine only — a lone defender of 3 Might or less removed for 1 Energy and a Conquer with no damage step, three times a game on three copies of Flurry of Blades; 470 caps the point at one per battlefield per turn",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "143.2.b. If a unit's Might is ever less than 0, it is treated as 0 when referenced by spells and abilities, and when summing Might to be assigned as damage in the Combat Damage Step."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the second of the ten uncatalogued legend names, and the first entry to use either OGS-019 or UNL-210. Card text verbatim from data/corpus_flat.txt. The two statics were checked against each other rather than assumed to cancel: both are plain continuous modifiers with no floor, so 477.3.b never applies and 477.3.e.2.a's ordering does not change the sum. Trap check: the attack is a real Combat with an enemy garrison present, so 807.1.d / 383.4.e / 461 are respected and 'an empty battlefield is not an attack' does not apply; the reach is stated as an arithmetic ceiling (a lone defender of 3 Might or less) rather than as a general removal claim; the format caveat on OGS-019 is stated because restricted and banned are not the same thing; exactly one battlefield is named, so 485.4.a is respected."
     }
   ]
 }
