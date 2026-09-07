@@ -34014,6 +34014,212 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07 (issue #170), from the orphan synergy rule dauntless-vanguard-occupied-battlefield-assault (41 partners, 41 uncovered). Batch 1 back-linked the rule's MECHANISM to stare-down-arachnoid-horror-lone-survivor; this is the anchor-partner entry. VEN-076 Repair Specialist was in zero entries and is the only [Assault] carrier in the pool whose value is a quantity you build rather than a printed number — checked against 807.1.b's format, which every other carrier fills with a constant. The gear is bought for its presence: the clause counts gear you CONTROL and 818.1 makes attaching a separate activated ability nobody here pays. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.d.2, 143.4, 144.2, 144.3, 144.4.a, 155, 190.3.a.1, 315.1.b, 323.7, 323.9, 323.13, 355.2.b, 420.3.a, 450, 464.2.c.1, 464.2.c.3, 465.2.b, 465.2.c, 465.2.c.4, 466.3.a, 466.5, 466.5.d, 470, 485.4, 807.1.b, 807.1.d, 807.1.d.1, 807.2, 818.1. Stands on R28 = A only for the excess-damage remark. Ban check: SFD-093, VEN-076 and SFD-108 carry no [BANNED marker. Arithmetic against its own declared quantities: three gear give [Assault 3], so M3 becomes M6 attacking, plus the Vanguard's M4 = 10 summed. Trap check: an EMPTY enemy battlefield conquers with no Attacker and every point of Assault is then worth zero (323.9, 807.1.d); the Assault evaporates on defence (807.1.d.1); the Vanguard's permission covers only himself (355.2.b); no token, no [Temporary], no [Repeat], no buff. Depends on no unruled reading beyond R28."
+    },
+    {
+      "id": "might-of-demacia-four-body-conquer-draw",
+      "name": "Might of Demacia wants four bodies standing at the battlefield when the Conquer lands — 144.3 walks them in as ONE action and Renata makes them able to",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-023",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Body/Order legend. 'When you conquer, if you have 4+ units at that battlefield, draw 2.' It says 'when you conquer', not 'here', so it pays at EVERY battlefield — unlike the fourteen 'when you conquer here' battlefields, which is why it is worth building the four bodies for. 383.2.a.1 makes the 4+ count part of the Trigger Condition, measured at the instant the trigger is placed, so the bodies have to be standing there as Control is established and not a moment later."
+        },
+        {
+          "card": "OGS-015",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, E6. '[Action] (Play on your turn or in showdowns.) Play four 1 :rb_might: Recruit unit tokens. (They can be played to your base or to battlefields you control.)' Exactly four, which is exactly the threshold. Its parenthesis is 355.2.a restated — base or a battlefield you CONTROL — so it can never drop the four onto the battlefield you are about to take; they land at your base and walk."
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order unit, E4 P1 M4. 'Your tokens enter ready.' Without it the four Recruits enter exhausted (143.4) and cannot pay 144.2's exhaust to move until your next Awakening, which gives the opponent a whole turn to garrison the battlefield. 143.4.a — 'This can be altered by Accelerate or similar game effects' — is the permission, and mono-Order keeps her inside a Body/Order identity by 103.1.b.3."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine",
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Might of Demacia - Starter IS the legend, OGS-023 (Body/Order), so this is a one-legend line by construction. Recruit the Vanguard and Renata Glasc, Industrialist are both mono-Order, so 103.1.b.3 is satisfied and the Body half is free for the rest of the deck. OGS-023 carries no ban or restriction in either format."
+        ],
+        "notable": [
+          "FOUR BODIES MOVE AS A SINGLE GAME ACTION, WHICH IS WHY THE THRESHOLD IS REACHABLE AT ALL. 144.3: 'Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units', with 144.3.a requiring a shared destination and 144.3.c paying all four exhausts together. And 144.4.a.1's cap counts OTHER PLAYERS, not units — its cross-reference 447.2.a opens with 'In Modes of Play with more than two players' — so in a Duel there is no limit on how many of your own bodies enter one battlefield in one Main Phase.",
+          "THE CONQUER IS THE BLOODLESS ONE. Against an empty battlefield 190.3.a.1 applies Contested, 344.2 opens a Showdown at the next Cleanup rather than staging a Combat, and 348.2.a / 348.2.a.1 establish Control and make it a Conquer. Against a garrison it is a real Combat (323.9) and four 1-Might bodies sum to 4 attacking Might (465.2.c), which is usually not enough — this line takes open battlefields, it does not fight for them.",
+          "AND THE FOUR SURVIVE THE MEASUREMENT BECAUSE THERE IS NO DAMAGE STEP. On the 344.2 route 465.1 never runs, so all four are still standing when 348.2.a.1 fires and 383.2.a.1 counts them.",
+          "TWO CARDS PER CONQUER IS THE PAYOFF, AND 470 CAPS THE POINT AT ONE PER BATTLEFIELD PER TURN, so a Duel's two battlefields are two conquers and four cards a turn at the very most. Burn Out (431.1.a) is the real ceiling on running it that hard.",
+          "RENATA IS NOT A LUXURY HERE AND SHE IS NOT INTERCHANGEABLE. R25 = A ruled that her static beats a token's printed 'exhausted', and the project has since measured that 'enters ready' is worth NOTHING on a unit token made on the opponent's turn (144.1.b forbids the move in a Closed State and 315.1.b would have readied it anyway). It is worth everything here, because these tokens are made in YOUR Main Phase and must move in the same one.",
+          "THE FOURTH BODY DOES NOT HAVE TO BE A RECRUIT. Renata, any surviving attacker, or a Recruit left over from a previous Conquer all count — 'if you have 4+ units at that battlefield' counts bodies, and 185.1 + 185.2.b make a token unit a unit for that purpose. Three copies of Recruit the Vanguard (103.2.b) are three guaranteed batches; after that the count has to be assembled."
+        ]
+      },
+      "steps": [
+        "Deck-build under the Might of Demacia - Starter legend (OGS-023) and get Renata Glasc, Industrialist onto the board (E4 + 1 Order Power). Her clause is a static and needs nothing further.",
+        "Main Phase: play Recruit the Vanguard (E6) and put all four 1-Might Recruit tokens at your base — 355.2.a and the card's own parenthesis forbid placing them at a battlefield you do not control.",
+        "Renata's static overrides 143.4, so all four enter READY.",
+        "Standard-Move all four to the target battlefield in one action (144.3, 144.3.a's shared destination, 144.3.c's simultaneous exhausts). 144.4.a allows base to battlefield and 144.4.a.1's cap does not bind in a Duel.",
+        "190.3.a.1 applies Contested. With no enemy units present, 344.2 opens a Showdown during the next Cleanup instead of staging a Combat, so no damage is ever assigned and all four bodies survive.",
+        "348.2.a establishes your Control and 348.2.a.1 makes it a Conquer. The legend's trigger is placed, 383.2.a.1 counts the four Recruits standing there, and you draw 2."
+      ],
+      "netPerIteration": "one Conquer plus two cards, for E6 (plus the one-off E4 + 1 Order Power for Renata)",
+      "terminatesIn": "engine only — two cards per Conquer at any battlefield, with 470 capping the point at one per battlefield per turn and 485.4 putting two on a Duel table; three guaranteed batches of four bodies (103.2.b) and Burn Out (431.1.a) as the ceiling on the draws",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "144.3. Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units. 144.3.a. When a Move like this is declared by a player, the units' Destination must be the same."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the seventh of the ten uncatalogued legend names, and the first entry to use OGS-023. Card text verbatim from data/corpus_flat.txt. The distinction that makes this legend worth an entry was checked against the pool rather than assumed: it says 'when you conquer', not 'when you conquer here', so it is not one of the FOURTEEN conquer-here battlefields (grep -i 'conquer here' over the corpus returns fourteen rows — this walk had earlier miscounted them as twelve by counting the uncatalogued subset instead of the pool, corrected by the #175 cross-audit). Trap check: the empty-battlefield route is stated as 344.2 and explicitly NOT as an attack, so 807.1.d / 383.4.e / 461 are respected; 383.2.a.1 is cited so the 4+ count is measured when the trigger is placed; 143.4 / 143.4.a and R25 are cited so Renata's role is priced rather than assumed, together with the case where 'enters ready' is worth nothing; 185.1 + 185.2.b are the pair cited for a token unit COUNTING as a unit."
+    },
+    {
+      "id": "prodigal-explorer-two-choices-draw",
+      "name": "Prodigal Explorer counts two separate choices, not one doubled spell — two 1-Energy [Reaction] spells buy a card every turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-199",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Mind/Chaos legend. ':rb_exhaust:: [Reaction] — Draw 1. Use only if you've chosen enemy units and/or gear twice this turn with spells or unit abilities.' 377.2.b makes that second sentence a condition of the Activated Ability rather than flavour, and 315.1.b readies the legend every Awaken, so this is one card a turn for the whole game once the condition is routinely met."
+        },
+        {
+          "card": "OGN-095",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind spell, E1. '[Reaction] (Play any time, even before spells and abilities resolve.) Give a unit -1 :rb_might: this turn, to a minimum of 1 :rb_might:. Draw 1.' It CHOOSES a unit — point it at an enemy — and it replaces itself, so the first half of the condition costs one Energy and no card."
+        },
+        {
+          "card": "OGN-169",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Chaos spell, E1. '[Reaction] (Play any time, even before spells and abilities resolve.) Return a unit at a battlefield with 3 :rb_might: or less to its owner's hand.' The second choice, also for one Energy, and also aimed at an enemy body. Two DIFFERENT spells is the point: it is what keeps the line off an unruled reading."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Prodigal Explorer IS the legend, SFD-199 or SFD-248 (Mind/Chaos), so this is a one-legend line by construction. Stupefy is mono-Mind and Gust is mono-Chaos, so 103.1.b.2 fixes the identity at exactly Mind/Chaos and there is no room for a third domain."
+        ],
+        "notable": [
+          "TWO DIFFERENT SPELLS, NEVER ONE REPEATED ONE. Whether a [Repeat] spell's two executions count as choosing twice is unruled — 820.3.a says the spell 'is only Played once' while 820.2 does make two sets of choices — and the project's standing rule is that an entry which stands on sequencing beats one that stands on an unruled interpretation. Two 1-Energy spells cost the same and file no reading.",
+          "IT HAS TO BE A CHOICE, WHICH 355.10.d DEFINES BY EXCLUSION: a Game Object 'programmatically selected based on its characteristics rather than chosen' is not chosen at all. So a spell worded 'deal 1 to all units at battlefields' or 'give enemy units -1 Might' contributes NOTHING to this legend's counter, however many enemy bodies it hits. Both spells named here choose one unit each.",
+          "AND IT HAS TO BE AN ENEMY UNIT OR GEAR. 'Chosen enemy units and/or gear twice this turn' — pointing Stupefy at your own body to dodge a -Might effect advances the count by nothing. Also note the clause admits GEAR, so an enemy Equipment chosen by a spell is one of the two.",
+          "THE DEFLECT TAX IS THE HIDDEN COST. 809.1.c charges an opponent's Power 'for each time they choose' a [Deflect] permanent, and 809.1.c.1 lets that Power be any Domain — so against a Deflect board each of the two choices costs a rainbow on top of its Energy, and this line's real price is 2 Energy plus up to 2 Power.",
+          "THE DRAW IS AT [REACTION] SPEED, WHICH IS THE PART WORTH KEEPING. 813.1.b — 'Reaction grants the corresponding card or effect all abilities and permissions of Action' — so the legend can be exhausted inside a showdown, and 167 does not bite because a card is not a resource in the Rune Pool. The two enabling spells are [Reaction] as well, so the whole sequence can happen on the opponent's turn.",
+          "107.4.b KEEPS EVERY MULTIPLIER OFF IT: the Legend Zone 'is not a location', so Reckoner's Arena's 'here' and Blue Sentinel never reach the legend's own text, and the only way to draw twice in a turn is one of the five cards in the pool that ready a legend."
+        ]
+      },
+      "steps": [
+        "Deck-build under a Prodigal Explorer legend (SFD-199 or SFD-248) with cheap enemy-choosing [Reaction] spells in Mind and Chaos.",
+        "Play Stupefy (E1) choosing an enemy unit: it takes -1 Might this turn (to a minimum of 1) and you draw 1. That is choice one.",
+        "Play Gust (E1) choosing a different enemy unit at a battlefield with 3 Might or less: it returns to its owner's hand. That is choice two, and 355.10.d is satisfied by both because each names a single unit rather than selecting programmatically.",
+        "Exhaust the legend: its condition — two enemy units or gear chosen this turn with spells or unit abilities — is now met, and you draw 1.",
+        "315.1.b readies the legend at your next Awakening. Because all three cards are [Reaction] and 813.1.b grants them Action's permissions, the whole sequence can also be run inside a showdown on the opponent's turn."
+      ],
+      "netPerIteration": "3 cards for 2 Energy per turn — one from Stupefy, one from the legend, and one body bounced and one shrunk along the way",
+      "terminatesIn": "engine only — one legend draw per turn forever, with the enabling spells capped at three copies each (103.2.b, so six castings) before the two choices have to come from elsewhere; nothing here scores and Burn Out (431.1.a) is the ceiling",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "355.10.d. A Game Object that is programmatically selected based on its characteristics rather than chosen is not a target."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the eighth of the ten uncatalogued legend names, and the first entry to put SFD-199 in uses[] (it was named in ezreal-marai-spire-free-repeat's prerequisites, which is not the same thing). Card text verbatim from data/corpus_flat.txt. That earlier entry had already flagged the trap and this one is built to avoid it rather than to test it: the two choices come from two different spells, so the unruled question of whether a [Repeat] counts twice (820.3.a against 820.2) is never reached. Trap check: 355.10.d is cited so a mass effect is not counted as a choice; 809.1.c / 809.1.c.1 are cited so the Deflect tax is priced; 107.4.b is cited so no multiplier is claimed on the legend; 377.2.b is cited so the 'Use only if' sentence is treated as a condition of the ability, which is the same reading R30 turned on."
+    },
+    {
+      "id": "butcher-of-the-sands-spent-rune-refund",
+      "name": "Butcher of the Sands is the pool's only Power-to-Energy converter, and 164.2.b means the Power comes out of runes you already spent",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-141",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Body legend. '[Reaction][>] :rb_rune_rainbow::rb_rune_rainbow:, :rb_exhaust:: [Add] :rb_energy_2:. Spend this Energy only to play units or activated abilities of units.' Swept over the eleven rows in the corpus that [Add] Energy (OGN-098, OGN-253, OGS-014, SFD-175, UNL-022, UNL-093, UNL-197, VEN-075, VEN-141, plus the rune ability itself and VEN-166's battlefield): this is the ONLY one whose cost includes Power. It is the mirror of SFD-117 Ancient Henge, which converts Energy into Power with no cap."
+        },
+        {
+          "card": "OGN-158",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body unit, E12 P2 M10. '[Shield 3] (+3 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.) When an opponent moves to a battlefield other than mine, draw 1. (Bases are not battlefield.)' The most expensive unit in the pool, and therefore the honest measure of what +2 Energy a turn is for. Defending he is Might 13 (814.1.c) and 815.1.c.2 makes every other body of yours an invalid assignment until he has taken all 13."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Butcher of the Sands IS the legend, VEN-141 or VEN-190 (Fury/Body), so this is a one-legend line by construction. Volibear, Imposing is mono-Body, so 103.1.b.3 is satisfied and the Fury half is free for the rest of the deck."
+        ],
+        "notable": [
+          "THE COST IS PAID OUT OF RUNES THAT HAVE ALREADY PAID ONCE, WHICH IS THE WHOLE ENTRY. A Basic Rune has exactly two abilities (164.2): 164.2.a is '[E]: [Reaction] — Add [1]', whose cost is an EXHAUST, and 164.2.b is 'Recycle this: [Reaction] — Add [C]', whose cost is RECYCLING and which carries no exhaust at all. So a rune you already tapped for Energy this turn can still be recycled for a Power. Tap twelve runes for twelve Energy, then recycle two of the spent ones for two Power, then feed the Butcher: fourteen Energy-equivalent out of twelve runes.",
+          "AND THE TWO RUNES COME BACK. 161.2.b sends a recycled rune to the Rune Deck rather than the trash, and 315.3.b channels two from the Rune Deck every Channel Phase — so recycling exactly two a turn is a steady state, not a drain. 430.3 ('channel as many as possible') is the only thing that eventually bites, and 161.2.a caps the board at twelve runes anyway.",
+          "BY THE PROJECT'S OWN MEASURED RATE THE EXCHANGE IS THE WRONG DIRECTION — a Power inside a loop is worth roughly nine Energy — so this legend is NOT a ramp to be priced against that rate. What it sells is the TIMING and the source: 2 Energy created out of runes that had no second use, at [Reaction] speed (813.1.b gives it all of Action's permissions too).",
+          "THE RESTRICTION IS REAL: 'only to play units or activated abilities of units'. It buys no spells and no gear. And 167 empties the Rune Pool at the start of each Main Phase and the end of each turn, so the two Energy must be added and spent inside the same window.",
+          "OFF-TURN IT IS NARROWER THAN IT LOOKS. 145.2 confines a unit's Activated Ability to its controller's Main Phase in an Open State unless the ability carries [Action] or [Reaction], and playing a unit on the opponent's turn needs [Reaction], [Ambush] or [Hidden]. The reliable use is your own Main Phase; the off-turn use exists only for the parts of the deck that carry those keywords.",
+          "ONE ACTIVATION A TURN, AND NO MULTIPLIER REACHES IT: the cost includes the legend's own exhaust, 315.1.b returns it at your Awakening, and 107.4.b keeps the Legend Zone out of every 'here' clause."
+        ]
+      },
+      "steps": [
+        "Deck-build under a Butcher of the Sands legend (VEN-141 or VEN-190).",
+        "Main Phase: tap your runes for Energy as usual (164.2.a, one exhaust each) and spend it.",
+        "Still in the Main Phase, recycle two of those now-exhausted runes for Power (164.2.b, whose cost is the recycle and not an exhaust; 164.2.b.1 makes each Power the Domain of the rune recycled, and 135.2.e.5.b is not needed because the Butcher's cost is rainbow).",
+        "Exhaust the legend and pay the two Power: [Add] 2 Energy. 429.2 resolves an Add ability as soon as it is finalized and 429.2.a keeps priority from passing, so it cannot be answered.",
+        "Spend that Energy on a unit or a unit's activated ability — with Volibear, Imposing at E12 + 2 Power, the two Energy is a sixth of his cost and the difference between reaching him a turn earlier or not.",
+        "161.2.b has put the two runes in the Rune Deck and 315.3.b channels two back at your next Channel Phase, so the loop is steady. 315.1.b readies the legend at the same Awakening."
+      ],
+      "netPerIteration": "+2 Energy per turn, drawn out of two runes that had already been spent for Energy, at the price of two runes cycling through the Rune Deck",
+      "terminatesIn": "engine only — 2 Energy a turn for units, forever; it scores nothing, it cannot buy spells or gear, and 430.3 plus 161.2.a bound how long the two-runes-a-turn cycle can be sustained",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "164.2. A Basic Rune always has the following two Abilities: 164.2.a. [E]: [Reaction] — Add [1]. 164.2.b. Recycle this: [Reaction] — Add [C]."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the ninth of the ten uncatalogued legend names, and the first entry to use VEN-141 or OGN-158. Card text verbatim from data/corpus_flat.txt. The uniqueness claim was swept by listing every corpus row containing '[Add] :rb_energy' and reading each one's cost, and the members are NAMED in the uses[] note so the next grep can refute the claim cheaply — the discipline the #175 cross-audit asked for after a counted set turned out to have members a wording could not see. Trap check: the exchange rate is stated AGAINST the project's own nine-Energy-per-Power figure rather than quietly ignoring it, so the entry is not read as a ramp; 167 is cited so the Energy is not banked; 145.2 is cited so the off-turn use is narrowed honestly instead of assumed; 107.4.b is cited so no multiplier is claimed; 161.2.b + 315.3.b are cited so the two runes are shown to return rather than asserted to."
     }
   ]
 }
