@@ -112,6 +112,10 @@ function render(): void {
  *
  * The field is prefilled with the player's OWN name only, so the placeholder can show what the header
  * reads today, and clearing the field is the documented way back to the Google one.
+ *
+ * Both actions sit in the field's own row. Cancel used to trail the help sentence, where it read as a
+ * word in the paragraph rather than as something to press; beside Save it is plainly an action, and
+ * the weights say which is which — Save is the bordered one, Cancel is plain text.
  */
 function renameForm(who: Account): string {
   return `<form class="acct-name-form">
@@ -120,7 +124,8 @@ function renameForm(who: Account): string {
       <input id="acct-name" class="field-input" type="text" maxlength="${MAX_DISPLAY_NAME}" autocomplete="off"
         value="${esc(who.displayName)}" placeholder="${esc(who.label)}">
       <button type="submit" class="ghost">Save</button>
+      <button type="button" class="linklike" data-act="rename-cancel">Cancel</button>
     </div>
-    <p class="fine">Only you see this. Leave it empty to go back to the name on your Google account. <button type="button" class="linklike" data-act="rename-cancel">Cancel</button></p>
+    <p class="fine">Only you see this. Leave it empty to go back to the name on your Google account.</p>
   </form>`;
 }
