@@ -45,22 +45,22 @@ beforeAll(async () => {
 });
 
 describe("the near-miss tray's cap", () => {
-  it("draws at most twelve chips and offers the rest, without understating the total", async () => {
+  it("draws at most seven chips and offers the rest, without understating the total", async () => {
     await setView("suggestions");
     const total = Number($("#route-count").textContent);
     // Search for the state rather than assume this fixture has one: a fixture the catalogue outgrows
     // is the failure mode this project has already hit twice.
-    expect(total, "the lux fixture no longer overflows the tray; pick a list that does").toBeGreaterThan(12);
-    expect(chips()).toHaveLength(12);
+    expect(total, "the lux fixture no longer overflows the tray; pick a list that does").toBeGreaterThan(7);
+    expect(chips()).toHaveLength(7);
     const btn = more()!;
     expect(btn, "an overflowing tray offers the rest").not.toBeNull();
-    expect(btn.textContent).toBe(`${total - 12} more near misses`);
+    expect(btn.textContent).toBe(`${total - 7} more near misses`);
     expect(btn.getAttribute("aria-expanded")).toBe("false");
     // The count above the diagram is the honest signal and is NOT capped.
     expect(total).toBeGreaterThan(chips().length);
   });
 
-  it("shows the CLOSEST twelve, so a cap can never hide the nearest miss", async () => {
+  it("shows the CLOSEST seven, so a cap can never hide the nearest miss", async () => {
     await setView("suggestions");
     const shown = chips().map((c) => c.querySelector(".chip-meta")?.textContent ?? "");
     // Distance is the count of missing copies, which is the unit `#max-missing` speaks in. A chip
@@ -80,7 +80,7 @@ describe("the near-miss tray's cap", () => {
     expect(more()!.getAttribute("aria-expanded")).toBe("true");
 
     more()!.click();
-    expect(chips()).toHaveLength(12);
+    expect(chips()).toHaveLength(7);
     expect(more()!.getAttribute("aria-expanded")).toBe("false");
   });
 
@@ -90,7 +90,7 @@ describe("the near-miss tray's cap", () => {
     expect(more()!.getAttribute("aria-expanded")).toBe("true");
     await setView("network");
     await setView("suggestions");
-    expect(chips()).toHaveLength(12);
+    expect(chips()).toHaveLength(7);
     expect(more()!.getAttribute("aria-expanded")).toBe("false");
   });
 
@@ -100,11 +100,11 @@ describe("the near-miss tray's cap", () => {
    * 12 of 51 while the diagram beside it drew all 51.
    *
    * They are compared through the ROUTE/ENTRY distinction rather than by counting nodes: a chip is
-   * a route (`Variant.comboIds`) and a diagram node is an entry, so 12 chips legitimately draw more
-   * than 12 nodes when a route has `needs`. What must hold is that the diagram draws the entries of
+   * a route (`Variant.comboIds`) and a diagram node is an entry, so 7 chips legitimately draw more
+   * than 7 nodes when a route has `needs`. What must hold is that the diagram draws the entries of
    * the shown routes and NOTHING ELSE.
    */
-  it("draws the diagram from the same twelve routes the tray shows", async () => {
+  it("draws the diagram from the same seven routes the tray shows", async () => {
     await setView("suggestions");
     const shownNames = new Set(chips().flatMap((c) =>
       (c.querySelector(".chip-title")?.textContent ?? "").split(" + ").map((n) => n.trim())));
@@ -126,7 +126,7 @@ describe("the near-miss tray's cap", () => {
     await setView("network");
     // Complete lines are few (measured 2 at the median, 6 at most over 223 lists), so this is the
     // under-the-cap case and it must carry no furniture at all.
-    expect(chips().length).toBeLessThanOrEqual(12);
+    expect(chips().length).toBeLessThanOrEqual(7);
     expect(more()).toBeNull();
   });
 });

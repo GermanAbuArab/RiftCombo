@@ -124,7 +124,7 @@ describe("what the distance changes", () => {
       // The number the other view HOLDS, which since the tray cap is no longer the number of chips
       // it draws. `#route-count` is the uncapped total and is what the status card must agree with.
       const held = Number($("#route-count").textContent);
-      expect(document.querySelectorAll("#tray .chip").length, "the tray shows at most the cap").toBeLessThanOrEqual(Math.min(held, 12));
+      expect(document.querySelectorAll("#tray .chip").length, "the tray shows at most the cap").toBeLessThanOrEqual(Math.min(held, 7));
       await setView("network");
       expect(status(), `at ${d}`).toContain(`${held} near miss${held === 1 ? "" : "es"} within ${d} card${d === "1" ? "" : "s"}`);
     }

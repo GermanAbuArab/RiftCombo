@@ -40,8 +40,15 @@ const GAP_LIMIT = 5;
  * DOWN the panel, where "N more" is a signpost to something the player can still scroll to. A tray
  * scrolls sideways, and this project's standing rule is that the count is the honest signal and
  * hiding an answer hides a real answer — so the overflow expands IN PLACE instead.
+ *
+ * SEVEN, and the number was measured rather than picked. The diagram draws the same slice, and its
+ * fit-to-stage zoom tracks the combo count at about 265/combos across six readings spanning both
+ * modes (2 combos 97%, 3 71%, 5 52%, 6 44%, 10 27%, 12 22%). A cap of 12 left near-miss fit at
+ * 21-27%, still unreadable; 7 lands near 38%, and 6 buys six more points of zoom at the cost of
+ * another answer behind a click. Complete mode never reaches the cap — the most complete combos any
+ * of the 222 registered fixture lists holds is 6.
  */
-const TRAY_LIMIT = 12;
+const TRAY_LIMIT = 7;
 const featuresById = new Map(features.map((f) => [f.id, f]));
 
 const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel)!;
