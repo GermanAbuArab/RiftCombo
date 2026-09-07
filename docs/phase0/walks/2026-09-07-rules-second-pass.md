@@ -519,7 +519,85 @@ destination per unit standing there, and 485.5 does not guarantee the Hillock is
 
 ---
 
-## 16. Back-links for `data/synergies.json` (`rule id -> entry id`)
+
+## 16. The under-walked PROVEN rules — one filter decides all three
+
+All nineteen orphan rules in scope are now dispositioned (sections 1–15). This section turns to the
+rules that already had entries but whose partner lists were barely read, and the three walked here
+turn out to share **one filter**, which is worth stating once:
+
+> **A readier or a copier is worth a second full activation only where the effect has a HARD CAP per
+> use.** The `jayce-readies-exhaust-abilities` rule already encodes it in its own `excludes` —
+> `SFD-117` Ancient Henge and `SFD-083` Hextech Anomaly both print *"Pay any amount"*, so a second
+> activation is worth exactly zero. This is the project's standing "a multiplier is worth nothing on
+> an effect with no per-execution cap" seen from the partner-selection side: it is not a refusal
+> criterion, it is the **selection** criterion.
+
+### 16.1 `jayce-readies-exhaust-abilities` (VEN-068) — 76 partners, 74 uncovered
+
+`VEN-068`: *"When you play me or the first time you play a non-token gear each turn, you may ready
+something besides me that's exhausted."* Note **"something"**, not "a unit" — it reaches gear.
+
+Partner chosen by the filter: `VEN-060` Sky Cruiser (Mind, in zero entries), *"Discard a gear, 1
+Energy, exhaust: **Deal 4** to a unit at a battlefield."* Fixed per use, so the second activation is a
+second full 4. **8 damage a turn for 2 Energy.**
+
+Two orderings the entry pins down: 415.1.b (*"A Unit that is already Ready cannot be Readied again"*)
+forces **activate → play gear → activate**, and *"the first time you play a non-token gear each
+turn"* is an ordinal (383.1.b, 383.3.e.1), so the enabler is chosen on **price**, not power —
+`OGN-120` Seal of Insight at 0 Energy plus a Mind rune, which refunds that rune the moment it lands.
+
+Entry: `jayce-sky-cruiser-double-strike`.
+
+### 16.2 `svellsongur-copy` (SFD-059) — 33 entries already, 73 of 102 partners uncovered
+
+Read the high uncovered count as a **warning flag**, per the #161 lesson. The question is not which
+partner is unwalked but which one is changed by being multiplied eight times (477.2.c, 476.1, 479.1,
+480.3 give 2^v instances).
+
+`UNL-051` Ivern, Nurturer: *"When you play me or when I hold, look at the top 3 cards of your Main
+Deck. **You may** reveal a unit from among them and draw it. Recycle the rest. Then if you revealed a
+Bird, Cat, Dog, or Poro, do this: [Buff] a friendly unit."* Two clauses survive multiplication where
+its Calm neighbours do not:
+
+- **The draw is optional.** 431.1.a burns you out on drawing past the deck; 431.1.c says looking or
+  revealing past it *"does not Burn Out"*. Eight instances of *"you may … draw it"* are eight
+  declinable draws. Eight of `UNL-060` Vilemaw or `VEN-042` Shen, Scourge of Shadows (*"draw 1"*, no
+  may) are a forced Burn Out — the same defect `svellsongur-corrupt-enforcer-trash-fill` documents.
+- **The buff names "a friendly unit", not a fixed one.** 702.3.a stops a second counter on the SAME
+  body, so eight instances place up to eight buffs on eight DIFFERENT bodies. Every "a multiplier is
+  a no-op on a fixed target" case in the project's ledger — Enthusiastic Promoter, Sett Brawler —
+  turns on the buffer naming one body.
+
+And *"Recycle the rest"* puts what you did not take on the bottom (416.1.a), so 24 cards looked at
+per Hold refills the deck instead of draining it.
+
+**Refused in the same list: `UNL-052` Nami, Headstrong** — *"When I hold, the next time you play a
+unit this turn, ready it and [Buff] it."* Eight delayed triggers all watch **one** event; 415.1.c
+(*"If a Unit is instructed to be Readied while it is already Ready, nothing additional happens"*) and
+702.3.a make seven of the eight do nothing at all. A per-event delayed trigger is the one shape
+Svellsongur cannot multiply.
+
+Entry: `svellsongur-ivern-nurturer-optional-draw`, mono-Calm.
+
+### 16.3 `veiled-temple-readies-gear` (SFD-221) — 34 partners, 32 uncovered
+
+**The limit comes first, because this pairing invites the mistake.** 466.5: *"the player with Units
+remaining here Establishes Control **if they didn't already control this Battlefield**"*, and 348.2.a
+carries the identical clause for a Showdown. So the Temple pays **per change of hands, never per
+turn** — holding it is worth nothing.
+
+Same filter, same answer: `SFD-078` Temporal Portal, *"1 rainbow, exhaust: Give **the next spell** you
+play this turn [Repeat] equal to its cost"* — exactly one spell per activation. And the doubled spell
+pays in two currencies, because 820.1.c.1 makes the [Repeat] cost *"an Additional Cost to be paid
+during the steps of playing the spell"*, i.e. **spent**: every *"if you spent N or more"* clause reads
+it and every *"costs N or more"* clause ignores it (206's Defy example).
+
+Entry: `veiled-temple-temporal-portal-second-repeat`.
+
+---
+
+## 17. Back-links for `data/synergies.json` (`rule id -> entry id`)
 
 This walk does not edit `data/synergies.json`. The pairs below are for the synergies session.
 
@@ -549,6 +627,9 @@ jae-medarda-chosen-by-spell           -> jae-medarda-repeat-double-choose
 startipped-peak-rune-ramp             -> startipped-peak-rune-count-empower
 peak-guardian-buffed-payoff           -> peak-guardian-bilgewater-bully-ganking-buff
 shadow-watcher-temporary-death-window -> trevor-shadow-watcher-scheduled-death-ready
+jayce-readies-exhaust-abilities       -> jayce-sky-cruiser-double-strike
+svellsongur-copy                      -> svellsongur-ivern-nurturer-optional-draw
+veiled-temple-readies-gear            -> veiled-temple-temporal-portal-second-repeat
 ```
 
 Still with no entry after this pass, by decision:
@@ -562,7 +643,7 @@ sky-splitter-might-discount    NO ENTRY — all ten partners are the same arithm
 windswept-hillock-move-triggers NARROWED — 810.1.c.3; no partner supplies a second move. Section 15.
 ```
 
-## 17. Reported to the manager, not fixed here
+## 18. Reported to the manager, not fixed here
 
 - `master-of-shadows-banish-rummage` carries a **false uniqueness claim in its own name** — see §3.
   Three cards print the Shadow Clone token and its attack-triggered banish; one of them is the entry's
