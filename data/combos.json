@@ -40569,6 +40569,284 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #170, from `marai-spire-repeat-discount` and the Core-Rules-named sweep; SFD-077 Rocket Barrage was in zero entries and is 206's second worked example. Card text verbatim from data/corpus_flat.txt; the 'in a base' family was swept over the corpus and is three cards. Trap check: [Repeat] is stated as exactly one extra execution (820.1.b) so nothing is claimed as an engine; the Spire's 'While you control this battlefield' is priced against 190.1 as a cost rather than a freebie, and the ledger is given both with and without it; 485.5 and 103.4.c are cited for the battlefield's randomness; 155 keeps the spell out of a Showdown."
+    },
+    {
+      "id": "galio-back-to-back-divining-shells-toll",
+      "name": "A Tank's Might is a toll, not a stat - and Order has two ways to raise it after the attackers are declared, one of which costs nothing",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-171",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 P1 M6. '[Deflect] ... [Tank] (I must be assigned combat damage first.) I don't deal combat damage.' The printed drawback is what makes him the right carrier: his whole Might is toll and none of it is offence, so every point added to him is a point the attacker has to spend before touching anything else."
+        },
+        {
+          "card": "OGN-206",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Order spell, E3, [Reaction]. 'Give two friendly units each +2 :rb_might: this turn.' The cheapest +4 summed Might in Order and the only one that splits across two bodies."
+        },
+        {
+          "card": "UNL-161",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order gear, E2. '[Vision] ... [Action][>] Kill this, :rb_exhaust:: Give a unit +2 :rb_might: this turn.' The activation costs NO Energy and NO Power - swept over every Might pump in Order, it is the only one that does."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "All three cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity - Starter, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower.",
+          "None of the three is banned or restricted in either format, and none is a Signature card.",
+          "Galio at a battlefield with the rest of your garrison, since [Tank] only orders the assignment among units the same player controls (815.1.b)."
+        ],
+        "notable": [
+          "WHAT [TANK] ACTUALLY SAYS, WHICH IS STRONGER THAN THE REMINDER TEXT. 815.1.b: 'I must be assigned LETHAL damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step', and 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' Read with 465.2.c.3 ('Units must have lethal damage assigned to them in full before damage is assigned to a different Unit') the consequence is a hard threshold, not a soft one: an attacker whose summed Might is BELOW the Tank's Might kills nothing at all, because the Tank cannot be finished and nobody else is a legal assignment.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Galio is Might 6. Back to Back puts him at 8 and a second body at +2 with him. Divining Shells puts him at 10. 465.2.c gives the attacker 'an amount of damage equal to their summed Might', so an attack summing 9 - two Might-4 bodies and a Might-1 - kills NOTHING against a Might-10 Galio, and 466.1.a.1 ('Insert \"3c. Heal all Units.\"') with 143.3.b.2 erases the 9 at the combat cleanup. Both pumps say 'this turn', so the toll is rebuilt from 6 next turn: this is a defensive turn you buy, not a wall you build.",
+          "WHY BOTH PUMPS ARE IN uses[] RATHER THAN ONE. They are not alternatives, they are cumulative and they are paid from different places. Back to Back is a card in hand and costs 3 Energy; Divining Shells is a permanent already on the board and its activation is 'Kill this, :rb_exhaust:' - NO Energy and NO Power. On the turn you have tapped out to develop, the Shells is the only pump in the domain you can still make. Swept over every Order card that grants Might this turn - OGN-206 Back to Back (E3), OGN-207 Call to Glory (E3, or free by spending a buff), OGN-233 Grand Strategem (E6 + 3 Power), SFD-151 Bonds of Strength (E2, E4 with its [Repeat]), UNL-155 Heroic Charge (E3), UNL-161 Divining Shells (0), VEN-121 Reluctant Leader and VEN-125 Hungry Wolf (self-only) - the Shells is the only free one, and Call to Glory's free mode costs a buff, which 702.2.b removes from the body carrying it.",
+          "BOTH LAND AFTER THE ATTACKERS ARE DECLARED, WHICH IS THE WHOLE POINT. 464.2.c.3 gives the Attacker and Defender designations, and only then is the attacker's summed Might countable under 465.2.c. 813.1.c.1 lets a [Reaction] card be played 'during Closed States on any player's turn' and 813.1.b grants Reaction every permission of Action; 806.1.c.2 says an [Action] ability 'can be activated during showdowns on any player's turn'. So you buy exactly the toll the board in front of you requires and never a point more.",
+          "GALIO'S [DEFLECT] IS WHAT STOPS THE CHEAP ANSWER. 809.1.c prices Deflect as extra Power 'for each time they choose', 809.1.c.1 in any Domain - so removing the toll before combat costs an extra rainbow on top of the removal. And 815.2 ('Multiple instances of Tank are redundant') is why a second Tank grant on Galio is worth nothing: the lever is his Might, not the keyword.",
+          "THE SECOND +2 IS NOT WASTED. Back to Back names TWO friendly units, and 815.1.c.2 only bars assignment to non-Tank bodies until the Tanks have lethal - so once Galio is finished the extra +2 raises the next body's own lethal threshold under 465.2.c.4 ('Units cannot have more damage assigned to them than the minimum required'). Against an attack big enough to kill Galio, the spell is still worth 2 more damage the attacker has to find.",
+          "DISTINCT FROM THE THREE CATALOGUED [TANK] ENTRIES, AND THE DIFFERENCE IS THE LEVER. tianna-wildclaw-point-lock stacks BODIES behind a Tank; eye-of-twilight-zephyr-sage-tank-redirect and royal-entourage-eye-of-twilight-double-tank GRANT the keyword to a body that lacked it. This entry changes neither the number of Tanks nor who has the keyword - it raises the Might of a Tank that already has it, which 815.1.c.2 turns into damage the attacker must spend and 815.2 says a second grant never could.",
+          "WHAT IT IS NOT. Nothing here scores, and Galio 'doesn't deal combat damage', so this line never wins a combat by damage - it survives one. The point it protects has to come from elsewhere."
+        ]
+      },
+      "steps": [
+        "Play Galio, Indefatigable (3 Energy + 1 Power) to a battlefield and play Divining Shells (2 Energy); 143.4 exhausts units only, so the gear is ready to use the turn it lands.",
+        "Let the opponent declare the attack. 464.2.c.3 hands out the Attacker and Defender designations and 465.2.c fixes their summed Might, which is now countable.",
+        "In the resulting Closed State play Back to Back (3 Energy, [Reaction], 813.1.c.1): +2 on Galio and +2 on a second body of yours. Galio is Might 8.",
+        "If the attack still reaches 8, activate Divining Shells - 'Kill this, exhaust', no Energy and no Power, at [Action] speed (806.1.c.2) - for +2 more. Galio is Might 10.",
+        "The attacker assigns their whole summed Might and, being short of Galio's Might, cannot assign lethal to him; 815.1.c.2 makes every other body of yours an invalid assignment, so nothing dies. 466.1.a.1 heals the marked damage at the combat cleanup.",
+        "Both pumps expire at end of turn; the toll is back to 6 next turn and the Shells is gone."
+      ],
+      "netPerIteration": "up to +4 Might on the toll in one combat, of which +2 costs no Energy and no Power",
+      "terminatesIn": "engine only - one defensive turn per Back to Back and per Divining Shells, three of each by 103.2.b, and both pumps say 'this turn' so the toll resets to Galio's printed 6; nothing here scores and Galio deals no combat damage",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md, batch 6)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #180, batch 6). The first entry to use OGN-206 Back to Back or UNL-161 Divining Shells. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.3.b.2, 143.4, 464.2.c.3, 465.2.c, 465.2.c.3, 465.2.c.4, 466.1.a.1, 469, 702.2.b, 806.1.c.2, 809.1.c, 809.1.c.1, 813.1.b, 813.1.c.1, 815.1.b, 815.1.c.2, 815.2. UNIQUENESS SWEPT, NOT ASSUMED: every Order card that grants Might this turn was listed and priced before calling Divining Shells the only free one - eight cards, named in the notable. Distinct from the three catalogued [Tank] entries by which lever it pulls (Might on an existing Tank, rather than more Tanks or a granted keyword), and 815.2 is quoted to say why the other levers are not available on Galio. Ban check: none of the three is banned or restricted; none is a Signature card. No unruled reading."
+    },
+    {
+      "id": "crimson-pigeons-laurent-duelist-attacker-might",
+      "name": "Two bodies that are only big while attacking, and 144.3 brings them for one action - but an empty battlefield pays neither",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-154",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 M3. 'I have +2 :rb_might: while I'm attacking with another unit.' Written for a pack: alone it is a 3 Might body for 3 Energy."
+        },
+        {
+          "card": "SFD-156",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 M3. '[Assault 2] (+2 :rb_might: while I'm an attacker.)' 807.1.c makes that 'While I am an attacker, I have +X [M]' and 807.1.d ties it to the Attacker designation - it is the other unit the Pigeons are looking for, and it grows on the same event."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity - Starter, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "An enemy garrison to attack into. This is the entry's own trap and it is stated in the notables: an empty enemy battlefield pays neither card."
+        ],
+        "notable": [
+          "THE TRAP THIS ENTRY IS WRITTEN AROUND: AN EMPTY BATTLEFIELD IS NOT AN ATTACK. 807.1.d: 'Being an attacker means the Unit has gained the Attacker designation during Combat', and 464.2.c.3 hands that designation out inside a Combat - which 323.9 only stages 'at each Battlefield that Contested was applied to that HAVE UNITS PRESENT CONTROLLED BY OPPOSING PLAYERS'. Walking into an unoccupied battlefield takes it through 344.2's Showdown with no Combat, no Attacker designation and no damage step. So both cards are printed Might 3 on exactly the board most token and evacuation lines are built for, and Might 5 only where there is somebody to fight.",
+          "144.3 IS WHY THE PIGEONS' CONDITION IS NEARLY FREE. 'Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units', with 144.3.a fixing a shared Destination, 144.3.b allowing different Origins and 144.3.c paying the exhausts (420.3.a) simultaneously. So bringing a second body is not a second turn or a second action - it is the same declaration, and 'attacking with another unit' costs nothing to satisfy once you have the bodies.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. 3 Energy + 4 Energy, no Power, for two Might-3 bodies that both read 5 the moment the Attacker designation lands: 10 summed Might for 7 Energy. 465.2.c gives the attacker 'an amount of damage equal to their summed Might', read at assignment, so the +4 is real damage and not a display value. Printed, the same two bodies are 6.",
+          "WHERE THE +4 GOES IF THE DEFENDERS ARE ALREADY DEAD. 465.2.c.4 caps assignment at 'the minimum required to constitute lethal damage', so attacking Might that is never assigned is what this project calls excess damage (R28 = A). Two cheap bodies that swing to 10 is the cheapest excess in the domain, and the payoffs are already catalogued: OGN-034 Tryndamere, Barbarian scores on 5 or more excess (tryndamere-call-to-glory-trapping-grounds, tryndamere-hextech-gauntlets-enforcer, tryndamere-thousand-tailed-watcher-shrink), UNL-187 Piltover Enforcer readies on 3 or more (gauntlets-enforcer-conquer), and UNL-217 Trapping Grounds plays a Bird on 3 or more. They are named here rather than added to uses[], because this entry is the Might source and each of those is its own line.",
+          "WHY THE TWO CARDS ARE NOT THE SAME CARD. Laurent Duelist's [Assault 2] is unconditional on the designation and 807.2 sums it with any granted Assault ('Petty Officer has Assault. It is chosen as the target of Cleave ... After Cleave resolves, Petty Officer has Assault 4'). Crimson Pigeons' clause is a plain conditional modifier, not the keyword, so 807.2 never touches it and it needs a companion rather than a grant. One scales with grants, the other scales with bodies.",
+          "AND WHY NEITHER IS A BUFF. Both print a Might modifier tied to a state, not a counter, so 702.3's one-buff-per-unit cap and 703's fixed +1 are silent here - the same distinction this project drew for a static '+N Might' modifier. A buff on top of either still lands.",
+          "WHAT IT IS NOT. Nothing here scores. 469 defines Scoring as Conquer or Hold, and these are two attacking bodies with no trigger between them."
+        ]
+      },
+      "steps": [
+        "Develop Crimson Pigeons (3 Energy) and Laurent Duelist (4 Energy) at your base or a battlefield you hold.",
+        "Declare one Standard Move for both to the same enemy-held battlefield: 144.3 makes it a single game action, 144.3.a fixes the shared destination and 144.3.c pays both exhausts at once.",
+        "Contested is applied, 323.9 stages the Combat because opposing units are present, and 464.2.c.3 hands out the Attacker designation.",
+        "Both conditions are now met: [Assault 2] gives the Duelist +2 (807.1.c) and the Pigeons read '+2 while I'm attacking with another unit'. Summed Might is 10.",
+        "465.2.c assigns that 10 among the defenders, capped per body at minimum lethal by 465.2.c.4; whatever is never assigned is excess damage for a payoff that reads it.",
+        "Do NOT run this line into an empty battlefield: with no opposing units 323.9 stages no Combat, 464.2.c.3 never happens, and both cards are Might 3."
+      ],
+      "netPerIteration": "+4 summed attacking Might for 7 Energy and no Power, on any attack into a garrisoned battlefield",
+      "terminatesIn": "engine only - a per-attack Might bonus, three of each body by 103.2.b, worth nothing on an unoccupied battlefield (807.1.d + 323.9); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md, batch 6)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #180, batch 6). The first entry to use UNL-154 Crimson Pigeons or SFD-156 Laurent Duelist. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 144.3, 144.3.a, 144.3.b, 144.3.c, 323.9, 344.2, 420.3.a, 464.2.c.3, 465.2.c, 465.2.c.4, 469, 702.3, 703, 807.1.c, 807.1.d, 807.2. The empty-battlefield trap is stated as a prerequisite AND as a step, because this pair is exactly the kind of cheap attacking package a reader would otherwise point at an evacuated battlefield. The excess-damage payoffs are named in a notable rather than put in uses[], since each already has its own entry and none of them is required for this one to be true. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "vanguard-attendant-eye-of-herald-arrival-token",
+      "name": "The Eye of the Herald's third carrier - the one that mints a Recruit on the turn it is played",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-016",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order unit, E6 P1 M5. 'I enter ready.' The only unconditional 'enters ready' body in Order - UNL-151 Bandle Soldier is the same 5 Might for 2 Energy less and is gated on [Level 3]."
+        },
+        {
+          "card": "SFD-153",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order Equipment, E1, M+0. '[Equip] :rb_rune_order: ... [Effect] When I move, play a 1 :rb_might: Recruit unit token here.' 053.1 + 136.2.d make the 'I' the carrier, so the carrier's own first move is what mints the token."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity - Starter, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card. OGS-016 is a Starter printing and is legal in both formats.",
+          "The Eye already attached, or 1 Order Power spare to attach it on the same turn - 818.1.b.2 makes the Attendant the Top-Most Card."
+        ],
+        "notable": [
+          "WHY 'I ENTER READY' IS THE WHOLE CARD, AND WHAT IT IS WORTH HERE. 143.4: 'Units enter the Board exhausted', alterable by 143.4.a. 144.2: 'Exhausting the Unit is the Cost for this action' - the Standard Move. So a body that enters ready can move the turn it is played, and 415.1 makes 'enters ready' a play-time property rather than a Readying, so it never hands an exhaust back later. On a carrier of the Eye of the Herald that one property is a whole extra Recruit: every other carrier in Order pays a turn of setup before its first move.",
+          "AND WHERE THE TOKEN LANDS. 359.3.f.2 checks a referent 'on execution of the instruction', so 'here' is the battlefield the carrier arrived at - not the base. This line has no walk-to-the-battlefield bottleneck at all: the body and its first token arrive at the same battlefield on the same turn.",
+          "THE PRICE, HONESTLY. 6 Energy + 1 Power is the most expensive 5 Might body in the domain, and UNL-151 Bandle Soldier is the same 5 Might for 4 Energy + 1 Power with the identical text behind a [Level 3] gate. This entry is what you play INSTEAD of the Bandle Soldier when the deck spends its XP: 824.1.d makes the Soldier's ability 'Inactive as soon as the controlling player has less than [N] XP' and 730.2 is what any spend does, so a list running poppy-hunt-xp-discount or shepherds-heirloom-xp-equip cannot have the cheap version. The two entries are alternatives on purpose and each names the other.",
+          "THE THIRD PROPERTY OF THE SAME EQUIPMENT, AND WHY IT IS ITS OWN ENTRY. hungry-wolf-eye-of-herald-double-move buys a SECOND move per turn (more tokens per turn); solari-sunhawk-eye-of-herald-deflect-carrier buys SURVIVAL for the carrier (more turns of tokens); this one buys the FIRST move a turn earlier (one more token, once). Three different scarcities on one card, the same shape as the three Vanguard Helm entries.",
+          "THE RATE AFTER TURN ONE. 144.2 puts the exhaust on the Standard Move and 144.4 confines it to base-to-battlefield without [Ganking], so it is one move - one Recruit - per carrier per turn thereafter, with 415.3.a readying the carrier at your own Awakening. 103.2.b caps both cards at three.",
+          "WHAT IT IS NOT. Nothing here scores, and the Recruits are 1 Might: this project has measured that a single sweep at 1 damage to all units at battlefields kills any number of them simultaneously, and the only fix in the pool is Mind."
+        ]
+      },
+      "steps": [
+        "Have the Eye of the Herald on the board, or 1 Energy spare for it.",
+        "Play Vanguard Attendant (6 Energy + 1 Power). Its own text overrides 143.4 and it enters ready.",
+        "[Equip] the Eye to it for 1 Order Power (818.1.c.2: '[Cost]: Attach this gear to a unit you control'). 136.2.c appends 'When I move, play a 1 Might Recruit unit token here' to the Attendant's Rules Text.",
+        "Standard-move the Attendant to a battlefield the same turn, paying 144.2's exhaust it still has available. The trigger fires and a 1 Might Recruit is played at that battlefield (359.3.f.2 reads 'here' at execution).",
+        "415.3.a readies it at your next Awakening; move it again for another Recruit, one per turn per carrier."
+      ],
+      "netPerIteration": "one 1 Might Recruit per Standard Move, with the first one arriving on the turn the carrier is played",
+      "terminatesIn": "engine only - one Recruit per carrier per turn and one extra from arriving ready, capped at three carriers and three Eyes by 103.2.b; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md, batch 6)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #180, batch 6). The first entry to use OGS-016 Vanguard Attendant. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 136.2.c, 136.2.d, 053.1, 143.4, 143.4.a, 144.2, 144.4, 359.3.f.2, 415.1, 415.3.a, 469, 730.2, 818.1.b.2, 818.1.c.2, 824.1.d. Deliberately an ALTERNATIVE to bandle-soldier-enthralling-protector-xp-floor rather than a companion: the two cards are the same body with the same text at different prices, and 824.1.d decides which one a list can run. Third entry on SFD-153 Eye of the Herald and the three are distinguished by scarcity (rate, survival, first-move timing), stated in a notable. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "blast-of-power-bloodless-conquer",
+      "name": "Two Energy buys the word [Action], and that is the whole difference between a removal spell and a Conquer",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-012",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order spell, E6 P1. '[Action] (Play on your turn or in showdowns.) Kill a unit at a battlefield.' The location restriction costs nothing on this line - the target is a garrison - and the [Action] permission is what lets it be cast inside a combat that has already opened."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity - Starter, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower.",
+          "Not banned or restricted in either format, and not a Signature card.",
+          "A garrison of exactly one enemy unit, and one body of yours to walk in. The spell kills one unit; against a bigger garrison it needs a second copy or a different tool."
+        ],
+        "notable": [
+          "THE CHAIN, PARAGRAPH BY PARAGRAPH. Move a unit in: 190.3.a.1 applies Contested, 323.9 stages a Combat 'at each Battlefield that Contested was applied to that have units present controlled by opposing players', and 464.2.c.1 makes you the Attacker. Inside the opened combat, 464.2.f.1 ('Otherwise the Combat Showdown continues, with the State Open as normal') and 464.2.g ('Players proceed with any play on the Chain as normal') are the window, and 806.1.c.1 - '[Action] ... This can be played during showdowns on any player's turn' - is the permission. Kill the last defender there. 465.1 then gates the damage tasks on 'If BOTH Attacking and Defending units remain at this battlefield' - they do not - so no damage is assigned at all and none of your bodies is at risk. 466.5 gives Control to 'the player with Units remaining here ... if they didn't already control this Battlefield', and 466.5.d: 'Establishing Control results in a Conquer if that player has not yet scored this Battlefield.' 469.1.b completes it.",
+          "WHY THE CHEAPER SPELL IN THE SAME DOMAIN CANNOT DO THIS. OGN-229 Vengeance is 4 Energy + 2 Power for 'Kill a unit' with no location restriction at all - cheaper in Energy, wider in target, and useless for this line, because 155 is the only permission a bare spell has: 'A spell can be played during an Open State outside of Showdowns on its controller's turn.' A Combat Showdown is not that state. The 2 extra Energy on Blast of Power buys the keyword, and the keyword is the card. The honest trade in the other direction is that Vengeance reaches a unit at the BASE and Blast of Power never does.",
+          "IT MUST BE THE ATTACKER'S SIDE. 466.5's clause 'if they didn't already control this Battlefield' is why: the Defender is by 464.2.c.1 and 323.11.a the player who already controls it, so the same spell cast by the non-turn player wins the combat and pays no point. 466.5.e ('This does not have to be the player that applied Contested to the Battlefield') keeps the Control with whoever has units left, which on this line is you.",
+          "AND IT PRODUCES NO EXCESS DAMAGE, WHICH RULES OUT THE OBVIOUS PAYOFFS. 465.1 assigns nothing, and this project's ruling R28 = A defines excess damage as attacking Might that was never assigned - there is no assignment step to leave anything over. So OGN-034 Tryndamere (5 or more excess), UNL-187 Piltover Enforcer (3 or more) and UNL-217 Trapping Grounds (3 or more) are all blank behind this line, however large the body that walked in. A bloodless conquer and the excess-damage family are mutually exclusive in principle, not merely by domain.",
+          "THE CEILING. 469.1 defines a Conquer on a battlefield 'not yet Scored this turn', 470 caps Scoring at once per battlefield per turn and 485.4 puts Battlefield Count at 2 in a Duel - so two Conquers a turn is the hard ceiling whether you cast this once or three times, and 103.2.b caps the copies at three anyway.",
+          "WHERE IT SITS IN THE CATALOGUED FAMILY. sinister-poro-attack-evacuate and corrupted-dragon-mass-evacuate empty a garrison of ANY size by moving it, and 323.10 lets an evacuation un-stage a Combat before it opens. This is the other route: the Combat is allowed to open, and the garrison is removed inside it. It costs 6 Energy + 1 Power and works on a garrison of one, where an evacuation costs almost nothing and works on any garrison - the trade is that removal is permanent and an evacuation hands the bodies back to their base intact.",
+          "WHAT IT IS NOT. This is a Conquer, so it scores by 469.1.b, but the entry produces no engine of its own: it is one point per casting, three castings a game, and nothing recurs."
+        ]
+      },
+      "steps": [
+        "Move a unit to a battlefield held by a garrison of exactly one enemy unit. 190.3.a.1 applies Contested and 323.9 stages the Combat.",
+        "Let the Combat open. 464.2.c.1 makes you the Attacker and 464.2.c.3 hands out the designations.",
+        "In the window 464.2.f.1 and 464.2.g leave open, play Blast of Power (6 Energy + 1 Power) under its [Action] permission (806.1.c.1) and kill the defender.",
+        "465.1's damage tasks never become Outstanding, because Defending units no longer remain: no damage is assigned and your body survives untouched.",
+        "466.5 establishes Control for you and 466.5.d makes it a Conquer; 469.1.b completes the gain of control. Two Conquers a turn is the ceiling (470 + 485.4)."
+      ],
+      "netPerIteration": "one Conquer per casting, with no damage assigned and no body lost",
+      "terminatesIn": "engine only - one Conquer per casting and three castings a game (103.2.b), against a garrison of exactly one; the Duel ceiling of two Conquers a turn (470 + 485.4) binds before the copies do",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md, batch 7)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #180, batch 7). The first entry to use OGS-012 Blast of Power. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 155, 190.3.a.1, 323.9, 323.10, 323.11.a, 464.2.c.1, 464.2.c.3, 464.2.f.1, 464.2.g, 465.1, 466.5, 466.5.d, 466.5.e, 469.1, 469.1.b, 470, 485.4, 806.1.c.1. 155 and 466.5.e are cited here for the first time in this catalogue. The entry exists to make one comparison concrete: OGN-229 Vengeance is cheaper and wider and cannot take a battlefield, because 155 is the only timing permission a keyword-less spell has - which is also the paragraph that refuses Vengeance its own entry in this walk. Ban check: not banned or restricted, not a Signature card. No unruled reading."
     }
   ]
 }
