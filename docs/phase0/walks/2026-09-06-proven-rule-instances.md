@@ -1082,3 +1082,111 @@ Two method notes that transfer directly:
    you are copying, not the one you are copying it for** — it cut both ways, a static that stacks
    (`svellsongur-rumble-scrapper-mechs`, +8 Might) and a drawback that stacks
    (`svellsongur-corrupt-enforcer-trash-fill`, a forced 8-card draw).
+
+---
+
+# Part II — two-card pairs from the cause/trigger matrix
+
+## 24. Scope
+
+`rc-walk153b` built a cause/trigger matrix over the whole pool (`.scratch/matrix.ts`,
+`.scratch/buckets.mjs`, `.scratch/top30b.mjs`, candidates in `.scratch/cands.json`; read, not rebuilt).
+This session takes **rows 6–15 by trigger card**. Its refuse-by-rule buckets stand, and one more is
+added below.
+
+Per trigger card: walk the partner list, write **one** entry with the best partner (cheapest or
+highest-paying on its own numbers), and record the family as a synergy-rule lead. A second partner is
+an entry only if its numbers or its trap differ.
+
+| trigger | partners | status |
+|---|---|---|
+| `OGN-202 Jinx, Rebel` (discard) | 21 | §25.1 |
+| `VEN-094 Mask Mother` (discard) | 23 | §25.2 |
+| `UNL-055 Vex, Mocking` (stun) | 21 | §25.3 |
+| `OGN-059 Eclipse Herald` (stun) | 21 | §25.4 |
+| `OGN-072 Solari Shrine` (stun) | 22 | §25.5 |
+| `UNL-023 Katarina, Reckless` (play-facedown) | 37 | pending |
+| `OGN-167 Ember Monk` (play-facedown) | 37 | pending |
+| `SFD-195 Blade Dancer` (choose-friendly) | 9 | pending |
+| `SFD-142 Jae Medarda` (choose-friendly) | 19 | pending |
+| `SFD-144 Spirit Wheel` (choose-friendly) | 27 | pending |
+| ~~`OGN-292 The Dreaming Tree`~~ | 36 | **bucket D — banned, §27** |
+
+Every card in every entry below was checked against `data/legality.json` by base code before walking,
+and every candidate pair against the live `data/combos.json` by card set (exact, subset and superset).
+
+## 25. Entries authored
+
+### 25.1 `jinx-rebel-square-up` — the [Repeat] cost IS the discard
+`UNL-017 Square Up`'s additional cost is *Discard 1*, and **820.1.c.1** makes a `[Repeat]` cost *"an
+Additional Cost to be paid during the steps of playing the spell"* — so the spell is its own discard
+outlet and Jinx needs no third card. **807.2** sums the two `[Assault 4]` grants (its worked example is
+exactly this stacking): 5 + 1 + 8 = **14 Might attacking**, for 4 Energy and one discarded card.
+
+Stated because the card reads like an untap engine and is not one: readying buys **one extra Standard
+Move** and nothing on defence, since combat does not read exhaustion (#61). The +1 Might is the half
+that compounds — one per discard *event*, and *"discard 2, then draw 2"* is one event, not two.
+
+### 25.2 `mask-mother-scrapyard-champion` — a card you want in the trash, twice at once
+**422.1.b**: *"'When I am discarded' abilities … are executed **after** discarding has occurred"* —
+so Mask Mother is already in the trash when her ability runs (385.1 / 385.2). `OGN-020 Scrapyard
+Champion` is the only partner in the list that discards **two cards of your choosing in one
+instruction and replaces both**, so two Mask Mothers fire for +4 Might at no card cost.
+
+`[Legion]` is free but not automatic: 812.1.c needs a different card finalized earlier the same turn.
+Play the Champion first and he is a bare 5-Might body.
+
+### 25.3 `vex-mocking-thwonk-wall` — a Tank that lands inside the opponent's attack
+Vex's relocation is an **effect move** (420.2.a), not the Standard Move, so 144.1.b's Closed-State bar
+and 144.2's exhaust cost never apply — she arrives on the opponent's turn, exhausted or not. And she
+arrives in time to matter: **323.2.a** gives an undesignated unit at the battlefield its controller's
+designation, and **319.6** runs a Cleanup after any Game Object enters the Board, so she is a Defender
+before 465.2 resolves. Same window #150 recorded for a hidden Keeper of Masks.
+
+`SFD-040 Thwonk!` beats the cheaper `OGN-050 Rune Prison` on one clause: **806.1.b** lets an `[Action]`
+be played *"during Showdowns, even when it is not the Controlling player's turn"*, and Thwonk! reads
+*"Stun an **attacking** unit"* — a clause with a referent only there.
+
+### 25.4 `eclipse-herald-zenith-blade` — one spell pays all three halves
+`OGN-262 Zenith Blade` stuns (so the Herald readies and grows) **and** moves a friendly unit to that
+battlefield — which may be the Herald himself, as an effect move that costs him no exhaust (420.3.a).
+He arrives at 8 Might, unexhausted, at a battlefield whose biggest body has just been blanked by
+423.1.b. Chosen over the cheaper Rune Prison and the free Leona, Determined because it is the only
+partner that buys the stun, the ready and the relocation out of one card.
+
+### 25.5 `solari-shrine-leona-determined` — the attack that stuns is the attack that kills
+The Shrine needs **two** events, a stun and a kill of that stunned unit. Leona supplies the stun free
+on the same attack whose combat damage supplies the kill (428.1). The two stun clauses pull opposite
+ways and only one matters here: 423.1.c (#61's correction) means the stun makes the kill no easier,
+while 423.1.b means your attackers survive to make it.
+
+The caveat is 465.2.c.3 — lethal must be assigned in full to one unit before any goes to the next — so
+against a wide garrison the assignment may never reach the stunned body.
+
+## 26. A refuse-by-rule bucket to add: E — the ready that buys nothing
+
+Three of the five trigger cards in this slice pay in *"ready me"* (`OGN-202`, `OGN-059`) or in a
+relocation, and the matrix cannot see what a ready is worth. The rule:
+
+> A `ready` payoff is worth **one extra Standard Move** and **nothing on defence** — 464.2.c.3 and
+> 465.2.b do not filter by state, so an exhausted defender fights at full Might (#61) — and nothing at
+> all if the unit has no exhaust-cost ability of its own.
+
+So a stun/discard trigger that readies is only worth pairing with a cause that fires **on your own
+turn**, and its real payoff is usually the `+1 Might` rider rather than the ready. This is a
+generalisation of §14.1 (a Hold-triggered ready is a no-op by phase order) to any trigger whose cause
+lands in a window where moves are illegal (144.1.b) or pointless.
+
+## 27. Bucket D — banned, not walked
+
+`OGN-292 The Dreaming Tree` (36 partners, old row 15) is **banned in constructed and in 2v2**.
+Verified from `data/legality.json` by base code rather than from the text marker:
+
+```
+{"format":"constructed","entity":"battlefield","name":"The Dreaming Tree","bases":["OGN-292"],"status":"banned","since":"2026-07-16"}
+{"format":"2v2", …same…}
+```
+
+Not walked. The full banned list checked at the same time, so no later row trips on it:
+`OGN-168`, `OGN-177`, `OGN-182`, `OGN-276`, `OGN-284`, `OGN-285`, `OGN-290`, `OGN-292`, `SFD-020`,
+`SFD-122` — banned in both formats; `OGS-019` — restricted in 2v2 only.
