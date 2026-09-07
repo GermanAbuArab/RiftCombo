@@ -221,3 +221,136 @@ re-open them.
 5. **The ban marker for battlefields is in `corpus_flat.txt`, not `cards.json`** — five of the 47
    uncatalogued battlefields are banned in both formats and a card-set check does not surface it.
    Same trap as the small-combo matrix's bucket D.
+
+---
+
+# Batch 2 — five more battlefields
+
+## 5. The check that should be run on every battlefield before anything else
+
+> **190.6.d blanks a battlefield's text through the WORD "you", and nothing else.**
+>
+> *"'You' in a battlefield's abilities refers to the battlefield's Controller, as does the implied
+> 'you' in instructions that don't specify a player like 'draw 1.' If the battlefield has no
+> Controller, 'you' refers to no one, and all such instructions are ignored."*
+
+#161 found this on UNL-214 Ripper's Bay. Batch 2 found **three more battlefields whose text never
+says "you" and which are therefore live from turn one, with no Control and no walk-in**:
+
+| code | name | the wording that saves it |
+|---|---|---|
+| VEN-164 | Sandswept Tomb | *"…that are **friendly to it**"* — keys on the spell's controller |
+| UNL-212 | Frozen Fortress | *"At the start of **each player's** Beginning Phase…"* |
+| VEN-157 | Dragon Roost | *"**Any player** may pay…"* |
+| UNL-210 | Forbidding Waste | *"While **a unit** here is defending alone…"* |
+| OGN-295 | Vilemaw's Lair (batch 1) | *"**Units** can't move from here to base."* |
+
+Five of the sixty-six, against every `While you control this battlefield` card, which is a real cost
+(190.1, and the walk-in that 466.5 or 344.2 charges for). **Run the check on the word.**
+
+## 6. Entries staged (batch 2, five)
+
+| id | class | cards | what it is |
+|---|---|---|---|
+| `academy-ezreal-gust-double-bounce` | ENGINE | UNL-216, SFD-149, OGN-169 | The Academy *grants* [Repeat] to a spell that has none; Ezreal takes the cost to 0 |
+| `sandswept-tomb-public-execution` | ENGINE | VEN-164, VEN-154 | 1 Power off all 24 spells that choose a friendly unit there |
+| `frozen-fortress-soul-shepherd-asymmetric-sweep` | ENGINE | UNL-212, UNL-077 | a permanent one-sided 1-Might filter, twice a round |
+| `dragon-roost-mountain-drake-instant-garrison` | ENGINE | VEN-157, OGN-142 | a Dragon played straight onto the battlefield, no walk |
+| `forbidding-waste-wuju-bladesman-lone-defender` | ENGINE | UNL-210, OGS-019, OGN-133 | −2 on their lone defender, +2 back on yours |
+
+### 6.1 The Academy is not a duplicate of Marai Spire, and they cannot share a board
+
+`ezreal-marai-spire-free-repeat` discounts spells that **already print** [Repeat] — fourteen of them.
+**UNL-216 The Academy** *grants* the keyword: *"When you hold here, give your next spell this turn
+[Repeat] equal to its base cost."* That reaches any spell in the pool, once a turn, off a free Hold.
+Both stand on 356.4.c's worked example (Ezreal applied to a [Repeat] additional cost), and
+**485.4.a + 103.4.c make them alternatives, never a stack** — one of your three battlefields enters a
+Duel and two of a name are forbidden. Both entries now cross-reference the other.
+
+### 6.2 143.3.b.1 — damage never accumulates across turns
+
+> *"Damage is Healed from Units at two specific times: **At the end of each player's turn.** During a
+> Combat Cleanup."*
+
+Never cited in this project before, and it is what decides the worth of every repeating damage
+source. **UNL-212 Frozen Fortress** (*"At the start of each player's Beginning Phase, deal 1 to each
+unit here"*) is therefore a permanent 1-Might **filter**, not a clock: a 2-Might body standing there
+forever is never in danger.
+
+**Refusal, walked and recorded:** Frozen Fortress cannot feed **UNL-174 Shard of Undoing**
+(*"The first time a friendly unit dies **during your Beginning Phase** each turn, each opponent must
+kill one of their units"*). Any 1-Might body you send there in your Main Phase is killed at the
+**opponent's** Beginning Phase, which comes first; and 143.3.b.1 heals the mark at the end of every
+turn, so a 2-Might body cannot die on a second tick either. The Fortress can only ever kill a
+friendly body in the opponent's window.
+
+**The unbounded Shard feed that does exist** (lead for another session, both cards already
+catalogued, so out of this walk's lane): **UNL-084 Sprite Queen**'s Sprite carries [Temporary], and
+816.1.b kills it *"at the start of this permanent's controller's Beginning Phase, before scoring"* —
+which is the Shard's window — while Sprite Queen makes a replacement in the same instant. CLAUDE.md
+records the Sprite Fountain feed as **bounded** (383.3.e.1, each Fountain feeds exactly two turns);
+Sprite Queen's is not bounded at all.
+
+### 6.3 Dragon Roost is the second door in the pool onto a battlefield with no move
+
+**355.2.b** — *"Some Game Effects may grant players permission to play Units to locations that are
+not normally Valid. Such locations become Valid for the purposes of Playing the Unit."* — against
+355.2.a's default of your base or a battlefield you control. With **190.3.a.1** (*"Units moving to
+**or being played to** a battlefield apply Contested status"*) and **464.2.c.1**, a Dragon played to
+an occupied enemy Roost is the Attacker with no Standard Move, so 144.2's exhaust never comes up and
+143.4's entering exhausted costs nothing. SFD-093 Dauntless Vanguard does this for one body; the
+Roost does it for every Dragon in the deck, for 2 rainbow Power.
+
+**The one Dragon it cannot carry:** SFD-015 Perched Grimwyrm, *"Play me only to a battlefield you
+conquered this turn. (You can't play me anywhere else.)"* — **054.2**, *"If a card specifies that an
+action can 'only' be performed under certain circumstances, it cannot be performed under any other
+circumstances."*
+
+### 6.4 A defect the test caught before the entry was staged
+
+The first draft of `sandswept-tomb-public-execution` named **five Body/Order legends**. Four of them
+are illegal: **VEN-154 Public Execution is a Signature card tagged Ambessa** (`signature: true` in
+`cards.json`), so 103.2.d.2 forces the one legend carrying that tag —
+**VEN-153 / VEN-196 Matriarch of War** — and `test/legend-lines.test.ts` said so on the first run.
+This is the #167 failure class reproducing itself in a fresh walk: *a Signature card in `uses[]`
+makes `prerequisites.easy` a one-legend field, not a domain field.* Run the check, do not reason
+about it.
+
+## 7. More refusals
+
+### 7.1 UNL-208 Black Flame Altar is worth exactly ZERO on a Reflection
+
+*"Units here with [Temporary] have [Shield]. (+1 :rb_might: while they're defenders.)"* The obvious
+partner is UNL-081 Keeper of Masks, whose play effect makes two Reflection copies of itself, all
+three of them [Temporary]. But **R27** ruled that Might is not a copyable trait, so a Reflection
+copy stands at **0 Might** — and **143.2.a** kills on *"nonzero damage … equalling or exceeding its
+Might"*, so a 0-Might body already costs an attacker exactly 1 damage, and **465.2.c.4** forbids
+assigning more than the minimum needed. Raising it to Might 1 changes the bill from 1 to 1. The
+Altar is worth **+1 damage per [Temporary] body with printed Might** (the Keeper himself, a
+3-Might Sprite) and nothing at all on the tokens such decks are actually made of. Not staged.
+
+### 7.2 UNL-219 Vaults of Helia, SFD-207 Emperor's Dais, OGN-283 Navori Fighting Pit,
+### OGN-288 Startipped Peak, and the five banned battlefields
+
+Carried forward from §3; none re-opened.
+
+## 8. Standing notes for CLAUDE.md (batch 2)
+
+6. **Run the "you" check on every battlefield before assuming it needs Control.** 190.6.d blanks a
+   battlefield's text through that word alone. Five of the sixty-six survive it and are live from
+   turn one: UNL-214 Ripper's Bay, VEN-164 Sandswept Tomb, UNL-212 Frozen Fortress, VEN-157 Dragon
+   Roost, UNL-210 Forbidding Waste, plus OGN-295 Vilemaw's Lair.
+7. **143.3.b.1 — damage is healed at the end of EACH player's turn.** Nothing in the pool
+   accumulates damage across a round, so every repeating 1-damage source is a Might filter, never a
+   clock; and a "friendly unit dies during YOUR Beginning Phase" payoff cannot be fed by a
+   symmetric Beginning-Phase damage source, because the opponent's phase comes first.
+8. **UNL-216 The Academy GRANTS [Repeat] to a spell that has none**, which is a strictly wider door
+   than SFD-211 Marai Spire's discount on the fourteen that print it — and 485.4.a + 103.4.c make
+   the two mutually exclusive.
+9. **355.2.b is the paragraph behind every "play me somewhere unusual" card**, and read with
+   190.3.a.1 + 464.2.c.1 a unit *played* to an occupied enemy battlefield is the Attacker with no
+   move and no 144.2 exhaust. VEN-157 Dragon Roost extends that to every Dragon in the deck for
+   2 rainbow Power; 054.2 is why SFD-015 Perched Grimwyrm is the one exception.
+10. **R27 makes a Reflection 0 Might, and 143.2.a + 465.2.c.4 mean a 0-Might body already costs an
+    attacker one damage** — so granting [Shield 1] to a Reflection wall adds nothing. Price a wall
+    in damage, not in Might.
