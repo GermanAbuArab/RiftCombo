@@ -46658,6 +46658,497 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use SFD-190 Forgefire Cape or VEN-041 Riven, Shattered. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 053.1, 103.2.b, 103.2.d.1, 103.2.d.2, 136.2.b, 136.2.c, 136.2.d, 323.9, 434.1.d, 434.1.f, 434.1.g, 469, 807.1.d, 818.1.b.1, 821.1.c, 821.1.c.2, 821.1.c.3, 821.1.c.6, 825.3.a. VEN-041 has a second printing, VEN-171, whose corpus row omits the [Weaponmaster] reminder text but is otherwise identical; CardIndex.equivalents folds them and there is no text difference to worry about - checked, because a multi-base name with different text would be a real matching hazard. The Signature card makes the legend line ONE name, which is the shape test/legend-lines.test.ts is safest with. Ban check: neither card is banned or restricted. No unruled reading."
+    },
+    {
+      "id": "mirror-image-reflection-atakhan-printed-cost",
+      "name": "206's own third worked example: a Reflection carries the COPIED cost, so a token that was going to die anyway pays Atakhan's whole discount",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-200",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind/Order SIGNATURE spell, E3 P2, tagged LeBlanc. 'Choose a unit. Play a ready Reflection unit token to your base. Then do this: It becomes a copy of that unit. Give it [Temporary].' It says 'a unit', with no controller restriction, so the copied cost may be the OPPONENT's biggest body."
+        },
+        {
+          "card": "UNL-170",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order unit, E10 P3 M7. 'You may kill a friendly unit as an additional cost to play me. If you do, I cost :rb_energy_1: less for each Energy it costs and :rb_rune_order: less for each Power it costs. [Ganking] ... When I attack, the defender must kill one of their units here.' The discount reads the killed unit's cost, and 206 makes that the printed or COPIED one."
+        },
+        {
+          "card": "VEN-064",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E10 M8, [Deflect]. The in-domain body to copy when the opponent has nothing expensive: its PRINTED Energy cost is 10, which 206 reads regardless of its own 'I cost 1 less for each gear you control'."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "UNL-200 Mirror Image is a Signature card tagged LeBlanc, so 103.2.d.2 forces a LeBlanc legend. Measured over data/cards.json there is exactly ONE name and two base codes: UNL-199 / UNL-235 Deceiver (Mind/Order). This is a one-legend field.",
+          "That legend's domains are Mind and Order, and every card here is inside them: Mirror Image is Mind/Order, Atakhan is mono-Order, Plaza Guardian is mono-Mind. 103.1.b.2 is satisfied.",
+          "None of the three is banned or restricted in either format. 103.2.d.1 leaves room: Mirror Image is one of the at most three Signature cards.",
+          "Plaza Guardian is the fallback fodder and is not needed when the opponent already has an expensive body on the board - Mirror Image chooses any unit, and 103.1.b constrains your DECK, never what you may choose on the table."
+        ],
+        "notable": [
+          "RIOT WORKS THIS EXACT LINE AT 206, AND NO ENTRY CITES THAT EXAMPLE. 206: 'Effects that need to determine a card's cost for any purpose always use its printed or copied cost, even if that cost is increased, decreased, or ignored as the card is played.' Its third worked example: 'Atakhan is a unit that reads in part \"You may kill a friendly unit as an additional cost to play me. If you do, I cost [1] less for each Energy it costs and [Y] less for each Power it costs.\" If a player plays Atakhan and chooses to kill a Reflection token that is currently a copy of Noxus Hopeful, Atakhan will cost [4] less.' The word doing the work is COPIED.",
+          "SO A REFLECTION IS FODDER WORTH ITS ORIGINAL'S PRICE. 477.1.b.1.a lists Cost among the copyable traits, and 185.3.a.2's worked example appends 'all copyable traits, including the cost'. R27 = A keeps the copy at 0 Might - Might is not copyable - but the COST rides along, which is the only trait this line needs. Copy a Might 8 body printed at 10 Energy and the token is a 0-Might body with a 10-Energy cost.",
+          "AND 185.2.d IS WHY THE TOKEN IS LEGAL PAYMENT. 'Tokens have a type. They follow all rules for their type unless otherwise specified' - so a Reflection unit token IS a friendly unit for 'kill a friendly unit as an additional cost', and 203.3 never bites. This is the positive half of the token rule; the negative half (185, 416.1: a token is not a card and can never be Recycled) is untouched here because nothing recycles.",
+          "THE FODDER WAS ALREADY CONDEMNED, SO THE KILL COSTS NOTHING. Mirror Image gives the Reflection [Temporary], and 816.1.b kills it 'At the start of this permanent's controller's Beginning Phase, before scoring'. Spending it in your Main Phase the same turn it was made costs you a body you were going to lose at 315.2 anyway - the cheapest possible payment for a kill-as-cost hook.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Mirror Image is 3 Energy + 2 Power. Copy a body printed at 10 Energy and 0 Power - Plaza Guardian is the in-domain one - and Atakhan's discount is 10 Energy and 0 Order Power, so 356.6 ('Energy and Power costs can't be reduced below 0') floors him at 0 Energy and leaves his full 3 Order Power. The pair is 3 Energy + 5 Power for a Might 7 [Ganking] body that forces a kill on every attack, against Atakhan's own 10 Energy + 3 Power. Copy something with printed Power instead and the Power half comes down too.",
+          "206 CUTS THE OTHER WAY ON PLAZA GUARDIAN AND THAT IS WHY HE IS THE RIGHT FODDER. His own text is 'I cost :rb_energy_1: less for each gear you control', and 206 says a cost determination uses the printed cost 'even if that cost is increased, decreased, or ignored as the card is played'. So however cheaply you actually put him on the board, the Reflection copying him is worth the full 10 to Atakhan.",
+          "THE COPY IS A SEPARATE CHAIN ITEM AND THERE IS A WINDOW. Mirror Image's second sentence is a Reflexive Trigger (387.1, 388.1: 'A new ability is created and added to the chain as a Pending Item'), so the token sits at your base as a 0-Might Reflection with no text while 337.4 hands out Priority. The opponent can kill it there. Play Atakhan in the same Main Phase, not across turns.",
+          "WHAT ATAKHAN BUYS AFTERWARDS. 'When I attack, the defender must kill one of their units here' is a 355.10.f instruction a player 'must' complete, so it does not target and 809.1.c's [Deflect] tax never applies - but the CHOICE is theirs, which is a limit and not a hidden upside. And 807.1.d needs the Attacker designation, so on an empty battlefield 323.9 stages no Combat and the clause does nothing."
+        ]
+      },
+      "steps": [
+        "Run UNL-199 (or UNL-235) Deceiver as your legend - forced by Mirror Image's LeBlanc tag under 103.2.d.2.",
+        "Have an expensive body on the board to copy: the opponent's biggest, or your own VEN-064 Plaza Guardian, whose printed Energy cost is 10 (206 reads printed, not the discount his own text gives him).",
+        "In your Main Phase, play UNL-200 Mirror Image (3 Energy + 2 Power) choosing that unit. A ready Reflection token enters your base; 387.1 / 388.1 put the copy clause on the Chain as a separate Pending Item and 337.4 opens a priority window before it resolves.",
+        "The reflexive item resolves: the token becomes a copy of the chosen unit and gains [Temporary]. By 477.1.b.1.a and 185.3.a.2 it now carries the copied COST; by R27 = A its Might is 0.",
+        "Still in the same Main Phase, play UNL-170 Atakhan and take its optional additional cost, killing the Reflection (185.2.d makes the token a legal friendly unit; 816.1.b was going to kill it at your next Beginning Phase anyway).",
+        "206 reads the killed unit's COPIED cost: 10 Energy and 0 Power. Atakhan's 10 Energy is reduced to 0 (356.6 floors it there) and his 3 Order Power is paid in full.",
+        "Atakhan is on the board with [Ganking] and a forced kill on every attack. Three copies of each (103.2.b)."
+      ],
+      "netPerIteration": "a Might 7 [Ganking] body with a forced-kill attack trigger for 3 Energy and 5 Power instead of 10 Energy and 3 Power, paid with a token that was dying at your next Beginning Phase",
+      "terminatesIn": "engine only - one forced kill per attack and one attack per body per turn (144.2, 315.1.b); three copies of each card (103.2.b) and nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 206",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Effects that need to determine a card’s cost for any purpose always use its printed or copied cost, even if that cost is increased, decreased, or ignored as the card is played."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 206 third worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Atakhan is a unit that reads in part “You may kill a friendly unit as an additional cost to play me. If you do, I cost [1] less for each Energy it costs and [Y] less for each Power it costs.” If a player plays Atakhan and chooses to kill a Reflection token that is currently a copy of Noxus Hopeful, Atakhan will cost [4] less."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 356.6",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Energy and Power costs can't be reduced below 0"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice; found by reading 206's worked examples, the third of which names Atakhan and a Reflection token copying Noxus Hopeful). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b, 103.1.b.2, 103.2.b, 103.2.d.1, 103.2.d.2, 144.2, 185.2.d, 185.3.a.2, 203.3, 206, 315.1.b, 323.9, 337.4, 355.10.f, 356.6, 387.1, 388.1, 477.1.b.1.a, 807.1.d, 809.1.c, 816.1.b. The legend field is ONE NAME because Mirror Image is Signature: UNL-199 / UNL-235 Deceiver, the pool's only LeBlanc legend. Distinct from atakhan-harnessed-dragon-sacrifice, which pays the discount with a fixed in-domain card (OGN-234 Harnessed Dragon, E8 + 2 Power): a Reflection is repeatable, is already condemned by 816.1.b so the kill is free, and can copy a body OUTSIDE your domain identity, since 103.1.b constrains the deck and not what may be chosen on the board. Trap check: R27 = A keeps the copy at 0 Might and the entry never claims otherwise; 356.6 floors the discount at 0 rather than refunding; the reflexive window is stated; Atakhan's attack clause needs a garrison (807.1.d, 323.9) and its choice belongs to the defender (355.10.f); no unruled reading."
+    },
+    {
+      "id": "void-drone-sarcophagus-zone-discount",
+      "name": "366.2.a makes a cost-altering passive live in every zone the card can be played from - Void Drone is 1 Energy out of the Sarcophagus, and 206 is why it is still 3 for any cost gate",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-148",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos gear, E4 P1. 'When you play this, banish all units from your trash. :rb_exhaust:: Play a unit banished with this. (You must pay its costs.)' The parenthesis is what makes the discount matter: this is the pool's reanimator that does NOT ignore costs."
+        },
+        {
+          "card": "SFD-010",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "TRASH",
+          "note": "Fury unit, E3 M3. 'I cost :rb_energy_2: less to play from anywhere other than your hand.' A passive that self-describes its context, which is exactly the shape 366.1 defines and 366.2.a scopes."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Void Drone is mono-Fury and Cursed Sarcophagus is mono-Chaos, so the identity is Fury/Chaos and 103.1.b.2 needs a legend covering both. Measured over data/cards.json those are OGN-251 / OGN-301 Loose Cannon, OGS-017 Dark Child - Starter, SFD-185 / SFD-242 Glorious Executioner, UNL-185 / UNL-228 Bloodharbor Ripper and VEN-143 / VEN-191 Master of Shadows.",
+          "Neither card is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "Void Drone has to reach the trash before the Sarcophagus is played, since the Sarcophagus banishes from the trash once, on its own play trigger."
+        ],
+        "notable": [
+          "THE RULE, AND IT IS CITED BY NOTHING. 366.1: 'Passive Abilities of cards in zones that are outside of the Board will self-describe their context', whose worked example is a pool card by name - 'Undying Legion has a passive ability that reads \"[Legion][>] You may play me from your trash for [3][C].\" That passive ability only applies when Undying Legion is in the trash.' And 366.2 / 366.2.a: 'Passive Abilities can alter the costs of cards as they are played. These apply at all times in any zone from which the card with the ability can be played.' So Void Drone's -2 is live in the trash, in Banishment, and anywhere else it can be played from. 363, 364 and 366 are cited by no entry and no synergy rule in this project.",
+          "AND THE SARCOPHAGUS IS THE ONLY PLACE IT IS WORTH ANYTHING. Every other route out of the trash in the pool ignores the Energy cost outright - OGN-198 The Harrowing, OGN-196 Soulgorger, UNL-142 Heedless Resurrection, UNL-179 Rift Herald's Deathknell, SFD-090 The Zero Drive - so a discount buys nothing there. UNL-148 Cursed Sarcophagus prints '(You must pay its costs.)', which is what turns 366.2.a into 2 Energy a turn: Void Drone comes back for 1 Energy, every turn, forever.",
+          "206 IS THE OTHER HALF AND IT REFUSES THE OBVIOUS UPGRADE. 'Effects that need to determine a card's cost for any purpose always use its printed or copied cost, even if that cost is increased, decreased, or ignored as the card is played.' So the discount is real for PAYING and invisible to any COST GATE: SFD-140 Fizz, Trickster's 'a spell from your trash with Energy cost no more than :rb_energy_3:' still reads Drag Under's printed 5, and UNL-142 Heedless Resurrection's 'costs no more Energy ... than the killed unit' still reads Void Drone's printed 3. The pool has exactly TWO cards with this passive, swept on the corpus: SFD-010 Void Drone (Fury) and SFD-164 Drag Under (Order).",
+          "397 MAKES THE SARCOPHAGUS'S POOL EXCLUSIVE, AND ITS WORKED EXAMPLE IS A POOL CARD. 'A component Linked Ability that references a Game Object affected by another Ability in the set may only interact with Game Objects affected by the Abilities it is Linked with', with 'Any units banished by effects other than component Linked Abilities in the same set as the activated ability cannot be played when resolving the activated ability.' So 'a unit banished with this' reaches ONLY what this Sarcophagus's own play trigger banished - no other banisher can feed it - and 395 scopes a linked set to one Game Object, so a second Sarcophagus does not share the first one's pool and finds a trash the first already emptied.",
+          "THE RATE IS ONE BODY A TURN AND 381 IS WHY. The Sarcophagus's ability carries no [Action] and no [Reaction], so 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State' confines it to your own Main Phase; 315.1.b readies it every Awakening. Gear enters ready (143.4 exhausts only units), so the first activation is available the turn it is played - but only after something has already died into the trash.",
+          "THE BODY ARRIVES EXHAUSTED AND AT YOUR BASE. 143.4 has it enter exhausted, so it walks on the following turn (144.4 confines the Standard Move to base and battlefield), and 355.2.a sends a played unit to 'the controller's Base or a battlefield the controller controls'. This is a grinding engine, not a tempo one, and the entry prices it that way.",
+          "WHY VOID DRONE AND NOT A BIGGER BODY. The Sarcophagus makes you pay full price, so the cheapest body is the most activations - and Void Drone is the only unit in the pool whose printed cost DROPS when it is played from the Sarcophagus. Any other 3-Energy body costs 3 there; this one costs 1, which is the entire content of 366.2.a."
+        ]
+      },
+      "steps": [
+        "Run a Fury/Chaos legend and get SFD-010 Void Drone into your trash - played and killed, discarded, or milled.",
+        "Play UNL-148 Cursed Sarcophagus (4 Energy + 1 Power). Its play trigger banishes all units from your trash, Void Drone among them. 397 makes that banished set the only thing its exhaust can ever reach.",
+        "Gear enters ready (143.4 exhausts only units), so exhaust the Sarcophagus the same turn if the trash was already stocked: play a unit banished with this, paying its costs.",
+        "366.2.a applies Void Drone's passive in Banishment - 'These apply at all times in any zone from which the card with the ability can be played' - so its cost there is 3 - 2 = 1 Energy.",
+        "It enters your base exhausted (143.4, 355.2.a) and walks on the following turn.",
+        "Your Awakening readies the Sarcophagus (315.1.b) and 381 lets you activate it again in your own Main Phase: one body a turn for 1 Energy, for as long as the banished pool lasts.",
+        "Do not expect the discount to open a cost gate: 206 keeps Void Drone's printed 3 for anything that checks a cost, including Heedless Resurrection's 'costs no more Energy than the killed unit'."
+      ],
+      "netPerIteration": "one 3-Might body a turn for 1 Energy, out of a banished pool no other card can feed or share",
+      "terminatesIn": "engine only - one activation a turn (381 confines it to your Main Phase, 315.1.b refills it), bounded by how many units the Sarcophagus banished on its one play trigger; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 366.2.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "These apply at all times in any zone from which the card with the ability can be played."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 366.1 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Undying Legion has a passive ability that reads “[Legion][>] You may play me from your trash for [3][C].” That passive ability only applies when Undying Legion is in the trash."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 397 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Any units banished by effects other than component Linked Abilities in the same set as the activated ability cannot be played when resolving the activated ability."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 363-366 Passive Abilities, with 393-397 Linked Abilities). 363, 364 and 366 are cited by no entry and no synergy rule in this project, and 366.1's worked example names UNL-025 Undying Legion by name while 397's names SFD-090 The Zero Drive. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.2, 143.4, 144.4, 206, 315.1.b, 355.2.a, 366.1, 366.2, 366.2.a, 381, 395, 397. MEMBERS NAMED: the pool has exactly two cards with the 'cost less to play from anywhere other than your hand' passive, swept on the corpus - SFD-010 Void Drone (Fury) and SFD-164 Drag Under (Order); and the trash/banishment routes that make a discount worthless because they ignore the Energy cost outright are OGN-198 The Harrowing, OGN-196 Soulgorger, UNL-142 Heedless Resurrection, UNL-179 Rift Herald and SFD-090 The Zero Drive. Distinct from reksai-sarcophagus-accelerated-recursion (a different body and no cost-passive content) and from void-burrower-play-from-deck (which plays Void Drone from the DECK and prices no discount). Trap check: 206 refuses the obvious upgrade and the entry says so; the Sarcophagus is your-turn only (381) and its pool is exclusive (395, 397); the body enters exhausted at the base; no unruled reading."
+    },
+    {
+      "id": "whirlwind-cemetery-attendant-choose-last",
+      "name": "\"Starting with the next player\" means you choose LAST on a symmetric bounce, and 355.10.e means nobody pays [Deflect]",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-187",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E3 P1. 'Starting with the next player, each player may return a unit to its owner's hand.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-165",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E3 P1 M3. 'When you play me, return a unit from your trash to your hand.' The ETB the bounce re-buys. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155). OGS-017 is restricted in 2v2.",
+          "A unit already in your trash for the Attendant's ETB to fetch — combat losses supply this without a card."
+        ],
+        "notable": [
+          "THE TURN-ORDER CLAUSE IS THE CARD. 'STARTING WITH THE NEXT PLAYER, each player may return a unit' — in a Duel that is the opponent first and you second, so you decide after seeing what they did, and the word 'may' lets you decline. A symmetric effect where you move last is not symmetric.",
+          "AND NOBODY PAYS FOR IT. 355.10.e: 'It is part of a set of objects chosen in whole or in part by other players. e.g., \"Each player kills a unit they control\" does not target.' Each player chooses their own body, so 809.1.c's [Deflect] tax never charges and `SFD-105 Ruin Runner`'s absolute 'can't be chosen by enemy spells and abilities' never engages — but by the same token you cannot pick THEIR body, which is the price.",
+          "A BOUNCE TO HAND IS NOT A RECALL, AND THAT IS WHAT MAKES IT AN EVACUATION. 455: 'A Recall is when a Permanent is relocated from anywhere to its BASE without it being a Move.' The hand is neither, so the body leaves the board entirely and 323.6 strips Control of any battlefield it was the last unit at — your own included, which is the second half of choosing last: you can decline when your garrison is load-bearing.",
+          "RE-BUYING THE ATTENDANT IS THE POINT OF PAIRING THEM. Its ETB returns a unit from your trash to your HAND, so it is card advantage rather than a cost cheat — the body still has to be paid for. What the loop gives is a repeatable recursion outlet at 3 Energy + 1 Power a cycle, which is a fair rate for a Chaos deck that loses bodies in combat.",
+          "AND IT NEVER LOSES A CARD. The Attendant returns to hand, not to the trash, so the exchange is card-neutral before the fetch and card-positive after it. Contrast `SFD-132 Beast Below`, whose bounce is not optional and hits your own body whether you want it or not.",
+          "IT IS NOT AN [ACTION] OR A [REACTION], so 155 keeps Whirlwind in your own Main Phase in an Open State. You cannot use the choose-last ordering as a combat trick."
+        ]
+      },
+      "steps": [
+        "Play Cemetery Attendant (3 Energy + 1 Chaos Power): its ETB returns a unit from your trash to your hand.",
+        "On a later turn, play Whirlwind (3 Energy + 1 Chaos Power) in your Main Phase.",
+        "The opponent chooses first — they may return one of their units to hand, or decline.",
+        "You choose second, knowing their answer: return the Attendant if the trash is worth raiding, or decline if your garrison is holding a battlefield (323.6).",
+        "Replay the Attendant for another fetch."
+      ],
+      "terminatesIn": "engine — one unit out of your trash per Whirlwind + Attendant cycle, three Whirlwinds a game (103.2.b), with the opponent forced to move first every time; nothing here scores",
+      "netPerIteration": "one card recovered from the trash, and the information of seeing the opponent's choice before making yours",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "355.10.e: 'It is part of a set of objects chosen in whole or in part by other players. e.g., \"Each player kills a unit they control\" does not target. Each player, including the one who played the spell, chooses a unit to kill as the spell or ability resolves.' 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' 155 (a spell without [Action] or [Reaction] is played during an Open State outside Showdowns on its controller's turn)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. OGN-187 Whirlwind and OGN-165 Cemetery Attendant were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.b, 155, 323.6, 355.10.e, 455, 809.1.c opened in the Core Rules file. The Attendant was REFUSED in §18 of this walk as a cost cheat behind a self-discard, correctly — it returns to HAND, so nothing is cheated; here it is used for what it actually does, card advantage, and the entry says so rather than implying otherwise."
+    },
+    {
+      "id": "ancient-warmonger-inviolus-vox-scaling-attacker",
+      "name": "An [Assault] whose X is a count of the enemy garrison gets bigger the harder the wall, and Vox pays a conquer forward into the next combat",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-131",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E5 M4. '[Accelerate] (You may pay :rb_energy_1::rb_rune_chaos: as an additional cost to have me enter ready.) I have [Assault] equal to the number of enemy units here.' In zero entries before this walk."
+        },
+        {
+          "card": "UNL-027",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E8 P2 M8. 'When I conquer, give a friendly unit +8 :rb_might: this turn.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "Two battlefields, which 485.4 gives a Duel by default — the whole line is Vox conquering one and the Warmonger taking the other in the same turn."
+        ],
+        "notable": [
+          "THE WARMONGER'S X IS A COUNT, NOT A CONSTANT, AND 807.1.b.1 IS WHY THAT IS LEGAL: 'The X is referenced in the functional text of the ability.' So his [Assault] is read off the garrison he is attacking — he is a 4-Might body against an empty battlefield and a 7-Might one against three defenders. He is the pool's answer to a stacked wall rather than to a thin one, which inverts the usual pricing of an attacker.",
+          "AND 807.2 SUMS IT WITH ANYTHING ELSE: 'the Assault Value of all granted Assault keywords is summed', so a Blood Rush or a Captain Farron adds on top of the count rather than replacing it.",
+          "VOX PAYS A CONQUER FORWARD INTO THE NEXT COMBAT. 'When I conquer, give a friendly unit +8 :rb_might: this turn' is a continuous modifier, not a Buff (702.3 and 703 are silent), and 461.1 leaves the order of combats to the Turn Player — so Vox takes the first battlefield, his trigger loads the Warmonger, and the Warmonger takes the second at Might 4 + N + 8.",
+          "TWO CONQUERS IS THE CEILING AND THE ENTRY SAYS SO. 470 refuses a second Score at a battlefield already scored this turn and 485.4 puts two battlefields on a Duel table, so this is at most 2 points a turn however large the bodies get. It is a board-control engine, not a finisher.",
+          "[ACCELERATE] MAKES THE WARMONGER SAME-TURN, AND ITS POWER IS DOMAIN-LOCKED. 805.1.a: 'As you play me, you may pay [1][C] as an additional cost. If you do, I enter ready', with 805.1.a.1: 'If the unit has one or more domains, the Power portion of the Accelerate cost can be paid only with a Power that matches one of the domains of the unit.' So the Warmonger's Accelerate needs a CHAOS Power specifically — a Fury-heavy list that expects to pay it with whatever is spare will find it cannot.",
+          "PRICE THE BOARD, NOT THE TRICK: Vox is 8 Energy + 2 Fury Power and the Warmonger is 5 Energy plus 1 Energy + 1 Chaos Power to accelerate. This is a late-game line that needs both bodies alive on the same turn, and the entry does not pretend it is cheap."
+        ]
+      },
+      "steps": [
+        "Play Inviolus Vox (8 Energy + 2 Fury Power) on an earlier turn and let it survive.",
+        "On the turn you want both battlefields, play Ancient Warmonger (5 Energy) and pay [Accelerate]'s 1 Energy + 1 CHAOS Power (805.1.a.1) so he enters ready.",
+        "Attack with Vox first (461.1 leaves the order to you) and win: 466.5 establishes Control and 466.5.d makes it a Conquer.",
+        "Vox's trigger gives the Warmonger +8 Might this turn.",
+        "Move the Warmonger into the second battlefield. His [Assault] is read as the number of enemy units there (807.1.b.1) and 807.2 sums it with the +8 he is carrying.",
+        "465.2.c reads the total on your side of the damage step."
+      ],
+      "terminatesIn": "engine — two Conquers in one turn, which 470 with 485.4 makes the hard ceiling in a Duel; the bodies scale with the opponent's garrison but the score does not",
+      "netPerIteration": "a second battlefield taken on the same turn as the first, with the attacker carrying +8 and an [Assault] equal to the wall it is hitting",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "807.1.b.1: 'The X is referenced in the functional text of the ability.' 807.1.b.2: 'The X is referred to as the Assault Value.' 807.1.c: 'It is functionally short for \"While I am an attacker, I have +X [M].\"' 807.2: 'If a Unit has Assault or has been granted Assault and is granted Assault by an additional source, the Assault Value of all granted Assault keywords is summed.' 805.1.a: 'Accelerate is functionally short for \"As you play me, you may pay [1][C] as an additional cost. If you do, I enter ready.\"' 805.1.a.1: 'If the unit has one or more domains, the Power portion of the Accelerate cost can be paid only with a Power that matches one of the domains of the unit.' 702.3: 'There can only be one Buff on a Unit at a time.' 703: 'Each Buff individually contributes +1 Might to a Unit.' 465.2.c: 'Starting with the Attacker, each player assigns an amount of damage equal to their summed Might among the other's Units.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. SFD-131 Ancient Warmonger and UNL-027 Inviolus Vox were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 461.1, 465.2.c, 466.5, 466.5.d, 470, 485.4, 702.3, 703, 805.1.a, 805.1.a.1, 807.1.b.1, 807.1.b.2, 807.1.c, 807.2 opened in the Core Rules file. 805.1.a.1's domain lock on the [Accelerate] Power is a first citation for this catalogue and is the practical trap in the line. No unruled reading."
+    },
+    {
+      "id": "punching-poro-morbid-return-free-empower",
+      "name": "One of five [Empower] costs in the pool that pay neither Energy nor Power — and the card it discards is one you get back",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-007",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E2 M2. '[Empower] - Discard 1 (Pay the cost: Empower me. Use only if not Empowered.) [Empowered][>] I have +1 :rb_might:.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-170",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E2, [Action]. 'Return a unit from your trash to your hand.' The card that makes the discard a loan rather than a loss. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2, and VEN-143 Master of Shadows is himself a discard outlet, so the theme is native to the identity.",
+          "A UNIT in hand to discard — Morbid Return only fetches units, so discarding a spell to the Poro is a real loss."
+        ],
+        "notable": [
+          "THE COST PAYS NO MANA AT ALL, AND THE POOL HAS FIVE OF THEM. Swept over every [Empower] cost string in the corpus, exactly five pay neither Energy nor Power: `VEN-007 Punching Poro` (Discard 1), `VEN-110 Mel, Defiant Soul` (Discard a spell), `VEN-054 Questionable Tome` and `VEN-087 Hextech Disc` (an exhaust each), and `VEN-124 Escaped Grayback` (kill a friendly unit, which 185.2.d makes free when it is a token). The Poro is the cheapest body of the five at 2 Energy.",
+          "AND THE DISCARD IS A LOAN IF IT IS A UNIT. `OGN-170 Morbid Return` is 2 Energy at [Action] speed for 'Return a unit from your trash to your hand' — so a unit discarded to the Poro comes back, and the only thing actually spent was the Return's 2 Energy. The pairing turns a mana-free Empower into a tempo-free one, at the cost of a card slot.",
+          "IT IS ONCE PER BODY AND PERMANENT. 441.1.b: 'An Empowered Game Object can not be Empowered', 441.1.c: 'If a Game Object is instructed to be Empowered when it is already Empowered, nothing additional happens', and 441.2 makes Empowered a board state. So the Poro's +1 Might is bought once and kept — three copies (103.2.b) is three purchases, not a repeatable engine, and this entry does not claim otherwise.",
+          "422.1.b IS WHAT MAKES THE DISCARD A REAL EVENT: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed AFTER discarding has occurred' — the card is in the trash when its own trigger resolves, which is also why 385.1 / 385.2 let a card outside the Board self-describe its context. A discard outlet in this identity is therefore a genuine enabler, not just a cost.",
+          "THE PAYOFF IS SMALL AND THE ENTRY LEADS WITH IT: +1 Might on a 2-Energy 2-Might body. What is worth cataloguing is the COST, not the effect — a free-in-mana Empower on the cheapest possible body is a tempo tool for a turn where every Energy is spoken for.",
+          "AND 431.2.b IS THE CLOCK ON THE WHOLE THEME: a Burn Out 'Recycles their trash into their Main Deck', so an over-drawn deck hands the Poro's discards back to the library and Morbid Return has nothing to fetch. A discard-and-recover list has to respect 431.1.a."
+        ]
+      },
+      "steps": [
+        "Play Punching Poro (2 Energy).",
+        "On a turn when every Energy is committed, pay its [Empower] by discarding a unit from hand: no Energy, no Power. It is now Empowered and Might 3, permanently (441.2).",
+        "Later, play Morbid Return (2 Energy, [Action], so it also works inside a Showdown) and return that unit to your hand.",
+        "422.1.b is what put the discarded card in the trash before anything read it, so any 'when I am discarded' text on it has already resolved.",
+        "Repeat with the other copies (103.2.b); 441.1.b means each Poro is Empowered once and only once."
+      ],
+      "terminatesIn": "engine — a mana-free permanent +1 Might per Punching Poro, with the discarded unit recovered for 2 Energy; nothing here scores",
+      "netPerIteration": "one Empower bought with no Energy and no Power, and the card it cost returned for 2 Energy",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "441.1.b: 'An Empowered Game Object can not be Empowered.' 441.1.c: 'If a Game Object is instructed to be Empowered when it is already Empowered, nothing additional happens.' 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.' 385.1: 'Triggered Abilities on cards outside of the Board rely on the Information Level of the zone they are in.' 385.2: 'Triggered Abilities outside of the Board will self-describe their context.' 431.2.b: 'Recycles their trash into their Main Deck.' 185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. VEN-007 Punching Poro and OGN-170 Morbid Return were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 185.2.d, 385.1, 385.2, 422.1.b, 431.1.a, 431.2.b, 441.1.b, 441.1.c, 441.2, 806.1.b opened in the Core Rules file. The five no-mana [Empower] costs were swept over the corpus and their members are named. Morbid Return was REFUSED in §18 of this walk as a cost cheat — correctly, since it returns to HAND — and is used here for what it is, a way to make a discard COST recoverable, which is a different job."
+    },
+    {
+      "id": "sharkling-legion-rearguard-accelerate-domain-power",
+      "name": "[Accelerate]'s Power is domain-locked, and Riot's own worked example is that it survives being played for free",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-006",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E3 M1. '[Accelerate] (You may pay :rb_energy_1::rb_rune_fury: as an additional cost to have me enter ready.) [Assault 4] (+4 :rb_might: while I'm an attacker.)' A 1-Might body that attacks as a 5 the turn it lands. In zero entries before this walk."
+        },
+        {
+          "card": "OGN-010",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E2 M2. '[Accelerate] (You may pay :rb_energy_1::rb_rune_fury: as an additional cost to have me enter ready.)' Riot's worked example at 356.1.b.3. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Fury, so any of the sixteen legend names carrying Fury holds it (103.1.b.1): Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "FURY Power specifically for each [Accelerate] — see the first notable. Two bodies accelerated in one turn is two Fury Power, not two rainbow."
+        ],
+        "notable": [
+          "THE [ACCELERATE] POWER IS DOMAIN-LOCKED, WHICH IS THE PRACTICAL TRAP. 805.1.a: 'Accelerate is functionally short for \"As you play me, you may pay [1][C] as an additional cost. If you do, I enter ready\"', and 805.1.a.1: 'If the unit has one or more domains, the Power portion of the Accelerate cost can be paid ONLY with a Power that matches one of the domains of the unit.' 805.1.a.2 gives the rainbow only to a DOMAINLESS unit. A list that plans to accelerate two Fury bodies on one turn needs two Fury Power, and a rune of the wrong colour will not do.",
+          "AND RIOT'S OWN WORKED EXAMPLE IS THAT IT SURVIVES A FREE PLAY. 356.1.b.3 names `OGN-010 Legion Rearguard`: 'They ignore Legion Rearguard's Base Cost of 2 Energy, but the optional additional cost of 1 Energy and 1 Fury Power is added to its Total Cost and must be paid.' So any effect that plays a unit ignoring its cost still lets you buy the ready — the Rearguard is the rules text's own instance of that, and it is why an [Accelerate] body is a better reanimation target than a vanilla one.",
+          "IT BEATS 143.4 AND IT IS NOT A READY. 143.4: 'Units enter the Board exhausted', with 143.4.a: 'This can be altered by Accelerate or similar game effects.' But 415.1 defines Readying as marking a Game Object already on the Board, so 'enters ready' grants no exhaust back to anything else and nothing that watches a ready can see it — a distinction the catalogue keeps having to restate.",
+          "THE ARITHMETIC IS A SURPRISE AND IT IS THE REASON FOR THE PAIR: `UNL-006 Sharkling` is Might 1 and [Assault 4], which 807.1.c turns into Might 5 the instant it is an attacker. Accelerated, it lands and swings for 5 in the same Main Phase at a total of 4 Energy + 1 Fury Power — and 465.2.c reads that 5, while any removal aimed at it on the opponent's turn reads a 1.",
+          "SO IT IS A BODY WITH TWO DIFFERENT SIZES, and the entry says which is which: 5 while attacking, 1 at every other moment. It dies to a single point of damage on the opponent's turn (143.2.a) and to `OGN-133 Flurry of Blades` for 1 Energy — this is a tempo card, not a board presence.",
+          "807.2 SUMS ON TOP OF THE PRINTED 4: 'the Assault Value of all granted Assault keywords is summed', so a Captain Farron or a Blood Rush adds to the Sharkling's 4 rather than replacing it, and the same body swings for 7 or more without ever becoming durable."
+        ]
+      },
+      "steps": [
+        "Bank a Fury Power for each body you intend to accelerate this turn — 805.1.a.1 will not accept any other domain.",
+        "Play Legion Rearguard (2 Energy) paying [Accelerate]'s 1 Energy + 1 Fury Power: it enters ready.",
+        "Play Sharkling (3 Energy) paying its own [Accelerate]: 1 Energy + 1 Fury Power, and it enters ready too.",
+        "Move both into the enemy battlefield as one game action (144.3, 144.3.a), paying each unit's exhaust (144.2).",
+        "The Sharkling's [Assault 4] makes it Might 5 while attacking (807.1.c); the Rearguard is Might 2. 465.2.c sums 7 on your side.",
+        "If either body is later played from a trash or a hidden zone ignoring its cost, 356.1.b.3 still lets you buy the ready."
+      ],
+      "terminatesIn": "engine — two bodies that arrive able to attack the turn they are played, for 4 Energy + 2 Fury Power in total; nothing here scores beyond the Conquer the combat produces (466.5.d)",
+      "netPerIteration": "a 5-Might and a 2-Might attacker on the turn they land, at the price of one Fury Power each",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "805.1.a: 'Accelerate is functionally short for \"As you play me, you may pay [1][C] as an additional cost. If you do, I enter ready.\"' 805.1.a.1: 'If the unit has one or more domains, the Power portion of the Accelerate cost can be paid only with a Power that matches one of the domains of the unit.' 805.1.a.2: 'If the unit has no domain, the Power portion of the Accelerate cost can be paid with [A] (a Power of any domain).' 356.1.b.3: 'Further additional costs and/or cost increases applied in subsequent steps may raise the card's Total Cost above zero. Example: Legion Rearguard is a Fury unit that costs 2 Energy and 0 Power and has Accelerate. A player plays Legion Rearguard and is instructed to ignore its costs, but chooses to pay the Accelerate cost. They ignore Legion Rearguard's Base Cost of 2 Energy, but the optional additional cost of 1 Energy and 1 Fury Power is added to its Total Cost and must be paid.' 143.4: 'Units enter the Board exhausted.' 143.4.a: 'This can be altered by Accelerate or similar game effects.' 415.1 (Readying marks a Game Object already on the board). 807.1.c: 'It is functionally short for \"While I am an attacker, I have +X [M].\"' 807.2: 'the Assault Value of all granted Assault keywords is summed.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might. 144.3: 'Players may perform multiple Units' standard move simultaneously.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. UNL-006 Sharkling and OGN-010 Legion Rearguard were both in ZERO entries. OGN-010 is one of the Core Rules' own named worked examples (356.1.b.3), which the project records as the cheapest vein to mine. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 143.2.a, 143.4, 143.4.a, 144.2, 144.3, 144.3.a, 356.1.b.3, 415.1, 465.2.c, 466.5.d, 805.1.a, 805.1.a.1, 805.1.a.2, 807.1.c, 807.2 opened in the Core Rules file. 805.1.a.1's domain lock is a first citation for this catalogue. No unruled reading."
+    },
+    {
+      "id": "right-of-conquest-sai-scout-ally-clause-draw",
+      "name": "One of exactly four cards in the pool that name an ally, so its ceiling is 3 in a Duel and 5 in 2v2 — and Sai Scout is the cheapest second battlefield",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-015",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury spell, E3 P1. 'Draw 1, then draw 1 for each battlefield you or allies control.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-174",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E6 M5. '[Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.) You may play me to an open battlefield.' The second battlefield taken with no move, no exhaust and no combat. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "An OPEN battlefield for the Scout — 170.11.c requires BOTH conditions, unoccupied and uncontrolled, so an evacuated-but-still-controlled battlefield is not one."
+        ],
+        "notable": [
+          "IT IS ONE OF EXACTLY FOUR CARDS IN THE POOL THAT NAME AN ALLY, SWEPT AND NAMED: `SFD-201 Chem-Baroness` (Mind/Order), `SFD-217 Seat of Power` (Colourless battlefield), `UNL-015 Right of Conquest` (Fury) and `UNL-193 Gloomist` (Calm/Chaos). No card in the pool uses the words 'teammate' or 'partner'. So this card's text is format-sensitive by design and its ceiling moves between formats.",
+          "THE CEILING, PER FORMAT, WITH THE ARITHMETIC: 485.4 puts two battlefields on a Duel table, so 'draw 1, then draw 1 for each battlefield you or allies control' is 1 to 3 cards. In 2v2 (489), where teammates run independent decks (489.8) and Control is not shared (489.8.c) but the clause counts allies' battlefields anyway, the same card reads up to 5. It is the rare card that is strictly better in the format whose Victory Score is higher.",
+          "THE SCOUT IS THE CHEAPEST WAY TO THE SECOND BATTLEFIELD BECAUSE IT NEEDS NO BODY AND NO COMBAT. 355.2.b: 'Some Game Effects may grant players permission to play Units to locations that are not normally Valid. Such locations become Valid for the purposes of Playing the Unit.' So the Scout is PLAYED there — 143.4's entering exhausted costs nothing, 144.2's exhaust is never paid, and 190.3.a.1 then applies Contested. With no opposing units present 323.9 stages no Combat and 344.2 opens a Showdown instead, which 348.2.a.1 makes 'a Conquer if that player has not yet scored that Battlefield this turn'.",
+          "BUT 'OPEN' IS TWO CONDITIONS AND THE ENTRY WILL NOT BLUR THEM. 170.11.a: occupied means a Unit is present; 170.11.b: uncontrolled means no player controls it; 170.11.c: 'Battlefields can be \"open.\" This means they are unoccupied AND uncontrolled.' A garrison walked home leaves the battlefield unoccupied immediately but uncontrolled only at the next Cleanup (323.6) — so an evacuation and a Scout are a two-step sequence, never one action.",
+          "THE DRAW IS COUNTED WHEN THE SPELL RESOLVES, so the correct order is Scout first, spell second — and 431.1.a is the ceiling on wanting more, since drawing past an empty Main Deck costs a point (194.1.d). Three cards from one spell is a real risk in a deck that has been cycling.",
+          "[VISION] IS A LOOK, NOT A REVEAL AND NOT A DRAW. 431.1.c keeps looking free of Burn Out, and the Scout's own recycle sends the card to the BOTTOM (416.1), so it is deck fixing that costs nothing and never accelerates you into 431.1.a."
+        ]
+      },
+      "steps": [
+        "Take or hold one battlefield in the ordinary way.",
+        "When a second battlefield is OPEN — unoccupied and uncontrolled, 170.11.c — play Sai Scout (6 Energy) directly to it under 355.2.b. No move, no exhaust, no combat.",
+        "190.3.a.1 applies Contested; with no opposing units there, 323.9 stages nothing and 344.2 opens a Showdown at the next Cleanup.",
+        "348.2.a establishes Control and 348.2.a.1 makes it a Conquer.",
+        "Now play Right of Conquest (3 Energy + 1 Fury Power): draw 1, plus 1 for each battlefield you control — three cards on a two-battlefield board."
+      ],
+      "terminatesIn": "engine — up to three cards per Right of Conquest in a Duel and up to five in 2v2, on a board the Scout can take without fighting; the Conquer itself is the only point",
+      "netPerIteration": "one battlefield taken with no combat, and 1 + one card per battlefield you control",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "170.11.a: 'Battlefields can be \"occupied.\" This means they have a Unit present.' 170.11.b: 'Battlefields can be \"uncontrolled.\" This means no player controls them.' 170.11.c: 'Battlefields can be \"open.\" This means they are unoccupied and uncontrolled.' 355.2.b: 'Some Game Effects may grant players permission to play Units to locations that are not normally Valid. Such locations become Valid for the purposes of Playing the Unit.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 323.9: 'Mark a Combat as Staged at each Battlefield that Contested was applied to that have Units present controlled by opposing players.' 344.2: 'If Control of a Battlefield is Contested, there aren't units controlled by different players there, and the turn is in a Neutral Open State, a Showdown is opened during the next Cleanup.' 348.2.a: 'If only one player's Units remain at the Battlefield, and if that player does not already Control the Battlefield, that player establishes Control over the Battlefield.' 348.2.a.1: 'This results in a Conquer if that player has not yet scored that Battlefield this turn.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 431.1.c: 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction.' 143.4: 'Units enter the Board exhausted.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. UNL-015 Right of Conquest and OGN-174 Sai Scout were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 143.4, 144.2, 170.11.a, 170.11.b, 170.11.c, 190.3.a.1, 194.1.d, 323.6, 323.9, 344.2, 348.2.a, 348.2.a.1, 355.2.b, 416.1, 431.1.a, 431.1.c, 485.4, 489.8, 489.8.c opened in the Core Rules file. The four ally-naming cards were swept over the whole corpus and are named; this CONFIRMS rather than corrects the catalogue's standing count of four. Sai Scout was refused in §10 of this walk as half of a duplicate CONQUER line behind an evacuator; here it is the walker on a battlefield that is already open, which is the job 355.2.b actually gives it. No unruled reading."
     }
   ]
 }
