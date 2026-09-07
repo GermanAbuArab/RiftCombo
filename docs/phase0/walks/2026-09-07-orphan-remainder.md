@@ -300,3 +300,124 @@ else. **Refused.**
 5. **`SFD-207 Emperor's Dais` is the conquer-cycle battlefield that leaves its own replacement body**,
    which is why it can choose between holding and re-conquering where a bare bounce hands the
    battlefield back under 323.6.
+
+---
+
+# The finisher pass — the `ability-points` bucket, measured and bounded
+
+Assigned by rc-manager4 after the measurement below; `rc-walk-chain` took the `conquer-engine`
+bucket. **No entry is staged from this section.** What it produces is a bounded answer: of the
+eleven candidates, **three families already have their CHAIN**, five cannot reach 8, one is refused
+on arithmetic that closes the question, and **one is live and fully scoped for a successor**.
+
+## 6. The measurement, and the blind spot it had
+
+Measured at catalogue 697 with `generateVariants` (`/tmp/rc-walks/finisher.ts`, `finisher2.ts`):
+
+```
+ENGINE 631 · ALT_WIN 26 · BURST 16 · INFINITE 14 · CHAIN 10
+631 ENGINEs: 413 CAN add Mind to their identity, 218 cannot, 0 have an illegal identity
+312 feed no finisher variant, could add Mind, and produce something
+```
+
+**The 218 that can never add Mind are permanently outside the Time Warp thesis** — `OGN-122 Time
+Warp` is the pool's only extra-turn card and it is Mind, so an engine whose identity is already a
+full pair without Mind can never take one. That is the first bound this class has from below.
+
+**Then the filter's blind spot, found before writing anything and reported at once.** *"Feeds no
+finisher variant"* is answered by `generateVariants`, which links entries through `needs` /
+`produces` feature tags. **An engine whose CARDS are already inside a standalone finisher entry has
+no feature bridge and reads as unconnected.** Re-run with a card-**subset** check
+(`/tmp/rc-walks/finisher3.ts`): of the 312, **nine** are already contained in a finisher entry — and
+**four of those nine were the strongest leads on the list**:
+
+| engine | already answered by |
+|---|---|
+| `shen-kinkou-sentinel-hold` | **CHAIN** `shen-sentinel-time-warp-chain` |
+| `power-nexus-sentinel` | **CHAIN** `power-nexus-atlas-sentinel-time-warp` |
+| `power-nexus-atlas-sentinel-gold` | **CHAIN** `power-nexus-atlas-sentinel-time-warp` |
+| `bottled-constellation-token-points` | **CHAIN** `bottled-constellation-time-warp` |
+
+**Small in count and total in impact: 9 of 312, and it removed the four best.** This is the same
+subset-blindness reported the same hour on the duplicate `OGS-012 Blast of Power` pair — a check that
+compares sorted card sets is blind to subset relationships. **Zero of the 31 `conquer-engine` rows
+are affected**, so `rc-walk-chain`'s bucket survives intact.
+
+## 7. The eleven survivors, and what the arithmetic does to each
+
+**Three families already hold their CHAIN, and every remaining member adds cards to a line that
+already crosses 8.** `bottled-constellation-time-warp` reaches **9 with two cards** (VEN-067 +
+OGN-122), so `armory-heimerdinger-bottled-constellation` (2 a turn, no battlefield),
+`viktor-leader-bottled-constellation-refund` and
+`spectral-centaur-bottled-constellation-triple-death` are **feeders for a finisher that does not need
+them**. The Power Nexus and Shen families are closed the same way. **Refused as new CHAINs, and the
+reason is domination rather than arithmetic.**
+
+**`power-nexus-sentinel-renata-mastermind` × Time Warp is refused on arithmetic, and this closes the
+question.** Its rate is 2 points a turn — 1 for the Hold and 1 for Renata's `:rb_energy_4:` +
+4 Mind Power + exhaust — so four consecutive turns (three Time Warps, 103.2.b's cap) would be 8.
+**The two costs compete for one board.** Time Warp is `:rb_energy_10:` + 4 Power and Renata is 4
+Energy + 4 Mind Power, i.e. **14 Energy and 8 Power in one turn**; a full twelve-rune board yields
+at most **twelve** rune-units total (164.2.a taps one for Energy, 164.2.b recycles one for Power, and
+161.2.b takes the recycled one off the board), and the two Blue Sentinels' own doubled hold effects
+add **6 rainbow at 316.4** — after 316.3 has emptied the pool. Twelve plus six is eighteen against a
+requirement of twenty-two. **A turn cannot afford both.** Casting only Time Warp gives 1 point a
+turn — 4 across four turns — and adding Renata on the final turn only reaches **5**. The existing
+`power-nexus-atlas-sentinel-time-warp` works because it pays the Nexus with **Gold banked from the
+previous turn** rather than from that turn's runes, which 167 forbids and 383.3.b.1 makes necessary
+(the Nexus's *"you may pay four rainbow"* is the trigger's base cost, paid at finalization, so Gold
+made by the same Hold can never pay it).
+
+**Four cannot reach a rate that matters.** `tianna-guardian-angel-forge-god-lock` denies the
+opponent's clock and does not advance yours; `sett-first-mate-windswept-hillock` is *"two points in a
+single turn; not a loop"*; `poppy-confront-blood-rose` is two points on one turn and one ready
+thereafter; `heimerdinger-renata-remote-score` is already routed into an unbounded Mind/Order loop
+and inherits that loop's class. `tryndamere-thousand-tailed-watcher-shrink` is capped by 470 with
+485.4 at two Conquers a turn **and** spends one card per turn, so its own ledger already says *"eight
+points is four attacks at best"* — which a Time Warp shortens in turns but not in cards.
+
+## 8. THE ONE LIVE LEAD, fully scoped for whoever takes it next
+
+**`yasuo-remorseful-svellsongur-nasus-conquer` × Time Warp.** Its own `terminatesIn` reads *"2 points
+per attack, repeatable every turn **for no cards and no Energy** once the board is set; one conquer
+per battlefield per turn, so eight points is four attacks."* That is the only survivor whose rate is
+repeatable, free, and ≥ 2.
+
+- **Identity is legal.** `OGN-076 Yasuo, Remorseful`, `SFD-059 Svellsongur` and `VEN-046 Nasus,
+  Ascended` are **all mono-Calm** (checked against `data/cards.json`, not from memory — this project
+  has a recorded case of Nasus being mis-domained in prose), so adding Mind for Time Warp gives
+  Calm/Mind, a printed legend pair.
+- **The Energy closes, but only just, and that is the whole entry.** Time Warp is
+  `:rb_energy_10:` + 4 Power. A twelve-rune board yields **at most twelve** rune-units, so
+  10 Energy + 4 Power is **fourteen against twelve — short by two Power**, and the engine itself
+  contributes none. The fix is the Seal cycle: `OGN-081 Seal of Focus` (Calm) and `OGN-120 Seal of
+  Insight` (Mind) are **Energy cost ZERO** and each exhausts for one domain Power at `[Reaction]`
+  speed, adding Power without costing a rune. Two Seals close it exactly.
+- **The card-count question a successor must answer first.** That is six cards, and this project's
+  rule is that a lead which would add a sixth card to a five-card line goes in `notable`, never in
+  `uses`. The honest options are to put the Seals in `prerequisites` as mana infrastructure rather
+  than in `uses`, or to find two Power elsewhere. **Decide that before writing.**
+- **And the class must match.** Two points per attack with one conquer per battlefield per turn
+  (470 with 485.4) is up to 4 a turn on a two-battlefield board, or 2 on one. If the ledger reaches
+  8 across consecutive Time-Warped turns with no opponent turn between, it is a **CHAIN**; if it
+  reaches 7, or needs the opponent to pass, it is an **ENGINE** and must say so.
+
+## 9. Facts for CLAUDE.md from the finisher measurement
+
+1. **218 of the 631 ENGINEs can never add Mind to their identity**, so they are permanently outside
+   the Time Warp thesis — `OGN-122` is the pool's only extra-turn card and it is Mind. And **zero of
+   the 631 have an identity that is not legal as written**, which is a health check on the whole
+   class that had never been run.
+2. **A "does this engine feed a finisher" filter built on `generateVariants` is blind to an engine
+   whose CARDS are already inside a standalone finisher entry**, because the two share cards but no
+   `needs` / `produces` bridge. It hit 9 of 312 rows and removed the four best leads. **Any such
+   measurement must also run a card-SUBSET check** — the same blindness that let a duplicate
+   `OGS-012 Blast of Power` pair through the merge check on the same day.
+3. **`power-nexus-sentinel-renata-mastermind` × Time Warp reaches 5, not 8**: Time Warp
+   (10 Energy + 4 Power) and Renata (4 Energy + 4 Mind Power) want 22 resource-units in a turn that
+   yields 18 — twelve rune-units plus the two Sentinels' six rainbow — so a turn cannot afford both.
+   The Power Nexus CHAIN that does work pays with **Gold banked from the previous turn**, which
+   383.3.b.1 makes necessary because the Nexus's *"you may pay"* is the trigger's base cost, paid at
+   finalization, so Gold made by the same Hold can never pay it.
+4. **The Bottled Constellation family is closed**: `bottled-constellation-time-warp` reaches 9 with
+   TWO cards, so every other Constellation engine adds cards to a line that already crosses 8.
