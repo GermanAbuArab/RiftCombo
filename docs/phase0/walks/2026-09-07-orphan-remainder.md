@@ -161,3 +161,142 @@ never fires in a Duel (485.1).
 6. **A spell shield and a gear shield are different cards to play around.** Both carry 808.1.d.1 (the
    save erases the Deathknell) and 455 (the recall goes to the base, switching off *"while I'm at a
    battlefield"* text), but the spell is unknowable until it is cast and costs its Energy every time.
+
+---
+
+## 4. Part 3 — the sixteen uncovered battlefields, re-examined one refusal at a time
+
+Sixteen non-token battlefields are uncovered (plus `UNL-T01 Baron Pit` and `UNL-T03 Brush`, which
+103.4.c and the token rules keep out of a decklist). **Five are banned in both formats and stay
+closed**, and the ban marker lives in the card TEXT rather than in `data/legality.json`:
+`OGN-276 Aspirant's Climb`, `OGN-284 Obelisk of Power`, `OGN-285 Reaver's Row`, `OGN-290 The Arena's
+Greatest`, `OGN-292 The Dreaming Tree`.
+
+Of the remaining eleven, **two refusals do not cover the pairing walked here and are re-opened**,
+**seven still stand** (six with a stronger reason than the one first given), and **one was never
+refused and is walked**.
+
+| id | class | cards | what it was |
+|---|---|---|---|
+| `navori-fighting-pit-vanguard-helm-free-buffed-corpse` | ENGINE | OGN-283, OGN-228 | re-opened |
+| `papertree-esteemed-hierophant-rune-count` | ENGINE | SFD-219, VEN-025 | re-opened |
+| `emperors-dais-sprite-queen-conquer-cycle` | ENGINE | SFD-207, UNL-084 | never refused |
+
+### 4.1 Re-opened — `OGN-283 Navori Fighting Pit`
+
+**The refusal, and it is correct.** The Pit was refused as a partner for **ready-on-buff** payoffs:
+315.1's Awaken precedes 315.2's Beginning Phase, so everything you control has already been readied
+when the Hold fires, and `SFD-047 Simian Ancestor`'s *"When you buff me, ready me"* is a no-op on
+that boundary. Untouched.
+
+**What it does not cover:** a payoff that wants a **buffed body** rather than a ready one. 702.3 with
+702.3.a makes a buffer a one-time placement per body, and this catalogue's own measurement is that
+`OGN-228 Vanguard Helm` is *always short of buffed bodies, never of deaths*. The Pit supplies one
+free placement every Beginning Phase you hold it, on a unit you choose, for no card.
+
+### 4.2 Re-opened — `SFD-219 The Papertree`, and it is the Startipped Peak shape exactly
+
+**The refusal, and both strikes are correct.** The rune arrives **exhausted** and the Hold is at
+315.2.b, after 315.1's Awaken has run, so 315.1.b will not ready it until your next turn; and any
+Power it could pay in the Beginning Phase is emptied by 167 at the start of your Main Phase. Both are
+about the rune as **mana**.
+
+**What they do not cover:** a payoff that reads a rune **COUNT**. 164.2.b's cost is the *recycle*,
+not the rune's exhaust, so an exhausted rune is still on the board, still yours and still counted —
+and the pool prints six cards that read the count: `VEN-025 Esteemed Hierophant`, `VEN-037
+Tomb-Raider Barbara`, `VEN-146 Siphoning Strike` (seven or more, swept — three rows and no others),
+`OGS-004 Yi, Meditative` (eight or more), and `VEN-032 Frostcoat Mother` with `VEN-050 Grumpy
+Rockbear` (priced per rune). **This is the same re-scope this project already applied to `OGN-288
+Startipped Peak`**, which two sessions refused because it makes bad mana while its real partners
+wanted a count.
+
+The one anti-synergy is named in the entry rather than hidden: *"each player"* hands the opponent
+back exactly the rune that `sandstone-chimera-yi-meditative-rune-prison` took from them.
+
+### 4.3 Never refused — `SFD-207 Emperor's Dais`
+
+Not in #171's seven. It is a *"when you conquer here"* battlefield, so 466.5 (Control established
+*"if they didn't already control this Battlefield"*) with 470 makes it fire **once a game** unless a
+`[Temporary]` garrison hands the battlefield back — the family this catalogue holds through
+`sprite-queen-targon-peak-conquer-cycle` and `treasure-hoard-renata-conquer-gold`. What makes the
+Dais different is that **it leaves its own replacement body**: *"return a unit you control here to
+its owner's hand to play a 2 :rb_might: Sand Soldier unit token here"*, so a bare bounce does not
+hand the battlefield straight back under 323.6, and you get to choose between holding and
+re-conquering.
+
+### 4.4 Still standing, with the paragraph — and six of the seven now have a stronger reason
+
+**`OGN-287 Sigil of the Storm`** — *"When you conquer here, you must recycle one of your runes."*
+The original reason holds (470 caps it at one recycle a turn while 315.3.b channels two back), and
+there is a stronger one: **it is strictly dominated by an ability every deck already has.** 164.2.b
+lets you recycle a rune voluntarily for **1 Power of its domain**, achieving the same count reduction
+and being paid for it; the Sigil's recycle is an instruction and not the rune's own ability, so it
+pays nothing. A card that does worse than a free action is not a card.
+
+**`SFD-209 Forgotten Monument`** — *"Players can't score here until their third turn."* The original
+reason called the case for it a metagame claim. It is better than that and still not enough: a deck
+that wins by **195** (*"a player also wins the game if an effect instructs them to do so"*) rather
+than by 194.2's points is genuinely unaffected by its own half, so the symmetry IS one-sided for the
+three ALT_WIN cards. The refusal survives on a **rules-level** cost instead: 485.4.a has you provide
+three battlefields and 485.5 selects **one at random**, so running the Monument is a one-in-three
+chance of *not* drawing the battlefield an ALT_WIN deck actually needs.
+
+**`SFD-216 Rockfall Path`** — *"Units can't be played here."* Symmetric, and 054.1 makes it absolute.
+Two facts strengthen it, and one of them is a **self-trap** the first pass did not name: **811.1.d.1**
+(*"A hidden permanent must be played to that battlefield"*) with 054.1 means a `[Hidden]` unit hidden
+at Rockfall Path can **never** be played — and 811.1.b only lets you hide at a battlefield **you**
+control, so that trap is yours alone. And **350.2** with 185.2.a makes a token **played**, so a token
+engine is closed there too. Everything can still walk in under 144.4.a, so it delays rather than
+denies. Refusal stands.
+
+**`SFD-217 Seat of Power`** — *"draw 1 for each other battlefield you or allies control."* 485.4 puts
+two battlefields on a Duel table, so *"each other"* is at most **one**. Format arithmetic, unchanged.
+Refusal stands.
+
+**`UNL-206 Altar of Blood`** — three rainbow Power, 808.1.d.1 erases the saved body's Deathknell, and
+455 sends it to the **base** so 323.6 strips your Control of the battlefield you were defending.
+Symmetric as well (*"its controller"*). Refusal stands. Note that `OGS-020 Highlander`, walked in
+part 1 above, is the same replacement as a card in hand for 4 Energy and without the third strike.
+
+**`VEN-161 Piltovan Forge`** — *"the first friendly gear activated ability played each turn costs
+:rb_energy_1: less."* The original measurement holds: every `[Equip]` cost in the pool that contains
+Energy also contains a rune, so it can never zero an attach. Its best payoff can now be **named**,
+which the first pass did not do: `VEN-054 Questionable Tome`'s *"Disempower this, :rb_energy_1:,
+:rb_exhaust:: Draw 1"* becomes free of Energy — one card a turn for the price of the disempower and
+the exhaust. That is real and it is still thinner than what `SFD-213 Ornn's Forge` and `SFD-208 Forge
+of the Fluft` do with the same single battlefield slot. Refusal stands, now with the payoff named.
+
+**`UNL-208 Black Flame Altar`** (not in #171's seven) — *"Units here with [Temporary] have [Shield]."*
+814.1.b.3 makes a bare `[Shield]` worth **1**, and 814.1.c makes it *"+X :rb_might: while I am a
+defender"*. 816.1.b kills a `[Temporary]` body at the start of **its controller's** Beginning Phase,
+before scoring — so the extra Might exists for exactly one opponent's turn of defence and never on
+your own attack. One Might, once, on bodies that were always going to die. **Refused**, and the
+paragraph is 816.1.b with 814.1.b.3.
+
+**`UNL-219 Vaults of Helia`** (not in #171's seven) — *"When you hold here, your non-token units cost
+:rb_energy_1: more to play this turn."* A pure drawback attached to a Hold you wanted, and the
+synergy layer already files it under *doubled drawback*. It taxes **its own controller** and nothing
+else. **Refused.**
+
+## 5. Facts for CLAUDE.md from #193 part 3
+
+1. **Two of #171's battlefield refusals were scoped to a REASON that does not cover a different
+   payoff, and both re-open.** `OGN-283 Navori Fighting Pit` was refused as a **ready-on-buff**
+   partner (315.1 before 315.2) and says nothing about a payoff that wants a buffed **body** —
+   `OGN-228 Vanguard Helm`. `SFD-219 The Papertree` was refused on two **mana** strikes and says
+   nothing about a payoff that reads a rune **COUNT** — the same re-scope already applied to
+   `OGN-288 Startipped Peak`. **Five of the other refusals stand, and six of them now carry a
+   stronger reason than the one first given.**
+2. **`OGN-287 Sigil of the Storm` is strictly dominated by 164.2.b**: a voluntary rune recycle
+   reduces the same count AND pays 1 Power of its domain, while the Sigil's forced recycle is an
+   instruction rather than the rune's own ability and pays nothing.
+3. **A `[Hidden]` unit hidden at `SFD-216 Rockfall Path` can never be played** — 811.1.d.1 requires a
+   hidden permanent to be played to that battlefield and 054.1 makes *"Units can't be played here"*
+   absolute — and since 811.1.b only lets you hide at a battlefield **you** control, that trap is
+   yours alone. **350.2** with 185.2.a also closes token engines there, because a token is played.
+4. **`SFD-209 Forgotten Monument` IS one-sided for an ALT_WIN deck** (195 is a different clause from
+   194.2's points), and the refusal survives on 485.4.a with 485.5 instead: three battlefields
+   provided, one selected at random, so the slot competes with the battlefield such a deck needs.
+5. **`SFD-207 Emperor's Dais` is the conquer-cycle battlefield that leaves its own replacement body**,
+   which is why it can choose between holding and re-conquering where a bare bounce hands the
+   battlefield back under 323.6.
