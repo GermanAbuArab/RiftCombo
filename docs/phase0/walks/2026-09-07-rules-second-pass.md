@@ -1563,3 +1563,112 @@ a spell that costs :rb_energy_5: or more, draw 1"*. Swept the pool: of the 23 [H
 **exactly one is printed at E5 or more** — `SFD-202 Hostile Takeover` (Mind/Order, E5 P2) — and it is
 a **Signature** card, so 103.2.d.2 forces its champion's legend and it can never sit under Lady of
 Luminosity. The mechanism is real and the pool has no card for it.
+
+## 37. Batch 6 — the cheapest vein left, re-measured: cards the Core Rules NAME
+
+CLAUDE.md records the vein (#173/#174: *"the Core Rules' own worked examples name real cards"*).
+Re-measured today with the name+type fold, over `data/Riftbound-Core-Rules-2026-07-16.txt` against
+`data/cards.json` and `data/combos.json`:
+
+- **129** card names in the pool appear somewhere in the rules text.
+- **32** of those are in no entry — of which 6 are Runes, 3 are tokens, and one
+  (`OGN-168 Fight or Flight`) is banned in both formats.
+- That leaves **22 real, playable, uncatalogued cards the Core Rules point at by name.** The probe is
+  `.scratch-rules/rulesnames.mjs`; it folds printings by name+type first, per the #173 lesson.
+
+Four of them became entries this batch.
+
+### 37.1 `here-to-help-mountain-drake-showdown-unit` — how a UNIT reaches a Showdown
+
+A unit is a card with no [Action] and no [Reaction], so **155** bars it from a Showdown and **381**
+keeps activated abilities to your own turn in an Open State: bodies cannot normally arrive once a
+combat has opened. `SFD-111 Here to Help` (Body, E2 P1, [Hidden], **[Action]**) is the exception —
+*"You may play a unit from hand to a battlefield you control, reducing its cost by :rb_energy_3:."*
+
+And **464.2.c.3.a** puts the body in that combat. From face down it is better still: 811.1.b's tail
+gives it **[Reaction]** and a cost of zero, so the drop happens on the OPPONENT's turn, and
+811.1.d.2's confinement lands it exactly where the card wanted it anyway (*"a battlefield you
+control"*).
+
+The cost the entry states rather than hides: **the unit's own price is still paid**, and on the
+opponent's turn that means runes held back — 167 empties the POOL, not the runes, and 164.2.a is a
+[Reaction] ability, so six ready runes carried through your own turn pay Mountain Drake's discounted
+E6 in their Closed State.
+
+### 37.2 `ravenborn-tome-falling-star-two-deal-actions` — Bonus Damage is per DEAL ACTION
+
+**715.2**'s worked example is in this very domain (Singularity under Annie, Fiery, *"dealing 7 to
+each"*), and the constructive reading is: the payoff scales with **how many Deal actions or targets a
+spell has**, never with how big each one is. `OGN-029 Falling Star` is *"Deal 3 to a unit. Deal 3 to a
+unit."* — two instructions, two Deal actions, so `OGN-032 Ravenborn Tome`'s +1 lands twice: 4 and 4
+for E2 + 2 Fury Power.
+
+**714** caps a second source: *"all instances are summed and applied once"* — Tome plus Annie is +2
+per action (5 and 5), never ×2.
+
+The pool's whole Bonus Damage family is six rows (`OGN-032` Ravenborn Tome, `OGN-296` Void Gate,
+`OGS-001` Annie Fiery, `SFD-191` Rabadon's Deathcrown, `UNL-020` Dancing Grenade, `VEN-010` Consuming
+Curse), and the Tome was in **zero** entries despite being one of them.
+
+### 37.3 `iascylla-teemo-strategist-forced-defend` — scheduling a defend trigger
+
+`UNL-050 Iascylla` (Calm, E7 P1 M6, zero entries): *"When I hold, at the start of your next Main
+Phase, you may move an enemy unit to this battlefield."*
+
+**190.3.a.1** applies Contested to units moving to a battlefield and **464.2.c.1** — *"The Attacker is
+the player whose unit(s) applied the Contested status to the Battlefield"* — makes the moved unit's
+controller the Attacker. So dragging an enemy body onto a battlefield YOU control makes **them** the
+attacker on **your** turn. That is the #58 finding used constructively, and it is the only free,
+repeating way in the pool to put a *"When I defend"* trigger on a schedule: against a wall the
+opponent simply never attacks.
+
+Two supporting rules: **464.2.e.1** places the Defending player's triggers on the Combat Chain **last**
+and 340.1 resolves the newest first, so `OGN-121 Teemo, Strategist`'s reveal-and-burn goes off before
+anything the attacker put up; and **431.1.c** keeps five reveals a turn free of Burn Out, which is what
+makes the trigger repeatable in a deck run thin.
+
+Two things the entry refuses to claim: a Defender never Conquers (466.5 with 464.2.c.2), so no point;
+and the combat actually happens (323.9 stages it, 465.2.c assigns), so a Might floor has to be standing
+there.
+
+Note also that Iascylla's Hold **escapes** the standing "a Hold-triggered X is a no-op" rule for the
+same reason `UNL-052 Nami, Headstrong` does: it arms a delayed effect that resolves at **316.4**, in
+the Main Phase, not inside 315.2.
+
+### 37.4 `battering-ram-undying-legion-cards-played` — the negative half of the token rule
+
+CLAUDE.md lists *"cards played this turn"* as a lens that was never swept. The first thing to know
+about it is a refusal: **350.2** makes a token something that is PLAYED and **185.2.a** keeps it from
+being a card, so *"each **card** you've played this turn"* (`SFD-012 Battering Ram`) and **[Legion]**
+(`UNL-025 Undying Legion`) both count **zero** tokens. A Recruit, Sprite, Gold or Mech engine —
+however many bodies it puts down — moves neither counter. This is the negative half of the rule the
+catalogue already uses positively (*"when you play a unit"* does see a token).
+
+The arithmetic: Battering Ram is E5 with a floor of E1, so exactly **four** cards played earlier in
+the turn reach the floor and a fifth is wasted (356.4.e keeps the floor tied to that discount alone).
+[Legion] is the cheap half of the same counter — one card, not four — so the turn's order is
+Hextech Ray, then Undying Legion out of the trash, then the rest, then the Ram.
+
+`OGN-009 Hextech Ray` was chosen as the tick deliberately: the #166 lesson is that **filler must be
+unconditionally castable and should do work of its own**, and E1 + 1 Fury Power for 3 damage at
+[Action] speed is both.
+
+## 38. Batch 6 — staged
+
+Four entries in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos` clean over 552 entries;
+`test/legend-lines.test.ts` clean. Cards in **zero** entries before this batch: `SFD-111` Here to
+Help, `OGN-142` Mountain Drake, `OGN-032` Ravenborn Tome, `OGN-029` Falling Star, `UNL-050` Iascylla,
+`SFD-012` Battering Ram, `UNL-025` Undying Legion, `OGN-009` Hextech Ray — eight.
+
+Two quotes were corrected against the rules file before staging (143.2.a and 464.2.c.1 had been
+paraphrased in `sources[]` rather than quoted).
+
+### 38.1 The 18 rules-named cards still uncatalogued after this batch
+
+`OGN-010` Legion Rearguard (356.1.b.3's worked example), `OGN-058` Discipline, `OGN-097` Blastcone Fae
+(811.1.d.2's worked example), `OGN-105` Singularity (715.2's worked example), `OGN-229` Vengeance,
+`OGN-283` Navori Fighting Pit, `OGS-006` Lux, Illuminated (206's worked example), `OGS-009` Yi, Honed,
+`OGS-011` Flash, `OGS-018` Tibbers (103.2.d.3's worked example, and a Signature card),
+`SFD-034` Feral Strength, `SFD-077` Rocket Barrage (206's second worked example),
+`SFD-186` Spinning Axe, `SFD-194` Counter Strike. Rebuild the list with
+`node .scratch-rules/rulesnames.mjs`.
