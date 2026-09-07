@@ -164,9 +164,13 @@ function render(): void {
 
 /**
  * The one failure `deckCard` cannot see (#177). `image` is in the payload, so the `<img>` is written;
- * whether the CDN answers it is a different question, and a 404 draws the browser's own broken-image
- * glyph — `alt=""` suppresses the alt TEXT, not the icon. The CSP forbids an inline `onerror=`, so
- * the swap to the empty state is a real listener, attached to the images this render just drew.
+ * whether the CDN answers it is a different question. Measured in Chrome on 2026-09-07 rather than
+ * assumed: a dead URL on that host does fire `error`, and although a failed `alt=""` image collapses
+ * to 0x0 with nothing drawn when it has no CSS size, this one is sized by its box, so Chrome paints
+ * its broken-image glyph inside the 72px square — `alt=""` suppresses the alt TEXT, not the icon.
+ * The CSP forbids an inline `onerror=`, so the swap to the empty state is a real listener, attached
+ * to the images of THIS render: `render()` replaces the library's innerHTML, so every render draws
+ * new image objects and every render has to wire them again.
  */
 function wireArt(root: HTMLElement): void {
   root.querySelectorAll<HTMLImageElement>(".deck-card-art img").forEach((img) => {

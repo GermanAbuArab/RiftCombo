@@ -7,6 +7,7 @@
 import { readFileSync } from "node:fs";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { loadCardIndex } from "../../src/load.js";
+import type { CardIndex } from "../../src/cards.js";
 import type { SavedDeck } from "../../src/saved.js";
 
 const cards = loadCardIndex();
@@ -52,8 +53,27 @@ const analyzed: SavedDeck[] = [];
 const confirmed = vi.fn(() => true);
 vi.stubGlobal("confirm", confirmed);
 
+/**
+ * The same pool with every card's art pointed at a URL that does not answer, which is the shape of a
+ * CDN 404: `image` is present, so the markup writes the `<img>`, and the failure only exists at load
+ * time. happy-dom fetches no images, so the `error` the browser would dispatch is dispatched by the
+ * test; that Chrome does dispatch it for this host, and draws a broken-image glyph in the 72px box
+ * when it does, was checked in a real browser on 2026-09-07 rather than assumed.
+ */
+const DEAD_ART = "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/deadbeef-744x1039.png";
+const deadArtIndex = (base: CardIndex): CardIndex => new Proxy(base, {
+  get(target, prop) {
+    if (prop === "get") return (code: string) => {
+      const card = target.get(code);
+      return card ? { ...card, image: DEAD_ART } : card;
+    };
+    const value = Reflect.get(target, prop, target) as unknown;
+    return typeof value === "function" ? value.bind(target) : value;
+  },
+});
+
 /** Boot My decks with a session, on a fresh copy of every module that keeps state. */
-async function boot(hash = "#/decks") {
+async function boot(hash = "#/decks", index: CardIndex = cards) {
   vi.resetModules();
   api.listeners.length = 0;
   api.createDeck.mockReset();
@@ -67,7 +87,7 @@ async function boot(hash = "#/decks") {
   const decks = await import("../../web/decks.js");
   const router = await import("../../web/router.js");
   decks.initDecks({
-    cards: () => cards,
+    cards: () => index,
     analyze: (d) => analyzed.push(d),
     showCard: () => {},
   });
@@ -152,16 +172,38 @@ describe("the library", () => {
    * while leaving the browser's broken-image glyph. The listener is real because the CSP forbids an
    * inline `onerror=`.
    */
-  it("falls back to the empty thumbnail when the art fails to load", async () => {
+  it("falls back to the empty thumbnail when a dead URL fails to load", async () => {
     api.decks = [row()];
-    await boot();
+    await boot("#/decks", deadArtIndex(cards));
     const img = host().querySelector<HTMLImageElement>(".deck-card-art img")!;
+    expect(img.getAttribute("src")).toContain("deadbeef");
     const box = img.parentElement!;
     expect(box.classList.contains("noart")).toBe(false);
     img.dispatchEvent(new Event("error"));
+    // The same empty state a deck with no legend gets, rather than a 72px hole with a glyph in it.
     expect(box.classList.contains("noart")).toBe(true);
     expect(box.querySelector("img")).toBeNull();
     expect(box.textContent).toBe("—");
+  });
+
+  /**
+   * `render()` replaces the whole library's innerHTML, so the images it guards are new objects every
+   * time and the listener has to be re-attached. Opening a deck and coming back is the ordinary way
+   * that second render happens.
+   */
+  it("guards the art again after the library is re-rendered", async () => {
+    api.decks = [row()];
+    const router = await boot("#/decks", deadArtIndex(cards));
+    router.go("#/decks/d1");
+    await tick();
+    router.go("#/decks");
+    await tick();
+    const img = host().querySelector<HTMLImageElement>(".deck-card-art img")!;
+    // Held before the event: the handler empties the box, so the image has no parent afterwards.
+    const box = img.parentElement!;
+    img.dispatchEvent(new Event("error"));
+    expect(box.classList.contains("noart")).toBe(true);
+    expect(box.querySelector("img")).toBeNull();
   });
 
   /**
