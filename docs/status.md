@@ -1,11 +1,11 @@
-# RiftCombo — estado a 2026-09-06
+# RiftCombo — status as of 2026-09-07
 
 Este es el documento de orientación. `docs/plan.md` y `docs/phase0-findings.md` son el plan y el
 spike del 2026-09-02 y se conservan como historia: describen decisiones que ya se tomaron distinto.
 
-Todos los números de abajo llevan al lado el comando que los produce, y fueron medidos sobre el
-commit **`d8e84f2`** el 2026-09-06. El catálogo crece con cada caminata: si un número no coincide,
-el comando es la verdad y esto es la foto.
+Every number below carries the command that produces it, measured against commit **`6b55afa`**
+on 2026-09-07. The catalogue grows with every walk: if a number does not match, the command is the
+truth and this is a photo.
 
 ---
 
@@ -45,26 +45,27 @@ Cuatro vistas, ruteadas por hash (`web/router.ts`, `VIEWS = ["combos","decks","g
 
 ## 2. Los números
 
-| Qué | Valor | Comando |
+| What | Value | Command |
 |---|---:|---|
-| Entradas en el catálogo | **245** | `node -pe 'require("./data/combos.json").combos.length'` |
-| No verificadas | **0** | `node -pe 'require("./data/combos.json").combos.filter(e=>e.status!=="verified").length'` |
-| Por clase | INFINITE 14 · BURST 12 · CHAIN 4 · ALT_WIN 17 · ENGINE 198 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.class]=(b[e.class]||0)+1;JSON.stringify(b)'` |
-| Cartas distintas usadas por alguna entrada | **386** | `node -pe 'const a=require("./data/combos.json").combos,s=new Set();for(const e of a)for(const u of e.uses)s.add(u.card);s.size'` |
-| Fuentes citadas | **862** | `node -pe 'require("./data/combos.json").combos.reduce((n,e)=>n+(e.sources\|\|[]).length,0)'` |
-| Reglas de sinergia | **96** | `node -pe 'require("./data/synergies.json").synergies.length'` |
-| Pares ancla–socio que producen | **2974** | `npm run synergies \| tail -1` |
-| Printings en el pool | **1189** | `node -pe 'require("./data/cards.json").cards.length'` |
-| Líneas del corpus plano | **947** | `wc -l < data/corpus_flat.txt` |
-| Reemplazos de errata | **52** | `node -pe 'require("./data/errata.json").entries.length'` |
-| Filas de legalidad (ban/restricted) | **21** | `node -pe 'require("./data/legality.json").entries.length'` |
-| Caminatas a mano archivadas | **62** | `ls docs/phase0/walks/*.md \| grep -v README \| wc -l` |
-| Tests | **388 en 27 archivos** | `npm test` |
-| Typecheck | limpio | `npm run typecheck` |
+| Entries in the catalogue | **362** | `node -pe 'require("./data/combos.json").combos.length'` |
+| Unverified | **0** | `node -pe 'require("./data/combos.json").combos.filter(e=>e.status!=="verified").length'` |
+| By class | INFINITE 14 · BURST 16 · CHAIN 10 · ALT_WIN 26 · ENGINE 296 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.class]=(b[e.class]||0)+1;JSON.stringify(b)'` |
+| Entries by card count (`uses.length`) | 1:19 · 2:166 · 3:108 · 4:47 · 5:14 · 6:5 · 8:2 · 11:1 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.uses.length]=(b[e.uses.length]\|\|0)+1;Object.keys(b).map(Number).sort((x,y)=>x-y).map(k=>k+":"+b[k]).join(" · ")'` |
+| Distinct cards used by some entry | **472** | `node -pe 'const a=require("./data/combos.json").combos,s=new Set();for(const e of a)for(const u of e.uses)s.add(u.card);s.size'` |
+| Sources cited | **1100** | `node -pe 'require("./data/combos.json").combos.reduce((n,e)=>n+(e.sources\|\|[]).length,0)'` |
+| Synergy rules | **127** | `node -pe 'require("./data/synergies.json").synergies.length'` |
+| Anchor–partner pairs produced | **3643** | `npm run synergies \| tail -1` |
+| Printings in the pool | **1189** | `node -pe 'require("./data/cards.json").cards.length'` |
+| Flat corpus lines | **947** | `wc -l < data/corpus_flat.txt` |
+| Errata replacements | **52** | `node -pe 'require("./data/errata.json").entries.length'` |
+| Legality rows (ban/restricted) | **21** | `node -pe 'require("./data/legality.json").entries.length'` |
+| Hand walks archived | **66** | `ls docs/phase0/walks/*.md \| grep -v README \| wc -l` |
+| Tests | **413 in 30 files** | `npm test` |
+| Typecheck | clean | `npm run typecheck` |
 
-Las 245 entradas son `verified`: alguien caminó el loop a mano contra el texto de carta y las Core
-Rules, y dejó el documento de la caminata en `docs/phase0/walks/`. `candidate` sigue existiendo en
-el esquema para lo que sale de una caza y todavía no se caminó, pero hoy no hay ninguna.
+The 362 entries are `verified`: someone walked the loop by hand against card text and the Core
+Rules, and left the walk document in `docs/phase0/walks/`. `candidate` still exists in the schema
+for what comes out of a hunt and has not been walked yet, but there is none today.
 
 ---
 
@@ -110,7 +111,7 @@ aplica la errata, resuelve la legalidad y resuelve `signature.src.json` → `car
 mano, porque Vercel lo lee antes de correr el build, así que va committeado); `check-rls.mjs` prueba
 el aislamiento por fila con dos usuarios reales contra el proyecto hosteado.
 
-**`test/` — 388 tests en 27 archivos** con vitest. `headers.test.ts` es el que vigila la postura:
+**`test/` — 413 tests in 30 files** with vitest. `headers.test.ts` is the one that watches the posture:
 falla si el nombre del `service_role` o el password de la base aparecen en cualquier lado bajo
 `web/`, si hay más de un botón de sign-in, o si el default de `data-auth` deja de ser `pending`.
 **#138 (HIGH, ultrareview 2026-09-06)** found the whole DOM layer of that day's features untested —
@@ -211,10 +212,21 @@ dice con sus propias palabras y nunca presenta un par como un combo.
 
 ---
 
-## 6. Las 62 caminatas
+## 6. The 66 walks
 
 El índice completo — fecha, issue, entradas que dejó — está en
 [`docs/phase0/walks/README.md`](phase0/walks/README.md).
+
+**Four 2026-09-06 walk files are on disk but not yet rows in that README's table** (this session
+only owns `docs/status.md`, not `phase0/walks/README.md`, so they are recorded here instead of
+merged into that file):
+
+| Date | File | Issue | What it did |
+|---|---|---|---|
+| 09-06 | `2026-09-06-engine-payoff-walk.md` | #159 (candidates from #155, #154) | The engine × payoff candidates and the tournament cores: 8 entries authored, 6 refusals recorded, 1 reclass proposed, 2 hunt errors corrected, 1 open lead handed on. |
+| 09-06 | `2026-09-06-finisher-feeders.md` | #161 | Mirror of #155's engine-side pass: for each of the catalogue's 36 finishers (18 ALT_WIN, 12 BURST, 4 CHAIN, plus two same-day Grand Plaza wins), asks which uncatalogued in-domain feeder changes the ledger rather than just restating it. |
+| 09-06 | `2026-09-06-orphan-synergy-rules.md` | #153 | Of the 96 hand-verified synergy patterns, 55 had an empty `basis.combos`; this walk asks, for each, whether the anchor plus a partner plus two or three more in-domain cards reaches a repeat step or a scoring event. |
+| 09-06 | `2026-09-06-proven-rule-instances.md` | #160 | Of 66 synergy rules already proven to terminate in at least one combo (2,090 reviewed partner slots, only 180 pairs in `combos.json`), prices the unwalked remainder. |
 
 ---
 
