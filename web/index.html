@@ -57,6 +57,13 @@
       <h2>Your deck</h2>
       <button type="button" class="icon-btn" id="close-panel" aria-label="Hide deck panel">×</button>
     </div>
+    <!-- What the deck form becomes once a list has been analysed. Never a bare disappearance: it
+         names what is on screen and carries the way back, and the textarea it replaces keeps its
+         text. Hidden until an analyse succeeds; `web/main.ts` owns the switching. -->
+    <p class="deck-collapsed" id="deck-collapsed" hidden>
+      <span id="deck-collapsed-what"></span>
+      <button type="button" class="linklike" id="edit-list" aria-controls="deck-form" aria-expanded="false">Edit list</button>
+    </p>
     <form id="deck-form">
       <label class="field-label" for="deck-url">Piltover Archive URL (public deck)</label>
       <div class="url-row">

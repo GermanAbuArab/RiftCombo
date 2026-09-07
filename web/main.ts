@@ -127,6 +127,34 @@ const own = (base: string) => {
  * listener: "Load example" and "Load" assign `input.value` directly, which fires no `input` event,
  * so the counter used to still read "0 cards" beside a full list.
  */
+/**
+ * Fold the deck form away once it has done its job (2026-09-07).
+ *
+ * Measured on lux.txt: the deck panel is 3,409px in a 652px viewport, and 860px of it — the panel
+ * head, the 721px form and the status card — sits above "What to add", so pressing Find combos left
+ * the answer below the fold with the form the player had just used as the only thing on screen. The
+ * form is 21.1% of the panel; collapsed, the answer starts around 139px.
+ *
+ * It becomes a summary row rather than vanishing: the row names what was analysed and carries the
+ * way back, and the textarea keeps its text because `hidden` does not touch a field's value — which
+ * is the whole reason the earlier attempt at this was reverted. That attempt collapsed the entire
+ * PANEL and took the pasted list off the screen with it; this one folds the form only, and the strip
+ * below it that names a saved list stays put.
+ */
+function setForm(collapsed: boolean, what = ""): void {
+  form.hidden = collapsed;
+  const row = $<HTMLElement>("#deck-collapsed");
+  row.hidden = !collapsed;
+  if (collapsed) $<HTMLElement>("#deck-collapsed-what").innerHTML = what;
+  $<HTMLElement>("#edit-list").setAttribute("aria-expanded", String(!collapsed));
+}
+
+/** What the collapsed row says: the list's name when it has one, its size when it does not. */
+function collapsedLabel(d: Deck): string {
+  const named = analyzing !== null && analyzing.deckText === input.value;
+  return named ? `<strong>${esc(analyzing!.name)}</strong>` : esc(deckCountLine(d));
+}
+
 const showCount = () => {
   $<HTMLElement>("#card-count").textContent = cards ? deckCountLine(loadDeck(input.value, cards)) : "0 cards";
 };
@@ -204,10 +232,20 @@ async function run(source: "text" | "url" = "text") {
     result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() });
     selected = null;
     trayExpanded = false;
-    // The deck panel stays open after analysing. Collapsing it here used to hide the list the
-    // user just pasted, and it widened the stage enough to make the diagram fit at ~54%.
     render();
     showCount();
+    // Only a run that produced something to read folds the form away. A list that parsed but matched
+    // nothing, and one with lines the index could not place, both leave it open — those are the two
+    // cases where the player's next move is to edit the text, and hiding it would hide the evidence
+    // the status card is pointing at. An empty deck never reaches here: `run` returns above.
+    const anyHits = result.included.length + result.includedByChangingLegend.length + result.almostIncluded.length
+      + result.almostIncludedByAddingDomains.length + result.almostIncludedByChangingLegend.length
+      + result.almostIncludedByAddingDomainsAndChangingLegend.length;
+    // Set both ways on every run, never only the collapsing one: a run that does not qualify has to
+    // OPEN a form the previous run folded away, or a player who follows a good list with one that
+    // matches nothing is left looking at a summary of the list they have already replaced.
+    const fold = anyHits > 0 && deck.unresolved.length === 0;
+    setForm(fold, fold ? collapsedLabel(deck) : "");
     // Keep the address honest: a deck code travels in the hash itself, a list opened from My decks
     // keeps its id there, and a list pasted here has nothing to put in a link.
     if (source === "text") {
@@ -216,6 +254,8 @@ async function run(source: "text" | "url" = "text") {
     }
   } catch (err) {
     setStatus("Could not read that", (err as Error).message, "error");
+    // Whatever was on screen, the text that failed has to be reachable to be fixed.
+    setForm(false);
   } finally {
     analyze.disabled = false;
   }
@@ -968,6 +1008,12 @@ const setPanel = (open: boolean) => {
   if (result) render(); else view?.fit();
 };
 $<HTMLButtonElement>("#close-panel").addEventListener("click", () => setPanel(false));
+// The way back. Focus moves to the textarea rather than staying on a button that is now gone from
+// the flow, so a keyboard user lands on the thing they asked to edit.
+$<HTMLButtonElement>("#edit-list").addEventListener("click", () => {
+  setForm(false);
+  input.focus();
+});
 $<HTMLButtonElement>("#enter-deck").addEventListener("click", () => setPanel(true));
 /**
  * The distance selector belongs to one view. Under "Complete" it drove nothing a player could see —
