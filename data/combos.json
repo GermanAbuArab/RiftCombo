@@ -44466,6 +44466,164 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-070 Turn to Dust. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 315.1, 315.2, 434.1.e, 469, 718.2, 718.5.b, 719.5, 719.5.a, 808.1.a, 816.1, 816.1.b, 816.1.c, 816.2. The load-bearing reading is the SCOPE of 434.1.e - it makes an attached card's PRINTED Rules Text Inactive, and a granted keyword is not printed Rules Text - which is what lets this reach an equipped gear. Stated with the quote rather than filed as a numbered reading, because the word is in the paragraph. UNIQUENESS SWEPT: four cards grant [Temporary] to something else, all named, and this is the only gear-only one. Ban check: not banned or restricted, not a Signature card. No unruled reading."
+    },
+    {
+      "id": "caitlyn-taric-backline-last-assignment",
+      "name": "[Backline] is the self-protecting mirror of [Tank], and 465.2.c.6 prints the whole order - Caitlyn pings every turn from behind a wall she is assigned damage after",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-068",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 P1 M3. 'I must be assigned combat damage last. :rb_exhaust:: Deal damage equal to my Might to a unit at a battlefield. Use this ability only while I'm at a battlefield.' She prints the [Backline] reminder text WITHOUT the bracketed keyword - the registered-anomaly shape that a grep for '\\[Backline\\]' misses entirely."
+        },
+        {
+          "card": "OGN-074",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E4 P1 M4. '[Shield] (+1 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.) Other friendly units here have [Shield].' The other end of the assignment order, and his static gives Caitlyn +1 while she defends."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits them under any legend with Calm among its two domains - measured over data/cards.json those include OGN-261 / OGN-306 Radiant Dawn (calm/order), SFD-197 / SFD-247 Emperor of the Sands (calm/order), UNL-195 / UNL-233 Green Father (calm/order), VEN-147 / VEN-193 Eye of Twilight (calm/order) and VEN-139 / VEN-189 Rogue Assassin (calm/fury).",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "103.2.b allows three Caitlyn; each is a separate exhaust, so three of her are three pings a turn."
+        ],
+        "notable": [
+          "THE ORDER IS PRINTED IN THE RULES AND NO ENTRY HAD CITED IT. 465.2.c.6 - 'A player must obey all requirements and restrictions on damage assignment if able' - carries the full worked example: 'A player is assigning damage to the following units: a unit with Tank (\"I must be assigned combat damage first.\"); a unit with Backline (\"I must be assigned combat damage last.\"); and another unit without any abilities. That player must assign combat damage first to the unit with Tank, then to the unit with no abilities, then to the unit with Backline.' The catalogue cites 465.2.c.2 through .c.5 and stops; .c.6 through .c.10 are cited by nothing.",
+          "SO [BACKLINE] PROTECTS ITSELF WHERE [TANK] PROTECTS EVERYONE ELSE. 815.1.c.2 makes non-Tank bodies invalid assignments until every Tank has lethal - a toll booth paid on behalf of the rest of the garrison. Backline is the exact mirror: the body carrying it is the LAST thing that can legally be assigned damage, so it survives any attack that does not have enough summed Might to clear the whole garrison first. That is what makes a repeatable exhaust ability worth putting on a Backline body.",
+          "AND CAITLYN PRINTS IT WITH NO BRACKETS. Her text is 'I must be assigned combat damage last.' in prose, where UNL-043, UNL-090, UNL-141 and UNL-145 all print '[Backline]'. A sweep written as grep '\\[Backline\\]' returns four cards and misses the fifth - which is this project's standing rule about opening a keyword lens with grep -i and the bare word, met again. The Core Rules name her twice by name, at 465.2.c.8 and 465.2.c.9.",
+          "DO NOT GIVE HER [TANK]. 465.2.c.8: 'If a Unit has one or more Abilities or effects applying to it that demand it be assigned damage in a specific way that is exclusionary, then the ASSIGNING PLAYER chooses only one of those abilities to apply when assigning damage', and its worked example is Caitlyn, Patrolling given Tank by name - 'they may choose to assign damage to Caitlyn first, fulfilling the Tank requirement, or last, fulfilling the Backline requirement.' The choice belongs to the ATTACKER. So OGN-057 Block ('Give a unit [Shield 3] and [Tank] this turn') and SFD-033 Doran's Shield are traps on her specifically: they hand the opponent the option to kill her first. Put the Tank on Taric and the Shield on her.",
+          "THE PING IS A FILTER ON BIG BODIES AND REAL REMOVAL ON SMALL ONES. 143.2.a kills by damage marked at or above Might, and 143.3.b.1 heals all damage 'At the end of each player's turn', so Caitlyn's 3 (4 while defending under Taric, though 465.2.c does not read Might for her ping - 'equal to my Might' is read at execution, 359.3.f.2, and she is not a defender in your Main Phase) kills any body of Might 3 or less outright and merely marks anything bigger. Three copies are 9 damage a turn to one target or three separate kills.",
+          "381 IS THE WINDOW. Her ability carries no [Action] and no [Reaction], so 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State' confines the ping to your own Main Phase - she cannot answer the opponent's play. 315.1.b readies her every Awakening, so it is one ping per copy per turn forever, and her own clause 'Use this ability only while I'm at a battlefield' keeps her out of the base.",
+          "TARIC'S SHIELD REACHES HER AND HIS TANK DOES NOT. His third sentence is 'Other friendly units here have [Shield]' - a grant, so 814.2 sums it with anything else granting Shield, and 814.1.c makes it +1 Might while she is a defender. His [Tank] is printed on HIM and is not granted, so 465.2.c.8's exclusion never arises on Caitlyn."
+        ]
+      },
+      "steps": [
+        "Play OGN-074 Taric, Protector (4 Energy + 1 Power) and OGN-068 Caitlyn, Patrolling (3 Energy + 1 Power) to the same battlefield. 143.4 has both enter exhausted.",
+        "From your next turn, 315.1.b readies them at Awaken. In your Main Phase exhaust Caitlyn: deal damage equal to her Might (3) to a unit at a battlefield. 143.2.a kills anything of Might 3 or less; 143.3.b.1 clears the mark at the end of the turn, so a bigger body must be finished the same turn.",
+        "When the opponent attacks that battlefield, 465.2.c.6 forces their assignment order: Taric first, because [Tank] demands it (815.1.b, 815.1.c.2); then any plain friendly bodies; then Caitlyn, last, because her printed sentence demands it.",
+        "Taric defends at 5 (M4 + his own [Shield]); Caitlyn defends at 4 (M3 + the [Shield] he grants her, 814.1.c). An attack that cannot pay for the whole garrison never legally reaches her.",
+        "Your Awaken readies her again and the ping repeats. Three copies (103.2.b) are three pings a turn.",
+        "Never play OGN-057 Block or attach SFD-033 Doran's Shield to Caitlyn: 465.2.c.8 would hand the attacker the choice of killing her first, and its worked example is this card by name."
+      ],
+      "netPerIteration": "3 damage a turn per copy from a body the opponent is forbidden to assign damage to until everything else of yours is dead",
+      "terminatesIn": "engine only - one ping per copy per turn (381 confines it to your Main Phase, 315.1.b refills it), and nothing here scores; 143.3.b.1 clears unspent damage every turn, so the ping is a kill on Might 3 or less and a filter above that",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 465.2.c.6 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A player is assigning damage to the following units: a unit with Tank (\"I must be assigned combat damage first.\"); a unit with Backline (\"I must be assigned combat damage last.\"); and another unit without any abilities. That player must assign combat damage first to the unit with Tank, then to the unit with no abilities, then to the unit with Backline."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 465.2.c.8",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If a Unit has one or more Abilities or effects applying to it that demand it be assigned damage in a specific way that is exclusionary, then the assigning player chooses only one of those abilities to apply when assigning damage."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 381",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: the 465.2.c.6-c.10 damage-assignment sub-block). The catalogue cites 465.2.c.2 through .c.5 in 210 places and NONE of .c.6 through .c.10; [Backline] appears in no notable and no synergy rule in the project. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 143.2.a, 143.3.b.1, 143.4, 315.1.b, 359.3.f.2, 381, 465.2.c.6, 465.2.c.8, 465.2.c.9, 814.1.c, 814.2, 815.1.b, 815.1.c.2. REPORT TO THE MANAGER: (1) the pool has FIVE [Backline] cards, not four - OGN-068 Caitlyn, Patrolling prints the reminder sentence bracket-less, so a grep for the bracketed keyword misses her, exactly as SFD-138 Windsinger does for [Hidden]; (2) 465.2.c.8 makes granting [Tank] to a [Backline] body hand the ASSIGNING PLAYER the choice, so Block and Doran's Shield are anti-synergic with Caitlyn and with UNL-043, UNL-090, UNL-141, UNL-145; (3) 465.2.c.10 exempts a unit that cannot be dealt damage from mandatory assignment altogether, which is how a full Prevent (437.4) switches a Tank wall off. Distinct from blade-dancer-caitlyn-choose-ready (a choose-to-ready line that never mentions the assignment order) and from taric-block-stalwart-poro-shield-stack (which grants Tank, the trap this entry names). Trap check: her ping is your-turn only (381) and cannot be used from the base; damage clears every turn; no unruled reading."
+    },
+    {
+      "id": "dune-surfer-ignore-tank-one-way",
+      "name": "The pool's one answer to a [Tank] wall is one-way by rule - 767 says only the player the ability names ignores it, and only while assigning combat damage",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-004",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E3 M3. 'You ignore [Tank] while assigning combat damage here.' In ZERO entries before this one, and the pool's only card that answers a Tank wall. Riot's worked examples at 766 and 767 are this sentence with [Backline] in place of [Tank]."
+        },
+        {
+          "card": "OGN-004",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury spell, E1. '[Action] (Play on your turn or in showdowns.) Give a unit [Assault 3] this turn.' The summed Might that the wall was rationing; 807.2 sums it with any printed [Assault]."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Fury, so 103.1.b.3 admits them under any legend with Fury among its two domains - measured over data/cards.json those include OGN-249 / OGN-300 Relentless Storm (fury/body), OGN-251 / OGN-301 Loose Cannon (fury/chaos), OGN-253 / OGN-302 Hand of Noxus (fury/order), SFD-183 / SFD-241 Purifier (fury/body), SFD-185 / SFD-242 Glorious Executioner (fury/chaos), SFD-187 / SFD-243 Void Burrower (fury/order), UNL-183 / UNL-227 Pridestalker (fury/body), UNL-185 / UNL-228 Bloodharbor Ripper (fury/chaos), UNL-187 / UNL-229 Piltover Enforcer (fury/order), VEN-141 / VEN-190 Butcher of the Sands (fury/body) and VEN-143 / VEN-191 Master of Shadows (fury/chaos).",
+          "Neither card is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "Dune Surfer's clause says 'here', so he must be present at the battlefield whose combat you are assigning damage in - i.e. he attacks alongside, or he stands there when you defend."
+        ],
+        "notable": [
+          "WHAT A [TANK] WALL ACTUALLY DOES, AND WHY IT IS WORTH A CARD TO ANSWER. 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' It is an ORDERING constraint, not absorption - but ordering is fatal when your summed Might is smaller than the wall. OGN-158 Volibear, Imposing defends at 13 (M10 plus [Shield 3], 814.1.c), so an attack of 12 assigns everything to him, kills nothing, and never legally reaches the Might 2 support behind him. Dune Surfer deletes that constraint for you and the same 12 kills six small bodies instead.",
+          "764-767 IS THE BLOCK AND ITS TWO WORKED EXAMPLES ARE THIS SENTENCE. 766: 'Any abilities ignored in this way are treated as inactive for the purposes of the game action or procedure', with the example 'A unit reads \"You ignore Backline while assigning combat damage here.\" ... The unit's controller can assign damage to any units with Backline as if they didn't have it.' Dune Surfer prints the same sentence with [Tank]. Neither 764, 765, 766 nor 767 is cited by any entry or synergy rule in this project.",
+          "AND 767 MAKES IT ONE-WAY, WHICH IS THE HALF THAT IS EASY TO MISS. 'Ignored abilities are only treated as inactive for the specific game action or procedure described, and only by the players directed by the ability', with the example 'Any other player assigning combat damage at the same location as that unit will not be able to ignore Backline.' So Dune Surfer standing at a battlefield does NOT switch off YOUR OWN Tank bodies for the opponent - the same board keeps walling them while it stops walling you. The card is a key, not a dispel.",
+          "AND ONLY DURING THE DAMAGE STEP. 767's 'the specific game action or procedure described' scopes it to assigning combat damage, so [Tank] is fully in force for everything else - it never was a targeting restriction anyway (809.1.c prices [Deflect], SFD-105's 'can't be chosen' is the prohibition; [Tank] is neither), so the practical content is exactly the 465.2.c.6 ordering and nothing more.",
+          "IT ANSWERS THE CATALOGUE'S OWN TANK-WALL FAMILY. lillia-flurry-of-feathers-tank-wall, lillia-vanguard-armory-renewing-tank-wall and kinkou-temple-lillia-bird-tank-wall all build a garrison of 1-Might [Tank] tokens whose whole value is 815.1.c.2. One Dune Surfer at that battlefield and the tokens are ordinary bodies again - and because he is Fury and Lillia is Calm, 103.1.b keeps them on opposite sides of the table, which is the honest reason this is a matchup card rather than a mirror-breaker.",
+          "465.2.c.4 IS STILL IN FORCE AND CAPS WHAT IGNORING BUYS. 'A player may not assign more damage to a unit than the minimum needed to kill it', so ignoring Tank changes WHICH bodies receive lethal, never how much total damage you have. Cleave is in uses[] because the constraint the wall really imposes is on total summed Might: 807.2 sums the granted [Assault 3] onto whatever the body prints, and 807.1.d.1 keeps it for as long as the Attacker designation lasts.",
+          "465.2.c.10 IS THE OTHER WAY THROUGH, AND IT IS NOT THIS CARD. 'If a unit cannot be dealt damage, then no amount of damage can be considered lethal. Such a unit is exempt from any considerations of mandatory assignment.' A Tank whose damage is entirely prevented (437.4) stops being a mandatory assignment at all - so a full Prevent switches a wall off from the other side. Recorded here because the two mechanisms read alike and are different: Dune Surfer removes the keyword's effect for you, a Prevent removes the body from the ordering for everyone."
+        ]
+      },
+      "steps": [
+        "Play VEN-004 Dune Surfer (3 Energy) and your attackers; 143.4 has them enter exhausted, so they attack from the following turn.",
+        "Standard-move Dune Surfer and the attackers to the enemy battlefield together (144.3 makes simultaneous Standard Moves one action to a shared destination). His clause says 'here', so he must be among them.",
+        "Contested applies (190.3.a.1), the Combat stages (323.9) and opens (323.13), and 464.2.c.3 designates the attackers. In the opened Combat Showdown play OGN-004 Cleave (1 Energy, [Action], 806.1.b) on your largest body: 807.2 sums the granted [Assault 3] with anything printed.",
+        "In the damage step, 766 treats every instance of [Tank] in the enemy garrison as inactive for YOUR assignment. 815.1.c.2 no longer makes their other bodies invalid, so you assign minimum lethal (465.2.c.4) to whichever units you actually want dead.",
+        "767 keeps the asymmetry: any Tank of your own at that battlefield still walls the opponent's assignment normally, because the ability names you and not them.",
+        "The Surfer stays, so every later combat at that battlefield is assigned the same way. Three copies (103.2.b) cover both Duel battlefields and survive removal."
+      ],
+      "netPerIteration": "the enemy garrison's assignment order stops being theirs to set, for as long as the Surfer stands there, and your own Tanks keep working against them",
+      "terminatesIn": "engine only - nothing here scores. It is bounded by the Surfer's presence at that battlefield and by 465.2.c.4, which never lets ignoring Tank produce more total damage than your summed Might",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 766 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A unit reads \"You ignore Backline while assigning combat damage here.\" While assigning combat damage in the combat damage step with this unit present, any instances of Backline on enemy units is treated as inactive. The unit's controller can assign damage to any units with Backline as if they didn't have it."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 767",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Ignored abilities are only treated as inactive for the specific game action or procedure described, and only by the players directed by the ability."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 465.2.c.10",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If a unit cannot be dealt damage, then no amount of damage can be considered lethal. Such a unit is exempt from any considerations of mandatory assignment."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 764-767 Ignoring Effects). Rules 764, 765, 766 and 767 are cited by no entry and no synergy rule in this project, and VEN-004 Dune Surfer was in ZERO entries. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b, 103.1.b.3, 103.2.b, 103.2.d.2, 143.4, 144.3, 190.3.a.1, 323.9, 323.13, 464.2.c.3, 465.2.c.4, 465.2.c.10, 766, 767, 806.1.b, 807.1.d.1, 807.2, 809.1.c, 814.1.c, 815.1.c.2. REPORT TO THE MANAGER: 767 makes every 'ignore' card in the pool ONE-WAY and SCOPED - only the named player, only for the named game action - which matters for VEN-061 Decree of Insight and VEN-158 Heisho as well as this card, and CLAUDE.md currently derives the Decree's scoping from the card's own wording rather than from 767. Trap check: 465.2.c.4's minimum-lethal cap is unchanged, so ignoring Tank redistributes damage and never creates it; the Surfer must be at that battlefield ('here'); Lillia's Tank-wall entries are Calm and cannot share a legend with him (103.1.b); no unruled reading."
     }
   ]
 }
