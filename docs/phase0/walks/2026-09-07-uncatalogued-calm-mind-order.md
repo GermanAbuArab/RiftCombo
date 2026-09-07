@@ -520,3 +520,111 @@ general form of §9's finding: **any look at M cards is certain behind a `[Predi
 5. **Any look at M cards is a certainty behind a `[Predict N]` with N ≥ M** (436.1.a, *"in any
    order"*) — the general form of the exception recorded in batch 3, and it now covers Reinforce's
    five as well as Fate Weaver's four.
+
+---
+
+## 18. Batch 5 — five entries, and the Mind gear-count axis
+
+Batch 4 merged (catalogue 624 at the time of writing).
+
+| id | class | cards | the names it clears |
+|---|---|---|---|
+| `plundering-poro-patched-porobot-gold-gear-count` | ENGINE | SFD-069, VEN-058 | Plundering Poro, Patched Porobot |
+| `pickpocket-seal-of-focus-cheap-gear-kill` | ENGINE | SFD-074, OGN-081 | Pickpocket, Seal of Focus |
+| `icevale-archer-deadly-flourish-damage-threshold` | ENGINE | UNL-073, UNL-065 | Icevale Archer, Deadly Flourish |
+| `sandstone-chimera-yi-meditative-rune-prison` | ENGINE | VEN-036, OGS-004 | Sandstone Chimera, Yi Meditative |
+| `akali-silent-twilight-shroud-cant-be-chosen` | ENGINE | VEN-038, VEN-031 | Akali Silent, Twilight Shroud |
+
+## 19. `187.5` makes a Gold a GEAR, so Mind's token engine is also its gear count
+
+> **187.5.** *"A Gold gear token is a domainless **gear** token with '[Reaction][>] Kill this, [E]:
+> [Add] [A].'"*
+> **185.2.d.** *"Tokens have a type. They follow all rules for their type unless otherwise
+> specified."*
+
+So every Gold on the board counts toward a *"control N or more gear"* threshold, and a Conquer engine
+in Mind is a gear engine at no extra cost. The cards that read the count, swept: `VEN-058 Patched
+Porobot` (3 or more other gear → draw 1), `SFD-072 Dropboarder` (2 or more gear → ready me),
+`VEN-064 Plaza Guardian` (1 Energy less per gear) and `VEN-076 Repair Specialist` (`[Assault]` equal
+to the number of gear). Three cards in this lane mint Golds — `SFD-069 / UNL-222 Plundering Poro` on
+a Conquer, `SFD-074 Pickpocket` on a cheap gear kill, `UNL-073 Deadly Flourish` on a kill by damage.
+
+**And a Gold is never mana on the turn it appears.** All three print *"exhausted"*, and 187.5's
+ability costs the token's own exhaust, so 415.3.a is when it becomes payable. The one override is
+`SFD-171 Renata Glasc, Industrialist` (R25 = A), which is mono-Order and needs a Mind/Order legend.
+
+**What the one-Energy window catches, measured rather than guessed.** `SFD-074 Pickpocket`'s *"kill a
+gear with Energy cost no more than 1"* is aimed squarely at the mana base: the Seal cycle is Energy
+cost **zero** (`OGN-081 / SFD-226 Seal of Focus`, `OGN-245 Seal of Unity`), and `OGN-090 Orb of
+Regret`, `SFD-153 Eye of the Herald` and `OGN-227 Symbol of the Solari` are all E1. 718.5.b makes an
+attached Equipment a legal choice, so it reaches an equipped Eye.
+
+## 20. Floored and unfloored reductions do different jobs, and the split is by set
+
+The nine Origins reductions carry a *"to a minimum of 1"* floor; the fourteen from Spiritforged,
+Unleashed and Vendetta do not. That is worth exactly one Might where it matters:
+
+| | floored (batch 4) | unfloored (batch 5) |
+|---|---|---|
+| example | `OGN-093 Smoke Screen` −4, min 1 | `UNL-065 Icevale Archer` −1, no floor |
+| 477.3.b | **snapshots** at the size aimed at | no limitation, so no snapshot |
+| can complete a kill? | **no** — a body at 1 Might still needs 1 damage | **yes** — 4 becomes 3 and *"Deal 3"* is lethal (143.2.a) |
+| job | move a target under someone **else's** threshold | reach a fixed-damage spell's own threshold |
+
+**477.3.e.2.a** applies decreases last in both cases, so neither can be pumped out of within one
+evaluation, and **143.2.b** keeps a reduction from being damage at all — negative Might reads as 0
+and is not 0, so no kill event comes from the reducer.
+
+## 21. A symmetric denial becomes one-sided on a turn you can name
+
+`VEN-036 Sandstone Chimera` (*"players only channel 1 rune at the start of their Channel Phase"*) is
+symmetric on its face. **430.3** is what makes it not: *"If there aren't sufficient runes in the Rune
+Deck, channel as many as possible."* With 161.2.a fixing the Rune Deck at exactly twelve and 315.3.b
+channelling two free per Channel Phase, an untouched curve is empty around turn six — and from that
+moment the halving costs **you** nothing and the opponent one rune a turn.
+
+Two scope notes that decide whether the shell works. The clause is scoped to *"at the start of their
+Channel Phase"* — the free channel of 315.3.b — and says nothing about a channel from a **card**, so
+every card-based channel in the deck survives, including the riders that this lane's seven-rune
+entries are built on. And the count both cards read is a **board** count: 164.2.b's cost is the
+recycle, so a rune tapped for Energy still counts, but 161.2.b sends a rune recycled for **Power**
+back to the Rune Deck and lowers it. In this deck, do not cash runes for Power.
+
+## 22. "Can't be chosen" is a prohibition; `[Deflect]` is a tax
+
+**809.1.c** prices `[Deflect]` as *"an additional cost … for each time they choose"* — a player with
+the Power simply pays. *"I can't be chosen by enemy spells and abilities"* is absolute under
+**054.1**. This catalogue has treated the two as interchangeable in prose; they are different in
+kind. Both have the same hole: **355.10.d** (programmatically selected) and **355.10.e** (a set
+chosen by other players) are not choices, so every sweeper goes through both.
+
+`VEN-038 Akali, Silent` is the inverse of every other protection in the domain — *"unless I'm in
+combat"*, and **740.2.c** defines that term (*"A unit is in combat if it is occupying a battlefield
+where combat is ongoing and has a combat designation"*). She is untouchable while she develops and
+legal the moment she is worth removing, which is backwards from a `[Tank]` or a `[Shield]` and is why
+she needs a second layer rather than a bigger one. `VEN-031 Twilight Shroud` is that layer at 1
+Energy, twice per copy via `[Flow]` (829.1.b, 829.1.b.1, 108.6.c) — and because it carries no
+keyword, **155** confines it to your own Main Phase, so the protection is bought **before** the
+combat opens, never in response.
+
+## 23. Facts for CLAUDE.md from Calm/Mind batch 5
+
+1. **187.5 makes a Gold token a GEAR** (with 185.2.d putting it inside the rules for its type), so a
+   Gold engine advances every *"control N or more gear"* threshold — `VEN-058 Patched Porobot`,
+   `SFD-072 Dropboarder`, `VEN-064 Plaza Guardian`, `VEN-076 Repair Specialist`. Every Gold-maker in
+   the pool prints *"exhausted"*, and 187.5's ability costs the token's own exhaust, so it is never
+   mana on the turn it appears unless `SFD-171 Renata Glasc, Industrialist` is out (R25 = A).
+2. **The pool's cheap gear is its mana base**: the Seal cycle is Energy cost **zero**, so
+   `SFD-074 Pickpocket`'s *"no more than 1 Energy"* window catches every Seal, plus `OGN-090`,
+   `SFD-153` and `OGN-227` at E1 — and 718.5.b makes an attached one a legal choice.
+3. **Floored and unfloored Might reductions do different jobs.** A floored one can never complete a
+   kill (a body at 1 Might still needs 1 damage) and 477.3.b snapshots it at the size aimed at; an
+   unfloored one can take a 4 to a 3 and let a *"Deal 3"* finish it. The split is by set: nine
+   Origins reductions are floored, the fourteen from SFD/UNL/VEN are not.
+4. **`VEN-036 Sandstone Chimera`'s symmetric halving becomes one-sided the turn your own Rune Deck
+   empties** (430.3, *"channel as many as possible"*, against 161.2.a's twelve and 315.3.b's two a
+   turn), and its clause is scoped to the FREE channel at the start of the Channel Phase — a
+   card-based channel is untouched.
+5. **"Can't be chosen" (054.1) is a prohibition and `[Deflect]` (809.1.c) is a tax** — different in
+   kind, same hole at 355.10.d / 355.10.e. And **740.2.c** defines *"in combat"*, which is what makes
+   `VEN-038 Akali, Silent`'s protection the inverse of a `[Tank]`'s.
