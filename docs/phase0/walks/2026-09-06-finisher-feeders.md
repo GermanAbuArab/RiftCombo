@@ -776,3 +776,108 @@ Three things the walk pinned down:
 It pairs with the Sentinel where `last-rites-stack-arena-reanimator` pairs it with the Reckoner's
 Arena — the Arena reaches the same doubling from the conquer side, in a different identity. This one
 needs no battlefield of yours, so 485.5's 1-in-3 draw never applies.
+
+---
+
+## 16. The CAUSE / TRIGGER matrix — the user's method, and what the pool actually offers
+
+The user's brief: *"I think we are missing a lot of SMALL combos."* The method he chose is a matrix over
+the whole pool — classify every card by the events its text **causes** and the events it **triggers
+on**, pair A-causes-X with B-triggers-on-X, filter, and rank by how rare the event is.
+
+Scripts live in `.scratch/` (gitignored): `matrix.ts`, `buckets.mjs`, `bucketD.mjs`, `top30b.mjs`.
+
+### 16a. How the vocabulary was built
+
+Not from memory. `harvest.mjs` pulled **every** trigger clause in the corpus — 142 distinct, of which
+**127 are cross-card** (i.e. not "when you play me") — and the 24 events were written from that list.
+Sizes:
+
+```
+matrix            1028 deckable BASE codes x 24 events
+coverage folded   4082 anchor-partner pairs from partnersOf(), plus every pair already in an entry uses[]
+candidates        1620 after 103.1.b (domain union <= 2), coverage, and alt-printing collapse
+refused by rule     98  (A 4, B 0, C 7, D 87)
+remainder         1522, in 47 distinct TRIGGER-card groups
+```
+
+### 16b. The four REFUSED-BY-RULE buckets, marked rather than dropped
+
+| bucket | rule | pairs |
+|---|---|---|
+| A | hold payoff + Main-Phase resource engine — 315 puts the Hold before 316 and 167 empties the pool, so the engine's output never reaches the Hold | 4 |
+| B | excess-damage card + removal that empties the defending side — 465.1 assigns no damage, R28 = A gives zero excess | **0** |
+| C | [Hidden] card on the attacking side — 811.1.b hides at a battlefield you control, 811.1.d.2 pins the targets there | 7 |
+| D | banned in every format | 87 |
+
+**Bucket B is empty and that is a result, not a miss:** the six excess-damage cards were checked
+against every defender-emptying removal in the pool and each pair was already covered or blocked by
+103.1.b first. The rule stays recorded as a standing refusal.
+
+### 16c. Three classification bugs found and fixed, all worth knowing for the next matrix
+
+1. **`/kill (a|an|…)/` matches "kill ALl gear."** `OGN-022 Thermo Beam` was showing up as a cause of
+   friendly deaths. Word boundaries and an explicit noun fixed it.
+2. **`/\[hidden\]/` matches cards that merely MENTION Hidden.** `OGN-018 Noxus Saboteur` — a denial
+   card that stops opponents revealing — was showing as a way to play from face down. The cause now
+   requires the reminder text `(hide now for`.
+3. **The ban marker is not in `cards.json`.** It is applied to `data/corpus_flat.txt`, and the
+   authoritative source is `data/legality.json`, whose entries carry **`bases` as an array**. Reading
+   a scalar `e.base` silently matched nothing and reported bucket D as 0 when it is 87.
+
+Bugs 1 and 2 were ~100 candidates of pure noise. Bug 3 put **two banned cards in the top 30 I had
+already sent** — `OGN-292 The Dreaming Tree` and `OGN-177 Stealthy Pursuer` — which is why the ranked
+list was reissued.
+
+### 16d. `SFD-138 Windsinger` prints "Hidden" without brackets — a registered-anomaly candidate
+
+The matrix reported Broker + Windsinger as **uncovered** even though the synergy rule
+`black-market-broker-hidden-family` exists with `SFD-121` as its anchor. The reason is in the corpus:
+
+```
+SFD-138 | Windsinger | Unit | Chaos | E2 M1 | Hidden (Hide now for :rb_rune_rainbow: ...)
+```
+
+**No brackets on `Hidden`.** It is the only unit in the pool printed that way, so every
+`\[Hidden\]` predicate in `data/synergies.json` misses it. This is CLAUDE.md's own standing rule —
+*"A keyword lens opens with `grep -i <word>`, never with `[Keyword]`"* — hitting live in the synergy
+layer. It belongs in `docs/data-anomalies.md`, **not** normalised into `data/errata.json`, per the
+project's rule that the errata overlay's find-string failure is the only mechanism keeping the text
+honest.
+
+### 16e. Three refusals at the head of the ranked list
+
+**REFUSED — `SFD-203 Battle Mistress` + `OGN-287 Sigil of the Storm` (rarity 5, the rarest event in
+the pool).** The Sigil reads *"When you conquer here, you **must** recycle one of your runes"* and the
+Mistress turns each rune recycle into a Gold. It generates nothing. The forced recycle pays **no
+Power**, because 164.2.b is the RUNE's own ability — *"Recycle this: [Reaction] — Add [C]"* — whose
+COST is the recycle; an instruction to recycle is not that ability. So the Mistress converts a
+mandatory drawback into a Gold rather than creating value, and CLAUDE.md already names Sigil of the
+Storm as a *"doubled drawback"* in its synergies section. The matrix rediscovered a known trap, which
+is a good sign for the matrix and a refusal for the pair.
+
+**REFUSED — the rest of the Battle Mistress rows.** `battle-mistress-gold-refund` already catalogues
+the mechanism (*"one Gold per rune recycle while she is ready, so about one per turn and two or three
+in a turn with enemy deaths"*). The matrix surfaced her repeatedly because the PARTNERS differ; the
+engine does not.
+
+**REFUSED — `SFD-121 Black Market Broker` + `SFD-138 Windsinger`.** Covered in substance by
+`black-market-broker-hidden-family` and by four catalogued entries; the pair is "uncovered" only
+because of the missing brackets in §16d. Recorded as a synergy LEAD instead: the rule's partner list
+is one card short.
+
+### 16f. Three entries written
+
+- **`vex-radiant-dawn-stun-redeploy`** (Calm/Order). Neither card causes the stun — they are two
+  TRIGGERS on one event, and the entry says so. What one stun buys: a buff, and a **free relocation
+  of a 5-Might [Tank]**, because Vex's move is an effect move and so pays neither 144.2's exhaust nor
+  144.4.c's [Ganking] restriction. Capped at one stun per enemy body per turn by 423.1.a.1.
+- **`rippers-bay-retreat-double-channel`** (Mind). The finding is that **this battlefield works while
+  uncontrolled**: 190.6.d blanks only the word *"you"*, and Ripper's Bay says *"that player"*. The
+  catalogue has cited 190.6.d many times to show that a battlefield you bring starts switched off;
+  this is the first entry to note the scope of that blanking. Two runes for two Energy off one
+  Retreat, and it pays the opponent too.
+- **`jinx-rebel-discard-event-ready`** (Fury/Chaos). A counting fact that inverts the naive read:
+  *"When you discard one or more cards"* fires once per discard **EVENT**, so three cards that
+  discard one each beat one card that discards three. Same shape as 383.1.b's collapse of simultaneous
+  instances, reached from the other direction.
