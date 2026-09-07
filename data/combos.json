@@ -2773,7 +2773,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Legend domains cover Fury and Body (Purifier SFD-183 or Butcher of the Sands VEN-141)."
+          "SFD-184 Relentless Pursuit is a SIGNATURE card tagged Lucian, so 103.2.d.2 forces a Lucian legend that also covers fury + body: SFD-183 Purifier — the only one. Domain-legal legends without the Lucian tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Lucian Signature card.)"
         ],
         "notable": [
           "Jhin ready at base with Warmog's on the board, one Relentless Pursuit and two Wallops in hand; the opponent controls both battlefields and has no units on them, so each first entry conquers without a fight.",
@@ -5367,7 +5367,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Legend is Daughter of the Void (OGN-247). The other Fury/Mind legends are SFD-181 Mechanized Menace and UNL-181 Virtuoso; neither adds Power, so the line costs one more real rune under them."
+          "UNL-182 Curtain Call is a SIGNATURE card tagged Jhin, so 103.2.d.2 forces a Jhin legend that also covers fury + mind: UNL-181 Virtuoso — the only one. Domain-legal legends without the Jhin tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Jhin Signature card.)"
         ],
         "notable": [
           "THE SPIRE IS NOT GUARANTEED TO BE IN PLAY. 485.4.a puts only one of your three battlefields into the game, and 485.5 says a Duel picks it AT RANDOM ('Each player randomly selects one (1) of their three (3) Battlefields'). 1v1 Match play is different: 486.5 says only 'selects', so there you choose it for game 1. Whether a deck may bring three copies of the same battlefield to make the Duel case certain is the open question of issue #35 — the Core Rules never forbid it (103.2 caps copies of a Main Deck card, and a battlefield is not a Main Deck card), but this entry does not assume it.",
@@ -6004,7 +6004,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Legend domains cover Fury and Chaos (103.1.b): VEN-143 Master of Shadows is the Fury/Chaos legend in the pool."
+          "UNL-186 Death from Below is a SIGNATURE card tagged Pyke, so 103.2.d.2 forces a Pyke legend that also covers fury + chaos: UNL-185 Bloodharbor Ripper — the only one. Domain-legal legends without the Pyke tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Pyke Signature card.)"
         ],
         "notable": [
           "The timing is printed, not read in. 'Do this:' is a Reflexive Trigger (387.1) and 388.1 puts it on the chain as a NEW pending item, while 359.3.d finishes the spell by executing its text 'and then place the card in the Trash of the owning player'. By the time the reflexive item resolves the card is in the trash, which is where 'play this from your trash' looks. This is the same shape the project already ruled as R26 = B.",
@@ -6639,7 +6639,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Legend domains cover Mind and Order (103.1.b.4): OGN-265, OGS-021, SFD-201, UNL-199.",
+          "SFD-202 Hostile Takeover is a SIGNATURE card tagged Renata Glasc, so 103.2.d.2 forces a Renata Glasc legend that also covers mind + order: SFD-201 Chem-Baroness — the only one. Domain-legal legends without the Renata Glasc tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Renata Glasc Signature card.)",
           "Ava at the enemy battlefield you are attacking, one Hostile Takeover in hand, 1 Mind Power available during the combat."
         ],
         "notable": [
@@ -7302,7 +7302,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Legend domains cover Calm and Order. Emperor of the Sands (SFD-247) is the natural pick — Sand Soldiers he plays have [Weaponmaster], so each token entering may equip one of your detached gear for 1 Power less — but Radiant Dawn (OGN-261), Green Father (UNL-195) and Eye of Twilight (VEN-147) also cover the pair."
+          "SFD-198 Arise! is a SIGNATURE card tagged Azir, so 103.2.d.2 forces a Azir legend that also covers calm + order: SFD-197 Emperor of the Sands — the only one. Domain-legal legends without the Azir tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Azir Signature card.)"
         ],
         "notable": [
           "The Grand Plaza must be the battlefield in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5).",
@@ -9895,7 +9895,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Legend domains must cover Fury and Body: OGN-249 Relentless Storm, SFD-183 Purifier, UNL-183 Pridestalker, VEN-141 Butcher of the Sands."
+          "VEN-142 Dominus is a SIGNATURE card tagged Renekton, so 103.2.d.2 forces a Renekton legend that also covers fury + body: VEN-141 Butcher of the Sands — the only one. Domain-legal legends without the Renekton tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Renekton Signature card.)"
         ],
         "notable": [
           "THE OBVIOUS ROUTE IS ILLEGAL AND HAS TO BE SAID FIRST. An uncapped ready pointed at SFD-088 Renata Glasc, Mastermind ('4 Energy + 4 Mind Power, exhaust: Score 1 point') would be unbounded points. It cannot be built: Dominus is Fury/Body and Renata is Mind, so the deck would need Fury + Body + Mind and 103.1.b.4 permits a card only in an identity containing all of its domains, while a legend has exactly two. There is no legal list.",
@@ -12140,7 +12140,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Legend domains must cover Body and Fury — the body/fury legends are OGN-249 / OGN-300 Relentless Storm, SFD-183 / SFD-241 Purifier, UNL-183 / UNL-227 Pridestalker, VEN-141 / VEN-190 Butcher of the Sands. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named a legend that cannot hold one of the entry's domains.)"
+          "UNL-184 Thrill of the Hunt is a SIGNATURE card tagged Rengar, so 103.2.d.2 forces a Rengar legend that also covers fury + body: UNL-183 Pridestalker — the only one. Domain-legal legends without the Rengar tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Rengar Signature card.)"
         ],
         "notable": [
           "THE TRIGGER COUNTS CARDS AND THE SPELL PLAYS TWO OF THEM. Thrill of the Hunt is card one; the unit it makes its owner play, ignoring its cost, is card two - so on a turn where you have played nothing, one spell fires Darius. 'When you play your second card in a turn' names no turn player, which is why the [Reaction] timing works.",
@@ -16293,7 +16293,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Legend domains must cover Fury and Chaos (103.1.b.1 \"Cards included in your deck must abide by your Domain Identity\", 103.1.b.2 \"Your deck's Domain Identity is dictated by the domains of your Champion Legend\"). Five legends are Fury/Chaos: OGN-251 Loose Cannon, OGS-017 Dark Child, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows.",
+          "OGN-252 Super Mega Death Rocket! is a SIGNATURE card tagged Jinx, so 103.2.d.2 forces a Jinx legend that also covers fury + chaos: OGN-251 Loose Cannon — the only one. Domain-legal legends without the Jinx tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Jinx Signature card.)",
           "A battlefield you can conquer. No battlefield of its own - any conquer anywhere fires it."
         ],
         "notable": [
@@ -16714,7 +16714,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Legend domains must cover Body and Order (103.1.b.1, 103.1.b.2). FIVE legends are Body/Order, not the two the issue names: OGN-269 The Boss, OGS-023 Might of Demacia - Starter, SFD-205 Grand Duelist, UNL-203 Keeper of the Hammer, VEN-153 Matriarch of War. None carries a [BANNED marker.",
+          "VEN-154 Public Execution is a SIGNATURE card tagged Ambessa, so 103.2.d.2 forces a Ambessa legend that also covers body + order: VEN-153 Matriarch of War — the only one. Domain-legal legends without the Ambessa tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Ambessa Signature card.)",
           "Renekton on the board. 143.4 makes him enter exhausted and 315.1.b readies him next Awakening, but that never matters here: his ability carries no exhaust, so an exhausted Renekton pumps and is chosen exactly like a ready one."
         ],
         "notable": [
@@ -16876,7 +16876,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Legend domains must cover Calm and Mind (103.1.b.1). Fox-Fire is Calm/Mind and the three reducers are Mind. Four legends qualify: OGN-255 Nine-Tailed Fox (the one that also carries the Ahri tag), SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom, VEN-145 Curator of the Sands.",
+          "OGN-256 Fox-Fire is a SIGNATURE card tagged Ahri, so 103.2.d.2 forces a Ahri legend that also covers calm + mind: OGN-255 Nine-Tailed Fox — the only one. Domain-legal legends without the Ahri tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Ahri Signature card.)",
           "Nothing enters the board except the Watcher in its own row; the Frigid Touch and Moonlight Affliction rows are all spells."
         ],
         "notable": [
@@ -17416,7 +17416,7 @@
       "produces": [],
       "prerequisites": {
         "easy": [
-          "Calm/Mind, and the pool prints four such legends: OGN-255 Nine-Tailed Fox (the Ahri legend, and the one the escorted boards already want), SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom (Lillia, whose name the card carries) and VEN-145 Curator of the Sands.",
+          "UNL-190 Lilting Lullaby is a SIGNATURE card tagged Lillia, so 103.2.d.2 forces a Lillia legend that also covers calm + mind: UNL-189 Bashful Bloom — the only one. Domain-legal legends without the Lillia tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Lillia Signature card.)",
           "Two runes untapped when the opponent acts. That is the whole set-up; there is nothing to build."
         ],
         "notable": [
@@ -19906,7 +19906,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Calm + Order. The four tag bodies are mono-Order (103.1.b.3) and Daisy is Calm/Order, so 103.1.b.2 needs a Calm/Order legend."
+          "UNL-196 Daisy! is a SIGNATURE card tagged Ivern/Ionia, so 103.2.d.2 forces an Ivern legend: UNL-195 / UNL-233 Green Father (one name, two base codes), Calm/Order — the only one. The other six Calm/Order legend base codes (Radiant Dawn, Emperor of the Sands, Eye of Twilight) are domain-legal and Signature-illegal, and three Daisy spend the whole Signature budget (103.2.d.1). (#167 cross-audit, 2026-09-07: an earlier line said \"a Calm/Order legend\", which admitted six illegal ones.)"
         ],
         "notable": [
           "THE LEGEND IS NOT A CHOICE. Daisy is a Signature card, and 103.2.d.2 says 'All of the Signature cards must have the Champion tag that corresponds to the Champion Legend of the deck.' Her tags are Ivern and Ionia, and a sweep of every legend BASE code for the Ivern tag returns two — UNL-195 and UNL-233, three printings counting UNL-233*, all named Green Father, all Calm/Order, all the same text. 103.2.d.2 keys on the TAG, so either hosts her and the conclusion is the same: a Daisy list is a Green Father list. (Counted by base code, not by grep rows: 104 of the pool's 935 names carry 2 or more base codes.) So a list that plays Daisy plays Green Father, and 103.2.d.1 ('a deck may only contain a sum total of 3 Signature cards') means three Daisy is the deck's entire Signature budget. 103.2.d.3 also forbids her being the Chosen Champion.",
@@ -20143,7 +20143,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Mind + Chaos: OGN-263 Swift Scout, SFD-199 Prodigal Explorer, UNL-197 Scorn of the Moon and VEN-151 Soul's Reflection all hold both (103.1.b.2). Blast Cone is mono-Chaos (103.1.b.3).",
+          "UNL-198 Moonfall is a SIGNATURE card tagged Diana, so 103.2.d.2 forces a Diana legend that also covers chaos + mind: UNL-197 Scorn of the Moon — the only one. Domain-legal legends without the Diana tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Diana Signature card.)",
           "A garrison of your own at the destination battlefield — Moonfall's own condition, and what makes the combat one-sided."
         ],
         "notable": [
@@ -21261,7 +21261,7 @@
           "Nothing has to be held and no battlefield of yours is needed."
         ],
         "notable": [
-          "These two are the only cards in the pool that key on simply CARRYING a buff rather than on granting or spending one, which is what the synergy rule found and no earlier buff rule had. Every other buff card in the catalogue is written from the granter's side.",
+          "These two are the only two \"While I'm buffed\" STATICS in the pool — a static on the carrier itself; four other cards read a buff being carried, but as a count, a grant or a replacement rather than a static on the carrier (OGN-240 Sett, Kingpin counts buffed units, OGN-063 Spirit's Refuge grants them [Deflect], OGN-228 Vanguard Helm and OGN-269 The Boss react to a buffed unit dying) (#167 precision, 2026-09-07), which is what the synergy rule found and no earlier buff rule had. Every other buff card in the catalogue is written from the granter's side.",
           "702.3 is why this is a STATIC bonus and never an engine: 'There can only be one Buff on a Unit at a time', so one buff per body turns the bonus fully on and a second does nothing. Two bodies is two turns of the legend's ability and then it is done — the legend is free to buff something else afterwards.",
           "The buff persists. 702.2.a: 'To Buff a Unit, a player chooses a Unit and then places a buff on it. That Unit is Buffed for as long as the buff remains on it.' So the E1 is paid once per body, not per turn. 705 removes it only when the unit leaves play.",
           "Do NOT spend these buffs. The other Order and Calm buff lines in the catalogue — OGN-207 Call to Glory, OGN-230 Albus Ferros, SFD-101 Fae Dragon — pay you for spending a buff (702.2.b), and spending is exactly what switches these two off. The two uses are exclusive, and a deck has to pick one.",
@@ -23242,7 +23242,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Calm + Mind: UNL-189 Bashful Bloom and SFD-189 Fire Below the Mountain both hold it (103.1.b.2). Every card here is Mind except Shurelya's, which is Calm/Mind.",
+          "SFD-192 Shurelya's Requiem is a SIGNATURE card tagged Ornn, so 103.2.d.2 forces a Ornn legend that also covers mind + calm: SFD-189 Fire Below the Mountain — the only one. Domain-legal legends without the Ornn tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Ornn Signature card.)",
           "Two battlefields on the table, which is what a Duel gives (485.4), and the Swains ready at Awaken."
         ],
         "notable": [
@@ -25016,7 +25016,7 @@
       ],
       "prerequisites": {
         "easy": [
-          "Arise! is a Calm/Order card and Renata is mono-Order, so the identity is Calm/Order — OGN-261 Radiant Dawn, SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father, VEN-147 Eye of Twilight."
+          "SFD-198 Arise! is a SIGNATURE card tagged Azir, so 103.2.d.2 forces a Azir legend that also covers calm + order: SFD-197 Emperor of the Sands — the only one. Domain-legal legends without the Azir tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Azir Signature card.)"
         ],
         "notable": [
           "THE SPELL'S OWN SECOND SENTENCE IS THE MEASURE OF WHAT RENATA IS WORTH HERE. 'Ready up to two of them' exists because 143.4 makes units enter exhausted; 143.4.a admits the alteration and R25 = A (ruled 2026-09-04) settles that Renata's replacement beats a card's own wording about how a token enters. So with her on the board every Sand Soldier is ready, and the spell's readying clause becomes dead text rather than the cap.",

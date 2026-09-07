@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { loadCardIndex, loadCombos } from "../src/load.js";
 import { poolOf } from "../src/builder.js";
+import { championTagOf } from "../src/build.js";
 import type { Domain } from "../src/types.js";
 
 /**
@@ -35,6 +36,38 @@ describe("the legends an entry names can actually hold its cards (103.1.b)", () 
       }
     }
     expect(checked, "no legend base code found in any prerequisites.easy line — the regex or the field changed").toBeGreaterThan(50);
+    expect(bad, bad.join("\n")).toEqual([]);
+  });
+
+  /**
+   * #167: a Signature card in `uses[]` turns the legend line into a ONE-LEGEND field. 103.2.d.2 makes
+   * every Signature card carry the legend's champion tag, so a domain-correct list of legends can
+   * still be mostly illegal — an entry named four Mind/Chaos legends for three Moonfall (Diana), of
+   * which one was legal; another said "a Calm/Order legend" for Daisy! (Ivern), admitting six of eight.
+   */
+  it("names no legend that lacks the champion tag of a Signature card the entry uses (103.2.d.2)", () => {
+    const bad: string[] = [];
+    let checked = 0;
+    for (const combo of combos) {
+      const tags = new Set<string>();
+      for (const u of combo.uses) {
+        const card = cards.get(u.card);
+        if (!card?.signature) continue;
+        const tag = championTagOf(u.card, cards);
+        if (tag) tags.add(tag);
+      }
+      if (!tags.size) continue;
+      for (const line of combo.prerequisites.easy) {
+        for (const m of line.matchAll(CODE)) {
+          const base = m[1]!;
+          if (!legendBases.has(base)) continue;
+          checked++;
+          const legendTag = championTagOf(base, cards);
+          for (const tag of tags) if (legendTag !== tag) bad.push(`${combo.id}: ${base} is not a ${tag} legend, and the entry uses a ${tag} Signature card`);
+        }
+      }
+    }
+    expect(checked, "no entry with a Signature card names a legend base code in prerequisites.easy").toBeGreaterThan(0);
     expect(bad, bad.join("\n")).toEqual([]);
   });
 });
