@@ -149,3 +149,132 @@ contend.
   many cards move (already the content of `jinx-rebel-discard-event-ready`). It is two Mask Mother
   triggers, because each copy has its own ability — that asymmetry is the whole of
   `mask-mother-scrapyard-champion`.
+
+## 3. Batch 2 — the stun family (rows 7, 8 and 9), eight entries
+
+The stun lens was swept once (#61) and its bounds still hold: 423.1.a.1 plus 423.1.a.2 mean no stun
+engine can be INFINITE, no card pays points for a stun, and the lens is Calm + Order. What #61 did
+not do is price the individual pairs, and three rules do most of the work here.
+
+**423.1.b vs 423.1.c.** "A Stunned Unit does not contribute its might to damage in the combat damage
+step" — but "must still have damage applied to it equal to, or greater than, its full might value to
+be killed". A stun mutes; it never softens. Every entry below is priced on the muting.
+
+**381 vs 383.3.c**, the split from §1. `OGN-072 Solari Shrine`'s "you may exhaust this to draw 1"
+hangs off a *trigger*, so 383.3.c puts it on the Chain on either player's turn; `UNL-194 Shadow`'s
+identical-looking exhaust sits in an *Activated* ability and reaches the opponent's turn only because
+it carries [Action] (806.1.b).
+
+**811.1.b's tail**, which no entry had quoted: "*Beginning on the next turn, this gains [Reaction]*
+and you may play this, ignoring its base cost." Every hidden card — unit, gear or spell — is a
+[Reaction] card once it is face down.
+
+### 3.1 `eclipse-herald-thwonk-repeat-two-stuns` — OGN-059 + SFD-040
+
+820.1.b gives exactly one extra execution; 820.2.a permits a different choice and 423.1.a.1 *forces*
+one, so two attacking units are muted and the Herald takes **two** triggers (+2 Might, defending at
+9). Both readies are dead (144.1.b, 381, and combat's indifference to exhaustion). Four Energy, all
+of it off runes held ready through your own turn (167, 415.3.a, 164.2.a).
+
+### 3.2 `eclipse-herald-nami-headstrong-delayed-ready` — OGN-059 + UNL-052 (in zero entries)
+
+**The exception to a standing project rule, and it is swept.** "A Hold-triggered ready is a no-op"
+because 315.1.b readies everything in the Awaken Phase before 315.2's Scoring Step. `UNL-052 Nami,
+Headstrong` escapes it: her Hold arms a *delayed* effect — "the next time you play a unit this turn,
+ready it and [Buff] it" — and a unit is played in **316**, the Main Phase, after 315.2. Sweeping
+`corpus_flat.txt` for `hold` ∩ `ready` returns five rows and Nami is the only one that produces an
+actual ready: `SFD-027 Dunebreaker` and `UNL-016 Scorchclaw` say "I enter ready" (a play-time
+property, never a ready — 415.1), and `UNL-048 Trevor Snoozebottom` and `UNL-199 Deceiver` play
+tokens that are printed ready.
+
+What it buys is 143.4's cost back: a unit played to base is readied the same turn and
+Standard-Moves into a battlefield immediately — [Accelerate] on one unit a turn for free, plus a real
+702 buff counter (spendable, unlike a "this turn" modifier).
+
+### 3.3 `eclipse-herald-existential-dread-repeat-bounce` — OGN-059 + UNL-134
+
+The mirror of 3.1 on the same trigger card. 820.2.a's "do not have to be the same" is a *permission*,
+so aim the second execution at the **same** unit: 423.1.a.1 makes it already stunned, and the card's
+printed branch returns it to its owner's hand. One Herald trigger instead of two, traded for hard
+removal at 3 Energy + 1 Chaos Power. The bounce beats the stun because 423.1.a.2 clears a stun at
+step 3d of the end-of-turn cleanup anyway.
+
+### 3.4 `vex-mocking-masa-free-tank-arrival` — UNL-055 + VEN-120 (in zero entries)
+
+Masa's stun reaches *any* battlefield, wherever he is played, and Vex's relocation is an **effect**
+move — 420.3.a puts the exhaust cost on the Standard Move alone, and 810.1.c.3 says [Ganking] only
+widens the Standard Move, so no exhaust and no keyword is needed. 190.3.a.1 then applies Contested
+and 464.2.c.1 makes **you** the Attacker: a 5-Might [Tank] enters an enemy battlefield as an attacker
+having paid nothing. If the combat is already open she still joins it — 464.2.c.3.a defers the
+designation to "the Cleanup phase following the action that caused it to become present", 319.8 makes
+a Cleanup Outstanding "After a Move is completed", and 323.2.a assigns it there.
+
+Stated because the card face invites the error: 814.1.c is "*While I am a defender*, I have +X [M]",
+so her [Shield] is worth **nothing** on the offence this entry builds. She is a 5-Might Tank here.
+
+### 3.5 `vex-mocking-blast-cone-drag-and-tank` — UNL-055 + UNL-133
+
+Dragging an enemy body onto a battlefield you control makes **them** the Attacker on **your** turn:
+190.3.a keys Contested on the moved unit's controller ("a Unit controlled by a Player who does not
+currently Control that Battlefield Moves or otherwise becomes present there") and 464.2.c.1 reads
+that, not who caused the move. The Cone then stuns what it just moved, and Vex arrives as a
+*defender* — so here the [Shield] is live and she is 6.
+
+**The entry's own shortfall, up front.** The Cone's two sentences are not one engine: the play trigger
+supplies one enemy move, once; the stun half is a Triggered Ability (383.3.c, any turn; 415.3.a
+readies the gear) that needs some *other* card to move an enemy unit before it has anything to stun.
+447.2's invalid-destination list does not bite — 447.2.a is scoped to "Modes of Play with more than
+two players" and 485.1 puts two on the table.
+
+### 3.6 `vex-mocking-shadow-gloomist-relay` — UNL-055 + UNL-194 + UNL-193 (Shadow in zero entries)
+
+**Caught by running the Signature check before writing the legend line.** `UNL-194 Shadow` is a
+Signature card tagged Vex, so 103.2.d.2 forces the legend, and a sweep of every legend in
+`cards.json` for the Vex tag returns exactly one name: **Gloomist** (UNL-193 / UNL-232). The
+domain-shaped answer — "the three Calm/Chaos legends" — would have been wrong twice over. 103.2.d.1
+then caps the list at three Shadows, which is also how many battlefields need covering.
+
+Shadow is 381's exception: his Activated ability carries [Action], so 806.1.b puts the stun inside the
+opponent's Combat Showdown, and "If you play me to a battlefield, I enter ready" is 143.4.a's
+exception to 143.4, so he acts the turn he lands. Vex teleports onto the battlefield he is defending
+and 815.1.c.2 makes *him* an invalid damage assignment until she has lethal — the Tank protects the
+stunner.
+
+### 3.7 `solari-shrine-vi-peacekeeper-attack-draw` — OGN-072 + UNL-176
+
+One card supplies both halves of a two-part condition: Vi stuns on every attack for free, and her own
+5 Might is the damage that kills the stunned body (465.2.c.3 forces lethal onto one unit; 143.2.a
+kills at Might). One card per turn, no Energy after deployment.
+
+[Ambush] is a *separate* use and does not produce an off-turn stun: 822.1.b lets her land as a
+[Reaction] where you control units, but "When I attack" needs the Attacker designation (464.2.c.3),
+which only your own turn produces.
+
+### 3.8 `solari-shrine-kennen-hidden-defensive-draw` — OGN-072 + VEN-135
+
+811.1.b's tail gives Kennen [Reaction] once he is face down, so a 3-Energy body enters mid-combat on
+the opponent's turn for **zero** Energy — and 811.1.d.2's restriction is the *feature*: a hidden
+card's play-effect targets are confined to the battlefield it was hidden at, which is one you
+control, which on their turn is where their attacker is standing. (This is refuse-bucket C read from
+the other side: the same clause kills a hidden removal on the attacking side, because the battlefield
+you attack is by definition not one you control.) His own static makes him a 4-Might defender while
+the stun lasts, the attacker dies, and the Shrine draws — on the opponent's turn, which 383.3.c
+permits and 381 would have forbidden had the same words sat in an Activated ability.
+
+### 3.9 Refusals from batch 2
+
+- **`OGN-157 Udyr, Wildman` + `OGN-261 Radiant Dawn` as a buff/stun loop** — refused twice over. Radiant
+  Dawn ("When you stun one or more enemy units, buff a friendly unit") is the pool's only buff-on-stun
+  card and is **Calm/Order**, while Udyr ("Spend my buff: … • Stun a unit at a battlefield") is
+  **Body**: 103.1.b.4 admits no card whose domain the identity lacks, and no legend has three domains.
+  Even inside one identity the loop is capped at one execution a turn by Udyr's own "Choose one you've
+  not chosen this turn", and 702.3 stops the buff stacking.
+- **`OGN-220 Facebreaker` as a Solari Shrine enabler** — refused on wording. It stuns "a friendly unit
+  and an enemy unit at the same battlefield", and the Shrine pays only for killing "a stunned **enemy**
+  unit", so the friendly half is pure drawback. It stays useful in
+  `solari-chief-facebreaker-shrine-kill`, where the enemy half is what is being bought.
+- **Any stun as a route to a kill** — refused as a class: 423.1.c keeps the stunned unit's *full*
+  Might as the bar for killing it, so a stun never lowers the price of removal. Every entry above
+  prices the stun as muting (423.1.b), never as softening.
+- **A stun applied on the opponent's turn carried into your own attack** — refused: 423.1.a.2 clears
+  the status "during step 3d of the end of turn cleanup", so nothing survives the turn boundary.
