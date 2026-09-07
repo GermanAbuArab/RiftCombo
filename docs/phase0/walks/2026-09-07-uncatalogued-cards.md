@@ -767,3 +767,146 @@ for `prodigal-explorer-two-choices-draw`.
 28. **OGN-294 Trifarian War Camp is the only Colourless answer to the 1-Might-per-body problem**
     (Soul Shepherd is Mind, Kinkou Temple needs [Tank]) — and 485.4.a + 103.4.c mean it can never
     share a board with the Grand Plaza.
+
+---
+
+# Batch 7 — the last of the battlefields: four entries and seven refusals
+
+## 21. Entries staged (batch 7, four)
+
+| id | class | cards | what it is |
+|---|---|---|---|
+| `ornns-forge-jax-free-equipment` | ENGINE | SFD-213, SFD-054, SFD-033 | the two costs an Equipment has, paid by one card each |
+| `sunken-temple-mighty-conquer-draw` | ENGINE | SFD-218, OGN-142 | a card per Conquer, gated on 5+ Might |
+| `protective-sands-few-runes-fury` | ENGINE | VEN-162, VEN-016, VEN-001 | three Fury cards on one "four or fewer runes" clause |
+| `candlelit-sanctum-known-next-draw` | ENGINE | OGN-291 | choose which of the top two you draw next |
+
+With batch 7 the catalogue reaches **904 variants, 143 of them multi-entry routes through this
+walk's entries** — almost all of them through the `conquer-engine` producer/consumer link that
+nothing had used before batch 1.
+
+### 21.1 An Equipment has TWO costs, and Ornn's Forge plus Jax pay one each
+
+818.1 makes Equip a separate Activated Ability with its own cost, so an Equipment normally costs its
+Energy to **play** and then its [Equip] cost to **attach**. **SFD-213 Ornn's Forge** (*"the first
+friendly non-token gear played each turn costs 1 Energy less"*) zeroes the first on any E1 gear
+(356.6 floors it at 0), and **SFD-054 Jax, Unmatched** (*"Your Equipment everywhere have
+[Quick-Draw]"*) deletes the second entirely — **819.1.d** makes Quick-Draw *"'[Reaction]' and 'When
+you play this, attach it to a Unit you control'"*, so the attach is part of the play trigger and no
+Equip cost is ever determined, and **819.1.c** permits *"cards to be played and Attached using
+Reaction timing"*.
+
+On **SFD-033 Doran's Shield** ([Effect] [Tank]) that is a free, Reaction-speed [Tank] grant every
+turn — a second route to the 815.1.c.2 damage redirect this walk built with a legend's exhaust in
+`eye-of-twilight-zephyr-sage-tank-redirect`. The two are alternatives; both entries say so.
+
+The pool has **six E1 Equipment, one per domain** — SFD-009 Serrated Dirk (Fury), SFD-033 Doran's
+Shield (Calm), SFD-073 Experimental Hexplate (Mind), SFD-108 Warmog's Armor (Body), SFD-134 Cull
+(Chaos), SFD-153 Eye of the Herald (Order) — named so the count is refutable in one grep.
+
+### 21.2 A `needs` feature tag cannot carry an extra condition
+
+**SFD-218 Sunken Temple** conquers *"with one or more [Mighty] units"*. `needs: [conquer-engine]`
+composes it with every producer of that feature — including this walk's own
+`sprite-queen-targon-peak-conquer-cycle`, whose conquering body is a **3-Might Sprite** and which
+therefore satisfies the tag and fails the card. Stated in the entry rather than left to be
+discovered. (709 also matters: Mighty is a **state**, not the *"becomes Mighty"* event, whose own
+worked example says a Might-5 unit getting +1 does not become Mighty.)
+
+### 21.3 The Candlelit Sanctum refines a standing project finding
+
+The deck-manipulation survey concluded *"no deck-manipulation card in the pool turns a draw
+probability into a certainty"*, on 416.1.a/416.5 sending recycled cards to the bottom. That holds
+for tutoring a **named** card. **OGN-291 The Candlelit Sanctum** — *"look at the top two … You may
+recycle one or both … Put those you don't back in any order"* — is the one card that refines it:
+recycle one and the other is on top **by your choice**, so 315.4.b draws a known card. Not a tutor;
+a chosen next draw. And 431.1.c makes it safe with the deck empty, where 431.1.a (draw) and
+431.1.b (mill) are not.
+
+## 22. Seven refusals, each with the paragraph that kills it
+
+**OGN-287 Sigil of the Storm** — *"When you conquer here, you must recycle one of your runes. (This
+doesn't choose anything.)"* A mandatory drawback with no payoff attached, and it cannot even be
+turned into one: 470 caps the Conquer at one per battlefield per turn, so it removes at most **one**
+rune a turn, while 315.3.b channels **two** back every Channel Phase — it can never drive your rune
+count down to feed a "four or fewer runes" clause. Its only positive use, refilling the Rune Deck
+for a `channel N` payoff, is something 161.2.b already does for free every time you recycle a rune
+for Power (164.2.b, no exhaust). And the project has already recorded that the Sigil's recycle is an
+instruction, not the rune's own 164.2.b ability, so **no Power is added for it**.
+
+**SFD-209 Forgotten Monument** — *"Players can't score here until their third turn."* Perfectly
+symmetric, with no payoff attached to either side, and 054.1's "can't beats can" makes it absolute
+against your own scoring as well. A battlefield slot (485.4.a: one of your three) buys a two-turn
+delay for both players. Any argument for it is a metagame claim about being the slower deck, not a
+rules interaction, and the catalogue is built on the latter.
+
+**SFD-216 Rockfall Path** — *"Units can't be played here."* Refused for symmetry, but the inventory
+is worth keeping because 054.1 makes it **absolute**: at that battlefield it closes 355.2.a's
+default play location, every 355.2.b granted permission (the "play me to an open battlefield" cards,
+VEN-157 Dragon Roost, SFD-093 Dauntless Vanguard), [Ambush] (822.1.b), the fifteen [Hidden] **units**
+(811.1.c.1 still lets you *hide* there, you simply can never *play* what you hid), and
+UNL-044 Flurry of Feathers' four Birds. It closes all of that for **you** as well, and everything
+can still walk in under 144.4.a, so it delays rather than denies. A deck with no Reaction-speed
+bodies of its own gets a one-sided version of this — that is a real deck, but it is a deck this
+walk cannot name a payoff card for, so it is recorded rather than staged.
+
+**SFD-217 Seat of Power** — *"When you conquer here, draw 1 for each other battlefield you or allies
+control."* Arithmetic: **485.4** puts two battlefields on a Duel table, so *"each other battlefield"*
+is at most **one** and the card is a strictly worse Monastery of Hirana. It scales only in 2v2,
+where **489.4** sets the Battlefield Count at 3 (489.5.b: the first player's are removed), giving at
+most 2 — and 489.8's two independent decks mean a team line cannot be represented by `matchDeck`,
+which reads one list. Refused for Constructed on the count.
+
+**SFD-219 The Papertree** — *"When you hold here, each player channels 1 rune exhausted."* Two
+strikes. The rune arrives **exhausted** and the Hold is at 315.2.b, after 315.1's Awaken has already
+run, so 315.1.b will not ready it until your *next* turn; and any Power it could pay in the
+Beginning Phase is emptied by 167 at the start of your Main Phase. That is the project's standing
+Startipped Peak verdict, and the Papertree adds a second strike the Peak does not have: *"each
+player"*, so the opponent gets the same rune.
+
+**UNL-206 Altar of Blood** — *"If a unit here would die during combat, its controller may pay
+:rb_rune_rainbow::rb_rune_rainbow::rb_rune_rainbow: to heal it, exhaust it, and recall it instead."*
+Three separate costs on one clause. (1) Three rainbow Power. (2) It is a would-die replacement, so
+**808.1.d.1** removes the saved permanent's Deathknell from the chain — the body never reaches the
+Trash. (3) **455** makes a Recall a relocation *"from anywhere to its Base"*, so the saved body
+**leaves the battlefield**, and **323.6** then strips your Control of it at the next Cleanup — you
+pay three Power to lose the battlefield you were defending, and 458 brings it home exhausted. Also
+symmetric ("its controller"). Refused.
+
+**VEN-161 Piltovan Forge** — *"the first friendly gear activated ability played each turn costs
+:rb_energy_1: less."* Not worthless, but thin, and measured: **every [Equip] cost in the pool that
+contains Energy also contains a rune** (six of them, all `E1 + one domain rune`, plus UNL-188
+Hextech Gauntlets at E3 + rainbow whose Energy 356.6 already floors at 0 on a 3+ Might body), so the
+Forge can **never zero an attach** — it always leaves the rune. Its real use is the handful of bare
+`E1, exhaust` gear abilities, at 1 Energy a turn. And it competes for the single battlefield slot
+(485.4.a) with two cards that do strictly more for gear: SFD-213 Ornn's Forge zeroes an E1
+Equipment's whole play cost, and SFD-208 Forge of the Fluft pays an entire [Equip] cost including
+its Power and chooses the carrier. Recorded as thin rather than staged.
+
+## 23. Standing notes for CLAUDE.md (batch 7)
+
+29. **An Equipment has TWO costs** — 818.1's Equip is a separate Activated Ability from the card's
+    play cost. SFD-213 Ornn's Forge zeroes the play cost of one E1 gear a turn; [Quick-Draw]
+    (819.1.c/819.1.d) deletes the attach cost entirely and does both at Reaction speed. **Every
+    [Equip] cost in the pool that contains Energy also contains a rune** (six, all `E1 + one domain
+    rune`, plus Hextech Gauntlets), which is why a 1-Energy rebate can never free an attach.
+30. **A `needs` feature tag cannot carry an extra condition.** SFD-218 Sunken Temple needs a 5+ Might
+    conqueror, and `sprite-queen-targon-peak-conquer-cycle` satisfies `conquer-engine` with a
+    3-Might Sprite. Read the card's condition, not the tag.
+31. **OGN-291 The Candlelit Sanctum is the one card that chooses your next draw**, which refines
+    (does not contradict) the standing "no card turns a draw probability into a certainty" finding:
+    it cannot tutor a named card, but recycling one of the top two leaves the other on top by your
+    choice. 431.1.c keeps it safe with the deck empty where 431.1.a and 431.1.b are not.
+32. **"Four or fewer runes" is gameable and "fewer runes than an opponent at the start of your
+    Beginning Phase" is not** — 164.2.b's cost is the recycle, so already-tapped runes can be dumped
+    for Power in your Main Phase, while the sibling clause is read at 315.2.a before 315.3.b
+    channels two. The family is Fury and is exactly VEN-001, VEN-016, VEN-162 (gameable) and
+    VEN-005, VEN-006 (not). The cost the timing-choice reading glosses over: 315.3.b rebuilds at two
+    a turn, so every rune dumped is two Channel Phases.
+33. **Refused this batch, with the paragraph in each case** (§22): OGN-287 Sigil of the Storm
+    (470 vs 315.3.b), SFD-209 Forgotten Monument (symmetric, 054.1), SFD-216 Rockfall Path
+    (symmetric; inventory of what 054.1 makes it close is worth keeping), SFD-217 Seat of Power
+    (485.4 makes "each other battlefield" at most one), SFD-219 The Papertree (315.1 before 315.2,
+    plus 167, plus "each player"), UNL-206 Altar of Blood (808.1.d.1 + 455 + 323.6 — three costs on
+    one clause, and it loses you the battlefield), VEN-161 Piltovan Forge (thin: no Energy-bearing
+    [Equip] cost lacks a rune).
