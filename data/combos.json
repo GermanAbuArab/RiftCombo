@@ -24976,6 +24976,232 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 23). svellsongur-yasuo-remorseful-sweep's own terminatesIn is 'engine — repeatable removal; it scores nothing except by clearing a garrison so the Conquer happens', and the card that pays for that Conquer was never named. It is Nasus, and mono-Calm, so the pairing costs one card. This is also the answer to issue #155's refusal 2, which refused the whole repeatable-removal group because OGN-034 Tryndamere is a threshold rather than a scale: that is true, and it is beside the point — a removal engine converts through the CONQUER, not through Might, and the bloodless conquer it produces is precisely what switches Tryndamere off (465.1 assigns nothing, so R28 = A yields zero excess). Quantities: one Svellsongur is chosen deliberately over the source entry's three, because 2^v instances at 6 damage each clear a garrison of two, which is what a Duel garrison usually is; the scaling is stated rather than bought. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.b, 144.2, 144.3/144.3.a/144.3.c, 144.4/144.4.a.1, 194.1.c, 316.8.b.1, 348.2.a.1, 359.3.f/359.3.f.2, 383.4.e, 434.1.c, 441.2, 461, 464.2.c.3, 465.1, 465.2.c.4, 466.3.a, 466.5/466.5.d, 469.1, 470, 471.1/471.1.a.1, 476.1, 477.2.c, 485.4, 807.1.d and 818.1 opened and read. Ban check: none of OGN-076, SFD-059 or VEN-046 carries a [BANNED marker, and none is a Signature card. Trap check: the attack is real, so 807.1.d/383.4.e/461 are satisfied rather than dodged; no [Temporary]; no [Repeat]; no token; no recall; no rune recycled; Svellsongur is M+0 so 709's 'becomes Mighty' event never fires from the attach. Depends on R2 = A, R6 = A and R28 = A, and on no open reading."
+    },
+    {
+      "id": "arise-renata-all-ready",
+      "name": "Arise! × Renata Glasc, Industrialist — every Sand Soldier enters ready, not two",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-198",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm/Order spell, E6 P1. 'Play a 2 Might Sand Soldier unit token for each Equipment you control. Then do this: Ready up to two of them.'"
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order unit, E4 P1 M4. 'Your tokens enter ready.' R25 = A — her line rewrites how a token enters, so the spell's own 'ready up to two' becomes redundant."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Arise! is a Calm/Order card and Renata is mono-Order, so the identity is Calm/Order — OGN-261 Radiant Dawn, SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father, VEN-147 Eye of Twilight."
+        ],
+        "notable": [
+          "THE SPELL'S OWN SECOND SENTENCE IS THE MEASURE OF WHAT RENATA IS WORTH HERE. 'Ready up to two of them' exists because 143.4 makes units enter exhausted; 143.4.a admits the alteration and R25 = A (ruled 2026-09-04) settles that Renata's replacement beats a card's own wording about how a token enters. So with her on the board every Sand Soldier is ready, and the spell's readying clause becomes dead text rather than the cap.",
+          "WHY READY MATTERS AT ALL, PRECISELY: 144.2 makes exhausting the unit the cost of the Standard Move, so an exhausted token cannot walk on the turn it is made — #48's bottleneck — and 144.3 lets any number of READY units move as ONE game action to a shared destination (144.3.a). Six Sand Soldiers made and walked to a battlefield in the same Main Phase is the difference between this and the printed card.",
+          "THE COUNT IS YOUR EQUIPMENT COUNT, which is why this belongs in a gear shell rather than a token shell. Three Svellsongur (SFD-059) is three Soldiers; add three Trinity Force (SFD-115) and it is six. Both are Equipment by tag and both are already the engines of other entries, so the Sand Soldiers are a second product from a board you were building anyway.",
+          "They are 2 Might each, not 1 — better than a Recruit and worse than a Mech — so a garrison of six is 12 Might, which 465.2.c prices at 12 damage with 465.2.c.3 forcing lethal one body at a time.",
+          "Six Energy and 1 Power for the spell plus Renata's 4 Energy and 1 Order Power, and 103.2.b caps the spell at three casts a game. This is a burst of bodies, not an engine that ticks — its produces is token-body-engine because that is the vocabulary for what it hands to a consumer, not a claim that it repeats.",
+          "Sibling: arise-sand-soldiers-plaza runs the same spell into The Grand Plaza with Eye of the Herald and Desert's Call and does not carry Renata at all. This row is the Renata half on its own, so a deck that already has her does not have to buy the whole Plaza package to use it."
+        ]
+      },
+      "steps": [
+        "Have Renata Glasc, Industrialist on the board (4 Energy + 1 Order Power) and a spread of Equipment you control.",
+        "Cast Arise! (6 Energy + 1 Power). It plays one 2-Might Sand Soldier unit token for each Equipment you control.",
+        "Every one of them enters READY (Renata, R25 = A), not just the two the spell would have readied — 143.4.a admits the alteration of 143.4.",
+        "Standard-move all of them to one battlefield as a single game action (144.3, 144.3.a, 144.4.a). No Energy is paid; 144.2 charges only their exhaust, which they can now afford.",
+        "Hand the garrison to whatever consumes bodies — a Conquer, a Plaza, or a sacrifice outlet."
+      ],
+      "terminatesIn": "engine — one 2-Might ready body per Equipment you control, three times a game",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule renata-industrialist-tokens (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-198 was an uncatalogued partner of renata-industrialist-tokens (73 partners, 5 entries). Card text verbatim from data/corpus_flat.txt; 103.2.b, 143.4, 143.4.a, 144.2, 144.3, 144.3.a, 144.4.a, 465.2.c and 465.2.c.3 opened in the Core Rules file. Stands on R25 = A (ruled 2026-09-04); no new reading. The entry is written around the one thing that makes this pairing worth a row rather than a note: Arise! is the only token maker in the pool whose own text tries to solve the exhausted-token problem and only half solves it, so Renata's replacement is visibly worth the difference."
+    },
+    {
+      "id": "flurry-of-feathers-renata-instant-wall",
+      "name": "Flurry of Feathers × Renata — four ready [Deflect] bodies at Reaction speed",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-044",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E4 P2, [Reaction]. 'Choose one — Counter a spell. / Play four 1 Might Bird unit tokens with [Deflect].'"
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order unit, E4 P1 M4. 'Your tokens enter ready.' R25 = A."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Order — OGN-261 Radiant Dawn, SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father, VEN-147 Eye of Twilight."
+        ],
+        "notable": [
+          "READY MATTERS HERE AND IT DOES NOT MATTER FOR EVERY TOKEN, WHICH IS THE POINT OF THE ROW. A unit token made on the opponent's turn gains nothing from Renata by itself: 144.1.b forbids the Standard Move during a Closed State, and an exhausted defender still fights at its full Might (#61 — 464.2.c.3 and 465.2.b do not filter by state). What ready buys is the FOLLOWING Main Phase before your Awaken has run, and, more importantly here, any ability with an exhaust in its cost. Read that boundary before assuming Renata upgrades a token.",
+          "The Birds' value is the body count and the [Deflect] tax, not their state: 809.1.c makes an opponent pay 1 rainbow Power to choose a [Deflect] unit with a spell or ability and 809.1.c.1 lets that Power be any domain, so four of them is four extra Power for a sweep. 355.2.a names no destination, so they may be played straight to a battlefield you control rather than the base — no walk, which is the half that does not need Renata at all.",
+          "IT IS A MODAL [Reaction], SO THE COUNTER MODE IS THE REAL FLEXIBILITY. 813.1.b gives Reaction every permission of Action, so this can be held all through the opponent's turn and spent either as a counterspell or as four bodies depending on what they do — and 813.1.c.1 lets a Reaction card be played during Closed States on any player's turn. That is what separates it from every other token maker in renata-industrialist-tokens' list, which are all sorcery-speed.",
+          "Four Energy and 2 Calm Power is expensive to hold up, and 167 empties the Rune Pool at the start of YOUR Main Phase and at the end of each player's turn — so the Power has to be banked as runes and paid on their turn with 164.2.a / 164.2.b, both of which are [Reaction] and neither of which needs an exhaust for the Power half (#44's free floor of 2 Power a turn).",
+          "The four Birds are 1 Might each, so 465.2.c prices the wall at 4 damage, and 465.2.c.3 forces lethal one body at a time — four separate assignments, not one sweep. They are chaff that taxes removal, not a defence.",
+          "103.2.b caps it at three casts a game. Sibling entries flurry-of-feathers-grand-plaza-win and keeper-of-masks-flurry-plaza-window use the same spell as a Plaza filler; this row is the Renata half and the instant-speed half, which neither of those states."
+        ]
+      },
+      "steps": [
+        "Have Renata Glasc, Industrialist on the board (4 Energy + 1 Order Power) and hold Flurry of Feathers with 4 Energy and 2 Calm Power available.",
+        "On either player's turn, in any Closed State (813.1.b, 813.1.c.1), choose the second mode: play four 1-Might Bird unit tokens with [Deflect].",
+        "355.2.a lets them enter at a battlefield you control rather than your base, and Renata makes each enter ready (R25 = A) rather than exhausted (143.4).",
+        "They defend that battlefield at once, and each taxes the opponent 1 rainbow Power to be chosen by a spell or ability (809.1.c).",
+        "On your next Main Phase they may walk as one action (144.3) without waiting for Awaken."
+      ],
+      "terminatesIn": "engine — four ready [Deflect] bodies at instant speed, or a counterspell, three times a game",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule renata-industrialist-tokens (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. UNL-044 was an uncatalogued partner of renata-industrialist-tokens. Card text verbatim from data/corpus_flat.txt; 103.2.b, 143.4, 144.1.b, 144.3, 167, 355.2.a, 464.2.c.3, 465.2.b, 465.2.c, 465.2.c.3, 809.1.c, 809.1.c.1, 813.1.b and 813.1.c.1 opened in the Core Rules file. Stands on R25 = A; no new reading. The first notable states the boundary the walk had to establish before writing any Renata row at all: 'enters ready' is worth nothing to a UNIT token made on the opponent's turn, because it cannot move in a Closed State and combat does not read exhaustion — the value is in the following Main Phase and in exhaust costs."
+    },
+    {
+      "id": "chemtech-cask-renata-off-turn-power",
+      "name": "Chemtech Cask × Renata — a Gold that is live Power the moment it appears",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-063",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind gear, E1. 'When you play a spell on an opponent's turn, you may exhaust me to play a Gold gear token exhausted.'"
+        },
+        {
+          "card": "SFD-171",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order unit, E4 P1 M4. 'Your tokens enter ready.' R25 = A — and on a GOLD token that is the whole entry."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Mind and Order — OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-201 Chem-Baroness, UNL-199 Deceiver."
+        ],
+        "notable": [
+          "THE DISTINCTION THIS ROW EXISTS TO RECORD: Renata is worth nothing on a UNIT token made during the opponent's turn, and everything on a GOLD one. A unit cannot Standard-Move in a Closed State (144.1.b) and combat does not read exhaustion (#61), so an exhausted body on their turn is no worse than a ready one. A Gold is the opposite — 187.5 makes it '[Reaction][>] Kill this, [exhaust]: [Add] [rainbow]', so an EXHAUSTED Gold cannot pay its own cost and is dead until your next Awaken (315.1.b). Renata's replacement (R25 = A) turns it into 1 rainbow Power available in the same window it was created.",
+          "AND THAT WINDOW IS THE ONE THE GAME OTHERWISE STARVES. 167 empties every Rune Pool at the start of your Main Phase AND at the end of each player's turn, and 415.3.a readies your objects only during the Awakening Phase on YOUR turn — so a rune exhausted on your own turn is dead for the whole of the opponent's, which is exactly what dark-child-off-turn-reactions is built to fix. This fixes it a different way: the Cask converts an off-turn spell into a Gold, and Renata makes that Gold immediately spendable on the NEXT off-turn spell.",
+          "So it chains: play a [Reaction] on their turn → the Cask's trigger → a ready Gold → kill it for 1 rainbow → put that Power into the next [Reaction]. The Cask's own exhaust caps it at one Gold per turn (315.1.b readies it each Awaken), so the chain is one link long per opponent turn unless a gear-readier is on the board.",
+          "The trigger needs a SPELL played on an opponent's turn, which in practice means the [Reaction] keyword (813.1.c.1) or an [Action] spell inside a Showdown (806.1.b) — not a unit or a gear. Both cards are cheap (1 Energy and 4 Energy + 1 Order Power) and neither does anything on your own turn.",
+          "It is one Power a turn, which against #44's measured free floor of 2 Power a turn is small in absolute terms and large in timing terms: the free floor is your own runes, which are already exhausted when the opponent acts.",
+          "Sibling: chemtech-cask-broker-double-gold pairs the Cask with Black Market Broker for two Gold per off-turn play; that row is about the COUNT, this one is about the STATE. They compose."
+        ]
+      },
+      "steps": [
+        "Have Renata Glasc, Industrialist (4 Energy + 1 Order Power) and Chemtech Cask (1 Energy) on the board, and hold a [Reaction] spell with runes still ready.",
+        "On the opponent's turn, play that spell in a Closed State (813.1.c.1) or inside a Showdown (806.1.b).",
+        "The Cask's trigger fires: exhaust it to play a Gold gear token. Its printed 'exhausted' is overridden — Renata makes it enter READY (R25 = A, and 143.4.a admits the alteration).",
+        "Kill the Gold and exhaust it for 1 rainbow Power (187.5), immediately, in the same window.",
+        "Spend that Power on the next [Reaction] this turn. Repeat next opponent turn; the Cask readies at your Awaken (315.1.b)."
+      ],
+      "netPerIteration": "+1 rainbow Power usable on the opponent's turn, per opponent turn",
+      "terminatesIn": "engine — off-turn Power, which is the only kind 167 and 415.3.a make scarce",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rules renata-industrialist-tokens and dark-child-off-turn-reactions (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-063 was an uncatalogued partner of renata-industrialist-tokens. Card text verbatim from data/corpus_flat.txt; 143.4, 143.4.a, 144.1.b, 167, 187.5, 315.1.b, 415.3.a, 464.2.c.3, 465.2.b, 806.1.b and 813.1.c.1 opened in the Core Rules file. Stands on R25 = A; no new reading. It exists to record a distinction the walk drew while writing the other two Renata rows and which is easy to get backwards: 'enters ready' is worthless on a unit token made in a Closed State and decisive on a gear token whose own ability costs an exhaust."
+    },
+    {
+      "id": "dark-child-abandon-guaranteed-counter",
+      "name": "Dark Child × Abandon — two runes handed back is exactly one counterspell a turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-017",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Chaos legend. 'At the end of your turn, ready up to 2 runes.'"
+        },
+        {
+          "card": "UNL-131",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos spell, E2, [Reaction]. 'Counter a spell. Return it to its owner's hand instead of putting it in their trash. [Predict].'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Dark Child (OGS-017) IS the legend, and Abandon is mono-Chaos, so the identity is satisfied by construction (103.1.b)."
+        ],
+        "notable": [
+          "THE TWO NUMBERS MATCH EXACTLY, WHICH IS THE WHOLE ENTRY. 164.2.a gives every rune '[Energy]: [Reaction] — Add [1]', so two readied runes are two Energy at instant speed, and Abandon costs two Energy and no Power. Dark Child therefore guarantees a counterspell on every opponent turn, for free, whatever you spent your own turn doing.",
+          "WITHOUT HER THE RUNES ARE DEAD AND THE RULES SAY SO IN TWO PLACES. 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn' — so a rune exhausted on your own turn stays exhausted for the whole of the opponent's. 167 empties the POOL and not the runes (#153's correction), so what Dark Child hands back is genuinely spendable then and there.",
+          "COUNTERING BACK TO HAND IS NOT A DRAWBACK YOU CAN IGNORE. 'Return it to its owner's hand instead of putting it in their trash' means the spell is not spent — they may cast it again next turn, and it never reaches the trash, so nothing that keys on a card entering the trash fires. Against a deck built on [Flow] (829.1.b plays from the trash) that is actually an upgrade for you; against a deck that just recasts, it is a tempo tax rather than an answer.",
+          "The [Predict] rider is free value and cannot hurt: 436.1 defines Predict with 'look at', and 431.1.c.1 plus 436.4.a mean looking at or predicting with too few cards in the deck does NOT Burn Out, so it is safe at any deck size.",
+          "Three copies (103.2.b) is three counters a game, which is the real cap — Dark Child funds one per turn but the deck only holds three. The legend costs nothing and is always available, so the honest claim is 'the three counters in your deck are always castable', not 'a counter every turn forever'.",
+          "This is the cheapest instance of dark-child-off-turn-reactions' 62-partner list, and the only one whose cost matches the two runes exactly. Anything dearer needs 164.2.b as well — 'Recycle this: [Reaction] — Add [C]', which carries no exhaust, so an already-exhausted rune still pays Power (#44's free floor)."
+        ]
+      },
+      "steps": [
+        "Dark Child is your legend; keep Abandon in hand.",
+        "Play your own turn out normally, exhausting runes for Energy as you like.",
+        "At the end of your turn her trigger readies up to 2 runes (415.3.a would not have).",
+        "On the opponent's turn, when they cast something worth answering, tap those two runes for 2 Energy (164.2.a, [Reaction]) and cast Abandon.",
+        "Counter the spell; it returns to their hand rather than their trash, and [Predict] looks at your top card. Repeat every turn until the three copies are spent."
+      ],
+      "netPerIteration": "+2 Energy of off-turn mana per turn, which is exactly one Abandon",
+      "terminatesIn": "engine — a counterspell every opponent turn while copies last; it scores nothing",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule dark-child-off-turn-reactions (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. UNL-131 was an uncatalogued partner of dark-child-off-turn-reactions (62 partners, 1 entry). Card text verbatim from data/corpus_flat.txt; 103.2.b, 164.2.a, 164.2.b, 167, 415.3.a, 431.1.c.1, 436.1, 436.4.a and 829.1.b opened in the Core Rules file. No unruled reading. The entry is deliberately modest about its own claim — three copies, not an infinite lock — because dark-child-off-turn-reactions' predicate matches every [Reaction] in the pool and the temptation is to publish 'a free counter every turn forever'."
     }
   ]
 }
