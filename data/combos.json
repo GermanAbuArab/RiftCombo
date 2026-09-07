@@ -35581,6 +35581,339 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07, issue #171 — the first entry to use OGN-294, VEN-109 or VEN-100. Card text verbatim from data/corpus_flat.txt. Illaoi's 'when I score' is unusual wording and the line is deliberately built so that BOTH readings of it give the same answer, rather than filing a reading — the same discipline used for prodigal-explorer-two-choices-draw earlier in this walk. Trap check: 355.2.a is cited so the tokens' birthplace is a rule and not an assumption, which is the whole reason this beats a walked swarm; 143.2.a and Flurry of Blades are named so the 2-Might threshold is justified rather than asserted; the Grand Plaza exclusion is stated with 485.4.a + 103.4.c because a swarm's obvious payoff is a battlefield this one displaces; 185 / 185.1 / 185.2.b / 186.1 / 416.1 / 143.4 are all cited so the tokens are counted, and limited, correctly."
+    },
+    {
+      "id": "syndra-transcendent-existential-dread-three-executions",
+      "name": "820.1.c.2 — a spell that already has [Repeat] and is granted a second instance executes THREE times",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-146",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E6 P1 M6. 'While I'm in a showdown, your spells have [Repeat] :rb_energy_2::rb_rune_chaos:.' In zero entries before this walk."
+        },
+        {
+          "card": "UNL-134",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos spell, E1 P1, [Action], with its OWN '[Repeat] :rb_energy_2:'. '[Stun] an attacking enemy unit. If it's already stunned, return it to its owner's hand instead.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Chaos among its two domains (103.1.b.3) — 16 names: Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
+          "Syndra standing at the battlefield where the Showdown is happening — the entry takes the narrow reading of 'in a showdown', see the second notable.",
+          "5 Energy and 2 Chaos Power available in that window; on the opponent's turn that means runes held ready (167, 415.3.a) or a Seal."
+        ],
+        "notable": [
+          "TWO INSTANCES OF [Repeat] ARE THREE EXECUTIONS, AND THE RULE SAYS SO IN TWO LINES. 820.1.b gives 'a second time' per instance; 820.1.c.2: 'If a spell or ability has more than one instance of Repeat, each Cost may be paid or not paid individually'; 820.1.c.3: 'Each Repeat Cost can be paid only a single time.' So a spell that PRINTS [Repeat] and is GRANTED a second one by Syndra runs its effect three times — once for the base cost and once for each Repeat cost paid. This is the one card in the pool that grants [Repeat], so it is the only way to reach three, and the project's standing line that '[Repeat] gives EXACTLY one extra execution' (820.1.b) is per INSTANCE, not per spell.",
+          "THE ENTRY TAKES THE NARROW READING OF 'IN A SHOWDOWN' AND DOES NOT NEED THE WIDE ONE. 740.2 defines when a unit is 'alone', 'one on one' and 'in combat' (740.2.c: 'occupying a battlefield where combat is ongoing and has a combat designation') and says nothing about a unit being 'in a showdown'; 343.1 defines a Showdown STATE for the turn, not for a unit. The entry therefore assumes the demanding reading — Syndra is at the battlefield where the Showdown is in progress — because that is the one that costs the most to satisfy. A wider reading (any Showdown State, wherever she stands) only adds windows and never removes one, so no reading needs to be filed for the line to stand.",
+          "THE THREE EXECUTIONS ARE NOT INTERCHANGEABLE, AND THE CARD IS WRITTEN FOR IT. 820.2.a: 'Choices made for the additional execution do not have to be the same as the choices made' for the first — a permission, not a requirement. So: execution one stuns attacker A; execution two chooses A again, finds it stunned (423.1.a.1: 'A Stunned Unit can not be Stunned again') and takes the printed branch, returning it to hand; execution three stuns attacker B. One card, one attacker removed outright and a second muted for the combat (423.1.b).",
+          "PRICED WHOLE, AND IT IS NOT CHEAP. 1 Energy + 1 Chaos Power for the spell, 2 Energy for its own [Repeat], 2 Energy + 1 Chaos Power for Syndra's — 5 Energy and 2 Chaos Power, inside the opponent's Combat Showdown, on top of a 6 Energy + 1 Chaos Power body that has to be standing there. 806.1.b is the permission for the spell ([Action] reaches Showdowns on either turn); the Energy is the constraint, and `OGN-204 Seal of Discord` is the natural way to pay the Power half.",
+          "Syndra's grant is a static that applies to EVERY spell you play in that window, so the entry generalises: `SFD-136 Hard Bargain` (Chaos, [Reaction], its own [Repeat] :rb_energy_2:, 'Counter a spell unless its controller pays :rb_energy_2:') becomes a three-execution counter that taxes six. That is a synergy-rule shape — one anchor, every printed-[Repeat] spell as partners — rather than a second entry.",
+          "The companion entry on the other trigger card is eclipse-herald-existential-dread-repeat-bounce, which uses the SAME spell with only its printed [Repeat]: two executions, one stun and one bounce. This one adds the third execution and a second victim."
+        ]
+      },
+      "steps": [
+        "Play Syndra, Transcendent (6 Energy + 1 Chaos Power) at a battlefield you expect to be attacked.",
+        "The opponent attacks it; a Combat Showdown opens and their units gain the Attacker designation (464.2.c.3).",
+        "Play Existential Dread for 1 Energy + 1 Chaos Power (806.1.b). Pay its printed [Repeat] cost of 2 Energy AND Syndra's granted [Repeat] cost of 2 Energy + 1 Chaos Power — 820.1.c.2 lets each be paid individually.",
+        "Execution one: stun an attacking enemy unit.",
+        "Execution two: choose the same unit (820.2.a). It is already stunned (423.1.a.1), so the printed alternative returns it to its owner's hand.",
+        "Execution three: stun a second attacking enemy unit. 423.1.b keeps its Might out of the damage assignment."
+      ],
+      "terminatesIn": "engine — one attacker bounced to hand and a second muted, from one card, for 5 Energy and 2 Chaos Power inside a Showdown; nothing here scores",
+      "netPerIteration": "-1 card, -5 Energy -2 Chaos Power, one attacking unit returned to hand and one silenced",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "820.1.c.2: 'If a spell or ability has more than one instance of Repeat, each Cost may be paid or not paid individually.' 820.1.c.3: 'Each Repeat Cost can be paid only a single time.' 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 820.2.a: 'Choices made for the additional execution do not have to be the same as the choices made' for the first. 423.1.a.1: 'A Stunned Unit can not be Stunned again.' 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 740.2.c: 'A unit is in combat if it is occupying a battlefield where combat is ongoing and has a combat designation.' 343.1: 'The turn is said to be in a Showdown State if a Showdown or Combat is in progress.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, from the uncatalogued Chaos population. UNL-146 Syndra, Transcendent was in ZERO entries; UNL-134 Existential Dread is used by eclipse-herald-existential-dread-repeat-bounce and the card SET here is new. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 167, 343.1, 415.3.a, 423.1.a.1, 423.1.b, 464.2.c.3, 740.2, 740.2.c, 806.1.b, 820.1.b, 820.1.c.2, 820.1.c.3, 820.2.a opened in the Core Rules file. Both cards legal in both formats; neither is Signature. NO READING IS FILED: 'in a showdown' is not defined for a unit anywhere in 740.2, so the entry assumes the most demanding reading (Syndra at the battlefield where the Showdown is in progress) and says so, on the principle that an entry standing on the narrow reading survives either ruling."
+    },
+    {
+      "id": "maduli-the-list-might-gate",
+      "name": "Maduli's move costs a Power and no exhaust, so 'I can't be readied' costs him nothing — and The List opens his gate by shrinking the garrison",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-144",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E7 P1 M6. 'I can't be readied. :rb_rune_chaos:: Move me to an occupied enemy battlefield if my Might is greater than the total Might of enemy units there.' In zero entries before this walk."
+        },
+        {
+          "card": "UNL-138",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Chaos gear, E1. 'As you play this, name a tag. :rb_exhaust:: Give a unit with the named tag -2 :rb_might: this turn.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Chaos among its two domains (103.1.b.3) — 16 names: Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
+          "1 Chaos Power per move, and the named tag chosen when The List is played — one tag per copy, fixed for the game."
+        ],
+        "notable": [
+          "THE DRAWBACK IS FREE, AND THAT IS THE FINDING. 'I can't be readied' looks crippling: 143.4 has him enter exhausted and nothing can ever stand him up, so his Standard Move — whose cost is his own exhaust (144.2, 420.3.a) — is gone for good. But his printed ability's cost is ONE CHAOS POWER and no exhaust, so it is unaffected; and combat does not read exhaustion at all (464.2.c.3 designates by presence, 465.2.b sums Might, neither filters by state, #61). A permanently exhausted 6-Might body that moves by ability is a fully functional attacker.",
+          "AND HE ARRIVES AS THE ATTACKER, REPEATEDLY. The ability is an effect move, so 190.3.a.1 applies Contested and 464.2.c.1 makes you the Attacker; 810.1.c.3 confirms [Ganking] was never needed, since it only widens the Standard Move. There is no once-per-turn clause on the ability, so he moves as often as you can pay — 381 confines that to your own Main Phase in an Open State.",
+          "THE GATE IS A TOTAL, WHICH IS WHY A -2 IS WORTH MORE THAN A +2. 'if my Might is greater than the TOTAL Might of enemy units there' — a garrison of three 3-Might bodies is 9 and shuts a 6-Might Maduli out. The List takes one of them to 1, which is -2 off the total; 477.3.e.2.a applies increases first and decreases LAST, so the reduction always wins the race against a pump, and 143.2.b keeps a floorless reduction honest ('If a unit's Might is ever less than 0, it is treated as 0 when referenced by spells and abilities' — it reads as 0 but is not 0).",
+          "WINNING THE GATE IS WINNING THE COMBAT. The same inequality that lets him in — his Might above their summed Might — is what 465.2.b and 465.2.c read at the damage step, so a legal move is by construction a combat he wins outright unless they reinforce in response.",
+          "THE LIST'S TAG IS NAMED ONCE AND FOR THE GAME. 'As you play this, name a tag' is chosen during the play steps, so a copy that named Poro is dead against a Mech board. Three copies (103.2.b) is three tags; the -2 is once per turn per copy (the exhaust, readied by 415.3.a), and it lasts only 'this turn', which is fine because Maduli's gate is checked as the ability resolves.",
+          "381 also means neither half reaches the opponent's turn: The List carries no [Action] or [Reaction], and neither does Maduli's move. This is a Main Phase engine, and the opponent gets a full turn to rebuild the garrison in front of him."
+        ]
+      },
+      "steps": [
+        "Play The List (1 Energy), naming a tag the opponent's deck is built on.",
+        "Play Maduli the Gatekeeper (7 Energy + 1 Chaos Power). He enters exhausted (143.4) and can never be readied — which costs him nothing.",
+        "In your Main Phase, exhaust The List: give an enemy unit with the named tag -2 Might this turn (477.3.e.2.a applies the decrease last).",
+        "Check the gate: Maduli's 6 against the enemy garrison's new summed Might.",
+        "Pay 1 Chaos Power and move him to that battlefield. 190.3.a.1 applies Contested; 464.2.c.1 makes you the Attacker.",
+        "The combat resolves on the same inequality the gate tested (465.2.b, 465.2.c), so he wins it unless they reinforce."
+      ],
+      "terminatesIn": "engine — one gated attack per Chaos Power, every Main Phase, with The List shaving 2 off the garrison once a turn; nothing here scores by itself",
+      "netPerIteration": "-1 Chaos Power, one enemy garrison entered by a 6-Might attacker whose Might exceeds their total",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "144.2: 'Exhausting the Unit is the Cost for this action.' 420.3.a: 'The Cost is Exhausting one or more Units.' 143.4: 'Units enter the Board exhausted.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status...' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the [Battlefield].' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 477.3.e.2.a (increases apply first, decreases last). 143.2.b: 'If a unit's Might is ever less than 0, it is treated as 0 when referenced by spells and abilities.' 465.2.b: 'Sum the Might of all Defending Units.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. UNL-144 Maduli the Gatekeeper and UNL-138 The List were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 143.2.b, 143.4, 144.2, 190.3.a.1, 381, 415.3.a, 420.3.a, 464.2.c.1, 464.2.c.3, 465.2.b, 465.2.c, 477.3.e.2.a, 810.1.c.3 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The first notable is the reusable half: a printed 'I can't be readied' only costs a unit what its EXHAUST would have bought, and a unit whose abilities have no exhaust in their costs loses nothing at all."
+    },
+    {
+      "id": "downwell-crescent-guardian-reset-and-redeploy",
+      "name": "Downwell empties the board, so 344.2 hands the first body back a Conquer with no combat — and twelve runes pay for both halves exactly",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-147",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E8 P2. 'Return all units and gear to their owners' hands.' In zero entries before this walk."
+        },
+        {
+          "card": "UNL-122",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos unit, E4 M4. 'If you've played a spell this turn, you may pay :rb_rune_chaos: as an additional cost to play me. If you do, I enter ready.' Downwell is the spell that switches the clause on. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Chaos among its two domains (103.1.b.3) — 16 names: Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
+          "Twelve runes on the board — see the last notable; this is a late-game turn and the arithmetic is exact, not approximate."
+        ],
+        "notable": [
+          "AN EMPTY BOARD IS A FREE CONQUER, AND THE TWO PARAGRAPHS ARE DIFFERENT ONES. 323.9 stages a Combat only 'at each Battlefield that Contested was applied to that have Units present controlled by opposing players' — after Downwell there are none, so no combat opens. 344.2 covers it instead: 'If Control of a Battlefield is Contested, there aren't units controlled by different players there, and the turn is in a Neutral Open State, a Showdown is opened during the next Cleanup', and 348.2.a establishes Control at its close with 348.2.a.1 saying outright 'This results in a Conquer'. So the first body to walk in scores, with no damage step and no attack trigger.",
+          "AND DOWNWELL IS WHAT MAKES THE BATTLEFIELDS OPEN. 323.6 / 190.4.c strip a player's Control the moment their last body leaves, so returning every unit to hand leaves both battlefields unoccupied and uncontrolled at the next Cleanup — 170.11.c's definition of open, both conditions, not just the second.",
+          "THE GUARDIAN IS THE FASTEST BODY BACK, AND 'I ENTER READY' IS NOT A READY. Downwell is itself the spell his clause asks for, so the extra Chaos Power is always payable on this turn. 143.4.a's 'or similar game effects' is the exception to 143.4 that lets him enter ready; 415.1 is why that is a play-time property and not a ready (nothing is being marked), which matters only if something else wanted to ready him. What it buys is 144.2's exhaust available at once, so he Standard-Moves to an open battlefield the same turn (144.4).",
+          "'RETURN ALL UNITS AND GEAR' TARGETS NOTHING. 355.10.d makes a programmatically selected set a non-target, so [Deflect] never charges (809.1.c, 809.1.d) and `SFD-105 Ruin Runner`'s 'can't be chosen by enemy spells and abilities' does not save it. It is symmetric, including your own Equipment, which detaches with its carrier.",
+          "TWELVE RUNES PAY FOR THE WHOLE TURN, EXACTLY. 161.2.a caps the Rune Deck at 'Exactly 12 Rune cards'. Exhaust all twelve for 1 Energy each (164.2.a) — that is the 12 Energy the two cards cost together (8 + 4). Then recycle three of those ALREADY EXHAUSTED runes for 1 Power each: 164.2.b is 'Recycle this: [Reaction] — [Add] [C]' with no exhaust in its cost, so a spent rune still pays. Three Power covers Downwell's 2 and the Guardian's 1. The line is affordable on the exact turn the twelfth rune lands and not before, and 161.2.b sends those three to the Rune Deck rather than the Main Deck.",
+          "The cost of the reset is your own board too. This is a card for the turn you are behind and holding a Crescent Guardian: everything goes to hand, they must re-spend their Energy from scratch, and you take the first battlefield for free while they do."
+        ]
+      },
+      "steps": [
+        "Reach twelve runes (161.2.a) and hold Downwell and Crescent Guardian.",
+        "Exhaust all twelve runes for 12 Energy (164.2.a) and recycle three of the spent ones for 3 Power (164.2.b — no exhaust in that cost).",
+        "Cast Downwell (8 Energy + 2 Chaos Power): all units and gear return to their owners' hands, targeting nothing (355.10.d).",
+        "At the next Cleanup, 323.6 and 190.4.c leave both battlefields uncontrolled and unoccupied — open by 170.11.c.",
+        "Play Crescent Guardian (4 Energy) paying the extra Chaos Power; Downwell satisfies 'if you've played a spell this turn', so he enters ready (143.4.a).",
+        "Standard-Move him to an open battlefield (144.2, 144.4). With no opposing units there, 323.9 stages no Combat; 344.2 opens a Showdown at the next Cleanup and 348.2.a.1 makes the resulting Control a Conquer."
+      ],
+      "terminatesIn": "engine — a full board reset and one uncontested Conquer on the same turn, for twelve runes' worth of Energy and Power; the Conquer is a point but the line reaches no further",
+      "netPerIteration": "-2 cards, -12 Energy -3 Power, both boards returned to hand, one battlefield conquered with no combat",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "323.9: 'Mark a Combat as Staged at each Battlefield that Contested was applied to that have Units present controlled by opposing players.' 344.2: 'If Control of a Battlefield is Contested, there aren't units controlled by different players there, and the turn is in a Neutral Open State, a Showdown is opened during the next Cleanup.' 348.2.a / 348.2.a.1 ('This results in a Conquer'). 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 170.11.c: 'Battlefields can be \"open.\" This means they are unoccupied and uncontrolled.' 143.4.a: 'This can be altered by Accelerate or similar game effects.' 355.10.d (a programmatically selected set is not a target). 161.2.a: 'Exactly 12 Rune cards chosen during Deck Construction.' 164.2.a: '[E]: [Reaction] — Add [1].' 164.2.b (Recycle this: [Reaction] — Add [C], with no exhaust in the cost)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. SFD-147 Downwell and UNL-122 Crescent Guardian were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 143.4, 143.4.a, 144.2, 144.4, 161.2.a, 161.2.b, 164.2.a, 164.2.b, 170.11.c, 190.4.c, 323.6, 323.9, 344.2, 348.2.a, 348.2.a.1, 355.10.d, 415.1, 809.1.c, 809.1.d opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The fifth notable is the entry's own gate stated as arithmetic rather than as a feeling: twelve runes produce exactly 12 Energy and, through 164.2.b's exhaust-free recycle, exactly the 3 Power the turn needs."
+    },
+    {
+      "id": "the-harrowing-soulgorger-double-reanimation",
+      "name": "One spell, two bodies out of the trash — and 356.1.b.2 is why the Power halves are the only thing you pay",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-198",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E6 P2. 'Play a unit from your trash, ignoring its Energy cost. (You must still pay its Power cost.)' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-196",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "TRASH",
+          "note": "Chaos unit, E8 P2 M5. 'When you play me, you may play a unit from your trash, ignoring its Energy cost. (You must still pay its Power cost.)' In zero entries before this walk; his own play trigger is a second Harrowing."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Chaos among its two domains (103.1.b.3) — 16 names: Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
+          "Soulgorger already in your trash — discarded, milled, or dead. The Harrowing does not tutor.",
+          "2 Chaos Power for Soulgorger and whatever the third body's Power cost is; the Energy halves are free."
+        ],
+        "notable": [
+          "THE PARENTHESIS ON BOTH CARDS IS A RULE, NOT FLAVOUR. 356.1.b.2: 'If a card instructs a player to play a card \"ignoring its Energy cost\" or \"ignoring its Power cost,\" only the appropriate cost is set to zero, and the remaining cost still applies.' So an 8-Energy Soulgorger costs his 2 Chaos Power and nothing else — and 356.1.b.3 adds that 'Further additional costs and/or cost increases applied in subsequent steps may raise the card's Total Cost above zero', with Riot's Legion Rearguard example, so an optional additional cost on the reanimated body is still payable if you want its rider.",
+          "AND THE REANIMATED BODY'S OWN PLAY TRIGGER FIRES, WHICH IS THE WHOLE PAIRING. Soulgorger's 'When you play me, you may play a unit from your trash' is a play trigger, and being played from the trash is still being played. So one Harrowing is TWO bodies out of the trash: Soulgorger for 2 Chaos Power, and then whatever else is down there for its Power cost alone. Choose a third body with no Power cost and it is free.",
+          "355.2.a IS WHY REANIMATION HAS NO WALK PROBLEM. A unit is played to 'the controller's Base or a battlefield the controller controls', so a body coming back from the trash can land directly at a battlefield you hold — it does not have to make #48's walk from the base, and 143.4 exhausting it on arrival costs nothing if it is only there to defend (464.2.c.3 and 465.2.b do not read exhaustion).",
+          "THE PRICE IS THE SPELL, AND THE ENTRY DOES NOT HIDE IT. The Harrowing is 6 Energy + 2 Chaos Power on its own. Paying that to return a body worth 8 Energy is a gain of two Energy and a card; paying it to return a 4-Energy body is a loss. The line only makes sense aimed at Soulgorger, because he brings a second body with him — that is what turns a marginal reanimation spell into a two-for-one.",
+          "TOKENS ARE NOT IN THE TRASH, SO THEY ARE NEVER TARGETS. 185 ('Tokens are not cards') and 186.1 (a token ceases to exist the moment it enters any Non-Board Zone) mean neither of these effects can ever reach a Recruit, Sprite, Bird, Tentacle or Gold. The trash a reanimation deck needs has to be stocked with real cards — by discard, by [Burn N], or by dying.",
+          "The Power is the real constraint: 2 for The Harrowing, 2 for Soulgorger, plus the third body's, against a free floor of about 2 Power a turn (164.2.b plus 315.3.b's channel). `OGN-204 Seal of Discord` at 0 Energy and 1 Chaos Power is the card that makes the turn possible."
+        ]
+      },
+      "steps": [
+        "Get Soulgorger into your trash — discarded, milled by a [Burn N], or simply dead in an earlier combat.",
+        "Cast The Harrowing (6 Energy + 2 Chaos Power).",
+        "Play Soulgorger from the trash, ignoring his 8 Energy but paying his 2 Chaos Power (356.1.b.2). 355.2.a lets him land at your base or a battlefield you control.",
+        "His own play trigger fires: play a second unit from your trash, again ignoring its Energy cost and paying only its Power cost.",
+        "Two bodies are on the board for one card and four-plus Power; 143.4 has both enter exhausted, which costs nothing on defence."
+      ],
+      "terminatesIn": "engine — two units out of the trash for one spell, paying only their Power costs; nothing here scores",
+      "netPerIteration": "-1 card, -6 Energy, -4 or more Chaos Power, +2 bodies from the trash",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "356.1.b.2: 'If a card instructs a player to play a card \"ignoring its Energy cost\" or \"ignoring its Power cost,\" only the appropriate cost is set to zero, and the remaining cost still applies.' 356.1.b.3: 'Further additional costs and/or cost increases applied in subsequent steps may raise the card's Total Cost above zero.' 355.2.a (a unit is played to the controller's Base or a battlefield the controller controls). 185: 'Tokens are not cards.' 186.1 (a token ceases to exist on entering a Non-Board Zone). 143.4: 'Units enter the Board exhausted.' 464.2.c.3 and 465.2.b (neither reads exhaustion)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. OGN-198 The Harrowing and OGN-196 Soulgorger were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 143.4, 185, 186.1, 355.2.a, 356.1.b.2, 356.1.b.3, 464.2.c.3, 465.2.b opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The fourth notable is the entry refusing its own premise for every other target: The Harrowing aimed at anything but Soulgorger is a marginal card, and the pairing exists because his play trigger is a second copy of the spell."
+    },
+    {
+      "id": "bullet-time-seals-scaling-sweep",
+      "name": "204.3.b names Bullet Time — the Power is paid on RESOLUTION, so you choose the size after they have responded",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-268",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body/Chaos spell, E1, [Action]. 'Pay any amount of :rb_rune_rainbow: to deal that much damage to all enemy units at a battlefield.' SIGNATURE (tag Miss Fortune). Riot's own worked example under 204.3.b."
+        },
+        {
+          "card": "OGN-204",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BASE",
+          "note": "Chaos gear, E0 P1. ':rb_exhaust:: [Reaction] — [Add] :rb_rune_chaos:.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-163",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BASE",
+          "note": "Body gear, E0 P1. ':rb_exhaust:: [Reaction] — [Add] :rb_rune_body:.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "ONE legend, not a domain list: OGN-268 Bullet Time is a Signature card tagged Miss Fortune, and 103.2.d.2 makes every Signature card carry the legend's champion tag. The only Miss Fortune legend in the pool is Bounty Hunter (OGN-267, and its second printing OGN-309), which is Body/Chaos — the domains happen to fit, but the tag is what decides it.",
+          "Both Seals in play a turn early: each costs 0 Energy and 1 Power to put down, and pays 1 Power a turn thereafter."
+        ],
+        "notable": [
+          "RIOT NAMES THE CARD, AND THE TIMING IS THE POINT. 204.3.b: 'Costs within Instructions: These Costs are part of the resolution of a spell or ability… Example: Bullet Time is a spell that reads \"Pay any amount of [A] to deal that much…\"', and 740.4.a.1 says it plainly — 'For spells, costs within instructions are paid on RESOLUTION of the spell. In order to get the effect, the cost must be paid.' So you do not commit the Power when the spell goes on the Chain: the opponent responds first, and only then do you decide how much to spend. Nothing else in the pool lets you size a sweeper after seeing the answer.",
+          "AND IT TARGETS NOTHING. 355.10.d makes an object 'programmatically selected based on its characteristics rather than chosen' a non-target, with the worked example '\"Kill all units at a battlefield\" targets a battlefield, but does not target any units'. The battlefield is chosen; the units are not. So [Deflect] never charges (809.1.c, 809.1.d) and 'can't be chosen by enemy spells and abilities' does not save a garrison from it.",
+          "THE SEALS ARE THE SIZE OF THE SWEEP, AND THEY ARE FREE TO RUN. Each is 0 Energy and 1 Power to play, and its ability is '[Reaction] — [Add]' with only an exhaust in the cost, so each pays 1 Power every turn (415.3.a readies them) and pays it back on its second turn. Against the free floor of about 2 Power a turn — 164.2.b's exhaust-free recycle plus 315.3.b's channel — two Seals make four Power routine, so Bullet Time is a 4-damage sweep for 1 Energy. 143.2.a kills at Might, so that clears an entire garrison of 4-Might bodies.",
+          "135.2.e.5.b is why the domain Power fits a rainbow cost: '[A] can be spent to pay a Power cost of any Domain', and a rainbow cost is one Power of any domain — so the Chaos Seal and the Body Seal both feed it, which is what makes the Body/Chaos identity pull its weight.",
+          "IT IS UNCAPPED PER ACTIVATION, WHICH MEANS NO MULTIPLIER HELPS IT. 'Pay any amount' already does the whole job in one execution, so a second execution from any [Repeat] grant or copy effect adds nothing — the same shape as `SFD-117 Ancient Henge` and `SFD-083 Hextech Anomaly`. What scales it is Power, and only Power.",
+          "429.2 is why the Seals resolve cleanly in the middle of the Chain: an ability that Adds resolves as soon as it is finalized, before any other outstanding item — which is what the reminder text ('Abilities that add resources can't be reacted to') is telling you."
+        ]
+      },
+      "steps": [
+        "Run Bounty Hunter (OGN-267) as the legend — 103.2.d.2 leaves no choice once Bullet Time is in the list.",
+        "Play Seal of Discord and Seal of Strength (0 Energy + 1 Power each) a turn ahead of when you need them.",
+        "On the turn you want the sweep, exhaust both Seals for 1 Chaos and 1 Body Power (429.2), and take the free floor's Power on top (164.2.b, 315.3.b).",
+        "Play Bullet Time for 1 Energy, choosing the battlefield (806.1.b puts [Action] in a Showdown too, so this can be their attack).",
+        "Let the opponent respond. Only on resolution do you pay — 204.3.b, 740.4.a.1 — so choose the amount after seeing what they did.",
+        "Deal that much to all enemy units at the battlefield; 355.10.d means none of them was targeted, and 143.2.a kills each one it reaches."
+      ],
+      "terminatesIn": "engine — a sweep whose size is your available Power and whose amount is chosen after the opponent has responded; 1 Energy a cast, three casts a game (103.2.b). Nothing here scores.",
+      "netPerIteration": "-1 card, -1 Energy, -N Power, N damage to every enemy unit at one battlefield",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Body / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "204.3.b: 'When Costs within Instructions appear in spells, activated abilities, or in later parts of triggered abilities, the cost must be paid to get the effect during resolution of the spell or ability. Example: Bullet Time is a spell that reads \"Pay any amount of [A] to deal that much...\"' 740.4.a.1: 'For spells, costs within instructions are paid on resolution of the spell. In order to get the effect, the cost must be paid.' 355.10.d: 'It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller.' 135.2.e.5.b: '[A] can be spent to pay a Power cost of any Domain.' 429.2 (an ability that Adds resolves as soon as it is finalized). 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 103.2.d.2 (a Signature card must share a champion tag with the Chosen Champion legend)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173. OGN-204 Seal of Discord and OGN-163 Seal of Strength were in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.2.b, 103.2.d.2, 135.2.e.5.b, 143.2.a, 164.2.b, 204.3.b, 315.3.b, 355.10.d, 415.3.a, 429.2, 740.4.a.1, 806.1.b, 809.1.c, 809.1.d opened in the Core Rules file. All three cards legal in both formats. THE SIGNATURE CHECK WAS RUN BEFORE THE LEGEND LINE WAS WRITTEN and caught it: Bullet Time is tagged Miss Fortune and the pool has exactly one Miss Fortune legend, so the field is one legend and not the three Body/Chaos names a domain-shaped answer would have given."
     }
   ]
 }
