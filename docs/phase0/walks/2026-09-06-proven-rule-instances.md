@@ -196,3 +196,120 @@ lead for that entry rather than authored as a separate row.
   one Gold per trigger against Cull's three, identical mechanism. Leads for `cull-brambleback-gold`.
 - `SFD-152 Eminent Benefactor` is already `eminent-benefactor-sentinel-gold`; `OGN-275 Altar to Unity`
   is the same Gold/token shape one step weaker.
+
+---
+
+# Batch 2
+
+## 4. Entries authored
+
+### 4.1 `shen-kinkou-svellsongur-hold` — BURST, 9 points, and the engine defends at 15
+Rule mined: `svellsongur-copy` (101 partners, 3 entries in its basis; 14 entries in the catalogue
+carry `SFD-059`). Partner `VEN-138 Shen, Leader of the Kinkou Order`, uncatalogued.
+
+Shen's *"if there is exactly one other unit you control here"* counts **units**. Svellsongur is an
+Equipment, so three of them stack on him without ever entering that count — which is precisely what
+`shen-kinkou-sentinel-hold` (batch 1) cannot do, because a second Blue Sentinel is a body.
+
+2^3 = 8 instances → 8 ability points + the 1-point Score = **9 in one Hold**.
+
+**And the fact this walk found, which no entry in the catalogue had used:**
+
+> **814.2.** If a Unit has Shield, or has been granted Shield, and is granted Shield by an additional
+> source, the Shield Value of all granted Shield keywords is **summed**.
+> **814.1.b.3.** If X is omitted, it is presumed to be 1.
+
+Svellsongur copies the unit's WHOLE text, `[Shield]` included. Eight instances of Shen's text are
+eight `[Shield]`, so he is **Shield 8** and defends at 7 + 8 = **15 Might**. For a BURST that must
+survive the opponent's turn, that is the number the entry is really priced on: Ahri, Alluring reaches
+the same 9 on the same three gears and defends at 4.
+
+### 4.2 `svellsongur-treasure-hunter-gold` — ENGINE, 16 Gold a turn, from the base
+Rule mined: `svellsongur-copy`. Partner `SFD-130 Treasure Hunter` (catalogued with Renata and Ride
+the Wind, never with the copier).
+
+Two moves a turn × 8 instances. The Standard Move costs the Hunter's own exhaust (144.2); Unforgiven's
+`2 Energy, exhaust: Move a friendly unit to or from its base` costs the LEGEND's exhaust, and 420.3.a
+puts the exhaust price only on the Standard Move, so it moves an already-exhausted body. Same
+two-move structure as the catalogued `yasuo-stellacorn-svellsongur-draw`, with three gears instead of
+one — and with a payoff that has no Burn Out wall (#59: 431.1.a + 194.1.d cap the draw version).
+
+He ends every turn back at his base, so the only exposure is base removal.
+
+### 4.3 `svellsongur-eminent-benefactor-gold` — ENGINE, 16 Gold per Hold, zero recurring cost
+Rule mined: `svellsongur-copy`. Partner `SFD-152 Eminent Benefactor` — catalogued under the OTHER
+multiplier (`eminent-benefactor-sentinel-gold`, Blue Sentinel, 4 Gold, Mind/Order) and never under
+this one (16 Gold, Calm/Order). Neither dominates: the Sentinel is a 4-Might body that also defends
+and adds its own rainbow; Svellsongur is `M+0` (137.3) and adds nothing to the board.
+
+### 4.4 `ferrous-forerunner-karthus-mech-plaza` — ALT_WIN
+Rule mined: `karthus-deathknell-double` (23 partners, 7 entries carrying `OGN-236`). Partner
+`SFD-021 Ferrous Forerunner`, uncatalogued.
+
+**Six is one short of seven, and the entry says so.** 1 Deathknell + 2 Karthus = 3 executions × 2
+Mechs = 6 bodies, against the catalogued `karthus-machine-evangel-renata-plaza`'s 9 Recruits. 144.3
+makes the shortfall free — *"Players may perform multiple Units' standard move simultaneously. This is
+treated as one game action performed on multiple Units"* — so the support bodies walk in with the
+Mechs as one action.
+
+What the extra step buys: **187.4** gives the token *"3 Might and the Mech tag"*, so 465.2.c /
+465.2.c.3 price the board at 28 damage to clear against the Recruit line's 9.
+
+### 4.5 `bottled-constellation-token-points` — ENGINE, a point a turn with NO battlefield
+Rules mined: `renata-industrialist-tokens` / `blue-sentinel-hold` (the faucet side). `VEN-067 Bottled
+Constellation` appears in the catalogue only inside `bottled-constellation-time-warp`, which needs
+`infinite-energy` AND `infinite-power`; the plain token-fed version had never been written, and #63
+had already recorded that `token-body-engine` has many producers and almost no consumers.
+
+Three facts the entry stands on:
+- **R2 = A** makes card-text *"score 1 point"* a **194.1.c** Gain, not a 469 Score — so **470**'s
+  *"once per Battlefield per turn"* has nothing to attach to. This is the only repeatable point source
+  in the catalogue that needs no battlefield, no garrison and no Hold.
+- The three kills are the trigger's **base cost** (383.3.b, paid at 383.3.b.1 to finalize), not its
+  effect — so the bodies must be present when the trigger goes up, and **203.3** declines it otherwise.
+- **Tokens are legal fodder.** 185 bars them from being RECYCLED because 416.1 is defined over cards;
+  killing is **428.1** (*"the action of a Permanent going to the trash from the board"*) with
+  **428.1.a.1** admitting it *"as a cost for a card or ability"*, and **185.2.d** says outright that a
+  token unit is a unit. **186.1** is harmless because nothing here wants it in the trash.
+
+Timing: **316.3** empties every Rune Pool, **then** 316.4 runs the start-of-Main-Phase effects, so the
+Constellation fires with an empty pool and needs none.
+
+---
+
+## 5. Refusals, batch 2
+
+### 5.1 `OGN-078 Lee Sin, Ascetic` under `heimerdinger-inventor-exhaust-copy` — the clause does not travel usefully
+*"[exhaust]: Buff me. I can have any number of buffs."* **053.1** re-reads *"me"* on whoever now has
+the ability, so Heimerdinger buffs **Heimerdinger** — and Heimerdinger does not have *"I can have any
+number of buffs"*, which is a separate sentence of Lee Sin's Rules Text and is NOT part of the
+`[exhaust]` ability Heimerdinger copies. **702.3** therefore caps the copy at one buff, ever. The
+partner is real, the payoff is one +1 Might.
+
+### 5.2 `OGN-186 Treasure Trove` under the same rule — *"this"* does not re-read
+*"1 Chaos Power, [exhaust]: Kill this."* **136.2.d** and the 053 family make *"this"* refer to the
+attached/owning game object, not to the new holder of the ability, so Heimerdinger's copy kills the
+Trove — the same single Trove the Trove's own activation would kill. A doubler that points at a
+one-shot is worth nothing.
+
+### 5.3 `VEN-138 Shen` under `blue-sentinel-hold` at K ≥ 2 — recorded on the entry, repeated here
+Walked in batch 1. **383.2.a.1** makes *"if there is exactly one other unit you control here"* part of
+the Trigger Condition, so a second Blue Sentinel takes the line from 3 points to 1. The catalogue now
+carries the two halves as separate rows on purpose: `shen-kinkou-sentinel-hold` (body multiplier,
+pinned at K = 1) and `shen-kinkou-svellsongur-hold` (gear multiplier, unconstrained).
+
+### 5.4 `OGN-034 Tryndamere, Barbarian` and `SFD-120 Sivir, Ambitious` under `svellsongur-copy`
+Both key on *"if you assigned 5 or more excess damage to enemy units"*. Copying the trigger eight
+times does not manufacture the condition: **R28 = A** (ruled 2026-09-04) defines excess damage as
+attacking Might that never got assigned, because **465.2.c.4** forbids assigning a unit more damage
+than the minimum needed to kill it. The condition is a property of the combat, evaluated once
+(383.2.a.1), and every one of the eight copies reads the same board. Eight instances of Tryndamere's
+line on a qualifying combat WOULD be eight points — but that is `tryndamere-brambleback-conquer`'s
+problem, already walked and already corrected for arithmetic in 2026-09-04; the Svellsongur version
+adds a second, independent excess-damage requirement to a line whose own REFUTE note records it
+failing the first. Left as a lead, not authored.
+
+### 5.5 `SFD-210 Hall of Legends` / `SFD-195 Blade Dancer` under `red-brambleback-conquer`
+See §3.2. The window between the two *resolutions* exists (**340.4**); the window between the two
+*finalizations* does not (**312.2.c**). Unchanged by batch 2 — recorded again because both cards
+reappear in the `svellsongur-copy` partner list under exactly the same shape.
