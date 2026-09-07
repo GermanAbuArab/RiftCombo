@@ -323,3 +323,102 @@ dead under every multiplier — the same shape as Ancient Henge and Hextech Anom
 - **Lead (not walked):** Syndra's grant is a static over EVERY spell you play in that window, so every
   printed-[Repeat] spell in the pool is a partner — `SFD-136 Hard Bargain` becomes a counter that
   taxes six. One anchor, one predicate: a synergy rule, not five entries.
+
+## 5. Batch 4 — six entries across Body, Body/Fury and Fury
+
+### 5.1 `warwick-hunter-iron-ballista-damage-marks-death` — OGN-159 + OGN-017 (both in zero entries)
+
+**"Kill all DAMAGED enemy units" reads a marker, not a threshold.** 143.2.a is death *by damage* — marked
+damage equalling or exceeding Might. Warwick's sweep is a kill *by effect*, so two points off a
+3-Energy gear kill a 10-Might body as dead as a 2-Might one. Any pinger in the pool becomes universal
+removal beside him.
+
+The clock is **466.1.a.1**, "Insert '3c. Heal all Units.'": every combat cleanup wipes the marks, so the
+ping and the attack must be the same Main Phase, in that order — and 383.2.a.1 with 464.2.c.3 means the
+mark has to be on the board *when Warwick is designated*, not in response to it.
+
+`OGN-017 Iron Ballista` is Riot's own worked example at 417.6.b.2.a ("*This damage is dealt both by a
+gear and by an ability*"), which also places it on the spell-and-ability side of the 417.6.b.3 line — a
+blanket Prevent stops it, and a Bonus Damage static raises it.
+
+### 5.2 `clash-of-giants-spoils-of-war-free-removal` — UNL-110 + OGN-144 (both in zero entries)
+
+A wording comparison across the 417.6.b.3 family: `OGN-128 Challenge`, `VEN-083 Rampage` and
+`SFD-114 Marching Orders` all say "a friendly unit **and** an enemy unit"; `UNL-110 Clash of Giants`
+says "**two units**". So it can point two enemy bodies at each other and risk nothing of yours — the
+only member of the family that can. The trade is mutual, so it only kills both when each Might reaches
+the other's, and 466.1.a.1 heals the survivor.
+
+`OGN-144 Spoils of War` is written for the corpse: 2 Energy + 1 Power instead of 4 + 1, draw two. And
+the discount is a discount — 166.2, 203.1, 356.4.b — so any "if you spent N" clause reads the smaller
+number.
+
+### 5.3 `petricite-monument-ruin-runner-tax-versus-prohibition` — SFD-104 + SFD-105 (both in zero entries)
+
+**[Deflect] is a tax; "can't be chosen" is a prohibition.** 809.1.c charges an extra Power per choice
+(809.1.c.1: any domain), so a player with the Power simply pays. 054.1 makes `SFD-105 Ruin Runner`'s
+clause absolute — no amount of Power buys through it. The catalogue treats the two interchangeably in
+several notables and they are different kinds of thing.
+
+**Neither stops a programmatic effect** (355.10.d), which is where both decks die: Thermo Beam, Cannon
+Barrage, Bullet Time and Cataclysmic Duel go through both.
+
+`SFD-104 Petricite Monument`'s [Temporary] is a *window*, not a drawback: 816.1.b kills it at the start
+of your next Beginning Phase, so a Monument played in your Main Phase covers the whole of the
+opponent's turn and dies before your own Scoring Step.
+
+### 5.4 `catalyst-of-aeons-stormclaw-refill-or-cantrip` — OGN-138 + OGN-137 (both in zero entries)
+
+**An exhausted rune is Power now and Energy next turn, and the halves are different rules.** 164.2.a's
+Energy ability costs the rune's exhaust, so nothing until 415.3.a; 164.2.b's recycle costs no exhaust,
+so one Power of its domain immediately, at Reaction speed. That is the real payoff of every "channel N
+exhausted" card in the pool.
+
+And **430.3** — "*If there aren't sufficient runes in the Rune Deck, channel as many as possible*" — is
+the rule behind Catalyst of Aeons' printed late-game mode: it does not fizzle, it channels what it can,
+and its own second sentence pays a card when it could not channel two.
+
+### 5.5 `vayne-hunter-sun-disc-two-conquers` — OGN-035 + OGN-021 (both in zero entries)
+
+**The point is banked before she leaves.** 469.1 and 471.1 Gain the point at the Score; 323.6 then takes
+the battlefield back when she bounces to hand, and does not unbank it. The line trades ground for score
+and puts the body out of reach in one motion.
+
+The Sun Disc is the second "enters ready" — 812.1.c's [Legion] is satisfied by Vayne herself, since she
+is cast first — so she is replayed ready and conquers the *other* battlefield. 470 with 485.4 makes two
+the hard ceiling, and this reaches it with one unit card.
+
+Stated because a reader assumes it the other way round: **471.1.a.1 exempts NON-Conquer points from the
+Final Point restriction**, so a Conquer engine is precisely the kind that can stall at seven.
+
+### 5.6 `baccai-sandspinner-forsaken-baccai-rune-count` — VEN-001 + VEN-005 (both in zero entries)
+
+Two printings of one idea, one gameable and one not. "*if you control 4 or fewer runes*" is checked
+when the [Empower] cost is determined, in your Main Phase (827.1.c.3), so you may act first. "*if you
+control fewer runes than an opponent AT THE START OF YOUR BEGINNING PHASE*" is read at 315.2.a, before
+315.3.b's Channel Phase, and nothing can game it.
+
+**The discount is a rebate, not a plan, and the entry prices it:** reaching four runes costs eight
+runes off the board (164.2.b needs no exhaust, so spent runes still recycle; 161.2.b sends them to the
+Rune Deck, and 315.3.b returns only two a turn) in exchange for three Energy. Worth taking on a turn you
+were converting runes to Power anyway — and that same turn switches the Forsaken Baccai's clause on for
+the four turns it takes to refill.
+
+### 5.7 Refusals and leads from batch 4
+
+- **Pricing `OGN-138 Catalyst of Aeons` or `OGN-137 Stormclaw Ursine` as mana rocks** — refused: a Seal
+  pays every turn for one exhaust, a channelled rune pays once and leaves the board when recycled.
+- **[Deflect] or "can't be chosen" as an answer to a sweeper** — refused by 355.10.d: the units are not
+  chosen, so neither clause is consulted.
+- **A ping applied on the opponent's turn as setup for Warwick** — refused by 466.1.a.1: the combat
+  cleanup heals it before your attack.
+- **Lead (not walked):** the [Assault] package — `OGN-015 Captain Farron` ("Other friendly units here
+  have [Assault]"), `OGN-004 Cleave`, `SFD-003 Blood Rush`, `VEN-009 Baccai Reaper`, `VEN-012 Perfect
+  Execution`, `SFD-131 Ancient Warmonger` ([Assault] equal to the number of enemy units here),
+  `VEN-076 Repair Specialist` ([Assault] equal to your gear) — all on 807.2's summing of granted
+  [Assault]. One synergy rule.
+- **Lead (not walked):** the XP package in Body — `UNL-092 Demacian Diplomat`, `UNL-094 Gemhand
+  Hunter`, `UNL-095 Grim Resolve`, `UNL-098 Targonian Visionary`, `UNL-091 Concentrate`,
+  `UNL-108 Wily Newtfish`, `UNL-115 Nilah` — bounded by 824.1.d (a Level ability goes Inactive as soon
+  as you drop below its threshold) and 730.2 (spending XP is your own reduction), so it is an ENGINE
+  ceiling and a synergy rule rather than a set of entries.
