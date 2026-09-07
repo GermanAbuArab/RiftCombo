@@ -1230,3 +1230,133 @@ walk opened with.
   connects those engines to `ready-recruits-grand-plaza`; whether Azir adds anything on top is a combat
   walk, not a Hold walk.
 - **`lady-luminosity-loop-comet`** stays at zero routes on purpose (§24.2), and should not be "fixed".
+
+---
+
+# 27. The cause/trigger matrix, rows 19–30
+
+`rc-walk153b` built a cause/trigger matrix over the pool (`.scratch/matrix.ts`, `.scratch/cands.json`,
+`.scratch/top30b.mjs` — read, not rebuilt). This section walks rows **19–30**: eleven trigger cards
+across five event families, plus one refused on legality.
+
+**Bucket D, run by me because the matrix does not check it.** Every trigger card in my rows was checked
+against `data/corpus_flat.txt` for a `[BANNED` marker and against `data/cards.json` for `signature`.
+**One failed:**
+
+> `OGN-177 | Stealthy Pursuer | Unit | Chaos | E4 P1 M4 | **[BANNED constructed:banned, 2v2:banned]**
+> When a friendly unit moves from my location, I may be moved with it.`
+
+**Row 20 is refused outright.** It is banned in *both* formats, so its 43 partners are dead letter — and
+the matrix ranked it second-highest of my rows on partner count, which is exactly the kind of row a
+legality pass has to strip before anyone spends a walk on it. (It is still `uses` of the verified
+`pursuer-herald-recruits`, an INFINITE engine that is therefore unplayable in Constructed — noted here,
+not changed, since that entry is not mine.) None of the other eleven is banned and none is Signature.
+
+## 27.1 Three entries
+
+| entry | identity | trigger card was in |
+|---|---|---|
+| `vanguard-helm-baited-hook-buff-ladder` | mono-Order | **0 entries** |
+| `lillia-flurry-of-feathers-tank-wall` | mono-Calm | **0 entries** |
+| `karma-ornn-hold-recycle-buff` | calm/order | 3 entries, none with a free repeatable recycler |
+
+**`OGN-228 Vanguard Helm` + `OGN-242 Baited Hook`.** The Hook's tutor ceiling is *"Might up to 1 more
+than the killed unit"* and `703` gives a Buff exactly +1 Might, so a buffed corpse raises the ceiling by
+two rather than one — and the Helm puts the buff back onto the body the Hook just fetched, so the ladder
+climbs **+2 Might per turn** instead of +1, for 1 Energy + 1 Order Power. `702.3` is why the Helm is not
+redundant *and* why it cannot be doubled: one Buff per unit, so it relocates rather than stacks, and the
+Hook's one-new-body-a-turn matches the Helm's one-buff-a-turn with nothing wasted (#106's
+`min(triggers, new unbuffed bodies)`).
+
+**`UNL-058 Lillia` + `UNL-044 Flurry of Feathers`.** The best of Lillia's 45 partners on its own numbers,
+because it is the only one that plays **four** token units off a single card at **Reaction** speed. `815`
+is cited here for the first time in the catalogue and it is a hard assignment rule, not a suggestion:
+
+> **815.1.b.** [Tank] is functionally short for *"I must be assigned lethal damage before any other unit
+> with the same controller as me that does not have [Tank] during the Combat Damage step."*
+> **815.1.c.2.** …Units without Tank are **invalid assignments** until all units with Tank have lethal
+> damage assigned to them.
+
+Four 1-Might Birds absorb exactly four damage (465.2.c.4 caps each assignment at the minimum), and until
+all four are dead nothing else of yours can legally be assigned anything. They land *inside* the
+opponent's attack — `813.1.c.1` for the [Reaction], `464.2.c.3.a` for the Defender designation — so they
+also add 4 to your defending Might sum (465.2.b). Lillia's own clause is +4 Might on one card, and it is
+a continuous modifier worded "this turn", not a 702 Buff.
+
+The counter-intuitive half is recorded as a notable: **Lillia is anti-synergic with the Grand Plaza
+family.** `OGN-293` wants seven token bodies to *survive* to your Beginning Phase, and `[Tank]`
+guarantees they are the first things killed.
+
+**`OGN-235 Karma, Channeler` + `SFD-058 Ornn, Blacksmith`.** Of Karma's 35 partners this is the only one
+whose recycle is **free and repeats without a loop**: Ornn's *"or when I hold"* is a `383.4.d` Hold
+Effect fired by `315.2.b.2`, so it costs nothing every Beginning Phase for as long as he garrisons a
+battlefield. The three existing Karma entries all buy the trigger — one rides the Lux infinite, one pays
+Gemcraft and the legend's Energy.
+
+## 27.2 Refusals
+
+| row | trigger | verdict |
+|---|---|---|
+| 20 | `OGN-177 Stealthy Pursuer` | **Bucket D** — `[BANNED constructed:banned, 2v2:banned]`. 43 partners, all dead letter. |
+| 21 | `OGN-277 Back-Alley Bar` | **Refused on arithmetic.** *"When a unit moves from here, give it +1 Might this turn."* +1 Might buys exactly one point of excess damage (R28 = A) or one point of combat Might, and no payoff in the pool converts +1 Might into anything — `OGN-034 Tryndamere` is a **threshold**, not a scale (#155 refusal 2). Worse, it is a battlefield: `485.4.a` gives you three and `485.5` uses one at random, so it competes for the same single slot as The Grand Plaza, Power Nexus and Reckoner's Arena (#63). And it says *"a unit"*, not *"a friendly unit"* — it buffs the opponent's movers out of it too. The one interaction worth having is already `kayn-back-alley-bar-double-move`. |
+| 23–24 | `SFD-049 Aphelios, Exalted`, `SFD-119 Jax, Unrelenting` | **Refused as covered.** Three entries already hold the attach engine — `azir-aphelios-attach`, `aphelios-jax-quickdraw-attach` (which pairs the two trigger cards directly) and `jax-angle-shot-attach-draw` — and the second of those already states the three-modes-per-turn ceiling. Their 15 "partners" are the [Weaponmaster] units and the Equipment; see the false positive below. |
+| 25–30 | `OGN-246`, `OGN-118`, `SFD-169`, `UNL-068`, `UNL-174` | **Refused as covered.** All five are already in an entry, and `OGN-118` with `UNL-068` are already *together* in `malzahar-wraith-centaur-sacrifice`. Only `OGN-228` of the six was uncatalogued, which is §27.1. |
+
+## 27.3 Synergy-rule leads for the synergies session
+
+Five families, each with the anchor, the partner predicate, and the false positives I found by reading
+the lists end to end. **None of these is written to `data/synergies.json` — that file is not mine.**
+
+**A. `recycle-main` — anchor `OGN-235 Karma, Channeler`** (35 matched).
+Predicate: cards that recycle one or more cards **to the Main Deck**.
+*False positive, and it is printed on the anchor itself:* Karma's reminder reads **"(Runes aren't
+cards.)"**, and `161.2.b` confirms a recycled rune *"is returned to the Rune Deck, not the Main Deck"*.
+The matrix's cause regex `\brecycle (\d|a|an|up to|the rest|this|it|them|your)` catches every
+`164.2.b` rune activation and every "recycle a rune" cost. **The predicate must exclude runes**, or the
+rule ships with a large silent false-positive family.
+
+**B. `friendly-moves` — anchor `OGN-277 Back-Alley Bar`** (49 matched).
+Predicate: anything that moves a unit. *False positives:* the Bar reads **"a unit"**, not "a friendly
+unit", so enemy movers match the anchor's own text legitimately but are an anti-synergy; and a mover
+whose destination is an **open** battlefield (`170.11.c`: unoccupied *and* uncontrolled) delivers the
++1 Might into a combat that never happens (`SFD-079 Bard, Mercurial` is the clean example).
+
+**C. `play-token-unit` — anchor `UNL-058 Lillia, Protector of Dreams`** (45 matched).
+Predicate: cards that play one or more token **units** (`185.1` + `185.2.b` for "is a unit",
+`350.2` + `185.2.a` for "is played"). *False positive:* cards that make **gear** tokens — Gold is the
+big one — match a loose "play a … token" regex and never fire her. *Anti-synergy worth an `excludes`:*
+every Grand Plaza line, for the `[Tank]` reason above.
+
+**D. `attach-equip` — anchors `SFD-049 Aphelios, Exalted` and `SFD-119 Jax, Unrelenting`** (15 each).
+Predicate: cards that attach an Equipment **to the trigger unit**. *False positive, and it is the
+majority of the list:* `SFD-024 Rell, Magnetic` (*"When I attack, you may play an Equipment … then do
+this: Attach it to me"*) and every `[Weaponmaster]` body attach to **themselves**, so they never satisfy
+an "attach an Equipment **to me**" trigger on a different unit. The honest predicate is *Equipment*
+(cards with an `[Equip]` ability the controller can aim), not *attachers*.
+
+**E. `friendly-dies` — anchors `OGN-246`, `OGN-118`, `OGN-228`, `SFD-169`, `UNL-068`, `UNL-174`**
+(26–27 each, one shared partner list).
+Predicate: cards that kill a friendly unit. *False positives:* `SFD-005 Detonate` and `SFD-160 Zaun
+Punk` kill **gear**, not units, and `OGN-224 Salvage` kills gear too — three of the twenty-seven never
+fire any of the six anchors. *Two shape notes:* `OGN-228` alone needs the dying unit to be **buffed**, so
+its real partner set is the intersection with the buff family (which is why the matrix gave it 60 rather
+than 27); and `UNL-174` alone needs the death to happen **during your Beginning Phase**, which in
+practice means `[Temporary]` (`816.1.b`) — both of its existing entries use exactly that.
+
+## 28. Facts for `CLAUDE.md`, continued
+
+21. **`815.1.b` and `815.1.c.2` make `[Tank]` an assignment *restriction*, not a preference**: units
+    without Tank are *"invalid assignments until all units with Tank have lethal damage assigned to
+    them"*. So N 1-Might Tank tokens absorb exactly N damage (465.2.c.4) and nothing else of yours can
+    legally be assigned anything until they are all dead. `UNL-058 Lillia, Protector of Dreams` grants it
+    to **every** token you control, which also makes her anti-synergic with the whole Grand Plaza family.
+22. **Karma, Channeler's "(Runes aren't cards.)" is printed on the card**, and `161.2.b` is the
+    mechanism: a recycled rune goes to the **Rune Deck**, not the Main Deck. Any "when you recycle"
+    predicate that does not exclude runes ships a large false-positive family, because `164.2.b` is on
+    every rune in the game.
+23. **A `[Weaponmaster]` body, and `SFD-024 Rell, Magnetic`, attach Equipment to *themselves*** — so they
+    never satisfy another unit's *"when you attach an Equipment **to me**"* trigger. The partner set for
+    `SFD-049` / `SFD-119` is *Equipment*, not *attachers*.
+24. **A ranked co-occurrence or matrix list is not legality-checked.** `OGN-177 Stealthy Pursuer` ranked
+    second on partner count in rows 19–30 and is `[BANNED constructed:banned, 2v2:banned]`. Run the ban
+    and Signature check on every trigger card before spending a walk on its family.
