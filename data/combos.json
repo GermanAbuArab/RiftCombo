@@ -45485,6 +45485,352 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 750-755 Making New Choices). Rules 750 through 755 are cited by no entry and no synergy rule in this project, and OGN-080 Mystic Reversal was in ZERO entries. The pool has exactly TWO cards with the 'make new choices' clause, swept on the corpus: OGN-080 Mystic Reversal (Calm, unconditional) and VEN-152 Rebuttal (Mind/Chaos, Signature, tagged Mel, charges a rainbow for the same clause). Card text verbatim from data/corpus_flat.txt. Citations opened: 054.1, 056, 056.2, 103.1.b.3, 103.2.b, 103.2.d.2, 144.4.a, 164.2.b, 191.1, 191.2, 323.6, 323.8, 323.12, 348.2.a, 348.2.a.1, 415.3.a, 449, 450, 470, 485.4, 751.1, 752.1, 752.2, 753.1, 754, 755, 755.1, 809.1.c, 813.1.c.1. REPORT TO THE MANAGER: 755 is the third and cleanest place the [Deflect]-is-a-TAX versus can't-be-chosen-is-a-PROHIBITION split shows up - a re-aim ignores every cost it incurs (755) but is still barred from an illegal choice (753.1). And 752.2 freezes 'as you play this' choices and Optional Additional Costs, so a [Repeat] or an [Empower] payment can never be remade. Distinct from charm-evacuate-conquer and charm-nasus-evacuation-conquer, neither of which uses Mystic Reversal or cites 750-755. Trap check: 751.1 requires at least one changed choice; the Energy must be banked because 415.3.a refunds exhausts only at your own Awaken; the entry states plainly that 4 Energy + 3 Power to re-aim a 1 Energy spell buys timing and Deflect immunity, not value; no unruled reading."
+    },
+    {
+      "id": "plundering-poro-patched-porobot-gold-gear-count",
+      "name": "A Gold token is a GEAR, so a token engine is also a gear count - and the Porobot is the card that reads it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-069",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E2 M2. 'When I conquer, play a Gold gear token exhausted.' Two Energy for a body that adds a gear to the board every time it takes a battlefield."
+        },
+        {
+          "card": "VEN-058",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind unit, E2 M2. '(I enter exhausted.) When you play me, if you control 3 or more OTHER gear, draw 1.' The threshold reads gear, and it does not care that three of them are tokens."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Mind, so 103.1.b.3 admits any legend with Mind in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Three OTHER gear on the board when the Porobot's trigger executes - the word 'other' excludes nothing here, since the Porobot is a unit, but it does exclude counting the same gear twice."
+        ],
+        "notable": [
+          "THE GOLD TOKEN IS A GEAR BY RULE, WHICH IS THE WHOLE ENTRY. 187.5: 'A Gold gear token is a domainless GEAR token with \"[Reaction][>] Kill this, [E]: [Add] [A].\"' And 185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified.' So every Gold on your board counts toward any 'control N or more gear' threshold, and a Conquer engine in Mind is also a gear engine at no extra cost.",
+          "AND THE THRESHOLD IS READ ON EXECUTION. 359.3.f.2 - 'Information referenced in an instruction in this way will be checked on execution of the instruction' - so the Porobot counts the board as its play trigger resolves, and a Gold minted earlier the same turn counts. Hold the Porobot until the Conquer has happened.",
+          "THE OTHER CARDS THAT READ THE SAME COUNT, NAMED. Swept over the corpus for gear-count clauses: VEN-058 Patched Porobot (3 or more other gear, draw 1), SFD-072 Dropboarder (2 or more gear, ready me), VEN-064 Plaza Guardian (costs 1 Energy less for each gear you control) and VEN-076 Repair Specialist ([Assault] equal to the number of gear you control). A Gold engine turns on all four, and only the first two are in this domain pair.",
+          "THE GOLD ITSELF IS NOT FREE MANA, AND THE REASON IS THE WORD 'EXHAUSTED'. Both sources print 'play a Gold gear token EXHAUSTED', and 187.5's ability costs the token's own exhaust - so a Gold made this way cannot pay for anything until your next Awakening readies it (415.3.a). The one card in the pool that overrides that is SFD-171 Renata Glasc, Industrialist ('Your tokens enter ready', ruled R25 = A), which is mono-Order and therefore needs a Mind/Order legend; without her, treat the Gold as a gear COUNT that becomes a Power next turn, not as ramp now.",
+          "THE CONQUER IS THE COST, AND IT IS CAPPED. 469.1 defines a Conquer on a battlefield 'not yet Scored this turn', 470 caps Scoring at once per battlefield per turn and 485.4 puts two on a Duel table - so at most two Golds a turn from Poros however many you run. Three Poros on one battlefield produce ONE Gold between them per Conquer, since the trigger is on each Poro but only one Conquer happens there.",
+          "AND THE PORO IS ALSO THE CHEAPEST BODY THAT WANTS TO CONQUER. 2 Energy and 2 Might, so it is the body you send at an empty or lightly held battlefield - which 344.2 takes with a Showdown and no combat at all, no Attacker designation and no damage.",
+          "WHAT IT IS NOT. The Poro's Conquer scores a point by 469.1 and 471.1, but neither card in this entry causes a Conquer that would not have happened - the Gold and the draw are riders on a point you were taking anyway."
+        ]
+      },
+      "steps": [
+        "Play Plundering Poro (2 Energy) and take a battlefield with it. 469.1 gains the point and the trigger plays a Gold gear token exhausted.",
+        "Repeat at the second battlefield if you can (470 with 485.4 caps you at two Conquers a turn).",
+        "Once three gear are on the board - Golds count, by 187.5 with 185.2.d - play Patched Porobot (2 Energy) and draw 1. 359.3.f.2 reads the count on execution, so the Golds minted this turn are already there.",
+        "Each Gold becomes 1 Power of any domain from your next Awakening (415.3.a readies it; 187.5's ability costs its own exhaust).",
+        "With a Mind/Order legend and SFD-171 Renata Glasc, Industrialist on the board, the Golds enter ready instead and are Power the turn they appear (R25 = A)."
+      ],
+      "netPerIteration": "one Gold gear token per Conquer, counting toward every gear threshold at once, and one card per Porobot played past three",
+      "terminatesIn": "engine only - two Conquers a turn by 470 with 485.4, three Porobots by 103.2.b, and each Gold is a single Power once readied; nothing here scores beyond the Conquer the Poro was making anyway",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 5)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use SFD-069 Plundering Poro or VEN-058 Patched Porobot. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 185.2.d, 187.5, 344.2, 359.3.f.2, 415.3.a, 469.1, 470, 471.1, 485.4. SFD-069 has a second printing, UNL-222; CardIndex.equivalents folds them. The entry's content is that 187.5 makes a Gold a GEAR, so a Conquer engine doubles as a gear count - and the 'exhausted' half is stated so nobody prices a Gold as ramp on the turn it appears. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "pickpocket-seal-of-focus-cheap-gear-kill",
+      "name": "The pool's cheap gear is its mana base, and one card kills it and gets paid for doing so",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-074",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind unit, E3 M3. 'When you play me, you may kill a gear with Energy cost no more than :rb_energy_1:. If you do, play a Gold gear token exhausted.' A body, a targeted answer, and a replacement gear on one card."
+        },
+        {
+          "card": "OGN-081",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Calm gear, E0 P1. ':rb_exhaust:: [Reaction] - [Add] :rb_rune_calm:.' The archetypal target: a Seal is Energy cost ZERO, so it is inside the Pickpocket's window with room to spare - and it is also the card you want on your OWN side."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Calm + Mind: Pickpocket is mono-Mind and Seal of Focus mono-Calm (103.1.b.3), so 103.1.b.2 needs a legend covering both - OGN-255/OGN-303 Nine-Tailed Fox, SFD-189/SFD-244 Fire Below the Mountain, UNL-189/UNL-230 Bashful Bloom or VEN-145/VEN-192 Curator of the Sands.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A gear of Energy cost 1 or less on the board to kill. The kill is optional ('you may'), so the Pickpocket is never a dead card - it is simply a 3 Might body when there is no target."
+        ],
+        "notable": [
+          "WHAT THE ONE-ENERGY WINDOW ACTUALLY CATCHES, MEASURED RATHER THAN GUESSED. The cheap gear in the pool is overwhelmingly the mana base and the cheap Equipment: OGN-081 / SFD-226 Seal of Focus (E0 + 1 Power), OGN-245 Seal of Unity (E0 + 1 Power) and the rest of the Seal cycle, OGN-090 Orb of Regret (E1), SFD-153 Eye of the Herald (E1), OGN-227 Symbol of the Solari (E1). Every one of those is a permanent that quietly pays every turn, which is exactly the kind of card most decks have no answer to - and the Pickpocket is a 3-Energy body that answers it and is PAID a gear for doing so.",
+          "THE SEAL IS THE CARD YOU WANT ON BOTH SIDES OF THIS, WHICH IS WHY IT IS IN uses[]. Its ability costs the Seal's own exhaust and adds a domain Power at [Reaction] speed, and 415.3.a readies it every Awakening - so it is one free Power a turn for a card that costs no Energy at all. It is the reason a Calm/Mind deck can hold Power open on the opponent's turn for the counter suite, and it is the reason the opponent's copy is worth 3 Energy to remove.",
+          "AND THE REPLACEMENT GEAR IS A COUNT, NOT MANA THIS TURN. 187.5: 'A Gold gear token is a domainless GEAR token with \"[Reaction][>] Kill this, [E]: [Add] [A]\"', and the Pickpocket plays it EXHAUSTED - its ability costs its own exhaust, so 415.3.a is when it becomes payable. What it is worth immediately is a gear on the board for every 'control N or more gear' threshold (185.2.d), which is the same point plundering-poro-patched-porobot-gold-gear-count is built on.",
+          "THE KILL IS A KILL AND NOT A BANISH, WHICH MATTERS AGAINST TWO FAMILIES. The gear reaches the Trash, so 808.1.a ('It is present on Permanents') lets any Deathknell on it fire, and 719.5 detaches it from a carrier first if it was attached, with 719.5.a letting that card's controller order the detaches. Against a gear whose death pays its owner, the delayed answer in this lane - UNL-070 Turn to Dust - is no better, since it also kills; the pool has no cheap Mind bounce.",
+          "IT REACHES AN ATTACHED EQUIPMENT. 718.5.b: 'Attached cards still can be chosen or targeted by game effects while Attached', so an Eye of the Herald or a Symbol of the Solari sitting on a unit is a legal choice at E1.",
+          "AND THE OPTIONALITY IS WORTH SAYING. 'You may kill' means the trigger never fails for want of a target and the body always lands; compare a play trigger with a hard requirement, which 055's 'do as much as you can' would leave doing nothing while the card is still spent.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Play Seal of Focus (0 Energy + 1 Power) early on your own side: 415.3.a readies it every Awakening, so it is one Calm Power a turn at [Reaction] speed for no Energy.",
+        "When the opponent lands a gear of Energy cost 1 or less - a Seal, an Orb of Regret, an Eye of the Herald - play Pickpocket (3 Energy) and kill it.",
+        "718.5.b means an attached Equipment is a legal choice; 719.5 detaches it from its carrier as it leaves the board.",
+        "You get a Gold gear token exhausted: a gear for every threshold now (187.5, 185.2.d), and 1 Power of any domain from your next Awakening.",
+        "With no legal target, decline the kill and keep the 3 Might body."
+      ],
+      "netPerIteration": "one cheap enemy gear removed and one Gold token gained per Pickpocket, on a body that lands either way",
+      "terminatesIn": "engine only - three Pickpockets by 103.2.b, each answering one gear of Energy cost 1 or less; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 5)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use SFD-074 Pickpocket or OGN-081 Seal of Focus. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 055, 103.1.b.2, 103.1.b.3, 103.2.b, 185.2.d, 187.5, 415.3.a, 469, 718.5.b, 719.5, 719.5.a, 808.1.a. The window was measured against the pool's actual cheap gear rather than asserted: the Seals are Energy cost ZERO, so they sit inside a 'no more than 1 Energy' clause with room, and they are the quiet permanents most decks cannot answer. OGN-081 has a second printing, SFD-226; CardIndex.equivalents folds them. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "icevale-archer-deadly-flourish-damage-threshold",
+      "name": "An UNFLOORED reduction is what makes a fixed-damage spell reach - and this pair is one Might apart on purpose",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-073",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E4. 'Deal 3 to an enemy unit. When it dies this turn, play a Gold gear token exhausted.' Fixed damage, so the only lever on what it kills is the target's Might."
+        },
+        {
+          "card": "UNL-065",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E2 M2. 'When I attack, you may pay :rb_energy_1: to give a unit here -1 :rb_might: this turn.' No floor in the clause, which is what separates it from the Origins reducers."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Mind, so 103.1.b.3 admits any legend with Mind in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "The Archer must be ATTACKING for its trigger, which 807.1.d ties to the Attacker designation and 323.9 stages only where opposing units are present - it does nothing on a walk into an empty battlefield."
+        ],
+        "notable": [
+          "THE POOL'S REDUCTIONS SPLIT BY SET, AND THIS ONE IS ON THE UNFLOORED SIDE. The nine Origins reductions carry a 'to a minimum of 1' floor and the fourteen from Spiritforged, Unleashed and Vendetta do not. That distinction is worth 1 Might exactly where it matters: a floored reducer can never take a body below 1, so it can never turn a 4 Might body into a legal target for 'Deal 3'. The Archer has no floor, so 4 becomes 3 and Deadly Flourish kills it - 143.2.a needs marked damage at or above Might, and 3 damage on a 3 Might body is lethal.",
+          "AND THE ORDER IS FIXED BY RULE, NOT BY CHOICE. 477.3.e.2.a: 'Negative values, or decreases, to Might are applied last.' So the Archer's -1 is measured after every increase in the same evaluation, and the target cannot pump out of it within one resolution. 477.3.b's snapshotting does not bite here at all, since it applies only to an effect 'that has a LIMITATION' - an unfloored reduction has none, which is the second reason to prefer it.",
+          "143.2.b IS WHY A REDUCTION IS NOT DAMAGE. Negative Might READS as 0 for spells, abilities and combat damage but IS NOT 0, so nothing the Archer does generates a kill event on its own - the Flourish has to finish it, and that is the whole division of labour in the entry.",
+          "THE RIDER IS WHY THE FLOURISH IS NOT JUST A BURN SPELL. 'When it dies this turn, play a Gold gear token exhausted' - and 187.5 makes a Gold 'a domainless GEAR token', which 185.2.d puts inside the rules for its type. So a successful Flourish also advances every 'control N or more gear' threshold in the deck, which is the axis plundering-poro-patched-porobot-gold-gear-count and pickpocket-seal-of-focus-cheap-gear-kill are built on. The Gold arrives EXHAUSTED, so it is Power only from your next Awakening (415.3.a).",
+          "AND THE RIDER IS CONDITIONAL ON THE KILL, WHICH IS WHY THE ARCHER IS IN uses[]. 'When it dies THIS TURN' - so a Flourish that leaves a 4 Might body on 3 damage pays nothing, and the -1 is not a nicety but the difference between a card that trades and a card that trades and profits.",
+          "THE ARCHER'S COST IS THE OTHER HALF OF ITS PRICE. 'You may pay 1 Energy' inside a triggered ability's effect is a game action taken at resolution, not a base cost, and the trigger fires on the attack - so the Energy has to be available in your own Main Phase with the combat already staged. One Energy per attack per Archer, three by 103.2.b.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the pair kills a 4 Might body, not a large one - the ceiling is 3 + one Archer per attack."
+        ]
+      },
+      "steps": [
+        "Attack with Icevale Archer. 464.2.c.3 hands out the Attacker designation and the trigger fires.",
+        "Pay 1 Energy and give the intended target -1 Might this turn. It has no floor, so a 4 becomes a 3.",
+        "477.3.e.2.a applies decreases last, so a pump resolving in the same evaluation does not undo it.",
+        "Play Deadly Flourish (4 Energy) and deal 3 to that unit. 143.2.a makes 3 damage lethal on a 3 Might body.",
+        "It dies, and the rider plays a Gold gear token exhausted - a gear for every threshold now (187.5, 185.2.d) and 1 Power from your next Awakening.",
+        "With a second Archer attacking the same battlefield, the reach is 5 Might for two Energy more."
+      ],
+      "netPerIteration": "one enemy unit of up to 4 Might removed (5 with a second Archer) and a Gold gear token, for 4 Energy and 1 per Archer",
+      "terminatesIn": "engine only - three Flourishes by 103.2.b and one Energy per Archer per attack, with a ceiling of 3 damage plus the reductions bought that turn; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 5)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-065 Icevale Archer or UNL-073 Deadly Flourish. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.2.a, 143.2.b, 185.2.d, 187.5, 323.9, 415.3.a, 464.2.c.3, 469, 477.3.b, 477.3.e.2.a, 807.1.d. Deliberate contrast with orb-of-regret-smoke-screen-floored-reduction from batch 4: that pair is floored and can only move a target under someone else's threshold, this one is unfloored and can complete a kill by itself; the two entries name each other. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "sandstone-chimera-yi-meditative-rune-prison",
+      "name": "Halving the Channel Phase is symmetric until you are already at twelve - then it costs you nothing and them everything",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-036",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E7 P2 M8. 'While I'm at a battlefield, players only channel 1 rune at the start of their Channel Phase.' Symmetric on its face, and asymmetric once your own Rune Deck is empty."
+        },
+        {
+          "card": "OGS-004",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 P1 M4. 'While you have 8+ runes, I have +4 :rb_might:.' The card that pays for the rune curve this deck was building anyway, and it reads a count rather than mana."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Your own rune count at or near twelve BEFORE the Chimera lands. Played early it hurts you as much as them - see the notables."
+        ],
+        "notable": [
+          "THE ASYMMETRY IS ARITHMETIC AND IT ARRIVES ON A KNOWN TURN. 161.2.a fixes the Rune Deck at 'Exactly 12 Rune cards' and 315.3.b channels two free every Channel Phase, so an untouched curve is at twelve around turn six and cannot go higher. From the moment YOUR deck is empty, 430.3 ('If there aren't sufficient runes in the Rune Deck, channel as many as possible') means the Chimera's halving costs you literally nothing, while the opponent's curve is cut in half for the rest of the game. Played on turn three it is a symmetric tax; played on turn six it is a one-sided prison. The entry is about WHEN, not about whether.",
+          "AND THE COUNT IS A BOARD COUNT, NOT A MANA COUNT. 164.2 gives a Basic Rune two abilities and only 164.2.a costs its own exhaust; 164.2.b's cost is the RECYCLE. So a rune tapped for Energy is still a rune you control for Yi, Meditative's '8+ runes' - but 161.2.b sends a rune RECYCLED for Power back to the Rune Deck, which lowers the count. In this deck, do not cash runes for Power: the whole plan is the count.",
+          "WHICH IS ALSO WHY THIS DECK CANNOT ALSO BE THE SEVEN-RUNE DECK'S OPPOSITE NUMBER. esteemed-hierophant-tomb-raider-seven-runes and siphoning-strike-nasus-guardian-rune-threshold read the same resource at a lower threshold, and their riders CHANNEL more runes - which the Chimera does not stop, because 'channel 1 rune at the start of their Channel Phase' is scoped to 315.3.b's free channel and says nothing about a channel from a card. So a Chimera deck keeps every card-based channel it runs and denies the opponent the free two: those entries and this one are the same shell, and the Chimera is what makes it a prison instead of a race.",
+          "THE BODY IS THE OTHER HALF OF THE PRICE. 7 Energy and 2 Power for an 8 Might unit is the most expensive body in the domain, and it only works 'while I'm AT A BATTLEFIELD' - so it has to walk in (144.4, paying 144.2's exhaust) and survive, and any removal that answers it hands the opponent their curve back. 143.4 enters it exhausted, so the halving does not begin until the turn after it is played unless something readies it.",
+          "AND YI IS WHAT MAKES THE CURVE PAY BEFORE THE CHIMERA LANDS. '+4 :rb_might:' on a 4 Might body at eight runes is an 8 Might unit for 5 Energy + 1 Power - the same size as the Chimera for less than half the cost - and it is live from around turn four, two turns before the prison. It reads a count and not a threshold ability, so 824.1.d has nothing to say about it and nothing can spend it away.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the denial is a tax on their development, not a lock - 167 still empties the pool, and everything they have already channelled stays."
+        ]
+      },
+      "steps": [
+        "Build the rune curve normally: 315.3.b channels two every Channel Phase against 161.2.a's cap of twelve.",
+        "At eight, play Yi, Meditative (5 Energy + 1 Power) - an 8 Might body for the price of a five-drop.",
+        "Do NOT recycle runes for Power: 164.2.b's recycle sends the rune to the Rune Deck (161.2.b) and lowers the count both cards read.",
+        "Once your own Rune Deck is empty, play Sandstone Chimera (7 Energy + 2 Power) and walk it to a battlefield.",
+        "From that Channel Phase the opponent gets one rune instead of two, and 430.3 means your own halving costs nothing you were still going to receive.",
+        "Any card-based channel in your deck is untouched - the Chimera's clause is scoped to the free channel at the start of the Channel Phase."
+      ],
+      "netPerIteration": "one rune a turn taken off the opponent's curve for as long as the Chimera stands, at no cost once your own Rune Deck is empty",
+      "terminatesIn": "engine only - a development tax, not a lock; it stops the moment the Chimera leaves a battlefield, and nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 5)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use VEN-036 Sandstone Chimera or OGS-004 Yi, Meditative. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.4, 144.2, 144.4, 161.2.a, 161.2.b, 164.2, 164.2.a, 164.2.b, 167, 315.3.b, 430.3, 469, 824.1.d. The entry is about TIMING: a symmetric denial becomes one-sided exactly when your own Rune Deck empties, and 430.3 is the paragraph that says so. The scope of the Chimera's clause - the FREE channel at the start of the Channel Phase, not a channel from a card - is stated because it decides whether this shell can also run the rune-threshold entries, and it can. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "akali-silent-twilight-shroud-cant-be-chosen",
+      "name": "'Can't be chosen' is a prohibition and [Deflect] is a tax - and Akali's is switched off by the one thing that usually protects a body",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-038",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E4 P1 M4. 'I can't be chosen by enemy spells and abilities UNLESS I'M IN COMBAT. When I move to a battlefield, give me +2 :rb_might: this turn.' Protected while developing and exposed in the fight - the inverse of a [Tank]."
+        },
+        {
+          "card": "VEN-031",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E1. 'Give a friendly unit +1 :rb_might: this turn. It can't be chosen by enemy spells and abilities this turn. [Flow] :rb_energy_2:.' One Energy for the protection Akali loses the moment she is in combat, and it is playable twice per copy."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Nothing else. Twilight Shroud has no condition, and Akali's own clause needs only that she is not in combat."
+        ],
+        "notable": [
+          "A PROHIBITION IS NOT A TAX, AND THE POOL PRINTS BOTH. 809.1.c makes [Deflect] 'an additional cost ... for each time they choose' - a player with the Power simply pays. 'I can't be chosen by enemy spells and abilities' is absolute under 054.1: 'Cards that forbid actions or effects, as a broad method of determination, supersede cards that allow or permit that same action or effect.' No amount of Power gets through. This project has treated the two as interchangeable in notables before; they are different in kind.",
+          "AND BOTH HAVE THE SAME HOLE. 355.10.d: an object 'programmatically selected based on its characteristics rather than chosen by the spell or ability' is not a target, and 355.10.e adds a set 'chosen in whole or in part by other players'. Neither clause here says anything about those, so every sweeper in the pool goes straight through both cards. Protection from CHOOSING is protection from targeted removal and from nothing else.",
+          "AKALI'S CONDITION IS THE INVERSE OF EVERY OTHER PROTECTION IN THE DOMAIN. 'Unless I'm in combat' - and 740.2.c defines that term: 'A unit is in combat if it is occupying a battlefield where combat is ongoing and has a combat designation.' So she is untouchable while she develops, walks and holds, and becomes a legal target the moment she is worth removing. That is exactly backwards from a [Tank] or a [Shield], which do nothing until the fight starts, and it is why she needs a second layer rather than a bigger one.",
+          "WHICH IS WHAT TWILIGHT SHROUD IS FOR, AND IT COSTS ONE ENERGY. Its clause carries no 'unless', so it covers the window Akali's does not, and it is a spell rather than a permanent - so it can be held until the combat is staged. 829.1.b makes it playable a second time from the trash for 2 Energy ('You may play this from your trash for its flow cost. Then banish it'), with 829.1.b.1 making the banish a delayed replacement and 108.6.c keeping it gone afterwards: three copies are SIX protections in a game.",
+          "AKALI'S OWN RIDER PAYS FOR THE MOVE SHE WAS MAKING ANYWAY. 'When I move to a battlefield, give me +2 :rb_might: this turn' fires on the Standard Move whose cost is her exhaust (144.2, 420.3.a), so she is a 6 Might attacker for 4 Energy + 1 Power on the turn she walks in - and 465.2.c reads Might at assignment, so the +2 is real damage.",
+          "THE ONE ORDERING THAT MATTERS. Play Twilight Shroud BEFORE the combat opens, not after: 813.1.b and 813.1.c.1 would let a [Reaction] card in later, but this spell has no keyword at all, so 155 - 'A spell can be played during an Open State outside of Showdowns on its controller's turn' - confines it to your own Main Phase. The protection has to be bought in advance, which is the same shape as the [Deflect] rule that granting it in response taxes nothing.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Play Akali, Silent (4 Energy + 1 Power). Until she is in combat (740.2.c), 054.1 makes her untargetable by enemy spells and abilities outright.",
+        "Move her to a battlefield: the Standard Move costs her exhaust (144.2) and her rider gives +2 Might this turn, so she arrives as a 6.",
+        "In the SAME Main Phase, before the combat opens, play Twilight Shroud (1 Energy) on her - 155 is why it cannot wait for the showdown.",
+        "She now cannot be chosen at all this turn, including while in combat, and is a 7.",
+        "Later, replay Twilight Shroud from the trash for its [Flow] cost of 2 Energy; 829.1.b banishes it afterwards, so each copy is two protections.",
+        "Expect a sweeper to kill her anyway: 355.10.d means a programmatically selected object is never chosen."
+      ],
+      "netPerIteration": "one turn of absolute protection per Twilight Shroud (two per copy with [Flow]), on a body that is already untargetable outside combat",
+      "terminatesIn": "engine only - six Twilight Shroud plays a game (103.2.b with [Flow]), and neither card stops a sweeper (355.10.d); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 5)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use VEN-038 Akali, Silent or VEN-031 Twilight Shroud. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 054.1, 103.1.b.3, 103.2.b, 108.6.c, 144.2, 155, 355.10.d, 355.10.e, 420.3.a, 465.2.c, 469, 740.2.c, 809.1.c, 813.1.b, 813.1.c.1, 829.1.b, 829.1.b.1. The entry states the prohibition-versus-tax distinction with both paragraphs, since this catalogue has treated [Deflect] and 'can't be chosen' as the same thing in prose before. 740.2.c is the definition of 'in combat' and is what makes Akali's protection the inverse of a [Tank]'s. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
     }
   ]
 }
