@@ -4578,7 +4578,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Chaos — both cards are mono-Chaos, so any Chaos legend runs it."
@@ -4612,7 +4614,7 @@
           "date": "2026-09-04"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-nine-domain-lens-candidates.md), issue #29. Both texts verified verbatim against data/corpus_flat.txt on 2026-09-04. The point of the line is that Tornado Warrior is not just a free empowerer, it is a free empowerer that CLEANS UP AFTER ITSELF: 441.1.b would otherwise lock the Matriarch out after the first empower, and her own [Empower] ability is single-use by 827.1.c.1. PRODUCES IS EMPTY ON PURPOSE — data/features.json has no outcome for 'free replay out of the trash', and features.json is capped at ~20 entries by design, so nothing was invented. Trap check: no [Temporary]; units enter exhausted (143.4) and the entry says the revived body lands at your base; no attack trigger; no rune recycled; no Awaken Energy. WALK: holds after a rewrite that triples the stated price. The mechanism is sound — 441.3.a, 441.2.a, 441.1.b and 827.1.c.1 all check out, and Tornado Warrior's end-of-turn disempower is what clears 441.1.b for the next cycle. But [Hidden] is not free: 811.1.b charges 1 Power to hide, delays the play to the following turn, and requires a battlefield you control with no other facedown card, while 811.1.d.1 pins where he lands. Two cheaper orderings were tried before accepting the price, per the project rule; neither is free, and the Profiteer claim from the L7 document was wrong and is corrected in prerequisites."
+      "notes": "HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-nine-domain-lens-candidates.md), issue #29. Both texts verified verbatim against data/corpus_flat.txt on 2026-09-04. The point of the line is that Tornado Warrior is not just a free empowerer, it is a free empowerer that CLEANS UP AFTER ITSELF: 441.1.b would otherwise lock the Matriarch out after the first empower, and her own [Empower] ability is single-use by 827.1.c.1. PRODUCES IS EMPTY ON PURPOSE — data/features.json has no outcome for 'free replay out of the trash', and features.json is capped at ~20 entries by design, so nothing was invented. Trap check: no [Temporary]; units enter exhausted (143.4) and the entry says the revived body lands at your base; no attack trigger; no rune recycled; no Awaken Energy. WALK: holds after a rewrite that triples the stated price. The mechanism is sound — 441.3.a, 441.2.a, 441.1.b and 827.1.c.1 all check out, and Tornado Warrior's end-of-turn disempower is what clears 441.1.b for the next cycle. But [Hidden] is not free: 811.1.b charges 1 Power to hide, delays the play to the following turn, and requires a battlefield you control with no other facedown card, while 811.1.d.1 pins where he lands. Two cheaper orderings were tried before accepting the price, per the project rule; neither is free, and the Profiteer claim from the L7 document was wrong and is corrected in prerequisites. [2026-09-06, #157: tagged card-advantage-engine after all — by then the catalogue had been using that value for free replays out of the trash (last-rites-lunar-boon-trash-recursion, kennen-stargazer-arena-flow), so the precedent in the file beat this note.]"
     },
     {
       "id": "kennen-stargazer-arena-flow",
@@ -4760,7 +4762,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Chaos — both cards are mono-Chaos."
@@ -4800,7 +4804,7 @@
           "date": "2026-09-04"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-nine-domain-lens-candidates.md), issue #29. Both texts verified verbatim against data/corpus_flat.txt on 2026-09-04. The pack-of-wonders-replays-a-body synergy pattern is already verified and lists 16 partners; the only catalogued combo on it uses UNL-121 Bewitching Spirit, whose play effect is 'a player discards 1'. Fizz is the strongest Chaos body on that list and was never walked. The third Chaos partner, OGN-196 Soulgorger ('When you play me, you may play a unit from your trash, ignoring its Energy cost'), is the same structure with units instead of spells and is still uncatalogued. PRODUCES IS EMPTY ON PURPOSE — data/features.json has no outcome for 'free replay out of the trash' and is capped at ~20 entries by design. Trap check: no [Temporary]; units enter exhausted and the entry says so; no attack trigger; no rune recycled. WALK: holds after a rewrite. The recycle-vs-banish distinction is the entry's best point and is correct (416.1/416.1.a against 829.1.b.1). But the cap was overstated as a fact of the pool: 'nothing readies a gear' is true of the 211 Chaos cards and false of the pool, and SFD-221 Veiled Temple is COLORLESS, so it fits this very deck and buys a second cycle on a conquer. This also narrows the structural claim in the L7 document's N1."
+      "notes": "HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-nine-domain-lens-candidates.md), issue #29. Both texts verified verbatim against data/corpus_flat.txt on 2026-09-04. The pack-of-wonders-replays-a-body synergy pattern is already verified and lists 16 partners; the only catalogued combo on it uses UNL-121 Bewitching Spirit, whose play effect is 'a player discards 1'. Fizz is the strongest Chaos body on that list and was never walked. The third Chaos partner, OGN-196 Soulgorger ('When you play me, you may play a unit from your trash, ignoring its Energy cost'), is the same structure with units instead of spells and is still uncatalogued. PRODUCES IS EMPTY ON PURPOSE — data/features.json has no outcome for 'free replay out of the trash' and is capped at ~20 entries by design. Trap check: no [Temporary]; units enter exhausted and the entry says so; no attack trigger; no rune recycled. WALK: holds after a rewrite. The recycle-vs-banish distinction is the entry's best point and is correct (416.1/416.1.a against 829.1.b.1). But the cap was overstated as a fact of the pool: 'nothing readies a gear' is true of the 211 Chaos cards and false of the pool, and SFD-221 Veiled Temple is COLORLESS, so it fits this very deck and buys a second cycle on a conquer. This also narrows the structural claim in the L7 document's N1. [2026-09-06, #157: tagged card-advantage-engine after all — by then the catalogue had been using that value for free replays out of the trash (last-rites-lunar-boon-trash-recursion, kennen-stargazer-arena-flow), so the precedent in the file beat this note.]"
     },
     {
       "id": "lee-sin-buff-bank",
@@ -5098,7 +5102,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "resource-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Mono-Chaos: any legend with Chaos in its pair (103.1.b)."
@@ -5242,7 +5248,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Fury and Chaos (103.1.b). Five legends do: OGN-251 Loose Cannon, OGS-017 Dark Child - Starter, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows."
@@ -5319,7 +5327,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "repeatable-removal"
+      ],
       "prerequisites": {
         "easy": [
           "Legend is Daughter of the Void (OGN-247). The other Fury/Mind legends are SFD-181 Mechanized Menace and UNL-181 Virtuoso; neither adds Power, so the line costs one more real rune under them."
@@ -5469,7 +5479,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Mono-Order: any legend whose Domain Identity covers Order (103.1.b)."
@@ -5632,7 +5644,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Mono-Order: any legend whose Domain Identity covers Order (103.1.b)."
@@ -5796,7 +5810,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Mono-Order: any legend whose Domain Identity covers Order (103.1.b)."
@@ -6162,7 +6178,10 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "resource-engine",
+        "token-body-engine"
+      ],
       "legends": [
         "VEN-153"
       ],
@@ -6239,7 +6258,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "token-body-engine"
+      ],
       "legends": [
         "VEN-149"
       ],
@@ -6578,7 +6599,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "conquer-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Mind and Order (103.1.b.4): OGN-265, OGS-021, SFD-201, UNL-199.",
@@ -7489,7 +7512,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "token-body-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Mono-Order: all four cards are Order.",
@@ -7545,7 +7570,9 @@
         "infinite-energy",
         "infinite-power"
       ],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Mind and Order, which the Lux shell already is (103.1.b.1)."
@@ -8031,7 +8058,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Calm and Mind: OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom, VEN-145 Curator of the Sands."
@@ -8326,7 +8355,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "strip-opponent-hand"
+      ],
       "prerequisites": {
         "easy": [
           "Mono-Body: any Body legend."
@@ -9741,7 +9772,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "token-body-engine"
+      ],
       "legends": [
         "VEN-149"
       ],
@@ -9965,7 +9998,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "conquer-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Calm. Charm is mono-Calm, so any legend with Calm runs it.",
@@ -10116,7 +10151,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "conquer-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Chaos. The Poro is mono-Chaos, so any legend with Chaos runs it.",
@@ -10176,7 +10213,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "conquer-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Body. The Dragon is mono-Body, so any legend with Body runs it.",
@@ -10331,7 +10370,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "token-body-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains must cover Calm and Order: SFD-247 Emperor of the Sands, OGN-261 Radiant Dawn, UNL-195 Green Father or VEN-147 Eye of Twilight. None carries a ban marker."
@@ -10401,7 +10442,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "conquer-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Body. Both are mono-Body, so any legend with Body runs them.",
@@ -10495,7 +10538,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "temporary-body-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Mind. Both cards are mono-Mind. UNL-189 Bashful Bloom (Calm/Mind, Lillia's own legend) is the one that pays the most — see the notable.",
@@ -10557,7 +10602,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "conquer-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Mind. Bard is mono-Mind, so any legend with Mind runs him.",
@@ -14744,7 +14791,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains must cover Fury and Chaos; Loose Cannon is one of twelve, and it is the legend the line wants anyway.",
@@ -15557,7 +15606,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "repeatable-removal"
+      ],
       "prerequisites": {
         "easy": [
           "Radiant Dawn is Calm/Order: Solari Chief and Facebreaker are Order, Solari Shrine is Calm (103.1.b).",
@@ -15640,7 +15691,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "repeatable-removal"
+      ],
       "prerequisites": {
         "easy": [
           "Leona, Zealot, Thwonk! and Rune Prison are Calm; Facebreaker is Order. A Calm legend runs the first three and a Calm/Order legend runs all four (103.1.b).",
@@ -15800,7 +15853,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "conquer-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Conscription is Chaos, Forgotten Signpost is Calm: the legend must be Calm/Chaos (103.1.b). Three qualify - OGN-259 Unforgiven, SFD-195 Blade Dancer, UNL-193 Gloomist.",
@@ -16036,7 +16091,10 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine",
+        "repeatable-removal"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains must cover Fury and Chaos (103.1.b.1 \"Cards included in your deck must abide by your Domain Identity\", 103.1.b.2 \"Your deck's Domain Identity is dictated by the domains of your Champion Legend\"). Five legends are Fury/Chaos: OGN-251 Loose Cannon, OGS-017 Dark Child, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows.",
@@ -16113,7 +16171,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains must cover Fury and Chaos (103.1.b.1 \"Cards included in your deck must abide by your Domain Identity\", 103.1.b.2 \"Your deck's Domain Identity is dictated by the domains of your Champion Legend\"). Five legends are Fury/Chaos: OGN-251 Loose Cannon, OGS-017 Dark Child, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows.",
@@ -16282,7 +16342,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "The legend IS the requirement: VEN-143 Master of Shadows, Fury/Chaos, which covers every card here (103.1.b.1, 103.1.b.2).",
@@ -16359,7 +16421,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains must cover Chaos (103.1.b.1). VEN-155 Heart of the Tempest is the one this entry names because its trigger is paid by the line itself; any Chaos legend runs the gear.",
@@ -16444,7 +16508,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "resource-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains must cover Fury and Chaos (103.1.b.1 \"Cards included in your deck must abide by your Domain Identity\", 103.1.b.2 \"Your deck's Domain Identity is dictated by the domains of your Champion Legend\"). Five legends are Fury/Chaos: OGN-251 Loose Cannon, OGS-017 Dark Child, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows. This entry is the Fury/Chaos build, because VEN-013 Shadow Assassin is Fury.",
@@ -17376,7 +17442,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "strip-opponent-hand"
+      ],
       "prerequisites": {
         "easy": [
           "Mono-Order, so any of the 17 legends carrying Order runs the pair (Fury/Order, Calm/Order, Mind/Order, Body/Order or Order/Chaos).",
@@ -18885,7 +18953,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "temporary-body-engine"
+      ],
       "legends": [
         "UNL-189"
       ],
@@ -21189,6 +21259,310 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §29), issue #153, from the orphan rule wizened-elder-buffed-payoff. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 107.4.c, 144.4.c, 315.1.b, 415.1, 485.4, 702.2.a, 702.2.b, 702.3, 703, 705, 709, 810.1.c.3. The entry's contribution over the rule is the exclusivity: carrying a buff and spending a buff are opposite uses of the same counter, and the catalogue's other buff lines all spend. Trap check: no attack; no [Repeat]; no [Temporary]; no token; no recall; 167 is not touched; 107.4.b does not bite, because nothing asks the legend to be at a location — only 107.4.c, that it is a Game Object. Depends on no unruled reading."
+    },
+    {
+      "id": "heimerdinger-ultrasoft-poro-plaza",
+      "name": "Heimerdinger × Ultrasoft Poro — four Birds a turn onto The Grand Plaza",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-111",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E3 P1 M3. 'I have all [exhaust] abilities of all friendly legends, units, and gear.' He copies Ultrasoft Poro's activated ability, exhaust cost and all."
+        },
+        {
+          "card": "UNL-160",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E5 M5. '[exhaust]: Play two 1 Might Bird unit tokens with [Deflect]. Use this ability only while I'm at a battlefield.'"
+        },
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'When you hold here, if you have 7+ units here, you win the game.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Mind (Heimerdinger) and Order (Ultrasoft Poro) — OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-201 Chem-Baroness, UNL-199 Deceiver. The Plaza is colourless."
+        ],
+        "notable": [
+          "THE BIRDS NEED NO WALK, which is what separates this from every Recruit line in the catalogue. Ultrasoft Poro's ability names no destination, so 355.2.a applies — 'By default, Valid locations include the controller's Base or a Battlefield the controller controls' — and you simply put both Birds on the Plaza. #48's token bottleneck (born at the base, walk to the battlefield) never arises, and so neither does SFD-171 Renata Glasc, Industrialist: the Birds enter exhausted (143.4) and it does not matter, because nothing asks them to pay 144.2.",
+          "R30 = B is satisfied rather than dodged. Ruled 2026-09-06: a copied [exhaust] ability carries its 'Use this ability only while I'm at a battlefield' clause, because 377.2.b makes that sentence a condition of the Activated Ability, and 053.1 re-reads 'I' on whoever now has it. Heimerdinger therefore has to stand at a battlefield — and here he stands on the Plaza, which is where he wants to be anyway.",
+          "Two activations a turn, not four: Heimerdinger's own text grants him the ability once however many Poros are on the board, and 476.1 applies an effect only once across all sequences. The entry declares one Poro and counts two activations (Poro's own + Heimerdinger's copy) = 4 Birds a turn. A second Poro adds its own activation (6 Birds), which is margin, not speed — the turn count is the same.",
+          "[Deflect] is the removal tax: 809.1.c makes an opponent pay 1 rainbow Power to choose a Bird with a spell or ability, and 809.1.c.1 lets that Power be any domain. Eight 1-Might Birds cost eight extra Power to pick off one at a time; a combat sweep still has to get through Heimerdinger and the 5-Might Poro first.",
+          "The count is measured AT THE HOLD. 383.2.a.1 makes 'if you have 7+ units here' part of the Trigger Condition rather than the Effect, so nothing can be added at that instant; the eight units have to survive the opponent's whole turn. 185.2.b ('Token units have a Might') is why the Birds count as units at all.",
+          "The Grand Plaza must be the battlefield in play: each player provides three and only 1 is used (485.4.a), randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5), and 103.4.c plus Tournament Rules 402.1 forbid bringing three copies to force it. In a Duel only two battlefields are on the table (485.4).",
+          "Nothing here is [Temporary], so 816.1.b never touches the Birds — unlike leblanc-bashful-bloom-trevor-plaza, which needs UNL-090 LeBlanc on the board purely to switch that kill off. This line pays 8 Energy and 1 Mind Power for two cards; that one pays 13 Energy for three."
+        ]
+      },
+      "steps": [
+        "Control The Grand Plaza (a battlefield you bring starts uncontrolled, 190.1: walk in, 190.3.a.1 makes it Contested, 344.2 opens the Showdown, 348.2.a gives Control and 348.2.a.1 makes it a Conquer worth 1 point).",
+        "T1 Main: play Ultrasoft Poro (5 Energy) to the Plaza. He enters exhausted (143.4) and cannot activate this turn.",
+        "T2 Awaken (315.1.b) readies him. T2 Beginning: you Hold the Plaza — 1 unit here, the Plaza's condition is false, no win. T2 Main: play Heimerdinger, Inventor (3 Energy + 1 Mind Power) to the Plaza and activate the Poro: two Birds. Four units here.",
+        "T3 Awaken readies everything. T3 Beginning: Hold with 4 units — still false. T3 Main: activate the Poro (two Birds) and Heimerdinger, who has the same ability (two Birds). Eight units at the Plaza.",
+        "Survive the opponent's turn with seven of the eight still standing.",
+        "T4 Beginning: 315.2.b.2 Holds the Plaza, the Trigger Condition finds 7+ units here (383.2.a.1) and rule 195 wins the game."
+      ],
+      "terminatesIn": "win the game on the fourth Hold, for 8 Energy + 1 Mind Power and two cards",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule heimerdinger-inventor-exhaust-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160: Ultrasoft Poro is an uncatalogued partner of BOTH heimerdinger-inventor-exhaust-copy (75 partners, 4 entries) and grand-plaza-unit-tokens (47 partners, 3 entries), and the pair is the cheapest Plaza win in the catalogue at 8 Energy + 1 Power. Card text verbatim from data/corpus_flat.txt; every rule opened in data/Riftbound-Core-Rules-2026-07-16.txt. No new rules reading: it stands on R30 = B (ruled 2026-09-06) and R25 is not needed at all, because nothing walks. Trap check against CLAUDE.md: no attack and therefore no Attacker designation (807.1.d / 383.4.e / 461 cannot bite); no token is recycled (185 / 416.1); no [Temporary] (816.1.b); no [Repeat]; no recall; nothing is added in Awaken or the Beginning Phase, so 167 does not bite; Domain Identity is Mind/Order and both non-colourless cards are inside it (103.1.b)."
+    },
+    {
+      "id": "vanguard-captain-manufactor-plaza",
+      "name": "Vanguard Captain × Faithful Manufactor — eight bodies played straight onto The Grand Plaza",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-218",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 P1 M3. '[Legion] — When you play me, play two 1 Might Recruit unit tokens here. (Get the effect if you've played another card this turn.)' Three bodies per copy."
+        },
+        {
+          "card": "OGN-211",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 M2. 'When you play me, play a 1 Might Recruit unit token here.' Two bodies, and playing it first is what turns [Legion] on for the first Captain (812.1.c)."
+        },
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'When you hold here, if you have 7+ units here, you win the game.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Order: any Order legend. The Grand Plaza is colourless."
+        ],
+        "notable": [
+          "EVERY TOKEN SAYS 'here', so this line never touches #48's bottleneck and never needs SFD-171 Renata Glasc, Industrialist. Both Vanguard Captain and Faithful Manufactor place their Recruits at the location the unit itself was played to, so playing the three units to the Plaza puts all eight bodies there in the same Main Phase. Compare grand-plaza-recruit-vanguard, whose OGS-015 Recruit the Vanguard has to spell the permission out in its own reminder text.",
+          "The [Legion] order is load-bearing and it is free. 812.1.c: 'As long as a card different than the one with the Legion ability has been Finalized by you on the same turn then the Dependent Ability is Active on the card with Legion.' Playing Faithful Manufactor first satisfies it, and 812.2 says one card satisfies every instance — so Captain #2 needs nothing further. Play the Manufactor last and the first Captain is a 3-Might body with no Recruits.",
+          "Nine Energy and two Order Power against grand-plaza-recruit-vanguard's twelve Energy, which is the exact weakness its own REFUTE note recorded ('two Vanguards in one turn is 12 Energy, the whole Rune Deck'). The count is 8 units — Manufactor + Recruit + 2 × (Captain + 2 Recruits) — so one may die and the Hold still wins.",
+          "Three of the eight are 2-3 Might bodies rather than 1-Might Recruits, which matters because the whole board has to survive the opponent's turn: 465.2.c makes the attacker assign damage equal to their summed Might and 465.2.c.3 forces lethal onto one unit at a time, so five 1-Might Recruits plus a 2-Might and two 3-Might units cost 13 damage to clear, not 8.",
+          "The count is measured AT THE HOLD: 383.2.a.1 makes 'if you have 7+ units here' part of the Trigger Condition, so nothing can be topped up at that instant. Nothing here is [Temporary], so 816.1.b never fires.",
+          "The Grand Plaza must be the battlefield in play — 485.4.a puts only 1 of your 3 into the game, randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid three copies. And it is symmetric: an opponent who parks seven units on it wins the same way."
+        ]
+      },
+      "steps": [
+        "Control The Grand Plaza (190.1 → 190.3.a.1 → 344.2 → 348.2.a → 348.2.a.1, the ordinary Showdown Conquer).",
+        "One Main Phase: play Faithful Manufactor to the Plaza (3 Energy). Its play trigger puts a Recruit there — two units.",
+        "Play Vanguard Captain #1 to the Plaza (3 Energy + 1 Order Power). [Legion] is Active because the Manufactor was finalized this turn (812.1.c), so two Recruits land here — five units.",
+        "Play Vanguard Captain #2 the same way (3 Energy + 1 Order Power): eight units at the Plaza, for 9 Energy and 2 Order Power total.",
+        "Survive the opponent's turn with seven of the eight still there.",
+        "Your Beginning Phase: 315.2.b.2 Holds the Plaza, the Trigger Condition finds 7+ units here and rule 195 wins the game."
+      ],
+      "terminatesIn": "win the game on the next Hold, for 9 Energy + 2 Order Power in a single Main Phase",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule grand-plaza-unit-tokens (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. Both OGN-218 and OGN-211 are uncatalogued partners of grand-plaza-unit-tokens, and together they beat the catalogued OGS-015 line on Energy (9 vs 12) and on body quality. Card text verbatim from data/corpus_flat.txt; 812.1.c, 812.2, 355.2.a, 383.2.a.1, 465.2.c and 195 opened in the Core Rules file. No unruled reading is used and R25 is not needed, because no token ever moves. Trap check: no attack (807.1.d / 383.4.e / 461 do not apply to a Hold); nothing recycled (185 / 416.1); no [Temporary] (816.1.b); no [Repeat]; nothing added in the Beginning Phase (167); mono-Order, so 103.1.b is trivially satisfied."
+    },
+    {
+      "id": "shen-kinkou-sentinel-hold",
+      "name": "Shen, Leader of the Kinkou Order × Blue Sentinel — the one Sentinel line a second Sentinel breaks",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-138",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P2 M7, [Shield]. 'When I hold, if there is exactly one other unit you control here, you score 1 point.'"
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M4, [Shield 2]. 'Your hold effects for holding here trigger an additional time.' Exactly one copy — a second one breaks Shen's condition."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Mind and Order — OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-201 Chem-Baroness, UNL-199 Deceiver."
+        ],
+        "notable": [
+          "THE SECOND SENTINEL IS A DOWNGRADE, AND THIS IS THE ONLY LINE IN THE CATALOGUE WHERE THAT IS TRUE. Shen's 'if there is exactly one other unit you control here' sits immediately after the trigger condition, so 383.2.a.1 makes it part of the Trigger Condition — 'Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled.' With two Sentinels there are three of your units at the battlefield, Shen sees two others, and the trigger never reaches the Chain at all: the line goes from 3 points a turn to 1. Every other Blue Sentinel entry (ahri-blue-sentinel-hold, ivern-sentinel-hold, blue-sentinel-trinity-force-hold, nasus-ascended-sentinel-arena-hold) scales with K; this one is pinned at K = 1 and at exactly two bodies on the battlefield.",
+          "Three points a turn from a single battlefield: 1 from the Score itself (469.2 → 471.1, capped at one per battlefield per turn by 470) plus 2 from Shen, whose hold effect fires 1 + K = 2 times under R1 = A with stacking. R2 = A keeps the two ability points outside 470 — card-text 'score 1 point' is a Gain under 194.1.c, not a 469 Score.",
+          "The Sentinel pays a third of its own cost every turn. Its own 'When I hold, [Add] rainbow at the start of your next Main Phase' is one of your hold effects too, so it fires twice: 2 rainbow Power. That Power survives 167, and the reason is the Main Phase's own task order — 316.3 empties every Rune Pool FIRST and 316.4 is where 'at the start of Main Phase game effects take place'. The catalogue has been treating that Power as real since world-atlas-sentinel-gold without ever citing why; 316.2 / 316.3 / 316.4 is why.",
+          "Both bodies defend: Shen is 7 Might with [Shield] (8 defending) and the Sentinel 4 with [Shield 2] (6). Losing either ends the line — the Sentinel takes the multiplier away, and killing the Sentinel also breaks Shen's 'exactly one other unit' the other way, leaving Shen alone and silent.",
+          "In a Duel 315.2.b.2 Holds every battlefield you control, and 485.4 puts two on the table, so a second Shen + Sentinel pair on the other battlefield doubles the rate to 6 points a turn. That is 24 Energy and 6 Power of investment, and it still reaches 8 across two Beginning Phases rather than one — the class stays ENGINE, never BURST.",
+          "Do not try to add a third body for value: any friendly unit that walks to that battlefield switches Shen off. Nothing may be played there either, since 355.2.a makes a battlefield you control a default play location and the token or unit would land in the count."
+        ]
+      },
+      "steps": [
+        "Get Shen, Leader of the Kinkou Order (6 Energy + 2 Order Power) and exactly one Blue Sentinel (4 Energy + 1 Mind Power) onto the same battlefield and establish Control of it.",
+        "Keep the garrison at exactly those two units. Survive to your Beginning Phase.",
+        "Scoring Step (315.2.b.2): you Hold. That is 1 point (471.1), capped by 470 at one per battlefield.",
+        "Shen's hold effect fires 1 + K = 2 times (R1 = A). Its condition was checked at the Hold and found exactly one other friendly unit here — the Sentinel — so both instances resolve: 2 more points, outside 470 by R2 = A. Three points this turn.",
+        "The Sentinel's own hold effect also fires twice: 2 rainbow Power arrives at 316.4, after 316.3 has emptied the pool.",
+        "Repeat every turn the garrison survives."
+      ],
+      "netPerIteration": "+3 points and +2 rainbow Power per turn, per battlefield held",
+      "terminatesIn": "engine — 3 points a turn from one battlefield; it reaches the Victory Score across turns, never in one event",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule blue-sentinel-hold (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. VEN-138 is an uncatalogued partner of blue-sentinel-hold (45 partners, 9 entries carrying UNL-087). Card text verbatim from data/corpus_flat.txt; 383.2.a.1, 469.2, 470, 471.1, 194.1.c, 167, 316.2-316.4 and 315.2.b.2 opened in the Core Rules file. It stands on R1 = A with stacking and R2 = A, both ruled 2026-09-03; no new reading. The formula was checked against its own declared quantities before authoring — 1 + 1 x (1 + 1) = 3, and the class is ENGINE because that never reaches 8 in one scoring event. Trap check: a Hold needs no Attacker designation (807.1.d / 383.4.e / 461); no [Temporary]; no [Repeat]; no recall; no token; nothing recycled; the Sentinel's [Shield 2] is a Might bonus while defending, not a would-die replacement, so 808.1.d.1 does not bite."
+    },
+    {
+      "id": "cull-brambleback-gold",
+      "name": "Three Culls on a Red Brambleback — nine Gold from one Conquer",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-134",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos gear, E1, Might Bonus +1. '[Equip] 1 Chaos Power. [Effect] When I conquer, play a Gold gear token exhausted.' Not [Unique], so all three stack on one body."
+        },
+        {
+          "card": "UNL-029",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 P1 M4, [Accelerate]. 'Your conquer effects for conquering here trigger an additional time.' Two copies take each conquer effect to three executions."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Fury and Chaos — OGN-251 Loose Cannon, OGS-017 Dark Child, SFD-185 Glorious Executioner, UNL-185 Bloodharbor Ripper, VEN-143 Master of Shadows. Five of the pool's fifty legends, the widest pair in this walk."
+        ],
+        "notable": [
+          "WHY THREE CULLS FIT ON ONE BODY. Cull prints no [Unique] (compare SFD-115 Trinity Force, which also stacks, against a gear such as Forgefire Cape that prints the keyword), and 434.1.b.1 contemplates 'more than one card attached to the Top-Most card' and says outright that 'the order of the Attached cards has no bearing on the application of effects'. 136.2.c appends each Effect Text to the Rules Text of the card it is attached to and 136.2.d makes 'I' mean that card, so the bearer carries three separate Conquer Effects (383.4.c.1). This is the same construction blue-sentinel-trinity-force-hold uses on the Hold side; nobody had run it on the Conquer side.",
+          "Nine Gold, and the arithmetic is 3 Culls × (1 + 2 Bramblebacks) = 9. R1 = A with stacking is the ruling that makes two Bramblebacks three executions rather than two, and tryndamere-brambleback-conquer already runs three copies on the same basis. 187.5 defines the token: 'A Gold gear token is a domainless gear token with \"[Reaction][>] Kill this, [exhaust]: [Add] [rainbow].\"'",
+          "The Power is NEXT turn's, not this turn's, and the entry says so rather than publishing a headline number: the Gold enter exhausted, and 315.1 Awaken has already run by the time of a Conquer in your Main Phase, so they ready at your NEXT Awaken (315.1.b). SFD-171 Renata Glasc, Industrialist would fix that — 'Your tokens enter ready', R25 = A — but she is mono-Order and 103.1.b.1 forbids her in a Fury/Chaos deck. That constraint is the whole reason this line is priced differently from yeti-brambleback-renata-gold.",
+          "It fires on a bloodless Conquer. Unlike UNL-018 Yeti Brawler ('if you assigned 3 or more excess damage'), Cull's trigger has no condition at all, so it pays on the Showdown Conquer of an uncontrolled battlefield (344.2 → 348.2.a → 348.2.a.1) with no combat and no Attacker designation. That is the mechanical difference between this entry and yeti-brambleback-renata-gold, not a strength/weakness comparison.",
+          "Red Brambleback's OWN conquer effect is a [Buff], and two of its three executions are wasted: 702.3 says 'There can only be one Buff on a Unit at a time' and 702.3.a says a second is 'not placed instead'. You may point each execution at a different friendly unit, so three executions buff three bodies — but never one body three times.",
+          "Total investment is 11 Energy, 3 Chaos Power and 2 Fury Power, and the [Equip] costs are counted here rather than omitted, which is the error CLAUDE.md records two published figures making. The bearer ends at Might 4 + 3 (three +1 Might Bonuses, 137.3 / 477.3.d) = 7. Conquering a battlefield you already control is impossible, so this pays once per battlefield you take — at most twice a turn in a Duel (485.4)."
+        ]
+      },
+      "steps": [
+        "Play two Red Brambleback (4 Energy + 1 Fury Power each) to the battlefield you intend to take, paying [Accelerate] if you want them ready the same turn.",
+        "Play three Cull (1 Energy each) and [Equip] each for 1 Chaos Power, all onto the same Brambleback. It is now Might 7 and carries three copies of 'When I conquer, play a Gold gear token exhausted'.",
+        "Conquer that battlefield — either by winning the Combat there (466.5.d) or, with no enemy garrison, by the Showdown at the next Cleanup (344.2, 348.2.a, 348.2.a.1).",
+        "Each of the three Cull triggers is a conquer effect for conquering here, so each fires 1 + 2 = 3 times: nine Gold gear tokens, exhausted.",
+        "Your next Awaken (315.1.b) readies all nine. From then on each is 1 rainbow Power on demand (187.5), payable as a [Reaction] on either player's turn."
+      ],
+      "terminatesIn": "engine — nine rainbow Power banked per Conquer, spendable from the following Awaken",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule red-brambleback-conquer (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-134 Cull is an uncatalogued partner of red-brambleback-conquer (57 partners, 7 entries carrying UNL-029). Card text verbatim from data/corpus_flat.txt; 434.1.b.1, 136.2.c, 136.2.d, 383.4.c.1, 187.5, 702.3, 702.3.a, 315.1.b, 348.2.a.1 and 103.1.b.1 opened in the Core Rules file. Stands on R1 = A with stacking (ruled 2026-09-03); no new reading. Trap check against CLAUDE.md: the Conquer route is explicitly given both ways, and the empty-battlefield route is the Showdown one (348.2.a.1), NOT an attack, so 807.1.d / 383.4.e / 461 are respected; no token is recycled (185 / 416.1); no [Temporary]; no [Repeat]; nothing is added in Awaken so 167 does not bite; the [Equip] costs and the Power are counted. Sibling leads recorded in the walk document but deliberately not authored as entries because the arithmetic is the same shape at a smaller number: SFD-069 Plundering Poro (1 Gold, Mind) and SFD-220 Treasure Hoard (1 Gold for 1 Energy, colourless battlefield)."
+    },
+    {
+      "id": "rumble-scrapper-sentinel-mechs",
+      "name": "Rumble, Scrapper × two Blue Sentinels — three 4-Might Mechs and six Power every Hold",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-089",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E5 P1 M4. 'Your Mechs have +1 Might (including me). When I hold, play a 3 Might Mech unit token to your base.'"
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M4, [Shield 2]. 'Your hold effects for holding here trigger an additional time.' Two copies take every hold effect to three executions."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Mind. Every legend with Mind in its pair can run all three cards (103.1.b.3), which is the widest identity of any entry in this walk."
+        ],
+        "notable": [
+          "Three Mechs a turn, and they are 4 Might each, not 3. 187.4 defines the token — 'A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag' — and Rumble's own static 'Your Mechs have +1 Might (including me)' therefore reaches every one of them by tag, with no walk, no play trigger and no cost. The arithmetic is 1 hold effect × (1 + 2 Sentinels) = 3 executions, R1 = A with stacking.",
+          "SIX RAINBOW POWER A TURN IS THE HALF NOBODY PRICES. Each Blue Sentinel's own 'When I hold, [Add] rainbow at the start of your next Main Phase' is itself one of your hold effects at that battlefield, so each of the two fires three times: 2 × 3 = 6 rainbow. It survives 167 because of the Main Phase's own task order — 316.3 empties every Rune Pool first, and 316.4 is where 'at the start of Main Phase game effects take place'. Against #44's measured free floor of 2 Power a turn, this is a tripling.",
+          "The Mechs are born at your BASE and stay there unless you walk them, which is #48's bottleneck in its plainest form: they enter exhausted (143.4), so 144.2's exhaust cost cannot be paid on the turn they appear, and they walk at the NEXT Main Phase — all of them at once, as one game action (144.3, shared destination 144.3.a). SFD-171 Renata Glasc, Industrialist removes the delay (R25 = A) at the cost of adding Order to the identity; the entry does not declare her, because the point of this row is that it is mono-Mind.",
+          "The garrison is 3 units and 12 Might before any Mech arrives (Rumble 4 + 1 = 5 as a Mech himself, two Sentinels at 4, 6 each while defending under [Shield 2]). The engine dies the moment the battlefield does, and it produces nothing on the turn it is assembled: 13 Energy and 3 Mind Power buys the first Hold, not the first Mech.",
+          "This is a feeder, not a finisher. It composes with any consumer of token-body-engine — ready-recruits-grand-plaza is NOT one of them here, because 485.4.a puts only one of your three battlefields into play and this line already needs the Sentinels' battlefield to be the one you Hold. Its natural consumers are the ones that eat bodies where they stand."
+        ]
+      },
+      "steps": [
+        "Get Rumble, Scrapper (5 Energy + 1 Mind Power) and two Blue Sentinel (4 Energy + 1 Mind Power each) onto one battlefield and establish Control of it.",
+        "Survive to your Beginning Phase. Scoring Step (315.2.b.2): you Hold, scoring the ordinary 1 point (471.1, capped by 470).",
+        "Rumble's hold effect is one of your hold effects for holding here, so it fires 1 + 2 = 3 times: three 3-Might Mech unit tokens to your base, each at 4 Might under Rumble's static.",
+        "Each Sentinel's own hold effect fires three times as well: six rainbow Power arrives at 316.4 of your Main Phase, after 316.3 has emptied the pool.",
+        "Main Phase: the Mechs made last turn are ready (315.1.b) and standard-move to a battlefield as one action (144.3); this turn's three are exhausted and wait a turn.",
+        "Repeat every turn the garrison survives."
+      ],
+      "netPerIteration": "+3 Mech unit tokens at 4 Might and +6 rainbow Power per Hold",
+      "terminatesIn": "engine — an unbounded 4-Might body count plus six Power a turn; it scores nothing by itself",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule blue-sentinel-hold (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-089 is an uncatalogued partner of blue-sentinel-hold. Card text verbatim from data/corpus_flat.txt; 187.4, 143.4, 144.2, 144.3, 144.3.a, 315.1.b, 315.2.b.2, 167 and 316.2-316.4 opened in the Core Rules file. Stands on R1 = A with stacking (ruled 2026-09-03); no new reading. Trap check against CLAUDE.md: a Hold needs no Attacker designation (807.1.d / 383.4.e / 461); the Mech tokens are never recycled and never asked to reach the trash (185 / 186.1 / 416.1); no [Temporary] (816.1.b); no [Repeat]; the Power is stated as next-Main-Phase Power with the 316.3/316.4 ordering that makes it survive 167, rather than asserted; the exhausted-token walk delay is priced instead of hidden."
     }
   ]
 }
