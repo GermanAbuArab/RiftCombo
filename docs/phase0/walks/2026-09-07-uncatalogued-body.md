@@ -369,3 +369,164 @@ combat winnable, which 466.3.a then requires outright.
 6. **`OGN-161 Deadbloom Predator` is the second card in the pool that attacks without moving**
    (with `SFD-093 Dauntless Vanguard`, and `VEN-157 Dragon Roost` granting it to Dragons):
    355.2.b + 190.3.a.1 + 464.2.c.1, so 144.2's exhaust and 143.4 both cost nothing.
+
+---
+
+## 15. Batch 3 — five entries, and the keyword whose reminder text hides two paragraphs
+
+Batch 2 merged (catalogue 578 at the time of writing). Batch 3 clears seven more names.
+
+| id | class | cards | the names it clears |
+|---|---|---|---|
+| `combat-chef-hexdrinker-weaponmaster-deflect` | ENGINE | SFD-092, SFD-102 | Combat Chef |
+| `mobilize-grumpy-rockbear-rune-count` | ENGINE | OGN-134, VEN-050 | Mobilize |
+| `gentlemens-duel-onslaught-challenge-ceiling` | ENGINE | OGS-008, VEN-081 | Gentlemen's Duel, Onslaught |
+| `nilah-targonian-visionary-move-xp-ladder` | ENGINE | UNL-115, UNL-098 | Nilah Joyful Ascetic, Targonian Visionary |
+| `disposal-order-trash-denial` | ENGINE | UNL-103 | Disposal Order |
+
+## 16. `[Weaponmaster]` — the reminder text is three words and the rule is nine clauses
+
+`SFD-092 Combat Chef` prints *"[Weaponmaster] (When you play me, you may [Equip] one of your
+Equipment to me for :rb_rune_rainbow: less, even if it's already attached.)"* Rule 821 says
+considerably more, and **four of its clauses are cited here for the first time in this catalogue**
+(0 prior hits each for 821.1.c, 821.1.c.1, 821.1.c.2, 821.1.c.3):
+
+> **821.1.c.** *"Weaponmaster is functionally short for: 'When you play me, you may choose a Card you
+> control with the Equipment tag. **Necessary portions of its Rules Text are no longer Inactive if
+> they are currently Inactive.** Pay the cost of its Equip ability, reduced by [A], to attach it to
+> this unit.'"*
+
+That middle sentence is the mechanism behind *"even if it's already attached"*: 434.1.e and 718.2
+make an attached card's printed Rules Text **Inactive**, which would otherwise hide the very `[Equip]`
+ability the keyword has to price.
+
+And the clause that takes value **away**, which no entry in the catalogue had:
+
+> **821.1.c.6.** *"The Equip ability **is not activated** this way, and the unit with the Weaponmaster
+> ability **is not chosen**."*
+
+So a Weaponmaster attach fires **no** *"when you use an activated ability of a gear"* payoff and
+**no** *"when you choose me"* payoff on the carrier — where a normal `[Equip]` would, since
+**818.1.b.1** makes its choice a Target. Anyone pricing Weaponmaster as a free activation of the
+gear's ability is pricing something the rules explicitly deny.
+
+Three more bounds: **821.1.c.2** determines the cost *"as though that Equip ability was being
+activated choosing the unit with the Weaponmaster ability"*; **821.1.c.3** — *"If the chosen card's
+Equip cost does not contain [A], it can still be paid, but will not be reduced"* — so an Energy-only
+Equip gains nothing; **821.1.c.4** — *"If the chosen card doesn't have an Equip cost, it can't be
+paid"* — immediately narrows 821.1.c.1's *"whether it has an Equip ability or not"*, and 821.1.c.5
+leaves such a card attached to whatever it was on. **821.1.c.7**: multiple instances trigger
+separately and may choose different targets.
+
+## 17. An exhausted rune is Power now, Energy next turn, and a rune you control the whole time
+
+`OGN-134 Mobilize` (*"Channel 1 rune exhausted. If you can't, draw 1."*) is the only channel card in
+the pool that writes its own failure case. Its value turns on three things this project has recorded
+separately and never together:
+
+- **164.2** gives a Basic Rune two abilities and only **164.2.a** costs its own exhaust; **164.2.b**'s
+  cost is the **recycle**, so a rune channelled exhausted still pays 1 Power of its domain at
+  `[Reaction]` speed the moment it lands. **415.3.a** is where its *Energy* shows up — your own
+  Awakening Phase. **430.2.a** is the default the card overrides (*"runes are channeled readied"*).
+- A *"for each rune you **control**"* payoff does not care that it is exhausted. That is the same
+  reasoning the sibling walk on issue #170 used to **reopen** `OGN-288 Startipped Peak` after two
+  sessions had refused it on mana grounds — and `VEN-050 Grumpy Rockbear` is the payoff in both
+  cases.
+- A channel payoff is a **refill, not a ramp**: 161.2.a fixes the Rune Deck at *"Exactly 12 Rune
+  cards"*, 315.3.b channels two free every Channel Phase, 430.3 channels *"as many as possible"*, and
+  161.2.b returns a recycled rune to the Rune Deck. Once twelve are out, *"If you can't, draw 1"* is
+  what stops the card being a blank.
+
+**The legend line is a one-name field.** Mobilize is mono-Body and Grumpy Rockbear mono-Mind, so
+103.1.b.2 needs a legend covering both — and the census prints exactly **one** Body/Mind name,
+`VEN-149 / VEN-194 Defender of Tomorrow`. That is the failure class `test/legend-lines.test.ts`
+exists for, and the entry says so.
+
+## 18. The mutual-damage family's ceiling, and the timing split that pays for it
+
+`OGS-008 Gentlemen's Duel` is the only member of the family that **pumps and then fights with the
+same card**, in that order: *"Give a friendly unit +3 :rb_might: this turn. **Then** choose an enemy
+unit."* Every other member fights at printed Might unless a separate card was spent first.
+
+`VEN-081 Onslaught` is the biggest pump in the domain (+6) and the only one playable twice —
+**829.1.b**: *"You may play this from your trash for its flow cost. Then banish it"*, with 829.1.b.1
+making that banish a delayed replacement and 108.6.c keeping a banished card out. Three copies are
+**six plays a game and no more**.
+
+The trap is the timing split. Gentlemen's Duel is `[Action]` (806.1.c.1) and can be held until a
+combat has opened; Onslaught carries **no keyword at all**, so **155** — *"A spell can be played
+during an Open State outside of Showdowns on its controller's turn"* — confines it to your own Main
+Phase. **The biggest number in the domain has to be committed before the garrison is known.**
+
+Arithmetic: a Might-6 body carrying +6 and +3 fights at **15**, above every printed Might in the
+pool, and takes back only the target's Might. There is no minimum-lethal cap here (465.2.c.4 is a
+combat-assignment rule), and 417.6.c keeps every point of it out of the excess-damage family.
+
+## 19. The one XP faucet that needs neither a battlefield nor a won combat
+
+`UNL-115 Nilah, Joyful Ascetic`'s corpus row has **three** clauses, and a truncated read loses the
+third: `[Accelerate]`, `[Ganking]`, and **"When I move, gain 1 XP."** Every other faucet in the pool
+is paid by a battlefield (`[Hunt]` is 823.1.c.1, *"When I Conquer or Hold"*) or by a combat won
+outright under 466.3.a. Nilah is paid for **moving**, in your own Main Phase, on a board where you
+hold nothing and win nothing — which is the position a `[Level]` deck is in while it is still
+climbing.
+
+`[Ganking]` is what keeps her moving (144.4.c.1) and **810.1.c.3** is what caps the faucet exactly:
+*"It does not give additional abilities or activations of Movement, only new options for the Standard
+Move"* — one XP per turn per Nilah, however many destinations exist. `[Accelerate]` (805.1.a) buys
+the first one on the turn she lands.
+
+**This walk now holds all three shapes of XP clause**, and every entry names the others:
+
+| shape | entry | behaviour under 730.2 |
+|---|---|---|
+| *"gained XP this turn"* (event) | `wily-newtfish-gemhand-hunter-xp-turn` | indifferent |
+| `[Level 6]` / `[Level 11]` (threshold) | `concentrate-grim-resolve-level-ladder` | switches OFF (824.1.d) |
+| `[Level 11]` (threshold) | `nilah-targonian-visionary-move-xp-ladder` | switches OFF (824.1.d) |
+
+## 20. `416.1.c` cuts both ways, and the second mode is the reason to run the card
+
+`UNL-103 Disposal Order` — *"Choose one — • Choose up to 3 cards from opponents' trashes. Their
+owners recycle them. • Draw 1."*
+
+> **416.1.c.** *"Each player Recycles cards to their own Main Deck and Rune Deck, regardless of which
+> player is instructed to perform the Recycle action."*
+
+So the first mode is **one-sided in your favour** — the cards go back into *their* deck, bottom-first
+by 416.1 and 416.1.a — and, read the other way, **it fires none of your own "when you recycle"
+triggers**, which is exactly why the sibling walk on issue #169 struck it off `OGN-235 Karma,
+Channeler`'s partner list.
+
+The property worth a slot is the modality: *"Choose one — … — Draw 1"* means **there is no board
+state in which this spell cannot be played**. That is the exact property the cross-audit on issue
+#166 found missing in a spell picked as filler for a *"you've played a spell this turn"* condition,
+where a targeting spell had no legal target and six points evaporated. **Filler must be
+unconditionally castable, and in Body this is the card that is.**
+
+## 21. Facts for CLAUDE.md from Body batch 3
+
+1. **`[Weaponmaster]` is nine clauses, and two of them change how it is priced.** 821.1.c: *"Necessary
+   portions of its Rules Text are no longer Inactive if they are currently Inactive"* — that is the
+   mechanism behind *"even if it's already attached"*, against 434.1.e / 718.2. And **821.1.c.6**:
+   *"The Equip ability is not activated this way, and the unit with the Weaponmaster ability is not
+   chosen"* — so it fires **no** gear-ability payoff and **no** *"when you choose me"* payoff, where
+   a normal `[Equip]` does (818.1.b.1 makes its choice a Target). 821.1.c.3: an Equip cost with no
+   `[A]` is paid unreduced. 821.1.c.4/c.5: a card with no Equip cost cannot be moved at all.
+   821.1.c.7: multiple instances trigger separately and may choose different targets.
+2. **A rune channelled EXHAUSTED is 1 Power immediately (164.2.b, whose cost is the recycle and not
+   an exhaust), 1 Energy from your next Awakening (415.3.a), and a "rune you control" the whole
+   time** — which is why a *"for each rune you control"* payoff is paid in full the same turn.
+   430.2.a is the default the card overrides.
+3. **`155` is what confines a keyword-less pump to the Main Phase.** `VEN-081 Onslaught` is the
+   biggest pump in Body (+6, and six plays a game with `[Flow]`, 829.1.b + 108.6.c) and carries no
+   `[Action]`, so it must be committed before the garrison is known — the opposite of the `[Action]`
+   half of the same package.
+4. **`UNL-115 Nilah, Joyful Ascetic` is the only XP faucet in the pool paid by MOVING** (*"When I
+   move, gain 1 XP"*, a third clause a truncated corpus read loses), so it works with no battlefield
+   held and no combat won; 810.1.c.3 caps it at one XP per turn per copy, because `[Ganking]` adds
+   destinations and never moves.
+5. **`416.1.c` cuts both ways**: a *"recycle cards from opponents' trashes"* effect sends them to
+   THEIR decks (one-sided in your favour) and fires none of YOUR *"when you recycle"* triggers.
+6. **`UNL-103 Disposal Order` is Body's unconditionally-castable filler** — a modal spell whose
+   second mode is *"Draw 1"*, which is the property #166 found missing when a targeting spell was
+   used as filler for a *"played a spell this turn"* condition.
