@@ -27438,6 +27438,401 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 23, friendly-dies x OGN-246, second partner). UNL-164 Safety Inspector was in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 103.2.b, 103.2.d.2, 143.4, 355.2.a, 355.10.e, 355.10.f, 730.2, 809.1.c, 809.1.d, 816.1.b. Distinct from viktor-leader-sprite-queen-free-bodies (a scheduled token death every turn, free bodies) and from viktor-leader-bottled-constellation-refund (the refund halving a point's body bill): here the death is the cost of a REMOVAL spell-on-a-body, and the finding is that Viktor makes the Inspector's own 3 XP escape hatch the worse of the two options. Ban check: neither card is banned or restricted. Trap check: the opponent chooses their casualty (355.10.e), so this is attrition and not aimed removal, and it is stated in the first notable; the XP half and the Viktor half are mutually exclusive; the refund does not chain; no token recursion is claimed (186.1); no Recall, no Repeat, no unruled reading."
+    },
+    {
+      "id": "stare-down-yone-blademaster-base-strike",
+      "name": "The sweep has to be TOTAL: Stare Down leaves the battlefield uncontrolled, which is the one word Yone's base strike depends on",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-107",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E2. 'Choose a friendly unit and a battlefield. Move all enemy units at that battlefield with less Might than the chosen unit to their base. Gain 1 XP.'"
+        },
+        {
+          "card": "SFD-116",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Body unit, E5 + 1 Body Power, M5. '[Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for one rainbow less, even if it's already attached.) When I conquer a battlefield that was uncontrolled, deal damage equal to my Might to an enemy unit in a base.' In NO entry of the catalogue before this walk."
+        },
+        {
+          "card": "SFD-118",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Body Equipment, E3, Might Bonus +2. '[Equip] 1 Energy + 1 Body rune. [Effect] When I conquer, channel 1 rune exhausted.' Both halves are load-bearing here: the +2 raises Stare Down's threshold AND Yone's damage, and the [Effect] is a second conquer trigger 434.1.c appends to Yone's own text."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal",
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All three cards are mono-Body, so ANY legend whose two domains include Body runs the line (103.1.b.1). No legend is named because none is forced: no card here is Signature (103.2.d.2).",
+          "One battlefield the opponent controls whose whole garrison is under 7 Might. That is the entry's real precondition and it is stated in the notables, not hidden in a step."
+        ],
+        "notable": [
+          "THE SWEEP MUST BE TOTAL, AND THAT IS THE WHOLE ENTRY. Yone's trigger is not 'when I conquer' — it is 'When I conquer A BATTLEFIELD THAT WAS UNCONTROLLED'. The word arrives only if Stare Down moves EVERY enemy body home: 323.6, 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there', strips the opponent's Control at the next Cleanup only when their last unit has left. Leave one body of 7+ Might behind and three things go wrong at once — the opponent keeps Control, so the battlefield was never uncontrolled; Yone's move stages a COMBAT rather than a Showdown, because 323.9 marks a Combat 'at each Battlefield that Contested was applied to that have Units present controlled by opposing players'; and even winning that combat conquers a battlefield that WAS controlled (466.5.d), so 383.4.g.1 keeps the base strike off the Chain. A partial sweep is not a cheaper version of this line, it is a different line (see stare-down-arachnoid-horror-lone-survivor, which wants exactly that).",
+          "THE THRESHOLD AND THE DAMAGE ARE THE SAME NUMBER, WHICH IS WHY BONESHIVER IS IN uses[] AND NOT IN A NOTE. Yone is M5. 434.1.d — 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it' — plus 137.3 and 477.3.d put Boneshiver's +2 on him: M7. Stare Down chooses Yone, so it sweeps every enemy body under 7; Yone then deals 7. One card raises both bars by the same 2. A Might Bonus is NOT a buff (702 counter): 702.3's one-per-unit cap never touches it, and it does not collide with anything that buffs him.",
+          "THE EQUIP IS NEARLY FREE, AND IT IS FREE ONLY ONCE. [Weaponmaster] reads 'When you play me', so 818.1 ('Equip is an Activated Ability keyword') and 818.1.b are paid at full price on any later re-attach: play Boneshiver first for E3, then play Yone and take the one-rainbow discount on its [Equip] cost of 1 Energy + 1 Body rune, which 356.6 ('Energy and Power costs can't be reduced below 0') leaves at 1 Energy and no rune. And 818.1's Equip is an activation, never a play, so nothing here fires a 'when you play' trigger twice.",
+          "THE TURN AFTER, NOT THE TURN OF. 143.4 — 'Units enter the Board exhausted' — so Yone cannot Standard-Move the turn he lands, and 144.1.a confines the move to the Main Phase anyway. The engine runs from the turn after he arrives, with 315.1.b readying him in your Awaken. Boneshiver is gear and 143.4 speaks only of Units, so it attaches and works the turn it is played.",
+          "THE CONQUER, RULE BY RULE, AND WHY NO DAMAGE IS TAKEN. Stare Down MOVES the garrison home; 455 makes a Recall a relocation 'without it being a Move', so this is a Move and 323.6 reads it. Yone walks in (144.4.a; the cost is his own exhaust, 144.2 / 420.3.a) and applies Contested (190.3.a.1, 450). The next Cleanup stages a Showdown (323.8) and NO Combat (323.9 needs 'Units present controlled by opposing players'), 323.12 opens it, 348.2.a establishes Control and 348.2.a.1 says outright 'This results in a Conquer'. 471.1 gives the point. Nothing is assigned any damage in either direction — 465.1's damage tasks never run — which is also why no [Assault] and no excess-damage card belongs beside this one.",
+          "THE VICTIMS ARE NOT TARGETS. 355.10.d: an object is not a target when 'It is programmatically selected based on its characteristics rather than chosen', worked example \"'Kill all units at a battlefield' targets a battlefield, but does not target any units.\" 'All enemy units at that battlefield with less Might than the chosen unit' is that shape, so a garrison of [Deflect] bodies is swept for free. Yone's own base strike is the opposite: 'an enemy unit in a base' is chosen, and 809.1.c / 809.1.d tax it.",
+          "WHAT IT COSTS, WITH THE QUANTITIES DECLARED. Setup: Boneshiver E3, Yone E5 + 1 Body Power, the discounted [Equip] E1 — nine Energy and one Power, spread over a turn. Recurring, from the next turn on: Stare Down E2 plus Yone's own exhaust. Per bloodless Conquer it pays 1 point, 7 damage to a unit standing in the enemy BASE (a zone almost nothing in the pool reaches — OGN-229, OGN-234 and SFD-158 are the others that do not restrict themselves to a battlefield) and 1 rune channelled exhausted from Boneshiver's appended [Effect]. Three Stare Downs is the cap (103.2.b) and 470 allows one Score per battlefield per turn."
+        ]
+      },
+      "steps": [
+        "An earlier turn: play Boneshiver (E3). Then play Yone, Blademaster (E5 + 1 Body Power) and use [Weaponmaster] to [Equip] Boneshiver to him for one rainbow less — 1 Energy, no rune (356.6). Yone enters exhausted (143.4) and is M7 (434.1.d, 137.3, 477.3.d).",
+        "This turn, Awaken: 315.1.b readies Yone. Main Phase, Neutral Open State (144.1.a).",
+        "Play Stare Down for 2 Energy, choosing Yone and the enemy battlefield. Its whole garrison is under 7, so every body moves to their base; you gain 1 XP. The victims are not targets (355.10.d), so no [Deflect] is paid.",
+        "The Cleanup strips the opponent's Control (323.6). The battlefield is now unoccupied and uncontrolled — both halves of 170.11.c.",
+        "Standard-Move Yone in (144.4.a; his exhaust is the cost, 144.2 / 420.3.a). Contested applies (190.3.a.1, 450).",
+        "The next Cleanup stages a Showdown and no Combat (323.8, 323.9); 323.12 opens it. Everyone passes, 348.2.a establishes Control, 348.2.a.1 makes it a Conquer and 471.1 pays the point.",
+        "Two conquer triggers go on the Chain together (383.4.c.2.a): Yone deals 7 to a chosen enemy unit in a base, and Boneshiver's appended [Effect] channels 1 rune exhausted."
+      ],
+      "netPerIteration": "one point, 7 damage into the enemy base, one rune channelled, and the enemy garrison sent home — for 2 Energy and one Standard Move",
+      "terminatesIn": "engine only — three sweeps a game (103.2.b) and one Score per battlefield per turn (470), so at most two of these a turn in a Duel (485.4)",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule stare-down-empties-the-garrison (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the synergy rule stare-down-empties-the-garrison, whose 54-partner list had produced no entry: the rule pairs the bloodless Conquer with a conquer PAYOFF, and none of the three catalogued Stare Down entries has one. SFD-116 Yone, Blademaster was in zero entries. Card text verbatim from data/corpus_flat.txt. Citations opened and read in data/Riftbound-Core-Rules-2026-07-16.txt: 103.1.b.1, 103.2.b, 137.3, 143.4, 144.1.a, 144.2, 144.4.a, 170.11.c, 190.3.a.1, 323.6, 323.8, 323.9, 323.12, 348.2.a, 348.2.a.1, 355.10.d, 356.6, 383.4.c.2.a, 383.4.g.1, 420.3.a, 434.1.c, 434.1.d, 450, 455, 465.1, 466.5.d, 470, 471.1, 477.3.d, 485.4, 702.3, 809.1.c, 809.1.d, 818.1, 818.1.b. Ban check: UNL-107, SFD-116 and SFD-118 carry no [BANNED marker in data/corpus_flat.txt. Signature check: none of the three is in data/signature.src.json, so prerequisites.easy is a domain field and not a one-legend field (103.2.d.2). Arithmetic against its own declared quantities: M5 + 2 = 7 sets both the sweep threshold and the damage. Trap check: NO Attacker designation is ever handed out, so 807.1.d / 383.4.e / 461 cannot bite and no [Assault] or excess-damage card belongs here (465.1 assigns nothing); no token; no [Temporary]; no [Repeat]; the Might Bonus is not a buff, so 702.3 does not apply; all spending is Main Phase (167). Depends on no unruled reading."
+    },
+    {
+      "id": "stare-down-hunt-pack-xp",
+      "name": "Every body present when Control is gained fires its own conquer trigger — one bloodless Conquer, seven XP",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-107",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E2. 'Choose a friendly unit and a battlefield. Move all enemy units at that battlefield with less Might than the chosen unit to their base. Gain 1 XP.' The 1 XP is a fourth trigger's worth on top of the three below."
+        },
+        {
+          "card": "UNL-100",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Body unit, E5 M5. '[Hunt 3] (When I conquer or hold, gain 3 XP.)' The largest single Hunt number in the pool."
+        },
+        {
+          "card": "UNL-117",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Body unit, E6 + 1 Body Power, M6. '[Hunt 2]'. He is also the yardstick: at M6 he sets Stare Down's threshold higher than either partner can."
+        },
+        {
+          "card": "UNL-113",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Body unit, E4 M4. '[Hunt 2] ... [Level 6][>] I have [Deflect] and [Ganking].' In zero entries before this walk, and the reason the XP is not inert: one pack crosses his own Level 6."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All four cards are mono-Body, so ANY legend whose two domains include Body runs the line (103.1.b.1). Nothing here is Signature, so no legend is forced (103.2.d.2).",
+          "An enemy battlefield whose garrison is entirely under 6 Might, and three ready bodies at your base."
+        ],
+        "notable": [
+          "383.4.c.2.a IS THE ENTRY: PRESENCE, NOT PARTICIPATION. 'The Conquer Abilities of Units are put on the Chain as Pending Items after the Unit(s) these effects correspond to are PRESENT at a Battlefield when a player gains control of it and gains 1 Victory Point from Conquering.' Nothing there asks which unit walked in, or which one was chosen by the spell. So the whole pack scores on ONE Conquer, and 144.3 delivers them in one action — 'Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units', with 144.3.a requiring only that 'the units' Destination must be the same' and 144.3.c paying all the exhausts together.",
+          "SEVEN XP, WITH THE QUANTITIES DECLARED. 823.1.c.1 spells Hunt out: 'When I Conquer or Hold, my controller gains X XP.' Voracious Gromp 3 + Arachnoid Horror 2 + Master Yi, Tempered 2 = 7, plus Stare Down's own printed 'Gain 1 XP' = 8 XP from one 2-Energy spell and one move. 470 allows one Score per battlefield per turn and 485.4 puts two battlefields on a Duel table, so the ceiling is two packs a turn.",
+          "THE XP IS NOT A RATCHET, AND THAT IS WHY THE PAYOFF IS INSIDE THE PACK. 824.1.d — 'The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP' — with 730.2, 'To Spend XP, reduce the value of XP marked on the Player spending it': paying XP switches your own Level abilities off. So the honest payoff of this engine is a THRESHOLD crossed and held, not a currency banked. Master Yi, Tempered's [Level 6] ([Deflect] and [Ganking]) is reached by the first pack and stays on as long as you do not spend, and Gemhand Hunter's [Level 6] (+1 Might, E2 M2, mono-Body) is a fourth Hunt body at the same threshold. Nothing in the pool converts XP into points, which is why this is ENGINE and can never be more.",
+          "THE YARDSTICK IS INSIDE THE PACK TOO. Stare Down chooses a friendly unit and a battlefield as two independent choices, so choose Arachnoid Horror at M6 and the sweep clears every enemy body under 6 — the same card is the threshold and 2 of the 7 XP. The victims are not targets (355.10.d), so a garrison of [Deflect] bodies costs nothing to evacuate.",
+          "WHY NO COMBAT HAPPENS, AND WHY THAT MATTERS FOR HUNT. After the sweep the Cleanup strips the opponent's Control (323.6) and the battlefield is open in the sense of 170.11.c. The pack walks in, 190.3.a.1 and 450 apply Contested, 323.9 stages NO Combat because no opposing units are present, 323.8 stages a Showdown, 323.12 opens it, and 348.2.a / 348.2.a.1 make it a Conquer. Hunt is 'both a Conquer and a Hold effect' (823.1.b), so it is paid by this bloodless route exactly as it would be by an attack — with no damage assigned (465.1) and no body risked.",
+          "WHAT THE PACK COSTS TO STAND UP, AND WHEN. E5 + E6 + E4 = 15 Energy and 1 Body Power for the three bodies, spread over as many turns as you like; 143.4 makes each of them enter exhausted, so a body played this turn is not in this turn's pack. From then on the recurring cost is 2 Energy and three exhausts.",
+          "WHAT REFUTES IT. (a) Any enemy body at 6+ Might survives the sweep, and then 323.9 stages a Combat instead: the pack has summed Might 15 (465.2.c) and will win it, but it is no longer bloodless and 465.2.c.3's lethal-first rule can cost you a body. (b) Stare Down moves to their base, it does not banish — the same garrison walks back next turn. (c) 431.1.a is not in play here: nothing in this entry draws."
+        ]
+      },
+      "steps": [
+        "Earlier turns: play Voracious Gromp (E5), Arachnoid Horror (E6 + 1 Body Power) and Master Yi, Tempered (E4). Each enters exhausted (143.4) and is readied in your next Awaken (315.1.b).",
+        "Main Phase, Neutral Open State. Play Stare Down for 2 Energy, choosing Arachnoid Horror (M6) and the enemy battlefield. Every enemy body under 6 moves to their base; you gain 1 XP.",
+        "The Cleanup strips the opponent's Control (323.6): the battlefield is unoccupied and uncontrolled (170.11.c).",
+        "Standard-Move all three bodies in as ONE action (144.3, 144.3.a, 144.3.c; 144.4.a). Contested applies (190.3.a.1, 450).",
+        "The next Cleanup stages a Showdown and no Combat (323.8, 323.9); 323.12 opens it; 348.2.a and 348.2.a.1 make it a Conquer and 471.1 pays the point.",
+        "383.4.c.2.a puts all three Hunt triggers on the Chain together, because all three units were present when Control was gained: 3 + 2 + 2 = 7 XP."
+      ],
+      "netPerIteration": "1 point, 8 XP (7 from Hunt, 1 printed on the spell) and an evacuated garrison, for 2 Energy and three exhausts",
+      "terminatesIn": "engine only — nothing in the pool turns XP into points, so this feeds Level thresholds and never a win; 470 and 485.4 cap it at two Conquers a turn and 103.2.b at three sweeps a game",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule stare-down-empties-the-garrison (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the synergy rule stare-down-empties-the-garrison. The finding the walk contributes is 383.4.c.2.a read literally: a Conquer Ability fires for every unit PRESENT when Control is gained, not only for the one that entered or the one the spell chose, and 144.3 walks the whole pack in as one game action — so a bloodless Conquer is a mass trigger, not a single one. UNL-113 Master Yi, Tempered was in zero entries. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.b, 143.4, 144.3, 144.3.a, 144.3.c, 144.4.a, 170.11.c, 190.3.a.1, 315.1.b, 323.6, 323.8, 323.9, 323.12, 348.2.a, 348.2.a.1, 355.10.d, 383.4.c.2.a, 431.1.a, 450, 465.1, 465.2.c, 465.2.c.3, 470, 471.1, 485.4, 730.2, 823.1.b, 823.1.c.1, 824.1.d. Ban check: UNL-107, UNL-100, UNL-117 and UNL-113 carry no [BANNED marker. Signature check: none is Signature, so the legend line is a domain field. Arithmetic against its own declared quantities: 3 + 2 + 2 Hunt XP plus the spell's printed 1. Trap check: no Attacker designation, so 807.1.d / 383.4.e / 461 do not apply; no token; no [Temporary]; no [Repeat]; XP spending is deliberately NOT part of the line because 824.1.d would switch the Level abilities back off. Depends on no unruled reading."
+    },
+    {
+      "id": "stare-down-arachnoid-horror-lone-survivor",
+      "name": "Sweep all but the biggest: Stare Down manufactures the 'alone' condition, and the Spider's permission plays the answer straight into the garrison",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-107",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E2. Here it is used PARTIALLY on purpose: choose a friendly unit whose Might sits above the second-largest enemy body and at or below the largest, and exactly one enemy survives."
+        },
+        {
+          "card": "UNL-117",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "Body unit, E6 + 1 Body Power, M6. '[Hunt 2] (When I conquer or hold, gain 2 XP.) I can be played to an occupied battlefield if an enemy unit is alone there. Friendly units can be played to an occupied battlefield if an enemy unit is alone there.' The pool's own reminder text on SFD-036 Lonely Poro fixes what 'alone' means: no OTHER unit of that player is there."
+        },
+        {
+          "card": "UNL-102",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body unit, E3 M3. '[Hunt] ... Spend 2 XP: [Buff] me.' Cheap Might played straight into the fight, and a third and fourth Hunt trigger on the Conquer."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All three cards are mono-Body, so ANY legend whose two domains include Body runs the line (103.1.b.1). Nothing here is Signature (103.2.d.2).",
+          "An enemy battlefield with two or more bodies, at least one of which outsizes the rest. Arachnoid Horror must already be on the board, since her permission is a static and not a play trigger."
+        ],
+        "notable": [
+          "THE PARTIAL SWEEP IS THE POINT, AND IT IS THE INVERSE OF stare-down-yone-blademaster-base-strike. Stare Down moves 'all enemy units at that battlefield with LESS Might than the chosen unit'. Choose a friendly at M4 against a garrison of M6/M3/M2 and the two small bodies go home while the M6 stays — which is precisely the 'an enemy unit is alone there' condition Arachnoid Horror's two permissions ask for. Yone's line needs the sweep to be total; this one needs it not to be. They are two different lines on one spell, not two versions of one.",
+          "WHAT 'ALONE' MEANS IS SETTLED BY THE POOL'S OWN REMINDER TEXT, NOT BY A READING. SFD-036 Lonely Poro prints '(I'm alone if there are no other friendly units here)' and UNL-210 Forbidding Waste says '(It's alone if there are no other friendly units here)', so 'an enemy unit is alone here' is a measurement on the OPPONENT's side only: your own garrison is unrestricted and can be as wide as you like.",
+          "PLAYING IN IS AN ATTACK WITH NO MOVE AND NO EXHAUST. 355.2.a makes the base or a battlefield you control the default play locations and 355.2.b lets a game effect grant others — the Horror's second sentence is exactly such a grant, and it covers 'friendly units', not only herself. 190.3.a.1 then reads 'Units moving to OR BEING PLAYED TO a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield', and 464.2.c.1 makes 'the Attacker ... the player whose unit(s) applied the Contested status'. So the bodies you play in are Attackers without ever paying 144.2's exhaust, and 143.4's 'Units enter the Board exhausted' costs nothing — combat does not read exhaustion (464.2.c.3 and 465.2.b do not filter by state).",
+          "THE ARITHMETIC OF THE COMBAT, WITH THE QUANTITIES DECLARED. 465.2.c: 'Starting with the Attacker, each player assigns an amount of damage equal to their summed Might among the other's Units.' Against one M6 defender, two Crowd Favorites (M3 each) played in are a summed 6 — exactly lethal and not one point more, and 465.2.c.3 forces that lethal onto the single body first. The defender assigns 6 back, and 465.2.c.4 forbids assigning more than the minimum needed to kill, so it kills at most both M3 bodies. Bring Arachnoid Horror in as well (she may be played in too) and the sum is 12 against 6: the defender still only has 6 to spend, and 466.1.a.1's 'Insert 3c. Heal all Units' erases the marked damage at the end of the combat anyway.",
+          "WHAT THE CONQUER PAYS. Winning empties the enemy side, so 466.3.a gives you the combat, 466.5 establishes Control and 466.5.d says 'Establishing Control results in a Conquer if that player has not yet scored this Battlefield this turn' — one point by 471.1. 383.4.c.2.a then fires the Hunt of every unit present: Arachnoid Horror 2 plus 1 per Crowd Favorite, and Stare Down's own printed 'Gain 1 XP' on top.",
+          "COST AND CEILING. Stare Down E2, two Crowd Favorites E6, and the Horror's E6 + 1 Body Power already standing. 470 caps it at one Score per battlefield per turn and 485.4 puts two on a Duel table; 103.2.b caps the spell at three copies and Crowd Favorite at three.",
+          "WHAT REFUTES IT. (a) If the surviving body is bigger than your summed Might, you hand the opponent a free kill — this line is priced in Might, and the entry names its own bar: your sum must be at least the survivor's Might. (b) If the garrison is a single body to begin with, Stare Down is not needed at all and the Horror's permission is already on. (c) The Horror's permission is a static on HER, so she must survive on the board; a removal spell in response to the play (813.1.c.1 admits a [Reaction] in the Closed State the play opens) switches the permission off before the unit lands."
+        ]
+      },
+      "steps": [
+        "An earlier turn: play Arachnoid Horror (E6 + 1 Body Power). She enters exhausted (143.4); it does not matter, because nothing in this line asks her to move.",
+        "Main Phase, Neutral Open State. Play Stare Down for 2 Energy, choosing a friendly unit whose Might is above the second-largest enemy body and at or below the largest. The small bodies move to their base (355.10.d: they are not targets); you gain 1 XP.",
+        "Exactly one enemy unit is left at that battlefield, which turns on both of Arachnoid Horror's permissions (355.2.b).",
+        "Play two Crowd Favorites (E3 each) straight to that battlefield — and Arachnoid Horror too if she is still in hand. 190.3.a.1 applies Contested as they are played; 464.2.c.1 makes you the Attacker with no Standard Move and no exhaust paid.",
+        "The next Cleanup stages a Combat (323.9: units of opposing players are present) and 323.13 opens it. 465.2.c assigns your summed Might; 465.2.c.3 puts lethal on the lone defender first.",
+        "466.3.a gives you the combat, 466.5 establishes Control and 466.5.d makes it a Conquer: 1 point by 471.1, plus every Hunt trigger of every unit present (383.4.c.2.a)."
+      ],
+      "netPerIteration": "one point and 3-4 XP for 2 Energy plus the bodies you were going to play anyway, with the fight guaranteed to be one-on-many instead of many-on-many",
+      "terminatesIn": "engine only — one Score per battlefield per turn (470), two battlefields in a Duel (485.4), three spells a game (103.2.b)",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rules stare-down-empties-the-garrison and dauntless-vanguard-occupied-battlefield-assault (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170). It joins two orphan synergy rules that had never been walked into an entry: stare-down-empties-the-garrison supplies the evacuation and dauntless-vanguard-occupied-battlefield-assault supplies the mechanism by which a PLAYED unit takes the Attacker designation. The contribution is that Stare Down is a dial, not a switch: used partially it manufactures the 'an enemy unit is alone there' condition that four cards in the pool key on. UNL-102 Crowd Favorite was in zero entries. Card text verbatim from data/corpus_flat.txt; the meaning of 'alone' is taken from the pool's own reminder text on SFD-036 and UNL-210, not from a reading. Citations opened and read: 103.1.b.1, 103.2.b, 143.4, 144.2, 190.3.a.1, 355.2.a, 355.2.b, 355.10.d, 383.4.c.2.a, 464.2.c.1, 464.2.c.3, 465.2.b, 465.2.c, 465.2.c.3, 465.2.c.4, 466.1.a.1, 466.3.a, 466.5, 466.5.d, 470, 471.1, 485.4, 813.1.c.1, 823.1.b, 823.1.c.1. Ban check: UNL-107, UNL-117 and UNL-102 carry no [BANNED marker. Signature check: none is Signature. Arithmetic against its own declared quantities: two M3 bodies sum to 6 against one M6 defender (465.2.c), exactly lethal. Trap check: an Attacker designation DOES exist here, so unlike the other two Stare Down lines an [Assault] rider would work; no token; no [Temporary]; no [Repeat]; the Horror's permission is a static that must survive to the play. Depends on no unruled reading."
+    },
+    {
+      "id": "stare-down-demolitionist-gear-strike",
+      "name": "The Might Bonus that widens the sweep is the same one that raises the gear kill — Stare Down into a Demolitionist wearing two Equipment",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-107",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E2. 'Choose a friendly unit and a battlefield. Move all enemy units at that battlefield with less Might than the chosen unit to their base. Gain 1 XP.'"
+        },
+        {
+          "card": "VEN-080",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Body unit, E2 M1. 'When I conquer, you may kill a gear with Energy cost no more than my Might.' In zero entries before this walk. At printed Might his ceiling is a 1-Energy gear; the entry's whole content is what raises it."
+        },
+        {
+          "card": "SFD-118",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Body Equipment, E3, Might Bonus +2, '[Equip] 1 Energy + 1 Body rune. [Effect] When I conquer, channel 1 rune exhausted.'"
+        },
+        {
+          "card": "UNL-096",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Body Equipment, E3, Might Bonus +2, '[Equip] 1 Body rune. [Effect] [Hunt] (When I conquer or hold, gain 1 XP.)' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All four cards are mono-Body, so ANY legend whose two domains include Body runs the line (103.1.b.1). Nothing here is Signature (103.2.d.2).",
+          "An enemy battlefield whose garrison is entirely under 5 Might, and one enemy gear worth removing."
+        ],
+        "notable": [
+          "ONE NUMBER, TWO JOBS. 434.1.d — 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it' — with 137.3 and 477.3.d, stacks Boneshiver's +2 and Hunter's Machete's +2 on a printed Might of 1: the Demolitionist is M5. That 5 is simultaneously Stare Down's sweep threshold (choose HIM and every enemy body under 5 goes home) and the Energy ceiling of his own kill ('a gear with Energy cost no more than my Might'). Nothing else in the entry has to be paid for twice. A Might Bonus is not a 702 buff, so 702.3's one-per-unit cap is silent and both Equipment stack.",
+          "THE EQUIP COSTS ARE ONE RUNE AND ONE RUNE PLUS AN ENERGY, AND THEY ARE PAID ONCE. 818.1 makes Equip an Activated Ability with a cost (818.1.b) and 818.1's Equip is never a play, so no 'when you play' trigger fires from it. Hunter's Machete asks for a single Body rune, Boneshiver for 1 Energy plus a Body rune. Both stay attached; nothing here re-attaches.",
+          "THE KILL CEILING, MEASURED. Sweeping the corpus for 'kill a gear' returns eight cards. Six of them either kill unconditionally at spell speed (SFD-005 Detonate, VEN-003 Brittle Steel, SFD-032 Disarming Rake, SFD-160 Zaun Punk, SFD-077 Rocket Barrage) or on a play trigger with a fixed 1-Energy cap (SFD-074 Pickpocket). Only two are conquer effects: OGN-056 Adaptatron (Calm, E4 M3, 'When I conquer, you may kill a gear. If you do, buff me' — no Might threshold at all, but a buff that 702.3 places only once, and an identity that forces a Calm/Body legend) and this one. The Demolitionist's advantage is that he is mono-Body, costs E2, and scales: at M5 he covers every Equipment in the pool bar the largest, and the two cards that scale him are the same two that widen the sweep.",
+          "WHY THE CONQUER IS BLOODLESS, AND WHY HE DOES NOT HAVE TO BE THE YARDSTICK. Stare Down chooses a friendly unit and a battlefield as two independent choices, so if a bigger body is available it can set the threshold instead and the Demolitionist merely has to be PRESENT when Control is gained — 383.4.c.2.a puts a unit's conquer ability on the Chain because it 'are present at a Battlefield when a player gains control of it'. After the sweep, 323.6 strips the opponent's Control at the Cleanup, the battlefield is open (170.11.c), the bodies walk in as one action (144.3, 144.4.a), 323.9 stages no Combat, 323.8 and 323.12 open a Showdown, and 348.2.a / 348.2.a.1 make it a Conquer.",
+          "THREE TRIGGERS ON ONE CONQUER. 434.1.c appends both Equipment's [Effect] text to the Demolitionist's own Rules Text, so the single Conquer fires: kill a gear costing 5 or less (his own text), channel 1 rune exhausted (Boneshiver), and gain 1 XP (Hunter's Machete's [Hunt], which 823.1.b makes 'both a Conquer and a Hold effect'). Plus 1 XP printed on Stare Down.",
+          "COST AND CEILING, WITH THE QUANTITIES DECLARED. Setup: Demolitionist E2, Boneshiver E3 + [Equip] E1 and a Body rune, Machete E3 + [Equip] a Body rune — 9 Energy and 2 Body Power. Recurring: 2 Energy per sweep. 103.2.b caps the spell at three, 470 at one Score per battlefield per turn and 485.4 at two battlefields.",
+          "WHAT REFUTES IT. (a) The kill is 'you may', and it needs a gear to exist — against a gearless list the Demolitionist contributes nothing but a body. (b) 428.1 makes killing 'the action of a Permanent going to the trash from the board', so a gear TOKEN is not a legal choice in the sense that matters: 185 says tokens are not cards and 186.1 makes them cease to exist on leaving the board, so killing a Gold token costs the opponent nothing they had not already spent. (c) An enemy body at 5+ Might survives the sweep and turns the Showdown into a Combat (323.9) that the M5 Demolitionist is not built to win."
+        ]
+      },
+      "steps": [
+        "Earlier turns: play Noxian Demolitionist (E2), Boneshiver (E3) and Hunter's Machete (E3). [Equip] both to him — 1 Energy and a Body rune for Boneshiver, a Body rune for the Machete (818.1, 818.1.b). He is now M5 (434.1.d, 137.3, 477.3.d) and carries both [Effect] texts (434.1.c).",
+        "This turn, Awaken readies him (315.1.b). Main Phase, Neutral Open State (144.1.a).",
+        "Play Stare Down for 2 Energy, choosing the Demolitionist (M5) and the enemy battlefield. Every enemy body under 5 moves to their base; you gain 1 XP. The victims are not targets (355.10.d).",
+        "The Cleanup strips the opponent's Control (323.6); the battlefield is unoccupied and uncontrolled (170.11.c).",
+        "Standard-Move the Demolitionist in (144.4.a; his exhaust is the cost, 144.2 / 420.3.a). Contested applies (190.3.a.1, 450).",
+        "The next Cleanup stages a Showdown and no Combat (323.8, 323.9); 323.12 opens it; 348.2.a and 348.2.a.1 make it a Conquer, 471.1 pays the point.",
+        "383.4.c.2.a fires all three appended conquer triggers: kill an enemy gear of Energy cost 5 or less, channel 1 rune exhausted, gain 1 XP."
+      ],
+      "netPerIteration": "one point, one enemy gear of up to 5 Energy destroyed, one rune channelled and 2 XP, for 2 Energy and one exhaust",
+      "terminatesIn": "engine only — three sweeps a game (103.2.b), one Score per battlefield per turn (470), two battlefields in a Duel (485.4)",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule stare-down-empties-the-garrison (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the synergy rule stare-down-empties-the-garrison. VEN-080 Noxian Demolitionist and UNL-096 Hunter's Machete were both in zero entries. The contribution is arithmetic: the two Might Bonus Equipment that raise the Demolitionist's kill ceiling from 1 to 5 are the same two that raise Stare Down's sweep threshold, so one payment buys both. The 'kill a gear' population was measured, not assumed — grep -i 'kill a gear' over data/corpus_flat.txt returns eight cards and exactly two of them are conquer effects (this one and OGN-056 Adaptatron, which is Calm and has no Might threshold); that count is AS OF 2026-09-07. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.b, 137.3, 144.1.a, 144.2, 144.3, 144.4.a, 170.11.c, 185, 186.1, 190.3.a.1, 315.1.b, 323.6, 323.8, 323.9, 323.12, 348.2.a, 348.2.a.1, 355.10.d, 383.4.c.2.a, 420.3.a, 428.1, 434.1.c, 434.1.d, 450, 470, 471.1, 477.3.d, 485.4, 702.3, 818.1, 818.1.b, 823.1.b. Ban check: UNL-107, VEN-080, SFD-118 and UNL-096 carry no [BANNED marker. Signature check: none is Signature. Trap check: no Attacker designation (bloodless Showdown), so no [Assault] and no excess damage; the Might Bonus is not a buff so 702.3 is silent; no token, no [Temporary], no [Repeat]. Depends on no unruled reading."
+    },
+    {
+      "id": "on-the-hunt-yasuo-triple-third-move",
+      "name": "One mass ready serves every Yasuo at once: three third moves, three points, and not one of them is a Score",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-204",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body/Chaos SIGNATURE spell, E1 + 2 Power. 'Ready your units.' One of only two cards in the pool with that sentence, and the cheaper of the two. Being Signature is what fixes the legend (103.2.d.2)."
+        },
+        {
+          "card": "OGN-205",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Chaos unit, E5 + 1 Chaos Power, M4. '[Ganking] ... The third time I move in a turn, you score 1 point.' Three copies is the 103.2.b cap and every one of them is paid by the SAME two castings, because the ready is not targeted at a unit."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "SFD-204 On the Hunt is a Signature card tagged Sivir, so 103.2.d.2 makes this a Battle Mistress list and nothing else: SFD-203 / SFD-250 Battle Mistress (Body/Chaos) are the only legends in the pool carrying the Sivir champion tag. Yasuo is mono-Chaos and On the Hunt is Body/Chaos, so the identity fits exactly (103.1.b.2).",
+          "One battlefield you ALREADY control, and three Yasuo on the board since an earlier turn (143.4 makes them enter exhausted)."
+        ],
+        "notable": [
+          "THE POINT IS NOT A SCORE, SO THE DUEL CEILING DOES NOT APPLY. 194.1.c lists 'Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more points' as a way of gaining points SEPARATE from 194.1.a Holding and 194.1.b Conquering. 469 defines Scoring as Conquer or Hold only, and 470 — 'A player may only Score, from either method, once per Battlefield per turn' — is a cap on those two. Yasuo's third move is neither, so the two-Conquers-a-turn ceiling that bounds every conquer-based line in the catalogue (470 with 485.4's two battlefields) leaves this one alone. 471.1.a.1 says the same thing from the other end for the last point: 'points Gained from sources that are not Conquer are not beholden to these restrictions.'",
+          "THE READY IS THE MULTIPLIER, AND THAT IS WHY IT IS THREE YASUO AND NOT ONE. 'Ready your units' names no unit, so one casting pays every Yasuo on the board. The two catalogued Yasuo lines (yasuo-syren-unforgiven-point, yasuo-windrider-ride-the-wind-chain) both buy his extra moves with per-unit effect movers under an Unforgiven legend; this line buys them with a mass ready under a Battle Mistress legend, and the cost per point falls with each copy instead of rising. Two castings = E2 + 4 Power for THREE points.",
+          "THE ROUTE NEVER TOUCHES A CONTESTED BATTLEFIELD, WHICH IS WHAT MAKES THE STANDARD MOVES LEGAL BACK TO BACK. 190.3.a.1 applies Contested only 'if that battlefield is not already Contested and that Unit's controller does not already control that battlefield', so moving into a battlefield you ALREADY control applies nothing, stages no Showdown (323.8) and no Combat (323.9). That matters because 144.1.b forbids the Standard Move 'during a Closed State' and 144.1.c 'during a Showdown or Combat' — a route that opened a Showdown would strand the second and third moves. Moves to your base are never Contested at all: 450 speaks only of a Battlefield Destination.",
+          "THE SEQUENCE, AND WHY [Ganking] IS OPTIONAL HERE. Base to battlefield and battlefield to base are both plain Standard Moves (144.4.a, 144.4.b), so the three-move loop base -> your battlefield -> base -> your battlefield needs no keyword at all. [Ganking] (144.4.c.1) only widens the choice of destination — 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move' — and it is what lets the last leg end at a SECOND battlefield instead of the first, which is how you leave the board where you want it.",
+          "A THIRD CASTING BUYS NO FOURTH POINT. 383.1.b covers 'the [Nth] time' triggers and Yasuo's says 'The third time I move in a turn' — a fourth and a fifth move pay nothing. So the third copy of On the Hunt is defence (readying the garrison after the attackers walked away), never points, and 103.2.d.1 caps the whole deck at three Signature cards, of which this line already spends two.",
+          "COST, WITH THE QUANTITIES DECLARED. Standing cost: three Yasuo at E5 + 1 Chaos Power each = 15 Energy and 3 Chaos Power, laid down over earlier turns. Recurring cost: 2 castings at E1 + 2 Power = 2 Energy and 4 Power per turn, for 3 points. Against 194.3's Victory Score of 8 that is three turns; against 489.3's 11 in 2v2 it is four.",
+          "WHAT REFUTES IT. (a) 415.1.b — 'A Unit that is already Ready cannot be Readied again' — so the castings have to come AFTER the moves, never before; a wasted casting is a wasted point. (b) Every Yasuo has to survive the opponent's turn, and at M4 with no protection they are the softest part of the line: SFD-158 reaches the base, and OGN-133 Flurry of Blades deals 1 to all units at battlefields, which they survive. (c) The 4 Power a turn is above the free floor of 2 that 315.3.b and 164.2.b give every deck, so the rune deck has to carry it. (d) Nothing here is a Conquer, so nothing here fires a conquer payoff; that is the price of dodging 470."
+        ]
+      },
+      "steps": [
+        "Earlier turns: play three Yasuo, Windrider (E5 + 1 Chaos Power each). Each enters exhausted (143.4) and is readied in your Awaken (315.1.b).",
+        "This turn, Main Phase, Neutral Open State (144.1.a). Standard-Move all three Yasuo from your base to a battlefield you ALREADY control — one game action under 144.3, with 144.3.a's shared destination and 144.3.c's simultaneous exhausts. No Contested is applied (190.3.a.1). MOVE 1 for each of them.",
+        "Play On the Hunt for 1 Energy and 2 Power: 'Ready your units'. All three Yasuo are ready again (415.1).",
+        "Standard-Move all three back to your base (144.4.b). MOVE 2 for each.",
+        "Play the second On the Hunt for 1 Energy and 2 Power. All three ready again.",
+        "Standard-Move all three to a battlefield (144.4.a, or battlefield to battlefield with [Ganking] under 144.4.c.1). MOVE 3 for each: 'The third time I move in a turn, you score 1 point' fires three times, and 194.1.c gains you 3 points."
+      ],
+      "netPerIteration": "3 points a turn for 2 Energy and 4 Power, with no combat, no Conquer and no Hold — repeatable every turn the three bodies survive",
+      "terminatesIn": "engine — three points per turn, so eight is reached on the third turn; it is not a CHAIN because one turn's output is 3, and 383.1.b caps each Yasuo at one point a turn however many times he moves",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Synergy rule on-the-hunt-ganking-second-move (data/synergies.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-rules-second-pass.md), issue #170",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the orphan synergy rule on-the-hunt-ganking-second-move, whose 37-partner list had produced no entry. The rule's own 'why' already says the second move comes from the READY and not from [Ganking]; this entry is that observation taken to its conclusion — a ready that names no unit multiplies by COPIES, which is the one thing the two catalogued Yasuo lines (both per-unit effect movers under an Unforgiven legend) cannot do. The legend line was NOT typed from memory: SFD-204 is Signature with champion tag Sivir, and the only legends in cards.json carrying that tag are SFD-203 and SFD-250 Battle Mistress (Body/Chaos). Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.2, 103.2.b, 103.2.d.1, 103.2.d.2, 143.4, 144.1.a, 144.1.b, 144.1.c, 144.3, 144.3.a, 144.3.c, 144.4.a, 144.4.b, 144.4.c.1, 164.2.b, 190.3.a.1, 194.1.a, 194.1.b, 194.1.c, 194.3, 315.1.b, 315.3.b, 323.8, 323.9, 383.1.b, 415.1, 415.1.b, 450, 469, 470, 471.1.a.1, 485.4, 489.3, 810.1.c.3. Ban check: SFD-204 and OGN-205 carry no [BANNED marker. Arithmetic against its own declared quantities: 2 castings give each of 3 Yasuo the 2 extra readies its third move needs; a third casting adds no point (383.1.b). Trap check: no Conquer and no Hold, so 470 / 485.4 / 471.1.b do not bound it (471.1.a.1 says so outright); no token; no [Temporary]; no [Repeat]; the route never contests a battlefield, so 144.1.b and 144.1.c never bite. Depends on no unruled reading."
     }
   ]
 }
