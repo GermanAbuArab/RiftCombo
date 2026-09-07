@@ -444,3 +444,108 @@ saying in that entry's notable so a future reader does not treat the Lab as a re
     [Reaction]") is why it catches the fifteen hidden units that a spell tax cannot. The pool has
     exactly three cost-increase rows: VEN-045 Helm of Suppression (the only asymmetric one),
     VEN-160, and UNL-219 Vaults of Helia (which taxes its own controller).
+
+---
+
+# Batch 4 — four of the ten uncatalogued legends, plus a battlefield
+
+Another session began walking battlefields between batches 2 and 3 (the catalogue went 401 → 443
+while this walk was writing three entries), so the census is re-run **every batch** and batch 4
+pivots to the legend sub-vein, which is uniquely this walk's.
+
+## 11. Entries staged (batch 4, five)
+
+| id | class | cards | what it is |
+|---|---|---|---|
+| `void-gate-bellows-breath` | ENGINE | OGN-296, SFD-080 | a seventh Bonus Damage source, paid per target by 715.2 |
+| `purifier-veteran-poro-blade-stack` | ENGINE | SFD-183, SFD-095, SFD-099 | "your Equipment **each** give [Assault]" × 807.2 summing |
+| `mechanized-menace-breakneck-mech-token-keywords` | ENGINE | SFD-181, SFD-071, SFD-021 | Shield + Deflect + **Ganking** on every Mech token |
+| `eye-of-twilight-zephyr-sage-tank-redirect` | ENGINE | VEN-147, OGS-005 | [Tank] granted *after* the attack is declared |
+| `scorn-of-the-moon-showdown-energy` | ENGINE | UNL-197, OGN-095 | Reaction mana that costs no rune held ready |
+
+## 12. Four rules facts from batch 4
+
+### 12.1 715.2 — Bonus Damage is paid **per target**
+
+> *"If the Deal action has multiple targets, the amount of Damage dealt to each target is increased
+> by the amount of Bonus Damage."*
+
+The project's Bonus Damage sweep had recorded **six** sources, every one of them worded *"your
+spells and abilities deal N"*. **OGN-296 Void Gate** is a **seventh**, worded for the location
+(*"Spells and abilities deal 1 Bonus Damage to units here"*) — so it never says "you", is live from
+turn one, and arms the opponent too. Against SFD-080 Bellows Breath (*"Deal 1 to up to three units
+at the same location"*) that is **6 damage for 1 Energy + 1 Mind Power**, or 12 with the printed
+[Repeat]. 714 sums instances, so it stacks with the six; 715.4 (*"If no damage was Dealt, then Bonus
+Damage will not apply"*) is the limit; and 713 + 417.6.c keep it disjoint from the excess-damage
+family, which is the trap this battlefield invites.
+
+### 12.2 807.2 — granted [Assault] **sums**, and "each" is a per-Equipment grant
+
+**SFD-183 Purifier**: *"Your Equipment **each** give [Assault]."* Read with 807.2 (*"…the Assault
+Value of all granted Assault keywords is summed"*, Riot's example being Petty Officer + Cleave
+reaching Assault 4), stacking Equipment on **one** body stacks the keyword. Three Doran's Blades on
+Veteran Poro: Might 2 + 6 (434.1.d) = 8 standing, **11 attacking**, for E8 + 2 Body Power — the
+[Equip] costs and the Power counted, per this project's standing correction. [Weaponmaster] frees
+exactly one of the three attaches, on play only (818.1: attaching is never playing).
+
+The *other* direction the same legend opens — one Equipment on each of several attackers, +1 each,
+144.3 moving them as one action — is flagged in the entry as a separate line rather than folded into
+its ledger.
+
+### 12.3 187.4 gives a Mech token its tag **by rule**
+
+> *"A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag."*
+
+So **SFD-181 Mechanized Menace** (*"Your Mechs have [Shield]"*) and **SFD-071 Breakneck Mech**
+(*"Your Mechs have [Deflect] and [Ganking]"*) both reach tokens with no extra text. The valuable
+keyword is the third one: Ferrous Forerunner's Deathknell puts its two tokens *"to your base"*, and
+144.4.a/144.4.b would confine a base-born token to one battlefield forever — **144.4.c.1's Ganking
+is the leg the project has measured as the bottleneck of every token line.** 810.1.c.3 keeps it an
+*option* and not an extra move; 810.2 makes a second instance redundant.
+
+### 12.4 Granting [Tank] to one body protects **every other body**
+
+**VEN-147 Eye of Twilight**: *"[Action][>] exhaust: Give a friendly unit [Tank] this turn."*
+815.1.c.2 — *"Units without Tank are invalid assignments until all units with Tank have lethal
+damage assigned to them"* — inverts the obvious reading: the granted body is not protected, it is
+the **toll booth**. On OGS-005 Zephyr Sage (M6, [Shield]) the toll is exactly **7** summed attacking
+Might (814.1.c + 815.1.c.1 + 465.2.c.4), and every other unit of yours there is an illegal
+assignment until it is paid — which is what keeps the garrison, and with it Control (323.6).
+
+And **806.1.c.2** is why the timing is the card: *"On Activated Abilities: 'This can be activated
+during showdowns on any player's turn.'"* Grant it after 464.2.c.3 has designated the attackers and
+you can count 465.2.c's summed Might — never in your Main Phase on a guess.
+
+### 12.5 415.3.a is why Scorn of the Moon is a whole legend's text
+
+**UNL-197 Scorn of the Moon**: *"[Reaction][>] exhaust: [Add] 1 Energy. Spend this Energy only
+during showdowns."* Holding a rune back for Reaction mana costs that rune for the whole of your turn
+**and** the whole of the opponent's — 415.3.a: *"A player Readies all non-spell Game Objects they
+Control during the Awakening Phase on their turn."* Scorn's Energy needs no rune held: 315.1.b
+readies the legend every Awaken and the ability is [Reaction], so the mana is created at the instant
+it is spent. Its own parenthesis (*"Abilities that add resources can't be reacted to"*) is 429.2 and
+429.2.a printed on a card. 167 is why it cannot be banked.
+
+It is the **opposite deck** to this walk's own `mystic-vortex-helm-suppression-tax`, which prices
+[Reaction] cards in showdowns up. Named in both entries so they are never built together.
+
+## 13. Standing notes for CLAUDE.md (batch 4)
+
+15. **715.2 pays Bonus Damage PER TARGET**, and **OGN-296 Void Gate is a seventh source** the
+    project's six-card sweep missed because it is worded for the location rather than as "your
+    spells and abilities" — which also means it never says "you" (190.6.d) and arms the opponent.
+    714 sums instances; 715.4 means it augments a Deal and never creates one; 713 + 417.6.c keep the
+    whole family disjoint from excess damage.
+16. **807.2 sums granted [Assault] exactly as 814.2 sums granted [Shield]**, and SFD-183 Purifier's
+    *"Your Equipment **each** give [Assault]"* is a per-Equipment grant — so stacking Equipment on
+    one body stacks the keyword as well as the Might Bonuses (434.1.d).
+17. **187.4 gives a Mech token the Mech tag by rule**, so every "your Mechs have X" static reaches
+    tokens with no extra text. SFD-071 Breakneck Mech grants them **[Ganking]**, which is the one
+    keyword that answers the base-born-token bottleneck (144.4.a/b confine them; 144.4.c.1 does not).
+18. **Granting [Tank] to ONE body is a protection for every OTHER body** (815.1.c.2), not for the
+    body granted — and VEN-147 Eye of Twilight grants it at [Action] speed (806.1.c.2), i.e. after
+    the attackers are designated and their summed Might is countable.
+19. **415.3.a is the reason off-turn mana is worth a legend's whole text**: a rune exhausted on your
+    turn is dead for the whole of the opponent's. UNL-197 Scorn of the Moon and VEN-141 Butcher of
+    the Sands both sell Reaction-speed Energy that needs no rune held ready; 167 is why it must be
+    added inside the showdown it is spent in.
