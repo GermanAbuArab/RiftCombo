@@ -824,3 +824,249 @@ rest**, not another five-entry batch.
 7. **`OGN-236 Karthus, Eternal` is mono-ORDER**, not Fury — checked against `data/cards.json`. A
    Deathknell multiplier reads Fury and is not one, which changes which decks the six Karthus
    entries are legal in.
+
+---
+
+# Batches 6 and 7 — the combat half, and closing the slice
+
+Batch 5 merged (catalogue 552 at the time of writing). Batches 6 and 7 add **4 entries** and
+**4 refusals**, which takes the mono-Order slice to **9 base codes = 8 distinct names uncovered**,
+every one of them refused by rule below or in an earlier section. **The slice is closed.**
+
+| id | class | cards | the names it clears |
+|---|---|---|---|
+| `galio-back-to-back-divining-shells-toll` | ENGINE | UNL-171, OGN-206, UNL-161 | Back to Back, Divining Shells |
+| `crimson-pigeons-laurent-duelist-attacker-might` | ENGINE | UNL-154, SFD-156 | Crimson Pigeons, Laurent Duelist |
+| `vanguard-attendant-eye-of-herald-arrival-token` | ENGINE | OGS-016, SFD-153 | Vanguard Attendant |
+| `blast-of-power-bloodless-conquer` | ENGINE | OGS-012 | Blast of Power |
+
+## 23. A [Tank]'s Might is a toll, and 815.1.b is stronger than the reminder text
+
+The reminder on every Tank card is *"I must be assigned combat damage first"*, which reads as an
+ordering. The rule is a **threshold**:
+
+> **815.1.b.** *"I must be assigned **lethal** damage before any other unit with the same controller
+> as me that does not have [Tank] during the Combat Damage step."*
+> **815.1.c.2.** *"Units without Tank are invalid assignments until all units with Tank have lethal
+> damage assigned to them."*
+> **465.2.c.3.** *"Units must have lethal damage assigned to them in full before damage is assigned
+> to a different Unit."*
+
+So an attacker whose **summed Might is below the Tank's Might kills nothing at all** — the Tank
+cannot be finished, and 815.1.c.2 makes every other body an illegal assignment. `UNL-171 Galio,
+Indefatigable` is the carrier written for it: *"[Deflect] … [Tank] … **I don't deal combat damage**"* —
+the printed drawback is what makes every point added to him pure toll.
+
+The lever nobody had pulled is **raising a Tank's Might after the attackers are declared**. Both
+levers exist in Order and both are cheap:
+
+- `OGN-206 Back to Back` (E3, **[Reaction]**) — +2 on each of two friendly units, the cheapest
+  +4 summed Might in the domain.
+- `UNL-161 Divining Shells` (E2 gear, **[Action]**) — *"Kill this, :rb_exhaust:: Give a unit +2
+  :rb_might: this turn."* **The activation costs no Energy and no Power.**
+
+That last claim was swept, not assumed. Every mono-Order card that grants Might this turn:
+`OGN-206 Back to Back` E3, `OGN-207 Call to Glory` E3 (free only by spending a buff, which 702.2.b
+removes from the body carrying it), `OGN-233 Grand Strategem` E6 + 3 Power, `SFD-151 Bonds of
+Strength` E2 (E4 with its [Repeat]), `UNL-155 Heroic Charge` E3, `UNL-161 Divining Shells` **0**,
+`VEN-121 Reluctant Leader` and `VEN-125 Hungry Wolf` (self-only). **The Shells is the only free
+one**, which is what makes it worth a slot beside a spell that is strictly better per Energy: on the
+turn you tapped out to develop, it is the only pump in the domain you can still make.
+
+Both land inside the combat — 813.1.c.1 for the [Reaction] card, 806.1.c.2 (*"This can be activated
+during showdowns on any player's turn"*) for the gear's ability — i.e. **after** 464.2.c.3 has
+designated the attackers and 465.2.c has fixed their summed Might. You buy exactly the toll the
+board requires and never a point more. `466.1.a.1` (*"Insert '3c. Heal all Units.'"*) with 143.3.b.2
+then erases the damage, and both pumps say *"this turn"*, so the toll resets to 6 next turn: this is
+a defensive turn bought, not a wall built.
+
+Why this is not a fourth version of a catalogued idea: `tianna-wildclaw-point-lock` stacks **bodies**
+behind a Tank; `eye-of-twilight-zephyr-sage-tank-redirect` and
+`royal-entourage-eye-of-twilight-double-tank` **grant the keyword** to a body that lacked it. This
+entry changes neither, and **815.2** (*"Multiple instances of Tank are redundant"*) is why it cannot:
+on a body that already has Tank, its Might is the only lever left.
+
+## 24. 807.1.d is the [Assault] version of a trap this project already knew, and 144.3 is why the other half is free
+
+`UNL-154 Crimson Pigeons` (*"I have +2 :rb_might: while I'm attacking with another unit"*) and
+`SFD-156 Laurent Duelist` (`[Assault 2]`) are the domain's two conditional attackers, and they are
+each other's condition. Two paragraphs decide the pair:
+
+> **807.1.c.** *"It is functionally short for 'While I am an attacker, I have +X [M].'"*
+> **807.1.d.** *"Being an attacker means the Unit has gained the Attacker designation during Combat."*
+
+With **323.9** (*"Mark a Combat as Staged at each Battlefield that Contested was applied to that have
+units present controlled by opposing players"*), that is the project's empty-battlefield trap arriving
+from the [Assault] side: **walking into an unoccupied battlefield takes it through 344.2's Showdown
+with no Combat, no Attacker designation and no damage step**, so both cards are printed Might 3 on
+exactly the board every token and evacuation line is built for.
+
+The constructive half is **144.3**: *"Players may perform multiple Units' standard move
+simultaneously. This is treated as one game action performed on multiple Units"*, with 144.3.a fixing
+a shared Destination, 144.3.b allowing different Origins and 144.3.c paying the exhausts (420.3.a)
+simultaneously. So *"attacking with another unit"* costs no extra action and no extra turn.
+Arithmetic: 3 + 4 Energy, no Power, for **10 summed Might** where the printed pair is 6.
+
+And the two are **not the same card**: 807.2 sums granted [Assault] (*"Petty Officer has Assault. It
+is chosen as the target of Cleave … After Cleave resolves, Petty Officer has Assault 4"*), so the
+Duelist scales with grants; the Pigeons' clause is a plain conditional modifier that 807.2 never
+touches and that scales with **bodies** instead. Neither is a buff, so 702.3 and 703 are silent and
+a real buff still lands on top.
+
+## 25. The Eye of the Herald has three different scarcities, and this is the third
+
+`SFD-153 Eye of the Herald` now carries three entries and each buys a different thing:
+
+| entry | what is scarce | what the partner buys |
+|---|---|---|
+| `hungry-wolf-eye-of-herald-double-move` | moves per turn | a **second** move (more tokens per turn) |
+| `solari-sunhawk-eye-of-herald-deflect-carrier` | carrier lifespan | **survival** (more turns of tokens) |
+| `vanguard-attendant-eye-of-herald-arrival-token` | the **first** move | one token **a turn earlier** |
+
+`OGS-016 Vanguard Attendant` (E6 P1 M5, *"I enter ready"*) is the only unconditional "enters ready"
+body in Order. 143.4 (*"Units enter the Board exhausted"*, alterable by 143.4.a) against 144.2
+(*"Exhausting the Unit is the Cost for this action"*) is why that is worth a card at all, and 415.1
+is why it is worth exactly one turn and no more: Readying marks something **already on the board**,
+so "enters ready" is a play-time property that can never hand an exhaust back later.
+
+The honest price: it is the same 5 Might as `UNL-151 Bandle Soldier` for **2 Energy more**, and the
+Soldier has the identical text behind a `[Level 3]` gate. So the two are **alternatives decided by
+824.1.d**: a list that spends its XP (`poppy-hunt-xp-discount`, `shepherds-heirloom-xp-equip`) cannot
+have the cheap version, and `bandle-soldier-enthralling-protector-xp-floor` and this entry name each
+other for that reason.
+
+## 26. Two Energy buys the word [Action], and 155 is the paragraph that prices it
+
+`OGS-012 Blast of Power` (E6 P1, *"[Action] … Kill a unit at a battlefield"*) against `OGN-229
+Vengeance` (E4 P2, *"Kill a unit"*) is the cleanest comparison in the domain. Vengeance is **cheaper
+in Energy, wider in target** — it reaches a body at the base, which Blast of Power never does — and it
+**cannot take a battlefield**, because:
+
+> **155.** *"A spell can be played during an Open State outside of Showdowns on its controller's turn."*
+
+That is the only timing permission a keyword-less spell has, and a Combat Showdown is not that state.
+Blast of Power's two extra Energy buy 806.1.c.1's *"This can be played during showdowns on any
+player's turn"*, and that permission is the whole card. The chain it opens:
+
+1. **190.3.a.1** applies Contested when your unit moves in; **323.9** stages the Combat because
+   opposing units are present; **464.2.c.1** makes you the Attacker and **464.2.c.3** designates.
+2. **464.2.f.1** (*"Otherwise the Combat Showdown continues, with the State Open as normal"*) and
+   **464.2.g** (*"Players proceed with any play on the Chain as normal"*) are the window. Kill the
+   last defender.
+3. **465.1** gates the damage tasks on *"If **both** Attacking and Defending units remain at this
+   battlefield"* — they do not, so **no damage is assigned at all** and your body survives untouched.
+4. **466.5**: *"the player with Units remaining here Establishes Control **if they didn't already
+   control this Battlefield**"*; **466.5.d**: *"Establishing Control results in a Conquer if that
+   player has not yet scored this Battlefield"*; **469.1.b** completes it.
+
+Clause 3 of 466.5 is why this is an **attacker-side** play only: 464.2.c.1 with 323.11.a make the
+Defender the player who already controls the battlefield, so the same spell cast by the non-turn
+player wins the combat and pays no point. **466.5.e** (*"This does not have to be the player that
+applied Contested to the Battlefield"*) keeps the Control with whoever has units left.
+
+And it produces **zero excess damage** — 465.1 assigns nothing, and R28 = A defines excess as
+attacking Might never assigned — so `OGN-034 Tryndamere`, `UNL-187 Piltover Enforcer` and
+`UNL-217 Trapping Grounds` are all blank behind it however large the body that walked in. The
+bloodless-conquer family and the excess-damage family are mutually exclusive **in principle**.
+
+**155 and 466.5.e are cited here for the first time in this catalogue** (0 prior hits each).
+
+## 27. Refusals that close the slice
+
+### 27.1 `OGN-219 Vanguard Sergeant` — the pool's only textless Order card
+
+E4 M4 and the corpus row reads `(no text)`. Swept: `grep -E "\| Order \|" data/corpus_flat.txt |
+grep -c "(no text)"` returns **1**, and it is this card. A body that reads no other card cannot be
+half of a pair. Refused; it is a curve slot, not a line.
+
+### 27.2 `OGN-229 Vengeance` — refused by 155, and the refusal is inside an entry
+
+See §26. Its price and target are better than `OGS-012 Blast of Power`'s in every respect except the
+one that matters for taking a battlefield, and `blast-of-power-bloodless-conquer` states the
+comparison with the paragraph. Handed to `rc-walk-rules2` as a member of the Order removal ladder.
+
+### 27.3 `SFD-158 Sandshifter` — a Might gate, already mapped by another lane
+
+E5 P2 M6, *"When you play me, kill an enemy unit with 3 :rb_might: or less."* The Calm/Mind walk
+already recorded that this and `VEN-127 Lacerate` are the same 3-Might gate at different prices, and
+that the floored/unfloored distinction does not change a kill gate at M ≥ 5 (it bites only in a
+combat SUM, 465.2.c with 143.2.b). Nothing here reads another card. Ladder lead.
+
+### 27.4 `VEN-131 Decree of Unity` — a domain hoser, and the Decree cycle is complete and symmetric
+
+E2 P1, *"Kill an enemy Chaos (:rb_rune_chaos:) unit or gear."* Swept `grep -in Decree`: the cycle is
+**six cards, one per domain, in three mirrored pairs of opposed domains** —
+
+| card | domain | names |
+|---|---|---|
+| `VEN-015 Decree of Rage` | Fury | an enemy **Calm** unit (deal 4) |
+| `VEN-040 Decree of Focus` | Calm | a friendly unit facing an enemy **Fury** unit or spell (+4 Might) |
+| `VEN-061 Decree of Insight` | Mind | an enemy **Body** unit (−5 Might) |
+| `VEN-085 Decree of Strength` | Body | a **Mind** card in the opponent's hand (recycle it) |
+| `VEN-107 Decree of Discord` | Chaos | enemy **Order** units, total Might ≤ 5 (bounce) |
+| `VEN-131 Decree of Unity` | Order | an enemy **Chaos** unit **or gear** (kill) |
+
+Fury↔Calm, Mind↔Body, Chaos↔Order. `VEN-131` is the **only one of the six that kills outright and
+the only one that reaches a gear**, which is worth recording — but a hoser priced against one enemy
+domain is a sideboard card, not a line. Ladder lead, with the cycle attached.
+
+### 27.5 Already refused earlier, and still refused
+
+`OGN-237 King's Edict` (§13, 485.4 + 355.10.e), `OGN-224 Salvage` and `SFD-160 Zaun Punk` (§16 and
+§17 — the [Effect] pronoun rule and the Order gear inventory), `OGN-214` / `VEN-R06 Order Rune`
+(§18, 164.2 + 161.2.a).
+
+## 28. FINAL LEDGER — the mono-Order slice is closed
+
+```
+mono-Order deckable base codes: 139
+uncovered by NAME+TYPE: 9 base codes = 8 distinct names
+  - and all 8 are refused by rule, in sections 13, 16, 17, 18, 26, 27.1, 27.3, 27.4
+(opened at 43 base / 41 names at catalogue 495; handed over at 20 / 19 at 534; closed at 9 / 8)
+```
+
+**Walked — 22 entries across 7 batches.** Batches 1–4 (13, the predecessor session), batch 5 (5),
+batches 6–7 (4).
+
+**Refused — 8, each with the paragraph quoted**: `OGN-237 King's Edict`, the Sacred Shears
+gear-kill fuel, the whole Group 4 gear-kill lead (`OGN-224`, `SFD-160`), the two Order Runes,
+`OGN-219 Vanguard Sergeant`, `OGN-229 Vengeance`, `SFD-158 Sandshifter`, `VEN-131 Decree of Unity`.
+
+**Handed to `rc-walk-rules2`, not walked here:** the Order removal ladder as a single synergy rule —
+`OGN-229 Vengeance` (E4 P2, unconditional, base-legal, Main Phase only by 155), `OGS-012 Blast of
+Power` (E6 P1, [Action], battlefield only — now catalogued as `blast-of-power-bloodless-conquer`),
+`SFD-158 Sandshifter` (E5 P2 M6, Might ≤ 3 on entry), `VEN-131 Decree of Unity` (E2 P1, Chaos only,
+kills gear), `OGN-225 Solari Chief` (E5 P1 M4, Might-independent, needs a stun — now catalogued as
+`heroic-charge-solari-chief-stun-kill`), plus the gear-kill pair `OGN-224 Salvage` and `SFD-160 Zaun
+Punk` with **718.5.b** (*"Attached cards still can be chosen or targeted by game effects while
+Attached"*) attached, which is what makes an [Action] gear kill an answer to the Equipment BURSTs.
+
+## 29. Facts for CLAUDE.md from batches 6 and 7 (the manager writes them, not this session)
+
+1. **A [Tank]'s Might is a threshold, not an ordering.** 815.1.b says *lethal* damage, and 815.1.c.2
+   makes every non-Tank body an invalid assignment until it has been dealt — so an attack summing
+   **less** than the Tank's Might kills **nothing at all**. 815.2 makes a second Tank grant on the
+   same body redundant, so on a printed Tank the only lever left is its Might, and both Order pumps
+   land after 464.2.c.3 has designated the attackers.
+2. **`UNL-161 Divining Shells` is the only Might pump in Order whose activation costs no Energy and
+   no Power** — swept over all eight (`OGN-206`, `OGN-207`, `OGN-233`, `SFD-151`, `UNL-155`,
+   `UNL-161`, `VEN-121`, `VEN-125`). `OGN-207 Call to Glory`'s "free" mode spends a buff, which
+   702.2.b removes from the body carrying it.
+3. **807.1.d is the [Assault] face of the empty-battlefield trap**: *"Being an attacker means the
+   Unit has gained the Attacker designation during Combat"*, and 323.9 stages no Combat without
+   opposing units — so every `[Assault]` body and every *"while I'm attacking"* clause is printed
+   Might on a bloodless conquer. 807.2 sums granted [Assault]; a *"while I'm attacking with another
+   unit"* clause is a plain modifier that 807.2 never touches.
+4. **155** — *"A spell can be played during an Open State outside of Showdowns on its controller's
+   turn"* — is the paragraph that prices `[Action]` on a removal spell. `OGN-229 Vengeance` is
+   cheaper and wider than `OGS-012 Blast of Power` and **cannot take a battlefield**, because the
+   #118 chain needs the spell inside an opened Combat (464.2.f.1 / 464.2.g). First cite here.
+5. **466.5.e** — *"This does not have to be the player that applied Contested to the Battlefield"* —
+   with 466.5's *"if they didn't already control this Battlefield"*, is the pair that makes the
+   bloodless conquer an **attacker-side** play only. First cite here.
+6. **`OGN-219 Vanguard Sergeant` is the only mono-Order card in the pool with no rules text**
+   (swept, 1 hit).
+7. **The Decree cycle is six cards in three mirrored pairs of opposed domains** — Fury↔Calm
+   (`VEN-015`/`VEN-040`), Mind↔Body (`VEN-061`/`VEN-085`), Chaos↔Order (`VEN-107`/`VEN-131`) — and
+   `VEN-131 Decree of Unity` is the only one that kills outright and the only one that reaches a
+   gear.
