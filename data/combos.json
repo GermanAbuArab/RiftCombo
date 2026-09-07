@@ -43440,6 +43440,348 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 432 Double). Rule 432 is cited by NO entry and no synergy rule in this project, although six cards in the pool double a Might and four of them already carry entries - the arithmetic they were written on never named the paragraph. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.1, 103.2.d.2, 143.4, 144.3, 155, 190.3.a.1, 194.1.c, 323.9, 323.13, 432.1, 432.1.a, 464.2.c.3, 464.2.f.1, 464.2.g, 465.2.c, 465.2.c.4, 466.5, 466.5.d, 470, 485.4, 806.1.b, 807.1.c, 807.1.d.1, 807.2, 814.1.c. The legend field is ONE NAME because Dominus is Signature (103.2.d.2), verified against data/cards.json: VEN-141 / VEN-190 Butcher of the Sands, the pool's only Renekton legend. Distinct from vi-hotheaded-excess-threshold (Vi doubles her own printed Might with no conditional bonus in the number) and from renekton-dominus-double-conquer (VEN-092, a different body and no Assault). Trap check: the Shield half of Garen is dead on offence by 814.1.c; the doubler must be played after the Attacker designation or it is worth five less; the excess is comfortably over the threshold and the entry says so rather than hiding it; no unruled reading."
+    },
+    {
+      "id": "shuriken-flip-akali-deadly-weapon-move-ping",
+      "name": "Shuriken Flip's second clause is Akali's own trigger — an effect move pays no exhaust and needs no [Ganking]",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-140",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury/Calm spell, E1 P1. 'Deal 2 to up to one enemy unit at a battlefield, then move a friendly unit. [Flow] :rb_energy_3::rb_rune_rainbow:'. SIGNATURE, tagged Akali. In zero entries before this walk."
+        },
+        {
+          "card": "VEN-021",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E3 M3. '[Empower] :rb_energy_2::rb_rune_fury:. When I move, you may deal 1 to a unit at a battlefield I moved to or from. If I'm [Empowered], deal 2 instead. [Empowered][>] I have +1 :rb_might:.' In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "ONE LEGEND: Shuriken Flip is a Signature card tagged Akali, and 103.2.d.2 forces the pool's one Akali legend — Rogue Assassin (VEN-139), Fury/Calm, itself one of the three domain pairs printed under a single legend name. Akali, Deadly Weapon is mono-Fury and sits inside that identity by 103.1.b.1.",
+          "103.2.d.1 caps the deck at three Signature cards, and three Shuriken Flips spend all of it.",
+          "Akali already on the board; the Flip is the mover, not the deployer."
+        ],
+        "notable": [
+          "THE SPELL'S SECOND CLAUSE EXISTS TO FIRE THE UNIT'S TRIGGER. 449: 'Spells, Abilities, or other effects may cause a Move to occur', and 420.2.b makes the Standard Move merely one thing that 'may ALSO cause Movement' — so the Flip's 'then move a friendly unit' is a Move for every purpose, including Akali's 'When I move'. One card is therefore 2 damage from the spell plus 1 more from her, or 2 more while she is [Empowered]: FOUR damage for 1 Energy + 1 Power.",
+          "AN EFFECT MOVE COSTS NO EXHAUST AND IGNORES THE STANDARD MOVE'S GEOGRAPHY. 420.3.a puts the exhaust cost on the Standard Move alone (144.2), and 144.4's base-to-battlefield restriction is written for the Standard Move as well — so the Flip moves an already-exhausted Akali, and moves her battlefield to battlefield with no [Ganking]. This is the cheapest instance in the pool of the project's standing 'a move BY EFFECT is a different thing from the Standard Move' fact.",
+          "THE PING READS EITHER END OF THE MOVE. Her clause is 'a unit at a battlefield I moved TO OR FROM', so the 2 from the spell and the 1-or-2 from her can land at two DIFFERENT battlefields — this is a split removal spell, not a single 4-point shot, unless you aim both at one body.",
+          "THE EMPOWER IS BOUGHT ONCE AND KEPT. 441.1.b ('An Empowered Game Object can not be Empowered') and 441.2 make Empowered a permanent board state, so E2 + 1 Fury Power doubles her ping for the rest of the game and adds +1 Might on top. It is not a per-use cost.",
+          "[FLOW] IS SIX PLAYS A GAME, NOT AN ENGINE. 829.1.b: 'You may play this from your trash for its flow cost. Then banish it.' Three copies (103.2.b) plus one Flow replay each is six, and 108.6.c means nothing brings a banished copy back. Priced honestly, the Flow replay is 3 Energy + 1 rainbow for the same four damage.",
+          "HER PING SAYS 'A UNIT', NOT 'AN ENEMY UNIT'. It can be pointed at one of your own — which matters only as a warning that it is not automatic, and as the one way to trip a friendly damage-triggered effect on purpose."
+        ]
+      },
+      "steps": [
+        "Play Akali, Deadly Weapon (3 Energy) and walk her to a battlefield.",
+        "On a later turn, pay her [Empower] (2 Energy + 1 Fury Power). 441.2 makes the state permanent, so her ping is 2 from here on and she is Might 4.",
+        "Play Shuriken Flip (1 Energy + 1 Fury or Calm Power): deal 2 to an enemy unit at a battlefield.",
+        "Its second clause moves Akali — 449, no exhaust (420.3.a), any battlefield including one she could not reach with a Standard Move.",
+        "Her trigger fires on that Move: 2 more to a unit at either the battlefield she left or the one she reached.",
+        "Later, replay the Flip from the trash for its [Flow] cost (3 Energy + 1 rainbow); 829.1.b banishes it afterwards."
+      ],
+      "terminatesIn": "engine — 4 damage split across up to two battlefields per Shuriken Flip, six Flips a game (three copies plus one [Flow] replay each), plus free repositioning of an exhausted body every time; nothing here scores",
+      "netPerIteration": "4 damage and one free effect move for 1 Energy + 1 Power, once Akali is Empowered",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards and the orphan Signature spells (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "449: 'Spells, Abilities, or other effects may cause a Move to occur.' 449.1: 'The source of the Move will provide details on any restrictions on legality for Destination.' 420.2.b: 'The Standard Move inherent to Units may also cause Movement.' 420.3.a: 'The Cost is Exhausting one or more Units.' 144.2: 'Exhausting the Unit is the Cost for this action.' 144.4: 'The Destinations where Units can Move to with their Standard Move are restricted.' 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' 829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. VEN-140 Shuriken Flip and VEN-021 Akali, Deadly Weapon were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.b, 103.2.d.1, 103.2.d.2, 108.6.c, 144.2, 144.4, 420.2.b, 420.3.a, 441.1.b, 441.2, 449, 449.1, 829.1.b opened in the Core Rules file. The forced legend was computed from cards.json (championTagOf(VEN-140) = Akali; the pool prints exactly one Akali legend, VEN-139 Rogue Assassin), not typed. No unruled reading."
+    },
+    {
+      "id": "consuming-curse-annie-self-scaling-bonus",
+      "name": "Consuming Curse counts cards in a zone, not a history — the un-controversial cousin of R15, and 714 sums it with Annie",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-010",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury spell, E2, [Action]. 'Deal 2 to a unit at a battlefield. This deals 1 Bonus Damage for each card with this name in your trash.' Three copies is the cap (103.2.b) and is also the quantity the card reads. In zero entries before this walk."
+        },
+        {
+          "card": "OGS-001",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Fury unit, E5 P1 M4. 'Your spells and abilities deal 1 Bonus Damage.' A second, independent instance on the same Deal action."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Fury, so any of the sixteen legend names carrying Fury holds it (103.1.b.1): Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "All three copies of the Curse, since the card's own scaling is denominated in them."
+        ],
+        "notable": [
+          "IT NEEDS NO RULES READING, AND THAT IS THE POINT OF COMPARING IT TO R15. `UNL-020 Dancing Grenade` counts 'each time this spell has DEALT DAMAGE this turn' — a history that survives the trash between replays, which had to be ruled (R15 = A, issue #11). Consuming Curse counts 'each card with this name in your TRASH': a zone, read on resolution, with nothing to track. It is the same escalating-burn design with the ambiguity removed, and it belongs in the catalogue as the clean member of that family.",
+          "714 SUMS THE CARD'S OWN SCALING WITH ANNIE'S STATIC: 'If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.' The Curse's clause is one instance and Annie's is another; there is no interaction beyond addition.",
+          "THE ARITHMETIC OVER A GAME, WITH THE ENTRY'S OWN QUANTITIES. 103.2.b caps the deck at three by NAME, which is the same quantity the card reads, so the trash can hold at most two when the third is cast. Casting all three in order: 2, then 3, then 4 — NINE damage for 6 Energy. Under Annie: 3, 4, 5 — TWELVE.",
+          "AND THE TRAP IS THAT MILLING THE COPIES LOSES YOU DAMAGE. Putting two Curses in the trash without casting them makes the survivor a 4 (5 under Annie) — better per CARD, and worse in TOTAL than the 9 (12) that casting all three gives. A self-mill is a tempo choice here, never a damage increase; the instinct to 'load the trash first' is wrong on this card.",
+          "IT IS BATTLEFIELD-SCOPED, unlike the six no-location damage cards (`OGN-029 Falling Star`, `OGN-248 Icathian Rain`, `OGN-252 Super Mega Death Rocket!`, `OGS-022 Final Spark`, `UNL-020 Dancing Grenade`, `UNL-026 Xerath, Freed`): the Curse says 'at a battlefield', so it cannot reach a unit sitting in a base.",
+          "056 IS WHY THE COUNT IS ALWAYS YOURS. A card goes to its OWNER's zones, so an opponent's Consuming Curse never sits in your trash and the number can only be 0, 1 or 2."
+        ]
+      },
+      "steps": [
+        "Play Annie, Fiery (5 Energy + 1 Fury Power) and keep her alive: her static is what raises every number below by 1.",
+        "Cast the first Consuming Curse (2 Energy): 2 damage, +1 from Annie = 3. It goes to your trash.",
+        "Cast the second: 2, +1 for the copy in the trash, +1 from Annie = 4. 714 sums the two Bonus Damage instances and applies them once.",
+        "Cast the third: 2, +2 for the two copies, +1 from Annie = 5.",
+        "Twelve damage across three [Action]-speed spells for 6 Energy, each of which can be held for a Showdown."
+      ],
+      "terminatesIn": "engine — 9 damage across the three copies alone, 12 with Annie standing, and no fourth copy exists (103.2.b); nothing here scores",
+      "netPerIteration": "+1 damage on each successive copy, plus +1 flat from Annie on all three",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "713: 'Bonus Damage is an intrinsic property that can be granted to Deal actions that influence the amount of Damage that the action is distributing.' 714: 'If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.' 715: 'Bonus Damage applies to the total damage Dealt by one instance of the action.' 715.1: 'If the Deal action has a single target, the amount of Damage to that target will be increased by the Bonus Damage granted to it.' 056: 'Cards are Owned by the player who included them in their deck.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might."
+        },
+        {
+          "title": "Rules readings R15, issue #11 (voted 2026-09-06)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. VEN-010 Consuming Curse was in ZERO entries; OGS-001 Annie, Fiery appears in three others and this is a different number and a different trap (a card's OWN self-scaling Bonus Damage summed with hers under 714, and a self-mill that lowers the total). Card text verbatim from data/corpus_flat.txt; 056, 103.1.b.1, 103.2.b, 143.2.a, 713, 714, 715, 715.1 opened in the Core Rules file. R15 is cited as a CONTRAST, not as a dependency: this card needs no reading at all."
+    },
+    {
+      "id": "vicious-snapjaws-scorchclaw-xp-faucet-no-sink",
+      "name": "A [Level] rung wants a faucet and NO sink — and Domain Identity is a PAIR, which is what gives the pool's death-to-XP faucet its one outlet",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-129",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E5 M5. 'When another friendly unit dies, gain 1 XP.' The pool's only death-to-XP faucet. In zero entries before this walk."
+        },
+        {
+          "card": "UNL-016",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E3 P1 M3. '[Hunt 2] (When I conquer or hold, gain 2 XP.) [Level 3][>] I have +1 :rb_might: and enter ready.' Swept: the ONLY card printing [Level anything in Fury or Chaos. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "A deck with NO XP sink in it at all — see the second notable; this is a deckbuilding constraint, not a board one."
+        ],
+        "notable": [
+          "DOMAIN IDENTITY IS A PAIR, AND THAT IS THE WHOLE REASON THIS PAIRING EXISTS. 103.1.b is a subset test against the legend's TWO domains, so a claim of the form 'domain X has no outlet for this' is not well formed. Swept over the corpus for `[Level`: mono-Chaos prints no [Level] card at all, and `UNL-016 Scorchclaw` is the ONLY one in Fury — so under any of the five Fury/Chaos legends, `UNL-129 Vicious Snapjaws` has exactly one outlet in the pool, and this is it.",
+          "A [LEVEL] RUNG IS A THRESHOLD YOU HOLD, NOT A PRICE YOU PAY. 824.1.d: 'The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP', and 730.2: 'To Spend XP, reduce the value of XP marked on the Player spending it.' The XP is never consumed by the rung — it is consumed by YOU, and the moment it drops below 3 the +1 Might and the enter-ready go out. So the correct build for this pair runs a faucet and NOTHING that spends.",
+          "WHICH MAKES ONE CARD IN THE SAME DOMAIN THE ANTI-SYNERGY, AND IT IS EASY TO PLAY BY ACCIDENT. `UNL-126 Megatusk` (Chaos, 'Spend 3 XP: Give your units here [Ganking] this turn') is the obvious thing to do with a growing XP pile, and using it once takes you from 3 to 0 and switches Scorchclaw's rung off — 824.1.d, not a cost on Scorchclaw's side at all. Every XP sink in the pool has this shape against every [Level] static.",
+          "THE FAUCET RATE, MEASURED. 823.1.c.1: '[Hunt] is functionally short for \"When I Conquer or Hold, my controller gains X XP.\"' 315.2.b.2 Holds EVERY battlefield you control and 485.4 puts two on a Duel table, so Scorchclaw's own [Hunt 2] is up to 4 XP a turn by himself; the Snapjaws adds 1 per friendly death, which combat supplies for free. Three XP arrives on the first scoring turn and never has to leave.",
+          "AND THE PAYOFF IS HONESTLY SMALL. '+1 :rb_might:' is permanent while the rung is Active; 'enter ready' is a PLAY-TIME property and not a ready (415.1 marks a Game Object already on the Board), so it is worth one free arrival per copy of Scorchclaw played while you already hold 3 XP, and nothing at all to the copy already standing. The entry is an ENGINE ceiling and says so: nothing in the pool converts XP into points.",
+          "'WHEN ANOTHER FRIENDLY UNIT DIES' IS NOT A [DEATHKNELL]. 808.1.c makes a Deathknell functionally short for 'When I die', and `OGN-236 Karthus, Eternal` doubles only those — so no trigger multiplier in the pool touches the Snapjaws. His rate is one XP per death, flat."
+        ]
+      },
+      "steps": [
+        "Play Scorchclaw (3 Energy + 1 Fury Power) and Vicious Snapjaws (5 Energy).",
+        "Take a battlefield, or hold one: [Hunt 2] pays 2 XP per scoring event (823.1.c.1), and 315.2.b.2 Holds every battlefield you control each Beginning Phase.",
+        "Every friendly unit that dies — combat losses included — pays 1 more XP through the Snapjaws.",
+        "At 3 XP Scorchclaw's [Level 3] rung goes Active: +1 Might, and any further copy of him enters ready.",
+        "Spend nothing. 824.1.d switches the rung off the instant you drop below 3, and 730.2 is what a sink does to you."
+      ],
+      "terminatesIn": "engine — XP accumulates without bound and buys exactly one thing in this identity, Scorchclaw's rung; nothing in the pool converts XP to points, so it never becomes a finisher",
+      "netPerIteration": "1 XP per friendly death plus 2 per scoring event, against a threshold of 3 that is paid once and then held forever",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "824.1.d: 'The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP.' 730.2: 'To Spend XP, reduce the value of XP marked on the Player spending it.' 823.1.c.1: 'Hunt is functionally short for: \"When I Conquer or Hold, my controller gains X XP.\"' 415.1 (Readying marks a Game Object already on the board). 808.1.c: 'It is functionally short for \"When I die, [Effect].\"' 103.1.b (a card is legal only inside an identity that contains all of its domains)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. UNL-129 Vicious Snapjaws and UNL-016 Scorchclaw were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b, 103.1.b.2, 315.2.b.2, 415.1, 485.4, 730.2, 808.1.c, 823.1.c.1, 824.1.d opened in the Core Rules file. The '[Level in Fury or Chaos' claim was swept over the whole corpus and returns exactly one row, UNL-016. NOTE FOR THE MANAGER, not changed by this session: CLAUDE.md records 'Chaos prints no [Level] static at all, so UNL-129 Vicious Snapjaws - the pool's only death-to-XP faucet - has no outlet in identity.' The first half is correct; the conclusion is scoped to mono-Chaos, and 103.1.b makes an identity a PAIR, so under a Fury/Chaos legend the faucet has exactly one outlet — this entry."
+    },
+    {
+      "id": "draven-showboat-arena-kingpin-score-scaling-body",
+      "name": "The pool's one body whose Might is your score, and a repeatable +3 that is a modifier rather than a buff",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-028",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E5 P1 M3. 'My Might is increased by your points.' Swept: three cards in the pool read your point total and this is the only one whose Might does. In zero entries before this walk."
+        },
+        {
+          "card": "UNL-001",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E5 M3. 'I enter ready. :rb_exhaust:: Give a unit +3 :rb_might: this turn.' Three copies (103.2.b) is +9 on one body per turn. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Fury, so any of the sixteen legend names carrying Fury holds it (103.1.b.1): Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143)."
+        ],
+        "notable": [
+          "SWEPT, WITH THE MEMBERS NAMED. Exactly three cards in the pool read your point total: `OGN-028 Draven, Showboat` ('My Might is increased by your points'), `OGN-112 Kai'Sa, Evolutionary` (points as a cost CEILING for a spell replayed from the trash) and `SFD-055 Needlessly Large Yordle` (a discount for each point SCORED FROM HOLDING THIS TURN). Draven is the only one whose body size is your score, and the only one that reads the running total rather than a turn's worth.",
+          "AND HE COUNTS ALL THREE KINDS OF POINT. 194.1 lists them separately — 194.1.a a Hold, 194.1.b a Conquer, 194.1.c 'Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more points' — so a card-text 'score 1 point' grows him exactly as a Conquer does. This is R2 = A read from the useful side: 469 and 470 never see the third kind, and neither does Draven's clause, which just reads the total.",
+          "THE KINGPIN'S +3 IS A MODIFIER, NOT A BUFF, WHICH IS WHY THREE OF HIM STACK. 702.3: 'There can only be one Buff on a Unit at a time', and 703 fixes a Buff at exactly +1. 'Give a unit +3 :rb_might: this turn' places no counter, so 702.3 is silent and three Kingpins exhausting on the same body is +9 — the same distinction the catalogue draws for Lee Sin, Centered and Soul Shepherd.",
+          "AND HE PAYS EVERY TURN FROM THE TURN HE LANDS. 'I enter ready' is 143.4.a's exception to 143.4 ('Units enter the Board exhausted'), so the exhaust is available immediately; 415.3.a ('A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn') hands it back each Awakening. It is a permanent faucet, not a one-shot.",
+          "ARITHMETIC WITH THE ENTRY'S OWN QUANTITIES: at 4 points Draven is Might 7 standing; with three Kingpins exhausting he attacks at 16, and 465.2.c reads that number on your side of the damage step.",
+          "STATE THE WEAKNESS, BECAUSE IT IS THE OPPOSITE OF WHAT A READER ASSUMES: he is SMALLEST when you are behind. At 0 points he is a 3-Might body for 5 Energy + 1 Power. This is a card that widens a lead, never one that closes a gap, and any line that treats him as a stabiliser has it backwards.",
+          "PRICE THE BOARD: 5 Energy + 1 Fury Power for Draven and 5 Energy for each Kingpin — the full three-Kingpin version is 20 Energy + 1 Power spread across turns, which is what the 16 actually costs."
+        ]
+      },
+      "steps": [
+        "Play Draven, Showboat (5 Energy + 1 Fury Power). He is Might 3 plus your current score.",
+        "Play Arena Kingpin (5 Energy). 'I enter ready' means his exhaust is live the same turn (143.4.a).",
+        "Score by any of 194.1's three routes — a Hold, a Conquer, or a card-text point gain. Each one is +1 Might on Draven, permanently, with no upkeep.",
+        "In the Main Phase before an attack, exhaust every Kingpin on Draven: +3 each, stacking, because none of it is a Buff counter (702.3, 703).",
+        "Move him in (144.2, 144.4); 464.2.c.1 makes you the Attacker and 465.2.c reads his total Might.",
+        "415.3.a readies the Kingpins at your next Awakening and the pump is available again."
+      ],
+      "terminatesIn": "engine — a body that gains 1 Might per point scored, permanently, plus up to +9 a turn from the Kingpins; nothing here scores by itself, so it converts a lead into board control and never starts one",
+      "netPerIteration": "+1 Might per point scored (permanent) and +3 per Kingpin exhaust (per turn)",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "702.3: 'There can only be one Buff on a Unit at a time.' 702.3.a: 'If a Buff is added, or instructed to be added, on a Unit that already has a Buff, it is not placed instead.' 703: 'Each Buff individually contributes +1 Might to a Unit.' 143.4: 'Units enter the Board exhausted.' 143.4.a: 'This can be altered by Accelerate or similar game effects.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 144.2: 'Exhausting the Unit is the Cost for this action.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' 465.2.c: 'Starting with the Attacker, each player assigns an amount of damage equal to their summed Might among the other's Units.'"
+        },
+        {
+          "title": "Rules readings R2, issue #11 (ruled 2026-09-03)",
+          "kind": "manual-walk",
+          "date": "2026-09-03"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. OGN-028 Draven, Showboat and UNL-001 Arena Kingpin were both in ZERO entries. Draven has TWO base codes (OGN-028 and VEN-172, same name, same type), which CardIndex.equivalents already bridges. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.b, 143.4, 143.4.a, 144.2, 144.4, 194.1, 415.3.a, 464.2.c.1, 465.2.c, 466.5.d, 702.3, 702.3.a, 703 opened in the Core Rules file. The 'reads your point total' sweep was run over the whole corpus and its three members are named. No unruled reading; R2 is cited as already ruled."
+    },
+    {
+      "id": "rebuttal-mel-souls-reflection-offset-empower",
+      "name": "381 bars the legend's own answer while Mel's trigger is still on the Chain, so the -2 Might has to come from an EARLIER empower",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-152",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind/Chaos spell, E1 P1, [Reaction]. 'Choose a spell with Energy cost no more than :rb_energy_4:. You may pay :rb_rune_rainbow:. If you do, gain control of it and you may make new choices for it. Otherwise, counter it.' SIGNATURE, tagged Mel. In zero entries before this walk."
+        },
+        {
+          "card": "VEN-110",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E5 M4. '[Empower] - Discard a spell. When I become [Empowered], banish an enemy unit at a battlefield with 3 :rb_might: or less.' One of five [Empower] costs in the pool that pay neither Energy nor Power."
+        },
+        {
+          "card": "VEN-151",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Mind/Chaos legend. 'When you empower something else, empower me. Disempower me, :rb_exhaust:: Give a unit at a battlefield -2 :rb_might: this turn.' Forced by 103.2.d.2, and it is also the card that raises Mel's banish ceiling."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "ONE LEGEND, and it is a piece of the line rather than a container: Rebuttal is a Signature card tagged Mel, so 103.2.d.2 forces the pool's one Mel legend, Soul's Reflection (VEN-151), Mind/Chaos. Mel, Defiant Soul is mono-Chaos and sits inside it by 103.1.b.1.",
+          "103.2.d.1 caps the deck at three Signature cards, and three Rebuttals spend all of it.",
+          "At least one empower event BEFORE the one that fires Mel — see the first notable. Without it the legend is not Empowered and the -2 does not exist."
+        ],
+        "notable": [
+          "THE OBVIOUS LINE DOES NOT WORK, AND 381 IS WHY. Empowering Mel fires two triggers at once — her 'When I become [Empowered]' banish and the legend's 'When you empower something else, empower me' — and 383.3.d lets you order them, with 340.1 resolving the newest first. So you can make the legend Empowered BEFORE the banish resolves. But the legend's answer is an ACTIVATED ability ('Disempower me, :rb_exhaust:: Give a unit -2 :rb_might:'), and 381 reads: 'All Activated Abilities can only be activated on the Controlling Player's Turn and DURING AN OPEN STATE.' While Mel's banish is still on the Chain the state is Neutral Closed (310.2), so 340.4's priority window buys you nothing — the ability carries neither [Action] nor [Reaction]. The shrink cannot be bought inside the event that needs it.",
+          "SO THE ENGINE IS OFFSET BY ONE EVENT, and that is the honest shape. Empower anything else first; the legend's trigger makes IT Empowered; later, in your own Neutral Open State, spend 'Disempower me, exhaust' on a 5-Might enemy to drop it to 3; THEN Empower Mel and let her banish take it. The banish ceiling goes from 3 Might to 5, and the same offset pattern the catalogue records for 383.3.b base costs recurs here for a completely different reason.",
+          "AND IT IS ONCE PER BODY, FOREVER. 441.1.b: 'An Empowered Game Object can not be Empowered', with 441.1.c ('nothing additional happens') and 441.2 making Empowered a permanent state. Mel's banish is one per copy per game — three copies, three banishes (103.2.b) — and the legend's own cycle is what makes it repeatable at all, since 'Disempower me' returns it to a state that can be Empowered again by the next event.",
+          "206 IS WHY REBUTTAL'S WINDOW NEVER MOVES: a 'costs no more than N' check reads the PRINTED cost. So no discount sneaks an expensive spell into range for you, and no cost-increase (the pool prints exactly three: `VEN-045 Helm of Suppression`, `VEN-160 Mystic Vortex`, `UNL-219 Vaults of Helia`) pushes one out of it for them. The catalogue already records the mirror of this — a spell tax never widens your own counter's window — and this is the same paragraph read from the other side.",
+          "THE STEAL SENDS THE CARD HOME. 191.1 / 191.2 make you the controller of what you play, so the choices are yours ('you may make new choices for it'), but 056 / 056.2 put a card into its OWNER's zones — so their spell resolves for you and then lands in THEIR trash, where their own recursion reads it. Countering it puts it in the same place; the rainbow buys the effect, not the card.",
+          "AND THE PAIRING'S REAL CONTENT IS THAT REBUTTAL IS NEVER DEAD. Held up on the opponent's turn it is a counter or a theft; if they present nothing worth answering, it is the spell that Mel's [Empower] discards on your own turn — 381 confines that activation to your Open State, which is exactly where an unspent [Reaction] ends up. A one-Energy card with three uses and no null case."
+        ]
+      },
+      "steps": [
+        "Play Mel, Defiant Soul (5 Energy) at a battlefield, and hold Rebuttal (1 Energy + 1 Power) up on the opponent's turn.",
+        "If they play a spell whose PRINTED Energy cost is 4 or less (206), either counter it or pay one rainbow to take it and re-choose its targets.",
+        "On some earlier turn, Empower any other permanent you control. The legend's trigger fires — 'When you empower something else, empower me' — and Soul's Reflection is now Empowered.",
+        "In your own Main Phase, in a Neutral Open State (381, 310.1), use the legend: Disempower it and exhaust it to give a 5-Might enemy unit at a battlefield -2 Might this turn.",
+        "Now pay Mel's [Empower] by discarding a spell — an unspent Rebuttal is the ideal card, since it costs you nothing you were going to use.",
+        "Her trigger banishes that enemy unit, now at 3 Might. The legend's own trigger fires again from the same event and re-Empowers it, arming the next cycle."
+      ],
+      "terminatesIn": "engine — one enemy unit banished per copy of Mel (441.1.b makes it once per body), at a ceiling of 3 Might alone or 5 Might with a legend shrink bought a turn earlier; nothing here scores",
+      "netPerIteration": "one enemy body banished for a discarded spell, plus a counter or a stolen spell for 1 Energy + 1 Power whenever they present a target",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards and the orphan Signature spells (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 310.1: 'Neutral Open: There is no Showdown or Combat in progress and no Chain exists.' 310.2: 'Neutral Closed: There is no Showdown or Combat in progress and a Chain exists.' 340.1: 'The newest Finalized Chain Item resolves. Execute its game effects in their entirety.' 340.4: 'If the Chain is not empty and there are no Pending Items, the controller of the newest item on the chain gains Priority. Return to Step 2: Execute.' 383.3.d: 'If more than one Triggered Ability is Triggered simultaneously, then the player that controls the Abilities selects the order to place them on the Chain.' 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.1.c: 'If a Game Object is instructed to be Empowered when it is already Empowered, nothing additional happens.' 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. VEN-152 Rebuttal was in ZERO entries; VEN-110 Mel and VEN-151 Soul's Reflection each appear in one other, and this is a different number and a different trap (the -2 Might raising Mel's banish ceiling, and 381 forbidding it inside the event). Card text verbatim from data/corpus_flat.txt; 056, 056.2, 103.1.b.1, 103.2.b, 103.2.d.1, 103.2.d.2, 108.6.c, 191.1, 191.2, 206, 310.1, 310.2, 340.1, 340.4, 381, 383.3.d, 441.1.b, 441.1.c, 441.2 opened in the Core Rules file. A different LEGAL ORDERING was tried first, as the project requires before filing any reading: 383.3.d does let the legend's trigger resolve before Mel's banish, and it still fails, because the payoff is an Activated Ability and 381 needs an Open State. No reading is filed."
     }
   ]
 }
