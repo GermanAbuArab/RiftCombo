@@ -588,7 +588,8 @@
           "Survive one opponent turn with 7+ units on it.",
           "Eight Recruits from two Vanguards, and the spell's own reminder text permits a battlefield you control as the destination, so all eight can land on the Plaza. Seven is the bar, so one may die.",
           "The Recruits carry no Temporary, so 816.1.b never touches them and they are still there for the Scoring Step (315.2.b), where the Hold and rule 195 do the rest. The instant that matters is exact: 383.2.a.1 makes the Plaza's 'if you have 7+ units here' part of the TRIGGER CONDITION rather than the effect, because it sits immediately after 'When you hold here', and 383.2.c evaluates the Condition once the Hold has been processed. So the seven are counted at the Hold, not at the win effect's resolution - and 383.2.a.1's own Sona, Harmonious example adds that a body removed afterwards, in reaction to the triggered ability, does not undo it.",
-          "The Plaza is symmetric: \"When YOU hold here\" reads for whoever holds it, so an opponent parking seven units on it wins the same way. A Plaza you cannot hold is a liability, not a dead card."
+          "The Plaza is symmetric: \"When YOU hold here\" reads for whoever holds it, so an opponent parking seven units on it wins the same way. A Plaza you cannot hold is a liability, not a dead card.",
+          "UNL-077 Soul Shepherd (Mind, \"Your token units have +1 Might\") adds no bodies but doubles what the opponent must spend to clear them: 143.2.a + 465.2.c.3 make seven 1-Might Recruits cost 7 damage and seven 2-Might Recruits cost 14. He is Mind, so he narrows an all-Order line to Mind/Order (#161, 2026-09-06)."
         ]
       },
       "steps": [
@@ -866,7 +867,7 @@
         "notable": [
           "Hold one battlefield through your Beginning Phase with the Sentinels present, carrying the Trinity Forces between them.",
           "Why the gear's line becomes the unit's line, and why it needs no unruled reading: 136.2.b keeps Effect Text active while attached, 136.2.c and 718.3 append it to the Rules Text of the card it is attached to, and 136.2.d makes \"I\"/\"me\" in Effect Text mean the Top-Most Card (the rules' own examples are Guardian Angel and Brutalizer). So the Sentinel carries \"When I hold, score 1 point\" as a Hold Ability of a Unit under 383.4.d.2.a. R2 = A takes it outside 470's cap; R1 = A adds an instance per Sentinel.",
-          "Points per Hold: 1 + T x (1 + K), T = Trinity Forces on units present, K = Blue Sentinels. Trinity Force is not [Unique] (compare Forgefire Cape, which prints the keyword) and 434.1.b.1 contemplates more than one card attached to a Top-Most card, so T is not tied to the body count: three Trinity Forces stack across two Sentinels. T=3, K=2 gives 10 for 20 Energy; T=2, K=3 gives 9 for the same 20; T=2, K=2 gives only 7.",
+          "Points per Hold: 1 + T x (1 + K), T = Trinity Forces on units present, K = Blue Sentinels. Trinity Force is not [Unique] (compare Forgefire Cape, which prints the keyword) and 434.1.b.1 contemplates more than one card attached to a Top-Most card, so T is not tied to the body count: three Trinity Forces stack across two Sentinels. T=3, K=2 gives 10 for 20 Energy + 5 Power (2 Mind for the Sentinels, 3 Body for the three [Equip] activations — the 20 was Energy alone; #161, 2026-09-06); T=2, K=3 gives 9 for the same 20; T=2, K=2 gives only 7.",
           "Cheaper and smaller than the Ahri line, which needs 23 Energy and five bodies for the same 10 points. Each Sentinel defends at 4 +2 (Shield 2) +2 per Trinity Force attached. Same single point of failure though: lose one Sentinel and K drops to 1, taking the total to 7."
         ]
       },
@@ -12533,7 +12534,8 @@
           "SEVEN EXACTLY, AND EVERY BODY HAS TO BE AT THE PLAZA. Keeper + 2 Reflections + 4 Birds = 7 against a bar of 7. 811.1.d.1 forces the hidden Keeper to be played to the battlefield it was hidden at, so hide it at the Plaza; its tokens say 'here'; and Flurry of Feathers prints no destination, so 355.2.a puts the Birds at a battlefield you control. Nothing may be spent elsewhere.",
           "THE PLAZA IS RANDOM AND CANNOT BE DOUBLED UP: random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy by name. And you must control it before the Beginning Phase, since a Hold is maintaining Control (469.2).",
           "THE SPRITE IS THE ALARM CLOCK AND NOTHING ELSE. Any [Temporary] permanent you control at the start of your Beginning Phase opens the window; the legend makes one for 4 Energy, less per Temporary unit you already have. The Sprite itself dies in that same window and is not part of the seven.",
-          "The Birds carry [Deflect], so an opponent must pay a rainbow to choose any of them - but they only exist for the instant between the window and the Scoring Step, and the state is Closed, so the real exposure is whatever they can do with priority in that same window."
+          "The Birds carry [Deflect], so an opponent must pay a rainbow to choose any of them - but they only exist for the instant between the window and the Scoring Step, and the state is Closed, so the real exposure is whatever they can do with priority in that same window.",
+          "UNL-078 Sprite Fountain (Mind, E2 P1) is a self-renewing clock: it is itself [Temporary], and its Deathknell repeats its play effect to mint the next [Temporary] Sprite, so it replaces UNL-189 Bashful Bloom (E4) every turn at the same seven bodies, same arithmetic and same Calm/Mind identity (#161, 2026-09-06)."
         ]
       },
       "steps": [
@@ -21369,7 +21371,8 @@
           "Nine Energy and two Order Power against grand-plaza-recruit-vanguard's twelve Energy, which is the exact weakness its own REFUTE note recorded ('two Vanguards in one turn is 12 Energy, the whole Rune Deck'). The count is 8 units — Manufactor + Recruit + 2 × (Captain + 2 Recruits) — so one may die and the Hold still wins.",
           "Three of the eight are 2-3 Might bodies rather than 1-Might Recruits, which matters because the whole board has to survive the opponent's turn: 465.2.c makes the attacker assign damage equal to their summed Might and 465.2.c.3 forces lethal onto one unit at a time, so five 1-Might Recruits plus a 2-Might and two 3-Might units cost 13 damage to clear, not 8.",
           "The count is measured AT THE HOLD: 383.2.a.1 makes 'if you have 7+ units here' part of the Trigger Condition, so nothing can be topped up at that instant. Nothing here is [Temporary], so 816.1.b never fires.",
-          "The Grand Plaza must be the battlefield in play — 485.4.a puts only 1 of your 3 into the game, randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid three copies. And it is symmetric: an opponent who parks seven units on it wins the same way."
+          "The Grand Plaza must be the battlefield in play — 485.4.a puts only 1 of your 3 into the game, randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid three copies. And it is symmetric: an opponent who parks seven units on it wins the same way.",
+          "UNL-077 Soul Shepherd (Mind, \"Your token units have +1 Might\") adds no bodies but doubles what the opponent must spend to clear them: 143.2.a + 465.2.c.3 make seven 1-Might Recruits cost 7 damage and seven 2-Might Recruits cost 14. He is Mind, so he narrows an all-Order line to Mind/Order (#161, 2026-09-06)."
         ]
       },
       "steps": [
@@ -22433,6 +22436,251 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-06 from issue #160. VEN-067 appears in the catalogue only inside bottled-constellation-time-warp, which needs infinite-energy AND infinite-power; the plain token-fed version had never been written, and #63's audit had already recorded that token-body-engine has many producers and almost no consumers. Written generically on purpose — the faucet is named by feature, not by card — following the shape of ready-recruits-grand-plaza. Card text verbatim from data/corpus_flat.txt; 185, 185.2.d, 186.1, 194.1.c, 203.3, 316.2, 316.3, 316.4, 383.3.b, 383.3.b.1, 416.1, 428.1, 428.1.a.1, 470, 471.2 and 816.1.b opened in the Core Rules file. Stands on R2 = A (ruled 2026-09-03); no new reading. Trap check: no attack; nothing recycled; no [Repeat]; no recall; the [Temporary] exclusion is stated because it is the one faucet family that silently fails here; 167 is answered by the 316.3/316.4 ordering."
+    },
+    {
+      "id": "heimerdinger-armory-plaza",
+      "name": "Heimerdinger copying the Vanguard Armory — ten bodies at the Plaza for one Armory",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-168",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Order gear, E7 P1. 'exhaust: Play three 1 Might Recruit unit tokens. (You may play them to different locations.)' Gear is not covered by 143.4 (which exhausts UNITS), so it enters ready and fires the turn it lands."
+        },
+        {
+          "card": "OGN-111",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E3 P1 M3. 'I have all exhaust abilities of all friendly legends, units, and gear.' He pays his OWN exhaust for the copy (053.1 re-reads the symbol on whoever now has the ability), so Armory and Heimerdinger are two activations a turn off one Armory."
+        },
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'When you hold here, if you have 7+ units here, you win the game.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Order: OGN-265 Herald of the Arcane, UNL-199 Deceiver, SFD-201 Chem-Baroness, OGN-263 Swift Scout, SFD-199 Prodigal Explorer, UNL-197 Scorn of the Moon all hold both (103.1.b.2). The Plaza is Colorless.",
+          "Control the Plaza before the winning Beginning Phase — 469.2 defines a Hold as maintaining Control."
+        ],
+        "notable": [
+          "THIS IS plaza-armory-miss-fortune AT HALF THE PRICE, and the delta is one card. That entry reaches ten bodies with TWO Vanguard Armories and Miss Fortune, Captain: E7+1P + E7+1P + E5+1P = 19 Energy and 3 Power. Heimerdinger copies the second Armory instead of buying it, so this is E7+1P + E3+1P = 10 Energy and 2 Power for the same ten bodies, and it keeps producing six a turn instead of relying on Miss Fortune's once-a-turn ready.",
+          "It is also the ALT_WIN half of a catalogued ENGINE. heimerdinger-vanguard-armory-recruits walks exactly these two cards and its own terminatesIn says 'it wins through a Grand Plaza hold at 7+ units, not on its own'. This entry is that sentence made explicit, with the count and the turn structure walked.",
+          "The composition through ready-recruits-grand-plaza OVER-CHARGES and that is why this is written out. That bridge entry carries SFD-171 Renata Glasc, Industrialist because a token minted at your base enters exhausted (143.4) and cannot pay 144.2's move cost the same turn. The Armory needs neither: its own reminder text says 'You may play them to different locations', and 355.2.a already lists 'a Battlefield the controller controls' among the default valid locations, so the Recruits are born AT the Plaza. No walk, no Industrialist, no Order requirement beyond the Armory's own.",
+          "The turn structure, counted against its own quantities. Big turn: play the Armory (E7 + 1 Order Power) and activate it at once for 3 Recruits at the Plaza; play Heimerdinger (E3 + 1 Mind Power) to the Plaza, where he enters exhausted (143.4) and cannot copy anything yet. Four units there. Next Main Phase: Awaken (315.1.b) readies both, the Armory gives 3 and Heimerdinger's copy gives 3 — ten units at the Plaza. Survive the opponent's turn with seven of the ten. Your Beginning Phase Holds (315.2.b.2), the Trigger Condition finds 7+ (383.2.a.1) and 195 wins the game.",
+          "Three spare bodies is the margin, and it is the point of preferring this to a seven-exactly line. 465.2.c.3 forces the attacker to assign lethal damage in full to one unit before moving to the next, so clearing ten bodies (nine 1-Might Recruits plus Heimerdinger at 3) costs 12 damage, not 10.",
+          "R30 = B is not engaged. That ruling was about Heimerdinger copying an ability that carries its own 'Use my abilities only while I'm at a battlefield' clause (Renata Glasc, Mastermind). The Vanguard Armory prints no such sentence, so the copy carries no location condition — Heimerdinger could stand at your base. He stands at the Plaza anyway, because there he is one of the seven.",
+          "The Grand Plaza must be the battlefield in play: each player provides three and only 1 is used (485.4.a), randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy by name. And it is symmetric — an opponent who parks seven units on it wins the same way."
+        ]
+      },
+      "steps": [
+        "Establish Control of The Grand Plaza. A battlefield you provide starts uncontrolled (190.1): walk a body in, 190.3.a.1 applies Contested, 344.2 stages the Showdown, 348.2.a establishes Control and 348.2.a.1 makes it a Conquer worth 1 point.",
+        "Big turn: play the Vanguard Armory for E7 + 1 Order Power. Gear is not a unit, so 143.4 does not exhaust it — activate it the same turn for three 1 Might Recruits, played to the Plaza (its own reminder text plus 355.2.a).",
+        "Same turn: play Heimerdinger, Inventor for E3 + 1 Mind Power to the Plaza. He enters exhausted (143.4) and cannot use a copied exhaust ability yet. Four units at the Plaza.",
+        "Next Main Phase: 315.1.b has readied both. Exhaust the Armory for three Recruits, then exhaust Heimerdinger for three more off his copy of the same ability. Ten units at the Plaza.",
+        "Survive the opponent's turn with at least seven of the ten still there.",
+        "Your Beginning Phase: 315.2.b.2 Holds the Plaza, the Trigger Condition finds 7+ units here (383.2.a.1) and rule 195 wins the game."
+      ],
+      "terminatesIn": "win the game on the second Hold after the Armory lands — ten bodies against a bar of seven, for 10 Energy and 2 Power across two Main Phases",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #161 — uncatalogued feeders of the 36 finishers (docs/phase0/walks/2026-09-06-finisher-feeders.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "143.4: 'Units enter the Board exhausted.' 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' 383.2.a.1: 'Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the Effect.' 195: 'A player also wins the game if an effect instructs them to do so.' 465.2.c.3: 'Units must have lethal damage assigned to them in full before damage is assigned to a different Unit.'"
+        },
+        {
+          "title": "Issue #161 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/161",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §1), issue #161. Card text verbatim from data/corpus_flat.txt. Citations opened: 053.1, 103.1.b.2, 103.4.c, 143.4, 144.2, 190.1, 190.3.a.1, 195, 315.1.b, 315.2.b.2, 344.2, 348.2.a, 348.2.a.1, 355.2.a, 383.2.a.1, 465.2.c.3, 469.2, 485.4.a, 485.5, 486.5, 487.5. This is the ALT_WIN written out of a catalogued ENGINE that already pointed at it: heimerdinger-vanguard-armory-recruits says in its own terminatesIn that it wins through a Grand Plaza hold. It supersedes nothing — plaza-armory-miss-fortune stays, because Miss Fortune's ready is a third activation in ONE turn where this is two activations every turn — but it reaches the same ten bodies for 10 Energy and 2 Power against that entry's 19 and 3. Trap check: no attack beyond the ordinary Showdown Conquer that takes the Plaza, so the empty-battlefield trap does not arise (344.2 opens a Showdown, not a Combat); no [Repeat]; nothing is [Temporary], so 816.1.b never fires; the Recruits are tokens and nothing recycles them (185, 186.1); no recall; 167 is not touched. Depends on no unruled reading, and explicitly NOT on R30, which the Armory's text does not engage."
+    },
+    {
+      "id": "lucian-weaponmaster-trinity-sentinel-hold",
+      "name": "Trinity Force attached for nothing — the Weaponmaster half of the Sentinel burst",
+      "class": "BURST",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-087",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M4, [Shield 2]. 'Your hold effects for holding here trigger an additional time.' R1 = A with stacking: K copies give every hold effect 1 + K executions."
+        },
+        {
+          "card": "SFD-115",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Body Equipment, E4, M+2. '[Equip] 1 Body. [Effect] When I hold, score 1 point.' Not [Unique], so three may be spread across the bodies present."
+        },
+        {
+          "card": "SFD-113",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E3 M3. '[Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for 1 rainbow less, even if it's already attached.)' Trinity Force's [Equip] cost is exactly one rune, so the discount pays all of it — the attach is free."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Body. VEN-149 Defender of Tomorrow (Jayce) is the ONLY Mind/Body legend in the pool (103.1.b.2), which this line shares with blue-sentinel-trinity-force-hold.",
+          "Everything must stand at ONE battlefield you hold: the Sentinels' doubling is scoped to 'holding here'."
+        ],
+        "notable": [
+          "THE FEEDER IS THE FREE ATTACH, AND IT IS EXACT ARITHMETIC. Trinity Force's [Equip] cost is one Body rune. [Weaponmaster] attaches 'for 1 rainbow less'. One minus one is nothing, so each Lucian arrives with a Trinity Force already on him at no Power cost at all. Three Lucians carry the three Trinity Forces and blue-sentinel-trinity-force-hold's three [Equip] payments disappear.",
+          "Priced honestly, both ways, because this is a trade and not a free win. This line: 2 Sentinels (E8 + 2 Mind Power) + 3 Trinity Forces (E12) + 3 Lucians (E9) = 29 Energy and 2 Power. The sibling: 2 Sentinels (E8 + 2 Mind Power) + 3 Trinity Forces (E12) + 3 Body Power of [Equip] = 20 Energy and 5 Power. Against the catalogue's standing rate of about 9 Energy per Power (#21) this is the cheaper board; against a real game's free floor of 2 Power a turn (#44) the sibling is easier to assemble. What is NOT a matter of opinion is the body count.",
+          "Eight bodies instead of two, which answers the sibling's own stated weakness. blue-sentinel-trinity-force-hold ends its notes with 'lose one Sentinel and K drops to 1, taking the total to 7' — the whole burst hangs on two units. Here the garrison is 2 Sentinels + 3 Lucians, each Lucian at 3 + 2 for the Trinity Force's Might Bonus (718.4) = M5, and each Sentinel at M4 + 2 while defending. 465.2.c.3 makes the attacker assign lethal in full one body at a time, so clearing enough of this board to drop the total below 8 costs 22 damage.",
+          "Points per Hold: 1 + T x (1 + K), where T is Trinity Forces on units present and K is Sentinels. T=3, K=2 gives 1 + 9 = 10. The single Score is capped by 470 at one per battlefield per turn; the nine are ability Gains, which R2 = A puts under 194.1.c and outside that cap. Checked against this entry's own declared quantities before authoring.",
+          "The gear's line becomes the unit's line by 136.2.b (Effect Text is active while attached), 718.3 (it is appended to the Top-Most Card's Rules Text) and 136.2.d (whose worked examples are Guardian Angel and Brutalizer), which makes it a Hold Ability of a Unit under 383.4.d.2.a.",
+          "818.1 makes [Equip] an Activated Ability, so the attach is NOT a play and no 'When you play this' fires — irrelevant here, since Trinity Force prints none, but it is the reason a Weaponmaster body cannot substitute for SFD-024 Rell, Magnetic in the entries that need a play trigger.",
+          "Lucian's second sentence, 'The first time I conquer each turn, ready me', does nothing in this line: a Hold is not a Conquer (469.2 against 466.5.d). He is here for the Weaponmaster clause and the body."
+        ]
+      },
+      "steps": [
+        "Establish Control of a battlefield and keep it: 469.2 makes a Hold the maintenance of Control you have not yet Scored this turn.",
+        "Play the two Blue Sentinels there (E4 + 1 Mind Power each).",
+        "Play each Lucian, Merciless (E3) to that battlefield with a Trinity Force already on the board. His [Weaponmaster] trigger attaches it for one rainbow less than its one-rune [Equip] cost — nothing.",
+        "Three Lucians carry three Trinity Forces. 718.3 appends 'When I hold, score 1 point' to each of them as a Hold Ability of a Unit (383.4.d.2.a).",
+        "Beginning Phase, Scoring Step (315.2.b.2): you Hold. That is the Score, 1 point, capped by 470.",
+        "Each Trinity Force's hold effect goes on the Chain and the two Sentinels make every hold effect fire 1 + 2 = 3 times: nine ability Gains (194.1.c, R2 = A, uncapped by 470).",
+        "Ten points in one Hold."
+      ],
+      "terminatesIn": "burst of ten points in one Hold — one Score and nine ability Gains — off a garrison of eight bodies and no [Equip] Power at all",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #161 — uncatalogued feeders of the 36 finishers (docs/phase0/walks/2026-09-06-finisher-feeders.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "718.3: 'While in this state, Abilities in the card's Effect Text are appended to the Rules Text of the Top-Most Card.' 718.4: 'While in this state, the card's Might Bonus modulates the Top-Most Card's Might by the value listed.' 818.1: 'Equip is an Activated Ability keyword.' 818.1.b: 'Equip has a cost to activate and Attaches the card with Equip to a chosen Unit when the cost is paid.' 470: 'A player may only Score, from either method, once per Battlefield per turn.'"
+        },
+        {
+          "title": "Issue #161 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/161",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §2), issue #161, as the Weaponmaster feeder for blue-sentinel-trinity-force-hold. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 136.2.b, 136.2.d, 194.1.c, 383.4.d.2.a, 465.2.c.3, 466.5.d, 469.2, 470, 718.3, 718.4, 818.1, 818.1.b. Stands on R1 = A with stacking and R2 = A, both ruled 2026-09-04. Formula checked against its own declared quantities: 1 + 3 x (1 + 2) = 10. The sibling is left untouched on purpose and the trade is stated in both directions in notable rather than claimed as a strict improvement — the Energy is worse, the Power and the body count are better. Trap check: a Hold needs no Attacker designation, so 807.1.d / 383.4.e / 461 cannot bite; no [Repeat]; no [Temporary]; no token; no recall, and the Sentinel's [Shield 2] is a Might bonus while defending rather than a would-die replacement, so 808.1.d.1 does not bite; nothing is added in Awaken, so 167 does not bite."
+    },
+    {
+      "id": "sentinel-trinity-time-warp-chain",
+      "name": "The Blue Sentinel pays for its own Time Warp — nine points across three uninterrupted turns",
+      "class": "CHAIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-087",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M4, [Shield 2]. Both halves are load-bearing: 'Your hold effects for holding here trigger an additional time' doubles the Trinity Force, and 'When I hold, [Add] 1 rainbow at the start of your next Main Phase' is itself a hold effect, so it too runs twice — 2 rainbow every Main Phase."
+        },
+        {
+          "card": "SFD-115",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Body Equipment, E4, M+2, [Equip] 1 Body. '[Effect] When I hold, score 1 point.' Attached to the Sentinel itself, so the line needs no second body."
+        },
+        {
+          "card": "VEN-055",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind unit, E4. '[Empower] E3. [Empowered] Your spells cost E1 + 1 rainbow less, to a minimum of E1.' Two Empowered copies take Time Warp from E10 + 4 Power to E8 + 2 Power; 356.4.e keeps each floor local to its own discount."
+        },
+        {
+          "card": "OGN-122",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E10 P4. 'Take a turn after this one. Banish this.' Banished rather than recycled, so three copies are three extra turns a game and this entry declares two."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Body. VEN-149 Defender of Tomorrow (Jayce) is the ONLY Mind/Body legend in the pool (103.1.b.2) — the same constraint blue-sentinel-trinity-force-hold names.",
+          "Control one battlefield through all three Beginning Phases. No opponent turn intervenes, so nothing can contest it once the chain starts."
+        ],
+        "notable": [
+          "THE FEEDER IS THAT THE SENTINEL PAYS FOR THE TIME WARP, and it turns on one paragraph nobody had cited for this. The Sentinel's delayed Add is a hold effect, so it runs 1 + K = 2 times and banks 2 rainbow. 316.2 says the Main Phase Tasks become outstanding 'in the specified order', 316.3 is '1. Each player's Rune Pool empties' and 316.4 is '2. At the start of Main Phase game effects take place' — the Add resolves AFTER the emptying, so 167 never touches it. Two Applied Researchers put Time Warp at E8 + 2 Power, and those 2 Power are exactly what the Sentinel just handed you: the spell costs 8 Energy out of pocket and no Power at all.",
+          "The arithmetic, checked against this entry's own declared quantities. Points per Hold = 1 + T x (1 + K) with T = 1 Trinity Force and K = 1 Sentinel: 1 Score (470-capped) + 2 ability Gains (194.1.c, R2 = A, uncapped) = 3. Turn 1 Scoring Step: 3. Cast Time Warp in that Main Phase. Turn 2 Scoring Step: 6. Cast the second. Turn 3 Scoring Step: 9, which crosses the Victory Score, and 194.2 wins it in the cleanup. Three scoring events, no opponent turn between them — that is CHAIN, not BURST.",
+          "In 2v2 it is short. 489.3 sets the Victory Score at 11 against 194.3's default 8, so this board needs a third Time Warp (nine becomes twelve) and 489.8's separate decks make the team version unrepresentable by matchDeck anyway.",
+          "Why this is not just 'add Time Warp to blue-sentinel-trinity-force-hold'. That entry is a BURST: T=3, K=2 for ten points in ONE Hold, at 20 Energy and 5 Power of board. This is T=1, K=1 — a quarter of the board — and it reaches nine by taking three Holds instead of one. The card list, the class, the Power ledger and the failure mode all differ: that line dies to removal on a Sentinel before the Hold, this one only has to survive to the FIRST Hold, because the opponent never gets a turn afterwards.",
+          "The Ancient Henge is the Body alternative and it is not needed here. SFD-117 converts Energy to rainbow 1:1 with no cap and is legal in this identity, so it could pay the 2 Power instead of the Sentinel — but it costs E2 + 1 Power and an exhaust, and the Sentinel's Add is free and already in the line. Recorded so the next session does not add it as an improvement.",
+          "One Applied Researcher instead of two leaves Time Warp at E9 + 3 Power, which the Sentinel's 2 rainbow cannot cover; three leave it at E7 + 1 Power, which is margin rather than speed. Two is the number that matches the Sentinel exactly.",
+          "Nothing is [Temporary] and nothing is a token, so 816.1.b and 185 never arise. The Trinity Force rides on the Sentinel, so losing the Sentinel loses both halves at once — that is the single point of failure, and it only has to survive until the first of the three Holds."
+        ]
+      },
+      "steps": [
+        "Set up over earlier turns: Blue Sentinel at a battlefield you control (E4 + 1 Mind Power), Trinity Force attached to it (E4 + 1 Body Power), two Applied Researchers played and Empowered (E4 + E3 each).",
+        "Turn 1, Scoring Step (315.2.b.2): you Hold. 1 point from the Score, and the Trinity Force's 'When I hold, score 1 point' — appended to the Sentinel by 718.3 and made a Hold Ability of a Unit by 383.4.d.2.a — runs 1 + 1 = 2 times for 2 ability Gains. Three points. The Sentinel's own hold effect also runs twice, banking 2 rainbow for the next Main Phase.",
+        "Turn 1, Main Phase: 316.3 empties the Rune Pool, then 316.4 delivers the 2 rainbow. Cast Time Warp for E8 + 2 Power — the Energy from runes, the Power from the Sentinel.",
+        "Turn 2 arrives with no opponent turn in between. Its Scoring Step Holds the same battlefield (470's cap is per turn and this is a new turn): three more points, total six, and 2 more rainbow banked.",
+        "Turn 2 Main Phase: cast the second Time Warp on the same terms.",
+        "Turn 3 Scoring Step: three more points, total nine. 194.2 wins the game in the cleanup, at or above the Victory Score with more points than any other player."
+      ],
+      "terminatesIn": "nine points across three uninterrupted turns, crossing 8 on the third Hold — each Time Warp paid for in Energy alone, because the Sentinel banks the Power",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #161 — uncatalogued feeders of the 36 finishers (docs/phase0/walks/2026-09-06-finisher-feeders.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "316.2: 'The following Tasks become Outstanding in the specified order:' 316.3: '1. Each player's Rune Pool empties. Any unspent Energy and Power are lost.' 316.4: '2. At the start of Main Phase game effects take place.' 194.2: 'A player wins the game if, in a cleanup, they have points greater than or equal to the Victory Score and more points than any other player.' 356.4.e: 'If a discount applies a minimum cost, that minimum applies only to that discount.'"
+        },
+        {
+          "title": "Issue #161 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/161",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §4), issue #161, as the uncatalogued feeder for the Time Warp CHAINs. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 167, 194.1.c, 194.2, 194.3, 315.2.b.2, 316.2, 316.3, 316.4, 356.4.e, 383.4.d.2.a, 470, 489.3, 718.3, 718.4. Stands on R1 = A with stacking and R2 = A, both ruled 2026-09-04, and on the Power-symbol reading applied-researchers-time-warp-discount already walked (Time Warp's Power cost is [C], its own domain, 135.2.e.6, which is why a rainbow discount reaches it). The new connection is 316.2's task ORDER: a delayed Add scheduled for the start of the Main Phase resolves after 316.3 empties the pool, so the Sentinel's rainbow is real Power and not the Awaken-banked Energy that 167 eats. Trap check: a Hold needs no Attacker designation, so 807.1.d / 383.4.e / 461 cannot bite; no [Repeat]; no [Temporary]; no token; no recall; 2v2's 489.3 threshold of 11 is stated rather than ignored; the Time Warps are banished by their own text, so 103.2.b's three copies are three turns and this entry declares two."
     }
   ]
 }
