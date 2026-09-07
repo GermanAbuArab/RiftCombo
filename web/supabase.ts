@@ -35,12 +35,37 @@ export interface Account {
   id: string;
   /** What to call the player in the header. Google always gives us one of these. */
   label: string;
+  /** The name the player chose for themselves (#178), "" while they are using the provider's. */
+  displayName: string;
 }
 
 export function accountOf(session: Session | null): Account | null {
   if (!session) return null;
-  const meta = session.user.user_metadata as { full_name?: string; name?: string } | null;
-  return { id: session.user.id, label: meta?.full_name || meta?.name || session.user.email || "Signed in" };
+  const meta = session.user.user_metadata as { display_name?: string; full_name?: string; name?: string } | null;
+  // `display_name` is the player's own (#178) and wins; the rest is what the provider sent, which is
+  // what an empty display name falls back to.
+  const chosen = meta?.display_name || "";
+  return {
+    id: session.user.id,
+    label: chosen || meta?.full_name || meta?.name || session.user.email || "Signed in",
+    displayName: chosen,
+  };
+}
+
+/**
+ * Rename the player (#178). It writes to the user's OWN `user_metadata`, which the session already
+ * carries, so there is no table, no migration and no policy to change — `scripts/check-rls.mjs` is
+ * untouched by this.
+ *
+ * The key is `display_name` and deliberately NOT `full_name`: `full_name` is what Google supplied,
+ * Supabase re-merges the provider's identity into the metadata on every sign-in, and overwriting it
+ * would both destroy the name an empty value is supposed to fall back to and be undone by the next
+ * sign-in. `null` clears the override, which is how the fallback is reached.
+ */
+export async function updateDisplayName(name: string | null): Promise<Account> {
+  const { data, error } = await db().auth.updateUser({ data: { display_name: name } });
+  if (error) throw new Error(error.message);
+  return accountOf({ user: data.user } as Session)!;
 }
 
 /** Fires once with the session restored from storage, then on every sign-in and sign-out. */

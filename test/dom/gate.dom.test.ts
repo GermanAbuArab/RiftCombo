@@ -18,6 +18,7 @@ const supabase = vi.hoisted(() => ({
   signIn: vi.fn(async () => {}),
   signOut: vi.fn(async () => {}),
   deleteAccount: vi.fn(async () => {}),
+  updateDisplayName: vi.fn(async (name: string | null) => ({ id: "u1", label: name ?? "german abu arab", displayName: name ?? "" })),
 }));
 
 vi.mock("../../web/supabase.js", () => ({
@@ -26,6 +27,7 @@ vi.mock("../../web/supabase.js", () => ({
   signIn: supabase.signIn,
   signOut: supabase.signOut,
   deleteAccount: supabase.deleteAccount,
+  updateDisplayName: supabase.updateDisplayName,
 }));
 
 const GATE_HTML = `
@@ -39,6 +41,7 @@ beforeEach(() => {
   supabase.accountsEnabled = true;
   supabase.listeners.length = 0;
   supabase.signIn.mockClear();
+  supabase.updateDisplayName.mockClear();
   document.body.innerHTML = GATE_HTML;
   // The HTML ships this default so the page shows neither side until the session is known.
   document.body.dataset["auth"] = "pending";
@@ -111,5 +114,82 @@ describe("the account panel", () => {
     expect(document.querySelector<HTMLElement>("#acct-who")!.hidden).toBe(true);
     expect(document.querySelector<HTMLElement>("#account")!.hidden).toBe(true);
     expect(document.querySelector("#account-body")!.innerHTML).toBe("");
+  });
+});
+
+/**
+ * #178. The field is in the Account panel rather than inline in the header: the header is a strip
+ * that also carries the format switch and collapses to a two-row grid on a phone, and everything
+ * else about the account — Delete account, Privacy, the one aria-live status line — is already here.
+ */
+describe("the display name", () => {
+  const boot = async (who = { id: "u1", label: "german abu arab", displayName: "" }) => {
+    const mod = await import("../../web/account.js");
+    mod.gate();
+    mod.initAccount();
+    supabase.listeners.forEach((cb) => cb(who));
+    return mod;
+  };
+  const body = () => document.querySelector<HTMLElement>("#account-body")!;
+  const press = (sel: string) => document.querySelector<HTMLButtonElement>(sel)!.click();
+  const settle = async () => { for (let i = 0; i < 4; i++) await Promise.resolve(); };
+
+  it("is read-only until the player asks to change it", async () => {
+    await boot();
+    expect(body().querySelector("#acct-name")).toBeNull();
+    expect(body().textContent).toContain("Change name");
+    press('[data-act="rename"]');
+    expect(body().querySelector<HTMLInputElement>("#acct-name")).not.toBeNull();
+    press('[data-act="rename-cancel"]');
+    expect(body().querySelector("#acct-name")).toBeNull();
+    expect(supabase.updateDisplayName).not.toHaveBeenCalled();
+  });
+
+  it("prefills only the name the player chose, and shows the current one as the placeholder", async () => {
+    await boot({ id: "u1", label: "Germán", displayName: "Germán" });
+    press('[data-act="rename"]');
+    const field = body().querySelector<HTMLInputElement>("#acct-name")!;
+    expect(field.value).toBe("Germán");
+    expect(field.getAttribute("placeholder")).toBe("Germán");
+    expect(field.getAttribute("maxlength")).toBe("40");
+  });
+
+  it("writes the trimmed name, and says so", async () => {
+    await boot();
+    press('[data-act="rename"]');
+    const field = body().querySelector<HTMLInputElement>("#acct-name")!;
+    field.value = "  Germán   Abu Arab  ";
+    field.closest("form")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+    await settle();
+    expect(supabase.updateDisplayName).toHaveBeenCalledWith("Germán Abu Arab");
+    expect(document.querySelector("#acct-label")!.textContent).toBe("Germán Abu Arab");
+    expect(document.querySelector("#account-msg")!.textContent).toContain("Germán Abu Arab");
+    // The field closes on success, so the panel goes back to naming the two account actions.
+    expect(body().querySelector("#acct-name")).toBeNull();
+  });
+
+  /** Empty is not a name: it clears the override so the header falls back to the provider's. */
+  it("clears the override rather than blanking the header", async () => {
+    await boot({ id: "u1", label: "Germán", displayName: "Germán" });
+    press('[data-act="rename"]');
+    const field = body().querySelector<HTMLInputElement>("#acct-name")!;
+    field.value = "   ";
+    field.closest("form")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+    await settle();
+    expect(supabase.updateDisplayName).toHaveBeenCalledWith(null);
+    expect(document.querySelector("#acct-label")!.textContent).toBe("german abu arab");
+    expect(document.querySelector("#account-msg")!.textContent).toMatch(/Google/);
+  });
+
+  it("says so in the panel when the write fails, and keeps the field open", async () => {
+    await boot();
+    supabase.updateDisplayName.mockRejectedValueOnce(new Error("Network is down"));
+    press('[data-act="rename"]');
+    const field = body().querySelector<HTMLInputElement>("#acct-name")!;
+    field.value = "Germán";
+    field.closest("form")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+    await settle();
+    expect(document.querySelector("#account-msg")!.textContent).toBe("Network is down");
+    expect(body().querySelector("#acct-name")).not.toBeNull();
   });
 });
