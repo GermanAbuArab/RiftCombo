@@ -44624,6 +44624,353 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 764-767 Ignoring Effects). Rules 764, 765, 766 and 767 are cited by no entry and no synergy rule in this project, and VEN-004 Dune Surfer was in ZERO entries. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b, 103.1.b.3, 103.2.b, 103.2.d.2, 143.4, 144.3, 190.3.a.1, 323.9, 323.13, 464.2.c.3, 465.2.c.4, 465.2.c.10, 766, 767, 806.1.b, 807.1.d.1, 807.2, 809.1.c, 814.1.c, 815.1.c.2. REPORT TO THE MANAGER: 767 makes every 'ignore' card in the pool ONE-WAY and SCOPED - only the named player, only for the named game action - which matters for VEN-061 Decree of Insight and VEN-158 Heisho as well as this card, and CLAUDE.md currently derives the Decree's scoping from the card's own wording rather than from 767. Trap check: 465.2.c.4's minimum-lethal cap is unchanged, so ignoring Tank redistributes damage and never creates it; the Surfer must be at that battlefield ('here'); Lillia's Tank-wall entries are Calm and cannot share a legend with him (103.1.b); no unruled reading."
+    },
+    {
+      "id": "mystic-reversal-defy-counter-tiers",
+      "name": "Calm's answer suite is tiered by the opponent's cost, and only the top tier profits from what it stops",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-080",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E4 P3. '[Reaction] ... Gain control of a spell. You may make new choices for it.' No cost cap at all - the only uncapped answer in the domain, and the only one that keeps the spell."
+        },
+        {
+          "card": "OGN-045",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E1 P1. '[Reaction] ... Counter a spell that costs no more than :rb_energy_4: and no more than :rb_rune_rainbow:.' The cheap tier, and 206 is why its window never widens."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Power held open on the opponent's turn: 3 for the Reversal, 1 for Defy. 415.3.a is why the runes have to have been left ready, and 164.2.b is why an already-exhausted one still pays Power."
+        ],
+        "notable": [
+          "WHY A SUITE AND NOT A CARD. The Calm answers each carry a different condition, and the entry exists to make the tiers explicit: OGN-045 Defy (E1 + 1 Power, only against a spell costing no more than 4 Energy and no more than 1 rainbow), VEN-039 Crumbling Sands (E1 + 1 Power, only if an opponent has already played another spell this turn), SFD-045 Not So Fast (E2 + 1 Power, only against something that chooses a friendly unit or gear), OGN-064 Wind Wall (E3 + 2 Power, unconditional) and OGN-080 Mystic Reversal (E4 + 3 Power, unconditional and it KEEPS the spell). A deck runs the cheap conditional ones and one uncapped one; running only the cheap ones loses to anything expensive, which is exactly the spell you most want to answer.",
+          "206 IS WHY DEFY'S WINDOW NEVER WIDENS, AND ITS WORKED EXAMPLE IS DEFY. A 'costs N or more / no more than N' check reads the PRINTED cost, so an opponent who discounts a big spell down to 4 Energy is still holding a spell Defy cannot touch, and your own spell tax never widens the window either. That is the same paragraph that splits the whole 'this turn' lens in this project, and Riot chose this card as the example.",
+          "THE REVERSAL IS THEFT, NOT A COUNTER, AND THREE PARAGRAPHS SEPARATE THEM. 191.1 establishes the player who Plays a card as its controller and 191.2 makes them the Spell's Controller, with 191.2.a giving them the targets and 191.2.b the modes - which is what 'You may make new choices for it' is exercising. 056.2 is where it ends up: 'If a card would enter such a zone, it goes to its owner's corresponding zone instead' - the stolen spell resolves and then goes to THEIR trash, so it is a one-turn loan and never card advantage in the deck-building sense.",
+          "AND COUNTERING REFUNDS NOTHING, WHICH IS WHERE THE CHEAP TIER EARNS ITS SLOT. 425.1.c: 'Countering does not refund any costs paid to play a card, activate an ability, or trigger an ability', with 425.1.c.1 'This includes additional costs'; 425.1.b makes a countered card 'not considered to have been played', so its play triggers fail too. Defy at 1 Energy answering a 4-Energy spell is the best rate in the domain and the reason the expensive answer is a one-of rather than the plan.",
+          "BOTH ARE [REACTION] AND THAT IS WHERE THE POWER PROBLEM IS. 813.1.c.1: 'This can be played during Closed States on any player's turn.' But 415.3.a readies your runes only in YOUR Awakening Phase, so a rune exhausted for Energy on your turn is dead for all of theirs - except that 164.2.b's cost is the RECYCLE and not an exhaust, so an already-tapped rune still pays 1 Power of its domain. Three Power for the Reversal on their turn means three runes you did not recycle earlier.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And neither card stops an ABILITY - both say 'a spell'."
+        ]
+      },
+      "steps": [
+        "Leave Power open on the opponent's turn. 164.2.b pays it from runes already exhausted for Energy; 415.3.a is why they will not be ready again until your Awakening.",
+        "Against a spell costing no more than 4 Energy and no more than 1 rainbow, play Defy (1 Energy + 1 Power). 206 reads the PRINTED cost, so a discount does not bring a bigger spell into range.",
+        "Against anything larger, play Mystic Reversal (4 Energy + 3 Power) instead: 191.2 makes you the Spell's Controller and 191.2.a lets you re-choose its targets.",
+        "The stolen spell resolves for you and then goes to its OWNER's trash (056.2) - it is a loan, not a card.",
+        "Either way the opponent keeps nothing: 425.1.c refunds no costs and 425.1.b means a countered card was never played."
+      ],
+      "netPerIteration": "one spell answered per card, and the expensive answer turns the opponent's spell into yours for the turn",
+      "terminatesIn": "engine only - three of each by 103.2.b, and Defy's window is fixed at the printed cost by 206; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 4)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use OGN-080 Mystic Reversal or OGN-045 Defy. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 056.2, 103.1.b.3, 103.2.b, 164.2.b, 191.1, 191.2, 191.2.a, 191.2.b, 206, 415.3.a, 425.1.b, 425.1.c, 425.1.c.1, 469, 813.1.c.1. The Calm counter suite with each card's condition was already enumerated by this lane's batch 2 (hextech-anomaly-wind-wall-off-turn-counter); this entry uses the same list to argue the TIERING and adds the theft half, which that entry does not cover. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "wielder-of-water-mask-foresight-alone",
+      "name": "740.2.a makes 'alone' an own-side measurement - the enemy garrison is irrelevant and your own is the cost",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-055",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M2. 'While I'm attacking or defending alone, I have +2 :rb_might:.' A continuous modifier, not a buff, so 702.3 never touches it."
+        },
+        {
+          "card": "OGN-060",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm gear, E2. 'When a friendly unit attacks or defends alone, give it +1 :rb_might: this turn.' A standing permanent with no exhaust in its trigger, so it pays on every lone body every combat."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A battlefield where you have exactly ONE unit - which is a real deckbuilding constraint, not a play pattern."
+        ],
+        "notable": [
+          "THE DEFINITION, WHICH IS THE OPPOSITE OF THE OBVIOUS READING. 740.2.a: 'A unit is alone when there are no other FRIENDLY units at the same location.' So 'alone' counts YOUR side only: the enemy may have a full garrison and your body is still alone. 740.2.b is the neighbouring term and it is stricter - 'A unit is one on one when it and the enemy unit at the same location are both alone' - and a card that says one requires nothing of the other.",
+          "SO THE COST IS YOUR OWN BOARD, AND IT IS PAID IN THE DAMAGE STEP. 465.2.c: 'Starting with the Attacker, each player assigns an amount of damage equal to their summed Might among the other's Units.' A lone attacker's summed Might is one body's, against a whole garrison's; 465.2.c.3 then forces lethal onto one body at a time, so a lone raider kills at most one thing and eats everything. These cards pay +3 for a position that costs far more than 3 - which is why they belong in a deck built around a single large body, not spread across a curve.",
+          "NEITHER BONUS IS A BUFF, WHICH MATTERS FOR STACKING. The Wielder's is a continuous 'While I'm...' modifier and the Mask's is '+1 :rb_might: this turn', so 702.3's one-buff-per-unit cap and 703's fixed +1 are silent and both apply on top of a real buff. On a lone Wielder the total is 2 + 2 + 1 = 5 Might, which crosses 709's Mighty threshold and switches on anything reading it.",
+          "AND THE MASK PAYS FOR ANY LONE BODY, NOT ONLY THIS ONE. Its trigger says 'a friendly unit', so in a two-battlefield Duel (485.4) with one body at each, it fires twice a combat round - once for the attacker and once for the defender. It has no exhaust in its cost, so nothing caps it but the number of lone bodies.",
+          "THE FAMILY, NAMED. The pool's 'alone' cards are OGN-055 Wielder of Water, OGN-060 Mask of Foresight, SFD-036 Lonely Poro, OGS-019 Wuju Bladesman - Starter, UNL-117, UNL-124, UNL-143 and UNL-210 Forbidding Waste. The two walked here were both uncatalogued and are the two that PAY a lone body rather than reading someone else's.",
+          "AND THE DESIGNATION IS STILL REQUIRED. 807.1.d ties 'attacking' to the Attacker designation and 323.9 stages a Combat only where opposing units are present, so neither bonus exists on a walk into an empty battlefield - the same trap the [Assault] family carries.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Play Mask of Foresight (2 Energy). It is a standing permanent and its trigger has no cost.",
+        "Send exactly one unit to a battlefield. 740.2.a checks only your own side, so the enemy garrison's size is irrelevant to whether it is alone.",
+        "The Mask fires for +1, and a Wielder of Water adds its own +2 - 2 + 2 + 1 = 5 Might, which is Mighty by 709.",
+        "Read 465.2.c before committing: a lone attacker assigns one body's Might and receives the whole garrison's.",
+        "In a Duel the Mask pays twice a round if you keep one body at each of the two battlefields (485.4)."
+      ],
+      "netPerIteration": "+1 Might per lone body per combat from the Mask, and +2 more on a Wielder of Water",
+      "terminatesIn": "engine only - the Mask has no cap and no cost, but every point of it is paid for by keeping a battlefield garrisoned by exactly one body; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 4)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use OGN-055 Wielder of Water or OGN-060 Mask of Foresight. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 323.9, 465.2.c, 465.2.c.3, 469, 485.4, 702.3, 703, 709, 740.2.a, 740.2.b, 807.1.d. The entry leads with the definition because the obvious reading of 'alone' is about the ENEMY and 740.2.a says the opposite; this project reached the same conclusion from Lonely Poro's reminder text, and 740.2.a is the paragraph. The cost is stated in the notable rather than hidden: a lone raider is a bad attacker by 465.2.c. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "blitzcrank-ezreal-dashing-forced-defence",
+      "name": "Drag an enemy body onto your own battlefield and THEY are the attacker on YOUR turn - which is when a defend trigger fires",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-067",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm unit, E5 P1 M5. '[Tank] ... When you play me to a battlefield, you may move an enemy unit to here. When I hold, return me to my owner's hand.' The self-bounce is a rebuy: every Hold hands him back to be replayed."
+        },
+        {
+          "card": "SFD-082",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M3. 'When I attack or DEFEND, deal damage equal to my Might to an enemy unit here. I don't deal combat damage. :rb_rune_mind:: [Action] - Move me to your base.' The defend half normally waits on the opponent; this entry makes it fire on your own turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Mind: Blitzcrank is mono-Calm and Ezreal mono-Mind (103.1.b.3), so 103.1.b.2 needs a legend covering both, and the census prints four such names - OGN-255/OGN-303 Nine-Tailed Fox, SFD-189/SFD-244 Fire Below the Mountain, UNL-189/UNL-230 Bashful Bloom, VEN-145/VEN-192 Curator of the Sands.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A battlefield you already control with Ezreal standing on it, and 5 Energy + 1 Power to replay Blitzcrank there."
+        ],
+        "notable": [
+          "WHY DRAGGING AN ENEMY BODY IN MAKES THEM THE ATTACKER. 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that UNIT'S CONTROLLER does not already control that battlefield.' 450 says the same from the other side: 'The Destination becomes Contested if it is an Uncontested Battlefield not controlled by the controller of the Unit or Units that moved.' Then 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status.' Contested keys on the MOVED unit's controller, never on whoever caused the move - so on your own turn the opponent becomes the Attacker at a battlefield you control, and you are the Defender (464.2.c.2).",
+          "WHICH IS THE ONLY WAY A DEFEND TRIGGER FIRES WHEN YOU WANT IT TO. Ezreal, Dashing's 'When I attack or defend, deal damage equal to my Might to an enemy unit here' otherwise waits for the opponent to choose to attack him. Dragged in, he defends on your turn and deals 3 to the body Blitzcrank pulled - and 'I don't deal combat damage' costs nothing, because the trigger has already done the work before 465.2 resolves.",
+          "AND BLITZCRANK'S DRAWBACK IS THE ENGINE. 'When I hold, return me to my owner's hand' reads as a downside and is a rebuy: 315.2.b.2 Holds every battlefield you control at your Beginning Phase, so a Blitzcrank left on a held battlefield comes back to hand every turn and is replayed for 5 Energy + 1 Power to drag another body. The point is scored first - 469.1 and 471.1 gain it at the Hold - and the bounce happens on the trigger, so the Hold is never lost. Check 323.6 before doing it with a lone garrison: losing your last body there hands the battlefield back at the next Cleanup.",
+          "THE [TANK] IS WHAT MAKES THE FORCED COMBAT SURVIVABLE. 815.1.b: he 'must be assigned LETHAL damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step', and 815.1.c.2 makes every other body of yours an invalid assignment until he has. So the dragged attacker's damage goes into a 5 Might body and Ezreal lives to fire again next turn.",
+          "AND THE DRAGGED BODY GOES HOME IF IT SURVIVES. 466.1.a.2 recalls Attackers when Defenders remain, so a body you pulled in and failed to kill simply returns to their base - you have spent a card to deal 3 and to take a swing at it, not to remove it permanently. Price it as forced damage plus a tempo tax, not as removal.",
+          "EZREAL'S OWN ESCAPE IS THE OTHER HALF. ':rb_rune_mind:: [Action] - Move me to your base' is an Activated Ability with an [Action] permission (806.1.c.2: 'This can be activated during showdowns on any player's turn'), so for one Mind Power he leaves after his trigger has resolved and before damage is assigned - which is how he survives a garrison too big for Blitzcrank to soak.",
+          "WHAT IT IS NOT. Nothing here scores directly; the point comes from the Hold that bounces Blitzcrank, and 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Have Ezreal, Dashing (4 Energy + 1 Power) standing at a battlefield you control.",
+        "Play Blitzcrank, Impassive (5 Energy + 1 Power) to that battlefield and use his play trigger to move an enemy unit there.",
+        "190.3.a.1 with 450 applies Contested keyed on THAT unit's controller, so 464.2.c.1 makes the opponent the Attacker and you the Defender on your own turn.",
+        "Ezreal's defend trigger fires and deals 3 to the dragged body. If the garrison is dangerous, pay 1 Mind Power for his [Action] move to base (806.1.c.2) after the trigger resolves.",
+        "815.1.c.2 forces the attacker's assignment onto Blitzcrank; anything that survives is recalled to their base by 466.1.a.2.",
+        "At your next Beginning Phase the Hold scores and Blitzcrank returns to hand - replay him to drag the next body."
+      ],
+      "netPerIteration": "3 damage to an enemy body of your choosing per Blitzcrank replay, on your own turn, with the Tank absorbing the answer",
+      "terminatesIn": "engine only - one drag per Blitzcrank play, rebought every turn by his own Hold trigger; the dragged body is recalled if it survives (466.1.a.2), so this is forced damage rather than removal, and nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 4)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use OGN-067 Blitzcrank, Impassive or SFD-082 Ezreal, Dashing. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.2, 103.1.b.3, 103.2.b, 190.3.a.1, 315.2.b.2, 323.6, 450, 464.2.c.1, 464.2.c.2, 465.2, 466.1.a.2, 469, 469.1, 471.1, 806.1.c.2, 815.1.b, 815.1.c.2. This project had recorded that only two enemy-movers fire a Defend trigger on your own turn (UNL-141 Evelynn, Entrancing in Chaos and OGN-043 Charm in Calm/Mind); OGN-067 Blitzcrank is a third and it is Calm, which puts the trick in a Calm/Mind shell with a defend payoff that was itself uncatalogued. Blitzcrank's self-bounce is stated as a REBUY rather than the no-op the synergy layer files it as, because the Hold scores before the return. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "orb-of-regret-smoke-screen-floored-reduction",
+      "name": "477.3.b snapshots a floored reduction at the size of the body you aim it at - so shrink AFTER their pump, never before",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-093",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E2 P1. '[Reaction] ... Give a unit -4 :rb_might: this turn, to a minimum of 1 :rb_might:.' The biggest floored reduction in the domain, and [Reaction] is what lets it be aimed last."
+        },
+        {
+          "card": "OGN-090",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind gear, E1. ':rb_exhaust:: Give a unit -1 :rb_might: this turn, to a minimum of 1 :rb_might:.' One Energy for a repeatable point of reduction every turn - 415.3.a readies it at every Awakening."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Mind, so 103.1.b.3 admits any legend with Mind in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A target worth shrinking. Both reductions are floored at 1, so neither can kill on its own."
+        ],
+        "notable": [
+          "THE SNAPSHOT IS THE ENTRY, AND RIOT'S EXAMPLE IS THIS EXACT WORDING. 477.3.b: 'When an arithmetic effect from a source that is not a passive ability has a limitation that applies, it is limited at the time of its application, and is \"remembered\" at that limited level for the duration of its effect. This process is called \"snapshotting.\" Example: If an effect gives a unit \"-4 [M] to a min of 1 this turn\" choosing a unit with 2 [M], then the effect will generate -1 [M] this turn.' So Smoke Screen aimed at a 2 Might body generates -1 and STAYS -1 for the turn even if that body is later pumped to 10. Aim a floored reduction at the biggest version of the target, which means after their pumps, not before - and [Reaction] is exactly the permission that lets you (813.1.c.1).",
+          "AND THE ORDER OF OPERATIONS IS FIXED THE OTHER WAY. 477.3.e.2.a: 'Negative values, or decreases, to Might are applied last.' So within one evaluation every increase lands first and your reduction is measured against the pumped number - which is the same conclusion from the other direction, and it is why a floored reducer is never worse for waiting.",
+          "FLOORED AND UNFLOORED ARE DIFFERENT CARDS, AND THE POOL SPLITS BY SET. The nine Origins reductions carry a 'to a minimum of 1' floor and the fourteen from Spiritforged, Unleashed and Vendetta do not. Both cards here are Origins and both are floored, so neither can kill: 143.2.a needs marked damage at or above Might and a body at 1 Might still needs 1 damage. What they do is move a target under somebody else's threshold.",
+          "WHICH IS WHERE THE VALUE IS, AND IT IS TWO DIFFERENT THRESHOLDS. A Might gate - 'kill an enemy unit with 3 :rb_might: or less' and its siblings - becomes reachable; and 465.2.c.4 caps combat assignment at 'the minimum required to constitute lethal damage', so a shrunk defender costs less of your attacking Might and the remainder is excess damage. Shrinking the defender is the cheaper of the two levers on excess: a buff is fixed at +1 by 703, and Smoke Screen is -4 for 2 Energy and a Power.",
+          "THE FLOORS DO NOT STACK INTO SOMETHING WORSE. Each reduction is snapshotted separately at its own moment of application, so an Orb (-1) followed by a Smoke Screen (-4) on a 10 Might body is 10 - 1 - 4 = 5, and the same pair on a 3 Might body is 3 - 1 = 2 and then -1 more (snapshotted, since 2 - 4 would breach the floor) = 1. Read the floor as capping the REDUCTION, never the result.",
+          "AND THE GEAR IS THE REPEATABLE HALF. The Orb's cost is an exhaust and nothing else, and 415.3.a readies all non-spell Game Objects you control in your own Awakening Phase, so it is -1 Might every turn for one Energy paid once. 143.4 exhausts units and not gear, so it is live the turn it lands.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And 143.2.b is why a reduction is not damage: negative Might READS as 0 for spells, abilities and combat damage but IS NOT 0, so nothing here generates a kill event."
+        ]
+      },
+      "steps": [
+        "Play Orb of Regret (1 Energy) early. Its cost is an exhaust, so from your next Awakening (415.3.a) it is -1 Might every turn for free.",
+        "Hold Smoke Screen. Its [Reaction] permission (813.1.c.1) lets you cast it after the opponent has finished pumping.",
+        "Aim it at the body at its LARGEST: 477.3.b snapshots the reduction at the moment of application, so -4 on a 2 Might body is worth -1 forever this turn.",
+        "477.3.e.2.a applies decreases last within an evaluation, so a pump that resolves after yours does not undo it.",
+        "Use the smaller number for what it unlocks - a Might-gated kill, or a cheaper combat assignment under 465.2.c.4 - because neither card can kill on its own."
+      ],
+      "netPerIteration": "-1 Might every turn from the gear and -4 once per Smoke Screen, both floored at 1 and both aimed after the opponent has committed",
+      "terminatesIn": "engine only - one repeatable point of reduction a turn plus three Smoke Screens by 103.2.b; both are floored so neither kills, and nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 4)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use OGN-090 Orb of Regret or OGN-093 Smoke Screen. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.2.a, 143.2.b, 143.4, 415.3.a, 465.2.c.4, 469, 477.3.b, 477.3.e.2.a, 703, 813.1.c.1. 477.3.b's own worked example is a '-4 to a min of 1' effect, i.e. this exact card, and the consequence it states - the reduction is remembered at the limited level for the duration - is the play instruction the entry is built on. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "reinforce-tasty-faefolk-cheat-into-play",
+      "name": "Reinforce's discount is Energy-only, so the body to find with it is the one that pays no Power at all",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-062",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E5. 'Look at the top 5 cards of your Main Deck. You may banish a unit from among them, then play it, reducing its cost by :rb_energy_5:. Recycle the remaining cards.' A dig, not a tutor - and the reduction never touches Power."
+        },
+        {
+          "card": "OGN-075",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "DECK",
+          "note": "Calm unit, E7 M6. '[Accelerate] (You may pay :rb_energy_1::rb_rune_calm: as an additional cost to have me enter ready.) [Deathknell] - Channel 2 runes exhausted and draw 1.' Seven Energy and NO Power, which is exactly the shape Reinforce's discount empties."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "The Faefolk still in the Main Deck and inside the top five when Reinforce resolves. It is a dig - see the notables for the one way to make it certain."
+        ],
+        "notable": [
+          "THE DISCOUNT IS ENERGY-ONLY, WHICH DECIDES WHAT TO AIM IT AT. 'Reducing its cost by :rb_energy_5:' says Energy, and 356.6 - 'Energy and Power costs can't be reduced below 0' - floors that half at zero while leaving any Power component untouched. So the best target is not the most expensive unit in the deck but the most expensive unit with NO Power in its cost: Tasty Faefolk at 7 Energy and no Power comes down to 2, where a body at 6 Energy + 2 Power would still owe the 2 Power.",
+          "AND [ACCELERATE] IS AFFORDABLE ON THE CHANGE. 805.1.a: 'Accelerate is functionally short for \"As you play me, you may pay [1][C] as an additional cost. If [you do], I enter ready\"', with 805.1.a.1 letting the Power be the unit's own domain. So 2 Energy for the body plus 1 Energy and 1 Calm Power buys a 6 Might unit that moves the turn it arrives - 143.4 otherwise enters it exhausted and 144.2 makes that exhaust the Standard Move's cost.",
+          "NOTHING HERE CAN BURN YOU OUT. 431.1.c keeps looking free of Burn Out, and 'Recycle the remaining cards' is a recycle - 416.1 and 416.1.a put them on the BOTTOM - not a mill, so 431.1.b never fires. The card is safe with an empty deck, which is unusual for a five-card dig.",
+          "IT IS A DIG AND NOT A TUTOR - EXCEPT AFTER A PREDICT. This project's standing claim is that no deck-manipulation card in the pool turns a probability into a certainty, and Reinforce alone does not. But 436.1.a lets a [Predict N] put the top N back 'in any order', so a [Predict 5] resolved first makes Reinforce's look at five a certainty rather than a dig. In this lane that is VEN-056 Clairvoyance, walked as clairvoyance-fate-weaver-predict-setup, and the two entries name each other; the general form is that any look at M cards is certain behind a Predict of N >= M.",
+          "THE BANISH IS A WAYPOINT AND NOT A ZONE IT STAYS IN. 108.6.c is what makes Banishment the hard-to-leave zone, and the card leaves it inside the same instruction - 'banish a unit from among them, THEN play it'. Because it is PLAYED, every play trigger on it fires normally; this is a cheat on the cost, not a cheat on the play.",
+          "WHAT THE FAEFOLK PAYS BACK. Its Deathknell channels 2 runes exhausted and draws 1. 164.2.b's cost is the RECYCLE and not the rune's exhaust, so each of those runes is 1 Power of its domain immediately and 1 Energy from your next Awakening (415.3.a); 161.2.a caps the Rune Deck at exactly twelve and 430.3 channels 'as many as possible', so it is a refill rather than a ramp. Two runes is also two steps on the seven-rune clock this lane walks as esteemed-hierophant-tomb-raider-seven-runes.",
+          "AND 808.1.d.1 IS THE ANTI-SYNERGY TO AVOID. A heal / exhaust / recall shield on the Faefolk means it never reaches the Trash and 'the triggered ability will be removed from the chain' - so the two runes and the card are lost. Do not protect this body.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Play Reinforce (5 Energy) and look at the top five cards of your Main Deck.",
+        "Banish Tasty Faefolk from among them and play it, reducing its cost by 5 Energy: 7 becomes 2 and 356.6 would have floored it at 0 had it been cheaper.",
+        "Pay [Accelerate]'s 1 Energy + 1 Calm Power as an additional cost (805.1.a) so it enters ready, overriding 143.4.",
+        "Move it to a battlefield the same turn, paying 144.2's exhaust it still has.",
+        "The remaining four cards are recycled to the bottom (416.1.a) - a recycle, not a mill, so 431.1.b never fires.",
+        "When the Faefolk dies, channel 2 runes exhausted and draw 1; each rune is 1 Power at once (164.2.b) and 1 Energy from your next Awakening.",
+        "To make the dig a certainty, resolve a [Predict 5] first - 436.1.a lets you set the order of exactly the five Reinforce will see."
+      ],
+      "netPerIteration": "a 6 Might body deployed ready for 3 Energy and 1 Calm Power, and 2 runes plus a card when it dies",
+      "terminatesIn": "engine only - three Reinforces by 103.2.b, each finding at most one unit in the top five, and the Faefolk's refill stops at twelve runes (161.2.a); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-calm-mind-order.md, batch 4)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use OGN-062 Reinforce or OGN-075 Tasty Faefolk. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 108.6.c, 143.4, 144.2, 161.2.a, 164.2.b, 356.6, 415.3.a, 416.1, 416.1.a, 430.3, 431.1.b, 431.1.c, 436.1.a, 469, 805.1.a, 805.1.a.1, 808.1.d.1. The target-selection rule is the entry's content: an Energy-only discount is worth the most on a card whose cost is Energy-only, which is not the same as the most expensive card. Cross-references clairvoyance-fate-weaver-predict-setup for the general form - any look at M cards is a certainty behind a [Predict N >= M] - and esteemed-hierophant-tomb-raider-seven-runes for what the Deathknell's two runes are worth. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
     }
   ]
 }
