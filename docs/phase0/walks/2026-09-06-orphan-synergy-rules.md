@@ -19,7 +19,7 @@ the next session re-deriving it.
 ## 0. The bookkeeping half of the finding
 
 Of the 55 anchors, **27 already appear in `uses[]` of at least one catalogued entry** — the rule was
-simply never back-linked. Those are listed in §9 as `rule id -> entry id` pairs for the manager to
+simply never back-linked. Those are listed in §31 as `rule id -> entry id` pairs for the manager to
 apply, alongside the pairs this walk created. The remaining 28 anchors are cards **no entry in the
 catalogue has ever used**, and they are where this walk spent its time:
 
@@ -528,21 +528,30 @@ So **11% of the pool's names are printed under two or more base codes** — Gree
 Seal. A `grep` of the corpus returns rows, not cards. **Count base codes, and never ship a
 uniqueness claim you did not sweep the whole pool for.**
 
-### 11b. A catalogue-wide consequence the walk found on the way — NOT this session's to fix
+### 11b. A matcher consequence the walk proposed and the manager REFUTED — recorded so nobody re-derives it
 
-`matchDeck` matches on base codes, which is correct (CLAUDE.md: "Match cards on base codes, never on
-names"). But 103.2.b's three-copy cap is by NAME, and 104 names have two or more base codes, so a
-list running `UNL-225 Daring Poro` does not complete an entry whose `uses[]` names `OGN-210 Daring
-Poro` — they are the same card to a player and two different rows to the matcher.
+The first draft of this section claimed a blind spot: `matchDeck` matches on base codes, 103.2.b's
+three-copy cap is by NAME, 104 names have two or more base codes, therefore a list running
+`UNL-225 Daring Poro` would not complete an entry whose `uses[]` names `OGN-210 Daring Poro`. It
+measured 100 such `uses[]` rows across the catalogue and proposed src/ work.
 
-Measured over the catalogue as it stands at 260 entries:
+**That consequence is false.** `src/cards.ts:124` already provides `CardIndex.equivalents(base)`,
+which returns every printing sharing the card's normalised name AND type, and `src/matcher.ts:47`
+builds its owned map through it (`src/plan.ts:62` and `src/synergies.ts:79-80, 119, 149, 153, 222,
+231` do the same). Verified:
 
 ```
-100 uses[] rows name a card that has another base code with the same name
+equivalents('UNL-225') -> ['OGN-210','UNL-225']
+equivalents('UNL-195') -> ['UNL-195','UNL-233']
 ```
 
-That is a real blind spot in the matcher, worth its own issue. It is `src/` work and belongs to
-whoever owns the matcher; this walk records the measurement and leaves it.
+0 `uses[]` rows have printings `equivalents()` fails to cover, and 0 of the 104 names split by type,
+which is the only way the type filter could break the class. 103.2.b capping by name and the matcher
+matching by base code coexist **because `equivalents` is the bridge**. #89's 53.8% figure is not a
+floor for this reason.
+
+The 104-of-935 measurement above stands and is worth keeping. The consequence does not. The lesson
+attached to it: **before proposing src/ work, grep the function that would own it.**
 
 ---
 
@@ -669,3 +678,322 @@ spendable for the rest of the phase.
 
 The price is tempo, not cards: 430.4.a channels 2 back every Channel Phase, so the runes return, but
 they are gone for that turn's Energy.
+
+---
+
+## 21. `stare-down-empties-the-garrison` -> `stare-down-buccaneer-open-battlefield-conquer` (ENTRY)
+
+`UNL-107 | Stare Down | Spell | Body | E2 | Choose a friendly unit and a battlefield. Move all enemy
+units at that battlefield with less Might than the chosen unit to their base. Gain 1 XP.`
+`OGN-193 | Miss Fortune, Buccaneer | Unit | Chaos | E4 P1 M4 | You may play me to an open
+battlefield. **Friendly units may be played to open battlefields.**`
+
+The second sentence is the entry. 355.2.b — *"Some Game Effects may grant players permission to play
+Units to locations that are not normally Valid. Such locations become Valid for the purposes of
+Playing the Unit"* — is normally a one-card permission; Miss Fortune generalises it to your whole
+board. She is the only one of that family that does.
+
+Both halves of 170.11.c are checked, which is the correction #146 made to three entries that had
+leaned on "uncontrolled" alone: *"Battlefields can be 'open.' This means they are unoccupied and
+uncontrolled."* Stare Down supplies the first, 323.6 supplies the second in the same Cleanup.
+
+The ORDER is forced (#58): the evacuation must precede anything of yours entering, because after a
+play or a move the next Cleanup both stages (323.9) and opens (323.13) a Combat with no gap, and
+323.10 only un-stages a Combat that has not opened. Stare Down could not help from inside anyway —
+it carries neither [Action] nor [Reaction], and 155 confines such a spell to *"an Open State outside
+of Showdowns on its controller's turn."*
+
+And it scores the same turn, by the #102 route: 190.3.a.1 Contested -> 344.2 Showdown (no Combat,
+since no opposing units remain) -> 348.2.a Control -> 348.2.a.1 *"This results in a Conquer."*
+355.10.d keeps it cheap: the enemy units are programmatically selected, so no [Deflect] is paid.
+
+---
+
+## 22. `direwing-dragon-ready` -> `direwing-dune-drake-ready-attacker` (ENTRY)
+
+`SFD-094 | Direwing | Unit | Body | E7 M7 | I enter ready if you control another Dragon.`
+
+Swept over all 935 base codes, **two** print the conditional tribal form *"I enter ready if you
+control another X"*: `SFD-071 Breakneck Mech` and `SFD-094 Direwing`. With `OGN-011 Magma Wurm` (§7)
+and `SFD-171 Renata Glasc, Industrialist`, that is the pool's whole answer to 143.4 — a family of
+four, worth counting rather than assuming.
+
+`OGN-140 Herald of Scales` is why the curve works: *"Your Dragons' Energy costs are reduced by E2, to
+a minimum of E1"* takes Direwing to E5 and `OGN-131 Dune Drake` to E3, so both land in one turn,
+which is what Direwing's "another Dragon" condition needs. 356.4.e keeps the floor local to that
+discount.
+
+---
+
+## 23. `friendship-four-tags` -> `friendship-fiora-worthy-mighty-ready` (ENTRY), with the cap found in 709
+
+`UNL-046 | Friendship | Spell | Calm | E1 | [Reaction] ... Give it +1 Might this turn for each of the
+following tags among your units — Bird, Cat, Dog, and Poro.`
+`SFD-180 | Fiora, Worthy | Unit | Order | E3 M3 | When a unit you control becomes [Mighty], you may
+pay 1 Order to ready it.`
+
+**709 is an event and that is the whole cap:** *"A Unit 'becomes Mighty' at the moment its Might
+changes from being less than 5 to being 5 or greater ... Example: A Unit with Might 5 that gets +1
+does not become Mighty, because it was already Mighty."* So three Friendships in a turn must cross
+three DIFFERENT sub-5 bodies. Pointing two at the same body buys one ready, not two.
+
+Friendship is a [Reaction] (813.1.c.1), so the ready can be bought inside the opponent's combat. The
++Might is a plain continuous modifier and not a 702 buff, so 702.3 never applies — the same
+distinction #102 drew for Lee Sin, Centered.
+
+Neighbours on the same event, not used because they need other identities: `SFD-205 Grand Duelist`
+(Body/Order legend) and `OGN-249 Relentless Storm` (Fury/Body legend) each channel a rune exhausted
+when one of your units becomes Mighty.
+
+---
+
+## 24. `malzahar-fanatic-friendly-death-payoff` -> `malzahar-wraith-centaur-sacrifice` (ENTRY), with the rule narrowed
+
+The rule calls Malzahar *"a free, repeatable self-sacrifice outlet"*. It is free — 185.2.d makes a
+token unit a legal choice for *"Kill a friendly unit or gear"*, so the fodder costs no card — but
+**repeatable only across turns**, because his own exhaust is in the cost and 315.1.b readies him
+once a turn.
+
+Two of the seven watchers the rule grouped are used, and they are not the same shape:
+
+- `OGN-118 Wraith of Echoes` — *"The first time a friendly unit dies each turn, draw 1."* 383.1.b
+  caps it at one execution however many bodies die at once, and the Core Rules' worked example for
+  383.1.b is this card by name.
+- `UNL-068 Spectral Centaur` — *"When another friendly unit dies, give me +2 Might this turn."* No
+  "first time" clause, so it pays on every death in the turn.
+
+383.2.c.2 is the trap on the family and it is why the Centaur is the payoff and not the fodder: *"A
+Game Object will not be able to successfully evaluate its Trigger Condition ... if it leaves the zone
+that its Trigger is active from at the same time that its Trigger is satisfied."* Its worked example
+is Viktor, Leader.
+
+The fodder is a body already condemned by 816.1.b (#115's finding), so killing it in the Main Phase
+costs nothing at all.
+
+---
+
+## 25. `weaponmaster-equip-discount` -> `sentinel-adept-weaponmaster-free-attach` (ENTRY)
+
+Sixteen base codes carry [Weaponmaster]; eight distinct names once the double printings collapse
+(SFD-116/SFD-233 Yone, SFD-197/SFD-247 Emperor of the Sands, SFD-099/UNL-223 Veteran Poro,
+VEN-041/VEN-171 Riven). Counted by base code, per §11a.
+
+The arithmetic: **every [Equip] cost printed as a single rune is discounted to nothing** by "one
+rainbow less". `SFD-016 Recurve Bow` and `SFD-009 Serrated Dirk` both print exactly that.
+
+*"Even if it's already attached"* is what makes it a RESCUE: 818.1.b attaches the card to a chosen
+unit when the cost is paid, so a Weaponmaster body pulls an Equipment off a unit about to die, for
+free.
+
+**It is not a play**, and that closes a door: 818.1 makes [Equip] an Activated Ability, so no "When
+you play this" on the Equipment fires. `SFD-024 Rell, Magnetic` (§9) PLAYS the card and then attaches
+it, which is why her line reaches play triggers and this one does not. Complementary, not variants.
+
+**REFUSED — the `SFD-042 Brutalizer` refresh.** `jax-grandmaster-brutalizer-refresh` already runs it
+off `SFD-193 Grandmaster at Arms`, which is a per-turn activation; Weaponmaster is a once-per-body
+ETB and is strictly worse for that payoff.
+
+---
+
+## 26. `sett-kingpin-mass-buff` -> `sett-kingpin-peak-guardian-mass-buff` (ENTRY)
+
+`OGN-240 Sett, Kingpin` counts *"each buffed friendly unit at my battlefield"*, and 702.3 makes
+buffs and buffed units the same number. `OGN-223 Peak Guardian` buffs himself and every other
+friendly unit at his battlefield in one ETB. Six buffed bodies present puts Sett at M11 as a [Tank]
+(815.1.b), so 465.2.c.3's lethal-in-full rule forces 11 damage onto him first.
+
+705 is the honest weakness and the entry says so: *"If a Unit leaves play, remove all Buffs from
+it"*, so Sett shrinks as his garrison is cleared, which is backwards for a [Tank], and Peak Guardian
+is a one-shot ETB that cannot re-buff.
+
+Kept separate from `sett-kingpin-karma-army-might-wall`, which grows the same counter one buff a turn
+off Karma — unbounded but slow. Alternatives, not halves of one line.
+
+---
+
+## 27. `poro-herder-poro-tag` -> `poro-herder-stalking-wolf-poro-fodder` (ENTRY)
+
+One E2 Poro is read three times: `OGN-061 Poro Herder`'s *"if you control a Poro"* (anywhere),
+`SFD-036 Lonely Poro`'s *"[Deathknell] — If I died alone, draw 1"* (its own reminder text defines
+alone as an own-side measurement, #116), and `UNL-166 Stalking Wolf`'s kill-as-additional-cost.
+
+**822.1.b is what makes the Wolf worth the entry.** [Ambush] is normally *"I may be played to a
+battlefield where you control Units"*; the Wolf's own clause — *"You may [Ambush] me to its
+battlefield, even if you don't have other units there"* — overrides that for the battlefield of the
+body it just ate. An M6 arrives at a battlefield where you have **nothing**: no Standard Move, no
+exhaust, no turn of telegraph. That is a real answer to #48's bottleneck for a CARD, where every
+prior answer was for tokens.
+
+The same clause costs it the [Reaction] half of 822.1.b (which is conditioned on controlling units
+there), so on the override line the Wolf is a Main Phase play, not a combat trick. Stated in the
+entry.
+
+---
+
+## 28. `retreat-replays-a-body` -> `retreat-sprite-mother-rebuy` (ENTRY)
+
+`OGN-104 Retreat` returns a friendly unit to **hand** and channels 1 rune exhausted. It is not a
+Recall — 455 defines a Recall as relocation *to its Base* — which matters, because the whole value of
+`OGN-106 Sprite Mother` is that her token is played *"here"*, read on execution (359.3.f.2), and a
+Recall would put her at the base.
+
+The token is a separate permanent, so bouncing the Mother leaves the Sprite standing and replaying
+her makes a second one. Ledger per cycle: E1 + E4 + 1 Power for one ready 3-Might body at a
+battlefield, minus a channelled rune — which 164.2.b turns into 1 Power at once if you want it,
+since that ability has no exhaust in its cost.
+
+816.1.b is the deadline and the entry states it: this stacks bodies **within** a turn and never
+across turns.
+
+---
+
+## 29. `wizened-elder-buffed-payoff` -> `blind-monk-wizened-elder-bilgewater-bully` (ENTRY)
+
+`OGN-065 Wizened Elder` (*"While I'm buffed, I have an additional +1 Might"*) and `OGN-125 Bilgewater
+Bully` (*"While I'm buffed, I have [Ganking]"*) are the pool's only two cards that key on simply
+CARRYING a buff. `OGN-257 Blind Monk` (Calm/Body legend, *"E1, exhaust: Buff a friendly unit"*) is
+the identity's own buff source, so no third card is needed.
+
+702.2.a — *"That Unit is Buffed for as long as the buff remains on it"* — makes the E1 a one-off per
+body, and 702.3 makes a second buff on the same body do nothing. Two turns of the legend's ability
+turns both statics on for the rest of the game.
+
+**The exclusivity is the finding: do not spend these buffs.** Every other buff line in the catalogue
+— Call to Glory, Albus Ferros, Fae Dragon — pays you for 702.2.b spending, and spending is exactly
+what switches these two off. A deck picks one side.
+
+810.1.c.3 keeps the Bully honest: *"It does not give additional abilities or activations of Movement,
+only new options for the Standard Move."* [Ganking] is a destination (144.4.c), not a second move,
+and in a Duel (485.4) there are only two battlefields — one alternative destination.
+
+---
+
+## 30. Refusals and narrowings that produced no entry
+
+**`startipped-peak-rune-ramp` (OGN-288) — REFUSED, and the reason is now firmer than when #102 wrote
+it.** *"When you hold here, you may channel 1 rune exhausted."* The Hold happens in the Scoring Step,
+315.2.b.2. Awaken is **315.1, a phase that has already finished**, so the rune cannot be readied that
+turn — and this walk's §4 finding (Awaken is the phase BEFORE the Beginning Phase, not a step inside
+it) is what makes that airtight rather than an assumption. Nor is the rune worth Power that turn:
+164.2.b would add 1 Power in the Beginning Phase, and 167 empties the Rune Pool *"at the start of
+each player's Main Phase"*, which comes next, so it is lost before anything can spend it. The Peak's
+whole product is **one extra rune, available as Energy from the following turn** — exactly #102's
+verdict, and no line in the pool converts that into a repeat step or a point.
+
+**`windswept-hillock-move-triggers` (OGN-297) — NARROWED, no new entry.** *"Units here have
+[Ganking]."* 810.1.c.3 is decisive: *"It does not give additional abilities or activations of
+Movement, only new options for the Standard Move."* So the Hillock adds DESTINATIONS, never moves,
+and in a Duel (485.4) there are only two battlefields on the table — it is worth exactly one
+alternative destination per unit standing there. `sett-first-mate-windswept-hillock` already banks
+that correctly, off a ready rather than off the Hillock. Nothing further to build.
+
+**`on-the-hunt-ganking-second-move` (SFD-204) and `shurelyas-requiem-ganking-second-move` (SFD-192) —
+BACK-LINKED, not refused.** Both rules are right for the reason 810.1.c.3 makes the Hillock wrong:
+the SECOND move comes from the READY (`Ready your units` / `When you play this, ready your units`),
+which restores the exhaust 144.2 charges, and [Ganking] only supplies the destination. The two
+existing entries stand on exactly that mechanism.
+
+**`green-father-brush-four-tags` (UNL-195) — DEFERRED, see §11.** The rules question (438 Replace
+against 190.x Control, and what a battlefield token is) is open. Not guessed.
+
+**`jae-medarda-chosen-by-spell`, `reckoners-arena-conquer-on-hold`, `gardens-of-becoming-xp`,
+`blood-rose-level`, `sanction-empower-unit`, `stargazer-flow-spells`, `rumble-scrapper-mech`,
+`rumble-hotheaded-mech`, `bandle-tree-hidden`, `ezreal-prodigy-accelerate`,
+`forgotten-signpost-carries-exhausted`, `miss-fortune-readies-your-legend`, `yordle-explorer-power-two`,
+`rhasa-trash-counter` — BACK-LINKS, no new entry needed.** A catalogued, hand-walked entry already
+stands on each of these rules; the rule was simply never back-linked. Listed in §31.
+
+---
+
+## 31. The back-link table — `rule id -> entry id`, for `data/synergies.json`
+
+**This file belongs to another session. Do not apply these from here.** The pairs below were computed
+with the project's own predicate, not by eye:
+
+```
+npx tsx -e '<partnersOf(rule) ∩ entry.uses>'   # see the walk session's transcript
+```
+
+### 31a. Verified pairs — the entry's `uses[]` contains the anchor AND a card the rule's own predicate matches
+
+```
+reckoners-arena-conquer-on-hold          -> ivern-arena-sentinel-hold, kennen-stargazer-arena-flow,
+                                            nasus-ascended-sentinel-arena-hold, gromp-arena-svellsongur-xp,
+                                            kaisa-survivor-arena-draw, kaisa-evolutionary-arena-spell
+gardens-of-becoming-xp                   -> gardens-becoming-wuju-xp-faucet
+blood-rose-level                         -> wuju-master-blood-rose-level, gardens-becoming-wuju-xp-faucet
+sanction-empower-unit                    -> kharox-sanction-burn
+stargazer-flow-spells                    -> master-of-shadows-banish-rummage
+rumble-scrapper-mech                     -> forecaster-rumble-mech-vision-scry
+rumble-hotheaded-mech                    -> rumble-forerunner-mech-recursion
+bandle-tree-hidden                       -> black-market-broker-bandle-tree-gold
+ezreal-prodigy-accelerate                -> ezreal-double-free-accelerate
+miss-fortune-readies-your-legend         -> miss-fortune-defender-hextech-double
+yordle-explorer-power-two                -> yordle-explorer-power-cantrips
+rhasa-trash-counter                      -> get-excited-flame-chompers-jinx, rhasa-shadowblade-trash-discount
+call-to-glory-buff-bank                  -> tryndamere-call-to-glory-trapping-grounds
+karma-channeler-vision-recycle           -> gemcraft-karma-herald-buff-faucet
+```
+
+### 31b. Entries written BY this walk for the rule (the rule is the entry's stated source)
+
+```
+albus-ferros-buff-bank                   -> peak-guardian-albus-ferros-rune-refill
+gemcraft-seer-vision-generalization      -> gemcraft-karma-herald-buff-faucet
+karma-channeler-vision-recycle           -> gemcraft-karma-herald-buff-faucet
+pit-crew-gear-ready                      -> pit-crew-eye-herald-recruit-shuttle
+shadow-watcher-temporary-death-window    -> trevor-altar-of-memories-beginning-draw
+call-to-glory-buff-bank                  -> tryndamere-call-to-glory-trapping-grounds
+trapping-grounds-excess-damage           -> tryndamere-call-to-glory-trapping-grounds
+wizened-elder-buffed-payoff              -> blind-monk-wizened-elder-bilgewater-bully
+portal-rescue-replays-a-body             -> portal-rescue-trove-golem-industrialist
+magma-wurm-mass-ready                    -> magma-wurm-assembly-rig-walk-in
+dauntless-vanguard-occupied-battlefield-assault -> dauntless-vanguard-long-sword-surprise-attack
+rell-magnetic-free-equip-attach          -> rell-magnetic-recurve-bow-per-attack
+hall-of-legends-readies-your-legend      -> hall-of-legends-bloodharbor-double-ripper
+daisy-four-tags                          -> daisy-green-father-four-tag-attacker
+starhound-four-tags                      -> starhound-undying-loyalty-four-tag-recursion
+undying-loyalty-four-tags                -> starhound-undying-loyalty-four-tag-recursion
+hextech-formula-empower-gear             -> hextech-formula-rage-amplifier-free-empower
+veiled-temple-readies-gear               -> hextech-formula-rage-amplifier-free-empower
+blast-cone-enemy-move                    -> blast-cone-moonfall-forced-attacker
+dark-child-off-turn-reaction-units       -> dark-child-inferna-off-turn-ambush
+eager-apprentice-sky-splitter            -> eager-apprentice-sky-splitter-order-matters
+soul-shepherd-token-buff                 -> soul-shepherd-sprite-queen-temporary-wall
+profiteer-empower-relay                  -> profiteer-hextech-disc-empower-relay
+scrutinizing-sergeant-xp-producer        -> scrutinizing-sergeant-blood-rose-xp-spike
+oasis-raider-low-rune-family             -> oasis-raider-eclipse-dragon-rune-dump
+stare-down-empties-the-garrison          -> stare-down-buccaneer-open-battlefield-conquer
+direwing-dragon-ready                    -> direwing-dune-drake-ready-attacker
+friendship-four-tags                     -> friendship-fiora-worthy-mighty-ready
+malzahar-fanatic-friendly-death-payoff   -> malzahar-wraith-centaur-sacrifice
+weaponmaster-equip-discount              -> sentinel-adept-weaponmaster-free-attach
+sett-kingpin-mass-buff                   -> sett-kingpin-peak-guardian-mass-buff
+poro-herder-poro-tag                     -> poro-herder-stalking-wolf-poro-fodder
+retreat-replays-a-body                   -> retreat-sprite-mother-rebuy
+```
+
+### 31c. Mechanism back-links — the existing entry stands on the rule, but its `uses[]` holds no card the predicate matches
+
+Apply these only if `basis.combos` is meant to record "the entries this rule was extracted from"
+rather than "entries containing an anchor-partner pair". The walk's reading is that it is the former.
+
+```
+windswept-hillock-move-triggers          -> sett-first-mate-windswept-hillock
+forgotten-signpost-carries-exhausted     -> conscription-signpost-empty-garrison, covert-informant-signpost-move-draw
+on-the-hunt-ganking-second-move          -> battle-mistress-gold-refund
+jae-medarda-chosen-by-spell              -> jae-medarda-choose-draw
+shurelyas-requiem-ganking-second-move    -> shurelya-requiem-ready-and-ganking
+sett-kingpin-mass-buff                   -> sett-kingpin-karma-army-might-wall
+malzahar-fanatic-friendly-death-payoff   -> sprite-fountain-malzahar-jayce, malzahar-gate-sprite-fountain-power
+shadow-watcher-temporary-death-window    -> leblanc-bashful-bloom-trevor-plaza
+stare-down-empties-the-garrison          -> renekton-stare-down-evacuate
+```
+
+### 31d. Still with no entry, by decision
+
+```
+green-father-brush-four-tags   DEFERRED — 438 Replace vs 190.x is an open rules question (§11)
+startipped-peak-rune-ramp      REFUSED  — 315.1 has already run when the Hold fires; 167 eats the
+                                          Power before the Main Phase. See §30.
+```

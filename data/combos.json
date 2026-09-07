@@ -20510,6 +20510,685 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §20), issue #153, from the orphan rule oasis-raider-low-rune-family. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 144.4.a, 161.2.b, 164.2.a, 164.2.b, 167, 315.2.a, 315.3.b, 430.4.a, 485.4.a, 485.5. The six-card family was swept by BASE code, not by grep rows, per walk document §11a. The entry's contribution over the synergy rule is that it separates the two clauses by TIMING — the rule treats them as one axis, and the 'at the start of your Beginning Phase' half cannot be gamed mid-turn while the '4 or fewer' half can. Trap check: the attack is against a real garrison; no [Repeat]; no [Temporary]; no token; no recall; 167 is cited for what it does and does not empty, rather than assumed. Depends on no unruled reading."
+    },
+    {
+      "id": "stare-down-buccaneer-open-battlefield-conquer",
+      "name": "Stare Down opens the battlefield, Miss Fortune lets anyone walk in",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-107",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E2. 'Choose a friendly unit and a battlefield. Move all enemy units at that battlefield with less Might than the chosen unit to their base. Gain 1 XP.' The pool's only BULK evacuator priced on Might; 355.10.d makes the enemy units programmatically selected rather than chosen, so [Deflect] never charges (809.1.c / 809.1.d charge only for targeting or choosing)."
+        },
+        {
+          "card": "OGN-193",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 P1 M4. 'You may play me to an open battlefield. Friendly units may be played to open battlefields.' The second sentence is the entry: it is 355.2.b's permission generalised to your whole board, where the other four cards of that family only walk themselves."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Body + Chaos: UNL-201 Voidreaver (Kha'Zix) and OGN-267 Bounty Hunter (Miss Fortune) both hold it (103.1.b.2).",
+          "A friendly unit with more Might than every body in the target garrison — that is Stare Down's own bar, and it is per unit, not a sum."
+        ],
+        "notable": [
+          "'Open' is BOTH conditions, not one. 170.11.c: 'Battlefields can be “open.” This means they are unoccupied and uncontrolled.' Stare Down supplies the first by moving the garrison to their base; 323.6 supplies the second in the same Cleanup, because a player loses control of a battlefield their units no longer occupy. #146's walk found that entries had been leaning on half of this rule.",
+          "The ORDER is forced and the entry follows #58's finding: the evacuation must happen BEFORE anything of yours enters. After a play or a move the next Cleanup both stages a Combat (323.9) and opens it (323.13) with no gap, and 323.10 only un-stages a Combat that has not yet opened. Stare Down is a plain spell with neither [Action] nor [Reaction], so 155 confines it to 'an Open State outside of Showdowns on its controller's turn' — it cannot be cast from inside a combat at all.",
+          "Evacuating is not yet a Conquer (#102): 323.6 only STRIPS the opponent's Control, nobody gains it. The point needs a body of yours walking in during the Main Phase, and Miss Fortune's static is what makes that body ANY unit you control rather than only one of the four 355.2.b cards.",
+          "It scores the same turn: 190.3.a.1 applies Contested on the play, 344.2 stages a Showdown at the next Cleanup (no Combat: there are no opposing units), 348.2.a establishes Control at its close and 348.2.a.1 says outright 'This results in a Conquer.'",
+          "470 caps it at one Score per battlefield per turn, so three Stare Downs in a turn are three evacuations but not three points at the same battlefield.",
+          "Sibling: renekton-stare-down-evacuate runs the same spell with a Renekton payoff and never leaves the Body identity. This one pays two Energy of splash for a permission no other card in the pool grants."
+        ]
+      },
+      "steps": [
+        "In your Main Phase, cast Stare Down for E2 choosing your biggest body and the enemy battlefield. Every enemy unit there with less Might than it moves to their base — programmatically, so no [Deflect] is paid (355.10.d).",
+        "The Cleanup runs: 323.6 strips the opponent's Control of a battlefield their units no longer occupy. The battlefield is now unoccupied and uncontrolled, which is 170.11.c's definition of open.",
+        "With Miss Fortune, Buccaneer on the board, play ANY friendly unit to that open battlefield (355.2.b: 'Such locations become Valid for the purposes of Playing the Unit').",
+        "190.3.a.1 applies Contested. No opposing units are present, so 323.9 stages no Combat and 344.2 stages a Showdown instead.",
+        "348.2.a establishes your Control at its close and 348.2.a.1 makes it a Conquer, on the same turn (470 permitting)."
+      ],
+      "terminatesIn": "engine only — one Conquer per evacuated battlefield per turn, three evacuations a game (103.2.b), capped by 470's one Score per battlefield per turn. Nothing here gains a point beyond the Conquer itself.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "170.11.c: 'Battlefields can be “open.” This means they are unoccupied and uncontrolled.' 355.2.b: 'Some Game Effects may grant players permission to play Units to locations that are not normally Valid. Such locations become Valid for the purposes of Playing the Unit.' 355.10.d: an object 'programmatically selected based on its characteristics rather than chosen by the spell or ability's controller' is not targeted. 348.2.a.1: 'This results in a Conquer if that player has not yet scored that Battlefield this turn.' 155: 'A spell can be played during an Open State outside of Showdowns on its controller's turn.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §21), issue #153, from the orphan rule stare-down-empties-the-garrison. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 155, 170.11.c, 190.3.a.1, 323.6, 323.9, 323.10, 323.13, 344.2, 348.2.a, 348.2.a.1, 355.2.b, 355.10.d, 470, 809.1.c, 809.1.d. Both halves of 170.11.c are checked, which is the correction #146 made to three entries that had leaned on 'uncontrolled' alone. Trap check: the empty-battlefield trap is respected in the strongest form — there is no attack and no Attacker designation anywhere in this line, the point comes from a Showdown (344.2 / 348.2.a.1), not from a Combat; no [Repeat]; no [Temporary]; no token; the evacuation is a move by effect, not a Recall, so 455 does not carve it out; 167 is not touched. Depends on no unruled reading."
+    },
+    {
+      "id": "direwing-dune-drake-ready-attacker",
+      "name": "Direwing off a second Dragon — the third card in the pool that beats 143.4",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-094",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E7 M7, Dragon. 'I enter ready if you control another Dragon.' A conditional override of 143.4, allowed by 143.4.a."
+        },
+        {
+          "card": "OGN-131",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E5 M5, Dragon. 'When I attack, give me +2 Might this turn if there is a ready enemy unit here.' The cheapest Body Dragon that is also a real attacker, so the enabler is not a dead card."
+        },
+        {
+          "card": "OGN-140",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Body unit, E4 M3. 'Your Dragons' Energy costs are reduced by E2, to a minimum of E1.' Takes Direwing to E5 and Dune Drake to E3; the floor is per discount (356.4.e), and neither Dragon prints a Power cost for it to miss."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All three mono-Body (103.1.b.3), so any legend carrying Body runs them.",
+          "A second Dragon must already be on the board when Direwing enters — his condition is checked as he enters, not later."
+        ],
+        "notable": [
+          "143.4 is 'Units enter the Board exhausted' and 143.4.a says 'This can be altered by Accelerate or similar game effects.' Swept over all 935 base codes, TWO print the conditional tribal form 'I enter ready if you control another X': SFD-071 Breakneck Mech and SFD-094 Direwing. They join OGN-011 Magma Wurm and SFD-171 Renata Glasc, Industrialist as the pool's ways past that default — this is a small family and it is worth counting rather than assuming.",
+          "What entering ready buys is one turn: 144.2 prices the Standard Move at the unit's own exhaust, so an ordinary unit is played on turn N and attacks on turn N+1. Direwing walks in and attacks on turn N.",
+          "Herald of Scales is the reason the curve works. E7 and E5 are two turns apart on their own; at E5 and E3 both Dragons land in one turn of a twelve-rune board, which is what the 'if you control another Dragon' condition needs.",
+          "Dune Drake's own trigger reads 'if there is a READY enemy unit here'. 143.4 means a body the opponent played this turn is exhausted, so the +2 is not free — it wants a garrison that has been standing, which is exactly the garrison Direwing is being played to break.",
+          "Nothing here scores. The Conquer does (466.5.d), and the entry claims no more than that."
+        ]
+      },
+      "steps": [
+        "Play Herald of Scales (E4). Your Dragons now cost E2 less, floored at E1 by 356.4.e's per-discount minimum.",
+        "Play Dune Drake for E3. He enters exhausted (143.4) and is next turn's attacker.",
+        "Play Direwing for E5. His own text sees another Dragon and he enters READY (143.4.a).",
+        "Standard-move Direwing to an occupied enemy battlefield the same turn: 144.4.a allows it, 144.2 takes his exhaust, 190.3.a.1 applies Contested and 464.2.c.1 makes you the Attacker.",
+        "465.2.c assigns each side damage equal to its summed Might; at M7 he clears most single garrisons alone. 466.5 establishes Control and 466.5.d makes it a Conquer."
+      ],
+      "terminatesIn": "engine only — a 7 Might attacker one full turn earlier than 143.4 allows, once per Direwing (three copies, 103.2.b). Nothing here scores beyond the Conquer.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "143.4: 'Units enter the Board exhausted.' 143.4.a: 'This can be altered by Accelerate or similar game effects.' 144.2: 'Exhausting the Unit is the Cost for this action.' 356.4.e: 'If a discount applies a minimum cost, that minimum applies only to that discount.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §22), issue #153, from the orphan rule direwing-dragon-ready. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 143.4, 143.4.a, 144.2, 144.4.a, 190.3.a.1, 356.4.e, 464.2.c.1, 465.2.c, 466.5, 466.5.d. The 'two base codes print this form' count was swept over all 935 BASE codes, per walk document §11a; it is a count, not a uniqueness claim. Trap check: the attack is against a real garrison, so the empty-battlefield trap is respected; 'enters ready' is not a ready (#56) and the entry never asks it to give an exhaust back — it only lets the unit pay 144.2's own cost; no [Repeat]; no [Temporary]; no token; no recall; 167 is not touched. Depends on no unruled reading."
+    },
+    {
+      "id": "friendship-fiora-worthy-mighty-ready",
+      "name": "Friendship across the Mighty line — one Energy buys an untap, once per body",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-046",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E1, [Reaction]. 'Choose a unit. Give it +1 Might this turn for each of the following tags among your units — Bird, Cat, Dog, and Poro.' Up to +4 for one Energy at Reaction speed; the tags are counted among YOUR units anywhere, not at a battlefield."
+        },
+        {
+          "card": "SFD-180",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 M3. 'When a unit you control becomes [Mighty], you may pay 1 Order to ready it.' One of the sixteen cards in the pool that ready something other than themselves (#56)."
+        },
+        {
+          "card": "OGN-210",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BASE",
+          "note": "Order unit, E2 M2, Poro, [Assault]. One of the four cheap tag bodies; the others used here are the Bird, Cat and Dog of starhound-undying-loyalty-four-tag-recursion."
+        },
+        {
+          "card": "SFD-159",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BASE",
+          "note": "Order unit, E2 M2, Dog. 'While you have another unit here, I have +1 Might.' Second tag body."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Order: OGN-261 Radiant Dawn, UNL-195 Green Father, VEN-147 Eye of Twilight and SFD-247 Emperor of the Sands all hold it (103.1.b.2).",
+          "Enough of the four tags on the board that Friendship's bonus can carry a body from under 5 Might to 5 or more."
+        ],
+        "notable": [
+          "709 IS AN EVENT AND THAT IS THE WHOLE CAP. 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater', and its second worked example is explicit: 'A Unit with Might 5 that gets +1 does not become Mighty, because it was already Mighty.' So three Friendships in one turn must cross three DIFFERENT sub-5 bodies; pointing two at the same body is one ready, not two.",
+          "The arithmetic against the declared board: with all four tags out, Friendship is +4, so any body at Might 1 to 4 crosses. Two tags is +2, which only carries a Might 3 or 4 body. The entry declares two tag bodies and therefore claims +2, not +4 — the four-tag version is the same line at a wider ceiling and is left to the reader.",
+          "Friendship is a [Reaction], so 813.1.c.1 lets it be played 'during Closed States on any player's turn' — the ready can be bought inside the opponent's combat, after you have seen what needs to move.",
+          "What a ready is worth: 144.2 prices the Standard Move at the unit's own exhaust, so a readied body moves a second time, and any exhaust ability on it activates a second time. It does NOT let an exhausted body defend better — 464.2.c.3 and 465.2.b do not filter by state (#61).",
+          "The +Might is 'this turn', a plain continuous modifier and not a 702 buff counter, so 702.3's one-per-unit cap never applies and it does not feed a 'buffed friends' count. Same distinction #102 drew for Lee Sin, Centered.",
+          "Neighbouring payoffs on the same event, not used here because they need other identities: SFD-205 Grand Duelist (Body/Order legend) and OGN-249 Relentless Storm (Fury/Body legend) both channel a rune exhausted when one of your units becomes Mighty."
+        ]
+      },
+      "steps": [
+        "Get Fiora, Worthy and at least two of the four tag bodies onto the board.",
+        "Move a sub-5 Might body — a Standard Move exhausts it (144.2).",
+        "Cast Friendship for E1 choosing that body: +1 Might this turn for each of the four tags among your units.",
+        "Its Might crosses from under 5 to 5 or more, which is 709's event. Fiora's trigger fires; pay 1 Order Power and ready it.",
+        "Move it again, or activate its exhaust ability a second time. Repeat with the second and third Friendship on DIFFERENT bodies — 709's second example forbids re-crossing a body that is already Mighty."
+      ],
+      "terminatesIn": "engine only — up to three readies a turn at [Reaction] speed for E1 + 1 Order Power each, one per sub-5 body crossed, bounded by three copies of Friendship (103.2.b). Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "709: 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater. Example: A Unit with Might 5 that gets +1 [M] does not become Mighty, because it was already Mighty.' 144.2: 'Exhausting the Unit is the Cost for this action.' 813.1.c.1: a [Reaction] card 'can be played during Closed States on any player's turn.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §23), issue #153, from the orphan rule friendship-four-tags. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 144.2, 464.2.c.3, 465.2.b, 702.3, 709, 813.1.c.1. The entry's contribution is the cap: 709 is an event, so the ceiling is the number of DIFFERENT sub-5 bodies, not the number of Friendships. Trap check: no attack of the entry's own; no [Repeat]; no [Temporary]; no token; no recall; 167 is not touched, since the Order Power is paid in the same phase it is added; 'enters ready' is not involved — this is a real 415.1 ready of a unit already on the board, which is what #56 found only sixteen cards do."
+    },
+    {
+      "id": "malzahar-wraith-centaur-sacrifice",
+      "name": "Malzahar's sacrifice read by two watchers at once — a card and four Might a turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-113",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 M3. 'Kill a friendly unit or gear, exhaust: [Action] — [Add] 2 rainbow.' 185.2.d — 'A token unit is a unit ... can be chosen or otherwise affected by spells or abilities that choose or affect units' — is why a token pays the kill without spending a card."
+        },
+        {
+          "card": "OGN-118",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Mind unit, E6 P1 M5. 'The first time a friendly unit dies each turn, draw 1.' 383.1.b caps it at one execution per turn even when several deaths land at once, and its worked example is this card by name."
+        },
+        {
+          "card": "UNL-068",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E6 M5. 'When another friendly unit dies, give me +2 Might this turn.' No 'first time' clause, so unlike the Wraith it pays on EVERY death in the turn."
+        },
+        {
+          "card": "UNL-084",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Mind unit, E7 P1 M6. 'When you play me or at the start of your Beginning Phase, play a ready 3 Might Sprite unit token with [Temporary] to your base.' The renewable fodder: one free body a turn that was going to die anyway (816.1.b)."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine",
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Everything here is mono-Mind (103.1.b.3), so any legend carrying Mind runs the whole line.",
+          "Malzahar must be AT a battlefield? No — his ability carries no such clause; only Renata Glasc, Mastermind does. He may stand at your base."
+        ],
+        "notable": [
+          "The two watchers are not the same shape and the entry keeps them apart. 383.1.b: 'If an ability triggers “the [Nth] time” something happens and that trigger condition is met multiple times simultaneously, the ability's controller picks one of those instances ... The ability triggers only once.' So the Wraith is one card per turn however many bodies die. Spectral Centaur has no such clause and grows +2 for every other friendly death in the turn.",
+          "383.2.c.2 is the trap on this family and it is why Spectral Centaur is the payoff rather than the fodder: 'A Game Object will not be able to successfully evaluate its Trigger Condition ... if it leaves the zone that its Trigger is active from at the same time that its Trigger is satisfied.' A watcher that dies in the same game action as the fodder never sees the death. Its worked example is Viktor, Leader.",
+          "Malzahar's cost carries HIS OWN exhaust, so this is once a turn, not a loop — 315.1.b readies him each Awaken and that is the whole clock. The synergy rule calls the outlet 'free, repeatable'; it is free (a token costs no card) but repeatable only across turns, and the entry says so.",
+          "The Sprite was going to die anyway. 816.1.b kills every [Temporary] at the start of your Beginning Phase before scoring, so killing it in your Main Phase costs nothing at all — CLAUDE.md's #115 finding that a body already condemned by 816.1.b is the cheapest fuel for a kill-as-cost hook.",
+          "185 and 186.1: the Sprite is a token and ceases to exist on reaching any Non-Board Zone, so it never lands in the trash and nothing downstream can recycle or reanimate it. The entry claims neither.",
+          "Ledger per turn: 2 rainbow Power, 1 card, and +2 Might on the Centaur, for one token that costs nothing. The Power is the reason this is worth the four cards — the project's loop rate is about 9 Energy per Power (#21)."
+        ]
+      },
+      "steps": [
+        "Play Sprite Queen. From then on a ready 3 Might [Temporary] Sprite appears at your base at the start of every Beginning Phase.",
+        "Play Wraith of Echoes and Spectral Centaur as the two watchers, and Malzahar, Fanatic as the outlet.",
+        "In your Main Phase, pay Malzahar's cost: kill the Sprite (185.2.d makes a token unit a legal choice) and exhaust him. [Add] 2 rainbow Power.",
+        "The death fires both watchers: the Wraith's first-time-each-turn trigger draws 1 (383.1.b), and Spectral Centaur gets +2 Might this turn.",
+        "315.1.b readies Malzahar at the next Awaken; 816.1.b kills last turn's leftover [Temporary] bodies and Sprite Queen mints the next Sprite in the same phase. Repeat every turn."
+      ],
+      "terminatesIn": "engine only — 2 rainbow Power, one card and +2 Might on the Centaur per turn, capped by Malzahar's own exhaust. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified. Example: A token unit is a unit ... can be chosen or otherwise affected by spells or abilities that choose or affect units.' 383.1.b: 'If an ability triggers “the [Nth] time” something happens and that trigger condition is met multiple times simultaneously, the ability's controller picks one of those instances to serve as the trigger condition. The ability triggers only once.' 383.2.c.2: 'A Game Object will not be able to successfully evaluate its Trigger Condition, however, if it leaves the zone that its Trigger is active from at the same time that its Trigger is satisfied.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §24), issue #153, from the orphan rule malzahar-fanatic-friendly-death-payoff, which named seven watchers that had never been grouped. Two of them are used here, and the walk narrowed the rule: the outlet is FREE (a token costs no card) but repeatable only across turns, because Malzahar's own exhaust is in the cost. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 185, 185.2.d, 186.1, 315.1.b, 383.1.b, 383.2.c.2, 816.1.b. Trap check: no attack; no [Repeat]; the [Temporary] token is used as fuel with 816.1.b stated, not hidden; 185 / 186.1 exclude any recycle or reanimation of it; no recall, so 455 and 808.1.d.1 do not bite — and note that a would-die shield on the Sprite would switch this engine OFF rather than protect it; 167 is not touched, since the Power is added and spent in the same Main Phase. Depends on no unruled reading."
+    },
+    {
+      "id": "sentinel-adept-weaponmaster-free-attach",
+      "name": "Weaponmaster — a one-rune [Equip] discounted to nothing, and an Equipment pulled off a dying body",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-008",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury unit, E3 M3. '[Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for 1 rainbow less, even if it's already attached.)' 818.1 makes [Equip] an Activated Ability whose cost is paid to attach; the discount is applied to that cost, not to the card's play cost."
+        },
+        {
+          "card": "SFD-016",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Fury Equipment, E2, M+0, [Equip] 1 Fury. '[Effect] When I attack or defend, deal 2 to an enemy unit here.' Its [Equip] cost is exactly one rune, so Weaponmaster's 'one rainbow less' takes it to nothing."
+        },
+        {
+          "card": "SFD-009",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Fury Equipment, E1, M+0, [Equip] 1 Fury. '[Effect] [Assault 2].' Same one-rune [Equip] cost, same free attach."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All three mono-Fury (103.1.b.3), so any legend carrying Fury runs them.",
+          "An Equipment must already be on the board — Weaponmaster attaches one you control, it does not play one from hand. That is the whole difference from SFD-024 Rell, Magnetic."
+        ],
+        "notable": [
+          "The arithmetic is the point: every [Equip] cost printed as a single rune is discounted to NOTHING by Weaponmaster's 'one rainbow less'. Both Equipment here print exactly that, so a Sentinel Adept arrives with an Equipment already on him for no extra cost.",
+          "'Even if it's already attached' is the clause that makes this a RESCUE. 818.1.b attaches the card to a chosen unit when the cost is paid, so a Weaponmaster body pulls an Equipment off a unit that is about to die — or off one that has done its job — for free. Nothing else in Fury moves an attached Equipment without paying its full [Equip] cost.",
+          "It is NOT a play, and that closes a door: 818.1 makes [Equip] an Activated Ability, so no 'When you play this' on the Equipment fires. Rell, Magnetic PLAYS the card and then attaches it, which is why her line reaches play triggers and this one does not — the two are complementary, not variants.",
+          "Once per Sentinel Adept: the trigger is 'When you play me', so three copies is three free attaches a game (103.2.b), not a per-turn engine.",
+          "The Recurve Bow's damage is not a one-off — 'When I attack OR DEFEND' pays on the opponent's turn too, which is why it is the better of the two payoffs on a body that is going to sit in a garrison.",
+          "Sixteen base codes carry [Weaponmaster], eight distinct names once the double printings are collapsed (SFD-116 / SFD-233 Yone, SFD-197 / SFD-247 Emperor of the Sands, SFD-099 / UNL-223 Veteran Poro, VEN-041 / VEN-171 Riven). Counted by base code, per the correction in this walk's §11a. Sentinel Adept is the cheapest at E3 with no Power."
+        ]
+      },
+      "steps": [
+        "Get an Equipment onto the board — play the Recurve Bow (E2) and attach it to any body for its 1 Fury [Equip] cost, or leave it detached.",
+        "Play Sentinel Adept for E3. His [Weaponmaster] trigger offers to [Equip] one of your Equipment to him for one rainbow less.",
+        "The Bow's [Equip] cost is one Fury rune, so the discount pays all of it: the attach is free, and 434.1.c appends its effect text to the Adept.",
+        "If the Bow was already attached elsewhere, the same activation moves it — 'even if it's already attached' — which is how a dying carrier's Equipment is rescued at no cost.",
+        "From the next combat on, the Adept deals 2 to an enemy unit here whenever he attacks or defends."
+      ],
+      "terminatesIn": "engine only — three free attaches a game (103.2.b), each worth one rune, plus 2 damage per combat once a Recurve Bow has landed. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "818.1: 'Equip is an Activated Ability keyword.' 818.1.b: 'Equip has a cost to activate and Attaches the card with Equip to a chosen Unit when the cost is paid.' 434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §25), issue #153, from the orphan rule weaponmaster-equip-discount. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 434.1.c, 818.1, 818.1.a, 818.1.b. The [Weaponmaster] count was swept over all 935 BASE codes and then collapsed by name, per walk document §11a — sixteen base codes, eight distinct names. The SFD-042 Brutalizer refresh was deliberately NOT taken: jax-grandmaster-brutalizer-refresh already runs that pairing off SFD-193 Grandmaster at Arms, which is a per-turn activation, while Weaponmaster is a once-per-body ETB and is strictly worse for that particular payoff. Trap check: the attach is an Activated Ability and not a play, so no play trigger is claimed (818.1); no attack of the entry's own is required for the attach; no [Repeat]; no [Temporary]; no token; no recall; 167 is not touched."
+    },
+    {
+      "id": "sett-kingpin-peak-guardian-mass-buff",
+      "name": "Sett, Kingpin under one mass buff — six buffed bodies read at once",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-240",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 P1 M5, [Tank]. 'I get +1 Might for each buffed friendly unit at my battlefield.' It counts BUFFED BODIES AT HIS BATTLEFIELD, and 702.3 makes buffs and buffed units the same number, so the ceiling is the garrison size."
+        },
+        {
+          "card": "OGN-223",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P1 M5. 'When you play me, buff me. Then, if I am at a battlefield, buff all other friendly units there.' Played to Sett's battlefield, one card buffs the whole garrison including Sett and itself."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both mono-Order (103.1.b.3), so any legend carrying Order runs the pair.",
+          "Sett and the garrison must be at the SAME battlefield — his count is 'at my battlefield', unlike Ivern's 'your units'."
+        ],
+        "notable": [
+          "Arithmetic against the declared board, before authoring. Sett is M5. Peak Guardian played to his battlefield with four other bodies already there buffs six units in total — himself, Sett and the four — so Sett reads six buffed friendly units at his battlefield and stands at M11, as a [Tank] that 815.1.b makes the compulsory first recipient of combat damage.",
+          "702.3 ('There can only be one Buff on a Unit at a time') is what makes the count honest: a second mass buff adds nothing to bodies that already carry one, so the ceiling is how many UNBUFFED bodies stand there, not how many buffers you play. That is the #106 finding stated on the other side of the transaction.",
+          "A body that dies takes its buff with it (705: 'If a Unit leaves play, remove all Buffs from it'), so Sett shrinks as the garrison is cleared — which is exactly backwards for a [Tank] and is the honest weakness of the line. Peak Guardian is a one-shot ETB and cannot re-buff.",
+          "Sibling, deliberately kept separate: sett-kingpin-karma-army-might-wall grows the same counter one buff a turn off OGN-235 Karma, Channeler, unbounded but slow. This is the one-card, one-turn version, and the two are alternatives rather than halves of one line — a deck can run both, but neither needs the other.",
+          "Peak Guardian's second sentence is live because 355.2.a lists 'a Battlefield the controller controls' among the default valid play locations. That was the #111 correction to the #100 hunt, which had called the clause dead letter."
+        ]
+      },
+      "steps": [
+        "Assemble a garrison at a battlefield you control with Sett, Kingpin among them and the other bodies unbuffed.",
+        "Play Peak Guardian to that battlefield (355.2.a). He buffs himself, then every other friendly unit there — 702.2.a places one buff each, 702.3 refuses a second on anyone who already has one.",
+        "Sett's continuous ability re-reads the board: +1 Might for each buffed friendly unit at his battlefield. With six buffed bodies present he is M11.",
+        "[Tank] (815.1.b) makes him the compulsory first recipient of combat damage, so 465.2.c.3's lethal-in-full rule forces the attacker to spend 11 on him before anything else there takes a point.",
+        "Conquer or hold from behind that wall; 466.5.d or 469.2 pays, not this line."
+      ],
+      "terminatesIn": "engine only — a [Tank] at Might 5 plus one per buffed body at his battlefield, six is M11 on the declared board, shrinking as the garrison dies (705). Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "702.3: 'There can only be one Buff on a Unit at a time.' 702.3.a: 'If a Buff is added, or instructed to be added, on a Unit that already has a Buff, it is not placed instead.' 705: 'If a Unit leaves play, remove all Buffs from it.' 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §26), issue #153, from the orphan rule sett-kingpin-mass-buff. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 355.2.a, 465.2.c.3, 466.5.d, 469.2, 702.2.a, 702.3, 702.3.a, 703, 705, 815.1.b. Formula checked against its own declared quantities before authoring: Peak Guardian plus Sett plus four other bodies is six buffed units at that battlefield, so Sett is 5 + 6 = 11. Trap check: no attack is claimed for the entry itself; no [Repeat]; no [Temporary]; no token; no recall — and 705 is stated as the weakness rather than hidden; nothing added in Awaken, so 167 does not bite. Depends on no unruled reading."
+    },
+    {
+      "id": "poro-herder-stalking-wolf-poro-fodder",
+      "name": "One Poro read three times — a cantrip, a Deathknell and a body at a battlefield with no walk",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-036",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E2 M2, Poro. '[Deathknell] — If I died alone, draw 1. (I'm alone if there are no other friendly units here.)' The pool's own reminder text is what settles 'alone' as an own-side measurement (the #116 finding)."
+        },
+        {
+          "card": "OGN-061",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Calm unit, E3 P1 M3. 'When you play me, if you control a Poro, buff me and draw 1.' Reads the Poro anywhere you control it, not at a battlefield."
+        },
+        {
+          "card": "UNL-166",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 P1 M6, Dog, [Ambush]. 'As an additional cost to play me, kill a Bird, Cat, Dog, or Poro you control. You may [Ambush] me to its battlefield, even if you don't have other units there.' The last clause is a permission no other [Ambush] card in the pool carries."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Order: OGN-261 Radiant Dawn, UNL-195 Green Father, VEN-147 Eye of Twilight and SFD-247 Emperor of the Sands all hold it (103.1.b.2).",
+          "One Poro on the board, standing ALONE at a battlefield if you want the Deathknell half."
+        ],
+        "notable": [
+          "Three payoffs off one E2 body, and the entry states each with its own condition. Poro Herder reads 'if you control a Poro' — anywhere. Lonely Poro's Deathknell needs it to have died ALONE, and its own reminder text defines that as 'no other friendly units here', an own-side measurement (#116). Stalking Wolf needs it dead as an additional cost.",
+          "822.1.b is what makes the Wolf's last clause matter: [Ambush] is normally 'I may be played to a battlefield where you control Units', and the Wolf's own text overrides that for the battlefield of the body it just ate. So an M6 arrives at a battlefield where you have NOTHING — no Standard Move, no exhaust, no turn of telegraph. That is a genuine answer to #48's walk-to-the-battlefield bottleneck for a CARD rather than a token.",
+          "The costs are paid before the unit enters (203.3 and the play steps), so the Poro is already dead when the Wolf arrives. Its Deathknell draws if it was alone; the Wolf is not 'here' yet at the moment it dies, so it does not spoil the alone test.",
+          "822.1.b also gives the Wolf [Reaction] while it is being played to a battlefield where you control units — which is NOT the case on the override line, since the point of the override is that you control nothing there. Played to its dead Poro's battlefield the Wolf is a Main Phase play, not a combat trick. The entry does not claim otherwise.",
+          "The Poro is a CARD, not a token: 185 and 416.3 would refuse a token as the kill cost of a 'kill a Bird, Cat, Dog, or Poro you control'... except they would not, because 185.2.d makes a token unit a unit and killing is not recycling. The reason the entry uses a card anyway is the Deathknell — a token has none, and 186.1 means it never reaches the trash.",
+          "Three copies each (103.2.b) and no recursion in this identity, so this is three Wolves a game. starhound-undying-loyalty-four-tag-recursion is the line that puts the Poros back."
+        ]
+      },
+      "steps": [
+        "Play a Lonely Poro (E2) and walk it to a battlefield where it stands alone.",
+        "Play Poro Herder (E3 + 1 Power). Her trigger sees a Poro you control, buffs her and draws 1.",
+        "Later, play Stalking Wolf (E4 + 1 Power). Pay the additional cost by killing the Lonely Poro.",
+        "The Poro's [Deathknell] sees that it died alone and draws 1.",
+        "[Ambush] the Wolf to that Poro's battlefield under its own override — 822.1.b's normal condition ('where you control Units') is exactly what the clause waives. An M6 body arrives with no move and no exhaust."
+      ],
+      "terminatesIn": "engine only — two cards and an M6 body placed at a battlefield with no walk, per Poro spent, three times a game (103.2.b). Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "822.1.b: 'It is functionally short for \"I may be played to a battlefield where you control Units\" and \"I have [Reaction] as long as I'm being played to a battlefield where you control Units.\"' 203.3: 'If the game action associated with a Cost is impossible for any reason such that a player cannot perform it, then they cannot pay the Cost and they will not execute the linked Effect.' 185.2.d: 'A token unit is a unit.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §27), issue #153, from the orphan rule poro-herder-poro-tag. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 185, 185.2.d, 186.1, 203.3, 416.3, 822.1, 822.1.a, 822.1.b, 822.1.c. 'Alone' is read per the #116 walk, off the pool's own reminder text on this very card. Trap check: no attack; no [Repeat]; no [Temporary]; the token question is walked rather than assumed — a token unit WOULD pay the kill cost (185.2.d) but has no Deathknell and never reaches the trash (186.1), which is why the entry spends a card; no recall; 167 is not touched. Depends on no unruled reading."
+    },
+    {
+      "id": "retreat-sprite-mother-rebuy",
+      "name": "Retreat on the Sprite Mother — the token stays, the trigger comes back, and a rune is channelled",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-104",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind spell, E1, [Reaction]. 'Return a friendly unit to its owner's hand. Its owner channels 1 rune exhausted.' A bounce, not a Recall: it goes to HAND, so 455 does not apply and the channelled rune is a partial refund."
+        },
+        {
+          "card": "OGN-106",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M3. 'When you play me, play a ready 3 Might Sprite unit token with [Temporary] here.' The Sprite is a separate permanent, so bouncing the Mother leaves it standing — the exact shape the synergy rule is about."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "temporary-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both mono-Mind (103.1.b.3), so any legend carrying Mind runs the pair.",
+          "Sprite Mother must be AT a battlefield when she is played, since her token is played 'here'."
+        ],
+        "notable": [
+          "'Here' is read on execution (359.3.f.2), so the Sprite is born AT THE BATTLEFIELD, not at the base — that is the whole reason this is worth a card, because #48 measured the walk from the base as the bottleneck on every token line, and it also enters READY.",
+          "The token is not the Mother. Bouncing her returns one permanent to hand and leaves the other on the board; replaying her makes a second Sprite there. Ledger per cycle: E1 for Retreat plus E4 + 1 Power for the replay, against one ready 3 Might body at a battlefield and one rune channelled exhausted.",
+          "The channelled rune is a real refund, and 430.2's own worked example is this wording. It enters exhausted, so it is not Energy this turn — but 164.2.b ('Recycle this: [Reaction] — Add [C]') carries no exhaust in its cost, so it recycles for 1 Power immediately, and 161.2.b returns it to the Rune Deck.",
+          "Retreat is a [Reaction] (813.1.c.1), which makes this a save as well as a rebuy: the Mother can be pulled out of a combat or off a removal spell in a Closed State. The Sprite she left behind stays where it was.",
+          "816.1.b still kills every Sprite at the start of your Beginning Phase before scoring, so this stacks bodies WITHIN a turn and never across turns. Three Retreats (103.2.b) is at most three extra Sprites, all of them gone by your next Scoring Step.",
+          "185 and 186.1: the Sprites are tokens, never reach the trash, and nothing here recycles or reanimates one."
+        ]
+      },
+      "steps": [
+        "Play Sprite Mother to a battlefield you control (355.2.a). Her trigger plays a ready 3 Might [Temporary] Sprite HERE (359.3.f.2).",
+        "Cast Retreat for E1 returning Sprite Mother to your hand. The Sprite stays on the battlefield — it is its own permanent.",
+        "Channel 1 rune exhausted from Retreat's second sentence (430.2). Recycle it for 1 Power at once if you need it (164.2.b), or keep it as next turn's Energy.",
+        "Replay Sprite Mother for E4 + 1 Power to the same battlefield: a second ready 3 Might Sprite lands there.",
+        "Repeat with the second and third Retreat inside the same turn. At the start of your next Beginning Phase 816.1.b kills all of them before scoring."
+      ],
+      "terminatesIn": "engine only — up to three extra ready 3 Might bodies at a battlefield in one turn, each for E5 + 1 Power minus a channelled rune, and all of them dead by your next Scoring Step (816.1.b). Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction.' 430.2: 'The Game Effect that instructs a player to channel 1 or more runes may specify the conditions or circumstances under which those runes enter the board. Example: A spell reads \"Channel 1 rune exhausted.\"' 164.2.b: 'Recycle this: [Reaction] — Add [C].' 816.1.b: 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §28), issue #153, from the orphan rule retreat-replays-a-body. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 161.2.b, 164.2.b, 185, 186.1, 355.2.a, 359.3.f.2, 430.2, 455, 813.1.c.1, 816.1.b. The bounce is to HAND and is explicitly NOT a Recall (455 defines a Recall as relocation to the Base), which is the trap that would otherwise put the Mother at your base and cost the 'here'. Trap check: no attack; no [Repeat]; the [Temporary] deadline is stated rather than hidden; no token is recycled; nothing is added in Awaken, so 167 does not bite. Sibling: portal-rescue-trove-golem-industrialist replays a body at [Action] speed by banishing it, which erases a Deathknell (108.6.c); Retreat does not, because the card reaches the hand."
+    },
+    {
+      "id": "blind-monk-wizened-elder-bilgewater-bully",
+      "name": "Two cards that only want to CARRY a buff, and a legend that hands one out every turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "legends": [
+        "OGN-257"
+      ],
+      "uses": [
+        {
+          "card": "OGN-257",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "LEGEND",
+          "note": "Calm/Body legend (Lee Sin). 'E1, exhaust: Buff a friendly unit.' One buff a turn for one Energy, and 315.1.b readies the legend every Awaken; 107.4.c makes it a Game Object on the board, which is what 415.1 needs."
+        },
+        {
+          "card": "OGN-065",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E4 M4. 'While I'm buffed, I have an additional +1 Might.' With the buff's own +1 (703) that is M6 for one Energy, permanently."
+        },
+        {
+          "card": "OGN-125",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E6 M6. 'While I'm buffed, I have [Ganking].' M7 with the buff, and a keyword that 144.4.c otherwise reserves for cards that print it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Calm + Body: OGN-257 Blind Monk is itself the legend, and both payoffs are single-domain (103.1.b.3).",
+          "Nothing has to be held and no battlefield of yours is needed."
+        ],
+        "notable": [
+          "These two are the only cards in the pool that key on simply CARRYING a buff rather than on granting or spending one, which is what the synergy rule found and no earlier buff rule had. Every other buff card in the catalogue is written from the granter's side.",
+          "702.3 is why this is a STATIC bonus and never an engine: 'There can only be one Buff on a Unit at a time', so one buff per body turns the bonus fully on and a second does nothing. Two bodies is two turns of the legend's ability and then it is done — the legend is free to buff something else afterwards.",
+          "The buff persists. 702.2.a: 'To Buff a Unit, a player chooses a Unit and then places a buff on it. That Unit is Buffed for as long as the buff remains on it.' So the E1 is paid once per body, not per turn. 705 removes it only when the unit leaves play.",
+          "Do NOT spend these buffs. The other Order and Calm buff lines in the catalogue — OGN-207 Call to Glory, OGN-230 Albus Ferros, SFD-101 Fae Dragon — pay you for spending a buff (702.2.b), and spending is exactly what switches these two off. The two uses are exclusive, and a deck has to pick one.",
+          "[Ganking] is not an extra move: 810.1.c.3, 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' What the Bully gains is the battlefield-to-battlefield destination of 144.4.c, not a second move — and in a Duel (485.4) there are only two battlefields, so it is worth exactly one alternative destination.",
+          "709 is not involved: 'becomes Mighty' is an event and both bodies are already at or above 5 with the buff, so this line feeds no Mighty payoff. Recorded because friendship-fiora-worthy-mighty-ready is the entry that does use that event and the two look similar."
+        ]
+      },
+      "steps": [
+        "Play Wizened Elder (E4) and Bilgewater Bully (E6).",
+        "Pay E1 and exhaust Blind Monk: buff Wizened Elder. 703 gives +1 and his own text adds another, so he is M6 permanently (702.2.a keeps the buff on him).",
+        "315.1.b readies the legend at your next Awaken. Pay E1 again: buff Bilgewater Bully. He is M7 and has [Ganking].",
+        "Both bonuses are now on for the rest of the game at a total cost of 2 Energy, and 702.3 means no further buff on either does anything.",
+        "The legend's ability is free from turn three onward for whatever else wants a buff — but never spend these two (702.2.b), or the statics switch off."
+      ],
+      "terminatesIn": "engine only — a permanent +1 Might and a permanent [Ganking] for one Energy each, then the legend's buff a turn for anything else. Nothing here scores.",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #153 — the 55 synergy rules no catalogued entry stands on (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "702.2.a: 'To Buff a Unit, a player chooses a Unit and then places a buff on it. That Unit is Buffed for as long as the buff remains on it.' 702.3: 'There can only be one Buff on a Unit at a time.' 703: 'Each Buff individually contributes +1 Might to a Unit.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.'"
+        },
+        {
+          "title": "Issue #153 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/153",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §29), issue #153, from the orphan rule wizened-elder-buffed-payoff. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 107.4.c, 144.4.c, 315.1.b, 415.1, 485.4, 702.2.a, 702.2.b, 702.3, 703, 705, 709, 810.1.c.3. The entry's contribution over the rule is the exclusivity: carrying a buff and spending a buff are opposite uses of the same counter, and the catalogue's other buff lines all spend. Trap check: no attack; no [Repeat]; no [Temporary]; no token; no recall; 167 is not touched; 107.4.b does not bite, because nothing asks the legend to be at a location — only 107.4.c, that it is a Game Object. Depends on no unruled reading."
     }
   ]
 }
