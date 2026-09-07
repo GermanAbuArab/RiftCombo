@@ -25889,6 +25889,196 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §16), issue #161, from the CAUSE/TRIGGER matrix: the discard event. Card set checked first (OGN-202 + OGN-003: no exact match; OGN-202 appears in get-excited-flame-chompers-jinx and minah-ride-the-wind-mutual-discard, neither of which uses the Enforcer). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 144.2, 185, 186.1, 464.2.c.3, 465.2.b, 702.3. The finding is the per-EVENT counting of 'one or more', which is the same shape as 383.1.b's rule for 'the [Nth] time' triggers but reached from the opposite direction: 383.1.b collapses simultaneous instances of a counted trigger, and 'one or more' collapses a multi-card discard into one event. Trap check: no attack claimed for the entry itself, though the Enforcers carry [Assault 2] for when they do attack; no [Repeat]; no [Temporary]; no token is discarded, which 185 forbids anyway; no recall; 167 is not touched."
+    },
+    {
+      "id": "vanguard-helm-baited-hook-buff-ladder",
+      "name": "Baited Hook eats a buffed body — Vanguard Helm puts the buff back and the tutor ceiling climbs by two",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-242",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order gear, E3. '[1 Energy][Order], [exhaust]: Kill a friendly unit. Look at the top 5 cards of your Main Deck. You may banish a unit from among them that has Might up to 1 more than the killed unit and play it, ignoring its cost. Then recycle the rest.' Gear enters ready (143.4 exhausts only units), so it fires the turn it lands, and 315.1.b readies it every Awakening."
+        },
+        {
+          "card": "OGN-228",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order gear, E2. 'When a buffed friendly unit dies, buff another friendly unit. (If it doesn't have a buff, it gets a +1 Might buff.)' It is what stops the buff being spent by the Hook's own kill."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Order legend — both cards are mono-Order (103.1.b.1), and neither is a Signature card, so no legend is forced."
+        ],
+        "notable": [
+          "THE LADDER CLIMBS BY TWO A TURN INSTEAD OF ONE, AND THAT IS THE WHOLE INTERACTION. The Hook's tutor ceiling is 'Might up to 1 more than the KILLED unit', and 703 says 'Each Buff individually contributes +1 Might to a Unit' — so a body of printed Might X carrying a buff dies at X+1 and the ceiling is X+2. The free unit that arrives is then buffed by the Helm, so next turn it dies at X+3 and the ceiling is X+4. Without the Helm the buff is spent with the corpse and the ladder climbs by 1; with it, by 2.",
+          "AND THE UNIT ARRIVES FOR NOTHING. 'play it, ignoring its cost' is Energy AND Power, so the whole engine costs 1 Energy + 1 Order Power a turn — the Hook's activation — however big the body it fetches. 143.4 makes it enter exhausted, so it defends and holds from the next Awakening rather than the same turn.",
+          "702.3 IS WHY THE HELM IS NOT REDUNDANT AND ALSO WHY IT CANNOT BE DOUBLED. 'There can only be one Buff on a Unit at a time', and 702.3.a adds that a second buff 'is not placed instead'. So the Helm cannot stack buffs on one body — it relocates the single buff off a corpse and onto a fresh unbuffed one, which is exactly the shape the #106 walk measured for a repeatable buffer: the product is min(triggers, new unbuffed bodies), and the Hook makes exactly one new body a turn, so the two rates match with nothing wasted.",
+          "THE HELM NEEDS THE DYING UNIT TO BE BUFFED, WHICH THE HELM ITSELF SUPPLIES FROM THE SECOND TURN ON. The first activation kills an unbuffed body (ceiling X+1) and the Helm does not fire; from then on the body the Hook fetched is the one the Helm buffed, so every later kill is a buffed one. Priming it faster needs any Order buff source — OGN-223 Peak Guardian buffs itself and every other friendly unit at its battlefield when played, and OGN-217 Trifarian Gloryseeker buffs itself for 2 Energy. Deliberately not in uses: they shorten the first turn, they do not change the rate.",
+          "IT IS NOT A LOOP AND IT IS BOUNDED BY THE DECK, NOT BY COPIES. The Hook looks at five cards and recycles the four it does not take to the bottom (416.1.a), so the deck cycles rather than depletes and the ceiling is the largest printed Might still in the Main Deck. Looking never Burns Out — 431.1.c: 'that player looks at or Reveals as many as possible, but does not Burn Out'.",
+          "THE KILL IS EFFECT TEXT AFTER THE COLON, NOT A COST, SO A TOKEN CAN FEED IT. The Hook reads '[cost]: Kill a friendly unit …', which puts the kill after the colon — so 416.3, 203.3 and 185 never bite and a token unit is a legal victim (428.1 with 185.2.b). It is a poor one here, because a 1 Might Recruit sets the ceiling at 2, but on a turn where nothing better is expendable it keeps the Hook firing.",
+          "NOTHING HERE SCORES. It is a free body and a free tutor every turn; the points still come from whatever those bodies then do at a battlefield. That is the same honest ending karma-lux-recycle-buff-army and gemcraft-karma-herald-buff-faucet carry."
+        ]
+      },
+      "steps": [
+        "Play Baited Hook (3 Energy) and Vanguard Helm (2 Energy). Both are gear, so 143.4 leaves them ready.",
+        "First activation: pay 1 Energy + 1 Order Power and exhaust the Hook to kill any friendly unit. Look at the top five, banish a unit of Might up to one more than the killed one, and play it for free. Recycle the other four to the bottom (416.1.a).",
+        "Buff that new body — the Helm does it for you from the second turn on, and any Order buff source does it on the first.",
+        "Next Awakening readies the Hook (315.1.b). Kill the buffed body: 703 makes it die at printed Might plus one, so the tutor ceiling is two higher than its printed Might.",
+        "The Helm sees a buffed friendly unit die and buffs the unit the Hook just fetched. Repeat: the ceiling rises by two every turn for 1 Energy + 1 Order Power."
+      ],
+      "terminatesIn": "engine — one free unit a turn for 1 Energy + 1 Order Power, with the tutor ceiling climbing 2 Might per turn instead of 1; nothing here scores",
+      "netPerIteration": "+1 free body (Might ceiling +2 per turn), -1 body, -1 Energy, -1 Order Power, and the buff is preserved rather than spent",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 27)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Cause/trigger matrix over the pool, rows 25-30 (friendly-dies), built by rc-walk153b — .scratch/matrix.ts and .scratch/cands.json",
+          "kind": "agent",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 27). OGN-228 Vanguard Helm was in ZERO entries and is the only one of the six friendly-dies trigger cards in the matrix's rows 25-30 that was uncatalogued; the other five (OGN-246, OGN-118, SFD-169, UNL-068, UNL-174) are each already in an entry, and OGN-118 with UNL-068 are already together in malzahar-wraith-centaur-sacrifice. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 143.4, 185, 185.2.b, 203.3, 315.1.b, 416.1.a, 416.3, 428.1, 431.1.c, 702.3/702.3.a and 703 opened and read. Ban check: neither OGN-228 nor OGN-242 carries a [BANNED marker and neither is a Signature card. Trap check: no attack; no [Temporary]; no [Repeat]; no recall; the killed body may be a token because the kill is effect text after the colon rather than a cost, and 186.1 keeps that token out of the trash, which costs this line nothing since it recycles from the DECK and not from the trash. Depends on no unruled reading."
+    },
+    {
+      "id": "lillia-flurry-of-feathers-tank-wall",
+      "name": "Four Deflect Birds that must be killed first — Lillia turns Flurry of Feathers into a wall and grows on it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-058",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 M4. 'When you play a token unit, give me +1 Might this turn. Your token units have [Tank]. (They must be assigned combat damage first.)' Two separate clauses, and the [Tank] grant is the one that changes a combat."
+        },
+        {
+          "card": "UNL-044",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Calm spell, E4 P2. '[Reaction] Choose one — • Counter a spell. • Play four 1 Might Bird unit tokens with [Deflect].' Four token units on ONE card, at Reaction speed, which is what makes the wall land inside the opponent's attack."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Calm legend — Lillia and Flurry of Feathers are both mono-Calm (103.1.b.1), and neither is a Signature card."
+        ],
+        "notable": [
+          "[Tank] IS A HARD ASSIGNMENT RULE, NOT A SUGGESTION, AND THAT IS WHY FOUR 1-MIGHT BIRDS ARE A WALL. 815.1.b: '[Tank] is functionally short for \"I must be assigned lethal damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step.\"' And 815.1.c.2: 'Units without Tank are INVALID ASSIGNMENTS until all units with Tank have lethal damage assigned to them.' With 465.2.c.4 capping each assignment at the minimum needed to kill, four 1 Might Birds absorb exactly FOUR damage, and until all four are dead nothing else of yours can legally be assigned anything.",
+          "THE OTHER HALF IS [Deflect], SO THE WALL IS TAXED FROM BOTH SIDES. The Birds arrive with [Deflect] printed on them, and 809.1.c with 809.1.d make an opponent pay one rainbow to CHOOSE each one with a spell or ability. So removing the wall by spell costs 1 rainbow per Bird and removing it by combat costs 4 damage — and a 1-Energy sweeper is the only cheap answer (OGN-133 Flurry of Blades, 'Deal 1 to all units at battlefields', kills all four). That vulnerability is stated rather than hidden, and it is the same one every 1-Might token line in the catalogue carries.",
+          "IT LANDS INSIDE THE OPPONENT'S ATTACK, WHICH IS WHERE A WALL IS WORTH BUYING. Flurry of Feathers is a [Reaction], and 813.1.c.1 lets a [Reaction] card be played during Closed States on any player's turn. 464.2.c.3.a is what makes the Birds count: 'If a Unit controlled by the Attacker or Defender becomes present at this Battlefield after this moment, it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present.' So four Defenders appear after the designation and before 465.1's damage step, adding 4 to your defending Might sum (465.2.b) as well as soaking the first four damage.",
+          "LILLIA'S OWN CLAUSE IS FOUR MIGHT ON ONE CARD, AND IT IS 'THIS TURN'. 'When you play a token unit, give me +1 Might this turn' fires once per token, so one Flurry is +4 and Lillia attacks or defends at 8 rather than 4. It is a CONTINUOUS MODIFIER worded 'this turn', not a 702 Buff counter, so 702.3's one-per-unit cap never touches it and it stacks with a real buff — the same distinction the #102 and #153 walks drew for Lee Sin, Centered and Soul Shepherd. It does not carry to the next turn.",
+          "THE [Tank] GRANT REACHES EVERY TOKEN YOU CONTROL, NOT ONLY THE BIRDS. 'Your token units have [Tank]' is a static ability, so any Recruit, Sand Soldier or Sprite on your board is also a mandatory first assignment. That is why Lillia is a wall card rather than a Bird card, and it is also the reason she is ANTI-SYNERGIC with the Grand Plaza family: OGN-293 wants seven token bodies to SURVIVE to your Beginning Phase, and [Tank] guarantees they are the first things killed.",
+          "185.1 WITH 185.2.b IS WHY THE BIRDS COUNT AS UNITS AT ALL — 'Token units have a Might' — and 350.2 with 185.2.a is why playing them fires Lillia's trigger: a token is not a card, but it is PLAYED. Those are different paragraphs and are easy to conflate.",
+          "NOTHING HERE SCORES. It is four bodies and four Might for 4 Energy + 2 Calm Power, three times a game (103.2.b). The points come from whatever the wall is protecting."
+        ]
+      },
+      "steps": [
+        "Land Lillia, Protector of Dreams (5 Energy) at the battlefield you intend to hold.",
+        "When the opponent attacks it, wait for the Combat Showdown: 464.2.f.1 leaves the State Open and 813.1.c.1 permits a [Reaction].",
+        "Cast Flurry of Feathers (4 Energy + 2 Calm Power) choosing the second mode: four 1 Might Bird tokens with [Deflect].",
+        "Lillia's trigger fires four times — she is +4 Might this turn — and her static clause gives all four Birds [Tank].",
+        "464.2.c.3.a gives the Birds the Defender designation at the next Cleanup, so they join the damage step: 465.2.b adds their 4 Might to your side, and 815.1.b with 815.1.c.2 makes them the only legal assignments until all four have lethal damage.",
+        "The attacker spends its first four damage killing 1 Might Birds; everything else of yours, Lillia at 8 included, survives."
+      ],
+      "terminatesIn": "engine — four Tank/Deflect bodies and +4 Might on Lillia for one card, at Reaction speed, three times a game; nothing here scores",
+      "netPerIteration": "+4 token units with [Tank] and [Deflect], +4 Might on Lillia this turn, for 4 Energy + 2 Calm Power",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 27)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Cause/trigger matrix over the pool, row 22 (play-token-unit, 45 partners), built by rc-walk153b — .scratch/matrix.ts and .scratch/cands.json",
+          "kind": "agent",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 27). UNL-058 Lillia was in ZERO entries despite 45 matrix partners; of those, UNL-044 Flurry of Feathers is the best on its own numbers because it is the only one that plays FOUR token units off a single card at Reaction speed, which is what turns the [Tank] grant from a rider into a wall. 815 is cited here for the first time in the catalogue. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.b, 185.1/185.2.a/185.2.b, 350.2, 464.2.c.3.a, 464.2.f.1, 465.1, 465.2.b, 465.2.c.4, 702.3, 809.1.c/809.1.d, 813.1.c.1 and 815.1.b/815.1.c.2 opened and read. Ban check: neither UNL-058 nor UNL-044 carries a [BANNED marker and neither is a Signature card. Trap check: no attack of your own; no [Temporary] on the Birds, so 816.1.b never touches them; no [Repeat]; no recall; the tokens never reach the trash (186.1), which costs this line nothing. The anti-synergy with the Grand Plaza family is stated in a notable because it is counter-intuitive: [Tank] guarantees the bodies the Plaza needs alive are killed first. Depends on no unruled reading."
+    },
+    {
+      "id": "karma-ornn-hold-recycle-buff",
+      "name": "Ornn's Hold recycles for free — Karma turns every Beginning Phase into a buff, with no loop",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-235",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E6 P1 M6. '[Vision] … When you recycle one or more cards to your Main Deck, buff a friendly unit. (If it doesn't have a buff, it gets a +1 Might buff. Runes aren't cards.)' The parenthetical is the trap: a rune recycle never fires her."
+        },
+        {
+          "card": "SFD-058",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E5 P1 M5. 'When you play me or when I hold, look at the top 4 cards of your Main Deck. You may reveal a gear from among them and draw it. Then recycle the rest.' The Hold half is a free recycle every Beginning Phase for as long as he stands on a battlefield you control."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "A Calm/Order legend — Karma is Order and Ornn is Calm (103.1.b.1). Calm/Order is a printed legend pair."
+        ],
+        "notable": [
+          "THE RECYCLE IS FREE AND IT REPEATS, WHICH IS WHAT THE THREE EXISTING KARMA ENTRIES DO NOT HAVE. karma-lux-recycle-buff-army rides the Lux infinite, and gemcraft-karma-herald-buff-faucet buys its trigger with Gemcraft and the legend's Energy. Ornn's second clause is a HOLD trigger — 383.4.d.1 gives 'When I hold…' as the standard wording and 315.2.b.2 fires it in the Beginning Phase — so it costs nothing at all, every turn, for as long as he garrisons a battlefield you control. One Ornn Hold is one Karma buff, forever, with no loop underneath.",
+          "'RUNES AREN'T CARDS' IS THE TRAP AND IT IS PRINTED ON KARMA HERSELF. Her reminder text says it outright, and 161.2.b confirms the mechanism: a recycled rune is 'returned to the Rune Deck, not the Main Deck'. So the whole rune-recycling half of the pool — every 164.2.b Power activation, every 'recycle a rune' cost — is dead to her. Only a recycle that reaches the MAIN Deck counts, which is what Ornn's 'then recycle the rest' does.",
+          "ONE BUFF PER TURN, BOUNDED BY NEW UNBUFFED BODIES, NOT BY TRIGGERS. 702.3: 'There can only be one Buff on a Unit at a time', and 702.3.a: a second buff on a buffed unit 'is not placed instead'. The #106 walk measured the general form — a repeatable buffer yields min(triggers, new unbuffed bodies) — and here the trigger rate is one a turn, so a second recycler adds nothing and the honest product is one +1 Might counter per turn placed on whatever arrived since the last one.",
+          "ORNN ALSO PAYS FOR HIMSELF IN CARDS. 'Look at the top 4 … reveal a gear from among them and draw it' is a gear tutor every Beginning Phase, and looking never Burns Out (431.1.c). In a deck with gear worth drawing that is the real value and the buff is the rider; in a deck without, the recycle still fires Karma.",
+          "HE HAS TO HOLD, SO HE HAS TO SURVIVE. 469.2 defines Hold as maintaining Control of a battlefield you did not yet Score this turn during your Beginning Phase, and 323.6 strips Control the moment your last body leaves it. Ornn at 5 Might is the whole engine standing exposed; Karma at 6 can sit at base, since her trigger names no location.",
+          "NOTHING HERE SCORES, and the buff is not a Might race either — 703 gives exactly +1 Might per Buff and 702.3 caps it at one per unit. The value is a card a turn plus a body that is one Might harder to kill. Both existing Karma entries end the same way: the points come from whatever walks the bodies to a battlefield."
+        ]
+      },
+      "steps": [
+        "Play Karma, Channeler (6 Energy + 1 Order Power) — she may stay at your base, since her trigger names no location.",
+        "Play Ornn, Blacksmith (5 Energy + 1 Calm Power) and walk him to a battlefield you control. His play trigger already fires the first recycle and the first Karma buff.",
+        "Every Beginning Phase after that, 315.2.b.2 Holds the battlefield and Ornn's Hold trigger looks at the top four cards of your Main Deck.",
+        "Reveal a gear from among them and draw it if there is one; then recycle the rest to the Main Deck.",
+        "Karma sees one or more cards recycled to the Main Deck and buffs a friendly unit — one +1 Might counter a turn, placed on a body that does not already carry one (702.3)."
+      ],
+      "terminatesIn": "engine — one free recycle, one gear tutor and one buff every Beginning Phase for as long as Ornn holds; nothing here scores",
+      "netPerIteration": "+1 buff and up to +1 card per turn, for zero Energy after the two bodies are down",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 27)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Cause/trigger matrix over the pool, row 19 (recycle-main, 35 partners), built by rc-walk153b — .scratch/matrix.ts and .scratch/cands.json",
+          "kind": "agent",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 27). Chosen from the 35 matrix partners of OGN-235 because it is the only one whose recycle costs nothing and repeats without a loop: Ornn's 'when I hold' half is a 383.4.d Hold Effect fired by 315.2.b.2. The 'Runes aren't cards' parenthetical is recorded as the false-positive family for the synergy rule, since the matrix's cause regex catches every rune recycler and 161.2.b sends those to the Rune Deck rather than the Main Deck. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 161.2.b, 315.2.b.2, 323.6, 383.4.d/383.4.d.1, 431.1.c, 469.2, 702.3/702.3.a and 703 opened and read. Ban check: neither OGN-235 nor SFD-058 carries a [BANNED marker and neither is a Signature card. Trap check: no attack; no [Temporary]; no [Repeat]; no token; no recall; the recycle goes to the bottom of the Main Deck (416.1.a) and looking never Burns Out. Depends on no unruled reading."
     }
   ]
 }
