@@ -943,3 +943,108 @@ applies decreases last, so the two halves of the card never race each other.
   0 against a body already at 1).
 - **Scaling `VEN-155 Heart of the Tempest`'s payoff with more [Flow] plays.** Refused by 415.3.a: the
   ability costs the legend's own exhaust, so six empowers a game still buy one [Assault 2] a turn.
+
+## 15. Batch 9 — five entries, closing the orphan Signature spells
+
+### 15.1 `last-breath-beast-below-unforgiven-unit-damage-ready` — OGN-260 + SFD-132 + OGN-259
+
+**One sentence decides two things at once.** 417.6.b.3: *"When a spell or ability specifies a Unit as
+the source of the Damage for the Deal action, it is not in addition to the spell or ability that
+instructed it."* So `OGN-260 Last Breath` is **unit** damage: `OGN-145 Unyielding Spirit`, the pool's
+only blanket *"prevent all spell and ability damage this turn"*, leaves it working — **and** a Bonus
+Damage static worded *"your spells and abilities deal 1 Bonus Damage"* does **not** raise it. Immune
+to the fog, unimprovable by the pump, both from the same paragraph.
+
+**The ready comes first**, which is the tempo of the card: 415.1 makes it a real ready, so the correct
+sequence is attack, *then* Last Breath — a body that has already spent its exhaust gets it back and
+fires for its Might. 359.3.f.2 reads that Might on execution, so a pump added in the window counts and
+359.3.f.2.a nulls the whole instruction if the body leaves.
+
+`SFD-132 Beast Below` at Might 8 is the largest body mono-Chaos prints, so eight is the ceiling here —
+against its own non-optional ETB, which returns *another* friendly unit to hand. A bounce to hand is
+not a Recall (455 goes to the BASE), so that body leaves the board entirely.
+
+### 15.2 `dune-surfer-armed-assailant-ignore-tank` — VEN-004 + SFD-002 (both in zero entries)
+
+**764–766 is the general paragraph for every "you ignore X" card, and 766's second worked example is
+this exact sentence with Backline in it.** 766: *"Any abilities ignored in this way are treated as
+**inactive** for the purposes of the game action or procedure. Example: A unit reads 'You ignore
+Backline while assigning combat damage here.' … any instances of Backline on enemy units is treated as
+inactive."* Inactive is stronger than a bypass: 465.2.c.6's requirement (*"A player must obey all
+requirements and restrictions on damage assignment if able"*) has nothing left to obey.
+
+**And the entry refuses the obvious reading of its own card.** A [Tank] does not make you overkill —
+465.2.c.4 caps every assignment at minimum lethal either way. What 815.1.c.2 costs you is **order**:
+your Might goes into the wall first and the real threats survive on what is left. So Dune Surfer
+changes *which* bodies die, not *how much* damage there is, and he is **not** an excess-damage enabler
+(R28 = A: excess is attacking Might never assigned, and the garrison's total lethal requirement is
+unchanged).
+
+465.2.c.8 is the edge case worth knowing: a body carrying both Tank and Backline cannot satisfy both,
+so the assigning player picks one requirement — Riot's example is Caitlyn, Patrolling given Tank.
+
+### 15.3 `pyke-returned-shakedown-off-turn-gold` — UNL-145 + OGN-033 (both in zero entries)
+
+**A hidden unit is a [Reaction] body.** The tail of 811.1.b hands every face-down card [Reaction] from
+the following turn, so Pyke enters **mid-combat on the opponent's turn for 0 Energy**, already at the
+battlefield he was hidden at (811.1.d.1), with 319.6 + 323.2.a giving him the Defender designation in
+that damage step.
+
+**[Backline] is the mirror of [Tank] and the rules name both in one example** — 465.2.c.6 again, this
+time for the ordering it imposes: Tank first, plain bodies next, Backline last. A 3-Might Pyke behind
+any other body is the last thing the attacker may legally kill, which is what a permanent whose
+trigger needs him alive at a battlefield wants.
+
+His trigger is *"once each turn"*, not once on yours, and `OGN-033 Shakedown` is a [Reaction] — so the
+pair mints up to **two** Golds a round trip. But 187.5 prints the Gold with its own exhaust in the
+cost and Pyke plays it **exhausted**, so it is next turn's Power; `SFD-171 Renata Glasc, Industrialist`
+is the card that fixes that and 103.1.b.3 keeps her out of a Fury/Chaos list.
+
+This entry is deliberately **anti-synergic** with §9.5's `acceptable-losses-...`, and both say so:
+185.2.d makes the Gold legal fodder for a symmetric gear kill.
+
+### 15.4 `irelia-graceful-perfect-execution-power-discount` — SFD-141 + VEN-012 (both in zero entries)
+
+**"1 Energy or 1 rainbow less" is a choice, and the project's own exchange rate decides it.** A Power
+is priced near nine Energy inside a loop and is scarcer at every stage of a normal game (315.3.b
+returns two runes a turn; 164.2.b spends one permanently, 161.2.b). Against Perfect Execution's 3
+Energy + 1 Fury Power, taking the Power gives 3 + 0 and taking the Energy gives 2 + 1 — the first is
+strictly better, and it is the choice a reader skips because both look like "minus one".
+
+And **no card in the pool prints a rainbow Power cost**, so the rainbow half always comes off a printed
+domain Power: it is never dead letter and never saves you a rainbow you meant to pay.
+
+The anti-synergy is printed in the same domain: a discount reduces what you **spend** (166.2, 203.1,
+356.4.b), and `SFD-143 Sivir, Mercenary` reads exactly that. 206 does not rescue her — that governs a
+**costs** check. This list wants the first family and not the second.
+
+### 15.5 `danger-zone-dangerous-duo-mech-reaction-pump` — SFD-182 + OGN-016 + SFD-181
+
+**The legend's grant is defenders-only and the spell's is not**, which is the whole shape of the pair.
+814.1.c: [Shield] is *"While I am a **defender**, I have +X [M]"*. So Mechanized Menace adds nothing to
+an attack; on defence the two stack and a 3-Might Mech token fights at 6, while on offence it is 5.
+
+187.4 is why nothing needs extra text: *"A 3 [M] Mech token is a domainless unit token with 3 Might and
+the Mech tag"* — the tag is granted **by rule**.
+
+The comparison that decides when to play it: Danger Zone with [Repeat] paid is +2 on **every** Mech at
+[Reaction] speed; Dangerous Duo's [Legion] rider is +2 on **one** unit and rides free on a body. Below
+three Mechs the rider is the better rate; at three or more the spell is. `UNL-146 Syndra,
+Transcendent` — the only card that grants a second [Repeat] instance (820.1.c.2, 820.1.c.3) — is
+mono-Mind and legal here, and is recorded as a **lead**, not folded in, because it would make this a
+four-card line.
+
+## 16. Refusals from batch 9
+
+- **`VEN-004 Dune Surfer` priced as an excess-damage enabler.** Refused by 465.2.c.4 with R28 = A, in
+  full, in §15.2. A wall changes the order of assignment, not the total lethal requirement.
+- **A Bonus Damage static aimed at `OGN-260 Last Breath`.** Refused by 417.6.b.3: the damage is dealt
+  by the unit, and every Bonus Damage source in the pool reads *"your spells and abilities"*.
+- **`SFD-143 Sivir, Mercenary` in an Irelia list.** Refused by 166.2 / 203.1 / 356.4.b: every rebate
+  Irelia gives lowers what you SPENT, which is the number Sivir's clause reads. The same shape as
+  §1.2's Raging Firebrand refusal, repeated because these two share a domain and a deck slot.
+- **`UNL-145 Pyke, Returned` in the `acceptable-losses-ravenbloom-prefect-gearless-gear-hate` list.**
+  Refused by 185.2.d: his Gold is gear, so it arms the symmetric half that entry exists to dodge. Both
+  entries cross-reference each other.
+- **Claiming Irelia's rebate reaches a [Flow] cost.** Not refused — **not claimed**. The entry does not
+  need it, so it prices the Flow replay at full value rather than assert an unruled reading.
