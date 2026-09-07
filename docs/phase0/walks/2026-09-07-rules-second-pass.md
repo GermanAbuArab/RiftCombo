@@ -1674,3 +1674,101 @@ paraphrased in `sources[]` rather than quoted).
 `SFD-034` Feral Strength, `SFD-077` Rocket Barrage (206's second worked example),
 `SFD-186` Spinning Axe, `SFD-194` Counter Strike. Rebuild the list with
 `node .scratch-rules/rulesnames.mjs`.
+
+## 39. Batch 7 — four more of the rules-named eighteen
+
+### 39.1 `counter-strike-tianna-crownguard-in-place-save` — the only save that moves nothing
+
+The catalogue records half of this already: a heal / exhaust / **recall** replacement saves a body by
+relocating it, and **455** defines a Recall as relocation *"from anywhere to its Base"* — so it
+switches off every *"While I'm at a battlefield"* clause on what it saves, and 456.3 means no
+movement lock can stop that. `SFD-060 Tianna Crownguard` saved that way stops locking points for a
+full turn.
+
+`SFD-194 Counter Strike` is the other mechanism. **437.4**: *"Damage dealt to a Unit that has all of
+that damage Prevented is not considered to have been dealt to it at all."* Nothing is relocated,
+nothing is exhausted, no kill event is generated. For a unit whose whole value is a location-dependent
+clause, **Prevent is the only correct save in the pool.**
+
+And it works inside the damage step: **437.5** — *"Damage can still be assigned to Units in combat
+that are affected by Prevent"* — with 437.5.a letting the attacker assign up to lethal counting the
+Prevent Value. The assignment is made and then eaten, and because Counter Strike is [Reaction] it is
+bought after the attack is declared.
+
+**`test/legend-lines.test.ts` caught the entry's first draft.** Counter Strike is a **Signature** card
+tagged Jax, so 103.2.d.2 makes the line a ONE-LEGEND field — `SFD-193 / SFD-245 Grandmaster at Arms`
+and nothing else — where the draft had listed all four Calm/Body legends. 103.2.d.1 also means three
+copies spend the whole Signature budget. That is the #167 failure class, caught on the first run for
+the second time in this walk.
+
+### 39.2 `lux-illuminated-singularity-printed-cost` — both worked examples in one entry
+
+`OGS-006 Lux, Illuminated` is **206**'s worked example (*"Effects that need to determine a card's cost
+for any purpose always use its printed or copied cost, even if that cost has been altered"*) and
+`OGN-105 Singularity` is **715.2**'s. Both were in zero entries.
+
+The pairing is the honest use of 206: a *"costs N or more"* trigger survives every discount, which is
+the half of the "this turn" lens that discounts cannot switch off — as against *"if you SPENT N or
+more"*, which reads the Rune Pool (166.2, 203.1, 356.4.b) and dies to the same discount. A shell built
+on the wrong half is a real mistake, so the entry names both.
+
+The refusal is recorded inside the entry rather than left as a lead: the attractive line is a [Hidden]
+spell (811.1.b plays it *"ignoring its base cost"*, 206 still reads the printed cost, so a free spell
+still pumps) — and the pool has **exactly one** [Hidden] spell printed at E5 or more,
+`SFD-202 Hostile Takeover`, which is Signature and forces its own champion's legend.
+
+### 39.3 `mageseeker-warden-vengeance-base-kill` — a swept uniqueness claim, with its members named
+
+`OGN-229 Vengeance` (Order, E4 P2) is four words: *"Kill a unit."* Swept over the corpus, every other
+kill spell prints the location or a threshold —
+
+| card | text |
+|---|---|
+| `OGN-213 Hidden Blade` | Kill a unit **at a battlefield**. Its controller draws 2. |
+| `OGS-012 Blast of Power` | Kill a unit **at a battlefield**. |
+| `SFD-164 Drag Under` | ... Kill a unit **at a battlefield**. |
+| `UNL-186 Death from Below` | Kill a unit **at a battlefield**. Then, if it had 3 Might or less... |
+| `UNL-159 Soul Harvest` | Kill a unit at a battlefield **with 3 Might or less**. |
+
+The two unit-based kills that also omit the clause are `OGN-234 Harnessed Dragon` (E8 + 2 Power) and
+`SFD-158 Sandshifter` (gated at Might 3). So **Vengeance is the only unconditional, repeatable,
+spell-speed kill that reaches a base** — and `OGN-070 Mageseeker Warden` is the card that manufactures
+exactly that zone (*"opponents can only play units to their base"*, which 054.1 makes beat every
+permission).
+
+Three cards in the pool name a unit *in a base* as a target at all: `SFD-077 Rocket Barrage`,
+`SFD-116 Yone, Blademaster`, `UNL-182 Curtain Call`. None of them is an unconditional kill.
+
+The entry states the Warden's leak rather than hiding it (the 26 [Accelerate] units enter ready at the
+base and can Standard-Move the same turn), and it states the same 455 trap the Counter Strike entry is
+built on: both of her clauses open *"While I'm at a battlefield"*, so a Recall-based save switches her
+own lock off.
+
+### 39.4 `rocket-barrage-marai-spire-repeat-base-damage` — one [Repeat] is one extra execution
+
+**820.1.b**: *"Repeat is an optional cost that a player may pay to execute the effect of their spells
+and abilities a second time."* There is no way to pay it twice. **820.2.a**: *"Choices made for the
+additional execution do not have to be the same as the choices made for the initial execution."* On a
+**modal** spell that is the whole value — `SFD-077 Rocket Barrage` buys both of its modes with one
+card: deal 4 to a unit in a base AND kill a gear.
+
+The ledger is given with and without the battlefield, because `SFD-211 Marai Spire` arrives one time
+in three (485.5, 103.4.c): **E7 + 2 Mind Power** with the Spire, **E8 + 2** without. The Spire is
+worth exactly 1 Energy on this card, and its own *"While you control this battlefield"* has to be
+earned — 190.1 keeps a battlefield you brought uncontrolled until you walk a body in.
+
+Rocket Barrage is also 206's SECOND worked example (Defy against it), which is the source of the
+project's *spent-versus-costs* split: 820.1.c.1 makes the [Repeat] *"an Additional Cost to be paid
+during the steps of playing the spell"*, so it counts toward every *"if you spent N or more"*
+threshold while a *"costs N"* check ignores it.
+
+## 40. Batch 7 — staged
+
+Four entries in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos` clean over 556 entries.
+`test/legend-lines.test.ts` failed the first run on a real defect (the Signature Jax lock above) and is
+clean after the fix. Three `sources[]` quotes were paraphrases and were replaced with the rules text
+verbatim before staging (054.1, 155, and 143.2.a in the previous batch).
+
+Cards in **zero** entries before this batch: `SFD-194` Counter Strike, `OGS-006` Lux Illuminated,
+`OGN-105` Singularity, `OGN-229` Vengeance, `SFD-077` Rocket Barrage — five, leaving **13** of the
+rules-named list.
