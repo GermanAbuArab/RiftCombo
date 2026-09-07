@@ -42182,6 +42182,367 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 2). The first entry to use UNL-091 Concentrate or UNL-095 Grim Resolve. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 356.4.b, 356.6, 465.2.c, 466.1.a.2, 466.3.a, 466.3.c, 466.3.d, 469, 730.2, 806.1.c.1, 824.1.d. The entry is written around the word 'instead': the two rungs do NOT stack, so the top of the ladder is 1 Energy and not 0, and pricing it at 0 is exactly the kind of arithmetic error this project has recorded before. It is deliberately the third corner of an XP triangle with bandle-soldier-enthralling-protector-xp-floor (#180, threshold, needs banking) and wily-newtfish-gemhand-hunter-xp-turn (batch 1, per-turn gain, indifferent to spending); all three name each other. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "icathian-rain-annie-ravenborn-six-deal-actions",
+      "name": "Icathian Rain is six Deal actions, and Bonus Damage is paid on each of them — the pool maximum for the family",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-248",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury/Mind spell, E7 P3. 'Deal 2 to a unit. Deal 2 to a unit. Deal 2 to a unit. Deal 2 to a unit. Deal 2 to a unit. Deal 2 to a unit.' SIGNATURE, tagged Kai'Sa. In zero entries before this walk."
+        },
+        {
+          "card": "OGS-001",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Fury unit, E5 P1 M4. 'Your spells and abilities deal 1 Bonus Damage.' Riot's own worked example at 715.2."
+        },
+        {
+          "card": "OGN-032",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Fury gear, E3. ':rb_exhaust:: The next spell you play this turn deals 1 Bonus Damage.' A second instance, which 714 sums rather than multiplies."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "ONE LEGEND, not a domain field: Icathian Rain is a Signature card tagged Kai'Sa, so 103.2.d.2 forces the one Kai'Sa legend NAME in the pool — Daughter of the Void (OGN-247, reprinted as OGN-299). Fury/Mind, which holds mono-Fury Annie and the colourless-cost mono-Fury Tome under 103.1.b.1.",
+          "103.2.d.1 caps the deck at three Signature cards, so each copy of the Rain spends a third of that budget.",
+          "The Tome played a turn early: its ability costs its own exhaust and 415.3.a readies it only in your Awakening."
+        ],
+        "notable": [
+          "THE PAYOFF SCALES WITH THE NUMBER OF DEAL ACTIONS, NOT WITH THEIR SIZE, AND THIS CARD IS THE POOL'S MAXIMUM OF THAT NUMBER. 715: 'Bonus Damage applies to the total damage Dealt by one instance of the action.' Icathian Rain prints the sentence 'Deal 2 to a unit.' six separate times, so a +1 static is paid six times: 12 damage becomes 18. The entry is deliberately robust to the other reading — if the six sentences were read as ONE Deal action with six targets, 715.2 gives the same number ('the amount of Damage dealt to each target is increased by Bonus Damage individually and separately'). Either way it is +6.",
+          "A SECOND BONUS DAMAGE SOURCE ADDS, IT DOES NOT DOUBLE. 714: 'If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.' So Annie plus the Ravenborn Tome is +2 per Deal action — 6 x 4 = 24 damage — and not 2 x 18. Anyone pricing a second static as a multiplier is reading 714 backwards.",
+          "IT HAS NO LOCATION CLAUSE, SO IT REACHES A BASE. Swept over the corpus: exactly six cards print damage to 'a unit' with no 'at a battlefield' and no 'here' — OGN-029 Falling Star, OGN-248 Icathian Rain, OGN-252 Super Mega Death Rocket!, OGS-022 Final Spark, UNL-020 Dancing Grenade and UNL-026 Xerath, Freed. Of those six the Rain is the only one with more than two Deal actions, which is what makes it the family's ceiling; Falling Star's two are already catalogued as `ravenborn-tome-falling-star-two-deal-actions`, and this entry is the six-action number, not a restatement of that one.",
+          "IT IS DISJOINT FROM COMBAT AND FROM EXCESS DAMAGE. 713 scopes Bonus Damage to Deal actions, and 417.6.b.3 sources combat damage to the units themselves, so nothing here feeds OGN-034 Tryndamere's excess-damage threshold and nothing in the excess-damage family feeds this.",
+          "THE SIX INSTRUCTIONS ARE INDEPENDENT, so the 24 can be one execution on a single body or spread across six. 465 is not involved at all — this is a spell, not a combat, so 465.2.c.4's cap on assigning more than lethal never applies and overkill on one target is legal.",
+          "PRICE THE WHOLE BOARD, NOT THE SPELL. The Rain is 7 Energy + 3 Power on the turn it is cast, on top of Annie at 5 Energy + 1 Power and the Tome at 3 Energy, both of which have to have survived. A published figure that quotes only the spell's cost is the '18 Energy' shape this project keeps finding."
+        ]
+      },
+      "steps": [
+        "Play Ravenborn Tome (3 Energy). It is live from your next Awakening (415.3.a).",
+        "Play Annie, Fiery (5 Energy + 1 Fury Power). Her static is a Passive on the board: 'Your spells and abilities deal 1 Bonus Damage.'",
+        "On a later turn, in your Main Phase, exhaust the Tome: the next spell you play this turn deals 1 Bonus Damage. 714 sums it with Annie's to +2, applied once per Deal action.",
+        "Play Icathian Rain (7 Energy + 3 Power). Each of its six 'Deal 2 to a unit' instructions is raised to 4 (715 / 715.2).",
+        "Distribute: 24 damage, in six independent instructions, at any units on the board — including units sitting in a base, since the card prints no location clause."
+      ],
+      "terminatesIn": "engine — Annie and the Tome permanently raise every Deal action of every spell and ability you play; the Rain is the largest single cash-out in the pool at 24 damage for 7 Energy + 3 Power. Nothing here scores.",
+      "netPerIteration": "+1 damage per Deal action per Bonus Damage instance, summed once (714); on Icathian Rain that is +6 per instance and +12 for both",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards and the orphan Signature spells (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "713: 'Bonus Damage is an intrinsic property that can be granted to Deal actions that influence the amount of Damage that the action is distributing.' 714: 'If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once.' 715: 'Bonus Damage applies to the total damage Dealt by one instance of the action.' 715.1: 'If the Deal action has a single target, the amount of Damage to that target will be increased by the Bonus Damage granted to it.' 715.2: 'If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately. Example: Singularity is a spell that says \"Deal 6 to each of up to two units.\" A player plays Singularity while they also control Annie, Fiery, a unit that says \"Your spells and abilities deal 1 Bonus Damage.\" Singularity deals 1 Bonus Damage to both of its targets, dealing 7 to each.' 465.2.c.4: 'Units cannot have more damage assigned to them than the minimum required to constitute lethal damage unless no further units remain to have damage assigned to them.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. OGN-248 Icathian Rain and OGN-032 Ravenborn Tome were both in ZERO entries; OGS-001 Annie, Fiery appears in three. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.d.1, 103.2.d.2, 415.3.a, 465.2.c.4, 713, 714, 715, 715.1, 715.2, 417.6.b.3 opened in the Core Rules file. The six-card 'no location clause' set was swept over the corpus rather than asserted. Legend line built from cards.json (Kai'Sa legends: OGN-247 / OGN-299, one name), not typed. No unruled reading."
+    },
+    {
+      "id": "lucian-gunslinger-farron-blood-rush-assault-as-damage",
+      "name": "Lucian converts [Assault] into damage, so 807.2's summing of a granted keyword becomes removal instead of Might",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-028",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E3 M2. '[Assault] (+1 :rb_might: while I'm an attacker.) When I attack, deal damage equal to my [Assault] to an enemy unit here.' In zero entries before this walk."
+        },
+        {
+          "card": "OGN-015",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 P1 M5. 'Other friendly units here have [Assault].' A permanent second instance; must stand at the same battlefield, since 'here' is read from Farron. In zero entries before this walk."
+        },
+        {
+          "card": "SFD-003",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury spell, E1, [Action], [Repeat] :rb_energy_1:. 'Give a unit [Assault 2] this turn.' Two executions for 2 Energy total. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Fury, so any of the sixteen legend names carrying Fury holds it (103.1.b.1): Daughter of the Void (OGN-247), Relentless Storm (OGN-249), Loose Cannon (OGN-251), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Purifier (SFD-183), Glorious Executioner (SFD-185), Void Burrower (SFD-187), Virtuoso (UNL-181), Pridestalker (UNL-183), Bloodharbor Ripper (UNL-185), Piltover Enforcer (UNL-187), Rogue Assassin (VEN-139), Butcher of the Sands (VEN-141), Master of Shadows (VEN-143).",
+          "Farron and Lucian at the SAME battlefield. 144.3 moves them there as one game action ('Players may perform multiple Units' standard move simultaneously'), with 144.3.a requiring the shared destination they want anyway."
+        ],
+        "notable": [
+          "807.3 IS THE PARAGRAPH THIS CARD STANDS ON AND NO ENTRY HAD CITED IT: 'Assault, and whether or not a unit has Assault, is a characteristic of the Unit and may be checked or referenced by other Game Effects.' That is what makes 'damage equal to my [Assault]' a readable number rather than a keyword check, and it is what turns the whole granted-[Assault] family from a Might package into a removal package.",
+          "THE ARITHMETIC, WITH THE ENTRY'S OWN QUANTITIES. 807.1.b.3: 'If X is omitted, it is presumed to be 1', so Lucian's printed bare [Assault] is 1 and Farron's grant is another 1. 807.2 sums them ('the Assault Value of all granted Assault keywords is summed', worked example Petty Officer + Cleave = Assault 4). Blood Rush is [Assault 2] and 820.1.b buys exactly one extra execution, so paying its [Repeat] is a second [Assault 2]. Total 1 + 1 + 2 + 2 = SIX. Lucian attacks at Might 2 + 6 = 8 and his trigger deals 6 to an enemy unit there.",
+          "AND THE FLOOR IS THE HALF THAT REPEATS. Blood Rush is a spell and is gone; Farron is a permanent. With Farron alone Lucian is [Assault] 2 forever, which is 2 damage on every attack, every turn, for no further cards — that is the `repeatable-removal` this entry produces. The six is the burst on the turn you spend the spell.",
+          "THE VALUE IS READ AT EXECUTION, WHICH IS WHY THE PUMP CAN BE BOUGHT LATE. 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction', and its worked example is the identically shaped Yasuo, Remorseful attack trigger resolving on 'his current Might of 5' after a Stupefy. Blood Rush carries [Action], and 806.1.b grants 'permission to be played or activated during Showdowns, even when it is not the Controlling player's turn', so it can be bought inside the opened combat and still raise the number the trigger reads. The steps below use the Main Phase because that ordering needs no argument; the [Action] window is the refinement, not the premise.",
+          "FARRON'S WORD IS 'OTHER', SO HE NEVER PUMPS HIMSELF, AND HIS 'HERE' IS READ FROM HIM. If Farron stays home the grant does not reach the battlefield Lucian attacks. He is a 5-Might body that has to make the trip, which is the real cost of the permanent instance.",
+          "THIS IS ONE ENTRY, NOT THE FAMILY. The granted-[Assault] package — OGN-004 Cleave, SFD-003 Blood Rush, VEN-009 Baccai Reaper, VEN-012 Perfect Execution, SFD-131 Ancient Warmonger, VEN-076 Repair Specialist, OGN-015 Captain Farron — is one predicate on 807.2 and belongs in the synergy layer as a rule. What is entry-worthy here is the single card that CASHES the summed keyword as damage instead of as Might."
+        ]
+      },
+      "steps": [
+        "Play Captain Farron (4 Energy + 1 Fury Power) and Lucian, Gunslinger (3 Energy) at your base.",
+        "In a later Main Phase, play Blood Rush (1 Energy) naming Lucian and pay its [Repeat] (1 Energy) for a second execution: [Assault 2] twice.",
+        "807.2 sums every instance on him: 1 printed + 1 from Farron + 2 + 2 = Assault 6.",
+        "Move Lucian and Farron to the enemy battlefield as one action (144.3, 144.3.a), paying each unit's exhaust (144.2).",
+        "464.2.c.1 makes you the Attacker; the attack trigger is placed at the designation (464.2.c.3) and reads Lucian's Assault on execution (359.3.f.2): 6 damage to an enemy unit there.",
+        "Lucian fights that combat at Might 8 (807.1.c: 'While I am an attacker, I have +X [M]')."
+      ],
+      "terminatesIn": "engine — 2 damage on every attack for as long as Farron stands beside Lucian, spiking to 6 on any turn you spend a Blood Rush with its [Repeat] paid; nothing here scores",
+      "netPerIteration": "one enemy unit takes damage equal to Lucian's summed Assault every time he attacks, for the two units' exhausts",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "807.1.b.3: 'If X is omitted, it is presumed to be 1.' 807.1.c: 'It is functionally short for \"While I am an attacker, I have +X [M].\"' 807.2: 'If a Unit has Assault or has been granted Assault and is granted Assault by an additional source, the Assault Value of all granted Assault keywords is summed. Example: Petty Officer has Assault. It is chosen as the target of Cleave, which says \"Give a unit [Assault 3] this turn.\" After Cleave resolves, Petty Officer has Assault 4 this turn.' 807.3: 'Assault, and whether or not a unit has Assault, is a characteristic of the Unit and may be checked or referenced by other Game Effects.' 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 144.2: 'Exhausting the Unit is the Cost for this action.' 144.3: 'Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units.' 144.3.a: 'When a Move like this is declared by a player, the units' Destination must be the same.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. SFD-028 Lucian, Gunslinger, OGN-015 Captain Farron and SFD-003 Blood Rush were ALL in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 144.2, 144.3, 144.3.a, 359.3.f.2, 806.1.b, 807.1.b.3, 807.1.c, 807.2, 807.3, 820.1.b, 464.2.c.1, 464.2.c.3 opened in the Core Rules file. 807.3 is a first citation for this catalogue (0 hits in data/combos.json before this entry). None of the three is Signature and none is banned in either format. The granted-[Assault] package is handed to the synergy layer as one rule rather than written out as entries."
+    },
+    {
+      "id": "bone-skewer-pairofant-stunned-attacker-execution",
+      "name": "Bone Skewer makes the opponent the attacker on your turn with a body they never chose to commit — and a stunned attacker assigns nothing",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-139",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos spell, E2 P1, [Hidden]. 'Choose a battlefield. An opponent reveals their hand. You may choose a unit from it. They play that unit to that battlefield, ignoring any and all costs. If they do, then do this: [Stun] it.' In zero entries before this walk."
+        },
+        {
+          "card": "UNL-008",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E6 M6. '[Assault] (+1 :rb_might: while I'm an attacker.) If a unit died this turn, I enter ready.' The garrison that pays 423.1.c's bar; his [Assault] is worth nothing here, since 807.1.c scopes it to being an attacker. In zero entries before this walk."
+        },
+        {
+          "card": "SFD-001",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury spell, E2, [Reaction]. 'Give a friendly unit at a battlefield +2 :rb_might: this turn for each enemy unit there.' Bought inside the combat, after the pulled body is visible. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal",
+        "strip-opponent-hand"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "A battlefield you control with no facedown card already on it, hidden a turn earlier (811.1.b), and the Pairofant standing there."
+        ],
+        "notable": [
+          "THE OPPONENT BECOMES THE ATTACKER ON YOUR TURN, AND THE PARAGRAPH IS ABOUT WHOSE UNIT IT IS. 190.3.a.1: 'Units moving to OR BEING PLAYED TO a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' The card THEY are made to play applies the status, so THEY attack, into your garrison, on your turn, at a battlefield you already control.",
+          "A STUNNED ATTACKER ASSIGNS NOTHING AND STILL COSTS FULL PRICE TO KILL. 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step', so under 465.2.c ('each player assigns an amount of damage equal to their summed Might among the other's Units') their side assigns ZERO and the Pairofant takes nothing. But 423.1.c: 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might value to be killed' — the stun is not a discount. Pairofant at Might 6, plus Against the Odds at +2 for the one enemy unit there, assigns 8: this executes anything in their hand up to Might 8, and nothing above it.",
+          "IT IS A DEFENSIVE PAYOFF, NOT A POINT. 466.5 establishes Control only 'for a player if they didn't already control this Battlefield', and 811.1.b hides the card at a battlefield you control — so you are already the Controller and win the combat with no Conquer. What the line buys is their best card out of their hand and off the board for 0 Energy.",
+          "THE HIDDEN ROUTE IS THE CHEAP ONE AND 811.1.d.2 IS WHY IT AIMS ITSELF. Hidden for one rainbow, it is played later for 0 Energy, and 811.1.d.2 confines a hidden spell's targets to that battlefield — so 'Choose a battlefield' can only be the one you control and hid at, which is exactly where you want their body. The hand choice escapes the same clause under its own tail ('unless the ability explicitly restricts targeting in a way that makes this impossible'; the rules' worked example is Tideturner), since no card in a hand is at any battlefield. Played from hand instead, for 2 Energy + 1 Chaos Power, the battlefield is unrestricted.",
+          "THE RISK IS THEIR PLAY TRIGGER, AND IT IS REAL. 191.1 / 191.2 make them the player who plays it, so every 'When you play me' on the card you pull fires for THEM. Choose a big vanilla body over a small one with text. 'Ignoring any and all costs' is wider than 811.1.b's 'ignoring its base cost' and wider than 356.1.b.3's carve-out for optional additional costs, so no rider of theirs gets paid either.",
+          "THEY CANNOT REINFORCE. It is your turn: 144.1.b bars the Standard Move in a Closed State and 381 confines Activated Abilities to the controlling player's turn, so the pulled unit fights alone unless they hold a [Reaction] body. Against the Odds is itself [Reaction] (813.1.c.1), so you commit the +2 after seeing what landed.",
+          "055 IS THE FLOOR: 'When executing card text, do as much as you can, ignoring impossible instructions.' An empty hand, or a hand of no units, makes the Skewer a reveal and nothing else — it is never a blank, but it is never guaranteed either."
+        ]
+      },
+      "steps": [
+        "Play Towering Pairofant (6 Energy) and walk him to a battlefield you control.",
+        "Hide Bone Skewer face down at that battlefield for one rainbow Power (811.1.b). It gains [Reaction] from the following turn.",
+        "On a later turn of yours, play it face up for 0 Energy. Choose that battlefield (811.1.d.2 allows no other). Your opponent reveals their hand.",
+        "Choose the biggest unit in it. They play it to your battlefield, ignoring any and all costs, and it is [Stun]ned.",
+        "190.3.a.1 applies Contested through THEIR unit, so 464.2.c.1 makes them the Attacker. The next Cleanup stages the Combat (323.9) and opens it.",
+        "Inside the combat, play Against the Odds (2 Energy, [Reaction]) on the Pairofant: +2 Might for the one enemy unit there, taking him to 8.",
+        "465.2.c: they assign 0 (423.1.b); you assign 8 and 465.2.c.3 forces it in full onto the stunned body, which 423.1.c prices at its full printed Might. It dies; nothing of yours is scratched."
+      ],
+      "terminatesIn": "engine — one card of your choosing out of the opponent's hand and into the trash per Bone Skewer, three a game (103.2.b), with no damage taken and no point scored on either side",
+      "netPerIteration": "their best unit up to Might 8, removed from hand and killed, for 0 Energy on the turn (one rainbow paid a turn earlier) plus 2 Energy for Against the Odds",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' 423.1.c: 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might value to be killed.' 423.1.a.2: 'Stunned Units lose the Stunned status during step 3d of the end of turn cleanup.' 465.2.c: 'Starting with the Attacker, each player assigns an amount of damage equal to their summed Might among the other's Units.' 465.2.c.3: 'Units must have lethal damage assigned to them in full before damage is assigned to a different Unit.' 465.2.c.4: 'Units cannot have more damage assigned to them than the minimum required to constitute lethal damage unless no further units remain to have damage assigned to them.' 323.9: 'Mark a Combat as Staged at each Battlefield that Contested was applied to that have Units present controlled by opposing players.' 811.1.d.2: 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible.' 055: 'When executing card text, do as much as you can, ignoring impossible instructions.' 807.1.c: 'It is functionally short for \"While I am an attacker, I have +X [M].\"'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. UNL-139 Bone Skewer, UNL-008 Towering Pairofant and SFD-001 Against the Odds were ALL in ZERO entries. Card text verbatim from data/corpus_flat.txt; 055, 103.1.b.2, 103.2.b, 144.1.b, 190.3.a.1, 191.1, 191.2, 323.9, 356.1.b.3, 381, 423.1.a.2, 423.1.b, 423.1.c, 464.2.c.1, 465.2.c, 465.2.c.3, 465.2.c.4, 466.5, 807.1.c, 811.1.b, 811.1.d.2, 813.1.c.1 opened in the Core Rules file. Legend line built from cards.json. No unruled reading: every step is a printed permission or a quoted paragraph. The reusable half is the first two notables — 190.3.a.1's 'or being played to' is what makes an opponent the attacker on your turn, and a stun mutes a body without making it cheaper to kill."
+    },
+    {
+      "id": "harpoon-squad-pendulum-blade-boots-double-move-rider",
+      "name": "One [Ganking] move is both a departure and an arrival, so a departure rider and an arrival rider are paid by the same action",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-137",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 M4. 'When I move from a battlefield, give me +2 :rb_might: this turn.' The departure half. In zero entries before this walk."
+        },
+        {
+          "card": "VEN-011",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Fury gear, E3, M+1, [Equip] :rb_rune_fury:. '[Effect] When I move to a battlefield, give me +2 :rb_might: this turn.' The arrival half; 'I' in appended Effect Text is the CARRIER (136.2.d). In zero entries before this walk."
+        },
+        {
+          "card": "SFD-133",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "ATTACHED",
+          "note": "Chaos gear, E3, M+2, [Equip] :rb_rune_chaos:. '[Effect] [Ganking]'. The permission that makes one move be both events. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Fury, so five legend names (103.1.b.2): Loose Cannon (OGN-251), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Bloodharbor Ripper (UNL-185), Master of Shadows (VEN-143). OGS-017 is restricted in 2v2.",
+          "Two battlefields on the board, which 485.4 gives a Duel by default, and the Harpoon Squad standing at the one you control."
+        ],
+        "notable": [
+          "THE TWO RIDERS ARE NOT REDUNDANT, THEY ARE THE TWO ENDS OF ONE ACTION. 144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.' A base-to-battlefield move is only an arrival and pays the Blade alone; a battlefield-to-base move is only a departure and pays the Squad alone. Only the [Ganking] move is both, and it pays +4 for one exhaust. That is the whole reason the Boots are in the line rather than a cheaper body.",
+          "THE ARITHMETIC, WITH THE ENTRY'S OWN QUANTITIES. Base Might 4; 434.1.d ('The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it') adds the Blade's +1 and the Boots' +2 for a standing 7; the move adds +2 and +2 for 11 while attacking. Nothing here is a Buff counter — both riders read 'give me +2 :rb_might: this turn', a continuous modifier, so 702.3's one-buff-per-unit cap and 703's fixed +1 are both silent and the two instances stack.",
+          "'I' IS THE CARRIER AND THAT IS THE PARAGRAPH. 136.2.d: 'Effect Text may refer to \"this\" or to the name of the Attached game object that appended the Effect Text. Doing so refers to the Attached game object and not the Top-Most Card' — with Guardian Angel and Brutalizer as its worked examples. The Blade says 'I' and 'me', not 'this', so both refer to the Harpoon Squad; 718.3 is what appended the text in the first place.",
+          "IT REPEATS EVERY TURN AND EXACTLY ONCE A TURN. 144.2 makes the unit's exhaust the Standard Move's cost and 420.3.a puts that cost on the move alone, so it is one such move per turn; 415.3.a ('A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn') hands the exhaust back every Awaken. The +4 is not a one-off — it is the standing attack size.",
+          "PICK THE CARRIER ONCE. 818.1 makes [Equip] an Activated Ability with its own cost, and 718.2 ('While in this state, the card's printed Rules Text is Inactive') with 721.2 ('Inactive Abilities do not trigger, do not apply, and cannot be activated') means an already-attached Equipment can never pay its own [Equip] again. Moving either gear to another body needs an attach EFFECT, not a second activation.",
+          "A SECOND [GANKING] IS WORTH NOTHING. 810.2: 'Multiple instances of Ganking are redundant', and 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' So a second Boots, or any other Ganking grant, adds zero to this line — the Boots are bought for the permission, not for stacking.",
+          "THE COST OF LEAVING. If the Harpoon Squad is the sole garrison of the battlefield he departs, 323.6 strips your Control of it at the next Cleanup. The line trades a battlefield you hold for an attack you win, which is why it is a `conquer-engine` and not free tempo — and 466.5 with 466.5.d is what turns winning the combat at 11 Might into the Conquer."
+        ]
+      },
+      "steps": [
+        "Play Harpoon Squad (4 Energy) and walk him to the battlefield you control.",
+        "Play Boots of Swiftness (3 Energy) and Pendulum Blade (3 Energy), then [Equip] each to him: one Chaos rune and one Fury rune (818.1). He stands at Might 7 (434.1.d) with [Ganking].",
+        "In a later Main Phase, use his Standard Move battlefield-to-battlefield (144.4.c.1), paying his exhaust (144.2).",
+        "The departure fires his own trigger (+2) and the arrival fires the Blade's (+2). Both are 'this turn' modifiers and stack: Might 11.",
+        "190.3.a.1 applies Contested and 464.2.c.1 makes you the Attacker; 465.2.c reads Might 11 on your side of the damage step.",
+        "415.3.a readies him at your next Awakening and the whole thing repeats."
+      ],
+      "terminatesIn": "engine — an 11-Might attacker once every turn for two runes paid once, as long as there is a battlefield to leave; nothing here scores except the Conquer the combat itself produces (466.5.d)",
+      "netPerIteration": "+4 Might on the attack, every turn, for the unit's own exhaust and no further cards",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "144.2: 'Exhausting the Unit is the Cost for this action.' 144.4.c: 'Ganking is a unique ability that affects a Unit's Standard Move.' 144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.' 136.2.d: 'Effect Text may refer to \"this\" or to the name of the Attached game object that appended the Effect Text. Doing so refers to the Attached game object and not the Top-Most Card, even if the Top-Most Card shares a name with the Attached game object.' 434.1.d: 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it.' 718.2: 'While in this state, the card's printed Rules Text is Inactive.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 818.1: 'Equip is an Activated Ability keyword.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 810.2: 'Multiple instances of Ganking are redundant.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 420.3.a: 'The Cost is Exhausting one or more Units.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. SFD-137 Harpoon Squad, VEN-011 Pendulum Blade and SFD-133 Boots of Swiftness were ALL in ZERO entries; the Boots had been REFUSED once, by the #173 batch-3 walk, as a Maduli partner — correctly, since a unit that can never be readied cannot pay 144.2's exhaust. That refusal was scoped to its own lens and does not reach a carrier that readies normally. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 136.2.d, 144.2, 144.4.c, 144.4.c.1, 190.3.a.1, 323.6, 415.3.a, 420.3.a, 434.1.d, 464.2.c.1, 465.2.c, 466.5, 466.5.d, 485.4, 702.3, 703, 718.2, 718.3, 721.2, 810.1.c.3, 810.2, 818.1 opened in the Core Rules file. No unruled reading."
+    },
+    {
+      "id": "acceptable-losses-ravenbloom-prefect-gearless-gear-hate",
+      "name": "A symmetric wipe is one-sided if you own nothing it can take — 055 is the whole card, and a Gold token would arm the half you dodged",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-179",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos spell, E1, [Action]. 'Each player kills one of their gear.' The pool's only symmetric gear kill (swept: 'each player kills' returns exactly two rows, this and OGN-209 Cull the Weak). In zero entries before this walk."
+        },
+        {
+          "card": "VEN-102",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Chaos unit, E3 M3. 'When an opponent plays a gear, you may banish me to banish it.' The half the spell cannot reach: gear that has not landed yet. In zero entries before this walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155). OGS-017 is restricted in 2v2.",
+          "A DECKBUILDING CONSTRAINT, NOT A BOARD ONE: the list must run no gear of its own, including anything that mints a gear TOKEN."
+        ],
+        "notable": [
+          "055 IS THE WHOLE CARD: 'When executing card text, do as much as you can, ignoring impossible instructions.' A player who controls no gear simply ignores 'kill one of their gear' and the spell still resolves (055.1). So in a list that runs zero gear, the pool's only symmetric gear wipe is a ONE-SIDED gear kill for 1 Energy at [Action] speed. Nothing in the card does this; the deck does.",
+          "AND A GOLD TOKEN WOULD ARM THE HALF YOU DODGED. 185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified' — so a Gold gear token is gear for this instruction and is a legal thing for YOU to be made to kill. `UNL-145 Pyke, Returned` is Chaos, mints a Gold on an enemy death, and is therefore ANTI-synergic with this entry: adding him turns a one-sided removal spell into a trade. This is the positive half of the token rules biting the player who usually benefits from it, and it is easy to build by accident.",
+          "IT TARGETS NOTHING, AND THAT CUTS BOTH WAYS. 355.10.e: 'It is part of a set of objects chosen in whole or in part by other players', whose printed example is this exact shape — so 809.1.c's [Deflect] tax never charges and an absolute 'can't be chosen by enemy spells and abilities' clause (SFD-105 Ruin Runner) never engages, because nothing is chosen by you. The price is that the OPPONENT picks which of their gear dies, so it takes their worst Equipment when they have two and their best only when they have one.",
+          "THE PREFECT COVERS WHAT THE SPELL CANNOT, AND ITS COST IS PAID EARLY. 383.3.b: a cost 'immediately following the \"you may\"... that appears as the first part of the effect' is the Triggered Ability's base cost, and 383.3.b.1 requires it 'in order to finalize the Triggered Ability to the Chain' — so the Prefect is already banished when the trigger goes on the Chain, and 108.6.c makes both banishments the hard kind of removal.",
+          "BUT IT IS NOT A COUNTER, AND R26 IS WHY. The project's ruling on 'when you play a <card type>' triggers (R26 = B, issue #11) is that they fire as the played card RESOLVES, on the strength of the Core Rules example at 359.3.e.10, rather than above it on the Chain. So the gear lands, its own play trigger fires, and the Prefect then banishes the object. He answers PERSISTENT gear — Equipment, Seals, anything whose value is standing on the board — and does not answer gear that has already paid for itself on arrival. The entry does not depend on which way R26 falls: the gear is banished either way, only its play trigger differs.",
+          "SIZE OF THE PACKAGE, NAMED: 103.2.b gives three of each, so six pieces of gear removal, plus whatever the domain's targeted answers add (`VEN-003 Brittle Steel` is Fury, `OGN-022 Thermo Beam` and `SFD-005 Detonate` are Fury and already catalogued). Within mono-Chaos, these two ARE the answer to Equipment."
+        ]
+      },
+      "steps": [
+        "Build the list with no gear at all — no Equipment, and no card that mints a Gold or other gear token.",
+        "Play Ravenbloom Prefect (3 Energy) and leave him on the board as a standing threat: any gear the opponent plays can be answered by banishing him.",
+        "When they commit a gear you must answer immediately, pay the trigger's base cost — banish the Prefect (383.3.b, 383.3.b.1) — and the trigger banishes their gear (108.6.c).",
+        "For gear already on the board, play Acceptable Losses (1 Energy, [Action], so it also works inside a Showdown). 055 makes your half of the instruction impossible and therefore ignored; they must kill one of theirs.",
+        "Repeat: three copies of each (103.2.b)."
+      ],
+      "terminatesIn": "engine — up to six pieces of the opponent's gear removed across a game for 1 Energy a spell and one body, with nothing of yours lost; nothing here scores",
+      "netPerIteration": "one enemy gear killed or banished per card, for 1 Energy (the spell) or the Prefect's own body (the trigger)",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "055: 'When executing card text, do as much as you can, ignoring impossible instructions.' 055.1: 'If all of a card's instructions are impossible, it is still played and resolved, but nothing happens.' 185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified.' 355.10.e: 'It is part of a set of objects chosen in whole or in part by other players. e.g., \"Each player kills a unit they control\" does not target. Each player, including the one who played the spell, chooses a unit to kill as the spell or ability resolves.' 383.3.b: 'If a Triggered Ability contains a cost within instructions at the beginning of the effect or immediately following the \"you may\" or \"they may\" that appears as the first part of the effect, that cost is treated as the base cost of the Triggered Ability.' 383.3.b.1: 'The cost must be paid in order to finalize the Triggered Ability to the Chain.' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way, or a temporary space to hold cards while effects are being processed.'"
+        },
+        {
+          "title": "Rules readings R26, issue #11 (ruled 2026-09-04)",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. OGN-179 Acceptable Losses and VEN-102 Ravenbloom Prefect were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 055, 055.1, 103.1.b.1, 103.2.b, 108.6.c, 185.2.d, 355.10.e, 383.3.b, 383.3.b.1, 809.1.c opened in the Core Rules file. The 'only symmetric gear kill' claim was swept over the whole corpus and its members are named (OGN-179 and OGN-209 Cull the Weak are the only two 'each player kills' rows); NOTE for the next reader that a sweep written as `kills? ... gear` is required — a regex on the singular `kill` misses this card entirely, which is how it stayed out of the project's earlier gear-removal inventory. No unruled reading; R26 is cited as already ruled and the entry stands either way."
     }
   ]
 }
