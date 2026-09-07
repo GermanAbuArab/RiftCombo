@@ -50765,6 +50765,86 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #187, sub-rule lane 100-499). 359.3.f.3, 359.3.f.3.a and 359.3.f.3.b are cited by no entry and no synergy rule in this project, and 359.3.f.3's worked example names UNL-082 Lillia, Fae Fawn while 359.3.f.3.b's names UNL-050 Iascylla. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.2, 143.2.a, 144.4, 315.1.b, 359.3.f.3, 359.3.f.4, 381, 420.3.a, 449, 806.1.b, 816.1.b. REPORT TO THE MANAGER: 359.3.f.3 and 359.3.f.4 pull in OPPOSITE directions and the difference is where the information comes from, not when the ability resolves - information from the TRIGGER CONDITION is read when the condition is fulfilled (so Lillia's origin is locked and removal aimed at her changes nothing), while information from the ABILITY ITSELF such as 'enemy' and 'friendly' is read on EXECUTION (359.3.f.4, the Yasuo case this project already carries). And 359.3.f.3.b settles Iascylla's 'this battlefield': it refers to the battlefield she HELD, referenced from the trigger condition. Distinct from lillia-smoke-mirrors-sprite-relay (UNL-082 + UNL-083, four Sprites out of spells) and from the three Forgotten Signpost entries. Trap check: the Sprite is [Temporary] and never Holds; the Signpost needs a third body as its anchor and that is stated in prerequisites rather than hidden; one activation a turn; no unruled reading."
+    },
+    {
+      "id": "loyal-poro-deathgrip-kill-instruction-snapshot",
+      "name": "428.1.a.1.b snapshots a dying unit's location and attributes BEFORE the Kill Instruction completes - so Deathgrip's own requirement guarantees the Poro did not die alone",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-156",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E3 M3. '[Deathknell][>] If I didn't die alone, draw 1. (When I die, get the effect. I wasn't alone if there were other friendly units here.)' The condition is read from the board as it stood at the Kill Instruction, not after the body has left."
+        },
+        {
+          "card": "SFD-163",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, E2. '[Reaction] (Play any time, even before spells and abilities resolve.) Kill a friendly unit. If you do, give +:rb_might: equal to its Might to another friendly unit this turn. Draw 1.' Its own effect REQUIRES another friendly unit, which is what makes the Poro's condition self-satisfying."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.3 admits them under any legend with Order among its two domains - measured over data/cards.json those include OGN-253 / OGN-302 Hand of Noxus (fury/order), OGN-261 / OGN-306 Radiant Dawn (calm/order), OGN-265 / OGN-308 Herald of the Arcane (mind/order), OGN-269 / OGN-310 The Boss (body/order), SFD-197 / SFD-247 Emperor of the Sands (calm/order), SFD-201 / SFD-249 Chem-Baroness (mind/order), SFD-205 / SFD-251 Grand Duelist (body/order), UNL-203 / UNL-237 Keeper of the Hammer (body/order) and VEN-153 / VEN-196 Matriarch of War (body/order).",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "The Poro and the second body must be at the SAME location - 740.2.a defines alone as 'no other friendly units at the same location', and Loyal Poro's own reminder text says 'here'."
+        ],
+        "notable": [
+          "THE RULE, AND IT IS THE PRECISE PARAGRAPH FOR SOMETHING THIS PROJECT HAS BEEN SOURCING ELSEWHERE. 428.1.a.1.b: 'When a unit with a Deathknell or other ability that triggers on its own death is to be put in the Trash due to a Kill Instruction, it first has any such ability added to the chain as a Pending Item. NOTE THE UNIT'S LOCATION, ATTRIBUTES, AND OTHER RELEVANT INFORMATION to process those abilities when finalized before completing this Kill Instruction.' Riot's example is SFD-148 Draven, Audacious. 428.1.a, .a.1, .a.1.a, .a.1.b and .a.2 are cited by no entry and no synergy rule in this project.",
+          "AND IT SPLITS KILLING IN TWO, WHICH THE CATALOGUE USES IMPLICITLY AND NEVER STATES. 428.1.a.1: an ACTIVE Kill is 'when the action is taken when instructed by a game effect OR AS A COST for a card or ability' - so a kill paid as a cost is a Kill Instruction and gets the snapshot. 428.1.a.2: a PASSIVE Kill is 'as a result of Lethal Damage or as a consequence for any other state' - combat deaths and 143.2.a cleanup deaths, which are not Kill Instructions at all.",
+          "SO THE PORO'S CONDITION IS SELF-SATISFYING HERE, AND THAT IS THE ENTRY. Deathgrip's effect is 'give +Might equal to its Might to ANOTHER friendly unit' - the spell cannot do its job without a second friendly body, and 428.1.a.1.b notes the board BEFORE the Poro leaves it. 740.2.a's 'no other friendly units at the same location' is therefore false at the moment that matters, so 'If I didn't die alone' is satisfied by construction. Put the second body at the Poro's location and the draw is guaranteed rather than hoped for.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Two Energy, at [Reaction] speed (813.1.c.1, any Closed State on any player's turn): the Poro dies, its Deathknell draws 1, Deathgrip gives +3 Might (the Poro's Might) to the other body this turn, and Deathgrip itself draws 1. TWO CARDS AND +3 MIGHT FOR 2 ENERGY, and the +3 lands at instant speed inside a combat.",
+          "THE ORDER OF THE TWO DRAWS IS SETTLED AND WORTH KNOWING. 428.1.a.1.b puts the Deathknell on the chain as a Pending Item BEFORE the Kill Instruction completes, so it is finalized while Deathgrip is still resolving; 340.1 then resolves the newest finalized item first. Either way both draws happen - the point is that the Deathknell is not lost to the body reaching the trash first.",
+          "AND 359.3.e.14.b IS THE ONE THING THAT BREAKS IT. Deathgrip reads 'Kill a friendly unit. IF YOU DO, give +Might ...' - Riot uses that exact card to show that an 'if you do' rider 'directly references the game action', so if the Poro's death is REPLACED (a heal-exhaust-recall save), the +Might does not happen. The Deathknell does not happen either, because 808.1.d.1 removes it when the permanent never reaches the Trash. Do not point Deathgrip at a body you have shielded.",
+          "THE MIRROR CARD IS THE TRAP. SFD-036 Lonely Poro reads 'If I died ALONE, draw 1' - the same snapshot rule switches it OFF in exactly the board this line builds, and it is Calm rather than Order, so the two are not interchangeable even before the condition is read."
+        ]
+      },
+      "steps": [
+        "Play UNL-156 Loyal Poro (3 Energy) and a second friendly body to the same location - 740.2.a scopes 'alone' to the location, and the Poro's reminder text says 'here'.",
+        "At [Reaction] speed, play SFD-163 Deathgrip (2 Energy) choosing the Loyal Poro as the friendly unit to kill.",
+        "The kill is an ACTIVE Kill - 428.1.a.1 covers a kill instructed by a game effect - so 428.1.a.1.b applies: the Poro's Deathknell goes on the chain as a Pending Item and its location and attributes are noted BEFORE the Kill Instruction completes.",
+        "'If I didn't die alone' is read against that snapshot, with the second body still present. It is satisfied: draw 1.",
+        "Deathgrip's own linked instruction executes - the kill happened, not merely was attempted - giving the second body +3 Might this turn (the Poro's Might) and drawing 1.",
+        "Two cards and +3 Might for 2 Energy. Three copies of each (103.2.b).",
+        "Never aim Deathgrip at a body you have shielded: a heal-exhaust-recall replacement means the kill did not happen, so 359.3.e.14.b withholds the +Might and 808.1.d.1 removes the Deathknell."
+      ],
+      "netPerIteration": "two cards drawn and +3 Might placed at Reaction speed, for 2 Energy and a 3-Energy body you were spending anyway",
+      "terminatesIn": "engine only - nothing here scores. Three copies of each (103.2.b), and each use costs the Poro; the +3 Might expires at the end-of-turn Cleanup (317.2.c)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 428.1.a.1.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "When a unit with a Deathknell or other ability that triggers on its own death is to be put in the Trash due to a Kill Instruction, it first has any such ability added to the chain as a Pending Item. Note the unit’s location, attributes, and other relevant information to process those abilities when finalized before completing this Kill Instruction."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 428.1.a.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Active Kill is when the action is taken when instructed by a game effect or as a cost for a card or ability."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 428.1.a.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Passive Kill is when the action is taken as a result of Lethal Damage or as a consequence for any other state."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, sub-rule lane 100-499). 428.1.a, 428.1.a.1, 428.1.a.1.a, 428.1.a.1.b and 428.1.a.2 are cited by no entry and no synergy rule in this project, and 428.1.a.1.b's worked example names SFD-148 Draven, Audacious. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 317.2.c, 340.1, 359.3.e.14.b, 428.1.a.1, 428.1.a.1.b, 428.1.a.2, 740.2.a, 808.1.d.1, 813.1.c.1. REPORT TO THE MANAGER: two facts. (a) 428.1.a.1.b is the precise paragraph for something this project currently sources to 808.1.d.3 - a dying unit's LOCATION AND ATTRIBUTES are noted before the Kill Instruction completes, which is why a Deathknell can read where the body was and what was standing beside it. (b) 428.1.a.1 / 428.1.a.2 split killing into ACTIVE (a game effect's instruction OR A COST) and PASSIVE (lethal damage or another state) - the catalogue uses that distinction constantly and has never stated it, and the snapshot rule applies only to the ACTIVE half, so a combat death is a different mechanism. Distinct from cull-the-weak-loyal-poro, the only other entry using UNL-156, and from the two Deathgrip entries. Trap check: the mirror card SFD-036 Lonely Poro is switched OFF by this same board and is Calm rather than Order; a shielded target breaks both halves (359.3.e.14.b and 808.1.d.1) and the entry says so; no unruled reading."
     }
   ]
 }
