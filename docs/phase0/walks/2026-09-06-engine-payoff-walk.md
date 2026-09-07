@@ -1028,3 +1028,124 @@ already says to re-run the card-set check immediately before staging; it should 
     were overtaken — `VEN-138 Shen` (whole entry withdrawn), `SFD-168 + OGN-111 + OGN-293`
     (`heimerdinger-armory-plaza` landed as a subset of a merged entry) and `VEN-106 Wind and Ghosts`
     (corrected in place).
+
+---
+
+## 23. `yasuo-remorseful-svellsongur-nasus-conquer` — the repeatable bloodless conquer
+
+`svellsongur-yasuo-remorseful-sweep`'s own `terminatesIn` is *"engine — repeatable removal; it scores
+nothing except by clearing a garrison so the Conquer happens"*, and the card that pays for that Conquer
+was never named. It is Nasus, and mono-Calm, so the pairing costs **one card**.
+
+What separates it from the three `[Action]`-removal entries of §16 and §19: those spend a **card** per
+attack and 103.2.b caps them at three a game. Here the removal is a **permanent**. `383.4.e` fires an
+attack trigger when a unit *"gains the Attacker designation for the first time during a combat"*, and
+`464.2.c.3` places that designation in **step 1** of the Combat Showdown — so it resolves before
+`465.1` (step 2) asks whether both sides remain. The garrison is already dead, nothing is assigned in
+either direction, and it repeats every turn for no card and no Energy.
+
+Arithmetic stated rather than bought: Svellsongur **composes** (issue #45 — 434.1.c gives the Top-Most
+Card all the Effect Text of all attached cards, 477.2.c appends in Layer 2, 476.1 applies each effect
+once per sequence), so `v` copies give **2^v** instances, not `1 + v`. One copy is two instances at
+6 damage each (M+0 leaves Yasuo at 6), which clears a garrison of two; quantity 1 is chosen deliberately
+over the source entry's three. And `144.3` is what lets Nasus ride in free — multiple Standard Moves are
+**one game action** with a shared destination (144.3.a) and simultaneous exhaust costs (144.3.c), and
+`464.2.c.3` designates every unit of yours at the battlefield, so both conquer.
+
+This is also the honest close of #155's refusal 2, which I agree with as far as it goes: Tryndamere
+really is a threshold rather than a scale, and that is beside the point — a removal engine converts
+through the **Conquer**, and the bloodless conquer it produces is exactly what switches Tryndamere off.
+
+---
+
+## 24. The INFINITE × payoff lens, re-measured — #63's table is out of date
+
+Issue #63 priced the 12 INFINITE engines against the payoffs known on 2026-09-05 and reported, in §3.2,
+that **only 2 of 12** had a domain-legal point route connected in the `needs`/`produces` DAG. That number
+has moved twice since — once when #64 merged the orphan `infinite-recruits` feature into
+`token-body-engine`, and again tonight. **Re-measured rather than assumed**, by running
+`generateVariants` over the current catalogue and counting, per engine, the variants headed by a
+`BURST`, `CHAIN` or `ALT_WIN`:
+
+| | engines | with a connected scoring route |
+|---|---:|---:|
+| #63, 2026-09-05 | 12 | 2 |
+| current catalogue (333 entries) | 14 | **9** |
+| with this batch's entry | 14 | **11** |
+
+The five that measured zero before this batch, and what each one actually is:
+
+| engine | identity | verdict |
+|---|---|---|
+| `renata-mastermind-points` | mind/order | **not a gap** — it *is* the payoff (`produces: ability-points, win-the-game`) |
+| `renata-bubble-bot-ready` | mind | **not a gap** — same, an activation engine for Renata |
+| `jayce-mesmerize-renata` | mind | **not a gap** — same |
+| `threshold-reveler-infinite-energy` | **calm/fury** | **real gap → §24.1** |
+| `reveler-svellsongur-jhin-infinite-power` | **calm/fury** | **real gap → §24.1** |
+| `lady-luminosity-loop-comet` | mind/order | **real gap → refused in §24.2** |
+
+### 24.1 `reveler-loop-nasus-brambleback-conquer` (BURST, calm/fury)
+
+**Why Calm/Fury was starved, and it is structural rather than an oversight.** Every in-turn repeatable
+point ability in the pool is **Mind** — `SFD-088 Renata Glasc, Mastermind` is the only one at all (#63
+§2), `OGN-122 Time Warp` is Mind, `VEN-067 Bottled Constellation` is Mind. Everything else in the payoff
+inventory hangs on a **Hold** or a **Conquer**. And `315` puts the Hold in the Beginning Phase, which is
+*before* `316` — while `167` empties both pools at the end of the turn, so a loop's unbounded Energy
+exists **only in the Main Phase**. Therefore:
+
+> For a Calm/Fury loop, the **Conquer is the only window its Energy can be spent into.**
+
+`nasus-ascended-brambleback-conquer` (BURST, `needs: []`) is exactly that window and is already verified:
+`1 + N × (1 + K)` with N = 2 Empowered Nasus and K = 3 Red Bramblebacks is **nine points in one
+Conquer**, and Nasus is Calm while Red Brambleback is Fury. Nobody had connected it.
+
+Combo-turn ledger, item by item: two Nasus are on the board from an earlier turn (143.4 + 144.2 — he has
+no [Accelerate], so he cannot be played and moved the same turn); Empower both for 8 Energy each, which
+works on an exhausted body because the `[Empower]` cost carries no exhaust, and 441.2 makes it permanent;
+play three Red Bramblebacks paying `[Accelerate]` so they enter ready (143.4.a) at `3 × (4+1) = 15`
+Energy and `3 × (1+1) = 6` Fury Power; move all five in as one action (144.3). **31 Energy and 6 Fury
+Power on the combo turn**, all of it free out of the loop.
+
+`needs` is **`infinite-energy` alone, deliberately**: the 6 Fury Power fits inside the 12-rune ceiling
+(161.2.a, with 164.2.b carrying no exhaust so a rune tapped for Energy still pays Power). Declaring
+`infinite-power` as well would have connected only `reveler-svellsongur-jhin-infinite-power` and left
+`threshold-reveler-infinite-energy` — which produces Energy only — at zero routes again. Verified by
+re-running the measurement on the merged copy: **both** engines now show one route, and the zero-route
+count drops from six to four.
+
+Authored as a second entry over `nasus-ascended-brambleback-conquer`'s card set on the precedent the
+catalogue already set: `dragonstorm-brambleback-trinity-conquer` and `brambleback-trinity-skyfall-conquer`
+carry **identical** `uses` and are two entries because one declares `needs` and the other does not.
+
+### 24.2 REFUSED: `lady-luminosity-loop-comet` → any payoff
+
+Unbounded `repeatable-removal` in mind/order — one Falling Comet (6 damage) every four Energy passes,
+forever. It has no consumer and it should not have one, for a reason that is arithmetic:
+
+**Unbounded removal is worth exactly the same as bounded removal, because the thing it buys is capped.**
+Removal clears a garrison so that a Conquer can happen; `469.1` defines a Conquer as gaining Control of a
+battlefield *"they did not yet Score this turn"*, `470` caps Scoring at once per battlefield per turn,
+and `485.4` puts **two** battlefields on a Duel table. So the ceiling is **two conquers a turn** whether
+you fire one comet or a thousand — the third comet buys nothing, and the thousandth buys nothing. The
+same wall stops it reaching a Hold payoff: `315.2.b.2` Holds every battlefield you control once, in a
+phase that is over before the Main Phase where the loop runs.
+
+The engine is real and its entry is correct; what it produces simply is not a scoring resource. This is
+the same shape as #155's refusal of the whole `repeatable-removal` group, now demonstrated on the
+richest removal engine in the catalogue rather than argued from the payoff inventory.
+
+## 25. Facts for `CLAUDE.md`, continued
+
+18. **Every in-turn repeatable point ability in the pool is Mind**, and every other payoff hangs on a
+    Hold or a Conquer. Because `315` puts the Hold before `316` and `167` empties the pools at end of
+    turn, **a loop's unbounded Energy exists only in the Main Phase — so for a non-Mind loop the Conquer
+    is the only window it can be spent into.** That is why Calm/Fury had two INFINITE engines with zero
+    point routes until `nasus-ascended-brambleback-conquer`'s `1 + N × (1 + K)` was connected to them.
+19. **Unbounded removal is worth the same as bounded removal.** `469.1` + `470` + `485.4` cap a Duel at
+    two conquers a turn, so the third comet of `lady-luminosity-loop-comet` buys nothing. A
+    `repeatable-removal` engine converts through the Conquer, and the Conquer is capped — which is the
+    measured form of #155's refusal 2.
+20. **#63's §3.1 and §3.2 are superseded.** The `infinite-recruits` orphan was merged into
+    `token-body-engine` by #64, and the count of INFINITE engines with a connected domain-legal scoring
+    route went 2/12 → 9/14 → 11/14. Re-run the measurement (`generateVariants`, then filter variants
+    headed by BURST/CHAIN/ALT_WIN per engine) before citing that table again.
