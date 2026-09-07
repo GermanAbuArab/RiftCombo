@@ -1,4 +1,17 @@
-# The uncatalogued Calm / Mind / Order cards
+# The uncatalogued Calm / Mind cards
+
+> **Lane change, 2026-09-07, agreed with `rc-walk-uncat`.** This lane started as Calm + Mind + Order,
+> the biggest of the three. It is now **Calm and Mind, plus any multi-domain card that mixes Order with
+> Calm or Mind**; cards whose domains are **Order only** belong to `rc-walk-uncat`. Batch 1 below was
+> written and merged before the split and consumed five order-only cards — `VEN-129` Sacred Protector,
+> `VEN-117` Disciple of Shen, `VEN-134` Kayle, Justified, `VEN-130` Aurok General and `UNL-159` Soul
+> Harvest — which that lane's census now correctly excludes. Re-measured after the split, against the
+> catalogue at 495 entries: **99 walkable** — calm 57, mind 37, calm/mind 2, mind/order 2, calm/order 1.
+>
+> A caveat on the name+type correction below, added after the other lanes measured it: it is
+> **lane-specific, not a blanket discount.** `rc-walk-fam1` measured Fury/Body/Chaos at 158 by base code
+> and 158 by name+type — zero difference — and `rc-walk-uncat` found 0 of 64 battlefields sharing a name.
+> The multi-base names concentrate in runes, Seals, promos and legends. Measure per lane.
 
 Issue [#174](https://github.com/GermanAbuArab/RiftCombo/issues/174). Session `rc-walk-fam2`, 2026-09-07.
 
@@ -146,3 +159,94 @@ and the false positives a reader has to exclude.
 `validateCombos` over the merged copy: **0 errors / 471 entries**. The two `test/legend-lines.test.ts` checks
 replicated over the staged entries: 4 legend base codes checked, clean. No duplicate id and no duplicate
 sorted `uses[]` card set.
+
+---
+
+## 4. Batch 2 — five entries, all ten cards uncatalogued, and four paragraphs the project had never cited
+
+| id | cards | the rule it turns on |
+|---|---|---|
+| `zero-drive-riptide-rex-banish-recursion` | SFD-090 + OGN-092 ×3 | **719.5** / **718.2** / **323.4** — the pool's one route out of Banishment |
+| `hextech-anomaly-wind-wall-off-turn-counter` | SFD-083 + OGN-064 ×3 | **415.3.a** + **164.2.b** + **429.3** — Power is payable on the opponent's turn and Energy is not |
+| `gearhead-steraks-gage-double-bonus` | SFD-068 + SFD-056 | **137.3** / **477.3.d** / **718.4** — "base" Might Bonus is the printed number |
+| `not-so-fast-allay-deflect-tax-denial` | SFD-045 ×3 + UNL-041 | **425.1.c** / **425.1.c.1** — countering does not refund an additional cost |
+| `unchecked-power-whiteflame-one-sided-wipe` | OGN-123 + OGN-082 | **317.2.b** before **317.2.c** — the Cleanup heals at 3c and expires at 3d |
+
+### 4.1 The attachment paragraphs, cited here for the first time in the project
+
+`SFD-090 The Zero Drive` reads *"[Equip] … :rb_energy_3::rb_rune_mind:, Banish this: Play all units banished
+with this, ignoring their costs. (Use only if unattached.) [Effect] [Deathknell] — Banish me."* Three
+paragraphs make it work, and none of them had appeared in an entry:
+
+- **719.5** — *"When a Top-Most Card changes zones from a board zone to a non-board zone, all Attached cards
+  Detach from it, remaining in their current zones."* The carrier dying leaves the Drive on the board,
+  unattached, ready to be re-equipped or cashed. **719.5.a** lets the controller order the detaches.
+- **718.2** — *"While in this state, the card's printed Rules Text is Inactive."* This is the real reason the
+  banish ability cannot be used while attached; the printed *"(Use only if unattached.)"* restates a rule
+  rather than adding a restriction.
+- **323.4** — *"All Units that have Lethal Damage marked on them and that have Deathknell or other abilities
+  that trigger on their own death will trigger such abilities now, making note of their current location,
+  attributes, and other information relevant to add the trigger as a Pending Item"* — and only then does
+  **323.5** send the body to the trash. That is why the granted *"[Deathknell] — Banish me"* survives the
+  detach: the trigger is noted while the Drive is still on.
+
+**108.6.c** makes Banishment the hard-to-recover zone and the project's standing measurement is that nothing
+returns a card from it. The Zero Drive is its own exception. Its anti-synergy is exact and worth stating:
+**808.1.d.1** means any heal / exhaust / recall shield SAVES the carrier and therefore cancels the banish, so
+`OGN-077 Zhonya's Hourglass` — walked in batch 1 of this same lane — belongs in a different deck.
+
+### 4.2 Power is payable on the opponent's turn and Energy is not
+
+Three paragraphs in sequence:
+
+- **415.3.a** — *"A player Readies all non-spell Game Objects they Control during the Awakening Phase on
+  their turn"* — a rune exhausted on your turn is dead for the whole of theirs.
+- **164.2.a** is the exhaust-for-Energy ability; **164.2.b** is *"Recycle this: [Reaction] — [Add] one
+  Power"*, which carries **no exhaust**, so an already-exhausted rune still pays Power on their turn.
+- **167** — *"Every player's Rune Pool empties at the start of each player's Main Phase and the end of each
+  player's turn"* — nothing can be banked across the gap.
+
+So after a turn where you tapped out you have Power and no Energy, and most counters need both.
+`SFD-083 Hextech Anomaly` (*"Pay any amount of :rb_rune_rainbow: to [Add] that much Energy"*, Reaction, no cap
+per activation) is the general conversion — the project's only two previous answers, Dark Child's rune readies
+and a Gold token under Renata Glasc, Industrialist, each hand back a fixed amount. **429.3** is what makes it
+arrive in time: *"Activated abilities that Add resources and have the Reaction tag can be activated at any
+time that spells or abilities require resources be paid"*, i.e. inside the Pay Costs step, and **429.2.a**
+stops priority passing while it resolves.
+
+The Calm counter suite, with the condition each one carries, so the choice of Wind Wall is argued: `OGN-045`
+Defy (E1 + 1 Power, only against a spell costing ≤ 4 Energy and ≤ 1 Power), `VEN-039` Crumbling Sands
+(E1 + 1 Power, only if they have already played another spell this turn), `SFD-045` Not So Fast (E2 + 1 Power,
+only against something that chooses a friendly unit or gear), `UNL-190` Lilting Lullaby (Calm/Mind, E2 + 2
+Power) and `OGN-064` Wind Wall (E3 + 2 Power, unconditional).
+
+### 4.3 Countering does not refund an additional cost
+
+**809.1.c** makes [Deflect] *"an additional cost"* paid as the card is played; **425.1.c** — *"Countering does
+not refund any costs paid to play a card, activate an ability, or trigger an ability"* — with **425.1.c.1**,
+*"This includes additional costs."* So `UNL-041 Allay, Eager Admirer`'s board-wide grant and
+`SFD-045 Not So Fast` are one interaction, not two cards: they pay the tax and lose the card anyway.
+**425.1.b** adds that a countered card *"is not considered to have been played"*, so their play triggers fail
+too.
+
+Swept: `grep -inE "counter (a|an|enemy|target)"` returns **nine** counters, of which exactly **two** say
+*"or ability"* — `SFD-045` Not So Fast and `UNL-106` Repulse (mono-Body). An activated or triggered ability
+aimed at your board is otherwise unanswerable inside a Calm/Mind identity.
+
+The hole in both halves is the same paragraph: **355.10.d**, *"programmatically selected based on its
+characteristics rather than chosen"*, whose own example is *"Kill all units at battlefields"*. A sweeper pays
+no Deflect tax and cannot be countered by Not So Fast.
+
+### 4.4 The end-of-turn Cleanup heals BEFORE it expires
+
+**317.2.b** inserts *"3c. Heal all Units"* and **317.2.c** inserts *"3d. All \"this turn\" effects expire
+simultaneously"* — heal first, expire second. That single ordering is what lets a body pumped over a wipe
+survive losing the pump: at end of turn the Whiteflame Protector still has 12 damage marked against Might 16,
+3b kills nothing, 3c clears the damage, and only then does 3d take the +8 away. Reverse the two and it dies —
+which is precisely the failure **142.4.b**'s worked example describes (*"the unit's Might becomes 3, and it
+will have lethal damage marked on it"*).
+
+### 4.5 Batch 2 validation
+
+`validateCombos` over the merged copy: **0 errors / 506 entries**. Legend-line checks over the staged entries:
+12 legend base codes, clean. No duplicate id, no duplicate sorted `uses[]` card set.
