@@ -45315,6 +45315,176 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. SFD-182 Danger Zone and OGN-016 Dangerous Duo were both in ZERO entries; SFD-181 Mechanized Menace appears in `mechanized-menace-breakneck-mech-token-keywords` (SFD-181 + SFD-071 + SFD-021), which is about granting keywords to tokens — this entry is the pump side and states the number at which a mass pump beats a single-target one. Card text verbatim from data/corpus_flat.txt; 103.2.b, 103.2.d.1, 103.2.d.2, 143.2.a, 187.4, 702.3, 703, 812.1.c, 812.2, 813.1.c.1, 814.1.b.3, 814.1.c, 814.2, 820.1.b, 820.1.c.2, 820.1.c.3 opened in the Core Rules file. Syndra, Transcendent as a route to a third execution is recorded as a LEAD in a notable rather than folded into uses[], since it would make this a four-card line."
+    },
+    {
+      "id": "dragons-rage-discipline-reflexive-double-kill",
+      "name": "\"Then do this:\" is a SEPARATE chain item, so there is a priority window between Dragon's Rage's move and its mutual kill - and that is where the pump goes",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-258",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm/Body SIGNATURE spell, E4 P1, tagged Lee Sin. 'Move an enemy unit. Then do this: Choose another enemy unit at its destination. They deal damage equal to their Mights to each other.' In ZERO entries before this one. Being Signature, 103.2.d.2 forces the legend."
+        },
+        {
+          "card": "OGN-058",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E2. '[Reaction] (Play any time, even before spells and abilities resolve.) Give a unit +2 :rb_might: this turn. Draw 1.' It says 'a unit', not 'a friendly unit', so it legally pumps an ENEMY body - which is the whole point here - and it cantrips."
+        },
+        {
+          "card": "OGN-257",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Body legend, tagged Lee Sin - the only legend that can hold Dragon's Rage under 103.2.d.2. ':rb_energy_1:, :rb_exhaust:: Buff a friendly unit.' His own buff is friendly-only and so is not the pump this line needs; he is here because the Signature card names him."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "OGN-258 Dragon's Rage is a Signature card tagged Lee Sin, so 103.2.d.2 forces the legend to a Lee Sin legend. Measured over data/cards.json there is exactly ONE name and two base codes: OGN-257 / OGN-304 Blind Monk (Calm/Body). This is a one-legend field.",
+          "Discipline is mono-Calm and Dragon's Rage is Calm/Body, both inside the Blind Monk's two domains (103.1.b.2). Discipline is not a Signature card (checked against data/cards.json).",
+          "Neither spell is banned or restricted in either format. 103.2.d.1 leaves room: Dragon's Rage is one of the at most three Signature cards.",
+          "The line needs two enemy units whose Mights are within 2 of each other after the pump, and a legal destination for the moved one that the other already occupies."
+        ],
+        "notable": [
+          "THE FINDING: \"THEN DO THIS:\" IS A SEPARATE CHAIN ITEM. 387.1 - 'Reflexive Triggers can be recognized by the phrase \"Do this:\" or \"Do one of the following:\"' - and 388.1 - 'A new ability is created and added to the chain as a Pending Item.' Eight cards in the pool print the phrase (OGN-258, SFD-024, SFD-154, SFD-198, UNL-081, UNL-139, UNL-199, UNL-200) and rules 386-388 are cited by no entry and no synergy rule in this project.",
+          "AND THAT MEANS A FULL PRIORITY WINDOW BETWEEN THE HALVES. 336.1 puts the new item through the same FEPR process; 337.1 finalizes it, which is where 'another enemy unit at its destination' is chosen; and 337.4 then says 'If, after finalizing the Chain Item, there are no more items on the chain to be Finalized, the controller of the next item on the chain gains Priority. Move to step 2: Execute.' 338.1.a admits a legally timed [Reaction] there. So the move has already resolved, the pair is already locked in, and BOTH players may act before the damage.",
+          "WHICH IS EXACTLY WHERE DISCIPLINE GOES. The mutual damage is read at execution (359.3.f.2, whose worked example is Yasuo, Remorseful), so a +2 placed in the window is in the number. Their Might 6 and their Might 4: move the 4 next to the 6, let the reflexive item finalize on that pair, then Discipline the FOUR to 6. Each now deals 6 to the other and 143.2.a kills both. Pumping before Dragon's Rage instead would telegraph it while the pair is still unchosen; pumping after is a two-for-one they cannot un-choose.",
+          "IT IS UNIT DAMAGE, NOT SPELL DAMAGE, AND THAT MATTERS TWICE. 417.6.b.3 - 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it' - with Challenge as its own worked example. So OGN-145 Unyielding Spirit's blanket 'prevent all spell and ability damage this turn' leaves this working, and 815.1's [Tank] ordering never applies because it is scoped to the combat damage step. 465.2.c.4's minimum-lethal cap does not apply either: each unit deals its whole Might.",
+          "AND HALF OF IT IS THEIRS. 417.6.b.4 makes 'the controller of the source of a Deal action responsible for that Deal action', so the OPPONENT is the one dealing the damage their own unit deals - their 'when you deal damage' triggers fire, and any payoff they have for it pays them. State it and price it; it is the standing caveat on the whole mutual-damage family.",
+          "[DEFLECT] IS PAID TWICE AND IS THE REAL COST. 809.1.c charges an extra rainbow 'for each time they choose', and Dragon's Rage chooses the moved unit AND the second unit, while Discipline chooses a third time. Against a garrison with Hexdrinker or Pouty Poro this is three rainbows on top of the printed costs. 355.10.d is no help - both choices here are chosen, not programmatically selected.",
+          "THE MOVE HALF IS A REAL EVACUATION. 449 has spells cause Moves and 447.2 governs destinations, so Dragon's Rage can pull a body off a battlefield the opponent controls; if it was their last one there, 323.6 strips their Control at the next Cleanup. That is a second, independent use of the card and it is why it is worth three copies (103.2.b) even in hands where the pairing is not there.",
+          "387.1.a IS DEAD LETTER IN THIS POOL. It reads \"'Do this' can be followed by 'N times.' The Reflexive Trigger will thus be added to the chain N times when its condition is met\" - and no card in the pool prints it; all eight rows are a bare 'Then do this:'. Recorded so nobody hunts for a reflexive multiplier."
+        ]
+      },
+      "steps": [
+        "Run OGN-257 (or OGN-304) Blind Monk as your legend - forced by Dragon's Rage's Lee Sin tag under 103.2.d.2 - and hold OGN-058 Discipline up at [Reaction] speed.",
+        "Pick two enemy units within 2 Might of each other after a pump: say a Might 6 and a Might 4, the Might 4 somewhere the Might 6 is not.",
+        "Play OGN-258 Dragon's Rage (4 Energy + 1 Power). Its first clause resolves: move the Might 4 enemy unit to the battlefield where the Might 6 stands (449, 447.2).",
+        "387.1 / 388.1 put the second clause on the Chain as a NEW Pending Item. 337.1 finalizes it and you choose the Might 6 as 'another enemy unit at its destination'.",
+        "337.4 hands out Priority and 338.1.a opens the window. Play OGN-058 Discipline (2 Energy) on the ENEMY Might 4 body - the card says 'a unit', not 'a friendly unit' - taking it to 6, and draw 1.",
+        "The reflexive item resolves. Each deals damage equal to its Might to the other: 6 into a Might 6 body, both ways. 143.2.a kills both. 417.6.b.4 credits the damage their unit dealt to them.",
+        "Three copies of each (103.2.b) are three such exchanges; where the pairing is absent, Dragon's Rage is still an evacuation that can strip a battlefield's Control under 323.6."
+      ],
+      "netPerIteration": "two enemy bodies for one Signature spell plus a cantrip, with the pump placed after the pair is locked in",
+      "terminatesIn": "engine only - nothing here scores. Three copies of each spell (103.2.b), and every use needs two enemy bodies within 2 Might of each other after the pump; the [Deflect] tax is paid up to three times",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 387.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Reflexive Triggers can be recognized by the phrase “Do this:” or “Do one of the following:”."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 388.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A new ability is created and added to the chain as a Pending Item."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 337.4",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If, after finalizing the Chain Item, there are no more items on the chain to be Finalized, the controller of the next item on the chain gains Priority. Move to step 2: Execute."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 386-388 Reflexive Triggers). Rules 386, 387 and 388 are cited by no entry and no synergy rule, and OGN-258 Dragon's Rage was in ZERO entries. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.1, 103.2.d.2, 143.2.a, 323.6, 336.1, 337.1, 337.4, 338.1.a, 355.10.d, 359.3.f.2, 387.1, 387.1.a, 388.1, 417.6.b.3, 417.6.b.4, 447.2, 449, 465.2.c.4, 809.1.c, 815.1. REPORT TO THE MANAGER: 386-388 makes every 'Then do this:' card in the pool resolve as TWO chain items with a full priority window in between, which touches eight cards, several of them heavily catalogued (UNL-081 Keeper of Masks, UNL-199 Deceiver, UNL-200 Mirror Image, SFD-024 Rell, SFD-198 Arise!, SFD-154 Guards!). The legend field is ONE NAME because Dragon's Rage is Signature: OGN-257 / OGN-304 Blind Monk. Trap check: the pump must target an ENEMY unit, which Discipline's wording allows; the damage is unit damage so no Tank ordering and no minimum-lethal cap; half the exchange is credited to the opponent under 417.6.b.4 and the entry says so; [Deflect] is paid per choice; no unruled reading."
+    },
+    {
+      "id": "mystic-reversal-charm-free-reaim",
+      "name": "755 ignores every cost a re-aim incurs, so a stolen spell walks past [Deflect] for free - and 753.1 is why it still cannot touch a \"can't be chosen\" body",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-080",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E4 P3. '[Reaction] (Play any time, even before spells and abilities resolve.) Gain control of a spell. You may make new choices for it.' In ZERO entries before this one, and the pool's only unconditional version of the effect - VEN-152 Rebuttal charges a rainbow for the same clause and is a Signature card."
+        },
+        {
+          "card": "OGN-043",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E1 P1. 'Move an enemy unit.' Two remakeable choices in one Energy - the unit and its destination - which is exactly the pair 752.1 allows to be remade."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both spells are mono-Calm, so 103.1.b.3 admits them under any legend with Calm among its two domains - measured over data/cards.json those include OGN-257 / OGN-304 Blind Monk (calm/body), OGN-261 / OGN-306 Radiant Dawn (calm/order), SFD-197 / SFD-247 Emperor of the Sands (calm/order), UNL-195 / UNL-233 Green Father (calm/order), VEN-139 / VEN-189 Rogue Assassin (calm/fury) and VEN-147 / VEN-193 Eye of Twilight (calm/order).",
+          "Neither is a Signature card (checked against data/cards.json), so 103.2.d.2 imposes no legend, and neither is banned or restricted in either format.",
+          "Mystic Reversal is [Reaction] and costs 4 Energy + 3 Power, which has to be live on the turn you use it: 415.3.a readies runes only in your own Awakening, so the Energy must come from runes deliberately held, while 164.2.b (no exhaust in its cost) still pays Power off already-tapped runes."
+        ],
+        "notable": [
+          "THE FINDING, AND IT IS THE OPPOSITE OF THE OBVIOUS READING. 755: 'Any costs “to play” the spell or ability that are incurred as a result of new choices made in this way are ignored', with 755.1 spelling out why - 'The spell or ability is already played and its costs paid.' So re-aiming a spell at a [Deflect] body costs NOTHING. 809.1.c prices Deflect as an additional cost 'to play' charged for each time an opponent chooses the unit; a new choice made under 750-755 is not a play, so the tax never lands. Rules 750 through 755 are cited by no entry and no synergy rule in this project.",
+          "BUT A PROHIBITION IS NOT A TAX, AND 753.1 IS WHERE THEY SEPARATE. 753.1: 'A player may not make new choices this way that would be illegal or that would lead to an illegal state, even if there are no other options.' SFD-105 Ruin Runner's \"I can't be chosen by enemy spells and abilities\" is absolute under 054.1, so re-aiming at it is an illegal choice and 753.1 forbids it outright. This is the [Deflect]-tax versus can't-be-chosen-prohibition split, met from a third direction: 755 erases the tax and leaves the prohibition standing.",
+          "WHAT MAY BE REMADE IS A CLOSED LIST. 752.1: 'The relevant choices that can be remade for these Game Effects are locations to be played to, modes, destinations, and targets.' Charm has two of the four in one Energy. And 752.2 closes the door on the rest: 'This does not refer to any choices made “as you play this” or “as I am played,” or any choices made for Optional Additional Costs' - so a [Repeat] cost's choices, an [Empower] payment and every 'as you play this' rider are frozen. 751.1 also requires the new choice to be one 'that were previously not being chosen', so something must actually change.",
+          "THE REAL PURCHASE IS ORDER, NOT COST. Mystic Reversal is [Reaction] (813.1.c.1), so the sequence is: cast Charm at a safe target, let the opponent commit their answer, then take Charm back and re-aim it knowing what they held. That converts a Main-Phase spell into one whose target is chosen after their response - and 754 keeps it honest: 'If, as a result of new choices, the spell or ability targets a Game Object it previously did not target, any Targeting Effects of that Game Object will trigger as appropriate at that time', so a Targeting Effect on the new victim still fires.",
+          "AND THE EVACUATION IS WHY CHARM IS THE PARTNER. 449 has spells cause Moves; pulling an opponent's last body off a battlefield they control makes 323.6 strip that Control at the next Cleanup - 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there' - and a body of yours walking in during your Main Phase (144.4.a) then Contests it (450), opens a Showdown (323.8 / 323.12) and Conquers under 348.2.a / 348.2.a.1. The catalogue already walks that chain in charm-evacuate-conquer; what this entry adds is that the Deflect tax on the evacuation can be dodged entirely.",
+          "IT WORKS ON THEIR SPELLS TOO, AND THAT IS THE BIGGER USE. 'Gain control of a spell' names no controller, and 191.1 / 191.2 make the player who now controls it the one who plays it; 056 / 056.2 send the card to its OWNER's trash afterwards, so you do not keep it. Their removal, re-aimed at their own best body, past its Deflect, for free. It is not in uses[] because it depends on their deck, and this entry prices only the half you can build.",
+          "THE PRICE IS REAL AND THE ENTRY DOES NOT HIDE IT. 4 Energy and 3 Power to re-aim a 1 Energy spell is a bad exchange on its own; what you are buying is the timing (after their answer) and the Deflect immunity, and it is worth it only against a garrison that is actually taxed. Three copies each (103.2.b)."
+        ]
+      },
+      "steps": [
+        "Hold OGN-080 Mystic Reversal (4 Energy + 3 Power) at [Reaction] speed; 164.2.b pays the Power off runes already tapped for Energy, but the 4 Energy needs runes held ready through your own turn (415.3.a).",
+        "Play OGN-043 Charm (1 Energy + 1 Power) choosing an enemy unit that carries no [Deflect] - a cheap, untaxed choice - and a destination.",
+        "Let the opponent respond. Whatever they commit is now known.",
+        "Play Mystic Reversal in reaction: gain control of your own Charm and make new choices for it (750, 751.1 - at least one choice must change).",
+        "Re-aim it at the [Deflect] body you actually wanted. 755 ignores the extra rainbow 809.1.c would have charged, because the spell 'is already played and its costs paid' (755.1). 754 still fires any Targeting Effect on the new victim.",
+        "Choose the new destination too - 752.1 allows destinations as well as targets - pulling the opponent's last body off a battlefield they control.",
+        "At the next Cleanup 323.6 strips their Control. Walk a body in during your Main Phase (144.4.a), Contested applies (450), a Showdown opens (323.8 / 323.12) and 348.2.a / 348.2.a.1 give you the Conquer.",
+        "Never re-aim at a body printing \"can't be chosen\": 753.1 makes that an illegal new choice even when there is no other option."
+      ],
+      "netPerIteration": "one evacuation re-aimed after the opponent's answer, with the [Deflect] tax on the new target reduced to zero",
+      "terminatesIn": "engine only - the Conquer it enables is capped by 470 at one Score per battlefield per turn and by 485.4 at two battlefields in a Duel; three copies of each spell (103.2.b) and nothing here loops",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 755",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Any costs “to play” the spell or ability that are incurred as a result of new choices made in this way are ignored."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 752.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The relevant choices that can be remade for these Game Effects are locations to be played to, modes, destinations, and targets."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 753.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A player may not make new choices this way that would be illegal or that would lead to an illegal state, even if there are no other options."
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, uncited-rules-blocks slice: 750-755 Making New Choices). Rules 750 through 755 are cited by no entry and no synergy rule in this project, and OGN-080 Mystic Reversal was in ZERO entries. The pool has exactly TWO cards with the 'make new choices' clause, swept on the corpus: OGN-080 Mystic Reversal (Calm, unconditional) and VEN-152 Rebuttal (Mind/Chaos, Signature, tagged Mel, charges a rainbow for the same clause). Card text verbatim from data/corpus_flat.txt. Citations opened: 054.1, 056, 056.2, 103.1.b.3, 103.2.b, 103.2.d.2, 144.4.a, 164.2.b, 191.1, 191.2, 323.6, 323.8, 323.12, 348.2.a, 348.2.a.1, 415.3.a, 449, 450, 470, 485.4, 751.1, 752.1, 752.2, 753.1, 754, 755, 755.1, 809.1.c, 813.1.c.1. REPORT TO THE MANAGER: 755 is the third and cleanest place the [Deflect]-is-a-TAX versus can't-be-chosen-is-a-PROHIBITION split shows up - a re-aim ignores every cost it incurs (755) but is still barred from an illegal choice (753.1). And 752.2 freezes 'as you play this' choices and Optional Additional Costs, so a [Repeat] or an [Empower] payment can never be remade. Distinct from charm-evacuate-conquer and charm-nasus-evacuation-conquer, neither of which uses Mystic Reversal or cites 750-755. Trap check: 751.1 requires at least one changed choice; the Energy must be banked because 415.3.a refunds exhausts only at your own Awaken; the entry states plainly that 4 Energy + 3 Power to re-aim a 1 Energy spell buys timing and Deflect immunity, not value; no unruled reading."
     }
   ]
 }
