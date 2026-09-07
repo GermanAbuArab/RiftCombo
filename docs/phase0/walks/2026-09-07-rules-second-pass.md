@@ -407,7 +407,119 @@ arithmetic in a wider legend field and is recorded as a note inside the entry, n
 
 ---
 
-## 11. Back-links for `data/synergies.json` (`rule id -> entry id`)
+
+## 11. `startipped-peak-rune-ramp` (OGN-288) — a REFUSAL, twice recorded, that its own two partners reverse
+
+`docs/phase0/walks/2026-09-06-orphan-synergy-rules.md` §30 refuses this rule, and #102 refused it
+before that. The argument is airtight as far as it goes:
+
+> the Hold fires at 315.2.b.2, **Awaken (315.1) has already finished**, so 315.1.b cannot ready the
+> channelled rune; and 164.2.b's Power would land in the Beginning Phase only for 167 to empty the
+> pool at the start of the Main Phase. *"The Peak's whole product is one extra rune, available as
+> Energy from the following turn."*
+
+**Every word is true and none of it bites on the rule's own two partners**, which the earlier walk
+never opened:
+
+| card | domain | the clause |
+|---|---|---|
+| `VEN-032` Frostcoat Mother | Calm | `[Empower]` 12 Energy. **This ability costs 1 Energy less for each rune you control.** |
+| `VEN-050` Grumpy Rockbear | Mind | the same clause, a different Empowered body |
+
+**"Runes you CONTROL" is a count, not a payment.** An exhausted rune on the board is a rune you
+control. The Peak's extra rune is worth its full 1 Energy of discount the instant it is channelled,
+on the same turn, with nothing readied and nothing spent. The refusal was a verdict about MANA, and
+the partners do not want mana.
+
+### 11.1 And the discount is what makes the refill matter
+
+161.2.a fixes the Rune Deck at *"Exactly 12 Rune cards"*, so the count tops out at 12 and 356.6 floors
+the cost at 0. 315.3.b channels 2 a turn, so an untouched deck reaches 12 on turn six. What the Peak
+really sells is not the one turn of acceleration but the **refill**: 164.2.b recycles a rune for
+Power and 161.2.b sends it *"to the Rune Deck, not the Main Deck"*, so **every Power you pay removes a
+rune from the board and puts 1 Energy back onto the [Empower] cost.** A deck paying 3 Power a turn is
+sliding backwards down its own discount; the Peak's Hold is the only free repeating refill in the
+pool.
+
+Entry: `startipped-peak-rune-count-empower`. All three cards were in zero entries.
+`prerequisites.notable` carries the battlefield caveat the project requires: 485.5 selects one of the
+three at random.
+
+**The lesson, which is the project's own in a new shape: a refusal is scoped to the reason that was
+given.** #59's Garbage Grabber verdict fell the same way. Before treating a recorded refusal as
+general, check whether the partner list was read at all.
+
+---
+
+## 12. The two `buffed-payoff` rules — one entry and one refusal, on the same two partners
+
+`peak-guardian-buffed-payoff` (anchor `OGN-223`) and `wizened-elder-buffed-payoff` (anchor `OGN-207`
+Call to Glory) point at the **same** two cards — `OGN-065` Wizened Elder (*"While I'm buffed, I have
+an additional +1 Might"*) and `OGN-125` Bilgewater Bully (*"While I'm buffed, I have [Ganking]"*), the
+pool's only two `While I'm buffed` statics. They resolve in opposite directions.
+
+**`peak-guardian-buffed-payoff` → an entry.** Peak Guardian *"buff me. Then, if I am at a battlefield,
+buff all other friendly units there"* places a counter and never touches it again. 702.2.a: *"That
+Unit is Buffed for as long as the buff remains on it."* Entry:
+`peak-guardian-bilgewater-bully-ganking-buff` (Body/Order). It cannot take BOTH statics — Wizened
+Elder is Calm and Calm + Body + Order is three domains (103.1.b) — which is exactly what separates it
+from the catalogued `blind-monk-wizened-elder-bilgewater-bully`, whose Calm/Body legend takes both
+and whose identity this one is illegal in.
+
+**`wizened-elder-buffed-payoff` → REFUSED, on 702.2.b.** Call to Glory reads *"As you play this, you
+may spend a buff as an additional cost. If you do, ignore this spell's cost."* Its free mode is a
+**spend**, and 702.2.b — *"Spending a Buff removes a single Buff counter from a Unit"* — is precisely
+what switches both statics off. The rule's anchor turns its own partners off in the mode that makes
+it worth playing; paid at full price it is an ordinary +3 Might spell and no pairing at all. Recorded
+rather than built.
+
+(702.3's one-buff cap is stated in the entry **with its one printed exception attached**, per the
+project's standing rule: `OGN-078` Lee Sin, Ascetic prints *"I can have any number of buffs"* and
+rule 002 makes card text beat rules text. He is Calm, so he is outside this identity.)
+
+---
+
+## 13. `shadow-watcher-temporary-death-window` (UNL-048) — a condition ordinary play cannot meet
+
+`UNL-037` Shadow Watcher (Calm, E4 + 1 Power, M5, in zero entries): *"If a friendly unit died during
+your Beginning Phase this turn, I enter ready."*
+
+**Nothing in ordinary play meets that.** 315.1 Awaken and 315.2 Beginning Phase both precede 316's
+Main Phase, so no card you cast that turn can cause it, and combat is a Main Phase event. The only
+repeatable cause in the pool is a `[Temporary]` body, whose 816.1.b is *"functionally short for 'At
+the start of this permanent's controller's Beginning Phase, **before scoring**, kill this'"* — exactly
+that window. `UNL-048` Trevor Snoozebottom makes a fresh one on every Hold, so the death is a
+**schedule** rather than a coincidence.
+
+What it buys is precisely one thing, and the entry says so: 143.4.a lets 143.4's default be altered,
+but *"enters ready"* is not a ready (415.1, and #56's sweep), so the payoff is that a M5 body can pay
+144.2's exhaust for a Standard Move **on the turn it is cast** and Conquer an open battlefield the
+same Main Phase. Entry: `trevor-shadow-watcher-scheduled-death-ready`, mono-Calm.
+
+---
+
+## 14. `sky-splitter-might-discount` (OGN-014) — no entry; the arithmetic is already catalogued
+
+*"This spell's Energy cost is reduced by the highest Might among units you control."* All ten partners
+do the same thing — present a big number — and `sky-splitter-volibear-free-removal` already prices the
+family exactly, down to the floor: 356.6 (*"Energy and Power costs can't be reduced below 0"*) takes
+the Energy to nothing on any board with a 8+ Might body, and the 1 Fury Power is all that is left to
+pay. `OGN-082` Whiteflame Protector (+8 Might this turn), `UNL-027` Inviolus Vox (M8) and `VEN-043`
+Steel Paws (M0 with an [Empower] to M7) reach the same zero by different routes. Same arithmetic on a
+slightly different card is a note, not an entry.
+
+## 15. `windswept-hillock-move-triggers` (OGN-297) — still narrowed, and no partner changes it
+
+Re-checked against all 28 partners. The #153 narrowing stands on 810.1.c.3 — *"It does not give
+additional abilities or activations of Movement, only new options for the Standard Move"* — and none
+of the 28 supplies a second move; they are all *"when I move"* payoffs, and 144.2's exhaust still
+allows one Standard Move a turn. In a Duel (485.4) the grant is worth exactly one alternative
+destination per unit standing there, and 485.5 does not guarantee the Hillock is even on the table.
+`sett-first-mate-windswept-hillock` already banks that, off a ready rather than off the Hillock.
+
+---
+
+## 16. Back-links for `data/synergies.json` (`rule id -> entry id`)
 
 This walk does not edit `data/synergies.json`. The pairs below are for the synergies session.
 
@@ -434,9 +546,23 @@ shurelyas-requiem-ganking-second-move -> shurelya-gustwalker-hunt-bootstrap
 chem-baroness-gold-ramp               -> chem-baroness-gold-banked-across-the-threshold
 green-father-brush-four-tags          -> green-father-brush-ultrasoft-poro-birds
 jae-medarda-chosen-by-spell           -> jae-medarda-repeat-double-choose
+startipped-peak-rune-ramp             -> startipped-peak-rune-count-empower
+peak-guardian-buffed-payoff           -> peak-guardian-bilgewater-bully-ganking-buff
+shadow-watcher-temporary-death-window -> trevor-shadow-watcher-scheduled-death-ready
 ```
 
-## 12. Reported to the manager, not fixed here
+Still with no entry after this pass, by decision:
+
+```
+wizened-elder-buffed-payoff    REFUSED  — its anchor (Call to Glory) SPENDS the buff in the mode
+                                          worth playing, and 702.2.b removes the counter both its
+                                          partners key on. See section 12.
+sky-splitter-might-discount    NO ENTRY — all ten partners are the same arithmetic that
+                                          sky-splitter-volibear-free-removal already prices. Section 14.
+windswept-hillock-move-triggers NARROWED — 810.1.c.3; no partner supplies a second move. Section 15.
+```
+
+## 17. Reported to the manager, not fixed here
 
 - `master-of-shadows-banish-rummage` carries a **false uniqueness claim in its own name** — see §3.
   Three cards print the Shadow Clone token and its attack-triggered banish; one of them is the entry's
