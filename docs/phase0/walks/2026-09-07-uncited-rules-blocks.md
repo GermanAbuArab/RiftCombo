@@ -1046,3 +1046,55 @@ Voidreaver`. `test/legend-lines.test.ts` would **not** have caught it — it che
 the base code happens to exist. The only thing that catches it is running the census. This is the
 project's standing rule meeting its own failure mode: **the entries whose legend list was RUN are right;
 the ones TYPED are wrong.**
+
+---
+
+# Batch 12 — delayed abilities that are never generated, and where a trigger reads its information
+
+Batch 11's two entries were merged (catalogue at 697). Both entries below are inside the 100–499 lane.
+
+| id | sub-rule opened | class |
+|---|---|---|
+| `targons-peak-defy-delayed-ready` | **359.3.e.15 / .e.16** delayed abilities | ENGINE |
+| `lillia-fae-fawn-signpost-sprite-at-the-origin` | **359.3.f.3 / .f.3.a / .f.3.b** referents | ENGINE |
+
+`validateCombos`: **0 errors, 699 entries.** `test/legend-lines.test.ts`: 14 legend base codes, **0 defects.**
+The Calm/Mind legend list in the second entry was **run** against `cards.json` before staging, not typed —
+it matches the census exactly (OGN-255, OGN-303, SFD-189, SFD-244, UNL-189, UNL-230, VEN-145, VEN-192).
+
+## 41. 359.3.e.16 — a delayed ability whose duration has already ended is never generated
+
+*"If a Delayed Ability's duration has ended before it was generated, the Delayed Ability is not
+generated and any instructions related to it are ignored."* Both worked examples name pool cards.
+
+**`OGN-289 Targon's Peak`** — *"When you conquer here, ready up to 2 runes at the end of this turn."*
+Conquer it **inside the Ending Phase** and the delayed trigger is never created; the payoff silently
+does not exist. Conquer it in the Main Phase and it does.
+
+And the constructive half, which is the entry: **415.3.a** readies nothing until your own Awakening, so
+a rune tapped on your turn is dead for the whole of the opponent's. A trigger that resolves *"at the end
+of this turn"* lands **after** 167 has emptied your Rune Pool and after your Main Phase — so those two
+runes are ready when the opponent acts. **It is the pool's one free, Colourless source of off-turn
+Energy**, and with 164.2.b's free Power floor it holds up `OGN-045 Defy` with nothing kept back.
+
+**The second example is a general answer worth carrying on its own**: `SFD-109 Akshan, Mischievous`'s
+*"You control it until I leave the board"* is a delayed **passive** — *"If Akshan leaves the board in
+reaction to his play effect … You will not gain control of the targeted gear even for a moment."*
+Removing him in response to his own play trigger **denies** the theft rather than undoing it.
+
+## 42. 359.3.f.3 vs 359.3.f.4 — two sub-rules that pull in opposite directions
+
+- **359.3.f.3**: information referenced from the **trigger condition** is checked **when the condition
+  is fulfilled**. Riot's example is `UNL-082 Lillia, Fae Fawn`: her Sprite's location is *"noted … when
+  it does so"*, and moving her afterwards *"will not affect where the Sprite token will be played."*
+- **359.3.f.4**: information referenced from the **ability itself** — *"enemy"* and *"friendly"* status —
+  is checked **on execution**. That is the Yasuo/Hostile Takeover case the project already carries.
+
+**The difference is where the information comes from, not when the ability resolves.** And
+**359.3.f.3.b** settles `UNL-050 Iascylla`'s *"this battlefield"*: it is the battlefield she **held**,
+read from the trigger condition.
+
+The line: move Lillia **from** a battlefield and the 3-Might Sprite is played **there**, with nothing
+having walked — the bottleneck every token line in this catalogue runs into (144.4). `UNL-045 Forgotten
+Signpost` moves by **effect**, so 420.3.a's Standard-Move exhaust never applies and she can walk back in
+the same Main Phase to fire it a second time.
