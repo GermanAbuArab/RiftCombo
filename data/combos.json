@@ -43782,6 +43782,340 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. VEN-152 Rebuttal was in ZERO entries; VEN-110 Mel and VEN-151 Soul's Reflection each appear in one other, and this is a different number and a different trap (the -2 Might raising Mel's banish ceiling, and 381 forbidding it inside the event). Card text verbatim from data/corpus_flat.txt; 056, 056.2, 103.1.b.1, 103.2.b, 103.2.d.1, 103.2.d.2, 108.6.c, 191.1, 191.2, 206, 310.1, 310.2, 340.1, 340.4, 381, 383.3.d, 441.1.b, 441.1.c, 441.2 opened in the Core Rules file. A different LEGAL ORDERING was tried first, as the project requires before filing any reading: 383.3.d does let the legend's trigger resolve before Mel's banish, and it still fails, because the payoff is an Activated Ability and 381 needs an Open State. No reading is filed."
+    },
+    {
+      "id": "arcane-shift-zaunite-bouncer-two-choices-one-card",
+      "name": "Arcane Shift makes both of the Explorer's choices by itself — the blink re-fires an ETB and the spell still has a Deal left over",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-200",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind/Chaos spell, E3 P1, [Action]. 'Banish a friendly unit, then its owner plays it, ignoring its cost. Deal 3 to an enemy unit at a battlefield. Banish this.' SIGNATURE, tagged Ezreal. In zero entries before this walk."
+        },
+        {
+          "card": "OGN-188",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 P2 M2. 'When you play me, return another unit at a battlefield to its owner's hand.' The ETB the blink re-buys, and the first of the two choices. In zero entries before this walk."
+        },
+        {
+          "card": "SFD-199",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Mind/Chaos legend. ':rb_exhaust:: [Reaction] - Draw 1. Use only if you've chosen enemy units and/or gear twice this turn with spells or unit abilities.' Forced by 103.2.d.2 and paid by the spell alone."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal",
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "ONE LEGEND: Arcane Shift is a Signature card tagged Ezreal, so 103.2.d.2 forces the pool's one Ezreal legend, Prodigal Explorer (SFD-199), Mind/Chaos. Zaunite Bouncer is mono-Chaos and sits inside it by 103.1.b.1.",
+          "103.2.d.1 caps the deck at three Signature cards, and three Arcane Shifts spend all of it.",
+          "Zaunite Bouncer already on the board — the blink re-plays a unit, it does not deploy one."
+        ],
+        "notable": [
+          "ONE CARD PAYS A TWO-CARD CONDITION. The Explorer asks that you have 'chosen enemy units and/or gear TWICE this turn'; the catalogue's existing `prodigal-explorer-two-choices-draw` spends two separate cards on it. Arcane Shift supplies both by itself in printed order — the replayed Zaunite Bouncer's ETB chooses a unit at a battlefield (choice one), and the spell's own 'Deal 3 to an enemy unit at a battlefield' chooses another (choice two). Same legend, half the cards; that is the number this entry adds.",
+          "THE BLINK IS FREE BUT IT COSTS YOU YOUR POSITION, AND THAT IS THE REAL TRAP. 'Ignoring its cost' is wider than 356.1.b.2's 'ignoring its Energy cost' carve-out, so nothing is paid — but 355.2.a still governs where the body lands ('the controller's Base or a Battlefield the controller controls') and 143.4 makes it enter exhausted. A unit blinked out of a CONTESTED battlefield does not come back to it: you trade its position for its ETB, and against a garrison that is a loss, not a gain.",
+          "AND THE BOUNCER'S OWN WORD IS 'ANOTHER'. It cannot return itself, so the blink is what re-buys it; and 'another unit at a battlefield' reaches either side, so the same trigger is removal against them or a rescue of your own body.",
+          "THE DRAW IS AT [REACTION] SPEED AND THE SPELL IS AT [ACTION] SPEED, which is what makes the sequencing safe: 806.1.b lets Arcane Shift be played 'during Showdowns, even when it is not the Controlling player's turn', and 813.1.c.1 admits the legend's exhaust in any Closed State — so the two choices can be made inside the opponent's combat and the card drawn before it ends.",
+          "'BANISH THIS' IS THE CAP: one use per copy, three a game (103.2.b), and 108.6.c means nothing brings a spent Arcane Shift back. There is no engine here in the Flow sense; the repetition is the Bouncer's, not the spell's.",
+          "A BOUNCE TO HAND IS NOT A RECALL. 455 defines a Recall as a relocation to the BASE; the Bouncer sends a unit to its owner's HAND, so the body leaves the board entirely and has to be paid for again — and if it was the last unit at a battlefield its controller held, 323.6 strips their Control at the next Cleanup."
+        ]
+      },
+      "steps": [
+        "Play Zaunite Bouncer (4 Energy + 2 Chaos Power). Its own ETB already returns a unit at a battlefield to its owner's hand.",
+        "On a later turn, play Arcane Shift (3 Energy + 1 Power), choosing the Bouncer as the friendly unit to banish.",
+        "It comes straight back, ignoring its cost, and its ETB fires again: choose an enemy unit at a battlefield and return it to their hand. That is choice one.",
+        "Arcane Shift then deals 3 to an enemy unit at a battlefield. That is choice two.",
+        "Exhaust Prodigal Explorer at [Reaction] speed: draw 1. Then Arcane Shift banishes itself."
+      ],
+      "terminatesIn": "engine — one enemy body bounced, 3 damage and a card, for one spell and one exhaust, three times a game (103.2.b); nothing here scores",
+      "netPerIteration": "a bounce, 3 damage and a drawn card for 3 Energy + 1 Power, with the Bouncer left on the board",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the uncatalogued Fury / Chaos cards and the orphan Signature spells (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "356.1.b.2: 'If a card instructs a player to play a card \"ignoring its Energy cost\" or \"ignoring its Power cost,\" only the appropriate cost is set to zero, and the remaining cost still applies.' 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' 143.4: 'Units enter the Board exhausted.' 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. SFD-200 Arcane Shift and OGN-188 Zaunite Bouncer were both in ZERO entries; SFD-199 Prodigal Explorer appears in `prodigal-explorer-two-choices-draw` (SFD-199 + OGN-095 + OGN-169), which spends two cards on the condition this entry pays with one — a different number on the same legend, which is why it is an entry and not a notable. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.b, 103.2.d.1, 103.2.d.2, 108.6.c, 143.4, 323.6, 355.2.a, 356.1.b.2, 455, 806.1.b, 813.1.c.1 opened in the Core Rules file. Forced legend computed from cards.json. No unruled reading."
+    },
+    {
+      "id": "lightning-rush-heart-of-the-tempest-flow-fires-its-own-legend",
+      "name": "A [Flow] replay is a play from outside your hand, which is the printed trigger on the legend the Signature spell forces",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-156",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order/Chaos spell, E1. 'Look at the top 3 cards of your Main Deck. You may choose a card from among them and draw it. Put the rest into your trash. [Flow] :rb_energy_2::rb_rune_rainbow:'. SIGNATURE, tagged Kennen. In zero entries before this walk."
+        },
+        {
+          "card": "VEN-155",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "LEGEND",
+          "note": "Order/Chaos legend. 'When you play a card from anywhere other than your hand, empower me. [Action][>] Disempower me, :rb_exhaust:: Give a unit [Assault 2] this turn.' Forced by 103.2.d.2, and the card the Flow cost is really buying."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "ONE LEGEND: Lightning Rush is a Signature card tagged Kennen, so 103.2.d.2 forces the pool's one Kennen legend, Heart of the Tempest (VEN-155), Order/Chaos — the spell's own two domains, so the pair is matched and nothing else in the list is constrained by it.",
+          "103.2.d.1 caps the deck at three Signature cards, and three Lightning Rushes spend all of it."
+        ],
+        "notable": [
+          "THE SPELL IS BUILT TO FIRE ITS OWN LEGEND. 829.1.b makes [Flow] functionally short for 'You may play this from your TRASH for its flow cost. Then banish it', and the legend's trigger reads 'when you play a card from anywhere other than your hand'. Every Flow replay is therefore an empower with no extra card spent — and the spell's own first half is what fills the trash it will be replayed from.",
+          "IT IS THE POOL'S ONLY BURN-OUT-SAFE TRASH FILLER, AND THE PARAGRAPH IS 431.1.c. 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but DOES NOT BURN OUT, then proceeds with the rest of the instruction', with 431.1.c.1 extending the protection to the zone change that follows. So 'look at 3, keep 1, trash 2' fills a trash and selects a card with an empty deck, where 431.1.a (drawing past the deck) and 431.1.b (milling past it) both cost a point.",
+          "THE RATE IS ONE [ASSAULT 2] PER TURN AND NO MORE, WHICH IS THE HONEST CAP. The legend's payoff costs its own exhaust, so 415.3.a hands it back only in your Awakening: six Flow plays across three copies (103.2.b + 829.1.b) can empower it six times, and six empowers still buy one pump a turn. 441.1.b ('An Empowered Game Object can not be Empowered') is why 'Disempower me' is in the cost at all — it is what makes the cycle repeatable rather than a single state change.",
+          "AND THE PUMP IS BOUGHT AFTER BLOCKS. The legend's ability carries [Action], so 806.1.b lets it be activated 'during Showdowns, even when it is not the Controlling player's turn'; 807.1.b.3 and 807.2 make its [Assault 2] sum with anything already on the body, and 807.1.c scopes it to being an attacker.",
+          "THE FLOW POOL IN THIS IDENTITY IS SEVEN CARDS, NAMED, so the legend is not dependent on Lightning Rush alone: `VEN-098 Stargazer`, `VEN-100 Up from the Deep`, `VEN-105 Twilight Step`, `VEN-113 Kennen, Storm of Shuriken` (Chaos) and `VEN-116 Dragon Form`, `VEN-127 Lacerate` (Order), plus Lightning Rush itself. Every one of them empowers the legend on its replay.",
+          "[FLOW] IS NEVER AN ENGINE ON ITS OWN. 829.1.b banishes the spell after the replay and 108.6.c is one-way, so three copies are six plays a game — the same bound the catalogue records for every other Flow card."
+        ]
+      },
+      "steps": [
+        "Play Lightning Rush from hand (1 Energy): look at the top 3, draw the one you want, put the other two in your trash. Nothing here can Burn Out (431.1.c, 431.1.c.1).",
+        "On a later turn, play it again from the trash for its [Flow] cost (2 Energy + 1 rainbow).",
+        "That is a play from outside your hand, so the legend's trigger fires and Heart of the Tempest becomes Empowered.",
+        "In a Showdown or your own Main Phase, use the legend at [Action] speed: Disempower it and exhaust it to give a unit [Assault 2] this turn.",
+        "829.1.b banishes the replayed copy. Repeat with the next copy, or with any of the other six [Flow] cards in the identity."
+      ],
+      "terminatesIn": "engine — card selection every turn plus one [Assault 2] a turn whenever a Flow play has re-Empowered the legend, six Flow plays a game from Lightning Rush alone; nothing here scores",
+      "netPerIteration": "one selected card and two cards into the trash for 1 Energy, and one empower per Flow replay against a payoff capped at one a turn by the legend's own exhaust",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the orphan dual-domain Signature spells (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 431.1.c: 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction.' 441.1.b: 'An Empowered Game Object can not be Empowered.' 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 807.1.b.3: 'If X is omitted, it is presumed to be 1.' 807.1.c: 'It is functionally short for \"While I am an attacker, I have +X [M].\"' 807.2: 'the Assault Value of all granted Assault keywords is summed.' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. VEN-156 Lightning Rush was in ZERO entries; VEN-155 Heart of the Tempest appears in `last-rites-stack-arena-reanimator` (SFD-150 + OGN-286 + VEN-155), a different card set and a different half of the legend. Card text verbatim from data/corpus_flat.txt; 103.2.b, 103.2.d.1, 103.2.d.2, 108.6.c, 415.3.a, 431.1.a, 431.1.b, 431.1.c, 431.1.c.1, 441.1.b, 441.2, 806.1.b, 807.1.b.3, 807.1.c, 807.2, 829.1.b opened in the Core Rules file. The seven-card [Flow] pool for Order/Chaos was swept over the corpus and its members are named. No unruled reading."
+    },
+    {
+      "id": "shadow-dash-eye-of-twilight-dragged-attacker-tank",
+      "name": "The fourth route to making the opponent attack on your turn — and the only one that pumps your garrison with the same card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-148",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm/Order spell, E2 P1. 'Move an enemy unit to a battlefield where you have units. If you have exactly two units there, they each get +1 :rb_might: this turn. [Flow] :rb_energy_5::rb_rune_rainbow::rb_rune_rainbow:'. SIGNATURE, tagged Shen. In zero entries before this walk."
+        },
+        {
+          "card": "VEN-147",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "LEGEND",
+          "note": "Calm/Order legend. '[Action][>] :rb_exhaust:: Give a friendly unit [Tank] this turn.' Forced by 103.2.d.2, and the card that decides where the dragged body's damage goes."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "ONE LEGEND: Shadow Dash is a Signature card tagged Shen, so 103.2.d.2 forces the pool's one Shen legend, Eye of Twilight (VEN-147), Calm/Order — the spell's own two domains, a matched pair.",
+          "103.2.d.1 caps the deck at three Signature cards, and three Shadow Dashes spend all of it.",
+          "EXACTLY TWO friendly units at the destination battlefield — the spell's own bonus clause is a condition on the number, not a floor."
+        ],
+        "notable": [
+          "IT IS A FOURTH ROUTE TO A MECHANISM THE CATALOGUE ALREADY HAS THREE OF, AND HERE IS HOW IT DIFFERS. 190.3.a.1 and 450 key Contested on the MOVED unit's controller — 450: 'The Destination becomes Contested if it is an Uncontested Battlefield not controlled by the controller of the Unit or Units that moved' — so 464.2.c.1 makes THEM the Attacker on YOUR turn. `UNL-050 Iascylla` does it free and repeating; `OGN-043 Charm` does it in Calm/Mind; `UNL-139 Bone Skewer` pulls the body out of their HAND in Fury/Chaos. Shadow Dash is the only one that PICKS a body already on their board AND pumps your garrison with the same card, and the only one in Calm/Order.",
+          "THE [TANK] GRANT IS BOUGHT AFTER THE ATTACKERS ARE DECLARED. The legend carries [Action], and 806.1.b lets it be activated 'during Showdowns, even when it is not the Controlling player's turn' — so you see the combat before choosing the body. 815.1.c.2 then does the work: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them', so every point the dragged unit assigns is funnelled into the one body you nominated and nothing else of yours can legally be touched.",
+          "'EXACTLY TWO' IS A CONDITION, NOT A MINIMUM, and it is the number the entry is built around: two friendly units at that battlefield, +1 Might each, so their summed Might under 465.2.c is (a + b + 2). A third body switches the bonus off entirely — one of the rare cases where a bigger garrison is worse.",
+          "AND THE BODY GOES HOME, NOT TO YOU. 466.1.a.2 inserts '3d. Recall Attackers present at the Battlefield if Defenders are still present', and 455 sends a Recall to its Base — so a dragged unit that survives returns to THEIR base. This is tempo and removal, never theft, and any reading that treats it as a steal is wrong.",
+          "THE DRAG ITSELF IS NOT A TARGETED KILL, SO IT GOES WHERE REMOVAL CANNOT. Nothing is damaged and nothing is chosen for destruction: a body with a printed 'can't be chosen by enemy spells and abilities' clause still has to be MOVED by name here, so [Deflect] (809.1.c) and prohibitions do apply to the move — this is stated because the catalogue's evacuation entries mostly turn on programmatic selection (355.10.d) and this one does not.",
+          "[FLOW] AT 5 ENERGY + 2 RAINBOW IS EXPENSIVE AND IS STILL WORTH NAMING: 829.1.b gives one replay per copy, so three copies are six drags a game, and 108.6.c makes each replay final."
+        ]
+      },
+      "steps": [
+        "Have exactly two friendly units at a battlefield you control.",
+        "Play Shadow Dash (2 Energy + 1 Power): move an enemy unit to that battlefield. Your two units each get +1 Might this turn.",
+        "450 and 190.3.a.1 apply Contested through THEIR unit, so 464.2.c.1 makes them the Attacker; the next Cleanup stages and opens the Combat (323.9, 323.13).",
+        "Inside the combat, exhaust Eye of Twilight at [Action] speed: give the bigger of your two units [Tank] this turn.",
+        "815.1.c.2 makes your other body an invalid assignment until the Tank has lethal, so all of the dragged unit's damage lands where you chose.",
+        "465.2.c: your summed Might is the two bodies plus 2. If it reaches the dragged unit's Might it dies; if not, 466.1.a.2 recalls it to their base and 466.1.a.1 heals everything."
+      ],
+      "terminatesIn": "engine — one enemy body pulled out of position and fought on your own terms per Shadow Dash, six a game with the [Flow] replays; no point is scored, because 466.5 gives Control only to a player who did not already have it",
+      "netPerIteration": "one enemy unit dragged off its battlefield and into a fight you chose, with +2 summed Might and all of its damage funnelled into one body of yours",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the orphan dual-domain Signature spells (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "450: 'The Destination becomes Contested if it is an Uncontested Battlefield not controlled by the controller of the Unit or Units that moved.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' 815.1.c.2: 'If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 465.2.c: 'Starting with the Attacker, each player assigns an amount of damage equal to their summed Might among the other's Units.' 466.1.a.1: 'Insert \"3c. Heal all Units.\"' 466.1.a.2: 'Insert \"3d. Recall Attackers present at the Battlefield if Defenders are still present.\"' 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 466.5 (Control is established only for a player who did not already control the battlefield). 829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. VEN-148 Shadow Dash was in ZERO entries; VEN-147 Eye of Twilight appears in two others (`eye-of-twilight-zephyr-sage-tank-redirect`, `royal-entourage-eye-of-twilight-double-tank`), both of which grant [Tank] against an attack the OPPONENT chose to make — this entry schedules the attack itself, which is the different number. Card text verbatim from data/corpus_flat.txt; 103.2.b, 103.2.d.1, 103.2.d.2, 108.6.c, 190.3.a.1, 323.9, 323.13, 450, 455, 464.2.c.1, 465.2.c, 466.1.a.1, 466.1.a.2, 466.5, 806.1.b, 809.1.c, 815.1.c.2, 829.1.b opened in the Core Rules file. The comparison with the three existing routes to the same mechanism is stated in the first notable, as the catalogue requires of a fourth member of a family."
+    },
+    {
+      "id": "final-spark-lady-luminosity-eight-to-a-base",
+      "name": "Eight damage is the pool's largest single-target Deal, it prints no location clause, and 206 keeps the draw attached to the printed cost",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-022",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind/Order spell, E8, no Power. '[Action] Deal 8 to a unit.' Swept: the largest single-target Deal instruction printed in the pool. SIGNATURE, tagged Lux. In zero entries before this walk."
+        },
+        {
+          "card": "OGS-021",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "LEGEND",
+          "note": "Mind/Order legend. 'When you play a spell that costs :rb_energy_5: or more, draw 1.' Forced by 103.2.d.2, and paid by Final Spark's printed 8 whatever discounts are in play."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal",
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "ONE LEGEND: Final Spark is a Signature card tagged Lux, so 103.2.d.2 forces Lady of Luminosity - Starter (OGS-021), Mind/Order — the spell's own two domains, a matched pair.",
+          "103.2.d.1 caps the deck at three Signature cards, and three Final Sparks spend all of it.",
+          "Eight Energy in a single Main Phase, which 161.2.a's twelve-rune deck reaches without recycling anything, since the spell has no Power cost at all."
+        ],
+        "notable": [
+          "IT REACHES A BASE, AND THAT CORRECTS THE SHAPE OF A CLAIM THE PROJECT ALREADY CARRIES. The catalogue records that exactly three cards NAME a unit 'in a base' as a target (`SFD-077 Rocket Barrage`, `SFD-116 Yone, Blademaster`, `UNL-182 Curtain Call`). Naming is not the only route: swept over the corpus, six cards print damage to 'a unit' with NEITHER 'at a battlefield' NOR 'here' — `OGN-029 Falling Star`, `OGN-248 Icathian Rain`, `OGN-252 Super Mega Death Rocket!`, `OGS-022 Final Spark`, `UNL-020 Dancing Grenade`, `UNL-026 Xerath, Freed` — and an unrestricted 'a unit' reaches a base as surely as a clause that says so. So the zone `OGN-070 Mageseeker Warden` manufactures is answerable by nine cards, not three, and Final Spark is the biggest of them.",
+          "EIGHT IS THE CEILING OF THE WHOLE FORM. Swept over every 'Deal N to a unit' and 'Deal N to an enemy unit' instruction in the corpus, the values printed are 2, 3, 4, 5, 6 and 8 — and the 8 is this card alone. It kills anything in the pool that has not been buffed past 8 Might.",
+          "206 IS WHY THE DRAW CANNOT BE SWITCHED OFF. A 'costs N or more' check reads the PRINTED cost, and Riot's own worked example for that paragraph is a Lux card. So every discount in the deck lowers what you pay and leaves the legend's threshold satisfied — the opposite of the 'if you SPENT N or more' family (166.2, 203.1, 356.4.b), which a discount silently disarms. Building around this legend means preferring `costs` cards and distrusting `spent` ones.",
+          "AND IT IS AN [ACTION], SO THE 8 IS AIMED LATE. 806.1.b lets it be played 'during Showdowns, even when it is not the Controlling player's turn', which means the target is chosen after blocks and after the opponent has committed — and 465 is not involved at all, so 465.2.c.4's cap on assigning more than lethal never applies and overkill is legal.",
+          "PRICE IT HONESTLY: 8 Energy is most of a turn. 161.2.a fixes the Rune Deck at 'Exactly 12 Rune cards' and 164.2.a costs each rune its own exhaust, so this is affordable from the turn the eighth rune is channelled — and because the card asks for no Power, none of those runes has to be recycled (164.2.b), leaving the rest of the turn's Power intact.",
+          "THE DRAW IS ONE PER SPELL, NOT ONE PER 5 ENERGY. The legend's trigger is a flat 'draw 1' on each qualifying spell, so three cheap 5-Energy spells beat one 15-Energy one — a note for anyone building the shell around Final Spark rather than the other way round."
+        ]
+      },
+      "steps": [
+        "Channel to eight runes. Nothing else in this line costs Power, so all twelve stay available for the rest of the deck.",
+        "Hold Final Spark. It is an [Action], so it can be played on your own turn or inside any Showdown (806.1.b).",
+        "Play it (8 Energy): deal 8 to a unit — anywhere, including a unit sitting in a base, since the card prints no location clause.",
+        "Its printed cost of 8 is at least 5, so Lady of Luminosity's trigger fires and you draw 1 (206: the check reads the printed cost, whatever you actually paid).",
+        "Three copies (103.2.b) is three of these a game."
+      ],
+      "terminatesIn": "engine — any single unit in the pool up to 8 Might killed at [Action] speed, in any zone, plus a card, three times a game; nothing here scores",
+      "netPerIteration": "8 damage to any unit on the board and one card drawn, for 8 Energy and no Power",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the orphan dual-domain Signature spells (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 161.2.a: 'Exactly 12 Rune cards.' 465.2.c.4: 'Units cannot have more damage assigned to them than the minimum required to constitute lethal damage unless no further units remain to have damage assigned to them.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might. 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. OGS-022 Final Spark was in ZERO entries; OGS-021 Lady of Luminosity appears in `lady-luminosity-loop-comet`, a six-card INFINITE on a completely different card set. Card text verbatim from data/corpus_flat.txt; 103.2.b, 103.2.d.1, 103.2.d.2, 143.2.a, 161.2.a, 164.2.a, 164.2.b, 166.2, 203.1, 206, 355.2.a, 356.4.b, 465.2.c.4, 806.1.b opened in the Core Rules file. Both sweeps behind the first two notables (the six no-location damage cards; the printed values of every single-target Deal) were run over the whole corpus and their members are named. No unruled reading."
+    },
+    {
+      "id": "siphon-power-herald-recruit-sweeper-insurance",
+      "name": "A [Reaction] +1 Might is the second answer to the 1-Might-per-body problem, and the floor is snapshotted on the way down",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-266",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind/Order spell, E2 P1, [Reaction]. 'Choose a battlefield. Give friendly units there +1 :rb_might: this turn and enemy units there -1 :rb_might: this turn, to a minimum of 1 :rb_might:.' SIGNATURE, tagged Viktor. In zero entries before this walk."
+        },
+        {
+          "card": "OGN-265",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "LEGEND",
+          "note": "Mind/Order legend. ':rb_energy_1:, :rb_exhaust:: Play a 1 :rb_might: Recruit unit token.' Forced by 103.2.d.2, and the faucet whose product the spell exists to keep alive."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "ONE LEGEND: Siphon Power is a Signature card tagged Viktor, so 103.2.d.2 forces Herald of the Arcane (OGN-265), Mind/Order — the spell's own two domains, a matched pair.",
+          "103.2.d.1 caps the deck at three Signature cards, and three Siphon Powers spend all of it.",
+          "The Recruits gathered at ONE battlefield, since the spell names a single battlefield and reaches nothing else."
+        ],
+        "notable": [
+          "THE PROBLEM IT SOLVES IS MIGHT PER BODY, NOT NUMBER OF BODIES. `OGN-133 Flurry of Blades` (Body, 1 Energy, [Reaction], 'Deal 1 to all units at battlefields') kills EVERY 1-Might token simultaneously for any number of them, by 143.2.a — so a Recruit faucet is not made safe by running faster. The project records `UNL-077 Soul Shepherd` (Mind, 'Your token units have +1 :rb_might:') as the fix; Siphon Power is a SECOND one, and the difference is worth stating: the Shepherd is a permanent static over every token you own, Siphon Power is one turn at one battlefield, bought at [Reaction] speed in response to the sweeper already on the Chain (813.1.c.1). Insurance you pay for only when it is needed, against a body you have to keep alive.",
+          "THE FLOOR IS SNAPSHOTTED, WHICH IS WHY THE -1 HALF IS SMALL AND HONEST. 477.3.b: 'When an arithmetic effect from a source that is not a passive ability has a limitation that applies, it is limited at the time of its application, and is \"remembered\" at that limited level for the duration of its effect.' Its worked example is exactly this shape ('-4 [M] to a min of 1' on a 2-Might body generates -1). So the -1 does nothing at all to an enemy already at 1 Might, and it never stacks into a kill: 143.2.a needs marked damage, and a Might reduction marks none.",
+          "AND DECREASES ARE APPLIED LAST. 477.3.e.2.a: 'Negative values, or decreases, to Might are applied last.' So the enemy -1 resolves after every increase they have, and your own +1 is applied in the increase pass — the two halves of the card never race each other.",
+          "THE FAUCET'S RATE IS ONE BODY A TURN AND THE ENTRY DOES NOT PRETEND OTHERWISE. The legend's ability costs 1 Energy AND its own exhaust, so 415.3.a hands it back once per Awakening: one Recruit per turn, forever, free of cards. What Siphon Power buys is that the accumulated swarm survives one sweeper — which for a body-counting payoff is the whole game.",
+          "IT IS A CONTINUOUS MODIFIER, NOT A BUFF. 'Give friendly units there +1 :rb_might: this turn' places no counter, so 702.3's one-buff-per-unit cap and 703's fixed +1 are silent and it stacks with a real buff and with Soul Shepherd's static — a deck can run both answers and be at 3 Might per token for a turn.",
+          "185.1 and 185.2.b are why the tokens are units at all for both halves: a token unit has a Might and follows the rules for its type, so it is a legal recipient of the +1 and a legal victim of the sweeper."
+        ]
+      },
+      "steps": [
+        "Each turn, pay 1 Energy and exhaust Herald of the Arcane: play a 1 Might Recruit unit token. 415.3.a readies the legend at your next Awakening.",
+        "Gather the Recruits at one battlefield you control.",
+        "When the opponent plays a sweeper — `OGN-133 Flurry of Blades` is the one that matters, at 1 Energy for 1 damage to every unit at battlefields — respond with Siphon Power at [Reaction] speed (813.1.c.1), naming that battlefield.",
+        "Your Recruits are at 2 Might this turn and survive the 1 damage (143.2.a needs marked damage equalling or exceeding Might); their units there are at -1, floored at 1 and snapshotted there (477.3.b).",
+        "The swarm carries into your Beginning Phase intact."
+      ],
+      "terminatesIn": "engine — one 1-Might body a turn for 1 Energy, indefinitely, with one turn of sweeper insurance per Siphon Power (three a game); nothing here scores on its own",
+      "netPerIteration": "one Recruit token per turn, and a whole battlefield's worth of them saved from a 1-damage sweep for 2 Energy + 1 Power",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #173 — the orphan dual-domain Signature spells (docs/phase0/walks/2026-09-07-uncatalogued-fury-body-chaos.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "477.3.b: 'When an arithmetic effect from a source that is not a passive ability has a limitation that applies, it is limited at the time of its application, and is \"remembered\" at that limited level for the duration of its effect. This process is called \"snapshotting.\" Example: If an effect gives a unit \"-4 [M] to a min of 1 this turn\" choosing a unit with 2 [M], then the effect will generate -1 [M] this turn.' 477.3.e.2.a: 'Negative values, or decreases, to Might are applied last.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might. 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 702.3: 'There can only be one Buff on a Unit at a time.' 703: 'Each Buff individually contributes +1 Might to a Unit.' 185.2.b (token units have a Might). 185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified.' 813.1.c.1 (a [Reaction] card can be played during Closed States on any player's turn)."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. OGN-266 Siphon Power was in ZERO entries; OGN-265 Herald of the Arcane appears in three others (`heimerdinger-herald-legend-recruits`, `gemcraft-karma-herald-buff-faucet`, `herald-heimerdinger-armory-plaza`), none of which addresses the sweeper that ends every 1-Might token line — that is the different number here. Card text verbatim from data/corpus_flat.txt; 103.2.b, 103.2.d.1, 103.2.d.2, 143.2.a, 185.1, 185.2.b, 185.2.d, 415.3.a, 477.3.b, 477.3.e.2.a, 702.3, 703, 813.1.c.1 opened in the Core Rules file. NOTE FOR THE MANAGER, not changed by this session: CLAUDE.md records that `UNL-077 Soul Shepherd` is 'the only fix in the pool' for 1-Might tokens (already narrowed once, by #170 batch 3, for the Brush at a Navori board). Soul Shepherd remains the only PERMANENT fix; OGN-266 Siphon Power is a one-turn, one-battlefield [Reaction] answer in the same identity, so the claim wants 'permanent' in it."
     }
   ]
 }
