@@ -298,7 +298,8 @@
           "portal-rescue-trove-golem-industrialist",
           "pursuer-herald-recruits",
           "treasure-hunter-industrialist-gold",
-          "zed-clone-eye-recruits"
+          "zed-clone-eye-recruits",
+          "treasure-hoard-renata-conquer-gold"
         ]
       },
       "status": "rule-verified",
@@ -624,7 +625,8 @@
         ],
         "combos": [
           "azir-aphelios-attach",
-          "aphelios-jax-quickdraw-attach"
+          "aphelios-jax-quickdraw-attach",
+          "aphelios-forge-of-the-fluft-attach-cycle"
         ]
       },
       "status": "rule-verified",
@@ -706,7 +708,8 @@
         ],
         "combos": [
           "jhin-relentless-pursuit-wallop",
-          "fae-dragon-wallop-industrialist"
+          "fae-dragon-wallop-industrialist",
+          "simian-ancestor-arena-bar-wallop-ready"
         ]
       },
       "status": "rule-verified",
@@ -816,7 +819,8 @@
         ],
         "combos": [
           "kharox-sanction-burn",
-          "mel-defiant-soul-sanction-banish-cycle"
+          "mel-defiant-soul-sanction-banish-cycle",
+          "apprentice-mage-sanction-empower-reset"
         ]
       },
       "status": "rule-verified",
@@ -1174,7 +1178,9 @@
           "420.2.a",
           "420.3.a"
         ],
-        "combos": []
+        "combos": [
+          "undertitan-pakaa-signpost-move-reveal"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -1414,7 +1420,12 @@
           "450",
           "465.1"
         ],
-        "combos": []
+        "combos": [
+          "stare-down-yone-blademaster-base-strike",
+          "stare-down-hunt-pack-xp",
+          "stare-down-arachnoid-horror-lone-survivor",
+          "stare-down-demolitionist-gear-strike"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -1529,7 +1540,9 @@
           "471.1.b.1",
           "810.1.c.3"
         ],
-        "combos": []
+        "combos": [
+          "on-the-hunt-yasuo-triple-third-move"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -1752,7 +1765,11 @@
           "702.2.a",
           "703"
         ],
-        "combos": []
+        "combos": [
+          "jae-medarda-repeat-double-choose",
+          "jae-medarda-marching-orders-repeat-two-draws",
+          "jae-medarda-repulse-counter-that-pays-for-itself"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -1882,7 +1899,9 @@
           "471.1.b.1",
           "810.1.c.3"
         ],
-        "combos": []
+        "combos": [
+          "shurelya-gustwalker-hunt-bootstrap"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2410,7 +2429,9 @@
           "383.4.c.1",
           "383.4.d.1"
         ],
-        "combos": []
+        "combos": [
+          "green-father-brush-ultrasoft-poro-birds"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2782,7 +2803,9 @@
           "359.3.f.1",
           "359.3.f.2"
         ],
-        "combos": []
+        "combos": [
+          "stare-down-arachnoid-horror-lone-survivor"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -3144,7 +3167,8 @@
           "reksai-undertitan-reveal",
           "void-rush-undertitan-accelerate",
           "diana-lunari-showdown-scry",
-          "teemo-strategist-undertitan-mind-order-reveal"
+          "teemo-strategist-undertitan-mind-order-reveal",
+          "undertitan-pakaa-signpost-move-reveal"
         ]
       },
       "status": "rule-verified",
@@ -3190,7 +3214,8 @@
           "black-market-broker-bandle-tree-gold",
           "swift-scout-guerilla-hide-cycle",
           "katarina-reckless-hidden-burn",
-          "chemtech-cask-broker-double-gold"
+          "chemtech-cask-broker-double-gold",
+          "black-market-broker-windsinger-free-bounce"
         ]
       },
       "status": "rule-verified",
@@ -3490,7 +3515,8 @@
           "434.1.g"
         ],
         "combos": [
-          "jax-angle-shot-attach-draw"
+          "jax-angle-shot-attach-draw",
+          "jax-unrelenting-forge-of-the-fluft-draw"
         ]
       },
       "status": "rule-verified",
@@ -3600,7 +3626,9 @@
           "184.1",
           "315.1.b"
         ],
-        "combos": []
+        "combos": [
+          "chem-baroness-gold-banked-across-the-threshold"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -3626,7 +3654,9 @@
           "829.1.b",
           "829.1.b.1"
         ],
-        "combos": []
+        "combos": [
+          "ravenbloom-diana-fizz-spell-stack"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -3745,7 +3775,8 @@
           "816.1.c"
         ],
         "combos": [
-          "malzahar-wraith-centaur-sacrifice"
+          "malzahar-wraith-centaur-sacrifice",
+          "sprite-queen-dusk-rose-lab-shard-undoing"
         ]
       },
       "status": "rule-verified",
@@ -3774,7 +3805,10 @@
           "465.2.c.4",
           "477.3.b"
         ],
-        "combos": []
+        "combos": [
+          "tryndamere-thousand-tailed-watcher-shrink",
+          "sivir-ambitious-frigid-touch-excess"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -3822,7 +3856,10 @@
           "441.2",
           "829.1.b.1"
         ],
-        "combos": []
+        "combos": [
+          "master-of-shadows-banish-rummage",
+          "zed-shadow-clone-renewable-banish-loot"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -3841,7 +3878,13 @@
           "424.1",
           "431.1.c"
         ],
-        "combos": []
+        "combos": [
+          "reksai-undertitan-reveal",
+          "void-rush-undertitan-accelerate",
+          "diana-lunari-showdown-scry",
+          "teemo-strategist-undertitan-mind-order-reveal",
+          "undertitan-pakaa-signpost-move-reveal"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -3919,7 +3962,8 @@
           "170.11.c"
         ],
         "combos": [
-          "kayn-back-alley-bar-double-move"
+          "kayn-back-alley-bar-double-move",
+          "back-alley-bar-forgotten-signpost-reinforcement"
         ]
       },
       "status": "rule-verified",
@@ -3947,7 +3991,9 @@
           "815.1.c.2"
         ],
         "combos": [
-          "lillia-flurry-of-feathers-tank-wall"
+          "lillia-flurry-of-feathers-tank-wall",
+          "lillia-vanguard-armory-renewing-tank-wall",
+          "kinkou-temple-lillia-bird-tank-wall"
         ]
       },
       "status": "rule-verified",
@@ -3978,7 +4024,10 @@
           "428.1",
           "428.1.a.1.a"
         ],
-        "combos": []
+        "combos": [
+          "viktor-leader-bottled-constellation-refund",
+          "viktor-leader-safety-inspector-symmetric-kill"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -4009,7 +4058,8 @@
           "383.3.e.1"
         ],
         "combos": [
-          "malzahar-wraith-centaur-sacrifice"
+          "malzahar-wraith-centaur-sacrifice",
+          "wraith-of-echoes-cruel-patron-sacrifice-body"
         ]
       },
       "status": "rule-verified",
@@ -4072,7 +4122,9 @@
         "rules": [
           "428.1"
         ],
-        "combos": []
+        "combos": [
+          "altar-of-memories-overzealous-fan-off-turn-filter"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -4102,7 +4154,9 @@
           "428.1"
         ],
         "combos": [
-          "malzahar-wraith-centaur-sacrifice"
+          "malzahar-wraith-centaur-sacrifice",
+          "spectral-centaur-deathgrip-reaction-spike",
+          "spectral-centaur-bottled-constellation-triple-death"
         ]
       },
       "status": "rule-verified",
@@ -4161,7 +4215,8 @@
         ],
         "combos": [
           "sprite-fountain-shard-undoing-beginning-removal",
-          "shard-undoing-deceiver-reflection-removal"
+          "shard-undoing-deceiver-reflection-removal",
+          "sprite-queen-dusk-rose-lab-shard-undoing"
         ]
       },
       "status": "rule-verified",
@@ -4194,7 +4249,10 @@
         "combos": [
           "get-excited-flame-chompers-jinx",
           "minah-ride-the-wind-mutual-discard",
-          "jinx-rebel-square-up"
+          "jinx-rebel-square-up",
+          "jinx-rebel-lunar-boon-reaction",
+          "jinx-rebel-unlicensed-armory-repeatable-shield",
+          "jinx-rebel-zaun-warrens-free-outlet"
         ]
       },
       "status": "rule-verified",
@@ -4224,7 +4282,10 @@
           "383.2.c"
         ],
         "combos": [
-          "mask-mother-scrapyard-champion"
+          "mask-mother-scrapyard-champion",
+          "mask-mother-lunar-boon-reaction-trick",
+          "mask-mother-brazen-buccaneer-cost-discount",
+          "mask-mother-ruthless-strike-doubled-payment"
         ]
       },
       "status": "rule-verified",
@@ -4263,7 +4324,10 @@
         "combos": [
           "vex-apathetic-gloomist-play-tax",
           "vex-radiant-dawn-stun-redeploy",
-          "vex-mocking-thwonk-wall"
+          "vex-mocking-thwonk-wall",
+          "vex-mocking-masa-free-tank-arrival",
+          "vex-mocking-blast-cone-drag-and-tank",
+          "vex-mocking-shadow-gloomist-relay"
         ]
       },
       "status": "rule-verified",
@@ -4299,7 +4363,10 @@
         ],
         "combos": [
           "vex-apathetic-gloomist-play-tax",
-          "eclipse-herald-zenith-blade"
+          "eclipse-herald-zenith-blade",
+          "eclipse-herald-thwonk-repeat-two-stuns",
+          "eclipse-herald-nami-headstrong-delayed-ready",
+          "eclipse-herald-existential-dread-repeat-bounce"
         ]
       },
       "status": "rule-verified",
@@ -4336,7 +4403,9 @@
         ],
         "combos": [
           "solari-chief-facebreaker-shrine-kill",
-          "solari-shrine-leona-determined"
+          "solari-shrine-leona-determined",
+          "solari-shrine-vi-peacekeeper-attack-draw",
+          "solari-shrine-kennen-hidden-defensive-draw"
         ]
       },
       "status": "rule-verified",
@@ -4379,7 +4448,10 @@
           "811.1.c.1"
         ],
         "combos": [
-          "katarina-reckless-hidden-blade"
+          "katarina-reckless-hidden-blade",
+          "katarina-mischievous-marai-facedown-four-damage",
+          "katarina-lotus-trap-sudden-storm-board-cap",
+          "katarina-pyke-dockside-additional-cost-survives"
         ]
       },
       "status": "rule-verified",
@@ -4418,7 +4490,8 @@
           "811.1.c.1"
         ],
         "combos": [
-          "ember-monk-edge-of-night"
+          "ember-monk-edge-of-night",
+          "ember-monk-teemo-scout-facedown-wall"
         ]
       },
       "status": "rule-verified",
@@ -4439,7 +4512,8 @@
           "355.8"
         ],
         "combos": [
-          "spirit-wheel-stare-down"
+          "spirit-wheel-stare-down",
+          "spirit-wheel-tactical-retreat-reaction-draw"
         ]
       },
       "status": "rule-verified",
@@ -4618,7 +4692,8 @@
           "415.1.b"
         ],
         "combos": [
-          "awaken-ready-body-triple-trigger"
+          "awaken-ready-body-triple-trigger",
+          "jayce-hammer-wallop-showdown-keyword"
         ]
       },
       "status": "rule-verified",
@@ -4716,7 +4791,9 @@
           "702.2",
           "702.3"
         ],
-        "combos": []
+        "combos": [
+          "simian-ancestor-arena-bar-wallop-ready"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
@@ -4776,6 +4853,402 @@
       "status": "rule-verified",
       "reviewed": "2026-09-07",
       "reviewedCount": 14
+    },
+    {
+      "id": "sprite-queen-conquer-battlefield-cycle",
+      "name": "Sprite Queen vacates a conquer battlefield in your own Beginning Phase and retakes it before anyone can stop her",
+      "anchor": "UNL-084",
+      "partner": {
+        "textMatches": "[Ww]hen you conquer here"
+      },
+      "why": "315.2.b.2 mandatorily Holds every battlefield you control at the start of your Beginning Phase, and 470 caps Scoring at once per battlefield per turn, so a \"When you conquer here\" battlefield pays exactly once in the game unless you give it up on purpose. Sprite Queen's \"at the start of your Beginning Phase, play a ready 3 Might Sprite unit token with [Temporary] to your base\" dies BEFORE the old Sprite's replacement arrives (816.1.c: the Trigger Condition is the Beginning Phase starting, so the new Sprite born at that instant has already missed it and dies only next turn), which opens a Cleanup (319.6) in a Neutral Open state (310.1) that strips Control under 323.6 — before 315.2.b Holds anything. The new Sprite then walks in during the Main Phase and 190.3.a.1 -> 344.2 -> 348.2.a -> 348.2.a.1 produce a bloodless Conquer, re-firing the battlefield's trigger. 144.1.a/b/c and 312.2.a leave no state in which the opponent both holds priority and may move, so the whole cycle runs with zero exposure and pays for itself every turn.",
+      "basis": {
+        "rules": [
+          "315.2.b.2",
+          "470",
+          "469.1",
+          "348.2.a",
+          "816.1.b",
+          "816.1.c",
+          "319.6",
+          "323.6",
+          "144.1.a",
+          "144.1.b",
+          "144.1.c",
+          "312.2.a"
+        ],
+        "combos": [
+          "sprite-queen-targon-peak-conquer-cycle"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 14
+    },
+    {
+      "id": "forge-of-fluft-repeatable-attach",
+      "name": "Forge of the Fluft is the only free, repeatable, any-carrier attach — worth most to Equipment whose value depends on being attached again or attached to a chosen carrier",
+      "anchor": "SFD-208",
+      "partner": {
+        "textMatches": "[Ww]hen you attach an Equipment to me|copy that unit's text|My hold effects are also conquer effects"
+      },
+      "why": "818.1.c.2 makes Equip functionally short for \"[Cost]: Attach this gear to a unit you control\", and the Forge grants friendly legends \":rb_exhaust:: Attach an Equipment you control to a unit you control\" for one exhaust a turn, to ANY unit, forever — unlike [Weaponmaster]'s \"to me\" (once per body played). 434.1.f/434.4/434.4.a make re-attaching a NOT-a-Move relocation, and 434.1.g means attaching to the SAME host again does nothing, so a \"when you attach an Equipment to me\" payoff (Aphelios, Exalted; Jax, Unrelenting) needs a second host to shuttle the Equipment through every turn, which the Forge supplies for free. The same free attach also lets a CARRIER-DEPENDENT Equipment (Svellsongur, which copies the carrier's own text; Skyfall of Areion, whose \"My hold effects are also conquer effects\" only matters on a carrier that already has hold effects) land on a deliberately chosen body instead of whichever unit happened to pay its [Equip] cost.",
+      "basis": {
+        "rules": [
+          "818.1.c.2",
+          "434.1.f",
+          "434.1.g",
+          "434.4",
+          "434.4.a",
+          "190.1"
+        ],
+        "combos": [
+          "aphelios-forge-of-the-fluft-attach-cycle",
+          "jax-unrelenting-forge-of-the-fluft-draw",
+          "forge-of-fluft-free-svellsongur"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 4
+    },
+    {
+      "id": "vanguard-helm-buff-supply",
+      "name": "Vanguard Helm needs a buff SOURCE, not a kill enabler — the sibling rule already owns the active-kill half",
+      "anchor": "OGN-228",
+      "partner": {
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)|[Gg]ive (me|it|a unit|a friendly unit|another friendly unit|your units)[^.]{0,60}\\+\\d+ :rb_might:",
+        "excludes": [
+          {
+            "card": "OGN-146",
+            "why": "spends a buff as a cost; it consumes Might rather than granting it."
+          },
+          {
+            "card": "OGN-207",
+            "why": "spends a buff as a cost, same as Wallop — a consumer, not a source."
+          },
+          {
+            "card": "OGN-152",
+            "why": "reacts to a buff by readying the unit; it grants no Might of its own."
+          },
+          {
+            "card": "SFD-047",
+            "why": "reacts to being buffed by readying himself; he grants no Might of his own."
+          }
+        ]
+      },
+      "why": "\"When a buffed friendly unit dies, buff another friendly unit\" needs a body that carries a 702/703 Buff before it can die and relay one — the sibling rule `vanguard-helm-friendly-kill` reads the pool for active KILL enablers, but combat alone kills buffed bodies over a game, so the scarce half is BUFF SUPPLY: a source that keeps placing the one-per-unit counter (702.3, 702.3.a) faster than the Helm spends it. `OGN-141 Kinkou Monk` buffs two other friendly units on one play, which is the entry's whole point.",
+      "basis": {
+        "rules": [
+          "702.2.a",
+          "702.3",
+          "702.3.a",
+          "703",
+          "428.1"
+        ],
+        "combos": [
+          "vanguard-helm-kinkou-monk-buff-conservation"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 97
+    },
+    {
+      "id": "monastery-hirana-buff-supply",
+      "name": "Monastery of Hirana spends a buff for a card, so it wants the same buff-source partner as every other buff spender",
+      "anchor": "OGN-282",
+      "partner": {
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)|[Gg]ive (me|it|a unit|a friendly unit|another friendly unit|your units)[^.]{0,60}\\+\\d+ :rb_might:",
+        "excludes": [
+          {
+            "card": "OGN-146",
+            "why": "spends a buff as a cost; it consumes Might rather than granting it."
+          },
+          {
+            "card": "OGN-207",
+            "why": "spends a buff as a cost, same as Wallop — a consumer, not a source."
+          },
+          {
+            "card": "OGN-152",
+            "why": "reacts to a buff by readying the unit; it grants no Might of its own."
+          },
+          {
+            "card": "SFD-047",
+            "why": "reacts to being buffed by readying himself; he grants no Might of his own."
+          }
+        ]
+      },
+      "why": "\"When you conquer here, you may spend a buff to draw 1\" is a buff SPENDER, the same shape as Wallop (`wallop-buff-spend`) and Call to Glory — it pays for a card with a counter it does not place itself, so its honest partner is a buff SOURCE. `SFD-108 Warmog's Armor` (\"When I conquer, buff me\") supplies exactly one on the same Conquer that spends it, which is why the entry pairs them rather than treating the Monastery as self-sufficient.",
+      "basis": {
+        "rules": [
+          "702.2.a",
+          "702.3",
+          "703"
+        ],
+        "combos": [
+          "monastery-hirana-warmogs-conquer-draw"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 94
+    },
+    {
+      "id": "irelia-fervent-choose-cost",
+      "name": "Irelia, Fervent grows off any cost that chooses or exhausts a unit you control, not only a buff",
+      "anchor": "SFD-057",
+      "partner": {
+        "textMatches": "[Cc]hoose a unit you control|[Ee]xhaust a unit you control"
+      },
+      "why": "\"When you choose or ready me, give me +1 Might this turn\" reads wider than the sibling rule `irelia-fervent-buff-is-choosing` uses: 355.7/702.2.a make picking a unit for a cost or an effect a choosing, and 809.1.c taxes only an OPPONENT's spells and abilities, so any of your own cards that choose or exhaust a unit you control name her for free. `UNL-045 Forgotten Signpost`'s cost step (\"Exhaust a unit you control\") reaches her every turn at Showdown speed (806.1.b) for nothing, provided it picks a DIFFERENT unit than the one it moves.",
+      "basis": {
+        "rules": [
+          "355.7",
+          "702.2.a",
+          "809.1.c",
+          "806.1.b"
+        ],
+        "combos": [
+          "irelia-fervent-forgotten-signpost-choose"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 4
+    },
+    {
+      "id": "blade-dancer-choose-relocate",
+      "name": "Blade Dancer readies whatever a relocation effect chooses, not only a buff",
+      "anchor": "SFD-195",
+      "partner": {
+        "textMatches": "[Cc]hoose a unit you control"
+      },
+      "why": "\"When you choose a friendly unit, you may exhaust me and pay one rainbow to ready it\" reaches any card that CHOOSES a unit you control, not only the buff family the sibling rule `blade-dancer-buff-is-choosing` already covers. `OGN-199 Tideturner` is Riot's own worked example under 811.1.d.2 for a hidden play effect with no valid on-battlefield target, so its choice is free from anywhere on the board; two units swap locations for nothing (420.3.a keeps the cost off an effect move) and Blade Dancer readies the one chosen.",
+      "basis": {
+        "rules": [
+          "811.1.d.2",
+          "420.3.a",
+          "144.1.b",
+          "381"
+        ],
+        "combos": [
+          "blade-dancer-tideturner-free-swap-and-ready"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 3
+    },
+    {
+      "id": "dragon-roost-dragon-tag",
+      "name": "Dragon Roost is the second door onto a battlefield with no move — but only for the Dragon tag",
+      "anchor": "VEN-157",
+      "partner": {
+        "tags": [
+          "Dragon"
+        ]
+      },
+      "why": "\"Any player may pay two rainbow as an additional cost to play a Dragon. If they do, they play it to this battlefield\" bypasses 144.4's Standard Move entirely: a Dragon lands directly at the battlefield the instant it is played, with no walk and no Contested-status delay. The permission is scoped to the printed tag (187 gives every Dragon the tag by rule), so the partner set is exactly the cards carrying it — `OGN-142 Mountain Drake` (E9 M10, no text) is the cheapest way to put a huge, textless garrison down in one action.",
+      "basis": {
+        "rules": [
+          "144.4",
+          "190.3.a.1"
+        ],
+        "combos": [
+          "dragon-roost-mountain-drake-instant-garrison"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 19
+    },
+    {
+      "id": "risen-altar-empower-discount",
+      "name": "Risen Altar discounts any [Empower] cost standing there",
+      "anchor": "VEN-163",
+      "partner": {
+        "textMatches": "\\[Empower\\]",
+        "excludes": [
+          {
+            "card": "VEN-007",
+            "why": "[Empower] cost is \"Discard 1\" — no Energy and no rune component, so a 1 Energy or 1 rainbow discount has nothing to reduce."
+          },
+          {
+            "card": "VEN-054",
+            "why": "[Empower] cost is a bare exhaust — no Energy and no rune component for the discount to bite on."
+          },
+          {
+            "card": "VEN-087",
+            "why": "[Empower] cost is a bare exhaust — no Energy and no rune component for the discount to bite on."
+          },
+          {
+            "card": "VEN-110",
+            "why": "[Empower] cost is \"Discard a spell\" — no Energy and no rune component for the discount to bite on."
+          },
+          {
+            "card": "VEN-124",
+            "why": "[Empower] cost is \"Kill a friendly unit\" — no Energy and no rune component for the discount to bite on."
+          }
+        ]
+      },
+      "why": "\"[Empower] costs of your units here cost 1 Energy or 1 rainbow less\" reads any unit's printed [Empower] cost (206), and 441.2 makes Empowered a permanent board state once paid — so the discount is worth exactly one payment per copy, at any battlefield you hold it. `VEN-136 Ambessa, Respected and Feared` prints [Empower] 1 Energy + 2 Order Power for a permanent [Assault 2] and a conditional kill on attack, which the Altar takes to 2 Power flat.",
+      "basis": {
+        "rules": [
+          "206",
+          "441.1",
+          "441.2",
+          "190.6.a"
+        ],
+        "combos": [
+          "risen-altar-ambessa-empower-power-rebate"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 33
+    },
+    {
+      "id": "forgotten-library-spent-four-threshold",
+      "name": "Forgotten Library predicts on the same spent-Energy threshold three other cards already key on",
+      "anchor": "UNL-211",
+      "partner": {
+        "textMatches": "[Ss]pent[^.]{0,20}or more"
+      },
+      "why": "\"While you control this battlefield, when you play a spell, if you spent 4 or more Energy, [Predict]\" reads what LEFT the Rune Pool (166.2, 203.1, 356.4.b), never the printed cost (206) — the same split the project's #98 walk drew between `costs N or more` and `if you spent N or more`. A sweep of the exact phrasing returns four cards total: this battlefield and three that gate on the identical 4-Energy spend (`UNL-004`, `UNL-005`, `UNL-089`, `UNL-181`), so a deck built around one of them gets the Library's card selection for free on the same turn its own threshold clears.",
+      "basis": {
+        "rules": [
+          "166.2",
+          "203.1",
+          "356.4.b",
+          "206"
+        ],
+        "combos": [
+          "forgotten-library-jhin-spent-four"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 4
+    },
+    {
+      "id": "relentless-storm-ambush-mighty",
+      "name": "Relentless Storm pays for a Mighty body played from [Ambush] on the opponent's own turn",
+      "anchor": "OGN-249",
+      "partner": {
+        "textMatches": "\\[Ambush\\]",
+        "excludes": [
+          {
+            "card": "UNL-002",
+            "why": "Might 1 — never Mighty on arrival."
+          },
+          {
+            "card": "UNL-021",
+            "why": "Might 3 — never Mighty on arrival."
+          },
+          {
+            "card": "UNL-071",
+            "why": "Might 3 — never Mighty on arrival."
+          },
+          {
+            "card": "UNL-114",
+            "why": "Might 4 — never Mighty on arrival."
+          },
+          {
+            "card": "UNL-143",
+            "why": "Might 4 — never Mighty on arrival."
+          },
+          {
+            "card": "UNL-149",
+            "why": "Might 3 — never Mighty on arrival."
+          },
+          {
+            "card": "VEN-123",
+            "why": "Might 3 — never Mighty on arrival."
+          }
+        ]
+      },
+      "why": "\"When you play a [Mighty] unit, you may exhaust me to channel 1 rune exhausted\" reads PLAY, not a Might-crossing event, so a body already printed at 5+ Might pays it the instant it lands — no buff needed. 822.1.b makes [Ambush] functionally \"I may be played to a battlefield where you control Units\" AND \"I have [Reaction] as long as I'm being played to a battlefield where you control Units\", which is the pool's route to playing a body on the OPPONENT's turn. Of the fourteen [Ambush] cards, seven print Might 5 or higher and trigger the Storm on arrival; the other seven never reach the threshold unbuffed. `UNL-120 Rengar, Trophy Hunter` (M6) is the widest of the seven — his own text lifts [Ambush]'s friendly-garrison requirement, so he can land at an EMPTY or enemy-held battlefield too.",
+      "basis": {
+        "rules": [
+          "822.1.b",
+          "709"
+        ],
+        "combos": [
+          "relentless-storm-ambush-mighty-off-turn-channel"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 7
+    },
+    {
+      "id": "sandswept-tomb-choose-friendly-spells",
+      "name": "Sandswept Tomb is live from turn one and discounts every spell that chooses a friendly unit",
+      "anchor": "VEN-164",
+      "partner": {
+        "textMatches": "[Cc]hoose a friendly unit",
+        "types": [
+          "spell"
+        ]
+      },
+      "why": "\"Each spell that chooses one or more units here that are friendly to it costs one rainbow less\" names no \"you\" — 190.6.d only blanks a battlefield's instructions through that word, and the Tomb instead keys on \"friendly to it\" (the spell's own controller), so unlike a \"While you control this battlefield\" discount it is live from turn one, before either player has walked anywhere. 355.10.d exempts a programmatically-selected object from being a target, so this reads only spells that CHOOSE — the same predicate the project already uses for Jae Medarda, Spirit Wheel and Blade Dancer. `VEN-154 Public Execution` is the entry's worked example: E2 with no Power at all when the chosen unit stands at the Tomb, and its [Flow] replay drops by the same rainbow.",
+      "basis": {
+        "rules": [
+          "190.6.d",
+          "355.10.d"
+        ],
+        "combos": [
+          "sandswept-tomb-public-execution"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 14
+    },
+    {
+      "id": "frozen-fortress-token-toughness",
+      "name": "Frozen Fortress sweeps every 1-Might token at both Beginning Phases — unless yours are worth 2",
+      "anchor": "UNL-212",
+      "partner": {
+        "textMatches": "[Tt]oken units? (have|has) \\+"
+      },
+      "why": "\"At the start of each player's Beginning Phase, deal 1 to each unit here\" fires for BOTH players (190.6.d never bites — the sentence names no \"you\") before 315.2.b's Hold, so a 1-Might token standing there dies to its own controller's upkeep exactly as it does to the opponent's (143.2.a kills on nonzero damage meeting or exceeding current Might). `UNL-077 Soul Shepherd`'s static (\"Your token units have +1 Might\") is a continuous modifier, not a 702 Buff (the same distinction the project draws for Lee Sin, Centered), so it raises every friendly token above the 1-damage sweep while the opponent's tokens still die — an asymmetric sweep bought with one card already in the catalogue's Mind identity.",
+      "basis": {
+        "rules": [
+          "190.6.d",
+          "143.2.a",
+          "702.3"
+        ],
+        "combos": [
+          "frozen-fortress-soul-shepherd-asymmetric-sweep"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 1
+    },
+    {
+      "id": "forbidding-waste-lone-defender-buff",
+      "name": "Forbidding Waste taxes a lone defender — a static that also buffs one while defending alone cancels it for your own body",
+      "anchor": "UNL-210",
+      "partner": {
+        "textMatches": "[Dd]efend(s|ing)? alone"
+      },
+      "why": "\"While a unit here is defending alone, it has -2 Might\" names no \"you\" (190.6.d never blanks it) and reads \"alone\" as an own-side measurement — no other unit FRIENDLY TO THAT UNIT at the battlefield, the same wording `SFD-036 Lonely Poro` uses — so it taxes both players' lone defenders equally from turn one. A static that ALSO grants Might specifically while defending alone cancels the Waste's own malus for your side while leaving the opponent's lone defender at -2: `OGS-019 Wuju Bladesman - Starter` (\"While a friendly unit defends alone, it gets +2 Might\") nets your body to +0 there, and `OGN-055 Wielder of Water` / `OGN-060 Mask of Foresight` do the same for a body that attacks OR defends alone.",
+      "basis": {
+        "rules": [
+          "190.6.d",
+          "143.2.a",
+          "143.2.b"
+        ],
+        "combos": [
+          "forbidding-waste-wuju-bladesman-lone-defender"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 3
     }
   ]
 }
