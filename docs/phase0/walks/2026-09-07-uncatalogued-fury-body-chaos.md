@@ -1327,3 +1327,105 @@ the entry claims nothing from it.
 - **`SFD-135 Factory Recall` or `VEN-003 Brittle Steel` against a protected gear.** Refused by 809.1.c
   and 054.1: both CHOOSE, so both pay the tax and both stop against an absolute prohibition. The
   programmatic answers in this identity are Thermo Beam and Acceptable Losses.
+
+## 23. Batch 13 — four entries, and the Fury / Chaos lane CLOSES
+
+### 23.1 `kinkou-lifeblade-shadow-fiend-empower-package` — VEN-093 + VEN-014 (both in zero entries)
+
+**A package, not an engine, and the entry says so.** 441.1.b, 441.1.c and 441.2 make each body's
+[Empower] a one-time purchase of a permanent state. What makes the two worth running together is that
+the **currencies differ**: the Lifeblade asks 2 Energy and no Power at all, the Fiend asks 2 Energy and
+a Fury Power — so one of them is payable on a turn where the Power is committed elsewhere.
+
+The Lifeblade buys **[Ganking]**, which is the keyword this whole lane keeps needing: 144.4 confines
+the Standard Move to base-to-battlefield and 144.4.c.1 is the only way out. The Fiend's [Assault 3] is
+offence only (807.1.c), so it is Might 5 attacking and **2** at every other moment.
+
+And 441.1 is worth restating: an ability that *Empowers* something performs the act directly and never
+determines the target's printed cost — so any future Empower-granting card in the identity makes both
+of these free.
+
+### 23.2 `incinerate-blast-corps-cadet-optional-cost-ping` — SFD-013 + OGS-003 (both in zero entries)
+
+`SFD-013 Blast Corps Cadet` is written in 356.1.b.3's shape — an optional additional cost with the
+payoff gated on having paid it — so it **survives a free play**, exactly as the rule's own worked
+example (Legion Rearguard) does. And the gate is on the **payment**, not the cost: declining is legal
+and simply yields a vanilla 2-Might body, which is why 055 does not rescue it.
+
+The difference between the two halves is the **window**: Incinerate is an [Action] (806.1.b) and
+answers a body after blocks; the Cadet's ping only happens on your own turn, as you play a card, but
+it comes attached to a permanent. Both **choose**, so both pay 809.1.c's tax and both stop against an
+absolute *"can't be chosen"* (054.1) — unlike Firestorm and Thermo Beam, which 355.10.d exempts.
+
+### 23.3 `decree-of-discord-megatusk-evacuate-and-gank` — VEN-107 + UNL-126 (both in zero entries)
+
+**A mass-choose spell pays the [Deflect] tax once PER UNIT**, and that arithmetic is not usually run.
+809.1.c charges *"for each time they choose"*, and *"return ANY NUMBER of enemy Order units"* chooses
+each separately — so a garrison of three Deflect bodies costs three extra Power on top of a 1-Energy
+spell. A programmatic sweeper pays none of it however many it hits (355.10.d). This is the one shape
+where a one-Energy spell becomes unaffordable.
+
+The budget is a **sum**, not a per-body ceiling: five 1-Might tokens is legal, two 3-Might bodies is
+not. And Megatusk is the second half because 144.4 would otherwise make a battlefield-to-battlefield
+trip take two turns — 144.4.c.1 collapses it, for the whole garrison at once, on the turn the ground
+opens. The taking is bloodless: 323.9 stages nothing, 344.2 opens a Showdown, 348.2.a.1 makes it a
+Conquer.
+
+**And Megatusk's cost is a SPEND**, so 730.2 with 824.1.d puts it in direct conflict with §11.3's
+`vicious-snapjaws-scorchclaw-xp-faucet-no-sink` — `UNL-016 Scorchclaw` is the only [Level] card in
+Fury or Chaos and one activation switches its rung off. **Both entries now state the conflict from
+their own side, and a list picks one.**
+
+### 23.4 `flash-gem-jammer-move-both-ways` — OGS-011 + SFD-007 (both in zero entries)
+
+**381 and 813.1.c.1 split movement into your turn and theirs.** Gem Jammer's grant is a play trigger
+and Megatusk's is an Activated Ability locked to your own Open State by 381; Flash carries [Reaction]
+and works in any Closed State on any player's turn. Outward movement is a your-turn thing; **retreat
+is not**.
+
+**A base is the one place an "all units at battlefields" effect cannot reach**, which makes Flash a
+third answer to `OGN-133 Flurry of Blades` — distinct from raising Might permanently (`UNL-077 Soul
+Shepherd`) or for a turn (`OGN-266 Siphon Power`), and the only one that works against a sweeper you
+cannot out-size.
+
+**But it is a Move, not a Recall**, and 456.3 is the sentence that separates them: a Recall *"cannot be
+prevented by actions and Game Effects that restrict or block Movement"*. Flash has no such protection,
+so §1.1's `minotaur-reckoner-rengar-unseen-frozen-board` switches it off entirely — the first and the
+last entry written for this issue, now cross-referenced in both directions.
+
+## 24. Refusals from batch 13, and the two cards that close the lane by rule
+
+- **`OGN-175 Shipyard Skulker`** (Chaos, E3 M3) prints *"(no text)"*. A vanilla body cannot anchor an
+  entry: there is no mechanism to walk, no rule to cite, and nothing a partner can interact with beyond
+  its Might. Refused by inspection, and recorded so no successor re-opens it.
+- **`OGN-171 Mystic Poro`** (Chaos, E2 M2, [Vision]) carries one keyword and nothing else, and that
+  keyword is already catalogued on a card that does more with it (`OGN-174 Sai Scout`, §19.5).
+  817.2.b is why a second copy is not a second look either: *"If the player does not recycle the top
+  card and nothing else happens in between the triggers resolving, each instance of Vision will see the
+  same card."* So multiples are one look with N re-rolls, not N cards deep — and 416.1 sends a recycled
+  card to the BOTTOM. Refused as strictly covered.
+- **Spending XP on `UNL-126 Megatusk` in a `UNL-016 Scorchclaw` list.** Refused by 730.2 + 824.1.d, in
+  both directions, in §23.3 and §11.3.
+- **A second [Ganking] grant on the same unit in the same turn.** Refused by 810.2 (*"Multiple
+  instances of Ganking are redundant"*) — three Gem Jammers enable three different units, not one unit
+  three times.
+- **`OGS-011 Flash` beside `SFD-014 Minotaur Reckoner`.** Refused by 054.1 with 420.1 / 449: Flash is a
+  Move and the Reckoner forbids moving to base. 456.3 protects a Recall and Flash is not one.
+
+## 25. Lane closed — the census, opened and closed
+
+| measure | at the start of this half (564 entries) | at close |
+|---|---|---|
+| uncatalogued **by base code** | 76 | **2** |
+| uncatalogued **by name+type** | 72 | **2** |
+| banned in constructed | 4 | 4 |
+| **walkable** | **68** | **0** |
+
+The two remaining base codes are `OGN-171 Mystic Poro` and `OGN-175 Shipyard Skulker`, both refused by
+rule in §24 above, so **the Fury / Chaos slice of issue #173 is closed**: 39 entries and 39 refusals
+across batches 6–13, plus the ten orphan dual-domain Signature spells, which closed at §15.
+
+Note for whoever re-measures: `Mystic Poro` is the last multi-base name in the slice
+(`OGN-171` / `UNL-224`), so a base-code census will keep reading 2 where a name+type census reads 1
+walkable-shaped row plus its reprint. Count over `data/cards.json` deduped by `base`, never over
+`poolOf` — see §7.
