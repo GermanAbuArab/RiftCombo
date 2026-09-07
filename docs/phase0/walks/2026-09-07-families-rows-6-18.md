@@ -470,3 +470,98 @@ exhausted (315.1.b readies it only next Awakening).
 - **`VEN-137 Shady Spectacles` under Blade Dancer** — refused on Domain Identity: the Spectacles are
   Order and Blade Dancer's own two domains are Calm and Chaos, so 103.1.b.4 keeps it out of any deck she
   can lead. (Under the Spirit Wheel it is legal but redundant, since the Wheel caps at one draw a turn.)
+
+## 6. Batch 5 — Karma, Channeler / recycle-main (row 18), four entries
+
+Karma reads like a card that scales with recycling and she scales with **bodies**. Three facts govern
+every entry here and two of them are printed on the card:
+
+- **"When you recycle one or more cards" counts EVENTS.** One instruction that recycles three cards
+  fires her once. Two cheap recycles beat one big one — the same inversion `jinx-rebel-discard-event-ready`
+  found on the discard side, reached independently here.
+- **"(Runes aren't cards.)"** is printed in her own reminder, and 161.2.b agrees: "When a Rune is
+  Recycled it is returned to the Rune Deck, not the Main Deck." So every 164.2.b rune recycle in the
+  game is invisible to her, and any `/recycle/` predicate that does not exclude runes is wrong about
+  this card.
+- **702.3 caps the payoff at min(triggers, new unbuffed bodies).** "There can only be one Buff on a
+  Unit at a time"; 702.3.a does not place a second. Raising the trigger count without raising the body
+  count buys nothing.
+
+### 6.1 `karma-forgotten-library-spell-buff` — OGN-235 + UNL-211 (in zero entries)
+
+The only one of her thirty-five partners that repeats for free and occupies no Main Deck slot
+(103.4.c). The reusable half is the threshold: **"if you spent 4 or more" reads the Rune Pool, so a
+discount switches it off** (166.2, 203.1, 356.4.b) while a [Repeat] cost counts in full (820.1.c.1) —
+the "spent" half of the split 206 draws for the "costs" family. The deck wants cheap spells with
+additional costs, not expensive ones. Predict is a look, so 436.4.a and 431.1.c keep it safe at an
+empty deck.
+
+### 6.2 `karma-ravenbloom-defend-buff` — OGN-235 + SFD-215 (in zero entries)
+
+Her only trigger on the **opponent's** turn, for free, every combat you defend there (383.3.c). The
+entry's own shortfall: the two outcomes are exclusive — "if it's a spell, put it in your hand.
+Otherwise, recycle it" — so a spell is a card and **no** Karma trigger. The choice is made at
+deckbuilding by spell density, not in the moment. 424.1 plus 431.1.c and 431.1.c.1 mean a reveal never
+Burns Out, not even the zone change that follows.
+
+### 6.3 `karma-double-trouble-repeat-two-buffs` — OGN-235 + UNL-032 (in zero entries)
+
+Two executions, two "Recycle the rest" instructions, **two** events, two buffs — and the second buff
+needs a second unbuffed body (702.3). 416.5 is stated so nobody prices it as deck-stacking: two or
+more cards recycled simultaneously go to the bottom "in a random order".
+
+### 6.4 `karma-divine-judgment-wipe-buff` — OGN-235 + OGN-244 (in zero entries)
+
+**416.1.c is the finding and it cuts two ways.** "Each player Recycles cards to their own Main Deck and
+Rune Deck, regardless of which player is instructed to perform the Recycle action" — so a symmetric
+wipe is *one* Karma trigger, not two, and `UNL-103 Disposal Order` ("Choose up to 3 cards from
+opponents' trashes. Their owners recycle them"), which the matrix lists as a partner, fires her
+**never**. `OGN-212 Forge of the Future` fires her only if one of the four recycled cards is your own.
+
+Karma has to be one of the two units you keep or she is recycled with the rest; the buff then lands on
+your single other survivor, so 702.3's cap is not even reached.
+
+## 7. Slice summary
+
+**29 entries** across the thirteen rows, all ENGINE, all `verified`, staged in five batches.
+
+| batch | rows | entries |
+|---|---|---|
+| 1 | 6, 10 — discard | 6 |
+| 2 | 7, 8, 9 — stun | 8 |
+| 3 | 11, 15, 16, 17 — hide / play-facedown | 5 |
+| 4 | 12, 13, 14 — choose-friendly | 6 |
+| 5 | 18 — recycle-main | 4 |
+
+**Cards that were in zero entries before this walk: 24.** OGN-002, OGN-023, OGN-197, OGN-244, OGN-279,
+OGN-298, SFD-017, SFD-114, SFD-138, SFD-215, UNL-003, UNL-013, UNL-028, UNL-032, UNL-052, UNL-106,
+UNL-175, UNL-176, UNL-194, UNL-211, VEN-008, VEN-116, VEN-120, VEN-135.
+
+**Refusals: 21**, recorded in §2.7, §3.9, §4.6 and §5.7 with the paragraph that kills each one. The
+largest single block is the eight non-spell choosers under `SFD-142 Jae Medarda`, refused on one word.
+
+### The rules this walk cited that no entry had cited before
+
+1. **381** — "All Activated Abilities can only be activated on the Controlling Player's Turn and during
+   an Open State." Read against **383.3.c**, it splits every "exhaust this to do X" card in the pool
+   into a your-turn family and an any-turn family that look identical on the card face.
+2. **811.1.b's tail** — "Beginning on the next turn, this gains [Reaction] and you may play this,
+   ignoring its base cost." Every hidden card is a [Reaction] card once face down; and the same
+   paragraph's "**that doesn't already have a facedown card hidden there**" caps the whole [Hidden]
+   family at one facedown per battlefield you control.
+3. **356.1.b.3** and its Legion Rearguard example — "ignoring its base cost" leaves an optional
+   **additional** cost payable at full price.
+4. **204.3.a** — the Costs-chapter statement, with its own worked example, of what 383.3.b says: a cost
+   at the start of a Triggered Ability's effect is its BASE cost, paid to finalize.
+5. **416.1.c** — each player recycles to their **own** decks, so a symmetric recycle is one trigger.
+6. **466.5** read in order — Control is Established *first*, and 466.5.d then makes that a Conquer, so a
+   battlefield's "When you conquer here" already has you as its Controller and 190.6.d never blanks it.
+
+### One correction to a standing project line
+
+"A Hold-triggered ready is a no-op" is true of a ready that **resolves inside 315.2**, because 315.1.b
+has already readied everything in the Awaken Phase. `UNL-052 Nami, Headstrong` is the swept exception:
+her Hold arms a *delayed* effect that resolves in **316**, the Main Phase. Sweeping `corpus_flat.txt`
+for `hold` ∩ `ready` returns five rows and hers is the only one that produces an actual ready. The line
+should be kept with the exception attached, the same shape as the Lee Sin (702.3) and Spiderling
+(103.2.b) precedents.
