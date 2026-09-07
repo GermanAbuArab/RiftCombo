@@ -2471,7 +2471,8 @@
           "RECRUITS ARE 1 MIGHT, so overshoot the seven — that is the entire mitigation, and it is why the feeder has to be unbounded, or at least repeatable across turns. The count is measured at the Hold (383.2.a.1), includes the bodies that conquered the battlefield, and cannot be topped up at that instant.",
           "A FEEDER THAT MARKS A BODY [Temporary] MUST NOT MARK THE PARKED ONES. 816.1.b kills them at the start of the Beginning Phase BEFORE scoring, which is exactly when the Plaza counts; grand-plaza-loop-time-warp records the same trap for Shadow's Call and solves it by pointing it at Ekko.",
           "Taking the Plaza is the same Showdown as everywhere else: a battlefield you bring starts uncontrolled (190.1) with its 'you' blanked (190.6.d), walking in makes it Contested (190.3.a), 344.2 opens the Showdown, 348.2.a gives Control and 348.2.a.1 makes it a Conquer. 323.6 takes the Control back the moment your last body leaves.",
-          "THE THIRTEEN FEEDERS THE GRAPH GIVES THIS ROW WERE CHECKED ONE BY ONE against the token-maker's own line in data/corpus_flat.txt, because the class shown to a player is the composed variant's: OGN-212 Forge of the Future, SFD-153 Eye of the Herald, SFD-154 Guards!, SFD-168 Vanguard Armory, OGN-265 Herald of the Arcane, OGN-246 Viktor Leader, SFD-021 Ferrous Forerunner and OGN-218 Vanguard Captain all play a plain unit token that stays on the board. The one that needs a condition is leblanc-zilean-reflection-doubling: UNL-200 Mirror Image's Reflections carry [Temporary], and only UNL-090 LeBlanc, Everywhere at Once switches the kill off, and only at HER battlefield (R10 = A) — so with that feeder the Plaza has to be where LeBlanc is standing. The two Sprite Fountain engines cannot feed this row at all and were moved to temporary-body-engine in the same commit."
+          "THE THIRTEEN FEEDERS THE GRAPH GIVES THIS ROW WERE CHECKED ONE BY ONE against the token-maker's own line in data/corpus_flat.txt, because the class shown to a player is the composed variant's: OGN-212 Forge of the Future, SFD-153 Eye of the Herald, SFD-154 Guards!, SFD-168 Vanguard Armory, OGN-265 Herald of the Arcane, OGN-246 Viktor Leader, SFD-021 Ferrous Forerunner and OGN-218 Vanguard Captain all play a plain unit token that stays on the board. The one that needs a condition is leblanc-zilean-reflection-doubling: UNL-200 Mirror Image's Reflections carry [Temporary], and only UNL-090 LeBlanc, Everywhere at Once switches the kill off, and only at HER battlefield (R10 = A) — so with that feeder the Plaza has to be where LeBlanc is standing. The two Sprite Fountain engines cannot feed this row at all and were moved to temporary-body-engine in the same commit.",
+          "UNL-077 Soul Shepherd (Mind, \"Your token units have +1 Might\") is a CONTINUOUS MODIFIER, not a 702 buff, so it applies to every token at once: 143.2.a + 465.2.c.3 make seven 1-Might Recruits cost 7 damage to clear and seven 2-Might Recruits cost 14, and it makes the whole 1-Might Plaza family immune to OGN-133 Flurry of Blades (\"Deal 1 to all units at battlefields\"). He is Mind, so he narrows an all-Order line to Mind/Order (#159, 2026-09-06)."
         ]
       },
       "steps": [
@@ -9742,7 +9743,8 @@
           "WHAT KILLS IT: nine of the ten are 1 Might Recruits, and OGN-133 Flurry of Blades (Body, E1, [Reaction], 'Deal 1 to all units at battlefields') sweeps all nine for one Energy at instant speed. arise-sand-soldiers-plaza, whose bodies are 2 Might Sand Soldiers, is immune to that; this is not.",
           "A THIRD ARMORY BUYS NOTHING ON THE FINISHING TURN. The trigger reads 'the FIRST time I move each turn': one ready per turn, and nothing in Body/Order readies Miss Fortune's trigger again.",
           "The Plaza is symmetric — 'When YOU hold here' reads for whoever holds it (190.6.d), so an opponent parking seven units on it wins the same way.",
-          "THIS ROUTE AND heimerdinger-vanguard-armory-recruits CAN NEVER SHARE A LIST. Heimerdinger is Mind, the Armory is Order, Miss Fortune is Body: three domains against a legend's two (103.1.b.4). They are alternatives, and that is the closure of the domain refutation #46 left open."
+          "THIS ROUTE AND heimerdinger-vanguard-armory-recruits CAN NEVER SHARE A LIST. Heimerdinger is Mind, the Armory is Order, Miss Fortune is Body: three domains against a legend's two (103.1.b.4). They are alternatives, and that is the closure of the domain refutation #46 left open.",
+          "UNL-077 Soul Shepherd (Mind, \"Your token units have +1 Might\") is a CONTINUOUS MODIFIER, not a 702 buff, so it applies to every token at once: 143.2.a + 465.2.c.3 make seven 1-Might Recruits cost 7 damage to clear and seven 2-Might Recruits cost 14, and it makes the whole 1-Might Plaza family immune to OGN-133 Flurry of Blades (\"Deal 1 to all units at battlefields\"). He is Mind, so he narrows an all-Order line to Mind/Order (#159, 2026-09-06)."
         ]
       },
       "steps": [
@@ -21982,7 +21984,8 @@
           "143.4 — the Recruits enter exhausted, so they neither defend nor move the turn they appear; that is irrelevant to a Hold, which needs only presence.",
           "THE BUILD IS 10 ENERGY + 2 POWER ACROSS EARLIER TURNS (Armory 7 + 1, Heimerdinger 3 + 1) plus Control of the Plaza, which 190.1 does not give you for free — a battlefield you provide starts uncontrolled and 190.6.d blanks its 'you' until you take it (466.5). And it is 1 of 3 at random in a Duel (485.4.a, 485.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy.",
           "SFD-210 Hall of Legends would ready the legend for an eighth Recruit, but it and The Grand Plaza can never share a table — 485.4.a uses only one battlefield per player and 103.4.c forbids two of the same name. The Plaza is the one that wins.",
-          "THE PLAZA IS SYMMETRIC: 'When YOU hold here' reads for whoever holds it (190.6.d), so an opponent parking seven units on it wins the same way."
+          "THE PLAZA IS SYMMETRIC: 'When YOU hold here' reads for whoever holds it (190.6.d), so an opponent parking seven units on it wins the same way.",
+          "UNL-077 Soul Shepherd (Mind, \"Your token units have +1 Might\") is a CONTINUOUS MODIFIER, not a 702 buff, so it applies to every token at once: 143.2.a + 465.2.c.3 make seven 1-Might Recruits cost 7 damage to clear and seven 2-Might Recruits cost 14, and it makes the whole 1-Might Plaza family immune to OGN-133 Flurry of Blades (\"Deal 1 to all units at battlefields\"). He is Mind, so he narrows an all-Order line to Mind/Order (#159, 2026-09-06)."
         ]
       },
       "steps": [
@@ -22518,7 +22521,8 @@
           "The turn structure, counted against its own quantities. Big turn: play the Armory (E7 + 1 Order Power) and activate it at once for 3 Recruits at the Plaza; play Heimerdinger (E3 + 1 Mind Power) to the Plaza, where he enters exhausted (143.4) and cannot copy anything yet. Four units there. Next Main Phase: Awaken (315.1.b) readies both, the Armory gives 3 and Heimerdinger's copy gives 3 — ten units at the Plaza. Survive the opponent's turn with seven of the ten. Your Beginning Phase Holds (315.2.b.2), the Trigger Condition finds 7+ (383.2.a.1) and 195 wins the game.",
           "Three spare bodies is the margin, and it is the point of preferring this to a seven-exactly line. 465.2.c.3 forces the attacker to assign lethal damage in full to one unit before moving to the next, so clearing ten bodies (nine 1-Might Recruits plus Heimerdinger at 3) costs 12 damage, not 10.",
           "R30 = B is not engaged. That ruling was about Heimerdinger copying an ability that carries its own 'Use my abilities only while I'm at a battlefield' clause (Renata Glasc, Mastermind). The Vanguard Armory prints no such sentence, so the copy carries no location condition — Heimerdinger could stand at your base. He stands at the Plaza anyway, because there he is one of the seven.",
-          "The Grand Plaza must be the battlefield in play: each player provides three and only 1 is used (485.4.a), randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy by name. And it is symmetric — an opponent who parks seven units on it wins the same way."
+          "The Grand Plaza must be the battlefield in play: each player provides three and only 1 is used (485.4.a), randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5); 103.4.c and Tournament Rules 402.1 forbid a second copy by name. And it is symmetric — an opponent who parks seven units on it wins the same way.",
+          "UNL-077 Soul Shepherd (Mind, \"Your token units have +1 Might\") is a CONTINUOUS MODIFIER, not a 702 buff, so it applies to every token at once: 143.2.a + 465.2.c.3 make seven 1-Might Recruits cost 7 damage to clear and seven 2-Might Recruits cost 14, and it makes the whole 1-Might Plaza family immune to OGN-133 Flurry of Blades (\"Deal 1 to all units at battlefields\"). He is Mind, so he narrows an all-Order line to Mind/Order (#159, 2026-09-06)."
         ]
       },
       "steps": [
@@ -23642,6 +23646,1252 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md). The #118 walk recorded the in-combat [Action] removal window as a SYNERGY SHAPE and named no combo for it; this is the attacker-side instance, and the payoff it reaches was already in the catalogue with its own weaknesses written into its prerequisites. OGN-172 Rebuke and VEN-106 Wind and Ghosts were both in zero entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.b, 144.2, 144.4, 161.2.a, 194.1.c, 316.8.b.1, 348.2.a.1, 383.3.e.1, 383.4.e, 461, 464.2.c.1/464.2.c.3/464.2.f.1/464.2.g, 465.1/465.2/465.2.c/465.2.c.3, 466.3.a/466.3.c, 466.5/466.5.d, 469.1, 470, 471.1, 485.4, 807.1.d, 808.1.d.1 and 809.1.c/809.1.d opened and read. Ban check: none of SFD-148, OGN-172 or SFD-185 carries a [BANNED marker, and none is a Signature card. Trap check: the empty-battlefield trap is live and is stated — no garrison, no combat, no Draven point; no [Temporary]; no [Repeat]; no token; a bounce to hand is not a recall (455) and takes the card off the board entirely, so no 'While I'm at a battlefield' question arises on the defender; nothing dies, so 808.1.d.1 and every Deathknell are simply absent. Depends on R2 = A and on no open reading."
+    },
+    {
+      "id": "gutter-palace-reaction-dials",
+      "name": "Gutter Palace held at exactly 4/4 — both counters moved at Reaction speed",
+      "class": "ALT_WIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-088",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Mind gear, E4. 'At the start of your Beginning Phase, if you have exactly 4 cards in hand and exactly 4 units at battlefields, you win the game. Discard 1, exhaust: Play a 1 Might Bird unit token with [Deflect].' Its own dial is hand -1 / units +1, but it is an Activated Ability with no [Reaction], so it only moves the counters in your own Main Phase."
+        },
+        {
+          "card": "UNL-071",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind unit, E3 M3. '[Ambush] (You may play me as a [Reaction] to a battlefield where you have units.)' 822.1.b is the whole reason it is here: units +1 on the opponent's turn. Hand -1, units +1."
+        },
+        {
+          "card": "OGN-104",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind spell, E1, [Reaction]. 'Return a friendly unit to its owner's hand. Its owner channels 1 rune exhausted.' Playing it is hand -1 and the return is hand +1, so it is a pure units -1 with the hand untouched — the only such dial in the identity."
+        },
+        {
+          "card": "SFD-087",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind spell, E2 P3, [Reaction]. 'Draw 3.' Hand -1 on the play and +3 on the resolution: net hand +2, units untouched. The only Reaction-speed hand INCREASE in mono-Mind."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Every card is mono-Mind, so 103.1.b.1 admits the whole line under any of the Mind legends.",
+          "No battlefield of yours is needed at all: the Palace counts 'units at battlefields', not units at battlefields you control, so it never competes for the one battlefield slot 485.4.a allows."
+        ],
+        "notable": [
+          "THE PROBLEM THE FEEDERS SOLVE IS THAT gutter-palace HAS TO PASS AT 4/4 AND SURVIVE. The catalogued one-card entry adjusts with the Palace's own discard/exhaust ability and then waits, but that ability has no [Reaction], so from the end of your Main Phase to the check at 315.2.a you cannot touch either counter. One removal spell on the opponent's turn takes you to 3 units and the check fails.",
+          "The four dials, and together they span both axes in both directions. Retreat: hand -1 on the play, +1 on the return, so hand 0 and units -1. Chakram Dancer: hand -1, units +1. Premonition: hand -1 on the play, +3 on the draw, so hand +2 and units 0. The Palace's own ability: hand -1, units +1, Main Phase only. Nothing else in mono-Mind moves the unit count upward at Reaction speed, which is why Chakram Dancer is the load-bearing card.",
+          "THE REMOVAL OPENS THE WINDOW IT NEEDS. A [Reaction] card 'can be played during Closed States on any player's turn' (813.1.c.1), and 312.2.c hands out priority in a Closed State — which is exactly what the opponent's own spell or ability creates when it goes on the Chain. 316.5.b means you get nothing in their Neutral Open State, so the correction has to be made IN RESPONSE to their action, not after it: count forward. They kill one of your four, you answer with Chakram Dancer to five, their removal resolves and you are back at four.",
+          "You must bank runes through your own turn to pay for it. 167 empties the Rune Pool 'at the start of each player's Main Phase and the end of each player's turn' — the POOL, not the runes — so ready runes survive into their turn, and 164.2.a and 164.2.b are both [Reaction]. Premonition's 3 Power comes from recycling three of them (164.2.b carries no exhaust in its cost), at the price of sending them to the Rune Deck (161.2.b).",
+          "The Bird the Palace makes is a token, and it counts: 185.1 makes 'token' an intrinsic category of Game Objects and 185.2.b says 'Token units have a Might', so it is a unit at a battlefield. It also carries [Deflect], so 809.1.c taxes an opponent a rainbow to choose it — the cheapest of the four bodies to protect.",
+          "The check is measured at 315.2.a and nothing can be added at that instant: 383.2.a.1 makes 'if you have exactly 4 cards in hand and exactly 4 units at battlefields' part of the Trigger Condition rather than the Effect. Your Draw Step is 315.4, AFTER the check, so the hand you pass with is the hand you are checked on — that is what makes a fixed hand size holdable at all.",
+          "Sibling entries: gutter-palace is the one-card version and is left in place as the floor; gutter-palace-keeper-time-warp reaches the same check inside an extra turn, where the opponent never acts and none of these dials are needed. This is the version for a game where they do act."
+        ]
+      },
+      "steps": [
+        "Play Gutter Palace (E4). Gear is not covered by 143.4, so it enters ready and its dial is available the same turn.",
+        "In your Main Phase, set the two counters to exactly 4 and 4, using the Palace's own ability (discard 1, exhaust: a [Deflect] Bird at a battlefield) as the free adjustment.",
+        "End your turn holding ready runes rather than spending them: 167 empties the Rune Pool, not the runes.",
+        "On the opponent's turn, whenever they put a spell or ability on the Chain the state closes and 312.2.c gives you priority (813.1.c.1 admits a [Reaction] card there).",
+        "Count FORWARD and correct in that same window: removal aimed at one of your four is answered with Chakram Dancer as an [Ambush] (822.1.b), so their spell resolves back down to four; an unwanted fifth body is answered with Retreat; a hand short of four is answered with Premonition for E2 and 3 Power recycled off your banked runes.",
+        "At the start of your Beginning Phase (315.2.a) the Palace's trigger is placed, 383.2.a.1 finds exactly 4 and exactly 4, and rule 195 wins the game."
+      ],
+      "terminatesIn": "win the game at the start of your Beginning Phase, with both halves of the 4/4 check correctable at Reaction speed on the opponent's turn",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06, issue #161 — uncatalogued feeders of the finishers (docs/phase0/walks/2026-09-06-finisher-feeders.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 822.1.b: '[Ambush] is functionally short for \"I may be played to a battlefield where you control Units\" and \"I have [Reaction] as long as I'm being played to a battlefield where you control Units.\"' 316.5.b: 'This is denoted as a Neutral Open State, and only the Turn Player has the ability to play spells or activate abilities.' 167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.' 195: 'A player also wins the game if an effect instructs them to do so.'"
+        },
+        {
+          "title": "Issue #161 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/161",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §12), issue #161, as the feeder pass over the two non-Plaza ALT_WINs. Card set checked against the current data/combos.json before writing: UNL-088 + OGN-104 + UNL-071 + SFD-087 has no exact match, and UNL-071 Chakram Dancer appears in no entry at all. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 143.4, 161.2.b, 164.2.a, 164.2.b, 167, 185.1, 185.2.b, 195, 312.2.c, 315.2.a, 315.4, 316.5.b, 383.2.a.1, 485.4.a, 809.1.c, 813.1.c.1, 822.1.b. The finding that makes the entry work is that the opponent's own removal is what opens the Closed State the correction needs (813.1.c.1 + 312.2.c against 316.5.b), so the answer must be played IN RESPONSE and counted forward. Trap check: no attack and no Attacker designation; no [Repeat]; nothing here is [Temporary], so 816.1.b never removes a body before the check — which is the trap gutter-palace-keeper-time-warp has to order around with 383.3.d; the Bird is a token and is only ever COUNTED, never recycled (185, 186.1); the Retreat return is to HAND and is therefore not a Recall (455); 167 is cited for what it does and does not empty rather than assumed."
+    },
+    {
+      "id": "svellsongur-fae-porter-relay",
+      "name": "Fae Porter × three Svellsongur — the Calm/Chaos answer to the exhausted-token walk",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-125",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 M4. 'When I move to a battlefield, you may pay 1 Chaos Power to move a unit you control to the same battlefield.'"
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. Three on the Porter compose to 2^3 = 8 instances, each an independent may."
+        }
+      ],
+      "needs": [
+        "token-body-engine"
+      ],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Chaos — OGN-259 Unforgiven, SFD-195 Blade Dancer, UNL-193 Gloomist. Unforgiven doubles as the mover that walks the Porter home."
+        ],
+        "notable": [
+          "IT MOVES EXHAUSTED BODIES, WHICH IS THE ENTIRE POINT. A token enters exhausted (143.4) and cannot pay 144.2's exhaust for a Standard Move, which is #48's bottleneck; SFD-171 Renata Glasc, Industrialist solves it by making tokens enter ready (R25 = A) but she is mono-Order and 103.1.b.1 bars her from a Calm/Chaos deck. Fae Porter moves BY EFFECT — 420.2.a, and 420.3.a puts the exhaust cost only on the Standard Move — so it drags exhausted bodies out of your base with no readying at all.",
+          "It is also not restricted to tokens. #48 measured that 'exactly ONE card in the pool relocates tokens in bulk — SFD-177 Azir, Sovereign', and Azir needs an enemy garrison to attack (807.1.d, 383.4.e). Fae Porter needs only a move, moves ANY unit you control, and eight instances relocate eight of them.",
+          "THE CAP IS THE POWER, NOT THE INSTANCES, and the entry will not publish the eight without it. Each instance is 'you may pay 1 Chaos Power', so eight relocations cost EIGHT Chaos Power in one turn. Against #44's measured free floor of 2 Power a turn (164.2.b carries no exhaust, so an already-exhausted rune still pays), the sustainable setting is two or three a turn; eight needs a Power engine behind it. That is why this entry declares needs rather than pretending to be self-contained.",
+          "Where they land: 'the same battlefield' is wherever the Porter moved, read at execution (359.3.f.2). Move him to a battlefield you already control and 190.3.a.1 applies no Contested, so the relocated bodies simply arrive; move him to an open one and the whole group Contests it together for the Showdown Conquer (344.2 → 348.2.a → 348.2.a.1).",
+          "The Porter is a 4-Might body at M+0 from the gears (137.3), and 137.3.a detaches all three the instant he dies. He must MOVE each turn to fire, and the Standard Move is base-to-battlefield only (144.4), so a repeat needs him walked home — which is what Unforgiven's '2 Energy, exhaust: Move a friendly unit to or from its base' is for.",
+          "Cost, counted whole: the Porter 4 Energy; each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 16 Energy and 6 Calm Power to assemble, then 1 Chaos Power per body relocated."
+        ]
+      },
+      "steps": [
+        "Have a token faucet filling your base, and play Fae Porter (4 Energy).",
+        "Attach Svellsongur A, B and C to him in that order: 2, then 4, then 8 instances of his move trigger (434.1.c, 476.1, 477.2.c, 479.1, 480.3; R6 = A).",
+        "Main Phase: standard-move the Porter to the battlefield you want garrisoned (144.1.a, 144.2, 144.4.a).",
+        "Each of the eight instances resolves separately: pay 1 Chaos Power to move one unit you control — exhausted tokens included — to that same battlefield. Stop when the Power runs out.",
+        "If the battlefield was open, the arrivals Contest it (190.3.a.1) and the Showdown at the next Cleanup gives Control and a Conquer (344.2, 348.2.a, 348.2.a.1).",
+        "Walk the Porter home with the legend and repeat next turn."
+      ],
+      "netPerIteration": "up to 8 friendly units, exhausted or not, relocated per move — at 1 Chaos Power each",
+      "terminatesIn": "engine — it garrisons a battlefield out of your base; the Conquer is what scores",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule svellsongur-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-125 was an uncatalogued partner of svellsongur-copy and of the three move rules. Card text verbatim from data/corpus_flat.txt; 137.3, 137.3.a, 143.4, 144.1.a, 144.2, 144.4, 144.4.a, 190.3.a.1, 344.2, 348.2.a, 348.2.a.1, 359.3.f.2, 420.2.a, 420.3.a, 434.1.c, 476.1, 477.2.c, 479.1, 480.3, 103.1.b.1 and 164.2.b opened in the Core Rules file. Stands on R6 = A, R9 and R25 (the last only to say why Renata is NOT available here); no new reading. Written with the Power cap in the front of the entry rather than the back, because the headline 'eight relocations' is exactly the kind of figure CLAUDE.md records the project publishing twice without counting the Power."
+    },
+    {
+      "id": "svellsongur-ribbon-dancer-fiora-mass-ready",
+      "name": "Ribbon Dancer × three Svellsongur under Fiora — eight units over the Mighty line in one move",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-038",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M3. 'When I move to a battlefield, give another friendly unit +1 Might this turn.' Each instance chooses its own target."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. Three on the Dancer compose to 2^3 = 8 instances."
+        },
+        {
+          "card": "SFD-180",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E3 M3. 'When a unit you control becomes [Mighty], you may pay 1 Order Power to ready it.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm (Ribbon Dancer, Svellsongur) and Order (Fiora) — OGN-261 Radiant Dawn, SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father, VEN-147 Eye of Twilight."
+        ],
+        "notable": [
+          "709 IS AN EVENT AND THE +1 IS EXACTLY THE RIGHT SIZE FOR IT. 708 makes a unit Mighty at 5+ Might and 709 says it 'becomes Mighty at the moment its Might changes from being less than 5 to being 5 or greater' — with the worked example 'A Unit with Might 4 that gets +1 becomes Mighty.' Ribbon Dancer's +1 is that example, eight times over, each instance choosing a different friendly unit.",
+          "SO THE ENGINE IS CAPPED BY YOUR BOARD, NOT BY THE GEAR. Only a body sitting at exactly 4 Might converts a +1 into a ready; a 3-Might body needs two instances aimed at it and a 5-Might body is already Mighty, which 709's own example spells out ('A Unit with Might 5 that gets +1 does not become Mighty, because it was already Mighty'). Eight instances therefore ready at most eight units, and in practice as many 4-Might bodies as you have. The entry declares the mechanism, not a promised number.",
+          "IT IS A CONTINUOUS MODIFIER, NOT A BUFF. 'Give another friendly unit +1 Might this turn' places no 702 buff counter, so 702.3's one-per-unit cap never applies and two instances aimed at the same 3-Might body stack to 5 — the same distinction CLAUDE.md draws for Lee Sin, Centered and Soul Shepherd. It also means nothing here feeds a 'spend a buff' cost (OGN-146 Wallop, SFD-101 Fae Dragon): those need a real buff, and this is not one.",
+          "The readies are the product: 1 Order Power each, on units that have already acted this turn. That is a second Standard Move (144.2 charges the exhaust), a second activation of any exhaust ability, or a defender readied mid-turn. Eight Order Power is far past #44's free floor of 2 a turn, so the honest ceiling is two or three readies unless a Power engine is behind it.",
+          "The Dancer must MOVE to a battlefield each turn to fire, and 'another friendly unit' excludes herself. She is a 3-Might body at M+0 from the gears (137.3), and 137.3.a detaches all three when she dies.",
+          "Cost, counted whole: Ribbon Dancer 3 Energy, Fiora 3 Energy, each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 18 Energy and 6 Calm Power, then 1 Order Power per ready."
+        ]
+      },
+      "steps": [
+        "Play Fiora, Worthy (3 Energy) and Ribbon Dancer (3 Energy).",
+        "Attach Svellsongur A, B and C to the Dancer in that order: 2, then 4, then 8 instances of 'When I move to a battlefield, give another friendly unit +1 Might this turn' (434.1.c, 476.1, 477.2.c, 479.1, 480.3; R6 = A).",
+        "Main Phase: standard-move the Dancer to a battlefield (144.1.a, 144.2, 144.4.a).",
+        "Resolve the eight instances one at a time, aiming each at a different friendly unit sitting at exactly 4 Might. Each crosses the line and 709 fires 'becomes Mighty'.",
+        "Fiora's trigger goes up for each: pay 1 Order Power to ready that unit. Every readied body can now move again, defend, or pay a second exhaust cost.",
+        "Repeat next turn once the Dancer is home and readied at Awaken (315.1.b)."
+      ],
+      "netPerIteration": "up to 8 friendly units readied per move, one Order Power each, capped by how many sit at exactly 4 Might",
+      "terminatesIn": "engine — a mass untap; it scores nothing by itself",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rules svellsongur-copy and fiora-buff-ready (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-038 was an uncatalogued partner of svellsongur-copy AND of fiora-buff-ready (98 partners, 4 entries) — the two richest rules in the file meeting on one card. Card text verbatim from data/corpus_flat.txt; 137.3, 137.3.a, 144.1.a, 144.2, 144.4.a, 315.1.b, 434.1.c, 476.1, 477.2.c, 479.1, 480.3, 702.3, 708 and 709 opened in the Core Rules file. Stands on R6 = A and R9; no new reading. The rule fiora-buff-ready states in its own why — 'whether a given buff crosses that line depends on the unit's printed Might, so this lists the Might sources, not a promise' — is honoured rather than glossed: the entry's ceiling is the number of 4-Might bodies you control, and it says so."
+    },
+    {
+      "id": "moonlight-affliction-wind-and-ghosts-banish",
+      "name": "Moonlight Affliction into Wind and Ghosts — banish any unit in the pool, permanently",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-066",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind spell, E7, [Reaction]. 'Give a unit -10 Might this turn.' The largest reduction printed anywhere, and it carries NO floor."
+        },
+        {
+          "card": "VEN-106",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos spell, E3 P1, [Action]. 'Choose a unit at a battlefield. If it has 3 Might or less, banish it. Otherwise, return it to its owner's hand.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Mind and Chaos — OGN-263 Swift Scout, SFD-199 Prodigal Explorer, UNL-197 Scorn of the Moon, VEN-151 Soul's Reflection."
+        ],
+        "notable": [
+          "-10 CLEARS EVERY PRINTED BODY IN THE POOL, AND THE MARGIN IS TWO. The largest printed unit Might is 12 — UNL-059 Master Yi, Unstoppable and UNL-147 / UNL-238 Baron Nashor — so -10 leaves 2, which satisfies a \"3 Might or less\" gate; the reduction clears anything up to 13. Moonlight Affliction has NO \"to a minimum of\" clause, which is the half that matters: #97 measured that the nine Origins reductions carry a floor and the fourteen from SFD / UNL / VEN do not. 143.2.b then covers the rest — \"If a unit's Might is ever less than 0, it is treated as 0 when referenced by spells and abilities.\"",
+          "THE ONE THING THAT BEATS IT IS A MIGHT BONUS, and it is worth checking before casting. 137.3 applies an Attached card's Might Bonus to its bearer, the largest in the pool is +4 (SFD-178 Blade of the Ruined King), and 477.3.e.2.a applies increases BEFORE decreases — so a 12-Might body wearing the Blade stands at 16, and -10 leaves 6, over the gate. Two Afflictions fix it (143.2.b.1: the value underneath is really negative, so a second copy on the SAME body adds its full -10), or remove the gear first.",
+          "BANISH IS THE ONLY PERMANENT ANSWER. Wind and Ghosts' two halves are not equivalent: below the gate it BANISHES, above it merely bounces to hand. 108.6.c means nothing in the pool returns a card from Banishment, so the Affliction converts a temporary tempo card into removal that cannot be undone — no Deathknell (808.1.d.1 needs the Trash), no [Flow] replay (829.1.b banishes from the trash, it does not retrieve from Banishment), no reanimation.",
+          "IT IS A [Reaction] INTO AN [Action], WHICH IS WHY THE ORDER WORKS. 813.1.b gives Reaction every permission of Action, so Moonlight Affliction may be cast in a Neutral Open State on your own Main Phase and simply resolved BEFORE Wind and Ghosts is played — no response-window argument is needed. 143.2.b.1 keeps the actual value negative underneath, so nothing can 'heal' the Might back above 3 in between: an effect calculating an increase uses the real number.",
+          "Ten Energy and one Chaos Power to remove one body is the honest price, and it is a lot: #97's whole point is that the pool has 22 Might gates and only 5 were catalogued, not that the lens is cheap. The cheaper gate in the same lens is UNL-159 Soul Harvest (Order, 2 Energy + 1 Power, 'Kill a unit at a battlefield with 3 Might or less') at 9 Energy total, in a Mind/Order shell — it kills rather than banishes, so a Deathknell still fires and the card still reaches the trash.",
+          "Both halves are spells, so 103.2.b caps this at three uses a game and every use costs two cards. It is an answer, not an engine — the feature is repeatable-removal because that is the vocabulary, not because it repeats within a turn.",
+          "Gates in the same family that the same Affliction opens, each with its own domain: VEN-127 Lacerate (Order, kill), SFD-158 Sandshifter (Order, kill, and its text omits 'at a battlefield' so it reaches the base), UNL-140 Conscription (Chaos, take control), UNL-132 Angler Beast (Chaos, mass bounce — but it returns ALL units at 2 Might or less, yours included)."
+        ]
+      },
+      "steps": [
+        "Choose the target: any unit at a battlefield whose current Might is 13 or less — which is every printed body in the pool, the 12-Might Master Yi and Baron Nashor included, unless it is wearing a Might Bonus.",
+        "Cast Moonlight Affliction (7 Energy) on it. 813.1.b lets a [Reaction] be played wherever an [Action] could be, so this can simply be resolved on your own Main Phase before anything else is played.",
+        "Its Might is now 10 lower — negative for most targets, which 143.2.b treats as 0 when a spell references it.",
+        "Cast Wind and Ghosts (3 Energy + 1 Chaos Power) choosing the same unit. The '3 Might or less' branch is satisfied, so it is BANISHED rather than bounced.",
+        "108.6.c: nothing in the pool brings it back."
+      ],
+      "terminatesIn": "engine — permanent removal of any single unit for 10 Energy and 1 Chaos Power, three times a game",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule moonlight-affliction-might-gate (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. VEN-106 was an uncatalogued partner of moonlight-affliction-might-gate (16 partners, 2 entries), and #97 recorded that 22 of the pool's Might gates exist with only 5 catalogued. Card text verbatim from data/corpus_flat.txt; 103.2.b, 108.6.c, 143.2.b, 143.2.b.1, 808.1.d.1, 813.1.b and 829.1.b opened in the Core Rules file. No unruled reading. CORRECTION MADE BEFORE SHIPPING: the first draft of this entry said the pool tops out at 10 Might. It does not — data/cards.json gives 12 (UNL-059 Master Yi, Unstoppable; UNL-147 / UNL-238 Baron Nashor), so the margin is 2 rather than 7, and a +4 Might Bonus (137.3, 477.3.e.2.a) puts a 12-Might body out of reach of one copy. Both facts are now in the entry. Trap check: no attack; no token; nothing recycled; no [Temporary]; no [Repeat]; the ORDER of the two spells is stated with 813.1.b rather than left to a response window, which is the 'try a legal ordering before filing a reading' rule."
+    },
+    {
+      "id": "moonlight-affliction-tricksy-tentacles-evacuation",
+      "name": "Moonlight Affliction into Tricksy Tentacles — one spell opens a whole garrison to evacuation",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-066",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind spell, E7, [Reaction]. 'Give a unit -10 Might this turn.' No floor."
+        },
+        {
+          "card": "UNL-054",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E4 P1. 'Move any number of enemy units with the same controller and a total Might of 8 or less to a single location.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Mind and Calm — OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom, VEN-145 Curator of the Sands."
+        ],
+        "notable": [
+          "THE GATE IS A SUM, SO ONE AFFLICTION IS WORTH THE BIGGEST BODY'S WHOLE MIGHT. Tricksy Tentacles reads \"a TOTAL Might of 8 or less\", not a per-unit cap, and 143.2.b treats a negative Might as 0 when a spell references it — so casting the Affliction on the largest defender removes exactly that unit's contribution from the sum. A two-body garrison at 6 and 5 totals 11 and is out of reach; Affliction the 6 and the total is 5. In general the reachable total becomes 8 plus the afflicted body's own Might, which against the pool's largest printed unit (12 Might: UNL-059 Master Yi, Unstoppable, UNL-147 Baron Nashor) is 20.",
+          "143.2.b.1 is why a second Affliction is NOT worth another 10: 'Although the unit's Might is treated as 0, it is not 0.' The sum already counts the afflicted body as 0, so a second copy aimed at the same unit adds nothing to the total. Aim each copy at a DIFFERENT defender; three copies (103.2.b) zero three bodies.",
+          "AND EVACUATING A GARRISON IS NOT YET A CONQUER, which is the correction the #102 walk had to make. 323.6 only STRIPS the opponent's Control when their last body leaves — 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there' — and 170.11.c then makes it open, 'unoccupied AND uncontrolled', both conditions. The point still needs a body of yours walking in during the Main Phase (144.4.a) → Contested (190.3.a.1) → Showdown (344.2) → 348.2.a → 348.2.a.1, and it does score that same turn.",
+          "'To a single location' means you choose where they go, so send them to the opponent's OTHER battlefield or to their base — sending them to a battlefield of yours would make them the Attackers of a Combat on your own turn (190.3.a.1 keys Contested on the moved unit's controller, 464.2.c.1), which is a different line entirely (see faefolk-challenger-forced-attacker and svellsongur-faefolk-mass-evacuation).",
+          "Eleven Energy and 1 Calm Power for a bloodless Conquer, plus whatever body walks in. Compare svellsongur-faefolk-mass-evacuation, which does the same job for 14 Energy + 6 Calm Power ONCE and then repeats every turn for free: this is two cards out of hand, capped at three uses a game by 103.2.b.",
+          "Nothing here needs an attack, which is the whole reason the lens is worth walking: 807.1.d, 383.4.e and 461 make an empty enemy battlefield no attack at all, and this line never wants one."
+        ]
+      },
+      "steps": [
+        "Pick the battlefield you intend to take and read its garrison's total Might.",
+        "Cast Moonlight Affliction (7 Energy) on the largest defender there. 813.1.b lets a [Reaction] be played wherever an [Action] could be, so it simply resolves first on your own Main Phase.",
+        "That unit's Might is now negative and 143.2.b makes the sum read it as 0. If the remaining total is 8 or less, the whole garrison is in range.",
+        "Cast Tricksy Tentacles (4 Energy + 1 Calm Power), moving every one of those units to a single location that is NOT a battlefield of yours.",
+        "The battlefield now has no units of its controller on it: at the Cleanup 323.6 strips their Control and 170.11.c makes it open.",
+        "Walk a friendly unit in the same Main Phase (144.4.a). 190.3.a.1 Contests it, 344.2 opens the Showdown at the next Cleanup, 348.2.a establishes Control and 348.2.a.1 makes it a Conquer — no combat, no damage, no Attacker designation."
+      ],
+      "terminatesIn": "engine — a bloodless Conquer against a garrison whose total Might is 8 plus the afflicted body, three times a game",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule moonlight-affliction-might-gate (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. UNL-054 was an uncatalogued partner of moonlight-affliction-might-gate. Card text verbatim from data/corpus_flat.txt; 103.2.b, 143.2.b, 143.2.b.1, 144.4.a, 170.11.c, 190.3.a.1, 323.6, 344.2, 348.2.a, 348.2.a.1, 383.4.e, 461, 464.2.c.1, 807.1.d and 813.1.b opened in the Core Rules file. No unruled reading. The pool's maximum printed unit Might was measured from data/cards.json (12, not the 10 a first draft of this walk asserted) before the ceiling was published. Two corrections from earlier walks are applied rather than re-derived: #102's (evacuating is not yet a Conquer — 323.6 strips, nobody gains) and #146's (170.11.c requires BOTH unoccupied and uncontrolled). The 'a second Affliction on the same body adds nothing' point comes from 143.2.b.1 and is stated because the sum makes it tempting."
+    },
+    {
+      "id": "svellsongur-qiyana-victorious-modal",
+      "name": "Qiyana, Victorious × three Svellsongur — eight modal conquer triggers, and the mode is the safety valve",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-155",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E4 P1 M4, [Deflect]. 'When I conquer, draw 1 or channel 1 rune exhausted.' Each instance chooses independently."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. Three on Qiyana compose to 2^3 = 8 instances."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Body — OGN-257 Blind Monk, OGS-019 Wuju Bladesman, SFD-193 Grandmaster at Arms, UNL-191 Wuju Master."
+        ],
+        "notable": [
+          "THE MODE IS CHOSEN PER INSTANCE, WHICH IS WHAT MAKES EIGHT SAFE. Every other multiplied draw line in the catalogue is all-or-nothing: 431.1.a turns an over-draw into a Burn Out and 194.1.d gives the opponent a point, which is why svellsongur-traveling-merchant-discard carries a hard clock and why SFD-027 Dunebreaker at eight instances is simply a loss. Qiyana's 'draw 1 OR channel 1 rune exhausted' is resolved eight separate times, so you take exactly as many cards as the deck can spare and channel the rest.",
+          "The channel half is a REFILL, not a ramp, and the entry says so: 430.1 takes runes from the top of your Rune Deck, 430.3 channels 'as many as possible' if there are not enough, and 161.2.b puts a rune recycled for Power back into the Rune Deck. By the turn a Conquer engine is running, the Rune Deck holds mostly what recycling put there — so eight channels return your own spent runes rather than adding new mana. That is exactly the correction the #153 walk made, applied here instead of re-derived.",
+          "430.2.a is the default the card overrides: 'By default, runes are channeled readied' — Qiyana channels them EXHAUSTED, so each is Power on demand (164.2.b carries no exhaust) but not Energy until your next Awaken (315.1.b).",
+          "It fires on a CONQUER, so it pays on the bloodless route as well as the bloody one: 348.2.a.1 makes the Showdown at an open battlefield a Conquer with no combat and no Attacker designation, so 807.1.d / 383.4.e / 461 never bite. And you cannot conquer a battlefield you already control, so this is at most once per battlefield you take — twice a turn in a Duel (485.4).",
+          "[Deflect] is the reason Qiyana survives to conquer twice: 809.1.c makes an opponent pay 1 rainbow Power to choose her with a spell or ability, and 809.1.c.1 lets that Power be any domain. Svellsongur is M+0 (137.3), so the gears add nothing to her 4 Might, and 137.3.a strips all eight instances the moment she dies.",
+          "Cost, counted whole: Qiyana 4 Energy + 1 Body Power; each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 16 Energy, 1 Body Power and 6 Calm Power."
+        ]
+      },
+      "steps": [
+        "Play Qiyana, Victorious (4 Energy + 1 Body Power) and attach Svellsongur A, B and C to her in that order: 2, then 4, then 8 instances of her conquer trigger (434.1.c, 476.1, 477.2.c, 479.1, 480.3; R6 = A).",
+        "Conquer a battlefield with her present — either by winning the Combat there (466.5.d) or, with no enemy garrison, by the Showdown at the next Cleanup (344.2, 348.2.a, 348.2.a.1).",
+        "Resolve the eight instances one at a time. Count your Main Deck as you go and take the draw mode only while it is safe (431.1.a).",
+        "Take the channel mode for the rest: each puts one rune from the Rune Deck onto the board exhausted (430.1, 430.2.a overridden by the card), payable as Power at once and as Energy from your next Awaken.",
+        "Repeat on the next battlefield you take."
+      ],
+      "netPerIteration": "8 modal triggers per Conquer, split between cards drawn and runes channelled exhausted",
+      "terminatesIn": "engine — cards and mana per Conquer, with the draw count under your own control",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule svellsongur-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. OGN-155 was an uncatalogued partner of svellsongur-copy. Card text verbatim from data/corpus_flat.txt; 137.3, 137.3.a, 161.2.b, 164.2.b, 194.1.d, 315.1.b, 344.2, 348.2.a, 348.2.a.1, 383.4.e, 430.1, 430.2.a, 430.3, 431.1.a, 434.1.c, 461, 466.5.d, 476.1, 477.2.c, 479.1, 480.3, 485.4, 807.1.d, 809.1.c and 809.1.c.1 opened in the Core Rules file. Stands on R6 = A; no new reading. It is the third member of a deliberate set with svellsongur-apprentice-smith-gear-dig (reveals, 431.1.c, safe at any deck size) and svellsongur-traveling-merchant-discard (draws, 431.1.a, a hard clock): same multiplier, same price, three different relationships to Burn Out."
+    },
+    {
+      "id": "peak-guardian-fiora-mass-ready",
+      "name": "Peak Guardian × Fiora, Worthy — one play readies the whole garrison, mono-Order",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-223",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P1 M5. 'When you play me, buff me. Then, if I am at a battlefield, buff all other friendly units there. (To buff a unit, give it a +1 Might buff if it doesn't already have one.)'"
+        },
+        {
+          "card": "SFD-180",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E3 M3. 'When a unit you control becomes [Mighty], you may pay 1 Order Power to ready it.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "MONO-ORDER. Every legend with Order in its pair can run both cards (103.1.b.3)."
+        ],
+        "notable": [
+          "ONE CARD, ONE BUFF EACH, ONE READY EACH. 703 makes each buff contribute exactly +1 Might, and 709 says a unit 'becomes Mighty at the moment its Might changes from being less than 5 to being 5 or greater' with the worked example 'A Unit with Might 4 that gets +1 becomes Mighty.' So every 4-Might friend at that battlefield crosses the line simultaneously and Fiora's trigger goes up once per body, at 1 Order Power each.",
+          "PEAK GUARDIAN'S SECOND SENTENCE IS LIVE, AND THE #100 WALK HAD TO CORRECT ITS OWN HUNT ON THAT POINT. 355.2.a makes 'the controller's Base or a Battlefield the controller controls' a default play location, so playing him TO a battlefield you control satisfies his own 'if I am at a battlefield' with no [Ambush] and no other permission; 822.1.b's [Ambush] exists for the different case of a battlefield where you have units but do not control it. He is not dead letter.",
+          "THE CEILING IS UNBUFFED 4-MIGHT BODIES, NOT BODY COUNT. 702.3 — 'There can only be one Buff on a Unit at a time' — and 702.3.a mean a friend that already carries a buff is skipped entirely ('it is not placed instead'), so it never becomes Mighty and never readies. A 3-Might body gets to 4 and stops; a 5-Might body was already Mighty and 709's own second example ('A Unit with Might 5 that gets +1 does not become Mighty, because it was already Mighty') excludes it. The engine wants a garrison of unbuffed 4-Might units.",
+          "It is one play, not a repeat: Peak Guardian's trigger is 'When you play me', so three copies (103.2.b) are three uses a game. What makes it worth an entry rather than a trick is the SHAPE — every other Fiora line in the catalogue readies one body at a time (world-atlas-fiora-worthy-ready, soraka-fiora-loop-shield, friendship-fiora-worthy-mighty-ready), and this one readies the whole garrison for the price of the bodies' worth of Order Power.",
+          "Buffing is CHOOSING (702.2.a), which is why this also switches on SFD-057 Irelia, Fervent ('When you choose or ready me, give me +1 Might this turn' — twice here, once for the buff and once for the ready) and SFD-195 Blade Dancer. Neither is declared, because neither is needed.",
+          "Cost, counted whole: Peak Guardian 6 Energy + 1 Order Power, Fiora 3 Energy, plus 1 Order Power per body readied. Against #44's measured free floor of 2 Power a turn, four readies is already past what a deck makes without a Power engine."
+        ]
+      },
+      "steps": [
+        "Play Fiora, Worthy (3 Energy) anywhere — her trigger reads 'a unit you control', with no location clause.",
+        "Assemble a garrison of unbuffed 4-Might units at a battlefield you control, and let them spend their exhausts (moving, attacking, activating).",
+        "Play Peak Guardian (6 Energy + 1 Order Power) TO that battlefield. 355.2.a permits it because you control the battlefield, which satisfies his own 'if I am at a battlefield'.",
+        "He buffs himself, then buffs all other friendly units there. Each unbuffed 4-Might body goes to 5 and 709 fires 'becomes Mighty'.",
+        "Fiora's trigger goes up once per body: pay 1 Order Power each to ready them. The whole garrison is upright again in the middle of your Main Phase."
+      ],
+      "netPerIteration": "one ready per unbuffed 4-Might body at that battlefield, 1 Order Power each, three times a game",
+      "terminatesIn": "engine — a garrison-wide untap; it scores nothing by itself",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule fiora-buff-ready (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. OGN-223 was an uncatalogued partner of fiora-buff-ready (98 partners; 8 entries in the catalogue carry SFD-180 and every one of them readies a single body). Card text verbatim from data/corpus_flat.txt; 103.2.b, 355.2.a, 702.2.a, 702.3, 702.3.a, 703, 708, 709 and 822.1.b opened in the Core Rules file. No unruled reading. The #100 walk's correction is applied rather than re-derived: Peak Guardian's 'buff all other friendly units here' is live whenever he is played to a battlefield you control, which the hunt behind #100 had called dead letter."
+    },
+    {
+      "id": "arena-bar-fiora-untap",
+      "name": "Arena Bar × Fiora, Worthy — a free ready every turn, aimed only at exhausted bodies",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-124",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Body gear, E3. '[exhaust]: Buff an exhausted friendly unit. (If it doesn't have a buff, it gets a +1 Might buff.)' No Energy and no Power in the cost."
+        },
+        {
+          "card": "SFD-180",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E3 M3. 'When a unit you control becomes [Mighty], you may pay 1 Order Power to ready it.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Body and Order — OGN-269 The Boss, OGS-023 Might of Demacia, SFD-205 Grand Duelist, UNL-203 Keeper of the Hammer, VEN-153 Matriarch of War."
+        ],
+        "notable": [
+          "THE BAR IS THE ONLY BUFF SOURCE IN THE POOL THAT NAMES AN EXHAUSTED TARGET, which is exactly the target Fiora wants: readying a unit that is already ready does nothing (415.1 marks a Game Object already on the board), so every other buff source in fiora-buff-ready's 98-partner list has to be aimed by hand at something spent. Arena Bar cannot be aimed anywhere else.",
+          "AND IT COSTS NOTHING. Its cost is its own exhaust alone — no Energy, no Power — and 315.1.b readies it every Awaken, so this is one ready a turn, every turn, for 1 Order Power. Against a one-shot like peak-guardian-fiora-mass-ready (three uses a game, whole garrison) this is the sustainable half of the same lens.",
+          "702.3 IS THE CAP AND IT IS PERMANENT, not per turn: 'There can only be one Buff on a Unit at a time', and 702.3.a says a second 'is not placed instead'. So the Bar must find a DIFFERENT unbuffed 4-Might body each turn — a unit it has already buffed can never become Mighty again this way. In practice the fodder is a token faucet or a rotating garrison, which is why the pairing wants a wide board rather than a tall one.",
+          "The arithmetic is exact and small: 703 gives the buff +1 Might, 708 makes 5+ Mighty, and 709 fires only on the crossing. A 4-Might body readies; a 3-Might body goes to 4 and stops; a 5-Might body was already Mighty. Nothing here manufactures the 4.",
+          "Buffing is CHOOSING (702.2.a), so the Bar's activation is also a choose of a friendly unit — which switches on SFD-195 Blade Dancer and SFD-057 Irelia, Fervent if the shell carries them. Neither is declared.",
+          "Six Energy for the pair and 1 Order Power a turn thereafter. Both halves are fragile in different ways: the Bar is a gear and dies to gear removal, Fiora is a 3-Might body."
+        ]
+      },
+      "steps": [
+        "Play Arena Bar (3 Energy) and Fiora, Worthy (3 Energy).",
+        "Spend a 4-Might unit's exhaust during your Main Phase — move it, attack with it, or pay an exhaust ability with it.",
+        "Activate Arena Bar by exhausting it: buff that exhausted 4-Might friend. 703 takes it to 5 and 709 fires 'becomes Mighty'.",
+        "Fiora's trigger goes up: pay 1 Order Power to ready it. That unit can now act a second time this turn.",
+        "Both the Bar and the unit ready at your next Awaken (315.1.b). Repeat every turn, aiming the Bar at a body it has not already buffed (702.3)."
+      ],
+      "netPerIteration": "+1 unit readied per turn for 1 Order Power and no Energy",
+      "terminatesIn": "engine — one extra action a turn, forever; it scores nothing by itself",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule fiora-buff-ready (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. OGN-124 was an uncatalogued partner of fiora-buff-ready. Card text verbatim from data/corpus_flat.txt; 315.1.b, 415.1, 702.2.a, 702.3, 702.3.a, 703, 708 and 709 opened in the Core Rules file. No unruled reading. The 'only buff source that names an exhausted target' claim was checked by grepping the whole pool for 'exhausted friendly' rather than asserted — the standing rule after two uniqueness claims in this project were refuted by a full sweep. Deliberately authored beside peak-guardian-fiora-mass-ready as its opposite: one is three uses a game across a whole garrison, this is one a turn forever."
+    },
+    {
+      "id": "black-market-broker-ember-monk-hidden",
+      "name": "Black Market Broker × Ember Monk — two payoffs on the same face-down play, mono-Chaos",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-121",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Chaos unit, E3 M3. 'When you play a card from face down, play a Gold gear token exhausted.'"
+        },
+        {
+          "card": "OGN-167",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 M4. 'When you play a card from [Hidden], give me +2 Might this turn.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "MONO-CHAOS. Every legend with Chaos in its pair can run both (103.1.b.3), and Chaos is where the [Hidden] package lives."
+        ],
+        "notable": [
+          "BOTH WATCH THE SAME EVENT, AND THE RULES NAME IT. 811.1.c.3: 'Playing a card from facedown (or \"from Hidden\") does open a chain' — that is the event, and both triggers key on it with no further condition, so every face-down play is 1 Gold gear token AND +2 Might on the Monk in the same instant.",
+          "THE COST OF THE EVENT IS ONE RAINBOW POWER A TURN AND THEN NOTHING. 811.1.b spells the keyword out: 'you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there... Beginning on the next turn, this gains [Reaction] and you may play this, IGNORING ITS BASE COST.' So the hide is 1 rainbow Power and the play is free, whatever the card prints — and it is capped at one face-down per battlefield you control, which is the real throughput limit: one or two a turn in a Duel (485.4), not one per Hidden card in hand.",
+          "AVA ACHIEVER DOES NOT FEED THIS, and it is the obvious mistake to make. OGN-107 Ava Achiever plays a [Hidden] card 'from your hand', not from face down; 811.1.c.1 says outright 'Hide is not a subset of Play', and the Broker's and the Monk's triggers both require the face-down play. Any line that routes Hidden cards through Ava switches both payoffs off.",
+          "The Monk's +2 is 'this turn' and is a continuous modifier, not a 702 buff, so 702.3 never caps it and two face-down plays in one turn stack to +4 — a 4-Might body attacking at 8. The Gold, by contrast, is permanent: 187.5 makes each '[Reaction][>] Kill this, [exhaust]: [Add] [rainbow]', and 315.1.b readies it at your next Awaken, so the Power accumulates while the Might does not.",
+          "It pays for the hide and no more: 1 rainbow Power in, 1 rainbow Power back next turn. What the pair actually buys is that the Hidden package stops being a tempo tax — every trick you hide is now also a Gold and a swing on the Monk, and 813.1.c.1 lets the face-down play happen on the opponent's turn.",
+          "Seven Energy for both bodies. The Broker's trigger has no location clause, so he may sit at your base; the Monk's +2 is only worth having where he fights."
+        ]
+      },
+      "steps": [
+        "Play Black Market Broker (3 Energy) and Ember Monk (4 Energy), the Monk to a battlefield.",
+        "During an Open State on your turn, pay 1 rainbow Power to hide a [Hidden] card face down at a battlefield you control (811.1.b). Hiding triggers nothing — 811.1.c.2, 'Hiding a card does not open a chain'.",
+        "From the next turn on, play it from face down for free (811.1.b, 'ignoring its base cost'). 811.1.c.3 makes that a play from face down.",
+        "Both triggers fire: the Broker plays a Gold gear token exhausted, and the Monk gets +2 Might this turn.",
+        "The Gold readies at your next Awaken (315.1.b) and is 1 rainbow Power on demand (187.5). Repeat, one face-down per battlefield you control per turn."
+      ],
+      "netPerIteration": "+1 Gold gear token and +2 Might on the Monk per face-down play",
+      "terminatesIn": "engine — it refunds the Hidden package's hide cost and swings a body; it scores nothing",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule black-market-broker-hidden-family (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. OGN-167 Ember Monk was an uncatalogued partner of black-market-broker-hidden-family (38 partners, 4 entries) even though it is the only other card in the pool that watches the same event. Card text verbatim from data/corpus_flat.txt; 187.5, 315.1.b, 485.4, 702.3, 811.1.b, 811.1.c.1, 811.1.c.2, 811.1.c.3 and 813.1.c.1 opened in the Core Rules file. No unruled reading. The Ava Achiever exclusion is stated in the entry because it is the trap: 811.1.c.1 makes hiding and playing different acts, and Ava plays from HAND."
+    },
+    {
+      "id": "svellsongur-ava-achiever-hidden-flood",
+      "name": "Ava Achiever × three Svellsongur — eight free Hidden plays on one attack",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-107",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E5 M4. 'When I attack, you may pay 1 Mind Power to play a card with [Hidden] from your hand, ignoring its cost. If it's a unit, play it here.'"
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. Three on Ava compose to 2^3 = 8 instances, each an independent may."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Mind — OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom, VEN-145 Curator of the Sands."
+        ],
+        "notable": [
+          "EVERY [Hidden] CARD BECOMES A FLAT ONE MIND POWER, EIGHT TIMES OVER. That is ava-achiever-hidden-discount's own finding — 811.1.a scopes the keyword to Spells, Units and Gear, so a 6-Energy Hidden spell and a 1-Energy Hidden unit both cost the same 1 Mind Power through Ava — and eight instances turn one attack into eight free plays. The Hidden package is 15 units and 2 gear plus the spells, so the hand is the only real limit.",
+          "THE CAP IS THE POWER, AND IT IS EIGHT MIND POWER IN ONE TURN. Against #44's measured free floor of 2 Power a turn (164.2.b carries no exhaust, so a rune already spent for Energy still pays Power), three or four plays is the honest setting without a Power engine behind it. The entry declares the eight because that is the mechanism, and states the cost in the same breath.",
+          "IT PLAYS FROM HAND, NOT FROM FACE DOWN, and that is a hard exclusion rather than a footnote. 811.1.c.1: 'Hide is not a subset of Play.' The Broker and Ember Monk families watch 'a card played FROM FACE DOWN' (811.1.c.3) and none of them fires here; the two payoff sets are mutually exclusive, and black-market-broker-ember-monk-hidden is the other side of the same coin.",
+          "IT ALSO SIDESTEPS 811.1.d.2. A card played from face down may only target at the battlefield it was hidden at; a card played from hand carries no such restriction, so a Hidden removal spell routed through Ava reaches anywhere its own text allows. The compensation is that it costs an attack.",
+          "AN ATTACK MEANS A REAL COMBAT. 383.4.e places an attack trigger when a unit gains the Attacker designation, and entering an EMPTY enemy battlefield gives none (807.1.d, 461) — so this engine is worth nothing against an opponent who keeps no garrison, and Ava is a 4-Might body walking into one. Svellsongur is M+0 (137.3), so the gears do not help her live, and 137.3.a strips all eight instances the moment she dies.",
+          "Cost, counted whole: Ava 5 Energy; each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 17 Energy and 6 Calm Power to assemble, then 1 Mind Power per card cast."
+        ]
+      },
+      "steps": [
+        "Play Ava Achiever (5 Energy) and attach Svellsongur A, B and C to her in that order: 2, then 4, then 8 instances of her attack trigger (434.1.c, 476.1, 477.2.c, 479.1, 480.3; R6 = A).",
+        "Hold a hand of [Hidden] cards — the keyword is on 15 units, 2 gear and a spread of spells across all six domains, and Ava ignores every printed cost.",
+        "Move her to an OCCUPIED enemy battlefield so she gains the Attacker designation (464.2.c.1, 464.2.c.3). An empty one gives no designation at all (807.1.d, 461) and the whole engine misfires.",
+        "The eight instances are placed together. Resolve them one at a time: for each, pay 1 Mind Power to play a [Hidden] card from your hand for free, units landing at that battlefield.",
+        "Stop when the Power or the hand runs out. Repeat next turn once Ava has readied at Awaken (315.1.b) and there is a garrison to attack."
+      ],
+      "netPerIteration": "up to 8 [Hidden] cards played free per attack, at 1 Mind Power each",
+      "terminatesIn": "engine — it converts a hand of Hidden cards into a single explosive turn; it scores nothing by itself",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rules svellsongur-copy and ava-achiever-hidden-discount (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. OGN-107 has two entries (ava-achiever-temporal-breach-trove-golem, ava-achiever-hostile-takeover-conquer) and neither is with the copier. Card text verbatim from data/corpus_flat.txt; 137.3, 137.3.a, 164.2.b, 315.1.b, 383.4.e, 434.1.c, 461, 464.2.c.1, 464.2.c.3, 476.1, 477.2.c, 479.1, 480.3, 807.1.d, 811.1.a, 811.1.c.1 and 811.1.d.2 opened in the Core Rules file. Stands on R6 = A; no new reading. The mutual exclusion with the Broker family is stated in both entries so a reader cannot compose them by mistake."
+    },
+    {
+      "id": "overt-operation-fiora-double-untap",
+      "name": "Overt Operation × Fiora, Worthy — the team readies twice off one spell",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-153",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E5 P2, [Action]. 'For each friendly unit, you may spend its buff to ready it. Then buff all friendly units. (Each one that doesn't have a buff gets a +1 Might buff.)'"
+        },
+        {
+          "card": "SFD-180",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E3 M3. 'When a unit you control becomes [Mighty], you may pay 1 Order Power to ready it.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Body and Order — OGN-269 The Boss, OGS-023 Might of Demacia, SFD-205 Grand Duelist, UNL-203 Keeper of the Hammer, VEN-153 Matriarch of War."
+        ],
+        "notable": [
+          "THE SPELL'S TWO HALVES READY TWO DISJOINT SETS, WHICH IS WHY FIORA DOUBLES IT RATHER THAN OVERLAPPING IT. Half one readies every ALREADY-BUFFED friend by spending its buff. Half two then buffs 'all friendly units' — and 702.3.a means only the ones with no buff receive it, which after half one is exactly the set half one could not touch. Every unbuffed 4-Might body among them crosses to 5, 709 fires 'becomes Mighty', and Fiora readies it for 1 Order Power. One spell, both halves of your board upright.",
+          "703 gives the buff +1 and 708 sets the Mighty line at 5, so the second half only converts bodies sitting at exactly 4 — a 3-Might unit reaches 4 and stops, a 5-Might unit was already Mighty (709's own second example). The first half has no such condition: it readies any buffed unit whatever its Might.",
+          "Spending a buff is what half one costs, and that is a payoff elsewhere: SFD-101 Fae Dragon's 'When you spend a buff, play a Gold gear token exhausted' fires once per buff spent, which is the catalogued overt-operation-fae-dragon-industrialist. This entry deliberately does NOT declare the Dragon — the claim here is the double untap, and adding a fifth card would force the matcher to require it.",
+          "Five Energy and 2 Body Power for the spell, three Energy for Fiora, then 1 Order Power per body the second half readies. Both Power costs land in one Main Phase, which against #44's free floor of 2 Power a turn is the real constraint: the spell alone is 2 Power before Fiora is paid at all.",
+          "Three uses a game (103.2.b) and it is an [Action], so 806.1.b lets it be cast in a Showdown as well as your Main Phase — readying a garrison mid-Showdown is what separates it from peak-guardian-fiora-mass-ready, which is a unit and can only be played in an Open State.",
+          "It readies, it does not protect: everything it stands back up is still whatever Might it was, and Fiora is a 3-Might body that the opponent can simply remove first to switch the second half off."
+        ]
+      },
+      "steps": [
+        "Play Fiora, Worthy (3 Energy) at any point beforehand.",
+        "Spend your units' exhausts as normal — move them, attack, pay exhaust abilities.",
+        "Cast Overt Operation (5 Energy + 2 Body Power). First half: for each friendly unit that carries a buff, spend that buff to ready it.",
+        "Second half: buff all friendly units. 702.3.a places a buff only on those that have none — which is now every unit half one just spent, plus everything that never had one.",
+        "Each unbuffed body at exactly 4 Might goes to 5 and 709 fires. Fiora's trigger goes up once per body: pay 1 Order Power each to ready them too.",
+        "Both sets are upright, in one spell, in the middle of your Main Phase or a Showdown (806.1.b)."
+      ],
+      "netPerIteration": "every buffed friend readied by the spell, plus one ready per unbuffed 4-Might friend at 1 Order Power",
+      "terminatesIn": "engine — a two-stage team untap, three times a game",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule fiora-buff-ready (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. OGN-153 is catalogued with Fae Dragon and Renata (overt-operation-fae-dragon-industrialist) and was an uncatalogued partner of fiora-buff-ready. Card text verbatim from data/corpus_flat.txt; 103.2.b, 702.3, 702.3.a, 703, 708, 709 and 806.1.b opened in the Core Rules file. No unruled reading. The point the walk had to check: whether the spell's two halves overlap on the same bodies. They cannot — 702.3.a makes the second half skip anything that still has a buff, and half one removes buffs, so the sets are disjoint by construction. Deliberately kept to two cards; Fae Dragon is a lead on this row, not a use, for the reason #98 records about Brynhir."
+    },
+    {
+      "id": "wind-and-ghosts-nasus-bloodless-conquer",
+      "name": "Wind and Ghosts clears the garrison — Nasus conquers without ever being assigned damage",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-106",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Chaos spell, E3 P1. '[Action] (Play on your turn or in showdowns.) Choose a unit at a battlefield. If it has 3 Might or less, banish it. Otherwise, return it to its owner's hand.' Unconditional removal of ONE unit either way, at one Power instead of Rebuke's two, and the banish half is permanent — 108.6.c returns nothing from Banishment."
+        },
+        {
+          "card": "VEN-046",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E8 P1 M8, [Deflect 2]. '[Empowered][>] When I conquer, you score 1 point.' A CONQUER payoff, not a win-combat one, so no once-per-turn clause caps it and the bloodless combat costs it nothing."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "A Calm/Chaos legend — Nasus is Calm and Wind and Ghosts is Chaos (103.1.b.1). Calm/Chaos is a printed legend pair."
+        ],
+        "notable": [
+          "TWO POINTS AND NO DAMAGE STEP. Nasus takes the Attacker designation (464.2.c.1, 464.2.c.3), the Combat Showdown stays Open for plays (464.2.f.1, 464.2.g), and Wind and Ghosts removes the lone defender. 465.1 then reads 'If both Attacking and Defending units remain at this battlefield, the following Tasks become Outstanding' — they do not, so no damage is ever assigned. 466.3.a gives you the combat, 466.5 establishes Control and 466.5.d makes it a Conquer (+1, a 469.1 Score); Nasus's Empowered clause adds a second (+1, a 194.1.c Gain under R2 = A).",
+          "IT IS THE CONQUER HALF OF THE FAMILY, WHICH IS WHY IT IS NOT draven-rebuke-bloodless-combat WITH A CARD SWAPPED. That entry's payoff is 'the first time I WIN A COMBAT each turn', capped by 383.3.e.1; this one's is 'When I CONQUER', which has no such clause and does not care whether a combat happened at all. Different removal numbers too: Rebuke is E2 + TWO Chaos Power and only bounces; Wind and Ghosts is E3 + ONE Power and BANISHES anything of 3 Might or less, so a small defender cannot be replayed. The two lines share no card and no legend pair.",
+          "THE BLOODLESS CONQUER IS ANTI-SYNERGIC WITH THE ENTIRE EXCESS-DAMAGE FAMILY, AND THAT IS THE TRAP THIS SHAPE HIDES. Excess damage under R28 = A is attacking Might that never got ASSIGNED, and 465.1 means nothing is assigned at all — so a combat won this way generates ZERO excess. Every card reading 'if you assigned N or more excess damage' is switched off by it: OGN-034 Tryndamere, SFD-120 Sivir, UNL-018 Yeti Brawler, UNL-187 Piltover Enforcer, UNL-188 Hextech Gauntlets and UNL-217 Trapping Grounds. Nasus is the right payoff here precisely because his trigger has no threshold on it. tryndamere-hextech-gauntlets-enforcer is the opposite line and the two are mutually exclusive in principle, not only by domain.",
+          "AN 8-ENERGY BODY WITH [Deflect 2] IS WHAT MAKES THE PROTECTION WORTH BUYING. 809.1.c and 809.1.d already tax an opponent two rainbow to CHOOSE Nasus with a spell or ability; combat damage chooses nothing, so before this line the way to answer him was to out-Might him in a combat. 465.1 removes that route as well. Nothing dies on your side, so no Deathknell and no 808.1.d.1 question arises.",
+          "GETTING HIM EMPOWERED IS THE REAL COST AND IT IS NOT FREE HERE. The printed route is his own [Empower] 8 Energy, permanent once reached (441.1.a, 441.2). In THIS identity the cheap route is VEN-035 Sanction (Calm, E3 P1, [Reaction], 'Empower a unit. Disempower it at end of turn') — one turn of Empowered Nasus for four resources, which is enough because the conquer happens on the turn you cast it. wild-claw-nasus-ascended-empowered is the other route and it is Body/Calm, so it can never share this shell (103.1.b.4). Sanction is deliberately not in uses: it is a route to a prerequisite, not an ingredient of the loop.",
+          "IT NEEDS A GARRISON OF EXACTLY ONE. Wind and Ghosts removes one unit. Against two defenders 465.1's gate opens after all and 465.2.c has each side assign its summed Might — Nasus at 8 survives most garrisons, but he is then assigned damage and the point of the line is lost. Two copies in one turn is 6 Energy + 2 Chaos Power. And 461 still needs a garrison to exist at all: walking into an empty battlefield is no attack (807.1.d, 383.4.e) and simply Conquers by Non-Combat Showdown (316.8.b.1, 348.2.a.1) for the ordinary point, with Nasus's clause firing anyway since it says only 'When I conquer'.",
+          "ONE CONQUER PER BATTLEFIELD PER TURN. 469.1 defines Conquer as gaining Control of a battlefield 'they did not yet Score this turn' and Nasus has no [Ganking], so 144.4 keeps him to one battlefield a turn. Eight points is four attacks.",
+          "THE OTHER VEN-106 ENTRY IS A DIFFERENT MECHANISM. moonlight-affliction-wind-and-ghosts-banish pairs it with UNL-066 Moonlight Affliction so that the unfloored -10 Might reduction drops any printed body to 3 or less and the banish half becomes permanent removal. That line never enters a combat; this one is defined by entering one, and 465.1 is the rule it turns on. Nothing is shared but the spell."
+        ]
+      },
+      "steps": [
+        "Have Nasus, Ascended on the board and Empowered — his own 8-Energy [Empower], or Sanction for the turn.",
+        "Standard-move him to an enemy battlefield held by a single unit, paying his exhaust (144.2, 144.4). Contested stages the Combat and he takes the Attacker designation.",
+        "The Combat opens into its Showdown; 464.2.f.1 leaves the State Open and 464.2.g permits plays on the Chain.",
+        "Cast Wind and Ghosts on the defender: banished if it has 3 Might or less, returned to hand otherwise.",
+        "465.1 finds no Defending units, so the damage step never becomes Outstanding and Nasus is assigned nothing.",
+        "466.3.a: you are the only player with units there, so you won. 466.5 and 466.5.d establish Control as a Conquer — 1 point — and Nasus's '[Empowered][>] When I conquer, you score 1 point' adds the second."
+      ],
+      "terminatesIn": "engine — 2 points per attack with no damage assigned to either side, one attack per battlefield per turn; eight points is four attacks",
+      "netPerIteration": "+2 points per attack for 3 Energy + 1 Chaos Power, and Nasus takes no damage",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06, issue #118 (docs/phase0/walks/2026-09-06-2v2-showdown-action-lens.md) — the '[Action] spell that removes a unit at a battlefield' family recorded as a synergy shape",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Issue #155 — Engine × payoff: the master payoff inventory listing VEN-046 Nasus with the parenthetical '(needs 8 Energy to Empower first)'",
+          "kind": "agent",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 19). VEN-106 Wind and Ghosts was in zero entries when this was walked; while the batch was being written a parallel session merged moonlight-affliction-wind-and-ghosts-banish (UNL-066 + VEN-106), which uses it as permanent removal behind an unfloored -10 Might reduction. That is a different mechanism, a different card set and a different domain pair, and it says nothing about the combat window; the two coexist. The second attacker-side instance of the #118 family after draven-rebuke-bloodless-combat, and deliberately built on the CONQUER half of the payoff inventory rather than the win-combat half, so the two entries differ in payoff, in removal numbers and in legend pair. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.1.b.4, 108.6.c, 143.2.a, 144.2, 144.4, 194.1.c, 316.8.b.1, 348.2.a.1, 383.4.e, 441.1.a, 441.2, 461, 464.2.c.1/464.2.c.3/464.2.f.1/464.2.g, 465.1/465.2.c, 466.3.a, 466.5/466.5.d, 469.1, 470, 471.1, 807.1.d, 808.1.d.1 and 809.1.c/809.1.d opened and read. Ban check: neither VEN-106 nor VEN-046 carries a [BANNED marker, and neither is a Signature card, so no legend is forced beyond the domain pair. Trap check: no [Temporary]; no [Repeat]; no token; a bounce is not a recall (455); nothing dies on your side. The excess-damage anti-synergy is stated in a notable because it is the non-obvious cost of the whole shape. Depends on R2 = A and R28 = A, and on no open reading."
+    },
+    {
+      "id": "alpha-strike-wuju-master-garrison-clear",
+      "name": "Alpha Strike splits a Might across the garrison — the family's only multi-kill, and it forces Wuju Master",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-192",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Calm/Body spell, E3 P1, SIGNATURE (tag Master Yi). '[Action] (Play on your turn or in showdowns.) Choose a friendly unit. It deals damage equal to its Might split among enemy units at battlefields. Then for each unit this kills, do this: Gain 1 XP.' The only member of the [Action]-removal family that kills MORE THAN ONE unit, and the only one whose reach scales with a body you already own."
+        },
+        {
+          "card": "UNL-191",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Body legend. '[Level 6][>] Your units have +1 Might. [Level 11][>] Your units enter ready.' Forced by 103.2.d.2 — Alpha Strike is a Signature card tagged Master Yi — and it is also the XP sink Alpha Strike feeds."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal",
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend IS a Master Yi legend, forced by 103.2.d.2: UNL-191 Wuju Master or UNL-231 Wuju Master, both Calm/Body. OGS-019 Wuju Bladesman - Starter is the third and is [BANNED 2v2:restricted]."
+        ],
+        "notable": [
+          "IT IS THE ONLY MULTI-KILL IN THE FAMILY, WHICH IS THE WHOLE REASON IT IS A SEPARATE ENTRY. Every other [Action] removal that can empty a defending side takes exactly ONE unit: Rebuke and Wind and Ghosts bounce one, Blast of Power and Drag Under kill one, Smite and Disintegrate deal 3 to one. Alpha Strike splits a whole Might value across the garrison, so an 8 Might source clears four 2 Might defenders in one card — and 465.2.c.2's reminder is the measure: 'Lethal Damage is non-zero damage equaling or exceeding the Might of a Unit.'",
+          "THE DAMAGE SOURCE DOES NOT HAVE TO BE THE ATTACKER, AND IT DOES NOT HAVE TO BE AT A BATTLEFIELD. The text is 'Choose a friendly unit. It deals damage equal to its Might split among enemy units AT BATTLEFIELDS' — the restriction is on the targets, not on the source. So a big body sitting at your base is the gun and a cheap unit is the one taking the Attacker designation, which is the opposite of every other line in this family, where the attacker has to be the payoff as well.",
+          "USED INSIDE THE COMBAT WINDOW IT MAKES THE COMBAT BLOODLESS. 464.2.f.1 leaves the Combat Showdown Open and 464.2.g permits plays on the Chain; clear the garrison there and 465.1's 'If both Attacking and Defending units remain' is false, so no damage is assigned in either direction. 466.3.a gives you the combat and 466.5 with 466.5.d makes Control a Conquer. Your attacker survives whatever its Might, which is what lets a 2-Energy body take a battlefield defended by four.",
+          "THE LEFTOVER MIGHT IS NOT WASTED — 'enemy units at battlefields' IS PLURAL. Damage beyond what the contested garrison needs can be split onto units at the OTHER Duel battlefield (485.4, 'Battlefield Count: 2'), which no other removal in the family can do while resolving a combat.",
+          "THE XP IS A PURE FAUCET AND IT FEEDS THE LEGEND IT FORCES. 'For each unit this kills, do this: Gain 1 XP' — a four-body sweep is 4 XP. UNL-191's [Level 6] gives your units +1 Might and [Level 11] 'Your units enter ready', which removes 143.4's entering-exhausted tax on everything you play. 824.1.d makes a Level ability Inactive the moment you hold less than N XP and 730.2 makes spending XP your own reduction, so a line that only GAINS is safe; wuju-master-blood-rose-level is the entry that walks that threshold and this is a second, faster faucet for it (gardens-becoming-wuju-xp-faucet is the third).",
+          "THREE COPIES SPEND THE WHOLE SIGNATURE BUDGET. 103.2.d.1 caps a deck at three Signature cards in total regardless of name, and 103.2.d.2 makes each carry the legend's champion tag — so three Alpha Strikes is the entire allowance and no other Signature card can ride along. 103.2.d.3 also keeps a Signature card out of the Champion Zone, so none of them can be the Chosen Champion.",
+          "IT SCORES NOTHING BY ITSELF BEYOND THE CONQUER. The Conquer is a 469.1 Score capped by 470 at one per battlefield per turn, and nothing in the pool converts XP into points — the champion-progression lens settled that. This is removal and tempo, which is why the class is ENGINE.",
+          "IT NEEDS A GARRISON TO EXIST. 461 stages a Combat only where units of two players meet, and 807.1.d with 383.4.e make an empty battlefield no attack; there the ordinary Non-Combat Showdown Conquer applies (316.8.b.1, 348.2.a.1) and Alpha Strike is simply not needed."
+        ]
+      },
+      "steps": [
+        "Standard-move any unit into an enemy-garrisoned battlefield, paying its exhaust (144.2, 144.4). It takes the Attacker designation and the Combat opens into its Showdown.",
+        "Cast Alpha Strike (3 Energy + 1 Power) and choose your biggest friendly unit as the source — it may be standing at your base.",
+        "Split its Might among the defending units, giving each at least its own Might so the damage is lethal (465.2.c.2's reminder). Spill the remainder onto enemy units at the other battlefield.",
+        "Gain 1 XP for each unit killed.",
+        "465.1 finds no Defending units, so no damage is assigned and your attacker survives untouched.",
+        "466.3.a: you won the combat. 466.5 and 466.5.d establish Control as a Conquer — 1 point."
+      ],
+      "terminatesIn": "engine — a whole garrison cleared by one card, a Conquer that costs your attacker nothing, and 1 XP per body killed; nothing here scores beyond the Conquer itself",
+      "netPerIteration": "+1 Conquer point, the defending garrison removed, and +1 XP per unit killed, for 3 Energy + 1 Power",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06, issue #118 (docs/phase0/walks/2026-09-06-2v2-showdown-action-lens.md) — the 18-card '[Action] spell that removes a unit at a battlefield' family",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 19). UNL-192 Alpha Strike was in zero entries and is the only multi-target member of the #118 removal family; the walk that mapped that family recorded it as a shape and named no combo. Two facts a reader would otherwise have to re-derive are in the notables: the damage SOURCE has no location restriction (only the targets are 'at battlefields'), and the Signature tag forces the legend by 103.2.d.2 while three copies spend the whole 103.2.d.1 budget. Card text verbatim from data/corpus_flat.txt; 103.2.d.1/103.2.d.2/103.2.d.3, 143.4, 144.2, 144.4, 316.8.b.1, 348.2.a.1, 383.4.e, 461, 464.2.f.1/464.2.g, 465.1/465.2.c.2, 466.3.a, 466.5/466.5.d, 469.1, 470, 485.4, 730.2, 807.1.d and 824.1.d opened and read. Ban check: UNL-192 and UNL-191 carry no [BANNED marker; OGS-019, the third Master Yi legend, is restricted in 2v2 and is named in prerequisites rather than used. Trap check: no [Temporary]; no [Repeat]; no token; nothing recycled; no recall; the empty-battlefield trap is stated. XP is a faucet only, and 824.1.d plus 730.2 are cited because a line that SPENDS XP would switch the Level abilities off. Depends on no unruled reading."
+    },
+    {
+      "id": "noxian-guillotine-legion-bloodless-fork",
+      "name": "Noxian Guillotine — [Legion] kills now and blanks Tryndamere, or waits and feeds him",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-254",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury/Order spell, E4 P1, SIGNATURE (tag Darius). '[Action] (Play on your turn or in showdowns.) Choose a unit. Kill it the next time it takes damage this turn. [Legion] — Kill it now instead. (Get the effect if you've played another card this turn.)' It kills a unit of ANY Might, which in this family only OGS-012 Blast of Power (E6 P1) and SFD-164 Drag Under (E5 P1) also do, and it is the cheapest of the three."
+        },
+        {
+          "card": "OGN-034",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E7 P2 M8. 'When I conquer after an attack, if you assigned 5 or more excess damage to enemy units, you score 1 point.' The payoff of the SLOW mode, and the card the fast mode switches off."
+        },
+        {
+          "card": "OGN-253",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Order legend. '[exhaust]: [Reaction], [Legion] — [Add] 1 Energy.' Forced by 103.2.d.2 (Noxian Guillotine is Signature, tag Darius), and its own [Legion] is live on exactly the turns the Guillotine's is."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal",
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend IS Hand of Noxus (OGN-253 or OGN-302 — two base codes, one name, both Fury/Order), forced by 103.2.d.2 because Noxian Guillotine is a Signature card tagged Darius. Tryndamere is Fury, so the identity is the legend's own two domains (103.1.b.1)."
+        ],
+        "notable": [
+          "THE FORK IS THE ENTRY, AND IT IS A CHOICE MADE INSIDE THE COMBAT. Both halves are printed on the one card. FAST: with [Legion] live — 'get the effect if you've played another card this turn' — the Guillotine kills the defender NOW, inside the Combat Showdown (464.2.f.1, 464.2.g). 465.1's 'If both Attacking and Defending units remain' is then false, no damage is assigned in either direction, and 466.3.a with 466.5.d gives a Conquer for 1 point with Tryndamere untouched. SLOW: decline [Legion] and the Guillotine only marks the defender; the damage step runs, Tryndamere assigns his 8 Might, and whatever he does not need is EXCESS.",
+          "AND THE FAST MODE SWITCHES TRYNDAMERE OFF. This is the trap the whole bloodless-conquer family hides, stated here on the one entry where both sides are on the table. R28 = A makes excess damage attacking Might that never got ASSIGNED; 465.1 means nothing is assigned at all; so a combat won by removal generates ZERO excess and 'if you assigned 5 or more excess damage' is false. The fast mode is worth 1 point (the Conquer). The slow mode is worth 2 (the Conquer plus Tryndamere) whenever he clears his own 5-excess bar, i.e. against a garrison summing 3 or less — and the Guillotine's marked kill is what makes the slow mode safe against a defender BIGGER than that, since it dies to any damage at all rather than to lethal damage.",
+          "SO THE RULE OF THUMB IS PRINTED IN THE ARITHMETIC: garrison summing 3 or less, decline [Legion] and take 2 points; garrison big enough to kill Tryndamere (8 or more summed Might, 465.2.c with 465.2.c.3), use [Legion] and take 1 point with the body intact. In between, the Guillotine's slow mode kills a defender Tryndamere cannot kill outright, because 'kill it the next time it takes damage this turn' needs only non-zero damage (143.2.a), not lethal damage.",
+          "IT CAN NEVER SHARE A LIST WITH tryndamere-hextech-gauntlets-enforcer, AND THE REASON IS THE SIGNATURE RULE RATHER THAN THE DOMAINS. Both lines are Fury/Order and both run OGN-034. But 103.2.d.2 makes every Signature card carry the legend's champion tag, so Noxian Guillotine forces a DARIUS legend while that entry forces UNL-187 Piltover Enforcer, a Vi legend. One legend per deck: they are alternatives, not a package. 103.2.d.1 also caps Signature cards at three in total, so three Guillotines is the whole budget.",
+          "THE LEGEND PAYS FOR ITS OWN CONDITION. Hand of Noxus is '[exhaust]: [Reaction], [Legion] — [Add] 1 Energy', and [Legion] on both cards asks the same thing: that you have already played another card this turn. On the turn the Guillotine goes fast, the legend's Energy is live too — 429.2 resolves an Add as soon as it is finalized and 429.3 lets a [Reaction] Add fire whenever a cost has to be paid, so that Energy is available in the Showdown itself.",
+          "IT NEEDS A GARRISON, AND THE GUILLOTINE'S TARGET IS NOT RESTRICTED TO ONE. The card says 'Choose a unit' with no 'at a battlefield' clause, unlike Rebuke, Blast of Power and Drag Under — so it also reaches a unit at a base, which no other removal in this family does. Inside a combat that is irrelevant; outside one it is a real difference in the numbers. 461 still requires units of two players to meet for the combat to exist at all (807.1.d, 383.4.e).",
+          "ONE CONQUER PER BATTLEFIELD PER TURN (469.1, 470), and Tryndamere has no [Ganking], so 144.4 keeps him to one battlefield a turn."
+        ]
+      },
+      "steps": [
+        "Play a card — any card — earlier in the Main Phase so [Legion] is live on both the Guillotine and the legend.",
+        "Standard-move Tryndamere, Barbarian into an enemy-garrisoned battlefield, paying his exhaust (144.2, 144.4). He takes the Attacker designation and the Combat opens into its Showdown.",
+        "Count the garrison. If it sums 3 or less, decline [Legion]: cast the Guillotine to mark the defender, let 465.2 resolve, assign Tryndamere's 8 Might, and take both the Conquer point and his excess-damage point.",
+        "If it is big enough to kill him, take [Legion] instead: the Guillotine kills the defender now, 465.1 finds no Defending units and the damage step never runs.",
+        "466.3.a: you are the only player with units there. 466.5 and 466.5.d establish Control as a Conquer.",
+        "In the fast mode that is 1 point and an intact 8 Might body; in the slow mode it is 2 points and a body that took the garrison's damage."
+      ],
+      "terminatesIn": "engine — 1 point per attack with the body kept, or 2 with it exposed; the card chooses which, and eight points is four attacks at best",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06, issue #118 (docs/phase0/walks/2026-09-06-2v2-showdown-action-lens.md) — the 18-card '[Action] spell that removes a unit at a battlefield' family",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Issue #155 — Engine × payoff: 'OGN-034 Tryndamere, Barbarian is the only Might/damage-to-point bridge in the pool'",
+          "kind": "agent",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 19). OGN-254 Noxian Guillotine was in zero entries. It is authored as a FORK rather than a line because the card's two printed modes point in opposite directions once the bloodless-conquer shape is understood: [Legion] buys the body's safety at the cost of Tryndamere's point, since a combat with no damage assigned generates no excess damage (R28 = A with 465.1). That anti-synergy is the single most useful thing the #118 family teaches and this is the entry where both halves sit on the same board. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.d.1/103.2.d.2, 143.2.a, 144.2, 144.4, 383.4.e, 429.2, 429.3, 461, 464.2.f.1/464.2.g, 465.1/465.2/465.2.c/465.2.c.3, 466.3.a, 466.5/466.5.d, 469.1, 470, 807.1.d opened and read. Ban check: none of OGN-254, OGN-034 or OGN-253 carries a [BANNED marker; OGN-254 IS a Signature card and the entry names the legend it forces, per 103.2.d.2. Trap check: the empty-battlefield trap is stated; no [Temporary]; no [Repeat]; no token; no recall; no rune recycled. Depends on R2 = A and R28 = A, and on no open reading."
+    },
+    {
+      "id": "charm-nasus-evacuation-conquer",
+      "name": "Charm evacuates, Nasus walks in — a conquer point doubled with no combat at all",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-043",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Calm spell, E1 P1. 'Move an enemy unit.' A bare 'a unit' reaches enemies — OGN-168 Fight or Flight prints the same sentence and is banned in both formats. It moves ONE, so it closes only against a garrison of one, which is the same limit charm-evacuate-conquer already carries."
+        },
+        {
+          "card": "VEN-046",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Calm unit, E8 P1 M8, [Deflect 2]. '[Empowered][>] When I conquer, you score 1 point.' He is the body that walks in, so he starts at the base: 144.4 confines the Standard Move to base <-> battlefield and he has no [Ganking]."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Calm legend — Charm and Nasus are both mono-Calm (103.1.b.1), so this is the cheapest identity of the three Nasus conquer routes."
+        ],
+        "notable": [
+          "IT DOUBLES charm-evacuate-conquer's OWN RATE, WHICH IS WHY IT IS A SEPARATE ENTRY RATHER THAN A NOTABLE ON IT. That entry is Charm alone and its terminatesIn is 'one point per casting, bounded by the 3 copies of 103.2.b and by 470'. Make the body that walks in an Empowered Nasus and every casting is TWO points: the Conquer itself (a 469.1 Score, capped by 470 at one per battlefield per turn) plus Nasus's '[Empowered][>] When I conquer, you score 1 point' (a 194.1.c Gain under R2 = A, which 470 does not touch). Three Charms is six points instead of three.",
+          "EVACUATING IS NOT YET A CONQUER, AND THE SECOND HALF IS THE ENTRY. 323.6 only STRIPS the opponent's Control when their last body leaves — nobody gains it. The point needs a body of yours walking in during the Main Phase (144.4.a), applying Contested (190.3.a.1), opening a Showdown (344.2, since the battlefield is Contested with no units of different players there), and 348.2.a establishing Control at its close with 348.2.a.1 saying outright 'This results in a Conquer'. It scores that same turn.",
+          "THERE IS NO COMBAT AT ANY POINT, AND THAT IS WORTH THREE SEPARATE THINGS. (a) Nasus is never assigned damage, so an 8-Energy [Deflect 2] body is never at risk — 809.1.c and 809.1.d already taxed spell removal and there is no combat route either. (b) No Attacker designation is ever created, so the empty-battlefield trap (807.1.d, 383.4.e, 461) is respected rather than worked around. (c) NOTHING IS ASSIGNED, so no excess damage exists: every card reading 'if you assigned N or more excess damage' is blank here — OGN-034 Tryndamere, SFD-120 Sivir, UNL-018 Yeti Brawler, UNL-187 Piltover Enforcer, UNL-188 Hextech Gauntlets, UNL-217 Trapping Grounds. And SFD-148 Draven, Audacious's 'the first time I win a combat each turn' never fires either, because 466.3.a needs a combat to have happened. Nasus is the payoff that survives all of that, because his trigger says only 'When I conquer'.",
+          "IT ONLY CLOSES AGAINST A GARRISON OF ONE. Charm moves a single enemy unit, so a battlefield held by two needs two castings — 2 Energy + 2 Calm Power of the three copies 103.2.b allows, for the same one conquer. UNL-124 Isolate (Chaos) does the same job and is out of identity; OGN-043 is the Calm one.",
+          "GETTING HIM EMPOWERED IS THE PREREQUISITE, NOT AN INGREDIENT. The printed route is his own [Empower] 8 Energy, which 441.1.a makes binary and 441.2 makes permanent once reached. In mono-Calm the cheap route is VEN-035 Sanction (Calm, E3 P1, [Reaction], 'Empower a unit. Disempower it at end of turn') — one turn is enough, because the conquer happens on the turn you cast Charm. wild-claw-nasus-ascended-empowered (Body/Calm) and wind-and-ghosts-nasus-bloodless-conquer (Calm/Chaos) are the other two routes to the same payoff and all three are alternatives: one legend per deck.",
+          "ONE CONQUER PER BATTLEFIELD PER TURN. 469.1 defines Conquer as gaining Control of a battlefield 'they did not yet Score this turn', 470 caps Scoring at once per battlefield per turn, and 485.4 puts two on a Duel table — so two castings in one turn are worth two points only if they target different battlefields, and Nasus can reach only one of them (144.4, no [Ganking]).",
+          "HE HAS TO SURVIVE THE WALK IN. Nasus arrives at the battlefield and stays there; 315.2.b.2 then Holds it next Beginning Phase for a further point, and 323.6 takes it back the moment he leaves or dies. SFD-060 Tianna Crownguard switches off both the Conquer Score and the ability Gain, since 194.1.c makes an ability score a Gain and she reads 'opponents can't gain points'."
+        ]
+      },
+      "steps": [
+        "Have Nasus, Ascended at your base and Empowered — his own 8-Energy [Empower], or Sanction on the turn.",
+        "Main Phase: cast Charm (1 Energy + 1 Calm Power) and move the lone enemy unit off the battlefield you want.",
+        "323.6 strips their Control at the following Cleanup: the battlefield is now unoccupied and uncontrolled, which is what 170.11.c calls open. Nobody has gained anything yet.",
+        "Standard-move Nasus from your base to that battlefield, paying his exhaust (144.2, 144.4.a). 190.3.a.1 applies Contested.",
+        "344.2 opens a Showdown at the next Cleanup, and 348.2.a establishes Control at its close. 348.2.a.1: 'This results in a Conquer.' One point.",
+        "Nasus's '[Empowered][>] When I conquer, you score 1 point' resolves: a second point, in the same Main Phase, with no combat and no damage assigned anywhere."
+      ],
+      "terminatesIn": "engine — 2 points per Charm instead of one, three castings a game (103.2.b), and a further Hold point each Beginning Phase Nasus keeps the battlefield",
+      "netPerIteration": "+2 points per casting for 1 Energy + 1 Calm Power plus Nasus's exhaust, with no combat and no damage assigned",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 21)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Hand walk 2026-09-06, issue #102 (docs/phase0/walks/2026-09-06-amateur-recital-evacuation.md) — evacuating a garrison is not yet a Conquer; the body has to walk in",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Issue #155 — Engine × payoff: the conquer-engine group, whose seven entries the hunt left unpaired with any conquer payoff",
+          "kind": "agent",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 21). This is the conquer-engine half of issue #155's brief: the group's entries all end at 'it relocates bodies and conquers' and none of them names a card that pays for the conquer. charm-evacuate-conquer is the cheapest of them (one Calm spell) and Nasus is the only conquer payoff in its identity, so the pairing is mono-Calm and costs one card. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.2.b, 144.2, 144.4/144.4.a, 170.11.c, 190.3.a.1, 194.1.c, 323.6, 344.2, 348.2.a/348.2.a.1, 383.4.e, 441.1.a, 441.2, 461, 466.3.a, 469.1, 470, 471.1, 485.4, 807.1.d and 809.1.c/809.1.d opened and read. Ban check: neither OGN-043 nor VEN-046 carries a [BANNED marker and neither is a Signature card; OGN-168 Fight or Flight, which prints Charm's own sentence, IS banned in both formats and is cited only as evidence that a bare 'a unit' reaches enemies. Trap check: no attack and therefore no Attacker designation, so 807.1.d/383.4.e/461 are respected rather than worked around; no [Temporary]; no [Repeat]; no token; a Move is not a Recall (455, 456); no rune recycled. The zero-excess consequence is stated in a notable because it is what selects Nasus over Tryndamere and Draven as the payoff. Depends on R2 = A, R20 (retired: 344.2 opens the Showdown and 348.2.a.1 calls it a Conquer) and R28 = A, and on no open reading."
+    },
+    {
+      "id": "svellsongur-kato-the-arm-keyword-spread",
+      "name": "Kato the Arm × three Svellsongur — +24 Might on one body, or [Deflect] on eight",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-112",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E4 P1 M3, [Deflect]. 'When I move to a battlefield, give another friendly unit my keywords and +Might equal to my Might this turn.'"
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. Three on Kato compose to 2^3 = 8 instances, each choosing its own recipient."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Body — OGN-257 Blind Monk, OGS-019 Wuju Bladesman, SFD-193 Grandmaster at Arms, UNL-191 Wuju Master."
+        ],
+        "notable": [
+          "TWO DIFFERENT PRODUCTS OUT OF THE SAME EIGHT INSTANCES, AND YOU PICK PER INSTANCE. 'Another friendly unit' is chosen separately each time, so all eight may be aimed at ONE body for +24 Might this turn, or spread across eight bodies for +3 and [Deflect] each. The choice is made on resolution, one instance at a time.",
+          "KATO'S MIGHT IS READ AT EXECUTION AND SVELLSONGUR DOES NOT MOVE IT. 359.3.f.2 — 'Information referenced in an instruction in this way will be checked on execution of the instruction' — and Svellsongur is printed M+0 (137.3), so every instance grants exactly +3. Anything that raises Kato before the instances resolve raises all eight; a Might Bonus gear on him is worth eight times its value here, which is the one upgrade path this entry has.",
+          "THE KEYWORD HALF IS THE PART THAT LASTS THE OPPONENT'S TURN. '+Might equal to my Might this turn' expires; [Deflect] granted to eight bodies is a tax on every removal spell they aim at any of them — 809.1.c makes an opponent pay 1 rainbow Power to choose a [Deflect] unit with a spell or ability, and 809.1.c.1 lets that Power be any domain. Eight taxed bodies is eight extra Power for a sweep.",
+          "It gives 'my keywords', so what travels is exactly what Kato has: [Deflect]. Svellsongur's [Equip] is not a keyword he carries — 818.1 makes Equip an Activated Ability, not a passive keyword — so nothing else rides along.",
+          "He must MOVE TO A BATTLEFIELD each turn to fire, which the Standard Move does for his own exhaust (144.2, base to battlefield under 144.4.a); a repeat needs him walked home by an effect mover, and 420.3.a puts the exhaust cost only on the Standard Move so an exhausted Kato can be moved by one.",
+          "He is a 3-Might body with [Deflect] of his own, carrying three gears that add no Might; 137.3.a detaches all three and all eight instances the instant he dies. Cost, counted whole: Kato 4 Energy + 1 Body Power, each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 16 Energy, 1 Body Power and 6 Calm Power."
+        ]
+      },
+      "steps": [
+        "Play Kato the Arm (4 Energy + 1 Body Power) and attach Svellsongur A, B and C to him in that order: 2, then 4, then 8 instances (434.1.c, 476.1, 477.2.c, 479.1, 480.3; R6 = A).",
+        "Main Phase: standard-move him to a battlefield (144.1.a, 144.2, 144.4.a).",
+        "The eight instances are placed together and resolve one at a time. For each, choose another friendly unit: it gains [Deflect] and +3 Might this turn (359.3.f.2 reads Kato's Might on execution).",
+        "Aim them all at one body for a 3-Might unit at 27, or at eight different bodies to put [Deflect] on the whole garrison before the opponent's turn.",
+        "Walk him home and repeat next turn; he readies at Awaken (315.1.b)."
+      ],
+      "netPerIteration": "8 grants of [Deflect] and +3 Might per move, aimed one at a time",
+      "terminatesIn": "engine — a Might spike or a garrison-wide removal tax; it scores nothing by itself",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule svellsongur-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-112 was an uncatalogued partner of svellsongur-copy and of the three move rules. Card text verbatim from data/corpus_flat.txt; 137.3, 137.3.a, 144.1.a, 144.2, 144.4.a, 315.1.b, 359.3.f.2, 420.3.a, 434.1.c, 476.1, 477.2.c, 479.1, 480.3, 809.1.c, 809.1.c.1 and 818.1 opened in the Core Rules file. Stands on R6 = A and R9; no new reading. The '+Might this turn' is a continuous modifier, not a 702 buff, so 702.3 never caps it and eight instances on one body really do stack — the same distinction CLAUDE.md draws for Lee Sin, Centered and Soul Shepherd."
+    },
+    {
+      "id": "svellsongur-imposing-challenger-unstage",
+      "name": "Imposing Challenger × three Svellsongur — scatter the garrison before the Combat can open",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-105",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E5 M5. 'When I move, you may move an enemy unit here with less Might than me to a different battlefield.' Might 5, so it catches anything at 4 or less."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. Three on the Challenger compose to 2^3 = 8 instances, each an independent may."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Body — OGN-257 Blind Monk, OGS-019 Wuju Bladesman, SFD-193 Grandmaster at Arms, UNL-191 Wuju Master."
+        ],
+        "notable": [
+          "IT IS A TRIGGERED ABILITY, WHICH IS THE ONLY KIND THAT REACHES THE PRE-OPEN WINDOW. #58 found the rule: 323.10 — 'If Units of two opposing players are no longer present at a Battlefield that has a Combat Staged before it has opened, the Combat will cease being Staged.' While the move trigger sits on the Chain the state is Neutral Closed (310.2), and 323.13 needs a Neutral OPEN State to begin the Combat — so the eight instances resolve BEFORE the Combat can open. Empty the garrison there and the Combat un-stages itself, leaving only the Showdown: 348.2.a gives Control and 348.2.a.1 says outright 'This results in a Conquer'. No damage, no Attacker designation, no combat at all.",
+          "AND THAT IS WHY IT MUST BE THE MOVE TRIGGER AND NOT A SPELL. 155 bars a spell without [Action] or [Reaction] from a Showdown, and after a plain move with no trigger the very next Cleanup stages the Combat (323.9) and opens it (323.13) with no gap. The Challenger carries his own window in.",
+          "THE CAP IS 'LESS MIGHT THAN ME', AND HE IS 5. Svellsongur is M+0 (137.3), so he stays at 5 and each instance catches only a defender at 4 Might or less. Against a garrison of bigger bodies this does nothing, and no card in a Calm/Body shell reduces enemy Might — UNL-066 Moonlight Affliction is Mind and 103.1.b keeps it out. That is the honest boundary of this entry: it beats wide, small garrisons and loses to tall ones.",
+          "'To a different battlefield' means they land somewhere, not at their base — 447.2's destination rules apply and in a Duel there are only two battlefields (485.4), so they go to the other one. If that is a battlefield you control, 190.3.a.1 keys Contested on the MOVED unit's controller and 464.2.c.1 makes THEM the Attacker there on your own turn, which is the trick faefolk-challenger-forced-attacker is built on and the reason the Challenger is already catalogued beside UNL-112.",
+          "Against svellsongur-faefolk-mass-evacuation, the other eight-instance evacuator in this walk: the Faefolk DRAGS enemies to where it moved and needs a second body to walk in afterwards; the Challenger PUSHES them off the battlefield he is entering and takes it himself in the same Cleanup. Different rule (323.6 there, 323.10 here) and a different number of cards.",
+          "Cost, counted whole: the Challenger 5 Energy, each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 17 Energy and 6 Calm Power, then nothing per use."
+        ]
+      },
+      "steps": [
+        "Play Imposing Challenger (5 Energy) and attach Svellsongur A, B and C to him in that order: 2, then 4, then 8 instances of his move trigger.",
+        "Main Phase: move him to the enemy-held battlefield. 190.3.a.1 applies Contested and the Combat is Staged, but it has not opened.",
+        "The eight move triggers go on the Chain. While they sit there the state is Neutral Closed (310.2) and 323.13 cannot begin the Combat.",
+        "Resolve them one at a time, each moving one enemy unit with Might 4 or less to a different battlefield. Clear the garrison.",
+        "323.10: with no units of two opposing players present and the Combat not yet opened, it ceases being Staged. Only the Showdown remains.",
+        "348.2.a establishes your Control at its close and 348.2.a.1 makes it a Conquer — worth the point, with no damage dealt and no Attacker ever designated."
+      ],
+      "terminatesIn": "engine — a bloodless Conquer against any garrison of 4-Might-or-less bodies",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule svellsongur-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. UNL-105 is catalogued once (faefolk-challenger-forced-attacker) and was an uncatalogued partner of svellsongur-copy. Card text verbatim from data/corpus_flat.txt; 137.3, 155, 190.3.a.1, 310.2, 323.9, 323.10, 323.13, 348.2.a, 348.2.a.1, 447.2, 464.2.c.1, 476.1, 485.4 and 103.1.b opened in the Core Rules file. Stands on R6 = A and R9; no new reading. It applies #58's third evacuation route — the 323.10 un-stage, which needs a TRIGGERED ability to hold the window open — rather than re-deriving it, and states its own boundary (Might 5 catches only 4-or-less) instead of leaving it implied."
+    },
+    {
+      "id": "radiant-dawn-leona-fiora-stun-ready",
+      "name": "Radiant Dawn × Leona, Determined × Fiora — every attack stuns, buffs and readies",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-261",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Order legend. 'When you stun one or more enemy units, buff a friendly unit. (If it doesn't have a buff, it gets a +1 Might buff.)' The pool's only legend that pays for a stun."
+        },
+        {
+          "card": "OGN-238",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E4 P1 M4, [Shield]. 'When I attack, stun an enemy unit here.' A repeatable stun with no cost and no condition."
+        },
+        {
+          "card": "SFD-180",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E3 M3. 'When a unit you control becomes [Mighty], you may pay 1 Order Power to ready it.'"
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Radiant Dawn (OGN-261) IS the legend, and its Calm/Order identity covers both Order units (103.1.b)."
+        ],
+        "notable": [
+          "THREE CARDS, THREE RULES, ONE CHAIN: stun → buff → Mighty → ready. Leona's stun is a 'When I attack' trigger with no cost and no extra condition, so 383.4.e places it at the Attacker designation every combat; Radiant Dawn's 'When you stun one or more enemy units' pays for it; 703 makes her buff +1 Might and 709 fires 'becomes Mighty' if the recipient sat at exactly 4; Fiora then readies it for 1 Order Power. Every attack is a free untap.",
+          "AIM THE BUFF, BECAUSE RADIANT DAWN CHOOSES A UNIT AND 702.3 CAPS IT. 'Buff a friendly unit' is a choose (702.2.a), and 702.3 / 702.3.a mean a friend that already carries a buff receives nothing and never becomes Mighty. The recipient has to be an UNBUFFED body at exactly 4 Might — a 3-Might one reaches 4 and stops, a 5-Might one was already Mighty (709's own second example). Leona herself is 4 Might, so on the turn she attacks she is the natural target, and Fiora readying her after her attack is a second Standard Move or a defence on the way back.",
+          "THE STUN IS WORTH SOMETHING ON ITS OWN, AND ONLY ONE RULE MAKES IT PAY. #61 established that 423.1.b (which removes a stunned unit's contribution to combat damage) is not what makes a stun matter — 423.1.c read with 710 is: the stunned body still needs damage equal to its FULL current Might to die. So the stun stops the defender hitting back and nothing more, unless OGN-079 Leona, Zealot is at that battlefield to collapse it to 1 Might. Zealot is Calm and legal here; she is a lead on this row rather than a use, because the entry's claim is the ready, not the kill.",
+          "423.1.a.1 forbids stunning an already-stunned unit and 423.1.a.2 clears the stun at the end-of-turn cleanup, so this is one stun per combat and never a lock — which is why #61 concluded the stun lens yields ENGINE and never a BURST.",
+          "One Order Power a turn against #44's measured free floor of 2, so it runs itself. Total board cost is 7 Energy and 1 Order Power, and the legend is free.",
+          "Do not expect Radiant Dawn's buff on a stun the OPPONENT is stunned by on their own turn: her condition is 'when YOU stun', and Leona's trigger needs her to be the attacker, which only happens on yours."
+        ]
+      },
+      "steps": [
+        "Radiant Dawn is your legend. Play Fiora, Worthy (3 Energy) and Leona, Determined (4 Energy + 1 Order Power).",
+        "Move Leona to an occupied enemy battlefield so she gains the Attacker designation (464.2.c.1, 464.2.c.3) — an empty one gives none (807.1.d, 461).",
+        "Her attack trigger stuns an enemy unit there (383.4.e).",
+        "Radiant Dawn's trigger fires on that stun: buff a friendly unit sitting at exactly 4 Might and carrying no buff. 703 takes it to 5 and 709 fires 'becomes Mighty'.",
+        "Fiora's trigger goes up: pay 1 Order Power to ready it. If the recipient was Leona herself, she is upright again immediately after attacking.",
+        "Repeat every combat. 423.1.a.2 clears the stun at the end-of-turn cleanup, so the same defender is a legal target again next turn."
+      ],
+      "netPerIteration": "+1 stun and +1 unit readied per attack, for 1 Order Power",
+      "terminatesIn": "engine — an extra action and a blanked defender every combat; it scores nothing by itself",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rules radiant-dawn-stun-buff and fiora-buff-ready (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. OGN-238 Leona, Determined is catalogued once (leona-zealot-stun-might-collapse) and OGN-261 twice, but the pair had never been written and neither had ever met SFD-180 — radiant-dawn-stun-buff (21 partners, 2 entries) and fiora-buff-ready (98 partners, 8 entries carrying Fiora) meeting on one chain. Card text verbatim from data/corpus_flat.txt; 383.4.e, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 461, 464.2.c.1, 464.2.c.3, 702.2.a, 702.3, 702.3.a, 703, 708, 709, 710 and 807.1.d opened in the Core Rules file. No unruled reading. #61's correction is applied rather than re-derived: what makes a stunned unit pay is 423.1.c with 710, not 423.1.b."
+    },
+    {
+      "id": "svellsongur-teemo-strategist-defend-burst",
+      "name": "Teemo, Strategist × three Svellsongur — up to forty damage on defence, and no Burn Out",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-121",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E2 P1 M2, [Hidden]. 'When I defend, choose an enemy unit here and reveal the top 5 cards of your Main Deck. Deal 1 to that unit for each card with [Hidden] revealed this way, then recycle the revealed cards.'"
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. Three on Teemo compose to 2^3 = 8 instances, each choosing its own enemy unit and revealing its own five."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Mind — OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom, VEN-145 Curator of the Sands."
+        ],
+        "notable": [
+          "FORTY REVEALS AND NOT ONE OF THEM CAN BURN YOU OUT. 431.1.c is explicit — 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out' — and 431.1.c.1 extends it to the zone change that follows. Eight instances of 'reveal the top 5' is 40 cards through the top of the deck in one combat, and the recycles put them straight back (416.1.a / 416.5 send them to the BOTTOM), so the engine cannot mill you either.",
+          "THE DAMAGE SCALES WITH HOW MANY [Hidden] CARDS THE DECK RUNS, and it is aimed one instance at a time — 'choose an enemy unit here' is read per execution, so 8 × up to 5 is up to 40 damage spread across the whole attacking side, not one lump. In a deck built on the [Hidden] package (15 units, 2 gear and spells across all six domains) three or four of every five revealed are Hidden, so the realistic figure is 24 to 32.",
+          "IT ONLY FIRES ON DEFENCE, AND THAT IS THE ENTRY'S BOUNDARY. 383.4.f: 'Defend Triggers are Triggered Abilities that trigger when a Unit or Player gains the Defender designation for the first time during a combat.' teemo-strategist-lures-the-attacker's own rule text states the problem in one line — a player who has seen him simply stops attacking his battlefield. What this build changes is the price of finding out: Teemo is [Hidden] himself, so the attacker commits before the board is revealed, and 811.1.b lets him be hidden for 1 rainbow Power and played for free.",
+          "The revealed cards are recycled, which means the SAME cards come back around: 416.1.a puts them on the bottom, so a 39-card deck (103.2 with 103.2.a.1 removing the Chosen Champion) cycles completely in one combat and the [Hidden] density you measured is the density you get.",
+          "Teemo is a 2-Might body and Svellsongur is M+0 (137.3), so he does not survive the combat he wins — 465.2.c sums the attackers' Might and 465.2.c.3 forces lethal onto one unit first. 137.3.a takes all eight instances with him. The engine is a one-combat wall, repeatable only if he lives or is replayed.",
+          "Cost, counted whole: Teemo 2 Energy + 1 Mind Power, each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 14 Energy, 1 Mind Power and 6 Calm Power."
+        ]
+      },
+      "steps": [
+        "Play Teemo, Strategist (2 Energy + 1 Mind Power) to a battlefield you control, or hide him face down for 1 rainbow Power (811.1.b) and play him free from there.",
+        "Attach Svellsongur A, B and C to him in that order: 2, then 4, then 8 instances of his defend trigger (434.1.c, 476.1, 477.2.c, 479.1, 480.3; R6 = A).",
+        "The opponent attacks that battlefield. Teemo gains the Defender designation and all eight triggers are placed (383.4.f, 383.4.f.2); 464.2.e.1 puts the Defender's triggers on the Chain last, so 340.1 resolves them FIRST — before combat damage.",
+        "Resolve them one at a time. Each chooses an enemy unit here, reveals the top 5 of your Main Deck, deals 1 for each [Hidden] card revealed, and recycles all five to the bottom (416.1.a).",
+        "431.1.c means none of this Burns you Out however empty the deck is. Spread the eight instances to kill several attackers, or stack them on the biggest.",
+        "Whatever survives resolves the ordinary combat damage step (465.2)."
+      ],
+      "netPerIteration": "up to 40 damage in one defence, aimed as eight independent instructions, with no Burn Out at any deck size",
+      "terminatesIn": "engine — repeatable removal on defence only; it scores nothing",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rules svellsongur-copy and teemo-strategist-lures-the-attacker (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160, taking up the lead #117's walk left open — 'OGN-121 Teemo, Strategist reveals the top FIVE cards on defend, a removal scaled by the [Hidden] package' — and pairing it with the copier, which teemo-strategist-lures-the-attacker (13 partners, 3 entries) had never met. Card text verbatim from data/corpus_flat.txt; 103.2, 103.2.a.1, 137.3, 137.3.a, 340.1, 383.4.f, 383.4.f.2, 416.1.a, 416.5, 431.1.c, 431.1.c.1, 434.1.c, 464.2.e.1, 465.2, 465.2.c, 465.2.c.3, 476.1, 477.2.c, 479.1, 480.3 and 811.1.b opened in the Core Rules file. Stands on R6 = A; no new reading. It is the fourth member of the Burn Out set with the Apprentice Smith (reveals, safe), the Traveling Merchant (draws, fused) and Qiyana (modal) — and the only one that turns reveals into damage."
+    },
+    {
+      "id": "svellsongur-corrupt-enforcer-trash-fill",
+      "name": "Corrupt Enforcer × three Svellsongur — eight discards a move, and the combat you must not win",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-123",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Chaos unit, E3 P1 M4. 'When I move to a battlefield, discard 1. When I win a combat, draw 1.' BOTH triggers are copied."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. Three on the Enforcer compose to 2^3 = 8 instances of his whole text."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Chaos — OGN-259 Unforgiven, SFD-195 Blade Dancer, UNL-193 Gloomist. Unforgiven doubles as the mover that walks him home."
+        ],
+        "notable": [
+          "EIGHT DISCARDS WITH NO DRAWS ATTACHED, WHICH IS WHAT SEPARATES IT FROM THE MERCHANT. svellsongur-traveling-merchant-discard pairs every discard with a draw and so carries a hard 431.1.a clock; the Enforcer's move trigger is 'discard 1' alone. The only limit is your hand, so the deck is never touched and no Burn Out is possible from this half.",
+          "THE OTHER HALF IS THE HAZARD, AND IT IS NOT OPTIONAL. 'When I win a combat, draw 1' is copied eight times too, and it carries no 'may' — win one combat with him on the board and you draw 8, which against a 39-card deck (103.2, 103.2.a.1) is a Burn Out waiting to happen: 431.1.a gives the opponent a point (194.1.d) and 431.2.b then recycles your whole trash into the deck, erasing everything the discards put there. Keep him out of combats, or accept the draw and count.",
+          "The discard is the product. 422.1.b makes a 'When I am discarded' ability execute AFTER the discard, i.e. from the trash, and 385.1 / 385.2 let a Triggered Ability outside the board self-describe its context — which is why OGN-006 Flame Chompers is a synergy rule of its own and why [Flow] spells (829.1.b) and 'return a unit from your trash' bodies want a big outlet. #95 measured that none of the lens's 31 outlets was free and repeatable within a turn; this one is.",
+          "Flame Chompers itself is NOT available here: it is Fury, and 103.1.b is a subset test against the legend's two domains, so a Calm/Chaos shell cannot run it. The on-identity payoffs are the Chaos half of the trash lens, and VEN-165 Shadow Temple is colourless — but see shadow-temple-sentinel-burn for what stacking two trash faucets does to the deck.",
+          "He must move TO A BATTLEFIELD to fire — 'When I move to a battlefield', not 'when I move' — so a walk home does nothing and the repeat needs him returned to base each turn (144.4 makes the Standard Move base-to-battlefield only, and Unforgiven's '2 Energy, exhaust: Move a friendly unit to or from its base' is the return leg).",
+          "Cost, counted whole: the Enforcer 3 Energy + 1 Chaos Power, each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 15 Energy, 1 Chaos Power and 6 Calm Power."
+        ]
+      },
+      "steps": [
+        "Play Corrupt Enforcer (3 Energy + 1 Chaos Power) and attach Svellsongur A, B and C to him in that order: 2, then 4, then 8 instances of his whole text (434.1.c, 476.1, 477.2.c, 479.1, 480.3; R6 = A).",
+        "Main Phase: standard-move him from his base to a battlefield you control (144.1.a, 144.2, 144.4.a). 190.3.a.1 opens nothing there.",
+        "The eight move triggers resolve one at a time, each discarding a card from your hand. Stop being able to pay when the hand empties — nothing else happens.",
+        "Spend the trash: [Flow] replays (829.1.b), recycle-from-trash costs, 'return a unit from your trash' bodies, and any 'When I am discarded' text, which 422.1.b executes from the trash.",
+        "Do NOT win a combat with him on the board unless you have counted the deck: eight forced draws is 431.1.a.",
+        "Walk him home with the legend and repeat next turn."
+      ],
+      "netPerIteration": "up to 8 cards from hand to trash per move, at no deck cost",
+      "terminatesIn": "engine — the pool's largest deck-safe discard outlet, with a forced eight-card draw attached to any combat win",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule svellsongur-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-123 was an uncatalogued partner of svellsongur-copy and of the three move rules. Card text verbatim from data/corpus_flat.txt; 103.1.b, 103.2, 103.2.a.1, 144.1.a, 144.2, 144.4, 144.4.a, 190.3.a.1, 194.1.d, 385.1, 385.2, 422.1.b, 431.1.a, 431.2.b, 434.1.c, 476.1, 477.2.c, 479.1, 480.3 and 829.1.b opened in the Core Rules file. Stands on R6 = A and R9; no new reading. The walk deliberately copied BOTH of the Enforcer's sentences rather than only the useful one — the same check svellsongur-rumble-scrapper-mechs turned up on the static side — and the second one is a drawback, which is why it is in the second notable rather than a footnote."
     }
   ]
 }
