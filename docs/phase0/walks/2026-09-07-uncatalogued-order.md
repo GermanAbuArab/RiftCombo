@@ -228,3 +228,112 @@ work while satisfying the clause.
 10. **A ready is worth one Standard Move and nothing on defence**, so a "ready me" card is only worth
     running beside a payoff that reads *moving*. And 144.4 has no battlefield-to-battlefield leg
     without [Ganking], so a double move is **out and back** unless the deck grants it.
+
+---
+
+# Batch 3 — three more Order cards, and a refusal
+
+| id | class | cards | what it is |
+|---|---|---|---|
+| `atakhan-harnessed-dragon-sacrifice` | ENGINE | UNL-170, OGN-234 | the fodder is also the removal, and 206 prices it |
+| `escaped-grayback-royal-guard-token-empower` | ENGINE | VEN-124, SFD-157 | an Empower cost paid with a token |
+| `shen-kinkou-soulspinner-flash-defence` | ENGINE | OGN-241, VEN-123 | bodies that arrive after the attackers are declared |
+
+## 10. 355.10.f is the other half of the untargetable-removal family
+
+**UNL-170 Atakhan**: *"When I attack, the defender **must** kill one of their units here."*
+
+> **355.10.f.** *"It is identified in an instruction that a player 'must' complete. e.g., 'You must
+> recycle one of your runes' doesn't target anything."*
+
+So Order has **two** untargetable removal shapes and they are different paragraphs: 355.10.e (a set
+*"chosen in whole or in part by other players"* — Cull the Weak, batch 2) and 355.10.f (an
+instruction a player *"must"* complete — Atakhan, and OGN-287 Sigil of the Storm's forced recycle).
+Both pay no Deflect (809.1.c prices choosing) and both leave the choice with the other player.
+
+The discount is priced on **206**: a cost check reads the **printed** cost, so a Harnessed Dragon
+played at a discount still counts its full E8 + 2 Order Power, taking Atakhan from E10 + 3 Power to
+**E2 + 1 Order Power**. The Dragon kills a unit on the way in and then pays for the body that forces
+a kill on every attack.
+
+## 11. 185.2.d puts tokens *inside* a rule the other token paragraphs keep them out of
+
+**VEN-124 Escaped Grayback**'s [Empower] cost is *"Kill a friendly unit"* — no Energy, no Power.
+A token is a legal payment:
+
+> **185.2.d.** *"Tokens have a type. They follow all rules for their type unless otherwise specified.
+> Example: A token unit is a unit. It enters exhausted, can take the standard move action, deals
+> damage equal to its Might in combat, is destroyed if it takes damage equal to its Might."*
+
+This is the **opposite** side of the line from every token trap this project has recorded: 416.1 is
+defined over **cards** and 185 keeps tokens out of it; 186.1 keeps them out of the trash. But
+*killing* is defined over **units**, and 185.2.d puts tokens squarely in — so 203.3's impossibility
+bar is never reached. Worth keeping the two apart when reading a cost.
+
+**SFD-157 Royal Guard** supplies the body at a battlefield (one of the thirteen cards that say
+*"here"*; 359.3.f.2 reads it at execution).
+
+### 11.1 A recorded claim that needs qualifying
+
+The project records **VEN-110 Mel, Defiant Soul** as having *"the cheapest [Empower] cost in the pool
+by resources — 'Discard a spell', no Energy, no Power"*. Reading every `[Empower]` cost string in the
+corpus, **five** pay neither Energy nor Power:
+
+- **VEN-054 Questionable Tome** — an exhaust
+- **VEN-087 Hextech Disc** — an exhaust
+- **VEN-007 Punching Poro** — discard 1
+- **VEN-110 Mel, Defiant Soul** — discard a spell
+- **VEN-124 Escaped Grayback** — kill a friendly unit (free when it is a token)
+
+Two of them pay only an exhaust, which is cheaper than a card. The claim should be *"one of five
+[Empower] costs that pay neither Energy nor Power"*, not *"the cheapest"*. Members named.
+
+## 12. A third route to the same damage redirect, and why it is still its own entry
+
+**OGN-241 Shen, Kinkou** is *"[Reaction] (Play any time … **including to a battlefield you
+control**.) [Shield 2] [Tank]"*. The parenthetical grants the play location at Reaction timing, and
+**319.6 + 323.2.a** give a body that enters mid-combat the Defender designation before 465.2
+resolves — so he arrives *after* 464.2.c.3 has declared the attackers and 465.2.c's summed Might is
+countable. 143.4 has him enter exhausted, which costs nothing on defence (neither 464.2.c.3 nor
+465.2.b filters by state).
+
+The toll is exact: M3 + [Shield 2] = **5** (814.1.c), and 815.1.c.2 + 815.1.c.1 + 465.2.c.4 make the
+attacker spend exactly that before a point can be assigned to anything else you control there.
+
+This is the **third** route this session has walked to 815.1.c.2 — after a legend's exhaust
+(`eye-of-twilight-zephyr-sage-tank-redirect`) and a free Quick-Draw attach
+(`ornns-forge-jax-free-equipment`). Each entry names the others and states the difference: this one
+is a whole extra body rather than a grant, needs no board set-up, and costs a card.
+
+**VEN-123 Soulspinner** is the complement, not a duplicate: 822.1.b's [Ambush] needs you to control
+**units** there, Shen needs you to control the **battlefield**.
+
+## 13. Refusal — OGN-237 King's Edict
+
+*"Starting with the next player, each other player chooses a unit you don't control that hasn't been
+chosen for this spell. Kill those units."* E6 + 2 Order Power. In a Duel **485.4** leaves exactly one
+other player, so it kills exactly **one** unit — and 355.10.e means that player chooses it, so it can
+never answer a specific threat. `cull-the-weak-loyal-poro` does the same untargetable job for
+**E2 + 1 Power** at the cost of a body that draws you a card when it dies. King's Edict is the same
+effect at three times the price, and its scaling clause (*"that hasn't been chosen for this spell"*)
+only does anything in 2v2 (489.1: 4 players), where 489.8's two independent decks put a team line
+outside what `matchDeck` can represent anyway. Refused for Constructed on the arithmetic.
+
+## 14. Standing notes for CLAUDE.md (Order batch 3)
+
+11. **Order has TWO untargetable-removal paragraphs and they are different**: 355.10.e (a set
+    *"chosen in whole or in part by other players"* — OGN-209 Cull the Weak) and 355.10.f (an
+    instruction a player *"must"* complete — UNL-170 Atakhan's attack trigger, OGN-287's forced
+    recycle). Both dodge 809.1.c's Deflect tax; both leave the choice with the opponent.
+12. **185.2.d puts a token INSIDE the rules for its type**, so a token unit is a legal answer to
+    *"kill a friendly unit"* as a **cost** and 203.3 never bites. That is the opposite side of the
+    line from 416.1 (recycling, defined over *cards*) and 186.1 (the trash) — the traps this project
+    records are all on the other side, and the two should not be conflated.
+13. **The "cheapest [Empower] cost in the pool" claim needs qualifying**: five pay neither Energy nor
+    Power — VEN-054 and VEN-087 (an exhaust each), VEN-007 and VEN-110 (a discard each), and
+    VEN-124 Escaped Grayback (a friendly unit, free when it is a token).
+14. **319.6 + 323.2.a give a body that enters mid-combat the Defender designation before 465.2
+    resolves**, and 143.4's entering-exhausted costs nothing on defence — so OGN-241 Shen, Kinkou
+    ([Reaction], and his parenthetical grants the location) is a 5-Might [Tank] that arrives after
+    the attackers are declared. 822.1.b's [Ambush] is the complement: units there, not the
+    battlefield.
