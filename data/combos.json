@@ -23236,6 +23236,299 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §6), issue #161, as the uncatalogued feeder for swain-double-conquer. Card set checked against the current data/combos.json before writing (VEN-065 + SFD-192: no exact match, and the only supersets are swain-double-conquer and shurelya-requiem-ready-and-ganking, which share one card each). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 144.2, 144.3, 144.4.a, 144.4.c, 144.4.c.1, 194.1.c, 194.2, 194.3, 315.1.b, 466.5.d, 469.1, 470, 485.4, 489.3, 818.1. Stands on R2 = A, ruled 2026-09-03. The sibling is left in place: it buys redundancy with an infinite-energy loop where this buys none, and at 8 exactly this line cannot afford to lose a Swain. Trap check: both Conquers are real Conquers with a garrison to beat, so the empty-battlefield trap (807.1.d, 383.4.e, 461) is respected — and if B is open instead, 344.2 / 348.2.a / 348.2.a.1 give the same Conquer without a Combat; no [Repeat]; no [Temporary]; no token, so 185 / 186.1 never arise; the Shurelya's ready is a real 415.1 ready of units already on the board, not an 'enters ready' (#56); nothing is added in Awaken, so 167 does not bite."
+    },
+    {
+      "id": "ivern-svellsongur-four-tags-hold",
+      "name": "Three Ivern, three Svellsongur on one of them — eleven points in a single Hold",
+      "class": "BURST",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-177",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 M6. 'As you play me, choose Bird, Cat, Dog, or Poro. I gain that tag. When I conquer or hold, score 1 point if your units have all of the following tags among them — Bird, Cat, Dog, and Poro.' Three copies choose three different tags."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. ALL THREE on ONE Ivern: 2^3 = 8 instances on that body, 1 each on the other two."
+        },
+        {
+          "card": "UNL-160",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Order unit, E5 M5, tags Poro/Freljord. Supplies the fourth tag. Any Calm or Order body carrying the missing tag does; this one also makes two [Deflect] Birds a turn."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm (Svellsongur) and Order (Ivern, the Poro) — OGN-261 Radiant Dawn, SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father, VEN-147 Eye of Twilight."
+        ],
+        "notable": [
+          "STACK ALL THREE GEARS ON ONE IVERN. N multiplies nothing here — the three Ivern are three independent point sources — so the honest sum is 8 + 1 + 1 = 10 triggers, and spreading the gears one per body would give 2 + 2 + 2 = 6. This is the same 'compound on one multiplicand' lesson svellsongur-copy-hold records, and it is worth 4 points.",
+          "Eleven at the Hold: 1 from the Score itself (469.2 → 471.1, capped by 470) plus 10 ability Gains, which R2 = A keeps outside 470 as 194.1.c Gains and 471.1.a.1 exempts from the Final Point restriction. Against ivern-sentinel-hold, the same three Ivern under the OTHER multiplier: two Blue Sentinels give 1 + 3 × 3 = 10 for 26 Energy and 2 Mind Power in a Mind/Order shell. This is 11 for 30 Energy and 6 Calm Power in a Calm/Order one. Neither dominates and the catalogue keeps both, exactly as it keeps ahri-blue-sentinel-hold beside svellsongur-copy-hold.",
+          "THE FOUR TAGS ARE A DECKBUILDING COST AND THREE IVERN PAY MOST OF IT. 'As you play me, choose Bird, Cat, Dog, or Poro' is a play-time choice, so three copies cover three of the four; only the fourth has to come from elsewhere, and the clause says 'your units', with no location restriction — the tag-bearer may sit at your base. Ultrasoft Poro is declared because it is Order, on-identity, and does something else useful; SFD-036 Lonely Poro (Calm, 2 Energy) is the cheap version.",
+          "All three Ivern must stand at the SAME battlefield: 383.4.d.2.a puts a unit's Hold Ability on the Chain only for a unit 'present at a Battlefield when a player maintains control of it', and 471.2.b triggers Hold abilities 'at a Battlefield that was Held'. An Ivern parked elsewhere contributes its tag and nothing else.",
+          "Ivern prints no [Shield] and Svellsongur is M+0 (137.3), so unlike shen-kinkou-svellsongur-hold this board gets no survivability from the copies: the gear-carrier is a 6-Might body and 465.2.c prices it at 6 damage. Losing it drops the line from 11 points to 3.",
+          "Cost, counted whole: three Ivern at 6 Energy each (no Power), each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip], and the tag-bearer. 30 Energy plus the Poro's 5, and 6 Calm Power. This is the most expensive entry in this walk and it is the one that wins outright."
+        ]
+      },
+      "steps": [
+        "Play the three Ivern, Friend to All to the same battlefield, choosing three DIFFERENT tags from Bird, Cat, Dog, Poro as each is played.",
+        "Have a unit carrying the fourth tag anywhere on your board — Ultrasoft Poro, or any Calm/Order body with the missing tag.",
+        "Attach Svellsongur A, B and C to ONE of the Ivern, in that order. 434.1.c gives the Top-Most Card ALL the Effect Text of ALL three, 477.2.c appends in Layer 2, 479.1 finds no dependency, 480.3 orders by Timestamp: 2, then 4, then 8 instances on that body (R6 = A).",
+        "Establish Control of the battlefield and survive to your Beginning Phase.",
+        "Scoring Step (315.2.b.2): you Hold. 1 point from the Score, then ten instances of 'score 1 point if your units have all of the following tags among them' — the condition is checked at the Hold (383.2.a.1) and finds all four tags. Eleven points."
+      ],
+      "terminatesIn": "burst of 11 points in a single Hold, for 35 Energy and 6 Calm Power",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rules svellsongur-copy and ivern-friend-to-all-four-tags (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. UNL-177 is catalogued twice under blue-sentinel-hold and was an uncatalogued partner of svellsongur-copy. Card text verbatim from data/corpus_flat.txt; 137.3, 194.1.c, 383.2.a.1, 383.4.d.2.a, 434.1.c, 465.2.c, 469.2, 470, 471.1, 471.1.a.1, 471.2.b, 476.1, 477.2.c, 479.1 and 480.3 opened in the Core Rules file. Stands on R6 = A and R2 = A; no new reading. The formula was checked against its own declared quantities before authoring — 1 + (8 + 1 + 1) = 11, which clears the Victory Score of 8 (194.3) in one scoring event and so is BURST, but NOT in 2v2, where 489.3 sets it at 11 and this reaches it exactly (so it wins there too, with zero margin). Trap check: a Hold needs no Attacker designation (807.1.d / 383.4.e / 461); no token; nothing recycled; no [Temporary]; no [Repeat]; nothing added in Awaken so 167 does not bite; the [Equip] costs and the Power are counted."
+    },
+    {
+      "id": "shadow-temple-sentinel-burn",
+      "name": "Shadow Temple × two Blue Sentinels — nine cards into your trash a turn, on a four-turn fuse",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-165",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'When you hold here, [Burn 3]. (Put the top 3 cards of your Main Deck into your trash.)'"
+        },
+        {
+          "card": "UNL-087",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M4, [Shield 2]. 'Your hold effects for holding here trigger an additional time.' Two copies take the Temple's trigger to three executions."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any legend with Mind in its pair (103.1.b.3) — Blue Sentinel is the only domained card here and Shadow Temple is colourless."
+        ],
+        "notable": [
+          "NINE CARDS A TURN, WHICH IS THE LARGEST TRASH FAUCET AVAILABLE AND ALSO ITS OWN CLOCK. R8 = A is what makes it work: a battlefield's own Hold trigger is one of 'your hold effects', because 190.6.a gives its Controller the ability, 190.6.d makes 'you' mean that Controller, and 383.4.d.2.b puts an ability referencing the Holding player on the Chain for the player who Held. R1 = A with stacking then makes two Sentinels three executions: 3 × [Burn 3] = 9.",
+          "THE FUSE IS FOUR TURNS AND THE ENTRY WILL NOT PRETEND OTHERWISE. 103.2 caps the Main Deck at 40 and 103.2.a.1 removes the Chosen Champion before play, so you draw from 39; nine a turn plus the ordinary Draw Phase card empties it in about four Holds. Then 431.1.b applies — putting cards from your Main Deck into another zone in excess of what is there IS a Burn Out — and 431.2.b makes the Burn Out 'recycle their trash into their Main Deck', which ERASES every card the engine spent four turns putting there, on top of 194.1.d handing the opponent a point. Filling the trash and emptying the deck are the same action; this engine has to be spent, not accumulated.",
+          "The consumers it is for are the ones shadow-temple-trash-fuel names: Vi's recycle-from-trash costs, SFD-019 Assembly Rig, SFD-150 Last Rites, [Flow] spells cast from the trash (829.1.b), and every 'return a unit from your trash' body. Nine cards a turn is roughly three times what any of them can eat, which is why the fuse matters more than the throughput.",
+          "The Sentinels pay for themselves alongside: each one's own 'When I hold, [Add] rainbow at the start of your next Main Phase' is also a hold effect at that battlefield, so 2 × 3 = 6 rainbow Power arrives at 316.4 — after 316.3 has emptied the pool, which is why 167 does not take it.",
+          "Shadow Temple has to be the battlefield in play: 485.4.a puts only 1 of your 3 into the game, randomly in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5), and 103.4.c plus Tournament Rules 402.1 forbid three copies. It competes for that slot with The Grand Plaza and Power Nexus.",
+          "It is symmetric in the worst way: 'When you hold here' reads for whoever holds it, so an opponent who takes the Temple mills THEIR deck, not yours — the Sentinels stay with you, so they lose the multiplier, but you lose the engine entirely."
+        ]
+      },
+      "steps": [
+        "Control Shadow Temple with two Blue Sentinels standing on it (4 Energy + 1 Mind Power each).",
+        "Survive to your Beginning Phase. Scoring Step (315.2.b.2): you Hold, scoring the ordinary 1 point (471.1, capped by 470).",
+        "The Temple's own hold trigger is one of your hold effects (R8 = A) and fires 1 + 2 = 3 times: [Burn 3] three times, nine cards from the top of your Main Deck into your trash.",
+        "Each Sentinel's own hold effect also fires three times: 6 rainbow Power at 316.4 of your Main Phase.",
+        "Spend the trash the same turn or the next. Repeat, and count the deck: at roughly the fourth Hold 431.1.b turns the ninth card into a Burn Out, 431.2.b recycles the whole trash back into the deck and 194.1.d gives the opponent a point."
+      ],
+      "netPerIteration": "+9 cards into your trash and +6 rainbow Power per Hold, at the cost of 9 cards of Main Deck",
+      "terminatesIn": "engine — the pool's largest trash faucet, with a four-Hold fuse before 431.1.b burns you out and 431.2.b undoes it",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rules blue-sentinel-hold and shadow-temple-trash-fuel (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. VEN-165 is the anchor of shadow-temple-trash-fuel and appears in NO entry's uses — its five basis combos are the consumers, not the faucet — and it was an uncatalogued partner of blue-sentinel-hold. Card text verbatim from data/corpus_flat.txt; 103.2, 103.2.a.1, 103.4.c, 167, 190.6.a, 190.6.d, 194.1.d, 315.2.b.2, 316.3, 316.4, 383.4.d.2.b, 431.1.b, 431.2, 431.2.b, 470, 471.1 and 485.4.a opened in the Core Rules file. Stands on R1 = A with stacking and R8 = A, both ruled 2026-09-04 or earlier; no new reading. The entry is deliberately written around its own drawback: #95 established that a Burn Out recycles the trash and so erases the currency of every trash line, and this is the engine most likely to cause one."
+    },
+    {
+      "id": "svellsongur-faefolk-mass-evacuation",
+      "name": "Irresistible Faefolk × three Svellsongur — drag eight enemy units off a battlefield in one move",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-112",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E2 M1. 'When I move to a battlefield, you may move an enemy unit to that battlefield.'"
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. Three on the Faefolk compose to 2^3 = 8 instances, each an independent choice of enemy unit."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Body — OGN-257 Blind Monk, OGS-019 Wuju Bladesman, SFD-193 Grandmaster at Arms, UNL-191 Wuju Master."
+        ],
+        "notable": [
+          "ONE DRAG CLOSES AGAINST A GARRISON OF ONE; EIGHT CLOSES AGAINST ANY REAL BOARD. That is the whole content of this entry. #102 measured the ceiling on the catalogued single-unit movers — UNL-207 Amateur Recital 'moves ONE unit, so it only closes against a garrison of one' — and faefolk-challenger-forced-attacker runs this same Faefolk for exactly one drag. Eight independent instances (2^3 by the Layer-2 composition of 434.1.c / 476.1 / 477.2.c / 479.1 / 480.3, R6 = A), each choosing its own enemy unit, empty a battlefield outright.",
+          "AND THE EMPTIED BATTLEFIELD BECOMES OPEN IN THE SAME CLEANUP. 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' Nobody gains it — 170.11.c defines open as 'unoccupied and uncontrolled', which is now both — so a second body of yours walks in during the same Main Phase (144.4.a), 190.3.a.1 applies Contested, 344.2 opens the Showdown at the next Cleanup, 348.2.a establishes Control and 348.2.a.1 says outright 'This results in a Conquer'. No combat, no Attacker designation, no damage.",
+          "WHERE THE EIGHT BODIES LAND IS THE PRICE. 'Move an enemy unit to THAT battlefield' — the destination is fixed at wherever the Faefolk moved, so you are consolidating the opponent's whole army onto one square, and 190.3.a.1 keys Contested on the MOVED unit's controller while 464.2.c.1 makes 'the player whose unit(s) applied the Contested status' the Attacker. Move the Faefolk to a battlefield YOU control and they arrive as Attackers on YOUR turn, which is the mechanism faefolk-challenger-forced-attacker is built on; 464.2.e.1 then puts the Defender's triggers on the Combat Chain last, so 340.1 resolves yours first.",
+          "The Faefolk is a 1-Might body and Svellsongur's Might Bonus is +0 (137.3), so it dies to anything, and 137.3.a detaches all three gears the instant it does. It also has to MOVE each turn to fire at all: the Standard Move costs its own exhaust (144.2) and is base-to-battlefield only (144.4), so a repeat needs it walked home first — by an effect mover, or by the legend if the shell carries one.",
+          "Nothing here scores. The Conquer that follows the evacuation does, and it is the reason the entry produces conquer-engine rather than points: 470 still caps the Score at once per battlefield per turn, and the opponent simply re-enters next turn unless you garrison what you took.",
+          "Cost, counted whole: Faefolk 2 Energy; each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 14 Energy and 6 Calm Power for what is, in effect, a repeatable one-sided board wipe of position."
+        ]
+      },
+      "steps": [
+        "Play Irresistible Faefolk (2 Energy) to your base and attach Svellsongur A, B and C to it in that order: 2, then 4, then 8 instances of its move trigger.",
+        "Main Phase: standard-move the Faefolk to a battlefield you control (144.1.a, 144.2, 144.4.a). 190.3.a.1 applies no Contested, because you already control it.",
+        "Eight instances resolve, one at a time. Each may move one enemy unit to that battlefield — take every body off the battlefield you intend to Conquer.",
+        "That battlefield now has no units of its controller on it. At the Cleanup 323.6 strips their Control and 170.11.c makes it open.",
+        "Walk a second friendly unit in (144.4.a): 190.3.a.1 Contested, 344.2 Showdown at the next Cleanup, 348.2.a Control, 348.2.a.1 a Conquer — with no combat and no Attacker designation.",
+        "The dragged units are at your battlefield as the Attackers of a Combat on your own turn (464.2.c.1); 464.2.e.1 puts your Defender triggers last on the Chain, so 340.1 resolves them first. Repeat once the Faefolk is walked home."
+      ],
+      "netPerIteration": "up to 8 enemy units relocated per move, which is one battlefield emptied and one free Conquer",
+      "terminatesIn": "engine — a repeatable bloodless Conquer; it scores through the Conquer, never on its own",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule svellsongur-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. UNL-112 is catalogued twice (faefolk-challenger-forced-attacker, faefolk-star-spring-drag) and was an uncatalogued partner of svellsongur-copy. Card text verbatim from data/corpus_flat.txt; 137.3, 137.3.a, 144.1.a, 144.2, 144.4, 144.4.a, 170.11.c, 190.3.a.1, 323.6, 340.1, 344.2, 348.2.a, 348.2.a.1, 434.1.c, 464.2.c.1, 464.2.e.1, 470, 476.1, 477.2.c, 479.1 and 480.3 opened in the Core Rules file. Stands on R6 = A and R9; no new reading. Trap check: the empty-battlefield trap is respected — the Conquer here is the Showdown one (348.2.a.1), never an attack, so 807.1.d / 383.4.e / 461 do not apply; a Move is not a Recall (455 / 456 / 458); no token; nothing recycled; no [Temporary]; no [Repeat]; the [Equip] costs are counted; and 170.11.c is checked on BOTH conditions, which is the correction the #146 walk had to make to two verified entries."
+    },
+    {
+      "id": "svellsongur-apprentice-smith-gear-dig",
+      "name": "Apprentice Smith × three Svellsongur — eight reveals a move, and reveals never Burn Out",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-041",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Calm unit, E2 M2. 'When I move, reveal the top card of your Main Deck. If it's a gear, draw it. Otherwise, recycle it.'"
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. Three on the Smith compose to 2^3 = 8 instances."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "MONO-CALM. Every legend with Calm in its pair can run both cards (103.1.b.3) — five of the pool's fifty legends' domain pairs."
+        ],
+        "notable": [
+          "THIS IS THE BURN-OUT-SAFE ENGINE, AND THAT IS THE WHOLE REASON IT IS WORTH EIGHT INSTANCES. 431.1.c is explicit: 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out.' Every other Svellsongur draw line in the catalogue is capped by the opposite rule — 431.1.a turns an over-draw into a Burn Out and 194.1.d hands the opponent a point, which is exactly what holds yasuo-stellacorn-svellsongur-draw and twilight-reveler-svellsongur-stellacorn-draw to four cards a turn. The Smith reveals; only the gear it FINDS is drawn.",
+          "Eight reveals per move, and each one either draws a gear or recycles the card to the bottom (416.1.a / 416.5). So the deck is filtered, not spent: a non-gear goes under the deck rather than into the trash, and the engine cannot mill you out either.",
+          "Two moves a turn if the shell has a mover. The Standard Move is move one and costs the Smith's own exhaust (144.2, base ↔ battlefield only under 144.4); a legend or effect mover is move two, and 420.3.a puts the exhaust cost only on the Standard Move so it works on an exhausted body. OGN-259 Unforgiven (Calm/Chaos, '2 Energy, exhaust: Move a friendly unit to or from its base') is the on-identity one and takes this to sixteen reveals a turn.",
+          "It only finds GEAR, which is what makes it a shell card rather than a general engine — but the shell it belongs in is the Svellsongur shell itself, where every copy of the multiplier is a gear it can draw. It also finds Trinity Force, World Atlas, Cull, Skyfall of Areion and Boneshiver, i.e. most of the catalogue's Hold and Conquer payoffs.",
+          "A 2-Might body carrying three gears at M+0 (137.3), living at its base between moves. 137.3.a detaches everything the instant it dies, and there is no [Shield] to copy — unlike shen-kinkou-svellsongur-hold, this line gains nothing defensive from the composition.",
+          "Cost, counted whole: the Smith 2 Energy; each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 14 Energy and 6 Calm Power."
+        ]
+      },
+      "steps": [
+        "Play Apprentice Smith (2 Energy) and attach Svellsongur A, B and C to it in that order: 2, then 4, then 8 instances of 'When I move, reveal the top card of your Main Deck. If it's a gear, draw it. Otherwise, recycle it.'",
+        "Main Phase: standard-move the Smith between its base and a battlefield you control (144.1.a, 144.2, 144.4.a).",
+        "Eight instances resolve one at a time. Each reveals the top card: gear is drawn, anything else is recycled to the bottom of the Main Deck (416.1.a). 431.1.c means none of this can Burn you Out even with the deck nearly empty.",
+        "If the shell carries a mover, move the Smith back the same turn for eight more reveals.",
+        "Repeat every turn — the Smith readies at Awaken (315.1.b)."
+      ],
+      "netPerIteration": "8 reveals per move, every gear among them drawn, with no Burn Out risk at any deck size",
+      "terminatesIn": "engine — it draws every gear in the deck within a few turns and scores nothing",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule svellsongur-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-041 was an uncatalogued partner of svellsongur-copy. Card text verbatim from data/corpus_flat.txt; 137.3, 137.3.a, 144.1.a, 144.2, 144.4, 144.4.a, 315.1.b, 416.1.a, 416.5, 420.3.a, 431.1.a, 431.1.c, 434.1.c, 476.1, 477.2.c, 479.1, 480.3 and 194.1.d opened in the Core Rules file. Stands on R6 = A and R9; no new reading. Written specifically against #59's finding that draw is a liability inside a deck-empty shell: reveal-and-draw is the one family 431.1.c exempts, and this is the largest instance of it in the pool. Trap check: no attack; nothing is recycled as a COST (416.3 never comes up); no token; no [Temporary]; no [Repeat]; a Move is not a Recall (455); the [Equip] costs are counted."
+    },
+    {
+      "id": "svellsongur-traveling-merchant-discard",
+      "name": "Traveling Merchant × three Svellsongur — eight discard-and-draws a move, and the deck it costs",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-185",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Chaos unit, E2 M2. 'When I move, discard 1, then draw 1.'"
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Calm gear, E3 P1, M+0, [Equip] 1 Energy + 1 Calm Power. Three on the Merchant compose to 2^3 = 8 instances."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains must cover Calm and Chaos — OGN-259 Unforgiven, SFD-195 Blade Dancer, UNL-193 Gloomist. Unforgiven is also the mover, which is why it is the natural shell."
+        ],
+        "notable": [
+          "EIGHT DISCARDS A MOVE IS THE LARGEST REPEATABLE DISCARD OUTLET IN THE POOL, and #95's audit of the lens found that none of its 31 outlets was 'free and repeatable within a turn'. This one is, at the price of a card drawn back each time — so it is a filter and a trash-filler, not card advantage.",
+          "IT IS ALSO EIGHT DRAWS, WHICH IS THE OPPOSITE OF svellsongur-apprentice-smith-gear-dig. 431.1.a: drawing in excess of the Main Deck is a Burn Out, 194.1.d gives the opponent a point, and 431.2.b then recycles your whole trash back into the deck — erasing everything the discards put there. Eight a move against a 39-card deck (103.2 with 103.2.a.1 removing the Chosen Champion) is roughly four moves. This engine is a sprint and the entry says so.",
+          "The discard is what it is FOR. 422.1.b makes a 'When I am discarded' ability execute AFTER the discard, i.e. from the trash, and 385.1 / 385.2 let a Triggered Ability outside the board self-describe its context — which is why OGN-006 Flame Chompers ('When you discard me, you may pay 1 Fury: play me') is a whole synergy rule of its own, and why every '[Flow]' spell (829.1.b) and every 'return a unit from your trash' body wants this. The order inside each instance is fixed by the card: discard first, then draw, so a card drawn by instance k can be discarded by instance k+1.",
+          "It does NOT compose with a Flame Chompers shell, and the reason is Domain Identity rather than timing: Flame Chompers is Fury, this pair is Calm and Chaos, and 103.1.b is a subset test against the legend's two domains. The on-identity payoffs are the Chaos half of the trash lens — VEN-165 Shadow Temple is colourless and stacks with it, but see shadow-temple-sentinel-burn for the same fuse.",
+          "Two moves a turn with Unforgiven ('2 Energy, exhaust: Move a friendly unit to or from its base') is sixteen discard-and-draws, which empties a 39-card deck in two and a half turns. One move a turn is the sustainable setting.",
+          "A 2-Might body at M+0 (137.3) living at its base, with 137.3.a detaching all three gears when it dies. Cost, counted whole: the Merchant 2 Energy; each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 14 Energy and 6 Calm Power."
+        ]
+      },
+      "steps": [
+        "Play Traveling Merchant (2 Energy) and attach Svellsongur A, B and C to it in that order: 2, then 4, then 8 instances of 'When I move, discard 1, then draw 1'.",
+        "Main Phase: standard-move it between its base and a battlefield you control (144.1.a, 144.2, 144.4.a).",
+        "Eight instances resolve one at a time, each discarding a card and then drawing one. Count the Main Deck as you go.",
+        "Spend the trash the same turn — 431.2.b will recycle all of it back into the deck the moment a draw runs the deck out, and 194.1.d gives the opponent a point for it.",
+        "Repeat next turn, or stop: with one move a turn a 39-card deck lasts about four turns, with two moves about two and a half."
+      ],
+      "netPerIteration": "8 cards from hand to trash and 8 cards drawn per move, at 8 cards of Main Deck",
+      "terminatesIn": "engine — the pool's largest repeatable discard outlet, on a two-to-four-turn Burn Out clock",
+      "sources": [
+        {
+          "title": "Walk of the unwalked partners of the 66 proven synergy rules, rule svellsongur-copy (docs/phase0/walks/2026-09-06-proven-rule-instances.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-06 from issue #160. OGN-185 was an uncatalogued partner of svellsongur-copy and of three move rules. Card text verbatim from data/corpus_flat.txt; 103.1.b, 103.2, 103.2.a.1, 137.3, 137.3.a, 144.1.a, 144.2, 144.4.a, 194.1.d, 385.1, 385.2, 422.1.b, 431.1.a, 431.2.b, 434.1.c, 476.1, 477.2.c, 479.1, 480.3 and 829.1.b opened in the Core Rules file. Stands on R6 = A and R9; no new reading. Deliberately authored beside svellsongur-apprentice-smith-gear-dig as its mirror: the Smith REVEALS (431.1.c, no Burn Out at any deck size) and the Merchant DRAWS (431.1.a, a hard clock), on the same body count and the same price. Trap check: no attack; no token; nothing recycled as a cost; no [Temporary]; no [Repeat]; a Move is not a Recall (455); the [Equip] costs are counted."
     }
   ]
 }
