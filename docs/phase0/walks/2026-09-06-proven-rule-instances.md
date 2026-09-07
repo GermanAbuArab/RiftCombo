@@ -812,3 +812,79 @@ Kato's +3 crosses a 4-Might friend and 709 fires, so Fiora would ready it. Kato 
 **Order**, Svellsongur is **Calm**: 103.1.b is a subset test against the legend's two domains and no
 legend covers three. Kato + Fiora alone (Body/Order) is legal but is one ready per move, strictly
 worse than `arena-bar-fiora-untap`, which costs no Energy and no movement. Lead, not an entry.
+
+---
+
+# Batch 8 — `renata-industrialist-tokens`, `dark-child-off-turn-reactions`, `malzahar-token-fodder`
+
+## 18. The boundary this batch had to establish first
+
+Before any Renata row could be written honestly: **"enters ready" is worth nothing to a UNIT token
+made during the opponent's turn, and everything to a GEAR token whose own ability costs an exhaust.**
+
+- A unit cannot Standard-Move in a Closed State (**144.1.b**), and an exhausted defender still fights
+  at its full Might (#61: 464.2.c.3 and 465.2.b do not filter by state). Your own Awaken readies it
+  before you could ever use it (315.1.b). So Renata adds nothing there.
+- A Gold gear token is **187.5** — *"[Reaction][>] Kill this, [exhaust]: [Add] [rainbow]"* — so an
+  exhausted one **cannot pay its own cost** and is dead until your next Awaken. Renata makes it live
+  Power in the window it was created.
+
+Both halves are recorded in the entries (13.2's first notable and 18.3 below), because the temptation
+is to write "Renata upgrades every token" and it is false for most of them.
+
+## 19. Entries authored
+
+### 19.1 `arise-renata-all-ready` — ENGINE
+`SFD-198 Arise!` is the only token maker in the pool whose own text *tries* to solve the
+exhausted-token problem and only half solves it: *"Then do this: Ready up to **two** of them."*
+143.4.a admits the alteration and R25 = A settles that Renata's replacement wins, so every Sand
+Soldier enters ready and the spell's own clause becomes dead text. The count is your **Equipment**
+count, which is why it belongs in a gear shell.
+
+### 19.2 `flurry-of-feathers-renata-instant-wall` — ENGINE
+`UNL-044 Flurry of Feathers` is the only token maker in `renata-industrialist-tokens`' list with
+`[Reaction]` on it — 813.1.b and 813.1.c.1 let it be held through the opponent's turn and spent
+either as a counterspell or as four `[Deflect]` bodies. 355.2.a puts them at a battlefield you control
+with no walk.
+
+### 19.3 `chemtech-cask-renata-off-turn-power` — ENGINE, and it is the row that records §18
+`SFD-063 Chemtech Cask` converts an off-turn spell into a Gold; Renata makes that Gold **live Power in
+the same window**. That window is the one the game starves: **415.3.a** readies your objects only
+during the Awakening Phase on *your* turn, so a rune exhausted on your own turn is dead for the whole
+of the opponent's — the exact problem `dark-child-off-turn-reactions` exists to fix, solved from the
+other side.
+
+### 19.4 `dark-child-abandon-guaranteed-counter` — ENGINE
+The two numbers match exactly: **164.2.a** makes each rune *"[Energy]: [Reaction] — Add [1]"*, so
+Dark Child's two readied runes are two Energy at instant speed, and `UNL-131 Abandon` costs two
+Energy and no Power. The cheapest instance of that rule's 62-partner list and the only one whose cost
+matches the two runes on the nose.
+
+Deliberately modest: three copies (103.2.b), so the claim is *"the three counters in your deck are
+always castable"*, not *"a free counter every turn forever"*. And countering **back to hand** is not
+a drawback that can be ignored — the spell is not spent and never reaches the trash.
+
+---
+
+## 20. Refusals, batch 8
+
+### 20.1 `malzahar-token-fodder` yields no new entry, and the card-set check is why
+`OGN-113 Malzahar, Fanatic` (*"Kill a friendly unit or gear, [exhaust]: [Action] — [Add] [rainbow]
+[rainbow]"*) is a real consumer of `token-body-engine`, and the generic row — a token becomes 2
+rainbow, once a turn — was drafted. The check returned **seven** entries that already contain
+`OGN-113`, and a row whose `uses` is that card alone is a subset of every one of them:
+`heimerdinger-malzahar-double-power`, `sprite-fountain-malzahar-jayce`,
+`malzahar-gate-sprite-fountain-power`, `malzahar-wraith-centaur-sacrifice`,
+`gutter-palace-keeper-time-warp`, `garen-fiora-malzahar-facebreaker-recruits`,
+`jhin-virtuoso-ekko-malzahar-vi`.
+
+It would also have been thin on its own terms: his exhaust caps it at one activation a turn, and 2
+rainbow a turn is exactly #44's measured free floor. **Not authored.** The one fact worth keeping from
+the attempt is that his `[Action]` (806.1.b) makes it *Showdown-speed* mana, which is the half none of
+the seven states.
+
+### 20.2 `OGN-117 Viktor, Innovator` under `renata-industrialist-tokens` — Renata adds nothing
+*"When you play a card on an opponent's turn, play a 1 Might Recruit unit token in your base."* The
+Recruit is made during the opponent's turn, and by §18 that is exactly the case where "enters ready"
+buys nothing: 144.1.b forbids the move, combat ignores exhaustion, and 315.1.b readies it at your own
+Awaken before you could act. A genuine partner of the rule and a dead pairing for the entry.
