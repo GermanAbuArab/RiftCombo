@@ -1048,3 +1048,113 @@ four-card line.
   entries cross-reference each other.
 - **Claiming Irelia's rebate reaches a [Flow] cost.** Not refused — **not claimed**. The entry does not
   need it, so it prices the Flow replay at full value rather than assert an unruled reading.
+
+## 17. Batch 10 — five entries from the Fury / Chaos remainder
+
+### 17.1 `prepared-neophyte-disintegrate-spent-threshold` — UNL-004 + OGN-005 (both in zero entries)
+
+**The opponent's [Deflect] pays for this card.** 809.1.c prices Deflect as *"an amount of Power … more
+to play as an ADDITIONAL COST for each time they choose"*, and 166.2 / 203.1 / 356.4.b make *spent*
+mean what actually left the Rune Pool — so aiming Disintegrate at a protected body costs a Power
+**and** pushes you further past `UNL-004 Prepared Neophyte`'s threshold. The card played to protect
+their unit is the card that makes your 1-Might body a 5.
+
+**And a [Repeat] cost is spent too** (820.1.c.1), which is the cheap way over the line: a 1-Energy
+spell with a 3-Energy [Repeat] crosses *"spent 4 or more"* where a 6-Energy spell discounted to 3
+fails. That is the constructive half of the *costs* (206, printed) versus *spent* (166.2, actual)
+split — §1.6 of this walk recorded the destructive half, that a discount switches the family off.
+
+It is a **passive**, so 477.3.b's snapshotting (written for non-passive arithmetic) does not apply and
+the +4 switches on and off with the condition rather than being fixed when the spell was cast.
+
+### 17.2 `fading-memories-maddened-marauder-hold-denial` — OGN-180 + OGN-191 (both in zero entries)
+
+**This is the mirror of the lock problem the catalogue records.** The denial lens found that nothing
+protects YOUR Hold, because every lock says *"this turn"* and is Main-Phase only — 316, after 315.2's
+Scoring Step. 816.1.b is the reverse: *"At the start of this permanent's controller's Beginning Phase,
+**before scoring**, kill this."* A card played in your Main Phase lands inside **their** Beginning
+Phase, ahead of 315.2.b.2's Hold. It is the only shape in the pool that reaches that window from
+outside.
+
+**And it takes the battlefield, not just the point**: with the garrison dead at 315.2.a, 319.6 and
+323.6 strip their Control in the Neutral Open State that follows, before the Hold is asked for. Same
+mechanism as the catalogue's [Temporary]-garrison conquer cycles, pointed the other way.
+
+Six cards grant [Temporary], swept and named: `OGN-069 Last Stand` (Calm), `OGN-180 Fading Memories`
+(Chaos), `UNL-070 Turn to Dust` (Mind), `UNL-165 Shadow's Call` (Order), `UNL-199 Deceiver` and
+`UNL-200 Mirror Image` (both Mind/Order). Fading Memories is the only one in Chaos and the only one
+that also reaches a **gear**.
+
+**The Marauder returns here, and the earlier refusal is re-scoped rather than reversed.** §10 refused
+him paired with Sai Scout as an `isolate-deckhand-open-conquer` duplicate; that refusal was scoped to
+the **Conquer** use. The denial use — nobody walks in, the point is simply that the opponent lost one
+— is a different job on a different clock, and a list wants both clocks because the opponent can only
+play around one at a time.
+
+### 17.3 `doran-ring-master-bingwen-weaponmaster-conquer-loot` — SFD-124 + SFD-127 (both in zero entries)
+
+**The keyword says "to me", which is the whole selection rule for it.** [Weaponmaster] attaches to the
+Weaponmaster body, so it can only ever free gear whose text does not depend on the carrier. Doran's
+Ring qualifies exactly — *"When I conquer, discard 1, then draw 1"* pays whichever body conquers — and
+its [Equip] is a single Chaos rune against a discount of *"one rainbow less"*, so the attach is free.
+
+818.1 makes the attach an Activated Ability rather than a play, so no *"when you play a gear"* trigger
+sees it — `VEN-102 Ravenbloom Prefect` (§9.5's other half) is blank against it. And once attached,
+718.2 with 721.2 makes the printed [Equip] Inactive forever; the keyword's own *"even if it's already
+attached"* is a permission to take the Equipment off **another** unit, not a second activation.
+
+### 17.4 `smite-gust-monk-banish-not-trash` — UNL-007 + VEN-101 (both in zero entries)
+
+**808.1.d.1 names the recall case and covers this one in the same sentence**: *"If the Permanent with
+the effect is not sent to the Trash, for example because its 'killed' event was replaced with a
+recall, the triggered ability will be removed from the chain."* Smite's *"banish it instead"* is that
+replacement — the [Deathknell] never resolves, and the card is not there afterwards for [Flow]
+(829.1.b needs it in the trash), for a reanimator, or for any *"from your trash"* clause.
+
+**And the clause is wider than the three damage**: *"if it would die THIS TURN"* covers any death of
+that unit for the rest of the turn, so aiming it at a body you intend to kill in combat wastes none
+of the 3.
+
+**Banishing is the only permanent answer, because recycling is not one.** 431.2.b: a Burn Out
+*"Recycles their trash into their Main Deck"* — a trash emptied by damage comes straight back the
+first time somebody over-draws, while 108.6.c keeps a banished card out for good.
+
+Swept for completeness so the entry cannot be read as claiming protection it lacks: exactly **two**
+cards print *"can't be countered"* — `VEN-015 Decree of Rage` (Fury) and `VEN-069 Mel, Newly Awakened`
+(Mind) — and Smite is neither.
+
+### 17.5 `seal-of-rage-baccai-reaper-finalization-power` — OGN-040 + VEN-009 (both in zero entries)
+
+**204.3.a makes the Reaper's Fury a FINALIZATION cost** — *"When Costs within Instructions appear as
+the first part of the effect in triggered abilities, the cost is taken to be the base cost of the
+triggered ability. It must be paid to finalize the triggered ability."* **And 312.2.c leaves no window
+to go and get it**: *"When the turn is in a Closed State, all pending chain items finish being
+finalized"* — nobody receives priority between the trigger being placed and being finalized. A player
+who plans to tap for it in response has misread the card.
+
+Which is what a **0-Energy** Power source is for: the Seal costs a deck slot and one Power once and
+returns one every turn (415.3.a), never competing with the turn's Energy. Its [Reaction] is the half
+that matters elsewhere — 381 confines Activated Abilities to your own turn in an Open State *unless*
+the ability carries [Action] or [Reaction], and 813.1.c.2 spells the exception out.
+
+The printed reminder *"(Abilities that add resources can't be reacted to.)"* is 429.2 with 429.2.a:
+Add abilities *"resolve as soon as they are finalized"* and *"Priority and Focus will not pass"*.
+
+## 18. Refusals from batch 10
+
+- **Any discount in a `UNL-004 Prepared Neophyte` list.** Refused by 166.2 / 203.1 / 356.4.b: a
+  discount lowers what you SPENT, which is the number the card reads. `OGN-031 Raging Firebrand` is
+  the extreme case — it takes Disintegrate to 0 Energy and switches the Neophyte off entirely.
+- **Reading `VEN-009 Baccai Reaper`'s Fury as payable on resolution.** Refused by 204.3.a + 312.2.c,
+  in full, in §17.5. This is the family of triggers the catalogue records as priced wrong when read as
+  pay-on-resolution, and the Reaper is a clean instance of it.
+- **A carrier-DEPENDENT Equipment under `SFD-127 Master Bingwen`'s [Weaponmaster].** Refused by the
+  keyword's own wording: it equips *"to me"*, so any Equipment whose text reads the carrier can only
+  ever end up on the Weaponmaster.
+- **Treating `UNL-007 Smite` as protection against being answered.** Refused by the sweep: two cards
+  in the pool say *"can't be countered"* and it is neither. Its protection is against what happens
+  after the kill.
+- **`OGN-165 Cemetery Attendant` or `OGN-170 Morbid Return` as a cost cheat behind a self-discard.**
+  Refused on the cards' own text: both return a unit to your **hand**, so the body still has to be
+  paid for in full. The cost-cheating reanimators in this domain are `OGN-196 Soulgorger` and
+  `OGN-198 The Harrowing`, already catalogued together by §4.4 of this walk.
