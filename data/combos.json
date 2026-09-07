@@ -32649,6 +32649,279 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-07 (issue #170), from the orphan synergy rule shadow-watcher-temporary-death-window. UNL-037 Shadow Watcher was in zero entries. The contribution is that its condition — a friendly unit dying inside YOUR OWN Beginning Phase — is unreachable by ordinary play, since 315.1 and 315.2 both precede 316's Main Phase and combat is a Main Phase event; the only repeatable cause in the pool is a [Temporary] body, whose 816.1.b death happens at exactly that instant, and Trevor Snoozebottom makes a fresh one every Hold. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.1, 103.2.b, 103.2.d.2, 143.4, 143.4.a, 144.2, 144.4.a, 185, 186.1, 190.3.a.1, 315.1, 315.2, 315.2.b.2, 316, 323.8, 323.9, 323.12, 348.2.a, 348.2.a.1, 415.1, 420.3.a, 450, 470, 471.1, 485.4, 816.1.b, 816.1.c, 816.2. Stands on R10 = A only in a refutation note, not in the line. Ban check: UNL-048 and UNL-037 carry no [BANNED marker. Trap check: the Sprite is a token, so 185 and 186.1 keep it out of every trash, recycle and reanimation line — but the death event still happens, which is all the payoff reads; 'enters ready' is not a ready (415.1) and buys exactly one Standard Move; the Conquer is a Showdown, so no Attacker designation exists and no [Assault] belongs here; no [Repeat]; no buff. Depends on no unruled reading."
+    },
+    {
+      "id": "first-mate-fretful-feline-pirates-haven-main-phase-ready",
+      "name": "First Mate is a Main-Phase ready on a body, so the Awaken trio fires a second time — and the Feline attacks at eight",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-132",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body unit, E3 M3. 'When you play me, ready another unit.' The cheapest ready-on-a-body in Body, and it happens in your Main Phase, which is the only window where a ready is worth an action."
+        },
+        {
+          "card": "VEN-071",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E6 M5. 'When I become ready, give me +2 :rb_might: this turn.' Fires on every ready, not once a turn."
+        },
+        {
+          "card": "OGN-143",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Body gear, E3. 'When you ready a friendly unit, give it +1 :rb_might: this turn.' Also fires on every ready, and on whichever unit was readied."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Any Body legend: all three cards are mono-Body (103.1.b.3) and none is a Signature card, so 103.2.d.2 forces nothing.",
+          "None of the three is banned or restricted in either format.",
+          "Fretful Feline must be EXHAUSTED when First Mate is played. 415.1.b: 'A Unit that is already Ready cannot be Readied again', and 415.1.c: 'If a Unit is instructed to be Readied while it is already Ready, nothing additional happens' — so both payoff triggers die with the ready if she is already up."
+        ],
+        "notable": [
+          "WHAT THIS ADDS TO THE AWAKEN ENTRY, EXACTLY. awaken-ready-body-triple-trigger collects the same two triggers for free at 315.1.b — one ready, one +2 and one +1, at the start of your turn before anything has happened. Neither payoff carries a once-each-turn clause, so a SECOND ready in the same turn fires both again. First Mate is that second ready, and it costs 3 Energy for a 3 Might body you were going to want anyway. On a turn where the Feline has already moved and been exhausted, playing First Mate puts her back up at 5 + 2 + 1 = 8 Might and ready to move again.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Awaken: the Feline readies with everything else, +2 from her own trigger and +1 from the Haven — a Might 8 body for free, but at the top of the turn. Main Phase: she exhausts for a Standard Move (144.2); First Mate for 3 Energy readies her again, +2 and +1 land again on top of nothing (317.2.c has not run, but the first pair are still live — the modifiers stack, since neither is a Buff and 702.3 never applies). She ends the turn at 5 + 2 + 2 + 1 + 1 = 11 Might and ready. Three First Mates (103.2.b) is three such turns.",
+          "THE HAVEN PAYS THE UNIT THAT WAS READIED, NOT A UNIT OF YOUR CHOICE. 'When you ready a friendly unit, give IT +1 :rb_might: this turn.' So aiming First Mate at a body that does not want Might wastes the Haven's half; the Feline is the right target because her own trigger doubles down on the same body.",
+          "A READY BUYS NOTHING ON DEFENCE, SO THE MIGHT IS THE PRODUCT. 464.2.c.3 and 465.2.b do not filter by ready or exhausted state, so an exhausted defender fights at full Might. What the ready itself buys is a second Standard Move (144.2, 144.4); what the two triggers buy is the Might, and 465.2.c reads it at assignment.",
+          "IT ALL EXPIRES, AND THAT IS WHY IT IS AN ENGINE AND NOT A BURST. 317.2.c inserts '3d. All \"this turn\" effects expire simultaneously' into the end-of-turn Cleanup. Body has no card that converts Might into points other than through excess damage on a Conquer (OGN-034 Tryndamere is Fury), so an 11 Might Feline wins a combat and nothing more.",
+          "FIRST MATE'S OWN CLAUSE IS 'ANOTHER UNIT'. He cannot ready himself, and he enters exhausted (143.4), so the body he brings is next turn's. The 3 Might is a bonus on top of the ready, not the point."
+        ]
+      },
+      "steps": [
+        "Play Pirate's Haven (3 Energy) and Fretful Feline (6 Energy) on earlier turns.",
+        "At your Awakening Phase the Feline readies with everything else (315.1.b): +2 from her own trigger, +1 from the Haven.",
+        "In your Main Phase, exhaust her for a Standard Move (144.2) or an attack.",
+        "Play First Mate for 3 Energy and ready HER with his play trigger.",
+        "Both payoffs fire again on the same body: +2 from the Feline, +1 from the Haven, and she is ready to move a second time.",
+        "Repeat on later turns with the second and third First Mates (103.2.b); everything expires at the end-of-turn Cleanup (317.2.c)."
+      ],
+      "netPerIteration": "a second ready on the Feline plus +3 Might, and a 3 Might body, for 3 Energy",
+      "terminatesIn": "engine only — three First Mates a game, each consumed, and every point of Might expires at the end-of-turn Cleanup (317.2.c); Body converts none of it into points",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix groups 41 and 42, ready-friendly x OGN-143 and VEN-071). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 143.4, 144.2, 144.4, 315.1.b, 317.2.c, 415.1.b, 415.1.c, 464.2.c.3, 465.2.b, 465.2.c, 702.3. Distinct from awaken-ready-body-triple-trigger, which takes the same two triggers for free at the Awaken: neither payoff carries a once-each-turn clause, so the finding is that a SECOND ready in the Main Phase fires both again and the modifiers stack (they are not Buffs). Distinct from sett-first-mate-windswept-hillock and first-mate-lucian-merciless-double-conquer, which spend First Mate's ready on a second Conquer rather than on Might. Ban check: none of the three is banned or restricted. Trap check: the Feline must be exhausted or both triggers are thrown away (415.1.b/c); the Haven pays the readied unit specifically; a ready buys nothing on defence; the Might expires; no unruled reading."
+    },
+    {
+      "id": "viktor-leader-machine-evangel-four-bodies",
+      "name": "One death, four bodies — and Karthus doubles the Evangel's Deathknell but never Viktor's, because Viktor's trigger is not a Deathknell",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-239",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order unit, E5 P1 M4. '[Deathknell] — Play three 1 :rb_might: Recruit unit tokens into your base.' Three bodies for its own death."
+        },
+        {
+          "card": "OGN-246",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order unit, E4 P1 M4. 'When another non-Recruit unit you control dies, play a 1 :rb_might: Recruit unit token into your base.' The Evangel is a non-Recruit unit, so its death pays Viktor as well."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Order legend: both cards are mono-Order (103.1.b.1) and neither is a Signature card, so 103.2.d.2 forces nothing. This is the mono-domain Viktor line — viktor-leader-bottled-constellation-refund needs Mind as well.",
+          "Neither card is banned or restricted in either format.",
+          "Something has to kill the Evangel. Combat does it for free; any sacrifice outlet in Order does it on demand."
+        ],
+        "notable": [
+          "THE TRAP THAT DECIDES THE COUNT: VIKTOR'S TRIGGER IS NOT A DEATHKNELL. 808.1.c is explicit — Deathknell 'is functionally short for “When I die, [Effect].”' — and 808.1.d makes its Trigger 'the Permanent being Killed and sent to the Trash', i.e. the permanent's OWN death. Viktor's clause triggers on ANOTHER unit's death, so it is an ordinary Triggered Ability. OGN-236 Karthus, Eternal ('Your [Deathknell] effects trigger an additional time') therefore doubles the Evangel's three Recruits to six and leaves Viktor's one at one: the board is SEVEN bodies, not eight. Getting this wrong by one is exactly the shape of arithmetic error the project keeps finding, so it is stated on the row.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Machine Evangel dies: its Deathknell plays three 1 Might Recruit tokens into your base, and Viktor's trigger plays a fourth. FOUR bodies from one death, for 5 Energy + 1 Order Power (the Evangel) on top of Viktor's 4 Energy + 1 Order Power. With Karthus, Eternal in the deck it is seven. Feeding Viktor a Recruit afterwards pays nothing — his clause reads 'another NON-RECRUIT unit' — so the refund never chains.",
+          "THEY ARE BORN AT THE BASE AND ENTER EXHAUSTED. Both cards print 'into your base', so 355.2.a's default never comes up, and 143.4 makes tokens enter exhausted — they cannot walk until your next turn unless something alters that (143.4.a; SFD-171 Renata Glasc, Industrialist's 'Your tokens enter ready' is mono-Order and legal here). 144.3 then moves the whole batch as one action: 'Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units.'",
+          "WHAT FOUR 1-MIGHT BODIES ARE AND ARE NOT WORTH. 185.2.b and 185.2.d make them real units for combat and for any count of bodies. But OGN-133 Flurry of Blades (Body, E1, [Reaction], 'Deal 1 to all units at battlefields') kills every one of them simultaneously for one Energy, which is the standing verdict on every 1-Might token line: the binding constraint is Might PER BODY, not the number of bodies. The only fix in the pool is UNL-077 Soul Shepherd's static, and it is Mind — out of identity for a mono-Order list.",
+          "AND THEY NEVER COME BACK. 186.1: a token put into any Non-Board Zone besides the Chain ceases to exist immediately. So no reanimation and no recycling (185 with 416.1); each batch is spent when it dies.",
+          "THE EVANGEL'S DEATHKNELL FIRES FROM ANYWHERE ITS BODY DIES. 808.1.a puts Deathknell on Permanents and 808.1.d.1 is the only thing that switches it off — a would-die replacement of the heal / exhaust / recall family, because the permanent never reaches the Trash. Do not run this beside a save effect aimed at the Evangel."
+        ]
+      },
+      "steps": [
+        "Play Viktor, Leader (4 Energy + 1 Order Power) and let him settle on the board.",
+        "Play Machine Evangel (5 Energy + 1 Order Power) and put him somewhere he will die — a contested battlefield, or in front of a sacrifice outlet.",
+        "When he dies, his Deathknell plays three 1 Might Recruit tokens into your base.",
+        "Viktor's trigger sees the death of a non-Recruit unit and plays a fourth Recruit into your base.",
+        "The four tokens enter exhausted (143.4); at your next Awaken they ready and 144.3 walks the whole batch to a battlefield as one action.",
+        "Killing those Recruits later pays nothing — Viktor's clause excludes them — so the refund is one batch, not a loop."
+      ],
+      "netPerIteration": "four 1 Might bodies from a single death (seven with Karthus, Eternal), for 5 Energy + 1 Order Power",
+      "terminatesIn": "engine only — one batch per Machine Evangel (three copies by 103.2.b), and the refund never chains because Viktor excludes Recruits; nothing here scores, and a single Flurry of Blades clears the whole batch",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 23, friendly-dies x OGN-246, third partner). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 103.2.b, 103.2.d.2, 143.4, 143.4.a, 144.3, 185, 185.2.b, 185.2.d, 186.1, 355.2.a, 416.1, 808, 808.1.a, 808.1.c, 808.1.d, 808.1.d.1. Distinct from viktor-leader-sprite-queen-free-bodies (one body a turn on a schedule) and viktor-leader-bottled-constellation-refund (Mind/Order, the refund halving a point's body bill): this is the mono-Order burst of bodies from a single death, and its content is the count — Karthus, Eternal doubles the Evangel's Deathknell and NOT Viktor's ordinary triggered ability, so the answer is seven and not eight. Distinct from karthus-machine-evangel-renata-plaza, which is an ALT_WIN through the Grand Plaza. Ban check: neither card is banned or restricted. Trap check: Viktor's trigger is not a Deathknell (808.1.c, 808.1.d), stated first; the tokens enter exhausted and at the base; 186.1 keeps them out of the trash; Flurry of Blades clears the batch for 1 Energy and Soul Shepherd's fix is out of identity, both stated; a would-die save on the Evangel switches the Deathknell off (808.1.d.1); no unruled reading."
+    },
+    {
+      "id": "back-alley-bar-fae-porter-two-body-delivery",
+      "name": "The Fae Porter brings a second body with him, and the Bar charges that second body's departure a Might",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-277",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield. 'When a unit moves from here, give it +1 :rb_might: this turn.' It pays the DEPARTURE, so the body it pays is the one the Porter pulls off the Bar, never the Porter himself."
+        },
+        {
+          "card": "SFD-125",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos unit, E4 M4. 'When I move to a battlefield, you may pay :rb_rune_chaos: to move a unit you control to the same battlefield.' A second body delivered by effect, so it needs no exhaust and no [Ganking]."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Any Chaos legend: Fae Porter is mono-Chaos (103.1.b.3) and Back-Alley Bar is colourless. Neither is a Signature card, so 103.2.d.2 forces nothing.",
+          "Neither card is banned or restricted in either format.",
+          "Back-Alley Bar is one of your three battlefields (485.4.a: three provided, 1 used; 485.5 makes it random in a Duel), you control it, and it holds the body you intend to ship out."
+        ],
+        "notable": [
+          "THE PORTER HIMSELF NEVER COLLECTS, AND THE REASON IS 144.4. The Standard Move is base to battlefield or battlefield to base; battlefield to battlefield needs [Ganking], which the Porter does not have (810.1.c.3: [Ganking] 'does not give additional abilities or activations of Movement, only new options for the Standard Move'). So the Porter walks out of your BASE, not out of the Bar, and the Bar's 'moves from here' never fires for him. What the Bar pays for is the body his trigger drags off the Bar.",
+          "THE PULL IS A MOVE BY EFFECT, WHICH IS TWO PERMISSIONS THE STANDARD MOVE DOES NOT HAVE. 420.3.a puts the exhaust cost on the Standard Move only ('The Cost is Exhausting one or more Units'), so the pulled body pays nothing and may already be exhausted; and 144.4's base-to-battlefield restriction is on the Standard Move too, so the pull goes battlefield to battlefield. That is what lets a spent garrison at the Bar be re-deployed.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. One Main-Phase action: Standard-Move the Porter from your base to the battlefield you want (his own exhaust, 144.2). His trigger fires; pay one Chaos rune and drag a body off Back-Alley Bar to the same battlefield. The Bar sees that body move from here and gives it +1 Might this turn. Net: TWO bodies arriving at one battlefield, one of them a Might 4 Porter and the other carrying a +1, for 1 Chaos Power. back-alley-bar-forgotten-signpost-reinforcement delivers ONE body for free at Showdown speed; this delivers two, for a rune, in the Main Phase.",
+          "IT IS MAIN-PHASE ONLY. The Porter's trigger hangs off his own move, and 144.1.b forbids the Standard Move in a Closed State, so none of this reaches a Showdown. The Signpost line is the Reaction-window answer; this is the deployment answer.",
+          "THE TRIGGER IS 'YOU MAY PAY', SO THE RUNE IS THE TRIGGER'S BASE COST. 383.3.b makes a cost written immediately after a Triggered Ability's opening 'you may' the ability's base cost, and 383.3.b.1 pays it to finalize the trigger onto the Chain — so the Chaos Power has to be banked BEFORE the move, not found afterwards. 167 empties the Rune Pool at the start of your Main Phase, so this is Power raised inside the same Main Phase.",
+          "AND THE +1 EXPIRES. 317.2.c takes it back at the end-of-turn Cleanup, so it is worth exactly the combat it was shipped into; 465.2.c reads Might at assignment."
+        ]
+      },
+      "steps": [
+        "Bring Back-Alley Bar as one of your three battlefields (485.4.a), control it, and garrison it.",
+        "Keep Fae Porter at your base, ready.",
+        "In your Main Phase, bank one Chaos Power, then Standard-Move the Porter from your base to the battlefield you want to reinforce (144.2, 144.4).",
+        "His trigger goes on the Chain; pay the Chaos rune as its base cost (383.3.b, 383.3.b.1).",
+        "Move a body off Back-Alley Bar to the same battlefield. The move is by effect, so it pays no exhaust and needs no [Ganking] (420.3.a, 810.1.c.3).",
+        "Back-Alley Bar sees that body move from here and gives it +1 Might this turn; two bodies are now at the target battlefield. Repeat next turn by walking the Porter home first."
+      ],
+      "netPerIteration": "two bodies delivered to one battlefield in a single Main-Phase action, one of them with +1 Might, for one Chaos Power",
+      "terminatesIn": "engine only — one delivery per Porter move per turn, and the +1 expires at the end-of-turn Cleanup (317.2.c); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 19, friendly-moves x OGN-277, second partner). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.d.2, 144.1.b, 144.2, 144.4, 167, 317.2.c, 383.3.b, 383.3.b.1, 420.3.a, 465.2.c, 485.4.a, 485.5, 810.1.c.3. Distinct from back-alley-bar-forgotten-signpost-reinforcement (one body, free, Showdown speed) and from kayn-back-alley-bar-double-move (one body's SECOND move, collecting the +1 once): this delivers two bodies in one Main-Phase action for one Chaos Power. Distinct from svellsongur-fae-porter-relay, which copies the Porter's trigger rather than collecting a battlefield's departure rider. Ban check: neither card is banned or restricted. Trap check: the Porter can never collect the Bar's +1 himself, because 144.4 keeps his Standard Move off a battlefield-to-battlefield leg and he has no [Ganking] — stated first; the rune is a finalization cost (383.3.b.1) and must be banked before the move; the line is Main-Phase only (144.1.b); the +1 expires; no unruled reading."
+    },
+    {
+      "id": "vanguard-armory-dusk-rose-lab-altar-draw",
+      "name": "The Armory puts a Recruit straight onto Dusk Rose Lab, the Lab eats it before scoring, and the Altar is already ready because Awaken runs first",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-169",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order gear, E2. 'When a friendly unit dies, you may exhaust me to draw 1, then put a card from your hand on the top or bottom of your Main Deck.' Ready every Beginning Phase because 315.1 Awaken is a phase EARLIER than 315.2."
+        },
+        {
+          "card": "UNL-209",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield. 'At the start of your Beginning Phase, you may kill a unit you control here to draw 1. (This happens before scoring.)' A free death and a free card every turn, if a body of yours is standing there."
+        },
+        {
+          "card": "SFD-168",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order gear, E7 P1. ':rb_exhaust:: Play three 1 :rb_might: Recruit unit tokens. (You may play them to different locations.)' The printed 'different locations' is what lets one Recruit be played straight onto the Lab, with no walk."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine",
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Order legend: Altar of Memories and Vanguard Armory are both mono-Order (103.1.b.1) and Dusk Rose Lab is colourless. None is a Signature card, so 103.2.d.2 forces nothing.",
+          "None of the three is banned or restricted in either format.",
+          "Dusk Rose Lab is one of your three battlefields (485.4.a: three provided, 1 used; 485.5 makes it random in a Duel) and you must control it, since the Lab kills 'a unit you control here'."
+        ],
+        "notable": [
+          "AWAKEN IS A PHASE, NOT A STEP OF THE BEGINNING PHASE, AND THAT IS WHY THE ALTAR IS FREE. 315 lists 315.1 Awaken Phase ('The Turn Player readies all Game Objects they control that are able to be readied'), then 315.2 Beginning Phase, then 315.3 Channel and 315.4 Draw. So every readying has already happened when the Lab's kill fires 'at the start of your Beginning Phase', and the Altar's exhaust — its trigger's BASE COST under 383.3.b, paid to finalize under 383.3.b.1 — is always available for this death. A payoff with an exhaust in its cost is free once every turn against a scheduled Beginning-Phase death.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Per turn, after setup: exhaust the Armory for three Recruit tokens and put at least two of them on the Lab; at the start of your next Beginning Phase the Lab kills one and draws you 1; the Altar sees the friendly death, exhausts, draws 1 and puts a card from hand on top or bottom. Net: TWO cards drawn, one put back, so +1 card into hand and one card of top-of-deck selection, every turn, for zero Energy and zero Power. Setup is 9 Energy + 1 Order Power across the two gears.",
+          "PUT TWO ON THE LAB, NOT ONE — 323.6 IS WHY. 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' The Lab's kill makes a Cleanup Outstanding (319.6); the Altar's trigger holds the state Neutral Closed (310.2) so 323.6 is false at that Cleanup, but once the Altar resolves and the Chain empties, 319.5 makes another Cleanup in a Neutral Open State (310.1) and that one takes the Lab off you — before 315.2.b.2 Holds. A second Recruit standing there keeps both the Lab and its Hold.",
+          "THE ARMORY'S TOKENS DO NOT HAVE TO WALK. Its reminder text is '(You may play them to different locations.)', which is a printed play-location permission, so 355.2.a's default never comes up and no Standard Move is needed. They still enter exhausted (143.4), which costs nothing here — the Lab kills one and the other is a garrison, and neither job needs them ready.",
+          "THE ALTAR IS A FILTER, NOT A SECOND CARD. 'Draw 1, then put a card from your hand on the top or bottom of your Main Deck' leaves the hand the same size; the value is the selection and the known top card for 315.4.b. The +1 card a turn in the arithmetic above is the LAB'S draw, not the Altar's. Do not double-count it.",
+          "AND THAT IS ALSO WHY IT NEVER BURNS YOU OUT ON ITS OWN ACCOUNT. 431.1.a makes a draw past the last card of the Main Deck a Burn Out and a point for the opponent (194.1.d); the Altar puts a card back before you get there, so only the Lab's draw shortens the deck — and the Lab's kill is a 'you may', so it can be declined once the deck is thin.",
+          "THE RECRUITS ARE UNITS AND THEY NEVER COME BACK. 185.2.b and 185.2.d make them real bodies for the Lab's 'a unit you control here' and for the Altar's 'a friendly unit dies'; 186.1 makes a killed token cease to exist on reaching the trash, so nothing reanimates it and 185 with 416.1 keeps it out of every recycle cost."
+        ]
+      },
+      "steps": [
+        "Bring Dusk Rose Lab as one of your three battlefields (485.4.a) and take control of it.",
+        "Play Altar of Memories (2 Energy) and Vanguard Armory (7 Energy + 1 Order Power).",
+        "Each Main Phase, exhaust the Armory and play three 1 Might Recruit tokens, putting at least TWO of them at Dusk Rose Lab (its printed 'different locations' permission).",
+        "At the start of your next Beginning Phase the Awaken has already readied the Altar and the Armory (315.1.b).",
+        "The Lab's trigger fires before scoring: kill one Recruit standing there and draw 1.",
+        "That death triggers the Altar; pay its base cost by exhausting it (383.3.b.1), draw 1 and put a card from hand on top of your Main Deck.",
+        "A second Recruit is still at the Lab, so 323.6 does not strip it and 315.2.b.2 still Holds it. Refill with the Armory in the Main Phase and repeat every turn for nothing."
+      ],
+      "netPerIteration": "one net card into hand and one card of top-of-deck selection every turn, plus two spare Recruit bodies, for zero Energy and zero Power",
+      "terminatesIn": "engine only — one Lab kill and one Altar activation per turn (both capped by their own once-a-turn shape), unbounded in turns until Burn Out (431.1.a) on the Lab's draw alone; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 26, friendly-dies x SFD-169, second partner). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 103.2.d.2, 143.4, 185, 185.2.b, 185.2.d, 186.1, 194.1.d, 310.1, 310.2, 315.1, 315.1.b, 315.2, 315.2.b.2, 315.3, 315.4.b, 319.5, 319.6, 323.6, 355.2.a, 383.3.b, 383.3.b.1, 416.1, 431.1.a, 485.4.a, 485.5. Distinct from trevor-altar-of-memories-beginning-draw, whose feeder is a Hold-gated [Temporary] Sprite (so it stops when you stop holding) and which has no second draw, and from altar-of-memories-overzealous-fan-off-turn-filter, which buys the OFF-turn activation: this is the mono-Order, Hold-independent version and it pairs the Altar's filter with the Lab's real card. Distinct from sprite-queen-dusk-rose-lab-shard-undoing, whose payoff on the same scheduled death is removal, not cards. Ban check: none of the three is banned or restricted. Trap check: the Altar is a filter and the entry refuses to double-count it; two Recruits go on the Lab because of 323.6, with the exact Cleanup chain given; the tokens need no walk because the Armory prints its own location permission; 186.1 keeps them out of the trash; the Lab's draw is the only thing shortening the deck and its kill is a 'you may'; no unruled reading."
     }
   ]
 }
