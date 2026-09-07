@@ -912,3 +912,79 @@ node /tmp/rc-walks/rc-walk-rules-patch.mjs
 It no-ops if the entry already mentions 373.2. The entry's verdict is unchanged — 370.4 is still why a
 wipe does not beat her; what was missing is that she gets **one** application, so a second replacement
 stacked on her is a **fork between two halves of the board, not a doubling**.
+
+---
+
+# Batch 10 — Linked instructions, and four results
+
+Batch 9's two entries were merged (catalogue at 684) **and the manager applied the batch-8 patch** —
+`soraka-wanderer-vanguard-armory-simultaneous-save` now cites 373.2. One entry this batch; the vein
+gave one, and the rest of the reading gave results.
+
+| id | sub-rule opened | class |
+|---|---|---|
+| `hidden-blade-tactical-retreat-linked-instruction-draw` | **359.3.e.13 – .e.14.c** Linked instructions | ENGINE |
+
+`validateCombos`: **0 errors, 685 entries.** `test/legend-lines.test.ts`: 9 legend base codes, **0 defects.**
+
+## 36. 359.3.e.14 — three words decide whether a save switches off the rider
+
+**359.3.e.14.b**: *"If the Game Action performed in an earlier linked instruction is replaced, this will
+not affect the later linked instruction, **unless** the later linked instruction directly references the
+Game Action being performed."* Riot contrasts two pool cards:
+
+- `OGN-213 Hidden Blade` — *"Kill a unit at a battlefield. Its controller draws 2."* The second sentence
+  references the **unit**, not the kill, so it **executes even when the kill was replaced**.
+- `SFD-163 Deathgrip` — *"Kill a friendly unit. **If you do**, give +[M] equal to its Might…"* — *"the
+  later linked instruction will not execute because 'if you do' directly references the game action."*
+
+**So `X. Then Y.` survives a replacement and `X. If you do, Y.` does not** — a general split across the
+whole pool. And **359.3.e.14.a** kills both forms if the first instruction is **ignored** rather than
+replaced: a bounce, move or recall in response mistargets the spell and nothing after it happens.
+
+The line is to aim your own Hidden Blade at your own saved body: 2 Energy for 2 cards and the unit kept.
+
+## 37. Results
+
+### 37.1 178.2 / 178.3 multi-type Game Objects — zero cards, measured
+
+The block, and Riot's example (*"A unit that is also a gear can be affected by … 'Kill all units,' or
+'Kill all gear'"*), describe a card the pool does not contain. Measured over `data/cards.json`, the type
+histogram is `unit 629, spell 233, rune 18, gear 114, legend 127, battlefield 66, "" 2` — **no card has
+more than one type**. (`SFD-073 Experimental Hexplate`'s *"I am a Mech"* is a **tag**, not a type.)
+Dead letter until a set prints one.
+
+### 37.2 383.3.e.2 — the rule is real, the card population is empty
+
+**383.3.e.2.a**: a *"you may"* at the start of a Triggered Ability's effect is decided **during
+finalization**, and **383.3.e.2.b**: *"If they do not, it is removed from the chain"* — Riot's example
+being a *"Once each turn, when an enemy unit dies, you may banish it"* ability that is **not spent** by
+declining, so it can still fire later that turn. **Measured on the corpus, the pool's four
+`Once each turn` cards cannot use it**: `UNL-086 Zilean, Time Mage` (a replacement, *"if you would
+play"*), `UNL-145 Pyke, Returned` and `VEN-063 Nasus, Guardian of Knowledge` (both mandatory) and
+`VEN-125 Hungry Wolf` (an activated ability). No entry. The **rule** is still worth carrying, because
+383.3.e.2.a puts the *decision* in the same window 383.3.b puts the *cost* — finalization, before
+anyone can respond.
+
+### 37.3 416.5 / 416.5.a — you can stack the bottom of your Rune Deck and never your Main Deck
+
+**416.5**: two or more cards recycled to the **Main Deck** simultaneously go to the bottom *"in a random
+order"*. **416.5.a**: to the **Rune Deck**, *"in the order of their owner's choosing."* An asymmetry
+cited by nothing, and it matters once 430.1 is channelling off a nearly-empty Rune Deck with a domain
+requirement. No card in the pool recycles two or more runes in one action, so it is a fact without a
+line today.
+
+### 37.4 417.1.a and 417.1.e.1 — a refinement to the disjointness statement, and a Prevent that switches a trigger off
+
+**417.1.a**, cited by nothing: *"Assigning Damage during the Combat Damage Step is not Dealing Damage,
+**but will cause Damage to be Dealt when assignment is complete**."* The second clause is the part this
+project's *"combat damage is not a Deal action"* shorthand loses: combat damage **is** eventually Dealt,
+so a *"when I take damage"* payoff **does** fire off combat — what does not attach is **Bonus Damage**,
+which 713 grants to Deal **actions** and 417.3.a keeps off the assignment.
+
+**417.1.e.1**: *"Only Valid Damage is Dealt"*, with the example that a unit under a Prevent of 3 hit by
+`OGN-009 Hextech Ray` (3) takes nothing and its *"when I take damage"* trigger does **not** fire, while
+`OGN-024 Void Seeker` (4) gets 1 through and it does. So a **full** Prevent switches the trigger off and
+a **partial** one does not — which is the precise reason 437.4 is a different mechanism from the
+heal/exhaust/recall shields. The pool's one card keyed on it is `OGN-221 Imperial Decree`
+(*"When any unit takes damage this turn, kill it"*), and 417.1.a means it reaches combat damage too.
