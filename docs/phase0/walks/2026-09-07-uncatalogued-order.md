@@ -337,3 +337,141 @@ outside what `matchDeck` can represent anyway. Refused for Constructed on the ar
     ([Reaction], and his parenthetical grants the location) is a 5-Might [Tank] that arrives after
     the attackers are declared. 822.1.b's [Ambush] is the complement: units there, not the
     battlefield.
+
+---
+
+# Batch 4 — three entries, and the 740 audit
+
+| id | class | cards | what it is |
+|---|---|---|---|
+| `poppy-hunt-xp-discount` | ENGINE | UNL-178, UNL-162 | a published XP→Energy rate, and the bill 824.1.d sends |
+| `keeper-of-law-royal-guard-exact-two` | ENGINE | VEN-119, SFD-157 | a card that arrives as exactly the pair the discount reads |
+| `petty-officer-cleave-assault-four` | ENGINE | OGN-215, OGN-004 | Riot's own worked example for 807.2 |
+
+## 15. The 740 audit — the glossary is now exhausted
+
+Rule **740** is the glossary: *"Card text and this rules document use certain terms in specific ways
+that are different from their common usage."* It has **eight leaf paragraphs**. Read end to end:
+
+| paragraph | defines | status |
+|---|---|---|
+| 740.1.a | **friendly** — *"share a controller, or … one's controller is teammates with the other's"* | cited |
+| **740.1.b** | **enemies** — *"one's controller is an opponent of the other's"* | **never cited** |
+| 740.2.a | **alone** — *"no other friendly units at the same location"* | cited (this walk supplied it in place of reminder text) |
+| 740.2.b | **one on one** | cited |
+| 740.2.c | **in combat** | cited |
+| 740.3.a | **tie** — *"…during the step 3d of the combat cleanup"* | cited (this walk, batch 1) |
+| 740.4.a.1 | costs within instructions, **for spells**: paid on resolution | cited |
+| **740.4.a.2 / .2.a** | costs within instructions, **for triggered abilities**: first part → **finalization**; any later part → **resolution** | **never cited** |
+
+**Only two leaves remain uncited, and only one of them matters.**
+
+- **740.4.a.2 and 740.4.a.2.a are the general statement of a rule this project derived card by card.**
+  #171 batch 7 established the same fact by reading 383.3.b against 205 on two entries
+  (`monastery-hirana-warmogs-conquer-draw` pays at finalization; `sunken-temple-mighty-conquer-draw`
+  pays on resolution). 740.4.a.2/.2.a say it in two sentences and cover every card at once. **This
+  is the citation to use going forward.**
+- **740.1.b (enemies)** is low value on its own, but read with 740.1.a it is worth one line: the two
+  are defined by **controller relationships**, not as complements. In 2v2 a teammate's unit is
+  *friendly* by 740.1.a and is not an *enemy* by 740.1.b — which is what makes "or an ally holds"
+  clauses coherent.
+
+So the glossary is closed: three terms this project had been deriving from card text (**tie**,
+**alone**, and the finalization-vs-resolution rule) are defined there, and there is nothing further
+to find in 740.
+
+---
+
+# LEDGER — handoff state of the Order slice (#180)
+
+## A. Census, after batch 4 merges
+
+```
+mono-Order deckable base codes: 139
+uncovered by NAME+TYPE: 20 base codes = 19 distinct names
+(opened at 43 base codes / 41 distinct names, catalogue 495)
+```
+
+**The base-code-vs-name+type gap is lane-specific and is now five lanes deep**: 19.2% pool-wide,
+**15.7% Order**, 15% Calm/Mind, 0% Fury/Body/Chaos, 0% battlefields. Measure it; never carry a
+number across. Script: `/tmp/rc-walks/order-census.ts` (opening) and `/tmp/rc-walks/order-final.ts`
+(current), both folding coverage through `CardIndex.equivalents`.
+
+## B. Walked — 13 entries across 4 batches
+
+Batch 1: `symbol-of-solari-tie-evacuation`, `shepherds-heirloom-xp-equip`, `glowstone-hot-potato-sweep`.
+Batch 2: `seal-of-unity-grand-strategem`, `cull-the-weak-loyal-poro`,
+`hungry-wolf-eye-of-herald-double-move`, `mageseeker-investigator-mass-move-tax`.
+Batch 3: `atakhan-harnessed-dragon-sacrifice`, `escaped-grayback-royal-guard-token-empower`,
+`shen-kinkou-soulspinner-flash-defence`.
+Batch 4: `poppy-hunt-xp-discount`, `keeper-of-law-royal-guard-exact-two`,
+`petty-officer-cleave-assault-four`.
+
+## C. Refused, with the paragraph
+
+- **OGN-237 King's Edict** — §13. 485.4 leaves one other player in a Duel, so it kills exactly one
+  unit and 355.10.e leaves the choice with them; `cull-the-weak-loyal-poro` does the same job for
+  E2 + 1 Power instead of E6 + 2. Its scaling clause only bites in 2v2 (489.1), where 489.8 puts a
+  team line outside what `matchDeck` can represent.
+
+## D. What is left — 19 distinct names, and what a successor should expect
+
+**Group 1 — targeted removal with no interaction to walk (4).** OGN-229 Vengeance (E4 P2, "Kill a
+unit"), OGS-012 Blast of Power (E6 P1, [Action], at a battlefield), VEN-131 Decree of Unity (E2 P1,
+enemy Chaos only), SFD-158 Sandshifter (E5 P2 M6, kills at 3 Might or less on entry). These are
+good cards and single cards; the honest home for them is a **synergy rule**, not a combo entry.
+The Calm/Mind walk has already mapped the shape: **VEN-127 Lacerate and SFD-158 Sandshifter are the
+same 3-Might gate at different prices**, and the floored/unfloored distinction does **not** change a
+kill gate at M ≥ 5 — it bites only in a combat SUM (465.2.c with 143.2.b). Hand to rc-walk-rules2 as
+a Might-gate ladder lead rather than walking them here.
+
+**Group 2 — vanilla or near-vanilla bodies (5).** OGN-219 Vanguard Sergeant (E4 M4, no text),
+SFD-156 Laurent Duelist (E4 M3, [Assault 2]), OGS-016 Vanguard Attendant (E6 P1 M5, "I enter
+ready"), UNL-154 Crimson Pigeons (E3 M3, +2 while attacking with another unit), OGN-217 Trifarian
+Gloryseeker (E2 M2, [Legion] buff me). Nothing here reads another card. Expect refusals unless a
+successor finds a payoff that reads *"attacking with another unit"* (144.3 is the obvious hook for
+Crimson Pigeons and is the one lead in this group worth an hour).
+
+**Group 3 — the remaining Empower units (2).** VEN-122 Solari Sunhawk ([Empower] E2 → +1 Might and
+[Deflect 2]), VEN-128 Noxian Emissary ([Empower] E1 + 1 Order → an [Empowered] Deathknell making two
+Recruits). Both are live leads: **the disempowerers are nine, not the six on record** (§4.1), and
+441.1.b's once-per-object cap is what a disempowerer resets. VEN-128's Deathknell is gated on being
+Empowered, which is a two-step the catalogue has not walked.
+
+**Group 4 — XP and one-offs (4).** UNL-151 Bandle Soldier ([Level 3] "I enter ready" — **note the
+824.1.d anti-synergy with `poppy-hunt-xp-discount`, already recorded**), UNL-161 Divining Shells
+(E2 gear, [Vision] + a one-shot +2 Might at [Action] speed), SFD-160 Zaun Punk (kills a friendly
+gear as an additional cost to kill a gear), OGN-224 Salvage (E2 P1, kill up to one gear, draw 1).
+Groups 4's gear-kill cards read each other: Zaun Punk + Salvage + a gear you want in the trash is
+the one untried line here.
+
+**Group 5 — mass pumps (2).** OGN-206 Back to Back (E3, [Reaction], two friendly units +2 each),
+UNL-155 Heroic Charge (E3, [Action], +1 Might and a [Stun]). Both select by choosing, so unlike
+Grand Strategem they **do** pay the Deflect tax when aimed at anything an opponent controls
+(809.1.c); Heroic Charge's stun half is bounded by 423.1.a.1 (a stunned unit cannot be stunned
+again) and 423.1.a.2 (cleared at the stunner's own cleanup), which the project has already measured
+as making no stun engine INFINITE.
+
+**Group 6 — the two Order Runes (OGN-214, VEN-R06).** One distinct name. Refuse: 164.2 gives every
+Basic Rune the same two abilities and every deck runs runes, so there is no line to walk. Recorded
+here so a successor does not spend a batch on it.
+
+## E. Things a successor would otherwise re-derive
+
+1. **The 740 glossary is exhausted** (§15). Use **740.4.a.2 / 740.4.a.2.a** for the
+   finalization-vs-resolution rule rather than 383.3.b + 205.
+2. **Order has two untargetable-removal paragraphs**, 355.10.e (a set chosen by other players —
+   Cull the Weak's exact wording is the printed example) and 355.10.f (an instruction a player
+   *"must"* complete — Atakhan, Sigil of the Storm). Both dodge 809.1.c; both leave the choice with
+   the opponent.
+3. **185.2.d puts a token INSIDE the rules for its type**, so a token unit legally pays a *"kill a
+   friendly unit"* **cost** — the opposite side of the line from 416.1 (cards) and 186.1 (the trash).
+4. **The "cheapest [Empower] cost" claim needs qualifying** — five pay neither Energy nor Power
+   (§11.1), two of them only an exhaust.
+5. **The disempowerers are nine, not six** (§4.1), and two of the three missing are Order.
+6. **Three routes to the 815.1.c.2 damage redirect are now catalogued** — a legend's exhaust, a free
+   Quick-Draw attach, and a flashed-in body — and each entry names the other two. A fourth (Poppy)
+   is inside `poppy-hunt-xp-discount`. Do not write a fifth without saying how it differs.
+7. **`needs: [conquer-engine]` cannot carry an extra condition** (from #171): a payoff that also
+   demands, say, a 5+ Might conqueror must state it in `prerequisites`, because the feature tag
+   composes with engines that fail the card.
