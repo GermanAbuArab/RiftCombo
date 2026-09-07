@@ -1933,3 +1933,191 @@ way a wrong one dies quickly.
 Two entries in `/tmp/rc-walks/rc-walk-rules.json`. `validateCombos` clean over 566 entries;
 `test/legend-lines.test.ts` clean. Cards in **zero** entries before this batch: `OGN-224` Salvage,
 `SFD-160` Zaun Punk, `OGS-012` Blast of Power, `OGN-219` Vanguard Sergeant.
+
+## 45. Batch 10 — two entries built on worked examples
+
+### 45.1 `bandle-tree-blastcone-fae-teemo-double-hidden` — the cap is the BOARD
+
+**811.1.b** hides a card *"at a battlefield you control **that doesn't already have a facedown card
+hidden there**"*. With 485.4 putting two battlefields on a Duel table, that is at most **two** hidden
+cards in play however many copies 103.2.b allows, and only **one** at any single battlefield.
+`OGN-278 Bandle Tree` (*"You may hide an additional card here"*) is the only card in the pool that
+changes the number — which is what a defensive [Hidden] package needs, because a body and a trick
+otherwise cannot wait at the same battlefield.
+
+`OGN-097 Blastcone Fae` was in zero entries and is **811.1.d.2's own worked example**: *"Because this
+is a play effect, its target must be chosen from among units at the same battlefield if Blastcone Fae
+was played from Hidden."* On defence that restriction costs nothing — the attacker is standing there —
+and the Fae arrives for 0 Energy at [Reaction] speed as a 2 Might body besides. Shrinking an attacker
+is paid twice in the damage step: 465.2.c sums current Might, and 465.2.c.4 caps assignment at the
+minimum lethal, so −2 both reduces what is coming at you and makes that body 2 cheaper to kill.
+
+Priced honestly: the reduction is FLOORED (*"to a minimum of 1"*) and 477.3.b caps the reduction and
+not the result, so it is worth its full 2 only against Might 3 or more.
+
+### 45.2 `heedless-resurrection-legion-rearguard-accelerated-return` — the general rule inside a worked example
+
+**356.1.b.3** names this pairing outright: *"They ignore Legion Rearguard's Base Cost of 2 Energy, but
+the optional additional cost of 1 Energy and 1 Fury Power is added to its Total Cost and must be
+paid."* With 356.1.b.1 (*"its base Energy cost and base Power cost are set to zero"*) the general rule
+is: **"ignoring its cost" zeroes only the BASE cost and leaves every optional additional cost
+payable** — so a body returned by `UNL-142 Heedless Resurrection` can still buy its own [Accelerate]
+and come back **ready**, beating 143.4.
+
+That generalises to every *"ignoring its cost"* effect in the pool — Portal Rescue, Undying Loyalty,
+Here to Help, Ava Achiever's hidden play, and a [Hidden] card's own free play under 811.1.b.
+
+Two halves the entry closes: the cost comparison reads printed costs (206) and can never be fed by a
+token (185 keeps it from being a card, 186.1 keeps it out of the trash); and the kill is an ADDITIONAL
+COST, so 808.1.c / 808.1.d make it fire a Deathknell — the spell is a switch as much as a
+reanimation. 203.3 is the gate: with no friendly unit to kill it cannot be played at all.
+
+---
+
+# 46. HANDOFF LEDGER — rc-walk-rules2, written at the 60% mark, 2026-09-07
+
+**Every count in this section is as of 2026-09-07 and parallel lanes move them within the hour.**
+Re-measure before trusting any of them; the probes are described well enough to rebuild in
+`.scratch-rules/` (untracked).
+
+## 46.1 What this session did
+
+Ten batches, **35 entries**, all ENGINE, all staged through `/tmp/rc-walks/rc-walk-rules.json` and
+merged by the manager. Sections 23–45 above are the walk. **Roughly forty cards that were in zero
+entries now carry one.** Two corrections to my own shipped work were found and reported unprompted
+(§46.4).
+
+## 46.2 The rules-named vein is CLOSED — three usable cards left
+
+CLAUDE.md's *"grep the rules file for card names before hunting anywhere else"* was the cheapest vein
+in the project and this session spent most of it. Re-measured after batch 10 (name+type folded):
+**129** pool card names appear in the Core Rules; **16** are in no entry; of those, **6 are Runes**,
+**3 are tokens** (Sprite, Baron Pit, Brush, Reflection), and **one is banned in both formats**
+(`OGN-168 Fight or Flight`).
+
+**What is left is three cards:**
+
+| card | domain | why the rules name it |
+|---|---|---|
+| `OGN-283 Navori Fighting Pit` | Colorless battlefield | *"When you hold here, buff a unit here"* — cited in 702's buff discussion; a Hold-triggered buff, so the standing no-op rule applies to READIES but not to the counter itself |
+| `OGS-011 Flash` | Chaos, E2, [Reaction] | *"Move up to 2 friendly units to base"* — the evacuation family at Reaction speed, two bodies |
+| `SFD-034 Feral Strength` | Calm, E2, [Reaction], [Repeat] E2 | 820's [Repeat] discussion; one of only TWO cards that can choose the same unit twice (with `SFD-151 Bonds of Strength`), and `jae-medarda-repeat-double-choose` already walks that shape |
+
+Do not spend a batch planning around this vein. It is done.
+
+## 46.3 The synergy-rule veins, with numbers
+
+**Opened this session** (rule → first or best new entry):
+
+| rule | anchor | what came out |
+|---|---|---|
+| `royal-entourage-readies-your-legend` | SFD-039 (was in ZERO entries) | three entries §24 |
+| the four buff-supply rules | SFD-047 / OGN-152 / OGN-228 / OGN-282 | four entries §27, three refusals §28 |
+| `gardens-of-becoming-xp` | UNL-213 | §30.2 |
+| `gemcraft-seer-vision-generalization` | OGN-100 | §30.3 |
+| `solari-chief-stun-into-kill` | OGN-225 | §30.4 |
+| `herald-of-scales-dragon-discount` / `gentle-gemdragon-dragon-ready` | OGN-140 / UNL-104 | §30.1 |
+| `ava-achiever-hidden-discount` | OGN-107 | §33.1 |
+| `portal-rescue-replays-a-body` | OGN-102 | §33.2 |
+| `rumble-scrapper-mech` + `rumble-hotheaded-mech` | SFD-089 + SFD-026 | §33.3 |
+| `rippers-bay-bounce-channel` | UNL-214 | §33.4 |
+| `prize-of-progress-gear-activation` | SFD-075 | §35.3 — and it BROKE a merged entry |
+| `rell-magnetic-free-equip-attach` / `weaponmaster-equip-discount` | SFD-024 / SFD-008 | §35.4, §41.2 |
+| `irelia-fervent-buff-is-choosing` | SFD-057 | §41.3 |
+| `back-alley-bar-any-mover` | OGN-277 | §41.4 |
+| `marai-spire-repeat-discount` | SFD-211 | §39.4 |
+| `bandle-tree-hidden` | OGN-278 | §45.1 |
+| `heedless-resurrection-deathknell-ondemand` | UNL-142 | §45.2 |
+
+**The `uncovered` column is a ranking of PREDICATE WIDTH, not of opportunity.** Three of the file's
+top rules are now provably regex artefacts or populations, and this is the single most useful thing in
+this ledger:
+
+- `pit-crew-gear-ready` — **106 partners, predicate `any gear`.** A population. §31 refuses two named
+  families and shows the honest filter is one sentence.
+- `yordle-explorer-power-two` — **82 partners, predicate `printed Power >= 2`.** Also a population.
+- the four buff-supply rules — **99 partners each, of which 65 are `give … +N Might this turn`
+  continuous modifiers**, which no anchor keyed on the word *buff* can see (§23). Reported to the
+  manager; the fix is to drop the third alternative from those four predicates and leave
+  `fiora-buff-ready` alone, where it is correct.
+- `fiora-buff-ready` at 98 is the SAME predicate and is CORRECT, because 709's Mighty crossing is what
+  a Might modifier does.
+
+Add `#161`'s two (`UNL-074 Frigid Jewel` at 100, `SFD-075 Prize of Progress` at 62) and the pattern is
+established: **before spending a walk on a high-`uncovered` rule, print the list with
+`npm run synergies -- <id> -- --match` and read what the predicate caught.**
+
+## 46.4 Settled — do NOT re-open these
+
+Two corrections landed on my own shipped work today. Both are settled; treat them as facts.
+
+1. **`[Equip]` is a one-way door (§35.1).** 718.2 makes an Attached card's printed Rules Text Inactive
+   and 721.2 says an Inactive Ability *"cannot be activated"*; 818.1.a puts [Equip] in that printed
+   text. So **an attached Equipment can never pay its own [Equip] to move.** [Weaponmaster]'s printed
+   *"even if it's already attached"* is the carve-out that proves it. This **broke**
+   `prize-of-progress-hexplate-equip-shuttle`, whose whole ledger repeats that payment; I scanned all
+   568 entries and it is the only one that depends on it (plus one wrong half-sentence in a notable of
+   `shurelya-requiem-ready-and-ganking`). Reported; not fixed here.
+   Its complement is **718.5.b** — *"Attached cards still can be chosen or targeted by game effects
+   while Attached"* — so the sentence is: **an Equipment on a body is text you cannot use and a card
+   the opponent can still kill.**
+2. **The Vengeance sweep was too narrow (§43.3).** `mageseeker-warden-vengeance-base-kill` says
+   Vengeance is *"the only unconditional, repeatable, spell-speed kill that reaches a base"*; it missed
+   `UNL-180 The Ruination` and `VEN-131 Decree of Unity`, which also omit *"at a battlefield"*. The
+   correct headline is rc-walk-order's: **the only SINGLE-TARGET, UNGATED kill spell with no location
+   clause.** The substantive miss is that The Ruination also reaches a base and clears it wholesale for
+   E9 + 3 Power. Reported for the edit.
+
+Also settled, and stated so nobody re-derives them: `test/legend-lines.test.ts` caught **two** real
+defects in my own drafts on their first run — `UNL-181 Jhin, Meticulous` is **Fury/Mind**, not
+Mind/Order; and `SFD-194 Counter Strike` is **Signature (Jax)**, so it is a one-legend field
+(`SFD-193 / SFD-245 Grandmaster at Arms`). **Run that test against the staging file every batch.**
+And three `sources[]` quotes across batches 6–7 were paraphrases that the rules file contradicted in
+detail (442.1 is *Disempowering*, not Banishment; 465.2.c.4 and 143.2.a were truncated). **A `quote`
+field is pasted from the rules file or it is not written.**
+
+## 46.5 What I would do next, plainly
+
+The veins this slice was given are thinning, and I would not hand a successor the same list.
+
+- The rules-named vein is **closed** (three cards, §46.2).
+- The synergy file's high-`uncovered` rules are **mostly predicate width** (§46.3), and the honest
+  remainder — the four-tag rules, `curator-of-the-sands-printed-cost`, `green-father-brush-four-tags`,
+  `get-excited-expensive-discard`, `dark-child-off-turn-reactions` — are each worth one or two entries,
+  not a batch.
+
+**What I would do instead: read the Core Rules blocks the catalogue has NEVER cited.** Measured today
+over `combos.json` + `synergies.json`: **207 of the file's 385 top-level rule numbers are cited by
+nothing.** Most are structural headings, but the mechanics range is not, and every large finding this
+session came from exactly this — 718.2 broke an entry, 817.2.b inverted a whole family, 137.3.a made a
+Might Bonus permanent, 356.1.b.3 made a free play still buy its rider. Uncited blocks with real play
+content, in the order I would read them:
+
+| block | why |
+|---|---|
+| **443 Skip** | *"Skipping an event is the act of replacing that event with nothing"*, and its own worked examples are *"Skip the next time that unit would move"*, *"Skip your Draw phase"* and — load-bearing — *"They skip their next point from conquering this turn."* A replacement effect on POINTS, cited by no entry. |
+| **432 Double** | *"increasing a numeric attribute by an amount equal to that attribute's current value"*, with a worked example that reads Shield into current Might. The catalogue's Might arithmetic never cites it. |
+| **418 Heal** | 418.1.a *"If Damage is cleared for any reason it is considered Healing"* — which makes every heal an event other cards can watch. |
+| **451 / 452** | *"Units may cause a Non-Combat Showdown when they Move"* / *"Units may cause Combat when they Move"* — the two branches of #159's 344.2-vs-323.9 split, stated at their source. |
+| **454 / 457 Recalls** | 457 *"Gear can be Recalled"* — the catalogue's Recall work is all about units. |
+| **473–478 Layers** | The whole layer system; only 476.1 and 477.x are ever cited. |
+| **701 Buffs (block head)** | Cited only from 702/703 downward. |
+
+The probe is fifteen lines: collect every `\d{3}\.` in `combos.json` + `synergies.json`, diff against
+the `^\d{3}\. ` headings in the rules file, and read the misses. It found all of the above in one run,
+and it is reproducible.
+
+Second choice, if a card-side slice is wanted instead: **the four-tag population** is 61 cards with at
+least one of Bird/Cat/Dog/Poro and **zero cards carrying two** (measured, §28) — so every four-tag line
+costs four separate bodies, and six synergy rules share that one population with 1–3 entries each.
+That is real material, but it is one batch, not a slice.
+
+## 46.6 Mechanics
+
+Unchanged and working: stage to `/tmp/rc-walks/rc-walk-rules.json` (an array of entry objects, pruning
+merged ids each batch), validate by merging into a COPY and running `validateCombos(combos, features,
+cards)` — **three** arguments, `features` from `loadCombos()` — then run both checks of
+`test/legend-lines.test.ts` against the staging file. Commit ONLY this document, `git commit --only`,
+`git push origin HEAD:work`. Batch every 4–5 and message the manager
+(`a2044198-1e18-4126-bf6e-2bf132b8dcb6`) with the ids, the validation result, and any CLAUDE.md-grade
+facts. Issue #170 stays open; commits say `Refs #170`.
