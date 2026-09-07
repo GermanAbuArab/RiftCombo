@@ -263,7 +263,8 @@
           "svellsongur-treasure-hunter-gold",
           "svellsongur-trevor-leblanc-plaza",
           "svellsongur-yasuo-remorseful-sweep",
-          "yasuo-remorseful-svellsongur-nasus-conquer"
+          "yasuo-remorseful-svellsongur-nasus-conquer",
+          "svellsongur-ivern-nurturer-optional-draw"
         ]
       },
       "status": "rule-verified",
@@ -470,7 +471,8 @@
         "combos": [
           "jayce-mesmerize-renata",
           "sprite-fountain-malzahar-jayce",
-          "swain-double-conquer"
+          "swain-double-conquer",
+          "jayce-sky-cruiser-double-strike"
         ]
       },
       "status": "rule-verified",
@@ -1054,7 +1056,8 @@
           "gemdragon-henge-vi-blind-fury",
           "desert-call-vi-sand-soldier-plaza",
           "vi-ride-the-wind-double-conquer",
-          "confront-vi-stormbringer"
+          "confront-vi-stormbringer",
+          "shadow-temple-dr-mundo-balanced-trash"
         ]
       },
       "status": "rule-verified",
@@ -1119,7 +1122,8 @@
         ],
         "combos": [
           "dark-child-abandon-guaranteed-counter",
-          "sona-viktor-opponent-turn"
+          "sona-viktor-opponent-turn",
+          "dark-child-hard-bargain-repeat-tax"
         ]
       },
       "status": "rule-verified",
@@ -1305,7 +1309,8 @@
           "466.5.d"
         ],
         "combos": [
-          "hextech-formula-rage-amplifier-free-empower"
+          "hextech-formula-rage-amplifier-free-empower",
+          "veiled-temple-temporal-portal-second-repeat"
         ]
       },
       "status": "rule-verified",
@@ -2042,7 +2047,9 @@
           "315.3.b",
           "161.2.a"
         ],
-        "combos": []
+        "combos": [
+          "startipped-peak-rune-count-empower"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2687,7 +2694,8 @@
           "143.4"
         ],
         "combos": [
-          "magma-wurm-assembly-rig-walk-in"
+          "magma-wurm-assembly-rig-walk-in",
+          "magma-wurm-illaoi-ready-tentacles"
         ]
       },
       "status": "rule-verified",
@@ -2804,7 +2812,8 @@
           "359.3.f.2"
         ],
         "combos": [
-          "stare-down-arachnoid-horror-lone-survivor"
+          "stare-down-arachnoid-horror-lone-survivor",
+          "dauntless-vanguard-repair-specialist-gear-assault"
         ]
       },
       "status": "rule-verified",
@@ -2863,7 +2872,9 @@
           "816.1.c",
           "383.1.b"
         ],
-        "combos": []
+        "combos": [
+          "trevor-shadow-watcher-scheduled-death-ready"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2903,7 +2914,8 @@
           "185.2.d"
         ],
         "combos": [
-          "soul-shepherd-sprite-queen-temporary-wall"
+          "soul-shepherd-sprite-queen-temporary-wall",
+          "soul-shepherd-illaoi-tentacle-wall"
         ]
       },
       "status": "rule-verified",
@@ -3215,7 +3227,8 @@
           "swift-scout-guerilla-hide-cycle",
           "katarina-reckless-hidden-burn",
           "chemtech-cask-broker-double-gold",
-          "black-market-broker-windsinger-free-bounce"
+          "black-market-broker-windsinger-free-bounce",
+          "black-market-broker-spiderling-hidden-gold"
         ]
       },
       "status": "rule-verified",
@@ -3491,7 +3504,8 @@
           "206"
         ],
         "combos": [
-          "curator-printed-cost-rebate"
+          "curator-printed-cost-rebate",
+          "curator-needlessly-large-yordle-printed-ten"
         ]
       },
       "status": "rule-verified",
@@ -3721,7 +3735,9 @@
           "702.2.a",
           "702.3"
         ],
-        "combos": []
+        "combos": [
+          "peak-guardian-bilgewater-bully-ganking-buff"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -5249,6 +5265,339 @@
       "status": "rule-verified",
       "reviewed": "2026-09-07",
       "reviewedCount": 3
+    },
+    {
+      "id": "annie-fiery-repeatable-pinger",
+      "name": "Annie, Fiery adds a permanent point of Bonus Damage to a repeatable pinger",
+      "anchor": "OGS-001",
+      "partner": {
+        "textMatches": ":rb_exhaust:.{0,15}[Dd]eal \\d+ to (a|an) unit"
+      },
+      "why": "\"Your spells and abilities deal 1 Bonus Damage\" is a static, so it never has to be recast, and 417.6.b.2.a is why an ACTIVATED ability qualifies exactly as a spell does: \"When an Ability is the source of Damage for a Deal action, it is in addition to the Spell or Unit that created that Ability\", with Riot's own worked example being Iron Ballista's \"[E]: Deal 2 to a unit at a battlefield\" — the pool's cleanest repeatable pinger, an exhaust away from firing every turn it is untapped. Xerath, Freed and Sky Cruiser print the identical shape (an exhaust-gated activated ability that deals a flat amount), so Annie turns every one of them into one point more, forever, off a single static that never spends a card. 714 caps the value at +1 per Deal action even with a second Bonus Damage source in play (Ravenborn Tome, Void Gate, Rabadon's Deathcrown all already have their own combos for that), which is why this rule is scoped to the plain repeatable pingers rather than to Annie's own multi-target spells.",
+      "basis": {
+        "rules": [
+          "417.6.b.2.a",
+          "714",
+          "715.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 3
+    },
+    {
+      "id": "captain-farron-granted-assault-sums",
+      "name": "Captain Farron's granted [Assault] sums with anything the pool already prints",
+      "anchor": "OGN-015",
+      "partner": {
+        "textMatches": "\\[Assault"
+      },
+      "why": "807.2 — \"If a Unit has Assault or has been granted Assault and is granted Assault by an additional source, the Assault Value of all granted Assault keywords is summed\" — with Riot's own worked example being Petty Officer (a bare [Assault]) plus Cleave's granted [Assault 3], landing at Assault 4. Captain Farron's \"Other friendly units here have [Assault]\" is a free, permanent +1 instance sitting under every one of the pool's forty other Assault cards at his battlefield: a printed [Assault N] unit gains N+1, a temporary granter (Cleave, Blood Rush, Perfect Execution, Vault Breaker, Square Up) starts its target one higher, and a variable source (Ancient Warmonger's \"equal to enemy units here\", Repair Specialist's \"equal to your gear\") is unaffected in size but still stacks the extra point. 807.3 is why a card that READS its own Assault as a number (Lucian, Gunslinger deals damage \"equal to my [Assault]\") gets more damage for free under him, with no card spent.",
+      "basis": {
+        "rules": [
+          "807.2",
+          "807.3"
+        ],
+        "combos": [
+          "lucian-gunslinger-farron-blood-rush-assault-as-damage",
+          "petty-officer-cleave-assault-four"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 40
+    },
+    {
+      "id": "taric-protector-granted-shield-sums",
+      "name": "Taric, Protector's granted [Shield] sums with any printed Shield in the pool",
+      "anchor": "OGN-074",
+      "partner": {
+        "textMatches": "\\[Shield"
+      },
+      "why": "814.2 sums granted Shield exactly the way 807.2 sums granted Assault, and its own worked example is a Stalwart Poro beside Block landing at Shield 4. \"Other friendly units here have [Shield]\" is Taric's free, permanent instance, so every one of the twenty-six other printed-Shield cards in the pool defends one Might higher at his battlefield with no card spent: a bare [Shield] unit (Stalwart Poro, Petty Officer's cousin family) reaches Shield 2, a numbered one (Blue Sentinel's [Shield 2], Needlessly Large Yordle's [Shield 5]) is one higher again, and a second GRANTER standing there (Chakram Dancer, Fortified Position, Mechanized Menace, Black Flame Altar) compounds rather than replaces. 814.1.c is why none of this shows up outside a combat: [Shield] Might is conditional on the Defender designation, so it is invisible to any Main-Phase Mighty count.",
+      "basis": {
+        "rules": [
+          "814.2",
+          "814.1.c"
+        ],
+        "combos": [
+          "taric-block-stalwart-poro-shield-stack"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 26
+    },
+    {
+      "id": "disciple-of-shen-exactly-two-units",
+      "name": "Disciple of Shen pays its own admission price for five other cards that want the same two-body garrison",
+      "anchor": "VEN-117",
+      "partner": {
+        "textMatches": "exactly (one other unit|two units)"
+      },
+      "why": "Six cards in the pool gate on the SAME board state — a battlefield holding exactly one other unit you control, or exactly two units there — and Disciple of Shen is the one that pays for itself: standing beside any single one of the other five satisfies BOTH cards' count at once, since each one is the other's \"one other unit\". 383.2.a.1 makes the count part of the Trigger Condition for the two Hold payoffs (Shen, Leader of the Kinkou Order's point, Shen, Scourge of Shadows' draw), so it is checked when the trigger is placed, not when it resolves; Sacred Protector's combat-damage gate and Hand Hammer's Might Bonus are continuous, read whenever asked; and Keeper of Law's discount and Shadow Dash's +1 Might both read the board at the moment they are used. 185.2.d — \"Tokens have a type. They follow all rules for their type unless otherwise specified\" — is the trap the list cannot show: a token from any faucet in the deck is a third unit at that battlefield, and every one of these six conditions breaks at once.",
+      "basis": {
+        "rules": [
+          "383.2.a.1",
+          "185.2.d"
+        ],
+        "combos": [
+          "sacred-protector-disciple-of-shen-pair"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 6
+    },
+    {
+      "id": "unyielding-spirit-unit-damage-family",
+      "name": "Unyielding Spirit's fog leaves the whole \"deal damage equal to Might\" removal suite standing",
+      "anchor": "OGN-145",
+      "partner": {
+        "textMatches": "deals? damage equal to (its|their|our) Might"
+      },
+      "why": "417.6.b.3 names Challenge as its own worked example: \"The damage that Challenge causes to be dealt is dealt by the chosen units, not by Challenge\" — so the ten cards that deal damage equal to a unit's Might (Challenge, Carnivorous Snapvine, Dragon's Rage, Gentlemen's Duel, Marching Orders, Rampage, Clash of Giants, Strike Down, Alpha Strike, Last Breath) are all UNIT damage, never spell or ability damage. Unyielding Spirit's \"Prevent all spell and ability damage this turn\" (437.4: \"not considered to have been dealt to it at all\") therefore blanks every burn spell in the format while leaving this whole removal family untouched — a deck can run both the fog and the kill suite with no tension between them.",
+      "basis": {
+        "rules": [
+          "417.6.b.3",
+          "437.4"
+        ],
+        "combos": [
+          "unyielding-spirit-challenge-unit-damage"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 10
+    },
+    {
+      "id": "syndra-transcendent-repeat-grant",
+      "name": "Syndra, Transcendent grants a SECOND, independent [Repeat] instance to a spell that already prints one",
+      "anchor": "UNL-146",
+      "partner": {
+        "textMatches": "\\[Repeat",
+        "types": [
+          "spell"
+        ],
+        "excludes": [
+          {
+            "card": "UNL-182",
+            "why": "Curtain Call carries no [Action] or [Reaction]; 155 confines a plain spell to an Open State outside Showdowns, so it can never be played while Syndra is in a showdown."
+          },
+          {
+            "card": "SFD-031",
+            "why": "Desert's Call carries no [Action] or [Reaction], the same 155 gate."
+          },
+          {
+            "card": "UNL-032",
+            "why": "Double Trouble carries no [Action] or [Reaction], the same 155 gate."
+          },
+          {
+            "card": "SFD-023",
+            "why": "Piercing Light carries no [Action] or [Reaction], the same 155 gate."
+          },
+          {
+            "card": "SFD-077",
+            "why": "Rocket Barrage carries no [Action] or [Reaction], the same 155 gate."
+          },
+          {
+            "card": "UNL-017",
+            "why": "Square Up carries no [Action] or [Reaction], the same 155 gate."
+          },
+          {
+            "card": "SFD-129",
+            "why": "Temptation carries no [Action] or [Reaction], the same 155 gate."
+          },
+          {
+            "card": "UNL-009",
+            "why": "Upstage Comedy carries no [Action] or [Reaction], the same 155 gate."
+          }
+        ]
+      },
+      "why": "\"While I'm in a showdown, your spells have [Repeat] 2 Energy + 1 Chaos\" is a grant, and 820.1.c.2 keeps a granted instance independent of a printed one: \"If a spell or ability has more than one instance of Repeat, each Cost may be paid or not paid individually.\" A spell with no printed Repeat gets one bonus execution from her; a spell that already prints [Repeat] (Existential Dread, Hard Bargain, Frigid Touch, Danger Zone, and the rest of the twelve left after the exclusions) can pay BOTH costs for three total executions off one card, which is why the printed-Repeat spells are the interesting partner and not merely any spell. 155 with 806.1.b / 813.1.b is the gate that removes eight of the twenty candidate spells outright: none of them carries the permission to be played inside the Showdown her static requires.",
+      "basis": {
+        "rules": [
+          "820.1.c.2",
+          "155",
+          "806.1.b",
+          "813.1.b"
+        ],
+        "combos": [
+          "syndra-transcendent-existential-dread-three-executions"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 12
+    },
+    {
+      "id": "gearhead-doubles-might-bonus",
+      "name": "Gearhead doubles the printed Might Bonus of any Equipment attached to him",
+      "anchor": "SFD-068",
+      "partner": {
+        "tags": [
+          "Equipment"
+        ],
+        "minMightBonus": 1
+      },
+      "why": "\"Each Equipment attached to me gives double its base Might bonus\" reads the PRINTED number: 137.3 defines a Might Bonus as a modulation applied while Attached, 477.3.d applies it in the Might-Bonus layer, and 718.4 ties it to \"the value listed\" on the card — so Gearhead's own text is unambiguous about which number it is doubling. Thirty-four Equipment in the pool carry a positive Might Bonus, from Long Sword's +1 to Trinity Force's larger printed value, and every one of them is worth twice as much attached to him as to any other body, with no extra cost beyond the [Equip].",
+      "basis": {
+        "rules": [
+          "137.3",
+          "477.3.d",
+          "718.4"
+        ],
+        "combos": [
+          "gearhead-steraks-gage-double-bonus"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 34
+    },
+    {
+      "id": "kinkou-temple-tank-wall-doubling",
+      "name": "Kinkou Temple pays every [Tank] unit standing there, doubling the wall it already was",
+      "anchor": "VEN-159",
+      "partner": {
+        "textMatches": "\\[Tank\\]"
+      },
+      "why": "\"Units here with [Tank] have +1 Might\" reads any Tank source, printed or granted, and 815.1.c.2 is what makes a Tank body's Might a price rather than decoration: \"Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.\" A wall is priced in the damage needed to clear it (465.2.c.4 caps assignment at minimum lethal), so +1 Might on a Tank body does not add a point of stat, it adds a point the ATTACKER must spend before touching anything else there — and since the bill scales with every Tank body present, the battlefield doubles the cost of a multi-body wall (four 1-Might Tank tokens cost 4 elsewhere; at the Temple, at 2 Might each, the bill is 8). Twenty-five cards in the pool print [Tank], from a single 1-Might token grantor (Lillia, Protector of Dreams' \"Your token units have [Tank]\") to a legend's own repeating grant (Eye of Twilight).",
+      "basis": {
+        "rules": [
+          "815.1.c.2",
+          "465.2.c.4"
+        ],
+        "combos": [
+          "kinkou-temple-lillia-bird-tank-wall"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 25
+    },
+    {
+      "id": "eye-of-twilight-protects-backline",
+      "name": "Eye of Twilight's exhaust reaches a showdown already in progress to shield a [Backline] body",
+      "anchor": "VEN-147",
+      "partner": {
+        "textMatches": "\\[Backline\\]|assigned combat damage last"
+      },
+      "why": "465.2.c.6 is Riot's own worked example of the order: \"That player must assign combat damage first to the unit with Tank, then to the unit with no abilities, then to the unit with Backline.\" Eye of Twilight's \"[Action][>] exhaust: Give a friendly unit [Tank] this turn\" is granted at [Action] speed, and 806.1.c.2 — \"On Activated Abilities: 'This can be activated during showdows on any player's turn'\" — lets it land AFTER the attackers are already declared, once the defender knows exactly which of their bodies is about to eat the damage. Granting Tank to any OTHER body at the battlefield pushes it to the front of the assignment order and buys the standing [Backline] unit (Caitlyn, Patrolling and Soraka, Wanderer print the keyword bracket-less; Enthusiastic Promoter, LeBlanc, Everywhere at Once, Evelynn, Entrancing and Pyke, Returned print it bracketed — six cards, not five) another full combat before anything can legally be assigned to it.",
+      "basis": {
+        "rules": [
+          "465.2.c.6",
+          "806.1.c.2",
+          "815.1.c.2"
+        ],
+        "combos": [
+          "caitlyn-taric-backline-last-assignment"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 6
+    },
+    {
+      "id": "counter-strike-protects-while-at-battlefield",
+      "name": "Counter Strike is the one save that never relocates what it protects, so a \"while I'm at a battlefield\" clause survives it",
+      "anchor": "SFD-194",
+      "partner": {
+        "textMatches": "[Ww]hile I.?m at a battlefield",
+        "types": [
+          "unit"
+        ]
+      },
+      "why": "455 makes a Recall a relocation to the BASE, so a heal-exhaust-recall shield (Guardian Angel, Zhonya's Hourglass) switches off any \"While I'm at a battlefield\" clause for the whole turn it saves the body. Counter Strike is different: 437.4 — \"prevent it\" — means the damage is never dealt at all, so the unit never dies, never gets recalled, and never leaves; 437.5 lets it apply inside the damage step itself, at [Reaction] speed. Fourteen units in the pool carry a printed \"While I'm at a battlefield\" clause, from a static (Mageseeker Warden's lockdown, Tianna Crownguard's point denial, Sandstone Chimera's rune tax) to an ability restriction (Renata Glasc, Mastermind's and Xerath, Freed's own text: \"Use this ability only while I'm at a battlefield\") — Counter Strike is the one save in the pool that keeps every one of them switched on.",
+      "basis": {
+        "rules": [
+          "455",
+          "437.4",
+          "437.5"
+        ],
+        "combos": [
+          "counter-strike-tianna-crownguard-in-place-save"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 14
+    },
+    {
+      "id": "heedless-resurrection-accelerated-return",
+      "name": "Heedless Resurrection's \"ignoring its cost\" only zeroes the BASE cost, so a reanimated [Accelerate] body can still pay to enter ready",
+      "anchor": "UNL-142",
+      "partner": {
+        "textMatches": "\\[Accelerate\\]",
+        "types": [
+          "unit"
+        ]
+      },
+      "why": "356.1.b.1 sets only the base Energy and Power cost to zero, and 356.1.b.3 spells out the rest with Legion Rearguard as its own worked example: \"They ignore Legion Rearguard's Base Cost of 2 Energy, but the optional additional cost of 1 Energy and 1 Fury Power is added to its Total Cost and must be paid.\" Heedless Resurrection plays a body from the trash \"ignoring its cost\" for no more Energy or Power than the unit it killed to pay for it — but 143.4.a (\"This can be altered by Accelerate or similar game effects\") is a separate, optional cost the reanimated body can still choose to pay, entering ready instead of exhausted. Twenty-six units in the pool print [Accelerate], so the free half of the spell (the reanimation) and the paid half (the readying) are two different costs on the same card, and the second one is never waived by the first.",
+      "basis": {
+        "rules": [
+          "356.1.b.1",
+          "356.1.b.3",
+          "143.4",
+          "143.4.a"
+        ],
+        "combos": [
+          "heedless-resurrection-legion-rearguard-accelerated-return"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 26
+    },
+    {
+      "id": "allay-eager-admirer-granted-deflect-sums",
+      "name": "Allay's granted [Deflect] sums with any second source standing at her battlefield",
+      "anchor": "UNL-041",
+      "partner": {
+        "textMatches": "\\[Deflect",
+        "excludes": [
+          {
+            "card": "VEN-061",
+            "why": "Decree of Insight IGNORES [Deflect] while paying its own cost; it never grants the keyword to anything, so it adds nothing to a stack and is the opposite of a partner."
+          },
+          {
+            "card": "VEN-158",
+            "why": "Heisho, Shell of the World lets BOTH players ignore [Deflect] there, which works against Allay's whole point rather than adding to it."
+          }
+        ]
+      },
+      "why": "809.2 sums granted Deflect exactly as 807.2 sums granted Assault and 814.2 sums granted Shield: \"the Deflect Value of all granted Deflect keywords is summed.\" \"While I'm at a battlefield, your other units here have [Deflect]\" is Allay's free, permanent instance, so a body that already prints [Deflect] (Fiora, Victorious while Mighty; Jhin, Murderous Artist; Rengar, Unseen) or already carries a numbered grant (Jayce, Hammer in Hand's [Deflect 2]) costs the opponent MORE rainbow to interact with at her battlefield than either source manages alone — 809.3 makes the resulting Deflect value \"a characteristic of the permanent\" that a card like Master Yi, Tempered's own [Level 6] grant can check and stack on top of.",
+      "basis": {
+        "rules": [
+          "809.2",
+          "809.3"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 43
+    },
+    {
+      "id": "wielder-of-water-attack-defend-alone-family",
+      "name": "Wielder of Water pays itself the same \"alone\" toll it charges its two partners",
+      "anchor": "OGN-055",
+      "partner": {
+        "textMatches": "attack(s|ing)? or defend(s|ing)? alone|defends? alone"
+      },
+      "why": "740.2.a — \"A unit is alone when there are no other friendly units at the same location\" — is an own-side measurement (the pool's own reminder text on Lonely Poro says the same), so the enemy garrison never breaks the condition. Wielder of Water's own \"+2 Might while attacking or defending alone\" already qualifies whenever it stands by itself, and it needs no partner to pay for; the pairing this rule names is the deckbuilding fact that Mask of Foresight (\"give it +1 Might this turn\") and Wuju Bladesman - Starter (\"+2 Might\") key on the identical own-side condition, so a deck that keeps a single body at each battlefield turns all three on simultaneously with no card doing double duty. `SFD-036 Lonely Poro`'s [Deathknell] (\"If I died alone, draw 1\") and its printed inverse `UNL-156 Loyal Poro` (\"If I didn't die alone, draw 1\") key on the same state read at a different moment — a thin board that keeps this rule's three cards live also keeps Lonely Poro's Deathknell paying and switches Loyal Poro's off.",
+      "basis": {
+        "rules": [
+          "740.2.a"
+        ],
+        "combos": [
+          "wielder-of-water-mask-foresight-alone"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-07",
+      "reviewedCount": 2
     }
   ]
 }
