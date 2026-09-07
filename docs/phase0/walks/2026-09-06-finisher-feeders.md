@@ -572,3 +572,95 @@ turn** — 167 empties the Rune Pool, not the runes, and 164.2.a / 164.2.b are b
 Premonition's 3 Power is three banked runes recycled (161.2.b sends them to the Rune Deck). And the
 Draw Step is **315.4, after the check at 315.2.a**, which is what makes a fixed hand size holdable
 at all.
+
+---
+
+## 13. The BURSTs — the class is saturated, and here is the sweep that bounds it
+
+Fifteen BURSTs, and every one already exceeds the Victory Score with its declared quantities (I
+re-derived each formula: 10, 9, 10, 10, 17, 10, 10, 9, 9, 9, 9, 9, 10, 11). **More points is worth
+nothing to this class.** The only levers are cost, robustness and turn count.
+
+Three of those were already closed in earlier sections: §2 found the [Equip]-cost lever, §4 the
+turn-count one, and the multiplier sweep found that **exactly three "trigger an additional time"
+cards exist and all are catalogued**. This section closes the last one.
+
+### 13a. Every hold-scoring payoff is already under a multiplier
+
+Six cards in the pool score on a Hold or a Conquer, and each is catalogued with at least one
+multiplier: `OGN-066 Ahri` (Sentinel, Svellsongur, Skyfall+Brambleback), `SFD-115 Trinity Force`
+(Sentinel, Brambleback, Svellsongur, Weaponmaster), `UNL-177 Ivern` (Sentinel, Arena, Svellsongur),
+`VEN-138 Shen` (Sentinel, Svellsongur — and self-capped, §3), `VEN-046 Nasus` (Arena, Brambleback),
+`SFD-214 Power Nexus` (Sentinel, and two Time Warp CHAINs). There is no seventh payoff to find.
+
+### 13b. The complete [Equip]-cost table, which bounds the [Weaponmaster] feeder for good
+
+[Weaponmaster] reduces an [Equip] activation by one rainbow, so it pays **all** of a one-rune cost
+and only part of a two-component one. Sweeping every Equipment in the pool:
+
+- **one rune → free under [Weaponmaster]:** Serrated Dirk, Recurve Bow, Long Sword, Doran's Shield,
+  Brutalizer, Guardian Angel, Sterak's Gage, Cloth Armor, Experimental Hexplate, **World Atlas**,
+  Doran's Blade, **Hexdrinker**, Warmog's Armor, **Trinity Force**, Doran's Ring, Boots of Swiftness,
+  Cull, Edge of Night, Eye of the Herald, B.F. Sword, Sacred Shears, Spinning Axe, Forgefire Cape,
+  Rabadon's Deathcrown, **Shurelya's Requiem**, Soul Sword, **Hunter's Machete**, Pendulum Blade,
+  Hand Hammer;
+- **Energy + a rune, so only partly discounted:** Skyfall of Areion, **Svellsongur**, The Zero Drive,
+  Boneshiver, Blighted Battleaxe, Hextech Gauntlets.
+
+**And the rule that decides whether the free attach is worth a card slot: [Weaponmaster] equips
+"to ME", so it only pays for CARRIER-INDEPENDENT Equipment.**
+
+- `SFD-115 Trinity Force` — *"When I hold, score 1 point"* — works on any body, so the free attach is
+  pure profit. That is why §2's entry exists.
+- `SFD-059 Svellsongur` — *"copy that unit's text"* — must sit on the payoff unit itself, and
+  [Weaponmaster] can only put it on the Weaponmaster body. **It can never free a Svellsongur attach
+  on a copy line**, which is why `svellsongur-copy-hold`, `ivern-svellsongur-four-tags-hold` and
+  `shen-kinkou-svellsongur-hold` keep paying their Calm Power.
+- `SFD-030 Skyfall of Areion` — *"**My** hold effects are also conquer effects"* — same problem, and
+  the same reason `skyfall-ahri-conquer` cannot use it while `lucian-skyfinity-double-conquer` can
+  (there Lucian carries both the Skyfall and the Trinity Force, so the bridged text is his own).
+
+Only four carrier-independent Equipment have a hold or conquer effect at all — Trinity Force
+(points), `SFD-086 World Atlas` (Golds), `SFD-150 Last Rites` (reanimation), `UNL-096 Hunter's
+Machete` (XP) — and only Trinity Force scores.
+
+### 13c. CORRECTION to my own §2 entry: Veteran Poro is the cheaper carrier
+
+`lucian-weaponmaster-trinity-sentinel-hold` uses three `SFD-113 Lucian, Merciless` at E3 as the
+Weaponmaster carriers. **`SFD-099` / `UNL-223 Veteran Poro` is Body, E2, M2, plain [Weaponmaster] —
+the cheapest [Weaponmaster] body in the pool, and it appears in no catalogued entry.** Three of them
+are E6 against Lucian's E9, in the same Mind/Body identity, for the same three free attaches.
+
+The trade, stated honestly rather than as a strict improvement: each carrier is M2 + 2 from the
+Trinity Force's Might Bonus (718.4) = M4, against Lucian's M5, so the garrison's clearing bill under
+465.2.c.3 drops from 22 to 19. Lucian's *"The first time I conquer each turn, ready me"* is dead
+weight in a Hold line. **Recommendation: swap the carrier to Veteran Poro and note Lucian as the
++1-Might-per-body alternative.** Reported for the manager to apply; the entry is merged and is not
+mine to edit.
+
+### 13d. Two robustness notes, and two leads for the engine-side walk
+
+**NOTABLE — `SFD-102 Hexdrinker` on a Blue Sentinel.** Body, E2, one-rune [Equip], *"[Effect]
+[Deflect]"*, and in **no** catalogued entry. Every Sentinel BURST names the same single point of
+failure in its own notes — lose a Sentinel and K drops — and 809.1.c makes an opponent pay a rainbow
+to choose a [Deflect] unit with a spell or ability. It is carrier-independent, so a Weaponmaster body
+can attach it free. Applies to the Mind/Body lines (`blue-sentinel-trinity-force-hold`,
+`lucian-weaponmaster-trinity-sentinel-hold`, `sentinel-trinity-time-warp-chain`).
+
+**NOTABLE — `VEN-041` / `VEN-171 Riven, Shattered`** (Calm, E3 P1 M3) is in no entry and is the only
+[Weaponmaster] body that pays for the Equipment it accumulates: *"When I attack, choose an enemy unit
+here. Deal 2 to it for each Equipment attached to me."* Her first attach is free by her own keyword.
+Calm, so she is the Weaponmaster for Calm/Mind and Calm/Order — including
+`swain-shurelya-double-conquer`, where she would attach Shurelya's Requiem (one rainbow) for nothing.
+
+**LEAD for the engine-side walk, not mine:** `SFD-150 Last Rites` + `UNL-087 Blue Sentinel` is an
+uncatalogued pair. Last Rites is *"When I conquer or hold, you may play a unit from your trash"* —
+carrier-independent and a hold effect, so the Sentinel runs it 1 + K times: two or more free bodies
+out of the trash every Beginning Phase, in Mind/Chaos. `last-rites-stack-arena-reanimator` uses the
+Arena instead; nothing pairs it with the Sentinel.
+
+### 13e. Verdict
+
+**No new BURST entry.** The payoffs are exhausted (13a), the multipliers are exhausted (§2's sweep),
+the [Equip] lever is taken and now bounded (13b), and every remaining idea is either a near-duplicate
+of a merged entry or a robustness note. The class is closed; the room is in CHAINs, as §9 said.
