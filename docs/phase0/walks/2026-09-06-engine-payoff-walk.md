@@ -661,3 +661,120 @@ state and so is a notable rather than an ingredient.
     `shen-blue-sentinel-exact-hold` was authored, validated and withdrawn because
     `shen-kinkou-sentinel-hold` (same two cards, same finding) landed an hour earlier. §11 has the
     one-liner.
+
+---
+
+## 15. Correction to §3 — the reclass ledger lost a battlefield to its own Deathknell
+
+The first draft of the `renata-time-warp-ekko-refresh` reclass was **rejected in review** on a rule the
+ledger never mentioned, and the hole is worth writing down because every earlier walk of this entry
+had the same blind spot.
+
+> **323.6.** 4. Players lose control of any controlled Battlefields without their Units occupying them
+> if the turn is in an Open State and there is no Showdown or Combat ongoing there.
+> **190.4.a.** If a player controls Units at a Battlefield, outside of Combat, they maintain Control of
+> that Battlefield for as long as they have Units at that Battlefield.
+> **190.4.c.** If a player has no Units at a Battlefield and the turn is in an Open state, they lose
+> Control of that Battlefield in the following cleanup unless there is a Combat or Showdown ongoing there.
+
+The line garrisons the two Duel battlefields with **Renata on one and Ekko on the other**, and then
+**kills Ekko on the casting turn** for his Deathknell. Hidden Blade resolves in a Main Phase Open State
+with no combat anywhere, so the very next Cleanup runs 323.6 and Ekko's battlefield is uncontrolled.
+The first Additional Turn then Holds **one** battlefield, not two:
+
+| | with the hole | fixed |
+|---|---:|---:|
+| Casting turn: Hold ×2 + Renata | 3 | 3 |
+| First Additional Turn: Hold | **1** (+1) | **2** (+2) |
+| running total entering its Main Phase | **4** | **5** |
+| Chem-Baroness bonus (needs 5) | **off** | **on** |
+| Time Warp #2 | 4 Energy short | cast |
+| final | **5 or 6** | **8** |
+
+Every earlier walk of this entry considered losing a battlefield **to the opponent**. None considered
+losing one **to the entry's own Deathknell**.
+
+**The fix, priced.** `SFD-159 Trusty Ramhound` — Order, **E2 M2**, *"While you have another unit here,
+I have +1 :rb_might:."* — stands beside Ekko. 190.4.a then maintains Control through the kill, and its
+own clause is +1 Might for exactly as long as Ekko is next to it. Two Energy, no Power, one card. It is
+in `uses`, not in `notable`, because without it the line is five points rather than eight.
+
+Two alternatives considered and rejected as more expensive:
+
+- **Park Ekko at the base and kill him with `SFD-163 Deathgrip`** (Order, E2, [Reaction], *"Kill a
+  friendly unit"* — no location clause, so unlike Hidden Blade it does reach the base). Then *both*
+  battlefields need other bodies: two new cards instead of one, and 2 Energy on the casting turn
+  instead of Hidden Blade's 0. Recorded on the entry as the fallback it already was.
+- **Nothing at all**, on the theory that the garrisons survive because the opponent never acts. They
+  do — 735 and 737 mean no opponent turn intervenes — but 323.6 is a **Cleanup**, not an opponent
+  action, and it fires on your own turn.
+
+**The same hole is in the pre-reclass entry.** Its two-turn count of *"about 5"* assumed the extra turn
+Holds *"up to two in a Duel"* while Ekko was one of only two garrisons. The honest ENGINE figure was
+**4**, not 5. The Ramhound repairs both counts, which is one more reason it belongs in `uses` rather
+than in prose.
+
+**Lesson, general:** when a line kills its own permanent, check what that permanent was holding.
+`323.6` / `190.4.c` fire in the next Cleanup of your own turn, with no opponent input at all.
+
+---
+
+## 16. `draven-rebuke-bloodless-combat` (ENGINE, Fury/Chaos)
+
+The #118 walk recorded the *"[Action] spell that removes a unit at a battlefield"* family (18 cards) as
+**a synergy shape** and named no combo for it. This is the attacker-side instance, and the payoff it
+reaches was already in the catalogue **with its own weaknesses written into its prerequisites**:
+
+> `draven-glorious-executioner-point` notable[0]: *"This engine DEPENDS ON THE OPPONENT. Winning a
+> combat needs a combat … Against a board that never garrisons, Draven scores zero."*
+> notable[2]: *"he dies to a bigger garrison and hands the point over."*
+
+`OGN-172 Rebuke` (Chaos, E2 P2) — *"[Action] (Play on your turn or in showdowns.) Return a unit at a
+battlefield to its owner's hand."* — answers both, and was in **zero** entries.
+
+**The window is inside the combat, not before it**, which is what makes it work where the #58
+evacuation window would not:
+
+> **464.2.f.1.** Otherwise the Combat Showdown continues, with the State Open as normal.
+> **464.2.g.** Players proceed with any play on the Chain as normal.
+> **465.1.** **If both Attacking and Defending units remain at this battlefield**, the following Tasks
+> become Outstanding, in the specified order:
+
+Draven takes the Attacker designation *first*, then the removal empties the other side, and 465.1's
+gate means the damage step never becomes Outstanding at all. Then:
+
+> **466.3.a.** A Player has won a combat if they received either the attacker or defender designation
+> and are the only Player that has units remaining at this battlefield during this step.
+> **466.5.** 1. If no Showdown or Combat is staged at this location, the player with Units remaining
+> here Establishes Control if they didn't already control this Battlefield.
+> **466.5.d.** Establishing Control results in a Conquer if that player has not yet scored this Battlefield…
+
+**Two points and a card per attack**: Draven's ability Gain (194.1.c, R2 = A), the Conquer Score
+(469.1, 471.1) and the legend's draw. And Draven takes **no damage**, so his own *"When I die in
+combat, choose an opponent. They score 1 point"* never fires — a different mechanism from the
+heal/exhaust/recall shields of 808.1.d.1, and one that leaves no Deathknell question because nothing
+dies.
+
+**The honest limit** is that Rebuke returns **one** unit. Against two defenders 465.1's gate opens
+after all, 465.2.c sums Might and 465.2.c.3 forces lethal onto one body first, so a 6-Might Draven
+against a garrison summing 6+ dies and hands over the point. Two Rebukes is 4 Energy + **four** Chaos
+Power against the 12-rune ceiling. `VEN-106 Wind and Ghosts` (Chaos, E3 P1, banish at ≤3 Might else
+bounce) is the same effect at one Power instead of two and is also in zero entries — an alternative,
+not an addition, so it is a notable.
+
+## 17. Facts for `CLAUDE.md`, continued
+
+11. **When a line kills its own permanent, check what that permanent was holding.** `323.6` and
+    `190.4.c` strip Control of a battlefield with none of your units on it **in the next Cleanup of your
+    own turn**, with no opponent input; `190.4.a` is the converse and is satisfied by any second body.
+    `renata-time-warp-ekko-refresh` kills Ekko for his Deathknell and every walk of it since 2026-09-04
+    counted a Hold on the battlefield he was the sole garrison of — the honest two-turn ENGINE figure
+    was 4, not "about 5", and the three-turn CHAIN needs `SFD-159 Trusty Ramhound` (Order, E2) beside
+    him to be worth 8 rather than 5.
+12. **`465.1` gates the whole damage step on both sides still being present**, and `464.2.f.1` /
+    `464.2.g` leave the Combat Showdown Open for [Action] plays *after* the Attacker designation. So an
+    [Action] removal that empties the defending side wins the combat by `466.3.a` and Conquers by
+    `466.5` / `466.5.d` **with no damage assigned at all** — the attacker cannot die, so no Deathknell,
+    no "when I die" drawback and no `808.1.d.1` question ever arises. This window is strictly wider
+    than the #58 pre-open evacuation window, which required the spell to be cast *before* the entering
+    move. `OGN-172 Rebuke` and `VEN-106 Wind and Ghosts` were both in zero entries.
