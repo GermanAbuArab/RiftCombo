@@ -1390,3 +1390,123 @@ Detonate`, `SFD-160 Zaun Punk` and `OGN-224 Salvage` kill **gear**, not units, a
 six `friendly-dies` anchors. Its bug (2) (a `\[hidden\]` cause regex matching cards that merely *mention*
 Hidden) does not touch rows 19–30, which carry no hide or play-facedown family. **Neither bug changes any
 verdict in §27**, and lead E's `excludes` list already carries the gear-killer family.
+
+---
+
+# 29. Matrix groups 31–39 — the `empower-other` family, and a buff that arrives one phase too late
+
+Ranked groups 31–39 (rc-walk153b holds 40–47). Group 31 is `OGN-228 Vanguard Helm`, already written up
+in §27.1, so this is eight trigger cards — and **six of the eight are the same event**, `empower-other`.
+Legality re-checked against `data/legality.json` (`bases` as an array) before starting: none of the nine
+is banned or restricted in either format, and none is a Signature card.
+
+## 29.1 The family splits in two, and the matrix's own regex hides the seam
+
+The matrix's trigger pattern is `when you empower something else|when i become \[empowered\]`. Those are
+**two different cards**, not one family:
+
+| shape | cards | what it wants |
+|---|---|---|
+| *"When you **empower something else**, empower me"* | `VEN-151 Soul's Reflection`, `VEN-153 Matriarch of War` — both **legends** | a *repeatable* source of the Empower **event** |
+| *"When **I become [Empowered]**, …"* | `VEN-047 Apprentice Mage`, `VEN-104 Tail-Cloaked Matriarch`, `VEN-110 Mel, Defiant Soul`, `VEN-114 Kharox` — all **units** | a way to be **dis**empowered so the trigger can fire twice |
+
+And **both shapes are gated by the same three sentences**, which is the finding that makes the whole
+family walkable:
+
+> **441.1.a.** Empowered is a binary state. A Game Object is Empowered or it isn't.
+> **441.1.b.** An Empowered Game Object can not be Empowered.
+> **441.1.c.** If a Game Object is instructed to be Empowered when it is already Empowered, nothing
+> additional happens.
+
+with `441.2` making the state permanent. So *"when you empower something else"* is a **once-per-object**
+event — a board full of Empowered permanents feeds a legend exactly nothing — and *"when I become
+Empowered"* is **once per game per copy** unless something hands the state back.
+
+**Therefore the real partner set for all six anchors is not "cards that Empower" (35–38 of them). It is
+the far smaller set of cards that can DISEMPOWER, or that disempower themselves as a cost.** That is
+`VEN-035 Sanction`, `VEN-082 Profiteer`, `VEN-099 Tornado Warrior` (at end of turn), and the four
+self-spending permanents whose payoff cost begins *"Disempower this/me"* — `VEN-054 Questionable Tome`,
+`VEN-087 Hextech Disc`, and the two legends themselves. **`VEN-151`'s 8 partners are close to that real
+set; the other five anchors' 35–38 are mostly false positives.**
+
+## 29.2 Two entries
+
+**`souls-reflection-questionable-tome-disempower-cycle`** (Mind/Chaos). `VEN-151` was in zero entries and
+is the tightest anchor of the six (8 partners) precisely because the matrix happened to catch the right
+set for it. The Tome is the only **Mind** card that both applies its own Empowered state for free (bare
+exhaust) and spends it (*"Disempower this, 1 Energy, exhaust: Draw 1"*), so it is a renewable source of
+the event. Honest rate on two cards: **one card and one −2 Might per two turns**, because the Tome's
+`[Empower]` cost *is* the exhaust its draw needs. `VEN-062 Hextech Formula` makes it every turn and is
+deliberately left out of `uses` — it would duplicate the engine of `hextech-formula-rage-amplifier-free-empower`,
+whose value is a different thing (a price comparison on Rage Amplifier's E6 + 1 Fury Power). This entry
+is the Mind/Chaos mirror of `matriarch-of-war-empower-ready`, and 103.1.b.4 keeps the two apart.
+
+**`mel-defiant-soul-sanction-banish-cycle`** (Calm/Chaos). `VEN-110` was in zero entries and has **the
+cheapest Empower cost in the pool by resources** — *"[Empower] — Discard a spell"*, no Energy and no
+Power. Sanction's mode two (*"Disempower a unit that's [Empowered]. Empower it at end of turn"*) re-fires
+the trigger, and `441.1.c` is exactly why the disempower half is load-bearing rather than a drawback.
+Four permanent banishes for one discarded spell and 9 Energy + 3 Calm Power. Authored **alongside**
+`kharox-sanction-burn` rather than instead of it because the numbers differ on both sides: a discarded
+spell against 6 Energy + 2 Chaos Power, and a permanent banish (`108.6.c`) against deck pressure that
+that entry's own `terminatesIn` calls *"not a kill"*. Timing note on the entry: the re-fired banish lands
+**at end of turn**, so a [Reaction] enabler does not make it instant-speed removal.
+
+## 29.3 Refused: `SFD-047 Simian Ancestor`, and the reason is a phase boundary
+
+`SFD-047` (Calm, E5 P1 M5, zero entries, 33 partners): *"When you buff me, ready me."* It looks like a
+free ready every turn and it is not, for two independent reasons.
+
+**(a) `702.3` caps it at one ready per buff.** *"There can only be one Buff on a Unit at a time"*, and
+`702.3.a`: a buff instructed onto an already-buffed unit *"is not placed instead"*. So the second buff
+never happens and the ready never re-triggers — the rate is one ready per buff **spent**, and the pool
+holds only nine buff-spenders (`OGN-146`, `OGN-147`, `OGN-150`, `OGN-153`, `OGN-207`, `OGN-230`,
+`OGN-269`, `OGN-282`, `SFD-101`), of which two are Order and the rest Body or colorless.
+
+**(b) The obvious partner is a no-op, and this is the part worth recording.** `OGN-283 Navori Fighting
+Pit` (colorless battlefield, zero entries) reads *"When you hold here, buff a unit here"* — a free
+repeatable buff, in any deck, apparently perfect. It does nothing for Simian Ancestor, because
+**`315.1` Awaken is a phase BEFORE `315.2` Beginning Phase**, so `315.1.b` has already readied him when
+the Hold trigger fires at `315.2.b.2`. The buff readies a unit that is already ready. The same is true of
+every Hold-triggered buff in the pool. For Simian's ready to be worth anything the buff has to arrive in
+the **Main Phase**, after he has spent his exhaust on a Standard Move (144.2) — which narrows his real
+partner set to Main-Phase repeatable buffers: `OGN-235 Karma, Channeler` (on a recycle to the Main Deck)
+and `OGN-261 Radiant Dawn` (on a stun). Both are Order; `radiant-dawn-stun-buff-free-glory` already holds
+the Radiant Dawn + Call to Glory buff-spend loop, and adding Simian to it is a fourth card for one extra
+ready per spend.
+
+**Refused as an entry, recorded as the sharper half of the buff synergy lead.**
+
+## 29.4 Synergy leads
+
+**F. `empower-other` — anchors `VEN-151` and `VEN-153` (the "empower something else" legends), and
+separately `VEN-047`, `VEN-104`, `VEN-110`, `VEN-114` (the "when I become Empowered" units).**
+These are **two rules, not one**, and the matrix's single regex conflates them. For both, the partner
+predicate must be *cards that DISEMPOWER* — `/[Dd]isempower/` — and **not** *cards that empower*, because
+`441.1.b` and `441.1.c` make a second Empower a no-op. Expected real partner count: single digits, against
+the 35–38 the matrix reports. *False positive family, and it is most of every list:* every card whose only
+Empower is its own printed `[Empower]` cost, which by `441.2` it can pay exactly once.
+
+**G. `buff` — anchors `OGN-228 Vanguard Helm` and `SFD-047 Simian Ancestor`** (33 each).
+Predicate: cards that buff a friendly unit. *Trap that belongs in the rule rather than in each instance:*
+`702.3` means a buff on an already-buffed unit is **not placed**, so a "when you buff me" or "when a
+buffed unit dies" anchor is gated on the buff being **spent** or the unit being **fresh**, and the
+pool's buff-spenders are the real limiting set. *Phase trap:* a Hold-triggered buff (`OGN-283 Navori
+Fighting Pit`) arrives after `315.1.b` has readied everything, so it can never feed a "buff me → ready
+me" anchor.
+
+## 30. Facts for `CLAUDE.md`, continued
+
+25. **`441.1.b` and `441.1.c` make Empower a once-per-object event**, and `441.2` makes it permanent. So a
+    *"when you empower something else"* legend and a *"when I become [Empowered]"* unit both need a
+    **disempowerer**, not another empowerer — the pool's real set is `VEN-035 Sanction`, `VEN-082
+    Profiteer`, `VEN-099 Tornado Warrior`, and the permanents whose payoff cost begins *"Disempower
+    this/me"* (`VEN-054 Questionable Tome`, `VEN-087 Hextech Disc`, and the two legends). Any
+    `empower-other` predicate keyed on *empowering* is mostly false positives.
+26. **A Hold-triggered buff can never feed a "when you buff me, ready me" trigger**, because `315.1`
+    Awaken is a phase *before* `315.2` Beginning Phase — `315.1.b` has already readied the unit when the
+    Hold fires at `315.2.b.2`. `OGN-283 Navori Fighting Pit` + `SFD-047 Simian Ancestor` looks like a free
+    ready every turn and is a no-op. For a ready-on-buff to be worth anything the buff must arrive in the
+    **Main Phase**, after the unit has spent its exhaust.
+27. **`702.3` gates every "buff" anchor on the buff being SPENT.** A buff instructed onto an
+    already-buffed unit *"is not placed instead"* (702.3.a), so the limiting set for that family is the
+    nine buff-spenders in the pool, not the buffers.
