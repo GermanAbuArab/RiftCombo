@@ -50845,6 +50845,393 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-07 (issue #187, sub-rule lane 100-499). 428.1.a, 428.1.a.1, 428.1.a.1.a, 428.1.a.1.b and 428.1.a.2 are cited by no entry and no synergy rule in this project, and 428.1.a.1.b's worked example names SFD-148 Draven, Audacious. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 317.2.c, 340.1, 359.3.e.14.b, 428.1.a.1, 428.1.a.1.b, 428.1.a.2, 740.2.a, 808.1.d.1, 813.1.c.1. REPORT TO THE MANAGER: two facts. (a) 428.1.a.1.b is the precise paragraph for something this project currently sources to 808.1.d.3 - a dying unit's LOCATION AND ATTRIBUTES are noted before the Kill Instruction completes, which is why a Deathknell can read where the body was and what was standing beside it. (b) 428.1.a.1 / 428.1.a.2 split killing into ACTIVE (a game effect's instruction OR A COST) and PASSIVE (lethal damage or another state) - the catalogue uses that distinction constantly and has never stated it, and the snapshot rule applies only to the ACTIVE half, so a combat death is a different mechanism. Distinct from cull-the-weak-loyal-poro, the only other entry using UNL-156, and from the two Deathgrip entries. Trap check: the mirror card SFD-036 Lonely Poro is switched OFF by this same board and is Calm rather than Order; a shielded target breaks both halves (359.3.e.14.b and 808.1.d.1) and the entry says so; no unruled reading."
+    },
+    {
+      "id": "swain-brambleback-conquer-burst",
+      "name": "Swain under Red Brambleback — the conquer payoff the BURST sweep missed, ten points on one bloodless Conquer",
+      "class": "BURST",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-065",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Swain, Visionary. 'When I conquer, if you've played a non-token unit, a non-token gear, and a spell this turn, you score 1 point.' All three must be PRESENT at the battlefield when Control is gained (383.4.c.2), not attacking it."
+        },
+        {
+          "card": "UNL-029",
+          "quantity": 2,
+          "role": "multiplier",
+          "zone": "BATTLEFIELD",
+          "note": "Red Brambleback. 'Your conquer effects for conquering here trigger an additional time.' R1 = A with stacking, ruled for this card by name: N copies give N+1 instances, so two Bramblebacks make each Swain trigger three times. Both must stand at the SAME battlefield, because the clause says 'here'."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Mind. Measured over data/cards.json 2026-09-07, the pool prints THREE Fury/Mind legend names across six base codes: Daughter of the Void (OGN-247 / OGN-299), Mechanized Menace (SFD-181 / SFD-240), Virtuoso (UNL-181 / UNL-226).",
+          "Neither card is Signature (checked on the signature field in cards.json), and no legend in the pool carries the Swain tag, so 103.2.d.2 forces nothing and all three legend names are open."
+        ],
+        "notable": [
+          "THE ENTRY EXISTS BECAUSE A SWEEP MISSED A CELL, AND THAT IS ITS REAL CONTENT. CLAUDE.md's BURST-saturation sweep says 'six cards score on a Hold or a Conquer (Ahri, Trinity Force, Ivern Friend to All, Shen, Nasus Ascended, Power Nexus), all catalogued under at least one multiplier'. Swept again on 2026-09-07 over data/corpus_flat.txt with grep -inE for score/gain N point, the pool has THIRTEEN point-gaining cards - OGN-034 Tryndamere Barbarian, OGN-066 Ahri Alluring, OGN-205 Yasuo Windrider, SFD-088 Renata Glasc Mastermind, SFD-115 Trinity Force, SFD-148 Draven Audacious, SFD-214 Power Nexus, UNL-177 Ivern Friend to All, VEN-046 Nasus Ascended, VEN-053 Otterpus (a denial, not a gain), VEN-065 Swain Visionary, VEN-067 Bottled Constellation, VEN-138 Shen Leader of the Kinkou Order - and the hold-or-conquer subset is EIGHT, not six: the six named plus Tryndamere and Swain. Tryndamere is catalogued under this same multiplier (tryndamere-brambleback-conquer). Swain was under no multiplier at all: a card-set containment check on 2026-09-07 returns NONE for Swain with Brambleback, NONE for Swain with Reckoner's Arena and NONE for Swain with Svellsongur, and Swain's only two entries (swain-double-conquer, swain-shurelya-double-conquer) both reach 8 across TWO Conquers, one of them needing infinite-energy AND infinite-power to pay for itself.",
+          "THE ARITHMETIC, WITH THE QUANTITIES THIS ENTRY DECLARES. One Conquer of one battlefield: the Conquer itself Scores 1 point (469.1 'Conquer: A player gains Control of a Battlefield they did not yet Score this turn', and 470 allows it once per battlefield per turn), and each of the three Swains fires three times under two Bramblebacks for 9 ability Gains. TEN. The Gains are not Scores - 194.1.c lists 'Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more points' as a way of gaining points separate from 194.1.a Holding and 194.1.b Conquering (R2 = A) - so 470's cap never touches them, and 471.1.a.1 says the same from the other end for the last point: 'Notably, points Gained from sources that are not Conquer are not beholden to these restrictions.'",
+          "THE WHOLE CURVE ON THIS CARD SET, SO NOBODY RE-DERIVES IT. Two Bramblebacks give each Swain three instances; one gives two. Three Swains and ONE Brambleback is 6 Gains plus 1 Score = SEVEN at that battlefield, one short, and it becomes a CHAIN only by taking the other Duel battlefield with a spare body for the eighth point across two scoring events. Two Swains and three Bramblebacks is 8 Gains plus 1 Score = nine, at E24 + 2 Mind + 3 Fury against this entry's E26 + 3 Mind + 2 Fury. Three Swains and three Bramblebacks is the ceiling, 12 Gains plus 1 Score = thirteen. The board declared here is the cheapest one that crosses 8 in a SINGLE scoring event.",
+          "A CONQUER TRIGGER IS PRESENCE, NOT PARTICIPATION, WHICH IS WHY THE PACK WALKS IN TOGETHER AND WHY NOTHING HAS TO ATTACK. 383.4.c.2: 'This category of Triggered Abilities encompasses only those that are triggered from Units that were present during the Conquer action, or Abilities that reference the player that performed the Conquer action.' 383.4.c.2.a: 'The Conquer Abilities of Units are put on the Chain as Pending Items after the Unit(s) these effects correspond to are present at a Battlefield when a player gains control of it and gains 1 Victory Point from Conquering.' And 144.3: 'Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units', with 144.3.a requiring a shared Destination and 144.3.c paying the exhausts simultaneously. So all five bodies arrive in ONE game action.",
+          "THE BLOODLESS ROUTE IS THE ONE TO TAKE, AND IT IS FREE ON AN OPEN BATTLEFIELD. Walking into a battlefield with no enemy units applies Contested (450), and 344.2 then reads 'If Control of a Battlefield is Contested, there aren't units controlled by different players there, and the turn is in a Neutral Open State, a Showdown is opened during the next Cleanup'; 348.2.a establishes Control and 348.2.a.1 says 'This results in a Conquer if that player has not yet scored that Battlefield this turn.' No damage step at all, so all five bodies are present at the Conquer. Against a garrison instead, 465.2.c assigns the defenders' summed Might back and Swain is Might 6, so a garrison summing 6 or more kills a Swain and costs THREE Gains - which is why this line wants removal or an evacuation rather than a big attack, and why 465.1's gate ('If both Attacking and Defending units remain at this battlefield, the following Tasks become Outstanding') is the sentence to aim at. This is where the conquer-engine bucket earns its keep: seventeen of the 36 uncommitted conquer-engines manufacture exactly this bloodless Conquer.",
+          "SWAIN'S CONDITION IS PART OF THE TRIGGER CONDITION AND IS MEASURED IN THE MAIN PHASE. 383.2.a.1: 'Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the Effect.' So the non-token unit, the non-token gear and the spell must all have been played BEFORE the Conquer, in the same turn. Cheapest way to pay it: the third Swain IS the non-token unit if you deploy him on the finishing turn, a Seal is a gear at Energy 0, and any cheap spell closes it.",
+          "REFUSAL, RECORDED WITH ITS SCOPE: SWAIN CAN NEVER BE BRIDGED ONTO A HOLD. OGN-286 Reckoner's Arena ('When you hold here, activate the conquer effects of units here') and SFD-030 Skyfall of Areion ('My hold effects are also conquer effects, and vice versa') both fail on the phase order, not on domains. 315.2.b.2 is 'The Turn Player Holds all Battlefields they Control' inside the Beginning Phase (315.2), and the Main Phase is 316, so at the instant of a Hold you have played nothing this turn and 383.2.a.1 makes that part of the Trigger Condition. CLAUDE.md already records this refusal for Skyfall; this walk confirms it transfers unchanged to the COLOURLESS Arena bridge, which is the one that would otherwise cost no domain. The refusal is scoped to Swain: it says nothing about the other conquer payoffs under either bridge.",
+          "THE BATTLEFIELD IS GIVEN BACK IF THE PACK LEAVES, AND THAT DOES NOT REFUND THE POINTS. 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' The points are already Gained at the Conquer (471.1), so this costs board, not score - but on a board that has not yet won, leaving means no Hold next turn.",
+          "RED BRAMBLEBACK'S OWN CONQUER EFFECT IS DOUBLED TOO AND SCORES NOTHING: 'When I conquer, [Buff] a friendly unit.' It names 'a friendly unit' rather than a fixed target, so each instance re-chooses and 702.3's one-buff-per-unit cap does not flatten the second - the buffs land on different bodies. Count it as Might, never as points."
+        ]
+      },
+      "steps": [
+        "Over earlier turns, deploy three Swain, Visionary (E6 + 1 Mind Power each) and two Red Brambleback (E4 + 1 Fury Power each) to your base: E26 + 3 Mind + 2 Fury Power in total. [Accelerate] on Brambleback matters only if it is deployed on the finishing turn.",
+        "On the finishing turn, in the Main Phase, satisfy Swain's condition: play a non-token unit, a non-token gear and a spell. The third Swain can be the unit and a Seal is the gear at Energy 0.",
+        "Empty the target battlefield, or pick one that is open. 465.1 only opens the damage step if both attacking and defending units remain, so with no garrison there is no damage and nothing of yours dies.",
+        "Standard-move all three Swains and both Bramblebacks to that battlefield in ONE action (144.3, shared destination, exhausts paid simultaneously).",
+        "At the next Cleanup, 344.2 opens a Showdown, 348.2.a establishes Control and 348.2.a.1 makes it a Conquer: 1 Score, plus three Swain triggers at three instances each under two Bramblebacks = 9 ability Gains. Ten points from one scoring event."
+      ],
+      "terminatesIn": "ten points on a single Conquer — one Score and nine ability Gains that 470 does not cap — for E26 + 3 Mind Power + 2 Fury Power of deployment spread over earlier turns, and on the finishing turn only a unit, a gear and a spell plus the move",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, conquer-engine finisher lane (docs/phase0/walks/2026-09-07-finisher-chain-pass.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-07 by rc-walk-chain against data/corpus_flat.txt and the Core Rules; every paragraph quoted in the notables was opened and pasted, not recalled. Card text verbatim: VEN-065 'Swain, Visionary | Unit | Mind | E6 P1 M6 | [Vision] ... When I conquer, if you've played a non-token unit, a non-token gear, and a spell this turn, you score 1 point.' and UNL-029 'Red Brambleback | Unit | Fury | E4 P1 M4 | [Accelerate] ... Your conquer effects for conquering here trigger an additional time. When I conquer, [Buff] a friendly unit.' Legality checked against data/legality.json on 2026-09-07: 21 entries, the only non-banned row is restricted OGS-019, and neither VEN-065 nor UNL-029 appears in any row. Signature checked on the signature field of data/cards.json: both plain, and no legend in the pool carries the Swain tag, so this is not a one-legend line. Cross-references: tryndamere-brambleback-conquer is the same multiplier under the pool's OTHER uncatalogued-until-now conquer payoff and is the entry to read beside this one; swain-double-conquer and swain-shurelya-double-conquer are the two existing Swain lines and both take 8 across TWO Conquers where this takes 10 across one, which is what makes this a BURST and those CHAINs. This entry supersedes nothing and removes nothing."
+    },
+    {
+      "id": "noxian-emissary-matriarch-of-war-chained-dependent-keywords",
+      "name": "727.1.b.3 - a chained Dependent Keyword needs BOTH conditions met, and one Empower payment buys two Empowered states",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-128",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E2 M2. '[Empower] :rb_energy_1::rb_rune_order: (:rb_energy_1::rb_rune_order:: Empower me. Use only if not Empowered.) [Empowered][>][>>][Deathknell][>] Play two 1 :rb_might: Recruit unit tokens to your base. (When I die while Empowered, get the effect.)' The chained keyword is the whole point: unempowered, the Deathknell pays nothing."
+        },
+        {
+          "card": "VEN-153",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Body/Order legend. 'When you empower something else, empower me. (I become Empowered if I'm not already.) Disempower me, :rb_rune_rainbow:, :rb_exhaust:: Ready a unit.' She is the free rider on every Empower payment the deck makes, and her own cost clears her state so she can take the next one."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "VEN-153 Matriarch of War IS the legend, so Domain Identity is fixed at Body/Order (103.1.b) and VEN-128 Noxian Emissary, mono-Order, sits inside it. The Body/Order census is five names - The Boss (OGN-269), Might of Demacia - Starter (OGS-023), Grand Duelist (SFD-205), Keeper of the Hammer (UNL-203), Matriarch of War (VEN-153) - and only the last supplies the trigger this entry runs on, so the other four are legal shells that do not play the line.",
+          "Neither card is Signature (checked against the signature flag in data/cards.json), so 103.2.d.2 narrows nothing. Checked against data/legality.json rather than typed: neither VEN-128 nor VEN-153 appears in it, and the file holds exactly one non-banned row in total - a Calm/Body starter legend restricted in 2v2 - which is outside this shell."
+        ],
+        "notable": [
+          "727.1.b.3 IS THE PARAGRAPH THIS WHOLE FAMILY STANDS ON AND IT WAS CITED BY NOTHING: 'If an ability has multiple Dependent Keywords, all of them must have their Condition met in order for the ability to be active.' Riot's worked example is a unit reading '[Level 11][>>][Legion][>] When you conquer, gain 1 point', which needs 11 XP AND another card finalized that turn. The Emissary's ability is [Empowered][>][>>][Deathknell][>], so the two Recruits are paid only if it was Empowered BEFORE it died - and 727.1.b keeps the text on the card in the meantime: 'The Dependent Ability associated with the Dependent Keyword is Inactive on the card with the Dependent Keyword until the Condition is met, when it becomes Active', with 727.1.b.1 adding that it is present 'for the sake of reference or evaluation'.",
+          "THE COUNTED SET, WITH ITS MEMBERS AND WITH THE CORRECTION IT NEEDED. A grep for the chain marker [>>] over data/corpus_flat.txt returns exactly THREE rows (measured 2026-09-07): VEN-078 Baccai Witherclaw and VEN-128 Noxian Emissary, both [Empowered][>][>>][Deathknell][>], and UNL-049 Honeyfruit, '[Level 6][>] [>>][Reaction][>] :rb_exhaust:: [Add] :rb_energy_1::rb_rune_rainbow:'. Only the first two chain two DEPENDENT keywords. 813.1 says 'Reaction is a Permissive keyword.', so Honeyfruit hangs a Permissive keyword off a Dependent one and 727.1.b.3's 'all of them' never engages; 727.1.c.3 is its paragraph instead - 'Activated Abilities that become Active from Dependent Keywords can be activated at their associated timing after that ability has been granted'. An earlier draft of this walk put the family at two cards.",
+          "ONE EMPOWER PAYMENT, TWO EMPOWERED STATES. The Matriarch reads 'When you empower something else, empower me', so paying the Emissary's [Empower] - 1 Energy + 1 Order Power - also Empowers the legend at no extra cost. 441.1.b ('An Empowered Game Object can not be Empowered') is what caps each object at one, and the legend's own payoff opens with 'Disempower me', which clears her state and re-arms her for the next Empower the deck pays for. She is a renewable converter of Empower EVENTS, not a one-shot.",
+          "HER CEILING IS ONE ACTIVATION A TURN, WHATEVER YOU EMPOWER. 'Disempower me, :rb_rune_rainbow:, :rb_exhaust:: Ready a unit.' 415.3.a - 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn' - refunds the exhaust once a turn and no amount of empowering buys a second activation in the same turn. The value of a renewable trigger source is a payoff EVERY TURN, never more payoffs per turn.",
+          "THE DEATH HAS TO BE ARRANGED, AND THE BODIES LAND AT THE BASE. 808.1.c: a Deathknell 'is functionally short for \"When I die, [Effect].\"' The Recruits are played 'to your base', so 143.4 has them enter exhausted and they cannot Standard Move that turn - the walk-to-the-battlefield bottleneck, not a defect of this line. A deck that wants them mobile the same turn needs an enter-ready effect, and the pool's widest is Fury (OGN-011 Magma Wurm, SFD-004 Bushwhack), which 103.1.b keeps out of a Body/Order list.",
+          "THE PRICE PER COPY, AND THE CEILING. 103.2.b allows three Emissaries and 441.1.b makes each one's Empower a single event, so the line tops out at three payments of 1 Energy + 1 Order Power, three Empowered states handed free to the legend (one at a time, each cleared by a Disempower and so three Readies spread over three different turns), and six Recruit tokens."
+        ]
+      },
+      "steps": [
+        "Play Noxian Emissary for 2 Energy. 143.4 has it enter exhausted; the line needs nothing from its readiness.",
+        "Pay its [Empower] - 1 Energy + 1 Order Power. 441.1 is the act of rendering it Empowered and 441.2 makes that a permanent state of the board.",
+        "That same act triggers the Matriarch's 'When you empower something else, empower me', so the legend becomes Empowered for free.",
+        "Spend the legend's state at your convenience: 'Disempower me, :rb_rune_rainbow:, :rb_exhaust:: Ready a unit.' She is now un-Empowered and will take the next Empower you pay for; 415.3.a hands the exhaust back at your Awakening.",
+        "When the Emissary dies - to a block, to removal, or to a friendly sacrifice outlet - 727.1.b.3 asks for BOTH conditions: Empowered (step 2) and dying (808.1.c). Both met, the ability pays two 1-Might Recruit tokens to your base."
+      ],
+      "terminatesIn": "engine - per Emissary: 1 Energy + 1 Order Power buys an Empowered body, a free Empowered state on the legend, one Ready a turn, and two Recruits when the body dies; nothing here scores",
+      "netPerIteration": "one Empowered state on the legend and one 'Ready a unit' per Empower paid, plus two Recruit tokens at your base per Emissary that dies while Empowered",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #191 - uncited Core Rules sub-rules 500-899 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "727.1: 'A Dependent Keyword is comprised of both a Condition that it is short for, and an ability of some format immediately after the Keyword itself.' 727.1.a: 'A Dependent Keyword will always be functionally short for a Condition.' 727.1.b: 'The Dependent Ability associated with the Dependent Keyword is Inactive on the card with the Dependent Keyword until the Condition is met, when it becomes Active' 727.1.b.1: 'The Dependent Ability is present on the card for the sake of reference or evaluation until the Condition is met' 727.1.b.2: 'The Dependent Ability is Active exactly as written while the Condition is true' 727.1.b.3: 'If an ability has multiple Dependent Keywords, all of them must have their Condition met in order for the ability to be active.' 727.1.c.3: 'Activated Abilities that become Active from Dependent Keywords can be activated at their associated timing after that ability has been granted' 813.1: 'Reaction is a Permissive keyword.' 808.1.c: 'It is functionally short for \"When I die, [Effect].\"' 441.1.b: 'An Empowered Game Object can not be Empowered' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn' 143.4: 'Units enter the Board exhausted.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #191, session rc-walk-fc, batch 2. 727.1, 727.1.a, 727.1.b, 727.1.b.1, 727.1.b.2, 727.1.b.3 and 727.1.c.3 were all uncited by data/combos.json and data/synergies.json before this entry. VEN-128 and VEN-153 each appear in one other entry and not together. The counted-set correction (three [>>] rows, not two, and the third belongs to a different paragraph) is recorded in the notable rather than left in the walk document alone. Card text verbatim from data/corpus_flat.txt. No unruled reading."
+    },
+    {
+      "id": "rengar-trophy-hunter-poppy-ambush-verb-attack",
+      "name": "822.1.d - Rengar is Riot's own example of [Ambush] as a VERB, and it widens the destination without widening the speed",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-120",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E5 P1 M6. '[Ambush] (You may play me as a [Reaction] to a battlefield where you have units.) I can [Ambush] to a battlefield where there are enemy units (even if you don't have units there).' The second sentence is the verb use 822.1.d exists for, and Riot's own worked example quotes it."
+        },
+        {
+          "card": "UNL-178",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, E6 P1 M5. 'You may spend 3 XP as an additional cost to play me. If you do, I cost :rb_energy_3: less. [Ambush] (You may play me as a [Reaction] to a battlefield where you have units.) [Tank] (I must be assigned combat damage first.)' She is the body that can only arrive AFTER Rengar, and she is what keeps him alive."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Rengar is mono-Body and Poppy mono-Order, so 103.1.b.1 needs a Body/Order legend and the census gives five names: The Boss (OGN-269), Might of Demacia - Starter (OGS-023), Grand Duelist (SFD-205), Keeper of the Hammer (UNL-203), Matriarch of War (VEN-153).",
+          "Neither card is Signature (checked against data/cards.json), so 103.2.d.2 narrows nothing, and neither appears in data/legality.json in any format."
+        ],
+        "notable": [
+          "822.1.d WAS CITED BY NOTHING AND ITS WORKED EXAMPLE IS THIS CARD BY NAME: 'Ambush can also appear as a verb on a card. In such a case, the verb is taken to mean \"play with the permissions of the Ambush keyword.\"' Riot then writes it out - 'Rengar, Trophy Hunter reads in part \"I can [Ambush] to a battlefield where there are enemy units, even if you don't have units there.\" This ability expands the normal permissions of the Ambush keyword to include battlefields where there are enemy units.'",
+          "THE VERB WIDENS THE DESTINATION AND NOT THE SPEED, AND THAT IS THE READING THE CATALOGUE WAS MISSING. 822.1.b is TWO clauses joined by 'and': 'I may be played to a battlefield where you control Units' and 'I have [Reaction] as long as I'm being played to a battlefield where you control Units.' Rengar's own text lifts the first at a battlefield where you control nothing; the SECOND carries its own condition, which is unmet there. So his signature play is a Main Phase play, not a Reaction. UNL-166 Stalking Wolf loses the Reaction half for exactly the same reason, which this project had explained from card text alone.",
+          "THE COUNTED SET, WITH ITS MEMBERS. Measured 2026-09-07 over data/corpus_flat.txt: fourteen cards print [Ambush] and exactly TWO use it as a verb - UNL-120 Rengar, Trophy Hunter and UNL-166 Stalking Wolf. 822.1.d's SECOND worked example, a card reading 'Opponents can only [Ambush] at any time they could play cards with [Action]', has no counterpart in the pool, so the restricting half of the rule is dead letter today. 822.2 adds that 'Multiple instances of Ambush are redundant.'",
+          "HE ATTACKS WITHOUT MOVING, WHICH IS WHAT THE WIDENED DESTINATION BUYS. 190.3.a.1 applies Contested status to units 'moving to or being played to' a battlefield, and 464.2.c.1 makes the Attacker 'the player whose unit(s) applied the Contested status', so Rengar is the Attacker with no Standard Move: 144.2's exhaust is the Move's price alone and never comes up, and 143.4's entering exhausted costs nothing, since neither 464.2.c.3 nor 465.2.b filters by state. 323.9 then stages the Combat at the next Cleanup and 323.13 opens it. He is the pool's third card that attacks without moving, beside SFD-093 Dauntless Vanguard and OGN-161 Deadbloom Predator - and the only one that reaches a battlefield where you control nothing.",
+          "WHAT POPPY ADDS, AND WHY SHE CAN ONLY COME SECOND. Once Rengar is standing there, 822.1.b's ordinary condition is satisfied - you control units at that battlefield - so every [Ambush] body in the deck can now arrive at [Reaction] speed inside the combat he opened (813.1.c.1), and 464.2.c.3.a hands it the Attacker designation at the following Cleanup. Poppy is the one to send: 815.1.b is short for 'I must be assigned lethal damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step', and 815.1.c.2 makes Rengar an INVALID assignment until she has lethal. Her Might 5 is the toll and his Might 6 is what survives to hold the ground.",
+          "WHAT IT COSTS AND WHAT DOES NOT IMPROVE IT. Rengar is 5 Energy + 1 Power, Poppy 6 Energy + 1 Power or 3 Energy + 1 Power if you spend 3 XP - and 730.2 makes that a real reduction of your XP, so any [Level N] rung you were standing on goes Inactive (824.1.d). 815.2: 'Multiple instances of Tank are redundant', so a second Tank grant on Poppy buys nothing, and 815.1.c.2 means a SECOND Tank body would only widen the set the defender may choose from.",
+          "THE POINT IS NOT AUTOMATIC. 466.5 establishes Control only for a player who did not already control the battlefield, and 466.3.a needs you to be the only player with units remaining after the damage step; 465.2.c assigns each side its summed Might. Eleven attacking Might against their garrison is what has to be enough - the line manufactures the attack, not the win."
+        ]
+      },
+      "steps": [
+        "In your Main Phase, play Rengar, Trophy Hunter (5 Energy + 1 Body Power) directly to a battlefield the opponent occupies and you do not control. 822.1.d makes the verb 'play with the permissions of the Ambush keyword', and his own sentence widens those permissions to that battlefield.",
+        "Note the speed: 822.1.b's Reaction clause is conditioned on 'a battlefield where you control Units', which is false there, so this play is Main Phase only.",
+        "190.3.a.1 applies Contested status because he was PLAYED to the battlefield; 464.2.c.1 makes you the Attacker with no move, so no exhaust is paid and 143.4 costs nothing.",
+        "323.9 stages the Combat at the next Cleanup and 323.13 opens it.",
+        "Inside the Showdown, play Poppy with ordinary [Ambush] at [Reaction] speed (813.1.c.1) - legal now, because Rengar is a unit you control there. 464.2.c.3.a gives her the Attacker designation at the following Cleanup, so she is in this damage step.",
+        "465.2.c assigns the defender's summed Might; 815.1.c.2 forbids assigning any of it to Rengar until Poppy has taken lethal five."
+      ],
+      "terminatesIn": "engine - an attack opened at a battlefield where you had no presence, with a Tank absorbing the first five damage; the Conquer follows only if the garrison dies (466.3.a, 466.5), and nothing here scores by itself",
+      "netPerIteration": "one combat manufactured at a battlefield you do not control, for two cards and no Standard Move",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #191 - uncited Core Rules sub-rules 500-899 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "822.1.d: 'Ambush can also appear as a verb on a card. In such a case, the verb is taken to mean \"play with the permissions of the Ambush keyword.\"' 822.1.b: 'It is functionally short for \"I may be played to a battlefield where you control Units\" and \"I have [Reaction] as long as I'm being played to a battlefield where you control Units.\"' 822.2: 'Multiple instances of Ambush are redundant.' 815.1.b: 'It is functionally short for \"I must be assigned lethal damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step.\"' 815.1.c.2: 'If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 815.2: 'Multiple instances of Tank are redundant.' 143.4: 'Units enter the Board exhausted.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #191, session rc-walk-fc, batch 2. 822.1.d was uncited by data/combos.json and data/synergies.json before this entry even though its worked example names UNL-120 by name. The load-bearing new reading is that 822.1.b is two separately conditioned clauses, so the verb widens WHERE and never WHEN - it generalises the note the catalogue already carried for UNL-166 Stalking Wolf. Card text verbatim from data/corpus_flat.txt. No unruled reading."
+    },
+    {
+      "id": "the-list-mel-defiant-soul-named-tag-banish-gate",
+      "name": "763.1's closed tag list is EXACTLY the 127 tags the pool prints, so The List never misses - and an unfloored -2 takes a Might-5 body into Mel's banish window",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-138",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Chaos gear, E1. 'As you play this, name a tag. (For example, Miss Fortune, Demacia, and Poro are tags.) :rb_exhaust:: Give a unit with the named tag -2 :rb_might: this turn.' The pool's only card that names anything at all."
+        },
+        {
+          "card": "VEN-110",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E5 M4. '[Empower] - Discard a spell (Pay the cost: Empower me. Use only if not Empowered.) When I become [Empowered], banish an enemy unit at a battlefield with 3 :rb_might: or less.' The Might threshold is what The List moves."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Chaos, so 103.1.b.1 is satisfied by any legend carrying Chaos - the census gives sixteen names, among them Loose Cannon (OGN-251), Unforgiven (OGN-259), Dark Child - Starter (OGS-017), Blade Dancer (SFD-195), Gloomist (UNL-193) and Master of Shadows (VEN-143).",
+          "Neither card is Signature (checked against the signature flag in data/cards.json), so 103.2.d.2 narrows nothing. Checked against data/legality.json rather than typed: neither UNL-138 nor VEN-110 appears in it, and the file holds exactly one non-banned row in total - a Calm/Body starter legend restricted in 2v2 - which cannot be a Chaos legend and so never reaches this list."
+        ],
+        "notable": [
+          "763 AND 763.1 WERE CITED BY NOTHING, AND THE LIST IS EXACTLY THE POOL. 763: 'When instructed to name a tag, a player cannot choose to name a tag that does not exist on cards or tokens in Riftbound.' 763.1 then enumerates them. Measured 2026-09-07 against data/cards.json: 763.1 names 127 tags and the pool prints 127, and the two sets are IDENTICAL in both directions - nothing listed is absent from a card and nothing on a card is absent from the list. So the rule never binds UNL-138; the only thing that constrains it is foresight. One transcription caveat for the next reader: the rules text wraps the line mid-name and the extracted text reads 'Miss, Fortune', which read as two tags produces a false mismatch.",
+          "NAMING A TAG IS NOT NAMING A CARD, AND THAT IS WHY IT REACHES TOKENS. 762.2: 'A player cannot choose the name of a token when instructed to name a card.' 763 asks only that the TAG exist 'on cards or tokens', and the token definitions hand tags out by rule - 187.4: 'A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag'; 187.7: 'A 1 [M] Bird token is a domainless unit token with 1 Might, the Bird tag, and the Deflect keyword'; 187.3 the same for Sand Soldier and Shurima. So naming Mech, Bird or Shurima reaches bodies whose NAMES 762.2 would forbid you to name.",
+          "761.1 AND 761.2 - THE CARD HALF OF THE SAME BLOCK - HAVE NO USER IN THE POOL. They read '1. Stating the exact name of the card.' and '2. Identifying a combination of traits and characteristics that can identify that card uniquely.' Measured 2026-09-07, a grep over data/corpus_flat.txt for 'name a card', 'name a unit', 'guess' and 'name a tag' returns exactly ONE row, UNL-138 - and it names a tag. 762 ('a player must name a card that is legal in the Format being played') and 762.1 are therefore dead letter today, and this is recorded so the next reader does not spend a walk looking for the card.",
+          "THE CHOICE IS LOCKED BEFORE THE BOARD IS. 'As you play this, name a tag' is an as-you-play choice, and 752.2 freezes those against any later remake, so the tag is committed at least a turn before the body you want to shrink has to exist. Three copies (103.2.b) is how the deck buys three guesses rather than one, and the pool's tag distribution is what makes a guess reasonable: a champion tag names one body, a region tag such as Noxus or Demacia names dozens.",
+          "THE REDUCTION IS UNFLOORED AND REPEATABLE, AND ITS TIMING IS YOUR OWN TURN ONLY. The List prints '-2 :rb_might: this turn' with no minimum - the Origins reductions carry a floor and the Spiritforged, Unleashed and Vendetta ones do not - so it is worth its full 2 even against a small body, since 143.2.b makes a negative Might READ as 0 without BEING 0. Its cost is an exhaust inside an Activated Ability (a colon, 377.1), so 381 confines it to an Open State on your own turn and 415.3.a hands the exhaust back every Awakening: one use per turn, forever, for a 1-Energy gear.",
+          "WHAT THE PAIR REACHES, AND WHAT IT DOES NOT. Mel banishes 'an enemy unit at a battlefield with 3 :rb_might: or less', so The List moves that gate from 3 to 5. 477.3.e.2.a applies decreases LAST, so a pump played in response does not outrun the reduction. The banish is permanent - 108.6.c - which is why this is one of the few answers a trash engine cannot recycle around, and it is scoped to a BATTLEFIELD, so a body sitting at their base is out of reach.",
+          "MEL IS BOUNDED AND THE LIST IS NOT - DO NOT READ THE PAIR AS ONE ENGINE. '[Empower] - Discard a spell' is one of the five [Empower] costs in the pool that pay neither Energy nor Power, and 441.1.b ('An Empowered Game Object can not be Empowered') makes each copy a single banish; 103.2.b caps the line at three. The repeatable half is the gear; the payoff half fires three times a game."
+        ]
+      },
+      "steps": [
+        "Play The List for 1 Energy and, as you play it, name a tag (763, 763.1). 752.2 freezes that choice, so pick against the opponent's declared identity rather than their current board.",
+        "Later, on your own turn in an Open State (381), exhaust The List: the chosen enemy unit with that tag takes -2 Might for the turn, with no floor.",
+        "Pay Mel's [Empower] by discarding a spell. 441.1 renders her Empowered and 441.2 makes the state permanent.",
+        "Her trigger - 'When I become [Empowered], banish an enemy unit at a battlefield with 3 :rb_might: or less' - now reads the reduced Might. A body printed at 5 is at 3 and is inside the window.",
+        "108.6.c keeps the banished card out of the game; nothing in the pool returns it.",
+        "At your next Awakening, 415.3.a readies The List for the next turn's reduction. Mel does not come back - a second banish needs a second copy."
+      ],
+      "terminatesIn": "engine - one unfloored -2 Might a turn forever from a 1-Energy gear, and up to three permanent banishes that reach a Might-5 body instead of a Might-3 one; nothing here scores",
+      "netPerIteration": "-2 Might on a named-tag enemy unit per turn, converting into one permanent banish per Mel copy",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #191 - uncited Core Rules sub-rules 500-899 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "763: 'When instructed to name a tag, a player cannot choose to name a tag that does not exist on cards or tokens in Riftbound.' 763.1: 'The following tags exist in Riftbound:' [127 tags follow]. 762: 'When instructed to name a card, a player must name a card that is legal in the Format being played.' 762.1: 'They cannot name a card that doesn't exist.' 762.2: 'A player cannot choose the name of a token when instructed to name a card.' 761.1: '1. Stating the exact name of the card.' 761.2: '2. Identifying a combination of traits and characteristics that can identify that card uniquely.' 187.4: 'A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag.' 187.7: 'A 1 [M] Bird token is a domainless unit token with 1 Might, the Bird tag, and the Deflect keyword.' 441.1.b: 'An Empowered Game Object can not be Empowered'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #191, session rc-walk-fc, batch 2. 763 and 763.1 were uncited by data/combos.json and data/synergies.json before this entry, and 762.2 appeared once. The measured claim - 763.1's closed list is exactly the pool's 127 tags, in both directions - is checkable in one script against data/cards.json. The refusal that came with it is recorded in the notable: 761.1 / 761.2 / 762 / 762.1, the card-naming half of the same block, have NO user in the pool, because the only card that names anything names a tag. Card text verbatim from data/corpus_flat.txt. No unruled reading."
+    },
+    {
+      "id": "allay-petricite-monument-deflect-value-sums",
+      "name": "809.2 sums GRANTED Deflect and 809.1.b.3 makes a bare one worth 1, so two stacked grants tax every choice two rainbow",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-041",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M3. '[Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) While I'm at a battlefield, your other units here have [Deflect].' A bare grant, so 809.1.b.3 values it at 1."
+        },
+        {
+          "card": "SFD-104",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BASE",
+          "note": "Body gear, E2. '[Temporary] (Kill this at the start of its controller's Beginning Phase, before scoring.) Friendly units have [Deflect]. (Opponents must pay :rb_rune_rainbow: to choose them with a spell or ability.)' Also bare, also 1, and board-wide rather than battlefield-scoped."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Allay is mono-Calm and the Monument mono-Body, so 103.1.b.1 needs a Calm/Body legend and the census gives four names: Blind Monk (OGN-257), Wuju Bladesman - Starter (OGS-019), Grandmaster at Arms (SFD-193), Wuju Master (UNL-191).",
+          "LEGALITY, READ OUT OF data/legality.json AND NOT TYPED: the file holds exactly one non-banned row, and it is in this list - OGS-019 Wuju Bladesman - Starter is RESTRICTED in 2v2 (since 2026-07-24) and carries no restriction in constructed. The other three Calm/Body names carry nothing in either format, and neither UNL-041 nor SFD-104 appears in the file at all. Neither is Signature, so 103.2.d.2 narrows nothing."
+        ],
+        "notable": [
+          "THE THREE PARAGRAPHS THAT PRICE IT. 809.1.b: 'It is formatted as \"Deflect [X]\".' 809.1.b.2: 'The X is referred to as the Deflect Value.' 809.1.b.3: 'If X is omitted, it is presumed to be 1.' Both grants here print a bare [Deflect], so each is worth exactly 1, and 809.2 adds them: 'If a Game Object has Deflect, or has been granted Deflect, and is granted Deflect by an additional source, the Deflect Value of all granted Deflect keywords is summed.' Two grants, Deflect 2 on every friendly body at Allay's battlefield - and Allay herself is at 3, since her printed keyword joins the sum.",
+          "THE TAX IS PER CHOICE AND IN ANY DOMAIN. 809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' So one spell choosing two of your bodies pays FOUR rainbow, not two. 809.1.c.1: 'The Power used to pay this cost may always be of any Domain', which is what stops an off-domain opponent from simply ignoring it, and 809.1.d makes it 'a Mandatory Additional Cost on Spells and Abilities that choose the Game Object that has this ability'.",
+          "THE PRINTED OPT-OUT, WITH THE WHOLE GRANTER SET NAMED. Measured 2026-09-07 over data/corpus_flat.txt, exactly FOUR cards grant [Deflect] to units other than themselves by a static: OGN-063 Spirit's Refuge, SFD-071 Breakneck Mech ('Your Mechs'), SFD-104 Petricite Monument and UNL-041 Allay, Eager Admirer. Two more give it by a different mechanism - SFD-102 Hexdrinker grants it to its carrier through attached [Effect] text, and UNL-044 Flurry of Feathers mints Bird tokens that carry it by rule (187.7). And ONE of the four prints a clause opting out of 809.2's summing: Spirit's Refuge says 'Friendly buffed units have [Deflect] IF THEY DIDN'T ALREADY', so it can be a first source and never a second. Pick the other two.",
+          "THE MONUMENT'S [Temporary] IS A FEATURE, NOT A COST. 816.1.b kills it 'at the start of this permanent's controller's Beginning Phase, before scoring' - your own 315.2.a - so it taxes the whole of the OPPONENT'S turn, which is when their removal is aimed at your garrison, and it is already gone before 315.2.b.2 asks what you hold. It never costs you a body at the Scoring Step, and 143.4 does not touch it because gear does not enter exhausted. Three copies (103.2.b) is three such turns.",
+          "WHAT IT DOES NOT STOP, WITH THE MEMBERS NAMED. 809.1.c charges for CHOOSING, so 355.10.d ('programmatically selected based on its characteristics rather than chosen'), 355.10.e and 355.10.f all pay nothing - every sweeper and every 'each player kills a unit they control' walks through for free. And exactly two cards in the pool ignore Deflect outright (swept 2026-09-07): VEN-061 Decree of Insight, 'Ignore [Deflect] while paying this spell's cost', which is its own cost only, and VEN-158 Heisho, Shell of the World, 'Players ignore [Deflect] while paying for spells and abilities choosing something here', which is symmetric.",
+          "IT IS A TAX AND NOT A PROHIBITION, AND THAT DISTINCTION IS THE WHOLE CEILING. 054.1 makes SFD-105 Ruin Runner's 'I can't be chosen by enemy spells and abilities' absolute; Deflect is priced, and an opponent with the Power simply pays. What it buys is a tempo tax on a turn they were going to spend all their mana anyway. 809.3 is the other half of the keyword and is worth knowing exists: 'Deflect, and whether or not a Game Object has Deflect, is a characteristic of the permanent and may be checked or referenced by other Game Effects.'"
+        ]
+      },
+      "steps": [
+        "Get Allay, Eager Admirer to a battlefield (3 Energy). Her static reads 'While I'm at a battlefield, your other units here have [Deflect]' - a bare grant, Deflect Value 1 by 809.1.b.3.",
+        "On the turn you want protection, play Petricite Monument for 2 Energy. Gear does not enter exhausted, and its static is board-wide: 'Friendly units have [Deflect].'",
+        "809.2 sums the granted values on every body standing with Allay: 1 + 1 = Deflect 2. Allay's own printed [Deflect] joins the sum on her, so she reads 3.",
+        "809.1.c then charges the opponent that much Power PER CHOICE, in any Domain (809.1.c.1), as a Mandatory Additional Cost (809.1.d) - a two-target removal spell aimed into that garrison pays four rainbow on top of its own cost.",
+        "The Monument dies at the start of your next Beginning Phase (816.1.b), before 315.2.b.2 scores, so it is never a body you lose at the Scoring Step - it is exactly one opponent turn of tax per copy."
+      ],
+      "terminatesIn": "engine - every friendly unit at Allay's battlefield costs an opponent two rainbow per choice for the whole of their turn, three turns per set of Monuments; nothing here scores",
+      "netPerIteration": "Deflect 2 on the garrison (3 on Allay) for one opponent turn, for 2 Energy",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #191 - uncited Core Rules sub-rules 500-899 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "809.1.b: 'It is formatted as \"Deflect [X]\".' 809.1.b.2: 'The X is referred to as the Deflect Value.' 809.1.b.3: 'If X is omitted, it is presumed to be 1.' 809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' 809.1.c.1: 'The Power used to pay this cost may always be of any Domain.' 809.1.d: 'It is an effect that imposes a Mandatory Additional Cost on Spells and Abilities that choose the Game Object that has this ability.' 809.2: 'If a Game Object has Deflect, or has been granted Deflect, and is granted Deflect by an additional source, the Deflect Value of all granted Deflect keywords is summed.' 809.3: 'Deflect, and whether or not a Game Object has Deflect, is a characteristic of the permanent and may be checked or referenced by other Game Effects.' 187.7: 'A 1 [M] Bird token is a domainless unit token with 1 Might, the Bird tag, and the Deflect keyword.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #191, session rc-walk-fc, batch 2. 809.1.b, 809.1.b.2 and 809.1.b.3 were cited in three places and 809.2 in ten before this entry, none of which stated the arithmetic; 809.1.d and 809.3 were not stated at all. produces is deliberately EMPTY: a Deflect tax yields nothing another entry can consume, and its closest sibling not-so-fast-allay-deflect-tax-denial declares the same. The granter census (four static granters, one of which - OGN-063 Spirit's Refuge - prints a clause that opts out of the summing) is the checkable half. Card text verbatim from data/corpus_flat.txt. No unruled reading."
+    },
+    {
+      "id": "bushwhack-ferrous-forerunner-mechs-enter-ready",
+      "name": "811.2 - only the CHOICES a hidden card makes are confined, so Bushwhack's board-wide 'enter ready' reaches Mechs born at your base",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-004",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury spell, E2 P1. '[Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) Friendly units enter ready this turn. Play a Gold gear token exhausted.' It prints neither [Action] nor [Reaction]; the speed comes from 811.6 and only while it is face down."
+        },
+        {
+          "card": "SFD-021",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E6 P1 M6. '[Deathknell] - Play two 3 :rb_might: Mech unit tokens to your base. (When I die, get the effect.)' Six Might of tokens, born exhausted at the base, which is exactly what Bushwhack repairs."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Fury, so 103.1.b.1 is satisfied by any legend carrying Fury - the census gives sixteen names, among them Relentless Storm (OGN-249), Hand of Noxus (OGN-253), Dark Child - Starter (OGS-017), Mechanized Menace (SFD-181), Virtuoso (UNL-181) and Rogue Assassin (VEN-139).",
+          "Neither card is Signature (checked against data/cards.json), so 103.2.d.2 narrows nothing, and neither appears in data/legality.json in either format.",
+          "A battlefield you control, hidden a turn in advance - 811.1.b allows one facedown card per battlefield and 485.4 puts two on a Duel table."
+        ],
+        "notable": [
+          "811.2 WAS CITED BY NOTHING AND IT IS THE WHOLE ENTRY: 'Abilities and instructions of hidden cards other than the choices listed above function as normal.' Riot's worked example names a pool card - 'Stand United is a spell that has Hidden and \"Buff a friendly unit. Buffs give an additional +1 might to friendly units this turn.\" If it's played from Hidden, the first part of its ability must choose a friendly unit at the same battlefield, but the second part of its ability affects all friendly units with buffs, no matter where they are.' Bushwhack has that shape with no first part at all: 'Friendly units enter ready this turn' chooses nothing and names no location, so it reaches your base and both battlefields.",
+          "WHAT 811.1.d ACTUALLY CONFINES, CLAUSE BY CLAUSE, AND WHY NONE OF IT BITES HERE. 811.1.d.1: 'A hidden permanent must be played to that battlefield.' 811.1.d.2 confines the TARGETS of a hidden spell or of a hidden permanent's play effect. 811.1.d.3: 'If a hidden spell or a play effect of a hidden permanent causes you to play a unit, you must choose to play that unit at that battlefield.' Bushwhack is a spell, so .d.1 is silent; it chooses nothing, so .d.2 is silent; and the only thing it plays is a Gold GEAR token, which .d.3 does not reach because that clause says 'unit'.",
+          "THE PRICE IS ONE RAINBOW, A TURN EARLY, AND THEN IT IS FREE AND FAST. 811.1.b buys the hide. 811.6: 'A card that is Hidden gains Reaction while facedown or played from facedown, and may be played any time a card with Reaction may be played as a result' - so a card that prints no timing keyword at all becomes a 0-Energy Reaction on any player's turn (813.1.c.1). 811.3 keeps the ordinary line open too: 'Instead of being hidden, a card with Hidden may be played for its cost as normal, at its normal timing with no restrictions on targeting' - 2 Energy + 1 Fury Power, main phase, by 155.",
+          "WHAT IT IS FIXING, AND HOW WIDE IT IS. 143.4: 'Units enter the Board exhausted', with 143.4.a: 'This can be altered by Accelerate or similar game effects.' Bushwhack is such an effect and is the WIDEST in the pool for the turn it covers - SFD-171 Renata Glasc, Industrialist reaches only tokens and OGN-011 Magma Wurm only OTHER friendly units, while this reaches everything you play that turn, the Forerunner's own tokens included. 185.2.d puts a token inside the rules for its type and 187.4 gives the Mech token its tag by rule, so the tokens are units for this purpose.",
+          "THE ARITHMETIC OF THE FIX. The Deathknell plays two 3-Might Mechs 'to your base'. Exhausted, they are stranded for a turn: 144.2 charges the Standard Move an exhaust and 420.3.a puts that cost on the Standard Move alone. Ready, they walk that same Main Phase, and 144.3 moves both in one action to a shared destination. Six Might arrives on the turn the Forerunner dies rather than on the turn after - which is the turn the opponent's sweepers get their window.",
+          "THE ORDERING, AND WHY IT IS NOT A FINALIZATION TRAP. Bushwhack's grant is a resolved continuous effect lasting the turn, not a cost paid to finalize a trigger, so 383.3.b / 204.3.a never engage: it may be played before the Forerunner dies, or in response to the Deathknell trigger inside the Closed State that trigger opens (312.2.c), where 340.1 resolves the newest Finalized item first and the grant lands before the tokens are made. Either ordering works, which is unusual in this catalogue and is why it is stated.",
+          "THE GOLD IS NOT MANA THIS TURN. 187.5 prints the Gold gear token as '[Reaction][>] Kill this, [E]: [Add] [A]' and Bushwhack plays it EXHAUSTED, so it cannot pay its own cost until your next Awakening (415.3.a) - unless SFD-171 Renata Glasc, Industrialist is out, which 103.1.b keeps out of a mono-Fury shell. Count it as next turn's Power, not this turn's."
+        ]
+      },
+      "steps": [
+        "On an earlier turn, in your own Open State, pay one rainbow Power to hide Bushwhack face down at a battlefield you control (811.1.b).",
+        "On the turn you intend the Forerunner to die, play Bushwhack from face down for 0 Energy. 811.6 gives it Reaction while facedown, so this may be done on either player's turn and inside a Closed State (813.1.c.1).",
+        "811.2 keeps its two instructions unconfined: it chooses nothing, so 811.1.d.2 has nothing to restrict, and the Gold it plays is a gear, so 811.1.d.3 does not send it to that battlefield.",
+        "'Friendly units enter ready this turn' now overrides 143.4 for everything you play for the rest of the turn (143.4.a).",
+        "Let Ferrous Forerunner die. Its Deathknell plays two 3-Might Mech unit tokens to your base - ready, not exhausted.",
+        "Standard-move both to a battlefield in one action (144.3, 144.4), paying each token's own exhaust (144.2). Six Might lands the same turn it was made."
+      ],
+      "terminatesIn": "engine - two 3-Might Mechs that can walk the turn they are born, plus a Gold for next turn's Power, for one rainbow paid a turn early; nothing here scores",
+      "netPerIteration": "one turn of board-wide enter-ready for 0 Energy, converting two base-bound exhausted Mech tokens into six Might at a battlefield the same turn",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-07, issue #191 - uncited Core Rules sub-rules 500-899 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "811.2: 'Abilities and instructions of hidden cards other than the choices listed above function as normal.' 811.1.d: 'Some choices made while playing a card from Hidden are restricted to the battlefield where it was hidden. A card cannot be played from Hidden if it is a spell with no valid targets under these restrictions.' 811.1.d.1: 'A hidden permanent must be played to that battlefield.' 811.1.d.3: 'If a hidden spell or a play effect of a hidden permanent causes you to play a unit, you must choose to play that unit at that battlefield.' 811.3: 'Instead of being hidden, a card with Hidden may be played for its cost as normal, at its normal timing with no restrictions on targeting.' 811.6: 'A card that is Hidden gains Reaction while facedown or played from facedown, and may be played any time a card with Reaction may be played as a result.' 143.4: 'Units enter the Board exhausted.' 143.4.a: 'This can be altered by Accelerate or similar game effects.' 187.4: 'A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag.' 187.5: 'A Gold gear token is a domainless gear token with \"[Reaction][>] Kill this, [E]: [Add] [A].\"'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-07, issue #191, session rc-walk-fc, batch 2. 811.2, 811.3 and 811.6 were uncited by data/combos.json and data/synergies.json before this entry. A finding that belongs to an EXISTING entry rather than this one is recorded in the walk document: peak-guardian-stand-united-hidden-garrison-pump reasons the same split out of 811.1.d.2 by argument, and 811.2 is the paragraph that states it outright - with OGN-053 Stand United as its worked example, by name. That is a citation upgrade, not a second entry. Card text verbatim from data/corpus_flat.txt. No unruled reading."
     }
   ]
 }
