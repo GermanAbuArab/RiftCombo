@@ -27091,6 +27091,353 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 29). VEN-110 Mel, Defiant Soul was in ZERO entries. Of her 37 matrix partners, VEN-035 Sanction is the best on its own numbers and it is the only one that re-fires the trigger without a second body: 441.1.b forbids Empowering an already-Empowered object and 441.1.c makes the instruction a no-op, so the disempower half of Sanction's mode two is load-bearing rather than a drawback. Authored alongside kharox-sanction-burn rather than instead of it because the numbers differ on both sides — a discarded spell against 6 Energy + 2 Chaos Power, and a permanent banish against deck pressure that the existing entry's own terminatesIn says is 'not a kill'. Card text verbatim from data/corpus_flat.txt; 103.1.b.1, 103.1.b.4, 103.2.b, 108.6.c, 441.1.b/441.1.c, 441.2 and 808.1.d.1 opened and read. Ban check against data/legality.json reading bases as an array: neither VEN-110 nor VEN-035 is listed in either format, and neither is a Signature card. Trap check: no attack; no [Temporary]; no [Repeat]; no token of ours; no recall; the end-of-turn timing of the re-Empower is stated in a notable because a [Reaction] enabler makes it look like instant-speed removal and it is not. Depends on no unruled reading."
+    },
+    {
+      "id": "sprite-queen-dusk-rose-lab-shard-undoing",
+      "name": "Sprite Queen arms Shard of Undoing every turn instead of every other one, and Dusk Rose Lab charges the same scheduled death a card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-174",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order gear, E6. 'The first time a friendly unit dies during your Beginning Phase each turn, each opponent must kill one of their units.' The window is the Beginning Phase alone, which is why the feeder has to be a scheduled death and not a Main-Phase sacrifice."
+        },
+        {
+          "card": "UNL-084",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind unit, E7 P1 M6. 'When you play me or at the start of your Beginning Phase, play a ready 3 :rb_might: Sprite unit token with [Temporary] to your base. (Kill them at the start of their controller's next Beginning Phase, before scoring.)' One card, and it feeds the Shard for the rest of the game."
+        },
+        {
+          "card": "UNL-209",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield. 'At the start of your Beginning Phase, you may kill a unit you control here to draw 1. (This happens before scoring.)' It does not create the death the Shard needs — the [Temporary] would supply that anyway — it charges that death a card."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal",
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Order: Sprite Queen is mono-Mind and Shard of Undoing mono-Order (103.1.b.3 admits each on its own), so the legend must hold both, and the pool prints exactly four names — OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-201 Chem-Baroness and UNL-199 Deceiver. Dusk Rose Lab is colourless and constrains nothing.",
+          "Dusk Rose Lab is one of your three battlefields. 485.4.a: a player provides three and only 1 is used; 485.5 makes that 1 random in a Duel. 103.4.c and Tournament Rules 402.1 forbid bringing two copies of a battlefield name, so there is no way to raise the odds.",
+          "None of the three carries a [BANNED marker in data/corpus_flat.txt, and none is a Signature card, so no legend is forced by 103.2.d.2."
+        ],
+        "notable": [
+          "WHAT THIS BUYS OVER THE TWO SHARD ENTRIES ALREADY IN THE CATALOGUE, IN CARDS. sprite-fountain-shard-undoing-beginning-removal spends a Sprite Fountain (E2 + 1 Mind Power) per TWO turns — 'three Fountains played on a two-turn cadence cover six consecutive turns' — and shard-undoing-deceiver-reflection-removal spends a discard EVERY turn plus the legend's exhaust. Sprite Queen is ONE card that pays every turn for the rest of the game and costs nothing per turn; the Lab then adds a drawn card to the same death. Per-turn cost: zero cards, zero Energy, zero Power.",
+          "THE SPRITE IS BORN READY AND HAS TO WALK. Sprite Queen plays it 'to your base', so it is at the base, not at the Lab. 143.4 ('Units enter the Board exhausted') is overridden by the token's own printed 'ready' — 143.4.a says outright 'This can be altered by Accelerate or similar game effects' — so it can pay 144.2's exhaust and take the Standard Move to the Lab (144.4: base to battlefield) in the very Main Phase it was born.",
+          "THE SPRITE BORN THIS BEGINNING PHASE DOES NOT DIE THIS BEGINNING PHASE. 816.1.b is 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this', and 816.1.c pins the Trigger Condition as 'the controller of the permanent's Beginning Phase starting' — the condition was already checked when the Sprite entered, so it survives the turn and dies at the START of the NEXT Beginning Phase. That is what makes the schedule a steady state: one Sprite dies and one is born in the same window, every turn.",
+          "YOU ORDER THE THREE TRIGGERS, AND THE ORDER IS WHAT PAYS. At the start of your Beginning Phase three of your Triggered Abilities fire simultaneously: the Lab's 'you may kill a unit you control here', the standing Sprite's [Temporary] kill, and Sprite Queen's new Sprite. 383.3.d: 'If more than one Triggered Ability is Triggered simultaneously, then the player that controls the Abilities selects the order to place them on the Chain.' Put the Lab first: it eats the Sprite that 816.1.b was going to kill for nothing, and you draw 1. The [Temporary] trigger then finds its permanent already gone and does nothing.",
+          "THE SHARD FIRES ONCE, WHICHEVER DEATH GETS THERE FIRST. 383.3.e.1: 'Such a Triggered Ability will only be performed the specified number of times each turn.' 'The first time a friendly unit dies during your Beginning Phase each turn' is one execution a turn, so the Lab route and the [Temporary] route are alternatives, not a doubling — which is exactly why the Lab is worth a card and not a second kill.",
+          "THE OPPONENT PICKS WHICH OF THEIR UNITS DIES, AND [Deflect] NEVER CHARGES. 355.10.e: an object 'chosen in whole or in part by other players' is not a target, and its worked example is verbatim 'Each player kills a unit they control'. 809.1.c and 809.1.d charge only for spells and abilities that target or choose the Deflecting object. So the Shard is guaranteed, cheap removal of the opponent's WORST body — never of their best. Price it as attrition, not as an answer.",
+          "KILLING YOUR ONLY BODY AT THE LAB HANDS THE LAB BACK, BEFORE YOU HOLD IT. Same finding as dusk-rose-lab-leblanc-beginning-draw, reached with a shorter chain because a Sprite has no Deathknell: the death makes a Cleanup Outstanding (319.6, 'After any number of Game Objects enter or leave the Board'), the Shard's trigger holds the state Neutral Closed (310.2) so 323.6's 'if the turn is in an Open State' is false at that Cleanup; the Shard resolves, the Chain empties, 319.5 makes another Cleanup, and THAT one is Neutral Open (310.1) and strips 'control of any controlled Battlefields without their Units occupying them'. 315.2.b.2 then Holds only what you still control. So the Sprite is never a garrison — it dies in that window whether the Lab eats it or not — and if you want the Lab's point you need a second body standing there. That is a deckbuilding choice, not a requirement of the line.",
+          "BURN OUT IS THE ONLY CEILING ON THE DRAW. The Lab's card is a real draw, so 431.1.a applies: past the last card of the Main Deck the draw is a Burn Out and a point for the opponent (194.1.d). One card a turn on top of your Draw Phase is a two-cards-a-turn clock through a 39-card deck (103.2.a.1 puts the Chosen Champion in the Champion Zone before play), and the Lab's kill is a 'you may', so it can simply be declined once the deck is thin."
+        ]
+      },
+      "steps": [
+        "Bring Dusk Rose Lab as one of your three battlefields (485.4.a) and take control of it.",
+        "Play Shard of Undoing (E6) and Sprite Queen (E7 + 1 Mind Power). Sprite Queen's play trigger already gives you the first ready Sprite, at your base.",
+        "In that same Main Phase, Standard-Move the Sprite from your base to the Lab, paying its own exhaust (144.2, 144.4).",
+        "At the start of your next Beginning Phase three of your triggers fire at once. Order them with 383.3.d: the Lab's kill first.",
+        "The Lab kills the Sprite standing there; you draw 1. That death is the first friendly death of your Beginning Phase, so Shard of Undoing fires and each opponent must kill one of their own units (355.10.e — they choose).",
+        "Sprite Queen's other trigger resolves and a new ready Sprite appears at your base; 816.1.c keeps it alive through this turn.",
+        "Walk the new Sprite to the Lab in the Main Phase and repeat the whole schedule next turn, for no cards and no mana."
+      ],
+      "netPerIteration": "one forced enemy kill and one drawn card per turn, for zero cards, zero Energy and zero Power after setup",
+      "terminatesIn": "engine only — one forced enemy kill in each of your Beginning Phases (capped at one by 383.3.e.1) and one card, unbounded in turns; the ceilings are Burn Out on the draw (431.1.a) and the fact that the opponent chooses their own casualty (355.10.e). Nothing here scores, and the Sprite standing at the Lab is never a Hold garrison.",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Matrix families rows 19-47, second pass — issue #168 (GitHub)",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/168",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 28, friendly-dies x UNL-174). Card text verbatim from data/corpus_flat.txt. Citations opened in data/Riftbound-Core-Rules-2026-07-16.txt: 103.1.b.3, 103.2.a.1, 103.4.c, 143.4, 143.4.a, 144.2, 144.4, 194.1.d, 310.1, 310.2, 315.2.b.2, 319.5, 319.6, 323.6, 355.10.e, 383.3.d, 383.3.e.1, 431.1.a, 485.4.a, 485.5, 809.1.c, 809.1.d, 816.1.b, 816.1.c, plus Tournament Rules 402.1. WHAT THIS ADDS OVER THE TWO EXISTING SHARD ENTRIES: a feeder that costs nothing per turn instead of a card every two turns (Sprite Fountain) or a discard every turn (Deceiver), and a second payoff on the same scheduled death. Ban check: none of the three is banned or restricted. Trap check: 383.3.e.1 stops the Lab and the [Temporary] from being two Shard triggers; 355.10.e stops the removal being aimed; 323.6 stops the Lab being a Hold; 431.1.a is stated as the draw's ceiling; no Recall, no Repeat, no attack designation and no unruled reading."
+    },
+    {
+      "id": "viktor-leader-bottled-constellation-refund",
+      "name": "Viktor, Leader refunds the Constellation's fuel as Recruits — three real bodies buy two points instead of one",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-067",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Mind gear, E10 P2. 'At the start of your Main Phase, you may kill 3 other friendly units and/or gear to score 1 point.' The pool's only bodies-to-points converter that needs no battlefield."
+        },
+        {
+          "card": "OGN-246",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order unit, E4 P1 M4. 'When another non-Recruit unit you control dies, play a 1 :rb_might: Recruit unit token into your base.' One Recruit back for each non-Recruit UNIT the Constellation eats; gear pays nothing."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mind + Order: Bottled Constellation is mono-Mind and Viktor, Leader mono-Order, so the legend must hold both and the pool prints exactly four names — OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-201 Chem-Baroness and UNL-199 Deceiver (103.1.b.2).",
+          "Neither card is banned or restricted in either format, and neither is a Signature card, so no legend is forced by 103.2.d.2.",
+          "No battlefield is needed at all: the Constellation's point is a card-text point, so it lands with your whole board at the base."
+        ],
+        "notable": [
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Turn N: kill three of your own non-Recruit UNITS to the Constellation. You gain 1 point, and Viktor's trigger fires three separate times, so three 1-Might Recruit tokens appear in your base. Turn N+1: those three Recruits are exactly the Constellation's next meal — and Viktor pays nothing for them, because his clause reads 'another NON-RECRUIT unit'. So one batch of three real bodies is worth TWO points, not one. The refund is a single doubling, not a loop; there is no third turn.",
+          "GEAR IS NOT A UNIT AND PAYS NOTHING. The Constellation accepts 'units and/or gear', Viktor watches only units. Feeding it a spent gear (a Gold token, an emptied Seal) is legal and often right, but every gear in the batch costs you a Recruit and so costs you half a point on the next turn.",
+          "VIKTOR HAS TO SURVIVE AND MUST NOT BE ON THE MENU. His own text says 'another' — he never refunds himself — and the Constellation says 'other friendly units and/or gear', which only exempts the Constellation. Feeding Viktor to it ends the engine.",
+          "TOKENS ARE LEGAL FUEL, AND THAT IS THE ONE PLACE THE TOKEN RULES HELP RATHER THAN HURT. 185.2.b ('Token units have a Might') and 185.2.d ('Tokens have a type. They follow all rules for their type') make a Recruit a unit for the Constellation's count. The other half of the token rules still bites: 186.1 makes a killed Recruit cease to exist on reaching the trash, so nothing reanimates it and no 'recycle from your trash' line can reuse it (416.1 is defined over cards, 185).",
+          "THE POINT IS A GAIN, NOT A SCORE, WHICH IS WHY IT IS UNCONDITIONAL. R2 = A on issue #11: card-text 'score 1 point' is a point Gain by ability under 194.1.c ('Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more points'), not a 469 Score, so 470's once-per-battlefield cap never touches it and 471.1.a.1 ('points Gained from sources that are not Conquer are not beholden to these restrictions') keeps the Final Point clause off it. The eighth point can come from here.",
+          "THE ACTIVATION IS FREE AND LANDS AFTER THE POOL EMPTIES. 316.2 orders the Main Phase tasks, 316.3 is '1. Each player's Rune Pool empties' and 316.4 is '2. At the start of Main Phase game effects take place'. The Constellation's ability costs no Energy and no Power — the three bodies ARE the cost — so the empty pool is not a problem for it, unlike a Hold-window ability that needs mana.",
+          "PRICE THE WHOLE THING. The Constellation is E10 + 2 Mind Power and Viktor E4 + 1 Order Power, so the pair is 14 Energy and 3 Power of setup before a single point. What Viktor changes is the per-point body bill: 3 bodies a point becomes 1.5, and the Recruits are the cheapest bodies in the pool because they cost nothing at all.",
+          "THE RECRUITS ARE BORN AT THE BASE AND STAY THERE. 'Play a 1 Might Recruit unit token into your base' is a printed destination, so 355.2.a never comes up, and 143.4 makes them enter exhausted. They are fuel, not a board: a 1-Might Recruit that has to walk to a battlefield is a Flurry-of-Blades casualty (see ready-recruits-grand-plaza)."
+        ]
+      },
+      "steps": [
+        "Play Viktor, Leader (4 Energy + 1 Order Power) and Bottled Constellation (10 Energy + 2 Mind Power) on earlier turns; both must be on the board.",
+        "Fill the board with three non-Recruit units you are willing to spend — anything already spent works, since the Constellation asks only that they be friendly.",
+        "At the start of your Main Phase, take the Constellation's option: kill those three units, gain 1 point (194.1.c).",
+        "Viktor's trigger fires once per death (three times), each putting a 1 Might Recruit token into your base.",
+        "Next turn, at the start of your Main Phase, kill the three Recruits to the Constellation for a second point. Viktor's clause excludes Recruits, so nothing comes back this time.",
+        "Refill with non-Recruit bodies to run the cycle again; each batch of three is worth two points."
+      ],
+      "netPerIteration": "two points per three non-Recruit bodies, spread over two turns, instead of one",
+      "terminatesIn": "engine only — the Constellation caps at one point per turn and the refund is one extra point per batch of three, so the rate is bounded by how many non-Recruit bodies you can present; nothing here is unbounded and no loop exists, because a Recruit refunds nothing",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Rules readings R1-R33 — issue #11 (GitHub), R2 = A",
+          "kind": "agent",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/11",
+          "date": "2026-09-03"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 23, friendly-dies x OGN-246). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.d.2, 143.4, 185, 185.2.b, 185.2.d, 186.1, 194.1.c, 316.2, 316.3, 316.4, 355.2.a, 416.1, 469, 470, 471.1.a.1. Distinct from bottled-constellation-token-points, which pairs the Constellation with an external token faucet: here the Constellation's OWN kills are the faucet, through Viktor, and the finding is the exact ratio (three real bodies = two points, never three, because a Recruit refunds nothing). Distinct from viktor-leader-sprite-queen-free-bodies, which spends Viktor on board presence rather than on points. Ban check: neither card is banned or restricted. Trap check: gear feeds the Constellation but not Viktor; Viktor is excluded from his own trigger; the Recruits are units by 185.2.b/185.2.d but cease to exist in the trash by 186.1; the point is a 194.1.c Gain (R2 = A) so 470 and 471.1.a.1 do not restrict it; no Recall, no Repeat, no [Temporary], no unruled reading."
+    },
+    {
+      "id": "spectral-centaur-deathgrip-reaction-spike",
+      "name": "Deathgrip pays the Spectral Centaur twice for one death — the dying body's whole Might, plus the Centaur's own +2, at Reaction speed",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-068",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Mind unit, E6 M5. 'When another friendly unit dies, give me +2 :rb_might: this turn.' A continuous modifier, not a 702 buff, so nothing caps how many stack."
+        },
+        {
+          "card": "SFD-163",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Order spell, E2. '[Reaction] Kill a friendly unit. If you do, give +:rb_might: equal to its Might to another friendly unit this turn. Draw 1.' The only Order card that turns a friendly death into Might at Reaction speed, and it replaces itself."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Mind + Order: Spectral Centaur is mono-Mind and Deathgrip mono-Order, so the legend must hold both and the pool prints exactly four names — OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-201 Chem-Baroness and UNL-199 Deceiver (103.1.b.2).",
+          "Neither card is banned or restricted in either format, and neither is a Signature card, so 103.2.d.2 forces no legend.",
+          "You need a second friendly body worth spending. Any body works — the cheapest is one that was going to die anyway, such as a [Temporary] Sprite (816.1.b) on the turn it is scheduled to be killed."
+        ],
+        "notable": [
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Deathgrip on a friendly unit of Might X, pointed at the Centaur, is +X from the spell AND +2 from the Centaur's own trigger, because 'another friendly unit dies' is exactly what just happened. The Centaur ends the turn at 5 + X + 2. Eating a 5-Might body puts him at 12 for 2 Energy; eating a 3-Might Sprite that was going to die anyway puts him at 10 for 2 Energy and no real card. Three Deathgrips in one turn on the same Centaur are 5 + 6 + (X1+X2+X3).",
+          "BOTH BONUSES ARE CONTINUOUS MODIFIERS, WHICH IS WHY THEY STACK. 702.3 is 'There can only be one Buff on a Unit at a time' and 702.3.a says a second buff 'is not placed instead' — but neither of these is a Buff. '+N Might this turn' is a plain modifier and 702.3 never touches it, the same distinction the project drew for Lee Sin, Centered and for Soul Shepherd's static. So the Centaur is one of the few bodies in the pool whose Might genuinely adds up.",
+          "THE CENTAUR CAN NEVER BE THE FUEL. His clause reads 'another friendly unit dies' and Deathgrip's transfer reads 'another friendly unit', so the killed body is excluded from both. If the Centaur is your only other body, the line does not exist.",
+          "WHY [Reaction] IS THE WHOLE POINT. 813.1.c.1: on cards, Reaction is functionally short for 'This can be played during Closed States on any player's turn.' 465.2.c has each player assign 'an amount of damage equal to their summed Might', and the Might is read at assignment — so the spike is cast inside the opponent's combat, after they have committed, and it both raises the Centaur's contribution and makes him survive a bill that was lethal a moment earlier. On your own turn it does the mirror job on the attack.",
+          "IT REPLACES ITSELF BUT IT DOES NOT MAKE CARDS. Deathgrip draws 1, so the spell is card-neutral: -1 card played, +1 drawn, -1 body. Do not price this as card advantage; the product is Might at instant speed and a body converted into it.",
+          "NOTHING IN THIS IDENTITY TURNS THE MIGHT INTO POINTS. The excess-damage payoffs (OGN-034 Tryndamere's 'excess damage' threshold, R28 = A) are Fury, and Mind/Order has no Might-to-points converter at all — the finding of the #159 pass. So a 12-Might Centaur wins a combat and nothing more; classify it ENGINE and do not reach for BURST.",
+          "THE MIGHT EXPIRES. 317.2.c inserts '3d. All \"this turn\" effects expire simultaneously' into the end-of-turn Cleanup, so every point of this is gone by the opponent's turn — it has to be re-bought each time, and the copies are capped at three by 103.2.b."
+        ]
+      },
+      "steps": [
+        "Have Spectral Centaur (6 Energy) on the board with at least one other friendly unit beside him.",
+        "Wait for the window that matters: the opponent's Combat, after they have committed their attackers, or your own attack.",
+        "Play Deathgrip for 2 Energy at Reaction speed (813.1.c.1). Kill your other unit.",
+        "Deathgrip gives the Centaur +Might equal to the killed unit's Might this turn, and draws you 1.",
+        "The Centaur's own trigger sees 'another friendly unit dies' and gives him a further +2 this turn.",
+        "Assign combat damage with the raised Might (465.2.c). Everything expires at the end-of-turn Cleanup (317.2.c), so repeat next turn with another Deathgrip; three copies is the cap (103.2.b)."
+      ],
+      "netPerIteration": "+X+2 Might on the Centaur for one body and 2 Energy, at Reaction speed, and the card is replaced",
+      "terminatesIn": "engine only — three Deathgrips a game, each consumed, and every point of Might expires at the end-of-turn Cleanup (317.2.c); nothing in Mind/Order converts the Might into points",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 27, friendly-dies x UNL-068). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.2, 317.2.c, 465.2.c, 702.3, 702.3.a, 813.1.c.1, 816.1.b. Distinct from malzahar-wraith-centaur-sacrifice, whose feeder is Malzahar's exhaust-gated sacrifice on YOUR turn and whose product is 2 rainbow Power and a card: this line is Reaction speed, works inside the opponent's combat, and pays the killed body's WHOLE Might rather than a flat +2. Ban check: neither card is banned or restricted. Trap check: the Centaur is excluded from both 'another' clauses; the bonuses are continuous modifiers and not 702 buffs; the Might expires at 317.2.c; no Might-to-points converter exists in Mind/Order, so no BURST is claimed; no token, no Recall, no Repeat, no unruled reading."
+    },
+    {
+      "id": "altar-of-memories-overzealous-fan-off-turn-filter",
+      "name": "The Altar draws twice per round trip, because the Overzealous Fan dies on the OPPONENT's turn and the Awaken hands the exhaust back",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-169",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Order gear, E2. 'When a friendly unit dies, you may exhaust me to draw 1, then put a card from your hand on the top or bottom of your Main Deck.' The exhaust is what caps it, and the exhaust is refunded every Awaken."
+        },
+        {
+          "card": "SFD-128",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos unit, E2 M2. 'When I defend, you may kill me to move an attacking unit to its base.' A friendly death on the OPPONENT's turn that costs no card beyond the body itself, and buys a real defensive effect on the way out."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Chaos + Order, and the pool prints exactly ONE legend name holding both: VEN-155 / VEN-197 Heart of the Tempest (103.1.b.2). This is one of the three single-name domain pairs in the legend census, so the shell is forced.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "You must be defending at a battlefield with the Fan standing there — the Fan's trigger is 'When I defend', which needs the opponent to attack a battlefield you control (464.2.c.2)."
+        ],
+        "notable": [
+          "THE EXHAUST IS A BASE COST PAID AT FINALIZATION, NOT AT RESOLUTION. 383.3.b makes a cost written right after a Triggered Ability's opening 'you may' the ability's BASE COST, and 383.3.b.1 pays it to FINALIZE the trigger onto the Chain. So 'you may exhaust me to draw 1' requires the Altar to be READY at the instant the friendly unit dies. There is no window to ready it in response, and a second death in the same turn finds it exhausted.",
+          "WHICH IS WHY THE OFF-TURN DEATH IS THE WHOLE ENTRY. 315.1.b: 'The Turn Player readies all Game Objects they control that are able to be readied', and 415.3.a scopes that to YOUR Awakening Phase. So an Altar spent on the opponent's turn is ready again at your own Awaken, and a second friendly death on your turn is a second activation. One E2 gear, two activations per round trip — where every catalogued Altar line so far (trevor-altar-of-memories-beginning-draw) takes only the one on your own turn.",
+          "WHAT THE FAN COSTS AND WHAT IT BUYS ON THE WAY OUT. 'You may kill me to move an attacking unit to its base' — the kill is the price of the move, both inside the Fan's own defend trigger, so no spell is spent. The removed attacker is out of the combat before damage: 465.2.c has each player assign damage equal to their SUMMED Might, so pulling one attacker out lowers the bill by exactly that body's Might. It does not cancel the combat unless it was the only attacker (see janna-overzealous-empty-the-attack for the version that empties the whole attacking side).",
+          "THE ALTAR IS A FILTER, NOT CARD ADVANTAGE, AND THE ENTRY IS PRICED THAT WAY. 'Draw 1, then put a card from your hand on the top or bottom of your Main Deck' leaves your hand the same size. What you get is selection plus a known top card — which is why the 'on the top' half is worth more than the draw: it sets up the next Draw Phase (315.4.b) and any [Vision] or Predict line. Two activations a round trip is two sculpts, not two cards.",
+          "AND THAT IS WHY IT NEVER BURNS YOU OUT. 431.1.a is the Burn Out on drawing past the Main Deck; the Altar puts a card back before you would ever reach it, so the deck never shortens on its account. The Fan, being three copies, is the real ceiling: three off-turn activations a game.",
+          "TWO CLAUSES THAT DO NOT APPLY. The Fan's kill is not a Deathknell and no would-die replacement is involved, so 808.1.d.1 (a shield erasing a Deathknell) never comes up; and the Fan dies to its own instruction, so 355.10.e/f do not either — you choose, there is nothing to choose."
+        ]
+      },
+      "steps": [
+        "Play Altar of Memories (2 Energy) and put Overzealous Fans at the battlefields you control (2 Energy each).",
+        "On the opponent's turn they attack a battlefield where a Fan stands; the Fan's 'When I defend' trigger goes on the Chain.",
+        "Take the option: kill the Fan and move one attacking unit to its base, lowering the attackers' summed Might by that body's Might (465.2.c).",
+        "The Fan's death is a friendly death, so the Altar triggers. Pay its base cost — exhaust the Altar (383.3.b, 383.3.b.1) — and draw 1, then put a card from hand on top of your Main Deck.",
+        "At your own Awakening Phase the Altar is readied (315.1.b, 415.3.a).",
+        "Any friendly death on your own turn is the Altar's second activation of the round trip; draw and sculpt again.",
+        "Repeat for as long as you have Fans; three copies is the cap (103.2.b)."
+      ],
+      "netPerIteration": "two Altar sculpts per round trip instead of one, plus one attacker removed from a combat, for 2 Energy per Fan and no spell",
+      "terminatesIn": "engine only — three Overzealous Fans a game, each consumed, and the Altar is capped at one activation per player turn by its own exhaust (383.3.b) and the Awaken (415.3.a). Nothing here draws you ahead on cards and nothing here scores.",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 26, friendly-dies x SFD-169). Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 315.1.b, 315.4.b, 355.10.e, 355.10.f, 383.3.b, 383.3.b.1, 415.3.a, 431.1.a, 464.2.c.2, 465.2.c, 808.1.d.1. Distinct from trevor-altar-of-memories-beginning-draw (a scheduled death in YOUR Beginning Phase, one activation a turn) — the finding here is that the Altar's exhaust is a per-PLAYER-TURN cap, not a per-round-trip one, so a death on the opponent's turn is a free second activation; and from janna-overzealous-empty-the-attack, which spends the Fan on emptying the whole attacking side rather than on the Altar. Legend census: Chaos/Order has exactly one legend NAME (Heart of the Tempest, VEN-155 / VEN-197), stated in prerequisites.easy. Ban check: neither card is banned or restricted. Trap check: the Altar is a filter and the entry says so rather than claiming card advantage; the exhaust is a finalization cost, so no ready-in-response trick exists; the Fan's removal does not cancel the combat; no token, no Recall, no Repeat, no unruled reading."
+    },
+    {
+      "id": "viktor-leader-safety-inspector-symmetric-kill",
+      "name": "Safety Inspector's symmetric kill is one-sided under Viktor, Leader — and the Recruit makes the 3 XP redundant",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-164",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order unit, E5 P1 M3. 'You may spend 3 XP as an additional cost to play me. When you play me, each player must kill one of their units. If you paid my additional cost, you don't kill a unit this way.'"
+        },
+        {
+          "card": "OGN-246",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order unit, E4 P1 M4. 'When another non-Recruit unit you control dies, play a 1 :rb_might: Recruit unit token into your base.' He refunds the half of the Inspector's effect that hurts you."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Any Order legend: both cards are mono-Order, so 103.1.b.1 admits them under every legend carrying Order, and the pool prints seventeen such legend names. Neither card is a Signature card, so 103.2.d.2 forces nothing.",
+          "Neither card is banned or restricted in either format.",
+          "Viktor must already be on the board and must not be the unit you kill — his clause reads 'another'."
+        ],
+        "notable": [
+          "THE OPPONENT CHOOSES THEIR OWN CASUALTY, AND [Deflect] NEVER CHARGES. 355.10.e: an object 'chosen in whole or in part by other players' is not a target, and the worked example is verbatim 'Each player kills a unit they control'. 355.10.f says the same for anything a player 'must' complete. So 809.1.c / 809.1.d never impose their Power tax and no targeting restriction applies — but the opponent picks their WORST body. Price this as attrition against a thin board, not as removal.",
+          "WHAT VIKTOR CHANGES: THE 3 XP BECOMES SPARE. The Inspector's own escape hatch is 'You may spend 3 XP as an additional cost… If you paid my additional cost, you don't kill a unit this way'. Under Viktor you do not want that hatch: let the symmetric kill happen, feed it a non-Recruit unit, and Viktor puts a 1-Might Recruit back in your base. The XP stays banked for another sink. And 730.2 makes spending XP a real reduction — the #116 finding that paying XP switches your own [Level] abilities off — so NOT paying it is worth more than the body it saves.",
+          "THE TWO HALVES ARE ALTERNATIVES, NOT COMPLEMENTS. If you do pay the 3 XP, no friendly unit dies, so Viktor's trigger never fires and there is no Recruit. The line is: pay XP and keep the body, or keep the XP and trade the body for a Recruit. It can never do both.",
+          "ARITHMETIC WITH THE QUANTITIES DECLARED. Each Inspector is 5 Energy + 1 Order Power and puts a 3-Might body on your board, removes one enemy body of the opponent's choosing, and converts one of your non-Recruit bodies into a 1-Might Recruit token in your base. Three copies is three such exchanges (103.2.b). Against an opponent with exactly one unit it is genuine removal; against a wide board it is their smallest token.",
+          "FEED IT SOMETHING THAT WAS ALREADY DYING. The cheapest friendly casualty is a body under a death sentence — a [Temporary] permanent on its scheduled turn (816.1.b) is not available, because the Inspector's kill happens in your Main Phase and the [Temporary] fires in the Beginning Phase before it. A spent body that has already moved and attacked is the honest answer, and it comes back as a Recruit.",
+          "THE RECRUIT IS BORN AT THE BASE AND ENTERS EXHAUSTED. 'Play a 1 :rb_might: Recruit unit token into your base' is a printed destination, so 355.2.a never comes up, and 143.4 makes it enter exhausted; it is next turn's fuel or next turn's walker, never this turn's.",
+          "A RECRUIT REFUNDS NOTHING. Viktor's clause is 'another NON-RECRUIT unit', so a second Inspector fed the Recruit the first one made produces no Recruit. The refund does not chain."
+        ]
+      },
+      "steps": [
+        "Play Viktor, Leader (4 Energy + 1 Order Power) and let him settle on the board.",
+        "Play Safety Inspector for 5 Energy + 1 Order Power WITHOUT paying the 3 XP additional cost.",
+        "Its play trigger resolves: each player must kill one of their units (355.10.e — each of you chooses your own).",
+        "Kill a non-Recruit unit of yours that has already done its work; the opponent kills whichever of theirs they like least.",
+        "Viktor's trigger fires and puts a 1 Might Recruit token into your base.",
+        "You are left with the Inspector's 3-Might body, a Recruit, and one fewer enemy unit, with the 3 XP still banked. Repeat with the second and third copies (103.2.b)."
+      ],
+      "netPerIteration": "one enemy body of the opponent's choosing removed and a 3 Might body played, for 5 Energy + 1 Order Power and a spent body that returns as a Recruit",
+      "terminatesIn": "engine only — three Safety Inspectors a game, each consumed, and the refund never chains because Viktor excludes Recruits; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 23, friendly-dies x OGN-246, second partner). UNL-164 Safety Inspector was in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 103.2.b, 103.2.d.2, 143.4, 355.2.a, 355.10.e, 355.10.f, 730.2, 809.1.c, 809.1.d, 816.1.b. Distinct from viktor-leader-sprite-queen-free-bodies (a scheduled token death every turn, free bodies) and from viktor-leader-bottled-constellation-refund (the refund halving a point's body bill): here the death is the cost of a REMOVAL spell-on-a-body, and the finding is that Viktor makes the Inspector's own 3 XP escape hatch the worse of the two options. Ban check: neither card is banned or restricted. Trap check: the opponent chooses their casualty (355.10.e), so this is attrition and not aimed removal, and it is stated in the first notable; the XP half and the Viktor half are mutually exclusive; the refund does not chain; no token recursion is claimed (186.1); no Recall, no Repeat, no unruled reading."
     }
   ]
 }
