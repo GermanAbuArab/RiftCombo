@@ -123,19 +123,22 @@ describe("what the distance changes", () => {
   });
 
   it("points the empty near-miss state at the control's new home", async () => {
-    // The mono-Fury fixture is the thin one — 0 near misses at 1 card today. The catalogue grows every
-    // day, so the distance that empties it is looked for rather than assumed; if none of the three does
-    // any more, this fixture has outgrown the state the sentence is written for and needs replacing.
-    $<HTMLTextAreaElement>("#deck-input").value = file("test/fixtures/fury.txt");
-    $<HTMLFormElement>("#deck-form").dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
-    await settle();
-    await setView("suggestions");
+    // A deck with NO near misses is what the sentence is written for, and no fixture list has one any
+    // more: the catalogue grew past every fixture at every distance on 2026-09-07. A list that is only
+    // a legend is the thinnest deck there is -- at distance 1 its near misses are exactly the
+    // one-card, one-copy entries inside that legend's identity -- so the legend is searched for
+    // rather than assumed, and the test fails loudly only if every identity in the pool has one.
+    const legends = JSON.parse(file("data/cards.json")).cards.filter((c: { type: string[] }) => c.type.includes("legend"));
     let empty: string | null = null;
-    for (const d of ["1", "2", "3"]) {
-      await setDistance(d);
-      if (chips() === 0) { empty = d; break; }
+    for (const l of legends as { name: string; base: string }[]) {
+      $<HTMLTextAreaElement>("#deck-input").value = `Legend\n1 ${l.name} (${l.base})\n`;
+      $<HTMLFormElement>("#deck-form").dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+      await settle();
+      await setView("suggestions");
+      await setDistance("1");
+      if (chips() === 0) { empty = "1"; break; }
     }
-    expect(empty, "fury.txt now has a near miss at every distance — pick a thinner fixture").not.toBeNull();
+    expect(empty, "every legend has a one-copy, one-card entry within 1 card -- the empty state needs a different deck").not.toBeNull();
     const body = $("#empty .empty-body").textContent ?? "";
     expect(body).toContain(`within ${empty} card${empty === "1" ? "" : "s"} of this list`);
     expect(body).toContain("beside the view switch above");
