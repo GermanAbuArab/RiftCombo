@@ -42543,6 +42543,558 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-07, issue #173, session rc-walk-fc. OGN-179 Acceptable Losses and VEN-102 Ravenbloom Prefect were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 055, 055.1, 103.1.b.1, 103.2.b, 108.6.c, 185.2.d, 355.10.e, 383.3.b, 383.3.b.1, 809.1.c opened in the Core Rules file. The 'only symmetric gear kill' claim was swept over the whole corpus and its members are named (OGN-179 and OGN-209 Cull the Weak are the only two 'each player kills' rows); NOTE for the next reader that a sweep written as `kills? ... gear` is required — a regex on the singular `kill` misses this card entirely, which is how it stayed out of the project's earlier gear-removal inventory. No unruled reading; R26 is cited as already ruled and the entry stands either way."
+    },
+    {
+      "id": "combat-chef-hexdrinker-weaponmaster-deflect",
+      "name": "821.1.c is longer than the reminder text - Weaponmaster reactivates an Inactive Rules Text, and activates no ability at all",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-092",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body unit, E5 M5. '[Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for :rb_rune_rainbow: less, even if it's already attached.)' No Power in its cost, which makes it the cheapest way in Body to move a one-rune Equipment for free."
+        },
+        {
+          "card": "SFD-102",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Body Equipment, E2 M+1. '[Equip] :rb_rune_body: ... [Effect] [Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.)' A one-rune Equip cost, so Weaponmaster reduces it to nothing - and carrier-independent, which is the other half of what Weaponmaster needs."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "The Hexdrinker already on the board, attached or not. 821.1.c.4 is why a gear with no Equip cost cannot be moved this way at all."
+        ],
+        "notable": [
+          "THE KEYWORD'S FULL TEXT, WHICH THE REMINDER LEAVES OUT, AND WHICH IS CITED HERE FOR THE FIRST TIME IN THIS CATALOGUE. 821.1.c: 'Weaponmaster is functionally short for: \"When you play me, you may choose a Card you control with the Equipment tag. NECESSARY PORTIONS OF ITS RULES TEXT ARE NO LONGER INACTIVE IF THEY ARE CURRENTLY INACTIVE. Pay the cost of its Equip ability, reduced by [A], to attach it to this unit.\"' That middle sentence is the whole mechanism behind 'even if it's already attached': 434.1.e and 718.2 make an attached card's printed Rules Text Inactive, which would otherwise hide the [Equip] ability the keyword needs to price.",
+          "AND THE PARAGRAPH THAT TAKES TWO PAYOFFS AWAY. 821.1.c.6: 'The Equip ability IS NOT ACTIVATED this way, and the unit with the Weaponmaster ability IS NOT CHOSEN.' So a Weaponmaster attach fires no 'when you use an activated ability of a gear' payoff, and no 'when you choose me' payoff on the carrier - which a normal [Equip] would, since 818.1.b.1 makes its choice a Target. Anyone pricing Weaponmaster as a free activation of the gear's ability is pricing something the rules explicitly deny.",
+          "THREE MORE CLAUSES THAT BOUND IT. 821.1.c.2: the Equip cost 'is determined as though that Equip ability was being activated choosing the unit with the Weaponmaster ability, as modulated by any abilities that alter Equip costs.' 821.1.c.3: 'If the chosen card's Equip cost does not contain [A], it can still be paid, but will not be reduced' - so an Energy-only Equip gets nothing from the keyword. 821.1.c.4: 'If the chosen card doesn't have an Equip cost, it can't be paid', and 821.1.c.5 leaves it attached to whatever it was on. 821.1.c.7: multiple instances trigger separately and may choose different targets.",
+          "WHICH EQUIPMENT IT ACTUALLY FREES. Measured over the corpus in the sibling walk on issue #180: every [Equip] cost in the pool that contains Energy ALSO contains a rune, and 29 Equipment carry a one-rune cost - those are the ones 'one rainbow less' takes to nothing. And because the keyword attaches 'to ME', it only pays on Equipment whose text does not depend on which body carries it: SFD-102 Hexdrinker qualifies (its [Effect] grants [Deflect] to whatever carries it), while a copy-the-carrier Equipment never does.",
+          "AND THE 'ME' IN THE HEXDRINKER'S TEXT IS THE CARRIER, NOT THE GEAR. 136.2.b makes Effect Text Inactive unless attached, 136.2.c appends it to the Top-Most Card's Rules Text, and 053.1 with 136.2.d makes 'I'/'me' in appended Effect Text the CARRIER while 'this' and the gear's own name stay with the gear - Riot's worked examples are Guardian Angel and Brutalizer. So '[Deflect] ... to choose me' protects the Combat Chef.",
+          "STEALING IT BACK IS A DETACH, NOT A SECOND ATTACH. 434.1.f: 'Attaching a card to a new Top-Most Card will cause it to Detach from the card to which it is currently Attached', and 434.1.g makes attaching to the CURRENT host a no-op - so the Chef can take the Hexdrinker off another of your bodies but can never 'refresh' it on a body that already has it.",
+          "THE LEDGER. 5 Energy for the Chef and 2 for the Hexdrinker, once; the attach itself is free every time a Chef is played (three copies, 103.2.b). The result is a 6 Might body ([Deflect]) for 7 Energy and no Power at all.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And [Deflect] answers only effects that CHOOSE - 355.10.d lets every programmatically-selected sweeper through."
+        ]
+      },
+      "steps": [
+        "Play Hexdrinker (2 Energy) at some point; it may already be attached to another of your units.",
+        "Play Combat Chef (5 Energy). Its [Weaponmaster] trigger fires on the play (821.1.a, 821.1.b).",
+        "Choose the Hexdrinker. 821.1.c reactivates the necessary portions of its Rules Text even though 434.1.e had made them Inactive while attached.",
+        "Its Equip cost is one Body rune; 'reduced by [A]' takes it to nothing (821.1.c.2, 821.1.c.3). 434.1.f detaches it from its previous host and attaches it to the Chef.",
+        "The Chef is now Might 6 with [Deflect] - 136.2.c appended the Effect Text to his Rules Text and 053.1 with 136.2.d make its 'me' him.",
+        "Expect nothing else to fire: 821.1.c.6 says the Equip ability was not activated and the Chef was not chosen."
+      ],
+      "netPerIteration": "one free attach of a one-rune Equipment per Combat Chef played, taken off any of your bodies",
+      "terminatesIn": "engine only - one free attach per Chef, three by 103.2.b, and only on Equipment whose text does not depend on its carrier; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 3)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 3). The first entry to use SFD-092 Combat Chef. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 053.1, 103.1.b.3, 103.2.b, 136.2.b, 136.2.c, 136.2.d, 355.10.d, 434.1.e, 434.1.f, 434.1.g, 469, 718.2, 818.1.b.1, 821.1.a, 821.1.b, 821.1.c, 821.1.c.2, 821.1.c.3, 821.1.c.4, 821.1.c.5, 821.1.c.6, 821.1.c.7. FIRST CITES IN THIS CATALOGUE: 821.1.c, 821.1.c.1, 821.1.c.2, 821.1.c.3 (0 prior hits each). 821.1.c.6 is the load-bearing one and it takes value AWAY: the Equip ability is not activated and the Weaponmaster unit is not chosen, so neither a gear-ability payoff nor a 'when you choose me' payoff fires. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "mobilize-grumpy-rockbear-rune-count",
+      "name": "An exhausted rune is Power now and Energy next turn - and it still counts as a rune you control",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-134",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E2. 'Channel 1 rune exhausted. If you can't, draw 1.' The only channel card in the pool with a printed fallback, so it is never a dead draw once the Rune Deck is empty."
+        },
+        {
+          "card": "VEN-050",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 M4. '[Empower] :rb_energy_12:. This ability costs :rb_energy_1: less for each rune you control. [Empowered][>] I have [Deflect] and [Shield 3].' The payoff that reads runes CONTROLLED rather than mana available."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Body + Mind. Mobilize is mono-Body and Grumpy Rockbear mono-Mind (103.1.b.3), so 103.1.b.2 needs a legend covering both - and the census prints exactly ONE such name: VEN-149 / VEN-194 Defender of Tomorrow. There is no second Body/Mind legend in the pool, so this is a forced shell.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "12 runes is the ceiling: 161.2.a fixes the Rune Deck at 'Exactly 12 Rune cards'."
+        ],
+        "notable": [
+          "WHY A RUNE CHANNELLED EXHAUSTED IS NOT A DEAD RUNE. 164.2 gives every Basic Rune two abilities and only 164.2.a costs the rune's own exhaust; 164.2.b's cost is the RECYCLE, so an already-exhausted rune still pays 1 Power of its domain at [Reaction] speed the moment it arrives. 415.3.a then readies it in your own Awakening Phase, which is where its ENERGY shows up. 430.2.a is the default the card overrides - 'runes are channeled readied' unless the effect says exhausted.",
+          "AND WHY THE PAYOFF DOES NOT CARE. Grumpy Rockbear reads 'for each rune you CONTROL', not each rune you can tap. An exhausted rune is a rune you control, so Mobilize's channel lands the full 1 Energy of discount the same turn it is cast - which is exactly the reasoning that reopened OGN-288 Startipped Peak in the sibling walk on issue #170 after two sessions had refused it on mana grounds.",
+          "A CHANNEL PAYOFF IS A REFILL, NOT A RAMP - AND THIS ONE HAS A FALLBACK. 161.2.a fixes the Rune Deck at exactly 12; 315.3.b channels 2 free every Channel Phase; 430.3 channels 'as many as possible' when the deck is short; 161.2.b sends a recycled rune back to the Rune Deck rather than the Main Deck. So Mobilize moves you along the curve by one rune and stops paying once twelve are out - at which point 'If you can't, draw 1' makes it a cantrip instead of a blank. It is the only channel card in the pool that writes its own failure case.",
+          "THE ARITHMETIC. The Rockbear's [Empower] starts at 12 Energy and 356.6 floors it at 0, so twelve runes controlled make it free and each rune short costs 1 Energy. A deck that channels its two per turn (315.3.b) reaches 12 around turn 6; three Mobilizes (103.2.b) bring that forward by three turns' worth of a single rune each, and every one of those runes is also 1 Power immediately (164.2.b) and 1 Energy from your next Awakening.",
+          "WHAT THE EMPOWER BUYS. [Deflect] and [Shield 3] on a 4 Might body: 809.1.c taxes any spell or ability that chooses him by a rainbow, 814.1.c makes the [Shield] '+3 :rb_might: while I am a defender' (so he is a 7 on defence and a 4 on your own turn - the same designation-conditional Might this walk records twice elsewhere), and 441.2 makes the state permanent.",
+          "THE SIBLING ENTRY, NAMED. startipped-peak-rune-count-empower reaches the same payoff through a battlefield's Hold trigger, which is free but slow and subject to 485.5's random selection of one of your three battlefields. This is the active version: 2 Energy from hand, on the turn you choose, with a cantrip when it is no longer needed.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold and neither card touches either."
+        ]
+      },
+      "steps": [
+        "Play Mobilize (2 Energy). It channels 1 rune exhausted - 430.2.a's default is readied, and this card overrides it.",
+        "That rune is immediately worth 1 Power of its domain at [Reaction] speed, because 164.2.b's cost is the recycle and not an exhaust; from your next Awakening (415.3.a) it is also 1 Energy.",
+        "It counts toward 'runes you control' at once, so Grumpy Rockbear's [Empower] is 1 Energy cheaper from this moment.",
+        "Repeat with the second and third copies (103.2.b), and let 315.3.b's two per Channel Phase do the rest.",
+        "Once twelve runes are out (161.2.a) the channel cannot happen and Mobilize draws 1 instead - the only channel card in the pool that says so on itself.",
+        "Empower the Rockbear when the discount has caught up: 356.6 floors the cost at 0 and 441.2 makes [Deflect] and [Shield 3] permanent."
+      ],
+      "netPerIteration": "one rune ahead of the curve per Mobilize, worth 1 Power immediately, 1 Energy from the next Awakening, and 1 Energy off the Rockbear's Empower",
+      "terminatesIn": "engine only - three Mobilizes by 103.2.b against a Rune Deck of exactly 12 (161.2.a), after which the card is a 2-Energy cantrip; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 3)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 3). The first entry to use OGN-134 Mobilize. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.2, 103.1.b.3, 103.2.b, 161.2.a, 161.2.b, 164.2, 164.2.a, 164.2.b, 315.3.b, 356.6, 415.3.a, 430.2.a, 430.3, 441.2, 469, 485.5, 809.1.c, 814.1.c. The legend line is a ONE-NAME field: Defender of Tomorrow is the only Body/Mind legend in the census, which is exactly the failure class test/legend-lines.test.ts was built for. Distinct from startipped-peak-rune-count-empower, which reaches the same payoff through a battlefield Hold; both entries name each other. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "gentlemens-duel-onslaught-challenge-ceiling",
+      "name": "The mutual-damage family's ceiling is whatever you pumped first - and Onslaught pays that twice from one card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGS-008",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E6 P1. '[Action] ... Give a friendly unit +3 :rb_might: this turn. Then choose an enemy unit. They deal damage equal to their Mights to each other.' The only member of the family that pumps and then fights with the SAME card, in that order."
+        },
+        {
+          "card": "VEN-081",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E4. 'Give a unit +6 :rb_might: this turn. [Flow] :rb_energy_4: (You may play this from your trash for its Flow cost. Then banish it.)' The biggest pump in the domain, and the only one that is playable twice."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A friendly unit worth pumping and an enemy unit worth killing. Both halves choose, so a [Deflect] body taxes each of them separately (809.1.c)."
+        ],
+        "notable": [
+          "WHY THE ORDER INSIDE ONE CARD MATTERS. Gentlemen's Duel reads 'Give a friendly unit +3 :rb_might: this turn. THEN choose an enemy unit.' The pump resolves before the exchange, so the +3 is inside the fight. Every other member of the family fights at printed Might unless a separate card was spent first, which is what makes this one the natural home for a stacked pump.",
+          "417.6.b.3 IS WHAT THE WHOLE FAMILY STANDS ON, AND ITS WORKED EXAMPLE IS CHALLENGE. 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it.' So this is UNIT damage: 815.1.b and 815.1.c.2 scope [Tank] to 'the Combat Damage step' and never touch it, and a blanket spell-and-ability fog leaves it working. The cost is 417.6.b.4 - the controller of the ENEMY unit is responsible for their half, and their 'when you deal damage' triggers fire.",
+          "AND THE CEILING IS ARITHMETIC, NOT A RULE. 143.2.a kills a unit when marked damage reaches its Might, and there is no minimum-lethal cap here (465.2.c.4 is a combat-assignment rule), so the exchange simply compares two numbers. A Might-6 body carrying Onslaught's +6 and the Duel's own +3 fights at 15 - above every printed Might in the pool - while taking back only the target's Might. Without a pump the same 6 Energy + 1 Power kills a 9 at best and dies to anything above 6.",
+          "[FLOW] IS SIX PLAYS A GAME AND NOT AN ENGINE. 829.1.b: 'You may play this from your trash for its flow cost. Then banish it', and 829.1.b.1 makes that banish a delayed replacement. With 103.2.b's three copies that is six Onslaughts in a game and no more, since 108.6.c keeps a banished card out of play. The second play costs the same 4 Energy as the first, which is unusually flat for the keyword.",
+          "THE TIMING SPLIT INSIDE THE PAIR. Gentlemen's Duel is [Action] (806.1.c.1: 'This can be played during showdowns on any player's turn'), so it can be held until a combat has opened; Onslaught carries no keyword at all, so 155 - 'A spell can be played during an Open State outside of Showdowns on its controller's turn' - confines it to your own Main Phase. The pump has to be committed BEFORE the fight, which is the honest cost of the biggest number in the domain.",
+          "THE LEDGER, WITH THE QUANTITIES DECLARED. Onslaught 4 Energy for +6; Gentlemen's Duel 6 Energy + 1 Power for +3 and the exchange. Ten Energy and one Power removes any single unit in the pool and leaves your body alive unless the target's Might exceeds the pumped total. Six Onslaughts and three Duels a game.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And 417.6.c keeps every point of the exchange out of the excess-damage family, so none of this feeds a Tryndamere."
+        ]
+      },
+      "steps": [
+        "In your Main Phase, play Onslaught (4 Energy) on the body you intend to fight with: +6 Might this turn. 155 is why this cannot wait for a showdown.",
+        "Play Gentlemen's Duel (6 Energy + 1 Power) under its [Action] permission. Its own +3 resolves first, so the body fights at printed Might + 9.",
+        "Choose the enemy unit. 417.6.b.3 makes both halves UNIT damage, so a [Tank] in that garrison orders nothing and a spell-damage fog does not stop it.",
+        "Both bodies take damage equal to the other's Might; 143.2.a kills whichever reaches its own Might. Expect the opponent's 'when you deal damage' triggers to fire for their half (417.6.b.4).",
+        "Later in the game, replay Onslaught from your trash for its [Flow] cost of 4 Energy; 829.1.b banishes it afterwards, so each copy is worth exactly two plays."
+      ],
+      "netPerIteration": "one enemy unit of up to printed Might + 9 removed, for 10 Energy and 1 Power, with the friendly body surviving anything smaller",
+      "terminatesIn": "engine only - three Duels and six Onslaught plays a game (103.2.b with [Flow]), and the exchange is mutual so a bad choice loses the friendly body; nothing here scores and 417.6.c keeps it out of the excess-damage family",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 3)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 3). The first entry to use OGS-008 Gentlemen's Duel or VEN-081 Onslaught. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 108.6.c, 143.2.a, 155, 417.6.b.3, 417.6.b.4, 417.6.c, 465.2.c.4, 469, 806.1.c.1, 809.1.c, 815.1.b, 815.1.c.2, 829.1.b, 829.1.b.1. Companion to carnivorous-snapvine-rampage-tank-bypass from batch 1: that entry establishes the family and this one prices its ceiling, and the two name each other. The timing split is stated because it is the trap - the biggest pump in the domain has no keyword and 155 confines it to the Main Phase, so it must be committed before the garrison is known. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "nilah-targonian-visionary-move-xp-ladder",
+      "name": "The only XP faucet in the pool that needs no battlefield - Nilah is paid for moving, and [Ganking] is what she moves with",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-115",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E3 P1 M4. '[Accelerate] (You may pay :rb_energy_1::rb_rune_body: as an additional cost to have me enter ready.) [Ganking] (I can move from battlefield to battlefield.) When I move, gain 1 XP.' The faucet, the movement that feeds it, and the way to start it on the turn she lands - all on one card."
+        },
+        {
+          "card": "UNL-098",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E6 M6. '[Level 11][>] I have +4 :rb_might:. (While you have 11+ XP, get the effect.)' The domain's deepest [Level] rung and its biggest body: a 10 Might unit for 6 Energy once the ladder is climbed."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "A deck that never SPENDS XP: 824.1.d switches the [Level 11] off the instant the counter drops below eleven."
+        ],
+        "notable": [
+          "EVERY OTHER XP FAUCET IN THE POOL IS PAID BY A BATTLEFIELD. [Hunt] is 823.1.c.1 - 'When I Conquer or Hold, my controller gains X XP' - so it needs a battlefield you hold, and UNL-095 Grim Resolve needs a combat won outright under 466.3.a. Nilah is paid for MOVING: her XP arrives in your own Main Phase, on a board where you hold nothing and win nothing, which is exactly the position a [Level] deck is in while it is still climbing.",
+          "AND [GANKING] IS WHAT KEEPS HER MOVING. 144.4 confines the Standard Move to base and battlefield without it; 144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.' 810.1.c.3 is the limit and it caps the faucet exactly: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move' - so Nilah is ONE XP a turn, not more, however many destinations exist. 415.3.a readies her each Awakening, which is what makes it every turn.",
+          "[ACCELERATE] STARTS THE CLOCK A TURN EARLY. 805.1.a: 'Accelerate is functionally short for \"As you play me, you may pay [1][C] as an additional cost. If [you do], I enter ready\"', with 805.1.a.1 letting the Power be her own domain. 143.4 otherwise makes units enter exhausted and 144.2 makes that exhaust the Standard Move's cost - so 1 Energy + 1 Body Power buys the first XP on the turn she is played.",
+          "THE LADDER, PRICED HONESTLY. Three Nilahs are 3 XP a turn, so eleven is four turns of a full board; one Nilah alone is eleven turns and is not a plan. The domain's other faucets shorten it - UNL-095 Grim Resolve 2 per combat won, UNL-092 Demacian Diplomat 1 on play, UNL-094 Gemhand Hunter 1 per Hold - and this entry is the one that keeps paying when none of those conditions is available.",
+          "WHAT ELEVEN XP BUYS HERE, AND WHAT IT COSTS. Targonian Visionary is a 6 Energy 6 Might body that becomes a 10 - the biggest printed body the domain can field for that price - and 824.1.d makes it a STATE, not a purchase: every copy drawn later is a 10 as well, for as long as the counter holds. 730.2 is the whole risk: any spend at all takes it back to 6.",
+          "THE THIRD SHAPE OF XP CLAUSE, AND IT IS NOT ON THIS CARD. wily-newtfish-gemhand-hunter-xp-turn (batch 1) reads 'gained XP this turn' and is indifferent to spending; concentrate-grim-resolve-level-ladder (batch 2) and this entry read thresholds and are not. Nilah's faucet feeds all three, which is why she is the engine slot rather than the payoff.",
+          "WHAT IT IS NOT. Nothing here scores. Nilah's move can take a battlefield, but that is 466.5's Conquer and not either card's text; 469 defines Scoring as Conquer or Hold and neither card touches either."
+        ]
+      },
+      "steps": [
+        "Play Nilah, Joyful Ascetic (3 Energy + 1 Power) and pay [Accelerate]'s 1 Energy + 1 Body Power so she enters ready (805.1.a, overriding 143.4).",
+        "Move her the same turn, paying 144.2's exhaust: 'When I move, gain 1 XP.' The faucet is running on turn one.",
+        "Every turn afterwards, 415.3.a readies her at your Awakening and 144.4.c.1 lets her Standard Move go battlefield to battlefield - one XP per turn per Nilah, and 810.1.c.3 is why it is not more.",
+        "Add the second and third copies (103.2.b) for 3 XP a turn.",
+        "At eleven, every Targonian Visionary you control or later draw is a 10 Might body (824.1.d keeps the Dependent Ability Active while the counter holds).",
+        "Never spend the XP: 730.2 reduces the counter and the rung goes dark immediately."
+      ],
+      "netPerIteration": "1 XP per Nilah per turn, paid by her own Standard Move and needing no battlefield and no combat",
+      "terminatesIn": "engine only - one XP per Nilah per turn (810.1.c.3 caps it at one move), three of each card by 103.2.b, and the [Level 11] payoff evaporates the moment anything spends the counter; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 3)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 3). The first entry to use UNL-115 Nilah, Joyful Ascetic or UNL-098 Targonian Visionary. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.4, 144.2, 144.4, 144.4.c.1, 415.3.a, 466.5, 469, 730.2, 805.1.a, 805.1.a.1, 810.1.c.3, 823.1.c.1, 824.1.d. Nilah's corpus row is longer than a truncated read suggests - 'When I move, gain 1 XP' is the third clause after [Accelerate] and [Ganking], and it is what makes her an engine rather than a body; read the whole row. Completes the XP set for this walk: a per-turn-gain payoff (batch 1), two threshold payoffs (batch 2 and here), and the one faucet that needs neither a battlefield nor a won combat. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "disposal-order-trash-denial",
+      "name": "416.1.c is why a symmetric-looking recycle is one-sided - and the second mode is why the card is never dead",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-103",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E2. '[Reaction] ... Choose one - Choose up to 3 cards from opponents' trashes. Their owners recycle them. Draw 1.' Modal, so it is never a dead card; and the first mode reaches only the opponent."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Not banned or restricted in either format, and not a Signature card.",
+          "Nothing else. The second mode makes it castable on an empty board against an empty trash."
+        ],
+        "notable": [
+          "416.1.c IS WHY THE FIRST MODE IS ONE-SIDED. 'Each player Recycles cards to their own Main Deck and Rune Deck, regardless of which player is instructed to perform the Recycle action.' The card says 'from OPPONENTS' trashes' and 'their owners recycle them', so the cards go back into the opponent's deck and yours is untouched - and, read the other way, this spell can never fire your own 'when you recycle' payoffs, which is the trap the sibling walk on issue #169 recorded for OGN-235 Karma, Channeler: Disposal Order appears on her partner list and fires her never.",
+          "WHAT IT ACTUALLY DENIES. 416.1 with 416.1.a puts recycled cards on the BOTTOM of the corresponding deck, so three cards leave the trash and are effectively gone for the rest of a normal game. That is aimed at three families the pool prints: the 47 'from your trash' lines, reanimation, and [Flow] - 829.1.b is 'You may play this from your trash for its flow cost. Then banish it', so a [Flow] card recycled away can never be replayed, and 108.6.c means a banished one never comes back either way.",
+          "AND WHAT IT CANNOT DO. It never mills, so it never triggers 431.1.b's Burn Out; and 431.2.b ('a Burn Out recycles the whole trash into the Main Deck') means an opponent who burns out undoes this by themselves. Against a deck with no trash payoff, mode one is blank - which is exactly why mode two exists.",
+          "THE PROPERTY WORTH A SLOT: IT IS UNCONDITIONALLY CASTABLE. 'Choose one - ... - Draw 1' means there is no board state in which this spell cannot be played, and 355.3 makes the mode a choice at the Make Relevant Choices step of playing the card. That is the exact property the cross-audit on issue #166 found missing in a spell chosen as filler for a 'you've played a spell this turn' condition, where a targeting spell had no legal target and the whole line evaporated. Filler must be unconditionally castable, and in Body this is the card that is.",
+          "AND IT IS [REACTION], WHICH IS WHERE THE DENIAL LIVES. 813.1.c.1: 'This can be played during Closed States on any player's turn', and 813.1.b grants Reaction every permission of Action. So the recycle can answer a reanimation spell already on the Chain by removing the body it means to return - the target is chosen when that spell resolves, so timing matters, but a [Flow] replay announced from the trash can be answered by recycling a different key card, and a 'return a unit from your trash' effect can be answered before it picks.",
+          "WHY IT IS A SINGLE-CARD ENTRY. Nothing in the pool makes it better - it is not a recycle you can chain, it fires none of your own triggers (416.1.c), and its second mode is a cantrip. Its value is the modality itself, which is a property of the card and not of a pairing.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold."
+        ]
+      },
+      "steps": [
+        "Hold Disposal Order (2 Energy) until the opponent commits to their trash - a reanimation spell, a [Flow] replay, or a 'from your trash' payoff.",
+        "Play it as a [Reaction] in the Closed State that spell opens (813.1.c.1) and choose mode one.",
+        "Choose up to 3 cards from their trash. 416.1.c sends them to THEIR own Main Deck or Rune Deck, and 416.1.a puts them on the bottom.",
+        "If they never build a trash, choose mode two instead and draw a card - the card is never dead, which is the whole reason to run it.",
+        "Note that this fires none of your own 'when you recycle' triggers: the recycling is done by their owners, to their own decks (416.1.c)."
+      ],
+      "netPerIteration": "up to three cards removed from an opponent's trash to the bottom of their deck, or one card drawn",
+      "terminatesIn": "engine only - three copies by 103.2.b, and mode one is blank against a deck with no trash payoff (which is what mode two is for); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 3)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 3). The first entry to use UNL-103 Disposal Order. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 108.6.c, 355.3, 416.1, 416.1.a, 416.1.c, 431.1.b, 431.2.b, 469, 813.1.b, 813.1.c.1, 829.1.b. A single-card entry on the precedent of sinister-poro-attack-evacuate and azir-sovereign-token-gather: nothing in the pool improves it, and its value is a property of the card. It carries the 416.1.c note in BOTH directions - the recycle is one-sided in your favour, and it fires none of your own 'when you recycle' triggers, which is why the #169 walk removed it from OGN-235 Karma, Channeler's partner list. Ban check: not banned or restricted, not a Signature card. No unruled reading."
+    },
+    {
+      "id": "pakaa-cub-determined-sentry-hidden-anchor",
+      "name": "A hide lasts only for as long as you control the battlefield - so the cheapest body in the domain is what keeps it there",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-135",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body unit, E3 M3. '[Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.)' No other text at all - which is the point: 811.1.d.2 restricts the targets of a hidden card's play effects, and a body with no play effect has nothing to restrict."
+        },
+        {
+          "card": "UNL-111",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E1 M1. 'I can't move to base.' The cheapest body in the domain, and the only one whose printed drawback is exactly the behaviour a hide needs from its host battlefield."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "All cards are mono-Body (the battlefield, where one is used, is Colorless), so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "One battlefield you control per hidden card: 811.1.b says 'at a battlefield you control that doesn't already have a facedown card hidden there', and 485.4 puts two on a Duel table."
+        ],
+        "notable": [
+          "THE CLAUSE THE REMINDER TEXT LEAVES OUT, AND IT IS THE ENTRY. 811.1.b in full: 'While this card is in your hand or in your Champion Zone on your turn during an Open State, you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there FOR AS LONG AS YOU CONTROL THAT BATTLEFIELD. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' The hide is conditional on continued Control, and the card on the table says none of that.",
+          "AND 323.6 IS HOW CONTROL IS LOST WITHOUT A FIGHT. 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' So walking your garrison off a battlefield to attack somewhere else costs you the hide as well as the battlefield - which is a cost nobody prices, because nothing on the hidden card mentions it.",
+          "WHICH IS WHY A BODY THAT CANNOT LEAVE IS WORTH ONE ENERGY. 144.4 confines the Standard Move to base and battlefield without [Ganking], so a unit that 'can't move to base' and has no [Ganking] has nowhere to go: the Determined Sentry can never voluntarily leave, and 323.6 therefore never fires while it stands. One Energy for a permanent hide slot.",
+          "THE HONEST GAP IN THAT ANCHOR. 456.3: 'A Recall cannot be prevented by actions and Game Effects that restrict or block Movement.' So a recall sends the Sentry home whatever its text says - but the two that matter do not reach it here: 466.1.a.2 recalls ATTACKERS when Defenders remain, and the Sentry is a defender at a battlefield you control; and 323.7's Cleanup recall is for unattached gear and runes, not units. Removal by kill or banish is the real answer to it, and 1 Energy is a fair price to make the opponent spend a card.",
+          "WHAT THE CUB ACTUALLY COSTS. One rainbow Power to hide, and 'ignoring its base cost' to play - so a 3 Might body for 1 Power in total, against 3 Energy paid from hand. 811.1.d.1 puts it at that battlefield, and the tail of 811.1.b gives it [Reaction], which 813.1.c.1 reads as 'This can be played during Closed States on any player's turn': it arrives inside the opponent's attack.",
+          "AND IT IS IN THAT DAMAGE STEP. 319.6 runs after Game Objects enter the Board and 323.2.a says 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now.' 143.4's entering exhausted costs nothing, because neither 464.2.c.3 nor 465.2.b filters by state.",
+          "WHY A VANILLA BODY IS THE RIGHT THING TO HIDE. 811.1.d.2 confines the targets of a hidden card's play effects to the battlefield it was hidden at, and 811.1.d makes a hidden spell unplayable if it has no valid targets under that restriction. A body with no play effect at all is immune to both - the Pakaa Cub is never a dead facedown, which a hidden trick can be.",
+          "THE CEILING. One facedown per battlefield (811.1.b) and two battlefields in a Duel (485.4), so at most two hidden cards are live at once however many the deck holds; 103.2.b caps each card at three.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold and neither card touches either."
+        ]
+      },
+      "steps": [
+        "Walk a Determined Sentry (1 Energy) to a battlefield you control. 144.4 gives it no legal destination afterwards, so it stays.",
+        "On your turn in an Open State, pay 1 rainbow Power to hide a Pakaa Cub facedown there (811.1.b).",
+        "323.6 cannot strip your Control while the Sentry occupies the battlefield, so the hide survives your attacks elsewhere.",
+        "From the next turn the Cub has [Reaction] and costs nothing to play (the tail of 811.1.b, with 813.1.c.1).",
+        "Play it inside the opponent's attack: 811.1.d.1 puts it at that battlefield, and 319.6 with 323.2.a give it the Defender designation before 465.2 resolves.",
+        "Repeat at your second battlefield - 811.1.b allows one facedown per battlefield and 485.4 gives you two."
+      ],
+      "netPerIteration": "one 3 Might body deployed at Reaction speed for 1 Power in total, on a hide the opponent has to spend removal to break",
+      "terminatesIn": "engine only - two live hides at a time (811.1.b + 485.4), three of each card by 103.2.b; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 4)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 4). The first entry to use OGN-135 Pakaa Cub or UNL-111 Determined Sentry. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.4, 144.4, 319.6, 323.2.a, 323.6, 323.7, 456.3, 464.2.c.3, 465.2.b, 466.1.a.2, 469, 485.4, 811.1.b, 811.1.d, 811.1.d.1, 811.1.d.2, 813.1.c.1. The load-bearing find is the tail of 811.1.b - 'for as long as you control that battlefield' - which makes a hide a Control-dependent investment, a cost no hidden card prints. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "buhru-captain-kinkou-initiate-modal-cantrips",
+      "name": "The Captain's buff mode is what turns the Initiate's draw on a turn earlier",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-091",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body unit, E3 P1 M3. 'When you play me, you may draw 1 or buff me.' The choice is made when the trigger resolves, and the buff mode is worth +1 Might permanently (703) rather than one card."
+        },
+        {
+          "card": "UNL-097",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body unit, E3 M3. 'When you play me, draw 1 if your OTHER units have total Might 5 or more.' Read on execution (359.3.f.2), so anything played earlier the same turn counts and the Initiate itself never does."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All cards are mono-Body (the battlefield, where one is used, is Colorless), so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "Five Might among your OTHER units when the Initiate's trigger executes. Two bodies of 3 and 2, or one buffed Buhru Captain at 4 plus any 1 Might body, both clear it."
+        ],
+        "notable": [
+          "THE THRESHOLD IS READ ON EXECUTION, NOT ON PLAY. 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction' - its worked examples are Yasuo, Remorseful's attack trigger reading 'here' and his current Might. So the Initiate's 'total Might 5 or more' is the board as its trigger resolves, and a body played earlier in the same turn counts. The word 'OTHER' is what keeps its own 3 Might out of the sum.",
+          "AND THE CAPTAIN'S TWO MODES ARE NOT INTERCHANGEABLE HERE. 'Draw 1' is one card now; 'buff me' is 703's '+1 :rb_might: to a Unit', permanently, taking the Captain from 3 to 4. On the turn you are one Might short of the Initiate's threshold, the buff mode IS the draw - it turns the Initiate's own card on - and on any other turn it is not. That is the whole interaction, and it is a choice made at resolution rather than a deckbuilding one.",
+          "702.3 IS WHY THE BUFF IS A ONE-TIME PLACEMENT. 'There can only be one Buff on a Unit at a time', with 702.3.a: a second buff on a buffed unit 'is not placed instead'. So a Buhru Captain that chose the buff cannot be buffed again by anything, and the +1 is permanent unless something SPENDS it (702.2.b) - which in Body means OGN-146 Wallop or OGN-153 Overt Operation, both of which would take the Initiate's threshold back down.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Two Buhru Captains (3 Energy + 1 Power each) both taking the buff are 4 + 4 = 8 Might among 'other units', which clears the threshold with room to lose a body. One Captain at 4 plus a 1 Might body (UNL-111 Determined Sentry, 1 Energy) is exactly 5. Three of each card by 103.2.b: at most three Initiate draws and three Captain draws in a game, and the two modes cannot both be taken on one Captain.",
+          "WHY THIS IS AN ENGINE AND NOT A TRICK. Neither card does anything at instant speed - both are play triggers on units, so 143.4 has them enter exhausted and they are Main Phase plays - and neither reads a battlefield. What they produce is cards, which is the resource a Body curve is normally short of, and the entry exists to state the sequencing: Captains first, Initiate second, on the same turn if the Energy allows.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the Initiate's draw is conditional, so it is not filler in the sense the cross-audit on issue #166 required - UNL-103 Disposal Order is Body's unconditionally-castable card, not this one."
+        ]
+      },
+      "steps": [
+        "Play Buhru Captain (3 Energy + 1 Power). Choose 'buff me' when the trigger resolves if you intend to play the Initiate soon; choose 'draw 1' otherwise.",
+        "The buffed Captain is Might 4 (703), and 702.3 means nothing can add a second buff to it.",
+        "Play a second Buhru Captain, or any 1 Might body such as a Determined Sentry, so your OTHER units total 5 or more.",
+        "Play Kinkou Initiate (3 Energy). Its trigger reads the board on execution (359.3.f.2) and draws 1.",
+        "Repeat up to three times each (103.2.b); the Initiate never counts itself, so the first one played on an empty board draws nothing."
+      ],
+      "netPerIteration": "one card per Kinkou Initiate once the threshold is met, plus one card or one permanent +1 Might per Buhru Captain",
+      "terminatesIn": "engine only - three of each card by 103.2.b, and the Captain's two modes are exclusive per copy; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 4)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 4). The first entry to use SFD-091 Buhru Captain or UNL-097 Kinkou Initiate. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.4, 359.3.f.2, 469, 702.2.b, 702.3, 702.3.a, 703. A deliberately small entry: two cheap bodies whose only interaction is that one's optional buff clears the other's printed threshold, stated with the arithmetic rather than dressed up. It names UNL-103 Disposal Order as the domain's unconditionally-castable card so that this one is not mistaken for filler. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+    },
+    {
+      "id": "legion-marauder-risen-altar-free-empower",
+      "name": "The pool's only either-or Empower cost meets the only either-or Empower discount, and they cancel exactly",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-074",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Body unit, E2 M2. '[Empower] - :rb_energy_1: or :rb_rune_body: (Pay either cost: Empower me. Use only if not Empowered.) [Empowered][>] I have +1 :rb_might:.' Swept over every [Empower] cost in the pool: the only disjunctive one."
+        },
+        {
+          "card": "VEN-163",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. '[Empower] costs of your units here cost :rb_energy_1: or :rb_rune_rainbow: less.' The only battlefield in the pool that discounts [Empower] costs, and its rebate is disjunctive too."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Legion Marauder is mono-Body and Risen Altar is Colorless, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
+          "Neither card is banned or restricted in either format, and neither is a Signature card.",
+          "The battlefield is not guaranteed: 485.4.a has each player provide three and 485.5 selects randomly, and 103.4.c forbids a second copy of the same name. State it in any list that depends on the Altar.",
+          "And it must be a battlefield you CONTROL with the unit standing there. 190.1 makes a battlefield you provide start uncontrolled, and 190.6.d ignores every instruction of an uncontrolled battlefield's abilities that refers to 'you'."
+        ],
+        "notable": [
+          "TWO DISJUNCTIONS THAT LINE UP, AND BOTH WERE SWEPT. `grep -in \"\\[Empower\\]\" data/corpus_flat.txt | grep -i \" or \"` returns fourteen rows; thirteen match on reminder text, and exactly ONE prints a disjunctive COST - VEN-074's ':rb_energy_1: or :rb_rune_body: (Pay either cost)'. The same grep is what surfaces VEN-163 Risen Altar, whose rebate is the mirror image: ':rb_energy_1: or :rb_rune_rainbow: less'. Whichever half of the Marauder's cost you elect, the Altar's matching half cancels it, and 356.6 ('Energy and Power costs can't be reduced below 0') holds it at zero rather than owing anything back.",
+          "WHY THE DISJUNCTION IS WORTH MORE THAN THE ONE ENERGY. 167 empties every player's Rune Pool at the start of each Main Phase, so what you actually have late in a turn is whichever of Energy or Power you did not spend. A cost that accepts either is payable on a turn a fixed cost is not - which is the whole practical difference on a 1-Energy ability, and it is the reason to notice the wording at all.",
+          "WHAT THE EMPOWER IS FOR, HONESTLY. The Marauder's own [Empowered] clause is '+1 :rb_might:' and that is not worth a card. What the free payment buys is the EVENT: 441.2.a, 'When a Game Object becomes Empowered as a result of the Empower game action, that is an event that can similarly be referenced by game effects and abilities.' Every 'when you empower something' payoff in the pool reads that event, and this is the cheapest way to produce one - free, at the Altar.",
+          "AND THE CEILING IS ALREADY ON RECORD, SO THIS IS A RATE AND NOT A MOTOR. 441.1.b: 'An Empowered Game Object can not be Empowered', with 441.1.c ('nothing additional happens') and 441.2 making the state permanent. So each Marauder is ONE event and three copies are three; the catalogued matriarch-of-war-empower-ready refused exactly this card as an engine for that reason - 'both are one Empower per copy, six in a whole game, which is not a motor' - and that verdict stands. Making the payment free changes the price of the events, never their number.",
+          "THE OTHER HALF OF WHAT A FREE EMPOWER BUYS, IN THIS DOMAIN. VEN-072 Guttural Roar gives a unit '+2 :rb_might: this turn. If IT'S [Empowered], give it +4 :rb_might: this turn instead' - 053.2 makes that condition read the TARGET - so an Empowered Marauder is a 3 Might body that takes +4 from a 2-Energy spell. That pairing is walked as guttural-roar-tools-of-empire-brutal-hunter on the expensive body; this entry is the cheap one, and the two name each other.",
+          "DISTINCT FROM THE CATALOGUED ALTAR ENTRY. risen-altar-ambessa-empower-power-rebate takes a POWER off VEN-136's two-rune [Empower] cost, where the rebate is worth a domain rune. Here the rebate meets a cost that is already a choice, and the point is that the two disjunctions match term for term - a different fact about the same battlefield.",
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold and neither card touches either."
+        ]
+      },
+      "steps": [
+        "Take control of the Risen Altar - 190.1 makes a battlefield you provide start uncontrolled, so this means walking a body in and establishing Control (466.5).",
+        "Play Legion Marauder (2 Energy) and move it to the Altar; the Altar's text reads 'your units HERE'.",
+        "Activate its [Empower]. Elect either half of the cost, and the Altar's matching half reduces it to nothing (356.6 floors it at 0).",
+        "441.2.a makes that a 'becomes Empowered' EVENT for anything in the deck that reads one, and 441.2 makes the Marauder's +1 Might permanent.",
+        "Repeat with the second and third copies (103.2.b). 441.1.b means each body is one event and no more."
+      ],
+      "netPerIteration": "one free Empower event per Legion Marauder standing at the Altar, in whichever currency you have left",
+      "terminatesIn": "engine only - one Empower per body (441.1.b), three copies by 103.2.b, and the battlefield itself is one of three selected at random (485.5); nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
+          "kind": "riot",
+          "date": "2026-09-07"
+        },
+        {
+          "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-body.md, batch 4)",
+          "kind": "manual-walk",
+          "date": "2026-09-07"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-07 (issue #186, batch 4). The first entry to use VEN-074 Legion Marauder. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 103.4.c, 167, 190.1, 190.6.d, 356.6, 441.1.b, 441.1.c, 441.2, 441.2.a, 466.5, 469, 485.4.a, 485.5. UNIQUENESS SWEPT, NOT ASSUMED: the disjunctive [Empower] cost is one card and the disjunctive [Empower] discount is one battlefield, both from the same grep, and the grep is written into the notable. The entry states the standing refusal rather than working around it: matriarch-of-war-empower-ready already refused this card as a motor, and a free payment changes the price of the events and not their number. Distinct from risen-altar-ambessa-empower-power-rebate, which is about a Power rebate on a two-rune cost. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
     }
   ]
 }
