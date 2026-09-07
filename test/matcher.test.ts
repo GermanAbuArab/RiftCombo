@@ -83,8 +83,12 @@ describe("matcher", () => {
     // The fixture holds 2 Red Brambleback and its legend, Relentless Storm, is Fury/Body — so the
     // 2026-09-05 equipment walk put a second line in reach: boneshiver-brambleback-channel wants
     // those same 2 Bramblebacks plus 2 Boneshiver, which is exactly the default ceiling of 2.
-    expect(ids(r.almostIncluded)).toEqual(["boneshiver-brambleback-channel"]);
-    expect(r.almostIncluded[0]!.missing).toEqual([{ card: "SFD-118", quantity: 2 }]);
+    // Asserted by membership, not as the whole list: this fixture keeps acquiring near misses as
+    // the catalogue grows (2026-09-07: relentless-storm-ambush-mighty-off-turn-channel, which the
+    // fixture's own legend heads), and pinning the list makes every walk break an unrelated test.
+    expect(ids(r.almostIncluded)).toContain("boneshiver-brambleback-channel");
+    const bone = r.almostIncluded.find((h) => h.variant.id === "boneshiver-brambleback-channel")!;
+    expect(bone.missing).toEqual([{ card: "SFD-118", quantity: 2 }]);
     // Tryndamere is 3 away: since the 2026-09-04 BURST audit corrected that line to 2 Tryndamere +
     // 3 Brambleback the shortfall is 3, outside the default ceiling — so widen it to see that one.
     const r3 = matchDeck(deck, variants, cards, { format: "constructed", maxMissing: 3 });
