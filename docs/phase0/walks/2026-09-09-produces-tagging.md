@@ -1,0 +1,144 @@
+# Tagging the untagged ENGINEs — issue #157
+
+Lane `rc-produces`, 2026-09-09. Scope: every entry in `data/combos.json` carrying no `produces`.
+
+## 1. The measurement, and how the issue's own number moved
+
+Measured 2026-09-09 against `data/combos.json` at 714 entries: **102 entries carry no `produces`,
+and every one of them is class ENGINE.** Re-measured before reporting, one merge later at 715
+entries: still exactly 102, so the entry another lane added arrived tagged. The count of entries is
+the perishable half of this walk and the rule under each tag is the durable half; every count here
+is as of 2026-09-09. The issue title says 60 of 245; it was written on a smaller
+catalogue and the count has grown with it. Nothing else in the file is untagged — no INFINITE, no
+BURST, no CHAIN, no ALT_WIN.
+
+Vocabulary in use on the same date, produced / consumed:
+
+| feature | producers | consumers |
+|---|---|---|
+| `resource-engine` | 172 | 1 |
+| `repeatable-removal` | 137 | 0 |
+| `card-advantage-engine` | 123 | 0 |
+| `token-body-engine` | 58 | 6 |
+| `conquer-engine` | 55 | 10 |
+| `ability-points` | 49 | 0 |
+| `win-the-game` | 27 | 0 |
+| `burst-points` | 27 | 0 |
+| `strip-opponent-hand` | 8 | 0 |
+| `infinite-energy` | 7 | 16 |
+| `temporary-body-engine` | 7 | 0 |
+| `infinite-power` | 5 | 11 |
+| `opponent-deck-pressure` | 3 | 0 |
+| `infinite-recycle` | 1 | 2 |
+
+## 2. Three structural facts measured before classifying anything
+
+**(a) `needs` is a hard gate; `produces` is not.** `generateVariants` (`src/combos.ts:84-86`):
+`if (options.length === 0 || depth >= maxDepth) return []` — an entry whose `needs` names a value
+nothing produces emits **zero variants** and disappears from the deck panel entirely. Measured over
+the 714: **no orphan `needs` exists today.** The reverse — a `produces` nothing consumes — holds for
+**8 of the 14 values**, including the three biggest, and `data/features.json` says in its own notes
+that this is by design: *"A feature with no consumer is NOT a defect when the feature IS the payoff:
+points, wins and removal are outputs of the graph, never inputs to it."* So step 4 of this lane's
+brief returns: **one real finding (the 8 output-only values, all legitimate), no defect.**
+
+**(b) An entry that both `needs` X and `produces` X satisfies its own need with no feeder.** In
+`expand()`, `partials` starts as `[self]` with `self.produces = new Set(combo.produces)`, and the
+loop over `combo.needs` short-circuits on `if (p.produces.has(need)) { next.push(p); continue; }`.
+Reproduced on a two-entry fixture: entry A needing and producing `token-body-engine` emits the single
+variant `A`, and the feeder B is never merged in. **Measured over the catalogue: 0 entries have that
+overlap today**, and four of the 102 carry a `needs` that a careless tag would collide with —
+`karma-lux-recycle-buff-army` and `sett-kingpin-karma-army-might-wall` (both need
+`token-body-engine`), `royal-entourage-grandmaster-warmogs-two-conquers` and
+`adaptatron-treasure-hoard-conquer-buff-faucet` (both need `conquer-engine`). Neither of the first
+two may be tagged `token-body-engine`, however plainly they make bodies: each genuinely requires an
+external loop, and the tag would publish it as a complete line without one.
+
+**(c) `produces` is read by the UI, not only by the composer.** `web/main.ts:900` renders the
+drawer's **Payoff** pills from `produces` filtered to STANDALONE features, `web/main.ts:425` and
+`:731` name a route's outcome from it, and `web/graph.ts:100` / `:238` build the diagram's outcome
+nodes and `kind: "result"` edges the same way. **An untagged ENGINE therefore has no Payoff section
+in the drawer and no outcome edge in the diagram** — which is a larger user-visible cost than the
+lost composition, and it is the same cost for all 102 whether or not anything ever `needs` the value.
+
+`validateCombos` (`src/combos.ts:18-20`) errors on any `produces` id absent from
+`data/features.json`, so **no new value can be staged before the registry entry exists**.
+
+## 3. Classification against the existing vocabulary first
+
+**12 of the 102 fit the existing vocabulary outright** (staged as batch 1,
+`/tmp/rc-walks/rc-produces.json`):
+
+| entry | produces | why |
+|---|---|---|
+| `nocturne-stacked-deck-cheat` | `card-advantage-engine` | `OGN-183 Stacked Deck`: *"Look at the top 3 cards of your Main Deck. Put 1 into your hand and recycle the rest"* — a card into hand, which is the feature's own wording |
+| `apprentice-mage-sanction-empower-reset` | `card-advantage-engine` | two `[Predict 2]`s per Sanction; deck sculpting, on the precedent of `candlelit-sanctum-known-next-draw` |
+| `otterpus-ol-poro-early-game-concession` | `card-advantage-engine` | every early Conquer or Hold converted to a card |
+| `heedless-resurrection-legion-rearguard-accelerated-return` | `card-advantage-engine` | return from the trash, named in the feature's description |
+| `battering-ram-undying-legion-cards-played` | `card-advantage-engine`, `resource-engine` | trash recursion plus a Might-5 body for 1 Energy |
+| `ornns-forge-jax-free-equipment` | `resource-engine` | one E1 Equipment played and attached for zero Energy per turn; `attach-engine` was merged into `resource-engine` in 2026-09-06 |
+| `jaull-fish-garen-rugged-mighty-discount` | `resource-engine` | 2 Energy off per Mighty body |
+| `legion-quartermaster-cloth-armor-bounce-value` | `resource-engine` | the mandatory additional cost refunded for 1 Energy |
+| `pickpocket-seal-of-focus-cheap-gear-kill` | `repeatable-removal`, `resource-engine` | one cheap enemy gear removed and one Gold gained |
+| `possession-action-defender-flip` | `repeatable-removal` | `OGN-203 Possession`: *"Take control of it and recall it"* — the body leaves their board for good |
+| `viktor-leader-safety-inspector-symmetric-kill` | `repeatable-removal` | `UNL-164 Safety Inspector`: *"each player must kill one of their units"*, one-sided under Viktor |
+| `frozen-fortress-soul-shepherd-asymmetric-sweep` | `repeatable-removal` | `UNL-212 Frozen Fortress`: *"deal 1 to each unit here"* twice a round, one-sided under Soul Shepherd |
+
+**Two of those twelve were nearly mis-tagged, and the reason is worth keeping.**
+`viktor-leader-safety-inspector-symmetric-kill` makes a Recruit and
+`stalking-wolf-bird-ambush` consumes one, and neither is `token-body-engine`: that value composes
+into `ready-recruits-grand-plaza`, which needs seven bodies standing at the Hold, and three Recruits
+across a whole game is not that. The payoff-lens walk of 2026-09-06 §V states the hazard in its own
+terms — *"a feeder that cannot reach a Hold would publish a false ALT_WIN"* — and it applies to
+`token-body-engine` and `conquer-engine`, the only two of the fourteen with real consumer counts.
+`SFD-128 Overzealous Fan` was the third near-miss: it reads *"you may kill me to **move** an
+attacking unit to its base"*, which removes nothing from the board and so is not
+`repeatable-removal`.
+
+## 4. The residue: 90 of the 102 fit nothing in the current vocabulary
+
+Assigned by hand from each entry's own `netPerIteration` and `terminatesIn`, then counted by script;
+all 102 are accounted for with no entry unassigned and none double-counted against an existing tag.
+
+| proposed value | entries | what it denotes |
+|---|---|---|
+| `combat-might` | 34 | Might bought onto your own bodies — 702 buffs, granted `[Assault]` (807.2), Empower purchases, doublers, `+N this turn` modifiers. The payoff is winning combats and feeding a "becomes Mighty" (709) or excess-damage (R28) reader |
+| `board-protection` | 22 | your key permanent survives what would remove it — would-die replacements, `[Tank]` tolls (815.1.c.2), granted `[Shield]` (814.2), Prevent (437.4), untargetability, granted `[Deflect]` (809.2) |
+| `tempo-denial` | 22 | the opponent does less on their own turn — counters, play locks, spell taxes, stuns, movement locks, a frozen score, rune denial |
+| `unit-delivery` | 13 | a body reaches a battlefield it could not otherwise reach, or reaches one a turn early — `[Ambush]`, effect moves (449 + 420.3.a), granted `[Ganking]`, plays into an opened combat |
+| `xp-engine` | 5 | repeatable XP for a `[Level N]` rung (824.1.d), which no card in the pool converts to points |
+
+Six entries carry two of the new names: `radiant-dawn-stun-buff-free-glory`,
+`sett-kingpin-karma-army-might-wall`, `irelia-fervent-forgotten-signpost-choose`,
+`whiteflame-last-stand-zhonyas-double-might`, `deadbloom-predator-primal-strength-attacker`,
+`the-boss-showstopper-redeploy`. Two more earn an existing tag alongside a new one:
+`altar-of-memories-overzealous-fan-off-turn-filter` (+ `card-advantage-engine`) and
+`monch-skyward-strike-stun-discount` (+ `resource-engine`).
+
+### Does each new name earn its place?
+
+`data/features.json` sets two tests and a ceiling: *"Keep this list under ~20 entries"*, **one name
+per thing**, and *"keep two names when a consumer could tell them apart"*. Five new values take the
+registry from 14 to **19** — under the ceiling, with almost no headroom left, which is itself a cost
+worth naming.
+
+- **`unit-delivery` is the only one of the five that is a genuine graph INPUT.** `token-body-engine`
+  makes bodies at the base (355.2.a), and the bottleneck of every token line is the walk to the
+  battlefield, not the token count; a Plaza or Hold entry could honestly declare `needs:
+  unit-delivery` where today it declares nothing.
+- **`xp-engine` is the second**: a `[Level N]` payoff needs a faucet and 824.1.d drops the rung the
+  instant the balance falls, so a consumer is straightforward to write.
+- **`combat-might`, `board-protection` and `tempo-denial` are output-only**, and the registry's own
+  note admits that shape. `combat-might` has a plausible consumer in the excess-damage family
+  (`OGN-034 Tryndamere` is paid for attacking Might never assigned, R28 = A). For the other two the
+  honest position is that they are payoffs shown to the user, not inputs: CLAUDE.md already records
+  that *"Brynhir's lockout window is its own entry, not a `uses[]` of the loop it protects: adding it
+  would force the matcher to require it"* — and a `needs: tempo-denial` on a BURST would force
+  exactly the same requirement, so these two should be tagged and **never consumed**.
+
+Nothing in the residue produces repeatable Conquers, so none of the 90 is a `conquer-engine`.
+
+## 5. Open, for the manager
+
+The 90 are not staged: `validateCombos` rejects an unknown feature id, so the five registry entries
+in `data/features.json` have to land first, and the naming is the manager's call.
