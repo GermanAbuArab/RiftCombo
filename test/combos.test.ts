@@ -439,7 +439,7 @@ describe("the outcome vocabulary cannot publish an incomplete line as complete",
   });
 
   it("never consumes a feature that only exists to be shown", () => {
-    const OUTPUT_ONLY = ["board-protection", "tempo-denial", "combat-might"];
+    const OUTPUT_ONLY = ["board-protection", "tempo-denial", "combat-might", "unit-delivery"];
     const bad = combos
       .filter((c: Combo) => c.needs.some((n: string) => OUTPUT_ONLY.includes(n)))
       .map((c: Combo) => `${c.id}: needs ${c.needs.filter((n: string) => OUTPUT_ONLY.includes(n)).join(", ")}`);
