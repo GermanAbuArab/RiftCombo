@@ -307,3 +307,113 @@ the walk-to-the-battlefield bottleneck answered for one turn.
 | **719.4 / 719.4.a**, Stunned half | no card — 423 defines Stunned on **Units** and an attached card is gear, so a Top-Most Card's stun has no attached-card status to be independent *of* | both halves now refused: batch 1 refused the Empowered half for want of an Equipment with `[Empowered]` in its Effect Text |
 | **822.1.d's second worked example** (a card restricting opponents' Ambush) | no card — fourteen `[Ambush]` rows, two verb uses, both **widening** | the restricting half only; the widening half is entry 5.2 |
 | **811.1.d.3 as a headline** | already cited in six places | as a headline rule; it is used as supporting text in 5.5 |
+
+## 8. Batch 3 — five entries (2026-09-09, after the pause)
+
+Staged to `/tmp/rc-walks/rc-walk-fam1.json`, which was **replaced** (batch 2 merged at `ec3a2e7`).
+`validateCombos` clean · legend-lines PASS, including **one Signature-forced check** · 208 rule
+references all exist · **48 quoted passages all verbatim**.
+
+### 8.1 `darius-executioner-vanguard-captain-legion-clause-boundary` — OGN-243 + OGN-218
+
+**812.1.b draws a line through the card**: *"Starting from the Keyword to the end of the clause, the
+entire statement is the Legion Ability."* Darius prints two sentences; the Legion Ability ends at the
+first period, so **"Other friendly units have +1 Might here" is unconditional**.
+
+Ten Legion cards in the pool (`OGN-012`, `OGN-016`, `OGN-020`, `OGN-021`, `OGN-217`, `OGN-218`,
+`OGN-243`, `OGN-253`, `OGN-254`, `UNL-025`). **Exactly two carry rules text outside the clause**:
+Darius (after) and `OGN-254 Noxian Guillotine` (before).
+
+**A correction to a load-bearing note in `CLAUDE.md`.** It says `UNL-077 Soul Shepherd` is *"the only
+PERMANENT fix"* for 1-Might tokens and that this narrows a swarm shell to Mind. Swept 2026-09-09 for a
+static, non-*"this turn"* `+N Might` on friendly units, the pool has **seven**: `OGN-151` (Body, +2,
+buffed units at my battlefield), `OGN-243` (Order, +1, here), `OGS-013 Garen, Commander` (Order, +1,
+here — the identical sentence), `UNL-077` (Mind, +1, *token* units, board-wide), `UNL-147 Baron Nashor`
+(Chaos, +2, board-wide), `UNL-191 Wuju Master` (Calm/Body legend, +1 at [Level 6]), `VEN-018 Rage
+Amplifier` (Fury gear, +1, +2 while Empowered). Soul Shepherd is the only **board-wide token-scoped**
+one. **An Order swarm has two of its own, and Fury — which `CLAUDE.md` says cannot fix its tokens
+because Soul Shepherd is Mind — has `VEN-018`.**
+
+The first sweep of that set *missed Darius*, because it filtered out lines containing `this turn` — and
+his `this turn` is inside the **Legion reminder**, not the aura. The clause boundary the rule draws is
+the boundary the grep needed.
+
+`OGN-253 Hand of Noxus` is the only Legion card whose reminder says *"a card"* rather than *"another
+card"*. That is **correct, not errata**: 812.1.c wants a card *"different than the one with the Legion
+ability"*, and a legend is never played.
+
+### 8.2 `fortified-position-mutated-mouser-shield-lasts-the-combat` — UNL-036 + OGN-279
+
+**814.1.d.1** (*"Shield remains in effect as long as the Unit maintains the Defender designation"*) is
+why `OGN-279 Fortified Position`'s *"this combat"* is exactly the right duration. The phrase
+*"this combat"* appears on **two** cards in the pool — OGN-279 and `SFD-110 Fiora, Peerless`, whose
+clause doubles Might and grants no keyword.
+
+814.2's worked example settles that a **printed** Shield joins the sum (Stalwart Poro's bare 1 + Block's
+3 = 4), so the Mouser is Shield 4 and defends as a 5 — a 2-Energy body that 815.1.b and 815.1.c.2 force
+the attacker to spend five on **first**. 814.1.c keeps it a 1 for every Main-Phase count.
+
+### 8.3 `guerilla-warfare-ava-achiever-hidden-outside-facedown` — OGN-264 + OGN-107
+
+**811.5.a** — *"This is independent of the state of being facedown."* — is the only reason the pool's
+four `[Hidden]`-readers work, because **none of them reads a face-down card**: `OGN-107 Ava Achiever`
+reads HAND, `OGN-121 Teemo, Strategist` reads the top five of the MAIN DECK, `OGN-263 Swift Scout`
+reads HAND, `OGN-264 Guerilla Warfare` reads the TRASH.
+
+`OGN-264` is **Signature**, tagged Teemo, so 103.2.d.2 collapses the legend field to **one name**,
+`OGN-263 Swift Scout`. The legend-lines check confirmed it — the Signature-Equipment trap from batch 1,
+in its spell form.
+
+### 8.4 `mosstomper-gustwalker-level-passive-lands-on-the-hold` — UNL-047 + UNL-075
+
+**727.1.c.2**: *"Passive Abilities begin applying at the same time the Dependent Keyword becomes true."*
+Two `[Hunt 2]` bodies at one held battlefield pay 4 XP inside 315.2.b.2's Scoring Step, crossing both
+`[Level 3]` rungs **at that instant** — and Mosstomper's `[Deflect]` is therefore live for the Closed
+State the Hold trigger opens (312.2.c + 813.1.c.1), i.e. between the opponent's decision and their
+payment.
+
+**And the trigger twin is dead letter**, which is why the passive branch is the one to walk:
+727.1.c.1.a (*"If a Triggered Ability becomes active at the same time as its trigger condition would be
+fulfilled, it triggers"*) has no card — the pool prints exactly one `[Level N]` **Triggered** Ability,
+`UNL-040 Wuju Apprentice`'s *"[Level 6][>] When you play me, draw 1"*, and playing a card grants no XP.
+
+### 8.5 `void-gate-ki-barrier-prevent-counts-bonus-damage` — OGN-296 + VEN-126
+
+**715.4.a** reverses the obvious reading, and **its worked example names `OGN-296 Void Gate`**:
+*"If Damage is replaced or reduced by any means, the replacing or reducing action will include the Bonus
+Damage in the total damage when determining how much damage is to be dealt."* Bonus Damage is counted
+**before** the Prevent eats it, so at the Gate a Prevent is worth one less **per Deal action**.
+
+The four Prevent cards, named: `OGN-145 Unyielding Spirit` (all, this turn), `SFD-194 Counter Strike`
+(the next instance), `VEN-025 Esteemed Hierophant` (all, while you control 7+ runes), `VEN-126 Ki
+Barrier` (**7**, the largest bounded value). Seven covers every single-target Deal in the pool at the
+Gate except `OGS-022 Final Spark`, whose 8 becomes 9 (measured: single-target Deals print 1, 2, 3, 4, 5,
+6 and 8, the 8 exactly once).
+
+**The combat half is untouched**, which is the reason to run them together: the Gate says *"Spells and
+abilities"* and 417.6.c makes combat damage come from the units, so 437.5.a stands at full — a Might-3
+body under Ki Barrier needs **ten** damage assigned.
+
+## 9. Refusals from batch 3
+
+| refused | the paragraph or sweep that refuses it | scope |
+|---|---|---|
+| **714.2** (negative Bonus Damage) | no card — all **seven** sources are positive: `OGN-032`, `OGN-296`, `OGS-001`, `SFD-191`, `UNL-020`, `VEN-010`, and the Gate's location-worded row that an earlier *"all six say **your** spells"* sweep could not see | want of a card |
+| **727.1.c.1.a** (a trigger that becomes active as its condition is met) | no card — the pool's only `[Level N]` **triggered** ability is `UNL-040`, and playing a card grants no XP | want of a card; **727.1.c.2**, the passive branch, is entry 8.4 |
+| **806.3 / 806.4 / 806.4.a / 806.4.b** ([Action] is only permission; conditionally granted Action) | no card — swept 2026-09-09: **zero units in the pool print `[Action]`**, and **zero cards grant `[Action]`** to anything | want of a card. NOTE the near miss: 813.1.b gives Reaction *"all abilities and permissions of Action"* and 822.1.b grants Reaction to an `[Ambush]` unit being played, so 806.3's worked example is reached indirectly — and 822.1.b then explicitly widens the placement 806.3 says the permission alone cannot |
+| **719.2 / 719.3 / 719.3.a** (a Top-Most Card and its attachments share a location and move together) | no card — swept for an effect reading gear *"here"* or *"at a battlefield"*: **zero rows**, so nothing in the pool can tell where an attached gear is | want of a card; reopen if a set prints a location-scoped gear count |
+
+## 10. A grep trap, measured — and it is a hand-grep trap, not a script bug
+
+`grep -c "^487\.5\." data/Riftbound-Core-Rules-2026-07-16.txt` returns **0** for a paragraph that
+exists. The rules file carries **form-feed page breaks**, and **112 rule headings sit immediately after
+one** — invisible to any pattern anchored with a bare `^`. **15 are in 500–899 and 97 in 100–499**
+(`rc-walk-blocks`' range), and they include `718`, a paragraph this project leans on constantly.
+
+The committed scripts are **fine**: `probe-500-899.ts` and `audit-fc.ts` both anchor with `^\s*`, and
+`\s` matches `\f`. What is not fine is a one-off `grep "^NNN\."` at the terminal, which this project
+runs constantly. Use `grep -E "^[[:space:]]*NNN\."`.
+
+This was found by an ad-hoc audit of my own that had the bare-`^` bug, and which therefore reported two
+real paragraphs (`812.1.b`, `487.5`) as nonexistent. Same shape as the 766 correction the manager
+handed back this morning: **an absence needs the same grep as a find.**
