@@ -153,7 +153,7 @@ feeder — §3 is the constructive half of the same finding.
 
 - **Lane**: the 36 (manager's 31) `conquer-engine` ENGINE rows; opened 699 entries / 1496 variants.
 - **Staging file**: `/tmp/rc-walks/rc-walk-chain.json`, **1 entry**, appended never overwritten.
-- **Exact next step, in order:**
+- **Exact next step, in order (item 1 WALKED on 2026-09-09 — see §8; Bard superseded Vayne):**
   1. **`swain-brambleback-bloodless-chain`** — the 3 Swain + 1 Brambleback row of the §4 table: 7 at
      one battlefield plus a second Conquer elsewhere for 8 across two scoring events, cheaper than
      the staged BURST (E22 + 3 Mind + 1 Fury) and a **CHAIN**, which is this lane's class. The second
@@ -173,3 +173,83 @@ feeder — §3 is the constructive half of the same finding.
   triggers — 383.3.e.1 caps a **Triggered Ability**, and each copy has its own.
   `draven-glorious-executioner-point`'s own notable says the trigger *"caps Draven at one point per
   turn no matter how many combats he wins"*, which is true of one copy and **wrong of three**.
+
+---
+
+# Batch 2 — 2026-09-09 (after the two-day pause)
+
+`swain-brambleback-conquer-burst` was merged during the pause: it is the catalogue's **17th BURST**
+and the first new member of a class this project had recorded as saturated. Catalogue at 706 when
+this batch opened.
+
+## 7. The starvation rule bounds this bucket from above, and it gives the lane a one-line test
+
+rc-walk-order's finding, now in `CLAUDE.md`: a Time Warp chain **starves any conquer engine whose
+payoff needs combat**. 323.9 stages a Combat only where units of opposing players are present, and
+807.1.d ties every attack trigger to the Attacker designation — so from the second turn of a chain,
+the opponent never having taken one, no new garrison exists and every attack-trigger card is inert.
+Only an engine that takes an **uncontrolled** battlefield through 344.2 can chain at all.
+
+**One question per row of this bucket: DOES THIS PAYOFF NEED AN ENEMY GARRISON?** If yes, it is worth
+one turn and the chain is dead from the second. This is the same distinction that separates
+`OGN-034` Tryndamere (needs 5+ excess damage from an attack — dead in a chain) from `VEN-065` Swain
+(*"When I conquer"* — presence only, alive on an empty board). It is why the Swain family, and not
+the Tryndamere family, is where this lane's finishers are.
+
+## 8. Entry staged — `swain-bard-brambleback-double-conquer-chain`
+
+`VEN-065` Swain ×3 + `UNL-029` Red Brambleback ×1 + `SFD-079` Bard, Mercurial ×1. Fury/Mind. **CHAIN.**
+
+The point: **every other double-Conquer line in the catalogue takes the second battlefield with a
+spare body, which pays the 1-point Score and nothing else**, because 383.4.c.2 pays only what is
+PRESENT. Bard moves the payoffs themselves — *"move any number of your units to an open
+battlefield"* — so the same three Swains and the same Brambleback are present at both Conquers:
+**7 + 7 = 14 across two scoring events in one Main Phase**, against 7 + 1 = 8 for a spare body.
+
+Sequencing runs on **319.8** — *"After a Move is completed"* — which gives the Standard Move and
+Bard's effect move each their own mid-Main-Phase Cleanup, so 450 → 344.2 → 348.2.a → 348.2.a.1 runs
+twice with no phase change. And an effect move is not bound by 144.4: 420.3 makes the Standard Move
+a Discretionary Action whose cost is *"Exhausting one or more Units"* (420.3.a), while **449** —
+*"Spells, Abilities, or other effects may cause a Move to occur."* — is a separate route, with 449.1
+leaving the destination rules to the source. So Bard moves bodies already exhausted by their own
+Standard Move, battlefield to battlefield, with no [Ganking] anywhere in the line.
+
+**The price, stated rather than hidden:** 170.11.c is *"Battlefields can be “open.” This means they
+are unoccupied and uncontrolled."* — **both** conditions — so the second battlefield needs no
+garrison AND no controller. Against an opponent controlling it the line stops at 7 and is not a
+CHAIN. And **one Bard a turn**: the additional cost is exhausting your legend, and 315.1.b readies it
+only at your own Awakening, so 103.2.b's three copies buy three *turns*, not three relocations.
+
+Swain's condition must be paid **before** the first Conquer (383.2.a.1), and Bard is played after it,
+so he cannot be its non-token unit — a cheap unit, a gear (a Seal is Energy 0) and a spell go first.
+Playing Bard first instead strands the pack at one battlefield and is worth 8, not 14.
+
+This entry **connects the lane engine `bard-mercurial-mass-relocation`**, whose own `terminatesIn`
+reads *"one Conquer and a garrison; the win comes from what the bodies then do"*. This is what they
+then do.
+
+## 9. Refusal — `OGN-035` Vayne, Hunter as the second-Conquer body, checked rather than assumed
+
+I flagged on Monday that her Might of 2 was unchecked. **The Might was the wrong worry.** On this
+line's bloodless route 465.1 opens no damage step at all — *"If both Attacking and Defending units
+remain at this battlefield, the following Tasks become Outstanding, in the specified order:"* — so
+she is never assigned damage and her size is never tested.
+
+What actually refuses her is **her own ready clause**. She reads *"If an opponent controls a
+battlefield, I enter ready"*, and this line needs a board where the opponent controls **neither**
+battlefield. The clause is therefore off, **143.4** applies (*"Units enter the Board exhausted."*),
+and 144.2 makes exhausting the unit the cost of the Standard Move — so she cannot move the turn she
+is played and must be deployed a turn early.
+
+**Scope:** she is not refused, she is out-valued. Deployed a turn ahead she works, and she is worth
+**1** point where Bard is worth **7**, because she arrives alone and 383.4.c.2 pays only what is
+present. The refusal is scoped to *this* line's board; on a board where the opponent does control a
+battlefield her ready clause is live and `vayne-hunter-sun-disc-two-conquers` stands unchanged.
+
+## 10. Next step
+
+1. Read the remaining bloodless rows of the bucket for a **second** payoff that passes the
+   garrison test (§7). `UNL-207` Amateur Recital is Colorless so it fits any identity, but it is a
+   battlefield (103.4.c, 485.4.a) and moves only ONE unit.
+2. The Bard relocation is a general lever, not a Swain lever: **any** conquer payoff that does not
+   need a garrison is paid twice by it. Sweep the other conquer payoffs against it.
