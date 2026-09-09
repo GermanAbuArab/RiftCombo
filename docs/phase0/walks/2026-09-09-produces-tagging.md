@@ -262,3 +262,51 @@ Both concern a keyword printed on a card inside an entry, and they go opposite w
 
 **The discriminator is the entry's own `terminatesIn`, never the presence of the keyword** — which is
 §7's finding applied twice in opposite directions, and the reason to state it twice.
+
+## 10. The one entry whose product may be nothing, and the ruling it tests
+
+`simian-ancestor-arena-bar-wallop-ready` is tagged `unit-delivery` at roughly 70% confidence, and it
+is the weakest tag in the ninety. Its whole product, in its own words, is *"two readies a turn for
+zero Energy and zero Power — a second Standard Move for Simian, plus a free ready from Wallop"*.
+There is no second product to fall back on.
+
+`SFD-047 Simian Ancestor` reads, in full, *"When you buff me, ready me"* — it has no exhaust-cost
+ability of any kind. So CLAUDE.md's refuse-bucket E applies exactly: *"a 'ready me' trigger is ONE
+extra Standard Move and nothing on defence, and nothing at all if the unit has no exhaust-cost
+ability"*. The ready buys one extra Standard Move per turn and literally nothing else.
+
+That sits against the ruling made on `kayn-back-alley-bar-double-move`, where the same bucket E
+decided the opposite way: there the move is the **mechanism** and the product is the body surviving
+the turn, so it was tagged `board-protection`. **The two are not in conflict, and the reason is that
+Kayn HAS another product and Simian does not.** For Simian the choice is `unit-delivery` or nothing
+at all, and the case for `unit-delivery` is only that one extra Standard Move does literally let a
+body reach a battlefield it could not otherwise reach this turn (144.4), which is the value's own
+definition. The case against is that bucket E exists precisely to say that this is worth very little.
+
+Tagged rather than left blank, because the value is output-only and the drawer showing *"two readies
+a turn for zero"* is a true statement about the line. **If `unit-delivery` is ever made consumable,
+this entry is the first that should be re-examined** — a consumer wanting bodies moved would be
+satisfied by an entry that moves one body one extra step.
+
+## 11. Closing state
+
+All 102 originally untagged entries are dispositioned: **12 against the existing vocabulary, 90
+against the five new values**, staged in five batches and applied by the manager. Counts as of
+2026-09-09 and not durable; the durable half is the rule under each tag.
+
+| value | entries tagged by this walk |
+|---|---|
+| `combat-might` | 34 |
+| `board-protection` | 22 |
+| `tempo-denial` | 22 |
+| `unit-delivery` | 14 |
+| `xp-engine` | 5 |
+| `card-advantage-engine` (existing) | 6 |
+| `resource-engine` (existing) | 6 |
+| `repeatable-removal` (existing) | 4 |
+
+Both directions of the composition graph were checked and neither needs work: **no `needs` names a
+value nothing produces**, and the eight output-only values are output-only by the registry's own
+design. The five new values are all output-only today, so nothing this walk added changes route
+composition — what it changes is that ninety entries that showed no payoff in the drawer and no
+outcome edge in the diagram now show one.
