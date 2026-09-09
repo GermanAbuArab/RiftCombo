@@ -51324,6 +51324,167 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-09 by rc-walk-chain against data/corpus_flat.txt and the Core Rules; every paragraph quoted above was opened and pasted, not recalled. Card text verbatim: SFD-079 'Bard, Mercurial | Unit | Mind | E4 P1 M4 | You may exhaust your legend as an additional cost to play me. When you play me, if you paid the additional cost, move any number of your units to an open battlefield.' and OGN-035 'Vayne, Hunter | Unit | Fury | E4 P1 M2 | [Assault 3] ... If an opponent controls a battlefield, I enter ready. When I conquer, you may pay 1 Energy to return me to my owner's hand.' Legality checked against data/legality.json on 2026-09-09: 21 entries, its single non-banned row is a restriction on one mono-Body Starter legend, and none of VEN-065, UNL-029 or SFD-079 appears in any row. Signature checked on the signature field of data/cards.json: all three plain. Card-set containment run before staging: VEN-065 + UNL-029 + SFD-079 returns NONE, VEN-065 + SFD-079 returns NONE, UNL-029 + SFD-079 returns NONE. This entry CONNECTS the lane engine bard-mercurial-mass-relocation, whose own terminatesIn says 'one Conquer and a garrison; the win comes from what the bodies then do' — this is what they then do. Twin of swain-brambleback-conquer-burst; both entries name each other and neither removes anything."
+    },
+    {
+      "id": "cruel-patron-zhonyas-cost-paid-without-the-death",
+      "name": "357.2.a: a cost replaced by a Replacement Effect is STILL CONSIDERED PAID - so Cruel Patron's kill buys a 6-Might body without anything dying, and Riot works this exact pair",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-208",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order unit, E4 M6. 'As an additional cost to play me, kill a friendly unit.' Four Energy for six Might is the pool's steepest body-per-Energy rate, and the additional cost is the whole price."
+        },
+        {
+          "card": "OGN-077",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm gear, E2. '[Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) If a friendly unit would die, kill this instead. Heal that unit, exhaust it, and recall it. (Send it to base. This isn't a move.)' A Replacement Effect (369.1 names it), and Riot's worked example at 357.2.a pairs it with Cruel Patron by name."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Cruel Patron is mono-Order and Zhonya's Hourglass is mono-Calm, so the identity is Calm/Order and 103.1.b.2 needs a legend covering both. Measured over data/cards.json those are OGN-261 / OGN-306 Radiant Dawn, SFD-197 / SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father and VEN-147 / VEN-193 Eye of Twilight.",
+          "Neither is a Signature card (checked against data/cards.json), and neither appears in data/legality.json in any format - checked 2026-09-09, no ban and no restriction.",
+          "The Hourglass must already be on the board when Cruel Patron's cost is paid; its [Hidden] mode makes that 0 Energy from the turn after the hide (811.1.b), and it needs a friendly unit to nominate as the one being killed."
+        ],
+        "notable": [
+          "THE RULE, AND IT READS AGAINST INTUITION. 357.2.a: 'Costs that are replaced with other events by replacement effects are still considered paid.' Riot's worked example is these two cards by name: 'A player plays Cruel Patron, which says \"As an additional cost to play me, kill a friendly unit.\" They also control Zhonya's Hourglass ... They choose to kill a friendly unit during step 3, but as they pay the cost in step 4, Zhonya's Hourglass replaces that unit's death. The cost is considered paid, and the player can continue playing Cruel Patron.' 357.1.a, 357.2, 357.2.a and 357.3 are cited by no entry and no synergy rule in this project.",
+          "AND 370.1.a.1 SAYS THE KILL GENUINELY DID NOT HAPPEN, WHICH IS WHAT MAKES THE PAIR STRANGE AND WORTH WRITING DOWN. 'Modifying or replacing an event is the same as modifying or replacing that Game Action or change in state that generated that event', with 'A unit's death being replaced by Zhonya's Hourglass is the same as the kill action that caused that death not occurring.' So no kill occurred - and the cost is still paid. Both paragraphs are uncited and they have to be read together or the interaction looks like a mistake.",
+          "WHAT THAT BUYS, WITH THE QUANTITIES DECLARED. Cruel Patron is 4 Energy for a Might 6 body; the Hourglass is 2 Energy, or 0 from face down (811.1.b plays a hidden card 'ignoring its base cost'). The nominated unit is healed, exhausted and recalled instead of dying, so the board goes from N bodies to N+1 with a Might 6 addition, for 4 Energy and one Hourglass. Without the Hourglass the same play is N bodies to N, since one dies to pay for the other.",
+          "THE COSTS ARE PAID IN ANY ORDER, WHICH MATTERS ON CARDS WITH TWO. 357.2: 'In addition, pay any non-standard Cost summed in step 3 in any order', with Riot's example of a card whose cost is 'kill a friendly unit and discard a unit' - either first. And 357.3 is the limit: you may not pay costs that 'will deterministically result in illegal choices or actions later in this process unless they have no choice', which is why you cannot nominate the very unit a later part of the same card needs.",
+          "THE PRICE IS THE HOURGLASS AND THE POSITION. It kills itself doing this, so each copy is one use and 103.2.b caps it at three. And 455 makes the save a Recall to the BASE without a Move, so the rescued body leaves whatever battlefield it was holding - 323.6 strips that battlefield at the next Cleanup if it was your last unit there - and 458.1 leaves it exhausted until 315.1.b readies it at your next Awakening.",
+          "AND THE COMPANION TRAP, WHICH IS THE SAME MECHANISM CUTTING THE OTHER WAY. A COST that is replaced is still paid (357.2.a), but an EFFECT that references the kill action is not: 359.3.e.14.b makes an 'if you do' rider fail when the game action it names was replaced, and 808.1.d.1 removes a Deathknell from a body that never reaches the Trash. Cruel Patron works here precisely because its additional cost is a COST and it has no rider - SFD-163 Deathgrip, whose 'If you do' is Riot's own contrast case, would give nothing.",
+          "428.1.a.1 IS WHY THE KILL WAS A KILL INSTRUCTION IN THE FIRST PLACE: 'Active Kill is when the action is taken when instructed by a game effect or AS A COST for a card or ability.' That is what puts it in front of the Hourglass's replacement at all - a body dying to lethal damage (428.1.a.2) is a Passive Kill and is a different event."
+        ]
+      },
+      "steps": [
+        "Hide OGN-077 Zhonya's Hourglass face down at a battlefield you control for one rainbow (811.1.b), or play it from hand for 2 Energy. From the turn after the hide it is 0 Energy.",
+        "With the Hourglass on the board and at least one friendly unit standing, play OGN-208 Cruel Patron (4 Energy).",
+        "At step 3 of playing, nominate the friendly unit for the additional cost. 357.3 forbids a nomination that would deterministically make a later choice illegal.",
+        "At step 4, pay the costs (357.2 allows non-standard costs in any order). The kill is an Active Kill under 428.1.a.1, because it is taken as a COST.",
+        "The Hourglass replaces the death: it kills itself instead and heals, exhausts and recalls the nominated unit. 370.1.a.1 means the kill action did not occur at all.",
+        "357.2.a: the cost is still considered paid, so Cruel Patron resolves. You have a Might 6 body AND the unit you nominated, at your base and exhausted (455, 458.1); 315.1.b readies it at your next Awakening.",
+        "Do not try this with a card whose effect carries an 'if you do' rider on the same kill - 359.3.e.14.b withholds it - and expect no Deathknell from the saved body (808.1.d.1).",
+        "Three copies of each (103.2.b); each Hourglass is consumed by the save."
+      ],
+      "netPerIteration": "a Might 6 body added for 4 Energy with no body lost, at the price of one Zhonya's Hourglass and one turn of the rescued unit's position",
+      "terminatesIn": "engine only - nothing here scores. Three Cruel Patron and three Hourglass (103.2.b), each Hourglass consumed on use, and the rescued body is recalled to base so any battlefield it held is stripped at the next Cleanup (323.6)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 357.2.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Costs that are replaced with other events by replacement effects are still considered paid."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 357.2.a worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A player plays Cruel Patron, which says \"As an additional cost to play me, kill a friendly unit.\" They also control Zhonya’s Hourglass, which says “If a friendly unit would die, kill this instead. Heal that unit, exhaust it, and recall it.” They choose to kill a friendly unit during step 3, but as they pay the cost in step 4, Zhonya’s Hourglass replaces that unit’s death. The cost is considered paid, and the player can continue playing Cruel Patron."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 370.1.a.1 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Zhonya’s Hourglass reads in part “If a friendly unit would die, kill this instead. Heal that unit, exhaust it, and recall it.” A unit’s death being replaced by Zhonya’s Hourglass is the same as the kill action that caused that death not occurring."
+        },
+        {
+          "title": "Hand walk 2026-09-09 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-09"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-09 (issue #187, sub-rule lane 100-499; from the filtered probe). 357.1.a, 357.2, 357.2.a, 357.3, 370.1, 370.1.a and 370.1.a.1 are cited by no entry and no synergy rule in this project, and 357.2.a's worked example names OGN-208 Cruel Patron and OGN-077 Zhonya's Hourglass together. Card text verbatim from data/corpus_flat.txt. Legality checked against data/legality.json on 2026-09-09: neither card appears in any format's ban or restriction list. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.2, 315.1.b, 323.6, 357.2, 357.2.a, 357.3, 359.3.e.14.b, 369.1, 370.1.a.1, 428.1.a.1, 428.1.a.2, 455, 458.1, 808.1.d.1, 811.1.b. REPORT TO THE MANAGER: 357.2.a and 370.1.a.1 have to be carried TOGETHER or the interaction reads as a contradiction - the kill action genuinely did not occur (370.1.a.1) and the cost is nonetheless considered paid (357.2.a). The general form is the sharpest version yet of a split this lane has now met three times: a COST that is replaced is still paid, while an EFFECT that references the replaced game action is not (359.3.e.14.b) and a Deathknell on the saved body is removed (808.1.d.1). Distinct from wraith-of-echoes-cruel-patron-sacrifice-body, the only other entry using OGN-208, which spends the body deliberately, and from whiteflame-last-stand-zhonyas-double-might. Trap check: the Hourglass is consumed; the rescued body is recalled to base and the entry prices the lost position; a card with an 'if you do' rider gains nothing; no unruled reading."
+    },
+    {
+      "id": "sona-wind-wall-condition-not-effect",
+      "name": "383.2.a.1: \"if I'm at a battlefield\" sits immediately after the Condition, so it is TRIGGER CONDITION - removing Sona in response does not stop the four runes",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-073",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E4 P1 M4. 'At the end of your turn, if I'm at a battlefield, ready up to 4 friendly runes.' Riot's worked example at 383.2.a.1 is this card, and its point is that the conditional is part of the Trigger Condition rather than the Effect. Reprinted as VEN-SP2, which CardIndex.equivalents folds by name and type."
+        },
+        {
+          "card": "OGN-064",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm spell, E3 P2. '[Reaction] (Play any time, even before spells and abilities resolve.) Counter a spell.' The pool's unconditional counter - no cost cap, unlike OGN-045 Defy - and 3 Energy plus 2 Power is exactly what four readied runes and the free Power floor cover."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.3 admits them under any legend with Calm among its two domains - measured over data/cards.json those include OGN-255 / OGN-303 Nine-Tailed Fox (calm/mind), OGN-257 / OGN-304 Blind Monk (calm/body), OGN-261 / OGN-306 Radiant Dawn (calm/order), SFD-189 / SFD-244 Fire Below the Mountain (calm/mind), SFD-197 / SFD-247 Emperor of the Sands (calm/order), UNL-189 / UNL-230 Bashful Bloom (calm/mind), UNL-195 / UNL-233 Green Father (calm/order), VEN-139 / VEN-189 Rogue Assassin (calm/fury), VEN-145 / VEN-192 Curator of the Sands (calm/mind) and VEN-147 / VEN-193 Eye of Twilight (calm/order).",
+          "Neither is a Signature card (checked against data/cards.json), and neither OGN-073, VEN-SP2 nor OGN-064 appears in data/legality.json in any format - checked 2026-09-09, no ban and no restriction.",
+          "Sona must be at a battlefield when her Condition is fulfilled at the end of your turn, and the four runes must be exhausted for there to be anything to ready - which is automatic on a turn you actually spent your mana."
+        ],
+        "notable": [
+          "THE FINDING IS A WORD-ORDER TEST, AND RIOT GIVES BOTH SIDES OF IT. 383.2.a.1: 'Any additional conditional statement IMMEDIATELY AFTER the Condition must be true in order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the Effect.' Its first example is this card: 'Sona, Harmonious reads \"At the end of your turn, if I'm at a battlefield, ready up to 4 friendly runes.\" Her Trigger Ability's Condition will be fulfilled in the Ending Step, but the Triggered Ability will only be placed on the chain if she is located at a battlefield when the Condition is fulfilled. IF SHE IS REMOVED IN REACTION TO THE TRIGGERED ABILITY, IT WILL STILL RESOLVE.'",
+          "AND THE COUNTER-CASE IS THE SAME CLAUSE MOVED. 'Loose Cannon reads \"At the start of your Beginning Phase, draw 1 if you have one or fewer cards in your hand.\" The \"if you have one or fewer cards in your hand\" conditional statement is not immediately after the trigger condition, so it is part of the effect and not the condition.' Same kind of if-clause, opposite classification, decided purely by where in the sentence it sits - and that decides whether it is checked when the trigger is PLACED or when it RESOLVES. 383.2 and 383.2.b are cited by no entry and no synergy rule in this project.",
+          "SO THE ENGINE IS REMOVAL-PROOF ONCE THE TRIGGER IS ON THE CHAIN, AND THAT IS THE WHOLE REASON IT IS WORTH FOUR ENERGY. Killing Sona at the end of your turn in response to her trigger does nothing - the Condition was already fulfilled with her at a battlefield. The only window that beats her is removal BEFORE the Ending Step, on your own turn, where 312.2.a gives the opponent no priority in your Neutral Open State and they need a [Reaction].",
+          "415.3.a IS THE PROBLEM SHE SOLVES. 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn' - so a rune tapped on your turn is dead for the whole of the opponent's, and holding up a counter normally means not spending that mana at all. Sona readies up to FOUR at the end of your turn, after 167 has emptied your Rune Pool and after the Main Phase, so you spend your whole turn AND answer on theirs. That is double what OGN-289 Targon's Peak returns, it needs no Conquer, and it repeats every turn.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Four readied runes are 4 Energy on the opponent's turn (164.2.a taps a ready rune for 1 Energy). The Power is already free: 164.2.b's cost is the RECYCLE and carries no exhaust, so runes you tapped earlier still pay Power - this project's measured floor of 2 Power a turn. Wind Wall at 3 Energy + 2 Power is therefore held up with an Energy to spare, every turn, having spent your own turn normally.",
+          "WIND WALL RATHER THAN DEFY, AND THE REASON IS 206. OGN-045 Defy counters 'a spell that costs no more than [4] and no more than [A]', and 206 makes that check read the PRINTED cost - so it cannot touch the expensive spells a four-Energy answer is being held up for. Wind Wall's 'Counter a spell' has no cap at all. Sona's four Energy is what makes the uncapped one affordable rather than the capped one.",
+          "THE CEILING IS THE RUNE DECK AND THE WORD 'UP TO'. 161.2.a fixes the Rune Deck at exactly 12 rune cards, so four readied runes is a third of your mana returned each turn; and 'up to 4' means the trigger never misfires when fewer are exhausted. 315.1.b would have readied them at your next Awakening anyway - what Sona buys is the turn in between."
+        ]
+      },
+      "steps": [
+        "Play OGN-073 Sona, Harmonious (4 Energy + 1 Power) and move her to a battlefield. Reprint VEN-SP2 is the same card for matching purposes (CardIndex.equivalents folds by name and type).",
+        "Spend your turn normally - tap runes for Energy, recycle spent ones for Power. Sona's payoff does not ask you to hold anything back.",
+        "At the end of your turn her Condition is fulfilled. 383.2.a.1 checks 'if I'm at a battlefield' AT THAT MOMENT, as part of the Trigger Condition; if she is there, the ability goes on the chain.",
+        "If the opponent removes her in response, the ability still resolves - Riot says so in the worked example. Up to 4 friendly runes are readied.",
+        "167 has already emptied your Rune Pool; the RUNES are ready. On the opponent's turn tap them for 4 Energy (164.2.a) and recycle already-exhausted runes for Power (164.2.b, no exhaust in its cost).",
+        "Play OGN-064 Wind Wall (3 Energy + 2 Power) in reaction to counter any spell, with an Energy to spare. 206 is why this is Wind Wall and not Defy: a 'costs no more than' check reads the printed cost.",
+        "Repeat every turn Sona survives to the Ending Step. Three copies of each (103.2.b)."
+      ],
+      "netPerIteration": "four Energy on the opponent's turn, every turn, from runes you already spent - and the trigger survives removal aimed at Sona once it is on the chain",
+      "terminatesIn": "engine only - nothing here scores. Bounded by 161.2.a's twelve-card Rune Deck, by how many runes were exhausted to ready, and by Sona having to reach the Ending Step at a battlefield",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 383.2.a.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the Effect."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 383.2.a.1 first worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Sona, Harmonious reads “At the end of your turn, if I'm at a battlefield, ready up to 4 friendly runes.” Her Trigger Ability’s Condition will be fulfilled in the Ending Step, but the Triggered Ability will only be placed on the chain if she is located at a battlefield when the Condition is fulfilled. If she is removed in reaction to the triggered ability, it will still resolve."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 383.2.a.1 second worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Loose Cannon reads “At the start of your Beginning Phase, draw 1 if you have one or fewer cards in your hand.” The “if you have one or fewer cards in your hand” conditional statement is not immediately after the trigger condition, so it is part of the effect and not the condition."
+        },
+        {
+          "title": "Hand walk 2026-09-09 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-09"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-09 (issue #187, sub-rule lane 100-499). 383.1.a, 383.2 and 383.2.b are cited by no entry and no synergy rule in this project; 383.2.a.1 is cited elsewhere for the 'count is part of the Trigger Condition' half, but neither of its two worked examples nor the WORD-ORDER TEST they establish appears anywhere. Card text verbatim from data/corpus_flat.txt. Legality checked against data/legality.json on 2026-09-09: OGN-073, VEN-SP2 and OGN-064 are absent from every format's ban and restriction list. Citations opened: 103.1.b.3, 103.2.b, 103.2.d.2, 161.2.a, 164.2.a, 164.2.b, 167, 206, 312.2.a, 315.1.b, 383.2.a.1, 415.3.a. REPORT TO THE MANAGER: the usable form is a word-order test - an 'if' clause IMMEDIATELY AFTER the When/At/Nth-time clause is part of the TRIGGER CONDITION (checked when the trigger is placed, so removal in response does not stop it), and the same clause moved later is part of the EFFECT (checked on resolution, so removal in response does stop it). Riot gives both sides with OGN-073 Sona, Harmonious and OGN-251 Loose Cannon. Distinct from sona-viktor-opponent-turn (OGN-073 + OGN-117), which spends the same mana on Recruits and cites neither 383.2.a.1 nor the removal-proofing, and from hextech-anomaly-wind-wall-off-turn-counter, which buys the mana from a gear. Trap check: Sona must reach the Ending Step at a battlefield, and the only window that beats her is a [Reaction] removal BEFORE that (312.2.a gives no priority in your Neutral Open State); 'up to 4' never misfires; Wind Wall rather than Defy because 206 reads printed costs; no unruled reading."
     }
   ]
 }
