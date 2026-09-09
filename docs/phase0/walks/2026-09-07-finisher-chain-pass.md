@@ -253,3 +253,87 @@ battlefield her ready clause is live and `vayne-hunter-sun-disc-two-conquers` st
    battlefield (103.4.c, 485.4.a) and moves only ONE unit.
 2. The Bard relocation is a general lever, not a Swain lever: **any** conquer payoff that does not
    need a garrison is paid twice by it. Sweep the other conquer payoffs against it.
+
+---
+
+# Batch 3 — 2026-09-09: the payoff sweep against the Bard lever, and a defect in two shipped entries
+
+`swain-bard-brambleback-double-conquer-chain` was merged during this batch; the catalogue stands at
+**714 entries, CHAIN 10 → 11**.
+
+## 11. The Bard lever swept across every conquer payoff — a closed result
+
+Batch 2 established that `SFD-079` Bard, Mercurial moves the **payoffs themselves**, so a second
+Conquer is worth the whole pack instead of a bare Score. The obvious next question is which payoffs
+it pays. Swept 2026-09-09 over the eight hold-or-conquer point cards of §2, each against the garrison
+test of §7 and against Domain Identity (103.1.b):
+
+| payoff | needs a garrison? | conquer multiplier in identity with Bard (Mind)? | result |
+|---|---|---|---|
+| `OGN-034` Tryndamere, Barbarian (Fury) | **yes** — 5+ excess damage from an attack | — | **refused**, inert from turn two of any chain |
+| `VEN-065` Swain, Visionary (Mind) | no | **yes** — `UNL-029` Red Brambleback (Fury) ⇒ Fury/Mind | 14, walked in batch 2 |
+| `UNL-177` Ivern, Friend to All (Order) | no | **no** — Brambleback would be a third domain | 8, walked here |
+| `VEN-046` Nasus, Ascended (Calm) | no | **no** — Brambleback would be a third domain | 8 at best, and E8 + an E8 [Empower] per copy |
+| `OGN-066` Ahri / `SFD-115` Trinity Force / `VEN-138` Shen / `SFD-214` Power Nexus | n/a | n/a | **hold** payoffs, not conquer payoffs |
+
+**`VEN-065` Swain is the only conquer payoff in the pool for which a conquer multiplier is
+in-identity with Bard.** `UNL-029` Red Brambleback is Fury, so it is a third domain beside Order
+(Ivern) or Calm (Nasus); `UNL-087` Blue Sentinel multiplies *hold* effects only (*"Your hold effects
+for holding here trigger an additional time"*); and `OGN-286` Reckoner's Arena **bridges** a conquer
+effect onto a Hold rather than multiplying a Conquer. That is the whole reason the Swain line is 14
+and every other Bard line is 8 flat, and it closes the lever: there is no third such entry to find.
+
+## 12. Entry staged — `ivern-bard-four-tag-double-conquer`
+
+`UNL-177` Ivern ×3 + `OGN-210` Daring Poro ×1 + `SFD-079` Bard ×1. Mind/Order. **CHAIN**, 8 points
+across two Conquers in one Main Phase, for **E24 and one Mind Power in the whole line**.
+
+Justified against `ivern-sentinel-hold`, which is 10 points on the same payoff in the same identity:
+that entry pays on a **Hold**, and 315.2.b.2 Holds only battlefields you already Control, so its pack
+must have conquered on an earlier turn and **survived the opponent's entire turn**. This one wins
+inside a single Main Phase from a board where you control nothing. Stated fragility, not hidden: it
+delivers **exactly** 8, and 194.2 needs a total *"greater than or equal to the Victory Score"* **and**
+more points than any other player, so against an opponent already on 8 it does not win — and under
+489.3's Victory Score of 11 it does not win at all.
+
+`UNL-177` is **not** Signature (checked on the `signature` field), so although it carries the Ivern
+champion tag and the pool's only Ivern legend is Green Father (Calm/Order), 103.2.d.2 binds only
+Signature cards and all four Mind/Order legend names are open: Herald of the Arcane
+(`OGN-265`/`OGN-308`), Lady of Luminosity - Starter (`OGS-021`), Chem-Baroness (`SFD-201`/`SFD-249`),
+Deceiver (`UNL-199`/`UNL-235`) — four names, seven base codes, measured 2026-09-09.
+
+## 13. DEFECT in two shipped entries — Ivern's fourth tagger is a Trigger Condition and is not in `uses[]`
+
+Ivern gains **exactly one** tag as he is played, and his clause is *"score 1 point if your units have
+all of the following tags among them — Bird, Cat, Dog, and Poro"*. 383.2.a.1 makes that conditional
+**part of the Trigger Condition**. Measured over `data/cards.json` on 2026-09-09: 67 printings carry
+at least one of the four tags and **zero carry two**, so N Iverns supply N tags and the rest must come
+from other bodies. Checked over every entry using `UNL-177` on the current tree:
+
+| entry | Ivern ×N ⇒ tags | outside taggers in `uses[]` | coverage |
+|---|---|---|---|
+| `ivern-sentinel-hold` (BURST) | 3 | **NONE** | **3 / 4 — GAP** |
+| `ivern-arena-sentinel-hold` (BURST) | 2 | **NONE** | **2 / 4 — GAP** |
+| `ivern-svellsongur-four-tags-hold` (BURST) | 3 | `UNL-160` Ultrasoft Poro (Poro) | 4 / 4 — correct |
+
+Both defective entries **know** the tagger is needed and say so in prose — `ivern-sentinel-hold`'s
+`notable[0]` is *"three Iverns supply three of the four and one cheap tagger covers the last"*, and
+`ivern-arena-sentinel-hold`'s `notable[4]` even **prices** them (*"the two outside taggers (4E + 1P)"*)
+— but neither puts the body in `uses[]`.
+
+**This is the #165 defect verbatim**, the one recorded on `shen-kinkou-svellsongur-hold`: *"`uses` is
+what the matcher and the planner price: a body the condition requires is a use at quantity 1, role
+`enabler`, not a phrase in a notable."* The consequence is the same — `matchDeck` reports a complete
+10-point BURST for a board on which every Ivern trigger fails its condition and the Hold is worth its
+**1-point Score alone**, and `planDeck` can never suggest the missing card.
+
+**Fix**: add one `uses` row of a body carrying the missing tag, `role: "enabler"`, quantity 1 to
+`ivern-sentinel-hold` and quantity 2 to `ivern-arena-sentinel-hold` (its own notable already names
+`OGN-216` Soaring Scout). Not applied here — this lane does not own `data/combos.json`; reported to
+the manager with this table. The third entry is the shape to copy.
+
+## 14. Next step
+
+The Bard lever is closed (§11). Remaining in the bucket: read the other bloodless rows for a feeder
+that is neither Bard nor a Standard Move — the open question is whether any of them relocates a pack
+**between** battlefields, which is the property that made Bard worth 7 instead of 1.
