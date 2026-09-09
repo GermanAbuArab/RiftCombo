@@ -7757,7 +7757,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "unit-delivery"
+      ],
       "prerequisites": {
         "easy": [
           "Mono-Order.",
@@ -10126,7 +10128,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "xp-engine"
+      ],
       "legends": [
         "UNL-191"
       ],
@@ -15545,7 +15549,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "unit-delivery"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains must cover Calm and Mind; eleven legends do.",
@@ -25099,7 +25105,7 @@
           "date": "2026-09-06"
         },
         {
-          "title": "Hand walk 2026-09-06, issue #102 (docs/phase0/walks/2026-09-06-amateur-recital-evacuation.md) — evacuating a garrison is not yet a Conquer; the body has to walk in",
+          "title": "Hand walk 2026-09-06, issue #102 (docs/phase0/walks/2026-09-06-battlefield-lens-candidates.md) — evacuating a garrison is not yet a Conquer; the body has to walk in",
           "kind": "manual-walk",
           "date": "2026-09-06"
         },
@@ -29327,7 +29333,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "unit-delivery"
+      ],
       "prerequisites": {
         "easy": [
           "Any Calm legend: Forgotten Signpost is mono-Calm (103.1.b.3) and Back-Alley Bar is colourless. Neither is a Signature card, so 103.2.d.2 forces no legend.",
@@ -29411,7 +29419,8 @@
           "ARITHMETIC WITH THE QUANTITIES DECLARED. Per turn, once the pieces are down: Simian standard-moves or otherwise exhausts; the Arena Bar exhausts to buff him (0 Energy, 0 Power); his trigger readies him, so he acts a second time; later in the turn Wallop spends that buff for free and readies a second unit as well. Net per turn: TWO readies for zero mana, on the turns you have a Wallop. Three Wallops (103.2.b) means three such turns; after that the Arena Bar's buff sits on Simian and the cycle stops.",
           "THE BUFF IS ALSO +1 MIGHT WHILE IT SITS THERE. 703 makes a Buff exactly +1 Might, so a buffed Simian is a 6, and spending it takes him back to 5. If he is a Might-4 body's neighbour in a Grand Duelist deck the crossing matters (709 is an EVENT), but Simian is printed at 5, so he is Mighty already and 709's second worked example applies to him verbatim: a unit already Mighty does not 'become' Mighty.",
           "READYING A READY UNIT DOES NOTHING. 415.1.b: 'A Unit that is already Ready cannot be Readied again', and 415.1.c: 'If a Unit is instructed to be Readied while it is already Ready, nothing additional happens.' So the order inside the turn is load-bearing — exhaust Simian FIRST, then buff him. Buffing him while ready throws the ready away and still consumes the Arena Bar's exhaust and the 702.3 slot.",
-          "WHAT THE SECOND ACTION IS ACTUALLY FOR. Simian has no printed activated ability, so his ready buys exactly one thing: another Standard Move (144.2, 144.4). Combat does not read exhaustion — 464.2.c.3 and 465.2.b do not filter by state — so readying him adds nothing on defence. Price it as mobility for a 5-Might body, not as extra damage."
+          "WHAT THE SECOND ACTION IS ACTUALLY FOR. Simian has no printed activated ability, so his ready buys exactly one thing: another Standard Move (144.2, 144.4). Combat does not read exhaustion — 464.2.c.3 and 465.2.b do not filter by state — so readying him adds nothing on defence. Price it as mobility for a 5-Might body, not as extra damage.",
+          "PRODUCES NOTHING, AND THE BLANK IS A DECISION (2026-09-09, #157). Every other one of the 714 entries carries at least one outcome value; this one is deliberately empty. Its whole product in its own words is two readies a turn for zero Energy and zero Power, and SFD-047 Simian Ancestor reads IN FULL 'When you buff me, ready me' with no exhaust-cost ability anywhere - so CLAUDE.md’s refuse-bucket E applies exactly: a ready is one extra Standard Move, and NOTHING AT ALL if the unit has no exhaust to spend. Tagging it unit-delivery would have been reaching for a name to avoid a blank field. Do not fill it without a second product; it is also the first entry to re-examine if unit-delivery is ever made consumable, since a consumer wanting bodies moved would be satisfied here by one body moved one step."
         ]
       },
       "steps": [
@@ -30861,7 +30870,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "unit-delivery"
+      ],
       "prerequisites": {
         "easy": [
           "Mountain Drake is mono-Body and the Roost is Colorless, so 103.1.b.3 admits any legend with Body in its pair: OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, SFD-203/SFD-250 Battle Mistress, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master."
@@ -33323,7 +33334,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "unit-delivery"
+      ],
       "prerequisites": {
         "easy": [
           "Any Chaos legend: Fae Porter is mono-Chaos (103.1.b.3) and Back-Alley Bar is colourless. Neither is a Signature card, so 103.2.d.2 forces nothing.",
@@ -37916,7 +37929,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Any Calm legend: both cards are mono-Calm (103.1.b.1) and neither is a Signature card, so 103.2.d.2 forces nothing.",
@@ -38651,7 +38666,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Both cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower."
@@ -40364,7 +40381,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "xp-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Both cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity - Starter, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower.",
@@ -40572,7 +40591,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "unit-delivery"
+      ],
       "prerequisites": {
         "easy": [
           "Here to Help and Mountain Drake are both mono-Body, so 103.1.b.1 is satisfied by any legend with Body as one of its two domains. Neither is Signature, so 103.2.d.2 imposes nothing."
@@ -43408,7 +43429,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "xp-engine"
+      ],
       "prerequisites": {
         "easy": [
           "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
@@ -43540,7 +43563,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "unit-delivery"
+      ],
       "prerequisites": {
         "easy": [
           "All cards are mono-Body (the battlefield, where one is used, is Colorless), so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
@@ -45280,7 +45305,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
@@ -45488,7 +45515,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Both cards are mono-Mind, so 103.1.b.3 admits any legend with Mind in its pair.",
@@ -46355,7 +46384,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
@@ -47882,7 +47913,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "unit-delivery"
+      ],
       "prerequisites": {
         "easy": [
           "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
@@ -49156,7 +49189,10 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "resource-engine",
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
@@ -49829,7 +49865,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
@@ -49959,7 +49997,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "xp-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
@@ -50560,7 +50600,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "unit-delivery"
+      ],
       "prerequisites": {
         "easy": [
           "UNL-202 Void Assault is a SIGNATURE card tagged Kha'Zix, so 103.2.d.2 forces a Kha'Zix legend whose two domains cover body + chaos - and the census prints exactly one such name: UNL-201 / UNL-236 Voidreaver. No other legend can hold this list.",
@@ -52342,7 +52384,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "xp-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Mosstomper is mono-Calm and Gustwalker mono-Mind, so 103.1.b.1 needs a Calm/Mind legend and the census gives four names: Nine-Tailed Fox (OGN-255), Fire Below the Mountain (SFD-189), Bashful Bloom (UNL-189), Curator of the Sands (VEN-145).",
