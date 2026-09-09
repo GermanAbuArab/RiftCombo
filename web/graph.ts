@@ -491,11 +491,18 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
   svg.append(defs, gLabels, gEdges, gNodes);
   svg.classList.toggle("dim-unrelated", initialDim);
 
-  // Lane headings sit above each column with a rule under them.
-  for (const lab of L.labels) {
-    gLabels.append(el("text", { x: lab.x, y: -18, class: "lane-label" }, lab.text));
-    gLabels.append(el("line", { x1: lab.x, y1: -8, x2: lab.x + lab.w, y2: -8, class: "lane-rule" }));
-  }
+  // Lane headings sit above each column with a rule under them, and they are CHROME: they name the
+  // lane you are looking at, so they hold a constant SCREEN size while the content zooms, on every
+  // stage. Each is a group scaled by the inverse of the current zoom, which makes one unit inside it
+  // exactly one screen pixel — see `sizeHeads`.
+  const heads = L.labels.map((lab) => {
+    const g = el("g", { class: "lane-head", transform: `translate(${lab.x},-18)` });
+    const text = el("text", { x: 0, y: 0, class: "lane-label" }, lab.text);
+    const rule = el("line", { x1: 0, y1: 10, x2: lab.w, y2: 10, class: "lane-rule" });
+    g.append(text, rule);
+    gLabels.append(g);
+    return { g, text, rule, lab };
+  });
 
   if (L.hub) {
     const legend = ctx.legend ? ctx.card(ctx.legend) : undefined;
@@ -656,8 +663,32 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
   const topPad = pad + (L.labels.length ? LANE_LABEL_H : 0);
   const content = { x: -pad, y: -topPad, w: L.width + 2 * pad, h: L.height + pad + topPad };
   let vb: Box = { ...content };
+  /**
+   * Hold the lane headings at a constant screen size. `k` is user units per screen pixel, the
+   * inverse of the zoom, so inside a group scaled by it one unit IS one screen pixel and a 14-unit
+   * font renders at 14px at every zoom level.
+   *
+   * The rule under a heading normally runs the width of its lane, but a label pinned at 14px can
+   * end up wider than the lane it names on a narrow stage, and a rule shorter than its own label
+   * reads as a mistake rather than as a choice — so it is drawn to whichever is wider. On a desktop
+   * stage that branch never fires. `getComputedTextLength` is the browser's own measurement of the
+   * rendered text; where there is no layout engine to ask, the lane stands.
+   *
+   * A stage with no box has no scale, so this leaves the headings as they were rather than sizing
+   * them against a number it invented — the same contract as `fitBox` (#57).
+   */
+  const sizeHeads = () => {
+    if (!(host.clientWidth > 0)) return;
+    const k = vb.w / host.clientWidth;
+    for (const h of heads) {
+      h.g.setAttribute("transform", `translate(${h.lab.x},-18) scale(${k})`);
+      const textW = (h.text as SVGTextElement).getComputedTextLength?.() ?? 0;
+      h.rule.setAttribute("x2", String(Math.max(h.lab.w / k, textW)));
+    }
+  };
   const apply = () => {
     svg.setAttribute("viewBox", `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+    sizeHeads();
     if (host.clientWidth > 0) ctx.onZoom(Math.round((host.clientWidth / vb.w) * 100));
   };
   /** Take a computed box, or report that there was no stage to measure it against. */
