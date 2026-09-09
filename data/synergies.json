@@ -106,6 +106,8 @@
           "cull-brambleback-gold",
           "reveler-loop-nasus-brambleback-conquer",
           "skyfall-ahri-conquer",
+          "swain-bard-brambleback-double-conquer-chain",
+          "swain-brambleback-conquer-burst",
           "tryndamere-brambleback-conquer"
         ]
       },
@@ -245,6 +247,7 @@
         "combos": [
           "guardian-passage-svellsongur",
           "ivern-svellsongur-four-tags-hold",
+          "riven-shattered-svellsongur-weaponmaster-pull",
           "shen-kinkou-svellsongur-hold",
           "svellsongur-apprentice-smith-gear-dig",
           "svellsongur-ava-achiever-hidden-flood",
@@ -254,6 +257,7 @@
           "svellsongur-fae-porter-relay",
           "svellsongur-faefolk-mass-evacuation",
           "svellsongur-imposing-challenger-unstage",
+          "svellsongur-ivern-nurturer-optional-draw",
           "svellsongur-kato-the-arm-keyword-spread",
           "svellsongur-ornn-hold",
           "svellsongur-qiyana-victorious-modal",
@@ -263,8 +267,7 @@
           "svellsongur-treasure-hunter-gold",
           "svellsongur-trevor-leblanc-plaza",
           "svellsongur-yasuo-remorseful-sweep",
-          "yasuo-remorseful-svellsongur-nasus-conquer",
-          "svellsongur-ivern-nurturer-optional-draw"
+          "yasuo-remorseful-svellsongur-nasus-conquer"
         ]
       },
       "status": "rule-verified",
@@ -291,16 +294,19 @@
         ],
         "combos": [
           "arise-renata-all-ready",
+          "card-sharp-renata-industrialist-gold-asymmetry",
           "chemtech-cask-renata-off-turn-power",
           "fae-dragon-wallop-industrialist",
           "ferrous-forerunner-karthus-mech-plaza",
           "flurry-of-feathers-renata-instant-wall",
           "grand-plaza-loop-time-warp",
           "portal-rescue-trove-golem-industrialist",
+          "prize-of-progress-gold-tokens-reaction-might",
           "pursuer-herald-recruits",
+          "treasure-hoard-renata-conquer-gold",
           "treasure-hunter-industrialist-gold",
-          "zed-clone-eye-recruits",
-          "treasure-hoard-renata-conquer-gold"
+          "wildclaw-shaman-fae-dragon-buff-launder",
+          "zed-clone-eye-recruits"
         ]
       },
       "status": "rule-verified",
@@ -900,7 +906,8 @@
           "185.1"
         ],
         "combos": [
-          "forecaster-rumble-mech-vision-scry"
+          "forecaster-rumble-mech-vision-scry",
+          "rumble-scrapper-hotheaded-mech-stack"
         ]
       },
       "status": "rule-verified",
@@ -928,7 +935,8 @@
           "807.1.d.1"
         ],
         "combos": [
-          "rumble-forerunner-mech-recursion"
+          "rumble-forerunner-mech-recursion",
+          "rumble-scrapper-hotheaded-mech-stack"
         ]
       },
       "status": "rule-verified",
@@ -970,7 +978,8 @@
           "blade-kogmaw-karthus-wipe",
           "ferrous-forerunner-karthus-mech-plaza",
           "karthus-black-rose-double-channel",
-          "karthus-rift-herald-double-play"
+          "karthus-rift-herald-double-play",
+          "ruined-rex-karthus-doubled-deathknell"
         ]
       },
       "status": "rule-verified",
@@ -998,6 +1007,7 @@
           "811.6"
         ],
         "combos": [
+          "bandle-tree-blastcone-fae-teemo-double-hidden",
           "black-market-broker-bandle-tree-gold"
         ]
       },
@@ -1954,6 +1964,7 @@
           "811.1.b"
         ],
         "combos": [
+          "final-spark-lady-luminosity-eight-to-a-base",
           "lady-luminosity-loop-comet"
         ]
       },
@@ -2197,7 +2208,8 @@
         ],
         "combos": [
           "direwing-dune-drake-ready-attacker",
-          "gemdragon-henge-vi-blind-fury"
+          "gemdragon-henge-vi-blind-fury",
+          "herald-of-scales-gemdragon-drakehound-net-positive"
         ]
       },
       "status": "rule-verified",
@@ -2220,7 +2232,8 @@
           "133.8.a"
         ],
         "combos": [
-          "gemdragon-henge-vi-blind-fury"
+          "gemdragon-henge-vi-blind-fury",
+          "herald-of-scales-gemdragon-drakehound-net-positive"
         ]
       },
       "status": "rule-verified",
@@ -2381,6 +2394,7 @@
         ],
         "combos": [
           "ivern-arena-sentinel-hold",
+          "ivern-bard-four-tag-double-conquer",
           "ivern-sentinel-hold",
           "ivern-svellsongur-four-tags-hold"
         ]
@@ -2625,8 +2639,9 @@
         ],
         "combos": [
           "faefolk-challenger-forced-attacker",
-          "teemo-strategist-swift-scout-hidden-flood",
-          "teemo-strategist-rabadons-deathcrown-bonus-kill"
+          "iascylla-teemo-strategist-forced-defend",
+          "teemo-strategist-rabadons-deathcrown-bonus-kill",
+          "teemo-strategist-swift-scout-hidden-flood"
         ]
       },
       "status": "rule-verified",
@@ -2720,7 +2735,8 @@
           "818.1.b"
         ],
         "combos": [
-          "sentinel-adept-weaponmaster-free-attach"
+          "sentinel-adept-weaponmaster-free-attach",
+          "spinning-axe-sentinel-adept-persistent-might-bonus"
         ]
       },
       "status": "rule-verified",
@@ -2765,6 +2781,7 @@
           "476.1"
         ],
         "combos": [
+          "rell-magnetic-purifier-assault-stack",
           "rell-magnetic-recurve-bow-per-attack"
         ]
       },
@@ -2834,7 +2851,9 @@
           "441.2",
           "827.1"
         ],
-        "combos": []
+        "combos": [
+          "profiteer-hextech-disc-empower-relay"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -2936,7 +2955,8 @@
           "817.1.b"
         ],
         "combos": [
-          "gemcraft-karma-herald-buff-faucet"
+          "gemcraft-karma-herald-buff-faucet",
+          "gemcraft-seer-flurry-of-feathers-bird-dig"
         ]
       },
       "status": "rule-verified",
@@ -3035,6 +3055,7 @@
         ],
         "combos": [
           "blade-kogmaw-karthus-wipe",
+          "empowered-deathknell-blade-ruined-king",
           "ferrous-forerunner-karthus-mech-plaza",
           "karthus-glasc-mixologist-double-reanimate",
           "karthus-honest-broker-blade-gold",
@@ -3289,7 +3310,8 @@
         "combos": [
           "fae-dragon-wallop-industrialist",
           "kraken-hunter-buff-discount-gold",
-          "overt-operation-fae-dragon-industrialist"
+          "overt-operation-fae-dragon-industrialist",
+          "wildclaw-shaman-fae-dragon-buff-launder"
         ]
       },
       "status": "rule-verified",
@@ -3361,7 +3383,9 @@
           "423.1.a.2"
         ],
         "combos": [
-          "solari-chief-facebreaker-shrine-kill"
+          "heroic-charge-solari-chief-stun-kill",
+          "solari-chief-facebreaker-shrine-kill",
+          "solari-chief-nami-headstrong-stun-into-kill"
         ]
       },
       "status": "rule-verified",
@@ -3412,8 +3436,9 @@
           "811.1.c.1"
         ],
         "combos": [
-          "ava-achiever-temporal-breach-trove-golem",
-          "ava-achiever-hostile-takeover-conquer"
+          "ava-achiever-hostile-takeover-conquer",
+          "ava-achiever-mischievous-marai-attacking-reinforcement",
+          "ava-achiever-temporal-breach-trove-golem"
         ]
       },
       "status": "rule-verified",
@@ -3564,7 +3589,8 @@
           "daughter-void-marai-curtain-call",
           "existential-dread-repeat-bounce",
           "ezreal-marai-spire-free-repeat",
-          "marai-spire-temptation-evacuation"
+          "marai-spire-temptation-evacuation",
+          "rocket-barrage-marai-spire-repeat-base-damage"
         ]
       },
       "status": "rule-verified",
@@ -3641,6 +3667,7 @@
           "315.1.b"
         ],
         "combos": [
+          "card-sharp-renata-industrialist-gold-asymmetry",
           "chem-baroness-gold-banked-across-the-threshold"
         ]
       },
@@ -3842,7 +3869,9 @@
         "rules": [
           "356.4.c.1"
         ],
-        "combos": []
+        "combos": [
+          "sky-splitter-volibear-free-removal"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
@@ -4560,6 +4589,7 @@
           "827.1.c.1"
         ],
         "combos": [
+          "rebuttal-mel-souls-reflection-offset-empower",
           "souls-reflection-questionable-tome-disempower-cycle"
         ]
       },
@@ -4591,7 +4621,8 @@
           "827.1.c.1"
         ],
         "combos": [
-          "matriarch-of-war-empower-ready"
+          "matriarch-of-war-empower-ready",
+          "noxian-emissary-matriarch-of-war-chained-dependent-keywords"
         ]
       },
       "status": "rule-verified",
@@ -4636,6 +4667,7 @@
           "455"
         ],
         "combos": [
+          "pack-of-wonders-rippers-bay-permanent-channel",
           "rippers-bay-retreat-double-channel"
         ]
       },
@@ -4894,6 +4926,7 @@
           "312.2.a"
         ],
         "combos": [
+          "emperors-dais-sprite-queen-conquer-cycle",
           "sprite-queen-targon-peak-conquer-cycle"
         ]
       },
@@ -4963,6 +4996,8 @@
           "428.1"
         ],
         "combos": [
+          "navori-fighting-pit-vanguard-helm-free-buffed-corpse",
+          "trifarian-gloryseeker-vanguard-helm-legion-buff",
           "vanguard-helm-kinkou-monk-buff-conservation"
         ]
       },
@@ -5003,6 +5038,7 @@
           "703"
         ],
         "combos": [
+          "enthusiastic-promoter-monastery-hirana-hold-refill",
           "monastery-hirana-warmogs-conquer-draw"
         ]
       },
@@ -5117,6 +5153,7 @@
           "190.6.a"
         ],
         "combos": [
+          "legion-marauder-risen-altar-free-empower",
           "risen-altar-ambessa-empower-power-rebate"
         ]
       },
@@ -5280,7 +5317,9 @@
           "714",
           "715.1"
         ],
-        "combos": []
+        "combos": [
+          "tibbers-annie-fiery-dark-child-sweep"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
@@ -5573,7 +5612,10 @@
           "809.2",
           "809.3"
         ],
-        "combos": []
+        "combos": [
+          "allay-petricite-monument-deflect-value-sums",
+          "not-so-fast-allay-deflect-tax-denial"
+        ]
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
@@ -5598,6 +5640,504 @@
       "status": "rule-verified",
       "reviewed": "2026-09-07",
       "reviewedCount": 2
+    },
+    {
+      "id": "hidden-blade-would-die-shield",
+      "name": "Hidden Blade's second sentence survives a save, so aim it at your own shielded body and draw 2",
+      "anchor": "OGN-213",
+      "partner": {
+        "textMatches": "[Ww]ould die",
+        "excludes": [
+          {
+            "card": "UNL-007",
+            "why": "\"If it would die this turn, banish it instead\" is a replacement that still REMOVES the unit — and 808.1.d.1's example is exactly this shape, so it also erases the Deathknell. It is the one member of the family that cannot keep a body on the board."
+          }
+        ]
+      },
+      "why": "Hidden Blade reads \"Kill a unit at a battlefield. Its controller draws 2.\" 359.3.e.14.b: \"If the Game Action performed in an earlier linked instruction is replaced, this will not affect the later linked instruction, unless the later linked instruction directly references the Game Action being performed.\" The draw references \"its controller\", i.e. the unit, never the kill — so a would-die replacement on YOUR OWN body keeps the body and still pays the two cards, for E2 + 1 Power, or for nothing at all from face down. The trap is the sibling paragraph, 359.3.e.14.a: \"If the earlier linked instruction is ignored for any reason, the later linked instruction will also be ignored\" — so a target that has merely LEFT the battlefield (bounced, recalled) makes the whole card fizzle, while a target that is genuinely saved by a replacement does not. Every survivor in this list replaces the death rather than dodging it: 808.1.d.1 names the heal / exhaust / recall shape by name, and 455 sends the saved body to its base, which is a cost for anything with \"While I'm at a battlefield\" on it. Altar of Blood is the one conditional member — it replaces a death \"during combat\" only, so the Blade has to be played inside the showdown (it is [Action]) rather than in the Main Phase.",
+      "basis": {
+        "rules": [
+          "359.3.e.14.a",
+          "359.3.e.14.b",
+          "808.1.d.1",
+          "455",
+          "811.1.b"
+        ],
+        "combos": [
+          "hidden-blade-tactical-retreat-linked-instruction-draw"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 8
+    },
+    {
+      "id": "mageseeker-warden-base-reaching-removal",
+      "name": "The Warden herds the enemy into their base, where only removal with no location clause can follow",
+      "anchor": "OGN-070",
+      "partner": {
+        "textMatches": "(?:[Kk]ill|[Bb]anish) (?:a|an|one|all|up to one)(?: enemy)? units?[.,]|[Dd]eal \\d+ to (?:a|an|one|all) units?[.,]",
+        "excludes": [
+          {
+            "card": "VEN-066",
+            "why": "\"Banish a unit, then its owner plays it to the same location, ignoring its cost\" gives the unit straight back — it is a blink, not removal, so it takes nothing off the board the Warden has filled."
+          }
+        ]
+      },
+      "why": "\"While I'm at a battlefield, opponents can only play units to their base\", and 054.2 — \"If a card specifies that an action can 'only' be performed under certain circumstances, it cannot be performed under any other circumstances\" — makes that a prohibition that beats 355.2.a's default and the seven cards that grant a wider play location. The consequence nobody prices is that the enemy board becomes a BASE, and almost every removal card in the pool prints \"at a battlefield\" or \"here\" and cannot see it. The list is every card whose target clause ends at the word \"unit\" with no location at all, which is what makes it reach a base: Vengeance is the only single-target kill with neither a location clause nor any other gate, The Ruination is the sweeper, Harnessed Dragon is a play trigger that kills anywhere, and the six damage rows (Falling Star, Icathian Rain, Super Mega Death Rocket!, Final Spark, Dancing Grenade, Xerath, Freed) reach a base as surely as a clause that says so. Two members the predicate cannot see and a reader should know about: VEN-131 Decree of Unity has no location clause either but its sentence continues \"unit or gear\", and the three cards that NAME a unit \"in a base\" (Rocket Barrage, Yone Blademaster, Curtain Call) say it in words the regex is not looking for. The Warden's second sentence — spells and abilities can't ready enemy units and gear — is a separate lock and is not what this rule is about.",
+      "basis": {
+        "rules": [
+          "054.2",
+          "355.2.a",
+          "355.2.b",
+          "811.1.d.1"
+        ],
+        "combos": [
+          "mageseeker-warden-vengeance-base-kill",
+          "warden-tianna-base-lock"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 9
+    },
+    {
+      "id": "seal-of-rage-finalization-power",
+      "name": "A Fury cost written at the start of a trigger is paid to FINALIZE it, and a 0-Energy Seal is the only Power banked in time",
+      "anchor": "OGN-040",
+      "partner": {
+        "textMatches": "you may pay [^.]{0,25}:rb_rune_fury:[^.]{0,25} to "
+      },
+      "why": "204.3.a: \"When Costs within Instructions appear as the first part of the effect in triggered abilities, the cost is taken to be the base cost of the triggered ability. It must be paid to finalize the triggered ability.\" 312.2.c then shuts the door on finding the Power afterwards — \"When the turn is in a Closed State, all pending chain items finish being finalized\" — so nobody receives priority between the trigger firing and the cost being due. Every card in this list is therefore priced wrong if it is read as pay-on-resolution: the Fury Power has to already be in the pool when the discard happens, when the spell kills, when the attack is declared, or when the shielded body would die. Seal of Rage is E0 for 1 Fury Power and its ability is [Reaction], so it costs no slot in the turn's Energy and it is ready again every Awakening under 415.3.a — which matters because a rune tapped on your own turn pays nothing but Power on the opponent's (164.2.a costs the rune's exhaust, 164.2.b does not), and three of these triggers fire on a turn that is not yours. Draven, Vanquisher is banned in both formats (data/legality.json) and is listed only because the predicate reads card text; Seal of Insight is the identical answer in Mind, where Ava Achiever is the whole family.",
+      "basis": {
+        "rules": [
+          "204.3.a",
+          "383.3.b",
+          "383.3.b.1",
+          "312.2.c",
+          "415.3.a",
+          "164.2.a",
+          "164.2.b"
+        ],
+        "combos": [
+          "seal-of-rage-baccai-reaper-finalization-power"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 5
+    },
+    {
+      "id": "drag-under-empties-the-garrison",
+      "name": "Winning a combat means being the only side left, so an [Action] kill inside the showdown is what fires these five",
+      "anchor": "SFD-164",
+      "partner": {
+        "textMatches": "[Ww]hen (I|you) win a combat"
+      },
+      "why": "466.3.a: \"A Player has won a combat if they received either the attacker or defender designation and are the only Player that has units remaining at this battlefield during this step.\" That is stricter than the reminder text these cards print (Nidalee says \"I win if I remain after combat\"), and 466.3.d makes it \"No Result\" if BOTH players still have units — with 466.1.a.2 recalling your attackers whenever defenders remain, and 466.1.a.1's \"Heal all Units\" wiping the marks that would have finished them. So a defence that merely survives pays nothing, and a trade pays nothing. Drag Under is [Action], costs E2 less from anywhere other than your hand, and kills a unit at a battlefield — played inside the combat the attack opened, after 464.2.c.3 has handed out the designations, it empties the defender's side and turns a No Result into a win with no damage step at all (465.1 needs both sides present for the damage tasks). Draven, Vanquisher is banned in both formats and is listed only because the predicate reads card text.",
+      "basis": {
+        "rules": [
+          "466.3.a",
+          "466.3.b",
+          "466.3.d",
+          "466.1.a.1",
+          "466.1.a.2",
+          "465.1",
+          "464.2.c.3",
+          "806.1.b"
+        ],
+        "combos": [
+          "drag-under-attacker-focus-first-conquer",
+          "nidalee-towering-combatant-ambush-draw"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 5
+    },
+    {
+      "id": "ravenborn-tome-bonus-damage-per-action",
+      "name": "Bonus Damage is paid per Deal ACTION, so the Tome is worth what the spell's own repetitions are worth",
+      "anchor": "OGN-032",
+      "partner": {
+        "textMatches": "[Dd]eal \\d+ to [^.•]*\\.\\s*[Dd]eal \\d+|, then deal \\d+|split .{0,40}among",
+        "types": [
+          "spell"
+        ],
+        "excludes": [
+          {
+            "card": "UNL-192",
+            "why": "\"Choose a friendly unit. It deals damage equal to its Might split among enemy units\" — 417.6.b.3 makes that UNIT damage, not the spell's, so the Tome (which pumps a spell) never reaches it. Volibear, Furious is absent from this list for the same reason under types: an ability is not a spell."
+          }
+        ]
+      },
+      "why": "\"[exhaust]: The next spell you play this turn deals 1 Bonus Damage\", and 713 makes Bonus Damage \"an intrinsic property that can be granted to Deal actions\". 715.2 is the paragraph that prices it: \"If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately.\" So the Tome pays per Deal ACTION and, inside one action, per TARGET — never per point of damage. Both halves are in this list. Falling Star prints \"Deal 3 to a unit\" twice and collects two; Icathian Rain prints it six times and collects six; Piercing Light's \"then deal 2 to up to one other unit\" is a second action; and Unchecked Power is the multi-target case, where one Deal reaches every unit at battlefields and each of them takes the extra point separately. A single big spell collects once, which is why the pool's 8-damage Final Spark is not here. What the Tome never does is double: 714 sums every instance of Bonus Damage and applies it once, so a second source (Annie, Fiery, Void Gate, Rabadon's Deathcrown) is +1 more per action, not x2, and 715.4 keeps Bonus Damage from creating a Deal action of its own. Two families are deliberately outside the list. The three cards that print \"deal N to it INSTEAD\" — Sudden Storm, Monster Harpoon, Ruthless Strike — are one Deal action with a replaced amount, so they collect once. And the split cases (715.3: \"If the Deal action Splits damage, then the Bonus Damage applies to the amount of Damage that will be Split. This can alter the number of targets eligible to be chosen\") belong to Annie rather than to the Tome: Volibear's split is an ABILITY and Alpha Strike's is dealt by a chosen unit under 417.6.b.3, and the Tome pumps a spell.",
+      "basis": {
+        "rules": [
+          "713",
+          "714",
+          "715.1",
+          "715.2",
+          "715.3",
+          "715.4"
+        ],
+        "combos": [
+          "ravenborn-tome-falling-star-two-deal-actions",
+          "icathian-rain-annie-ravenborn-six-deal-actions",
+          "volibear-furious-annie-fiery-split-more-targets"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 4
+    },
+    {
+      "id": "breakneck-mech-ganking",
+      "name": "Breakneck Mech is what lets a base-born Mech token cross the board at all",
+      "anchor": "SFD-071",
+      "partner": {
+        "tags": [
+          "Mech"
+        ]
+      },
+      "why": "\"Your Mechs have [Deflect] and [Ganking]\", and 187.4 — \"A 3 [M] Mech token is a domainless unit token with 3 Might and the Mech tag\" — gives every Mech TOKEN that tag by rule, so the static reaches bodies no decklist can show. The reason it is worth a slot rather than a keyword is 144.4: the Standard Move goes only base to battlefield (144.4.a) and battlefield to base (144.4.b), and 144.4.c.1 is the single exception, \"Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.\" A Mech born at your base is otherwise committed to one battlefield for the rest of its life, which is the bottleneck under every token line in this project; the Deflect half prices the opponent's answer at one rainbow per choice (809.1.c) on a board of bodies that cost you nothing. 810.1.c.3 is the limit to state with it — Ganking \"does not give additional abilities or activations of Movement, only new options for the Standard Move\" — so this is a wider destination, never a second move, and 810.2 makes a second grant redundant. The list is the Mech tag and nothing else: Mega-Mech has no rules text at all, and Experimental Hexplate cannot appear because it is an Equipment that says \"I am a Mech\" rather than carrying the tag.",
+      "basis": {
+        "rules": [
+          "187.4",
+          "144.4.a",
+          "144.4.b",
+          "144.4.c.1",
+          "810.1.c.3",
+          "810.2",
+          "809.1.c"
+        ],
+        "combos": [
+          "mechanized-menace-breakneck-mech-token-keywords"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 15
+    },
+    {
+      "id": "patched-porobot-gold-gear-count",
+      "name": "A Gold token is a GEAR, so every Gold producer in the list is also a gear count",
+      "anchor": "VEN-058",
+      "partner": {
+        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,60}?Gold gear tokens?\\b"
+      },
+      "why": "\"When you play me, if you control 3 or more other gear, draw 1.\" 187.5 defines the token — \"A Gold gear token is a domainless gear token with '[Reaction][>] Kill this, [E]: [Add] [A]'\" — and 185.2.d makes it count: \"Tokens have a type. They follow all rules for their type unless otherwise specified.\" So a Gold on your board is a gear for every gear-count threshold in the pool, it costs no card and no deck slot, and 103.2.b does not cap it. The catch is the token's own [E] in its cost: a Gold minted on a Hold or a Conquer enters exhausted and cannot pay for itself until your next Awakening (415.3.a), unless Renata Glasc, Industrialist is out — which is exactly why hoarding Golds rather than cashing them is what feeds a count. Card Sharp is in the list and is the one member that also hands the opponent a Gold (182 lets a spell name a different player as a token's controller), so it advances their gear count too.",
+      "basis": {
+        "rules": [
+          "187.5",
+          "185.2.d",
+          "185.2.a",
+          "350.2",
+          "415.3.a",
+          "182"
+        ],
+        "combos": [
+          "plundering-poro-patched-porobot-gold-gear-count"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 23
+    },
+    {
+      "id": "wily-newtfish-xp-this-turn",
+      "name": "The one XP payoff that reads a TURN instead of a threshold, so spending never switches it off",
+      "anchor": "UNL-108",
+      "partner": {
+        "textMatches": "[Gg]ain \\d+ XP|\\[Hunt"
+      },
+      "why": "\"If you've gained XP this turn, I have +1 Might and [Ganking].\" Every other XP payoff in the pool is a [Level N] rung, and 824.1.d makes those fragile — \"The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP\" — while 730.2 says spending is your own reduction: \"To Spend XP, reduce the value of XP marked on the Player spending it.\" So a list that runs an XP SINK turns its own [Level] rungs off, and the Newtfish is the single card that does not care, because the event it reads is the gain and not the balance. That makes every faucet in this list live for it, including the ones a Level deck cannot afford to pair with a sink, and it makes the Newtfish the correct payoff in a deck built to spend. 823.1.c.1 is why [Hunt] is in the predicate — \"When I Conquer or Hold, my controller gains X XP\" — and 315.2.b.2 holds every battlefield you control, so [Hunt] pays twice a turn on a Duel table (485.4). Gemhand Hunter is the card that carries one clause of each kind, so in a spending list its Hunt half keeps paying while its Level half goes dark.",
+      "basis": {
+        "rules": [
+          "824.1.d",
+          "730.2",
+          "823.1.c.1",
+          "315.2.b.2",
+          "485.4"
+        ],
+        "combos": [
+          "wily-newtfish-gemhand-hunter-xp-turn"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 30
+    },
+    {
+      "id": "cull-the-weak-friendly-death-outlet",
+      "name": "Cull the Weak is a 2-Energy sacrifice outlet that no [Deflect] and no \"can't be chosen\" can answer",
+      "anchor": "OGN-209",
+      "partner": {
+        "textMatches": "\\[Deathknell\\]|friendly unit dies|unit you control dies"
+      },
+      "why": "\"Each player kills one of their units\" is 355.10.e's own printed worked example: \"It is part of a set of objects chosen in whole or in part by other players. e.g., 'Each player kills a unit they control' does not target. Each player, including the one who played the spell, chooses a unit to kill as the spell or ability resolves.\" Nothing is targeted and nothing is chosen by you on their side, so 809.1.c's [Deflect] tax — \"an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose\" — is never charged, and an absolute \"I can't be chosen by enemy spells and abilities\" body is not consulted either. What that buys is a sacrifice outlet for two Energy and one Power that is also a piece of removal, and this list is what pays for your half: every Deathknell body and every card that watches a friendly unit die. Two limits to state rather than hide. The opponent picks their own casualty, so the removal half takes their worst body and is never an answer to a particular threat. And the payoff you kill has to be a body you can spare — 428.1.a.1.b snapshots a dying unit's location and attributes before the kill instruction completes, which is what makes Loyal Poro's \"if I didn't die alone\" reliably true when other friendlies stand with it.",
+      "basis": {
+        "rules": [
+          "355.10.e",
+          "355.10.f",
+          "809.1.c",
+          "808.1.c",
+          "428.1.a.1.b"
+        ],
+        "combos": [
+          "cull-the-weak-loyal-poro"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 33
+    },
+    {
+      "id": "prepared-neophyte-repeat-cost",
+      "name": "A [Repeat] cost is SPENT in full, so a cheap spell crosses a threshold a discounted expensive one fails",
+      "anchor": "UNL-004",
+      "partner": {
+        "textMatches": "\\[Repeat\\]",
+        "types": [
+          "spell"
+        ]
+      },
+      "why": "\"If you've spent 4 Energy or more to play a spell this turn, I have +4 Might.\" The whole lens splits on one word: a \"costs N or more\" clause reads the PRINTED cost under 206 and a discount never touches it, while a \"spent N or more\" clause reads what actually left the Rune Pool (166.2, 203.1, 356.4.b) and a discount switches it off. The constructive half is this list. 820.1.c.1 makes a [Repeat] cost \"an Additional Cost to be paid during the steps of playing the spell or ability\" — so it is SPENT, in full, on top of the base cost — while 206's second worked example (Defy against Rocket Barrage) says a \"costs N\" check ignores it entirely. So a 2-Energy spell with a 2-Energy Repeat spends 4 and arms the Neophyte, where a 6-Energy spell discounted to 3 does not. Read each spell's own Repeat cost before counting it: several in this list price the repeat in Power alone, which spends no Energy and clears nothing here. The same arithmetic works from the other side, and it is the one place an opponent helps you — 809.1.c makes [Deflect] an additional cost too, so their tax on your spell pushes you over your own line.",
+      "basis": {
+        "rules": [
+          "206",
+          "166.2",
+          "203.1",
+          "356.4.b",
+          "820.1.c.1",
+          "820.1.b",
+          "809.1.c"
+        ],
+        "combos": [
+          "prepared-neophyte-disintegrate-spent-threshold"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 20
+    },
+    {
+      "id": "purifier-equipment-assault-sums",
+      "name": "Purifier turns every Equipment on a body into a separate [Assault] instance, and 807.2 sums them",
+      "anchor": "SFD-183",
+      "partner": {
+        "tags": [
+          "Equipment"
+        ]
+      },
+      "why": "\"Your Equipment each give [Assault]\" — the word is EACH, so a body wearing three Equipment is granted three instances, and 807.2 collects them: \"If a Unit has Assault or has been granted Assault and is granted Assault by an additional source, the Assault Value of all granted Assault keywords is summed\", with Riot's example (Petty Officer plus Cleave reaching Assault 4) doing the arithmetic. 807.1.b.3 makes a bare grant worth 1, so the sum is simply the number of Equipment, on top of every Might Bonus those Equipment already add under 137.3 and 434.1.d. Two limits worth carrying. 807.1.c is conditional — \"While I am an attacker, I have +X [M]\" — and 807.1.d makes being an attacker mean the Unit gained the Attacker designation during Combat, so none of it exists on a bloodless conquer where 323.9 stages no Combat at all. And stacking Equipment on one carrier is its own problem: 818.1 makes each [Equip] a separate Activated Ability with its own cost, [Weaponmaster] frees only one and only \"to me\", and 434.1.g means re-attaching to the current host does nothing.",
+      "basis": {
+        "rules": [
+          "807.1.b.3",
+          "807.1.c",
+          "807.1.d",
+          "807.2",
+          "137.3",
+          "434.1.d",
+          "818.1",
+          "323.9"
+        ],
+        "combos": [
+          "purifier-veteran-poro-blade-stack",
+          "rell-magnetic-purifier-assault-stack"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 40
+    },
+    {
+      "id": "warwick-hunter-damage-marker",
+      "name": "\"Kill all DAMAGED enemy units\" reads a marker, not a threshold — so any ping in the list is universal removal",
+      "anchor": "OGN-159",
+      "partner": {
+        "textMatches": ":rb_exhaust:[^.]{0,25}[Dd]eal \\d+|[Ww]hen (I|you) (play me|move|attack)[^.]{0,80}deal \\d+"
+      },
+      "why": "143.2.a is death BY damage — \"If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed\" — but Warwick's sweep is a kill BY EFFECT keyed on the word \"damaged\", so it ignores Might entirely and two points off a 3-Energy gear kill a 10-Might body as dead as a 1-Might one. Every card in this list marks damage cheaply and repeatedly, which is the only input the sweep needs. The clock is 466.1.a.1 — the Combat Cleanup inserts \"3c. Heal all Units\" — so a mark applied in a previous combat, or on the opponent's turn, is gone before your attack: the ping and the attack are the same Main Phase. For the play-trigger and exhaust members that is simply an ordering; for the members whose ping is itself an attack trigger the interaction is finer, and this project has walked it — 383.3.d lets the controller order simultaneous triggers, 340.1 resolves the newest finalized item first, so a ping trigger PLACED second resolves FIRST and marks damage that Warwick's kill trigger then reads on execution under 359.3.f.2. Warwick's own clause carries no extra condition, so 383.2.a.1 has nothing to freeze at the designation.",
+      "basis": {
+        "rules": [
+          "143.2.a",
+          "466.1.a.1",
+          "383.3.d",
+          "340.1",
+          "359.3.f.2",
+          "383.2.a.1",
+          "464.2.c.3"
+        ],
+        "combos": [
+          "warwick-hunter-iron-ballista-damage-marks-death",
+          "crackshot-corsair-warwick-attack-order"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 14
+    },
+    {
+      "id": "immortal-phoenix-spell-kill",
+      "name": "428.5.c is the only reason a damage spell ever counts as killing with a spell",
+      "anchor": "OGN-037",
+      "partner": {
+        "textMatches": "[Dd]eal \\d+ to",
+        "types": [
+          "spell"
+        ],
+        "excludes": [
+          {
+            "card": "UNL-007",
+            "why": "\"Deal 3 to a unit at a battlefield. If it would die this turn, banish it instead\" replaces the death, so no kill action is ever generated and 428.5.c has nothing to attribute — the one damage spell in the pool that provably cannot fire this trigger."
+          }
+        ]
+      },
+      "why": "\"When you kill a unit with a spell, you may pay 1 Energy + 1 Fury to play me from your trash.\" No burn spell in the pool contains a kill instruction, and 143.2.a kills in a Cleanup rather than on resolution, so without one paragraph this trigger would never fire off damage at all. 428.5.c is that paragraph: \"When one or more Units is killed due to a Cleanup, that kill action is attributed to the spell or ability that resolved immediately prior to that Cleanup that dealt damage to the Unit or Units\", with 428.5.c.1 making the player responsible for the deal action responsible for the kill. 428.5.c.2 is the exception that keeps the trigger honest in combat — a kill in the COMBAT Cleanup is attributed to the units that dealt the damage, not to any spell — so a body that simply dies fighting pays nothing. Read with 428.5.d, a spell that splits itself into a reflexive ability keeps the attribution, since \"Abilities originating from Game Objects that are attributed Kill Actions are attributed in addition to the Game Object that created them\". The cost sits at the start of the trigger's effect, so 204.3.a makes it a base cost paid to FINALIZE: bank the Fury Power before you cast, because 312.2.c gives you no window afterwards.",
+      "basis": {
+        "rules": [
+          "428.5.b",
+          "428.5.c",
+          "428.5.c.1",
+          "428.5.c.2",
+          "428.5.d",
+          "143.2.a",
+          "204.3.a",
+          "312.2.c"
+        ],
+        "combos": [
+          "immortal-phoenix-falling-star-cleanup-attribution"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 33
+    },
+    {
+      "id": "atakhan-expensive-sacrifice",
+      "name": "Atakhan's additional cost reads the PRINTED cost of the body you feed it, both halves of it",
+      "anchor": "UNL-170",
+      "partner": {
+        "textMatches": "[\\s\\S]",
+        "types": [
+          "unit"
+        ],
+        "minEnergy": 8
+      },
+      "why": "\"You may kill a friendly unit as an additional cost to play me. If you do, I cost 1 Energy less for each Energy it costs and 1 Order Power less for each Power it costs.\" 206 fixes which number that is — the PRINTED cost, whatever was actually paid — so a body played at a discount, from [Hidden] for zero, or reanimated for free still pays Atakhan its full printed value, and this list is every unit in the pool printed at 8 Energy or more. At E10 + 3 Order Power he is the most expensive body most lists can field; one 8-Energy corpse takes him to E2, and 356.6 floors each half at 0 rather than letting either go negative. Two things a reader should know before building it. The cheapest fuel of all is not in this list and cannot be: 185.3.a.1 makes an ordinary token's cost \"0 for all purposes\", but 185.3.a.2 appends a real cost to a Reflection through the copy effect, so a LeBlanc Reflection that was going to die at its controller's next Beginning Phase anyway can carry a printed 10 into the discount. And the kill is a COST, so 203.3 applies — with no legal friendly unit to kill you simply do not pay it, and Atakhan costs full price rather than becoming unplayable.",
+      "basis": {
+        "rules": [
+          "206",
+          "356.6",
+          "185.3.a.1",
+          "185.3.a.2",
+          "203.3",
+          "185.2.d"
+        ],
+        "combos": [
+          "atakhan-harnessed-dragon-sacrifice",
+          "mirror-image-reflection-atakhan-printed-cost"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 28
+    },
+    {
+      "id": "temporal-breach-replays-in-place",
+      "name": "The one blink that returns the body to the SAME location, so a \"here\" play trigger keeps its battlefield",
+      "anchor": "VEN-066",
+      "partner": {
+        "textMatches": "[Ww]hen you play me[^.]{0,90}here",
+        "excludes": [
+          {
+            "card": "VEN-099",
+            "why": "\"When you play me FROM FACE DOWN, you may empower something here\" — Temporal Breach's replay is a normal play from Banishment, not a play from face down (811.1.c.1 keeps Hide and Play separate), so the trigger never fires."
+          }
+        ]
+      },
+      "why": "\"Banish a unit, then its owner plays it to the same location, ignoring its cost.\" Every other re-play route in this file loses the location: a bounce to hand replays under 355.2, which fixes the play location at your base or a battlefield you control, and Portal Rescue names the base outright — which makes every card in this list strictly worse under it, because 359.3.f.2 reads \"here\" on execution and \"here\" is then the base. Temporal Breach is the exception written into its own text, so a Sprite Mother or a Royal Guard re-fires at the battlefield it is already standing on. Two mechanics make it safe. 108.6.c makes Banishment the hard-to-recover zone and nothing in the pool returns a card from it, but the replay is part of the same instruction, so the card never rests there. And it says \"its owner\", so aiming it at an enemy body is a blink for THEM: 191.1 establishes the player who Plays a Game Object as its Controller, so the opponent gets their own play trigger back, which is why this is a friendly-side card. It is [Hidden], so from face down the whole thing costs zero on their turn (811.1.b) — and 811.1.d.2 then confines the target to the battlefield it was hidden at.",
+      "basis": {
+        "rules": [
+          "355.2",
+          "355.2.a",
+          "359.3.f.2",
+          "108.6.c",
+          "811.1.b",
+          "811.1.d.2",
+          "191.1"
+        ],
+        "combos": [
+          "ava-achiever-temporal-breach-trove-golem"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 11
+    },
+    {
+      "id": "caitlyn-patrolling-tank-screen",
+      "name": "465.2.c.6 prints the whole assignment order — a Tank in front of Caitlyn is what makes her ping forever",
+      "anchor": "OGN-068",
+      "partner": {
+        "textMatches": "\\[Tank\\]",
+        "excludes": [
+          {
+            "card": "VEN-004",
+            "why": "\"You ignore [Tank] while assigning combat damage here\" grants no Tank to anybody — and 767 makes the ignore one-way and scoped to the player the ability names, so it is a key against a wall, not a wall."
+          }
+        ]
+      },
+      "why": "Caitlyn prints the Backline EFFECT in prose rather than as a keyword — \"I must be assigned combat damage last\" — beside \"[exhaust]: Deal damage equal to my Might to a unit at a battlefield\", so she is a repeatable pinger that only pays if she survives. 465.2.c.6 orders the assignment and its own worked example spells the family out: \"That player must assign combat damage first to the unit with Tank, then to the unit with no abilities, then to the unit with Backline.\" 815.1.c.2 is the hard half — \"Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them\" — so an attack whose summed Might is less than the Tank's kills nothing at all, and Caitlyn is not merely last in line but unreachable. Two limits. 465.2.c.8 hands the choice back to the ATTACKER when one body carries two exclusionary requirements, and its worked example is Caitlyn given Tank BY NAME, so the grants in this list (Block, Doran's Shield, Yuumi, Eye of Twilight) must be aimed at another body and never at her. And 815.2 makes a second Tank grant on the same body redundant, so the lever on a printed Tank is its own Might — which is what Kinkou Temple pays for.",
+      "basis": {
+        "rules": [
+          "465.2.c.6",
+          "465.2.c.8",
+          "465.2.c.10",
+          "815.1.b",
+          "815.1.c.2",
+          "815.2",
+          "767"
+        ],
+        "combos": [
+          "caitlyn-taric-backline-last-assignment"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 25
+    },
+    {
+      "id": "factory-recall-equipment-rehost",
+      "name": "718.2 silences an [Equip] only WHILE attached, so a bounce to hand is the legal way to buy a new carrier",
+      "anchor": "SFD-135",
+      "partner": {
+        "tags": [
+          "Equipment"
+        ]
+      },
+      "why": "718.1 — \"A card remains in this state until Detached\" — is what scopes 718.2, \"While in this state, the card's printed Rules Text is Inactive\", and 721.2 finishes it: \"Inactive Abilities do not trigger, do not apply, and cannot be activated.\" [Equip] is printed rules text, so an attached Equipment can never pay its own [Equip] again — the printed carve-out on [Weaponmaster], \"even if it's already attached\", is the proof. 434.1.g closes the obvious workaround: \"Attaching a card to its current Top-Most Card will not have any effect.\" Factory Recall is E1 at [Action] speed and returns the gear to its owner's hand, where the printed text is Active again, so replaying it buys a NEW carrier for one Energy — the only route in the pool that is not an attach EFFECT (Grandmaster at Arms, Forge of the Fluft, Rell, Aphelios' trigger). On a [Quick-Draw] Equipment it is free, because 819.1.d makes the attach a play trigger and no Equip cost is ever determined. Two things the bounce takes with it: 137.3.a stops the Might Bonus \"as soon as the card with the Might Bonus is no longer Attached\", and 718.3's appended Effect Text goes with it. It answers the opponent's Equipment too — 718.5.b keeps an attached card choosable — which is why an Equipment BURST is not safe behind its carrier.",
+      "basis": {
+        "rules": [
+          "718.1",
+          "718.2",
+          "718.3",
+          "718.5.b",
+          "721.2",
+          "434.1.f",
+          "434.1.g",
+          "137.3.a",
+          "819.1.d"
+        ],
+        "combos": [
+          "factory-recall-brittle-steel-gear-both-ways",
+          "spinning-axe-factory-recall-inactive-temporary"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 40
     }
   ]
 }
