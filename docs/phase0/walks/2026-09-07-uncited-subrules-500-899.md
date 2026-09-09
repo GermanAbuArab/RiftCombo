@@ -417,3 +417,148 @@ runs constantly. Use `grep -E "^[[:space:]]*NNN\."`.
 This was found by an ad-hoc audit of my own that had the bare-`^` bug, and which therefore reported two
 real paragraphs (`812.1.b`, `487.5`) as nonexistent. Same shape as the 766 correction the manager
 handed back this morning: **an absence needs the same grep as a find.**
+
+## 11. Batch 4 — four entries (2026-09-09, successor session, manager rc-manager5)
+
+Staged to `/tmp/rc-walks/rc-walk-fam1.json`, which was **emptied first** (batch 3 merged and verified
+present in `data/combos.json`). Checks run before reporting: `validateCombos` clean · `legendcheck-fc`
+PASS over 49 legend base codes · `audit-fc` 2,513 rule references, all existing · a **new**
+`quotecheck-fc2.ts`, 79 passages, all verbatim · `node .scratch/have.mjs` on all four card sets
+before any of them was written, all four "no entry uses that card set or a subset of it".
+
+### 11.0 The range is smaller than the lane's name and the example-filtered vein is spent
+
+**The Core Rules stop at 829, not 899.** Re-running `probe-500-899.ts` against the catalogue at 715
+entries: 408 sub-rule headings, **137 uncited** (down from 172, because the catalogue grew), and only
+**15** carry a worked example — of which twelve were already refused with paragraphs in §4, §7 and §9.
+So the *Example*-filtered probe this lane was built on is finished. The successor probe,
+`.scratch/probe-fc-wide.ts`, drops the example filter and prints all 137 with their text; the rows
+with real play content are the **keyword blocks 801–829**, which is where all four of this batch came
+from and where the remaining material is.
+
+### 11.1 `azir-ascendant-steraks-gage-equipped-state-survives-inactive` — SFD-050 + SFD-056
+
+**818.5.a is load-bearing and nothing had cited it.** 818.3.c defines Equipped as *"a Top-Most card
+having a card with Equip that is Attached to it"*, while 718.2 says of that attached card *"While in
+this state, the card's printed Rules Text is Inactive"* and 721.2 says *"Inactive Abilities do not
+trigger, do not apply, and cannot be activated."* 818.1.a puts [Equip] in exactly that printed Rules
+Text. Read together those three make Equipped self-cancelling — attaching the gear destroys the
+[Equip] the state is defined by — and **818.5.a is the only sentence that resolves it**: *"Whether or
+not a Gear has Equip may be referenced even if the Rules Text of the Gear is Inactive."*
+
+**The pool reads the STATE and never the EVENT.** 818.2 / 818.2.a make an Equipped *event* that
+*"other Game Effects and Triggered Abilities can reference"*. Measured 2026-09-09 over
+`data/corpus_flat.txt`, the word *equipped* appears on exactly four cards and all four read the state:
+`SFD-050 Azir, Ascendant`, `SFD-107 Strike Down`, `SFD-183 Purifier` (reminder text) and
+`VEN-137 Shady Spectacles`. No card says *"when you equip"*. So the question a [Weaponmaster] attach
+would raise against 821.1.c.6 (*"The Equip ability is not activated this way"*) never has to be
+answered — and because 818.3.a makes the state *"synchronous with that of the Attached state of the
+Equipment"*, every attach route reaches it equally.
+
+### 11.2 `enthusiastic-promoter-trevor-backline-single-body-cap` — UNL-043 + UNL-048
+
+**826.4.b is the uncited mirror of 815.1.c.2 and it inverts the second sentence.** This project quotes
+the Tank half constantly; the Backline half reads *"If more than one unit with Backline is present
+with the same controller in Combat, damage may be assigned to any of them. Units with Backline are
+invalid assignments until all units without Backline have lethal damage assigned to them."* So a
+second **[Tank]** body makes the toll booth bigger for everyone else, while a second **[Backline]**
+body simply hands the attacker a choice between the two: **[Tank] scales with copies, [Backline] does
+not.** 826.5 closes the other door (*"Multiple Instances of Backline are redundant"*).
+
+Limit on 826.4.b's own reach, measured: `grep -ci backline` over the corpus returns **4**
+(`UNL-043`, `UNL-090`, `UNL-141`, `UNL-145`) while **six** cards carry the effect — `OGN-068 Caitlyn,
+Patrolling` and `SFD-173 Soraka, Wanderer` print the sentence with no keyword, so a Caitlyn beside a
+Promoter is governed by 465.2.c.6 and 465.2.c.8 instead. Different paragraph, same verdict: run one.
+
+### 11.3 `black-flame-altar-sprite-call-temporary-shield` — UNL-208 + OGN-094
+
+**801.3.a.3 decides how long a granted keyword lasts when the card says nothing**: *"If an effect that
+grants a Keyword does not specify a duration, the duration is as long as that Game Object remains on
+the Board or in its current Non-Board Zone."* Uncited before this entry, with 801.3.a.2. The Altar
+(**in zero entries**) grants [Shield] to [Temporary] bodies, and the fit is exact: 814.1.c pays only
+*"While I am a defender"*, and 816.1.b means a [Temporary] body's whole life is the opponent's turn.
+
+**A counted set in `CLAUDE.md` is smaller than the pool.** The standing note names **six** battlefields
+as live with no Controller because their text never says *"you"*. Measured 2026-09-09 with a
+field-aware sweep of `data/corpus_flat.txt`, **26 of the 66** contain neither *you* nor *your*; four are
+banned in both formats (`OGN-276`, `OGN-284`, `OGN-290`, `OGN-292`), leaving **22 playable**:
+`OGN-277`, `OGN-294`, `OGN-295`, `OGN-296`, `OGN-297`, `SFD-209`, `SFD-216`, `UNL-205`, `UNL-206`,
+`UNL-208`, `UNL-210`, `UNL-212`, `UNL-213`, `UNL-214`, `UNL-215`, `UNL-218`, `VEN-157`, `VEN-158`,
+`VEN-159`, `VEN-160`, `VEN-164`, `VEN-166`. **That is the literal-word count and it is not by itself
+the count of live battlefields**, because 190.6.d also reaches *"the implied 'you' in instructions that
+don't specify a player like 'draw 1.'"* — exactly one row, `OGN-277 Back-Alley Bar` (*"When a unit
+moves from here, give it +1 Might this turn"*), states an instruction with no named actor and needs
+that second check before anyone leans on it. The other twenty-one either name a player or are pure
+statics and prohibitions with no instruction at all.
+
+### 11.4 `jax-unmatched-last-rites-quickdraw-deletes-nonresource-equip` — SFD-054 + SFD-150
+
+**The two "free attach" keywords are not the same tool.** 821.1.c makes [Weaponmaster] *"Pay the cost
+of its Equip ability, reduced by [A], to attach it to this unit."* — it activates the ability and
+**discounts** the cost. 819.1.d makes [Quick-Draw] short for *"[Reaction]"* and *"When you play this,
+attach it to a Unit you control."* — no Equip ability is activated, so **no Equip cost is ever
+determined**. The difference is invisible until an Equip cost has a **non-resource half**, and exactly
+one does: `SFD-150 Last Rites` (*"[Equip] — :rb_rune_chaos:, Recycle 2 cards from your trash"*), which
+this project already records as un-freeable by [Weaponmaster]. A granted [Quick-Draw] frees both
+halves — and the recycle is the half worth more, since paying it feeds the trash the Equipment's own
+[Effect] wants to spend.
+
+**819.2 is the printed cap**: *"Multiple instances of Quick-Draw do not trigger separately and have no
+effect beyond the first."* Measured 2026-09-09: **40 Equipment printings, four print the keyword** —
+`SFD-022 Long Sword`, `SFD-056 Sterak's Gage`, `SFD-064 Cloth Armor`, `SFD-186 Spinning Axe` — so
+Jax's grant is worth zero on those four and the list must be built from the other thirty-six.
+
+## 12. Refusals from batch 4, each with the sweep that refuses it
+
+| refused | the sweep or paragraph | scope |
+|---|---|---|
+| **823.2** (granted [Hunt] values sum, the fourth summing keyword beside 807.2 / 809.2 / 814.2) | no card — swept `(gains?\|have\|has\|gives?\|granted?) …\[?Hunt` over `data/corpus_flat.txt`: **zero rows grant Hunt**, and no card prints two `[Hunt` instances either (13 rows carry the keyword, all one instance) | want of a card; reopen the moment a set prints a Hunt granter. The **summing family is four paragraphs and three usable keywords** — that is the correction to "809.2 completes the summing family" |
+| **821.1.d** (multiple [Weaponmaster] instances choosing the same target each resolve separately) | no card — no unit prints two instances, and the pool's only text-duplicator, `SFD-059 Svellsongur`, attaches **after** the play, while 821.1.c's trigger is *"When you play me"* and **821.2** says *"Weaponmaster has no function while on the board"* | want of a card, and closed by rule rather than by census: 821.2 kills every route |
+| **827.3** (multiple [Empower] instances are multiple activated abilities) | no card — swept for two `[Empower]` instances on one row: **zero** | want of a card |
+| **829.1.c.3** (a spell with several [Flow] instances at different costs, controller chooses) | no card — swept for two `[Flow` instances on one row over the 17 Flow rows: **zero** | want of a card |
+| **818.2 / 818.2.a** (the Equipped **event**) | no card — the four cards using the word *equipped* all read the **state** (§11.1) | want of a card; the state half is entry 11.1 |
+| **725.2** (an attached card whose Passive/Replacement/Triggered text applies during **Detaching**) | no card — four cards touch detaching (`SFD-011 Angle Shot`, `SFD-107 Strike Down`, `SFD-193 Grandmaster at Arms`, `SFD-221 Veiled Temple`) and every one of them is the card **causing** the detach, not an Equipment with text that triggers off being detached | want of a card |
+| **826.6 / 819.3 / 821.3 / 823.3 / 818.5 (the "referenceable characteristic" tails)** | no card reads [Backline], [Quick-Draw], [Weaponmaster], [Hunt] or [Equip] as a characteristic. The tails that DO have readers are 815.3 (`VEN-159 Kinkou Temple`, *"Units here with [Tank] have +1 Might"*), 813.5.b (`VEN-160 Mystic Vortex`), 816.3 (`UNL-076 Petal Pixie`, `UNL-208`, `UNL-165`) and 829.2 (`VEN-098 Stargazer`) | want of a card for five of the nine tails; **815.3 and 813.5.b are still uncited and both have a card** — the two best remaining rows in this range |
+
+## 13. Handoff — what the next session in this lane should open first
+
+1. **815.3** (*"Tank … is a characteristic of the Unit and may be checked or referenced"*) with
+   `VEN-159 Kinkou Temple`, and **813.5.b** (*"Whether or not a Spell has Reaction is a characteristic
+   of that Spell"*) with `VEN-160 Mystic Vortex`. Both uncited, both with a printed reader, both
+   currently in one entry each — so a **new card set** is needed, not a citation upgrade.
+2. **813.4 / 813.4.a / 813.4.b** — conditionally granted **Reaction**, with the undo at
+   *"step 5: check legality"*. §9 refused the **Action** twin for want of a card (zero units print
+   [Action], zero cards grant it); the Reaction twin **has** a user, because 822.1.b grants Reaction
+   *"as long as I'm being played to a battlefield where you control Units"* — a condition true only
+   while the card is being played. Before writing it, settle whether any window exists between 354 and
+   358 in which the condition can fail: 354.3 and 354.4 (finish what is resolving / finish outstanding
+   Tasks) are the only candidates, and no priority is granted mid-play. **Do not file a reading; find
+   the ordering, per the standing rule.**
+3. **740.4.a.2.a** (*"Costs within instructions that appear in any later part of the trigger effect are
+   paid on resolution"*) — the constructive twin of the 383.3.b / 204.3.a trap this project cites
+   everywhere. Its twin 740.4.a.2 is cited; this one is not. Candidate reader found while sweeping:
+   `UNL-135 Insightful Investigator`.
+4. **827.1.b.1** (*"The source game object is not a target of the Empower ability"*) — so an [Empower]
+   never fires a *"when you choose me"* payoff (`SFD-195 Blade Dancer`, `SFD-142 Jae Medarda`) where a
+   [Buff] does, 702.2.a being a choice. An `excludes` shape rather than an entry unless a positive line
+   turns up.
+5. The 650s (a player conceding / being removed) remain refused as **multiplayer-only and
+   unrepresentable** — `matchDeck` reads one list, the #118 wall.
+
+**Instrument note earned this batch.** `audit-quotes-fc.ts` only checks passages that sit inside
+single quotes *within* a `quote` field, which means a source whose `quote` is the bare rules text —
+the normal shape — is checked by **nothing**. `.scratch/quotecheck-fc2.ts` (new; `.scratch/` is gitignored
+per `.gitignore:14`, so the script is local to the working tree and is reproduced in outline here:
+normalise curly quotes and whitespace, split each `quote` on the ellipsis, and require every part to
+appear in the rules file or the corpus) checks the whole field against the rules file and the corpus,
+splitting on the ellipsis that joins paragraphs, and skips possessive apostrophes when scanning
+notables. Its first run flagged **two real defects in this batch's own drafts**: an elision written
+*inside* the quote marks, and a paraphrase (*"a Chaos rune"*) sitting inside quote marks where the card
+prints `:rb_rune_chaos:`. Both were repaired before staging. It also produced 32 false positives on
+its first version by treating possessive apostrophes as quote marks — **the instrument was wrong
+before the entries were**, which is the standing lesson from the other direction.
+
+**And `noclobber` bit again**, exactly as `CLAUDE.md` records: a `cat >` onto an existing
+`.scratch/*.ts` failed with *"file exists"* and the **old** script ran and printed a stale result. Use
+`set +o noclobber` and `rm -f` in the *same* Bash invocation — shell options do not persist between
+tool calls.
