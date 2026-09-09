@@ -6,11 +6,13 @@
 // else here is the real module reading a real card index.
 import { readFileSync } from "node:fs";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { loadCardIndex } from "../../src/load.js";
+import { loadCardIndex, loadCombos } from "../../src/load.js";
+import { generateVariants } from "../../src/combos.js";
 import type { CardIndex } from "../../src/cards.js";
 import type { SavedDeck } from "../../src/saved.js";
 
 const cards = loadCardIndex();
+const variants = generateVariants(loadCombos().combos, cards);
 const list = readFileSync(`${process.cwd()}/test/fixtures/lux.txt`, "utf8");
 
 const row = (over: Partial<SavedDeck> = {}): SavedDeck => ({
@@ -88,6 +90,7 @@ async function boot(hash = "#/decks", index: CardIndex = cards) {
   const router = await import("../../web/router.js");
   decks.initDecks({
     cards: () => index,
+    variants: () => variants,
     analyze: (d) => analyzed.push(d),
     showCard: () => {},
   });

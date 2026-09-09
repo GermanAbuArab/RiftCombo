@@ -580,6 +580,11 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
    rather than to the name. Aligned to the start they stay with the line they label. */
 .deck-card-legend { display: flex; align-items: flex-start; gap: 6px; font-size: 0.8125rem; }
 .deck-card-meta { font-size: 0.71875rem; color: var(--muted); }
+/* The meta line wraps, and at the 250px minimum column it has to: "40 cards · Constructed · 6 combos
+   complete" does not fit one line beside a 72px thumbnail. Breaking is fine, breaking INSIDE the
+   sentence is not — "6 combos" over "complete" reads as a fragment — so the count is one unbreakable
+   run and the line can only break at a separator. */
+.deck-card-count { white-space: nowrap; }
 .deck-card-when { font-size: 0.71875rem; color: var(--faint); }
 /* Why the badge says Illegal (#93). NOT --danger: it measures 3.98:1 on --panel, under AA, and the
    grey scale here is measured rather than chosen (#81). The badge beside it already carries the red,

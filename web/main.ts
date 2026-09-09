@@ -192,6 +192,7 @@ async function boot() {
   initAccount();
   initDecks({
     cards: () => cards,
+    variants: () => variants,
     showCard: (base) => showCard(base),
     analyze: (saved) => {
       $<HTMLInputElement>(`input[name=format][value="${saved.format}"]`).checked = true;

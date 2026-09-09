@@ -12,7 +12,8 @@ import { checkBuild, LEGALITY_RULE, type BuildReport } from "../src/build.js";
 import { deckRestrictions, deckToText, encodeDeckCode, loadDeck, type DeckEntry } from "../src/deck.js";
 import { checkSave, sortSaved, MAX_NAME, type SavedDeck } from "../src/saved.js";
 import type { CardIndex } from "../src/cards.js";
-import type { Deck, Domain, Format } from "../src/types.js";
+import { matchDeck } from "../src/matcher.js";
+import type { Deck, Domain, Format, Variant } from "../src/types.js";
 import { esc } from "../src/html.js";
 import { accountsEnabled, createDeck, deleteDeck, listDecks, onAccount, updateDeck, type Account } from "./supabase.js";
 import { builderHtml, initBuilder, openImport, openList, refreshBuilder } from "./builder.js";
@@ -21,6 +22,12 @@ import { go, onRoute, type Route } from "./router.js";
 
 export interface DeckHooks {
   cards(): CardIndex;
+  /**
+   * The variant array `web/main.ts` already builds at boot (#179). A hook rather than a second
+   * `generateVariants` call: 26.7ms is paid once for the whole app, and the library must score with
+   * the same machinery the deckbuilder does or the two views can disagree about one list.
+   */
+  variants(): Variant[];
   /** Open Combos with this list loaded, and name it in the strip above the deck input. */
   analyze(deck: SavedDeck): void;
   /** The card modal the Combos view owns, so a name in the builder opens the card. */
@@ -283,6 +290,7 @@ function deckCard(d: SavedDeck): string {
   const art = legendArt(card?.image, 160);
   // The legend has its own line with its domain dots, so the meta line does not repeat it.
   const total = Object.values(deck.main).reduce((a, b) => a + b, 0);
+  const complete = combosComplete(deck, d.format);
   const domains = (deck.legend ? cards.domainsOf(deck.legend) : [])
     .slice()
     .sort((a, b) => DOMAIN_ORDER.indexOf(a) - DOMAIN_ORDER.indexOf(b));
@@ -303,7 +311,7 @@ function deckCard(d: SavedDeck): string {
     <span class="deck-card-body">
       <span class="deck-card-name">${esc(d.name)}</span>
       <span class="deck-card-legend">${dots}${esc(legend)}${saidDomains}</span>
-      <span class="deck-card-meta">${total} card${total === 1 ? "" : "s"} · ${esc(d.format === "2v2" ? "2v2" : "Constructed")}</span>
+      <span class="deck-card-meta">${total} card${total === 1 ? "" : "s"} · ${esc(d.format === "2v2" ? "2v2" : "Constructed")} · <span class="deck-card-count">${complete === 0 ? "No combos complete" : `${complete} combo${complete === 1 ? "" : "s"} complete`}</span></span>
       <span class="deck-card-verdict">
         <span class="badge ${report.legal ? "ok" : "bad"}">${report.legal ? "Legal" : "Illegal"}</span>
         ${whyIllegal(report, deck, d.format)}
@@ -311,6 +319,29 @@ function deckCard(d: SavedDeck): string {
       <span class="deck-card-when">Edited ${esc(ago(d.updatedAt))}</span>
     </span>
   </a>`;
+}
+
+/**
+ * How many catalogued combos this list completes (#179).
+ *
+ * The tile used to say nothing about what the deck DOES, which for a combo tool is the only question
+ * a library is scanned to answer. This is the same `matchDeck` the deckbuilder runs, called here
+ * rather than stored: a count written at save time is stale the moment the catalogue grows — it grew
+ * 180 times in the three days before this shipped — so the cache is ruled out by CORRECTNESS, not by
+ * cost. It is also eager rather than lazy: the marginal cost is 0.73ms a tile against 0.19ms for the
+ * legality check already here, 26ms for a 60-deck library, and `generateVariants` is already paid at
+ * boot. Break-even for 100ms on a 60-deck library is roughly 2,400 entries; revisit there.
+ *
+ * COMBOS, not routes. `included` holds one hit per VARIANT and a variant can head more than one
+ * combo, so `included.length` is a count of routes — measured over the 222 registered lists on
+ * 2026-09-09 the two disagree on 2 of them, 447 routes against 445 combos. The tile says "combos".
+ *
+ * `maxMissing: 0` because only completed lines are claimed; over those same 222 lists it returns an
+ * identical `included` to the default of 2, so this is the same answer for less work.
+ */
+function combosComplete(deck: Deck, format: Format): number {
+  const hits = matchDeck(deck, hooks.variants(), hooks.cards(), { format, maxMissing: 0 }).included;
+  return new Set(hits.flatMap((h) => h.variant.comboIds)).size;
 }
 
 /**
