@@ -562,3 +562,83 @@ before the entries were**, which is the standing lesson from the other direction
 `.scratch/*.ts` failed with *"file exists"* and the **old** script ran and printed a stale result. Use
 `set +o noclobber` and `rm -f` in the *same* Bash invocation — shell options do not persist between
 tool calls.
+
+## 14. Stand-down handoff, 2026-09-09 (project paused until Saturday)
+
+**Lane:** `rc-walk-fc`, **issue #191**, uncited Core Rules sub-rules. **The range is 500–829, not
+500–899** — the rules file stops at 829.
+
+**Census, opened and closed at.** Opened the day with the predecessor's figures (172 uncited in the
+range, 39 carrying a worked example, 13 walked across batches 1–3). Re-ran
+`.scratch/probe-500-899.ts` against the catalogue at **715 entries**: 408 sub-rule headings,
+**137 uncited**, **15** with a worked example — twelve of which were already refused with paragraphs
+in §4, §7 and §9. Closed at **722 entries** after the manager merged batch 4 (four of the seven in
+that merge are mine). **The Example-filtered probe is finished**; `.scratch/probe-fc-wide.ts` (new,
+local — `.scratch/` is gitignored) drops the filter and prints all 137 with their text, and the
+material that is left is in the **keyword blocks 801–829**.
+
+**Staging file:** `/tmp/rc-walks/rc-walk-fam1.json`. It holds the four batch-4 entries and **all four
+are already merged into `data/combos.json`** (verified by id, and verified to carry the two quote
+repairs made after staging). Nothing of mine is unmerged. `/tmp/rc-walks/fc-ids.json` now lists 43
+ids so `audit-fc.ts` and the quote checkers cover this lane's whole output.
+
+**Refusals, all of them, with scope.** §4 (batch 1): 719.4/719.4.a Empowered half; 652.x; a second
+Bonus Damage source as a multiplier on a Split; [Weaponmaster] onto a body other than itself. §7
+(batch 2): 761.1/761.2/762/762.1; 725.4; 714.2; 719.4/719.4.a Stunned half; 822.1.d's second worked
+example; 811.1.d.3 as a headline. §9 (batch 3): 714.2 again with the seventh source named;
+727.1.c.1.a; 806.3/806.4/806.4.a/806.4.b; 719.2/719.3/719.3.a. §12 (batch 4): 823.2; 821.1.d; 827.3;
+829.1.c.3; 818.2/818.2.a; 725.2; and five of the nine referenceable-characteristic tails. **Every one
+is "want of a card" except 821.1.d, which is closed by rule (821.2).**
+
+### 14.1 The exact next two rows, scoped but deliberately NOT written
+
+Both were researched today and **dropped unstaged** rather than half-walked. Everything needed to
+write them is here; neither has been drafted, so nothing is half-verified.
+
+**(a) 815.3 with `VEN-159 Kinkou Temple` + `UNL-056 Yuumi, Magical Cat`.** 815.3 — *"Tank, and whether
+or not a unit has Tank, is a characteristic of the Unit and may be checked or referenced by other Game
+Effects."* — is uncited and the Temple (*"Units here with [Tank] have +1 Might"*) is its only reader.
+`node .scratch/have.mjs VEN-159 UNL-056` returns **clean**. Yuumi is *"When I attack or defend, give
+one of your other units here +3 Might and [Tank] this turn"* — a **granted** Tank, which is the point:
+815.3 is what lets the Temple see a keyword that arrived by grant, and Yuumi's grant **names a
+duration**, so 801.3.a.2 governs it and 317.2.c (*"Insert '3d. All "this turn" effects expire
+simultaneously.'"*) ends it — the exact contrast with `black-flame-altar-sprite-call-temporary-shield`,
+where the grant names none and 801.3.a.3 makes it permanent. State the pair together. 815.2
+(*"Multiple instances of Tank are redundant"*) is the cap: never aim Yuumi at a printed Tank body.
+Existing Temple entry to avoid duplicating: `kinkou-temple-lillia-bird-tank-wall` (VEN-159, UNL-058,
+UNL-044).
+
+**(b) 813.5.b with `VEN-160 Mystic Vortex` + an `[Action]` card.** 813.5.b — *"Whether or not a Spell
+has Reaction is a characteristic of that Spell and may be checked or referenced by other Game
+Effects."* — is uncited and the Vortex (*"During showdowns here, cards with [Reaction] cost rainbow
+more to play"*) is its only reader. **The thesis, and it is the reason this row is worth a walk:
+the Vortex taxes the ANSWER and never the opening play.** 813.1.b makes the containment one-way —
+*"Reaction grants the corresponding card or effect all abilities and permissions of Action"* — so an
+[Action] card does **not** have Reaction and 813.5.b reads false on it. **358.4 is the mechanism and
+prints both halves as worked examples**: *"If the state is Showdown Closed and the card was the one
+that Closed the state, ensure that it has [Action] or [Reaction]."* against *"If the state is Closed
+and the card wasn't the one that Closed the state, ensure that it has [Reaction]."* Whoever acts first
+needs only [Action]; whoever responds needs [Reaction] and pays. 345 (*"As a Showdown begins, the
+player who applied Contested status to the Battlefield gains Focus"*) with 464.2.c.1 says who that is.
+811.6 is the Vortex's own parenthetical and the reason a [Hidden] play IS taxed.
+**Measured 2026-09-09: 77 cards print [Action] without [Hidden], and exactly ONE of them is in no
+entry — `SFD-122 Called Shot`, which `data/legality.json` lists as banned in both formats.** So any
+partner will already be catalogued; `have.mjs` was run on six candidates and `VEN-160` pairs cleanly
+with `OGN-129`, `OGN-153`, `OGN-146`, `OGN-113`, `OGN-102` and `OGN-050`, while **`VEN-160 + OGS-012`
+returns CONTAINS** against `blast-of-power-bloodless-conquer` — do not use Blast of Power. The
+candidate I would have written is `OGN-153 Overt Operation` (Body, E5 P2, [Action], mass ready + mass
+buff, a real combat trick since 465.2.c reads current Might). Existing Vortex entry to avoid
+duplicating: `mystic-vortex-helm-suppression-tax` (VEN-160, VEN-045). One caution found and not
+resolved: `OGN-113 Malzahar, Fanatic`'s [Action] sits on an **ability**, not on the card, and the
+Vortex taxes *cards* — so an [Action] or [Reaction] **ability** is never taxed at all. That is a
+second, separate finding and it needs its own sentence if Malzahar is used.
+
+**(c) After those**, in order: 813.4/813.4.a/813.4.b (conditionally granted Reaction and the undo at
+*"step 5: check legality"* — see §13.2 for the ordering question that must be settled first, and it is
+an ordering question, not an R-number); 740.4.a.2.a; 827.1.b.1.
+
+**Standing cautions for whoever resumes.** `grep -E "^[[:space:]]*NNN\."` on the rules file, never a
+bare `^`. `set +o noclobber` and `rm -f` in the **same** Bash invocation before rewriting a
+`.scratch` script. Run `node .scratch/have.mjs <bases>` the moment the card set is known, not after
+the entry is written. And re-validate immediately before **reporting**, not after writing — the tree
+moves under you.
