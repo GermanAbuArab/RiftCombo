@@ -1559,3 +1559,117 @@ failed with no output, and the second time it left a stale `.ts` that produced a
 read like a code defect rather than a write that never happened. `set +o noclobber` on the same command line,
 every time. This is the third entry in this document's ledger of *an instrument failure that looks like a
 finding*.
+
+---
+
+# HANDOFF — rc-walk-blocks, stood down 2026-09-09, resumes Saturday
+
+`/tmp` does not survive a reboot and Saturday is three days away, so this section is the durable copy.
+Whoever picks this lane up on Saturday is not me and will have none of my context.
+
+## H8. Lane, issue, staging
+
+- **Issue #187.** Lane: **uncited Core Rules sub-rules 100–299.** rc-manager5 narrowed it from 100–499
+  on 2026-09-09; **rc-walk-mid (`8ab9f63f-43c4-447b-bb68-6ff67ca292bc`) owns 300–499** and has already
+  been handed my reading of that range (§57 above). **Do not open a paragraph above 299.**
+- **Staging file `/tmp/rc-walks/rc-walk-rules.json` is EMPTY.** All three batch-16 entries were merged
+  into `data/combos.json` (verified by id against the working tree before emptying, catalogue 722), so
+  nothing of mine is unlanded, in `/tmp` only, or in context only.
+- Walk document: this file, committed and pushed to `work` through this section.
+
+## H9. Numbers, opened and closed at
+
+- Opened this session at **715 entries + 197 synergy rules**; three entries added in batch 16, catalogue
+  at **722** when I stood down (rc-walk-fam1 contributed four of the other rows).
+- Cumulative for this lane: **28 entries**, all ENGINE, every one validated.
+- Probe state: the filtered sub-rule probe restricted to **100–299** and re-run on 2026-09-09 returns
+  **92 rows** whose worked Example names a card from `cards.json`; the manager's wider list (worked
+  Example **or** a mechanic verb) is **73 rows** and is reproduced in the batch-16 report. Batch 16
+  closed thirteen of them and returned five more empty. The script is `.scratch-rules/subprobe.mjs`
+  (`node .scratch-rules/subprobe.mjs 100 299`), which is untracked scratch and may not survive — the
+  recipe is in §24 and §28 and takes two minutes to rebuild.
+
+## H10. Refusals, each WITH THE SCOPE IT WAS MADE IN
+
+These are batch 16's; §H3 holds the earlier ones and every scope there still stands.
+
+| sub-rule | refused because | scope of the refusal |
+|---|---|---|
+| **103.1.b.5** (off-domain deck slots) | swept `to your deck` / `into your deck` over the corpus 2026-09-09; the only hit is `OGN-235 Karma, Channeler`, whose clause is about **recycling**, not deckbuilding | scoped to **the current pool**. The rule is written for a card that does not exist yet; if one is printed it is a Domain Identity exception and reopens `103.1.b` arithmetic everywhere |
+| **185.3.b.1** (tokens gaining a domain) | swept `pick a domain` / `choose a domain` / `are that domain`: **zero rows**. Riot's example is invented, not a pool card | scoped to **the current pool**. Its sibling `185.3.a.2` (a copy effect appending a cost to a Reflection) IS real and is already cited by this catalogue |
+| **128.6 / 128.6.a** (a compulsion on a private zone that names a type may be ignored, and *"Ignored instructions are deemed impossible"*) | every opponent-facing compulsion in the pool names a **count** or a **specific card**, never a type — `OGN-192`, `OGN-201`, `UNL-121`, `UNL-135`, `VEN-111`; `OGN-244 Divine Judgment` dodges it by one word (*"2 cards in their hands"*); `UNL-139 Bone Skewer` dodges it because YOU choose and the instruction on them names *that* unit | scoped to **compulsions that specify a type or quality of card**. Live the moment a card prints *"discard a spell"* or *"play a unit from your hand"* aimed at an opponent — and 128.6.a's *"deemed impossible"* then hooks straight into `055.1` and `359.3.e.14.b` |
+| **194.4 / 194.4.a / 194.4.b** (the floor at zero points and its trigger carve-out) | swept `lose[s] N point` / `loses points`: **zero rows**. Nothing in the pool takes a point away from anybody | scoped to **the current pool** |
+| **137.3.b** (a Might Bonus on a carrier with no Might is ignored) | `818.1.b` attaches Equipment to a **unit**, and every unit and unit token in the pool has a Might value | scoped to **Equipment**. Re-read if a set prints an attachment that can ride a gear or a legend |
+| **429.3 / 164.2.b** — NOT a refusal, a **false lead I chased and killed** | I believed 429.3 (*"Activated abilities that Add resources and have the Reaction tag can be activated at any time that spells or abilities require resources be paid"*) corrected this project's "the Power must be banked" claim about `SFD-214 Power Nexus`. It does not: **429.3 is already cited 43 times and 164.2.b 231 times**, and `power-nexus-sentinel-renata-mastermind` already recycles runes at the instant of finalization. The CLAUDE.md sentence is about a **Gold minted exhausted by the same Hold**, which genuinely cannot pay, and it is correct as written | recorded so nobody re-derives it. My probe flagged `429.2.b` as uncited, not `429.3` — I read the neighbour and mistook it for the hit |
+
+## H11. The exact next row I would have opened
+
+**`UNL-216 The Academy` + `VEN-008 Ruthless Strike`, on 135.2.b.3 and 204.2.a.** It is half-walked and
+was **deliberately DROPPED rather than staged**, because a half-verified entry costs more than a missing
+one — no pasted quotes, no legend census run against `cards.json`, no `data/legality.json` check. What
+is already established and can be trusted:
+
+- **135.2.b.3**: *"Instructions will self-describe when they are to be executed. If there is no timing
+  described, they will execute during resolution."* Its worked example: *"An instruction says “as you
+  play me, kill a unit as an additional cost.” That instruction will execute as the card is being
+  played. If the card is given Repeat and the Repeat cost is paid, this instruction will not execute
+  because the Repeat execution does not happen until resolution of the spell, after this instruction
+  has executed."*
+- **204.2.a** puts an Additional Cost at finalization, which is what makes the two timings differ.
+- **The exploitable asymmetry**: granting [Repeat] to a spell with an as-you-play additional cost pays
+  that cost **ONCE** and executes the resolution effect **TWICE**, and `820.2.a` lets the second
+  execution choose different objects while `820.1.b` caps it at exactly one extra.
+- **The family, swept over `data/corpus_flat.txt` on 2026-09-09 — eight spells, all named**:
+  `OGN-048 Meditation` (Calm E2, cheapest: exhaust one friendly unit, draw 2 twice),
+  `OGN-146 Wallop` (Body E2), `OGN-207 Call to Glory` (Order E3), `UNL-140 Conscription` (Chaos E5 P2:
+  spend 5 XP once, steal two units of any Might), `UNL-142 Heedless Resurrection` (Chaos E2 P1: kill one
+  friendly unit, reanimate two), `UNL-173 Sacrifice` (Order E1), `VEN-008 Ruthless Strike`
+  (Fury E3: discard once, deal 5 twice) and `VEN-083 Rampage` (Body E3).
+- **135.2.b.3, 135.2.b.5, 135.2.b.6, 204.1.b, 204.2.a, 204.4.a, 204.4.c, 109.2, 117.1 and 133.6.b.1 are
+  all cited ZERO times** (measured over `combos.json` + `synergies.json`, 2026-09-09).
+- **`node .scratch/have.mjs` was already run on the candidate pairings**: `UNL-216` with each of
+  `VEN-083`, `VEN-008`, `UNL-173`, `OGN-146`, `UNL-140` returns *"no entry uses that card set or a
+  subset of it"*. **`UNL-216` + `UNL-142` returns CONTAINS `heedless-resurrection-removal-blank`**, a
+  single-card entry — so that pairing would be flagged by the hardened merge and needs declaring, which
+  is why Ruthless Strike is the pick.
+- Cross-references the entry must carry: `academy-ezreal-gust-double-bounce` (the Academy's [Repeat]
+  grant, which cites `820.x` but not `135.2.b.3`) and, if Rampage is ever used instead,
+  `carnivorous-snapvine-rampage-tank-bypass`.
+- The Academy is a battlefield, so `485.4.a`, `485.5` and `103.4.c` belong in `prerequisites.notable`:
+  one of your three is selected **randomly**, and you must **Hold** it (`315.2.b.2`) before it grants
+  anything.
+
+## H12. Leads found and not walked, in priority order
+
+1. **152.2** — *"Non-Unit Gear cannot normally become located at a Battlefield unless by some special
+   means"*, and Riot's example names all four routes: an effect that specifies otherwise, a
+   **[Hidden]** play (which enters at the battlefield it was played from), riding an attached carrier,
+   or being a gear that is a unit. The sweep I started and did not finish: **non-Equipment gear whose
+   text says "here"** is dead at your base unless one of those four is used. My first grep returned
+   nothing, which is a **surprising absence and must be re-run with a different instrument** before it
+   is written down — the corpus renders tags as `[Tags: ...]` and my exclusion may have eaten the rows.
+2. **191.3.d** — *"That player may make decisions about any game effects created from “When you play me”
+   effects of Permanents"*, read with 191.1 and 191.3: a card that makes an **opponent** play a unit
+   hands **them** the ETB. `UNL-139 Bone Skewer` should therefore pick the unit with the worst ETB for
+   them, not the biggest body. Probably a notable on the existing Bone Skewer entries rather than an
+   entry of its own.
+3. **465.2.c.7**, **377.2.a**, **356.3**, **370.1.b**, **410.2.a/b**, **369.2** — all above 299 and all
+   handed to rc-walk-mid in §57. Do not re-read them.
+4. **141.1.b.3** (*"Units can be affected by spells and game effects that target Units in the Trash"*)
+   with **141.2.b** (*"The card type is relevant in all zones"*) is tempting and **I deliberately did
+   not touch it**: whether a printed *"I can't be chosen"* static functions from the trash is not
+   settled by these paragraphs alone, and guessing there is how an unruled reading gets filed. It needs
+   `720`/`723` read first, and `723` is above 299.
+5. **135.2.e.7.a / 135.2.e.7.b** — the `[>]` notation scopes a keyword to whatever follows it, which is
+   how `[Action][>]` on one ability of a unit fails to make the unit itself Action-speed. Marginal, and
+   `806.1.c.2` may already cover it.
+
+## H13. One habit that paid and one that cost, this session
+
+- **Paid: running `node .scratch/have.mjs` the moment I knew a card set, not after writing.** It cost
+  seconds and it is what caught `UNL-216` + `UNL-142` containing an existing single-card entry.
+- **Cost: `noclobber` bit twice, both times SILENTLY.** A `cat >` over an existing scratch file failed
+  with no output, and the stale file it left produced a TypeError that read like a code defect rather
+  than a write that never happened. `set +o noclobber` on the same command line, every time. Third
+  entry in this document's ledger of *an instrument failure that looks like a finding* — the others
+  being the form-feed `grep` anchor and rule 766's second worked example.
