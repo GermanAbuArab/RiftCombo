@@ -2171,6 +2171,13 @@
           "role": "engine",
           "zone": "BATTLEFIELD",
           "note": "Your hold effects for holding here trigger an additional time."
+        },
+        {
+          "card": "OGN-216",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "Order unit, E2 M1, [Tags: Bird]. Three Iverns choose Cat, Dog and Poro; the Scout supplies the fourth tag. TAG ENABLER, added 2026-09-09. Ivern gains EXACTLY ONE tag as he is played, and 383.2.a.1 makes \"if your units have all of the following tags among them\" part of the TRIGGER CONDITION - so N Iverns supply N of the four and the rest must come from other bodies. Measured over cards.json 2026-09-09: 67 printings carry at least one of Bird/Cat/Dog/Poro and ZERO carry two, so there is no two-for-one. The clause names no location, so this body stays at the base and never disturbs the garrison."
         }
       ],
       "needs": [],
@@ -2184,7 +2191,8 @@
         "notable": [
           "All four tags among your units. Each Ivern chooses one on play (Bird, Cat, Dog or Poro), so three Iverns supply three of the four and one cheap tagger covers the last — the L6 lens lists Ultrasoft Poro with its Bird token, Fallen Feline and Hungry Wolf in Mind+Order.",
           "Points per Hold: 1 + N x (1 + K), N = Ivern copies present, K = Blue Sentinel copies. N=3, K=2 gives 10 for 26 Energy; N=2, K=3 gives 9 for 24 but needs a second outside tagger. N=2, K=2 gives only 7, which is what this entry asked for before the 2026-09-04 audit.",
-          "The machinery is exactly ahri-blue-sentinel-hold's, walked in full at docs/phase0/walks/2026-09-04-ahri-blue-sentinel-hold.md: 383.4.d.2.a puts each present Ivern's hold ability on the chain, R2 = A keeps its card-text point outside 470's cap, and R1 = A has each Sentinel add an instance. The only delta is Ivern's four-tag condition and his 6 Energy body."
+          "The machinery is exactly ahri-blue-sentinel-hold's, walked in full at docs/phase0/walks/2026-09-04-ahri-blue-sentinel-hold.md: 383.4.d.2.a puts each present Ivern's hold ability on the chain, R2 = A keeps its card-text point outside 470's cap, and R1 = A has each Sentinel add an instance. The only delta is Ivern's four-tag condition and his 6 Energy body.",
+          "DEFECT FIXED 2026-09-09: the tagger this entry has always named in its prose was not in uses[], so matchDeck reported a COMPLETE burst for a board on which every Ivern trigger fails its condition and the Hold is worth its 1-point Score alone, and planDeck could never suggest the missing card. That is the #165 shape - uses[] is what the matcher and the planner price, and a body a Trigger Condition requires is a use at quantity 1 with role enabler, not a phrase in a notable."
         ]
       },
       "steps": [
@@ -2239,6 +2247,20 @@
           "zone": "BATTLEFIELD",
           "state": "controlled",
           "note": "'When you hold here, activate the conquer effects of units here.' 383.4.g.1's worked example is this card BY NAME. Not the banned battlefield: OGN-290 The Arena's Greatest is the one on the ban list."
+        },
+        {
+          "card": "OGN-216",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "Order unit, E2 M1, [Tags: Bird]. Two Iverns choose Cat and Dog; the Scout supplies Bird. TAG ENABLER, added 2026-09-09. Ivern gains EXACTLY ONE tag as he is played, and 383.2.a.1 makes \"if your units have all of the following tags among them\" part of the TRIGGER CONDITION - so N Iverns supply N of the four and the rest must come from other bodies. Measured over cards.json 2026-09-09: 67 printings carry at least one of Bird/Cat/Dog/Poro and ZERO carry two, so there is no two-for-one. The clause names no location, so this body stays at the base and never disturbs the garrison."
+        },
+        {
+          "card": "OGN-210",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "Order unit, E2 M2, [Tags: Poro]. Supplies the fourth tag, Poro. Two E2 bodies is 4 Energy and NO Power - the entry’s own notable priced the pair at 4E + 1P. TAG ENABLER, added 2026-09-09. Ivern gains EXACTLY ONE tag as he is played, and 383.2.a.1 makes \"if your units have all of the following tags among them\" part of the TRIGGER CONDITION - so N Iverns supply N of the four and the rest must come from other bodies. Measured over cards.json 2026-09-09: 67 printings carry at least one of Bird/Cat/Dog/Poro and ZERO carry two, so there is no two-for-one. The clause names no location, so this body stays at the base and never disturbs the garrison."
         }
       ],
       "needs": [],
@@ -2256,7 +2278,8 @@
           "All four tags among your units — but Ivern says 'your units', NOT 'units here', so only the two Iverns and the Sentinel have to stand at the Arena. Each Ivern picks one tag as it is played, so the two of them cover Dog and Poro and two cheap bodies cover the rest anywhere on the board: OGN-216 Soaring Scout (E2 M1, Bird, Order) and VEN-132 Fallen Feline (E2 P1 M3, Cat, Order).",
           "Points per Hold: 1 + 2 × N × (1 + K), N = Ivern present, K = Blue Sentinel present. The factor 2 is Ivern being paid on both of his faces — once as a hold effect (383.4.d.2.a) and once per Arena run as a conquer effect (383.4.g.1) — and it is the whole reason this board is cheaper than the Arena-free one. N=2, K=1 gives 9. Neighbours, written so nobody repeats the 2026-09-04 BURST audit's mistake: N=1, K=1 gives 5; N=1, K=2 gives 7; N=2, K=2 gives 13; the 3/3 ceiling is 25.",
           "Cost is 20 Energy and 2 Power: two Ivern (12E, he carries no Power cost), one Blue Sentinel (4E + 1P), and the two outside taggers (4E + 1P). The Arena-free ivern-sentinel-hold needs 28E + 2P and six surviving bodies for one point more; this one needs THREE bodies at the battlefield, because the taggers stay home.",
-          "Against ivern-sentinel-hold, which is the same cards without the battlefield: that one is always online, this one is a 1-in-3 draw. The catalogue carries both faces for the same reason it carries nasus-ascended-sentinel-arena-hold beside nasus-ascended-brambleback-conquer."
+          "Against ivern-sentinel-hold, which is the same cards without the battlefield: that one is always online, this one is a 1-in-3 draw. The catalogue carries both faces for the same reason it carries nasus-ascended-sentinel-arena-hold beside nasus-ascended-brambleback-conquer.",
+          "DEFECT FIXED 2026-09-09: the tagger this entry has always named in its prose was not in uses[], so matchDeck reported a COMPLETE burst for a board on which every Ivern trigger fails its condition and the Hold is worth its 1-point Score alone, and planDeck could never suggest the missing card. That is the #165 shape - uses[] is what the matcher and the planner price, and a body a Trigger Condition requires is a use at quantity 1 with role enabler, not a phrase in a notable."
         ]
       },
       "steps": [
@@ -51808,6 +51831,74 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-09, issue #191, session rc-walk-fc, batch 3. 715.4.a, 437.5.a, 437.5.b and 437.7 were cited by nothing before this entry, and 715.4.a's own worked example names OGN-296 Void Gate - the Riot-names-the-card pattern this lane now opens with. The refusal that came with it: 714.2 ('If, for any reason, Bonus Damage would be a negative number, then no Bonus Damage is applied to the action') has NO card, because all seven Bonus Damage sources in the pool are positive - OGN-032 Ravenborn Tome, OGN-296 Void Gate, OGS-001 Annie Fiery, SFD-191 Rabadon's Deathcrown, UNL-020 Dancing Grenade, VEN-010 Consuming Curse, and the Gate's location-worded row is the seventh that an earlier 'all six say your spells' sweep could not see. Card text verbatim from data/corpus_flat.txt. No unruled reading."
+    },
+    {
+      "id": "ivern-bard-four-tag-double-conquer",
+      "name": "Three Iverns walk in twice — the cheapest CHAIN in the conquer bucket, and one Power in the whole line",
+      "class": "CHAIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-177",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Ivern, Friend to All. 'As you play me, choose Bird, Cat, Dog, or Poro. I gain that tag. When I conquer or hold, score 1 point if your units have all of the following tags among them — Bird, Cat, Dog, and Poro.' E6 and NO Power cost. Three copies choose three different tags."
+        },
+        {
+          "card": "OGN-210",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "Daring Poro (E2, Order, Might 2), carrying the fourth tag. 383.2.a.1 makes the four-tag clause part of the Trigger Condition, so this body is REQUIRED, not optional: without it every Ivern trigger fails its condition and the Conquer is worth its 1-point Score alone. Ivern reads 'your units', not 'units here', so it never has to leave your base."
+        },
+        {
+          "card": "SFD-079",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Bard, Mercurial. 'You may exhaust your legend as an additional cost to play me. When you play me, if you paid the additional cost, move any number of your units to an open battlefield.' The second Conquer is entirely his, and it is worth 4 rather than 1 because he moves the payoffs themselves."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Mind and Order. Measured over data/cards.json 2026-09-09, the pool prints FOUR Mind/Order legend names across seven base codes: Herald of the Arcane (OGN-265 / OGN-308), Lady of Luminosity - Starter (OGS-021), Chem-Baroness (SFD-201 / SFD-249), Deceiver (UNL-199 / UNL-235).",
+          "UNL-177 is NOT a Signature card (checked on the signature field in data/cards.json). It carries the Ivern champion tag and the pool's only Ivern legend is Green Father, which is Calm/Order — but 103.2.d.2 binds only SIGNATURE cards, so the tag forces nothing here and all four Mind/Order names are open. Neither OGN-210 nor SFD-079 is Signature either."
+        ],
+        "notable": [
+          "THE FOURTH TAGGER IS A TRIGGER CONDITION, NOT A DECKBUILDING NOTE, AND THAT IS WHY IT IS IN uses[]. Each Ivern gains exactly ONE tag as it is played, so three Iverns supply three of the four and the fourth must come from another body. 383.2.a.1: 'Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the Effect.' Measured over data/cards.json on 2026-09-09, 67 printings carry at least one of Bird / Cat / Dog / Poro and ZERO carry two, so there is no two-for-one and the fourth body is unavoidable. Ivern says 'your units', NOT 'units here', so the tagger stays at your base and is never exposed — Daring Poro is the cheapest Order one at E2.",
+          "THE SECOND CONQUER IS WORTH FOUR, NOT ONE. 383.4.c.2 pays only what is PRESENT at the Conquer ('This category of Triggered Abilities encompasses only those that are triggered from Units that were present during the Conquer action, or Abilities that reference the player that performed the Conquer action.'), which is why every other double-Conquer line in the catalogue gets 1 point from its second battlefield. Bard moves the payoffs themselves, so all three Iverns stand at both: 4 + 4 = EIGHT across two scoring events in one Main Phase.",
+          "IT PASSES THE GARRISON TEST, WHICH IS WHAT MAKES IT A CHAIN AT ALL. A conquer payoff that needs an enemy garrison is worth one turn and is inert thereafter, because 323.9 stages a Combat only where units of opposing players are present and 807.1.d ties every attack trigger to the Attacker designation. Ivern's trigger is 'When I conquer or hold' — presence only — so 344.2 delivers it on an empty board: 'If Control of a Battlefield is Contested, there aren't units controlled by different players there, and the turn is in a Neutral Open State, a Showdown is opened during the next Cleanup', then 348.2.a establishes Control and 348.2.a.1 says 'This results in a Conquer if that player has not yet scored that Battlefield this turn.' Nothing in the line ever attacks, so Daring Poro's [Assault] is worth zero here (807.1.d).",
+          "WHY IT IS NOT SIMPLY WORSE THAN ivern-sentinel-hold, WHICH IS TEN POINTS ON THE SAME PAYOFF IN THE SAME IDENTITY. That entry pays on a HOLD, and 315.2.b.2 Holds only battlefields you already Control, so the pack must have conquered on an earlier turn and SURVIVED THE OPPONENT'S ENTIRE TURN — three Might-6 Iverns and two Blue Sentinels exposed to every sweeper in the format. This line takes both battlefields and wins inside a single Main Phase from a board where you control nothing, so there is no exposure window at all. That is the same reason the catalogue carries both faces of the Nasus and the Arena lines, and ivern-arena-sentinel-hold's own last notable says so.",
+          "EXACTLY EIGHT IS A REAL FRAGILITY AND IS STATED RATHER THAN HIDDEN. 194.2 requires a point total 'greater than or equal to the Victory Score' AND more points than any other player, and 194.2.b keeps tied players playing. This line delivers exactly 8 from zero, so against an opponent already on 8 it does not win, where a 10-point or 14-point line still would. Under 489.3's Victory Score of 11 in 2v2 it does not win at all.",
+          "'OPEN' IS BOTH CONDITIONS, AND IT IS THE PRICE. 170.11.c: 'Battlefields can be “open.” This means they are unoccupied and uncontrolled.' Bard's destination must be open when his trigger resolves, so the second battlefield needs no garrison AND no controller — the early board, or the board after a wipe (190.1: 'Control is established over Battlefields through the course of play.'). Against an opponent controlling it the line stops at 4.",
+          "ONE BARD A TURN. The additional cost is exhausting your legend and 315.1.b readies it only at your own Awakening, so 103.2.b's three copies buy three TURNS, not three relocations.",
+          "THE CHEAPEST LINE IN THIS BUCKET, AND THE POWER LEDGER IS THE REASON. Ivern is E6 with NO Power cost, Daring Poro is E2 with none, and Bard is the only Power in the whole line at 1 Mind: E24 and ONE Power all told. Against swain-bard-brambleback-double-conquer-chain's E22 + 3 Mind + 1 Fury for 14 points, this trades six points for three Power and for needing no 'played a unit, a gear and a spell this turn' filler on the finishing turn.",
+          "SISTER LINE: swain-bard-brambleback-double-conquer-chain uses the same Bard relocation under a payoff that a multiplier CAN reach. Swept on 2026-09-09 over the pool's conquer payoffs, Swain is the ONLY one for which a conquer multiplier is in-identity — Red Brambleback is Fury, so it is three domains beside Order (Ivern) or Calm (Nasus, Ascended); Blue Sentinel multiplies hold effects only; and Reckoner's Arena BRIDGES a conquer effect onto a Hold rather than multiplying a Conquer. That is why this line is 8 flat and that one is 14."
+        ]
+      },
+      "steps": [
+        "Over earlier turns, deploy three Ivern, Friend to All choosing three different tags (E6 each, no Power) and one Daring Poro for the fourth (E2). The Poro can stay at your base forever.",
+        "On the finishing turn, with both battlefields open, standard-move the three Iverns from your base to the first battlefield in ONE action (144.3, shared destination, exhausts paid simultaneously).",
+        "Cleanup (319.8, 'After a Move is completed'): 450 applies Contested, 344.2 opens a Showdown, 348.2.a establishes Control, 348.2.a.1 makes it a Conquer. 1 Score plus three Ivern triggers = FOUR.",
+        "Still in the Main Phase, play Bard, Mercurial (E4 + 1 Mind Power) and exhaust your legend as the additional cost. His trigger moves the three Iverns to the second battlefield, which must be open. 449 is a route separate from the Standard Move, so 144.4 does not bind it and the already-exhausted Iverns move battlefield to battlefield with no [Ganking].",
+        "Cleanup: the second battlefield is Contested, its Showdown opens, Control is established, 348.2.a.1 makes it a Conquer. 1 Score plus three Gains = FOUR again. Eight points, two scoring events, one turn."
+      ],
+      "terminatesIn": "eight points across two Conquers in a single Main Phase — two Scores and six ability Gains that 470 does not cap — for E24 and ONE Mind Power in the whole line, of which only Bard at E4 + 1 Mind is paid on the finishing turn",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-09, conquer-engine finisher lane, batch 3 (docs/phase0/walks/2026-09-07-finisher-chain-pass.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-09"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-09 by rc-walk-chain against data/corpus_flat.txt and the Core Rules; every paragraph quoted above was opened and pasted, not recalled. Card text verbatim: UNL-177 'Ivern, Friend to All | Unit | Order | E6 M6 | As you play me, choose Bird, Cat, Dog, or Poro. I gain that tag. When I conquer or hold, score 1 point if your units have all of the following tags among them — Bird, Cat, Dog, and Poro.' and OGN-210 'Daring Poro | Unit | Order | E2 M2 | [Assault] (+1 Might while I'm an attacker.)'. Legality checked against data/legality.json on 2026-09-09: its single non-banned row is a restriction on one mono-Body Starter legend, and none of UNL-177, OGN-210 or SFD-079 appears in any row. Card-set containment run before staging: UNL-177 + OGN-210 + SFD-079 returns NONE, UNL-177 + OGN-210 returns NONE, UNL-177 + SFD-079 returns NONE. OGN-210 Daring Poro is one of the 104 names with two base codes (OGN-210 / UNL-225); CardIndex.equivalents resolves them, so the matcher covers both printings. This entry connects the lane engine bard-mercurial-mass-relocation and is the sister of swain-bard-brambleback-double-conquer-chain; both name each other and neither removes anything."
     }
   ]
 }

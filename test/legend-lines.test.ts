@@ -127,3 +127,38 @@ describe("the legends an entry names can actually hold its cards (103.1.b)", () 
     expect(bad, bad.join("\n")).toEqual([]);
   });
 });
+
+/**
+ * #193 batch 3, 2026-09-09: the second time the #165 shape shipped. `UNL-177 Ivern, Friend to All`
+ * gains EXACTLY ONE tag as he is played and then scores "if your units have all of the following
+ * tags among them — Bird, Cat, Dog, and Poro", which 383.2.a.1 makes part of the TRIGGER CONDITION.
+ * So N Iverns supply N of the four and the rest must come from other bodies — and two entries named
+ * that body in prose while leaving it out of `uses[]`, so `matchDeck` reported a complete 10-point
+ * BURST for a board on which every Ivern trigger fails its condition. Measured 2026-09-09: 67
+ * printings carry at least one of the four tags and ZERO carry two, so there is no two-for-one.
+ * `uses[]` is what the matcher and the planner price; this pins that it can satisfy the condition
+ * on its own.
+ */
+describe("a tag condition a Trigger Condition requires is satisfiable from uses[] alone", () => {
+  it("gives every Ivern, Friend to All entry all four of Bird, Cat, Dog and Poro", () => {
+    const FOUR = ["Bird", "Cat", "Dog", "Poro"];
+    const bad: string[] = [];
+    let checked = 0;
+    for (const combo of combos) {
+      const ivern = combo.uses.find((u) => u.card === "UNL-177");
+      if (!ivern) continue;
+      checked++;
+      // Ivern chooses one tag per copy; every other body brings whatever it prints.
+      const fromOthers = new Set<string>();
+      for (const u of combo.uses) {
+        if (u.card === "UNL-177") continue;
+        for (const t of cards.get(u.card)?.tags ?? []) if (FOUR.includes(t)) fromOthers.add(t);
+      }
+      if (ivern.quantity + fromOthers.size < FOUR.length) {
+        bad.push(`${combo.id}: ${ivern.quantity} Ivern + [${[...fromOthers].join(",")}] = ${ivern.quantity + fromOthers.size} of 4 tags`);
+      }
+    }
+    expect(checked, "no entry uses UNL-177 — the card or the field changed").toBeGreaterThan(0);
+    expect(bad, bad.join("\n")).toEqual([]);
+  });
+});
