@@ -5454,7 +5454,7 @@
           }
         ]
       },
-      "why": "\"While I'm in a showdown, your spells have [Repeat] 2 Energy + 1 Chaos\" is a grant, and 820.1.c.2 keeps a granted instance independent of a printed one: \"If a spell or ability has more than one instance of Repeat, each Cost may be paid or not paid individually.\" A spell with no printed Repeat gets one bonus execution from her; a spell that already prints [Repeat] (Existential Dread, Hard Bargain, Frigid Touch, Danger Zone, and the rest of the twelve left after the exclusions) can pay BOTH costs for three total executions off one card, which is why the printed-Repeat spells are the interesting partner and not merely any spell. 155 with 806.1.b / 813.1.b is the gate that removes eight of the twenty candidate spells outright: none of them carries the permission to be played inside the Showdown her static requires.",
+      "why": "\"While I'm in a showdown, your spells have [Repeat] 2 Energy + 1 Chaos\" is a grant, and 820.1.c.2 keeps a granted instance independent of a printed one: \"If a spell or ability has more than one instance of Repeat, each Cost may be paid or not paid individually.\" A spell with no printed Repeat gets one bonus execution from her; a spell that already prints [Repeat] (Existential Dread, Hard Bargain, Frigid Touch, Danger Zone, and the rest of the twelve left after the exclusions) can pay BOTH costs for three total executions off one card, which is why the printed-Repeat spells are the interesting partner and not merely any spell. 155 with 806.1.b / 813.1.b is the gate that removes eight of the twenty candidate spells outright: none of them carries the permission to be played inside the Showdown her static requires. Re-audited 2026-09-09 for the routes into a showdown that are NOT the two printed keywords: none of the eight excluded spells carries [Hidden] (811.1.b's tail is what hands a face-down card [Reaction] from the following turn), and no card in the pool grants [Reaction] to a spell — swept, the only two grants of the keyword are SFD-054 Jax, Unmatched (to your Equipment, via [Quick-Draw]) and VEN-160 Mystic Vortex (which only taxes cards that already have it). All twelve partners were re-read and every one prints [Action] or [Reaction]. SFD-122 Called Shot is banned in both formats and SFD-182 Danger Zone is Fury/Mind against a mono-Chaos anchor; neither is an exclude, because `playableUnder` drops a banned or out-of-identity card at match time and the authored list is the pool, not one shell.",
       "basis": {
         "rules": [
           "820.1.c.2",
@@ -5467,7 +5467,7 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
+      "reviewed": "2026-09-09",
       "reviewedCount": 12
     },
     {
@@ -5517,26 +5517,35 @@
       "reviewedCount": 25
     },
     {
-      "id": "eye-of-twilight-protects-backline",
-      "name": "Eye of Twilight's exhaust reaches a showdown already in progress to shield a [Backline] body",
+      "id": "eye-of-twilight-tank-on-a-shield-body",
+      "name": "Eye of Twilight's [Action] Tank grant lands on a [Shield] body, whose defending Might is the threshold nothing can clear",
       "anchor": "VEN-147",
       "partner": {
-        "textMatches": "\\[Backline\\]|assigned combat damage last"
+        "textMatches": "\\[Shield"
       },
-      "why": "465.2.c.6 is Riot's own worked example of the order: \"That player must assign combat damage first to the unit with Tank, then to the unit with no abilities, then to the unit with Backline.\" Eye of Twilight's \"[Action][>] exhaust: Give a friendly unit [Tank] this turn\" is granted at [Action] speed, and 806.1.c.2 — \"On Activated Abilities: 'This can be activated during showdows on any player's turn'\" — lets it land AFTER the attackers are already declared, once the defender knows exactly which of their bodies is about to eat the damage. Granting Tank to any OTHER body at the battlefield pushes it to the front of the assignment order and buys the standing [Backline] unit (Caitlyn, Patrolling and Soraka, Wanderer print the keyword bracket-less; Enthusiastic Promoter, LeBlanc, Everywhere at Once, Evelynn, Entrancing and Pyke, Returned print it bracketed — six cards, not five) another full combat before anything can legally be assigned to it.",
+      "why": "815.1.c.2 is the load-bearing sentence: \"Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.\" So an attack whose summed Might cannot reach the Tank's CURRENT Might assigns nothing anywhere, and the whole garrison survives — the Tank's own Might is the only lever, because 815.2 makes a second Tank grant redundant. 814.1.c makes [Shield] \"While I am a defender, I have +X [M]\" and 814.1.d.1 keeps it in effect as long as the Defender designation lasts, so a [Shield] body's threshold is exactly the number that matters and exists only at the moment it matters; 814.2 sums a second granted instance on top. The legend's ability is [Action], and 806.1.c.2 lets it be activated during showdowns on any player's turn, so the grant is bought AFTER 464.2.c.3 has designated the attackers and their summed Might is countable. It must NOT go on the [Backline] body: 465.2.c.8 names Caitlyn, Patrolling by name as the worked example of an exclusionary pair and hands the choice back to the attacker. This rule REPLACES `eye-of-twilight-protects-backline`, refuted 2026-09-09: 465.2.c.6 already puts a Backline body last, so granting Tank to some OTHER body left its position unchanged and the Backline card was a bystander rather than a partner.",
       "basis": {
         "rules": [
-          "465.2.c.6",
+          "815.1.b",
+          "815.1.c.1",
+          "815.1.c.2",
+          "815.2",
+          "814.1.c",
+          "814.1.d.1",
+          "814.2",
           "806.1.c.2",
-          "815.1.c.2"
+          "465.2.c.4",
+          "465.2.c.8"
         ],
         "combos": [
-          "caitlyn-taric-backline-last-assignment"
+          "eye-of-twilight-zephyr-sage-tank-redirect",
+          "royal-entourage-eye-of-twilight-double-tank",
+          "shadow-dash-eye-of-twilight-dragged-attacker-tank"
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 6
+      "reviewed": "2026-09-09",
+      "reviewedCount": 27
     },
     {
       "id": "counter-strike-protects-while-at-battlefield",
@@ -5603,6 +5612,10 @@
           {
             "card": "VEN-158",
             "why": "Heisho, Shell of the World lets BOTH players ignore [Deflect] there, which works against Allay's whole point rather than adding to it."
+          },
+          {
+            "card": "OGN-063",
+            "why": "Spirit's Refuge grants \"[Deflect] if they didn't already\". Every other friendly unit at Allay's battlefield already has it, so the grant is placed on nothing and 809.2 has no second instance to sum — the second-trigger-is-a-no-op shape, scoped to this rule (away from Allay the same card is a fine Deflect source). Swept 2026-09-09: it is the only conditional grant in the pool (`grep -inE \"if they didn'?t already\"` returns one row)."
           }
         ]
       },
@@ -5618,8 +5631,8 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 43
+      "reviewed": "2026-09-09",
+      "reviewedCount": 42
     },
     {
       "id": "wielder-of-water-attack-defend-alone-family",
@@ -6138,6 +6151,340 @@
       "status": "rule-verified",
       "reviewed": "2026-09-09",
       "reviewedCount": 40
+    },
+    {
+      "id": "bard-mercurial-carries-conquer-payoffs",
+      "name": "Bard, Mercurial walks the whole pack onto an open battlefield, so every conquer payoff standing in it is paid",
+      "anchor": "SFD-079",
+      "partner": {
+        "textMatches": "[Ww]hen (I|you) conquer",
+        "types": [
+          "unit"
+        ],
+        "excludes": [
+          {
+            "card": "OGN-034",
+            "why": "Tryndamere, Barbarian reads \"When I conquer AFTER AN ATTACK, if you assigned 5 or more excess damage\". Bard's route opens a Showdown under 344.2 with no opposing units, so 465.1 assigns no damage at all and R28 = A makes excess damage attacking Might that was never assigned — the condition is part of the Trigger Condition (383.2.a.1) and can never be met here."
+          },
+          {
+            "card": "SFD-120",
+            "why": "Sivir, Ambitious prints the same \"When I conquer after an attack, if you assigned 5 or more excess damage\" clause and dies on the same paragraph."
+          },
+          {
+            "card": "UNL-018",
+            "why": "Yeti Brawler needs \"3 or more excess damage\" assigned. A bloodless conquer assigns none, so the two Gold tokens never arrive."
+          }
+        ]
+      },
+      "why": "383.4.c.2.a is the paragraph: \"The Conquer Abilities of Units are put on the Chain as Pending Items after the Unit(s) these effects correspond to are present at a Battlefield when a player gains control of it and gains 1 Victory Point from Conquering.\" Nothing there asks which unit walked in or which the effect chose — presence is the whole test — and 144.3 makes multiple standard moves ONE action to a shared destination, so a mass relocation scales with how many conquer payoffs are standing in the pack rather than with copies of anything. Bard is the pool's only bulk mover of units of any kind: \"move any number of your units to an open battlefield\", for the price of exhausting your legend (315.1.b readies it only at your own Awakening, so three copies buy three turns, not three relocations). 170.11.c fixes what the word costs: an open battlefield is one that is \"unoccupied and uncontrolled\", both conditions, and with no opposing units present 344.2 opens a Showdown at the next Cleanup, 348.2.a establishes Control and 348.2.a.1 says outright \"This results in a Conquer\". That route has no Attacker designation (807.1.d) and no damage step, which is exactly why the three excess-damage payoffs are excluded and why SFD-116 Yone, Blademaster is one of the BEST partners: his clause reads \"a battlefield that was uncontrolled\", which an open battlefield is by definition. `stare-down-empties-the-garrison` is the other half of the bloodless-conquer family and shares most of this list: it clears an enemy garrison so ONE battlefield falls. Bard is the opposite operation and the reason 383.4.c.2.a is cited here for the first time — he relocates the payoffs themselves, so the same pack pays again at a SECOND battlefield in the same turn, which is what turns a one-shot conquer into a double-Conquer line (470 and 485.4 cap that at two per turn in a Duel).",
+      "basis": {
+        "rules": [
+          "383.4.c.2.a",
+          "144.3",
+          "170.11.c",
+          "344.2",
+          "348.2.a",
+          "348.2.a.1",
+          "465.1",
+          "807.1.d",
+          "383.2.a.1",
+          "315.1.b"
+        ],
+        "combos": [
+          "swain-bard-brambleback-double-conquer-chain",
+          "ivern-bard-four-tag-double-conquer",
+          "bard-mercurial-mass-relocation"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 29
+    },
+    {
+      "id": "zhonyas-hourglass-cost-still-paid",
+      "name": "Zhonya's Hourglass pays a kill-a-friendly-unit COST and keeps the body",
+      "anchor": "OGN-077",
+      "partner": {
+        "textMatches": "[Kk]ill (a|any number of|two|one|another) friendly( \\[Mighty\\])? unit",
+        "excludes": [
+          {
+            "card": "OGN-242",
+            "why": "Baited Hook's kill sits AFTER the colon, so it is effect text and not a cost (203.3 never engages), and the payoff then reads \"Might up to 1 more than THE KILLED UNIT\" — 370.1.a.1 makes the replaced death the same as the kill not occurring, so the referent is gone and the tutor loses its ceiling."
+          },
+          {
+            "card": "SFD-163",
+            "why": "Deathgrip is Riot's own contrast case at 359.3.e.14.b: \"Kill a friendly unit. IF YOU DO, give +Might equal to its Might\" — a later linked instruction that directly references the replaced game action is not performed, so saving the body costs the whole spell."
+          }
+        ]
+      },
+      "why": "357.2.a reads \"Costs that are replaced with other events by replacement effects are still considered paid\", and its worked example is this exact pair by name — Cruel Patron paying its additional cost while the player controls the Hourglass, ending \"The cost is considered paid, and the player can continue playing Cruel Patron\". So every card whose COST kills a friendly unit becomes free of its own price: Cruel Patron, Commander Ledros (one Order Power off per body), Atakhan, Heedless Resurrection, Sacrifice, SFD-178 Blade of the Ruined King's [Equip], VEN-124 Escaped Grayback's [Empower], and OGN-113 Malzahar, Fanatic — whose kill is written BEFORE the colon and is therefore part of the activated ability's cost, not its effect. 370.1.a.1 is the half that must be carried with it or the two read as a contradiction: \"A unit's death being replaced by Zhonya's Hourglass is the same as the kill action that caused that death not occurring\" — the cost is paid, the death is not, which is why an EFFECT that references the death still fails. The body comes home under 455, so any \"While I'm at a battlefield\" text is off for a turn, and 808.1.d.1 erases a Deathknell on whatever is saved. The Hourglass is itself [Hidden], so 811.1.b plays it for 0 Energy from the turn after it is hidden. Two of the twelve cards the regex could catch say \"friendly GEAR\" instead (SFD-084 Jayce, Man of Progress and SFD-160 Zaun Punk) and the predicate leaves them out by construction: the Hourglass saves units only.",
+      "basis": {
+        "rules": [
+          "357.2.a",
+          "370.1.a.1",
+          "203.3",
+          "185.2.d",
+          "455",
+          "808.1.d.1",
+          "811.1.b",
+          "359.3.e.14.b"
+        ],
+        "combos": [
+          "cruel-patron-zhonyas-cost-paid-without-the-death",
+          "whiteflame-last-stand-zhonyas-double-might"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 8
+    },
+    {
+      "id": "vanguard-captain-legion-one-card",
+      "name": "One cheap card turns on every [Legion] clause you control at once",
+      "anchor": "OGN-218",
+      "partner": {
+        "textMatches": "\\[Legion"
+      },
+      "why": "812.2 is the whole rule and it is worth a deck: \"All instances of Legion on cards a player controls are satisfied by that player playing a single card.\" 812.1.b.1 makes each one short for \"If you have played another card this turn, this card gains [Text]\", and 812.1.c is the trigger this project keeps getting wrong from the other side — the bar is that the other card has been FINALIZED, not that it resolved, so a countered spell still switches the whole Legion board on. Nine other cards carry the keyword and they are Fury and Order, which is one legend pair (OGN-253 Hand of Noxus is itself a Legion card and the free enabler, since its Legion clause rides on an exhaust that costs no card). The cheapest first play is the whole cost of the turn: OGN-012 Noxus Hopeful then costs 2 Energy less, OGN-217 Trifarian Gloryseeker buffs itself, OGN-021 Sun Disc makes the next unit enter ready, OGN-254 Noxian Guillotine kills now instead of on damage, and this anchor's own two Recruit tokens arrive at the battlefield rather than the base. The card that turns them on must be a CARD: 350.2 makes a token played and 185.2.a keeps it from being one, so a token engine satisfies no Legion clause at all.",
+      "basis": {
+        "rules": [
+          "812.1.b.1",
+          "812.1.c",
+          "812.2",
+          "350.2",
+          "185.2.a",
+          "355.2.a"
+        ],
+        "combos": [
+          "darius-executioner-vanguard-captain-legion-clause-boundary",
+          "spectral-matron-vanguard-captain",
+          "vanguard-captain-manufactor-plaza"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 9
+    },
+    {
+      "id": "last-stand-doubles-a-shield-body",
+      "name": "Last Stand doubles a defender's CURRENT Might, so the [Shield] half is counted and then kept",
+      "anchor": "OGN-069",
+      "partner": {
+        "textMatches": "\\[Shield"
+      },
+      "why": "432 was cited by nothing in this project until now, and its only worked example is this card. 432.1: \"Doubling is the act of increasing a numeric attribute by an amount equal to that attribute’s current value\" — the current value, not the printed one — and 432.1.a fixes that amount for the stated duration. The example is worth reading whole: \"A unit with 3 base Might and Shield 2 is in combat as a Defender. Since Shield applies, its current Might is 5\", Last Stand then gives it +5, \"for a current Might of 10. After combat, Shield no longer applies, but the +5 Might from Last Stand does, so the unit’s Might is 8.\" Two consequences a builder needs: play it AFTER the Defender designation (Last Stand is [Action], so 806.1.b reaches the showdown) and the Shield value is doubled as well as counted; and the increase SURVIVES the designation lapsing, which no other pump in the pool does. 814.1.c is why the timing matters at all (\"While I am a defender, I have +X [M]\") and 814.2 sums a second granted instance before the doubling reads the total. The rider is real: the body is given [Temporary] and 816.1.b kills it at the start of your own Beginning Phase before scoring, so it can never hold a battlefield the following turn. `eye-of-twilight-tank-on-a-shield-body` uses the same partner list for a different reason — there the Shield raises an unclearable Tank threshold; here it is the number being doubled.",
+      "basis": {
+        "rules": [
+          "432.1",
+          "432.1.a",
+          "432.2.a",
+          "814.1.c",
+          "814.1.d.1",
+          "814.2",
+          "806.1.b",
+          "816.1.b"
+        ],
+        "combos": [
+          "whiteflame-last-stand-zhonyas-double-might"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 27
+    },
+    {
+      "id": "dune-surfer-one-way-tank-ignore",
+      "name": "Dune Surfer walks past the opponent's [Tank] wall while yours keeps standing",
+      "anchor": "VEN-004",
+      "partner": {
+        "textMatches": "\\[Tank\\]|assigned combat damage first"
+      },
+      "why": "767 is the paragraph that makes this a synergy rather than a dispel: \"Ignored abilities are only treated as inactive for the specific game action or procedure described, and only by the players directed by the ability.\" Dune Surfer reads \"You ignore [Tank] while assigning combat damage here\", so on the same battlefield your own Tank bodies keep every bit of their toll booth against the opponent while their wall stops constraining you — the asymmetry IS the card. What is being switched off is not a small thing: 815.1.b is short for \"I must be assigned lethal damage before any other unit with the same controller as me that does not have [Tank]\", and 815.1.c.2 makes every non-Tank body an INVALID assignment until each Tank has lethal, so an attack that cannot reach the wall's Might kills nothing at all rather than killing the wrong thing. 465.2.c.6 (\"A player must obey all requirements and restrictions on damage assignment if able\") is what the ignore removes for you, and because the ability names the game action it is scoped to that assignment and to that battlefield. Note what the ignore does NOT buy: 465.2.c.4 still caps every assignment at the minimum lethal, so walking past a wall changes WHICH bodies die and never how much damage exists — this is not an excess-damage enabler.",
+      "basis": {
+        "rules": [
+          "767",
+          "764",
+          "815.1.b",
+          "815.1.c.1",
+          "815.1.c.2",
+          "815.2",
+          "465.2.c.4",
+          "465.2.c.6"
+        ],
+        "combos": [
+          "dune-surfer-ignore-tank-one-way",
+          "dune-surfer-armed-assailant-ignore-tank"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 25
+    },
+    {
+      "id": "soraka-wanderer-replacement-fork",
+      "name": "A second would-die replacement on Soraka is a fork between two halves of the board, never a doubling",
+      "anchor": "SFD-173",
+      "partner": {
+        "textMatches": "[Ww]ould die",
+        "excludes": [
+          {
+            "card": "UNL-007",
+            "why": "Smite replaces a death with a BANISH, so the body is still removed — it is removal aimed at an enemy, not a second save, and 808.1.d.1's own example is that shape erasing the Deathknell of whatever it catches."
+          }
+        ]
+      },
+      "why": "Both halves of this are Riot's worked examples and both name Soraka. 370.4: \"A Game Object can apply its Replacement Effects to any qualifying events that occur simultaneously with it leaving the zone that its Replacement Effect is active in\" — so a board wipe does not beat her, she still saves the smaller bodies dying beside her. 373.2 is the limit that is not stated anywhere on the cards: \"When applying Replacement Effects to events that occur simultaneously, each Replacement Effect may only be applied in one sequence, to any number of events that are qualified to be replaced\", and the example is Soraka wearing a Guardian Angel with Recruits dying at her battlefield AND at the base. Saving herself first means her own effect can then only reach one group; letting her die means the garrison goes. So the second replacement buys a CHOICE of which half of the board survives, and a builder who counts it as two saves is counting wrong. Her own clause is scoped twice over, by location (\"another unit you control here\") and by size (\"if it has less Might than me\"), and every save in the family relocates: 455 makes a Recall a move to the base without being a Move, which switches off any \"While I'm at a battlefield\" text for a turn and, with 808.1.d.1, removes the Deathknell of whatever was saved.",
+      "basis": {
+        "rules": [
+          "370.4",
+          "370.1.a.1",
+          "373.2",
+          "373.2.a",
+          "455",
+          "808.1.d.1",
+          "457.1"
+        ],
+        "combos": [
+          "soraka-guardian-angel-replacement-sequence",
+          "soraka-wanderer-vanguard-armory-simultaneous-save",
+          "soraka-fiora-loop-shield"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 7
+    },
+    {
+      "id": "volibear-split-bonus-damage-target-count",
+      "name": "Bonus Damage on a SPLIT deal buys a whole extra body, not just an extra point",
+      "anchor": "OGN-041",
+      "partner": {
+        "textMatches": "[Bb]onus [Dd]amage",
+        "excludes": [
+          {
+            "card": "OGN-032",
+            "why": "Ravenborn Tome reads \"The next SPELL you play this turn deals 1 Bonus Damage\". Volibear's split is a Triggered Ability, not a spell, so the grant never reaches it — the same spell-versus-ability line 417.6.b.3 draws elsewhere."
+          },
+          {
+            "card": "VEN-010",
+            "why": "Consuming Curse's Bonus Damage is self-scoped — \"THIS deals 1 Bonus Damage for each card with this name in your trash\" — so it augments its own Deal action and grants nothing to anything else."
+          },
+          {
+            "card": "UNL-020",
+            "why": "Dancing Grenade is self-scoped in the same way (\"this deals 1 additional Bonus Damage for each time THIS SPELL has dealt damage this turn\"), and R15 = A scopes that history to the card itself."
+          }
+        ]
+      },
+      "why": "715.3 is the third shape of Bonus Damage and its worked example is this anchor by name: \"If the Deal action Splits damage, then the Bonus Damage applies to the amount of Damage that will be Split. This can alter the number of targets eligible to be chosen.\" The example attacks with Volibear beside Annie, Fiery and concludes that he \"now deals 6 damage split among any number of enemy units at its\" battlefield. Against 715.1 (single target) and 715.2 (per target of a multi-target deal), this is the one that changes the SHAPE of the removal: 355.14.c caps the number of targets by the damage available when the spell is played and 355.14.h.1 forbids shrinking the target count below the damage you have to split, so +1 damage against a row of 1-Might bodies is +1 corpse. 714 is the ceiling: \"If more than one instance of Bonus Damage is applied or granted to a Deal action, all instances are summed and applied once\" — a second source is +1 more, never a doubling. 715.4 keeps Bonus Damage from ever creating a Deal action of its own, and 713 with 417.6.c keeps the whole family disjoint from combat and from excess damage. Two of the six read differently from the other four: OGN-296 Void Gate is worded for the LOCATION (\"Spells and abilities deal 1 Bonus Damage to units here\"), so it arms the opponent as well and 190.6.d cannot blank it; and SFD-191 Rabadon's Deathcrown is a Signature card tagged Ornn, so 103.2.d.2 makes any list running it an Ornn list.",
+      "basis": {
+        "rules": [
+          "713",
+          "714",
+          "715.1",
+          "715.2",
+          "715.3",
+          "715.4",
+          "355.14.c",
+          "355.14.h.1",
+          "417.6.c",
+          "103.2.d.2"
+        ],
+        "combos": [
+          "volibear-furious-annie-fiery-split-more-targets",
+          "sky-splitter-volibear-free-removal"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 3
+    },
+    {
+      "id": "commander-ledros-token-fodder",
+      "name": "Commander Ledros pays his Power in token bodies, because a token IS a unit for a cost",
+      "anchor": "OGN-231",
+      "partner": {
+        "textMatches": "unit token",
+        "excludes": [
+          {
+            "card": "UNL-130",
+            "why": "Walking Roost gives its Bird to an OPPONENT — 182 lets a creating effect name a different controller — so it never produces a body you may kill as your own additional cost."
+          }
+        ]
+      },
+      "why": "His printed cost line — \"As you play me, you may kill any number of friendly units as an additional cost\", reducing his cost by one Order Power for each body — is the pool's only per-body cost reduction, and the reason it can be paid in tokens is 185.2.d: \"Tokens have a type. They follow all rules for their type unless otherwise specified.\" A token unit is a unit, so 203.3 (a cost whose action is impossible cannot be paid) never engages and 416.1's card-only wording — the trap that kills every recycle-a-token line — is simply not what is being asked for here. The arithmetic is bounded and should be stated: Ledros is 6 Energy and FOUR Order Power, 356.6 floors a cost at 0, so the fifth body onward buys nothing; a four-token turn lands an 8-Might [Deflect] [Ganking] body for 6 Energy. Nothing comes back — 186.1 makes a token cease to exist the instant it enters any non-board zone, so it never reaches the trash and no reanimation or recycle can see it, which is also why this is a strictly better fodder than killing real cards. And the bodies must already be on the board when he is played: the additional cost is paid during the steps of playing him (357), not afterwards.",
+      "basis": {
+        "rules": [
+          "185.2.d",
+          "185",
+          "203.3",
+          "356.6",
+          "186.1",
+          "357.2.a",
+          "182"
+        ],
+        "combos": [
+          "ledros-bird-power-discount"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 48
+    },
+    {
+      "id": "treasure-hoard-temporary-garrison-cycle",
+      "name": "A [Temporary] garrison hands a conquer battlefield back every turn, so its trigger fires more than once a game",
+      "anchor": "SFD-220",
+      "partner": {
+        "textMatches": "\\[Temporary\\]",
+        "excludes": [
+          {
+            "card": "SFD-104",
+            "why": "Petricite Monument is GEAR. 323.6 strips Control only from a player with no UNITS occupying the battlefield, and 323.7 recalls unattached gear at every Cleanup anyway, so a Temporary gear is never the garrison that has to die."
+          },
+          {
+            "card": "UNL-085",
+            "why": "Sumpworks Map is gear, for the same reason."
+          },
+          {
+            "card": "SFD-186",
+            "why": "Spinning Axe is an Equipment; its [Temporary] kills the gear, never the carrier, so the battlefield is not handed back."
+          },
+          {
+            "card": "UNL-070",
+            "why": "Turn to Dust gives a GEAR [Temporary] — it can never condemn the body holding the battlefield."
+          },
+          {
+            "card": "UNL-090",
+            "why": "LeBlanc, Everywhere at Once reads \"Your [Temporary] effects at my battlefield don't trigger\" and R10 = A rules that this does switch the kill off (816.1 makes [Temporary] a Triggered Ability keyword), which is the exact opposite of what the cycle needs."
+          },
+          {
+            "card": "UNL-076",
+            "why": "Petal Pixie only READS your [Temporary] bodies for its own Might; it grants the keyword to nothing."
+          }
+        ]
+      },
+      "why": "Fourteen of the 66 battlefields carry a when-you-conquer-here trigger, and most of them fire once a game, because 315.2.b.2 makes the Hold mandatory, 470 caps Scoring at once per battlefield per turn and 348.2.a refuses Control to a player who already has it. The fix is to stop controlling it on purpose: 816.1.b makes [Temporary] short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this.\", 319.6 then 323.6 (\"Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there\") strip Control in the same Cleanup, and the battlefield is open again for a Main-Phase walk-in. It costs nothing in exposure, because 144.1.a-c with 312.2.a leave the opponent no state in which they both hold priority and may move a body in. What it buys is the TRIGGER and never a second point — 470 is untouched. Treasure Hoard is the cheapest payoff to cycle (1 Energy for a Gold gear token, exhausted, so 187.5's own exhaust makes it Power only from your next Awakening unless SFD-171 Renata Glasc, Industrialist is out, R25 = A). The disposable body must be a UNIT and it must be the ONLY one there, which is why the six excludes below are excludes and not partners.",
+      "basis": {
+        "rules": [
+          "816.1.b",
+          "816.1.c",
+          "319.6",
+          "323.6",
+          "348.2.a",
+          "470",
+          "315.2.b.2",
+          "144.1.b",
+          "312.2.a",
+          "187.5"
+        ],
+        "combos": [
+          "treasure-hoard-renata-conquer-gold",
+          "sprite-queen-targon-peak-conquer-cycle"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-09",
+      "reviewedCount": 15
     }
   ]
 }
