@@ -10,7 +10,7 @@
 // one legend. The Main Deck's own 40 is NOT one of them — 103.2 is a floor, not a ceiling, and the
 // Construction checklist is what reports the difference.
 
-import { ANY_NUMBER, championTagOf } from "./build.js";
+import { ANY_NUMBER, championTagOf, copiesByName } from "./build.js";
 import { readableCardText } from "./cards.js";
 import { deckToText, type DeckEntry } from "./deck.js";
 import type { CardIndex } from "./cards.js";
@@ -240,11 +240,12 @@ export function copiesOf(deck: Deck, base: string): number {
  * Copies of a NAME across the Main Deck and the sideboard together. Tournament Rules 403.3: "Limits
  * on copies of named cards as defined by competition format apply to the combination of Main Deck
  * and sideboard" -- so three in the sideboard leave no room in the main, and the other way round.
+ * `copiesByName` (src/build.ts) is the one place that groups a name across bags and applies the
+ * Spiderling exemption (002); `checkBuild`'s sideboard row (601.1.c.3 · 403.3, #197) reads the same
+ * function, so the click-time cap here and the report's verdict can never drift apart.
  */
 function mainCopiesOfName(deck: Deck, cards: CardIndex, name: string): number {
-  let n = 0;
-  for (const bag of [deck.main, deck.sideboard]) for (const [base, count] of Object.entries(bag)) if (cards.get(base)?.name === name) n += count;
-  return n;
+  return copiesByName(cards, [deck.main, deck.sideboard]).get(name)?.count ?? 0;
 }
 
 export interface Cap {

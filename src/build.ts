@@ -47,6 +47,7 @@ export function checkBuild(deck: Deck, cards: CardIndex, format: Format): BuildR
     signatureRule(deck, cards),
     runeRule(deck, cards),
     battlefieldRule(deck, cards),
+    ...sideboardRules(deck, cards),
     // Last, because it is the only row that is about the tournament rather than about the deck.
     legalityRule(deck, cards, format),
   ];
@@ -87,24 +88,42 @@ const COPY_CAP = 3;
 export const ANY_NUMBER = /can have any number of cards named/i;
 
 /**
+ * Copies of every name across the given bags, with the Spiderling exemption folded in once here rather
+ * than at every call site. `copiesRule` (103.2.b) calls this with `[deck.main]` alone; the sideboard row
+ * below (601.1.c.3 · 403.3) calls it with `[deck.main, deck.sideboard]` — same grouping, same exemption,
+ * so the two counts can never drift apart. `src/builder.ts`'s `sideboardCapOf` reads the single-name
+ * answer through this too, so there is exactly one place that knows what "copies of a name" means.
+ */
+export function copiesByName(
+  cards: CardIndex,
+  bags: readonly Record<string, number>[],
+): Map<string, { name: string; count: number; exempt: boolean }> {
+  const byName = new Map<string, { name: string; count: number; exempt: boolean }>();
+  for (const bag of bags) {
+    for (const [code, n] of Object.entries(bag)) {
+      const card = cards.get(code);
+      if (!card) continue;
+      const prev = byName.get(card.name);
+      if (prev) prev.count += n;
+      else byName.set(card.name, { name: card.name, count: n, exempt: ANY_NUMBER.test(card.text ?? "") });
+    }
+  }
+  return byName;
+}
+
+/**
  * The cap is on the MAIN DECK — "Your Main Deck can include up to 3 copies of the same named card" — and
  * on nothing else. The Rune Deck is kept separate by 103.3.b and every real list runs 6 or 12 of one rune;
  * battlefields have their own limit in 103.4.c. Counting either here would call every legal deck illegal.
  *
  * And the cap is per NAME, not per code: 103.2.b.2 says two cards of the same character are different
  * names, and the corollary is that two printings of one name are the same card — `Lux, Crownguard` is both
- * OGS-014 and VEN-SP6. The sideboard stays out, as it does everywhere else on this site.
+ * OGS-014 and VEN-SP6. The sideboard stays out of THIS row on purpose — 103.2.b is a Main Deck rule — but
+ * it is not ignored: `sideboardCopiesRule` below folds it in under its own citation (601.1.c.3 · 403.3).
  */
 function copiesRule(deck: Deck, cards: CardIndex): BuildRule {
   const base = { rule: "103.2.b", label: "Up to 3 of a name" };
-  const byName = new Map<string, { name: string; count: number; exempt: boolean }>();
-  for (const [code, n] of Object.entries(deck.main)) {
-    const card = cards.get(code);
-    if (!card) continue;
-    const prev = byName.get(card.name);
-    if (prev) prev.count += n;
-    else byName.set(card.name, { name: card.name, count: n, exempt: ANY_NUMBER.test(card.text ?? "") });
-  }
+  const byName = copiesByName(cards, [deck.main]);
   const over = [...byName.values()].filter((x) => !x.exempt && x.count > COPY_CAP).sort((a, b) => b.count - a.count);
   if (over.length) {
     return { ...base, status: "fail", detail: over.map((x) => `${x.count}× ${x.name}`).join(" · ") };
@@ -316,6 +335,83 @@ function signatureRule(deck: Deck, cards: CardIndex): BuildRule {
     status: "pass",
     detail: totalN ? `${totalN} Signature card${totalN === 1 ? "" : "s"}, all tagged ${tag}.` : "No Signature cards.",
   };
+}
+
+const SIDEBOARD_CAP = 10;
+
+/**
+ * The sideboard (#197). `checkBuild` had zero rows for `deck.sideboard`, so a list arriving already built
+ * — pasted, deck-code imported, Piltover-imported — could break every sideboard rule at once and still
+ * read `legal: true`. Three Tournament Rules paragraphs, none previously cited by any code in `src/`:
+ *
+ *   601.1.c.1  "A player's sideboard can include 10 or fewer cards."
+ *   601.1.c.2  "A sideboard can consist only of valid Main Deck cards."
+ *   601.1.c.3  "Limits on copies of named cards apply to the combination of main deck and sideboard."
+ *   403.3      restates 601.1.c.3 in the general Sideboard section.
+ *
+ * 601.1.c.2's "valid Main Deck card" is read narrowly here as a TYPE question — a card of one of the
+ * types 103.2's own intro sentence enumerates for the Main Deck (unit, spell, gear) — the same test
+ * `src/builder.ts`'s sideboard pool filter already runs at add-time (`zoneOf(card) !== "main"`). It is
+ * NOT read as also demanding Domain Identity: 103.2.c states identity as a rule distinct from membership
+ * type, no paragraph says a sideboard card must sit inside the deck's identity, and 601.1.c.4 only ties
+ * identity to the one card a player swaps in as Chosen Champion, not to the sideboard as a whole. Ban and
+ * restriction status needs no new row either — `legalityRule` below already reads `deckRestrictions`,
+ * which folds `deck.sideboard` in for every format.
+ *
+ * 601.1.c itself opens "In competitions where a sideboard is allowed" — whether one is depends on event
+ * addenda this project has no data for (the same kind of gap as 601.1.d's battlefield exceptions, out of
+ * scope per #197). But neither format this tool offers is Sealed or Draft (602), whose sideboards are a
+ * different shape entirely (the player's whole remaining pool, no 10-card cap) and which this tool does
+ * not build decks for at all — so 601.1.c.1-.c.3 are the only sideboard rules either "constructed" or
+ * "2v2" can mean here, and there is nothing format-specific left to branch on.
+ *
+ * A deck with no sideboard gets no rows at all rather than three trivial passes: the overwhelming
+ * majority of pasted lists never register one, and three more "pass, nothing here" rows on every one of
+ * them would be noise the Construction checklist does not need.
+ */
+function sideboardRules(deck: Deck, cards: CardIndex): BuildRule[] {
+  const n = total(deck.sideboard);
+  if (n === 0) return [];
+
+  const size: BuildRule = n > SIDEBOARD_CAP
+    ? { rule: "601.1.c.1", label: "Sideboard of 10 or fewer", status: "fail", detail: `${n} cards in the sideboard — a sideboard is 10 or fewer (601.1.c.1).` }
+    : { rule: "601.1.c.1", label: "Sideboard of 10 or fewer", status: "pass", detail: `${n} card${n === 1 ? "" : "s"} in the sideboard, within the 10-card cap.` };
+
+  const invalid = Object.entries(deck.sideboard)
+    .map(([code, count]) => ({ card: cards.get(code), count }))
+    .filter((x): x is { card: Card; count: number } => Boolean(x.card))
+    .filter((x) => x.card.type.includes("legend") || x.card.type.includes("rune") || x.card.type.includes("battlefield"));
+  const contents: BuildRule = invalid.length
+    ? {
+        rule: "601.1.c.2",
+        label: "Sideboard cards only",
+        status: "fail",
+        detail: `${invalid.map((x) => `${x.card.name} (${x.card.type.join("/")})`).join(", ")} — a sideboard holds only Main Deck cards: units, spells and gear (601.1.c.2).`,
+      }
+    : { rule: "601.1.c.2", label: "Sideboard cards only", status: "pass", detail: "Every sideboard card is a unit, spell or gear — a valid Main Deck card." };
+
+  const byName = copiesByName(cards, [deck.main, deck.sideboard]);
+  const over = [...byName.values()].filter((x) => !x.exempt && x.count > COPY_CAP).sort((a, b) => b.count - a.count);
+  const copies: BuildRule = over.length
+    ? {
+        rule: "601.1.c.3 · 403.3",
+        label: "Copies across Main Deck and sideboard",
+        status: "fail",
+        detail: `${over.map((x) => `${x.count}× ${x.name}`).join(" · ")} across Main Deck and sideboard — the cap of 3 applies to the combination (601.1.c.3 · 403.3).`,
+      }
+    : {
+        rule: "601.1.c.3 · 403.3",
+        label: "Copies across Main Deck and sideboard",
+        status: "pass",
+        detail: (() => {
+          const exempt = [...byName.values()].filter((x) => x.exempt && x.count > COPY_CAP);
+          return exempt.length
+            ? `No name over three, and ${exempt.map((x) => `${x.count}× ${x.name}`).join(" · ")} is past it only because its own text says so (002).`
+            : "No name exceeds 3 copies across Main Deck and sideboard combined.";
+        })(),
+      };
+
+  return [size, contents, copies];
 }
 
 /**

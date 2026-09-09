@@ -114,12 +114,26 @@ describe("checkBuild sobre las listas que parsean limpias", () => {
     expect([...named].sort()).toEqual(["Aspirant's Climb", "The Arena's Greatest"]);
   });
 
-  it("dejando de lado esa fila, la única lista ilegal es la del Rune Pool mal transcrito", () => {
+  /**
+   * `utrecht-17`'s "Sideboard:" section is a second Riot-article transcription artifact, the same
+   * shape as `RUNE_POOL_ERRATA` above: it repeats the deck's own three Battlefields verbatim
+   * (Aspirant's Climb, Rockfall Path, Targon's Peak) rather than naming any Main Deck card. Before
+   * #197 added a sideboard row, `checkBuild` had no way to see this — those three battlefields sat
+   * in `deck.sideboard` unread. Now 601.1.c.2 ("A sideboard can consist only of valid Main Deck
+   * cards") correctly flags it: a battlefield is never a valid Main Deck card. This is the source
+   * article mislabelling a section, not a real illegal registration — measured against all 222
+   * fixtures, it is the only one where a sideboard names anything other than a unit, spell or gear.
+   */
+  const BATTLEFIELD_SIDEBOARD_ERRATA = "utrecht-17.txt";
+
+  it("dejando de lado esa fila, las únicas listas ilegales son el Rune Pool mal transcrito y un sideboard que repite las Battlefields", () => {
     const structural = clean
       .map((f) => [f, fails(f).filter((r) => r.rule !== "103.2.e")] as const)
       .filter(([, rs]) => rs.length > 0);
-    expect(structural.map(([f]) => f)).toEqual(["vancouver-06.txt"]);
-    expect(structural[0]![1].map((r) => r.rule)).toEqual(["103.3.a · 103.3.a.1", "103.4.a · 103.4.c"]);
+    expect(structural.map(([f]) => f).sort()).toEqual([BATTLEFIELD_SIDEBOARD_ERRATA, "vancouver-06.txt"].sort());
+    const byFile = new Map(structural);
+    expect(byFile.get("vancouver-06.txt")!.map((r) => r.rule)).toEqual(["103.3.a · 103.3.a.1", "103.4.a · 103.4.c"]);
+    expect(byFile.get(BATTLEFIELD_SIDEBOARD_ERRATA)!.map((r) => r.rule)).toEqual(["601.1.c.2"]);
   });
 
   it("las 37 listas de Barcelona, el único evento posterior al baneo, son todas legales hoy", () => {
