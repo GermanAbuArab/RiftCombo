@@ -3,7 +3,8 @@
     "Controlled outcome vocabulary. STANDALONE features are shown to users; HELPER features are graph plumbing between combos; HIDDEN are generator internals.",
     "Keep this list under ~20 entries. Commander Spellbook's 1,310 features forced LOOPLINE to build a second taxonomy on top.",
     "ONE NAME PER THING (2026-09-06, issues #63 and #64). Two names for one product orphan its producers: infinite-recruits had 7 producers and 0 consumers while token-body-engine held the only consumer. Before adding a name, check that no existing one already denotes the same product; the table of what was merged and what was kept apart, with the reason for each, is in docs/phase0/walks/2026-09-06-issue63-payoff-lens.md section V.",
-    "A feature with no consumer is NOT a defect when the feature IS the payoff: points, wins and removal are outputs of the graph, never inputs to it."
+    "A feature with no consumer is NOT a defect when the feature IS the payoff: points, wins and removal are outputs of the graph, never inputs to it.",
+    "2026-09-09 (#157): five values added at once - unit-delivery, xp-engine, combat-might, board-protection, tempo-denial - to tag the 90 ENGINEs that fitted nothing. That takes the list to 19 of the ~20 ceiling above, so the next addition has to justify itself against a MERGE. Two of the five are graph inputs (unit-delivery, xp-engine); the other three are OUTPUT ONLY and are pinned as unconsumable by test/combos.test.ts, because a needs: on a protection or a lock would force every deck running the protected line to also run the protection."
   ],
   "features": [
     {
@@ -101,6 +102,41 @@
       "status": "STANDALONE",
       "uncountable": false,
       "description": "Makes the opponent burn through their own Main Deck, by milling it or by forcing them to play off the top. Merged from force-opponent-deck and opponent-burn-engine on 2026-09-06. Pressure, never a kill: Burn Out recycles their trash before awarding a point (431.2)."
+    },
+    {
+      "id": "unit-delivery",
+      "name": "Unit delivery",
+      "status": "HELPER",
+      "uncountable": false,
+      "description": "A body reaches a battlefield it otherwise could not, or reaches one a turn early: [Ambush] (822.1.b), an effect move (449 with 420.3.a putting the exhaust on the Standard Move alone), granted [Ganking], or a play into an opened combat. This is a genuine graph INPUT: token-body-engine makes bodies at the base (355.2.a) and the walk to the battlefield is the bottleneck of every token line, so a Plaza or Hold entry may honestly declare needs: unit-delivery."
+    },
+    {
+      "id": "xp-engine",
+      "name": "XP engine",
+      "status": "HELPER",
+      "uncountable": false,
+      "description": "Repeatable XP for a [Level N] rung. An input, because 824.1.d makes a Level ability Inactive the moment the balance falls below N and 730.2 makes spending XP your own act - so a Level payoff needs a faucet and no sink."
+    },
+    {
+      "id": "combat-might",
+      "name": "Combat Might",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "Might bought onto your own bodies: 702 buff counters, granted [Assault] (807.2 sums it), Empower purchases, doublers (432.1), and \"+N Might this turn\" continuous modifiers that 702.3 never caps. Shown as a payoff. Its one plausible consumer is the excess-damage family (R28 = A, OGN-034 Tryndamere)."
+    },
+    {
+      "id": "board-protection",
+      "name": "Board protection",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "A key permanent survives what would remove it: would-die replacements (808.1.d.1 erases the Deathknell with them), [Tank] tolls (815.1.c.2), granted [Shield] (814.2 sums), Prevent (437.4, which generates no kill event at all), untargetability (054.1) and granted [Deflect] (809.2). OUTPUT ONLY - never write needs: board-protection, because a matcher that requires the shield would demand it of every deck running the line it protects."
+    },
+    {
+      "id": "tempo-denial",
+      "name": "Tempo denial",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "The opponent does less on their own turn: counters, play locks, spell taxes, stuns (423.1, cleared at their own cleanup), movement locks, rune denial. OUTPUT ONLY for the reason CLAUDE.md already records - Brynhir’s lockout window is its own entry and not a uses[] of the loop it protects, because adding it would force the matcher to require it."
     }
   ]
 }

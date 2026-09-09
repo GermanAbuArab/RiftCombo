@@ -412,3 +412,37 @@ describe("the source vocabulary covers what the catalogue actually uses", () => 
     expect(new Set(sources.map((s) => s.kind)).size).toBeGreaterThan(1);
   });
 });
+
+/**
+ * #157, 2026-09-09. Two guards on the outcome vocabulary, both measured before being written.
+ *
+ * The first is a real bug shape rather than a style rule: `expand()` in `src/combos.ts` starts
+ * `partials` at `[self]` and short-circuits the needs loop on `p.produces.has(need)`, so an entry
+ * that both NEEDS and PRODUCES the same feature satisfies its own need and emits a variant with no
+ * feeder at all — publishing an incomplete line as complete. Zero entries have that overlap today;
+ * this keeps it that way, and it matters most for the four entries that need `token-body-engine` or
+ * `conquer-engine` and plainly make bodies or Conquers of their own.
+ *
+ * The second pins three of the five values added with this issue as OUTPUT ONLY. CLAUDE.md records
+ * why in its own words: Brynhir's lockout window is its own entry and not a `uses[]` of the loop it
+ * protects, because "adding it would force the matcher to require it". A `needs: board-protection`
+ * or `needs: tempo-denial` does exactly that to every deck running the protected line.
+ */
+describe("the outcome vocabulary cannot publish an incomplete line as complete", () => {
+  const { combos } = loadCombos();
+
+  it("never lets an entry satisfy its own need", () => {
+    const bad = combos
+      .filter((c: Combo) => c.needs.some((n: string) => c.produces.includes(n)))
+      .map((c: Combo) => `${c.id}: needs and produces ${c.needs.filter((n: string) => c.produces.includes(n)).join(", ")}`);
+    expect(bad, bad.join("\n")).toEqual([]);
+  });
+
+  it("never consumes a feature that only exists to be shown", () => {
+    const OUTPUT_ONLY = ["board-protection", "tempo-denial", "combat-might"];
+    const bad = combos
+      .filter((c: Combo) => c.needs.some((n: string) => OUTPUT_ONLY.includes(n)))
+      .map((c: Combo) => `${c.id}: needs ${c.needs.filter((n: string) => OUTPUT_ONLY.includes(n)).join(", ")}`);
+    expect(bad, bad.join("\n")).toEqual([]);
+  });
+});

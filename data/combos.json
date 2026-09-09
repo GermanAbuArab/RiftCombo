@@ -8355,7 +8355,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Mono-Chaos: any Chaos legend."
@@ -18659,7 +18661,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "repeatable-removal"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Chaos. Possession is mono-Chaos, so any legend with Chaos runs it.",
@@ -27432,7 +27436,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "repeatable-removal"
+      ],
       "prerequisites": {
         "easy": [
           "Any Order legend: both cards are mono-Order, so 103.1.b.1 admits them under every legend carrying Order, and the pool prints seventeen such legend names. Neither card is a Signature card, so 103.2.d.2 forces nothing.",
@@ -30300,7 +30306,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "repeatable-removal"
+      ],
       "prerequisites": {
         "easy": [
           "The line is mono-Mind (Soul Shepherd; the Fortress is Colorless), so 103.1.b.3 admits any legend with Mind in its pair: UNL-189/UNL-230 Bashful Bloom, SFD-201/SFD-249 Chem-Baroness, VEN-145/VEN-192 Curator of the Sands, OGN-247/OGN-299 Daughter of the Void, UNL-199/UNL-235 Deceiver, VEN-149/VEN-194 Defender of Tomorrow, SFD-189/SFD-244 Fire Below the Mountain, OGN-265/OGN-308 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-181/SFD-240 Mechanized Menace, OGN-255/OGN-303 Nine-Tailed Fox, SFD-199/SFD-248 Prodigal Explorer, UNL-197/UNL-234 Scorn of the Moon, VEN-151/VEN-195 Soul's Reflection, OGN-263/OGN-307 Swift Scout, UNL-181/UNL-226 Virtuoso."
@@ -31107,7 +31115,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Calm + Mind: Sanction is mono-Calm and Apprentice Mage mono-Mind (103.1.b.3), so the legend must hold both and the pool prints exactly four names — OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom and VEN-145 Curator of the Sands (103.1.b.2).",
@@ -35946,7 +35956,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "resource-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Jax, Unmatched and Doran's Shield are both mono-Calm and Ornn's Forge is Colorless, so 103.1.b.3 admits any legend with Calm in its pair: OGN-255/OGN-303 Nine-Tailed Fox, OGN-257/OGN-304 Blind Monk, OGN-259/OGN-305 Unforgiven, OGN-261/OGN-306 Radiant Dawn, SFD-189/SFD-244 Fire Below the Mountain, SFD-193/SFD-245 Grandmaster at Arms, SFD-195/SFD-246 Blade Dancer, SFD-197/SFD-247 Emperor of the Sands, UNL-189/UNL-230 Bashful Bloom, UNL-191/UNL-231 Wuju Master, UNL-193/UNL-232 Gloomist, UNL-195/UNL-233 Green Father, VEN-139/VEN-189 Rogue Assassin, VEN-145/VEN-192 Curator of the Sands, VEN-147/VEN-193 Eye of Twilight, OGS-019 Wuju Bladesman - Starter (restricted in 2v2)."
@@ -40254,7 +40266,10 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine",
+        "resource-engine"
+      ],
       "prerequisites": {
         "easy": [
           "All three cards are mono-Fury, so 103.1.b.1 is satisfied by any legend with Fury as one of its two domains. None is Signature, so 103.2.d.2 imposes nothing."
@@ -41664,7 +41679,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "resource-engine"
+      ],
       "prerequisites": {
         "easy": [
           "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
@@ -41817,7 +41834,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Heedless Resurrection is mono-Chaos and Legion Rearguard mono-Fury, so 103.1.b.1 needs a Fury/Chaos legend: OGS-017 Dark Child - Starter, OGN-251 / OGN-301 Loose Cannon, SFD-185 / SFD-242 Glorious Executioner, UNL-185 / UNL-228 Bloodharbor Ripper, or VEN-143 / VEN-191 Master of Shadows. Neither card is Signature."
@@ -45620,7 +45639,10 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "repeatable-removal",
+        "resource-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Calm + Mind: Pickpocket is mono-Mind and Seal of Focus mono-Calm (103.1.b.3), so 103.1.b.2 needs a legend covering both - OGN-255/OGN-303 Nine-Tailed Fox, SFD-189/SFD-244 Fire Below the Mountain, UNL-189/UNL-230 Bashful Bloom or VEN-145/VEN-192 Curator of the Sands.",
@@ -48252,7 +48274,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Calm + Mind: Ol' Poro is mono-Calm and Otterpus mono-Mind (103.1.b.3), so 103.1.b.2 needs a legend covering both - OGN-255/OGN-303 Nine-Tailed Fox, SFD-189/SFD-244 Fire Below the Mountain, UNL-189/UNL-230 Bashful Bloom or VEN-145/VEN-192 Curator of the Sands.",
@@ -48319,7 +48343,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "resource-engine"
+      ],
       "prerequisites": {
         "easy": [
           "Calm + Mind: Legion Quartermaster is mono-Calm and Cloth Armor mono-Mind (103.1.b.3), so 103.1.b.2 needs a legend covering both - OGN-255/OGN-303 Nine-Tailed Fox, SFD-189/SFD-244 Fire Below the Mountain, UNL-189/UNL-230 Bashful Bloom or VEN-145/VEN-192 Curator of the Sands.",
