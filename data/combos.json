@@ -10666,7 +10666,8 @@
           "THE MOVE CONQUERS BY ITSELF. 450: your units apply Contested to an uncontested battlefield you do not control. 323.8 stages a Showdown; 323.9 stages no Combat, because an uncontrolled battlefield normally has nobody on it. 323.12 opens it, 348 closes it, 348.2.a establishes Control and 348.2.a.1 makes it a Conquer — 471.1, one point, the same turn the bodies arrive. Trap 1 is respected: no Combat exists, so no Attacker designation is handed out (464.2.c.3) and no 'When I attack' is claimed.",
           "THE ARITHMETIC WITH THE QUANTITY DECLARED. One card, one activation, 4 Energy + 1 Mind Power, no cap on the number of units moved. Bard is already on the board when 'When you play me' resolves, so he is one of the bodies. Against OGN-293 The Grand Plaza, whose bar is seven and whose condition 383.2.a.1 measures at the Hold (315.2.b.2 puts that in your Beginning Phase), Bard plus six banked tokens is exactly the bar and every extra token banked at the base is margin — but the swarm must survive the opponent's whole turn, and 312.2.a gives priority only in the Main Phase, so there is no window to top it up.",
           "IF THE PLAZA IS THE TARGET, THE USUAL BATTLEFIELD CAVEAT APPLIES: a deck may not carry two of a battlefield of the same name (103.4.c, Tournament Rules 402.1), and it is random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5).",
-          "The legend exhaust competes with everything else your legend does that turn, and that is the real price: many Mind legends want their own exhaust ability on the turn you would want Bard."
+          "The legend exhaust competes with everything else your legend does that turn, and that is the real price: many Mind legends want their own exhaust ability on the turn you would want Bard.",
+          "SCOPED AGAINST ITS EXTENSION (2026-09-09): `swain-bard-brambleback-double-conquer-chain` is this relocation used as a POINT lever rather than as board management - the same Bard move carries three Swains and a Red Brambleback to a second open battlefield, so both Conquers pay 7 instead of the second paying 1. This entry stays because the relocation is worth walking on its own; a card set that is a strict SUBSET of another entry’s is invisible to a duplicate check that compares sorted card sets, so the two must name each other."
         ]
       },
       "steps": [
@@ -51254,6 +51255,75 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-07, issue #191, session rc-walk-fc, batch 2. 811.2, 811.3 and 811.6 were uncited by data/combos.json and data/synergies.json before this entry. A finding that belongs to an EXISTING entry rather than this one is recorded in the walk document: peak-guardian-stand-united-hidden-garrison-pump reasons the same split out of 811.1.d.2 by argument, and 811.2 is the paragraph that states it outright - with OGN-053 Stand United as its worked example, by name. That is a citation upgrade, not a second entry. Card text verbatim from data/corpus_flat.txt. No unruled reading."
+    },
+    {
+      "id": "swain-bard-brambleback-double-conquer-chain",
+      "name": "Bard relocates the whole pack — the same Swain trigger paid twice, at two battlefields, in one Main Phase",
+      "class": "CHAIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-065",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Swain, Visionary. 'When I conquer, if you've played a non-token unit, a non-token gear, and a spell this turn, you score 1 point.' Presence at the Conquer is the whole requirement (383.4.c.2) — no attack, no garrison, nothing to survive."
+        },
+        {
+          "card": "UNL-029",
+          "quantity": 1,
+          "role": "multiplier",
+          "zone": "BATTLEFIELD",
+          "note": "Red Brambleback. 'Your conquer effects for conquering here trigger an additional time.' R1 = A with stacking: one copy gives two instances. It travels WITH the pack, so the 'here' is satisfied at both battlefields — that is why one copy is enough here and two are needed in the BURST."
+        },
+        {
+          "card": "SFD-079",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Bard, Mercurial. 'You may exhaust your legend as an additional cost to play me. When you play me, if you paid the additional cost, move any number of your units to an open battlefield.' The pool's only bulk mover of units of any kind, and the second Conquer in this line is entirely his."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Fury and Mind. Measured over data/cards.json 2026-09-09, the pool prints THREE Fury/Mind legend names across six base codes: Daughter of the Void (OGN-247 / OGN-299), Mechanized Menace (SFD-181 / SFD-240), Virtuoso (UNL-181 / UNL-226).",
+          "None of the three cards is Signature (checked on the signature field in data/cards.json), and no legend in the pool carries the Swain tag or the Bard tag, so 103.2.d.2 forces no legend and all three names are open."
+        ],
+        "notable": [
+          "THE SECOND CONQUER IS WORTH SEVEN, NOT ONE, AND THAT IS THE ENTRY'S REAL CONTENT. Every other double-Conquer line in the catalogue takes the second battlefield with a spare body, which pays the 1-point Score and nothing else, because a conquer payoff has to be PRESENT (383.4.c.2: 'This category of Triggered Abilities encompasses only those that are triggered from Units that were present during the Conquer action, or Abilities that reference the player that performed the Conquer action.'). SFD-079 Bard, Mercurial moves the payoffs THEMSELVES — 'move any number of your units to an open battlefield' — so the same three Swains and the same Brambleback are present at the second Conquer as at the first, and the turn pays 7 + 7 = FOURTEEN across two scoring events rather than 7 + 1 = 8.",
+          "IT SURVIVES THE STARVATION RULE THAT KILLS THE REST OF THE CONQUER BUCKET, AND HERE IS THE ONE-LINE TEST. A conquer payoff that needs an enemy garrison is worth one turn and is inert from the second, because 323.9 stages a Combat only where units of opposing players are present and 807.1.d ties every attack trigger to the Attacker designation. Ask of every conquer payoff: DOES IT NEED AN ENEMY GARRISON? Swain's does not — his trigger reads 'When I conquer', which 344.2 delivers with no opponent on the board at all: 'If Control of a Battlefield is Contested, there aren't units controlled by different players there, and the turn is in a Neutral Open State, a Showdown is opened during the next Cleanup', then 348.2.a establishes Control and 348.2.a.1 says 'This results in a Conquer if that player has not yet scored that Battlefield this turn.' This line wants an EMPTY board and is strongest exactly where an attack-trigger line is dead.",
+          "THE SEQUENCING RUNS ON 319.8, AND THAT IS WHY BOTH CONQUERS FIT IN ONE MAIN PHASE. 319 lists when a Cleanup becomes an Outstanding Task, and 319.8 is 'After a Move is completed' (319.6, 'After any number of Game Objects enter or leave the Board', is the companion). So the pack's Standard Move gets its own Cleanup, which opens the Showdown at the first battlefield; then Bard's effect move gets a second Cleanup, which opens the Showdown at the second. Nothing waits for a phase change.",
+          "AN EFFECT MOVE IS NOT BOUND BY 144.4, WHICH IS THE ONLY REASON THE PACK CAN LEAVE THE FIRST BATTLEFIELD AT ALL. 420.3 makes the Standard Move a Discretionary Action whose Cost is 'Exhausting one or more Units' (420.3.a), and 144.4 restricts ITS destinations to base and battlefield; 449 is a separate route — 'Spells, Abilities, or other effects may cause a Move to occur.' — with 449.1 leaving the destination rules to the source. So Bard moves bodies that are already exhausted from their own Standard Move, battlefield to battlefield, with no [Ganking] anywhere in the line.",
+          "'OPEN' IS BOTH CONDITIONS AND IT IS THE REAL PRICE OF THIS ENTRY. 170.11.c: 'Battlefields can be \"open.\" This means they are unoccupied and uncontrolled.' Bard's destination must be open at the moment his trigger resolves, so the second battlefield must have no garrison AND no controller. That is the board after a wipe, or the early board — 190.1, 'Control is established over Battlefields through the course of play.' Against an opponent who controls the second battlefield the line stops at 7 and is not a CHAIN. No sweeper is named in uses[] because the ones that manufacture this board are out of Fury/Mind identity; that is a deckbuilding choice, not a step.",
+          "SWAIN'S CONDITION HAS TO BE PAID BEFORE THE FIRST CONQUER, AND BARD CANNOT PAY IT. 383.2.a.1: 'Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the Effect.' Bard is played AFTER the first Conquer has already resolved, so he is not the non-token unit for it. The finishing turn therefore needs a cheap non-token unit, a gear and a spell played before the pack moves — a Seal is a gear at Energy 0. Playing Bard first instead makes him the first mover and strands the pack at one battlefield: that ordering is worth 8, not 14.",
+          "ONE BARD A TURN, BY THE LEGEND'S EXHAUST. The additional cost is exhausting your legend, and 315.1.b readies it only at your own Awakening, so a second Bard in the same turn cannot pay it and 103.2.b's three copies buy three TURNS, not three relocations. A card that readies your legend would lift that, and would be a sixth card.",
+          "WHY VAYNE IS NOT THE SECOND-CONQUER BODY, CHECKED RATHER THAN ASSUMED. OGN-035 Vayne, Hunter is the obvious candidate — she is Fury, she conquers alone and bounces herself, and she is already the lane engine vayne-hunter-sun-disc-two-conquers. Her Might of 2 turns out to be the wrong worry: on this line's bloodless route 465.1 opens no damage step at all ('If both Attacking and Defending units remain at this battlefield, the following Tasks become Outstanding'), so she is never assigned damage and her size is never tested. What actually refuses her is her own ready clause. She reads 'If an opponent controls a battlefield, I enter ready', and this line needs a board where the opponent controls NEITHER battlefield — so the clause is off, 143.4 applies ('Units enter the Board exhausted'), and 144.2 makes exhausting the unit the cost of the Standard Move, so she cannot move the turn she is played and must be deployed a turn early. She is playable that way; she is simply worth 1 point where Bard is worth 7, because she arrives alone and 383.4.c.2 pays only what is present.",
+          "TWIN OF swain-brambleback-conquer-burst, AND THE TRADE IS BOARD FOR POINTS. That entry is the same payoff and the same multiplier at 3 Swain + 2 Brambleback: 10 points in ONE scoring event, needing only one battlefield to be takeable. This entry drops the second Brambleback for Bard: 14 points across TWO scoring events, but it needs BOTH battlefields open. Neither supersedes the other and each names the other."
+        ]
+      },
+      "steps": [
+        "Over earlier turns, deploy three Swain, Visionary (E6 + 1 Mind Power each) and one Red Brambleback (E4 + 1 Fury Power): E22 + 3 Mind + 1 Fury Power.",
+        "On the finishing turn, with both battlefields open, play a cheap non-token unit, a gear (a Seal is Energy 0) and a cheap spell, satisfying Swain's condition before anything conquers.",
+        "Standard-move the three Swains and the Brambleback from your base to the first battlefield in ONE action (144.3, shared destination, exhausts paid simultaneously).",
+        "Cleanup (319.8): 450 applies Contested, 344.2 opens a Showdown, 348.2.a establishes Control, 348.2.a.1 makes it a Conquer. 1 Score plus three Swain triggers doubled by the Brambleback = SEVEN.",
+        "Still in the Main Phase, play Bard, Mercurial (E4 + 1 Mind Power) and exhaust your legend as the additional cost. His trigger moves the three Swains and the Brambleback to the second battlefield, which must be open.",
+        "Cleanup: the second battlefield is Contested, its Showdown opens, Control is established, and 348.2.a.1 makes it a Conquer. 1 Score plus six Gains = SEVEN again. Fourteen points, two scoring events, one turn."
+      ],
+      "terminatesIn": "fourteen points across two Conquers in a single Main Phase — two Scores and twelve ability Gains that 470 does not cap — for E22 + 3 Mind + 1 Fury Power of deployment spread over earlier turns, and on the finishing turn Bard at E4 + 1 Mind Power plus a unit, a gear and a spell as filler",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-09, conquer-engine finisher lane, batch 2 (docs/phase0/walks/2026-09-07-finisher-chain-pass.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-09"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-09 by rc-walk-chain against data/corpus_flat.txt and the Core Rules; every paragraph quoted above was opened and pasted, not recalled. Card text verbatim: SFD-079 'Bard, Mercurial | Unit | Mind | E4 P1 M4 | You may exhaust your legend as an additional cost to play me. When you play me, if you paid the additional cost, move any number of your units to an open battlefield.' and OGN-035 'Vayne, Hunter | Unit | Fury | E4 P1 M2 | [Assault 3] ... If an opponent controls a battlefield, I enter ready. When I conquer, you may pay 1 Energy to return me to my owner's hand.' Legality checked against data/legality.json on 2026-09-09: 21 entries, its single non-banned row is a restriction on one mono-Body Starter legend, and none of VEN-065, UNL-029 or SFD-079 appears in any row. Signature checked on the signature field of data/cards.json: all three plain. Card-set containment run before staging: VEN-065 + UNL-029 + SFD-079 returns NONE, VEN-065 + SFD-079 returns NONE, UNL-029 + SFD-079 returns NONE. This entry CONNECTS the lane engine bard-mercurial-mass-relocation, whose own terminatesIn says 'one Conquer and a garrison; the win comes from what the bodies then do' — this is what they then do. Twin of swain-brambleback-conquer-burst; both entries name each other and neither removes anything."
     }
   ]
 }
