@@ -142,3 +142,43 @@ Nothing in the residue produces repeatable Conquers, so none of the 90 is a `con
 
 The 90 are not staged: `validateCombos` rejects an unknown feature id, so the five registry entries
 in `data/features.json` have to land first, and the naming is the manager's call.
+
+## 6. Self-audit of the one value proposed as a graph INPUT, and a correction to §4
+
+§4 called `unit-delivery` *"the only one of the five that is a genuine graph INPUT"*. All thirteen
+members were then re-read against `data/corpus_flat.txt` rather than against their own prose. Every
+one is genuine delivery — a body reaching a battlefield it could not otherwise reach, or reaching one
+a turn early — but **the capacity claim behind the INPUT recommendation does not survive the check,
+and it is corrected here.**
+
+Measured, one line of card text each: `UNL-045 Forgotten Signpost` moves *"a different unit you
+control"* — one body. `SFD-125 Fae Porter` moves himself plus *"a unit you control"* — two.
+`VEN-034 Resonating Strike` chooses *"a unit you control at a different location"* — one.
+`SFD-111 Here to Help` plays *"a unit from hand"* — one. `UNL-166 Stalking Wolf`, `OGN-161 Deadbloom
+Predator`, `OGN-135 Pakaa Cub`, `VEN-157 Dragon Roost` each deliver themselves — one.
+`UNL-202 Void Assault` moves one friendly and one enemy. **The maximum any of the thirteen delivers
+is two bodies, and only `SFD-192 Shurelya's Requiem` acts on a garrison at all, by granting
+`[Ganking]` to *"your units here"* rather than by moving anything.**
+
+The consumer that motivated the recommendation is `ready-recruits-grand-plaza`, which is class
+**ALT_WIN** and produces `win-the-game`, and it needs **seven** bodies standing at the Hold. A naive
+`needs: unit-delivery` on it would be satisfied by a one-body-per-turn mover and would **publish a
+false win** — the exact failure the payoff-lens walk of 2026-09-06 §V split `temporary-body-engine`
+out to prevent (*"a feeder that cannot reach a Hold would publish a false ALT_WIN"*), and the worst
+of the possible failure modes because the composed class is the one the player reads.
+
+Two further facts already in CLAUDE.md close the gap the other way: 144.3 moves a whole swarm to a
+shared destination as **one** game action, and 315.1.b readies yesterday's swarm for free, so the
+base-to-battlefield walk a Plaza needs is not what any of these thirteen cards sells. What they sell
+is the **same-turn** arrival that 143.4 otherwise forbids, and the battlefield-to-battlefield
+consolidation that 144.4 charges `[Ganking]` for.
+
+**Corrected recommendation: tag `unit-delivery` as OUTPUT-ONLY like the other three, and do not
+write a consumer for it yet.** If one is ever written, the value has to be split by capacity first —
+bulk delivery against single-body delivery — on the same reasoning and by the same precedent as the
+token-body / temporary-body split. `xp-engine` is unaffected and remains a clean input: a `[Level N]`
+rung reads a balance, not a quantity of bodies.
+
+The same hazard in weaker form applies to `combat-might` if it is ever consumed by the excess-damage
+family: `OGN-034 Tryndamere` pays on *five or more* excess damage, and a +1 buff (703 fixes a Buff at
+exactly +1) is not that. Output-only until someone measures the threshold per producer.
