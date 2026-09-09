@@ -9103,7 +9103,8 @@
           "ONLY TWO ACTIVATED ABILITIES IN THE POOL CAN EVER TRIGGER HER, AND THEY ARE THE FLAT EMPOWERS. A sweep of the whole corpus for an activated ability costing 7+ Energy returns four printings: VEN-032 and VEN-050, both dead by 827.1.c.3, and VEN-043 Steel Paws ([Empower] 7, a 1-Energy card that becomes an M7 [Deflect] body) and VEN-046 Nasus, Ascended ([Empower] 8). Both are Calm and both are in identity. 827.1 is what lets them in at all: 'Empower is an Activated Ability keyword.'",
           "THE OTHER FALLBACK #47 OFFERED IS DEAD TOO. SFD-084 Jayce, Man of Progress plays 'a gear with Energy cost no more than 7 from hand this turn, ignoring its Energy cost', and 206 would indeed keep the read at the printed cost - but the only gear in the entire pool printed at exactly 7 Energy is SFD-168 Vanguard Armory, which is Order and outside Curator's Calm/Mind identity (103.1.b).",
           "ONCE PER TURN. Curator pays an exhaust and 415.3.a returns it only in your own Awakening, so the rebate is 2 runes a turn whatever else happens. nasus-ascended-sentinel-arena-hold already carries the Nasus half of this as a notable and is untouched by this entry.",
-          "UNL-059 Master Yi, Unstoppable (Calm, printed E12, discounted by [Level 3]/[Level 6]/[Level 11]) and VEN-044 Astral Heron (Calm, E7, which discounts the NEXT card you play) are the other two 206 cases inside the identity."
+          "UNL-059 Master Yi, Unstoppable (Calm, printed E12, discounted by [Level 3]/[Level 6]/[Level 11]) and VEN-044 Astral Heron (Calm, E7, which discounts the NEXT card you play) are the other two 206 cases inside the identity.",
+          "THE TRIGGER FIRES ON RESOLUTION, SO A COUNTERED ABILITY NEVER PAYS HIM (added 2026-09-09, #187 lane). VEN-145 reads \"When you play a unit, gear, or activated ability with Energy cost 7 or more\", and 377.2 says card text refers to activating Activated Abilities with the word \"use\" or \"play\" - with 377.2.a: \"If `using` or `playing` an Activated Ability is part of a trigger condition, that condition is fulfilled when the Activated Ability resolves.\" So the ability half of this legend is answerable in a way the unit and gear halves are not."
         ]
       },
       "steps": [
@@ -24469,7 +24470,8 @@
           "AND EVACUATING A GARRISON IS NOT YET A CONQUER, which is the correction the #102 walk had to make. 323.6 only STRIPS the opponent's Control when their last body leaves — 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there' — and 170.11.c then makes it open, 'unoccupied AND uncontrolled', both conditions. The point still needs a body of yours walking in during the Main Phase (144.4.a) → Contested (190.3.a.1) → Showdown (344.2) → 348.2.a → 348.2.a.1, and it does score that same turn.",
           "'To a single location' means you choose where they go, so send them to the opponent's OTHER battlefield or to their base — sending them to a battlefield of yours would make them the Attackers of a Combat on your own turn (190.3.a.1 keys Contested on the moved unit's controller, 464.2.c.1), which is a different line entirely (see faefolk-challenger-forced-attacker and svellsongur-faefolk-mass-evacuation).",
           "Eleven Energy and 1 Calm Power for a bloodless Conquer, plus whatever body walks in. Compare svellsongur-faefolk-mass-evacuation, which does the same job for 14 Energy + 6 Calm Power ONCE and then repeats every turn for free: this is two cards out of hand, capped at three uses a game by 103.2.b.",
-          "Nothing here needs an attack, which is the whole reason the lens is worth walking: 807.1.d, 383.4.e and 461 make an empty enemy battlefield no attack at all, and this line never wants one."
+          "Nothing here needs an attack, which is the whole reason the lens is worth walking: 807.1.d, 383.4.e and 461 make an empty enemy battlefield no attack at all, and this line never wants one.",
+          "355.11.b IS A TOTAL FAILURE MODE FOR AN EVACUATION, NOT PARTIAL CREDIT, AND THIS ENTRY DID NOT SAY SO (added 2026-09-09 by the #187 lane split). 355.11.b: \"If the group of targets no longer collectively fulfill the targeting restriction as the spell or ability resolves, that spell or ability`s controller can choose a subset of the original targets that fulfills the targeting requirement for the spell or ability to affect.\" For a REMOVAL that subset is partial credit - fewer bodies die. For an EVACUATION it is worth nothing at all, because 323.6 strips Control only from a player \"without their Units occupying\" the battlefield: one body left behind and the whole line buys zero. Price the shrink before casting."
         ]
       },
       "steps": [
@@ -34364,7 +34366,8 @@
           "NET, WITH THE QUANTITIES DECLARED. Two Holds this turn: the Yordle costs 6 Energy + 1 Calm Power instead of 10 + 3. Play him, exhaust the Curator, ready 2 runes: 4 Energy net for a M5 body with [Shield 5] and [Tank]. Every other 7+ printed card you play that turn is worth nothing extra — the exhaust is spent.",
           "WHAT YOU GET FOR THE 4 ENERGY IS A WALL, AND IT IS PRICED IN THE OPPONENT'S DAMAGE. 814.1.b/814.2 make [Shield 5] worth +5 Might while defending, so he defends at 10. 815.1.c.2 is the harder half: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them' — so the attacker MUST spend 10 of its summed Might on him before 465.2.c may touch anything else of yours. That is the whole garrison bought with one body.",
           "AND THAT IS ALSO WHY HE IS ANTI-SYNERGIC WITH THE PLAZA FAMILY. The same 815.1.c.2 that protects a garrison forbids the attacker assigning damage anywhere else — which is a defensive gift when your other bodies are the ones that matter, and a liability in any line whose seven 1-Might tokens have to SURVIVE a sweeper rather than a combat, since a sweeper assigns nothing and [Tank] never sees it.",
-          "WHAT REFUTES IT. (a) The Yordle is never free: CLAUDE.md's own count stands — 485.4 caps a Duel at two Holds, so the floor is 6 Energy + 1 Calm Power. (b) The Curator's ready is a 'you may' with an exhaust, so exactly one trigger a turn is cashed however many big cards you play. (c) 3 Calm Power at full price is above the free floor of 2 that every deck has, so the rune deck has to carry the un-discounted case."
+          "WHAT REFUTES IT. (a) The Yordle is never free: CLAUDE.md's own count stands — 485.4 caps a Duel at two Holds, so the floor is 6 Energy + 1 Calm Power. (b) The Curator's ready is a 'you may' with an exhaust, so exactly one trigger a turn is cashed however many big cards you play. (c) 3 Calm Power at full price is above the free floor of 2 that every deck has, so the rune deck has to carry the un-discounted case.",
+          "THE TRIGGER FIRES ON RESOLUTION, SO A COUNTERED ABILITY NEVER PAYS HIM (added 2026-09-09, #187 lane). VEN-145 reads \"When you play a unit, gear, or activated ability with Energy cost 7 or more\", and 377.2 says card text refers to activating Activated Abilities with the word \"use\" or \"play\" - with 377.2.a: \"If `using` or `playing` an Activated Ability is part of a trigger condition, that condition is fulfilled when the Activated Ability resolves.\" So the ability half of this legend is answerable in a way the unit and gear halves are not."
         ]
       },
       "steps": [
@@ -49687,7 +49690,8 @@
           "AND THE TAKING IS BLOODLESS. With their units gone, 190.3.a.1 applies Contested as yours arrive, 323.9 stages no Combat (no opposing units present), and 344.2 opens a Showdown at the next Cleanup, which 348.2.a and 348.2.a.1 turn into Control and 'a Conquer if that player has not yet scored that Battlefield this turn'. No damage is assigned at any point.",
           "A BOUNCE TO HAND IS NOT A RECALL, AND HERE THAT IS THE WHOLE VALUE. 455 defines a Recall as a relocation to the BASE; the hand is neither, so the bodies leave the board entirely and have to be paid for again, while 323.6 strips the opponent's Control of the battlefield they were the last units at.",
           "MEGATUSK'S COST IS A SPEND, AND IT IS ANTI-SYNERGIC WITH THE IDENTITY'S ONLY [LEVEL] CARD. 730.2: 'To Spend XP, reduce the value of XP marked on the Player spending it', and 824.1.d: 'The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP.' `UNL-016 Scorchclaw` is the only [Level] card in Fury or Chaos, and its rung is [Level 3] — so a single Megatusk activation switches it off. The catalogue's `vicious-snapjaws-scorchclaw-xp-faucet-no-sink` is the entry on the other side of that choice, and a list picks one.",
-          "AND 810.2 CAPS THE GRANT: 'Multiple instances of Ganking are redundant', with 810.1.c.3 confining it to 'new options for the Standard Move'. Three XP buys the permission once a turn for the whole garrison; spending six buys nothing extra."
+          "AND 810.2 CAPS THE GRANT: 'Multiple instances of Ganking are redundant', with 810.1.c.3 confining it to 'new options for the Standard Move'. Three XP buys the permission once a turn for the whole garrison; spending six buys nothing extra.",
+          "355.11.b IS A TOTAL FAILURE MODE FOR AN EVACUATION, NOT PARTIAL CREDIT, AND THIS ENTRY DID NOT SAY SO (added 2026-09-09 by the #187 lane split). 355.11.b: \"If the group of targets no longer collectively fulfill the targeting restriction as the spell or ability resolves, that spell or ability`s controller can choose a subset of the original targets that fulfills the targeting requirement for the spell or ability to affect.\" For a REMOVAL that subset is partial credit - fewer bodies die. For an EVACUATION it is worth nothing at all, because 323.6 strips Control only from a player \"without their Units occupying\" the battlefield: one body left behind and the whole line buys zero. Price the shrink before casting."
         ]
       },
       "steps": [
@@ -53459,6 +53463,343 @@
         }
       ],
       "notes": "HAND-WALKED 2026-09-09 (issue #191, uncited sub-rules 500-829, batch 4). Anchors uncited before this entry: 819.1.a, 819.1.b, 819.3 and 801.3.a.3 (819.1.c and 819.1.d were already cited). The finding is a distinction this catalogue had been treating as one thing: both keywords are described in these walk documents as 'a free attach', and they are not - 821.1.c pays a DISCOUNTED Equip cost while 819.1.d pays NONE, which is invisible until an Equip cost has a non-resource half. Exactly one does: SFD-150 Last Rites. Companion measurement, members named: 40 Equipment printings, four with the keyword printed (SFD-022, SFD-056, SFD-064, SFD-186), so 819.2 makes Jax's grant worth nothing on those four."
+    },
+    {
+      "id": "tricksy-tentacles-yuumi-forced-defend-subset",
+      "name": "355.11.b - a group target that stops fitting its restriction does NOT fizzle, so an eight-Might drag onto your own battlefield survives a pump and makes THEM the attacker on YOUR turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-054",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E4 P1. 'Move any number of enemy units with the same controller and a total Might of 8 or less to a single location.' The only card in the pool that relocates several ENEMY bodies in one action; 355.12 makes each of them a target."
+        },
+        {
+          "card": "UNL-056",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 P1 M1. 'When I attack or defend, give one of your other units here +3 :rb_might: and [Tank] this turn. (It must be assigned combat damage first.)' She must already be standing at the battlefield the enemy bodies are dragged to, because 464.2.c.3 designates defenders at the moment the Combat opens."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "tempo-denial",
+        "combat-might"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm, so 103.1.b.1 is satisfied by any legend carrying Calm. The census run against data/cards.json on 2026-09-09 gives sixteen names; among them Nine-Tailed Fox (OGN-255), Radiant Dawn (OGN-261), Blade Dancer (SFD-195), Green Father (UNL-195) and Eye of Twilight (VEN-147).",
+          "Neither card is Signature (data/cards.json, signature=false on both) and neither appears in data/legality.json in either format - checked 2026-09-09."
+        ],
+        "notable": [
+          "355.11.b WAS UNCITED AND IT IS THE ENTRY'S WHOLE POINT. The rule: 'If the group of targets no longer collectively fulfill the targeting restriction as the spell or ability resolves, that spell or ability's controller can choose a subset of the original targets that fulfills the targeting requirement for the spell or ability to affect.' Riot's worked example is Fox-Fire and a defensive pump, and it ends by naming what the subset may NOT include: 'They can't choose to affect units at the same battlefield that weren't initially chosen as targets. They can, however, choose to affect units that were initially chosen as targets that left the chosen battlefield before Fox-Fire resolved as long as those units are all located at the same battlefield.' So a [Reaction] +Might aimed at the total-Might-8 restriction costs you ONE dragged body, never the spell - which is the difference between a four-Energy plan and a four-Energy gamble.",
+          "THE SET SHRINKS AND NEVER GROWS, SO THE PLAY IS TO OVER-TARGET AT FINALIZATION. 355.11.b lets the controller pick a subset of THE ORIGINAL TARGETS, and its example forbids the other direction outright: 'They can't choose to affect units at the same battlefield that weren't initially chosen as targets.' Targets are locked when the spell is finalized, so name every enemy body the total-Might-8 restriction will carry and let the opponent's answer decide which of them you keep.",
+          "AND THE SPLIT THAT DECIDES WHETHER THAT IS ROBUSTNESS OR RUIN - WHICH IS WHY THIS LINE AND THE CATALOGUED ONE ON THE SAME SPELL ARE OPPOSITES. For a group target used as REMOVAL or as a DRAG, a shrunken subset is partial credit: fewer bodies come, but they still come, 450 still applies Contested and Yuumi's trigger still fires. For a group target used as an EVACUATION it is total failure, because 323.6 strips Control only from players 'without their Units occupying them' - one body left behind and the whole spell bought nothing. moonlight-affliction-tricksy-tentacles-evacuation and decree-of-discord-megatusk-evacuate-and-gank both sit on the failing side of that line and neither states it; this entry sits on the surviving side, and that is its reason to exist beside them. Split identified by rc-walk-blocks (issue #187, section 57) and re-derived here against 323.6.",
+          "THE SPELL MAKES THE OPPONENT THE ATTACKER ON YOUR OWN TURN. 450: 'The Destination becomes Contested if it is an Uncontested Battlefield not controlled by the controller of the Unit or Units that moved.' 190.3.a.1 says the same for units 'moving to or being played to a battlefield'. 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' The units that moved are theirs, so they are the Attacker at a battlefield you control, in your Main Phase, with Yuumi already standing there.",
+          "AND YOUR TRIGGER RESOLVES FIRST. 464.2.e.1: 'The Attacking player, who has Focus, places Triggered Abilities on the Chain first, followed by all non-Defender players in Turn Order, followed by the Defending Player.' 340.1: 'The newest Finalized Chain Item resolves.' Placed last means resolved first, so the +3 Might and the [Tank] are on the board before anything the attacker placed.",
+          "THE SIXTH ENEMY-MOVER, AND WHAT IT ADDS TO THE OTHER FIVE - WITH THE DOMAINS RE-MEASURED. Against data/cards.json on 2026-09-09 the family is UNL-050 Iascylla (calm, free and repeating), OGN-043 Charm (calm, E1 P1, one body), UNL-139 Bone Skewer (chaos, the only one that pulls the body out of their HAND), VEN-148 Shadow Dash (calm/order, also pumps your garrison) and OGN-067 Blitzcrank, Impassive (calm, a 5-Might [Tank] that carries itself in). Tricksy Tentacles is the only one that moves SEVERAL bodies in one action, and 355.11.b is what makes that plural robust; its price is the honest one, 4 Energy + 1 Calm Power and no body, so it buys the count and nothing else. Four of the six are mono-Calm, so this is a Calm family and a Calm legend covers every one of them.",
+          "NO POINT IS SCORED AND THAT IS THE ENTRY'S SHORTFALL. 466.5 establishes Control only 'if they didn't already control this Battlefield' and you already do, so winning this combat is worth removal and a tempo swing, never a Conquer. The catalogued companion in the other direction is moonlight-affliction-tricksy-tentacles-evacuation, which uses the same spell to EMPTY the opponent's battlefield under 323.6; the two lines want opposite destinations and cannot both be taken with one casting.",
+          "THE [TANK] IS A TOLL BOOTH, NOT A SHIELD. 815.1.c.2: 'If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' The dragged pack's summed Might is capped at 8 by the spell's own restriction, so a buffed body of Might 4 or more absorbs everything they have and the rest of your garrison is an illegal assignment.",
+          "449 IS WHY THE MOVE COSTS THEM NOTHING AND YOU NOTHING: 'Spells, Abilities, or other effects may cause a Move to occur', and 420.3.a puts the exhaust cost on the Standard Move alone - so exhausted enemy bodies move, and 144.4's base-to-battlefield restriction never applies."
+        ]
+      },
+      "steps": [
+        "Play Yuumi, Magical Cat to a battlefield you control (E3 + 1 Calm Power). She has to be there before the combat opens, because 464.2.c.3 hands out the Defender designation as the Combat opens.",
+        "In a later Main Phase, play Tricksy Tentacles (E4 + 1 Calm Power) and choose enemy units with one controller whose Might sums to 8 or less, with Yuumi's battlefield as the single destination.",
+        "If the opponent answers with a [Reaction] pump so the group no longer sums to 8 or less, do not concede the spell: 355.11.b lets you choose a legal SUBSET of the original targets to affect.",
+        "The move resolves. 450 and 190.3.a.1 apply Contested status to your battlefield, and 464.2.c.1 makes the opponent the Attacker.",
+        "323.9 marks a Combat as Staged there in the next Cleanup, and it opens with no gap. Yuumi's 'When I attack or defend' fires on the Defender's designation.",
+        "464.2.e.1 places your trigger on the Chain last and 340.1 resolves it first: a friendly body there gets +3 Might and [Tank] before damage is assigned.",
+        "465.2.c assigns each side its summed Might. Theirs is capped at 8 by the spell's own restriction and 815.1.c.2 forces all of it into the [Tank] body first."
+      ],
+      "terminatesIn": "engine - one forced combat per Tricksy Tentacles, on your own turn, at a battlefield you already control: up to 8 total Might of enemy bodies dragged in for 4 Energy + 1 Calm Power, with +3 Might and [Tank] landing before the damage step. No point is scored, because 466.5 gives Control only to a player who did not already have it",
+      "netPerIteration": "one combat opened on your terms with the opponent as Attacker; their garrison is emptied of up to 8 total Might and your buffed body absorbs all of it",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-09, issue #187 - uncited Core Rules sub-rules 300-499 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-09"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "RULE 355.11.b: 'If the group of targets no longer collectively fulfill the targeting restriction as the spell or ability resolves, that spell or ability's controller can choose a subset of the original targets that fulfills the targeting requirement for the spell or ability to affect.' EXAMPLE under 355.11.b: 'A player plays Fox-Fire, a spell that says in part \"Kill any number of units at a battlefield with total Might 4 or less.\" That player chooses four 1 [M] Recruit tokens at a single battlefield. As a Reaction, another player gives two of those Recruits +1 [M], so the Recruits' Mights are 1, 1, 2, and 2. Then Fox-Fire resolves. The Recruits no longer have total Might 4 or less, so Fox-Fire's controller must choose a legal subset of the original targets to affect. They could choose to kill the two 2 [M] Recruits, or the two 1 [M] Recruits plus one 2 [M] Recruit. The units they choose are Fox-Fire's remaining legal targets. They can't choose to affect units at the same battlefield that weren't initially chosen as targets. They can, however, choose to affect units that were initially chosen as targets that left the chosen battlefield before Fox-Fire resolved as long as those units are all located at the same battlefield.' RULE 355.12: 'If a spell specifies that a player may perform a Game Action on some number of Game Objects, then all choices are considered targeted and chosen independently of the decision to perform the Game Action.' RULE 449: 'Spells, Abilities, or other effects may cause a Move to occur.' RULE 450: 'The Destination becomes Contested if it is an Uncontested Battlefield not controlled by the controller of the Unit or Units that moved.' RULE 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' RULE 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' RULE 464.2.e.1: 'The Attacking player, who has Focus, places Triggered Abilities on the Chain first, followed by all non-Defender players in Turn Order, followed by the Defending Player.' RULE 340.1: 'The newest Finalized Chain Item resolves. Execute its game effects in their entirety.' RULE 323.9: '7. Mark a Combat as Staged at each Battlefield that Contested was applied to that have Units present controlled by opposing players.' RULE 815.1.c.2: 'If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' RULE 466.5: '1. If no Showdown or Combat is staged at this location, the player with Units remaining here Establishes Control if they didn't already control this Battlefield.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-09, issue #187, session rc-walk-mid, batch 1. 355.11.b was cited by nothing in data/combos.json or data/synergies.json before this entry, although 355.11 and 355.11.a both were - the sub-rule that says a group target degrades to a SUBSET rather than fizzling is the one nobody had opened, and Riot's worked example is a pool card, OGN-256 Fox-Fire. Card text verbatim from data/corpus_flat.txt. Legend census run against data/cards.json on 2026-09-09, not typed. No unruled reading. Cross-reference: moonlight-affliction-tricksy-tentacles-evacuation uses the same spell for the opposite destination."
+    },
+    {
+      "id": "ki-barrier-shen-kinkou-prevent-pool",
+      "name": "437.3 - a Prevent Value is a POOL that is spent down and survives, so Ki Barrier's seven covers several small hits, and on a [Tank] it is a toll the whole garrison hides behind",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-126",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order spell, E2 P1. '[Reaction] (Play any time, even before spells and abilities resolve.) Choose a unit. Prevent the next 7 damage that would be dealt to it this turn. (Opponents can assign it extra combat damage to kill it.)' The pool's only NUMBERED Prevent."
+        },
+        {
+          "card": "OGN-241",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Order unit, E3 P1 M3. '[Reaction] (Play any time, even before spells and abilities resolve, including to a battlefield you control.) [Shield 2] (+2 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.)' The [Tank] is what turns a single-target Prevent into cover for the whole garrison, so he is a use at quantity 1 and not a phrase in a note."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "board-protection"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Order, so 103.1.b.1 is satisfied by any legend carrying Order. The census run against data/cards.json on 2026-09-09 gives seventeen names; among them Hand of Noxus (OGN-253), Radiant Dawn (OGN-261), The Boss (OGN-269), Void Burrower (SFD-187), Chem-Baroness (SFD-201) and Matriarch of War (VEN-153).",
+          "Neither card is Signature (data/cards.json, signature=false on both) and neither appears in data/legality.json in either format - checked 2026-09-09.",
+          "Both are [Reaction], so 813.1.c.1 lets the whole line be assembled on the opponent's turn; nothing here has to be committed in your own Main Phase."
+        ],
+        "notable": [
+          "437.3 WAS UNCITED AND IT REVERSES THE OBVIOUS READING OF KI BARRIER. The natural reading is that a Prevent is a one-shot spent by whatever it meets first. It is not. 437.2: 'When damage is Prevented, it is replaced with an event where it deals that much damage reduced by the Prevent Value tracked on the Unit specifically.' 437.3: 'When damage is dealt this way, reduce the Prevent Value being tracked on the Unit affected by the Prevent action by the prevented amount.' 437.3.b: 'The reduced value is the newly tracked Prevent Value.' 437.3.a: 'If the Prevent Value is 0 or less, then Prevent is no longer being tracked on the Unit in question, and the effect expires.' So a Prevent 7 that eats a Deal 2 is a Prevent 5 and keeps working - it is a POOL for the turn, not a single answer.",
+          "WHICH MAKES THE POOL'S TWO BOUNDED PREVENTS OPPOSITE TOOLS, AND ONE OF THEM IS NOT A FREE SWAP. 437.1.b.2: 'Prevent will always apply to the next damage that would be dealt to a unit affected by the Prevent action.' SFD-194 Counter Strike says 'The next time that unit would be dealt damage this turn, prevent it' - ONE instance of any size, so it is the answer to OGS-022 Final Spark, the pool's single largest Deal at 8, and is spent entirely by a 1-damage ping. Ki Barrier is the answer to a spell that performs several Deal actions, and OGN-248 Icathian Rain is the measured case: it prints 'Deal 2 to a unit.' six times, so aimed at one body Ki Barrier absorbs 2, 2, 2 and 1 of the fourth - seven of twelve - where Counter Strike absorbs two. Counter Strike is also a Signature card tagged Jax (data/cards.json, signature=true), so 103.2.d.2 forces a Jax legend on any list that runs it; Ki Barrier is not Signature and costs a list nothing.",
+          "437.3.c IS WHY THE OTHER TWO PREVENTS ARE DIFFERENT IN KIND: 'If the Prevent Value is \"All\" then it remains \"All.\"' OGN-145 Unyielding Spirit and VEN-025 Esteemed Hierophant are unbounded and are never spent down; the whole 437.3 arithmetic is visible only on a numbered Prevent, and the pool prints exactly one (swept over data/corpus_flat.txt on 2026-09-09: the four Prevent rows are OGN-145, SFD-194, VEN-025 and VEN-126).",
+          "ON A [TANK] THE SEVEN COVERS EVERYTHING, NOT ONE BODY. 437.5.a: 'Damage can be assigned to a Unit up to a value that would be Lethal considering the Prevent Value of all Prevent Actions on a Unit, following the normal rules for damage assignment.' Shen defending is Might 3 plus [Shield 2] (814.1.c is conditional on the Defender designation), so lethal is 5; with Ki Barrier it is 12. 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' Until twelve damage is assigned to Shen, no other body of yours is a legal assignment at all.",
+          "465.2.c.7 WAS ALSO UNCITED, AND IT IS WHY A SECOND SHEN IS NOT A SPARE. 815.2 - 'Multiple instances of Tank are redundant' - is already cited by the catalogue and is about a second GRANT on one body. A second Tank BODY is a different thing, and 465.2.c.7 works it: 'If multiple Units have abilities or effects that require a player to assign them damage with the same priority, that player may assign damage to those units in any order.' Its EXAMPLE is this exact board: 'A player is assigning damage to the following units: two units with Tank (\"I must be assigned combat damage first.\") and one unit with no abilities. That player chooses one of the units with Tank and assigns combat damage to it. Then they must assign any remaining damage first to the other unit with Tank, then to the unit with no abilities.' So two Shens are a toll of 5 + 5, and with Ki Barrier on one of them 12 + 5 = 17 before any other body of yours is a legal assignment. The attacker chooses the ORDER and never the target. Paragraph handed over by rc-walk-blocks (issue #187, section 57) and re-read here against the rules file.",
+          "THE SHORTFALL IS THAT IT IS ONE TARGET. Ki Barrier says 'Choose a unit', so a sweeper that deals to every body at a battlefield spends the seven on one of them and kills the rest; and 437.4 ('Damage dealt to a Unit that has that all of that damage Prevented is not considered to have been dealt to it at all') is a benefit only on the body that was chosen. Nothing here scores - the class is ENGINE because 466.5 gives Control only to a player who did not already have it, and this line is played by the side that already does.",
+          "437.1.a.1 IS THE HALF ALREADY WALKED, AND IT COSTS THE POOL: 'Prevent includes any applied Bonus Damage when determining the total damage being prevented.' The catalogued entry void-gate-ki-barrier-prevent-counts-bonus-damage reads that from 715.4.a's side on OGN-296 Void Gate; carried into this entry it means every Deal action into a Bonus Damage board spends one more point of the seven than its printed number suggests.",
+          "437.2.a IS THE FLOOR: 'The damage being dealt as a result of Preventing can never be less than 0, but can be 0. This is equivalent to not dealing damage.' Read with 417.1.e ('Valid Damage is a positive integer amount, greater than or equal to 1 Damage') and 417.1.e.1 ('Only Valid Damage is Dealt'), a fully absorbed Deal generates no damage event at all, so no 'when I take damage' trigger of theirs fires off it either."
+        ]
+      },
+      "steps": [
+        "Hold Shen, Kinkou and Ki Barrier. Both are [Reaction], so 813.1.c.1 admits them in any Closed State on any player's turn.",
+        "When the opponent's attack is declared, play Shen to the contested battlefield - his own parenthetical grants 'including to a battlefield you control'. 319.6 with 323.2.a and 464.2.c.3.a give a body that becomes present mid-combat its designation at the next Cleanup, before 465.2 resolves.",
+        "Play Ki Barrier on Shen for 2 Energy + 1 Order Power. Prevent Value 7 is now tracked on him.",
+        "465.2.c has each side assign its summed Might. 815.1.c.2 makes every other body of yours an invalid assignment until Shen has lethal, and 437.5.a sets lethal at Might 3 + [Shield 2] + Prevent 7 = 12.",
+        "If instead they answer with spells, 437.3 spends the pool down instance by instance rather than all at once: a Deal 2 leaves Prevent 5, a second leaves Prevent 3, and 437.3.a only expires it at 0 or less.",
+        "At your Awakening, 415.3.a readies Shen; the Prevent is gone, because Ki Barrier says 'this turn'."
+      ],
+      "terminatesIn": "engine - 5 Energy + 2 Order Power, all at [Reaction] speed, for a defender that costs 12 assigned damage to kill and that every other body of yours hides behind; a second Shen raises the toll to 17 under 465.2.c.7, because a second Tank BODY is not redundant even though a second Tank GRANT is (815.2). Alternatively seven points of spell damage absorbed across as many separate Deal actions as the turn contains; no point is scored",
+      "netPerIteration": "one turn in which the chosen body absorbs 7 damage in total, in any number of instalments, and [Tank] makes it the only legal assignment",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-09, issue #187 - uncited Core Rules sub-rules 300-499 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-09"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "RULE 437.1.b.2: 'Prevent will always apply to the next damage that would be dealt to a unit affected by the Prevent action.' RULE 437.2: 'When damage is Prevented, it is replaced with an event where it deals that much damage reduced by the Prevent Value tracked on the Unit specifically.' RULE 437.2.a: 'The damage being dealt as a result of Preventing can never be less than 0, but can be 0. This is equivalent to not dealing damage.' RULE 437.3: 'When damage is dealt this way, reduce the Prevent Value being tracked on the Unit affected by the Prevent action by the prevented amount.' RULE 437.3.a: 'If the Prevent Value is 0 or less, then Prevent is no longer being tracked on the Unit in question, and the effect expires.' RULE 437.3.b: 'The reduced value is the newly tracked Prevent Value.' RULE 437.3.c: 'If the Prevent Value is \"All\" then it remains \"All.\"' RULE 437.1.a.1: 'Prevent includes any applied Bonus Damage when determining the total damage being prevented.' RULE 437.4: 'Damage dealt to a Unit that has that all of that damage Prevented is not considered to have been dealt to it at all.' RULE 437.5.a: 'Damage can be assigned to a Unit up to a value that would be Lethal considering the Prevent Value of all Prevent Actions on a Unit, following the normal rules for damage assignment.' EXAMPLE under 437.5.a: 'A unit with 2 [M] is being assigned damage in the combat damage step. The unit has \"prevent the first 3 damage I would take each combat.\" The unit would need to be assigned 5 damage in order to have lethal damage assigned to it.' RULE 815.1.c.2: 'If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' RULE 417.1.e: 'Valid Damage is a positive integer amount, greater than or equal to 1 Damage.' RULE 417.1.e.1: 'Only Valid Damage is Dealt.' RULE 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' RULE 465.2.c.7: 'If multiple Units have abilities or effects that require a player to assign them damage with the same priority, that player may assign damage to those units in any order.' EXAMPLE under 465.2.c.7: 'A player is assigning damage to the following units: two units with Tank (\"I must be assigned combat damage first.\") and one unit with no abilities. That player chooses one of the units with Tank and assigns combat damage to it. Then they must assign any remaining damage first to the other unit with Tank, then to the unit with no abilities.' RULE 815.2: 'Multiple instances of Tank are redundant.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-09, issue #187, session rc-walk-mid, batch 1. 437.1, 437.1.a, 437.1.a.1, 437.1.b, 437.1.b.1, 437.1.b.1.a, 437.1.b.1.b, 437.1.b.2, 437.2, 437.2.a, 437.3, 437.3.a, 437.3.b, 437.3.c and 437.6 were all cited by nothing in data/combos.json or data/synergies.json before this entry; 437.4, 437.5, 437.5.a, 437.5.b and 437.7 were already carried by void-gate-ki-barrier-prevent-counts-bonus-damage (issue #191), which this entry cross-references and does not duplicate - that line prices the Void Gate's erosion of the pool, this one prices the pool itself. Card text verbatim from data/corpus_flat.txt; the four-row Prevent census swept there on 2026-09-09. Legend census run against data/cards.json, not typed. No unruled reading."
+    },
+    {
+      "id": "undercover-agent-karthus-empty-hand-draw",
+      "name": "359.3.e.11 - the discard on Undercover Agent is EFFECT text, so an empty hand ignores it and the Deathknell is a clean draw 2, doubled by Karthus into four cards off one death",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-178",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos unit, E5 P1 M5. '[Deathknell] - Discard 2, then draw 2. (When I die, get the effect.)' The discard sits after the [Deathknell] marker, so it is the ability's effect and never a cost."
+        },
+        {
+          "card": "OGN-236",
+          "quantity": 3,
+          "role": "multiplier",
+          "zone": "BOARD",
+          "note": "Order unit, E3 P1 M3. 'Your [Deathknell] effects trigger an additional time.' One of exactly three trigger multipliers in the pool, and the only one that reads a death."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Undercover Agent is mono-Chaos and Karthus, Eternal is mono-Order, so 103.1.b.1 forces a legend carrying BOTH. The census run against data/cards.json on 2026-09-09 returns exactly ONE name for Chaos+Order: Heart of the Tempest (VEN-155 / VEN-197). This is a one-legend line and there is no second shell.",
+          "Neither card is Signature (data/cards.json, signature=false on both) and neither appears in data/legality.json in either format - checked 2026-09-09."
+        ],
+        "notable": [
+          "359.3.e.11 WAS UNCITED AND ITS WORKED EXAMPLE IS THIS CARD'S SENTENCE. The rule: 'Instructions that can be partially followed are followed as much as possible and ignored otherwise.' Its EXAMPLE: 'A player plays a spell that says \"Discard 2, then draw 2.\" If their hand is empty, the instruction to discard 2 will be ignored. They'll still draw 2. If they had 1 card in hand, they would discard it and draw 2.' So the pool's own reading - that a discard clause is a price - is wrong here.",
+          "AND 422.4 NAMES THE CARD OUTRIGHT: 'When Discarding is part of an effect, then a player must Discard as many cards as possible from their hand. If instructed to discard more cards than they have in their hand, further discard instructions are ignored.' Its EXAMPLE: 'Undercover Agent has the ability \"[Deathknell][>] Discard 2, then draw 2. (When I die, get the effect.)\" If Undercover Agent's controller has 2 or more cards in hand, they must discard 2. If they have 1 card in hand, they discard 1, and the rest of the discard instruction is ignored. If they have no cards in hand, the entire discard instruction is ignored. Regardless of how many cards they discard, they then draw 2.'",
+          "THE COST-VERSUS-EFFECT LINE IS WHAT MAKES IT WORK, AND IT IS ONE PARAGRAPH AWAY. 422.3: 'When Discarding is listed as a Cost, then the Action must be able to be completed for the cost to be paid.' If this discard were a cost, 422.3 with 203.3 would refuse the whole ability on an empty hand. It is not: it sits after the [Deathknell] marker, which 808.1.c makes 'functionally short for \"When I die, [Effect].\"' Read the marker before pricing any discard.",
+          "NOR IS THE DRAW LINKED TO THE DISCARD. 359.3.e.14.a: 'In order for a later linked instruction to execute, its earlier linked instruction must have executed. If the earlier linked instruction is ignored for any reason, the later linked instruction will also be ignored.' Two instructions are linked only when the later one references the earlier one's objects or actions - 'then draw 2' names nothing the discard touched, which is exactly why 359.3.e.11's example ends 'They'll still draw 2.'",
+          "THE ARITHMETIC, BOTH WAYS ROUND. 383.3.d lets the controller order the two simultaneous instances Karthus creates. From an EMPTY hand: instance one ignores the discard entirely and draws 2; instance two now sees two cards, discards them and draws 2. Four cards drawn, two held, two in the trash. From a hand of two or more: four discarded and four drawn, hand size unchanged and four cards of trash fuel. The card is a refill at one end of the game and a trash filler at the other, and 359.3.e.11 is the only reason the first mode exists.",
+          "THE SHORTFALL IS THE BODY, NOT THE RULE. A Deathknell fires once per body (808.1.d makes the Trigger the permanent being Killed and sent to the Trash), so 103.2.b caps this at three deaths a game unless a reanimation line brings the Agent back - a lead, not a use of this entry. And 808.1.d.1 erases the whole thing if the Agent's death is replaced by a heal, an exhaust, a recall or a banish, which is a real risk on a body you intend to lose.",
+          "BURN OUT IS THE PRICE OF THE DOUBLE. 431.1 makes Burning Out an action 'a player must perform if they attempt to move one or more cards from their Main Deck to any other zone in excess of the number of cards remaining in their Main Deck', and Karthus turns two draws into four. In a normal 39-card shell that is nothing; in a late-game or empty-deck shell it is a point for the opponent, so the doubled instance is the one to decline if the deck is short - 383.3.d lets you order them, but neither instance is optional, so the real control is not playing Karthus into an empty deck."
+        ]
+      },
+      "steps": [
+        "Play Karthus, Eternal (E3 + 1 Order Power) and Undercover Agent (E5 + 1 Chaos Power) under Heart of the Tempest, the only legend that holds both domains.",
+        "Spend the hand before the Agent dies if you want the refill mode; hold cards if you want the trash mode. Nothing has to be committed in advance - the branch is decided by hand size at the moment he dies.",
+        "When Undercover Agent dies, 808.1.c fires the Deathknell and Karthus adds a second instance of the same effect. 383.3.d lets you order the two.",
+        "First instance, empty hand: 422.4 and 359.3.e.11 ignore the discard instruction entirely, and the draw 2 still executes.",
+        "Second instance: the two cards just drawn are now in hand, so the discard executes in full and a second draw 2 follows.",
+        "Net from empty: four cards drawn, two in hand and two in the trash, for no cards spent beyond the body that was going to die anyway."
+      ],
+      "terminatesIn": "engine - four cards drawn off one death, two of them held and two put in the trash when the hand starts empty; four discarded and four drawn when it does not. Three deaths a game at 103.2.b, at a board cost of E8 + 1 Order Power + 1 Chaos Power for the pair; nothing here scores",
+      "netPerIteration": "one death converted into four draws, with the discard half free whenever the hand is empty",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-09, issue #187 - uncited Core Rules sub-rules 300-499 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-09"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "RULE 359.3.e.11: 'Instructions that can be partially followed are followed as much as possible and ignored otherwise.' EXAMPLE under 359.3.e.11: 'A player plays a spell that says \"Discard 2, then draw 2.\" If their hand is empty, the instruction to discard 2 will be ignored. They'll still draw 2. If they had 1 card in hand, they would discard it and draw 2.' RULE 422.4: 'When Discarding is part of an effect, then a player must Discard as many cards as possible from their hand. If instructed to discard more cards than they have in their hand, further discard instructions are ignored.' EXAMPLE under 422.4: 'Undercover Agent has the ability \"[Deathknell][>] Discard 2, then draw 2. (When I die, get the effect.)\" If Undercover Agent's controller has 2 or more cards in hand, they must discard 2. If they have 1 card in hand, they discard 1, and the rest of the discard instruction is ignored. If they have no cards in hand, the entire discard instruction is ignored. Regardless of how many cards they discard, they then draw 2.' RULE 422.3: 'When Discarding is listed as a Cost, then the Action must be able to be completed for the cost to be paid.' RULE 359.3.e.14.a: 'In order for a later linked instruction to execute, its earlier linked instruction must have executed. If the earlier linked instruction is ignored for any reason, the later linked instruction will also be ignored.' RULE 808.1.c: 'It is functionally short for \"When I die, [Effect].\"' RULE 431.1: 'Burning Out is an action a player must perform if they attempt to move one or more cards from their Main Deck to any other zone in excess of the number of cards remaining in their Main Deck:'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-09, issue #187, session rc-walk-mid, batch 1. 359.3.e.11 was cited by nothing in data/combos.json or data/synergies.json before this entry, although 359.3.e.10 and 359.3.e.14.a both were - and 422.4's own worked example names OGN-178 Undercover Agent by name, which is Riot pointing at a pool card. Card text verbatim from data/corpus_flat.txt. The Chaos+Order legend census was RUN against data/cards.json on 2026-09-09 and returns exactly one name; it was not typed from memory. No unruled reading."
+    },
+    {
+      "id": "curator-steel-paws-activated-ability-seven",
+      "name": "377.2 is what makes 'play an activated ability' mean activating one, and 377.2.a puts the rune rebate AFTER the seven Energy has already gone - so the only reliable trigger is an Empower cost nothing can shrink",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-145",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Mind legend. 'When you play a unit, gear, or activated ability with Energy cost :rb_energy_7: or more, you may exhaust me to ready up to 2 runes.' Her cost is her own exhaust, so 415.3.a caps her at one activation per turn however many 7+ abilities you use."
+        },
+        {
+          "card": "VEN-043",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm unit, E1 M0. '[Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) [Empower] :rb_energy_7: (:rb_energy_7:: Empower me. Use only if not Empowered.) [Empowered][>] I have +7 :rb_might:.' A FLAT seven with no cost-altering text, which is the whole reason it is the partner."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "resource-engine",
+        "combat-might"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Curator of the Sands (VEN-145 / VEN-192) is the legend of the line, so 103.1.b.1 is satisfied by construction; Steel Paws is mono-Calm and sits inside her Calm/Mind identity.",
+          "Neither card is Signature (data/cards.json, signature=false on both) and neither appears in data/legality.json in either format - checked 2026-09-09."
+        ],
+        "notable": [
+          "377.2 WAS UNCITED AND IT IS THE PARAGRAPH THAT MAKES CURATOR'S OWN SENTENCE LEGIBLE: 'Card text will refer to activating Activated Abilities with the word \"use\" or \"play.\"' Her trigger reads 'When you PLAY a unit, gear, or activated ability', and without 377.2 the phrase has no referent - an ability is not a card and is never played in the 419 sense. 827.1 then supplies the other half: 'Empower is an Activated Ability keyword', and 827.1.c.1 makes it 'functionally short for \"[Cost]: Empower this. Play only if not Empowered.\"' Two entries already run this legend and neither cites either paragraph.",
+          "377.2.a IS THE COST OF IT, AND IT IS THE ENGINE-OFFSET-BY-ONE-EVENT SHAPE AGAIN: 'If \"using\" or \"playing\" an Activated Ability is part of a trigger condition, that condition is fulfilled when the Activated Ability resolves.' The seven Energy has already left the Rune Pool by the time Curator's trigger even exists, so the two runes can never help pay for the ability that produced them - they pay for the NEXT thing. This is the same wall 383.3.b puts in front of a base cost and 381 with 310.2 puts in front of an Activated payoff, reached by a third route.",
+          "377.2.a CUTS THE OTHER WAY TOO: THE TRIGGER NEEDS RESOLUTION, NOT FINALIZATION. 419.4.b is the same split read from the card side - 'Non-triggered abilities that check cards being played do so by means of referencing whether said cards have been Finalized' - where a countered spell still feeds [Legion] and still lowers a cost. Curator is a TRIGGERED ability watching an activation, so anything that stops the [Empower] resolving stops the rebate with it, and SFD-075 Prize of Progress, the pool's other reader of the same event, is bounded the same way. Consequence identified by rc-walk-blocks (issue #187, section 57) and re-derived here against 419.4.b.",
+          "AND IT IS WHY THE PARTNER HAS TO BE A FLAT COST. 827.1.c.3: 'Empower abilities may also include text that alters the Empower cost. Such text is taken into account when determining a card's Empower cost for any reason.' The pool has exactly FOUR activated abilities whose Energy cost reaches 7 (swept over data/corpus_flat.txt on 2026-09-09): VEN-043 Steel Paws at a flat 7, VEN-046 Nasus, Ascended at a flat 8, and VEN-032 Frostcoat Mother and VEN-050 Grumpy Rockbear, both printed '[Empower] :rb_energy_12:. This ability costs :rb_energy_1: less for each rune you control.' 161.2.a fixes the Rune Deck at twelve and 315.3.b channels two a turn, so from the turn you control six runes those two abilities cost six or less and STOP TRIGGERING CURATOR - the board state that lets you afford them is the one that switches her off. All four are inside her Calm/Mind identity, and only the two flat ones are hers to use.",
+          "THE ARITHMETIC. Steel Paws is E1 for a 0-Might [Deflect] body; the Empower is 7 more for a permanent +7 Might (441.2 makes Empowered 'a state for Game Objects on the board', and 441.1.b - 'An Empowered Game Object can not be Empowered' - makes it once per body). Curator readies up to 2 runes, and 164.2.a is the rune's own '[E]: [Reaction] - Add [1]', so two readied runes are two Energy back the same turn. Eight Energy for a Might 7 [Deflect] body becomes six - against VEN-046 Nasus, Ascended, who is Might 8 for E8 + 1 Calm Power plus his own Empower 8.",
+          "THE SHORTFALL IS CURATOR'S OWN EXHAUST. 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' She is readied once a turn and no oftener, so three Steel Paws are three turns and the rebate is capped at 2 runes a turn whatever the board does. Nothing in this line scores; it is a discount on a Might package, not a faucet.",
+          "377.2.b IS THE THIRD PARAGRAPH OF THE BLOCK AND THE CATALOGUE ALREADY USES IT - it is the rule R30 was voted on, and its worked example is Ultrasoft Poro's 'Use this ability only while I'm at a battlefield.' 377.2 and 377.2.a are its two uncited neighbours, and together the three say: 'use' and 'play' both mean activate, a condition ON activating is checked before you may activate, and a condition that WATCHES activating is met when the ability resolves."
+        ]
+      },
+      "steps": [
+        "Run Curator of the Sands as your legend and Steel Paws in the Calm half of the deck.",
+        "Play Steel Paws for 1 Energy. It is Might 0 with [Deflect], so 809.1.c already taxes any spell aimed at it.",
+        "In a later Main Phase, with 7 Energy in the pool, activate its [Empower]. 827.1 makes that an Activated Ability and 377.2 makes Curator's 'play an activated ability' mean exactly this.",
+        "The Empower resolves and Steel Paws becomes Empowered: 441.2 makes that a permanent board state and the +7 Might is not a 'this turn' modifier.",
+        "377.2.a fulfils Curator's trigger AT THAT RESOLUTION, not at activation, so the rebate arrives after the payment. Exhaust her and ready up to 2 runes.",
+        "Spend those two runes with 164.2.a for 2 Energy on anything else this turn; they cannot retroactively pay for the Empower that produced them.",
+        "At your next Awakening 415.3.a readies Curator, and a second Steel Paws can be Empowered - one a turn, three over the game at 103.2.b."
+      ],
+      "terminatesIn": "engine - a Might 7 [Deflect] body for a net 6 Energy and no Power, once a turn, three times a game; the rebate is two runes (2 Energy through 164.2.a) and it always lands one beat after the payment it is meant to soften. Nothing here scores",
+      "netPerIteration": "one Steel Paws Empowered permanently to Might 7, at a net 6 Energy after Curator's two-rune rebate",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-09, issue #187 - uncited Core Rules sub-rules 300-499 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-09"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "RULE 377.2: 'Card text will refer to activating Activated Abilities with the word \"use\" or \"play.\"' RULE 377.2.a: 'If \"using\" or \"playing\" an Activated Ability is part of a trigger condition, that condition is fulfilled when the Activated Ability resolves.' RULE 377.2.b: 'If an Activated Ability has a condition on \"using\" or \"playing\" it, that condition must be true in order to activate the ability in question.' EXAMPLE under 377.2.b: 'Ultrasoft Poro reads \"[E]: Play two 1 [M] Bird unit tokens with [Deflect]. Use this ability only while I'm at a battlefield.\" In order to activate the ability, Ultrasoft Poro must be located at a battlefield.' RULE 377.1: 'Activated Abilities are recognized by the presence of a \":\" in the text of the card, preceded by a cost and succeeded by an effect.' RULE 827.1: 'Empower is an Activated Ability keyword.' RULE 827.1.c.1: 'Empower is functionally short for \"[Cost]: Empower this. Play only if not Empowered.\"' RULE 827.1.c.3: 'Empower abilities may also include text that alters the Empower cost. Such text is taken into account when determining a card's Empower cost for any reason.' RULE 441.1.b: 'An Empowered Game Object can not be Empowered.' RULE 441.2: '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference.' RULE 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' RULE 164.2.a: '[E]: [Reaction] - Add [1].' RULE 419.4.b: 'Non-triggered abilities that check cards being played do so by means of referencing whether said cards have been Finalized.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-09, issue #187, session rc-walk-mid, batch 1. 377.2 and 377.2.a were cited by nothing in data/combos.json or data/synergies.json before this entry, although their sibling 377.2.b is the paragraph R30 was voted on. The two catalogued Curator entries - curator-printed-cost-rebate and curator-needlessly-large-yordle-printed-ten - both read her PRINTED-cost half through 206 and neither opens the activated-ability half of her sentence. The four-row sweep of activated abilities costing 7+ Energy was run over data/corpus_flat.txt on 2026-09-09 and its members are named above. Card text verbatim from data/corpus_flat.txt. No unruled reading."
+    },
+    {
+      "id": "ashe-focused-scuttle-crab-hand-snapshot",
+      "name": "424.3.a.1 - a hand reveal is a SNAPSHOT that never updates, so Ashe's banish is confined to it, and the one hole it leaves is the facedown card exactly one card in the pool can see",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-169",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order unit, E5 P1 M4. 'When you play me, choose an opponent. They reveal their hand. Choose a card revealed this way and banish it. When they hold, return it to their hand (even if I'm no longer on the board).' The banish reads 'revealed this way', which 424.3.a.1 pins to the cards that were in hand at that instant."
+        },
+        {
+          "card": "UNL-053",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Calm unit, E2 M0. '(Units with 0 :rb_might: can conquer and hold.) When you play me, draw 1. [Deathknell] - Choose an opponent. They reveal their hand. You can look at their facedown cards this turn. Gain 1 XP. (When I die, get the effects.)' The only card in the pool that opens a facedown card, which is the one zone a hand reveal can never reach."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "strip-opponent-hand"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Scuttle Crab is mono-Calm and Ashe, Focused is mono-Order, so 103.1.b.1 forces a legend carrying both. The census run against data/cards.json on 2026-09-09 returns FOUR names for Calm+Order: Radiant Dawn (OGN-261), Emperor of the Sands (SFD-197), Green Father (UNL-195) and Eye of Twilight (VEN-147).",
+          "Neither card is Signature (data/cards.json, signature=false on both) and neither appears in data/legality.json in either format - checked 2026-09-09."
+        ],
+        "notable": [
+          "424.3.a AND 424.3.a.1 WERE BOTH UNCITED, AND THE SECOND IS WHAT BOUNDS ASHE. 424.3.a: 'When the zone is instructed to be Revealed without indicating a number of cards, that refers to \"All cards currently in the specified zone.\"' 424.3.a.1: 'The Revealed state is applied to those cards. Any further cards added to that zone after the instruction has been executed do not become Revealed.' So 'a card revealed this way' is a snapshot of the hand at that instant and never widens - a card drawn afterwards is not Revealed and can never be the banish target. The strip is exactly one card and cannot be re-aimed later.",
+          "AND IT SETS THE TIMING. 315.4 gives them a Draw Phase, so a hand emptied by the strip refills before their Main Phase; the reveal is worth most against a hand they have already committed from, and worth least immediately after their draw. That is a scheduling fact about the whole family, not about Ashe.",
+          "424.3'S OWN EXAMPLE SAYS A REVEAL COSTS THE REVEALER NOTHING. 'Reveal 2 cards from the top of your Main Deck' would be executed by taking the two cards from the top of your Main Deck, and then presenting them to all players to clearly read and understand at the table. Then, when all players have had a chance to understand the revealed information, return them to the top of the Main Deck in the same order.' A reveal is non-destructive AND order-preserving; it is not a mill, not a shuffle, and 431.1.c keeps it clear of Burn Out. What Ashe adds to a bare reveal is the banish, and that is the only part with a price.",
+          "THE HOLE, AND THE ONE CARD THAT FILLS IT. 424.1: 'Revealing is the act of presenting a card to all players from a zone that one or more players do not have access to the information of.' 811.1.b hides a card at a battlefield, not in the hand, so NO hand reveal in the pool ever shows a facedown card. Swept over data/corpus_flat.txt on 2026-09-09, six cards reveal an opponent's hand - OGN-156 Sabotage, OGN-192 Mindsplitter, UNL-053 Scuttle Crab, UNL-135 Insightful Investigator, UNL-169 Ashe, Focused and VEN-085 Decree of Strength - and exactly ONE of them also opens the facedown: Scuttle Crab. The other facedown rows in the pool are OGN-101 Mushroom Pouch and UNL-014 Monster Harpoon, which read or hit YOUR OWN facedown card, and OGN-181 Pack of Wonders, which returns one to hand without looking.",
+          "THE FACEDOWN INFORMATION IS BOUNDED AND SMALL, WHICH IS WHY IT IS WORTH ONE CARD. 811.1.b hides 'at a battlefield you control that doesn't already have a facedown card hidden there', and 485.4 puts two battlefields on a Duel table, so an opponent can hold at most two facedown cards at once. Scuttle Crab sees both, and its clause lasts 'this turn', which is exactly the window in which you would spend removal into them.",
+          "THE SHORTFALL. Ashe's banish is not permanent by its own text - 'When they hold, return it to their hand' - and 469.2 ('Hold: A player maintains Control of a Battlefield they did not yet Score this turn during their Beginning Phase') is the only thing that makes it so: against an opponent with no battlefield the return clause never fires. That is a board state you have to create, not one the pair supplies. And Scuttle Crab has to DIE for its half, so the information arrives on a schedule you do not fully control. Nothing here scores; the class is ENGINE."
+        ]
+      },
+      "steps": [
+        "Play Scuttle Crab for 2 Energy. It draws 1 on play, so the body replaces itself, and its own parenthetical lets a Might 0 unit conquer and hold.",
+        "When Scuttle Crab dies, its [Deathknell] reveals the opponent's hand and opens their facedown cards for the turn, and gains 1 XP.",
+        "424.3.a makes that reveal ALL the cards then in their hand, and 424.3.a.1 applies the Revealed state to those cards only.",
+        "Play Ashe, Focused for 5 Energy + 1 Order Power in the same turn while the information is live. Her play trigger reveals the hand again and banishes one card revealed this way.",
+        "424.3.a.1 confines the choice to that second snapshot: anything they draw afterwards is never Revealed and is not a legal choice for her banish.",
+        "Hold their battlefields. 469.2 defines Hold on a battlefield the player controls, so an opponent who controls none never triggers Ashe's return clause and the banish stands."
+      ],
+      "terminatesIn": "engine - one card banished from a hand you have already read in full, plus a turn in which both of their facedown cards are open to you, for 7 Energy + 1 Order Power across two bodies; the banish returns the moment they hold, so it is permanent only against a board they cannot hold. Nothing here scores",
+      "netPerIteration": "one full read of the opponent's hand and both facedown cards, and one card of that hand banished",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-09, issue #187 - uncited Core Rules sub-rules 300-499 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-09"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "RULE 424.1: 'Revealing is the act of presenting a card to all players from a zone that one or more players do not have access to the information of.' RULE 424.3: 'This action is formatted as \"Reveal cards from [zone].\" or \"Reveal [Zone].\"' EXAMPLE under 424.3: '\"Reveal 2 cards from the top of your Main Deck\" would be executed by taking the two cards from the top of your Main Deck, and then presenting them to all players to clearly read and understand at the table. Then, when all players have had a chance to understand the revealed information, return them to the top of the Main Deck in the same order.' RULE 424.3.a: 'When the zone is instructed to be Revealed without indicating a number of cards, that refers to \"All cards currently in the specified zone.\"' EXAMPLE under 424.3.a: 'A card reads \"Choose an opponent and reveal your hand. That player picks a card in your hand. You may play the rest this turn, ignoring their costs.\" When instructed to reveal their hand, that player reveals the cards currently in their hand.' RULE 424.3.a.1: 'The Revealed state is applied to those cards. Any further cards added to that zone after the instruction has been executed do not become Revealed.' RULE 469.2: 'Hold: A player maintains Control of a Battlefield they did not yet Score this turn during their Beginning Phase.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-09, issue #187, session rc-walk-mid, batch 1. 424.2.b, 424.3, 424.3.a, 424.3.a.1 and 424.4.a were all cited by nothing in data/combos.json or data/synergies.json before this entry. The six-row hand-reveal census and the facedown census were both swept over data/corpus_flat.txt on 2026-09-09 and their members are named above, so the uniqueness claim about Scuttle Crab is refutable in one grep. The Calm+Order legend census was RUN against data/cards.json, not typed. Card text verbatim from data/corpus_flat.txt. No unruled reading. Companion already in the catalogue: ashe-retreat-hand-strip and ashe-fallen-feline-named-lock use the same body for the rebuy and the name lock; this entry is the information half and duplicates neither."
     }
   ]
 }
