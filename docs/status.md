@@ -1,10 +1,10 @@
-# RiftCombo — status as of 2026-09-07
+# RiftCombo — status as of 2026-09-09
 
 Este es el documento de orientación. `docs/plan.md` y `docs/phase0-findings.md` son el plan y el
 spike del 2026-09-02 y se conservan como historia: describen decisiones que ya se tomaron distinto.
 
-Every number below carries the command that produces it, measured against commit **`6b55afa`**
-on 2026-09-07. The catalogue grows with every walk: if a number does not match, the command is the
+Every number below carries the command that produces it, measured against commit **`849680b`**
+on 2026-09-09 (master = work = this commit). The catalogue grows with every walk: if a number does not match, the command is the
 truth and this is a photo.
 
 ---
@@ -47,23 +47,23 @@ Cuatro vistas, ruteadas por hash (`web/router.ts`, `VIEWS = ["combos","decks","g
 
 | What | Value | Command |
 |---|---:|---|
-| Entries in the catalogue | **362** | `node -pe 'require("./data/combos.json").combos.length'` |
+| Entries in the catalogue | **715** | `node -pe 'require("./data/combos.json").combos.length'` |
 | Unverified | **0** | `node -pe 'require("./data/combos.json").combos.filter(e=>e.status!=="verified").length'` |
-| By class | INFINITE 14 · BURST 16 · CHAIN 10 · ALT_WIN 26 · ENGINE 296 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.class]=(b[e.class]||0)+1;JSON.stringify(b)'` |
-| Entries by card count (`uses.length`) | 1:19 · 2:166 · 3:108 · 4:47 · 5:14 · 6:5 · 8:2 · 11:1 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.uses.length]=(b[e.uses.length]\|\|0)+1;Object.keys(b).map(Number).sort((x,y)=>x-y).map(k=>k+":"+b[k]).join(" · ")'` |
-| Distinct cards used by some entry | **472** | `node -pe 'const a=require("./data/combos.json").combos,s=new Set();for(const e of a)for(const u of e.uses)s.add(u.card);s.size'` |
-| Sources cited | **1100** | `node -pe 'require("./data/combos.json").combos.reduce((n,e)=>n+(e.sources\|\|[]).length,0)'` |
-| Synergy rules | **127** | `node -pe 'require("./data/synergies.json").synergies.length'` |
-| Anchor–partner pairs produced | **3643** | `npm run synergies \| tail -1` |
+| By class | INFINITE 14 · BURST 17 · CHAIN 12 · ALT_WIN 26 · ENGINE 646 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.class]=(b[e.class]||0)+1;JSON.stringify(b)'` |
+| Entries by card count (`uses.length`) | 1:25 · 2:436 · 3:181 · 4:49 · 5:16 · 6:5 · 8:2 · 11:1 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.uses.length]=(b[e.uses.length]\|\|0)+1;Object.keys(b).map(Number).sort((x,y)=>x-y).map(k=>k+":"+b[k]).join(" · ")'` |
+| Distinct cards used by some entry | **891** | `node -pe 'const a=require("./data/combos.json").combos,s=new Set();for(const e of a)for(const u of e.uses)s.add(u.card);s.size'` |
+| Sources cited | **2046** | `node -pe 'require("./data/combos.json").combos.reduce((n,e)=>n+(e.sources\|\|[]).length,0)'` |
+| Synergy rules | **197** | `node -pe 'require("./data/synergies.json").synergies.length'` |
+| Anchor–partner pairs produced | **5101** | `npm run synergies \| tail -1` |
 | Printings in the pool | **1189** | `node -pe 'require("./data/cards.json").cards.length'` |
 | Flat corpus lines | **947** | `wc -l < data/corpus_flat.txt` |
 | Errata replacements | **52** | `node -pe 'require("./data/errata.json").entries.length'` |
 | Legality rows (ban/restricted) | **21** | `node -pe 'require("./data/legality.json").entries.length'` |
-| Hand walks archived | **66** | `ls docs/phase0/walks/*.md \| grep -v README \| wc -l` |
-| Tests | **413 in 30 files** | `npm test` |
+| Hand walks archived | **80** | `ls docs/phase0/walks/*.md \| grep -v README \| wc -l` |
+| Tests | **461 in 36 files** | `npm test` |
 | Typecheck | clean | `npm run typecheck` |
 
-The 362 entries are `verified`: someone walked the loop by hand against card text and the Core
+All 715 entries are `verified`: someone walked the loop by hand against card text and the Core
 Rules, and left the walk document in `docs/phase0/walks/`. `candidate` still exists in the schema
 for what comes out of a hunt and has not been walked yet, but there is none today.
 
@@ -92,7 +92,7 @@ para las páginas de mazo de Piltover Archive, que el navegador no puede pedir p
 de hosts, User-Agent honesto, caché corta. Nada más corre en un servidor.
 
 **`data/` — cuatro archivos autorados y el resto generado o descargado.** Autorados: `combos.json`
-(el catálogo, cada entrada a mano con sus fuentes), `synergies.json` (96 reglas de patrón: la regla
+(el catálogo, cada entrada a mano con sus fuentes), `synergies.json` (197 reglas de patrón: la regla
 está verificada a mano, las instancias las encuentra un predicado de texto sobre el pool),
 `legality.src.json` (la lista de bans transcrita del Rules Hub de Riot por nombre, resuelta a códigos
 en el build) y `signature.src.json` (#103: las 51 cartas Signature, resueltas de dos espejos
@@ -111,7 +111,7 @@ aplica la errata, resuelve la legalidad y resuelve `signature.src.json` → `car
 mano, porque Vercel lo lee antes de correr el build, así que va committeado); `check-rls.mjs` prueba
 el aislamiento por fila con dos usuarios reales contra el proyecto hosteado.
 
-**`test/` — 413 tests in 30 files** with vitest. `headers.test.ts` is the one that watches the posture:
+**`test/` — 461 tests in 36 files** with vitest. `headers.test.ts` is the one that watches the posture:
 falla si el nombre del `service_role` o el password de la base aparecen en cualquier lado bajo
 `web/`, si hay más de un botón de sign-in, o si el default de `data-auth` deja de ser `pending`.
 **#138 (HIGH, ultrareview 2026-09-06)** found the whole DOM layer of that day's features untested —
@@ -138,13 +138,11 @@ que dos veces publicó archivos sin commitear de otra sesión: es fallback, no e
 
 **Since 2026-09-06, sessions push to `work` and only the orchestrator pushes `master`** — see
 CLAUDE.md's "Deploy quota" bullet for the full rule (Vercel's Hobby cap is 100 deployments/day, scoped
-to the whole account, and today's 130 commits already spent it once). This is why **production
-currently lags master**: `npx vercel ls riftcombo` and `npx vercel inspect https://riftcombo.app --logs`
-(run 2026-09-06 for this refresh) show the live alias still on commit `55e24f3` (234 combos, built
-15:19 local time), while every deploy attempted since — up to master's current HEAD — fails at the
-build step with `fatal: bad object <sha>`, because `${VERCEL_GIT_PREVIOUS_SHA:-HEAD^}` (the #126 fix)
-points at a commit Vercel's shallow clone no longer holds. Production is expected to catch up to
-master by 2026-09-07 16:26.
+to the whole account, and it has been spent more than once). The 2026-09-06/07 lag this section used
+to describe is over: `npx vercel inspect https://riftcombo.app --logs` (run 2026-09-09 for this
+refresh) shows the live deployment built from `Branch: master, Commit: 849680b` — the same commit as
+`master` and `work` right now — so **production is caught up**. Re-run that command before trusting
+this sentence; it is a photo, not a guarantee.
 
 El dominio es **`riftcombo.app`**, comprado el 2026-09-05 vía Vercel (US$15/año, nameservers de
 Vercel). `www.riftcombo.app` y `riftcombo.vercel.app` responden 308 al ápex, y ese redirect es un
@@ -212,21 +210,35 @@ dice con sus propias palabras y nunca presenta un par como un combo.
 
 ---
 
-## 6. The 66 walks
+## 6. The 80 walks
 
 El índice completo — fecha, issue, entradas que dejó — está en
 [`docs/phase0/walks/README.md`](phase0/walks/README.md).
 
-**Four 2026-09-06 walk files are on disk but not yet rows in that README's table** (this session
-only owns `docs/status.md`, not `phase0/walks/README.md`, so they are recorded here instead of
-merged into that file):
+**80 walk files exist on disk today (`ls docs/phase0/walks/*.md | grep -v README | wc -l`); that
+README's own table lists 62 of them.** This session owns `docs/status.md`, not
+`phase0/walks/README.md`, so the 18 missing rows are recorded here instead of merged into that file
+— whoever next owns the README should fold this table in and delete it from here:
 
 | Date | File | Issue | What it did |
 |---|---|---|---|
 | 09-06 | `2026-09-06-engine-payoff-walk.md` | #159 (candidates from #155, #154) | The engine × payoff candidates and the tournament cores: 8 entries authored, 6 refusals recorded, 1 reclass proposed, 2 hunt errors corrected, 1 open lead handed on. |
 | 09-06 | `2026-09-06-finisher-feeders.md` | #161 | Mirror of #155's engine-side pass: for each of the catalogue's 36 finishers (18 ALT_WIN, 12 BURST, 4 CHAIN, plus two same-day Grand Plaza wins), asks which uncatalogued in-domain feeder changes the ledger rather than just restating it. |
-| 09-06 | `2026-09-06-orphan-synergy-rules.md` | #153 | Of the 96 hand-verified synergy patterns, 55 had an empty `basis.combos`; this walk asks, for each, whether the anchor plus a partner plus two or three more in-domain cards reaches a repeat step or a scoring event. |
+| 09-06 | `2026-09-06-orphan-synergy-rules.md` | #153 | Of the then-96 hand-verified synergy patterns, 55 had an empty `basis.combos`; this walk asks, for each, whether the anchor plus a partner plus two or three more in-domain cards reaches a repeat step or a scoring event. |
 | 09-06 | `2026-09-06-proven-rule-instances.md` | #160 | Of 66 synergy rules already proven to terminate in at least one combo (2,090 reviewed partner slots, only 180 pairs in `combos.json`), prices the unwalked remainder. |
+| 09-07 | `2026-09-07-families-rows-6-18.md` | #169 | Second pass on rows 6–18 of the cause/trigger matrix (discard, stun, hide, choose-friendly families); adds the Nami exception to "a Hold-triggered ready is a no-op". |
+| 09-07 | `2026-09-07-families-rows-19-47.md` | #168 | Second pass on rows 19–47 of the same matrix: several rows collapse into notables on existing entries by shared mechanism/arithmetic; three disempowerer partners refused because they hit enemy permanents or reset themselves. |
+| 09-07 | `2026-09-07-orphan-remainder.md` | #193 | Successor slice to #180/#186/#188 (mono-Order, mono-Body, Calm/Mind closed); closes the remaining orphan cards and states the "does this engine's payoff need an enemy garrison?" test that bounds every Time-Warp-chained conquer engine. |
+| 09-07 | `2026-09-07-rules-second-pass.md` | #170 | Second pass on the orphan and under-walked synergy rules; extensive rules citations (204.3.a, 416.1.c, 466.5 ordering) and the four-tag (Bird/Cat/Dog/Poro) population measurement (61 cards, none carrying two tags). |
+| 09-07 | `2026-09-07-uncatalogued-body.md` | #186 | The uncatalogued mono-Body cards, successor to #180; closes the lane 137/137. |
+| 09-07 | `2026-09-07-uncatalogued-calm-mind-order.md` | (lane split with `rc-walk-uncat`) | The uncatalogued Calm/Mind cards (plus any multi-domain card mixing Order with Calm or Mind); Order-only cards handed to the sibling walk. |
+| 09-07 | `2026-09-07-uncatalogued-cards.md` | #171 | The deckable cards in no entry: battlefields first, then legends, then the rest; closes all 64 non-token battlefields and all 49 legend names catalogued, staged or refused by rule. |
+| 09-07 | `2026-09-07-uncatalogued-fury-body-chaos.md` | #173 | The uncatalogued Fury/Body/Chaos cards; closes that slice (39 entries across batches plus ten orphan dual-domain Signature spells) and pins the base-code-vs-name+type census method. |
+| 09-07 | `2026-09-07-uncatalogued-order.md` | #180 | The uncatalogued mono-Order cards, successor to #171; closes the lane 139/139. |
+| 09-07 | `2026-09-07-uncited-rules-blocks.md` | #187 | Measures that 207 of the Core Rules' 385 top-level numbers are cited by nothing in `combos.json`/`synergies.json`, then walks the mechanically-rich blocks (432 Doubling, 433 Swapping, 465.2.c.6–.c.10 Backline/Tank ordering, 734–738 Additional Turns). |
+| 09-07 | `2026-09-07-uncited-subrules-500-899.md` | #191 | Successor to #187, one level down: every `NNN.x.y` sub-rule heading in 500–899 with a worked `Example:` line that nothing cites; also the `grep "^NNN\."` form-feed trap (112 headings including 718 are invisible to a bare `^` anchor). |
+| 09-09 | `2026-09-09-citation-audit.md` | #137 | Audits the 774 `riot`-type sources in `combos.json`: 1,358 quotes verbatim, 7 truncated, 7 paraphrased and repaired; confirms no Core Rules worked example is misattributed as the paragraph itself; 11 external-page quotes (ban-list posts, set FAQs) can't be checked from files this repo ships. |
+| 09-09 | `2026-09-09-produces-tagging.md` | #157 | Tags the untagged ENGINE entries (measured at 102 of 714, then 715, all class ENGINE) with `produces` values — four reused, five new (`combat-might`, `board-protection`, `tempo-denial`, `unit-delivery`, `xp-engine`) — so the drawer and the diagram show a payoff for entries that previously showed none. |
 
 ---
 
@@ -234,11 +246,16 @@ merged into that file):
 
 | Issue | Qué |
 |---|---|
-| #137 | LOW: 10 of 20 external citations across 12 verified combos still carry no `accessed` date (the other 10 were dated 2026-09-06 in `0cf876a`; the rest are CAPTCHA/login walls with no readable route yet) |
-| #143 | Combo hunt: the 145 uncatalogued spells — 22 dead, 121 already synergy-covered, 0 new candidates |
+| #137 | LOW: 8 of 371 sourced citations still carry no `accessed` date — re-measured 2026-09-09 (`node -pe` walk over `combos.json`, see §2's command style); the rest are CAPTCHA/login walls with no readable route yet (9 old.reddit.com threads, 1 riftbound.gg/decks page) |
+| #187 | Walk: the Core Rules blocks this catalogue has never cited (432 Doubling, 433 Swapping, 465.2.c.6–.c.10, 734–738, and more) |
+| #191 | Walk: uncited Core Rules sub-rules 500–899, mined by worked example |
+| #195 | Synergies, fifteenth batch: 17 rules (180 → 197) and 38 back-links — tracking issue for a merged batch |
+| #196 | Cross-audit of the 86 entries written since #189/#192: one substantive defect (two linked halves) plus three minor findings, most already applied in `849680b` |
 
-`gh issue list --state open` es la lista viva; esta tabla es la foto del 2026-09-06.
+`gh issue list --state open` es la lista viva; esta tabla es la foto del 2026-09-09. #143 (el hunt de
+las 145 spells sin catalogar) está cerrado.
 
 Las lentes por mecánica están todas barridas, y también las seis cazas por dominio de unidad
 (Order/Fury/Chaos/Body/Calm/Mind) y la caza por leyenda, así que lo que queda abierto es residual:
-un pendiente de fuentes y un hunt que no encontró nada nuevo.
+citas pendientes, dos vetas de reglas nunca citadas, y auditorías de calidad sobre los ~370 entries
+más nuevos.
