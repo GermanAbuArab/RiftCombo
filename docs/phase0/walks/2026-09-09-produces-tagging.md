@@ -225,3 +225,40 @@ size, so if `combat-might` or `board-protection` ever stops being output-only, m
 with any `token-body-engine` or `unit-delivery` route would publish a line its own two cards refuse.
 It is harmless today only because all five new values are output-only, and it is one more reason to
 keep them that way.
+
+## 8. A name that was NOT added, and the condition under which it should be
+
+`karma-lux-recycle-buff-army` is tagged `combat-might`, and that undersells it. Its honest product is
+neither Might nor bodies: `lux-infinite-energy` already makes the Recruits, and what this entry adds
+is that **each one arrives at 2 Might instead of 1** — an *upgrade to another engine's output*.
+Nothing in the nineteen-name vocabulary says that, and it cannot borrow `token-body-engine`, because
+the entry `needs` that value and would then satisfy its own need with no feeder (§2b).
+
+The name was deliberately **not** added. The registry stands at 19 of its own ~20 ceiling, and a
+value consumed by nothing and displaying nothing new is the worst kind of addition. Recorded here
+instead, with the condition: **if a second and a third entry of this shape turn up, the name has
+earned its place; one instance has not.** That is the same bar `temporary-body-engine` cleared in
+2026-09-06 — it was split out because two entries were provably false in front of a consumer, not
+because one looked untidy.
+
+`sett-kingpin-karma-army-might-wall` is the nearest second candidate and is *not* a third: it reads
+the same loop's stock rather than improving it, which is why it is tagged `combat-might` and
+`board-protection` on its own terms.
+
+## 9. Two boundary rulings worth keeping, because they look contradictory and are not
+
+Both concern a keyword printed on a card inside an entry, and they go opposite ways.
+
+- `steel-paws-svellsongur-might` did **not** get `board-protection`, although its own net names *"a
+  14 Might Deflect body"*. The `[Deflect]` is printed on the finished body incidentally; adding the
+  tag for it would be the 51-of-90 sweep's mistake (§7) committed by hand in the same walk that
+  rejected it.
+- `wily-newtfish-gemhand-hunter-xp-turn` **did** get `unit-delivery`, although `[Ganking]` is
+  likewise a keyword on the body. The difference is not the keyword, it is the authority: this
+  entry's own `terminatesIn` reads *"a per-turn Might and **movement** bonus"*, so the authored
+  statement of the product names movement, and `UNL-108 Wily Newtfish` grants the keyword to itself
+  conditionally (*"If you've gained XP this turn, I have +1 Might and [Ganking]"*) rather than
+  printing it.
+
+**The discriminator is the entry's own `terminatesIn`, never the presence of the keyword** — which is
+§7's finding applied twice in opposite directions, and the reason to state it twice.
