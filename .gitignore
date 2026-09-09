@@ -12,3 +12,6 @@ public/
 .vercel/
 .vercel
 .scratch/
+
+# archify QA output: regenerable, ~1.7 MB of PNGs and receipts
+docs/architecture/*.visual-check.*

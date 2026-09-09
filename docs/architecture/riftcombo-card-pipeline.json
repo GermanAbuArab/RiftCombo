@@ -1,0 +1,349 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "RiftCombo — from Riot's gallery to a matchable card pool",
+    "output": "riftcombo-card-pipeline.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "ingest",
+        "label": "Ingest",
+        "focus": [
+          "riot-api",
+          "build-cards",
+          "cards-json"
+        ],
+        "note": "One API, one script, one generated pool. No mirror is ever a source of card text."
+      },
+      {
+        "id": "gates",
+        "label": "The three overlays",
+        "focus": [
+          "errata",
+          "legality-src",
+          "signature-src",
+          "build-cards"
+        ],
+        "note": "Hand-authored, and each one can fail the build rather than drift silently."
+      },
+      {
+        "id": "readers",
+        "label": "Who reads what",
+        "focus": [
+          "cards-json",
+          "slim",
+          "browser",
+          "node-readers",
+          "corpus"
+        ],
+        "note": "The browser gets a projection; node reads the whole record; humans read the corpus."
+      }
+    ],
+    "viewBox": [
+      1080,
+      600
+    ]
+  },
+  "stages": [
+    {
+      "label": "Source"
+    },
+    {
+      "label": "Build"
+    },
+    {
+      "label": "Generated"
+    },
+    {
+      "label": "Derived"
+    },
+    {
+      "label": "Consumers"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "riot-api",
+      "type": "external",
+      "label": "Riot Gallery API",
+      "sublabel": "gallery content API",
+      "stage": 0,
+      "row": 0,
+      "tag": "only card-text source",
+      "width": 150,
+      "height": 56
+    },
+    {
+      "id": "errata",
+      "type": "security",
+      "label": "errata.json",
+      "sublabel": "dated find/replace",
+      "stage": 0,
+      "row": 1,
+      "tag": "fails the build",
+      "width": 150,
+      "height": 56
+    },
+    {
+      "id": "legality-src",
+      "type": "security",
+      "label": "legality.src.json",
+      "sublabel": "bans, by name",
+      "stage": 0,
+      "row": 2,
+      "tag": "hand-authored",
+      "width": 150,
+      "height": 56
+    },
+    {
+      "id": "signature-src",
+      "type": "security",
+      "label": "signature.src.json",
+      "sublabel": "51 unmarked names",
+      "stage": 0,
+      "row": 3,
+      "tag": "fails the build",
+      "width": 150,
+      "height": 56
+    },
+    {
+      "id": "build-cards",
+      "type": "backend",
+      "label": "build-cards.mjs",
+      "sublabel": "fetch and resolve",
+      "stage": 1,
+      "row": 1,
+      "tag": "npm run build:data",
+      "width": 150,
+      "height": 56
+    },
+    {
+      "id": "cards-json",
+      "type": "database",
+      "label": "data/cards.json",
+      "sublabel": "normalized printings",
+      "stage": 2,
+      "row": 1,
+      "tag": "1,189",
+      "width": 150,
+      "height": 56
+    },
+    {
+      "id": "legality-json",
+      "type": "database",
+      "label": "data/legality.json",
+      "sublabel": "resolved base codes",
+      "stage": 2,
+      "row": 3,
+      "tag": "per format",
+      "width": 150,
+      "height": 56
+    },
+    {
+      "id": "slim",
+      "type": "backend",
+      "label": "slimCard projection",
+      "sublabel": "web-card-fields.mjs",
+      "stage": 3,
+      "row": 0,
+      "tag": "18 fields",
+      "width": 150,
+      "height": 56
+    },
+    {
+      "id": "build-corpus",
+      "type": "backend",
+      "label": "build-corpus.mjs",
+      "sublabel": "fold by name + type",
+      "stage": 3,
+      "row": 3,
+      "width": 150,
+      "height": 56
+    },
+    {
+      "id": "browser",
+      "type": "frontend",
+      "label": "public/data/cards.json",
+      "sublabel": "fetched at runtime",
+      "stage": 4,
+      "row": 0,
+      "tag": "browser",
+      "width": 150,
+      "height": 56
+    },
+    {
+      "id": "node-readers",
+      "type": "backend",
+      "label": "src/load.ts",
+      "sublabel": "matcher · tests · CLI",
+      "stage": 4,
+      "row": 1,
+      "tag": "whole record",
+      "width": 150,
+      "height": 56
+    },
+    {
+      "id": "corpus",
+      "type": "database",
+      "label": "data/corpus_flat.txt",
+      "sublabel": "one line per card",
+      "stage": 4,
+      "row": 3,
+      "tag": "read by humans",
+      "width": 150,
+      "height": 56
+    }
+  ],
+  "flows": [
+    {
+      "id": "gallery-pages",
+      "from": "riot-api",
+      "to": "build-cards",
+      "label": "paged JSON",
+      "classification": "en_US, 200 per page",
+      "variant": "emphasis"
+    },
+    {
+      "id": "errata-overlay",
+      "from": "errata",
+      "to": "build-cards",
+      "label": "find/replace",
+      "classification": "exactly one match or throw",
+      "variant": "security",
+      "labelAt": [
+        100,
+        332
+      ]
+    },
+    {
+      "id": "ban-names",
+      "from": "legality-src",
+      "to": "build-cards",
+      "label": "ban names",
+      "classification": "resolved to every printing",
+      "variant": "security",
+      "labelAt": [
+        100,
+        446
+      ]
+    },
+    {
+      "id": "signature-names",
+      "from": "signature-src",
+      "to": "build-cards",
+      "label": "Signature names",
+      "classification": "one base code each or throw",
+      "variant": "security",
+      "labelAt": [
+        100,
+        548
+      ]
+    },
+    {
+      "id": "write-cards",
+      "from": "build-cards",
+      "to": "cards-json",
+      "label": "normalized cards",
+      "classification": "text, tags, domains, signature",
+      "variant": "emphasis",
+      "labelAt": [
+        330,
+        332
+      ],
+      "route": "straight"
+    },
+    {
+      "id": "write-legality",
+      "from": "build-cards",
+      "to": "legality-json",
+      "label": "resolved bans",
+      "classification": "format and entity scoped"
+    },
+    {
+      "id": "project-fields",
+      "from": "cards-json",
+      "to": "slim",
+      "label": "keep 18 fields",
+      "classification": "drops artist, rarity, id, errata",
+      "variant": "emphasis"
+    },
+    {
+      "id": "corpus-input",
+      "from": "cards-json",
+      "to": "build-corpus",
+      "label": "card text",
+      "classification": "errata already applied"
+    },
+    {
+      "id": "corpus-bans",
+      "from": "legality-json",
+      "to": "build-corpus",
+      "label": "ban markers",
+      "classification": "printed into the corpus, not the card",
+      "variant": "dashed",
+      "route": "straight",
+      "labelAt": [
+        638.0,
+        550.0
+      ]
+    },
+    {
+      "id": "serve-slim",
+      "from": "slim",
+      "to": "browser",
+      "label": "one fetch",
+      "classification": "the only card data the bundle fetches",
+      "variant": "emphasis",
+      "labelAt": [
+        853.0,
+        208.0
+      ]
+    },
+    {
+      "id": "node-read",
+      "from": "cards-json",
+      "to": "node-readers",
+      "label": "read whole",
+      "classification": "no projection in node or tests",
+      "route": "straight"
+    },
+    {
+      "id": "write-corpus",
+      "from": "build-corpus",
+      "to": "corpus",
+      "label": "one line per card",
+      "classification": "the reading surface for walks",
+      "labelAt": [
+        853.0,
+        550.0
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Two gates that fail the build",
+      "items": [
+        "errata.json: a find-string matching other than once per printing throws",
+        "signature.src.json: each of 51 names must resolve to exactly one base code"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "The projection that failed twice",
+      "items": [
+        "The browser gets slimCard(c); node and every test read cards.json whole",
+        "A field WEB_CARD_FIELDS omits is undefined only in production"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Why the corpus exists",
+      "items": [
+        "One line per name and type, with Equipment effect text and Might bonus",
+        "It carries the ban marker, which cards.json does not"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,623 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "RiftCombo — how a decklist becomes matched combos",
+    "output": "riftcombo-architecture.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1340,
+      560
+    ],
+    "repository": {
+      "url": "https://github.com/GermanAbuArab/RiftCombo",
+      "provider": "github",
+      "revision": "849680b88a3dadb6bf6964f41ef2489c609b9135"
+    },
+    "views": [
+      {
+        "id": "match-path",
+        "label": "The match path",
+        "focus": [
+          "card-data",
+          "card-index",
+          "engine",
+          "web-ui",
+          "vercel"
+        ],
+        "note": "Card pool to CardIndex to variant matching to the rendered result."
+      },
+      {
+        "id": "authored",
+        "label": "What humans wrote",
+        "focus": [
+          "walks",
+          "catalogue",
+          "engine"
+        ],
+        "note": "combos.json and synergies.json come from hand walks, never from the ingest."
+      },
+      {
+        "id": "guarded-edges",
+        "label": "Guarded edges",
+        "focus": [
+          "guards",
+          "catalogue",
+          "bundle",
+          "web-ui"
+        ],
+        "note": "The three edges where a silent defect has actually shipped."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "card-data",
+      "type": "database",
+      "label": "Built card pool",
+      "sublabel": "cards.json · legality.json",
+      "tag": "1,189 printings",
+      "pos": [
+        60,
+        40
+      ],
+      "size": [
+        230,
+        64
+      ],
+      "sources": [
+        {
+          "path": "data/cards.json",
+          "label": "generated card pool"
+        },
+        {
+          "path": "data/legality.json",
+          "label": "resolved bans"
+        },
+        {
+          "path": "data/corpus_flat.txt",
+          "label": "one line per card, for reading"
+        }
+      ]
+    },
+    {
+      "id": "walks",
+      "type": "external",
+      "label": "Hand walks",
+      "sublabel": "docs/phase0/walks",
+      "tag": "81 documents",
+      "pos": [
+        60,
+        165
+      ],
+      "size": [
+        230,
+        64
+      ],
+      "sources": [
+        {
+          "path": "docs/phase0/walks/2026-09-06-orphan-synergy-rules.md",
+          "label": "a synergy-rule walk"
+        },
+        {
+          "path": "docs/phase0/walks/2026-09-06-issue116-champion-progression.md",
+          "label": "a lens walk"
+        },
+        {
+          "path": "docs/phase0/walks/2026-09-04-virtuoso-and-two-attach.md",
+          "label": "a combo walk"
+        }
+      ]
+    },
+    {
+      "id": "catalogue",
+      "type": "database",
+      "label": "Authored catalogue",
+      "sublabel": "combos · synergies · features",
+      "tag": "715 + 197",
+      "pos": [
+        60,
+        290
+      ],
+      "size": [
+        230,
+        64
+      ],
+      "sources": [
+        {
+          "path": "data/combos.json",
+          "label": "715 hand-walked entries"
+        },
+        {
+          "path": "data/synergies.json",
+          "label": "197 verified rules"
+        },
+        {
+          "path": "data/features.json",
+          "label": "19 needs/produces names"
+        }
+      ]
+    },
+    {
+      "id": "deck-rules",
+      "type": "backend",
+      "label": "Deck rules",
+      "sublabel": "deck.ts · build.ts",
+      "tag": "parse · legality · checkBuild",
+      "pos": [
+        390,
+        40
+      ],
+      "size": [
+        230,
+        64
+      ],
+      "sources": [
+        {
+          "path": "src/deck.ts",
+          "line": 58,
+          "end_line": 102,
+          "label": "parseDeckText"
+        },
+        {
+          "path": "src/deck.ts",
+          "line": 176,
+          "end_line": 212,
+          "label": "deckRestrictions"
+        },
+        {
+          "path": "src/build.ts",
+          "line": 39,
+          "end_line": 70,
+          "label": "checkBuild"
+        }
+      ]
+    },
+    {
+      "id": "card-index",
+      "type": "backend",
+      "label": "CardIndex",
+      "sublabel": "src/cards.ts",
+      "tag": "equivalents()",
+      "pos": [
+        390,
+        165
+      ],
+      "size": [
+        230,
+        64
+      ],
+      "sources": [
+        {
+          "path": "src/cards.ts",
+          "line": 43,
+          "end_line": 123,
+          "label": "CardIndex"
+        },
+        {
+          "path": "src/cards.ts",
+          "line": 124,
+          "end_line": 134,
+          "label": "equivalents(): fold printings"
+        },
+        {
+          "path": "src/cards.ts",
+          "line": 3,
+          "end_line": 42,
+          "label": "normalizeName / baseOf"
+        }
+      ]
+    },
+    {
+      "id": "engine",
+      "type": "backend",
+      "label": "Match engine",
+      "sublabel": "combos · matcher · plan",
+      "tag": "six buckets",
+      "pos": [
+        390,
+        290
+      ],
+      "size": [
+        230,
+        64
+      ],
+      "sources": [
+        {
+          "path": "src/combos.ts",
+          "line": 49,
+          "end_line": 146,
+          "label": "generateVariants"
+        },
+        {
+          "path": "src/matcher.ts",
+          "line": 39,
+          "end_line": 102,
+          "label": "matchDeck"
+        },
+        {
+          "path": "src/plan.ts",
+          "line": 50,
+          "end_line": 119,
+          "label": "planDeck: What to add"
+        }
+      ]
+    },
+    {
+      "id": "web-ui",
+      "type": "frontend",
+      "label": "Browser app",
+      "sublabel": "main · graph · router · builder",
+      "tag": "hand-rolled SVG",
+      "pos": [
+        720,
+        165
+      ],
+      "size": [
+        230,
+        64
+      ],
+      "sources": [
+        {
+          "path": "web/main.ts",
+          "line": 1,
+          "end_line": 20,
+          "label": "views and imports"
+        },
+        {
+          "path": "web/graph.ts",
+          "line": 1,
+          "end_line": 60,
+          "label": "SVG graph, no library"
+        },
+        {
+          "path": "web/router.ts",
+          "line": 8,
+          "end_line": 20,
+          "label": "the four hash views"
+        }
+      ]
+    },
+    {
+      "id": "bundle",
+      "type": "backend",
+      "label": "Static build",
+      "sublabel": "esbuild → public/",
+      "tag": "slimCard projection",
+      "pos": [
+        1050,
+        165
+      ],
+      "size": [
+        230,
+        64
+      ],
+      "sources": [
+        {
+          "path": "scripts/build-web.mjs",
+          "line": 20,
+          "end_line": 30,
+          "label": "slim payload + page copy"
+        },
+        {
+          "path": "scripts/web-card-fields.mjs",
+          "line": 1,
+          "end_line": 15,
+          "label": "WEB_CARD_FIELDS"
+        }
+      ]
+    },
+    {
+      "id": "vercel",
+      "type": "cloud",
+      "label": "Vercel",
+      "sublabel": "static host · master builds",
+      "tag": "vercel.json generated",
+      "pos": [
+        1050,
+        40
+      ],
+      "size": [
+        230,
+        64
+      ],
+      "sources": [
+        {
+          "path": "vercel.json",
+          "label": "headers, CSP, deploy gating"
+        },
+        {
+          "path": "scripts/build-headers.mjs",
+          "line": 1,
+          "end_line": 30,
+          "label": "generates vercel.json"
+        }
+      ]
+    },
+    {
+      "id": "edge-proxy",
+      "type": "backend",
+      "label": "Deck URL proxy",
+      "sublabel": "api/deck-url.ts",
+      "tag": "only server code",
+      "pos": [
+        720,
+        40
+      ],
+      "size": [
+        230,
+        64
+      ],
+      "sources": [
+        {
+          "path": "api/deck-url.ts",
+          "line": 1,
+          "end_line": 11,
+          "label": "edge runtime, host allowlist"
+        }
+      ]
+    },
+    {
+      "id": "supabase",
+      "type": "database",
+      "label": "Supabase",
+      "sublabel": "Google auth · saved decks",
+      "tag": "RLS",
+      "pos": [
+        720,
+        290
+      ],
+      "size": [
+        230,
+        64
+      ],
+      "sources": [
+        {
+          "path": "web/supabase.ts",
+          "line": 1,
+          "end_line": 24,
+          "label": "the only file that calls Supabase"
+        },
+        {
+          "path": "supabase/migrations/20260905120000_decks.sql",
+          "label": "decks table + policies"
+        },
+        {
+          "path": "supabase/config.toml",
+          "label": "auth source of truth"
+        }
+      ]
+    },
+    {
+      "id": "guards",
+      "type": "security",
+      "label": "Test guards",
+      "sublabel": "vitest · test/",
+      "tag": "36 files",
+      "pos": [
+        1050,
+        415
+      ],
+      "size": [
+        230,
+        64
+      ],
+      "sources": [
+        {
+          "path": "test/rule-refs.test.ts",
+          "line": 1,
+          "end_line": 20,
+          "label": "every cited rule must exist"
+        },
+        {
+          "path": "test/web-payload.test.ts",
+          "line": 1,
+          "end_line": 20,
+          "label": "predicates over the slim card"
+        },
+        {
+          "path": "test/a11y.test.ts",
+          "line": 1,
+          "end_line": 12,
+          "label": "contrast and focus, measured"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Hand-authored, never generated",
+      "wraps": [
+        "walks",
+        "catalogue"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "Deployed at riftcombo.app",
+      "wraps": [
+        "vercel",
+        "edge-proxy",
+        "supabase"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "pool-to-index",
+      "from": "card-data",
+      "to": "card-index",
+      "label": "1,189 printings",
+      "variant": "emphasis"
+    },
+    {
+      "id": "index-to-rules",
+      "from": "card-index",
+      "to": "deck-rules",
+      "label": "resolve codes"
+    },
+    {
+      "id": "index-to-engine",
+      "from": "card-index",
+      "to": "engine",
+      "label": "fold reprints",
+      "variant": "emphasis",
+      "labelAt": [
+        505,
+        260
+      ]
+    },
+    {
+      "id": "walks-to-catalogue",
+      "from": "walks",
+      "to": "catalogue",
+      "label": "one entry per walk",
+      "labelAt": [
+        175,
+        260
+      ]
+    },
+    {
+      "id": "catalogue-to-engine",
+      "from": "catalogue",
+      "to": "engine",
+      "label": "flatten needs/produces",
+      "variant": "emphasis",
+      "labelAt": [
+        340,
+        260
+      ]
+    },
+    {
+      "id": "engine-to-ui",
+      "from": "engine",
+      "to": "web-ui",
+      "label": "hits + What to add",
+      "variant": "emphasis"
+    },
+    {
+      "id": "rules-to-ui",
+      "from": "deck-rules",
+      "to": "web-ui",
+      "label": "bans + construction"
+    },
+    {
+      "id": "ui-to-bundle",
+      "from": "web-ui",
+      "to": "bundle",
+      "label": "esbuild bundle"
+    },
+    {
+      "id": "bundle-to-vercel",
+      "from": "bundle",
+      "to": "vercel",
+      "label": "public/ on push",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ui-to-proxy",
+      "from": "web-ui",
+      "to": "edge-proxy",
+      "label": "import a deck URL"
+    },
+    {
+      "id": "ui-to-supabase",
+      "from": "web-ui",
+      "to": "supabase",
+      "label": "sign-in, saved decks",
+      "labelAt": [
+        835,
+        260
+      ]
+    },
+    {
+      "id": "guard-catalogue",
+      "from": "guards",
+      "to": "catalogue",
+      "label": "rule-refs · legend-lines",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "via": [
+        [
+          1165,
+          515
+        ],
+        [
+          175,
+          515
+        ]
+      ],
+      "labelAt": [
+        600,
+        503
+      ]
+    },
+    {
+      "id": "guard-bundle",
+      "from": "guards",
+      "to": "bundle",
+      "label": "web-payload",
+      "variant": "security",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "labelAt": [
+        1165,
+        322
+      ]
+    },
+    {
+      "id": "guard-ui",
+      "from": "guards",
+      "to": "web-ui",
+      "label": "a11y · xss · headers",
+      "variant": "security",
+      "fromSide": "left",
+      "toSide": "right",
+      "via": [
+        [
+          1000,
+          447
+        ],
+        [
+          1000,
+          197
+        ]
+      ],
+      "labelAt": [
+        880,
+        385
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "The match path",
+      "items": [
+        "cards.json is built from Riot's gallery API; no mirror is ever a source of card text",
+        "CardIndex.equivalents() folds a base code onto every printing sharing its name and type",
+        "generateVariants flattens needs/produces, then matchDeck sorts every variant into six buckets"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Authored, not generated",
+      "items": [
+        "715 combo entries and 197 synergy rules are hand-written",
+        "The 81 walk documents under docs/phase0/walks are their evidence",
+        "A synergy rule is verified once by hand; its instances are matched by text"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Edges that failed silently",
+      "items": [
+        "A field src/ reads and WEB_CARD_FIELDS omits is undefined in production, green in every test",
+        "vercel.json is generated by build-headers.mjs and committed, never hand-edited",
+        "public/ is gitignored build output; api/deck-url.ts is the only code on a server"
+      ]
+    }
+  ]
+}
