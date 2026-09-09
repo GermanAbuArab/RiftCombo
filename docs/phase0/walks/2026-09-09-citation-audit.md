@@ -1,0 +1,203 @@
+# Citation audit — the 234 sources that carried a url and no `accessed` date
+
+**Session** rc-citations, 2026-09-09. **Issue** #137. **Staging file** `/tmp/rc-walks/rc-citations.json`
+(225 patches). This session does **not** own `data/combos.json`; the manager applies.
+
+`accessed` is defined in `src/types.ts:91-92` as *"Date somebody on this project opened the url and read
+the quote there."* Without it a `url` is a link somebody pasted, and CLAUDE.md is explicit that a URL
+you did not read is not a citation. That is what this audit closes.
+
+---
+
+## 1. The measurement, which is not the one the issue title states
+
+Issue #137 says "20 across 12". Measured over `data/combos.json` at 714 entries on 2026-09-09:
+
+| | count |
+|---|---|
+| sources carrying a `url` | 372 |
+| of those, **missing `accessed`** | **234, across 222 entries** |
+
+The number grew with the catalogue, which is expected. What is **not** what the issue implies is the
+SHAPE of it. Grouped by host:
+
+| host | rows | what it is |
+|---|---|---|
+| `github.com` | **224** | this repo's OWN issues, 32 distinct (#11 … #168). `kind: "agent"` ×220, `manual-walk` ×4 |
+| `old.reddit.com` | **9** | the real external debt |
+| `riftbound.gg` | **1** | one deck page |
+
+So this was never 234 unread external pages. It is 224 internal provenance links, which are readable
+in one `gh issue view` each, plus **ten** external rows — which is the "10 unreachable citations"
+already recorded in #137 (9 Reddit + 1 riftbound.gg). The debt was real but the framing overstated it
+by an order of magnitude, and the 224 turned out to be checkable rather than merely assertable.
+
+## 2. Result
+
+| | rows |
+|---|---|
+| **opened and verified → patch staged** | **225** |
+| still undated (Reddit, closed to this machine) | 9 |
+
+All 225 verified against the source itself, each with a verbatim `quote` and a `note` recording what
+was checked. `.scratch/rc-citations/validate.mjs` re-run immediately before reporting: 225 patches,
+225 targets OK, 0 problems, 0 duplicate keys.
+
+## 3. Two probes that lied, both caught, both in the same shape
+
+CLAUDE.md's standing rule is that an absence is a measurement and a measurement made with the wrong
+anchor is not one. This walk hit that twice, and both are worth recording because the wrong answer
+looked like a finding.
+
+**(a) `gh issue view --json body` omits the comments.** Issue #11 is 2,234 b of body and **61,321 b of
+comments across 32** — a 28× under-read, and every ruling this catalogue stands on (R1, R2, R6, R25,
+R28, R33) is in the COMMENTS, not the body. A first containment pass on body only reported 57 rows as
+having no trace of their entry. Re-fetched with `--json body,comments` (720,659 b across the 32
+issues), that fell to 38. **Always fetch `body,comments`.**
+
+**(b) A base-code probe misses an issue that writes card NAMES.** The remaining rows were then tested
+for the entry's `uses[].card` codes. Issue #89 records its candidates in prose — *"Ahri, Inquisitive +
+Nine-Tailed Fox + Fox-Fire — 104 listas"* — so `ahri-foxfire-might-threshold` scored 0/3 on codes and
+is in fact fully recorded. Re-run name-aware, 26 more rows resolved. **Probe on names AND codes.**
+
+After both corrections only **2** issue rows were left genuinely unaccounted for (§5.2).
+
+## 4. Method
+
+For each row: fetch the issue with `gh issue view <n> --json number,title,state,createdAt,body,comments`,
+then locate the passage that records the entry (by entry id, by card name, or by base code) and use
+that passage verbatim as the `quote`, with an ellipsis where it is cut. Scripts in
+`.scratch/rc-citations/` (gitignored): `extract.mjs`, `section.mjs`, `batch-*.mjs`, `validate.mjs`.
+
+Three source shapes came out of it, and they are **not** interchangeable:
+
+1. **Candidate-list issues** (#32, #34, #36, #40, #46, #47, #48, #56, #58, #59, #61, #62, #89, #95,
+   #97, #100, #102, #106, #107, #111, #115, #116, #117, #118, #141, #146, #150) carry a section per
+   candidate, usually headed with the entry id — `## C4 — \`reksai-sarcophagus-accelerated-recursion\` ·
+   ENGINE · Fury/Chaos`. Strong evidence; the quote is that section.
+2. **The rulings issue** (#11). The claim is a verdict, not a card, so a card probe is meaningless.
+   All eight rows verified against the user's own comment text: R2 = A, R6 = A, R25 = A, R28 = A.
+3. **Work orders** (#153, #161, #168, and the #146 pair in §5.2). These COMMISSION a walk and name
+   their own deliverable; they do not and never will contain the entry's cards. For those the check is
+   the deliverable — e.g. all 14 #161 rows are recorded in
+   `docs/phase0/walks/2026-09-06-finisher-feeders.md` (64,334 b), which #161's own Deliverable section
+   names. A containment check against a work order is a false negative by construction.
+
+## 5. Findings
+
+### 5.1 The one non-Reddit external source opens, through the API
+
+`jhin-virtuoso-ekko-malzahar-vi` source [2] is `riftbound.gg/decks/the-jhinpendium-infinite-ekko-combo-primer/`,
+whose `/decks/` pages sit behind a Cloudflare challenge. It reads fine through dotgg:
+
+```
+https://api.dotgg.gg/cgfw/getdeck?game=riftbound&slug=the-jhinpendium-infinite-ekko-combo-primer
+```
+
+**`game=riftbound` is REQUIRED** — without it the API answers `Hacker! Go home (1)!` with HTTP 200,
+which is easy to misread as a dead endpoint. New fact, not previously in CLAUDE.md.
+
+VERIFIED, not merely opened: **all eight** of the entry's `uses[]` cards are in the registered list,
+checked with the project's own `CardIndex.resolveCode` / `equivalents` rather than by eye — the legend
+`UNL-181 Virtuoso` is present as its second printing **`UNL-226`**, and `UNL-009-P` / `OGN-083-P` /
+`SFD-088A` are the promo and alt-art spellings of the riftbound.gg dialect CLAUDE.md records from #90.
+Author `Enhame` matches the Reddit author `Enhame_` and the Google Doc primer already cited at index 1,
+and the deck's own description links that same Google Doc. Posted 2026-07-10, 323 views, Standard.
+
+### 5.2 Two sources that opened and do NOT say what the entry claims
+
+`amateur-recital-free-evacuation` [3] and `voidreaver-khazix-xp-removal` [3] both cite issue **#146**.
+That issue was read end to end (12,957 b, zero comments) and contains **no mention of either entry or
+any of its cards** — `Amateur`, `Recital`, `UNL-207`, `Voidreaver`, `UNL-201`, `Kha'Zix`, `UNL-143`,
+`UNL-119` all return 0. It is scoped to chaos-first UNITS, and `UNL-207 Amateur Recital` is a
+battlefield.
+
+It is **not** a fabricated citation, and the entries are not damaged:
+
+- Each entry's PRIMARY provenance is a different issue and is intact — #102 candidate 1 for the
+  Recital, #116 candidate C1 for Voidreaver, both cited separately with their own walk docs.
+- The #146 row travels as a PAIR with `docs/phase0/walks/2026-09-06-chaos-units-lens.md` at [4], and
+  that walk (27,755 b) does discuss both: it confirms the Recital (*"`amateur-recital-free-evacuation`
+  — YES, and this entry alone already cited 170.11.c correctly"*) and folds the refuted
+  `snapjaws-xp-mill` into Voidreaver as a notable (*"§1.5 Where it does belong: a notable on
+  `voidreaver-khazix-xp-removal`"*).
+
+So the source row stands for the WALK, and only the issue half is wrong. Staged with `accessed` and
+the discrepancy recorded in the patch note rather than deleted. **Manager's call**: the cleaner fix is
+to retitle that source after the walk instead of the issue.
+
+### 5.3 A verbatim quote citing two paragraph numbers that do not exist
+
+`jhin-fiora-facebreaker-recall` source [5] is the one Reddit row that WAS read (2026-09-04, before
+Reddit closed) and it carries the OP's in-thread correction verbatim:
+
+> I was thinking the Jhin moving back to base is a move. But 444.1.a.2 - specifies that its a recall
+> (during combat cleanups) - not a move, and Rule 432 says that recalls are not "moves" and do not
+> trigger move abilities.
+
+Checked against `data/Riftbound-Core-Rules-2026-07-16.txt`: **444 is "Pay"** (*"Paying a resource is
+the act of removing that resource from your Rune Pool"*) and has no `.1.a.2`; **432 is "Doubling"**.
+The commenter is right on the substance and wrong on both numbers — almost certainly an older
+numbering. The correct paragraphs are the ones the entry's own reasoning already cites, **456**
+(*"Recalls are not Moves."*) and **456.1** (*"They do not cause Triggered Abilities to trigger that are
+triggered by Move actions."*), with **455** defining the Recall itself.
+
+The quote must stay verbatim. But nothing in the entry says so, so the next reader who looks up
+444.1.a.2 will find "Pay" and conclude the entry is broken. **Recommend** a one-line note on that
+source. This is the only broken rule reference found: over the six Reddit-citing entries, 45 rule
+references were checked against the rules file and this was the single failure.
+
+### 5.4 A duplicate source row, one copy read and one not
+
+`jhin-fiora-facebreaker-recall` cites `old.reddit.com/.../1ryj4fw/` **twice** — at [0] with no quote
+and no date, and at [5] with `accessed: 2026-09-04` and the quote above. Same thread, read once. I did
+**not** date [0] from [5]: what was read on 2026-09-04 was the OP's correction, and I cannot assert
+that whoever read it also read the flowcharts [0]'s title describes. **Manager's call**: merge the two
+rows, or drop [0] as redundant.
+
+### 5.5 Clean results worth recording, so nobody re-checks them
+
+- **Issue #97's three refinements were all applied.** #97 proposed refinements to
+  `corrupted-dragon-mass-evacuate` (Eclipse / Decree of Insight), `faefolk-challenger-forced-attacker`
+  (Heart of Dark Ice) and `blade-dancer-caitlyn-choose-ready` (702.2.a). All three are in the entries
+  today. CLAUDE.md's standing "grep for diagnosed-but-unapplied corrections" check passes here.
+- **No issue refutes an entry it is cited for.** All 173 extracted passages were scanned for
+  refutation language; 14 matched and every one is a false positive — the issue is *answering* a
+  refutation, or "DEAD" is a table row about a different card. The two `shen-duo-mutual-hold` and
+  `corrupted-dragon-mass-evacuate` hits were read by hand and are a refutation-to-walk note and a
+  refinement section respectively, both of which the entries already carry.
+- **Every Reddit-citing entry stands without Reddit.** All six carry a hand walk plus at least one
+  dated, readable source for the same claim: a Riot FAQ for `leblanc-zilean-reflection-doubling`, two
+  YouTube walkthroughs for `gemdragon-henge-vi-blind-fury`, the Rift Mana decklist for
+  `garen-fiora-malzahar-facebreaker-recruits`, the author's own Google Doc for
+  `jhin-virtuoso-ekko-malzahar-vi`, YouTube + TCGplayer for `pack-of-wonders-bewitching-discard`,
+  YouTube for `jhin-fiora-facebreaker-recall`. No `verified` entry depends on an unreadable page.
+
+## 6. Surviving debt — 9 rows, and why they are not dated
+
+Reddit is closed to this machine (CLAUDE.md, 2026-09-06: curl, r.jina.ai, headless Playwright, headed
+Chrome with cookies and the redlib/safereddit mirrors all answer 403 or a CAPTCHA). **Not retried this
+session, by standing order.** Faking a date is the one thing this audit exists to prevent, so these
+keep no `accessed`:
+
+| entry | idx | thread |
+|---|---|---|
+| `jhin-fiora-facebreaker-recall` | 0, 1, 2 | `1ryj4fw` (dup of [5], read 2026-09-04), `1s2defo`, `1tlk9n3` |
+| `garen-fiora-malzahar-facebreaker-recruits` | 0 | `1r7wh0p` |
+| `jhin-virtuoso-ekko-malzahar-vi` | 0 | `1uv0brd` |
+| `gemdragon-henge-vi-blind-fury` | 0, 1 | `1tefqto`, `1vro7dd` |
+| `leblanc-zilean-reflection-doubling` | 0 | `1sv3yjk` |
+| `pack-of-wonders-bewitching-discard` | 1 | `1uj028b` |
+
+These rows carry no `quote`, so none of them is holding up a textual claim; they are community-report
+provenance, and §5.5 shows every one of the six entries is independently evidenced. #137 should be
+narrowed to these 9 and left open until the user pastes the threads.
+
+## 7. One thing to weigh before applying
+
+`web/main.ts:1` imports the whole of `data/combos.json` (5,368,707 b) into `public/app.js`
+(5,457,177 b), so anything added here is downloaded by every user. The 225 patches add **~157 KB, 3.0%**
+if the quotes land, or **5.5 KB** if only `accessed` is applied and the quotes are dropped.
+Recommend applying the quotes: a `url` with a date but no evidence is most of the way back to the
+problem this audit closes. Note that `Source` has no `note` field (`src/types.ts:84`), so the patch
+notes are manager metadata and never reach the file.
