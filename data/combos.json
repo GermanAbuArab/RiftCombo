@@ -8208,7 +8208,10 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "board-protection",
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains are Order and Chaos, and the pool holds exactly ONE such legend: VEN-155 Heart of the Tempest."
@@ -8279,7 +8282,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Mono-Calm: any Calm legend."
@@ -14779,7 +14784,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains are Blade Dancer's own, Calm and Chaos; Irelia is Calm and Defiant Dance is Calm/Chaos.",
@@ -15601,7 +15608,10 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "combat-might",
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Radiant Dawn is Calm/Order and covers 21 of the pool's 29 stun lines (103.1.b); Facebreaker and Call to Glory are Order, Rune Prison is Calm.",
@@ -17869,7 +17879,9 @@
         "infinite-recycle",
         "token-body-engine"
       ],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Mind and Order — the same four legends lux-infinite-energy already requires (OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity - Starter, SFD-201 Chem-Baroness, UNL-199 Deceiver). Karma is mono-Order, so 103.1.b.3 lets her in without touching the deck's Domain Identity."
@@ -18099,7 +18111,10 @@
         "token-body-engine",
         "infinite-recycle"
       ],
-      "produces": [],
+      "produces": [
+        "board-protection",
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Mind and Order — the four legends lux-infinite-energy already forces (OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity - Starter, SFD-201 Chem-Baroness, UNL-199 Deceiver). Sett, Kingpin and Karma, Channeler are both mono-Order, so 103.1.b.3 admits them without touching the deck's Domain Identity.",
@@ -27308,7 +27323,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Mind + Order: Spectral Centaur is mono-Mind and Deathgrip mono-Order, so the legend must hold both and the pool prints exactly four names — OGN-265 Herald of the Arcane, OGS-021 Lady of Luminosity, SFD-201 Chem-Baroness and UNL-199 Deceiver (103.1.b.2).",
@@ -30102,7 +30119,10 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "board-protection",
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Any Body legend: both cards are mono-Body (103.1.b.3) and neither is a Signature card, so 103.2.d.2 forces nothing.",
@@ -30982,7 +31002,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Body + Order: Kinkou Monk is mono-Body and Vanguard Helm mono-Order (103.1.b.3), so the legend must hold both and the pool prints exactly five names — OGN-269 The Boss, OGS-023 Might of Demacia - Starter, SFD-205 Grand Duelist, UNL-203 Keeper of the Hammer and VEN-153 Matriarch of War (103.1.b.2).",
@@ -31052,7 +31074,10 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "combat-might",
+        "unit-delivery"
+      ],
       "prerequisites": {
         "easy": [
           "Any Calm legend: both cards are mono-Calm (103.1.b.3) and neither is a Signature card, so 103.2.d.2 forces nothing.",
@@ -32690,7 +32715,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Any Body legend: all three cards are mono-Body (103.1.b.3) and none is a Signature card, so 103.2.d.2 forces nothing.",
@@ -33251,7 +33278,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Purifier IS the legend, SFD-183 or SFD-241 (Fury/Body), so this is a one-legend line by construction. Doran's Blade and Veteran Poro are both mono-Body, so 103.1.b.3 is satisfied and the Fury half of the identity is free for the rest of the deck."
@@ -34254,7 +34283,10 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "board-protection",
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Any Order legend: both cards are mono-Order (103.1.b.1) and neither is a Signature card, so 103.2.d.2 forces nothing.",
@@ -34323,7 +34355,10 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "board-protection",
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Any Calm legend: all three cards are mono-Calm (103.1.b.1) and none is a Signature card, so 103.2.d.2 forces nothing.",
@@ -34529,7 +34564,10 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "board-protection",
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Any Order legend: both cards are mono-Order (103.1.b.1) and neither is a Signature card, so 103.2.d.2 forces nothing.",
@@ -35348,7 +35386,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Wizened Elder is mono-Calm and Bilgewater Bully is mono-Body, so 103.1.b.2 fixes the identity at exactly Calm/Body: OGN-257/OGN-304 Blind Monk, SFD-193/SFD-245 Grandmaster at Arms, UNL-191/UNL-231 Wuju Master, OGS-019 Wuju Bladesman - Starter (restricted in 2v2, legal in constructed). Running only one of the two payoffs frees the other half of the identity."
@@ -37323,7 +37363,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Calm + Mind: Sterak's Gage is mono-Calm and Gearhead mono-Mind (103.1.b.3), so the legend must hold both and the pool prints exactly four names — OGN-255 Nine-Tailed Fox, SFD-189 Fire Below the Mountain, UNL-189 Bashful Bloom and VEN-145 Curator of the Sands (103.1.b.2).",
@@ -37605,7 +37647,9 @@
       "needs": [
         "conquer-engine"
       ],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Grandmaster at Arms IS the legend, SFD-193 or SFD-245 (Calm/Body), so this is a one-legend line by construction. Royal Entourage is mono-Calm and Warmog's Armor mono-Body, so 103.1.b.3 holds with nothing to spare."
@@ -37837,7 +37881,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Peak Guardian is mono-Order and Stand United mono-Calm, so 103.1.b.1 needs a Calm/Order legend, and the census gives four names: OGN-261 / OGN-306 Radiant Dawn, SFD-197 / SFD-247 Emperor of the Sands, UNL-195 / UNL-233 Green Father, VEN-147 / VEN-193 Eye of Twilight. Neither card is Signature, so 103.2.d.2 imposes nothing."
@@ -38238,7 +38284,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Both cards are mono-Order, so 103.1.b.3 admits any legend with Order in its pair: SFD-201/SFD-249 Chem-Baroness, UNL-199/UNL-235 Deceiver, SFD-197/SFD-247 Emperor of the Sands, VEN-147/VEN-193 Eye of Twilight, SFD-205/SFD-251 Grand Duelist, UNL-195/UNL-233 Green Father, OGN-253/OGN-302 Hand of Noxus, VEN-155/VEN-197 Heart of the Tempest, OGN-265/OGN-308 Herald of the Arcane, UNL-203/UNL-237 Keeper of the Hammer, OGS-021 Lady of Luminosity, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-187/UNL-229 Piltover Enforcer, OGN-261/OGN-306 Radiant Dawn, OGN-269/OGN-310 The Boss, SFD-187/SFD-243 Void Burrower."
@@ -38599,7 +38647,9 @@
       "needs": [
         "conquer-engine"
       ],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Adaptatron is mono-Calm and Treasure Hoard is Colorless, so 103.1.b.1 is satisfied by any legend with Calm as one of its two domains. Neither card is Signature."
@@ -38800,7 +38850,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Petty Officer is mono-Order and Cleave is mono-Fury, so 103.1.b.2 fixes the identity at exactly Fury/Order: OGN-253/OGN-302 Hand of Noxus, UNL-187/UNL-229 Piltover Enforcer, SFD-187/SFD-243 Void Burrower."
@@ -39590,7 +39642,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "combat-might"
+      ],
       "prerequisites": {
         "easy": [
           "Purifier IS the legend, SFD-183 or SFD-241 (Fury/Body), so this is a one-legend line by construction. Rell, Magnetic and Serrated Dirk are both mono-Fury, so 103.1.b.3 holds and the Body half is free for the rest of the deck."

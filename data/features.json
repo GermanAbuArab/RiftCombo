@@ -113,9 +113,9 @@
     {
       "id": "xp-engine",
       "name": "XP engine",
-      "status": "HELPER",
+      "status": "STANDALONE",
       "uncountable": false,
-      "description": "Repeatable XP for a [Level N] rung. An input, because 824.1.d makes a Level ability Inactive the moment the balance falls below N and 730.2 makes spending XP your own act - so a Level payoff needs a faucet and no sink."
+      "description": "Repeatable XP for a [Level N] rung. An input, because 824.1.d makes a Level ability Inactive the moment the balance falls below N and 730.2 makes spending XP your own act - so a Level payoff needs a faucet and no sink. STANDALONE rather than HELPER (corrected 2026-09-09): web/main.ts filters the drawer Payoff pills to STANDALONE, and a status of HELPER would have left the five XP entries with no payoff pill and no outcome node while no consumer exists. A feature may be both shown and consumed - infinite-energy is STANDALONE and is needed sixteen times."
     },
     {
       "id": "combat-might",
