@@ -201,3 +201,56 @@ if the quotes land, or **5.5 KB** if only `accessed` is applied and the quotes a
 Recommend applying the quotes: a `url` with a date but no evidence is most of the way back to the
 problem this audit closes. Note that `Source` has no `note` field (`src/types.ts:84`), so the patch
 notes are manager metadata and never reach the file.
+
+---
+
+## 8. The other half of the file's provenance: the sources with no url
+
+Added after the first report. The audit above covers the 372 sources that carry a `url`; the file
+holds **1,675 more that carry none** — `manual-walk` ×774, `riot` ×769, `agent` ×131, `article` ×1.
+(The first report to the manager said "138" for this population; that was wrong and is corrected here.
+The right figure is 1,675, i.e. 2,047 sources in total across the catalogue.)
+
+These cannot take an `accessed` date, but they are not therefore unauditable: **834 of them name a
+`docs/` path in the title**, across **86 distinct paths**, and every path is checkable against disk.
+Twenty-one distinct issue numbers are named in those titles as well (#11, #21, #41, #44, #45, #46,
+#47, #63, #98, #102, #118, #153, #154, #155, #161, #169, #170, #171, #173, #180, #191).
+
+**Result: 21 of 21 issues exist. 85 of 86 paths exist. One does not.**
+
+### 8.1 A citation pointing at a walk document that has never existed
+
+`charm-nasus-evacuation-conquer` source [1] names
+`docs/phase0/walks/2026-09-06-amateur-recital-evacuation.md`. That file is not on disk and
+`git log --all` over the path returns nothing — it has never been committed to this repository. It is
+the only broken path of the 86.
+
+The claim it carries is real and is not lost. It reads *"issue #102 — evacuating a garrison is not yet
+a Conquer; the body has to walk in"*, and the actual issue #102 walk,
+`docs/phase0/walks/2026-09-06-battlefield-lens-candidates.md` (26,546 b), states it verbatim at lines
+119–122:
+
+> **The opponent loses Control. Nobody gains it.** The battlefield is now unoccupied and uncontrolled,
+> which is exactly **170.11.c** *"Battlefields can be 'open.' This means they are unoccupied and
+> uncontrolled."*
+> 5. **You still need a body, and it has to walk in during your Main Phase.**
+
+with 323.6, 348.2.a and 170.11.c all present — the same paragraphs CLAUDE.md attributes to the #102
+walk. That file is also what the sibling entry `amateur-recital-free-evacuation` cites for issue #102,
+so this is one mistyped path, written from the topic rather than from disk.
+
+The entry is undamaged: its source [0] names
+`docs/phase0/walks/2026-09-06-engine-payoff-walk.md, section 21`, which exists and records the entry.
+The repoint is staged separately, in `/tmp/rc-walks/rc-citations-fixes.json` — deliberately NOT in the
+`accessed` staging file, because it is a title rewrite and not a date, and mixing the two invites a
+mis-apply.
+
+### 8.2 A probe that lied for the third time, caught before it was reported
+
+Checking the 21 issue numbers, a shell loop over an unquoted variable collapsed the whole list into a
+single argument, and `gh issue view` reported **all 21 as missing**. That is a spectacular-looking
+finding and it is entirely an artifact. Re-run one number per iteration, all 21 exist. Third instance
+in one session of the same failure — the instrument, not the repository, was wrong — after the
+body-only fetch (§3a) and the base-code probe (§3b). The standing lesson holds and is worth stating in
+its strongest form: **a measurement that reports a large, surprising absence should be re-run with a
+different instrument before it is written down, let alone reported.**
