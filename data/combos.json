@@ -7003,7 +7003,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Legend's Domain Identity includes Order (103.1.b.3); mono-Order runs it.",
@@ -7568,7 +7570,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains cover Calm and Order: OGN-261 Radiant Dawn, SFD-247 Emperor of the Sands, UNL-195 Green Father or VEN-147 Eye of Twilight. Eye of Twilight hands out [Tank] for an exhaust each turn, so under her the second Galio is optional.",
@@ -10505,7 +10509,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Legend domains must cover Calm and Chaos: OGN-259 Unforgiven, SFD-195 Blade Dancer or UNL-193 Gloomist. None carries a ban marker.",
@@ -15617,7 +15623,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Every card here is mono-Chaos, so any Chaos legend runs the line.",
@@ -16136,7 +16144,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Gloomist is Calm/Chaos: Vex, Apathetic is Chaos, Vex, Mocking and Eclipse Herald are Calm. 103.1.b breaks on any other legend pairing here.",
@@ -17580,7 +17590,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Any legend whose domains include Fury. Brynhir is mono-Fury, so she fits every Fury pair."
@@ -17637,7 +17649,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Mono-Calm, so any legend carrying Calm runs both. In the Calm/Order shell of tianna-wildclaw-point-lock that is OGN-261 Radiant Dawn, SFD-247 Emperor of the Sands, UNL-195 Green Father or VEN-147 Eye of Twilight.",
@@ -17707,7 +17721,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Both bodies are cheap for what they do: 9 Energy and 1 Power for the pair, and the Saboteur adds his 3 Might to the attacking sum of 465.2.c rather than costing you a slot in the combat."
@@ -17767,7 +17783,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "UNL-190 Lilting Lullaby is a SIGNATURE card tagged Lillia, so 103.2.d.2 forces a Lillia legend that also covers calm + mind: UNL-189 Bashful Bloom — the only one. Domain-legal legends without the Lillia tag cannot run the list. (Rebuilt from the census by test/legend-lines.test.ts, 2026-09-07; an earlier line named legends that cannot hold a Lillia Signature card.)",
@@ -17900,7 +17918,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Mono-Calm, so any legend carrying Calm runs it, and the [Empower] cost asks specifically for Calm Power.",
@@ -17967,7 +17987,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Calm + Chaos, and the pool prints three such legends: UNL-193 Gloomist (Vex's own), OGN-259 Unforgiven and SFD-195 Blade Dancer.",
@@ -27828,7 +27850,10 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "card-advantage-engine",
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Chaos + Order, and the pool prints exactly ONE legend name holding both: VEN-155 / VEN-197 Heart of the Tempest (103.1.b.2). This is one of the three single-name domain pairs in the legend census, so the shell is forced.",
@@ -29031,7 +29056,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Bounty Hunter IS the legend, OGN-267 or OGN-309 (Body/Chaos), so the shell is fixed by the entry rather than chosen. Vilemaw's Lair is Colorless, so nothing in uses[] constrains it further."
@@ -32409,7 +32436,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "tempo-denial"
+      ],
       "prerequisites": {
         "easy": [
           "Helm of Suppression is mono-Calm and Mystic Vortex is Colorless, so 103.1.b.3 admits any legend with Calm in its pair: OGS-019 Wuju Bladesman - Starter, OGN-255/OGN-303 Nine-Tailed Fox, OGN-257/OGN-304 Blind Monk, OGN-259/OGN-305 Unforgiven, OGN-261/OGN-306 Radiant Dawn, SFD-189/SFD-244 Fire Below the Mountain, SFD-193/SFD-245 Grandmaster at Arms, SFD-195/SFD-246 Blade Dancer, SFD-197/SFD-247 Emperor of the Sands, UNL-189/UNL-230 Bashful Bloom, UNL-191/UNL-231 Wuju Master, UNL-193/UNL-232 Gloomist, UNL-195/UNL-233 Green Father, VEN-139/VEN-189 Rogue Assassin, VEN-145/VEN-192 Curator of the Sands, VEN-147/VEN-193 Eye of Twilight."
@@ -42144,7 +42173,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "board-protection"
+      ],
       "prerequisites": {
         "easy": [
           "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
@@ -43164,7 +43195,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "board-protection"
+      ],
       "prerequisites": {
         "easy": [
           "All cards are mono-Body, so 103.1.b.3 admits any legend with Body in its pair: SFD-203/SFD-250 Battle Mistress, OGN-257/OGN-304 Blind Monk, OGN-267/OGN-309 Bounty Hunter, VEN-141/VEN-190 Butcher of the Sands, VEN-149/VEN-194 Defender of Tomorrow, SFD-205/SFD-251 Grand Duelist, SFD-193/SFD-245 Grandmaster at Arms, UNL-203/UNL-237 Keeper of the Hammer, VEN-153/VEN-196 Matriarch of War, OGS-023 Might of Demacia - Starter, UNL-183/UNL-227 Pridestalker, SFD-183/SFD-241 Purifier, OGN-249/OGN-300 Relentless Storm, OGN-269/OGN-310 The Boss, UNL-201/UNL-236 Voidreaver, OGS-019 Wuju Bladesman - Starter, UNL-191/UNL-231 Wuju Master.",
@@ -46390,7 +46423,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "board-protection"
+      ],
       "prerequisites": {
         "easy": [
           "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
@@ -47916,7 +47951,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "board-protection"
+      ],
       "prerequisites": {
         "easy": [
           "Both cards are mono-Calm, so 103.1.b.3 admits any legend with Calm in its pair.",
@@ -50310,7 +50347,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "board-protection"
+      ],
       "prerequisites": {
         "easy": [
           "OGS-020 Highlander is a SIGNATURE card tagged Master Yi, so 103.2.d.2 forces a Master Yi legend whose two domains cover calm + body - and the census prints TWO such names, not one: OGS-019 Wuju Bladesman - Starter and UNL-191 / UNL-231 Wuju Master. Both are Calm/Body and both are legal here.",
@@ -51745,7 +51784,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "board-protection"
+      ],
       "prerequisites": {
         "easy": [
           "Allay is mono-Calm and the Monument mono-Body, so 103.1.b.1 needs a Calm/Body legend and the census gives four names: Blind Monk (OGN-257), Wuju Bladesman - Starter (OGS-019), Grandmaster at Arms (SFD-193), Wuju Master (UNL-191).",
@@ -52170,7 +52211,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "board-protection"
+      ],
       "prerequisites": {
         "easy": [
           "Mutated Mouser is mono-Calm and Fortified Position is colourless, so 103.1.b.1 is satisfied by any legend carrying Calm - the census gives sixteen names, among them Nine-Tailed Fox (OGN-255), Blind Monk (OGN-257), Unforgiven (OGN-259), Radiant Dawn (OGN-261) and Fire Below the Mountain (SFD-189).",
@@ -52363,7 +52406,9 @@
         }
       ],
       "needs": [],
-      "produces": [],
+      "produces": [
+        "board-protection"
+      ],
       "prerequisites": {
         "easy": [
           "Ki Barrier is mono-Order and Void Gate is colourless, so 103.1.b.1 is satisfied by any legend carrying Order - the census gives seventeen names, among them Hand of Noxus (OGN-253), Radiant Dawn (OGN-261), Herald of the Arcane (OGN-265), The Boss (OGN-269) and Matriarch of War (VEN-153).",
