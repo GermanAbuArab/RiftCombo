@@ -1379,3 +1379,183 @@ cost** — it accepts either half of the identity. That is real deckbuilding ari
 never stated, but it enables no specific line, so it is recorded here rather than forced into an entry.
 The obvious candidate, `OGN-248 Icathian Rain` (Fury/Mind, E7 **P3**, six Deal actions), is already
 walked as `icathian-rain-annie-ravenborn-six-deal-actions`.
+
+---
+
+# Batch 16 (2026-09-09) — the Baron Pit is a third battlefield, and [Legion] is a replacement
+
+Lane narrowed by rc-manager5 mid-batch from 100–499 to **100–299**; rc-walk-mid
+(`8ab9f63f-43c4-447b-bb68-6ff67ca292bc`) takes 300–499. Nothing of mine above 299 was staged — §57
+below hands over what I had read there so that lane does not pay for it twice.
+
+Catalogue on resume: **715 entries + 197 synergy rules.** Staging file `/tmp/rc-walks/rc-walk-rules.json`
+was emptied first (it held batch 15's two entries, both already merged into `data/combos.json` —
+checked by id before deleting).
+
+| id | sub-rules opened | class |
+|---|---|---|
+| `baron-pit-illaoi-third-battlefield-holds` | **187.9, 187.10, 170.2.a, 170.2.b, 170.3, 170.4, 185.2.e**, 485.4, 471.1.b.1 | ENGINE |
+| `noxian-guillotine-recurve-bow-delayed-kill` | **158.2, 137.2, 137.3.a**, 812.1.c, 417.1.a | ENGINE |
+| `baron-pit-fae-porter-reach-from-anywhere` | **187.9, 144.4, 144.4.a, 144.4.b**, 144.4.c.1, 449, 449.1 | ENGINE |
+
+`validateCombos` over the merged catalogue: **718 entries, 0 errors.** The two `test/legend-lines.test.ts`
+checks replicated over my three entries: **34 legend base codes checked, 0 defects.** Every rule id cited
+exists as a heading in the Core Rules (anchored `^[[:space:]]*`, so the 89 form-feed headings are visible)
+and every `quote` field is verbatim after whitespace and curly-quote normalisation — script
+`.scratch-rules/verify16.mjs`. Legality for all six cards and the `UNL-T01` token checked against
+`data/legality.json` on 2026-09-09: none banned, none restricted (the file's one restricted row is
+`OGS-019 Wuju Bladesman - Starter`, 2v2, which is not in any of these lists). `node .scratch/have.mjs`
+was run on all three card sets before writing; all three returned *"no entry uses that card set or a
+subset of it"*. None of the three is a loop-financed twin.
+
+## 52. 187.9 — the pool can put a THIRD battlefield on a Duel table, and this project's "two Scores a turn" ceiling is a setup parameter
+
+`485.4` reads **"Battlefield Count: 2"** and `485.5` places one from each player. That number, read with
+`470` (*"A player may only Score, from either method, once per Battlefield per turn"*), is where the
+standing claim in `CLAUDE.md` — *two Conquers per turn is the hard ceiling in a Duel* — comes from. It is
+a **setup** parameter, not a cap.
+
+`UNL-147 Baron Nashor` (Chaos, E10 P3 M12) prints *"As you play me, add the Baron Pit battlefield token to
+the board if it's not there already. If you do, I enter there."* The rules define the token themselves —
+**187.9**: *"The Baron Pit battlefield token is a domainless battlefield token with “Units can move here
+from anywhere.”"* — and `UNL-T01 Baron Pit` is printed in the pool with its own parenthetical, *"(You can't
+start the game with a token battlefield.)"*, so the Baron is the only route to it.
+
+**The tension with 170.2 is real and 002 resolves it.** `170.2.a` *"Battlefields are not played during the
+course of regular play."* `170.2.b` *"Battlefields are established at the start of a game and remain in
+place for the duration of regular play."* Neither is a prohibition on an effect adding one, and `002` —
+*"Card text supersedes rules text"* — settles it either way.
+
+**Once there, nothing in the pool removes it**, and that is three separate paragraphs: `170.3`
+*"Battlefields cannot be Killed during the course of regular play."*, `170.4` *"Battlefields cannot be
+Moved."*, and `185.2.e`'s worked example, which ends *"Token battlefields and legends can’t be recycled."*
+`186.1`'s usual token trap never engages because there is no route to a Non-Board Zone.
+
+**He conquers what he creates.** `369.3` makes his last sentence a Replacement Effect on where he enters;
+`190.3.a.1` applies Contested to *"units moving to or being played to a battlefield"*; with no opposing
+units `344.2` opens a Showdown at the next Cleanup rather than `323.9` staging a Combat; `348.2.a`
+establishes Control and `348.2.a.1` reads *"This results in a Conquer **if that player has not yet scored
+that Battlefield this turn**."* — which a Battlefield created this turn has not.
+
+**The price, and who pays it.** `471.1.b.1`: *"If the player has Scored every Battlefield this turn, that
+player Gains the Final Point. If the player has not Scored every Battlefield this turn, that player draws a
+card instead."* EVERY Battlefield — so with the Pit on the table a **Conquer**-based eighth point needs
+three. `471.1.a.1` is the escape: *"Notably, points Gained from sources that are not Conquer are not
+beholden to these restrictions"*, and `469` makes Hold a Score that is not a Conquer. **A Hold deck adds
+the Pit at no cost whatsoever.**
+
+`VEN-109 Illaoi, Prophet of the Great Kraken` is the partner because `323.6` strips Control from any
+battlefield without your units on it, so three battlefields need three garrisons; `471.2.b` triggers her
+Hold ability at the battlefield that Held, and `187.10` says what she makes — *"A 1 [M] Tentacle token is a
+domainless unit token with 1 Might and the Bilgewater tag."* A 1-Might body is the fragile size (`143.2.a`
+against `OGN-133 Flurry of Blades`), and the Baron's own fourth sentence, *"Other friendly units have +2
+Might"*, is the fix, board-wide and permanent.
+
+## 53. 187.9 again, from the movement side — the one DESTINATION-shaped movement grant in the pool
+
+`144.4` restricts the Standard Move to two shapes: `144.4.a` *"Units may move from their Base to a
+Battlefield."* and `144.4.b` *"Units may move from a Battlefield to their Base."* So battlefield → battlefield
+is two turns, because `144.2` makes the exhaust the cost and `415.3.a` returns it only at your own Awakening.
+The pool's answer is normally `144.4.c.1` — *"Units with Ganking may use their Standard Move to Move from
+Battlefield to Battlefield"* — which `810.1.c.3` scopes to *"only new options for the Standard Move"* and which
+is granted **per unit**.
+
+The Pit is granted **per destination**: every unit both players control, no keyword, no cost, permanently.
+**Measured 2026-09-09**: a sweep of `data/corpus_flat.txt` for `from anywhere` returns seven rows and only
+`UNL-T01 Baron Pit` (plus `UNL-147`'s reminder of it) is about **moving** — the other five are about
+**playing** a card from a zone other than hand (`SFD-010 Void Drone`, `SFD-029 Rek'Sai, Breacher`,
+`SFD-164 Drag Under`, `VEN-022 Endless Riches`, `VEN-155 Heart of the Tempest`).
+
+`190.6.d` cannot blank it: that paragraph blanks a battlefield's instructions through the word **"you"**, and
+the Pit's clause says *"Units"*. It is live while uncontrolled and it serves the opponent too — the entry says
+so rather than hiding it.
+
+`SFD-125 Fae Porter` is what makes the leg worth double: his own arrival pays `144.2`'s exhaust, and the unit
+he brings moves **by effect** (`449`, whose `449.1` leaves destination legality to the source), which
+`420.3.a`'s exhaust cost never touches because that cost belongs to the Standard Move alone (`420.2.b`). Two
+bodies for one exhaust and one Chaos Power, and the passenger may come straight off your other battlefield.
+
+**The honest limit, stated in the entry:** the Pit does not multiply moves — `144.2` and `415.3.a` still allow
+one a turn per body. It makes each move reach twice as far, which is the difference between a *"when I move to
+a battlefield"* payoff firing every turn and every other turn.
+
+## 54. 158.2 — [Legion] REPLACES the earlier instruction, and Riot works the card word for word
+
+**158.2**: *"If a later part of a spell applies a Replacement Effect that alters earlier parts of the spell,
+apply those replacement effects as appropriate."* Its worked example is `OGN-254 Noxian Guillotine`'s printed
+text: *"A spell says “Choose a unit. Kill it the next time it takes damage this turn.” and “[Legion] — Kill it
+now instead. (Get the effect if you've played another card this turn.)” If the Legion condition is satisfied,
+the unit is killed immediately and the instruction to kill it the next time it takes damage is ignored, **even
+if the unit remains on the board somehow**."*
+
+That last clause is the finding. With [Legion] live, a would-die replacement on the target — `SFD-051 Guardian
+Angel`, `OGN-077 Zhonya's Hourglass`, any heal/exhaust/recall shield — eats the immediate kill **and the
+delayed one is already gone**. The spell has done nothing.
+
+**And [Legion] is not a choice, it is play order.** `812.1.c`: *"As long as a card different than the one with
+the Legion ability has been Finalized by you on the same turn then the Dependent Ability is Active on the card
+with Legion."* `812.2` makes one card satisfy every instance you control. Nothing lets you decline it — so
+Guillotine **first** in the turn keeps the delayed mode, Guillotine second takes the immediate one.
+
+The delayed mode is a **Might-blind kill**: *"the next time it takes damage"* reads an EVENT, so two points off
+a two-Energy gear kill a Might 12 body, bypassing `143.2.a` entirely. `417.1.a` — *"Assigning Damage during the
+Combat Damage Step is not Dealing Damage, but will cause Damage to be Dealt when assignment is complete"* —
+means combat arms it too.
+
+The existing `noxian-guillotine-legion-bloodless-fork` prices the same fork against `OGN-034 Tryndamere`'s
+excess damage and cites **neither** 158.2 nor 812.1.c; the two entries share the forced Darius legend and the
+`103.2.d.1` Signature budget, and each names the other.
+
+## 55. 137.2 — a Might Bonus can be +0, and six printings use it
+
+**137.2**: *"A card’s Might Bonus can be +0."* **Measured over `data/cards.json` on 2026-09-09**, the
+`mightBonus` histogram over printings is `null: 1149, 0: 6, +1: 12, +2: 14, +3: 6, +4: 2`, and the six zeroes
+are named: `SFD-009 Serrated Dirk`, `SFD-016 Recurve Bow`, `SFD-059 Svellsongur`, `SFD-064 Cloth Armor`,
+`SFD-153 Eye of the Herald`, `VEN-137 Shady Spectacles`.
+
+A +0 Equipment is the attach that changes **no** combat arithmetic: it never crosses a body over 5 and so never
+spends `709`'s once-per-body Mighty event, never enlarges what `465.2.c.4` lets an attacker assign, and never
+lifts a carrier out of a Might-gated hiding place. `137.3.a` completes it — the bonus *"stops applying as soon
+as the card with the Might Bonus is no longer Attached"* — which for +0 makes losing the gear a Might swing of
+nothing. **Note for the Svellsongur family:** `SFD-059` is one of the six, so the 2^v copy machine adds zero
+Might of its own; every point of survival on those lines comes from the copied text (`814.2`), never from the
+gear.
+
+`137.3.b` (*"If the card to which a card with a Might Bonus is Attached has no Might value, the Might Bonus is
+ignored"*) is **dead letter in this pool** and recorded as such: `818.1.b` attaches Equipment to a unit, and
+every unit and unit token in the pool has a Might.
+
+## 56. Blocks read and returned EMPTY, with the scope of each refusal
+
+| sub-rule | what it says | why it is empty here, and the scope |
+|---|---|---|
+| **103.1.b.5** | *"Some Game Effects may allow a player to add cards to their deck irrespective of those cards’ Domains. Those cards are considered part of their deck’s Domain Identity, regardless of their Domain."* | Swept `data/corpus_flat.txt` on 2026-09-09 for `to your deck` / `into your deck`: the only hit is `OGN-235 Karma, Channeler`, whose clause is about **recycling** to the Main Deck, not deckbuilding. **No card in this pool grants an off-domain deck slot.** Scoped to the current pool — the rule is written for a card that does not exist yet, and if one is printed it is a Domain Identity exception. |
+| **185.3.b.1** | *"Tokens can have domains appended to them via applied Layer effects."* Riot's example is a hypothetical: *"A card reads in part “As you play this, pick a domain. All units and gear are that domain.”"* | Swept for `pick a domain` / `choose a domain` / `are that domain`: **zero rows**. The example is invented, not a pool card. Scoped to the current pool. The companion `185.3.a.2` (costs appended by a copy effect, Deceiver's Reflection) IS real and already cited by this catalogue. |
+| **128.6 / 128.6.a** | *"A player cannot be compelled to perform an action on cards whose privacy is secret or private if that action specifies a type or quality of card."* … *"Ignored instructions are deemed impossible."* | Every opponent-facing compulsion in the pool names a **count** or a **specific card**, never a type — `OGN-192 Mindsplitter` (*"Choose a card from it, and they discard that card"*), `OGN-201 Invert Timelines` (*"Each player discards their hand"*), `UNL-121 Bewitching Spirit` (*"They discard 1"*), `UNL-135 Insightful Investigator` (*"they discard that card"*), `VEN-111 Minah Swiftfoot` (*"Each player discards 1"*). `OGN-244 Divine Judgment` dodges it by **one word**: *"2 cards in their hands"*, a count. `UNL-139 Bone Skewer` dodges it because YOU choose the unit and the instruction on them names *that* unit. Scoped to **compulsions that specify a type or quality**; the paragraph is live the moment a card prints *"discard a spell"* or *"play a unit from your hand"* at an opponent. |
+| **194.4 / 194.4.a / 194.4.b** | *"Players cannot have less than 0 points."* … *"Any effects that trigger on a player losing points do not trigger."* | Swept for `lose[s] N point` / `loses points`: **zero rows.** No card in the pool takes a point away from anybody, so the whole floor-at-zero block and its trigger carve-out are unreachable. Scoped to the current pool. |
+| **137.3.b** | a Might Bonus attached to something with no Might is ignored | `818.1.b` attaches Equipment to a **unit**, and every unit and unit token in the pool has a Might value. Scoped to **Equipment**; if a set prints an attachment that can ride a gear or a legend, re-read it. |
+
+## 57. HANDOVER TO rc-walk-mid (300–499) — read, not walked, so it is not paid for twice
+
+Nothing below was staged. Each row is a paragraph I opened before the lane split, with what I found, so
+that lane can go straight to the line rather than re-deriving the reading.
+
+| paragraph | what it says, and the lead |
+|---|---|
+| **355.11.b** | A group of targets that no longer collectively fulfils its Targeting Requirement at resolution does **not** fizzle — the controller *"can choose a subset of the original targets that fulfills the targeting requirement"*, and *"They can’t choose to affect units at the same battlefield that weren’t initially chosen as targets."* So the set can **shrink and never grow**: over-target at finalization. Riot's example is `OGN-256 Fox-Fire` by name. **Exactly three cards in the pool are group-targets with a collective Might restriction (swept 2026-09-09): `OGN-256 Fox-Fire`, `UNL-054 Tricksy Tentacles`, `VEN-107 Decree of Discord`.** The sharp half: for a **removal** group-target a subset is partial credit, for an **evacuation** group-target a subset is total failure (`323.6` needs the last body gone) — which is an unstated failure mode of `moonlight-affliction-tricksy-tentacles-evacuation` and `decree-of-discord-megatusk-evacuate-and-gank`. Only `foxfire-unfloored-reduction-sweep` cites 355.11, and only `.11` and `.11.a`. |
+| **465.2.c.7** | *"If multiple Units have abilities or effects that require a player to assign them damage with the same priority, that player may assign damage to those units in any order."* Two [Tank] bodies: the **attacker** picks which to kill first but must finish **both** before `815.1.c.2` lets anything else be assigned. So a second Tank BODY doubles the toll even though `815.2` makes a second Tank GRANT on one body redundant — a lever this project records as "the Tank's own Might" only. |
+| **377.2.a** | *"If “using” or “playing” an Activated Ability is part of a trigger condition, that condition is fulfilled when the Activated Ability **resolves**."* So `SFD-075 Prize of Progress` never sees an ability that is countered — the `419.4.b` finalized-vs-resolved split, reached from the ability side. `377.2.b` is cited 19 times (R30); `377.2.a` zero. |
+| **356.3** | *"Apply cost increases."* — and it is step **3**, before `356.4` *"Apply discounts."* So a discount is measured against the **increased** cost and a flat tax is fully refundable, while `356.4.e`'s per-discount floor means a floored discount lets the tax stick. Touches `mystic-vortex-helm-suppression-tax` (`VEN-045`, `VEN-160`, `UNL-219` are the pool's only three cost-increase rows). Cited zero times. |
+| **370.1.b / 370.1.b.1** | *"In the case of Replacement Effects that describe a game action to occur “as” an event occurs, the described event is replaced by that same event plus the game action being performed."* Riot's example is `SFD-175 Undertitan`. This is the paragraph behind the citation upgrade my §H5 already owes the four Undertitan entries for `369.1`. |
+| **410.2.a / 410.2.b** | *"A Limited Action is a game action that a spell, ability, or circumstance of the turn's progression causes the player to perform. A player cannot perform these actions at-will."* The unifying paragraph behind Recycle (`416.2`), Damage (`417.3`), Discard (`422.2`), Stun (`423.2`), Prevent (`437.6`), Skip (`443.3`) and Burn Out (`431.4`) — seven blocks that each restate it. |
+| **369.2** | *"Some Game Actions are themselves Replacement Effects. Example: Burning Out is a replacement effect. Example: Preventing Damage is a replacement effect."* With `431.5` and `437.4`; `370.2` then caps a Replacement Effect at once per event, so a Burn Out cannot be responded to. |
+| **423.1.a.1** | already cited 72 times — the stun family is mined, do not spend a walk there. |
+| **373.2.a.1, 394.1, 359.3.e.12.a, 417.6.b.2, 422.2, 437.6, 443.3, 444.1/444.2, 475.1, 478.1/479.2** | opened only far enough to see they are structural or already disposed of by §H3; `478/479` in particular is refused **scoped to the current pool** (no card prints the *"Might increased to N"* passive its examples need). |
+
+## 58. Method note earned this batch
+
+`noclobber` bit twice in one session and both times **silently**: a `cat >` over an existing scratch file
+failed with no output, and the second time it left a stale `.ts` that produced a confusing TypeError which
+read like a code defect rather than a write that never happened. `set +o noclobber` on the same command line,
+every time. This is the third entry in this document's ledger of *an instrument failure that looks like a
+finding*.
