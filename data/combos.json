@@ -52568,6 +52568,897 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-09 by rc-walk-chain against data/corpus_flat.txt and the Core Rules; every paragraph quoted above was opened and pasted, not recalled. Card text verbatim: UNL-177 'Ivern, Friend to All | Unit | Order | E6 M6 | As you play me, choose Bird, Cat, Dog, or Poro. I gain that tag. When I conquer or hold, score 1 point if your units have all of the following tags among them — Bird, Cat, Dog, and Poro.' and OGN-210 'Daring Poro | Unit | Order | E2 M2 | [Assault] (+1 Might while I'm an attacker.)'. Legality checked against data/legality.json on 2026-09-09: its single non-banned row is a restriction on one mono-Body Starter legend, and none of UNL-177, OGN-210 or SFD-079 appears in any row. Card-set containment run before staging: UNL-177 + OGN-210 + SFD-079 returns NONE, UNL-177 + OGN-210 returns NONE, UNL-177 + SFD-079 returns NONE. OGN-210 Daring Poro is one of the 104 names with two base codes (OGN-210 / UNL-225); CardIndex.equivalents resolves them, so the matcher covers both printings. This entry connects the lane engine bard-mercurial-mass-relocation and is the sister of swain-bard-brambleback-double-conquer-chain; both name each other and neither removes anything."
+    },
+    {
+      "id": "baron-pit-illaoi-third-battlefield-holds",
+      "name": "187.9 + 485.4: the Baron Pit is a THIRD battlefield in a Duel, so the per-turn Score ceiling is 3 and not 2 - and 471.1.a.1 keeps the Hold half of it free",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-147",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E10 P3 M12. 'As you play me, add the Baron Pit battlefield token to the board if it's not there already. If you do, I enter there. (It has \"Units can move here from anywhere.\") I can't be chosen by enemy spells and abilities. Other friendly units have +2 Might.' The whole entry is the first sentence: it is the pool's only card that puts a THIRD battlefield on a Duel table. His third sentence is a 054.1 prohibition rather than a 809.1.c tax, so he cannot be answered by paying, and his fourth is a continuous modifier that 702.3 never caps."
+        },
+        {
+          "card": "VEN-109",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E6 M4. 'When you play me or when I score, play a 1 Might Tentacle unit token from Bilgewater. I have +1 Might for each token unit you control.' 471.2.b triggers a Hold ability at the battlefield that was Held, so she mints one Tentacle for every turn she stands on a battlefield you keep - which is exactly the garrison 323.6 demands at all three."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine",
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Chaos, so 103.1.b.3 admits them under any legend with Chaos among its two domains. Measured over data/cards.json on 2026-09-09, those are the sixteen names OGN-251 / OGN-301 Loose Cannon (fury/chaos), OGN-259 / OGN-305 Unforgiven (calm/chaos), OGN-263 / OGN-307 Swift Scout (mind/chaos), OGN-267 / OGN-309 Bounty Hunter (body/chaos), OGS-017 Dark Child - Starter (fury/chaos), SFD-185 / SFD-242 Glorious Executioner (fury/chaos), SFD-195 / SFD-246 Blade Dancer (calm/chaos), SFD-199 / SFD-248 Prodigal Explorer (mind/chaos), SFD-203 / SFD-250 Battle Mistress (body/chaos), UNL-185 / UNL-228 Bloodharbor Ripper (fury/chaos), UNL-193 / UNL-232 Gloomist (calm/chaos), UNL-197 / UNL-234 Scorn of the Moon (mind/chaos), UNL-201 / UNL-236 Voidreaver (body/chaos), VEN-143 / VEN-191 Master of Shadows (fury/chaos), VEN-151 / VEN-195 Soul's Reflection (mind/chaos) and VEN-155 / VEN-197 Heart of the Tempest (order/chaos).",
+          "Neither card is a Signature card and neither is a legend, so 103.2.d.2 forces nothing (checked against data/cards.json 2026-09-09: UNL-147 signature false, VEN-109 signature false). Legality checked against data/legality.json on 2026-09-09 - UNL-147, VEN-109 and the UNL-T01 Baron Pit token appear in no format's ban or restriction list.",
+          "The Baron is E10 plus 3 Chaos Power, which is a whole turn's mana in a normal curve; the line is a late-game engine and says so."
+        ],
+        "notable": [
+          "THE FINDING IS THAT 485.4 IS A SETUP PARAMETER AND NOT A CAP. 485.4 reads 'Battlefield Count: 2' and 485.5 places one battlefield from each player, which is where this project's standing 'two Scores a turn is the hard ceiling in a Duel' comes from - 470 caps Scoring 'once per Battlefield per turn' and there are two Battlefields. UNL-147 Baron Nashor adds a third one mid-game, and the ceiling moves with it: 315.2.b.2 Holds ALL Battlefields you Control, so three controlled Battlefields are three Scores a turn.",
+          "AND THE RULES DEFINE THE TOKEN THEMSELVES, WHICH IS WHY THIS IS NOT A READING. 187.9: 'The Baron Pit battlefield token is a domainless battlefield token with \"Units can move here from anywhere.\"' The card text and 187.9 agree word for word, and UNL-T01 Baron Pit is printed in the pool with its own parenthetical, '(You can't start the game with a token battlefield.)' - so it is reachable only through the Baron.",
+          "THE TENSION IS REAL AND RULE 002 RESOLVES IT. 170.2.a says 'Battlefields are not played during the course of regular play' and 170.2.b says they 'are established at the start of a game and remain in place for the duration of regular play.' The Baron contradicts both, and 002 - 'Card text supersedes rules text. Whenever a card fundamentally contradicts the rules, the card's indication is what is true' - is why the card wins. Nothing in 170.2 is a prohibition on an effect adding one.",
+          "ONCE IT IS THERE, NOTHING IN THE POOL REMOVES IT, AND THAT IS THREE SEPARATE PARAGRAPHS. 170.3 'Battlefields cannot be Killed during the course of regular play', 170.4 'Battlefields cannot be Moved', and 185.2.e, whose worked example ends 'Token battlefields and legends can't be recycled.' 186.1's usual token trap - a token ceases to exist the moment it enters a Non-Board Zone - never engages, because there is no route to a Non-Board Zone. The Pit is permanent for both players.",
+          "THE BARON CONQUERS THE BATTLEFIELD HE CREATES, ON ARRIVAL. He enters at the Pit (369.3 makes that last sentence a Replacement Effect on where he enters), 190.3.a.1 applies Contested status to 'units moving to or being played to a battlefield', and with no opposing units there 344.2 opens a Showdown at the next Cleanup rather than staging a Combat. 348.2.a establishes Control and 348.2.a.1 says 'This results in a Conquer if that player has not yet scored that Battlefield this turn' - and a Battlefield created this turn has certainly not been Scored. One point on the turn he lands, with no attack and no damage.",
+          "THE PRICE IS PRINTED IN 471.1.b.1 AND IT IS PAID ONLY BY A CONQUER DECK. 'If the player has Scored every Battlefield this turn, that player Gains the Final Point. If the player has not Scored every Battlefield this turn, that player draws a card instead.' EVERY Battlefield - so the Pit makes a Conquer-based eighth point need three instead of two. 471.1.a.1 is the escape: 'Notably, points Gained from sources that are not Conquer are not beholden to these restrictions', and 469 makes Hold a Score that is not a Conquer. A HOLD deck therefore adds the Pit at no cost at all, and this line is a Hold deck.",
+          "WHY ILLAOI IS THE PARTNER AND NOT A BIGGER BODY. Three controlled Battlefields need bodies at all three, because 323.6 strips Control from any Battlefield 'without their Units occupying them' at the next Cleanup. VEN-109 mints exactly one body a turn from a Score she is present for, and 187.10 defines what it is - 'A 1 Might Tentacle token is a domainless unit token with 1 Might and the Bilgewater tag' - a 1-Might body, which this project has measured as the fragile size: 143.2.a kills on marked damage equal to Might and OGN-133 Flurry of Blades deals 1 to all units at battlefields for 1 Energy. The Baron's own last sentence answers it: 'Other friendly units have +2 Might' makes every Tentacle a 3, board-wide, permanently, with no 702.3 buff cap involved.",
+          "355.2.a IS WHY THE TENTACLE NEEDS NO WALK. A token with no printed destination is played to 'the controller's Base or a battlefield the controller controls', so it can be placed at whichever of your three Battlefields is thin - the walk-to-the-battlefield bottleneck this project records for token lines does not apply to a Battlefield you already control. It does apply to the Pit before the Baron takes it, and it is the reason he has to land there himself.",
+          "THE ARITHMETIC, WITH ITS QUANTITIES. Turn N: Baron Nashor for 10 Energy + 3 Chaos Power creates the Pit and Conquers it (1 point). Turn N+1 onward: 315.2.b.2 Holds every Battlefield you control - your own, the opponent's if you took it, and the Pit - and 468.1 makes every instance of Scoring an instance of Gaining points, so that is up to 3 a turn against the 2 a normal Duel deck can reach. Illaoi adds one Tentacle per turn to keep the garrisons alive. 103.2.b caps each at 3 copies; a second Baron does nothing, because his own text says 'if it's not there already'.",
+          "THE PIT CUTS BOTH WAYS AND THE ENTRY SAYS SO. 187.9's movement clause names no player, so 190.6.d - which blanks only the word 'you' in a Battlefield's abilities - never fires, and the opponent may move to the Pit from anywhere as freely as you can. What holds it is UNL-147 himself: Might 12 with 'I can't be chosen by enemy spells and abilities', which 054.1 makes an absolute prohibition rather than the [Deflect] tax of 809.1.c, so removing him costs a combat rather than a card."
+        ]
+      },
+      "steps": [
+        "Play VEN-109 Illaoi, Prophet of the Great Kraken (6 Energy) at or to a battlefield you control. Her play trigger mints the first 1 Might Tentacle (187.10).",
+        "Play UNL-147 Baron Nashor (10 Energy + 3 Chaos Power). 'As you play me, add the Baron Pit battlefield token to the board if it's not there already' puts UNL-T01 on the table - a third Battlefield in a two-Battlefield Duel (485.4) - and 369.3 replaces where he enters so that he enters at the Pit.",
+        "190.3.a.1 applies Contested status to the Pit because he was played there and you do not control it. No opposing units are present, so 344.2 opens a Showdown at the next Cleanup instead of 323.9 staging a Combat.",
+        "348.2.a establishes your Control at the close of that Showdown, and 348.2.a.1 makes it a Conquer because you have not yet Scored that Battlefield this turn. One point, with no attack and no damage.",
+        "From the next Beginning Phase, 315.2.b.2 Holds every Battlefield you Control. Keep a body at each: the Baron stands at the Pit, Illaoi at one battlefield, and her Tentacles fill the third - 355.2.a lets each token be played straight to a battlefield you control.",
+        "The Baron's 'Other friendly units have +2 Might' makes every 1 Might Tentacle a 3, which is what keeps OGN-133 Flurry of Blades from clearing the garrisons for 1 Energy (143.2.a).",
+        "Score up to three a turn. The eighth point through a Hold is unrestricted (471.1.a.1); through a Conquer it now needs all three Battlefields Scored that turn (471.1.b.1) - so take it on a Hold."
+      ],
+      "terminatesIn": "engine - up to 3 points a turn instead of the 2 a Duel normally allows, for as long as you hold three Battlefields; the opponent takes a turn in between, so it is not a CHAIN, and nothing here reaches 8 in one turn",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 187.9",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The Baron Pit battlefield token is a domainless battlefield token with “Units can move here from anywhere.”"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 187.10",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A 1 [M] Tentacle token is a domainless unit token with 1 Might and the Bilgewater tag."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 485.4",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Battlefield Count: 2"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 470",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A player may only Score, from either method, once per Battlefield per turn."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 315.2.b.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "1. The Turn Player Holds all Battlefields they Control."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 468.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Every instance of Scoring is also an instance of Gaining points"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 471.1.b.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If the player has Scored every Battlefield this turn, that player Gains the Final Point. If the player has not Scored every Battlefield this turn, that player draws a card instead."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 471.1.a.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Notably, points Gained from sources that are not Conquer are not beholden to these restrictions."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 471.2.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Hold abilities trigger at a Battlefield that was Held."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 170.2.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Battlefields are not played during the course of regular play."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 170.2.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Battlefields are established at the start of a game and remain in place for the duration of regular play."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 170.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Battlefields cannot be Killed during the course of regular play."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 170.4",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Battlefields cannot be Moved."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 185.2.e",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Tokens inherit the recycle destination of their type."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 185.2.e worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Token runes will be recycled to the Rune Deck. Token units, gear, and spells will be recycled to the Main Deck. Token battlefields and legends can’t be recycled."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 002",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Card text supersedes rules text. Whenever a card fundamentally contradicts the rules, the card's indication is what is true."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 190.3.a.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit’s controller does not already control that battlefield."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 344.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If Control of a Battlefield is Contested, there aren’t units controlled by different players there, and the turn is in a Neutral Open State, a Showdown is opened during the next Cleanup."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 348.2.a.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "This results in a Conquer if that player has not yet scored that Battlefield this turn."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 323.6",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "4. Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 143.2.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed."
+        },
+        {
+          "title": "Hand walk 2026-09-09 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-09"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-09 (issue #187, sub-rule lane 100-299). 187.9, 187.10, 170.2.a, 170.2.b, 170.3, 170.4 and 185.2.e are cited by NO entry and NO synergy rule in this project (measured over data/combos.json and data/synergies.json on 2026-09-09), and the Baron Pit's existence as a playable Battlefield appears nowhere: of the ten entries that use UNL-147, the only one that mentions the Pit is shady-spectacles-baron-copy, which says only that copying him does not create a second one. Card text verbatim from data/corpus_flat.txt. Legality checked against data/legality.json on 2026-09-09: UNL-147, VEN-109 and UNL-T01 are absent from every format's ban and restriction list. REPORT TO THE MANAGER: this REFINES a standing claim in CLAUDE.md. 'Two Conquers per turn is the hard ceiling in a Duel' is derived from 470 plus 485.4's Battlefield Count of 2, and 485.4 is a SETUP parameter, not a cap - UNL-147 Baron Nashor adds a third Battlefield mid-game and nothing in the pool can remove it (170.3, 170.4, 185.2.e), so the ceiling is 3 for any deck willing to pay E10 + 3 Power. The complement is 471.1.b.1: with three Battlefields on the table a CONQUER-based eighth point needs all three Scored in one turn, while 471.1.a.1 leaves a HOLD-based eighth point untouched. Trap check: 190.6.d cannot blank the Pit's movement clause because that clause says 'Units', not 'you', so it serves the opponent too; a second Baron does nothing ('if it's not there already'); 323.6 costs you the Pit the moment its garrison leaves; no unruled reading. Twin: baron-pit-fae-porter-reach-from-anywhere walks the same token's MOVEMENT clause rather than its scoring arithmetic."
+    },
+    {
+      "id": "noxian-guillotine-recurve-bow-delayed-kill",
+      "name": "158.2: [Legion] REPLACES the Guillotine's delayed kill rather than adding to it - so played first in the turn it is a Might-blind kill that a +0 Might Bonus gear arms",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-254",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury/Order spell, E4 P1. '[Action] (Play on your turn or in showdowns.) Choose a unit. Kill it the next time it takes damage this turn. [Legion] - Kill it now instead. (Get the effect if you've played another card this turn.)' This card is Riot's worked example at 158.2, word for word. It is a Signature card tagged Darius (checked against data/cards.json), so 103.2.d.2 forces the legend."
+        },
+        {
+          "card": "SFD-016",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "ATTACHED",
+          "note": "Fury gear, E2, Might Bonus +0. '[Equip] one Fury rune. [Effect] When I attack or defend, deal 2 to an enemy unit here.' One of exactly six printings in the pool with a +0 Might Bonus, so the carrier's size never moves - and its 2 damage is what arms the Guillotine's delayed kill against a body of ANY Might."
+        },
+        {
+          "card": "OGN-253",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Fury/Order legend, Hand of Noxus - measured over data/cards.json on 2026-09-09, the ONLY legend in the pool carrying the Darius tag (base codes OGN-253 and OGN-302), so 103.2.d.2 leaves no choice once the Guillotine is in the list. Its own ability also carries [Legion], which is why the play-order decision below is a real one."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "OGN-254 is Fury/Order and SFD-016 is mono-Fury, so 103.1.b.4 and 103.1.b.3 put the list at Fury/Order exactly. 103.2.d.2 then forces OGN-253 / OGN-302 Hand of Noxus, the pool's only Darius legend (measured over data/cards.json on 2026-09-09). The pool prints two other Fury/Order legends, Void Burrower and Piltover Enforcer, and neither carries the Darius tag - a domain-correct Fury/Order list under either of them would be ILLEGAL with the Guillotine in it.",
+          "103.2.d.1 caps a list at 3 Signature cards, and three Guillotines spend the whole budget - so this line cannot share a deck with a second Signature package.",
+          "Legality checked against data/legality.json on 2026-09-09: OGN-254, SFD-016, OGN-253 and OGN-302 are absent from every format's ban and restriction list.",
+          "The Bow has to be attached to a body that will be in a combat - 807.1.d and its own wording both key on attacking or defending, and neither happens on a bloodless conquer."
+        ],
+        "notable": [
+          "THE FINDING IS THAT [Legion] IS A REPLACEMENT, NOT A BONUS, AND RIOT WORKS THIS EXACT CARD. 158.2: 'If a later part of a spell applies a Replacement Effect that alters earlier parts of the spell, apply those replacement effects as appropriate.' Its worked example is the Guillotine's printed text: 'A spell says \"Choose a unit. Kill it the next time it takes damage this turn.\" and \"[Legion] - Kill it now instead. (Get the effect if you've played another card this turn.)\" If the Legion condition is satisfied, the unit is killed immediately and the instruction to kill it the next time it takes damage is IGNORED, EVEN IF THE UNIT REMAINS ON THE BOARD SOMEHOW.'",
+          "THAT LAST CLAUSE IS THE WHOLE ENTRY. With [Legion] live, a would-die replacement on the target - SFD-051 Guardian Angel, OGN-077 Zhonya's Hourglass, any heal/exhaust/recall shield - eats the immediate kill AND the delayed one is already gone. The spell has done nothing. With [Legion] off, the same shield answers only the first point of damage; the delayed kill was never spent on a death that did not happen, because it is a trigger on the NEXT damage.",
+          "AND [Legion] IS NOT A CHOICE - IT IS PLAY ORDER. 812.1.c: 'As long as a card different than the one with the Legion ability has been Finalized by you on the same turn then the Dependent Ability is Active on the card with Legion', and 812.2 makes one card satisfy every instance you control. Nothing lets you decline it. So the fork is decided before the spell is cast: Guillotine FIRST in the turn keeps the delayed mode, Guillotine second or later takes the immediate one.",
+          "THE DELAYED MODE IS A MIGHT-BLIND KILL, WHICH IS THE REASON TO WANT IT. 'Kill it the next time it takes damage this turn' reads an EVENT, not a threshold, so two points off a 2-Energy gear kill a Might 12 body - the same shape as OGN-159 Warwick, Hunter's 'kill all damaged enemy units here', reached by a different card. 143.2.a's 'nonzero damage marked on it equalling or exceeding its Might' is what the Guillotine is bypassing, and the Bow's 2 is enough for anything in the pool.",
+          "COMBAT DAMAGE ALSO ARMS IT, AND 417.1.a IS WHY. 'Assigning Damage during the Combat Damage Step is not Dealing Damage, but will cause Damage to be Dealt when assignment is complete.' Damage IS dealt in combat, so a Guillotined defender dies to any assignment at all - the Bow is the cheap answer for a turn where you would rather not open a combat.",
+          "WHY THE BOW AND NOT A BIGGER GEAR: 137.2 SAYS A MIGHT BONUS CAN BE +0. Measured over data/cards.json on 2026-09-09, exactly six printings carry mightBonus 0 - SFD-009 Serrated Dirk, SFD-016 Recurve Bow, SFD-059 Svellsongur, SFD-064 Cloth Armor, SFD-153 Eye of the Herald and VEN-137 Shady Spectacles. A +0 gear leaves the carrier's Might exactly where it was, so it never crosses a body over 5 and never spends 709's once-per-body Mighty event, never enlarges what 465.2.c.4 lets an attacker assign, and never lifts the carrier out of a Might-gated hiding place. 137.3.a completes the picture: the bonus 'stops applying as soon as the card with the Might Bonus is no longer Attached', which for +0 means losing the gear is a Might swing of nothing.",
+          "THE BOW FIRES ON DEFENCE TOO, AND THAT IS WHERE THE PAIR GETS ITS SECOND TURN. 'When I attack or defend' - so on the opponent's attack the Bow deals its 2 and finishes whatever the Guillotine chose in your own Main Phase, since the delayed kill is scoped 'this turn' only. A Guillotine cast on your turn is spent by the end of it; the Bow is the repeating half.",
+          "IT IS THE SAME CARD AS noxian-guillotine-legion-bloodless-fork AND A DIFFERENT QUESTION. That entry prices the fork against OGN-034 Tryndamere's excess damage - fast kill versus a bigger conquer - and cites neither 158.2 nor 812.1.c. This one is about what the [Legion] half COSTS you: the delayed instruction, which 158.2 says is ignored even when the immediate kill fails. The two share the forced legend and the Signature budget, so a list can run both readings of the same three copies.",
+          "THE HONEST CEILING. Three Guillotines (103.2.b), one target each, and the Bow is one attach per copy at one Fury rune (818.1 makes [Equip] a separate Activated Ability, and 356.6 has nothing to floor here). Nothing in the line scores; it is removal that ignores Might, and 470 with 485.4 still caps what the resulting board can convert into points."
+        ]
+      },
+      "steps": [
+        "Open the turn with OGN-254 Noxian Guillotine as your FIRST card (4 Energy + 1 Power, [Action] so it is also legal in a showdown). Nothing has been Finalized this turn, so 812.1.c leaves the [Legion] ability inactive and the printed delayed mode is what resolves.",
+        "Choose any unit - the card says 'Choose a unit' with no location clause, so it reaches a base as readily as a battlefield. It is now marked to die the next time it takes damage this turn, whatever its Might.",
+        "Attach SFD-016 Recurve Bow to a body of yours for one Fury rune (818.1: [Equip] is an Activated Ability separate from the gear's play cost). 137.2 means the carrier's Might does not move.",
+        "Attack or defend with the carrier. 'When I attack or defend, deal 2 to an enemy unit here' - point it at the Guillotined body.",
+        "The 2 damage is the delayed kill's trigger, and 143.2.a's Might threshold is never consulted. A Might 12 Baron Nashor dies to 2 damage off a 2-Energy gear.",
+        "If instead you had played any other card first, 812.2 would have switched [Legion] on for you and the Guillotine would have killed immediately - faster, but 158.2 says the delayed instruction is then ignored 'even if the unit remains on the board somehow', so a would-die shield on the target answers the whole card.",
+        "Repeat with the second and third Guillotine on later turns; the Bow persists and fires every combat."
+      ],
+      "terminatesIn": "engine - three Might-blind kills a game (103.2.b), one per Guillotine, plus 2 damage per combat from the Bow; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 158.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If a later part of a spell applies a Replacement Effect that alters earlier parts of the spell, apply those replacement effects as appropriate."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 158.2 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A spell says \"Choose a unit. Kill it the next time it takes damage this turn.\" and \"[Legion] — Kill it now instead. (Get the effect if you've played another card this turn.)\" If the Legion condition is satisfied, the unit is killed immediately and the instruction to kill it the next time it takes damage is ignored, even if the unit remains on the board somehow."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 137.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A card’s Might Bonus can be +0."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 137.3.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The Might Bonus is applied while Attached and stops applying as soon as the card with the Might Bonus is no longer Attached."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 812.1.c",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "As long as a card different than the one with the Legion ability has been Finalized by you on the same turn then the Dependent Ability is Active on the card with Legion."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 812.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "All instances of Legion on cards a player controls are satisfied by that player playing a single card."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 143.2.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 417.1.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Assigning Damage during the Combat Damage Step is not Dealing Damage, but will cause Damage to be Dealt when assignment is complete."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 807.1.d",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Being an attacker means the Unit has gained the Attacker designation during Combat."
+        },
+        {
+          "title": "Hand walk 2026-09-09 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-09"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-09 (issue #187, sub-rule lane 100-299). 158.2 and 137.2 are cited by NO entry and NO synergy rule in this project (measured over data/combos.json and data/synergies.json on 2026-09-09), and 158.2's worked example is OGN-254 Noxian Guillotine's printed text word for word. Card text verbatim from data/corpus_flat.txt. Legality checked against data/legality.json on 2026-09-09: none of OGN-254, SFD-016, OGN-253 or OGN-302 is banned or restricted in any format. The +0 Might Bonus set was measured over data/cards.json the same day and its six members are named in the notable. REPORT TO THE MANAGER: the usable form is that [Legion] REPLACES rather than adds - 158.2 says the delayed instruction is ignored 'even if the unit remains on the board somehow', so the fast mode is strictly worse against a would-die shield, and 812.1.c plus 812.2 make the choice PLAY ORDER rather than a decision at cast time. Companion: a Might Bonus of +0 is legal (137.2) and six printings use it, which makes them the attach that changes no combat arithmetic. Cross-reference: noxian-guillotine-legion-bloodless-fork prices the same fork against Tryndamere's excess damage and cites neither paragraph; the two share the forced Darius legend and the 103.2.d.1 Signature budget. No unruled reading."
+    },
+    {
+      "id": "baron-pit-fae-porter-reach-from-anywhere",
+      "name": "187.9: the Baron Pit is the ONE destination in the pool a unit may Standard-Move to from anywhere, so a battlefield-to-battlefield walk costs one leg instead of two and needs no [Ganking]",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-147",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E10 P3 M12. The clause this entry stands on is the parenthetical: 'As you play me, add the Baron Pit battlefield token to the board if it's not there already. If you do, I enter there. (It has \"Units can move here from anywhere.\")' The Pit is what he brings; his own Might 12 body and 'I can't be chosen by enemy spells and abilities' are what keep it."
+        },
+        {
+          "card": "SFD-125",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 M4. 'When I move to a battlefield, you may pay one Chaos Power to move a unit you control to the same battlefield.' His own arrival is a Standard Move and pays 144.2's exhaust; the unit he brings with him moves BY EFFECT (449), which 420.3.a never charges - two bodies land for one exhaust."
+        },
+        {
+          "card": "SFD-130",
+          "quantity": 3,
+          "role": "resource",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E2 M1. 'When I move, play a Gold gear token exhausted.' A Gold for every leg walked, and 187.5 makes it 'a domainless gear token with \"[Reaction] Kill this, exhaust: [Add] one rainbow Power\"' - so it is Power from your next Awakening (415.3.a), never the turn it is minted, because SFD-171 Renata Glasc, Industrialist is mono-Order and off-domain here."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "unit-delivery",
+        "resource-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "All three cards are mono-Chaos, so 103.1.b.3 admits them under any legend with Chaos among its two domains. Measured over data/cards.json on 2026-09-09 those are the sixteen names OGN-251 / OGN-301 Loose Cannon (fury/chaos), OGN-259 / OGN-305 Unforgiven (calm/chaos), OGN-263 / OGN-307 Swift Scout (mind/chaos), OGN-267 / OGN-309 Bounty Hunter (body/chaos), OGS-017 Dark Child - Starter (fury/chaos), SFD-185 / SFD-242 Glorious Executioner (fury/chaos), SFD-195 / SFD-246 Blade Dancer (calm/chaos), SFD-199 / SFD-248 Prodigal Explorer (mind/chaos), SFD-203 / SFD-250 Battle Mistress (body/chaos), UNL-185 / UNL-228 Bloodharbor Ripper (fury/chaos), UNL-193 / UNL-232 Gloomist (calm/chaos), UNL-197 / UNL-234 Scorn of the Moon (mind/chaos), UNL-201 / UNL-236 Voidreaver (body/chaos), VEN-143 / VEN-191 Master of Shadows (fury/chaos), VEN-151 / VEN-195 Soul's Reflection (mind/chaos) and VEN-155 / VEN-197 Heart of the Tempest (order/chaos).",
+          "None of the three is a Signature card (checked against data/cards.json 2026-09-09), so 103.2.d.2 forces no legend. Legality checked against data/legality.json the same day: UNL-147, SFD-125, SFD-130 and the UNL-T01 Baron Pit token appear in no format's ban or restriction list.",
+          "Nothing happens until the Baron is paid for - E10 plus 3 Chaos Power - because the Pit does not exist before that."
+        ],
+        "notable": [
+          "THE FINDING IS A DESTINATION EXCEPTION, AND THE RULES PRINT IT THEMSELVES. 187.9: 'The Baron Pit battlefield token is a domainless battlefield token with \"Units can move here from anywhere.\"' 144.4 restricts the Standard Move's destinations to exactly two shapes - 144.4.a 'Units may move from their Base to a Battlefield' and 144.4.b 'Units may move from a Battlefield to their Base' - so a body standing at battlefield A normally needs TWO turns to reach battlefield B, one leg each way through the base, because 144.2 makes the exhaust the cost and 415.3.a readies it only at your own Awakening.",
+          "AND IT IS NOT [Ganking], WHICH IS THE WHOLE POINT. 144.4.c.1 lets a unit with Ganking 'use their Standard Move to Move from Battlefield to Battlefield', and 810.1.c.3 is explicit that the keyword 'does not give additional abilities or activations of Movement, only new options for the Standard Move'. Ganking is granted per UNIT and every body needs its own. The Pit is granted per DESTINATION: no keyword, no cost, no per-unit grant, and it is on the board for the rest of the game.",
+          "MEASURED, WITH THE MEMBERS NAMED. A sweep of data/corpus_flat.txt for 'from anywhere' on 2026-09-09 returns seven rows and only ONE of them is about moving: UNL-T01 Baron Pit, '(You can't start the game with a token battlefield.) Units can move here from anywhere', quoted again in UNL-147's own reminder text. The other five are about PLAYING a card from a zone other than hand - SFD-010 Void Drone, SFD-029 Rek'Sai Breacher, SFD-164 Drag Under, VEN-022 Endless Riches and VEN-155 Heart of the Tempest - and none of them touches movement.",
+          "190.6.d CANNOT BLANK IT, SO IT WORKS FROM THE INSTANT IT APPEARS. That paragraph blanks a battlefield's instructions only through the word 'you': with no Controller, '\"You\" in a battlefield's abilities refers to no one, and all such instructions are ignored.' The Pit's clause says 'Units', not 'you'. It is therefore live while uncontrolled - and live for the OPPONENT too, which this entry states rather than hides: the Pit is a road both players may walk, and what makes it yours is the Baron standing on it under a 054.1 prohibition rather than a 809.1.c tax.",
+          "FAE PORTER IS THE CARD THAT TURNS ONE LEG INTO TWO BODIES. His trigger reads 'When I move to a BATTLEFIELD', so it fires on the leg into the Pit, and the unit he brings moves by EFFECT - 449, 'Spells, Abilities, or other effects may cause a Move to occur' - which 420.3.a's exhaust cost never touches, because that cost belongs to the Standard Move alone (420.2.b keeps the two kinds distinct). One exhaust and one Chaos Power deliver two bodies to a battlefield neither of them could have reached this turn.",
+          "AND THE PASSENGER CAN COME FROM THE OTHER BATTLEFIELD. 449.1 leaves the destination legality to the source of the move, and Fae Porter's own text names only 'the same battlefield' - no origin restriction at all - so the body he ferries may be standing at your other battlefield, exactly the walk 144.4 forbids. The Porter needs the Pit for HIMSELF; his passenger never did.",
+          "TREASURE HUNTER PRICES THE ROAD. 'When I move, play a Gold gear token exhausted' fires on any move, so every leg pays a Gold - and 187.5's token 'has [Reaction] Kill this, exhaust: [Add] one rainbow' with its own exhaust in the cost, so a Gold minted on your turn is Power from your NEXT Awakening (415.3.a). The card that would make it live immediately, SFD-171 Renata Glasc, Industrialist, is mono-Order and cannot be in this list.",
+          "THE HONEST LIMIT: THE PIT DOES NOT MULTIPLY MOVES, IT SHORTENS THEM. 144.2 still charges one exhaust per body per Standard Move and 415.3.a still returns it only at your own Awakening, so nobody moves twice. What changes is that the leg is worth twice as much: a 'when I move to a battlefield' payoff that previously paid every other turn now pays every turn, and a body committed to the wrong battlefield is one action from the right one. 144.3 also lets a whole pack walk as one game action to a shared destination.",
+          "TWIN. baron-pit-illaoi-third-battlefield-holds walks the SCORING half of the same token - 485.4's Battlefield Count of 2 against 470's once-per-battlefield cap, and 471.1.b.1's price for a Conquer-based final point. This entry is the movement clause and shares no other card with it; the two are different questions about one line of printed text and each names the other."
+        ]
+      },
+      "steps": [
+        "Play UNL-147 Baron Nashor (10 Energy + 3 Chaos Power). The Baron Pit token joins the board and he enters there; 170.3, 170.4 and 185.2.e together mean nothing in the pool can remove it afterwards.",
+        "From now on every unit either player controls may reach the Pit with a Standard Move from any location (187.9), including from the other battlefield, with no [Ganking] and no effect.",
+        "Move SFD-125 Fae Porter to the Pit. He pays 144.2's exhaust for his own Standard Move; his trigger 'When I move to a battlefield' fires on arrival.",
+        "Pay one Chaos Power to the trigger and move a second unit you control to the Pit. That is a move by effect (449), so 420.3.a charges it nothing and 144.4's base-to-battlefield restriction never applies to it - it may come straight off your other battlefield.",
+        "If SFD-130 Treasure Hunter is one of the bodies walking, 'When I move, play a Gold gear token exhausted' mints a Gold for the leg. 187.5 makes it Power from your next Awakening, not this turn.",
+        "Repeat every turn: one exhaust per body (415.3.a readies them at your Awakening), and the Pit is the destination that makes each of those exhausts reach anywhere on the board."
+      ],
+      "terminatesIn": "engine - two bodies delivered per Fae Porter move and one Gold per leg walked, once a turn per body, for as long as the Pit stands; nothing here scores",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 187.9",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The Baron Pit battlefield token is a domainless battlefield token with “Units can move here from anywhere.”"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 144.4",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The Destinations where Units can Move to with their Standard Move are restricted:"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 144.4.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Units may move from their Base to a Battlefield."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 144.4.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Units may move from a Battlefield to their Base."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 144.4.c.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 810.1.c.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "It does not give additional abilities or activations of Movement, only new options for the Standard Move."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 144.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Exhausting the Unit is the Cost for this action."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 144.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 420.2.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The Standard Move inherent to Units may also cause Movement."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 420.3.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The Cost is Exhausting one or more Units."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 449",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Spells, Abilities, or other effects may cause a Move to occur."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 449.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The source of the Move will provide details on any restrictions on legality for Destination."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 415.3.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 187.5",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A Gold gear token is a domainless gear token with “[Reaction][>] Kill this, [E]: [Add] [A].”"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 170.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Battlefields cannot be Killed during the course of regular play."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 170.4",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Battlefields cannot be Moved."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 185.2.e worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Token runes will be recycled to the Rune Deck. Token units, gear, and spells will be recycled to the Main Deck. Token battlefields and legends can’t be recycled."
+        },
+        {
+          "title": "Hand walk 2026-09-09 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-09"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-09 (issue #187, sub-rule lane 100-299). 187.9, 144.4, 144.4.a, 144.4.b and 170.3 / 170.4 / 185.2.e are cited by NO entry and NO synergy rule in this project (measured over data/combos.json and data/synergies.json on 2026-09-09). Card text verbatim from data/corpus_flat.txt; the 'from anywhere' sweep that establishes the Pit's uniqueness was run over the whole corpus the same day and its seven rows are named in the notable. Legality checked against data/legality.json on 2026-09-09: UNL-147, SFD-125, SFD-130 and UNL-T01 are absent from every format's ban and restriction list. Ran node .scratch/have.mjs UNL-147 SFD-125 SFD-130 before writing: no entry uses that card set or a subset of it. REPORT TO THE MANAGER: the usable form is that this project's movement facts are all keyword-shaped - [Ganking] per unit, [Accelerate] per body, an effect move per card - and 187.9 is the one DESTINATION-shaped exception, granted to every unit both players control, permanently, for free, once UNL-147 Baron Nashor has been paid for. It does not add moves (144.2's exhaust and 415.3.a still allow one a turn per body); it makes each move reach twice as far, which is the difference between a 'when I move to a battlefield' payoff firing every turn and every other turn. Twin: baron-pit-illaoi-third-battlefield-holds walks the scoring half of the same token and shares only UNL-147; each entry names the other. No unruled reading."
+    },
+    {
+      "id": "azir-ascendant-steraks-gage-equipped-state-survives-inactive",
+      "name": "818.5.a is the only reason any unit in the pool is ever EQUIPPED - 718.2 silences the attached gear's [Equip] and 818.3.c defines the state by it, so without that one sentence all four reader cards are blank letters",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-050",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E6 P1 M6. ':rb_rune_calm:: [Action] - Choose a unit you control. Move me to its location and it to my original location. If it is equipped, you may attach one of its Equipment to me. Use only once per turn.' (Corpus text reads \"If it's equipped\".) The 'if it is equipped' clause is a read of the 818.3 STATE, not of the 818.2 event."
+        },
+        {
+          "card": "SFD-056",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "ATTACHED",
+          "note": "Calm gear, E3 P2, Might Bonus +3. '[Quick-Draw] (This has [Reaction]. When you play it, attach it to a unit you control.) [Equip] :rb_rune_calm:'. Carrier-independent: it prints a Might Bonus and no Effect Text, so it does not care which body holds it - which is what lets Azir take it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "combat-might",
+        "unit-delivery"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm (checked against data/cards.json), so 103.1.b.3 admits them under any legend with Calm among its two domains. Measured over data/cards.json those are sixteen names: Nine-Tailed Fox (OGN-255 / OGN-303), Blind Monk (OGN-257 / OGN-304), Unforgiven (OGN-259 / OGN-305), Radiant Dawn (OGN-261 / OGN-306), Fire Below the Mountain (SFD-189 / SFD-244), Grandmaster at Arms (SFD-193 / SFD-245), Blade Dancer (SFD-195 / SFD-246), Emperor of the Sands (SFD-197 / SFD-247), Bashful Bloom (UNL-189 / UNL-230), Wuju Master (UNL-191 / UNL-231), Gloomist (UNL-193 / UNL-232), Green Father (UNL-195 / UNL-233), Rogue Assassin (VEN-139 / VEN-189), Curator of the Sands (VEN-145 / VEN-192), Eye of Twilight (VEN-147 / VEN-193), and the Calm/Body Starter legend, which is restricted in 2v2 only (data/legality.json carries exactly one non-banned row and that is it).",
+          "Neither card is a Signature card (data/cards.json, signature=false on both), so 103.2.d.2 imposes no legend, and neither appears in data/legality.json.",
+          "103.2.b allows three of each; Azir's own clause caps HIM at one activation a turn, so copies buy activations, not a bigger turn."
+        ],
+        "notable": [
+          "ONE SENTENCE HOLDS THE WHOLE 'EQUIPPED' VOCABULARY UP, AND NOTHING IN THIS CATALOGUE HAD CITED IT. 818.3.c defines the state - 'The state of being Equipped corresponds to a Top-Most card having a card with Equip that is Attached to it.' - while 718.2 says of that same attached card 'While in this state, the card's printed Rules Text is Inactive' and 721.2 says 'Inactive Abilities do not trigger, do not apply, and cannot be activated.' 818.1.a puts [Equip] on the gear ('Equip is present on Gear with the tag Equipment'), i.e. in the printed Rules Text that 718.2 has just switched off. Read alone those three paragraphs make Equipped self-cancelling: attaching the gear destroys the very [Equip] the state is defined by. 818.5.a is the paragraph that resolves it - 'Whether or not a Gear has Equip may be referenced even if the Rules Text of the Gear is Inactive.' Without it no unit in the pool could ever be equipped.",
+          "THE POOL READS THE STATE AND NEVER THE EVENT. 818.2 makes an Equipped EVENT ('When the Attach action completes from this keyword, the Unit that was chosen is considered to have been Equipped by the Gear with this ability') and 818.2.a says 'This is an event other Game Effects and Triggered Abilities can reference' - and measured 2026-09-09 over data/corpus_flat.txt, the word 'equipped' appears on exactly four cards and every one of them reads the STATE: SFD-050 Azir, Ascendant ('If it's equipped'), SFD-107 Strike Down ('Choose an equipped friendly unit'), SFD-183 Purifier (reminder text, 'while equipped unit is an attacker') and VEN-137 Shady Spectacles ('The equipped unit becomes a copy'). No card says 'when you equip'. So 818.2/818.2.a are dead letter in this pool and the open question they would raise - whether a [Weaponmaster] attach fires the event, given 821.1.c.6's 'The Equip ability is not activated this way' - never has to be answered.",
+          "AND BECAUSE IT IS A STATE, EVERY ATTACH ROUTE REACHES IT. 818.3.a: 'The state of being Equipped is synchronous with that of the Attached state of the Equipment.' Synchronous with the ATTACHED state, not with how the attaching happened - so a body is equipped by a paid [Equip] (818.1.b), by a [Quick-Draw] play (819.1.d), by [Weaponmaster] (821.1.c), by SFD-208 Forge of the Fluft or by SFD-024 Rell, Magnetic alike. Sterak's Gage is the cheapest of those: [Quick-Draw] determines no Equip cost at all, so 3 Energy + 2 Power puts a body into the state Azir's clause is gated on, with no rune and at [Reaction] speed.",
+          "THE MIGHT BONUS RIDES THE RE-ATTACH BECAUSE IT NEVER STOPS BEING ATTACHED. 137.3.a - 'The Might Bonus is applied while Attached and stops applying as soon as the card with the Might Bonus is no longer Attached' - with 434.1.f, which detaches from the old carrier as part of the same attach action: the Gage goes from the swapped body straight onto Azir, so the +3 lands on him (M6 to M9) in the action that moved him.",
+          "AZIR'S SWAP IS AN EFFECT MOVE AND [ACTION] MAKES IT A COMBAT TRICK. 449 lets a spell or ability cause a Move and 420.3.a puts the exhaust cost on the Standard Move alone, so the swap needs no [Ganking] and moves an exhausted body; 806.1.b makes [Action] playable 'during Showdowns, even when it is not the Controlling player's turn', so Azir can arrive at a battlefield already under attack, and 319.6 with 323.2.a hand him the Defender designation at the very next Cleanup, before 465.2 resolves - a 9-Might defender bought for one Calm Power.",
+          "WHAT IT IS NOT: a repeatable relocation engine. Azir's own text says 'Use only once per turn', and 434.1.g makes a re-attach to the current carrier do nothing, so the ceiling is one harvest a turn per copy. R32 (whether a Svellsongur copy of this ability carries its own once-per-turn count) was looked at and deliberately not filed - see docs/phase0/walks/2026-09-06-issue62-r32-once-per-turn.md - and this entry does not depend on it, because it copies nothing."
+        ]
+      },
+      "steps": [
+        "Play SFD-056 Sterak's Gage (3 Energy + 2 Power) on any friendly body. 819.1.d is short for '[Reaction]' and 'When you play this, attach it to a Unit you control', so the attach happens on the play and its printed [Equip] (one Calm rune) is never determined.",
+        "That body is now Equipped: 818.3 makes it a state, 818.3.c defines it by the attached card having [Equip], and 818.5.a keeps that readable through 718.2's silencing of the gear's printed Rules Text. Its Might is its printed value +3 by 137.3 and 718.4.",
+        "Play SFD-050 Azir, Ascendant (6 Energy + 1 Power). 143.4 has him enter exhausted; nothing here needs him ready, since his ability's cost is one Calm Power and no exhaust.",
+        "In your Main Phase, or inside any Showdown on either player's turn (806.1.b), pay one Calm Power: choose the equipped body, swap locations with it, and attach the Gage to Azir. 434.1.f detaches it from the old carrier in the same action, so 137.3.a never lapses.",
+        "Azir now stands where the body stood, at Might 9, and the body stands where he was. Once each turn, by his own text."
+      ],
+      "netPerIteration": "one location swap and one Equipment relocation per turn per Azir, with the Gage's +3 Might Bonus arriving on whichever body Azir is now on",
+      "terminatesIn": "engine only - Azir's clause is 'Use only once per turn' and nothing here scores; the line delivers a body and its Might Bonus to a battlefield at [Action] speed and stops there",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 818.5.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Whether or not a Gear has Equip may be referenced even if the Rules Text of the Gear is Inactive."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 818.3 and 818.3.a and 818.3.c",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Equipped is the state of a Top-Most Card being Attached by one or more cards that are Equipment. … The state of being Equipped is synchronous with that of the Attached state of the Equipment. … The state of being Equipped corresponds to a Top-Most card having a card with Equip that is Attached to it."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 818.2 and 818.2.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "When the Attach action completes from this keyword, the Unit that was chosen is considered to have been Equipped by the Gear with this ability. … This is an event other Game Effects and Triggered Abilities can reference."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 718.2 and 721.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "While in this state, the card’s printed Rules Text is Inactive. … Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 818.1 and 818.1.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Equip is an Activated Ability keyword. … Equip is present on Gear with the tag Equipment."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 819.1.d",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Quick-Draw is functionally short for “[Reaction]” and “When you play this, attach it to a Unit you control.”"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 137.3.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The Might Bonus is applied while Attached and stops applying as soon as the card with the Might Bonus is no longer Attached."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 806.1.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn."
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (Riot gallery API, errata applied)",
+          "kind": "riot",
+          "date": "2026-09-04",
+          "quote": "SFD-050 | Azir, Ascendant | Unit | Calm | E6 P1 M6 | :rb_rune_calm:: [Action] — Choose a unit you control. Move me to its location and it to my original location. If it's equipped, you may attach one of its Equipment to me. Use only once per turn."
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-09 (issue #191, uncited sub-rules 500-829, batch 4). The anchor is 818.5.a, cited by nothing in combos.json or synergies.json before this entry, and it is load-bearing rather than decorative: the catalogue already leans hard on 718.2 (an attached Equipment's printed Rules Text is Inactive, which is why the #170 walk removed prize-of-progress-hexplate-equip-shuttle) and on 818.3.c's definition of Equipped, and those two paragraphs contradict each other unless 818.5.a is read with them. Companion measurement, members named: the four cards that use the word 'equipped' all read the STATE (SFD-050, SFD-107, SFD-183 in reminder text, VEN-137), and no card reads the 818.2 EVENT - so that pair is dead letter in this pool and is refused for want of a card, scoped to this card pool. Cross-references: strike-down-blighted-battleaxe-detach-before-it-bites reads the same state with the other Body spell; aphelios-jax-quickdraw-attach and ornns-forge-jax-free-equipment are the [Quick-Draw] half; and jax-unmatched-last-rites-quickdraw-deletes-nonresource-equip, walked in this same batch, is the paragraph pair 819.1.a/819.1.b applied to a cost no discount can reach."
+    },
+    {
+      "id": "enthusiastic-promoter-trevor-backline-single-body-cap",
+      "name": "826.4.b is the uncited mirror of 815.1.c.2 and the two say OPPOSITE things about a second body - a second [Tank] grows the toll booth, a second [Backline] hands the attacker a choice, so the Promoter must be the only one behind the wall he builds",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-043",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M2. '[Backline] (I must be assigned combat damage last.) When I hold, [Buff] all units here. (Give each a +1 :rb_might: buff if it doesn't have one.)' The pool's cheapest body that both carries [Backline] and pays for the garrison standing in front of it."
+        },
+        {
+          "card": "UNL-048",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 M3. '[Shield] (+1 :rb_might: while I'm a defender.) When I hold, play a ready 3 :rb_might: Sprite unit token with [Temporary] here. (Kill it at the start of its controller's next Beginning Phase, before scoring.)' He is the wall AND its rebuilder, and he carries no [Backline] - which is exactly why he is the right partner."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "board-protection",
+        "temporary-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Calm (checked against data/cards.json), so 103.1.b.3 admits them under any legend with Calm among its two domains: Nine-Tailed Fox (OGN-255 / OGN-303), Blind Monk (OGN-257 / OGN-304), Unforgiven (OGN-259 / OGN-305), Radiant Dawn (OGN-261 / OGN-306), Fire Below the Mountain (SFD-189 / SFD-244), Grandmaster at Arms (SFD-193 / SFD-245), Blade Dancer (SFD-195 / SFD-246), Emperor of the Sands (SFD-197 / SFD-247), Bashful Bloom (UNL-189 / UNL-230), Wuju Master (UNL-191 / UNL-231), Gloomist (UNL-193 / UNL-232), Green Father (UNL-195 / UNL-233), Rogue Assassin (VEN-139 / VEN-189), Curator of the Sands (VEN-145 / VEN-192), Eye of Twilight (VEN-147 / VEN-193).",
+          "Neither is a Signature card (data/cards.json, signature=false on both) and neither appears in data/legality.json, whose only non-banned row is a 2v2 restriction on a Calm/Body Starter legend that this line never needs.",
+          "103.2.b allows three of each - but see the notable: three Promoters at ONE battlefield is the anti-synergy this entry is about. Spread the extra copies across battlefields, or hold them."
+        ],
+        "notable": [
+          "TWO PARAGRAPHS WITH IDENTICAL STRUCTURE THAT SAY OPPOSITE THINGS, AND THIS CATALOGUE HAD CITED ONLY ONE OF THEM. 815.1.c.2 is quoted in this project constantly: 'If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units WITHOUT Tank are invalid assignments until all units WITH Tank have lethal damage assigned to them.' 826.4.b is its uncited mirror and inverts both halves: 'If more than one unit with Backline is present with the same controller in Combat, damage may be assigned to any of them. Units WITH Backline are invalid assignments until all units WITHOUT Backline have lethal damage assigned to them.' Same first sentence, inverted second - so a SECOND [Tank] body makes the toll booth bigger for everyone else, while a SECOND [Backline] body does nothing for the first: once the ordinary bodies are dead they are both legal assignments and the ATTACKER picks. [Tank] scales with copies; [Backline] does not.",
+          "SO THE PACKAGE WANTS EXACTLY ONE BACKLINE BODY AND AS MANY ORDINARY ONES AS IT CAN BUILD, WHICH IS WHY TREVOR IS THE PARTNER AND NOT A SECOND PROMOTER. Trevor prints [Shield] and no [Backline], so he is a body 'without Backline' for 826.4.b's second sentence: he has to be given lethal before the Promoter is a legal assignment at all. His Hold mints a further one every turn. 826.5 closes the other door - 'Multiple Instances of Backline are redundant' - so stacking the keyword on one body is worth nothing either.",
+          "THE ARITHMETIC, WITH THE BUFFS COUNTED ONCE EACH. 465.2.c reads current Might and 465.2.c.4 caps each assignment at the minimum lethal. Defending: Trevor is M3 plus his own [Shield], which 814.1.b.3 makes 1 when X is omitted and 814.1.c pays only 'While I am a defender' - so 4, and 5 once buffed. The Sprite is M3, 4 once buffed. That is NINE damage the attacker must assign before 826.4.b lets a single point reach the Promoter (M2, M3 buffed). 702.3 caps each body at one buff and 702.2.a leaves it there permanently, so from the second turn on only the FRESH Sprite takes a new one - the wall is rebuilt each turn, it does not grow.",
+          "ORDER THE TWO HOLD TRIGGERS OR THE NEW SPRITE MISSES ITS BUFF. Both fire at 315.2.b.2. 383.3.d gives their controller the order they are PLACED and 340.1 resolves 'The newest Finalized Chain Item' first, so place the Promoter's trigger FIRST and Trevor's LAST: Trevor's resolves first, the Sprite is on the board, and 'all units here' - a programmatic set read at execution, 355.10.d with 359.3.f.2 - then includes it. Placed the other way the Sprite is born after the buff has already been handed out and stands at 3.",
+          "THE WALL IS REBUILT ON PURPOSE, AND THE SPRITE'S WHOLE LIFE IS THE OPPONENT'S TURN. 816.1.b kills a [Temporary] permanent 'At the start of this permanent's controller's Beginning Phase, before scoring' - i.e. at your 315.2.a, one step before Trevor's Hold at 315.2.b.2 mints the next one. So the Sprite that dies is yesterday's and the one that defends has been there for exactly the opponent's turn, which is the only turn a defender's Might is ever read.",
+          "WHAT IT IS NOT: a scoring line, and not a Tank package either. Nothing here gains a point, and adding [Tank] to the Promoter would be worse than useless - 465.2.c.8 hands the ASSIGNING PLAYER the choice when a unit carries exclusionary assignment requirements, and its worked example is Caitlyn, Patrolling given Tank, by name. See caitlyn-taric-backline-last-assignment, which walks the Tank-and-Backline ORDER from 465.2.c.6; this entry walks the CAP that 826.4.b puts on the Backline half."
+        ]
+      },
+      "steps": [
+        "Play UNL-048 Trevor Snoozebottom (3 Energy) and UNL-043 Enthusiastic Promoter (3 Energy) to the same battlefield. 143.4 has both enter exhausted; neither needs to be ready for anything here.",
+        "Take and keep that battlefield. At your next Beginning Phase, 315.2.b.2 Holds it and both Hold triggers fire at once.",
+        "Place the Promoter's trigger on the Chain first and Trevor's second (383.3.d). 340.1 resolves the newest first: Trevor's Sprite - ready, 3 Might, [Temporary] - is played here, and only then does the Promoter's '[Buff] all units here' resolve and catch it.",
+        "On the opponent's turn the garrison defends as Trevor 5 (M3 + [Shield] 1 + buff), Sprite 4 (M3 + buff), Promoter 3 (M2 + buff). 826.4.b makes the Promoter an invalid assignment until Trevor and the Sprite have both been assigned lethal - nine damage.",
+        "At your next 315.2.a the Sprite dies to 816.1.b, and one step later Trevor's Hold mints its replacement. Repeat every turn.",
+        "Do not add a second [Backline] body at this battlefield: 826.4.b would let the attacker choose which of the two to kill after the wall falls, which is the whole protection given away."
+      ],
+      "netPerIteration": "one fresh 3-Might [Temporary] Sprite and one new buff per turn, keeping a nine-damage wall in front of a body the attacker is forbidden to touch until the wall is dead",
+      "terminatesIn": "engine only - nothing here scores; the Sprite is replaced rather than accumulated (816.1.b kills it every Beginning Phase) and 702.3 caps each body at one buff, so the wall is steady-state at nine damage rather than growing",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 826.4.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If more than one unit with Backline is present with the same controller in Combat, damage may be assigned to any of them. Units with Backline are invalid assignments until all units without Backline have lethal damage assigned to them."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 815.1.c.2, the Tank mirror",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 826.3 and 826.4 and 826.4.a and 826.5",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "It is functionally short for “I must be assigned lethal damage after any other unit with the same controller as me that does not have [Backline] during the Combat Damage step.” … It alters how players can elect to assign combat damage during combat. … Players must still assign lethal damage to a unit before moving to the next when assigning their damage. … Multiple Instances of Backline are redundant."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 383.3.d and 340.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If more than one Triggered Ability is Triggered simultaneously, then the player that controls the Abilities selects the order to place them on the Chain. … The newest Finalized Chain Item resolves. Execute its game effects in their entirety."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 702.2.a and 702.3 and 702.3.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "To Buff a Unit, a player chooses a Unit and then places a buff on it. That Unit is Buffed for as long as the buff remains on it. … There can only be one Buff on a Unit at a time. … If a Buff is added, or instructed to be added, on a Unit that already has a Buff, it is not placed instead."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 814.1.b.3 and 814.1.c",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If X is omitted, it is presumed to be 1. … It is functionally short for \"While I am a defender, I have +X [M].\""
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 816.1.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "It is functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this.\""
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (Riot gallery API, errata applied)",
+          "kind": "riot",
+          "date": "2026-09-04",
+          "quote": "UNL-043 | Enthusiastic Promoter | Unit | Calm | E3 M2 | [Backline] (I must be assigned combat damage last.) When I hold, [Buff] all units here. (Give each a +1 :rb_might: buff if it doesn't have one.)"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-09 (issue #191, uncited sub-rules 500-829, batch 4). 826.4, 826.4.a and 826.4.b were cited by nothing in combos.json or synergies.json; 826.3 and 826.5 were each cited twice. The finding is the ASYMMETRY: this project quotes 815.1.c.2 in dozens of places and had never opened its Backline twin, which inverts the second sentence and therefore inverts what a second body is worth. Companion, and a limit on 826.4.b's own reach: it says 'unit with Backline', while OGN-068 Caitlyn, Patrolling and SFD-173 Soraka, Wanderer print the SENTENCE without the keyword (measured 2026-09-09: grep -ci backline over data/corpus_flat.txt returns 4 - UNL-043, UNL-090, UNL-141, UNL-145 - while six cards carry the effect), so a Caitlyn beside a Promoter is governed by 465.2.c.6's ordering and 465.2.c.8's exclusionary-requirement clause rather than by 826.4.b - a different paragraph, the same verdict, and the same advice: run one."
+    },
+    {
+      "id": "black-flame-altar-sprite-call-temporary-shield",
+      "name": "801.3.a.3 makes the Altar's [Shield] permanent rather than 'this turn', and 816.1.b makes a [Temporary] body's whole life the opponent's turn - the one window 814.1.c ever pays in, so the grant and the lifespan fit exactly",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-208",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield. 'Units here with [Temporary] have [Shield]. (+1 :rb_might: while they're defenders.)' In ZERO entries before this one. Its text never says 'you', which is why 190.6.d cannot blank it, and it is a pure static with no instruction, so there is nothing for 190.6.d's implied-'you' clause to ignore either."
+        },
+        {
+          "card": "OGN-094",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind spell, E3. '[Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) [Action] (Play on your turn or in showdowns.) Play a ready 3 :rb_might: Sprite unit token with [Temporary].' It names no location, so 355.2.a puts the Sprite at your base or a battlefield you control - the Altar, when you control it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "board-protection",
+        "temporary-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "OGN-094 Sprite Call is mono-Mind (data/cards.json) and UNL-208 Black Flame Altar is colourless, so 103.1.b.3 admits the line under any legend with Mind among its two domains: Daughter of the Void (OGN-247 / OGN-299), Nine-Tailed Fox (OGN-255 / OGN-303), Swift Scout (OGN-263 / OGN-307), Herald of the Arcane (OGN-265 / OGN-308), Mechanized Menace (SFD-181 / SFD-240), Fire Below the Mountain (SFD-189 / SFD-244), Prodigal Explorer (SFD-199 / SFD-248), Chem-Baroness (SFD-201 / SFD-249), Virtuoso (UNL-181 / UNL-226), Bashful Bloom (UNL-189 / UNL-230), Scorn of the Moon (UNL-197 / UNL-234), Deceiver (UNL-199 / UNL-235), Curator of the Sands (VEN-145 / VEN-192), Defender of Tomorrow (VEN-149 / VEN-194), Soul's Reflection (VEN-151 / VEN-195), and the Mind/Order Starter legend OGS-021.",
+          "Neither card is a Signature card (data/cards.json, signature=false on both) and neither appears in data/legality.json.",
+          "103.4.c allows only one battlefield of a given name in the three you bring, and 485.5 / 487.5 say the battlefield in use is selected RANDOMLY from what the players provide - so this line is not certain to come online in a given game, and 485.4.a puts two battlefields on a Duel table. Bringing three Altars is illegal, not insurance."
+        ],
+        "notable": [
+          "A GRANT THAT NAMES NO DURATION IS NOT A 'THIS TURN' GRANT, AND NOTHING HAD CITED THE PARAGRAPH THAT SAYS SO. 801.3.a.2: 'The effect that granted the Keyword will specify the duration for which it is granted.' 801.3.a.3: 'If an effect that grants a Keyword does not specify a duration, the duration is as long as that Game Object remains on the Board or in its current Non-Board Zone.' The Altar names none, so the [Shield] holds for as long as the body is on the board - which 816.1.b then bounds at exactly one opponent turn.",
+          "THE GRANT AND THE LIFESPAN FIT EXACTLY, AND THAT IS THE ENTRY'S REAL CONTENT. 814.1.c makes [Shield] functionally short for 'While I am a defender, I have +X [M].' - worth nothing on offence and nothing in a Main-Phase Might count. 816.1.b kills a [Temporary] permanent 'At the start of this permanent's controller's Beginning Phase, before scoring', so a body minted on your turn is alive for precisely your Main Phase and the whole of the opponent's turn - the only stretch of the game in which a unit of yours can ever hold the Defender designation. The Altar therefore hands a defence-only keyword to the one class of body whose entire life is spent defending, and 814.1.b.3 makes the bare grant worth 1: every Sprite in the pool defends here at 4 instead of 3.",
+          "IT READS A KEYWORD, WHICH 816.3 IS WHAT PERMITS. 816.3: 'Temporary, and whether or not a permanent has Temporary, is a characteristic of the permanent and may be checked or referenced by other Game Effects.' And 814.2 - 'If a Unit has Shield, or has been granted Shield, and is granted Shield by an additional source, the Shield Value of all granted Shield keywords is summed' - means the Altar stacks with any other Shield source rather than being redundant with it, the opposite of 816.2's 'Multiple instances of Temporary are redundant.'",
+          "[ACTION] IS WHAT MAKES IT A COMBAT TRICK RATHER THAN A STATIC. 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' So the Sprite can be bought after the attackers are declared; 319.6 with 323.2.a give a body that becomes present mid-combat its designation at the very next Cleanup, before 465.2 resolves, and 143.4's entering exhausted costs nothing on defence, since neither 464.2.c.3 nor 465.2.b filters by state. Hidden for one rainbow, it later costs 0 Energy (811.1.b).",
+          "THE ALTAR IS SYMMETRIC AND SAYS SO. 'Units here' is not 'friendly units', so an opponent's [Temporary] bodies at this battlefield are shielded too - the same shape as OGN-296 Void Gate, which is likewise worded for the location and likewise cannot be blanked by 190.6.d. Six cards in the pool grant [Temporary] to a unit (OGN-069, OGN-180, UNL-070, UNL-165, UNL-199, UNL-200), so an opponent running that package gets the same +1.",
+          "A COUNTED SET IN THIS PROJECT'S OWN NOTES IS SMALLER THAN THE POOL, AND THE MEMBERS ARE NAMED HERE. The standing note says SIX battlefields are live with no Controller because their text never says 'you'. Measured 2026-09-09 with a field-aware sweep of data/corpus_flat.txt, TWENTY-SIX of the 66 battlefields contain neither 'you' nor 'your', of which four are banned in both formats (OGN-276, OGN-284, OGN-290, OGN-292), leaving TWENTY-TWO playable: OGN-277, OGN-294, OGN-295, OGN-296, OGN-297, SFD-209, SFD-216, UNL-205, UNL-206, UNL-208, UNL-210, UNL-212, UNL-213, UNL-214, UNL-215, UNL-218, VEN-157, VEN-158, VEN-159, VEN-160, VEN-164, VEN-166. That is the literal-word count and it is not by itself the count of live battlefields, because 190.6.d also reaches 'the implied \"you\" in instructions that don't specify a player like \"draw 1\"' - one row, OGN-277 Back-Alley Bar ('When a unit moves from here, give it +1 :rb_might: this turn'), states an instruction with no named actor and needs that second check before anyone leans on it. The other twenty-one either name a player explicitly or, like this Altar, are pure statics and prohibitions with no instruction at all."
+        ]
+      },
+      "steps": [
+        "Bring UNL-208 Black Flame Altar among your three battlefields (103.4.c: one of each name). 485.5 / 487.5 select the battlefield in play at random from what both players provide.",
+        "Hide OGN-094 Sprite Call face down at a battlefield you control for one rainbow (811.1.b), or hold it to cast for 3 Energy.",
+        "When the opponent attacks the Altar, play Sprite Call inside the Showdown - 806.1.b for the printed [Action], or 0 Energy from face down. A ready 3-Might Sprite unit token with [Temporary] enters; 355.2.a permits the Altar because you control it.",
+        "319.6 with 323.2.a give the Sprite the Defender designation at the next Cleanup, before 465.2 resolves. The Altar's static has already granted it [Shield], which 814.1.b.3 reads as 1 and 814.1.c pays only now, so it defends at 4 and 465.2.c.4 charges the attacker four to remove it.",
+        "At your next Beginning Phase 816.1.b kills the Sprite at 315.2.a, before scoring - so it never interferes with 315.2.b.2's Hold and the Altar is free for the next one."
+      ],
+      "netPerIteration": "each [Temporary] body at this battlefield defends one Might larger, permanently rather than for a turn, for zero additional cost",
+      "terminatesIn": "engine only - nothing here scores, the Sprites are replaced rather than accumulated (816.1.b), and 814.1.c pays only while defending, so the whole value is the damage an attacker must find",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 801.3.a.2 and 801.3.a.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The effect that granted the Keyword will specify the duration for which it is granted. … If an effect that grants a Keyword does not specify a duration, the duration is as long as that Game Object remains on the Board or in its current Non-Board Zone."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 816.1.b and 816.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "It is functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this.\" … Temporary, and whether or not a permanent has Temporary, is a characteristic of the permanent and may be checked or referenced by other Game Effects."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 814.1.b.3 and 814.1.c and 814.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If X is omitted, it is presumed to be 1. … It is functionally short for \"While I am a defender, I have +X [M].\" … If a Unit has Shield, or has been granted Shield, and is granted Shield by an additional source, the Shield Value of all granted Shield keywords is summed."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 190.6.d",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "“You” in a battlefield’s abilities refers to the battlefield’s Controller, as does the implied “you” in instructions that don’t specify a player like “draw 1.” If the battlefield has no Controller, “you” refers to no one, and all such instructions are ignored."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 806.1.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn."
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (Riot gallery API, errata applied)",
+          "kind": "riot",
+          "date": "2026-09-04",
+          "quote": "UNL-208 | Black Flame Altar | Battlefield | Colorless | - | Units here with [Temporary] have [Shield]. (+1 :rb_might: while they're defenders.)"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-09 (issue #191, uncited sub-rules 500-829, batch 4). Anchors uncited before this entry: 801.3.a.2 and 801.3.a.3, the paragraphs that decide how long a granted keyword lasts when the granting card says nothing. UNL-208 Black Flame Altar was in zero entries. The measurement in the last notable is a correction to a counted set recorded elsewhere in this project - the sweep is a one-liner over data/corpus_flat.txt and the twenty-two members are named so the next reader can refute it in one grep rather than inherit it. Cross-reference: enthusiastic-promoter-trevor-backline-single-body-cap, walked in the same batch, is the same [Temporary]-body-as-wall idea paid for by a Hold instead of by a battlefield, and states the 826.4.b cap this line does not need."
+    },
+    {
+      "id": "jax-unmatched-last-rites-quickdraw-deletes-nonresource-equip",
+      "name": "[Weaponmaster] DISCOUNTS an Equip cost by one rainbow, [Quick-Draw] never DETERMINES one at all - so a granted Quick-Draw is the pool's only way to delete the non-resource half of an Equip cost, and Last Rites is the card that has one",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-054",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "BOARD",
+          "note": "Calm unit, E5 P1 M5. '[Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) Your Equipment everywhere have [Quick-Draw]. (Each gains [Reaction]. When you play it, attach it to a unit you control.)' The word 'everywhere' is what makes the grant reach a card still in your hand, which it must, because the granted trigger fires on the PLAY."
+        },
+        {
+          "card": "SFD-150",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Chaos gear, E3, Might Bonus +2. '[Equip] — :rb_rune_chaos:, Recycle 2 cards from your trash (Pay the cost: Attach this to a unit you control.) [Effect] When I conquer or hold, you may play a unit from your trash. (You still pay its costs.)' Its Equip cost is the one in the pool that a rainbow discount cannot finish paying."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "unit-delivery",
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "SFD-054 Jax, Unmatched is mono-Calm and SFD-150 Last Rites is mono-Chaos (both checked against data/cards.json), so 103.1.b needs a legend carrying BOTH domains. Measured over data/cards.json there are exactly three such names: Unforgiven (OGN-259 / OGN-305), Blade Dancer (SFD-195 / SFD-246) and Gloomist (UNL-193 / UNL-232).",
+          "Neither card is a Signature card (data/cards.json, signature=false on both), so 103.2.d.2 imposes no legend beyond those three, and neither appears in data/legality.json.",
+          "The line wants a trash to reanimate from, so it wants the Chaos discard package - but nothing here forces one: Last Rites' own [Effect] is the only trash reader in the two cards."
+        ],
+        "notable": [
+          "THE TWO FREE-ATTACH KEYWORDS ARE NOT THE SAME TOOL AND THE DIFFERENCE IS IN THEIR SHORTHANDS. 821.1.c makes [Weaponmaster] short for 'Pay the cost of its Equip ability, reduced by [A], to attach it to this unit.' (the tail of 821.1.c, quoted from its second sentence on) - it ACTIVATES the Equip ability and DISCOUNTS its cost by one rainbow. 819.1.d makes [Quick-Draw] short for '“[Reaction]” and “When you play this, attach it to a Unit you control.”' - a triggered attach on the play, in which no Equip ability is activated and no Equip cost is ever determined. A discount can only reduce a resource; a cost that is never determined is not paid at all.",
+          "AND LAST RITES IS THE CARD WHERE THAT DIFFERENCE IS THE WHOLE CARD. Its [Equip] is ':rb_rune_chaos:, Recycle 2 cards from your trash' - a resource half and a NON-RESOURCE half. [Weaponmaster]'s rainbow reaches the rune and can never reach the recycle, which is why this project already records Last Rites as self-limiting and un-freeable by that keyword. A granted [Quick-Draw] frees both halves at once, and the recycle is the half worth more: 416.1 puts recycled cards on the bottom of the deck, so paying it feeds the trash back into the library - the exact resource the Equipment's own [Effect] ('When I conquer or hold, you may play a unit from your trash') is trying to spend. Paying the cost damages the payoff; deleting it does not.",
+          "819.2 IS THE CAP AND IT IS PRINTED. 'Multiple instances of Quick-Draw do not trigger separately and have no effect beyond the first.' So Jax's grant is worth exactly ZERO on the Equipment that already print the keyword. Measured 2026-09-09 over data/corpus_flat.txt: 40 Equipment-tagged printings, of which FOUR print [Quick-Draw] - SFD-022 Long Sword, SFD-056 Sterak's Gage, SFD-064 Cloth Armor, SFD-186 Spinning Axe. Build the list from the other thirty-six or Jax is a 5-Energy blank.",
+          "819.1.a IS WHY THE GRANT IS WELL FORMED HERE: 'Quick-Draw is present on Gear with Equip abilities.' Last Rites has one. And 819.1.b - 'Cards with Quick-Draw have Reaction inherently' - is the second half of the gift: the Equipment becomes a [Reaction] card, so 813.1.c.1 lets it be played in any Closed State on either player's turn, and it arrives attached. 819.3 makes Quick-Draw itself a referenceable characteristic, though no card in the pool reads it.",
+          "THE GRANT REACHES YOUR HAND BECAUSE JAX SAYS 'EVERYWHERE', AND 801.3.a.3 IS WHY IT DOES NOT EXPIRE. 'If an effect that grants a Keyword does not specify a duration, the duration is as long as that Game Object remains on the Board or in its current Non-Board Zone.' Jax names no duration, so every Equipment you hold keeps the keyword until it is played - and a granted keyword on a card in hand is exactly what a play-trigger needs.",
+          "WHAT IT IS NOT: free damage prevention for Jax himself. 809.1.c prices his [Deflect] as an additional cost the OPPONENT pays per choice, which they may simply pay; it is a tax, not the prohibition that SFD-105 Ruin Runner prints. And killing Jax does not detach anything - 718.5.b keeps an attached card a legal choice, but the Equipment stays where it is; what the opponent buys by removing him is the price of the NEXT attach, back to a Chaos rune plus two recycles.",
+          "CROSS-REFERENCES, so the family is readable as one: aphelios-jax-quickdraw-attach and ornns-forge-jax-free-equipment are the other two Jax lines and both spend the grant on the PLAY cost or on a 'when you attach' trigger; azir-ascendant-steraks-gage-equipped-state-survives-inactive, walked in this same batch, is what the resulting Equipped STATE is then readable by; and last-rites-sentinel-trash-holds, last-rites-mill-reanimate, last-rites-stack-arena-reanimator and last-rites-lunar-boon-trash-recursion are the four entries that pay the Equip cost the hard way."
+        ]
+      },
+      "steps": [
+        "Play SFD-054 Jax, Unmatched (5 Energy + 1 Power). From that moment 'Your Equipment everywhere have [Quick-Draw]', which by 801.3.a.3 lasts as long as each card stays where it is, your hand included.",
+        "Play SFD-150 Last Rites for its printed 3 Energy. 819.1.b has given it [Reaction], so this can happen in any Closed State on either player's turn (813.1.c.1) - in response to removal, or inside a Showdown.",
+        "819.1.d's granted trigger attaches it to a unit you control as it is played. No Equip ability is activated (818.1), so neither the Chaos rune nor the 'Recycle 2 cards from your trash' is ever paid, and your trash is intact.",
+        "The carrier is now +2 Might (137.3, 718.4) and carries the appended [Effect] (718.3): 'When I conquer or hold, you may play a unit from your trash.'",
+        "Conquer or Hold with that body. 383.4.c.1 / 383.4.d.1 put the trigger on the Chain; play a unit from your trash, paying its costs. Repeat every turn the carrier scores.",
+        "If the opponent kills the carrier, 719.5 detaches Last Rites and 457.1 recalls it to base at the next Cleanup, where its printed text is Active again - so a re-attach costs the printed Equip cost unless you replay it under Jax, which you cannot, because it is already on the board rather than in a zone you can play it from."
+      ],
+      "netPerIteration": "one unit replayed from the trash per Conquer or Hold of the carrier, with the Equipment's own Equip cost - one Chaos rune and two recycles - deleted rather than discounted",
+      "terminatesIn": "engine only - nothing here scores by itself; the ceiling is the carrier's scoring events, which 470 caps at one Score per battlefield per turn and 485.4 caps at two battlefields in a Duel, and each replayed unit still pays its own costs",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 819.1.a and 819.1.b and 819.1.d",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Quick-Draw is present on Gear with Equip abilities. … Cards with Quick-Draw have Reaction inherently. … Quick-Draw is functionally short for “[Reaction]” and “When you play this, attach it to a Unit you control.”"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 819.2 and 819.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Multiple instances of Quick-Draw do not trigger separately and have no effect beyond the first. … Quick-Draw, and whether or not a gear has Quick-Draw, is a characteristic of the Gear and may be checked or referenced by other Game Effects."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 821.1.c, the [Weaponmaster] shorthand it is being contrasted with",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Weaponmaster is functionally short for: “When you play me, you may choose a Card you control with the Equipment tag. Necessary portions of its Rules Text are no longer Inactive if they are currently Inactive. Pay the cost of its Equip ability, reduced by [A], to attach it to this unit.”"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 818.1 and 818.1.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Equip is an Activated Ability keyword. … Equip has a cost to activate and Attaches the card with Equip to a chosen Unit when the cost is paid."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 801.3.a.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If an effect that grants a Keyword does not specify a duration, the duration is as long as that Game Object remains on the Board or in its current Non-Board Zone."
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (Riot gallery API, errata applied)",
+          "kind": "riot",
+          "date": "2026-09-04",
+          "quote": "SFD-150 | Last Rites | Gear | Chaos | E3 M+2 | [Equip] — :rb_rune_chaos:, Recycle 2 cards from your trash (Pay the cost: Attach this to a unit you control.) [Effect] When I conquer or hold, you may play a unit from your trash. (You still pay its costs.)"
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (Riot gallery API, errata applied)",
+          "kind": "riot",
+          "date": "2026-09-04",
+          "quote": "SFD-054 | Jax, Unmatched | Unit | Calm | E5 P1 M5 | [Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) Your Equipment everywhere have [Quick-Draw]. (Each gains [Reaction]. When you play it, attach it to a unit you control.)"
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-09 (issue #191, uncited sub-rules 500-829, batch 4). Anchors uncited before this entry: 819.1.a, 819.1.b, 819.3 and 801.3.a.3 (819.1.c and 819.1.d were already cited). The finding is a distinction this catalogue had been treating as one thing: both keywords are described in these walk documents as 'a free attach', and they are not - 821.1.c pays a DISCOUNTED Equip cost while 819.1.d pays NONE, which is invisible until an Equip cost has a non-resource half. Exactly one does: SFD-150 Last Rites. Companion measurement, members named: 40 Equipment printings, four with the keyword printed (SFD-022, SFD-056, SFD-064, SFD-186), so 819.2 makes Jax's grant worth nothing on those four."
     }
   ]
 }
