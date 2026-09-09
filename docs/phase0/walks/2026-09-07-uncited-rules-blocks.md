@@ -1310,3 +1310,72 @@ name as unread. In priority order, with the pool card Riot's example names:
 
 **The card populations are spent and the rules file is not — the filtered sub-rule probe is the vein, and
 the rows whose worked example names a pool card are Riot telling you the interaction is real.**
+
+---
+
+# Batch 15 (2026-09-09, after the pause) — a cost that is paid without happening, and a word-order test
+
+Resumed on the manager's release. Catalogue at **706 + 180 synergy rules**; staging was empty on resume,
+as the handoff said. Both entries are inside the 100–499 lane.
+
+| id | sub-rule opened | class |
+|---|---|---|
+| `cruel-patron-zhonyas-cost-paid-without-the-death` | **357.2 / .2.a / .3** and **370.1.a.1** | ENGINE |
+| `sona-wind-wall-condition-not-effect` | **383.2 / .2.b**, and 383.2.a.1's two worked examples | ENGINE |
+
+`validateCombos`: **0 errors, 708 entries.** `test/legend-lines.test.ts`: 14 legend base codes, **0
+defects.** Legality for all four cards checked against `data/legality.json` on 2026-09-09 — none banned,
+none restricted.
+
+## 49. 357.2.a — a cost replaced by a Replacement Effect is still considered PAID
+
+*"Costs that are replaced with other events by replacement effects are still considered paid."* Riot's
+worked example names two pool cards: `OGN-208 Cruel Patron` (*"As an additional cost to play me, kill a
+friendly unit"*) and `OGN-077 Zhonya's Hourglass`. The Hourglass replaces the death; **the cost is paid
+and Cruel Patron resolves anyway.**
+
+**And 370.1.a.1 says the kill genuinely did not happen** — *"A unit's death being replaced by Zhonya's
+Hourglass is the same as the kill action that caused that death not occurring."* The two paragraphs have
+to be carried **together** or the interaction reads as a contradiction. Net: a Might 6 body added for 4
+Energy with **no body lost**.
+
+**The general form, and this lane has now met it three times:** a **COST** that is replaced is still
+paid (357.2.a); an **EFFECT** that references the replaced game action is **not** performed
+(359.3.e.14.b, batch 10); and a **Deathknell** on the saved body is removed (808.1.d.1). Cruel Patron
+works precisely because its kill is a cost with no rider attached.
+
+Companion: **357.2** lets non-standard costs be paid in **any order**, and **357.3** forbids paying a
+cost that *"will deterministically result in illegal choices or actions later in this process."*
+
+## 50. 383.2.a.1 — the same "if" clause is Condition or Effect depending on where it sits
+
+The catalogue cites 383.2.a.1 for the *"count is part of the Trigger Condition"* half. **Neither of its
+two worked examples, nor the word-order test they establish, appears anywhere:**
+
+- `OGN-073 Sona, Harmonious` — *"At the end of your turn, **if I'm at a battlefield**, ready up to 4
+  friendly runes."* The clause is **immediately after** the Condition, so it is **Trigger Condition** —
+  and Riot spells out the consequence: ***"If she is removed in reaction to the triggered ability, it
+  will still resolve."***
+- `OGN-251 Loose Cannon` — *"At the start of your Beginning Phase, draw 1 **if you have one or fewer
+  cards in your hand**."* Not immediately after, so it is **Effect**, checked on resolution.
+
+**So an "if" clause immediately after the When/At/Nth-time clause is checked when the trigger is PLACED
+and survives removal in response; the same clause moved later is checked on RESOLUTION and does not.**
+
+That makes Sona a **removal-proof** engine returning **four** runes at end of turn — twice Targon's Peak
+(batch 12), with no Conquer required, every turn. `OGN-064 Wind Wall` rather than `OGN-045 Defy` is the
+payoff because **206** makes Defy's *"costs no more than [4]"* read the **printed** cost, so it cannot
+touch what a four-Energy answer is being held for.
+
+## 51. Read and not walked — 135.2.e.6.c, a costing fact with no line of its own
+
+**135.2.e.6.c**: *"A [C] shorthand on a card with multiple Domains is processed as any power of that
+card's Domains"*, with `SFD-196 Defiant Dance` (Calm/Chaos, cost `[1][C]`, payable with **either**) and
+`OGS-018 Tibbers` (Fury/Chaos [Accelerate]). And **135.2.e.6.b**: a `[C]` on a card with **no** Domain is
+processed as `[A]`.
+
+**A dual-domain card's Power cost is therefore easier to pay than a mono-domain card of the same printed
+cost** — it accepts either half of the identity. That is real deckbuilding arithmetic the catalogue has
+never stated, but it enables no specific line, so it is recorded here rather than forced into an entry.
+The obvious candidate, `OGN-248 Icathian Rain` (Fury/Mind, E7 **P3**, six Deal actions), is already
+walked as `icathian-rain-annie-ravenborn-six-deal-actions`.
