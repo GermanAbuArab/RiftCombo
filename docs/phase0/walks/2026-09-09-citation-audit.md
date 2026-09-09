@@ -310,3 +310,100 @@ of its own within the hour, which is this project's standing lesson about typed-
 claims arriving in the one place nobody re-reads. The rule that catches it is cheap and now exists —
 `rulesweep.mjs` is a candidate for `test/`, where nothing currently checks a rule reference against the
 rules files.
+
+---
+
+## 10. The 774 `riot`-kind sources
+
+The lane rc-manager4 scoped after §9, against a defect class already proven elsewhere: a quote sweep
+in another lane found 27 flagged passages in 39 entries, one a paraphrase typed from memory and
+sixteen truncated at a comma and closed with a period.
+
+**Population.** 774 sources of kind `riot`: 685 name the Core Rules, 84 name `data/corpus_flat.txt`
+card text, 5 name a Riot page (two ban-list posts, the Unleashed Rules FAQ, a Vendetta errata post,
+the Spiritforged errata). 417 carry a `quote`; 1,458 quoted passages were extracted from them.
+
+### 10.1 Paragraph existence — clean
+
+**Zero** `riot` sources name a paragraph that does not exist, consistent with §9 and now enforced by
+`test/rule-refs.test.ts`.
+
+### 10.2 Verbatim check
+
+| verdict | spans |
+|---|---|
+| verbatim | **1,328** |
+| verbatim, with the elision the author marked | 15 |
+| verbatim, with editorial brackets treated as wildcards | 15 |
+| **truncated** | **7** |
+| not located (see 10.5) | 93 |
+
+Three conventions had to be taught to the checker before its output meant anything, and each one
+initially reported as a wall of defects:
+
+- **Editorial brackets.** The catalogue marks an icon or an elided word with square brackets inside a
+  quote — *"gain one or more [points]"*, *"+1 [M]"*, *"a player cannot [complete it]"*. Compared
+  literally, the whole convention reads as a misquote: 87 spans on the first run.
+- **A declared ellipsis is not a truncation.** Stripping a leading or trailing `…` before comparing is
+  necessary; forgetting that the author *wrote* it turns every correctly-marked partial quote into a
+  false "truncated at a comma" report.
+- **An unanchored alternative in the truncation probe.** `/^[,;:]| [a-z]/` — the second branch matches
+  anywhere downstream, so it flagged any quote followed within 40 characters by a lower-case word.
+  That alone inflated truncations from 7 to 23. Fourth instrument error of the day, same shape.
+
+### 10.3 The seven truncations
+
+One is significant, one moderate, five cosmetic. All staged in `rc-citations-fixes.json`.
+
+**`348.2.a.1`, in `angler-beast-ocean-drake-open-and-take`** — quoted as *"This results in a
+Conquer."* The rule reads *"This results in a Conquer **if that player has not yet scored that
+Battlefield this turn.**"* The quote cuts before the conditional and closes with a period, turning a
+conditional rule into an absolute one — and the dropped condition is precisely what 470 caps, so it
+matters exactly where a reader would lean on it. **This truncated form has propagated into CLAUDE.md**,
+which writes *"348.2.a.1 says outright 'This results in a Conquer'"*; worth fixing there too.
+
+**`143.2.b`, in `maduli-the-list-might-gate`** — drops *"and when summing Might to be assigned as
+damage in the Combat Damage Step"*, i.e. the combat half, from an entry about a Might gate. CLAUDE.md
+states the rule correctly with all three contexts; only the quote is short.
+
+Cosmetic: `195` (×2, drops *"or if they are the only player remaining in the game"*), `383.1.b`,
+`464.2.c.3.a`, `161.2.a`.
+
+### 10.4 Seven paraphrases presented as verbatim, four of them material
+
+| ref | quoted as | the rule says | |
+|---|---|---|---|
+| `419.4` | "…completed by **the player**" | "…completed by **the resolution of the card**" | **MATERIAL** |
+| `465.2.c.4` | "…the minimum required to **kill them**." | "…required to **constitute lethal damage unless no further units remain to have damage assigned**…" | **MATERIAL** |
+| `715.2` | "…increased by **the amount of Bonus Damage**" | "…increased by **Bonus Damage individually and separately**" | **MATERIAL** |
+| `206` | "the printed or **base** cost" | "its printed or **copied** cost" | **MATERIAL** |
+| `355.10.d` | folds in the list stem, drops "by the spell or ability's controller" | | moderate |
+| `431.1.c` | a faithful condensation | | moderate |
+| `436.4.a` | "their **Main Deck**" | "their **deck**" | minor |
+
+The four material ones each change something this project reasons with. `419.4` moves the trigger from
+the card RESOLVING to the player finishing the play steps — the distinction 419.4.a.1 exists to draw.
+`465.2.c.4` drops the `unless` tail that CLAUDE.md already records as *a permission the attacker may
+decline*, in an excess-damage entry, i.e. it drops the clause it was cited for. `715.2`'s *"individually
+and separately"* IS the content of the paragraph. And `206` says **base** where the rule says
+**copied**, in a catalogue that distinguishes printed, base and copied cost on purpose (185.3.a.1 makes
+an ordinary token cost 0 for all purposes; 185.3.a.2 appends a real cost through a copy effect).
+
+### 10.5 Rule or example — clean
+
+Of 1,169 spans located in the Core Rules, **56 sit inside an `Example:` block** rather than the rule
+text. That is legitimate — this project mines Riot's worked examples deliberately — and the question
+is only whether any is *attributed to the paragraph as if it were the rule*. Probed for the
+`REF: 'passage'` shape: **exactly one**, and its own source text already says it is an example. **No
+example is misattributed as a paragraph** anywhere in the `riot` sources of `combos.json`.
+
+### 10.6 What could not be checked from here
+
+The 93 unlocated spans are, in order: 50 multi-item joins and rule-number-prefixed quotes (a span
+carrying two rules or two card rows, or quoting a paragraph together with its number), 23 the same,
+11 quotes from **external Riot pages** — the two ban-list posts, the Unleashed Rules FAQ, the Vendetta
+and Spiritforged errata — which are not in any file we ship, and 9 extractor artifacts where a span
+split on a curly apostrophe inside a word. Of these only the 11 external ones are a real limit, and
+they are the honest outcome §6 describes: the Unleashed FAQ quote is the strongest source in the entry
+that carries it, and the errata quotes are transcribed in `data/errata.json`, which the build verifies
+find-string by find-string. Nothing here is dated on faith.
