@@ -19688,7 +19688,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "817.1.c: 'The trigger is the permanent entering the Board.' 817.1.b: 'It is functionally short for \"When this is played, predict.\"' 436.4.a: 'The Player will not perform a Burn Out as a result of Predicting with too few cards in their Main Deck.' 416.1.a: 'Main Deck cards are Recycled to the Main Deck.'"
+          "quote": "817.1.c: 'The trigger is the permanent entering the Board.' 817.1.b: 'It is functionally short for \"When this is played, predict.\"' 436.4.a: 'The Player will not perform a Burn Out as a result of Predicting with too few cards in their DECK.' 416.1.a: 'Main Deck cards are Recycled to the Main Deck.'"
         },
         {
           "title": "Issue #153 (GitHub)",
@@ -19924,7 +19924,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "465.2.c.4: 'Units cannot have more damage assigned to them than the minimum required to kill them.' 194.1.c: 'Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more [points].' 470: 'A player may only Score, from either method, once per Battlefield per turn.' 702.2.b.2: 'A player can only spend buffs on units they control.'"
+          "quote": "465.2.c.4: '...than the minimum required to CONSTITUTE LETHAL DAMAGE UNLESS NO FURTHER UNITS REMAIN TO HAVE DAMAGE ASSIGNED...' 194.1.c: 'Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more [points].' 470: 'A player may only Score, from either method, once per Battlefield per turn.' 702.2.b.2: 'A player can only spend buffs on units they control.'"
         },
         {
           "title": "Issue #153 (GitHub)",
@@ -20000,7 +20000,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "419.3: 'Game effects may result in cards being played as part of their resolution.' 419.3.a: 'This treats Play as a Limited Action.' 419.4.a: 'Any such triggered abilities trigger when the act of playing the card has been completed by the player.' 108.6.c: Banishment 'represents cards that have been removed from play in a more difficult-to-recover way'."
+          "quote": "419.3: 'Game effects may result in cards being played as part of their resolution.' 419.3.a: 'This treats Play as a Limited Action.' 419.4.a: '...has been completed by THE RESOLUTION OF THE CARD.' 108.6.c: Banishment 'represents cards that have been removed from play in a more difficult-to-recover way'."
         },
         {
           "title": "Issue #153 (GitHub)",
@@ -20478,7 +20478,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "206: 'Costs referred to by a card are the printed or base cost of the card.' 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' 185: 'Tokens are not cards.' 186.1: 'If a token is put into any Non-Board Zone besides the chain, it ceases to exist immediately after moving to its new zone.'"
+          "quote": "206: 'Effects that need to determine a card s cost for any purpose always use its PRINTED OR COPIED cost, even if that cost is increased, decreased, or ignored as the card is played.' 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' 185: 'Tokens are not cards.' 186.1: 'If a token is put into any Non-Board Zone besides the chain, it ceases to exist immediately after moving to its new zone.'"
         },
         {
           "title": "Issue #153 (GitHub)",
@@ -21401,7 +21401,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified. Example: A token unit is a unit ... can be chosen or otherwise affected by spells or abilities that choose or affect units.' 383.1.b: 'If an ability triggers “the [Nth] time” something happens and that trigger condition is met multiple times simultaneously, the ability's controller picks one of those instances to serve as the trigger condition. The ability triggers only once.' 383.2.c.2: 'A Game Object will not be able to successfully evaluate its Trigger Condition, however, if it leaves the zone that its Trigger is active from at the same time that its Trigger is satisfied.'"
+          "quote": "185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified. Example: A token unit is a unit ... can be chosen or otherwise affected by spells or abilities that choose or affect units.' 383.1.b: 'If an ability triggers “the [Nth] time” something happens and that trigger condition is met multiple times simultaneously, the ability's controller picks one of those instances to serve as the trigger condition. The ability triggers only once, due to the chosen condition.' 383.2.c.2: 'A Game Object will not be able to successfully evaluate its Trigger Condition, however, if it leaves the zone that its Trigger is active from at the same time that its Trigger is satisfied.'"
         },
         {
           "title": "Issue #153 (GitHub)",
@@ -23049,7 +23049,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "143.4: 'Units enter the Board exhausted.' 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' 383.2.a.1: 'Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the Effect.' 195: 'A player also wins the game if an effect instructs them to do so.' 465.2.c.3: 'Units must have lethal damage assigned to them in full before damage is assigned to a different Unit.'"
+          "quote": "143.4: 'Units enter the Board exhausted.' 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' 383.2.a.1: 'Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the Effect.' 195: '...if an effect instructs them to do so, or if they are the only player remaining in the game.' 465.2.c.3: 'Units must have lethal damage assigned to them in full before damage is assigned to a different Unit.'"
         },
         {
           "title": "Issue #161 (GitHub)",
@@ -29705,7 +29705,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "420.3.a: 'The Cost is Exhausting one or more Units.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the [Battlefield].' 464.2.c.3.a: 'If a Unit controlled by the Attacker or Defender becomes present at this Battlefield after this moment, it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present.' 319.8: 'After a Move is completed.' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 814.1.c: 'While I am a defender, I have +X [M].'"
+          "quote": "420.3.a: 'The Cost is Exhausting one or more Units.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the [Battlefield].' 464.2.c.3.a: 'If a Unit controlled by the Attacker or Defender becomes present at this Battlefield after this moment, it will gain the Attacker or Defender designation that caused it to become present, as appropriate for its controller.' 319.8: 'After a Move is completed.' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 814.1.c: 'While I am a defender, I have +X [M].'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -32605,7 +32605,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "431.1.c. Looking at or revealing cards past the number of cards in the Main Deck does not Burn Out."
+          "quote": "431.1.c. If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player s Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction."
         },
         {
           "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
@@ -33730,7 +33730,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "715.2. If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by the amount of Bonus Damage."
+          "quote": "715.2. If the Deal action has multiple targets, is increased by BONUS DAMAGE INDIVIDUALLY AND SEPARATELY."
         },
         {
           "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
@@ -34683,7 +34683,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "355.10.d. A Game Object that is programmatically selected based on its characteristics rather than chosen is not a target."
+          "quote": "355.10.d. It is programmatically selected based on its characteristics rather than chosen BY THE SPELL OR ABILITY S CONTROLLER."
         },
         {
           "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
@@ -36259,7 +36259,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "144.2: 'Exhausting the Unit is the Cost for this action.' 420.3.a: 'The Cost is Exhausting one or more Units.' 143.4: 'Units enter the Board exhausted.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status...' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the [Battlefield].' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 477.3.e.2.a (increases apply first, decreases last). 143.2.b: 'If a unit's Might is ever less than 0, it is treated as 0 when referenced by spells and abilities.' 465.2.b: 'Sum the Might of all Defending Units.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'"
+          "quote": "144.2: 'Exhausting the Unit is the Cost for this action.' 420.3.a: 'The Cost is Exhausting one or more Units.' 143.4: 'Units enter the Board exhausted.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status...' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the [Battlefield].' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 477.3.e.2.a (increases apply first, decreases last). 143.2.b: 'If a unit's Might is ever less than 0, it is treated as 0 when referenced by spells and abilities, and when summing Might to be assigned as damage in the Combat Damage Step.' 465.2.b: 'Sum the Might of all Defending Units.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -37703,7 +37703,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "170.11.a: 'Battlefields can be \"occupied.\" This means they have a Unit present.' 170.11.b: 'Battlefields can be \"uncontrolled.\" This means no player controls them.' 170.11.c: 'Battlefields can be \"open.\" This means they are unoccupied and uncontrolled.' 355.2.b: 'Some Game Effects may grant players permission to play Units to locations that are not normally Valid. Such locations become Valid for the purposes of Playing the Unit.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 190.4.c (Control is lost in the following cleanup unless a Combat or Showdown is ongoing there). 323.9: 'Mark a Combat as Staged at each Battlefield that Contested was applied to that have Units present controlled by opposing players.' 344.2 (a Showdown opens at the next Cleanup when Control is Contested with no opposing units there). 348.2.a and 348.2.a.1: 'This results in a Conquer.' 355.10.d (a programmatically selected set is not a target). 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status...'"
+          "quote": "170.11.a: 'Battlefields can be \"occupied.\" This means they have a Unit present.' 170.11.b: 'Battlefields can be \"uncontrolled.\" This means no player controls them.' 170.11.c: 'Battlefields can be \"open.\" This means they are unoccupied and uncontrolled.' 355.2.b: 'Some Game Effects may grant players permission to play Units to locations that are not normally Valid. Such locations become Valid for the purposes of Playing the Unit.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 190.4.c (Control is lost in the following cleanup unless a Combat or Showdown is ongoing there). 323.9: 'Mark a Combat as Staged at each Battlefield that Contested was applied to that have Units present controlled by opposing players.' 344.2 (a Showdown opens at the next Cleanup when Control is Contested with no opposing units there). 348.2.a and 348.2.a.1: 'This results in a Conquer if that player has not yet scored that Battlefield this turn.' 355.10.d (a programmatically selected set is not a target). 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status...'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -42273,7 +42273,7 @@
           "Mighty bodies ON THE BOARD when the Jaull-Fish's cost is determined, not later: 203.1 and 356.4.b price a card as it is played."
         ],
         "notable": [
-          "THE TRAP THE ENTRY IS BUILT ON, AND IT IS ON THE PARTNER'S OWN CARD. 814.1.c makes [Shield] '+X :rb_might: while I am a defender' and 807.1.c makes [Assault] 'While I am an attacker, I have +X [M].' Both are conditional on a designation you only hold inside a combat (807.1.d, 464.2.c.3) - and you play the Jaull-Fish in your own Main Phase, where nobody is an attacker or a defender. So UNL-099 Towering Combatant (Body, E4, PRINTED Might 3, [Shield 2], [Tank]) reads Might 3 when the discount is counted and contributes NOTHING, even though the card looks like a 5. Garen, Rugged works because his printed Might is already 5; his own [Assault 2] and [Shield 2] are irrelevant to the discount. Count printed and current Might, never keyword Might.",
+          "THE TRAP THE ENTRY IS BUILT ON, AND IT IS ON THE PARTNER'S OWN CARD. 814.1.c makes [Shield] 'While I am a defender, I have +X [M].' and 807.1.c makes [Assault] 'While I am an attacker, I have +X [M].' Both are conditional on a designation you only hold inside a combat (807.1.d, 464.2.c.3) - and you play the Jaull-Fish in your own Main Phase, where nobody is an attacker or a defender. So UNL-099 Towering Combatant (Body, E4, PRINTED Might 3, [Shield 2], [Tank]) reads Might 3 when the discount is counted and contributes NOTHING, even though the card looks like a 5. Garen, Rugged works because his printed Might is already 5; his own [Assault 2] and [Shield 2] are irrelevant to the discount. Count printed and current Might, never keyword Might.",
           "WHAT 'MIGHTY' IS. 709 defines the EVENT - 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater' - and the reminder text on the card gives the STATE: 'A unit is Mighty while it has 5+ :rb_might:.' The Jaull-Fish reads the state, so a temporary pump counts as long as it is live at the instant the cost is determined (203.1: 'Paying a Cost requires a player to perform the appropriate game action'; 356.4.b covers 'cost [amount] less'). VEN-077 Tools of Empire, Empowered, gives +4 Might this turn for an exhaust and can push one sub-5 body over the line just before you play him.",
           "356.6 IS THE FLOOR, AND IT IS ENERGY-ONLY. 'Energy and Power costs can't be reduced below 0.' The Jaull-Fish's discount says 'costs :rb_energy_2: less', so it never touches the 2 Power: four Mighty bodies make him 0 Energy + 2 Power, and a fifth is wasted. Three Garens (103.2.b) are three Mighty bodies for a 1 Energy + 2 Power Jaull-Fish.",
           "AND THEN [ACCELERATE] IS AFFORDABLE, WHICH IS THE POINT OF DISCOUNTING HIM AT ALL. 805.1.a: 'Accelerate is functionally short for \"As you play me, you may pay [1][C] as an additional cost. If [you do], I enter ready\"', with 805.1.a.1 letting the Power portion be paid in the unit's own domain. 143.4 makes units enter exhausted and 144.2 makes exhausting the unit the Cost of a Standard Move, so a Jaull-Fish played for 1 Energy + 2 Power plus 1 Energy + 1 Body Power arrives READY and reaches a battlefield on the turn it lands - a 6 Might body deployed for 2 Energy and 3 Power.",
@@ -42578,7 +42578,7 @@
         "notable": [
           "THE REMINDER TEXT IS A SIMPLIFICATION, AND THE RULE IS STRICTER. Nidalee says '(I win if I remain after combat.)' 466.3.a: 'A Player has won a combat if they received either the attacker or defender designation and are THE ONLY PLAYER that has units remaining at this battlefield during this step', with 466.3.c passing the result to their units. And 466.3.d: 'There is \"No Result\" if units were recalled during step 3d of the Combat Cleanup, if BOTH Players have units present during this task, or if neither player has units present.' Since 466.1.a.2 recalls surviving Attackers when Defenders remain, a defence in which the attackers live is No Result - so Nidalee draws only when your side WIPES theirs, not merely when she survives.",
           "WHICH IS WHY THE PARTNER HAS TO DO BOTH JOBS. 815.1.b: '[the Tank] must be assigned LETHAL damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step', and 815.1.c.2 makes every non-Tank body an invalid assignment until it has. So the Towering Combatant keeps Nidalee alive; and her own Might still counts toward 465.2.c ('Starting with the Attacker, each player assigns an amount of damage equal to their summed Might'), which is what kills the attackers and turns 'remaining' into 'winning'.",
-          "AND THE SHIELD IS EXACTLY THE MIGHT THAT COUNTS HERE. 814.1.c makes [Shield] '+X :rb_might: while I am a defender', so the Towering Combatant is a printed 3 that reads 5 in precisely the situation this entry is about. That is the mirror of this walk's jaull-fish-garen-rugged-mighty-discount, where the same keyword contributes NOTHING because the count happens in the Main Phase with no designation in play. One keyword, two entries, opposite answers - the question is always whether a designation exists.",
+          "AND THE SHIELD IS EXACTLY THE MIGHT THAT COUNTS HERE. 814.1.c makes [Shield] 'While I am a defender, I have +X [M].', so the Towering Combatant is a printed 3 that reads 5 in precisely the situation this entry is about. That is the mirror of this walk's jaull-fish-garen-rugged-mighty-discount, where the same keyword contributes NOTHING because the count happens in the Main Phase with no designation in play. One keyword, two entries, opposite answers - the question is always whether a designation exists.",
           "822.1.b IS TWO PERMISSIONS, NOT ONE. '[Ambush] is functionally short for \"I may be played to a battlefield where you control Units\" AND \"I have [Reaction] as long as I'm being played to a battlefield where you control Units.\"' The [Reaction] half is what lets her arrive after the attack is declared, and 822.1.c makes the location an added option during the Make Relevant Choices step of playing the card.",
           "SHE IS IN THAT COMBAT'S DAMAGE STEP. 319.6 runs after Game Objects enter the Board and 323.2.a says: 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now.' So a body flashed in mid-combat is a Defender before 465.2 resolves, and 143.4's entering exhausted costs nothing, because neither 464.2.c.3 nor 465.2.b filters by state.",
           "THE ARITHMETIC. Towering Combatant 4 Energy for a body that soaks 5 (3 printed + [Shield 2]) and forces every point onto itself; Nidalee 3 Energy + 1 Power for a 4 Might body played at Reaction speed. Their summed 9 is assigned to the attackers under 465.2.c; if that clears the attacking side, 466.3.a gives you the combat and Nidalee draws. Three of each by 103.2.b.",
@@ -44704,7 +44704,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 161.2.a: 'Exactly 12 Rune cards.' 465.2.c.4: 'Units cannot have more damage assigned to them than the minimum required to constitute lethal damage unless no further units remain to have damage assigned to them.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might. 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.'"
+          "quote": "806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 161.2.a: 'Exactly 12 Rune cards chosen during Deck Construction.' 465.2.c.4: 'Units cannot have more damage assigned to them than the minimum required to constitute lethal damage unless no further units remain to have damage assigned to them.' 143.2.a: a unit is Killed when it has nonzero damage marked on it equalling or exceeding its Might. 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -47159,7 +47159,7 @@
         ],
         "notable": [
           "A 0 MIGHT BODY IS NOT A DEAD BODY, AND THE CARD PRINTS THE RULE. Its own parenthetical is '(Units with 0 :rb_might: can conquer and hold.)', so the Crab takes and keeps a battlefield exactly like any other unit - 469.1 gains the Conquer, 315.2.b.2 Holds it. And 143.2.a needs marked damage AT OR ABOVE Might to kill, which still means NONZERO damage: a 0 Might body costs the attacker one point of their assignment, and 465.2.c.4 caps that at the minimum lethal, so it is one point and no more. Two Energy to make an attacker spend a point and to keep a battlefield.",
-          "THE TANK IS WHAT KEEPS IT ALIVE, AND IT IS ONE MIGHT BIGGER THAN IT LOOKS. 815.1.b: the Mouser 'must be assigned LETHAL damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step', and 815.1.c.2 makes every non-Tank body an invalid assignment until it has. 814.1.c makes [Shield] '+X :rb_might: while I am a defender', so the printed 1 reads 3 on defence - the same designation-conditional Might this catalogue records in both directions. An attack summing less than 3 therefore kills NOTHING at that battlefield, and the Crab holds.",
+          "THE TANK IS WHAT KEEPS IT ALIVE, AND IT IS ONE MIGHT BIGGER THAN IT LOOKS. 815.1.b: the Mouser 'must be assigned LETHAL damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step', and 815.1.c.2 makes every non-Tank body an invalid assignment until it has. 814.1.c makes [Shield] 'While I am a defender, I have +X [M].', so the printed 1 reads 3 on defence - the same designation-conditional Might this catalogue records in both directions. An attack summing less than 3 therefore kills NOTHING at that battlefield, and the Crab holds.",
           "AND THE CRAB'S DEATHKNELL IS THE POOL'S ONLY LOOK AT A FACEDOWN CARD. Swept: `grep -in facedown data/corpus_flat.txt` returns four rows - OGN-101 Mushroom Pouch (draws if YOU control a facedown card), OGN-181 Pack of Wonders (returns a friendly facedown card to hand), UNL-014 Monster Harpoon (a condition on your own) and UNL-053 Scuttle Crab. Only the Crab reads the OPPONENT's. 811.1.b hides a card facedown 'for as long as you control that battlefield' and the whole [Hidden] package is priced on that information asymmetry; this is the one card in the pool that removes it, and it does so for the whole turn.",
           "IT ALSO PAYS ON BOTH ENDS, WHICH IS RARE AT TWO ENERGY. 'When you play me, draw 1' on the way in, and on the way out a hand reveal plus 1 XP - and 808.1.c makes the Deathknell 'functionally short for \"When I die, [Effect]\"'. 808.1.d.1 is the one thing that switches it off: a heal / exhaust / recall shield means it never reaches the Trash and 'the triggered ability will be removed from the chain'. Do not protect this body; it is meant to die.",
           "THE XP IS A RIDER, NOT A PLAN. One per Crab, three by 103.2.b - enough to switch on a [Level 3] such as UNL-047 Mosstomper's, and nowhere near the [Level 6] rungs in the same domain. mosstomper-wuju-apprentice-xp-calm-ladder is where that ladder is walked; this is a supplementary faucet and the entry says so rather than pretending otherwise.",
@@ -49481,7 +49481,7 @@
           "AND THE HIDE IS CONTROL-DEPENDENT, WHICH IS THE OTHER HALF OF THE PARTNER'S JOB. The tail of 811.1.b is 'for as long as you control that battlefield', and 323.6 - 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there' - is how that Control goes away with no fight at all. A 6 Might defender standing there is what stops it.",
           "WHAT IT COSTS AND WHAT IT KILLS. One rainbow Power to hide and zero to play (the tail of 811.1.b), at [Action] speed on any player's turn (806.1.c.1) - so 3 damage lands inside the combat, after the attackers are declared. 143.2.a kills on marked damage at or above Might, so it removes an attacker of 3 Might or less; this lane's unfloored reducers (SFD-067 Frostcoat Cub at -2, UNL-065 Icevale Archer at -1) bring bigger ones into range.",
           "AND IT LEAVES A GEAR, WHICH IS THE FOURTH GOLD-MAKER IN THE DOMAIN. 187.5 makes a Gold 'a domainless GEAR token' and 185.2.d puts it inside the rules for its type, so it counts for SFD-072 Dropboarder, VEN-058 Patched Porobot, VEN-064 Plaza Guardian and VEN-076 Repair Specialist. It arrives EXHAUSTED, so 415.3.a is when it becomes 1 Power of any domain. The Mind Gold-makers, named: SFD-063 Chemtech Cask, SFD-069 Plundering Poro, SFD-070 Wages of Pain, SFD-074 Pickpocket, SFD-081 Card Sharp, SFD-086 World Atlas and UNL-073 Deadly Flourish.",
-          "THE COLOSSUS'S OWN TEXT IS TWO SMALL THINGS AND BOTH ARE HONEST. [Vision] is 817.1.b's look-at-one, which 431.1.c keeps free of Burn Out and 416.1.a recycles to the BOTTOM - a filter, not a tutor. [Shield] is 814.1.c's '+X :rb_might: while I am a defender', so the printed 5 reads 6 exactly when it is holding the battlefield the hide depends on, and nothing at all on your own attacks.",
+          "THE COLOSSUS'S OWN TEXT IS TWO SMALL THINGS AND BOTH ARE HONEST. [Vision] is 817.1.b's look-at-one, which 431.1.c keeps free of Burn Out and 416.1.a recycles to the BOTTOM - a filter, not a tutor. [Shield] is 814.1.c's 'While I am a defender, I have +X [M].', so the printed 5 reads 6 exactly when it is holding the battlefield the hide depends on, and nothing at all on your own attacks.",
           "ONE FACEDOWN PER BATTLEFIELD. 811.1.b allows a single facedown card per battlefield and 485.4 puts two on a Duel table, so at most two hidden answers are armed at once however many the deck runs.",
           "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the damage is dealt by the spell, so a [Tank] does not order it (815.1.b is scoped to the combat damage step) and a blanket spell-and-ability fog does stop it."
         ]
@@ -49661,6 +49661,13 @@
           "role": "payoff",
           "zone": "BATTLEFIELD",
           "note": "Chaos unit, E6 M6. 'Spend 3 XP: Give your units here [Ganking] this turn.' The movement that turns an emptied battlefield into a taken one without going home first. In zero entries before this walk."
+        },
+        {
+          "card": "UNL-127",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E2 M1, [Accelerate]. 'When I move to a battlefield, gain 2 XP.' ADDED 2026-09-09: step 1 of this line is 'bank at least 3 XP' and step 4 spends it, and NEITHER of the two cards that were in uses[] gains any - so matchDeck reported the line complete for a deck that can never pay step 4, and planDeck could never suggest the fix. Mister Root reaches the threshold faster and cheaper than the card the entry named, at 2 XP per move, repeatable, for E2."
         }
       ],
       "needs": [],
@@ -49670,7 +49677,7 @@
       "prerequisites": {
         "easy": [
           "Mono-Chaos, so any of the sixteen legend names carrying Chaos holds it (103.1.b.1): Loose Cannon (OGN-251), Unforgiven (OGN-259), Swift Scout (OGN-263), Bounty Hunter (OGN-267), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185), Blade Dancer (SFD-195), Prodigal Explorer (SFD-199), Battle Mistress (SFD-203), Bloodharbor Ripper (UNL-185), Gloomist (UNL-193), Scorn of the Moon (UNL-197), Voidreaver (UNL-201), Master of Shadows (VEN-143), Soul's Reflection (VEN-151), Heart of the Tempest (VEN-155).",
-          "AN XP FAUCET, and the identity has exactly one: `UNL-129 Vicious Snapjaws` ('When another friendly unit dies, gain 1 XP'). Megatusk's cost is a SPEND, so see the last notable before putting it in a [Level] list.",
+          "AN XP FAUCET. Mono-Chaos has FOUR, measured on the corpus 2026-09-09 and named: `UNL-127 Mister Root` (E2, 2 XP per move, repeatable - the cheapest and the one this line uses), `UNL-129 Vicious Snapjaws` (E5, 1 XP per friendly death), `UNL-136 Scryer's Bloom` (E1) and `UNL-143 Kha'Zix, Mutating Horror` (2 XP). An earlier version of this line said the identity had exactly ONE, which came of dropping four words from a true claim in CLAUDE.md - the Snapjaws is the pool's only DEATH-TO-XP faucet, not its only faucet, and a uniqueness claim survives only at the precision it was measured at. And [Hunt] is not the alternative either: all thirteen [Hunt] cards are Fury, Calm, Mind, Body or Order and NONE is Chaos. Megatusk's cost is a SPEND, so see the last notable before putting it in a [Level] list.",
           "An opponent playing ORDER units. The spell is a domain hoser and is dead letter against the other five domains."
         ],
         "notable": [
