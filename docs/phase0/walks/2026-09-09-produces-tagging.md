@@ -182,3 +182,46 @@ rung reads a balance, not a quantity of bodies.
 The same hazard in weaker form applies to `combat-might` if it is ever consumed by the excess-damage
 family: `OGN-034 Tryndamere` pays on *five or more* excess damage, and a +1 buff (703 fixes a Buff at
 exactly +1) is not that. Output-only until someone measures the threshold per producer.
+
+## 7. A measurement that failed, and why it is recorded rather than deleted
+
+All five names were approved and landed in `data/features.json` (registry 14 → 19), with
+`unit-delivery` output-only per §6 and `xp-engine` as the one HELPER.
+
+Before staging the 90, every entry's `uses[]` card text was swept from `data/corpus_flat.txt` for
+protection, Might and movement markers, to find tags the first pass had missed. **It flagged 51 of
+90, which is not a credible answer**, and the reason is the bracketed-keyword trap this project
+already records in another form (*"`/\[hidden\]/` matches cards that merely MENTION Hidden"*): a body
+that *carries* `[Deflect]`, `[Tank]` or `[Shield]` is not an entry that *produces* protection, and
+`[Shield]`'s own reminder text reads *"+N Might"*, so every defensive body flagged as offence.
+
+The clean counter-example is `taric-block-stalwart-poro-shield-stack`, which the sweep flagged for
+`combat-might` while the entry's own `terminatesIn` ends *"none of it applies on offence
+(814.1.c)"*. **The card text cannot decide the tag; the entry's own `terminatesIn` can** — it is the
+authored statement of what the line produces, and it is what the first pass was built from.
+
+The sweep was kept as a candidate list only, and four additions were made from it, each read off the
+card's own sentence rather than the regex:
+
+- `shady-spectacles-baron-copy` **+ `board-protection`** — `VEN-137` makes the equipped unit *"become
+  a copy of that unit"*, and `UNL-147 Baron Nashor` reads *"I can't be chosen by enemy spells and
+  abilities"* as well as *"Other friendly units have +2 Might"*. A copy carries every sentence; this
+  is the Svellsongur lesson (*"read every sentence of the copied card"*) landing on the tagger.
+- `jayce-hammer-wallop-showdown-keyword` **+ `board-protection`** — `VEN-088`'s three modes are
+  `[Assault 2]` / `[Deflect 2]` / `[Ganking]`, and the entry's own headline is that `[Deflect 2]` is
+  the mode that has to be chosen early.
+- `kayle-justified-aurok-general-triple-empower` **+ `board-protection`** — `VEN-134`: *"While I'm
+  [Empowered] three times, I have [Deflect 3] and [Ganking]"*, and 441.2 makes it permanent.
+- `sacred-protector-disciple-of-shen-pair` **+ `board-protection`** — `VEN-117 Disciple of Shen`:
+  *"I have [Shield 3] while I'm at a battlefield with exactly one other unit you control."*
+
+### One entry that is ANTI-composable, recorded before anything can consume it
+
+`sacred-protector-disciple-of-shen-pair` runs `VEN-129 Sacred Protector` (*"I don't deal combat
+damage unless I'm at a battlefield with **exactly one other unit** you control"*) beside `VEN-117`,
+whose `[Shield 3]` carries the identical clause. **A third friendly body switches both off.**
+`generateVariants` merges card multisets with `max()` per card and knows nothing about a garrison
+size, so if `combat-might` or `board-protection` ever stops being output-only, merging this entry
+with any `token-body-engine` or `unit-delivery` route would publish a line its own two cards refuse.
+It is harmless today only because all five new values are output-only, and it is one more reason to
+keep them that way.
