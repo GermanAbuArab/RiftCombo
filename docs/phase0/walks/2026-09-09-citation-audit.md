@@ -254,3 +254,59 @@ in one session of the same failure — the instrument, not the repository, was w
 body-only fetch (§3a) and the base-code probe (§3b). The standing lesson holds and is worth stating in
 its strongest form: **a measurement that reports a large, surprising absence should be re-run with a
 different instrument before it is written down, let alone reported.**
+
+---
+
+## 9. Every rule reference in the catalogue, swept
+
+The natural end of a citation audit: a `url` is not the only kind of citation this file makes, and a
+rule paragraph is the kind it makes most. Swept every `NNN.x[.y…]` token in every string field of
+`data/combos.json` and `data/synergies.json` against **both** rules documents in `data/`, with the safe
+`^\s*` anchor (JavaScript `\s` matches the form feed that opens 89 headings, per the 2026-09-09
+CLAUDE.md note). Script: `.scratch/rc-citations/rulesweep.mjs`.
+
+**903 of 904 distinct rule references resolve.** The seven that do not are, in full:
+
+| token | uses | verdict |
+|---|---|---|
+| `187.x`, `190.x`, `383.3.a.x`, `477.x` | 5 | **not citations** — the idiomatic "the 190.x block" wildcard this project and CLAUDE.md both write on purpose |
+| `899.md` | 13 | **probe artifact** — the tail of a filename, `…probe-500-899.md`, in a source title |
+| `444.1.a.2` | 2 | **deliberate and flagged** — §5.3's old-numbering quote plus the new notable that documents it |
+| **`485.4a`** | **2** | **the one real defect** |
+
+Two things to take from that. First, the catalogue's rule citations are in very good shape, and
+the number is worth recording so nobody re-derives it. Second, **the sweep must read both rules
+files**: `703.3.a.3` initially read as broken and is a Tournament Rules paragraph, labelled as such at
+both use sites — `data/Riftbound-Tournament-Rules-2026-07-16.txt` is in the repo and a Core-Rules-only
+probe reports its references as missing.
+
+### 9.1 `485.4a`, the only unresolvable reference
+
+`plaza-armory-miss-fortune` and `gardens-becoming-wuju-xp-faucet` both list `485.4a` in the run of
+paragraphs their notes say were opened and read. There is no `485.4a`; the paragraph is **485.4.a**
+(*"Each player provides three (3) Battlefields, included in their deck during deck building. Only …"*),
+which is what both entries mean. A missing dot. Staged in `rc-citations-fixes.json`.
+
+### 9.2 A misattribution inside the note written to correct a misattribution
+
+The manager applied §5.3 and added a notable to `jhin-fiora-facebreaker-recall` recording that the
+Reddit OP's `444.1.a.2` and `Rule 432` are old numbering. That note is right about the substance and
+about the entry, and it ends:
+
+> this entry stands on 456 ("A Recall is when a Permanent is relocated from anywhere to its Base
+> without it being a Move") and 456.1
+
+That sentence is **455**. Checked with `grep -E "^[[:space:]]*(455|456)\."`:
+
+```
+455.  A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.
+456.  Recalls are not Moves.
+456.1.  They do not cause Triggered Abilities to trigger that are triggered by Move actions.
+```
+
+The entry's own body cites 456 and 456.1 correctly and does not cite 455 at all, so the fix is to name
+all three. Low severity and worth stating anyway: a note written to fix a misattribution acquired one
+of its own within the hour, which is this project's standing lesson about typed-rather-than-measured
+claims arriving in the one place nobody re-reads. The rule that catches it is cheap and now exists —
+`rulesweep.mjs` is a candidate for `test/`, where nothing currently checks a rule reference against the
+rules files.
