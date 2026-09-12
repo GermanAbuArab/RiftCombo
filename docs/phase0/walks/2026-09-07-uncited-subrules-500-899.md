@@ -1170,3 +1170,196 @@ for that is **three** Equipment whose Effect Text mentions a death (`SFD-051 Gua
 `SFD-090 The Zero Drive`, `SFD-172 Sacred Shears`, measured 2026-09-12). Note the composition with batch
 22: if you steal an equipped body and it later dies, **you** control the departing Top-Most Card, so the
 detach order is yours even though the Equipment is not.
+
+## 34. Batch 23 — 829.1.c.3 and 711, two blocks refused with their measurements, and a correction to a shipped entry
+
+Lane: rc-walk-blocks, range 500–829, issue #191. Opened at catalogue 743 (the two entries §32 left
+staged had been merged at `6b1a300`); another lane merged one while this batch was being written, so
+the merge base was 744 and `val16` reads 746 with these two.
+
+### 34.1 `829.1.c.3` — a granted Flow does not overwrite a printed one
+
+> **829.1.c.3.** If a spell has multiple instances of the Flow keyword with different costs, its
+> controller may choose which cost to apply as they play it.
+
+> **829.1.c.1.** The cost is an alternate cost that replaces the base cost of the spell to be paid
+> during finalization.
+
+Both read in full from the rules file. `829.1.c.1` had three citations and none of them for what it
+decides here; `829.1.c.3` had none.
+
+The natural reading of `VEN-113 Kennen, Storm of Shuriken` (*"When I conquer, give a spell in your trash
+[Flow] equal to its cost this turn"*) is that his grant REPLACES whatever Flow the spell prints.
+`829.1.c.3` says the instances coexist and the controller chooses, which makes Kennen the pool's only
+way to put a second price tag on a card already in the trash.
+
+**Measured over `data/corpus_flat.txt` on 2026-09-12 — fifteen spells print `[Flow]`, named:** `VEN-003`
+Brittle Steel, `VEN-012` Perfect Execution, `VEN-031` Twilight Shroud, `VEN-049` Dredge Up, `VEN-051`
+Iterative Design, `VEN-081` Onslaught, `VEN-100` Up from the Deep, `VEN-105` Twilight Step, `VEN-116`
+Dragon Form, `VEN-127` Lacerate, `VEN-140` Shuriken Flip, `VEN-144` Death Mark, `VEN-148` Shadow Dash,
+`VEN-154` Public Execution, `VEN-156` Lightning Rush. **Nine are strictly dearer than the spell's own
+base cost** (VEN-003, VEN-031, VEN-105, VEN-127, VEN-140, VEN-148, VEN-154, VEN-156, and VEN-144 in
+Power), five are equal (VEN-012, VEN-049, VEN-081, VEN-100, VEN-116) and one is cheaper in Energy while
+adding a rune (VEN-051). So for nine of fifteen, Kennen's instance is the CHEAP one — the printed Flow
+cost in this pool is a tax, not a discount.
+
+`VEN-113` is the pool's only Flow GRANTER and `VEN-098 Stargazer` its only Flow READER (`829.2`), both
+swept the same day; both are mono-Chaos.
+
+**Entry: `kennen-twilight-step-forgotten-library-flow-choice`** (ENGINE, mono-Chaos + a colorless
+battlefield). `UNL-211 Forgotten Library` reads what you SPENT, and `829.1.c.1` makes the chosen Flow
+cost the amount that leaves the Rune Pool — so the printed 4 Energy fires its `[Predict]` and Kennen's
+granted 2 does not. **`VEN-098 Stargazer` is anti-synergic with that half**, which
+`kennen-stargazer-arena-flow` does not say: its discount is not optional, it applies to whichever
+instance you chose, and it takes the printed 4 to 2 and the granted 2 to the printed floor of 1 — both
+under the Library's threshold. The two Kennen entries in this catalogue want opposite second cards.
+
+### 34.2 `711` — the non-board half of a split whose board half the catalogue already owned
+
+> **710.** Units on the board are evaluated according to their current Might.
+
+> **711.** Units in Non-Board Zones are evaluated according to their printed Might.
+> *Example: A unit in the trash is Mighty if its printed Might is 5 or greater. It doesn't matter if
+> there were effects raising or lowering its might while it was on the board.*
+
+> **705.** If a Unit leaves play, remove all Buffs from it.
+
+`OGN-242 Baited Hook` kills a friendly unit and *only then* executes *"a unit … that has Might up to 1
+more than the killed unit"*. By the time that comparison runs the corpse is in the trash, so **the
+ceiling is PRINTED Might + 1, always**, and `705` says the same thing a second time from the buff side
+with no scope argument needed about the `706 Mighty` heading the two paragraphs sit under.
+
+**Entry: `baited-hook-galio-printed-might-fetch`** (ENGINE, mono-Order). The constructive half is the
+inversion: because the number is printed, **shrinking the victim is worth zero too**, so a Galio the
+opponent has spent a card dropping to 1 Might still cashes at 6 and still fetches a Might 7 body.
+Measured over `data/cards.json` on 2026-09-12: the pool prints exactly **four units of Might ≥ 6 at
+Energy ≤ 4 and all four are mono-Order** — `OGN-208` Cruel Patron, `UNL-166` Stalking Wolf, `UNL-171`
+Galio Indefatigable, `VEN-129` Sacred Protector — and Galio is both the cheapest and the only one whose
+combat value is purely defensive (*"I don't deal combat damage"*), so he is the body that costs least to
+spend. A ceiling of 7 reaches `UNL-170` Atakhan (E10 + 3 Power), `UNL-179` Rift Herald (E8 + 1 Power) and
+`VEN-138` Shen, Leader of the Kinkou Order (E6 + 2 Power), and **not** `OGN-231` Commander Ledros (M8) or
+`SFD-174` Trove Golem (M9), so the ladder does not run away.
+
+### 34.3 CORRECTION to a shipped entry, and to CLAUDE.md
+
+**`vanguard-helm-baited-hook-buff-ladder` is wrong in its headline.** Its name and its first notable say
+the Hook's ceiling climbs by TWO a turn because *"a body of printed Might X carrying a buff dies at X+1
+and the ceiling is X+2"*. That is false on `705` (the buff is removed the moment the unit leaves play)
+and false again on `711` (the corpse is read at printed Might). **The ladder climbs by exactly one, and
+`OGN-228 Vanguard Helm` contributes nothing to it** — its remaining value in that pairing is the +1 Might
+on the living body, which is real and much smaller. The entry needs its name, two steps and three
+notables rewritten; `data/combos.json` is the manager's, so this is reported rather than applied.
+
+**The same sentence is in `CLAUDE.md`**, in the `#159`/Vanguard Helm bullet: *"a buffed corpse raises the
+ceiling by TWO and the Helm re-buffs the fetched body"*. Same two rules refute it.
+
+Blast radius checked and it is narrow: `baited-hook-sprite-queen-free-unit` reads a 3-Might Sprite token's
+printed Might and is correct either way, and the other three Vanguard Helm entries
+(`navori-fighting-pit-vanguard-helm-free-buffed-corpse`, `vanguard-helm-kinkou-monk-buff-conservation`,
+`trifarian-gloryseeker-vanguard-helm-legion-buff`) turn on feeding the Helm's *trigger*, which `808.1.d.3`
+supports, not on a Might ceiling.
+
+**Two citation upgrades, not defects.** `unsung-hero-sacrifice-double-draw` stands entirely on *"If I
+**was** [Mighty]"* being read off the board state of a unit that is now in the trash, and it cites
+`808.1.d` but never **`808.1.d.3`** — *"Before the card is moved to the Trash, note its location, its
+attributes, and any other details related to the effect of its triggered ability to process the trigger
+after it has been Finalized."* Without that paragraph `711` answers the other way and the Deathknell
+draws nothing; `SFD-167 Unsung Hero` is the only card in the pool that reads `[Mighty]` on a body that
+has left the board (swept: ten `Mighty` cards, the other nine all read the board). And
+`rumble-forerunner-mech-recursion` / `rumble-scrapper-hotheaded-mech-stack` both price *"Reduce its
+Energy cost by the Might of the unit you recycled"*, where the recycled unit is in the Main Deck when
+that instruction executes — `711`, and neither entry cites it.
+
+### 34.4 REFUSED — `719.4` and `719.4.a`, empty in the current pool
+
+> **719.4.** The Exhausted and Ready state of the Top-Most card does not affect nor change the status of
+> the Attached cards and vice versa.
+>
+> **719.4.a.** This is true of all statuses aside from location, Attached, and Top-Most.
+> *Example: If the top-most card becomes stunned, it does not affect the state of any attached cards.*
+> *Example: If an attached card becomes empowered, it does not affect the state of its top-most card.*
+
+§33's lead 1 was that `SFD-221 Veiled Temple` (*"When you conquer here, you may ready a friendly gear. If
+it's an Equipment, you may detach it"*) has its two clauses in that order because `719.4` lets the ready
+survive the detach. **The reading is written out plausibly and it is worth nothing, on a one-line sweep:**
+of the 40 Equipment names in the pool, **ZERO have an ability in their printed Rules Text whose cost is
+their own exhaust** (measured over `data/cards.json` on 2026-09-12 by splitting each card's text at its
+`[Effect]` marker and grepping the Rules-Text half for `rb_exhaust`). Every Equipment's Rules Text is its
+`[Equip]` clause and nothing else, so readying one can never buy an activation — the Temple's ready is
+for NON-Equipment gear, and its detach clause is a separate mode.
+
+The `719.4.a` Empower example is empty the same way: **zero Equipment mention Empower or Empowered** in
+text or effect. The stun example has no reader either, since a gear cannot be stunned.
+
+**Scope: the current pool.** `719.4` goes live the moment a set prints an Equipment carrying a
+self-exhaust ability, and that is the single condition to re-check.
+
+### 34.5 REFUSED — `821.1.d`, with `821.1.c.1` and `821.1.c.4`, empty in the current pool
+
+> **821.1.d.** If you choose the same target with multiple instances of Weaponmaster, each will resolve
+> separately.
+
+**No unit in this pool can carry two instances of `[Weaponmaster]`.** Swept over `data/corpus_flat.txt`
+on 2026-09-12: twelve printings carry the keyword — `SFD-002` Armed Assailant, `SFD-008` Sentinel Adept,
+`SFD-085` Ornn Forge God, `SFD-092` Combat Chef, `SFD-099` Veteran Poro, `SFD-109` Akshan Mischievous,
+`SFD-113` Lucian Merciless, `SFD-116` Yone Blademaster, `SFD-119` Jax Unrelenting, `SFD-127` Master
+Bingwen, `VEN-041` Riven Shattered, and `SFD-247` Emperor of the Sands — **each with exactly one
+instance**, and the last is a legend that GRANTS it rather than carrying it (*"Sand Soldiers you play
+have [Weaponmaster]"*) to a token that prints none. It is the only grant in the pool.
+
+**`821.2` closes every board-side route to a second instance:** *"Weaponmaster has no function while on
+the board."* `[Weaponmaster]` is a Play Effect (`821.1.c`, *"When you play me…"*), so a `SFD-059
+Svellsongur` copy of a Weaponmaster body's text, or a `VEN-137 Shady Spectacles` copy, arrives after the
+play and does nothing. `821.1.c.7` (different targets) and `821.1.d` (the same target) are therefore both
+dead letter here.
+
+`821.1.c.1` (*"Weaponmaster can choose an Equipment whether it has an Equip ability or not"*) and
+`821.1.c.4` (*"If the chosen card doesn't have an Equip cost, it can't be paid"*) are dead letter for a
+second, independent reason: **all 40 Equipment names in the pool have an Equip cost.** The one apparent
+exception is an instrument artifact already registered — `VEN-073 Jagged Cutlass` prints `Equip` with no
+brackets (`docs/data-anomalies.md` line 22), so a `\[Equip\]` sweep loses it.
+
+**Scope: the current pool**, and the trigger to re-check is a set printing either a second Weaponmaster
+grant or an Equipment with no Equip cost.
+
+### 34.6 Instrument note — `.scratch-rules/kw.mjs` reports a BARE top-level rule as uncited
+
+`kw.mjs` listed `703`, `705`, `707`, `708` and `710` among its uncited rows for 500–829. **Three of those
+are cited**: a bare-three-digit probe over `data/combos.json` (regex `(?<![\d.])(\d{3})(?![\d.])`) returns
+**113 hits for 703, 25 for 705 and 32 for 710**, against **0 for 704, 707 and 711**. `lee-sin-buff-bank`
+quotes `705` verbatim; `renekton-dominus-double-conquer` and `convergent-mutation-might-transfer` use
+`710` for current Might. The probe evidently indexes sub-rule references (`NNN.x`) only, so a top-level
+rule cited bare reads as uncited.
+
+**This bit inside this batch, not after it.** A first draft of `baited-hook-galio-printed-might-fetch`
+claimed all three of 705/710/711 were uncited, on `kw.mjs`'s word; the claim was typed rather than
+measured, and it was corrected before the batch was reported. The corrected sentence is the better one
+anyway — the catalogue owned the board half of the split and never the trash half, which is the `815.2`
+against `815.3` shape this lane hunts. **One of the 32 `710` hits is itself a false positive**, a YouTube
+`&t=710` timestamp in a source url, which is why the probe prints context rather than a count.
+
+Standing form, now paid for twice on this lane: **do not inherit a probe's citation index — re-derive a
+"this is uncited" claim against `data/combos.json` with a second regex before it reaches an entry.**
+
+### 34.7 Leads read and left, with their state
+
+- **§32 next step 3 (`719.5.a`) and step 4 (`818.5`) are already done** and the handoff is stale on both:
+  `719.5.a` is cited by five entries (`zero-drive-riptide-rex-banish-recursion`,
+  `blade-ruined-king-detach-recovery`, `turn-to-dust-attached-gear`,
+  `pickpocket-seal-of-focus-cheap-gear-kill`, `disarming-rake-unconditional-gear-answer`), and `818.5` / `818.5.a` by
+  `azir-ascendant-steraks-gage-equipped-state-survives-inactive`. Both were merged after §32 was written.
+- **§33 lead 2 (`SFD-193 Grandmaster at Arms` as the Calm/Body twin of batch 22) is untouched** and still
+  looks right.
+- **The detach population of the whole pool is FOUR cards**, measured 2026-09-12: `SFD-011` Angle Shot
+  (the only one at `[Reaction]` speed, and it cantrips), `SFD-107` Strike Down, `SFD-193` Grandmaster at
+  Arms, `SFD-221` Veiled Temple. **`SFD-011` is in no entry and is worth one**: this project's
+  gear-removal inventory was built from a `kill … gear` predicate and found 16 printings of which ZERO
+  carry `[Reaction]`, concluding that no answer reaches the Hold window — but Angle Shot ANSWERS an
+  equipped body without killing anything, at Reaction speed, for 2 Energy, and a kill-predicate could
+  never see it. Twelve BURST and CHAIN entries stand on attached Equipment.
+- **`725.1`, `725.2` and `725.4` are uncited and were not read.** `725.2` is the exception that makes an
+  attached card's detach-triggered text Active while the rest of its Rules Text is Inactive — the
+  complement to the `718.2` / `721.2` pair this catalogue leans on constantly.
+- **`811.6.a`, `721.1`, `704`, `704.1`, `707` and `719.2` are uncited and were read and set aside** as
+  having no reader worth an entry on their own; `707` and `719.2` are definitional, `704.1` (buffs are
+  counters and are not targeted) has nothing in the pool aiming at a buff.
