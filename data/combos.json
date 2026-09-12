@@ -54419,6 +54419,224 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "SYNTHESISED, not extracted (issue #200, lane rc-synth, 2026-09-12), and it is the second half of a two-part result: the availability census in the walk found exactly two legend pairs with ZERO INFINITE, BURST and CHAIN available to them, body/chaos and body/order, and this is the body/order one. The design question was 'Body/Order owns no trigger multiplier - what COLOURLESS multiplier can it reach, and what is the best payoff Body prints to feed it', which is a target-first question no card-adjacency search asks. A first attempt on VEN-138 Shen plus Trinity Force was REFUSED at seven points and is recorded in the walk; Shen's 'exactly one other unit you control here' makes his point and Ivern's mutually exclusive at one battlefield (383.2.a.1 puts the count in the Trigger Condition). Full walk done, hence verified: card text pasted verbatim from data/corpus_flat.txt; every paragraph opened in data/Riftbound-Core-Rules-2026-07-16.txt and quoted untruncated - 103.1.b, 103.2.b, 103.2.d.2, 103.4.c, 137.3, 143.4, 190.1, 190.6.a, 190.6.d, 194.1, 194.1.a, 194.1.c, 194.3, 315.1.b, 315.2.b.2, 383.2.a.1, 383.4.d.2.a, 383.4.g, 383.4.g.1, 434.1.c, 469, 470, 471.1, 471.1.a.1, 471.1.b, 471.2, 472, 485.4, 485.5, 486.5, 487.5, 718.2, 718.5.b, 721.2, 818.1, 818.1.b, 821.1.c, 821.1.c.6, 823.1.b, 823.1.c.1. Legality checked against data/legality.json, whose 21 rows contain exactly one non-banned entry (the 2v2 restriction on OGS-019): none of UNL-177, OGN-286, SFD-115, OGN-210, UNL-225 appears. Domain identity computed from data/cards.json: union is exactly {body, order}, and the five Body/Order legends were read out of cards.json rather than typed. Signature flags checked in cards.json: all four cards are false, so 103.2.d.2 fixes nothing. Arithmetic against the entry's own declared quantities: 1 + (2x3 + 3) x 1 = 10, with five neighbouring boards named in a notable. Trap check: no token, no [Temporary], no [Repeat], no Conquer (so 471.1.b never engages), no combat, no attack (so 807.1.d and the empty-battlefield trap never arise), no unruled reading except R2 and R8, both ruled A. Coverage checked with .scratch/have.mjs before writing: no entry uses this card set or a subset of it."
+    },
+    {
+      "id": "kinkou-temple-yuumi-granted-tank-whiteflame-wall",
+      "name": "815.3 is what lets the Kinkou Temple see a keyword that ARRIVED BY GRANT - Yuumi's [Tank] is worth +4 Might there, not +3, and 801.3.a.2 is why it lasts exactly one turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-159",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'Units here with [Tank] have +1 :rb_might:.' It is the only card in the pool that PAYS for [Tank], and its sentence names no player - so it is one of the battlefields 190.6.d cannot blank, live from turn one and paying an opponent's Tank bodies too."
+        },
+        {
+          "card": "UNL-056",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E3 + 1 Calm Power, M1. 'When I attack or defend, give one of your other units here +3 :rb_might: and [Tank] this turn.' The keyword is GRANTED and the grant NAMES a duration, which is the whole of why this entry needs 815.3 and 801.3.a.2 rather than 801.3.a.3."
+        },
+        {
+          "card": "OGN-082",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E8 + 2 Calm Power, M8. 'When you play me, give a unit +8 :rb_might: this turn.' Yuumi's clause says 'one of your OTHER units here', so a companion body at the Temple is a requirement of her Trigger Condition and not a suggestion; this is the one that turns the requirement into the payoff, because its own ETB is a continuous modifier that 702.3 never caps and it may name itself."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "board-protection"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Yuumi and Whiteflame Protector are both mono-Calm and the Kinkou Temple is Colorless, so 103.1.b needs only a legend carrying Calm. Measured over data/cards.json on 2026-09-12 that is sixteen legend NAMES: Nine-Tailed Fox, Blind Monk, Unforgiven, Radiant Dawn, Wuju Bladesman - Starter, Fire Below the Mountain, Grandmaster at Arms, Blade Dancer, Emperor of the Sands, Bashful Bloom, Wuju Master, Gloomist, Green Father, Rogue Assassin, Curator of the Sands and Eye of Twilight. One of those, the Wuju Bladesman starter legend, is the single restricted row in data/legality.json (2v2 only) - legal here, but capped in that format.",
+          "None of the three cards is a Signature card (checked against data/cards.json) and none appears in data/legality.json in any format - checked 2026-09-12.",
+          "485.4.a has each player provide three battlefields and 485.5 selects RANDOMLY, so the Temple is not certain to be on the table, and 103.4.c forbids a second copy of the name to raise the odds. State it per format.",
+          "Both bodies must stand at the Temple. Yuumi needs a friendly unit 'here' to have anything to give, and the Temple pays only 'units here'."
+        ],
+        "notable": [
+          "THE RULE, AND IT IS THE ONLY REASON THE PAIR WORKS. 815.3: 'Tank, and whether or not a unit has Tank, is a characteristic of the Unit and may be checked or referenced by other Game Effects.' Without it there is no basis for the Temple to read a keyword that was not printed on the card. 815.3 is cited by no entry and no synergy rule in this project (measured 2026-09-12), while its neighbour 815.2 is cited 25 times - so the catalogue has the Tank CAP and has never had the Tank READER.",
+          "THE DURATION IS THE OTHER HALF, AND THE POOL PRINTS BOTH CASES. 801.3.a.2: 'The effect that granted the Keyword will specify the duration for which it is granted.' Yuumi's grant says 'this turn', so 317.2.c ends it - 'Insert \"3d. All \\'this turn\\' effects expire simultaneously.\"' - and the wall is rebuilt from scratch in the next combat she is in. That is the exact contrast with black-flame-altar-sprite-call-temporary-shield, where the grant names NO duration and 801.3.a.3 makes it last 'as long as that Game Object remains on the Board'. Read the grant's own wording before pricing any granted keyword; the two paragraphs sit one line apart and give opposite answers.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Whiteflame Protector enters at Might 8 and its own play trigger gives a unit +8 this turn - name itself, and it is 16. Yuumi's attack-or-defend trigger adds +3 and [Tank]: 19. The Temple then sees the granted keyword under 815.3 and adds its +1: TWENTY. Every number in that sum is a continuous modifier or a static, not a 702 buff counter, so 702.3's one-per-unit cap never touches any of it.",
+          "AND TWENTY IS NOT A BIGGER BODY, IT IS A BLOCKED COMBAT. 815.1.b is functionally 'I must be assigned lethal damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step', 815.1.c.2 makes every non-Tank body of yours an INVALID assignment until it has lethal, and 465.2.c.4 forbids assigning any unit more than the minimum lethal. So an attack whose summed Might is under 20 kills NOTHING at the Temple - not the Tank, and not Yuumi at Might 1 standing beside it. The wall is priced in the attacker's total, not in trades.",
+          "815.2 IS THE CAP AND IT NAMES THE CARDS YUUMI MUST NOT AIM AT. 'Multiple instances of Tank are redundant.' A body that already prints the keyword gains only the +3 from Yuumi and was already collecting the Temple's +1, so the marginal value of pointing her at it is 1 Might rather than 4. In this domain that means UNL-057 Alpha Wildclaw, whose Tank is printed, and the token units under UNL-058 Lillia, Protector of Dreams, whose Tank is a static grant - which is why this entry is a different board from kinkou-temple-lillia-bird-tank-wall and not an upgrade to it.",
+          "THE ONE CASE WHERE A SECOND TANK IS NOT REDUNDANT IS A SECOND BODY. 815.1.c.2's first sentence - 'If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them' - with its second, means two Tank BODIES double the toll even though a second Tank GRANT on one body does nothing: the attacker chooses the order and must finish both before anything else becomes a legal assignment. So the upgrade path here is another body with Tank, never another source of Tank.",
+          "THE OPPONENT IS PAID TOO, AND THAT IS A REAL COST. The Temple says 'Units here with [Tank] have +1 :rb_might:' with no 'you' anywhere in it, which is exactly why 190.6.d cannot blank it while it is uncontrolled - and exactly why an enemy Tank body standing there is also +1. Against a deck with no Tank at all the Temple is a one-sided static; against another Calm or Body list it is not, and VEN-004 Dune Surfer ('You ignore [Tank] while assigning combat damage here') is the pool's only answer to the whole wall - 767 makes that ignore one-way and scoped, so it switches YOUR wall off without switching theirs off.",
+          "WHY THE COMPANION IS IN uses[] AT ALL. Yuumi's Trigger Condition is 'give one of your OTHER units here', and 383.2.a.1 makes that part of the condition - a lone Yuumi places nothing on the Chain. A body the condition requires is a use, not a phrase in a notable; this catalogue has shipped that mistake before and two tests now pin it."
+        ]
+      },
+      "steps": [
+        "Have VEN-159 Kinkou Temple on the table and control it. Its own text works uncontrolled (it names no player), but 355.2.a needs you to control it to play bodies there.",
+        "Play UNL-056 Yuumi, Magical Cat to the Temple: 3 Energy and 1 Calm Power for a Might 1 body.",
+        "Play OGN-082 Whiteflame Protector to the Temple: 8 Energy and 2 Calm Power. Its play trigger gives a unit +8 Might this turn - name Whiteflame itself. It is now Might 16.",
+        "Wait for a combat at the Temple. Yuumi's trigger is 'when I attack or defend', so either side may open it; 464.2.c.3 designates the attackers and defenders and places her trigger there.",
+        "Yuumi's trigger resolves: Whiteflame gets +3 Might and [Tank] this turn. Might 19.",
+        "815.3 lets the Temple read that granted keyword, so its static applies: Might 20.",
+        "The attacker must now assign 20 lethal damage to Whiteflame before any other unit you control is a legal assignment (815.1.b, 815.1.c.2), and 465.2.c.4 forbids over-assigning it. An attack summing under 20 kills nothing of yours at the Temple.",
+        "At step 3d of the end-of-turn cleanup, 317.2.c expires both 'this turn' effects and the granted Tank with them (801.3.a.2). Whiteflame is back to Might 8 and the Temple stops paying it.",
+        "Do not aim Yuumi at a body that already has Tank - 815.2 makes the keyword half redundant and the marginal value drops from 4 Might to 3. Add a second Tank BODY instead (815.1.c.2).",
+        "Three copies of each unit (103.2.b), one Temple per game (103.4.c). Nothing here loops and nothing here scores; it protects a Hold rather than making one."
+      ],
+      "netPerIteration": "one combat in which an attack summing under 20 Might kills nothing of yours at the Temple, rebuilt each turn because the grant says 'this turn'",
+      "terminatesIn": "engine only - nothing here scores. The wall is rebuilt once per combat Yuumi is in and expires at step 3d of every end-of-turn cleanup (317.2.c, 801.3.a.2); 815.2 caps the Tank at one instance per body, so the only upgrade is a second Tank body",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 815.2 and 815.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Multiple instances of Tank are redundant. … Tank, and whether or not a unit has Tank, is a characteristic of the Unit and may be checked or referenced by other Game Effects."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 801.3.a.2 and 801.3.a.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The effect that granted the Keyword will specify the duration for which it is granted. … If an effect that grants a Keyword does not specify a duration, the duration is as long as that Game Object remains on the Board or in its current Non-Board Zone."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 815.1.b and 815.1.c.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "It is functionally short for \"I must be assigned lethal damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step.\" … If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 317.2.c",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Insert “3d. All ‘this turn’ effects expire simultaneously.”"
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (built from Riot's gallery content API by scripts/build-cards.mjs)",
+          "kind": "riot",
+          "date": "2026-09-12",
+          "quote": "UNL-056 | Yuumi, Magical Cat | Unit | Calm | E3 P1 M1 | When I attack or defend, give one of your other units here +3 :rb_might: and [Tank] this turn. (It must be assigned combat damage first.)"
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (built from Riot's gallery content API by scripts/build-cards.mjs)",
+          "kind": "riot",
+          "date": "2026-09-12",
+          "quote": "VEN-159 | Kinkou Temple | Battlefield | Colorless | - | Units here with [Tank] have +1 :rb_might:."
+        },
+        {
+          "title": "Hand walk 2026-09-12 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md), batch 18",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "mystic-vortex-overt-operation-taxes-the-answer",
+      "name": "813.5.b plus 358.4: the Mystic Vortex taxes the ANSWER and never the opening play, because whoever closes the state needs only [Action] and 813.1.b's containment runs one way",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-160",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield. 'During showdowns here, cards with [Reaction] cost :rb_rune_rainbow: more to play. (Hidden cards have [Reaction].)' It names no player, so 190.6.d cannot blank it and it is live from turn one - but the asymmetry below is structural, not a matter of who controls it. Its parenthetical is 811.6 restated, and it is why a [Hidden] play IS taxed."
+        },
+        {
+          "card": "OGN-153",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Body spell, E5 + 2 Body Power. '[Action] (Play on your turn or in showdowns.) For each friendly unit, you may spend its buff to ready it. Then buff all friendly units. (Each one that doesn't have a buff gets a +1 :rb_might: buff.)' It carries [Action] and NOT [Reaction], which is exactly why the Vortex never sees it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "combat-might"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Overt Operation is mono-Body and the Mystic Vortex is Colorless, so 103.1.b needs only a legend carrying Body. Measured over data/cards.json on 2026-09-12 that is seventeen legend NAMES: Relentless Storm, Blind Monk, Bounty Hunter, The Boss, Wuju Bladesman - Starter, Might of Demacia - Starter, Purifier, Grandmaster at Arms, Battle Mistress, Grand Duelist, Pridestalker, Wuju Master, Voidreaver, Keeper of the Hammer, Butcher of the Sands, Defender of Tomorrow and Matriarch of War. One of those, the Wuju Bladesman starter legend, is the single restricted row in data/legality.json (2v2 only) - legal here, but capped in that format.",
+          "Neither card is a Signature card (checked against data/cards.json) and neither appears in data/legality.json in any format - checked 2026-09-12.",
+          "485.4.a has each player provide three battlefields and 485.5 selects RANDOMLY, so the Vortex is not certain to be on the table; 103.4.c forbids a second copy of the name.",
+          "You want to be the ATTACKER at this battlefield. 345 gives Focus to the player who applied Contested status and 464.2.c.1 makes that the Attacker, so on your own attack you act first - which is the whole of the asymmetry."
+        ],
+        "notable": [
+          "THE RULES ARE THREE PARAGRAPHS AND NONE OF THEM HAS EVER BEEN CITED HERE. 813.5 - 'Reaction is a referencable characteristic.' - with 813.5.a for a Game Object, 813.5.b for a Spell and 813.5.c for an Ability. All four are cited by no entry and no synergy rule in this project (measured 2026-09-12), and the Vortex is their only reader in the pool.",
+          "THE ASYMMETRY IS PRINTED IN 358.4 AS TWO WORKED EXAMPLES, ONE FOR EACH SIDE. 'Check that the card has the appropriate permissions to be played at this timing. Example: If the state is Showdown Closed and the card was the one that Closed the state, ensure that it has [Action] or [Reaction]. Example: If the state is Closed and the card wasn't the one that Closed the state, ensure that it has [Reaction].' So the player who acts FIRST into a showdown needs only [Action]; the player who RESPONDS needs [Reaction]. The Vortex taxes [Reaction] and therefore taxes only the second of those. 358.4 is uncited, and 358.5 is the undo if the check fails.",
+          "AND 813.1.b IS WHY AN [Action] CARD IS NOT QUIETLY A [Reaction] CARD. 'Reaction grants the corresponding card or effect all abilities and permissions of Action.' The containment runs ONE way: a [Reaction] card can do everything an [Action] card can, but an [Action] card does not have Reaction, so 813.5.b reads FALSE on Overt Operation and the Vortex has nothing to charge. This is the constructive use of a rule the catalogue already cites fifty times for the opposite purpose.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Attack into the Vortex. 345 and 464.2.c.1 give you Focus, so you play Overt Operation first, closing the Showdown state: 5 Energy and 2 Body Power, and NOTHING more, because 358.4's first example admits an [Action] card and 813.5.b never fires. Your opponent's answer - any removal or trick they hold - must carry [Reaction] to be legal at all (358.4's second example) and pays one rainbow Power more than it says on the card. You have bought a rainbow off every answer to your own attack, on a battlefield that costs you a deck slot and no cards.",
+          "WHAT OVERT OPERATION ACTUALLY DOES INSIDE THE SHOWDOWN, STATED HONESTLY. The ready half is nearly worthless there - 144.1.b forbids the Standard Move outside your Main Phase and combat does not read exhaustion - so what you are paying 5 Energy and 2 Power for is the second sentence: every friendly unit ends the resolution carrying a buff, which 703 fixes at +1 Might each, and 465.2.c reads current Might at assignment. It is a board-wide +1 delivered after the attackers are declared. The spend-then-rebuff wording is what makes it work on a board that is already buffed: 702.2.b removes the counter to pay for the ready and 702.3.a then allows a fresh one, where a bare mass buffer would place nothing on an already-buffed body.",
+          "THE VORTEX TAXES CARDS, NOT ABILITIES - WHICH IS WHY 813.5.c EXISTS AND IS A SEPARATE SENTENCE. The Vortex says 'cards with [Reaction]'. An [Action] or [Reaction] ABILITY on a permanent is not a card being played, so it is never taxed: OGN-113 Malzahar, Fanatic ('Kill a friendly unit or gear, :rb_exhaust:: [Action] - [Add] :rb_rune_rainbow::rb_rune_rainbow:') pays the Vortex nothing, and neither does any of the eleven [Reaction][>] mana abilities in the pool. The rules keep the three cases apart on purpose at 813.5.a, 813.5.b and 813.5.c, and 135.2.e.7.b is the notation rule underneath it: 'Whatever instruction or ability comes after the [>] is modified by the keyword that comes before the [>]' - so a permissive keyword behind an arrow belongs to that ability alone and never to the card. That paragraph is also uncited.",
+          "WHAT THE VORTEX DOES TAX, AND IT IS THE COST OF RUNNING IT. It names no player, so it charges you too whenever you are the one answering - and its parenthetical, 'Hidden cards have [Reaction]', is 811.6 ('A card that is Hidden gains Reaction while facedown or played from facedown') made explicit, so the Vortex is the ONE card in the pool that makes a [Hidden] play cost anything at all, against 811.1.b's 'ignoring its base cost'. A list running both the Vortex and a Hidden package is taxing itself.",
+          "IT IS NOT THE SAME LINE AS mystic-vortex-helm-suppression-tax. That entry stacks the Vortex with VEN-045 Helm of Suppression, the pool's only asymmetric cost increase, and is about compounding a tax on the opponent generally. This entry is about the direction the Vortex's own tax runs inside a single showdown, which needs 358.4 and 813.1.b and has nothing to do with the Helm; the two compose and neither depends on the other."
+        ]
+      },
+      "steps": [
+        "Have VEN-160 Mystic Vortex on the table. Its static needs no Controller - it names no player, so 190.6.d never blanks it.",
+        "Attack into the Vortex with your garrison. 190.3.a.1 applies Contested status, 464.2.c.1 makes you the Attacker, and 323.9 stages the Combat.",
+        "The Showdown opens. 345: 'As a Showdown begins, the player who applied Contested status to the Battlefield gains Focus' - that is you.",
+        "Play OGN-153 Overt Operation for 5 Energy and 2 Body Power. You are the card that CLOSES the state, so 358.4's first example asks only for [Action] or [Reaction], and Overt Operation has [Action].",
+        "813.5.b reads whether the SPELL has Reaction. Overt Operation does not - 813.1.b's containment runs only from Reaction to Action, never back - so the Vortex charges you nothing.",
+        "It resolves: spend each buff you want to spend to ready that unit, then buff all friendly units. Every body of yours ends with exactly one buff, worth +1 Might each (703, 702.3).",
+        "Your opponent now has to answer inside a Closed State they did not close, so 358.4's second example requires [Reaction] on whatever they play - and the Vortex adds one rainbow Power to it.",
+        "465.2.c reads current Might at assignment, so the +1s are already on the board when damage is assigned.",
+        "Do not run a [Hidden] package behind this. 811.6 gives every facedown card Reaction, the Vortex's own parenthetical says so, and you would be taxing your own free plays.",
+        "Three copies of Overt Operation (103.2.b), one Vortex per game (103.4.c). Nothing here loops and nothing here scores."
+      ],
+      "netPerIteration": "one showdown in which your trick costs its printed price and every answer to it costs one rainbow Power more, plus +1 Might on every friendly unit at the moment damage is assigned",
+      "terminatesIn": "engine only - nothing here scores. The tax applies only during showdowns at the Vortex, and only to the player who did not close the state; three Overt Operation (103.2.b) and one Vortex per game (103.4.c)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 813.5, 813.5.a, 813.5.b and 813.5.c",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Reaction is a referencable characteristic. … Whether or not a Game Object has Reaction is a characteristic of that Game Object and may be checked or referenced by other Game Effects. … Whether or not a Spell has Reaction is a characteristic of that Spell and may be checked or referenced by other Game Effects. … Whether or not an Ability has Reaction is a characteristic of that Ability and may be checked or referenced by other Game Effects."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 358.4 and both worked examples",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Check that the card has the appropriate permissions to be played at this timing. Example: If the state is Showdown Closed and the card was the one that Closed the state, ensure that it has [Action] or [Reaction]. Example: If the state is Closed and the card wasn’t the one that Closed the state, ensure that it has [Reaction]."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 813.1.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Reaction grants the corresponding card or effect all abilities and permissions of Action."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 345",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "As a Showdown begins, the player who applied Contested status to the Battlefield gains Focus."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 811.6 and 135.2.e.7.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A card that is Hidden gains Reaction while facedown or played from facedown, and may be played any time a card with Reaction may be played as a result. … Whatever instruction or ability comes after the [>] is modified by the keyword that comes before the [>]. It will either be inactive, in the case of a dependent keyword; the trigger effect, in the case of a keyword triggered ability; or it will receive the permission granted by the keyword in the case of a permissive keyword."
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (built from Riot's gallery content API by scripts/build-cards.mjs)",
+          "kind": "riot",
+          "date": "2026-09-12",
+          "quote": "VEN-160 | Mystic Vortex | Battlefield | Colorless | - | During showdowns here, cards with [Reaction] cost :rb_rune_rainbow: more to play. (Hidden cards have [Reaction].)"
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (built from Riot's gallery content API by scripts/build-cards.mjs)",
+          "kind": "riot",
+          "date": "2026-09-12",
+          "quote": "OGN-153 | Overt Operation | Spell | Body | E5 P2 | [Action] (Play on your turn or in showdowns.) For each friendly unit, you may spend its buff to ready it. Then buff all friendly units. (Each one that doesn't have a buff gets a +1 :rb_might: buff.)"
+        },
+        {
+          "title": "Hand walk 2026-09-12 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md), batch 18",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        }
+      ]
     }
   ]
 }
