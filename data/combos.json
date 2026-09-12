@@ -57148,6 +57148,65 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "SYNTHESISED, not extracted (issue #200, lane rc-synth, 2026-09-12). Found by the multiplier census of walk section 25 - the pool prints exactly three multipliers that can reach a point card, and this is the Fury one against the only Order point card. Written after rc-manager5 corrected this lane's first verdict on it: the lane had priced the line and then declined it on section 13.3's precedent that a thin cell is not automatically a gap, and that precedent is about whether a PAIR needs a line, while the catalogue is a record of verified lines the matcher can report. The redundancy argument that produced the decline is kept, in the third notable, where it is worth something to a reader. Card text verbatim from data/corpus_flat.txt. Rules opened and pasted from data/Riftbound-Core-Rules-2026-07-16.txt: 103.1.b, 103.2.b, 103.2.d.2, 143.2.a, 143.4, 144.2, 144.3, 144.3.a, 194.1.c, 315.1.b, 315.2.b.2, 323.9, 344.2, 348.2.a, 348.2.a.1, 383.2.a.1, 383.4.c.1, 383.4.c.2.a, 450, 466.3.a, 466.5, 466.5.d, 469.1, 470, 471.1, 471.1.a.1, 702.3, 807.1.d. Stands on R1 = A and R2 = A; no new reading. Identity computed from data/cards.json (order + fury, exactly two). Legality checked against data/legality.json: none of the three cards appears in its 21 rows. Arithmetic checked against the entry's own declared quantities: 1 + 3 x (1 + 2) = 10, and the entry declares exactly the three Ivern and two Brambleback that produce it. scripts/have.mjs confirmed no entry uses this card set or a subset across 12 Brambleback and 7 Ivern entries."
+    },
+    {
+      "id": "tryndamere-svellsongur-excess-burst",
+      "name": "Two Tryndamere, one wearing three swords — the last cell of the Svellsongur family",
+      "class": "BURST",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-034",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E7 + 2 Fury Power, Might 8. 'When I conquer after an attack, if you assigned 5 or more excess damage to enemy units, you score 1 point.' TWO copies, and the second is carrying its own weight twice over: it adds a ninth trigger instance, and its Might 8 is what takes the summed attacking Might to 16 so the excess-damage clause is actually met. Only ONE of them wears the Svellsongur - the 2^v composition is per carrier, so splitting the gear across both would give 2+2 instances instead of 8+1."
+        },
+        {
+          "card": "SFD-059",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Calm gear, E3 + 1 Calm Power, Might Bonus +0, '[Equip] :rb_energy_1::rb_rune_calm:'. 'As this is attached to a unit, copy that unit's text to this Equipment's effect text for as long as this is attached to it.' All three on ONE Tryndamere compose 1 -> 2 -> 4 -> 8 instances of his trigger, by the settled layer argument (434.1.c, 477.2.c, 479.1, 480.3, 476.1). Its Might Bonus is +0, so it adds nothing to the excess-damage sum - which is exactly why the second Tryndamere is in uses[] rather than a fourth gear."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Calm and Fury, and that is a FORCED SHELL: measured over data/cards.json on 2026-09-12, the pool prints exactly ONE Calm/Fury legend name, Rogue Assassin (VEN-139 / VEN-189). CLAUDE.md's legend census records the same thing - Calm/Fury is one of only three single-name pairs, beside Body/Mind (Defender of Tomorrow) and Chaos/Order (Heart of the Tempest).",
+          "Neither OGN-034 nor SFD-059 is a Signature card (checked on the signature field in data/cards.json, both false), so 103.2.d.2 forces no legend. 103.2.b allows the two Tryndamere and the three Svellsongur."
+        ],
+        "notable": [
+          "TEN POINTS IN ONE CONQUER, AND THE SECOND TRYNDAMERE IS LOAD-BEARING TWICE. Three Svellsongur on one carrier compose 2^3 = EIGHT instances of his trigger (434.1.c gives the Top-Most Card 'all Effect Text of all cards Attached to it appended to its Rules Text'; 477.2.c appends it in Layer 2; 479.1 finds no dependency between two copies that each alter the other; 480.3 falls back to attach order; 476.1 applies each effect 'only a single time across all sequences'), and the bare Tryndamere supplies a ninth. Nine Gains plus the Conquer's own Score is TEN. But the second body is not there for the ninth point - it is there because Svellsongur's Might Bonus is +0 and the trigger has a THRESHOLD.",
+          "THE THRESHOLD IS THE WHOLE DIFFICULTY, AND IT IS ARITHMETIC RATHER THAN A RULE. R28 = A defines excess damage as attacking Might never assigned, and 465.2.c.4 caps each assignment at 'the minimum required to constitute lethal damage', so against a garrison of summed Might D the excess is (your summed attacking Might) - D. ONE Tryndamere is Might 8, needing 8 - D >= 5, i.e. D <= 3 - a single Might-4 defender beats him by one, which is the bound angle-shot-battleaxe-tryndamere-excess was written to widen. TWO are Might 16, so D <= 11, which is an ordinary garrison. 383.2.a.1 makes 'if you assigned 5 or more excess damage' part of the Trigger Condition, checked once when the triggers are placed - so the threshold is met or missed ONCE for the whole attack, and all nine instances stand or fall together.",
+          "IT IS HONESTLY NARROWER THAN ITS MONO-FURY SIBLING AND THE READER SHOULD KNOW. tryndamere-brambleback-conquer runs T=2, K=3 for NINE points at E26 + 7 Fury Power and is MONO-FURY, so every one of the five Fury pairs can run it; this is E26 + 4 Fury + 6 Calm for TEN and only a Calm/Fury legend can. One extra point for three more Power and a narrower identity is not obviously a trade worth making, and the reason to catalogue it is that it is a different card set the matcher can report - a deck already running Svellsongur for another line reaches this one without adding a Brambleback. State the comparison rather than implying dominance in either direction.",
+          "THE GEAR IS THE ANSWER, AND A CONQUER IS ANSWERABLE IN ITS OWN WINDOW. 718.5.b - 'Attached cards still can be chosen or targeted by game effects while Attached' - keeps all three Svellsongur legal targets even though 718.2 makes their printed Rules Text Inactive and 721.2 their [Equip] unusable. Stripping one halves the instances from 8 to 4 and the total from 10 to 6. Swept over text+effect of every deckable base, the pool prints 16 gear-kill printings across 15 names and every domain prints at least one; the unconditional enemy-facing ones are OGN-022 Thermo Beam, SFD-005 Detonate, VEN-003 Brittle Steel, OGN-224 Salvage, SFD-032 Disarming Rake and SFD-077 Rocket Barrage, and Thermo Beam (Fury, E5 + 2 Fury Power, '[Action] Kill all gear') answers all three with one card. Unlike a Hold BURST this one can be answered IN ITS OWN WINDOW: a Hold pays at 315.2.b.2 inside your Beginning Phase where 312.2.a gives the opponent priority only during THEIR Main Phase, but a Conquer is a Main Phase event and 806.1.c.1 makes [Action] short for 'This can be played during showdowns on any player's turn'.",
+          "DO NOT REACH FOR UNL-019 BLIGHTED BATTLEAXE HERE WITHOUT WALKING IT FIRST. It is the obvious widener - Fury, +4 Might Bonus, which would take a LONE Tryndamere to 12 and D <= 7 - and angle-shot-battleaxe-tryndamere-excess already uses it. But it prints 'At the end of your turn, if I didn't conquer this turn, unattach this and deal 4 to me', and 136.2.d makes 'me' in appended Effect Text the CARRIER. Under R6 = A Svellsongur copies the carrier's CURRENT text, and 434.1.c has already appended the Battleaxe's Effect Text to that text - so the copies would carry the drawback as well as the payoff, which is the trap section 11 records ('a Svellsongur copy carries a card's DRAWBACK as well as its payoff'). Whether 'unattach THIS' in a copied instance means the Battleaxe or the Svellsongur is NOT settled by any paragraph opened here, and the line does not need it: two Tryndamere reach D <= 11 with no ambiguity at all. Left out deliberately rather than guessed.",
+          "THE FAMILY THIS COMPLETES. Svellsongur copies a carrier's text, and the pool prints exactly ONE non-Hold point card per domain for it to copy: VEN-046 Nasus (calm) in nasus-svellsongur-conquer-burst, UNL-177 Ivern (order) in ivern-svellsongur-four-tags-hold, SFD-148 Draven (chaos) in draven-svellsongur-bloodless-combat-burst, VEN-065 Swain (mind) in swain-svellsongur-conquer-burst, and OGN-034 Tryndamere (fury) here. Body prints no non-Hold point card at all, so the family is complete at five. Each member is a different identity and none dominates another; what differs is the gate - Nasus and Ivern need only the Conquer, Draven needs a combat win, Swain needs three card types played, and this one needs the excess-damage threshold."
+        ]
+      },
+      "steps": [
+        "Over earlier turns, play two Tryndamere, Barbarian (E7 + 2 Fury Power each) and three Svellsongur (E3 + 1 Calm Power each), attaching all three Svellsongur to the SAME Tryndamere for E1 + 1 Calm Power apiece. 143.4 has the units enter exhausted; 315.1.b readies them at your next Awakening. Gear is unaffected by 143.4 and enters ready.",
+        "On the finishing turn, Standard-Move both Tryndamere to an enemy-held battlefield in ONE action (144.3 with 144.3.a's shared destination), each paying its exhaust under 144.2. 450 applies Contested status.",
+        "At the Cleanup, 323.9 stages a Combat because units of opposing players are present, and it opens. Your summed attacking Might is 16 (465.2.c).",
+        "In the damage step, 465.2.c.4 caps each assignment at the minimum lethal, so against a garrison of summed Might D you assign D and leave 16 - D unassigned. That remainder is the excess damage (R28 = A), and the clause needs 5 or more, i.e. D <= 11.",
+        "You are the only player with units remaining (466.3.a), 466.5 establishes Control and 466.5.d makes it a Conquer, gaining its own point (469.1, 471.1).",
+        "383.4.c.2.a places the conquer ability of both Tryndamere present - eight instances from the loaded one and one from the bare one - and each checks the same single excess-damage figure and scores. ONE PLUS NINE IS TEN, in a single scoring event, with 470 spent on the Score and unable to cap the nine 194.1.c Gains (R2 = A)."
+      ],
+      "terminatesIn": "ten points in one scoring event for E26, 4 Fury Power and 6 Calm Power - one Conquer Score and nine ability Gains that 470 does not cap - against any garrison of summed Might 11 or less",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12, synthesis lane rc-synth batch 18 (docs/phase0/walks/2026-09-12-synthesised-lines.md section 27)",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "SYNTHESISED, not extracted (issue #200, lane rc-synth, 2026-09-12). It is the fury cell of the multiplier grid rc-manager5 built from this lane's section 25 census, and the fifth and last member of the Svellsongur family recorded in section 24.1 - Body prints no non-Hold point card, so the family is complete here. Card text verbatim from data/corpus_flat.txt. Rules opened and pasted from data/Riftbound-Core-Rules-2026-07-16.txt: 103.1.b, 103.2.b, 103.2.d.2, 136.2.d, 143.4, 144.2, 144.3, 144.3.a, 194.1.c, 312.2.a, 315.1.b, 315.2.b.2, 323.9, 383.2.a.1, 383.4.c.2.a, 434.1.c, 450, 465.2.c, 465.2.c.4, 466.3.a, 466.5, 466.5.d, 469.1, 470, 471.1, 476.1, 477.2.c, 479.1, 480.3, 718.2, 718.5.b, 721.2, 806.1.c.1. Stands on R2 = A, R6 = A and R28 = A; no new reading, and one possible reading was deliberately avoided rather than filed - see the Blighted Battleaxe notable. Identity computed from data/cards.json (fury + calm, exactly two). Legality checked against data/legality.json: neither card appears in its 21 rows. Arithmetic checked against the entry's own declared quantities: 2^3 = 8 instances on the loaded carrier plus 1 on the bare one is 9 Gains, plus the Conquer Score is 10, and the excess-damage threshold is met at summed Might 16 against any D <= 11. scripts/have.mjs confirmed no entry uses this card set or a subset."
     }
   ]
 }
