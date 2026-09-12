@@ -2408,3 +2408,77 @@ it is cheap, it is exact, and its output is ranked so the top is worth reading f
 **And the corollary is about what CLAUDE.md is for.** It is not a summary of the catalogue — it is the set of
 things a session should not have to re-derive. A rule that 40 entries cite and it omits is precisely a thing
 40 sessions did re-derive.
+
+---
+
+## 31. Batch 24 — every gap in CLAUDE.md is on the ENGINE side of the catalogue, and none is on the finisher side
+
+rc-manager5 asked whether the ENGINE class carries the same exception-without-rule shape its citations do.
+Batch 23's join, split by class, answers it more sharply than expected.
+
+### 31.1 The split, and it is one-sided
+
+Predicate: a rule heading cited **10 or more times** by one half of the catalogue and **zero times** in
+`CLAUDE.md`. Non-vacuity: 2,381 headings parsed; ENGINE blob 5.05 MB over 686 entries, finisher blob 0.88 MB
+over 80; probe rules 470 (engine 258 / finisher 98) and 143.4 (597 / 69) both bind. Counts cross-checked by
+regex and by plain substring.
+
+| | rules cited 10+ and absent from CLAUDE.md |
+|---|---|
+| by **ENGINEs** | **86** |
+| by **finishers** | **0** |
+| by **both** | **0** |
+| ENGINE-only *and* absent | 70 |
+
+> **Not one rule is cited ten or more times by the finisher classes and omitted from CLAUDE.md. Every gap
+> is on the engine side.**
+
+That is not luck and the reason is recorded in this project's own history: the finisher classes have been
+through cross-audits #165, #166, #175, #189 and #192, and each promoted its findings into the file. **The
+ENGINE class has had none** — which is precisely what batch 19 established from the adversarial-sweep
+direction, now reached again by a completely different instrument. 686 entries, 5 MB of reasoning, and 86
+rules the file never learned.
+
+Top of the ENGINE-only gap: `304` (the Turn Player, 35×), `383.3.a` (a leading *"you may"*, 32×),
+`424.1.a` (Revealed is a state, not a zone, 31×), `805.1.a.1` (Accelerate's Power portion, 28×), `801` /
+`801.3` / `801.3.a` (Keywords and granting them, 26× each), `826` (Backline, 26×), `419.3` (cards played
+during a resolution, 25×), `441.1.a` (Empowered is binary, 24×).
+
+### 31.2 The engine-only citation set reproduces the no-score lenses, from citations alone
+
+A second cut, normalised because raw counts are not comparable — the finisher/engine prose ratio is
+**0.175**, so a rule cited N times by engines is expected ~0.175N times by finishers on volume alone.
+Keeping only rules where the expected finisher count is **5 or more** and the actual is **zero**: **136
+rules.**
+
+Bucketed against the lenses CLAUDE.md already records as yielding ENGINE and never a finisher:
+
+| lens, and what the file already says about it | rules |
+|---|---|
+| **BUFF / MIGHT** — *nothing converts Might size into points* | `702.2` (160×), `702.3.a` (123×), `703` (119×), `702.2.b`, `702.2.a` |
+| **XP / LEVEL** — *nothing in the pool converts XP to points* | `824`, `824.1` (126× each), `824.1.d` (115×), `730`, `730.2` |
+| **DISCARD / BURN** — *no INFINITE exists in the lens* | `431.1.c` (152×), `422` (105×), `422.1`, `422.1.b`, `431.1.b`, `431.1.c.1` |
+| **TARGETING / DEFLECT** — a tax question, not a point question | `355.10` (242×), `355.10.d` (149×), `809.1.d`, `355.10.e` |
+| **PREVENT** — generates no kill event | `437` (100×), `437.4` |
+
+**Twenty-two rules, cited between 34 and 242 times by engines and not once by a finisher — and every one of
+them belongs to a lens this project proved scores nothing by hand-walking it.** The citation record and the
+hand-walked verdicts agree without either having been derived from the other.
+
+### 31.3 What I am not claiming
+
+**96 of the 136 fall outside any named lens** — `477.3`, `465.2.b`, `417`, `340.1`, `385`, `820.2`,
+`185.2.d`, `814.1.c` and the rest. Some are plainly structural, some are rules finishers express through a
+different sub-paragraph (`477.3` against `477.3.b`), and I have not read all 96. **Calling them untapped
+finisher material would be exactly the over-claim this lane has refused three times**, so the honest report
+is that the bucketing explains 22 and leaves 96 unexplained. The categorisation is my judgement and is
+stated as such.
+
+### 31.4 Standing note
+
+**Split a coverage measurement by the population that was audited and the population that was not, and the
+asymmetry is the finding.** Batch 23 reported 117 rules the catalogue cites and the file omits; it looked
+like a property of the file. Split by class it is a property of **which half of the catalogue has ever been
+audited** — the finisher half has, and its gap is zero. **86 is the size of the debt the ENGINE class has
+accumulated**, and it is the same debt batch 19 measured as 17 unanswered holes and 96 unnamed Equipment
+answers, counted a third way.
