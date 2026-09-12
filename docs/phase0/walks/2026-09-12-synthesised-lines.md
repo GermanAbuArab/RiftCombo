@@ -2096,3 +2096,79 @@ identity's existing BURST already reached nine — a claim about *that line's ma
 Carried to Brambleback × Ivern it silently became a claim about *what belongs in the catalogue*, which it
 never was. This project already records that a refusal is scoped to the reason that was given; the same is
 true of a precedent, and the failure is easier to miss because reusing one feels like consistency.
+
+---
+
+## 27. Batch 18 — two of the grid's "live" cells are dead by the grid's own rule, and the Svellsongur family closes
+
+### 27.1 Two cells refused in one line of card text
+
+rc-manager5's multiplier grid reduced 60 cells to roughly eight live ones, by the rule that **a multiplier
+multiplies the KIND of effect it names** — which is what kills the Yasuo, Renata and Bottled Constellation
+columns outright. Two of the eight named cells die to that same rule:
+
+> `UNL-087 Blue Sentinel`: *"[Shield 2] … Your **hold** effects for holding here trigger an additional time.
+> When I hold, [Add] :rb_rune_rainbow: at the start of your next Main Phase."*
+
+- `OGN-034 Tryndamere, Barbarian` — *"**When I conquer** after an attack…"*
+- `VEN-065 Swain, Visionary` — *"**When I conquer**, if you've played…"*
+
+Both payoffs are **conquer-only**, and the Sentinel multiplies holds. **Blue Sentinel × Tryndamere and Blue
+Sentinel × Swain are dead in principle**, not merely unbuilt. The only bridge would be `SFD-030 Skyfall of
+Areion`, and CLAUDE.md already refuses that route for Swain on the phase order (315.2's Scoring Step precedes
+316's Main Phase, so at the instant of a Hold you have played nothing "this turn"). Six live cells, not eight.
+
+### 27.2 `tryndamere-svellsongur-excess-burst` (BURST, verified, calm/fury) — the family's last cell
+
+Ten points in one Conquer for **E26, 4 Fury Power and 6 Calm Power**. Three Svellsongur on one Tryndamere
+compose 2^3 = eight instances; a second, bare Tryndamere supplies a ninth; the Conquer's own Score is the
+tenth.
+
+**The second Tryndamere is load-bearing twice, and that is the entry's real content.** Svellsongur's Might
+Bonus is **+0**, so it multiplies the trigger and contributes nothing to the threshold the trigger gates on.
+R28 = A makes excess damage the attacking Might never assigned, and 465.2.c.4 caps each assignment at minimum
+lethal — so against a garrison of summed Might D the excess is (your summed Might) − D:
+
+| board | summed Might | needs D ≤ |
+|---|---|---|
+| one Tryndamere | 8 | **3** — a single Might-4 defender beats it |
+| two Tryndamere | 16 | **11** — an ordinary garrison |
+
+383.2.a.1 makes *"if you assigned 5 or more excess damage"* part of the Trigger Condition, checked once when
+the triggers are placed, so **all nine instances stand or fall on one figure.**
+
+**It is honestly narrower than its mono-Fury sibling and says so.** `tryndamere-brambleback-conquer` is nine
+points at E26 + 7 Fury Power and is mono-Fury, so all five Fury pairs can run it; this is ten at E26 + 10
+Power and only a Calm/Fury legend can — which is a **forced shell**, since the pool prints exactly one
+Calm/Fury legend name. The reason to catalogue it is that it is a different card set the matcher can report:
+a deck already running Svellsongur reaches this without adding a Brambleback.
+
+**One reading was avoided rather than filed.** `UNL-019 Blighted Battleaxe` (+4) is the obvious widener, but
+136.2.d makes *"deal 4 to **me**"* the carrier, R6 = A has Svellsongur copy the carrier's **current** text,
+and 434.1.c has already appended the Battleaxe's Effect Text to it — so the copies would carry the drawback
+too (§11's trap). Whether *"unattach **this**"* in a copied instance means the Battleaxe or the Svellsongur is
+settled by no paragraph opened here, and two Tryndamere reach D ≤ 11 with no ambiguity. Left out deliberately.
+
+**With this, the Svellsongur family of §24.1 is complete at five** — calm/Nasus, order/Ivern, chaos/Draven,
+mind/Swain, fury/Tryndamere — and Body, which prints no non-Hold point card, is why there is no sixth.
+
+### 27.3 I typed a legend census wrong in TWO consecutive batches, and built the fix
+
+§26.3 recorded one: five Fury/Order names claimed, three measured. **The very next entry claimed three
+Calm/Fury names and the pool prints ONE** — Rogue Assassin (VEN-139 / VEN-189) — which **CLAUDE.md itself
+already records**, in the census naming Calm/Fury as one of only three single-name pairs.
+
+Twice in consecutive batches is a habit, not a slip, and writing "run the query" into three reports did not
+stop it. The fix is mechanical, not a resolution:
+
+- **`.scratch-synth/legend-line.mjs <domainA> <domainB>`** emits the sentence, measured, and echoes the parsed
+  domains first (the argv trap CLAUDE.md records). Generate the line; never compose it.
+- **`.scratch-synth/check-stage.mjs`** validates every staged row against `data/combos.json` *now* — rule refs
+  resolve, `produces` valid, identity ≤ 2 domains, legality, copy caps, Signature flags, **and the legend
+  census**, reporting both names missing from `prerequisites.easy` and names written there that are not
+  legends of that identity. It also fails a row that is **already live**, which it did on its first run:
+  `ivern-brambleback-conquer-burst` had been merged while this batch was being written.
+
+**The order of operations is the actual lesson.** I was generating the entry and then checking it. The legend
+line is the most boilerplate-feeling field in the schema, which is exactly why it has to be *produced by a
+measurement* rather than reviewed after being typed — review is what failed, twice.
