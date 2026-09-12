@@ -1147,3 +1147,91 @@ copies against 103.2.d.1, and `npm test` green at 469 with entry 1 merged. `npm 
 reports **0 unanswered holes of 75 finishers**, and puts `nasus-svellsongur-conquer-burst` at turn 7
 against a turn-5 baseline — SLOWER, exactly as §7 predicts for a BURST, which is why that entry's
 headline is about which board its points arrive on rather than how many there are.
+
+---
+
+## 17. Batch 8 — the stalled-board classification was wrong in the direction that mattered, and §15's own table inherited it
+
+Designing §16 surfaced a contradiction in the table §15 had just published. The row said body/order's
+one surviving finisher was `ivern-arena-trinity-body-order-hold` — an entry whose own `terminatesIn`
+opens *"burst of ten points in ONE Hold at one battlefield"* and whose first step is *"Establish
+Control of Reckoner's Arena... End a turn with all three Ivern standing at the Arena."* **A line that
+must already control a battlefield cannot be a line that survives losing them.**
+
+That is rc-manager5's own standing rule firing: *the count that contradicts a small structural fact
+is the tell.* The small structural fact is one sentence of card text — `OGN-293 The Grand Plaza`
+reads **"When you hold here, if you have 7+ units here, you win the game"** — and 315.2.b.2 Holds
+only *"all Battlefields they Control"*.
+
+### 17.1 The bug, and it is a precedence bug rather than a regex bug
+
+`scripts/adversarial-check.mjs` tested the buckets in the order attack → conquer → hold, and `conq`
+falls back to the entry's own authored prose:
+
+```js
+const conq = src(CONQUER) || (/\bconquer/i.test(prose) ? "steps" : null);
+```
+
+**Every Grand Plaza and Reckoner's Arena entry's steps use the word "conquer"** — taking the
+battlefield in the first place, or the Arena's own *"activate the conquer effects of units here"*. So
+`conq` was truthy for all of them and won the precedence over `hold`. Measured: of the 30 finishers
+whose scoring payoff is a battlefield reading "when you hold here", **17 were bucketed as something
+other than HOLD.**
+
+### 17.2 The corrected numbers, and they make §9.2's conclusion stronger rather than weaker
+
+| bucket | §9.2 as published | corrected |
+|---|---|---|
+| HOLD | 29 | **46** |
+| CONQUER | 27 | **15** |
+| ATTACK | 7 | **7** |
+| INDEPENDENT | 8 | **8** |
+
+**Fifty-eight per cent of the catalogue's finishers die with the stall they exist to rescue**, not
+thirty-eight. §9.2's finding was right and understated by fifteen entries; the error ran in the
+direction that flatters the catalogue, which is the direction to distrust.
+
+And §15's table inherited it. Corrected, body/calm and body/chaos had **zero** surviving finishers of
+any class rather than one and two — both were emptier than reported, so the two entries this lane
+wrote for them were the identity's only answer rather than an addition to a thin shelf — and
+**`body/order` is a third identity with nothing, which §15 did not show**: seven finishers available,
+**zero** that survive a stall, its Plaza lines and its Arena BURST all Hold-gated.
+
+| pair | finishers | survive | of which BURST/CHAIN/INFINITE |
+|---|---|---|---|
+| body/calm | 4 | 1 | 1 — `nasus-svellsongur-conquer-burst` (§15) |
+| body/chaos | 4 | 1 | 1 — `draven-yasuo-battle-mistress-contested-chain` (§16) |
+| **body/order** | **7** | **0** | **0** |
+| chaos/fury | 2 | 1 | 1 |
+| chaos/order | 8 | 1 | 1 |
+
+### 17.3 The fix is in the script, and it shows the other signal instead of hiding it
+
+Per §7's principle — the script is the deliverable, because a check that runs over the whole
+catalogue beats one pass by hand — the repair is eleven lines in `adversarial-check.mjs`, not
+seventeen hand edits. A **battlefield** whose own text reads "when you hold here" is the line's win
+condition, so it forces the HOLD bucket whatever else the cards or the steps mention; the population
+is swept from card text rather than a typed list, so it cannot go stale against a new set.
+
+A few of the seventeen genuinely carry a second, non-Hold leg by design, and flattening them to HOLD
+silently would be the same kind of error in reverse. So the row now names the payoff and the other
+signal both:
+
+```
+ALT_WIN  spiderling-swarm-grand-plaza  <- payoff is The Grand Plaza, "when you hold here"  [+ a conquer leg too - read it]
+CHAIN    ivern-arena-draven-chaos-order-chain  <- payoff is Reckoner's Arena, "when you hold here"  [+ an attack leg too - read it]
+```
+
+`npm test` green at 469 and `npm run adversarial` still reports 0 unanswered holes, now of 76
+finishers. `draven-yasuo-battle-mistress-contested-chain` classifies into ATTACK on its own merits —
+one of only seven there, and the only CHAIN among them.
+
+### 17.4 Standing note
+
+**A classifier that assigns one bucket to a mixed object will be wrong in whichever direction its
+precedence leans, and the bucket order is the thing to audit — not the patterns.** Both regexes here
+were correct and every matched phrase was really on the card; the defect was entirely in which test
+ran first. §9.3 had already stated the right caution ("a first pass from text, not a verdict") and
+this lane still built a table on the output without spot-checking a single row against the entry's
+own `terminatesIn`. **One row read end-to-end would have caught it** — the row whose id ends in
+`-hold` and whose bucket said CONQUER.

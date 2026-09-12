@@ -335,11 +335,21 @@ if (stalled) {
   // "this needs a garrison".
   const ENEMY = /enemy unit/i;
   const HOLD = /when i hold|when you hold|hold here/i;
+  // A BATTLEFIELD whose own scoring text reads "when you hold here" is the line's WIN CONDITION, and
+  // 315.2.b.2 Holds only "all Battlefields they Control" - so such a line is Hold-gated WHATEVER ELSE
+  // its cards or its steps mention. Without this, the conq-before-hold precedence below sent every
+  // Grand Plaza and Reckoner's Arena line to CONQUER, because their authored steps all use the word
+  // "conquer" (taking the battlefield in the first place, or the Arena's "activate the conquer
+  // effects of units here"). That was 15 of 30 such finishers in the wrong bucket, and it understated
+  // the HOLD bucket - the one that matters, because those are the lines a stall switches off - by the
+  // same 15. Swept from card text rather than a typed list so it cannot go stale against a new set.
+  const HOLD_HERE = /when you hold here/i;
   const CONQUER = /when i conquer|when you conquer|conquer here/i;
   const buckets = { attack: [], conquer: [], hold: [], independent: [] };
   for (const e of db.combos) {
     if (!FINISHER.has(e.class)) continue;
     let text = "";
+    let holdPayoff = null;
     const why = [];
     for (const u of e.uses || []) {
       const c = byBase.get(u.card);
@@ -348,6 +358,7 @@ if (stalled) {
       text += ` ${t}`;
       const m = t.match(ATTACK);
       if (m) why.push(`${c.name}: "${m[0]}"`);
+      if ((c.type || []).includes("battlefield") && HOLD_HERE.test(t)) holdPayoff = c.name;
     }
     const flag = !why.length && ENEMY.test(text) ? "  [FLAG: names an enemy unit - read it]" : "";
     // Card text alone under-reads the Conquer and Hold buckets: an entry can SCORE on a Conquer
@@ -361,7 +372,14 @@ if (stalled) {
     const hold = src(HOLD) || (/\bhold(s|ing)?\b/i.test(prose) ? "steps" : null);
     const tag = (k) => (k === "cards" ? "" : `  [via the entry's own steps, not card text]`);
     const row = `${e.class.padEnd(8)} ${e.id}${why.length ? `  <- ${why.join("; ")}` : flag}`;
-    if (why.length) buckets.attack.push(row);
+    if (holdPayoff) {
+      // Show the other signal rather than hiding it: a few of these genuinely carry a second,
+      // non-Hold scoring leg by design (ivern-arena-draven-chaos-order-chain wins a combat for its
+      // eighth; trinity-skyfall-arena-second-battlefield-chain Conquers the other battlefield), and
+      // a reader has to be able to see that without re-deriving it.
+      const also = why.length ? "  [+ an attack leg too - read it]" : conq ? "  [+ a conquer leg too - read it]" : "";
+      buckets.hold.push(`${e.class.padEnd(8)} ${e.id}  <- payoff is ${holdPayoff}, "when you hold here"${also}`);
+    } else if (why.length) buckets.attack.push(row);
     else if (conq) buckets.conquer.push(row + tag(conq));
     else if (hold) buckets.hold.push(row + tag(hold));
     else buckets.independent.push(row);
