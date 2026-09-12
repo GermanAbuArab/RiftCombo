@@ -2256,3 +2256,70 @@ and all 7 rule references resolve.
 denominator with the verdict**, and when extending a check to a new population, expect the refinement that
 made it honest on the old one to be insufficient — the BASE exclusion from batch 17 had to become a full zone
 split here, and the difference between the two is 29 findings against 17.
+
+---
+
+## 29. Batch 22 — does the Hold-for-Conquer swap change any existing entry's verdict? Almost none, and the "almost" is one clause
+
+rc-manager5's question, and the right one: if moving an enemy body is a wash, then an entry pricing a
+mover as tempo is overstating itself. **Swept, the catalogue is clean, and the reason it is clean is
+worth more than the one correction.**
+
+### 29.1 The measurement
+
+Predicate for an **enemy-mover**: `text` + `effect` contains *"move"* and names an enemy or opponent unit,
+or moves *"a unit at a battlefield to its base"*; non-banned; folded by base. **18 cards.** Entries using
+one and selling it as denial or tempo: **17.**
+
+Classified by reading each one's own `terminatesIn` and steps, they fall into two shapes and **neither is
+exposed to the swap**:
+
+- **EVACUATE-AND-TAKE (12)** — `charm-evacuate-conquer`, `svellsongur-faefolk-mass-evacuation`,
+  `faefolk-challenger-forced-attacker`, `blast-cone-moonfall-forced-attacker` and the rest. They empty a
+  battlefield **and walk in**, so the Conquer is *theirs*. Nothing is swapped; a point is gained.
+- **FORCED-FIGHT (5)** — `shadow-dash-eye-of-twilight-dragged-attacker-tank`,
+  `void-assault-voidreaver-both-attacker-directions`, the two Teemo lines, `faefolk-star-spring-drag`.
+  They drag an enemy body onto a battlefield **to kill it in combat** (190.3.a.1 with 464.2.c.1 making the
+  dragged unit's controller the Attacker). The value claimed is removal, not denial.
+
+**The catalogue never sold a mover as Hold-denial except once**, and the exception is named for it:
+`fading-memories-maddened-marauder-hold-denial`, whose step 3 ends *"they lose the point AND the ground."*
+
+**And the project already knew the rule, in one entry, without generalising it.**
+`amateur-recital-free-evacuation` states it exactly: *"Emptying their battlefield without walking in costs
+them their Hold (469.2 needs Control during their Beginning Phase) but hands them a Conquer when they walk
+back."* `blitzcrank-ezreal-dashing-forced-defence` states it too. **Two entries out of 766 carried the
+sentence; nothing carried it as a rule.**
+
+### 29.2 The one correction, and it is a claim rather than a line
+
+`fading-memories-maddened-marauder-hold-denial`'s leg 1 is a **kill**, not a move — Fading Memories grants
+`[Temporary]` and 816.1.b kills at the start of their Beginning Phase, before scoring — so it is on the
+tempo-positive side of the distinction. **The line is right and the sentence is too strong**: they lose the
+ground unconditionally, and the point only if they cannot re-take it that turn. One REPLACE row, in
+`/tmp/rc-walks/rc-synth-mover-claim.json`.
+
+### 29.3 The refinement, which cuts at my own play as well
+
+Asking the question properly exposed a precondition **neither the entry nor my own play stated**, and it
+makes the move/kill distinction sharper rather than weaker.
+
+> **The re-Conquer needs a READY BODY AT BASE.** 144.4.a and 144.4.b confine the Standard Move to
+> base↔battlefield in both directions, 144.4.c.1 makes battlefield→battlefield a `[Ganking]` privilege, and
+> 144.2 charges the move an exhaust — so a body garrisoning the *other* battlefield cannot cross, and one
+> played that turn enters exhausted under 143.4.
+
+- **A MOVE is a guaranteed wash, and the reason is worse than "they walk back": it MANUFACTURES the body
+  that undoes it.** Isolate puts the enemy unit at their base, unexhausted — precisely the one place
+  144.4.a lets it return from. You do not merely fail to deny; you deliver the answer.
+- **A KILL is a wash only if they happen to hold a spare ready body at base.** Against the lean curve the
+  play is built on they do not. **Against a deck holding a spare, Blood Money is a wash too** — and
+  `docs/plays/2026-09-12-what-the-idle-mana-buys.md` has been amended to say so, because leaving it
+  overstated is exactly what this batch is correcting elsewhere.
+
+### 29.4 Standing note
+
+**A sweep that comes back almost empty is a result when it explains WHY.** The catalogue is not clean here
+by luck: its movers are catalogued as evacuate-and-take or forced-fight because those are the uses that
+actually pay, and the one entry that reached for denial is the one that needed the qualifier. **The finding
+is the shape of the catalogue's own usage**, and it was invisible until a play priced the alternative.

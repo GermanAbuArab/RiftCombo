@@ -103,6 +103,24 @@ is Might 0.
 
 Their turn 6 is **after** my turn 6. **I win, and the margin is one card and two Energy.**
 
+### The precondition both halves turn on, which the first version of this play did not state
+
+**The re-Conquer needs a READY BODY AT BASE**, and that is not always available. 144.4.a and 144.4.b
+restrict the Standard Move to base↔battlefield in both directions, and 144.4.c.1 makes battlefield→
+battlefield a [Ganking] privilege — so a body garrisoning their *other* battlefield cannot cross to the
+stripped one in a single move, and 144.2's exhaust means it does not get two.
+
+That sharpens the difference between the two cards rather than blurring it:
+
+- **A MOVE is a guaranteed wash, and worse than that — it MANUFACTURES the body that undoes it.** Isolate
+  puts the enemy unit at their base, unexhausted, which is precisely the one place from which 144.4.a
+  lets it walk back in. You do not merely fail to deny them; you deliver the answer.
+- **A KILL is a wash only if they happen to hold a spare ready body at base.** Against the lean curve this
+  matchup is built on it is not: the Body/Calm opponent deployed exactly two Energy-1 bodies on T1 and
+  moved both in on T2, so after one dies their only other body is garrisoning the far battlefield and
+  cannot cross. A body played that turn is exhausted by 143.4. **Against a deck holding a spare at base,
+  Blood Money is a wash too**, and the play does not claim otherwise.
+
 **And the two Energy is exactly what the deck has.** On T4 the line spends E6 on the second Ivern out of
 8 runes; the spare is 2, and Blood Money is 2 with no Power. It does not compete with the Ride the Winds
 either, which are cast on T6.
