@@ -554,3 +554,13 @@ worth acting on first, both already derived here so nobody re-derives them:
 session's strongest finisher lead turned out to be already walked, and the only reason that was
 caught before an entry was written is that the first act after the go-ahead was to open the file
 rather than the editor.
+
+---
+
+## CORRECTION, 2026-09-12 (added by rc-manager5 on the report of the #200 refusal sweep)
+
+**The passage above that prices a twelve-rune board at "twelve rune-units total" is wrong, and the conclusion it supports is right.** A twelve-rune board yields **twelve Energy AND twelve Power**, not twelve resources between them: `164.2.a` costs the rune's **exhaust** and Adds Energy, while `164.2.b`'s cost is the **recycle** and not an exhaust — so the same already-exhausted rune still pays Power. `CLAUDE.md` has carried that fact since #44 ("a rune already exhausted for Energy still recycles for Power") and `scripts/adversarial-check.mjs` prices its turn clock on it.
+
+Re-run against the real ceiling, the candidate's requirement of **14 Energy + 8 Power fails on ENERGY alone, by exactly 2, with 10 Power to spare** — not "eighteen against twenty-two". So the refusal stands and the fix that would reopen it is **2 Energy**, not four resources. Checked: `VEN-141 Butcher of the Sands` is the pool's only Power-to-Energy conversion and cannot supply it — it is a Fury/Body **legend** against a mono-Mind line (`103.1.b`), and its Energy is restricted to "play units or activated abilities of units", which a Time Warp spell is not.
+
+Recorded rather than rewritten, because **a right conclusion resting on wrong arithmetic misdirects the next reader more than an open question does** — the next person to price a rune board would have inherited the halved ceiling.

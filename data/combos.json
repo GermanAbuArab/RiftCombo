@@ -1437,7 +1437,8 @@
           "Legend is Piltover Enforcer (UNL-187, Fury/Order) — the trigger condition is the same wording on both cards."
         ],
         "notable": [
-          "Conquer while assigning 3 or more excess damage: the Gauntlets draw 1 and the legend readies a unit. Once per Conquer."
+          "Conquer while assigning 3 or more excess damage: the Gauntlets draw 1 and the legend readies a unit. Once per Conquer.",
+          "818.1.c.4 IS THE PARAGRAPH THAT MAKES A REDUCTION APPLY TO AN EQUIP COST AT ALL, AND IT WAS UNCITED (upgrade 2026-09-12, #191 batch 25). This entry cites 356.6 for the FLOOR - *\"Energy and Power costs can`t be reduced below 0\"* - and never the rule that lets cost-altering text inside an [Equip] clause change that cost in the first place. It is the Equip twin of 827.1.c.3, which this project cites constantly for Empower, and `UNL-188 Hextech Gauntlets` is its ONLY reader: of the pool`s 40 Equipment clauses, 36 are the bare form and the other four carry three non-resource costs plus the Gauntlets` cost-altering text."
         ]
       },
       "steps": [
@@ -23664,7 +23665,8 @@
           "IT NEEDS A REAL ATTACK, WHICH IS THE TRAP THIS FAMILY IS MOST EXPOSED TO. Tryndamere says 'When I conquer AFTER AN ATTACK', and there is no attack against an empty battlefield: 807.1.d, 383.4.e and 461 require the Attacker designation, which exists only inside a Combat with a garrison. A Non-Combat Showdown conquer (316.8.b.1, 348.2.a.1) scores the ordinary Conquer point but fires none of these three triggers, because no damage is assigned and therefore no damage is excess.",
           "ONE POINT A TURN, WHICH IS WHY IT IS ENGINE. 469.1 defines Conquer as gaining Control of a battlefield 'they did not yet Score this turn', so one body conquers one battlefield once; 485.4 puts two on a Duel table and Tryndamere has no [Ganking] (144.4 confines the Standard Move to base <-> battlefield), so reaching the second in the same turn costs two more exhausts the legend's single ready cannot cover. Eight points is eight conquers.",
           "THE READY IS BEST SPENT ON A SECOND ATTACKER, NOT ON TRYNDAMERE. Readying Tryndamere buys only the walk home (144.2), since the round trip to the other battlefield needs two exhausts and he has one ready. UNL-018 Yeti Brawler (Fury, E6 M6, 'When I conquer, if you assigned 3 or more excess damage, play two Gold gear tokens exhausted') is the natural second body in this identity and turns the same attack into 2 Gold as well; deliberately not in uses, because it is a fourth card and changes no mechanism.",
-          "RED BRAMBLEBACK IS THE OTHER TRYNDAMERE ROUTE AND THEY ARE NOT THE SAME LINE. tryndamere-brambleback-conquer (BURST) and nasus-ascended-brambleback-conquer multiply the conquer TRIGGER with UNL-029 Red Brambleback's 'Your conquer effects for conquering here trigger an additional time'. This entry does not multiply anything — it makes the threshold reachable in the first place, and it is the only Tryndamere line whose other two cards are the Fury/Order excess package rather than a Fury multiplier."
+          "RED BRAMBLEBACK IS THE OTHER TRYNDAMERE ROUTE AND THEY ARE NOT THE SAME LINE. tryndamere-brambleback-conquer (BURST) and nasus-ascended-brambleback-conquer multiply the conquer TRIGGER with UNL-029 Red Brambleback's 'Your conquer effects for conquering here trigger an additional time'. This entry does not multiply anything — it makes the threshold reachable in the first place, and it is the only Tryndamere line whose other two cards are the Fury/Order excess package rather than a Fury multiplier.",
+          "818.1.c.4 IS THE PARAGRAPH THAT MAKES A REDUCTION APPLY TO AN EQUIP COST AT ALL, AND IT WAS UNCITED (upgrade 2026-09-12, #191 batch 25). This entry cites 356.6 for the FLOOR - *\"Energy and Power costs can`t be reduced below 0\"* - and never the rule that lets cost-altering text inside an [Equip] clause change that cost in the first place. It is the Equip twin of 827.1.c.3, which this project cites constantly for Empower, and `UNL-188 Hextech Gauntlets` is its ONLY reader: of the pool`s 40 Equipment clauses, 36 are the bare form and the other four carry three non-resource costs plus the Gauntlets` cost-altering text."
         ]
       },
       "steps": [
@@ -55977,6 +55979,170 @@
         }
       ],
       "rulesVersion": "2026-07-16"
+    },
+    {
+      "id": "trinity-skyfall-arena-second-battlefield-chain",
+      "name": "The seven that was refused: the eighth point is the other battlefield, and 471.1.b.1 pays it",
+      "class": "CHAIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-115",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "ALL THREE on the carrier at the Reckoner's Arena",
+          "note": "Body Equipment, E4, [Equip] one Body rune, Might Bonus +2. '[Effect] When I hold, score 1 point.' The pool's only unconditional repeatable Hold payoff - no clause, no threshold - and 103.2.b caps it at three by name, which is what made the original walk stop at seven."
+        },
+        {
+          "card": "SFD-030",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "state": "on the SAME carrier as the three Trinity Force",
+          "note": "Fury Equipment, E3, [Equip] 1 Energy + one Fury rune, Might Bonus +2. '[Effect] My hold effects are also conquer effects, and vice versa.' It must sit on the same body as the Trinity Forces: 'My' is the possessive of 'me', which 053.1 and 136.2.d resolve to the CARRIER, so it converts that carrier's hold effects and no one else's."
+        },
+        {
+          "card": "OGN-286",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield: 'When you hold here, activate the conquer effects of units here.' 383.4.g.1 names it as Riot's own worked example. Skyfall has made each Trinity Force a conquer effect as well as a hold effect, so the Hold pays each of them twice - once natively, once through the Arena."
+        },
+        {
+          "card": "UNL-111",
+          "quantity": 2,
+          "role": "enabler",
+          "zone": "BOARD",
+          "state": "one at the Arena carrying the gear, one at your base",
+          "note": "Body unit, E1 M1 - the cheapest body in the pool alongside VEN-043 Steel Paws, and two of them are the whole non-gear cost of this line. ONE carries the four Equipment at the Arena; the OTHER waits at your base and walks into the second battlefield in the Main Phase for the eighth point. They cannot be the same body: UNL-111 prints 'I can't move to base.', and 144.4 makes a Standard Move base-to-battlefield or battlefield-to-base only, so the carrier can never leave the Arena to attack and any body that holds the Arena would need [Ganking] to reach the other battlefield."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Body/Fury. Trinity Force and Determined Sentry are mono-Body, Skyfall of Areion is mono-Fury and the Arena is colourless, so the union is exactly two domains (103.1.b). Measured over data/cards.json, the pool prints four Body/Fury legend NAMES and any of them holds the deck: Relentless Storm (OGN-249, OGN-300), Purifier (SFD-183, SFD-241), Pridestalker (UNL-183, UNL-227) and Butcher of the Sands (VEN-141, VEN-190).",
+          "None of the four cards is banned or restricted in either format - checked against data/legality.json, which has no row touching SFD-115, SFD-030, OGN-286 or UNL-111.",
+          "The Arena is a battlefield you PROVIDE, so it is a 1-in-3: 485.4.a has each player provide three of which one is used, 485.5 makes the selection random, and 103.4.c with Tournament Rules 402.1 forbid three copies of one name."
+        ],
+        "notable": [
+          "THIS ENTRY IS A REFUSAL REOPENED, AND THE REFUSAL'S ARITHMETIC WAS RIGHT. The 2026-09-06 finisher-feeders walk recorded: 'Trinity Force + Skyfall + Reckoner's Arena ... 1 + 3 x 2 = 7. One short of 8, and 103.2.b caps Trinity Force at three copies. Adding OGN-066 Ahri would fix it and is Calm - three domains.' Seven is correct. What the walk never did was look at the OTHER battlefield: it searched for an eighth point AT THE ARENA, found the only candidate was out of domain, and stopped. A Duel has two battlefields (485.4), and walking a spare body into the second one Conquers it for the eighth.",
+          "THE CLAUSE THAT MAKES THE EIGHTH POINT SAFE IS THE ONE THAT USUALLY KILLS A LINE AT SEVEN. 471.1.b governs a player who 'tries to Gain a Point through a Conquer' while 'their current Point Total is 1 point from the Victory Score of the Mode of Play or higher' - which is exactly the position at seven - and 471.1.b.1 gives the Final Point only 'If the player has Scored every Battlefield this turn', handing them a card otherwise. Here BOTH battlefields are Scored this turn: the Hold Scores the Arena (469.2, 470) and this Conquer Scores the other. The catalogue already holds this reading in a verified entry - swain-double-conquer says in its own words 'Second Conquer's own point is safe at 7 because both battlefields were scored this turn (471.1.b.1)' - so nothing here is new law, only newly applied.",
+          "THE GENERAL FORM, WHICH IS WORTH MORE THAN THIS LINE. A Hold-based seven at ONE battlefield in a Duel is an eight, because Holding one battlefield and Conquering the other IS Scoring every battlefield. The refusal shape to distrust is a walk that searches for its eighth point inside the same scoring event it built - 'one short' is a claim about that event, not about the turn. Check the second battlefield before refusing.",
+          "THE ARITHMETIC, AGAINST THE QUANTITIES THIS ENTRY DECLARES. Beginning Phase, the Arena held with the carrier standing there: 315.2.b.2 Holds every battlefield you control and 471.1 Gains 1 for the Hold itself; the three Trinity Force hold effects Gain 3 (383.4.d.2.a); and the Arena activates the same three, now conquer effects by Skyfall, for 3 more (383.4.g.1 places each 'on the chain as if it had just triggered'). SEVEN. Main Phase: the second Determined Sentry walks into the other battlefield and Conquers it for the eighth. Two scoring events in one turn with no opponent turn in between, which is a CHAIN and not a BURST.",
+          "IT IS CHEAPER THAN ITS SIBLING AND WANTS THE OPPOSITE BOARD, WHICH IS WHY BOTH ARE KEPT. brambleback-trinity-skyfall-conquer is the same Trinity Force and Skyfall package under UNL-029 Red Brambleback instead of the Arena: it is a CONQUER line at E24 + 3 Body + 3 Fury, and it needs a battlefield to take. This one is E18 + 3 Body + 1 Fury - two Determined Sentry at E1 each are its whole non-gear cost - and it needs a battlefield you ALREADY HOLD plus a second one to walk into. Neither dominates: the Brambleback line pays on a board where you are taking ground, this one on a board where you are keeping it.",
+          "THE SECOND BATTLEFIELD HAS TO BE TAKEABLE, AND THAT IS THE HONEST LIMIT. If it is open - 170.11.c makes a battlefield open when it is 'unoccupied and uncontrolled' - 344.2 opens a Showdown at the next Cleanup with no combat and no damage, and 348.2.a with 348.2.a.1 gives Control and a Conquer. If the opponent garrisons it, a Might 1 Determined Sentry wins nothing and the eighth point needs a real attacker or a removal spell; 465.2.c has each side assign its summed Might. The line does not claim to beat a defended board with two 1-Might bodies.",
+          "NOTHING HERE PROTECTS THE GEAR, AND FOUR EQUIPMENT SIT ON ONE 1-MIGHT BODY. 718.5.b: 'Attached cards still can be chosen or targeted by game effects while Attached.' Six of the seven points ride on that carrier, and the pool's 16 gear kills span all six domains; at three or more copies the headline answer is OGN-022 Thermo Beam (Fury, E5 + 2 Fury Power, '[Action] (Play on your turn or in showdowns.) Kill all gear.'), which takes the whole payoff with one card. The carrier itself is a Might 1 body, so OGN-133 Flurry of Blades (Body, E1, [Reaction], 'Deal 1 to all units at battlefields') kills it and 719.5 detaches everything - the cheapest answer in the pool to this line is one Energy. A second cheap carrier of 2 or more Might is the fix and costs nothing but a deck slot.",
+          "NO KILL REACHES THE HOLD WINDOW, BUT A DETACH DOES. The seven land at 315.2.b.2 inside your own Beginning Phase, where 312.2.a gives the opponent no priority in a Neutral Open State and 813.1.c.1 admits only a [Reaction] in the Closed State the trigger opens - and no gear KILL in the pool carries [Reaction], so every one must be cast a full turn early. SFD-011 Angle Shot is the exception in the other family: Fury, 2 Energy, [Reaction], 'Choose a unit and an Equipment with the same controller. Attach that Equipment to that unit or detach that Equipment from that unit. Draw 1.' - and the same controller need not be you. 719.1 appends Effect Text only 'for as long as they remain Attached', so one Angle Shot strips one Trinity Force. Whether a detach inside the Hold window itself accomplishes anything is UNWALKED - 383.2.a.1 measures a Trigger Condition when the trigger is PLACED - so the honest statement is that Angle Shot answers this line on the turn BEFORE it pays, like the kills, and nobody should assume more."
+        ]
+      },
+      "steps": [
+        "Board before the turn: you control the Reckoner's Arena with a Determined Sentry standing on it, carrying three Trinity Force and one Skyfall of Areion; a second Determined Sentry sits at your base; the other battlefield is open or lightly held. Score 0.",
+        "Beginning Phase, Scoring Step. 315.2.b.2 Holds every battlefield you control, so the Arena Holds and 471.1 Gains 1 point, which 470 caps at one Score per battlefield per turn.",
+        "The carrier's three appended Trinity Force abilities - 'When I hold, score 1 point', made the carrier's own by 434.1.c and 136.2.d - Gain 3 more. Running total 4.",
+        "Skyfall of Areion has made each of those hold effects a conquer effect as well, so the Arena's own trigger reaches them: 383.4.g.1, 'To do so, that player checks the condition of all of the specified effects, as if they had fulfilled the named part of the condition', and each is placed 'on the chain as if it had just triggered'. 3 more. SEVEN.",
+        "Main Phase. Standard-move the second Determined Sentry from your base into the other battlefield (144.4, 144.2 paying its exhaust). Against an open battlefield 344.2 opens a Showdown at the next Cleanup with no units of opposing players present, and 348.2.a establishes Control at its close with 348.2.a.1 making it a Conquer.",
+        "That Conquer is the eighth point, and it is the Final Point. 471.1.b.1 gives it because you have Scored every Battlefield this turn - the Arena by the Hold, this one by the Conquer. 194.2 awards the game in the next cleanup to a player with 'points greater than or equal to the Victory Score and more points than any other player'."
+      ],
+      "netPerIteration": "+8 points in one turn across two scoring events - seven in the Beginning Phase off one Hold, the eighth off a Conquer at the other battlefield - for E18, 3 Body Power and 1 Fury Power",
+      "terminatesIn": "chain of eight points in one turn across a Hold and a Conquer with no opponent turn in between; the seven need a battlefield you already control and the eighth needs the second battlefield to be takeable",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12, issue #200 (docs/phase0/walks/2026-09-12-synthesised-lines.md) - synthesis lane, batch 5: the stalls-at-seven sweep, reopening the refusal recorded in docs/phase0/walks/2026-09-06-finisher-feeders.md section 7a",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        },
+        {
+          "title": "swain-double-conquer - the verified CHAIN that already states the 471.1.b.1 reading this entry stands on, in its own words",
+          "kind": "manual-walk",
+          "date": "2026-09-04"
+        },
+        {
+          "title": "brambleback-trinity-skyfall-conquer - the verified BURST that is the same Trinity Force and Skyfall package under a different multiplier, and the source of the Skyfall carrier reading (053.1, 136.2.d)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16"
+    },
+    {
+      "id": "marai-spire-syndra-granted-repeat-discount",
+      "name": "820.4 - Marai Spire discounts a [Repeat] that Syndra GRANTED, and one Rebuke clears a garrison of two",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-211",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Colorless battlefield (domains [] in data/cards.json, so 103.1.b never touches it). 'While you control this battlefield, friendly [Repeat] costs cost :rb_energy_1: less.' It names no location, so the discount reaches a spell cast anywhere on the board, not only one cast here."
+        },
+        {
+          "card": "UNL-146",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E6 P1 M6. 'While I'm in a showdown, your spells have [Repeat] :rb_energy_2::rb_rune_chaos:.' She is the GRANT, and she has to be standing in the showdown herself - the narrow reading, taken deliberately, see the notable."
+        },
+        {
+          "card": "OGN-172",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos spell, E2 P2. '[Action] Return a unit at a battlefield to its owner's hand.' [Action] is what lets it be cast inside the combat at all (155, 806.1.b), and it prints NO [Repeat] of its own - which is the whole point: every instance it executes came from Syndra and was priced by the Spire."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Syndra and Rebuke are both mono-Chaos and Marai Spire is colorless (domains [] in data/cards.json), so the union is one domain and 103.1.b.3 admits the line under any legend carrying Chaos - fifteen legend pairs exist and five of them include Chaos, so no legend list narrows this entry.",
+          "None of the three is Signature (signature false on all three in data/cards.json), so 103.2.d.2 forces no legend. None appears in data/legality.json in any format."
+        ],
+        "notable": [
+          "820.4 WAS CITED BY NOTHING, AND IT IS THE PARAGRAPH THAT LETS THE SPIRE SEE A GRANTED [Repeat] AT ALL: 'Repeat, and whether or not a spell or ability has Repeat, is a characteristic of the spell or ability and may be checked or referenced by other Game Effects.' The Spire's text is exactly such a reference. Nothing in 820 or in 801.3.a distinguishes a granted instance from a printed one - 801.3.a is the bare permission ('Other effects may grant Keywords') and 801.3.a.2 and 801.3.a.3 govern only the DURATION of a grant - so the Spire discounts Syndra's instance as readily as a printed one. This is the same shape as 815.3 (the Kinkou Temple paying for a [Tank] that arrived by grant) and 813.5.b (the Mystic Vortex taxing a [Reaction]), both walked on this lane, and it is the third and last member of that family in the current pool.",
+          "THE ARITHMETIC, IN FULL. Syndra's granted cost is :rb_energy_2::rb_rune_chaos:; the Spire takes it to :rb_energy_1::rb_rune_chaos:, and 356.6 ('Energy and Power costs can't be reduced below 0') floors only the Energy half and never touches the rune, so no further Spire could make it free. So the second Rebuke costs 1 Energy + 1 Chaos Power on top of Rebuke's printed E2 + 2 Chaos Power: THREE Energy and THREE Chaos Power in one turn for two bounces, with Syndra (E6 + 1 Chaos Power) already on the board from a previous turn, since 143.4 enters her exhausted and she cannot move the turn she is played.",
+          "THE DELTA OVER THE ENTRY THAT ALREADY USES REBUKE. draven-rebuke-bloodless-combat clears a garrison of ONE with one Rebuke and wins the combat with no damage step. This clears TWO, and copies are not the alternative: 103.2.b caps Rebuke at three copies in the deck but only one can be cast per window that the Energy affords, and 820.3.a says outright 'Regardless of the number of times a spell or ability's instructions are executed with this keyword, it is only Played once' - so the pair of bounces is ONE play, which is also why a 'cards played this turn' count (SFD-012 Battering Ram, every [Legion] clause) still reads 1.",
+          "THE LIMIT IS 820.2 AND IT IS THE HONEST HALF OF THE ENTRY: 'When a spell or ability's effect is performed an additional time with Repeat, choices must be made at the usual time during the Make Relevant Choices step of Playing a Card.' Both victims are named as you play Rebuke, before anything resolves. 820.2.a permits them to differ ('Choices made for the additional execution do not have to be the same as the choices made for the initial execution') but nothing lets you bounce one, watch the board, and then aim the second - and a defender that arrives AFTER you played Rebuke (464.2.c.3.a hands a designation at the following Cleanup) can never be a target of it. A garrison of three beats the line outright.",
+          "WHY THE SPIRE IS NOT A DECKBUILDING FREEBIE, TWICE OVER. 485.4.a: 'Each player provides three (3) Battlefields, included in their deck during deck building. Only 1 will be used, chosen during setup', and 485.5 says the Duel 'randomly selects' it, so the Spire reaches the table one time in three; 103.4.c forbids three copies of one battlefield name. And 190.1 ('Control is established over Battlefields through the course of play') with 190.6.d ('If the battlefield has no Controller, \"you\" refers to no one, and all such instructions are ignored') means the discount is OFF until a body of yours stands there and 466.5 gives you Control - and it cannot be Syndra, who is away attacking. The line therefore needs a second body whose only job is to hold the Spire; it is not written into uses[] because the card is free choice, which is how ezreal-marai-spire-free-repeat handles the same requirement.",
+          "'IN A SHOWDOWN' IS READ NARROWLY, EXACTLY AS THE SISTER ENTRY READS IT. 740.2 defines 'alone', 'one on one' and 'in combat' (740.2.c) and says nothing about a unit being 'in a showdown'; 343.1 defines a Showdown STATE for the TURN, not for a unit. syndra-transcendent-existential-dread-three-executions takes the demanding reading - Syndra herself is at the battlefield where the Showdown is in progress - and this entry takes the same one, because a wider reading only adds windows and never removes one, so no reading needs to be filed either way.",
+          "THE SECOND-ORDER CONSEQUENCE, STATED AND DELIBERATELY NOT PUT IN uses[]. 820.3: 'Multiple instances of Repeat can be paid for separately. The spell or ability's instructions will be executed an additional time on resolution for each instance of Repeat that is paid for.' Each instance is separately a friendly [Repeat] cost, so the Spire discounts BOTH - on a spell that prints its own [Repeat] :rb_energy_2: the printed instance falls to 0 and Syndra's falls to :rb_energy_1::rb_rune_chaos:, i.e. THREE executions for one Energy and one Chaos rune over the base cost. That board is syndra-transcendent-existential-dread-three-executions plus this battlefield, and adding UNL-134 here would make this entry a strict superset of that one, so it is a cross-reference and not a card set.",
+          "WHAT THE TWO BOUNCES BUY. Rebuke is [Action], so 155 and 806.1.b let it be cast inside the opened Combat Showdown on any player's turn. 465.1 makes the damage tasks Outstanding only 'If both Attacking and Defending units remain at this battlefield' - empty the garrison and the damage step never happens; 466.3.a then makes you the winner ('the only Player that has units remaining at this battlefield during this step'), and 466.5.d makes establishing Control a Conquer 'if that player has not yet scored this Battlefield this turn'. Syndra takes no damage and the bounced bodies are in hand, not the trash, so no Deathknell and no trash payoff fires for the opponent."
+        ]
+      },
+      "steps": [
+        "Board state from a previous turn: Syndra, Transcendent on the board (E6 + 1 Chaos Power, and 143.4 entered her exhausted, so she could not move that turn), one other friendly body standing on Marai Spire so that 466.5 has given you Control of it and 190.6.d no longer blanks its 'you'. Rebuke in hand, 3 Energy and 3 Chaos Power available.",
+        "Main Phase: Standard-move Syndra to the enemy battlefield, paying her exhaust (144.2, 144.4). 190.3.a.1 applies Contested status and 464.2.c.1 makes you the Attacker.",
+        "323.9 stages the Combat at the next Cleanup and 323.13 opens it; 464.2.f.1 leaves the State Open and 464.2.g lets players proceed on the Chain. Syndra is now standing at a battlefield where a Showdown is in progress, which is the narrow reading of her own condition.",
+        "Play Rebuke ([Action], so 155 and 806.1.b admit it here). During the Make Relevant Choices step, 820.2 requires every choice for BOTH executions now: name defender A and defender B, which 820.2.a permits to be different.",
+        "Pay Rebuke's printed E2 + 2 Chaos Power, then pay Syndra's granted Repeat cost as an Additional Cost during the steps of playing (820.1.c.1) - :rb_energy_2::rb_rune_chaos: reduced by the Spire to :rb_energy_1::rb_rune_chaos:, with 356.6 stopping the Energy at 0 and leaving the rune.",
+        "On resolution 820.1.d.1 executes the instruction twice: both named defenders go to their owner's hand.",
+        "465.1 finds no Defending units remaining, so the Combat Damage tasks never become Outstanding. 466.3.a gives you the combat, 466.5 establishes Control and 466.5.d makes it a Conquer."
+      ],
+      "terminatesIn": "engine - a garrison of two cleared with one spell and no damage step, for 3 Energy + 3 Chaos Power in the turn, on top of a 6 Energy + 1 Chaos Power body played a turn earlier and a second body parked on Marai Spire; 820.1.c.3 ('Each Repeat Cost can be paid only a single time') caps it at two executions per cast, so it never loops",
+      "netPerIteration": "two enemy units returned to hand for one card and one play (820.3.a), where the same spell alone answers one",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12, issue #191 - uncited Core Rules sub-rules 500-829 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "820.4: 'Repeat, and whether or not a spell or ability has Repeat, is a characteristic of the spell or ability and may be checked or referenced by other Game Effects.' 820.3: 'Multiple instances of Repeat can be paid for separately. The spell or ability's instructions will be executed an additional time on resolution for each instance of Repeat that is paid for.' 820.3.a: 'Regardless of the number of times a spell or ability's instructions are executed with this keyword, it is only Played once.' 820.2: 'When a spell or ability's effect is performed an additional time with Repeat, choices must be made at the usual time during the Make Relevant Choices step of Playing a Card.' 820.2.a: 'Choices made for the additional execution do not have to be the same as the choices made for the initial execution.' 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or ability.' 820.1.c.3: 'Each Repeat Cost can be paid only a single time.' 801.3.a: 'Other effects may grant Keywords.' 801.3.a.3: 'If an effect that grants a Keyword does not specify a duration, the duration is as long as that Game Object remains on the Board or in its current Non-Board Zone.' 356.6: 'Energy and Power costs can't be reduced below 0.' 190.1: 'Control is established over Battlefields through the course of play.' 485.4.a: 'Each player provides three (3) Battlefields, included in their deck during deck building. Only 1 will be used, chosen during setup.' 155: 'A spell can be played during an Open State outside of Showdowns on its controller's turn.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 465.1: 'If both Attacking and Defending units remain at this battlefield, the following Tasks become Outstanding, in the specified order:' 466.3.a: 'A Player has won a combat if they received either the attacker or defender designation and are the only Player that has units remaining at this battlefield during this step.' 466.5.d: 'Establishing Control results in a Conquer if that player has not yet scored this Battlefield this turn.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-12, issue #191, session rc-walk-blocks, batch 25. 820.4 was cited by nothing in data/combos.json or data/synergies.json before this entry, measured with a boundary regex over both files. Card text verbatim from data/corpus_flat.txt lines 179, 538 and 695. Cross-references: syndra-transcendent-existential-dread-three-executions (the same grant on a spell that prints its own [Repeat], and the board this entry deliberately does not become), draven-rebuke-bloodless-combat (the same spell against a garrison of one), ezreal-marai-spire-free-repeat (the same battlefield, discounting printed [Repeat] costs, and the precedent for leaving the Spire's Control body out of uses[]). No unruled reading: the narrow reading of 'in a showdown' is the demanding one and is taken on purpose."
     }
   ]
 }
