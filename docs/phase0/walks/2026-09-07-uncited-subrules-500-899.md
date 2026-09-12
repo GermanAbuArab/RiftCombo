@@ -1060,3 +1060,74 @@ different strings**, and a `quote` attributed to the rules file must come from t
   the combat opens, the player who has Focus maintains their Focus"* — which with `323.14` (a Non-Combat
   Showdown escalating into a Combat Showdown) means the Vortex's tax **inverts** when the opponent opened
   that earlier Showdown. Narrow, but the entry currently reads as if attacking always buys the asymmetry.
+
+---
+
+# Batch 22 (2026-09-12) — §22's lead, written: an Equipment's Controller does not follow its carrier
+
+| id | sub-rules opened | class |
+|---|---|---|
+| `conscription-forge-of-the-fluft-equipment-outlives-the-theft` | **718.5.b / .5.e / .5.f / .5.g**, **719.3 / 719.5**, **457.1**, 718.2, 434.1.f | ENGINE |
+
+`validateCombos`: **738 entries, 0 errors.** Legend-line: **0 defects.** References: **93, all present.**
+Quotes: **11, all verbatim.**
+
+## 31. 718.5.e and 718.5.f, and the sentence the catalogue could not state
+
+> **718.5.e.** Attached cards may have different Controllers from their Top-Most card.
+> **718.5.f.** Changes in Control of the Top-Most card do not impact Control of Attached cards and vice
+> versa.
+> **718.5.g.** An Attached card still appends the abilities in its Effect Text to the Rules Text of the
+> Top-Most card and modulates the Top-Most Card's Might by its Might Bonus.
+
+All three cited **zero** times, while `718.2` is cited across the catalogue: **this project has had the
+Inactive half of attachment everywhere and has never had the Control half.**
+
+`718.5.b` — *"Attached cards still can be chosen or targeted by game effects while Attached"* — was read
+first, as §22 required, and it is what makes the recovery legal.
+
+**The offensive half.** Steal an equipped body and you get the body; `718.5.f` leaves the Equipment's
+Control with the opponent; `718.5.g` still appends its Effect Text and modulates its Might on the unit you
+now control. You receive the whole benefit of a card you do not own, and they retain a card they cannot
+use — `718.2` makes its printed `[Equip]` Inactive while attached, so only an ATTACH effect can move it.
+`718.5.c` and `719.3.a` carry it along, so after Conscription's recall **their card is at your base, on
+your unit, controlled by them.** The loan ends where `457.1` says, and Riot's worked example is this exact
+case: the gear is recalled *"to **its controller's** base"* — theirs, not yours — once `719.5` detaches it.
+
+**The defensive half is the same rule backwards**, and is why `SFD-208 Forge of the Fluft` is a `uses[]`
+row rather than a notable. If they steal *your* equipped body, `718.5.f` leaves the Equipment under your
+Control, `718.5.b` lets the Forge choose it, and `434.1.f` detaches it from their new body as it attaches
+to yours. One legend exhaust, no Energy, no Power. The Forge and not the `[Equip]` cost, because `718.2`
+and `721.2` make that cost Inactive — the one-way door recorded on 2026-09-07.
+
+**`have.mjs` decided the theft card.** `OGN-203 Possession` is the obvious pick and
+`node .scratch/have.mjs OGN-203 SFD-208` returns **CONTAINS `possession-action-defender-flip`**, a
+single-card entry — so that set would be a strict superset needing a declaration. `UNL-140 Conscription`
+is clean, is the same domain, and carries its own honest price: `824.1.d` with `730.2` means the 5 XP that
+lifts its Might restriction switches off every `[Level N]` rung, so it is a **sink** line.
+
+## 32. HANDOFF — rc-walk-blocks, 500–829, after batches 18–22
+
+**Staged and unmerged in `/tmp/rc-walks/rc-walk-rules.json`:** `sanction-spirit-wheel-blade-dancer-empower-is-a-choice`
+(batch 21) and `conscription-forge-of-the-fluft-equipment-outlives-the-theft` (batch 22). Both validated.
+
+**Everything §14 and §14.1 scoped is closed.** §22's lead is now this entry. What is left in this range:
+
+1. The remainder of `kw.mjs`'s **97 non-boilerplate rows in 801–829** that §24–§26 did not reach.
+2. `719.4` (*"The Exhausted and Ready state of the Top-Most card does not affect nor change the status of
+   the Attached cards and vice versa"*) and `719.5.a` (the controller of a departing Top-Most Card chooses
+   the **detach order**) — both surfaced by `orphan.mjs` at neighbour-count 37, both uncited, neither read.
+3. `818.5` — the `815.3` shape for **Equip**, uncited (`818.5.a` was walked by this lane earlier).
+4. `827.1.c.4` and `818.1.c.5` — *"…may include text that alters the **timing**"* — the timing twins of
+   the cost-altering clauses this project cites constantly. Not yet swept for a reader.
+
+**Scripts, all untracked, all on this machine:** `.scratch-rules/orphan.mjs`, `.scratch-rules/kw.mjs`,
+`.scratch-rules/survey.mjs` (both filters, ranked, `lo hi [n]` — **echo the parsed range**, §30),
+`.scratch-rules/audit17.mjs` (references + quotes; carries the tokenizer from `test/rule-refs.test.ts` —
+do not re-patch, §21), `.scratch-rules/val16.ts`, `.scratch-rules/legend16.ts`.
+
+**The three standing traps this lane has paid for, in the order they bit:** write the legality sentence
+**without** `OGS-019`'s base code (§67 of the other document); paste every `quote` from the **rules file**,
+not from memory and not from the card's reminder text (§29 — `809.1.c`'s rules wording and its printed
+reminder are different strings, and `437.4` is ungrammatical on purpose); and run `have.mjs` the moment
+the card set is known, because it is what caught the Possession superset above.
