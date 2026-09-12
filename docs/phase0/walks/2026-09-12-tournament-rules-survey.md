@@ -154,3 +154,110 @@ form-feed-safe anchor: 12 passages, zero failures. The section census, the 936/7
 per-section table were run in the turn they were written, over `data/combos.json`, `data/synergies.json`,
 `src/`, `test/`, the walk records and CLAUDE.md. The fourteen INFINITE `steps` arrays were read rather
 than sampled. No entry staged; `data/combos.json` not written.
+
+---
+
+# Batch 2 — 506 is 22 paragraphs about triggers, cited by nothing, and one of them corroborates a reading we VOTED
+
+No entry. **TOURNAMENT RULES section 506 is cited by zero entries**, in a project that cites Core Rules
+383 in hundreds of places. It is not a restatement of 383: it governs what happens when a trigger is
+not announced, and two of its paragraphs reprice things this catalogue already ships.
+
+## 7. TOURNAMENT RULES 506.5 — FORGETTING A ONCE-PER-TURN TRIGGER BURNS IT
+
+> **TOURNAMENT RULES 506.3.** The accountable player must acknowledge their triggers by the time they
+> would have an observable impact on the game. If they do not, they are forgotten.
+> **506.3.b.** A trigger is considered forgotten once its point of observable impact has been reached
+> and a new game action is taken without the accountable player acknowledging the trigger.
+> **506.4.** A triggered ability that was forgotten never goes on the chain.
+> **506.5.** A triggered ability that was forgotten is still considered to have triggered for the
+> purpose of non-optional “First time” or similarly restricted triggers.
+
+506.5 is the one with teeth. This catalogue leans on the per-turn limiter constantly — CLAUDE.md's
+383.1.b finding (*"a `the [Nth] time` trigger fires ONCE when its condition is met several times
+simultaneously"*) and 383.3.e.1 are cited across the Grand Plaza family and the death-trigger lens.
+**506.5 says the limiter is spent even when the trigger never resolves**: forget it, and it neither
+goes on the chain (506.4) nor leaves the turn's use available.
+
+Swept over `data/cards.json`, folded by name+type: **ten cards carry a per-turn trigger limiter** —
+`OGN-118 Wraith of Echoes`, `OGN-162 Miss Fortune, Captain`, `OGN-292 The Dreaming Tree` (banned in
+both formats), `SFD-113 Lucian, Merciless`, `SFD-148 Draven, Audacious`, `UNL-174 Shard of Undoing`,
+`UNL-215 Star Spring`, `VEN-002 Blade Twirler`, `VEN-068 Jayce, Brilliant Inventor` and
+`VEN-125 Hungry Wolf` — and **21 entries run at least one of them.** For every one of those 21, a
+missed announcement is not a delay, it is the turn's use gone. That is a tournament fact rather than a
+game fact, which is exactly why it lives in this book and why no Core Rules pass could have found it.
+
+**506.3.c** closes the obvious abuse from the other side: a player *"ruled to be abusing this rule to
+intentionally forget mandatory triggers"* is penalised under TOURNAMENT RULES 702.2 — so a mandatory
+downside trigger cannot be quietly dropped, which pairs with Core Rules 402.4.b (§97: you may not
+decline the CHOICE stage) to close both halves of the same evasion.
+
+## 8. TOURNAMENT RULES 506.1.a CORROBORATES R8, WHICH THIS PROJECT VOTED WITH NO RIOT RULING
+
+> **TOURNAMENT RULES 506.1.a.** The accountable player for triggers sourced from battlefields depends
+> on control of the battlefield and is not automatically the player who brought the battlefield to the
+> game. See CR 190.6. For more information on battlefield abilities.
+
+CLAUDE.md records R8 as *"ruled 2026-09-04 **after a web search found NO official Riot ruling** (all
+four set FAQs silent, including the two that printed the cards)"*, resolved A on the strength of Core
+Rules 190.6.a, 190.6.c, 190.6.d and 383.4.d.2 — that a battlefield's own Hold trigger is one of *"your
+hold effects"* because control, not ownership, decides whose ability it is. The entry for it even
+anticipates the objection: *"The ownership objection does not arise, since 127.1 plus 485.4.a mean the
+battlefield you control in a Duel is normally the one you brought."*
+
+**506.1.a is a second Riot book saying the premise outright, and answering the objection in general
+rather than in the Duel's special case:** the accountable player *"depends on control of the
+battlefield and is not automatically the player who brought the battlefield to the game."* It does not
+convert a vote into a Riot ruling on the question R8 asked, and it removes the only structural doubt
+under it. This is the same shape the manager flagged for 702.3.a and R2 — **a voted reading with a
+corroborating paragraph in the other book** — and it is the second instance, which suggests the pattern
+is worth checking for every open R-number rather than being a coincidence twice.
+
+## 9. TOURNAMENT RULES 504.4 — A RECYCLE MUST HIT THE BOTTOM OF THE DECK IMMEDIATELY
+
+> **TOURNAMENT RULES 504.4.** When something is recycled, it must be immediately put on the bottom of
+> the appropriate deck.
+> **504.4.a.** Example: A player may not keep their recycled runes facedown on the board to track
+> Energy.
+> **504.4.b.** Failure to recycle in this way is a Communication Violation. See 703.5 for more
+> information on Communication Violations.
+
+Cited by nothing, and it lands directly on this project's loop ledgers, which are denominated in
+recycles. `lux-infinite-power`'s first step is *"Recycle a rune to float 1 Power of its domain"*, and
+the Lux ledger's whole argument is a per-pass count of cards recycled against cards drawn. **504.4
+makes each of those recycles a physical action with a deadline**, and 504.4.a forbids exactly the
+bookkeeping shortcut a player running an eleven-rune loop would reach for. With 505.2's requirement
+that shortcut iterations be identical, the two together are why a loop of this size is announced rather
+than played out — and why announcing it wrongly is a penalty rather than a take-back.
+
+**504.3** is the companion constraint on any shortcut: *"Players can't shortcut out-of-order in a way
+that gives them information prematurely that might affect decisions later in that sequence."* For a
+loop that draws, that is the rule that stops you resolving the draws first and then deciding how many
+iterations to run — which is, in ledger terms, the thing that would make a zero-spare-draw pass safe
+when it is not.
+
+## 10. What 506 and 504 do NOT change, recorded so the next reader does not re-open it
+
+- **506.2**: you are not required to notify an opponent of triggers you are not accountable for. No
+  catalogue consequence; recorded because it is the paragraph a reader expects to say the opposite.
+- **506.3.d**: the *"At the start of each player's first Beginning Phase"* carve-out names
+  `OGN-284 Obelisk of Power` and `OGN-290 The Arena's Greatest` — **both banned in both formats**, so
+  the carve-out is dead letter for us. Worth one line only because it shows the Tournament Rules were
+  written against a card pool that still contained them.
+- **506.3.e's nine worked examples** name `OGN-066 Ahri, Alluring`, `OGN-288 Startipped Peak`,
+  `OGN-164 Sett, Brawler`, `OGN-103 Ravenbloom Student`, `OGN-185 Traveling Merchant`,
+  `OGN-162 Miss Fortune, Captain`, `OGN-177 Stealthy Pursuer` (banned) and `SFD-128 Overzealous Fan`.
+  **Checked: every one of the unbanned eight is already catalogued**, so the rules-name-a-card vein is
+  no richer here than in the Core Rules — what is new is the paragraphs, not the cards.
+- **504.1 / 504.2**: out-of-order sequencing and the right to ask for the correct order. Procedure.
+
+## 11. Validation
+
+Quotes checked from an explicit list against `data/Riftbound-Tournament-Rules-2026-07-16.txt`: 11
+passages, zero failures. Counts run in the turn they were written — section 506 cited by zero entries;
+the ten per-turn-limiter cards folded by name+type over `data/cards.json` and the 21 entries running
+one; the ban status of all ten named cards against `data/legality.json`, whose `entries[].bases` is an
+array. One instrument note: a first sweep for entries that discuss forgetting a trigger returned 21,
+and the number was wrong — the pattern was matching **`Forgotten` Signpost** and **`Forgotten`
+Library**. The clean measurement is the citation count, which is zero. No entry staged;
+`data/combos.json` not written.
