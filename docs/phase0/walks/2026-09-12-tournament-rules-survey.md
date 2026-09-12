@@ -624,3 +624,77 @@ Quotes checked from an explicit list, quote-normalised: 9 passages against
 `data/Riftbound-Tournament-Rules-2026-07-16.txt`, zero failures. Section 701's zero citations were
 measured over `data/combos.json`, `data/synergies.json`, `src/`, `test/`, the walk records and
 CLAUDE.md. No entry staged; `data/combos.json` not written.
+
+---
+
+# Batch 7 — the R-number sweep is a measured EMPTY, and the keyword that was not empty corrects §27
+
+No entry. The manager's instruction for this batch was to report **what each R-number's status
+becomes**, not merely that a paragraph was found, and to be exact about **which half** a paragraph
+reaches — because both corroborations so far (R2 via 702.3.a, R8 via 506.1.a) reached a **premise**
+and not a conclusion, and *"a ruling half-corroborated and recorded as settled is a new debt with no
+marker on it."*
+
+## 32. THE SWEEP, AND WHAT EACH STATUS BECOMES: NOTHING
+
+Issue #11's open readings are **R3–R5, R11–R19 and R21–R24**. Seven of them state their subject in
+the issue's own tables and are sweepable; the rest are named only by number in the status lines and
+have no subject recorded there, which is itself worth writing down. For each sweepable one I searched
+`data/Riftbound-Tournament-Rules-2026-07-16.txt` for the subject's own vocabulary:
+
+| reading | subject | Tournament Rules hits | status BECOMES |
+|---|---|---|---|
+| **R4** | *"my hold effects"* includes triggers granted by another Equipment (CR 434.1.c) | **zero** — the phrase *"hold effect"* does not occur in this book | **unchanged, open** |
+| **R11** | units enter exhausted unless text says otherwise (CR 143.4) | **zero** — *"enter(s) exhausted"* does not occur | **unchanged, open** |
+| **R12** | Heimerdinger copying Renata's *"use my abilities only while I'm at a battlefield"* | **zero on the subject.** Ten raw hits for *"copy"/"copies"*, every one about a **copy of a battlefield** (602.3.e.4.a), a second **copy of a card** in a sideboard error (703), or **copies of named cards** (403.3) | **unchanged, open** |
+| **R13** | *"becomes Mighty"* via [Assault] (CR 709) | **zero** — neither *"Mighty"* nor *"Assault"* occurs in this book at all | **unchanged, open** |
+| **R14** | a Showdown at a battlefield already scored this turn | **zero on the subject.** One raw hit for *"Showdown"*, and it is the **Showdown Series**, an event name in 705.1.c | **unchanged, open** |
+| **R21** | a re-exhaust window between the two executions of a `[Repeat]` | **zero on the subject.** Nine raw hits for *"repeat"*, being 505.1's *"repeated"* and the Limited draft procedures at 602.4 | **unchanged, open** |
+| **R22** | *"Recycle the rest"* with no banish — does it recycle or do nothing | **zero on the subject.** Eleven raw hits for *"recycle"*, of which the substantive ones are 421.8, 502.5.a and 504.4 — all about **how** a recycle is performed, none about **whether** an unfulfilled one happens | **unchanged, open** |
+
+**Seven of seven unchanged.** The two corroborations this method has produced were both in the
+**500 Communication** band, which is the only part of this book that speaks about game state at all;
+the open readings are Core Rules questions about card text, and this book does not discuss card text.
+**That is the honest bound on the method: it retires a debt only where the reading's premise is about
+INFORMATION, PROCEDURE or ACCOUNTABILITY, and every remaining open reading is about EFFECTS.** Worth
+one line in CLAUDE.md so the sweep is not re-run with the same result.
+
+Every row above is a **false-positive count, not a silence** — I am reporting the raw hits and why
+each is not the subject, because "zero hits" and "hits that are all about something else" are
+different results and only the second one tells you the vocabulary was searched.
+
+## 33. THE ONE THING THE SWEEP FOUND, AND IT CORRECTS §27
+
+> **TOURNAMENT RULES 421.2.** Random is defined as a state where no player could have any information
+> about the order or position of cards in any part of the deck.
+> **TOURNAMENT RULES 421.8.** When two or more cards are recycled to the player's Main Deck as part of
+> a single action, the above procedures 1-7 should be followed for that group of cards to properly
+> randomize them before recycling them.
+
+Uncited, and it is **the physical implementation of Core Rules 416.5** — the paragraph §18 built the
+determinism argument on. 416.5 says the order is random; **421.8 says you must actually randomise
+that group at the table, to 421.2's absolute standard**, before it goes to the bottom.
+
+**§27 IS WRONG IN ITS DESCRIPTION AND I AM CORRECTING IT HERE RATHER THAN LEAVING IT.** That section
+said *"the Lux engine's entire state is a known sequence at the bottom of an otherwise empty Main
+Deck."* Under 416.5 with 421.8 it is **a known SET in a deliberately unknown ORDER**. The conclusion
+of §27 is untouched — 701.4.b still protects the knowable portion through a remedy shuffle, and
+701.4.b's own words are *"which portion of the deck is knowable"*, which a set satisfies — but the
+sequence claim was mine and it was wrong.
+
+And it makes §18's argument stronger rather than weaker. **The order is not merely random in the
+abstract; a player must physically shuffle three or four cards every pass to make it so.** So the
+505.9 shortcut licence is doing real work: without it, a loop of a few hundred passes is a few hundred
+hand shuffles against TOURNAMENT RULES 604's round clock, and 505.12 makes declining to shortcut in
+order to burn that clock **cheating**. The three paragraphs now sit in one line: **416.5 randomises,
+421.8 makes you do it by hand, and 505.9 lets you skip the whole thing only because the ledger closes
+each pass.**
+
+## 34. Validation
+
+Quotes checked from an explicit list, quote-normalised: 2 passages against
+`data/Riftbound-Tournament-Rules-2026-07-16.txt`, zero failures. The seven subject sweeps were run
+over the whole file with the raw-hit counts recorded above rather than summarised, and the open
+R-number list was read from GitHub issue #11 **fetched with `--json body,comments`** — the body alone
+omits the comments, which is where every ruling lives, and that trap is already in CLAUDE.md. No
+entry staged; `data/combos.json` not written.
