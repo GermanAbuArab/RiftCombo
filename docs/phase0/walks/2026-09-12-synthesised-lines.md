@@ -2013,3 +2013,86 @@ identifies as hard.*
 board-independent point source.** A pair with neither is genuinely hard and its finisher will have to reach
 eight on unmultiplied copies capped at three by 103.2.b — which is exactly why both entries in those cells
 are five- and seven-card lines that double-dip across two scoring events rather than scaling one.
+
+---
+
+## 26. Batch 17 — a refusal overturned by the manager, a false notable on the live site, and my own typed census caught
+
+### 26.1 `ivern-brambleback-conquer-burst` (BURST, verified, fury/order) — and why §24.3's decline was wrong
+
+§24.3 priced Red Brambleback × Ivern at ten points and then **declined to write it**, on §13.3's precedent
+that a thin cell is not automatically a gap: fury/order already has two ATTACK-gated survivors, and §7 says
+a ten-point burst is redundant against an unopposed Hold curve.
+
+rc-manager5 overturned it, and the reasoning is right: **§13.3's precedent is about whether a PAIR needs a
+line, and the catalogue is not a per-pair deckbuilding guide — it is a record of verified lines the matcher
+can report.** A ten-point BURST on an uncatalogued card set is an entry whatever fury/order's decks already
+hold; by the redundancy argument used to decline it, half the fifteen-strong BURST class would be refused.
+**The redundancy argument was kept, as the entry's third notable,** where it is worth something to a reader
+instead of silently killing a line.
+
+| source | rule | points |
+|---|---|---|
+| the Conquer | 469.1 / 471.1 | 1 |
+| 3 Ivern × 3 executions under 2 Brambleback | 383.4.c.2.a, R1 = A (N copies → N+1 instances) | 9 |
+| | **one scoring event** | **10** |
+
+**E28 + 2 Fury Power**, five bodies at the battlefield and one at the base. Its sibling
+`tryndamere-brambleback-conquer` runs the same multiplier at T=2, K=3 for **nine** at E26 + 7 Fury Power —
+2 Energy dearer, 5 Power cheaper, one point better, and Order paying where that one is Fury.
+
+**What it adds is that it has no gate.** Tryndamere's *"if you assigned 5 or more excess damage"* sits
+immediately after his trigger, so 383.2.a.1 makes it part of the Trigger Condition, and 807.1.d with 323.9
+means the attack needs an enemy garrison — he is dead on an **open** battlefield. Ivern asks for four tags
+and a Conquer, so this line also takes an open battlefield bloodlessly through 344.2 → 348.2.a → 348.2.a.1.
+fury/order's two existing survivors are both attack-gated; **this is the identity's first conquer-gated one.**
+
+Its single point of failure is stated rather than buried, and it is §20's finding pointed at my own work:
+Ivern's tag clause follows the effect verb, so it is the **Loose Cannon** shape, checked on resolution — and
+killing the Bird in response blanks all nine Gains. The mitigation is two Energy for a second tag body.
+
+### 26.2 The emitter shipped three false notables, and the card text refuting them was inside the sentence
+
+Running `npm run adversarial` after the merge flagged **my own** batch-14 entry: *"stands on a Might-1 body
+(Steel Paws (M0)) and never names OGN-133 Flurry of Blades."* The flag is false twice over — Steel Paws is
+declared in zone **BASE**, and Flurry of Blades reads *"Deal 1 to all units **at battlefields**"*.
+
+It is not a special case. Measured: **four of the ten finishers with a Might ≤ 1 unit in `uses[]` declare it
+in zone BASE**, because it is a tag-carrier for Ivern or a *"played this turn"* enabler for Swain and the
+clause it serves reads *"your units"* with no location. Zone is declared on **98.7%** of `uses[]` rows, so
+the check can read real data rather than guess.
+
+**Three of those four already carry a shipped notable that is false**, and each one quotes the refutation in
+its own sentence:
+
+> "ONE ENERGY ANSWERS THE MIGHT-1 BODY THIS LINE NEEDS (Soaring Scout (M1)). `OGN-133 Flurry of Blades` is
+> Body, E1: *"…Deal 1 to all units at battlefields."*"
+
+`ivern-sentinel-hold`, `ivern-arena-sentinel-hold` and `swain-shurelya-double-conquer`. **This is §19.2's
+Spiderling defect exactly** — a generated *"ONE ENERGY ANSWERS"* sentence that the card text refutes — and it
+is the second time the same emitter has produced one. The fix is in the script (the fragile check now skips a
+Might ≤ 1 unit whose row declares zone BASE) and three REPLACE rows are in
+`/tmp/rc-walks/rc-synth-flurry-false.json`, naming what *does* reach a base — `OGN-229 Vengeance`,
+`VEN-154 Public Execution`, `SFD-158 Sandshifter` — and noting that **none of them carries `[Reaction]`**, so
+the answer must be cast a full turn early. 0 unanswered holes of 78 after the fix.
+
+### 26.3 My own typed legend census was wrong, and running the query is the only reason it did not ship
+
+The staged entry's `prerequisites.easy` claimed **five** Fury/Order legend names and listed them with base
+codes. Measured over `data/cards.json`, the pool prints **THREE** — Hand of Noxus (OGN-253 / OGN-302), Void
+Burrower (SFD-187 / SFD-243), Piltover Enforcer (UNL-187 / UNL-229) — and even the one name I had right
+carried the wrong base codes.
+
+This is **the exact defect class the #189 and #192 cross-audits singled out**: legend censuses typed from
+memory rather than measured, the worst single family in both audits. It is worth recording that it happened
+inside a lane that has written the "run the query before the sentence leaves the lane" rule into three
+separate reports. **The rule works only if it is applied to the sentences that feel like boilerplate**, and a
+legend line is the most boilerplate-feeling field in the schema.
+
+### 26.4 Standing note
+
+**A precedent is scoped to the question it answered.** §13.3 refused a chaos/fury CHAIN because that
+identity's existing BURST already reached nine — a claim about *that line's marginal value to that deck*.
+Carried to Brambleback × Ivern it silently became a claim about *what belongs in the catalogue*, which it
+never was. This project already records that a refusal is scoped to the reason that was given; the same is
+true of a precedent, and the failure is easier to miss because reusing one feels like consistency.
