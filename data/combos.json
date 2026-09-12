@@ -56547,6 +56547,73 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-12 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md, batch 11), issue #187, lane rc-walk-mid. Card text verbatim from data/corpus_flat.txt; the Calm/Order legend census was run against data/cards.json. Opens 359.2, 359.2.a and 359.2.b, cited by nothing before this entry, and uses 710's worked example, which happens to be this card's effect with this card's numbers. Closes one of the eleven walkable uncatalogued deckable cards. Fiora, Worthy's thirteen other entries are acknowledged rather than ignored: what this one adds is that a single card supplies the crossing and is the body that walks."
+    },
+    {
+      "id": "demacian-diplomat-blood-rose-board-independent-xp",
+      "name": "The only XP in Body that a stalled board cannot switch off - two XP from one card play, with the cost paid blind at finalization",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-092",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body unit, E2 M2. 'When you play me, gain 1 XP.' Swept 2026-09-12 over data/cards.json: he is the only card in Body that gains XP on being played with NO condition of any kind. UNL-034 Herald of Spring and UNL-158 Shepherd's Heirloom are the same shape in Calm and Order; UNL-116 Poppy, Paragon's 3 XP is gated on an opponent's score being within 3 of the Victory Score. He was in zero entries before this one."
+        },
+        {
+          "card": "UNL-109",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Body gear, E1. 'When you play a unit, you may pay :rb_energy_1: to gain 1 XP. Spend 3 XP, :rb_exhaust:: Ready a unit.' One copy: the trigger watches every unit you play and a second copy would double the price as readily as the XP. Its SECOND sentence is the anti-synergy and the entry says so."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "xp-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend's Domain Identity includes Body (103.1.b.3); both cards are mono-Body, so any legend with Body in its pair runs them.",
+          "One spare Energy per unit played, which is what the Blood Rose half costs."
+        ],
+        "notable": [
+          "EVERY OTHER XP SOURCE IN BODY IS GATED ON THE BOARD, AND THAT IS THE WHOLE POINT. Swept 2026-09-12 over data/cards.json for 'gain N XP': of the mono-Body rows, UNL-094 Gemhand Hunter, UNL-096 Hunter's Machete, UNL-100 Voracious Gromp, UNL-102 Crowd Favorite, UNL-113 Master Yi Tempered, UNL-117 Arachnoid Horror and UNL-119 Kha'Zix all carry [Hunt], which 823.1.c.1 pays only on a Conquer or a Hold; UNL-095 Grim Resolve needs a combat win; UNL-107 Stare Down needs an enemy garrison for its main clause; UNL-115 Nilah needs a move; UNL-116 Poppy needs the opponent near the Victory Score. This pair needs NOTHING - it is XP from cards leaving your hand. A [Level] deck that has been walled off the board still levels, which is the property every other row in the domain lacks.",
+          "THE PAYMENT IS BLIND, AND THAT IS 383.3.b READ WITH 383.3.e.2.a. Blood Rose's 'you may pay 1 Energy to gain 1 XP' puts a cost at the start of a Triggered Ability's effect, which 204.3.a and 383.3.b.1 make payable TO FINALIZE the trigger, and 383.3.e.2.a puts the DECISION there as well: 'During finalization of the Triggered Ability, the player who controls the Triggered Ability may choose to perform it', with 383.3.e.2.b removing it from the chain if you decline. 312.2.c hands out no priority until every pending item has finished finalizing, so you commit the Energy before the opponent can respond - and, because the Energy is tiny, that costs nothing here where it would matter on a larger trigger. 444.2.c is the relief in either case: 'Players may activate abilities that Add resources with the Reaction keyword at any time that they are instructed to Pay resources', and 164.2 gives every Basic Rune two such abilities.",
+          "TOKENS FEED IT AND THE CITATION PAIR MATTERS. Blood Rose says 'when you play a UNIT', and 350.2 with 185.2.a make a token played without making it a card - so every token unit is another 1 Energy for 1 XP, while a [Legion] clause or a 'cards played this turn' count sees none of them. The pair for the other direction is 185.1 with 185.2.b, which is what makes a token unit a unit when something COUNTS bodies.",
+          "ITS OWN SECOND SENTENCE IS THE ANTI-SYNERGY. 'Spend 3 XP, exhaust: Ready a unit' is a SINK, and 730.2 ('To Spend XP, reduce the value of XP marked on the Player') read with 824.1.d makes a [Level N] ability 'Inactive as soon as the controlling player has less than [N] XP' - so cashing the Blood Rose ready switches off the rungs the faucet was filling. A [Level] deck runs the first sentence and never the second; a tempo deck runs both and gives up the rungs. Pick one, and the choice is per turn rather than per deck.",
+          "WHAT IT DOES NOT DO: it scores nothing, it puts no body anywhere useful, and 2 Might is under OGN-133 Flurry of Blades' sweep at 143.2.a, so the Diplomat is a body that dies to a 1-Energy [Reaction] for its whole board value. The XP survives him, which is the only reason that is acceptable - XP is marked on the PLAYER (730.2), not on the unit.",
+          "THE CEILING IS THE RUNG, NOT THE XP. The pool's [Level] clauses top at [Level 16] on UNL-059 Master Yi, Unstoppable and cluster at 3, 6 and 11, so an XP faucet is worth exactly the rungs it reaches and nothing past the highest one a deck runs. Three Diplomats plus a Blood Rose is 6 XP for 9 Energy across the turns you play them, which is [Level 6] - the rung UNL-113 Master Yi, Tempered and UNL-094 Gemhand Hunter both read.",
+          "BLOOD ROSE IS ALREADY IN FIVE ENTRIES AND THIS ONE SAYS WHAT IT ADDS: wuju-master-blood-rose-level, gardens-becoming-wuju-xp-faucet, poppy-confront-blood-rose, scrutinizing-sergeant-blood-rose-xp-spike and blood-rose-insightful-investigator-cost-at-resolution. Every one of them pairs her with a card that wants a board, a score or an opponent in a particular state. This is the pairing that needs none of those, which is the only reason it is a row."
+        ]
+      },
+      "steps": [
+        "Play UNL-109 Blood Rose for 1 Energy on any turn you have it. It is a gear and enters ready (143.4 exhausts units only), though nothing here needs it ready.",
+        "Play UNL-092 Demacian Diplomat for 2 Energy. Two triggers go on the chain: his own 'gain 1 XP', and Blood Rose's 'you may pay 1 Energy to gain 1 XP'.",
+        "Blood Rose's trigger asks for its cost AT FINALIZATION (204.3.a, 383.3.b.1) and asks for the DECISION there too (383.3.e.2.a). Pay the Energy - finding it with a rune at that instant if the pool is empty (444.2.c, 164.2).",
+        "Both resolve: 2 XP for 3 Energy, with nothing asked of the board.",
+        "Repeat with every unit you play, including token units (350.2 with 185.2.a), at 1 Energy each.",
+        "Hold the XP. Do not cash 'Spend 3 XP, exhaust: Ready a unit' in a deck whose [Level] rungs you want, because 730.2 with 824.1.d switches them off the moment the total drops below the rung."
+      ],
+      "netPerIteration": "2 XP for 3 Energy on the Diplomat, and 1 XP for 1 Energy on every other unit you play, with no requirement on the board",
+      "terminatesIn": "engine only - it scores nothing, XP converts to points nowhere in the pool, and the useful ceiling is the highest [Level] rung the deck actually runs",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "During finalization of the Triggered Ability, the player who controls the Triggered Ability may choose to perform it."
+        },
+        {
+          "title": "Hand walk 2026-09-12, uncited Core Rules sub-rules 300-499, batch 12 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-12",
+          "quote": "Swept 2026-09-12 over data/cards.json: 32 cards gain XP, and in mono-Body every one except UNL-092 Demacian Diplomat and UNL-109 Blood Rose is gated on a Conquer, a Hold, a combat win, an enemy garrison, a move or the opponent's score. UNL-092 was one of the eleven walkable uncatalogued deckable cards measured that day."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-12 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md, batch 12), issue #187, lane rc-walk-mid. Card text verbatim from data/corpus_flat.txt; the XP census was run against data/cards.json rather than typed. Closes one of the eight walkable uncatalogued deckable cards. It is a modest row and is written as one: its single claim is board-independence, measured against every other XP source in its own domain, and it applies this lane's 383.3.e.2.a finding - the decision on a leading 'you may pay' is made at finalization, not at resolution."
     }
   ]
 }
