@@ -463,3 +463,90 @@ rather than taken from CLAUDE.md's summary of it**, which is what turned a half-
 Deck is random" into the determinism argument above. Section 502 and section 509 citation counts, and
 the ban and catalogue status of the four named cards, were run in the turn they were written. No entry
 staged; `data/combos.json` not written.
+
+---
+
+# Batch 5 — the second contradiction, reported on its own: the Core Rules' deck size is a FLOOR and this book's is an EQUALITY
+
+No entry. Reported alone at the manager's standing instruction that after 104.1 a contradiction is
+worth more than a finding. **It is a different kind of contradiction from §13's and the difference
+matters**, which is most of why it is worth a batch.
+
+## 22. THE TWO SENTENCES
+
+> **CORE RULES 103.2.** A Main Deck of **at least** 40 cards: A Chosen Champion Unit, as well as
+> Units, Gear, and Spells
+> **TOURNAMENT RULES 601.1.b.** In competitions, a player's Main Deck must be **exactly** 40 cards.
+> **TOURNAMENT RULES 402.1.** In a constructed event, players must register a Main Deck of exactly 40
+> cards (including a chosen champion), 1 Legend, 12 runes, and exactly 3 battlefields each with a
+> unique name.
+
+A floor against an equality. By **TOURNAMENT RULES 104.1** the equality governs in competition, so
+**a 41-card Main Deck is legal under the Core Rules and illegal at every event**, and the sentence
+CLAUDE.md carries — *"103.2 A Main Deck of at least 40 cards"* — is true only of kitchen-table play.
+
+## 23. AND IT IS A DECLARED MODIFICATION, WHICH §13's WAS NOT
+
+> **TOURNAMENT RULES 601.1.a.** The rules for constructing a Riftbound deck are found in CR 101. Deck
+> Construction, **except where modified here below** for the competition Constructed play format.
+
+This is the distinction to carry, because it changes how much weight the finding bears. §13's pair —
+Core Rules 486.5.a's *"may be reused"* against Tournament Rules 406.1.b's *"must use the same
+battlefields"* — is an **undeclared** disagreement: neither paragraph mentions the other, both read
+complete, and only 104.1 resolves it. **601.1.b is a declared override**: 601.1.a announces itself as
+a modification of CR 101 before saying anything, so the books are not disagreeing, one is amending the
+other on purpose.
+
+**So there are two classes and they want different handling.** A declared override is safe to find by
+reading the overriding section. An undeclared contradiction can only be found by reading both books on
+the same subject, which is the standing consequence the manager wrote down after §13 and the reason it
+is the expensive class.
+
+## 24. THE TOOL IS ALREADY RIGHT, AND ITS CITATION IS ONE PARAGRAPH SHORT
+
+Checked at source rather than assumed: `sizeRule` in `src/build.ts:72-80` fails a list at **both**
+ends and names a different rule for each — *"a Main Deck is at least 40 (103.2)"* below forty,
+*"an event registers exactly 40 (Tournament Rules 402.1)"* above it — with the docblock already
+recording that *"They are different rules, so the row says which one a list broke rather than printing
+one number for both."* **No defect; the row is one of the nineteen Tournament Rules citations in the
+project and it is correct.**
+
+What it lacks is **601.1.b**. 402.1 is the **registration** rule — what you write on a decklist — and
+601.1.b is the **format** rule, what the deck must be while you are playing it. They are in different
+sections for a reason: 403.4.c makes the distinction explicit, requiring that *"After the sideboarding
+process, a player's Main Deck must meet deck size requirements dictated by the competition format"* —
+i.e. the format rule, 601.1.b, is what a mid-match deck is measured against, and 403.4's *"Sideboard
+cards must be exchanged 1 for 1"* is the mechanism that keeps it at forty. **UPGRADE, FLAGGED ONCE:
+`sizeRule`'s over-forty branch should name 601.1.b beside 402.1.**
+
+## 25. ONE CARVE-OUT THE BAN PANEL DOES NOT MODEL, and I am not proposing we model it
+
+> **TOURNAMENT RULES 601.2.d.2.** At low OPL, if a player is using the exact deck configuration of a
+> preconstructed Riftbound deck product, they are allowed to play with cards on the banned list.
+> **601.2.d.2.a.** … if a player is playing a deck matching the exact contents of the preconstructed
+> Jinx Champion Deck, they are allowed to use the banned cards in the deck, such as Fight or Flight,
+> Scrapheap and Reaver's Row. If the player makes any changes or adds a sideboard, they can no longer
+> include the banned cards.
+
+Uncited. `deckRestrictions` reports a banned card unconditionally, and **that is the right behaviour
+and should stay**: the carve-out applies only at low OPL, only to an unmodified preconstructed
+product, and collapses the moment a player changes a card or adds a sideboard — which is every list
+this tool is pointed at. It is recorded here so that nobody reads a future report of *"we flag a card
+Riot permits"* as a defect. Riot names three of our banned cards in the example, and
+`OGN-285 Reaver's Row` is one this survey has already met, in TOURNAMENT RULES 509.4.b.1.
+
+**601.2.a** is the one the manager already had — *"A card may only be included in a deck if it is from
+a set that is legal in that format **or it has the same name as a card from a set that is legal in
+that format**"* — which makes name+type folding the legally correct unit rather than a matching
+convenience. Recorded here with its neighbours because 601.2.c adds the other half: a reprint whose
+collector number sits outside the normal numbering of a set *"does not affect the card's format
+legality"*, with 601.2.c.1's worked example of a 300/250 card. **Between them, that is the rulebook's
+own statement of why this project matches on base codes and folds censuses by name.**
+
+## 26. Validation
+
+Quotes checked from an explicit list, quote-normalised: 8 passages against
+`data/Riftbound-Tournament-Rules-2026-07-16.txt` and 1 against
+`data/Riftbound-Core-Rules-2026-07-16.txt`, zero failures. `sizeRule` was read at `src/build.ts`
+rather than from its summary — the same discipline that produced §14's answer — and it is clean. No
+entry staged; `data/combos.json` not written; `src/` not written.
