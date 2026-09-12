@@ -698,3 +698,109 @@ over the whole file with the raw-hit counts recorded above rather than summarise
 R-number list was read from GitHub issue #11 **fetched with `--json body,comments`** — the body alone
 omits the comments, which is where every ruling lives, and that trap is already in CLAUDE.md. No
 entry staged; `data/combos.json` not written.
+
+---
+
+# Batch 8 — 704/705 is the measured empty I predicted, except for one paragraph that completes a triad
+
+No entry. This closes the survey of the play-relevant half.
+
+## 35. 704 AND 705 — 82 HEADINGS, AND ONE OF THEM MATTERS
+
+Read end to end. **705 Disciplinary Code (39 headings) is an empty for this project**: 705.1 is the
+overview of what a player accepts by entering, 705.2 is investigations and consequences, 705.3 is
+conduct. Nothing in it bears on what a deck can do. **704 Unsporting Conduct (43) is the same**, with
+the exception of one sub-section — 704.5 Bribery, 704.6 Wagering, 704.7 Theft and 704.8 Cheating are
+all offences of the person rather than of the game state, and the two of them this survey already
+needed (704.8 for 505.12's shortcut abuse, 704.4 for 509.5's take-backs) were reached from the
+sections that cross-reference them.
+
+## 36. 704.4.a.1 COMPLETES A TRIAD ABOUT ON-RESOLUTION CHOICES, AND THE PROJECT HAS ONE THIRD OF IT
+
+> **TOURNAMENT RULES 503.9.c.** When a player puts a spell or ability on the chain and announces
+> choices for it that are normally made upon resolution, **they must adhere to those choices unless
+> their opponents react.**
+> **TOURNAMENT RULES 503.9.d.** When a player asks about choices normally made upon resolution, they
+> are assumed to be passing priority and allowing the spell or ability to resolve.
+> **TOURNAMENT RULES 704.4.a.1.** [Angle Shooting, Warning] Asking a player to state a choice that
+> they would make on resolution **prior to deciding whether to react.**
+
+503.9.c and 503.9.d are cited **once each**, both by `bullet-time-seals-scaling-sweep` —
+appropriately, since `OGN-268 Bullet Time` is the one spell in the pool CLAUDE.md records as *"sized
+AFTER the opponent has already responded"*. **704.4 and 704.4.a.1 are cited zero.** Together the three
+are a complete system, and this catalogue's whole finalization-versus-resolution apparatus — 204.3.a
+against 204.3.b, 383.3.b, 205, 740.4, all cited in hundreds of places — has a procedural counterpart
+in this book that nobody had read:
+
+- the Core Rules say **when** an on-resolution choice is made (CR 355.17);
+- **503.9.c** says that announcing it early **binds you** — *unless the opponent reacts*, which frees
+  you again, and that conditional is the half worth having: **a reaction reopens a choice you had
+  already committed to**;
+- **503.9.d** says that **asking** about it costs you your own priority;
+- **704.4.a.1** makes asking *in order to decide whether to react* an **offence**.
+
+So the 205 family (*"you may pay X. If you do, Y"*, decided at resolution) and the 204.3.a family
+(paid at finalization) differ at the table in a way the entries do not record: **for the resolution
+family the opponent may not extract your choice before committing, and you may not be asked to give
+it.** `OGN-268 Bullet Time` is the worked case and its entry already stands on the right two
+paragraphs; what is missing is the third, and the observation that it is the same rule seen from the
+penalty side.
+
+## 37. Validation
+
+Quotes checked from an explicit list, quote-normalised: 3 passages against
+`data/Riftbound-Tournament-Rules-2026-07-16.txt`, zero failures. Citation counts for 503.9.c, 503.9.d,
+704.4, 704.4.a.1 and 704.8 were run in the turn they were written, and the single entry citing the
+first two was read. 704 and 705 were read end to end rather than sampled. No entry staged;
+`data/combos.json` not written.
+
+---
+
+## 38. HANDOFF — the Tournament Rules survey, for whoever comes next
+
+**The play-relevant half of this book is surveyed end to end.** What follows is the state, not a
+queue, because the queue is empty.
+
+### H1. What was covered, and where
+
+| section | batch | result |
+|---|---|---|
+| 104 Precedence | 3 | **104.1: this book beats the Core Rules in competition.** Cited zero before. |
+| 402, 403, 406, 407 | 3, 5 | 407.4 + CR 486.5/486.6 are two penalties for winning game 1; 406.1.b contradicts CR 486.5.a |
+| 500, 501, 503, 504 | 1, 2, 4, 8 | 504.4 immediate recycle; the on-resolution triad at 503.9.c/d + 704.4.a.1 |
+| **505 Loops** | **1** | **505.6: a loop nobody maintains is a DRAW.** 2 of 16 paragraphs had been read. |
+| 502, 509 | 4 | the determinism argument; 502.4.d makes current state public |
+| 506 Triggered Abilities | 2 | **506.5: forgetting a once-per-turn trigger spends it.** 506.1.a corroborates R8. |
+| 601 Constructed | 5 | **601.1.b: exactly 40, against CR 103.2's at-least.** A *declared* override. |
+| 604, 421 | 1, 7 | 421.8 makes the Main Deck recycle a hand shuffle |
+| 701 General | 6 | **701.4.b protects a knowable deck portion through a judge shuffle.** Rest is a measured empty. |
+| 704, 705 | 8 | measured empty except 704.4 |
+| **602 Limited (93)** | 1 | **REFUSED permanently** — this catalogue models Constructed and 2v2 only |
+| **104, 201–205, 301–306, 408–424 (246)** | 1 | **REFUSED** after a spot read — they govern the event, not the game |
+
+### H2. The two things to carry, whatever you work on next
+
+**104.1 makes every Core Rules derivation provisional**, and §23's split is how to act on it without
+re-reading the whole book: a **declared** override announces itself in the overriding section's own
+first line (601.1.a) and is cheap to find; an **undeclared** contradiction is two paragraphs that both
+read complete and mention nothing (CR 486.5.a against TR 406.1.b), and only 104.1 resolves it. **Grep
+the other book for the SUBJECT, never for a cross-reference.**
+
+**The R-number sweep is bounded and should not be re-run as a whole** (§32). Both corroborations sit
+in the 500 Communication band, the only part of this book that speaks about game state, and both
+reached a **premise** about information or accountability. Every remaining open reading is a Core
+Rules question about card **effects**, which this book does not discuss. Seven of seven came back
+unchanged and an eighth would too.
+
+### H3. Instruments
+
+No new probe was needed here; the book is small enough to read. The **`^[[:space:]]*` anchor is
+mandatory** (50 form feeds, 56 headings a bare `^` misses) and there is **no U+200B**, so #202's
+third invisible-character trap is Core-Rules-only. `.scratch/tr-scan.mjs` (gitignored) prints the
+936/790/cited census and the per-section table and can be re-run after any merge.
+
+### H4. What is genuinely left
+
+Only **the 246 administrative headings and 602's 93**, both refused with their scope in §5, and the
+**unsweepable open R-numbers** whose subjects issue #11 records only by number. If a future set or a
+new format changes what the catalogue models, 602 is the row to reopen first.
