@@ -1673,3 +1673,222 @@ is already established and can be trusted:
   than a write that never happened. `set +o noclobber` on the same command line, every time. Third
   entry in this document's ledger of *an instrument failure that looks like a finding* — the others
   being the form-feed `grep` anchor and rule 766's second worked example.
+
+---
+
+# Batch 17 (2026-09-12) — where a cost SITS decides when it is paid, and the Facedown Zone is priced in Control
+
+Resumed from §H8–H13 after the Saturday pause. Catalogue was at **727 entries + 206 synergy rules** on
+resume; the staging file `/tmp/rc-walks/rc-walk-rules.json` was `[]`, exactly as §H8 promised. Lane
+unchanged: **uncited Core Rules sub-rules 100–299**, issue #187. Four entries, all ENGINE, all validated.
+
+| id | sub-rules opened | class |
+|---|---|---|
+| `academy-ruthless-strike-cost-once-effect-twice` | **135.2.b.3**, **204.2 / 204.2.a**, 820.1.d.2 | ENGINE |
+| `bone-skewer-vex-opponent-play-scheduler` | **191.1 / 191.3 / 191.3.c / 191.3.d** | ENGINE |
+| `blood-rose-insightful-investigator-cost-at-resolution` | **204.1.b / 204.3.a / 204.3.b** | ENGINE |
+| `mushroom-pouch-smoke-and-mirrors-facedown-tenure` | **107.3.a–d**, **152.2**, **190.4.b** | ENGINE |
+
+`validateCombos` over the merged set: **731 entries, 0 errors.** Legend-line check: **0 defects** (after a
+repair, below). Rule-reference audit: **195 references, 0 missing** as headings in either rules file, with
+the form-feed-safe anchor. Quote audit: **22 quoted passages, 0 fragments not found verbatim.** Legality
+for all eight cards checked against `data/legality.json` on 2026-09-12 — none banned, none restricted.
+
+## 59. 135.2.b.3 — Riot's own example of the Repeat asymmetry, and it says "if the card is GIVEN Repeat"
+
+The paragraph is short and the example is the whole finding:
+
+> **135.2.b.3.** Instructions will self-describe when they are to be executed. If there is no timing
+> described, they will execute during resolution.
+>
+> *Example: An instruction says “as you play me, kill a unit as an additional cost.” That instruction
+> will execute as the card is being played. If the card is given Repeat and the Repeat cost is paid,
+> this instruction will not execute because the Repeat execution does not happen until resolution of
+> the spell, after this instruction has executed.*
+
+"If the card is **given** Repeat" is Riot describing a grant, and in this pool the only card that grants
+[Repeat] to a spell that does not print it is `UNL-216 The Academy`. **135.2.b.3 and 204.2.a are cited by
+no entry and no synergy rule** (measured over `combos.json` + `synergies.json`, 2026-09-12).
+
+The general form is `820.1.d.2` — *"Any instructions not performed on resolution of the spell or ability
+are ignored."* — and `820.1.d.1`'s model is what removes the ambiguity: it duplicates the text **in
+place** (*"as though the card says “Play a 2 [M] Sand Soldier unit token. Play a 2 [M] Sand Soldier unit
+token.”"*) rather than replaying the card, so the payment is never re-asked and never un-made.
+
+**The family, swept over `data/corpus_flat.txt` on 2026-09-12 — exactly EIGHT spells carry an as-you-play
+additional cost**, and it splits in two:
+
+| card | domain / cost | reads the payment back at resolution? |
+|---|---|---|
+| `OGN-048 Meditation` | Calm E2 | **yes** — *"If you do, draw 2. Otherwise, draw 1"* → four cards for one exhaust |
+| `UNL-140 Conscription` | Chaos E5 P2 | **yes** — *"If you paid the additional cost, choose any enemy unit at a battlefield instead"* → 5 XP once for TWO unrestricted steals, the biggest swing in the family |
+| `VEN-008 Ruthless Strike` | Fury E3 | **yes** — *"deal 5 to it instead"* → 10 damage for one discard |
+| `VEN-083 Rampage` | Body E3 | **yes** |
+| `OGN-146 Wallop` | Body E2 | no — the buff zeroes the COST, not the effect |
+| `OGN-207 Call to Glory` | Order E3 | no — same shape |
+| `UNL-142 Heedless Resurrection` | Chaos E2 P1 | no — mandatory cost, unconditioned effect (still a gain: kill one body, reanimate two) |
+| `UNL-173 Sacrifice` | Order E1 | no — mandatory cost |
+
+Ruthless Strike was picked over Conscription because it needs no XP faucet and constrains the legend by
+one domain; `node .scratch/have.mjs UNL-216 UNL-142` reports **CONTAINS `heedless-resurrection-removal-blank`**,
+which is why that pairing would need declaring.
+
+The price is stated in the entry and is easy to miss: **820.2** makes both executions' choices at the
+*Make Relevant Choices* step of **playing**, so the two targets are locked before anything resolves.
+
+## 60. 204.3.a against 204.3.b — POSITION inside the trigger decides finalization or resolution
+
+This catalogue says repeatedly that a cost written at the start of a Triggered Ability's effect is its
+BASE cost, paid at finalization. That is true and `204.3.a` is the cleanest source (worked example:
+Overzealous Fan). **What the project has been missing is the other half:**
+
+> **204.3.b.** When Costs within Instructions appear in spells, activated abilities, or in later parts of
+> triggered abilities, the cost must be paid to get the effect during resolution of the spell or ability.
+
+`204.3` is cited 32 times; the *"later parts"* clause has never been used, and `204.1.b` and `204.2.a` are
+cited zero times. Riot's third worked example for `204.3.b` names a pool card:
+
+> *Example: Insightful Investigator is a unit that reads “When you play me, choose an opponent. They
+> reveal their hand. You may pay 2 XP to choose a card from their hand. If you do, they discard that card
+> and draw 1.” As the ability resolves, its controller may pay 2 XP as a cost, and chooses a card from
+> that player’s hand as the effect.*
+
+**Why it matters beyond the one card.** This document and `CLAUDE.md` record, from three separate rules,
+that a resource produced by another trigger of the *same event* can never fund a `383.3.b` / `204.3.a`
+base cost — `383.3.b.1` demands payment at finalization and `312.2.c` hands out no priority in between.
+`204.3.b` is the shape where it **does** work: three `UNL-109 Blood Rose` (*"When you play a unit, you may
+pay 1 Energy to gain 1 XP"*, no exhaust anywhere in the clause) put three triggers on the Chain beside the
+Investigator's own; place the Investigator's **first** so `340.1` resolves it **last**, and its 2 XP comes
+out of XP that did not exist when the trigger was placed.
+
+The test is word order, exactly as `383.2.a.1`'s is for a condition (§50). Same sentence, different
+position, different timing.
+
+## 61. 191.3.d — the body you drag out of their hand is THEIRS as it enters
+
+> **191.1.** When a player Plays, Hides, or Creates a Card or other Game Object, they are established as
+> that Game Object's Controller.
+> **191.3.** For Permanents and Runes, when they Enter the Board, that player is assigned as that Game
+> Object's Controller.
+> **191.3.d.** That player may make decisions about any game effects created from "When you play me"
+> effects of Permanents.
+
+`191.3.c` and `191.3.d` are cited by nothing. `UNL-139 Bone Skewer` says *"**They** play that unit to that
+battlefield"*, so the opponent is its Controller, its enters-the-board trigger fires **for them**, and
+**they** choose its targets. The obvious play — take their biggest body — can hand them a free ETB aimed
+at you; the right pick is the unit whose ETB is worst for them or absent.
+
+**The constructive half.** Swept 2026-09-12: exactly **two** cards watch an opponent playing something —
+`UNL-150 Vex, Apathetic` (a unit) and `VEN-102 Ravenbloom Prefect` (a gear) — and exactly **three** make an
+opponent play something: `UNL-139 Bone Skewer` (a unit out of their **hand**), `UNL-130 Walking Roost` (a
+Bird **token**, which still fires Vex because `185.2.b` makes a token unit a unit) and `SFD-081 Card Sharp`
+(a Gold gear token each). Without one of those three, Vex fires only when the opponent chooses to act.
+
+Two things the entry states that a reader would otherwise get wrong: the **two stuns are redundant**
+(`423.1.a.1`, whose worked example is Eclipse Herald and says outright that a second stun fires no
+payoff), so the marginal value is Vex's *"They can't move it this turn"*; and the stun expires at step 3d
+of **your own** cleanup (`423.1.a.2`), so it only ever matters inside the turn you played Bone Skewer.
+
+**One refusal recorded rather than walked:** `SFD-081 Card Sharp` → `VEN-102 Ravenbloom Prefect` does fire
+(a Gold *is* a gear played by an opponent), but the Prefect's cost is *"you may banish me to banish it"* —
+a 3-Energy body spent on a token `186.1` would annihilate anyway — and the domains are split. Refused on
+arithmetic, not on rule.
+
+## 62. 107.3 — the Facedown Zone is priced in Control, and 190.4.b is the one window that freezes it
+
+The whole of `107.3` was reachable and only half-used: `107.3.c` and `107.3.d` are cited **four** times
+each, both times from the *denial* side (`warden-saboteur-hidden-lock`, `warden-tianna-base-lock`), never
+as the cost of your own hidden card. `107.3.b.2` is cited zero times.
+
+> **107.3.c.** Cards can only be placed in or **occupy** the Facedown Zone if the controller of the card
+> also controls the associated Battlefield.
+> **107.3.d.** If a player loses Control of a Battlefield, any cards in the Facedown Zone associated with
+> that Battlefield are removed during the next Cleanup.
+
+The word is **occupy**: Control is a continuing requirement, not an entry condition. This project has been
+deriving it from the tail of `811.1.b`, which says the same thing for `[Hidden]` alone.
+
+**And `190.4.b`, cited by nothing, is the exception:**
+
+> While a Combat or Showdown is ongoing at a Battlefield, Control of that Battlefield cannot change until
+> instructed by steps of the Combat or Showdown.
+
+So a facedown card at the battlefield under attack is safe for the whole fight — your hidden `[Action]`
+removal is live inside the very combat that threatens it (`464.2.f.1`, `464.2.g`), and a hidden
+`[Reaction]` card is live in every Closed State it opens (`813.1.c.1`). You never lose the card before you
+get to use it.
+
+**The anti-synergy, exact and previously unstated:** the evacuation family works by walking your last body
+off a battlefield so `323.6` strips your own Control in an Open State — and `107.3.d` throws away any
+facedown card there at that same Cleanup. A `[Hidden]` package and an evacuation package want opposite
+things from the same battlefield.
+
+## 63. 152.2 — the surprising absence from §H12 lead 1, re-run with a different instrument and CONFIRMED
+
+§H12 flagged this as *"a surprising absence and must be re-run with a different instrument before it is
+written down"*. It has been. The first sweep was over the rendered text lines of `data/corpus_flat.txt`;
+the second was over `data/cards.json` **fields** (`type`, `tags`, `text`, `effect`), deduped by base.
+
+Both return the same number. Over the pool: **114 gear base codes, 40 Equipment, 74 non-Equipment — and
+ZERO non-Equipment gear has the word "here" in its text or effect.** Widened to `battlefield`, four
+non-Equipment gear mention one and none reads its **own** location: `OGN-017 Iron Ballista`,
+`OGN-101 Mushroom Pouch`, `OGN-184 The Syren`, `UNL-088 Gutter Palace`. So `152.2`'s rule — that non-unit
+gear cannot normally reach a battlefield — **costs this pool nothing: a gear's Location is carefully
+defined and no card reads it.** Scoped to the current pool; it becomes live the moment a set prints a gear
+whose text says "here".
+
+The one exception 152.2's facedown route could ever use is named: **`OGN-077 Zhonya's Hourglass` is the
+only non-Equipment gear in the pool carrying `[Hidden]`.** Its text has no location clause either.
+
+## 64. Blocks read and returned EMPTY or DISPOSED, with the scope of each
+
+| sub-rule | what it says | disposition, and its scope |
+|---|---|---|
+| **107.4.d.1 / 107.4.d.2** | *"Some effects may add a legend card or token to the Legend Zone. These legends are not Champion Legends."* / non-Champion legends may be removed and can exist only in the Legend Zone or Banishment | **ZERO cards** in the pool add a legend to the Legend Zone (swept `cards.json` text+effect for `legend zone` / `legend token` / `a legend to` / `as a legend` / `second legend`, and independently listed every non-legend card whose text contains "legend" — seven rows, all of which *read* a legend: `OGN-111`, `SFD-039`, `SFD-079`, `SFD-208`, `SFD-210`, `SFD-228`, `VEN-082`). Scoped to **the current pool**; the rule is written for a card that does not exist yet, and printing one would open a second legend's abilities |
+| **103.2.b.1** | *"This includes your Chosen Champion."* with Riot's Volibear example | **Real, and already implemented.** `normalizeDeck` keeps the Chosen Champion inside `deck.main` (see the comment at `src/deck.ts:236`, which cites 103.2.b.1 by number), so `copiesRule` in `src/build.ts` already counts it against the cap. No entry and no issue owed |
+| **135.2.b.4 / .b.5 / .b.5.a** | how to recognise an instruction; a game action plus its complement, worked on Void Seeker and Teemo, Strategist | **Grammar definitions.** Their one downstream use is that `820.1.d.1` duplicates *all* resolution instructions, which §59 already carries. Scoped to **new lines**; the Teemo example remains the cleanest illustration of a four-instruction trigger |
+| **131.1–131.3.b, 132.1–132.3, 138.1, 130.1–130.6, 129.3** | card anatomy and privacy | **Structural.** No mechanic a line can turn on |
+| **135.2.e.6.b** | *"A [C] shorthand on a card with no Domain is processed as [A] instead."* | The corpus prints **no colourless rune symbol at all** (`grep -o ":rb_[a-z_0-9]*:" | sort | uniq -c` — the rune symbols are exactly fury/calm/mind/body/chaos/order/rainbow), because `135.2.e.6.a` has a printed `[C]` assume the card's own Domain. So a `[C]` on a domainless object can only arise from a **granted** keyword, and no grant in the pool puts a `[C]`-costed keyword on a domainless object. Scoped to **the current pool**. Its sibling `135.2.e.6.c` was read and disposed in §51 |
+| **117.1 / 117.2 / 117.3** (the Mulligan) | set aside up to two, **then** draw that many, **finally** Recycle the set-aside cards | Cited zero times and **real**, but it is a consistency fact and not a card set, so it produced no entry. The order is load-bearing: the draw happens **before** the recycle, so a mulliganed card can never be drawn back in the same mulligan, and `416.1` puts it on the **bottom** — of a 39-card Main Deck (`103.2.a.1` removes the Chosen Champion first), i.e. effectively out of the game. Worth carrying wherever this project reasons about opening consistency |
+| **190.3.d** | *"At this time Game Effects cannot reference this status."* (Contested) | A hard negative worth knowing: **no card can read Contested.** This catalogue reasons through Contested constantly and always via its consequences (`323.9`, `344.2`, `464.2.c.1`), which is correct — `190.3.d` says a card may never read it directly |
+
+## 65. Citation upgrades owed to existing entries — NOT applied, this lane does not own `data/combos.json`
+
+1. **`cruel-patron-zhonyas-cost-paid-without-the-death`** (my own, batch 15) should also cite **203.2** —
+   *"The Cost is still considered paid even if the associated game action is replaced."* It is the
+   **general** statement of `357.2.a`, it is cited by nothing, and it is one sentence.
+2. **Every entry standing on "you may put any number of your units at one battlefield"** should cite
+   **170.6** — *"Any number of Units can be present at a Battlefield."* `CLAUDE.md` derives that from
+   `144.4.a.1` + `447.2.a`'s "more than two players" clause; `170.6` states it outright and is uncited.
+3. **The ALT_WIN entries** should carry **194.2.a** — *"If more than one player has points greater than or
+   equal to the Victory Score, whichever player has more points wins."* `194.2` and `194.2.b` are already
+   cited; `194.2.a` is the tiebreak sentence between them and is uncited.
+4. **The trash-trigger and theft entries** should carry **191.4.a.1** — *"If an Ability's Source is located
+   in a non-Board Zone, the Ability's Controller is the Owner of the Source."* This is the controller-side
+   companion to `385.1` / `385.2` and to `056` / `056.2`, and it is uncited.
+5. **`mageseeker-investigator-mass-move-tax`** — §H5 item 1 still stands and is still unapplied: it should
+   cite **204.4** and **429.3**.
+
+## 66. Two method notes earned this batch
+
+- **`node .scratch/have.mjs X` answers "is my candidate set a SUPERSET of an existing entry", not "which
+  entries use card X".** Its message — *"no entry uses that card set or a subset of it"* — is literally
+  true and reads like the second question. `have.mjs UNL-216` returned it while `academy-ezreal-gust-double-bounce`
+  plainly uses `UNL-216`, which looked for a minute like a broken tool and is not: the entry also uses
+  `SFD-149`, which was not in my set. Use it for the dedupe question it was written for, and grep
+  `combos.json` for the coverage question.
+- **The pool writes one event two ways and a single predicate misses cards.** A sweep of
+  `face ?down` over `cards.json` returns nine rows and **does not** include `OGN-167 Ember Monk`, which
+  prints *"When you play a card from [Hidden]"* for the same event. The first version of the Mushroom
+  Pouch entry's census was one card short because of it, and was corrected before staging. Same shape as
+  the `[Hunt` / `\[Hunt\]` trap and the bracket-less `Hidden` on `SFD-138 Windsinger`.
+
+## 67. One repair the tests caught, worth stating because the brief warned about it
+
+All four entries were written with the standing legality sentence *"…data/legality.json's only non-banned
+row is **OGS-019** Wuju Bladesman - Starter, restricted in 2v2…"*. `test/legend-lines.test.ts` reads any
+legend base code in `prerequisites.easy` as **a legend named for the entry**, so all four failed its domain
+check (`OGS-019` is Calm/Body; the entries are Fury, Chaos, Body/Chaos and Mind). The base code was
+stripped and the sentence kept in prose. This is the tension `CLAUDE.md` records between two standing rules
+— check every legality claim against the file, but never write that row's base code into a legend field —
+and it bit four times in one batch, so it is worth checking **before** staging, not after.
