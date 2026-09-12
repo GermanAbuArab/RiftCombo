@@ -2172,3 +2172,87 @@ stop it. The fix is mechanical, not a resolution:
 **The order of operations is the actual lesson.** I was generating the entry and then checking it. The legend
 line is the most boilerplate-feeling field in the schema, which is exactly why it has to be *produced by a
 measurement* rather than reviewed after being typed — review is what failed, twice.
+
+---
+
+## 28. Batch 19 — the adversarial sweep extended to the ENGINE class, which is 686 of 766 entries
+
+rc-manager5's point is structural and correct: `scripts/adversarial-check.mjs` reported **zero unanswered
+holes** and that was clean *over its population* — the four finisher classes. **The ENGINE class is 686 of
+the catalogue's 766 entries and had never been through it.** (Not 646; 766 − 80 finishers = 686.)
+
+### 28.1 Non-vacuity first, because that is the failure this sweep is most exposed to
+
+#203's containment pass read `uses[].base` where the field is `uses[].card`, every set came back empty, and
+it printed a CLEAN. So the sweep prints its joins before any result:
+
+```
+catalogue entries             : 766
+  of which ENGINE             : 686      <- population the finisher sweep never touched
+uses[] rows total             : 1898
+  .card resolves in cards.json: 1898  (100.0%)
+  rows whose card is a unit   : 967
+  rows with zone declared     : 1874  (98.7%)
+entries declaring needs       : 33   (ENGINE: 20)
+```
+
+### 28.2 The result, with the predicate beside every number
+
+**A. The Yuumi shape — a body the line cannot replace, killed for 1 Energy.** Predicate: a `uses[]` unit with
+printed Might ≤ 1 **declared at zone BATTLEFIELD**, where the entry never names `OGN-133 Flurry of Blades`.
+
+| | |
+|---|---|
+| Might ≤ 1 units across ENGINE `uses[]`, by zone | BATTLEFIELD 20, HAND 7, BOARD 6, BASE 5, DECK 2, TRASH 1 |
+| **in reach and unnamed** | **17** |
+| zone BOARD — ambiguous, flagged and NOT asserted | 5 |
+| HAND / DECK / TRASH / BASE — out of reach, dropped | 11 |
+
+**The zone split is the refinement that makes it trustworthy rather than noisy**, and it is batch 17's
+lesson generalised: Flurry reads *"Deal 1 to all units **at battlefields**"*, so a body in hand, in the deck,
+in the trash or at the base is not in reach at all. A first pass that only excluded BASE reported **29**.
+
+**The check validates against the case that motivated it**: `kinkou-temple-yuumi-granted-tank-whiteflame-wall`
+is excluded, and for the right reason — #203's repair is present and it names the card. **And the sweep found
+the same shape in two MORE Yuumi entries nobody had looked at**: `yuumi-affectionate-poro-designated-tank`
+and `tricksy-tentacles-yuumi-forced-defend-subset`.
+
+**B. Equipment with no gear answer named: 96** (predicate: a `uses[]` card of type gear carrying the
+Equipment tag, where the entry names none of the 15 swept gear-kill names or `SFD-011 Angle Shot`).
+**Reported as a count and deliberately NOT emitted as 96 notables.** An ENGINE that loses its Equipment loses
+tempo; the finisher classes lose the game, which is why that check was written for them. A narrower criterion
+is needed before this is worth shipping, and I do not have one yet.
+
+**C. An entry declaring `needs` with no producer legal in its own identity: ZERO of 33.** Predicate: for each
+`needs` id, does any other entry `produces` it with the union of the two identities ≤ 2 domains (103.1.b)?
+**That is a clean result and it is stated plainly rather than padded** — the needs/produces DAG is
+domain-sound across the whole catalogue.
+
+**D. The ledger question, measured but not concluded.** 523 of 686 ENGINEs declare `netPerIteration`; **46
+describe a pass, loop or repeat in their own prose and declare none** (predicate: `/per pass|each pass|every
+pass|repeat|loop/i` over steps + `terminatesIn`). That predicate certainly catches `[Repeat]`, the keyword,
+as a false positive, so the 46 is an upper bound and I am not reporting it as a defect count.
+
+### 28.3 The notables, and the defect that reading them caught
+
+**17 rows**, in `/tmp/rc-walks/rc-synth-engine-flurry.json`. Each states the answer, why copies do not help
+(370.1.a.2 makes the deaths simultaneous, so quantity is no defence), that it lands at **[Reaction]** speed —
+which is strictly worse for the defender than the base-reaching removals of §26.2, none of which carries
+Reaction — and what protects it.
+
+**The protection half was wrong on the first generation and reading it caught it.** It reported "protections:
+6" for most entries, because a mono-domain entry unions legally with *each* of fury, order and mind
+separately. That is true card by card and **false as a list**: 103.1.b allows exactly ONE partner domain, so
+those six are alternatives, not a shelf. The emitter now groups them by the partner they force and says so in
+the sentence. A second read caught a worse one — an entry with no domain-legal protection printed *"WHAT
+PROTECTS IT: NOTHING"* and then named the colourless `OGN-294 Trifarian War Camp` in the next clause, which
+is §19.4's incoherence defect exactly. Both fixed before shipping; all 9 quoted fragments verified verbatim
+and all 7 rule references resolve.
+
+### 28.4 Standing note
+
+**A sweep is clean over its population, and the population is part of the result.** "Zero unanswered holes of
+78 finishers" was quoted at lanes as though it covered the catalogue; it covered 10% of it. **Report the
+denominator with the verdict**, and when extending a check to a new population, expect the refinement that
+made it honest on the old one to be insufficient — the BASE exclusion from batch 17 had to become a full zone
+split here, and the difference between the two is 29 findings against 17.
