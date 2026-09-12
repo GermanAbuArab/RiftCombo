@@ -378,3 +378,61 @@ So the classes divide by what they are FOR, and the catalogue has never said so:
 
 That is not an argument against any entry. It is the missing sentence in every one of them, and it
 only became askable once a line was denominated in turns.
+
+
+---
+
+## 8. `--emit-notables`, and a correction to my own headline from section 7
+
+### The script now writes its own corrections file
+
+`node scripts/adversarial-check.mjs --emit-notables` emits the 22 findings as a corrections file in
+the shape the manager merges — `entry`, `action`, `why`, `notables_to_append`. The reasoning is
+rc-manager5's: **a player reading riftcombo.app never runs npm, so a hole only the script knows about
+is invisible to the only audience that matters.** The script stays the source of truth; the entries
+carry the warning.
+
+Generated prose is still prose, and reviewing it found three defects that would have shipped:
+
+1. **A non-greedy `\((.*?)\)` truncated a nested parenthesis**, so `Spiderling (M1)` came out as
+   `Spiderling (M1`. Anchored on the finding's own tail instead.
+2. **The first draft named Thermo Beam against every Equipment line, including ones with a single
+   copy.** "Kill all gear" for 5 Energy and 2 Power is not the answer to one attached gear; the
+   emitter now picks the headline by copy count, naming `SFD-005 Detonate` (E1 + 1 Fury Power) for a
+   lone Equipment and Thermo Beam only from two copies up.
+3. **The first draft listed all 16 swept gear kills as "answers".** Several only reach a FRIENDLY
+   gear or are gated — Jayce and Malzahar kill your own, Zaun Punk's is an additional cost, Bottled
+   Constellation is a payoff, Pickpocket caps at Energy cost 1 and Noxian Demolitionist at its own
+   Might, Decree of Unity reaches only an enemy Chaos card. The notable now names the six
+   unconditional enemy-facing ones and points at the predicate for the rest.
+
+Every rule the emitted prose cites was opened and read before it shipped — 143.2.a, 155, 312.2.a,
+312.2.c, 718.2, 718.5.b, 721.2, 806.1.c.1, 813.1.c.1 — and every card text was pasted from
+`data/corpus_flat.txt`. 312.2.a is worth quoting because it is what the whole timing argument rests
+on: *"When the turn is in a Neutral Open State during their Main Phase"* — **their own** Main Phase,
+which is why an opponent cannot answer anything in your Beginning Phase except with a [Reaction].
+
+### The correction: "INFINITE 3 of 14" understated them, and I reported it before checking the shape
+
+Section 7 reported that only 3 of 14 INFINITEs are slower than the do-nothing Hold curve, and drew
+the conclusion that an INFINITE "beats the clock". **Ten of those fourteen produce only FUEL** —
+`infinite-energy`, `infinite-power`, `token-body-engine` — and no points at all. Measuring the engine
+alone understates them by the entire cost of whatever consumes the fuel, so the number was not
+comparable to a BURST's.
+
+The clock now folds the `needs`/`produces` DAG: for a fuel-only entry it adds the cheapest consumer
+that both produces points and can legally share a deck (103.1.b caps the union of the two entries'
+domains at the legend's two). The corrected figure is **33 of 45 slower — INFINITE 4 of 14, BURST 17
+of 18, CHAIN 12 of 13.** The conclusion survives and is now honestly measured, but the margin was
+mine to check and I did not.
+
+Two things the DAG pass surfaced that are worth more than the number:
+
+- **`ready-recruits-grand-plaza` is the universal consumer.** Five of the ten fuel-only engines route
+  into it and nothing else. That is a single point of failure for half the INFINITE class, and it is
+  an ALT_WIN standing on seven 1-Might Recruits — which `OGN-133 Flurry of Blades` answers for 1
+  Energy. The script flags that entry's own hole independently.
+- **The model is ONE HOP and says so in its own comment.** It does not chain two fuel producers, so
+  `lux-infinite-power` reads as having no consumer even though the catalogue routes it through
+  `lux-infinite-energy` beside it. `generateVariants` in `src/combos.ts` is the real walker;
+  the script now points at it rather than pretending to be it.
