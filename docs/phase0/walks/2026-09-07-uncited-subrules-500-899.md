@@ -2236,3 +2236,113 @@ the cross-reference from `403.1` for sideboard size by format.
 does not own `data/combos.json`): `505.2` · `505.9` for the 14 INFINITEs (`§38.5`), and
 `503.9.b` · `503.9.c` · `503.9.d` for `bullet-time-seals-scaling-sweep` (`§39.1`). The second is the
 stronger of the two, because it makes a shipped entry's own step actionable rather than merely correct.
+
+## 40. Batch 29 — `601.2.a` is the rules source for `CardIndex.equivalents()`, and it settles the `VEN-SP` question with data
+
+No new entry. One large citation upgrade, one long-standing project claim confirmed **with a source it
+never had**, and three integrity checks that came out clean. Nine passages verified verbatim
+(`.scratch-rules/qcheck29.mjs`, 9/9).
+
+### 40.1 The paragraph behind the matcher's name-folding, cited nowhere
+
+> **Tournament Rules 601.2.a.** A card may only be included in a deck if it is from a set that is legal in
+> that format **or it has the same name as a card from a set that is legal in that format**.
+
+This project folds printings **by name+type** everywhere it counts anything — `CardIndex.equivalents()`
+(`src/cards.ts:124`) resolves a base code to every printing sharing its normalised name and type,
+`matchDeck` builds `owned` through it, and `CLAUDE.md` records the standing rule that *"any 'cards in no
+entry' census must fold printings by name+type first"* and that *"coverage is keyed on NAME+TYPE, not on
+base code."* That is done for **correctness of matching**; `601.2.a` is the paragraph that makes it the
+**legally correct** thing to do, and it is cited by nothing in `combos.json` or `synergies.json`.
+
+It also explains *why* the fold is the right unit rather than a convenience: legality travels with the
+**name**, so two printings of one name are interchangeable in a decklist by rule, which is precisely the
+equivalence `equivalents()` implements.
+
+### 40.2 The six `VEN-SP` cards: `CLAUDE.md`'s claim is CONFIRMED, and now it has a rules source
+
+> **601.2.c.** If an existing card is reprinted in a new set, but its collector number is not within the
+> normal numbering of that set, it does not affect the card's format legality.
+>
+> **601.2.c.1.** *Example:* A card with collector number 300/250 is not automatically legal within the
+> standard format of that set.
+
+`CLAUDE.md` states that `VEN-SP1`–`SP6` *"are real playable cards (Kai'Sa, Sona, Ahri, Sett, Ezreal,
+Lux)"* and warns that a `^[A-Z]{3}-\d{3}$` regex drops them silently. `601.2.c` is the paragraph that
+could have made that wrong — an out-of-range collector number confers no legality of its own. Measured
+over `data/cards.json`, **every one of the six shares a name with an in-range printing**, so `601.2.a`
+carries all six:
+
+| SP printing | name | in-range printings of that name |
+|---|---|---|
+| `VEN-SP1` | Kai'Sa, Survivor | `OGN-039`, `OGN-039a` |
+| `VEN-SP2` | Sona, Harmonious | `OGN-073` |
+| `VEN-SP3` | Ahri, Inquisitive | `OGN-119`, `OGN-119a`, `SFD-227`, `SFD-227*` |
+| `VEN-SP4` | Sett, Brawler | `OGN-164`, `OGN-164a`, `SFD-232`, `SFD-232*` |
+| `VEN-SP5` | Ezreal, Prodigy | `SFD-149`, `SFD-149a` |
+| `VEN-SP6` | Lux, Crownguard | `OGS-014` |
+
+**So they are legal BY NAME and not by their own printing** — which is `601.2.c` read forward rather than
+as a threat. The condition to re-check is a future `-SP` printing of a name that exists nowhere in range;
+there are none today, and the probe is two lines.
+
+Free confirmation from the same run: `data/cards.json` carries **147** printings with a non-empty
+`variant`, split **45** `*` and **102** `a` — matching `CLAUDE.md`'s counts exactly, independently
+re-derived. Note the schema trap that cost me a run: the alt-art suffix lives in **`variant`** (and in
+`code`), **not** in `base`, which is already normalised — a probe written as `/\*$/.test(c.base)` returns
+**zero** and reads as a discovery. Same instrument class this lane keeps paying for.
+
+### 40.3 `checkBuild` against the `600`s: **no gap**, and which paragraph is PRIMARY
+
+`checkBuild` cites `103.1.a.1`, `103.1.b.1`, `103.2`, `103.2.b`, `103.3.a`, `103.4.a`, `103.4.c` from the
+Core Rules and `402.1`, `403.3`, `601.1.c.1`, `601.1.c.2`, `601.1.c.3` from the Tournament Rules. Checked
+row by row against the `600`s:
+
+- **`601.1.b`** (*"In competitions, a player's Main Deck must be exactly 40 cards"*) is a **weaker
+  duplicate** of `402.1`, which `checkBuild` already cites and which is **PRIMARY**: it names the 40
+  *"(including a chosen champion), 1 Legend, 12 runes, and exactly 3 battlefields each with a unique
+  name"*, where `601.1.b` gives only the 40. Nothing owed.
+- **`601.1.c.4`** adds a condition `403.4.a` does **not** state — the replacement Chosen Champion must be
+  one *"that matches their Legend"*, against `403.4.a`'s *"that meets the deckbuilding rules of the
+  competition format"*. Already enforced: `src/builder.ts:196` scopes the `champion` pool to units
+  carrying `championTagOf(legend)`, so an unmatched champion cannot be selected at all. **`601.1.c.4` is
+  the tournament-side statement of a constraint the builder enforces structurally.**
+- **`601.1.d`** is an addenda pointer (*"the legal battlefields are different … communicated to players
+  via specific event addenda"*) with no content to score.
+
+### 40.4 `601.2.d.2.a` — a narrow, real exception to the ban list, and our data matches Riot's own example
+
+At low OPL a player running **the exact contents** of a preconstructed deck *"are allowed to use the
+banned cards in the deck, such as Fight or Flight, Scrapheap and Reaver's Row. If the player makes any
+changes or adds a sideboard, they can no longer include the banned cards."*
+
+All three are in our pool and **all three are `banned` in both `constructed` and `2v2` in
+`data/legality.json`** — `OGN-168 Fight or Flight`, `OGN-182 Scrapheap`, `OGN-285 Reaver's Row` — so Riot's
+worked example and our legality data agree card for card. Checked per the standing rule that every
+legality sentence is verified against `data/legality.json` (whose only two statuses are `banned` and
+`restricted`).
+
+**This exception must NOT reach `data/legality.json` or the UI.** It is conditioned on OPL *and* on
+owning an unmodified preconstructed product, neither of which a decklist expresses; the site's job is to
+report format legality, and a list that matches a precon exactly is still an illegal Constructed list
+everywhere above low OPL. Recorded here so nobody reads `601.2.d.2` as a bug in our ban data.
+
+### 40.5 HANDOFF — rc-walk-blocks after batch 29
+
+**Staged:** nothing. `/tmp/rc-walks/rc-walk-rules.json` is `[]`.
+
+**Three citation upgrades outstanding from this lane, all flagged and none applied** (the lane does not
+own `data/combos.json`), in descending order of worth:
+
+1. **`601.2.a`** as the source for name-folding — belongs in `CLAUDE.md` beside the `equivalents()` rule
+   rather than in any single entry, since it justifies a mechanism rather than a line (`§40.1`).
+2. **`503.9.b` · `503.9.c` · `503.9.d`** for `bullet-time-seals-scaling-sweep` (`§39.1`).
+3. **`505.2` · `505.9`** for the 14 INFINITEs (`§38.5`).
+
+**Tournament Rules read:** `402`–`403`, `502`–`506`, `600`–`602`, plus the card-name sweep. **Unread:**
+the `700`s **Penalties** (cross-referenced four times from what is read: `505.12`→`704.8`,
+`506.3.c`→`702.2`, `504.4.b`→`703.5`, and `703.3.a.3` is already cited by two entries), `404`–`424`
+(match procedure, proxies, shuffling — likely no combo content), `507`–`509`, and `602.3`'s limited
+deckbuilding. **My expectation, stated so it can be falsified:** the `700`s are penalties and will yield
+**procedure, not entries** — the same shape as batches 27–29. If that holds, the Tournament Rules vein is
+worth one more batch and then it is spent, and this lane should be redirected or retired.
