@@ -903,3 +903,80 @@ and `718.5.f` say yes in terms, and `718.5.b` should be read before it is relied
   this machine and is twenty-five lines; §20 gives the recipe.
 - The Example-filtered probe for this range remains spent (§14); the keyword blocks **801–829** are where
   batches 18 and 19 both found their material and are still not exhausted.
+
+---
+
+# Batch 20 (2026-09-12) — the keyword blocks read with the boilerplate filtered out; no entry, four real results
+
+`.scratch-rules/kw.mjs <lo> <hi>` is `orphan.mjs`'s sibling: every uncited heading in range with the
+keyword-block boilerplate dropped (*"It is present on Units"*, *"X is formatted as …"*, *"X is a Passive
+Ability keyword"*, *"The X is referenced in …"*). **97 rows in 801–829.** Read down; four carry real
+content and none of the four yields a card set this pool can fill, so **this batch stages nothing** and
+records them instead. `vilemaw-counter-strike-ambush-undo-is-free` from batch 19 is still the only entry
+in `/tmp/rc-walks/rc-walk-rules.json`.
+
+## 24. 805.6 and 805.6.a — the RULE behind a claim this project derived
+
+> **805.6.** Accelerate generates a delayed replacement effect that replaces a unit entering the board
+> exhausted with it entering ready. **It does not enter exhausted and then become ready.**
+> **805.6.a.** Accelerate will not interact with, or trigger, abilities that are affected by units becoming
+> ready.
+
+`CLAUDE.md` carries this conclusion and derives it from `143.4` plus `415.1`: *"'enters ready' is not a
+ready … the 48 'enters ready' cards can never give an exhaust back."* **805.6 says it outright, names the
+mechanism (a delayed replacement effect), and 805.6.a states the consequence by itself** — and both are
+cited zero times. It is also the general form of the mechanism `R25` was ruled on in 2026-09-04
+(`SFD-171 Renata Glasc, Industrialist`'s *"Your tokens enter ready"* beating a token printed exhausted),
+which was decided through `369.3` / `370.1.c`; `805.6` is the same replacement, printed as a keyword rule.
+
+**The two `excludes` it names, both measured over `data/corpus_flat.txt` on 2026-09-12:**
+
+- The pool has exactly **three** "become ready / when you ready" payoffs, all mono-Body, and all three sit
+  in one entry: `OGN-143 Pirate's Haven`, `VEN-071 Fretful Feline`, `VEN-088 Jayce, Hammer in Hand`
+  (`awaken-ready-body-triple-trigger`). **`[Accelerate]` feeds none of them**, by `805.6.a` in terms. That
+  entry is safe because `315.1.b`'s Awaken is a real ready — but any future line that reaches for
+  Accelerate to fire one of the three is refuted on its face.
+- The pool has exactly **two** cards whose target clause names an **exhausted** friendly unit —
+  `OGN-124 Arena Bar` (*"Buff an exhausted friendly unit"*) and `UNL-201 Voidreaver` (*"Spend 2 XP,
+  exhaust: Move an exhausted friendly unit from a battlefield to its base"*). An Accelerated body **is
+  never exhausted at any point on the turn it arrives** (`805.6`: not exhausted-then-ready), so neither can
+  choose it until it has spent its own Standard Move exhaust under `144.2`.
+
+Checked and refused as a line: Voidreaver's move is *"from a battlefield to its **base**"*, so it is a
+retreat and not the battlefield-to-battlefield second hop the `#58` movement finding would want, and
+`UNL-127 Mister Root` (`[Accelerate]`, *"When I move to a battlefield, gain 2 XP"*) plus Voidreaver is
+XP-neutral per turn — 2 gained, 2 spent — with the body sent home. Refused on arithmetic.
+
+## 25. 813.2 and 813.3 / 813.3.a — better citations for two claims this catalogue already makes
+
+- **813.2** (uncited): *"The corresponding card or effect with this keyword is not restricted to Closed
+  States or Showdowns. This permission is inclusive of all other timings and options available to the
+  ability as written, Action's permissions, or by default."* This project's standing sentence — *"813.1.b
+  gives Reaction every permission of Action, so a Reaction spell never has to be a response"* — is derived
+  from `813.1.b`. `813.2` says it directly and is the better citation; `813.1.b` is about what Reaction
+  *grants*, `813.2` is about what it does not *restrict*.
+- **813.3 / 813.3.a** (uncited) and their `[Action]` twin **806.3** (uncited, and it carries the worked
+  example): *"Reaction does not alter the function of any instruction of the Card, Rune, or Effect it is
+  on. It is only Permission."* … *"Playing Units with Reaction still has the inherent restrictions of
+  playing Units without Reaction. It can only be played to the controlling player's base or a battlefield
+  they control."* That is `355.2.a`'s confinement restated from the keyword side, and it is the paragraph
+  that makes `822.1.b`'s **first** half do real work: `[Ambush]` has to grant the location permission
+  separately, because the `[Reaction]` half grants none.
+
+## 26. 806.4 / 806.4.a / 806.4.b and 806.5.a–c — the [Action] twins, refused with their scope
+
+`813.4.x` became batch 19's entry; its `[Action]` twin `806.4.x` (word-for-word the same three paragraphs
+with "Action" substituted) stays refused, and §9 of this document already gave the reason — **zero units
+print `[Action]` and zero cards grant it conditionally**. Likewise `806.5.a`, `806.5.b` and `806.5.c` are
+the `[Action]` twins of the `813.5` trio that batch 18 used: they are uncited and have **no reader**,
+because `VEN-160 Mystic Vortex` reads `[Reaction]` and nothing in the pool reads `[Action]`. Both refusals
+are scoped to **the current pool** and both become live the moment a card prints a conditional `[Action]`
+grant or a card that reads the keyword.
+
+## 27. A note on the two probes, for whoever inherits them
+
+`orphan.mjs` (cited-zero with a heavily-cited neighbour) and `kw.mjs` (uncited minus boilerplate) answer
+different questions and disagree usefully. `805.6` does **not** appear in `orphan.mjs`'s output, because
+its siblings are boilerplate and none of them clears the 15-citation bar; it appears in `kw.mjs`'s because
+it is not boilerplate. `718.5.e/f` is the reverse case. **Run both.** Neither is a substitute for reading
+the block, which is how `805.6.a` — a one-line sub-rule with no Example and no card name — was found.
