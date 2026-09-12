@@ -733,3 +733,87 @@ mark. Neither changes the argument, which is exactly why neither would have been
 ordinary prose make single-quote span extraction match across field boundaries, which produced 23
 bogus failures on the first attempt and is an instrument error, not a finding.
 
+
+---
+
+## 13. Batch 4 — chaos/fury, and a refutation of this lane's own batch-1 refusal
+
+rc-manager5 directed this slice at chaos/fury with the Angle Shot lead. Two entries came out of it
+and one refusal, and the biggest finding was not the one that was looked for.
+
+### 13.1 The refusal that was wrong: Power Nexus needs no Mind card
+
+**Batch 1 refusal #2 refused `SFD-214 Power Nexus` in Fury/Chaos by 103.1.b.** Its reasoning: 383.3.b
+makes the four rainbow a BASE COST paid at finalization (383.3.b.1), 312.2.c withholds priority until
+every pending chain item finishes finalizing, and 167 empties the Rune Pool at the end of every turn
+— so the Power must be banked in advance, the only funder that Adds on the Hold itself is
+`UNL-087 Blue Sentinel`, and the Sentinel is Mind.
+
+**Every step of that is true except the inference.** The paragraph that breaks it is **444.2.c**:
+
+> Players may activate abilities that Add resources with the Reaction keyword at any time that they
+> are instructed to Pay resources. Those abilities finalize and resolve immediately, ignoring normal
+> restrictions.
+
+**Priority is not payment.** The instruction to pay *is itself* the window. Three more paragraphs
+make the runes sufficient, and the third is the one that looks like a mismatch:
+
+- **164.2** gives every Basic Rune exactly two abilities and **both carry Reaction**, so 444.2.c
+  reaches them. 164.2.b's cost is the RECYCLE, not an exhaust, so a rune already tapped for Energy
+  still pays.
+- **164.2.b.1**: *"The Power added this way corresponds to the Domain of the Rune that is being
+  Recycled"* — domain Power, against a rainbow cost.
+- **135.2.e.5.a**: *"When required as a cost, [A] can be paid by Power of any Domain."* Resolved.
+
+Price: four runes per point. 161.2.b returns them *"to the Rune Deck, not the Main Deck"*, 161.2.a
+caps that deck at *"Exactly 12 Rune cards"*, 315.3.b channels two a turn — so it is **one extra point
+every two turns at zero card cost**, or up to three in consecutive turns by drawing a full board down.
+
+**What it changes for the catalogue, as of 2026-09-12.** All five existing Power Nexus entries pair
+it with a Mind card, and **none of them cites 444.2.c**; across the whole catalogue that paragraph is
+cited by exactly one entry (`shakedown-immortal-phoenix-reaction-add-at-finalization`), which found
+the rule and never applied it here. The five are not wrong — a Gold or a Sentinel Add is cheaper than
+four runes — but they are optimisations of a line that runs without them.
+
+**The general form is worth more than the battlefield.** Any *"you may pay X to Y"* trigger in the
+pool is payable out of runes at the instant of finalization, in any identity. *Before refusing a line
+because its Power cannot be banked across 167, check whether the runes are simply still on the board.*
+
+### 13.2 `angle-shot-battleaxe-tryndamere-excess` (ENGINE) — the lead applied
+
+The lead was right about what makes `SFD-011 Angle Shot` unusual and the sweep confirmed it: **818.1
+makes [Equip] an Activated Ability and 381 confines every Activated Ability to *"the Controlling
+Player's Turn and during an Open State"*, so Angle Shot is the only way in Fury to move an Equipment
+at Reaction speed.** Swept over every card that attaches an Equipment by EFFECT, the Fury-legal ones
+are three [Weaponmaster] bodies (821.1.c attaches *"to me"*, never to a chosen carrier),
+`SFD-024 Rell, Magnetic` (attaches to herself, and caps at Energy cost 2), `SFD-208 Forge of the
+Fluft` (a colourless battlefield, free but it exhausts your legend and is itself a 1-in-3) and Angle
+Shot. Only Angle Shot is a card you can draw *and* works in a Closed State.
+
+**The number the entry is for: the beatable garrison goes from 3 Might to 7.** Excess damage is
+attacking Might never assigned (R28 = A) and 465.2.c.4 caps assignment at *"the minimum required to
+constitute lethal damage"*, so against a garrison of summed Might D a lone `OGN-034 Tryndamere` needs
+8 − D ≥ 5, i.e. **D ≤ 3 — a single Might-4 defender beats him by one.** Carrying `UNL-019 Blighted
+Battleaxe` (+4, the largest Might Bonus in the identity) he is 12, so D ≤ 7.
+
+And the Reaction timing is not a luxury: the ordinary route commits the Battleaxe in the Main Phase,
+before the Combat stages (323.9) and opens (323.13) and therefore before the garrison is known. Angle
+Shot lands inside the opened Showdown, after 464.2.c.3 has designated the attackers. **Being able to
+DECLINE is most of its value** — at D ≤ 3 Tryndamere already clears the threshold and the card is a
+2-Energy cantrip.
+
+### 13.3 Refused: a chaos/fury CHAIN. It would be strictly worse than the BURST the identity has.
+
+`tryndamere-brambleback-conquer` publishes **1 + T × (1 + K)**, and at T=2, K=3 that is **9 points in
+one Conquer** for five bodies. Every CHAIN route costs more cards for fewer points:
+
+| route | arithmetic | verdict |
+|---|---|---|
+| Power Nexus Hold + Tryndamere Conquer, T=1 K=3 | 2 + (1 + 4) = 7 | one short |
+| …plus a Draven combat win for the non-Conquer eighth | 2 + 5 + 1 = 8 | **8, but six copies across four names for one point less than the existing five-copy BURST** |
+
+So chaos/fury is refused a CHAIN **on arithmetic, not on a rule**. Its Hold-side point source exists
+(§13.1 proves it) and its Conquer-side BURST already reaches nine; a second scoring event buys
+nothing. *A thin cell is not automatically a gap — check what the identity's existing finisher
+already does before designing a second one.*
+
