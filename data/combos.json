@@ -35453,7 +35453,7 @@
         ],
         "notable": [
           "RIOT SETTLES THIS BY NAME, AND IT IS THE WHOLE ENTRY. 417.6.b.3: 'When a spell or ability specifies a Unit as the source of the Damage for the Deal action, it is not in addition to the spell or ability that instructed it. Example: Challenge is a spell that reads \"Choose a friendly unit and an enemy unit. They deal damage equal to their Mights to each other.\" The damage that Challenge causes to be dealt is dealt by the chosen units, not by Challenge.' So Challenge's damage is UNIT damage. Unyielding Spirit prevents 'all spell and ability damage this turn' and never touches it.",
-          "WHAT THAT BUYS: A SYMMETRIC FOG THAT IS NOT SYMMETRIC. Every burn spell in the opponent's deck — every 'Deal N to a unit' — is blanked for the turn, and 437.4 makes the blanking total: 'Damage dealt to a Unit that has all of that damage Prevented is not considered to have been dealt to it at all', so no kill event is generated and nothing that keys on a unit dying fires either. Meanwhile your own removal, built out of the Challenge family, resolves normally. Combat is untouched for the same reason (417.6.b.1: units are a source of damage in their own right).",
+          "WHAT THAT BUYS: A SYMMETRIC FOG THAT IS NOT SYMMETRIC. Every burn spell in the opponent's deck — every 'Deal N to a unit' — is blanked for the turn, and 437.4 makes the blanking total: 'Damage dealt to a Unit that has that all of that damage Prevented is not considered to have been dealt to it at all', so no kill event is generated and nothing that keys on a unit dying fires either. Meanwhile your own removal, built out of the Challenge family, resolves normally. Combat is untouched for the same reason (417.6.b.1: units are a source of damage in their own right).",
           "437.5 is the half that keeps it honest in combat: 'Damage can still be assigned to Units in combat that are affected by Prevent. The damage dealt as a result of that assignment will be affected by the Prevent action.' The fog does not stop assignment, and it is not a Prevent on combat damage anyway — the source there is the units.",
           "[Reaction] IS WHY IT IS A FOG AND NOT A PLAN. 813.1.c.1 puts Unyielding Spirit in 'Closed States on any player's turn', so it is played in response to the removal spell, after the opponent has committed. 1 Energy + 1 Body Power off runes held ready (167, 415.3.a, 164.2.a) is the price — or off `UNL-093 Dragonsoul Sage`, which is the companion entry.",
           "THE FAMILY IS WIDER THAN THIS ONE SPELL AND IT IS A DECKBUILDING RULE, NOT A COMBO. Every card in the pool whose removal reads 'they deal damage equal to their Mights to each other' is unit damage by 417.6.b.3: `OGN-128 Challenge`, `OGS-008 Gentlemen's Duel`, `VEN-083 Rampage`, `UNL-110 Clash of Giants`, `SFD-114 Marching Orders`, `OGN-149 Carnivorous Snapvine`, and `SFD-107 Strike Down`. Build the removal suite out of those and Unyielding Spirit costs you nothing at all.",
@@ -40952,7 +40952,7 @@
         ],
         "notable": [
           "THE CONTRAST IS THE ENTRY, AND IT IS A TRAP THIS CATALOGUE ALREADY RECORDS. A heal / exhaust / recall replacement (the Guardian Angel family) saves a body by RECALLING it, and 455 defines a Recall as relocation 'from anywhere to its Base' — so it switches off every 'While I'm at a battlefield' clause on what it saves, and 456.3 means no movement lock can stop that. Tianna Crownguard saved that way stops locking points for a full turn, and comes back exhausted besides.",
-          "437.4 IS THE OTHER MECHANISM ENTIRELY: 'Damage dealt to a Unit that has all of that damage Prevented is not considered to have been dealt to it at all.' Nothing is relocated, nothing is exhausted, no kill event is generated — the body simply stays where it is with its static running. For a unit whose whole value is a location-dependent clause, that is the only correct save in the pool.",
+          "437.4 IS THE OTHER MECHANISM ENTIRELY: 'Damage dealt to a Unit that has that all of that damage Prevented is not considered to have been dealt to it at all.' Nothing is relocated, nothing is exhausted, no kill event is generated — the body simply stays where it is with its static running. For a unit whose whole value is a location-dependent clause, that is the only correct save in the pool.",
           "AND IT WORKS INSIDE THE DAMAGE STEP. 437.5: 'Damage can still be assigned to Units in combat that are affected by Prevent', and 437.5.a lets the attacker assign up to lethal counting the Prevent Value — so the assignment is made and then eaten. Combined with [Reaction] (813.1.c.1, 'during Closed States on any player's turn'), the save is bought after the attack is declared, not on a guess.",
           "IT IS ONE INSTANCE, NOT A SHIELD. 'The NEXT time that unit would be dealt damage this turn' — one instance, this turn only. Against a second source in the same combat it does nothing, and 103.2.b caps the copies at three.",
           "103.2.d IS PART OF THE COST. Counter Strike carries the Jax champion tag, so 103.2.d.2 forces SFD-193 / SFD-245 Grandmaster at Arms as the legend and 103.2.d.1 spends all three Signature slots on it. The legend is not wasted — its free reattach ability is live in the same Calm/Body shell — but no other Signature card can share the deck.",
@@ -44910,7 +44910,7 @@
         "notable": [
           "THE FAMILY IS EXACTLY THREE CARDS AND THEY SHARE ONE CLOCK. `grep -in \"7 or more runes\" data/corpus_flat.txt` returns VEN-025 Esteemed Hierophant, VEN-037 Tomb-Raider Barbara and VEN-146 Siphoning Strike, and nothing else. A deck that pays the rune curve for one of them is paid three times, which is the only reason a threshold this high is worth building toward. The Strike is walked as siphoning-strike-nasus-guardian-rune-threshold.",
           "AND AN EXHAUSTED RUNE COUNTS. 164.2.b's cost is the RECYCLE and not the rune's exhaust, so a rune tapped for Energy this turn is still a rune you control, and 415.3.a hands it back at your own Awakening. The threshold is a board count, never a mana count.",
-          "WHAT 'PREVENT' MEANS, AND WHY THE HIEROPHANT IS NOT A WALL. 437.4: 'Damage dealt to a Unit that has all of that damage Prevented is not considered to have been dealt to it at all' - so a burn spell aimed at him generates no damage and therefore no kill event, which is a different mechanism from a would-die replacement (808.1.d.1) and cannot be answered the same way. But the clause is scoped to 'enemy SPELLS AND ABILITIES', and 417.6.c says 'Damage Dealt as a result of being assigned during Combat has the UNITS as its source' - so combat damage is not spell or ability damage and goes straight through. He is immune to removal and ordinary in a fight.",
+          "WHAT 'PREVENT' MEANS, AND WHY THE HIEROPHANT IS NOT A WALL. 437.4: 'Damage dealt to a Unit that has that all of that damage Prevented is not considered to have been dealt to it at all' - so a burn spell aimed at him generates no damage and therefore no kill event, which is a different mechanism from a would-die replacement (808.1.d.1) and cannot be answered the same way. But the clause is scoped to 'enemy SPELLS AND ABILITIES', and 417.6.c says 'Damage Dealt as a result of being assigned during Combat has the UNITS as its source' - so combat damage is not spell or ability damage and goes straight through. He is immune to removal and ordinary in a fight.",
           "AND HE IS ALSO NOT IMMUNE TO THE CHALLENGE FAMILY. 417.6.b.3 makes 'they deal damage equal to their Mights to each other' UNIT damage dealt by the chosen units rather than by the spell - Riot's worked example is Challenge - so every card in that family reaches him. Seven cards print it and six are Body; the entry pairing that mechanism with a [Tank] wall is carnivorous-snapvine-rampage-tank-bypass.",
           "THE BARBARA IS THE POOL'S ONE ANSWER TO AN EMPOWERED GEAR THAT DOES NOT NEED TO KILL IT. 441.2 makes Empowered 'a state for Game Objects on the board' and 441.1.b forbids re-Empowering, so stripping the state is permanent unless the opponent has another Empower source pointed at that gear. Every other answer in the pool destroys the gear instead, which a would-die replacement or a Deathknell can profit from; this one does not generate a death at all. Against an unempowered gear it simply kills.",
           "THE THRESHOLD IS CHECKED AT DIFFERENT TIMES ON THE TWO CARDS, AND THAT MATTERS. The Hierophant's is a continuous 'While you control...', re-read at every moment; the Barbara's is inside a play trigger, so 359.3.f.2 checks it on execution of that trigger and a rune channelled earlier the same turn counts. A Barbara played at six runes does nothing at all - 055's 'do as much as you can' does not manufacture the condition - so hold her.",
@@ -51075,7 +51075,7 @@
           "THE FAMILY THAT READS THE COUNT, WITH ITS MEMBERS NAMED. Seven or more runes: VEN-025 Esteemed Hierophant, VEN-037 Tomb-Raider Barbara, VEN-146 Siphoning Strike (swept, `grep -in \"7 or more runes\"`, three rows and no others). Eight or more: OGS-004 Yi, Meditative. And priced per rune: VEN-032 Frostcoat Mother and VEN-050 Grumpy Rockbear ('[Empower] 12 Energy. This ability costs 1 Energy less for each rune you control'). The Papertree accelerates every one of them by one rune a turn.",
           "THE ARITHMETIC, AND WHY ONE RUNE A TURN IS A LOT HERE. 161.2.a fixes the Rune Deck at 'Exactly 12 Rune cards' and 315.3.b channels two free every Channel Phase, so an untouched curve reaches seven late on turn four; the Papertree's extra rune brings that forward by a full turn, and it brings twelve forward by two. 430.3 ('channel as many as possible') is what stops it once the deck is empty, at which point the battlefield does nothing for either player.",
           "THE SYMMETRY IS THE HONEST COST AND IT IS SMALL - WITH ONE NAMED EXCEPTION. 'Each player' means the opponent's curve accelerates too, which matters only if they read a rune count. It is genuinely ANTI-SYNERGIC with one line this catalogue holds: sandstone-chimera-yi-meditative-rune-prison wants the opponent's channel HALVED, and the Papertree hands them back exactly the rune the Chimera took. Do not run both.",
-          "WHAT THE HIEROPHANT'S THRESHOLD BUYS, AND WHAT IT DOES NOT. 437.4 makes the prevention total - 'Damage dealt to a Unit that has all of that damage Prevented is not considered to have been dealt to it at all' - so no kill event is generated. But the clause is scoped to 'enemy SPELLS AND ABILITIES', and 417.6.c makes combat damage come from the UNITS, while 417.6.b.3 does the same for the whole Challenge family. Both go straight through.",
+          "WHAT THE HIEROPHANT'S THRESHOLD BUYS, AND WHAT IT DOES NOT. 437.4 makes the prevention total - 'Damage dealt to a Unit that has that all of that damage Prevented is not considered to have been dealt to it at all' - so no kill event is generated. But the clause is scoped to 'enemy SPELLS AND ABILITIES', and 417.6.c makes combat damage come from the UNITS, while 417.6.b.3 does the same for the whole Challenge family. Both go straight through.",
           "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold, and the Hold that fires the Papertree scores by 469.1 whether or not the battlefield is this one."
         ]
       },
@@ -54571,7 +54571,8 @@
           "WHAT OVERT OPERATION ACTUALLY DOES INSIDE THE SHOWDOWN, STATED HONESTLY. The ready half is nearly worthless there - 144.1.b forbids the Standard Move outside your Main Phase and combat does not read exhaustion - so what you are paying 5 Energy and 2 Power for is the second sentence: every friendly unit ends the resolution carrying a buff, which 703 fixes at +1 Might each, and 465.2.c reads current Might at assignment. It is a board-wide +1 delivered after the attackers are declared. The spend-then-rebuff wording is what makes it work on a board that is already buffed: 702.2.b removes the counter to pay for the ready and 702.3.a then allows a fresh one, where a bare mass buffer would place nothing on an already-buffed body.",
           "THE VORTEX TAXES CARDS, NOT ABILITIES - WHICH IS WHY 813.5.c EXISTS AND IS A SEPARATE SENTENCE. The Vortex says 'cards with [Reaction]'. An [Action] or [Reaction] ABILITY on a permanent is not a card being played, so it is never taxed: OGN-113 Malzahar, Fanatic ('Kill a friendly unit or gear, :rb_exhaust:: [Action] - [Add] :rb_rune_rainbow::rb_rune_rainbow:') pays the Vortex nothing, and neither does any of the eleven [Reaction][>] mana abilities in the pool. The rules keep the three cases apart on purpose at 813.5.a, 813.5.b and 813.5.c, and 135.2.e.7.b is the notation rule underneath it: 'Whatever instruction or ability comes after the [>] is modified by the keyword that comes before the [>]' - so a permissive keyword behind an arrow belongs to that ability alone and never to the card. That paragraph is also uncited.",
           "WHAT THE VORTEX DOES TAX, AND IT IS THE COST OF RUNNING IT. It names no player, so it charges you too whenever you are the one answering - and its parenthetical, 'Hidden cards have [Reaction]', is 811.6 ('A card that is Hidden gains Reaction while facedown or played from facedown') made explicit, so the Vortex is the ONE card in the pool that makes a [Hidden] play cost anything at all, against 811.1.b's 'ignoring its base cost'. A list running both the Vortex and a Hidden package is taxing itself.",
-          "IT IS NOT THE SAME LINE AS mystic-vortex-helm-suppression-tax. That entry stacks the Vortex with VEN-045 Helm of Suppression, the pool's only asymmetric cost increase, and is about compounding a tax on the opponent generally. This entry is about the direction the Vortex's own tax runs inside a single showdown, which needs 358.4 and 813.1.b and has nothing to do with the Helm; the two compose and neither depends on the other."
+          "IT IS NOT THE SAME LINE AS mystic-vortex-helm-suppression-tax. That entry stacks the Vortex with VEN-045 Helm of Suppression, the pool's only asymmetric cost increase, and is about compounding a tax on the opponent generally. This entry is about the direction the Vortex's own tax runs inside a single showdown, which needs 358.4 and 813.1.b and has nothing to do with the Helm; the two compose and neither depends on the other.",
+          "CITATION UPGRADE (2026-09-12, #191 batch 19): 813.1.d is the keyword-level corroboration of the notation argument this entry makes from 135.2.e.7.b — *\"Reaction is formatted as [Reaction] on cards, or [Reaction][>] on abilities.\"* The Vortex taxes *cards* with Reaction, and that one sentence is why an ability carrying the keyword behind the arrow is never taxed, without needing the general notation paragraph at all. Cite 135.2.e.7.b for the notation and 813.1.d for the keyword; neither alone is the whole argument."
         ]
       },
       "steps": [
@@ -54634,6 +54635,114 @@
         },
         {
           "title": "Hand walk 2026-09-12 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md), batch 18",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "vilemaw-counter-strike-ambush-undo-is-free",
+      "name": "813.4.b makes an [Ambush] combat trick FREE TO ATTEMPT - if the Task already running kills your garrison first, the play is UNDONE and the card comes back - and a heal-and-recall save is the one rescue that breaks it",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-060",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Calm unit, E8 + 2 Calm Power, M8. '[Ambush] (You may play me as a [Reaction] to a battlefield where you have units.) Enemy units here with less Might than me don't deal combat damage. When I hold, draw 1.' Arriving mid-combat he is the biggest fizzle in the domain: every attacker under Might 8 at that battlefield assigns damage under 465.2.c and then deals none."
+        },
+        {
+          "card": "SFD-194",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Calm/Body spell, E2 + 1 Power, [Reaction], and a Signature card tagged Jax. 'Choose a unit. The next time that unit would be dealt damage this turn, prevent it. Draw 1.' It is in this entry because it is the ONLY shape of save that keeps the Ambush condition true: 437.4 prevents the damage in place, where every heal-exhaust-recall save relocates the body to the base under 455 and takes your last unit off the battlefield."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "board-protection"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Counter Strike is a SIGNATURE card tagged Jax, so 103.2.d.2 forces the legend: measured over data/cards.json on 2026-09-12, the only legend NAME carrying the Jax tag is Grandmaster at Arms, which is Calm/Body and covers Vilemaw's mono-Calm as well. This is a one-legend line and not a domain choice.",
+          "103.2.d.1 caps a deck at three Signature cards in all, and three Counter Strike spend the whole budget.",
+          "Neither card appears in data/legality.json in any format - checked 2026-09-12.",
+          "You must control at least one unit at the battlefield when Vilemaw's location is chosen at step 2, and still control one when step 5 checks legality. Those are two different moments and the whole entry lives between them."
+        ],
+        "notable": [
+          "THE KEYWORD'S REACTION IS CONDITIONAL, WHICH IS WHY 813.4 GOVERNS IT AT ALL. 822.1.b is functionally 'I may be played to a battlefield where you control Units' AND 'I have [Reaction] as long as I'm being played to a battlefield where you control Units.' The second half is a passive grant with a condition, so 813.4 applies: 'Some passive abilities may grant a card or ability Reaction under certain conditions. The card or ability does not have the Reaction keyword unless and until those circumstances are true.' 822.1.b is cited 61 times in this catalogue; 813.4, 813.4.a and 813.4.b are cited ZERO times (measured 2026-09-12). The keyword has been used everywhere and the paragraph that governs its grant has never been opened.",
+          "THE ORDERING QUESTION, SETTLED FROM THE TEXT AND NOT FILED AS A READING. The open question this lane inherited was whether any window exists between step 1 and step 5 in which the condition can fail. It does, and there are exactly two: 354.3 ('If another Card Effect or ability is currently resolving, continue resolving it before proceeding with any further steps of this process') and 354.4 ('If there are Tasks outstanding or currently being handled, finish those Tasks before continuing this process'). Neither is a priority window - nobody gets priority in either - which is why it is easy to miss. 333.1 is what makes 354.4 bite: 'Tasks include, but are not limited to: Cleanups, the actions performed during the Start of Turn Process, throughout Combat in its various steps, and the actions performed during the End of Turn Process.' A COMBAT IS A TASK. And 320 confirms the card just sits there: 'While a Cleanup is occurring, Chain Items cannot be Finalized or Resolved.'",
+          "SO THE FAILURE MODE IS REAL AND IT IS THE COMBAT YOU AMBUSHED INTO. Play Vilemaw as a Reaction while the combat you are defending is mid-flight; 354.1 moves him to the Chain and closes the state, 319.1 makes a Cleanup an Outstanding Task after a transition to or from a Closed state, and 354.4 runs the outstanding combat steps and that Cleanup before your play continues. If your garrison at that battlefield dies in it, then at step 5 you no longer control units there, the Reaction grant is false, and 813.4.b fires.",
+          "AND 813.4.b IS WHY THE GAMBLE IS FREE. 'If the chain item does not fulfill the conditions by the time step 5: check legality has been reached, the actions taken while playing it are undone and it is returned to the zone it was played from if it is a card.' The actions taken while playing it INCLUDE the costs, so a failed Ambush costs nothing: 8 Energy and 2 Calm Power come back and Vilemaw returns to hand. 813.4.a is the permission that makes the attempt legal in the first place - 'it can still be played or activated at the appropriate timing as long as doing so could fulfill the conditions.' Every other Reaction play in the pool is spent whether or not it lands; an Ambush is the exception, and no entry has said so.",
+          "WHAT LANDS WHEN IT DOES LAND. A body entering mid-combat takes the Defender designation at the very next Cleanup (319.6 with 323.2.a), before 465.2 resolves, and 143.4's entering exhausted costs nothing on defence because neither 464.2.c.3 nor 465.2.b filters by state. Vilemaw's static then reads on every enemy unit there with less Might than his 8. 417.1.a is the nuance worth stating: 'Assigning Damage during the Combat Damage Step is not Dealing Damage, but will cause Damage to be Dealt when assignment is complete' - so they still ASSIGN under 465.2.c and 465.2.c.4, and then deal none of it. Nothing of yours is damaged at all.",
+          "THE ANTI-SYNERGY, AND IT IS THE WHOLE REASON COUNTER STRIKE IS THE PARTNER. The obvious way to keep your garrison alive through that interposed Task is a would-die save - and every one of the heal-exhaust-recall family is 455, 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' Saving your last body at that battlefield therefore TAKES IT OFF the battlefield, the Ambush condition is false at step 5, and 813.4.b sends Vilemaw home. OGN-077 Zhonya's Hourglass, the pool's standard answer, breaks this line by rescuing you. Counter Strike does not: 437.4 - 'Damage dealt to a Unit that has that all of that damage Prevented is not considered to have been dealt to it at all' (the doubled 'that all of that' is Riot's own wording, pasted) - generates no kill event and no relocation, so the body is still standing exactly where it was when step 5 asks.",
+          "AND IT CANTRIPS, WHICH MATTERS BECAUSE THE GAMBLE MAY NOT NEED TO BE TAKEN. Counter Strike draws 1, so on a turn where the garrison was never in danger it is a 2 Energy Reaction cantrip rather than a dead card - the same argument that makes the Ambush attempt free, applied to the enabler. Both halves of this line are refundable in their own way, which is unusual enough to be the reason to build it.",
+          "IT IS NOT THE SAME LINE AS counter-strike-tianna-crownguard-in-place-save, WHICH USES THE SAME PROPERTY FOR A DIFFERENT REASON. That entry wants the Prevent because a Recall would switch off a 'While I'm at a battlefield' clause on the saved unit; this one wants it because a Recall would break a DIFFERENT card's play condition while that card is Pending on the Chain. Same paragraph, 455, two unrelated consequences, and neither entry needs the other."
+        ]
+      },
+      "steps": [
+        "Hold UNL-060 Vilemaw and SFD-194 Counter Strike in hand. Have at least one unit at the battlefield you expect to be attacked; 822.1.b needs it and Vilemaw does not count himself at the moment the location is chosen.",
+        "The opponent attacks. 464.2.c.3 designates attackers and defenders and the combat proceeds as a Task (333.1).",
+        "Play Vilemaw as a [Reaction] to that battlefield. 354.1 moves him to the Chain and Closes the State; he is Pending (354.2).",
+        "354.4 now interposes: any Task outstanding or being handled finishes first - the combat's remaining steps and the Cleanup that 319.1 made outstanding when the state transitioned. 320 keeps your Pending Vilemaw from resolving through it.",
+        "If your garrison there survives that, step 5 finds the condition true, Vilemaw finalizes, and 319.6 with 323.2.a give him the Defender designation at the next Cleanup - before 465.2 resolves.",
+        "His static applies: enemy units there with less Might than 8 assign damage under 465.2.c and deal none of it (417.1.a).",
+        "If instead your last body there is about to die inside that Task, play Counter Strike on it. 437.4 prevents the damage IN PLACE, so the body neither dies nor moves, and the Ambush condition is still true at step 5.",
+        "Do NOT reach for a heal-exhaust-recall save instead. 455 relocates the rescued body to your BASE, which empties the battlefield and makes the Ambush illegal - 813.4.b then undoes the play.",
+        "If it does fail, nothing is lost: 813.4.b undoes the actions taken while playing it, refunding 8 Energy and 2 Calm Power, and returns Vilemaw to your hand.",
+        "Three copies of each (103.2.b), and three Counter Strike spend the entire 103.2.d.1 Signature budget. Nothing here loops and nothing here scores."
+      ],
+      "netPerIteration": "one enemy attack at that battlefield deals no combat damage at all, at the price of 8 Energy and 2 Calm Power - refunded in full by 813.4.b if the attempt fails",
+      "terminatesIn": "engine only - nothing here scores. One Ambush per copy of Vilemaw (103.2.b) and one Prevent per Counter Strike; a failed Ambush costs nothing but is still one card's worth of timing, and Counter Strike's own draw makes an unused copy a cantrip rather than a dead card",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 813.4, 813.4.a and 813.4.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Some passive abilities may grant a card or ability Reaction under certain conditions. The card or ability does not have the Reaction keyword unless and until those circumstances are true. … Those conditions might only be fulfilled while the card or ability is on the chain. In such a case, it can still be played or activated at the appropriate timing as long as doing so could fulfill the conditions. … If the chain item does not fulfill the conditions by the time step 5: check legality has been reached, the actions taken while playing it are undone and it is returned to the zone it was played from if it is a card."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 354.1, 354.3 and 354.4",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "This Closes the State. … If another Card Effect or ability is currently resolving, continue resolving it before proceeding with any further steps of this process. … If there are Tasks outstanding or currently being handled, finish those Tasks before continuing this process."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 333.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Tasks include, but are not limited to: Cleanups, the actions performed during the Start of Turn Process, throughout Combat in its various steps, and the actions performed during the End of Turn Process."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 319.1 and 320",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "After the game transitions to or from an Open or Closed state … While a Cleanup is occurring, Chain Items cannot be Finalized or Resolved."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 822.1.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "It is functionally short for \"I may be played to a battlefield where you control Units\" and “I have [Reaction] as long as I’m being played to a battlefield where you control Units.”"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 437.4 and 455",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Damage dealt to a Unit that has that all of that damage Prevented is not considered to have been dealt to it at all. … A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move."
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (built from Riot's gallery content API by scripts/build-cards.mjs)",
+          "kind": "riot",
+          "date": "2026-09-12",
+          "quote": "UNL-060 | Vilemaw | Unit | Calm | E8 P2 M8 | [Ambush] (You may play me as a [Reaction] to a battlefield where you have units.) Enemy units here with less Might than me don't deal combat damage. When I hold, draw 1."
+        },
+        {
+          "title": "Hand walk 2026-09-12 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md), batch 19",
           "kind": "manual-walk",
           "date": "2026-09-12"
         }
