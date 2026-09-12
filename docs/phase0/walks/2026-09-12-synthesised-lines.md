@@ -1598,3 +1598,79 @@ the base is the zone almost nothing reaches.
 - **Strip reminder text AND quoted token text before any `[Reaction]` sweep.** This pool quotes the Gold
   token's full rules text on every card that makes one, and a bare grep reports those cards as Reaction
   cards. It has now produced a false finding twice (§11, here).
+
+---
+
+## 21. Batch 12 — BODY PRINTS ONE POINT CARD AND IT IS HOLD-GATED, which is why all three of this lane's empty cells were Body pairs
+
+### 21.1 The law, swept rather than reasoned
+
+Folded by name over `text` + `effect` of every card in `data/cards.json`, **sixteen cards in the pool gain a
+point or win the game.** Split by domain, one column is empty:
+
+| domain | point cards it prints | any of them NOT Hold-gated? |
+|---|---|---|
+| **body** | **`SFD-115 Trinity Force` — and nothing else** | **NO** |
+| calm | Ahri (Hold), `VEN-046 Nasus, Ascended` (Conquer) | yes — Nasus |
+| chaos | `OGN-205 Yasuo` (moves), `SFD-148 Draven` (combat win) | yes — both |
+| fury | `OGN-034 Tryndamere` (Conquer) | yes |
+| order | `VEN-138 Shen` (Hold), `UNL-177 Ivern` (Conquer **or** Hold) | yes — Ivern |
+| mind | Swain, Renata Mastermind, Bottled Constellation, Gutter Palace, Otterpus | yes — four |
+| **colourless** | `OGN-293 The Grand Plaza` (Hold), `SFD-214 Power Nexus` (Hold), `OGN-290 The Arena's Greatest` (**banned**) | **NO** |
+
+> **Body's entire point budget is one Equipment that reads *"When I hold, score 1 point"*, and every live
+> colourless point card is Hold-gated too. So a Body deck's non-Hold point budget is ENTIRELY its partner
+> domain's, and no colourless card can rescue it.**
+
+That is one sentence, and it retro-explains three separate batches of this lane. Measured:
+
+| pair | the partner's non-Hold sources | finishers available | that survive a stall, and are legal |
+|---|---|---|---|
+| body/calm | **Nasus** | 4 | 1 |
+| body/chaos | **Yasuo, Draven** | 4 | 1 |
+| body/fury | Tryndamere | 6 | 4 |
+| body/mind | Swain, Renata, Bottled Constellation, Gutter Palace | 13 | 5 |
+| **body/order** | **Ivern — and only Ivern** | 7 | **0** |
+
+**The law names the card before the design starts, and it named the right one twice.** §15 went looking for a
+body/calm finisher and landed on `VEN-046 Nasus, Ascended`; §16 went looking for a body/chaos one and landed
+on `SFD-148 Draven` plus `OGN-205 Yasuo`. Neither batch knew this law — both were derived the long way, from
+a fresh sweep each time. The law says in advance that those were the **only** candidates. And §18's refusal
+of body/order is the same law plus one more clause: its partner's single source is Ivern, 103.2.b caps him at
+three copies, 485.4 puts two battlefields on the table, so 3 + 2 = 5 and the identity cannot reach eight.
+
+**What the law does NOT say**, and the table shows it: the *number* of partner sources does not predict the
+number of survivors. body/fury has exactly one source and four survivors, because `OGN-034 Tryndamere` is
+heavily catalogued (the Brambleback conquer family). The law bounds **which cards are eligible**, not how many
+entries exist.
+
+### 21.2 The negative result: "add a non-Hold leg to a Hold entry" is not a repair, and the sweep that suggested it was measuring the wrong thing
+
+§19 answered the HOLD bucket from the outside — *what beats these 46 lines*. The obvious inside question is
+whether a Hold-gated entry can be given a second, non-Hold leg, the way
+`ivern-arena-draven-chaos-order-chain` pairs a Hold-gated half with a combat-gated half. Swept
+(`.scratch-synth/hold-legs.mjs`): for each of the 46, which of the eight non-Hold point sources could join it
+without pushing the union past two domains (103.1.b)?
+
+**45 of 46 can. Only `ivern-arena-trinity-body-order-hold` cannot** — body/order, and it already runs Ivern,
+its partner's only source.
+
+**A 45-of-46 answer is not a finding, it is a measurement of the wrong quantity.** It ranks **legality width**,
+which is cheap, and this project already has the lesson in two other shapes: *a high uncovered-partner count
+marks a WELL-MINED card*, and *the uncovered-partner column ranks PREDICATE WIDTH and not opportunity*. Legality
+is nearly free; what is expensive is reaching eight.
+
+And the substantive point underneath is that **the premise was wrong**. On a *fully* stalled board the Hold
+half pays **zero**, so a "leg" would have to carry all eight by itself — at which point it is not a leg, it is
+a second finisher in the same identity, which is exactly what §15, §16 and §20 each built. What §12's design
+idea actually buys is **robustness across board states, not survival of a total stall**: its Hold half pays
+seven on a board you do control and the combat half supplies an eighth, and §12 says so in its own words
+("Seven of the nine are Hold-gated and the entry says so rather than pretending the whole thing is a
+credential line"). Recorded so nobody re-runs this sweep expecting a repair list.
+
+### 21.3 Standing note
+
+**Before designing for a Body pair, read the partner domain's non-Hold point sources — that list IS the
+candidate set, and it is between zero and four cards long.** More generally: when an identity looks thin,
+sweep what its two halves can PAY with before sweeping what they can do. The point budget is six cards wide
+per domain at most, and it bounds the design space far harder than card count does.
