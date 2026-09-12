@@ -1868,3 +1868,67 @@ carries the qualifier, which is the test separating it from the four *"up to"* s
 uncatalogued.** Svellsongur has 37 entries and Swain 4; both cards were exhaustively mined, and the pair
 of them was untouched. A card-coverage census cannot see that gap — only a per-identity question can, and
 the mechanism is usually already proved somewhere else in the catalogue, which is what makes the walk cheap.
+
+---
+
+## 24. Batch 15 — the Svellsongur family is one per domain, and a lead deliberately NOT written as an entry
+
+### 24.1 The family batch 14 completed, and it was not visible until the last member went in
+
+`SFD-059 Svellsongur` copies a carrier's text, and the pool prints **exactly one non-Hold point card per
+domain** for it to copy. Checked at 764 entries:
+
+| domain | the conquer-side point card | Svellsongur entry |
+|---|---|---|
+| calm | `VEN-046 Nasus, Ascended` | `nasus-svellsongur-conquer-burst` (§15) — mono-Calm, so every Calm pair can run it |
+| order | `UNL-177 Ivern, Friend to All` | `ivern-svellsongur-four-tags-hold` |
+| chaos | `SFD-148 Draven, Audacious` | `draven-svellsongur-bloodless-combat-burst` (§11) |
+| **mind** | **`VEN-065 Swain, Visionary`** | **`swain-svellsongur-conquer-burst` (§23) — the slot that was empty** |
+| fury | `OGN-034 Tryndamere, Barbarian` | **not catalogued** — and calm/fury does not need it (6 spanning finishers, 5 surviving) |
+| body | — | Body prints no non-Hold point card at all (batch 12) |
+
+Three of those five were written by this lane in three different batches, each reached independently from a
+different identity's gap, and **none of them knew it was building a family.** The shape only became visible
+once the fourth went in. Worth carrying as a method note: **a mechanism that is settled — here the 2^v layer
+argument — is cheap to re-walk in a new identity, so the right question for a thin pair is which settled
+mechanism it can reach, not which card is unmined.**
+
+### 24.2 calm/order needs nothing, and its own numbers say why
+
+Eleven finishers available, and **nine of them are Hold-gated**. Both survivors are this same family:
+`ivern-svellsongur-four-tags-hold` (spanning) and `nasus-svellsongur-conquer-burst` (mono-Calm). Covered.
+
+### 24.3 fury/order: a real uncatalogued pairing, recorded as a LEAD and not written up
+
+`UNL-029 Red Brambleback` reads *"Your conquer effects for conquering here trigger an additional time"*, and
+`UNL-177 Ivern` reads *"When I conquer or hold…"* — which 383.4.c.1 (*"These are commonly structured as
+'When I conquer…' and 'When you conquer…'"*) makes a conquer effect. So Brambleback multiplies Ivern.
+`scripts/have.mjs UNL-177 UNL-029` reports **no entry on that card set or a subset, across 12 Brambleback
+entries and 7 Ivern entries** — the same kind of untouched pair as batch 14's.
+
+Priced: **1 + N × (1 + K)**, N Ivern present and K Brambleback present at the conquered battlefield (R1 = A
+makes K copies give K+1 instances). At N = 3, K = 2 that is **ten points for E28 + 2 Fury Power**, with a
+fourth-tag body at the base.
+
+**It is not written as an entry, and the reason is §13.3's own precedent — a thin cell is not automatically a
+gap.** Audited, fury/order has eight finishers of which **two survive a stall, and both are ATTACK-gated**:
+`tryndamere-brambleback-conquer` and `twilight-reveler-eye-facebreaker-recruits`. ATTACK-gated is the shape
+§9.2 identifies as the one worth designing for — dead on an empty board, alive on a contested one — so the
+identity's survivors are its *best* kind, not a deficiency. The only board state an Ivern line would add is
+the **open** battlefield (344.2, bloodless), and §7 is explicit that a nine- or ten-point burst is redundant
+exactly there, because an unopposed Hold curve was already delivering eight by turn 5 or 6 for free.
+
+Recorded with its arithmetic so the manager can call it, and so nobody re-derives it from scratch.
+
+### 24.4 The axis from batch 13 needs reading with the BUCKET, not just the count
+
+Batch 13 introduced "spans both domains **and** survives a stall" and it found calm/mind on the first look.
+Pointed at fury/order the same measurement reads **1**, which looks like the same gap and is not one: that
+pair's two survivors are ATTACK-gated credential lines, and one of them merely happens to be mono-Fury
+rather than spanning. **A finisher does not have to span the identity to work; spanning is a question about
+whether the PAIR is doing anything, not about whether the deck has a plan.**
+
+So the axis is a flag and not a verdict, and the follow-up question is fixed: *how many survivors does this
+pair have at all, of any identity, and in which buckets?* body/mind answered five-all-mono-Mind (a refusal,
+batch 13), calm/mind answered one (an entry, batch 14), fury/order answers two-both-ATTACK (a lead, here).
+Same number on the flag, three different verdicts.
