@@ -1307,3 +1307,113 @@ Recorded so the next session does not spend a walk rediscovering it. The refusal
 project's standing sense: it is a claim about **reaching eight on a fully stalled board**, and a new
 set printing one Body or Order card that gains a point on a Conquer, an attack or a combat win
 reopens it immediately.
+
+---
+
+## 19. Batch 10 — the HOLD bucket, scoped like the gear pass, and an ANSWER predicate is not a MASS-DAMAGE predicate
+
+rc-manager5 upgraded §18's closing suggestion to the target: the corrected HOLD bucket (§17) is 46 of
+76 finishers, all switched off by the same class of event, and the gear pass is the proof that asking
+"what is the cheapest card in the pool that answers this" pays. Same scope: sweep the answers from
+card text, name the restricted subset separately, deliver a script mode and a corrections file rather
+than 46 hand-written notables.
+
+### 19.1 The measurement that reframes the bucket
+
+**23 of the 46 are Grand Plaza lines**, not the eleven §9.2 reported — the §17 correction more than
+doubled the sharpest case. And the existing fragile-body check could not see them:
+
+> `if (c.type.includes("unit") && c.might !== null && c.might <= 1) fragile.push(...)`
+
+It reads `uses[]` and printed Might, and **both halves are wrong for a Plaza line**:
+
+- **A Plaza garrison is made of TOKENS, and no entry names a token base code** (the synergy layer
+  filters them). Measured: **22 of the 23 stand on token bodies; `uses[]` sees 3.** Token Might is
+  rules text, not card data — rule 187 fixes Recruit, Bird and Tentacle at 1, Reflection and Shadow
+  Clone at 0, Sand Soldier at 2, Sprite and Mech at 3.
+- **Printed Might is not current Might** for a body whose own text scales it. Swept, that is 7
+  printings and 5 names: Ornn Forge God, Petal Pixie, Spiderling, Illaoi, Kayle.
+
+### 19.2 A FALSE notable was already on the site, and it is the second half of the same defect
+
+`spiderling-swarm-grand-plaza` shipped carrying:
+
+> "ONE ENERGY ANSWERS THE MIGHT-1 BODY THIS LINE NEEDS (Spiderling (M1))."
+
+`VEN-097 Spiderling` is printed Might 1 and reads *"I have +1 :rb_might: for each other unit you
+control here with my name."* **The entry stands seven of them at one battlefield, so each sees six
+others and every one is Might 7.** 1 damage kills none — 143.2.a: *"If a Unit ever has nonzero damage
+marked on it equalling or exceeding its Might, it is Killed"*, and 142.4.b makes Lethal *"a non-zero
+amount greater than or equal to that Unit's Might."* The Plaza's own requirement of seven is exactly
+what makes the swarm survive the sweeper.
+
+The true answer is cheaper and different in kind: the Plaza reads *"if you have 7+ units here"* and
+this board is exactly seven, so **ONE removal spell answers it** — `OGN-229 Vengeance`, swept as the
+only card in the pool whose entire text is *"Kill a unit."* And the line's own answer is unique:
+Spiderling is the **only** card in the pool that overrides 103.2.b, printing *"Your deck can have any
+number of cards named Spiderling"*, so an eighth copy gives the Plaza slack against one removal AND
+raises every body again. The correction is a REPLACE row in the corrections file.
+
+### 19.3 The predicate was wrong FOUR times, and every wrong version named a real card
+
+This is the lesson of the batch and it cost four rounds of reading generated prose:
+
+| round | what it named | why it is not an answer |
+|---|---|---|
+| 1 | `OGN-127 Cannon Barrage` | *"Deal 2 to all enemy units **in combat**"* — never reaches a passive garrison |
+| 2 | `VEN-133 Glowstone` | *"deal 5 to all units **you control**"* — a drawback, not removal; it was named against five lines |
+| 3 | `OGN-190 Kog'Maw, Caustic` | a **[Deathknell]** *"at **my** battlefield"* — he must stand there and die. **It was the headline in 17 of 28 draft corrections.** Same round: `OGN-105 Singularity` is *"Deal 6 to each of up to **two** units"* and sweeps nothing; Anivia and Warwick are *"When I attack… here"* |
+| 4 | sorted `OGN-268 Bullet Time` LAST | it is **scalable** (*"Pay any amount of :rb_rune_rainbow: to deal that much damage to all enemy units at a battlefield"*), so a fixed-damage model read it as Infinity and buried the cheapest answer in the pool |
+
+**A mass-damage predicate is not an answer predicate.** An answer is a card the opponent can simply
+CAST at a garrison standing on a battlefield you control — not one that must occupy it, die on it,
+attack into it, or damage its own side. Every exclusion above is written into the sweep with the card
+that forced it, so the next reader does not re-derive them.
+
+The surviving set is **seven, and it splits in two**, which is the same shape as the gear pass naming
+the enemy-facing subset separately:
+
+- **Unconditional — any deck may run these (4):** `OGN-133 Flurry of Blades` (Body, E1, [Reaction],
+  1 damage), `OGS-002 Firestorm` (Fury, E6 + 1, 3 damage, enemy-only), `OGN-123 Unchecked Power`
+  (Mind, E7 + 2, 12 damage), `UNL-180 The Ruination` (Order, E9 + 3, *"Kill all units."*).
+- **SIGNATURE-locked — a matchup, not the field (3):** `OGN-268 Bullet Time` (tagged Miss Fortune, so
+  103.2.d.2 forces a Bounty Hunter legend), `OGN-250 Stormbringer` (Volibear), `OGS-018 Tibbers`
+  (Annie). Bullet Time is the cheapest answer to almost every line in the bucket at 1 Energy + N
+  Power and [Action] speed, and it would have been flatly false to print that as "the answer" without
+  its forced legend.
+
+### 19.4 The protection half, and the timing that cuts both ways
+
+For every one of the 28, the answer notable also states whether the line's own identity can protect
+itself. **A permanent, garrison-wide +Might is the only thing that lifts every body at once** — a
+single-target pump is useless against a sweep that hits seven simultaneously — and the swept
+population is 15 printings, reported per entry under 103.1.b (union of the two entries' domains ≤ 2),
+folded by name, with its scope shown (`[TOKEN bodies only]`, `[MECH bodies only]`,
+`[that battlefield only]`). **Every one of the 28 has at least one**, so no line in this bucket is
+structurally unprotectable.
+
+Two corrections inside that half, both from reading the output:
+
+- **A battlefield protection is unavailable to a line that already requires a battlefield.** 485.4.a
+  gives each player three, *"Only 1 will be used, chosen during setup"*, and 103.4.c forbids duplicate
+  names — so `OGN-294 Trifarian War Camp` can never stand beside The Grand Plaza. The first draft
+  offered it to all 23.
+- **Where a battlefield protection IS available, it is a 1-in-3**, because 485.5 has each player
+  *"randomly select one (1) of their three (3) Battlefields"*. The caveat is now emitted conditionally,
+  because the same sentence in both places was incoherent in one of them.
+
+And the timing, which is why these lines survive at all: a Hold resolves at 315.2.b.2 inside YOUR
+Beginning Phase, where 312.2.a gives a player priority only *"When the turn is in a Neutral Open State
+during their Main Phase"* — their own. **The opponent cannot answer inside the Hold window; they
+answer on their own turn, the turn immediately before it.** The cost of that is yours, not theirs:
+your Main Phase comes AFTER your Beginning Phase (315 then 316), so there is no window to rebuild.
+Holding up a [Reaction] on their turn is the only response these lines have.
+
+### 19.5 Deliverables
+
+`npm run adversarial -- --holds` classifies all 43 Hold-payoff finishers with their garrison Might
+floor, the cheapest answer and the protections their identity may run; `--holds-notables` writes the
+corrections (`--out`, default `/tmp/rc-walks/rc-synth-holds.json`). **29 rows: 1 REPLACE of the false
+Spiderling sentence and 28 appends.** The token half of the floor is a TEXT SCAN of the entry's own
+prose and says so in the output — a flag that says *read it*, never a verdict, since no entry names a
+token base code. 469 tests green, typecheck clean, 0 unanswered holes of 76.

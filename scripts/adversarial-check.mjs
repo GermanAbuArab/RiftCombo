@@ -26,6 +26,8 @@ const onlyTurns = args.includes("--turns");
 const emit = args.includes("--emit-notables");
 const stalled = args.includes("--stalled");
 const recheck = args.includes("--recheck-notables");
+const holds = args.includes("--holds");
+const holdNotables = args.includes("--holds-notables");
 
 const cards = JSON.parse(readFileSync("data/cards.json", "utf8")).cards;
 const db = JSON.parse(readFileSync("data/combos.json", "utf8"));
@@ -64,6 +66,80 @@ const gearAnswers = [...gearKills, ...detachAnswers];
 
 // the sweeper that answers a 1-Might board for 1 Energy at Reaction speed
 const SWEEPER = { base: "OGN-133", name: "Flurry of Blades" };
+
+// ---------------------------------------------------------------- the HOLD bucket's answer sets
+// A Hold pays at 315.2.b.2, which Holds only "all Battlefields they Control" - so the opponent
+// switches a Hold line off by making you not control the battlefield, and the cheapest way is to
+// empty the garrison (323.6 strips Control when your last body leaves). What decides that is MIGHT
+// PER BODY, never the number of bodies.
+//
+// The existing fragile-body check above reads uses[] and c.might, and BOTH halves are wrong for the
+// Grand Plaza lines, which are 23 of the 46 in the HOLD bucket:
+//   - a Plaza garrison is made of TOKENS, and no entry names a token base code (the synergy layer
+//     filters them), so uses[] cannot see it. Measured: 22 of the 23 stand on tokens; uses[] sees 3.
+//   - printed Might is not current Might for a body whose own text scales it. VEN-097 Spiderling is
+//     printed M1 and reads "I have +1 Might for each other unit you control here with my name", so
+//     the SEVEN the Plaza requires are M7 each - and a notable claiming Flurry of Blades answers it
+//     shipped to the site on exactly that entry.
+// Token Mights are rules text, not card data: rule 187.
+const TOKEN_MIGHT = { Recruit: 1, Bird: 1, Tentacle: 1, Reflection: 0, "Shadow Clone": 0, "Sand Soldier": 2, Sprite: 3, Mech: 3 };
+// Swept, not typed: a body whose own text raises its Might above the printed value.
+const selfScaling = (cards) => cards.filter((c) => /I have \+\d+ :rb_might: for each/i.test(`${c.text || ""} ${c.effect || ""}`));
+// Swept, not typed: mass damage that reaches every body at a battlefield. "in combat" is excluded -
+// OGN-127 Cannon Barrage deals 2 to all enemy units IN COMBAT and so cannot touch a passive garrison,
+// which is the kind of near-miss a damage-ranked list invites.
+function sweepMassAnswers(cards) {
+  // THIS PREDICATE WAS WRONG THREE TIMES AND EACH WRONG VERSION NAMED A REAL CARD, so the shape is
+  // written out rather than trusted. A MASS-DAMAGE predicate is not an ANSWER predicate. An answer is
+  // a card the opponent can simply CAST at a garrison standing on a battlefield you control. Excluded,
+  // each because a draft named it and reading the text refuted it:
+  //   - "in combat"      OGN-127 Cannon Barrage reaches only units in a combat, never a passive garrison.
+  //   - "you control"    VEN-133 Glowstone deals 5 to all units YOU control - a drawback, not removal.
+  //   - "up to two"      OGN-105 Singularity is "Deal 6 to each of up to two units" and sweeps nothing.
+  //   - positional/gated OGN-190 Kog'Maw is a [Deathknell] "at MY battlefield", OGN-148 Anivia and
+  //                      OGN-159 Warwick are "When I attack ... here". None is a card you just cast at
+  //                      someone else's board, and Kog'Maw alone was named in 17 of 28 draft corrections.
+  const out = [];
+  for (const c of cards) {
+    if (!(c.domains || []).length) continue;
+    if ((c.type || []).includes("battlefield")) continue; // 485.5 selects one battlefield at random
+    const t = `${c.text || ""} ${c.effect || ""}`.replace(/\s+/g, " ");
+    // the damage must reach a battlefield the caster need not occupy
+    if (!/(to all (enemy )?units at (a )?battlefields?|kill all units)/i.test(t)) continue;
+    if (/in combat|to all units you control|to all friendly units/i.test(t)) continue;
+    if (/up to (one|two|three|\d+) units?/i.test(t)) continue;
+    if (/\[Deathknell\]|when i attack|at my battlefield/i.test(t)) continue;
+    const m = t.match(/deal (\d+) to/i);
+    // SCALABLE answers pay per point of damage rather than printing a number: OGN-268 Bullet Time is
+    // "Pay any amount of [rainbow] to deal that much damage to all enemy units at a battlefield" and
+    // OGN-250 Stormbringer deals a friendly unit's Might. Treating those as Infinity sorted the
+    // CHEAPEST answer in the pool to last place.
+    const scalable = /pay any amount|damage equal to its might/i.test(t);
+    // A SIGNATURE answer is not available to every opponent: 103.2.d.2 makes every Signature card
+    // carry the Chosen Champion Legend's tag, so naming one as "the answer" without its forced legend
+    // overstates it. Three of the seven swept are Signature.
+    out.push({ base: c.base, name: c.name, domains: c.domains || [], e: c.energy || 0, p: c.power || 0,
+      dmg: scalable ? Infinity : m ? +m[1] : Infinity, scalable, signature: !!c.signature,
+      tag: (c.tags || [])[0] || null, kills: !m && !scalable,
+      reaction: /\[Reaction\]/i.test(t), action: /\[Action\]/i.test(t),
+      enemyOnly: /to all enemy units/i.test(t) });
+  }
+  return out.sort((a, b) => a.dmg - b.dmg || a.e + a.p - (b.e + b.p));
+}
+// Swept, not typed: the only thing that lifts a whole garrison at once is a PERMANENT, garrison-wide
+// +Might. Single-target pumps are useless against a sweep that hits seven bodies simultaneously.
+function sweepGarrisonProtection(cards) {
+  const out = [];
+  for (const c of cards) {
+    const t = `${c.text || ""} ${c.effect || ""}`;
+    const m = t.match(/(your (?:token )?units?|other friendly units?|units here|your Mechs)[^.]{0,28}have \+(\d+) :rb_might:/i);
+    if (!m || /while (?:they|we|I)'?re? (?:attackers|defenders)/i.test(m[0])) continue;
+    if (/this turn/i.test(t)) continue;
+    out.push({ base: c.base, name: c.name, domains: c.domains || [], plus: +m[2], clause: m[0].replace(/\s+/g, " ") });
+  }
+  return out;
+}
+
 
 const namesAnswer = (blob, set) =>
   set.filter((a) => blob.includes(a.base) || blob.includes(a.name)).map((a) => a.base);
@@ -437,6 +513,214 @@ if (recheck) {
   const out = outAt >= 0 && args[outAt + 1] ? args[outAt + 1] : "/tmp/rc-walks/rc-synth-recheck.json";
   writeFileSync(out, JSON.stringify(rows, null, 1) + "\n");
   console.log(`\n# --recheck-notables: ${rows.length} entries carry the stale sentence -> ${out}`);
+}
+
+
+// ---------------------------------------------------------------- --holds
+// The HOLD bucket is 46 of 76 finishers and every one is switched off by the same class of event:
+// the opponent making you not control the battlefield at your Beginning Phase. This mode asks, per
+// entry, what the CHEAPEST card in the pool that does it actually is - the same question the gear
+// pass asked of attached Equipment, at four times the size.
+if (holds) {
+  const massAnswers = sweepMassAnswers(cards);
+  const protection = sweepGarrisonProtection(cards);
+  const scaling = new Set(selfScaling(cards).map((c) => c.base));
+  const holdIds = new Set();
+  for (const e of db.combos) {
+    if (!FINISHER.has(e.class)) continue;
+    const t = (e.uses || []).map((u) => byBase.get(u.card)).filter(Boolean)
+      .map((c) => `${c.text || ""} ${c.effect || ""}`).join(" ");
+    const isHoldBf = (e.uses || []).some((u) => {
+      const c = byBase.get(u.card);
+      return c && (c.type || []).includes("battlefield") && /when you hold here/i.test(`${c.text || ""} ${c.effect || ""}`);
+    });
+    if (isHoldBf || /when i hold|when you hold/i.test(t)) holdIds.add(e.id);
+  }
+  const rows = [];
+  for (const e of db.combos) {
+    if (!holdIds.has(e.id)) continue;
+    const used = (e.uses || []).map((u) => byBase.get(u.card)).filter(Boolean);
+    const domains = new Set(); for (const c of used) for (const d of c.domains || []) domains.add(d);
+    const prose = `${(e.steps || []).join(" ")} ${(e.prerequisites?.notable || []).join(" ")} ${e.terminatesIn || ""}`;
+    // garrison Might floor: printed units in uses[], PLUS token bodies named in the entry's own prose
+    const printed = used.filter((c) => (c.type || []).includes("unit") && c.might !== null && !scaling.has(c.base)).map((c) => c.might);
+    const scaled = used.filter((c) => scaling.has(c.base)).map((c) => c.name);
+    const toks = Object.keys(TOKEN_MIGHT).filter((k) => new RegExp(`\\b${k}`, "i").test(prose));
+    const floorCands = [...printed, ...toks.map((k) => TOKEN_MIGHT[k])];
+    const floor = floorCands.length ? Math.min(...floorCands) : null;
+    const blob = JSON.stringify(e);
+    // A self-scaling body makes the PRINTED floor meaningless, so do not name an answer off it. This
+    // is the exact defect this mode was built after: a notable reading "ONE ENERGY ANSWERS THE
+    // MIGHT-1 BODY THIS LINE NEEDS (Spiderling (M1))" shipped on spiderling-swarm-grand-plaza, where
+    // the seven bodies The Grand Plaza requires are M7 each, because Spiderling reads "I have +1
+    // Might for each other unit you control here with my name". Reporting no answer is correct here;
+    // asserting the cheapest one is how the false notable happened.
+    const cheapest = floor === null || scaled.length ? null : massAnswers.find((a) => a.dmg >= Math.max(floor, 1));
+    const named = cheapest ? blob.includes(cheapest.base) || blob.includes(cheapest.name) : false;
+    // Which protections this deck may ACTUALLY run. Three corrections over a naive domain test:
+    //  - 103.1.b is a subset test against a legend's TWO domains, so the right question is whether
+    //    the UNION of the entry's domains and the protection's is still <= 2 - not whether the
+    //    protection sits inside what the entry already uses.
+    //  - a BATTLEFIELD protection is unavailable to any line that already requires a battlefield:
+    //    485.4.a gives each player three and "Only 1 will be used, chosen during setup", 485.5 makes
+    //    that selection random, and 103.4.c forbids duplicate names. Two of your own battlefields
+    //    never share a board, so OGN-294 Trifarian War Camp can never stand beside The Grand Plaza.
+    //  - fold by NAME, because a protection printed twice is one card (103.2.b caps by name).
+    const needsBattlefield = used.some((c) => (c.type || []).includes("battlefield"));
+    const seenName = new Set();
+    const prot = protection.filter((x) => {
+      const card = byBase.get(x.base);
+      if (needsBattlefield && (card?.type || []).includes("battlefield")) return false;
+      if ((card?.type || []).includes("battlefield") && !(x.domains || []).length && /token/i.test(x.name)) return false;
+      const union = new Set([...domains, ...(x.domains || [])]);
+      if (union.size > 2) return false;
+      if (seenName.has(x.name)) return false;
+      seenName.add(x.name);
+      return true;
+    });
+    rows.push({ id: e.id, cls: e.class, identity: [...domains].sort().join("/") || "colourless",
+      floor, tokens: toks, scaled, cheapest, named,
+      protection: prot.map((x) => {
+        const scope = /token/i.test(x.clause) ? " [TOKEN bodies only]" : /Mechs/i.test(x.clause) ? " [MECH bodies only]" : /units here/i.test(x.clause) ? " [that battlefield only]" : "";
+        return `${x.base} ${x.name} +${x.plus}${scope}`;
+      }) });
+  }
+  console.log(`\n# --holds: ${rows.length} finishers whose scoring payoff is a Hold.`);
+  console.log("# Garrison Might FLOOR is read from uses[] printed Might AND from token bodies named in the");
+  console.log("# entry's own prose (rule 187), because no entry names a token base code. The token half is a");
+  console.log("# TEXT SCAN of the entry's prose, so it is a FLAG that says read it, never a verdict.");
+  console.log(`# Mass answers swept: ${massAnswers.length}. Garrison-wide protections swept: ${protection.length}.\n`);
+  const unanswered = [];
+  for (const r of rows.sort((a, b) => (a.floor ?? 99) - (b.floor ?? 99))) {
+    const sc = r.scaled.length ? `  [SELF-SCALING: ${r.scaled.join(", ")} - printed Might understates it, read the entry]` : "";
+    const ans = r.cheapest
+      ? `${r.cheapest.base} ${r.cheapest.name} E${r.cheapest.e}/P${r.cheapest.p} dmg${r.cheapest.dmg === Infinity ? "-kill" : r.cheapest.dmg}`
+      : r.scaled.length
+        ? "NOT COMPUTABLE from printed Might - this line's bodies scale with the garrison"
+        : "no swept mass answer reaches it";
+    console.log(`${r.cls.padEnd(8)} ${r.identity.padEnd(12)} floor M${r.floor ?? "?"}  ${r.id}`);
+    console.log(`     cheapest answer: ${ans}${!r.cheapest ? "" : r.named ? "  [entry names it]" : "  <- NOT NAMED"}${sc}`);
+    if (r.protection.length) console.log(`     identity HOLDS a protection: ${r.protection.slice(0, 3).join("; ")}`);
+    if (r.cheapest && !r.named) unanswered.push(r);
+  }
+  console.log(`\n# ${unanswered.length} of ${rows.length} do not name the cheapest card that answers them.`);
+}
+
+
+// ---------------------------------------------------------------- --holds-notables
+// Corrections for the HOLD bucket, in the shape the manager merges. Two kinds, because the pass found
+// both a missing warning and a WRONG one already shipped.
+if (holdNotables) {
+  const massAnswers = sweepMassAnswers(cards);
+  const protection = sweepGarrisonProtection(cards);
+  const scaling = new Set(selfScaling(cards).map((c) => c.base));
+  const TIMING =
+    "WHEN THE ANSWER LANDS, AND IT IS NOT INSIDE THE HOLD. A Hold resolves at 315.2.b.2, which Holds " +
+    "\"all Battlefields they Control\", inside YOUR Beginning Phase - and 312.2.a gives a player priority " +
+    "only \"When the turn is in a Neutral Open State during their Main Phase\", i.e. their own. So the " +
+    "opponent cannot answer in the Hold window itself; they answer on THEIR turn, which is the turn " +
+    "immediately before it. The cost of that is yours, not theirs: your own Main Phase comes AFTER your " +
+    "Beginning Phase (315 then 316), so there is no window in which to rebuild the garrison. Holding up " +
+    "a [Reaction] on their turn is the only response this line has.";
+  const rows = [];
+  for (const e of db.combos) {
+    if (!FINISHER.has(e.class)) continue;
+    const used = (e.uses || []).map((u) => byBase.get(u.card)).filter(Boolean);
+    const isHoldBf = used.some((c) => (c.type || []).includes("battlefield") && /when you hold here/i.test(`${c.text || ""} ${c.effect || ""}`));
+    const t = used.map((c) => `${c.text || ""} ${c.effect || ""}`).join(" ");
+    if (!isHoldBf && !/when i hold|when you hold/i.test(t)) continue;
+    const domains = new Set(); for (const c of used) for (const d of c.domains || []) domains.add(d);
+    const prose = `${(e.steps || []).join(" ")} ${(e.prerequisites?.notable || []).join(" ")} ${e.terminatesIn || ""}`;
+    const scaled = used.filter((c) => scaling.has(c.base));
+    const blob = JSON.stringify(e);
+
+    // (1) a WRONG shipped notable: printed Might was used on a body whose own text scales it.
+    if (scaled.length) {
+      const notables = (e.prerequisites && e.prerequisites.notable) || [];
+      const at = notables.findIndex((n) => /ANSWERS THE MIGHT-1 BODY/i.test(n));
+      if (at >= 0) {
+        const sc = scaled[0];
+        const clause = (`${sc.text || ""} ${sc.effect || ""}`).match(/I have \+\d+ :rb_might: for each[^.]*/i)[0];
+        rows.push({
+          entry: e.id,
+          action: "REPLACE one notable in prerequisites.notable - the shipped sentence is FALSE",
+          notable_index: at,
+          match_contains: "ANSWERS THE MIGHT-1 BODY",
+          why: `${sc.name} is printed Might ${sc.might} but reads "${clause}". This entry stands ${e.uses.find((u) => u.card === sc.base).quantity} of them at one battlefield, so each sees the others and none is a Might-1 body. The shipped notable tells a player that 1 Energy answers the line, and it does not.`,
+          replacement:
+            `THE CHEAPEST ANSWER IS A SINGLE KILL, NOT A SWEEPER, AND OGN-133 FLURRY OF BLADES DOES NOT TOUCH THIS LINE. ` +
+            `${sc.name} reads "${clause}", so the seven bodies The Grand Plaza requires are Might 7 each and 1 damage kills none of them - ` +
+            `143.2.a kills on marked damage at or above Might and 142.4.b defines Lethal Damage as "a non-zero amount greater than or equal to that Unit's Might". ` +
+            `What answers it instead is ONE removal spell, because the Plaza reads "if you have 7+ units here" and this board is exactly seven: OGN-229 Vengeance (Order, 4 Energy + 2 Power, "Kill a unit.") is the pool's only single-target kill with neither a location clause nor any other gate. ` +
+            `The mass answers that reach Might 7 are far dearer - OGN-123 Unchecked Power (Mind, 7 Energy + 2 Power, 12 damage) and UNL-180 The Ruination (Order, 9 Energy + 3 Power); OGN-159 Warwick, Hunter kills only units already DAMAGED and only on an attack, so it is not one. ` +
+            `AND THE LINE'S OWN ANSWER IS UNIQUE IN THE POOL: swept over every card, ${sc.name} is the ONLY one that overrides 103.2.b's "up to 3 copies of the same named card", printing "Your deck can have any number of cards named Spiderling" - so going to eight or more both gives the Plaza slack against one removal AND raises every body's Might again. ` +
+            TIMING,
+        });
+        continue;
+      }
+    }
+
+    // (2) a MISSING warning: the garrison's Might floor comes from TOKENS, which uses[] cannot see.
+    const printed = used.filter((c) => (c.type || []).includes("unit") && c.might !== null && !scaling.has(c.base)).map((c) => c.might);
+    const toks = Object.keys(TOKEN_MIGHT).filter((k) => new RegExp(`\\b${k}`, "i").test(prose));
+    const cands = [...printed, ...toks.map((k) => TOKEN_MIGHT[k])];
+    if (!cands.length || scaled.length) continue;
+    const floor = Math.min(...cands);
+    // Did a TOKEN set the floor, or a printed unit? The headline says "the bodies are tokens" and it
+    // must only say so when that is true - the token half is the reason uses[] cannot see the body.
+    const tokenFloor = toks.length > 0 && Math.min(...toks.map((k) => TOKEN_MIGHT[k])) === floor;
+    // Rank by what the opponent actually pays to clear THIS floor, and prefer an answer any deck may
+    // run: a Signature answer forces the opponent's legend (103.2.d.2), so it is reported separately
+    // rather than as the headline.
+    const reaches = (a) => a.scalable || a.kills || a.dmg >= Math.max(floor, 1);
+    const priceFor = (a) => a.e + (a.scalable ? Math.max(floor, 1) : a.p);
+    const usable = massAnswers.filter(reaches).sort((x, y) => priceFor(x) - priceFor(y));
+    const answer = usable.find((a) => !a.signature) || null;
+    const sigAnswer = usable.find((a) => a.signature) || null;
+    if (!answer) continue;
+    if (blob.includes(answer.base) || blob.includes(answer.name)) continue;
+    const acard = byBase.get(answer.base);
+    const atext = (`${acard.text || ""} ${acard.effect || ""}`).replace(/\s+/g, " ").trim();
+    const prot = [];
+    const seenName = new Set();
+    const needsBf = used.some((c) => (c.type || []).includes("battlefield"));
+    for (const x of protection) {
+      const card = byBase.get(x.base);
+      if (needsBf && (card?.type || []).includes("battlefield")) continue;
+      if (new Set([...domains, ...(x.domains || [])]).size > 2) continue;
+      if (seenName.has(x.name)) continue;
+      seenName.add(x.name); prot.push(x);
+    }
+    const scope = (x) => (/token/i.test(x.clause) ? " (token bodies only)" : /Mechs/i.test(x.clause) ? " (Mech bodies only)" : /units here/i.test(x.clause) ? " (that battlefield only)" : "");
+    rows.push({
+      entry: e.id,
+      action: "append one notable to prerequisites.notable",
+      why: `Garrison Might floor is ${floor}${toks.length ? ` (token bodies: ${toks.join(", ")}, rule 187)` : ""}, and the entry never names ${answer.base} ${answer.name}.`,
+      notables_to_append: [
+        `${answer.e} ENERGY ANSWERS THE GARRISON THIS LINE NEEDS${tokenFloor ? ", AND THE BODIES ARE TOKENS SO NO uses[] ROW SHOWS IT" : ""}. ` +
+        `${answer.base} ${answer.name} is ${(acard.domains || []).join("+")}, ${answer.e} Energy${answer.p ? ` + ${answer.p} Power` : ""}: "${atext}". ` +
+        (tokenFloor ? `This line's garrison is ${toks.join(" and ")} tokens, whose Might is fixed by rule 187 (${toks.map((k) => `${k} ${TOKEN_MIGHT[k]}`).join(", ")}) rather than by any card in uses[] - which is why no ingredient row warns you. ` : "") +
+        `143.2.a kills on marked damage at or above Might, so it kills every body at or below Might ${answer.dmg} SIMULTANEOUSLY however many there are: the binding constraint is MIGHT PER BODY, not the number of bodies, so going wider answers nothing. ` +
+        (sigAnswer && sigAnswer.e + Math.max(floor, 1) < answer.e + answer.p
+          ? `A CHEAPER ANSWER EXISTS AND IT IS NOT AVAILABLE TO EVERY OPPONENT: ${sigAnswer.base} ${sigAnswer.name} costs ${sigAnswer.e} Energy + ${Math.max(floor, 1)} Power here${sigAnswer.scalable ? " (it pays per point of damage, so it scales to any garrison)" : ""}${sigAnswer.action ? " and is [Action], so 806.1.c.1 puts it inside any showdown on any player's turn" : ""} - but it is a SIGNATURE card tagged ${sigAnswer.tag}, and 103.2.d.2 requires every Signature card to carry the Chosen Champion Legend's tag, so only a ${sigAnswer.tag} legend can run it. Count it as a matchup, not as the field. `
+          : "") +
+        (prot.length
+          ? `THE IDENTITY DOES HOLD AN ANSWER: ${prot.slice(0, 3).map((x) => `${x.base} ${x.name} +${x.plus}${scope(x)}`).join(", ")} - a permanent, garrison-wide +Might is the only thing that lifts every body at once, since a single-target pump is useless against a sweep that hits all of them. ` +
+            (needsBf
+              ? `(A battlefield-based protection is NOT available here, because this line already requires a battlefield: 485.4.a gives each player three and "Only 1 will be used, chosen during setup", and 103.4.c forbids duplicate names, so two of your own battlefields never share a board.) `
+              : prot.some((x) => (byBase.get(x.base)?.type || []).includes("battlefield"))
+                ? `(A battlefield protection is a 1-in-3: 485.5 has each player "randomly select one (1) of their three (3) Battlefields", so it is not a card you can count on drawing.) `
+                : "")
+          : `THE IDENTITY HOLDS NO ANSWER: swept for a permanent, garrison-wide +Might legal beside this line under 103.1.b, there is none, so this line cannot be protected and can only be rebuilt. `) +
+        TIMING,
+      ],
+    });
+  }
+  const outAt2 = args.indexOf("--out");
+  const out2 = outAt2 >= 0 && args[outAt2 + 1] ? args[outAt2 + 1] : "/tmp/rc-walks/rc-synth-holds.json";
+  writeFileSync(out2, JSON.stringify(rows, null, 1) + "\n");
+  const repl = rows.filter((r) => r.action.startsWith("REPLACE")).length;
+  console.log(`\n# --holds-notables: ${rows.length} corrections (${repl} REPLACE a false shipped sentence, ${rows.length - repl} append a missing one) -> ${out2}`);
 }
 
 if (strict && findings.length) process.exit(1);
