@@ -52053,7 +52053,8 @@
           "THE COSTS ARE PAID IN ANY ORDER, WHICH MATTERS ON CARDS WITH TWO. 357.2: 'In addition, pay any non-standard Cost summed in step 3 in any order', with Riot's example of a card whose cost is 'kill a friendly unit and discard a unit' - either first. And 357.3 is the limit: you may not pay costs that 'will deterministically result in illegal choices or actions later in this process unless they have no choice', which is why you cannot nominate the very unit a later part of the same card needs.",
           "THE PRICE IS THE HOURGLASS AND THE POSITION. It kills itself doing this, so each copy is one use and 103.2.b caps it at three. And 455 makes the save a Recall to the BASE without a Move, so the rescued body leaves whatever battlefield it was holding - 323.6 strips that battlefield at the next Cleanup if it was your last unit there - and 458.1 leaves it exhausted until 315.1.b readies it at your next Awakening.",
           "AND THE COMPANION TRAP, WHICH IS THE SAME MECHANISM CUTTING THE OTHER WAY. A COST that is replaced is still paid (357.2.a), but an EFFECT that references the kill action is not: 359.3.e.14.b makes an 'if you do' rider fail when the game action it names was replaced, and 808.1.d.1 removes a Deathknell from a body that never reaches the Trash. Cruel Patron works here precisely because its additional cost is a COST and it has no rider - SFD-163 Deathgrip, whose 'If you do' is Riot's own contrast case, would give nothing.",
-          "428.1.a.1 IS WHY THE KILL WAS A KILL INSTRUCTION IN THE FIRST PLACE: 'Active Kill is when the action is taken when instructed by a game effect or AS A COST for a card or ability.' That is what puts it in front of the Hourglass's replacement at all - a body dying to lethal damage (428.1.a.2) is a Passive Kill and is a different event."
+          "428.1.a.1 IS WHY THE KILL WAS A KILL INSTRUCTION IN THE FIRST PLACE: 'Active Kill is when the action is taken when instructed by a game effect or AS A COST for a card or ability.' That is what puts it in front of the Hourglass's replacement at all - a body dying to lethal damage (428.1.a.2) is a Passive Kill and is a different event.",
+          "203.2 IS THE GENERAL STATEMENT AND THIS ENTRY STOOD ONLY ON THE WORKED EXAMPLE (citation upgrade 2026-09-12, #187 batch 17). 357.2.a is the paragraph whose Example names Cruel Patron and Zhonya`s Hourglass by name, but the rule itself is one sentence higher in the book and carries no card: 203.2, \"The Cost is still considered paid even if the associated game action is replaced.\" Cite the general rule beside the example, because the example is what makes this entry legible and the rule is what makes it true of every cost in the pool, not only this pair. Its neighbour 203.3 is the other half and is already the citation this catalogue uses for a cost that cannot be paid at all."
         ]
       },
       "steps": [
@@ -53800,6 +53801,395 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-09, issue #187, session rc-walk-mid, batch 1. 424.2.b, 424.3, 424.3.a, 424.3.a.1 and 424.4.a were all cited by nothing in data/combos.json or data/synergies.json before this entry. The six-row hand-reveal census and the facedown census were both swept over data/corpus_flat.txt on 2026-09-09 and their members are named above, so the uniqueness claim about Scuttle Crab is refutable in one grep. The Calm+Order legend census was RUN against data/cards.json, not typed. Card text verbatim from data/corpus_flat.txt. No unruled reading. Companion already in the catalogue: ashe-retreat-hand-strip and ashe-fallen-feline-named-lock use the same body for the rebuy and the name lock; this entry is the information half and duplicates neither."
+    },
+    {
+      "id": "academy-ruthless-strike-cost-once-effect-twice",
+      "name": "135.2.b.3 and 820.1.d.2: a [Repeat] duplicates only the RESOLUTION instructions, so an as-you-play additional cost is paid ONCE and its upgrade is read TWICE - The Academy turns Ruthless Strike's one discard into ten damage",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-216",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'When you hold here, give your next spell this turn [Repeat] equal to its base cost. (You may pay the additional cost to repeat the spell's effect.)' Ruthless Strike's base cost is E3 (204.1), and 204.2 puts the additional cost OUTSIDE the base cost, so the granted Repeat cost is E3 and not E3 plus a discard."
+        },
+        {
+          "card": "VEN-008",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury spell, E3. '[Action] (Play on your turn or in showdowns.) As an additional cost to play this, you may discard 1. Deal 3 to a unit at a battlefield. If you paid the additional cost, deal 5 to it instead.' The additional cost is an as-you-play instruction; the two sentences after it are resolution instructions, and that split is the whole entry."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Ruthless Strike is mono-Fury and The Academy is Colorless (no domain), so 103.1.b needs only a legend carrying Fury. Measured over data/cards.json on 2026-09-12 that is sixteen legend NAMES: Daughter of the Void, Relentless Storm, Loose Cannon, Hand of Noxus, Dark Child - Starter, Mechanized Menace, Purifier, Glorious Executioner, Void Burrower, Virtuoso, Pridestalker, Bloodharbor Ripper, Piltover Enforcer, Rogue Assassin, Butcher of the Sands, Master of Shadows. The line constrains the legend by one domain only, which is the cheapest identity price in the catalogue.",
+          "Neither card is a Signature card (checked against data/cards.json), and neither appears in data/legality.json in any format - checked 2026-09-12, and data/legality.json's only non-banned row is the Wuju Bladesman starter legend, restricted in 2v2, which is Calm/Body and not a legend this line can use.",
+          "Both targets must be units AT A BATTLEFIELD. Ruthless Strike's clause says 'at a battlefield', so neither execution reaches a base - it is not one of the sixteen cards that do."
+        ],
+        "notable": [
+          "THE RULE, AND IT IS RIOT'S OWN WORKED EXAMPLE OF THIS EXACT ASYMMETRY. 135.2.b.3: 'Instructions will self-describe when they are to be executed. If there is no timing described, they will execute during resolution.' Its example: 'An instruction says “as you play me, kill a unit as an additional cost.” That instruction will execute as the card is being played. If the card is given Repeat and the Repeat cost is paid, this instruction will not execute because the Repeat execution does not happen until resolution of the spell, after this instruction has executed.' The phrase 'if the card is GIVEN Repeat' is Riot describing a grant, which in this pool is UNL-216 The Academy and nothing else. 135.2.b.3 and 204.2.a are cited by no entry and no synergy rule in this project (measured 2026-09-12).",
+          "820.1.d.2 IS THE GENERAL FORM AND 820.1.d.1 IS THE MODEL THAT MAKES IT UNAMBIGUOUS. 820.1.d.2: 'Any instructions not performed on resolution of the spell or ability are ignored.' And 820.1.d.1's example duplicates the text in place rather than replaying the card - 'the card's instruction to play a Sand Soldier is executed twice, as though the card says “Play a 2 [M] Sand Soldier unit token. Play a 2 [M] Sand Soldier unit token.”' Read that model onto Ruthless Strike and it becomes 'Deal 3 to a unit at a battlefield. If you paid the additional cost, deal 5 to it instead. Deal 3 to a unit at a battlefield. If you paid the additional cost, deal 5 to it instead.' The card is never played a second time, so the payment is never re-asked and never re-made: one discard, two 5s.",
+          "THE ARITHMETIC, WITH THE QUANTITIES THIS ENTRY DECLARES. Hold The Academy (315.2.b.2) and the grant lands on your next spell this turn. Play Ruthless Strike: base E3, pay the additional cost by discarding 1, pay the granted Repeat cost of E3 (204.2.a and 820.1.c.1 both put it at finalization). Ten damage across up to two bodies at battlefields for 6 Energy and one card. The same card with no Academy is five damage for 3 Energy and one card, so the Academy is worth 5 damage for 3 Energy - and the discard does not double.",
+          "THE PRICE IS THAT BOTH TARGETS ARE LOCKED BEFORE ANYTHING RESOLVES. 820.2: 'When a spell or ability’s effect is performed an additional time with Repeat, choices must be made at the usual time during the Make Relevant Choices step of Playing a Card.' 820.2.a then allows the second execution to choose differently, so the two 5s may be aimed at two bodies - but both choices are made while playing, so you cannot watch the first kill land before aiming the second, and a defender who responds by moving a body home makes that execution mistarget (359.3.f.2).",
+          "THE FAMILY, SWEPT AND NAMED, AND IT SPLITS IN TWO. Exactly EIGHT spells in the pool carry an as-you-play additional cost (swept over data/corpus_flat.txt on 2026-09-12, type Spell only): OGN-048 Meditation (Calm E2), OGN-146 Wallop (Body E2), OGN-207 Call to Glory (Order E3), UNL-140 Conscription (Chaos E5 P2), UNL-142 Heedless Resurrection (Chaos E2 P1), UNL-173 Sacrifice (Order E1), VEN-008 Ruthless Strike (Fury E3), VEN-083 Rampage (Body E3). FOUR of them read the payment back at resolution and so double an upgrade for one payment - Meditation ('If you do, draw 2. Otherwise, draw 1' = four cards for one exhaust), Conscription ('If you paid the additional cost, choose any enemy unit at a battlefield instead' = 5 XP once for TWO steals of unrestricted Might, the biggest swing in the family), Ruthless Strike and Rampage. The other four do not: Wallop and Call to Glory spend the buff to zero the COST rather than to upgrade the effect, and Heedless Resurrection and Sacrifice carry a MANDATORY cost with an unconditioned effect - which is still a real gain, since Heedless Resurrection kills one friendly body and reanimates two, each capped by that one body's cost.",
+          "IT IS NOT THE SAME LINE AS academy-ezreal-gust-double-bounce, AND THE TWO DO NOT COMPETE. That entry uses The Academy for a different mechanism - a discount taking the granted Repeat cost to 0 (356.6, 356.4.f) - and pays for the second execution with Ezreal. This entry pays the Repeat cost in full and profits from the instruction SPLIT instead, which is why it needs no discount and no third card. Both are bounded by the same ceiling: one granted Repeat per turn, and 820.1.c.3 ('Each Repeat Cost can be paid only a single time') forbids paying it twice.",
+          "THE BATTLEFIELD PRICE, WHICH EVERY ACADEMY LINE PAYS. 485.4.a has each player provide three battlefields and 485.5 selects among them RANDOMLY, so The Academy is not certain to be on the table; 103.4.c forbids running two of a name to raise that chance. And you must HOLD it before it grants anything (315.2.b.2), which means controlling it through your opponent's whole turn - 190.6.d would blank the word 'your' in its text if it had no Controller."
+        ]
+      },
+      "steps": [
+        "Have UNL-216 The Academy on the board and control it through the opponent's turn. It grants nothing until you Hold it.",
+        "At 315.2.b.2 in your Beginning Phase you Hold The Academy; its trigger gives your NEXT spell this turn [Repeat] equal to that spell's base cost. For VEN-008 Ruthless Strike that is E3 (204.1 reads the printed cost; 204.2 keeps the additional cost out of it).",
+        "In your Main Phase play Ruthless Strike. At the Make Relevant Choices step (820.2) choose BOTH targets now - they may be two different units at battlefields (820.2.a).",
+        "Pay to finalize: the base E3, the as-you-play additional cost of discarding 1 (204.2.a), and the granted Repeat cost of E3 (820.1.c.1, also an Additional Cost). Six Energy and one card in total.",
+        "The spell resolves. 820.1.d.1's model duplicates only the resolution instructions, so the text reads as 'Deal 3 to a unit at a battlefield. If you paid the additional cost, deal 5 to it instead.' twice.",
+        "135.2.b.3 and 820.1.d.2: the as-you-play discard instruction is NOT performed again - it is not a resolution instruction. Nothing un-pays it either, so 'if you paid the additional cost' is true both times.",
+        "Ten damage, over one or two bodies at battlefields, for 6 Energy and one card. 143.2.a kills a body whose marked damage reaches its Might, and 466.1.a.1 wipes marked damage at a Combat Cleanup, so this is Main-Phase removal and not a setup for a later attack.",
+        "Three copies of Ruthless Strike (103.2.b) and one Academy per game (103.4.c). The Academy grants once per Hold, so this is one doubled spell a turn and nothing here loops."
+      ],
+      "netPerIteration": "one additional-cost payment bought twice: 10 damage for 6 Energy and one discarded card, against 5 damage for 3 Energy and one discarded card without the grant",
+      "terminatesIn": "engine only - nothing here scores. One granted [Repeat] per Hold of The Academy, 820.1.b gives exactly one extra execution and 820.1.c.3 forbids paying the same Repeat cost twice, so the ceiling is one doubled spell per turn",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 135.2.b.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Instructions will self-describe when they are to be executed. If there is no timing described, they will execute during resolution."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 135.2.b.3 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "An instruction says “as you play me, kill a unit as an additional cost.” That instruction will execute as the card is being played. If the card is given Repeat and the Repeat cost is paid, this instruction will not execute because the Repeat execution does not happen until resolution of the spell, after this instruction has executed."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 204.2 and 204.2.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Additional Costs: These Costs are in addition to the base cost of the spell or ability and will include “as an additional cost.” … Additional Costs must be paid to finalize the spell or ability, in addition to the base cost."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 820.1.d.2 and 820.1.d.1 worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Any instructions not performed on resolution of the spell or ability are ignored. … Example: Desert’s Call is a spell with [Repeat] [2] and “Play a 2 [M] Sand Soldier unit token.” If its controller pays its Repeat cost as they play it, the card’s instruction to play a Sand Soldier is executed twice, as though the card says “Play a 2 [M] Sand Soldier unit token. Play a 2 [M] Sand Soldier unit token.”"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 820.2 and 820.2.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "When a spell or ability’s effect is performed an additional time with Repeat, choices must be made at the usual time during the Make Relevant Choices step of Playing a Card. … Choices made for the additional execution do not have to be the same as the choices made for the initial execution."
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (built from Riot's gallery content API by scripts/build-cards.mjs)",
+          "kind": "riot",
+          "date": "2026-09-12",
+          "quote": "VEN-008 | Ruthless Strike | Spell | Fury | E3 | [Action] (Play on your turn or in showdowns.) As an additional cost to play this, you may discard 1. Deal 3 to a unit at a battlefield. If you paid the additional cost, deal 5 to it instead."
+        },
+        {
+          "title": "Hand walk 2026-09-12 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md), batch 17",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "bone-skewer-vex-opponent-play-scheduler",
+      "name": "191.3.d: the unit you drag out of their hand is THEIRS as it enters, so THEY get its 'when you play me' - and the same rule makes Bone Skewer the pool's only way to fire a 'when an opponent plays a unit' punisher on YOUR turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-139",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E2 + 1 Chaos Power. '[Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) Choose a battlefield. An opponent reveals their hand. You may choose a unit from it. They play that unit to that battlefield, ignoring any and all costs. If they do, then do this: [Stun] it. (It doesn't deal combat damage this turn.)' The load-bearing word is THEY: the opponent performs the play, which is what 191.1 and 191.3 key on."
+        },
+        {
+          "card": "UNL-150",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E4 M4. '[Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) When an opponent plays a unit while I'm at a battlefield, [Stun] it. They can't move it this turn.' She is one of exactly TWO cards in the pool that watch an opponent playing something, and on a normal board she fires only when the opponent chooses to act."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "tempo-denial"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Chaos, so 103.1.b needs only a legend carrying Chaos. Measured over data/cards.json on 2026-09-12 that is sixteen legend NAMES: Loose Cannon, Unforgiven, Swift Scout, Bounty Hunter, Dark Child - Starter, Glorious Executioner, Blade Dancer, Prodigal Explorer, Battle Mistress, Bloodharbor Ripper, Gloomist, Scorn of the Moon, Voidreaver, Master of Shadows, Soul's Reflection, Heart of the Tempest.",
+          "Neither is a Signature card (checked against data/cards.json), and neither appears in data/legality.json in any format - checked 2026-09-12, and data/legality.json's only non-banned row is the Wuju Bladesman starter legend, restricted in 2v2, which is Calm/Body and not a legend this line can use.",
+          "Vex has to be standing at a battlefield when the play happens - her clause says 'while I'm at a battlefield' - but NOT at the battlefield Bone Skewer names. That is the one thing about the pairing that is wider than it looks.",
+          "The opponent must actually hold a unit in hand. Bone Skewer reveals the hand first and the choice is 'you MAY choose a unit from it', so against an empty or unit-less hand the card is a look and nothing else, and Vex never fires."
+        ],
+        "notable": [
+          "THE COST NOBODY HAS WRITTEN DOWN, AND IT INVERTS THE OBVIOUS PLAY. 191.1: 'When a player Plays, Hides, or Creates a Card or other Game Object, they are established as that Game Object's Controller.' 191.3: 'For Permanents and Runes, when they Enter the Board, that player is assigned as that Game Object's Controller.' And 191.3.d: 'That player may make decisions about any game effects created from \"When you play me\" effects of Permanents.' Bone Skewer says THEY play the unit, so the opponent is its Controller, the unit's own 'when you play me' fires for them, and THEY choose its targets. Dragging out their biggest body can hand them a free enters-the-board effect aimed at you - the right pick is the unit whose ETB is worst for them or empty, not the biggest Might. 191.3.d and 191.3.c are cited by no entry and no synergy rule in this project (measured 2026-09-12).",
+          "THE CONSTRUCTIVE HALF: THIS IS THE ONLY SCHEDULER IN THE POOL FOR AN OPPONENT-PLAY PUNISHER. Swept over data/corpus_flat.txt on 2026-09-12, exactly TWO cards watch an opponent playing something - UNL-150 Vex, Apathetic (a unit) and VEN-102 Ravenbloom Prefect (a gear) - and exactly THREE cards make an opponent play something: UNL-139 Bone Skewer (a unit out of their HAND, on your turn), UNL-130 Walking Roost (a 1 Might Bird unit TOKEN, which still fires Vex because 185.2.b makes a token unit a unit) and SFD-081 Card Sharp (a Gold gear token each). Without one of those three, Vex only ever fires when the opponent chooses to act; with Bone Skewer she fires when YOU choose.",
+          "THE TWO STUNS ARE REDUNDANT AND THE MOVE LOCK IS NOT. 423.1.a.1: 'A Stunned Unit can not be Stunned again.' Bone Skewer's own 'then do this: [Stun] it' is a Reflexive Trigger (387.1) and Vex's stun is a Triggered Ability; both are yours, so 383.3.d lets you order them, but whichever resolves second finds the body already Stunned and does nothing. What is NOT duplicated is Vex's second sentence, 'They can't move it this turn' - Bone Skewer has no such clause - and that is the whole marginal value of running them together. The rule prints this in its own worked example, on Eclipse Herald: 'They may choose a unit that's already stunned, but if they do, Eclipse Herald will not trigger.'",
+          "AND THE STUN EXPIRES BEFORE THEIR TURN EITHER WAY. 423.1.a.2: 'Stunned Units lose the Stunned status during step 3d of the end of turn cleanup.' Applied on YOUR turn, it is gone at YOUR cleanup, so 423.1.b's loss of combat Might only matters inside the turn you played Bone Skewer - which is the combat the dragged body was pulled into. The move lock has the same one-turn life ('this turn'), so neither half of this pairing is a lasting lock; it is a tempo play priced in one card.",
+          "THE BODY ARRIVES AS AN ATTACKER ON YOUR OWN TURN. 190.3.a.1 applies Contested status to units 'moving to or being played to' a battlefield, and 464.2.c.1 makes the Attacker 'the player whose unit(s) applied the Contested status' - so a body played to a battlefield YOU control makes THEM the attacker during your turn, which is why this is a defensive payoff and not a point: 466.5 establishes Control only for a player who did not already have it.",
+          "THE HIDDEN MODE IS THE CHEAP ONE AND IT NARROWS THE TARGET. 811.1.b hides a card 'at a battlefield you control that doesn't already have a facedown card hidden there for as long as you control that battlefield', and 811.1.d.2 confines a hidden spell's targets to that battlefield 'unless the ability explicitly restricts targeting in a way that makes this impossible'. The unit is chosen out of their HAND, which no battlefield restriction can reach, so that half is free; the battlefield Bone Skewer names is the constrained one, and it is one you control - which is exactly the board this pairing wants. The tail of 811.1.b is also its price: lose that battlefield and the facedown card is lost with it.",
+          "ONE PAIRING IN THE CENSUS IS A REFUSAL, RECORDED SO IT IS NOT WALKED. SFD-081 Card Sharp makes each opponent play a Gold gear token, which does satisfy VEN-102 Ravenbloom Prefect's 'When an opponent plays a gear' - but the Prefect's cost is 'you may banish me to banish it', so a 3-Energy 3-Might body of yours is spent to remove a token that 186.1 would have annihilated the moment it left the board anyway. It is a losing exchange by arithmetic, not by rule, and the domains are split (Card Sharp is Mind, the Prefect is Chaos) on top of it."
+        ]
+      },
+      "steps": [
+        "Have UNL-150 Vex, Apathetic standing at a battlefield - either one, her clause does not name Bone Skewer's.",
+        "Play UNL-139 Bone Skewer, from hand for E2 + 1 Chaos Power, or for 0 Energy from face down from the turn after the hide (811.1.b).",
+        "Name a battlefield. If Bone Skewer was hidden, 811.1.d.2 confines that choice to the battlefield it was hidden at, which 811.1.b guarantees is one you control.",
+        "The opponent reveals their hand. Choose the unit whose 'when you play me' is worst for them or absent - 191.3.d gives THEM that trigger and its decisions, and that is the real cost of the card.",
+        "They play it to the named battlefield, ignoring any and all costs. 191.1 and 191.3 make them its Controller.",
+        "That play satisfies Vex's Trigger Condition ('when an opponent plays a unit while I'm at a battlefield'), and Bone Skewer's own '[Stun] it' becomes a Reflexive Trigger on the Chain (387.1, 388.1). Both are yours; order them under 383.3.d.",
+        "One stun lands and the other does nothing (423.1.a.1). Vex's move lock lands regardless: they cannot move that body this turn.",
+        "Inside your turn the body is a stunned Attacker at a battlefield you control (190.3.a.1, 464.2.c.1) that contributes no Might to combat damage (423.1.b) and cannot walk away. At your end-of-turn cleanup step 3d both the stun and the 'this turn' lock expire (423.1.a.2).",
+        "Three copies of each (103.2.b). Nothing here repeats within a turn and nothing here scores."
+      ],
+      "netPerIteration": "one enemy body pulled out of hand onto a battlefield you control, stunned and move-locked for the rest of your turn, at the price of handing the opponent that unit's own enters-the-board trigger",
+      "terminatesIn": "engine only - nothing here scores, and 466.5 gives Control only to a player who does not already have it, so the forced attack cannot Conquer for you. Three Bone Skewer and three Vex (103.2.b); the stun and the move lock both end at step 3d of your own cleanup (423.1.a.2)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 191.1 and 191.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "When a player Plays, Hides, or Creates a Card or other Game Object, they are established as that Game Object's Controller. … For Permanents and Runes, when they Enter the Board, that player is assigned as that Game Object's Controller."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 191.3.c and 191.3.d",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "That player may make decisions about any game effects or decisions necessary while the card is being played. … That player may make decisions about any game effects created from \"When you play me\" effects of Permanents."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 423.1.a.1 and its worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "A Stunned Unit can not be Stunned again. Example: Eclipse Herald has the ability \"When you stun an enemy unit, ready me and give me +1 [M] this turn.\" Its controller plays a spell that reads \"Stun a unit.\" They may choose a unit that's already stunned, but if they do, Eclipse Herald will not trigger."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 423.1.a.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Stunned Units lose the Stunned status during step 3d of the end of turn cleanup."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 811.1.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "It is functionally short for \"While this card is in your hand or in your Champion Zone on your turn during an Open State, you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.\""
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (built from Riot's gallery content API by scripts/build-cards.mjs)",
+          "kind": "riot",
+          "date": "2026-09-12",
+          "quote": "UNL-150 | Vex, Apathetic | Unit | Chaos | E4 M4 | [Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) When an opponent plays a unit while I'm at a battlefield, [Stun] it. They can't move it this turn. (It doesn't deal combat damage this turn.)"
+        },
+        {
+          "title": "Hand walk 2026-09-12 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md), batch 17",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "blood-rose-insightful-investigator-cost-at-resolution",
+      "name": "204.3.a against 204.3.b: WHERE a 'pay X to do Y' sits inside a trigger decides finalization or resolution - so the 2 XP Insightful Investigator asks for CAN be funded by triggers of the same event, and Riot names the card",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-135",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos unit, E3 M3. 'When you play me, choose an opponent. They reveal their hand. You may pay 2 XP to choose a card from their hand. If you do, they discard that card and draw 1.' The cost sits in the THIRD sentence of the trigger's effect, not the first, which is the whole of why it is paid at resolution. Riot's worked example at 204.3.b is this card by name."
+        },
+        {
+          "card": "UNL-109",
+          "quantity": 3,
+          "role": "resource",
+          "zone": "BASE",
+          "note": "Body gear, E1. 'When you play a unit, you may pay :rb_energy_1: to gain 1 XP. Spend 3 XP, :rb_exhaust:: Ready a unit.' The XP clause carries NO exhaust, so three copies are three separate triggers on one unit play (383.3.d orders them); only the second ability, the ready, costs the exhaust."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "strip-opponent-hand"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Insightful Investigator is mono-Chaos and Blood Rose is mono-Body, so 103.1.b.2 needs a legend covering both. Measured over data/cards.json on 2026-09-12 there are exactly THREE Body/Chaos legend names: Bounty Hunter, Battle Mistress and Voidreaver.",
+          "Neither is a Signature card (checked against data/cards.json), and neither appears in data/legality.json in any format - checked 2026-09-12, and data/legality.json's only non-banned row is the Wuju Bladesman starter legend, restricted in 2v2, which is Calm/Body and not a legend this line can use.",
+          "Blood Rose has to be on the board before the Investigator is played, because its trigger watches that play. It is E1 and a gear, so 143.4 never exhausts it and it can be cast the turn before for one Energy.",
+          "The opponent has to hold a card. The reveal happens whether or not you pay, so the information is free and only the removal costs XP."
+        ],
+        "notable": [
+          "THE RULE, AND IT IS A REFINEMENT TO A STANDING CLAIM OF THIS PROJECT, NOT A NEW ONE. This catalogue says repeatedly that a cost written at the start of a Triggered Ability's effect is the ability's BASE cost, paid at finalization - true, and 204.3.a is the cleanest source, with its own worked example: 'Overzealous Fan is a unit that reads “When I defend, you may kill me to move an attacking unit to its base.” In order to finalize the ability to the chain, its controller must kill Overzealous Fan.' What the project has been missing is the OTHER half, 204.3.b: 'When Costs within Instructions appear in spells, activated abilities, or in LATER PARTS of triggered abilities, the cost must be paid to get the effect during resolution of the spell or ability.' 204.3.a is cited 32 times through 204.3; 204.3.b's 'later parts' clause has never been used. The test is POSITION INSIDE THE SENTENCE, exactly as 383.2.a.1's word-order test is for a condition.",
+          "AND RIOT SPELLS OUT THE CONSEQUENCE ON THIS CARD. 204.3.b's third worked example: 'Insightful Investigator is a unit that reads “When you play me, choose an opponent. They reveal their hand. You may pay 2 XP to choose a card from their hand. If you do, they discard that card and draw 1.” As the ability resolves, its controller may pay 2 XP as a cost, and chooses a card from that player’s hand as the effect.' So the XP does not have to exist when the trigger is placed - only when it resolves.",
+          "WHICH IS WHY THE SAME EVENT CAN PAY FOR IT, AND THAT IS THE CONSTRUCTIVE HALF. This project records three times, from three different rules, that a resource produced by another trigger of the same event can NEVER fund a 383.3.b / 204.3.a base cost, because 383.3.b.1 demands payment at finalization and 312.2.c hands out no priority in between. 204.3.b is the exception that proves the shape: with three Blood Rose on the board, playing the Investigator puts FOUR triggers on the Chain at once (383.3.d lets you order them). Place the Investigator's FIRST so 340.1 resolves it LAST; the three Blood Rose triggers resolve first for 1 Energy each, and the Investigator then pays 2 of the 3 XP they just produced. Nothing had to be banked.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Three Blood Rose at E1 each is a one-off 3 Energy of setup. The turn you play Insightful Investigator: E3 for the body, 3 Energy into the three Blood Rose triggers, 2 XP spent, 1 XP left over and a 3 Might body on the board. Six Energy strips their chosen card. It is SURGICAL removal and not card advantage - 'they discard that card and draw 1' leaves their hand the same size - so this takes the one card that beats you, and the reveal tells you which it is before you decide to pay.",
+          "THE BLOOD ROSE HALF IS A FAUCET BECAUSE THE COST HAS NO EXHAUST. The XP clause is 'When you play a unit, you may pay 1 Energy to gain 1 XP' - no exhaust anywhere in it - so three copies all fire on one unit play, and every unit you play afterwards is another 1 XP per copy per Energy. The exhaust is on the SECOND ability ('Spend 3 XP, exhaust: Ready a unit'), which 415.3.a refunds only at your own Awakening, so the ready is once a turn and the XP is not.",
+          "THE ANTI-SYNERGY, AND IT IS THE ONE THAT CATCHES XP DECKS. 730.2: 'To Spend XP, reduce the value of XP marked on the Player spending it.' And 824.1.d: 'The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP.' So paying the Investigator's 2 XP switches off every [Level N] rung you were standing on. This line wants a faucet and NO [Level] statics - it is a SINK deck, and the Blood Rose entries that pair it with Wuju Master's rungs are built on the opposite premise. See wuju-master-blood-rose-level and gardens-becoming-wuju-xp-faucet, which want the XP held; this entry wants it spent.",
+          "WHAT THIS PAIRING ADDS OVER THE ONE ALREADY IN THE CATALOGUE. mindsplitter-insightful-investigator-hand-attack runs the Investigator with OGN-192 Mindsplitter for a second look at the same hand; it does not touch where the 2 XP comes from, which is the only question 204.3.b answers. The two compose - Mindsplitter takes a card without XP, the Investigator takes one with it - and neither is a prerequisite of the other."
+        ]
+      },
+      "steps": [
+        "Play UNL-109 Blood Rose for 1 Energy on an earlier turn; 103.2.b allows three and each is its own trigger source.",
+        "On the turn you want their card, play UNL-135 Insightful Investigator for 3 Energy.",
+        "That one play meets four Trigger Conditions at once: each Blood Rose's 'When you play a unit' and the Investigator's own 'When you play me'. 383.3.d gives you the order.",
+        "Place the Investigator's trigger FIRST and the three Blood Rose triggers after it, so 340.1 ('The newest Finalized Chain Item resolves') runs the Blood Rose triggers first.",
+        "Each Blood Rose trigger asks for 1 Energy at FINALIZATION - its cost is the first part of its effect, so 204.3.a and 383.3.b.1 apply to it. Pay all three: 3 Energy, 3 XP.",
+        "The Investigator's trigger now resolves. Choose the opponent; they reveal their hand; that much is free.",
+        "204.3.b: the 2 XP is a Cost within an Instruction in a LATER part of the trigger, so it is paid HERE, at resolution, out of the XP the earlier triggers just produced. Riot's worked example for this paragraph is this card.",
+        "Choose a card from their hand. They discard it and draw 1. Their hand size is unchanged and the card you feared is in the trash.",
+        "You are left with 1 XP and a 3 Might body, for 6 Energy in total. Spend no more XP if you are running any [Level] rung - 824.1.d switches it off the instant you drop below the threshold.",
+        "Three copies of each (103.2.b). Nothing here loops inside a turn and nothing here scores."
+      ],
+      "netPerIteration": "one named card taken out of the opponent's hand for 6 Energy and 2 XP, with the 2 XP funded by triggers of the same event - which a base cost could not be",
+      "terminatesIn": "engine only - nothing here scores. One Investigator play is one strip; the Blood Rose faucet pays 1 XP per copy per unit played and its ready ability is capped at once a turn by its own exhaust (415.3.a)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 204.3.a and its worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "When Costs within Instructions appear as the first part of the effect in triggered abilities, the cost is taken to be the base cost of the triggered ability. It must be paid to finalize the triggered ability. Example: Overzealous Fan is a unit that reads “When I defend, you may kill me to move an attacking unit to its base.” In order to finalize the ability to the chain, its controller must kill Overzealous Fan."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 204.3.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "When Costs within Instructions appear in spells, activated abilities, or in later parts of triggered abilities, the cost must be paid to get the effect during resolution of the spell or ability."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 204.3.b third worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Example: Insightful Investigator is a unit that reads “When you play me, choose an opponent. They reveal their hand. You may pay 2 XP to choose a card from their hand. If you do, they discard that card and draw 1.” As the ability resolves, its controller may pay 2 XP as a cost, and chooses a card from that player’s hand as the effect."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 730.2 and 824.1.d",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "To Spend XP, reduce the value of XP marked on the Player spending it. … The Dependent Ability will be Inactive as soon as the controlling player has less than [N] XP."
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (built from Riot's gallery content API by scripts/build-cards.mjs)",
+          "kind": "riot",
+          "date": "2026-09-12",
+          "quote": "UNL-109 | Blood Rose | Gear | Body | E1 | When you play a unit, you may pay :rb_energy_1: to gain 1 XP. Spend 3 XP, :rb_exhaust:: Ready a unit."
+        },
+        {
+          "title": "Hand walk 2026-09-12 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md), batch 17",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "mushroom-pouch-smoke-and-mirrors-facedown-tenure",
+      "name": "107.3.c and 107.3.d price a facedown card in CONTROL, and 190.4.b is the one window that freezes it - so the Mushroom Pouch draws a card a turn for a spell you never play, and the only thing that can take it is losing the battlefield outside a combat",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-101",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Mind gear, E2. 'At the start of your Beginning Phase, if you control a facedown card at a battlefield, draw 1.' It is the only REPEATABLE payoff in the pool for a facedown card you have NOT played - the clause carries no exhaust, so three copies are three draws a turn off one hidden card."
+        },
+        {
+          "card": "UNL-083",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Mind spell, E2. '[Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) [Action] (Play on your turn or in showdowns.) Choose a unit you control and another unit you control at a different location. If at least one of them has [Temporary], move each to the other's location. Draw 1.' It is the fuel here because it is a card you are content to leave face down: hidden for one rainbow it is a standing Pouch trigger, and it still cantrips whenever you do decide to play it for 0."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Mind, so 103.1.b needs only a legend carrying Mind. Measured over data/cards.json on 2026-09-12 that is sixteen legend NAMES: Daughter of the Void, Nine-Tailed Fox, Swift Scout, Herald of the Arcane, Lady of Luminosity - Starter, Mechanized Menace, Fire Below the Mountain, Prodigal Explorer, Chem-Baroness, Virtuoso, Bashful Bloom, Scorn of the Moon, Deceiver, Curator of the Sands, Defender of Tomorrow, Soul's Reflection.",
+          "Neither is a Signature card (checked against data/cards.json), and neither appears in data/legality.json in any format - checked 2026-09-12, and data/legality.json's only non-banned row is the Wuju Bladesman starter legend, restricted in 2v2, which is Calm/Body and not a legend this line can use.",
+          "You must CONTROL a battlefield to hide anything at all (107.3.c, 811.1.b), so this engine cannot start on turn one - 190.1 leaves both battlefields uncontrolled at the start of a Duel.",
+          "One facedown per battlefield (107.3.b), and 485.4 puts two battlefields on a Duel table, so the ceiling is two facedown cards at once however many [Hidden] cards the list runs - which caps the Pouch at one draw per copy per turn, not per hidden card."
+        ],
+        "notable": [
+          "THE ZONE IS THE RULE, AND THIS PROJECT HAS BEEN DERIVING IT FROM THE KEYWORD. 107.3.a gives every battlefield its own Facedown Zone; 107.3.b sets its maximum occupancy at one card; and 107.3.c is the tenure clause: 'Cards can only be placed in or occupy the Facedown Zone if the controller of the card also controls the associated Battlefield.' The word that matters is OCCUPY, not merely 'be placed in' - control is a continuing requirement, not an entry condition. 107.3.d then executes it: 'If a player loses Control of a Battlefield, any cards in the Facedown Zone associated with that Battlefield are removed during the next Cleanup.' The catalogue has been sourcing all of this to the tail of 811.1.b ('for as long as you control that battlefield'), which says the same thing for [Hidden] only; 107.3.c and 107.3.d say it for any effect that puts a card face down, and they are cited by exactly two entries, both about denying the OPPONENT's hidden cards (warden-saboteur-hidden-lock, warden-tianna-base-lock) and neither about the cost of your own.",
+          "AND 190.4.b IS THE ONE WINDOW WHERE IT CANNOT BITE. 'While a Combat or Showdown is ongoing at a Battlefield, Control of that Battlefield cannot change until instructed by steps of the Combat or Showdown.' It is cited by nothing in this project. Read with 107.3.d it settles a question every [Hidden] entry leaves open: a facedown card at the battlefield the opponent is ATTACKING is safe for the whole fight, because Control cannot move until 466.5 says so - so your hidden [Action] removal is always live inside the very combat that threatens it (464.2.f.1, 464.2.g), and a hidden [Reaction] card is live in every Closed State the combat opens (813.1.c.1). You never lose the card before you get to use it.",
+          "THE COMPANION IS AN ANTI-SYNERGY AND IT IS EXACT. The evacuation family of this catalogue works by walking your last body off a battlefield so 323.6 strips your own Control in an Open State - and 107.3.d then throws away any facedown card you had there at that same Cleanup. So a [Hidden] package and an evacuation package want opposite things from the same battlefield, and a list running both must hide at the battlefield it is NOT going to abandon. 190.4.b is why the exception is exactly the combat window and nothing else: outside a Combat or Showdown, Control moves freely and the facedown goes with it.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. One Mushroom Pouch is E2 once; hiding Smoke and Mirrors is one rainbow Power once (811.1.b). From the next Beginning Phase that is one card every turn, forever, for nothing - and the hidden card is not spent, so the engine and the payload are the same card. Three Pouches (103.2.b) are three draws a turn off ONE facedown card, because each Pouch is its own trigger and the condition is 'if you control a facedown card at a battlefield', not one per card. Two battlefields (485.4) let you hide a second card for a second rainbow, which changes nothing for the Pouch and buys a second payload.",
+          "AND THE DRAWS ARE THE DANGEROUS HALF IN AN EMPTY-DECK SHELL. 431.1.a burns you out on a draw past the Main Deck and 194.1.d gives the opponent a point for it, so three Pouches firing every Beginning Phase are three forced draws a turn with no 'may' anywhere in the clause. In a loop shell built on the four-draws-per-pass ledger this is a liability, not a gain; it is an engine for a deck that still has a deck.",
+          "WHY SMOKE AND MIRRORS AND NOT A CHEAPER HIDDEN CARD. The Pouch wants a card you are happy to leave face down indefinitely, which is the opposite of what every other [Hidden] payoff wants. Smoke and Mirrors is E2 with a cantrip attached, so playing it later for 0 (811.1.b) costs you nothing you were using - and 811.1.d.2 confines its targets to the battlefield it was hidden at, which is exactly the battlefield the Pouch has been paying you to hold. A hidden removal spell would be tempting but you would play it, and the turn you play it the Pouch stops.",
+          "TWO MEASUREMENTS THIS ENTRY STANDS ON, BOTH MADE 2026-09-12 OVER data/cards.json. ZERO non-Equipment gear in the pool has the word 'here' in its text (74 non-Equipment gear base codes of 114 gear in all), which is why 152.2's rule that non-unit gear cannot normally reach a battlefield costs this pool nothing - a gear's Location is defined and no card reads it. And OGN-077 Zhonya's Hourglass is the ONLY non-Equipment gear in the pool that carries [Hidden], so it is the only one 152.2's facedown route could ever place at a battlefield.",
+          "THE FACEDOWN CENSUS, NAMED AND SPLIT BY WORDING, MEASURED OVER data/cards.json ON 2026-09-12. Nine cards reference a facedown card outside the [Hidden] reminder text: OGN-101 Mushroom Pouch, OGN-181 Pack of Wonders, SFD-121 Black Market Broker, SFD-139 Edge of Night, UNL-014 Monster Harpoon, UNL-023 Katarina Reckless, UNL-053 Scuttle Crab, UNL-141 Evelynn Entrancing and VEN-099 Tornado Warrior. Only TWO of them pay for a card still face down rather than for playing it - the Pouch, every turn, and UNL-014 Monster Harpoon once (2 damage becomes 4 if you control a facedown card), which makes the Harpoon the natural second payload in a Fury shell and NOT a competitor for the zone. And the wording splits: SFD-121, SFD-139, UNL-141 and VEN-099 say 'from face down' while OGN-167 Ember Monk says 'from [Hidden]' for the same event, so a predicate on either phrase alone misses cards - which is how a first sweep of this family came back one card short."
+        ]
+      },
+      "steps": [
+        "Take a battlefield and hold it. 190.1 leaves both uncontrolled at the start of a Duel and 107.3.c requires Control before anything can be hidden there.",
+        "Play OGN-101 Mushroom Pouch for 2 Energy. It is a gear, so 143.4 never exhausts it and its trigger carries no exhaust.",
+        "Hide UNL-083 Smoke and Mirrors face down at that battlefield for one rainbow Power (811.1.b). 107.3.b allows exactly one facedown card there.",
+        "From your next Beginning Phase the Pouch draws you 1 for holding it. Three Pouches draw 3 - the condition is 'if you control a facedown card at a battlefield', so one facedown card satisfies all three.",
+        "Do not play Smoke and Mirrors while the draws are worth more than the spell. It costs 0 whenever you change your mind (811.1.b), and it cantrips when you do.",
+        "The engine's only failure mode is losing that battlefield: 107.3.c stops the card occupying the zone and 107.3.d removes it at the next Cleanup.",
+        "It cannot fail during a fight. 190.4.b freezes Control for the whole Combat or Showdown, so the facedown card survives an attack on that battlefield and is playable inside it - [Action] in the opened combat (464.2.f.1, 464.2.g) or [Reaction] in any Closed State it opens (813.1.c.1).",
+        "Do not pair this with an evacuation line at the same battlefield: 323.6 strips your Control the moment your last body walks off and 107.3.d takes the facedown card with it.",
+        "Three copies of each (103.2.b). Nothing here loops inside a turn and nothing here scores; the draws are per Beginning Phase and are NOT optional, so watch 431.1.a."
+      ],
+      "netPerIteration": "one card per Mushroom Pouch per turn, for one rainbow Power spent once and a spell you keep rather than cast",
+      "terminatesIn": "engine only - nothing here scores. It runs for as long as you control the battlefield the card is hidden at (107.3.c, 107.3.d), with 190.4.b guaranteeing it survives any combat there; the draws are mandatory, so 431.1.a ends it when the Main Deck does",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 107.3.a and 107.3.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Each Battlefield is associated with a sub-zone called a Facedown Zone, a single logical space that a card can be put facedown in through various Game Effects. … Each Facedown Zone has a maximum occupancy of one card."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 107.3.c and 107.3.d",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Cards can only be placed in or occupy the Facedown Zone if the controller of the card also controls the associated Battlefield. … If a player loses Control of a Battlefield, any cards in the Facedown Zone associated with that Battlefield are removed during the next Cleanup."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 190.4.b",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "While a Combat or Showdown is ongoing at a Battlefield, Control of that Battlefield cannot change until instructed by steps of the Combat or Showdown."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 152.2 and its worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Non-Unit Gear cannot normally become located at a Battlefield unless by some special means. Example: Gear are played to Base unless an effect specifies otherwise. A gear played from Facedown, which is specified to be played to the Battlefield it was played from, will enter at that Battlefield. Gear can also become located at a Battlefield if they are attached to a unit who becomes located at a Battlefield. A Gear that is a Unit can move to a Battlefield."
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (built from Riot's gallery content API by scripts/build-cards.mjs)",
+          "kind": "riot",
+          "date": "2026-09-12",
+          "quote": "OGN-101 | Mushroom Pouch | Gear | Mind | E2 | At the start of your Beginning Phase, if you control a facedown card at a battlefield, draw 1."
+        },
+        {
+          "title": "Hand walk 2026-09-12 (docs/phase0/walks/2026-09-07-uncited-rules-blocks.md), batch 17",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        }
+      ]
     }
   ]
 }
