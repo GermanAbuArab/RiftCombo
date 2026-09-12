@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 //
-// #138: only `parseHash` was reachable from the suite. Everything the router DOES — hiding three
+// #138: only `parseHash` was reachable from the suite. Everything the router DOES — hiding the other
 // views, naming the tab, marking the current link, and applying a route the same tick it is asked
 // for — had no test at all, and that last one is what stops #57 (a diagram measuring a hidden
 // container and drawing itself with a NaN viewBox) from coming back.
@@ -8,11 +8,12 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const HTML = `
   <nav class="topnav">
-    <a href="#/combos">Combos</a><a href="#/decks">My decks</a>
+    <a href="#/combos">Combos</a><a href="#/decks">My decks</a><a href="#/plays">Run plays</a>
     <a href="#/guide">Guide</a><a href="#/sources">Sources</a>
   </nav>
   <main id="view-combos"></main>
   <main id="view-decks" hidden></main>
+  <main id="view-plays" hidden></main>
   <main id="view-guide" hidden></main>
   <main id="view-sources" hidden></main>`;
 
@@ -39,6 +40,21 @@ describe("what a route does to the page", () => {
     const current = [...document.querySelectorAll("a[aria-current]")].map((a) => a.getAttribute("href"));
     expect(current).toEqual(["#/decks"]);
     expect(document.querySelector('a[href="#/decks"]')!.classList.contains("active")).toBe(true);
+  });
+
+  /**
+   * #206. A play's own address is `#/plays/<slug>`, which has a second path segment — the shape that
+   * `#/decks-of-cards` is deliberately NOT: the view is the whole first segment, so a slug opens the
+   * view and a lookalike view name does not.
+   */
+  it("opens Run plays on a slug route, not only on the index", async () => {
+    const { startRouter, route } = await load("#/plays/2026-09-12-the-unopposed-clock");
+    startRouter();
+    expect(shown()).toEqual(["view-plays"]);
+    expect(document.title).toBe("Run plays — RiftCombo");
+    expect(route().playSlug).toBe("2026-09-12-the-unopposed-clock");
+    // The tab is marked from the view, so the deep link still lights the nav entry.
+    expect(document.querySelector('a[href="#/plays"]')!.classList.contains("active")).toBe(true);
   });
 
   it("falls back to Combos on a hash it does not know", async () => {

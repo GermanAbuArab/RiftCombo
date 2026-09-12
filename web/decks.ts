@@ -44,7 +44,7 @@ let decks: SavedDeck[] = [];
 let loaded = false;
 let message = "";
 let host: HTMLElement | null = null;
-let current: Route = { view: "combos", deckId: null, analyzing: null, legacyDeck: null };
+let current: Route = { view: "combos", deckId: null, playSlug: null, analyzing: null, legacyDeck: null };
 
 /** What the editor holds right now. Null when no detail is open. */
 let draft: { id: string | null; name: string; text: string; format: Format } | null = null;

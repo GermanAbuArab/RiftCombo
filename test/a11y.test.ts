@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { VIEWS } from "../web/router.js";
 
 /**
  * What the keyboard and the screen reader are owed, pinned here because none of it shows up as an
@@ -141,18 +142,20 @@ describe("what a screen reader is told", () => {
     expect(router).toContain('aria-current", "page"');
     expect(router).toContain("removeAttribute(\"aria-current\")");
     expect(router).toContain("document.title = TITLES[r.view]");
-    for (const view of ["combos", "decks", "guide", "sources"]) expect(router).toMatch(new RegExp(`\\b${view}:\\s*"`));
+    // Driven off VIEWS rather than a repeated list, so a sixth view cannot ship without a title (#206).
+    for (const view of VIEWS) expect(router).toMatch(new RegExp(`\\b${view}:\\s*"`));
   });
 
   it("gives each view a main landmark and exactly one h1", () => {
-    for (const view of ["combos", "decks", "guide", "sources"]) {
+    for (const view of VIEWS) {
       const start = home.indexOf(`id="view-${view}"`);
       expect(start, view).toBeGreaterThan(-1);
       const end = home.indexOf(`id="view-`, start + 1);
       const section = home.slice(start, end === -1 ? home.indexOf("</body>") : end);
       expect(section, `view-${view} has no <main>`).toMatch(/<main[\s>]/);
-      // My decks writes its own heading from web/decks.ts, so its container is the exception.
-      if (view !== "decks") expect((section.match(/<h1[\s>]/g) ?? []).length, `view-${view} h1`).toBe(1);
+      // My decks writes its own heading from web/decks.ts, and Run plays writes the play's own title
+      // from web/plays.ts, so those two containers are the exceptions: their h1 is rendered, not typed.
+      if (view !== "decks" && view !== "plays") expect((section.match(/<h1[\s>]/g) ?? []).length, `view-${view} h1`).toBe(1);
     }
   });
 
@@ -164,11 +167,13 @@ describe("what a screen reader is told", () => {
     }
   });
 
-  it("carries one navigation across the whole site, pointing at the four views", () => {
+  it("carries one navigation across the whole site, pointing at every view", () => {
+    // The legal pages are static and carry a copy of the nav, so a view added to the app alone is a
+    // dead end from them. Checking all five rather than a sample is what catches that (#206).
     for (const f of ["privacy.html", "terms.html", "404.html"]) {
       const nav = /<nav class="topnav">([\s\S]*?)<\/nav>/.exec(read(`web/${f}`))?.[1] ?? "";
       expect(nav, `${f} has no top nav`).not.toBe("");
-      for (const href of ["/#/combos", "/#/decks"]) expect(nav, `${f} → ${href}`).toContain(`href="${href}"`);
+      for (const view of VIEWS) expect(nav, `${f} → /#/${view}`).toContain(`href="/#/${view}"`);
     }
   });
 });
