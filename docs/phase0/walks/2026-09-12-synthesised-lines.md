@@ -1235,3 +1235,75 @@ ran first. §9.3 had already stated the right caution ("a first pass from text, 
 this lane still built a table on the output without spot-checking a single row against the entry's
 own `terminatesIn`. **One row read end-to-end would have caught it** — the row whose id ends in
 `-hold` and whose bucket said CONQUER.
+
+---
+
+## 18. Batch 9 — body/order REFUSED, and the refusal is a fact about the card pool
+
+§17 left `body/order` as the only identity with zero surviving finishers: seven available, all
+Hold-gated. It does not get a line, and the reason is worth more than a line would be.
+
+### 18.1 The whole point budget, swept rather than assumed
+
+Every card whose text gains a point and whose domains are a subset of {body, order}:
+
+| card | domain | gated on |
+|---|---|---|
+| `SFD-115 Trinity Force` | body | a Hold |
+| `SFD-214 Power Nexus` | colourless battlefield | a Hold |
+| `VEN-138 Shen, Leader of the Kinkou Order` | order | a Hold |
+| `UNL-177 Ivern, Friend to All` | order | **a Conquer OR a Hold** |
+| `OGN-290 The Arena's Greatest` | colourless battlefield | BANNED in both formats (`data/legality.json`) |
+| `UNL-T03 Brush` | token | never in a decklist |
+
+**Ivern is the identity's only non-Hold point source**, by 823.1.b and 823.1.c.1 making *"When I
+conquer or hold"* both a Conquer Effect and a Hold Effect. So the non-Hold ceiling is:
+
+- **3 Ivern.** 103.2.b caps by NAME — *"Your Main Deck can include up to 3 copies of the same named
+  card"* — and Ivern has a single printing anyway. All three fire on one Conquer, since 383.4.c.2.a
+  puts the Conquer Abilities on the Chain for every corresponding unit *"present at a Battlefield
+  when a player gains control of it"*.
+- **+ 2 Conquer Scores.** 485.4 is *"Battlefield Count: 2"* and 470 allows Scoring *"once per
+  Battlefield per turn"*. The third battlefield that would lift this is `UNL-147 Baron Nashor`'s
+  Baron Pit, and Baron Nashor is mono-Chaos.
+
+**Five. The identity cannot reach eight on a board it does not already control.**
+
+### 18.2 The escape that looked real and is not
+
+The one route to eight is to conquer BOTH battlefields with the SAME three Iverns — 4 at the first,
+4 at the second — which is legal, because a Conquer point is banked at the Score and 323.6 stripping
+Control afterwards does not unbank it. It fails on movement arithmetic. Ivern has no [Ganking], so
+144.4 restricts him to base↔battlefield and the trip is base→A→base→B: **three moves per Ivern, nine
+across the three, each costing an exhaust under 144.2** — six extra readies.
+
+body/order has readiers, so this had to be checked rather than waved away, and the two that could
+have carried it both fail on Ivern specifically:
+
+- **`SFD-180 Fiora, Worthy`** — *"When a unit you control becomes [Mighty], you may pay 1 Order Power
+  to ready it"* — is the identity's only ready with no exhaust in its cost, so it is the only
+  repeatable one. **It can never ready an Ivern.** 709: *"A Unit 'becomes Mighty' at the moment its
+  Might changes from being less than 5 to being 5 or greater"*, with Riot's own second example —
+  *"A Unit with Might 5 that gets +1 [M] does not become Mighty, because it was already Mighty."*
+  Ivern is printed **Might 6**. He is Mighty on arrival and can never cross.
+- **`OGN-152 Mistfall`** readies a unit you buff, but its cost includes its own exhaust, so three
+  copies are three readies a turn against the six required — and 702.3 caps a unit at one buff at a
+  time, so the buffs do not repeat either.
+
+Neither of the pool's two *"Ready your units"* cards is available: `SFD-192 Shurelya's Requiem` is
+Calm/Mind and `SFD-204 On the Hunt` is Body/Chaos.
+
+### 18.3 What body/order actually has, stated positively
+
+Its recovery from a stall is **an ENGINE and not a finisher, and that is a property of the pool.**
+Conquer both battlefields with three Iverns for five this turn; Hold both next turn for
+1 + 1 + 3 Ivern hold-faces + 3 Trinity Force. The opponent takes a turn in between, which is exactly
+what disqualifies it as a CHAIN under this project's definition — and it is also why
+`ivern-arena-trinity-body-order-hold` is the right entry for the identity and not a mistake. **It
+is not that nobody built body/order a finisher; it is that the identity's only non-Hold point source
+is one card capped at three copies.**
+
+Recorded so the next session does not spend a walk rediscovering it. The refusal is scoped, in this
+project's standing sense: it is a claim about **reaching eight on a fully stalled board**, and a new
+set printing one Body or Order card that gains a point on a Conquer, an attack or a combat win
+reopens it immediately.
