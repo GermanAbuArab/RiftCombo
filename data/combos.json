@@ -3183,7 +3183,8 @@
           "Needs three Undertitans and an otherwise empty Main Deck. The Draw Phase strips one card per turn, so three copies buys exactly one clean turn at +4E per reveal; the next turn the deck holds one card and each reveal is +2E, then zero, and the turn after that the Draw Phase itself is a Burn Out (431.1.a, 431.2).",
           "Revealing more cards than the deck holds is explicitly NOT a Burn Out (431.1.c) — you reveal as many as possible and carry on. Only drawing past the end costs a point.",
           "One reveal per combat and Rek'Sai has no Ganking, so in Duel's two battlefields the reliable number is two reveals a turn, +8E. Whether 'Recycle the rest' still recycles when nothing was banished is R22; the other reading leaves both Undertitans on top and makes the engine stronger.",
-          "CITATION UPGRADE (2026-09-09): 369.1 is the paragraph that makes Undertitan’s “As I’m revealed” a Replacement Effect rather than a trigger, and Riot names the card in the example - which is why the reveal and the Add are one event and nothing can respond between them."
+          "CITATION UPGRADE (2026-09-09): 369.1 is the paragraph that makes Undertitan’s “As I’m revealed” a Replacement Effect rather than a trigger, and Riot names the card in the example - which is why the reveal and the Add are one event and nothing can respond between them.",
+          "370.1.b.1 NAMES THIS CARD IN ITS OWN WORKED EXAMPLE AND WAS UNCITED HERE (upgrade 2026-09-12; a debt two separate lanes flagged). An *\"as you look at or reveal me\"* clause is a REPLACEMENT EFFECT, not a Triggered Ability: 370.1.b.1 - *\"In the case of Replacement Effects that describe a game action to occur `as` an event occurs, the described event is replaced by that same event plus the game action being performed\"* - and 371.2 is what makes its *\"you may\"* legal. Three consequences a trigger would not buy: there is **no Chain Item**, so no window exists between the look and the body arriving; it is **immune to every trigger multiplier in the pool** (`OGN-236 Karthus` doubles Deathknells, `UNL-087 Blue Sentinel` and `UNL-029 Red Brambleback` double Hold and Conquer triggers, and none of them can see a replacement); and 431.1.c keeps the look itself free of Burn Out."
         ]
       },
       "steps": [
@@ -8484,7 +8485,8 @@
           "LIGHTNING RUSH (VEN-156) IS DELIBERATELY NOT AN INGREDIENT. It looks at the top 3 as well and would be a second enabler, but it is Order/Chaos, so 103.1.b would force the identity to Order + Chaos and the pool holds exactly ONE such legend, VEN-155 Heart of the Tempest. Stacked Deck alone keeps the shell mono-Chaos under any Chaos legend, which is worth more than a fourth looker.",
           "THE DOWNSIDE IS PRINTED. Nocturne drawn normally is a 4 Energy + 1 Power body with [Ganking] and nothing else, which the source calls a brick. Every copy you add to raise the hit rate is a copy you can draw badly.",
           "THE TRIGGER IS ON 'LOOK AT OR REVEAL', so anything that looks works: Stacked Deck, Lightning Rush, a Seal's look, Bait and Hook. It is not restricted to draws, and that is the whole reason the family exists.",
-          "Both the banish and the play are 'you may' — nothing is forced, so a Nocturne seen with no rainbow Power available simply stays in the deck order Stacked Deck sets."
+          "Both the banish and the play are 'you may' — nothing is forced, so a Nocturne seen with no rainbow Power available simply stays in the deck order Stacked Deck sets.",
+          "THIS ENTRY CALLED THE CLAUSE A TRIGGER TWICE AND IT IS A REPLACEMENT EFFECT (corrected 2026-09-12, #187 batch 5). `OGN-194 Nocturne`s *\"As you look at or reveal me\"* is governed by 370.1.b.1, whose own worked example is `SFD-175 Undertitan`: *\"the described event is replaced by that same event plus the game action being performed\"*, with 371.2 making the *\"you may\"* legal. The entry cited no paragraph at all for it - its whole rule set was 103.1.b, 103.2.a, 103.2.b and 416.1. The distinction is not pedantry: a replacement creates **no Chain Item**, so there is no window between the look and the body arriving; and it is **invisible to every trigger multiplier in the pool**, which is exactly the kind of upgrade a reader would otherwise go looking for."
         ]
       },
       "steps": [
@@ -14921,7 +14923,8 @@
           "VOID HATCHLING FILTERS ONE CARD, NOT TWO. 'Look at the top card first. You may recycle it. Then reveal those cards' — the top card, singular. Void Rush reveals two, so the Hatchling improves the odds of hitting an Undertitan, it does not guarantee it. Recycling puts the rejected card on the bottom of the Main Deck (416.1), which is a cost inside a deck that is being drawn through.",
           "OVERLAP DECLARED. reksai-undertitan-reveal already runs three Undertitans, under SFD-170 Rek'Sai, Swarm Queen, revealed by her attack trigger. This is a different route to the same body — a spell instead of an attack, with the cost reduction and the Accelerate that Swarm Queen's line has neither of — and the two share only SFD-175. In one deck the three copies serve both.",
           "THE CEILING IS THE COPY LIMIT, TWICE. 103.2.b caps Void Rush at 3 and the Undertitan at 3, and each Void Rush is spent. Three bodies, and the last ones cost more because the deck is thinner.",
-          "CITATION UPGRADE (2026-09-09): 369.1 is the paragraph that makes Undertitan’s “As I’m revealed” a Replacement Effect rather than a trigger, and Riot names the card in the example - which is why the reveal and the Add are one event and nothing can respond between them."
+          "CITATION UPGRADE (2026-09-09): 369.1 is the paragraph that makes Undertitan’s “As I’m revealed” a Replacement Effect rather than a trigger, and Riot names the card in the example - which is why the reveal and the Add are one event and nothing can respond between them.",
+          "370.1.b.1 NAMES THIS CARD IN ITS OWN WORKED EXAMPLE AND WAS UNCITED HERE (upgrade 2026-09-12; a debt two separate lanes flagged). An *\"as you look at or reveal me\"* clause is a REPLACEMENT EFFECT, not a Triggered Ability: 370.1.b.1 - *\"In the case of Replacement Effects that describe a game action to occur `as` an event occurs, the described event is replaced by that same event plus the game action being performed\"* - and 371.2 is what makes its *\"you may\"* legal. Three consequences a trigger would not buy: there is **no Chain Item**, so no window exists between the look and the body arriving; it is **immune to every trigger multiplier in the pool** (`OGN-236 Karthus` doubles Deathknells, `UNL-087 Blue Sentinel` and `UNL-029 Red Brambleback` double Hold and Conquer triggers, and none of them can see a replacement); and 431.1.c keeps the look itself free of Burn Out."
         ]
       },
       "steps": [
@@ -19033,7 +19036,8 @@
           "UNDERTITAN ON TOP IS ONE ADD, NOT A STANDING TAX. 424.1.a.2 keeps a revealed card in the deck, which tempts a 'leave it on top and reveal it again next showdown' line. 315.4.b kills it: '1. The Turn Player draws 1', every turn, unconditionally — a card left on top is in your hand by your next Draw Phase. Each copy is worth at most one Add per trip to the top. 429.2 makes the Add resolve as soon as it is finalized; 167 decides how long it lives (spendable that Main Phase on your turn, Reactions only on theirs).",
           "IT IS TWO LOOKS, NOT A SEARCH, AND THAT IS THE WHOLE CLAIM. Predict first: if the top card is a spell, leave it and the Reveal draws it; if not, recycle it to the BOTTOM (416.1.a / 416.5) and the Reveal shows a fresh card. So one Energy buys two chances, the second informed by the first — which is what separates this from the blind reveals it shares a payoff with. Per #117's finding 4 nothing in this lens turns that probability into a certainty: no card in the pool searches the Main Deck for a named card.",
           "OVERLAP, DECLARED. reksai-undertitan-reveal (SFD-170 + 3x SFD-175) and void-rush-undertitan-accelerate (SFD-188 + SFD-175 + SFD-029 + SFD-018) already use Undertitan. Both are blind reveals inside a Void shell on your own attack; this is an informed reveal inside Mind/Order that also fires on the opponent's turn. Same payoff card, different shells.",
-          "SAFE IN A DECK-EMPTY SHELL: 436.4.a (Predicting with too few cards does not Burn Out) and 431.1.c (looking or revealing in excess does not Burn Out) both apply; only the mandatory 315.4.b draw can burn you, and that is not this card."
+          "SAFE IN A DECK-EMPTY SHELL: 436.4.a (Predicting with too few cards does not Burn Out) and 431.1.c (looking or revealing in excess does not Burn Out) both apply; only the mandatory 315.4.b draw can burn you, and that is not this card.",
+          "370.1.b.1 NAMES THIS CARD IN ITS OWN WORKED EXAMPLE AND WAS UNCITED HERE (upgrade 2026-09-12; a debt two separate lanes flagged). An *\"as you look at or reveal me\"* clause is a REPLACEMENT EFFECT, not a Triggered Ability: 370.1.b.1 - *\"In the case of Replacement Effects that describe a game action to occur `as` an event occurs, the described event is replaced by that same event plus the game action being performed\"* - and 371.2 is what makes its *\"you may\"* legal. Three consequences a trigger would not buy: there is **no Chain Item**, so no window exists between the look and the body arriving; it is **immune to every trigger multiplier in the pool** (`OGN-236 Karthus` doubles Deathknells, `UNL-087 Blue Sentinel` and `UNL-029 Red Brambleback` double Hold and Conquer triggers, and none of them can see a replacement); and 431.1.c keeps the look itself free of Burn Out."
         ]
       },
       "steps": [
@@ -19399,7 +19403,8 @@
           "TEEMO CAN BE THE SURPRISE BLOCKER, WHICH IS WHERE THE REACTIVITY IS WORTH SOMETHING. Hidden at the battlefield they attack, he is played from face down for 0 inside the Combat Showdown (347.1; [Reaction] from 811.1.b, 813.1.b past 155, 813.3.a for the destination), and 464.2.c.3.a designates him 'during the Cleanup phase following the action that caused it to become present' — the first time in that combat, so 383.4.f fires. 811.1.b allows only one face-down card per battlefield, so Kennen cannot be hidden there too; he is played normally, or hidden at the other battlefield.",
           "SAFE IN ANY SHELL. 431.1.c makes the reveal safe with fewer than 5 cards left and 431.1.c.1 drops the leftover instructions without a Burn Out; nothing here draws, so 431.1.a is never risked. 809.1.c/809.1.d tax Teemo's 'choose an enemy unit here' against a [Deflect] attacker with Power that has to be banked first on their turn (164.2.b).",
           "OVERLAP, DECLARED. reksai-undertitan-reveal, void-rush-undertitan-accelerate and diana-lunari-showdown-scry already use SFD-175. The first two are blind reveals inside a Void shell on your own attack; the third is an informed reveal that spends each copy. This is the only one that fires on the OPPONENT's turn and the only one whose recycle keeps every copy in the deck.",
-          "CITATION UPGRADE (2026-09-09): 369.1 is the paragraph that makes Undertitan’s “As I’m revealed” a Replacement Effect rather than a trigger, and Riot names the card in the example - which is why the reveal and the Add are one event and nothing can respond between them."
+          "CITATION UPGRADE (2026-09-09): 369.1 is the paragraph that makes Undertitan’s “As I’m revealed” a Replacement Effect rather than a trigger, and Riot names the card in the example - which is why the reveal and the Add are one event and nothing can respond between them.",
+          "370.1.b.1 NAMES THIS CARD IN ITS OWN WORKED EXAMPLE AND WAS UNCITED HERE (upgrade 2026-09-12; a debt two separate lanes flagged). An *\"as you look at or reveal me\"* clause is a REPLACEMENT EFFECT, not a Triggered Ability: 370.1.b.1 - *\"In the case of Replacement Effects that describe a game action to occur `as` an event occurs, the described event is replaced by that same event plus the game action being performed\"* - and 371.2 is what makes its *\"you may\"* legal. Three consequences a trigger would not buy: there is **no Chain Item**, so no window exists between the look and the body arriving; it is **immune to every trigger multiplier in the pool** (`OGN-236 Karthus` doubles Deathknells, `UNL-087 Blue Sentinel` and `UNL-029 Red Brambleback` double Hold and Conquer triggers, and none of them can see a replacement); and 431.1.c keeps the look itself free of Burn Out."
         ]
       },
       "steps": [
@@ -30333,7 +30338,8 @@
           "THE SIGNPOST'S GEOMETRY. It moves 'a different unit you control to the LOCATION of the unit you exhausted to pay for this ability', so the destination is wherever the paying body already stands: base to battlefield, battlefield to base, or battlefield to battlefield with no [Ganking] needed. Pakaa's move trigger reads 'When I move' and 420.1 / 420.2.a make an effect move a Move, so the Signpost's move counts.",
           "COST. Pakaa E5, Signpost E2, and each Undertitan E6 + 1 Order Power if you choose to cast it — but the 2 Energy is banked whether you cast it or not, and 167 empties the Rune Pool at the start of your Main Phase, so the Add is worth having only inside the same Main Phase it arrives in.",
           "WHAT REFUTES IT. (a) The Add is Energy, not Power, and 167 kills it at the next Main Phase start — a reveal on the opponent's turn banks nothing. (b) Pakaa is M4 and the +2 lasts only 'this turn'. (c) If the top card is a unit you did not want, you draw it anyway: 'If it's a unit, draw it' has no 'may'.",
-          "CITATION UPGRADE (2026-09-09): 369.1 is the paragraph that makes Undertitan’s “As I’m revealed” a Replacement Effect rather than a trigger, and Riot names the card in the example - which is why the reveal and the Add are one event and nothing can respond between them."
+          "CITATION UPGRADE (2026-09-09): 369.1 is the paragraph that makes Undertitan’s “As I’m revealed” a Replacement Effect rather than a trigger, and Riot names the card in the example - which is why the reveal and the Add are one event and nothing can respond between them.",
+          "370.1.b.1 NAMES THIS CARD IN ITS OWN WORKED EXAMPLE AND WAS UNCITED HERE (upgrade 2026-09-12; a debt two separate lanes flagged). An *\"as you look at or reveal me\"* clause is a REPLACEMENT EFFECT, not a Triggered Ability: 370.1.b.1 - *\"In the case of Replacement Effects that describe a game action to occur `as` an event occurs, the described event is replaced by that same event plus the game action being performed\"* - and 371.2 is what makes its *\"you may\"* legal. Three consequences a trigger would not buy: there is **no Chain Item**, so no window exists between the look and the body arriving; it is **immune to every trigger multiplier in the pool** (`OGN-236 Karthus` doubles Deathknells, `UNL-087 Blue Sentinel` and `UNL-029 Red Brambleback` double Hold and Conquer triggers, and none of them can see a replacement); and 431.1.c keeps the look itself free of Burn Out."
         ]
       },
       "steps": [
@@ -56143,6 +56149,157 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-12, issue #191, session rc-walk-blocks, batch 25. 820.4 was cited by nothing in data/combos.json or data/synergies.json before this entry, measured with a boundary regex over both files. Card text verbatim from data/corpus_flat.txt lines 179, 538 and 695. Cross-references: syndra-transcendent-existential-dread-three-executions (the same grant on a spell that prints its own [Repeat], and the board this entry deliberately does not become), draven-rebuke-bloodless-combat (the same spell against a garrison of one), ezreal-marai-spire-free-repeat (the same battlefield, discounting printed [Repeat] costs, and the precedent for leaving the Spire's Control body out of uses[]). No unruled reading: the narrow reading of 'in a showdown' is the demanding one and is taken on purpose."
+    },
+    {
+      "id": "morgana-apothecary-hextech-ray-doubling-ladder",
+      "name": "355.5.b - an ETB choice is made when the TRIGGER fires, not when the body is played, so the Apothecary can return Morgana (or himself) and every Morgana replay doubles the damage already marked",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-009",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury spell, E1 P1, [Action]. 'Deal 3 to a unit at a battlefield.' It is the opener and it is load-bearing: Morgana deals damage EQUAL TO the damage already marked, and 143.2.a needs 'nonzero damage marked on it' - against an undamaged body she deals 0 and kills nothing. The cheapest 3 in Fury, so the ladder starts at 3 rather than at 1 and needs one fewer rung."
+        },
+        {
+          "card": "VEN-017",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Fury unit, E5 P1 M5, [Ambush]. 'When you play me, deal damage to a unit equal to the damage marked on it.' Each resolution DOUBLES the marked total, so from an opener of d the marked damage after k plays is d x 2^k. Her instruction names 'a unit' with no 'at a battlefield' and no 'here', so she reaches an enemy unit in a BASE."
+        },
+        {
+          "card": "UNL-021",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Fury unit, E3 M3, [Ambush]. 'When you play me, you may return a friendly unit at a battlefield to its owner's hand.' Each copy buys one more rung of the ladder by sending Morgana back to hand to be replayed. 103.2.b caps him at 3, which is the entry's real ceiling."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend's Domain Identity includes Fury (103.1.b.3); mono-Fury runs all three.",
+          "A battlefield where you already control units, because [Ambush] is what puts both bodies down at [Reaction] speed - 822.1.b is functionally short for 'I may be played to a battlefield where you control Units'.",
+          "An enemy body worth this much Energy. The ladder is removal, not a clock: it scores nothing."
+        ],
+        "notable": [
+          "355.5.b IS THE PARAGRAPH, AND IT WAS CITED BY NOTHING. 355.5 says 'If a card requires you to specifically choose one or more Game Objects, that choice is made now.' - now being the Make Relevant Choices step of playing the card. 355.5.b carves the exception this line runs on: 'This does not include making choices for Triggered Abilities of permanents, or Delayed or Reflexive Triggers generated by the item being finalized, even if those abilities trigger when the chain item is played.' Its worked example ends 'The target will be chosen when the ability triggers.' So the Apothecary's 'return a friendly unit at a battlefield' is NOT chosen as he is played; it is chosen when his trigger is finalized, with the Apothecary already standing on the board.",
+          "TWO CONSEQUENCES, AND BOTH ARE LOAD-BEARING HERE. First, the Apothecary is himself a friendly unit at a battlefield when the choice is made, so HE IS A LEGAL CHOICE FOR HIS OWN TRIGGER - he can bounce himself back to hand and be replayed, which is what makes him an answer to targeted removal as well as a bouncer. Second, an opponent who reacts to the Apothecary BEING PLAYED is acting before the choice exists; their real window is after the trigger is finalized (312.2.c), by which time the target is locked at 337.1. This generalises past this entry: every 'when you play me, kill/return/deal' body in the pool picks its object after it has landed.",
+          "THE ARITHMETIC IS EXPONENTIAL IN RUNGS AND LINEAR IN CARDS. Marked damage after k Morgana plays is d x 2^k. With Hextech Ray's 3: 3, 6, 12, 24. The largest printed Might in the pool is 12, and it is two names, not one - UNL-059 Master Yi, Unstoppable and UNL-147 Baron Nashor (UNL-238 is its second printing), measured over data/cards.json on 2026-09-12 - so TWO Morgana plays reach every printed unit and the third rung is dead weight. Total for the Baron: Hextech Ray E1 + 1 Fury, Morgana E5 + 1 Fury, Grim Apothecary E3, Morgana again E5 + 1 Fury = E14 + 3 Fury Power. Against a Might 5 or 6 body the Ray plus one Morgana is enough and the Apothecary is not needed at all.",
+          "THE LADDER IS ONE TURN LONG AND CANNOT READ COMBAT DAMAGE. 143.3.b gives exactly two healing times - 143.3.b.1 'At the end of each player's turn.' and 143.3.b.2 'During a Combat Cleanup.' - so marked damage from a spell survives to the end of your turn and nothing longer. And combat damage is out of reach in both directions: 465.3 reads '2. Skip the FEPR process and cancel any outstanding tasks. Proceed to the Resolution Step.', so no player gets priority after 465.2.d deals combat damage, and the very next task is 466.1's Combat Cleanup, whose 466.1.a.1 heals every unit. There is no window in which combat-marked damage can be doubled.",
+          "359.3.f.2 IS WHY THE ORDER OF THE CHAIN MATTERS: 'Information referenced in an instruction in this way will be checked on execution of the instruction.' Morgana's amount is read when her trigger RESOLVES, not when it is finalized - so a ping played in response to her trigger, after her target is locked, is counted by her. That is the one way to add a rung without a second Morgana.",
+          "SHE TARGETS, SO SHE PAYS [Deflect]. 809.1.c: 'Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].' Morgana chooses a unit every time she is played, so a Deflect body taxes every rung of the ladder separately. A 'can't be chosen' body (SFD-105 Ruin Runner) is immune outright under 054.1.",
+          "MORGANA REACHES A BASE, AND THE PROJECT'S OWN INVENTORY CANNOT SEE HER. CLAUDE.md's sixteen-card list of removal that reaches a base was swept with a 'kill | deal N to (an) (enemy) unit' predicate; Morgana's amount is not a numeral, so she is invisible to it. Re-swept 2026-09-12 for a Deal instruction naming 'a unit' with no 'at a battlefield' and no 'here', the corpus returns 13 rows, of which ten are genuine enemy-facing Deals - OGN-029, OGN-248, OGN-252, OGS-022, SFD-077, UNL-020, UNL-023, UNL-067, UNL-073 and VEN-017 - while SFD-191 Rabadon's Deathcrown (Bonus Damage, not a Deal) and UNL-019 Blighted Battleaxe ('deal 4 to me') are false positives and SFD-116 Yone names the base outright. The predicate has a false negative of its own: UNL-026 Xerath, Freed is excluded because its 'at a battlefield' is a restriction on USING the ability, not on the target. State the predicate with the number.",
+          "417.6.a MAKES HER DAMAGE ABILITY DAMAGE: 'If a game effect does not specify a source, the game effect describing the Deal action is the source.' So a Bonus Damage card that reads 'your spells and abilities deal N' raises every rung - the increase is applied per Deal action under 715.2, which raises the base d and therefore the whole ladder.",
+          "DISTINCT FROM lotus-trap-morgana-excess-damage, which shares only Morgana. That entry uses UNL-013 Lotus Trap to HALVE what a defender costs to kill inside a combat and manufacture excess damage for a Conquer payoff; this one never enters a combat, doubles a number outside one, and is pure removal. The two cannot be run as one line: Lotus Trap's doubling is a replacement on damage dealt to the chosen unit, and the excess-damage payoff needs the combat that 465.3 puts out of this entry's reach.",
+          "DISTINCT FROM apothecary-pridestalker-buff, which shares only the Apothecary. That entry bounces a body to REPLAY its ETB under a legend that pays per unit played; this one bounces Morgana to re-fire one specific doubling and states why the choice is legal at all.",
+          "822.3 IS THE PRICE OF [Ambush]: 'If there are no units at the location chosen before Finalization completes for any reason, then it is no longer a valid location by Ambush's reasoning and cannot be played there.' If the opponent clears your garrison in response, both bodies lose their play location and the ladder stops."
+        ]
+      },
+      "steps": [
+        "On your turn or in a showdown, play OGN-009 Hextech Ray for 1 Energy + 1 Fury Power and deal 3 to the target. That damage is now marked and 143.3.b keeps it there until the end of the turn.",
+        "Play VEN-017 Morgana, Vindictive with [Ambush] (822.1.b) to a battlefield where you control units. Her trigger goes on the chain; nothing is chosen yet.",
+        "When the trigger is finalized, choose the damaged body. 359.3.f.2 reads the amount on EXECUTION, so anything else you mark in the meantime is counted too. The trigger resolves: 3 more damage, marked total 6.",
+        "If 6 is already lethal - 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' - stop - the body dies in the next Cleanup.",
+        "Otherwise play UNL-021 Grim Apothecary, also with [Ambush]. Under 355.5.b nothing is chosen as he is played.",
+        "His trigger finalizes with him already on the board: choose Morgana and return her to her owner's hand.",
+        "Replay Morgana for 5 Energy + 1 Fury Power. Her trigger reads 6 and deals 6: marked total 12, which is lethal against every unit printed in the pool.",
+        "Each further Grim Apothecary buys one more doubling on the same turn, and 103.2.b stops at three."
+      ],
+      "netPerIteration": "one doubling of the damage already marked on a chosen enemy unit, for 5 Energy + 1 Fury Power (Morgana) plus 3 Energy (Grim Apothecary)",
+      "terminatesIn": "removal only - it scores nothing, 143.3.b.1 heals every marked point at the end of the turn, and 103.2.b caps the Apothecary at three so the ladder is at most four Morgana plays (d, 2d, 4d, 8d, 16d) in one turn",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "This does not include making choices for Triggered Abilities of permanents, or Delayed or Reflexive Triggers generated by the item being finalized, even if those abilities trigger when the chain item is played."
+        },
+        {
+          "title": "Hand walk 2026-09-12, uncited Core Rules sub-rules 300-499, batch 5 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-12",
+          "quote": "355.5.b's worked example ends 'The target will be chosen when the ability triggers.' 465.3 reads '2. Skip the FEPR process and cancel any outstanding tasks. Proceed to the Resolution Step.', which is why no player can act on combat-marked damage before 466.1.a.1 heals it."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-12 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md, batch 5), issue #187, lane rc-walk-mid (uncited Core Rules sub-rules 300-499). Card text verbatim from data/corpus_flat.txt. Opens 355.5.b, cited by nothing in data/combos.json or data/synergies.json before this entry. The arithmetic is stated with its own opener: d x 2^k, with d = 3 from Hextech Ray, against a pool whose largest printed Might is 12 (UNL-147 Baron Nashor, measured against data/cards.json on 2026-09-12). Cross-references lotus-trap-morgana-excess-damage and apothecary-pridestalker-buff, and shares no more than one card with either."
+    },
+    {
+      "id": "gemcraft-seer-nocturne-vision-replacement-deploy",
+      "name": "370.1.b.1 - Nocturne's 'as you look at me' is a REPLACEMENT EFFECT, not a trigger, so under a mass [Vision] grant he deploys with no chain item and, by 312.1.b.1, with no priority at all",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-100",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Mind unit, E3 M3. '[Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.) Other friendly units have [Vision].' The static is what turns one look into a look on EVERY subsequent unit you play, including units played at [Reaction] or [Ambush] speed on the opponent's turn."
+        },
+        {
+          "card": "OGN-194",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "DECK",
+          "note": "Chaos unit, E4 P1 M4, [Ganking]. 'As you look at or reveal me from the top of your deck, you may banish me. If you do, you may play me for 1 rainbow Power.' Three copies because the line is a lottery and 103.2.b is how many tickets it allows. He must be IN THE DECK for the clause to apply - drawn normally he is a 4 Energy + 1 Power body with [Ganking] and nothing else."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "unit-delivery"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Gemcraft Seer is mono-Mind and Nocturne is mono-Chaos, so 103.1.b.1 forces a Mind/Chaos legend. The census against data/cards.json returns four names and eight base codes: OGN-263/OGN-307 Swift Scout, SFD-199/SFD-248 Prodigal Explorer, UNL-197/UNL-234 Scorn of the Moon, VEN-151/VEN-195 Soul's Reflection.",
+          "One rainbow Power available at the moment of the look - the play is not free, and both halves are 'you may', so a Nocturne seen with no Power simply stays where the look leaves him."
+        ],
+        "notable": [
+          "IT IS A REPLACEMENT EFFECT AND THE CATALOGUE HAS BEEN CALLING IT A TRIGGER. 370.1.b.1, cited by nothing before this entry: 'In the case of Replacement Effects that describe a game action to occur “as” an event occurs, the described event is replaced by that same event plus the game action being performed.' Its worked example is SFD-175 Undertitan, printed in this pool. So the look is not followed by Nocturne's clause; the look IS the banish and the play. 370.1.b is the general form: 'When a Replacement Effect applies, it replaces the qualifying event with one or more Game Actions or events, or the qualifying instruction with another instruction.'",
+          "WHICH BUYS THREE THINGS A TRIGGER WOULD NOT. It never becomes a Chain Item, so it cannot be countered and there is no window between the look and the body arriving. No trigger multiplier in the pool touches it - OGN-236 Karthus doubles [Deathknell] effects, UNL-087 Blue Sentinel and UNL-029 Red Brambleback double hold and conquer triggers, and a Replacement Effect is none of those. And 371.2 is what makes the 'you may' legal: 'If the Replacement Effect says a player “may” apply the Replacement Effect, the player has the choice of whether or not to apply it.'",
+          "312.1.b.1 IS THE PARAGRAPH THAT LETS IT HAPPEN ON THE OPPONENT'S TURN, AND THE WHOLE OF 312.1 AND 419.1-419.2 WAS UNCITED. 419.2 says of playing a card 'This is a Discretionary Action', 312.1 says 'Priority is the singular exclusive right to take Discretionary Actions' and 312.1.b says 'If no player has Priority, no player can take Discretionary Actions' - which is the rules-text home of what this project has always derived from 312.2.a. Then 312.1.b.1: 'Players can always take and make choices for Limited Actions when instructed, regardless of Priority.' Being INSTRUCTED to play Nocturne is a Limited Action (410.2.a, 410.2.b), so it needs no priority and is not bound to your Main Phase. The catalogue cites 312.2.a 81 times and had never cited 312.1 or any of its sub-rules.",
+          "SO THE BODY CAN LAND INSIDE THE OPPONENT'S COMBAT. Play any [Ambush] or [Reaction] unit on their turn under the Seer's static, look at the top card, find Nocturne, and 355.2.a puts him at your base or a battlefield you control - the contested one included. 319.6 with 323.2.a then give a body that becomes present mid-combat its designation at the next Cleanup, before 465.2 resolves, so a 4 Might defender appears after the attackers were declared. 143.4 makes him enter exhausted, which costs nothing on defence (neither 464.2.c.3 nor 465.2.b filters by state) and 415.3.a readies him at your own Awakening.",
+          "817.2.b IS THE HONEST CAP ON THE MASS GRANT: 'If the player does not recycle the top card and nothing else happens in between the triggers resolving, each instance of Vision will see the same card.' So N units played in one turn are not N cards deep - they are one look with N re-rolls, and each re-roll costs you the card you recycled (416.1 puts it on the bottom). Against a 39-card deck (103.2.a with the Chosen Champion set aside under 103.2.a.1) three Nocturnes are a real hit rate over a game and never a plan for a given turn.",
+          "370.2 MAKES COPIES REDUNDANCY, NOT SCALING: 'A Replacement Effect can only be applied once to an event, or to any Game Actions or events that replace that event.' A look at one card can only ever see one Nocturne, so the second and third copies raise the chance of seeing one and never the number you deploy per look.",
+          "THE VERB IS WHY THIS WORKS AND UNDERTITAN'S DOES NOT. Nocturne says 'look at OR reveal'; SFD-175 Undertitan says only 'As I'm revealed from your deck'. 436.1 defines Predict with 'look at' and 817.1.b defines [Vision] the same way, while 424.1 makes revealing a public presentation - so [Vision] and Predict feed Nocturne and can never feed Undertitan. Nocturne is the printed exception to the project's standing 'a predict never reveals' rule.",
+          "431.1.c KEEPS IT SAFE IN AN EMPTY-DECK SHELL: looking and revealing past the deck do not Burn Out, and 431.1.c.1 extends that to the zone change that follows - so the recycling half of [Vision] is free where a draw would be 431.1.a.",
+          "DISTINCT FROM nocturne-stacked-deck-cheat, which shares only Nocturne. That entry buys looks with OGN-183 Stacked Deck, a mono-Chaos [Action] spell at 1 Energy for three cards, and keeps the shell mono-Chaos; this one buys them with a static that makes every unit you play a looker, pays a second domain for it, and states the rules mechanism - the earlier entry calls the clause a trigger and cites no paragraph for it at all. The correction belongs there as well as here.",
+          "IT DELIVERS A BODY AND SCORES NOTHING. Nocturne's [Ganking] is the only thing he does once he lands (810.1.c.3: Ganking adds destinations for the Standard Move and no extra movement), so the class is ENGINE."
+        ]
+      },
+      "steps": [
+        "Resolve a Gemcraft Seer onto the board. His own [Vision] is one look; the static is the engine.",
+        "Every other friendly unit you play from now on has [Vision] and looks at the top card of your Main Deck as it enters (817.1.c makes the trigger the permanent entering the Board).",
+        "When a look shows OGN-194 Nocturne, apply his Replacement Effect: 370.1.b.1 makes the look BE the banish and the play, with no Chain Item in between.",
+        "Pay one rainbow Power and put him on the board. 355.2.a sends him to your base or to a battlefield you control.",
+        "If the look happened on the opponent's turn - an [Ambush] or [Reaction] body under the Seer's static - 312.1.b.1 lets you take the instructed play with no Priority, and 319.6 with 323.2.a give him the Defender designation at the next Cleanup.",
+        "If the look does not show Nocturne, use [Vision]'s own recycle to put that card on the bottom (416.1) and let the next unit you play look again."
+      ],
+      "netPerIteration": "one look per unit played, and a 4 Might [Ganking] body for one rainbow Power on any look that shows Nocturne",
+      "terminatesIn": "engine only - 370.2 allows one application per event, 103.2.b caps Nocturne at three copies, and 817.2.b makes N looks one card deep unless you spend a recycle between them",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Players can always take and make choices for Limited Actions when instructed, regardless of Priority."
+        },
+        {
+          "title": "Hand walk 2026-09-12, uncited Core Rules sub-rules 300-499, batch 5 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-12",
+          "quote": "419.2 reads 'This is a Discretionary Action' of playing a card, 312.1 reads 'Priority is the singular exclusive right to take Discretionary Actions', and 312.1.b.1 exempts Limited Actions from priority entirely. Measured 2026-09-12 over data/combos.json and data/synergies.json: 312.2.a is cited 81 times and 312.1, 312.1.a, 312.1.b, 312.1.b.1, 419.1, 419.1.a, 419.2, 419.2.a, 410.1 and all its sub-rules, 410.2.b and 316.5.a are cited zero times."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-12 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md, batch 5), issue #187, lane rc-walk-mid. Card text verbatim from data/corpus_flat.txt; the Mind/Chaos legend census was run against data/cards.json rather than typed. Opens 370.1.b, 370.1.b.1, 370.2, 371.2, 312.1, 312.1.a, 312.1.b, 312.1.b.1, 419.1, 419.1.a, 419.2, 419.2.a, 410.1, 410.1.a, 410.1.b, 410.2.b and 316.5.a - every one cited by nothing before this batch. It also carries a CORRECTION owed to nocturne-stacked-deck-cheat, which describes the same clause as 'Nocturne's trigger': an 'as' clause is a Replacement Effect under 370.1.b.1 and never a Triggered Ability, which is why no trigger multiplier reaches it and why it needs no priority."
     }
   ]
 }
