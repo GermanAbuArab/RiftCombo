@@ -642,3 +642,126 @@ bare `^`. `set +o noclobber` and `rm -f` in the **same** Bash invocation before 
 `.scratch` script. Run `node .scratch/have.mjs <bases>` the moment the card set is known, not after
 the entry is written. And re-validate immediately before **reporting**, not after writing — the tree
 moves under you.
+
+---
+
+# Batch 18 (2026-09-12) — lane inherited by `rc-walk-blocks`; the two rows §14.1 scoped, written
+
+`rc-walk-blocks` was redirected off 100–299 onto this lane by rc-manager5 on 2026-09-12, on the grounds
+that 100–299 is definition-heavy and **nobody owned 500–829**. This batch is exactly the two rows §14.1
+scoped and deliberately left unwritten. Everything §14.1 established was reproduced before it was used;
+nothing was taken on trust.
+
+| id | sub-rules opened | class |
+|---|---|---|
+| `kinkou-temple-yuumi-granted-tank-whiteflame-wall` | **815.3**, 801.3.a.2 / 801.3.a.3, 815.1.b / 815.1.c.2, 317.2.c | ENGINE |
+| `mystic-vortex-overt-operation-taxes-the-answer` | **813.5 / .5.a / .5.b / .5.c**, **358.4**, 813.1.b, 345, 811.6, 135.2.e.7.b | ENGINE |
+
+Catalogue was at **731** on arrival. `validateCombos` over the merged set: **734 entries, 0 errors.**
+Legend-line check: **0 defects.** Rule references: **107, all present** as headings. Quotes: **13, all
+verbatim.** Legality for all four cards checked against `data/legality.json` on 2026-09-12 — none banned,
+none restricted.
+
+## 15. 815.3 — the Kinkou Temple reads a keyword that ARRIVED BY GRANT
+
+§14.1(a) was right in every particular. The pairing `node .scratch/have.mjs VEN-159 UNL-056` is clean, and
+the entry adds `OGN-082 Whiteflame Protector` as the third card — because **Yuumi's clause is "give one of
+your OTHER units here"**, which `383.2.a.1` makes part of the Trigger Condition, so the companion is a
+`uses[]` row at quantity 1 and not a sentence in a notable.
+
+> **815.3.** Tank, and whether or not a unit has Tank, is a characteristic of the Unit and may be checked
+> or referenced by other Game Effects.
+
+**815.3 is cited by nothing in this project; its neighbour 815.2 is cited 25 times.** The catalogue has
+had the Tank *cap* since the beginning and has never had the Tank *reader*.
+
+The sum, with every number a continuous modifier or a static rather than a `702` counter, so `702.3`
+never touches any of it: Whiteflame enters at **8**, its own ETB names itself for +8 → **16**, Yuumi's
+attack-or-defend trigger adds +3 and `[Tank]` → **19**, and `815.3` then lets the Temple see the granted
+keyword → **20**. And 20 is not a bigger body, it is a blocked combat: `815.1.b` + `815.1.c.2` make every
+non-Tank body of yours an invalid assignment until it has lethal, and `465.2.c.4` forbids over-assigning
+it, so **an attack summing under 20 kills nothing of yours there** — not the Tank, and not Yuumi at
+Might 1 beside it.
+
+**The duration half, which §14.1 identified and which is the reusable part.** `801.3.a.2` — *"The effect
+that granted the Keyword will specify the duration for which it is granted."* — governs Yuumi, whose
+grant says "this turn", so `317.2.c` (*"Insert “3d. All ‘this turn’ effects expire simultaneously.”"*)
+tears the wall down every turn. `801.3.a.3` is one line below and gives the opposite answer when the grant
+names no duration, which is `black-flame-altar-sprite-call-temporary-shield`. **Read the grant's own
+wording before pricing any granted keyword.**
+
+Two things the entry states that a reader would otherwise get wrong. `815.2` means Yuumi must **not** be
+aimed at a printed-Tank body — `UNL-057 Alpha Wildclaw`, or the tokens under `UNL-058 Lillia` — because the
+keyword half is redundant there and the marginal value drops from 4 Might to 3; that is why this is a
+different board from `kinkou-temple-lillia-bird-tank-wall` rather than an upgrade to it. And the upgrade
+path is a second Tank **body**, not a second source of Tank, on `815.1.c.2`'s first sentence.
+
+## 16. 813.5.b + 358.4 — the Mystic Vortex taxes the ANSWER and never the opening play
+
+§14.1(b)'s thesis holds and `358.4` is stronger support than expected, because it prints **both halves as
+worked examples on consecutive lines**:
+
+> **358.4.** Check that the card has the appropriate permissions to be played at this timing.
+> *Example: If the state is Showdown Closed and the card was the one that Closed the state, ensure that it
+> has [Action] or [Reaction].*
+> *Example: If the state is Closed and the card wasn’t the one that Closed the state, ensure that it has
+> [Reaction].*
+
+So the player who acts **first** into a showdown needs only `[Action]`; the player who **responds** needs
+`[Reaction]`. The Vortex taxes `[Reaction]`, therefore only the second. `813.1.b` is why an `[Action]` card
+is not quietly a `[Reaction]` card — *"Reaction grants the corresponding card or effect all abilities and
+permissions of Action"*, a containment that runs one way — so `813.5.b` reads **false** on `OGN-153 Overt
+Operation` and there is nothing to charge. `345` with `464.2.c.1` says the first player is the Attacker.
+
+**813.5, 813.5.a, 813.5.b, 813.5.c and 358.4 are all cited by nothing in this project** (measured
+2026-09-12). `358.5` is the undo if the check fails.
+
+**§14.1's open caution is now resolved, and by rule rather than by reading.** It asked for "its own
+sentence" on `OGN-113 Malzahar, Fanatic`, whose `[Action]` sits on an ability rather than on the card.
+The answer is that the rules keep the three cases apart **on purpose**: `813.5.a` for a Game Object,
+`813.5.b` for a Spell, `813.5.c` for an Ability. The Vortex says *"cards with [Reaction]"*, so an
+`[Action]` or `[Reaction]` **ability** is never taxed — not Malzahar, and not any of the eleven
+`[Reaction][>]` mana abilities in the pool. The notation rule underneath it is **135.2.e.7.b** (*"Whatever
+instruction or ability comes after the [>] is modified by the keyword that comes before the [>]"*), which
+is in the 100–299 lane, is also uncited, and is carried here because this is where it is load-bearing.
+
+Honest accounting of what Overt Operation buys inside the showdown: the ready half is nearly worthless
+(`144.1.b` forbids the Standard Move outside your Main Phase, and combat does not read exhaustion), so the
+5 Energy and 2 Power buy the second sentence — a board-wide buff, `703` fixing it at +1 Might each, landing
+after the attackers are declared, with `465.2.c` reading current Might at assignment. The spend-then-rebuff
+wording is what makes it work on an already-buffed board: `702.2.b` removes the counter to pay for the
+ready and `702.3.a` then allows a fresh one.
+
+The cost of running the Vortex is printed on it: it names no player, so it charges **you** whenever you
+are the one answering, and its parenthetical *"(Hidden cards have [Reaction].)"* is `811.6` made explicit —
+making it the one card in the pool that makes a `[Hidden]` play cost anything against `811.1.b`'s
+*"ignoring its base cost"*. **A list running the Vortex and a Hidden package is taxing itself.**
+
+## 17. An instrument artifact that will bite any rule-reference audit in this fleet
+
+A rule-reference probe over `data/combos.json` that uses the natural pattern
+`/\b(\d{3}(?:\.[0-9a-z]+)+)\b/` matches **`899.md` and `499.md`** out of `sources[].title` — the filenames
+of this walk document and of `2026-09-09-uncited-rules-300-499.md`. Measured over the whole catalogue on
+2026-09-12, those two are the **only** filename-shaped false matches, and they are reported as *missing
+rule headings*, which reads exactly like a citation defect. `.scratch/audit-fc.ts`'s `REF` has the same
+shape and the same exposure. The fix is one `.replace(/[0-9]{4}-[0-9]{2}-[0-9]{2}[^ ",]*/g, " ")` before
+the match. Recorded because two lanes now cite walk documents whose names end in a three-digit number, and
+because this is the fourth entry in this project's ledger of *an instrument failure that looks like a
+finding* — the others being the form-feed `grep` anchor, rule 766's second worked example, and
+`Card.type` being an array.
+
+## 18. Handoff — state of this lane after batch 18
+
+- §14.1(a) and §14.1(b) are **done**. §14.1(c)'s order stands and is untouched: **813.4 / 813.4.a /
+  813.4.b** (conditionally granted Reaction and the undo at *"step 5: check legality"* — and §13.2's
+  ordering question must be settled from 354.3 / 354.4 **before** anything is written; it is an ordering
+  question, not an R-number), then **740.4.a.2.a**, then **827.1.b.1**.
+- **740.4.a.2.a's candidate reader has been spent in another lane.** §13.3 named `UNL-135 Insightful
+  Investigator` for it; batch 17 of the 100–299 lane walked that card on **204.3.b**, whose *"later parts
+  of triggered abilities"* clause is the same mechanic stated in the 200s, and Riot's worked example for
+  `204.3.b` names the card. The entry is `blood-rose-insightful-investigator-cost-at-resolution`. So
+  `740.4.a.2.a` is now a **citation upgrade to that entry**, not a new row — and whoever writes it should
+  say which of the two paragraphs is the primary source rather than citing both flatly.
+- The Example-filtered probe for this range remains **spent** (§14). `.scratch/probe-fc-wide.ts` is still
+  on disk on this machine and prints all 137 uncited rows with their text; the keyword blocks **801–829**
+  are where this batch's material came from and are not exhausted.

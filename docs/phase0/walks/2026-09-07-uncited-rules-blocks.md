@@ -1892,3 +1892,69 @@ check (`OGS-019` is Calm/Body; the entries are Fury, Chaos, Body/Chaos and Mind)
 stripped and the sentence kept in prose. This is the tension `CLAUDE.md` records between two standing rules
 — check every legality claim against the file, but never write that row's base code into a legend field —
 and it bit four times in one batch, so it is worth checking **before** staging, not after.
+
+---
+
+# HANDOFF — 100–299 is UNOWNED as of 2026-09-12
+
+`rc-walk-blocks` was redirected onto **500–829** by rc-manager5 after batch 17, because that range was
+unowned and this one is definition-heavy. **Nobody owns 100–299 now.** This section is what the next
+session should not have to rediscover. Batch 18 onward lives in
+`docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md`.
+
+## H14. Density, measured rather than asserted
+
+`.scratch-rules/subprobe.mjs 100 299` (Example-filtered, example must name a card from `cards.json`)
+returns **31 rows** at catalogue 727. `.scratch-rules/wide17.mjs` (the same probe with the Example filter
+replaced by a mechanic-verb filter) returns **164 rows, of which 35 carry an Example**. Both scripts are
+untracked scratch on this machine and are ten lines each; the recipes are §24, §28 and §64.
+
+Of the 31 Example-filtered rows, batch 17 disposed of **every one**: four became entries, and the rest are
+refused, structural or already implemented, each with its scope in §64. **The Example-filtered probe for
+100–299 is therefore SPENT**, exactly as §14 of the other lane reports for 500–829. What is left is the
+164-row verb-filtered list, and its density is low: batch 17 had to reach into **107 (Facedown Zones),
+152 (gear Location), 190 (Control) and 191 (Controller)** to find mechanics at all, because 103–138 is
+card anatomy and 133–139 is grammar.
+
+## H15. The four blocks in 100–299 that still carry mechanics, in priority order
+
+1. **190.3.b.1 and 190.4.b** — partly spent by batch 17 (`190.4.b` is now cited by
+   `mushroom-pouch-smoke-and-mirrors-facedown-tenure`). `190.3.b.1` (*"If a player who applied Contested
+   status to a Battlefield controls no Units there and there is no ongoing Showdown or Combat at that
+   Battlefield, then Contested status is removed in the following Cleanup"*) is **still uncited** and is
+   the Contested-status half of the evacuation family that this catalogue builds out of `323.6` and
+   `323.10`.
+2. **107.3.b.1 / 107.3.b.2** — the Facedown Zone's maximum occupancy can change, and the excess goes to the
+   **trash**. `107.3.b.2` is uncited. No card in the pool changes the occupancy, so it is currently empty —
+   but `107.3.b.1` is cited twice, so somebody has already reasoned near it.
+3. **184.2 and 184.3** — both uncited while `184.1` is cited seven times. `184.2` (*"The effect may restrict
+   the location to which the token may be played"*) is the paragraph that **authorises** the "play a token
+   here" / "to your base" split which #48's whole walk-to-the-battlefield finding rests on, and this project
+   sources all of it to `355.2.a`. `184.3` (*"The effect may grant temporary abilities or modifications to
+   the token"*) is the token-creation side of every `[Temporary]` grant, sourced here to `816.1`. Both are
+   citation upgrades to heavily-used findings rather than new lines.
+4. **199 / 199.1 with 171** — *"A Game Object that comprises a Location is also a Game Object at that
+   location. A Battlefield is both a location and also a Game Object at that location."* against
+   *"Battlefields are not Permanents."* Both uncited. The split is exact and **measured empty**: `grep` over
+   `cards.json` shows **ZERO cards in the pool use the word "permanent"**, and exactly three say
+   "something" (`VEN-082 Profiteer`, which types its targets anyway; `VEN-099 Tornado Warrior`, *"empower
+   something here"*; `VEN-158 Heisho`, *"choosing something here"*). Tornado Warrior may therefore legally
+   Empower the **battlefield** — and it is worth nothing, because **zero battlefields carry `[Empowered][>]`
+   or any Empowered-gated text** (32 base codes carry `[Empowered][>]`: 30 units, 2 legends, 0 gear, 0
+   battlefields, measured 2026-09-12).
+
+## H16. Read and disposed in batch 17, do not re-open
+
+`103.1.b.5`, `185.3.b.1`, `128.6`, `194.4`, `137.3.b` (§56) · `103.2.b.1`, `107.4.d.1/d.2`, `117.1–117.3`,
+`135.2.b.4/.b.5/.b.5.a`, `135.2.e.6.a/b/c`, `131.x`, `132.x`, `138.1`, `130.x`, `129.3`, `190.3.d`, `152.2`
+(§63, §64). Each carries its scope where it is recorded; a refusal is only as wide as its reason.
+
+**`135.2.e.7 / .7.a / .7.b` is the one row in 100–299 that batch 17 found, could not turn into an entry
+here, and which IS now load-bearing elsewhere.** *"Whatever instruction or ability comes after the [>] is
+modified by the keyword that comes before the [>]"* — so a permissive keyword behind an arrow belongs to
+that ability alone and never to the card. Measured: **81 uses of `[>]` in the corpus across nine keyword
+forms** (30 `[Empowered]`, 11 `[Reaction]`, 11 `[Deathknell]`, 9 `[Level 6]`, 8 `[Action]`, 6 `[Level 3]`,
+4 `[Level 11]`, 1 `[Level 16]`, 1 `[Legion]`), so **19 cards carry a permissive keyword behind an arrow and
+are NOT themselves playable at that speed.** It is cited, with that measurement, by
+`mystic-vortex-overt-operation-taxes-the-answer` in the 500–829 lane. A 100–299 session could still build
+an entry on it, but it should check that one first.
