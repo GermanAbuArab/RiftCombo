@@ -608,3 +608,128 @@ different questions: `--emit-notables` produced **36 notables across 22 entries*
 718.5.b Equipment notable, 14 carrying the stale [Reaction] sentence, 8 carrying the Flurry of
 Blades notable — and the stale SENTENCE is in 14 of them. Say which question a count answers.
 
+
+---
+
+## 11. Batch 3b — `draven-svellsongur-bloodless-combat-burst` (BURST, verified, calm/chaos)
+
+**The first line in this lane designed FROM the credential rather than tested against it.** Section 9
+found that only seven of 71 finishers are dead on an empty board and alive on a contested one. This
+one was built to have that shape before any card was chosen.
+
+The target: eight points paid by something the opponent has to *let* happen. 194.1 has three point
+sources, and swept over the thirteen cards whose text gains a point, exactly one is paid by a COMBAT
+RESULT rather than by a Hold or a Conquer — `SFD-148 Draven, Audacious`, *"The first time I win a
+combat each turn, you score 1 point."*
+
+**And the catalogue already owned the mechanism without ever scaling it.** 466.3.a is cited by **24
+entries, and every one of them is an ENGINE.** Same shape as section 3's Thermo Beam finding: the
+gun was in the cupboard and nobody had aimed it.
+
+### The multiplication, and the one reading it rests on
+
+Three `SFD-059 Svellsongur` on Draven compose 1 → 2 → 4 → **8** instances of his trigger, by exactly
+the layer argument `svellsongur-copy-hold` derives (434.1.c, 477.2.c, 476.1, 479.1, 480.3). Eight
+ability Gains already reach the Victory Score on their own; the Conquer that follows is a ninth.
+
+The new question — and the entry says so in its own voice — is the **"first time … each turn" cap**.
+It pays eight times because **383.3.e.1's subject is the ABILITY**: *"Such a Triggered Ability will
+only be performed the specified number of times each turn. If its trigger condition would be
+fulfilled and it has already been performed that many times, it does not trigger."* Instance two has
+been performed zero times. 383.1.b does not collapse them either — it governs ONE ability facing
+several simultaneous condition instances, and here there is one win event facing eight abilities.
+
+The project settled this shape one level out already: the 2026-09-09 correction on
+`draven-glorious-executioner-point` makes three Dravens at one won combat three points, on 466.3.c
+plus 383.3.e.1 *"caps each of them individually"*. This moves the same argument **from three objects
+to eight instances on one object**, which 383.3.e.1's wording permits because it never mentions an
+object. The counter-reading is named in the entry so a future ruling has something to overturn: if
+the count were a fact about the UNIT, the line pays 2 and is an ENGINE.
+
+### Alpha Wildclaw is in `uses` because the failure mode is losing, not fizzling
+
+Eight copies of *"When I die in combat, choose an opponent. They score 1 point"* ride on one body.
+The opponent's out is to restore a defender AFTER the removal resolves — 323.6 strips their Control
+only *"if the turn is in an Open State and there is no Showdown or Combat ongoing there"*, so inside
+the Showdown 355.2.a still admits a play there.
+
+**Swept, that threat is ONE card.** Over units of Might 6+ (the bar to kill a M6 Draven):
+
+- **zero** carry `[Reaction]` in their own text once parenthesised reminder text and quoted token
+  text are stripped. `UNL-018 Yeti Brawler` is a false positive of the naive grep — its `[Reaction]`
+  belongs to the Gold token it makes. *(Instrument error caught before it became a finding.)*
+- **three** carry `[Ambush]`, which 822.1.b makes short for *"I may be played to a battlefield where
+  you control Units"* — false once the garrison is gone. Only `UNL-120 Rengar, Trophy Hunter` lifts
+  it with its own text; `UNL-166 Stalking Wolf`'s lift points at the battlefield of the tagged body
+  it kills as a cost, not at the one you just emptied.
+
+`UNL-057 Alpha Wildclaw` (M7 `[Tank]`) answers it completely: 815.1.c.2, *"Units without Tank are
+invalid assignments until all units with Tank have lethal damage assigned to them"*, means Rengar's
+summed 6 never reaches lethal on a 7 and Draven is never a legal assignment. Even a M8 body assigns
+7 and has 1 left under 465.2.c.4 — not the 6 that kills. His second clause is a 054.1 prohibition on
+Draven, which is strictly stronger than `[Deflect]`'s tax.
+
+### Deploy the gear late — the difference between a trap and a line
+
+An unattached Svellsongur copies nothing, so the three attaches belong on the turn you swing. Until
+then Draven carries ONE copy of the drawback rather than eight sitting out through an opponent turn.
+That also makes the burst turn **6 Energy and 4 Power**, against 27 Energy and 10 Power for the whole
+package counted from scratch.
+
+It classified into the ATTACK bucket on the next `--stalled` run, as the second BURST there.
+
+---
+
+## 12. Batch 3c — `ivern-arena-draven-chaos-order-chain` (CHAIN, verified, chaos/order)
+
+The last identity with **zero BURST and zero CHAIN**. The method was section 6's: find what each half
+uniquely owns, and find the colourless piece that connects them.
+
+**Chaos/Order owns exactly two scoring cards.** Swept for Chaos or Order text paying on a conquer, an
+attack or a combat win: 18 distinct names, of which two gain a point — `UNL-177 Ivern, Friend to All`
+(Order) and `SFD-148 Draven, Audacious` (Chaos). All three printed trigger multipliers are out of the
+identity, so the only one reachable is the **colourless** `OGN-286 Reckoner's Arena`.
+
+### Why it kept landing on seven
+
+| attempt | arithmetic | total |
+|---|---|---|
+| 3 Ivern at the Arena, one Hold | 1 Score + 3 hold-faces + 3 conquer-faces via 383.4.g.1 | **7** |
+| 3 Draven + 3 Ivern, one bloodless combat win | 3 + 3 + 1 Conquer | **7** |
+| 3 Draven + 3 Ivern split across both battlefields | reaches 8 — at 44 Energy and 5 Power, turn 9+ | refused on cost |
+
+**The route that works uses both PHASES of one turn instead of buying more bodies.** The Hold pays
+seven in the Beginning Phase (315.2.b.2); Draven wins a combat in the Main Phase for an eighth and
+the Conquer is a ninth. E29 and only **2 Power**, because Ivern is E6 with no Power cost at all.
+
+### The design idea, which is the entry's reason to exist
+
+**The two halves want opposite boards.** The Ivern half is Hold-gated — the bucket section 9.2 shows
+dies with the very stall it exists to rescue. The Draven half is its exact complement: 323.9 stages a
+combat only where opposing units meet, so it pays *only* where the opponent has garrisoned. Neither
+half covers both board states; together they do. Seven of the nine are Hold-gated and **the entry
+says so rather than pretending the whole thing is a credential line** — the fully credential member
+of this family is batch 3b, and it lives in Calm/Chaos because Svellsongur is Calm.
+
+### Two things worth carrying
+
+- **The eighth point is an ability Gain, so 471.1.b never gets to bite.** At seven you are one from
+  the Victory Score, exactly where 471.1.b.1 gives the Final Point only *"If the player has Scored
+  every Battlefield this turn"*. Draven's point is not a Conquer, and 471.1.a.1 says *"points Gained
+  from sources that are not Conquer are not beholden to these restrictions"*. The line would pass the
+  clause anyway; it never has to, and an entry that depended on it would be one clause more fragile.
+- **Chaos/Order is a forced shell.** Measured over `data/cards.json`, the pool prints a single
+  Chaos/Order legend NAME — Heart of the Tempest (VEN-155, VEN-197). Its `[Assault 2]` takes Draven
+  to 8 Might while attacking, which is above the one reinforcement body that threatens him, but it
+  needs the legend Empowered and costs its exhaust: recorded as available, never counted.
+
+### The quote checker earned its keep again
+
+Two defects caught before staging, both in text presented as verbatim: **807.1.c was reworded** (I
+wrote *"+2 Might while I am an attacker"*; the rule reads *"It is functionally short for 'While I am
+an attacker, I have +X [M].'"*), and a card quote had its sentence-final period outside the quote
+mark. Neither changes the argument, which is exactly why neither would have been noticed by reading.
+**Run the explicit list; do not extract quotes with a regex over the whole JSON** — apostrophes in
+ordinary prose make single-quote span extraction match across field boundaries, which produced 23
+bogus failures on the first attempt and is an instrument error, not a finding.
+
