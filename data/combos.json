@@ -54314,6 +54314,111 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "SYNTHESISED, not extracted (issue #200, lane rc-synth, 2026-09-12). It was designed target-first: the availability census showed body/chaos with 118 catalogued entries available to it and ZERO of class INFINITE, BURST or CHAIN, so the question asked was 'what is the largest number of points Body/Chaos can put on the board in one turn', not 'what does this card enable'. The answer is that Body owns the only unconditional repeatable Hold payoff in the pool that is not gated on a condition (SFD-115 Trinity Force, three copies, no clause) and Chaos owns the only repeatable point that is not a Score at all (OGN-205 Yasuo, Windrider), and that the pair had never been summed because no single card points at the other. Full walk done, hence verified and not candidate: card text pasted verbatim from data/corpus_flat.txt; every paragraph opened in data/Riftbound-Core-Rules-2026-07-16.txt and quoted untruncated - 103.1.b, 103.2.b, 103.2.d.1, 103.2.d.2, 137.3, 137.3.a, 143.4, 144.1.a, 144.2, 144.3, 144.3.a, 144.3.b, 144.3.c, 144.4.a, 144.4.b, 144.4.c.1, 161.2.b, 164.2.b, 187.5, 190.3.a.1, 194.1, 194.1.a, 194.1.b, 194.1.c, 194.2, 194.3, 315.1.b, 315.2.b.2, 315.3.b, 323.6, 323.8, 323.9, 381, 383.4.d, 383.4.d.1, 383.4.d.2.a, 415.1, 415.1.b, 415.1.c, 434.1.c, 450, 457.1, 469.1, 469.2, 470, 471.1, 471.1.a.1, 471.1.b, 471.2, 472, 485.4, 719.5, 810.1.c.3, 818.1, 818.1.b. Legality checked against data/legality.json: none of SFD-115, OGN-205, SFD-235, SFD-204, SFD-203, SFD-250 appears in entries[], whose only non-banned row is the 2v2 restriction on OGS-019. Domain identity computed from data/cards.json and not from prose: Trinity Force ['body'], Yasuo ['chaos'], On the Hunt ['body','chaos'] - union {body, chaos}. Legend census run against cards.json rather than typed: exactly two legends carry the Sivir champion tag, SFD-203 and SFD-250 Battle Mistress, both Body/Chaos. Arithmetic against the entry's own declared quantities: 2 Holds + 3 Trinity Force + 3 Yasuo = 8 with 3/3/2 copies. Trap check: no token, no [Temporary], no [Repeat], no Conquer (so 471.1.b never engages), no combat (so the empty-battlefield trap never arises), no unruled reading except R2 which is ruled A. Coverage checked with .scratch/have.mjs before writing: the only hit was on-the-hunt-yasuo-triple-third-move as a strict subset, cross-referenced in a notable of each."
+    },
+    {
+      "id": "ivern-arena-trinity-body-order-hold",
+      "name": "Ten in one Hold with no Blue Sentinel: the Arena pays each Ivern twice and the Trinity Forces pay once more",
+      "class": "BURST",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-177",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "all three at Reckoner's Arena, each having chosen a different tag as it was played",
+          "note": "Order unit, E6, M6, no Power. Verbatim: 'As you play me, choose Bird, Cat, Dog, or Poro. I gain that tag. When I conquer or hold, score 1 point if your units have all of the following tags among them - Bird, Cat, Dog, and Poro.' The 'conquer or hold' wording is what 823.1.b and 823.1.c.1 make BOTH a Conquer Effect and a Hold Effect, which is the whole reason the Arena pays each copy twice. Three copies is the 103.2.b cap and they cover three of the four tags between them."
+        },
+        {
+          "card": "OGN-286",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield, which is why this line exists in an identity with no multiplier of its own. Verbatim: 'When you hold here, activate the conquer effects of units here.' 383.4.g.1's worked example is this card BY NAME."
+        },
+        {
+          "card": "SFD-115",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "one attached to each Ivern",
+          "note": "Body Equipment, E4 to play plus [Equip] one Body Power, Might Bonus +2 (137.3, taking each Ivern to M8). Verbatim: '[Equip] :rb_rune_body: (:rb_rune_body:: Attach this to a unit you control.) [Effect] When I hold, score 1 point.' 434.1.c appends that to the carrier, so 'I' is the Ivern. It is a HOLD effect only, so the Arena does not double it - it is the flat addend in the formula, and it is the Body half of the identity."
+        },
+        {
+          "card": "OGN-210",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "Order unit, E2, M2, tag Poro. Verbatim: '[Assault] (+1 :rb_might: while I'm an attacker.)' Supplies the fourth tag. Ivern says 'your units', NOT 'units here', so this body may stand at your base and never has to be exposed. Reprinted as UNL-225; CardIndex.equivalents covers both."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "A Body/Order legend. The identity is computed from data/cards.json and not from prose: Ivern ['order'], Daring Poro ['order'], Trinity Force ['body'], Reckoner's Arena [] (colourless), so the union is exactly {body, order} and 103.1.b admits all five Body/Order legends - OGN-269 The Boss, OGS-023 Might of Demacia - Starter, SFD-205 Grand Duelist, UNL-203 Keeper of the Hammer and VEN-153 Matriarch of War. No card here is Signature (checked against the signature flag in cards.json), so 103.2.d.2 does not fix the legend and any of the five works.",
+          "Reckoner's Arena ON THE TABLE and under your Control. A deck may not carry two of it (103.4.c, Tournament Rules 402.1) and 485.5 says the Duel 'randomly selects' one of your three, so it is one in three; 487.5 is the same in Skirmish and 486.5 lets you choose in Match. And a battlefield you provide starts UNCONTROLLED (190.1), with 190.6.d's second sentence - 'If the battlefield has no Controller, \"you\" refers to no one, and all such instructions are ignored' - switching its whole text off until you take it. Establishing Control is part of this entry's cost.",
+          "Three Ivern standing at the Arena with a Trinity Force attached to each, and the fourth tag on any body you control anywhere."
+        ],
+        "notable": [
+          "THIS IS THE FIRST FINISHER OF ANY CLASS AVAILABLE TO BODY/ORDER, AND THAT IS WHY IT WAS BUILT. Measured over the catalogue at 727 entries, body/order could run 151 entries of which 145 were ENGINE and 6 ALT_WIN: zero INFINITE, zero BURST, zero CHAIN. Body/Order owns no trigger multiplier - all three in the pool are Karthus (Order, Deathknell only), Red Brambleback (Fury) and Blue Sentinel (Mind) - so the only multiplier it can reach is the COLOURLESS battlefield, and nobody had pointed it at the one payoff Body prints.",
+          "THE ARENA PAYS IVERN TWICE AND TRINITY FORCE ONCE, AND THE DIFFERENCE IS THE WORDING. 823.1.b - 'Hunt is both a Conquer and a Hold effect' - with 823.1.c.1 making Hunt short for 'When I Conquer or Hold, my controller gains X XP' establishes that the phrase 'When I conquer or hold' names both categories; Ivern is printed with exactly that phrase and Trinity Force is printed 'When I hold'. So on one Hold each Ivern fires once as a Hold Effect (383.4.d.2.a) and once more when the Arena activates the conquer effects, while each Trinity Force fires once. There is no reading here: 383.4.g.1's worked example is Reckoner's Arena by name, and it spells out that the player 'checks the trigger condition of their conquer effects to see if the condition has been fulfilled, treating the conquer portion of the condition as having been fulfilled' - Ivern's non-conquer portion is the four tags, and it is fulfilled, so it is not filtered out.",
+          "POINTS PER HOLD: 1 + (2N + T) x (1 + K), N = Ivern present, T = Trinity Force present, K = Blue Sentinel present. This entry declares N=3, T=3, K=0 and therefore TEN. It is the same formula ivern-arena-sentinel-hold publishes as 1 + 2 x N x (1 + K), with the Trinity Forces added as a flat addend inside the multiplicand because they are Hold effects only. Neighbours, so nobody repeats the 2026-09-04 BURST audit's mistake: N=3, T=2 is 9; N=2, T=3 is 8 and is the cheapest board that reaches the Victory Score, at 28 Energy and 3 Body Power - NOT 24, which this note said until it was corrected on merge, because **each Ivern supplies one of the four tags itself, so dropping an Ivern costs you a tag body elsewhere**: N=2 covers two tags and needs TWO more bodies (the cheapest in identity are E2 - OGN-210 Daring Poro, OGN-216 Soaring Scout, SFD-099 Veteran Poro, SFD-159 Trusty Ramhound, VEN-132 Fallen Feline), so it saves 6 Energy on Iverns and gives 4 back, a true saving of 2; N=3, T=1 is 8; N=2, T=2 is 7 and does NOT get there; N=3, T=0 is 7. The entry is authored two points above 8 on purpose, so that losing one Ivern or one Trinity Force still wins.",
+          "IT NEEDS NO BLUE SENTINEL, WHICH IS THE POINT. ivern-arena-sentinel-hold reaches 9 on the same Arena with 2 Ivern and 1 Blue Sentinel, and Blue Sentinel is MIND - so that entry is Mind/Order and a Body/Order deck cannot run it. This line replaces the multiplier with a flat Body addend it can actually cast. Read the two together: same battlefield, same doubling mechanism, two different identities, and neither dominates (K multiplies, T adds, so the Sentinel is stronger per card wherever Mind is legal).",
+          "ONLY ONE OF THE TEN POINTS IS A SCORE. 194.1 lists 194.1.c - 'Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more points' - as a way of gaining points separate from 194.1.a Holding, 469 defines Scoring as Conquer or Hold only, and 470 caps Scoring 'once per Battlefield per turn'. So the cap is spent on the single Hold point and the other nine are untouched (R2 = A). 471.1.a.1 says the same from the other end - 'Notably, points Gained from sources that are not Conquer are not beholden to these restrictions' - and 471.1.b's Final Point clause opens 'When a player tries to Gain a Point through a Conquer', so the eighth, ninth and tenth points land unconditionally from any starting score.",
+          "THREE IVERN COVER THREE TAGS AND ONE CHEAP BODY COVERS THE FOURTH. Each Ivern chooses its tag as it is played, so the three copies take Bird, Cat and Dog and OGN-210 Daring Poro (Order, E2, M2) supplies Poro. Measured over data/cards.json, 67 printings carry at least one of Bird, Cat, Dog or Poro and ZERO carry two, so a fourth body is unavoidable however it is chosen - there is no two-for-one. Daring Poro is Might 2 rather than the Might 1 of OGN-216 Soaring Scout, which matters only against OGN-133 Flurry of Blades, and it never has to leave your base.",
+          "SFD-099 / UNL-223 VETERAN PORO IS THE UPGRADE THAT SAVES A POWER, AND IT IS BODY. '[Weaponmaster] (When you play me, you may [Equip] one of your Equipment to me for :rb_rune_rainbow: less, even if it's already attached.)' - Trinity Force's [Equip] is exactly one Body rune, so the discount pays it in full and the attach is free (821.1.c; 821.1.c.6 notes the Equip ability is not activated this way, which costs nothing here because Trinity Force has no play or choose payoff). It also carries the Poro tag, so it replaces Daring Poro AND one Equip cost with one card - but it must then stand AT THE ARENA for its Trinity Force to score, where Daring Poro could stay home. Both are correct; the entry declares the safer one.",
+          "SKYFALL OF AREION WOULD MAKE THIS FIFTEEN AND IS ILLEGAL HERE. SFD-030 reads '[Effect] My hold effects are also conquer effects, and vice versa', which would turn each carrier's Trinity Force into a conquer effect and have the Arena double it too. It is FURY, so 103.1.b keeps it out of Body/Order entirely. Stated so the next reader does not spend the walk: the escalation exists, it is just in another identity, and brambleback-trinity-skyfall-conquer is where it lives.",
+          "NOTHING IN THIS LINE IS PROTECTED FROM A GEAR KILL, AND THE POOL PRINTS SIXTEEN OF THEM. 718.5.b: 'Attached cards still can be chosen or targeted by game effects while Attached' - the Equipment's own printed Rules Text is Inactive while attached (718.2) and its [Equip] is unusable (721.2), but the CARD is a legal target for every turn it sits there. Swept with /\\bkills?\\b[^.]{0,80}\\bgear\\b/i over text+effect of every deckable base in data/cards.json, the pool has 16 base codes (15 names; Jayce, Man of Progress is printed twice) and EVERY ONE OF THE SIX DOMAINS prints at least one, so there is no identity this line can hide in. The unconditional enemy-facing ones are OGN-022 Thermo Beam, SFD-005 Detonate and VEN-003 Brittle Steel (Fury), OGN-224 Salvage (Order), SFD-032 Disarming Rake (Calm) and SFD-077 Rocket Barrage (Mind). OGN-022 Thermo Beam - Fury, E5 + 2 Fury Power, '[Action] (Play on your turn or in showdowns.) Kill all gear.' - is the only card in the pool that kills EVERY gear at once, so it answers the whole payoff with one card; it is symmetric, which makes it cheap for a gearless deck and expensive for anyone else (the shape acceptable-losses-ravenbloom-prefect-gearless-gear-hate already records for OGN-179). For this line specifically that is three of the ten points, and Thermo Beam takes all three with one card; the three Ivern and the Arena survive it, so the line falls to seven and misses by one. That is exactly the margin the two points of slack above were authored for, and it is why N=3 is worth the 6 extra Energy over N=2.",
+          "THE TIMING CUTS BOTH WAYS, AND NO [Reaction] GEAR KILL EXISTS. Swept over all sixteen gear kills: none carries [Reaction]. Thermo Beam and Salvage are [Action], which 806.1.c.1 makes short for 'This can be played during showdowns on any player's turn'; Detonate and Brittle Steel are plain spells, and 155 confines a spell to 'an Open State outside of Showdowns on its controller's turn'. The Score this line pays on happens at 315.2.b.2 inside your own Beginning Phase, where the opponent holds no priority in a Neutral Open State (312.2.a) and the Closed State the trigger opens admits only a [Reaction] (813.1.c.1). So the opponent can NEVER strip the gear in the window that pays - every answer has to be cast on their own turn, one full turn before. That is what keeps the line alive, and it is also the window in which to defend it: the removal spell on the Chain is a Closed State, 312.2.c hands out priority there and 813.1.c.1 admits a [Reaction] in response.",
+          "WHAT ELSE REFUTES IT. (a) The Arena is one in three in a Duel (485.5) and the line does nothing without it - that is the largest single risk and no card in the pool fixes it, since 103.4.c forbids a second copy. (b) Every Ivern is a Score ability that must be PRESENT at the Arena when it pays (383.4.d.2.a), so removal aimed at a body costs 2 points and removal aimed at its gear costs 1. (c) At E6 each with no Power, three Ivern plus three Trinity Force is 30 Energy and 3 Body Power of deployment, which on the rune curve of docs/plays/2026-09-12-the-unopposed-clock.md is turn 7 at the earliest - slower than simply holding two battlefields, so like every finisher in this catalogue it earns its slot only on a board the opponent is contesting. (d) Nothing here Conquers, so no conquer payoff fires and 471.1.b never engages."
+        ]
+      },
+      "steps": [
+        "EARLIER TURNS. Establish Control of Reckoner's Arena (190.1), which 190.6.d keeps switched off until you do. Play three Ivern, Friend to All (E6 each), choosing Bird, Cat and Dog as each enters, and a Daring Poro (E2) for the fourth tag. Play three Trinity Force (E4 each) and pay each [Equip] cost of one Body Power (818.1.b: 'Equip has a cost to activate and Attaches the card with Equip to a chosen Unit when the cost is paid'), one onto each Ivern. End a turn with all three Ivern standing at the Arena.",
+        "AWAKEN (315.1.b) readies everything you control.",
+        "BEGINNING PHASE, SCORING STEP (315.2.b.2): 'The Turn Player Holds all Battlefields they Control.' The Arena Scores. 471.1 gains one point - POINT 1 - and 470's once-per-battlefield cap is spent here and nowhere else.",
+        "471.2: 'Trigger Score abilities at the Battlefield that Scored.' Each Ivern's hold face goes on the Chain (383.4.d.2.a) with its four-tag condition met - POINTS 2, 3 AND 4 - and each Trinity Force carrier fires 'When I hold, score 1 point' - POINTS 5, 6 AND 7.",
+        "The Arena's own 'When you hold here' is one of YOUR hold effects, because 190.6.a gives its Controller the ability and 190.6.d makes 'you' mean that Controller (R8 = A). It activates the conquer effects of units here: 383.4.g.1 checks each conquer effect's condition 'treating the conquer portion of the condition as having been fulfilled', Ivern's four tags are fulfilled, and all three conquer faces go on the Chain - POINTS 8, 9 AND 10.",
+        "Ten points from a starting score of zero, all in one scoring event at one battlefield. 194.3 puts the Victory Score at 8, and 472 wins at the next Cleanup: 'When a cleanup occurs and a player has accrued Points greater than or equal to the Victory Score for their Mode of Play, and if they have more points than any opponent, they Win the Game.'"
+      ],
+      "netPerIteration": "ten points in a single Hold, repeatable every turn the Arena and the three Ivern survive",
+      "terminatesIn": "burst of ten points in ONE Hold at one battlefield, nine of them ability Gains that 470 does not cap, from a board costing 32 Energy and 3 Body Power (3 Ivern at E6, 3 Trinity Force at E4, 1 Daring Poro at E2, and one Body rune per [Equip])",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules 383.4.g.1, whose worked example is Reckoner's Arena by name (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "To do so, that player checks the condition of all of the specified effects, as if they had fulfilled the named part of the condition. Example: Reckoner's Arena reads \"When you hold here, activate the conquer effects of units here.\" For each unit at the battlefield, you will check the trigger condition of their conquer effects to see if the condition has been fulfilled, treating the conquer portion of the condition as having been fulfilled. If all of the conditions are fulfilled for a conquer effect, it is placed on the chain as if it had just triggered. If any of the non-conquer"
+        },
+        {
+          "title": "Riftbound Core Rules 823.1.b (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Hunt is both a Conquer and a Hold effect."
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (Riot gallery API, errata applied)",
+          "kind": "riot",
+          "date": "2026-09-04",
+          "quote": "UNL-177 | Ivern, Friend to All | Unit | Order | E6 M6 | As you play me, choose Bird, Cat, Dog, or Poro. I gain that tag. When I conquer or hold, score 1 point if your units have all of the following tags among them - Bird, Cat, Dog, and Poro. [Tags: Ivern, Ionia]"
+        },
+        {
+          "title": "Verified entry ivern-arena-sentinel-hold, whose walk established the Arena x Ivern doubling (data/combos.json)",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        },
+        {
+          "title": "Synthesis walk 2026-09-12 (docs/phase0/walks/2026-09-12-synthesised-lines.md), issue #200",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "SYNTHESISED, not extracted (issue #200, lane rc-synth, 2026-09-12), and it is the second half of a two-part result: the availability census in the walk found exactly two legend pairs with ZERO INFINITE, BURST and CHAIN available to them, body/chaos and body/order, and this is the body/order one. The design question was 'Body/Order owns no trigger multiplier - what COLOURLESS multiplier can it reach, and what is the best payoff Body prints to feed it', which is a target-first question no card-adjacency search asks. A first attempt on VEN-138 Shen plus Trinity Force was REFUSED at seven points and is recorded in the walk; Shen's 'exactly one other unit you control here' makes his point and Ivern's mutually exclusive at one battlefield (383.2.a.1 puts the count in the Trigger Condition). Full walk done, hence verified: card text pasted verbatim from data/corpus_flat.txt; every paragraph opened in data/Riftbound-Core-Rules-2026-07-16.txt and quoted untruncated - 103.1.b, 103.2.b, 103.2.d.2, 103.4.c, 137.3, 143.4, 190.1, 190.6.a, 190.6.d, 194.1, 194.1.a, 194.1.c, 194.3, 315.1.b, 315.2.b.2, 383.2.a.1, 383.4.d.2.a, 383.4.g, 383.4.g.1, 434.1.c, 469, 470, 471.1, 471.1.a.1, 471.1.b, 471.2, 472, 485.4, 485.5, 486.5, 487.5, 718.2, 718.5.b, 721.2, 818.1, 818.1.b, 821.1.c, 821.1.c.6, 823.1.b, 823.1.c.1. Legality checked against data/legality.json, whose 21 rows contain exactly one non-banned entry (the 2v2 restriction on OGS-019): none of UNL-177, OGN-286, SFD-115, OGN-210, UNL-225 appears. Domain identity computed from data/cards.json: union is exactly {body, order}, and the five Body/Order legends were read out of cards.json rather than typed. Signature flags checked in cards.json: all four cards are false, so 103.2.d.2 fixes nothing. Arithmetic against the entry's own declared quantities: 1 + (2x3 + 3) x 1 = 10, with five neighbouring boards named in a notable. Trap check: no token, no [Temporary], no [Repeat], no Conquer (so 471.1.b never engages), no combat, no attack (so 807.1.d and the empty-battlefield trap never arise), no unruled reading except R2 and R8, both ruled A. Coverage checked with .scratch/have.mjs before writing: no entry uses this card set or a subset of it."
     }
   ]
 }
