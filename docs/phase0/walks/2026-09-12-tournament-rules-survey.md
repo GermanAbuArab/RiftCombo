@@ -367,3 +367,99 @@ Quotes checked from an explicit list: 8 passages against
 `scripts/adversarial-check.mjs` at source rather than from CLAUDE.md's summary of it. Section 104's
 zero citations were measured over `data/combos.json`, `data/synergies.json`, `src/`, `test/`, the walk
 records and CLAUDE.md. No entry staged; `data/combos.json` not written.
+
+---
+
+# Batch 4 — why our loops may be shortcut at all, and the ledgers turn out to be the argument
+
+No entry. **TOURNAMENT RULES 502 Information (24 headings) and 509 Gameplay Decisions (15) are cited
+by nothing.** Between them they supply the missing half of the 505.9 citation all fourteen INFINITEs
+already carry.
+
+## 18. THE DETERMINISM ARGUMENT, WHICH IS THE PER-PASS LEDGER WEARING A DIFFERENT HAT
+
+All fourteen INFINITEs cite **TOURNAMENT RULES 505.9** — *"If a sequence of actions is
+non-deterministic, it may not be shortcut and iterations must be performed manually"* — to say that
+ours may be shortcut. None of them says **why** the sequence is deterministic, and the Core Rules
+contain a paragraph that looks like it should stop them:
+
+> **CORE RULES 416.5.** If 2 or more cards are Recycled to the Main Deck simultaneously, they are
+> placed on the bottom of that deck **in a random order**.
+> **CORE RULES 416.5.a.** If 2 or more cards are Recycled to the Rune Deck simultaneously, they are
+> placed on the bottom of that deck in the order of their owner's choosing.
+
+Our loops recycle three or four cards to the Main Deck every pass. **416.5 makes that order random,
+and randomness inside a loop is exactly what 505.9 refuses to shortcut.** The reason the fourteen are
+safe anyway is the thing their own ledgers already prove for a different purpose: **each pass draws
+back everything it recycled.** `lady-luminosity-loop-comet` states it in its own words — *"the card
+count closes at 5 recycled = 5 drawn"* — and the Lux ledger closes at 4 = 4. A random order among
+cards that are all drawn in the same pass changes nothing observable, so the sequence is deterministic
+in outcome even though it is random in arrangement.
+
+**So the per-pass ledger, written as a RESOURCE argument, is also the DETERMINISM argument that
+licenses the 505.9 citation.** And it names the failure mode precisely, which nothing in the catalogue
+does: **a loop that recycles more cards than it draws back in the same pass leaves them in a random
+position, the randomness reaches the next pass, and TOURNAMENT RULES 505.9 bars the shortcut — the
+iterations must then be performed by hand**, which against TOURNAMENT RULES 604's round time limit is
+the difference between announcing a number and running out of clock. *A loop is shortcuttable only if
+its recycles and its draws close in the same pass* is the one-line test, and it is the same line the
+ledgers already compute.
+
+**The Rune Deck is the opposite case and it is why rune loops are simpler:** 416.5.a gives the owner
+the order, so no randomness enters at all, and **TOURNAMENT RULES 502.5.b** makes *"the order of runes
+in a Rune Deck"* **derived** information — knowable by anyone who tracks it. A rune-recycling loop is
+deterministic twice over. The Main Deck's order is named nowhere in 502.4 or 502.5, so it stays
+secret, which is what puts a Main-Deck loop in front of **TOURNAMENT RULES 505.11**: judges are the
+arbiter *"if choices are available to continue a loop when secret information is involved."*
+
+## 19. 502.6 AND 502.8 — THE ANNOUNCEMENT DUTY REACHES STATE, NOT ONLY TRIGGERS
+
+> **TOURNAMENT RULES 502.6.** Players must acknowledge changes to public information that result from
+> their cards and effects as those effects would have an observable impact on the game. See 506.3.e.
+> for examples of observable impact.
+> **502.8.** Players must not represent public or derived information incorrectly.
+> **502.4.d.** A permanent's current state, as distinct from its printed ones.
+
+§7 recorded 506.3's duty to announce a TRIGGER. 502.6 is the same duty for a change of STATE, with the
+same worked examples, and 502.4.d makes *"a permanent's current state, as distinct from its printed
+ones"* public. For this catalogue that reaches the Might arithmetic directly: a body at printed 3 that
+is standing at 8 under three Svellsongur instances, a stunned unit, an Empowered one, a buffed one —
+all public, all owed an announcement, and 502.8 makes misstating one an offence rather than an error.
+The `svellsongur-copy` family, whose whole content is that a carrier's current text and Might differ
+from its printed ones, is the part of the catalogue this lands on hardest.
+
+**502.2.b is the counterweight and it is worth knowing**: *"Players are not required to assist
+opponents in determining derived information."* So you must announce the state and answer honestly
+about it (502.7), and you need not do the opponent's arithmetic — including, by 502.5.c, *"consequences
+of actions that might happen in the future, such as a unit receiving a Might bonus from the Shield
+ability if a player attacks."* **That paragraph is about [Shield] by name**, which this catalogue
+prices in eight entries.
+
+## 20. 509.4.d — A RUNE EXHAUSTED IN ERROR CAN BE TAKEN BACK
+
+> **TOURNAMENT RULES 509.4.d.** The player wants to undo a decision to exhaust or recycle runes.
+> **509.4.d.1.** A player exhausts two Calm runes. Before taking a new game action, the player decides
+> they do not want to exhaust them, and readies them.
+
+Uncited, and it is the one take-back this book grants at high OPL that touches a resource this project
+counts. Every loop ledger here is denominated in exhausted runes and recycles; 509.4.d says a
+mis-tap is recoverable **until a new game action is taken**, and 509.2 is the default it carves out of
+(*"Once an action is communicated to an opponent, that action can't generally be taken back"*). 509.5
+is the limit: changing a decision in response to an opponent's physical reaction is **angle shooting**
+under 704.4, and 509.6 keeps it inside 703.2's Slow Play.
+
+Three more pool cards are named in this block's examples — `Discipline` (509.4.a.1),
+`Traveling Merchant` with `Reaver's Row` (509.4.b.1, and Reaver's Row is banned in both formats), and
+`Pouty Poro` with `Void Gate` (509.4.c.1). **Checked: all four unbanned cards are already catalogued**,
+which is the third time in this survey that the named-card vein in this book yields paragraphs rather
+than cards.
+
+## 21. Validation
+
+Quotes checked from an explicit list: 10 passages against
+`data/Riftbound-Tournament-Rules-2026-07-16.txt` and 2 against
+`data/Riftbound-Core-Rules-2026-07-16.txt`, zero failures — and **CORE RULES 416.5 was read at source
+rather than taken from CLAUDE.md's summary of it**, which is what turned a half-remembered "the Main
+Deck is random" into the determinism argument above. Section 502 and section 509 citation counts, and
+the ban and catalogue status of the four named cards, were run in the turn they were written. No entry
+staged; `data/combos.json` not written.
