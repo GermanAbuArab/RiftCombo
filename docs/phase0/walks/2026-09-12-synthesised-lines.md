@@ -1417,3 +1417,184 @@ corrections (`--out`, default `/tmp/rc-walks/rc-synth-holds.json`). **29 rows: 1
 Spiderling sentence and 28 appends.** The token half of the floor is a TEXT SCAN of the entry's own
 prose and says so in the output — a flag that says *read it*, never a verdict, since no entry names a
 token base code. 469 tests green, typecheck clean, 0 unanswered holes of 76.
+
+---
+
+## 20. Batch 11 — the gap was hidden by a BAN, and four entries misread the rule that guards their own weak point
+
+Lane respawned a second time. As in §15, **the brief was stale and recomputing beat inheriting**: it pointed
+at "the five pairs with exactly one finisher — body/calm, calm/chaos, chaos/fury, chaos/order, chaos/mind",
+a list computed at 727 entries, and §15 had already retired thinness as a target. Recomputed at **762
+entries / 215 synergy rules**, three of those five have since been filled by this lane's own batches.
+
+### 20.1 The measurement: one banned card was hiding an empty cell
+
+Crossing the availability table with the `--stalled` buckets again (§15's method, §17's corrected
+classifier) leaves two identities with nothing that survives a stalled board. `body/order` is **refused by
+§18 with a fact about the pool** and stays refused. The other is `chaos/order`, and its single survivor is
+not a survivor at all:
+
+```
+chaos/order finishers available: 8
+  CONQUER  INFINITE  pursuer-herald-recruits   <<< uses OGN-177, BANNED in constructed AND 2v2
+  HOLD     ALT_WIN   grand-plaza-recruit-vanguard
+  HOLD     ALT_WIN   ready-recruits-grand-plaza
+  HOLD     ALT_WIN   zed-clone-eye-recruits
+  HOLD     ALT_WIN   karthus-machine-evangel-renata-plaza
+  HOLD     ALT_WIN   spiderling-swarm-grand-plaza
+  HOLD     ALT_WIN   vanguard-captain-manufactor-plaza
+  HOLD     CHAIN     ivern-arena-draven-chaos-order-chain
+total 8 | survive-a-stall 1 | survive AND legal 0
+```
+
+`data/legality.json` carries `OGN-177 Stealthy Pursuer` as `status: "banned"` in **both** formats since
+2026-07-24. **Swept across all 76 finishers, `pursuer-herald-recruits` is the ONLY entry in the catalogue
+with a banned card in `uses[]`** — so this is a one-card blind spot rather than a systemic one, which is
+worth saying in both directions: the catalogue is clean, and the single exception happened to sit on the
+one row that made an empty cell look occupied. Six of the seven Hold-gated survivors are Grand Plaza lines,
+which §19 records as the set one opponent action answers together.
+
+**The standing note is the shape, not the card.** `CLAUDE.md` already warns that *"a ranked matrix or
+co-occurrence list is NOT legality-checked"*; §15 and §17 both published per-identity tables, and neither
+ran the ban check on the rows it counted. **A table of what an identity can RUN must filter by legality,
+because "can run" is exactly the claim a ban refutes.** The check is four lines and now sits in
+`.scratch-synth/chaos-order-audit.mjs`.
+
+### 20.2 A predicate miss in this lane's own §12, found by re-deriving instead of citing
+
+§12 states *"Chaos/Order owns exactly two scoring cards"* — Ivern and Draven. Re-swept over `text` +
+`effect` of every deckable base for any card whose text gains a point, with domains a subset of
+{chaos, order}, the answer is **three units and three battlefields**:
+
+| card | domain | cost | gated on |
+|---|---|---|---|
+| `UNL-177 Ivern, Friend to All` | order | E6 | **a Conquer OR a Hold** (823.1.b) |
+| `SFD-148 Draven, Audacious` | chaos | E6 P1 | winning a combat |
+| **`OGN-205 Yasuo, Windrider`** | **chaos** | **E5 P1** | **three moves — board-independent** |
+| `VEN-138 Shen, Leader of the Kinkou Order` | order | E6 P2 | a Hold |
+| `SFD-214 Power Nexus` | colourless | — | a Hold |
+| `OGN-293 The Grand Plaza` | colourless | — | a Hold |
+| `OGN-290 The Arena's Greatest` | colourless | — | BANNED in both formats |
+
+§12's sweep was scoped to *"Chaos or Order text paying on a conquer, an attack or a combat win"*, and
+**Yasuo pays on MOVES, so that predicate structurally could not see him.** Third time this lane has paid for
+the same thing (§10 on a kill-predicate that could not see a detach, §19 on a mass-damage predicate that was
+not an answer predicate): *state the predicate with the number, and check the predicate answers the question
+you are actually asking.*
+
+### 20.3 `ivern-ride-the-wind-double-conquer` (CHAIN, verified, chaos/order)
+
+The mechanism is **catalogued and unreachable**: `ivern-bard-four-tag-double-conquer` walks three Iverns
+into one battlefield, Conquers, then relocates the same three with `SFD-079 Bard, Mercurial` and Conquers
+again — six ability Gains and two Scores. Bard is **Mind**, so that entry is mind/order and 103.1.b keeps it
+out of this identity entirely.
+
+**`OGN-173 Ride the Wind` is the Chaos relocation, and the reason it works is a route distinction this
+project already owns.** *"[Action] (Play on your turn or in showdowns.) Move a friendly unit and ready it."*
+449 and 420.2.b make an effect move a route separate from the Standard Move, so 144.4's base↔battlefield
+restriction does not bind it and 420.3.a's exhaust — which sits on the Standard Move alone — is not charged.
+That is the whole trick: the three Iverns are **already exhausted** from walking into the first battlefield
+(144.2), and only an effect move can carry them to the second. Note also that its move carries **no
+destination clause**, unlike `OGN-259 Unforgiven`'s *"to or from its base"* — which is why the Unforgiven
+CHAIN could never have been re-pointed at this.
+
+| when | rule | points |
+|---|---|---|
+| Conquer the first battlefield | 469.1 / 471.1 | 1 |
+| three Iverns present there | 383.4.c.2.a | 3 |
+| Conquer the second, after three Ride the Wind | 469.1, and 470 permits it because it is a DIFFERENT battlefield | 1 |
+| the same three Iverns, present again | 383.4.c.2.a | 3 |
+| | **two scoring events, one turn** | **8** |
+
+**E26 + 3 Chaos Power counted whole; E6 + 3 Power on the finishing turn.** Against Bard's E24 + 1 Mind
+Power — neither dominates, and the entry says so: Bard moves any number for one card but costs your legend's
+exhaust and is a Main-Phase unit play, while Ride the Wind costs three cards and is an `[Action]`
+(806.1.c.1), so it can relocate an Ivern *inside an opened Showdown*. Exactly 8 with **zero slack**, which is
+why all three copies of both are declared rather than preferred.
+
+It works on a garrisoned board through 323.9 → 466.3.a → 466.5 → 466.5.d, and on an open one through
+450 → 344.2 → 348.2.a → 348.2.a.1. **466.1.a.1 — *Insert "3c. Heal all Units."* — wipes marked damage
+between the two battlefields**, so the survivors arrive at the second at full Might; the real price is a dead
+Ivern, each one costing exactly one point.
+
+### 20.4 The finding with teeth: FOUR entries misapply 383.2.a.1 to Ivern, in the direction that flatters them
+
+Designing the line meant reading 383.2.a.1 rather than inheriting its citation, and it does not say what
+four entries say it says.
+
+> **383.2.a.1.** Any additional conditional statement immediately after the Condition must be true in order
+> for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not
+> the Effect.
+
+**The test is POSITIONAL, and the rule carries two worked examples pointing opposite ways.** Sona,
+Harmonious — *"At the end of your turn, if I'm at a battlefield, ready up to 4 friendly runes"* — has the
+conditional immediately after the trigger, and Riot adds *"If she is removed in reaction to the triggered
+ability, it will still resolve."* Loose Cannon — *"At the start of your Beginning Phase, draw 1 if you have
+one or fewer cards in your hand"* — is the other shape, and Riot says *"The 'if you have one or fewer cards
+in your hand' conditional statement is not immediately after the trigger condition, so it is part of the
+effect and not the condition."*
+
+`UNL-177 Ivern` reads *"When I conquer or hold, **score 1 point** if your units have all of the following
+tags among them — Bird, Cat, Dog, and Poro."* Effect verb first, conditional after. **He is the Loose Cannon
+shape, so the tags are checked ON RESOLUTION.**
+
+Swept: 63 entries cite 383.2.a.1 and 15 pool cards have the Loose Cannon shape; the intersection is the six
+Ivern entries. **Four of them are wrong, at six sites** — and the fifth, `ivern-arena-trinity-body-order-hold`,
+cites it for **Shen** (*"When I hold, **if** there is exactly one other unit you control here, you score 1
+point"*), which genuinely IS the Sona shape. **The catalogue is right about Shen and wrong about Ivern**, and
+an earlier regex in this batch reported five before that row was read: *a claim about how many entries are
+wrong is itself a measurement.*
+
+| entry | site |
+|---|---|
+| `ivern-sentinel-hold` | `uses[2].note` |
+| `ivern-arena-sentinel-hold` | `uses[3].note` **and** `uses[4].note` |
+| `ivern-svellsongur-four-tags-hold` | `steps[4]` |
+| `ivern-bard-four-tag-double-conquer` | `uses[1].note` **and** `prerequisites.notable[0]` |
+
+**No arithmetic changes and no entry is refuted** — the fourth-tag body is required either way, and still
+belongs in `uses[]`. What changes is the **vulnerability**: under the Trigger-Condition reading, removal in
+response cannot stop the triggers (Sona's example says so in terms); under the correct Effect reading,
+**killing the fourth-tag body in response to the Ivern triggers blanks every one of them at that scoring
+event.** That is §14's B3 shape again — *a right conclusion resting on a wrong reason, which is worse than
+it sounds because a wrong reason misdirects the next reader* — and the error ran in the direction that
+flatters the lines, which §17 records as the direction to distrust. Six REPLACE rows are in
+`/tmp/rc-walks/rc-synth-ivern-383.json`, matching on the sentence and reporting the index for checking only.
+
+### 20.5 And the pool cannot punish it, which is why the new line still stands
+
+Having found the weak point, the honest next question is what actually exploits it. Swept over every
+non-banned card carrying `[Reaction]` **in its own text** whose text kills or deals damage — with
+parenthesised reminder text **and quoted token text** stripped first — the population is **seven**:
+`OGN-033 Shakedown`, `OGN-127 Cannon Barrage`, `OGN-133 Flurry of Blades`, `SFD-163 Deathgrip`,
+`UNL-142 Heedless Resurrection`, `UNL-173 Sacrifice`, and the Gold token itself.
+
+**The strip was not optional.** A first pass named `UNL-073 Deadly Flourish` as the cheapest Reaction
+answer; its `[Reaction]` belongs to the **Gold token's reminder text** it quotes — the identical false
+positive §11 records for `UNL-018 Yeti Brawler`, and it would have shipped a fabricated answer into the
+entry.
+
+Of the seven, four kill only a friendly unit or are costs; `OGN-127` reads *"in combat"* and `OGN-133` reads
+*"at battlefields"* — **neither reaches a base**, and 1 damage cannot kill a Might-2 Poro anyway (143.2.a).
+The only one that reaches a base is `OGN-033 Shakedown`, *"Choose an enemy unit. Deal 6 to it unless its
+controller has you draw 2"* — **and its own text lets the defender decline** by handing the caster two
+cards, which on a turn that scores eight is trivially worth paying. *(That card was itself missed by the
+first predicate, which required "deal N to a unit" and could not see "Deal 6 to **it**" — a second predicate
+miss inside one batch.)*
+
+So **the pool prints no unconditional `[Reaction]` answer to a Might-2 body at a base.** The opponent must
+kill it on their own turn, a full turn ahead and fully telegraphed — the same asymmetry §3 found for gear —
+and the answer-to-the-answer costs two Energy: a second Daring Poro, which 103.2.b permits to three. Keeping
+that body at the **base** is therefore not flavour; Ivern reads *"your units"* with no location clause, and
+the base is the zone almost nothing reaches.
+
+### 20.6 Standing notes
+
+- **A per-identity availability table must be legality-filtered.** "What this identity can run" is precisely
+  the claim a ban refutes, and one banned card hid an empty cell across two published tables (§15, §17).
+- **Read the rule, do not inherit the citation.** 383.2.a.1 was cited correctly 63 times and incorrectly
+  four, and the four were only visible to someone who opened the paragraph to answer a *different* question.
+  The tell was that all four inherited one sentence from each other.
+- **Strip reminder text AND quoted token text before any `[Reaction]` sweep.** This pool quotes the Gold
+  token's full rules text on every card that makes one, and a bare grep reports those cards as Reaction
+  cards. It has now produced a false finding twice (§11, here).
