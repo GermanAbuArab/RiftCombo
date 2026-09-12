@@ -2346,3 +2346,114 @@ the `700`s **Penalties** (cross-referenced four times from what is read: `505.12
 deckbuilding. **My expectation, stated so it can be falsified:** the `700`s are penalties and will yield
 **procedure, not entries** — the same shape as batches 27–29. If that holds, the Tournament Rules vein is
 worth one more batch and then it is spent, and this lane should be redirected or retired.
+
+## 41. Batch 30 — the `700`s, where **my own prediction was wrong**: `702.3.a` corroborates `R2` from a second Riot document
+
+`§40.5` predicted the `700`s would yield *"procedure, not entries — the same shape as batches 27 to 29"*,
+and said so precisely to be falsifiable. **The "no entries" half held; the "procedure only" half did not.**
+Two paragraphs in the penalty block carry game content that reaches named entries in this catalogue.
+Nine passages verified verbatim (`.scratch-rules/qcheck30.mjs`, 9/9).
+
+### 41.1 `702.3.a` — Riot's tournament policy draws `R2`'s line, and names `R2`'s own card
+
+> **702.3.** *Forgetting to Score a Point [No Penalty]:* A player is entitled to a point from conquering
+> or holding a battlefield but fails to track it.
+>
+> **702.3.a.** This does not apply to points that would be scored from card triggers such as
+> **Ahri, Alluring**.
+>
+> **702.3.b.1.** If the correct score can be determined and no more than a full round cycle has passed,
+> increment the appropriate player's score to that total.
+
+`R2` is the reading, ruled `= A` by the user on issue `#11`, that a card-text *"score 1 point"* is a
+**194.1.c point Gain by ability** and **not a 469 Score**, so `470`'s once-per-battlefield cap does not
+reach it. `CLAUDE.md` records that it was ruled **after a web search found no official Riot ruling** —
+all four set FAQs silent. **There is now a Riot document that draws the same line**, in a different book,
+and its worked example is `OGN-066 Ahri, Alluring` — the card four `R2` entries are built on
+(`ahri-blue-sentinel-hold`, `svellsongur-copy-hold`, `skyfall-ahri-conquer`,
+`ahri-trinity-svellsongur-hold`). `R2` is cited in **60** entries, so this is not a marginal reading.
+
+**State the strength of it exactly, because overclaiming here would be worse than saying nothing.**
+`702.3.a` corroborates `R2`'s **premise** — that Riot treats a point from conquering or holding and a
+point from a card trigger as two *different kinds of thing*, to the extent of giving one a remedy and
+the other none. It does **not** adjudicate `R2`'s **conclusion**, which is about whether `470`'s cap
+applies; a penalty guideline is not a rules ruling and `002` does not reach it. So this is **evidence for
+the premise, from an independent document**, and the ruling stays where the user put it. If Riot ever
+rewords the cards from *"score"* to *"gain"* — the condition `CLAUDE.md` already names as confirming
+`R2` — this paragraph will have been the early sign.
+
+**The practical half, which is new and applies to play:** a Hold or Conquer point you forget is
+**recoverable** within a round cycle (`702.3.b.1`); a card-trigger point you forget is **not**, because
+`702.3.a` excludes it from the remedy and `506.3.b` has already forgotten the trigger. So the ability-gain
+finishers in this catalogue carry a procedural fragility that Hold and Conquer finishers do not — and
+`506.3.e.1` names *"The trigger would change a point total"* as its first example of observable impact,
+with Ahri, Alluring again as the card.
+
+### 41.2 `702.15.a.1` — the Awaken remedy gives back the **ready** and withholds the **trigger**
+
+> **702.15.** *Forgetting to Ready During the Awaken Phase [No Penalty]:* A player forgets to ready one or
+> more game objects during their Awaken Phase.
+>
+> **702.15.a.1.** If it is still the turn the erroring player forgot to awaken, ready all game objects
+> that should have been readied. **If a game object being readied this way would put a trigger on the
+> chain, it is not put on the chain instead.**
+>
+> **702.15.a.2.** If it is no longer the turn the erroring player forgot to awaken, leave game objects in
+> their current state and proceed with play.
+
+This lands on a named entry. `awaken-ready-body-triple-trigger` is built on `315.1.b` readying everything
+at Awaken and on the pool's **exactly three** become-ready payoffs — `OGN-143 Pirate's Haven`,
+`VEN-071 Fretful Feline`, `VEN-088 Jayce, Hammer in Hand` — which `CLAUDE.md` records as *"a free engine:
+the game readies for you and nobody was collecting."* `702.15.a.1` is the one circumstance in which the
+engine pays **nothing**: forget the Awaken, fix it later the same turn, and you get every unit back ready
+while all three triggers are withheld by name. Miss the turn entirely and `702.15.a.2` leaves the objects
+exhausted, so the engine is simply skipped.
+
+It is also a third, procedural member of a distinction this project has built twice from the rules:
+*entering ready is not a ready* (`805.6`/`805.6.a` with `415.1`), and now *a remedial ready is not a
+trigger-bearing ready*. Three different mechanisms, one payoff family, all of which fail to fire it.
+
+`702.15.b` and `702.4.b` add the anti-abuse clause in both places — *"If forgetting to ready was
+advantageous to the erroring player, this penalty is a [Warning] instead"*, and for draws Riot names the
+case outright: *"(example: the player is near burning out)"*. **That example is this catalogue's own
+loop shell.** Every INFINITE here runs with the Main Deck empty by construction, where `431.1.a` makes an
+extra draw a Burn Out; `lady-luminosity-loop-comet` step 4 says in its own words that *"the deck is at 4,
+so the mandatory draw is safe."* A loop player who omits a mandatory draw in that state is in exactly the
+situation `702.4.b` upgrades to a Warning — so the loop ledgers' draw counts are not merely arithmetic,
+they are the thing a judge would check.
+
+### 41.3 The rest of the `700`s, read and returned empty with its scope
+
+`701` (philosophy, penalty definitions, rewinding, investigations), `702.5`–`702.14`, `702.16`–`702.17`,
+`703.2`–`703.10` and `704` are **procedure with no game content for this catalogue** — looking at extra
+cards, mulligan errors, marked cards, slow play, outside assistance, unsporting conduct. Recorded so the
+block is not read a third time.
+
+Two rows worth knowing the existence of without being findings: **`703.3` Decklist Error is a [Game
+Loss]**, which is the stake of what `checkBuild` validates and an argument for its strictness; and
+`703.3.a.3` — already cited by two entries as *"Tournament Rules 703.3.a.3"* — is the 3-copy rule living
+in this block, which is why the labelled-citation discipline of `§38.7` matters.
+
+### 41.4 HANDOFF — rc-walk-blocks after batch 30
+
+**Staged:** nothing, four batches running. `/tmp/rc-walks/rc-walk-rules.json` is `[]`.
+
+**My batch-29 prediction is recorded as falsified.** The correct generalisation is narrower and worth
+carrying: **a penalty guideline has no game content except where it specifies a REMEDY**, because a remedy
+has to say what the game state becomes — and that is where `702.3.a` and `702.15.a.1` came from. Anyone
+mining a procedural document should read the remedies and skip the definitions.
+
+**The Tournament Rules vein is now essentially spent for this lane.** Read: `402`–`403`, `502`–`506`,
+`600`–`602`, `700`–`704`, plus the card-name sweep. Unread and expected empty: `404`–`424` (match
+procedure, proxies, shuffling, sleeves), `507`–`509`, `602.3`. **Four upgrades are outstanding and none
+is applied** (this lane does not own `data/combos.json`), ranked:
+
+1. **`601.2.a`** as the source for name-folding — `CLAUDE.md`, not an entry (`§40.1`).
+2. **`702.3.a`** as independent corroboration of `R2`'s premise — issue `#11` and/or `CLAUDE.md`'s `R2`
+   paragraph, which currently says no Riot source exists (`§41.1`).
+3. **`503.9.b` · `503.9.c` · `503.9.d`** for `bullet-time-seals-scaling-sweep` (`§39.1`).
+4. **`505.2` · `505.9`** for the 14 INFINITEs (`§38.5`).
+
+**Recommendation to the manager:** this lane should be redirected rather than kept on thin material. The
+Core Rules range `649`–`829` is closed, and the Tournament Rules have given four upgrades and no entries
+across four batches — which is the correct yield for a procedural document, and a reason to stop.
