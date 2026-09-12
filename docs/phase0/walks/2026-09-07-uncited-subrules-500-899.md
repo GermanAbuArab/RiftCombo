@@ -2142,3 +2142,97 @@ from the wrong book.
 **New scripts this batch**, all in `.scratch-rules/` (gitignored, on this machine): `cite27.mjs` (bare +
 sub-rule citation counts, echoes parsed argv), `dualspace.mjs` (cross-document citation ambiguity),
 `gapctx.mjs` (context for a citation token), `tourney-names.mjs` (card names in the Tournament Rules).
+
+## 39. Batch 28 — `502`–`504`, and the procedural rules that decide whether `bullet-time-seals-scaling-sweep`'s central claim survives a real table
+
+No new entry. One concrete citation upgrade to a shipped entry, and the information taxonomy that the
+loop entries have been assuming without a source. All twelve passages below verified verbatim against
+`data/Riftbound-Tournament-Rules-2026-07-16.txt` (`.scratch-rules/qcheck28.mjs`, explicit list, 12/12).
+
+### 39.1 `503.9.c` and `503.9.d` complete the one entry in the pool built on paying at RESOLUTION
+
+`bullet-time-seals-scaling-sweep` rests on `204.3.b` / `740.4.a.1` — a cost *within an instruction* is
+paid on resolution — and its step 5 reads *"Let the opponent respond. Only on resolution do you pay …
+so choose the amount after seeing what they did."* Its notable goes further: *"Nothing else in the pool
+lets you size a sweeper after seeing the answer."* That is right at the rules level and **incomplete at
+the table**, because whether you still hold the choice when the spell resolves is governed by three
+Tournament Rules paragraphs this project has never cited:
+
+> **503.9.b.** When a player places a spell or ability on the chain, they are assumed to be passing
+> priority unless they explicitly announce they intend to retain it.
+>
+> **503.9.c.** When a player puts a spell or ability on the chain and announces choices for it that are
+> normally made upon resolution, they must adhere to those choices unless their opponents react.
+>
+> **503.9.d.** When a player asks about choices normally made upon resolution, they are assumed to be
+> passing priority and allowing the spell or ability to resolve.
+
+Three consequences, and they run in both directions:
+
+1. **Announcing the amount early forfeits the entire advantage.** `503.9.c` binds you to a choice you
+   volunteered, *"unless their opponents react"* — so the whole value of `740.4.a.1` is lost by saying
+   *"Bullet Time for four"* as it goes on the Chain. The correct play is to announce the spell, the
+   battlefield, and **nothing else**. The entry's step 5 should say so.
+2. **The opponent asking the question hands you the resolution.** By `503.9.d`, *"how much are you
+   paying?"* is itself a pass of priority. So the question a Bullet Time opponent most wants to ask is
+   the one that ends their window — and the answer is then given with their response already spent.
+3. **You may not infer their pass.** `503.8` — *"When resolving spells or abilities, players can't assume
+   their opponents are using shortcuts without asking"* — so the sizing decision waits on an actual pass,
+   not on silence.
+
+**Flagged, not applied**: this is a citation upgrade to a verified entry and this lane does not own
+`data/combos.json`. It changes no arithmetic and no card set; it makes the entry's own sentence
+*operable*.
+
+### 39.2 `504.3` is the guard on the other side, and `504.4` confirms "a recycled rune leaves the board" as a *physical* requirement
+
+> **504.3.** Players can't shortcut out-of-order in a way that gives them information prematurely that
+> might affect decisions later in that sequence.
+>
+> **504.4.** When something is recycled, it must be immediately put on the bottom of the appropriate deck.
+>
+> **504.4.a.** *Example:* A player may not keep their recycled runes facedown on the board to track Energy.
+
+`504.4` matters to this catalogue out of proportion to its size. Dozens of entries turn on `164.2.b` —
+the rune ability whose cost is the **recycle**, not an exhaust — and on `161.2.b` sending that rune to the
+Rune Deck rather than the Main Deck, i.e. *off the board*. `504.4.a` is Riot forbidding, by name, the exact
+physical shortcut that would blur it. The free-floor arithmetic (`#44`: about 2 Power a turn, `315.3.b`
+channelling two back) is therefore not just legally but **procedurally** clean: the rune is gone the
+moment it pays.
+
+`503.6` and `503.7` bound the rest (*"Players can't use shortcuts they haven't previously announced"*;
+*"Players can't interrupt a shortcut with the intent to do nothing"*), and with `505.12` from `§38.5`
+they are why a loop cannot be used as a clock weapon in either direction.
+
+### 39.3 `502` — the information taxonomy the loop ledgers assume
+
+> **502.5.a.** Which public cards have been recycled.
+> **502.5.b.** The order of runes in a Rune Deck.
+> **502.2.b.** Players are not required to assist opponents in determining derived information.
+
+Both are **derived**, not public and not secret. That is the exact status this project's loop entries have
+implicitly relied on and never sourced, and it sits cleanly beside the two recycle-order rules: the *set*
+on the bottom of the Main Deck is derivable, its **order is not knowable to anyone** (`416.5`, random),
+while a Rune Deck's order **is** knowable to its owner (`416.5.a`, owner's choosing) and is derived
+information the opponent may work out unaided but that you need not help them with (`502.2.b`).
+
+So the asymmetry the catalogue exploits in `jhin-virtuoso-ekko-malzahar-vi` — four runes recycled in a
+chosen order — is information-legal as well as rules-legal.
+
+### 39.4 HANDOFF — rc-walk-blocks after batch 28
+
+**Staged:** still nothing; `/tmp/rc-walks/rc-walk-rules.json` is `[]`. Two batches in a row have produced
+findings rather than entries, which is the honest shape of a procedural document — the Tournament Rules
+contain no combos, and this lane should not manufacture one from them.
+
+**Tournament Rules read so far:** `402`–`403` (`§38.4`), `502`, `503`, `504`, `505`, `506`, plus the
+card-name sweep (`§38.3`). **Unread, in the order I would take them:** the `700`s **Penalties** —
+cross-referenced four times from what is already read (`505.12` → `704.8` cheating, `506.3.c` → `702.2`
+missed triggers, `504.4.b` → `703.5` communication violations) and the only block left with teeth; then
+`507`–`509`; then the `600`s Competition Formats, where `601.1.c` already feeds `checkBuild` and `600` is
+the cross-reference from `403.1` for sideboard size by format.
+
+**Two citation upgrades are now outstanding from this lane and both are flagged, not applied** (the lane
+does not own `data/combos.json`): `505.2` · `505.9` for the 14 INFINITEs (`§38.5`), and
+`503.9.b` · `503.9.c` · `503.9.d` for `bullet-time-seals-scaling-sweep` (`§39.1`). The second is the
+stronger of the two, because it makes a shipped entry's own step actionable rather than merely correct.
