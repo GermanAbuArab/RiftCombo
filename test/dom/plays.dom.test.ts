@@ -168,3 +168,65 @@ describe("what the view does when it cannot show a play", () => {
     expect(host.querySelector("h1")!.textContent).toBe('<img src=x onerror="alert(1)">');
   });
 });
+
+/**
+ * The link from a combo back to the play about it (#206). The id is read out of the play's own prose
+ * rather than carried in a field, so the mapping below is a fact about the corpus and is pinned here:
+ * a reword in `docs/plays/` that moves a link shows up as a test change rather than silently.
+ */
+describe("which entry a play is about", () => {
+  const subjects = async (known: string[]) => {
+    vi.resetModules();
+    document.body.innerHTML = HTML;
+    location.hash = "#/plays";
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => ({ plays: PLAYS }) })));
+    const mod = await import("../../web/plays.js");
+    const { startRouter } = await import("../../web/router.js");
+    mod.initPlays({ comboIds: new Set(known) });
+    startRouter();
+    await new Promise((r) => setTimeout(r, 0));
+    return mod;
+  };
+
+  const ALL = [
+    "yasuo-windrider-ride-the-wind-chain",
+    "ivern-ride-the-wind-double-conquer",
+    "tryndamere-brambleback-conquer",
+    "gutter-palace-keeper-time-warp",
+    "time-warp-hold-burst",
+    "grand-plaza-recruit-vanguard",
+  ];
+
+  it("points each play at the one line it is about, and half of them at none", async () => {
+    const { playsAbout } = await subjects(ALL);
+    const at = (id: string) => playsAbout([id]).map((p) => p.slug);
+    expect(at("yasuo-windrider-ride-the-wind-chain")).toEqual(["2026-09-12-chaos-fury-yasuo-shuttle"]);
+    expect(at("ivern-ride-the-wind-double-conquer")).toEqual(["2026-09-12-chaos-order-the-one-answer"]);
+    expect(at("tryndamere-brambleback-conquer")).toEqual(["2026-09-12-the-unopposed-clock"]);
+  });
+
+  /**
+   * The three the Chaos/Order play names in a closing paragraph about a defect in one of this
+   * project's own scripts. It is not about any of them, and telling a reader of `time-warp-hold-burst`
+   * that there is a play about their line would be false.
+   */
+  it("does not claim a play is about a line it merely cites in passing", async () => {
+    const { playsAbout } = await subjects(ALL);
+    for (const id of ["gutter-palace-keeper-time-warp", "time-warp-hold-burst", "grand-plaza-recruit-vanguard"]) {
+      expect(playsAbout([id]), id).toEqual([]);
+    }
+  });
+
+  it("finds nothing for a play that names no entry, which is half the corpus", async () => {
+    const { playsAbout, subjectOf } = await subjects(ALL);
+    const idle = PLAYS.find((p) => p.slug.endsWith("what-the-idle-mana-buys"))!;
+    expect(subjectOf(idle)).toBeNull();
+    expect(playsAbout(["no-such-entry"])).toEqual([]);
+  });
+
+  /** A hyphenated phrase in backticks is not an entry id; only ids the catalogue holds count. */
+  it("reads an id only where the catalogue has one", async () => {
+    const { playsAbout } = await subjects([]);
+    for (const id of ALL) expect(playsAbout([id]), id).toEqual([]);
+  });
+});

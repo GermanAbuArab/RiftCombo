@@ -7,11 +7,14 @@
  * document text goes in through `textContent` — so no sentence of a play can ever be interpreted as
  * HTML, which is what the site's Content-Security-Policy already assumes and cannot itself enforce.
  *
- * The payload is fetched on the first visit to the view rather than bundled: 39 KB of prose is a cost
- * for the reader who asked for it, not for everyone who pasted a deck list.
+ * The payload is fetched rather than bundled — 39 KB of prose has no business inside app.js, and a
+ * separate file is separately cacheable — but it is fetched at boot rather than on the first visit to
+ * the view, because the combo drawer asks it a question ("is there a play about this line?") that can
+ * be asked before anyone opens Run plays at all. A link that is sometimes missing is a correctness
+ * problem; 39 KB against cards.json's 652 KB is not a performance one.
  */
 import { parseMarkdown, resolvePlayHref, type Block, type Span } from "../src/markdown.js";
-import { go, onRoute, type Route } from "./router.js";
+import { onRoute, type Route } from "./router.js";
 
 export interface Play {
   slug: string;
@@ -21,15 +24,13 @@ export interface Play {
   markdown: string;
 }
 
-/** Where a combo id named in a play's text should send the reader. Null switches the link off. */
-export type ComboLink = (id: string) => string | null;
-
 let host: HTMLElement | null = null;
 let plays: Play[] | null = null;
 let slugs: ReadonlySet<string> = new Set();
 let loading: Promise<void> | null = null;
 let failed = false;
-let comboLink: ComboLink = () => null;
+/** The catalogue's entry ids, so a hyphenated phrase in a play is never mistaken for one. */
+let knownCombos: ReadonlySet<string> = new Set();
 let current: Route | null = null;
 
 const el = <K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, text?: string) => {
@@ -39,15 +40,14 @@ const el = <K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, text?: 
   return node;
 };
 
-export function initPlays(opts: { comboLink?: ComboLink } = {}): void {
+export function initPlays(opts: { comboIds?: ReadonlySet<string> } = {}): void {
   host = document.querySelector<HTMLElement>("#plays-host");
-  if (opts.comboLink) comboLink = opts.comboLink;
+  if (opts.comboIds) knownCombos = opts.comboIds;
   onRoute((r) => {
     current = r;
-    if (r.view !== "plays") return;
-    if (plays) render();
-    else void load();
+    if (r.view === "plays") render();
   });
+  void load();
 }
 
 async function load(): Promise<void> {
@@ -66,6 +66,41 @@ async function load(): Promise<void> {
   render(); // the "Loading…" state, so the view is never blank while the fetch is in flight
   await loading;
   render();
+}
+
+/**
+ * The catalogue entry a play is ABOUT: the first one it names, or null for a play that names none.
+ *
+ * The id is read out of the prose rather than carried in a field of either file, so a play and an
+ * entry stay independently editable — renaming an entry breaks the link at the next build instead of
+ * leaving a field pointing at nothing. Ids are written in backticks in every play, which is also what
+ * stops an ordinary hyphenated phrase being read as one, and the result is intersected with the ids
+ * the catalogue actually holds.
+ *
+ * FIRST, and the rule was measured rather than guessed. Every id in the corpus is named exactly ONCE,
+ * so frequency separates nothing; what separates them is position. A play states its subject before
+ * it digresses — "Built on `yasuo-windrider-ride-the-wind-chain`" in the lede, "Price
+ * `tryndamere-brambleback-conquer` against this clock" as a section's opening imperative — while its
+ * later mentions are citations of OTHER lines: the Chaos/Order play names three more entries in a
+ * closing paragraph about a defect in one of this project's scripts, and it is not about any of them.
+ * Linking all four would tell a reader of `time-warp-hold-burst` that there is a play about their
+ * line, and there is not. The cost is a play about two lines losing the second, which is the right
+ * way round: a missing link is legible and a false one is not.
+ *
+ * Naming none is a normal answer and half the corpus does it — a play about a deck's idle mana is
+ * about slack rather than about a line. Both sides return nothing then, and neither draws a heading.
+ */
+export function subjectOf(play: Play): string | null {
+  return comboIdsIn(play, knownCombos)[0] ?? null;
+}
+
+/** The plays whose subject is one of these entries, in payload order. Usually none. */
+export function playsAbout(comboIds: Iterable<string>): { slug: string; title: string }[] {
+  if (!plays) return [];
+  const wanted = new Set(comboIds);
+  return plays
+    .filter((p) => { const s = subjectOf(p); return s !== null && wanted.has(s); })
+    .map((p) => ({ slug: p.slug, title: p.title }));
 }
 
 function render(): void {
@@ -232,15 +267,7 @@ function span(s: Span): Node {
   }
 }
 
-/**
- * The other direction of the link (#206): a play that names a catalogued entry in its own text gets a
- * line pointing at it, and the id is read out of the prose rather than carried in a field, so a play
- * and an entry stay independently editable. Exported because the combo detail asks the same question
- * from the other side — "is there a play about this line?" — off the same source of truth.
- *
- * Not every play names one, and that is the corpus rather than an oversight: a play about a deck's
- * idle mana is about slack, not about a line. Both sides return nothing in that case.
- */
+/** Every catalogue entry id a play names in its own text, in the order it names them. */
 export function comboIdsIn(play: Play, known: ReadonlySet<string>): string[] {
   const out: string[] = [];
   // Ids are written in backticks in every play, which is also what keeps a hyphenated phrase of
@@ -251,9 +278,3 @@ export function comboIdsIn(play: Play, known: ReadonlySet<string>): string[] {
   }
   return out;
 }
-
-/** `#/plays/<slug>`, used by the combo detail to send a reader to the play that covers its line. */
-export const playHref = (slug: string): string => `#/plays/${slug}`;
-
-/** Open a play from elsewhere in the app without the caller having to know the hash shape. */
-export const openPlay = (slug: string): void => go(playHref(slug));

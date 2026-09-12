@@ -12,7 +12,7 @@ import { matchSynergies, planSynergies, type SynergyGap, type SynergyHit } from 
 import type { Card, Combo, Deck, Domain, Feature, Format, LegalityEntry, Synergy, Variant } from "../src/types.js";
 import { gate, initAccount } from "./account.js";
 import { initDecks } from "./decks.js";
-import { initPlays } from "./plays.js";
+import { initPlays, playsAbout } from "./plays.js";
 import { accountsEnabled } from "./supabase.js";
 import type { SavedDeck } from "../src/saved.js";
 import { esc } from "../src/html.js";
@@ -191,7 +191,7 @@ async function boot() {
   const opened = route();
   if (opened.legacyDeck) { input.value = opened.legacyDeck; void run(); }
   initAccount();
-  initPlays();
+  initPlays({ comboIds: new Set(combosById.keys()) });
   initDecks({
     cards: () => cards,
     variants: () => variants,
@@ -858,6 +858,23 @@ function showDetail(id: string | null) {
       own_.length ? `<p class="src-kind">Walked here, in this project</p><ul class="sources own">${ownLi}</ul>` : ""}`;
   };
 
+  /**
+   * A run play covering this line (#206). It is a different kind of claim from everything else in the
+   * drawer — the entry prices the combo, the play prices a GAME: which turn it lands on, against an
+   * opponent who is doing something, and whether that beats what they are doing. So it is named as a
+   * route-level property beside Payoff and Deck rather than buried with the sources.
+   *
+   * Most routes have none, and nothing is drawn for them: the link is resolved from the entry id a
+   * play already names in its own prose, so a play is free not to be about a catalogued line at all.
+   */
+  const runPlays = (cs: Combo[]) => {
+    const found = playsAbout(cs.map((c) => c.id));
+    return found.length
+      ? `<h3>Run play${found.length === 1 ? "" : "s"}</h3><ul class="play-refs">${found
+          .map((p) => `<li><a href="#/plays/${esc(p.slug)}">${esc(p.title)}</a></li>`).join("")}</ul>`
+      : "";
+  };
+
   const body = (c: Combo) => `
     ${c.prerequisites.notable.length ? `<h3>Prerequisites</h3><ul>${c.prerequisites.notable.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
     <h3>Steps</h3><ol>${c.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
@@ -902,6 +919,7 @@ function showDetail(id: string | null) {
     <h3>Pieces <span class="h3-hint">(have / need)</span></h3><div class="card-list">${rows}</div>
     ${produces.length ? `<h3>Payoff</h3><div class="pills">${produces.map((f) => featuresById.get(f)).filter((f): f is Feature => !!f && f.status === "STANDALONE").map((f) => `<span class="pill" data-feature="${esc(f.id)}">${esc(f.name)}</span>`).join("")}</div>` : ""}
     ${easy.length ? `<h3>Deck</h3><ul>${easy.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
+    ${runPlays(entries)}
     ${sections}`;
   for (const pill of detail.querySelectorAll<HTMLElement>(".pills .pill")) { const col = colors.get(pill.dataset.feature!) ?? "#8b93a4"; pill.style.color = col; pill.style.borderColor = col; }
   detail.querySelector("#close-detail")!.addEventListener("click", closeDetail);
