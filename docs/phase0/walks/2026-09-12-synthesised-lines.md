@@ -817,3 +817,119 @@ So chaos/fury is refused a CHAIN **on arithmetic, not on a rule**. Its Hold-side
 nothing. *A thin cell is not automatically a gap — check what the identity's existing finisher
 already does before designing a second one.*
 
+
+---
+
+## 14. Batch 5 — the refusal sweep: find, classify, then walk only what survives
+
+rc-manager5 scoped this as a **sweep and not a walk**, on the reasoning that refusals in this
+catalogue look like they fail in CLASSES. Two classes were named: lines that **stall at seven**
+(reopened by 471.1.a.1 / 471.1.b.1) and lines refused because a **resource could not cross 167**
+(reopened by 444.2.c). The caution attached to the second is load-bearing and is applied below:
+444.2.c reaches abilities that **ADD RESOURCES with [Reaction]**. It does not make every cost payable
+at every moment, and a refusal that turned on a card needing to be in play, or on a body needing to be
+present when a trigger was placed (383.2.a.1), is untouched by it.
+
+### 14.1 Method
+
+`.scratch-synth/sweep-refusals.mjs` splits three sources into **19,362 records** — every authored
+string in `data/combos.json` (notables, steps, `terminatesIn`, `uses` notes), every paragraph of the
+83 walk documents, every bullet of `CLAUDE.md` — and keeps records carrying **refusal language AND a
+class marker**. That is 21 Class A candidates and 27 Class B. The script decides nothing: every
+candidate below was read and classified by hand, because the distinction the caution draws is not
+one a regex can make.
+
+### 14.2 Class A — stalls at seven. Three named, ONE reopens.
+
+| # | refusal | verdict |
+|---|---|---|
+| **A1** | Trinity Force + Skyfall + Reckoner's Arena = 7 (`2026-09-06-finisher-feeders.md` §7a) | **REOPENS** — §14.3 |
+| **A2** | Karthus over Machine Evangel and Viktor, Leader = "SEVEN, not eight" (`CLAUDE.md`) | **NOT APPLICABLE** |
+| **A3** | Body/Order on Shen + Trinity Force = 7 (this lane's own batch 2, refusal #7) | **STAYS REFUSED** |
+
+**A2 is the classification that matters, and it says the named group of three was one too many.**
+That seven is a count of **RECRUIT BODIES for a Grand Plaza line**, not a point total — *"Karthus
+doubles `OGN-239 Machine Evangel`'s three Recruits to six and leaves `OGN-246 Viktor, Leader`'s one at
+one, so that board is SEVEN, not eight."* 471.1.a.1 and 471.1.b.1 are about **points**. A body count
+is untouched by either, and `OGN-293 The Grand Plaza` wants *"7+ units here"* anyway, so the sentence
+is a correction of a count and never was a refusal. **Classify the unit before applying the rule.**
+
+**A3 stays refused for a reason the rule does not reach.** The eighth point there would have to be
+`UNL-177 Ivern` — which *is* a non-Conquer ability Gain, so the rule's antecedent is satisfied — but
+adding him puts a third body at the battlefield and 383.2.a.1 makes `VEN-138 Shen`'s *"exactly one
+other unit you control here"* part of the Trigger Condition, switching Shen off. **A board
+constraint, not a Final-Point constraint.** (Body/Order was closed anyway by batch 2's
+`ivern-arena-trinity-body-order-hold` at ten.)
+
+### 14.3 A1 reopened, and the general form is worth more than the line
+
+The refusal's arithmetic was right and its search was too narrow: it looked for an eighth point **at
+the Arena**, found the only candidate (`OGN-066 Ahri`) was a third domain, and stopped. **A Duel has
+two battlefields (485.4).** Walking a spare body into the second one Conquers it for the eighth, and
+471.1.b.1 pays it *because both battlefields were Scored this turn* — the Hold Scored the Arena, the
+Conquer Scores the other.
+
+Nothing in that is new law. `swain-double-conquer`, verified since 2026-09-04, says it in its own
+words: *"Second Conquer's own point is safe at 7 because both battlefields were scored this turn
+(471.1.b.1)."* It had simply never been applied here.
+
+> **The general form: a Hold-based seven at ONE battlefield in a Duel is an eight, because Holding
+> one battlefield and Conquering the other IS Scoring every battlefield.** The refusal shape to
+> distrust is a walk that searches for its eighth point *inside the same scoring event it built* —
+> "one short" is a claim about that event, not about the turn.
+
+`trinity-skyfall-arena-second-battlefield-chain` is staged: E18, 3 Body and 1 Fury Power, two
+`UNL-111 Determined Sentry` at E1 being its whole non-gear cost. Cheaper than its sibling
+`brambleback-trinity-skyfall-conquer` (E24 + 3 Body + 3 Fury) and wanting the opposite board — that
+one pays where you are taking ground, this one where you are keeping it.
+
+### 14.4 Class B — the class is REAL and it is wider than 444.2.c
+
+The Power Nexus case needed 444.2.c specifically, because its payment moment sits inside a
+finalization with no priority window. **Three more refusals in this catalogue fail on a plainer
+version of the same error, and they do not need 444.2.c at all.**
+
+**167 empties the POOL, not the board.** Both halves of that are already in `CLAUDE.md`, in different
+bullets, and were never joined: *"Energy added in Awaken or the Beginning Phase is lost when the Rune
+Pool empties at the Main Phase start (167)"* and, elsewhere, *"167 reads … the POOL, not the runes."*
+**The error shape is assuming a resource must be ADDED when it becomes available rather than when it
+is SPENT.**
+
+| # | refusal | verdict |
+|---|---|---|
+| **B1** | `OGN-288 Startipped Peak` — the channelled rune is *"one extra rune, as Energy, from the FOLLOWING turn"* | **REOPENS, on a third reading** |
+| **B2** | `SFD-219 The Papertree` — same two strikes, same shape | **REOPENS, same reading** |
+| **B3** | `power-nexus-sentinel-renata-mastermind` × Time Warp — *"a full twelve-rune board yields at most twelve rune-units total"* | **CONCLUSION STANDS, REASON WRONG** |
+
+**B1 and B2.** The rune arrives exhausted, so 164.2.a (whose cost is the exhaust) is dead that turn —
+true. But **164.2.b's cost is the RECYCLE, not an exhaust**, so the exhausted rune recycles for 1
+Power of its domain; and you do not have to do it in the Beginning Phase. The rune sits on the
+**board**, which 167 never touches, so you recycle it **in the Main Phase, at the moment you spend**.
+Both were already reopened once (by #170, for a rune-COUNT reason); this is a third and independent
+reading: **the Peak's rune is 1 Power on the same turn, or 1 Energy next turn — your choice.**
+
+**B3's conclusion survives but its stated reason is wrong, which is worse than it sounds** because a
+wrong reason misdirects the next reader. The passage says a twelve-rune board *"yields at most twelve
+rune-units total"*. It yields **twelve Energy AND twelve Power**: 164.2.a taps a rune for Energy,
+164.2.b then recycles that same already-exhausted rune for Power. This project's own turn clock says
+so in `scripts/adversarial-check.mjs`. Re-run against the real ceiling, the requirement of 14 Energy
++ 8 Power fails **on Energy alone, by exactly 2**, with 10 Power to spare — not "eighteen against
+twenty-two". The fix that would reopen it is 2 Energy, not four resources, and the pool's only
+Power-to-Energy conversion (`VEN-141 Butcher of the Sands`) cannot supply it: it is a Fury/Body
+LEGEND against a mono-Mind line (103.1.b), and its Energy is restricted to *"play units or activated
+abilities of units"*, which a Time Warp spell is not. **Refused, correctly, for the second time and
+for a different reason.**
+
+### 14.5 What the sweep says about refusals as a kind
+
+Two classes, four reopenings, and **the two misses are the useful part**: A2 was a body count wearing
+a point count's clothes, and B3 was a right answer resting on wrong arithmetic. Both would have been
+"fixed" by a pass that matched on the marker instead of reading the record.
+
+- **A wrong refusal is invisible in a way a wrong entry is not.** An entry has arithmetic, a card set,
+  a validator and three cross-audits pointed at it. A refusal removes a line from consideration and
+  leaves nothing behind to check.
+- **State the UNIT with the number.** "Seven" meant points twice and bodies once in the same sweep.
+- **A refusal is scoped to the reason that was given** — already in `CLAUDE.md` from #170, and it cut
+  three more times here.
+
