@@ -1789,3 +1789,82 @@ A pair whose every finisher is mono-domain is not an identity with a plan; it is
 legend. body/mind has thirteen available finishers and three that span, all of one mechanism and all
 Hold-gated — and a lane pointed at its *availability* would have called it the healthiest Body pair instead
 of a refusal.
+
+---
+
+## 23. Batch 14 — the spans-both axis pays immediately: a calm/mind BURST, and chaos/fury refused
+
+Batch 13's axis was built to judge body/mind. Pointed at the rest of the table it named a target on the
+first look, and the target turned out to be a mechanism the catalogue already owned in two other
+identities and had never reached for in this one.
+
+### 23.1 chaos/fury: refused, and it is the batch-13 shape
+
+chaos/fury is the only pair in the table that spans **zero** finishers. §13.3 had already refused it a
+CHAIN on arithmetic — its mono-Fury BURST reaches nine and a second scoring event buys nothing — but the
+sharper question is whether the two halves have anything to say to each other at all. Swept, they do not:
+
+- **Fury's multiplier cannot see Chaos's points.** `UNL-029 Red Brambleback` reads *"Your conquer effects
+  for conquering here trigger an additional time."* Chaos's two point cards are `OGN-205 Yasuo` (a **move**
+  trigger) and `SFD-148 Draven` (a **combat-win** trigger). Neither is a conquer effect, so Brambleback
+  multiplies nothing Chaos owns, and the only thing it can multiply in the identity is `OGN-034 Tryndamere`
+  — which is Fury, and is `tryndamere-brambleback-conquer` already.
+- **Chaos's points have no multiplier here.** The card that multiplies Draven is `SFD-059 Svellsongur`,
+  and it is **Calm** — which is why `draven-svellsongur-bloodless-combat-burst` (§11) is calm/chaos.
+- **The excess-damage lever is a Mind tool.** Tryndamere is priced in excess damage, and the cheap way to
+  raise it is to shrink the defender (§170's finding). Swept over `text` + `effect` for Might reduction
+  reaching an enemy: **23 names, of which 14 are mono-Mind and the rest Mind pairs, Calm, or Calm/Chaos.**
+  A chaos/fury deck can run exactly one — `UNL-138 The List` (Chaos, E1 gear, *"As you play this, name a
+  tag. :rb_exhaust:: Give a unit with the named tag -2 :rb_might: this turn"*) — plus `UNL-210 Forbidding
+  Waste`, a battlefield and therefore a 1-in-3 (485.5). The List is **named blind**, before the garrison is
+  known, and its exhaust caps it at one -2 a turn.
+
+So chaos/fury is **two solo domains sharing a legend**, and its one Chaos contribution to Fury's payoff is
+a tag-scoped guess. Recorded so nobody re-walks it; §4's refusal of the six-body Draven-plus-Tryndamere
+pile at 39 Energy stands beside it.
+
+### 23.2 `swain-svellsongur-conquer-burst` (BURST, verified, calm/mind) — nine points, one body, one Conquer
+
+**calm/mind is the pair the new axis flagged**: 18 finishers available (second-most), **7 that span both
+domains, and six of those seven Hold-gated** — one survivor. The question that follows is not "what card is
+uncatalogued" but **"which catalogued MECHANISM can this pair reach that it has not?"**
+
+`SFD-059 Svellsongur` is Calm. The conquer-side point cards outside Calm are Mind's. Nobody had put them
+together: `scripts/have.mjs VEN-065 SFD-059` reports no entry on that card set **or a subset**, across
+**37 Svellsongur entries and 4 Swain entries.**
+
+| source | rule | points |
+|---|---|---|
+| the Conquer itself | 469.1 / 471.1 | 1 |
+| eight instances of Swain's trigger | 2^3 composition, placed by 383.4.c.2.a | 8 |
+| | **one scoring event** | **9** |
+
+**E20 and 8 Power counted whole — and only 6 Energy on the finishing turn.** Three things make it worth a
+slot rather than a re-skin:
+
+1. **One body, not three.** Its fury/mind sibling `swain-brambleback-conquer-burst` reaches ten by running
+   **three Swains** under two Brambleback. This runs **one Swain wearing three gears**. 465.2.c lets a
+   defender assign damage across three bodies; against one body it must kill that body or nothing. The
+   trade is that 718.5.b keeps the three gears shootable — stated in the entry, not hidden.
+2. **No drawback.** §11's Draven version multiplies *"When I die in combat, choose an opponent. They score
+   1 point"* to eight as well. Swain prints only `[Vision]`.
+3. **The Trigger Condition cannot be answered.** Swain's *"if"* sits **immediately after** the trigger, so
+   383.2.a.1 makes it part of the Trigger Condition — Riot's Sona example, ending *"If she is removed in
+   reaction to the triggered ability, it will still resolve."* And it asks what you **played this turn**,
+   which is a fact about the past: killing the unit, blowing up the gear or countering the spell after it
+   resolves changes nothing, and 419.4.b counts even a **countered** card as played for a non-triggered
+   check. **This is the exact inverse of §20's Ivern line**, whose clause follows the effect verb, is
+   therefore the Loose Cannon shape, and dies to one removal spell aimed at a Might-2 Poro.
+
+**The third of the condition that needed care was the spell**, because the #166 cross-audit killed a Swain
+line for exactly this: its filler was `VEN-061 Decree of Insight`, which has no legal target against a
+board with no Body unit, and six Swain points evaporated. `SFD-080 Bellows Breath` is in `uses[]` on
+purpose — 355.13 makes *"Deal 1 to **up to** three units"* castable with zero targets, and its only choice
+carries the qualifier, which is the test separating it from the four *"up to"* spells that still brick.
+
+### 23.3 Standing note
+
+**When a pair looks thin, ask which catalogued MECHANISM it can reach rather than which card is
+uncatalogued.** Svellsongur has 37 entries and Swain 4; both cards were exhaustively mined, and the pair
+of them was untouched. A card-coverage census cannot see that gap — only a per-identity question can, and
+the mechanism is usually already proved somewhere else in the catalogue, which is what makes the walk cheap.
