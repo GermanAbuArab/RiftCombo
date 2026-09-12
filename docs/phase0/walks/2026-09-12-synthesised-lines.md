@@ -513,3 +513,98 @@ battlefield answers all eleven with the same action.
   "read it", never asserted.
 - **It is one hop, like the clock.** An entry that scores through a `needs` dependency carries its
   board dependence in the OTHER entry, and this pass does not follow the edge.
+
+
+---
+
+## 10. Batch 3, part one — a correction to the answer set the script sweeps, and to 14 shipped notables
+
+rc-manager5 relayed a finding from the 500-829 lane: the sentence `--emit-notables` wrote into 14
+entries says no answer reaches their scoring window, and it was measured with a KILL predicate
+(`/\bkills?\b[^.]{0,80}\bgear\b/i`). A kill predicate structurally cannot see an answer that takes
+the Equipment OFF instead of destroying it, and one exists at [Reaction] speed.
+
+**This is the same lesson section 8 records, arriving from the other side.** There, naming all
+sixteen swept kills as "answers" would have been false in the entry's voice, so the emitter was
+narrowed to the unconditional enemy-facing subset. Here the set was measured correctly and the
+QUESTION was wider than the predicate. Both are the same failure: *state the predicate with the
+number, and check that the predicate answers the question you are actually asking.*
+
+### The detach population, re-measured rather than inherited
+
+The relay named four cards. Swept here with `/\bdetach/i` over `text` + `effect` of every deckable
+base in `data/cards.json`: **5 base codes, 4 names** — Grandmaster at Arms is printed twice
+(SFD-193, SFD-245), which is the name+type fold this project already requires of every census.
+
+The number that matters is smaller, and it is a **second sweep rather than a typed list**: a
+detacher whose text confines it to `friendly` or `you control` cannot answer an opponent's line at
+all.
+
+| base | name | domain | enemy-facing? | the words that decide it |
+|---|---|---|---|---|
+| SFD-011 | Angle Shot | fury | **YES** | "an Equipment with the same controller" |
+| SFD-107 | Strike Down | body | no | "Choose an equipped **friendly** unit" |
+| SFD-193 / SFD-245 | Grandmaster at Arms | calm/body | no | "Attach a detached Equipment **you control**" |
+| SFD-221 | Veiled Temple | colourless | no | "you may ready a **friendly** gear" |
+
+**So the enemy-facing detach population is ONE card.** `SFD-011 Angle Shot` — Fury, 2 Energy, no
+Power, and it cantrips: *"[Reaction] (Play any time, even before spells and abilities resolve.)
+Choose a unit and an Equipment with the same controller. Attach that Equipment to that unit or
+detach that Equipment from that unit. Draw 1."*
+
+What it provably does is in two paragraphs, both quoted untruncated in the emitted prose: **719.1**
+appends an attached card's Effect Text to its carrier *"for as long as they remain Attached"*, and
+**137.3.a** stops the Might Bonus *"as soon as the card with the Might Bonus is no longer Attached"*.
+
+### What is NOT walked, and is now said so in the entries themselves
+
+Whether a detach **inside** the scoring window accomplishes anything is open, and the emitted prose
+says so rather than implying an answer. A Trigger Condition is measured when the trigger is PLACED
+(383.2.a.1 makes a clause immediately after the trigger *"part of the Trigger Condition and not the
+Effect"*), so stripping the Equipment once its trigger sits on the Chain may well change nothing —
+and nobody has walked what becomes of a chain item whose source text has gone. **Naming a card
+without naming that limit is how a reader gets it wrong**, which is why the notable carries both.
+
+### The script change, not 14 hand edits
+
+`scripts/adversarial-check.mjs`:
+
+1. **A second swept answer set.** `gearDetach` (predicate above) plus an `enemyFacing` filter;
+   `gearAnswers = gearKills + detachAnswers` is what the hole check now accepts as "this entry has
+   named an answer". Swept, never typed, so it cannot go stale against a new set.
+2. **`REACTION_NOTABLE` is hoisted to one module-level const**, because two modes now need the
+   identical sentence and a copy in each would drift.
+3. **`--recheck-notables`**, a new mode. `--emit-notables` only ever ADDS a notable to an entry with
+   no answer at all, so once a batch is merged it goes quiet — which is exactly when a shipped
+   notable can turn out to be wrong. The new mode finds the stale sentence and emits one replacement
+   row per entry, **matching on the sentence and not on an index**, because indices shift when
+   another lane edits an entry; the index is reported for the applier to CHECK, never to trust. It
+   writes a file (`--out`, default `/tmp/rc-walks/rc-synth-recheck.json`) rather than stdout, since
+   the report sections would otherwise be interleaved with the JSON.
+
+Run: `node scripts/adversarial-check.mjs --recheck-notables` → **14 rows**.
+
+### Reading the generated prose again caught three more defects
+
+Section 8's rule held a second time; none of these would have been visible without reading the
+output.
+
+1. **The timing claim was stated as if all 14 entries shared one scoring window.** They do not. A
+   Hold pays at 315.2.b.2 inside your own Beginning Phase, where 312.2.a gives the opponent no
+   priority and 813.1.c.1 admits only a [Reaction] — no kill reaches it. A line that pays in the
+   MAIN PHASE has no such protection: 806.1.c.1 puts Thermo Beam and Salvage inside any showdown on
+   any player's turn. The 14 are a mix of both, so the notable now states the fork and tells the
+   reader to check which case the entry is. **The first draft would have shipped a false protection
+   claim to every Main-Phase line in the set.**
+2. **383.2.a.1 was cited as though it settled the late-detach question.** It is the reason to DOUBT,
+   not the answer; the prose now says that in those words.
+3. **The name count was `gearDetach.length - 1`** — right by luck at 5, wrong the moment a second
+   duplicate printing appears. It folds on name now, like every other census in this project.
+
+### Two counts that look contradictory and are not
+
+The relay said "36 shipped notables", this lane measured 14. Both are right and they answer
+different questions: `--emit-notables` produced **36 notables across 22 entries** — 14 carrying the
+718.5.b Equipment notable, 14 carrying the stale [Reaction] sentence, 8 carrying the Flurry of
+Blades notable — and the stale SENTENCE is in 14 of them. Say which question a count answers.
+

@@ -3,6 +3,7 @@
 //   node scripts/adversarial-check.mjs            report everything
 //   node scripts/adversarial-check.mjs --strict   exit 1 if any finisher has an unanswered hole
 //   node scripts/adversarial-check.mjs --turns    only the turn-clock section
+//   node scripts/adversarial-check.mjs --recheck-notables   corrections that REPLACE a stale shipped notable
 //
 // It asks two questions of every INFINITE / BURST / CHAIN / ALT_WIN entry:
 //
@@ -17,13 +18,14 @@
 //   2. How many turns does it take, against the do-nothing Hold curve in its own identity?
 //      See docs/plays/2026-09-12-the-unopposed-clock.md. Both numbers are OPTIMISTIC LOWER BOUNDS:
 //      perfect draws, nothing else ever cast, no interaction from the opponent.
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 
 const args = process.argv.slice(2);
 const strict = args.includes("--strict");
 const onlyTurns = args.includes("--turns");
 const emit = args.includes("--emit-notables");
 const stalled = args.includes("--stalled");
+const recheck = args.includes("--recheck-notables");
 
 const cards = JSON.parse(readFileSync("data/cards.json", "utf8")).cards;
 const db = JSON.parse(readFileSync("data/combos.json", "utf8"));
@@ -40,6 +42,26 @@ for (const [base, c] of byBase) {
   const t = `${c.text || ""} ${c.effect || ""}`;
   if (/\bkills?\b[^.]{0,80}\bgear\b/i.test(t)) gearKills.push({ base, name: c.name, domains: c.domains });
 }
+// An Equipment is also answered WITHOUT killing it, by taking it off the carrier: 719.1 appends the
+// Effect Text "for as long as they remain Attached" and 137.3.a stops the Might Bonus "as soon as the
+// card with the Might Bonus is no longer Attached". A kill predicate cannot see that family, which is
+// how 36 shipped notables came to carry a claim narrower than their own question (rc-manager5, via the
+// 500-829 lane, 2026-09-12). Swept, not typed: /\bdetach/i over text + effect of every deckable base.
+// ENEMY-FACING is a second sweep and not a list - a detacher confined to "friendly" or "you control"
+// cannot answer an opponent's line at all. That filter is what takes the population from 5 base codes
+// (4 names: Grandmaster at Arms is printed twice, SFD-193 and SFD-245) down to ONE.
+const gearDetach = [];
+for (const [base, c] of byBase) {
+  if (!c.domains.length && !c.type.includes("battlefield")) continue;
+  const t = `${c.text || ""} ${c.effect || ""}`;
+  if (!/\bdetach/i.test(t)) continue;
+  const enemyFacing = !/friendly|you control/i.test(t);
+  gearDetach.push({ base, name: c.name, domains: c.domains, enemyFacing });
+}
+const detachAnswers = gearDetach.filter((d) => d.enemyFacing);
+// What the hole check accepts as "this entry has named an answer".
+const gearAnswers = [...gearKills, ...detachAnswers];
+
 // the sweeper that answers a 1-Might board for 1 Energy at Reaction speed
 const SWEEPER = { base: "OGN-133", name: "Flurry of Blades" };
 
@@ -109,7 +131,7 @@ for (const e of db.combos) {
   }
 
   const holes = [];
-  if (equipment.length && !namesAnswer(blob, gearKills).length)
+  if (equipment.length && !namesAnswer(blob, gearAnswers).length)
     holes.push(`stands on Equipment (${equipment.join(", ")}) and names no gear answer`);
   if (fragile.length && !namesAnswer(blob, [SWEEPER]).length)
     holes.push(`stands on a Might-1 body (${fragile.join(", ")}) and never names OGN-133 Flurry of Blades`);
@@ -173,7 +195,8 @@ for (const { e, domains, costs } of entries) {
 
 if (!onlyTurns) {
   console.log(`# Unanswered holes: ${findings.length} of ${db.combos.filter((c) => FINISHER.has(c.class)).length} finishers`);
-  console.log(`# gear-kill answer set: ${gearKills.length} base codes, domains ${[...new Set(gearKills.flatMap((g) => g.domains))].sort().join(" ")}\n`);
+  console.log(`# gear-kill answer set: ${gearKills.length} base codes, domains ${[...new Set(gearKills.flatMap((g) => g.domains))].sort().join(" ")}`);
+  console.log(`# gear-detach answer set: ${gearDetach.length} base codes swept, ${detachAnswers.length} enemy-facing (${detachAnswers.map((d) => `${d.base} ${d.name}`).join(", ") || "none"})\n`);
   for (const f of findings) for (const h of f.holes) console.log(`${f.e.class.padEnd(8)} ${f.e.id}\n         ${h}`);
 }
 
@@ -187,6 +210,41 @@ for (const cls of ["INFINITE", "BURST", "CHAIN"]) {
 console.log();
 for (const c of clock.sort((a, b) => b.pays - a.pays || a.id.localeCompare(b.id)))
   console.log(`  T${String(c.pays).padStart(2)} vs T${c.base} baseline  ${c.pays > c.base ? "SLOWER" : "      "}  ${c.cls.padEnd(8)} ${c.domains.padEnd(12)} ${c.id}${c.via ? `  [fuel only: + ${c.via}]` : ""}`);
+
+// ---------------------------------------------------------------- the Reaction/detach notable
+// Hoisted because TWO modes need the identical sentence: --emit-notables writes it into an entry that
+// has no gear answer at all, and --recheck-notables replaces the STALE, narrower version of it that
+// 14 entries already carry. One source of truth, so the two can never drift apart.
+const REACTION_NOTABLE =
+  `NO GEAR KILL IN THE POOL CARRIES [Reaction] - BUT A KILL IS NOT THE ONLY ANSWER, AND THE PREDICATE ` +
+  `THAT MEASURED THAT SET COULD NOT SEE THE OTHER FAMILY. Swept over all ${gearKills.length} kills: Thermo ` +
+  `Beam and Salvage are [Action], which 806.1.c.1 makes short for "This can be played during showdowns on ` +
+  `any player's turn", and Detonate and Brittle Steel are plain spells, which 155 confines to "an Open State ` +
+  `outside of Showdowns on its controller's turn". WHICH OF THOSE PROTECTS THIS LINE DEPENDS ON WHERE IT PAYS, ` +
+  `so check before relying on it. If it pays on a HOLD, the Score happens at 315.2.b.2 inside your own Beginning ` +
+  `Phase, where 312.2.a gives the opponent no priority in a Neutral Open State and 813.1.c.1 admits only a ` +
+  `[Reaction] in the Closed State the trigger opens - no kill in the pool reaches that window at all, so each ` +
+  `must be cast on THEIR own turn, a full turn early and fully telegraphed, and that spell on the Chain is ` +
+  `itself a Closed State where 312.2.c hands out priority and 813.1.c.1 admits a [Reaction] in response. If it ` +
+  `instead pays in your MAIN PHASE, that protection does not exist: 806.1.c.1 puts Thermo Beam and Salvage ` +
+  `inside any showdown on any player's turn, so they reach the scoring window itself. THE SECOND FAMILY IS DETACHMENT, AND IT DOES CARRY [Reaction]. ` +
+  `719.1 appends an attached card's Effect Text to its carrier "for as long as they remain Attached" and ` +
+  `137.3.a stops the Might Bonus "as soon as the card with the Might Bonus is no longer Attached", so taking ` +
+  `the Equipment OFF switches the payoff off without killing anything. Swept with /\\bdetach/i over ` +
+  `text+effect of every deckable base: ${gearDetach.length} base codes (${new Set(gearDetach.map((d) => d.name)).size} names - ` +
+  `Grandmaster at Arms is printed twice), of which only ${detachAnswers.length} is ENEMY-FACING, because ` +
+  `Strike Down says "an equipped friendly unit", Veiled Temple "a friendly gear" and Grandmaster at Arms ` +
+  `"you control". That one is SFD-011 Angle Shot - Fury, 2 Energy, NO Power, and it cantrips: "[Reaction] ` +
+  `(Play any time, even before spells and abilities resolve.) Choose a unit and an Equipment with the same ` +
+  `controller. Attach that Equipment to that unit or detach that Equipment from that unit. Draw 1." The words ` +
+  `that make it an answer are "the same controller", which need not be you. WHAT IT PROVABLY DOES is strip ` +
+  `the text and the Might Bonus BEFORE the trigger condition is ever met. WHAT IS NOT WALKED, and a reader ` +
+  `should not reach for it here until somebody does, is whether a detach inside the scoring window itself ` +
+  `accomplishes anything. The reason to DOUBT it - not a paragraph that settles it - is that a Trigger Condition ` +
+  `is measured when the trigger is PLACED (383.2.a.1 makes a clause immediately after the trigger "part of the ` +
+  `Trigger Condition and not the Effect"), so stripping the Equipment once its trigger is already on the Chain ` +
+  `may well change nothing. Nobody has walked what becomes of a chain item whose source text has gone. Until ` +
+  `somebody does, treat Angle Shot as a cheap answer cast EARLY, and do not claim it answers the trigger.`;
 
 // ---------------------------------------------------------------- --emit-notables
 // A player reading riftcombo.app never runs npm, so a hole only this script knows about is invisible
@@ -228,14 +286,7 @@ if (emit) {
         `predicate is /\\bkills?\\b[^.]{0,80}\\bgear\\b/i over text+effect of every deckable base in ` +
         `data/cards.json, and the rest either reach only a friendly gear or are gated below this line's costs. Run ` +
         `npm run adversarial to re-derive it.)`,
-        `NO GEAR KILL IN THE POOL CARRIES [Reaction], WHICH IS WHAT KEEPS THIS LINE ALIVE. Swept over all ` +
-        `${gearKills.length}: Thermo Beam and Salvage are [Action], which 806.1.c.1 makes short for "This can be ` +
-        `played during showdowns on any player's turn", and Detonate and Brittle Steel are plain spells, which 155 ` +
-        `confines to "an Open State outside of Showdowns on its controller's turn". The window this line pays in ` +
-        `gives the opponent no priority in a Neutral Open State (312.2.a) and admits only a [Reaction] in the Closed ` +
-        `State a trigger opens (813.1.c.1). So the gear can be stripped only on THEIR own turn, a full turn early ` +
-        `and fully telegraphed - and that removal spell on the Chain is itself a Closed State, where 312.2.c hands ` +
-        `out priority and 813.1.c.1 admits a [Reaction] in response. That is where this line is defended.`);
+        REACTION_NOTABLE);
     }
     const mightHole = f.holes.find((h) => h.startsWith("stands on a Might-1 body"));
     if (mightHole) {
@@ -329,6 +380,45 @@ if (stalled) {
     console.log(`\n## ${k.toUpperCase()}  (${buckets[k].length})\n   ${label[k]}\n`);
     for (const r of buckets[k].sort()) console.log(`     ${r}`);
   }
+}
+
+
+// ---------------------------------------------------------------- --recheck-notables
+// --emit-notables only ever ADDS a notable to an entry that has no answer at all, so once a batch has
+// been merged it goes quiet - and that is exactly when a shipped notable can turn out to be WRONG.
+// It did on 2026-09-12: 14 entries carry a sentence saying no answer reaches their scoring window,
+// measured with a KILL predicate that structurally could not see SFD-011 Angle Shot, a [Reaction]
+// DETACH. Rather than 14 hand edits, this mode finds the stale sentence and emits a replacement row
+// per entry. It matches on the sentence, not on an index, because indices shift when another lane
+// edits an entry - the index is reported for the applier to CHECK, never to trust.
+const STALE = "NO GEAR KILL IN THE POOL CARRIES [Reaction], WHICH IS WHAT KEEPS THIS LINE ALIVE";
+if (recheck) {
+  const rows = [];
+  for (const e of db.combos) {
+    const notables = (e.prerequisites && e.prerequisites.notable) || [];
+    const at = notables.findIndex((n) => n.includes(STALE));
+    if (at < 0) continue;
+    rows.push({
+      entry: e.id,
+      action: "replace one notable in prerequisites.notable",
+      notable_index: at,
+      match_contains: STALE,
+      why:
+        "The shipped sentence measured the ANSWER SET correctly and asked a NARROWER question than it stated: its " +
+        "predicate was /\\bkills?\\b[^.]{0,80}\\bgear\\b/i, so it could not see the detach family at all. " +
+        "SFD-011 Angle Shot is Fury, 2 Energy, no Power, [Reaction], and answers an equipped body WITHOUT killing " +
+        "anything. Found by the 500-829 lane, 2026-09-12. The replacement keeps the kill finding (true, and now " +
+        "scoped to kills), names the one enemy-facing detacher, and flags as UNWALKED whether a detach inside the " +
+        "scoring window accomplishes anything - 383.2.a.1 measures a Trigger Condition when the trigger is PLACED.",
+      replacement: REACTION_NOTABLE,
+    });
+  }
+  // A file, not stdout: the report sections above would otherwise be interleaved with the JSON, and
+  // the manager applies a FILE. --out overrides the default path.
+  const outAt = args.indexOf("--out");
+  const out = outAt >= 0 && args[outAt + 1] ? args[outAt + 1] : "/tmp/rc-walks/rc-synth-recheck.json";
+  writeFileSync(out, JSON.stringify(rows, null, 1) + "\n");
+  console.log(`\n# --recheck-notables: ${rows.length} entries carry the stale sentence -> ${out}`);
 }
 
 if (strict && findings.length) process.exit(1);
