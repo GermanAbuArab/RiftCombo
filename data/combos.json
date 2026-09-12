@@ -54784,6 +54784,556 @@
           "date": "2026-09-12"
         }
       ]
+    },
+    {
+      "id": "blast-cone-iascylla-responsible-move-stun",
+      "name": "411.4 - Blast Cone's stun fires on ANY enemy move you are responsible for, and Iascylla supplies one free every turn",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-133",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Chaos gear, E4 P1. 'When you play this, you may move an enemy unit. When you move an enemy unit, you may exhaust this to [Stun] it. (It doesn't deal combat damage this turn.)' The SECOND sentence is Riot's own worked example at 411.4, quoted there almost verbatim. Gear enters ready (143.4 exhausts units only), and 415.3.a readies it every Awakening, so it is one stun per turn forever."
+        },
+        {
+          "card": "UNL-050",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E7 P1 M6. 'When I hold, at the start of your next Main Phase, you may move an enemy unit to this battlefield.' A free, repeating, zero-card enemy move on YOUR turn - the move the Cone's second sentence is waiting for. She must survive and hold, which is the entry's real cost."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal",
+        "tempo-denial"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Iascylla is mono-Calm and Blast Cone mono-Chaos, so 103.1.b.1 needs a Calm/Chaos legend. The census run against data/cards.json on 2026-09-12 gives exactly THREE names, and the pair has no fourth: Unforgiven (OGN-259/OGN-305), Blade Dancer (SFD-195/SFD-246), Gloomist (UNL-193/UNL-232).",
+          "Neither card is Signature (data/cards.json, signature=false on both), so 103.2.d.2 forces no legend, and neither appears in data/legality.json in either format - checked 2026-09-12."
+        ],
+        "notable": [
+          "411.4 WAS UNCITED AND RIOT'S WORKED EXAMPLE IS THIS CARD'S OWN SENTENCE. The rule: 'If an ability triggers when “you” do something, it triggers when a Game Action that you are responsible for occurs.' Its example opens 'A gear reads “When you move an enemy unit, you may exhaust this to [Stun] it.” It will trigger whenever a move game action that you are responsible for causes an enemy unit to move.' That is UNL-133 Blast Cone, printed in the pool. So the stun is NOT tied to the Cone's own play trigger: it is a responsibility test over every enemy move you cause, whatever card caused it.",
+          "WHICH SPLITS THE CONE'S TWO SENTENCES INTO TWO DIFFERENT KINDS OF ABILITY. 'When you play this, you may move an enemy unit' is a Play Effect - 383.4.a: 'Play Effects are Triggered Abilities whose Condition includes the Permanent that has the Play Effect being played to the board' - so it fires ONCE, when the Cone arrives. 'When you move an enemy unit...' is an open-ended trigger with no such condition, and 415.3.a ('A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn') is the only thing that rations it: one stun per turn, for as long as the Cone lives.",
+          "AND 411.5 / 411.5.a ARE THE PARAGRAPH THAT SAYS WHY THE TEST IS 'RESPONSIBILITY' AND NOT 'ATTRIBUTION'. 411.5: 'Note that certain Game Actions, specifically Kill, can be attributed to spells and abilities. This attribution is not the same as the responsibility a given player has for the kill game action.' 411.5.a: 'Spells and abilities have attribution for game actions, while players have responsibility.' A 'when YOU move an enemy unit' clause reads the player, so it does not care which card performed the move - which is exactly why Iascylla's trigger, a different permanent entirely, pays the Cone.",
+          "WHAT THIS ADDS TO THE TWO CATALOGUED CONE LINES, STATED PLAINLY. blast-cone-moonfall-forced-attacker buys the moves with three copies of UNL-198 Moonfall at E3 + 1 Power each - three stuns in a game, and the entry does not cite 411.4. vex-mocking-blast-cone-drag-and-tank uses the Cone's own Play Effect, which is one stun ever. Iascylla is the only mover in the pool that is free, repeating and on YOUR turn, so this is the version that does not run out; its price is a 7-Energy body that has to hold a battlefield to pay at all.",
+          "A MOVE CANNOT BE ANSWERED, BUT THE TRIGGER IT CAUSES CAN - AND 446.3 IS WHERE THAT LINE IS DRAWN. 446.3: 'Moving is instantaneous.' 446.3.a: 'There is no state for Permanents between locations.' 446.3.b: 'Permanents are either at their Origin before Moving or their Destination after Moving.' 446.3.c: 'Moving does not use the Chain, nor is it able to be Reacted to.' None of those four was cited by anything in data/combos.json or data/synergies.json. So the opponent can never respond to the drag itself; what they can respond to is the Cone's stun trigger, which does use the Chain. Every 'evacuate, then walk in' line in this catalogue rests on 446.3.c and reaches it the long way round through 323.10 and the Neutral Closed State.",
+          "THE DRAG MAKES THEM THE ATTACKER ON YOUR OWN TURN. 190.3.a.1 and 450 key Contested on the MOVED unit's controller, not on who caused the move, and 464.2.c.1 makes the Attacker 'the player whose unit(s) applied the Contested status to the Battlefield.' 449 is why the move costs nothing: 'Spells, Abilities, or other effects may cause a Move to occur', and 420.3.a puts the exhaust on the Standard Move alone, so an exhausted enemy body moves.",
+          "THE STUN IS WORTH THEIR WHOLE CONTRIBUTION AND NOT ONE POINT MORE. 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' 465.2.c has each player assign damage equal to their summed Might, so a lone dragged body that is stunned assigns nothing. 423.1.c is the other half and must be stated with it - 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might value to be killed' - so the stun never lowers the price of killing it, and 423.1.a.2 clears it at their end-of-turn cleanup.",
+          "NO POINT IS SCORED, AND THAT IS THE ENTRY'S SHORTFALL. 466.5 establishes Control only 'if they didn't already control this Battlefield' and Iascylla already holds it, so the combat is worth removal and tempo and never a Conquer. The honest yield is one enemy body dragged out of position and blanked per turn, for a one-off E11 + 2 Power, on a board where Iascylla has to keep holding.",
+          "ONE STUN PER TURN, NOT ONE PER MOVE. 423.1.a.1 - 'A Stunned Unit can not be Stunned again' - and the Cone's cost is its own exhaust, which 415.3.a refunds only at YOUR Awakening. A second Blast Cone is a second stun per turn; a second Iascylla is a second move, and the two scale together but each pair costs E11 + 2 Power."
+        ]
+      },
+      "steps": [
+        "Play Iascylla to a battlefield and establish Control of it (E7 + 1 Calm Power). Play Blast Cone (E4 + 1 Chaos Power); its Play Effect may drag one enemy body immediately, which the Cone's own second sentence then stuns - that is the one-shot both catalogued Cone entries use.",
+        "At your next Beginning Phase, 315.2.b.2 Holds the battlefield and Iascylla's trigger arms a delayed effect for the start of your next Main Phase.",
+        "At 316.4 that effect resolves: move an enemy unit to Iascylla's battlefield. 446.3.c means the opponent cannot react to the move itself.",
+        "411.4 fires Blast Cone off that move - a move game action you are responsible for - even though a different permanent performed it. 383.3.b makes the exhaust written after 'you may' the trigger's base cost, paid to finalize it (383.3.b.1).",
+        "Stun the dragged body. 190.3.a.1 and 450 applied Contested when it arrived, so 464.2.c.1 designates its controller the Attacker in your own Main Phase.",
+        "323.9 stages the Combat and 323.13 opens it. 465.2.c assigns each side its summed Might; 423.1.b keeps the stunned attacker's Might out of the sum entirely.",
+        "415.3.a readies Blast Cone at your next Awakening and Iascylla holds again, so the whole cycle repeats every turn with no card spent."
+      ],
+      "terminatesIn": "engine - one free enemy drag and one stun per turn for as long as Iascylla holds, off a one-off 11 Energy + 2 Power. No point is scored: 466.5 gives Control only to a player who did not already control the battlefield, and Iascylla already does",
+      "netPerIteration": "one enemy body pulled out of position and stripped of its whole contribution to the damage step, at no card cost",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12, issue #187 - uncited Core Rules sub-rules 300-499 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "RULE 411.4: 'If an ability triggers when “you” do something, it triggers when a Game Action that you are responsible for occurs.' EXAMPLE under 411.4: 'A gear reads “When you move an enemy unit, you may exhaust this to [Stun] it.” It will trigger whenever a move game action that you are responsible for causes an enemy unit to move. If an opponent plays a spell that reads “choose a Battlefield. Each player may move a unit they don’t control to that battlefield,” and a player that controls the gear chooses to move an enemy unit, their gear will trigger.' RULE 411.5: 'Note that certain Game Actions, specifically Kill, can be attributed to spells and abilities. This attribution is not the same as the responsibility a given player has for the kill game action.' RULE 411.5.a: 'Spells and abilities have attribution for game actions, while players have responsibility.' RULE 446.3: 'Moving is instantaneous.' RULE 446.3.a: 'There is no state for Permanents between locations.' RULE 446.3.b: 'Permanents are either at their Origin before Moving or their Destination after Moving.' RULE 446.3.c: 'Moving does not use the Chain, nor is it able to be Reacted to.' RULE 383.4.a: 'Play Effects are Triggered Abilities whose Condition includes the Permanent that has the Play Effect being played to the board.' RULE 449: 'Spells, Abilities, or other effects may cause a Move to occur.' RULE 450: 'The Destination becomes Contested if it is an Uncontested Battlefield not controlled by the controller of the Unit or Units that moved.' RULE 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' RULE 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' RULE 423.1.c: 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might value to be killed.' RULE 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' RULE 466.5: '1. If no Showdown or Combat is staged at this location, the player with Units remaining here Establishes Control if they didn’t already control this Battlefield.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-12, issue #187, session rc-walk-mid, batch 2. 411.4, 411.5, 411.5.a, 446.2, 446.3, 446.3.a, 446.3.b and 446.3.c were cited by NOTHING in data/combos.json or data/synergies.json before this entry - measured 2026-09-12 by extracting every NNN.x.y token from both files. Riot's worked example at 411.4 is UNL-133 Blast Cone's own printed sentence. Card text verbatim from data/corpus_flat.txt. Legend census run against data/cards.json, not typed. Cross-references: blast-cone-moonfall-forced-attacker and vex-mocking-blast-cone-drag-and-tank use the same gear with bought or one-shot moves and neither cites 411.4; iascylla-teemo-strategist-forced-defend uses the same mover with a defend-trigger payoff."
+    },
+    {
+      "id": "shakedown-immortal-phoenix-reaction-add-at-finalization",
+      "name": "444.2.c - a [Reaction] Add may be activated at the instant you are told to Pay, so a trigger's base cost needs nothing banked",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-033",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury spell, E2 P1. '[Reaction] (Play any time, even before spells and abilities resolve.) Choose an enemy unit. Deal 6 to it unless its controller has you draw 2.' The opponent picks which half they give you, so this is a 2-Energy Rock-or-Rock: a dead body or two cards. Only the kill half fires the Phoenix."
+        },
+        {
+          "card": "OGN-037",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "TRASH",
+          "note": "Fury unit, E3 P1 M3, [Assault 2]. 'When you kill a unit with a spell, you may pay 1 Energy + 1 Fury Power to play me from your trash.' The trigger works from the trash and the payment is the trigger's base cost, due at finalization - which on the opponent's turn is a window with no priority in it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal",
+        "unit-delivery"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Fury, so 103.1.b.1 is satisfied by any legend carrying Fury. The census run against data/cards.json on 2026-09-12 gives sixteen names; among them Hand of Noxus (OGN-253), Glorious Executioner (SFD-185), Pridestalker (UNL-183), Piltover Enforcer (UNL-187) and Butcher of the Sands (VEN-141).",
+          "Neither card is Signature (data/cards.json, signature=false on both) and neither appears in data/legality.json in either format - checked 2026-09-12."
+        ],
+        "notable": [
+          "444.2.c WAS UNCITED AND IT LIFTS A CONSTRAINT THIS CATALOGUE HAS BEEN PRICING FOR MONTHS. The rule, verbatim: 'Players may activate abilities that Add resources with the Reaction keyword at any time that they are instructed to Pay resources. Those abilities finalize and resolve immediately, ignoring normal restrictions.' Nothing in data/combos.json or data/synergies.json cited 444.1, 444.2, 444.2.a, 444.2.b, 444.2.c, 444.3 or 444.3.a before this entry.",
+          "AND EVERY RUNE IN THE GAME IS SUCH AN ABILITY. 164.2: 'A Basic Rune always has the following two Abilities:' - 164.2.a '[E]: [Reaction] — Add [1].' and 164.2.b 'Recycle this: [Reaction] — Add [C].' Both carry the keyword, so 444.2.c reaches them. The standing model in this project is that a cost due at FINALIZATION must be banked beforehand, because 312.2.c says 'When the turn is in a Closed State, all pending chain items finish being finalized, and they control the next item on the Chain' - nobody receives priority in between. That is true of PRIORITY and it is not true of paying: 444.2.c is a permission that does not need priority at all, and it says so - 'ignoring normal restrictions'.",
+          "WHY IT MATTERS HERE AND NOT ON YOUR OWN TURN. 167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.' So on the opponent's turn you begin with an EMPTY pool twice over, and anything you must pay there has to be found on the spot. On your own turn you could simply tap before acting; on theirs you cannot, and 444.2.c is the only paragraph that lets you.",
+          "THE COST IS A BASE COST, WHICH IS WHY THE WINDOW IS THE PROBLEM. 204.3.a: 'When Costs within Instructions appear as the first part of the effect in triggered abilities, the cost is taken to be the base cost of the triggered ability. It must be paid to finalize the triggered ability.' 383.3.b.1 says the same from the other end. So the Phoenix's 1 Energy + 1 Fury Power is due while the trigger is still Pending, inside the Closed State 312.2.c describes. 429.2 and 429.2.a then make the rune's Add resolve at once and out of order: 'Priority and Focus will not pass from Add abilities being finalized or resolving, and will resolve before any other outstanding items on the chain are finalized.'",
+          "THE KILL ATTRIBUTION IS WHAT MAKES A BURN SPELL SATISFY 'KILL A UNIT WITH A SPELL'. 428.5.c: 'When one or more Units is killed due to a Cleanup, that kill action is attributed to the spell or ability that resolved immediately prior to that Cleanup that dealt damage to the Unit or Units.' 428.5.c.1: 'The player responsible for the deal action is responsible for the kill action.' Shakedown performs no kill instruction - 143.2.a kills in the Cleanup - so without 428.5.c the Phoenix would never fire. 428.5.c.2 is the boundary: 'If the Cleanup that caused the units to be killed was the Combat Cleanup, the sources of the Combat Damage are attributed the kill action', so this never works off combat damage, only off the spell.",
+          "AND 'YOU KILL' IS THE SAME RESPONSIBILITY TEST AS 411.4. 411.5.a: 'Spells and abilities have attribution for game actions, while players have responsibility.' 428.5.c.1 hands you the responsibility for the kill because you were responsible for the deal, which is the clause the Phoenix's 'When YOU kill a unit with a spell' actually reads.",
+          "WHAT YOU BUY, PRICED WITH BOTH CURRENCIES. On the opponent's turn: 2 Energy + 1 Fury Power for Shakedown (813.1.c.1 admits a [Reaction] card in any Closed State on any player's turn), then 1 Energy + 1 Fury Power found at the instant of finalization for the Phoenix. Four resource-units total and a 3 Might body from the trash, repeatable across turns because 415.3.a refills the runes at your Awakening. Three Shakedowns are three cycles.",
+          "THE OPPONENT CHOOSES WHICH HALF THEY GIVE YOU, AND THAT IS THE ENTRY'S SHORTFALL. Shakedown reads 'Deal 6 to it unless its controller has you draw 2' - they will hand you the two cards whenever the body is worth more than that, so the Phoenix half is not on demand. What the line guarantees is that WHEN the kill half happens, the recursion is never priced out of reach, which was the open question.",
+          "THE PHOENIX ARRIVES IN TIME TO BLOCK. 355.2.a puts a played unit at 'the controller's Base or a battlefield the controller controls', and 464.2.c.3.a gives a body that becomes present after the designation moment its own designation 'during the Cleanup phase following the action that caused it to become present.' Neither 464.2.c.3 nor 465.2.b filters by exhaustion, so 143.4 costs him nothing on defence - but [Assault 2] is 807.1.c, attacker-only, so he defends at his printed 3.",
+          "NO POINT IS SCORED. This is removal plus a body, on the opponent's turn, and nothing in it Conquers or Holds; the class is ENGINE for that reason and not for want of arithmetic."
+        ]
+      },
+      "steps": [
+        "Get Immortal Phoenix into your trash - discarded, killed, or milled; 385.1 and 385.2 let a card's own trigger describe its context from outside the board.",
+        "On the opponent's turn, inside any Closed State their own spell or trigger opens, play Shakedown as a [Reaction] (813.1.c.1) for 2 Energy + 1 Fury Power, tapping runes normally with priority.",
+        "Shakedown resolves and deals 6. If the opponent takes the damage rather than giving you two cards, 143.2.a kills the body in the following Cleanup.",
+        "428.5.c attributes that kill to Shakedown and 428.5.c.1 makes you responsible for it, so the Phoenix's trigger goes on the Chain as a Pending Item.",
+        "312.2.c hands out no priority while it is pending - and it does not have to. 444.2.c: activate a rune's [Reaction] Add right there, 'at any time that they are instructed to Pay resources', and 429.2.a resolves it immediately and ahead of everything else on the chain.",
+        "Pay the 1 Energy + 1 Fury Power, finalize the trigger (204.3.a), and play the Phoenix from your trash to a battlefield you control.",
+        "464.2.c.3.a hands him the Defender designation in the next Cleanup if a combat is open there, and 415.3.a readies your runes at your own Awakening so the next Shakedown is fully funded."
+      ],
+      "terminatesIn": "engine - one 3 Might body recurred from the trash per Shakedown that connects, for 2 Energy + 1 Fury Power on the spell and 1 Energy + 1 Fury Power found at the instant of finalization; three copies of the spell is three cycles, and the opponent decides each time whether to hand you the kill or two cards",
+      "netPerIteration": "an enemy body dead on the opponent's turn and a 3 Might unit back from your trash, with nothing pre-banked",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12, issue #187 - uncited Core Rules sub-rules 300-499 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "RULE 444.2.c: 'Players may activate abilities that Add resources with the Reaction keyword at any time that they are instructed to Pay resources. Those abilities finalize and resolve immediately, ignoring normal restrictions.' RULE 444.2: 'When a player is instructed to Pay a resource, that player may remove that resource from their Rune Pool if it exists there. If they choose not to, the instruction is ignored.' RULE 444.2.a: 'If the instruction to Pay resources is part of paying costs for a card or ability, choosing not to pay those resources will cause the act of playing the card or ability to be undone.' RULE 444.2.b: 'If the instruction to Pay resources is part of paying any other cost, choosing not to pay those resources will prevent the execution of the associated effect.' RULE 444.1: 'Paying a resource is the act of removing that resource from your Rune Pool.' RULE 444.3.a: 'Players may only Pay resources when directed to by Game Effects.' RULE 164.2: 'A Basic Rune always has the following two Abilities:' RULE 164.2.a: '[E]: [Reaction] — Add [1].' RULE 164.2.b: 'Recycle this: [Reaction] — Add [C].' RULE 167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.' RULE 312.2.c: 'When the turn is in a Closed State, all pending chain items finish being finalized, and they control the next item on the Chain.' RULE 204.3.a: 'When Costs within Instructions appear as the first part of the effect in triggered abilities, the cost is taken to be the base cost of the triggered ability. It must be paid to finalize the triggered ability.' EXAMPLE under 204.3.a: 'Overzealous Fan is a unit that reads “When I defend, you may kill me to move an attacking unit to its base.” In order to finalize the ability to the chain, its controller must kill Overzealous Fan.' RULE 429.2: 'Triggered and activated abilities that Add resources resolve as soon as they are finalized.' RULE 429.2.a: 'Priority and Focus will not pass from Add abilities being finalized or resolving, and will resolve before any other outstanding items on the chain are finalized.' RULE 428.5.c: 'When one or more Units is killed due to a Cleanup, that kill action is attributed to the spell or ability that resolved immediately prior to that Cleanup that dealt damage to the Unit or Units.' RULE 428.5.c.1: 'The player responsible for the deal action is responsible for the kill action.' RULE 428.5.c.2: 'If the Cleanup that caused the units to be killed was the Combat Cleanup, the sources of the Combat Damage are attributed the kill action, and their controller is responsible for the kill action.' RULE 411.5.a: 'Spells and abilities have attribution for game actions, while players have responsibility.' RULE 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' RULE 813.1.c.1: 'On Cards: “This can be played during Closed States on any player's turn.”' RULE 464.2.c.3.a: 'If a Unit controlled by the Attacker or Defender becomes present at this Battlefield after this moment, it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present, as appropriate for its controller.' RULE 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-12, issue #187, session rc-walk-mid, batch 2. The whole of rule 444 (444.1, 444.2, 444.2.a, 444.2.b, 444.2.c, 444.3, 444.3.a) was cited by NOTHING in data/combos.json or data/synergies.json before this entry - measured 2026-09-12. 444.2.c is a correction, not an addition: it says a [Reaction] Add may be activated at the moment of payment 'ignoring normal restrictions', so a trigger's base cost due at finalization in a Closed State does NOT have to be banked beforehand. Card text verbatim from data/corpus_flat.txt. Legend census run against data/cards.json. Cross-references: immortal-phoenix-falling-star-cleanup-attribution and death-from-below-recurring-kill walk the same card's 428.5.c attribution on YOUR turn, where 167 has not emptied your pool and the constraint never appears."
+    },
+    {
+      "id": "deceiver-viktor-reflection-keeps-non-play-trigger",
+      "name": "383.4.a.4 - a Reflection loses only the copied card's OWN play triggers, so Viktor's 'when you play a card' survives the copy",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-199",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Mind/Order legend. 'When you conquer or hold, you may discard 1 and exhaust me to play a ready Reflection unit token there. Then do this: It becomes a copy of another unit there. Give it [Temporary].' The discard and the exhaust are the trigger's base cost (204.3.a), so one Reflection per turn; 315.1.b readies him at your Awakening."
+        },
+        {
+          "card": "OGN-117",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Mind unit, E4 P1 M3. 'When you play a card on an opponent's turn, play a 1 :rb_might: Recruit unit token in your base.' His whole text is a trigger on ANOTHER object being played, which 383.4.a.4 puts outside the definition of a Play Effect - so a Reflection of him is a full-value copy. He must be standing at the battlefield Deceiver holds, because the token 'becomes a copy of another unit there'."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "token-body-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "The legend is fixed by the entry: Deceiver (UNL-199/UNL-235), Mind/Order. Viktor, Innovator is mono-Mind, so 103.1.b.1 is satisfied and no other legend can run this line, because Deceiver is the only card in the pool that makes a Reflection off a Hold.",
+          "Neither card is Signature (data/cards.json, signature=false on both) and neither appears in data/legality.json in either format - checked 2026-09-12."
+        ],
+        "notable": [
+          "383.4.a.3 AND 383.4.a.4 WERE UNCITED, AND THEY ARE THE ONLY PLACE THE POOL'S OWN PHRASE IS DEFINED. UNL-T06 Reflection prints '(I become a copy of something when played. I don't get that card's play effects.)' - a defined term used on a token with no definition on the card. 383.4.a supplies it: 'Play Effects are Triggered Abilities whose Condition includes the Permanent that has the Play Effect being played to the board.' 383.4.a.3: 'These Triggered Abilities can be referred to as Play Effects.' And 383.4.a.4 draws the boundary: 'Abilities that trigger when another object is played are not considered Play Effects.'",
+          "SO THE REFLECTION'S DRAWBACK IS NARROWER THAN IT READS. It loses 'When you play me...' (383.4.a.1 gives that exact wording) and nothing else. A trigger that watches a DIFFERENT object being played is not a Play Effect at all, so it is copied in full - and Viktor, Innovator is the extreme case, because that trigger is his ENTIRE printed text. The naive reading of the token makes a Reflection of him a blank 0 Might body; 383.4.a.4 makes it a second Viktor.",
+          "THE [TEMPORARY] WINDOW AND VIKTOR'S WINDOW LINE UP EXACTLY, AND THE PHASE ORDER IS WHY. 816.1.b is 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this' and 816.1.c makes the Trigger Condition 'the controller of the permanent's Beginning Phase starting'. Deceiver's Reflection is made at the Hold, which 315.2.b.2 puts in the Scoring Step AFTER 315.2.a has already run - so the copy survives the rest of your turn, survives the OPPONENT'S ENTIRE TURN, and dies at your next Beginning Phase. The opponent's turn is precisely the only turn Viktor's trigger can fire on.",
+          "WHAT THE PAIR PAYS, WITH THE QUANTITIES DECLARED. Two Recruits per CARD you play on the opponent's turn, not per action: the original Viktor and the copy each fire, and 383.3.d lets you order them. What you can play there is a [Reaction] card (813.1.c.1), an [Action] card inside a Showdown (806.1.b), or a [Hidden] card from face down, whose tail 811.1.b grants [Reaction]. Two such cards in their turn is four bodies for the cost of the cards themselves.",
+          "AND THE RECRUITS DO NOT FEED VIKTOR - 350.2 WITH 185.2.a IS THE TRAP THIS FAMILY ALWAYS WALKS INTO. 350.2: 'Tokens are not cards, but can still be Played.' Viktor's clause says 'play a CARD', so the Recruits he makes are invisible to both instances of his own trigger and there is no cascade. The same pair of paragraphs is why a token fires 'when you play a unit' and never '[Legion]'.",
+          "THE COPY IS 0 MIGHT AND THAT IS FINE HERE. R6 and R27 on issue #11: Might is not a copyable trait - 477.1.a lists the inherent traits without it, 477.1.b.1.a lists the copyable traits without it - so a Reflection carries the copied card's Rules Text at 0 Might. This line wants the trigger and not the body, and 143.2.a ('If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed') still charges an attacker one damage to remove it, with 465.2.c.4 capping that at the minimum.",
+          "THE BODIES ARE BORN AT YOUR BASE AND CANNOT WALK THE SAME TURN. Viktor's text says 'in your base', so this is CLAUDE.md's walk-to-the-battlefield bottleneck in its purest form: 143.4 enters them exhausted, 144.1.b forbids a Standard Move outside your Main Phase, and 315.1.b readies them only at your own Awakening. A Recruit made on the opponent's turn is a body for the turn AFTER, which is also why SFD-171 Renata Glasc, Industrialist adds nothing to this particular pairing.",
+          "THE SHORTFALL, STATED AS THE ENTRY'S OWN: this is a token faucet and nothing else. Nothing here Conquers, Holds or gains a point, the Reflection is spent every turn and has to be remade, and the whole engine costs one card discarded per turn (Deceiver's base cost). The two catalogued outlets for a token-body-engine are OGN-293 The Grand Plaza and VEN-067 Bottled Constellation, and the Plaza's 1-Might problem applies to Recruits in full.",
+          "ONE REFLECTION PER TURN, NOT ONE PER BATTLEFIELD. Deceiver's cost is his own exhaust, and 315.1.b readies him once, at your Awakening - so even though 315.2.b.2 Holds every battlefield you control and a Duel puts two on the table (485.4), the second Hold trigger has no exhaust left to pay with."
+        ]
+      },
+      "steps": [
+        "Play Viktor, Innovator (E4 + 1 Mind Power) to a battlefield and establish Control of it, with Deceiver as your legend.",
+        "At your Beginning Phase, 315.2.b.2 Holds that battlefield. Deceiver's trigger fires; pay its base cost - discard 1 and exhaust him (204.3.a) - to finalize it.",
+        "A ready Reflection token is played there, and the reflexive 'Then do this:' (387.1) makes it a copy of Viktor and gives it [Temporary].",
+        "383.4.a.4 is what it keeps: Viktor's text triggers on ANOTHER object being played, so it is not a Play Effect and the copy carries it whole. R27 leaves the copy at 0 Might.",
+        "816.1.b does not touch it this turn - 315.2.b.2's Hold ran after 315.2.a - so it lives through the rest of your turn and all of the opponent's.",
+        "On the opponent's turn, every CARD you play - a [Reaction], an [Action] inside a Showdown, a [Hidden] card from face down - fires both Viktors: two 1 Might Recruits to your base each time. 350.2 keeps the Recruits themselves from re-triggering anything.",
+        "At your next Beginning Phase 816.1.b kills the Reflection at 315.2.a, 315.1.b has already readied Deceiver, and the Hold at 315.2.b.2 mints a fresh copy."
+      ],
+      "terminatesIn": "engine - two 1 Might Recruits per card played on the opponent's turn, for one card discarded per turn and a one-off 4 Energy + 1 Mind Power on Viktor. The bodies are born exhausted at your base and are usable from your following turn; nothing here scores",
+      "netPerIteration": "one Reflection of Viktor per turn, doubling every opponent-turn card into two Recruits instead of one",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12, issue #187 - uncited Core Rules sub-rules 300-499 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "RULE 383.4.a: 'Play Effects are Triggered Abilities whose Condition includes the Permanent that has the Play Effect being played to the board.' RULE 383.4.a.1: 'These are commonly structured as “When you play me…” for Units and “When you play this…” for Gear.' RULE 383.4.a.2: 'These Triggered Abilities are put on the Chain as Pending Items after the Permanent these effects correspond to is finalized and enters the board.' RULE 383.4.a.3: 'These Triggered Abilities can be referred to as Play Effects.' RULE 383.4.a.4: 'Abilities that trigger when another object is played are not considered Play Effects.' RULE 816.1.b: 'It is functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this.\"' RULE 816.1.c: 'The Trigger Condition is the controller of the permanent's Beginning Phase starting.' RULE 315.2.b.2: '1. The Turn Player Holds all Battlefields they Control.' RULE 350.2: 'Tokens are not cards, but can still be Played.' RULE 185.2.a: 'Tokens can be played by their owner if their card type is played, following all the applicable steps for playing a card plus any restrictions or modifications from the effect that created the token.' RULE 204.3.a: 'When Costs within Instructions appear as the first part of the effect in triggered abilities, the cost is taken to be the base cost of the triggered ability. It must be paid to finalize the triggered ability.' RULE 813.1.c.1: 'On Cards: “This can be played during Closed States on any player's turn.”' RULE 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' RULE 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' RULE 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-12, issue #187, session rc-walk-mid, batch 2. 383.4.a.3 and 383.4.a.4 were cited by NOTHING in data/combos.json or data/synergies.json before this entry - measured 2026-09-12 - and they are the only definition of 'play effects', a phrase printed on UNL-T06 Reflection with no definition on the card. Card text verbatim from data/corpus_flat.txt. Cross-references: leblanc-zilean-reflection-doubling and mirror-image-reflection-atakhan-printed-cost use Reflections for their bodies and their printed cost; this entry is about which HALF of the copied text survives. sona-viktor-opponent-turn runs the same Viktor with one instance and no copy."
+    },
+    {
+      "id": "progress-day-shadow-temple-deliberate-burn-out",
+      "name": "369.2 - Burning Out is a Replacement Effect inside one resolution, so its four steps are atomic and the refill lands before the rest of the draw",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-165",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield. 'When you hold here, [Burn 3]. (Put the top 3 cards of your Main Deck into your trash.)' Three cards a turn from deck to trash with no card spent - the fuel. It says 'you', so 190.6.d leaves it switched off until you establish Control of it."
+        },
+        {
+          "card": "OGN-114",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Mind spell, E6 P1. 'Draw 4.' With the Main Deck empty this is not a whiff: 413.4 draws 0, performs the Burn Out, and then draws the four out of the deck the Burn Out just rebuilt from your trash."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Progress Day is mono-Mind and Shadow Temple is colourless, so 103.1.b.1 is satisfied by any legend carrying Mind. The census run against data/cards.json on 2026-09-12 gives sixteen names; among them Nine-Tailed Fox (OGN-255), Herald of the Arcane (OGN-265), Chem-Baroness (SFD-201), Bashful Bloom (UNL-189) and Curator of the Sands (VEN-145).",
+          "Neither card is Signature (data/cards.json, signature=false on both) and neither appears in data/legality.json in either format - checked 2026-09-12."
+        ],
+        "notable": [
+          "369.2 WAS UNCITED AND IT IS WHY A BURN OUT CANNOT BE RESPONDED TO. The rule: 'Some Game Actions are themselves Replacement Effects. Example: Burning Out is a replacement effect. Example: Preventing Damage is a replacement effect.' 431.5 repeats it for the block: 'Burning Out is a Replacement Effect.' A Replacement Effect intercedes DURING the execution of a game effect (369), and 340.1 says of a resolving chain item 'Execute its game effects in their entirety' - so every step of 431.2 happens inside one resolution. In the Draw Phase there is not even a chain: 335 says that outside the Main Phase with no tasks and no pending items you 'proceed to the next substep, step, phase, or turn.' There is no window anywhere in it.",
+          "AND THE ORDER OF 431.2's FOUR STEPS IS THE WHOLE PAYOFF. 431.2: 'To Burn Out, a player does the following in sequence:' - 431.2.a 'Performs as much of the prescribed action as possible', 431.2.b 'Recycles their trash into their Main Deck', 431.2.c 'Chooses an opponent to gain 1 point', 431.2.d 'Completes the remainder of the action that caused them to burn out.' The refill is step b and the remainder of the draw is step d, so Progress Day on an empty deck draws FOUR FRESH CARDS out of the trash you just spent the game filling. 413.4 says the same thing from the Draw side: 413.4.a 'Draw as many as possible', 413.4.b 'Perform a Burn Out', 413.4.c 'Draw the remaining cards needed to complete the Draw action.'",
+          "THE PRICE IS EXACTLY ONE POINT AND IT IS A FOURTH KIND OF POINT. 194.1.d: 'When an opponent Burns Out and picks that player to gain 1 point.' 431.2.c makes the burning-out player choose which opponent, which in a Duel (485.1, two players) is no choice at all. It is a Gain and not a Score, so 470's once-per-battlefield cap and 471.1.b's Final Point clause never see it - in either direction.",
+          "THE BOUND THAT MAKES THIS SAFE, AND THE ONE THAT MAKES THE LOOP LEDGER'S WALL ABSOLUTE. 431.3: 'A player's Main Deck may remain empty as they Burn Out, usually because their trash is also empty. When they attempt to perform the original action again, it will cause another Burn Out.' 431.3.a: 'Unless some effect intervenes, this will result in them burning out repeatedly, giving 1 point to an opponent each time, until an opponent passes the Victory Score and wins the game.' 431.3.b: 'Points gained after the first Burn Out being processed in sequence cannot be replaced or prevented by any means.' So a deliberate Burn Out with a FAT trash is a one-point toll, and the identical action with an EMPTY trash is the game. That is the missing citation under this project's loop ledger, where recycled cards go to the BOTTOM OF THE DECK (416.1) and never to the trash: inside lux-infinite-energy the trash is empty by construction, so the 'zero spare draws' wall is 431.3.a and 431.3.b and not a point you can choose to pay.",
+          "431.4 AND 431.4.a ARE WHY YOU CANNOT SIMPLY ASK FOR IT. 431.4: 'Burning Out is a Limited Action.' 431.4.a: 'Players may only burn out when Game Effects direct them to do so.' You cannot burn out on purpose; you have to run a card into an empty deck, which is what makes Progress Day the vehicle - it is the largest single Draw instruction in the pool (swept over data/corpus_flat.txt on 2026-09-12: exactly two cards draw three or more, OGN-114 Progress Day at four and SFD-087 Premonition at three).",
+          "370.2 IS THE CAP AND IT DOES NOT BITE HERE. 'A Replacement Effect can only be applied once to an event, or to any Game Actions or events that replace that event.' One draw instruction that overruns the deck is one event and therefore one Burn Out; 431.3's repetition is a fresh ATTEMPT at the remaining draw, i.e. a new event, which is exactly why the empty-trash case runs away instead of stopping at one.",
+          "THE TEMPLE IS A FUSE ON ITS OWN AND THIS ENTRY IS THE DETONATOR. 431.1.b covers the mill half - 'If a player must put one or more cards from their Main Deck in any other zone, such as the Trash, in excess of the number of cards in their deck they will do so as much as possible, perform this action, and then complete the remaining number required by the instruction' - so an unattended Shadow Temple eventually burns you out on its own schedule, at 315.2.b.2, on a turn you did not choose. Holding Progress Day means the Burn Out happens on YOUR terms, with the trash at its fattest and four cards to show for it. shadow-temple-dr-mundo-balanced-trash answers the same fuse by balancing the two zones; this entry answers it by cashing it.",
+          "THE BATTLEFIELD IS NOT GUARANTEED, WHICH IS THE ENTRY'S REAL SHORTFALL. 485.4.a has each player provide three battlefields and 485.5 says the mode 'randomly selects' which are used, while 103.4.c forbids running two of the same name - so the Temple is a one-in-three proposition per game and the engine may simply never arrive. Progress Day is live without it, just slower: with a normal deck it is six Energy and one Power for four cards and no Burn Out at all."
+        ]
+      },
+      "steps": [
+        "Bring Shadow Temple as one of your three battlefields (485.4.a) and establish Control of it - 190.6.d leaves its 'when you hold here' text ignored until you do.",
+        "Every Beginning Phase, 315.2.b.2 Holds it and [Burn 3] moves three cards from your Main Deck to your trash. Your deck shrinks by five a turn counting the Draw Phase, and your trash grows by three.",
+        "Hold Progress Day in hand and do not cast it. Let the Main Deck run to zero or near it.",
+        "Cast Progress Day (E6 + 1 Mind Power). 413.4.a draws as many as the deck holds - zero, if it is empty.",
+        "413.4.b performs the Burn Out. 431.2.b recycles your whole trash into the Main Deck, randomised; 431.2.c gives your opponent 1 point (194.1.d).",
+        "431.2.d, which is 413.4.c said the other way round, completes the draw: four cards out of the deck that did not exist a moment ago. 340.1 and 335 mean the opponent had no window in any of it.",
+        "The engine restarts: the Temple burns three a turn into a trash that is empty again, and a second Progress Day is a second refill for a second point."
+      ],
+      "terminatesIn": "engine - one whole-trash refill plus four cards for 6 Energy + 1 Mind Power and exactly 1 point to the opponent (194.1.d), repeatable once per copy of Progress Day. It is only a one-point toll while the trash is non-empty; with an empty trash the same action is 431.3.a and the game",
+      "netPerIteration": "the Main Deck rebuilt from the trash and four cards drawn out of it, in one uninterruptible resolution, for one point",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12, issue #187 - uncited Core Rules sub-rules 300-499 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "RULE 369.2: 'Some Game Actions are themselves Replacement Effects.' EXAMPLES under 369.2: 'Burning Out is a replacement effect.' and 'Preventing Damage is a replacement effect.' RULE 431.5: 'Burning Out is a Replacement Effect.' RULE 369: 'Replacement Effects intercede during the execution of a Game Effect and alter its execution.' RULE 370.2: 'A Replacement Effect can only be applied once to an event, or to any Game Actions or events that replace that event.' RULE 431.2: 'To Burn Out, a player does the following in sequence:' RULE 431.2.a: 'Performs as much of the prescribed action as possible.' RULE 431.2.b: 'Recycles their trash into their Main Deck.' RULE 431.2.c: 'Chooses an opponent to gain 1 point.' RULE 431.2.d: 'Completes the remainder of the action that caused them to burn out.' EXAMPLE under 431.2.d: 'A player attempts to draw 1 during their Draw Phase while their Main Deck is empty. That player instead recycles their trash into their Main Deck, randomizing it as normal, then chooses an opponent to gain 1 point, and then draws 1.' RULE 431.3: 'A player's Main Deck may remain empty as they Burn Out, usually because their trash is also empty. When they attempt to perform the original action again, it will cause another Burn Out.' RULE 431.3.a: 'Unless some effect intervenes, this will result in them burning out repeatedly, giving 1 point to an opponent each time, until an opponent passes the Victory Score and wins the game.' RULE 431.3.b: 'Points gained after the first Burn Out being processed in sequence cannot be replaced or prevented by any means.' RULE 431.4: 'Burning Out is a Limited Action.' RULE 431.4.a: 'Players may only burn out when Game Effects direct them to do so.' RULE 431.1.b: 'If a player must put one or more cards from their Main Deck in any other zone, such as the Trash, in excess of the number of cards in their deck they will do so as much as possible, perform this action, and then complete the remaining number required by the instruction.' RULE 413.4: 'If a player attempts to draw more cards than are available in their Main Deck, they do the following:' RULE 413.4.a: 'Draw as many as possible.' RULE 413.4.b: 'Perform a Burn Out.' RULE 413.4.c: 'Draw the remaining cards needed to complete the Draw action.' RULE 194.1.d: 'When an opponent Burns Out and picks that player to gain 1 point.' RULE 340.1: 'The newest Finalized Chain Item resolves. Execute its game effects in their entirety.' RULE 335: 'If there are no Outstanding Tasks, no pending Chain Items, no ongoing Showdown or Combat, and it is the Main Phase, the Turn Player receives priority. If there are no Outstanding Tasks, no pending Chain Items, no ongoing Showdown, and it is any other phase of the turn, proceed to the next substep, step, phase, or turn.' RULE 190.6.d: '“You” in a battlefield’s abilities refers to the battlefield’s Controller, as does the implied “you” in instructions that don’t specify a player like “draw 1.” If the battlefield has no Controller, “you” refers to no one, and all such instructions are ignored.' RULE 485.4.a: 'Each player provides three (3) Battlefields, included in their deck during deck building.' RULE 103.4.c: 'Cannot include more than one of a Battlefield of the same name when there are more than one required for the deck.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-12, issue #187, session rc-walk-mid, batch 2. 369.2, 370.2, 431.3.a, 431.4, 431.4.a, 431.5, 413.4 and 413.4.c were cited by NOTHING in data/combos.json or data/synergies.json before this entry - measured 2026-09-12. rc-walk-blocks flagged 369.2 and the predecessor of this session named it the highest-value row left in 300-499; the answer is that a Burn Out cannot be responded to, and that 431.2.b lands before 431.2.d. Card text verbatim from data/corpus_flat.txt. Big-draw sweep run over data/corpus_flat.txt on 2026-09-12. Cross-references: shadow-temple-dr-mundo-balanced-trash and shadow-temple-sentinel-burn run the same battlefield."
+    },
+    {
+      "id": "ride-the-wind-overzealous-fan-non-combat-showdown-conversion",
+      "name": "316.8.b.1.a - a bloodless conquer is not safe: one body moved in during the Non-Combat Showdown turns it into a Combat",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-173",
+          "quantity": 3,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Chaos spell, E2 P1. '[Action] (Play on your turn or in showdowns.) Move a friendly unit and ready it.' 806.1.b grants it a Showdown window on the opponent's turn, and 449 lets an effect move go battlefield to battlefield with no [Ganking] and no exhaust (420.3.a puts that on the Standard Move alone)."
+        },
+        {
+          "card": "SFD-128",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Chaos unit, E2 M2. 'When I defend, you may kill me to move an attacking unit to its base.' Riot's own worked example at 204.3.a: the kill is the trigger's base cost, paid to finalize it. He is the body you move in, and he undoes the attack as soon as the converted combat designates him."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "tempo-denial",
+        "board-protection"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Both cards are mono-Chaos, so 103.1.b.1 is satisfied by any legend carrying Chaos. The census run against data/cards.json on 2026-09-12 gives sixteen names; among them Unforgiven (OGN-259), Bounty Hunter (OGN-267), Blade Dancer (SFD-195), Gloomist (UNL-193) and Heart of the Tempest (VEN-155).",
+          "Neither card is Signature (data/cards.json, signature=false on both) and neither appears in data/legality.json in either format - checked 2026-09-12."
+        ],
+        "notable": [
+          "316.8.b.1.a WAS UNCITED AND IT REOPENS A WINDOW THIS CATALOGUE TREATS AS CLOSED. The rule: 'These Showdowns are called Non-Combat Showdowns. During the proceedings of a Non-Combat Showdown, units controlled by a different player may become present at the Battlefield where the Showdown is ongoing. This will cause the Showdown to become a Combat Showdown in the following cleanup.' 344.1 says it from the Showdown side and is also uncited: 'If a Showdown is already ongoing at that Battlefield, it will become a Combat Showdown and a Combat will initiate there.' So the bloodless conquer that 344.2 and 348.2.a hand a player for walking onto an open battlefield is not a fait accompli - the defender gets a say inside it.",
+          "AND THE DENIAL IS ALREADY COMPLETE BEFORE ANY COMBAT RESOLVES. 348.2.a: 'If only one player's Units remain at the Battlefield, and if that player does not already Control the Battlefield, that player establishes Control over the Battlefield.' One body of yours standing there means two players' units remain, so the Non-Combat Showdown can no longer close into a Conquer at all; 348.2.a.1's 'This results in a Conquer if that player has not yet scored that Battlefield this turn' never fires. Everything after that is upside.",
+          "THE WHOLE LINE RUNS ON [ACTION], AND 313.1.a IS WHY THAT KEYWORD IS NOT OPTIONAL. 316.8.c: 'A Showdown is a structured Window of Opportunity where Players may play cards and activate abilities with Action or Reaction.' 313.1.a says the same from the Focus side, and it was uncited: 'The player with Focus must obey any additional restrictions on which Discretionary Actions may be performed. Example: A player with Focus may not play spells or activate abilities that don't have the Action or Reaction keywords.' 345 gives Focus to the player who applied Contested - the attacker - and 313.3 ('A player who passes Priority retains Focus') is how it comes round to you.",
+          "THE DESTINATION IS LEGAL BECAUSE THIS IS A DUEL, AND THAT IS A MEASUREMENT AND NOT AN ASSUMPTION. Both paragraphs that would forbid it are scoped by their own opening words to larger games. 447.2.a: 'In Modes of Play with more than two players, Battlefields with Staged Combats or Combats in Progress are Invalid Destinations for Moves of all kinds (Standard Moves or otherwise) by Units controlled by Players not involved in those Combats or who don't already have units at that Battlefield.' 462.1 repeats it word for word for Moves, 462.2 for plays, and 447.2.b is scoped to teammates. 485.1 puts two players at a Duel table, so none of them applies - and 447.2.c's fallback to a Recall never engages either.",
+          "THEN OVERZEALOUS FAN EMPTIES THE ATTACK, AND 204.3.a NAMES HIM AS ITS OWN EXAMPLE. 464.2.c.1 makes the walker the Attacker, and 464.2.c.3 designates everyone standing there at the moment the Combat opens: 'The attacker and defender gain the Attacker or Defender designation now, as appropriate. Units at the Contested Battlefield controlled by the Attacker or Defender gain the Attacker or Defender designation now, as appropriate.' The Fan was moved in during the Showdown, so he is already present when the conversion cleanup opens the Combat - he is designated at the open and not by the late-arrival clause 464.2.c.3.a. Kill him to finalize it (204.3.a, whose worked example is this card verbatim) and move the attacking unit to its base. Nobody's units remain: 466.3.d is 'No Result' 'if neither player has units present during this task', and 466.5 establishes Control for 'the player with Units remaining here' - there is none.",
+          "SO THE ATTACKER SPENDS A MOVE AND A TURN AND GETS AN OPEN BATTLEFIELD BACK. 170.11.c: 'Battlefields can be “open.” This means they are unoccupied and uncontrolled.' It was open before and it is open after. Two Chaos cards worth 4 Energy and 1 Power have cancelled a Conquer, which in a Duel is one of the two per-turn scoring events a conquer deck has (470 with 485.4).",
+          "A MOVE CANNOT BE ANSWERED, SO THE ORDER OF OPERATIONS IS FIXED. 446.3.c: 'Moving does not use the Chain, nor is it able to be Reacted to.' Your Ride the Wind is a spell and CAN be answered while it is on the Chain; once it resolves, the Fan simply is there. The attacker's only counterplay is to remove the Fan before the conversion cleanup, which costs them a card in a Showdown where 316.8.c admits only [Action] and [Reaction].",
+          "WHAT THIS DOES NOT DO, WHICH IS THE ENTRY'S SHORTFALL. It scores nothing and it does not take the battlefield: 466.5 gives Control only to a player with units remaining, and after the Fan kills himself you have none there either. It is pure denial, it costs you a card and a body each time, and three copies of Ride the Wind is three uses. The Fan can also be answered by a removal spell at Showdown speed before the conversion cleanup, in which case you have spent both cards for nothing.",
+          "ITS PLACE BESIDE THE CATALOGUED FAN LINE. janna-overzealous-empty-the-attack uses the same body against an ORDINARY combat, where the opponent has walked into a garrison of yours and the Fan is already standing there. This line is the other case - the empty battlefield, where a Combat is never staged at all (323.9 needs units of opposing players present) and 344.2 hands the walker a free Conquer unless someone converts the Showdown. That conversion is the mechanism, and 316.8.b.1.a is the only paragraph that grants it."
+        ]
+      },
+      "steps": [
+        "Keep Overzealous Fan on the board somewhere - your base or your own battlefield - and hold Ride the Wind with 2 Energy and 1 Chaos Power available on the opponent's turn.",
+        "The opponent moves a unit onto an open battlefield (170.11.c: unoccupied and uncontrolled). No Combat is staged, because 323.9 needs units of opposing players present; instead 344.2 opens a Showdown in the next Cleanup, and 316.8.b.1 makes it a Non-Combat Showdown.",
+        "345 gives the opponent Focus as it begins. When priority reaches you (313.3 keeps Focus with them while they pass), play Ride the Wind - it is [Action], which 806.1.b and 316.8.c admit here - and move Overzealous Fan to that battlefield.",
+        "316.8.b.1.a converts the Showdown to a Combat Showdown in the following cleanup and 344.1 initiates a Combat there. 348.2.a can no longer give anybody Control, because two players' units remain.",
+        "464.2.c.1 designates the walker's controller the Attacker; the Fan was already standing there when the Combat opened, so 464.2.c.3 gives him the Defender designation at the open and his 'When I defend' trigger fires.",
+        "Pay its base cost - kill the Fan (204.3.a) - and move the attacking unit to its base. The damage step of 465 finds nothing left to assign on either side.",
+        "466.3.d returns No Result and 466.5 establishes Control for nobody. The battlefield is open again and the opponent's turn is spent."
+      ],
+      "terminatesIn": "engine - one enemy Conquer cancelled per Ride the Wind, for 2 Energy + 1 Chaos Power and the Fan's own life; three copies is three uses. Nothing is scored and the battlefield is left open, because 466.5 gives Control only to a player with units remaining and after the Fan's cost nobody has any",
+      "netPerIteration": "an opponent's free conquer of an open battlefield turned into a combat with no result, at the cost of one spell and one 2 Might body",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12, issue #187 - uncited Core Rules sub-rules 300-499 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "RULE 316.8.b.1: 'Showdowns that occur as a result of a player moving to an empty Battlefield are a stand-alone Phase and do not create a Combat.' RULE 316.8.b.1.a: 'These Showdowns are called Non-Combat Showdowns. During the proceedings of a Non-Combat Showdown, units controlled by a different player may become present at the Battlefield where the Showdown is ongoing. This will cause the Showdown to become a Combat Showdown in the following cleanup.' RULE 344.1: 'If Control of a Battlefield is Contested between two players, then a Showdown will be opened as the first step of Combat. If a Showdown is already ongoing at that Battlefield, it will become a Combat Showdown and a Combat will initiate there.' RULE 344.2: 'If Control of a Battlefield is Contested, there aren’t units controlled by different players there, and the turn is in a Neutral Open State, a Showdown is opened during the next Cleanup.' RULE 345: 'As a Showdown begins, the player who applied Contested status to the Battlefield gains Focus.' RULE 348.2.a: 'If only one player’s Units remain at the Battlefield, and if that player does not already Control the Battlefield, that player establishes Control over the Battlefield.' RULE 348.2.a.1: 'This results in a Conquer if that player has not yet scored that Battlefield this turn.' RULE 316.8.c: 'A Showdown is a structured Window of Opportunity where Players may play cards and activate abilities with Action or Reaction.' RULE 313.1.a: 'The player with Focus must obey any additional restrictions on which Discretionary Actions may be performed.' EXAMPLE under 313.1.a: 'A player with Focus may not play spells or activate abilities that don’t have the Action or Reaction keywords.' RULE 313.3: 'A player who passes Priority retains Focus.' RULE 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' RULE 447.2.a: 'In Modes of Play with more than two players, Battlefields with Staged Combats or Combats in Progress are Invalid Destinations for Moves of all kinds (Standard Moves or otherwise) by Units controlled by Players not involved in those Combats or who don’t already have units at that Battlefield.' RULE 462.1: 'In Modes of Play with more than two players, Battlefields with Staged Combats or Combats in Progress are Invalid Destinations for Moves of all kinds (Standard Moves or otherwise) by Units controlled by Players not involved in those Combats or who don’t already have Units at that Battlefield.' RULE 204.3.a: 'When Costs within Instructions appear as the first part of the effect in triggered abilities, the cost is taken to be the base cost of the triggered ability. It must be paid to finalize the triggered ability.' EXAMPLE under 204.3.a: 'Overzealous Fan is a unit that reads “When I defend, you may kill me to move an attacking unit to its base.” In order to finalize the ability to the chain, its controller must kill Overzealous Fan.' RULE 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' RULE 464.2.c.3: 'The attacker and defender gain the Attacker or Defender designation now, as appropriate. Units at the Contested Battlefield controlled by the Attacker or Defender gain the Attacker or Defender designation now, as appropriate.' RULE 466.3.d: 'There is “No Result” if units were recalled during step 3d of the Combat Cleanup, if both Players have units present during this task, or if neither player has units present during this task.' RULE 170.11.c: 'Battlefields can be “open.” This means they are unoccupied and uncontrolled.' RULE 446.3.c: 'Moving does not use the Chain, nor is it able to be Reacted to.' RULE 449: 'Spells, Abilities, or other effects may cause a Move to occur.' RULE 323.9: '7. Mark a Combat as Staged at each Battlefield that Contested was applied to that have Units present controlled by opposing players.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-12, issue #187, session rc-walk-mid, batch 2. 316.8.b.1.a, 344.1, 313.1.a, 313.3, 316.8.c, 462.1 and 446.3.c were cited by NOTHING in data/combos.json or data/synergies.json when this entry was staged - measured 2026-09-12 at catalogue 736, which is the only precision such a count has; 316.8.b.1, 348.2.a and 447.2.a were already cited. The finding is that the bloodless-conquer route through 344.2, which this catalogue uses offensively in several entries, has a printed answer the defender may take from inside the Showdown. Card text verbatim from data/corpus_flat.txt. Legend census run against data/cards.json. Cross-references: janna-overzealous-empty-the-attack uses the same body against an ordinary combat; charm-evacuate-conquer, charm-nasus-evacuation-conquer and amateur-recital-free-evacuation are lines this one answers."
+    },
+    {
+      "id": "sanction-spirit-wheel-blade-dancer-empower-is-a-choice",
+      "name": "827.1.b.1: a card's OWN [Empower] chooses nothing, so none of the pool's 45 self-empowering cards ever fires a 'when you choose a friendly unit' payoff - and Sanction is the only card that makes an Empower a choice at Reaction speed",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-035",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm spell, E3 + 1 Calm Power. '[Reaction] (Play any time, even before spells and abilities resolve.) Choose one — • Empower a unit. Disempower it at end of turn. • Disempower a unit that's [Empowered]. Empower it at end of turn.' The load-bearing word is CHOOSE: this is an effect empowering ANOTHER object, which is the only shape that chooses anything at all."
+        },
+        {
+          "card": "SFD-144",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BASE",
+          "note": "Chaos gear, E2. 'When you choose a friendly unit, you may pay :rb_energy_1: and exhaust this to draw 1.' Its trigger reads any choose, not only a spell's - unlike SFD-142 Jae Medarda, whose clause says 'with a spell'."
+        },
+        {
+          "card": "SFD-195",
+          "quantity": 1,
+          "role": "legend",
+          "zone": "LEGEND",
+          "note": "Calm/Chaos legend. 'When you choose a friendly unit, you may exhaust me and pay :rb_rune_rainbow: to ready it. When you conquer, you may pay :rb_energy_1: to ready me.' She is in uses[] because she is the second payoff and not merely the identity: this line wants a legend that IS a choose-watcher, and she is the only one."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Sanction is mono-Calm and Spirit Wheel is mono-Chaos, so 103.1.b.2 needs a legend covering both - and Blade Dancer, measured over data/cards.json on 2026-09-12, is the only Calm/Chaos legend NAME in the pool. The identity and the second payoff are the same card, which is why this line has no legend choice at all.",
+          "None of the three is a Signature card (checked against data/cards.json) and none appears in data/legality.json in any format - checked 2026-09-12.",
+          "Spirit Wheel and Blade Dancer each cost their own exhaust, so each pays once per turn (415.3.a readies them at your own Awakening). Three Spirit Wheels are three draws off one Sanction; there is only ever one legend.",
+          "Sanction's first mode needs a unit that is NOT already Empowered - 441.1.b, 'An Empowered Game Object can not be Empowered' - and its second mode needs one that is. Either mode chooses a unit, so either fires both payoffs."
+        ],
+        "notable": [
+          "THE RULE, AND IT DIVIDES THE WHOLE EMPOWER FAMILY IN TWO. 827.1.b.1: 'The source game object is not a target of the Empower ability.' So a card paying its own printed [Empower] cost chooses nothing and targets nothing - and therefore fires no 'when you choose' payoff, pays no [Deflect] tax - 809.1.c prices it 'for each time they choose [me/this]', and a self-Empower chooses nothing, and is invisible to every trigger in that family. 827.1.b and 827.1.b.1 are cited by no entry and no synergy rule in this project (measured 2026-09-12), while 441.1.b is cited 109 times and 441.2 is cited 154 - the catalogue has the Empower STATE everywhere and has never had the paragraph saying the act picks nothing.",
+          "THE CENSUS, MEASURED OVER data/cards.json ON 2026-09-12 AND NAMED. FORTY-FIVE base codes carry their own [Empower] keyword; not one of them can fire Spirit Wheel or Blade Dancer by empowering itself. EIGHT rows empower something else, and they are VEN-035 Sanction, VEN-062 Hextech Formula, VEN-082 Profiteer, VEN-099 Tornado Warrior, and the two legends VEN-151 Soul's Reflection and VEN-153 Matriarch of War with their reprints. Two of those eight are not empowerers at all on inspection - Soul's Reflection and Matriarch of War read 'When you empower something else, empower me', so they WATCH the event and then empower themselves, which chooses nothing by the same rule. Hextech Formula empowers 'another gear', which no 'friendly unit' clause can see. So exactly THREE cards in the pool make an Empower a choice on a unit: Sanction, Profiteer and Tornado Warrior - and Sanction is the only one of the three that is a spell, the only one at [Reaction] speed, and the only one that is repeatable three times (103.2.b).",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. One Sanction is 3 Energy and 1 Calm Power. It chooses a friendly unit, which fires both payoffs: Spirit Wheel draws 1 for 1 Energy and its own exhaust, and Blade Dancer readies that same unit for one rainbow Power and her exhaust. The Empower itself is the third effect and is free - it switches on any [Empowered][>] ability the chosen body has for the turn, and Sanction's own clause disempowers it at end of turn. Three effects on one card, and the only one anybody would have counted is the third.",
+          "PLAY IT ON YOUR OWN TURN, WHICH THE KEYWORD ALLOWS AND THE READY REQUIRES. 813.2, which is cited by nothing: 'The corresponding card or effect with this keyword is not restricted to Closed States or Showdowns. This permission is inclusive of all other timings and options available to the ability as written, Action's permissions, or by default.' So a [Reaction] spell never has to be a response. That matters here because Blade Dancer's ready is worth a second Standard Move only in YOUR Main Phase - 144.1.b forbids the Standard Move in a Closed State, and neither 464.2.c.3 nor 465.2.b reads exhaustion in combat, so a ready bought on the opponent's turn buys nothing unless the body has an exhaust-cost ability at Action or Reaction speed.",
+          "AND THE TEMPORARY EMPOWER IS THE POINT OF THE THIRD EFFECT, NOT A DRAWBACK. 441.2 makes Empowered a permanent board state and 441.1.b forbids empowering an already-Empowered object, so an ordinary Empower is a once-per-body event. Sanction deliberately gives it back at end of turn - which means the SAME body can be Sanctioned again next turn, and the payoffs fire again. A card that permanently empowered would fire the payoffs once per body ever; this one is renewable on one body forever.",
+          "WHAT TO AIM IT AT. Batch 17 of this lane measured the [Empowered][>] family at THIRTY-TWO base codes - 30 units, 2 legends, ZERO gear and ZERO battlefields - so the Empower half has a wide choice of bodies whose dormant text it switches on for the turn. VEN-043 Steel Paws is the extreme: E1 at Might 0 with '[Empowered][>] I have +7 :rb_might:', whose own [Empower] costs 7 Energy and would fire neither payoff.",
+          "ONE CARD IN THE CHOOSE FAMILY DOES NOT BELONG HERE AND IT IS EASY TO ADD BY MISTAKE. SFD-142 Jae Medarda reads 'When you choose me WITH A SPELL, draw 1' - Sanction is a spell, so he does fire, but only when HE is the chosen body, where Spirit Wheel and Blade Dancer fire on any friendly unit. He is a narrower third payoff, not a fourth copy of the same one, and he is Chaos so the identity holds."
+        ]
+      },
+      "steps": [
+        "Have SFD-144 Spirit Wheel on the board (E2, a gear, so 143.4 never exhausts it) and SFD-195 Blade Dancer as your legend.",
+        "In your own Main Phase - 813.2 lets a [Reaction] card be played there - play VEN-035 Sanction for 3 Energy and 1 Calm Power.",
+        "Choose the first mode and choose a friendly unit that is not already Empowered (441.1.b). Pick a body with an [Empowered][>] ability if you have one; the Empower is free and switches that text on for the turn.",
+        "Choosing a friendly unit meets both payoffs' Trigger Conditions at once. 383.3.d gives you the order.",
+        "Spirit Wheel: pay 1 Energy and exhaust it, draw 1. Three copies are three draws off this one choose.",
+        "Blade Dancer: exhaust her and pay one rainbow Power, ready the chosen unit. In your Main Phase that is a second Standard Move for it.",
+        "At end of turn Sanction disempowers the body, which is what makes the same target legal again next turn (441.1.b would otherwise refuse it forever).",
+        "Do NOT expect any of this from a card paying its own [Empower]. 827.1.b.1 makes the source not a target, so all 45 self-empowering base codes in the pool fire neither payoff and pay no [Deflect].",
+        "Three Sanction and three Spirit Wheel (103.2.b); one legend. Each payoff costs its own exhaust, so each pays once per turn (415.3.a). Nothing here loops and nothing here scores."
+      ],
+      "netPerIteration": "one card drawn, one friendly unit readied, and one [Empowered][>] ability switched on for the turn, for 3 Energy + 1 Calm Power + 1 Energy + 1 rainbow Power - none of which a self-paid [Empower] would have produced",
+      "terminatesIn": "engine only - nothing here scores. Once per turn per payoff, because Spirit Wheel and Blade Dancer each cost their own exhaust and 415.3.a returns it only at your own Awakening; three Sanction by 103.2.b",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 827.1.b.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The source game object is not a target of the Empower ability."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 441.1.b and 441.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "An Empowered Game Object can not be Empowered."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 813.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "The corresponding card or effect with this keyword is not restricted to Closed States or Showdowns. This permission is inclusive of all other timings and options available to the ability as written, Action's permissions, or by default."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 809.1.c",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\""
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (built from Riot's gallery content API by scripts/build-cards.mjs)",
+          "kind": "riot",
+          "date": "2026-09-12",
+          "quote": "VEN-035 | Sanction | Spell | Calm | E3 P1 | [Reaction] (Play any time, even before spells and abilities resolve.) Choose one — • Empower a unit. Disempower it at end of turn. • Disempower a unit that's [Empowered]. Empower it at end of turn."
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (built from Riot's gallery content API by scripts/build-cards.mjs)",
+          "kind": "riot",
+          "date": "2026-09-12",
+          "quote": "SFD-195 | Blade Dancer | Legend | Calm/Chaos | - | When you choose a friendly unit, you may exhaust me and pay :rb_rune_rainbow: to ready it. When you conquer, you may pay :rb_energy_1: to ready me."
+        },
+        {
+          "title": "Hand walk 2026-09-12 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md), batch 21",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        }
+      ]
+    },
+    {
+      "id": "conscription-forge-of-the-fluft-equipment-outlives-the-theft",
+      "name": "718.5.e and 718.5.f: an Equipment's Controller does not change when its CARRIER's does - so stealing an equipped body hands you the text and the Might while the opponent keeps a card they cannot use, and the Forge recovers yours if they steal first",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-140",
+          "quantity": 3,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E5 + 2 Chaos Power. 'You may spend 5 XP as an additional cost to play this. Choose an enemy unit at a battlefield with 3 :rb_might: or less. If you paid the additional cost, choose any enemy unit at a battlefield instead. Take control of it, exhaust it, and recall it.' Picked over OGN-203 Possession because possession-action-defender-flip is a single-card entry and this line would be a strict superset of it."
+        },
+        {
+          "card": "SFD-208",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled",
+          "note": "Colorless battlefield. 'While you control this battlefield, friendly legends have \":rb_exhaust:: Attach an Equipment you control to a unit you control.\"' It is the pool's only free attach that says 'to a UNIT' rather than [Weaponmaster]'s 'to me', and here it is the recovery tool: 718.5.f leaves the Equipment's Control with you after your carrier is stolen, and 718.5.b lets the Forge choose it."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "tempo-denial"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Conscription is mono-Chaos and the Forge of the Fluft is Colorless, so 103.1.b needs only a legend carrying Chaos. Measured over data/cards.json on 2026-09-12 that is sixteen legend NAMES: Loose Cannon, Unforgiven, Swift Scout, Bounty Hunter, Dark Child - Starter, Glorious Executioner, Blade Dancer, Prodigal Explorer, Battle Mistress, Bloodharbor Ripper, Gloomist, Scorn of the Moon, Voidreaver, Master of Shadows, Soul's Reflection and Heart of the Tempest.",
+          "Neither card is a Signature card (checked against data/cards.json) and neither appears in data/legality.json in any format - checked 2026-09-12.",
+          "The Forge grants the ability to LEGENDS and only while you control that battlefield, so the recovery half needs you holding it. 485.4.a has each player provide three battlefields and 485.5 selects randomly; 103.4.c forbids a second copy of the name.",
+          "The Equipment bonus on the offensive half is a RIDER, not a reason: it arrives only when the body you steal happens to be carrying one. Conscription is worth its cost for the body alone, and everything below is what you get on top."
+        ],
+        "notable": [
+          "THE RULE, IN TWO SENTENCES NOTHING IN THIS CATALOGUE HAS CITED. 718.5.e: 'Attached cards may have different Controllers from their Top-Most card.' 718.5.f: 'Changes in Control of the Top-Most card do not impact Control of Attached cards and vice versa.' And 718.5.g keeps the effect flowing regardless: 'An Attached card still appends the abilities in its Effect Text to the Rules Text of the Top-Most card and modulates the Top-Most Card's Might by its Might Bonus.' 718.5.e, 718.5.f and 718.5.g are cited zero times (measured 2026-09-12) while 718.2 is cited across the catalogue - this project has the Inactive half of attachment everywhere and has never had the Control half.",
+          "THE OFFENSIVE HALF, AND IT IS A SENTENCE NO ENTRY IN THIS CATALOGUE CAN CURRENTLY STATE. Steal an equipped body and you get the BODY; 718.5.f leaves the Equipment's Control with the opponent; 718.5.g still appends its Effect Text to the unit you now control and still modulates its Might. So you receive the whole benefit of a card you do not own, and they retain a card they cannot use - 718.2 makes its printed Rules Text, [Equip] included, Inactive while attached, so only an ATTACH effect can move it, and the pool has four (a [Weaponmaster] body, SFD-024 Rell Magnetic, SFD-049 Aphelios' trigger, and this same Forge). 718.5.c and 719.3.a then carry the Equipment with the body: 'A Top-Most Card and all cards Attached to it are at the same location', so after Conscription's recall their card is sitting at YOUR base, attached to YOUR unit, controlled by THEM.",
+          "AND 457.1 IS HOW THEY GET IT BACK, WITH RIOT'S OWN WORKED EXAMPLE. 'When an un-attached non-Unit Gear is created or played at a battlefield, or is at a battlefield for any other reason, it is Recalled to ITS CONTROLLER'S base during the next Cleanup. Example: An Equipment is attached to a unit at a battlefield, so the Equipment is present at that battlefield. If the unit dies, the Equipment will be recalled during the next cleanup.' With 719.5 ('When a Top-Most Card changes zones from a board zone to a non-board zone, all Attached cards Detach from it') that means the loan ends when the stolen body dies - and it goes home to THEM, not to you. So do not trade the stolen body away cheaply if the Equipment is the better half of the theft.",
+          "THE DEFENSIVE HALF IS THE SAME RULE READ BACKWARDS, AND IT IS WHY THE FORGE IS IN uses[]. If THEY steal your equipped body, 718.5.f leaves the Equipment's Control with YOU. 718.5.b - 'Attached cards still can be chosen or targeted by game effects while Attached' - lets the Forge's granted ability choose it even though it is attached to a unit you no longer control, because the Forge asks for 'an Equipment you CONTROL' and not one you are carrying. 434.1.f then detaches it from their new body as it attaches to yours. One legend exhaust, no Energy, no Power: you take the Might Bonus and the Effect Text back and leave them a bare body.",
+          "718.2 IS WHY THE FORGE AND NOT THE [Equip] COST. An attached Equipment's own [Equip] is printed Rules Text and is Inactive (718.2, 721.2), so you cannot pay it to move the card off a carrier you do not control - the one-way door this project recorded in 2026-09-07. The Forge is not paying that cost; it is a separate ATTACH effect, which 434.1.f and 434.4 make a free relocation across the board. [Weaponmaster] cannot substitute, because 821.1.c attaches 'to me' and the body doing the equipping must be one you control anyway.",
+          "THE PRICE OF THE OFFENSIVE HALF IS PRINTED AND IT IS STEEP. Conscription is E5 + 2 Chaos Power, and the Might restriction is lifted only by spending 5 XP as an additional cost - which 824.1.d and 730.2 then switch off every [Level N] rung you were standing on. This is a SINK line, not a [Level] line. Without the XP it reaches only a body of 3 Might or less, and a 3-Might body is rarely the one carrying their best Equipment.",
+          "ONE THING THIS ENTRY DOES NOT CLAIM. 185 keeps a TOKEN out of all of this - a Gold gear token attached to nothing is not an Equipment and 187.5 gives it no Effect Text - and 137.3.b makes a Might Bonus on a carrier with no Might value ignored, which no Equipment in this pool can reach anyway since 818.1.b attaches to a unit."
+        ]
+      },
+      "steps": [
+        "Have SFD-208 Forge of the Fluft on the table and control it; its grant is conditional on that and it grants to LEGENDS.",
+        "OFFENSIVE HALF. Play UNL-140 Conscription for 5 Energy and 2 Chaos Power, spending 5 XP as the additional cost if you want a body above Might 3.",
+        "Take control of the chosen enemy unit, exhaust it, and recall it. 718.5.c and 719.3.a carry any Equipment attached to it along, so their card arrives at your base on your body.",
+        "718.5.f leaves that Equipment's Control with THEM and 718.5.g still appends its Effect Text and Might Bonus to the body you now control. You have the effect; they have a card whose own [Equip] is Inactive (718.2) and which only an attach effect can move.",
+        "Expect to lose the loan if the body dies: 719.5 detaches and 457.1 recalls the gear to ITS CONTROLLER'S base - theirs, with Riot's worked example spelling out exactly this case.",
+        "DEFENSIVE HALF. If instead they steal a body of yours that carries YOUR Equipment, 718.5.f leaves that Equipment under your Control.",
+        "Exhaust your legend for the Forge's granted ability and choose that Equipment - 718.5.b permits choosing an attached card - then attach it to a unit you control.",
+        "434.1.f detaches it from their stolen body in the same action. You have the Might Bonus and the Effect Text back, for one legend exhaust and nothing else; 415.3.a returns the exhaust at your next Awakening.",
+        "Three Conscription (103.2.b), one Forge per game (103.4.c). Nothing here loops and nothing here scores."
+      ],
+      "netPerIteration": "one enemy body taken with its Equipment's Effect Text and Might Bonus riding along on a card the opponent still owns - or, on defence, your own Equipment pulled back off a stolen carrier for one legend exhaust",
+      "terminatesIn": "engine only - nothing here scores. The offensive loan ends when the stolen body leaves the board (719.5, 457.1) and the gear goes home to its controller; the Forge's recovery is once per turn, capped by your legend's own exhaust (415.3.a)",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 718.5.b, 718.5.e, 718.5.f and 718.5.g",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Attached cards still can be chosen or targeted by game effects while Attached. … Attached cards may have different Controllers from their Top-Most card. … Changes in Control of the Top-Most card do not impact Control of Attached cards and vice versa. … An Attached card still appends the abilities in its Effect Text to the Rules Text of the Top-Most card and modulates the Top-Most Card’s Might by its Might Bonus."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 718.2 and 719.3",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "While in this state, the card’s printed Rules Text is Inactive. … A Top-Most Card and all cards Attached to it are at the same location."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 457.1 and its worked example",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "When an un-attached non-Unit Gear is created or played at a battlefield, or is at a battlefield for any other reason, it is Recalled to its controller's base during the next Cleanup. Example: An Equipment is attached to a unit at a battlefield, so the Equipment is present at that battlefield. If the unit dies, the Equipment will be recalled during the next cleanup."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 719.5 and 434.1.f",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "When a Top-Most Card changes zones from a board zone to a non-board zone, all Attached cards Detach from it, remaining in their current zones. … Attaching a card to a new Top-Most Card will cause it to Detach from the card to which it is currently Attached."
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (built from Riot's gallery content API by scripts/build-cards.mjs)",
+          "kind": "riot",
+          "date": "2026-09-12",
+          "quote": "SFD-208 | Forge of the Fluft | Battlefield | Colorless | - | While you control this battlefield, friendly legends have \":rb_exhaust:: Attach an Equipment you control to a unit you control.\""
+        },
+        {
+          "title": "Hand walk 2026-09-12 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md), batch 22",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        }
+      ]
     }
   ]
 }
