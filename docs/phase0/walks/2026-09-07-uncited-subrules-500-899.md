@@ -2457,3 +2457,97 @@ is applied** (this lane does not own `data/combos.json`), ranked:
 **Recommendation to the manager:** this lane should be redirected rather than kept on thin material. The
 Core Rules range `649`–`829` is closed, and the Tournament Rules have given four upgrades and no entries
 across four batches — which is the correct yield for a procedural document, and a reason to stop.
+
+## 42. Batch 31 — the two card leads, and **the premise of one of them is refuted by measurement**
+
+Redirected here by `rc-manager5` after the Tournament Rules were declared spent. Both leads come from
+`§58` of `docs/phase0/walks/2026-09-09-uncited-rules-300-499.md`. **Neither yields an entry**, and in one
+case the reason is that the lead's stated justification is false. Six card passages verified verbatim
+against `data/corpus_flat.txt` (`.scratch-rules/qcheck31.mjs`, 6/6); card text is checked against the
+corpus and rules text against the rules, never the other way round.
+
+### 42.1 `VEN-131 Decree of Unity` — REFUSED, and the lead's premise does not survive a count
+
+> `VEN-131 | Decree of Unity | Spell | Order | E2 P1 | Kill an enemy Chaos (:rb_rune_chaos:) unit or gear.`
+
+The lead reads: *"Twelve BURST and CHAIN entries stand on attached Equipment; this answers the Chaos ones
+for 2 Energy and 1 Order Power."* **Measured over the whole catalogue, that is wrong.**
+
+The pool prints **six** Chaos Equipment — `SFD-124 Doran's Ring`, `SFD-133 Boots of Swiftness`,
+`SFD-134 Cull`, `SFD-139 Edge of Night`, `SFD-150 Last Rites`, `SFD-186 Spinning Axe` (the last
+Fury/Chaos). Checked against all **61** `BURST` / `CHAIN` / `ALT_WIN` entries: **ZERO of them use any of
+the six.** All 25 entries that use a Chaos Equipment are `ENGINE`, fifteen of them on `SFD-150 Last Rites`.
+
+So `VEN-131` is not the card that answers the Chaos Equipment finishers — **it is the one gear-removal
+printing in the pool that answers none of them**, because the finisher family and the Chaos Equipment
+family do not intersect at all. That is worth more than the lead was: it says the twelve Equipment
+finishers are answered by the *other* fifteen printings and never by this one.
+
+**And in both of its own roles it is dominated by a card already catalogued in its own domain:**
+
+| role | `VEN-131` | the incumbent | verdict |
+|---|---|---|---|
+| kill an enemy **gear** | Order, E2 + 1 Power, no keyword, gated on Chaos | `OGN-224 Salvage` — Order, **E2 + 1 Power**, *"[Action] … You may kill up to one gear. Draw 1."* | Salvage is the same domain at the same cost with `[Action]` (so `806.1.b` reaches an opened Combat), *"up to"* so it is never a dead card, and a cantrip. Already catalogued as `salvage-zaun-punk-gear-kill-reaches-attached-equipment` |
+| kill an enemy **unit at a base** | gated on Chaos | `OGN-229 Vengeance` — Order, E4 + 2 Power, *"Kill a unit."*, ungated and no location clause | Already catalogued in the exact line, `mageseeker-warden-vengeance-base-kill`, behind `OGN-070`'s *"While I'm at a battlefield, opponents can only play units to their base"* |
+
+**Scope of the refusal, stated so it can be reopened.** `VEN-131` is genuinely **half the cost of
+Vengeance** (E2 + 1 against E4 + 2) and is the pool's **only single-instruction kill that reads
+*"unit or gear"*** — which `CLAUDE.md`'s removal census already records as the reason a unit-only
+predicate cannot see it. It becomes a real card the moment an opponent is Chaos. But **a domain-gated
+answer is a sideboard card, not a combo line**: a `combos.json` entry is matched against *your* decklist
+and this one's value is a fact about *theirs*, which is the same reasoning that keeps positions, win rates
+and the `601.2.d.2` precon carve-out out of this project. If a future lane wants it, the honest home is a
+`notable` on the two incumbent entries naming it as the cheap Chaos-only alternative — not a row.
+
+### 42.2 `SFD-096 Laurent Bladekeeper` — the measurement CONFIRMS the fact and refutes the framing
+
+> `SFD-096 | Laurent Bladekeeper | Unit | Body | E3 M3 | Ganking (I can move from battlefield to battlefield.)`
+
+That is his **entire** card. Re-measured over `data/cards.json`, the Body Ganking population and its cost
+curve, which the lead gave without members:
+
+| | |
+|---|---|
+| **E3, no Power** | `SFD-096 Laurent Bladekeeper` (M3) — **alone** |
+| E3 + 1 Power | `UNL-115 Nilah, Joyful Ascetic` (M4, `[Accelerate]`, *"When I move, gain 1 XP"*), `VEN-070 Brutal Hunter` (M4, Ganks only while Empowered) |
+| E4+ | `UNL-108`, `UNL-113`, `VEN-088`, `VEN-092`/`VEN-177`, `OGN-162`, `OGN-125`, `OGN-157`, `OGS-009` |
+
+**The lead's "eleven in Body" and my twelve are both right, at different units** — twelve base codes,
+eleven names, because `Renekton, Brute` prints twice (`VEN-092`, `VEN-177`). This project's own standing
+rule applies to its own leads: *state the unit with the number.*
+
+So the deckbuilding fact is **confirmed**: Laurent is the cheapest Body Ganking body and the only one with
+no Power cost and no condition. **But it is not an entry, and the lane that found it said so** — `§58`
+classified it a **SYNERGY LEAD**, *"a deckbuilding fact rather than a line … anchor for a rule wanting a
+Body battlefield-to-battlefield mover."* That classification survives the measurement and the reframing as
+an entry lead does not, for a reason visible on the card: **Laurent has no payoff text at all.** He is an
+enabler, and an enabler with no text can only ever be the cheap slot in someone else's line.
+
+The space he would enter is also saturated: **30 Body-legal entries already turn on Ganking**, including
+`nilah-targonian-visionary-move-xp-ladder`, which runs the E3 + 1 Power body he undercuts. Swapping Nilah
+for Laurent saves exactly **1 Power** and loses *"When I move, gain 1 XP"* and `[Accelerate]` — which is a
+**substitution note on an existing entry**, and `CLAUDE.md` is explicit that a lead which would change the
+card slot of an existing line *"goes in `notable`, never in `uses`."*
+
+**Disposition: not an entry from this lane.** It is either (a) an anchor for `synergies.json` — which this
+lane does not own, and `rc-syn16` has that file open — or (b) a `notable` on the Ganking entries. Routed to
+the manager rather than written unilaterally, which is the same call `§58` made.
+
+### 42.3 HANDOFF — rc-walk-blocks after batch 31
+
+**Staged:** nothing, five batches running. `/tmp/rc-walks/rc-walk-rules.json` is `[]`.
+
+**Both routed card leads are now dispositioned and must not be re-walked.** `§58`'s other five
+dispositions stand untouched and were not re-examined, per the manager's instruction not to re-refuse them.
+
+**What this lane has produced across batches 27–31:** five citation upgrades (four applied by the manager,
+one — `702.3.a` for `R2` — outstanding as of this writing), three measured-empty veins closed with their
+scope (Core Rules `649`–`829`, the Tournament Rules card-name sweep, the `700`s definitions), one integrity
+check that found nothing wrong (no citation points into the `490`–`648` void), one confirmed-with-a-source
+project claim (`VEN-SP1`–`SP6`), and **zero entries**.
+
+**That last number is the honest signal.** This lane has been mining *documents* for four batches while the
+catalogue's remaining value is in *card sets*, and the two card leads it was handed both dissolve on
+measurement. **My recommendation stands and strengthens: redirect or retire this lane.** The material it
+was created for — uncited Core Rules sub-rules in `649`–`829` — is gone, and neither the Tournament Rules
+nor `§58`'s leftovers replace it.
