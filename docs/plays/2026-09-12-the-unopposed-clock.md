@@ -111,8 +111,8 @@ is full of five-card finishers rather than two-card ones.**
 ## The same clock in every other identity, and why it is one turn slower
 
 Chaos/Fury (and every identity that is not Body or Calm) has **no unit at Energy 1**. Its cheapest
-bodies are Energy 2 — twenty-four of them, all at 2 Might and no Power cost — and turn 1 affords
-exactly one. That costs a whole turn:
+bodies are Energy 2: swept as `energy == 2 and no Power cost and domains subset of {chaos, fury}`,
+there are **24**, of which 19 are Might 2 and 5 are Might 1. Turn 1 affords exactly one. That costs a whole turn:
 
 ```
 T1  R=2.  Play one E2 body to base.                                              0

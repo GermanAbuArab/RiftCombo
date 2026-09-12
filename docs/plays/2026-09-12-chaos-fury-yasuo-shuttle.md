@@ -115,8 +115,9 @@ them), which is why Yasuo 3, played on T5, first fires on T6. That single fact s
 - **`OGN-133 Flurry of Blades` — Body, E1, "[Reaction] … Deal 1 to all units at battlefields."** It
   does not kill Yasuo (Might 4, and 143.2.a needs marked damage at or above Might), but it kills the
   two Energy-2 garrison bodies if they are Might 1, and losing the garrison at A costs the Hold AND
-  the place the Yasuos shuttle to. Garrison with Might-2 bodies, of which the identity prints
-  twenty-two.
+  the place the Yasuos shuttle to. Garrison with Might-2 bodies: swept as `energy == 2 and no
+  Power cost and Might >= 2 and domains subset of {chaos, fury}`, the identity prints **19** of them
+  (24 bodies at Energy 2 in all, five of which are Might 1 and die to it).
 - **Any removal aimed at a Yasuo.** At Might 4 with no protection each one is 1 point a turn, and
   `OGN-229 Vengeance` (Order, E4 + 2 Power, "Kill a unit.") reaches him with no location clause at
   all. There is no cheaper single answer in the play than there is in the deck.
