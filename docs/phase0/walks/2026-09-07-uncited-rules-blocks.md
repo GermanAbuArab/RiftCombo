@@ -1958,3 +1958,106 @@ forms** (30 `[Empowered]`, 11 `[Reaction]`, 11 `[Deathknell]`, 9 `[Level 6]`, 8 
 are NOT themselves playable at that speed.** It is cited, with that measurement, by
 `mystic-vortex-overt-operation-taxes-the-answer` in the 500–829 lane. A 100–299 session could still build
 an entry on it, but it should check that one first.
+
+---
+
+# Batch 18 (2026-09-12) — rc-walk-mid takes 100–299: the paragraph that AUTHORISES a token's destination is uncited
+
+Continuing this document rather than opening a new one, because §H14–§H16 are this range's record and
+a second file would split it. **First, a correction to the brief I was given**, in the same spirit as
+§H14's own opening: the slice was described as *"73 uncited sub-rules carrying a worked Example or a
+mechanic verb, measured 2026-09-09"* and pointed at §H8–H13. **§H14, written after batch 17 on
+2026-09-12, supersedes both numbers**: the Example-filtered probe for 100–299 is **SPENT** — all 31
+of its rows were disposed in batch 17 — and what remains is the verb-filtered list at **164 rows,
+explicitly low-density**. I read §H14–§H16 before probing and started from §H15's four blocks. The
+range is still live; it is smaller and differently shaped than the brief said.
+
+## 68. 184.2 IS CITED ZERO, AND IT IS THE PERMISSION UNDER #48's WHOLE CENSUS
+
+> **184.** The effect that creates a token may specify the conditions or circumstances under which it
+> enters the board. These stipulations may alter the usual steps for playing a card if the token is
+> played.
+> **184.1.** The effect may state that the token enters ready or exhausted, if that state is contrary
+> to the default for the token's type.
+> **184.2.** The effect may **restrict the location** to which the token may be played.
+> **184.3.** The effect may grant temporary abilities or modifications to the token.
+
+Measured at catalogue 766: **184 is cited 73 times, 184.1 seven, and 184.2 and 184.3 ZERO** — while
+the paragraphs this project reaches for instead are cited **252** (355.2.a) and **269** (816.1). The
+parent is in heavy use and the two sub-rules that say *what the effect may actually do* are not.
+
+**184.2 is the authorisation under CLAUDE.md's #48 finding**, which is one of this catalogue's
+load-bearing measurements — *"of the 49 cards that create unit tokens, 18 say 'at your base' outright,
+13 say 'here', and 18 name no destination (355.2.a: base, or a battlefield you control)"*. The whole
+split is sourced to **355.2.a**, and 355.2.a is the **default for playing a card**, not a permission
+for a token-creating effect to narrow it. **The system is three paragraphs and the project has two:**
+
+- **355.2.a** — the default: the controller's Base or a Battlefield the controller controls.
+- **184.2** — the effect may **RESTRICT** that. This is what makes *"play a 1 Might Recruit token
+  **here**"* and *"to your base"* legal instructions rather than contradictions of the default.
+- **355.2.b** — *"Some Game Effects may grant players permission to play Units to locations that are
+  not normally Valid"* — the effect may **WIDEN** it.
+
+Re-measured with my own predicate rather than inherited: **37 cards in the pool PLAY a unit token**,
+of which **8 say "here"**, **11 name a base or a battlefield**, and **18 name no destination**. The 18
+matches #48 exactly; the other two columns differ because #48 counted cards that **create** unit
+tokens (49) and I counted cards that **play** one (37) — **state the predicate with the number**, and
+the useful half is that the no-destination column is identical under both, because that is the column
+355.2.a governs alone.
+
+**184.3 is the same shape one clause down.** It authorises the creating effect to *"grant temporary
+abilities or modifications to the token"* — which is what `UNL-199 Deceiver`'s *"Give it [Temporary]"*
+and `UNL-200 Mirror Image` are doing. This project sources those to **816.1**, the keyword's own
+paragraph, and to **187.4** for tags granted by rule. 816.1 says what [Temporary] means; **184.3 is
+what lets the effect that made the token attach it.** Both are citation upgrades to heavily-used
+findings rather than new lines, exactly as §H15 predicted, and both are one-line additions wherever
+the token census and the [Temporary] family are stated.
+
+## 69. 199.1 CLOSES A QUESTION I LEFT OPEN IN THE OTHER RANGE THIS MORNING
+
+> **199.** A Game Object that comprises a Location is also a Game Object at that location.
+> **199.1.** A Battlefield is both a location and also a Game Object at that location.
+
+199 is cited **140** times and **199.1 zero**. §H15 measured the block empty for card text and it is —
+**zero cards in the pool use the word "permanent"** and none says *"Game Object"* — but it is not
+empty for **rules** text, and it settles something I hedged on this morning.
+
+My §159 in the 300–499 walk corrected my own §113 for presenting a closed list of what counts as a
+*"status"* under **319.7** (*"After the status of any number of Game Objects changes for any reason"*),
+and left the membership genuinely open because the rules use "status" and "state" loosely. **199.1
+closes the case that mattered**: Contested. 190.3.a says outright that *"Contested is a temporary
+**status** applied to the battlefield"*, and 199.1 makes a battlefield **a Game Object**. So
+*"the status of a Game Object changes"* is satisfied in both halves by the rules' own words, and
+**319.7 is the Cleanup trigger the whole evacuation family runs on** — the one the catalogue reaches
+through 319.6 and 319.8 instead, which cover a body entering or leaving and a completed Move but not
+a status applied in place.
+
+## 70. 190.3.b.1 — THE CONTESTED STATUS COMES OFF BY ITSELF
+
+> **190.3.b.** Once a Showdown or Combat begins at a Battlefield, it remains Contested until Control
+> is established or re-established.
+> **190.3.b.1.** If a player who applied Contested status to a Battlefield controls no Units there and
+> there is no ongoing Showdown or Combat at that Battlefield, then Contested status is removed in the
+> following Cleanup.
+
+190.3.b is cited twice and **190.3.b.1 zero**. It is the Contested-status half of the evacuation
+family, which this catalogue builds out of **323.6** (control is lost) and **323.10** (a staged Combat
+un-stages) — and 190.3.b.1 is the third leg: **the status itself comes off in the following Cleanup
+once the applying player has no bodies there and nothing is ongoing.** With 323.11, which removes
+Contested from the battlefield side and which the catalogue does cite, the pair says the same thing
+from the two directions the two paragraphs are written for.
+
+**And 190.3.d is the boundary worth carrying beside it**, because it is the one that stops a line
+being built here: *"At this time Game Effects cannot reference this status."* So Contested is real,
+it drives when a Combat or a Non-Combat Showdown occurs (190.3.c), and **no card can see it.** Any
+future idea of the form *"a card that cares whether a battlefield is Contested"* is refused on its
+face — measured, and 190.3.d is cited by nothing.
+
+## 71. Validation
+
+Quotes checked from an explicit list against `data/Riftbound-Core-Rules-2026-07-16.txt`: 10 passages,
+zero failures. Counts run in the turn they were written — 184's 73 against 184.2 and 184.3 at zero,
+355.2.a's 252, 816.1's 269, 199's 140 against 199.1's zero, 171's 159, 190.3.b's two against
+190.3.b.1's and 190.3.d's zero — over `data/combos.json` plus `data/synergies.json`. The 37/8/11/18
+token census was measured over `data/cards.json` with the predicate stated. No entry staged;
+`data/combos.json` not written.
