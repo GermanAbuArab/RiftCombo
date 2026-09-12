@@ -1681,6 +1681,10 @@
           {
             "card": "SFD-047",
             "why": "\"When you buff me, ready me\" — the same shape: a second payoff for somebody else's buff, competing with Blade Dancer for it rather than feeding her."
+          },
+          {
+            "card": "SFD-098",
+            "why": "Sea Monkey buffs HIMSELF and nothing else - \"if you paid the additional cost, buff me\" - and 355.10.d takes an object \"programmatically selected based on its characteristics rather than chosen by the spell or ability’s controller\" out of the choosing, with 355.10.d.1 scoping that exception to \"objects for which no choice is ever possible\". A buff whose object is the source itself is such an object, so Blade Dancer never fires on it. 702.2.a still governs every buff that names ANOTHER unit, which is the rest of this list. ELEVEN more rows in this list print the same pure self-buff - OGN-056 Adaptatron, SFD-091 Buhru Captain, OGN-139 Cithria of Cloudfield, UNL-102 Crowd Favorite, UNL-162 Enthralling Protector, OGN-078 Lee Sin Ascetic, OGN-061 Poro Herder, OGN-164 Sett Brawler, OGN-217 Trifarian Gloryseeker, SFD-108 Warmog's Armor and OGN-147 Wildclaw Shaman - and they are NAMED rather than excluded here because that is a correction across the whole buff family and across several rules this batch did not author; it was reported to the manager on 2026-09-12 with these eleven names."
           }
         ]
       },
@@ -1699,8 +1703,8 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 33
+      "reviewed": "2026-09-12",
+      "reviewedCount": 32
     },
     {
       "id": "irelia-fervent-buff-is-choosing",
@@ -6485,6 +6489,397 @@
       "status": "rule-verified",
       "reviewed": "2026-09-09",
       "reviewedCount": 15
+    },
+    {
+      "id": "baron-pit-move-to-a-battlefield",
+      "name": "The Baron Pit is the one destination a unit may Standard-Move to from anywhere, so a move payoff lands at a battlefield every turn instead of every other turn",
+      "anchor": "UNL-147",
+      "partner": {
+        "textMatches": "[Ww]hen I move (to|from) a battlefield",
+        "excludes": [
+          {
+            "card": "SFD-123",
+            "why": "Corrupt Enforcer's move clause is the DRAWBACK half of the card — \"When I move to a battlefield, discard 1\" — while its payoff is \"When I win a combat, draw 1\". Firing the move half every turn instead of every other turn is a cost, not a gain; this is the doubled-drawback false positive."
+          }
+        ]
+      },
+      "why": "187.9 defines the token in the rules themselves: \"The Baron Pit battlefield token is a domainless battlefield token with “Units can move here from anywhere.”\" Every movement fact this project owns is keyword-shaped — [Ganking] per unit, [Accelerate] per body, an effect move per card — and 187.9 is the one DESTINATION-shaped exception. 144.4 restricts where a Standard Move may go and 144.4.c.1 gives battlefield-to-battlefield only to [Ganking], so a body without the keyword pendulums battlefield, base, battlefield, and half of its legs end at the base where a \"when I move to a battlefield\" payoff does not fire. With the Pit on the board every leg can end at a battlefield. It does not add moves — 144.2 makes exhausting the unit the cost of the Standard Move, 420.3.a repeats it, and 415.3.a readies the body only in your own Awakening — it makes each move reach twice as far. Nothing removes the Pit once it is there: 170.3 \"Battlefields cannot be Killed during the course of regular play\", 170.4 \"Battlefields cannot be Moved\", and 185.2.e ends \"Token battlefields and legends can’t be recycled.\" Two prices are printed on the card and belong in any deckbuilding decision. Baron Nashor is mono-Chaos at 10 Energy plus 3 Power, so the legend must carry Chaos and the Pit arrives late; and the token's clause says \"Units\", not \"you\", so 190.6.d cannot blank it and it serves the opponent's bodies exactly as well as yours. The scoring half of the same token is a separate fact: 483.4 defines Battlefield Count as what is \"contributed by players\", 485.4 sets that at 2 for a Duel, and a battlefield a CARD adds is outside the count — so the per-turn Score ceiling becomes 3 under 470, with 471.1.b.1 then taxing a Conquer-based eighth point (\"If the player has Scored every Battlefield this turn\") while 471.1.a.1 leaves a Hold-based one alone.",
+      "basis": {
+        "rules": [
+          "187.9",
+          "144.4",
+          "144.4.c.1",
+          "144.2",
+          "420.3.a",
+          "415.3.a",
+          "170.3",
+          "170.4",
+          "185.2.e",
+          "190.6.d",
+          "483.4",
+          "485.4",
+          "470",
+          "471.1.a.1",
+          "471.1.b.1",
+          "449",
+          "420.2.b"
+        ],
+        "combos": [
+          "baron-pit-fae-porter-reach-from-anywhere",
+          "baron-pit-illaoi-third-battlefield-holds"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-12",
+      "reviewedCount": 12
+    },
+    {
+      "id": "eye-of-the-herald-effect-mover",
+      "name": "Eye of the Herald makes a Recruit wherever its carrier lands, so every effect move is a second token and it is born at a battlefield",
+      "anchor": "SFD-153",
+      "partner": {
+        "textMatches": "[Mm]ove (a|an|another|up to \\w+|any number of|all) (friendly units?|units? you control|different units? you control)",
+        "excludes": []
+      },
+      "why": "Eye of the Herald prints its payoff in the [Effect] half — \"When I move, play a 1 :rb_might: Recruit unit token here\" — and 434.1.c (\"The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text\"), 718.3 and 719.1 append that text to the CARRIER, where 053.1 (\"Units and legends say “I,” “me,” etc.\") makes \"I\" the unit and not the gear; 053.2 and 136.2.d reserve \"this\" for the attached card. So the trigger watches the carrier's movement. Two things follow. First, a Standard Move already fires it once a turn for free — 144.2 makes exhausting the unit the whole cost, and 420.3.a puts that cost on the Standard Move alone — so every card in this list is a SECOND Recruit in the same turn, and 449 with 420.2.b make an effect move a Move for this purpose (R9 = A). Second, 359.3.f.2 checks information referenced in an instruction \"on execution of the instruction\", so \"here\" is read where the carrier has arrived: a mover that ends at a battlefield mints the body AT that battlefield, which is the standing token bottleneck of this project (49 token-makers, 18 of them printed \"at your base\") answered by a 1-Energy Order gear. FIVE of the fourteen move only to BASE, and they are named because a reader who does not check will assume the position comes with the token: SFD-043 Emperor's Divide, OGS-011 Flash, OGN-184 The Syren, VEN-139 Rogue Assassin and OGN-285 Reaver's Row, which is banned in both formats. Each still mints the Recruit, but at the base, which is where a Standard Move would have put it anyway; they are partners for the extra body and not for the position, and they are kept rather than excluded because the token is real. At the other end, OGN-173 Ride the Wind readies the unit it moved, which hands the Standard Move back (144.2, 415.1) and makes one card TWO Recruits in the same turn.",
+      "basis": {
+        "rules": [
+          "434.1.c",
+          "718.3",
+          "719.1",
+          "053.1",
+          "053.2",
+          "136.2.d",
+          "359.3.f.2",
+          "144.2",
+          "420.3.a",
+          "449",
+          "420.2.b",
+          "144.4"
+        ],
+        "readings": [
+          "R9"
+        ],
+        "combos": [
+          "hungry-wolf-eye-of-herald-double-move",
+          "vanguard-attendant-eye-of-herald-arrival-token"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-12",
+      "reviewedCount": 14
+    },
+    {
+      "id": "iascylla-schedules-the-defend-half",
+      "name": "An \"attack or defend\" clause is BOTH triggers, and Iascylla is the free repeating way to fire the defend half on your own turn",
+      "anchor": "UNL-050",
+      "partner": {
+        "textMatches": "attacks? or defends?|attacking or defending",
+        "excludes": [
+          {
+            "card": "OGN-055",
+            "why": "Wielder of Water pays only \"while I'm attacking or defending ALONE\", and 740.2.a reads alone as an own-side measurement — \"A unit is alone when there are no other friendly units at the same location.\" The enemy body is dragged to Iascylla's own battlefield and Iascylla is standing there, so the condition can never be met on the event this rule schedules."
+          },
+          {
+            "card": "OGN-060",
+            "why": "Mask of Foresight pays \"when a friendly unit attacks or defends alone\", the same 740.2.a measurement, and fails for the same reason: Iascylla is a second friendly body at that location."
+          },
+          {
+            "card": "SFD-110",
+            "why": "Fiora, Peerless needs \"one on one\", which 740.2.b defines as BOTH units being alone — so it needs your side down to one as well. Iascylla standing at the battlefield breaks it from your side before the opponent's garrison is even counted."
+          }
+        ]
+      },
+      "why": "383.4.e and 383.4.f are the same sentence twice: \"Attack Triggers are Triggered Abilities that trigger when a Unit or Player gains the Attacker designation for the first time during a combat\", and the Defender mirror. A clause worded \"when I attack or defend\" therefore satisfies both and is two triggers on one card — the shape the rules state outright for the other pair at 823.1.b, where Hunt is both a Conquer and a Hold effect. The attack half is yours to schedule; the defend half is the OPPONENT'S, and a player who has read the card simply stops attacking that battlefield. Iascylla schedules it for free: \"When I hold, at the start of your next Main Phase, you may move an enemy unit to this battlefield.\" 450 makes the destination Contested because it is \"an Uncontested Battlefield not controlled by the controller of the Unit or Units that moved\" and 190.3.a.1 says the same from the other side, so 464.2.c.1 — \"The Attacker is the player whose unit(s) applied the Contested status to the Battlefield\" — makes THEM the attacker on YOUR turn, 323.9 stages the Combat at the next Cleanup and 323.13 opens it. 464.2.e.1 puts the Defender's triggered abilities on the Chain last, which 340.1 resolves FIRST. The engine costs nothing beyond Iascylla: her trigger has no cost, 315.2.b.2 Holds every battlefield you control every turn, and 392 executes the delayed half \"regardless of whether the source of the Delayed Ability is still on the board\". One partner is paid by the drag itself rather than merely by it: UNL-143 Kha'Zix, Mutating Horror asks that \"an enemy unit is alone here\", and 740.2.a measures alone on the unit's own side, so the single body Iascylla moves in is alone there by construction. Two limits. 383.4.e.2.a and 383.4.f.2.a check the condition once per combat, so nothing here fires twice in one combat. And the payoff has to be standing at Iascylla's battlefield, which is why the three \"alone\" and \"one on one\" cards below are excludes and not partners. SFD-020 Draven, Vanquisher is in the match list and is banned in both formats; the matcher drops it from any list it reads, and it is left in the rule rather than excluded because a ban is a legality fact and not a defect in the pairing.",
+      "basis": {
+        "rules": [
+          "383.4.e",
+          "383.4.f",
+          "383.4.e.2.a",
+          "383.4.f.2.a",
+          "450",
+          "190.3.a.1",
+          "464.2.c.1",
+          "464.2.e.1",
+          "340.1",
+          "323.9",
+          "323.13",
+          "315.2.b.2",
+          "392",
+          "316.4",
+          "740.2.a",
+          "740.2.b"
+        ],
+        "combos": [
+          "blast-cone-iascylla-responsible-move-stun",
+          "recurve-bow-loyal-pup-attack-or-defend-double-rate"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-12",
+      "reviewedCount": 8
+    },
+    {
+      "id": "jax-unmatched-quick-draw-everywhere",
+      "name": "Quick-Draw never DETERMINES an Equip cost, so Jax attaches every Equipment in the deck for free and at Reaction speed",
+      "anchor": "SFD-054",
+      "partner": {
+        "tags": [
+          "Equipment"
+        ],
+        "excludes": [
+          {
+            "card": "SFD-022",
+            "why": "Long Sword already prints [Quick-Draw], and 819.2 is explicit: \"Multiple instances of Quick-Draw do not trigger separately and have no effect beyond the first.\" Jax's grant is worth nothing on it — the second-trigger-is-a-no-op false positive."
+          },
+          {
+            "card": "SFD-056",
+            "why": "Sterak's Gage already prints [Quick-Draw]; 819.2 makes the grant a no-op."
+          },
+          {
+            "card": "SFD-064",
+            "why": "Cloth Armor already prints [Quick-Draw]; 819.2 makes the grant a no-op."
+          },
+          {
+            "card": "SFD-186",
+            "why": "Spinning Axe already prints [Quick-Draw]; 819.2 makes the grant a no-op."
+          }
+        ]
+      },
+      "why": "819.1.d is the whole rule: \"Quick-Draw is functionally short for “[Reaction]” and “When you play this, attach it to a Unit you control.”\" Both halves matter and this catalogue has been treating them as one thing. 818.1 makes Equip \"an Activated Ability keyword\" with a cost, and 818.1.c.3 allows that cost to include \"both resource costs and non-resource costs\"; a Quick-Draw attach is a PLAY trigger, so no Equip cost is ever determined at all. That is strictly stronger than [Weaponmaster], which 821.1.c only DISCOUNTS by one rainbow and which 821.1.c.6 says outright does not activate the Equip. The difference is invisible until an Equip cost has a non-resource half, and three Equipment in the pool have one — SFD-150 Last Rites (\"Recycle 2 cards from your trash\"), SFD-178 Blade of the Ruined King (\"Kill a friendly unit\") and UNL-158 Shepherd's Heirloom (\"Spend 1 XP\") — where a rainbow rebate buys nothing and Jax deletes the cost entirely. The [Reaction] half (813.1.c.1: \"This can be played during Closed States on any player's turn\") turns every Equipment in the list into a combat trick that lands after the attackers are designated. Jax's grant reads \"everywhere\", so it reaches an Equipment played from anywhere it can be played from, not only from hand. Two prices are honest to state: the Equipment's own PLAY cost is untouched — Quick-Draw removes the attach, never the card — and 434.1.g makes attaching to the current Top-Most Card do nothing, so the free attach is one new carrier per Equipment played, not a shuttle.",
+      "basis": {
+        "rules": [
+          "819.1.d",
+          "819.2",
+          "818.1",
+          "818.1.c.3",
+          "821.1.c",
+          "821.1.c.6",
+          "813.1.c.1",
+          "434.1.g"
+        ],
+        "combos": [
+          "jax-unmatched-last-rites-quickdraw-deletes-nonresource-equip"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-12",
+      "reviewedCount": 36
+    },
+    {
+      "id": "power-nexus-reaction-power-at-finalization",
+      "name": "The Power Nexus is paid at FINALIZATION, where nobody has priority, and 444.2.c is the only thing that can produce Power there",
+      "anchor": "SFD-214",
+      "partner": {
+        "textMatches": "\\[Reaction\\][^.]{0,70}\\[Add\\][^.]{0,45}rb_rune|\\[Add\\] that much :rb_rune",
+        "excludes": [
+          {
+            "card": "OGN-247",
+            "why": "Daughter of the Void's Add reads \"Use only to play spells\". The Power Nexus's point is a Triggered Ability of a battlefield, not a spell, so this rainbow can never pay it."
+          },
+          {
+            "card": "SFD-189",
+            "why": "Fire Below the Mountain's Add reads \"Use only to play gear or use gear abilities\". The Nexus is a battlefield's Triggered Ability and is neither."
+          }
+        ]
+      },
+      "why": "\"When you hold here, you may pay four rainbow to score 1 point\" is a cost written at the start of a Triggered Ability's effect, so 204.3.a makes it the ability's BASE COST and 383.3.b.1 says \"The cost must be paid in order to finalize the Triggered Ability to the Chain.\" That window is brutal: 312.2.c — \"When the turn is in a Closed State, all pending chain items finish being finalized\" — hands out no priority in between, so nothing can be played or activated there by the ordinary route, and 381 bars every Activated Ability outside your own Open State anyway. 444.2.c is the one door and it was cited by nothing in this project until 2026-09-12: \"Players may activate abilities that Add resources with the Reaction keyword at any time that they are instructed to Pay resources. Those abilities finalize and resolve immediately, ignoring normal restrictions.\" The instruction to pay IS the window. That is why the Nexus needs no Mind card and runs in any identity at all — 164.2 gives every Basic Rune two abilities and BOTH carry [Reaction] (164.2.a \"[E]: [Reaction] — Add [1].\", 164.2.b \"Recycle this: [Reaction] — Add [C].\"), and 135.2.e.5.a lets any domain pay a rainbow cost: \"When required as a cost, [A] can be paid by Power of any Domain.\" What this list adds is Power that costs no rune: each of these is a 0-Energy source that is READY at the Hold, because 315.1.b readies everything you control in the Awaken Phase and 315.2.b.2's Scoring Step comes after it, and 813.1.c.2 lifts 381 for them. Two things to know before building on it. The decision is blind — 383.3.e.2.a puts the choice to perform the trigger \"during finalization\", 383.3.e.2.b removes it from the chain if you decline, and 312.2.c means no response has happened yet. And four of the matches are Gold-token makers whose [Reaction] Add is printed inside the TOKEN's reminder text (UNL-018 Yeti Brawler, UNL-073 Deadly Flourish, UNL-145 Pyke Returned, UNL-185 Bloodharbor Ripper); they are genuine and they are slow, because 187.5 costs the Gold its own exhaust and every Gold in the pool is played exhausted, so 415.3.a makes it live only from your next Awakening — a Gold banked from an earlier turn pays a quarter of the Nexus, a Gold minted this turn pays nothing.",
+      "basis": {
+        "rules": [
+          "444.2.c",
+          "204.3.a",
+          "383.3.b.1",
+          "312.2.c",
+          "381",
+          "164.2",
+          "164.2.a",
+          "164.2.b",
+          "135.2.e.5.a",
+          "315.1.b",
+          "315.2.b.2",
+          "813.1.c.2",
+          "383.3.e.2.a",
+          "383.3.e.2.b",
+          "167",
+          "415.3.a",
+          "187.5"
+        ],
+        "combos": [
+          "power-nexus-rune-recycle-any-identity",
+          "shakedown-immortal-phoenix-reaction-add-at-finalization"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-12",
+      "reviewedCount": 12
+    },
+    {
+      "id": "sun-disc-enters-ready-exhaust-abilities",
+      "name": "Sun Disc lets a unit use its exhaust ability the turn it lands, and \"enters ready\" is still not a ready",
+      "anchor": "OGN-021",
+      "partner": {
+        "types": [
+          "unit"
+        ],
+        "textMatches": ":rb_exhaust::|[Ww]hen I become ready",
+        "excludes": [
+          {
+            "card": "VEN-071",
+            "why": "Fretful Feline pays \"When I become ready\", and that is exactly what an enters-ready grant does not do. 415.1: \"Readying is an action that marks a non-spell Game Object on the board as available for action\" — a unit that ENTERS ready was never on the board to be marked. 805.6 states the mechanism for the keyword form (\"It does not enter exhausted and then become ready\") and 805.6.a states the consequence (\"Accelerate will not interact with, or trigger, abilities that are affected by units becoming ready\"); the Sun Disc grants the same replacement with no keyword on it, so the same closure applies."
+          },
+          {
+            "card": "VEN-088",
+            "why": "Jayce, Hammer in Hand pays \"When I become ready\" and fails for the identical reason, 415.1 with 805.6 / 805.6.a."
+          },
+          {
+            "card": "UNL-001",
+            "why": "Arena Kingpin prints \"I enter ready\" unconditionally, so the Sun Disc's grant is applied to an event that is already replaced; 370.2 allows a Replacement Effect to apply only once to an event, and there is nothing left for the second one to do."
+          },
+          {
+            "card": "UNL-018",
+            "why": "Yeti Brawler matches only on the reminder text of the Gold gear TOKEN he plays (\"[Reaction][>] Kill this, exhaust: [Add] rainbow\"). That exhaust belongs to the token, not to Yeti Brawler, and the Sun Disc grant is on the UNIT you play — the nested-quote false positive."
+          },
+          {
+            "card": "UNL-145",
+            "why": "Pyke, Returned matches on the same nested Gold-token reminder text; his own abilities carry no exhaust cost, so entering ready buys him nothing."
+          }
+        ]
+      },
+      "why": "143.4 — \"Units enter the Board exhausted\" — is what makes an exhaust-cost ability on a freshly played unit dead for a turn, because 415.3.a hands the exhaust back only \"during the Awakening Phase on their turn\". The Sun Disc buys that turn back for 2 Energy and 1 Power: \"exhaust: [Legion] — The next unit you play this turn enters ready\", where 812.1 makes [Legion] a Dependent Keyword and 812.1.c switches it on: \"As long as a card different than the one with the Legion ability has been Finalized by you on the same turn then the Dependent Ability is Active on the card with Legion.\". Every partner here is a unit whose text prints a cost containing its own exhaust, so the grant is worth a whole activation on the turn it lands. The rule exists as much for its excludes as for its list. An enters-ready grant is NOT a ready: 415.1 defines Readying as marking a Game Object already on the board, and 805.6 / 805.6.a say both halves of that for [Accelerate] in the rules' own words. The pool prints exactly THREE become-ready payoffs and all three are mono-Body — VEN-071 Fretful Feline and VEN-088 Jayce, Hammer in Hand, both excluded below, and OGN-143 Pirate's Haven, which is a BATTLEFIELD and therefore outside this rule's partner types, named here so the trap is recorded in the one place a reader will meet it. The Sun Disc is mono-Fury, so a Fury/Body legend can hold the Disc and all three of them, and a line built on that pairing is refuted on its face.",
+      "basis": {
+        "rules": [
+          "143.4",
+          "415.1",
+          "415.3.a",
+          "805.6",
+          "805.6.a",
+          "812.1",
+          "812.1.c",
+          "370.2",
+          "144.2",
+          "420.3.a"
+        ],
+        "combos": [
+          "vanguard-attendant-eye-of-herald-arrival-token"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-12",
+      "reviewedCount": 10
+    },
+    {
+      "id": "the-academy-granted-repeat-modal-spell",
+      "name": "The Academy grants a [Repeat] the spell never printed, and 820.2.a lets the second execution pick the other mode",
+      "anchor": "UNL-216",
+      "partner": {
+        "types": [
+          "spell"
+        ],
+        "textMatches": "[Cc]hoose one",
+        "excludes": [
+          {
+            "card": "OGN-025",
+            "why": "Blind Fury is not modal. Its \"Choose one\" names one of the cards each opponent just revealed, not one of several printed modes, so 820.2.a - the paragraph this rule stands on - has nothing to apply to. It is still a legal target for the grant and a Repeat would execute the whole spell twice; it is excluded because the reason this rule gives would be the wrong reason."
+          }
+        ]
+      },
+      "why": "\"When you hold here, give your next spell this turn [Repeat] equal to its base cost\" is the only card in the pool that hands [Repeat] to a spell that prints none — SFD-211 Marai Spire only DISCOUNTS a printed one and UNL-146 Syndra, Transcendent grants hers only inside a showdown. 820.1.b defines the keyword (\"Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time\") and 820.2.a is why a MODAL spell is the best thing to spend it on: \"Choices made for the additional execution do not have to be the same as the choices made for the initial execution.\" Riot's worked example for that paragraph is Rocket Barrage, a modal spell in this pool, by name. So one card buys both modes. 135.2.b.3 is the limit and it is the reason a granted Repeat is not simply two spells: \"If the card is given Repeat and the Repeat cost is paid, this instruction will not execute because the Repeat execution does not happen until resolution\" — an instruction that self-describes as happening AS YOU PLAY is performed once, and 820.1.d.2 ignores anything not performed on resolution. Two of the twelve rows already print [Repeat] of their own, SFD-077 Rocket Barrage and UNL-182 Curtain Call; they are not false positives but the best rows in the list, because 820.1.c.2 makes each instance payable individually, so the Academy's grant is a THIRD execution there rather than a second. The price is printed on the battlefield: the Repeat cost EQUALS the spell's base cost, so the cheap modal spells are the point (VEN-052 Mesmerize at 1 Energy plus 1 Power is the cheapest in the list) and an expensive one doubles its own bill. And a battlefield is not a tutor: 103.4.c forbids a second copy of a battlefield name, 485.4.a has each player provide three and 485.5 \"randomly selects\" one, so the Academy is on the board one game in three.",
+      "basis": {
+        "rules": [
+          "820.1.b",
+          "820.2.a",
+          "820.1.c.2",
+          "820.1.d.2",
+          "135.2.b.3",
+          "820.4",
+          "103.4.c",
+          "485.4",
+          "485.5",
+          "315.2.b.2"
+        ],
+        "combos": [
+          "academy-ruthless-strike-cost-once-effect-twice",
+          "marai-spire-syndra-granted-repeat-discount"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-12",
+      "reviewedCount": 6
+    },
+    {
+      "id": "highlander-kill-cost-shield",
+      "name": "Highlander is the Reaction form of Zhonya's trick: the kill-a-friendly-unit cost is paid and the body comes back",
+      "anchor": "OGS-020",
+      "partner": {
+        "textMatches": "[Kk]ill (a|any number of|two|one|another) friendly( \\[Mighty\\])? unit",
+        "excludes": [
+          {
+            "card": "OGN-242",
+            "why": "Baited Hook's kill sits AFTER the colon, so it is effect text and not a cost — 203.3 never engages — and the payoff then reads \"Might up to 1 more than the killed unit\". 370.1.a.1 makes the replaced death \"the same as the kill action that caused that death not occurring\", so the referent is gone and the tutor loses its ceiling."
+          },
+          {
+            "card": "SFD-163",
+            "why": "Deathgrip is Riot's own contrast case at 359.3.e.14.b: \"Kill a friendly unit. If you do, …\" is a later linked instruction that directly references the replaced game action, so saving the body costs the whole spell."
+          }
+        ]
+      },
+      "why": "357.2.a is the rule and its worked example is this exact interaction with the other card: \"Costs that are replaced with other events by replacement effects are still considered paid\", worked through Cruel Patron paying its kill-a-friendly-unit cost into a Zhonya's Hourglass. Highlander does the same job from hand — \"[Reaction] Choose a friendly unit. The next time it would die this turn, heal it, exhaust it, and recall it instead\" — and the difference from OGN-077 Zhonya's Hourglass is worth a deck slot in both directions. The Hourglass is a permanent that must be on the board or hidden BEFORE the turn, and it kills itself to work, so it is one use and it is visible; Highlander is 4 Energy and no Power, sits in hand, is aimed after the cost has been announced (813.1.c.1 admits it in any Closed State on any player's turn), and costs no board presence. What it costs instead is position and the Deathknell: 455 defines a Recall as relocation \"from anywhere to its Base without it being a Move\", so anything the body was doing at a battlefield stops until it walks back, and 808.1.d.1 removes that body's own Deathknell from the chain because it never reaches the Trash. One trap belongs beside every use of this family and it is not about the partner at all: 390.5.a gives the delayed shield a window only \"as long as that Game Object is in an appropriate zone\", and 359.3.e.4 says a game object that leaves and returns \"is no longer a legal target, because it's not treated as the same object\" — so returning your own shielded unit to hand CLOSES the shield you already paid for, and replaying it does not restore it. The other three members of the family are OGN-023 Unlicensed Armory, UNL-175 Tactical Retreat and SFD-194 Counter Strike, and the last one is different in kind: it PREVENTS the damage instead, so it moves nothing and is the only one of the four that keeps a \"while I'm at a battlefield\" static switched on.",
+      "basis": {
+        "rules": [
+          "357.2.a",
+          "370.1.a.1",
+          "359.3.e.14.b",
+          "203.3",
+          "455",
+          "808.1.d.1",
+          "813.1.c.1",
+          "390.5.a",
+          "359.3.e.4",
+          "185.2.d"
+        ],
+        "combos": [
+          "cruel-patron-zhonyas-cost-paid-without-the-death",
+          "counter-strike-tianna-crownguard-in-place-save"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-12",
+      "reviewedCount": 8
+    },
+    {
+      "id": "ki-barrier-tank-raises-the-toll",
+      "name": "A Prevent Value is counted when damage is ASSIGNED, so Ki Barrier on a [Tank] makes the whole garrison unassignable for seven more",
+      "anchor": "VEN-126",
+      "partner": {
+        "textMatches": "\\[Tank\\]",
+        "excludes": [
+          {
+            "card": "VEN-004",
+            "why": "Dune Surfer reads \"You ignore [Tank] while assigning combat damage here\" — it is the pool's answer to a Tank wall, not a member of one. 766 makes an ignored ability \"treated as inactive for the purposes of the game action or procedure\", so a Dune Surfer on your own board switches off the mandatory-assignment rule this whole rule stands on."
+          }
+        ]
+      },
+      "why": "The naive reading of a Prevent is that it absorbs damage after the fact. 437.5.a says it is counted before any is dealt: \"Damage can be assigned to a Unit up to a value that would be Lethal considering the Prevent Value of all Prevent Actions on a Unit, following the normal rules for damage assignment\", and Riot's example is a 2 Might unit with a 3-point Prevent needing 5 assigned. Put that on a [Tank] and 815.1.c.2 does the rest: \"Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.\" So Ki Barrier's seven is not seven damage saved on one body, it is seven more the attacker must find before a single point may legally be assigned to anything else you control, and 465.2.c.4 forbids them from banking the surplus elsewhere. 437.3 is what makes it hold up across a turn rather than one hit — \"reduce the Prevent Value being tracked on the Unit affected by the Prevent action by the prevented amount\" — a pool spent down, so several small pings eat it one at a time instead of one ping wasting it. Ki Barrier is Order, 2 Energy and 1 Power, [Reaction], and it cantrips, so it is bought after the attackers are designated (464.2.c.3) and before 465.2.c assigns. Two limits. 465.2.c.10 marks the far end of the scale — \"If a unit cannot be dealt damage, then no amount of damage can be considered lethal. Such a unit is exempt from any considerations of mandatory assignment\" — so a FULL immunity would take the body out of the assignment order entirely and switch the wall off; a finite Prevent Value is what keeps it a legal, expensive assignment. And this rule is about the ASSIGNMENT order only: 437.5 keeps the damage assignable in the first place, and nothing here protects the body from a kill by effect, which reads Might and not damage.",
+      "basis": {
+        "rules": [
+          "437.3",
+          "437.5",
+          "437.5.a",
+          "815.1.c.2",
+          "465.2.c.4",
+          "465.2.c.10",
+          "464.2.c.3",
+          "766",
+          "814.1.c"
+        ],
+        "combos": [
+          "ki-barrier-shen-kinkou-prevent-pool",
+          "void-gate-ki-barrier-prevent-counts-bonus-damage"
+        ]
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-12",
+      "reviewedCount": 25
     }
   ]
 }
