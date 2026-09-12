@@ -98,6 +98,27 @@ alt-arts whose code ends in `*`, so a single alt-art anywhere on the line made t
 guard and fall through to the name branch — every code on it lost at once, as one bogus card name.
 Fixed in `src/deck.ts:43` with a regression test in `test/deck.test.ts`.
 
+
+## Reminder-text variance — registered 2026-09-12, settled by rule
+
+Found while sweeping `[Empower]` and `[Equip]` clauses for text that alters their **timing**
+(`827.1.c.4`, `818.1.c.5`): of 39 `[Empower]` clauses and 39 `[Equip]` clauses across the pool, **none**
+alters timing, and the sweep instead surfaced one reminder-text outlier.
+
+| Card | Anomaly | Evidence |
+|---|---|---|
+| `VEN-134` / `VEN-185` Kayle, Justified | Its `[Empower]` reminder reads `(3 Energy: Empower me.)` and **omits "Use only if not Empowered."**, which every other Empower printing in the pool carries. Two printings of one name; no other card does this. | Measured over `data/cards.json` 2026-09-12: 39 `[Empower]` clauses in **nine** distinct reminder forms, and Kayle's two are the only ones missing that sentence. |
+
+**It changes nothing, and the rule says so in one line.** Core Rules **135.2.d.3**: *"The presence,
+absence, or exact wording of reminder text has no effect on game function."* And **827.1.c.1** supplies
+the omitted clause anyway: *"Empower is functionally short for “[Cost]: Empower this. Play only if not
+Empowered.”"*, with **441.1.b** — *"An Empowered Game Object can not be Empowered."* — as the rule proper.
+So Kayle obeys the once-per-object limit exactly like the other 37 clauses, and **no entry may treat her
+as repeatably empowerable.**
+
+Registered rather than normalised, for the reason at the top of this file. `135.2.d.3` is the general
+licence for that decision on **any** reminder-text difference and is cited by nothing in the catalogue.
+
 ## Links
 
 - Issue [#14](https://github.com/GermanAbuArab/RiftCombo/issues/14) — the ticket this register closes.
