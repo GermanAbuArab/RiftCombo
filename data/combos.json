@@ -15768,7 +15768,8 @@
           "[Hidden] CONFINES THE SWEEP TO THE BATTLEFIELD IT WAS HIDDEN AT, AND THE ESCAPE CLAUSE DOES NOT APPLY. 811.1.d.2: 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible.' Fox-Fire names no other location, so played from Hidden it must sweep the battlefield where it sits. Played normally (811.3: 'at its normal timing with no restrictions on targeting') it reaches any battlefield for its full 3 Energy.",
           "THE PRICE OF HIDING IT, AND THE RISK. 811.1.b: 1 rainbow Power to hide it facedown at a battlefield you control, and only 'beginning on the next turn' does it gain [Reaction] and become playable for 0 Energy. 323.7 is the risk — a hidden card at a battlefield you stop controlling is removed and trashed at the next Cleanup. One facedown per battlefield, so at most one Fox-Fire is discounted at a time.",
           "[Action] AND [Reaction] ARE WHY THE REDUCERS AND THE SWEEP MEET. Ahri's and the legend's triggers fire during combat; Fox-Fire is [Action], which 806.1.c.1 makes playable during showdowns, and [Hidden] gives it [Reaction] while facedown (811.6). So the -2 and the -1 are still on when the sweep resolves — both say 'this turn'.",
-          "THE FOUR-BODY CEILING IS SCOPED TO THIS LINE'S TWO FLOORED REDUCERS (added 2026-09-06 walking issue #97). Both OGN-119 and the legend print 'to a minimum of 1 [M]', which is why the sum can never fall below the number of units. It is NOT a fact about Fox-Fire. 143.2.b: 'If a unit's Might is ever less than 0, IT IS TREATED AS 0 when referenced by spells and abilities' - so an UNFLOORED reduction contributes 0 to Fox-Fire's sum, not 1, and the ceiling does not bind. SFD-066 Frigid Touch (-2, [Repeat]), UNL-063 Eclipse (-4) and UNL-066 Moonlight Affliction (-10) are all Mind, all unfloored and all inside this entry's own Calm/Mind identity. That version is authored separately as foxfire-unfloored-reduction-sweep, because its reducers are one-shot spells rather than the free combat triggers this line runs on. Nothing about this entry's class, quantities or steps changes."
+          "THE FOUR-BODY CEILING IS SCOPED TO THIS LINE'S TWO FLOORED REDUCERS (added 2026-09-06 walking issue #97). Both OGN-119 and the legend print 'to a minimum of 1 [M]', which is why the sum can never fall below the number of units. It is NOT a fact about Fox-Fire. 143.2.b: 'If a unit's Might is ever less than 0, IT IS TREATED AS 0 when referenced by spells and abilities' - so an UNFLOORED reduction contributes 0 to Fox-Fire's sum, not 1, and the ceiling does not bind. SFD-066 Frigid Touch (-2, [Repeat]), UNL-063 Eclipse (-4) and UNL-066 Moonlight Affliction (-10) are all Mind, all unfloored and all inside this entry's own Calm/Mind identity. That version is authored separately as foxfire-unfloored-reduction-sweep, because its reducers are one-shot spells rather than the free combat triggers this line runs on. Nothing about this entry's class, quantities or steps changes.",
+          "AN \"ATTACK OR DEFEND\" TRIGGER FIRES TWICE PER TURN CYCLE, AND THIS ENTRY PRICED IT AT HALF RATE (citation upgrade 2026-09-12, #187/300-499 lane). 383.4.e defines an Attack Trigger as firing when a Unit or PLAYER gains the Attacker designation for the first time during a combat, and 383.4.f is the identical sentence for the Defender - so a card worded *\"when I attack or defend\"* satisfies BOTH definitions and is an Attack Trigger AND a Defend Trigger, exactly the shape the rules state outright for the other pair at 823.1.b (*\"Hunt is both a Conquer and a Hold effect\"*). The honest rate is once on your turn attacking and once on theirs defending. Measured across the catalogue on 2026-09-12, SIX entries use an attack-or-defend card and not one cited both paragraphs. Two limits that keep it from running away: 383.4.e.2.a checks the condition ONCE PER COMBAT despite a unit gaining and losing the designation several times in it (383.4.f.2.a is the mirror), so blinking a carrier out of a combat and back re-fires nothing; and the whole attack side is UNIT-keyed - the pool prints ZERO cards worded *\"when you attack\"* against FOUR on the defend side, three of them battlefields - which is why a battlefield can carry a defend trigger at all and never an attack one."
         ]
       },
       "steps": [
@@ -20240,7 +20241,8 @@
           "An Equipment that is a flat Might bonus does not miss anything: 465.2.c reads Might when damage is assigned, which is after the attach. The Long Sword's M+2 is live in the combat it lands in; the Bow's damage is not.",
           "Rell's ceiling is 'Energy cost no more than 2', which is a PRINTED-cost test (206), so a discount neither widens nor narrows it. Eight Equipment in the pool clear it in Fury or Colorless terms; the two here are the ones whose text does something beyond Might.",
           "Once per attack, not once per turn: two combats in a turn are two free Equipment. But 466.1.a.2 recalls surviving Attackers to their base after a combat with defenders remaining, so a second attack that same turn needs a second body or a re-entry.",
-          "This is not a loop. The Equipment come out of your hand, three copies each (103.2.b), and nothing returns them."
+          "This is not a loop. The Equipment come out of your hand, three copies each (103.2.b), and nothing returns them.",
+          "AN \"ATTACK OR DEFEND\" TRIGGER FIRES TWICE PER TURN CYCLE, AND THIS ENTRY PRICED IT AT HALF RATE (citation upgrade 2026-09-12, #187/300-499 lane). 383.4.e defines an Attack Trigger as firing when a Unit or PLAYER gains the Attacker designation for the first time during a combat, and 383.4.f is the identical sentence for the Defender - so a card worded *\"when I attack or defend\"* satisfies BOTH definitions and is an Attack Trigger AND a Defend Trigger, exactly the shape the rules state outright for the other pair at 823.1.b (*\"Hunt is both a Conquer and a Hold effect\"*). The honest rate is once on your turn attacking and once on theirs defending. Measured across the catalogue on 2026-09-12, SIX entries use an attack-or-defend card and not one cited both paragraphs. Two limits that keep it from running away: 383.4.e.2.a checks the condition ONCE PER COMBAT despite a unit gaining and losing the designation several times in it (383.4.f.2.a is the mirror), so blinking a carrier out of a combat and back re-fires nothing; and the whole attack side is UNIT-keyed - the pool prints ZERO cards worded *\"when you attack\"* against FOUR on the defend side, three of them battlefields - which is why a battlefield can carry a defend trigger at all and never an attack one."
         ]
       },
       "steps": [
@@ -21503,7 +21505,8 @@
           "It is NOT a play, and that closes a door: 818.1 makes [Equip] an Activated Ability, so no 'When you play this' on the Equipment fires. Rell, Magnetic PLAYS the card and then attaches it, which is why her line reaches play triggers and this one does not — the two are complementary, not variants.",
           "Once per Sentinel Adept: the trigger is 'When you play me', so three copies is three free attaches a game (103.2.b), not a per-turn engine.",
           "The Recurve Bow's damage is not a one-off — 'When I attack OR DEFEND' pays on the opponent's turn too, which is why it is the better of the two payoffs on a body that is going to sit in a garrison.",
-          "Sixteen base codes carry [Weaponmaster], eight distinct names once the double printings are collapsed (SFD-116 / SFD-233 Yone, SFD-197 / SFD-247 Emperor of the Sands, SFD-099 / UNL-223 Veteran Poro, VEN-041 / VEN-171 Riven). Counted by base code, per the correction in this walk's §11a. Sentinel Adept is the cheapest at E3 with no Power."
+          "Sixteen base codes carry [Weaponmaster], eight distinct names once the double printings are collapsed (SFD-116 / SFD-233 Yone, SFD-197 / SFD-247 Emperor of the Sands, SFD-099 / UNL-223 Veteran Poro, VEN-041 / VEN-171 Riven). Counted by base code, per the correction in this walk's §11a. Sentinel Adept is the cheapest at E3 with no Power.",
+          "AN \"ATTACK OR DEFEND\" TRIGGER FIRES TWICE PER TURN CYCLE, AND THIS ENTRY PRICED IT AT HALF RATE (citation upgrade 2026-09-12, #187/300-499 lane). 383.4.e defines an Attack Trigger as firing when a Unit or PLAYER gains the Attacker designation for the first time during a combat, and 383.4.f is the identical sentence for the Defender - so a card worded *\"when I attack or defend\"* satisfies BOTH definitions and is an Attack Trigger AND a Defend Trigger, exactly the shape the rules state outright for the other pair at 823.1.b (*\"Hunt is both a Conquer and a Hold effect\"*). The honest rate is once on your turn attacking and once on theirs defending. Measured across the catalogue on 2026-09-12, SIX entries use an attack-or-defend card and not one cited both paragraphs. Two limits that keep it from running away: 383.4.e.2.a checks the condition ONCE PER COMBAT despite a unit gaining and losing the designation several times in it (383.4.f.2.a is the mirror), so blinking a carrier out of a combat and back re-fires nothing; and the whole attack side is UNIT-keyed - the pool prints ZERO cards worded *\"when you attack\"* against FOUR on the defend side, three of them battlefields - which is why a battlefield can carry a defend trigger at all and never an attack one."
         ]
       },
       "steps": [
@@ -26475,7 +26478,7 @@
     },
     {
       "id": "vanguard-helm-baited-hook-buff-ladder",
-      "name": "Baited Hook eats a buffed body — Vanguard Helm puts the buff back and the tutor ceiling climbs by two",
+      "name": "Baited Hook climbs one Might a turn on PRINTED Might — and Vanguard Helm adds nothing to the ladder",
       "class": "ENGINE",
       "status": "verified",
       "uses": [
@@ -26504,10 +26507,10 @@
           "Any Order legend — both cards are mono-Order (103.1.b.1), and neither is a Signature card, so no legend is forced."
         ],
         "notable": [
-          "THE LADDER CLIMBS BY TWO A TURN INSTEAD OF ONE, AND THAT IS THE WHOLE INTERACTION. The Hook's tutor ceiling is 'Might up to 1 more than the KILLED unit', and 703 says 'Each Buff individually contributes +1 Might to a Unit' — so a body of printed Might X carrying a buff dies at X+1 and the ceiling is X+2. The free unit that arrives is then buffed by the Helm, so next turn it dies at X+3 and the ceiling is X+4. Without the Helm the buff is spent with the corpse and the ladder climbs by 1; with it, by 2.",
+          "THE LADDER CLIMBS BY ONE A TURN, NOT TWO, AND THIS ENTRY SAID TWO UNTIL 2026-09-12 (#191 batch 23, corrected on merge). The original claim was that a buffed corpse dies at printed Might plus one, so the Hook`s *\"Might up to one more than the killed unit\"* would read two higher each turn. Two paragraphs refute it, and both were cited by nothing in this catalogue: **705** - *\"If a Unit leaves play, remove all Buffs from it\"* - so the corpse has no buff to read, and **711** - *\"Units in Non-Board Zones are evaluated according to their printed Might\"* - whose own example ends *\"It doesn`t matter if there were effects raising or lowering its might while it was on the board.\"* The same false sentence was in CLAUDE.md and is corrected there in the same commit. **What survives**: the ladder is real and climbs by ONE, because each fetched body`s PRINTED Might sets the next ceiling; and OGN-228 Vanguard Helm`s contribution is +1 Might on the living body, which is worth having and is much smaller than this entry claimed.",
           "AND THE UNIT ARRIVES FOR NOTHING. 'play it, ignoring its cost' is Energy AND Power, so the whole engine costs 1 Energy + 1 Order Power a turn — the Hook's activation — however big the body it fetches. 143.4 makes it enter exhausted, so it defends and holds from the next Awakening rather than the same turn.",
           "702.3 IS WHY THE HELM IS NOT REDUNDANT AND ALSO WHY IT CANNOT BE DOUBLED. 'There can only be one Buff on a Unit at a time', and 702.3.a adds that a second buff 'is not placed instead'. So the Helm cannot stack buffs on one body — it relocates the single buff off a corpse and onto a fresh unbuffed one, which is exactly the shape the #106 walk measured for a repeatable buffer: the product is min(triggers, new unbuffed bodies), and the Hook makes exactly one new body a turn, so the two rates match with nothing wasted.",
-          "THE HELM NEEDS THE DYING UNIT TO BE BUFFED, WHICH THE HELM ITSELF SUPPLIES FROM THE SECOND TURN ON. The first activation kills an unbuffed body (ceiling X+1) and the Helm does not fire; from then on the body the Hook fetched is the one the Helm buffed, so every later kill is a buffed one. Priming it faster needs any Order buff source — OGN-223 Peak Guardian buffs itself and every other friendly unit at its battlefield when played, and OGN-217 Trifarian Gloryseeker buffs itself for 2 Energy. Deliberately not in uses: they shorten the first turn, they do not change the rate.",
+          "THE HELM NEEDS THE DYING UNIT TO BE BUFFED, AND THAT IS ITS ONLY ROLE HERE. The first kill needs an Order buff from elsewhere; from the second turn on the Helm supplies it. Note what this does and does not buy after the 705/711 correction above: it keeps a buff circulating onto each newly fetched body, which is +1 Might on something alive. It does NOT raise the tutor ceiling, because the ceiling is read off a corpse in a Non-Board Zone.",
           "IT IS NOT A LOOP AND IT IS BOUNDED BY THE DECK, NOT BY COPIES. The Hook looks at five cards and recycles the four it does not take to the bottom (416.1.a), so the deck cycles rather than depletes and the ceiling is the largest printed Might still in the Main Deck. Looking never Burns Out — 431.1.c: 'that player looks at or Reveals as many as possible, but does not Burn Out'.",
           "THE KILL IS EFFECT TEXT AFTER THE COLON, NOT A COST, SO A TOKEN CAN FEED IT. The Hook reads '[cost]: Kill a friendly unit …', which puts the kill after the colon — so 416.3, 203.3 and 185 never bite and a token unit is a legal victim (428.1 with 185.2.b). It is a poor one here, because a 1 Might Recruit sets the ceiling at 2, but on a turn where nothing better is expendable it keeps the Hook firing.",
           "NOTHING HERE SCORES. It is a free body and a free tutor every turn; the points still come from whatever those bodies then do at a battlefield. That is the same honest ending karma-lux-recycle-buff-army and gemcraft-karma-herald-buff-faucet carry."
@@ -26517,8 +26520,8 @@
         "Play Baited Hook (3 Energy) and Vanguard Helm (2 Energy). Both are gear, so 143.4 leaves them ready.",
         "First activation: pay 1 Energy + 1 Order Power and exhaust the Hook to kill any friendly unit. Look at the top five, banish a unit of Might up to one more than the killed one, and play it for free. Recycle the other four to the bottom (416.1.a).",
         "Buff that new body — the Helm does it for you from the second turn on, and any Order buff source does it on the first.",
-        "Next Awakening readies the Hook (315.1.b). Kill the buffed body: 703 makes it die at printed Might plus one, so the tutor ceiling is two higher than its printed Might.",
-        "The Helm sees a buffed friendly unit die and buffs the unit the Hook just fetched. Repeat: the ceiling rises by two every turn for 1 Energy + 1 Order Power."
+        "Next Awakening readies the Hook (315.1.b). Kill the body it fetched. **705 removes every Buff as it leaves play** (*\"If a Unit leaves play, remove all Buffs from it\"*) and **711 reads the corpse at PRINTED Might** (*\"Units in Non-Board Zones are evaluated according to their printed Might\"*, whose example says outright that it does not matter if there were effects raising or lowering its might while it was on the board), so the tutor ceiling is printed Might plus one and NOT two.",
+        "The Helm still sees a buffed friendly unit die and buffs the unit the Hook just fetched, which is +1 Might on a LIVING body and real. It is simply not part of the ladder. Repeat: the ceiling rises by exactly ONE a turn for 1 Energy + 1 Order Power."
       ],
       "terminatesIn": "engine — one free unit a turn for 1 Energy + 1 Order Power, with the tutor ceiling climbing 2 Might per turn instead of 1; nothing here scores",
       "netPerIteration": "+1 free body (Might ceiling +2 per turn), -1 body, -1 Energy, -1 Order Power, and the buff is preserved rather than spent",
@@ -35365,7 +35368,8 @@
           "AND THE SPELL TARGETS NOTHING. 355.10.e: an object 'part of a set of objects chosen in whole or in part by other players' is not a target, and its worked example is exactly this wording — '\"Each player kills a unit they control\" does not target. Each player, including the one who played the spell, chooses a unit to kill as the spell or ability resolves.' So [Deflect] never charges (809.1.c and 809.1.d pay only for targeting or choosing) and no 'can't be chosen by enemy spells and abilities' clause — `SFD-105 Ruin Runner`'s, for instance — keeps a body alive through it.",
           "THE OPPONENT PICKS THEIR SURVIVOR, WHICH IS THE ENTRY'S REAL RISK. They keep their best body, so the duel Fiora inherits is against the largest thing they had. At 6 Might she beats a 5 and loses to a 7; 465.2.c.3 forces lethal onto one unit before the next, so there is no splitting. Price the line as 'my 6 against their best', not as 'my 6 against a leftover'.",
           "Gear survives the wipe — the spell kills units — so an Equipment already attached to Fiora is still on her afterwards, and 434.1.d modulates her Might by its Might Bonus BEFORE the doubling, which is where the line actually scales: `SFD-102 Hexdrinker` (M+1) or `VEN-073 Jagged Cutlass` (M+2) make her 4 or 5 base and so 8 or 10 in the duel.",
-          "Priced whole: 8 Energy + 3 Body Power for the reset, on a 3 Energy + 1 Body Power Fiora already in play. It is a reset you cast when behind on board, and the doubling is what stops the rebuild being symmetric."
+          "Priced whole: 8 Energy + 3 Body Power for the reset, on a 3 Energy + 1 Body Power Fiora already in play. It is a reset you cast when behind on board, and the doubling is what stops the rebuild being symmetric.",
+          "AN \"ATTACK OR DEFEND\" TRIGGER FIRES TWICE PER TURN CYCLE, AND THIS ENTRY PRICED IT AT HALF RATE (citation upgrade 2026-09-12, #187/300-499 lane). 383.4.e defines an Attack Trigger as firing when a Unit or PLAYER gains the Attacker designation for the first time during a combat, and 383.4.f is the identical sentence for the Defender - so a card worded *\"when I attack or defend\"* satisfies BOTH definitions and is an Attack Trigger AND a Defend Trigger, exactly the shape the rules state outright for the other pair at 823.1.b (*\"Hunt is both a Conquer and a Hold effect\"*). The honest rate is once on your turn attacking and once on theirs defending. Measured across the catalogue on 2026-09-12, SIX entries use an attack-or-defend card and not one cited both paragraphs. Two limits that keep it from running away: 383.4.e.2.a checks the condition ONCE PER COMBAT despite a unit gaining and losing the designation several times in it (383.4.f.2.a is the mirror), so blinking a carrier out of a combat and back re-fires nothing; and the whole attack side is UNIT-keyed - the pool prints ZERO cards worded *\"when you attack\"* against FOUR on the defend side, three of them battlefields - which is why a battlefield can carry a defend trigger at all and never an attack one."
         ]
       },
       "steps": [
@@ -45525,7 +45529,8 @@
           "THE [TANK] IS WHAT MAKES THE FORCED COMBAT SURVIVABLE. 815.1.b: he 'must be assigned LETHAL damage before any other unit with the same controller as me that does not have [Tank] during the Combat Damage step', and 815.1.c.2 makes every other body of yours an invalid assignment until he has. So the dragged attacker's damage goes into a 5 Might body and Ezreal lives to fire again next turn.",
           "AND THE DRAGGED BODY GOES HOME IF IT SURVIVES. 466.1.a.2 recalls Attackers when Defenders remain, so a body you pulled in and failed to kill simply returns to their base - you have spent a card to deal 3 and to take a swing at it, not to remove it permanently. Price it as forced damage plus a tempo tax, not as removal.",
           "EZREAL'S OWN ESCAPE IS THE OTHER HALF. ':rb_rune_mind:: [Action] - Move me to your base' is an Activated Ability with an [Action] permission (806.1.c.2: 'This can be activated during showdowns on any player's turn'), so for one Mind Power he leaves after his trigger has resolved and before damage is assigned - which is how he survives a garrison too big for Blitzcrank to soak.",
-          "WHAT IT IS NOT. Nothing here scores directly; the point comes from the Hold that bounces Blitzcrank, and 469 defines Scoring as Conquer or Hold."
+          "WHAT IT IS NOT. Nothing here scores directly; the point comes from the Hold that bounces Blitzcrank, and 469 defines Scoring as Conquer or Hold.",
+          "AN \"ATTACK OR DEFEND\" TRIGGER FIRES TWICE PER TURN CYCLE, AND THIS ENTRY PRICED IT AT HALF RATE (citation upgrade 2026-09-12, #187/300-499 lane). 383.4.e defines an Attack Trigger as firing when a Unit or PLAYER gains the Attacker designation for the first time during a combat, and 383.4.f is the identical sentence for the Defender - so a card worded *\"when I attack or defend\"* satisfies BOTH definitions and is an Attack Trigger AND a Defend Trigger, exactly the shape the rules state outright for the other pair at 823.1.b (*\"Hunt is both a Conquer and a Hold effect\"*). The honest rate is once on your turn attacking and once on theirs defending. Measured across the catalogue on 2026-09-12, SIX entries use an attack-or-defend card and not one cited both paragraphs. Two limits that keep it from running away: 383.4.e.2.a checks the condition ONCE PER COMBAT despite a unit gaining and losing the designation several times in it (383.4.f.2.a is the mirror), so blinking a carrier out of a combat and back re-fires nothing; and the whole attack side is UNIT-keyed - the pool prints ZERO cards worded *\"when you attack\"* against FOUR on the defend side, three of them battlefields - which is why a battlefield can carry a defend trigger at all and never an attack one."
         ]
       },
       "steps": [
@@ -52875,7 +52880,8 @@
           "WHY THE BOW AND NOT A BIGGER GEAR: 137.2 SAYS A MIGHT BONUS CAN BE +0. Measured over data/cards.json on 2026-09-09, exactly six printings carry mightBonus 0 - SFD-009 Serrated Dirk, SFD-016 Recurve Bow, SFD-059 Svellsongur, SFD-064 Cloth Armor, SFD-153 Eye of the Herald and VEN-137 Shady Spectacles. A +0 gear leaves the carrier's Might exactly where it was, so it never crosses a body over 5 and never spends 709's once-per-body Mighty event, never enlarges what 465.2.c.4 lets an attacker assign, and never lifts the carrier out of a Might-gated hiding place. 137.3.a completes the picture: the bonus 'stops applying as soon as the card with the Might Bonus is no longer Attached', which for +0 means losing the gear is a Might swing of nothing.",
           "THE BOW FIRES ON DEFENCE TOO, AND THAT IS WHERE THE PAIR GETS ITS SECOND TURN. 'When I attack or defend' - so on the opponent's attack the Bow deals its 2 and finishes whatever the Guillotine chose in your own Main Phase, since the delayed kill is scoped 'this turn' only. A Guillotine cast on your turn is spent by the end of it; the Bow is the repeating half.",
           "IT IS THE SAME CARD AS noxian-guillotine-legion-bloodless-fork AND A DIFFERENT QUESTION. That entry prices the fork against OGN-034 Tryndamere's excess damage - fast kill versus a bigger conquer - and cites neither 158.2 nor 812.1.c. This one is about what the [Legion] half COSTS you: the delayed instruction, which 158.2 says is ignored even when the immediate kill fails. The two share the forced legend and the Signature budget, so a list can run both readings of the same three copies.",
-          "THE HONEST CEILING. Three Guillotines (103.2.b), one target each, and the Bow is one attach per copy at one Fury rune (818.1 makes [Equip] a separate Activated Ability, and 356.6 has nothing to floor here). Nothing in the line scores; it is removal that ignores Might, and 470 with 485.4 still caps what the resulting board can convert into points."
+          "THE HONEST CEILING. Three Guillotines (103.2.b), one target each, and the Bow is one attach per copy at one Fury rune (818.1 makes [Equip] a separate Activated Ability, and 356.6 has nothing to floor here). Nothing in the line scores; it is removal that ignores Might, and 470 with 485.4 still caps what the resulting board can convert into points.",
+          "AN \"ATTACK OR DEFEND\" TRIGGER FIRES TWICE PER TURN CYCLE, AND THIS ENTRY PRICED IT AT HALF RATE (citation upgrade 2026-09-12, #187/300-499 lane). 383.4.e defines an Attack Trigger as firing when a Unit or PLAYER gains the Attacker designation for the first time during a combat, and 383.4.f is the identical sentence for the Defender - so a card worded *\"when I attack or defend\"* satisfies BOTH definitions and is an Attack Trigger AND a Defend Trigger, exactly the shape the rules state outright for the other pair at 823.1.b (*\"Hunt is both a Conquer and a Hold effect\"*). The honest rate is once on your turn attacking and once on theirs defending. Measured across the catalogue on 2026-09-12, SIX entries use an attack-or-defend card and not one cited both paragraphs. Two limits that keep it from running away: 383.4.e.2.a checks the condition ONCE PER COMBAT despite a unit gaining and losing the designation several times in it (383.4.f.2.a is the mirror), so blinking a carrier out of a combat and back re-fires nothing; and the whole attack side is UNIT-keyed - the pool prints ZERO cards worded *\"when you attack\"* against FOUR on the defend side, three of them battlefields - which is why a battlefield can carry a defend trigger at all and never an attack one."
         ]
       },
       "steps": [
@@ -55413,6 +55419,244 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-12, issue #187, session rc-walk-mid, batch 3. 370.1.a.2, 465.2.c.1, 465.2.c.1.a and 417.3.a were cited by NOTHING in data/combos.json or data/synergies.json when this entry was staged - measured 2026-09-12 at catalogue 743, which is the only precision such a count has. The entry exists to carry the SPLIT: a spell sweep is simultaneous under 370.1.a.2 and combat damage is simultaneous under 465.2.c.1.a, and the two are different paragraphs covering different sources. Card text verbatim from data/corpus_flat.txt; the five death-payoff cards and the Mind token census both swept there on 2026-09-12. Legend census run against data/cards.json - Body/Mind is a single name. Cross-references: spectral-centaur-bottled-constellation-triple-death and malzahar-wraith-centaur-sacrifice are Main-Phase sacrifice lines on the same payoff and neither cites the paragraph that makes their deaths simultaneous; elder-dragon-flurry-of-blades-wipe uses the same sweep for its removal half only. PAIRED ENTRY, SAME PARAGRAPH, OPPOSITE OUTCOME: deceiver-viktor-reflection-keeps-non-play-trigger is 383.4.a.4 falling the winning way - there the copied card's entire text triggers on ANOTHER object being played, which 383.4.a.4 puts outside the definition of a Play Effect, so the Reflection is a full-value copy. Read the two together before assuming a Reflection is either blank or a full copy; the wording of the copied trigger decides it."
+    },
+    {
+      "id": "kennen-twilight-step-forgotten-library-flow-choice",
+      "name": "Kennen grants a SECOND [Flow] cost to a spell that already prints one — 829.1.c.3 makes it a choice, and the expensive half is the only thing that reaches the Library",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "VEN-113",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "3 Energy + 1 Power, 4 Might, mono-Chaos. 'When you play me, [Burn 2]. (Put the top 2 cards of your Main Deck into your trash.) When I conquer, give a spell in your trash [Flow] equal to its cost this turn.' The [Burn 2] is what puts the spell in the trash in the first place."
+        },
+        {
+          "card": "VEN-105",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "TRASH",
+          "note": "2 Energy + 1 Chaos Power, mono-Chaos. 'Move a unit with 3 Might or less. [Flow] 4 Energy + 1 Chaos rune.' It is the card that carries BOTH costs: its printed Flow is 4 Energy, Kennen's granted Flow is its base cost of 2 Energy, and 829.1.c.3 hands the choice to you."
+        },
+        {
+          "card": "UNL-211",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BOARD",
+          "note": "Colorless battlefield. 'While you control this battlefield, when you play a spell, if you spent 4 Energy or more, [Predict].' Colorless, so it costs the Chaos shell nothing in Domain Identity."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend domains cover Chaos — Kennen and Twilight Step are both mono-Chaos and the Forgotten Library is colorless, so any Chaos legend runs the whole line (103.1.b.1)."
+        ],
+        "notable": [
+          "THE ENTRY IS 829.1.c.3 AND NOTHING ELSE: 'If a spell has multiple instances of the Flow keyword with different costs, its controller may choose which cost to apply as they play it.' The obvious reading of Kennen — that his grant REPLACES the printed Flow, so an expensive-Flow spell becomes cheap — is wrong in a way that matters: the two instances COEXIST and you pick one at the moment you play it. Fifteen spells in the pool print [Flow] (VEN-003, VEN-012, VEN-031, VEN-049, VEN-051, VEN-081, VEN-100, VEN-105, VEN-116, VEN-127, VEN-140, VEN-144, VEN-148, VEN-154, VEN-156, measured over data/corpus_flat.txt on 2026-09-12) and Kennen is the pool's only Flow granter, so he is the only route to two instances on one card.",
+          "WHY THE CHOICE IS WORTH ANYTHING: THE POOL'S PRINTED FLOW COSTS ARE A TAX. Measured over all fifteen on 2026-09-12: nine are strictly more expensive than the spell's own base cost (VEN-003, VEN-031, VEN-105, VEN-127, VEN-140, VEN-148, VEN-154, VEN-156, and VEN-144 in Power), four are equal (VEN-012, VEN-049, VEN-081, VEN-100, VEN-116) and one is cheaper in Energy while adding a rune (VEN-051). Kennen's grant is 'equal to its cost', i.e. the base cost, so for nine of the fifteen his instance is the CHEAP one. Twilight Step is the clean case inside his own domain: 2 Energy + 1 Chaos granted against 4 Energy + 1 Chaos printed.",
+          "AND THE EXPENSIVE INSTANCE IS THE ONLY ONE THAT REACHES THE LIBRARY. 829.1.c.1 — 'The cost is an alternate cost that replaces the base cost of the spell to be paid during finalization' — is what makes the Flow cost the thing that actually leaves the Rune Pool (166.2, 203.1), and the Forgotten Library reads what you SPENT, not what the card costs. Choose the printed 4 Energy and the Library predicts; choose Kennen's 2 and it does not. One card in the trash covers the tempo turn and the Predict turn, and the choice is made after you have seen the board.",
+          "STARGAZER IS ANTI-SYNERGIC WITH THE LIBRARY HALF, WHICH kennen-stargazer-arena-flow DOES NOT SAY. VEN-098 Stargazer reads 'Spells with [Flow] you play from your trash cost 2 Energy less, to a minimum of 1 Energy' — a discount, not an option, so it applies to whichever instance you chose. Twilight Step's printed 4 becomes 2 and Kennen's granted 2 becomes 1, and NEITHER reaches the Library's threshold of 4. The two Kennen lines in this catalogue want opposite second cards: kennen-stargazer-arena-flow wants the discount, this one refuses it.",
+          "THE FLOW PLAY IS STILL A MAIN PHASE PLAY, AND IT IS ONE PER COPY. 829.1.b.2: 'Playing a spell for its Flow cost does not change the timing at which it can be played, nor any permissions for the spell aside from the zone from which it can be played' — Twilight Step carries neither [Action] nor [Reaction], so the grant arriving on a Conquer in your Main Phase is fine and the spell is played later in that same Main Phase, inside Kennen's 'this turn'. 829.1.b.1 makes the banish a delayed replacement effect, so each copy is re-flowed exactly once and 103.2.b caps the name at three.",
+          "THE BATTLEFIELD IS NOT GUARANTEED AND STARTS SWITCHED OFF. A deck may not carry two of a battlefield of the same name (Core Rules 103.4.c, Tournament Rules 402.1), it is randomly selected 1 of 3 in a Duel (485.5) and in Skirmish (487.5) and selected in a Match (486.5), and 190.1 starts it uncontrolled — 190.6.d then ignores every instruction in it until you take it, because the card says 'you'. The Library is colorless, so the opponent may bring it too.",
+          "436.4.a KEEPS THE PREDICT SAFE IN AN EMPTY-DECK SHELL: 'The Player will not perform a Burn Out as a result of Predicting with too few cards in their deck.' Kennen's own [Burn 2] is 431.1.b milling and DOES burn past the deck, so the two halves of this card pull in opposite directions and the Burn is the half to be careful with."
+        ]
+      },
+      "steps": [
+        "Play Kennen, Storm of Shuriken (3 Energy + 1 Chaos Power). His play trigger burns the top 2 of your Main Deck into your trash.",
+        "Hold or take the Forgotten Library. 190.1 starts it uncontrolled and 190.6.d ignores 'while you control this battlefield' until you control it.",
+        "Get a Twilight Step into the trash — cast it normally for 2 Energy + 1 Chaos, or let Kennen's [Burn 2] put it there.",
+        "Conquer with Kennen. His trigger gives that Twilight Step [Flow] equal to its cost: 2 Energy + 1 Chaos Power, this turn. The card now carries two Flow instances with different costs, its printed 4 Energy + 1 Chaos and Kennen's 2 Energy + 1 Chaos.",
+        "Still in that Main Phase, play it from the trash and CHOOSE which cost to apply (829.1.c.3). Take Kennen's 2 when you only want the move; take the printed 4 when you want the Forgotten Library's [Predict], because 829.1.c.1 makes whichever you chose the amount that leaves the Rune Pool.",
+        "The spell is banished as it leaves the chain (829.1.b.1). Next Conquer, a different spell in the trash."
+      ],
+      "terminatesIn": "engine — one spell out of the trash per Conquer at a cost you choose between two, and a free [Predict] on the turns you pay the higher one; no loop, and each copy is re-flowed once",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md, section 34), issue #191",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 829.1.c.3 and 829.1.c.1",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "If a spell has multiple instances of the Flow keyword with different costs, its controller may choose which cost to apply as they play it. … The cost is an alternate cost that replaces the base cost of the spell to be paid during finalization."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 829.1.b, 829.1.b.1 and 829.1.b.2",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "It is functionally short for “You may play this from your trash for its flow cost. Then banish it.” … Banishing the spell in this way is a delayed replacement effect. If the spell would leave the chain after becoming a finalized chain item, and leaving the chain wasn’t instructed by its own execution, banish it instead. … Playing a spell for its Flow cost does not change the timing at which it can be played, nor any permissions for the spell aside from the zone from which it can be played."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 166.2, 203.1, 190.6.d and 436.4.a",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Players must add Energy and Power to their Rune Pool in order to be able to spend it to play cards or pay for Abilities with costs. … Paying a Cost requires a player to perform the appropriate game action: pay resources, spend counters or XP, kill units, etc. … If the battlefield has no Controller, “you” refers to no one, and all such instructions are ignored. … The Player will not perform a Burn Out as a result of Predicting with too few cards in their deck."
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (built from Riot's gallery content API by scripts/build-cards.mjs)",
+          "kind": "riot",
+          "date": "2026-09-12",
+          "quote": "VEN-105 | Twilight Step | Spell | Chaos | E2 P1 | Move a unit with 3 :rb_might: or less. [Flow] :rb_energy_4::rb_rune_chaos: (You may play this from your trash for its Flow cost. Then banish it.) … UNL-211 | Forgotten Library | Battlefield | Colorless | - | While you control this battlefield, when you play a spell, if you spent :rb_energy_4: or more, [Predict]. (Look at the top card of your Main Deck. You may recycle it.) … VEN-098 | Stargazer | Unit | Chaos | E5 M4 | Spells with [Flow] you play from your trash cost :rb_energy_2: less, to a minimum of :rb_energy_1:."
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-12 by rc-walk-blocks (issue #191, uncited Core Rules sub-rules 500-829). 829.1.c.3 was cited by NOTHING in this project before this entry; 829.1.c.1 was cited 3 times and never for what it decides here. All three card texts verified verbatim against data/corpus_flat.txt on 2026-09-12. Ban check: none of VEN-113, VEN-105, UNL-211 or VEN-098 appears in data/legality.json, whose only restricted row is the Wuju Bladesman starter legend; none is a Signature card (signature:false in data/cards.json), so no legend is forced. Domain check run against data/cards.json: VEN-113 chaos, VEN-105 chaos, UNL-211 colorless — union is one domain. Coverage checked with .scratch/have.mjs before writing: no entry uses this card set or a subset of it. Cross-references: kennen-stargazer-arena-flow (same legend, opposite second card — its Stargazer discount closes this line's Library), forgotten-library-jhin-spent-four (the other side of the Library's 'spent 4' threshold, with a payoff rather than a chooser) and twilight-step-shadow-order-disciple-move-burn (which already replays a Twilight Step for its printed Flow but has only one instance to play). Trap check: no attack, so 807.1.d and 461 do not bite; no [Temporary]; no rune recycled; no Might read in a non-board zone; the Conquer lands in the Main Phase and the Energy is spent in the same Main Phase, so 167 does not bite. Depends on no unruled reading."
+    },
+    {
+      "id": "baited-hook-galio-printed-might-fetch",
+      "name": "The Hook's fetch ceiling is the corpse's PRINTED Might — 705 and 711 — so the right fuel is a wall that was never going to attack anyway",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-242",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Order gear, 3 Energy. '1 Energy + 1 Order rune, exhaust: Kill a friendly unit. Look at the top 5 cards of your Main Deck. You may banish a unit from among them that has Might up to 1 more than the killed unit and play it, ignoring its cost. Then recycle the rest.' Gear enters ready (143.4 exhausts only units), so it fires the turn it lands, and 315.1.b readies it every Awakening."
+        },
+        {
+          "card": "UNL-171",
+          "quantity": 1,
+          "role": "resource",
+          "zone": "BATTLEFIELD",
+          "note": "Order unit, 3 Energy + 1 Power, PRINTED Might 6. '[Deflect] (Opponents must pay 1 rainbow to choose me with a spell or ability.) [Tank] (I must be assigned combat damage first.) I don't deal combat damage.' The printed 6 is the whole reason he is here: he sets the Hook's ceiling at 7."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "card-advantage-engine",
+        "unit-delivery"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Order legend — both cards are mono-Order (103.1.b.1) and neither is a Signature card, so no legend is forced."
+        ],
+        "notable": [
+          "THE CEILING IS PRINTED MIGHT, NOT BOARD MIGHT, AND THAT IS THE ENTRY. 711: 'Units in Non-Board Zones are evaluated according to their printed Might.' Its worked example is this exact case — 'A unit in the trash is Mighty if its printed Might is 5 or greater. It doesn't matter if there were effects raising or lowering its might while it was on the board.' The Hook kills the unit FIRST and only then executes 'Might up to 1 more than the killed unit', so by the time that comparison runs the corpse is in the trash and the number is its printed Might. 710 is the board half of the same split — 'Units on the board are evaluated according to their current Might' — and THE CATALOGUE ALREADY OWNED THAT HALF AND NEVER THIS ONE: measured over data/combos.json on 2026-09-12, 710 is cited in entries including renekton-dominus-double-conquer and convergent-mutation-might-transfer, and 711 is cited NOWHERE. That is the same shape as 815.2 against 815.3.",
+          "705 SAYS IT A SECOND TIME AND NEEDS NO SCOPE ARGUMENT: 'If a Unit leaves play, remove all Buffs from it.' So the conclusion does not depend on how widely 710 and 711 are read under their 706 'Mighty' heading — even if a reader confines those two to the Mighty description, the buff is gone the moment the body reaches the trash, and 703 ('Each Buff individually contributes +1 Might to a Unit') has nothing left to add. TWO INDEPENDENT RULES, ONE CONCLUSION: pumping or buffing the victim before the Hook eats it is worth EXACTLY ZERO.",
+          "THE INVERSION IS THE REASON TO RUN IT: SHRINKING THE VICTIM IS ALSO WORTH ZERO. Because 711 reads the printed number, a Galio the opponent has already dropped to 1 Might with a -Might spell still cashes at 6 and still fetches a Might 7 body. The Hook is the pool's way of collecting full value from a body the opponent has spent a card ruining, which no other Order card does.",
+          "WHY GALIO AND NOT A BIGGER BODY. Measured over data/cards.json on 2026-09-12, the pool prints exactly FOUR units of Might 6 or more at 4 Energy or less, and all four are mono-Order: OGN-208 Cruel Patron (E4, M6), UNL-166 Stalking Wolf (E4 + 1 Power, M6), UNL-171 Galio, Indefatigable (E3 + 1 Power, M6) and VEN-129 Sacred Protector (E4 + 1 Power, M6). Galio is the cheapest, and he is the only one whose combat value is purely defensive — 'I don't deal combat damage' — so he is the one whose death costs the least. His [Tank] makes every other body of yours an invalid damage assignment until he has taken lethal (815.1.c.2) and his [Deflect] taxes the opponent a rainbow for each time they choose him (809.1.c), so he is hard for them to remove and reliably there when you want to eat him.",
+          "WHAT A CEILING OF 7 ACTUALLY BUYS, WITH THE MEMBERS NAMED. 'Play it, ignoring its cost' is Energy AND Power. The mono-Order units of printed Might 7 or more are OGN-231 Commander Ledros (E6 + 4 Power, M8), SFD-174 Trove Golem (E8 + 2 Power, M9), UNL-170 Atakhan (E10 + 3 Power, M7), UNL-179 Rift Herald (E8 + 1 Power, M7) and VEN-138 Shen, Leader of the Kinkou Order (E6 + 2 Power, M7) — measured over data/cards.json on 2026-09-12. A ceiling of 7 reaches the last three and NOT Ledros or the Golem, so the ladder does not run away: 3 Energy + 1 Power of body buys a 10 Energy + 3 Power body and stops there.",
+          "IT IS A FIVE-CARD LOOK, NOT A TUTOR, AND THAT IS THE HONEST LIMIT. The Hook looks at the top five and recycles the ones it does not take to the bottom of the Main Deck (416.1), so the deck cycles rather than depletes and a turn where none of the five is a big enough unit simply buys nothing. 431.1.c keeps it safe with almost nothing left: 'that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction.'",
+          "ONE ACTIVATION A TURN, AND THE BODY ARRIVES ASLEEP. The Hook's cost includes its own exhaust and 315.1.b readies it only at your Awakening, so this is one free unit per turn and no readying effect in the pool changes that usefully. 143.4 makes the fetched unit enter exhausted, so it defends and holds from the next Awakening rather than attacking the turn it lands.",
+          "THE VICTIM MAY BE A TOKEN, AND USUALLY SHOULD NOT BE. The kill is effect text after the colon rather than a cost, so 203.3, 416.3 and 185 never bite and 185.2.d makes a token unit a legal victim (428.1). But a 1 Might Recruit sets the ceiling at 2, and 711 gives a token no more than its printed Might either — see baited-hook-sprite-queen-free-unit, which is that line done properly with a 3 Might Sprite for a ceiling of 4."
+        ]
+      },
+      "steps": [
+        "Play Baited Hook (3 Energy) and Galio, Indefatigable (3 Energy + 1 Order Power). The Hook is gear and enters ready (143.4); Galio enters exhausted and walls.",
+        "Let Galio do his defensive job for as long as he is useful: 815.1.c.2 makes him the only legal damage assignment among your bodies until he has taken lethal, and 809.1.c charges the opponent a rainbow every time they choose him with a spell or ability.",
+        "When the fetch is worth more than the wall, pay 1 Energy + 1 Order Power and exhaust the Hook, killing Galio.",
+        "Read the ceiling off the CORPSE: he is in the trash, so 711 evaluates him at his printed 6 whatever his Might was on the board, and the Hook may take a unit of Might up to 7.",
+        "Look at the top five. Banish one Might 7 or smaller unit from among them and play it ignoring its cost — Energy and Power — and recycle the other four to the bottom (416.1).",
+        "Next Awakening readies the Hook (315.1.b). Repeat with whatever body is next cheapest to spend."
+      ],
+      "terminatesIn": "engine — one free unit of up to printed Might 7 per turn for 1 Energy + 1 Order Power, bounded by what the top five cards happen to hold; nothing here scores",
+      "netPerIteration": "+1 free body of up to printed Might 7, -1 body, -1 Energy, -1 Order Power, and four cards cycled to the bottom of the Main Deck",
+      "rulesVersion": "2026-07-16",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12 (docs/phase0/walks/2026-09-07-uncited-subrules-500-899.md, section 34), issue #191",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 710, 711 and 705",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Units on the board are evaluated according to their current Might. … Units in Non-Board Zones are evaluated according to their printed Might. … Example: A unit in the trash is Mighty if its printed Might is 5 or greater. It doesn't matter if there were effects raising or lowering its might while it was on the board. … If a Unit leaves play, remove all Buffs from it."
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt), 703, 431.1.c, 815.1.c.2, 809.1.c and 143.4",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Each Buff individually contributes +1 Might to a Unit. … If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player’s Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction. … If more than one unit with Tank is present with the same controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them. … It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\" … Units enter the Board exhausted."
+        },
+        {
+          "title": "Card text, data/corpus_flat.txt (built from Riot's gallery content API by scripts/build-cards.mjs)",
+          "kind": "riot",
+          "date": "2026-09-12",
+          "quote": "OGN-242 | Baited Hook | Gear | Order | E3 | :rb_energy_1::rb_rune_order:, :rb_exhaust:: Kill a friendly unit. Look at the top 5 cards of your Main Deck. You may banish a unit from among them that has Might up to 1 more than the killed unit and play it, ignoring its cost. Then recycle the rest. … UNL-171 | Galio, Indefatigable | Unit | Order | E3 P1 M6 | [Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) [Tank] (I must be assigned combat damage first.) I don't deal combat damage."
+        }
+      ],
+      "notes": "HAND-WALKED 2026-09-12 by rc-walk-blocks (issue #191, uncited Core Rules sub-rules 500-829). 711 was cited by NOTHING in this project before this entry and is the paragraph that decides every 'Might of the killed unit' clause in the pool; 705 and 710 were ALREADY cited (lee-sin-buff-bank quotes 705 verbatim, renekton-dominus-double-conquer and convergent-mutation-might-transfer use 710 for current Might), so what was missing was precisely the non-board half of the split. A first draft of this entry claimed all three were uncited; that was typed rather than measured and was corrected before the batch was reported, after a bare-three-digit probe over data/combos.json returned 25 hits for 705 and 32 for 710 (one of the 32 a false positive on a YouTube '&t=710' timestamp). THIS ENTRY CARRIES A CORRECTION TO A SHIPPED ONE: vanguard-helm-baited-hook-buff-ladder's headline claim — that a buffed corpse raises the Hook's ceiling by TWO so the ladder climbs two Might a turn — is false on 705 and again on 711; the corpse has no buff and is read at its printed Might, so that ladder climbs by exactly one and OGN-228 Vanguard Helm contributes nothing to it. The same sentence is in CLAUDE.md and was reported to rc-manager5 with this batch. Card texts verified verbatim against data/corpus_flat.txt on 2026-09-12. Ban check: neither OGN-242 nor UNL-171 appears in data/legality.json, whose only restricted row is the Wuju Bladesman starter legend; neither is a Signature card. Both mono-Order, checked against data/cards.json. Coverage checked with .scratch/have.mjs before writing: no entry uses this card set or a subset of it. Cross-references: baited-hook-sprite-queen-free-unit (the same Hook on a 3 Might Sprite, ceiling 4) and vanguard-helm-baited-hook-buff-ladder (the pairing this entry corrects). Trap check: no attack; no [Temporary]; no [Repeat]; no recall; the four unbanished cards go to the bottom of the Main Deck (416.1) rather than the trash, so no trash payoff is fed. Depends on no unruled reading."
+    },
+    {
+      "id": "recurve-bow-loyal-pup-attack-or-defend-double-rate",
+      "name": "383.4.e with 383.4.f - 'when I attack or defend' is BOTH triggers, so it fires twice a turn cycle and the catalogue prices it at half",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-016",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Fury Equipment, E2, Might Bonus +0. '[Equip] 1 Fury rune. [Effect] When I attack or defend, deal 2 to an enemy unit here.' 434.1.c appends that sentence to the carrier and 053.1 with 136.2.d make the 'I' the CARRIER, not the gear - the gear would have to say 'this'. The +0 Might Bonus is why the carrier's own size is unchanged."
+        },
+        {
+          "card": "SFD-126",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Chaos unit, E3 M3. 'When you defend at a battlefield, you may move me there.' The trigger is on YOU gaining the Defender designation, not on him - 383.4.f says 'a Unit or Player' - which is why he does not have to be standing there, and why the defend half of the Bow fires every single time the opponent attacks anywhere."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Recurve Bow is mono-Fury and Loyal Pup mono-Chaos, so 103.1.b.1 needs a Chaos/Fury legend. The census run against data/cards.json on 2026-09-12 gives five names: Loose Cannon (OGN-251/OGN-301), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185/SFD-242), Bloodharbor Ripper (UNL-185/UNL-228), Master of Shadows (VEN-143/VEN-191).",
+          "Neither card is Signature (data/cards.json, signature=false on both) and neither appears in data/legality.json in either format - checked 2026-09-12."
+        ],
+        "notable": [
+          "383.4.e AND 383.4.f READ TOGETHER MAKE ONE SENTENCE INTO TWO TRIGGERS, AND THE CATALOGUE HAS NEVER PRICED THE SECOND. 383.4.e: 'Attack Triggers are Triggered Abilities that trigger when a Unit or Player gains the Attacker designation for the first time during a combat.' 383.4.f: the same sentence for the Defender designation. A card worded 'When I attack or defend' satisfies BOTH definitions, so it is an Attack Trigger and a Defend Trigger at once - exactly the shape 823.1.b already states for the other pair: 'Hunt is both a Conquer and a Hold effect.' MEASURED 2026-09-12: six entries in this catalogue use an attack-or-defend card (ahri-foxfire-might-threshold, rell-magnetic-recurve-bow-per-attack, sentinel-adept-weaponmaster-free-attach, noxian-guillotine-recurve-bow-delayed-kill, blitzcrank-ezreal-dashing-forced-defence, cataclysmic-duel-fiora-peerless-permanent-one-on-one) and NOT ONE cites both paragraphs; two cite 383.4.e alone and one is named 'per-attack'.",
+          "SO THE HONEST RATE IS TWICE PER TURN CYCLE, NOT ONCE PER TURN. 383.4.e.2 and 383.4.f.2 each put the trigger on the Chain when the carrier gains its designation, and 'for the first time during a combat' bounds each at one execution per combat. A pure 'When I attack' body pays only on your own turn. An attack-or-defend body pays on your turn when it attacks AND on the opponent's turn when it defends - the same card, the same body, two executions per round trip.",
+          "THE POOL PRINTS THE PLAYER HALF ON ONE SIDE ONLY, AND THAT IS WHY DEFENCE IS EASY TO REINFORCE AND ATTACK IS NOT. 383.4.e.1 offers two shapes, 'When I attack...' or 'When you attack...'. MEASURED THREE WAYS on 2026-09-12 - grep -ic over data/corpus_flat.txt, a widened grep -oiE, and a scan of data/cards.json - the pool contains ZERO cards worded 'when you attack'. The defend side prints four: OGN-279 Fortified Position, OGN-285 Reaver's Row (banned in both formats), SFD-215 Ravenbloom Conservatory and SFD-126 Loyal Pup. So every attack trigger in the pool is on a UNIT and needs that unit present when 464.2.c.3 designates, which is the general form of the reinforcement problem this project records for the attack side; the defend side has a player-keyed trigger and does not.",
+          "WHICH IS EXACTLY WHY THE LOYAL PUP DOES NOT HAVE TO BE THERE. His clause is 'When YOU defend at a battlefield' - 383.4.f's 'a Unit or Player' half - so it fires off your own designation as Defender (464.2.c.2: 'The Defender is the player who did not apply the Contested status to the Battlefield'), wherever he happens to be standing. loyal-pup-jagged-cutlass-free-defensive-relay walks the same relocation and does not say why it works; this is the paragraph, and it is a citation upgrade that entry is owed.",
+          "AND A BATTLEFIELD CAN ONLY CARRY A DEFEND TRIGGER FOR THE SAME REASON. A battlefield is never a unit and never gains the Defender designation itself, so 'When you defend here' works only through 383.4.f's player half, read with 190.6.d ('“You” in a battlefield's abilities refers to the battlefield's Controller'). Three of the four player-keyed defend cards in the pool are battlefields.",
+          "ONE EXECUTION PER COMBAT, SO BLINKING THE CARRIER BUYS NOTHING. 383.4.e.2.a: 'These triggers will only have their condition checked once per combat, despite a Unit being able to gain and lose the Attacker designation multiple times in the same combat.' The defend mirror is 383.4.f.2.a. So moving the carrier out of a combat and back in does not re-fire the Bow, and 383.4.f.2.b - uncited before this entry - closes the other door: 'If the trigger condition contains other requirements besides defending and if those requirements are not fulfilled when the unit gains the Defender designation, it will not trigger in that combat.' The Bow's clause carries no extra requirement, so nothing there bites it.",
+          "THE ARITHMETIC, WITH BOTH CURRENCIES DECLARED. Loyal Pup E3, Recurve Bow E2, [Equip] one Fury rune - 5 Energy and one Power, once. After that: 2 damage to an enemy unit at the battlefield, every combat you defend anywhere, plus 2 more on any turn you attack with him. Three copies of the Bow is three carriers, not three triggers on one - 818.1 makes each [Equip] its own Activated Ability and 434.1.c appends each Effect Text once.",
+          "HOW HE GETS THERE IN TIME, WHICH THE RELAY ENTRY ALREADY ESTABLISHED. 319.8 makes a Cleanup Outstanding after a Move completes, 323.2.a hands out designations in it, and 464.2.c.3.a defers the designation of a body that becomes present late to 'the Cleanup phase following the action that caused it to become present' - so the Pup arrives, is designated Defender, and the Bow's trigger goes on the Chain after that (383.4.f.2). 449 with 420.3.a is why the move is free and reaches a battlefield from anywhere: the exhaust cost sits on the Standard Move alone.",
+          "THE SHORTFALL, STATED AS THE ENTRY'S OWN: two damage is two damage. This kills 1 and 2 Might bodies and chips anything larger, and 143.3.b heals the chip at the end of each turn and again in every Combat Cleanup, so it is a Might FILTER and never a clock. The Pup is Might 3 with a +0 Might Bonus, so he dies to most attacks he walks into and the engine ends with him; nothing here scores, and the class is ENGINE for that reason and not for want of arithmetic.",
+          "CITATION UPGRADES THIS ENTRY IMPLIES ELSEWHERE, flagged rather than applied because this lane does not own data/combos.json: the six attack-or-defend entries listed above should all cite 383.4.f beside 383.4.e, and rell-magnetic-recurve-bow-per-attack in particular prices the same gear on attacks alone - its own id says so."
+        ]
+      },
+      "steps": [
+        "Play Loyal Pup (E3) anywhere - his trigger does not care where he stands.",
+        "Play Recurve Bow (E2) and pay its [Equip] of one Fury rune to attach it to him. 434.1.c appends 'When I attack or defend, deal 2 to an enemy unit here' to the Pup, and 053.1 with 136.2.d make that 'I' the Pup and not the gear.",
+        "On the opponent's turn they attack a battlefield you control. 464.2.c.2 makes you the Defender, and 383.4.f fires the Pup's own clause off YOUR designation rather than his.",
+        "Move him to that battlefield for free (449; 420.3.a keeps the exhaust on the Standard Move alone).",
+        "319.8 and 323.2.a open the Cleanup that follows the move and 464.2.c.3.a designates him Defender in it. 383.4.f.2 then puts the Bow's trigger on the Chain: deal 2 to an enemy unit there.",
+        "On your own turn, attack with him instead. 383.4.e fires the same sentence off the Attacker designation (464.2.c.3) - the second execution of the round trip.",
+        "383.4.e.2.a and 383.4.f.2.a cap each combat at one execution, so do not spend a move trying to re-enter the same combat."
+      ],
+      "terminatesIn": "engine - 2 damage per combat, on BOTH sides of the turn cycle, for a one-off 5 Energy and one Fury Power. It is a Might filter, not a clock: 143.3.b heals the chip at the end of each turn and in every Combat Cleanup, and nothing here scores",
+      "netPerIteration": "2 damage to an enemy unit every time you defend anywhere and every time the carrier attacks - two executions per round trip from one body",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12, issue #187 - uncited Core Rules sub-rules 300-499 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "RULE 383.4.e: 'Attack Triggers are Triggered Abilities that trigger when a Unit or Player gains the Attacker designation for the first time during a combat.' RULE 383.4.e.1: 'These are commonly structured as “When I attack…” or “When you attack…”' RULE 383.4.e.2: 'These Triggered Abilities are put on the Chain as Pending Items after the Unit these effects correspond to gains the Attacker designation during Combat.' RULE 383.4.e.2.a: 'These triggers will only have their condition checked once per combat, despite a Unit being able to gain and lose the Attacker designation multiple times in the same combat.' RULE 383.4.e.3: 'These Triggered Abilities can be referred to as Attack Triggers.' RULE 383.4.f: 'Defend Triggers are Triggered Abilities that trigger when a Unit or Player gains the Defender designation for the first time during a combat.' RULE 383.4.f.1: 'These are commonly structured as “When I defend…” or “When you defend…”' RULE 383.4.f.2: 'These Triggered Abilities are put on the Chain as Pending Items after the Unit these effects correspond to gains the Defender designation during Combat.' RULE 383.4.f.2.b: 'If the trigger condition contains other requirements besides defending and if those requirements are not fulfilled when the unit gains the Defender designation, it will not trigger in that combat.' RULE 383.4.f.3: 'These Triggered Abilities can be referred to as Defend Triggers.' RULE 823.1.b: 'Hunt is both a Conquer and a Hold effect.' RULE 053.1: '* Units and legends say \"I,\" \"me,\" etc.' RULE 053.2: '* Gear and spells say \"this.\"' RULE 136.2.d: 'Effect Text may refer to “this” or to the name of the Attached game object that appended the Effect Text. Doing so refers to the Attached game object and not the Top-Most Card, even if the Top-Most Card shares a name with the Attached game object.' RULE 434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.' RULE 464.2.c.2: 'The Defender is the player who did not apply the Contested status to the Battlefield.' RULE 464.2.c.3.a: 'If a Unit controlled by the Attacker or Defender becomes present at this Battlefield after this moment, it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present, as appropriate for its controller.' RULE 449: 'Spells, Abilities, or other effects may cause a Move to occur.' RULE 190.6.d: '“You” in a battlefield’s abilities refers to the battlefield’s Controller, as does the implied “you” in instructions that don’t specify a player like “draw 1.” If the battlefield has no Controller, “you” refers to no one, and all such instructions are ignored.' RULE 143.3.b: 'Damage is Healed from Units at two specific times:' RULE 818.1: 'Equip is an Activated Ability keyword.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-12, issue #187, session rc-walk-mid, batch 4. 383.4.e.1, 383.4.e.3, 383.4.f.1, 383.4.f.2.b and 383.4.f.3 were cited by nothing in data/combos.json or data/synergies.json when this entry was staged - measured 2026-09-12 at catalogue 744. NOTE A CORRECTION TO THE BRIEF THAT ASKED FOR THIS BLOCK: 383.4.e.2.a and 383.4.e.2.b are NOT uncited, they are carried by several entries and by CLAUDE.md; the substantive uncited row is the defend mirror 383.4.f.2.b. The finding is not a missing paragraph but a missing HALF - six entries use an attack-or-defend card and none prices the defend execution. The zero-cards-say-when-you-attack measurement was run three ways per the standing rule on surprising absences. Card text verbatim from data/corpus_flat.txt; legend census from data/cards.json. Cross-reference: loyal-pup-jagged-cutlass-free-defensive-relay walks the same relocation with a different gear and is owed the 383.4.f citation that explains it."
     }
   ]
 }
