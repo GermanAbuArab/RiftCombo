@@ -31,7 +31,19 @@ describe("the legends an entry names can actually hold its cards (103.1.b)", () 
           checked++;
           const has = new Set(cards.domainsOf(base));
           const missing = [...need].filter((d) => !has.has(d));
-          if (missing.length) bad.push(`${combo.id}: ${base} (${[...has].join("/")}) cannot hold ${missing.join("/")}`);
+          if (missing.length) {
+            // The commonest cause is not a wrong legend: it is the legality sentence. A walk that
+            // writes "OGS-019 is restricted in 2v2" into prerequisites.easy has written a legend base
+            // code into a field this check reads as "legends named FOR this entry", and the entry then
+            // fails a domain test it never meant to take. It bit four times in one batch on 2026-09-12,
+            // and the two standing rules genuinely pull against each other, so the hint goes here where
+            // the failure is read rather than in a document nobody opens at that moment.
+            const hint =
+              base === "OGS-019"
+                ? " — this looks like the LEGALITY sentence, not a legend line: describe the restricted row WITHOUT its base code unless that legend is genuinely legal for the entry"
+                : "";
+            bad.push(`${combo.id}: ${base} (${[...has].join("/")}) cannot hold ${missing.join("/")}${hint}`);
+          }
         }
       }
     }
