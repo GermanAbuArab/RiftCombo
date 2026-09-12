@@ -15,7 +15,8 @@
     "deploy:preview": "vercel deploy",
     "synergies": "tsx src/cli-synergies.ts",
     "headers": "node scripts/build-headers.mjs",
-    "check:rls": "node scripts/check-rls.mjs"
+    "check:rls": "node scripts/check-rls.mjs",
+    "adversarial": "node scripts/adversarial-check.mjs"
   },
   "license": "MIT",
   "dependencies": {

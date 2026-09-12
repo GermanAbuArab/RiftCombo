@@ -327,3 +327,54 @@ Two refusals from this batch, both recorded in the entry itself:
 **Both cells that had zero of all three point classes are now closed**, and by the same method: find
 what the identity uniquely owns, find the colourless or cross-domain piece that connects it, and
 check the arithmetic against the quantities the entry declares.
+
+
+---
+
+## 7. The adversarial pass is now a script, and the turn clock answers a question about the whole catalogue
+
+`scripts/adversarial-check.mjs`, wired as `npm run adversarial`. On rc-manager5's instruction the
+SCRIPT is the deliverable rather than the hand-written batch of notables, because a check that runs
+over the whole catalogue every time beats one pass by hand. `--strict` exits 1 if any finisher has an
+unanswered hole; `--turns` prints only the clock. It sweeps its own answer sets out of
+`data/cards.json` rather than carrying a typed list, so it cannot go stale against a new set.
+
+**Run over all 71 finishers (the hand pass had covered only the 29 BURST and CHAIN entries), it finds
+22 unanswered holes, and the classes the hand pass never reached are where most of them are.** The
+INFINITE and ALT_WIN entries are full of Equipment nobody has aimed a gear kill at — `Eye of the
+Herald` appears in six of them, `Svellsongur` in five — and six entries stand on a Might-1 body
+(`Keeper of Masks`, `Soaring Scout`, `Spiderling`, `Watchful Sentry`) without ever naming
+`OGN-133 Flurry of Blades`, which kills all of them simultaneously for 1 Energy at [Reaction] speed.
+
+### The turn clock: 32 of 45 point-scoring finishers are SLOWER than doing nothing
+
+Measured against the do-nothing Hold curve of
+[the unopposed clock](../../plays/2026-09-12-the-unopposed-clock.md) — turn 5 in an identity that
+reaches one of the pool's two Energy-1 units, turn 6 otherwise — and using an **optimistic lower
+bound** for the finisher: perfect draws, nothing else ever cast, no interaction, domains ignored when
+paying Power, and the slower seat (going first, since 485.7 gives the extra rune to the player going
+second).
+
+| class | slower than the baseline |
+|---|---|
+| INFINITE | **3 of 14** |
+| BURST | **17 of 18** |
+| CHAIN | **12 of 13** |
+| all | 32 of 45 |
+
+**The split is the finding, not the total.** An INFINITE is a small cheap loop and comes online on
+turns 3 to 5 — `lux-infinite-power` is turn 3, and six more are turn 4. A BURST is a pile of
+expensive bodies and comes online on turns 6 to 8; a CHAIN usually carries `OGN-122 Time Warp` at
+E10 + 4 Power a copy and reaches turns 7 to 14. `bottled-constellation-time-warp` is 60 Energy and 18
+Power of deployment, which is **turn 14**.
+
+So the classes divide by what they are FOR, and the catalogue has never said so:
+
+- **INFINITE beats the clock** and therefore changes what you do with the game.
+- **BURST and CHAIN almost never beat it.** Their nine or seventeen points are redundant against an
+  opponent who lets you hold two battlefields, because eight points were already arriving on turn 5
+  or 6 for free. They are worth their slots only on a board the opponent is contesting, where the
+  Hold curve has stalled and one scoring event has to make up the whole deficit.
+
+That is not an argument against any entry. It is the missing sentence in every one of them, and it
+only became askable once a line was denominated in turns.
