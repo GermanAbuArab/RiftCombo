@@ -436,3 +436,80 @@ Two things the DAG pass surfaced that are worth more than the number:
   `lux-infinite-power` reads as having no consumer even though the catalogue routes it through
   `lux-infinite-energy` beside it. `generateVariants` in `src/combos.ts` is the real walker;
   the script now points at it rather than pretending to be it.
+
+
+---
+
+## 9. The stalled-board question, and the law showing up in a second place
+
+### 9.1 The law: every in-turn repeatable point ability in the pool is MIND, and it explains two things
+
+CLAUDE.md records this as a fact about `chaos/fury`. It is wider than that, and this lane found it in
+a second place without looking for it.
+
+`SFD-088 Renata Glasc, Mastermind` is the only card in the pool that converts resources into a point
+inside the Main Phase, and she, `OGN-122 Time Warp` and `VEN-067 Bottled Constellation` are all Mind.
+Everything else scores on a Hold (315.2.b.2, before the Main Phase) or a Conquer. So **a non-Mind
+engine's unbounded resources have no in-turn outlet and must be spent into a Conquer window — which
+means buying a Conquer finisher and paying for both.**
+
+That is exactly what the turn clock found, without being told: **all three INFINITEs that are slower
+than the do-nothing Hold curve are non-Mind.**
+
+- `gemdragon-henge-vi-blind-fury` (Body/Fury) — 91 Energy and 9 Power across eleven cards and
+  twenty-one copies, and its own `terminatesIn` says it then buys a separate Conquer BURST.
+- `reveler-svellsongur-jhin-infinite-power` and `threshold-reveler-infinite-energy` (both Calm/Fury) —
+  fuel engines whose only domain-legal one-hop consumer is
+  `reveler-loop-nasus-brambleback-conquer`, itself a 30+ Energy Conquer BURST.
+- `jhin-virtuoso-ekko-malzahar-vi` (Fury/**Mind**) is the only one of the four that wins on its own —
+  it produces `ability-points` and terminates in 8 — and it is slower by exactly one turn.
+
+The `--stalled` pass below confirms it from a third direction: of the eight finishers whose board
+dependence is nil, **five are Mind engines running Renata Mastermind or Bottled Constellation, and
+the other three are the two `OGN-076 Gutter Palace` ALT_WINs and a fuel engine that scores nothing.**
+The board-independent finishers in this pool are the Mind ones plus the cards that literally say you
+win. That is a structural fact that survives the catalogue changing.
+
+### 9.2 `--stalled`: 29 of 71 finishers die with the curve they exist to rescue
+
+rc-manager5's third question: if a BURST earns its slot only where the Hold curve has stalled, the
+honest test is not "how many points" but "does this line still work after it has been stalled".
+
+`node scripts/adversarial-check.mjs --stalled` classifies every finisher from the printed text of its
+own `uses[]`, falling back to the entry's own authored steps where no card prints the word — because
+an entry can score on a Conquer without any card mentioning one, the Conquer being the game's own
+scoring mechanism (469.1) rather than a card ability. **The bucket shows which signal it used, and
+the matched phrase, so a reader refutes it in one look.**
+
+| bucket | n | what it means |
+|---|---|---|
+| **ATTACK** | 7 | needs the Attacker designation, which 807.1.d and 323.9 make impossible without an enemy garrison — **dead on an empty board, alive on a contested one** |
+| **CONQUER** | 27 | scores on a Conquer, and a battlefield the opponent took is a Conquer target, so the stall does not switch it off |
+| **HOLD** | 29 | scores on a Hold, which needs battlefields you ALREADY control — **the stall that makes the line necessary is the stall that switches it off** |
+| **INDEPENDENT** | 8 | nothing about the board reaches it |
+
+**Only seven finishers have the shape rc-manager5 described**, and one of them is the mono-Fury
+`tryndamere-brambleback-conquer` — the single finisher `chaos/fury` can run, and the one this lane
+was originally pointed at as evidence that the cell was empty. **The property I catalogued in batch 1
+as that identity's WEAKNESS — three of its four point sources are opponent-gated — is the same
+property that makes a finisher earn its slot.** Tryndamere needs an enemy garrison; that is why he is
+worth a card.
+
+Four of the other six are `VEN-020 Twilight Reveler` loops, whose "When I attack, ready another
+friendly unit" cannot fire on an empty battlefield — the trap CLAUDE.md records as "entering an EMPTY
+enemy battlefield is not an attack", read from the other side: it is not only a trap, it is a
+credential.
+
+**Eleven of the 29 in the HOLD bucket are Grand Plaza lines**, which need seven bodies standing at a
+battlefield you control at your own Beginning Phase. An opponent who stalls your curve by taking that
+battlefield answers all eleven with the same action.
+
+### 9.3 Two limits of this pass, stated rather than buried
+
+- **The classification is a first pass from text, not a verdict.** `OGN-220 Facebreaker` ("Stun a
+  friendly unit and an enemy unit at the same battlefield") genuinely needs an enemy body and prints
+  no attack wording, so it reads as a FLAG rather than as ATTACK-gated; `VEN-052 Mesmerize` names an
+  enemy unit in an optional mode and is a false positive of the same flag. Both are surfaced as
+  "read it", never asserted.
+- **It is one hop, like the clock.** An entry that scores through a `needs` dependency carries its
+  board dependence in the OTHER entry, and this pass does not follow the edge.

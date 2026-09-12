@@ -23,6 +23,7 @@ const args = process.argv.slice(2);
 const strict = args.includes("--strict");
 const onlyTurns = args.includes("--turns");
 const emit = args.includes("--emit-notables");
+const stalled = args.includes("--stalled");
 
 const cards = JSON.parse(readFileSync("data/cards.json", "utf8")).cards;
 const db = JSON.parse(readFileSync("data/combos.json", "utf8"));
@@ -260,6 +261,74 @@ if (emit) {
   }
   process.stdout.write("\n");
   console.log(JSON.stringify(rows, null, 1));
+}
+
+// ---------------------------------------------------------------- --stalled
+// rc-manager5's third question: if a BURST earns its slot only where the Hold curve has STALLED,
+// then the honest test is not "how many points" but "does this line still work after it has been
+// stalled". What stalls the curve is an opponent taking or denying your battlefields - and that same
+// opponent is the one with bodies on the board, which is the condition an attack trigger needs. So
+// the shape to look for is a line that is DEAD on an empty board and ALIVE on a contested one.
+//
+// Classified from the pooled card text of each entry's own uses[], which is a MEASUREMENT of the
+// printed text and not a reading of the entry's prose.
+if (stalled) {
+  // ATTACK-GATED is rigorous and rule-backed: 807.1.d makes being an attacker mean the unit "has
+  // gained the Attacker designation during Combat", and 323.9 stages a Combat only "at each
+  // Battlefield that Contested was applied to that have Units present controlled by opposing
+  // players". No enemy garrison, no attack, no trigger. A line in this bucket is DEAD on an empty
+  // board and ALIVE on a contested one, which is exactly the shape a finisher should have.
+  const ATTACK = /when i attack|when you attack|win a combat|excess damage|attacking unit/i;
+  // ENEMY-BODY is a FLAG, not a verdict. "enemy unit" also appears on removal and on modal spells
+  // where the enemy mode is optional (Mesmerize), so this column says "read this one", never
+  // "this needs a garrison".
+  const ENEMY = /enemy unit/i;
+  const HOLD = /when i hold|when you hold|hold here/i;
+  const CONQUER = /when i conquer|when you conquer|conquer here/i;
+  const buckets = { attack: [], conquer: [], hold: [], independent: [] };
+  for (const e of db.combos) {
+    if (!FINISHER.has(e.class)) continue;
+    let text = "";
+    const why = [];
+    for (const u of e.uses || []) {
+      const c = byBase.get(u.card);
+      if (!c) continue;
+      const t = `${c.text || ""} ${c.effect || ""}`;
+      text += ` ${t}`;
+      const m = t.match(ATTACK);
+      if (m) why.push(`${c.name}: "${m[0]}"`);
+    }
+    const flag = !why.length && ENEMY.test(text) ? "  [FLAG: names an enemy unit - read it]" : "";
+    // Card text alone under-reads the Conquer and Hold buckets: an entry can SCORE on a Conquer
+    // without any of its cards printing the word, because the Conquer is the game's own scoring
+    // mechanism (469.1) rather than a card ability. time-warp-hold-burst and
+    // yasuo-windrider-ride-the-wind-chain are both that shape. So fall back to the entry's own
+    // authored steps, and SAY which signal was used.
+    const prose = `${(e.steps || []).join(" ")} ${e.terminatesIn || ""}`;
+    const src = (re) => (re.test(text) ? "cards" : re.test(prose) ? "steps" : null);
+    const conq = src(CONQUER) || (/\bconquer/i.test(prose) ? "steps" : null);
+    const hold = src(HOLD) || (/\bhold(s|ing)?\b/i.test(prose) ? "steps" : null);
+    const tag = (k) => (k === "cards" ? "" : `  [via the entry's own steps, not card text]`);
+    const row = `${e.class.padEnd(8)} ${e.id}${why.length ? `  <- ${why.join("; ")}` : flag}`;
+    if (why.length) buckets.attack.push(row);
+    else if (conq) buckets.conquer.push(row + tag(conq));
+    else if (hold) buckets.hold.push(row + tag(hold));
+    else buckets.independent.push(row);
+  }
+  const n = Object.values(buckets).reduce((a2, b2) => a2 + b2.length, 0);
+  console.log(`\n# Stalled-board classification of all ${n} finishers.`);
+  console.log(`# FIRST PASS, from the printed text of each entry's own uses[] - a measurement of the cards, not a`);
+  console.log(`# verdict on the entry. The matched phrase is shown so a reader refutes it in one look.`);
+  const label = {
+    attack: "ALIVE WHERE THE CURVE STALLS. The printed text needs the Attacker designation, which 807.1.d and 323.9 make impossible without an enemy garrison. Dead on an empty board, alive on a contested one - the shape a finisher should have.",
+    conquer: "SURVIVES A STALL. Scores on a Conquer, and a battlefield the opponent took is a Conquer target, so the stall does not switch it off.",
+    hold: "DIES WITH THE CURVE. Scores on a Hold, which needs battlefields you ALREADY control - so the stall that makes this line necessary is the same stall that switches it off.",
+    independent: "BOARD-INDEPENDENT. No Hold, no Conquer and no attack in the printed text, so nothing about the board switches it off.",
+  };
+  for (const k of ["attack", "conquer", "hold", "independent"]) {
+    console.log(`\n## ${k.toUpperCase()}  (${buckets[k].length})\n   ${label[k]}\n`);
+    for (const r of buckets[k].sort()) console.log(`     ${r}`);
+  }
 }
 
 if (strict && findings.length) process.exit(1);
