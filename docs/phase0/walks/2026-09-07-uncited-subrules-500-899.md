@@ -1131,3 +1131,42 @@ do not re-patch, §21), `.scratch-rules/val16.ts`, `.scratch-rules/legend16.ts`.
 not from memory and not from the card's reminder text (§29 — `809.1.c`'s rules wording and its printed
 reminder are different strings, and `437.4` is ungrammatical on purpose); and run `have.mjs` the moment
 the card set is known, because it is what caught the Possession superset above.
+
+## 33. Read after batch 22, not walked — three leads and one empty, all with their measurements
+
+**EMPTY, with the measurement: `827.1.c.4` and `818.1.c.5` have no reader.** Both say a `[Empower]` /
+`[Equip]` ability *"may include text that alters the timing"*. Measured over `data/cards.json` on
+2026-09-12 by isolating each keyword clause up to the close of its own reminder parenthesis: **39
+`[Empower]` clauses and 39 `[Equip]` clauses, and ZERO of either alters timing.** Scoped to the current
+pool.
+
+A first pass reported two hits — `VEN-075 Platewyrm Egg` and `VEN-139 Rogue Assassin` — and both were
+false positives of exactly the kind batch 18 found the rule for: their `[Reaction][>]` and `[Action][>]`
+belong to a **different ability on the same card**, because `135.2.e.7.b` scopes a permissive keyword to
+whatever follows the arrow. **Grep the CLAUSE, not the card**, on any future keyword sweep. The same sweep
+produced the one reminder-text outlier now registered in `docs/data-anomalies.md` (`VEN-134` / `VEN-185`
+Kayle, Justified), settled by `135.2.d.3`.
+
+**Lead 1 — `719.4` / `719.4.a` with `SFD-221 Veiled Temple`.** *"The Exhausted and Ready state of the
+Top-Most card does not affect nor change the status of the Attached cards and vice versa"*, and `719.4.a`
+gives the exception list — *"all statuses aside from location, Attached, and Top-Most"* — with a stunned
+carrier as its worked example. Both uncited. The reading to check: the Temple's *"you may ready a friendly
+gear. If it's an Equipment, you may detach it"* has its two clauses **in that order for a reason** —
+readying an *attached* Equipment is worth nothing while `718.2` and `721.2` keep its printed text Inactive,
+and `719.4` is what lets the ready **survive** the detach that the same sentence offers. Existing entry to
+avoid duplicating: the Veiled Temple is already catalogued, and `CLAUDE.md` records that it pays per
+change of hands rather than per turn.
+
+**Lead 2 — `SFD-193 Grandmaster at Arms` is the paid twin of `SFD-208 Forge of the Fluft`**, and batch 22
+should be read beside it: *"1 Energy, exhaust: Attach a **detached** Equipment you control to a unit you
+control. exhaust: Attach an **attached** Equipment…"* — two separate abilities split on exactly the state
+`718.1` defines. It is a Calm/Body legend, so it cannot appear in batch 22's mono-Chaos shell, but it is
+the card to build the same 718.5.f recovery around in Calm/Body.
+
+**Lead 3 — `719.5.a`, uncited:** *"The player that controls the Top-Most Card that changed zones decides
+the order these cards Detach in, and thus the order of any relevant effects that occur due to the Detach
+occurring."* It has teeth only where a detach generates ordered effects, and the pool's whole population
+for that is **three** Equipment whose Effect Text mentions a death (`SFD-051 Guardian Angel`,
+`SFD-090 The Zero Drive`, `SFD-172 Sacred Shears`, measured 2026-09-12). Note the composition with batch
+22: if you steal an equipped body and it later dies, **you** control the departing Top-Most Card, so the
+detach order is yours even though the Equipment is not.
