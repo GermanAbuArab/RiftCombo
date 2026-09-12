@@ -265,3 +265,65 @@ A synthesis lane that reports only its successes is hiding its error rate.
 - **The adversarial pass is cheap and it found a twelve-entry hole on the first try.** The question
   "what is the cheapest card that beats this, and does the entry say so?" is mechanical enough to
   script, and the answer was that the catalogue already owned the answer card and had never aimed it.
+
+
+---
+
+## 6. Batch 2 — the second empty cell closed: `ivern-arena-trinity-body-order-hold` (BURST, verified)
+
+Same method, same census, the other empty cell. Body/Order could run 151 entries, of which 145 were
+ENGINE and 6 ALT_WIN — zero of the three point classes. The design question was target-first and in
+two parts:
+
+1. **Body/Order owns no trigger multiplier.** All three in the pool are `OGN-236 Karthus, Eternal`
+   (Order, but Deathknell only), `UNL-029 Red Brambleback` (Fury) and `UNL-087 Blue Sentinel` (Mind).
+   So the only multiplier the identity can reach is the COLOURLESS battlefield `OGN-286 Reckoner's
+   Arena`: *"When you hold here, activate the conquer effects of units here."*
+2. **What is the best payoff Body prints to feed it?** `SFD-115 Trinity Force`, again — but it is a
+   Hold effect only, so the Arena does NOT double it. What the Arena doubles is `UNL-177 Ivern,
+   Friend to All`, whose *"When I conquer or hold"* wording 823.1.b and 823.1.c.1 make both a Conquer
+   Effect and a Hold Effect, and Ivern is Order.
+
+So the two halves of the identity do different jobs: **Order supplies the doubled payoff, Body
+supplies the flat one, and the multiplier is colourless.**
+
+One Hold at the Arena, with 3 Ivern and 3 Trinity Force:
+
+| source | rule | points |
+|---|---|---|
+| the Hold itself | 315.2.b.2 → 471.1 | 1 |
+| three Ivern, hold face | 471.2 + 383.4.d.2.a | 3 |
+| three Trinity Force | 471.2 + 434.1.c | 3 |
+| three Ivern, conquer face, activated by the Arena | 383.4.g.1 | 3 |
+| | **one scoring event** | **10** |
+
+Formula, extending the one `ivern-arena-sentinel-hold` publishes: **1 + (2N + T) × (1 + K)**, N =
+Ivern present, T = Trinity Force present, K = Blue Sentinel present. That entry is N=2, T=0, K=1 → 9
+and is **Mind/Order**, so a Body/Order deck cannot run it; this one is N=3, T=3, K=0 → 10. The
+Sentinel multiplies and the Trinity Forces add, so neither entry dominates the other — they are the
+same mechanism in two identities.
+
+383.4.g.1's worked example is Reckoner's Arena **by name**, and it is quoted untruncated in the
+entry's own sources, so nothing here rests on a reading: *"…treating the conquer portion of the
+condition as having been fulfilled. If all of the conditions are fulfilled for a conquer effect, it
+is placed on the chain as if it had just triggered."* Ivern's non-conquer portion is the four tags,
+and it is met.
+
+Two refusals from this batch, both recorded in the entry itself:
+
+7. **`VEN-138 Shen, Leader of the Kinkou Order` at the Arena, the obvious Body/Order first attempt.**
+   Refused at SEVEN. Shen pays only "if there is exactly one other unit you control here", and
+   383.2.a.1 makes that count part of the Trigger Condition — so a battlefield holds at most one
+   paying Shen plus one companion, and putting Ivern beside him switches him off. Shen and Ivern are
+   mutually exclusive at one battlefield, which is why the entry that shipped uses neither Shen nor a
+   second battlefield.
+8. **`SFD-030 Skyfall of Areion` to double the Trinity Forces too.** Its Effect Text is *"My hold
+   effects are also conquer effects, and vice versa"*, which would turn each carrier's Trinity Force
+   into a conquer effect and have the Arena pay it twice — 15 points instead of 10. It is **Fury**,
+   so 103.1.b keeps it out of Body/Order entirely. The escalation is real and it lives in another
+   identity (`brambleback-trinity-skyfall-conquer`). Recorded so the next reader does not spend a
+   walk discovering the domain.
+
+**Both cells that had zero of all three point classes are now closed**, and by the same method: find
+what the identity uniquely owns, find the colourless or cross-domain piece that connects it, and
+check the arithmetic against the quantities the entry declares.
