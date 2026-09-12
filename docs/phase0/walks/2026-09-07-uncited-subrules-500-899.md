@@ -765,3 +765,141 @@ finding* — the others being the form-feed `grep` anchor, rule 766's second wor
 - The Example-filtered probe for this range remains **spent** (§14). `.scratch/probe-fc-wide.ts` is still
   on disk on this machine and prints all 137 uncited rows with their text; the keyword blocks **801–829**
   are where this batch's material came from and are not exhausted.
+
+---
+
+# Batch 19 (2026-09-12) — §14.1(c)'s first row, and a probe for the 815.3 SHAPE
+
+One entry, plus the sweep rc-manager5 asked for after batch 18: **paragraphs cited zero times whose
+NEIGHBOURS are heavily cited.** Catalogue was at **735** on arrival.
+
+| id | sub-rules opened | class |
+|---|---|---|
+| `vilemaw-counter-strike-ambush-undo-is-free` | **813.4 / .4.a / .4.b**, **354.1 / .3 / .4**, **333.1**, 319.1, 320, 417.1.a | ENGINE |
+
+`validateCombos`: **736 entries, 0 errors.** Legend-line check: **0 defects.** Rule references: **62, all
+present.** Quotes: **7, all verbatim** — after a repair, §21. Legality for both cards checked against
+`data/legality.json` on 2026-09-12.
+
+## 19. 813.4 — the ORDERING QUESTION, settled from the text
+
+§13.2 required this be settled before anything was written, and it is an ordering question, not an
+R-number. **The answer is yes, a window exists, and there are exactly two of them.**
+
+Between step 1 (`354`, move the card to the Chain) and step 5 (`358`, check legality) the only two places
+anything else happens are:
+
+> **354.3.** If another Card Effect or ability is currently resolving, continue resolving it before
+> proceeding with any further steps of this process.
+> **354.4.** If there are Tasks outstanding or currently being handled, finish those Tasks before
+> continuing this process.
+
+**Neither is a priority window** — nobody receives priority in either — which is exactly why it is easy to
+conclude none exists. What makes `354.4` bite is **333.1**, which is uncited and says outright:
+
+> Tasks include, but are not limited to: Cleanups, the actions performed during the Start of Turn Process,
+> **throughout Combat in its various steps**, and the actions performed during the End of Turn Process.
+
+**A Combat is a Task.** And `354.1` ("This Closes the State") with `319.1` (a Cleanup becomes an
+Outstanding Task "After the game transitions to or from an Open or Closed state") means your own play can
+put a Cleanup in front of itself, while `320` keeps the Pending card from resolving through it: *"While a
+Cleanup is occurring, Chain Items cannot be Finalized or Resolved."*
+
+So an `[Ambush]` played as a Reaction into a live combat genuinely can find, at step 5, that your garrison
+at that battlefield died in the interposed Task — and `822.1.b`'s conditional Reaction grant is therefore
+false. `813.4`, `813.4.a` and `813.4.b` are cited **zero** times; `822.1.b` is cited **61** times.
+
+**And the consequence is favourable, which is the entry.** `813.4.b`: *"If the chain item does not fulfill
+the conditions by the time step 5: check legality has been reached, the actions taken while playing it are
+undone and it is returned to the zone it was played from if it is a card."* The actions taken while playing
+it include the **costs**. So an Ambush combat trick is **free to attempt**: the downside of a failed
+gamble is an undo, not a dead card. Every other Reaction play in the pool is spent whether or not it lands.
+
+The partner is forced by a second uncited pairing of paragraphs. The obvious way to keep your garrison
+alive through that Task is a would-die save — and every heal-exhaust-recall save is `455`, *"relocated
+from anywhere to its Base"*, which **takes your last body off the battlefield and breaks the Ambush
+condition**. `OGN-077 Zhonya's Hourglass` defeats this line by rescuing you. `SFD-194 Counter Strike`'s
+Prevent does not (`437.4`, no relocation and no kill event), which is why it is a `uses[]` row and not a
+notable. It is a Signature card tagged Jax, so `103.2.d.2` forces **Grandmaster at Arms** — the only legend
+NAME carrying that tag, measured over `cards.json`, and Calm/Body, which covers Vilemaw's mono-Calm.
+
+## 20. The "cited-zero, heavily-cited neighbour" probe — 43 rows in 500–829
+
+`.scratch-rules/orphan.mjs <lo> <hi>` (untracked; ~25 lines). For every heading in range that the
+catalogue cites **zero** times, it takes the citation count of its parent and of every sibling and keeps
+the row when the best of those is ≥ 15. The tokenizer is lifted from `test/rule-refs.test.ts` (§21).
+
+**43 rows in 500–829.** Most of the top of the list is keyword boilerplate — *"It is present on Units"*,
+*"X is formatted as …"* — which is why a raw count is not the answer. The rows with real content, read:
+
+| row | neighbour-max | what it is, and the disposition |
+|---|---|---|
+| **810.3** | 23 | *"Ganking, and whether or not a unit has Ganking, is a characteristic of the Unit and may be checked or referenced by other Game Effects."* — the exact `815.3` shape. **REFUSED, scoped to the pool:** swept `with/has/have [Ganking]` over the corpus and all three hits (`OGN-125 Bilgewater Bully`, `OGN-297 Windswept Hillock`, `SFD-192 Shurelya's Requiem`) **GRANT** the keyword; none reads it. Live the moment a card prints "units here with [Ganking]" |
+| **718.5.e / .f / .g** | 32 | *"Attached cards may have different Controllers from their Top-Most card."* · *"Changes in Control of the Top-Most card do not impact Control of Attached cards and vice versa."* · *"An Attached card still appends the abilities in its Effect Text to the Rules Text of the Top-Most card and modulates the Top-Most Card's Might by its Might Bonus."* **A real, uncited mechanic — see §22 for the lead, deliberately not written** |
+| **813.1.d** | 55 | *"Reaction is formatted as “[Reaction]” on cards, or “[Reaction][>]” on abilities."* — the keyword-level corroboration of the `135.2.e.7.b` notation finding carried in batch 18. Uncited. A citation upgrade to `mystic-vortex-overt-operation-taxes-the-answer` |
+| **719.3 / 719.3.a** | 37 | *"A Top-Most Card and all cards Attached to it are at the same location."* — this is the paragraph behind the third route in `152.2`'s worked example (a gear reaching a battlefield on a carrier), which batch 17 measured empty from the card side |
+| **818.5** | 129 | the `815.3` shape for **Equip**. `818.5.a` was walked by this lane in an earlier batch; `818.5` itself is uncited |
+| **827.1.c.4 / 818.1.c.5** | 27 / 24 | *"[Empower / Equip] abilities may include text that alters the **timing**"* — the timing twins of the cost-altering clauses this project cites constantly (`827.1.c.3`, `818.1.c.4`). Not yet swept for a reader |
+| **721.1** | 47 | *"Text marked this way is not applied at all while in this state."* — the general half of `721.2`, which this catalogue leans on for every attachment argument |
+
+**The shape is worth keeping as a standing probe.** It is cheap, it is mechanical, and it found `810.3`
+(empty, with its scope) and `718.5.e/f` (real) in one pass. Run it per range before hunting.
+
+## 21. Instrument note — I rediscovered a solved problem, and that is the finding
+
+My batch-18 rule-reference audit reported `899.md` and `499.md` as missing rule headings; I diagnosed it
+as a novel artifact and patched it with a date-prefix strip. **It is already solved in
+`test/rule-refs.test.ts`**, whose header comment records it, and whose fix is better: a sub-part of a real
+paragraph number is a run of digits with an optional single trailing letter, or a single letter — verified
+there against all 2,381 distinct headings, none of which has a multi-letter sub-part, so `.md` cannot
+tokenize. That comment also records that an **exclusion list was rejected on purpose**, because it hides
+the whole class while the tokenizer drops exactly the artifact; my patch was the rejected design.
+`.scratch-rules/audit17.mjs` now carries the committed tokenizer verbatim with a pointer.
+
+The lesson is not the regex. **The fix lived in a test nobody reads while writing a probe**, so the fleet
+rediscovered it. Before writing an ad-hoc probe over `combos.json`, grep `test/` for one that already does
+the job. This is the fourth entry in the project's ledger of *an instrument failure that looks like a
+finding*, and the first that was a rediscovery rather than a new one.
+
+Second, smaller: the quote checker caught a **real defect in this batch's own draft**. `437.4` reads
+*"Damage dealt to a Unit that has **that all of that** damage Prevented…"* — Riot's own doubled wording —
+and I had typed the grammatical version from memory. Pasted and repaired before staging. A `quote` field
+is pasted or it is wrong; this is the second time on this lane that the checker has caught the walker
+rather than the catalogue.
+
+## 22. Lead found and deliberately NOT written — 718.5.e / 718.5.f, theft and Equipment
+
+Researched to the point where it could be written, and dropped unstaged rather than half-walked, because
+the interaction is keyed on the **opponent's** board and an entry's `uses[]` is your own deck. Everything
+needed is here.
+
+- **718.5.e**: *"Attached cards may have different Controllers from their Top-Most card."*
+- **718.5.f**: *"Changes in Control of the Top-Most card do not impact Control of Attached cards and vice
+  versa."*
+- **718.5.g**: the Effect Text is still appended and the Might Bonus still modulates, regardless.
+
+So **stealing an equipped body gives you the Effect Text and the Might Bonus while the opponent keeps the
+card**, and — the sharper half — **your own Equipment survives the theft of its carrier**: you still
+control the gear, on a body you no longer control. The unit-theft cards, swept over the corpus
+2026-09-12: `OGN-203 Possession` (Chaos, E8 P3, [Action]), `SFD-202 Hostile Takeover` (Mind/Order,
+[Hidden]), `UNL-140 Conscription` (Chaos, E5 P2). `OGN-080 Mystic Reversal` and `VEN-152 Rebuttal` steal
+**spells**, not units, and `VEN-133 Glowstone` is a gear.
+
+The constructive line to check first: `718.2` makes an attached Equipment's own `[Equip]` Inactive, so you
+cannot Equip it away from a stolen carrier — but **`SFD-208 Forge of the Fluft`** gives legends
+*"exhaust: Attach an Equipment you control to a unit you control"*, and `718.5.f` says you still control
+it. With `434.1.f` and `434.4` that is a free relocation off the thief's new body onto one of yours,
+recovering the Might Bonus and stripping them, for one legend exhaust. Settle whether the Forge's "an
+Equipment you control" is satisfied while the gear is attached to a unit you do not control — `718.5.e`
+and `718.5.f` say yes in terms, and `718.5.b` should be read before it is relied on.
+
+## 23. Handoff — state of this lane after batch 19
+
+- §14.1(a), §14.1(b) and the first row of §14.1(c) are **done**. Remaining in §14.1(c): **740.4.a.2.a**,
+  now demoted to a citation upgrade on `blood-rose-insightful-investigator-cost-at-resolution` (204.3.b is
+  **primary** — it states the mechanic in the 200s and its worked example names the card; 740.4.a.2.a is
+  the glossary restatement, per rc-manager5), then **827.1.b.1**.
+- **New material is §20's table and §22's lead**, in that order. `.scratch-rules/orphan.mjs` is on disk on
+  this machine and is twenty-five lines; §20 gives the recipe.
+- The Example-filtered probe for this range remains spent (§14); the keyword blocks **801–829** are where
+  batches 18 and 19 both found their material and are still not exhausted.
