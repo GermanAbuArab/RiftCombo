@@ -1932,3 +1932,84 @@ So the axis is a flag and not a verdict, and the follow-up question is fixed: *h
 pair have at all, of any identity, and in which buckets?* body/mind answered five-all-mono-Mind (a refusal,
 batch 13), calm/mind answered one (an entry, batch 14), fury/order answers two-both-ATTACK (a lead, here).
 Same number on the flag, three different verdicts.
+
+---
+
+## 25. Batch 16 — the complete identity map, and the law that explains which cells were hard
+
+### 25.1 Every pair now has a legal stall-surviving finisher except one
+
+At **764 entries, 78 finishers bucketed** (`.scratch-synth/identity-map.mjs`). `surv` counts **legal**
+survivors of any identity — the ban filter from §20 is applied, and it drops exactly one row, in chaos/order.
+
+| pair | avail | spans | **surv** | buckets |
+|---|---|---|---|---|
+| body/calm | 4 | 1 | 1 | CONQ×1 |
+| body/chaos | 4 | 2 | 1 | ATTA×1 |
+| body/fury | 6 | 4 | 4 | ATTA×2 CONQ×2 |
+| body/mind | 13 | 3 | 5 | INDE×4 CONQ×1 |
+| **body/order** | 7 | 2 | **0** | — |
+| calm/chaos | 5 | 2 | 3 | CONQ×2 ATTA×1 |
+| calm/fury | 9 | 6 | 7 | ATTA×3 CONQ×4 |
+| calm/mind | 19 | 8 | 8 | INDE×4 CONQ×4 |
+| calm/order | 11 | 5 | 2 | CONQ×2 |
+| chaos/fury | 2 | 0 | 1 | ATTA×1 |
+| chaos/mind | 11 | 1 | 6 | INDE×5 CONQ×1 |
+| chaos/order | 9 | 4 | 1 | CONQ×1 *(1 dropped: banned)* |
+| fury/mind | 13 | 3 | 9 | ATTA×1 INDE×5 CONQ×3 |
+| fury/order | 8 | 3 | 2 | ATTA×2 |
+| mind/order | 29 | 16 | 9 | INDE×6 CONQ×3 |
+
+**`body/order` is the only identity in the game with no legal finisher that survives a stalled board**, and
+§18 refused it from the card pool rather than leaving it open: Ivern is its sole non-Hold point source,
+103.2.b caps him at three copies, 485.4 puts two battlefields on the table, and 3 + 2 = 5.
+
+### 25.2 The law: only three domains print a multiplier that can reach a point
+
+Swept over every card for text that makes another ability fire more than once — **the pool prints five, and
+they are not evenly spread**:
+
+| domain | multiplier | what it reaches |
+|---|---|---|
+| calm | `SFD-059 Svellsongur` | **anything** — it copies the carrier's text |
+| fury | `UNL-029 Red Brambleback` | conquer effects |
+| mind | `UNL-087 Blue Sentinel` | hold effects |
+| order | `OGN-236 Karthus, Eternal` | **Deathknells only** |
+| **body** | **none** | |
+| **chaos** | **none** | |
+| colourless | `OGN-286 Reckoner's Arena` | conquer effects, **but only off a Hold** |
+
+Karthus is real and cannot help: measured, **of the 16 cards in the pool that gain a point or win, ZERO carry
+`[Deathknell]`** — so Order's multiplier can multiply no point card that exists. And the Arena's trigger is
+*"When you hold here"*, which a stalled board never gives you.
+
+> **So a pair survives a stall by one of exactly two routes: it contains MIND, whose point sources are
+> board-independent and need no multiplier at all (§9.1); or it contains CALM or FURY, whose multipliers
+> still work on a Conquer. A pair with none of the three has only unmultiplied point cards.**
+
+**The pairs drawn from {body, chaos, order} are exactly body/chaos, body/order and chaos/order — and they
+are the three thinnest cells in the map, at 1, 0 and 1.**
+
+### 25.3 The lane filled exactly those cells without knowing the law
+
+This is the part worth recording, because it was not planned. Before this lane ran, those three cells stood
+at **0, 0, 0**. Today they are **1, 0, 1**, and both of the ones are entries written here:
+
+- **body/chaos = 1** — `draven-yasuo-battle-mistress-contested-chain` (§16), reached by asking what the
+  identity's point budget was.
+- **chaos/order = 1** — `ivern-ride-the-wind-double-conquer` (§20), reached by finding a ban that was hiding
+  an empty cell.
+- **body/order = 0** — refused (§18), and the multiplier law is the second, independent reason: even if a
+  relocator existed, Order's only point card has no multiplier in its own identity.
+
+Each was walked from a different direction, none of them from this census, and **the census predicts all
+three**. That is the strongest retrospective check the lane has produced, and it is a better argument for the
+method than any single entry: *target-first design converges on the cells a structural census independently
+identifies as hard.*
+
+### 25.4 Standing note
+
+**Before designing for a pair, ask which of its two domains prints a multiplier and which prints a
+board-independent point source.** A pair with neither is genuinely hard and its finisher will have to reach
+eight on unmultiplied copies capped at three by 103.2.b — which is exactly why both entries in those cells
+are five- and seven-card lines that double-dip across two scoring events rather than scaling one.
