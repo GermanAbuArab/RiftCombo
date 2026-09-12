@@ -1490,3 +1490,319 @@ spell at a buff, and `707` is the one-line definition `708` and `709` do the wor
 in `801`–`829` that §24–§26 and §34 did not reach — but **read §34.6 first**: that probe reports a bare
 top-level rule as uncited, so treat its `NNN`-only rows as unverified and re-derive each with a
 bare-three-digit regex over `data/combos.json` before spending a walk on it.
+
+## 36. Batch 25 — the `801` keyword framework read whole, the last granted-keyword READ in the pool, and the "is a referenceable characteristic" family swept in one pass
+
+Lane: rc-walk-blocks, range 500–829, issue #191, session respawned 2026-09-12. Opened at catalogue
+**749**; another lane merged two entries (`8b3ec16`) while this batch was being written, so `val16`
+reads **752** with mine. 468 tests green, typecheck clean.
+
+| id | sub-rules opened | class |
+|---|---|---|
+| `marai-spire-syndra-granted-repeat-discount` | **820.4**, 820.2, 820.3, 820.3.a, 801.3.a | ENGINE |
+
+`val16`: **752 entries, 0 errors.** `audit17`: **73 rule references, 0 not found as a heading.**
+Legend-line: **0 defects.** Quotes: **29 passages checked against an EXPLICIT list, 0 misses** (§36.7).
+
+### 36.1 `820.4` — the Spire reads a `[Repeat]` that Syndra GRANTED, and it was the last such cell
+
+> **820.4.** Repeat, and whether or not a spell or ability has Repeat, is a characteristic of the spell
+> or ability and may be checked or referenced by other Game Effects.
+
+Cited **zero** times, against 75 for `820.1.b`, 62 for `820.1.c.3` and 61 for `820.2.a` — the Repeat
+block is one of the most heavily worked in this catalogue and nobody had touched the paragraph that
+makes the keyword *readable*.
+
+`SFD-211 Marai Spire` (*"While you control this battlefield, friendly [Repeat] costs cost 1 Energy
+less"*) is such a reference, and `UNL-146 Syndra, Transcendent` (*"While I'm in a showdown, your spells
+have [Repeat] 2 Energy + Chaos rune"*) is the pool's only card that GRANTS one. **Nothing in `820` or in
+`801.3.a` distinguishes a granted instance from a printed one** — `801.3.a` is the bare permission
+(*"Other effects may grant Keywords"*) and `801.3.a.2` / `801.3.a.3` govern only the grant's DURATION —
+so the Spire discounts Syndra's instance, and `820.3` (each instance paid separately) makes each one
+separately a friendly Repeat cost.
+
+This is the **same shape as `815.3`** (the Kinkou Temple paying for a `[Tank]` that arrived by grant,
+§15) and **`813.5.b`** (the Mystic Vortex taxing a `[Reaction]`, §16), both walked on this lane. §36.4
+shows it is the **third and last** member of that family in the current pool.
+
+The demonstration spell is `OGN-172 Rebuke` (Chaos, E2 P2, `[Action]`, *"Return a unit at a battlefield
+to its owner's hand"*), which prints **no** `[Repeat]` of its own — so every instance it executes came
+from Syndra and was priced by the Spire. Two bounces empty a garrison of two, `465.1` never makes the
+damage tasks Outstanding, `466.3.a` gives the combat and `466.5.d` the Conquer. The delta over
+`draven-rebuke-bloodless-combat` (same spell, garrison of one) is exact and the entry says so.
+
+**The honest limit is `820.2`**, which the entry states as its own headline constraint: *"choices must be
+made at the usual time during the Make Relevant Choices step of Playing a Card"* — both victims are named
+as you play the spell, so you cannot bounce one, watch the board and aim the second, and a defender that
+arrives afterwards (`464.2.c.3.a`) can never be a target. A garrison of three beats the line outright.
+
+`UNL-134 Existential Dread` was deliberately **not** added: with its printed `[Repeat]` the Spire
+discounts both instances for three executions, but that card set is a strict superset of
+`syndra-transcendent-existential-dread-three-executions`, so it is a cross-reference in a notable.
+
+### 36.2 REFUSED — `801.3.b`, `801.3.b.1`, `801.3.b.2`: **no card in this pool removes a keyword**
+
+> **801.3.b.** Other effects may remove Keywords.
+> **801.3.b.1.** The effect that removed the Keyword will specify the duration it is removed.
+> **801.3.b.2.** If an effect that removes a Keyword does not specify a duration, the duration is as long
+> as that Game Object remains on the Board or in its current Non-Board Zone.
+
+All three uncited. **Measured two ways on 2026-09-12 and both return zero.** (a) A sweep of `text` +
+`effect` over `data/cards.json`, folded by name, for `lose|lost|remove|without` within 60 characters of
+`keyword|ability|abilities|[`, and separately for those verbs within 40 characters of any of the 21
+keyword names: **0 rows**. (b) `grep -icE "\blose" data/corpus_flat.txt` returns **1**, and it is
+`SFD-202 Hostile Takeover`'s *"Lose control of that unit"* — control, not a keyword; `grep -inE
+"\bremove" data/corpus_flat.txt` returns **0 rows of any kind**.
+
+What the pool has instead is the **`764`–`767` IGNORE** family, which is a different mechanism and
+already catalogued: `VEN-004 Dune Surfer`, `VEN-061 Decree of Insight`, `VEN-158 Heisho, Shell of the
+World`. `766` makes an ignored ability *"treated as INACTIVE for the purposes of the game action or
+procedure"* and `767` scopes it to that procedure and to the instructed players only — so an ignore is a
+**key**, one-way and scoped, where `801.3.b` would be a **dispel**, symmetric and durational. The two
+must not be conflated; this project has the first and has never had the second.
+
+**Scope: the current pool.** The condition to re-check is a set printing a card that removes a keyword.
+
+### 36.3 REFUSED — `818.1.c.5`, completing §33's measurement on the half it did not take
+
+§33 measured the **timing** half (*"39 `[Equip]` clauses and ZERO alters timing"*). The paragraph says
+*"timing **or targeting**"*, and the targeting half was never measured. Measured 2026-09-12 by printing
+every Equipment's `[Equip]` clause up to the close of its own reminder parenthesis (**40 Equipment
+names**, listed in full by `.scratch-rules/kwread.mjs`'s sibling one-liner): **36 are the bare
+`[Equip] <one rune>` or `[Equip] <1 Energy + one rune>` form with no extra text at all**, and four carry
+anything at all — one of them is `UNL-188 Hextech Gauntlets` (§36.4, cost-altering), and the other three
+are `SFD-150 Last Rites` (*"— Chaos rune, Recycle 2 cards from your trash"*), `SFD-178
+Blade of the Ruined King` (*"— Order rune, Kill a friendly unit"*) and `UNL-158 Shepherd's Heirloom`
+(*"— Spend 1 XP"*), and **all three are non-resource COSTS (`818.1.c.3`), not timing and not targeting.**
+So `818.1.c.5` is dead letter on **both** halves.
+
+### 36.4 `818.1.c.4` has **exactly one** reader, and two entries stand on it without citing it
+
+> **818.1.c.4.** Equip abilities may also include text that alters the Equip cost. Such text is taken
+> into account when determining a card's Equip cost when paying for the ability.
+
+Uncited. The one reader in the pool is `UNL-188 Hextech Gauntlets` — *"[Equip] 3 Energy + rainbow. This
+ability's Energy cost is reduced by the Might of the unit you choose."* — the single Equipment out of 40
+whose clause carries cost-altering text.
+
+**CITATION UPGRADE.** `CLAUDE.md` records the Gauntlets fact (`356.6` floors the Energy at 0 on any body
+of 3+ Might, so it attaches for one rainbow) and so do both entries that use the card,
+`gauntlets-enforcer-conquer` and `tryndamere-hextech-gauntlets-enforcer` — but `356.6` is only the
+**floor**. `818.1.c.4` is the paragraph that makes the reduction apply to the Equip cost **at all**;
+without it the sentence is prose on a card and `818.1.c.2`'s *"[Cost]: Attach this gear to a unit you
+control"* is the whole ability. It is the `[Equip]` twin of `827.1.c.3`, which this project cites
+constantly for Empower.
+
+### 36.5 The **"is a referenceable characteristic"** family, swept whole — 25 paragraphs, **8 with a reader, 17 dead letter**
+
+Every keyword in the glossary closes with a paragraph saying the keyword *"is a characteristic … and may
+be checked or referenced by other Game Effects"*. This lane has been finding them **one at a time** with
+`orphan.mjs` (`815.3` in §15, `813.5.b` in §16, `818.5` earlier). Swept as a family on 2026-09-12 —
+26 keywords against `data/cards.json` folded by name+type, every mention printed and classified by hand
+as the card's **own printed keyword**, a **grant**, or a **read** — the whole table is:
+
+**WITH A READER (8), members named:**
+
+| ¶ | keyword | reader(s) in the pool | catalogued? |
+|---|---|---|---|
+| `808.3` | Deathknell | `OGN-236 Karthus, Eternal` (*"Your [Deathknell] effects trigger an additional time"*) | yes |
+| `809.3` | Deflect | `VEN-061 Decree of Insight`, `VEN-158 Heisho, Shell of the World` (both *"ignore [Deflect]"*) | yes |
+| `811.5`/`811.6` | Hidden | `OGN-107 Ava Achiever`, `OGN-263 Swift Scout`, `OGN-264 Guerilla Warfare` | yes |
+| `813.5.b` | Reaction | `VEN-160 Mystic Vortex` | yes (§16) |
+| `815.3` | Tank | `VEN-159 Kinkou Temple`, `VEN-004 Dune Surfer` | yes (§15) |
+| `816.3` | Temporary | `UNL-076 Petal Pixie`, `UNL-083 Smoke and Mirrors`, `UNL-165 Shadow's Call`, `UNL-208 Black Flame Altar`, `UNL-090 LeBlanc, Everywhere at Once` | yes, all five |
+| `820.4` | Repeat | `SFD-211 Marai Spire` | **§36.1, this batch** |
+| `829.2` | Flow | `VEN-098 Stargazer` | yes |
+
+**DEAD LETTER IN THIS POOL (17), with what the pool has instead:**
+`805.5` Accelerate (26 printings, one granter `SFD-029 Rek'Sai, Breacher`, **zero readers**) ·
+`806.5`/`.a`/`.b`/`.c` Action (**91 printings, zero readers**) · `807.3` Assault (grants only:
+`OGN-015`, `SFD-026`, `SFD-131`, `VEN-076`, `VEN-014`, `VEN-136`, `OGN-019`) · `810.3` Ganking (already
+refused with this scope in §34) · `812.3` Legion (10 printings, zero readers) · `814.3` Shield (grants
+only: `OGN-074`, `SFD-181`, `UNL-208`, `VEN-117`) · `817.3` Vision (grants only: `OGN-100`, `SFD-065`) ·
+`818.5` Equip (has a citation but no card reads it; `SFD-054 Jax, Unmatched`'s *"your Equipment"* reads
+the **tag**, not the ability) · `819.3` Quick-Draw (`SFD-054` grants it; zero readers) · `821.3`
+Weaponmaster (`SFD-197 Emperor of the Sands` grants it; zero readers — consistent with §34.5) · `822.4`
+Ambush (14 printings, zero readers) · `823.3` Hunt (zero **readers**; on granters see §36.10, which
+**corrects** the count `CLAUDE.md` carries) · `824.2` Level · `825.5` Unique (3 printings) · `826.6`
+Backline (4 printings + 2 prose) · `827.4` Empower · `828.2` Empowered — and the last is the one worth a
+sentence, because `VEN-130 Aurok General` (*"Your units that are [Empowered] have +2 Might"*) **looks**
+like its reader and is not: it reads the Empowered **status** (`441.2`), not the presence of an
+`[Empowered]` **Ability**, which is what `828.2` is about.
+
+**The use of the table is that it closes the search.** `815.3` and `813.5.b` were each worth a walk;
+`820.4` was the third and last cell, and there is now no more of that shape to find in 500–829 without a
+new set.
+
+### 36.6 `801.3.a.1` is the head of the second-instance family, and 19 paragraphs instantiate it
+
+> **801.3.a.1.** The definition and rules of the specific Keyword will determine the behavior if a
+> Keyword is granted while it is already present.
+
+Uncited. Every keyword in the glossary answers it, and the answers fall in three classes — swept over
+`801`–`829` on 2026-09-12:
+
+- **REDUNDANT (8):** `805.4` Accelerate · `810.2` Ganking · `811.4` Hidden · `815.2` Tank · `816.2`
+  Temporary · `819.2` Quick-Draw · `822.2` Ambush · `826.5` Backline.
+- **SUMMED (4):** `807.2` Assault · `809.2` Deflect · `814.2` Shield · `823.2` Hunt.
+- **SEPARATE (7):** `817.2` Vision · `818.4` Equip · `820.3` Repeat · `821.1.c.7` / `821.1.d`
+  Weaponmaster · `827.3` Empower · `829.1.c.3` Flow (choose which cost).
+
+All nineteen are cited in this catalogue — several heavily (`807.2` 68, `814.2` 42, `815.2` 29) — and the
+**head is cited by nothing**. **CITATION UPGRADE**, and it is the paragraph to reach for the moment a
+line grants a keyword to a body that already has it: the class decides the answer, and `801.3.a.1` is
+what sends you to the class. It is also the rule under the `SFD-059 Svellsongur` family's arithmetic —
+36 entries use that card, and the class of the keyword it copies (redundant / summed / separate) is what
+decides whether the 2^v composition is worth anything on that keyword.
+
+### 36.7 `822.3` is explained by a carve-out printed on a card, and the instrument note for the quote checker
+
+> **822.3.** If there are no units at the location chosen before Finalization completes for any reason,
+> then it is no longer a valid location by Ambush's reasoning and cannot be played there
+>
+> **822.3.a.** Other effects and permissions may still enable this Unit to be able to be played to the
+> selected location, but Ambush's permission will not be valid
+
+`822.3` has two citations and `822.3.a` none. **The evidence that `822.3` bites is printed on a card.**
+`UNL-166 Stalking Wolf` reads *"As an additional cost to play me, kill a Bird, Cat, Dog, or Poro you
+control. You may [Ambush] me to its battlefield, **even if you don't have other units there**"* — and
+that last clause exists **because** paying the cost can empty the very battlefield the Ambush chose,
+which `822.3` would then invalidate. Nobody else can respond inside the window (`354`–`359` are the
+steps of playing and no priority is handed out between them), so *"for any reason"* means **your own
+cost or your own choice**, and Stalking Wolf is the only card in the pool that can trip it.
+
+`822.3.a` is not the escape it looks like. `822.1.b` is two clauses — *"I may be played to a battlefield
+where you control Units"* **and** *"I have [Reaction] as long as I'm being played to a battlefield where
+you control Units"* — conditioned on the **same** state, so a permission from elsewhere (`355.2.b`,
+controlling the battlefield) rescues only a play you could have made in your **Main Phase** anyway;
+`343.1.a` bars an ordinary card from a Showdown State. The two halves are welded and they fail together.
+This generalises the reading `rengar-trophy-hunter-poppy-ambush-verb-attack` already carries for the verb
+use, to the cost case.
+
+**Instrument note, for whoever runs `audit17.mjs` next.** It splits a `quote` field on `" … "` and this
+catalogue's convention is a **compound** quote joined by `' NNN.x: '`, so audit17 reports *every*
+compound quote as one unfound fragment — it did so for this batch's single source and it is a false
+positive, not a defect. Do **not** re-patch audit17 (§21). The instrument that satisfies the standing
+rule is an **explicit list** of the passages claimed (trap 6 of this lane's own handoff): 29 passages,
+written out one per line, normalised for curly quotes and whitespace, checked against the Core Rules,
+the Tournament Rules and `corpus_flat.txt` — **0 misses**. Keep that list beside the entry.
+
+### 36.8 CORRECTION owed to `CLAUDE.md` — "exactly one card's own text lifts `355.2.a`" is a **predicate**, not a count
+
+`CLAUDE.md`'s #173 bullet reads: *"355.2.a is the general form of why nothing can reinforce the
+battlefield you are ATTACKING … and **exactly one card's OWN TEXT lifts it (swept, one row)**:
+`SFD-025 Rengar, Pouncing`."*
+
+Swept 2026-09-12 over `data/corpus_flat.txt` for every card whose own text grants itself a play location
+(`I can be played` / `You may play me` / `I can [Ambush]` / `may be played to`), the cards whose own text
+reaches a battlefield holding **enemy** units are **FIVE**: `OGN-161 Deadbloom Predator` and `SFD-093
+Dauntless Vanguard` (*"You may play me to an occupied enemy battlefield"*), `SFD-025 Rengar, Pouncing`
+(*"I can be played to a battlefield you're attacking"*), `UNL-117 Arachnoid Horror` (*"I can be played to
+an occupied battlefield if an enemy unit is alone there"*) and `UNL-120 Rengar, Trophy Hunter` (*"I can
+[Ambush] to a battlefield where there are enemy units"*).
+
+**What survives at the narrow predicate is one, and the reason is worth more than the count.** Arriving
+*inside an already-opened combat* needs `[Reaction]`, because `343.1.a` bars an ordinary card from a
+Showdown State — and of the five, only `SFD-025` has it. `UNL-120`'s widened destination explicitly does
+**not** widen the speed (`rengar-trophy-hunter-poppy-ambush-verb-attack` proves it from `822.1.b`), and
+the other three are Main-Phase plays. So the sentence should read *"one card can be played into an
+**opened combat**; five can be played to an **enemy-occupied battlefield**"* — which is the "state the
+predicate with the number" rule applied to a line this file already carries.
+
+`UNL-117`'s **second** sentence (*"Friendly units can be played to an occupied battlefield if an enemy
+unit is alone there"*) is a `355.2.b` grant to the whole board and is a **third** route beside `OGN-107
+Ava Achiever`, which `CLAUDE.md` names as the second. It is already catalogued and correctly, in
+`stare-down-arachnoid-horror-lone-survivor` — found by running `have.mjs` before writing, which is the
+third time on this lane that the tool has stopped a duplicate.
+
+### 36.10 CORRECTION, measured — **an Equipment's `[Effect]` text is a keyword GRANT, and nine of them are**, so `823.2` is not dead letter
+
+`CLAUDE.md` records, from this lane's own #191 batch 4 on 2026-09-09: *"**823.2** sums granted [Hunt] the
+same way and **ZERO cards in the pool grant Hunt** (swept 2026-09-09), so it is three usable keywords
+over four rules."* **The zero is an artifact of the predicate.** A sweep for cards that *say* they give a
+keyword (`give … [Hunt]`, `have [Hunt]`) cannot see the channel that actually does it here.
+
+> **434.1.c.** The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules
+> Text.
+>
+> **718.5.g.** An Attached card still appends the abilities in its Effect Text to the Rules Text of the
+> Top-Most card and modulates the Top-Most Card's Might by its Might Bonus.
+
+An Equipment whose `[Effect]` text is a bare keyword therefore puts that keyword on a carrier that prints
+none. Swept over `data/cards.json` (Equipment tag, folded by name, `[Effect]` half only) on 2026-09-12,
+**nine Equipment do it and here are all nine:**
+
+| card | grants | rule for a second instance |
+|---|---|---|
+| `SFD-009` Serrated Dirk | `[Assault 2]` | `807.2` **summed** |
+| `SFD-033` Doran's Shield | `[Tank]` | `815.2` redundant |
+| `SFD-064` Cloth Armor | `[Shield 2]` | `814.2` **summed** |
+| `SFD-090` The Zero Drive | `[Deathknell] — Banish me` | `808.2` **separate** |
+| `SFD-102` Hexdrinker | `[Deflect]` | `809.2` **summed** |
+| `SFD-133` Boots of Swiftness | `[Ganking]` | `810.2` redundant |
+| `SFD-172` Sacred Shears | `[Deathknell] — Draw 1` | `808.2` **separate** |
+| `SFD-192` Shurelya's Requiem | `[Ganking]` (to your units *here*) | `810.2` redundant |
+| `UNL-096` Hunter's Machete | `[Hunt]` | `823.2` **summed** |
+
+So **`UNL-096 Hunter's Machete` is a Hunt granter**, and `823.2` has a live case: `103.2.b` allows three
+copies, nothing stops three different Equipment stacking on one carrier (`434.1.f` only detaches an
+Equipment from its *current* host when it moves to a new one), and `823.1.c.1` makes each instance
+*"When I Conquer or Hold, my controller gains X XP"* with `823.1.b` making it both — so three Machetes on
+one body under a Duel's two Holds a turn is Hunt 3 twice, not Hunt 1.
+
+**The precedent for treating appended text as a grant is this project's own**, and it is already
+load-bearing: `CLAUDE.md` records that `SFD-059 Svellsongur` *"copies the unit's WHOLE text, keywords
+included"*, so three Svellsongur on `VEN-138 Shen` (M7, `[Shield]`) are *"eight instances = Shield 8"* —
+which is `814.2` summing keywords that arrived through exactly this channel. `823.2` cannot be dead
+letter while `814.2` is priced that way on the same mechanism.
+
+**Two things not claimed here.** Whether `823.2`'s *"granted"* is the precise word for an appended
+`[Effect]` is the one soft joint, and it is soft for `807.2`, `809.2` and `814.2` in identical wording —
+so the catalogue is already committed to the reading and this note does not open a new one. And the
+correction is to the **count and its predicate**, not to `CLAUDE.md`'s conclusion that the summing family
+is four paragraphs: it is, and now three of the four have a granter in the pool rather than two.
+
+**Stated for re-use: a "does the pool grant X?" sweep must read the `[Effect]` half of every Equipment,
+not only card text.** That is nine cards, and a text-level predicate misses all nine.
+
+### 36.9 HANDOFF — rc-walk-blocks, 500–829, after batch 25
+
+**Staged and unmerged in `/tmp/rc-walks/rc-walk-rules.json`:** `marai-spire-syndra-granted-repeat-discount`.
+Validated at 752 entries / 0 errors; 73 references present; 29 quotes verbatim; 0 legend defects.
+
+**The 801–829 keyword range is now read end to end.** §24–§26, §34, §35 and this batch cover it, and
+§36.5 plus §36.6 are the two family sweeps that close the remaining rows without walking them one by one.
+What is left uncited in 801–829 after this batch is, exhaustively: the 17 dead-letter characteristic
+paragraphs of §36.5, the three keyword-removal paragraphs of §36.2, `818.1.c.5` (§36.3), `822.3.a`
+(§36.7), and pure definitional headings (`801.1`, `801.2`, `801.2.a`, `802`, `803`, `806.1`/`.1.a`/`.1.c`,
+`807.1.a`, `808.1`, `809.1`/`.1.a`/`.1.b.1`, `810.1.a`/`.1.c`/`.1.c.1`/`.1.c.2`, `811.6.a`, `813.1.a`/
+`.1.c`, `814.1.a`/`.1.b.1`, `815.1.a`/`.1.c`, `816.1.a`, `817.1.a`, `818.1.c`, `819.1`, `820.1.a`/`.1.c`,
+`821.1`, `823.1`/`.1.c.3`, `824.1`/`.1.a`/`.1.b`/`.1.b.2`, `825.1`/`.2`/`.3`/`.4`, `826.1`/`.2`,
+`827.1.a`/`.1.c`/`.1.c.2`/`.2.a`, `828.1`/`.1.a`/`.1.b`/`.1.b.2`, `829.1`/`.1.c`/`.1.c.2`).
+
+**Where the next session in this lane should go, in order:**
+
+1. **§33 lead 2 is STILL untouched and still looks right** — `SFD-193 Grandmaster at Arms` as the
+   **Calm/Body twin** of batch 22's `conscription-forge-of-the-fluft-equipment-outlives-the-theft`. Its
+   two abilities are split on exactly the state `718.1` defines (*"Attach a **detached** Equipment"* /
+   *"Attach an **attached** Equipment"*), and `718.5.f` is the recovery. `have.mjs SFD-193` first.
+2. **The 500–799 half of the range**, which this lane has only entered through `716`–`727` and the
+   `74x`/`76x` glossary. Run `.scratch-rules/survey.mjs 500 799` and **echo the parsed range** (§30) —
+   a first run once passed `"100 299"` as one shell word and printed the same rows for two ranges.
+3. `827.2.a` (*"This is an event other Game Effects and Triggered Abilities can reference"*) is uncited
+   and is the paragraph under the whole *"when you empower something else"* family that `CLAUDE.md`'s
+   #159 groups 31–39 describe from `441.1.b` / `441.2` alone. Likely a citation upgrade, not a row.
+
+**Three things to report to the manager rather than apply here** (`data/combos.json` and `CLAUDE.md` are
+not this lane's): the `818.1.c.4` citation upgrade of §36.4, on `gauntlets-enforcer-conquer` and
+`tryndamere-hextech-gauntlets-enforcer`; the `CLAUDE.md` predicate correction of §36.8 (*"exactly one
+card's own text lifts 355.2.a"* is one at the narrow predicate and **five** at the wide one, with the
+reason — `343.1.a` — worth more than either number); and the `CLAUDE.md` **count correction** of §36.10,
+where *"ZERO cards in the pool grant Hunt"* is an artifact of a text-level predicate that cannot see an
+Equipment's `[Effect]` half, and `UNL-096 Hunter's Machete` is the counter-example.
+
+**Scripts, all untracked, all on this machine:** `.scratch-rules/orphan.mjs`, `.scratch-rules/kw.mjs`
+(**§34.6: it reports a bare top-level rule as uncited — re-derive with a bare-three-digit regex**),
+`.scratch-rules/survey.mjs`, `.scratch-rules/audit17.mjs` (**§36.7: compound quotes are false
+positives; do not re-patch**), `.scratch-rules/val16.ts`, `.scratch-rules/legend16.ts`, and new this
+batch `.scratch-rules/kwread.mjs` (the keyword-reader sweep behind §36.5).
