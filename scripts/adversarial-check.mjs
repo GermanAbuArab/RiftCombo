@@ -203,14 +203,21 @@ for (const e of db.combos) {
     if (c.type.includes("legend") || c.type.includes("battlefield")) continue;
     for (let i = 0; i < u.quantity; i++) costs.push({ e: c.energy || 0, p: c.power || 0 });
     if (c.type.includes("gear") && c.tags.includes("Equipment")) equipment.push(`${c.name} x${u.quantity}`);
-    if (c.type.includes("unit") && c.might !== null && c.might <= 1) fragile.push(`${c.name} (M${c.might})`);
+    // OGN-133 Flurry of Blades reads "Deal 1 to all units AT BATTLEFIELDS", so it cannot reach a body
+    // the entry itself declares in zone BASE. Four of the ten finishers with a Might<=1 unit declare it
+    // there (a tag-carrier for Ivern, or a "played this turn" enabler for Swain, neither of which ever
+    // has to leave the base), and the emitter shipped a FALSE "one Energy answers this" notable to three
+    // of them - each quoting the "at battlefields" clause in the same sentence. Zone is declared on 98.7%
+    // of uses[] rows, so this reads real data rather than guessing. Those bodies are still answerable, by
+    // the removal that reaches a base (OGN-229 Vengeance and its family) - just not by the sweeper.
+    if (c.type.includes("unit") && c.might !== null && c.might <= 1 && u.zone !== "BASE") fragile.push(`${c.name} (M${c.might})`);
   }
 
   const holes = [];
   if (equipment.length && !namesAnswer(blob, gearAnswers).length)
     holes.push(`stands on Equipment (${equipment.join(", ")}) and names no gear answer`);
   if (fragile.length && !namesAnswer(blob, [SWEEPER]).length)
-    holes.push(`stands on a Might-1 body (${fragile.join(", ")}) and never names OGN-133 Flurry of Blades`);
+    holes.push(`stands on a Might-1-or-less body at a battlefield (${fragile.join(", ")}) and never names OGN-133 Flurry of Blades`);
   if (holes.length) findings.push({ e, holes });
 
   if (e.class !== "ALT_WIN") entries.push({ e, domains, costs });
