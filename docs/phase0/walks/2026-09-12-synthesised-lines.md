@@ -933,3 +933,113 @@ a point count's clothes, and B3 was a right answer resting on wrong arithmetic. 
 - **A refusal is scoped to the reason that was given** — already in `CLAUDE.md` from #170, and it cut
   three more times here.
 
+
+---
+
+## 15. Batch 6 — the brief's target was stale, and the axis that replaced it: which identities have no finisher that SURVIVES a stall
+
+Lane respawned. The brief pointed at "the five pairs with exactly one finisher — body/calm, calm/chaos,
+chaos/fury, chaos/order, chaos/mind", a list computed at 727 entries. **Recomputed at 757 it is wrong in
+two places**: this lane's own batches 3b and 3c closed calm/chaos (a BURST) and chaos/order (a CHAIN), and
+chaos/mind now shows three CHAINs. Counting BURST + CHAIN, the thin cells today are body/calm, body/chaos,
+body/order, chaos/fury, chaos/order and fury/order — six, not five, and only two of them overlap the brief.
+
+But a thinness count is the wrong target now that every cell is non-empty, and this lane already said so:
+§13.3 refused a chaos/fury CHAIN because that identity's existing BURST reaches nine and a second scoring
+event buys nothing. **A thin cell is not a gap.** So the target was re-derived from §9.2's finding instead,
+which is the one with teeth: 29 of 71 finishers are Hold-gated, and a Hold pays only on battlefields you
+already control (315.2.b.2), so **they are switched off by exactly the stall that makes a finisher
+necessary.**
+
+Crossing the availability table with the `--stalled` buckets (`.scratch-synth/stall-by-identity.py`,
+counting ATTACK, CONQUER and INDEPENDENT as surviving) gives the axis the brief was reaching for:
+
+| pair | finishers available | survive a stall | of which BURST/CHAIN/INFINITE |
+|---|---|---|---|
+| **body/calm** | 3 | 1 | **0** |
+| **body/chaos** | 3 | 2 | **0** |
+| body/order | 7 | 4 | 1 |
+| chaos/fury | 2 | 2 | 1 |
+| fury/order | 8 | 4 | 1 |
+| mind/order | 29 | 16 | 6 |
+
+**Two identities have no BURST, CHAIN or INFINITE that survives a stalled board at all**, and in both cases
+the only survivors are Grand Plaza ALT_WINs shared with four or five other identities — which §9.2 already
+records as the eleven lines one opponent action answers together. That is a sharper and more defensible
+statement of a gap than "few entries", because it names the board state under which the identity has
+nothing.
+
+body/calm was taken first. Its three finishers are `ahri-trinity-svellsongur-hold` (BURST, HOLD),
+`svellsongur-copy-hold` is not available to it, and the one survivor is `dragonstorm-confront-grand-plaza`.
+
+### 15.1 The design: the Conquer twin of a Hold BURST the catalogue already owned
+
+Swept over `text` + `effect` of every deckable base folded by base code, the cards that gain a point on a
+**Conquer** are exactly five: `OGN-034 Tryndamere` (fury), `UNL-177 Ivern` (order), `VEN-065` / `VEN-173
+Swain` (mind), `VEN-053 Otterpus` (mind, and it DENIES an opponent's point rather than gaining one), and
+**`VEN-046 Nasus, Ascended` (calm)**. Nasus is the only mono-Calm one, so he is the only Conquer payoff
+available under all five Calm pairs.
+
+`svellsongur-copy-hold` already multiplies `OGN-066 Ahri, Alluring`'s *"When I hold, you score 1 point"* by
+three `SFD-059 Svellsongur` to seventeen points. **Nobody had put the same three gears on the Conquer
+face**, even though the payoff is the same domain and the multiplication is the same settled layer
+arithmetic. `scripts/have.mjs VEN-046 SFD-059` reports no entry on that card set or a subset, and a grep of
+the 83 walk documents turns up no refusal of it.
+
+`nasus-svellsongur-conquer-burst` (staged, verified, mono-Calm): 1 + N × (1 + K) at N = 8, K = 0 —
+**nine points in one Conquer for 28 Energy and 7 Calm Power.** K is 0 because `UNL-087 Blue Sentinel`, the
+only trigger multiplier that would raise it, is Mind.
+
+**The trade, stated as a number, is the entry's real content and it is the sentence §7 said was missing from
+every finisher.** Against its Hold twin: seven more Energy, eight fewer points, and what you buy is a payoff
+that fires on a battlefield you do not already control. Simulated into the availability table, the one entry
+raises the BURST count in all five Calm pairs and gives body/calm its first finisher that is not Hold-gated.
+
+Three things it does not have to do, each checked rather than assumed:
+
+- **It never passes the Final Point clause.** 383.4.c.2.a puts the conquer abilities on the Chain *"after
+  the Unit(s) these effects correspond to are present at a Battlefield when a player gains control of it and
+  gains 1 Victory Point from Conquering"* — so the Conquer's own point is the **first** of the nine and the
+  point that crosses the Victory Score is an ability Gain. 471.1.a.1 then applies verbatim. §12's preference
+  for a line that never has to pass 471.1.b.1, applied.
+- **470 is spent on one point and cannot see the other eight**, since 469 defines Scoring as Conquer or Hold
+  only and Nasus's printed "you score 1 point" is a 194.1.c Gain (R2 = A).
+- **The unit is effectively unremovable and the gear is not.** Svellsongur copies `[Deflect 2]` along with
+  everything else and 809.2 sums granted Deflect to **16**; but Deflect belongs to the object carrying it,
+  and 718.5.b keeps the three attached gears legal targets that nothing taxes.
+
+### 15.2 The honest counterweight, which the Hold twin does not pay
+
+§10's correction applies here and the entry says so in its own voice: **a Hold pays in a window the opponent
+cannot reach and a Conquer does not.** 312.2.a gives the opponent priority only *"When the turn is in a
+Neutral Open State during their Main Phase"*, so no gear kill touches a Hold; but a Conquer is a Main Phase
+event and 806.1.c.1 makes [Action] short for *"This can be played during showdowns on any player's turn"* —
+`OGN-022 Thermo Beam` and `OGN-224 Salvage` reach the very showdown this line's move opens, and Thermo Beam
+answers all three gears with one card. That is the price of the credential, not an oversight, and attaching
+in the same Main Phase as the swing keeps the exposure to a single turn rather than a full opponent turn.
+
+### 15.3 Three instrument errors caught in one batch, all of the same family
+
+1. **`grep -E "^[[:space:]]*NNN\.[[:space:]]"` on the rules file returns zero for every paragraph.** The
+   headings are written `476.1.` — with a **trailing** period — so an anchor requiring whitespace
+   immediately after the number can never match. Eight rules in a row came back empty and read exactly like
+   a discovery. `CLAUDE.md` already warns that a bare `^` misses the 89 headings after a form feed; this is
+   a second, independent way the same grep lies, and the two compose. `.scratch-synth/rule.sh` handles both
+   and prints the paragraph with its continuation lines.
+2. **A point-gain sweep written `/gain \d+ point/i` missed `OGN-290`, which prints "gain**s** 1 point".**
+   The singular-verb trap `CLAUDE.md` records for `kills? .* gear`, hit again on a different verb.
+3. **"The only card that gains a point on a Conquer and is legal in a Calm identity" is not well formed**,
+   and it was written into the staged entry before being caught. 103.1.b is a subset test against a legend's
+   **two** domains, so a Calm/Order deck reaches Ivern and a Calm/Fury deck reaches Tryndamere. The claim
+   that survives measurement is *mono-Calm* — available under every Calm pair. This is #98's "a legal-in-
+   domain-X count is not well formed" biting a sentence in this lane's own output.
+
+All three were caught by re-running rather than by reading, which is the standing rule: **an absence is a
+measurement, and a measurement made with the wrong instrument is not one.**
+
+### 15.4 Standing note
+
+**Cross the availability table with the board-dependence bucket before calling a cell thin.** A count of
+finishers per identity answers "how many lines can this deck run"; it does not answer "does this deck have
+anything on a board it does not already control", and the second question is the one §9.2 showed matters.
+Two identities answer it with zero, and neither was on the list this lane was handed.
