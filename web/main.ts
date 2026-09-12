@@ -12,6 +12,7 @@ import { matchSynergies, planSynergies, type SynergyGap, type SynergyHit } from 
 import type { Card, Combo, Deck, Domain, Feature, Format, LegalityEntry, Synergy, Variant } from "../src/types.js";
 import { gate, initAccount } from "./account.js";
 import { initDecks } from "./decks.js";
+import { initPlays } from "./plays.js";
 import { accountsEnabled } from "./supabase.js";
 import type { SavedDeck } from "../src/saved.js";
 import { esc } from "../src/html.js";
@@ -190,6 +191,7 @@ async function boot() {
   const opened = route();
   if (opened.legacyDeck) { input.value = opened.legacyDeck; void run(); }
   initAccount();
+  initPlays();
   initDecks({
     cards: () => cards,
     variants: () => variants,

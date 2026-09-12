@@ -351,6 +351,56 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .colophon p { margin: 7px 0; font-size: 0.84375rem; }
 .colophon em { font-style: normal; color: var(--text); }
 
+/* Run plays (#206). A play is a document, so this styles a document: the prose keeps .doc's measure
+   and the wide things — turn tables, hand-aligned fenced blocks — are allowed past it and scroll if
+   they still do not fit, which is the only honest answer for a table that is genuinely 4 columns of
+   sentences wide. Hierarchy is size and weight; the one accent stays on links. */
+.play { max-width: 940px; padding-bottom: 56px; }
+.play h1 { margin: 6px 0 18px; font-size: 1.375rem; line-height: 1.3; }
+.play h2 { margin: 34px 0 10px; font-size: 1.0625rem; font-weight: 600; line-height: 1.35; color: var(--text); letter-spacing: -.01em; }
+.play h3 { margin: 24px 0 8px; font-size: 0.9375rem; }
+.play h4 { margin: 20px 0 6px; font-size: 0.90625rem; font-weight: 600; color: var(--text); }
+.play hr { margin: 28px 0; border: 0; border-top: 1px solid var(--line); }
+.play .play-list-block { margin: 0 0 12px; padding-left: 22px; max-width: 65ch; }
+.play .play-list-block li { margin: 6px 0; line-height: 1.65; }
+.play em { font-style: italic; color: var(--text); }
+
+/* A card code set in prose. 4px is the radius the count pill and the domain pills already use. */
+.play-code { font: 500 0.84375rem var(--mono); background: var(--panel-2); color: var(--text); padding: 1px 5px; border-radius: 4px; }
+
+/* The hand-aligned turn tables. One lost space is a lost table, so nothing wraps and it scrolls. */
+.play-pre { margin: 0 0 16px; padding: 14px 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; font: 500 0.78125rem var(--mono); line-height: 1.6; color: var(--text); }
+
+.play-quote { margin: 0 0 16px; padding: 2px 0 2px 16px; border-left: 2px solid var(--line-2); max-width: 65ch; }
+.play-quote p { margin: 0 0 8px; }
+.play-quote p:last-child { margin-bottom: 0; }
+
+.play-table-wrap { margin: 0 0 18px; overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+.play-table { border-collapse: collapse; width: 100%; font-size: 0.84375rem; }
+.play-table th { text-align: left; font-weight: 600; color: var(--text); background: var(--panel); padding: 9px 14px; border-bottom: 1px solid var(--line-2); vertical-align: top; }
+.play-table td { padding: 9px 14px; border-top: 1px solid var(--line); color: var(--muted); line-height: 1.6; vertical-align: top; }
+.play-table tbody tr:first-child td { border-top: 0; }
+.play-table td:first-child { color: var(--text); }
+.play-table strong { color: var(--text); font-weight: 600; }
+
+/* The index. A play's title is its verdict, so the list leads with the title and not with a date. */
+.play-intro { margin: 0 0 22px; color: var(--muted); }
+.play-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.play-item { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+/* Scoped under .play deliberately. `.doc a` is (0,1,1) and sets the accent and an underline for every
+   link in a document; a bare `.play-link` is (0,1,0) and loses to it however late it is declared, which
+   drew the index as four orange underlined headlines. Same trap as extending the shared field style. */
+.play .play-link { display: flex; gap: 14px; align-items: baseline; justify-content: space-between; color: var(--text); text-decoration: none; }
+.play .play-link:hover .play-item-title, .play .play-link:focus-visible .play-item-title { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.play-item-title { font-size: 1rem; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; }
+.play-item-date { flex: 0 0 auto; font: 500 0.75rem var(--mono); color: var(--faint); font-variant-numeric: tabular-nums; }
+.play-item-lede { margin: 7px 0 0; font-size: 0.84375rem; color: var(--muted); line-height: 1.6; max-width: 72ch; }
+
+/* Its own name: .empty is a page-wide absolute empty state and would throw this to the viewport. */
+.play-notice { margin: 0 0 14px; color: var(--muted); }
+.play .play-back { display: inline-block; margin: 0 0 10px; font-size: 0.8125rem; color: var(--muted); text-decoration: none; }
+.play .play-back:hover, .play .play-back:focus-visible { color: var(--accent); }
+
 /* Responsive */
 @media (max-width: 900px) {
   /* The tabs stay on screen at every width. Hiding them was harmless while they were anchors that
@@ -370,6 +420,8 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
   .acct-who { min-width: 0; }
   .acct-label { max-width: 40vw; }
   #acct-signout { white-space: nowrap; }
+  .play { padding-left: 16px; padding-right: 16px; }
+  .play-link { flex-direction: column; gap: 2px; }
   .topnav {
     grid-area: nav; min-width: 0; height: 46px; padding-left: 0;
     overflow-x: auto; scrollbar-width: none; border-top: 1px solid var(--line);
