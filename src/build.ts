@@ -94,7 +94,7 @@ export const ANY_NUMBER = /can have any number of cards named/i;
 /**
  * Copies of every name across the given bags, with the Spiderling exemption folded in once here rather
  * than at every call site. `copiesRule` (103.2.b) calls this with `[deck.main]` alone; the sideboard row
- * below (601.1.c.3 · 403.3) calls it with `[deck.main, deck.sideboard]` — same grouping, same exemption,
+ * below (Tournament Rules 601.1.c.3 · 403.3) calls it with `[deck.main, deck.sideboard]` — same grouping, same exemption,
  * so the two counts can never drift apart. `src/builder.ts`'s `sideboardCapOf` reads the single-name
  * answer through this too, so there is exactly one place that knows what "copies of a name" means.
  */
@@ -123,7 +123,7 @@ export function copiesByName(
  * And the cap is per NAME, not per code: 103.2.b.2 says two cards of the same character are different
  * names, and the corollary is that two printings of one name are the same card — `Lux, Crownguard` is both
  * OGS-014 and VEN-SP6. The sideboard stays out of THIS row on purpose — 103.2.b is a Main Deck rule — but
- * it is not ignored: `sideboardCopiesRule` below folds it in under its own citation (601.1.c.3 · 403.3).
+ * it is not ignored: `sideboardCopiesRule` below folds it in under its own citation (Tournament Rules 601.1.c.3 · 403.3).
  */
 function copiesRule(deck: Deck, cards: CardIndex): BuildRule {
   const base = { rule: "103.2.b", label: "Up to 3 of a name" };
@@ -351,7 +351,11 @@ const SIDEBOARD_CAP = 10;
  *   601.1.c.1  "A player's sideboard can include 10 or fewer cards."
  *   601.1.c.2  "A sideboard can consist only of valid Main Deck cards."
  *   601.1.c.3  "Limits on copies of named cards apply to the combination of main deck and sideboard."
- *   403.3      restates 601.1.c.3 in the general Sideboard section.
+ *   403.3      restates 601.1.c.3 in the general Sideboard section. TOURNAMENT RULES 403.3 — the
+ *              Core Rules also have a 403.3 ("Apply any other cost increases or decreases as
+ *              necessary"), which is one of the 52 numbers that exist in both books. Riot settles
+ *              which is meant at 601.1.c.5, "See 403 for more information about sideboards", so every
+ *              citation in this block is labelled rather than left to the reader.
  *
  * 601.1.c.2's "valid Main Deck card" is read narrowly here as a TYPE question — a card of one of the
  * types 103.2's own intro sentence enumerates for the Main Deck (unit, spell, gear) — the same test
@@ -378,8 +382,8 @@ function sideboardRules(deck: Deck, cards: CardIndex): BuildRule[] {
   if (n === 0) return [];
 
   const size: BuildRule = n > SIDEBOARD_CAP
-    ? { rule: "601.1.c.1", label: "Sideboard of 10 or fewer", status: "fail", detail: `${n} cards in the sideboard — a sideboard is 10 or fewer (601.1.c.1).` }
-    : { rule: "601.1.c.1", label: "Sideboard of 10 or fewer", status: "pass", detail: `${n} card${n === 1 ? "" : "s"} in the sideboard, within the 10-card cap.` };
+    ? { rule: "Tournament Rules 601.1.c.1", label: "Sideboard of 10 or fewer", status: "fail", detail: `${n} cards in the sideboard — a sideboard is 10 or fewer (601.1.c.1).` }
+    : { rule: "Tournament Rules 601.1.c.1", label: "Sideboard of 10 or fewer", status: "pass", detail: `${n} card${n === 1 ? "" : "s"} in the sideboard, within the 10-card cap.` };
 
   const invalid = Object.entries(deck.sideboard)
     .map(([code, count]) => ({ card: cards.get(code), count }))
@@ -387,24 +391,24 @@ function sideboardRules(deck: Deck, cards: CardIndex): BuildRule[] {
     .filter((x) => x.card.type.includes("legend") || x.card.type.includes("rune") || x.card.type.includes("battlefield"));
   const contents: BuildRule = invalid.length
     ? {
-        rule: "601.1.c.2",
+        rule: "Tournament Rules 601.1.c.2",
         label: "Sideboard cards only",
         status: "fail",
         detail: `${invalid.map((x) => `${x.card.name} (${x.card.type.join("/")})`).join(", ")} — a sideboard holds only Main Deck cards: units, spells and gear (601.1.c.2).`,
       }
-    : { rule: "601.1.c.2", label: "Sideboard cards only", status: "pass", detail: "Every sideboard card is a unit, spell or gear — a valid Main Deck card." };
+    : { rule: "Tournament Rules 601.1.c.2", label: "Sideboard cards only", status: "pass", detail: "Every sideboard card is a unit, spell or gear — a valid Main Deck card." };
 
   const byName = copiesByName(cards, [deck.main, deck.sideboard]);
   const over = [...byName.values()].filter((x) => !x.exempt && x.count > COPY_CAP).sort((a, b) => b.count - a.count);
   const copies: BuildRule = over.length
     ? {
-        rule: "601.1.c.3 · 403.3",
+        rule: "Tournament Rules 601.1.c.3 · 403.3",
         label: "Copies across Main Deck and sideboard",
         status: "fail",
-        detail: `${over.map((x) => `${x.count}× ${x.name}`).join(" · ")} across Main Deck and sideboard — the cap of 3 applies to the combination (601.1.c.3 · 403.3).`,
+        detail: `${over.map((x) => `${x.count}× ${x.name}`).join(" · ")} across Main Deck and sideboard — the cap of 3 applies to the combination (Tournament Rules 601.1.c.3 · 403.3).`,
       }
     : {
-        rule: "601.1.c.3 · 403.3",
+        rule: "Tournament Rules 601.1.c.3 · 403.3",
         label: "Copies across Main Deck and sideboard",
         status: "pass",
         detail: (() => {

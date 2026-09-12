@@ -133,7 +133,7 @@ describe("checkBuild sobre las listas que parsean limpias", () => {
     expect(structural.map(([f]) => f).sort()).toEqual([BATTLEFIELD_SIDEBOARD_ERRATA, "vancouver-06.txt"].sort());
     const byFile = new Map(structural);
     expect(byFile.get("vancouver-06.txt")!.map((r) => r.rule)).toEqual(["103.3.a · 103.3.a.1", "103.4.a · 103.4.c"]);
-    expect(byFile.get(BATTLEFIELD_SIDEBOARD_ERRATA)!.map((r) => r.rule)).toEqual(["601.1.c.2"]);
+    expect(byFile.get(BATTLEFIELD_SIDEBOARD_ERRATA)!.map((r) => r.rule)).toEqual(["Tournament Rules 601.1.c.2"]);
   });
 
   it("las 37 listas de Barcelona, el único evento posterior al baneo, son todas legales hoy", () => {

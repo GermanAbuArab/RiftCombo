@@ -433,14 +433,14 @@ describe("601.1.c — the sideboard (#197)", () => {
 
   it("adds no sideboard rows when the deck carries no sideboard", () => {
     const r = rows(LEGAL);
-    expect(r.rules.some((x) => x.rule.startsWith("601.1.c"))).toBe(false);
+    expect(r.rules.some((x) => x.rule.startsWith("Tournament Rules 601.1.c"))).toBe(false);
   });
 
   it("reproduces #197: a 13-card sideboard with a rune and an over-cap name is certified illegal", () => {
     const r = rows(`${LEGAL}\n\n${BROKEN_SIDEBOARD}`);
-    const size = row(r, "601.1.c.1");
-    const contents = row(r, "601.1.c.2");
-    const copies = row(r, "601.1.c.3");
+    const size = row(r, "Tournament Rules 601.1.c.1");
+    const contents = row(r, "Tournament Rules 601.1.c.2");
+    const copies = row(r, "Tournament Rules 601.1.c.3");
     expect(size.status).toBe("fail");
     expect(size.detail).toContain("13");
     expect(contents.status).toBe("fail");
@@ -453,9 +453,9 @@ describe("601.1.c — the sideboard (#197)", () => {
 
   it("passes a 10-or-fewer sideboard of valid Main Deck cards with no combined name over the cap", () => {
     const r = rows(`${LEGAL}\n\n${LEGAL_SIDEBOARD}`);
-    expect(row(r, "601.1.c.1").status).toBe("pass");
-    expect(row(r, "601.1.c.2").status).toBe("pass");
-    expect(row(r, "601.1.c.3").status).toBe("pass");
+    expect(row(r, "Tournament Rules 601.1.c.1").status).toBe("pass");
+    expect(row(r, "Tournament Rules 601.1.c.2").status).toBe("pass");
+    expect(row(r, "Tournament Rules 601.1.c.3").status).toBe("pass");
     expect(r.legal).toBe(true);
   });
 
@@ -463,26 +463,26 @@ describe("601.1.c — the sideboard (#197)", () => {
     const eleven = `Sideboard\n${Array.from({ length: 11 }, (_, i) => `1 ${["The Ruination", "Ashe, Focused", "Renata Glasc, Mastermind"][i % 3]}`).join("\n")}`;
     // Overlapping names are fine here — size counts cards, not distinct names.
     const r = rows(`${LEGAL}\n\n${eleven}`);
-    expect(row(r, "601.1.c.1").status).toBe("fail");
+    expect(row(r, "Tournament Rules 601.1.c.1").status).toBe("fail");
   });
 
   it("fails contents alone when a rune or battlefield sits in the sideboard", () => {
     const r = rows(`${LEGAL}\n\nSideboard\n1 Order Rune`);
-    const contents = row(r, "601.1.c.2");
+    const contents = row(r, "Tournament Rules 601.1.c.2");
     expect(contents.status).toBe("fail");
     expect(contents.detail).toContain("Order Rune");
-    expect(row(r, "601.1.c.1").status).toBe("pass");
-    expect(row(r, "601.1.c.3").status).toBe("pass");
+    expect(row(r, "Tournament Rules 601.1.c.1").status).toBe("pass");
+    expect(row(r, "Tournament Rules 601.1.c.3").status).toBe("pass");
   });
 
   it("fails combined copies alone when Main Deck already has 3 and the sideboard adds a 4th", () => {
     const r = rows(`${LEGAL}\n\nSideboard\n1 Watchful Sentry`);
-    const copies = row(r, "601.1.c.3");
+    const copies = row(r, "Tournament Rules 601.1.c.3");
     expect(copies.status).toBe("fail");
     expect(copies.detail).toContain("Watchful Sentry");
     expect(copies.detail).toContain("4");
-    expect(row(r, "601.1.c.1").status).toBe("pass");
-    expect(row(r, "601.1.c.2").status).toBe("pass");
+    expect(row(r, "Tournament Rules 601.1.c.1").status).toBe("pass");
+    expect(row(r, "Tournament Rules 601.1.c.2").status).toBe("pass");
   });
 
   it("lets Spiderling past the combined cap too, because its own text says so (002)", () => {
@@ -502,7 +502,7 @@ Main Deck
 
 Sideboard
 2 Spiderling`;
-    const r = row(rows(eight), "601.1.c.3");
+    const r = row(rows(eight), "Tournament Rules 601.1.c.3");
     expect(r.status).toBe("pass");
     expect(r.detail).toContain("Spiderling");
   });
