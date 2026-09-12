@@ -56759,6 +56759,75 @@
         }
       ],
       "rulesVersion": "2026-07-16"
+    },
+    {
+      "id": "draven-yasuo-battle-mistress-contested-chain",
+      "name": "Draven and Yasuo under Battle Mistress — eight points that only exist on a board the opponent holds",
+      "class": "CHAIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-148",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E6 P1 M6, [Deflect]. 'The first time I win a combat each turn, you score 1 point. When I die in combat, choose an opponent. They score 1 point.' Both sentences are load-bearing: the first is the only point in the pool paid by a COMBAT RESULT, the second is why this entry names a bloodless route."
+        },
+        {
+          "card": "OGN-205",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Chaos unit, E5 P1 M4. '[Ganking] (I can move from battlefield to battlefield.) The third time I move in a turn, you score 1 point.' 383.1.b caps each Yasuo at one point a turn however many times he moves, so the three copies are three points and a fourth copy is barred by 103.2.b anyway."
+        },
+        {
+          "card": "SFD-204",
+          "quantity": 2,
+          "role": "ready",
+          "zone": "HAND",
+          "note": "Body/Chaos spell, E1 P2. 'Ready your units.' Names no unit, so one casting readies all three Yasuo at once; two castings buy each of them its second and third Standard Move. A Signature card tagged Sivir, which forces the legend."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "SFD-203 / SFD-250 Battle Mistress, and no other legend. On the Hunt is a Signature card whose only tag is Sivir, 103.2.d.2 requires every Signature card to carry the Chosen Champion Legend's tag, and the only legends in data/cards.json carrying the Sivir tag are those two printings of Battle Mistress — both Body/Chaos, which is exactly this entry's identity. Two copies spend two of the three Signature slots 103.2.d.1 allows.",
+          "None of SFD-148, OGN-205, SFD-204 or OGN-127 appears in data/legality.json, whose only non-banned row is OGS-019 Wuju Bladesman - Starter. All are legal in constructed and in 2v2, but 489.3 sets the 2v2 Victory Score to 11 against 194.3's 8, so eight points is three short there and this line is authored for constructed."
+        ],
+        "notable": [
+          "THIS LINE PAYS EIGHT ON A BOARD THE OPPONENT HOLDS AND FIVE ON A BOARD THEY HAVE ABANDONED, AND THAT INVERSION IS THE WHOLE POINT OF IT. Unopposed, your Beginning Phase Holds both battlefields (315.2.b.2) for 2 and the three Yasuo move for 3 — five, and the two Conquers are worth nothing because 469.1 defines a Conquer as gaining Control of a battlefield 'they did not yet Score this turn' and the Hold already Scored them, while 323.9 stages a Combat only 'at each Battlefield that Contested was applied to that have Units present controlled by opposing players', so no Draven can win one. Contested, the Holds pay nothing, both battlefields become Conquer targets, and the three Dravens have a combat to win: 3 + 2 + 3 = 8. Every other finisher in this identity is switched off by the stall that makes a finisher necessary; this one is switched ON by it.",
+          "WHY THE IDENTITY HAD NOTHING BEFORE, MEASURED RATHER THAN ASSERTED. Swept over text+effect of every deckable base folded by base code, the cards that gain a point on a Conquer are exactly five — OGN-034 Tryndamere (fury), UNL-177 Ivern (order), VEN-065 / VEN-173 Swain (mind), VEN-053 Otterpus (mind, which denies an opponent's point rather than gaining one) and VEN-046 Nasus (calm). NONE is Body or Chaos. So Body/Chaos owns no conquer-side point gain at all, and its entire point budget is SFD-115 Trinity Force (Hold), SFD-214 Power Nexus (Hold), OGN-205 Yasuo (moves) and SFD-148 Draven (combat win). Drop the two Hold sources and the identity's non-Hold ceiling is 3 + 3 + 2 Conquers = EXACTLY EIGHT, with zero slack. That is why this entry runs the full three copies of both payoffs and why there is no cheaper build: 2 Draven with 3 Yasuo is 7, and 3 Draven with 2 Yasuo is 7.",
+          "EIGHT WITH ZERO SLACK, AND THE FAILURE MODE PAYS THE OPPONENT — SO THE COMBAT MUST BE BLOODLESS AND BODY IS WHAT MAKES IT SO. Draven's second sentence is 'When I die in combat, choose an opponent. They score 1 point', and 465.2.c has the defender assign 'an amount of damage equal to their summed Might', so a garrison that kills one Draven costs you one of your eight AND hands them one. OGN-127 Cannon Barrage is the answer and it is the Body half of the identity doing real work: Body, E2 + 1 Power, '[Reaction] Deal 2 to all enemy units in combat', so it clears a two-Might-or-less garrison from inside the combat, after 464.2.c.3 has designated the attackers and the garrison is known. 466.3.a then reads 'A Player has won a combat if they received either the attacker or defender designation and are the only Player that has units remaining at this battlefield during this step' — with the garrison gone you have won it with nothing assigned to your side. VEN-106 Wind and Ghosts (Chaos, E3 + 1 Power, [Action]) is the single-target version for one oversized body. Both stay in notable rather than uses because no Trigger Condition requires them: against a small enough garrison the Dravens simply win.",
+          "THREE DRAVENS AT ONE WON COMBAT ARE THREE POINTS, AND THIS IS THE SETTLED READING RATHER THAN A NEW ONE. 466.3.c: 'Units at this battlefield inherit the same combat result as their controllers' — so every Draven present wins the combat its controller won — and 383.3.e.1 caps the ability and not the player: 'Such a Triggered Ability will only be performed the specified number of times each turn. If its trigger condition would be fulfilled and it has already been performed that many times, it does not trigger.' Each copy has been performed zero times. This is the same argument draven-glorious-executioner-point carries, and draven-svellsongur-bloodless-combat-burst extends it from three objects to eight instances on one object; that entry is Calm/Chaos because Svellsongur is Calm, which is why it cannot fill this cell.",
+          "THE DRAVENS MAY SPLIT AND THE TOTAL DOES NOT MOVE, WHICH IS WHAT BUYS THE SECOND CONQUER CHEAPLY. Winning a combat at a battlefield the opponent controls IS the Conquer: 466.5 establishes Control for 'the player with Units remaining here... if they didn't already control this Battlefield' and 466.5.d makes that a Conquer. Two Dravens at one battlefield and one at the other still pays three ability Gains (each is its own 'first time'), and it pays TWO Conquers instead of one — 470 caps Scoring 'once per Battlefield per turn' and these are different battlefields. Splitting also means the three Yasuo never have to fight: they shuttle for their points instead.",
+          "THE YASUO POINTS ARE BOUGHT WITH MOVEMENT AND NOT WITH COMBAT, WHICH IS WHY THEY SURVIVE A BOARD YOU HAVE JUST TAKEN. 144.4.a and 144.4.b make base-to-battlefield and battlefield-to-base the Standard Move and 144.2 makes 'Exhausting the Unit the Cost for this action', so each Yasuo needs two extra readies for his second and third move — which is exactly the two On the Hunt. Once the Dravens have Conquered, the shuttle runs between your base and a battlefield you now control, so no Yasuo is ever an attacker and none is exposed to 465.2.c. [Ganking] is not an extra move and is not what does the work here: 810.1.c.3, 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.'",
+          "THE FORCED LEGEND IS HERSELF OPPONENT-GATED, WHICH IS A COINCIDENCE WORTH STATING. Battle Mistress prints 'When you recycle a rune, you may exhaust me to play a Gold gear token exhausted. When one or more enemy units die, ready me.' The second sentence pays only where there are enemy units to kill — the same board this whole entry needs — and it refunds the exhaust her Gold ability spends, so on a contested board she ramps toward the ten Power this line costs and on an empty board she does not. The identity's Signature card, its point sources and its legend all want the same board.",
+          "COST, COUNTED WHOLE, AND IT IS THE MOST EXPENSIVE THING ABOUT THIS ENTRY. 3 Draven at 6 Energy + 1 Chaos Power, 3 Yasuo at 5 Energy + 1 Chaos Power, 2 On the Hunt at 1 Energy + 2 Power: 35 ENERGY AND 10 POWER across eight copies of three names, plus 2 Energy + 1 Power if Cannon Barrage is held up. That is heavier than trinity-force-yasuo-battle-mistress-hold-and-moves, the identity's other CHAIN, and it buys the same eight points — the difference is which board they arrive on, and that is the only reason to run this one. A comparable Fury/Chaos pile of six bodies was refused elsewhere in this lane at 39 Energy and 9 Power because that identity already had a nine-point Conquer BURST; Body/Chaos has nothing that survives a stall, so the same price buys something here that it did not buy there."
+        ]
+      },
+      "steps": [
+        "The board this is for: the opponent controls both battlefields and garrisons them. Your Beginning Phase Holds nothing, so 315.2.b.2 pays you zero and both battlefields are still unScored this turn.",
+        "Main Phase. Standard-move the three Draven onto the opponent's battlefields — two to one, one to the other. 450: 'The Destination becomes Contested if it is an Uncontested Battlefield not controlled by the controller of the Unit or Units that moved', and 323.9 then stages a Combat at each, because units of opposing players are present.",
+        "If either garrison could assign lethal to a Draven, answer it from inside the combat: OGN-127 Cannon Barrage at [Reaction] speed deals 2 to all enemy units in combat, after the attackers have been designated (464.2.c.3) so the garrison is already known.",
+        "Both combats resolve with only your units remaining. 466.3.a gives you the win at each; 466.3.c passes that result to every Draven present, and 383.3.e.1 lets each copy's 'first time I win a combat each turn' fire on its own count — THREE ability Gains (194.1.c).",
+        "466.5 establishes Control at each battlefield and 466.5.d makes each a Conquer, which 469.1 and 471.1 pay — TWO Score points, one per battlefield, 470 being satisfied because they are different battlefields. Running total: five.",
+        "With both battlefields now yours, shuttle each Yasuo between your base and one of them: move (144.4.a, exhausting by 144.2), cast On the Hunt to ready all three, move back (144.4.b), cast the second On the Hunt, move again.",
+        "Each Yasuo's third move of the turn pays: THREE more ability Gains for EIGHT points in one turn, across two Conquers and six ability Gains, with no opponent turn in between — a CHAIN by this project's definition rather than a BURST, since no single scoring event reaches eight."
+      ],
+      "terminatesIn": "eight points in one turn on a contested board — three Draven combat wins, two Conquers and three Yasuo third-moves — for 35 Energy and 10 Power; the same board unopposed yields only five, which is the entry's reason to exist",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12, issue #200 synthesis lane (docs/phase0/walks/2026-09-12-synthesised-lines.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-12",
+          "quote": "466.3.a: 'A Player has won a combat if they received either the attacker or defender designation and are the only Player that has units remaining at this battlefield during this step.' 466.3.c: 'Units at this battlefield inherit the same combat result as their controllers' 383.3.e.1: 'Such a Triggered Ability will only be performed the specified number of times each turn. If its trigger condition would be fulfilled and it has already been performed that many times, it does not trigger.' 323.9: 'Mark a Combat as Staged at each Battlefield that Contested was applied to that have Units present controlled by opposing players.' 469.1: 'Conquer: A player gains Control of a Battlefield they did not yet Score this turn.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.'"
+        }
+      ],
+      "rulesVersion": "2026-07-16"
     }
   ]
 }
