@@ -1806,3 +1806,174 @@ Equipment's `[Effect]` half, and `UNL-096 Hunter's Machete` is the counter-examp
 `.scratch-rules/survey.mjs`, `.scratch-rules/audit17.mjs` (**§36.7: compound quotes are false
 positives; do not re-patch**), `.scratch-rules/val16.ts`, `.scratch-rules/legend16.ts`, and new this
 batch `.scratch-rules/kwread.mjs` (the keyword-reader sweep behind §36.5).
+
+## 37. Batch 26 — the range's real boundaries, `653`–`715` measured spent, `763.1` checked against the pool, and the `741`–`749` Counters block
+
+No new entry. This batch is three measured empties, one data check that came out clean, and one
+**diagnosed-but-unapplied** correction five days old — which is the honest result and is recorded here
+rather than forced into a line.
+
+### 37.1 The range label "500–829" is wrong: **the Core Rules jump from 489 to 649**
+
+Measured 2026-09-12. `grep -nE "^[[:space:]]*[56][0-9]{2}\.[[:space:]]" data/Riftbound-Core-Rules-2026-07-16.txt`
+returns **exactly four headings — `649` `650` `651` `652`, the Conceding block** — and the heading
+immediately below them is `489. 2v2 (Magma Chamber)`. There is **nothing between 490 and 648**.
+
+So this lane's range has always really been **649–829**, which is why its Example-filtered vein was
+declared spent so early: the manager's partition (73 rows in 100–299, 163 in 300–499, 31 in 500–829)
+looked lopsided and is not — the third slice is a third the size of the others because a third of its
+numbers do not exist. The 500s and 600s that this project *does* cite (`601.1.c.1`–`.c.3`, the sideboard
+rules `checkBuild` scores) are in the **Tournament Rules**, a separate numbering space running 000–700s
+whose content is procedure — Deck Registration, Sideboard, Match, Concessions, Judge Calls — not gameplay.
+**Do not look for combo material in Core Rules 490–648; there is none to find.**
+
+`649`–`652` themselves are the removal-of-a-player procedure (banish their permanents, replace their
+battlefield with a blank token, counter their spells, pass Focus and Priority on). Uncited, correctly:
+nothing in a two-player Duel reaches it, and `652.2.a` — *"If it was in use, Replace it with a token
+battlefield with no abilities"* — is the only paragraph with any game content, and it needs a third
+player.
+
+### 37.2 `653`–`715` is **SPENT**, and the measurement is the deliverable
+
+Re-derived with a bare-three-digit regex over `combos.json` + `synergies.json` (§34.6: `kw.mjs` cannot
+see a top-level rule cited bare, and the `nb 0` column of `survey.mjs` is the same artifact — **every one
+of the seventeen rows it listed here was a false positive**). The true citation counts:
+
+`703` **125** · `709` **111** · `702` **73** · `710` **40** · `714` **40** · `705` **35** · `713` **25** ·
+`708` **16** · `711` **13** · `715` **11** · `706` 4 · `701` 3 · `704.1` 3 · `705.1` 2.
+
+**Uncited in 653–715, exhaustively: `700`, `702.1`, `704`, `707`, `712`** — and all five are either a
+section heading with no content (`700` *"Additional Rules"*, `706`/`712` are just the words *"Mighty"*
+and *"Bonus Damage"*, `704` and `707` one-line definitions their sub-rules do the work for) or `702.1`,
+which tells you a buff can be tracked *"with a buff reminder card from a Riftbound booster pack or with
+any spare object in your surroundings"* — a physical-play note with no game content. §34.7 had already
+set `704`, `704.1` and `707` aside; this closes the rest of the block with numbers.
+
+### 37.3 `763.1` prints the canonical tag list, and it matches the pool **127 to 127** — with one artifact that is Riot's
+
+> **763.** When instructed to name a tag, a player cannot choose to name a tag that does not exist on
+> cards or tokens in Riftbound.
+> **763.1.** The following tags exist in Riftbound: …
+
+Nobody had checked that list against our data. Done 2026-09-12 by `.scratch-rules/tagcheck.mjs`, which
+**extracts the list from the rules file between the `763.1` and `764` anchors rather than typing it** (the
+apostrophe in *Kai'Sa* breaks a shell-quoted literal, and a typed list is the failure class this lane
+keeps paying for):
+
+- `763.1` splits into **128** comma-separated entries; the pool prints **127** distinct tags.
+- **In the pool and not in `763.1`: one — `Miss Fortune`.**
+- **In `763.1` and not in the pool: two — `Miss` and `Fortune`.**
+
+So the correspondence is **exact**, and the single discrepancy is a **spurious comma in Riot's own rules
+text**: `763.1` writes *"Mel, **Miss, Fortune**, Morgana"*. Measured: **8 printings carry `Miss Fortune`
+as one tag** (Miss Fortune Captain, Miss Fortune Buccaneer, Bounty Hunter, Bullet Time) and **zero cards
+carry a tag `Miss` or a tag `Fortune`.**
+
+**The card that reads the list refutes the typo itself.** `UNL-138 The List` (*"As you play this, name a
+tag"*) prints the reminder *"(For example, **Miss Fortune**, Demacia, and Poro are tags.)"* — so rule 002
+(card text beats rules text) settles it from the card side, and no reading needs to be filed. This is the
+same shape as the `383.1.b` / `OGN-118` discrepancy already registered in this project: **a defect in
+Riot's rules text, registered and never put into `data/errata.json`**, whose find-string failure is the
+only mechanism keeping our card text honest.
+
+Same run, a free integrity check: the synergy layer uses **eight** `partner.tags` — `Bird`, `Cat`, `Dog`,
+`Dragon`, `Equipment`, `Ivern`, `Mech`, `Poro` — and **all eight are printed by real cards**, so
+`763`'s "cannot name a tag that does not exist" has nothing to catch there either.
+
+The rest of the naming block is already covered and this batch adds nothing to it: `762` (2), `762.1` (1),
+`762.2` (1) and `761.2` (3) are cited, `ashe-fallen-feline-named-lock` carries them and is careful; only
+`759`, `760`, `761` and `761.1` are uncited and all four are definitional.
+
+### 37.4 The `741`–`749` Counters block is uncited but for one stray reference, `CLAUDE.md` said so on 2026-09-07, and nobody applied it
+
+`CLAUDE.md` records, from `#187` batch 2: *"**741-749 Counters**, where **745.2** is the general form of
+`702.2.b.2` and **748** (*"Game Objects that change zones to a non-board zone lose all of their
+Counters"*) is the real rule behind buff recovery — both better citations than the `702.x` this project
+currently uses."* Measured again on 2026-09-12: **`741` 0 · `742` 0 · `743` 1 · `744` 0 · `745` 0 ·
+`745.1` 0 · `745.2` 0 · `746` 0 · `747` 0 · `748` 0 · `749` 0**, against **`702.2.b.2` 14**. Five days on,
+the block is exactly as uncited as when it was diagnosed. **This is the diagnosed-but-unapplied class this
+project names repeatedly; it is reported to the manager with the target list rather than left as prose.**
+
+**The upgrade has a large, concrete blast radius.** Eight cards carry the mechanic and **26 entries use
+them**: `OGN-146 Wallop` (5) · `OGN-153 Overt Operation` (5) · `OGN-207 Call to Glory` (4) ·
+`SFD-101 Fae Dragon` (4) · `OGN-228 Vanguard Helm` (4) · `OGN-282 Monastery of Hirana` (2) ·
+`OGN-147 Wildclaw Shaman` (1) · `OGN-269 The Boss` (1).
+
+**What `745.2` actually settles, and it is worth a sentence in each of them.** Five cards print *"spend a
+buff"* with **no owner stated** — Wallop, Wildclaw Shaman, Call to Glory, Monastery of Hirana, and Fae
+Dragon's *"When you spend a buff"* trigger. `745.2` is the rules-level guarantee that an unqualified
+spend can only take a counter off **your own** board: *"In order to spend a Counter, the spending player
+must control the Game Object the Counter is placed on."* Nothing on those five cards says it; the rules
+do, and that is exactly why none of them has ever had to.
+
+### 37.5 REFUSED with the arithmetic — the one line that could make `745.2` bite, and why it collapses
+
+`745.2` keys on **controlling the object**, `749` says *"Counters do not have a controller"*, and `748`
+takes counters only on a change to a **non-board** zone — so a change of **control** is not a zone change
+and **a buff survives a theft and becomes the thief's to spend.** That is the exact complement of batch
+22's finding for Equipment, and the two belong in one sentence:
+
+> **An Equipment's Control does NOT follow its carrier (`718.5.f`); a buff's spendability DOES
+> (`745.2` + `749`).** Steal an equipped body and the opponent keeps a card they cannot use; steal a
+> **buffed** body and its buff is yours to spend, because a counter has no controller of its own and the
+> gate is on the object. `UNL-140 Conscription` recalls the stolen unit to your base, which is a board
+> location, so `748` never fires and the buff rides along.
+
+**And the line that would exploit it does not exist.** Getting a buff onto a body you do **not** control
+needs a card that buffs an enemy, and the pool prints exactly two candidates:
+
+- `OGN-283 Navori Fighting Pit` — *"When you **hold** here, buff a unit here"*, unrestricted as to side —
+  **and it provably cannot reach an enemy.** `315.2.b.2` Holds only battlefields you Control, and an
+  enemy body present at one applies Contested (`190.3.a.1`) and stages a Combat (`323.9`) that resolves
+  before your Beginning Phase; `466.1.a.2` sends surviving attackers home. There is no state in which you
+  Hold a battlefield with an enemy unit standing on it, so *"a unit here"* is always one of yours.
+- `UNL-201 Voidreaver` — *"Spend 1 XP, exhaust: [Buff] a unit"*, genuinely unrestricted, Body/Chaos legend,
+  legal beside mono-Chaos Conscription.
+
+**Voidreaver's version collapses on ordering, not on rules.** `703` makes the buff +1 Might, which pushes
+a Might-3 target to 4 and breaks Conscription's own gate (*"an enemy unit at a battlefield with 3 Might or
+less"*), so you must also pay its 5-XP lift — 6 XP and an exhaust in total, with `824.1.d` and `730.2`
+switching off every `[Level N]` rung you were standing on. And the whole construction is pointless:
+**steal first and buff afterwards** and you control the body when the counter is placed, for 1 XP and no
+lift. So `745.2`'s restriction is never binding in this pool in the direction a line would want.
+
+Where it **is** binding is defensive and is not a line: if the opponent steals **your** buffed unit, the
+buff rides to them and you can no longer spend it. **Scope: the current pool**, and the condition to
+re-check is a set printing a cheap unrestricted enemy-buffer or a buff that is worth more than the body.
+
+### 37.6 HANDOFF — rc-walk-blocks, 649–829, after batch 26
+
+**Staged and unmerged in `/tmp/rc-walks/rc-walk-rules.json`:** still just
+`marai-spire-syndra-granted-repeat-discount` (batch 25). Nothing added this batch.
+
+**State of the real range (649–829), all re-derived with the bare-digit regex, not inherited:**
+
+| slice | state |
+|---|---|
+| `649`–`652` | Conceding. Uncited and **correctly so** — needs a third player (§37.1). |
+| `653`–`715` | **SPENT.** Five uncited rows, all definitional or physical-play notes (§37.2). |
+| `716`–`727` | Closed end to end by §34 / §35. |
+| `728`–`739` | XP and Additional Turns. `734`–`738` cited (`CLAUDE.md` carries Riot's Time Warp arithmetic); uncited leftovers are `728`, `729.1`, `729.1.a`, `729.2`, `730`, `732`, `739` — marking, public information, teammates. |
+| `740` | `740.1.b` (*enemies*), `740.3`, `740.4`, `740.4.a`, `740.4.a.2`, `740.4.a.2.a` uncited; the last is a **citation upgrade only**, `204.3.b` is primary (§30). |
+| `741`–`749` | **UNCITED**, save one stray reference to `743`. Citation upgrade across 26 entries (§37.4); the exploit refused (§37.5). |
+| `750`–`755` | Cited except `751`, `752`, `753`, `753.2`. `753.2` is the only one with content (*"may not make new choices … if there aren't legal choices"*). |
+| `756`–`767` | Untargetability and Ignoring, both cited and both walked. |
+| `759`–`763` | Naming. Covered except four definitional rows; `763.1` checked against the pool (§37.3). |
+| `801`–`829` | Read end to end by §24–§26, §34, §35, §36. |
+
+**Where the next session should go, in order:**
+
+1. **§33 lead 2 — `SFD-193 Grandmaster at Arms`. Re-scoped by this batch: the free-reattach angle is
+   TAKEN** (`jax-grandmaster-warmogs-buff`, `jax-grandmaster-brutalizer-refresh`,
+   `royal-entourage-grandmaster-warmogs-two-conquers`, `aphelios-jax-quickdraw-attach`). What is **not**
+   taken is the `718.5.f` theft-recovery in Calm/Body, and the reading that his two abilities are split on
+   exactly the state `718.1` defines, with the **attached** one FREE and the **detached** one costing
+   1 Energy — an inversion that `718.2` / `721.2` explain, because an attached Equipment's own `[Equip]`
+   is Inactive and his free ability is the only thing that can move it.
+2. `753.2`, and `740.1.b` if a line ever turns on the definition of *enemy*.
+3. **The Tournament Rules as a separate vein** (§37.1) — procedure, not combos, but it is where the
+   `checkBuild` rules live and it has never been surveyed by this lane.
+
+**New script this batch:** `.scratch-rules/tagcheck.mjs` (§37.3), which extracts `763.1` from the rules
+file between anchors and diffs it against `data/cards.json`. Untracked, on this machine. Re-run it after
+every set: it is a one-second check that the pool and Riot's own tag list still agree.
