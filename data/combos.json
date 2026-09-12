@@ -18698,7 +18698,7 @@
           "title": "Riot gallery card text (data/corpus_flat.txt, 2026-09-04, errata applied)",
           "kind": "riot",
           "date": "2026-09-04",
-          "quote": "OGN-025 | Blind Fury | Spell | Fury | E4 P2 | [Action] (Play on your turn or in showdowns.) Each opponent reveals the top card of their Main Deck. Choose one and banish it, then play it, ignoring its cost. Then recycle the rest. / VEN-113 | Kennen, Storm of Shuriken | Unit | Chaos | E3 P1 M4 | When you play me, [Burn 2]. When I conquer, give a spell in your trash [Flow] equal to its cost this turn."
+          "quote": "OGN-025 | Blind Fury | Spell | Fury | E4 P2 | [Action] (Play on your turn or in showdowns.) Each opponent reveals the top card of their Main Deck. Choose one and banish it, then play it, ignoring its cost. Then recycle the rest. / VEN-113 | Kennen, Storm of Shuriken | Unit | Chaos | E3 P1 M4 | When you play me, [Burn 2]. (Put the top 2 cards of your Main Deck into your trash.) When I conquer, give a spell in your trash [Flow] equal to its cost this turn. (You may play it from your trash for its Flow cost. Then banish it.) [Tags: Yordle, Kennen]"
         },
         {
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
@@ -19813,7 +19813,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "817.1.c: 'The trigger is the permanent entering the Board.' 817.1.b: 'It is functionally short for \"When this is played, predict.\"' 436.4.a: 'The Player will not perform a Burn Out as a result of Predicting with too few cards in their DECK.' 416.1.a: 'Main Deck cards are Recycled to the Main Deck.'"
+          "quote": "817.1.c: 'The trigger is the permanent entering the Board.' 817.1.b: 'It is functionally short for \"When this is played, predict.\"' 436.4.a: 'The Player will not perform a Burn Out as a result of Predicting with too few cards in their deck.' 416.1.a: 'Main Deck cards are Recycled to the Main Deck.'"
         },
         {
           "title": "Issue #153 (GitHub)",
@@ -19963,7 +19963,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "315.1.b: '1. The Turn Player readies all Game Objects they control that are able to be readied.' 315.2.a.1: 'At the start of Beginning Phase game effects take place.' 315.2.b.2: '1. The Turn Player Holds all Battlefields they Control.' 816.1.b: 'It is functionally short for \"At the start of this permanent's controller's Beginning Phase, [kill this], before scoring.\"'"
+          "quote": "315.1.b: '1. The Turn Player readies all Game Objects they control that are able to be readied.' 315.2.a.1: 'At the start of Beginning Phase game effects take place.' 315.2.b.2: '1. The Turn Player Holds all Battlefields they Control.' 816.1.b: 'It is functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this.\"'"
         },
         {
           "title": "Issue #153 (GitHub)",
@@ -20051,7 +20051,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "465.2.c.4: '...than the minimum required to CONSTITUTE LETHAL DAMAGE UNLESS NO FURTHER UNITS REMAIN TO HAVE DAMAGE ASSIGNED...' 194.1.c: 'Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more [points].' 470: 'A player may only Score, from either method, once per Battlefield per turn.' 702.2.b.2: 'A player can only spend buffs on units they control.'"
+          "quote": "465.2.c.4: '...than the minimum required to constitute lethal damage unless no further units remain to have damage assigned...' 194.1.c: 'Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more points.' 470: 'A player may only Score, from either method, once per Battlefield per turn.' 702.2.b.2: 'A player can only spend buffs on units they control.'"
         },
         {
           "title": "Issue #153 (GitHub)",
@@ -20127,7 +20127,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "419.3: 'Game effects may result in cards being played as part of their resolution.' 419.3.a: 'This treats Play as a Limited Action.' 419.4.a: '...has been completed by THE RESOLUTION OF THE CARD.' 108.6.c: Banishment 'represents cards that have been removed from play in a more difficult-to-recover way'."
+          "quote": "419.3: 'Game effects may result in cards being played as part of their resolution.' 419.3.a: 'This treats Play as a Limited Action.' 419.4.a: '...has been completed by the resolution of the card.' 108.6.c: Banishment 'Represents cards that have been removed from play in a more difficult-to-recover way...'"
         },
         {
           "title": "Issue #153 (GitHub)",
@@ -20606,7 +20606,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "206: 'Effects that need to determine a card s cost for any purpose always use its PRINTED OR COPIED cost, even if that cost is increased, decreased, or ignored as the card is played.' 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' 185: 'Tokens are not cards.' 186.1: 'If a token is put into any Non-Board Zone besides the chain, it ceases to exist immediately after moving to its new zone.'"
+          "quote": "206: 'Effects that need to determine a card's cost for any purpose always use its printed or copied cost, even if that cost is increased, decreased, or ignored as the card is played.' 355.2.a: 'By default, Valid locations include the controller's Base or a Battlefield the controller controls.' 185: 'Tokens are not cards.' 186.1: 'If a token is put into any Non-Board Zone besides the chain, it ceases to exist immediately after moving to its new zone.'"
         },
         {
           "title": "Issue #153 (GitHub)",
@@ -21444,7 +21444,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "709: 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater. Example: A Unit with Might 5 that gets +1 [M] does not become Mighty, because it was already Mighty.' 144.2: 'Exhausting the Unit is the Cost for this action.' 813.1.c.1: a [Reaction] card 'can be played during Closed States on any player's turn.'"
+          "quote": "709: 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater. ... Example: A Unit with Might 5 that gets +1 [M] does not become Mighty, because it was already Mighty.' 144.2: 'Exhausting the Unit is the Cost for this action.' 813.1.c.1: a [Reaction] card 'can be played during Closed States on any player's turn.'"
         },
         {
           "title": "Issue #153 (GitHub)",
@@ -21530,7 +21530,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified. Example: A token unit is a unit ... can be chosen or otherwise affected by spells or abilities that choose or affect units.' 383.1.b: 'If an ability triggers “the [Nth] time” something happens and that trigger condition is met multiple times simultaneously, the ability's controller picks one of those instances to serve as the trigger condition. The ability triggers only once, due to the chosen condition.' 383.2.c.2: 'A Game Object will not be able to successfully evaluate its Trigger Condition, however, if it leaves the zone that its Trigger is active from at the same time that its Trigger is satisfied.'"
+          "quote": "185.2.d: 'Tokens have a type. They follow all rules for their type unless otherwise specified. Example: A token unit is a unit ... can be chosen or otherwise affected by spells or abilities that choose or affect units, etc.' 383.1.b: 'If an ability triggers “the [Nth] time” something happens and that trigger condition is met multiple times simultaneously, the ability's controller picks one of those instances to serve as the trigger condition. The ability triggers only once, due to the chosen condition.' 383.2.c.2: 'A Game Object will not be able to successfully evaluate its Trigger Condition, however, if it leaves the zone that its Trigger is active from at the same time that its Trigger is satisfied.'"
         },
         {
           "title": "Issue #153 (GitHub)",
@@ -24408,7 +24408,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 822.1.b: '[Ambush] is functionally short for \"I may be played to a battlefield where you control Units\" and \"I have [Reaction] as long as I'm being played to a battlefield where you control Units.\"' 316.5.b: 'This is denoted as a Neutral Open State, and only the Turn Player has the ability to play spells or activate abilities.' 167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.' 195: 'A player also wins the game if an effect instructs them to do so.'"
+          "quote": "813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 822.1.b: 'It is functionally short for \"I may be played to a battlefield where you control Units\" and \"I have [Reaction] as long as I'm being played to a battlefield where you control Units.\"' 316.5.b: 'This is denoted as a Neutral Open State, and only the Turn Player has the ability to play spells or activate abilities.' 167: 'Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn.' 195: 'A player also wins the game if an effect instructs them to do so, or if they are the only player remaining in the game.'"
         },
         {
           "title": "Issue #161 (GitHub)",
@@ -27577,7 +27577,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "709: 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater. Example: A Unit with Might 5 that gets +1 [M] does not become Mighty, because it was already Mighty.' 702.2.a: 'To Buff a Unit, a player chooses a Unit and then places a buff on it. That Unit is Buffed for as long as the buff remains on it.' 430.3: 'If there aren't sufficient runes in the Rune Deck, channel as many as possible.'"
+          "quote": "709: 'A Unit \"becomes Mighty\" at the moment its Might changes from being less than 5 to being 5 or greater. ... Example: A Unit with Might 5 that gets +1 [M] does not become Mighty, because it was already Mighty.' 702.2.a: 'To Buff a Unit, a player chooses a Unit and then places a buff on it. That Unit is Buffed for as long as the buff remains on it.' 430.3: 'If there aren't sufficient runes in the Rune Deck, channel as many as possible.'"
         },
         {
           "title": "Issue #161 (GitHub)",
@@ -28669,7 +28669,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 203.3: 'If the game action associated with a Cost is impossible for any reason such that a player cannot [complete it]...' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 144.2: 'Exhausting the Unit is the Cost for this action.'"
+          "quote": "381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 203.3: 'If the game action associated with a Cost is impossible for any reason such that a player cannot perform it...' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 144.2: 'Exhausting the Unit is the Cost for this action.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -28860,7 +28860,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "340.1: 'The newest Finalized Chain Item resolves. Execute its game effects in their entirety.' 337.1.b: 'Chain Items are Finalized in the order they were appended to the Chain.' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.' 356.6: 'Energy and Power costs can't be reduced below 0.' 203.3: 'If the game action associated with a Cost is impossible for any reason such that a player cannot [complete it]...' 383.3.b.1: 'The cost must be paid in order to finalize the Triggered Ability to the Chain.'"
+          "quote": "340.1: 'The newest Finalized Chain Item resolves. Execute its game effects in their entirety.' 337.1.b: 'Chain Items are Finalized in the order they were appended to the Chain.' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.' 356.6: 'Energy and Power costs can't be reduced below 0.' 203.3: 'If the game action associated with a Cost is impossible for any reason such that a player cannot perform it...' 383.3.b.1: 'The cost must be paid in order to finalize the Triggered Ability to the Chain.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -28924,7 +28924,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.' 340.1: 'The newest Finalized Chain Item resolves. Execute its game effects in their entirety.' 383.3.b.1: 'The cost must be paid in order to finalize the Triggered Ability to the Chain.' 203.3: 'If the game action associated with a Cost is impossible for any reason such that a player cannot [complete it]...' 465.2.b: 'Sum the Might of all Defending Units.'"
+          "quote": "806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.' 340.1: 'The newest Finalized Chain Item resolves. Execute its game effects in their entirety.' 383.3.b.1: 'The cost must be paid in order to finalize the Triggered Ability to the Chain.' 203.3: 'If the game action associated with a Cost is impossible for any reason such that a player cannot perform it...' 465.2.b: 'Sum the Might of all Defending Units.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -29828,7 +29828,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "820.2.a: 'Choices made for the additional execution do not have to be the same as the choices made' for the first. 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or [ability].' 423.1.a.1: 'A Stunned Unit can not be Stunned again.' 423.1.a.2: 'Stunned Units lose the Stunned status during step 3d of the end of turn cleanup.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.'"
+          "quote": "820.2.a: 'Choices made for the additional execution do not have to be the same as the choices made' for the first. 820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or ability.' 423.1.a.1: 'A Stunned Unit can not be Stunned again.' 423.1.a.2: 'Stunned Units lose the Stunned status during step 3d of the end of turn cleanup.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -29894,7 +29894,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "420.3.a: 'The Cost is Exhausting one or more Units.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the [Battlefield].' 464.2.c.3.a: 'If a Unit controlled by the Attacker or Defender becomes present at this Battlefield after this moment, it will gain the Attacker or Defender designation that caused it to become present, as appropriate for its controller.' 319.8: 'After a Move is completed.' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 814.1.c: 'While I am a defender, I have +X [M].'"
+          "quote": "420.3.a: 'The Cost is Exhausting one or more Units.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' 464.2.c.3.a: 'If a Unit controlled by the Attacker or Defender becomes present at this Battlefield after this moment, it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present, as appropriate for its controller.' 319.8: 'After a Move is completed'. 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 814.1.c: 'While I am a defender, I have +X [M].'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -29959,7 +29959,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "190.3.a: 'Contested is a temporary status applied to the battlefield when a Unit controlled by a Player who does not currently Control that Battlefield Moves or otherwise becomes present there.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the [Battlefield].' 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' 423.1.a.2: 'Stunned Units lose the Stunned status during step 3d of the end of turn cleanup.' 814.1.c: 'While I am a defender, I have +X [M].' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 447.2.a: 'In Modes of Play with more than two players, Battlefields with Staged Combats or Combats in Progress are Invalid Destinations...' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.'"
+          "quote": "190.3.a: 'Contested is a temporary status applied to the battlefield when a Unit controlled by a Player who does not currently Control that Battlefield Moves or otherwise becomes present there.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' 423.1.a.2: 'Stunned Units lose the Stunned status during step 3d of the end of turn cleanup.' 814.1.c: 'While I am a defender, I have +X [M].' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 447.2.a: 'In Modes of Play with more than two players, Battlefields with Staged Combats or Combats in Progress are Invalid Destinations...' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -30031,7 +30031,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "103.2.d.2 (a Signature card must share a champion tag with the Chosen Champion legend). 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 143.4: 'Units enter the Board exhausted.' 143.4.a: 'This can be altered by Accelerate or similar game effects.' 420.3.a: 'The Cost is Exhausting one or more Units.' 814.1.c: 'While I am a defender, I have +X [M].' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present.' 319.8: 'After a Move is completed.'"
+          "quote": "103.2.d.2 (a Signature card must share a champion tag with the Chosen Champion legend). 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 143.4: 'Units enter the Board exhausted.' 143.4.a: 'This can be altered by Accelerate or similar game effects.' 420.3.a: 'The Cost is Exhausting one or more Units.' 814.1.c: 'While I am a defender, I have +X [M].' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present...' 319.8: 'After a Move is completed'."
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -30096,7 +30096,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' 423.1.c: 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might value to be killed.' 465.2.c.3 (lethal must be assigned to a unit before moving to the next). 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any [player's] turn.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 822.1.b: 'I may be played to a battlefield where you control Units.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'"
+          "quote": "423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.' 423.1.c: 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might value to be killed.' 465.2.c.3 (lethal must be assigned to a unit before moving to the next). 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any player's turn.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 822.1.b: 'I may be played to a battlefield where you control Units'. 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -30162,7 +30162,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "811.1.b: '...you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' 813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 811.1.d.2: 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible.' 383.3.b.1: 'The cost must be paid in order to finalize the Triggered Ability to the Chain.' 383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any [player's] turn.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.'"
+          "quote": "811.1.b: '...you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' 813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 811.1.d.2: 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible.' 383.3.b.1: 'The cost must be paid in order to finalize the Triggered Ability to the Chain.' 383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any player's turn.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 423.1.b: 'A Stunned Unit does not contribute its might to damage in the combat damage step.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -31239,7 +31239,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "811.1.b: '...Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' 813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 811.1.d.1: 'A hidden permanent must be played to that battlefield.' 811.1.d.2: 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible.' 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present.' 319.6: 'After any number of Game Objects enter or leave the Board.' 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 144.1.b: 'This action cannot be performed during a Closed State.'"
+          "quote": "811.1.b: '...Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' 813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 811.1.d.1: 'A hidden permanent must be played to that battlefield.' 811.1.d.2: 'If a hidden spell or a play effect of a hidden permanent chooses any targets, those targets must be chosen from among options at that battlefield, unless the ability explicitly restricts targeting in a way that makes this impossible.' 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present...' 319.6: 'After any number of Game Objects enter or leave the Board'. 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 144.1.b: 'This action cannot be performed during a Closed State.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -31445,7 +31445,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "811.1.b: '...Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' 813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 811.1.d.1: 'A hidden permanent must be played to that battlefield.' 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present.' 319.6: 'After any number of Game Objects enter or leave the Board.' 323.2.a: 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now.' 465.2.b: 'Sum the Might of all Defending Units.' 702.3: 'There can only be one Buff on a Unit at a time.' 485.4: 'Battlefield Count: 2.'"
+          "quote": "811.1.b: '...Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' 813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 811.1.d.1: 'A hidden permanent must be played to that battlefield.' 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present...' 319.6: 'After any number of Game Objects enter or leave the Board'. 323.2.a: 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now'. 465.2.b: 'Sum the Might of all Defending Units.' 702.3: 'There can only be one Buff on a Unit at a time.' 485.4: 'Battlefield Count: 2.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -32283,7 +32283,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 829.1.b.2: 'Playing a spell for its Flow cost does not change the timing at which it can be [played].' 103.2.b (three copies of a card by name). 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 355.7: 'When a card Chooses one or more specific Game Objects to affect, it is Targeted unless indicated otherwise by the rules in this section.'"
+          "quote": "829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 829.1.b.2: 'Playing a spell for its Flow cost does not change the timing at which it can be played...' 103.2.b (three copies of a card by name). 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 355.7: 'When a card Chooses one or more specific Game Objects to affect, it is Targeted unless indicated otherwise by the rules in this section.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -32347,7 +32347,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 820.2.a: 'Choices made for the additional execution do not have to be the same as the choices made' for the first. 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or [ability].' 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 144.2: 'Exhausting the Unit is the Cost for this action.'"
+          "quote": "820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 820.2.a: 'Choices made for the additional execution do not have to be the same as the choices made' for the first. 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or ability.' 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' 806.1.b: 'Action grants the corresponding card or effect permission to be played or activated during Showdowns, even when it is not the Controlling player's turn.' 144.2: 'Exhausting the Unit is the Cost for this action.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -32479,7 +32479,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any [player's] turn.' 204.3.a: 'When Costs within Instructions appear as the first part of the effect in triggered abilities, the cost is taken to be the base cost of the triggered ability. It must be paid to finalize the triggered ability.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 814.1.c: 'While I am a defender, I have +X [M].' 464.2.c.2: 'The Defender is the player who did not apply the Contested status to the Battlefield.' 190.6.d: '\"You\" in a battlefield's abilities refers to the battlefield's Controller...' 103.4.c: 'Cannot include more than one of a Battlefield of the same name...' 485.5: 'Each player randomly selects one (1) of their three (3) Battlefields.'"
+          "quote": "381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any player's turn.' 204.3.a: 'When Costs within Instructions appear as the first part of the effect in triggered abilities, the cost is taken to be the base cost of the triggered ability. It must be paid to finalize the triggered ability.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 814.1.c: 'While I am a defender, I have +X [M].' 464.2.c.2: 'The Defender is the player who did not apply the Contested status to the Battlefield.' 190.6.d: '\"You\" in a battlefield's abilities refers to the battlefield's Controller...' 103.4.c: 'Cannot include more than one of a Battlefield of the same name...' 485.5: 'Each player randomly selects one (1) of their three (3) Battlefields.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -32545,7 +32545,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any [player's] turn.' 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 808.1.d.1: 'If the Permanent with the effect is not sent to the Trash, for example because its [death was replaced]...' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 204.3.a: 'When Costs within Instructions appear as the first part of the effect in triggered abilities, the cost is taken to be the base cost of the triggered ability.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'"
+          "quote": "813.1.c.1: 'On Cards: \"This can be played during Closed States on any player's turn.\"' 383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any player's turn.' 455: 'A Recall is when a Permanent is relocated from anywhere to its Base without it being a Move.' 808.1.d.1: 'If the Permanent with the effect is not sent to the Trash, for example because its \"killed\" event was replaced with a recall...' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 204.3.a: 'When Costs within Instructions appear as the first part of the effect in triggered abilities, the cost is taken to be the base cost of the triggered ability.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -32803,7 +32803,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "431.1.c. If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player s Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction."
+          "quote": "431.1.c. If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction."
         },
         {
           "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
@@ -32943,7 +32943,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "166.2: 'Players must add Energy and Power to their Rune Pool in order to be able to spend it to play cards or pay for Abilities with costs.' 203.1: 'Paying a Cost requires a player to perform the appropriate game action: pay resources, spend counters or XP, kill units, etc.' 356.4.b: 'Discounts may say that cards \"cost [amount] less\" or that one or more of their costs are \"reduced by [amount].\"' 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or [ability].' 436.1: 'Predicting a card is the act of looking at a single card from the top of the Main Deck and choosing whether or not to Recycle it.' 436.4.a: 'The Player will not perform a Burn Out as a result of Predicting with too few cards in their deck.' 431.1.c: '...that player looks at or Reveals as many as possible, but does not Burn Out.' 702.3: 'There can only be one Buff on a Unit at a time.' 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 190.1: 'Control is established over Battlefields through the course of play.'"
+          "quote": "166.2: 'Players must add Energy and Power to their Rune Pool in order to be able to spend it to play cards or pay for Abilities with costs.' 203.1: 'Paying a Cost requires a player to perform the appropriate game action: pay resources, spend counters or XP, kill units, etc.' 356.4.b: 'Discounts may say that cards \"cost [amount] less\" or that one or more of their costs are \"reduced by [amount].\"' 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or ability.' 436.1: 'Predicting a card is the act of looking at a single card from the top of the Main Deck and choosing whether or not to Recycle it.' 436.4.a: 'The Player will not perform a Burn Out as a result of Predicting with too few cards in their deck.' 431.1.c: '...that player looks at or Reveals as many as possible, but does not Burn Out...' 702.3: 'There can only be one Buff on a Unit at a time.' 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 190.1: 'Control is established over Battlefields through the course of play.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -33008,7 +33008,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any [player's] turn.' 424.1: 'Revealing is the act of presenting a card to all players from a zone that one or more players do not have access to the information of.' 431.1.c: '...that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction.' 431.1.c.1: 'This does not cause a Burn Out, even if those instructions would cause those cards to change zones.' 464.2.c.2: 'The Defender is the player who did not apply the Contested status to the Battlefield.' 702.3: 'There can only be one Buff on a Unit at a time.' 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 416.1.a: 'Main Deck cards are Recycled to the Main Deck.'"
+          "quote": "383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any player's turn.' 424.1: 'Revealing is the act of presenting a card to all players from a zone that one or more players do not have access to the information of.' 431.1.c: '...that player looks at or Reveals as many as possible, but does not Burn Out, then proceeds with the rest of the instruction.' 431.1.c.1: 'This does not cause a Burn Out, even if those instructions would cause those cards to change zones.' 464.2.c.2: 'The Defender is the player who did not apply the Contested status to the Battlefield.' 702.3: 'There can only be one Buff on a Unit at a time.' 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 416.1.a: 'Main Deck cards are Recycled to the Main Deck.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -33080,7 +33080,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or [ability].' 702.3: 'There can only be one Buff on a Unit at a time.' 702.3.a (a buff instructed onto a unit that already has one is not placed). 416.5: 'If 2 or more cards are Recycled to the Main Deck simultaneously, they are placed on the bottom of that deck in a random order.' 416.1.a: 'Main Deck cards are Recycled to the Main Deck.' 431.1.c: '...looks at or Reveals as many as possible, but does not Burn Out.' 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 206 (a 'costs N' check reads the printed cost)."
+          "quote": "820.1.b: 'Repeat is an optional cost that a player may pay to execute the effect of their spells and abilities a second time.' 820.1.c.1: 'The Cost is an Additional Cost to be paid during the steps of playing the spell or ability.' 702.3: 'There can only be one Buff on a Unit at a time.' 702.3.a (a buff instructed onto a unit that already has one is not placed). 416.5: 'If 2 or more cards are Recycled to the Main Deck simultaneously, they are placed on the bottom of that deck in a random order.' 416.1.a: 'Main Deck cards are Recycled to the Main Deck.' 431.1.c: '...looks at or Reveals as many as possible, but does not Burn Out...' 161.2.b: 'When a Rune is Recycled it is returned to the Rune Deck, not the Main Deck.' 206 (a 'costs N' check reads the printed cost)."
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -33929,7 +33929,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "715.2. If the Deal action has multiple targets, is increased by BONUS DAMAGE INDIVIDUALLY AND SEPARATELY."
+          "quote": "715.2. If the Deal action has multiple targets, the amount of Damage dealt to each target is increased by Bonus Damage individually and separately."
         },
         {
           "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
@@ -34520,7 +34520,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "355.2.a (a unit is played to the controller's Base or a battlefield the controller controls). 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present.' 319.6: 'After any number of Game Objects enter or leave the Board.' 323.2.a: 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now.' 807.1.c ([Assault] is functionally short for 'While I am an attacker, I have +X [M]'). 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any [player's] turn.' 811.1.b: '...Beginning on the next turn, this gains [Reaction]...' 822.1.b: 'I may be played to a battlefield where you control Units.'"
+          "quote": "355.2.a (a unit is played to the controller's Base or a battlefield the controller controls). 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present...' 319.6: 'After any number of Game Objects enter or leave the Board'. 323.2.a: 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now'. 807.1.c ([Assault] is functionally short for 'While I am an attacker, I have +X [M]'). 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 383.3.c: 'Triggered Abilities can be put on the Chain during Closed States or Open States on any player's turn.' 811.1.b: '...Beginning on the next turn, this gains [Reaction]...' 822.1.b: 'I may be played to a battlefield where you control Units'."
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -34884,7 +34884,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "355.10.d. It is programmatically selected based on its characteristics rather than chosen BY THE SPELL OR ABILITY S CONTROLLER."
+          "quote": "355.10.d. It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller."
         },
         {
           "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-cards.md), issue #171",
@@ -35588,7 +35588,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "190.3.a: 'Contested is a temporary status applied to the battlefield when a Unit controlled by a Player who does not currently Control that Battlefield Moves or otherwise becomes present there.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the [Battlefield].' 355.10.e: 'It is part of a set of objects chosen in whole or in part by other players.' 814.1.c: 'While I am a defender, I have +X [M].' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 420.3.a: 'The Cost is Exhausting one or more Units.' 465.2.b: 'Sum the Might of all Defending Units.'"
+          "quote": "190.3.a: 'Contested is a temporary status applied to the battlefield when a Unit controlled by a Player who does not currently Control that Battlefield Moves or otherwise becomes present there.' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' 355.10.e: 'It is part of a set of objects chosen in whole or in part by other players.' 814.1.c: 'While I am a defender, I have +X [M].' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 420.3.a: 'The Cost is Exhausting one or more Units.' 465.2.b: 'Sum the Might of all Defending Units.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -36461,7 +36461,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "144.2: 'Exhausting the Unit is the Cost for this action.' 420.3.a: 'The Cost is Exhausting one or more Units.' 143.4: 'Units enter the Board exhausted.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status...' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the [Battlefield].' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 477.3.e.2.a (increases apply first, decreases last). 143.2.b: 'If a unit's Might is ever less than 0, it is treated as 0 when referenced by spells and abilities, and when summing Might to be assigned as damage in the Combat Damage Step.' 465.2.b: 'Sum the Might of all Defending Units.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'"
+          "quote": "144.2: 'Exhausting the Unit is the Cost for this action.' 420.3.a: 'The Cost is Exhausting one or more Units.' 143.4: 'Units enter the Board exhausted.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status...' 464.2.c.1: 'The Attacker is the player whose unit(s) applied the Contested status to the Battlefield.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 381: 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State.' 477.3.e.2.a (increases apply first, decreases last). 143.2.b: 'If a unit's Might is ever less than 0, it is treated as 0 when referenced by spells and abilities, and when summing Might to be assigned as damage in the Combat Damage Step.' 465.2.b: 'Sum the Might of all Defending Units.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -37516,7 +37516,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "355.10.d. A Game Object that is programmatically selected based on its characteristics rather than chosen is not a target."
+          "quote": "355.10.d. It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller."
         },
         {
           "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md), issue #180",
@@ -37845,7 +37845,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "420.3.a: 'The Cost is Exhausting one or more Units.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present.' 319.8: 'After a Move is completed.' 323.2.a: 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now.' 054.1: 'Cards that forbid actions or effects, as a broad method of determination, supersede cards that allow or permit that same action or effect.' 434.1.c and 434.1.d (Effect Text and Might Bonus are appended to the carrier). 464.2.c.2: 'The Defender is the player who did not apply the Contested status to the Battlefield.' 818.1: 'Equip is an Activated Ability keyword.'"
+          "quote": "420.3.a: 'The Cost is Exhausting one or more Units.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 464.2.c.3.a: '...it will gain the Attacker or Defender designation during the Cleanup phase following the action that caused it to become present...' 319.8: 'After a Move is completed'. 323.2.a: 'If there are Units present at the Battlefield the Combat is taking place at, but do not have a designation, they gain the same designation as their Controller now'. 054.1: 'Cards that forbid actions or effects, as a broad method of determination, supersede cards that allow or permit that same action or effect.' 434.1.c and 434.1.d (Effect Text and Might Bonus are appended to the carrier). 464.2.c.2: 'The Defender is the player who did not apply the Contested status to the Battlefield.' 818.1: 'Equip is an Activated Ability keyword.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -38707,7 +38707,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "355.10.d. A Game Object that is programmatically selected based on its characteristics rather than chosen is not a target."
+          "quote": "355.10.d. It is programmatically selected based on its characteristics rather than chosen by the spell or ability's controller."
         },
         {
           "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md), issue #180",
@@ -39033,7 +39033,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "185.2.d. Tokens have a type. They follow all rules for their type unless otherwise specified. Example: A token unit is a unit. It enters exhausted, can take the standard move action, deals damage equal to its Might in combat, is destroyed if it takes damage equal to its Might."
+          "quote": "185.2.d. Tokens have a type. They follow all rules for their type unless otherwise specified. Example: A token unit is a unit. It enters exhausted, can take the standard move action, deals damage equal to its Might in combat, is destroyed if it takes damage equal to or greater than its might,"
         },
         {
           "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-uncatalogued-order.md), issue #180",
@@ -41238,7 +41238,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "206. \"Effects that need to determine a card's cost for any purpose always use its printed or copied cost, even if that cost has been altered.\""
+          "quote": "206. \"Effects that need to determine a card's cost for any purpose always use its printed or copied cost, even if that cost is increased, decreased, or ignored as the card is played.\""
         },
         {
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
@@ -43336,7 +43336,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "144.2: 'Exhausting the Unit is the Cost for this action.' 144.4.c: 'Ganking is a unique ability that affects a Unit's Standard Move.' 144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.' 136.2.d: 'Effect Text may refer to \"this\" or to the name of the Attached game object that appended the Effect Text. Doing so refers to the Attached game object and not the Top-Most Card, even if the Top-Most Card shares a name with the Attached game object.' 434.1.d: 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it.' 718.2: 'While in this state, the card's printed Rules Text is Inactive.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 818.1: 'Equip is an Activated Ability keyword.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 810.2: 'Multiple instances of Ganking are redundant.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 420.3.a: 'The Cost is Exhausting one or more Units.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.'"
+          "quote": "144.2: 'Exhausting the Unit is the Cost for this action.' 144.4.c: 'Ganking is a unique ability that affects a Unit's Standard Move'. 144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.' 136.2.d: 'Effect Text may refer to \"this\" or to the name of the Attached game object that appended the Effect Text. Doing so refers to the Attached game object and not the Top-Most Card, even if the Top-Most Card shares a name with the Attached game object.' 434.1.d: 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it.' 718.2: 'While in this state, the card's printed Rules Text is Inactive.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 818.1: 'Equip is an Activated Ability keyword.' 810.1.c.3: 'It does not give additional abilities or activations of Movement, only new options for the Standard Move.' 810.2: 'Multiple instances of Ganking are redundant.' 415.3.a: 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.' 420.3.a: 'The Cost is Exhausting one or more Units.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -45983,7 +45983,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "765: 'Some Game Effects may instruct players to ignore abilities while performing a game action or procedure.' 766: 'Any abilities ignored in this way are treated as inactive for the purposes of the game action or procedure. Example: A unit reads \"You ignore Backline while assigning combat damage here.\" While assigning combat damage in the combat damage step with this unit present, any instances of Backline on enemy units is treated as inactive. The unit's controller can assign damage to any units with Backline as if they didn't have it.' 465.2.c.6: 'A player must obey all requirements and restrictions on damage assignment if able. Example: A player is assigning damage to the following units: a unit with Tank (\"I must be assigned combat damage first.\"); a unit with Backline (\"I must be assigned combat damage last.\"); and another unit without any abilities. That player must assign combat damage first to the unit with Tank, then to the unit with no abilities, then to the unit with Backline.' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 465.2.c.4: 'Units cannot have more damage assigned to them than the minimum required to constitute lethal damage unless no further units remain to have damage assigned to them.' 805.1.a: 'Accelerate is functionally short for \"As you play me, you may pay [1][C] as an additional cost. If you do, I enter ready.\"' 144.3: 'Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units.'"
+          "quote": "765: 'Some Game Effects may instruct players to ignore abilities while performing a game action or procedure.' 766: 'Any abilities ignored in this way are treated as inactive for the purposes of the game action or procedure. ... Example: A unit reads \"You ignore Backline while assigning combat damage here.\" While assigning combat damage in the combat damage step with this unit present, any instances of Backline on enemy units is treated as inactive. The unit's controller can assign damage to any units with Backline as if they didn't have it.' 465.2.c.6: 'A player must obey all requirements and restrictions on damage assignment if able. Example: A player is assigning damage to the following units: a unit with Tank (\"I must be assigned combat damage first.\"); a unit with Backline (\"I must be assigned combat damage last.\"); and another unit without any abilities. That player must assign combat damage first to the unit with Tank, then to the unit with no abilities, then to the unit with Backline.' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.' 465.2.c.4: 'Units cannot have more damage assigned to them than the minimum required to constitute lethal damage unless no further units remain to have damage assigned to them.' 805.1.a: 'Accelerate is functionally short for \"As you play me, you may pay [1][C] as an additional cost. If you do, I enter ready.\"' 144.3: 'Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -47069,7 +47069,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "818.1: 'Equip is an Activated Ability keyword.' 818.1.b: 'Equip has a cost to activate and Attaches the card with Equip to a chosen Unit when the cost is paid.' 718.2: 'While in this state, the card's printed Rules Text is Inactive.' 718.3: 'While in this state, Abilities in the card's Effect Text are appended to the Rules Text of the Top-Most card.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 136.2.d: 'Effect Text may refer to \"this\" or to the name of the Attached game object that appended the Effect Text. Doing so refers to the Attached game object and not the Top-Most Card, even if the Top-Most Card shares a name with the Attached game object.' 434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.' 434.1.d: 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it.' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.' 055: 'When executing card text, do as much as you can, ignoring impossible instructions.'"
+          "quote": "818.1: 'Equip is an Activated Ability keyword.' 818.1.b: 'Equip has a cost to activate and Attaches the card with Equip to a chosen Unit when the cost is paid.' 718.2: 'While in this state, the card's printed Rules Text is Inactive.' 718.3: 'While in this state, Abilities in the card's Effect Text are appended to the Rules Text of the Top-Most Card.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 136.2.d: 'Effect Text may refer to \"this\" or to the name of the Attached game object that appended the Effect Text. Doing so refers to the Attached game object and not the Top-Most Card, even if the Top-Most Card shares a name with the Attached game object.' 434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.' 434.1.d: 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it.' 422.1.b: '\"When I am discarded\" abilities or other Triggered Abilities that trigger on discarding are executed after discarding has occurred.' 055: 'When executing card text, do as much as you can, ignoring impossible instructions.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -48673,7 +48673,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "449: 'Spells, Abilities, or other effects may cause a Move to occur.' 420.2.b: 'The Standard Move inherent to Units may also cause Movement.' 420.3.a: 'The Cost is Exhausting one or more Units.' 144.2: 'Exhausting the Unit is the Cost for this action.' 144.4: 'The Destinations where Units can Move to with their Standard Move are restricted:' 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction.' 431.1.b (milling past the deck Burns Out). 431.1.c: 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out.' 431.2.b: 'Recycles their trash into their Main Deck.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way, or a temporary space to hold cards while effects are being processed.'"
+          "quote": "449: 'Spells, Abilities, or other effects may cause a Move to occur.' 420.2.b: 'The Standard Move inherent to Units may also cause Movement.' 420.3.a: 'The Cost is Exhausting one or more Units.' 144.2: 'Exhausting the Unit is the Cost for this action.' 144.4: 'The Destinations where Units can Move to with their Standard Move are restricted:' 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction.' 431.1.b (milling past the deck Burns Out). 431.1.c: 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out...' 431.2.b: 'Recycles their trash into their Main Deck.' 323.6: 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there.' 829.1.b: 'It is functionally short for \"You may play this from your trash for its flow cost. Then banish it.\"' 108.6.c: 'Represents cards that have been removed from play in a more difficult-to-recover way, or a temporary space to hold cards while effects are being processed.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -51085,7 +51085,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "725.3: 'If an Attached card has an Equip ability, the Weaponmaster keyword can reference that Equip ability and any abilities that passively modify that Equip ability.' 722.1: 'Cards with Inactive text still have keywords for the sake of Game Effects that want to reference or see if a card has a keyword.' 722.2: 'Game Effects that parse or interpret text to determine target eligibility may still parse Inactive text for the sake of eligibility.' 718.2: 'While in this state, the card's printed Rules Text is Inactive.' 718.3: 'While in this state, Abilities in the card's Effect Text are appended to the Rules Text of the Top-Most card.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 724: 'Effect Text is Inactive unless the card with the Effect Text is Attached.' 719.5: 'When a Top-Most Card changes zones from a board zone to a non-board zone, all Attached cards Detach from it, remaining in their current zones.' 434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.' 434.1.f: 'Attaching a card to a new Top-Most Card will cause it to Detach from the card to which it is currently Attached.' 818.1: 'Equip is an Activated Ability keyword.'"
+          "quote": "725.3: 'If an Attached card has an Equip ability, the Weaponmaster keyword can reference that Equip ability and any abilities that passively modify that Equip ability.' 722.1: 'Cards with Inactive text still have keywords for the sake of Game Effects that want to reference or see if a card has a keyword.' 722.2: 'Game Effects that parse or interpret text to determine target eligibility may still parse Inactive text for the sake of eligibility.' 718.2: 'While in this state, the card's printed Rules Text is Inactive.' 718.3: 'While in this state, Abilities in the card's Effect Text are appended to the Rules Text of the Top-Most Card.' 721.2: 'Inactive Abilities do not trigger, do not apply, and cannot be activated. Inactive instructions are not processed.' 724: 'Effect Text is Inactive unless the card with the Effect Text is Attached.' 719.5: 'When a Top-Most Card changes zones from a board zone to a non-board zone, all Attached cards Detach from it, remaining in their current zones.' 434.1.c: 'The Top-Most card has all Effect Text of all cards Attached to it appended to its Rules Text.' 434.1.f: 'Attaching a card to a new Top-Most Card will cause it to Detach from the card to which it is currently Attached.' 818.1: 'Equip is an Activated Ability keyword.'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -55582,7 +55582,7 @@
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
           "date": "2026-07-16",
-          "quote": "RULE 370.1.a.2: 'An event can occur simultaneously with other events only when those events are all the result of the same Game Action or change in state occurring.' EXAMPLE under 370.1.a.2: 'A spell reads in part “Kill up to two units at battlefields.” When that spell resolves, the units targeted are killed simultaneously because their deaths result from the same game action.' SECOND EXAMPLE under 370.1.a.2: 'A spell reads in part “Kill a friendly unit. If you do, kill an enemy unit with no more Might than it.” When that spell resolves, the units are not killed simultaneously. There are two kill game actions being performed in the instructions of the spell. The friendly unit is killed first, followed by the enemy unit.' RULE 465.2.c.1: 'Assigning Damage is not Dealing Damage.' RULE 465.2.c.1.a: 'When all Damage is assigned, it will be Dealt simultaneously. These actions are not synonymous.' RULE 465.2.c: 'Starting with the Attacker, each player assigns an amount of damage equal to their summed Might among the other's Units.' RULE 417.1.a: 'Assigning Damage during the Combat Damage Step is not Dealing Damage, but will cause Damage to be Dealt when assignment is complete.' RULE 417.3.a: 'Assigning Damage causes Damage to be dealt outside of being directed to Deal Damage.' RULE 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' RULE 811.1.b: 'It is functionally short for \"While this card is in your hand or in your Champion Zone on your turn during an Open State, you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.\"' RULE 811.1.d.1: 'A hidden permanent must be played to that battlefield.' RULE 816.1.b: 'It is functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this.\"' RULE 383.4.a: 'Play Effects are Triggered Abilities whose Condition includes the Permanent that has the Play Effect being played to the board.' RULE 383.4.a.4: 'Abilities that trigger when another object is played are not considered Play Effects.' RULE 383.1.b: 'If an ability triggers “the [Nth] time” something happens and that trigger condition is met multiple times simultaneously, the ability's controller picks one of those instances to be the one that meets the trigger condition. The ability triggers only once.' RULE 461.1: 'If more than one Battlefield has Units controlled by opposing players at it at the same time, the Turn Player decides which Combat to resolve first.' RULE 813.1.c.1: 'On Cards: “This can be played during Closed States on any player's turn.”' RULE 485.4: 'Battlefield Count: 2'"
+          "quote": "RULE 370.1.a.2: 'An event can occur simultaneously with other events only when those events are all the result of the same Game Action or change in state occurring.' EXAMPLE under 370.1.a.2: 'A spell reads in part “Kill up to two units at battlefields.” When that spell resolves, the units targeted are killed simultaneously because their deaths result from the same game action.' SECOND EXAMPLE under 370.1.a.2: 'A spell reads in part “Kill a friendly unit. If you do, kill an enemy unit with no more Might than it.” When that spell resolves, the units are not killed simultaneously. There are two kill game actions being performed in the instructions of the spell. The friendly unit is killed first, followed by the enemy unit.' RULE 465.2.c.1: 'Assigning Damage is not Dealing Damage.' RULE 465.2.c.1.a: 'When all Damage is assigned, it will be Dealt simultaneously. These actions are not synonymous.' RULE 465.2.c: 'Starting with the Attacker, each player assigns an amount of damage equal to their summed Might among the other's Units.' RULE 417.1.a: 'Assigning Damage during the Combat Damage Step is not Dealing Damage, but will cause Damage to be Dealt when assignment is complete.' RULE 417.3.a: 'Assigning Damage causes Damage to be dealt outside of being directed to Deal Damage.' RULE 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' RULE 811.1.b: 'It is functionally short for \"While this card is in your hand or in your Champion Zone on your turn during an Open State, you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.\"' RULE 811.1.d.1: 'A hidden permanent must be played to that battlefield.' RULE 816.1.b: 'It is functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this.\"' RULE 383.4.a: 'Play Effects are Triggered Abilities whose Condition includes the Permanent that has the Play Effect being played to the board.' RULE 383.4.a.4: 'Abilities that trigger when another object is played are not considered Play Effects.' RULE 383.1.b: 'If an ability triggers “the [Nth] time” something happens and that trigger condition is met multiple times simultaneously, the ability's controller picks one of those instances to serve as the trigger condition. The ability triggers only once, due to the chosen condition.' RULE 461.1: 'If more than one Battlefield has Units controlled by opposing players at it at the same time, the Turn Player decides which Combat to resolve first.' RULE 813.1.c.1: 'On Cards: “This can be played during Closed States on any player's turn.”' RULE 485.4: 'Battlefield Count: 2'"
         }
       ],
       "rulesVersion": "2026-07-16",
@@ -56666,8 +56666,7 @@
         {
           "title": "Hand walk 2026-09-12, uncited Core Rules sub-rules 300-499, batch 11 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
           "kind": "manual-walk",
-          "date": "2026-09-12",
-          "quote": "710's worked example is Field Musicians' effect with his own numbers, and 359.2 / 359.2.a / 359.2.b were cited zero times at catalogue 757. VEN-026 was one of the eleven walkable uncatalogued deckable cards measured on 2026-09-12."
+          "date": "2026-09-12"
         }
       ],
       "rulesVersion": "2026-07-16",
