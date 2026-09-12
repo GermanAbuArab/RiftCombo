@@ -2323,3 +2323,88 @@ makes the move/kill distinction sharper rather than weaker.
 by luck: its movers are catalogued as evacuate-and-take or forced-fight because those are the uses that
 actually pay, and the one entry that reached for denial is the one that needed the qualifier. **The finding
 is the shape of the catalogue's own usage**, and it was invisible until a play priced the alternative.
+
+---
+
+## 30. Batch 23 — is "a rule living in an entry's prose, ungeneralised" worth sweeping for? No from the prose, yes from the citations
+
+rc-manager5's question, after the Hold-for-Conquer swap turned out to be sitting in two entries and in
+nothing general. **I tried it the obvious way first and it does not work, and the reason it does not work
+is the useful half.**
+
+### 30.1 The prose sweep fails, and it fails for a reason that is not fixable
+
+Predicate: a sentence in `prerequisites.notable`, `steps`, `notes` or `terminatesIn`, 90–400 characters,
+that **cites a rule** and uses **pool-or-class language** (*"every card"*, *"no card in the pool"*,
+*"the pool prints"*, *"is true of every"*, *"cannot ever"*, *"by construction"*). **971 sentences.**
+
+Clustered by claim SHAPE — base codes, card names and digits stripped, so near-duplicates collapse:
+
+| entries carrying the shape | shapes |
+|---|---|
+| 1–2 | 168 |
+| 4 | 1 |
+| 8 | 1 |
+| 10+ | 2 |
+
+The 1–2 bucket is the Hold-for-Conquer signature, and **reading it shows roughly one real general claim in
+ten.** The rest is card-specific reasoning wearing general words — *"Target Ekko, never a Recruit"*,
+*"each pass spends one Retreat"*, *"both Revelers trigger off the single combat"*. A filter cannot tell
+those from a rule, because **the thing that makes a sentence recognisable as a general rule is knowing the
+rule already. The detection problem is the discovery problem.** I found the two Hold-for-Conquer entries
+only because I had derived the swap independently in a play and then went looking.
+
+**That is the answer to the question as asked: no.** It is also why the two heavy clusters are noise in the
+other direction — the 10+ bucket is `--emit-notables` output repeated verbatim across dozens of entries,
+which is *generalised by practice* even where CLAUDE.md lacks the wording.
+
+### 30.2 The unit was wrong, and the right one is an exact join
+
+The question survives if you stop asking it of sentences and ask it of **citations**:
+
+> **Which rules does the CATALOGUE lean on that CLAUDE.md does not carry at all?**
+
+That is a one-line join and it is exact. `scripts/claude-md-gap.mjs`, with a non-vacuity line first (2,381
+headings parsed, 6.9 MB of catalogue against 478 KB of CLAUDE.md):
+
+**117 rules cited 10 or more times by the catalogue and ZERO times in CLAUDE.md**, ranked by weight — 15 of
+them cited 30+. The top of the list is not structural filler:
+
+```
+  67x  194.1.d      the Burn Out point gain
+  42x  383.4.a      Play Effects are Triggered Abilities
+  37x  136.2.c      Effect Text is appended to the Rules Text of the card it is Attached to
+  37x  383.4.d.2.a  Hold Abilities are put on the Chain after the Unit is present
+  37x  471.2        Trigger Score abilities at the Battlefield that Scored
+  35x  304          the Turn Player
+  34x  820.1.d      Repeat's long form
+  33x  355.7        "When a card Chooses ... it is Targeted unless indicated otherwise"
+  29x  811.6        a Hidden card gains Reaction while facedown
+```
+
+### 30.3 And it reproduces a shape this project has already found twice: the exception is carried, the rule is not
+
+| | catalogue | CLAUDE.md | |
+|---|---|---|---|
+| **355.7** — the definition of Targeting | 33 | **0** | the rule |
+| 355.10.d / .e / .f — its exceptions | 153 / 61 / 23 | 14 / 4 / 2 | the exceptions |
+| **136.2.c** — Effect Text appends to the carrier | 37 | **0** | the rule |
+| 136.2.d — *"this"* refers to the attached object | 66 | 4 | the exception |
+| **811.6** — a Hidden card gains Reaction | 29 | **0** | the rule |
+| 811.1.b — the keyword's long form, which CLAUDE.md quotes to *derive* it | 340 | 13 | the derivation |
+
+**This is #187 batch 18 exactly** — that lane found the catalogue citing 385.1 and 385.2 (the exception) 32
+and 50 times while 384 (the rule) was cited zero. Here it happens three more times, and the 811.6 case is
+the sharpest: CLAUDE.md derives *"every face-down card is a [Reaction] card"* by quoting the tail of
+811.1.b's long form, and **811.6 is a standalone paragraph that says it outright.**
+
+### 30.4 Standing note
+
+**Ask the question of citations, not of prose.** A general claim is invisible in a sentence and obvious in a
+citation count, because a rule the catalogue cites forty times and the project's memory cites zero times is
+a rule being re-derived per entry instead of being known. Run `node scripts/claude-md-gap.mjs [minCitations]`;
+it is cheap, it is exact, and its output is ranked so the top is worth reading first.
+
+**And the corollary is about what CLAUDE.md is for.** It is not a summary of the catalogue — it is the set of
+things a session should not have to re-derive. A rule that 40 entries cite and it omits is precisely a thing
+40 sessions did re-derive.
