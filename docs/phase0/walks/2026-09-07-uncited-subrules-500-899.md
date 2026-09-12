@@ -1977,3 +1977,168 @@ re-check is a set printing a cheap unrestricted enemy-buffer or a buff that is w
 **New script this batch:** `.scratch-rules/tagcheck.mjs` (§37.3), which extracts `763.1` from the rules
 file between anchors and diffs it against `data/cards.json`. Untracked, on this machine. Re-run it after
 every set: it is a one-second check that the pool and Riot's own tag list still agree.
+
+## 38. Batch 27 — the range is spent, so the lane crossed into the **Tournament Rules**: `505 Loops` governs this catalogue's entire INFINITE class and had never been read
+
+No new entry. This batch is one substantive finding in a document nobody on this project has surveyed,
+two measured empties, and one integrity check that came out clean.
+
+### 38.1 Inherited state, re-derived rather than believed
+
+`§37` handed over a range that is really **649–829** and reported it closed. Re-derived with the
+bare-digit regex (`.scratch-rules/cite27.mjs`, which echoes its parsed argv per the standing rule):
+
+- **The `741`–`749` citation debt `§37.4` reported is PAID.** `745.2` now reads **28** citations,
+  `749` **28**, `748` **14**, `718.5.f` **23**. The manager's ledger is right and `§37.4` is stale;
+  `741`'s 14 hits are the range label *"741-749"* in prose, not citations.
+- `753.2` and `740.1.b` — the two rows `§37.6` left — are still uncited, and both are definitional.
+  `753.2` (*"A player may not choose to make new choices for a spell or ability if there aren't legal
+  choices that they could make in this way"*) adds nothing to `753.1` for this pool: the re-aim clause
+  is printed on exactly **two** cards, `OGN-080 Mystic Reversal` and `VEN-152 Rebuttal`, and both are
+  already walked (`mystic-reversal-charm-free-reaim` cites `751.1`/`752.1`/`752.2`/`753.1`/`755.1`;
+  `rebuttal-mel-souls-reflection-offset-empower`). **Closed with the sweep, not with a verdict.**
+
+### 38.2 INTEGRITY, measured clean — **no citation in this project points into the Core Rules' 490–648 void**
+
+`§37.1` established that the Core Rules jump from 489 to 649. That raises an obvious question nobody
+asked: did anything ever get cited *into* the gap? Measured over `combos.json` + `synergies.json`
+(`.scratch-rules/dualspace.mjs`, `.scratch-rules/gapctx.mjs`):
+
+- Core Rules headings in 490–648: **0**, confirming `§37.1` independently.
+- Apparent citations in that range: `500` (22), `501` (1), `603` (1), `604` (1). **Every one is a false
+  positive** — YouTube `&t=500` style source timestamps, plus this walk document's own title string
+  *"uncited Core Rules sub-rules 500-899"* quoted in `sources[].title`.
+- The only genuine Tournament Rules citation in the data is **`703.3.a.3`**, and it is **labelled as
+  such at both use sites** (*"the Tournament Rules allow 3 copies (703.3.a.3)"*).
+
+So the two numbering spaces have never been confused. `test/rule-refs.test.ts` already reads both
+documents and says why in its own header comment. **A first pass reported 84 "ambiguous" tokens cited in
+both documents; that number is an artifact** — a bare-three-digit regex swallows the numeric tail of card
+codes (`OGN-212` → `212`) and `&t=` timestamps. The small structural check (0 headings in the gap; every
+gap hit is a URL) is the true one. Same shape as the standing rule: **the count that contradicts a small
+structural fact is the artifact, and the contradiction is the finding.**
+
+### 38.3 The Tournament Rules **name 17 pool cards and all 17 are already catalogued** — that vein does not extend
+
+This project's cheapest proven vein is *"grep the rules file for card names"*. Run for the first time
+against the Tournament Rules (`.scratch-rules/tourney-names.mjs`, which folds printings by name and
+checks each base against `combos.json` rather than typing a list):
+
+> Ahri Alluring · Discipline · Miss Fortune Captain · Obelisk of Power · Overzealous Fan · Possession ·
+> Pouty Poro · Ravenbloom Student · Sanction · Scrapheap · Sett Brawler · Stacked Deck · Startipped Peak ·
+> Stealthy Pursuer · Traveling Merchant · Tryndamere Barbarian · Void Gate
+
+**Seventeen names, seventeen catalogued, zero leads.** Recorded so nobody runs it twice. The named cards
+are illustrations of *procedure* (`506.3.e`'s observable-impact list), not of interactions.
+
+### 38.4 `checkBuild` against Tournament Rules `402`–`403`: **no gap** — `403.3` is already implemented
+
+`403.3` — *"Limits on copies of named cards as defined by competition format apply to the combination of
+Main Deck and sideboard"* — is the one paragraph in the deck-registration block with real teeth, because a
+list with three copies in the Main Deck and a fourth in the sideboard is illegal and a Main-Deck-only
+count would pass it. `src/builder.ts` already scores it (`copiesByName(cards, [deck.main, deck.sideboard])`,
+`sideboardCapOf`, both citing `403.3` by number, landed with `#197`). Checked, not assumed; nothing owed.
+
+### 38.5 **`505 Loops` — the tournament rule that governs all 14 INFINITE entries, cited ZERO times**
+
+Measured: `505` **0** citations, `506` **0**, against `416.5`'s **60**. The pool-level mechanic is
+well understood here; the procedural rule that consumes it has never been opened.
+
+> **505.2.** Players performing a loop must have each iteration of the loop be identical with no
+> conditional actions.
+>
+> **505.9.** If a sequence of actions is non-deterministic, it may not be shortcut and iterations must be
+> performed manually.
+>
+> **505.6.** If no player chooses to break the loop and there were no maintaining players, the game ends
+> in a draw.
+>
+> **505.11.** Judges are the final arbiter of what constitutes a loop, or if choices are available to
+> continue a loop when secret information is involved.
+>
+> **505.12.** Players who try to opt-out of shortcutting or propose incorrect shortcutting to use up time
+> are cheating.
+
+Read against Core Rules **416.5** — *"If 2 or more cards are Recycled to the Main Deck simultaneously,
+they are placed on the bottom of that deck in a random order"* (worked example: Garbage Grabber) — this
+is a real constraint on a loop that recycles two or more Main Deck cards in one action.
+
+**The additive half, stated narrowly.** This catalogue *already* reasons about `416.5` at the rules
+level, and says so in its own words: `lady-luminosity-loop-comet` notes *"Without Lady the pass strands
+one card in the deck, and 416.5 randomises cards recycled simultaneously so you cannot even choose which
+one"*, and four entries turn on *"Vi recycles ONE at a time, so 416.5 never engages"*. What is new is the
+**procedural consequence**: a pass whose intermediate states vary is not *"identical"* under `505.2`, so
+`505.9` bars shortcutting it and the iterations must be physically performed — which at an event is a
+clock problem, with `505.12` making it cheating to abuse the negotiation.
+
+**The condition, and it is checkable:** a loop may be shortcut iff **every card it recycles to the Main
+Deck in a pass is drawn back inside that same pass**, because the deck is empty by construction and the
+random order therefore never selects a subset. A loop that recycles *more* than it draws strands a random
+card, so its next pass differs and `505.9` engages.
+
+**All 14 INFINITE entries pass, and the two that could fail were checked by hand**, not by regex:
+
+| entry | recycled to Main Deck per pass | drawn per pass | verdict |
+|---|---|---|---|
+| `lux-infinite-energy` | 3 simultaneous (Forge, Shadow's Call, Sacrifice) + Ekko alone = **4** | 2 + 2 = **4** | balanced — shortcuttable |
+| `lady-luminosity-loop-comet` | 4 simultaneous (Forge, Shadow's Call, Sacrifice, Falling Comet) + Ekko alone = **5** | 1 + 2 + 2 = **5** | balanced — shortcuttable |
+| `jhin-virtuoso-ekko-malzahar-vi` | its multi-card recycle is **four RUNES**, which `416.5.a` returns *"in the order of their owner's choosing"* | — | deterministic by `416.5.a`, not `416.5` |
+| other 11 | no simultaneous multi-card Main Deck recycle | — | `416.5` never engages |
+
+**So the "ZERO spare draws" invariant of the loop ledger (`#21`) is load-bearing a second time, against a
+rule the ledger was not written for.** The catalogue maintains it because a fifth draw is `431.1.a` Burn
+Out on one side and a stranded random card on the other; it turns out to be the exact condition under
+which the loop is *shortcuttable* rather than hand-iterated. Two unrelated constraints, one balance.
+
+**Not applied to the entries.** This is tournament procedure, not rules legality — it changes no class,
+no arithmetic and no card set, and this lane does not own `data/combos.json`. Flagged to the manager as a
+citation upgrade available to the 14 INFINITEs (`505.2` · `505.9` beside their existing `416.5`), to be
+applied once or not at all.
+
+### 38.6 `506.5` — **a forgotten trigger still burns a "first time each turn" slot**
+
+> **506.3.** The accountable player must acknowledge their triggers by the time they would have an
+> observable impact on the game. If they do not, they are forgotten.
+>
+> **506.4.** A triggered ability that was forgotten never goes on the chain.
+>
+> **506.5.** A triggered ability that was forgotten is still considered to have triggered for the purpose
+> of non-optional "First time" or similarly restricted triggers.
+
+This meets a family the catalogue owns from the Core Rules side. `383.3.e.1` (*a "the first time … each
+turn" trigger will only be performed the specified number of times each turn*) and `383.1.b` (simultaneous
+instances collapse to one) are cited across this project — `OGN-118 Wraith of Echoes` and
+`UNL-174 Shard of Undoing` are the worked cases. `506.5` adds the procedural edge: **forget it and you do
+not get it back that turn** — the slot is spent by a trigger that never reached the chain. `506.3.d` gives
+the one exemption (*"At the start of each player's first Beginning Phase"* triggers have the whole turn),
+naming Obelisk of Power and The Arena's Greatest, both of which are banned in every format here.
+
+`506.1.a` is a second, smaller confirmation of something this project derived: accountability for a
+battlefield's triggers *"depends on control of the battlefield and is not automatically the player who
+brought the battlefield to the game"*, cross-referencing `CR 190.6` — the same referent chain the `R8`
+ruling was settled on.
+
+### 38.7 HANDOFF — rc-walk-blocks after batch 27
+
+**Staged:** nothing. `/tmp/rc-walks/rc-walk-rules.json` is `[]` and this batch produced no entry.
+
+**The Core Rules range 649–829 is CLOSED.** `§37.6`'s table stands, with `753.2` and `740.1.b` now closed
+by `§38.1` as well. There is no Example-filtered material left in it.
+
+**The Tournament Rules are a live vein and this batch only opened the door.** Surveyed and reported here:
+`402`–`403` (no `checkBuild` gap), `505`, `506`, plus the card-name sweep. **Not read:** `501`–`504`
+(Communication, Information, Shortcuts, Sequencing — `503 Shortcuts` and `504 Sequencing` are the obvious
+next rows, since they govern how a catalogued line is *communicated* and are the other half of `505`),
+`507`–`509`, `600`s (Competition Formats, where `601.1.c` already feeds `checkBuild`), and the `700`s
+(Penalties — `704.8` cheating, `702.2` missed triggers, both cross-referenced from `505.12` and `506.3.c`).
+
+**Standing caution for whoever takes it:** the two documents share a numbering space. Every Tournament
+Rules citation must be written **labelled** — *"Tournament Rules 703.3.a.3"* — exactly as the two existing
+sites do, or `test/rule-refs.test.ts`'s either-document existence check will silently accept a paragraph
+from the wrong book.
+
+**And the caution above is not hypothetical — it caught me inside this batch.** The quote checker (`.scratch-rules/qcheck27.mjs`, an EXPLICIT list of the 13 passages claimed, per the standing rule against regexing spans out of the JSON) returned **12/13**, and the one failure was `753.2` tested against the Tournament Rules when it is a **Core Rules** paragraph. The quote was right; the *book* was wrong. A checker that verifies a passage against whichever document you happened to name will report a correct citation as fabricated, and — the dangerous direction — an either-document check will report a wrong-book citation as fine. **Say which document every quote comes from, and check it against that one.**
+
+**New scripts this batch**, all in `.scratch-rules/` (gitignored, on this machine): `cite27.mjs` (bare +
+sub-rule citation counts, echoes parsed argv), `dualspace.mjs` (cross-document citation ambiguity),
+`gapctx.mjs` (context for a citation token), `tourney-names.mjs` (card names in the Tournament Rules).
