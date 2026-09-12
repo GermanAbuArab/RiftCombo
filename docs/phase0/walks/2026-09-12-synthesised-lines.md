@@ -1043,3 +1043,107 @@ measurement, and a measurement made with the wrong instrument is not one.**
 finishers per identity answers "how many lines can this deck run"; it does not answer "does this deck have
 anything on a board it does not already control", and the second question is the one §9.2 showed matters.
 Two identities answer it with zero, and neither was on the list this lane was handed.
+
+---
+
+## 16. Batch 7 — body/chaos, and the first line in this lane whose points DO NOT EXIST on an empty board
+
+The second identity with zero surviving finishers (§15). Its only finisher,
+`trinity-force-yasuo-battle-mistress-hold-and-moves`, takes five of its eight points from the Hold,
+so a stalled board leaves it at three.
+
+### 16.1 Why the identity had nothing, measured before anything was designed
+
+Swept over `text` + `effect` of every deckable base folded by base code, the cards that gain a point
+on a **Conquer** are exactly five: `OGN-034 Tryndamere` (fury), `UNL-177 Ivern` (order), `VEN-065` /
+`VEN-173 Swain` (mind), `VEN-053 Otterpus` (mind, and it denies an opponent's point rather than
+gaining one) and `VEN-046 Nasus` (calm). **None is Body or Chaos.** So Body/Chaos owns no
+conquer-side point gain at all, and its entire point budget is four cards:
+
+| card | domain | gated on |
+|---|---|---|
+| `SFD-115 Trinity Force` | body | a Hold |
+| `SFD-214 Power Nexus` | colourless battlefield | a Hold |
+| `OGN-205 Yasuo, Windrider` | chaos | three moves — board-independent |
+| `SFD-148 Draven, Audacious` | chaos | winning a combat |
+
+Drop the two Hold sources and the non-Hold ceiling is **3 Yasuo + 3 Draven + 2 Conquers = exactly
+eight, with zero slack** — 2 Draven with 3 Yasuo is seven, and 3 Draven with 2 Yasuo is seven. That
+is the whole reason the entry runs the full three copies of both payoffs, and it is a fact about the
+identity rather than a preference.
+
+### 16.2 `draven-yasuo-battle-mistress-contested-chain` (CHAIN, verified, body/chaos)
+
+**Eight points on a board the opponent holds; five on a board they have abandoned.** That inversion
+is the entry, and it is the first line in this lane where the *credential* is not a property the line
+happens to have but the thing that makes its arithmetic work at all:
+
+- **Unopposed** — your Beginning Phase Holds both battlefields for 2 and the three Yasuo move for 3.
+  The two Conquers are worth nothing, because 469.1 defines a Conquer as gaining Control of a
+  battlefield *"they did not yet Score this turn"* and the Hold already Scored them; and no Draven
+  can win a combat, because 323.9 stages one only *"at each Battlefield that Contested was applied to
+  that have Units present controlled by opposing players."* **Five.**
+- **Contested** — the Holds pay nothing, both battlefields are unScored and therefore Conquer
+  targets, and the Dravens have a combat to win. **3 + 2 + 3 = eight.**
+
+The multiplication is settled rather than new: 466.3.c, *"Units at this battlefield inherit the same
+combat result as their controllers"*, with 383.3.e.1 capping the ABILITY and not the player — so
+three Dravens at won combats are three ability Gains, the argument `draven-glorious-executioner-point`
+already carries and `draven-svellsongur-bloodless-combat-burst` extends to eight instances on one
+object. That entry is Calm/Chaos because Svellsongur is Calm, which is exactly why it cannot fill
+this cell.
+
+**The Dravens may split, and that is what buys the second Conquer cheaply.** Winning a combat at a
+battlefield the opponent controls IS the Conquer (466.5 with 466.5.d), so two Dravens at one
+battlefield and one at the other still pays three ability Gains — each its own "first time" — and
+pays TWO Conquer Scores instead of one, since 470 caps Scoring *"once per Battlefield per turn"* and
+these are different battlefields. Splitting also means the three Yasuo never have to fight: once the
+Dravens have Conquered, the Yasuo shuttle between your base and a battlefield you now control
+(144.4.a, 144.4.b, each move exhausting by 144.2), so none is ever an attacker.
+
+### 16.3 The failure mode pays the opponent, and Body is what answers it
+
+Draven's second sentence is *"When I die in combat, choose an opponent. They score 1 point"*, and
+465.2.c has the defender assign damage equal to their summed Might. With zero slack at eight, a
+garrison that kills one Draven costs you one of your eight **and hands them one** — a two-point
+swing. `OGN-127 Cannon Barrage` is the answer and it is the **Body half of the identity doing real
+work**: Body, E2 + 1 Power, *"[Reaction] Deal 2 to all enemy units in combat"*, clearing a
+two-Might-or-less garrison from inside the combat after 464.2.c.3 has designated the attackers, so
+the garrison is known before you commit. 466.3.a then gives you the win with nothing assigned to your
+side. `VEN-106 Wind and Ghosts` (Chaos, E3 + 1 Power, [Action]) is the single-target version for one
+oversized body. Both are notables rather than `uses`, because no Trigger Condition requires them —
+against a small enough garrison the Dravens simply win.
+
+**A coincidence worth stating: the forced legend is herself opponent-gated.** On the Hunt is a
+Signature card whose only tag is Sivir, so 103.2.d.2 forces `SFD-203` / `SFD-250 Battle Mistress`
+(both Body/Chaos, verified against `data/cards.json`), and she prints *"When one or more enemy units
+die, ready me."* She refunds the exhaust her Gold ability spends only on a board with enemy units to
+kill — the same board the whole entry needs. The identity's Signature card, both its point sources
+and its legend all want the same board.
+
+Cost, counted whole: **35 Energy and 10 Power** across eight copies of three names. That is heavier
+than the identity's other CHAIN and buys the same eight points; the difference is which board they
+arrive on, and that is the only reason to run it. §4's refusal of a comparable Fury/Chaos pile at 39
+Energy and 9 Power turned partly on that identity already owning a nine-point Conquer BURST —
+Body/Chaos owns nothing that survives a stall, so the same price buys something here that it did not
+buy there. **State the comparison rather than inheriting the refusal.**
+
+### 16.4 Two errors caught by running the check instead of describing it
+
+1. **`produces: ["chain-points"]` is a feature id I invented.** The catalogue has nineteen and that
+   is not one of them; every CHAIN in it produces `ability-points` and/or `burst-points`. It would
+   have entered the needs/produces DAG as an edge nothing consumes and nothing produces. Caught by
+   validating `produces` against the set actually present in `data/combos.json`, which is now part of
+   this lane's staging check.
+2. **`nasus-svellsongur-conquer-burst` was still in the staging file after rc-manager5 merged it**
+   (catalogue 761, commit 50a6636). A second merge would have duplicated it. The staging validator
+   now diffs against the live catalogue and drops anything already there — the same "re-validate
+   immediately before reporting" rule §14 earned, applied to the staging file rather than to a census.
+
+Verification actually run on both entries, not described: every rule reference resolves to a real
+heading (42 and 25), every quoted passage checked verbatim from an **explicit list** against the
+rules file and `corpus_flat.txt` (35 and 20), identity computed from `data/cards.json`, Signature
+copies against 103.2.d.1, and `npm test` green at 469 with entry 1 merged. `npm run adversarial`
+reports **0 unanswered holes of 75 finishers**, and puts `nasus-svellsongur-conquer-burst` at turn 7
+against a turn-5 baseline — SLOWER, exactly as §7 predicts for a BURST, which is why that entry's
+headline is about which board its points arrive on rather than how many there are.
