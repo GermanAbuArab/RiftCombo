@@ -56405,6 +56405,76 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-12 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md, batch 6), issue #187, lane rc-walk-mid. Card text verbatim from data/corpus_flat.txt. Opens 359.3.e.4, 359.3.e.12 and 359.3.e.12.a, all cited by nothing before this entry. It also carries a CITATION UPGRADE owed to the three Baited Hook entries (baited-hook-sprite-queen-free-unit, vanguard-helm-baited-hook-buff-ladder, baited-hook-galio-printed-might-fetch): the Core Rules name their card in the worked example of the paragraph that blanks it, and none of the three mentions the counterplay. The Might ceiling and its one-Power answer are stated rather than hidden."
+    },
+    {
+      "id": "kings-edict-sandshifter-targeted-and-untargeted-order-removal",
+      "name": "355.10.e - the only removal in the pool that neither targets nor chooses, so it reaches the six bodies that can't be chosen; and the Sandshifter beside it is the targeted half that a single +1 Might defeats",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-237",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order spell, E6 P2. 'Starting with the next player, each other player chooses a unit you don't control that hasn't been chosen for this spell. Kill those units.' Swept 2026-09-12 over data/corpus_flat.txt: this is the ONLY card in the pool whose 355.10.e set is one-sided. OGN-209 Cull the Weak ('Each player kills one of their units.') and UNL-164 Safety Inspector ('each player must kill one of their units') both include you; this one says 'a unit you don't control'. In a Duel (485.1) that is exactly one opponent choosing exactly one of their own units, and the trailing clause about units already chosen is dead letter with two players."
+        },
+        {
+          "card": "SFD-158",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Order unit, E5 P2 M6. 'When you play me, kill an enemy unit with 3 Might or less.' The targeted half of the pair: it names the victim, so 809.1.c taxes it and 054.1 blocks it outright against the six untargetable bodies. Its instruction carries no 'at a battlefield' and no 'here', so it reaches an enemy unit in a BASE."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Legend's Domain Identity includes Order (103.1.b.3); both cards are mono-Order, so any legend with Order in its pair runs them.",
+          "Eight Energy and four Order Power across the two, which is two turns of a normal curve. Neither is cheap and the entry says so."
+        ],
+        "notable": [
+          "THE POOL PRINTS SIX BODIES THAT CANNOT BE CHOSEN, AND EXACTLY ONE CARD REACHES ALL OF THEM. Swept 2026-09-12 for \"can't be chosen\": SFD-105 Ruin Runner ('I can't be chosen by enemy spells and abilities'), UNL-057 Alpha Wildclaw ('Your units here with less Might than me can't be chosen by enemy spells and abilities'), UNL-059 Master Yi Unstoppable, UNL-147 Baron Nashor, VEN-031 Twilight Shroud (grants it for a turn) and VEN-038 Akali, Silent ('unless I'm in combat'). 054.1 - 'Cards that forbid actions or effects, as a broad method of determination, supersede cards that allow or permit that same action or effect' - makes every one of those absolute, where 809.1.c only prices [Deflect]. 355.10.e is the hole: 'It is part of a set of objects chosen in whole or in part by other players.', whose own worked example is 'Each player kills a unit they control' and spells out that it does not target - a PARAPHRASE of OGN-209 Cull the Weak, which prints 'Each player kills one of their units.'; 411.1 is where the rules name the card and quote it correctly. King's Edict hands the choice to the unit's OWN controller, so no enemy spell chooses anything.",
+          "THAT IS THIS PROJECT'S EXISTING POSITION, NOT A NEW READING, AND THE ALTERNATIVE IS STATED RATHER THAN HIDDEN. The catalogue already holds that 054.1's prohibition and 809.1.c's tax are 'both blind to 355.10.d and 355.10.e'. The reading this entry stands on is the same one: the Edict's set is chosen by the opponent, so it is neither targeted nor chosen by an enemy spell. A reader who holds instead that an instruction issued BY an enemy spell counts as that spell choosing would refuse the Ruin Runner case and keep everything else in this entry - the Deflect half is settled by 355.10.e on its own, since 809.1.c charges only 'for each time they choose'.",
+          "THE PRICE IS PRINTED AND IT IS LARGE: THE OPPONENT PICKS. Six Energy and two Order Power buys ONE kill in a Duel, aimed by the player losing the unit, so on a wide board they hand you their worst body. It is therefore never efficient removal and always the answer of last resort - the card you run because SFD-105 Ruin Runner is otherwise unanswerable in mono-Order, not because it trades well. On a board of exactly one enemy unit the choice is forced and the Edict is precise.",
+          "355.10.f IS THE NEIGHBOUR AND IT IS NOT THE SAME CLAUSE. It covers an object 'identified in an instruction that a player must complete', with 'You must recycle one of your runes' as its example. The Edict is 355.10.e (a set chosen by other players), not 355.10.f (a must-instruction); UNL-170 Atakhan's 'the defender must kill one of their units here' is the .f shape. Two paragraphs, two shapes, and the catalogue has used them interchangeably.",
+          "THE SANDSHIFTER IS THE OTHER HALF AND 359.3.e.4 IS ITS WEAKNESS, PRINTED IN THE RULES' OWN EXAMPLE: 'A unit with 3 or less Might is no longer a legal target if it is no longer a unit or if its Might is greater than 3.' So any +1 Might at [Reaction] speed makes the Sandshifter's kill mistarget under 359.3.e.5, and 477.3.e.2.a applies increases before decreases so the pump always wins the race. The Edict has no such window: there is nothing to pump out of, because nothing was targeted.",
+          "355.5.b IS WHY THE SANDSHIFTER PICKS LATE. 'This does not include making choices for Triggered Abilities of permanents ... even if those abilities trigger when the chain item is played', and its example ends 'The target will be chosen when the ability triggers.' So the victim is chosen when his trigger finalizes, with his 6 Might body already on the board - an opponent who reacts to the PLAY is acting before the choice exists.",
+          "055.1 IS THE FLOOR ON BOTH: 'If all of a card's instructions are impossible, it is still played and resolved, but nothing happens.' Against an empty enemy board the Edict is six Energy for nothing and the Sandshifter is still a 6 Might body, which is the honest reason to run the unit in more copies than the spell.",
+          "NEITHER IS BANNED OR RESTRICTED - checked against data/legality.json, whose entries[].bases is an array; both are absent from it, as are all six untargetable bodies.",
+          "BOTH CARDS WERE IN ZERO ENTRIES before this one, which is two of the eleven walkable uncatalogued deckable cards left in the pool (15 name+type groups uncatalogued, four of them banned in both formats).",
+          "IT SCORES NOTHING. Removal only, so the class is ENGINE."
+        ]
+      },
+      "steps": [
+        "Identify what you cannot answer. If the opponent's board holds SFD-105 Ruin Runner, UNL-057 Alpha Wildclaw's umbrella, VEN-038 Akali out of combat or a body under VEN-031 Twilight Shroud, every targeted removal in your deck is dead against it under 054.1.",
+        "If the offending body is small and unprotected, play SFD-158 Sandshifter instead: his trigger finalizes with him on the board (355.5.b) and kills an enemy unit of 3 Might or less.",
+        "Hold the Sandshifter back if the opponent has a [Reaction] pump: 359.3.e.4 makes a body of 4 Might no longer a legal target for a 'three or less' instruction, and 359.3.e.5 leaves it unaffected.",
+        "For the untargetable body, wait until it is the only unit they control, or until everything else they control is worth more to them.",
+        "Play OGN-237 King's Edict for 6 Energy and 2 Order Power. Nothing is targeted and nothing is chosen by you (355.10.e).",
+        "The opponent chooses a unit you don't control - their own - and it is killed. Against a single-unit board that choice is forced."
+      ],
+      "netPerIteration": "one enemy unit killed: chosen by you and gated at 3 Might with the Sandshifter, or chosen by the opponent and gated by nothing with King's Edict",
+      "terminatesIn": "removal only - it scores nothing, each card caps at three copies (103.2.b), and in a Duel the Edict is exactly one kill per casting because 485.1 puts one other player at the table",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "Cards that forbid actions or effects, as a broad method of determination, supersede cards that allow or permit that same action or effect."
+        },
+        {
+          "title": "Hand walk 2026-09-12, uncited Core Rules sub-rules 300-499, batch 10 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-12",
+          "quote": "Swept 2026-09-12 over data/corpus_flat.txt: six cards print \"can't be chosen\" (SFD-105, UNL-057, UNL-059, UNL-147, VEN-031, VEN-038), and OGN-237 King's Edict is the only 355.10.e card in the pool whose set is one-sided - OGN-209 Cull the Weak and UNL-164 Safety Inspector both include the caster. Both OGN-237 and SFD-158 were in zero entries at catalogue 756."
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "HAND-WALKED 2026-09-12 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md, batch 10), issue #187, lane rc-walk-mid. Card text verbatim from data/corpus_flat.txt; legality checked against data/legality.json for all eight cards named. Closes two of the eleven walkable uncatalogued deckable cards. The one reading-dependent claim - that a body which 'can't be chosen by enemy spells and abilities' may still be chosen by its OWN controller under an enemy spell's instruction - is stated with its alternative rather than asserted, and it is the position the catalogue already holds for 355.10.d and 355.10.e; the [Deflect] half needs no reading, because 809.1.c charges only for each time the spell's controller chooses."
     }
   ]
 }
