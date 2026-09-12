@@ -1674,3 +1674,118 @@ credential line"). Recorded so nobody re-runs this sweep expecting a repair list
 candidate set, and it is between zero and four cards long.** More generally: when an identity looks thin,
 sweep what its two halves can PAY with before sweeping what they can do. The point budget is six cards wide
 per domain at most, and it bounds the design space far harder than card count does.
+
+---
+
+## 22. Batch 13 — body/mind REFUSED, the Body law closed by one Fury card, and a better axis than availability
+
+rc-manager5 pointed this batch at the Body law applied forward: body/mind is the one Body pair with a
+rich partner budget, and nobody had asked what it can do. The answer is that it can do a great deal and
+**none of it needs Body**, which is the law showing up on a second axis.
+
+### 22.1 The axis: "available" was still too permissive, and "spans both domains" is the honest one
+
+§1 drew the distinction and then every table since has used availability anyway. Recomputed at **763
+entries**, for each pair: how many finishers it can run, how many actually **use cards from both halves**,
+and how many of those survive a stall (`.scratch-synth/crossdomain.mjs`).
+
+| pair | available | spans both | spans **and** survives |
+|---|---|---|---|
+| body/calm | 4 | 1 | **0** |
+| body/chaos | 4 | 2 | 1 |
+| body/fury | 6 | 4 | **3** |
+| **body/mind** | **13** | **3** | **0** |
+| body/order | 7 | 2 | **0** |
+| chaos/fury | 2 | **0** | 0 |
+| calm/chaos | 5 | 2 | 2 |
+| calm/fury | 9 | 6 | 5 |
+| calm/mind | 18 | 7 | 1 |
+| calm/order | 11 | 5 | 1 |
+| chaos/mind | 11 | 1 | 1 |
+| chaos/order | 9 | 4 | 2 |
+| fury/mind | 13 | 3 | 3 |
+| fury/order | 8 | 3 | 1 |
+| mind/order | 29 | 16 | 4 |
+
+**body/mind is the sharpest case in the table: thirteen finishers available, third-most of any pair, and
+ZERO that both span the identity and survive a stall.** Its three spanning entries —
+`blue-sentinel-trinity-force-hold`, `veteran-poro-weaponmaster-trinity-sentinel-hold`,
+`sentinel-trinity-time-warp-chain` — are **one mechanism written three times**: Body's Trinity Force
+multiplied by Mind's `UNL-087 Blue Sentinel`, on a Hold. It is the only thing the two halves have to say
+to each other, and it is Hold-gated by construction, because Body's only point card is.
+
+### 22.2 body/mind is REFUSED, and the reason is that Mind does not need help
+
+All five of body/mind's stall-surviving finishers are **mono-Mind**, not one of them touching Body:
+
+```
+INDEPENDENT ALT_WIN   mind   gutter-palace
+INDEPENDENT INFINITE  mind   renata-bubble-bot-ready
+CONQUER     CHAIN     mind   swain-double-conquer
+INDEPENDENT CHAIN     mind   bottled-constellation-time-warp
+INDEPENDENT INFINITE  mind   jayce-mesmerize-renata
+```
+
+**Four of the five are INDEPENDENT — and that is the refusal.** §9.1 established that the
+board-independent finishers in this pool are the Mind ones plus the cards that literally say you win.
+A board-independent plan, by definition, needs nothing from the board — so there is no support role for
+Body to fill. Body's contribution to a body/mind deck facing a stall would have to be **points**, and
+batch 12 measured that Body has none to give off a Hold.
+
+Compare the two Body pairs where a spanning survivor does exist, because the contrast is the content:
+
+- **body/chaos** — `draven-yasuo-battle-mistress-contested-chain` (§16) spans and survives. Every point in
+  it is Chaos (Draven, Yasuo) plus the Conquers; **Body's contribution is `SFD-204 On the Hunt`, a ready,
+  and `OGN-127 Cannon Barrage`, an answer.** Support, not points — and it works because those points are
+  *combat*-gated, which is a board state Body can actually help with.
+- **body/fury** — three spanning survivors, the most of any Body pair, and the reason is a single card.
+
+### 22.3 The Body law closes: exactly one card lifts Body's point card off the Hold, and it is Fury
+
+Swept over `text` + `effect` of every card for any text converting Hold effects into Conquer effects or
+the reverse — **the pool prints exactly one**:
+
+> `SFD-030 Skyfall of Areion` — **Fury**, gear, E3, Might Bonus +2 —
+> *"[Equip] :rb_energy_1::rb_rune_fury: ... [Effect] My hold effects are also conquer effects, and vice
+> versa."*
+
+So the law from batch 12 gets its exception clause, and the exception is one card wide:
+
+> **Body prints exactly one point card, `SFD-115 Trinity Force`, and it is Hold-gated. Exactly ONE card in
+> the pool lifts a Hold effect onto a Conquer, and it is FURY. Therefore `body/fury` is the only Body pair
+> in which Body's own point card can pay on a board it does not already control; in every other Body pair,
+> every non-Hold point must come from the partner domain alone.**
+
+The table above is the law's own confirmation, and it was not arranged: body/fury has the most spanning
+stall-surviving finishers of any Body pair (3), and two of them —
+`brambleback-trinity-skyfall-conquer` and `dragonstorm-brambleback-trinity-conquer` — are **Trinity Force
+plus Skyfall** exactly.
+
+*(§6 already recorded Skyfall as unavailable to body/order and filed it as a domain fact about one entry.
+It is a fact about the whole Body half of the pool.)*
+
+### 22.4 A card that looked like it reopened §18, and the clause that stops it
+
+§18 refused body/order after checking its **readiers** — Ivern has no `[Ganking]`, so base→A→base→B is
+three moves each and nothing in the identity readies six times. It never checked **relocators**, and
+§20's entry turns on exactly one. Swept for cards whose *effect* moves a friendly unit (16 names,
+non-banned), body/order has precisely one:
+
+> `UNL-101 Call to Battle` — Body, E3 — *"Move a unit you control **to a battlefield you control**. Then,
+> choose an opponent. They move a unit they control to the same battlefield."*
+
+**Its destination clause is what stops it**, and it stops it completely: the battlefield you are about to
+Conquer is by definition one you do **not** control, so Call to Battle can never carry a payoff into it —
+and moving in after the Conquer is too late, since 383.4.c.2.a pays only units already *"present at a
+Battlefield when a player gains control of it."* Its second sentence hands the opponent a body there as
+well. **§18's refusal stands, now for a stronger reason than the one it gave** — and this is the
+read-the-clause-to-its-end lesson again: the card that would reopen a refusal was found in one sweep, and
+it was disqualified by six words in its own middle.
+
+### 22.5 Standing note
+
+**"Available" over-counts, and "spans both domains" is the measurement that answers whether a pair is real.**
+A pair whose every finisher is mono-domain is not an identity with a plan; it is two solo domains sharing a
+legend. body/mind has thirteen available finishers and three that span, all of one mechanism and all
+Hold-gated — and a lane pointed at its *availability* would have called it the healthiest Body pair instead
+of a refusal.
