@@ -1960,8 +1960,7 @@ are NOT themselves playable at that speed.** It is cited, with that measurement,
 an entry on it, but it should check that one first.
 
 ---
-
-# Batch 18 (2026-09-12) — rc-walk-mid takes 100–299: the paragraph that AUTHORISES a token's destination is uncited
+# Batch 18 (2026-09-12) — rc-walk-mid takes 100–299: the paragraph that AUTHORISES a token's destination is uncited, and my own citation counts were measured with the card-code trap
 
 Continuing this document rather than opening a new one, because §H14–§H16 are this range's record and
 a second file would split it. **First, a correction to the brief I was given**, in the same spirit as
@@ -1972,7 +1971,34 @@ of its rows were disposed in batch 17 — and what remains is the verb-filtered 
 explicitly low-density**. I read §H14–§H16 before probing and started from §H15's four blocks. The
 range is still live; it is smaller and differently shaped than the brief said.
 
-## 68. 184.2 IS CITED ZERO, AND IT IS THE PERMISSION UNDER #48's WHOLE CENSUS
+## 68. FIRST, THE CORRECTION TO MY OWN NUMBERS — THE CARD-CODE TRAP, WHICH THIS FILE NAMES BY NAME
+
+The first version of this batch, committed as 53b8435, carried four citation counts measured with
+`grep -o "\b184\b"`. **A `\b` word boundary treats a hyphen as a non-word character, so `\b184\b`
+matches the `184` in `UNL-184` — and this project's own standing note says exactly that: *"card codes
+like `OGN-269` tokenize as rule numbers unless the lookbehind excludes a hyphen."* I walked into a
+trap that is written down.** Measured again with `(?<![-0-9.])NNN(?![0-9a-z.])` over
+`data/combos.json` + `data/synergies.json`:
+
+| I published | actually | what the wrong number was counting |
+|---|---|---|
+| 184 cited **73** | **1** (block 8, with 184.1's 7) | `UNL-184` / `SFD-184` / `VEN-184` card codes |
+| 199 cited **140** | **0** | `UNL-199 Deceiver`, which is all over the catalogue |
+| 171 cited **159** | **0** | `SFD-171 Renata Glasc, Industrialist` |
+| 816.1 cited **269** | **8** bare (269 is the block, 816.1.b + 816.1.c) | a parent-vs-block conflation, not the trap |
+| 355.2.a cited **252** | **208** bare, 252 with children | the same conflation, and harmless |
+
+The last 58 `171` tokens in the catalogue survive the hyphen filter and are **all** `#171` — the issue
+number. So the check that matters is not only the lookbehind: **sample the hits and read them.**
+
+**Every zero in this batch survives, and two of the findings get stronger rather than weaker** — but
+the SHAPE of the argument changes, and that is the part worth having. I had written an
+orphan-neighbour finding: *a sub-rule at zero under a parent in heavy use.* For 184 and 199 there is
+no such parent — 184 is cited once, 199 not at all — so the orphan-neighbour framing was an artifact
+of the same bad count. What is left is the one contrast that was real all along, and it is the better
+one anyway: **184.2 at zero against 355.2.a at 208.**
+
+## 69. 184.2 IS CITED ZERO, AND IT IS THE PERMISSION UNDER #48's WHOLE CENSUS
 
 > **184.** The effect that creates a token may specify the conditions or circumstances under which it
 > enters the board. These stipulations may alter the usual steps for playing a card if the token is
@@ -1982,9 +2008,8 @@ range is still live; it is smaller and differently shaped than the brief said.
 > **184.2.** The effect may **restrict the location** to which the token may be played.
 > **184.3.** The effect may grant temporary abilities or modifications to the token.
 
-Measured at catalogue 766: **184 is cited 73 times, 184.1 seven, and 184.2 and 184.3 ZERO** — while
-the paragraphs this project reaches for instead are cited **252** (355.2.a) and **269** (816.1). The
-parent is in heavy use and the two sub-rules that say *what the effect may actually do* are not.
+Measured at catalogue 766: **184.2 and 184.3 are cited ZERO**, 184.1 seven, the parent once — while
+the paragraph this project reaches for instead, **355.2.a, is cited 208 times**.
 
 **184.2 is the authorisation under CLAUDE.md's #48 finding**, which is one of this catalogue's
 load-bearing measurements — *"of the 49 cards that create unit tokens, 18 say 'at your base' outright,
@@ -1996,7 +2021,7 @@ for a token-creating effect to narrow it. **The system is three paragraphs and t
 - **184.2** — the effect may **RESTRICT** that. This is what makes *"play a 1 Might Recruit token
   **here**"* and *"to your base"* legal instructions rather than contradictions of the default.
 - **355.2.b** — *"Some Game Effects may grant players permission to play Units to locations that are
-  not normally Valid"* — the effect may **WIDEN** it.
+  not normally Valid"* — the effect may **WIDEN** it. Cited 69 times.
 
 Re-measured with my own predicate rather than inherited: **37 cards in the pool PLAY a unit token**,
 of which **8 say "here"**, **11 name a base or a battlefield**, and **18 name no destination**. The 18
@@ -2007,32 +2032,32 @@ the useful half is that the no-destination column is identical under both, becau
 
 **184.3 is the same shape one clause down.** It authorises the creating effect to *"grant temporary
 abilities or modifications to the token"* — which is what `UNL-199 Deceiver`'s *"Give it [Temporary]"*
-and `UNL-200 Mirror Image` are doing. This project sources those to **816.1**, the keyword's own
-paragraph, and to **187.4** for tags granted by rule. 816.1 says what [Temporary] means; **184.3 is
-what lets the effect that made the token attach it.** Both are citation upgrades to heavily-used
-findings rather than new lines, exactly as §H15 predicted, and both are one-line additions wherever
-the token census and the [Temporary] family are stated.
+and `UNL-200 Mirror Image` are doing. This project sources those to the **816.1 block (269 citations
+across 816.1.b and 816.1.c)** and to 187.4 for tags granted by rule. 816.1 says what [Temporary]
+means; **184.3 is what lets the effect that made the token attach it.** Both are citation upgrades to
+heavily-used findings rather than new lines, exactly as §H15 predicted.
 
-## 69. 199.1 CLOSES A QUESTION I LEFT OPEN IN THE OTHER RANGE THIS MORNING
+## 70. THE WHOLE OF 199 IS UNCITED, AND 199.1 CLOSES A QUESTION I LEFT OPEN THIS MORNING
 
 > **199.** A Game Object that comprises a Location is also a Game Object at that location.
 > **199.1.** A Battlefield is both a location and also a Game Object at that location.
 
-199 is cited **140** times and **199.1 zero**. §H15 measured the block empty for card text and it is —
-**zero cards in the pool use the word "permanent"** and none says *"Game Object"* — but it is not
-empty for **rules** text, and it settles something I hedged on this morning.
+**199 and 199.1 are both cited ZERO** — the block is uncited end to end, and so is **171**
+(*"Battlefields are not Permanents"*), which I had reported at 159. §H15 measured the block empty for
+card text and it is — **zero cards in the pool use the phrase "Game Object"** — but it is not empty
+for **rules** text, and it settles something I hedged on this morning.
 
 My §159 in the 300–499 walk corrected my own §113 for presenting a closed list of what counts as a
 *"status"* under **319.7** (*"After the status of any number of Game Objects changes for any reason"*),
 and left the membership genuinely open because the rules use "status" and "state" loosely. **199.1
-closes the case that mattered**: Contested. 190.3.a says outright that *"Contested is a temporary
-**status** applied to the battlefield"*, and 199.1 makes a battlefield **a Game Object**. So
-*"the status of a Game Object changes"* is satisfied in both halves by the rules' own words, and
-**319.7 is the Cleanup trigger the whole evacuation family runs on** — the one the catalogue reaches
-through 319.6 and 319.8 instead, which cover a body entering or leaving and a completed Move but not
-a status applied in place.
+closes the case that mattered**: Contested. 190.3.a — cited 30 times — says outright that *"Contested
+is a temporary **status** applied to the battlefield"*, and 199.1 makes a battlefield **a Game
+Object**. So *"the status of a Game Object changes"* is satisfied in both halves by the rules' own
+words, and **319.7 is the Cleanup trigger the whole evacuation family runs on** — the one the
+catalogue reaches through 319.6 and 319.8 instead, which cover a body entering or leaving and a
+completed Move but not a status applied in place.
 
-## 70. 190.3.b.1 — THE CONTESTED STATUS COMES OFF BY ITSELF
+## 71. 190.3.b.1 — THE CONTESTED STATUS COMES OFF BY ITSELF
 
 > **190.3.b.** Once a Showdown or Combat begins at a Battlefield, it remains Contested until Control
 > is established or re-established.
@@ -2043,9 +2068,9 @@ a status applied in place.
 190.3.b is cited twice and **190.3.b.1 zero**. It is the Contested-status half of the evacuation
 family, which this catalogue builds out of **323.6** (control is lost) and **323.10** (a staged Combat
 un-stages) — and 190.3.b.1 is the third leg: **the status itself comes off in the following Cleanup
-once the applying player has no bodies there and nothing is ongoing.** With 323.11, which removes
-Contested from the battlefield side and which the catalogue does cite, the pair says the same thing
-from the two directions the two paragraphs are written for.
+once the applying player has no bodies there and nothing is ongoing.** With 323.11 (cited twice),
+which removes Contested from the battlefield side, the pair says the same thing from the two
+directions the two paragraphs are written for.
 
 **And 190.3.d is the boundary worth carrying beside it**, because it is the one that stops a line
 being built here: *"At this time Game Effects cannot reference this status."* So Contested is real,
@@ -2053,11 +2078,13 @@ it drives when a Combat or a Non-Combat Showdown occurs (190.3.c), and **no card
 future idea of the form *"a card that cares whether a battlefield is Contested"* is refused on its
 face — measured, and 190.3.d is cited by nothing.
 
-## 71. Validation
+## 72. Validation
 
 Quotes checked from an explicit list against `data/Riftbound-Core-Rules-2026-07-16.txt`: 10 passages,
-zero failures. Counts run in the turn they were written — 184's 73 against 184.2 and 184.3 at zero,
-355.2.a's 252, 816.1's 269, 199's 140 against 199.1's zero, 171's 159, 190.3.b's two against
-190.3.b.1's and 190.3.d's zero — over `data/combos.json` plus `data/synergies.json`. The 37/8/11/18
-token census was measured over `data/cards.json` with the predicate stated. No entry staged;
-`data/combos.json` not written.
+zero failures. Counts re-run with a hyphen-excluding lookbehind AND the hits read, over
+`data/combos.json` plus `data/synergies.json`: 184 → 1 (block 8), 184.1 → 7, 184.2 → 0, 184.3 → 0,
+355.2.a → 208 (252 with children), 355.2.b → 69, 816.1 → 8 (269 as a block), 199 → 0, 199.1 → 0,
+171 → 0 (58 `#171` issue references discarded), 190.3.a → 30, 190.3.b → 2, 190.3.b.1 → 0,
+190.3.d → 0, 323.11 → 2, 107.3.b → 6, 107.3.b.1 → 2, 107.3.b.2 → 0. The 37/8/11/18 token census was
+measured over `data/cards.json` with the predicate stated. No entry staged; `data/combos.json` not
+written.
