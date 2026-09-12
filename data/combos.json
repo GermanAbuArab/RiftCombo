@@ -55334,6 +55334,85 @@
           "date": "2026-09-12"
         }
       ]
+    },
+    {
+      "id": "keeper-of-masks-flurry-of-blades-centaur-simultaneous-fodder",
+      "name": "370.1.a.2 and 465.2.c.1.a - two different paragraphs make damage simultaneous, and a sweep is the SPELL one",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-081",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Mind unit, E2 M1, [Hidden] and [Temporary]. 'When you play me, play two Reflection unit tokens here. Then do this: They become copies of me.' Three bodies at one battlefield for one rainbow Power: himself at Might 1 and two Reflections that R27 leaves at 0 Might. All three are already condemned by 816.1.b, so spending them costs nothing."
+        },
+        {
+          "card": "OGN-133",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Body spell, E1, [Reaction]. 'Deal 1 to all units at battlefields.' One Deal action over every body on the board, which is what makes the deaths simultaneous under 370.1.a.2 - and one Energy is the whole price."
+        },
+        {
+          "card": "UNL-068",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BOARD",
+          "note": "Mind unit, E6 M5. 'When another friendly unit dies, give me +2 :rb_might: this turn.' No exhaust and no 'first time' wording, so it pays PER BODY - the only death payoff in the pool that collects a whole simultaneous batch. At Might 5 he survives his own sweep."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "combat-might",
+        "repeatable-removal"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Keeper of Masks and Spectral Centaur are mono-Mind and Flurry of Blades is mono-Body, so 103.1.b.1 needs a Body/Mind legend - and the census run against data/cards.json on 2026-09-12 returns exactly ONE NAME: Defender of Tomorrow (VEN-149/VEN-194). This is a forced shell and there is no second option.",
+          "No card here is Signature (data/cards.json, signature=false on all three) and none appears in data/legality.json in either format - checked 2026-09-12."
+        ],
+        "notable": [
+          "TWO DIFFERENT PARAGRAPHS MAKE DAMAGE SIMULTANEOUS AND THEY COVER DIFFERENT SOURCES - THIS IS THE ENTRY'S POINT. For a spell or ability it is 370.1.a.2: 'An event can occur simultaneously with other events only when those events are all the result of the same Game Action or change in state occurring', whose worked example is a spell killing two units at once 'because their deaths result from the same game action.' For the Combat Damage Step it is 465.2.c.1.a: 'When all Damage is assigned, it will be Dealt simultaneously. These actions are not synonymous.' Both were cited by nothing. A one-Energy sweep like Flurry of Blades runs on the FIRST of them, not the second - the standing shorthand in this project attributes it to the combat rule, and that is the wrong paragraph.",
+          "465.2.c.1 IS THE COMPANION AND IT IS WHY A SWEEP MUST BE PLAYED BEFORE ASSIGNMENT. 465.2.c.1: 'Assigning Damage is not Dealing Damage.' 417.1.a says it for the step - 'Assigning Damage during the Combat Damage Step is not Dealing Damage, but will cause Damage to be Dealt when assignment is complete' - and 417.3.a, also uncited, says it from the Damage block: 'Assigning Damage causes Damage to be dealt outside of being directed to Deal Damage.' So there is NO window between assignment and dealing. A [Reaction] played 'in response to the damage' does not exist; 465.2.c reads each side's summed Might at assignment, and the Centaur's bonus has to be on him before that moment.",
+          "WHICH IS EXACTLY WHEN YOU PLAY IT. Flurry of Blades is [Reaction] (813.1.c.1), so it goes in the Showdown before the Combat Damage Step. The three bodies die, 370.1.a.2 makes it one batch, 383.3.d lets you order the three triggers, and the Centaur stands at Might 11 when 465.2.c assigns. Played one step later it would be worth nothing at all.",
+          "THE FODDER IS FREE BECAUSE IT IS ALREADY CONDEMNED. 811.1.b hides Keeper of Masks for one rainbow Power and its tail gives him '[Reaction] and you may play this, ignoring its base cost' from the next turn, so the three bodies cost ONE Power and no Energy; 811.1.d.1 puts him at that battlefield, which is where Flurry of Blades can reach him ('all units at battlefields' does not touch a base). And 816.1.b kills every one of them at the start of your next Beginning Phase anyway, so the sweep spends bodies that were going to die regardless - the cheapest possible feed for a death counter.",
+          "THE ARITHMETIC, WITH THE QUANTITIES DECLARED. Keeper of Masks is Might 1 and the two Reflections are Might 0, because R27 on issue #11 settled that Might is not a copyable trait - 477.1.a lists the inherent traits without it and 477.1.b.1.a lists the copyable traits without it. 143.2.a kills on 'nonzero damage marked on it equalling or exceeding its Might', so one damage kills all three: 1 >= 1 and 1 >= 0. Three friendly deaths, +2 each, Spectral Centaur goes from 5 to 11 for the turn. Every enemy body at 1 Might or less dies in the same action.",
+          "AND NO CASCADE, WHICH IS 383.4.a.4 READ THE OTHER WAY. The two Reflections copy Keeper of Masks, whose only text besides its keywords is 'When you play me, play two Reflection unit tokens here' - a Play Effect by 383.4.a, and the Reflection token prints that it does not get those. 383.4.a.4 ('Abilities that trigger when another object is played are not considered Play Effects') is what draws the line, and here it falls on the losing side: three bodies, not seven.",
+          "WHAT THE SWEEP COSTS YOU BESIDES THE FODDER. Flurry of Blades is symmetric over every battlefield, so any OTHER friendly body of yours at 1 Might or less dies too, and the Centaur is paid for those as well - which is upside only if you meant to spend them. The Centaur takes 1 damage himself and survives at 5; 143.3.b heals it at the end of the turn. Mind prints no 1-Might fodder of its own: every Mind token in the pool is a 3 Might Sprite or Mech (swept over data/corpus_flat.txt, 2026-09-12), which is precisely why Keeper of Masks and his 0 Might copies are the enabler and not a Sprite package.",
+          "THE SHORTFALL, STATED PLAINLY: nothing here scores. The product is one oversized attacker for one turn plus a board wipe of everything at 1 Might, for 1 Energy, 1 rainbow Power and a 6-Energy body that has to already be out. 317.2.c expires the +6 at cleanup, so it has to be cashed in the combat it was made for. 103.2.b caps each card at three, and a second Keeper of Masks is a second three-body batch but needs a second battlefield, since 811.1.b hides at a battlefield 'that doesn't already have a facedown card hidden there' and a Duel puts two on the table (485.4).",
+          "IF YOU HAVE TWO COMBATS, 461.1 IS THE FREE HALF: 'If more than one Battlefield has Units controlled by opposing players at it at the same time, the Turn Player decides which Combat to resolve first.' Resolve the combat you are losing first, let its deaths pay the Centaur, and the second combat's 465.2.c assignment reads him at his new Might. That works because 465.2.c.1.a finishes the first combat's damage in one simultaneous batch before the second begins - the combat half of this entry's own split.",
+          "ANTI-SYNERGY WORTH NAMING, BECAUSE THE SAME EVENT PAYS THREE DIFFERENT WAYS. Measured over data/corpus_flat.txt on 2026-09-12, the pool has exactly five 'a friendly unit dies' payoffs and the wording splits them: UNL-068 Spectral Centaur and UNL-129 Vicious Snapjaws have no gate and collect the whole batch; SFD-169 Altar of Memories is rationed by its own exhaust and pays ONCE however many die; OGN-118 Wraith of Echoes and UNL-174 Shard of Undoing say 'the first time ... each turn', which 383.1.b collapses to one execution. Simultaneity is worth a great deal to the first pair and nothing to the other three."
+        ]
+      },
+      "steps": [
+        "Have Spectral Centaur on the board (E6) and hide Keeper of Masks at a battlefield you control for one rainbow Power (811.1.b).",
+        "On a later turn, attack into a garrison. In the Showdown, play Keeper of Masks from face down for 0 Energy - 811.1.b's tail gives him [Reaction] - and 811.1.d.1 puts him at that battlefield with two Reflection tokens beside him.",
+        "R27 leaves the Reflections at 0 Might and 383.4.a.4 gives them no cascade: Keeper's own text is a Play Effect and the Reflection does not get it.",
+        "Still before the Combat Damage Step, play Flurry of Blades for 1 Energy as a [Reaction] (813.1.c.1): one Deal action, 1 damage to every unit at every battlefield.",
+        "143.2.a kills Keeper of Masks at Might 1 and both Reflections at Might 0, and every enemy body at 1 Might with them. 370.1.a.2 makes all of it one simultaneous batch, because it is one game action.",
+        "383.3.d lets you order the three Spectral Centaur triggers; each gives +2 this turn, so he stands at Might 11.",
+        "465.2.c then assigns - and only then, because 465.2.c.1 and 417.1.a keep assignment and dealing apart with no window between them. The Centaur's 11 is in the sum; 465.2.c.1.a deals both sides' damage simultaneously.",
+        "If a second battlefield is also in combat, 461.1 lets you resolve this one first so its deaths are already paid when the other assigns."
+      ],
+      "terminatesIn": "engine - one Spectral Centaur at Might 11 instead of 5 for a single turn, plus every enemy unit at 1 Might or less killed, for 1 Energy and 1 rainbow Power on top of a 6-Energy body already in play. 317.2.c expires the bonus at cleanup and nothing here scores",
+      "netPerIteration": "three condemned friendly bodies converted into +6 Might on the one unit that survives them, in the same instant as a board-wide 1-damage sweep",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12, issue #187 - uncited Core Rules sub-rules 300-499 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        },
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "quote": "RULE 370.1.a.2: 'An event can occur simultaneously with other events only when those events are all the result of the same Game Action or change in state occurring.' EXAMPLE under 370.1.a.2: 'A spell reads in part “Kill up to two units at battlefields.” When that spell resolves, the units targeted are killed simultaneously because their deaths result from the same game action.' SECOND EXAMPLE under 370.1.a.2: 'A spell reads in part “Kill a friendly unit. If you do, kill an enemy unit with no more Might than it.” When that spell resolves, the units are not killed simultaneously. There are two kill game actions being performed in the instructions of the spell. The friendly unit is killed first, followed by the enemy unit.' RULE 465.2.c.1: 'Assigning Damage is not Dealing Damage.' RULE 465.2.c.1.a: 'When all Damage is assigned, it will be Dealt simultaneously. These actions are not synonymous.' RULE 465.2.c: 'Starting with the Attacker, each player assigns an amount of damage equal to their summed Might among the other's Units.' RULE 417.1.a: 'Assigning Damage during the Combat Damage Step is not Dealing Damage, but will cause Damage to be Dealt when assignment is complete.' RULE 417.3.a: 'Assigning Damage causes Damage to be dealt outside of being directed to Deal Damage.' RULE 143.2.a: 'If a Unit ever has nonzero damage marked on it equalling or exceeding its Might, it is Killed.' RULE 811.1.b: 'It is functionally short for \"While this card is in your hand or in your Champion Zone on your turn during an Open State, you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.\"' RULE 811.1.d.1: 'A hidden permanent must be played to that battlefield.' RULE 816.1.b: 'It is functionally short for \"At the start of this permanent's controller's Beginning Phase, before scoring, kill this.\"' RULE 383.4.a: 'Play Effects are Triggered Abilities whose Condition includes the Permanent that has the Play Effect being played to the board.' RULE 383.4.a.4: 'Abilities that trigger when another object is played are not considered Play Effects.' RULE 383.1.b: 'If an ability triggers “the [Nth] time” something happens and that trigger condition is met multiple times simultaneously, the ability's controller picks one of those instances to be the one that meets the trigger condition. The ability triggers only once.' RULE 461.1: 'If more than one Battlefield has Units controlled by opposing players at it at the same time, the Turn Player decides which Combat to resolve first.' RULE 813.1.c.1: 'On Cards: “This can be played during Closed States on any player's turn.”' RULE 485.4: 'Battlefield Count: 2'"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "AUTHORED 2026-09-12, issue #187, session rc-walk-mid, batch 3. 370.1.a.2, 465.2.c.1, 465.2.c.1.a and 417.3.a were cited by NOTHING in data/combos.json or data/synergies.json when this entry was staged - measured 2026-09-12 at catalogue 743, which is the only precision such a count has. The entry exists to carry the SPLIT: a spell sweep is simultaneous under 370.1.a.2 and combat damage is simultaneous under 465.2.c.1.a, and the two are different paragraphs covering different sources. Card text verbatim from data/corpus_flat.txt; the five death-payoff cards and the Mind token census both swept there on 2026-09-12. Legend census run against data/cards.json - Body/Mind is a single name. Cross-references: spectral-centaur-bottled-constellation-triple-death and malzahar-wraith-centaur-sacrifice are Main-Phase sacrifice lines on the same payoff and neither cites the paragraph that makes their deaths simultaneous; elder-dragon-flurry-of-blades-wipe uses the same sweep for its removal half only."
     }
   ]
 }
