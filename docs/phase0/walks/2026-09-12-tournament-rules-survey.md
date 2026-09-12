@@ -550,3 +550,77 @@ Quotes checked from an explicit list, quote-normalised: 8 passages against
 `data/Riftbound-Core-Rules-2026-07-16.txt`, zero failures. `sizeRule` was read at `src/build.ts`
 rather than from its summary — the same discipline that produced §14's answer — and it is clean. No
 entry staged; `data/combos.json` not written; `src/` not written.
+
+---
+
+# Batch 6 — 701 has a remedy written for the recycle mechanic our loops are made of
+
+No entry. **TOURNAMENT RULES 701 General is 61 headings and cited by nothing**, the last large unread
+block in the play-relevant half. Most of it is judge philosophy and penalty definitions and is
+correctly uncited. Three paragraphs are not.
+
+## 27. TOURNAMENT RULES 701.4.b — A JUDGE SHUFFLE DOES NOT DESTROY A KNOWN DECK ORDER
+
+> **TOURNAMENT RULES 701.4.a.** Some remedies require shuffling the randomized portion of the deck.
+> **701.4.b.** Many cards recycle cards to the bottom of a deck. The judge should do what they can
+> using information available from the game state and from the players to determine **which portion of
+> the deck is knowable by one or more players, and separate those before shuffling that deck.**
+> **701.4.c.** Once the deck has been shuffled, any cards set aside in this way should be returned to
+> their proper locations in the deck.
+> **701.4.d.** Shuffles performed by a judge in this way are not considered shuffles in game terms.
+
+Riot wrote a remedy **specifically for the recycle-to-the-bottom mechanic**, and it protects exactly
+the property every loop in this catalogue runs on. The Lux engine's entire state is a known sequence
+at the bottom of an otherwise empty Main Deck; §18 showed that the 505.9 shortcut licence depends on
+each pass drawing back what it recycled. **701.4.b says that when a judge has to shuffle for some
+unrelated remedy, the knowable portion is separated out first and 701.4.c puts it back where it was**
+— so a remedy elsewhere in the game does not silently end the loop. 701.4.d keeps the whole operation
+outside the game, so nothing that triggers on shuffling sees it.
+
+That is worth having in the INFINITE entries beside 505.2 and 505.9, because it is the answer to the
+obvious table question — *"what happens to my stacked deck if a judge has to shuffle?"* — and the
+answer is favourable and non-obvious.
+
+## 28. 701.2.b.3 — A SECOND ROUTE TO A DRAW, AND IT MEETS THE FIRST
+
+> **TOURNAMENT RULES 701.2.b.3.** If all players in a match receive a game loss simultaneously, the
+> current game ends in a draw. All game losses are recorded but do not affect the match score.
+
+§2 found the first draw route in 505.6 (a loop nobody maintains). This is the second, and §13 is what
+makes the pair worth stating together: **a draw is not a neutral outcome in this format.** By
+TOURNAMENT RULES 406.1.b the battlefields are frozen for the next game, by 407.4 the seat is frozen,
+and by 403.10 **neither player may sideboard** — *"If a game ends in a draw, neither player may
+sideboard for the following game."* So a drawn game costs a combo deck all three of the levers a
+best-of-three normally hands the loser. **Three paragraphs in three different sections, none of them
+cited, and together they are the reason a draw is worse for the deck with the narrow plan.**
+
+## 29. 701.5.b.2 and 701.1.o — what a rewind restores
+
+> **TOURNAMENT RULES 701.5.b.2.** When performing a simple rewind of a player's game action, rewind to
+> before the action began, such as before a played card would be put on the chain. The player may then
+> opt not to take the action, or take the action making different decisions.
+> **701.1.o.** If a player acts on information given in error by a competition official, the head
+> judge can rewind the game to account for it, even if there were no other errors.
+
+701.5.b.2 is the mechanism under §20's take-backs: a simple rewind goes to **before the card would be
+put on the chain**, which is Core Rules 349's step 1, and restores the full choice rather than only
+the target. 701.5.a bounds it — rewinds are for *"extreme circumstances, where leaving the game in its
+current state is substantially worse"* — and 701.5.c reserves anything larger to the head judge.
+701.1.o is the one case where a rewind needs no error by either player.
+
+## 30. What 701 does NOT contain, recorded so nobody reads it twice
+
+61 headings, and after reading the block end to end the remainder is **judge philosophy (701.1.a–n),
+penalty definitions and their application (701.2, 701.3)** — how a Warning, Game Loss, Match Loss and
+Disqualification differ, who may issue them, and that a single error yielding several penalties draws
+only the most severe (701.3.d). **None of it bears on what a deck can do**, and the one sentence that
+looked as though it might — 701.1.a, *"Errors are assumed to be committed unintentionally"* — is about
+intent, not about game state. **Section 701 is otherwise correctly uncited, and that is a measured
+empty rather than an unread one.**
+
+## 31. Validation
+
+Quotes checked from an explicit list, quote-normalised: 9 passages against
+`data/Riftbound-Tournament-Rules-2026-07-16.txt`, zero failures. Section 701's zero citations were
+measured over `data/combos.json`, `data/synergies.json`, `src/`, `test/`, the walk records and
+CLAUDE.md. No entry staged; `data/combos.json` not written.
