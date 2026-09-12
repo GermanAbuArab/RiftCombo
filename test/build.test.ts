@@ -44,7 +44,7 @@ Main Deck
 
 const rows = (text: string, format: "constructed" | "2v2" = "constructed"): BuildReport =>
   checkBuild(loadDeck(text, cards), cards, format);
-/** Find a row by the first paragraph number it cites, so "103.2" reaches "103.2 · Tournament Rules 402.1"
+/** Find a row by the first paragraph number it cites, so "103.2" reaches "103.2 · Tournament Rules 601.1.b"
  * without also matching "103.2.b". */
 const row = (r: BuildReport, rule: string) =>
   r.rules.find((x) => x.rule === rule || x.rule.startsWith(`${rule} `))!;
@@ -64,7 +64,7 @@ describe("103.1 — one Champion Legend", () => {
   });
 });
 
-describe("103.2 and Tournament Rules 402.1 — Main Deck size", () => {
+describe("103.2 and Tournament Rules 601.1.b — Main Deck size", () => {
   it("passes on exactly 40, counting the Chosen Champion", () => {
     const r = row(rows(LEGAL), "103.2");
     expect(r.status).toBe("pass");
@@ -401,7 +401,7 @@ describe("the badge", () => {
       "103.1",
       "103.1.b",
       "103.2.a.2",
-      "103.2 · Tournament Rules 402.1",
+      "103.2 · Tournament Rules 601.1.b",
       "103.2.b",
       "103.2.d",
       "103.3.a · 103.3.a.1",

@@ -64,19 +64,23 @@ function legendRule(deck: Deck, cards: CardIndex): BuildRule {
 }
 
 /**
- * 103.2 sets a floor of 40; Tournament Rules 402.1 registers exactly 40 "including a chosen champion".
- * They are different rules, so the row says which one a list broke rather than printing one number for
- * both. Lines the card index did not recognise ride along: a list of 38 known cards plus 2 unknown ones
+ * 103.2 sets a FLOOR of 40 and Tournament Rules 601.1.b sets an EQUALITY - "In competitions, a player’s
+ * Main Deck must be exactly 40 cards" - so a 41-card deck is legal under the Core Rules and illegal at
+ * every event; Tournament Rules 104.1 gives the contradiction to the second book, and 601.1.a declares
+ * the override in its own first line. 402.1 is the REGISTRATION rule ("including a chosen champion"),
+ * which is a different question from the FORMAT rule, and 403.4.c makes that explicit by measuring a
+ * post-sideboard deck against the format requirement. They are different rules, so the row says which
+ * one a list broke rather than printing one number for both. Lines the card index did not recognise ride along: a list of 38 known cards plus 2 unknown ones
  * is not a 38-card deck, and saying "38" alone would misname the problem.
  */
 export function sizeRule(deck: Deck): BuildRule {
-  const base = { rule: "103.2 · Tournament Rules 402.1", label: "Main Deck of 40" };
+  const base = { rule: "103.2 · Tournament Rules 601.1.b", label: "Main Deck of 40" };
   const n = total(deck.main);
   const lost = deck.unresolved.length;
   const tail = lost ? ` · ${lost} line${lost === 1 ? "" : "s"} not recognised` : "";
   if (n === 40) return { ...base, status: "pass", detail: `40 cards, Chosen Champion included${tail}` };
   if (n < 40) return { ...base, status: "fail", detail: `${n} cards — a Main Deck is at least 40 (103.2)${tail}` };
-  return { ...base, status: "fail", detail: `${n} cards — an event registers exactly 40 (Tournament Rules 402.1)${tail}` };
+  return { ...base, status: "fail", detail: `${n} cards — a competition Main Deck is exactly 40 (Tournament Rules 601.1.b)${tail}` };
 }
 
 const COPY_CAP = 3;
