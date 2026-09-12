@@ -55750,6 +55750,104 @@
         }
       ],
       "rulesVersion": "2026-07-16"
+    },
+    {
+      "id": "ivern-arena-draven-chaos-order-chain",
+      "name": "Seven off the Hold and two off the combat: the two halves of Chaos/Order want opposite boards",
+      "class": "CHAIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "UNL-177",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "all three at the Reckoner's Arena, each having chosen a DIFFERENT tag as it was played",
+          "note": "Order unit, E6 M6 and NO Power. 'As you play me, choose Bird, Cat, Dog, or Poro. I gain that tag. When I conquer or hold, score 1 point if your units have all of the following tags among them - Bird, Cat, Dog, and Poro.' 823.1.b and 823.1.c.1 make a 'conquer or hold' ability BOTH a Conquer Effect and a Hold Effect, which is what lets the Arena pay each Ivern twice. Three copies cover three of the four tags, so exactly one more tagged body is needed - and measured over data/cards.json, ZERO cards in the pool carry two of Bird/Cat/Dog/Poro, so there is no two-for-one to look for."
+        },
+        {
+          "card": "OGN-286",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield: 'When you hold here, activate the conquer effects of units here.' 383.4.g.1 names it as Riot's OWN worked example, so nothing here rests on a reading. Colourless is why Chaos/Order can reach a multiplier at all: all three printed trigger multipliers are out of the identity (OGN-236 Karthus is Order but Deathknell-only, UNL-029 Red Brambleback is Fury, UNL-087 Blue Sentinel is Mind)."
+        },
+        {
+          "card": "SFD-148",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "attacking the OTHER battlefield, not the Arena",
+          "note": "Chaos unit, E6 P1 M6, [Deflect]. 'The first time I win a combat each turn, you score 1 point.' He is the whole Chaos half and he is the point that does not need a battlefield you already hold. One copy is enough because the Hold has already paid seven; a second and third each add one more but cost E6 + 1 Chaos Power apiece."
+        },
+        {
+          "card": "VEN-106",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Chaos spell, E3 P1, '[Action] (Play on your turn or in showdowns.) Choose a unit at a battlefield. If it has 3 :rb_might: or less, banish it. Otherwise, return it to its owner's hand.' Cast inside the opened combat so 465.1 never opens the damage step. Clears a garrison of ONE, which is this line's honest limit, inherited from draven-rebuke-bloodless-combat."
+        },
+        {
+          "card": "OGN-210",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BASE",
+          "note": "Order unit, E2 M2, [Assault], tag Poro - the fourth tag, and the cheapest body in the identity that carries one. It never has to leave your base: Ivern reads 'your units have all of the following tags among them', with no location clause. Any of the other Chaos/Order tagged bodies does the job; this is simply the cheapest with no Power."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "THE LEGEND IS FORCED AND THERE IS EXACTLY ONE. Measured over data/cards.json, the pool prints a single Chaos/Order legend NAME - Heart of the Tempest (VEN-155, VEN-197) - so this is not a choice, it is the shell. (CLAUDE.md records the same census: Chaos/Order is one of three single-name pairs, beside Body/Mind and Calm/Fury.) Ivern and Daring Poro are mono-Order, Draven and Wind and Ghosts are mono-Chaos, and Reckoner's Arena is colourless, so the union is exactly the legend's two domains (103.1.b).",
+          "None of the five is banned or restricted in either format - checked against data/legality.json, which has no row touching UNL-177, OGN-286, SFD-148, VEN-106 or OGN-210.",
+          "The Arena is a battlefield you PROVIDE, so it is not certain to be in play: 485.4.a has each player provide three of which one is used, and 485.5 says the selection is random. 103.4.c and Tournament Rules 402.1 forbid running three copies of it to fix that. This line is therefore a 1-in-3 on its own battlefield, exactly like every other Reckoner's Arena entry in the catalogue."
+        ],
+        "notable": [
+          "THE DESIGN IDEA IS THAT THE TWO HALVES WANT OPPOSITE BOARDS, AND THAT IS WHY THEY ARE IN ONE ENTRY. The catalogue's own stalled-board pass (npm run adversarial --stalled) puts 29 of its finishers in a HOLD bucket whose defining weakness is that the stall which makes a finisher necessary is the stall that switches it off - a Hold needs battlefields you ALREADY control. The Ivern half here is exactly that, and it is seven of the nine points. The Draven half is its complement: 466.3.a needs a combat, 323.9 stages one only where units of opposing players meet, and 807.1.d makes being an attacker mean the unit gained the Attacker designation during Combat - so it pays ONLY where the opponent has garrisoned. Against a passive board the Ivern half pays seven and Draven is a spare body; against a board contesting the other battlefield Draven supplies the eighth point the Hold cannot reach. Neither half covers both states and together they do.",
+          "THE ARITHMETIC, AGAINST THE QUANTITIES THIS ENTRY DECLARES. Beginning Phase, holding the Arena with three Ivern standing there: 315.2.b.2 Holds every battlefield you control, 471.1 Gains 1 point for the Hold itself; the three Ivern hold-faces Gain 3 more (383.4.d.2.a); and the Arena activates the three conquer-faces for 3 more, which 383.4.g.1 places 'on the chain as if it had just triggered'. That is SEVEN, and it is the same number the formula published by ivern-arena-sentinel-hold gives - 1 + (2N + T) x (1 + K) with N = 3 Ivern, T = 0 Trinity Force (Body, out of identity), K = 0 Blue Sentinel (Mind, out of identity). Then the Main Phase: Draven wins his combat for an eighth, and the Conquer that follows it is a ninth. NINE, across two scoring events in one turn with no opponent turn in between, which is what makes it a CHAIN and not a BURST.",
+          "THE EIGHTH POINT IS AN ABILITY GAIN, WHICH IS WHY THE FINAL POINT CLAUSE NEVER GETS TO BITE. At seven you are one from the Victory Score, and 471.1.b governs a player who 'tries to Gain a Point through a Conquer' in exactly that position, with 471.1.b.1 giving the Final Point only 'If the player has Scored every Battlefield this turn' and a card otherwise. Draven's point is not a Conquer: R2 = A makes a card-text 'you score 1 point' a 194.1.c Gain by ability, and 471.1.a.1 says outright that 'points Gained from sources that are not Conquer are not beholden to these restrictions'. So the line reaches eight without ever testing the clause. It would pass it anyway - the Hold Scored the Arena and the Conquer Scores the other battlefield, which is every battlefield on a Duel table (485.4) - but it does not have to, and an entry that depended on that would be one clause more fragile.",
+          "SEVEN OF THE NINE ARE HOLD-GATED AND THIS ENTRY DOES NOT PRETEND OTHERWISE. If the opponent takes the Arena, the Ivern half is worth zero and what is left is Draven's two. The line is not a rescue from a fully stalled board; it is a line for the common middle state, where you hold one battlefield and they contest the other. State it that way when comparing it with draven-svellsongur-bloodless-combat-burst, which is the fully credential line in this family and pays nine off the combat alone - in Calm/Chaos, because its multiplier is SFD-059 Svellsongur and Svellsongur is Calm.",
+          "WHY CHAOS/ORDER LANDED ON SEVEN THREE DIFFERENT WAYS BEFORE THIS, AND THE MEASUREMENT BEHIND IT. Swept over data/cards.json for Chaos or Order cards whose text pays on a conquer, an attack or a combat win: 18 distinct names, of which exactly TWO gain a point - UNL-177 Ivern (Order) and SFD-148 Draven (Chaos). Every combination of those two alone stops at seven. Three Ivern at the Arena on a Hold is 1 + 3 + 3 = 7. Three Draven plus three Ivern winning one bloodless combat is 3 + 3 + 1 = 7. Three Ivern plus three Draven split across both battlefields does reach 8, and costs 44 Energy and 5 Power, which is turn nine or later on the clock this project measures with. The route that works is the cheap one - E29 and only 2 Power, because Ivern is E6 with NO Power cost - and it works by using BOTH phases of one turn rather than by buying more bodies.",
+          "THE LEGEND IS NOT IDLE, BUT ITS HELP IS CONDITIONAL AND IS NOT COUNTED ABOVE. VEN-155 Heart of the Tempest reads 'When you play a card from anywhere other than your hand, empower me. [Action][>] Disempower me, :rb_exhaust:: Give a unit [Assault 2] this turn.' 807.1.c is functionally short for 'While I am an attacker, I have +X :rb_might:.' and 807.1.d ties that to the Attacker designation Draven has, so it takes him to 8 Might for the attack - which matters because the one card in the pool that can reinforce the emptied battlefield at Reaction speed is a Might 6 body. But the Empower has to be paid for by playing a card from somewhere other than hand, and the ability costs the legend's exhaust, so it is one activation a turn and only in a list that supplies the trigger. Counted as available, never as load-bearing.",
+          "THE REINFORCEMENT THREAT IS ONE CARD, MEASURED THE SAME WAY AS IN THE SIBLING ENTRY. Inside the Showdown the opponent still controls the battlefield - 323.6 strips Control only 'if the turn is in an Open State and there is no Showdown or Combat ongoing there' - so 355.2.a still admits a play there. Swept over units of Might 6 or more: ZERO carry [Reaction] in their own text once parenthesised reminder text and quoted token text are stripped, and three carry [Ambush], which 822.1.b makes short for 'I may be played to a battlefield where you control Units' - false once the garrison is gone. Only UNL-120 Rengar, Trophy Hunter lifts that with its own text, 'I can [Ambush] to a battlefield where there are enemy units (even if you don't have units there).' Unlike the Calm/Chaos sibling, this line has no [Tank] answer in its identity; its answers are the legend's [Assault 2], a second removal, or accepting that Draven trades and the Hold's seven still stand.",
+          "DRAVEN'S DRAWBACK IS SMALL HERE AND LARGE IN THE SIBLING, AND THE DIFFERENCE IS THE MULTIPLIER. 'When I die in combat, choose an opponent. They score 1 point.' At one copy and no Svellsongur that is one point handed back, which is a bad trade and not a lost game. draven-svellsongur-bloodless-combat-burst stacks eight instances of the same sentence on one body and therefore has to buy UNL-057 Alpha Wildclaw to protect it; this entry does not, and that is the whole reason it can afford three Ivern instead."
+        ]
+      },
+      "steps": [
+        "Board before the turn: Reckoner's Arena is the battlefield you brought and you control it, with three Ivern, Friend to All standing there, each having chosen a different tag as it was played (say Bird, Cat, Dog). Daring Poro sits at your base supplying Poro, so all four tags are among your units. Draven, Audacious is on the board and ready, Wind and Ghosts in hand, 3 Energy and 1 Chaos Power available. The opponent garrisons the other battlefield with a single unit.",
+        "Beginning Phase, Scoring Step. 315.2.b.2 Holds every battlefield you control, so the Arena Holds and 471.1 Gains 1 point.",
+        "The same Hold fires all three Ivern hold-faces - their four-tag condition is met - for 3 more points.",
+        "The Arena's own trigger then activates the conquer effects of units there. 383.4.g.1: 'To do so, that player checks the condition of all of the specified effects, as if they had fulfilled the named part of the condition', and its worked example is this battlefield by name. Each Ivern's conquer-face is placed on the chain as if it had triggered: 3 more points. Seven.",
+        "Main Phase. Standard-move Draven to the garrisoned enemy battlefield, paying his exhaust (144.2, 144.4). The Contested status makes you the Attacker (464.2.c.1).",
+        "The Combat stages at the next Cleanup (323.9) and opens into its Showdown (323.13). Cast Wind and Ghosts there - [Action], which 806.1.c.1 makes short for 'This can be played during showdowns on any player's turn' - and remove the lone defender.",
+        "465.1 - 'If both Attacking and Defending units remain at this battlefield, the following Tasks become Outstanding, in the specified order' - finds the defending side empty, so no damage step happens and Draven cannot die. 466.1.a.2 recalls attackers only 'if Defenders are still present', so 466.3.d's No Result is not reached either.",
+        "466.3.a gives you the combat, 466.3.c - 'Units at this battlefield inherit the same combat result as their controllers' - hands it to Draven, and his first win of the turn Gains the eighth point. 471.1.a.1 keeps it clear of the Final Point clause.",
+        "466.5 then establishes Control and 466.5.d makes it a Conquer for a ninth point. 194.2 awards the game 'in a cleanup', to a player with 'points greater than or equal to the Victory Score and more points than any other player'."
+      ],
+      "netPerIteration": "+9 points in one turn across two scoring events - seven in the Beginning Phase off one Hold, two in the Main Phase off one combat - for E29 and only 2 Chaos Power of deployment",
+      "terminatesIn": "chain of nine points in one turn, across a Hold and a combat with no opponent turn in between; seven of the nine need a battlefield you already hold and two need one the opponent garrisons, so the line is written for the middle board rather than for either extreme",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12, issue #200 (docs/phase0/walks/2026-09-12-synthesised-lines.md) - synthesis lane, batch 3c: the last identity with zero BURST and zero CHAIN, designed by asking what each half of the pair uniquely owns",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        },
+        {
+          "title": "ivern-arena-sentinel-hold and ivern-arena-trinity-body-order-hold - the two verified entries this one takes the 1 + (2N + T) x (1 + K) formula and the 383.4.g.1 citation from",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        },
+        {
+          "title": "draven-rebuke-bloodless-combat - the verified entry establishing the bloodless-win sequence (464.2.f.1, 464.2.g, 465.1, 466.3.a, 466.5.d) and its garrison-of-one limit",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16"
     }
   ]
 }
