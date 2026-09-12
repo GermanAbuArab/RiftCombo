@@ -1363,3 +1363,130 @@ Standing form, now paid for twice on this lane: **do not inherit a probe's citat
 - **`811.6.a`, `721.1`, `704`, `704.1`, `707` and `719.2` are uncited and were read and set aside** as
   having no reader worth an entry on their own; `707` and `719.2` are definitional, `704.1` (buffs are
   counters and are not targeted) has nothing in the pool aiming at a buff.
+
+## 35. Batch 24 — the 725 / 727.1.c exception blocks, four citation upgrades, and a correction to §34.7
+
+No new entries. The block was read end to end and the material in it is citation upgrades and
+measured empties, which is the honest result and is recorded here rather than forced into a line.
+
+### 35.0 CORRECTION TO §34.7, WRITTEN BY ME IN THE PREVIOUS BATCH
+
+§34.7 says *"`SFD-011` is in no entry and is worth one"*. **That is false. `SFD-011 Angle Shot` is in
+`jax-angle-shot-attach-draw`** (with `SFD-119 Jax, Unrelenting` and `SFD-009 Serrated Dirk`), and it was
+false when I wrote it: I never ran `have.mjs` on the card, and the sentence went into batch 23's report
+to the manager before it was measured. **It is the same defect this lane's own §34.6 was written about,
+committed in the same batch that diagnosed it** — a probe-shaped claim that read as a finding.
+
+**What survives the correction is narrower and still real.** `jax-angle-shot-attach-draw` uses Angle
+Shot on YOUR OWN gear, cycling one Equipment off and back onto Jax for card draw. The enemy-facing use
+is untouched by any entry: the spell reads *"Choose a unit and an Equipment with the same controller.
+Attach that Equipment to that unit or detach that Equipment from that unit. Draw 1"* — **the shared
+controller need not be you**, so at `[Reaction]` speed it detaches an OPPONENT's Equipment, which stops
+the Might Bonus (`137.3.a`) and takes the appended Effect Text off the carrier (`718.3`, `719.1`) inside
+an already-opened combat, before `465.2.c` reads Might.
+
+That matters because this project's gear-removal inventory was built from a `kill … gear` predicate,
+found 16 printings of which **zero** carry `[Reaction]`, and concluded that no answer reaches the Hold
+window or a combat. Angle Shot answers an equipped body **without killing anything**, and a
+kill-predicate can never see it. Twelve BURST and CHAIN entries stand on attached Equipment. Stated
+correctly, the lead is *"the pool's Reaction answer to an equipped body is already in the catalogue, used
+for something else"*, which is a weaker claim than the one I shipped and is the true one.
+
+### 35.1 `725.1` — the paragraph that makes an "As this is attached" Equipment work at all
+
+> **725.1.** If an Attached card has a Passive or Replacement ability that applies during the process of
+> Attaching or a Triggered ability that triggers off of Attaching, that text exists and can be processed
+> as it Attaches.
+
+`718.2` makes an attached card's printed Rules Text Inactive and `721.2` stops an Inactive ability
+applying — so an Equipment whose copy text sits in its RULES text would simply never fire. `725.1` is the
+carve-out.
+
+**The population is exactly TWO cards**, measured over `data/cards.json` on 2026-09-12 by splitting each
+Equipment's text at its `[Effect]` marker and reading the Rules-Text half: `SFD-059 Svellsongur` (*"As
+this is attached to a unit, copy that unit's text to this Equipment's effect text for as long as this is
+attached to it"*) and `VEN-137 Shady Spectacles` (*"As this is attached to a unit, choose another friendly
+unit. The equipped unit becomes a copy of that unit for as long as this is attached to it"*).
+
+**CITATION UPGRADE.** `725.1` is cited by five entries and all five are Svellsongur ones
+(`svellsongur-copy-hold`, `svellsongur-ornn-hold`, `guardian-passage-svellsongur` and two more).
+**`shady-spectacles-baron-copy` does not cite it**, and it is the paragraph its whole line stands on —
+the entry is careful and correct about which traits are copied (`477.1.b.1.a`) and silent about why the
+copy instruction is Active at all.
+
+### 35.2 `725.4` and `727.1.c.1.a` — why a `[Legion]` play trigger fires
+
+> **725.4.** If a Dependent Ability is a Triggered Ability whose condition occurs at the same time as the
+> Dependent Keyword's condition being fulfilled, that text exists and can be processed as it is fulfilled.
+
+> **727.1.c.1.a.** If a Triggered Ability becomes active at the same time as its trigger condition would
+> be fulfilled, it triggers.
+
+`812.1.b.1` makes `[Legion]` short for *"If you have played another card this turn, this card gains
+[Text]"* — so a card printed `[Legion] — When you play me, X` GAINS that trigger at the very instant the
+trigger's own condition (being played) occurs. Without these two paragraphs, `721.2` (*"Inactive
+Abilities do not trigger"*) says it missed. They are the reason the whole family works.
+
+**Five cards in the pool are `[Legion]` play triggers**, measured 2026-09-12: `OGN-016` Dangerous Duo,
+`OGN-020` Scrapyard Champion, `OGN-217` Trifarian Gloryseeker, `OGN-218` Vanguard Captain, `OGN-243`
+Darius Executioner. `UNL-040 Wuju Apprentice` is a sixth of the same SHAPE under a different keyword —
+`[Level 6][>] When you play me, draw 1` — where the XP threshold is likewise read at the instant of the
+play.
+
+**CITATION UPGRADE, and `725.4` is uncited anywhere.** `727.1.c.1.a` is cited by exactly one entry,
+`mosstomper-gustwalker-level-passive-lands-on-the-hold`, which is about a Level PASSIVE. The two entries
+that actually stand on the mechanism —
+`darius-executioner-vanguard-captain-legion-clause-boundary` (which cites `812.1.b`, `812.1.b.1`,
+`812.1.c`, `812.2` and `727.1`) and `mosstomper-wuju-apprentice-xp-calm-ladder` — cite neither.
+
+### 35.3 `727.1.c.3.a` — a REFINEMENT to a standing rule in CLAUDE.md, and its population is one card
+
+> **727.1.c.3.a.** If the condition for the Dependent Keyword causes the Activated Ability to become
+> Inactive after it has been added to the chain as a Pending Item, that chain item will not be affected
+> and will proceed with being played as normal.
+
+`CLAUDE.md` records, correctly and in several places, that *"paying XP switches your Level abilities
+off"* (`824.1.d` with `730.2`), and treats that as why a `[Level]` deck wants a faucet and no sink.
+**`727.1.c.3.a` scopes it: the rule is true of passives and of abilities not yet activated, and FALSE of
+an activated ability already on the chain.** Once a Level-gated activated ability is a Pending Item,
+dropping below the threshold does not touch it.
+
+**The population is exactly ONE card and the fact is still dead letter here.** Swept over
+`data/corpus_flat.txt` on 2026-09-12, the only Level-gated ACTIVATED ability in the pool is `UNL-049
+Honeyfruit` (*"[Level 6][>] [>>][Reaction][>] exhaust: [Add] 1 Energy + 1 rainbow"*); every other `[Level
+N][>]` clause is a passive, a cost reduction or a trigger. And `444.2.c` closes even that one — an
+`[Add]` ability with Reaction *"finalize and resolve immediately, ignoring normal restrictions"*, so it
+never sits on the chain long enough for an XP spend to be made in response.
+
+**Scope: the current pool.** The refinement to the CLAUDE.md sentence is worth carrying anyway, because
+it is the rule and not the count, and the next set that prints a second Level-gated activated ability
+makes it live.
+
+### 35.4 REFUSED — `725.2`, empty for triggered abilities, confirmed with two instruments
+
+> **725.2.** If an Attached card has a Passive or Replacement ability that applies during the process of
+> Detaching or a Triggered ability that triggers off of Detaching, that text exists and can be processed
+> as it Detaches.
+
+**Zero cards in the pool trigger on detaching.** Confirmed two ways on 2026-09-12: `grep -icE "when[^|]
+{0,40}detach"` over `data/corpus_flat.txt` returns **0**, and a sweep of `text` + `effect` over
+`data/cards.json` folded by name returns **four** cards that mention detaching at all, none of them a
+trigger — `SFD-011` Angle Shot, `SFD-107` Strike Down, `SFD-193` Grandmaster at Arms, `SFD-221` Veiled
+Temple, which is the same four the §34.7 detach census names.
+
+The Passive half is not a live case either: the two `725.1` cards say *"for as long as this is attached
+to it"*, so their own printed duration ends the effect and nothing needs to be processed *during* the
+detach. **Scope: the current pool**, and the trigger to re-check is a set printing a "when this detaches"
+Equipment.
+
+### 35.5 State of the 500–829 range after this batch
+
+The `716`–`727` attachment-and-Inactive neighbourhood is now read end to end. What remains uncited in it
+is definitional (`717`, `719.2`, `720`, `721.1`, `722`, `723`, `724`, `726`, `727`) or measured empty
+above. `704`, `704.1` and `707` are uncited and were read and set aside — nothing in the pool aims a
+spell at a buff, and `707` is the one-line definition `708` and `709` do the work for.
+
+**Still unread in range and carrying material:** `.scratch-rules/kw.mjs`'s remaining non-boilerplate rows
+in `801`–`829` that §24–§26 and §34 did not reach — but **read §34.6 first**: that probe reports a bare
+top-level rule as uncited, so treat its `NNN`-only rows as unverified and re-derive each with a
+bare-three-digit regex over `data/combos.json` before spending a walk on it.
