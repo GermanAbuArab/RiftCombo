@@ -980,3 +980,83 @@ different questions and disagree usefully. `805.6` does **not** appear in `orpha
 its siblings are boilerplate and none of them clears the 15-citation bar; it appears in `kw.mjs`'s because
 it is not boilerplate. `718.5.e/f` is the reverse case. **Run both.** Neither is a substitute for reading
 the block, which is how `805.6.a` — a one-line sub-rule with no Example and no card name — was found.
+
+---
+
+# Batch 21 (2026-09-12) — §14.1(c)'s last row, and it was not an `excludes` after all
+
+| id | sub-rules opened | class |
+|---|---|---|
+| `sanction-spirit-wheel-blade-dancer-empower-is-a-choice` | **827.1.b / 827.1.b.1**, **813.2**, 441.1.b, 441.2, 809.1.c | ENGINE |
+
+`validateCombos`: **737 entries, 0 errors.** Legend-line: **0 defects.** References: **32, all present.**
+Quotes: **6, all verbatim** — after a repair (§29). Legality checked 2026-09-12; none of the three cards
+appears in `data/legality.json`.
+
+## 28. 827.1.b.1 divides the Empower family in two, and the positive line does exist
+
+§13.4 filed this as *"an `excludes` shape rather than an entry unless a positive line turns up."* One did.
+
+> **827.1.b.1.** The source game object is not a target of the Empower ability.
+
+So a card paying its **own** printed `[Empower]` cost chooses nothing and targets nothing: it fires no
+*"when you choose"* payoff, and it pays no `[Deflect]` (`809.1.c` prices that *"for each time they choose
+[me/this]"*). `827.1.b` and `827.1.b.1` are cited **zero** times, while `441.1.b` is cited **109** times and
+`441.2` **154** — the third instance this lane has met of the `815.2/815.3` shape, and the most lopsided.
+
+**The census, measured over `data/cards.json` on 2026-09-12 and named.** **45** base codes carry their own
+`[Empower]` keyword and **not one** can fire a choose-payoff by empowering itself. **8** rows empower
+something else — `VEN-035 Sanction`, `VEN-062 Hextech Formula`, `VEN-082 Profiteer`, `VEN-099 Tornado
+Warrior`, and the two legends `VEN-151 Soul's Reflection` and `VEN-153 Matriarch of War` with their
+reprints — and **two of those eight are not empowerers on inspection**: both legends read *"When you
+empower something else, empower me"*, so they watch the event and then empower themselves, which chooses
+nothing by the same rule. Hextech Formula empowers *"another gear"*, which no *"friendly unit"* clause can
+see. **Exactly three cards in the pool make an Empower a choice on a unit: Sanction, Profiteer and Tornado
+Warrior** — and Sanction alone is a spell, alone is `[Reaction]`, and alone is repeatable three times.
+
+The payoffs are the two cards whose trigger reads **any** choose: `SFD-144 Spirit Wheel` and
+`SFD-195 Blade Dancer`. `SFD-142 Jae Medarda` says *"when you choose me **with a spell**"*, so he is a
+narrower third and not a fourth copy. Blade Dancer is in `uses[]` as a **payoff that happens to be the
+legend**, and — measured — the only Calm/Chaos legend name in the pool, so the identity and the second
+payoff are the same card and the line has no legend choice at all.
+
+Two things worth carrying beyond this entry. **813.2** (found in batch 20, used here) is why the spell is
+played in your own Main Phase: a `[Reaction]` card is *"not restricted to Closed States or Showdowns"*, and
+Blade Dancer's ready is only worth a second Standard Move there (`144.1.b`). And **Sanction's "disempower
+at end of turn" is the point, not a drawback**: `441.2` makes Empowered permanent and `441.1.b` forbids a
+second Empower, so an ordinary Empower fires a choose-payoff **once per body ever**, while Sanction gives
+the state back and can choose the same body again next turn, forever.
+
+## 29. The quote checker caught the walker for the third time on this lane
+
+`809.1.c` reads *"It is functionally short for “Spells and abilities an opponent controls that target
+[me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time
+they choose [me/this].”"* — I had written the smoothed version starting *"Opponents must pay…"*, which is
+the **reminder text printed on the cards**, not the rule. That is a new failure mode worth naming beside
+the `437.4` one: **the corpus's reminder text and the Core Rules' wording of the same keyword are
+different strings**, and a `quote` attributed to the rules file must come from the rules file.
+
+## 30. HANDOFF — state of this lane, 2026-09-12, batches 18–21
+
+- **Done:** §14.1(a) `815.3` · §14.1(b) `813.5.b`/`358.4` · §14.1(c) `813.4.x` (batch 19) and
+  `827.1.b.1` (this batch). **All of §14 and §14.1 is now closed.**
+- **`740.4.a.2.a` is a citation upgrade, not a row** — `204.3.b` is primary (it states the mechanic in the
+  200s and its worked example names the card), `740.4.a.2.a` is the glossary restatement. It belongs on
+  `blood-rose-insightful-investigator-cost-at-resolution`.
+- **Open, in the order I would take them:**
+  1. **§22's `718.5.e` / `718.5.f` lead** — theft and Equipment, researched and deliberately unstaged.
+     Read `718.5.b` before relying on the Forge of the Fluft recovery.
+  2. The rest of `kw.mjs`'s 97 non-boilerplate rows in 801–829 that §24–§26 did not reach.
+  3. `.scratch-rules/survey.mjs` — the two probes merged, `lo hi [n]`. **Echo the parsed range**: a first
+     run passed `"100 299"` as one shell word, `Number()` gave `NaN`, every comparison went false, and both
+     ranges printed the same rows. It looked like a finding.
+- **Three scripts on this machine, all untracked:** `.scratch-rules/orphan.mjs` (cited-zero with a
+  heavily-cited neighbour), `.scratch-rules/kw.mjs` (uncited minus keyword boilerplate),
+  `.scratch-rules/survey.mjs` (both, ranked). `audit17.mjs` carries the tokenizer from
+  `test/rule-refs.test.ts` — **do not re-patch it**, §21.
+- **A correction owed to a shipped entry of mine, reported to the manager and not applied here:**
+  `mystic-vortex-overt-operation-taxes-the-answer` cites `464.2.c.1` for the Focus claim. The precise
+  paragraph is `464.2.c.1.a`, and `464.2.c.1.b` is the caveat — *"If a showdown was already ongoing when
+  the combat opens, the player who has Focus maintains their Focus"* — which with `323.14` (a Non-Combat
+  Showdown escalating into a Combat Showdown) means the Vortex's tax **inverts** when the opponent opened
+  that earlier Showdown. Narrow, but the entry currently reads as if attacking always buys the asymmetry.
