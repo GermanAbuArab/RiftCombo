@@ -2088,3 +2088,176 @@ zero failures. Counts re-run with a hyphen-excluding lookbehind AND the hits rea
 190.3.d → 0, 323.11 → 2, 107.3.b → 6, 107.3.b.1 → 2, 107.3.b.2 → 0. The 37/8/11/18 token census was
 measured over `data/cards.json` with the predicate stated. No entry staged; `data/combos.json` not
 written.
+
+---
+
+# Batch 19 (2026-09-12) — 107.3, 103 and 194: a dual-book citation collision in shipped UI strings, and Domain Identity is a THREE-domain rule in Limited
+
+Batch 2 of the 100–299 slice, scoped as agreed: §H15's remaining block (107.3.b.1 / 107.3.b.2) plus
+the 103 deck-construction and 194 points blocks. **The structure-only verdict is at §78 and it is
+YES.** The manager's instruction to run the 104.1 subject check on any 103 paragraph I lean on is
+what produced the two biggest findings, so it goes first.
+
+## 73. `403.3` MEANS TWO DIFFERENT THINGS AND `src/build.ts` PRINTS IT UNLABELLED TO THE USER
+
+`checkBuild` scores four sideboard rows and renders their rule numbers into the Construction
+checklist. Three of them are unlabelled Tournament Rules citations:
+
+| line | rendered `rule` | book |
+|---|---|---|
+| `src/build.ts:77` | `103.2 · Tournament Rules 601.1.b` | **labelled — correct** |
+| `src/build.ts:381` | `601.1.c.1` | Tournament Rules, unlabelled |
+| `src/build.ts:390` | `601.1.c.2` | Tournament Rules, unlabelled |
+| `src/build.ts:401` | `601.1.c.3 · 403.3` | Tournament Rules, unlabelled |
+
+The `601.1.c.x` rows are unambiguous in fact — **the Core Rules contain no 601 at all** (measured:
+zero headings; the Core Rules jump 489 → 649) — so those are a labelling inconsistency inside one
+file, three lines below a row that labels correctly.
+
+**`403.3` is a genuine collision and it is live.** Both books print one:
+
+> **Core Rules 403.3.** Apply any other cost increases or decreases as necessary.
+>
+> **Tournament Rules 403.3.** Limits on copies of named cards as defined by competition format apply
+> to the combination of main deck and sideboard.
+
+A reader of a sideboard row who looks up `403.3` lands on the Core Rules' cost-determination step,
+which is nonsense in that context, and `test/rule-refs.test.ts` accepts either book so nothing
+fails. It is one of the 52 numbers CLAUDE.md records as existing in both books, reaching a
+**user-visible string** rather than a walk document. Riot's own cross-reference confirms which is
+meant — Tournament Rules 601.1.c.5 reads *"See 403 for more information about sideboards"*.
+
+The fix is four strings and their four detail sentences, prefixing `Tournament Rules ` exactly as
+line 77 already does. **Not applied here**: `src/` and `test/` belong to the UI lane, and the
+precedent is the `sizeRule` upgrade I flagged and the manager applied as 12e8080.
+
+## 74. DOMAIN IDENTITY IS TWO DOMAINS IN CONSTRUCTED AND **THREE** IN LIMITED
+
+The 104.1 subject check on 103.1.b, which this catalogue cites 114 times with 103.1.b.2 at 211:
+
+> **Core Rules 103.1.b.2.** Your deck's Domain Identity is dictated by the domains of your Champion
+> Legend.
+>
+> **Tournament Rules 602.4.a.3.** The domain identity of a sealed deck is **any three domains**, or
+> any domain plus the domains of the deck's Champion Legend.
+>
+> **Tournament Rules 602.4.b.4.** *(the identical sentence for a draft deck)*
+
+This is a **DECLARED** override — it sits inside 602, the Limited section, and is findable by
+reading the overriding section, which is the cheap class of the two this slice's predecessor
+distinguished. It is not a defect for us: CLAUDE.md refuses 602 permanently and correctly
+(`legality.json` is format-scoped to Constructed and 2v2, `checkBuild` scores Constructed). **What
+it does is put a SCOPE on a standing claim that carries none.** This file states that all 15
+two-domain pairs are printed as legends and therefore *"a Domain Identity check on a line that names
+no legend reduces to: is the union of the cards' domains at most two?"*. **That reduction is true of
+Constructed only.** In Limited the union may be three, so the fifteen pairs are not the space.
+Nothing in the catalogue is wrong; the sentence needs its format named, which is the same treatment
+the Victory Score already gets (194.3's 8 against 489.3's 11).
+
+The rest of the subject check came back CLEAN, and the clean rows are worth recording so nobody
+re-runs them. **Tournament Rules 601.1.a** declares its own scope — *"The rules for constructing a
+Riftbound deck are found in CR 101. Deck Construction, except where modified here below for the
+competition Constructed play format"* — and what follows modifies exactly three things: Main Deck
+size (601.1.b, this morning's contradiction), the sideboard (601.1.c), and **601.1.d**, *"In some
+competitions, the legal battlefields are different from the format-legal battlefields"*, resolved by
+event addenda this project has no data for — the same gap `checkBuild` already names for the
+sideboard question. **The Rune Deck is not modified anywhere**: 103.3.a.1 stands unchanged for
+competitions, and Limited restates it against its own wider identity at 602.4.a.4.
+
+## 75. 103.4.b IS THE PARAGRAPH `identityRule` IS ACTUALLY IMPLEMENTING
+
+> **103.4.b.** Subject to Domain Identity if applicable.
+
+Cited **zero times anywhere in the repository** — data, code, tests. `identityRule`
+(`src/build.ts:199`) reads the Main Deck **and the battlefields** and its docblock cites 103.1.b.1
+(*"cards included in your deck"*). The row is right and the citation is one paragraph short: 103.4.b
+is the sentence written for battlefields, and its *"if applicable"* is the part worth having,
+because it is what makes the check Mode-of-Play-dependent rather than universal. Its Main Deck twin
+**103.2.c** (*"Subject to Domain Identity."*) is likewise cited once in the whole repo.
+
+**103.3.a.1 is NOT an orphan and I nearly reported it as one.** It reads zero in `combos.json` +
+`synergies.json`, which is the only corpus my counter reads — and `src/build.ts:163` scores it by
+name (`"103.3.a · 103.3.a.1"`, *"12 runes in the identity"*). **A citation census over the data files
+is not a census over the project**; grep the code before calling a rule unused.
+
+## 76. THE FACEDOWN ZONE IS NOT A LOCATION, AND THAT SENTENCE IS CITED 26 TIMES FOR THE OTHER ZONE
+
+> **107.3.e.** Facedown Zones are not locations. *(cited **0**)*
+>
+> **107.4.b.** This is not a location. *(the Legend Zone — cited **26**)*
+
+Two zones, one sentence, and this project leans on one of them constantly: 107.4.b is what kills the
+whole *"legend + Reckoner's Arena"* family, because *"here"* cannot reach a zone that is not a
+location. **The identical argument is available for a face-down card and nobody has made it.** Three
+uncited paragraphs finish the profile:
+
+> **421.3.** Cards that are facedown at Battlefields have their gameplay properties and permissions
+> defined by the effect that put them there. *(cited 0)*
+>
+> **107.3.f.** Facedown Zones are Public Zones, though facedown cards located there are Private.
+> *(cited 0)*
+>
+> **421.4.** If a facedown card would change zones or if the game ends, its owner reveals it to all
+> players. *(cited once)*
+
+So a hidden card **has no properties of its own** — not a unit, not a gear, no Might, no domain,
+until the effect that hid it gives it some — and it is **at no location**, so no *"here"*, no
+*"units at a battlefield"*, no sweeper and no `OGN-133 Flurry of Blades` can see it. What the
+opponent DOES know is that it is there: 107.3.f makes the ZONE public and the CARD private, which is
+exactly why `OGN-101 Mushroom Pouch` and `UNL-014 Monster Harpoon` can legally read *"if you control
+a facedown card"*. 128.4's second example says the same from the privacy side and names the case —
+the **controller** may look, *"regardless of who owns that card"*.
+
+**Consequences, both new.** `OGN-181 Pack of Wonders` (*"Return another friendly gear, unit, or
+facedown card to its owner's hand"*) is the pool's only card that touches a facedown card at all,
+and its text **lists a facedown card SEPARATELY from gear and unit** — card-side corroboration of
+421.3, since the ordinary type words do not reach it. And 421.4 prices it: returning a facedown card
+to hand **reveals it to all players**, so the rebuy costs the information the whole [Hidden] package
+is bought for. Note the boundary — 811.1.d.1 (*"A hidden permanent must be played to that
+battlefield"*, cited 50 times) governs the card once it is PLAYED and does not put it at a location
+while it is still face down.
+
+## 77. THREE ROWS READ AND RETURNED EMPTY, WITH THE REASON
+
+**107.3.b.1 and 107.3.b.2** — the maximum occupancy of a Facedown Zone *"can increase or decrease"*,
+and if it decreases below the number of cards there the controller trashes the difference. Swept
+over `corpus_flat.txt` for `face ?down`: **nine rows, and not one changes an occupancy.** So the
+one-facedown-per-battlefield cap this project derives from 811.1.b is not merely the default, it is
+**unalterable in this pool**, and 107.3.b is its rules-side home (cited 6). 107.3.b.2 is dead
+letter — the only paragraph in the block that would ever pay, with nothing to pay it.
+
+**194.4, 194.4.a and 194.4.b** — *"Players cannot have less than 0 points"*, nothing happens at 0,
+and *"Any effects that trigger on a player losing points do not trigger."* Swept: **zero cards in
+the pool make a player lose points.** `OGN-276 Aspirant's Climb` raises the Victory Score (and is
+banned in both formats) and `VEN-053 Otterpus` REPLACES an early score with a draw — it prevents a
+gain, it does not cause a loss. §H16 disposed of 194.4 and the disposal extends to both sub-rules
+for the same measured reason. The interesting half is that 194.4.b is a **trigger** clause with no
+trigger to switch off: a whole floor-and-its-watchers mechanism, printed and unused.
+
+## 78. STRUCTURE-ONLY: YES
+
+Two batches, **no entry**, and the shape is consistent. Batch 18 gave four uncited paragraphs, all
+citation upgrades or refusals. Batch 19 gives one shippable tool fix, one scope correction to a
+standing claim, four uncited paragraphs on the facedown profile, and three measured empties. That is
+the card-facing half of the Core Rules behaving like the rules file and not like the card pool — the
+brief's expectation that 103/135–190/194/206 *"can settle an effects question and may yield entries"*
+is half right: it settles questions, and the questions it settles are about **the tool and the
+citations**, because the card-facing paragraphs describe zones, deck legality and points rather than
+effects a line can be built out of. What remains of §H15's list is 190.3 and 184, both walked in
+batch 18.
+
+The honest recommendation is to move me. The two threads worth handing on rather than dropping:
+**(a)** the 403.3 fix, four strings in `src/build.ts` plus `test/build.test.ts`; **(b)** the
+Constructed-only scope on the two-domain reduction, one sentence in CLAUDE.md.
+
+## 79. Validation
+
+20 passages checked verbatim — 14 against `data/Riftbound-Core-Rules-2026-07-16.txt` and 6 against
+`data/Riftbound-Tournament-Rules-2026-07-16.txt`, every Tournament Rules citation labelled as such
+at every site in this document — zero failures. Citation counts re-run with the hyphen-excluding
+lookbehind of batch 18 **and then grepped against `src/`, `web/`, `test/`, `data/` and `scripts/`**,
+which is what caught 103.3.a.1: 107.3.e → 0, 107.3.f → 0, 421.3 → 0, 103.4.b → 0 (repo-wide),
+103.2.c → 1, 421.4 → 1, 107.3.b → 6, 107.3.b.1 → 2, 107.3.b.2 → 0, 107.3.c → 12, 107.3.d → 13,
+107.4.b → 26, 194.4.b → 0, 103.1.b → 114, 103.1.b.2 → 211. Pool sweeps over `data/corpus_flat.txt`
+with the predicate stated in each case. No entry staged; `data/combos.json` not written; no file
+outside `docs/phase0/walks/` touched.
