@@ -2132,7 +2132,8 @@
         "notable": [
           "Power Nexus must be the battlefield in play, and a deck may not carry two of it (Core Rules 103.4.c, Tournament Rules 402.1): random 1 of 3 in Duel (485.5) and Skirmish (487.5), chosen in Match (486.5).",
           "Hold the Nexus with K Sentinels there: the trigger fires 1+K times, each may pay 4 Power for a point, plus the Hold's own point (470). K=2: 4 points per Beginning Phase for 12 Power. Hold-gated: once per turn.",
-          "The Power must exist in the Beginning Phase — rune recycles are Reaction-speed Adds (429.3), so it is legal to make it then."
+          "The Power must exist in the Beginning Phase — rune recycles are Reaction-speed Adds (429.3), so it is legal to make it then.",
+          "THE FOUR RAINBOW DOES NOT HAVE TO BE BANKED, AND THIS ENTRY`S FUNDER IS AN OPTIMISATION RATHER THAN A REQUIREMENT (citation upgrade 2026-09-12, #200). 383.3.b makes the cost a BASE COST paid at finalization and 312.2.c withholds priority until every pending chain item finishes finalizing, which is why this catalogue concluded the Power had to be on the board already and reached for an Add-on-trigger card. **Priority is not payment.** 444.2.c: *\"Players may activate abilities that Add resources with the Reaction keyword at any time that they are instructed to Pay resources. Those abilities finalize and resolve immediately, ignoring normal restrictions.\"* 164.2 gives every Basic Rune TWO abilities and both carry [Reaction], so 444.2.c reaches them; 164.2.b`s cost is the RECYCLE and not an exhaust, so a rune already tapped for Energy still pays; 164.2.b.1 Adds Power of that rune`s DOMAIN, which 135.2.e.5.a then makes legal against a rainbow cost (*\"When required as a cost, [A] can be paid by Power of any Domain\"*). So the Nexus is fundable out of runes in EVERY identity at four runes a point, and the Gold or Sentinel Add this entry uses is simply CHEAPER - see `power-nexus-rune-recycle-any-identity`, which walks the bare version."
         ]
       },
       "steps": [
@@ -22195,7 +22196,8 @@
           "R2 = A IS LOAD-BEARING. The Nexus says 'score 1 point', which 194.1.c makes a point Gain by Triggered Ability rather than a 469 Score, so 470's 'only Score once per Battlefield per turn' does not cap the three firings. 471.1.a.1 adds that 'points Gained from sources that are not Conquer are not beholden to' the Final Point restrictions of 471.1.b, so the eighth point lands from a Nexus firing without the 'Scored every Battlefield' clause biting.",
           "THE BATTLEFIELD IS NOT GUARANTEED. Power Nexus must be the battlefield in play: 485.4 'Battlefield Count: 2' with 485.4.a (each player provides three, one is used) and 485.5 'randomly selects' in a Duel, 487.5 the same in Skirmish, 486.5 chosen in Match. 103.4.c and Tournament Rules 402.1 forbid bringing two of the same name, so copies are not a way around the draw. And 190.1 makes a battlefield you provide start UNCONTROLLED, with 190.6.d blanking its 'you' until you take it — establishing Control (466.5) is part of the cost.",
           "THE EQUIP COSTS ARE REAL AND ARE COUNTED. Two Atlases are 6 Energy + 2 Mind Power to play and 2 more Mind Power to attach ('[Equip] [Mind]'), two Sentinels are 8 Energy + 2 Mind Power. 818.1 makes Equip an Activated Ability, so attaching is never playing and nothing triggers off it.",
-          "IT IS A DIFFERENT LINE FROM world-atlas-sentinel-gold, NOT A RESTATEMENT. That entry stops at the Gold and its own terminatesIn says 'it converts through Power Nexus (SFD-214: pay four runes on Hold to score 1) or through any Power sink' — the conversion was never authored. It also runs K = 1 (8 Gold, 2 payments); this entry runs K = 2 because 12 Gold is the exact fit for three firings. Its notable[4] had already spotted the pairing and priced it at K = 1."
+          "IT IS A DIFFERENT LINE FROM world-atlas-sentinel-gold, NOT A RESTATEMENT. That entry stops at the Gold and its own terminatesIn says 'it converts through Power Nexus (SFD-214: pay four runes on Hold to score 1) or through any Power sink' — the conversion was never authored. It also runs K = 1 (8 Gold, 2 payments); this entry runs K = 2 because 12 Gold is the exact fit for three firings. Its notable[4] had already spotted the pairing and priced it at K = 1.",
+          "THE FOUR RAINBOW DOES NOT HAVE TO BE BANKED, AND THIS ENTRY`S FUNDER IS AN OPTIMISATION RATHER THAN A REQUIREMENT (citation upgrade 2026-09-12, #200). 383.3.b makes the cost a BASE COST paid at finalization and 312.2.c withholds priority until every pending chain item finishes finalizing, which is why this catalogue concluded the Power had to be on the board already and reached for an Add-on-trigger card. **Priority is not payment.** 444.2.c: *\"Players may activate abilities that Add resources with the Reaction keyword at any time that they are instructed to Pay resources. Those abilities finalize and resolve immediately, ignoring normal restrictions.\"* 164.2 gives every Basic Rune TWO abilities and both carry [Reaction], so 444.2.c reaches them; 164.2.b`s cost is the RECYCLE and not an exhaust, so a rune already tapped for Energy still pays; 164.2.b.1 Adds Power of that rune`s DOMAIN, which 135.2.e.5.a then makes legal against a rainbow cost (*\"When required as a cost, [A] can be paid by Power of any Domain\"*). So the Nexus is fundable out of runes in EVERY identity at four runes a point, and the Gold or Sentinel Add this entry uses is simply CHEAPER - see `power-nexus-rune-recycle-any-identity`, which walks the bare version."
         ]
       },
       "steps": [
@@ -22282,7 +22284,8 @@
           "COMPARE time-warp-hold-burst, WHICH IS THE OTHER SHAPE OF THE SAME TRICK. That entry is three Time Warps riding the Lux infinite for Energy and Power, and takes both Duel battlefields to score 2 a turn. This one needs ONE Time Warp and no loop at all, because the Nexus turns a single battlefield into four points; the price is a specific colorless battlefield and a primed Gold bank. Neither is a version of the other and they share no card but OGN-122.",
           "IT DOES NOT SURVIVE A BURN OUT SCARE. The Additional Turn takes its own Draw Phase (315.4.b); keep at least one card in the Main Deck at the end of the casting turn or 315.4.b.1 Burns Out and 194.1.d hands the opponent a point. Nothing in this line empties the deck, so this is a check, not a cost.",
           "NOTHING IN THIS LINE IS PROTECTED FROM A GEAR KILL, AND THE POOL PRINTS SIXTEEN OF THEM. 718.5.b: 'Attached cards still can be chosen or targeted by game effects while Attached' - the Equipment's own printed Rules Text is Inactive while attached (718.2) and its [Equip] is unusable (721.2), but the CARD is a legal target for every turn it sits there. Swept with /\\bkills?\\b[^.]{0,80}\\bgear\\b/i over text+effect of every deckable base in data/cards.json, the pool has 16 base codes (15 names; Jayce, Man of Progress is printed twice) and EVERY ONE OF THE SIX DOMAINS prints at least one, so there is no identity this line can hide in. The unconditional enemy-facing ones are OGN-022 Thermo Beam, SFD-005 Detonate and VEN-003 Brittle Steel (Fury), OGN-224 Salvage (Order), SFD-032 Disarming Rake (Calm) and SFD-077 Rocket Barrage (Mind). OGN-022 Thermo Beam - Fury, E5 + 2 Fury Power, '[Action] (Play on your turn or in showdowns.) Kill all gear.' - is the only card in the pool that kills EVERY gear at once, so it answers the whole payoff with one card; it is symmetric, which makes it cheap for a gearless deck and expensive for anyone else (the shape acceptable-losses-ravenbloom-prefect-gearless-gear-hate already records for OGN-179).",
-          "THE TIMING CUTS BOTH WAYS, AND NO [Reaction] GEAR KILL EXISTS. Swept over all sixteen gear kills: none carries [Reaction]. Thermo Beam and Salvage are [Action], which 806.1.c.1 makes short for 'This can be played during showdowns on any player's turn'; Detonate and Brittle Steel are plain spells, and 155 confines a spell to 'an Open State outside of Showdowns on its controller's turn'. The Score this line pays on happens at 315.2.b.2 inside your own Beginning Phase, where the opponent holds no priority in a Neutral Open State (312.2.a) and the Closed State the trigger opens admits only a [Reaction] (813.1.c.1). So the opponent can NEVER strip the gear in the window that pays - every answer has to be cast on their own turn, one full turn before. That is what keeps the line alive, and it is also the window in which to defend it: the removal spell on the Chain is a Closed State, 312.2.c hands out priority there and 813.1.c.1 admits a [Reaction] in response."
+          "THE TIMING CUTS BOTH WAYS, AND NO [Reaction] GEAR KILL EXISTS. Swept over all sixteen gear kills: none carries [Reaction]. Thermo Beam and Salvage are [Action], which 806.1.c.1 makes short for 'This can be played during showdowns on any player's turn'; Detonate and Brittle Steel are plain spells, and 155 confines a spell to 'an Open State outside of Showdowns on its controller's turn'. The Score this line pays on happens at 315.2.b.2 inside your own Beginning Phase, where the opponent holds no priority in a Neutral Open State (312.2.a) and the Closed State the trigger opens admits only a [Reaction] (813.1.c.1). So the opponent can NEVER strip the gear in the window that pays - every answer has to be cast on their own turn, one full turn before. That is what keeps the line alive, and it is also the window in which to defend it: the removal spell on the Chain is a Closed State, 312.2.c hands out priority there and 813.1.c.1 admits a [Reaction] in response.",
+          "THE FOUR RAINBOW DOES NOT HAVE TO BE BANKED, AND THIS ENTRY`S FUNDER IS AN OPTIMISATION RATHER THAN A REQUIREMENT (citation upgrade 2026-09-12, #200). 383.3.b makes the cost a BASE COST paid at finalization and 312.2.c withholds priority until every pending chain item finishes finalizing, which is why this catalogue concluded the Power had to be on the board already and reached for an Add-on-trigger card. **Priority is not payment.** 444.2.c: *\"Players may activate abilities that Add resources with the Reaction keyword at any time that they are instructed to Pay resources. Those abilities finalize and resolve immediately, ignoring normal restrictions.\"* 164.2 gives every Basic Rune TWO abilities and both carry [Reaction], so 444.2.c reaches them; 164.2.b`s cost is the RECYCLE and not an exhaust, so a rune already tapped for Energy still pays; 164.2.b.1 Adds Power of that rune`s DOMAIN, which 135.2.e.5.a then makes legal against a rainbow cost (*\"When required as a cost, [A] can be paid by Power of any Domain\"*). So the Nexus is fundable out of runes in EVERY identity at four runes a point, and the Gold or Sentinel Add this entry uses is simply CHEAPER - see `power-nexus-rune-recycle-any-identity`, which walks the bare version."
         ]
       },
       "steps": [
@@ -22365,7 +22368,8 @@
           "THE HONEST COST COMPARISON. Two Benefactors are 12 Energy and no Power; two Atlases are 6 Energy + 2 Mind Power to play plus 2 Mind Power to attach, AND they need two bodies to hang on — which the Sentinels supply, so the Atlas version is cheaper in Energy and has two fewer permanents to lose. What this version buys is a garrison of four units (2 × M5 Benefactor, 2 × M4 Blue Sentinel with [Shield 2]) instead of two, which is what has to survive the opponent's turn between the priming Hold and the casting turn.",
           "MIND/ORDER OPENS THE DOOR THE MONO-MIND VERSION CANNOT USE. SFD-201 Chem-Baroness is a Mind/Order legend whose 'When you or an ally hold, you may exhaust me to play a Gold gear token exhausted' is itself a hold effect the Sentinels multiply, and whose 'While your score is within 3 points of the Victory Score, your Gold [Add] an additional [1]' turns each Gold into 1 Power AND 1 Energy from five points up — which is reached at the end of the first Beginning Phase here. Deliberately not in uses: it is a legend choice, not an ingredient, and the eight points close without it.",
           "EVERYTHING THE ATLAS VERSION SAYS ABOUT TIMING APPLIES UNCHANGED: the Gold is one turn behind because 315.1 Awaken precedes 315.2 and 187.5 puts an exhaust in its cost; the Nexus payment is the trigger's BASE COST paid at finalization (383.3.b, 383.3.b.1) with 383.3.d placing every simultaneous trigger before any resolves, so this turn's Gold can never pay this turn's Nexus even under Renata Glasc, Industrialist (R25 = A) — who IS legal in this identity, unlike in the mono-Mind version; the Power is made with no priority under 429.3/429.3.a; and R2 = A plus 471.1.a.1 let all six ability points, including the eighth, land.",
-          "THE BATTLEFIELD IS STILL 1 OF 3 AT RANDOM in a Duel (485.4, 485.4.a, 485.5) and starts uncontrolled (190.1, 190.6.d). In 2v2 the Victory Score is 11 (489.3) and this line is three short."
+          "THE BATTLEFIELD IS STILL 1 OF 3 AT RANDOM in a Duel (485.4, 485.4.a, 485.5) and starts uncontrolled (190.1, 190.6.d). In 2v2 the Victory Score is 11 (489.3) and this line is three short.",
+          "THE FOUR RAINBOW DOES NOT HAVE TO BE BANKED, AND THIS ENTRY`S FUNDER IS AN OPTIMISATION RATHER THAN A REQUIREMENT (citation upgrade 2026-09-12, #200). 383.3.b makes the cost a BASE COST paid at finalization and 312.2.c withholds priority until every pending chain item finishes finalizing, which is why this catalogue concluded the Power had to be on the board already and reached for an Add-on-trigger card. **Priority is not payment.** 444.2.c: *\"Players may activate abilities that Add resources with the Reaction keyword at any time that they are instructed to Pay resources. Those abilities finalize and resolve immediately, ignoring normal restrictions.\"* 164.2 gives every Basic Rune TWO abilities and both carry [Reaction], so 444.2.c reaches them; 164.2.b`s cost is the RECYCLE and not an exhaust, so a rune already tapped for Energy still pays; 164.2.b.1 Adds Power of that rune`s DOMAIN, which 135.2.e.5.a then makes legal against a rainbow cost (*\"When required as a cost, [A] can be paid by Power of any Domain\"*). So the Nexus is fundable out of runes in EVERY identity at four runes a point, and the Gold or Sentinel Add this entry uses is simply CHEAPER - see `power-nexus-rune-recycle-any-identity`, which walks the bare version."
         ]
       },
       "steps": [
@@ -22443,7 +22447,8 @@
           "SHE HAS TO STAND AT THE BATTLEFIELD, AND THAT IS THE COST. 'Use my abilities only while I'm at a battlefield' is a condition of the Activated Ability (377.2.b, whose own worked example quotes this wording inside the ability), so Renata is exposed at the Nexus alongside the Sentinels. heimerdinger-renata-remote-score is the entry that moves the exposure onto a 3-Energy body instead, under R30 = B; it is Body/Mind and cannot hold Blue Sentinel's Power source, so the two are alternatives.",
           "IT IS NOT A FOURTH COPY OF power-nexus-sentinel. That entry is the Nexus and the Sentinels alone and its point count is '1 + K per turn' out of the Beginning Phase; its Power problem is the rune ceiling and its own REFUTE note says so. This entry adds a MAIN-PHASE point that the Beginning-Phase Power shortage cannot touch, paid by a resource that entry generates and discards. power-nexus-atlas-sentinel-gold is the other way to spend the shortage — Gold instead of a second point sink — and the two stack in a Mind deck without competing, since the Gold pays the Beginning Phase and the Sentinels' rainbow pays the Main Phase.",
           "SFD-060 Tianna Crownguard switches both points off: 'While I'm at a battlefield, opponents can't gain points', and 194.1.c makes an ability score a Gain. She is catalogued as tianna-wildclaw-point-lock.",
-          "THE BATTLEFIELD IS 1 OF 3 AT RANDOM in a Duel (485.4, 485.4.a, 485.5), starts uncontrolled (190.1, 190.6.d), and cannot be doubled up (103.4.c, Tournament Rules 402.1)."
+          "THE BATTLEFIELD IS 1 OF 3 AT RANDOM in a Duel (485.4, 485.4.a, 485.5), starts uncontrolled (190.1, 190.6.d), and cannot be doubled up (103.4.c, Tournament Rules 402.1).",
+          "THE FOUR RAINBOW DOES NOT HAVE TO BE BANKED, AND THIS ENTRY`S FUNDER IS AN OPTIMISATION RATHER THAN A REQUIREMENT (citation upgrade 2026-09-12, #200). 383.3.b makes the cost a BASE COST paid at finalization and 312.2.c withholds priority until every pending chain item finishes finalizing, which is why this catalogue concluded the Power had to be on the board already and reached for an Add-on-trigger card. **Priority is not payment.** 444.2.c: *\"Players may activate abilities that Add resources with the Reaction keyword at any time that they are instructed to Pay resources. Those abilities finalize and resolve immediately, ignoring normal restrictions.\"* 164.2 gives every Basic Rune TWO abilities and both carry [Reaction], so 444.2.c reaches them; 164.2.b`s cost is the RECYCLE and not an exhaust, so a rune already tapped for Energy still pays; 164.2.b.1 Adds Power of that rune`s DOMAIN, which 135.2.e.5.a then makes legal against a rainbow cost (*\"When required as a cost, [A] can be paid by Power of any Domain\"*). So the Nexus is fundable out of runes in EVERY identity at four runes a point, and the Gold or Sentinel Add this entry uses is simply CHEAPER - see `power-nexus-rune-recycle-any-identity`, which walks the bare version."
         ]
       },
       "steps": [
@@ -55843,6 +55848,130 @@
         },
         {
           "title": "draven-rebuke-bloodless-combat - the verified entry establishing the bloodless-win sequence (464.2.f.1, 464.2.g, 465.1, 466.3.a, 466.5.d) and its garrison-of-one limit",
+          "kind": "manual-walk",
+          "date": "2026-09-06"
+        }
+      ],
+      "rulesVersion": "2026-07-16"
+    },
+    {
+      "id": "power-nexus-rune-recycle-any-identity",
+      "name": "The Power Nexus needs no Mind card: four runes recycled at finalization pay its rainbow",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-214",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield: 'When you hold here, you may pay :rb_rune_rainbow::rb_rune_rainbow::rb_rune_rainbow::rb_rune_rainbow: to score 1 point.' The other five Power Nexus entries in the catalogue all fund it with a Mind card - UNL-087 Blue Sentinel's Add on the Hold, or a Gold token from World Atlas or Eminent Benefactor. None of them is necessary, and this entry is the demonstration."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "ANY legend. Power Nexus is colourless and the runes that pay for it are whatever your Rune Deck holds, so this entry has no Domain Identity at all (103.1.b has nothing to constrain).",
+          "SFD-214 is not banned or restricted in either format - checked against data/legality.json, which has no row touching it.",
+          "It is a battlefield you PROVIDE, so it is a 1-in-3: 485.4.a has each player provide three of which one is used, 485.5 makes the selection random, and 103.4.c with Tournament Rules 402.1 forbid running three copies of one name to fix that."
+        ],
+        "notable": [
+          "THIS ENTRY EXISTS TO REFUTE A RECORDED REFUSAL. A synthesis batch of 2026-09-12 refused Power Nexus in Fury/Chaos on the ground that 383.3.b makes the four rainbow a BASE COST paid at finalization (383.3.b.1), that 312.2.c withholds priority until every pending chain item finishes finalizing, and that 167 empties the Rune Pool at the end of every turn - so the Power had to be banked in advance, the only funder that Adds on the Hold itself is UNL-087 Blue Sentinel, and the Sentinel is Mind. Every step of that is true EXCEPT the inference, and the paragraph that breaks it is 444.2.c: 'Players may activate abilities that Add resources with the Reaction keyword at any time that they are instructed to Pay resources. Those abilities finalize and resolve immediately, ignoring normal restrictions.' PRIORITY IS NOT PAYMENT. You are instructed to pay at finalization, and that instruction is itself the window.",
+          "THE THREE PARAGRAPHS THAT MAKE THE RUNES SUFFICIENT, AND THE THIRD IS THE ONE PEOPLE MISS. 164.2 gives every Basic Rune exactly two abilities and BOTH carry Reaction - 164.2.a ':rb_exhaust:: [Reaction] - Add :rb_energy_1:.' and 164.2.b 'Recycle this: [Reaction] - Add :rb_rune_colorless:.' - so 444.2.c reaches them. 164.2.b's cost is the RECYCLE and not an exhaust, so a rune already tapped for Energy this turn still pays. And 164.2.b.1 says 'The Power added this way corresponds to the Domain of the Rune that is being Recycled', which looks like a mismatch against a rainbow cost until you read 135.2.e.5.a: 'When required as a cost, [A] can be paid by Power of any Domain.' Four runes of any domains, recycled at the moment of payment, pay the four rainbow.",
+          "THE PRICE IS RUNES, NOT CARDS, AND THE RATE IS EXACTLY ONE POINT PER TWO TURNS FOR FREE. 161.2.b returns a recycled rune 'to the Rune Deck, not the Main Deck', 161.2.a caps that deck at 'Exactly 12 Rune cards', and 315.3.b channels 2 a turn. So four runes per point against two returned per turn is one extra point every two turns at zero card cost - or up to three points in consecutive turns by drawing a full twelve-rune board down to nothing, which costs you the Energy those runes would have paid. That is the honest ledger and it is why this is an ENGINE and not a finisher: one Power Nexus point per turn is the ceiling, since 315.2.b.2 Holds each battlefield once and 103.4.c forbids a second copy of the name.",
+          "A HOLD AT THE NEXUS IS TWO POINTS, NOT ONE. 471.1 Gains the Hold's own point first and 470 caps that at one Score per battlefield per turn; the Nexus point is a card-text Gain, which R2 = A puts under 194.1.c rather than under 469, so 470 never sees it and 471.1.a.1 - 'points Gained from sources that are not Conquer are not beholden to these restrictions' - keeps it clear of the Final Point clause as well.",
+          "WHAT THIS CHANGES FOR THE CATALOGUE, STATED AS OF 2026-09-12. Every one of the five existing Power Nexus entries (power-nexus-sentinel, power-nexus-atlas-sentinel-gold, power-nexus-atlas-sentinel-time-warp, power-nexus-benefactor-sentinel-time-warp, power-nexus-sentinel-renata-mastermind) pairs it with a Mind card, and NONE of them cites 444.2.c; across the whole catalogue that paragraph is cited by exactly one entry, shakedown-immortal-phoenix-reaction-add-at-finalization, which found the rule and never applied it here. Those five are not wrong - a Gold or a Sentinel Add is cheaper than four runes and leaves the board intact - but they are optimisations of a line that runs without them, which is the opposite of what the refusal concluded.",
+          "THE GENERAL FORM IS WORTH MORE THAN THIS BATTLEFIELD. Any 'you may pay X to Y' Triggered Ability in the pool is payable out of runes at the instant of finalization, in any identity, with no Add-on-trigger card and no priority window - because 383.3.b makes X the base cost and 444.2.c hands you the rune abilities anyway. Before refusing a line on the ground that its Power cannot be banked across 167, check whether the runes are simply still on the board."
+        ]
+      },
+      "steps": [
+        "Control the Power Nexus at your Beginning Phase, with four runes on the board. They do not need to be ready: 164.2.b's cost is the recycle, not an exhaust.",
+        "315.2.b.2 Holds every battlefield you control. The Hold Gains its own point (471.1), which 470 caps at one Score per battlefield per turn.",
+        "The Nexus's Triggered Ability goes on the chain. 383.3.b makes the four rainbow written immediately after its 'you may' the ability's BASE COST, and 383.3.b.1 pays it to FINALIZE the trigger rather than on resolution.",
+        "At that instruction to pay, recycle four runes. 444.2.c: 'Players may activate abilities that Add resources with the Reaction keyword at any time that they are instructed to Pay resources. Those abilities finalize and resolve immediately, ignoring normal restrictions.' 164.2.b is such an ability on every Basic Rune, and 135.2.e.5.a lets the domain Power it Adds pay a rainbow cost.",
+        "The trigger finalizes and resolves: a second point, this one a 194.1.c Gain by ability under R2 = A. The four runes are in the Rune Deck (161.2.b) and come back at two a turn (315.3.b)."
+      ],
+      "netPerIteration": "+2 points per turn at a battlefield you hold - one Score for the Hold and one ability Gain from the Nexus - for four runes and no card",
+      "terminatesIn": "engine - one Nexus point per turn at most, since 315.2.b.2 Holds each battlefield once and 103.4.c forbids a second copy of the name; the four runes per point are returned to the Rune Deck and re-channelled at two a turn",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12, issue #200 (docs/phase0/walks/2026-09-12-synthesised-lines.md) - synthesis lane, batch 4: opened while checking whether Chaos/Fury has any Hold-based point source at all, and refutes that batch's own earlier refusal",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        }
+      ],
+      "rulesVersion": "2026-07-16"
+    },
+    {
+      "id": "angle-shot-battleaxe-tryndamere-excess",
+      "name": "Four more Might at Reaction speed, bought after the garrison is known: the excess-damage dial",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-034",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "attacking",
+          "note": "Fury unit, E7 P2 M8. 'When I conquer after an attack, if you assigned 5 or more excess damage to enemy units, you score 1 point.' Alone he is a narrower card than his reputation: R28 = A defines excess damage as attacking Might never assigned, and 465.2.c.4 forbids assigning a unit more than the minimum needed to kill it, so a LONE Tryndamere clears the threshold only against a garrison whose summed Might is 3 or less. A single Might 4 defender beats him by one."
+        },
+        {
+          "card": "UNL-019",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BOARD",
+          "note": "Fury Equipment, E4, [Equip] 1 Energy + 1 Fury rune, Might Bonus +4 - the largest in the identity. Its drawback, 'At the end of your turn, if I didn't conquer this turn, unattach this and deal 4 to me.', never fires on this line: 053.1 and 136.2.d make the 'I' of an appended Effect Text the CARRIER, and the carrier is Tryndamere, who conquered. On the turns he does not attack, leave it unattached - an unattached Equipment appends nothing (719.1 appends Effect Text 'for as long as they remain Attached')."
+        },
+        {
+          "card": "SFD-011",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Fury spell, E2, NO Power, and it cantrips: '[Reaction] (Play any time, even before spells and abilities resolve.) Choose a unit and an Equipment with the same controller. Attach that Equipment to that unit or detach that Equipment from that unit. Draw 1.' It is the reason the Might arrives LATE. 818.1 makes [Equip] an Activated Ability and 381 confines every Activated Ability to 'the Controlling Player's Turn and during an Open State', so without this card the Battleaxe has to be committed in your Main Phase, before the combat opens."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "conquer-engine"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Mono-FURY - all three cards are Fury, so any legend with Fury among its two domains runs it (103.1.b.3), which is five of the fifteen pairs. It was designed for Chaos/Fury, whose only other finisher is the mono-Fury tryndamere-brambleback-conquer, but nothing in it is Chaos.",
+          "None of the three is banned or restricted in either format - checked against data/legality.json, which has no row touching OGN-034, UNL-019 or SFD-011."
+        ],
+        "notable": [
+          "THE NUMBER THIS ENTRY IS FOR: THE BEATABLE GARRISON GOES FROM 3 MIGHT TO 7. Excess damage is attacking Might never assigned (R28 = A) and 465.2.c.4 caps each assignment at 'the minimum required to constitute lethal damage', so against a garrison of summed Might D that you can kill outright, excess is (your attacking Might) minus D. A lone Tryndamere at 8 needs 8 - D >= 5, i.e. D <= 3. Carrying the Battleaxe he is 12 (137.3 and 718.4 apply the Might Bonus while attached), so D <= 7. That is the whole entry: one gear takes the line from beating a Recruit to beating a real body.",
+          "WHY IT IS BOUGHT AT REACTION SPEED RATHER THAN EQUIPPED, AND WHY THAT IS NOT A LUXURY. 818.1 makes Equip an Activated Ability and 381 says 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State', so the ordinary route commits the Battleaxe in your Main Phase - before the Combat stages (323.9) and opens (323.13), and therefore before you know what the garrison will be. Angle Shot is [Reaction], so it lands inside the opened Showdown, after 464.2.c.3 has designated the attackers and the defending side is known. You attach only when 4 <= D <= 7; when D is 3 or less Tryndamere already clears the threshold and the card is a 2-Energy cantrip instead. Being able to DECLINE is most of its value.",
+          "IN THIS IDENTITY ANGLE SHOT IS THE ONLY WAY TO MOVE AN EQUIPMENT AT REACTION SPEED, AND THE MEMBERS ARE NAMED. Swept over every card in the pool whose text attaches an Equipment by EFFECT rather than by paying [Equip], the ones legal under a Fury legend are SFD-002 Armed Assailant, SFD-008 Sentinel Adept, SFD-127 Master Bingwen (all [Weaponmaster], which 821.1.c attaches 'to me' and so can never place a gear on a chosen carrier), SFD-024 Rell, Magnetic (her trigger plays an Equipment of Energy cost 2 or less and attaches it to HERSELF, so the E4 Battleaxe is out of reach), SFD-208 Forge of the Fluft (a colourless battlefield, free but it exhausts your legend and is itself a 1-in-3) and SFD-011 Angle Shot. Of those, Angle Shot is the only one that is a card you can draw AND the only one that works in a Closed State. The pool's other chosen-carrier attachers - SFD-193 Grandmaster at Arms and SFD-184 Relentless Pursuit - are Calm/Body and Body/Fury.",
+          "IT ALSO MOVES AN ALREADY-ATTACHED EQUIPMENT, WHICH [Equip] CANNOT. 718.2 makes an attached Equipment's printed Rules Text Inactive and 721.2 says 'Inactive Abilities do not trigger, do not apply, and cannot be activated.', so an attached Equipment can never pay its own [Equip] again - the only legal relocations while attached are ATTACH effects. Angle Shot is one, and 719.3 ('A Top-Most Card and all cards Attached to it are at the same location') means the move carries the gear across the board without it being a Move. So one Battleaxe rides whichever body is attacking this turn.",
+          "THE SAME CARD IS A REMOVAL SPELL AND THE CATALOGUE NOW SAYS SO. Angle Shot reads 'an Equipment with the same controller' - THE SAME CONTROLLER NEED NOT BE YOU - so it detaches an opponent's Equipment for 2 Energy at Reaction speed, which 719.1 ('for as long as they remain Attached') and 137.3.a ('stops applying as soon as the card with the Might Bonus is no longer Attached') make a full answer to an equipped body without killing anything. Swept with /\\bdetach/i over text+effect of every deckable base, the pool has 5 base codes and 4 names and this is the ONLY enemy-facing one, because SFD-107 Strike Down says 'an equipped friendly unit', SFD-221 Veiled Temple 'a friendly gear' and SFD-193 Grandmaster at Arms 'you control'. Whether a detach lands usefully INSIDE a scoring window is an open question this project has not walked - 383.2.a.1 measures a Trigger Condition when the trigger is PLACED - so use it early, not in response to the trigger.",
+          "WHAT IT IS NOT: AN UPGRADE TO tryndamere-brambleback-conquer. That entry attacks with 2x8 + 3x4 = 28 Might and needs only a garrison under 23, so excess damage is not its binding constraint and +4 buys it nothing. This is the SMALL-BOARD version of the same payoff - one body instead of five, 13 Energy and 2 Power instead of 26 and 7 - and it scores 1 point per Conquer where that one scores 9. The two are not variants; they sit at opposite ends of the same card."
+        ]
+      },
+      "steps": [
+        "Tryndamere, Barbarian on the board and ready; Blighted Battleaxe on the board UNATTACHED (it appends nothing while unattached, so its end-of-turn drawback does not exist); Angle Shot in hand with 2 Energy.",
+        "Standard-move Tryndamere to an enemy-garrisoned battlefield, paying his exhaust (144.2, 144.4). The Contested status makes you the Attacker (464.2.c.1, 464.2.c.3).",
+        "The Combat stages at the next Cleanup (323.9) and opens into its Showdown (323.13). Now count the defending side's summed Might D.",
+        "If D is 3 or less, do nothing - 8 - D is already 5 or more. If D is between 4 and 7, cast Angle Shot in the Showdown and attach the Battleaxe to Tryndamere: 137.3 and 718.4 apply its +4 while attached, and 719.3 puts the gear at his location. Draw 1 either way.",
+        "465.2 resolves combat damage 'using their current Might' (465.2.a sums the attackers), so the Battleaxe counts. 465.2.c.4 caps each assignment at minimum lethal, leaving 12 - D unassigned.",
+        "466.5 establishes Control and 466.5.d makes it a Conquer. Tryndamere's trigger checks 'if you assigned 5 or more excess damage' and scores 1 point, a 194.1.c Gain under R2 = A on top of the Conquer's own Score.",
+        "At the end of your turn the Battleaxe asks whether its carrier conquered. He did, so it stays attached and deals nothing."
+      ],
+      "netPerIteration": "+2 points per Conquer (the Conquer's Score and Tryndamere's ability Gain) and +1 card, for 2 Energy on the turn, against garrisons up to 7 summed Might",
+      "terminatesIn": "engine - one Tryndamere point per Conquer, and 470 with 485.4 cap a Duel at two Conquers a turn; it needs an enemy garrison every time, since 807.1.d and 323.9 make an attack impossible without one",
+      "sources": [
+        {
+          "title": "Hand walk 2026-09-12, issue #200 (docs/phase0/walks/2026-09-12-synthesised-lines.md) - synthesis lane, batch 4: rc-manager5's Angle Shot lead applied to Chaos/Fury, the identity whose only finisher is mono-Fury",
+          "kind": "manual-walk",
+          "date": "2026-09-12"
+        },
+        {
+          "title": "tryndamere-brambleback-conquer - the verified BURST this entry is the small-board opposite of, and the source of the 1 + T x (1 + K) formula and the R28 = A excess-damage reading",
           "kind": "manual-walk",
           "date": "2026-09-06"
         }
