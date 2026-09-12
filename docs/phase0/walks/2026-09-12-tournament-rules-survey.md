@@ -261,3 +261,109 @@ array. One instrument note: a first sweep for entries that discuss forgetting a 
 and the number was wrong — the pattern was matching **`Forgotten` Signpost** and **`Forgotten`
 Library**. The clean measurement is the citation count, which is zero. No entry staged;
 `data/combos.json` not written.
+
+---
+
+# Batch 3 — 104.1 says this book beats the Core Rules, and it is cited by nothing
+
+No entry. Taken out of order at the manager's direction (407 first, because the turn clock prices the
+first turn from Core Rules 485.7 and had never read this book's version), and the section above it
+turned out to matter more than the one I was sent for.
+
+## 12. TOURNAMENT RULES 104.1 — THE PRECEDENCE RULE
+
+> **TOURNAMENT RULES 104.1.** vs. Core Rules: In some cases, information in this document may
+> contradict, or provide information not contained in, the Riftbound Core Rules. **In all such cases,
+> this document takes precedence for competitions.**
+
+**Cited zero times.** This project is built on the Core Rules and cites the Tournament Rules nineteen
+times, and 104.1 says that wherever the two differ, for anything a player does at an event, **the book
+we have barely read wins.** That is the frame for this whole slice and it belongs at the top of it:
+every Core Rules derivation in the catalogue is provisional against a Tournament Rules paragraph
+nobody has looked for. 104.3 adds a third tier above both — event-specific addenda beat this document
+— and 105 lets Riot alter it without notice.
+
+## 13. THE FIRST CONTRADICTION, AND IT AMENDS A FINDING I SHIPPED THIS MORNING
+
+§150 of the other walk (batch 32, the 486 block) concluded that after a drawn game a battlefield
+returns, and named **Core Rules 486.5.a** as *"the only relief"*:
+
+> **CORE RULES 486.5.a.** If no player won a game, the battlefields presented for that game **may be
+> reused** in a subsequent game.
+
+The Tournament Rules say it is not a relief and not optional:
+
+> **TOURNAMENT RULES 406.1.b.** If a game ends in a draw, players **must use the same battlefields**
+> for the following game.
+
+**May against must, and by 104.1 the must wins in competition.** So the corrected statement for every
+battlefield-dependent entry is: *a decisive game removes your battlefield for the rest of the match
+(CR 486.5, CR 486.6); a drawn game locks you into the same one, whether you want it or not
+(TR 406.1.b).* A deck whose game-1 battlefield was the wrong choice cannot change it after a draw —
+and by §2 of this document, **a loop with no maintaining player ends the game in a draw (TR 505.6)**,
+so the two halves of this survey meet on the same board: the worst outcome for an infinite also freezes
+the battlefield you brought.
+
+This is my own finding from earlier today, amended within the day by reading the other book. Nobody
+would have found it from the Core Rules, because the Core Rules sentence reads complete.
+
+## 14. 407.1 — THE SEAT IS A CHOICE, AND THE TURN CLOCK DOES NOT MOVE
+
+> **TOURNAMENT RULES 407.1.** For the first game of a match, a designated player decides whether they
+> wish to play first or last.
+> **407.2.** Any random method that is agreed upon by all players in the current game may be used to
+> determine the designated player.
+
+The manager's concern was that if 407 moves the first turn, every number behind *"33 of 45 finishers
+pay later than doing nothing"* moves with it. **Checked at source in `scripts/adversarial-check.mjs`,
+lines 151–152, which model going first and say so:** *"485.7 gives the extra rune to the player going
+SECOND, so this is the slower seat and therefore the honest bound."*
+
+**The numbers do not move, and the reason is that the clock is a comparison.** The same rune curve is
+applied to the finisher and to the do-nothing Hold curve it is measured against, so a seat that shifts
+both shifts neither relative to the other. What 407.1 does change is the ABSOLUTE figures in one
+direction only: a deck may now *choose* the seat, so a finisher that wants ramp takes the extra rune of
+going second and can arrive a turn earlier than the model says — and the do-nothing curve arrives a
+turn earlier too. **The clock's absolute turns are a ceiling the seat choice can lower; its comparison
+is seat-invariant.** That makes the 33-of-45 a floor for a third independent reason, alongside the two
+the script already records.
+
+## 15. 407.4 — THE LOSER CHOOSES THE SEAT, WHICH COMPOUNDS WITH THE BATTLEFIELD REMOVAL
+
+> **TOURNAMENT RULES 407.4.** For games after the first game of a match, the loser of the previous game
+> gets to choose if they play first or last. If the previous game was a draw, the starting play from
+> the previous game is maintained.
+
+Read with Core Rules 486.5 and 486.6 — the winner's battlefields are **removed from the match** — this
+is the sentence a combo deck should be built against: **winning game 1 with a battlefield-dependent
+line costs you that battlefield for the rest of the match AND hands your opponent the choice of seat
+for game 2.** Two independent penalties for winning, from two different books, and the catalogue
+records neither. For the eleven Grand Plaza lines and the 81 entries carrying the battlefield caveat,
+that is the real match-level picture: **the line is available in at most one game of three, and the
+game it wins is the game that switches it off.**
+
+The draw clause is the other half of §13: after a draw you keep the battlefields (TR 406.1.b) *and* the
+seat (TR 407.4), so a drawn game changes nothing except the clock.
+
+## 16. 406.1.g — a third setup process, and it is random
+
+> **TOURNAMENT RULES 406.1.g.** For competitions run using a “best of 1” format instead of a “best of
+> 3” format, the head judge may opt to use the altered initial setup process listed below to closer
+> mirror the “best of 3” experience:
+> **406.1.g.2.** Each player randomly selects one of their three Battlefields, and places it into the
+> Battlefield Zone.
+
+So a best-of-1 event may run with **Core Rules 485.5's random battlefield** rather than 486.5's chosen
+one, at the head judge's option, and with a sideboard step (406.1.g.5) before the Chosen Champion is
+set aside (406.1.g.6). **Three setup variants exist, not two**, and which one a battlefield-dependent
+entry faces is an event-level decision no card can influence. 406.1.g.3 routes the seat through 407 even
+in that variant.
+
+## 17. Validation
+
+Quotes checked from an explicit list: 8 passages against
+`data/Riftbound-Tournament-Rules-2026-07-16.txt` and 1 against
+`data/Riftbound-Core-Rules-2026-07-16.txt`, zero failures. The turn-clock claim was checked by reading
+`scripts/adversarial-check.mjs` at source rather than from CLAUDE.md's summary of it. Section 104's
+zero citations were measured over `data/combos.json`, `data/synergies.json`, `src/`, `test/`, the walk
+records and CLAUDE.md. No entry staged; `data/combos.json` not written.
