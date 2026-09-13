@@ -94,7 +94,7 @@ load-bearing exactly as 187.4's Mech tag is**: `OGN-246 Viktor, Leader` reads *"
 > *"Some information used by triggered abilities is referenced from the trigger condition of the
 > ability. This information is checked when the trigger condition is fulfilled."*
 
-CLAUDE.md cites 359.3.f.2 five times for *"'here' is read at EXECUTION"*. 359.3.f.3 is the opposite
+CLAUDE.md cites 359.3.f.2 five times for *"'here' is read at execution"*. 359.3.f.3 is the opposite
 case and nobody has it: information drawn from the **trigger condition** is locked when the trigger
 is placed. **Riot's worked example is a pool card, printed word for word** — `UNL-082 Lillia, Fae
 Fawn`, *"When I move from a location, play a 3 Might Sprite unit token … there"*: the location is
@@ -106,8 +106,8 @@ change where the Sprite lands.
 > timing with no restrictions on targeting."*
 
 CLAUDE.md's [Hidden] apparatus is 811.1.b, 811.1.c.1, 811.1.d.2 and 811.6, and it states flatly that
-***"No [Hidden] removal can play the attacker-side role of the #118 family … Fox-Fire, Hidden Blade
-and Sprite Call are defender-side only."*** That refusal is scoped to the FREE route. 811.3 is the
+***"No [Hidden] removal can play the attacker-side role of the #118 family"*** … ***"Fox-Fire,
+Hidden Blade and Sprite Call are defender-side only"*** That refusal is scoped to the FREE route. 811.3 is the
 paid route, and it has **no restrictions on targeting** at all — so the same three cards are
 offence-capable for full cost. **43 printings carry [Hidden]**; the file reaches this fact once, from
 the card side (`OGN-107 Ava Achiever` plays from hand), and never as the rule.
@@ -165,9 +165,10 @@ the next session refuses the Sentinel family on a paragraph it has just discover
 ### 356.1.b.2 (+ .b.1 + 356.1.a) — the cost-replacement trio whose exception is carried. Catalogue 11 / 10 / 10, file 0.
 > 356.1.a: *"If an ability or instruction allows you to play a card 'for [Cost]', replace the card's
 > Base Costs with [Cost]."*
-> 356.1.b.1: *"'ignoring its cost' → its base Energy cost and base Power cost are set to zero."*
-> 356.1.b.2: *"'ignoring its Energy cost' or 'ignoring its Power cost' → **only the appropriate cost
-> is set to zero, and the remaining cost still applies**."*
+> 356.1.b.1: *"If a card allows a player to play a card 'ignoring its cost,' its base Energy cost
+> and base Power cost are set to zero."*
+> 356.1.b.2: *"If a card instructs a player to play a card 'ignoring its Energy cost' or 'ignoring
+> its Power cost,' only the appropriate cost is set to zero, and the remaining cost still applies."*
 
 CLAUDE.md carries only 356.1.b.3, the optional-additional-cost exception, three times. Measured over
 `data/corpus_flat.txt`: **15 cards print *"ignoring its cost"*, FIVE print *"ignoring its Energy
@@ -185,8 +186,7 @@ Power) pays E4 + a Chaos rune on the replay and no base Power at all.
 - **441.2.a** (12, 0) — *"When a Game Object becomes Empowered as a result of the Empower game
   action, that is an **event** that can similarly be referenced by game effects and abilities."*
   CLAUDE.md cites 441.2 five times for Empowered as a permanent **state**. The whole #159 finding —
-  *"the partner set of every empower anchor is the DISEMPOWERERS"*, a *"when I become [Empowered]"*
-  unit firing once per copy per game — **is a claim about the EVENT and has only the STATE paragraph
+  *"the partner set of every 'empower' anchor is the DISEMPOWERERS"*, a *"When I become [Empowered]"* unit firing once per copy per game — **is a claim about the EVENT and has only the STATE paragraph
   under it.** Identical shape to 708-against-709, which #207 disposed yesterday.
 
 - **383.3.a.3** (12, 0) — *"If 'you may' or 'they may' appears in any later part of the Effect of a
@@ -207,8 +207,7 @@ Power) pays E4 + a Chaos rune on the replay and no base Power at all.
   this file cites constantly for Tank. CLAUDE.md derives Backline's ordering from 465.2.c.6's worked
   *example*; this is the rule, and it adds the multi-Backline case (the attacker picks among them).
 
-- **422.4** (11, 0) — *"a player must Discard as many cards as possible … If instructed to discard
-  more cards than they have, further discard instructions are ignored"*, worked example
+- **422.4** (11, 0) — *"a player must Discard as many cards as possible from their hand. If instructed to discard more cards than they have in their hand, further discard instructions are ignored"*, worked example
   `Undercover Agent`: with one card you discard one **and still draw 2**. This is the cost/effect
   split the file loves, in the discard lens (#95): **a discard as an EFFECT degrades gracefully,
   while a discard as a COST fails outright** under 422.3 / 203.3, both carried.
@@ -221,7 +220,7 @@ Power) pays E4 + a Chaos rune on the replay and no base Power at all.
   left, as long as they are all at one battlefield.
 
 - **359.3.e.16** (10, 0) — *"If a Delayed Ability's duration has ended before it was generated, the
-  Delayed Ability is not generated."* Riot's first example is `OGN-289 Targon's Peak`, catalogued in
+  Delayed Ability is not generated and any instructions related to it are ignored."* Riot's first example is `OGN-289 Targon's Peak`, catalogued in
   `sprite-queen-targon-peak-conquer-cycle`: **conquer it during the Ending Phase and the ready-2-runes
   never happens.** Second example `SFD-109 Akshan, Mischievous` — leave the board in response to your own play
   effect and you never gain control of the gear *"even for a moment."*
@@ -276,7 +275,7 @@ Power) pays E4 + a Chaos rune on the replay and no base Power at all.
 
 - **312.2.b** (11, 0) — *"When the turn is in a Showdown State and they gain Focus."* The third member
   of 312.2's list of priority grants, beside 312.2.a (6 citations in the file) and 312.2.c (12).
-  CLAUDE.md says *"312.2.a's Main-Phase priority and 335.1's Showdown priority are TWO separate
+  CLAUDE.md says *"312.2.a's Main-Phase priority and 335.1's Showdown priority are two separate
   grants"* — **reaching two blocks away for a paragraph sitting in the same list.**
 
 - **464.2.d** (10, 0) — *"3. The Attacker gains Focus."* CLAUDE.md derives this from 345 plus
@@ -363,8 +362,7 @@ not fallen off the way the orphan-neighbour probe's did, because this join is ex
 
 - **446.3.c** (8) — *"Moving does not use the Chain, nor is it able to be Reacted to."* CLAUDE.md
   runs a large movement and evacuation apparatus and reasons about response windows constantly
-  (323.10, 323.13, *"only a Triggered Ability reaches that window"*, *"after a plain move the very
-  next Cleanup stages the Combat with no gap"*). **This is the sentence under all of it** and the
+  (323.10, 323.13, *"Only a Triggered Ability reaches that window"*, *"after a plain move the very next Cleanup stages the Combat (323.9) and opens it (323.13) with no gap"*). **This is the sentence under all of it** and the
   file does not have it: the move itself is unrespondable, so the only window is whatever trigger
   the move fires.
 
@@ -420,7 +418,7 @@ not fallen off the way the orphan-neighbour probe's did, because this join is ex
 [Repeat]**, because the Repeat execution happens at resolution, after that instruction has already
 run — an excludes fact over the 17 as-an-additional-cost cards the file lists. ·
 **356.2.a.1** (9): the **discriminator** between mandatory and optional additional costs — mandatory
-ones *"use the phrase 'as an additional cost' and don't include the word 'may'"*; the file's
+ones *"use the phrase 'as an additional cost' and don't include the word 'may.'"*; the file's
 #187 batch-22 bullet classifies 17 cards and cites 356.2.b only. ·
 **359.3.e.5** (8): an illegal target is unaffected **and the rest of the spell still happens** — the
 rule under "a cantrip removal still cantrips", with three worked examples, one naming
@@ -428,8 +426,8 @@ rule under "a cantrip removal still cantrips", with three worked examples, one n
 **359.3.e.11** (8): *"Instructions that can be partially followed are followed as much as possible
 and ignored otherwise"* — **this is the GENERAL form of 422.4 in §2 above, and 422.4 should be
 applied as its discard instance rather than on its own.** ·
-**820.3.a** (9): *"Regardless of the number of times a spell's instructions are executed with this
-keyword, it is only **Played** once"* — so [Repeat] never feeds [Legion], *"cards played this turn"*
+**820.3.a** (9): *"Regardless of the number of times a spell or ability's instructions are executed with this
+keyword, it is only Played once"* — so [Repeat] never feeds [Legion], *"cards played this turn"*
 or any play-watcher twice. ·
 **829.1.b.2** (9): a Flow replay *"does not change the timing at which it can be played, nor any
 permissions … aside from the zone"* — a non-Reaction Flow spell is still Main-Phase only. Pairs
@@ -437,10 +435,8 @@ with the 356.1.a Flow finding above. ·
 **424.1.a.1** (8): *"Other cards, **including the card being revealed**, can reference the act of
 being Revealed"* — the permission under the whole `SFD-175 Undertitan` *"as you look at or reveal
 me"* family the file has a bullet on. ·
-**812.1.b.1** (8): [Legion] long form, *"If you have played another card this turn, this card gains
-'[Text]'"* — a conditional GRANT, the same shape as 824.1.b.1 for [Level] above. ·
-**377.2.a** (9): a *"using an activated ability"* trigger condition is fulfilled **when the ability
-resolves**. Measured: exactly ONE card, `SFD-075 Prize of Progress`, which the file already names. ·
+**812.1.b.1** (8): [Legion] long form, *"If you have played another card this turn, this card gains [Text]."* — a conditional GRANT, the same shape as 824.1.b.1 for [Level] above. ·
+**377.2.a** (9): a trigger condition using the words *"using"* or *"playing"* an Activated Ability is fulfilled **when the ability resolves**. Measured: exactly ONE card, `SFD-075 Prize of Progress`, which the file already names. ·
 **805.2.a** (8): *"Accelerate costs cannot be paid while the unit is on the board, only as part of
 the steps of playing a card"* — closes the obvious question against the carried 805.1.a.1 / 805.6.
 
@@ -466,7 +462,8 @@ bullet above to complete that list of four priority grants; **814.1.d** (8) fold
   rules' own licensed slot for Lee Sin's multi-buff exception — so the honest note is about Riot's
   PATTERN (the restriction blocks 441.1.b/c and the rules keep an exception slot beside it), not
   about a line anyone can build.
-- **818.4** (8) — *"Multiple instances of Equip … can each be activated separately."* **Measured: 50
+- **818.4** (8) — *"Multiple instances of Equip are equivalent to multiple Activated Abilities and can each be
+activated separately by paying the corresponding costs."* **Measured: 50
   `[Equip]` occurrences in the corpus and ZERO cards carrying two.** Dead letter, like 434.5's
   exhausted-Equipment example the file already records as dead letter.
 
@@ -504,8 +501,7 @@ is thinning, not the citation count.**
   loss"* — and never says what that does to the PAYOFFS. It does nothing: every conquer trigger in
   the line still fires. A protection for the whole 15-strong CONQUER bucket against point denial.
 
-- **822.1.d** (7) — *"Ambush can also appear as a **verb** on a card. In such a case, the verb is
-  taken to mean 'play with the permissions of the Ambush keyword'."* **Riot's worked example is
+- **822.1.d** (7) — *"Ambush can also appear as a **verb** on a card. In such a case, the verb is taken to mean 'play with the permissions of the Ambush keyword.'"* **Riot's worked example is
   `UNL-120 Rengar, Trophy Hunter`**, whom the file names twice — as *"the one genuine threat because
   his own text lifts the restriction"* and as the only card that reinforces a battlefield you are
   attacking. 822.1.d is the mechanism by which his text does that, and the second example shows the
@@ -524,8 +520,8 @@ is thinning, not the citation count.**
   the same**."* The last member of the 144.3 quartet: 144.3 one action, 144.3.a shared destination,
   144.3.c simultaneous exhaust costs (carried by #207), and this. **Destination shared, origins
   free** — so a garrison at two different battlefields walks home as one action.
-- **355.4.a** (7) — *"A valid Location for a Move Effect is one **other than the Units' current
-  Location**."* Folds into the 355.4 bullet: a move effect can never be a no-op on its own target.
+- **355.4.a** (7) — *"A valid Location for a Move Effect is one other than the Units' current
+  Location where they are allowed to be present."* Folds into the 355.4 bullet: a move effect can never be a no-op on its own target.
 - **829.1.c.1** (7) — the Flow cost *"is an alternate cost that replaces the base cost of the spell
   **to be paid during finalization**."* Folds into the 356.1.a Flow bullet and supplies the WHEN.
 - **805.4** (7) — *"Multiple instances of Accelerate are redundant."* Folds into the redundancy
@@ -605,8 +601,7 @@ the band and I would not want them lost:
   Burn Out and Prevent under the whole 370–373 machinery the file already carries for Zhonya's
   Hourglass and Soraka (370.2's once-per-event cap, 373's controller ordering, 373.2's one-sequence
   limit), and the loop ledger has never asked what that means. It was already flagged as the next
-  row in rc-walk-mid's 2026-09-09 handoff (*"a Burn Out cannot be responded to, which the whole loop
-  ledger has never asked"*) and is still open. Two honest observations to hand on with it: 431.3
+  row in rc-walk-mid's 2026-09-09 handoff (*"a Burn Out cannot be responded to"*, whose consequence the loop ledger had never asked about) and is still open. Two honest observations to hand on with it: 431.3
   makes each re-attempt a **fresh event**, so 370.2 does not obviously cap the 431.3.a cascade; and
   the file currently describes Prevent as *"a different mechanism from the would-die replacements of
   #119"*, which is true of the timing and slightly loose as a classification, since 369.2 says both
