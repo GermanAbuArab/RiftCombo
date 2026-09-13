@@ -4,7 +4,7 @@ This is the orientation document. `docs/plan.md` and `docs/phase0-findings.md` a
 spike of 2026-09-02 and are kept as history: they describe decisions that were later taken
 differently. Read them for the reasoning, not for the current state.
 
-Every number below carries the command that produces it, measured against commit **`431ef1c`** on
+Every number below carries the command that produces it, measured against commit **`9f2399d`** on
 2026-09-13. The catalogue grows with every walk: **if a number does not match, the command is the
 truth and this is a photo.**
 
@@ -66,8 +66,8 @@ decides what is visible; `web/account.ts` sets the attribute.
 | Errata replacements | **52** | `node -pe 'require("./data/errata.json").entries.length'` |
 | Legality rows (ban/restricted) | **21** | `node -pe 'require("./data/legality.json").entries.length'` |
 | Hand walks archived | **85** | `ls docs/phase0/walks/*.md \| grep -v README \| wc -l` |
-| Run plays | **4** | `ls docs/plays/*.md \| wc -l` |
-| Tests | **525 in 40 files** | `npm test` |
+| Run plays | **9** | `ls docs/plays/*.md \| wc -l` |
+| Tests | **647 in 47 files** | `npm test` |
 | Typecheck | clean | `npm run typecheck` |
 
 All 766 entries are `verified`: somebody walked the loop by hand against card text and the Core
