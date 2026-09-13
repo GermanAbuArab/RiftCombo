@@ -52,8 +52,7 @@ type FileKey = keyof typeof FILES;
 export const normalise = (s: string): string =>
   s
     .replace(/[​‌‍﻿­]/g, "")
-    .replace(/[‘’′'‚]/g, '"')
-    .replace(/[“”″„]/g, '"')
+    .replace(/["“”″„‘’′'‚]/g, "")
     .replace(/[–—]/g, "-")
     .replace(/\s+/g, " ")
     .trim();
@@ -129,7 +128,13 @@ export function appearsIn(text: string, keys: FileKey[]): boolean {
     .map((p) => p.trim())
     .filter((p) => p.length >= MIN);
   if (!parts.length) return true;
-  return parts.every((p) => keys.some((k) => TEXT[k].includes(p) || TEXT[k].includes(p.replace(RULE_LABEL, ""))));
+  // #202 ruled ONE residual deliberate and correct: "lowercasing a sentence-initial letter to splice
+  // a quotation mid-sentence misrepresents nothing, where shouting a word does". Encode the sanction
+  // so the test matches its own stated policy. Only the FIRST letter, so `their DECK` still fails.
+  const forms = (p: string) => [p, p.charAt(0).toUpperCase() + p.slice(1)];
+  return parts.every((p) =>
+    keys.some((k) => forms(p).some((f) => TEXT[k].includes(f) || TEXT[k].includes(f.replace(RULE_LABEL, "")))),
+  );
 }
 
 type Combo = { id: string; sources?: { title?: string; quote?: string }[] };
@@ -147,6 +152,64 @@ for (const e of combos)
     inScope++;
     for (const text of verifiableUnits(s.quote)) checks.push({ id: e.id, keys, text });
   }
+
+/**
+ * data/synergies.json, added 2026-09-13 (#187). Before this, `test/rule-refs.test.ts` proved every
+ * rule NUMBER a synergy cites exists and nothing checked the TEXT it quoted — references verified,
+ * quotations not. Three defects were sitting there: two with EMPHASIS ADDED inside the quotation
+ * marks (`a player CHOOSES` for 702.2.a's "chooses", `hand DIRECTLY into their trash` for 422.1's
+ * "directly"), which matters more than usual because the whole synergy rule turns on that word and a
+ * reader cannot tell whether Riot emphasised it or we did; and one that stripped Riot's own bracket
+ * notation out of 356.4.e's worked example (`reduced by 1` for `reduced by [1]`).
+ *
+ * THE SCOPE IS NARROWER THAN combos.json's AND THE REASON IS MEASURED, NOT ASSUMED. A synergy `why`
+ * is prose with inline quotations and no `title` naming a source, so what a quotation claims is read
+ * from the label immediately before it: a rule number means the rulebooks. A blanket check of every
+ * quoted span is NOT applied, because `why` renders the corpus's symbol tokens as words by design —
+ * `:rb_might:` as "Might", `:rb_exhaust:` as "exhaust" — and 118 of 386 spans (30.6%) fail a verbatim
+ * check for that reason alone. Holding prose to a standard the house style deliberately breaks would
+ * produce a test nobody could keep green. Rule-led spans have no such excuse: measured at 215 rules,
+ * 46 are in scope and all 46 are verbatim.
+ */
+type Syn = { id: string; why?: string };
+const synergies = (
+  JSON.parse(readFileSync(new URL("data/synergies.json", root), "utf8")) as { synergies: Syn[] }
+).synergies;
+
+/** `702.2.a — "..."`, `(422.1, "...")`: a rule number with only punctuation between it and the quote. */
+const RULE_LED = /\d{3}(?:\.[0-9a-z]+)*[^0-9a-z]*$/;
+const synChecks: { id: string; text: string }[] = [];
+for (const r of synergies) {
+  const why = r.why ?? "";
+  for (const span of new Set(quotedSpans(why))) {
+    if (span.length < MIN || !/\s/.test(span)) continue;
+    if (!RULE_LED.test(why.slice(Math.max(0, why.indexOf(span) - 40), why.indexOf(span)))) continue;
+    synChecks.push({ id: r.id, text: span });
+  }
+}
+
+describe("every synergy quotation attributed to a rule appears in the rulebooks", () => {
+  it("checks enough passages to be meaningful", () => {
+    // A floor, not a pin, for the same reason as the combos one: a scoping rule that silently
+    // matched nothing would pass green. Measured at 215 rules: 46 rule-led spans.
+    expect(synergies.length).toBeGreaterThan(200);
+    expect(synChecks.length).toBeGreaterThan(35);
+  });
+
+  it("resolves every rule-led passage", () => {
+    const unresolved = synChecks.filter((c) => !appearsIn(c.text, ["core", "tournament"]));
+    expect(
+      unresolved.map((c) => `${c.id}: ${JSON.stringify(c.text.slice(0, 120))}`),
+      "synergy quotations that do not appear in the rulebooks they cite",
+    ).toEqual([]);
+  });
+
+  it("still fails emphasis added inside a synergy quotation", () => {
+    // The wiring proof, in band: this is blade-dancer-buff-is-choosing's defect, verbatim.
+    expect(appearsIn("To Buff a Unit, a player chooses a Unit and then places a buff on it.", ["core"])).toBe(true);
+    expect(appearsIn("To Buff a Unit, a player CHOOSES a Unit and then places a buff on it.", ["core"])).toBe(false);
+  });
+});
 
 describe("every quote attributed to a file we ship appears in that file", () => {
   it("checks enough passages to be meaningful", () => {
