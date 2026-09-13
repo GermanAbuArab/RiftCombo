@@ -163,40 +163,98 @@ const namesAnswer = (blob, set) =>
 // old "+1 for readiness" was applied to every line and is a UNIT rule: 143.4 "Units enter the Board
 // exhausted" against 359.2.d, which enters a non-unit gear READY at base, and 359.3, which makes a
 // spell linger on the Chain and never become a permanent at all.
+let greedyFallbacks = 0;
+/**
+ * Exact, and it now covers every row. #205 replaced a greedy pass with an exact search over a BITMASK
+ * of individual cards, which is 2^n and so had to bail out to the greedy pass above 12 costs. Folding
+ * `needs` upward (2026-09-13) pushed four rows over that line - and the greedy pass is the very defect
+ * #205 existed to remove, so pricing the biggest closures with it would have been a regression hiding
+ * inside a fix.
+ *
+ * The fix is that the bitmask was the wrong state. Two costs with the same (Energy, Power, unit) are
+ * INTERCHANGEABLE, so the state is a vector of counts per distinct cost TYPE, not a set of cards.
+ * Measured over the catalogue, the largest row collapses from 19 costs (524,288 masks) to 8 types and
+ * 8,064 states. Enumeration of what to buy each turn prunes as soon as the running Energy or Power
+ * passes the turn's rune count, which is at most 12 (161.2.a).
+ *
+ * For a fixed set of paid costs, MORE RUNES always dominates, which is what makes the state small
+ * enough to be exact; the tie-break keeps the EARLIEST last-unit turn, because that is what the
+ * readiness `+1` reads.
+ */
+const deployMemo = new Map();
 function deployTurn(costs) {
-  const n = costs.length;
-  if (!n) return { all: 0, unit: 0 };
-  if (n > 12) { const g = greedyTurn(costs); return { all: g, unit: g }; }
-  const FULL = (1 << n) - 1;
-  let cur = new Map([[0, { r: 0, u: 0 }]]);
-  for (let turn = 1; turn <= 40; turn++) {
-    const next = new Map();
-    for (const [mask, st] of cur) {
-      const runes = Math.min(12, st.r + 2);
-      const idx = [];
-      for (let i = 0; i < n; i++) if (!(mask & (1 << i))) idx.push(i);
-      const k = idx.length;
-      for (let s = 0; s < (1 << k); s++) {
-        let e = 0, p = 0, m = mask, tookUnit = false;
-        for (let j = 0; j < k; j++) if (s & (1 << j)) {
-          const c = costs[idx[j]];
-          e += c.e; p += c.p; m |= 1 << idx[j];
-          if (c.unit) tookUnit = true;
-        }
-        if (e > runes || p > runes) continue;      // R runes afford R Energy AND R Power
-        const nr = runes - p;                       // 161.2.b: a recycled rune leaves the board
-        const nu = tookUnit ? turn : st.u;
-        const prev = next.get(m);
-        if (!prev || prev.r < nr || (prev.r === nr && prev.u > nu)) next.set(m, { r: nr, u: nu });
-      }
+  if (!costs.length) return { all: 0, unit: 0 };
+  // Memoized on the canonical cost SIGNATURE, not on the entry: closuresOf and the consumer search
+  // both price many candidate card sets and the same multiset recurs constantly.
+  const sig = costs.map((c) => `${c.e}|${c.p}|${c.unit ? 1 : 0}`).sort().join(",");
+  const hit = deployMemo.get(sig);
+  if (hit) return hit;
+  const r = deployTurnUncached(costs);
+  deployMemo.set(sig, r);
+  return r;
+}
+function deployTurnUncached(costs) {
+  const byType = new Map();
+  for (const c of costs) {
+    const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}`;
+    if (!byType.has(k)) byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, n: 0 });
+    byType.get(k).n++;
+  }
+  const types = [...byType.values()];
+  const dim = types.length;
+  // Mixed-radix packing: the whole state is ONE integer, so the inner loop allocates nothing. A
+  // first version keyed the state on a joined string and took minutes; the arithmetic was never the
+  // problem, the 40 million array-and-string allocations were.
+  const stride = new Array(dim);
+  let space = 1;
+  for (let i = 0; i < dim; i++) { stride[i] = space; space *= types[i].n + 1; }
+  if (space > 2e6) { greedyFallbacks++; const g = greedyTurn(costs); return { all: g, unit: g }; }
+  const FULL = space - 1;                       // every count at its maximum
+
+  let curR = new Int8Array(space).fill(-1);     // runes on board, -1 = state unreachable
+  let curU = new Int8Array(space);              // the turn the last UNIT landed
+  let nxtR = new Int8Array(space);
+  let nxtU = new Int8Array(space);
+  curR[0] = 0;
+  // Hoisted out of the per-state loop on purpose: building this closure inside it cost 14s over the
+  // catalogue against 0.4s here, because a recursive closure re-created 300,000 times is not one V8
+  // can keep optimized.
+  let idx = 0, runes = 0, u0 = 0, turn = 0;
+  const walk = (i, e, p, delta, tookUnit) => {
+    if (i === dim) {
+      const k = idx + delta;
+      const nr = runes - p;                     // 161.2.b: a recycled rune leaves the board
+      const nu = tookUnit ? turn : u0;
+      // For a fixed set of paid costs MORE RUNES always dominates; ties keep the EARLIEST
+      // last-unit turn, because that is what the readiness +1 reads.
+      if (nxtR[k] < nr || (nxtR[k] === nr && nxtU[k] > nu)) { nxtR[k] = nr; nxtU[k] = nu; }
+      return;
     }
-    cur = next;
-    if (cur.has(FULL)) return { all: turn, unit: cur.get(FULL).u };
+    const t = types[i];
+    const left = t.n - ((idx / stride[i]) | 0) % (t.n + 1);
+    for (let q = 0; q <= left; q++) {
+      const ne = e + t.e * q, np = p + t.p * q;
+      if (ne > runes || np > runes) break;      // R runes afford R Energy AND R Power
+      walk(i + 1, ne, np, delta + q * stride[i], tookUnit || (q > 0 && t.unit));
+    }
+  };
+  for (turn = 1; turn <= 40; turn++) {
+    nxtR.fill(-1); nxtU.fill(0);
+    for (idx = 0; idx < space; idx++) {
+      if (curR[idx] < 0) continue;
+      runes = Math.min(12, curR[idx] + 2);
+      u0 = curU[idx];
+      walk(0, 0, 0, 0, false);
+    }
+    const tR = curR; curR = nxtR; nxtR = tR;
+    const tU = curU; curU = nxtU; nxtU = tU;
+    if (curR[FULL] >= 0) return { all: turn, unit: curU[FULL] };
   }
   return { all: Infinity, unit: Infinity };
 }
 
-// Kept only as the >12 fallback. Do not use it for anything else: it is the defect #205 describes.
+// Kept only as the guard for an absurd state space, which NO row in the catalogue reaches today.
+// Do not use it for anything else: it is the defect #205 describes.
 function greedyTurn(costs) {
   const remaining = costs.map((c) => ({ ...c })).sort((a, b) => b.e + b.p - (a.e + a.p));
   let runes = 0;
@@ -258,7 +316,6 @@ for (const e of db.combos) {
   const blob = JSON.stringify(e.prerequisites) + JSON.stringify(e.steps) + (e.notes || "") + (e.terminatesIn || "");
 
   const domains = new Set();
-  const costs = [];
   const equipment = [];
   const fragile = [];
   for (const u of e.uses || []) {
@@ -266,13 +323,6 @@ for (const e of db.combos) {
     if (!c) continue;
     for (const d of c.domains) domains.add(d);
     if (c.type.includes("legend") || c.type.includes("battlefield")) continue;
-    // The `unit` flag is what deployTurn reads to decide whether a readiness turn is owed (143.4).
-    // It MUST be set here as well as in costsOf(): this loop is the one that feeds the clock for every
-    // entry, and costsOf() only supplies the merged consumer. Setting it in one place and not the other
-    // left c.unit undefined here, so tookUnit never fired, d.unit stayed 0 and the +1 was silently
-    // dropped for every entry that was not Beginning-Phase gated. Caught by hand-walking a turn table.
-    for (let i = 0; i < u.quantity; i++)
-      costs.push({ e: c.energy || 0, p: c.power || 0, unit: c.type.includes("unit") });
     if (c.type.includes("gear") && c.tags.includes("Equipment")) equipment.push(`${c.name} x${u.quantity}`);
     // OGN-133 Flurry of Blades reads "Deal 1 to all units AT BATTLEFIELDS", so it cannot reach a body
     // the entry itself declares in zone BASE. Four of the ten finishers with a Might<=1 unit declare it
@@ -291,68 +341,157 @@ for (const e of db.combos) {
     holes.push(`stands on a Might-1-or-less body at a battlefield (${fragile.join(", ")}) and never names OGN-133 Flurry of Blades`);
   if (holes.length) findings.push({ e, holes });
 
-  if (e.class !== "ALT_WIN") entries.push({ e, domains, costs });
+  // The card MULTISET, not a cost array: two entries folded together can share a card (OGN-104
+  // Retreat is in both lux-infinite-power and renata-mastermind-points) and a deck holds ONE of it.
+  // Costs are derived from the merged set in ONE place below, which is also what closes the
+  // two-cost-builders defect #205 shipped - there is now a single builder, costsOfSet.
+  if (e.class !== "ALT_WIN") entries.push({ e, domains, cards: cardSetOf(e) });
 }
 
 // ---------------------------------------------------------------- the clock, with the DAG folded in
-// An entry that produces only FUEL (infinite-energy, infinite-power, a token engine) has no clock of
-// its own: ten of the fourteen INFINITEs are in that shape, and measuring only the engine understates
-// them by the whole cost of whatever consumes the fuel. So for those, add the cheapest consumer that
-// actually produces points AND can legally share a deck - 103.1.b caps the union of the two entries'
-// domains at the legend's two.
+// `needs`/`produces` is a DAG and the clock folds it in BOTH directions, because either half alone
+// prices a board nobody can actually assemble.
+//
+//   DOWNWARD: an entry that produces only FUEL (infinite-energy, infinite-power, a token engine) has
+//   no clock of its own - ten of the fourteen INFINITEs are in that shape - so add the cheapest
+//   consumer that actually produces points.
+//
+//   UPWARD: an entry that CONSUMES fuel cannot run without it, and until 2026-09-13 its declared
+//   `needs` were never funded. Eight of the 54 rows are in that shape and three of them were in the
+//   nine that beat their baseline, so the direction that flatters the catalogue was the one that was
+//   missing. `renata-mastermind-points` read T4 over its own four cards; the honest set is the
+//   9-card, 11-copy closure with both Lux engines and it reads T5.
+//   (docs/plays/2026-09-13-the-fastest-win-needs-an-empty-deck.md)
+//
+// This mirrors `generateVariants` in src/combos.ts, which is the real walker - a .mjs script cannot
+// import TypeScript, so the expansion is repeated here and must be kept in step with it: max-merge
+// the card multisets, cap the domain union at two (103.1.b), cap the depth at 3, and carry the
+// accumulated `produces` so a second need already covered by an earlier pick costs nothing.
+//
+// NOT priced, and it is the bigger of the two costs on the INFINITE class: all eight of the loops
+// that recycle need an EMPTY MAIN DECK, which is a draw cost and not a mana cost. 315.4.b.1 makes an
+// empty deck at your own Draw Phase an automatic Burn Out, so the state lasts one Main Phase.
 const POINTY = new Set(["ability-points", "burst-points", "win-the-game"]);
 const producesPoints = (e) => e.produces.some((p) => POINTY.has(p));
 const consumers = db.combos.filter((c) => c.needs.length && producesPoints(c));
-const domainsOf = (e) => {
+const producers = new Map();
+for (const c of db.combos) for (const f of c.produces || []) {
+  if (!producers.has(f)) producers.set(f, []);
+  producers.get(f).push(c);
+}
+
+/** base -> copies, summed within an entry so a duplicated `uses` row is not lost. */
+function cardSetOf(e) {
+  const out = {};
+  for (const u of e.uses || []) out[u.card] = (out[u.card] ?? 0) + u.quantity;
+  return out;
+}
+/** MAX across entries, because a card two folded entries both name is one card in the deck. */
+const mergeSets = (a, b) => {
+  const out = { ...a };
+  for (const [k, v] of Object.entries(b)) out[k] = Math.max(out[k] ?? 0, v);
+  return out;
+};
+const domainsOfSet = (set) => {
   const d = new Set();
-  for (const u of e.uses || []) for (const x of (byBase.get(u.card)?.domains || [])) d.add(x);
+  for (const b of Object.keys(set)) for (const x of (byBase.get(b)?.domains || [])) d.add(x);
   return d;
 };
-const costsOf = (e) => {
+/** THE ONLY cost builder. #205 shipped a defect because there were two and one was patched. */
+const costsOfSet = (set) => {
   const out = [];
-  for (const u of e.uses || []) {
-    const c = byBase.get(u.card);
+  for (const [b, q] of Object.entries(set)) {
+    const c = byBase.get(b);
     if (!c || c.type.includes("legend") || c.type.includes("battlefield")) continue;
     // 143.4 exhausts UNITS only, so only a unit costs a readiness turn.
-    for (let i = 0; i < u.quantity; i++)
+    for (let i = 0; i < q; i++)
       out.push({ e: c.energy || 0, p: c.power || 0, unit: c.type.includes("unit") });
   }
   return out;
 };
 
-for (const { e, domains, costs } of entries) {
-  let allCosts = costs;
+/**
+ * Every legal closure of `e` and the entries that satisfy its needs, as {cards, produces, ids}.
+ * Empty means unsatisfiable inside two domains and three hops, which is a real answer: the caller
+ * then prices `e` alone and says so rather than inventing a board.
+ */
+function closuresOf(e, seen, depth) {
+  let partials = [{ cards: cardSetOf(e), produces: new Set(e.produces), ids: [e.id] }];
+  for (const need of e.needs || []) {
+    const opts = (producers.get(need) || []).filter((p) => p.id !== e.id && !seen.has(p.id));
+    if (!opts.length || depth >= 3) return [];
+    const next = [];
+    for (const p of partials) {
+      if (p.produces.has(need)) { next.push(p); continue; }
+      for (const opt of opts) {
+        for (const sub of closuresOf(opt, new Set([...seen, e.id]), depth + 1)) {
+          const cards = mergeSets(p.cards, sub.cards);
+          if (domainsOfSet(cards).size > 2) continue; // 103.1.b: a legend has exactly two domains
+          next.push({ cards, produces: new Set([...p.produces, ...sub.produces]),
+                      ids: [...new Set([...p.ids, ...sub.ids])] });
+        }
+      }
+    }
+    partials = next;
+  }
+  return partials;
+}
+
+for (const { e, domains: ownDomains, cards: ownCards } of entries) {
+  // UPWARD first: the cheapest legal closure that satisfies this entry's own needs.
+  let cards = ownCards;
+  let produces = new Set(e.produces);
+  let fuel = null;
+  if ((e.needs || []).length) {
+    let best = null;
+    for (const c of closuresOf(e, new Set(), 0)) {
+      const t = deployTurn(costsOfSet(c.cards)).all;
+      if (!best || t < best.t) best = { t, c };
+    }
+    // An unsatisfiable `needs` is NOT silently ignored: price the entry alone and say the fuel is
+    // missing, so a reader can tell "cheap" from "cheap because half of it was not counted".
+    if (best) { cards = best.c.cards; produces = best.c.produces;
+                fuel = best.c.ids.filter((id) => id !== e.id).join(" + ") || null; }
+    else fuel = "NEEDS UNSATISFIABLE in two domains";
+  }
+  // DOWNWARD second, over the expanded set: an entry that still scores nothing has no clock of its
+  // own. The consumer is matched against the EXPANDED produces, which is what retires this file's
+  // own long-standing "no ONE-HOP consumer" wart - lux-infinite-power needed lux-infinite-energy
+  // beside it before any point payoff would match.
   let via = null;
-  let best_consumer = null;
+  let consumer = null;
   if (!producesPoints(e)) {
     let best = null;
     for (const c of consumers) {
       if (c.id === e.id) continue;
-      if (!c.needs.every((n) => e.produces.includes(n))) continue;
-      const union = new Set([...domains, ...domainsOf(c)]);
-      if (union.size > 2) continue; // 103.1.b: a legend has exactly two domains
-      const merged = costs.concat(costsOf(c));
-      const t = deployTurn(merged).all;
+      if (!c.needs.every((n) => produces.has(n))) continue;
+      const merged = mergeSets(cards, cardSetOf(c));
+      if (domainsOfSet(merged).size > 2) continue;
+      const t = deployTurn(costsOfSet(merged)).all;
       if (!best || t < best.t) best = { t, id: c.id, merged, consumer: c };
     }
-    if (best) { allCosts = best.merged; via = best.id; best_consumer = best.consumer; }
-    // ONE HOP ONLY. This does not chain two fuel producers together, so an engine whose consumer
-    // needs more fuel tags than it alone produces reads as having no consumer even when the
-    // catalogue routes it through a second engine - lux-infinite-power needs lux-infinite-energy
-    // beside it to feed time-warp-hold-burst. src/combos.ts generateVariants is the real walker;
-    // cross-check there before quoting a "no consumer" as a structural claim.
-    else via = "no ONE-HOP consumer (see generateVariants)";
+    if (best) { cards = best.merged; via = best.id; consumer = best.consumer; }
+    else via = "no legal consumer in two domains";
   }
   // The extra turn is owed for exactly two reasons and neither is universal, which is what the old
   // unconditional "+1" got wrong: a UNIT that landed on the final turn is still exhausted (143.4) and
   // is readied only at the next Awaken (315.1.b); and a payoff that fires in the Beginning Phase
   // cannot fire on the turn you assembled the board. A line whose last act is casting a spell out of
   // runes it already has owes neither.
-  const d = deployTurn(allCosts);
-  const gated = beginningPhaseGated(e) || (via && best_consumer ? beginningPhaseGated(best_consumer) : false);
+  //
+  // Read on whichever entry carries the PAYOFF and never on the fuel: `lux-infinite-energy` brings
+  // UNL-165 Shadow's Call, whose reminder says "at the start of its controller's Beginning Phase",
+  // and folding that in would charge a readiness turn to every line that burns Lux Energy.
+  const d = deployTurn(costsOfSet(cards));
+  const gated = beginningPhaseGated(e) || (consumer ? beginningPhaseGated(consumer) : false);
   const pays = d.all === Infinity ? Infinity : d.all + ((d.unit === d.all && d.unit !== 0) || gated ? 1 : 0);
-  clock.push({ id: e.id, cls: e.class, pays, base: baselineTurn(domains), via,
-               domains: [...domains].sort().join("/") || "colourless" });
+  const note = [fuel && `fuel: + ${fuel}`, via && `payoff: + ${via}`].filter(Boolean).join("; ");
+  // Baseline AND the printed identity both read the MERGED set: the deck you would actually build
+  // is the closure, and 103.1.b is what caps it at two domains. `ownDomains` is kept only as the
+  // fallback for a row that folds nothing.
+  const merged = [...domainsOfSet(cards)];
+  clock.push({ id: e.id, cls: e.class, pays, base: baselineTurn(merged), via: note || null,
+               domains: (merged.length ? merged : [...ownDomains]).sort().join("/") || "colourless" });
 }
 
 if (!onlyTurns) {
@@ -365,13 +504,16 @@ if (!onlyTurns) {
 const slower = clock.filter((c) => c.pays > c.base);
 console.log(`\n# Turn clock (optimistic lower bound: perfect draws, nothing else cast, no interaction)`);
 console.log(`# ${slower.length} of ${clock.length} point-scoring finishers pay LATER than the do-nothing Hold curve in their own identity`);
+// Non-vacuity, and the one number that says whether to trust a row: the greedy pass is the defect
+// #205 removed, so any row priced by it is a row to re-derive by hand rather than quote.
+console.log(`# allocator: exact on ${clock.length - greedyFallbacks} of ${clock.length} rows, greedy fallback on ${greedyFallbacks}`);
 for (const cls of ["INFINITE", "BURST", "CHAIN"]) {
   const all = clock.filter((c) => c.cls === cls);
   console.log(`#   ${cls.padEnd(9)} ${String(all.filter((c) => c.pays > c.base).length).padStart(2)} of ${String(all.length).padStart(2)}`);
 }
 console.log();
 for (const c of clock.sort((a, b) => b.pays - a.pays || a.id.localeCompare(b.id)))
-  console.log(`  T${String(c.pays).padStart(2)} vs T${c.base} baseline  ${c.pays > c.base ? "SLOWER" : "      "}  ${c.cls.padEnd(8)} ${c.domains.padEnd(12)} ${c.id}${c.via ? `  [fuel only: + ${c.via}]` : ""}`);
+  console.log(`  T${String(c.pays).padStart(2)} vs T${c.base} baseline  ${c.pays > c.base ? "SLOWER" : "      "}  ${c.cls.padEnd(8)} ${c.domains.padEnd(12)} ${c.id}${c.via ? `  [${c.via}]` : ""}`);
 
 // ---------------------------------------------------------------- the Reaction/detach notable
 // Hoisted because TWO modes need the identical sentence: --emit-notables writes it into an entry that
