@@ -1975,3 +1975,79 @@ consumer, because an extra turn is by definition a new Start of Turn.
 
 **No entry was written and none should be.** `data/combos.json` stayed with rc-manager8 throughout
 this walk.
+
+---
+
+## 34. The `lux-infinite-energy` ledger walked — **the stall does not recover, and the reason generalises, so do not walk the other seven**
+
+§32 asked whether a counter on a loop's draw-spell costs a pass or the loop, and refused to assert an
+answer over eight ledgers. rc-manager8 authorised **one**, on the flagship, with the stopping rule
+that an answer which obviously generalises ends the exercise. **It does.**
+
+### The pass, and where the two windows sit
+
+Per the entry's own steps, one pass recycles **four** cards to the Main Deck and draws **four**:
+
+```
+step 0  Forge of the Future, "Kill this: Recycle up to 4 cards from trashes" -> Forge, Shadow's Call,
+        Sacrifice go to the BOTTOM of the deck (416.1). Deck: 3.
+step 2  Shadow's Call (E2)  -> draw 2.  Deck: 1.        <- WINDOW 1
+step 4  Sacrifice (E1), additional cost kills Ekko       <- WINDOW 2
+step 5  Ekko's Deathknell recycles Ekko and readies 11 runes.  (4th recycle)
+step 6  Sacrifice resolves -> draw 2, channel the recycled rune.  Hand: Forge, Shadow's Call,
+        Sacrifice, Ekko.
+step 7  Replay the Forge. Repeat.
+```
+
+**Four recycled, four drawn — the zero-spare-draws invariant, visible.**
+
+**And the Forge activation is NOT a third window**, which matters and is not obvious. It is an
+**ability**, so 401.1 does create a Closed State — but of the pool's eleven counters, **nine say *"a
+spell"*** and the two that reach an ability (`SFD-045 Not So Fast`, `UNL-106 Repulse`) both require it
+to **choose a friendly unit or gear**. The Forge chooses **cards in a trash**, which 416.6 makes the
+player's choice and which is not a unit or a gear. **So the Forge's recycle cannot be countered by
+anything in this pool**, and §32's "both of its windows are its draws" is exact rather than
+approximate.
+
+### Counter window 1 — Shadow's Call
+
+**Step 0 has already resolved**, so the three cards are at the bottom of the deck and the hand is
+short of them. The counter removes **two of the four draws**. The pass then completes its second half:
+Sacrifice still has a legal additional cost (Ekko is printed **M5**, so 708 makes him Mighty), the
+Deathknell still fires, and step 6 still draws 2.
+
+**Net for the pass: four cards recycled into the deck, two drawn out.** The hand ends **two cards
+short**, and the two it is short of are drawn at random from a deck that now holds four of the loop's
+own components. **`OGN-212 Forge of the Future` is one of them, and step 7 cannot happen without it.**
+
+### Counter window 2 — Sacrifice, which is worse
+
+The additional cost is **mandatory** (356.2.a.1: *"use the phrase 'as an additional cost' and don't
+include the word 'may'"*), so it is paid at the play step — and **425.1.c.1** says a counter refunds
+*"additional costs"* too. **A countered Sacrifice therefore kills Ekko, fires his Deathknell, recycles
+him into the deck, and draws nothing.** The pass ends with **both** `OGN-212` and `OGN-110` in the
+deck and neither in hand.
+
+### The answer, and why it generalises
+
+**The stall does not recover.** Not because of a Burn Out — §32 was right to refuse that — but for a
+reason that is a property of the construction rather than of this ledger:
+
+> **416.1 recycles to the BOTTOM OF THE DECK, so between passes the loop's components live in the
+> DECK, and the DRAWS are the only thing that brings them to hand.** A countered draw-spell does not
+> cost a card. **It costs the loop access to its own components**, and the components it strands are
+> the ones the next pass has to play.
+
+**That is true of every loop built on recycle-to-deck plus draw-back, which is all eight**, and it is
+true regardless of the ledger's particular numbers — a loop with slack in its draws would simply need
+more counters. **So the other seven should not be walked**, and the stopping rule applies: the answer
+is always the same and the reason is visible without the arithmetic.
+
+**What the arithmetic did add, and it is the part worth keeping**, is the asymmetry between the two
+windows: **countering the FIRST draw-spell costs two draws; countering the SECOND costs two draws AND
+a body, because its cost is paid before the counter resolves and 425.1.c.1 refunds it.** An opponent
+holding one counter should spend it on `Sacrifice`, not on `Shadow's Call` — which, with §28's point
+that `UNL-131 Abandon` is the wrong counter to use at all, gives a player two concrete sentences about
+a card they will actually be holding.
+
+**Recommendation: stop here.** One ledger answered the question for all eight.
