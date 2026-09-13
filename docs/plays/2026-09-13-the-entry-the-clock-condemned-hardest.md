@@ -175,8 +175,9 @@ comparison condemned hardest:
    the 80 rows carry a linked `[Equip]` cost and the constraint constrains none of them. The sentence
    this play used to carry — that ordering is what separates this line's T6 from its T7 — **is
    withdrawn**; the T7 was a suboptimal hand schedule that assumed a gear cannot be attached the turn
-   it is played, which 359.2.d refutes. `CLAUDE.md` carries the old claim by way of a handoff and is
-   the manager's file, so it is flagged rather than edited here.
+   it is played, which 359.2.d refutes. Checked before writing this: `CLAUDE.md` does **not** carry
+   the claim, so nothing of the manager's needs editing. It reached the rc-synth2 handoff, which is
+   a dated document and is left as written.
 5. **The clock's last unmodelled ordering fact is the CARRIER** (818.1.c.2, *"a unit you control"*),
    and it is bounded rather than open: probed in `.scratch-gap/probe-carrier.mjs` it moves no row, and
    the only row it touches is `arise-sand-soldiers-plaza` — the one finisher with an Equipment and no
