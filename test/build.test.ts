@@ -533,20 +533,27 @@ describe("checkBuild against the 222 registered tournament lists", () => {
   const FILES = readdirSync(DIR).filter((f) => f.endsWith(".txt")).sort();
   const report = (f: string) => checkBuild(loadDeck(readFileSync(new URL(f, DIR), "utf8"), cards), cards, "constructed");
 
-  it("fails only on the ban list or a registered transcription erratum", () => {
+  /**
+   * The errata are pinned by EXACT EQUALITY rather than by membership, so a SIXTH bad transcription
+   * fails this test instead of being quietly excused — and so does a name in the list that stops
+   * needing to be there. A first version of this set had six names in it because I added
+   * `vancouver-10.txt` from memory of a note about `vancouver-06`; it does not fail anything, and an
+   * over-broad exception set is a test that excuses the next real defect.
+   */
+  it("fails only on the ban list or one of exactly five registered transcription errata", () => {
     expect(FILES.length).toBeGreaterThan(200);                      // non-vacuity
-    // The four errata this project has already found and recorded, by name, so a NEW bad transcription
-    // shows up here as a new file rather than hiding inside a count.
-    const ERRATA = new Set(["sydney-30.txt", "utrecht-06.txt", "utrecht-19.txt", "utrecht-17.txt", "vancouver-06.txt", "vancouver-10.txt"]);
+    const ERRATA = ["sydney-30.txt", "utrecht-06.txt", "utrecht-17.txt", "utrecht-19.txt", "vancouver-06.txt"];
+    const notTheBanList: string[] = [];
     let legal = 0, banOnly = 0;
     for (const f of FILES) {
-      const failed = report(f).rules.filter((r) => r.status === "fail");
+      const failed = report(f).rules.filter((r) => r.status === "fail").map((r) => r.rule);
       if (!failed.length) { legal++; continue; }
-      if (ERRATA.has(f)) continue;
-      // Everything else may fail 103.2.e and nothing else.
-      expect(failed.map((r) => r.rule), f).toEqual(["103.2.e"]);
+      if (failed.some((r) => r !== "103.2.e")) { notTheBanList.push(f); continue; }
       banOnly++;
     }
+    // Riot's pile and ours, kept apart: a row that is wrong about a correctly transcribed list is a
+    // defect, and a row that is right about a list Riot mistranscribed is not.
+    expect(notTheBanList).toEqual(ERRATA);
     expect(legal).toBeGreaterThan(100);
     expect(banOnly).toBeGreaterThan(50);
   });
