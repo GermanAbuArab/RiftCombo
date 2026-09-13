@@ -523,3 +523,46 @@ orphan-neighbour probe pointed at ONES instead of ZEROS, and it has the same pro
 records for its parent: **high yield, low precision — read the text, never the rank.** Below
 `103.2.b.2` the top twenty is dominated by the 383 trigger block and the 465.2.c damage-assignment
 block, both of which #187 has already been working through.
+
+---
+
+## 14. THE STRUCTURAL SURFACE OF `uses` IS SWEPT, AND THE MULTI-HOP FOLD IS DOMAIN-SOUND
+
+Having asked all day what a `uses` list **fails** to supply, the mirror question is what it supplies
+**redundantly** — and three more rules-grounded checks close that side:
+
+| rule | check | population | result |
+|---|---|---:|---:|
+| **825.3.a** *"A deck can contain only one card of a given name if the card has Unique"* | a [Unique] row above quantity 1 | 5 rows | **0** |
+| **103.4.c** no two battlefields of one name | a battlefield row above quantity 1 | 119 rows | **0** |
+| one legend per deck | a legend row above quantity 1 | 115 rows | **0** |
+
+**The [Unique] one is weak evidence and I am saying so**: the pool prints only three [Unique] cards
+(`Forgefire Cape`, `Rabadon's Deathcrown`, `Shurelya's Requiem`) and the catalogue uses them on five
+rows, so a zero over five rows proves little. The battlefield and legend checks, at 119 and 115 rows,
+are worth having.
+
+**And the battlefield check found a gap in MY OWN earlier sweep.** §9's structural pass counted
+*distinct* battlefield NAMES per entry and never looked at QUANTITY — so an entry declaring one
+battlefield at quantity 2 would have passed it. Asking the mirror question is what exposed that; the
+answer is still zero, but the check was not there before.
+
+### One level up: the multi-hop fold
+
+Every check in this document so far has been **within one entry**. `generateVariants` flattens entries
+through the needs/produces DAG, and `src/types.ts` documents `Variant.domains` as *"Union of
+ingredient domains. Length > 2 means no legend can run it"* — which is 103.1.b.2. rc-gap established
+domain soundness at **one hop**; this asks it of the real walker.
+
+**766 combos in, 1,638 variants out. 905 of them flatten MORE THAN ONE combo**, and chains run three
+deep (733 variants are one combo, 614 are two, 291 are three). **ZERO variants exceed two domains.**
+
+**Non-vacuous, and the distribution is the proof**: domain counts run 0→3, 1→478, **2→1,157** — so
+1,157 variants sit exactly AT the cap the check tests, and it is demonstrably live rather than
+measuring an empty set. (The three zero-domain variants are colourless card sets, runnable under any
+legend; that is correct, not a gap.)
+
+**So the one-hop result generalises to the full fold**: no combination the DAG can assemble produces a
+card set no legend could run. That is the last structural question I had about `uses`, and with it the
+structural surface — copies, Chosen Champion, legend, Signature, battlefields, zones, roles, the tag
+vocabulary, [Unique], and now the multi-hop domain union — is swept.
