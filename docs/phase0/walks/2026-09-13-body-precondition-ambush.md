@@ -1062,3 +1062,23 @@ enumerates its fields by name looks complete and silently stops covering the sch
 schema grows — `anyBodies.note` was created today, by a repair I reported, and was outside the guard
 the day it was born. **A repair must name the fields it covered; a guard must say how it would learn
 about a new one.**
+
+### The same census on `data/synergies.json`: fully covered, and the contrast is the point
+
+**16 string-valued paths, 220 rules, and the guard covers every prose character of it.** The two
+free-text fields are `why` (193,245 chars) and `partner.excludes[].why` (43,199) — **both walked.**
+Everything else is not prose and does not want a quote check: `basis.combos[]` and
+`partner.excludes[].card` are ids, `basis.rules[]` are rule numbers, `partner.textMatches` and
+`partner.textExcludes` are **regex patterns**, and `id`, `name`, `status`, `anchor`, `reviewed`,
+`reviewedSet`, `partner.types[]`, `partner.tags[]` and `basis.readings[]` are labels and enums.
+
+**So the same guard is complete on one file and 451,000 characters short on the other, and the
+difference is the SHAPE OF THE SCHEMA rather than the care of the author.** `synergies.json` has two
+prose fields and the guard names two. `combos.json` has eight and the guard names six.
+
+**A name-enumerating guard is safe exactly when the schema is flat and small — and that is not
+something the guard can know about itself.** Which is the argument for the inversion offered to
+rc-schema: walk every string value and exclude by name, so a new field is covered by default and has
+to be opted out deliberately. On `synergies.json` that inversion would change nothing and cost
+nothing; on `combos.json` it would have covered `uses[].note` from the day it existed and
+`anyBodies.note` from the hour it was created.
