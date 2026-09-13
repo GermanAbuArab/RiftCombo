@@ -660,3 +660,32 @@ payoff and multiplier. The MEDIAN is a fact about the catalogue, since eleven BU
 three cards when the floor is two. Both of the corpus artifacts ride on the median, not the floor, and
 so does the claim that finishers are "bigger" — which is why it is stated here as a fact about the
 catalogue and not about the game.
+
+
+### What the card above the floor buys — and the floor is per-PAYOFF, not per-class
+
+Eight BURSTs sit on the two-card floor and eleven are written at three. Nothing in the catalogue
+records WHY an entry is above its class floor, and #200's question is which finishers earn their slots,
+so the eleven were read. The third card buys one of four things:
+
+| what it buys | n | the entries |
+|---|---|---|
+| **the payoff's own trigger condition** | 4 | `ivern-sentinel-hold`, `ivern-brambleback-conquer-burst` and `ivern-svellsongur-four-tags-hold` (a Bird/Cat/Dog/Poro body for Ivern's four-tag clause), `shen-kinkou-svellsongur-hold` (the companion body Shen's *"exactly one other unit you control here"* requires) |
+| **a second multiplier — more points** | 3 | `svellsongur-copy-hold` (seventeen points), `ahri-trinity-svellsongur-hold`, `nasus-ascended-sentinel-arena-hold` |
+| **a different scoring window** | 3 | the three `SFD-030 Skyfall of Areion` entries, which bridge a Hold payoff onto a Conquer or the reverse |
+| **protection** | 1 | `veteran-poro-weaponmaster-trinity-sentinel-hold`, whose own `terminatesIn` says the Trinity Forces are carried off the Sentinels *"so no single removal takes"* them |
+
+**THE FIRST ROW REFINES MY OWN FLOOR CLAIM AND IS THE FINDING.** Those four are not above the floor at
+all — their third card is **required by the payoff's printed trigger**, not chosen. `UNL-177 Ivern,
+Friend to All` pays only when your units have Bird, Cat, Dog and Poro among them, and
+`VEN-138 Shen, Leader of the Kinkou Order` only with exactly one other unit you control there. So:
+
+**Two cards is the floor for the CLASS, and the floor for an ENTRY is set by its PAYOFF.** Ahri,
+Trinity Force and Nasus have a floor of two; Ivern and Shen have a floor of three, forced by their own
+card text. Four of the eleven "three-card" BURSTs are therefore minimal entries that the class-level
+median counts as elaborate ones — which is the same lesson as the two corpus artifacts, one level down:
+**a count over entries is a count over whatever the entries happen to be made of.**
+
+That leaves **seven** BURSTs genuinely above their floor, and every one of them buys something
+nameable: more points, a different board state to score on, or survival against removal. None of the
+eleven is padding.
