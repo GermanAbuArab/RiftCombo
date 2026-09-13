@@ -613,3 +613,61 @@ Deck."* Revealing cannot Burn Out **because nothing leaves the deck**, and 424.1
 the right answer. It is the same shape `CLAUDE.md` already records for 355.7 against 355.10.d and for
 811.6 against the tail of 811.1.b: **the exception or the consequence is carried, and the rule that
 produces it is not.**
+
+---
+
+## 16. AN ENGINE-CLASS READING AUDIT — FRAME PRE-REGISTERED BEFORE READING
+
+rc-manager8's discipline, and it is the reading analogue of *measure the distribution first, write the
+predicate second*: **fix the sampling frame first, read second**, and say what a null would mean before
+finding one. This section is committed **before** I open a single entry.
+
+### Why this class
+
+The ENGINE class is **686 of 766 entries (89.6%)** and has never been audited. Three independent
+measurements point at it: `scripts/adversarial-check.mjs` sweeps the 80 finishers and cannot see it;
+#203 found a shipped ENGINE with no stated point of failure; and the citation-gap split measured **86
+rules cited 10+ times by ENGINEs and absent from `CLAUDE.md`, against ZERO by the finisher classes** —
+an asymmetry `CLAUDE.md` itself attributes to *which half has been audited*.
+
+### The frame
+
+**Every 57th ENGINE in file order starting at index 0 — 13 entries, a 1.9% sample.** Nothing in that
+rule is correlated with being defective: not age, not lens, not citation count, not card set, not
+author. So a rate measured on it generalises to the 686, with the obvious small-sample caveat that 13
+entries cannot distinguish a 5% defect rate from a 15% one.
+
+The 13: `svellsongur-ornn-hold`, `seal-power-faucet-bootstrap`, `anivia-svellsongur-double-burn`,
+`brynhir-lockout-window`, `power-nexus-atlas-sentinel-gold`, `katarina-reckless-hidden-blade`,
+`dragon-roost-mountain-drake-instant-garrison`, `sacred-protector-disciple-of-shen-pair`,
+`mageseeker-investigator-mass-move-tax`,
+`lucian-gunslinger-farron-blood-rush-assault-as-damage`, `iterative-design-production-surge-mech`,
+`papertree-esteemed-hierophant-rune-count`,
+`demacian-diplomat-blood-rose-board-independent-xp`.
+
+### What I am reading for
+
+1. **A requirement the `uses` does not supply** — today's class. Expect ~zero: 82 entries were repaired
+   today and none of the 13 carries `anyBodies`.
+2. **A number stated without a predicate**, or a uniqueness claim (*"the only card that…"*) — the
+   defect class #189/#192/#203 found repeatedly, and the one `CLAUDE.md` says is typed rather than
+   measured.
+3. **A cited rule that does not say what the entry claims** — partly guarded by
+   `test/source-quotes.test.ts`, which covers `sources[].quote` only and not the prose.
+4. **No stated point of failure** — #203's finding, and the question no instrument asks of this class.
+
+### What I expect, and what a null would mean
+
+**I expect a low rate on (1) and (3) and a non-zero rate on (2) and (4).** (1) has just been swept;
+(3) is partly guarded; (2) is unguarded and is the most-repeated defect in this project's history; (4)
+is unguarded and is structurally invisible, because the one instrument that asks it sweeps a different
+population.
+
+**If the slice comes back clean, that is a result only if I can say why.** The explanation available
+in advance — and I am writing it down now so I cannot invent it afterwards — is that **the ENGINEs
+were written by the same lanes, under the same `CLAUDE.md`, as the finishers**, so the file's rules
+travel with the AUTHOR rather than with the CLASS, and the citation-gap asymmetry would then be a
+statement about what got PROMOTED into the file rather than about what the entries know. That is the
+same shape as rc-gap's C2 empty, which explained itself because three of six candidates named their
+readier unprompted *because the rule is in the file*. **If it comes back clean and I cannot tell that
+story from the entries themselves, I will report it as an unexplained null rather than as a pass.**
