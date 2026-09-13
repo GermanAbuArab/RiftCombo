@@ -415,3 +415,58 @@ has to empty a 39-card Main Deck, and `docs/plays/2026-09-13-the-setup-nobody-pr
 at roughly twenty-four slots of net-positive draw. Whether four more cards fit in that list is exactly
 the question a walker should answer before writing the twin, and it is not a question the clock can
 answer. `data/combos.json` is the manager's file, so this is handed over rather than written.
+
+---
+
+## 12. Setup time is not a pure cost in this pool, and the reason is where Riot hangs a free effect
+
+`docs/plays/2026-09-13-the-setup-nobody-prices.md` ends on one deck's accident: the cheapest way to
+empty a Main Deck is `VEN-165 Shadow Temple`, whose trigger is a **Hold**, so the turns spent setting
+the loop up are turns spent scoring. rc-manager8 asked whether that generalises, with the right guard
+attached — **if it is one entry it is a curiosity and I should say so.**
+
+It is not one. It is the default for a whole population, and the mechanism is rules-grounded:
+**469 defines Scoring as Conquer or Hold and nothing else**, and **315.2.b.2** Holds *every*
+battlefield you control at the start of every Beginning Phase. So a card whose **trigger** is a Hold
+is a card you cannot use without scoring.
+
+Swept over the pool folded by name, legends excluded, on the standard wordings 383.4.c.1 and
+383.4.d.1 give (*"When I conquer"* / *"When you hold"*): **86 names carry a Hold or Conquer trigger.
+Eight of those pay points — that is the payoff shape, not the setup shape — and 57 are free and
+non-point.**
+
+**The split that decides everything is the rate, and it is the two rules above read against each
+other:**
+
+| | | |
+|---|---:|---|
+| **HOLD-triggered** | **35** | Repeats. 315.2.b.2 fires it every Beginning Phase and 470 allows one Score per battlefield per turn, so the resource arrives every turn **and pays a point every turn it arrives.** |
+| **CONQUER-only** | **22** | Fires once. 469.1 defines a Conquer on a battlefield *"not yet Scored this turn"* and 348.2.a refuses Control to a player who already has it, so there is no rate at all unless something hands the battlefield back. |
+
+Read the 35 rather than counting them, because a predicate here always overstates: **two are payoffs
+rather than faucets** (`OGN-293 The Grand Plaza` wins the game, `OGN-286 Reckoner's Arena` multiplies),
+and **thirteen are XP faucets**, which this project already records as bounded because nothing in the
+pool converts XP into points. That leaves about **twenty genuine repeating resource faucets** — cards,
+draws, tokens, a `[Repeat]`, a reanimation, a mill — every one of which pays a point a turn while it
+runs.
+
+### The law, and the habit it inverts
+
+**In this pool the standard place to hang a free repeating effect is a Hold trigger, and a Hold is a
+Score. So a deck that spends N turns accumulating from one of those faucets has scored N points doing
+it.** Setup time is not a pure cost here.
+
+That inverts a reading this project makes by reflex. *"This engine takes eight turns to assemble"*
+sounds like a weakness, and for the Hold-triggered family it is simultaneously **eight points**. The
+sharp corollary is the one the play landed on from the other direction: the contested Hold curve
+reaches eight on **T9**, so **a Hold-triggered setup that needs more than about eight turns of
+accumulation is a line whose setup wins the game before the engine does.**
+
+The Conquer half is the honest counter-case and is why this is a law rather than a slogan. Those 22
+fire once, carry no free curve with them, and a setup built on one is a pure cost in exactly the way
+the reflex assumes.
+
+**What this does not say:** it is not a claim that any particular entry is redundant. Holding a
+battlefield for eight turns against an opponent who is trying to take it is not free, and the whole
+point of the three-board-state frame is that the free curve is a *baseline* rather than a *plan*. The
+law is about how to read a setup cost, not about whether a line is good.

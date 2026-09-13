@@ -133,6 +133,14 @@ That is the unopposed-clock argument arriving from a direction it was never poin
 derived there from what a finisher is worth against a free curve; here it falls out of a deck
 literally having to spend the same turns doing the same thing to become legal at all.
 
+**And it is not an accident of this one deck.** 469 defines Scoring as Conquer or Hold and nothing
+else, and 315.2.b.2 Holds every battlefield you control at the start of every Beginning Phase — so a
+card whose trigger is a Hold cannot be used without scoring. Swept over the pool, **35 names carry a
+free, non-point, Hold-triggered ability**, against 22 that fire once on a Conquer and therefore carry
+no rate at all. **Setup time is not a pure cost in this pool**: a deck accumulating from a
+Hold-triggered faucet for N turns has scored N points doing it, and the contested curve reaches eight
+on T9. Shadow Temple is one of thirty-five, not one of one.
+
 **What I am not claiming.** Not that the entry is wrong — it is not, and its own notable already
 records that the empty deck destroys itself. Not that seven-to-ten is exact: it is a hand timetable
 over one shell, and a Mind/Order list built specifically to empty fast would beat it. And not that
