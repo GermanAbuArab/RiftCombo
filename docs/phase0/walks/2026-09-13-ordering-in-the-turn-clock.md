@@ -374,3 +374,44 @@ instrument revealed what the other was hiding.
 direction can conceal a second constraint indefinitely, and the constraint only surfaces when
 somebody makes the instrument right. So the review question after a correction is not only *"is the
 new number right"* but **"what was the old number's error hiding?"**
+
+---
+
+## 11. Reading the sharpest number the instrument produces
+
+With the engine's output priced, **four of eighty finishers pay later than the CONTESTED curve** —
+the board a finisher is actually for. Four is small enough to read every one, which is the point of
+getting a number down: a verdict you cannot examine is not a verdict.
+
+**Three of the four are one closure.** `gemdragon-henge-vi-blind-fury` and the two payoffs it fuels,
+`dragonstorm-brambleback-trinity-conquer` and `dragonstorm-confront-grand-plaza`, all read T12 against
+a body/fury baseline of T5. So the honest denominator is **two situations, not four**.
+
+**The Gemdragon T12 is honest, and I nearly reported it as an over-estimate.** The reasoning was
+tempting and wrong: the entry produces both fuels, so surely the loop buys its own later cards, and
+the model charges every card of a fuel-producing entry at rune prices. **Its own step 1 refutes it** —
+*"Board set up as above, 11 Power banked, six 5 Might Dragons on the board."* The loop starts from a
+fully deployed board of nineteen cards at E91 + 9 Power. Nothing is bought by the loop before the loop
+runs. The number stands, and the row is the largest board in the catalogue rather than a defect.
+
+That is the second time in this walk that checking a claim against the entry's own `steps` killed it
+before it was published, and the first time the check **confirmed** the instrument instead of
+correcting it.
+
+**The fourth is real and it has an answer nobody has written.** `shen-sentinel-time-warp-chain` is
+four cards — Shen, Blue Sentinel and two `OGN-122 Time Warp` — at **E30 + 11 Power**, no engine, T10
+against a mind/order baseline of T6. Two Time Warps at full price is the whole number.
+
+And it sits in the one identity that prints an infinite-Energy engine. Measured: the entry is
+mind/order, `lux-infinite-energy` is mind/order, their union is two domains and therefore **legal
+under 103.1.b**; the entry declares `needs: []`; and **no twin exists on its card set**, while
+sixteen entries already declare `needs: infinite-energy`. So the loop-financed twin this project
+already uses elsewhere — identical cards, `needs` on one row so the matcher can route a loop into the
+window, both rows cross-referencing — is legal here, absent, and would move the row from T10 to the
+Lux family's turn.
+
+**The objection belongs with the lead, and it is this walk's own play that raises it.** A Lux shell
+has to empty a 39-card Main Deck, and `docs/plays/2026-09-13-the-setup-nobody-prices.md` prices that
+at roughly twenty-four slots of net-positive draw. Whether four more cards fit in that list is exactly
+the question a walker should answer before writing the twin, and it is not a question the clock can
+answer. `data/combos.json` is the manager's file, so this is handed over rather than written.
