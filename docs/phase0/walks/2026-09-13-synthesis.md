@@ -77,9 +77,32 @@ T7 is 8 BURST, 5 CHAIN and 2 ALT_WIN. Cut by class instead and the wobble disapp
 **That is the cleaner statement of the same thing, and it carries a second result the turn bands hide.**
 Sorted by body size the classes are ALT_WIN, INFINITE, CHAIN, BURST; sorted by turn they are ALT_WIN,
 INFINITE, BURST, CHAIN. The two orders agree except on the last pair — **BURST has the biggest bodies
-in the catalogue at 3.59 and is still a turn faster than CHAIN**, because what a CHAIN buys with its
-extra turns is not bodies but `OGN-122 Time Warp` at E10 and 4 Power a copy. So the gradient is a
-CLASS gradient first and a turn gradient second, and the per-turn table above is its shadow.
+in the catalogue at 3.59 and is still a turn faster than CHAIN**.
+
+### The one exception is one card, and separating it makes both orders identical
+
+The mechanism was asserted before it was measured, so it was measured. **`OGN-122 Time Warp` is the
+pool's only extra-turn source** (E10 + 4 Power a copy, and 103.2.b caps it at three). Of the CHAIN
+rows, **7 of 17 run it and average turn 9.71; the other 10 average 6.50. Of the 23 BURSTs, ZERO run
+it.** So the inversion is not a property of the CHAIN class, it is the Time Warp half of it. Split
+that out and the two orderings are the same order:
+
+| group | n | mean min Might | mean turn |
+|---|---:|---:|---:|
+| ALT_WIN | 24 | 1.58 | 4.92 |
+| INFINITE | 12 | 2.67 | 5.83 |
+| CHAIN **without** Time Warp | 9 | 3.11 | 6.78 |
+| BURST | 22 | 3.59 | 6.95 |
+| — | | | |
+| CHAIN **with** Time Warp | 6 | 3.17 | **9.00** |
+
+Body size 1.58 < 2.67 < 3.11 < 3.59; turn 4.92 < 5.83 < 6.78 < 6.95. **Monotone in both, in the same
+order, with no exceptions** — and the six rows that sit off the line are exactly the six that spend
+their deployment on turns rather than on bodies, landing two turns later at no extra body size.
+
+So the gradient is a CLASS gradient first and a turn gradient second, the per-turn table above is its
+shadow, and the single card that breaks it is the single card in the pool that buys the one thing
+bodies cannot.
 
 ## The finding, and the mechanism
 
