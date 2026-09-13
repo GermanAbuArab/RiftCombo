@@ -133,6 +133,86 @@ Main Deck
   });
 });
 
+/**
+ * A second legal list, needed because the Unique cards are Calm/Mind Ornn Signature Equipment and
+ * LEGAL above is Mind/Order. Fire Below the Mountain is the only Ornn legend, Ornn, Blacksmith is a
+ * champion unit carrying the tag, and the Main Deck is 40 counting it: 1 champion + 3 Forgefire Cape
+ * + 36 filler. Substituting into the Cape line is what every test below varies.
+ */
+const ORNN = `Legend
+1 Fire Below the Mountain
+
+Champion
+1 Ornn, Blacksmith
+
+Battlefields
+1 Back-Alley Bar
+1 Bandle Tree
+1 Fortified Position
+
+Runes
+6 Calm Rune
+6 Mind Rune
+
+Main Deck
+3 Forgefire Cape
+3 Charm
+3 Clockwork Keeper
+3 Defy
+3 En Garde
+3 Find Your Center
+3 Meditation
+3 Playful Phantom
+3 Rune Prison
+3 Solari Shieldbearer
+3 Stalwart Poro
+3 Stand United`;
+
+/**
+ * 825.3.a — one of each Unique name (#208). The defect this row exists for was reachable precisely
+ * BECAUSE the other rows pass: all three cards printing the keyword are Ornn Signature Equipment, so
+ * three copies of one satisfied 103.2.b, 103.2.d.1, 103.2.d.2 and 103.1.b at once and `checkBuild`
+ * reported `legal: true`. The third test below is the regression guard and the point of the row:
+ * 825.3.b makes the Unique cap and the Signature cap INDEPENDENT, so the other two must keep passing
+ * while this one fails, or the checklist would name the wrong rule.
+ */
+describe("825.3.a — one of each Unique name (#208)", () => {
+  it("passes, and says so, on a list holding no Unique card at all", () => {
+    const r = row(rows(LEGAL), "825.3.a");
+    expect(r.status).toBe("pass");
+    expect(r.detail).toContain("No card in this list has Unique");
+  });
+
+  it("passes on a single copy, naming it", () => {
+    const r = row(rows(ORNN.replace("3 Forgefire Cape", "1 Forgefire Cape\n2 Sunlit Guardian")), "825.3.a");
+    expect(r.status).toBe("pass");
+    expect(r.detail).toContain("Forgefire Cape");
+  });
+
+  it("fails on three copies WHILE 103.2.b and 103.2.d still pass — the whole of 825.3.b", () => {
+    const report = rows(ORNN);
+    const unique = row(report, "825.3.a");
+    expect(unique.status).toBe("fail");
+    expect(unique.detail).toContain("3× Forgefire Cape");
+    expect(unique.detail).toContain("825.3.b");
+    // The two rows that made the deck look legal have to keep saying what they said.
+    expect(row(report, "103.2.b").status).toBe("pass");
+    expect(row(report, "103.2.d").status).toBe("pass");
+    // And the report as a whole must now refuse it, which is the bug this closes.
+    expect(report.legal).toBe(false);
+  });
+
+  it("counts the sideboard with the Main Deck, because 825.3.a says 'a deck'", () => {
+    const withSide = `${ORNN.replace("3 Forgefire Cape", "1 Forgefire Cape\n2 Sunlit Guardian")}
+
+Sideboard
+1 Forgefire Cape`;
+    const r = row(rows(withSide), "825.3.a");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toContain("2× Forgefire Cape");
+  });
+});
+
 describe("103.3.a — twelve runes inside the identity", () => {
   it("passes on 6 + 6 in the legend's two domains", () => {
     const r = row(rows(LEGAL), "103.3.a");
@@ -403,6 +483,9 @@ describe("the badge", () => {
       "103.2.a.2",
       "103.2 · Tournament Rules 601.1.b",
       "103.2.b",
+      // 825.3.a sits next to 103.2.b because it is the same axis — copies of a name — and the two are
+      // independent caps by 825.3.b, so the checklist shows them side by side (#208).
+      "825.3.a · 825.3.b",
       "103.2.d",
       "103.3.a · 103.3.a.1",
       "103.4.a · 103.4.c",

@@ -44,6 +44,7 @@ export function checkBuild(deck: Deck, cards: CardIndex, format: Format): BuildR
     championRule(deck, cards),
     sizeRule(deck),
     copiesRule(deck, cards),
+    uniqueRule(deck, cards),
     signatureRule(deck, cards),
     runeRule(deck, cards),
     battlefieldRule(deck, cards),
@@ -92,6 +93,16 @@ const COPY_CAP = 3;
 export const ANY_NUMBER = /can have any number of cards named/i;
 
 /**
+ * 825.3.a — "A deck can contain only one card of a given name if the card has Unique". The mirror of
+ * ANY_NUMBER above: that clause caps a name UP, this one caps it DOWN to one. Matched on the printed
+ * keyword for the same reason — the next card to print it is covered the day it ships, with no list of
+ * codes to maintain. Three cards carry it today (SFD-190 Forgefire Cape, SFD-191 Rabadon's Deathcrown,
+ * SFD-192 Shurelya's Requiem) and all three are Ornn Signature Equipment, which is exactly why the gap
+ * was reachable: see `uniqueRule`.
+ */
+export const UNIQUE = /\[Unique\]/i;
+
+/**
  * Copies of every name across the given bags, with the Spiderling exemption folded in once here rather
  * than at every call site. `copiesRule` (103.2.b) calls this with `[deck.main]` alone; the sideboard row
  * below (Tournament Rules 601.1.c.3 · 403.3) calls it with `[deck.main, deck.sideboard]` — same grouping, same exemption,
@@ -101,15 +112,20 @@ export const ANY_NUMBER = /can have any number of cards named/i;
 export function copiesByName(
   cards: CardIndex,
   bags: readonly Record<string, number>[],
-): Map<string, { name: string; count: number; exempt: boolean }> {
-  const byName = new Map<string, { name: string; count: number; exempt: boolean }>();
+): Map<string, { name: string; count: number; exempt: boolean; unique: boolean }> {
+  const byName = new Map<string, { name: string; count: number; exempt: boolean; unique: boolean }>();
   for (const bag of bags) {
     for (const [code, n] of Object.entries(bag)) {
       const card = cards.get(code);
       if (!card) continue;
       const prev = byName.get(card.name);
       if (prev) prev.count += n;
-      else byName.set(card.name, { name: card.name, count: n, exempt: ANY_NUMBER.test(card.text ?? "") });
+      else byName.set(card.name, {
+        name: card.name,
+        count: n,
+        exempt: ANY_NUMBER.test(card.text ?? ""),
+        unique: UNIQUE.test(card.text ?? ""),
+      });
     }
   }
   return byName;
@@ -139,6 +155,49 @@ function copiesRule(deck: Deck, cards: CardIndex): BuildRule {
     detail: exempt.length
       ? `No name over three, and ${exempt.map((x) => `${x.count}× ${x.name}`).join(" · ")} is past it only because its own text says so (002).`
       : "No name appears more than three times.",
+  };
+}
+
+/**
+ * 825.3.a — "A deck can contain only one card of a given name if the card has Unique". A SEPARATE row
+ * from 103.2.b rather than a tightening of it, because 825.3.b says the two caps are independent:
+ * "If a card is a Signature card and is also Unique, then that deck can contain any combination of
+ * three Signature cards, but still only one of each named Unique card." So 103.2.b keeps passing at
+ * three while this fails at two, and the checklist says which rule the list actually broke.
+ *
+ * That sentence is why the gap was reachable at all, and it is worth stating because the corner looks
+ * unreachable until you build it. All three cards printing the keyword are Ornn Signature Equipment
+ * (SFD-190, SFD-191, SFD-192, all calm/mind) and the only Ornn legend is Fire Below the Mountain, also
+ * calm/mind — so three copies of one of them satisfied 103.2.b (three of a name), 103.2.d.1 (three
+ * Signature TOTAL, "regardless of name"), 103.2.d.2 (all carry the champion tag) and 103.1.b at once.
+ * Every implemented row returned pass and `checkBuild` reported `legal: true` on an illegal deck,
+ * through the `#/decks` editor. Found by the #191 orphan-neighbour probe over the keyword blocks;
+ * the whole 825 block is uncited except these two paragraphs. Issue #208,
+ * docs/phase0/walks/2026-09-13-keyword-subrules.md.
+ *
+ * The sideboard is folded in, unlike 103.2.b's row: 825.3.a says "a deck", and Tournament Rules 403.3
+ * puts limits on copies of named cards on "the combination of Main Deck and sideboard" — the same
+ * reasoning `sideboardCopiesRule` already applies to the cap of three. One row rather than two,
+ * because the population is three cards and a second row would be noise in a player-facing checklist.
+ */
+function uniqueRule(deck: Deck, cards: CardIndex): BuildRule {
+  const base = { rule: "825.3.a · 825.3.b", label: "One of each Unique name" };
+  const byName = copiesByName(cards, [deck.main, deck.sideboard]);
+  const held = [...byName.values()].filter((x) => x.unique);
+  if (!held.length) return { ...base, status: "pass", detail: "No card in this list has Unique." };
+
+  const over = held.filter((x) => x.count > 1).sort((a, b) => b.count - a.count);
+  if (over.length) {
+    return {
+      ...base,
+      status: "fail",
+      detail: `${over.map((x) => `${x.count}× ${x.name}`).join(" · ")} — a Unique card is capped at one per deck (825.3.a), and being a Signature card does not lift it (825.3.b).`,
+    };
+  }
+  return {
+    ...base,
+    status: "pass",
+    detail: `${held.map((x) => x.name).join(", ")} ${held.length === 1 ? "is Unique and appears" : "are Unique and each appears"} once.`,
   };
 }
 
