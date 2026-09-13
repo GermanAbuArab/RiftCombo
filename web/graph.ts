@@ -592,6 +592,12 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
          *
          * It rides the class line rather than becoming a badge, because it is a property of the
          * line and not of this deck, and because a badge would need CSS that does not exist.
+         *
+         * ONLY THE LAYERED LAYOUT SAYS IT, AND THAT IS COMPLETE RATHER THAN PARTIAL: the circular
+         * layout draws no combo node at all — cards in a ring, payoffs outside, edges straight from
+         * card to payoff — so there is nothing there to carry it, and inventing a node would change
+         * that layout's whole shape. A reader on the circular view still gets it twice, from the
+         * tray chip and from the drawer, both of which are layout-independent.
          */
         const bodies = c.anyBodies ? ` · NEEDS ${c.anyBodies.count} MORE ${c.anyBodies.count === 1 ? "UNIT" : "UNITS"}` : "";
         g.append(el("text", { class: "route-class", x: ROUTE_W / 2, y: h - 12, "text-anchor": "middle" }, `${c.class.replace("_", " ")}${c.status === "verified" ? "" : " · " + c.status.toUpperCase()}${bodies}`));

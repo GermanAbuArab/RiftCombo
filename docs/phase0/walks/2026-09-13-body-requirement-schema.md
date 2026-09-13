@@ -313,3 +313,27 @@ unchanged. What is NOT acceptable is the middle road of naming one arbitrary mem
 turns a false COMPLETE into a false MISSING — `matchDeck` would report *missing Scuttle Crab* at a
 deck running Mosstomper. The recommendation on the record is prose in `prerequisites.notable`, where
 a reader sees it and no machine pretends to check it.
+
+---
+
+## 9. WHAT SHIPPED, SO A LATER SESSION CAN FIND IT
+
+- **`src/types.ts`** — `BodyRequirement`, `Combo.anyBodies`, `Variant.anyBodies`, and `ZONES` as a
+  runtime list (`ATTACHED` was in use on 24 rows and undeclared).
+- **`src/bodies.ts`** — `bodyCheck`, the deliberately weak decklist-level check, with its limits in
+  its own docblock. It honours `includeSideboard` because `matchDeck` does.
+- **`src/combos.ts`** — propagation through `generateVariants` (`max()` merge, part of the dedupe
+  key) and the `anyBodies` and `zone` validation.
+- **`src/matcher.ts` / `src/plan.ts`** — `Hit.missingBodies` folded into `missingCount`,
+  `Route.addBodies` folded into `cost`.
+- **`web/main.ts` / `web/graph.ts`** — four surfaces: the tray chip, the plan panel row and
+  footnote, the drawer, and the layered diagram's route node and its accessible name.
+- **`test/body-requirements.test.ts`** — the mechanism, predicates E, G and H (E as a CEILING with a
+  REPAIRS floor, G and H as NAMED SETS of refusals), the zone vocabulary, and the note-verbatim
+  floors.
+- **`test/dom/body-requirement.dom.test.ts`** — the four surfaces read back out of a real DOM.
+- **`test/prose-emphasis.test.ts`** and **`test/loose-cannon-shape.test.ts`** — handed over by
+  rc-gap2 and rc-kw2 and shipped here; each found or repaired something on its first run.
+
+**Every one of those checks was proved OUT OF BAND** — corrupt the thing it guards, watch it name
+itself, revert — because an assertion whose plumbing is broken passes forever.
