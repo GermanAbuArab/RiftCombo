@@ -5,8 +5,11 @@ verbatim from `data/corpus_flat.txt`; rules pasted from `data/Riftbound-Core-Rul
 Read [the unopposed clock](2026-09-12-the-unopposed-clock.md) for the baseline.
 
 **Subject: `gutter-palace`**, which the turn clock reads at **T3 against a T6 baseline** — the fastest
-row in the catalogue's fastest class, and the only non-Plaza ALT_WIN family in the file. Its sibling
-`gutter-palace-reaction-dials` is the same card with an answer suite and reads **T6**.
+row in the catalogue's fastest class, and the only non-Plaza ALT_WIN family in the file. **The family
+is three entries, not two** — `gutter-palace` at T3, `gutter-palace-reaction-dials` at T6 and
+`gutter-palace-keeper-time-warp` at T7. This play is about the **first two**, because they are the
+same card with and without an answer suite and that is the comparison; the Time Warp version is a
+different question and is not walked here.
 
 Walked by hand the bare version is **T5**, and the three turns it gains on the clock are three cards
 the entry does not list. The pair is the third instance of the shape the other two plays found: a fast
@@ -90,7 +93,7 @@ And the trigger's condition is read **when it is placed** (383.2.a.1), so there 
 the fact: if the board is not exactly 4/4 as your Beginning Phase starts, nothing goes on the Chain at
 all and there is nothing to respond to.
 
-## 4. The sibling that survives it, and what the three extra turns buy
+## 4. The version that survives it, and what the three extra turns buy
 
 `gutter-palace-reaction-dials` adds `UNL-071 Chakram Dancer` ×3, `OGN-104 Retreat` ×3 and
 `SFD-087 Premonition` ×3 — **nine cards, every one of them playable on the opponent's turn**, which is

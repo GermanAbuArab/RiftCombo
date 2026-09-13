@@ -199,6 +199,7 @@ describe("which entry a play is about", () => {
     "ivern-ride-the-wind-double-conquer",
     "tryndamere-brambleback-conquer",
     "renata-mastermind-points",
+    "gutter-palace",
     "gutter-palace-keeper-time-warp",
     "time-warp-hold-burst",
     "grand-plaza-recruit-vanguard",

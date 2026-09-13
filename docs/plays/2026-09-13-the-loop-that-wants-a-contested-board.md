@@ -176,8 +176,13 @@ exposure, and it is where this line is actually decided.
   (Chaos, E3 + 1 Power, deal 4 — but its Deathknell is scoped to *"my battlefield"*, so it has to be
   walked into the Plaza first, which contests it), `OGN-123 Unchecked Power` (Mind, E7 + 2 Power, deal
   12) and `UNL-180 The Ruination` (Order, E9 + 3 Power, kill all units). `UNL-212 Frozen Fortress` is a
-  battlefield and only reaches units at itself. **Nineteen of the 23 Plaza entries name `OGN-133` and
-  exactly one names anything larger** — the family has been measured against a single one-Energy card.
+  battlefield and only reaches units at itself. **Nineteen of the 23 Plaza entries named `OGN-133` when
+  this was written on 2026-09-13 and
+  exactly one named anything larger** — the family had been measured against a single one-Energy card.
+  **It is 20 of 23 within the day**, because the manager applied this finding; the three that still do
+  not are `dragonstorm-confront-grand-plaza`, `leblanc-bashful-bloom-trevor-plaza` and
+  `desert-call-vi-sand-soldier-plaza`. The count is perishable and the point is not: one Energy was
+  the only threat the family had ever been priced against.
 - **`VEN-133 Glowstone` is the cheapest hard answer in the pool and it misses by a phase.** Order, E2:
   *"Disempower this, exhaust: Choose a player. They gain control of this and recall it… At the end of
   your turn, kill this and deal 5 to all units you control."* Five damage kills a Might-2 or Might-4
