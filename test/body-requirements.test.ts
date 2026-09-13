@@ -10,6 +10,9 @@ import type { Combo, Deck } from "../src/types.js";
 const cards = loadCardIndex();
 const { combos, features } = loadCombos();
 
+let _variants: ReturnType<typeof generateVariants> | null = null;
+const variantsOf = (cs: typeof combos) => (_variants ??= generateVariants(cs, cards));
+
 const deck = (o: Partial<Deck>): Deck =>
   ({ legend: null, champion: null, battlefields: {}, runes: {}, main: {}, sideboard: {}, unresolved: [], ...o });
 
@@ -112,6 +115,32 @@ describe("bodies a line needs that no card supplies (Combo.anyBodies)", () => {
     expect(used.has("ATTACHED")).toBe(true);
     expect(validateCombos([combo({ uses: [{ card: "OGN-044", quantity: 1, role: "engine", zone: "SIDEBOARD" as never }] })], features, cards))
       .toEqual(["synthetic: OGN-044 has unknown zone SIDEBOARD"]);
+  });
+
+  it("has never merged two body requirements, which is why max() has not yet had to be right", () => {
+    /**
+     * `generateVariants` merges `count` with `max()` and not `sum()`, matching the card multiset
+     * merge and for the reason `CLAUDE.md` gives: the same physical bodies serve both halves of a
+     * line within one turn. THAT IS TRUE OF CARDS AND ONLY SOMETIMES TRUE OF BODIES - a leg wanting
+     * "a spare unit to attach to" and a leg wanting "a body at the battlefield you are taking" may
+     * want two different bodies, and `max()` would then report one.
+     *
+     * MEASURED: of 1,638 variants, 905 flatten two or more entries and **ZERO** flatten two that
+     * both declare `anyBodies`. So the merge has never had two contributors and the question has
+     * never been live. This is the ratchet that makes somebody read it the first time it is - at
+     * which point the honest answer is per-pair and not a blanket rule, because whether one body
+     * serves both legs is a fact about those two lines.
+     *
+     * Do NOT "fix" the merge to `sum()` on the strength of this. It would over-report every pair
+     * whose legs genuinely share a body, and over-reporting is the direction that costs a player a
+     * card they did not need - which is better than flattering, but it is not free and it is not
+     * needed by anything today.
+     */
+    const byId = new Map(live.map((c) => [c.id, c]));
+    const merged = variantsOf(live).filter((v) => v.comboIds.filter((id) => byId.get(id)?.anyBodies).length > 1);
+    expect(variantsOf(live).length, "no variants were generated, so this proves nothing").toBeGreaterThan(1000);
+    expect(variantsOf(live).filter((v) => v.comboIds.length > 1).length).toBeGreaterThan(500);
+    expect(merged.map((v) => v.id)).toEqual([]);
   });
 
   it("keeps every requirement quoted from the entry or the card, not retyped", () => {

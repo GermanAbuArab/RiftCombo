@@ -53,6 +53,15 @@ const nearMiss = async () => {
   await settle();
 };
 
+/** Back to the default view, which lists only lines the deck COMPLETES. */
+const network = async () => {
+  const radio = [...document.querySelectorAll<HTMLInputElement>("input[name=view]")]
+    .find((r) => r.value === "network")!;
+  radio.checked = true;
+  radio.dispatchEvent(new Event("change", { bubbles: true }));
+  await settle();
+};
+
 const chipFor = (name: string) =>
   [...document.querySelectorAll<HTMLElement>(".chip")]
     .find((c) => c.querySelector(".chip-title")!.textContent!.includes(name));
@@ -110,5 +119,41 @@ describe("the site says a line needs bodies no card supplies", () => {
     expect(node!.querySelector(".route-class")!.textContent).toContain("NEEDS 1 MORE UNIT");
     // Every node is a tab stop (#78), so the sentence has to reach the accessible name as well.
     expect(node!.querySelector("title")!.textContent).toContain("exactly 4 units at battlefields");
+  });
+
+  /**
+   * THE MITIGATION, AND IT IS LOAD-BEARING RATHER THAN COSMETIC. `src/bodies.ts` documents its own
+   * check as deliberately weak, and measurement says the weakness runs ONE WAY: `Math.max(0, count
+   * - spare)` has no mechanism to over-report, and `spare` counts every unit card in the list, so on
+   * a real deck the shortfall is always zero. Over the three fixtures the suite already pins, 24
+   * matched routes carry a body requirement and NOT ONE reports a shortfall.
+   *
+   * So the machine under-reports a board requirement it cannot see, and what protects the player is
+   * that the DRAWER states the requirement WHETHER OR NOT this list is short of it. Make that
+   * conditional on `missingBodies` and the flattering becomes invisible — the deck that has twenty
+   * units and no body at the right battlefield would be told nothing at all. Nothing pinned it
+   * until now, and a conditional is exactly the "simplification" a later reader would reach for.
+   */
+  it("still states the requirement for a list that is NOT short of bodies", async () => {
+    // The same Gutter Palace list plus three Mind bodies, so the check is satisfied and the route
+    // comes back complete - the case the near-miss tests above can never reach.
+    const withBodies = [...LIST.split("\n"), "3 Watchful Sentry (OGN-096)"].join("\n");
+    document.querySelector<HTMLTextAreaElement>("#deck-input")!.value = withBodies;
+    document.querySelector<HTMLFormElement>("#deck-form")!
+      .dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+    await settle();
+    // The route is COMPLETE now, so it is in the default view rather than the near-miss one the
+    // tests above switched to. Which view it appears in is itself part of the fix working.
+    await network();
+
+    const chip = chipFor("Gutter Palace");
+    expect(chip, "the route did not come back at all").toBeDefined();
+    // No MISSING line: the deck now holds the bodies, which is the whole point of this case.
+    expect(chip!.querySelector(".chip-meta")!.textContent).not.toContain("MISSING");
+    chip!.click();
+    await settle();
+    const drawer = document.querySelector<HTMLElement>("#detail")!.textContent ?? "";
+    expect(drawer).toContain("Bodies no card supplies");
+    expect(drawer).toContain("exactly 4 units at battlefields");
   });
 });
