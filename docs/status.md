@@ -4,7 +4,7 @@ This is the orientation document. `docs/plan.md` and `docs/phase0-findings.md` a
 spike of 2026-09-02 and are kept as history: they describe decisions that were later taken
 differently. Read them for the reasoning, not for the current state.
 
-Every number below carries the command that produces it, measured against commit **`6e83002`** on
+Every number below carries the command that produces it, measured against commit **`431ef1c`** on
 2026-09-13. The catalogue grows with every walk: **if a number does not match, the command is the
 truth and this is a photo.**
 
@@ -56,7 +56,7 @@ decides what is visible; `web/account.ts` sets the attribute.
 | Unverified | **0** | `node -pe 'require("./data/combos.json").combos.filter(e=>e.status!=="verified").length'` |
 | By class | INFINITE 14 · BURST 23 · CHAIN 17 · ALT_WIN 26 · ENGINE 686 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.class]=(b[e.class]||0)+1;JSON.stringify(b)'` |
 | Entries by card count (`uses.length`) | 1:26 · 2:468 · 3:194 · 4:53 · 5:17 · 6:5 · 8:2 · 11:1 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.uses.length]=(b[e.uses.length]\|\|0)+1;Object.keys(b).map(Number).sort((x,y)=>x-y).map(k=>k+":"+b[k]).join(" · ")'` |
-| Entries declaring `anyBodies` | **27** | `node -pe 'require("./data/combos.json").combos.filter(e=>e.anyBodies).length'` |
+| Entries declaring `anyBodies` | **82** | `node -pe 'require("./data/combos.json").combos.filter(e=>e.anyBodies).length'` |
 | Distinct cards used by some entry | **897** | `node -pe 'const a=require("./data/combos.json").combos,s=new Set();for(const e of a)for(const u of e.uses)s.add(u.card);s.size'` |
 | Sources cited | **2264** | `node -pe 'require("./data/combos.json").combos.reduce((n,e)=>n+(e.sources\|\|[]).length,0)'` |
 | Synergy rules | **220** | `node -pe 'require("./data/synergies.json").synergies.length'` |
