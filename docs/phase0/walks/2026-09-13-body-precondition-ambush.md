@@ -671,3 +671,72 @@ statement about what got PROMOTED into the file rather than about what the entri
 same shape as rc-gap's C2 empty, which explained itself because three of six candidates named their
 readier unprompted *because the rule is in the file*. **If it comes back clean and I cannot tell that
 story from the entries themselves, I will report it as an unexplained null rather than as a pass.**
+
+---
+
+## 17. THE AUDIT, READ: 1 CONFIRMED, 2 CANDIDATES, 10 CLEAN — AND THE NULL EXPLAINS ITSELF
+
+**Denominator: 13 of 686 ENGINEs (1.9%), selected by the rule pre-registered in §16 and committed
+before reading.** All thirteen read in full — steps, `terminatesIn`, `netPerIteration` and every
+notable.
+
+### CONFIRMED (1): a perishable entry count, which is the class this project names most often
+
+**`brynhir-lockout-window`**, notable 2: *"five of the twelve BURSTs score on a Conquer"*. **The
+catalogue holds 23 BURSTs** (INFINITE 14, BURST 23, ALT_WIN 26, CHAIN 17, ENGINE 686). The count is
+stale and carries no as-of date. `CLAUDE.md`: *"a count of entries is a perishable claim and a rule is
+not… when a note cites how many entries use a card, write it AS OF the walk date, and keep the durable
+half, which is always the rule, never the count."* **The durable half here is the MECHANISM** — Brynhir
+cannot cover your own Hold (315.2.b.2 precedes 316, and she is a unit without [Reaction]), so what she
+escorts is the *Conquer* half of the catalogue, which happens in the Main Phase. That argument is
+correct and survives; only the arithmetic in front of it has rotted.
+
+### CANDIDATES (2), both class (4): no stated point of failure
+
+- **`svellsongur-ornn-hold`** — 3 steps, 2 notables, the thinnest entry in the slice. Ornn wears an
+  **attached** Svellsongur and must hold a battlefield **through the opponent's turn**, and the entry
+  names no threat at all: not the 16 gear-removal printings #200 catalogued, not removal on Ornn, not
+  the loss of the battlefield. Every other entry in the slice states one.
+- **`katarina-reckless-hidden-blade`** — notable 1 quotes 811.1.b and elides, **with a properly marked
+  ellipsis**, the clause *"for as long as you control that battlefield"* — **which is the entry's own
+  failure mode.** The line hides on turn one and plays on turn two; if the opponent takes that
+  battlefield in between, 107.3.d removes the facedown card at the next Cleanup and the whole cycle is
+  gone. The elision is honest by this project's rules; it is the load-bearing half that went missing.
+
+### CLEAN (10) — and the null explains itself, as pre-registered
+
+The other ten are not merely clean, they are **exemplary, and in exactly the ways `CLAUDE.md` asks
+for**. They state the predicate WITH the number — `papertree-esteemed-hierophant-rune-count` N3
+(*"swept, `grep -in "7 or more runes"`, three rows and no others"*), `seal-power-faucet-bootstrap` N7
+(20 cards found, seven qualifying, named), `demacian-diplomat-blood-rose-board-independent-xp` N1
+(a sweep with its date). They **name the members** rather than counting them, which is the form
+`CLAUDE.md` prescribes for a perishable claim — that entry's N7 names all five sibling Blood Rose
+entries. And they state the point of failure outright: `sacred-protector-disciple-of-shen-pair` N6
+(*"THREE BODIES BREAK IT, AND SO DOES A TOKEN"*), `demacian-diplomat` N5 (*"2 Might is under
+`OGN-133 Flurry of Blades`' sweep… dies to a 1-Energy [Reaction] for its whole board value"*),
+`mageseeker-investigator-mass-move-tax` N6, `dragon-roost-mountain-drake-instant-garrison` N3.
+
+**That is the explanation I wrote down in §16 in advance, now confirmed from the entries themselves:
+the ENGINEs were written by the same lanes under the same `CLAUDE.md` as the finishers, so the file's
+disciplines travel with the AUTHOR rather than with the CLASS.** The citation-gap asymmetry — 86 rules
+cited 10+ times by ENGINEs and absent from the file, against zero by the finishers — is therefore a
+statement about **what got PROMOTED INTO the file**, not about what the entries know. This is not an
+unexplained null.
+
+### And the next slice picks itself, on a measured signal
+
+Both class-(4) findings are thin entries, so I measured whether thinness is a real signal.
+**The ENGINE notable-count distribution is extraordinarily tight: 529 of 686 carry 6 or 7 notables
+(77%), and only ELEVEN (1.6%) carry two or fewer.** My random slice contained exactly one of those
+eleven, and it was one of my two weak findings.
+
+The eleven: `svellsongur-ornn-hold`, `guardian-passage-svellsongur`, `gauntlets-enforcer-conquer`,
+`azir-aphelios-attach`, `ashe-retreat-hand-strip`, `promising-future-force-deck`,
+`ruination-sprite-burst-clear`, `sprite-fountain-malzahar-jayce`,
+`treasure-hunter-industrialist-gold`, `aphelios-jax-quickdraw-attach`,
+`pack-of-wonders-bewitching-discard`. All have 2–3 steps.
+
+**That is a deliberately NON-random slice and any rate from it is a statement about those eleven and
+not about the 686** — stated per rc-manager8's rule. It is the right next read precisely because it is
+biased: the thin tail is where a missing point of failure is most likely, and it is eleven entries
+rather than a sample.
