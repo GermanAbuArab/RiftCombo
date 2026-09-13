@@ -487,6 +487,14 @@ function sideboardRules(deck: Deck, cards: CardIndex): BuildRule[] {
    * project's own precedent: 825.3.a got its own row rather than tightening 103.2.b, so that the
    * checklist names the rule the list actually broke. A domain is not a card type.
    *
+   * WHAT IT DOES NOT CHECK, stated because its pass sentence used to imply otherwise. It read "so any
+   * of them can be swapped in", which is a claim about SWAPPABILITY where the row measured only the
+   * DOMAIN: `OGN-256 Fox-Fire` is calm + mind and therefore inside an Ornn identity, and 103.2.d.2
+   * still forbids it, because it carries the Ahri tag and the Legend is the very thing 403.4.b
+   * freezes. The sentence now says only what was measured. Whether this row should widen to the
+   * champion tag, or `signatureRule` should read the sideboard as `uniqueRule` already does, is a
+   * separate question with its own issue — it is what #215 answered for the identity, one rule over.
+   *
    * Reported FIRST of the four, for the reason `capOf` reports identity first: no quantity of an
    * off-identity card is ever legal here, while the other three are caps.
    */
@@ -503,7 +511,7 @@ function sideboardRules(deck: Deck, cards: CardIndex): BuildRule[] {
           status: "fail",
           detail: `Outside ${cards.domainsOf(deck.legend!).join(" + ")}: ${offIdentity.slice(0, 4).join(", ")}${offIdentity.length > 4 ? ` and ${offIdentity.length - 4} more` : ""} — a sideboard card is swapped into the Main Deck (Tournament Rules 403.4) and the Legend cannot change mid-match (403.4.b), so it could never be played.`,
         }
-      : { rule: "Tournament Rules 403.4.b", label: "Sideboard inside the identity", status: "pass", detail: `Every sideboard card sits inside ${cards.domainsOf(deck.legend!).join(" + ")}, so any of them can be swapped in.` };
+      : { rule: "Tournament Rules 403.4.b", label: "Sideboard inside the identity", status: "pass", detail: `Every sideboard card sits inside ${cards.domainsOf(deck.legend!).join(" + ")}.` };
 
   const byName = copiesByName(cards, [deck.main, deck.sideboard]);
   const over = [...byName.values()].filter((x) => !x.exempt && x.count > COPY_CAP).sort((a, b) => b.count - a.count);

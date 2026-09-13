@@ -666,6 +666,34 @@ describe("Tournament Rules 403.4.b — the sideboard inside the identity (#215)"
    * reported by 601.1.c.2 as before, and this row has nothing to say about it. That is the 825.3.a
    * precedent — the checklist names the rule the list actually broke, and a domain is not a type.
    */
+  /**
+   * THE ROW'S KNOWN LIMIT, pinned so it is discoverable rather than surprising (#217). It measures the
+   * DOMAIN and nothing else, so a Signature card that is INSIDE the identity but carries another
+   * champion's tag passes it — `OGN-256 Fox-Fire` is calm + mind under a calm + mind Ornn legend and
+   * is tagged Ahri, so 103.2.d.2 forbids it and nothing here says so. The main-deck button refuses the
+   * same card; the sideboard button takes it.
+   *
+   * Its pass sentence used to read "so any of them can be swapped in", which was a claim about
+   * SWAPPABILITY on a row that measured only the DOMAIN. That was a player-facing over-claim and is
+   * fixed; whether the row or `signatureRule` should widen is #217, and turns on whether 103.2.d.1's
+   * count wants the same treatment as 103.2.d.2's tag. Change this test when that is decided.
+   */
+  it("measures the domain and not the champion tag, which is #217", () => {
+    // The legend has to be the ORNN one, not LEGAL's: Fox-Fire is calm + mind, so under LEGAL's
+    // Mind + Order it is off-DOMAIN and the row catches it correctly. The gap only exists where the
+    // card is INSIDE the identity and outside the champion tag, which is what Ornn provides. The
+    // deck is deliberately minimal — this is a claim about one row, not about a legal list.
+    const ORNN_SIDE = "Legend\n1 Fire Below the Mountain\n\nSideboard\n1 Fox-Fire\n";
+    const r = rows(ORNN_SIDE);
+    expect(row(r, "Tournament Rules 403.4.b").status).toBe("pass");
+    // What it says is now only what it measured: no promise that the card can be swapped in.
+    expect(row(r, "Tournament Rules 403.4.b").detail).not.toContain("swapped in");
+    // The gap is real rather than theoretical: the same card in the MAIN deck is refused by 103.2.d.
+    expect(row(rows("Legend\n1 Fire Below the Mountain\n\nMain Deck\n1 Fox-Fire\n"), "103.2.d").status).toBe("fail");
+    // And the control that makes the first line mean something: an off-DOMAIN card there still fails.
+    expect(row(rows("Legend\n1 Fire Below the Mountain\n\nSideboard\n1 Blazing Scorcher\n"), "Tournament Rules 403.4.b").status).toBe("fail");
+  });
+
   it("leaves a rune in the sideboard to 601.1.c.2, which is a different rule", () => {
     const r = rows(`${LEGAL}\n\nSideboard\n1 Fury Rune`);
     expect(row(r, "Tournament Rules 601.1.c.2").status).toBe("fail");
