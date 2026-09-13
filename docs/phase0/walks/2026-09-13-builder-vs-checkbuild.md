@@ -689,3 +689,37 @@ median counts as elaborate ones — which is the same lesson as the two corpus a
 That leaves **seven** BURSTs genuinely above their floor, and every one of them buys something
 nameable: more points, a different board state to score on, or survival against removal. None of the
 eleven is padding.
+
+
+### Does a finisher say what beats it? 77 of 80 do
+
+The protection row above is a population of one *within `terminatesIn` on BURSTs*, which made it look
+as though the catalogue rarely argues about removal. Asked of all 80 finishers across `terminatesIn`,
+`notes`, `prerequisites.notable` and `steps`:
+
+| | n |
+|---|---|
+| names a specific answer card | **61** |
+| speaks of removal or answers without naming a card | 16 |
+| **says nothing about what beats it** | **3** |
+
+The named answers, by how many finishers name them: `SFD-005 Detonate` 37, `OGN-022 Thermo Beam` 35,
+`OGN-133 Flurry of Blades` 33, `OGN-224 Salvage` 32, `SFD-011 Angle Shot` 22, `UNL-180 The Ruination`
+13, `OGN-229 Vengeance` 6, `SFD-158 Sandshifter` 5. That is #200's adversarial pass visible in the
+data — the gear-removal answers it priced against the twelve Equipment finishers are named across a
+third to a half of the class.
+
+**The three that say nothing**: `renata-mastermind-points` (INFINITE), `swain-double-conquer` (CHAIN),
+`jayce-mesmerize-renata` (INFINITE). Note this is a claim about what the ENTRY STATES, not about
+whether a hole exists — #200's sweep reports zero unanswered holes across the class, and "no unanswered
+hole" and "no stated point of failure" are different facts. Whether these three need the sentence is a
+walk, not a measurement.
+
+**Instrument note, because the bug was real and the correction was almost nil.** The first version of
+this probe spread `notes` into the text array — `notes` is a **string**, so spreading it yields its
+characters and the join put a separator between every one, making substring matching silently fail on
+the largest field. Corrected, the counts moved by exactly one (`The Ruination` 12 to 13). The reason is
+worth more than the numbers: **the answer cards are named in `prerequisites.notable`, which is an array
+and was handled correctly all along** — so the field the bug destroyed turned out not to be where the
+information lives. The same field-shape trap as `Card.type` being an array, and the fourth time today a
+probe of mine returned a confident answer from the wrong shape.
