@@ -920,3 +920,64 @@ refill.**
 `VEN-166 Threshold of the Gray`, a **battlefield**, which 170.3 and 170.4 put beyond removal entirely
 — so its only answerable link is `VEN-020 Twilight Reveler`, a Might-3 body at **base**, and the
 answer set for that is the narrow one §1's Ivern notables describe.
+
+---
+
+## 17. The ALT_WIN class splits **23 / 3** on removability, and the split is the card type
+
+Rule 195 is what makes the class:
+
+```
+195.    A player also wins the game if an effect instructs them to do so, or if they are the only
+        player remaining in the game.
+195.1.  If an effect instructs a player to lose the game, that player is immediately removed from
+        the game.
+```
+
+**Predicate: corpus lines containing `win the game`, `lose the game`, `you win` or `you lose`. Five
+hits, all read.** Two are about winning a **combat** and would be caught by a naive sweep —
+`SFD-185 Glorious Executioner` (*"When you **win a combat**, draw 1"*) and `UNL-201 Voidreaver`
+(*"When you **win a combat**, gain 1 XP"*). Three touch the game:
+
+```
+OGN-293 | The Grand Plaza | Battlefield | Colorless | When you hold here, if you have 7+ units here,
+                                                      you win the game.
+UNL-088 | Gutter Palace   | Gear | Mind         | At the start of your Beginning Phase, if you have
+                                                  exactly 4 cards in hand and exactly 4 units at
+                                                  battlefields, you win the game. …
+OGN-276 | Aspirant's Climb | Battlefield | Colorless | [BANNED constructed:banned, 2v2:banned]
+                                                       Increase the points needed to win the game by 1.
+```
+
+`OGN-276` is banned in **both** formats and does not make anyone win — it raises the Victory Score.
+**And ZERO cards in the pool say `lose the game`**, so 195's second route and the whole of 195.1 are
+**dead letter here**: nothing in this pool removes an opponent from the game.
+
+**So the pool prints exactly TWO live win conditions, and all 26 ALT_WINs stand on one of them:
+`OGN-293` in 23, `UNL-088` in 3, and zero entries use any other route.** (Measured: ALT_WIN entries
+whose `uses` contain none of the three = **0**.)
+
+### Why that is the sharpest thing §13 and §14 produce
+
+The two live win conditions sit in **different rows of the payoff taxonomy**, and the class therefore
+is not homogeneous at all:
+
+| win condition | entries | card type | can the opponent remove it? |
+|---|---:|---|---|
+| `OGN-293 The Grand Plaza` | **23** | **battlefield** | **no** — 170.3 not killed, 170.4 not moved, 185.2.e a token not recycled; only §14's single legend replaces it, and only after conquering it |
+| `UNL-088 Gutter Palace` | **3** | **gear** | **yes, for `SFD-005 Detonate` at E1 + 1 Fury Power**, which also draws its controller two cards |
+
+**Twenty-three of the twenty-six ALT_WINs have a win condition nothing in the game can remove, and
+the other three have one that dies to the cheapest gear removal in the pool.** That is a fact about
+the class, not about any entry, and it explains a pattern the catalogue already exhibits: the Gutter
+Palace entries are exactly the ones that needed §5's Detonate note, and the Plaza entries genuinely
+did not need it — their exposure really is only the bodies (Might, §1–§2) and Control (323.6,
+190.6.d), because the Plaza itself is beyond removal.
+
+It also means the two halves owe **opposite** advice. A Plaza entry should say *what keeps seven
+bodies alive*; a Gutter Palace entry should say *what keeps the gear alive* — and, per §3, that its
+count can be broken **upward** as well as downward, which no Plaza line can be.
+
+**One line the Guide view could carry, if `web/` ever wants it** (that file is rc-builder's, so this
+is a suggestion and not a change): *"Two cards in Riftbound say you win the game. One is a
+battlefield and cannot be removed; one is a gear and dies to one Energy."*
