@@ -323,3 +323,87 @@ garrison of `[Deflect]` Birds pays **no tax at all** against a sweeper — the k
 here, and 809.1.c charges only for choosing. And **`[Shield]` is DEFENDER-only** under 814.1.c
 (*"While I am a defender, I have +X `[M]`"*), so a Shield grant adds **nothing** against a Deal
 resolved outside combat — which is every sweeper in the table except `OGN-127 Cannon Barrage`.
+
+---
+
+## The BURST and CHAIN slice — base-parking beats Flurry and loses to three cards
+
+Forty entries are BURST or CHAIN; **fifteen** stand on a body of Might ≤ 2 derived from **what their
+own `uses` cards play**, read out of `corpus_flat.txt` rather than from a token name in the entry's
+prose. That distinction is the correction recorded in the appendix above, and applying it here changed
+the answer twice more.
+
+**These are not Plaza lines.** The Plaza needs seven bodies standing; these stand on **one
+load-bearing body carrying a tag or a condition**, so the question is not "does a sweep clear the
+garrison" but "does anything reach *that* body".
+
+### Two that look exposed and are not — both Swain, both by past tense
+
+`VEN-065 Swain, Visionary` reads *"When I conquer, if you've **played** a non-token unit, a non-token
+gear, and a spell this turn…"*. This project already records that the `if` sits immediately after the
+trigger, so 383.2.a.1 makes it part of the **Trigger Condition** — and it asks what you **played**,
+a fact about the past.
+
+- **`swain-svellsongur-conquer-burst`** — `VEN-043 Steel Paws`, **Might 0**, names no threat at all.
+  Looks like the most exposed row in the slice. It is not exposed: the body satisfies the past-tense
+  third of Swain's condition, so killing it after it is played changes nothing. It also carries
+  `[Deflect]`.
+- **`swain-shurelya-double-conquer`** — `OGN-096 Watchful Sentry`, Might 1. Same reason, and **the
+  entry says so in its own `uses` note**: *"It never moves and never has to; it only has to have"*
+  been played.
+
+**Nothing is owed to either.** That is the third and fourth time in this task a predicate flagged a
+row that reading cleared.
+
+### Seven that are genuinely exposed, and all seven are the same family
+
+`UNL-177 Ivern, Friend to All`: *"When I conquer or hold, score 1 point if your units have all of the
+following tags among them — Bird, Cat, Dog, and Poro."* **No location clause** — which is exactly why
+these entries park the tag body at **BASE**, where `OGN-133 Flurry of Blades` (*"Deal 1 to all units at
+battlefields"*) cannot reach it. Several say so explicitly and the reasoning is correct.
+
+**It is also incomplete, and my own zone refinement is what shows it.** Three of the twenty threats
+carry no location clause of their own and take the base too:
+
+| card | domain | cost | text |
+|---|---|---|---|
+| `UNL-132` Angler Beast | chaos | E5 P1 | *"return all units with 2 `:rb_might:` or less to their owners' hands"* |
+| `UNL-180` The Ruination | order | E9 P3 | *"Kill all units."* |
+| `SFD-147` Downwell | chaos | E8 P2 | *"Return all units and gear to their owners' hands."* |
+
+**Eighteen entries in the catalogue park a Might ≤ 2 body at BASE. Zero of them name any of the
+three.** Seven are BURST or CHAIN:
+
+| entry | class | identity | base-parked tag body |
+|---|---|---|---|
+| `ivern-sentinel-hold` | BURST | mind+order | `OGN-216` Soaring Scout **M1** |
+| `ivern-arena-sentinel-hold` | BURST | mind+order | `OGN-216` M1, `OGN-210` Daring Poro M2 |
+| `ivern-brambleback-conquer-burst` | BURST | fury+order | `OGN-216` Soaring Scout **M1** |
+| `ivern-bard-four-tag-double-conquer` | CHAIN | mind+order | `OGN-210` Daring Poro M2 |
+| `ivern-arena-trinity-body-order-hold` | BURST | body+order | `OGN-210` Daring Poro M2 |
+| `ivern-arena-draven-chaos-order-chain` | CHAIN | chaos+order | `OGN-210` Daring Poro M2 |
+| `ivern-ride-the-wind-double-conquer` | CHAIN | chaos+order | `OGN-210` Daring Poro M2 |
+
+Both bodies sit inside Angler Beast's **≤ 2** band, and **there is nowhere further back to park them**
+— base is already the safe zone. 383.2.a.1 makes the tag count part of the Trigger Condition, so
+losing one tag loses the **whole** Score, not a point of it.
+
+`daisy-green-father-four-tag-attacker` is the same shape in calm+order and is an ENGINE, so it is
+tempo rather than the game; it is named here and no notable is proposed for it.
+
+### The notable text for those seven
+
+> **THE TAG BODY IS PARKED AT BASE TO DODGE `OGN-133`, AND THREE CARDS REACH IT THERE.** Ivern's
+> clause — *"score 1 point if your units have all of the following tags among them — Bird, Cat, Dog,
+> and Poro"* — carries no location clause, which is why this entry declares its tag body in zone BASE,
+> where `OGN-133 Flurry of Blades` (*"Deal 1 to all units at battlefields"*) cannot reach it. That
+> reasoning is right and it is incomplete: of the twenty cards in the pool that remove more than one
+> body in one action, **three carry no location clause of their own and take the base too** —
+> `UNL-132 Angler Beast` (Chaos, E5 P1, *"return all units with 2 `:rb_might:` or less to their
+> owners' hands"*), `UNL-180 The Ruination` (Order, E9 P3, *"Kill all units."*) and `SFD-147 Downwell`
+> (Chaos, E8 P2, *"Return all units and gear to their owners' hands."*). The tag body is inside Angler
+> Beast's band and **there is nowhere further back to park it**. 383.2.a.1 makes the tag count part of
+> the Trigger Condition, so losing one tag loses the whole Score and not a point of it.
+
+Substitute the body: `OGN-216 Soaring Scout` at **Might 1** for the three Soaring Scout rows,
+`OGN-210 Daring Poro` at **Might 2** for the rest, and both for `ivern-arena-sentinel-hold`.
