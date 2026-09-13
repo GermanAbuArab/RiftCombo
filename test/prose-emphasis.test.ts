@@ -103,6 +103,14 @@ function spans(text: string): string[] {
  * and an author has to opt it out DELIBERATELY, with a reason, in the list below. Every exclusion
  * here was chosen against a measured path census rather than from memory of the schema.
  *
+ * AND THIS IS THE REPO'S OWN PRECEDENT RATHER THAN A PREFERENCE. `test/rule-refs.test.ts` walks
+ * every string in every node with no field filter at all (`collect` at line 78), so RULE REFERENCES
+ * inside `uses[].note` have always been checked while QUOTED PASSAGES in the same 440,413
+ * characters were not — **the same file and the same field, two guards, and only one of them saw
+ * it.** rule-refs will also cover any field the schema grows without anyone touching it, which is
+ * precisely what a name-enumerating guard cannot do and precisely what let `anyBodies.note` be born
+ * outside coverage. Two patterns for one problem in one repo, and only one fails safe.
+ *
  * Parsed values, never JSON text — an escaped quote is still a quote character to a scanner and
  * span pairing breaks on it.
  */
