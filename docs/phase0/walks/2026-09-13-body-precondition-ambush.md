@@ -483,3 +483,43 @@ is not an entry that DOES play it in the one phase that matters** — the same d
 `dune-surfer-armed-assailant-ignore-tank`, where a card carrying [Weaponmaster] never uses it. **I
 flagged §11 as measuring the cards rather than the steps, and that caveat was the whole difference
 between a lead and a wrong DAG edge.**
+
+---
+
+## 13. THE BIGGEST CITATION GAP BY PARENT WEIGHT — AND IT CONFIRMS THE CATALOGUE RATHER THAN BREAKING IT
+
+Ranking every sub-rule cited by **exactly one** entry by how heavily its surrounding block is cited
+(766 entries, 2,381 real headings, 1,067 distinct sub-rules cited, **353 of them singletons**; bare
+three-digit headings excluded, because `CLAUDE.md` records that a bare `\d{3}` matches a prose
+quantity — my own first pass returned "481" and "176" as cited rules), the top row is not close:
+
+**`103.2.b.2`, cited by ONE entry, under a parent `103.2.b` cited by 389.** The 3-copy cap is the most
+cited deckbuilding rule in this catalogue and the paragraph immediately under it had been opened once.
+
+It reads: **_"Cards have different names even if they represent the same character."_** with Riot's own
+example — *"A deck could include 3 copies of Yasuo, Remorseful and 3 copies of Yasuo, Windrider,
+because they have different names."* **So a line capped at 3 by 103.2.b is capped at SIX whenever a
+second printing of the same character does the same job.**
+
+**Measured, and it cannot be exploited in this pool.** 278 `uses` rows run a unit at quantity 3;
+**47 of them run a character the pool also prints under a different name** (Ahri Alluring/Inquisitive,
+Ivern Friend to All/Nurturer, Jhin Murderous Artist/Meticulous Killer, Teemo Strategist/Scout, Yasuo
+Windrider/Remorseful, Zed, Vex, Ambessa, Nasus, Kennen, LeBlanc). But the test that decides it is
+mechanical and comes back empty: **of 1,189 printings folded into 997 distinct text+type+stat
+signatures, exactly ONE signature is shared by two or more different names — the six basic Runes,
+which share a `[no text]` placeholder and are governed by 161.2.a rather than by the copy cap.**
+
+**Zero pairs of differently-named printings share rules text.** The second printing of a character is
+always a genuinely different card doing a different job — Yasuo, Windrider scores on his third move
+while Yasuo, Remorseful deals damage on attack — which is exactly *why* Riot gave them different names.
+
+**So every "three copies by 103.2.b" ceiling in this catalogue is a REAL ceiling, and that is now
+measured rather than assumed.** 103.2.b.2 is the rule that could have lifted them and does not.
+**A result that confirms 389 entries' reasoning is worth as much as one that overturns it**, and it
+cost one join plus one fold.
+
+**Method note, and it is the fourth instance today.** The singleton-citation probe is the
+orphan-neighbour probe pointed at ONES instead of ZEROS, and it has the same profile `CLAUDE.md`
+records for its parent: **high yield, low precision — read the text, never the rank.** Below
+`103.2.b.2` the top twenty is dominated by the 383 trigger block and the 465.2.c damage-assignment
+block, both of which #187 has already been working through.
