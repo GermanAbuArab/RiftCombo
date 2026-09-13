@@ -48,6 +48,24 @@ starts at Energy 2, which is why that curve conquers on turn 2 at all.
 decided.** A four-drop is a turn-4 play at the earliest on a 2-runes-a-turn curve, and by then the
 free curve has been scoring for two turns.
 
+### And the threshold is the FORMAT's, not this card's
+
+That is a claim about one card until you check the others, so I checked the others. Swept over every
+printing for a **printed Might gate** — `N Might or less`, `less than N Might` — folded by name and
+type, the pool has **thirteen**:
+
+| threshold | n | cards |
+|---|---:|---|
+| Might ≤ 2 | 2 | `SFD-162 Blood Money` (Order, E2), `UNL-132 Angler Beast` (Chaos, E5+1) |
+| **Might ≤ 3** | **10** | `OGN-169 Gust` (E1) · `SFD-138 Windsinger` (E2) · `UNL-159 Soul Harvest` (E2+1) · `VEN-105 Twilight Step` (E2+1) · `VEN-127 Lacerate` (E2+1) · `VEN-106 Wind and Ghosts` (E3+1) · **`UNL-186 Death from Below`** (E4+1) · `SFD-158 Sandshifter` (E5+2) · `UNL-140 Conscription` (E5+2) · `VEN-110 Mel, Defiant Soul` (E5) |
+| Might ≤ 5 | 1 | `VEN-091 Corrupted Dragon` — **E10 + 2 Power**, the most expensive card on the list |
+
+**Ten of thirteen sit at exactly three**, and the single card that reaches five pays ten Energy and two
+Power for the privilege. This card is not an outlier; it is the middle of the distribution. **The line
+this format draws its removal at is Might 3, and Might 3 is the top of the Energy-3 curve** — so the
+table in §1 is not a fact about `UNL-186`, it is a fact about what a Riftbound removal spell is
+*for*. Eight of the thirteen are Chaos, four Order, and the outlier at five is Body.
+
 ## 2. The identity is forced, and by one word on the card
 
 `UNL-186` is a **Signature card** (`signature: true` in `cards.json`, tagged `Pyke`), and
@@ -128,8 +146,9 @@ written has landed on, arriving this time from the removal side rather than the 
 
 > **The cheap bodies that make an opening fast are the cheap bodies that removal is priced to kill,
 > and the bodies that are immune cost four Energy or more — which is to say they are not an opening
-> at all.** The pool prints that trade into a single threshold on a single card: 98% of the two-drops
-> and 0% of the six-drops.
+> at all.** And the pool prints that trade **thirteen times, ten of them at the same number**: Might
+> 3, which is 98% of the two-drops and 0% of the six-drops. The one card that reaches Might 5 costs
+> ten Energy and two Power.
 
 Every earlier play here found that a **finisher** buys its speed with small bodies and pays for it in
 fragility. This is the same sentence read from the other end of the table: the reason small bodies are
