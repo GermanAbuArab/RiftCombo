@@ -301,3 +301,56 @@ The first collapse shipped a bug worth recording: it reduced the count of a type
 **depended on**, so three free gears carrying three `[Equip]` costs became one root with three
 dependants that could never be satisfied, and the row went to **Infinity**. A deadlock from outside
 looks exactly like an unsolvable line. Roots are now excluded from the collapse.
+
+---
+
+## 10. The biggest remaining gap is not a cost gap, and pricing the engine is what exposed it
+
+The clock prices **cards**. `lux-infinite-energy` states two requirements in its own
+`prerequisites.notable` that no card cost can reach:
+
+> **"Main Deck EMPTY — the deck draws itself out first; every card not in the loop must be in hand
+> or trash."**
+> **"12 runes in play (the deck's whole Rune Deck channeled); at least one Mind rune."**
+
+**Twelve runes is turn six at the earliest.** 315.3.b channels two a turn, 161.2.a fixes the Rune
+Deck at exactly twelve, and 161.2.b takes a rune off the board for every Power paid — so T6 is a
+ceiling-hugging best case, not a typical one. The empty deck is worse: it is not reducible to a turn
+number at all, because how fast a deck empties is a property of the list rather than of the line.
+
+**Exactly ten of the eighty rows carry that engine in their closure, and all ten print T5** —
+`bottled-constellation-time-warp`, `grand-plaza-loop-time-warp`, `jayce-mesmerize-renata`,
+`lady-luminosity-loop-comet`, `lux-infinite-energy`, `lux-infinite-power`, `renata-bubble-bot-ready`,
+`renata-mastermind-points`, `swain-double-conquer`, `time-warp-hold-burst`. Read them as **no earlier
+than T6**, and read the empty-deck requirement as a caveat with no number behind it.
+
+### Why it is documented and not deducted
+
+The requirement lives in **prose**, and a prose predicate for it overstates — which this project
+already knows and which I confirmed in both directions before believing my own probe:
+
+- `(\d+) runes (in play|channelled|you control|on the board)` matches **five** notables
+  catalogue-wide and only **two** are genuine requirements (`lux-infinite-energy`,
+  `renata-time-warp-ekko-refresh`). The other three match inside an arithmetic ledger or inside prose
+  *about* the Rune Deck cap.
+- An empty-deck predicate matches **44** entries, most of which merely **discuss** Burn Out; the
+  Tournament Rules 505 boilerplate asserts an empty deck on all fourteen INFINITEs where rc-synth2
+  measured that only **eight** need one.
+
+Deducting a floor from that would be a guess wearing a number. What *is* exact and quotable is the
+row set — "the closure contains `lux-infinite-energy`" — because that entry declares both
+requirements itself, verbatim and checkable. `.scratch-gap/probe-board-prereqs.mjs` carries the sweep
+and both overstatement counts.
+
+### The framing that matters
+
+**The old over-charge padded these rows past their own floor by accident.** Charging a loop's payoff
+to the rune curve pushed `bottled-constellation-time-warp` to T14, comfortably past a T6 requirement
+nobody had noticed. Pricing the engine's output removed the padding and left the real constraint
+visible — which is the opposite of introducing an error, and is the third time today that fixing one
+instrument revealed what the other was hiding.
+
+**The general form, and it is the one to carry:** an instrument that is wrong in the *conservative*
+direction can conceal a second constraint indefinitely, and the constraint only surfaces when
+somebody makes the instrument right. So the review question after a correction is not only *"is the
+new number right"* but **"what was the old number's error hiding?"**

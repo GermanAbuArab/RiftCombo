@@ -79,6 +79,34 @@
 //      closure exists whose stage-1 engine costs enough to push the completion past stage 0's turn,
 //      and the probe is the check to re-run.
 //
+//      THE BIGGEST REMAINING GAP IS NOT A COST GAP AT ALL, AND PRICING THE ENGINE IS WHAT EXPOSED IT.
+//      This table prices CARDS. `lux-infinite-energy` states TWO board requirements in its own
+//      `prerequisites.notable` that no card cost can reach: **"12 runes in play"** and **"Main Deck
+//      EMPTY"**. Twelve runes is TURN SIX at the earliest - 315.3.b channels 2 a turn, 161.2.a caps
+//      the Rune Deck at 12, and 161.2.b takes a rune off the board for every Power paid - and the
+//      empty deck is not reducible to a turn number at all, because how fast a deck empties is a
+//      property of the list rather than of the line.
+//
+//      Exactly TEN of the 80 rows have that engine in their closure and every one of them prints
+//      T5, i.e. earlier than the engine's own stated floor: bottled-constellation-time-warp,
+//      grand-plaza-loop-time-warp, jayce-mesmerize-renata, lady-luminosity-loop-comet,
+//      lux-infinite-energy, lux-infinite-power, renata-bubble-bot-ready, renata-mastermind-points,
+//      swain-double-conquer, time-warp-hold-burst. Read those ten as "no earlier than T6", and read
+//      the empty-deck requirement as a caveat with no number behind it.
+//
+//      It is NOT deducted here, and the reason is the reason this file keeps: the requirement lives
+//      in PROSE, and a prose predicate for it overstates. Swept, `(\d+) runes (in play|...)` matches
+//      five notables catalogue-wide and only TWO are genuine requirements - the other three sit
+//      inside an arithmetic ledger or inside prose about the Rune Deck cap - and an empty-deck
+//      predicate matches 44 entries of which most merely DISCUSS Burn Out, with the Tournament Rules
+//      505 boilerplate asserting an empty deck on all 14 INFINITEs where rc-synth2 measured that only
+//      8 need one. Deducting a floor from that would be a guess wearing a number.
+//      .scratch-gap/probe-board-prereqs.mjs carries the sweep and both overstatement counts.
+//
+//      The honest framing is that the over-charge used to PAD these rows past their own floor by
+//      accident. Pricing the engine's output removed the padding and left the real constraint
+//      visible, which is the opposite of introducing an error.
+//
 //      ORDERING IS MODELLED AS OF 2026-09-13 AND IT MOVES NOTHING, WHICH IS THE RESULT. `deployTurn`
 //      used to ask only whether every cost was PAYABLE by turn N; an [Equip] is not merely a second
 //      cost but a LATER one, because 818.1 makes it an Activated Ability of the gear and 380 says an
