@@ -1,9 +1,10 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { loadCardIndex } from "../src/load.js";
-import type { Deck } from "../src/types.js";
+import type { Card, Deck } from "../src/types.js";
 import { ANY_NUMBER, UNIQUE, championTagOf, checkBuild } from "../src/build.js";
 import { loadDeck } from "../src/deck.js";
+import { MAX_DECK_TEXT, checkSave } from "../src/saved.js";
 import {
   addCard,
   addToSideboard,
@@ -861,6 +862,60 @@ describe("the Chosen Champion at click time (103.2.a.2, 103.2.d.3)", () => {
  * unreadable line, four of a name, two of a Unique name, five Signature cards, thirteen runes, four
  * battlefields, and a banned card.
  */
+/**
+ * `builderText` is what the site STORES, and `checkSave` refuses a list past `MAX_DECK_TEXT` rather
+ * than truncating it — which is the right way round, but it means the editor could in principle
+ * produce a legal deck it cannot save. Measured 2026-09-13 and pinned here rather than left as a
+ * measurement, because the failure mode is silent from the player's side: they would be told their
+ * list is too long with no way to shorten it.
+ *
+ * The cap lives in `src/saved.ts`; the thing being capped is this module's output, which is why the
+ * pin is here. The margin is enormous — a maximal legal list is about six per cent of it — so this
+ * only fires if the text format grows by more than an order of magnitude, or a future Mode of Play
+ * multiplies the deck size. Either is a thing somebody should be told about.
+ */
+describe("the longest legal list the editor can produce still fits what the site stores", () => {
+  it("builds a full legal list and measures it against MAX_DECK_TEXT", () => {
+    const identity = cards.domainsOf(LADY);
+    let deck = addCard(emptyDeck(), LADY, cards);
+    deck = autoRunes(deck, cards);
+    // Longest names first, so the text is as long as this pool can make it.
+    const byLen = (a: Card, b: Card) => b.name.length - a.name.length;
+    for (const c of poolOf(cards).filter((c) => zoneOf(c) === "battlefields").sort(byLen)) {
+      if (zoneCounts(deck).battlefields >= 3) break;
+      deck = addCard(deck, c.base, cards);
+    }
+    const legal = poolOf(cards)
+      .filter((c) => zoneOf(c) === "main" && c.domains.length > 0 && c.domains.every((d) => identity.includes(d)))
+      .sort(byLen);
+    for (const c of legal) {
+      if (zoneCounts(deck).main >= 40) break;
+      for (let i = 0; i < 3 && zoneCounts(deck).main < 40; i++) {
+        const before = zoneCounts(deck).main;
+        deck = addCard(deck, c.base, cards);
+        if (zoneCounts(deck).main === before) break;
+      }
+    }
+    for (const c of legal) {
+      if (zoneCounts(deck).sideboard >= 10) break;
+      deck = addToSideboard(deck, c.base, cards);
+    }
+    // Non-vacuity: a list this test has actually filled, not an empty deck measuring zero.
+    const n = zoneCounts(deck);
+    expect(n.main).toBe(40);
+    expect(n.runes).toBe(12);
+    expect(n.battlefields).toBe(3);
+    expect(n.sideboard).toBe(10);
+
+    const text = builderText(deck, cards);
+    expect(text.length).toBeGreaterThan(500);          // it really did write a list out
+    expect(text.length).toBeLessThan(MAX_DECK_TEXT / 4);
+    expect(checkSave("A maximal list", text, []).ok).toBe(true);
+    // The control, and it is what makes the line above mean anything: the cap does refuse something.
+    expect(checkSave("x", "y".repeat(MAX_DECK_TEXT + 1), []).ok).toBe(false);
+  });
+});
+
 describe("a list that arrives already illegal (the import path)", () => {
   const ILLEGAL = `Legend
 1 Fire Below the Mountain
