@@ -193,3 +193,79 @@ not a false positive; it was a PROSE defect detected from the wrong end.
   projects CARD records for the fetched `data/cards.json`, while combos reach the browser through an
   esbuild JSON import of the whole file at `web/main.ts:1`, which is why `terminatesIn` and `notes`
   already render in the drawer while appearing in no field list.
+
+---
+
+## 7. PREDICATES G AND H, AND THE ONE RULE THAT DECIDES EVERY FUTURE ROW
+
+E is blind twice over. **485.4.a** has each player bring three battlefields from the deck, so a line
+can turn on a Conquer or a Hold and name none of them; and E keys on ZERO units, so a line that
+holds one body and needs two is invisible to it. Both gaps were real and both were productive. All
+three predicates now ship in `test/body-requirements.test.ts` rather than living in a gitignored
+directory — a predicate nobody can run twice is a predicate nobody runs twice.
+
+**G — a card whose own text needs a unit you control, with no unit in `uses`.** One paragraph:
+**818.1.c.2**, *"Equip is functionally short for '[Cost]: Attach this gear to A UNIT YOU CONTROL.'"*
+So an Equipment line with no body requires one BY THE KEYWORD'S OWN DEFINITION, and the same holds
+for a card acting on a friendly unit or scoring on a Conquer or a Hold (469.1, 469.2, 190.1). Read
+entry by entry: **31 fresh rows, 29 exposed, 2 refused.**
+
+**THE TOKEN EXCLUSION IS CORRECT FOR G AND WRONG FOR E, AND ONE RULE SEPARATES THEM.** 355.2.a plays
+a token to *"the controller's Base or a battlefield the controller CONTROLS"* — a token can HOLD
+ground you already took and can never TAKE it, so E has no exclusion and its three novel rows all
+mint tokens and are all exposed anyway. 818.1.c.2 asks only for a unit you control, and 185.2.d
+makes a token follow all rules for its type, so a token IS a legal carrier and G must exclude.
+`blade-ruined-king-detach-recovery` is the case, and it is emphatic: it mints three Recruits with
+the Vanguard Armory and its [Equip] even KILLS one, citing 185.2.d in its own step.
+
+**H — a line that holds ONE body and needs TWO**, on the card's own words: *another*, *other*, *a
+different* unit you control. **203** entries hold exactly one unit copy, **15** use such a card,
+**8 are exposed**. Two are worth stating alone: `SFD-180 Fiora, Worthy` is printed **Might 5**, so
+709's own second example makes her unable to become Mighty and the crossing body can never be the
+unit in `uses`; and `UNL-056 Yuumi, Magical Cat` grants +3 Might and [Tank] to *"one of your OTHER
+units here"* while being **Might 1** herself, so she can be neither the Tank nor a survivor of it —
+and her Might 1 also puts her in `OGN-133 Flurry of Blades` range, **the hole #203 found on the
+other Yuumi entry, reached from a completely different direction.**
+
+**THE RULE THAT DECIDES EVERY FUTURE ROW, and it came out of H's refusals rather than its hits:
+IS THE BODY BEING SPENT, OR ASKED FOR?**
+
+- An **EFFECT** that wants another friendly unit is **NOT** a requirement. **055.1** and
+  **359.3.e.11** ignore an impossible instruction, so it simply fizzles. `SFD-132 Beast Below` prints
+  *"When you play me, return another friendly unit and an enemy unit to their owners' hands"* with no
+  *"you may"* — and its entry calls that *"accepting its ETB"*, i.e. a drawback the line is better
+  off failing to pay.
+- A **COST** that wants one **IS**. **203.3** makes an impossible cost unpayable, so the card cannot
+  legally be PLAYED. Swept the whole pool for an additional cost spending a unit with no *"you may"*
+  (356.2.b.1 is what makes the optional ones declinable): **four printings** — Meditation is
+  optional, Cruel Patron is itself a unit, Sacrifice wants a MIGHTY one and no zero-unit entry plays
+  it — leaving `UNL-142 Heedless Resurrection` and **exactly two entries**. That is the hardest
+  refusal in the class: not a line that fails, a card stuck in hand.
+
+`heedless-resurrection-removal-blank` carries a second, narrower reason the body must be a real unit
+CARD: a token CAN pay the cost (185.2.d) but 185 and 186.1 stop one ever reaching the trash, so the
+*"play a unit from your trash"* half would find nothing. **The cost half and the payoff half of one
+card disagree about tokens.**
+
+The four refusals that share a rule of their own: `blade-dancer-irelia-defiant-dance`,
+`annie-fiery-piercing-light-bonus-per-instance` and `arcane-shift-zaunite-bouncer-two-choices-one-card`
+all have an *"another unit"* that is an ENEMY; `jae-medarda-repulse-counter-that-pays-for-itself`
+needs the exact opposite, its step 2 requiring the opponent to choose Jae *and no other friendly
+unit*. Two more run on `UNL-041 Allay`'s OWN printed [Deflect], which one of them states in its own
+step 3.
+
+**THE INSTRUMENT FAILED SIX TIMES ACROSS THESE SWEEPS AND FIVE ARE TRAPS THIS PROJECT ALREADY
+RECORDS.** A 6-character minimum on a name head; `\bJhin\b` not matching *"Jhins"*; a card named by
+its TAG (*"six 5 Might Dragons"*); the epithet after the comma; a trailing `\b` needing a word
+character in front of it, so **`Arise!`, `Guards!` and `Daisy!` match nothing** — that one is new.
+And the sixth: `\bunit token\b` not matching *"unit tokenS"*, **which is the plural trap a second
+time, in a different script, by the same author, an hour later.** The staging extractor caught two
+more of my own keys where I retyped an em-dash as a hyphen, and its sentence-start guard rejected a
+correct note because this catalogue opens sentences with rule numbers — **a guard that rejects
+correct work is a guard people route around**, so it was widened rather than worked around.
+
+Both new ratchets are pinned at today's count for the reason E was, and **the population floors are
+not the real guard**: at zero a population floor says nothing about whether a regex still matches.
+So each predicate is **pinned against named cards** chosen because each one broke something —
+`UNL-188` for [Equip], `SFD-168` for the plural, `UNL-056` for *"other units"*, `OGN-044` and
+`OGN-293` as negatives. Proved out of band by corrupting the predicate and watching it name itself.
