@@ -1,5 +1,47 @@
 # The remaining citation-gap vein — dispositions for all 38 (#187, rc-gap, 2026-09-13)
 
+> **READ THIS FIRST — what is in this document and where.**
+>
+> **The vein is called.** Six slices in one day: **99 rows fully disposed, 61 real gaps, 17 measured
+> non-gaps.** §1–§4 dispose the citation-gap bands (10+, then 9-and-8, then 7, then a sample of 6);
+> §5 walks 369.2; §6 audits quote fidelity across the whole walk corpus.
+>
+> **Where to stop is COMPOSITION, not citation count** (§3E, checked in §4): yield per row barely
+> falls — 26/38, 22/36, 13/25 — while step headings, section stubs and block parents go from ZERO in
+> the 10+ band to eight of twenty-five in the 7 band. The 6 band's first row is rule `000`.
+>
+> **The single biggest find is 725.1** (§1): it is what makes the whole Svellsongur family legal, and
+> `SFD-059` appears 58 times in `combos.json`.
+>
+> **Almost every gap is one half of a pair whose other half the file already carries** (§4) —
+> 359.3.f.2/.f.3, 383.2.c.1/.c.2, 355.13/355.8, 815.1.c.2/826.4.b, 470/471.2.c, 144.3.a/355.4,
+> 187.2-.9/187.1 and a dozen more. A file built by promoting FINDINGS keeps the half that surprised
+> somebody and drops the half that was assumed.
+>
+> **FIVE INSTRUMENT DEFECTS were found today and all five produce a confident wrong answer that reads
+> like a finding.** Three were already known (a preceding hyphen counts `OGN-304`; a preceding `#`
+> counts issue numbers; a following dot lets a parent absorb its block and hides it behind its own
+> child). **Two are new: §0** — the counter's `CLAUDE.md` side SUPPRESSES a rule whenever its bare
+> number appears as a prose quantity, a source line number, a lane label or **the catalogue's own
+> entry count**, which is progressive and will hide rules 767–829 one at a time as the catalogue
+> grows past 800 — and **the gap tool's PREVIEW takes the first match in the file, which for 57 of
+> 2,381 headings is a `See rule NNN.` cross-reference showing a DIFFERENT rule's text** (that list
+> includes `469.1` Conquer, `431` Burn Out, `417` Damage, `811` Hidden, `740.2.a` "alone"). Anchoring
+> the preview on a line start fixes it with no loss — both forms find 2,381 headings.
+>
+> **§6 is the one another lane should act on**: `test/source-quotes.test.ts` checks `combos.json` and
+> **nothing checks the 87 walk documents**, where **80 of 1,569 rules-claiming passages (5.1%) are
+> not verbatim** — with `151.2`, `829.1.b.2`, `195`, `437.4` and `829.1.c.3` each truncated in a way
+> that drops the exact clause carrying the finding.
+>
+> **This document was itself the worst offender and is fixed** (`5fa55e2`): I built the checker, ran
+> it over the bullet draft, fixed 17 defects there, and never ran it over §1–§4 — so 19 of the same
+> defects stood here while I reported them fixed. Diagnosed-but-unapplied, in my own work, in one day.
+>
+> Drafted `CLAUDE.md` bullets for all 61 gaps are in `.scratch-gap/bullets.md` (gitignored; 48
+> bullets, self-verified at 142 quoted passages and zero misses).
+
+
 `node scripts/claude-md-gap.mjs` at `minCitations = 10` prints **43** rows against commit `32fa959`.
 Five of those (`383.4.d`, `431.2`, `464.2`, `356.4.c`, `465`) were already disposed by the manager
 and still print because no bullet was applied for them. **My population is the other 38, and every
