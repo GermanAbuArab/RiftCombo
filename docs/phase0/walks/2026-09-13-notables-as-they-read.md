@@ -1287,3 +1287,82 @@ here-scoped one does nothing for them** — and no Ivern notable says so, becaus
 were written about the base-reaching threats and the Plaza notables about the here-scoped one, and
 nobody put the two halves in the same sentence. `data/combos.json` is rc-manager8's; this is a
 report.
+
+---
+
+## 22. The thresholdless sweeps — **clean, and clean in the informative direction**
+
+§21's four base-reachers do not share a threshold structure, and that decides whether a +Might answer
+means anything at all:
+
+| card | threshold | is +Might meaningful? |
+|---|---|---|
+| `UNL-132 Angler Beast` | **2 Might or less** | **yes** — this is the one the whole +1 argument is about |
+| `VEN-133 Glowstone` | **5 damage** | only far above token range |
+| `UNL-180 The Ruination` | *"Kill all units."* — **none** | **no** |
+| `SFD-147 Downwell` | *"Return all units and gear…"* — **none** | **no** |
+
+A third thresholdless sweep sits among the sixteen location-scoped ones: `OGN-159 Warwick, Hunter`,
+*"kill all **damaged** enemy units here"* — it reads a **damage marker**, not a Might, so no amount of
++Might escapes it either.
+
+**So the Aurok class has a mirror worth checking for: an entry that names a thresholdless sweep and a
++Might answer in the same breath, implying the second reaches the first.** Predicate: notables
+containing both. **5,330 notables scanned, 4 hits, all read — and all four are correct.**
+
+They are the four Plaza notables of §1–§2, and the sentence is:
+
+> *"It does NOT escape `UNL-107 Stare Down` …, `OGN-268 Bullet Time` …, or **the two that take
+> everything and carry no location clause at all** — `UNL-180 The Ruination` and `SFD-147 Downwell`."*
+
+**They name the thresholdless sweeps precisely in order to say the +1 does not escape them.** That is
+the exact opposite of the Aurok sentence, which named a card as an answer that reaches nothing — and
+it is the same author, in the same family, on the same day. **The template's failure was never
+carelessness about scope in general; it was one member whose scope was not written in.**
+
+`OGN-159 Warwick, Hunter` is named by none of the four. That is an omission rather than a defect: he
+is `here`-scoped and needs the bodies damaged first, so he is a two-card combination rather than a
+sweep somebody holds up, and none of the four is wrong for leaving him out.
+
+---
+
+## 23. Handoff
+
+**State.** `data/combos.json` was formally handed to me by rc-manager8, five corrections were applied
+in place (`f304650`), and **it is handed back**. I hold nothing contended. My files are this document
+and `.scratch-kw2/`. `src/*`, `web/*` and `test/*` belong to rc-builder and rc-schema; the working
+tree carried their in-flight edits throughout and I touched none of them.
+
+**What was done**, in one line each:
+
+1. §1–§7 — the fifteen notables applied 2026-09-13, audited at the **deployed** sha: five defects,
+   all repaired by the manager.
+2. §11 — the 383.2.a.1 positional test swept pool-wide: exposure bounded at the seven Ivern notables,
+   mirror sweep empty, test spec routed to rc-schema.
+3. §12 — the eleven base-parked entries read: **eight owed, not eleven**, three subtractions for three
+   different reasons.
+4. §13–§18 — the **payoff-removability taxonomy**: unit / gear / battlefield / spell, each with its
+   rule, its answer set and its response window. Three rows give the opponent no window at the payoff;
+   the spell row's window is guaranteed by 359.3.c.
+5. §19–§22 — the Plaza family against the one-damage sweep: **15 of 15 exposed entries answer it**,
+   plus the Aurok defect, the Rumble true-and-empty class, and the four-not-three base-reacher census.
+
+**Open, and each is one edit rather than a project:**
+
+- **The base-reacher census in all seven Ivern notables says THREE and is FOUR** (§21). `VEN-133
+  Glowstone`, Order, **E2**, the cheapest of the four. One word and one name per entry. **Reported,
+  not applied** — the file was already handed back.
+- **The eighteen base-parked entries need a BOARD-WIDE +Might and no notable says so** (§21). A
+  `here`-scoped grant does nothing for a body at base. This is a sentence, not a list.
+- **Two residuals in `2026-09-13-might-1-survivability.md`** (§8): `corina-svellsongur-plaza` given a
+  garrison of Birds that do not exist, and `plaza-armory-miss-fortune` one of Sand Soldiers that do
+  not. That table is also where §21's scope error came from — **three inherited errors from one
+  column**.
+
+**The one instrument note worth carrying.** Seven vocabulary holes were found in predicates in this
+walk, **two of them in my own**: `[Deathknell]` has no literal *When* outside its reminder text
+(§18); *"As you play me"* is a replacement and not a trigger, 369.1 (§18); Reflections are tokens by
+187.6 (§20); the pool writes `while` where 383.2.a.1's examples write `if` (§11); `Equipment` where
+the gear sweep wrote `gear` (§13); and a scope word can sit outside any window a regex chooses (§21).
+**Every one was found by reading the hits, and the two in my own instruments were found the same way
+as the five in other people's.**
