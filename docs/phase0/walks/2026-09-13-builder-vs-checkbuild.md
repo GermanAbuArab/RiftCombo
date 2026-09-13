@@ -593,3 +593,38 @@ registered lists. One row of data drives a third of the panel's answers.
 the turn clock: the clock says finishers are **slow**; this says they are also **bigger** — more cards
 and more copies, so more slots in a 40-card deck. Two independent costs, measured by two instruments
 neither of which was derived from the other, both pointing the same way.
+
+#### Controlled for age, because the alternative explanation is real
+
+An early thin entry and a late thick one would produce that curve for a reason having nothing to do
+with class, so it was checked rather than waved past. **Array index is NOT an age proxy** — measured,
+the first quarter's median newest source date is 2026-09-09 against the last quarter's 2026-09-07, so
+the file is not simply appended and a quartile test over it answers nothing. The usable signal is the
+newest `sources[].accessed` date on each entry, which all 766 carry.
+
+Median distinct cards, ENGINE against the finisher classes, **within each source date**:
+
+| date | n | ENGINE | finishers |
+|---|---|---|---|
+| 2026-09-04 | 36 | 2 (27) | 3 (9) |
+| 2026-09-05 | 4 | 2 (1) | 4 (3) |
+| 2026-09-06 | 114 | 2 (84) | 3 (30) |
+| 2026-09-07 | 335 | 2 (334) | 2 (1) |
+| 2026-09-09 | 236 | 2 (211) | 3 (25) |
+| 2026-09-12 | 39 | 2 (28) | 3 (11) |
+
+**Finishers are bigger on 5 of the 7 dates where both classes appear, equal on 2 — one of those an
+n=1 — and smaller on none.** The effect survives the control.
+
+#### What is being claimed, and what is not
+
+**This is a fact about the CATALOGUE, not about the game.** It measures entries somebody wrote, and a
+catalogue can be systematically thin in one class because of how it was authored. The claim that
+Riftbound itself makes finishers bigger would need a different instrument and is not made here.
+
+One observation that points that way without settling it: for ALT_WIN the size looks **forced by the
+cards**. The pool prints three "win the game" cards and one is banned in both formats, so the live
+population is two — `UNL-088 Gutter Palace`, whose text is self-contained and which is the catalogue's
+only one-card finisher, and `OGN-293 The Grand Plaza`, which pays for seven bodies at a battlefield and
+therefore cannot be written small. There the class and the size are the same fact. Whether that
+generalises to BURST and CHAIN is unmeasured.
