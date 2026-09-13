@@ -6,11 +6,17 @@
 // click and one pasted from a tournament report are the same string. And it never decides whether a
 // deck is legal — `checkBuild` is the only place that answers that, row by row with its paragraph.
 // What it enforces are the caps a click has to respect to keep the editor honest: three of a name
-// (103.2.b), one battlefield of a name and three in all (103.4.c, 103.4.a), twelve runes (103.3.a),
-// one legend. The Main Deck's own 40 is NOT one of them — 103.2 is a floor, not a ceiling, and the
-// Construction checklist is what reports the difference.
+// (103.2.b), three Signature cards and each carrying the legend's champion tag (103.2.d, #211), one
+// battlefield of a name and three in all (103.4.c, 103.4.a), twelve runes (103.3.a), one legend. The
+// Main Deck's own 40 is NOT one of them — 103.2 is a floor, not a ceiling, and the Construction
+// checklist is what reports the difference.
+//
+// Two rules `checkBuild` scores that a click here does NOT stop, both measured rather than assumed
+// (docs/phase0/walks/2026-09-13-builder-vs-checkbuild.md): 825.3.a, one of each Unique name (#210),
+// and 103.1.b Domain Identity, which is enforced in `web/builder.ts` alone and so reaches a clicking
+// player but no other consumer of this module (#212). Neither is a decision this file has made.
 
-import { ANY_NUMBER, championTagOf, copiesByName } from "./build.js";
+import { ANY_NUMBER, SIGNATURE_CAP, championTagOf, copiesByName } from "./build.js";
 import { readableCardText } from "./cards.js";
 import { deckToText, type DeckEntry } from "./deck.js";
 import type { CardIndex } from "./cards.js";
@@ -287,6 +293,8 @@ export function capOf(deck: Deck, base: string, cards: CardIndex): Cap {
     const full = total >= RUNES;
     return { held, max: RUNES, full, why: full ? `${total} of 12 runes (103.3.a).` : "", badge: full ? `${total} of 12` : "" };
   }
+  const sig = signatureCap(deck, card, cards);
+  if (sig) return sig;
   // 002 — card text supersedes rules text. `VEN-097 Spiderling` prints "Your deck can have any number
   // of cards named Spiderling", which is the whole of the exception today; matching the clause rather
   // than keeping a list of codes means the next card printing it is exempt the day it ships.
@@ -300,6 +308,48 @@ export function capOf(deck: Deck, base: string, cards: CardIndex): Cap {
     why: full ? `${held} of 3 · a Main Deck takes three of a name (103.2.b).` : "",
     badge: full ? `${held} of 3` : "",
   };
+}
+
+/**
+ * 103.2.d at click time (#211). The editor let a fourth Signature card in with no block and no mark:
+ * the `S` badge says a card IS a Signature card and never that you already hold three, so a player got
+ * no signal at all until they read the Construction checklist. `docs/phase0/walks/2026-09-13-builder-vs-checkbuild.md`
+ * measured the editor's three enforcement tiers and this rule was in none of them; 103.2.d admits no
+ * format in which it does not apply, which puts it with 103.2.b rather than with legality.
+ *
+ * It mirrors `signatureRule` (`src/build.ts`) deliberately, down to reading `deck.main` alone and
+ * counting COPIES rather than names, so the cell and the checklist row can never disagree about the
+ * same deck. Two consequences of mirroring rather than reasoning independently: the sideboard is NOT
+ * counted, because that row does not count it (103.2.d.1 caps a category, not copies of a name, so
+ * Tournament Rules 403.3 does not reach it); and `SIGNATURE_CAP` is imported rather than repeated.
+ *
+ * PRECEDENCE, stated because getting it wrong is silent: an absolute prohibition is reported before a
+ * count, so 103.2.d.2 is tested first — an off-tag Signature card can never be in this deck at any
+ * quantity, and answering "3 of 3" there would name a rule the player has not broken. That is the same
+ * ordering `web/builder.ts` already uses when it reports Domain Identity ahead of a full cap.
+ *
+ * Returns `null` when the card is not Signature or nothing binds, so `capOf` falls through to 103.2.b.
+ */
+function signatureCap(deck: Deck, card: Card, cards: CardIndex): Cap | null {
+  if (!card.signature) return null;
+  const held = Object.entries(deck.main)
+    .map(([code, n]) => ({ card: cards.get(code), n }))
+    .filter((x): x is { card: Card; n: number } => Boolean(x.card?.signature))
+    .reduce((a, x) => a + x.n, 0);
+
+  // 103.2.d.2 — every Signature card carries the legend's champion tag. With no legend named there is
+  // no tag to compare against, and `signatureRule` passes that case too rather than guessing.
+  const tag = deck.legend ? championTagOf(deck.legend, cards) : null;
+  if (tag && !card.tags.includes(tag)) {
+    return { held, max: SIGNATURE_CAP, full: true, why: `A Signature card must carry the legend's ${tag} tag (103.2.d.2).`, badge: `Not ${tag}` };
+  }
+  // 103.2.d.1 — three in all, "regardless of name", so the count that binds is the deck's and not
+  // this card's. Same shape as the battlefield branch above, where a fourth battlefield is refused by
+  // the three already in the list rather than by the one copy of its own name (#123).
+  if (held >= SIGNATURE_CAP) {
+    return { held, max: SIGNATURE_CAP, full: true, why: `${held} of 3 · a deck takes three Signature cards, regardless of name (103.2.d.1).`, badge: `${held} of 3` };
+  }
+  return null;
 }
 
 const bump = (bag: Record<string, number>, base: string, by: number): Record<string, number> => {

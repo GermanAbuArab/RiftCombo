@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { loadCardIndex } from "../src/load.js";
+import type { Deck } from "../src/types.js";
 import { checkBuild } from "../src/build.js";
 import { loadDeck } from "../src/deck.js";
 import {
@@ -39,6 +40,13 @@ const ORDER_RUNE = "OGN-214";
 const SPIDERLING = "VEN-097";  // "Your deck can have any number of cards named Spiderling"
 const VI = "OGN-036";          // Vi, Destructive
 const VI_VEN = "VEN-167";      // Vi, Destructive — the Vendetta reprint
+// 103.2.d (#211). Ornn is the one champion tag with three Signature names, and all three are Unique,
+// which is why a deck can reach exactly three on-tag Signature cards and no more.
+const ORNN_LEGEND = "SFD-189";  // Fire Below the Mountain, the only Ornn legend, calm + mind
+const CAPE = "SFD-190";         // Forgefire Cape — Signature, tagged Ornn, [Unique]
+const DEATHCROWN = "SFD-191";   // Rabadon's Deathcrown — Signature, tagged Ornn, [Unique]
+const REQUIEM = "SFD-192";      // Shurelya's Requiem — Signature, tagged Ornn, [Unique]
+const FOXFIRE = "OGN-256";      // Fox-Fire — Signature, calm + mind, tagged Ahri, NOT Ornn
 
 describe("the pool the builder draws from", () => {
   const pool = poolOf(cards);
@@ -334,6 +342,79 @@ describe("the caps a click has to respect", () => {
  * and one VEN-167 Vi, both real entries neither `addCard` nor `removeCard` ever produced (#104).
  * `canonicalizeDeck` is the one place that folds them back onto one base.
  */
+
+/**
+ * 103.2.d at click time (#211), the sibling of the 825.3.a hole #208 closed in the checklist. The
+ * editor let a fourth Signature card in with no block and no mark: the `S` badge says a card IS a
+ * Signature card and never that you already hold three.
+ *
+ * Every subject here is INSIDE calm + mind, because Domain Identity is reported before any other
+ * reason and an off-domain subject would report the wrong rule — the precedence trap that made the
+ * first pass of `docs/phase0/walks/2026-09-13-builder-vs-checkbuild.md` wrong in three rows.
+ */
+describe("103.2.d — Signature cards at click time (#211)", () => {
+  const ornn = (): Deck => ({ ...emptyDeck(), legend: ORNN_LEGEND });
+
+  it("refuses a fourth Signature card, counting the DECK rather than the name (103.2.d.1)", () => {
+    let deck = ornn();
+    for (const b of [CAPE, DEATHCROWN, REQUIEM]) deck = addCard(deck, b, cards);
+    // Three different names, one copy each: 103.2.b is nowhere near its cap, so only 103.2.d.1 can bind.
+    const cap = capOf(deck, CAPE, cards);
+    expect(cap).toMatchObject({ full: true, badge: "3 of 3" });
+    expect(cap.why).toContain("103.2.d.1");
+    expect(cap.why).toContain("regardless of name");
+    expect(copiesOf(addCard(deck, CAPE, cards), CAPE)).toBe(1);
+  });
+
+  it("refuses a Signature card that does not carry the legend's champion tag (103.2.d.2)", () => {
+    // At ZERO copies and with only one Signature card in the deck, so neither count can be binding.
+    const deck = addCard(ornn(), CAPE, cards);
+    const cap = capOf(deck, FOXFIRE, cards);
+    expect(cap).toMatchObject({ held: 1, full: true, badge: "Not Ornn" });
+    expect(cap.why).toContain("103.2.d.2");
+    expect(copiesOf(addCard(deck, FOXFIRE, cards), FOXFIRE)).toBe(0);
+  });
+
+  /**
+   * The precedence is stated in `signatureCap` and pinned here because getting it wrong is silent: an
+   * off-tag Signature card can never be in this deck at ANY quantity, so answering "3 of 3" would name
+   * a rule the player has not broken.
+   */
+  it("reports the tag before the count when both would bind", () => {
+    let deck = ornn();
+    for (const b of [CAPE, DEATHCROWN, REQUIEM]) deck = addCard(deck, b, cards);
+    expect(capOf(deck, FOXFIRE, cards).why).toContain("103.2.d.2");
+  });
+
+  it("judges nothing until a legend is named, exactly as the checklist row does", () => {
+    // `signatureRule` passes 103.2.d.2 with "Name a legend to also check"; the cell must not guess.
+    expect(capOf(emptyDeck(), FOXFIRE, cards).full).toBe(false);
+    expect(copiesOf(addCard(emptyDeck(), FOXFIRE, cards), FOXFIRE)).toBe(1);
+  });
+
+  it("leaves a card that is not Signature on the 103.2.b path", () => {
+    let deck = ornn();
+    for (const b of [CAPE, DEATHCROWN, REQUIEM]) deck = addCard(deck, b, cards);
+    const cap = capOf(deck, FORGE, cards);       // Forge of the Future: not Signature
+    expect(cap.full).toBe(false);
+    expect(cap.why).toBe("");
+  });
+
+  /**
+   * SCOPE, pinned so nobody reads #211 as having closed #210. The Signature cap stops the FOURTH
+   * Signature card; 825.3.a is already broken at the SECOND copy of a Unique one. A deck whose only
+   * Signature cards are copies of one Unique name never reaches three until the third click, so
+   * 103.2.d.1 cannot bind in time and the Construction checklist is still the only thing that objects.
+   */
+  it("does NOT close #210: three copies of a Unique card are still reachable by clicking", () => {
+    let deck = ornn();
+    for (let i = 0; i < 4; i++) deck = addCard(deck, CAPE, cards);
+    expect(copiesOf(deck, CAPE)).toBe(3);
+    const unique = checkBuild(deck, cards, "constructed").rules.find((r) => r.rule.startsWith("825.3.a"))!;
+    expect(unique.status).toBe("fail");
+  });
+});
+
 describe("folding a reprint split across two bases (#104)", () => {
   it("merges both bags onto the canonical base", () => {
     const deck = canonicalizeDeck({ ...emptyDeck(), main: { [VI]: 2, [VI_VEN]: 1 } }, cards);

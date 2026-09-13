@@ -349,7 +349,8 @@ function championRule(deck: Deck, cards: CardIndex): BuildRule {
   return { ...base, status: "pass", detail: `${champ.name} carries the ${tag} tag and is not a Signature card, so it is a legal Chosen Champion.` };
 }
 
-const SIGNATURE_CAP = 3;
+/** Exported so the editor's click-time cap (`src/builder.ts`) counts to the same number this row does. */
+export const SIGNATURE_CAP = 3;
 
 /**
  * 103.2.d caps a deck at 3 Signature cards TOTAL (103.2.d.1, "regardless of name") and requires every one

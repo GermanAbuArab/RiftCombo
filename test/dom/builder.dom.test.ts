@@ -165,6 +165,68 @@ describe("what the pool refuses, and what it says", () => {
   });
 });
 
+
+/**
+ * 103.2.d at click time (#211). The enforcement rides on a rendered `aria-disabled` that the click
+ * handler reads back, which is exactly the thing #138 exists to catch: reverting the cell template
+ * would switch the rule off with every `src/` test still green. So these click, and assert nothing
+ * was added.
+ *
+ * Ornn is the one champion tag with three Signature names, all of them calm + mind, so the subjects
+ * are inside the legend's identity and the Domain Identity block — which is reported first — cannot
+ * mask the reason.
+ */
+describe("103.2.d — the pool refuses a fourth Signature card (#211)", () => {
+  const ORNN = "Legend\n1 Fire Below the Mountain\n\nMain Deck\n1 Forgefire Cape\n1 Rabadon's Deathcrown\n1 Shurelya's Requiem\n";
+  /** The pool paginates at 48 and the search box is debounced 150ms, so a named subject is searched for. */
+  const search = async (q: string) => {
+    const box = document.querySelector<HTMLInputElement>("#bld-search")!;
+    box.value = q;
+    box.dispatchEvent(new Event("input", { bubbles: true }));
+    await new Promise((r) => setTimeout(r, 220));
+  };
+
+  it("refuses the fourth and blames the deck's three, not the card's own count", async () => {
+    await mount(ORNN);
+    await search("Forgefire Cape");
+    const cell = cellNamed("Forgefire Cape")!;
+    const button = cell.querySelector<HTMLButtonElement>(".pool-add")!;
+
+    expect(button.getAttribute("aria-disabled")).toBe("true");
+    expect(cell.querySelector(".pool-full")!.textContent).toBe("3 of 3");
+    expect(button.getAttribute("aria-label")).toContain("103.2.d.1");
+    expect(button.getAttribute("aria-label")).toContain("regardless of name");
+
+    button.click();
+    expect(edits).toEqual([]);
+  });
+
+  it("refuses a Signature card carrying another champion's tag, and says whose (103.2.d.2)", async () => {
+    // Fox-Fire is calm + mind like the legend, so this is the TAG refusing it and not Domain Identity.
+    await mount("Legend\n1 Fire Below the Mountain\n");
+    await search("Fox-Fire");
+    const cell = cellNamed("Fox-Fire")!;
+    const button = cell.querySelector<HTMLButtonElement>(".pool-add")!;
+
+    expect(button.getAttribute("aria-disabled")).toBe("true");
+    expect(cell.querySelector(".pool-full")!.textContent).toBe("Not Ornn");
+    expect(button.getAttribute("aria-label")).toContain("103.2.d.2");
+    expect(cell.classList.contains("off")).toBe(false);   // not the Domain Identity path
+
+    button.click();
+    expect(edits).toEqual([]);
+  });
+
+  it("offers the same card freely while the deck is under the cap", async () => {
+    await mount("Legend\n1 Fire Below the Mountain\n\nMain Deck\n1 Forgefire Cape\n");
+    await search("Rabadon");
+    const button = cellNamed("Rabadon's Deathcrown")!.querySelector<HTMLButtonElement>(".pool-add")!;
+    expect(button.getAttribute("aria-disabled")).toBe("false");
+    button.click();
+    expect(edits.length).toBe(1);
+  });
+});
+
 describe("the sideboard (Tournament Rules 403, 601.1.c)", () => {
   beforeEach(() => { document.body.innerHTML = ""; });
 
