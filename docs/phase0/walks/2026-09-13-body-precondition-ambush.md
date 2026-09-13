@@ -1167,3 +1167,41 @@ sweep, so the cheap discoveries are behind rather than ahead; the five already r
 and the four questions I read against are now each backed by a mechanical sweep that has already
 covered all 686, so a new instance would be caught without me. **If I am right, the honest report is
 "stop", and the value of this slice is the stopping rather than the finding.**
+
+### The slice is read, and the stopping rule fires: **STOP READING THE ENGINE CLASS**
+
+**No new class.** I am saying it in those words, as the rule requires, and the prediction written above
+before reading was that this would happen.
+
+The five registered entries — `whiteflame-last-stand-zhonyas-double-might`,
+`atakhan-harnessed-dragon-sacrifice`, `bone-skewer-pairofant-stunned-attacker-execution`,
+`mosstomper-wuju-apprentice-xp-calm-ladder`, `mystic-poro-nocturne-mono-chaos-look-package` — read
+against the same four questions:
+
+1. **A requirement the `uses` does not supply**: none.
+2. **A number without a predicate**: none. The two checkable ones were verified rather than assumed.
+   `atakhan-harnessed-dragon-sacrifice` claims `UNL-170`'s E10 + 3 Order reduces to E2 + 1 Order by
+   killing an E8 + 2 Order Dragon — 10−8 and 3−2, correct, and 206 is the right paragraph for reading
+   a printed cost. `mystic-poro-nocturne-mono-chaos-look-package` claims *"a measured 21.9% chance"*
+   and *"about one game in five"*, which agree with each other and with the arithmetic: three looks at
+   the top of a 39-card deck (103.2 puts the Chosen Champion inside the 40) holding three Nocturnes is
+   1 − (1 − 3/39)³ ≈ 21.3%.
+3. **A cited rule that does not say what the entry claims**: one imprecision, and it is an **instance
+   of a class already recorded** rather than a new one. `whiteflame-last-stand-zhonyas-double-might`
+   cites **477.3.c** for *"doubles its CURRENT Might"*; 477.3.c is the floor-at-zero rule (*"Players
+   cannot increase a numeric attribute by a negative amount"*) and **432.1** is the definition
+   (*"Doubling is the act of increasing a numeric attribute by an amount equal to that attribute's
+   current value"*). It is not absurd — **Riot's worked example for 477.3.c IS Last Stand, by name** —
+   and `CLAUDE.md` already records the 432 Doubling block as one that was cited by nothing. Cite the
+   neighbour, again.
+4. **No stated point of failure**: none. All five state one, and three do it in `terminatesIn`.
+
+**A check also came back correct that I expected to be a defect**: `kaisa-survivor-arena-draw` pays
+*"1 Energy + 1 Fury"* for Accelerate, and 805.1.a.1 confines that Power to the unit's own domains —
+`OGN-039 Kai'Sa, Survivor` is Fury. Correct.
+
+**So: the class-discovery rate has fallen to zero on a slice of the same size that previously yielded
+three, and the remaining value is in the mechanical sweeps rather than in more reading.** The first 24
+entries each produced a class that a whole-catalogue sweep then exhausted; these produce instances of
+classes already swept. **I stop reading the ENGINE class here** — and the value of this slice is the
+stopping, which is what the pre-registration was for.
