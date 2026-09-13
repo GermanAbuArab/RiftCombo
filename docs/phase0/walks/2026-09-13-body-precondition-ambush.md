@@ -211,3 +211,75 @@ is what turned two of them into the count defect in §4, which is worth more tha
 that nine of them said *"[Ambush]"* produced a rules-grounded predicate that found three entries
 predicate C could never reach, and a paragraph — 822.3 — this project has cited three times in 766
 entries. **The list was the task; the pattern inside it was the result.**
+
+---
+
+## 7. THE GENERALISATION: THREE KEYWORDS, THREE RULES-LEVEL BODY PRECONDITIONS
+
+Ambush is not special. Three keywords in this pool gate on a body, each in one sentence of the Core
+Rules, and none of them consults prose — so none can be defeated by how an author phrased a step.
+
+| keyword | rule | what it needs |
+|---|---|---|
+| Ambush | **822.1.b** *"I may be played to a battlefield where you control Units"*, enforced at finalization by **822.3** | a friendly unit **at the target battlefield**, never the Ambusher itself |
+| Hidden | **811.1.b** *"hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there **for as long as you control that battlefield**"* | a body holding a battlefield, and it must **stay** |
+| Equip | **818.1.c.2** *"Equip is functionally short for "[Cost]: Attach this gear to a unit you control.""* | a unit you control, anywhere |
+
+**Measured over 766 entries** (1,042 printings indexed; 23 Ambush, 52 Hidden, 39 Equip-carrying gear):
+
+- **Equip — 130 entries use one, 12 supply zero units and zero token-makers, and ALL TWELVE ALREADY
+  CARRY `anyBodies`.** That population is finished.
+- **Hidden — 72 entries use one, 4 supply zero units, 3 already repaired**, and the fourth is
+  `monster-harpoon-bushwhack-facedown-enabler` (ENGINE, `uses` is two SPELLS and nothing else). Its
+  step 1 cites 811.1.b itself, and it is the **strongest form of the class**: step 2 reads *"Leave it
+  there. You now permanently 'control a facedown card'"*, so the body is not a one-turn cost but a
+  permanent garrison — 323.6 strips Control the moment your last body leaves and 107.3.d then removes
+  the facedown card at the next Cleanup.
+- **Ambush — see the false clean below.**
+
+**Reporting the two clean results is the point, not a courtesy.** A check that comes back clean over a
+NAMED population is the one worth pinning, and Equip at 12 of 12 says the repair programme has already
+covered an axis nobody had named as an axis.
+
+### The false clean, and why one of the three needs a different predicate
+
+Run with the strict predicate *zero units of any zone in `uses`*, **Ambush returns 0** — and that is
+wrong rather than reassuring. **The Ambusher is itself a unit in `uses`**, so the strict predicate
+counts the very card whose play is being gated. 822.1.c makes the keyword add a location option
+*during the Make Relevant Choices step*, while the unit is still a Chain Item and not on the board, and
+822.3 then checks the location *"before Finalization completes"* — so it can never be its own
+precondition. **The correct Ambush predicate is ZERO OTHER ON-BOARD UNITS**, which returns 13 of 21.
+
+**One instrument, three keywords, and one of them needs a different predicate from the other two —
+and the wrong one returns a confident EMPTY that reads as a pass.**
+
+---
+
+## 8. THE 144.4.c.1 SWEEP, COMPLETE OVER ALL 65 APPLIED REPAIRS
+
+144.4.a: *"Units may move from their Base to a Battlefield."* 144.4.b: *"Units may move from a
+Battlefield to their Base."* 144.4.c.1: *"Units with Ganking may use their Standard Move to Move from
+Battlefield to Battlefield."* **So a body holding battlefield A cannot, in the same turn, be the body
+that walks into battlefield B.**
+
+Swept across all 65 `anyBodies` rows, and every note read rather than regex-classified. **Exactly one
+new defect**: `svellsongur-faefolk-mass-evacuation` at count 1, needing 2 — its step 2
+standard-moves the Faefolk *"to a battlefield you control"* (the entry says so in its own words,
+noting no Contested applies *"because you already control it"*), so a body must hold that battlefield,
+and step 5 walks *"a second friendly unit"* into the **different** battlefield the Faefolk evacuated.
+
+**Two refused with the reason, so nobody re-files them.** `conscription-signpost-empty-garrison`'s
+second body is only for step 6, which the entry itself labels *"reinforcement, not the conquer"*.
+`spirit-wheel-stare-down` is refused from the card: `UNL-107` reads *"Choose a friendly unit and a
+battlefield"* — no co-location — so one body at base can be both the chosen unit and the walker.
+
+### The instrument ate its own result, and that is the reusable half
+
+My first predicate excluded any entry mentioning Ganking. **That silently excluded the two entries the
+manager had just REPAIRED, because the repair note explains the Ganking rule.** Measured: all three
+prose mentions of Ganking across the 65 grant it via **no card at all**. **The correct exclusion is a
+card in `uses` whose text carries the keyword, never the word appearing in prose** — otherwise a
+detector goes blind to exactly the rows that prove it was right.
+
+Same family as this morning's trap A, and as the emitted-notable cases this project already records:
+**the string was in the right file and in the wrong sentence.**
