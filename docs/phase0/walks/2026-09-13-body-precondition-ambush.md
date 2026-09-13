@@ -283,3 +283,58 @@ detector goes blind to exactly the rows that prove it was right.
 
 Same family as this morning's trap A, and as the emitted-notable cases this project already records:
 **the string was in the right file and in the wrong sentence.**
+
+---
+
+## 9. THE OTHER THREE KEYWORD GATES, AND FIVE STRUCTURAL CHECKS — ALL MEASURED EMPTY
+
+Having swept the three keywords whose gate is a BODY, the continuation is the keywords whose gate is
+something else a `uses` list can fail to supply. All three verbatim:
+
+- **821.1.c Weaponmaster** — *"When you play me, you may choose a Card you control with the Equipment
+  tag."* Gate: an **Equipment you control**, which need never be attached.
+- **829.1.b Flow** — *"You may play this from your trash for its flow cost. Then banish it."* Gate:
+  the spell **in your trash**.
+- **812.1.b.1 Legion** — *"If you have played another card this turn, this card gains [Text]."* Gate:
+  a **second card played**.
+
+**All three are clean, and two of my three first numbers were my own instrument** — the third
+consecutive instance today of the rule this project already records, that a new checker's first
+number is too big because it encodes the rule and not an exception the domain sanctions.
+
+- **Weaponmaster — 19 entries use one; 1 names no Equipment-tagged card, and it is NOT a defect.**
+  `dune-surfer-armed-assailant-ignore-tank` runs `SFD-002 Armed Assailant` for his **[Accelerate]**
+  (step 2 pays the rider so he enters ready) and his Might (step 5 sums 9), and never uses the
+  Weaponmaster clause at all. **A card carrying a keyword the line does not use is not a gap.**
+- **Flow — my predicate said 20 of 21 and the honest figure is ZERO.** I flagged every entry
+  declaring the Flow spell at a zone other than TRASH. **That is the sanctioned normal case**: a Flow
+  spell starts in hand, is cast for its printed cost, and *reaches the trash by being cast* —
+  `magma-wurm-illaoi-ready-tentacles` plays `VEN-100` from hand at step 3 and replays it *"out of
+  your trash for its [Flow] cost"* at step 5. The zone HAND is correct on every one of the twenty.
+- **Legion — 12 entries use one, ZERO have a single-card `uses` list.** Expected, and worth stating:
+  812.2 makes *"All instances of Legion on cards a player controls … satisfied by that player playing
+  a single card"* with 812.1.c needing it merely FINALIZED, so a Legion gate is met by almost any
+  line's own second card.
+
+### Five structural checks over `uses`, and the one that proves the others are live
+
+Every check grounded in a rule, none reading prose, over **1,898 `uses` rows of which 1,898 resolve
+against `cards.json`**:
+
+| rule | check | result |
+|---|---|---:|
+| 103.2.b | more than 3 copies of one NAME | **0** |
+| 103.2.a.1 | more than one Chosen Champion | **0** |
+| 103 / 107.4 | more than one legend | **0** |
+| 103.2.d.1 | more than 3 Signature cards | **0** |
+| 485.4.a | more than 3 distinct battlefields | **0** |
+
+**Five zeros in a row is exactly the shape that should be distrusted, so the distributions were
+measured rather than the verdicts trusted**: max copies of one name runs 1→329, 2→48, **3→387**, 6→1,
+7→1; Signature copies run 0→694, 1→38, 2→4, **3→30**. **387 entries sit exactly AT the copy cap and
+30 exactly at the Signature cap**, so both checks are demonstrably live rather than vacuous.
+
+**And the copies check FIRED — on two entries, at 6 and at 7, both `Spiderling`.** `VEN-097` prints
+*"Your deck can have any number of cards named Spiderling"*, and rule 002 makes card text beat rules
+text. **So the single exception hard-coded in that check is the one the pool itself prints, and the
+zero is now PROVEN rather than assumed** — which is the only kind of zero worth reporting.
