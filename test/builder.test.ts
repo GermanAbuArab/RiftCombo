@@ -673,13 +673,25 @@ describe("103.1.b — Domain Identity at click time (#212)", () => {
    * the wording, its place in the order — belong in `test/build.test.ts` beside the other three
    * sideboard rows, and that file is not this lane's to write in.
    */
-  it("agrees with the checklist about the sideboard, which it did not before #215", () => {
+  /**
+   * The two layers now say DIFFERENT THINGS about this card on purpose, which is the ruling of
+   * 2026-09-13 after #217 settled. The button refuses it, because the user's contract blocks Domain
+   * Identity at every button and no format exempts it. The checklist REPORTS it — which it did not do
+   * at all before #215 — and deliberately does NOT call the list illegal, because an off-identity
+   * sideboard card is unplayable rather than an illegal registration and calling a legal tournament
+   * list illegal is the worst failure that report has. `unknown` is the treatment `legalityRule`
+   * already gives a RESTRICTED card, one row over.
+   *
+   * So this pins a DIFFERENCE rather than an agreement, and the difference is the design.
+   */
+  it("is reported by the checklist without the checklist calling the list illegal (#215, #217)", () => {
     const held: Deck = { ...ornn(), sideboard: { [OFF]: 1 } };
     const rules = checkBuild(held, cards, "constructed").rules;
     const row = rules.find((r) => r.rule === "Tournament Rules 403.4.b")!;
-    expect(row, "the row has to exist for the agreement to mean anything").toBeDefined();
-    expect(row.status).toBe("fail");
+    expect(row, "the row has to exist for any of this to mean anything").toBeDefined();
+    expect(row.status).toBe("unknown");
     expect(row.detail).toContain(cards.get(OFF)!.name);
+    // The button is the half that refuses, and it must keep refusing.
     expect(sideboardCapOf(ornn(), OFF, cards).full).toBe(true);
 
     // The control: an IN-identity sideboard card passes the row and the button takes it, so the row

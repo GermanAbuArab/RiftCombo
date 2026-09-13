@@ -1,8 +1,10 @@
+import { readdirSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { loadCardIndex } from "../src/load.js";
 import { loadDeck } from "../src/deck.js";
 import { CardIndex } from "../src/cards.js";
 import { championTagOf, checkBuild, type BuildReport } from "../src/build.js";
+import { emptyDeck, sideboardCapOf } from "../src/builder.js";
 
 const cards = loadCardIndex();
 
@@ -516,6 +518,77 @@ describe("the badge", () => {
   });
 });
 
+/**
+ * THE WHOLE CHECKLIST, POINTED AT THE CORPUS. `test/tournament-lists.test.ts` checks the PARSER against
+ * these 222 registered lists; nothing had ever run `checkBuild` over them. A row that is wrong about a
+ * correctly transcribed tournament list is the worst failure this report has, so the question is worth
+ * asking of every list at once rather than of hand-built fixtures.
+ *
+ * Measured 2026-09-13: 128 of 222 pass outright, and EVERY failure falls into one of two classes that
+ * are both correct — a card banned SINCE the list was published, or one of the transcription errata
+ * this project has already registered. None is the checklist being wrong.
+ */
+describe("checkBuild against the 222 registered tournament lists", () => {
+  const DIR = new URL("./fixtures/tournament-lists/", import.meta.url);
+  const FILES = readdirSync(DIR).filter((f) => f.endsWith(".txt")).sort();
+  const report = (f: string) => checkBuild(loadDeck(readFileSync(new URL(f, DIR), "utf8"), cards), cards, "constructed");
+
+  it("fails only on the ban list or a registered transcription erratum", () => {
+    expect(FILES.length).toBeGreaterThan(200);                      // non-vacuity
+    // The four errata this project has already found and recorded, by name, so a NEW bad transcription
+    // shows up here as a new file rather than hiding inside a count.
+    const ERRATA = new Set(["sydney-30.txt", "utrecht-06.txt", "utrecht-19.txt", "utrecht-17.txt", "vancouver-06.txt", "vancouver-10.txt"]);
+    let legal = 0, banOnly = 0;
+    for (const f of FILES) {
+      const failed = report(f).rules.filter((r) => r.status === "fail");
+      if (!failed.length) { legal++; continue; }
+      if (ERRATA.has(f)) continue;
+      // Everything else may fail 103.2.e and nothing else.
+      expect(failed.map((r) => r.rule), f).toEqual(["103.2.e"]);
+      banOnly++;
+    }
+    expect(legal).toBeGreaterThan(100);
+    expect(banOnly).toBeGreaterThan(50);
+  });
+
+  /**
+   * 92 of these 222 lists — Riot's own published tournament results — hold a card that is banned TODAY:
+   * `Aspirant's Climb` in 48 and `The Arena's Greatest` in 45. That is 41% of the corpus, and it is the
+   * measured case FOR the user's tier-3 decision of 2026-09-13: if the editor BLOCKED a banned card
+   * rather than badging it, a player could not reconstruct two fifths of Riot's own published lists.
+   * "Banned" really is a property of the question being asked rather than of the card.
+   */
+  it("shows why legality is marked and not blocked: 41% of real lists hold a now-banned card", () => {
+    const banned = FILES.filter((f) => report(f).rules.some((r) => r.rule === "103.2.e" && r.status === "fail"));
+    expect(banned.length).toBeGreaterThan(FILES.length * 0.3);
+    expect(banned.length).toBeLessThan(FILES.length);               // and not simply all of them
+  });
+
+  /**
+   * The denominator that makes the `403.4.b` row's silence meaningful (#215). All 222 lists carry a
+   * sideboard — 1273 rows between them — and NOT ONE of those rows is outside its legend's identity. So
+   * the row fails no real registered list, and players in practice treat the sideboard as bound by the
+   * identity, which is what the row says. A claim about a rule that never fires needs its denominator
+   * stated or it is not a claim at all.
+   */
+  it("finds no off-identity sideboard row in any registered list, out of 1273", () => {
+    let withSide = 0, rows = 0, off = 0;
+    for (const f of FILES) {
+      const deck = loadDeck(readFileSync(new URL(f, DIR), "utf8"), cards);
+      const bag = Object.keys(deck.sideboard);
+      if (!bag.length) continue;
+      withSide++;
+      rows += bag.length;
+      if (!deck.legend) continue;
+      const identity = new Set(cards.domainsOf(deck.legend));
+      off += bag.filter((b) => !cards.domainsOf(b).every((d) => identity.has(d))).length;
+    }
+    expect(withSide).toBe(FILES.length);                            // every list has one
+    expect(rows).toBeGreaterThan(1000);                             // non-vacuity
+    expect(off).toBe(0);
+  });
+});
+
 describe("601.1.c — the sideboard (#197)", () => {
   const BROKEN_SIDEBOARD = `Sideboard
 2 Watchful Sentry
@@ -633,14 +706,23 @@ Sideboard
 describe("Tournament Rules 403.4.b — the sideboard inside the identity (#215)", () => {
   const SIDE = (...names: string[]) => `${LEGAL}\n\nSideboard\n${names.map((n) => `1 ${n}`).join("\n")}`;
 
-  it("fails on a sideboard card outside the legend's domains, and names it", () => {
+  /**
+   * UNKNOWN and not FAIL, which is the ruling of 2026-09-13 after #217 settled: the card can never be
+   * swapped in, and that is not the same as the registration being illegal. The row still says the
+   * true and useful thing; what it stops doing is calling a legal list illegal, which is the worst
+   * failure this report has. Same treatment `legalityRule` already gives a RESTRICTED card.
+   */
+  it("reports a sideboard card outside the legend's domains without calling the list illegal", () => {
     const r = row(rows(SIDE("Blazing Scorcher")), "Tournament Rules 403.4.b");
-    expect(r.status).toBe("fail");
+    expect(r.status).toBe("unknown");
     expect(r.detail).toContain("Blazing Scorcher");
     expect(r.detail).toContain("mind + order");
     // The reason, not just the verdict: the citation a reader can follow.
     expect(r.detail).toContain("403.4");
-    expect(rows(SIDE("Blazing Scorcher")).legal).toBe(false);
+    // The whole point of the ruling: the verdict does not move.
+    expect(rows(SIDE("Blazing Scorcher")).legal).toBe(true);
+    // And the EDITOR still refuses it, which is a different claim and must stay true.
+    expect(sideboardCapOf({ ...emptyDeck(), legend: "OGS-021" }, "OGN-001", cards).full).toBe(true);
   });
 
   it("passes when every sideboard card is inside them", () => {
@@ -657,7 +739,7 @@ describe("Tournament Rules 403.4.b — the sideboard inside the identity (#215)"
   it("names four and counts the rest", () => {
     const five = SIDE("Abandon", "Acceptable Losses", "Adaptatron", "Affectionate Poro", "Against the Odds");
     const r = row(rows(five), "Tournament Rules 403.4.b");
-    expect(r.status).toBe("fail");
+    expect(r.status).toBe("unknown");
     expect(r.detail).toContain("and 1 more");
     expect(r.detail).not.toContain("Against the Odds");
   });
@@ -732,7 +814,7 @@ describe("Tournament Rules 403.4.b — the sideboard inside the identity (#215)"
     // The gap is real rather than theoretical: the same card in the MAIN deck is refused by 103.2.d.
     expect(row(rows("Legend\n1 Fire Below the Mountain\n\nMain Deck\n1 Fox-Fire\n"), "103.2.d").status).toBe("fail");
     // And the control that makes the first line mean something: an off-DOMAIN card there still fails.
-    expect(row(rows("Legend\n1 Fire Below the Mountain\n\nSideboard\n1 Blazing Scorcher\n"), "Tournament Rules 403.4.b").status).toBe("fail");
+    expect(row(rows("Legend\n1 Fire Below the Mountain\n\nSideboard\n1 Blazing Scorcher\n"), "Tournament Rules 403.4.b").status).toBe("unknown");
   });
 
   it("leaves a rune in the sideboard to 601.1.c.2, which is a different rule", () => {

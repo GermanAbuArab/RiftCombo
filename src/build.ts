@@ -515,6 +515,31 @@ function sideboardRules(deck: Deck, cards: CardIndex): BuildRule[] {
    * project's own precedent: 825.3.a got its own row rather than tightening 103.2.b, so that the
    * checklist names the rule the list actually broke. A domain is not a card type.
    *
+   * IT REPORTS `unknown`, NOT `fail`, AND THAT IS THE RULING OF 2026-09-13 AFTER #217 SETTLED. The
+   * argument that put this row here was that 403.4 swaps a sideboard card into the Main Deck and
+   * 403.4.b freezes the Legend, so an off-identity one can never be played. True — and the same is
+   * true of an off-TAG Signature card, which #217 concluded is DEAD WEIGHT rather than an illegal
+   * registration. The two cannot differ: either both fail or neither does, and three lines of evidence
+   * point at neither. The word "sideboard" appears ZERO times in the Core Rules, so 103.1.b.1's "cards
+   * included in your deck" cannot scope a bag the Core Rules never mention; Tournament Rules 403.3 is
+   * the only clause extending a deckbuilding constraint across both bags and it is scoped to "limits on
+   * copies of NAMED cards", which Domain Identity is not; and 601.1.c.4 states the legend-matching
+   * requirement explicitly for the Chosen Champion, which it would not need to if 601.1.c.2's "valid
+   * Main Deck cards" already meant "legal in THIS deck".
+   *
+   * So the row says the true and useful thing — this card can never be swapped in — without calling the
+   * registration illegal, because calling a legal tournament list illegal is the worst failure this
+   * report has and the books do not settle it.
+   *
+   * THIS IS NOT A NEW MECHANISM. `legalityRule`, four rows below, already returns `unknown` for a list
+   * whose only problem is a RESTRICTED card, and says why in this project's own words: "it is a cap,
+   * not an illegal card ... Calling that illegal would be false." Same shape, same treatment.
+   *
+   * AND THE EDITOR STILL BLOCKS IT AT THE BUTTON, which is a DIFFERENT CLAIM and must not be "fixed" to
+   * match this row. `sideboardCapOf` refuses an off-identity card because the user's contract of
+   * 2026-09-13 blocks Domain Identity at every button, no format exempting it. A button that declines
+   * to build something unplayable is not a checklist certifying a registration illegal.
+   *
    * WHAT IT DOES NOT CHECK, stated because its pass sentence used to imply otherwise. It read "so any
    * of them can be swapped in", which is a claim about SWAPPABILITY where the row measured only the
    * DOMAIN: `OGN-256 Fox-Fire` is calm + mind and therefore inside an Ornn identity, and 103.2.d.2
@@ -536,7 +561,8 @@ function sideboardRules(deck: Deck, cards: CardIndex): BuildRule[] {
       ? {
           rule: "Tournament Rules 403.4.b",
           label: "Sideboard inside the identity",
-          status: "fail",
+          // UNKNOWN and not FAIL: the card is unplayable, not illegal. See the docblock.
+          status: "unknown",
           detail: `Outside ${cards.domainsOf(deck.legend!).join(" + ")}: ${offIdentity.slice(0, 4).join(", ")}${offIdentity.length > 4 ? ` and ${offIdentity.length - 4} more` : ""} — a sideboard card is swapped into the Main Deck (Tournament Rules 403.4) and the Legend cannot change mid-match (403.4.b), so it could never be played.`,
         }
       : { rule: "Tournament Rules 403.4.b", label: "Sideboard inside the identity", status: "pass", detail: `Every sideboard card sits inside ${cards.domainsOf(deck.legend!).join(" + ")}.` };
