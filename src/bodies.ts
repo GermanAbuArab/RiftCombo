@@ -49,9 +49,16 @@ export function bodyCheck(deck: Deck, cards: CardIndex, opts: { includeSideboard
 
   // Counted from the raw bags rather than from an equivalents-expanded map: `equivalents` maps one
   // printing onto every base sharing its name+type, so summing an expanded map counts a Daring Poro
-  // twice (OGN-210 and UNL-225). Battlefields hold no units and the legend is not one (107.4.c
-  // makes it a Game Object on the board, and 143.4 exhausts units — it is neither a unit card nor a
-  // body this list could add), so in practice this is the main deck and, when asked for, the side.
+  // twice (OGN-210 and UNL-225).
+  //
+  // Battlefields hold no units, and a LEGEND is never one of these bodies. The paragraphs that make
+  // that true are 107.4.b, "This is not a location", and 107.4.d, "The Champion Legend cannot be
+  // removed, moved, or displaced from this zone" — and .d is the sharper of the two here, because a
+  // body that can never leave its zone can never walk to a battlefield, so it can never be the body
+  // an `anyBodies` requirement wants. 107.4.c is the CONTRAST and not the argument: "The Champion
+  // Legend here is a Game Object" is the paragraph that makes a legend look MOST like a body, and
+  // citing it alone — which this comment did until rc-gap2 read it — argues the other way.
+  // Behaviour never depended on the citation: `isUnit` is type-based and a legend's type is legend.
   let held = 0;
   for (const bag of bags) for (const [base, n] of Object.entries(bag)) if (isUnit(base)) held += n;
 
