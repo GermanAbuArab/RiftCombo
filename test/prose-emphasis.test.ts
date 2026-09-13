@@ -87,31 +87,70 @@ function spans(text: string): string[] {
   return out;
 }
 
-/** Every string value in the prose fields, walked as PARSED values — never over JSON text, where an
- *  escaped quote is still a quote character to a scanner and span pairing breaks. */
-function proseStrings(): string[] {
-  const out: string[] = [];
-  const combos = JSON.parse(readFileSync("data/combos.json", "utf8")).combos as Record<string, any>[];
-  for (const c of combos) {
-    for (const s of c.steps ?? []) out.push(s);
-    for (const s of c.prerequisites?.notable ?? []) out.push(s);
-    for (const s of c.prerequisites?.easy ?? []) out.push(s);
-    if (c.terminatesIn) out.push(c.terminatesIn);
-    if (c.netPerIteration) out.push(c.netPerIteration);
-    if (c.notes) out.push(c.notes);
-  }
-  const syn = JSON.parse(readFileSync("data/synergies.json", "utf8"));
-  for (const r of syn.synergies ?? syn) {
-    if (r.why) out.push(r.why);
-    for (const e of r.partner?.excludes ?? []) if (e.why) out.push(e.why);
-  }
-  return out;
+/**
+ * EVERY string value in both data files, MINUS a named exclusion list — and the direction of that
+ * default is the whole point.
+ *
+ * The first version named the six fields it walked and looked complete. It was not: it missed
+ * `uses[].note`, which at 440,413 characters across 1,898 values is the FOURTH-LARGEST prose field
+ * in the catalogue, and `combos[].anyBodies.note`, a field created on the day the guard shipped and
+ * outside it from the moment it was born. Also `combos[].notable[]` and `sources[].note`, which
+ * nobody had noticed at all. **A GUARD THAT ENUMERATES ITS FIELDS BY NAME STOPS COVERING THE SCHEMA
+ * THE MOMENT THE SCHEMA GROWS, and it goes on looking complete while it does.** Nobody did anything
+ * wrong and the coverage lapsed anyway (found by rc-gap2).
+ *
+ * Walking everything and excluding by name fails the other way: a new field is covered by default
+ * and an author has to opt it out DELIBERATELY, with a reason, in the list below. Every exclusion
+ * here was chosen against a measured path census rather than from memory of the schema.
+ *
+ * Parsed values, never JSON text — an escaped quote is still a quote character to a scanner and
+ * span pairing breaks on it.
+ */
+const EXCLUDED = new Map<string, string>([
+  // Guarded already, and more strictly, by test/source-quotes.test.ts (#202).
+  ["combos[].sources[].quote", "has its own verbatim guard"],
+  // Not prose: identifiers, enums, dates, URLs, base codes and regular expressions. A quote
+  // character in a regex would also confuse the span scanner rather than mean anything.
+  ["combos[].id", "identifier"], ["combos[].class", "enum"], ["combos[].status", "enum"],
+  ["combos[].rulesVersion", "date"], ["combos[].produces[]", "feature id"],
+  ["combos[].needs[]", "feature id"], ["combos[].legends[]", "base code"],
+  ["combos[].uses[].card", "base code"], ["combos[].uses[].zone", "enum"],
+  ["combos[].uses[].role", "enum"], ["combos[].sources[].kind", "enum"],
+  ["combos[].sources[].url", "URL"], ["combos[].sources[].date", "date"],
+  ["combos[].sources[].accessed", "date"],
+  ["synergies[].id", "identifier"], ["synergies[].anchor", "base code"],
+  ["synergies[].status", "enum"], ["synergies[].reviewed", "date"],
+  ["synergies[].reviewedSet", "fingerprint"], ["synergies[].basis.rules[]", "rule number"],
+  ["synergies[].basis.readings[]", "reading id"], ["synergies[].basis.combos[]", "combo id"],
+  ["synergies[].partner.textMatches", "regular expression"],
+  ["synergies[].partner.textExcludes", "regular expression"],
+  ["synergies[].partner.types[]", "enum"], ["synergies[].partner.tags[]", "tag"],
+  ["synergies[].partner.excludes[].card", "base code"],
+  ["rulesVersion", "date"],
+]);
+
+function proseStrings(): { paths: number; strings: string[] } {
+  const strings: string[] = [];
+  const seen = new Set<string>();
+  const walk = (node: unknown, path: string): void => {
+    if (typeof node === "string") {
+      seen.add(path);
+      if (!EXCLUDED.has(path)) strings.push(node);
+      return;
+    }
+    if (Array.isArray(node)) { for (const v of node) walk(v, `${path}[]`); return; }
+    if (node && typeof node === "object") {
+      for (const [k, v] of Object.entries(node)) walk(v, path ? `${path}.${k}` : k);
+    }
+  };
+  for (const f of ["data/combos.json", "data/synergies.json"]) walk(JSON.parse(readFileSync(f, "utf8")), "");
+  return { paths: seen.size, strings };
 }
 
 const hay = fold(SOURCES.map((f) => readFileSync(f, "utf8")).join("\n"));
 const hayLower = hay.toLowerCase();
 
-const strings = proseStrings();
+const { paths, strings } = proseStrings();
 const all = strings.flatMap(spans).map(fold).filter((s) => s.length >= MIN);
 let found = 0;
 const flagged: string[] = [];
@@ -151,15 +190,36 @@ describe("quoted passages in the catalogue's own prose", () => {
     // and the synergies' `why` and `partner.excludes[].why`. A tokenizer that silently matches
     // nothing passes a zero-flag assertion forever, which is the whole failure mode of a clean
     // check — so every stage of the pipeline carries its own floor.
-    expect(strings.length).toBeGreaterThan(12000);
-    expect(all.length).toBeGreaterThan(4000);
-    expect(found).toBeGreaterThan(3000);
+    // Re-measured after the widening, not carried over: 18,914 strings, 8,307 spans of 25+, 6,154
+    // found verbatim. Floors left below those so a growing catalogue does not turn them red, and
+    // raised with the population so they do not quietly stop being floors - which is exactly what
+    // would have happened had the old numbers been kept after the field list doubled.
+    expect(strings.length).toBeGreaterThan(16000);
+    expect(all.length).toBeGreaterThan(7000);
+    expect(found).toBeGreaterThan(5000);
     // The fold must not have eaten the haystack, and toLowerCase must not have moved its indices —
     // if it did, every offset computed above would be comparing the wrong characters.
     // 635k after folding, from ~1.1 MB of source: the whitespace collapse is most of the
     // difference, and the rules file is laid out with heavy indentation.
     expect(hay.length).toBeGreaterThan(500_000);
     expect(hayLower.length).toBe(hay.length);
+  });
+
+  it("excludes only paths that exist, so a rename cannot leave a dead exclusion behind", () => {
+    // An exclusion naming a path the data no longer has is dead weight, and a TYPO in one is worse
+    // in a quiet way: it excludes nothing, so the guard silently widens rather than narrows. That
+    // direction is safe, which is why it would never be noticed. 47 string paths across the two
+    // files today, 29 excluded and 18 walked.
+    expect(paths).toBeGreaterThan(40);
+    const { paths: _p } = proseStrings();
+    const seenPaths = new Set<string>();
+    const collect = (node: unknown, path: string): void => {
+      if (typeof node === "string") { seenPaths.add(path); return; }
+      if (Array.isArray(node)) { for (const v of node) collect(v, `${path}[]`); return; }
+      if (node && typeof node === "object") for (const [k, v] of Object.entries(node)) collect(v, path ? `${path}.${k}` : k);
+    };
+    for (const f of ["data/combos.json", "data/synergies.json"]) collect(JSON.parse(readFileSync(f, "utf8")), "");
+    expect([...EXCLUDED.keys()].filter((k) => !seenPaths.has(k))).toEqual([]);
   });
 
   it("adds no passage that is verbatim except for emphasis", () => {
