@@ -185,7 +185,7 @@ const flagged = live.filter((c) =>
  * overruled — its `uses` already carries two units, so Keeper-pays-while-Irelia-moves runs without a
  * third body, and what the third buys is the option of moving somebody else while she stays put.
  */
-const REPAIRS = 65;
+const REPAIRS = 82;
 
 describe("predicate E: a controlled battlefield with no body to take it", () => {
   it("reads a non-trivial population, so a broken sweep cannot read as green", () => {

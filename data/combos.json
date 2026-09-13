@@ -856,7 +856,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "The community's contribution here is the two tuners the bare gutter-palace entry lacked: Invert Timelines (OGN-201) fixes the hand at exactly 4 in one card, and Keeper of Masks (UNL-081) puts three bodies at one battlefield in one card. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-reddit-mining-and-gutter-palace.md). Three checks carry it. (1) The Reflections count even at 0 Might: 187.6 defines them as domainless unit tokens with 0 Might, they are units, and the card counts units. They stay at 0 because 477.1.b.1.a lists the copyable traits - Name, Super Type, Type, Tags, Cost, Domain, Rules Text - and Might is not among them, which is R27, already retired on that same list. (2) No hidden loop: UNL-T06 prints \"I don't get that card's play effects\", so the copies never re-fire \"play two Reflection unit tokens\". (3) The copies DO inherit [Temporary], because 477.1.b.1.a lists \"Rules Text\" among the copyable traits and 816.3 makes \"whether or not a permanent has Temporary\" a characteristic other effects may read. CORRECTED 2026-09-06 (docs/phase0/walks/2026-09-06-mind-units-lens.md, issue #150): this sentence used to credit 477.1.b.1.b's worked example with saying so outright (\"two of which are token Copies with Temporary\"), and it does not — the card copied there is SFD-155 Honest Broker, which has no [Temporary] at all, and the keyword in that example comes from UNL-199 Deceiver's own \"Give it [Temporary]\". The conclusion is unchanged and stands on 477.1.b.1.a alone - and it does not matter, because 816.1 makes Temporary a Triggered Ability, 816.1.c fires it at the same instant as the win check, and 383.3.d gives the controller of both the ordering. Burn Out cannot beat it either: the win check is the Beginning Step (315.2.a) and the Draw Phase is 315.4. The line loses to any removal held for the single Open State inside your own turn - the source says as much - so it is a real ALT_WIN, not a consistent one. PLAYED AT A REGIONAL: the four-units-plus-Time-Warp finish is not theorycraft. The RQ Vancouver report above describes exactly it, and the thread carries witnesses and a tournament opponent. That deck is a different build - Jhin, and it names Hextech Anomaly (SFD-083) as the rune-to-Energy engine in place of Ekko - so it corroborates the finish, not this entry's specific assembly. One thing in that report does not resolve: its author says he won \"through an Invert that discarded 13 of my cards\", but the pool's only Invert is Invert Timelines (OGN-201, Chaos) and the pool's only Jhin legend is Virtuoso (UNL-181, Fury/Mind), and Chaos is not a subset of Fury/Mind. Left as an open discrepancy rather than guessed at; the citation above is only for the domain-neutral half."
+      "notes": "The community's contribution here is the two tuners the bare gutter-palace entry lacked: Invert Timelines (OGN-201) fixes the hand at exactly 4 in one card, and Keeper of Masks (UNL-081) puts three bodies at one battlefield in one card. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-reddit-mining-and-gutter-palace.md). Three checks carry it. (1) The Reflections count even at 0 Might: 187.6 defines them as domainless unit tokens with 0 Might, they are units, and the card counts units. They stay at 0 because 477.1.b.1.a lists the copyable traits - Name, Super Type, Type, Tags, Cost, Domain, Rules Text - and Might is not among them, which is R27, already retired on that same list. (2) No hidden loop: UNL-T06 prints \"I don't get that card's play effects\", so the copies never re-fire \"play two Reflection unit tokens\". (3) The copies DO inherit [Temporary], because 477.1.b.1.a lists \"Rules Text\" among the copyable traits and 816.3 makes \"whether or not a permanent has Temporary\" a characteristic other effects may read. CORRECTED 2026-09-06 (docs/phase0/walks/2026-09-06-mind-units-lens.md, issue #150): this sentence used to credit 477.1.b.1.b's worked example with saying so outright (\"two of which are token Copies with Temporary\"), and it does not — the card copied there is SFD-155 Honest Broker, which has no [Temporary] at all, and the keyword in that example comes from UNL-199 Deceiver's own \"Give it [Temporary]\". The conclusion is unchanged and stands on 477.1.b.1.a alone - and it does not matter, because 816.1 makes Temporary a Triggered Ability, 816.1.c fires it at the same instant as the win check, and 383.3.d gives the controller of both the ordering. Burn Out cannot beat it either: the win check is the Beginning Step (315.2.a) and the Draw Phase is 315.4. The line loses to any removal held for the single Open State inside your own turn - the source says as much - so it is a real ALT_WIN, not a consistent one. PLAYED AT A REGIONAL: the four-units-plus-Time-Warp finish is not theorycraft. The RQ Vancouver report above describes exactly it, and the thread carries witnesses and a tournament opponent. That deck is a different build - Jhin, and it names Hextech Anomaly (SFD-083) as the rune-to-Energy engine in place of Ekko - so it corroborates the finish, not this entry's specific assembly. One thing in that report does not resolve: its author says he won \"through an Invert that discarded 13 of my cards\", but the pool's only Invert is Invert Timelines (OGN-201, Chaos) and the pool's only Jhin legend is Virtuoso (UNL-181, Fury/Mind), and Chaos is not a subset of Fury/Mind. Left as an open discrepancy rather than guessed at; the citation above is only for the domain-neutral half.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Reveal Keeper of Masks from Hidden for 0 Energy, playing it to the battlefield you control: it plus two Reflection copies join the unit already there. Four units at battlefields"
+      }
     },
     {
       "id": "blue-sentinel-trinity-force-hold",
@@ -7130,7 +7134,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md), issue #40 candidate 8. Card text verbatim from data/corpus_flat.txt. All four rules issue #40 leans on (319.6, 464.2.c.3.a, 383.4.e, 465.2) were opened and say what #40 says they say. One precision added that #40 does not state: 423.1.c means a stun does NOT make the unit cheaper to kill — it removes its damage output only. Class held at ENGINE: this is tempo, nothing in it scores."
+      "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md), issue #40 candidate 8. Card text verbatim from data/corpus_flat.txt. All four rules issue #40 leans on (319.6, 464.2.c.3.a, 383.4.e, 465.2) were opened and say what #40 says they say. One precision added that #40 does not state: 423.1.c means a stun does NOT make the unit cheaper to kill — it removes its damage output only. Class held at ENGINE: this is tempo, nothing in it scores.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Open a combat yourself at the enemy battlefield with cheap bodies — 461 needs units of two opposing players there"
+      }
     },
     {
       "id": "lotus-trap-morgana-excess-damage",
@@ -20791,7 +20799,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §15), issue #153, from the orphan rule dark-child-off-turn-reaction-units. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 164.2.a, 164.2.b, 167, 312.2.c, 319.6, 323.2.a, 465.2.c, 807.1, 807.1.d.1, 813.1.c.1. The walk narrowed the rule's own claim: Dark Child's readies are worth ENERGY off-turn and nothing at all in Power, because 164.2.b has no exhaust in its cost and an exhausted rune already pays Power on any turn (#44's free floor of 2). Trap check: no attack of your own and no Attacker designation on your side; no [Repeat]; no [Temporary]; no token; no recall; 167 is respected explicitly rather than assumed — the Energy is spent on the opponent's turn, before your own Main Phase empties the pool. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §15), issue #153, from the orphan rule dark-child-off-turn-reaction-units. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 164.2.a, 164.2.b, 167, 312.2.c, 319.6, 323.2.a, 465.2.c, 807.1, 807.1.d.1, 813.1.c.1. The walk narrowed the rule's own claim: Dark Child's readies are worth ENERGY off-turn and nothing at all in Power, because 164.2.b has no exhaust in its cost and an exhausted rune already pays Power on any turn (#44's free floor of 2). Trap check: no attack of your own and no Attacker designation on your side; no [Repeat]; no [Temporary]; no token; no recall; 167 is respected explicitly rather than assumed — the Energy is spent on the opponent's turn, before your own Main Phase empties the pool. Depends on no unruled reading.",
+      "anyBodies": {
+        "count": 1,
+        "note": "On the opponent's turn, when they attack a battlefield where you have units, wait for a Closed State (312.2.c) — 813.1.c.1 lets a [Reaction] card be played there"
+      }
     },
     {
       "id": "eager-apprentice-sky-splitter-order-matters",
@@ -24078,8 +24090,8 @@
       "rulesVersion": "2026-07-16",
       "notes": "AUTHORED 2026-09-06 from issue #160. UNL-112 is catalogued twice (faefolk-challenger-forced-attacker, faefolk-star-spring-drag) and was an uncatalogued partner of svellsongur-copy. Card text verbatim from data/corpus_flat.txt; 137.3, 137.3.a, 144.1.a, 144.2, 144.4, 144.4.a, 170.11.c, 190.3.a.1, 323.6, 340.1, 344.2, 348.2.a, 348.2.a.1, 434.1.c, 464.2.c.1, 464.2.e.1, 470, 476.1, 477.2.c, 479.1 and 480.3 opened in the Core Rules file. Stands on R6 = A and R9; no new reading. Trap check: the empty-battlefield trap is respected — the Conquer here is the Showdown one (348.2.a.1), never an attack, so 807.1.d / 383.4.e / 461 do not apply; a Move is not a Recall (455 / 456 / 458); no token; nothing recycled; no [Temporary]; no [Repeat]; the [Equip] costs are counted; and 170.11.c is checked on BOTH conditions, which is the correction the #146 walk had to make to two verified entries.",
       "anyBodies": {
-        "count": 1,
-        "note": "Walk a second friendly unit in (144.4.a): 190.3.a.1 Contested, 344.2 Showdown at the next Cleanup, 348.2.a Control, 348.2.a.1 a Conquer — with no combat and no Attacker designation"
+        "count": 2,
+        "note": "Walk a second friendly unit in (144.4.a): 190.3.a.1 Contested, 344.2 Showdown at the next Cleanup, 348.2.a Control, 348.2.a.1 a Conquer — with no combat and no Attacker designation Main Phase: standard-move the Faefolk to a battlefield you control (144.1.a, 144.2, 144.4.a). 190.3.a.1 applies no Contested, because you already control it"
       }
     },
     {
@@ -24360,7 +24372,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §12), issue #161, as the feeder pass over the two non-Plaza ALT_WINs. Card set checked against the current data/combos.json before writing: UNL-088 + OGN-104 + UNL-071 + SFD-087 has no exact match, and UNL-071 Chakram Dancer appears in no entry at all. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 143.4, 161.2.b, 164.2.a, 164.2.b, 167, 185.1, 185.2.b, 195, 312.2.c, 315.2.a, 315.4, 316.5.b, 383.2.a.1, 485.4.a, 809.1.c, 813.1.c.1, 822.1.b. The finding that makes the entry work is that the opponent's own removal is what opens the Closed State the correction needs (813.1.c.1 + 312.2.c against 316.5.b), so the answer must be played IN RESPONSE and counted forward. Trap check: no attack and no Attacker designation; no [Repeat]; nothing here is [Temporary], so 816.1.b never removes a body before the check — which is the trap gutter-palace-keeper-time-warp has to order around with 383.3.d; the Bird is a token and is only ever COUNTED, never recycled (185, 186.1); the Retreat return is to HAND and is therefore not a Recall (455); 167 is cited for what it does and does not empty rather than assumed."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-finisher-feeders.md §12), issue #161, as the feeder pass over the two non-Plaza ALT_WINs. Card set checked against the current data/combos.json before writing: UNL-088 + OGN-104 + UNL-071 + SFD-087 has no exact match, and UNL-071 Chakram Dancer appears in no entry at all. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.1, 143.4, 161.2.b, 164.2.a, 164.2.b, 167, 185.1, 185.2.b, 195, 312.2.c, 315.2.a, 315.4, 316.5.b, 383.2.a.1, 485.4.a, 809.1.c, 813.1.c.1, 822.1.b. The finding that makes the entry work is that the opponent's own removal is what opens the Closed State the correction needs (813.1.c.1 + 312.2.c against 316.5.b), so the answer must be played IN RESPONSE and counted forward. Trap check: no attack and no Attacker designation; no [Repeat]; nothing here is [Temporary], so 816.1.b never removes a body before the check — which is the trap gutter-palace-keeper-time-warp has to order around with 383.3.d; the Bird is a token and is only ever COUNTED, never recycled (185, 186.1); the Retreat return is to HAND and is therefore not a Recall (455); 167 is cited for what it does and does not empty rather than assumed.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Count FORWARD and correct in that same window: removal aimed at one of your four is answered with Chakram Dancer as an [Ambush] (822.1.b), so their spell resolves back down to four; an unwanted fifth body is answered with Retreat; a hand short of four is answered with Premonition for E2 and 3 Power recycled off your banked runes"
+      }
     },
     {
       "id": "svellsongur-fae-porter-relay",
@@ -28834,7 +28850,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 10. OGN-002 Brazen Buccaneer was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 203.3, 337.1.b, 340.1, 356.6, 383.3.b.1, 385.2, 422.1.b, 702.3 opened in the Core Rules file. Both cards legal in both formats. Card set VEN-094 + OGN-002 is not an existing uses[] set. No unruled reading. The chain-order finding generalises: a trigger that fires on a cost paid while playing a card resolves BEFORE that card arrives, so the card being paid for is never a legal target of what its own cost triggered."
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 10. OGN-002 Brazen Buccaneer was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 203.3, 337.1.b, 340.1, 356.6, 383.3.b.1, 385.2, 422.1.b, 702.3 opened in the Core Rules file. Both cards legal in both formats. Card set VEN-094 + OGN-002 is not an existing uses[] set. No unruled reading. The chain-order finding generalises: a trigger that fires on a cost paid while playing a card resolves BEFORE that card arrives, so the card being paid for is never a legal target of what its own cost triggered.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Have a friendly unit already on the board — it will be the only legal target for the +2 (see the second notable)"
+      }
     },
     {
       "id": "mask-mother-ruthless-strike-doubled-payment",
@@ -28899,7 +28919,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 10. VEN-008 Ruthless Strike was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 143.2.a, 203.3, 340.1, 383.3.b.1, 385.2, 422.1.b, 465.2.b, 465.2.c, 806.1.b, 813.1.c.1 opened in the Core Rules file. Both cards legal in both formats. Card set VEN-094 + VEN-008 is not an existing uses[] set. No unruled reading. The [Action]-versus-[Reaction] contrast is what separates this entry from the Lunar Boon one on the same trigger card."
+      "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 10. VEN-008 Ruthless Strike was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 143.2.a, 203.3, 340.1, 383.3.b.1, 385.2, 422.1.b, 465.2.b, 465.2.c, 806.1.b, 813.1.c.1 opened in the Core Rules file. Both cards legal in both formats. Card set VEN-094 + VEN-008 is not an existing uses[] set. No unruled reading. The [Action]-versus-[Reaction] contrast is what separates this entry from the Lunar Boon one on the same trigger card.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Have a friendly unit in play to receive the +2 Might, and 4 Energy available (3 for the spell, 1 for her trigger)"
+      }
     },
     {
       "id": "sprite-queen-targon-peak-conquer-cycle",
@@ -30463,7 +30487,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-07 (issue #170). It closes two orphan synergy rules at once: undertitan-reveal-payoff supplies the payoff and forgotten-signpost-carries-exhausted supplies the second move. VEN-033 Pakaa Protector was in zero entries. The claim that separates it from the four catalogued Undertitan routes was checked against those entries' own text rather than assumed: Rek'Sai's, Teemo's and Diana's all end in a recycle and Void Rush banishes-and-plays, while Pakaa's unit branch draws — counted as of 2026-09-07. The legend list was computed from cards.json (calm + order over the 94 legend base codes), not typed. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.2, 103.2.a.1, 103.2.d.2, 143.4, 144.2, 144.4.a, 167, 315.1.b, 415.1, 420.1, 420.2.a, 420.3.a, 424.1, 431.1.a, 431.1.c, 810.1.c.3. Ban check: SFD-175, VEN-033 and UNL-045 carry no [BANNED marker. Trap check: no Burn Out from the reveal (431.1.c) and the draw is bounded by the reveal; the Signpost's move is not a Standard Move so it costs the moved unit nothing (420.3.a); the Add is Energy and dies to 167; no token, no [Temporary], no [Repeat], no buff. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-07 (issue #170). It closes two orphan synergy rules at once: undertitan-reveal-payoff supplies the payoff and forgotten-signpost-carries-exhausted supplies the second move. VEN-033 Pakaa Protector was in zero entries. The claim that separates it from the four catalogued Undertitan routes was checked against those entries' own text rather than assumed: Rek'Sai's, Teemo's and Diana's all end in a recycle and Void Rush banishes-and-plays, while Pakaa's unit branch draws — counted as of 2026-09-07. The legend list was computed from cards.json (calm + order over the 94 legend base codes), not typed. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.2, 103.2.a.1, 103.2.d.2, 143.4, 144.2, 144.4.a, 167, 315.1.b, 415.1, 420.1, 420.2.a, 420.3.a, 424.1, 431.1.a, 431.1.c, 810.1.c.3. Ban check: SFD-175, VEN-033 and UNL-045 carry no [BANNED marker. Trap check: no Burn Out from the reveal (431.1.c) and the draw is bounded by the reveal; the Signpost's move is not a Standard Move so it costs the moved unit nothing (420.3.a); the Add is Energy and dies to 167; no token, no [Temporary], no [Repeat], no buff. Depends on no unruled reading.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Activate Forgotten Signpost: exhaust any other unit you control and exhaust the Signpost, and move Pakaa to that unit's location. She is not exhausted by this move (420.3.a)"
+      }
     },
     {
       "id": "ravenbloom-diana-fizz-spell-stack",
@@ -31574,7 +31602,11 @@
           "date": "2026-09-07"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 24, friendly-dies x OGN-118). OGN-208 Cruel Patron was in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 002, 103.1.b.2, 103.1.b.3, 103.2.b, 186.1, 194.1.d, 203.3, 316, 383.1.b, 431.1.a, 816.1.b. Distinct from malzahar-wraith-centaur-sacrifice, which spends the Wraith's draw alongside a Power engine and a Might payoff on Malzahar's exhaust-gated sacrifice: the finding here is that 383.1.b caps the Wraith at ONE card however many bodies die at once — the rules use this very card as the worked example — so the correct partner is the one that extracts the most from a SINGLE death. Also registers that the printed text carries no 'another', unlike the rules' paraphrase, so the Wraith's own death pays. Ban check: neither card is banned or restricted. Trap check: the death is a COST (203.3) so an empty board makes Cruel Patron uncastable; a [Temporary] body is not available because 816.1.b fires in the Beginning Phase and the play is in the Main Phase; the draw is mandatory, so 431.1.a is a liability on a thin deck; no unruled reading."
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 24, friendly-dies x OGN-118). OGN-208 Cruel Patron was in NO entry before this. Card text verbatim from data/corpus_flat.txt. Citations opened: 002, 103.1.b.2, 103.1.b.3, 103.2.b, 186.1, 194.1.d, 203.3, 316, 383.1.b, 431.1.a, 816.1.b. Distinct from malzahar-wraith-centaur-sacrifice, which spends the Wraith's draw alongside a Power engine and a Might payoff on Malzahar's exhaust-gated sacrifice: the finding here is that 383.1.b caps the Wraith at ONE card however many bodies die at once — the rules use this very card as the worked example — so the correct partner is the one that extracts the most from a SINGLE death. Also registers that the printed text carries no 'another', unlike the rules' paraphrase, so the Wraith's own death pays. Ban check: neither card is banned or restricted. Trap check: the death is a COST (203.3) so an empty board makes Cruel Patron uncastable; a [Temporary] body is not available because 816.1.b fires in the Beginning Phase and the play is in the Main Phase; the draw is mandatory, so 431.1.a is a liability on a thin deck; no unruled reading.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Keep a spent body on the board — one that has already moved or attacked, or a token that has done its job"
+      }
     },
     {
       "id": "spectral-centaur-bottled-constellation-triple-death",
@@ -37684,7 +37716,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "AUTHORED 2026-09-07, issue #173. UNL-014 Monster Harpoon and SFD-004 Bushwhack were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 143.2.a, 466.5.c, 485.4, 806.1.b, 811.1.b, 811.1.d.2 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The finding is the shape of the enabler: the [Hidden] family in this catalogue is written around the hide EVENT and the face-down PLAY, and this is the one card that reads the resulting STATE — which makes the hidden card an asset you deliberately never spend."
+      "notes": "AUTHORED 2026-09-07, issue #173. UNL-014 Monster Harpoon and SFD-004 Bushwhack were both in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.3, 103.2.b, 143.2.a, 466.5.c, 485.4, 806.1.b, 811.1.b, 811.1.d.2 opened in the Core Rules file. Both cards legal in both formats; neither is Signature. No unruled reading. The finding is the shape of the enabler: the [Hidden] family in this catalogue is written around the hide EVENT and the face-down PLAY, and this is the one card that reads the resulting STATE — which makes the hidden card an asset you deliberately never spend.",
+      "anyBodies": {
+        "count": 1,
+        "note": "On your turn, pay 1 rainbow to hide Bushwhack face down at a battlefield you control (811.1.b)"
+      }
     },
     {
       "id": "vex-cheerless-void-seeker-combat-discount",
@@ -39142,7 +39178,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-07, issue #180 — the first entry to use OGN-241 or VEN-123. Card text verbatim from data/corpus_flat.txt. This is the third route to the 815.1.c.2 damage redirect this session has walked — after a legend's exhaust (eye-of-twilight-zephyr-sage-tank-redirect) and a free Quick-Draw attach (ornns-forge-jax-free-equipment) — and the differences are stated rather than the three being written as one: this one is a whole extra body rather than a grant, it needs no set-up on the board, and it costs a card. Trap check: 319.6 + 323.2.a are cited so 'arrives in time to defend' is a rule and not an assumption; 143.4 with 464.2.c.3 / 465.2.b is cited so entering exhausted is priced at zero on defence; the toll is stated as an exact number from 814.1.c + 815.1.c.1 + 465.2.c.4; 822.1.b and Shen's own clause are contrasted so the two cards are read as complements rather than redundant."
+      "notes": "HAND-WALKED 2026-09-07, issue #180 — the first entry to use OGN-241 or VEN-123. Card text verbatim from data/corpus_flat.txt. This is the third route to the 815.1.c.2 damage redirect this session has walked — after a legend's exhaust (eye-of-twilight-zephyr-sage-tank-redirect) and a free Quick-Draw attach (ornns-forge-jax-free-equipment) — and the differences are stated rather than the three being written as one: this one is a whole extra body rather than a grant, it needs no set-up on the board, and it costs a card. Trap check: 319.6 + 323.2.a are cited so 'arrives in time to defend' is a rule and not an assumption; 143.4 with 464.2.c.3 / 465.2.b is cited so entering exhausted is priced at zero on defence; the toll is stated as an exact number from 814.1.c + 815.1.c.1 + 465.2.c.4; 822.1.b and Shen's own clause are contrasted so the two cards are read as complements rather than redundant.",
+      "anyBodies": {
+        "count": 1,
+        "note": "815.1.c.2 now makes every other unit you control in this combat an invalid damage assignment until Shen has taken lethal; 815.1.c.1 and 465.2.c.4 make that exactly five"
+      }
     },
     {
       "id": "wildclaw-shaman-fae-dragon-buff-launder",
@@ -40821,7 +40861,11 @@
           "date": "2026-09-07"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-07 (issue #180, batch 5). The first entry to use UNL-155 Heroic Charge. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 355.10.d, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 469, 806.1.b, 809.1.c, 809.1.c.1. The stun payoffs were swept with `grep -in stunned data/corpus_flat.txt`: OGN-072 Solari Shrine (Calm, a draw), OGN-079 Leona, Zealot (Calm, -8 Might to stunned units here), OGN-225 Solari Chief (Order, the kill), UNL-035 Monch (Calm, a discount) - Solari Chief is the only one in Order and the only one that removes. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+      "notes": "HAND-WALKED 2026-09-07 (issue #180, batch 5). The first entry to use UNL-155 Heroic Charge. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 355.10.d, 423.1.a.1, 423.1.a.2, 423.1.b, 423.1.c, 469, 806.1.b, 809.1.c, 809.1.c.1. The stun payoffs were swept with `grep -in stunned data/corpus_flat.txt`: OGN-072 Solari Shrine (Calm, a draw), OGN-079 Leona, Zealot (Calm, -8 Might to stunned units here), OGN-225 Solari Chief (Order, the kill), UNL-035 Monch (Calm, a discount) - Solari Chief is the only one in Order and the only one that removes. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Have a friendly unit at the battlefield holding the body you want gone - Heroic Charge stuns 'at its location', which is the location of the unit you pump"
+      }
     },
     {
       "id": "here-to-help-mountain-drake-showdown-unit",
@@ -42734,7 +42778,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-07, issue #170, from the Core-Rules-named sweep; OGN-010 Legion Rearguard was in zero entries and is 356.1.b.3's worked example, which names this exact interaction. Card text verbatim from data/corpus_flat.txt. The content is the general rule the example carries: 'ignoring its cost' zeroes only the BASE cost (356.1.b.1) and leaves every optional additional cost payable, which is how a reanimated or free-played body beats 143.4. Trap check: the cost comparison is sourced to 206 (printed costs) and the token halves are closed by 185 and 186.1; 203.3 is named as the gate that makes the spell uncastable on an empty board; the additional-cost kill is stated to fire a Deathknell (808.1.c / 808.1.d) rather than being treated as a neutral price; the returned body's combat designation is sourced to 464.2.c.3.a."
+      "notes": "HAND-WALKED 2026-09-07, issue #170, from the Core-Rules-named sweep; OGN-010 Legion Rearguard was in zero entries and is 356.1.b.3's worked example, which names this exact interaction. Card text verbatim from data/corpus_flat.txt. The content is the general rule the example carries: 'ignoring its cost' zeroes only the BASE cost (356.1.b.1) and leaves every optional additional cost payable, which is how a reanimated or free-played body beats 143.4. Trap check: the cost comparison is sourced to 206 (printed costs) and the token halves are closed by 185 and 186.1; 203.3 is named as the gate that makes the spell uncastable on an empty board; the additional-cost kill is stated to fire a Deathknell (808.1.c / 808.1.d) rather than being treated as a neutral price; the returned body's combat designation is sourced to 464.2.c.3.a.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Have a Legion Rearguard in your trash (it is a 2-Energy body, so the ordinary way there is having traded it earlier) and another friendly unit of at least equal printed cost on the board"
+      }
     },
     {
       "id": "crackshot-corsair-warwick-attack-order",
@@ -49286,7 +49334,11 @@
           "date": "2026-09-07"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use SFD-044 Legion Quartermaster. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.2, 103.1.b.3, 103.2.b, 203.3, 323.7, 381, 434.1.f, 434.1.g, 469, 719.5, 818.1, 819.1.d. The mandatory-cost reading is stated first because a reader who assumes 'you may' will build a list in which the card is sometimes uncastable; 203.3 is the paragraph. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use SFD-044 Legion Quartermaster. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.2, 103.1.b.3, 103.2.b, 203.3, 323.7, 381, 434.1.f, 434.1.g, 469, 719.5, 818.1, 819.1.d. The mandatory-cost reading is stated first because a reader who assumes 'you may' will build a list in which the card is sometimes uncastable; 203.3 is the paragraph. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Have Cloth Armor attached to a unit - it got there for free on the play, since [Quick-Draw] (819.1.d) attaches on play rather than through an [Equip] cost"
+      }
     },
     {
       "id": "card-sharp-renata-industrialist-gold-asymmetry",
@@ -50808,7 +50860,11 @@
           "date": "2026-09-07"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-07 (issue #193, part 1). The first entry to use UNL-204 Keeper's Verdict. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.2.b, 103.2.d.1, 103.2.d.2, 355.10.e, 431.1.a, 437.4, 464.2.c.3, 465.2, 469, 806.1.c.1, 808.1.a, 808.1.d.1, 809.1.c, 815.1.c.2, 822.1.b. UNIQUENESS SWEPT, NOT ASSUMED: two corpus rows match 'top or bottom of ... Main Deck' and the other is SFD-169 Altar of Memories, which moves a card from your own hand. The mutual exclusivity with OGS-024 Decisive Strike - same domain pair, different forced legend - is stated in both entries. Ban check: neither card is banned or restricted. No unruled reading."
+      "notes": "HAND-WALKED 2026-09-07 (issue #193, part 1). The first entry to use UNL-204 Keeper's Verdict. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.2.b, 103.2.d.1, 103.2.d.2, 355.10.e, 431.1.a, 437.4, 464.2.c.3, 465.2, 469, 806.1.c.1, 808.1.a, 808.1.d.1, 809.1.c, 815.1.c.2, 822.1.b. UNIQUENESS SWEPT, NOT ASSUMED: two corpus rows match 'top or bottom of ... Main Deck' and the other is SFD-169 Altar of Memories, which moves a card from your own hand. The mutual exclusivity with OGS-024 Decisive Strike - same domain pair, different forced legend - is stated in both entries. Ban check: neither card is banned or restricted. No unruled reading.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Follow with Poppy, Defender of the Meek via [Ambush] (822.1.b) to occupy the space at Reaction speed, and 815.1.c.2 then makes her the only legal assignment while she lives"
+      }
     },
     {
       "id": "decisive-strike-vanguard-armory-mass-pump",
@@ -52411,7 +52467,11 @@
           "date": "2026-09-09"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-09 (issue #187, sub-rule lane 100-499; from the filtered probe). 357.1.a, 357.2, 357.2.a, 357.3, 370.1, 370.1.a and 370.1.a.1 are cited by no entry and no synergy rule in this project, and 357.2.a's worked example names OGN-208 Cruel Patron and OGN-077 Zhonya's Hourglass together. Card text verbatim from data/corpus_flat.txt. Legality checked against data/legality.json on 2026-09-09: neither card appears in any format's ban or restriction list. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.2, 315.1.b, 323.6, 357.2, 357.2.a, 357.3, 359.3.e.14.b, 369.1, 370.1.a.1, 428.1.a.1, 428.1.a.2, 455, 458.1, 808.1.d.1, 811.1.b. REPORT TO THE MANAGER: 357.2.a and 370.1.a.1 have to be carried TOGETHER or the interaction reads as a contradiction - the kill action genuinely did not occur (370.1.a.1) and the cost is nonetheless considered paid (357.2.a). The general form is the sharpest version yet of a split this lane has now met three times: a COST that is replaced is still paid, while an EFFECT that references the replaced game action is not (359.3.e.14.b) and a Deathknell on the saved body is removed (808.1.d.1). Distinct from wraith-of-echoes-cruel-patron-sacrifice-body, the only other entry using OGN-208, which spends the body deliberately, and from whiteflame-last-stand-zhonyas-double-might. Trap check: the Hourglass is consumed; the rescued body is recalled to base and the entry prices the lost position; a card with an 'if you do' rider gains nothing; no unruled reading."
+      "notes": "HAND-WALKED 2026-09-09 (issue #187, sub-rule lane 100-499; from the filtered probe). 357.1.a, 357.2, 357.2.a, 357.3, 370.1, 370.1.a and 370.1.a.1 are cited by no entry and no synergy rule in this project, and 357.2.a's worked example names OGN-208 Cruel Patron and OGN-077 Zhonya's Hourglass together. Card text verbatim from data/corpus_flat.txt. Legality checked against data/legality.json on 2026-09-09: neither card appears in any format's ban or restriction list. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.2, 315.1.b, 323.6, 357.2, 357.2.a, 357.3, 359.3.e.14.b, 369.1, 370.1.a.1, 428.1.a.1, 428.1.a.2, 455, 458.1, 808.1.d.1, 811.1.b. REPORT TO THE MANAGER: 357.2.a and 370.1.a.1 have to be carried TOGETHER or the interaction reads as a contradiction - the kill action genuinely did not occur (370.1.a.1) and the cost is nonetheless considered paid (357.2.a). The general form is the sharpest version yet of a split this lane has now met three times: a COST that is replaced is still paid, while an EFFECT that references the replaced game action is not (359.3.e.14.b) and a Deathknell on the saved body is removed (808.1.d.1). Distinct from wraith-of-echoes-cruel-patron-sacrifice-body, the only other entry using OGN-208, which spends the body deliberately, and from whiteflame-last-stand-zhonyas-double-might. Trap check: the Hourglass is consumed; the rescued body is recalled to base and the entry prices the lost position; a card with an 'if you do' rider gains nothing; no unruled reading.",
+      "anyBodies": {
+        "count": 1,
+        "note": "With the Hourglass on the board and at least one friendly unit standing, play OGN-208 Cruel Patron (4 Energy)"
+      }
     },
     {
       "id": "sona-wind-wall-condition-not-effect",
@@ -55078,7 +55138,11 @@
           "kind": "manual-walk",
           "date": "2026-09-12"
         }
-      ]
+      ],
+      "anyBodies": {
+        "count": 1,
+        "note": "Hold UNL-060 Vilemaw and SFD-194 Counter Strike in hand. Have at least one unit at the battlefield you expect to be attacked; 822.1.b needs it and Vilemaw does not count himself at the moment the location is chosen"
+      }
     },
     {
       "id": "blast-cone-iascylla-responsible-move-stun",
@@ -56527,7 +56591,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-12 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md, batch 5), issue #187, lane rc-walk-mid (uncited Core Rules sub-rules 300-499). Card text verbatim from data/corpus_flat.txt. Opens 355.5.b, cited by nothing in data/combos.json or data/synergies.json before this entry. The arithmetic is stated with its own opener: d x 2^k, with d = 3 from Hextech Ray, against a pool whose largest printed Might is 12 (UNL-147 Baron Nashor, measured against data/cards.json on 2026-09-12). Cross-references lotus-trap-morgana-excess-damage and apothecary-pridestalker-buff, and shares no more than one card with either."
+      "notes": "HAND-WALKED 2026-09-12 (docs/phase0/walks/2026-09-09-uncited-rules-300-499.md, batch 5), issue #187, lane rc-walk-mid (uncited Core Rules sub-rules 300-499). Card text verbatim from data/corpus_flat.txt. Opens 355.5.b, cited by nothing in data/combos.json or data/synergies.json before this entry. The arithmetic is stated with its own opener: d x 2^k, with d = 3 from Hextech Ray, against a pool whose largest printed Might is 12 (UNL-147 Baron Nashor, measured against data/cards.json on 2026-09-12). Cross-references lotus-trap-morgana-excess-damage and apothecary-pridestalker-buff, and shares no more than one card with either.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Play VEN-017 Morgana, Vindictive with [Ambush] (822.1.b) to a battlefield where you control units. Her trigger goes on the chain; nothing is chosen yet"
+      }
     },
     {
       "id": "gemcraft-seer-nocturne-vision-replacement-deploy",
