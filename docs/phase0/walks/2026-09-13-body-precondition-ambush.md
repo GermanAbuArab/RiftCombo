@@ -1014,3 +1014,51 @@ did not.
 **The rule is cheaper than any checker: a repair must NAME THE FIELDS IT COVERED**, because *"I fixed
 the entry"* and *"I fixed the notables"* look identical in a commit message and differ by three
 quarters of a megabyte.
+
+---
+
+## 22. THE REPAIR WAS WIDER THAN THE GUARD, SO 440,000 CHARACTERS ARE CLEAN TODAY AND UNPROTECTED TOMORROW
+
+The `notes` miss is a coverage question rather than a `brynhir` question, so I enumerated **every
+string-valued path in `data/combos.json` — 28 of them — with its volume**, and checked each against
+what the shipped guards actually walk.
+
+| path | chars | values | walked by |
+|---|---:|---:|---|
+| `prerequisites.notable[]` | 2,682,540 | 5,340 | prose-emphasis |
+| `notes` | 754,754 | 750 | prose-emphasis |
+| `steps[]` | 602,463 | 4,283 | prose-emphasis |
+| **`uses[].note`** | **440,413** | **1,898** | **nothing** |
+| `sources[].quote` | 319,545 | 761 | prose-emphasis, source-quotes |
+| `prerequisites.easy[]` | 283,676 | 1,413 | prose-emphasis |
+| `terminatesIn` | 113,832 | 766 | prose-emphasis |
+| `netPerIteration` | 59,546 | 541 | prose-emphasis |
+| **`anyBodies.note`** | **10,710** | **82** | **nothing** |
+
+**`uses[].note` is the fourth-largest prose field in the catalogue and nothing walks it.** Read from
+the guard's own source, it walks exactly `steps`, `prerequisites.notable`, `prerequisites.easy`,
+`terminatesIn`, `netPerIteration` and `notes` — six named fields, which is why the gap is invisible:
+the list looks complete. `anyBodies.note` is the newest field in the schema, created today, and is
+also outside it.
+
+### Measured against the same predicate, both are clean — and the clean explains itself
+
+Running the shipped predicate (position-0 allowance, every-occurrence fix) against exactly those two:
+**`uses[].note` — 1,721 quoted spans of 25+ characters, of which 1,120 ARE quotations of a source,
+and ZERO not verbatim except for case. `anyBodies.note` — 2 spans, 2 quotations, ZERO.** Non-vacuous
+by a wide margin: the check had 1,120 real opportunities to fire in the unguarded field alone.
+
+**Why it is clean is the finding.** rc-gap's repair probe walks **every object value**, skipping only
+`sources` — so the #202 sweep cleaned all 440,413 characters of `uses[].note` along with everything
+else. **THE REPAIR WAS WIDER THAN THE GUARD.** The field is therefore clean today because somebody
+fixed it, and unprotected tomorrow because nothing watches it.
+
+**That is the cheapest possible moment to widen the guard**, by the argument this document has already
+made twice: a check that comes back clean is worth pinning precisely because pinning costs nothing at
+a clean state. Two field names added to one array.
+
+**And the general shape, which is the same one as the `notes` miss one section up:** a guard that
+enumerates its fields by name looks complete and silently stops covering the schema the moment the
+schema grows — `anyBodies.note` was created today, by a repair I reported, and was outside the guard
+the day it was born. **A repair must name the fields it covered; a guard must say how it would learn
+about a new one.**
