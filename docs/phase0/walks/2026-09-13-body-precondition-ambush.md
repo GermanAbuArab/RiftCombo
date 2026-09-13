@@ -1337,3 +1337,47 @@ I could NOT check are the three that name a concept instead.** The correlation i
 eleven claims rather than six, and it says the same thing: **`CLAUDE.md`'s discipline of stating the
 predicate with the number is what makes the file auditable, and where it was followed the file is
 exactly right.**
+
+---
+
+## 27. THE ENTRY-SCOPED HALF: A ROT LIST THAT COMES BACK EMPTY, AND WHY
+
+Entry counts rot on every merge, so the useful output is a **rot list rather than a score**. Measured:
+**55 entry-count-shaped sentences; 24 carry the file's own perishability marker** (*re-derive it,
+never quote it*, a date, *as of*); **2 looked unflagged and rotted; BOTH ARE FALSE POSITIVES.**
+
+- ***"2 of 12 engines connected"*** — the sentence around it reads *"Do not price from #63 §3.1/3.2
+  ('2 of 12 engines connected'): run `generateVariants` over the current catalogue…"*. **The file is
+  quoting a superseded figure in order to tell you not to use it**, and its bullet header says
+  outright *"#63's routing table is superseded"*. This is the supersession-marker shape that caught
+  me on `brynhir` four hours ago, arriving again.
+- ***"the 29 BURSTs"*** — the text is *"of the 29 BURST **and CHAIN** entries"*, a COMPOUND noun
+  phrase my parser split. The claim is about BURST + CHAIN together, which was 29 then and is 40 now,
+  and its bullet is dated 2026-09-12.
+
+**Ninth too-big first number today: 2 → 0.**
+
+### The mechanism, which is the reusable part
+
+**`CLAUDE.md`'s perishability markers live at BULLET granularity, not sentence granularity.** Both
+"unflagged" claims are dated — in their bullet headers, tens of lines above the sentence. A
+sentence-level scan therefore under-detects the file's own discipline and manufactures rot that is
+not there. **An audit of this file has to read at the granularity the file was WRITTEN at**, which is
+the bullet, and every bullet in it opens with its issue number and date.
+
+### The whole invariant audit, in one place
+
+| haystack | tested | held | defects found |
+|---|---:|---:|---|
+| **CARD** (corpus; rots only on a new set) | 8 checkable | **8** | 0 in the file |
+| **ENTRY** (`combos.json`; rots on every merge) | 55 candidates, 24 self-flagged | **0 rotted** | 0 in the file |
+| **stated conventions** (§23, §25) | 5 | 4 clean, 1 legibility | **1 in an ENTRY** |
+
+**Across every claim I could check, the file was never wrong.** The single defect the whole sweep
+produced was `leblanc-temporary-plaza` — **the ENTRY was wrong and the FILE was right**, at 118 of
+119. Every other apparent failure was my predicate, and in each one the file's named members sat
+inside my wider set.
+
+**And the two halves explain each other.** The CARD claims hold because they state their predicates;
+the ENTRY claims have not rotted because the file marks them perishable and dates them. **Those are
+the same discipline applied to two different half-lives** — say how you measured it, and say when.
