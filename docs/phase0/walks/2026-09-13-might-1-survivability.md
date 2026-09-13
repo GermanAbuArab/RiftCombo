@@ -201,3 +201,40 @@ as Might 1) arriving from a second direction, on the same entry.
 Sprite 3 (187.2), Sand Soldier 2 (187.3), Mech 3 (187.4), Reflection 0 (187.6), Bird 1 with Deflect
 (187.7), Tentacle 1 (187.10), Shadow Clone 0 (187.11). An entry's garrison Might cannot be read off
 `cards.json`, because the token has no printing.
+
+---
+
+## Appendix — the exact notable text for the four owed entries
+
+The manager holds `data/combos.json`; this lane does not edit it. **Paste as one new entry in
+`prerequisites.notable`.** Written here rather than sent over `maestro send`, because the text carries
+backticks and square brackets that an interactive zsh on the receiving side would evaluate and glob.
+
+### For `noxian-drummer-eye-svellsongur-plaza`, `corina-svellsongur-plaza` and `arise-sand-soldiers-plaza` (all calm+order)
+
+> A DOMAIN-LEGAL +1 EXISTS, IT COSTS NO EXTRA SLOT, AND IT BUYS EXACTLY ONE CARD. `OGS-013 Garen,
+> Commander` and `OGN-243 Darius, Executioner` are both mono-Order and print the identical sentence —
+> *"Other friendly units have +1 :rb_might: here"* — so either is legal in this identity, stands at
+> the Plaza as one of the seven, and takes the Recruits to Might 2. Measured over the twenty cards in
+> the pool that remove more than one body in one action, Might 2 escapes THREE: `OGN-133 Flurry of
+> Blades`, `OGN-200 Twisted Fate, Gambler`'s one-damage mode and `OGN-041 Volibear, Furious`'s split.
+> It does NOT escape `UNL-132 Angler Beast` (*"return all units with 2 :rb_might: or less to their
+> owners' hands"* — a BOUNCE, so Might 2 is still caught and the Plaza's count fails exactly as it
+> would to a kill), `UNL-107 Stare Down` (Body, E2, threshold chosen by the attacker, and 355.10.d
+> makes it programmatic so no `[Deflect]` tax is paid for any number of bodies), `OGN-268 Bullet Time`
+> (E1 plus any amount of rainbow), or the two that take everything — `UNL-180 The Ruination` and
+> `SFD-147 Downwell`. So the +1 answers the card this entry already names and moves the cheapest
+> answer from one Energy to two.
+
+### For `plaza-armory-miss-fortune` (body+order)
+
+The same text, with one clause added after *"takes the Recruits to Might 2"*:
+
+> …and the Sand Soldiers, already Might 2 by 187.3, to Might 3 — which escapes six of the twenty
+> rather than three, and makes them the only bodies in this line that clear `UNL-132 Angler Beast`.
+
+### Not owed, and the reason belongs on the record
+
+`spiderling-swarm-grand-plaza` and `dragonstorm-confront-grand-plaza` pass the legality test and need
+nothing: seven Spiderlings are **Might 7** by the card's own printed text, and the Dragonstorm garrison
+is played units at Might 3 to 10. **A legality test says a fix is legal, never that it is needed.**
