@@ -470,3 +470,47 @@ the reflex assumes.
 battlefield for eight turns against an opponent who is trying to take it is not free, and the whole
 point of the three-board-state frame is that the free curve is a *baseline* rather than a *plan*. The
 law is about how to read a setup cost, not about whether a line is good.
+
+---
+
+## 13. The counter-case audited, and a predicate that matched the good work
+
+§12's law has a counter-case: a **Conquer** trigger fires once. 469.1 defines a Conquer on a
+battlefield *"not yet Scored this turn"*, 470 caps Scoring once per battlefield per turn, and 348.2.a
+refuses Control to a player who already has it — so a conquer-triggered faucet has no rate unless
+something hands the battlefield back. **26 cards** carry a free, non-point, conquer-only trigger and
+**44 entries** use one. Does any of them price it as if it repeated?
+
+**No. The audit is clean**, and the two mechanisms that legitimately re-fire a conquer trigger are
+both present and both named by the entries that use them:
+
+- **`OGN-286 Reckoner's Arena`** — *"When you hold here, activate the conquer effects of units here."*
+  A Hold fires the conquer effect, so `kaisa-survivor-arena-draw`'s *"Repeat every turn she holds"* is
+  exactly right.
+- **A `[Temporary]` garrison** that gives the battlefield back, which this project already records and
+  which `sprite-queen-targon-peak-conquer-cycle` is built on.
+
+And the two entries that looked most like defects state the constraint themselves, in the field where
+it counts: `jax-grandmaster-warmogs-buff`'s `terminatesIn` reads *"one reattachment a turn, throttled
+by how often you conquer"*, and `hextech-formula-rage-amplifier-free-empower`'s reads *"one card a
+turn for E1, doubled on the turns you conquer at the Veiled Temple."*
+
+### The method note, which is worth more than the clean result
+
+The first predicate — a per-turn or per-pass rate anywhere in an entry's prose — flagged **37 of the
+44**. Reading them, almost every hit was an entry **getting it right**:
+
+> *"470 caps Scoring at once per Battlefield per turn"* · *"one Conquer per battlefield per turn"* ·
+> *"engine only — one activation per turn"*
+
+**A prose predicate for a defect can match the entries that got it right, because stating a
+constraint correctly uses the same vocabulary as violating it.** That is sharper than the standing
+rule that a predicate overstates: it says *why* it overstates in this family, and it is not fixed by
+tightening the pattern — it is fixed by requiring the **absence** of a cap word in the same clause,
+which took the population from 37 to 10, of which six were matches on unrelated sentences.
+
+**So this check is NOT shipped as a test**, and the reason is this project's own: a check grounded in
+a rule finds things and needs one narrowing; a check grounded in prose finds nothing and needs
+several. This one needed two narrowings and found nothing, which is the prose signature exactly. The
+card half is rules-grounded and reusable (`.scratch-gap/probe-conquer-rate.mjs` prints the 26); the
+entry half is a human reading and should stay one.
