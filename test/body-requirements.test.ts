@@ -169,7 +169,7 @@ const flagged = live.filter((c) =>
  * overruled — its `uses` already carries two units, so Keeper-pays-while-Irelia-moves runs without a
  * third body, and what the third buys is the option of moving somebody else while she stays put.
  */
-const REPAIRS = 37;
+const REPAIRS = 65;
 
 describe("predicate E: a controlled battlefield with no body to take it", () => {
   it("reads a non-trivial population, so a broken sweep cannot read as green", () => {
@@ -258,7 +258,11 @@ const makesToken = (base: string) => {
 const wantsASecond = (base: string) => {
   const c = cards.get(base);
   const t = `${c?.text ?? ""} ${c?.effect ?? ""}`;
-  return /\b(another|other|a different|one other)\b[^.]{0,40}\b(friendly units?|units? you control)\b/i.test(t);
+  // Two forms, and dropping the second cost a real case on the first run: "your OTHER units here"
+  // has no "friendly" and no "you control" between the word and the noun, so only the adjacent form
+  // catches `UNL-056 Yuumi, Magical Cat`. The enemy lookahead is what keeps "another enemy unit" out.
+  return /\b(another|other|a different|one other)\b[^.]{0,40}\b(friendly units?|units? you control)\b/i.test(t)
+    || /\b(another|other|a different|one other)\s+(friendly\s+)?units?\b(?![^.]{0,30}\benemy\b)/i.test(t);
 };
 const unitCopies = (c: Combo) =>
   c.uses.filter((u) => isType(u.card, "unit")).reduce((n, u) => n + u.quantity, 0);
@@ -268,10 +272,21 @@ const gFlagged = open.filter((c) => unitCopies(c) === 0 && c.uses.some((u) => ne
 const hFlagged = open.filter((c) => unitCopies(c) === 1 && c.uses.some((u) => wantsASecond(u.card)));
 
 describe("predicates G and H: a card that needs a body the line does not hold", () => {
-  it("reads a non-trivial population, so a broken sweep cannot read as green", () => {
-    // Three independent floors, because each predicate can fail silently in its own way.
+  it("pins each predicate against a named card, which a population floor cannot do", () => {
+    // Once the catalogue is repaired both counts go to zero, and at zero a population floor says
+    // NOTHING about whether the regexes still match anything. So the predicates themselves are
+    // pinned against cards chosen because each one broke something:
+    expect(needsABody("UNL-188"), "Hextech Gauntlets prints [Equip]").toBe(true);
+    expect(needsABody("SFD-144"), "Spirit Wheel fires on choosing a friendly unit").toBe(true);
+    expect(needsABody("OGN-044"), "Clockwork Keeper needs no body of yours").toBe(false);
+    // The plural that let the one self-supplying entry through: "Play three ... Recruit unit tokenS".
+    expect(makesToken("SFD-168"), "Vanguard Armory mints its own carriers").toBe(true);
+    expect(makesToken("UNL-044"), "Flurry of Feathers plays four Bird tokens").toBe(true);
+    // Yuumi grants [Tank] to "one of your OTHER units here" and is herself Might 1.
+    expect(wantsASecond("UNL-056")).toBe(true);
+    expect(wantsASecond("OGN-293"), "The Grand Plaza counts units and asks for no second one").toBe(false);
+    // And the populations the two sweeps run over, so a filter that empties them is visible too.
     expect(open.length).toBeGreaterThan(80);
-    expect([...cards.all?.() ?? []].length >= 0).toBe(true);
     expect(live.filter((c) => unitCopies(c) === 1).length).toBeGreaterThan(150);
   });
 
