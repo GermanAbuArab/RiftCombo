@@ -1699,3 +1699,67 @@ open, which is the one place an `[Action]` removal reaches a Might-6 body. Wheth
 *needs* the sentence is the entry author's call; what this walk can say is **what the sentence would
 be**, and for all three it is the same one: *the loop's only guaranteed window is the spell it spends,
 and the pool's one answer to that window is mono-Mind and therefore always legal here.*
+
+---
+
+## 29. The "speaks of answers without naming one" population — **a predicate disagreement, and a card that funds the opponent**
+
+rc-builder measured **16** finishers that speak of removal or answers without naming one. **My
+predicate returns 1**, and I am reporting the disagreement rather than asserting mine is better,
+because in this project a number that looks like a contradiction is a **predicate question first**.
+
+**Mine, stated:** a finisher whose text (notables + `uses` notes + steps + `terminatesIn`) uses
+answer-language — *removal / answers it / sweep / counter / dies to / bounce / point of failure* —
+**and names no card outside its own `uses`, by base code OR by a card name of six characters or more
+from `cards.json`**. **77 of 80 use answer-language at all; 1 names no card.** rc-builder's predicate
+is presumably narrower on what counts as *naming* or wider on what counts as *answer-language*;
+**their 16 and my 1 are both measurements and the gap is in the definition, not in the catalogue.**
+
+**And the one hit is not a gap.** `threshold-reveler-infinite-energy` carries **eight** notables and is
+one of the most careful entries I have opened: it pins the exact defender requirement (*"EXACTLY ONE
+ENEMY DEFENDER, OF 4+ MIGHT"*, with the 465.2.c arithmetic), refuses its own cheaper `[Hidden]` route
+with 811.1.b and 811.1.d.2, and **corrects a paragraph that was applied uniformly to all fourteen
+INFINITEs**. It names no answer **card** because its exposure is board state and the opponent's
+resources, not a removal spell. **A predicate looking for a named card cannot see an entry whose
+exposure is not a card.**
+
+### Its `notable[4]` opens a question nobody had asked, and the sweep is small
+
+> *"THE BATTLEFIELD PAYS THE OPPONENT TOO, AND NO SOURCE WEIGHS IT. 'the attacker and defender each
+> [Add] 1 Energy' is symmetric, so the loop floats the opponent unbounded Energy during your turn."*
+
+**Predicate: corpus lines giving a resource, a card or a body to BOTH players. Seven hits, all read.**
+Two are banned in both formats (`OGN-284 Obelisk of Power`, `OGN-290 The Arena's Greatest`), leaving
+**five live**, of which **two are colourless battlefields** — things you *bring*, so their symmetry is
+a standing property of the board rather than a one-shot:
+
+```
+OGN-071 Party Favors        Calm        each player draws or channels     used by 0 entries
+OGN-201 Invert Timelines    Chaos       Each player discards their hand, then draws 4.   1 entry
+SFD-219 The Papertree       Colourless  when you hold here, each player channels 1       1 entry
+VEN-111 Minah Swiftfoot     Chaos       each player discards 1 / draws 1                 1 entry
+VEN-166 Threshold of the Gray Colourless when combat starts here, attacker and defender each [Add] 1   1 entry
+```
+
+**Only `VEN-166` compounds inside a loop**, because its trigger is *"when combat starts here"* and the
+loop opens a combat **every pass**, while the Papertree's is *"when you hold here"* — once a turn.
+**So the catalogue's one entry whose own engine funds its opponent without bound is the one that says
+so.** That is the entry being right, not a defect.
+
+### The other one does not say so, and it is the same entry as §13, §20 and §27
+
+**`gutter-palace-keeper-time-warp` runs `OGN-201 Invert Timelines`**, and its step 4 reads *"Play
+Invert Timelines (3 Energy + 1 Power): **discard your hand, draw 4**. Hand is now exactly 4."* — **its
+own half only.** The card reads *"**Each player** discards their hand, then draws 4."*
+
+**The opponent is refilled to four fresh cards by this line's own enabler.** They get no turn — the
+Time Warp sees to that — but 312.2.c hands them priority in every Closed State the combo opens on your
+own turn, so **four fresh cards are four fresh chances to be holding a `[Reaction]`**, including any
+of the eleven counters aimed at the E10 + 4 Power Time Warp (§27) or `SFD-005 Detonate` at E1 + 1 Fury
+Power aimed at the Gutter Palace itself (§13). **The line hands the opponent the hand it will be
+answered from.**
+
+That is the **fourth** unstated exposure this walk has found on one entry — no gear answer for a win
+condition that is a gear (§13); the pre-repair Flurry paragraph, since corrected (§20); no counter
+note on its E10 + 4 Power enabler (§27); and now an enabler that arms the opponent. **Each was found
+by a different sweep, which is the argument for running several.**
