@@ -6880,6 +6880,83 @@
       "status": "rule-verified",
       "reviewed": "2026-09-12",
       "reviewedCount": 25
+    },
+    {
+      "id": "flurry-of-blades-one-sided-sweep",
+      "name": "A static +1 Might turns the pool's cheapest sweep one-sided",
+      "anchor": "OGN-133",
+      "partner": {
+        "textMatches": "(?:[Yy]our|[Oo]ther friendly) (?:token )?units(?: here)? have \\+\\d? ?:rb_might:"
+      },
+      "why": "\"Deal 1 to all units at battlefields\" for 1 Energy at [Reaction] speed is symmetric — it takes your own 1-Might tokens exactly as it takes theirs, because 143.2.a kills on nonzero damage equalling or exceeding Might and 185.2.b gives a token unit a Might. A static +N grant makes it one-sided: a Recruit (187.1) or a Bird (187.7) at Might 1 becomes Might 2 and survives, while everything of theirs in the band still dies. The grant must be STATIC — these six are continuous modifiers, not 702 Buff counters, so 702.3's one-per-unit cap never touches them and they reach a whole board rather than one body. Two limits the list cannot express: OGS-013 Garen, Commander and OGN-243 Darius, Executioner print \"here\", so they lift only the garrison at their own battlefield and nothing in your base; and 355.10.d makes a deal-to-ALL untargeted, so a garrison of [Deflect] Birds pays no tax to it and the keyword buys nothing here — only the Might does. Same family as frozen-fortress-token-toughness, one card over. UNL-191 Wuju Master carries its grant at [Level 6], so it is six XP away rather than a card away — 824.1.d makes the ability Inactive the moment you hold less than six, and spending XP switches it off.",
+      "basis": {
+        "rules": [
+          "143.2.a",
+          "185.2.b",
+          "187.1",
+          "187.7",
+          "355.10.d",
+          "702.3",
+          "824.1.d"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-13",
+      "reviewedCount": 6
+    },
+    {
+      "id": "angler-beast-one-sided-bounce",
+      "name": "Angler Beast bounces the 2-Might band both ways, and a +2 is what makes it yours alone",
+      "anchor": "UNL-132",
+      "partner": {
+        "textMatches": "(?:[Yy]our|[Oo]ther friendly) (?:token )?units(?: here)? have \\+\\d? ?:rb_might:"
+      },
+      "why": "\"When you play me, return all units with 2 [M] or less to their owners' hands\" carries NO location clause, so unlike a sweep at battlefields it reaches the base as well — and it is symmetric. The arithmetic is one step harsher than a 1-damage sweep and that is the whole point of pairing it: surviving needs Might 3, not 2. So a +1 rescues a 2-Might Sand Soldier (187.3) and does NOT rescue a 1-Might Recruit (187.1) or Bird (187.7), which a +1 leaves squarely inside the band; only the +2 grants reach a Recruit — UNL-147 Baron Nashor outright, and VEN-018 Rage Amplifier once it is [Empowered]. A bounce breaks a body count exactly as completely as a kill, which is why this belongs with the damage sweepers and why a predicate written on damage cannot see it. UNL-191 Wuju Master carries its grant at [Level 6], so it is six XP away rather than a card away — 824.1.d makes the ability Inactive the moment you hold less than six, and spending XP switches it off.",
+      "basis": {
+        "rules": [
+          "185.2.b",
+          "187.1",
+          "187.3",
+          "187.7",
+          "702.3",
+          "824.1.d"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-13",
+      "reviewedCount": 6
+    },
+    {
+      "id": "rage-amplifier-lifts-the-damage-band",
+      "name": "Rage Amplifier lifts a whole token board out of the 1-damage band without costing a body slot",
+      "anchor": "VEN-018",
+      "partner": {
+        "textMatches": "[Pp]lay (?:a|an|two|three|four|up to \\w+)\\b[^.]{0,60}?1 :rb_might:[^.]{0,30}?unit tokens?",
+        "excludes": [
+          {
+            "card": "UNL-130",
+            "why": "\"When you play me, choose an opponent. THEY play a 1 [M] Bird unit token\" — 182 lets the creating effect name a different controller, so that Bird is not yours and \"Your units have +1 [M]\" never reaches it. The card is a pure drawback to its own controller and the only thing the Amplifier does here is make the opponent's Bird no easier to kill."
+          }
+        ]
+      },
+      "why": "\"Your units have +1 [M]\", rising to +2 while [Empowered], is the FURY member of the static-grant family and the only one on a gear: 359.2.d enters a non-unit gear ready at the base, so it occupies no body slot and never stands anywhere a sweep can reach it. Every card here plays a 1-Might unit token, the band that 143.2.a lets a single point of damage kill, and the Amplifier takes all of them to 2 at once — it says \"your units\", so unlike UNL-077 Soul Shepherd it lifts 1-Might CARD bodies too. It is also the card that refutes the claim that a 1-Might token line has to be Mind or Order to be repairable. At +2 it clears UNL-132 Angler Beast's bounce band as well, which no +1 does.",
+      "basis": {
+        "rules": [
+          "143.2.a",
+          "182",
+          "185.2.b",
+          "187.1",
+          "187.7",
+          "359.2.d",
+          "702.3"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-13",
+      "reviewedCount": 20
     }
   ]
 }
