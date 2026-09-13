@@ -1555,3 +1555,78 @@ Nashor`) — they are protectors of a *body*, not of a *plan*. The two that reac
 Might is the cap on what he covers) and `VEN-031 Twilight Shroud`, a **spell**. The Might floor of 4
 holds across all eight either way, which is why the structural claim is made over the whole set and
 the reach distinction is stated separately.
+
+---
+
+## 27. Two corrections to my own work, and the two entries they point at
+
+### (a) The hypothesis was wrong: the catalogue documents protection thoroughly
+
+I expected §26 to show that this catalogue *"documents what kills its lines exhaustively and what
+saves them not at all."* **Measured, that is false.** Predicate: entries naming any of the eighteen
+protectors — **129 of 766**, 29 as a `uses` component and 112 in prose, and **every one of the
+eighteen is named somewhere**.
+
+**But the mentions are of a different kind than I was looking for, and that is the real result.**
+Narrowing to a protector named inside a sentence carrying protective framing (*protect / save /
+survive / shield / insurance / keeps it alive / answers this*) gives **17 of 196 prose mentions, all
+read**, and almost every one is the protector as a **MECHANISM** — how 808.1.d.1 removes a Deathknell
+from the chain, how 455's recall switches off a *"while I'm at a battlefield"* clause, how Soraka's
+one application orders against a Guardian Angel attached to her. Those sit in entries whose **subject
+is the shield**.
+
+**Exactly two offer a protector as a PLAN to a line that needs one**, and the second is the negative
+form done right:
+
+- `ahri-trinity-svellsongur-hold`: *"`SFD-051 Guardian Angel` (Calm, 2 Energy) is **the insurance
+  inside the identity**"*
+- `keeper-of-masks-flurry-plaza-window`: *"Prevent (four cards pool-wide — `OGN-145 Unyielding Spirit`
+  would answer it outright and is **Body**, one domain away)"* — a plan named **and refused on
+  domain**
+
+**So the honest statement is narrower and more useful than the one I set out to make: the catalogue
+knows the protection rules extremely well and rarely offers a protector as a plan.** Two of 766.
+
+### (b) My §15 population was narrower than the rule, and it points at two entries
+
+§15 measured *"finishers with a **spell in a `payoff` role**"* — **eleven**. **359.3.c does not know
+about roles**: *"Other players have an opportunity to play Reactions before the resolution of
+spells."* The honest population is **every finisher carrying a spell anywhere in its line — 39 of
+80** — and only **12 of the 39** cite 359.3.c.
+
+**That is not 27 defects, and the cost band is why.** 425.1.c makes a counter cost exactly what was
+paid, so the exposure is the size of the spell:
+
+```
+most expensive spell in the line     entries   cite 359.3.c
+  E8+                                     9          7
+  E5-7                                    5          2
+  E3-4                                    7          2
+  E1-2                                   18          1
+```
+
+**An E1–E2 spell countered costs a card, not a game**, so the eighteen uncited entries in that band
+are not owed the sentence. **The E8+ band is where it matters, and it is nine entries which are ALL
+`OGN-122 Time Warp` at E10 + 4 Power** — the single most expensive spell any finisher in this
+catalogue casts, and all of it spent before the counter resolves.
+
+**Seven of the nine cite it. Two do not, and both carry Time Warp at role `enabler`:**
+
+```
+gutter-palace-keeper-time-warp   OGN-122 Time Warp (E10 P4)  role=enabler
+grand-plaza-loop-time-warp       OGN-122 Time Warp (E10 P4)  role=enabler
+```
+
+**My `role: payoff` filter is exactly why they were missed** — the fourth time in this walk a
+predicate of mine has been narrower than the rule it was testing. Both are ALT_WIN lines whose whole
+plan is the extra turn: counter the Time Warp and there is no extra turn, the win check never
+arrives, and 425.1.c refunds none of the E10 + 4 Power.
+
+**And `gutter-palace-keeper-time-warp` is now the most under-defended finisher this walk has found**:
+§13 showed it names no gear answer while its win condition **is** a gear (`UNL-088`, answerable for
+E1 + 1 Fury Power), and it also does not name the counter window on the E10 + 4 Power enabler that
+buys it the turn. Two independent single-card answers, neither stated. `grand-plaza-loop-time-warp`
+has the milder version: its win condition is a **battlefield** and therefore unremovable (§14, §17),
+so the Time Warp is its only counterable link — but it is a big one.
+
+**Reported, not applied:** `data/combos.json` was handed back to rc-manager8 before this measurement.
