@@ -260,3 +260,63 @@ times and was right to. The residue is 41 rules, not 96; of the honest top twent
 four are the defending side, four are lens rules the filter missed, and four are structurally absent
 families. **No finisher lead survives.** The one candidate that reached arithmetic — a defending Draven
 — is already in the catalogue as the ENGINE its own ceiling makes it.
+
+---
+
+## 7. Follow-up, same session: the instrument was hiding an instance of the shape it exists to find
+
+After reporting §1–§6 I checked whether the **committed** instrument carried the same defect as the
+throwaway generator. It did — `scripts/claude-md-gap.mjs` line 11 was the fully broken form, while
+CLAUDE.md §30.4 and walk §30.4 both tell lanes to run it and call the output *"cheap, exact, and
+ranked"*. The #187 walk document had **diagnosed it the same day and never patched it**.
+
+### 7.1 The failure mode nobody had seen is a FALSE NEGATIVE
+
+The inflation is documented. The suppression is not, and it is invisible by construction: the script
+skips a rule when CLAUDE.md is believed to carry it, and the dot-admitting lookahead made
+**CLAUDE.md carrying `419.4.a.1` read as carrying `419.4.a`**. The real gap was dropped before
+printing. **Sixteen gaps were suppressed this way** — 13 by a child, 3 by the hyphen trap:
+
+`316.8.b.1` (19×), `419.4.a` (19×), `464.2.e` (18×), `430.2` (16×), `377` (15×), `144.4.c` (14×),
+`161` (14×), `355.5` (13×), `383.4.d` (13×), `431.2` (13×), `464.2` (12×), `356.4.c` (11×), `465`
+(10×), plus `116`, `749`, `051` via the hyphen.
+
+**A parent is always hidden by its own child.** So the tool built to detect *"the exception is
+carried, the rule is not"* was structurally blind to precisely that shape. Fixed in `1727a80`;
+population at 10+ goes **97 → 75**, and the three exclusions are commented at the call site.
+
+### 7.2 The top row it was hiding is itself an instance of the shape
+
+I claimed §7.1's sixteen were "a fresh vein". Rather than leave that unchecked, I opened the top one.
+
+**316.8.b.1**, verbatim: *"Showdowns that occur as a result of a player moving to an empty Battlefield
+are a stand-alone Phase and do not create a Combat."*
+
+| | catalogue | CLAUDE.md | entries |
+|---|---:|---:|---:|
+| `316.8.b.1.a` — the **exception** (an arriving enemy converts it to a Combat Showdown) | 53 | **1** | 47 |
+| **`316.8.b.1` — the rule it is an exception to** | 19 | **0** | 9 |
+
+**Fourth independent instance of the batch-23 shape**, after `355.7`, `136.2.c`, `811.6` and the
+300–499 lane's `384`. And it is the sharpest, because CLAUDE.md reaches the same conclusion the long
+way: the bloodless-conquer verdict is assembled there from `344.2` (8 mentions) + `323.9` (12) +
+`807.1.d` (5) + `461` (3) — *"an attack trigger lives ONLY on the 323.9 path"* — while **316.8.b.1
+says it outright in one sentence**. That is the `811.6`-against-`811.1.b` pattern exactly: the file
+derives what a standalone paragraph states.
+
+### 7.3 Standing note
+
+**A fix that lives only in prose is not a fix.** The defect was diagnosed in a walk document while
+the instrument stayed broken and a *third* document kept recommending it as exact. When a walk
+diagnoses an instrument, patch the instrument in the same commit — otherwise the next lane inherits
+the defect **with a recommendation attached**, which is worse than inheriting it bare.
+
+**And the word *"exact"* is what stopped anyone re-checking it.** rc-synth called the join *"one line,
+exact"* and was right about the join and wrong about the implementation. A claim of exactness earns a
+test, not trust: the fix here took one line and the check that would have caught it was reading ten
+of the printed hits, which is this project's own standing rule.
+
+Filed as **#207** for the three consequences I was not the owner of: the sixteen unread gaps, the
+CLAUDE.md numbers that are now measurably wrong (§31.2's *"22 bucketed / 96 residue"* should be
+**26 / 41**), and the `204.3.a`-over-`383.3.b` citation upgrade that CLAUDE.md already prescribes and
+`combos.json` still has at 0 in finishers against 5.
