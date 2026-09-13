@@ -566,3 +566,50 @@ legend; that is correct, not a gap.)
 card set no legend could run. That is the last structural question I had about `uses`, and with it the
 structural surface — copies, Chosen Champion, legend, Signature, battlefields, zones, roles, the tag
 vocabulary, [Unique], and now the multi-hop domain union — is swept.
+
+---
+
+## 15. A CITATION DEBT FOUND BY INVERTING A PREDICATE THAT MEANT SOMETHING ELSE
+
+I hypothesised that an ENGINE citing rules **no other entry cites** would be an entry knowing
+something wrong. **The predicate found the opposite and the correction is the finding.** 74 ENGINEs
+cite two or more such paragraphs, and the top rows are entries that opened a whole rules BLOCK:
+`ki-barrier-shen-kinkou-prevent-pool` owns all **17** paragraphs of the 437 Prevent block,
+`gemcraft-seer-nocturne-vision-replacement-deploy` eleven of 410/419,
+`vilemaw-counter-strike-ambush-undo-is-free` eight of 813.4/354. **That signal detects rules DEPTH,
+not defect risk — those are the best-researched entries in the catalogue.** Fifth time today a first
+predicate meant something other than what I intended.
+
+**Inverted, it becomes the 816.1.c shape**: a fact ONE entry established that OTHERS need and do not
+cite. Tested against four blocks a single entry owns:
+
+| block | printings matching | entries using one | citing the block | **not citing** |
+|---|---:|---:|---:|---:|
+| 437 Prevent | 4 | 8 | 8 | **0** |
+| 355.14 Split | 3 | 3 | 3 | **0** |
+| 142 Lethal | 0 | 0 | 0 | — (my card predicate, not the pool) |
+| **424 Reveal** | 36 | 38 | 13 | **25** |
+
+**Narrowed to the entries that actually make the argument**, per #204's rule that an uncited paragraph
+is a debt only where an ENTRY makes the case it authorises: of the 38 entries using a reveal card,
+**26 argue the Burn-Out protection by citing 431.1.c**, and **SIXTEEN of those cite no 424 paragraph
+at all**: `svellsongur-ornn-hold`, `dazzling-aurora-elder-dragon`, `karthus-rift-herald-double-play`,
+`aurora-elder-dragon-garbage-grabber`, `ivern-nurturer-hold-tutor`, `blind-fury-kennen-deck-theft`,
+`teemo-strategist-swift-scout-hidden-flood`, `teemo-strategist-rabadons-deathcrown-bonus-kill`,
+`svellsongur-apprentice-smith-gear-dig`, `svellsongur-teemo-strategist-defend-burst`,
+`karma-ornn-hold-recycle-buff`, `karma-double-trouble-repeat-two-buffs`,
+`svellsongur-ivern-nurturer-optional-draw`, `iascylla-teemo-strategist-forced-defend`,
+`bandle-tree-blastcone-fae-teemo-double-hidden`, `ornn-blacksmith-late-may-resolution`.
+
+**They cite the CONSEQUENCE and not the MECHANISM.** 431.1.c, pasted: *"If an instruction directs a
+player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that
+player looks at or Reveals as many as possible, but does not Burn Out."* **424.1.a.2** is why:
+*"Cards remain in the zone they are being Revealed from,"* with Riot's own example — *"If a card is
+being Revealed from the top of a player's Main Deck, it is still the top card of that player's Main
+Deck."* Revealing cannot Burn Out **because nothing leaves the deck**, and 424.1.a makes the state
+*"temporary and not a zone"*.
+
+**This is a citation upgrade on sixteen entries, not a defect list** — every one of the sixteen reaches
+the right answer. It is the same shape `CLAUDE.md` already records for 355.7 against 355.10.d and for
+811.6 against the tail of 811.1.b: **the exception or the consequence is carried, and the rule that
+produces it is not.**
