@@ -266,7 +266,7 @@ has no card. **A refusal boundary: any future line claiming to strip a keyword i
 ## 7. Read and returned empty — recorded so nobody reads them twice
 
 - **`829.1.c.3`** — *"If a spell has multiple instances of the Flow keyword with different costs, its
-  controller may choose which cost to apply."* Swept: **17 Flow printings, none with two instances.**
+  controller may choose which cost to apply as they play it."* Swept: **17 Flow printings, none with two instances.**
   Dead letter.
 - **`827.1.c.4`** (*"Empower abilities may include text that alters the timing"*) and **`818.1.c.5`**
   (*"Equip abilities may include text that alters the timing or targeting"*). Swept: **zero** Equip

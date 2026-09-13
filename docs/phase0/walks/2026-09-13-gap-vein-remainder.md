@@ -751,7 +751,7 @@ Verified at source, not merely flagged:
 - **437.4** is quoted in `2026-09-07-rules-second-pass.md` as *"…that has all of that damage
   Prevented…"* — dropping Riot's doubled **"that all of that"**. This file records that precise
   defect, in those words, as the thing a walker's memory silently repairs. **It recurred.**
-- **829.1.c.3**, in a document dated **today**, is quoted as *"…may choose which cost to apply."*
+- **829.1.c.3**, in a document dated **today**, is quoted as *"…may choose which cost to apply as they play it."*
   The rule ends **"as they play it."**
 - **Bracketed gists** are the other live class: *"they will [Burn Out]"* for 431.1.a's *"perform this
   action"*, and *"other game effects and abilities can [reference]"*.

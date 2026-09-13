@@ -1685,7 +1685,7 @@ switches off every *"While I'm at a battlefield"* clause on what it saves, and 4
 movement lock can stop that. `SFD-060 Tianna Crownguard` saved that way stops locking points for a
 full turn.
 
-`SFD-194 Counter Strike` is the other mechanism. **437.4**: *"Damage dealt to a Unit that has all of
+`SFD-194 Counter Strike` is the other mechanism. **437.4**: *"Damage dealt to a Unit that has that all of
 that damage Prevented is not considered to have been dealt to it at all."* Nothing is relocated,
 nothing is exhausted, no kill event is generated. For a unit whose whole value is a location-dependent
 clause, **Prevent is the only correct save in the pool.**

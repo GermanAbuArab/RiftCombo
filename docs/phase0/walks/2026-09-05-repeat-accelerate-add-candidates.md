@@ -42,7 +42,7 @@ said the opposite of the claim), **every rule number issue #32 leans on was pull
 | **805.6 / 805.6.a** | *"It does not enter exhausted and then become ready."* / *"Accelerate will not interact with, or trigger, abilities that are affected by units becoming ready."* | as claimed |
 | **143.4** | *"Units enter the Board exhausted."* | as claimed |
 | **144.1.a / 144.2** | *"This action can be done any time during a player's Main Phase."* / *"Exhausting the Unit is the Cost for this action."* | as claimed |
-| **151.2** | *"The Activated Ability of Gear may be executed at any time during the controlling player's Main Phase during an Open State."* | as claimed |
+| **151.2** | *"The Activated Ability of Gear may be executed at any time during the controlling player's Main Phase during an Open State, and not during a Showdown."* | as claimed |
 | **315.1.b** | *"The Turn Player readies all Game Objects they control that are able to be readied."* | as claimed |
 | **167** | *"Every player's Rune Pool empties at the start of each player's Main Phase and the end of each player's turn."* | as claimed |
 | **383.4.c.1** | *"These are commonly structured as 'When I conquer…' and 'When you conquer…'"* | as claimed |

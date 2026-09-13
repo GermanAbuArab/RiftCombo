@@ -27,7 +27,7 @@ taken against the hand you passed the turn with, not that hand plus a card.
 4 cards in hand and exactly 4 units at battlefields, you win the game. Discard 1, exhaust: Play a 1
 Might Bird unit token with [Deflect]."
 
-- **195**: "A player also wins the game if an effect instructs them to do so." ✓
+- **195**: "A player also wins the game if an effect instructs them to do so, or if they are the only player remaining in the game." ✓
 - The tuning ability moves both counters at once, in the same direction the check needs: **hand −1,
   units +1**. That is what makes a single card able to land on 4/4.
 - The Bird can reach a battlefield. **355.2** — "For Units, choose a valid Location where that Unit

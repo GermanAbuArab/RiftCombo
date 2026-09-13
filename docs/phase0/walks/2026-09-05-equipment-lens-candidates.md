@@ -86,7 +86,7 @@ Se hizo primero y en bloque, antes de mirar ninguna candidata. Ninguna cita de #
 - **194.3** — *"The Victory Score is 8 points by default."*, **485.3** — *"Victory Score: 8"* en Duelo.
 - **472** — *"When a cleanup occurs and a player has accrued Points greater than or equal to the
   Victory Score for their Mode of Play, and if they have more points than any opponent, they Win the
-  Game."*  **195** — *"A player also wins the game if an effect instructs them to do so."*
+  Game."*  **195** — *"A player also wins the game if an effect instructs them to do so, or if they are the only player remaining in the game."*
 - **315.2.b.2** — el Scoring Step: *"The Turn Player Holds all Battlefields they Control."*
 
 ### Conquer, showdown y control

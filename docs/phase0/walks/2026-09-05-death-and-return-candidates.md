@@ -100,7 +100,7 @@ La muerte por `[Temporary]` y su Deathknell caen en el Beginning Step, **antes**
 - **190.3.a.1** — *"Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit's controller does not already control that battlefield."* → mover a un battlefield que YA controlás no aplica Contested.
 - **190.1** — *"Control is established over Battlefields through the course of play."*
 - **190.6.d** — *"'You' in a battlefield's abilities refers to the battlefield's Controller"*, y sin Controller *"all such instructions are ignored"*.
-- **195** — *"A player also wins the game if an effect instructs them to do so."*
+- **195** — *"A player also wins the game if an effect instructs them to do so, or if they are the only player remaining in the game."*
 - **485.4** — Duelo: **Battlefield Count: 2**. **485.4.a** — *"Each player provides three (3) Battlefields... Only 1 will be used, chosen during setup."*
 - **485.5 / 487.5** — *"Each player **randomly selects** one (1) of their three (3) Battlefields."*
 - **486.5** — *"Each player **selects** one (1) of their three (3) Battlefields."*

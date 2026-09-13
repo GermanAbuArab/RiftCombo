@@ -54,7 +54,15 @@ if(verify.length){
   console.log("");
 }
 for(const r of rows.slice(0,25)){
-  const re=new RegExp("(^|[\\s\\f])"+r.h.replace(/\./g,"\\.")+"\\.[\\s\\f]([\\s\\S]{0,150})");
+  // FIFTH member of this file's counting-trap family, found by rc-gap 2026-09-13. The preview took
+  // the FIRST occurrence of "NNN." in the rules text - and a rule number also appears in "See rule
+  // NNN." CROSS-REFERENCES, which can PRECEDE its own heading. With \\s matching a space, a mid-line
+  // cross-reference qualified, so rule 465 previewed as the tail of 143.2.b's cross-reference plus
+  // 143.2.b.1's text. Anchoring on a LINE START fixes it; [ \\t\\f]* keeps the form-feed headings this
+  // project already lost once. Verified zero regression: both forms find exactly 2,381 headings.
+  // 57 of 2,381 were affected - and they are the ones this project leans on hardest, including 469.1
+  // Conquer, 431 Burn Out, 417 Damage, 465/466 Combat, 811 Hidden, 428 Killing and the keyword blocks.
+  const re=new RegExp("(^|[\\n\\f])[ \\t\\f]*"+r.h.replace(/\./g,"\\.")+"\\.[ \\t]([\\s\\S]{0,150})");
   const m=R.match(re);
   const txt=(m?m[2]:"").replace(/\s+/g," ").trim().slice(0,105);
   console.log(`  ${String(r.c).padStart(4)}x  ${r.h.padEnd(12)} ${txt}`);

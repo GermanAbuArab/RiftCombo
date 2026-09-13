@@ -95,7 +95,7 @@ depends on it. It is now in `uses` with `role: "legend"`, matching the six other
 
 The frame is sound and every part the entry argued about checks out:
 
-- **195** — "A player also wins the game if an effect instructs them to do so." ✔
+- **195** — "A player also wins the game if an effect instructs them to do so, or if they are the only player remaining in the game." ✔
 - **143.4 / 143.4.a** — units enter the board exhausted, *"This can be altered by … similar game
   effects."* Renata's "Your tokens enter ready" is such an effect, which is R25 = A, ruled. ✔
 - **315** — the phase order is Awaken → **Beginning Phase (Beginning Step, then Scoring Step)** →
