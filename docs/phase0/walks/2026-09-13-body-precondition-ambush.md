@@ -820,3 +820,33 @@ could not explain from the probe.**
 **Reading found it, the probe hid it, and the reading is what made me go back.** The standing form is
 the one this project already has and this is a new instance of it: *a check that counts a card as
 evidence must ask whose card it is.*
+
+### And the shipped script had already solved it better than I did
+
+I went looking for my own bug in `scripts/adversarial-check.mjs`, expecting to find it. **It is not
+there, and the way it is avoided is better than my fix.** The script filters its detach set on a
+property of the CARD: `enemyFacing = !/friendly|you control/i.test(t)`, with the reason in its own
+comment — *"a detacher confined to 'friendly' or 'you control' cannot answer an opponent's line at
+all"* — taking the population *"from 5 base codes … down to ONE."*
+
+**My v2 fix was entry-relative and therefore weaker.** Asking *"is this answer card in the entry's own
+`uses`"* still counts `Grandmaster at Arms` as an answer for every entry that does **not** run it —
+and it never is one, for anybody. Measured with the shipped filter: of 4 detach names, exactly **ONE
+is enemy-facing (`SFD-011 Angle Shot`)**, and `Strike Down`, `Grandmaster at Arms` and `Veiled Temple`
+drop out as friendly-only.
+
+**The wide population moved with every correction and the actionable list did not**, which is the best
+evidence the list is right:
+
+| predicate | ENGINEs on Equipment naming no answer | thin-tail intersection |
+|---|---:|---:|
+| v1 (union, entry-blind) | 78 | 3 |
+| v2 (exclude the entry's own `uses`) | 86 | **4** |
+| v3 (+ the shipped enemy-facing filter) | **98** | **4** |
+
+**98 of the 104 ENGINEs standing on Equipment name no answer — 94%, which is why #200 was right not to
+emit it — and the four in the thin tail are stable under three successive tightenings.**
+
+**The reusable half: when you find a bug in your own check, go and read whether the shipped instrument
+that asks the same question has it.** Here it did not, and its filter was the better one; adopting it
+cost one line and made my number defensible instead of merely corrected.
