@@ -1211,3 +1211,79 @@ the one where the arithmetic is furthest off, because a Reflection starts at **z
 
 **A one-entry discrepancy in a table of fifteen was worth opening.** It was a hole in my predicate and,
 behind the hole, the worst instance of a defect already known.
+
+---
+
+## 21. A scope is safe exactly when it matches the threat — and the base-reacher census is **four, not three**
+
+§19 found `OGS-013 Garen` and `OGN-243 Darius` scope-live in 19 of 19 listings. They are `here`-scoped
+(*"Other friendly units have +1 :rb_might: **here**"*), so that result needed a reason rather than
+luck, and the reason generalises: **a scoped answer is complete exactly when the threat carries the
+same scope.** `OGN-133 Flurry of Blades` reads *"all units **at battlefields**"* and the Plaza counts
+its seven **here**, so the grant's footprint, the threat's footprint and the win condition's footprint
+are one and the same. Nothing at the base is threatened, protected, or counted.
+
+**Testing the general form meant reading the other nineteen.** Predicate: each of the twenty
+multi-body removal cards in `2026-09-13-might-1-survivability.md`, tested for **any** location clause
+in its removal instruction — *at battlefields*, *at a battlefield*, *at that battlefield*, *at my
+battlefield*, *here*, *in combat*, *to their base* — reminder text stripped, **all twenty printed and
+read**.
+
+| the six +Might answers | scope |
+|---|---|
+| `VEN-018 Rage Amplifier` *"Your units have +1"* | **board-wide** |
+| `UNL-077 Soul Shepherd` *"Your token units have +1"* | **board-wide** (token-scoped, not location-scoped) |
+| `UNL-147 Baron Nashor` *"Other friendly units have +2"* | **board-wide** |
+| `UNL-191 Wuju Master` *"[Level 6] Your units have +1"* | **board-wide** |
+| `OGS-013 Garen, Commander` | **here** |
+| `OGN-243 Darius, Executioner` | **here** |
+
+**Sixteen of the twenty threats carry a location clause. Four do not — and the seven Ivern notables
+say THREE.**
+
+```
+UNL-132 Angler Beast  (Chaos, E5 P1 M5)  When you play me, return all units with 2 Might or less…
+VEN-133 Glowstone     (Order, E2)        …At the end of your turn, kill this and deal 5 to all units you control.
+UNL-180 The Ruination (Order, E9 P3)     Kill all units.
+SFD-147 Downwell      (Chaos, E8 P2)     Return all units and gear to their owners' hands.
+```
+
+**`VEN-133 Glowstone` is the missing fourth, and it is the cheapest of them by a wide margin — E2
+against E5, E8 and E9.** Its full text is *"[Empower] 2 rainbow. Disempower this, :rb_exhaust:: Choose
+a player. They gain control of this and recall it. At the end of your turn, kill this and deal 5 to
+all units you control."* The route is printed on the card: play it, Empower it, then disempower and
+exhaust to **hand it to the opponent**. 053.2 makes a gear say *"this"* and *"your turn"* its
+**controller's** turn, so once the Ivern player controls it, the end of **their** turn kills it and
+deals 5 to all units **they** control — **with no location clause, so the base-parked tag body dies
+with the rest.** The timing works against a Hold line: the body dies at the end of turn N and the
+Hold at the start of turn N+1 finds three tags.
+
+**Two honest qualifications, stated rather than left out.** It is **5 damage**, so it is not in the
++Might family's reach at all — no +1 or +2 lifts a token near it, which is why it belongs in the
+base-reacher census and nowhere near the repair list. And it costs the opponent a full setup (E2 plus
+2 rainbow plus an exhaust, across turns) and sits visibly on the board first.
+
+**The census is still wrong, and a census is the kind of claim this project repairs by naming
+members.** The sentence in all seven Ivern notables reads *"THREE carry no location clause of their
+own and take the base too"* and names three; the fourth is `VEN-133 Glowstone`.
+
+**And the source is the same table that produced §8's two residuals.** The predecessor's twenty-card
+table classifies Glowstone's scope as *"units they control"* while marking the other three
+*"everywhere"* — a scope written from the sentence's subject rather than from its **absence of a
+location clause**. The table has now been the origin of three separate inherited errors (the
+non-existent Birds, the non-existent Sand Soldiers, and this), which is the durable point: **a scope
+column is a reading, and a reading belongs in prose where it can be argued with, not in a column
+where it is copied.**
+
+### The general rule the Garen result was standing on
+
+| answer scope | complete against | partial against |
+|---|---|---|
+| **here** (Garen, Darius) | the 16 location-scoped threats, **and only at that battlefield** | anything reaching the base |
+| **board-wide** (Rage Amplifier, Soul Shepherd, Baron Nashor, Wuju Master) | everything its Might threshold clears, **wherever the body stands** | — |
+
+**So the eighteen entries that park a Might ≤2 body at base need a BOARD-WIDE +Might, and a
+here-scoped one does nothing for them** — and no Ivern notable says so, because the Ivern notables
+were written about the base-reaching threats and the Plaza notables about the here-scoped one, and
+nobody put the two halves in the same sentence. `data/combos.json` is rc-manager8's; this is a
+report.
