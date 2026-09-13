@@ -27,17 +27,39 @@
 //      assumption exactly like holding the card, not a choice the player makes. Both paragraphs are
 //      cited by nothing else in this project (108.5.d by nothing at all).
 //
-//      KNOWN AND UNPATCHED, AND IT POINTS THE OTHER WAY FOR ONE CLASS. `deployTurn` prices every card
-//      in a closure against the rune curve, which is right for a BURST or a CHAIN, where every Energy
-//      comes from a rune. It is WRONG for an Energy engine: once an `infinite-energy` loop is live,
-//      everything bought afterwards is free and only its POWER still comes off the curve. So for the
-//      INFINITE class the number is an OVER-estimate — the opposite direction to the under-estimate
-//      that folding `needs` upward fixed on 2026-09-13 — and **the INFINITE column is not a floor and
-//      must not be quoted as one.** Hand-walked, `jhin-fiora-facebreaker-recall` is T4 where this
-//      script says T5 (docs/plays/2026-09-13-the-loop-that-wants-a-contested-board.md), and its
-//      section 5b is the control case: `twilight-reveler-eye-facebreaker-recruits` scores the same T5
-//      here, produces no Energy, and really is T5. Fixing it needs a model of WHEN a loop ignites,
-//      which is a larger thing than the fold was, so it is recorded rather than guessed at.
+//      THE ENGINE'S OWN OUTPUT IS PRICED AS OF 2026-09-13, AND IT IS ON BY DEFAULT. `deployTurn`
+//      used to price every card in a closure against the rune curve, which is right for a BURST or a
+//      CHAIN, where every Energy comes from a rune, and WRONG for an Energy engine: once a loop
+//      declaring `produces: ["infinite-energy"]` is assembled, everything bought afterwards costs no
+//      Energy and only its POWER still comes off the curve. `gemdragon-henge-vi-blind-fury` says so
+//      in its own `terminatesIn` - "it wins by buying dragonstorm-brambleback-trinity-conquer (30
+//      Energy, 10 points in one Conquer)" - and this table was charging those 30 Energy to runes.
+//
+//      The model, read from the catalogue's own `produces` and never from prose: cards belonging to
+//      a closure entry that produces `infinite-energy` are the ENGINE and pay rune prices; every
+//      other card in the merged set is POST-IGNITION, pays no Energy (and no Power if some engine
+//      produces `infinite-power`), and is GATED behind the engine being complete. The engine
+//      finishing this turn counts, which is what the hand walk of `jhin-fiora-facebreaker-recall`
+//      does - it assembles the loop and spends its Energy in the same Main Phase. Eleven rows move,
+//      all EARLIER, and that row moves T5 -> T4, matching the hand walk that reported the defect.
+//      `--no-ignition` reproduces the old table exactly.
+//
+//      WHAT IT COSTS, bounded by a SANDWICH rather than asserted. The gate forbids buying a
+//      post-ignition card early at full price, which can only push a row LATER than the truth.
+//      `--ignition-nogate` keeps the discount and drops the gate, letting a card be bought early
+//      cheaper than it really would be, which can only pull a row EARLIER than the truth. So the
+//      truth is pinned between them, and they AGREE on 75 of 80 rows. The five they do not are
+//      `jayce-mesmerize-renata`, `lux-infinite-power`, `renata-bubble-bot-ready`,
+//      `renata-mastermind-points` and `swain-double-conquer`, each T5 gated against T4 ungated - so
+//      those five are T4 or T5 and this table prints the LATER of the two. They are all the same
+//      shape: `lux-infinite-power` is itself an engine that NEEDS `infinite-energy`, so its own six
+//      Energy should be free once `lux-infinite-energy` ignites, and the model flattens that nesting
+//      by charging every fuel producer at rune prices. That is a conservative flattening - it can
+//      only over-charge - and unflattening it needs a per-stage ignition order, which is the next
+//      thing here and is deliberately not guessed at.
+//
+//      So the INFINITE column is no longer the over-estimate it was, and it is still not a floor:
+//      five rows may be one turn early and the header says which.
 //
 //      ORDERING IS MODELLED AS OF 2026-09-13 AND IT MOVES NOTHING, WHICH IS THE RESULT. `deployTurn`
 //      used to ask only whether every cost was PAYABLE by turn N; an [Equip] is not merely a second
@@ -45,7 +67,7 @@
 //      Activated Ability "can primarily be activated while on the Board". That is now a real
 //      constraint in the allocator (`link` / `after` in costsOfSet, the `cap` in walk), it is exact,
 //      and `--selftest` proves it can SEE a turn where a hand-derived case owes one. Measured over
-//      the catalogue: 33 of the 80 finisher rows carry a linked cost and the constraint moves ZERO
+//      the catalogue: 31 of the 80 finisher rows carry a linked cost and the constraint moves ZERO
 //      of them.
 //
 //      The null is by a HAIR and rests on one paragraph. 359.2.d enters a non-unit gear "Ready at
@@ -55,7 +77,7 @@
 //      SIX rows move by exactly one turn (reveler-svellsongur-jhin-infinite-power,
 //      shen-kinkou-svellsongur-hold, svellsongur-copy-hold, swain-shurelya-double-conquer,
 //      swain-svellsongur-conquer-burst, trinity-skyfall-arena-second-battlefield-chain), taking the
-//      unopposed headline from 45 to 47 of 80. The catalogue's gear lines sit exactly on the
+//      unopposed headline from 38 to 41 of 80. The catalogue's gear lines sit exactly on the
 //      boundary, and 359.2.d is worth a turn on six of them.
 //
 //      WHAT IS STILL NOT MODELLED, with its size. An [Equip] also needs a CARRIER - 818.1.c.2,
@@ -79,6 +101,23 @@ const holds = args.includes("--holds");
 const holdNotables = args.includes("--holds-notables");
 const engines = args.includes("--engines");
 const strictOrdering = args.includes("--strict-ordering");
+// --ignition prices an Energy (or Power) engine's own output: once a loop declaring
+// `produces: ["infinite-energy"]` is assembled, everything bought afterwards costs no Energy, so
+// charging the payoff against the rune curve is the known OVER-estimate in this file's header.
+// OFF by default until the restriction it makes is verified against an independent search.
+// ON by default since 2026-09-13: leaving it off keeps a known NINE-turn error
+// (bottled-constellation-time-warp read T14 where its own fuel makes it T5) in preference to a
+// bounded one-turn one on five named rows. `--no-ignition` reproduces the old table exactly.
+const ignition = !args.includes("--no-ignition");
+// The SANDWICH that proves --ignition's restriction is free. --ignition forbids buying a
+// post-ignition card before the loop is running, which can only push a row LATER than the truth.
+// --ignition-nogate keeps the discount and drops the gate, which lets a card be bought early at a
+// price lower than it would really pay, and so can only pull a row EARLIER than the truth. Where the
+// two agree, the truth is pinned between them and equals both. Where they disagree, the restriction
+// is costing something and the row needs a hand walk.
+const ignNoGate = args.includes("--ignition-nogate");
+const FUEL_E = "infinite-energy";
+const FUEL_P = "infinite-power";
 
 const cards = JSON.parse(readFileSync("data/cards.json", "utf8")).cards;
 const db = JSON.parse(readFileSync("data/combos.json", "utf8"));
@@ -257,9 +296,10 @@ let greedyFallbacks = 0;
 function typesOf(costs) {
   const byType = new Map();
   for (const c of costs) {
-    const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.link || ""}`;
+    const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.gated ? 1 : 0}|${c.link || ""}`;
     if (!byType.has(k))
-      byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, link: c.link || "", after: c.after || "", n: 0, kids: [] });
+      byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, gated: !!c.gated,
+                      link: c.link || "", after: c.after || "", n: 0, kids: [] });
     byType.get(k).n++;
   }
   const all = [...byType.values()];
@@ -272,10 +312,12 @@ function typesOf(costs) {
     const parent = t.after ? byLink.get(t.after) : null;
     if (parent) parent.kids.push(t); else roots.push(t);
   }
-  const desc = (t) => `${t.e}|${t.p}|${t.unit ? 1 : 0}|${t.n}` +
+  const desc = (t) => `${t.e}|${t.p}|${t.unit ? 1 : 0}|${t.gated ? 1 : 0}|${t.n}` +
                       (t.kids.length ? `(${t.kids.map(desc).sort().join(",")})` : "");
   const cmp = (a, b) => (desc(a) < desc(b) ? -1 : desc(a) > desc(b) ? 1 : 0);
-  roots.sort(cmp);
+  // Gated roots emit LAST, so that when the recursion reaches one, every ungated type's count for the
+  // state being built is already in `cnt` and the "is the engine complete" test can simply read it.
+  roots.sort((a, b) => (a.gated ? 1 : 0) - (b.gated ? 1 : 0) || cmp(a, b));
   const types = [];
   const emit = (t, dep) => {
     t.dep = dep;
@@ -311,7 +353,7 @@ function deployTurnUncached(types, costs) {
   // 50 seconds against 4.6 before. Lowered to 2e5, which keeps it near 5 and sends only the very
   // largest rows to the greedy pass - and the header PRINTS how many, so a row priced by the defect
   // #205 removed can never be read as exact. Raise it if this ever runs somewhere without a clock.
-  if (space > 2e5) { greedyFallbacks++; const g = greedyTurn(costs); return { all: g, unit: g }; }
+  if (space > (Number(process.env.RC_GUARD) || 2e5)) { greedyFallbacks++; if (process.env.RC_FB) console.error("FALLBACK space=" + space + " dim=" + dim); const g = greedyTurn(costs); return { all: g, unit: g }; }
   const FULL = space - 1;                       // every count at its maximum
 
   let curR = new Int8Array(space).fill(-1);     // runes on board, -1 = state unreachable
@@ -327,6 +369,9 @@ function deployTurnUncached(types, costs) {
   // for the same reason the closure itself is hoisted: this is the innermost loop in the file. A
   // dependant reads its root out of this array, which is why typesOf emits a root before its kids.
   const cnt = new Int16Array(dim);
+  // index of the first gated type, or -1 when there are none (every row without an engine fold)
+  let ungated = -1;
+  for (let i = 0; i < dim; i++) if (types[i].gated) { ungated = i; break; }
   const walk = (i, e, p, delta, tookUnit) => {
     if (i === dim) {
       const k = idx + delta;
@@ -351,7 +396,23 @@ function deployTurnUncached(types, costs) {
     const root = t.dep < 0 ? -1 : strictOrdering
       ? ((idx / stride[t.dep]) | 0) % (types[t.dep].n + 1)   // the count BEFORE this turn
       : cnt[t.dep];                                          // the count as at this turn
-    const cap = t.dep >= 0 && root < t.n ? root : t.n;
+    let cap = t.dep >= 0 && root < t.n ? root : t.n;
+    // IGNITION. A gated cost belongs to a card bought with the engine's own output, so it cannot be
+    // paid until the engine is complete. `ungated` is the index of the first gated type, and every
+    // type before it has already written its count for the state being built (typesOf emits gated
+    // roots last), so "complete" is a read rather than a search. The engine finishing THIS turn
+    // counts, which is what the hand walk of jhin-fiora-facebreaker-recall does - it assembles the
+    // loop and spends its Energy in the same Main Phase.
+    //
+    // THE RESTRICTION THIS MAKES, stated because it is the thing to check: the model does not let a
+    // post-ignition card be bought EARLY at full price. That can only ever push a row later, never
+    // earlier, so this number is not a floor in the way the rest of the table is. It is verified
+    // against an independent search over the affected rows rather than assumed.
+    if (t.gated && ungated >= 0 && !ignNoGate) {
+      let done = true;
+      for (let z = 0; z < ungated; z++) if (cnt[z] < types[z].n) { done = false; break; }
+      if (!done) cap = have;
+    }
     for (let q = 0; q <= t.n - have; q++) {
       if (have + q > cap) break;
       cnt[i] = have + q;
@@ -393,6 +454,9 @@ function greedyTurn(costs) {
       for (let i = 0; i < remaining.length; i++) {
         const c = remaining[i];
         if (c.after && (paid.get(c.after) ?? 0) <= (paid.get(c.link) ?? 0)) continue;
+        // the --ignition gate, so a fallback row cannot buy the payoff with Energy the loop has not
+        // started producing yet
+        if (c.gated && !ignNoGate && remaining.some((o) => !o.gated)) continue;
         if (c.e <= energy && c.p <= recyclable) {
           if (c.link) paid.set(c.link, (paid.get(c.link) ?? 0) + 1);
           energy -= c.e;
@@ -569,6 +633,7 @@ const producesPoints = (e) => e.produces.some((p) => POINTY.has(p));
 // entry as the cheapest fuel for `ready-recruits-grand-plaza`. A banned entry still gets its own ROW,
 // marked, because refusing to price it would hide it; it just cannot be anybody else's partner.
 const consumers = db.combos.filter((c) => c.needs.length && producesPoints(c) && !usesBanned(c));
+const byId = new Map(db.combos.map((c) => [c.id, c]));
 const producers = new Map();
 for (const c of db.combos) {
   if (usesBanned(c)) continue;
@@ -628,7 +693,7 @@ function equipCost(c) {
 }
 
 /** THE ONLY cost builder. #205 shipped a defect because there were two and one was patched. */
-const costsOfSet = (set) => {
+const costsOfSet = (set, ign) => {
   const out = [];
   const equips = [];
   // 821.1.c: [Weaponmaster] attaches one of your Equipment "for one rainbow less", so the cheapest
@@ -650,17 +715,52 @@ const costsOfSet = (set) => {
     // this pool contains an exhaust (measured: 0 exhaust symbols across the 40 Equipment).
     const linked = !!(eq && (eq.e || eq.p));
     // 143.4 exhausts UNITS only, so only a unit costs a readiness turn.
+    // POST-IGNITION. A card outside the engine's own set is bought after the loop is running, so an
+    // `infinite-energy` engine pays its Energy and an `infinite-power` engine its Power. `gated`
+    // then forbids paying for it before the engine is complete - see the note on the restriction in
+    // deployTurnUncached.
+    const post = !!(ign && !ign.bases.has(b));
+    const ce = post && ign.freeE ? 0 : c.energy || 0;
+    const cp = post && ign.freeP ? 0 : c.power || 0;
     for (let i = 0; i < q; i++) {
-      out.push({ e: c.energy || 0, p: c.power || 0, unit: c.type.includes("unit"),
+      out.push({ e: ce, p: cp, unit: c.type.includes("unit"), gated: post,
                  link: linked ? `${b}#play` : "" });
-      if (linked) equips.push({ e: eq.e, p: eq.p, unit: false, link: `${b}#equip`, after: `${b}#play` });
+      if (linked) equips.push({ e: post && ign.freeE ? 0 : eq.e, p: post && ign.freeP ? 0 : eq.p,
+                                unit: false, gated: post, link: `${b}#equip`, after: `${b}#play` });
     }
   }
   if (weaponmaster && equips.length) {
     equips.sort((a, b2) => a.e + a.p - (b2.e + b2.p));
     equips.shift();
   }
-  return out.concat(equips);
+  // COLLAPSE FREE COSTS. N items that cost nothing are payable exactly when one of them is, so N of
+  // them and one of them are the same constraint - but they are N+1 states against 2, and with
+  // --ignition a row whose engine supplies both fuels turns its whole payoff into free costs. Exact,
+  // not an approximation: the only thing a free cost can still carry is the readiness turn a UNIT
+  // owes (143.4), and that rides on the representative as a disjunction.
+  const all = out.concat(equips);
+  // A cost that something else DEPENDS on may not be collapsed: three free gears carrying three
+  // [Equip] costs are three roots, and folding them to one leaves the equips permanently gated
+  // behind a root that can never reach three. Found by a row going to Infinity, which is what a
+  // deadlock looks like from outside.
+  // An ordering constraint between two costs that BOTH cost nothing can never bind, so dropping it
+  // is exact and it is what lets a whole free payoff collapse. Only with --ignition does this ever
+  // fire: without it no play cost is zero and no equip cost is zero.
+  const allFree = new Map();
+  for (const c of all) if (c.link) allFree.set(c.link, (allFree.get(c.link) ?? true) && !c.e && !c.p);
+  for (const c of all) if (c.after && !c.e && !c.p && allFree.get(c.after)) { c.after = ""; c.link = ""; }
+  const roots = new Set(all.filter((c) => c.after).map((c) => c.after));
+  const collapsible = (c) => !c.e && !c.p && !c.after && !roots.has(c.link || "");
+  const free = all.filter(collapsible);
+  if (free.length < 2) return all;
+  const rest = all.filter((c) => !collapsible(c));
+  const keys = new Set(free.map((c) => `${c.gated ? 1 : 0}|${c.link || ""}`));
+  const kept = [];
+  for (const k of keys) {
+    const group = free.filter((c) => `${c.gated ? 1 : 0}|${c.link || ""}` === k);
+    kept.push({ ...group[0], unit: group.some((c) => c.unit) });
+  }
+  return rest.concat(kept);
 };
 
 /**
@@ -695,6 +795,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   let cards = ownCards;
   let produces = new Set(e.produces);
   let fuel = null;
+  let closureIds = [e.id];
   if ((e.needs || []).length) {
     let best = null;
     for (const c of closuresOf(e, new Set(), 0)) {
@@ -703,7 +804,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
     }
     // An unsatisfiable `needs` is NOT silently ignored: price the entry alone and say the fuel is
     // missing, so a reader can tell "cheap" from "cheap because half of it was not counted".
-    if (best) { cards = best.c.cards; produces = best.c.produces;
+    if (best) { cards = best.c.cards; produces = best.c.produces; closureIds = best.c.ids;
                 fuel = best.c.ids.filter((id) => id !== e.id).join(" + ") || null; }
     else fuel = "NEEDS UNSATISFIABLE in two domains";
   }
@@ -735,7 +836,32 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   // Read on whichever entry carries the PAYOFF and never on the fuel: `lux-infinite-energy` brings
   // UNL-165 Shadow's Call, whose reminder says "at the start of its controller's Beginning Phase",
   // and folding that in would charge a readiness turn to every line that burns Lux Energy.
-  const finalCosts = costsOfSet(cards);
+  // The ignition descriptor: which of the merged cards belong to an engine that declares unbounded
+  // Energy or Power, and therefore which of the rest are bought with its output rather than with
+  // runes. Read from the catalogue's own `produces`, never from prose. Only the FINAL pricing uses
+  // it; the closure and consumer searches above compare candidates at rune prices, which is a
+  // heuristic for WHICH fuel to fold and not part of the answer.
+  let ign = null;
+  if (ignition) {
+    const engineIds = closureIds.filter((id) => {
+      const c = byId.get(id);
+      return c && (c.produces || []).some((x) => x === FUEL_E || x === FUEL_P);
+    });
+    if (engineIds.length) {
+      let bases = {};
+      let freeE = false, freeP = false;
+      for (const id of engineIds) {
+        const c = byId.get(id);
+        bases = mergeSets(bases, cardSetOf(c));
+        if ((c.produces || []).includes(FUEL_E)) freeE = true;
+        if ((c.produces || []).includes(FUEL_P)) freeP = true;
+      }
+      const baseSet = new Set(Object.keys(bases));
+      // No post-ignition cards means nothing to discount, and the row is priced exactly as before.
+      if (Object.keys(cards).some((b) => !baseSet.has(b))) ign = { bases: baseSet, freeE, freeP };
+    }
+  }
+  const finalCosts = costsOfSet(cards, ign);
   const d = deployTurn(finalCosts);
   const gated = beginningPhaseGated(e) || (consumer ? beginningPhaseGated(consumer) : false);
   const pays = d.all === Infinity ? Infinity : d.all + ((d.unit === d.all && d.unit !== 0) || gated ? 1 : 0);

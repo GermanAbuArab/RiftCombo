@@ -77,6 +77,17 @@ describe("the turn clock", () => {
   });
 
   /**
+   * The THIRD hand-walked reference point, and the one that justifies pricing an engine's own output
+   * by default (docs/plays/2026-09-13-the-loop-that-wants-a-contested-board.md §4). The loop is
+   * assembled on T3 and its Energy buys Renata and the Rage Amplifier in the SAME Main Phase, so the
+   * Grand Plaza hold lands on T4. The clock said T5 for as long as it charged every card in the
+   * closure to the rune curve; it says T4 now.
+   */
+  it("agrees with the hand walk on jhin-fiora-facebreaker-recall (T4)", () => {
+    expect(rows.get("jhin-fiora-facebreaker-recall")?.pays).toBe(4);
+  });
+
+  /**
    * 143.4 exhausts UNITS only — 359.2.d enters a non-unit gear READY at base and 359.3 makes a spell
    * linger on the Chain — so the readiness turn must NOT be universal. If some row does not pay it,
    * the narrowing is live; if every row paid it, the `+1` would be unconditional again.
@@ -110,6 +121,32 @@ describe("the allocator's ordering constraint", () => {
     });
     expect(st).toContain("# all pass");
     expect(st).not.toContain("FAIL");
+  });
+
+  /**
+   * The engine-output discount is a RESTRICTION as well as a discount — a post-ignition card may not
+   * be bought before the loop is running — and a restriction can only push a row later than the
+   * truth. `--ignition-nogate` drops the gate while keeping the discount, which can only pull a row
+   * earlier than the truth, so the two bound it. This asserts the sandwich is still tight nearly
+   * everywhere; if a change widens it, the number in the header is stale and the rows it names are
+   * wrong.
+   */
+  it("keeps the ignition sandwich tight on all but a handful of rows", () => {
+    const loose = execFileSync("node", ["scripts/adversarial-check.mjs", "--turns", "--ignition-nogate"], {
+      encoding: "utf8",
+      maxBuffer: 1 << 24,
+    });
+    const other = new Map<string, number>();
+    for (const line of loose.split("\n")) {
+      const m = line.match(/T\s*(\d+|Infinity)\s+vs\s+T(\d+)\s+baseline\s+(?:SLOWER)?\s*(?:INFINITE|BURST|CHAIN|ALT_WIN)\s+\S+\s+(\S+)/);
+      if (!m) continue;
+      other.set(m[3]!, m[1] === "Infinity" ? Infinity : Number(m[1]));
+    }
+    expect(other.size).toBe(rows.size);
+    const differ = [...rows].filter(([id, r]) => other.get(id) !== r.pays);
+    expect(differ.length, differ.map(([id, r]) => `${id} ${r.pays}/${other.get(id)}`).join(" || ")).toBeLessThanOrEqual(6);
+    // and every disagreement is at most one turn, which is what makes "T4 or T5" a statement
+    for (const [id, r] of differ) expect(r.pays - (other.get(id) as number), id).toBeLessThanOrEqual(1);
   });
 
   it("still has a non-empty linked population, so 'it moves nothing' cannot go vacuous", () => {

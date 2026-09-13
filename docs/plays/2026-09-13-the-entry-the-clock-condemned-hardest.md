@@ -8,17 +8,18 @@ first — this play is about what that document's baseline is and is not for.
 **Subject: `svellsongur-copy-hold`** — a BURST, T6, and a member of the worst-scoring population in
 the whole catalogue on the day's headline numbers. It is:
 
-- in **BURST**, the class where **21 of 23** rows pay later than the do-nothing Hold curve;
+- in **BURST**, the class where **20 of 23** rows pay later than the do-nothing Hold curve;
 - in the `--stalled` pass's **HOLD** bucket, labelled *"DIES WITH THE CURVE … the stall that makes
   this line necessary is the same stall that switches it off"*;
-- one of the **23 entries that are both**, which is the sharpest negative any instrument in this
+- one of the **21 entries that are both**, which is the sharpest negative any instrument in this
   project produces.
 
-Those three counts read 20, the same bucket, and 8 when this play was first written, and all three
-are re-measured here on 2026-09-13 at catalogue 766: pricing `[Equip]` took BURST from 20 to 21, and
-the `--stalled` precedence fix moved seventeen battlefield-payoff rows into the HOLD bucket, so the
-intersection is 46 and 45 overlapping in 23 rather than in 8. **Re-derive them; do not quote them.**
-Nothing in the argument below turns on any of the three.
+Those three counts read 20, the same bucket, and 8 when this play was first written. They are
+re-measured here on 2026-09-13 at catalogue 766 — and then re-measured a second time the same
+afternoon, because the clock learned to price an engine's own output and the unopposed headline fell
+from 45 to 38 of 80 while this paragraph was being written. **Re-derive them; do not quote them.**
+Nothing in the argument below turns on any of the three, and the subject entry's own T6 is untouched
+by both changes because it folds no fuel.
 
 **And every one of those verdicts is measured against a board this line was never for.** On the board
 it *is* for it wins three turns early. This play is the correction, and it is a correction to
@@ -70,9 +71,9 @@ pay for it — the Energy-1 units that make the unopposed curve T5 are not neede
 scoped to a **Conquer**, and these are Holds.
 
 **Against that curve this line is T6 against T9 — three turns early.** Measured over the whole
-catalogue the re-baselining moves the class from **21 of 23 slower to 1 of 23**, and the whole table
-from 45 of 80 to **6 of 80** (2026-09-13, catalogue 766). Both numbers are true; they answer
-different questions, and the script now prints both.
+catalogue the re-baselining moves the class from **20 of 23 slower to 1 of 23**, and the whole table
+from 38 of 80 to **4 of 80** (2026-09-13, catalogue 766, with the engine-output discount on). Both
+numbers are true; they answer different questions, and the script now prints both.
 
 ## 3. The turns, on the board it is for
 
@@ -115,7 +116,7 @@ Base"* — so the gear is a Game Object on the board the moment it resolves, 380
 `[Equip]` cost in this pool contains an exhaust. Run the clock with `--strict-ordering`, which forbids
 the same turn and is therefore **wrong as rules**, and this row reads **T7**: the old table was the
 optimum of a game one paragraph stricter than the real one. Six rows move under that probe and the
-unopposed headline goes from 45 to 47 of 80, so the whole gear half of the catalogue sits exactly on
+unopposed headline goes from 38 to 41 of 80, so the whole gear half of the catalogue sits exactly on
 that boundary.
 
 Two assumptions this table inherits from the clock and does not hide. It ignores which **domain** a

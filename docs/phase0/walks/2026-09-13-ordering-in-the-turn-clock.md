@@ -61,9 +61,15 @@ different base codes, or every gear line would miss the memo (`link` is built ou
 Runtime went **down**, not up: `--turns` is 0.18s against the 0.34s the handoff recorded, because the
 prune shrinks the search. The exact allocator still covers 79 of 80 rows.
 
+**Every count in this document was re-measured after the ignition change landed later the same day**
+(§9), which moved the unopposed headline from 45 to 38 and the linked population from 33 to 31. The
+six rows the strict probe moves are the same six; only the totals around them moved. That is the
+second time in one session that a number here went stale within the hour, which is the whole reason
+this project writes the predicate beside the number.
+
 ## 3. The null, and the proof the instrument can see
 
-**33 of the 80 finisher rows carry a linked `[Equip]` cost. The constraint moves ZERO of them.**
+**31 of the 80 finisher rows carry a linked `[Equip]` cost. The constraint moves ZERO of them.**
 (Predicate: a row whose `costsOfSet` output contains an item with an `after`; printed by `--turns` as
 its own non-vacuity line so it cannot go quietly vacuous.)
 
@@ -92,11 +98,11 @@ only ever be paid for once.
 only as a sensitivity probe, because a null that nobody has stress-tested is indistinguishable from a
 constraint that was never wired up.
 
-Under it, **six rows move by exactly one turn** and the unopposed headline goes from 45 to 47 of 80:
+Under it, **six rows move by exactly one turn** and the unopposed headline goes from 38 to 41 of 80:
 
 | entry | legal | strict |
 |---|---:|---:|
-| `reveler-svellsongur-jhin-infinite-power` | T8 | T9 |
+| `reveler-svellsongur-jhin-infinite-power` | T5 | T6 |
 | `shen-kinkou-svellsongur-hold` | T6 | T7 |
 | `svellsongur-copy-hold` | T6 | T7 |
 | `swain-shurelya-double-conquer` | T6 | T7 |
@@ -176,3 +182,73 @@ not citations. Now in the script header beside the optimism it explains.
    a rule. Write the second algorithm.
 4. **The representation can already contain the constraint.** The expensive-sounding change was four
    lines because two costs that must be ordered were already two counted types.
+
+---
+
+## 9. The other gap in the same header, closed the same day: an engine's own output
+
+The header carried a second known defect beside ordering, and it points the opposite way.
+`deployTurn` priced **every** card in a closure against the rune curve, which is right for a BURST
+and wrong for an Energy engine: once a loop is assembled, what it buys afterwards costs no Energy.
+`gemdragon-henge-vi-blind-fury` says so in its own `terminatesIn` — *"it wins by **buying**
+dragonstorm-brambleback-trinity-conquer (30 Energy, 10 points in one Conquer)"* — and the clock was
+charging those 30 Energy to runes.
+
+**The model, read from `produces` and never from prose.** Cards belonging to a closure entry that
+produces `infinite-energy` are the ENGINE and pay rune prices. Every other card in the merged set is
+POST-IGNITION: it pays no Energy, pays no Power if some engine also produces `infinite-power`, and is
+**gated** behind the engine being complete. The engine finishing *this* turn counts, which is exactly
+what the hand walk of `jhin-fiora-facebreaker-recall` does — it assembles the loop and spends its
+Energy in the same Main Phase.
+
+**Eleven rows move, every one of them earlier.** `bottled-constellation-time-warp` T14 → T5,
+`time-warp-hold-burst` T12 → T5, `dragonstorm-brambleback-trinity-conquer` T16 → T12,
+`threshold-reveler-infinite-energy` T8 → T4, `jhin-fiora-facebreaker-recall` **T5 → T4**. The
+headline goes 45 → **38** unopposed and 6 → **4** contested, and INFINITE goes 3 of 14 → **1 of 14**.
+
+### Why it is ON by default, and how the restriction is bounded
+
+It is a **restriction** as well as a discount: a post-ignition card may not be bought before the loop
+runs, which can only push a row *later* than the truth. So it needed a bound, not a promise, and the
+bound is a **sandwich**:
+
+- `--ignition` gates and discounts → **≥** the truth.
+- `--ignition-nogate` discounts without gating, so a card may be bought early at a price lower than it
+  would really pay → **≤** the truth.
+
+They **agree on 75 of 80 rows**, which pins the truth exactly there. The five they do not —
+`jayce-mesmerize-renata`, `lux-infinite-power`, `renata-bubble-bot-ready`,
+`renata-mastermind-points`, `swain-double-conquer` — are each **T5 gated against T4 ungated**, so
+those five are T4 or T5 and the table prints the later. All five are one shape: `lux-infinite-power`
+is itself an engine that **needs** `infinite-energy`, so its own six Energy should be free once
+`lux-infinite-energy` ignites, and the model flattens that nesting by charging every fuel producer at
+rune prices. The flattening is conservative — it can only over-charge — and unflattening it needs a
+per-stage ignition order, which is deliberately not guessed at.
+
+**The reason to default it ON is a comparison of errors, not a preference.** Leaving it off keeps a
+known **nine-turn** error on `bottled-constellation-time-warp` in preference to a bounded **one-turn**
+one on five named rows. `--no-ignition` reproduces the old table byte for byte, and that is asserted
+rather than claimed: the two runs were diffed and zero rows differ.
+
+**A third hand-walked reference point now agrees with the clock** and is pinned in
+`test/turn-clock.test.ts`: `jhin-fiora-facebreaker-recall` at **T4**, walked in
+`docs/plays/2026-09-13-the-loop-that-wants-a-contested-board.md`. The clock said T5 for as long as it
+charged the whole closure to runes. That is the strongest argument for the default — the model was
+not fitted to the hand walk, it was built from the `produces` tags and then found to agree with it.
+
+### Two exact transformations that made it affordable
+
+Pricing an engine's output splits each base into gated and ungated types, which pushed the largest
+closures past the 2e5 state guard — and 2e6 costs **44 seconds** against a budget of a fraction of a
+second. Two collapses, both exact and both verified by diffing the default table to zero rows changed:
+
+- **N free costs are one constraint, not N.** Items costing nothing are payable exactly when one of
+  them is, so they collapse to a single representative; the only thing that rides along is the
+  readiness turn a UNIT owes, carried as a disjunction.
+- **An ordering constraint between two free costs never binds**, so it is dropped — which is what lets
+  a wholly-free payoff collapse at all.
+
+The first collapse shipped a bug worth recording: it reduced the count of a type that something else
+**depended on**, so three free gears carrying three `[Equip]` costs became one root with three
+dependants that could never be satisfied, and the row went to **Infinity**. A deadlock from outside
+looks exactly like an unsolvable line. Roots are now excluded from the collapse.
