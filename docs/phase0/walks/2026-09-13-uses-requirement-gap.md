@@ -195,3 +195,42 @@ a legend, whose prose quietly assumes a body.
 single entry this sweep confirms is an ENGINE. The 686 ENGINEs were never audited — the same
 population `scripts/adversarial-check.mjs` cannot see, and the same one #203 found a shipped entry
 in with no stated point of failure.
+
+---
+
+## 6. THE FIFTH PREDICATE NEEDS NO PROSE AT ALL, AND IT IS THE ONE TO SHIP
+
+Predicates A–C all read how an AUTHOR PHRASED something, which is why each needed narrowing and why
+each has a false-positive taxonomy. **This one reads the RULES.** 190.1: *"Control is established
+over Battlefields through the course of play"* — you take a battlefield by walking a body onto it,
+and 323.6 strips Control the moment your last body leaves. **So an entry whose payoff sits on a
+battlefield it must CONTROL requires a unit, and an entry with zero bodies in `uses` cannot supply
+one. No prose is consulted.**
+
+**The honest narrowing is in `CLAUDE.md` already**: 190.6.d blanks only the WORD *"you"*, and 26 of
+the 64 non-token battlefields print no *"you"* at all — `UNL-214 Ripper's Bay`, `VEN-160 Mystic
+Vortex`, `OGN-296 Void Gate` and the rest work with no Controller and therefore need no body.
+Filtering to battlefields whose own text says `you`/`your` takes the count from **27 to 14**, and
+every one of the 13 dropped is a genuine non-requirement rather than a guess.
+
+**14 entries, every one an ENGINE**, each using a battlefield that must be Controlled and supplying
+no unit and no token-maker: `power-nexus-rune-recycle-any-identity`, `amateur-recital-free-evacuation`,
+`marai-spire-temptation-evacuation`, `daughter-void-marai-curtain-call`,
+`rocket-barrage-marai-spire-repeat-base-damage`, `last-rites-stack-arena-reanimator`,
+`hextech-formula-rage-amplifier-free-empower`, `forge-of-fluft-free-svellsongur`,
+`conscription-forge-of-the-fluft-equipment-outlives-the-theft`,
+`veiled-temple-temporal-portal-second-repeat`, `spirit-wheel-fortified-position-defend-draw`,
+`navori-fighting-pit-vanguard-helm-free-buffed-corpse`,
+`academy-ruthless-strike-cost-once-effect-twice`,
+`progress-day-shadow-temple-deliberate-burn-out`.
+
+**The starkest is `power-nexus-rune-recycle-any-identity`, and it is the cleanest case in the whole
+sweep: ONE `uses` row, the battlefield itself.** Its own step 1 opens *"Control the Power Nexus at
+your Beginning Phase"*, and 469.2 defines Hold on a battlefield the player CONTROLS. **A deck holding
+only `SFD-214` matches this entry as complete and cannot execute a single step of it.**
+
+**Why this is the one to ship as a standing check:** it consults no prose, so it cannot be defeated
+by phrasing; its one exception is measured and already in this file; and it is two conditions —
+*a battlefield in `uses` whose text says "you", and zero bodies in `uses`*. **Predicates A, B and C
+each needed three or four narrowings and still carry a false-positive taxonomy. This one needed one,
+and the one it needed was already written down.**
