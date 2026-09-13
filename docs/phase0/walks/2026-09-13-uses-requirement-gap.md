@@ -152,3 +152,46 @@ exclusion classes), `.scratch-gap/exposed.mjs` (A plus the token-supply discrimi
 `.scratch-gap/body2.mjs` (predicate B), `.scratch-gap/supply.mjs` (supply for named entries).
 **I did not edit `data/combos.json`; it is rc-manager7's, and the schema question — how to express
 "any N bodies" without pinning a decklist — is his too.**
+
+---
+
+## 5. THE FOURTH PREDICATE, WRITTEN THE SAME DAY IT WAS NAMED — AND IT IS THE BIGGEST
+
+Predicate C: **a board PRECONDITION with no counting word in it** — *"Have a friendly unit at a
+battlefield **besides** the Apothecary"*. Predicates A and B are both blind to it, and it was found
+by READING `apothecary-pridestalker-buff` rather than by any sweep. Written as:
+an instruction verb (`Have` / `You have` / `You control` / `Board state:` / `Requires` / `You need`)
+followed within 110 characters by `unit`/`body`/`units`/`bodies`, **with no card code inside the
+phrase** — because a body named by code is already in `uses` — and excluding entries that declare
+`needs`.
+
+**50 entries, against 4,283 step strings.** The cluster that matters is the one at **ZERO units in
+`uses`**, and three of six are verified by reading:
+
+- **`grand-duelist-arena-bar-mighty-channel`** [ENGINE, `uses` = `SFD-205` as a LEGEND +
+  `OGN-124 Arena Bar`, a gear — **no unit at all**] — *"Have a friendly unit at Might 4 with no buff
+  on it"*. The whole engine is: buff a Might-4 body so it CROSSES 5, which fires the Grand Duelist.
+  **That body is the fuel and there is no unit in `uses`.** Predicate A flagged this entry
+  independently at gap 4, so **two predicates built on different signals agree on it.**
+- **`hidden-blade-tactical-retreat-linked-instruction-draw`** [ENGINE, `uses` = six SPELLS, no unit]
+  — *"Have a friendly unit"*. The line kills your own body with Hidden Blade and saves it with
+  Tactical Retreat to cash 359.3.e.14.b's linked-instruction draw; **the body it kills is not in
+  `uses`.**
+- **`conscription-signpost-empty-garrison`** [ENGINE, `uses` = `UNL-140` ×3 (spell),
+  `UNL-045 Forgotten Signpost` (gear), a legend — no unit] — *"have a body"*.
+
+Unverified in the same zero-unit cluster and named rather than counted:
+`amateur-recital-free-evacuation`, `marai-spire-temptation-evacuation`,
+`shadow-dash-eye-of-twilight-dragged-attacker-tank`. **The other 44 are unread.**
+
+**Why this predicate is the productive one, stated as a shape rather than as a count:** a requirement
+that OPENS a line is exactly the kind an author writes once, in step 1, in their own voice, and never
+encodes — and it is also the kind that is hardest to see on review, because step 1 reads as scene
+setting rather than as a cost. **All five of the ENGINE entries confirmed across predicates B and C
+have one unit or none in `uses`**, which is the signature: an entry assembled out of spells, gear and
+a legend, whose prose quietly assumes a body.
+
+**And the class is an ENGINE class.** rc-synth2 hand-checked the 26 ALT_WINs and found two; every
+single entry this sweep confirms is an ENGINE. The 686 ENGINEs were never audited — the same
+population `scripts/adversarial-check.mjs` cannot see, and the same one #203 found a shipped entry
+in with no stated point of failure.
