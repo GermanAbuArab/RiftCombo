@@ -225,6 +225,10 @@ registration"*, so the identity a sideboard card would be swapped into is fixed 
 an off-identity one can never legally be played. That makes it a gap in the CHECKLIST, and widening
 `identityRule` is a rules judgement that deserves its own issue rather than a quiet edit inside a UI fix.
 
+> **AMENDED the same day, after #217 settled.** The gap was filled (#215) and the row's verdict was then
+> downgraded from `fail` to `unknown`: an off-identity sideboard card is UNPLAYABLE, not an illegal
+> registration, and the two layers now disagree ON PURPOSE. §8 carries the reasoning.
+
 **3. The precedence between 825.3.a and 103.2.d.1 had to be decided, and Ornn is why.** Measured over all
 51 Signature names in the pool: **Ornn is the only champion with three, and all three are Unique**
 (`SFD-190`, `SFD-191`, `SFD-192`); Master Yi is the only other with two and neither is Unique; the
@@ -350,20 +354,43 @@ have reported "the editor does not offer these". Clicking **All domains** first 
 
 ## 8. Close-out — `rc-builder`, 2026-09-13
 
-**The two layers now agree on every rule.** §7's mirror left one disagreement, sideboard identity, and
-it is closed (**#215**): the checklist gained a fourth sideboard row, `Tournament Rules 403.4.b ·
-Sideboard inside the identity`, reported first of the four for the reason `capOf` reports identity
-first. It is a Tournament Rules row rather than part of 103.1.b's because at registration a sideboard
-card is not in the deck — TR 601.1.b makes the Main Deck exactly 40 and 601.1.c keeps the sideboard
-beside it — and what makes an off-identity one illegal is what it is FOR: TR 403.4 swaps it 1 for 1
-into the Main Deck and TR 403.4.b freezes the Legend for the match. Both citations are labelled,
+**The checklist now REPORTS every rule the buttons do, and on one of them the two layers disagree
+deliberately.** §7's mirror left one silence, sideboard identity, and it is closed (**#215**): the
+checklist gained a fourth sideboard row, `Tournament Rules 403.4.b · Sideboard inside the identity`,
+reported first of the four for the reason `capOf` reports identity first. It is a Tournament Rules row
+rather than part of 103.1.b's because at registration a sideboard card is not in the deck — TR 601.1.b
+makes the Main Deck exactly 40 and 601.1.c keeps the sideboard beside it. Both citations are labelled,
 because 403.3 and 403.4 exist in both books.
+
+**This paragraph said "the two layers now agree on every rule" and that the card was ILLEGAL, and both
+were corrected hours later** — the first sentence by the ruling below, the second by #217. Left visible
+rather than rewritten, because the sequence is the point: the row shipped on an argument I then refuted
+with better evidence.
+
+> **THE RULING, same day.** The row reports **`unknown`, not `fail`**. Its original argument was that
+> TR 403.4 swaps a sideboard card into the Main Deck and 403.4.b freezes the Legend, so an off-identity
+> one can never be played — true, and **equally true of an off-TAG Signature card**, which #217 settled
+> as dead weight rather than an illegal registration. The two cannot differ. Three lines of evidence
+> point at neither being illegal: **"sideboard" appears ZERO times in the Core Rules**, so 103.1.b.1
+> cannot scope a bag the Core Rules never mention; **TR 403.3** is the only clause extending a
+> constraint across both bags and is scoped to *"limits on copies of NAMED cards"*, which identity is
+> not; and **601.1.c.4** states the legend-matching requirement explicitly for the Chosen Champion,
+> which it would not need to if 601.1.c.2's *"valid Main Deck cards"* already meant it.
+>
+> So the row says the true and useful thing — this card can never be swapped in — without calling the
+> registration illegal, because **calling a legal tournament list illegal is the worst failure this
+> report has** and the books do not settle it. **Not a new mechanism:** `legalityRule` already returns
+> `unknown` for a list whose only problem is a RESTRICTED card. **And the editor still BLOCKS it at the
+> button**, which is a different claim and must not be "fixed" to match: a button that declines to build
+> something unplayable is not a checklist certifying a registration illegal.
 
 It was measured to be test-neutral for `test/build.test.ts` rather than hoped: the row lives inside
 `sideboardRules`, which returns nothing for a deck with no sideboard, so the stable-order pin is
 untouched; and every card in both sideboard fixtures is mono-mind or mono-order under a mind + order
-legend, so the new row passes and both `legal` assertions stand. Its own row-level cases still belong
-in that file and it needs an owner.
+legend, so the new row passes and both `legal` assertions stand. **Its own row-level cases were written
+later the same day**, once `test/build.test.ts` was assigned: eight of them, wiring proved out of band
+by neutering the row and watching exactly two of the eight go red — the two that detect a failure, the
+other six pinning pass, unknown, absence and order and correctly surviving a row that never fails.
 
 Rendered and looked at rather than assumed, since it is a claim about output:
 
