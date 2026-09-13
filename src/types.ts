@@ -299,9 +299,19 @@ export interface Synergy {
   /**
    * How many partners the predicate caught on that date. The build fails when the live count
    * differs, which is what turns "somebody read it once" into an invariant a new set cannot erode.
-   * A count cannot see a swap that leaves the total unchanged; sets only add cards, and the one
-   * thing that removes one — an errata rewriting card text — is already gated by the find-string
-   * in data/errata.json.
+   * A count cannot see a swap that leaves the total unchanged, and THE COMPENSATION WRITTEN HERE IS
+   * ONLY HALF OF ONE. *"Sets only add cards, and the one thing that removes one — an errata
+   * rewriting card text — is already gated by the find-string in `data/errata.json`"* is true and it
+   * is entirely CARD-SIDE. It says nothing about a PREDICATE-side swap, which is the commoner change
+   * in this repo: 220 rules are authored by hand here, and an edit to `partner.textMatches` that
+   * drops one member and admits another leaves `reviewedCount` correct, `reviewed` untouched, and
+   * every check in the tree green. Demonstrated in memory rather than argued — nothing anywhere
+   * stores the SET, only its size (220 rules, 5,475 reviewed partners).
+   *
+   * The fix is cheap and is not this field's to make: a stable fingerprint of the sorted base codes
+   * alongside the count would close it, and that is a `data/synergies.json` schema change. Filed
+   * rather than built. What this docblock owed was to stop presenting the card-side half as the
+   * whole guarantee.
    */
   reviewedCount: number;
 }
