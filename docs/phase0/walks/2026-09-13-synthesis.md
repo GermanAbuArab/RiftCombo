@@ -120,6 +120,35 @@ it is the arithmetic behind the sentence "the fastest class is the least defende
 class is both the fastest (5 of 26 slower than doing nothing, against BURST's 20 of 23) and the one
 whose bodies are tokens.
 
+## The other 686 entries, and why they are late when they are
+
+The clock measures the turn a finisher **pays**, so the ENGINE class — 686 of 766 entries — was
+outside it by construction. `--engines` prices them with a narrower question, stated in its own
+output: an engine's turn is when its card set is first **payable**, and that is honest in one
+direction only, because an engine produces a rate this measures none of. **An engine that cannot be
+assembled before the game is decided is worthless whatever its rate.**
+
+**686 engines, median T5, mean T4.73, mode T4 at n=190. 153 of them — 22% — are deployable only after
+the do-nothing Hold curve wins in their identity**, against 41 of 80 (51%) for the finishers. The
+engine half of the catalogue is the healthier half on this measure.
+
+**And the 153 are late for a boring reason, which is worth recording because the analogous question
+one section up had an interesting answer.** The CHAIN inversion turned out to be one card; this does
+not.
+
+| | n | mean copies | mean E+P | per card |
+|---|---:|---:|---:|---:|
+| late | 153 | 4.97 | 26.76 | 5.79 |
+| on time | 533 | 3.23 | 11.67 | 3.86 |
+| — of the late: **BIG** (more copies than an on-time engine) | **120** | 5.71 | | 5.19 |
+| — of the late: **EXPENSIVE** (no more copies, so it is the price) | 33 | 2.27 | | 7.98 |
+
+**Seventy-eight per cent of the late engines are simply larger**, at an ordinary price per card. The
+33 that are genuinely expensive rather than large are recognisable on sight and are mostly one big
+body — `master-yi-unstoppable-gardens-level-ladder` is a **single card** at 15 Energy-plus-Power and
+reads T7, `corrupted-dragon-mass-evacuate` is one card at 12. Those are not hard to assemble; they are
+just dear, and the clock prices them correctly.
+
 ## What this does NOT say
 
 - **It is not a claim that a line loses.** It says the *smallest* body dies, not that the line needs
