@@ -3,6 +3,7 @@
 //   node scripts/adversarial-check.mjs            report everything
 //   node scripts/adversarial-check.mjs --strict   exit 1 if any finisher has an unanswered hole
 //   node scripts/adversarial-check.mjs --turns    only the turn-clock section
+//   node scripts/adversarial-check.mjs --engines  when the ENGINE class is deployable, and only that
 //   node scripts/adversarial-check.mjs --recheck-notables   corrections that REPLACE a stale shipped notable
 //
 // It asks two questions of every INFINITE / BURST / CHAIN / ALT_WIN entry:
@@ -40,6 +41,7 @@ const stalled = args.includes("--stalled");
 const recheck = args.includes("--recheck-notables");
 const holds = args.includes("--holds");
 const holdNotables = args.includes("--holds-notables");
+const engines = args.includes("--engines");
 
 const cards = JSON.parse(readFileSync("data/cards.json", "utf8")).cards;
 const db = JSON.parse(readFileSync("data/combos.json", "utf8"));
@@ -330,7 +332,11 @@ const findings = [];
 const clock = [];
 const entries = [];
 for (const e of db.combos) {
-  if (!FINISHER.has(e.class)) continue;
+  // ENGINEs are priced only under --engines, and reported in their own section with their own
+  // wording. They are NOT folded into the finisher table: an ALT_WIN belongs there because it PAYS a
+  // turn and wins, and an engine never pays at all - it produces a rate. Putting them in one table
+  // would be the class-filter mistake of 2026-09-13 committed in reverse.
+  if (!FINISHER.has(e.class) && !(engines && e.class === "ENGINE")) continue;
   const blob = JSON.stringify(e.prerequisites) + JSON.stringify(e.steps) + (e.notes || "") + (e.terminatesIn || "");
 
   const domains = new Set();
@@ -522,11 +528,41 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
                domains: (merged.length ? merged : [...ownDomains]).sort().join("/") || "colourless" });
 }
 
-if (!onlyTurns) {
+// --engines suppresses this section entirely rather than widening it. The hole sweep's POPULATION is
+// the finisher classes by design (#203), its denominator is the finisher count, and printing engine
+// rows against it would read "107 of 80" - a clean sweep is clean over its population, and mixing two
+// populations under one denominator is the defect this project keeps paying for. Whether the ENGINE
+// class should get its own answer sweep is a separate decision and is not made here.
+if (!onlyTurns && !engines) {
   console.log(`# Unanswered holes: ${findings.length} of ${db.combos.filter((c) => FINISHER.has(c.class)).length} finishers`);
   console.log(`# gear-kill answer set: ${gearKills.length} base codes, domains ${[...new Set(gearKills.flatMap((g) => g.domains))].sort().join(" ")}`);
   console.log(`# gear-detach answer set: ${gearDetach.length} base codes swept, ${detachAnswers.length} enemy-facing (${detachAnswers.map((d) => `${d.base} ${d.name}`).join(", ") || "none"})\n`);
   for (const f of findings) for (const h of f.holes) console.log(`${f.e.class.padEnd(8)} ${f.e.id}\n         ${h}`);
+}
+
+if (engines) {
+  // WHAT THIS NUMBER IS AND IS NOT. An engine's turn says when its card set is first payable, i.e.
+  // the earliest it can be used. It does NOT say the engine is worth using, because an engine
+  // produces a RATE and this measures none of it. So it is honest in ONE direction only: an engine
+  // that cannot be assembled before the game is decided is worthless whatever its rate, and that is
+  // the line below. Do not read it the other way round.
+  const eng = clock.filter((c) => c.cls === "ENGINE");
+  const late = eng.filter((c) => c.pays > c.base);
+  const finite = eng.map((c) => c.pays).filter((n) => n !== Infinity).sort((a, b) => a - b);
+  console.log(`\n# ENGINE deployment clock — the turn each engine's whole card set is first payable`);
+  console.log(`# on a perfect curve. Same optimism as the finisher clock: perfect draws, nothing else`);
+  console.log(`# cast, no interaction. HONEST IN ONE DIRECTION ONLY, see the note in the source.`);
+  console.log(`# ${eng.length} ENGINEs; median T${finite[Math.floor(finite.length / 2)]}, mean T${(finite.reduce((a, b) => a + b, 0) / finite.length).toFixed(2)}`);
+  console.log(`# ${late.length} of ${eng.length} (${((100 * late.length) / eng.length).toFixed(0)}%) are deployable only AFTER the do-nothing Hold curve wins in their identity`);
+  const hist = new Map();
+  for (const c of eng) hist.set(c.pays, (hist.get(c.pays) ?? 0) + 1);
+  for (const t of [...hist.keys()].sort((a, b) => a - b))
+    console.log(`  T${String(t).padStart(2)}  n=${String(hist.get(t)).padStart(3)}  ${"#".repeat(Math.round(hist.get(t) / 4))}`);
+  console.log(`\n# the ${late.length} that arrive too late, slowest first:`);
+  for (const c of late.sort((a, b) => b.pays - a.pays).slice(0, 25))
+    console.log(`  T${String(c.pays).padStart(2)} vs T${c.base}  ${c.domains.padEnd(12)} ${c.id}`);
+  if (late.length > 25) console.log(`  … and ${late.length - 25} more`);
+  process.exit(0);
 }
 
 const slower = clock.filter((c) => c.pays > c.base);
