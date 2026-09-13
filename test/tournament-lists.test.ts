@@ -6,15 +6,15 @@ import { checkBuild } from "../src/build.js";
 import type { Deck } from "../src/types.js";
 
 /**
- * Las 222 listas que Riot publicó en sus seis artículos "<City>'s Top Decks", parseadas todas.
+ * The 222 lists Riot published across its six "<City>'s Top Decks" articles, all parsed.
  *
- * Hasta el 2026-09-06 ningún test usaba listas reales, y por eso #86 (`resolveName` no rescataba
- * `Master Yi, Honed`) y #87 (306 de 3567 grafías de códigos que `baseOf` tiraba por comparar
- * mayúsculas) sobrevivieron meses sin que nadie los viera. Este archivo es la red: cualquier cambio
- * en `parseDeckText` / `resolveName` / `resolveCode` que rompa el dialecto de Riot se cae acá.
+ * Until 2026-09-06 no test used real lists, which is why #86 (`resolveName` failing to rescue
+ * `Master Yi, Honed`) and #87 (306 of 3,567 spellings of the pool's own codes dropped because
+ * `baseOf` compared case-sensitively) both survived for months unnoticed. This file is the net: any
+ * change to `parseDeckText` / `resolveName` / `resolveCode` that breaks Riot's dialect fails here.
  *
- * De dónde salen las listas, qué se les tocó al copiarlas y por qué no se guardan posiciones ni
- * nombres de jugador: `test/fixtures/tournament-lists/README.md`.
+ * Where the lists come from, what was touched in copying them, and why neither standings nor player
+ * names are stored: `test/fixtures/tournament-lists/README.md`.
  */
 
 const cards = loadCardIndex();
@@ -43,19 +43,19 @@ const KNOWN_ERRATA: Record<string, string[]> = {
 /** Medido el 2026-09-06. Este número sube cuando el parser mejora y NUNCA baja a mano. */
 const CLEAN = 218;
 
-describe("las listas de torneo de Riot como regresión del parser", () => {
-  it("tiene las 222 listas de los seis artículos", () => {
+describe("Riot's tournament lists as a parser regression", () => {
+  it("has the 222 lists from the six articles", () => {
     expect(FILES).toHaveLength(222);
     const byCity = FILES.reduce<Record<string, number>>((a, f) => ((a[cityOf(f)] = (a[cityOf(f)] ?? 0) + 1), a), {});
     expect(byCity).toEqual({ atlanta: 30, barcelona: 37, lille: 31, sydney: 42, utrecht: 40, vancouver: 42 });
   });
 
-  it(`resuelve todas las líneas de ${CLEAN} listas`, () => {
+  it(`resolves every line of ${CLEAN} lists`, () => {
     const clean = FILES.filter((f) => decks.get(f)!.unresolved.length === 0);
     expect(clean.length).toBe(CLEAN);
   });
 
-  it("las líneas que no resuelve son exactamente las cuatro erratas de transcripción conocidas", () => {
+  it("the lines it does not resolve are exactly the four known transcription errata", () => {
     const found: Record<string, string[]> = {};
     for (const f of FILES) {
       const u = decks.get(f)!.unresolved;
@@ -64,12 +64,12 @@ describe("las listas de torneo de Riot como regresión del parser", () => {
     expect(found).toEqual(KNOWN_ERRATA);
   });
 
-  it("cada lista registra exactamente 40 cartas en el Main Deck, contando el Chosen Champion", () => {
+  it("every list registers exactly 40 Main Deck cards, counting the Chosen Champion", () => {
     const sizes = FILES.map((f) => [f, total(decks.get(f)!.main)] as const).filter(([, n]) => n !== 40);
     expect(sizes).toEqual([]);
   });
 
-  it("cada lista nombra su leyenda y su Chosen Champion", () => {
+  it("every list names its legend and its Chosen Champion", () => {
     expect(FILES.filter((f) => !decks.get(f)!.legend)).toEqual([]);
     expect(FILES.filter((f) => !decks.get(f)!.champion)).toEqual([]);
   });
@@ -81,7 +81,7 @@ describe("las listas de torneo de Riot como regresión del parser", () => {
    */
   const RUNE_POOL_ERRATA = "vancouver-06.txt";
 
-  it("cada lista trae 12 runas y 3 battlefields, salvo las erratas del artículo", () => {
+  it("every list brings 12 runes and 3 battlefields, except the article's errata", () => {
     const runes = FILES.filter((f) => total(decks.get(f)!.runes) !== 12);
     expect(runes).toEqual([RUNE_POOL_ERRATA]);
     const bfs = FILES.filter((f) => total(decks.get(f)!.battlefields) !== 3);
@@ -90,7 +90,7 @@ describe("las listas de torneo de Riot como regresión del parser", () => {
   });
 });
 
-describe("checkBuild sobre las listas que parsean limpias", () => {
+describe("checkBuild over the lists that parse clean", () => {
   const clean = FILES.filter((f) => decks.get(f)!.unresolved.length === 0);
   const fails = (f: string) => checkBuild(decks.get(f)!, cards, "constructed").rules.filter((r) => r.status === "fail");
 
@@ -100,7 +100,7 @@ describe("checkBuild sobre las listas que parsean limpias", () => {
    * `checkBuild` responde por el formato de HOY. Barcelona (2026-08-26) es el único artículo
    * posterior al baneo, y es la prueba de que la explicación se sostiene: da cero.
    */
-  it("la única fila que falla por legalidad es el baneo del 2026-07-24, y Barcelona no la tiene", () => {
+  it("the only row that fails on legality is the 2026-07-24 ban, and Barcelona does not have it", () => {
     const banned = clean.filter((f) => fails(f).some((r) => r.rule === "103.2.e"));
     expect(banned).toHaveLength(89);
     expect(banned.filter((f) => cityOf(f) === "barcelona")).toEqual([]);
@@ -126,7 +126,7 @@ describe("checkBuild sobre las listas que parsean limpias", () => {
    */
   const BATTLEFIELD_SIDEBOARD_ERRATA = "utrecht-17.txt";
 
-  it("dejando de lado esa fila, las únicas listas ilegales son el Rune Pool mal transcrito y un sideboard que repite las Battlefields", () => {
+  it("setting that row aside, the only illegal lists are the mis-transcribed Rune Pool and a sideboard that repeats the Battlefields", () => {
     const structural = clean
       .map((f) => [f, fails(f).filter((r) => r.rule !== "103.2.e")] as const)
       .filter(([, rs]) => rs.length > 0);
@@ -136,7 +136,7 @@ describe("checkBuild sobre las listas que parsean limpias", () => {
     expect(byFile.get(BATTLEFIELD_SIDEBOARD_ERRATA)!.map((r) => r.rule)).toEqual(["Tournament Rules 601.1.c.2"]);
   });
 
-  it("las 37 listas de Barcelona, el único evento posterior al baneo, son todas legales hoy", () => {
+  it("the 37 Barcelona lists, the only post-ban event, are all legal today", () => {
     const barcelona = clean.filter((f) => cityOf(f) === "barcelona");
     expect(barcelona).toHaveLength(37);
     expect(barcelona.filter((f) => !checkBuild(decks.get(f)!, cards, "constructed").legal)).toEqual([]);

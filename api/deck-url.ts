@@ -1,8 +1,10 @@
 // Vercel Edge Function: proxies the one thing the browser cannot fetch itself — a Piltover
 // Archive deck page (CORS). Allowlisted host, honest User-Agent, short cache.
 //
-// Ported from the Cloudflare Worker (web/worker.ts) with the logic unchanged; it only ever used
-// standard web APIs. Security headers now come from vercel.json, which also covers static files.
+// Ported from the Cloudflare Worker that used to live at web/worker.ts, with the logic unchanged;
+// it only ever used standard web APIs. THAT FILE NO LONGER EXISTS - it was removed in b241bc6,
+// "Move hosting from Cloudflare Workers to Vercel", so look for it in history rather than at HEAD.
+// Security headers now come from vercel.json, which also covers static files.
 
 export const config = { runtime: "edge" };
 
