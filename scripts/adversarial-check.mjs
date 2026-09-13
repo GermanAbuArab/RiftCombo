@@ -18,6 +18,18 @@
 //   2. How many turns does it take, against the do-nothing Hold curve in its own identity?
 //      See docs/plays/2026-09-12-the-unopposed-clock.md. Both numbers are OPTIMISTIC LOWER BOUNDS:
 //      perfect draws, nothing else ever cast, no interaction from the opponent.
+//
+//      KNOWN AND UNPATCHED, AND IT POINTS THE OTHER WAY FOR ONE CLASS. `deployTurn` prices every card
+//      in a closure against the rune curve, which is right for a BURST or a CHAIN, where every Energy
+//      comes from a rune. It is WRONG for an Energy engine: once an `infinite-energy` loop is live,
+//      everything bought afterwards is free and only its POWER still comes off the curve. So for the
+//      INFINITE class the number is an OVER-estimate — the opposite direction to the under-estimate
+//      that folding `needs` upward fixed on 2026-09-13 — and **the INFINITE column is not a floor and
+//      must not be quoted as one.** Hand-walked, `jhin-fiora-facebreaker-recall` is T4 where this
+//      script says T5 (docs/plays/2026-09-13-the-loop-that-wants-a-contested-board.md), and its
+//      section 5b is the control case: `twilight-reveler-eye-facebreaker-recruits` scores the same T5
+//      here, produces no Energy, and really is T5. Fixing it needs a model of WHEN a loop ignites,
+//      which is a larger thing than the fold was, so it is recorded rather than guessed at.
 import { readFileSync, writeFileSync } from "node:fs";
 
 const args = process.argv.slice(2);
