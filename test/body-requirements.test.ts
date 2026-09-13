@@ -129,7 +129,14 @@ describe("bodies a line needs that no card supplies (Combo.anyBodies)", () => {
      * are the requirement, and three carry arithmetic rc-manager7 appended when he raised a count.
      * The shortest verbatim run across all 82 is 23 characters, so the floor is 20.
      *
-     * ITS LIMIT, STATED: a note that quotes twenty characters and invents the rest would pass. It
+     * TWO LIMITS, STATED. The haystack is the entry's own prose plus CARD TEXT, and not the
+     * rulebooks - so a note that quoted a RULE verbatim would fail this even though it is perfectly
+     * sound. None does today (notes carry rule NUMBERS, and those come from the entry's own prose,
+     * which IS in the haystack), and the fix if one ever lands is to add the two rules files here
+     * rather than to weaken the note. It is left narrow deliberately: widening a haystack on
+     * speculation is how a check stops catching anything.
+     *
+     * And: a note that quotes twenty characters and invents the rest would pass. It
      * catches a wholly invented or heavily paraphrased note, which is the failure that has actually
      * happened here, and the second floor below is what catches a drift TOWARDS that.
      */
