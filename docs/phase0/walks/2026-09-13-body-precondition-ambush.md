@@ -850,3 +850,39 @@ emit it — and the four in the thin tail are stable under three successive tigh
 **The reusable half: when you find a bug in your own check, go and read whether the shipped instrument
 that asks the same question has it.** Here it did not, and its filter was the better one; adopting it
 cost one line and made my number defensible instead of merely corrected.
+
+---
+
+## 19. THE CLASS, CHECKED AGAINST MY OWN WORK: ONE CLASS, THREE INSTANCES, ONE REAL
+
+rc-manager8's reading was right — *"you may find it is one class with three instances"*. I re-examined
+every check I ran today that asks whether an entry **names** or **supplies** something.
+
+**A citation-shaped check is immune by construction.** The 424 sweep asks whether an entry cites a
+paragraph, and a rule number in an entry's prose is unambiguously the entry's own reasoning — it
+cannot be a card the entry happens to run. Confirmed rather than assumed, **and the other known trap
+was tested too**: a BARE three-digit token matches a prose quantity, which would make an entry read as
+citing the block and shrink my owed set. Measured: **of the 26 entries arguing 431.1.c, ZERO cite only
+a bare `424`** — every one cites a sub-paragraph. My sixteen had no false negatives.
+
+**That sweep now reads owed = 0**, because rc-manager8 applied all sixteen in `703f305`. It is
+therefore a check that is clean at a moment when it was not clean this morning, which is exactly when
+`CLAUDE.md` says to pin one: *"a check that comes back clean is the one worth PINNING AS A TEST,
+because pinning it costs nothing at a clean state and it can only ever be paid for once."*
+
+**A supply-shaped check has a different analogue and it is NOT the enabler bug.** Hidden and Equip ask
+whether the entry supplies a body, and a unit in `uses` IS the supplier — so the failure would be **a
+supplier that cannot supply**: a unit stranded in TRASH or DECK, which 818.1.c.2's *"a unit you
+control"* and 190.1's body-on-the-board cannot be satisfied by. Measured over the entries my original
+sweeps counted as supplied — **68 for Hidden, 118 for Equip — the answer is ZERO and ZERO.** The gates
+had no false negatives.
+
+**So of the three instances, exactly one was real, and it was the one already sitting in `CLAUDE.md`
+under a different name**: the Ambush predicate returning a confident ZERO because it counts the
+Ambusher itself, which 822.1.c and 822.3 forbid from being its own precondition. The Equipment
+answer-set bug was the same class arriving from the answer side rather than the supply side.
+
+**The general statement, now that all three are in view: a check has to ask not only WHOSE card a
+piece of evidence is, but WHETHER THAT CARD CAN PLAY THE ROLE THE CHECK IS COUNTING IT FOR.** An
+Ambusher cannot be its own precondition; a friendly-only detacher cannot answer an opponent; a unit in
+the trash cannot stand at a battlefield. Three different reasons, one question.
