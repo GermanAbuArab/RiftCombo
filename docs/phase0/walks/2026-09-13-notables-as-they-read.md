@@ -831,3 +831,92 @@ acknowledgement that the answer arrives in a window the rules create for it, aft
 already spent** — which is why *"the opponent never acts"*, the sentence §13 found on
 `bottled-constellation-time-warp`, is the single most dangerous framing in this class. The opponent
 does not need a turn. **359.3.c gives them the window on yours.**
+
+---
+
+## 16. The INFINITE class — **ten of fourteen loops run on a gear, and the split that decides their exposure is a TAG**
+
+An INFINITE's payoff is a **loop**, not a card, so §14's question has to be asked of the loop's links
+instead of a `payoff` row — and a loop is a serial dependency, so **every link is load-bearing and
+any one removal ends it.** Measured over the 14 INFINITEs at `origin/master` `1f12d61`.
+
+**Ten of the fourteen have a gear among their links**, which makes §13's answer set the question for
+most of the class. Six of the ten already carry a **full** gear-answer notable — naming the six
+unconditional enemy-facing kills with their domains, the `[Action]`-versus-plain-spell timing split
+(806.1.c.1 against 155), **and `SFD-011 Angle Shot` as the Reaction-speed one**. That is thorough
+work and it is not what this section is about.
+
+**Four do not**, and they are not four random entries:
+
+| entry | gear link | |
+|---|---|---|
+| `lux-infinite-energy` | `OGN-212 Forge of the Future` | **the catalogue's flagship loop** — #21's whole ledger is built on it |
+| `lux-infinite-power` | `OGN-212 Forge of the Future` | |
+| `lady-luminosity-loop-comet` | `OGN-212 Forge of the Future` | |
+| `gemdragon-henge-vi-blind-fury` | `SFD-117 Ancient Henge` | |
+
+**And `gemdragon-henge-vi-blind-fury` nearly passed the check.** It matched a gear-answer regex
+because its own **step 3** reads *"Detonate (1 Energy + 1 Power): **kill your own Ancient Henge**,
+draw 2 Dragons"* — it names the card as **its own tool**, never as an answer to itself. **Right file,
+wrong sentence, and that is the fourth time in this walk** (after the three Green Father false
+positives in §14). A `names-the-card` predicate cannot distinguish a threat from an instrument, and
+in this catalogue the same card is routinely both.
+
+### The split is the Equipment tag, and it runs the other way from what §13 implies
+
+```
+OGN-212 Forge of the Future   type=[gear]  tags=[]            <- NOT Equipment
+SFD-117 Ancient Henge         type=[gear]  tags=[]            <- NOT Equipment
+SFD-153 Eye of the Herald     type=[gear]  tags=[Equipment]
+SFD-073 Experimental Hexplate type=[gear]  tags=[Equipment]
+SFD-059 Svellsongur           type=[gear]  tags=[Equipment]
+SFD-009 Serrated Dirk         type=[gear]  tags=[Equipment]
+```
+
+**`SFD-011 Angle Shot` — the only Reaction-speed answer in the fifteen — is a DETACH, and it names an
+`Equipment`.** A gear that is never attached cannot be detached, so **Angle Shot cannot touch the
+Forge or the Henge at all.** Of the fifteen: four carry `[Action]` (`OGN-022`, `OGN-179`, `OGN-224`,
+`SFD-135`) and so reach a Showdown on either player's turn (806.1.c.1); one is `[Reaction]` and is
+the detach; the rest are plain spells or triggers, confined by 155 to their controller's own Main
+Phase in an Open State.
+
+**So the four uncovered loops have a NARROWER answer set than the six covered ones, and the note they
+owe says so.** Their engine cannot be answered at Reaction speed by anything, and the loop runs
+entirely inside the combo player's own Main Phase — so every answer must be cast on the **opponent's**
+turn, a full turn ahead and fully telegraphed. **That maps one-to-one onto the covered/uncovered
+split**: the six that carry the notable all run **Equipment** engines, and all four that do not run
+**non-Equipment** gear. The notable was written where Angle Shot applies.
+
+This is a second disjointness on the same halving of the gear pool that CLAUDE.md already records
+from the exhaust side (*"the 40 Equipment carry ZERO exhaust symbols anywhere in their text while 40
+of the other 67 do"*): **the Reaction-speed gear answer reaches one half of the pool and not the
+other.**
+
+### What the Forge's own text makes of it
+
+```
+OGN-212 | Forge of the Future | Gear | Order | E2 | When you play this, play a 1 Might Recruit unit
+token at your base. Kill this: Recycle up to 4 cards from trashes.
+```
+
+**The recycle is paid by killing the Forge**, which is why `lux-infinite-energy`'s step 0 opens
+*"Activate Forge of the Future (Kill this)"* and its step 7 replays it for 2 Energy. So the Forge is
+already dying and being rebought every pass, which makes an opponent's kill much less decisive than
+it first looks — **except for what it takes with it.** The recycle is the loop's only refill, and
+CLAUDE.md records that this ledger runs with **zero spare draws** by construction. An opponent's kill
+removes the Forge **without giving its controller the recycle**, so the draws that pass is funding
+have nothing behind them. **Whether that lands on 431.1.a in the same pass depends on where in the
+pass it happens — which is exactly the kind of thing only the entry's own ledger can work out, and
+none of the three states it.**
+
+I have deliberately not asserted the Burn Out. The defensible statement is the narrower one: **the
+loop's refill IS the gear, the ledger has no slack, and killing the gear does not hand over the
+refill.**
+
+### The four that have no gear link, for completeness
+
+`renata-mastermind-points`, `jayce-mesmerize-renata`, `jhin-virtuoso-ekko-malzahar-vi` and
+`threshold-reveler-infinite-energy`. The last is the interesting one against §14: its non-unit link is
+`VEN-166 Threshold of the Gray`, a **battlefield**, which 170.3 and 170.4 put beyond removal entirely
+— so its only answerable link is `VEN-020 Twilight Reveler`, a Might-3 body at **base**, and the
+answer set for that is the narrow one §1's Ivern notables describe.
