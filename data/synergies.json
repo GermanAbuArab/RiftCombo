@@ -5265,25 +5265,29 @@
     },
     {
       "id": "frozen-fortress-token-toughness",
-      "name": "Frozen Fortress sweeps every 1-Might token at both Beginning Phases — unless yours are worth 2",
+      "name": "Frozen Fortress sweeps the 1-Might band at BOTH Beginning Phases — unless yours are worth 2",
       "anchor": "UNL-212",
       "partner": {
-        "textMatches": "[Tt]oken units? (have|has) \\+"
+        "textMatches": "(?:[Yy]our|[Oo]ther friendly) (?:token )?units(?: here)? have \\+\\d? ?:rb_might:"
       },
-      "why": "\"At the start of each player's Beginning Phase, deal 1 to each unit here\" fires for BOTH players (190.6.d never bites — the sentence names no \"you\") before 315.2.b's Hold, so a 1-Might token standing there dies to its own controller's upkeep exactly as it does to the opponent's (143.2.a kills on nonzero damage meeting or exceeding current Might). `UNL-077 Soul Shepherd`'s static (\"Your token units have +1 Might\") is a continuous modifier, not a 702 Buff (the same distinction the project draws for Lee Sin, Centered), so it raises every friendly token above the 1-damage sweep while the opponent's tokens still die — an asymmetric sweep bought with one card already in the catalogue's Mind identity.",
+      "why": "\"At the start of each player's Beginning Phase, deal 1 to each unit here\" fires for BOTH players (190.6.d never bites — the sentence names no \"you\") before 315.2.b's Hold, so a 1-Might body standing there dies to its own controller's upkeep exactly as it does to the opponent's (143.2.a kills on nonzero damage meeting or exceeding current Might). A static +N grant makes that sweep one-sided, and it holds forever rather than for a turn: 143.3.b.1 heals damage at the end of each player's turn, so the two ticks never accumulate and Might 2 is enough permanently. These are continuous modifiers, not 702 Buff counters — the same distinction the project draws for Lee Sin, Centered — so 702.3's one-per-unit cap never touches them and they reach a whole board rather than one body. WIDENED 2026-09-13: the predicate used to read \"token units have +\" and caught UNL-077 Soul Shepherd alone, while this card's own text says \"each unit HERE\", so a here-scoped granter protects that garrison exactly as well. What each of the other five adds — VEN-018 Rage Amplifier says \"your units\", so unlike the Shepherd it also lifts a 1-Might CARD body, and 359.2.d enters a non-unit gear ready at your BASE so it never stands here to take the tick; UNL-147 Baron Nashor is +2, the largest margin in the family; UNL-191 Wuju Master costs no card slot at all, and 107.4.b keeps a legend off this battlefield so it is never swept itself, at the price of 824.1.d making the grant Inactive below 6 XP; OGS-013 Garen, Commander and OGN-243 Darius, Executioner print \"here\", so they must STAND at the Fortress to do anything — which costs nothing, since at Might 5 and 6 they shrug off a tick that would kill what they are protecting. No exclusion was needed: all six raise a 1-Might body out of the band.",
       "basis": {
         "rules": [
-          "190.6.d",
+          "107.4.b",
           "143.2.a",
-          "702.3"
+          "143.3.b.1",
+          "190.6.d",
+          "359.2.d",
+          "702.3",
+          "824.1.d"
         ],
         "combos": [
           "frozen-fortress-soul-shepherd-asymmetric-sweep"
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 1
+      "reviewed": "2026-09-13",
+      "reviewedCount": 6
     },
     {
       "id": "forbidding-waste-lone-defender-buff",
