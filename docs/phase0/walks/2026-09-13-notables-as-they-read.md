@@ -1863,3 +1863,54 @@ the shape of the edit, and nothing outside `prerequisites.notable`.
 **The one sentence.** **A caveat makes a claim honest; it does not make the card an answer** — and its
 mirror, found the same day: **a scope is safe exactly when it matches the threat.** Between them they
 account for every defect in this walk that a checker could not see.
+
+---
+
+## 32. In **eight of the fourteen**, the loop's only counterable window IS its draw
+
+§30 counted the windows. Reading what is *in* them sharpens it: **the spell a loop spends is usually
+the spell that refills it.** Every spell appearing in an INFINITE's pass, read:
+
+```
+draws            UNL-165 Shadow's Call (draw 2) · UNL-173 Sacrifice (draw 2 + channel) ·
+                 OGN-083 Consult the Past (draw 2) · OGN-114 Progress Day (draw 4) ·
+                 SFD-106 Show of Strength (draw 1 per Mighty unit) · OGN-129 Confront (draw 1) ·
+                 SFD-005 Detonate (controller draws 2) · OGN-095 Stupefy (draw 1) ·
+                 SFD-166 Rally the Troops (draw 1) · UNL-042 Back Off (draw 1 from hand)
+does not draw    OGN-104 Retreat · VEN-052 Mesmerize · OGN-220 Facebreaker ·
+                 UNL-009 Upstage Comedy · OGN-085 Falling Comet · UNL-020 Dancing Grenade
+```
+
+**Eight of the fourteen INFINITEs spend at least one drawing spell per pass** —
+`lux-infinite-energy` (**both** of its two), `lady-luminosity-loop-comet`,
+`jhin-virtuoso-ekko-malzahar-vi` (two of three), `gemdragon-henge-vi-blind-fury` (**three of four**),
+`garen-fiora-malzahar-facebreaker-recruits`, `renata-mastermind-points`,
+`threshold-reveler-infinite-energy` and `reveler-svellsongur-jhin-infinite-power` (the last two on
+`UNL-042 Back Off`, whose draw is conditional — *"If you played this from your hand, draw 1"*).
+
+**The other six are clean**: `lux-infinite-power` and `renata-bubble-bot-ready` spend `OGN-104
+Retreat` (a bounce plus a rune channel), `jayce-mesmerize-renata` spends `VEN-052 Mesmerize`,
+`jhin-fiora-facebreaker-recall` and `twilight-reveler-eye-facebreaker-recruits` spend `OGN-220
+Facebreaker` (a stun), and `pursuer-herald-recruits` spends nothing.
+
+### Why this matters more than "a counter costs a pass"
+
+§30 said a held counter costs a one-window loop **one pass**. **That is true only where the window is
+not the draw.** CLAUDE.md records that these ledgers run with **zero spare draws by construction** —
+the Main Deck is empty, and each pass draws back exactly what it recycled. **So in the eight,
+countering the spell removes a draw from a ledger that has no slack**, and the pass's recycles may
+already have resolved, leaving cards on the bottom of the deck that nothing brings back that turn.
+
+**`lux-infinite-energy` is the extreme case and it is the catalogue's flagship loop**: **both** of its
+spells draw two, and §16 already showed its refill engine `OGN-212 Forge of the Future` is a gear with
+no Reaction-speed answer. **So its board is nearly unanswerable and both of its windows are its
+draws** — the same inversion §30 found on the Henge loop, one step sharper.
+
+### What this does NOT claim
+
+**It is not a Burn Out.** 431.1.a needs an *attempted* draw past an empty deck, and a countered spell
+never draws — so the loop **stalls** rather than burning. **Whether a stalled pass is recoverable is
+ordering, which only each entry's own ledger can settle**, and I have not walked eight ledgers. The
+defensible statement is the narrow one: **in eight of the fourteen the counterable window is the
+refill, so a counter costs the card the pass was going to replace and not merely the pass** — and none
+of the eight says so.
